@@ -1,12 +1,12 @@
 package i9;
 
-import a8.la;
+import a8.ma;
 import j$.util.Objects;
 public class d {
     public static final b d;
-    public final a f16205a;
-    public final Character f16206b;
-    public volatile d f16207c;
+    public final a f16171a;
+    public final Character f16172b;
+    public volatile d f16173c;
 
     static {
         new c("base64()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
@@ -18,26 +18,26 @@ public class d {
 
     public d(a aVar, Character ch2) {
         boolean z10;
-        this.f16205a = aVar;
+        this.f16171a = aVar;
         if (ch2 != null) {
             char charValue = ch2.charValue();
-            byte[] bArr = aVar.f16203g;
+            byte[] bArr = aVar.f16169g;
             if (charValue < bArr.length && bArr[charValue] != -1) {
                 z10 = false;
-                la.h(z10, "Padding character %s was already in alphabet", ch2);
-                this.f16206b = ch2;
+                ma.h(z10, "Padding character %s was already in alphabet", ch2);
+                this.f16172b = ch2;
             }
         }
         z10 = true;
-        la.h(z10, "Padding character %s was already in alphabet", ch2);
-        this.f16206b = ch2;
+        ma.h(z10, "Padding character %s was already in alphabet", ch2);
+        this.f16172b = ch2;
     }
 
     public final void a(StringBuilder sb2, byte[] bArr, int i7, int i10) {
         boolean z10;
-        la.n(i7, i7 + i10, bArr.length);
-        a aVar = this.f16205a;
-        int i11 = aVar.f16202f;
+        ma.n(i7, i7 + i10, bArr.length);
+        a aVar = this.f16171a;
+        int i11 = aVar.f16168f;
         int i12 = aVar.d;
         int i13 = 0;
         if (i10 <= i11) {
@@ -45,19 +45,19 @@ public class d {
         } else {
             z10 = false;
         }
-        la.f(z10);
+        ma.f(z10);
         long j3 = 0;
         for (int i14 = 0; i14 < i10; i14++) {
             j3 = (j3 | (bArr[i7 + i14] & 255)) << 8;
         }
         int i15 = ((i10 + 1) * 8) - i12;
         while (i13 < i10 * 8) {
-            sb2.append(aVar.f16199b[((int) (j3 >>> (i15 - i13))) & aVar.f16200c]);
+            sb2.append(aVar.f16165b[((int) (j3 >>> (i15 - i13))) & aVar.f16166c]);
             i13 += i12;
         }
-        Character ch2 = this.f16206b;
+        Character ch2 = this.f16172b;
         if (ch2 != null) {
-            while (i13 < aVar.f16202f * 8) {
+            while (i13 < aVar.f16168f * 8) {
                 sb2.append(ch2.charValue());
                 i13 += i12;
             }
@@ -66,18 +66,18 @@ public class d {
 
     public void b(StringBuilder sb2, byte[] bArr, int i7) {
         int i10 = 0;
-        la.n(0, i7, bArr.length);
+        ma.n(0, i7, bArr.length);
         while (i10 < i7) {
-            a aVar = this.f16205a;
-            a(sb2, bArr, i10, Math.min(aVar.f16202f, i7 - i10));
-            i10 += aVar.f16202f;
+            a aVar = this.f16171a;
+            a(sb2, bArr, i10, Math.min(aVar.f16168f, i7 - i10));
+            i10 += aVar.f16168f;
         }
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof d) {
             d dVar = (d) obj;
-            if (this.f16205a.equals(dVar.f16205a) && Objects.equals(this.f16206b, dVar.f16206b)) {
+            if (this.f16171a.equals(dVar.f16171a) && Objects.equals(this.f16172b, dVar.f16172b)) {
                 return true;
             }
         }
@@ -85,15 +85,15 @@ public class d {
     }
 
     public final int hashCode() {
-        return this.f16205a.hashCode() ^ Objects.hashCode(this.f16206b);
+        return this.f16171a.hashCode() ^ Objects.hashCode(this.f16172b);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("BaseEncoding.");
-        a aVar = this.f16205a;
+        a aVar = this.f16171a;
         sb2.append(aVar);
         if (8 % aVar.d != 0) {
-            Character ch2 = this.f16206b;
+            Character ch2 = this.f16172b;
             if (ch2 == null) {
                 sb2.append(".omitPadding()");
             } else {

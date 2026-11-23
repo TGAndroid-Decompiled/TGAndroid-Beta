@@ -7,36 +7,36 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class k5 implements Runnable {
-    public final int f36778a;
-    public final l5 f36779b;
-    public final ArrayList f36780c;
+    public final int f36744a;
+    public final l5 f36745b;
+    public final ArrayList f36746c;
     public final TLObject d;
 
     public k5(l5 l5Var, ArrayList arrayList, TLObject tLObject, int i7) {
-        this.f36778a = i7;
-        this.f36779b = l5Var;
-        this.f36780c = arrayList;
+        this.f36744a = i7;
+        this.f36745b = l5Var;
+        this.f36746c = arrayList;
         this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f36778a) {
+        switch (this.f36744a) {
             case 0:
-                org.telegram.messenger.g0.g3(new k5(this.f36779b, this.f36780c, this.d, 1));
+                org.telegram.messenger.g0.g3(new k5(this.f36745b, this.f36746c, this.d, 1));
                 return;
             default:
-                l5 l5Var = this.f36779b;
-                int i7 = l5Var.f37110e;
-                HashSet hashSet = new HashSet(this.f36780c);
+                l5 l5Var = this.f36745b;
+                int i7 = l5Var.f37067e;
+                HashSet hashSet = new HashSet(this.f36746c);
                 TLObject tLObject = this.d;
                 if (tLObject instanceof Vector) {
                     ArrayList arrayList = ((Vector) tLObject).objects;
-                    org.telegram.messenger.ur.a0(i7).f27250a.c(new i5(l5Var, arrayList, 1));
+                    org.telegram.messenger.ur.a0(i7).f27214a.c(new i5(l5Var, arrayList, 1));
                     l5Var.d(arrayList);
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                         if (arrayList.get(i10) instanceof TLRPC.Document) {
-                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i10)).f28440id));
+                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i10)).f28404id));
                         }
                     }
                     if (!hashSet.isEmpty()) {

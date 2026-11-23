@@ -1,31 +1,32 @@
 package hi;
+public final class k extends org.telegram.ui.Components.n6 {
+    public final int f14792e0;
+    public final Object f14793f0;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.ImageView;
-import org.telegram.ui.Components.mc;
-public final class k extends ImageView {
-    public final float f14846a;
-    public final mc f14847b;
-
-    public k(Context context) {
-        super(context);
-        this.f14847b = new mc(this);
-        this.f14846a = 0.2f;
+    public k(l lVar, int i7) {
+        super(true, false, false);
+        this.f14792e0 = i7;
+        this.f14793f0 = lVar;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        canvas.save();
-        float a10 = this.f14847b.a(this.f14846a);
-        canvas.scale(a10, a10, getWidth() / 2.0f, getHeight() / 2.0f);
-        super.draw(canvas);
-        canvas.restore();
+    public final void invalidateSelf() {
+        switch (this.f14792e0) {
+            case 0:
+                ((l) this.f14793f0).invalidateSelf();
+                return;
+            case 1:
+                ((l) this.f14793f0).invalidateSelf();
+                return;
+            default:
+                ((Runnable) this.f14793f0).run();
+                return;
+        }
     }
 
-    @Override
-    public void setPressed(boolean z10) {
-        super.setPressed(z10);
-        this.f14847b.c(z10);
+    public k(Runnable runnable) {
+        super(false, true, true, true, false);
+        this.f14792e0 = 2;
+        this.f14793f0 = runnable;
     }
 }

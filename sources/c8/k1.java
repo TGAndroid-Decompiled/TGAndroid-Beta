@@ -1,136 +1,103 @@
 package c8;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.util.Log;
+import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class k1 {
-    public static List a(int... iArr) {
-        if (iArr.length == 0) {
-            return Collections.EMPTY_LIST;
-        }
-        return new l9.b(0, iArr.length, iArr);
-    }
+    public static Context f4844a;
+    public static l8.d f4845b;
 
-    public static int b(long j3) {
-        boolean z10;
-        int i7 = (int) j3;
-        if (i7 == j3) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        a8.la.d(j3, "Out of range: %s", z10);
-        return i7;
-    }
-
-    public static int c(byte b10, byte b11, byte b12, byte b13) {
-        return (b10 << 24) | ((b11 & 255) << 16) | ((b12 & 255) << 8) | (b13 & 255);
-    }
-
-    public static int d(int i7, int i10, int i11, int[] iArr) {
-        while (i10 < i11) {
-            if (iArr[i10] == i7) {
-                return i10;
-            }
-            i10++;
-        }
-        return -1;
-    }
-
-    public static int e(long j3) {
-        if (j3 > 2147483647L) {
-            return Integer.MAX_VALUE;
-        }
-        if (j3 < -2147483648L) {
-            return Integer.MIN_VALUE;
-        }
-        return (int) j3;
-    }
-
-    public static int[] f(Collection collection) {
-        if (collection instanceof l9.b) {
-            l9.b bVar = (l9.b) collection;
-            return Arrays.copyOfRange(bVar.f19734a, bVar.f19735b, bVar.f19736c);
-        }
-        Object[] array = collection.toArray();
-        int length = array.length;
-        int[] iArr = new int[length];
-        for (int i7 = 0; i7 < length; i7++) {
-            Object obj = array[i7];
-            obj.getClass();
-            iArr[i7] = ((Number) obj).intValue();
-        }
-        return iArr;
-    }
-
-    public static Integer g(String str) {
-        byte b10;
-        Integer num;
-        Long l10;
-        byte b11;
-        str.getClass();
-        if (!str.isEmpty()) {
-            int i7 = 0;
-            if (str.charAt(0) == '-') {
-                i7 = 1;
-            }
-            if (i7 != str.length()) {
-                int i10 = i7 + 1;
-                char charAt = str.charAt(i7);
-                if (charAt < 128) {
-                    b10 = l9.c.f19737a[charAt];
-                } else {
-                    byte[] bArr = l9.c.f19737a;
-                    b10 = -1;
-                }
-                if (b10 >= 0 && b10 < 10) {
-                    long j3 = -b10;
-                    long j10 = 10;
-                    long j11 = Long.MIN_VALUE / j10;
-                    while (true) {
-                        if (i10 < str.length()) {
-                            int i11 = i10 + 1;
-                            char charAt2 = str.charAt(i10);
-                            if (charAt2 < 128) {
-                                b11 = l9.c.f19737a[charAt2];
+    public static l8.d a(Context context) {
+        Class cls;
+        Class cls2;
+        l8.d aVar;
+        q6.m.h(context);
+        Log.d("k1", "preferredRenderer: ".concat("null"));
+        l8.d dVar = f4845b;
+        if (dVar == null) {
+            AtomicBoolean atomicBoolean = n6.g.f21430a;
+            int b10 = n6.g.b(context, 13400000);
+            if (b10 == 0) {
+                Log.i("k1", "Making Creator dynamically");
+                ClassLoader classLoader = b(context).getClassLoader();
+                try {
+                    q6.m.h(classLoader);
+                    try {
+                        try {
+                            IBinder iBinder = (IBinder) classLoader.loadClass("com.google.android.gms.maps.internal.CreatorImpl").newInstance();
+                            if (iBinder == null) {
+                                aVar = 0;
                             } else {
-                                byte[] bArr2 = l9.c.f19737a;
-                                b11 = -1;
+                                IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.maps.internal.ICreator");
+                                if (queryLocalInterface instanceof l8.d) {
+                                    aVar = (l8.d) queryLocalInterface;
+                                } else {
+                                    aVar = new a8.a(iBinder, "com.google.android.gms.maps.internal.ICreator", 11);
+                                }
                             }
-                            if (b11 < 0 || b11 >= 10 || j3 < j11) {
-                                break;
+                            f4845b = aVar;
+                            try {
+                                Context b11 = b(context);
+                                b11.getClass();
+                                a7.b bVar = new a7.b(b11.getResources());
+                                Parcel p12 = aVar.p1();
+                                v7.b.c(p12, bVar);
+                                p12.writeInt(12451000);
+                                aVar.t1(p12, 6);
+                                return f4845b;
+                            } catch (RemoteException e10) {
+                                throw new RuntimeException(e10);
                             }
-                            long j12 = j3 * j10;
-                            num = null;
-                            long j13 = b11;
-                            if (j12 < j13 - Long.MIN_VALUE) {
-                                break;
-                            }
-                            j3 = j12 - j13;
-                            i10 = i11;
-                        } else {
-                            num = null;
-                            if (i7 != 0) {
-                                l10 = Long.valueOf(j3);
-                            } else if (j3 != Long.MIN_VALUE) {
-                                l10 = Long.valueOf(-j3);
-                            }
+                        } catch (InstantiationException unused) {
+                            throw new IllegalStateException("Unable to instantiate the dynamic class ".concat(cls2.getName()));
                         }
+                    } catch (IllegalAccessException unused2) {
+                        throw new IllegalStateException("Unable to call the default constructor of ".concat(cls.getName()));
                     }
+                } catch (ClassNotFoundException unused3) {
+                    throw new IllegalStateException("Unable to find dynamic class com.google.android.gms.maps.internal.CreatorImpl");
                 }
-                num = null;
-                l10 = num;
-                if (l10 == 0 && l10.longValue() == l10.intValue()) {
-                    return Integer.valueOf(l10.intValue());
-                }
-                return num;
             }
+            throw new n6.f(b10);
         }
-        l10 = 0;
-        num = null;
-        if (l10 == 0) {
+        return dVar;
+    }
+
+    public static Context b(Context context) {
+        Context context2;
+        Context context3 = f4844a;
+        if (context3 == null) {
+            context.getApplicationContext();
+            try {
+                context2 = b7.f.c(context, b7.f.f2916b, "com.google.android.gms.maps_dynamite").f2926a;
+            } catch (Exception e10) {
+                try {
+                    if (!"com.google.android.gms.maps_dynamite".equals("com.google.android.gms.maps_dynamite")) {
+                        try {
+                            Log.d("k1", "Attempting to load maps_dynamite again.");
+                            context2 = b7.f.c(context, b7.f.f2916b, "com.google.android.gms.maps_dynamite").f2926a;
+                        } catch (Exception e11) {
+                            Log.e("k1", "Failed to load maps module, use pre-Chimera", e11);
+                            AtomicBoolean atomicBoolean = n6.g.f21430a;
+                            context2 = context.createPackageContext("com.google.android.gms", 3);
+                        }
+                    } else {
+                        Log.e("k1", "Failed to load maps module, use pre-Chimera", e10);
+                        AtomicBoolean atomicBoolean2 = n6.g.f21430a;
+                        context2 = context.createPackageContext("com.google.android.gms", 3);
+                    }
+                } catch (PackageManager.NameNotFoundException unused) {
+                    context2 = null;
+                }
+            }
+            f4844a = context2;
+            return context2;
         }
-        return num;
+        return context3;
     }
 }

@@ -17,9 +17,9 @@ public final class b80 extends ap0 {
             return;
         }
         if (hVar != null && hVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) hVar.n(0)).f28438id;
-            if (j3 != 0 && j3 != org.telegram.messenger.k10.i(this.f30173a).e()) {
-                a02 = org.telegram.messenger.hd.a0(null, null, 2131748991, org.telegram.messenger.np.u1(this.f30173a).D1(j3, true));
+            long j3 = ((TLRPC.Dialog) hVar.n(0)).f28402id;
+            if (j3 != 0 && j3 != org.telegram.messenger.k10.i(this.f30139a).e()) {
+                a02 = org.telegram.messenger.hd.a0(null, null, 2131748991, org.telegram.messenger.np.u1(this.f30139a).D1(j3, true));
             } else {
                 a02 = org.telegram.messenger.hd.N0(2131748992, null);
             }

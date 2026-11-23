@@ -2,22 +2,22 @@ package db;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.bc;
+import c8.cc;
 import java.util.List;
 public final class q extends r6.a {
     public static final Parcelable.Creator<q> CREATOR = new k(4);
-    public final List f8293a;
+    public final List f8256a;
 
     public q(List simSlots) {
         kotlin.jvm.internal.j.e(simSlots, "simSlots");
-        this.f8293a = simSlots;
+        this.f8256a = simSlots;
     }
 
     @Override
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
-        int r10 = bc.r(dest, 20293);
-        bc.h(dest, 1, this.f8293a);
-        bc.s(dest, r10);
+        int r10 = cc.r(dest, 20293);
+        cc.h(dest, 1, this.f8256a);
+        cc.s(dest, r10);
     }
 }

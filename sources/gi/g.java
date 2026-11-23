@@ -9,10 +9,10 @@ import org.telegram.ui.Components.dm;
 import org.telegram.ui.Components.fj;
 import org.telegram.ui.Components.kw0;
 import org.telegram.ui.Components.mi;
-import v4.c1;
-import v4.t;
-import v4.x0;
-public final class g extends t {
+import v4.b1;
+import v4.s;
+import v4.w0;
+public final class g extends s {
     public final int Q;
     public final KeyEvent.Callback R;
 
@@ -26,7 +26,7 @@ public final class g extends t {
     public boolean Y0() {
         switch (this.Q) {
             case 4:
-                if (((kw0) this.R).R1 != null && hd.f24444a0) {
+                if (((kw0) this.R).R1 != null && hd.f24408a0) {
                     return true;
                 }
                 return false;
@@ -36,10 +36,10 @@ public final class g extends t {
     }
 
     @Override
-    public void b0(x0 x0Var, c1 c1Var) {
+    public void b0(w0 w0Var, b1 b1Var) {
         switch (this.Q) {
             case 1:
-                super.b0(x0Var, c1Var);
+                super.b0(w0Var, b1Var);
                 d3 d3Var = (d3) this.R;
                 if (d3Var.V) {
                     d3Var.V = false;
@@ -48,39 +48,39 @@ public final class g extends t {
                 }
                 return;
             default:
-                super.b0(x0Var, c1Var);
+                super.b0(w0Var, b1Var);
                 return;
         }
     }
 
     @Override
-    public int o0(int i7, x0 x0Var, c1 c1Var) {
+    public int o0(int i7, w0 w0Var, b1 b1Var) {
         switch (this.Q) {
             case 0:
-                if (((m) this.R).f13682b) {
+                if (((m) this.R).f13645b) {
                     i7 = 0;
                 }
-                return super.o0(i7, x0Var, c1Var);
+                return super.o0(i7, w0Var, b1Var);
             default:
-                return super.o0(i7, x0Var, c1Var);
+                return super.o0(i7, w0Var, b1Var);
         }
     }
 
     @Override
-    public void v0(RecyclerView recyclerView, c1 c1Var, int i7) {
+    public void v0(RecyclerView recyclerView, b1 b1Var, int i7) {
         switch (this.Q) {
             case 2:
                 fj fjVar = new fj(this, recyclerView.getContext());
-                fjVar.f59109a = i7;
+                fjVar.f59055a = i7;
                 w0(fjVar);
                 return;
             case 3:
                 dm dmVar = new dm(this, recyclerView.getContext());
-                dmVar.f59109a = i7;
+                dmVar.f59055a = i7;
                 w0(dmVar);
                 return;
             default:
-                super.v0(recyclerView, c1Var, i7);
+                super.v0(recyclerView, b1Var, i7);
                 return;
         }
     }

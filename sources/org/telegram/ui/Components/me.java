@@ -8,15 +8,15 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class me implements Runnable {
-    public final int f37499a;
+    public final int f37459a;
 
     public me(int i7) {
-        this.f37499a = i7;
+        this.f37459a = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f37499a) {
+        switch (this.f37459a) {
             case 0:
                 MediaController.B().B0(0, 0, false, false);
                 return;
@@ -26,7 +26,7 @@ public final class me implements Runnable {
             case 2:
                 return;
             case 3:
-                int i7 = tn.f39947s1;
+                int i7 = tn.f39926s1;
                 return;
             case 4:
                 PhotoViewer.p1().z0(false, false);
@@ -56,22 +56,22 @@ public final class me implements Runnable {
                 org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
                 if (Q != 0) {
                     ?? obj = new Object();
-                    obj.f28905a = true;
+                    obj.f28871a = true;
                     Q.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 12:
-                int i10 = yy0.f42591f;
+                int i10 = yy0.f42549f;
                 return;
             case 13:
                 SharedPreferences.Editor edit = org.telegram.messenger.np.g1().edit();
-                oz0.f38421f = Boolean.TRUE;
+                oz0.f38379f = Boolean.TRUE;
                 edit.putBoolean("nothanos", true).apply();
                 return;
             case 14:
                 SharedPreferences.Editor edit2 = org.telegram.messenger.np.g1().edit();
-                oz0.f38421f = Boolean.TRUE;
+                oz0.f38379f = Boolean.TRUE;
                 edit2.putBoolean("nothanos", true).apply();
                 return;
             case 15:
@@ -96,7 +96,7 @@ public final class me implements Runnable {
                 org.telegram.ui.Components.voip.i2.g();
                 return;
             case 22:
-                fi.n5.J0();
+                fi.m5.J0();
                 return;
             case 23:
                 org.telegram.ui.f40 f40Var = org.telegram.ui.f40.C5;
@@ -131,7 +131,7 @@ public final class me implements Runnable {
     }
 
     public me(Object obj, int i7) {
-        this.f37499a = i7;
+        this.f37459a = i7;
     }
 
     private final void a() {

@@ -5,16 +5,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class tw implements org.telegram.ui.Components.nz {
-    public final Context f52404a;
-    public final cx f52405b;
+    public final Context f52368a;
+    public final cx f52369b;
 
     public tw(Context context, cx cxVar) {
-        this.f52405b = cxVar;
-        this.f52404a = context;
+        this.f52369b = cxVar;
+        this.f52368a = context;
     }
 
     public final int a(int i7) {
-        cx cxVar = this.f52405b;
+        cx cxVar = this.f52369b;
         if (cxVar.T0 != 3) {
             if (i7 == cxVar.A0.getDefaultTabId()) {
                 return cxVar.getMessagesStorage().L;
@@ -30,21 +30,21 @@ public final class tw implements org.telegram.ui.Components.nz {
 
     public final void b(float f10) {
         int i7 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-        cx cxVar = this.f52405b;
-        if (i7 != 0 || cxVar.f46722f0[1].getVisibility() == 0 || cxVar.f46752l2) {
-            if (cxVar.f46749k3) {
-                bx bxVar = cxVar.f46722f0[0];
+        cx cxVar = this.f52369b;
+        if (i7 != 0 || cxVar.f46683f0[1].getVisibility() == 0 || cxVar.f46713l2) {
+            if (cxVar.f46710k3) {
+                bx bxVar = cxVar.f46683f0[0];
                 bxVar.setTranslationX((-f10) * bxVar.getMeasuredWidth());
-                bx[] bxVarArr = cxVar.f46722f0;
-                bxVarArr[1].setTranslationX(bxVarArr[0].getMeasuredWidth() - (f10 * cxVar.f46722f0[0].getMeasuredWidth()));
+                bx[] bxVarArr = cxVar.f46683f0;
+                bxVarArr[1].setTranslationX(bxVarArr[0].getMeasuredWidth() - (f10 * cxVar.f46683f0[0].getMeasuredWidth()));
             } else {
-                bx bxVar2 = cxVar.f46722f0[0];
+                bx bxVar2 = cxVar.f46683f0[0];
                 bxVar2.setTranslationX(bxVar2.getMeasuredWidth() * f10);
-                bx[] bxVarArr2 = cxVar.f46722f0;
-                bxVarArr2[1].setTranslationX((f10 * bxVarArr2[0].getMeasuredWidth()) - cxVar.f46722f0[0].getMeasuredWidth());
+                bx[] bxVarArr2 = cxVar.f46683f0;
+                bxVarArr2[1].setTranslationX((f10 * bxVarArr2[0].getMeasuredWidth()) - cxVar.f46683f0[0].getMeasuredWidth());
             }
             if (i7 == 0) {
-                bx[] bxVarArr3 = cxVar.f46722f0;
+                bx[] bxVarArr3 = cxVar.f46683f0;
                 bx bxVar3 = bxVarArr3[0];
                 bxVarArr3[0] = bxVarArr3[1];
                 bxVarArr3[1] = bxVar3;
@@ -53,9 +53,9 @@ public final class tw implements org.telegram.ui.Components.nz {
                 cxVar.n5(false);
                 cxVar.C5(-1, true);
                 cxVar.A0.P = false;
-                cxVar.C3(cxVar.f46722f0[0]);
-                cxVar.f46722f0[0].d.getClass();
-                cxVar.f46722f0[1].d.getClass();
+                cxVar.C3(cxVar.f46683f0[0]);
+                cxVar.f46683f0[0].d.getClass();
+                cxVar.f46683f0[1].d.getClass();
             }
         }
     }
@@ -63,42 +63,42 @@ public final class tw implements org.telegram.ui.Components.nz {
     public final void c(org.telegram.ui.Components.oz ozVar, boolean z10) {
         int i7;
         int i10;
-        cx cxVar = this.f52405b;
-        int i11 = cxVar.f46722f0[0].h;
-        int i12 = ozVar.f38415a;
+        cx cxVar = this.f52369b;
+        int i11 = cxVar.f46683f0[0].h;
+        int i12 = ozVar.f38373a;
         if (i11 != i12) {
-            if (ozVar.f38419f) {
+            if (ozVar.f38377f) {
                 cxVar.A0.l(i12);
                 i10 = ((org.telegram.ui.ActionBar.g2) cxVar).currentAccount;
-                cxVar.showDialog(new ug.k0(3, i10, this.f52404a, cxVar, null));
+                cxVar.showDialog(new ug.k0(3, i10, this.f52368a, cxVar, null));
                 return;
             }
             ArrayList V0 = cxVar.getMessagesController().V0();
-            if (!ozVar.f38418e && ((i7 = ozVar.f38415a) < 0 || i7 >= V0.size())) {
+            if (!ozVar.f38376e && ((i7 = ozVar.f38373a) < 0 || i7 >= V0.size())) {
                 return;
             }
-            bx bxVar = cxVar.f46722f0[1];
-            bxVar.h = ozVar.f38415a;
+            bx bxVar = cxVar.f46683f0[1];
+            bxVar.h = ozVar.f38373a;
             bxVar.setVisibility(0);
-            bx[] bxVarArr = cxVar.f46722f0;
+            bx[] bxVarArr = cxVar.f46683f0;
             bxVarArr[1].setTranslationX(bxVarArr[0].getMeasuredWidth());
             cx.i1(cxVar, false);
             cxVar.l5(true);
-            cxVar.C5(ozVar.f38415a, true);
-            cxVar.f46749k3 = z10;
+            cxVar.C5(ozVar.f38373a, true);
+            cxVar.f46710k3 = z10;
         }
     }
 
     public final void d(org.telegram.messenger.so soVar) {
         boolean c10 = soVar.c();
-        cx cxVar = this.f52405b;
+        cx cxVar = this.f52369b;
         if (c10) {
-            org.telegram.ui.Components.i00.h1(cxVar, soVar.f26886a, null);
+            org.telegram.ui.Components.i00.h1(cxVar, soVar.f26850a, null);
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cxVar.getParentActivity());
         String N0 = org.telegram.messenger.hd.N0(2131750778, null);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.S = N0;
         t1Var.U = org.telegram.messenger.hd.N0(2131750777, null);
         alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131752577, null), null);
@@ -106,7 +106,7 @@ public final class tw implements org.telegram.ui.Components.nz {
         cxVar.showDialog(t1Var);
         TextView textView = (TextView) t1Var.d(-1);
         if (textView != null) {
-            org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29622q7, cxVar.getResourceProvider());
+            org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29588q7, cxVar.getResourceProvider());
         }
     }
 }

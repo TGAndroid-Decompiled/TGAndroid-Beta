@@ -9,29 +9,29 @@ import org.telegram.messenger.x10;
 import org.telegram.ui.Components.o41;
 import r0.l1;
 public final class k implements w10, x10, r0.m, mr {
-    public final p f19978a;
+    public final p f19944a;
 
     public k(p pVar) {
-        this.f19978a = pVar;
+        this.f19944a = pVar;
     }
 
     @Override
     public l1 P0(View view, l1 l1Var) {
-        i0.b f10 = l1Var.f56303a.f(519);
-        this.f19978a.f20011e.setPadding(0, f10.f15918b, 0, f10.d);
-        return l1.f56302b;
+        i0.b f10 = l1Var.f56268a.f(519);
+        this.f19944a.f19977e.setPadding(0, f10.f15884b, 0, f10.d);
+        return l1.f56267b;
     }
 
     @Override
     public Boolean a(o41 o41Var, View view, Integer num, Float f10, Float f11) {
-        return Boolean.valueOf(p.Z(this.f19978a, o41Var, view));
+        return Boolean.valueOf(p.Z(this.f19944a, o41Var, view));
     }
 
     @Override
     public void d(boolean z10) {
-        p pVar = this.f19978a;
+        p pVar = this.f19944a;
         pVar.finishFragment();
-        pVar.getNotificationCenter().k(ls.K2, Long.valueOf(-pVar.f20010c), null, pVar.J, Boolean.valueOf(z10));
+        pVar.getNotificationCenter().k(ls.K2, Long.valueOf(-pVar.f19976c), null, pVar.J, Boolean.valueOf(z10));
     }
 
     @Override
@@ -40,6 +40,6 @@ public final class k implements w10, x10, r0.m, mr {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        p.a0(this.f19978a, (o41) obj);
+        p.a0(this.f19944a, (o41) obj);
     }
 }

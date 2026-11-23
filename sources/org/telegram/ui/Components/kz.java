@@ -14,32 +14,32 @@ public final class kz extends v4.k {
     }
 
     @Override
-    public final void C(v4.f1 f1Var, v4.j jVar) {
-        super.C(f1Var, jVar);
-        View view = f1Var.f59165a;
+    public final void C(v4.e1 e1Var, v4.j jVar) {
+        super.C(e1Var, jVar);
+        View view = e1Var.f59111a;
         if (view instanceof pz) {
             pz pzVar = (pz) view;
-            if (pzVar.f38711x) {
-                ValueAnimator valueAnimator = pzVar.f38689a;
+            if (pzVar.f38665x) {
+                ValueAnimator valueAnimator = pzVar.f38643a;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
-                    pzVar.f38689a.removeAllUpdateListeners();
-                    pzVar.f38689a.cancel();
+                    pzVar.f38643a.removeAllUpdateListeners();
+                    pzVar.f38643a.cancel();
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new jz(pzVar, 0));
                 ofFloat.addListener(new y(pzVar, 27));
-                pzVar.f38689a = ofFloat;
-                ofFloat.setDuration(this.f59239e);
+                pzVar.f38643a = ofFloat;
+                ofFloat.setDuration(this.f59184e);
                 ofFloat.start();
             }
         }
     }
 
     @Override
-    public final void f(v4.f1 f1Var) {
-        super.f(f1Var);
-        View view = f1Var.f59165a;
+    public final void f(v4.e1 e1Var) {
+        super.f(e1Var);
+        View view = e1Var.f59111a;
         view.setTranslationX(0.0f);
         if (view instanceof pz) {
             ((pz) view).a();
@@ -48,21 +48,21 @@ public final class kz extends v4.k {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f59213p.isEmpty();
-        boolean isEmpty2 = this.f59215r.isEmpty();
-        boolean isEmpty3 = this.f59216s.isEmpty();
-        boolean isEmpty4 = this.f59214q.isEmpty();
+        boolean isEmpty = this.f59162p.isEmpty();
+        boolean isEmpty2 = this.f59164r.isEmpty();
+        boolean isEmpty3 = this.f59165s.isEmpty();
+        boolean isEmpty4 = this.f59163q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
             ofFloat.addUpdateListener(new x(this, 25));
-            ofFloat.setDuration(this.f59239e);
+            ofFloat.setDuration(this.f59184e);
             ofFloat.start();
         }
         super.m();
     }
 
     @Override
-    public final boolean r(v4.f1 f1Var, e2.r0 r0Var, int i7, int i10, int i11, int i12) {
+    public final boolean r(v4.e1 e1Var, e2.r0 r0Var, int i7, int i10, int i11, int i12) {
         int i13;
         int i14;
         int i15;
@@ -89,11 +89,11 @@ public final class kz extends v4.k {
         boolean z17;
         boolean z18;
         int i23;
-        View view = f1Var.f59165a;
+        View view = e1Var.f59111a;
         if (view instanceof pz) {
             int translationX = i7 + ((int) view.getTranslationX());
             int translationY = i10 + ((int) view.getTranslationY());
-            R(f1Var);
+            R(e1Var);
             int i24 = i11 - translationX;
             int i25 = i12 - translationY;
             if (i24 != 0) {
@@ -103,19 +103,19 @@ public final class kz extends v4.k {
                 view.setTranslationY(-i25);
             }
             pz pzVar = (pz) view;
-            rz rzVar = pzVar.f38707n0;
-            TextPaint textPaint = rzVar.f39392b;
-            TextPaint textPaint2 = rzVar.f39394c;
-            int i26 = pzVar.f38691b.d;
+            rz rzVar = pzVar.f38661n0;
+            TextPaint textPaint = rzVar.f39348b;
+            TextPaint textPaint2 = rzVar.f39350c;
+            int i26 = pzVar.f38645b.d;
             int i27 = pzVar.J;
             if (i26 != i27) {
                 pzVar.I = true;
                 pzVar.K = i27;
-                pzVar.f38700g0 = pzVar.f38697e0;
-                pzVar.f38701h0 = pzVar.f38699f0;
+                pzVar.f38654g0 = pzVar.f38651e0;
+                pzVar.f38655h0 = pzVar.f38653f0;
                 if (i27 > 0 && i26 > 0) {
                     String valueOf = String.valueOf(i27);
-                    String valueOf2 = String.valueOf(pzVar.f38691b.d);
+                    String valueOf2 = String.valueOf(pzVar.f38645b.d);
                     if (valueOf.length() == valueOf2.length()) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(valueOf);
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(valueOf2);
@@ -170,7 +170,7 @@ public final class kz extends v4.k {
                 r32 = 0;
                 z10 = false;
             }
-            int i31 = pzVar.f38691b.d;
+            int i31 = pzVar.f38645b.d;
             if (i31 > 0) {
                 Object[] objArr = new Object[i15];
                 objArr[r32] = Integer.valueOf(i31);
@@ -180,12 +180,12 @@ public final class kz extends v4.k {
                 i16 = r32;
                 str = null;
             }
-            int i32 = pzVar.f38691b.f38417c;
+            int i32 = pzVar.f38645b.f38375c;
             if (i16 != 0) {
                 if (str != null) {
                     f11 = 1.0f;
                 } else {
-                    f11 = rzVar.f39421x;
+                    f11 = rzVar.f39377x;
                 }
                 i17 = org.telegram.messenger.g0.L(f11 * 6.0f) + i16;
             } else {
@@ -201,13 +201,13 @@ public final class kz extends v4.k {
                 z11 = z10;
             }
             CharSequence charSequence3 = pzVar.O;
-            if (charSequence3 != null && !pzVar.f38691b.f38416b.equals(charSequence3)) {
-                if (pzVar.O.length() > pzVar.f38691b.f38416b.length()) {
+            if (charSequence3 != null && !pzVar.f38645b.f38374b.equals(charSequence3)) {
+                if (pzVar.O.length() > pzVar.f38645b.f38374b.length()) {
                     charSequence = pzVar.O;
-                    charSequence2 = pzVar.f38691b.f38416b;
+                    charSequence2 = pzVar.f38645b.f38374b;
                     z14 = i15;
                 } else {
-                    charSequence = pzVar.f38691b.f38416b;
+                    charSequence = pzVar.f38645b.f38374b;
                     charSequence2 = pzVar.O;
                     z14 = r32;
                 }
@@ -230,7 +230,7 @@ public final class kz extends v4.k {
                     StaticLayout staticLayout = new StaticLayout(spannableStringBuilder4, textPaint, L, alignment3, 1.0f, 0.0f, false);
                     pzVar.Q = staticLayout;
                     if (pzVar.m0) {
-                        if (pzVar.f38691b.f38420g) {
+                        if (pzVar.f38645b.f38378g) {
                             i22 = 26;
                         } else {
                             i22 = i34 == 1 ? 1 : 0;
@@ -243,7 +243,7 @@ public final class kz extends v4.k {
                     StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder5, textPaint, org.telegram.messenger.g0.L(400.0f), alignment3, 1.0f, 0.0f, false);
                     pzVar.U = staticLayout2;
                     if (pzVar.m0) {
-                        if (pzVar.f38691b.f38420g) {
+                        if (pzVar.f38645b.f38378g) {
                             i21 = 26;
                         } else {
                             i21 = i34 == 1 ? 1 : 0;
@@ -263,20 +263,20 @@ public final class kz extends v4.k {
                     } else {
                         f10 = -pzVar.U.getPrimaryHorizontal(t6);
                     }
-                    pzVar.f38692b0 = f10;
-                    pzVar.f38695d0 = pzVar.f38694c0;
+                    pzVar.f38646b0 = f10;
+                    pzVar.f38649d0 = pzVar.f38648c0;
                     pzVar.S = null;
                     y5.release(pzVar, pzVar.R);
                     i20 = i34;
                 } else {
                     int i35 = r32;
-                    CharSequence charSequence4 = pzVar.f38691b.f38416b;
+                    CharSequence charSequence4 = pzVar.f38645b.f38374b;
                     int L2 = org.telegram.messenger.g0.L(400.0f);
                     Layout.Alignment alignment4 = Layout.Alignment.ALIGN_NORMAL;
                     StaticLayout staticLayout3 = new StaticLayout(charSequence4, textPaint, L2, alignment4, 1.0f, 0.0f, false);
                     pzVar.Q = staticLayout3;
                     if (pzVar.m0) {
-                        if (pzVar.f38691b.f38420g) {
+                        if (pzVar.f38645b.f38378g) {
                             i19 = 26;
                         } else {
                             i19 = i35;
@@ -289,7 +289,7 @@ public final class kz extends v4.k {
                     StaticLayout staticLayout4 = new StaticLayout(pzVar.O, textPaint, org.telegram.messenger.g0.L(400.0f), alignment4, 1.0f, 0.0f, false);
                     pzVar.S = staticLayout4;
                     if (pzVar.m0) {
-                        if (pzVar.f38691b.f38420g) {
+                        if (pzVar.f38645b.f38378g) {
                             i18 = 26;
                         } else {
                             i18 = i35;
@@ -305,8 +305,8 @@ public final class kz extends v4.k {
                     pzVar.U = null;
                     y5.release(pzVar, pzVar.T);
                     pzVar.V = z15;
-                    pzVar.f38692b0 = 0.0f;
-                    pzVar.f38695d0 = pzVar.f38694c0;
+                    pzVar.f38646b0 = 0.0f;
+                    pzVar.f38649d0 = pzVar.f38648c0;
                     i20 = i35;
                 }
                 z11 = true;
@@ -314,35 +314,35 @@ public final class kz extends v4.k {
             } else {
                 z12 = r32;
             }
-            if (i33 != pzVar.f38702i0 || pzVar.getMeasuredWidth() != pzVar.f38704k0) {
+            if (i33 != pzVar.f38656i0 || pzVar.getMeasuredWidth() != pzVar.f38658k0) {
                 z13 = true;
-                pzVar.f38690a0 = true;
-                pzVar.f38703j0 = pzVar.f38702i0;
+                pzVar.f38644a0 = true;
+                pzVar.f38657j0 = pzVar.f38656i0;
                 z11 = true;
             } else {
                 z13 = true;
             }
             if (z11) {
-                pzVar.f38712y = 0.0f;
-                pzVar.f38711x = z13;
+                pzVar.f38666y = 0.0f;
+                pzVar.f38665x = z13;
                 rz rzVar2 = this.F;
                 rzVar2.G.invalidate();
                 rzVar2.invalidate();
             }
             if (i24 == 0 && i25 == 0 && !z11) {
-                v(f1Var);
+                v(e1Var);
                 return z12;
             }
-            this.f59215r.add(new v4.j(f1Var, i13, i14, i11, i12));
+            this.f59164r.add(new v4.j(e1Var, i13, i14, i11, i12));
             return z13;
         }
-        return super.r(f1Var, r0Var, i7, i10, i11, i12);
+        return super.r(e1Var, r0Var, i7, i10, i11, i12);
     }
 
     @Override
-    public final void x(v4.f1 f1Var) {
-        f1Var.f59165a.setTranslationX(0.0f);
-        View view = f1Var.f59165a;
+    public final void x(v4.e1 e1Var) {
+        e1Var.f59111a.setTranslationX(0.0f);
+        View view = e1Var.f59111a;
         if (view instanceof pz) {
             ((pz) view).a();
         }

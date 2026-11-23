@@ -30,7 +30,7 @@ public final class w1 extends FrameLayout implements n0, gs {
     public boolean F;
     public boolean G;
     public float H;
-    public hi.e0 I;
+    public hi.d0 I;
     public final u1 J;
     public final TextureView K;
     public final j0.a L;
@@ -43,77 +43,77 @@ public final class w1 extends FrameLayout implements n0, gs {
     public final TLRPC.Document S;
     public int T;
     public long U;
-    public final mz f58975a;
-    public final Paint f58976b;
-    public final Paint f58977c;
+    public final mz f58940a;
+    public final Paint f58941b;
+    public final Paint f58942c;
     public final boolean d;
-    public File f58978e;
-    public float f58979f;
+    public File f58943e;
+    public float f58944f;
     public final String h;
-    public final ImageReceiver f58980n;
-    public org.telegram.ui.web.z0 f58981r;
-    public final int f58982s;
-    public final int f58983w;
-    public boolean f58984x;
-    public boolean f58985y;
+    public final ImageReceiver f58945n;
+    public org.telegram.ui.web.i1 f58946r;
+    public final int f58947s;
+    public final int f58948w;
+    public boolean f58949x;
+    public boolean f58950y;
 
     public w1(android.content.Context r18, org.telegram.messenger.mz r19, int r20, int r21, org.telegram.ui.ActionBar.h6 r22) {
         throw new UnsupportedOperationException("Method not decompiled: ug.w1.<init>(android.content.Context, org.telegram.messenger.mz, int, int, org.telegram.ui.ActionBar.h6):void");
     }
 
     public final void a() {
-        File file = this.f58978e;
+        File file = this.f58943e;
         if ((file != null && file.exists()) || cz.B0) {
-            File file2 = this.f58978e;
+            File file2 = this.f58943e;
             if (file2 != null && file2.exists()) {
-                if ((ls.e().f25445p & 512) != 0) {
-                    org.telegram.ui.web.z0 z0Var = this.f58981r;
-                    if (z0Var != null) {
-                        org.telegram.messenger.g0.r(z0Var);
+                if ((ls.e().f25409p & 512) != 0) {
+                    org.telegram.ui.web.i1 i1Var = this.f58946r;
+                    if (i1Var != null) {
+                        org.telegram.messenger.g0.r(i1Var);
                     }
-                    org.telegram.ui.web.z0 z0Var2 = new org.telegram.ui.web.z0(this, 29);
-                    this.f58981r = z0Var2;
-                    org.telegram.messenger.g0.h3(z0Var2, 300L);
+                    org.telegram.ui.web.i1 i1Var2 = new org.telegram.ui.web.i1(this, 28);
+                    this.f58946r = i1Var2;
+                    org.telegram.messenger.g0.h3(i1Var2, 300L);
                     return;
                 }
                 try {
                     MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-                    mediaMetadataRetriever.setDataSource(org.telegram.messenger.t0.f26931b, Uri.fromFile(this.f58978e));
+                    mediaMetadataRetriever.setDataSource(org.telegram.messenger.t0.f26895b, Uri.fromFile(this.f58943e));
                     int parseInt = Integer.parseInt(mediaMetadataRetriever.extractMetadata(18));
                     int parseInt2 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(19));
                     mediaMetadataRetriever.release();
-                    this.f58979f = parseInt / parseInt2;
+                    this.f58944f = parseInt / parseInt2;
                 } catch (Exception unused) {
-                    this.f58979f = 0.671f;
+                    this.f58944f = 0.671f;
                 }
             } else {
-                this.f58979f = 0.671f;
+                this.f58944f = 0.671f;
             }
             if (this.F) {
                 b();
             }
         }
-        this.f58981r = null;
+        this.f58946r = null;
     }
 
     public final void b() {
         Uri uri;
-        int i7 = this.f58982s;
-        if ((this.f58978e != null || cz.B0) && this.I == null) {
-            this.J.a(this.f58979f, 0);
-            hi.e0 e0Var = new hi.e0(this, 1);
-            this.I = e0Var;
+        int i7 = this.f58947s;
+        if ((this.f58943e != null || cz.B0) && this.I == null) {
+            this.J.a(this.f58944f, 0);
+            hi.d0 d0Var = new hi.d0(this, 1);
+            this.I = d0Var;
             TextureView textureView = this.K;
-            e0Var.with(textureView);
-            File file = this.f58978e;
+            d0Var.with(textureView);
+            File file = this.f58943e;
             if (file != null && file.exists()) {
-                uri = Uri.fromFile(this.f58978e);
+                uri = Uri.fromFile(this.f58943e);
             } else {
                 try {
                     StringBuilder sb2 = new StringBuilder("?account=");
                     sb2.append(i7);
                     sb2.append("&id=");
-                    sb2.append(this.S.f28440id);
+                    sb2.append(this.S.f28404id);
                     sb2.append("&hash=");
                     sb2.append(this.S.access_hash);
                     sb2.append("&dc=");
@@ -143,7 +143,7 @@ public final class w1 extends FrameLayout implements n0, gs {
             }
             this.I.preparePlayer(uri, false, 1.0f);
             if (!this.G) {
-                this.f58980n.Q0();
+                this.f58945n.Q0();
                 textureView.setAlpha(0.0f);
             }
             this.I.seekTo(this.U + 60);
@@ -153,14 +153,14 @@ public final class w1 extends FrameLayout implements n0, gs {
 
     public final void c() {
         boolean z10;
-        if (this.f58984x && this.f58985y) {
+        if (this.f58949x && this.f58950y) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (this.E != z10) {
             this.E = z10;
-            ImageReceiver imageReceiver = this.f58980n;
+            ImageReceiver imageReceiver = this.f58945n;
             if (z10) {
                 imageReceiver.P();
             } else {
@@ -175,7 +175,7 @@ public final class w1 extends FrameLayout implements n0, gs {
             String str = (String) objArr[0];
             String str2 = this.h;
             if (str2 != null && str2.equals(str)) {
-                this.f58978e = (File) objArr[1];
+                this.f58943e = (File) objArr[1];
                 a();
             }
         }
@@ -189,32 +189,32 @@ public final class w1 extends FrameLayout implements n0, gs {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f58985y = true;
+        this.f58950y = true;
         c();
         if (!this.G) {
             a();
         }
-        ls.f(this.f58982s).c(this, ls.Y1);
+        ls.f(this.f58947s).c(this, ls.Y1);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f58985y = false;
+        this.f58950y = false;
         c();
-        ls.f(this.f58982s).n(this, ls.Y1);
+        ls.f(this.f58947s).n(this, ls.Y1);
         org.telegram.ui.Cells.t0 t0Var = this.Q;
         if (t0Var != null) {
-            HashMap hashMap = (HashMap) t0Var.f31832f;
+            HashMap hashMap = (HashMap) t0Var.f31798f;
             for (Bitmap bitmap : hashMap.values()) {
                 bitmap.recycle();
             }
             hashMap.clear();
             this.Q = null;
         }
-        hi.e0 e0Var = this.I;
-        if (e0Var != null) {
-            this.U = e0Var.getCurrentPosition();
+        hi.d0 d0Var = this.I;
+        if (d0Var != null) {
+            this.U = d0Var.getCurrentPosition();
             this.I.release(new cd0(27));
             this.I = null;
         }
@@ -235,21 +235,21 @@ public final class w1 extends FrameLayout implements n0, gs {
             this.T = measuredWidth;
             m0 m0Var = this.R;
             if (m0Var != null) {
-                RectF rectF = (RectF) m0Var.f58818c;
-                ((Rect) m0Var.f58819e).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                RectF rectF = (RectF) m0Var.f58783c;
+                ((Rect) m0Var.f58784e).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
                 rectF.set(org.telegram.messenger.g0.P);
                 rectF.inset(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
             }
             s1 s1Var = this.O;
             if (s1Var != null) {
-                RectF rectF2 = s1Var.f58933c;
-                RectF rectF3 = s1Var.f58931a;
-                int i13 = this.f58983w;
+                RectF rectF2 = s1Var.f58898c;
+                RectF rectF3 = s1Var.f58896a;
+                int i13 = this.f58948w;
                 if (i13 != 6 && i13 != 9 && i13 != 3 && i13 != 7 && i13 != 24 && i13 != 43 && i13 != 11 && i13 != 4) {
                     RectF rectF4 = org.telegram.messenger.g0.P;
                     float width = (int) (rectF4.width() * 0.4f);
                     rectF3.set(rectF4.centerX() - width, rectF4.centerY() - width, rectF4.centerX() + width, rectF4.centerY() + width);
-                    s1Var.f58932b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    s1Var.f58897b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 } else {
                     rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     rectF3.inset(org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(30.0f));
@@ -260,12 +260,12 @@ public final class w1 extends FrameLayout implements n0, gs {
             }
             q1 q1Var = this.P;
             if (q1Var != null) {
-                RectF rectF5 = q1Var.f58881a;
+                RectF rectF5 = q1Var.f58846a;
                 rectF5.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                q1Var.f58882b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                q1Var.f58847b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 rectF5.inset(org.telegram.messenger.g0.L(100.0f), org.telegram.messenger.g0.L(100.0f));
                 rectF5.offset(0.0f, getMeasuredHeight() * 0.1f);
-                ArrayList arrayList = q1Var.f58884e;
+                ArrayList arrayList = q1Var.f58849e;
                 long currentTimeMillis = System.currentTimeMillis();
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     ((p1) arrayList.get(i14)).a(currentTimeMillis, true);
@@ -273,10 +273,10 @@ public final class w1 extends FrameLayout implements n0, gs {
             }
             org.telegram.ui.Cells.t0 t0Var = this.Q;
             if (t0Var != null) {
-                ((RectF) t0Var.f31833g).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                ((RectF) t0Var.f31799g).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 ((RectF) this.Q.h).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ((RectF) this.Q.f31833g).inset(org.telegram.messenger.g0.L(0.0f), getMeasuredHeight() * 0.1f);
-                ArrayList arrayList2 = this.Q.f31830c;
+                ((RectF) this.Q.f31799g).inset(org.telegram.messenger.g0.L(0.0f), getMeasuredHeight() * 0.1f);
+                ArrayList arrayList2 = this.Q.f31796c;
                 System.currentTimeMillis();
                 for (int i15 = 0; i15 < arrayList2.size(); i15++) {
                     ((k) arrayList2.get(i15)).a(i15, true);
@@ -354,22 +354,22 @@ public final class w1 extends FrameLayout implements n0, gs {
             }
             this.H = Math.abs(measuredWidth2);
         }
-        if (z10 != this.f58984x) {
-            this.f58984x = z10;
+        if (z10 != this.f58949x) {
+            this.f58949x = z10;
             c();
         }
         if (z12 != this.F) {
             this.F = z12;
-            ImageReceiver imageReceiver = this.f58980n;
-            imageReceiver.f22695u0 = z12;
+            ImageReceiver imageReceiver = this.f58945n;
+            imageReceiver.f22659u0 = z12;
             if (z12) {
                 imageReceiver.P0(false);
                 b();
                 return;
             }
-            hi.e0 e0Var = this.I;
-            if (e0Var != null) {
-                this.U = e0Var.getCurrentPosition();
+            hi.d0 d0Var = this.I;
+            if (d0Var != null) {
+                this.U = d0Var.getCurrentPosition();
                 this.I.release(new cd0(27));
                 this.I = null;
             }

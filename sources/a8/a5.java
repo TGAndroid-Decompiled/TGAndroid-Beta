@@ -11,8 +11,8 @@ public final class a5 implements na.d {
     public final void a(Object obj, Object obj2) {
         s8 s8Var = (s8) obj;
         na.e eVar = (na.e) obj2;
-        eVar.a(f314b, s8Var.f638a);
-        eVar.a(f315c, s8Var.f639b);
+        eVar.a(f314b, s8Var.f637a);
+        eVar.a(f315c, s8Var.f638b);
         eVar.a(d, null);
         eVar.a(f316e, null);
         eVar.a(f317f, null);

@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.os.Build;
 import bg.d0;
-import c8.kc;
+import c8.lc;
 import org.telegram.ui.ActionBar.m6;
 import ri.r;
 public final class f extends ri.e {
@@ -20,26 +20,26 @@ public final class f extends ri.e {
     public int K;
     public int L;
     public final RectF M;
-    public final ui.a f57545f;
+    public final ui.a f57510f;
     public final a h;
-    public final kc f57546n;
-    public final kc f57547r;
-    public kc f57548s;
-    public boolean f57549w = true;
-    public boolean f57550x = true;
-    public int f57551y = 1;
+    public final lc f57511n;
+    public final lc f57512r;
+    public lc f57513s;
+    public boolean f57514w = true;
+    public boolean f57515x = true;
+    public int f57516y = 1;
 
     public f(ui.a aVar) {
         a aVar2;
-        kc bVar;
-        g gVar = g.f57552b;
+        lc bVar;
+        g gVar = g.f57517b;
         this.E = gVar;
         this.F = gVar;
         this.G = gVar;
         this.J = 255;
         this.L = 255;
         this.M = new RectF();
-        this.f57545f = aVar;
+        this.f57510f = aVar;
         if (aVar instanceof a) {
             aVar2 = (a) aVar;
         } else {
@@ -52,22 +52,22 @@ public final class f extends ri.e {
             } else {
                 bVar = new b(this, false);
             }
-            this.f57546n = bVar;
-            this.f57547r = bVar;
+            this.f57511n = bVar;
+            this.f57512r = bVar;
         } else {
             int i7 = Build.VERSION.SDK_INT;
             if (i7 >= 33) {
-                this.f57546n = new e(this);
-                this.f57547r = new c(this);
+                this.f57511n = new e(this);
+                this.f57512r = new c(this);
             } else if (i7 >= 31) {
-                this.f57546n = new d(this);
-                this.f57547r = new c(this);
+                this.f57511n = new d(this);
+                this.f57512r = new c(this);
             } else {
-                this.f57546n = new b(this, true);
-                this.f57547r = new b(this, false);
+                this.f57511n = new b(this, true);
+                this.f57512r = new b(this, false);
             }
         }
-        g(this.f56715b);
+        g(this.f56680b);
     }
 
     public static LinearGradient k(f fVar, g gVar, float f10, float f11, int i7, int i10) {
@@ -75,7 +75,7 @@ public final class f extends ri.e {
         if (gVar == null) {
             i11 = -1;
         } else {
-            i11 = gVar.f57553a;
+            i11 = gVar.f57518a;
         }
         boolean z10 = false;
         float f12 = 0;
@@ -87,7 +87,7 @@ public final class f extends ri.e {
         }
         float f15 = 1.0f;
         float f16 = 1.0f / i10;
-        int i12 = fVar.f57551y;
+        int i12 = fVar.f57516y;
         if (i12 == 1 || i12 == 2) {
             z10 = true;
         }
@@ -103,8 +103,8 @@ public final class f extends ri.e {
         }
         float max2 = (Math.max(max * f16, 0.001f) * f15) + f17;
         int[] iArr = new int[8];
-        d0.a(d0.f3234i, i7, iArr);
-        int i13 = fVar.f57551y;
+        d0.a(d0.f3185i, i7, iArr);
+        int i13 = fVar.f57516y;
         if (i13 != 1 && i13 != 4) {
             return new LinearGradient(max2, 0.0f, f17, 0.0f, iArr, (float[]) null, Shader.TileMode.CLAMP);
         }
@@ -121,13 +121,13 @@ public final class f extends ri.e {
     public final void a() {
         Rect bounds = getBounds();
         if (bounds.isEmpty()) {
-            this.f57548s.b();
+            this.f57513s.b();
             return;
         }
         RectF rectF = this.M;
         rectF.set(bounds);
-        rectF.offset(this.d, this.f56717e);
-        this.f57548s.a(bounds, rectF);
+        rectF.offset(this.d, this.f56682e);
+        this.f57513s.a(bounds, rectF);
     }
 
     @Override
@@ -137,36 +137,36 @@ public final class f extends ri.e {
 
     @Override
     public final boolean e() {
-        return this.f57548s.d();
+        return this.f57513s.d();
     }
 
     @Override
     public final void f(int i7) {
-        this.f57548s.e(i7 / 255.0f);
+        this.f57513s.e(i7 / 255.0f);
         invalidateSelf();
     }
 
     @Override
     public final void g(r rVar) {
-        kc kcVar;
-        boolean z10 = rVar.f56762a;
-        kc kcVar2 = this.f57547r;
+        lc lcVar;
+        boolean z10 = rVar.f56727a;
+        lc lcVar2 = this.f57512r;
         if (z10) {
-            kcVar = this.f57546n;
+            lcVar = this.f57511n;
         } else {
-            kcVar = kcVar2;
+            lcVar = lcVar2;
         }
-        kc kcVar3 = this.f57548s;
-        if (kcVar3 != kcVar) {
-            if (kcVar3 != null) {
-                kcVar3.b();
+        lc lcVar3 = this.f57513s;
+        if (lcVar3 != lcVar) {
+            if (lcVar3 != null) {
+                lcVar3.b();
             }
-            this.f57548s = kcVar;
-            kcVar.e(this.f56716c / 255.0f);
-            if (this.f57548s == kcVar2) {
-                this.f57550x = true;
+            this.f57513s = lcVar;
+            lcVar.e(this.f56681c / 255.0f);
+            if (this.f57513s == lcVar2) {
+                this.f57515x = true;
             } else {
-                this.f57549w = true;
+                this.f57514w = true;
             }
             invalidateSelf();
         }
@@ -179,27 +179,27 @@ public final class f extends ri.e {
 
     @Override
     public final boolean j() {
-        kc kcVar = this.f57548s;
-        kcVar.getClass();
-        return !(kcVar instanceof b);
+        lc lcVar = this.f57513s;
+        lcVar.getClass();
+        return !(lcVar instanceof b);
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f57549w = true;
-        this.f57550x = true;
+        this.f57514w = true;
+        this.f57515x = true;
     }
 
     @Override
     public final void updateColors() {
         ui.c cVar = this.H;
         if (cVar != null) {
-            this.I = m6.r1(this.J / 255.0f, cVar.f59041b);
-            this.K = m6.r1(this.L / 255.0f, this.H.f59041b);
+            this.I = m6.r1(this.J / 255.0f, cVar.f59006b);
+            this.K = m6.r1(this.L / 255.0f, this.H.f59006b);
         }
-        this.f57549w = true;
-        this.f57550x = true;
+        this.f57514w = true;
+        this.f57515x = true;
     }
 
     @Override

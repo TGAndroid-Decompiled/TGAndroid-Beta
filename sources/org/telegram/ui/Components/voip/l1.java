@@ -9,34 +9,34 @@ import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
 import org.telegram.ui.Cells.y9;
 public final class l1 {
-    public final b8 f41154a;
-    public final b8 f41155b;
-    public b8 f41156c;
+    public final b8 f41116a;
+    public final b8 f41117b;
+    public b8 f41118c;
     public b8 d;
-    public boolean f41157e;
-    public int f41158f;
-    public int f41159g;
+    public boolean f41119e;
+    public int f41120f;
+    public int f41121g;
     public int h;
-    public boolean f41160i;
-    public final Paint f41161j;
-    public final Paint f41162k;
-    public final Paint f41163l;
-    public final ArrayList f41164m;
+    public boolean f41122i;
+    public final Paint f41123j;
+    public final Paint f41124k;
+    public final Paint f41125l;
+    public final ArrayList f41126m;
 
     public l1() {
         b8 b8Var = new b8(80, 80);
-        this.f41154a = b8Var;
+        this.f41116a = b8Var;
         b8 b8Var2 = new b8(80, 80);
-        this.f41155b = b8Var2;
-        this.f41158f = 0;
-        this.f41159g = 0;
+        this.f41117b = b8Var2;
+        this.f41120f = 0;
+        this.f41121g = 0;
         Paint paint = new Paint(1);
-        this.f41161j = paint;
+        this.f41123j = paint;
         Paint paint2 = new Paint(1);
-        this.f41162k = paint2;
+        this.f41124k = paint2;
         Paint paint3 = new Paint(1);
-        this.f41163l = paint3;
-        this.f41164m = new ArrayList();
+        this.f41125l = paint3;
+        this.f41126m = new ArrayList();
         b8Var2.k(0.0f, 0.0f, 80.0f, 80.0f);
         b8Var.k(0.0f, 0.0f, 80.0f, 80.0f);
         paint.setColor(-1);
@@ -49,18 +49,18 @@ public final class l1 {
     }
 
     public final void a(View view) {
-        this.f41164m.add(view);
+        this.f41126m.add(view);
     }
 
     public final Paint b() {
-        if (this.f41160i) {
-            return this.f41162k;
+        if (this.f41122i) {
+            return this.f41124k;
         }
-        return (Paint) this.f41155b.f341a;
+        return (Paint) this.f41117b.f341a;
     }
 
     public final void c() {
-        ArrayList arrayList = this.f41164m;
+        ArrayList arrayList = this.f41126m;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -71,43 +71,43 @@ public final class l1 {
     }
 
     public final void d(float f10, float f11) {
-        float f12 = this.f41159g * 1.12f;
-        b8 b8Var = this.f41155b;
+        float f12 = this.f41121g * 1.12f;
+        b8 b8Var = this.f41117b;
         float f13 = -f10;
         float f14 = -f11;
-        b8Var.m(f13 - ((f12 - this.f41158f) / 2.0f), f14 - ((f12 - this.f41159g) / 2.0f), f12 / ((Bitmap) b8Var.f343c).getHeight(), this.h);
-        this.d.k(f13, f14, this.f41158f - f10, this.f41159g - f11);
+        b8Var.m(f13 - ((f12 - this.f41120f) / 2.0f), f14 - ((f12 - this.f41121g) / 2.0f), f12 / ((Bitmap) b8Var.f343c).getHeight(), this.h);
+        this.d.k(f13, f14, this.f41120f - f10, this.f41121g - f11);
     }
 
     public final void e(boolean z10) {
-        if (this.f41160i && !z10) {
+        if (this.f41122i && !z10) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final l1 f41144b;
+                public final l1 f41106b;
 
                 {
-                    this.f41144b = this;
+                    this.f41106b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r2) {
                         case 0:
-                            l1 l1Var = this.f41144b;
+                            l1 l1Var = this.f41106b;
                             l1Var.getClass();
                             float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             int i7 = (int) (35.0f * floatValue);
-                            l1Var.f41163l.setAlpha(i7);
-                            l1Var.f41162k.setAlpha((int) (floatValue * 102.0f));
-                            l1Var.f41161j.setAlpha(i7);
+                            l1Var.f41125l.setAlpha(i7);
+                            l1Var.f41124k.setAlpha((int) (floatValue * 102.0f));
+                            l1Var.f41123j.setAlpha(i7);
                             l1Var.c();
                             return;
                         default:
-                            l1 l1Var2 = this.f41144b;
+                            l1 l1Var2 = this.f41106b;
                             l1Var2.getClass();
                             float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            ((Paint) l1Var2.f41155b.f341a).setAlpha((int) (180.0f * floatValue2));
-                            ((Paint) l1Var2.f41154a.f341a).setAlpha((int) (floatValue2 * 255.0f));
+                            ((Paint) l1Var2.f41117b.f341a).setAlpha((int) (180.0f * floatValue2));
+                            ((Paint) l1Var2.f41116a.f341a).setAlpha((int) (floatValue2 * 255.0f));
                             l1Var2.c();
                             return;
                     }
@@ -119,31 +119,31 @@ public final class l1 {
             ofFloat.start();
             ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final l1 f41144b;
+                public final l1 f41106b;
 
                 {
-                    this.f41144b = this;
+                    this.f41106b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r2) {
                         case 0:
-                            l1 l1Var = this.f41144b;
+                            l1 l1Var = this.f41106b;
                             l1Var.getClass();
                             float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             int i7 = (int) (35.0f * floatValue);
-                            l1Var.f41163l.setAlpha(i7);
-                            l1Var.f41162k.setAlpha((int) (floatValue * 102.0f));
-                            l1Var.f41161j.setAlpha(i7);
+                            l1Var.f41125l.setAlpha(i7);
+                            l1Var.f41124k.setAlpha((int) (floatValue * 102.0f));
+                            l1Var.f41123j.setAlpha(i7);
                             l1Var.c();
                             return;
                         default:
-                            l1 l1Var2 = this.f41144b;
+                            l1 l1Var2 = this.f41106b;
                             l1Var2.getClass();
                             float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            ((Paint) l1Var2.f41155b.f341a).setAlpha((int) (180.0f * floatValue2));
-                            ((Paint) l1Var2.f41154a.f341a).setAlpha((int) (floatValue2 * 255.0f));
+                            ((Paint) l1Var2.f41117b.f341a).setAlpha((int) (180.0f * floatValue2));
+                            ((Paint) l1Var2.f41116a.f341a).setAlpha((int) (floatValue2 * 255.0f));
                             l1Var2.c();
                             return;
                     }
@@ -154,7 +154,7 @@ public final class l1 {
             ofFloat2.setDuration(80L);
             ofFloat2.start();
         } else {
-            this.f41160i = z10;
+            this.f41122i = z10;
         }
         c();
     }

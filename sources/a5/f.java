@@ -1,7 +1,7 @@
 package a5;
 
 import android.animation.TypeEvaluator;
-import c8.l0;
+import c8.m0;
 public final class f implements TypeEvaluator {
     public i0.d[] f217a;
 
@@ -9,21 +9,21 @@ public final class f implements TypeEvaluator {
     public final Object evaluate(float f10, Object obj, Object obj2) {
         i0.d[] dVarArr = (i0.d[]) obj;
         i0.d[] dVarArr2 = (i0.d[]) obj2;
-        if (l0.a(dVarArr, dVarArr2)) {
-            if (!l0.a(this.f217a, dVarArr)) {
-                this.f217a = l0.e(dVarArr);
+        if (m0.a(dVarArr, dVarArr2)) {
+            if (!m0.a(this.f217a, dVarArr)) {
+                this.f217a = m0.e(dVarArr);
             }
             for (int i7 = 0; i7 < dVarArr.length; i7++) {
                 i0.d dVar = this.f217a[i7];
                 i0.d dVar2 = dVarArr[i7];
                 i0.d dVar3 = dVarArr2[i7];
                 dVar.getClass();
-                dVar.f15921a = dVar2.f15921a;
+                dVar.f15887a = dVar2.f15887a;
                 int i10 = 0;
                 while (true) {
-                    float[] fArr = dVar2.f15922b;
+                    float[] fArr = dVar2.f15888b;
                     if (i10 < fArr.length) {
-                        dVar.f15922b[i10] = (dVar3.f15922b[i10] * f10) + ((1.0f - f10) * fArr[i10]);
+                        dVar.f15888b[i10] = (dVar3.f15888b[i10] * f10) + ((1.0f - f10) * fArr[i10]);
                         i10++;
                     }
                 }

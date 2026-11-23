@@ -8,8 +8,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import bi.s;
-import c8.ma;
-import c8.ra;
+import c8.na;
+import c8.sa;
 import di.eb;
 import di.ua;
 import org.telegram.messenger.g0;
@@ -42,7 +42,7 @@ public final class a extends LinearLayout {
                 d6 d6Var = (d6) this.f1056e;
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.d;
-                paint.setColor(m6.w0(m6.f29324a7, (h6) this.f1054b));
+                paint.setColor(m6.w0(m6.f29290a7, (h6) this.f1054b));
                 ek0 ek0Var = (ek0) this.f1055c;
                 float f10 = 1.0f;
                 if (ek0Var != null) {
@@ -66,7 +66,7 @@ public final class a extends LinearLayout {
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
-        addView(frameLayout, ma.r(-1, -2, 1));
+        addView(frameLayout, na.r(-1, -2, 1));
         frameLayout.setClipChildren(false);
         setClipChildren(false);
         TextView textView = new TextView(context);
@@ -74,16 +74,16 @@ public final class a extends LinearLayout {
         textView.setTextSize(1, 22.0f);
         textView.setTypeface(g0.o());
         textView.setGravity(1);
-        addView(textView, ma.q(-2, -2, 0.0f, 1, 16, 20, 16, 0));
+        addView(textView, na.q(-2, -2, 0.0f, 1, 16, 20, 16, 0));
         m80 m80Var = new m80(context, null);
         this.f1055c = m80Var;
         m80Var.setTextSize(1, 14.0f);
         m80Var.setLineSpacing(g0.L(2.0f), 1.0f);
         m80Var.setGravity(1);
-        addView(m80Var, ma.q(-1, -2, 0.0f, 1, 24, 7, 24, 0));
+        addView(m80Var, na.q(-1, -2, 0.0f, 1, 24, 7, 24, 0));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.f1056e = frameLayout2;
-        addView(frameLayout2, ma.r(-1, -2, 1));
+        addView(frameLayout2, na.r(-1, -2, 1));
         frameLayout2.setClipChildren(false);
     }
 
@@ -93,17 +93,17 @@ public final class a extends LinearLayout {
         setOrientation(1);
         TextView textView = new TextView(context);
         this.f1054b = textView;
-        int i7 = m6.f29773y6;
+        int i7 = m6.f29739y6;
         t6.U(textView, i7, h6Var);
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);
         textView.setTextAlignment(4);
-        addView(textView, ma.k(0.0f, 0.0f, 0.0f, 19.0f, -1, -2));
+        addView(textView, na.k(0.0f, 0.0f, 0.0f, 19.0f, -1, -2));
         s sVar = new s(2, context, h6Var, true);
         this.f1055c = sVar;
         sVar.setMinWidth(g0.L(200.0f));
         sVar.i(hd.N0(2131746521, null), false, true);
-        addView(sVar, ma.r(-2, 44, 17));
+        addView(sVar, na.r(-2, 44, 17));
         gi.j jVar = new gi.j(context, h6Var);
         this.d = jVar;
         t6.U(jVar, i7, h6Var);
@@ -112,11 +112,11 @@ public final class a extends LinearLayout {
         jVar.setTextAlignment(4);
         jVar.setGravity(17);
         jVar.setTypeface(g0.o());
-        addView(jVar, ma.t(165, -2, 17, 0, 17, 0, 12));
-        hi.e eVar = new hi.e(context, h6Var, false);
-        this.f1056e = eVar;
-        eVar.setMinWidth(g0.L(200.0f));
-        addView(eVar, ma.r(-2, 44, 17));
+        addView(jVar, na.t(165, -2, 17, 0, 17, 0, 12));
+        hi.d dVar = new hi.d(context, h6Var, false);
+        this.f1056e = dVar;
+        dVar.setMinWidth(g0.L(200.0f));
+        addView(dVar, na.r(-2, 44, 17));
     }
 
     public a(int i7, Context context, h6 h6Var) {
@@ -126,34 +126,34 @@ public final class a extends LinearLayout {
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
         ua uaVar = new ua(context, 70, 0, 0);
-        frameLayout.addView(uaVar, ma.c(-1.0f, -1));
-        vg.m mVar = new vg.m(context, 1, 2);
-        this.f1054b = mVar;
-        vg.f fVar = mVar.f59505b;
-        fVar.f59489z = m6.Wk;
-        fVar.A = m6.Xk;
-        fVar.b();
-        mVar.setStarParticlesView(uaVar);
-        frameLayout.addView(mVar, ma.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
-        mVar.setPaused(false);
+        frameLayout.addView(uaVar, na.c(-1.0f, -1));
+        vg.n nVar = new vg.n(context, 1, 2);
+        this.f1054b = nVar;
+        vg.g gVar = nVar.f59470b;
+        gVar.f59454z = m6.Wk;
+        gVar.A = m6.Xk;
+        gVar.b();
+        nVar.setStarParticlesView(uaVar);
+        frameLayout.addView(nVar, na.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
+        nVar.setPaused(false);
         eb ebVar = new eb(i7, context, h6Var);
         this.f1055c = ebVar;
-        ra.a(ebVar);
+        sa.a(ebVar);
         ebVar.setOnClickListener(new d(this, 20));
-        frameLayout.addView(ebVar, ma.d(-2, -2.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
-        addView(frameLayout, ma.c(150.0f, -1));
+        frameLayout.addView(ebVar, na.d(-2, -2.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
+        addView(frameLayout, na.c(150.0f, -1));
         TextView textView = new TextView(context);
         this.d = textView;
         i5.c.x(textView, 1, 20.0f);
-        int i10 = m6.f29489j5;
+        int i10 = m6.f29455j5;
         t6.U(textView, i10, h6Var);
         textView.setGravity(17);
-        addView(textView, ma.t(-2, -2, 1, 0, 2, 0, 0));
+        addView(textView, na.t(-2, -2, 1, 0, 2, 0, 0));
         TextView textView2 = new TextView(context);
         this.f1056e = textView2;
         textView2.setTextSize(1, 14.0f);
         t6.U(textView2, i10, h6Var);
         textView2.setGravity(17);
-        addView(textView2, ma.t(-2, -2, 1, 0, 9, 0, 18));
+        addView(textView2, na.t(-2, -2, 1, 0, 9, 0, 18));
     }
 }

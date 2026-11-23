@@ -1,17 +1,17 @@
 package s3;
 
-import a8.la;
+import a8.ma;
 import e2.n0;
 import e2.p0;
 import e2.u;
 import j$.util.Objects;
 public final class b implements p0 {
-    public final int f56956a;
-    public final String f56957b;
-    public final String f56958c;
+    public final int f56921a;
+    public final String f56922b;
+    public final String f56923c;
     public final String d;
-    public final boolean f56959e;
-    public final int f56960f;
+    public final boolean f56924e;
+    public final int f56925f;
 
     public b(int i7, String str, String str2, String str3, boolean z10, int i10) {
         boolean z11;
@@ -20,13 +20,13 @@ public final class b implements p0 {
         } else {
             z11 = true;
         }
-        la.f(z11);
-        this.f56956a = i7;
-        this.f56957b = str;
-        this.f56958c = str2;
+        ma.f(z11);
+        this.f56921a = i7;
+        this.f56922b = str;
+        this.f56923c = str2;
         this.d = str3;
-        this.f56959e = z10;
-        this.f56960f = i10;
+        this.f56924e = z10;
+        this.f56925f = i10;
     }
 
     public static s3.b d(java.util.Map r14) {
@@ -40,11 +40,11 @@ public final class b implements p0 {
 
     @Override
     public final void b(n0 n0Var) {
-        String str = this.f56958c;
+        String str = this.f56923c;
         if (str != null) {
             n0Var.G = str;
         }
-        String str2 = this.f56957b;
+        String str2 = this.f56922b;
         if (str2 != null) {
             n0Var.E = str2;
         }
@@ -61,7 +61,7 @@ public final class b implements p0 {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f56956a == bVar.f56956a && Objects.equals(this.f56957b, bVar.f56957b) && Objects.equals(this.f56958c, bVar.f56958c) && Objects.equals(this.d, bVar.d) && this.f56959e == bVar.f56959e && this.f56960f == bVar.f56960f) {
+            if (this.f56921a == bVar.f56921a && Objects.equals(this.f56922b, bVar.f56922b) && Objects.equals(this.f56923c, bVar.f56923c) && Objects.equals(this.d, bVar.d) && this.f56924e == bVar.f56924e && this.f56925f == bVar.f56925f) {
                 return true;
             }
         }
@@ -71,16 +71,16 @@ public final class b implements p0 {
     public final int hashCode() {
         int i7;
         int i10;
-        int i11 = (527 + this.f56956a) * 31;
+        int i11 = (527 + this.f56921a) * 31;
         int i12 = 0;
-        String str = this.f56957b;
+        String str = this.f56922b;
         if (str != null) {
             i7 = str.hashCode();
         } else {
             i7 = 0;
         }
         int i13 = (i11 + i7) * 31;
-        String str2 = this.f56958c;
+        String str2 = this.f56923c;
         if (str2 != null) {
             i10 = str2.hashCode();
         } else {
@@ -91,10 +91,10 @@ public final class b implements p0 {
         if (str3 != null) {
             i12 = str3.hashCode();
         }
-        return ((((i14 + i12) * 31) + (this.f56959e ? 1 : 0)) * 31) + this.f56960f;
+        return ((((i14 + i12) * 31) + (this.f56924e ? 1 : 0)) * 31) + this.f56925f;
     }
 
     public final String toString() {
-        return "IcyHeaders: name=\"" + this.f56958c + "\", genre=\"" + this.f56957b + "\", bitrate=" + this.f56956a + ", metadataInterval=" + this.f56960f;
+        return "IcyHeaders: name=\"" + this.f56923c + "\", genre=\"" + this.f56922b + "\", bitrate=" + this.f56921a + ", metadataInterval=" + this.f56925f;
     }
 }

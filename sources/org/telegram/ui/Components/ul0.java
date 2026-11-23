@@ -8,28 +8,28 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class ul0 extends Drawable {
-    public final Paint f40478b;
-    public boolean f40481f;
-    public int f40484j;
-    public boolean f40487m;
-    public di.x7 f40489o;
-    public float f40490p;
-    public float f40491q;
-    public float f40492r;
-    public int f40477a = 255;
-    public final Path f40479c = new Path();
+    public final Paint f40463b;
+    public boolean f40466f;
+    public int f40469j;
+    public boolean f40472m;
+    public di.x7 f40474o;
+    public float f40475p;
+    public float f40476q;
+    public float f40477r;
+    public int f40462a = 255;
+    public final Path f40464c = new Path();
     public final RectF d = new RectF();
-    public long f40480e = -1;
-    public float f40482g = 0.0f;
+    public long f40465e = -1;
+    public float f40467g = 0.0f;
     public float h = 0.0f;
-    public final float[] f40483i = new float[2];
-    public int f40485k = 0;
-    public boolean f40486l = false;
-    public final d6 f40488n = new d6(1.0f, new hb0(this, 20), 0, 350, nr.h);
+    public final float[] f40468i = new float[2];
+    public int f40470k = 0;
+    public boolean f40471l = false;
+    public final d6 f40473n = new d6(1.0f, new hb0(this, 20), 0, 350, nr.h);
 
     public ul0() {
         Paint paint = new Paint(1);
-        this.f40478b = paint;
+        this.f40463b = paint;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -38,9 +38,9 @@ public final class ul0 extends Drawable {
     }
 
     public final void a(int i7) {
-        Paint paint = this.f40478b;
+        Paint paint = this.f40463b;
         paint.setColor(i7);
-        this.f40477a = paint.getAlpha();
+        this.f40462a = paint.getAlpha();
         paint.setAlpha(255);
     }
 
@@ -49,31 +49,31 @@ public final class ul0 extends Drawable {
     }
 
     public final void c(int i7, boolean z10, boolean z11) {
-        if (this.f40485k == i7) {
+        if (this.f40470k == i7) {
             if (i7 != 2) {
-                org.telegram.messenger.g0.r(this.f40489o);
-                this.f40489o = null;
+                org.telegram.messenger.g0.r(this.f40474o);
+                this.f40474o = null;
             }
         } else if (!z11 && i7 == 2) {
-            if (this.f40489o == null) {
+            if (this.f40474o == null) {
                 di.x7 x7Var = new di.x7(this, i7, z10, 5);
-                this.f40489o = x7Var;
+                this.f40474o = x7Var;
                 org.telegram.messenger.g0.h3(x7Var, 65L);
             }
         } else {
-            di.x7 x7Var2 = this.f40489o;
+            di.x7 x7Var2 = this.f40474o;
             if (x7Var2 != null) {
                 org.telegram.messenger.g0.r(x7Var2);
             }
-            d6 d6Var = this.f40488n;
+            d6 d6Var = this.f40473n;
             boolean z12 = false;
-            if (d6Var.f34386c < 1.0f && z10) {
-                c(this.f40485k, false, false);
+            if (d6Var.f34349c < 1.0f && z10) {
+                c(this.f40470k, false, false);
             }
             if (i7 == 2) {
-                this.f40482g = 180.0f;
-                this.f40480e = -1L;
-            } else if (this.f40485k == 2) {
+                this.f40467g = 180.0f;
+                this.f40465e = -1L;
+            } else if (this.f40470k == 2) {
                 if (i7 == 0) {
                     this.h = -45.0f;
                 } else {
@@ -81,18 +81,18 @@ public final class ul0 extends Drawable {
                 }
             }
             if (z10) {
-                int i10 = this.f40485k;
-                this.f40484j = i10;
-                this.f40485k = i7;
+                int i10 = this.f40470k;
+                this.f40469j = i10;
+                this.f40470k = i7;
                 if (i10 == 2 && i7 != 2) {
                     z12 = true;
                 }
-                this.f40486l = z12;
+                this.f40471l = z12;
                 d6Var.e(true, 0.0f);
             } else {
-                this.f40485k = i7;
-                this.f40484j = i7;
-                this.f40486l = false;
+                this.f40470k = i7;
+                this.f40469j = i7;
+                this.f40471l = false;
                 d6Var.e(true, 1.0f);
             }
             invalidateSelf();
@@ -100,7 +100,7 @@ public final class ul0 extends Drawable {
     }
 
     public final float d(float f10) {
-        return com.google.android.gms.internal.vision.e2.t(0.5f, f10, this.f40490p, this.f40491q);
+        return com.google.android.gms.internal.vision.e2.t(0.5f, f10, this.f40475p, this.f40476q);
     }
 
     @Override
@@ -123,10 +123,10 @@ public final class ul0 extends Drawable {
         boolean z11;
         float d10;
         Rect bounds = getBounds();
-        this.f40490p = Math.min(bounds.width(), bounds.height());
-        this.f40491q = bounds.centerX();
-        this.f40492r = bounds.centerY();
-        int i7 = this.f40477a;
+        this.f40475p = Math.min(bounds.width(), bounds.height());
+        this.f40476q = bounds.centerX();
+        this.f40477r = bounds.centerY();
+        int i7 = this.f40462a;
         if (i7 < 255) {
             float f19 = bounds.bottom;
             canvas2 = canvas;
@@ -134,14 +134,14 @@ public final class ul0 extends Drawable {
         } else {
             canvas2 = canvas;
         }
-        if (this.f40486l) {
+        if (this.f40471l) {
             f10 = 0.0f;
         } else {
             f10 = 1.0f;
         }
-        float e10 = this.f40488n.e(false, f10);
-        int i10 = this.f40485k;
-        int i11 = this.f40484j;
+        float e10 = this.f40473n.e(false, f10);
+        int i10 = this.f40470k;
+        int i11 = this.f40469j;
         if (i10 == 0) {
             if (i11 == 0) {
                 f11 = 1.0f;
@@ -153,7 +153,7 @@ public final class ul0 extends Drawable {
         } else {
             f11 = 0.0f;
         }
-        int i12 = this.f40484j;
+        int i12 = this.f40469j;
         if (i10 == 1) {
             if (i12 == 1) {
                 f12 = 1.0f;
@@ -166,25 +166,25 @@ public final class ul0 extends Drawable {
             f12 = 0.0f;
         }
         if (i10 == 2) {
-            if (this.f40484j == 2) {
+            if (this.f40469j == 2) {
                 f13 = 1.0f;
             } else {
                 f13 = e10;
             }
-        } else if (this.f40484j == 2) {
+        } else if (this.f40469j == 2) {
             f13 = 1.0f - e10;
         } else {
             f13 = 0.0f;
         }
         int i13 = (f11 > 0.0f ? 1 : (f11 == 0.0f ? 0 : -1));
-        Paint paint = this.f40478b;
+        Paint paint = this.f40463b;
         if (i13 > 0) {
             boolean z12 = true;
             float T1 = org.telegram.messenger.g0.T1(d(0.25f), d(0.444f), f11);
             float T12 = org.telegram.messenger.g0.T1(e(0.5f), e(0.444f), f11);
-            float T13 = org.telegram.messenger.g0.T1(0.0f, this.f40490p * 0.208f, f11);
+            float T13 = org.telegram.messenger.g0.T1(0.0f, this.f40475p * 0.208f, f11);
             r19 = z12;
-            if (T13 >= this.f40490p * 0.075f) {
+            if (T13 >= this.f40475p * 0.075f) {
                 canvas2.drawCircle(T1, T12, T13, paint);
                 r19 = z12;
             }
@@ -201,10 +201,10 @@ public final class ul0 extends Drawable {
         } else {
             canvas2.save();
             f14 = 45.0f;
-            canvas2.rotate(f11 * 45.0f, this.f40491q, this.f40492r);
+            canvas2.rotate(f11 * 45.0f, this.f40476q, this.f40477r);
             float d11 = d(0.914f);
             float d12 = d(0.7638f);
-            if (this.f40484j == 2) {
+            if (this.f40469j == 2) {
                 d = d(0.75f);
             } else {
                 d = d(0.2409f);
@@ -214,14 +214,14 @@ public final class ul0 extends Drawable {
             float d13 = d(0.658f);
             float d14 = d(0.2409f);
             r23 = 0;
-            if (this.f40484j == 2) {
+            if (this.f40469j == 2) {
                 d2 = d(0.75f);
             } else {
                 d2 = d(0.2409f);
             }
             float f21 = (d2 * f13) + (d14 * f12) + (d13 * f11);
             float e12 = e(0.5f);
-            if (a8.w9.a(f20, e11, f21, e12) <= this.f40490p * 0.075f) {
+            if (a8.x9.a(f20, e11, f21, e12) <= this.f40475p * 0.075f) {
                 f15 = f13;
                 f16 = 0.0f;
                 f17 = 0.5f;
@@ -236,20 +236,20 @@ public final class ul0 extends Drawable {
             canvas2.restore();
         }
         if (f12 > f16) {
-            if (this.f40484j == 2) {
+            if (this.f40469j == 2) {
                 d10 = org.telegram.messenger.g0.T1(d(0.75f), d(0.2409f), f12);
             } else {
                 d10 = d(0.2409f);
             }
             canvas2.save();
-            canvas2.rotate(f11 * f14, this.f40491q, this.f40492r);
+            canvas2.rotate(f11 * f14, this.f40476q, this.f40477r);
             float d15 = (d(0.2452f) * f12) + d10;
             float T14 = org.telegram.messenger.g0.T1(e(f17), e(f18), f12);
             float e13 = e(f17);
             float d16 = (d(0.2452f) * f12) + d10;
             float T15 = org.telegram.messenger.g0.T1(e(f17), e(0.75f), f12);
-            if (Math.max(a8.w9.a(d15, T14, d10, e13), a8.w9.a(d16, T15, d10, e13)) > this.f40490p * 0.075f) {
-                Path path = this.f40479c;
+            if (Math.max(a8.x9.a(d15, T14, d10, e13), a8.x9.a(d16, T15, d10, e13)) > this.f40475p * 0.075f) {
+                Path path = this.f40464c;
                 path.rewind();
                 path.moveTo(d15, T14);
                 path.lineTo(d10, e13);
@@ -259,22 +259,22 @@ public final class ul0 extends Drawable {
             canvas2.restore();
         }
         if (f15 > f16) {
-            if (this.f40480e < 0 && f15 > 0.8f) {
-                this.f40480e = System.currentTimeMillis();
-                this.f40487m = this.f40486l;
+            if (this.f40465e < 0 && f15 > 0.8f) {
+                this.f40465e = System.currentTimeMillis();
+                this.f40472m = this.f40471l;
             }
-            if (this.f40480e > 0) {
-                float[] fArr = this.f40483i;
-                up.a(((float) (System.currentTimeMillis() - this.f40480e)) % 5400.0f, fArr);
+            if (this.f40465e > 0) {
+                float[] fArr = this.f40468i;
+                up.a(((float) (System.currentTimeMillis() - this.f40465e)) % 5400.0f, fArr);
                 float f22 = fArr[r23];
                 float f23 = fArr[r19];
-                if (this.f40485k != 2 && !this.f40486l) {
+                if (this.f40470k != 2 && !this.f40471l) {
                     float max = Math.max(f16, (((float) Math.floor((f22 - 180.0f) / 360.0f)) * 360.0f) + 180.0f);
                     f23 = Math.min(f23, this.h + max);
                     f22 = org.telegram.messenger.g0.T1(f23, Math.min(f22, max + this.h), f15);
                 }
                 float f24 = this.h;
-                float f25 = this.f40482g;
+                float f25 = this.f40467g;
                 float f26 = f25 + f22;
                 float f27 = f25 + f23;
                 float f28 = f26 % 360.0f;
@@ -290,19 +290,19 @@ public final class ul0 extends Drawable {
                 } else {
                     z10 = r19;
                 }
-                boolean z13 = this.f40486l;
-                if (z13 && !this.f40487m) {
-                    this.f40487m = z13;
-                    this.f40481f = z10;
+                boolean z13 = this.f40471l;
+                if (z13 && !this.f40472m) {
+                    this.f40472m = z13;
+                    this.f40466f = z10;
                 }
-                if (this.f40481f && !z10) {
+                if (this.f40466f && !z10) {
                     z11 = r23;
-                    this.f40481f = z11;
+                    this.f40466f = z11;
                 } else {
                     z11 = r23;
                 }
-                if (z13 && z10 && !this.f40481f) {
-                    this.f40486l = z11;
+                if (z13 && z10 && !this.f40466f) {
+                    this.f40471l = z11;
                 }
                 float d17 = d(f18);
                 float e14 = e(f18);
@@ -311,11 +311,11 @@ public final class ul0 extends Drawable {
                 float f30 = f22;
                 RectF rectF = this.d;
                 rectF.set(d17, e14, d18, e15);
-                canvas2.drawArc(rectF, this.f40482g + f30, f23 - f30, false, paint);
+                canvas2.drawArc(rectF, this.f40467g + f30, f23 - f30, false, paint);
                 invalidateSelf();
             }
         }
-        if (this.f40477a < 255) {
+        if (this.f40462a < 255) {
             canvas.restore();
         }
         if (e10 < 1.0f) {
@@ -324,7 +324,7 @@ public final class ul0 extends Drawable {
     }
 
     public final float e(float f10) {
-        return com.google.android.gms.internal.vision.e2.t(0.5f, f10, this.f40490p, this.f40492r);
+        return com.google.android.gms.internal.vision.e2.t(0.5f, f10, this.f40475p, this.f40477r);
     }
 
     @Override
@@ -344,11 +344,11 @@ public final class ul0 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f40477a = i7;
+        this.f40462a = i7;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f40478b.setColorFilter(colorFilter);
+        this.f40463b.setColorFilter(colorFilter);
     }
 }

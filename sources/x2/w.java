@@ -1,38 +1,38 @@
 package x2;
 
-import a8.la;
+import a8.ma;
 public final class w extends l2.a {
     public final e2.l1 h;
-    public final int f60293i;
-    public final int f60294j;
-    public final int f60295k;
+    public final int f60258i;
+    public final int f60259j;
+    public final int f60260k;
 
     public w(e2.l1 l1Var, int i7) {
         super(new h1(i7));
         boolean z10;
         this.h = l1Var;
         int h = l1Var.h();
-        this.f60293i = h;
-        this.f60294j = l1Var.o();
-        this.f60295k = i7;
+        this.f60258i = h;
+        this.f60259j = l1Var.o();
+        this.f60260k = i7;
         if (h > 0) {
             if (i7 <= Integer.MAX_VALUE / h) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            la.o("LoopingMediaSource contains too many periods", z10);
+            ma.o("LoopingMediaSource contains too many periods", z10);
         }
     }
 
     @Override
     public final int h() {
-        return this.f60293i * this.f60295k;
+        return this.f60258i * this.f60260k;
     }
 
     @Override
     public final int o() {
-        return this.f60294j * this.f60295k;
+        return this.f60259j * this.f60260k;
     }
 
     @Override
@@ -45,12 +45,12 @@ public final class w extends l2.a {
 
     @Override
     public final int r(int i7) {
-        return i7 / this.f60293i;
+        return i7 / this.f60258i;
     }
 
     @Override
     public final int s(int i7) {
-        return i7 / this.f60294j;
+        return i7 / this.f60259j;
     }
 
     @Override
@@ -60,12 +60,12 @@ public final class w extends l2.a {
 
     @Override
     public final int u(int i7) {
-        return i7 * this.f60293i;
+        return i7 * this.f60258i;
     }
 
     @Override
     public final int v(int i7) {
-        return i7 * this.f60294j;
+        return i7 * this.f60259j;
     }
 
     @Override

@@ -3,38 +3,38 @@ package org.telegram.ui.ActionBar;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.SparseIntArray;
-import c8.l9;
+import c8.m9;
 import java.io.File;
 import java.util.Locale;
 import org.telegram.messenger.o10;
 import org.telegram.tgnet.TLRPC;
 public final class j6 {
-    public int f29096a;
-    public l6 f29097b;
-    public int f29098c;
+    public int f29062a;
+    public l6 f29063b;
+    public int f29064c;
     public int d;
-    public int f29099e;
-    public int f29100f;
-    public int f29101g;
+    public int f29065e;
+    public int f29066f;
+    public int f29067g;
     public int h;
-    public boolean f29102i;
-    public long f29103j;
-    public long f29104k;
-    public long f29105l;
-    public long f29106m;
-    public float f29109p;
-    public boolean f29110q;
-    public TLRPC.TL_theme f29111r;
-    public TLRPC.TL_wallPaper f29112s;
-    public int f29113t;
-    public String f29114u;
+    public boolean f29068i;
+    public long f29069j;
+    public long f29070k;
+    public long f29071l;
+    public long f29072m;
+    public float f29075p;
+    public boolean f29076q;
+    public TLRPC.TL_theme f29077r;
+    public TLRPC.TL_wallPaper f29078s;
+    public int f29079t;
+    public String f29080u;
     public String v;
-    public TLRPC.InputFile f29115w;
-    public TLRPC.InputFile f29116x;
-    public d6 f29117y;
-    public boolean f29118z;
-    public int f29107n = 45;
-    public String f29108o = "";
+    public TLRPC.InputFile f29081w;
+    public TLRPC.InputFile f29082x;
+    public d6 f29083y;
+    public boolean f29084z;
+    public int f29073n = 45;
+    public String f29074o = "";
     public final float[] A = new float[3];
 
     public static int a(SparseIntArray sparseIntArray, int... iArr) {
@@ -73,11 +73,11 @@ public final class j6 {
     }
 
     public static void h(SparseIntArray sparseIntArray) {
-        for (int i7 = m6.f29626qb; i7 < m6.f29759xb; i7++) {
+        for (int i7 = m6.f29592qb; i7 < m6.f29725xb; i7++) {
             sparseIntArray.delete(i7);
             sparseIntArray.put(i7, m6.hm[i7]);
         }
-        for (int i10 = m6.f29777yb; i10 < m6.Kc; i10++) {
+        for (int i10 = m6.f29743yb; i10 < m6.Kc; i10++) {
             sparseIntArray.delete(i10);
             sparseIntArray.put(i10, m6.hm[i10]);
         }
@@ -106,24 +106,24 @@ public final class j6 {
     }
 
     public final File e() {
-        if (this.f29096a < 100) {
-            if (TextUtils.isEmpty(this.f29108o)) {
+        if (this.f29062a < 100) {
+            if (TextUtils.isEmpty(this.f29074o)) {
                 return null;
             }
             File h = org.telegram.messenger.t0.h();
             Locale locale = Locale.US;
-            String m10 = this.f29097b.m();
-            int i7 = this.f29096a;
-            String str = this.f29108o;
+            String m10 = this.f29063b.m();
+            int i7 = this.f29062a;
+            String str = this.f29074o;
             return new File(h, m10 + "_" + i7 + "_" + str + "_v5.jpg");
-        } else if (TextUtils.isEmpty(this.f29108o)) {
+        } else if (TextUtils.isEmpty(this.f29074o)) {
             return null;
         } else {
             File h7 = org.telegram.messenger.t0.h();
             Locale locale2 = Locale.US;
-            String m11 = this.f29097b.m();
-            int i10 = this.f29096a;
-            String str2 = this.f29108o;
+            String m11 = this.f29063b.m();
+            int i10 = this.f29062a;
+            String str2 = this.f29074o;
             return new File(h7, m11 + "_" + i10 + "_" + str2 + "_v8_debug.jpg");
         }
     }
@@ -151,15 +151,15 @@ public final class j6 {
         if (fArr[1] > 0.0f) {
             float f11 = fArr[2];
             if (f11 < 1.0f && f11 > 0.0f) {
-                fArr[0] = l9.a(fArr[0] + 0.22f, 0.0f, 1.0f);
-                fArr[1] = l9.a(fArr[1] - 0.35f, 0.0f, 1.0f);
-                fArr[2] = l9.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+                fArr[0] = m9.a(fArr[0] + 0.22f, 0.0f, 1.0f);
+                fArr[1] = m9.a(fArr[1] - 0.35f, 0.0f, 1.0f);
+                fArr[2] = m9.a(fArr[2] - 0.65f, 0.0f, 1.0f);
                 return Color.HSVToColor(90, fArr);
             }
         }
         fArr[0] = f10;
         fArr[1] = 0.2f;
-        fArr[2] = l9.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+        fArr[2] = m9.a(fArr[2] - 0.65f, 0.0f, 1.0f);
         return Color.HSVToColor(90, fArr);
     }
 

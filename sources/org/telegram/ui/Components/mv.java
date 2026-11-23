@@ -1,72 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class mv extends kl0 {
-    public long h;
-    public boolean f37645n;
-    public float f37646r;
-    public final ov f37647s;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class mv extends Drawable {
+    public final int f37601a;
+    public RectF f37602b;
+    public Paint f37603c;
 
-    public mv(ov ovVar, Context context) {
-        super(context);
-        float f10;
-        this.f37647s = ovVar;
-        boolean z10 = ovVar.f38373n;
-        this.f37645n = z10;
-        if (z10) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        this.f37646r = f10;
-        setSmoothScrollingEnabled(true);
-        setHorizontalScrollBarEnabled(false);
-        setVerticalScrollBarEnabled(false);
-        setNestedScrollingEnabled(true);
-        org.telegram.ui.d61 d61Var = new org.telegram.ui.d61(12, context, this);
-        this.f36928b = d61Var;
-        d61Var.setOrientation(0);
-        addView(this.f36928b, new FrameLayout.LayoutParams(-2, -1));
-        for (int i7 = 0; i7 < 8; i7++) {
-            int i10 = ov.f38366f0[i7];
-            lv lvVar = new lv(this, context, ov.f38367g0[i7]);
-            lvVar.setContentDescription(ov.f(i7));
-            this.f36928b.addView(lvVar);
-        }
-    }
-
-    public final void d(MotionEvent motionEvent) {
-        if (this.f37645n && !this.d) {
-            int action = motionEvent.getAction();
-            if (action != 0) {
-                if (action != 1) {
-                    if (action != 2) {
-                        return;
-                    }
-                } else {
-                    this.f36927a = false;
-                    return;
-                }
-            }
-            this.f36927a = true;
-            if (!this.d) {
-                this.f36930e = -1;
-            }
-            this.f37647s.requestDisallowInterceptTouchEvent(true);
+    public mv(int i7, byte b10) {
+        this.f37601a = i7;
+        switch (i7) {
+            case 2:
+                return;
+            default:
+                this.f37602b = new RectF();
+                this.f37603c = new Paint(1);
+                return;
         }
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.W1(this.f37646r, org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(Math.min(5.7f, this.f36928b.getChildCount()) * 32.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
+    public final void draw(Canvas canvas) {
+        switch (this.f37601a) {
+            case 0:
+                RectF rectF = this.f37602b;
+                rectF.set(0.0f, 0.0f, org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(30.0f));
+                canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(8.0f), org.telegram.messenger.g0.N(8.0f), this.f37603c);
+                return;
+            case 1:
+                RectF rectF2 = this.f37602b;
+                rectF2.set(getBounds());
+                float height = rectF2.height() * 0.2f;
+                canvas.drawRoundRect(rectF2, height, height, this.f37603c);
+                return;
+            default:
+                RectF rectF3 = this.f37602b;
+                rectF3.set(getBounds());
+                rectF3.inset(0.0f, (rectF3.height() - org.telegram.messenger.g0.L(28.0f)) / 2.0f);
+                canvas.drawRoundRect(rectF3, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), this.f37603c);
+                return;
+        }
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        d(motionEvent);
-        return super.onTouchEvent(motionEvent);
+    public final int getOpacity() {
+        switch (this.f37601a) {
+            case 0:
+                return -3;
+            case 1:
+                return -3;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        switch (this.f37601a) {
+            case 0:
+                this.f37603c.setAlpha(i7);
+                return;
+            case 1:
+                this.f37603c.setAlpha(i7);
+                return;
+            default:
+                this.f37603c.setAlpha(i7);
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f37601a) {
+            case 0:
+                return;
+            case 1:
+                this.f37603c.setColorFilter(colorFilter);
+                return;
+            default:
+                return;
+        }
+    }
+
+    public mv(int i7) {
+        this.f37601a = 0;
+        Paint paint = new Paint();
+        this.f37603c = paint;
+        this.f37602b = new RectF();
+        paint.setAlpha(45);
+        paint.setColor(i7);
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
     }
 }

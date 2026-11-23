@@ -10,7 +10,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 public final class f extends n41 {
-    public static final int f59605b = 0;
+    public static final int f59570b = 0;
 
     static {
         n41.h(new n41());
@@ -22,7 +22,7 @@ public final class f extends n41 {
         cVar.f1059w = (TLRPC.TL_help_country) o41Var.H;
         cVar.f();
         cVar.setDivider(z10);
-        cVar.c(o41Var.f38084e, false);
+        cVar.c(o41Var.f38051e, false);
     }
 
     @Override

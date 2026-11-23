@@ -6,11 +6,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 public final class e {
-    public final String f11044a;
-    public final HashMap f11045b = new HashMap();
+    public final String f11007a;
+    public final HashMap f11008b = new HashMap();
 
     public e(String str) {
-        this.f11044a = str;
+        this.f11007a = str;
     }
 
     public final File a(Uri uri) {
@@ -19,7 +19,7 @@ public final class e {
         if (indexOf != -1) {
             String decode = Uri.decode(encodedPath.substring(1, indexOf));
             String decode2 = Uri.decode(encodedPath.substring(indexOf + 1));
-            File file = (File) this.f11045b.get(decode);
+            File file = (File) this.f11008b.get(decode);
             if (file != null) {
                 File file2 = new File(file, decode2);
                 try {

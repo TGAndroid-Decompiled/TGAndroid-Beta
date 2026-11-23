@@ -12,8 +12,8 @@ public final class j extends rg.b {
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59169f;
+    public final boolean D(v4.e1 e1Var) {
+        int i7 = e1Var.f59115f;
         if (i7 != 2 && i7 != 0) {
             return true;
         }
@@ -30,7 +30,7 @@ public final class j extends rg.b {
         if (i7 >= 0) {
             k kVar = this.d;
             if (i7 < kVar.h.size()) {
-                return ((i) kVar.h.get(i7)).f56634a;
+                return ((i) kVar.h.get(i7)).f56599a;
             }
             return 0;
         }
@@ -38,7 +38,7 @@ public final class j extends rg.b {
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
+    public final void t(v4.e1 e1Var, int i7) {
         boolean z10;
         boolean z11;
         k kVar = this.d;
@@ -47,24 +47,24 @@ public final class j extends rg.b {
             i iVar = (i) arrayList.get(i7);
             int i10 = i7 + 1;
             int i11 = 0;
-            if (i10 < arrayList.size() && ((i) arrayList.get(i10)).f56634a == iVar.f56634a) {
+            if (i10 < arrayList.size() && ((i) arrayList.get(i10)).f56599a == iVar.f56599a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int i12 = f1Var.f59169f;
-            View view = f1Var.f59165a;
+            int i12 = e1Var.f59115f;
+            View view = e1Var.f59111a;
             if (i12 == 0) {
-                ((org.telegram.ui.Cells.o4) view).setText(iVar.f48554c);
+                ((org.telegram.ui.Cells.o4) view).setText(iVar.f48521c);
             } else if (i12 == 2) {
                 org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
-                if (TextUtils.isEmpty(iVar.f48554c)) {
+                if (TextUtils.isEmpty(iVar.f48521c)) {
                     a9Var.setFixedSize(12);
                     a9Var.setText(null);
                     return;
                 }
                 a9Var.setFixedSize(0);
-                a9Var.setText(iVar.f48554c);
+                a9Var.setText(iVar.f48521c);
             } else if (i12 == 1) {
                 org.telegram.ui.Cells.s8 s8Var = (org.telegram.ui.Cells.s8) view;
                 int i13 = iVar.d;
@@ -76,7 +76,7 @@ public final class j extends rg.b {
                     s8Var.setCheckBoxIcon(0);
                 } else if (i13 == 7) {
                     boolean z12 = kVar.d.archive_and_mute_new_noncontact_peers;
-                    if (!kVar.getUserConfig().q() && !kVar.getMessagesController().f25807b4) {
+                    if (!kVar.getUserConfig().q() && !kVar.getMessagesController().f25771b4) {
                         i11 = 2131232515;
                     }
                     s8Var.setCheckBoxIcon(i11);
@@ -84,13 +84,13 @@ public final class j extends rg.b {
                 } else {
                     return;
                 }
-                s8Var.f(iVar.f48554c, z11, z10);
+                s8Var.f(iVar.f48521c, z11, z10);
             }
         }
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View a9Var;
         k kVar = this.d;
         if (i7 == 0) {
@@ -100,6 +100,6 @@ public final class j extends rg.b {
         } else {
             a9Var = new org.telegram.ui.Cells.a9(kVar.getParentActivity());
         }
-        return new v4.f1(a9Var);
+        return new v4.e1(a9Var);
     }
 }

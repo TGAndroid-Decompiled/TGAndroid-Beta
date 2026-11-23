@@ -1,11 +1,11 @@
 package h2;
 
-import a8.la;
+import a8.ma;
 import java.math.RoundingMode;
 public final class k0 {
-    public long f13807a;
-    public long f13808b;
-    public long f13809c;
+    public long f13770a;
+    public long f13771b;
+    public long f13772c;
     public final ThreadLocal d = new ThreadLocal();
 
     public k0(long j3) {
@@ -18,17 +18,17 @@ public final class k0 {
         }
         try {
             if (!f()) {
-                long j10 = this.f13807a;
+                long j10 = this.f13770a;
                 if (j10 == 9223372036854775806L) {
                     Long l10 = (Long) this.d.get();
                     l10.getClass();
                     j10 = l10.longValue();
                 }
-                this.f13808b = j10 - j3;
+                this.f13771b = j10 - j3;
                 notifyAll();
             }
-            this.f13809c = j3;
-            return j3 + this.f13808b;
+            this.f13772c = j3;
+            return j3 + this.f13771b;
         } catch (Throwable th2) {
             throw th2;
         }
@@ -39,9 +39,9 @@ public final class k0 {
             return -9223372036854775807L;
         }
         try {
-            long j10 = this.f13809c;
+            long j10 = this.f13772c;
             if (j10 != -9223372036854775807L) {
-                String str = l0.f13815a;
+                String str = l0.f13778a;
                 long a02 = l0.a0(j10, 90000L, 1000000L, RoundingMode.DOWN);
                 long j11 = (4294967296L + a02) / 8589934592L;
                 long j12 = ((j11 - 1) * 8589934592L) + j3;
@@ -53,7 +53,7 @@ public final class k0 {
                 }
             }
             long j14 = j3;
-            String str2 = l0.f13815a;
+            String str2 = l0.f13778a;
             return a(l0.a0(j14, 1000000L, 90000L, RoundingMode.DOWN));
         } catch (Throwable th2) {
             throw th2;
@@ -64,9 +64,9 @@ public final class k0 {
         if (j3 == -9223372036854775807L) {
             return -9223372036854775807L;
         }
-        long j10 = this.f13809c;
+        long j10 = this.f13772c;
         if (j10 != -9223372036854775807L) {
-            String str = l0.f13815a;
+            String str = l0.f13778a;
             long a02 = l0.a0(j10, 90000L, 1000000L, RoundingMode.DOWN);
             long j11 = a02 / 8589934592L;
             Long.signum(j11);
@@ -79,23 +79,23 @@ public final class k0 {
             }
         }
         long j14 = j3;
-        String str2 = l0.f13815a;
+        String str2 = l0.f13778a;
         return a(l0.a0(j14, 1000000L, 90000L, RoundingMode.DOWN));
     }
 
     public final synchronized long d() {
         long j3;
-        j3 = this.f13807a;
+        j3 = this.f13770a;
         return (j3 == Long.MAX_VALUE || j3 == 9223372036854775806L) ? -9223372036854775807L : -9223372036854775807L;
     }
 
     public final synchronized long e() {
-        return this.f13808b;
+        return this.f13771b;
     }
 
     public final synchronized boolean f() {
         boolean z10;
-        if (this.f13808b != -9223372036854775807L) {
+        if (this.f13771b != -9223372036854775807L) {
             z10 = true;
         } else {
             z10 = false;
@@ -105,25 +105,25 @@ public final class k0 {
 
     public final synchronized void g(long j3) {
         long j10;
-        this.f13807a = j3;
+        this.f13770a = j3;
         if (j3 == Long.MAX_VALUE) {
             j10 = 0;
         } else {
             j10 = -9223372036854775807L;
         }
-        this.f13808b = j10;
-        this.f13809c = -9223372036854775807L;
+        this.f13771b = j10;
+        this.f13772c = -9223372036854775807L;
     }
 
     public final synchronized void h(long j3, boolean z10) {
         boolean z11;
         try {
-            if (this.f13807a == 9223372036854775806L) {
+            if (this.f13770a == 9223372036854775806L) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            la.p(z11);
+            ma.p(z11);
             if (f()) {
                 return;
             }

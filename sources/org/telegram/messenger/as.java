@@ -14,14 +14,14 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 public abstract class as {
-    public static final LinkedList f22964a;
-    public static boolean f22965b;
-    public static xr f22966c;
+    public static final LinkedList f22928a;
+    public static boolean f22929b;
+    public static xr f22930c;
     public static ComponentName d;
 
     static {
         LinkedList linkedList = new LinkedList();
-        f22964a = linkedList;
+        f22928a = linkedList;
         linkedList.add(NotificationBadge$AdwHomeBadger.class);
         linkedList.add(NotificationBadge$ApexHomeBadger.class);
         linkedList.add(NotificationBadge$NewHtcHomeBadger.class);
@@ -37,7 +37,7 @@ public abstract class as {
     }
 
     public static boolean a(Intent intent) {
-        List<ResolveInfo> queryBroadcastReceivers = t0.f26931b.getPackageManager().queryBroadcastReceivers(intent, 0);
+        List<ResolveInfo> queryBroadcastReceivers = t0.f26895b.getPackageManager().queryBroadcastReceivers(intent, 0);
         if (queryBroadcastReceivers == null || queryBroadcastReceivers.size() <= 0) {
             return false;
         }
@@ -47,7 +47,7 @@ public abstract class as {
     public static void b() {
         xr xrVar;
         xr xrVar2;
-        Context context = t0.f26931b;
+        Context context = t0.f26895b;
         Intent launchIntentForPackage = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
         if (launchIntentForPackage != null) {
             d = launchIntentForPackage.getComponent();
@@ -56,7 +56,7 @@ public abstract class as {
             ResolveInfo resolveActivity = context.getPackageManager().resolveActivity(intent, 65536);
             if (resolveActivity != null) {
                 String str = resolveActivity.activityInfo.packageName;
-                Iterator it = f22964a.iterator();
+                Iterator it = f22928a.iterator();
                 while (true) {
                     if (!it.hasNext()) {
                         break;
@@ -67,11 +67,11 @@ public abstract class as {
                         xrVar2 = null;
                     }
                     if (xrVar2 != null && xrVar2.b().contains(str)) {
-                        f22966c = xrVar2;
+                        f22930c = xrVar2;
                         break;
                     }
                 }
-                if (f22966c != null) {
+                if (f22930c != null) {
                     return;
                 }
             }
@@ -79,7 +79,7 @@ public abstract class as {
             if (queryIntentActivities != null) {
                 for (int i7 = 0; i7 < queryIntentActivities.size(); i7++) {
                     String str2 = queryIntentActivities.get(i7).activityInfo.packageName;
-                    Iterator it2 = f22964a.iterator();
+                    Iterator it2 = f22928a.iterator();
                     while (true) {
                         if (!it2.hasNext()) {
                             break;
@@ -90,19 +90,19 @@ public abstract class as {
                             xrVar = null;
                         }
                         if (xrVar != null && xrVar.b().contains(str2)) {
-                            f22966c = xrVar;
+                            f22930c = xrVar;
                             break;
                         }
                     }
-                    if (f22966c != null) {
+                    if (f22930c != null) {
                         break;
                     }
                 }
             }
-            if (f22966c == null) {
+            if (f22930c == null) {
                 String str3 = Build.MANUFACTURER;
                 if (str3.equalsIgnoreCase("Xiaomi")) {
-                    f22966c = new xr() {
+                    f22930c = new xr() {
                         @Override
                         public final void a(int i10) {
                             Integer valueOf;
@@ -136,19 +136,19 @@ public abstract class as {
                         }
                     };
                 } else if (str3.equalsIgnoreCase("ZUK")) {
-                    f22966c = new NotificationBadge$ZukHomeBadger();
+                    f22930c = new NotificationBadge$ZukHomeBadger();
                 } else if (str3.equalsIgnoreCase("OPPO")) {
-                    f22966c = new xr() {
-                        public int f22793a = -1;
+                    f22930c = new xr() {
+                        public int f22757a = -1;
 
                         @Override
                         public final void a(int i10) {
-                            if (this.f22793a != i10) {
-                                this.f22793a = i10;
+                            if (this.f22757a != i10) {
+                                this.f22757a = i10;
                                 try {
                                     Bundle bundle = new Bundle();
                                     bundle.putInt("app_badge_count", i10);
-                                    t0.f26931b.getContentResolver().call(Uri.parse("content://com.android.badge/badge"), "setAppBadgeCount", (String) null, bundle);
+                                    t0.f26895b.getContentResolver().call(Uri.parse("content://com.android.badge/badge"), "setAppBadgeCount", (String) null, bundle);
                                 } catch (Throwable unused3) {
                                 }
                             }
@@ -160,15 +160,15 @@ public abstract class as {
                         }
                     };
                 } else if (str3.equalsIgnoreCase("VIVO")) {
-                    f22966c = new xr() {
+                    f22930c = new xr() {
                         @Override
                         public final void a(int i10) {
                             Intent intent2 = new Intent("launcher.action.CHANGE_APPLICATION_NOTIFICATION_NUM");
                             intent2.setPackage("com.vivo.launcher");
-                            intent2.putExtra("packageName", t0.f26931b.getPackageName());
+                            intent2.putExtra("packageName", t0.f26895b.getPackageName());
                             intent2.putExtra("className", as.d.getClassName());
                             intent2.putExtra("notificationNum", i10);
-                            t0.f26931b.sendBroadcast(intent2);
+                            t0.f26895b.sendBroadcast(intent2);
                         }
 
                         @Override
@@ -177,7 +177,7 @@ public abstract class as {
                         }
                     };
                 } else {
-                    f22966c = new NotificationBadge$DefaultBadger();
+                    f22930c = new NotificationBadge$DefaultBadger();
                 }
             }
         }

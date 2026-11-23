@@ -19,14 +19,14 @@ public abstract class e1 {
         RectF rectF2;
         RenderEffect c10 = c(r7Var, f10, Shader.TileMode.CLAMP);
         Matrix matrix = new Matrix();
-        if (c10 != null && ((Matrix) eVar.f5201f).invert(matrix) && !rectF.isEmpty()) {
+        if (c10 != null && ((Matrix) eVar.f5164f).invert(matrix) && !rectF.isEmpty()) {
             if (h1Var.q(eVar, new RectF(rectF), h1.j(r7Var, new RectF(rectF)))) {
                 int floor = (int) Math.floor(rectF2.left * f10);
                 int floor2 = (int) Math.floor(rectF2.top * f10);
                 int ceil = (int) Math.ceil(rectF2.right * f10);
                 int ceil2 = (int) Math.ceil(rectF2.bottom * f10);
                 if (h1Var.p((ceil2 - floor2) * (ceil - floor))) {
-                    h1Var.f54803w++;
+                    h1Var.f54768w++;
                     RenderNode renderNode = new RenderNode("widget-backdrop");
                     renderNode.setPosition(floor, floor2, ceil, ceil2);
                     RecordingCanvas beginRecording = renderNode.beginRecording();
@@ -38,7 +38,7 @@ public abstract class e1 {
                     renderNode.setRenderEffect(c10);
                     Canvas canvas = (Canvas) eVar.d;
                     canvas.save();
-                    Path path = h1Var.f54788f;
+                    Path path = h1Var.f54753f;
                     path.rewind();
                     if (fArr == null) {
                         path.addRect(rectF, Path.Direction.CW);
@@ -70,12 +70,12 @@ public abstract class e1 {
             }
             RenderNode renderNode = new RenderNode("widget-filter");
             f1Var.d = floor;
-            f1Var.f54775e = floor2;
+            f1Var.f54740e = floor2;
             renderNode.setPosition(floor, floor2, ceil, ceil2);
             renderNode.setRenderEffect(c10);
-            f1Var.f54774c = renderNode;
+            f1Var.f54739c = renderNode;
             RecordingCanvas beginRecording = renderNode.beginRecording();
-            beginRecording.translate(-f1Var.d, -f1Var.f54775e);
+            beginRecording.translate(-f1Var.d, -f1Var.f54740e);
             beginRecording.scale(f10, f10);
             return beginRecording;
         }
@@ -90,7 +90,7 @@ public abstract class e1 {
         RenderEffect renderEffect = null;
         int i7 = 0;
         while (true) {
-            int[] iArr = (int[]) r7Var.f617b;
+            int[] iArr = (int[]) r7Var.f616b;
             if (i7 < iArr.length) {
                 float f13 = ((float[]) r7Var.d)[i7];
                 int i10 = iArr[i7];
@@ -100,7 +100,7 @@ public abstract class e1 {
                             if (renderEffect == null) {
                                 renderEffect = RenderEffect.createOffsetEffect(0.0f, 0.0f);
                             }
-                            RenderEffect createOffsetEffect = RenderEffect.createOffsetEffect(((float[]) r7Var.f619e)[i7] * f10, ((float[]) r7Var.f620f)[i7] * f10, RenderEffect.createColorFilterEffect(new PorterDuffColorFilter(((int[]) r7Var.f618c)[i7], PorterDuff.Mode.SRC_IN), renderEffect));
+                            RenderEffect createOffsetEffect = RenderEffect.createOffsetEffect(((float[]) r7Var.f618e)[i7] * f10, ((float[]) r7Var.f619f)[i7] * f10, RenderEffect.createColorFilterEffect(new PorterDuffColorFilter(((int[]) r7Var.f617c)[i7], PorterDuff.Mode.SRC_IN), renderEffect));
                             float f14 = (f13 / 2.0f) * f10;
                             if (f14 > 0.5f) {
                                 f12 = (f14 - 0.5f) / 0.57735f;
@@ -146,12 +146,12 @@ public abstract class e1 {
     }
 
     public static void d(f1 f1Var, float f10) {
-        RenderNode d = n2.a0.d(f1Var.f54774c);
+        RenderNode d = n2.a0.d(f1Var.f54739c);
         d.endRecording();
-        f1Var.f54772a.save();
+        f1Var.f54737a.save();
         float f11 = 1.0f / f10;
-        f1Var.f54772a.scale(f11, f11);
-        f1Var.f54772a.drawRenderNode(d);
-        f1Var.f54772a.restore();
+        f1Var.f54737a.scale(f11, f11);
+        f1Var.f54737a.drawRenderNode(d);
+        f1Var.f54737a.restore();
     }
 }

@@ -1,24 +1,24 @@
 package org.telegram.ui;
 
 import android.view.TextureView;
-public final class v20 implements dr0 {
-    public final f40 f52714a;
+public final class v20 implements er0 {
+    public final f40 f52694a;
 
     public v20(f40 f40Var) {
-        this.f52714a = f40Var;
+        this.f52694a = f40Var;
     }
 
     @Override
     public final void G0(org.telegram.messenger.gj gjVar) {
-        f40 f40Var = this.f52714a;
+        f40 f40Var = this.f52694a;
         f40Var.L1.I0(true);
-        f40Var.f47477b4.f47825f.K0(org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), 0, 0);
-        f40Var.f30176b.invalidate();
+        f40Var.f47439b4.f48103f.K0(org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), 0, 0);
+        f40Var.f30142b.invalidate();
     }
 
     @Override
     public final void H(org.telegram.messenger.gj gjVar) {
-        this.f52714a.f30176b.invalidate();
+        this.f52694a.f30142b.invalidate();
     }
 
     @Override

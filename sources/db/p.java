@@ -29,7 +29,7 @@ public final class p extends q6.h {
     @Override
     public final IInterface i(IBinder iBinder) {
         kotlin.jvm.internal.j.e(iBinder, "iBinder");
-        int i7 = s.f8295b;
+        int i7 = s.f8258b;
         IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.firebase.pnv.internal.IFpnvService");
         if (queryLocalInterface instanceof t) {
             return (t) queryLocalInterface;
@@ -39,7 +39,7 @@ public final class p extends q6.h {
 
     @Override
     public final n6.c[] k() {
-        return j.f8286b;
+        return j.f8249b;
     }
 
     @Override

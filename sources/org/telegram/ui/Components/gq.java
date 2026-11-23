@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.text.InputFilter;
 import android.text.Spanned;
 public abstract class gq implements InputFilter {
-    public final int f35652a;
+    public final int f35612a;
 
     public gq(int i7) {
-        this.f35652a = i7;
+        this.f35612a = i7;
     }
 
     @Override
     public CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
-        int codePointCount = this.f35652a - (Character.codePointCount(spanned, 0, spanned.length()) - Character.codePointCount(spanned, i11, i12));
+        int codePointCount = this.f35612a - (Character.codePointCount(spanned, 0, spanned.length()) - Character.codePointCount(spanned, i11, i12));
         if (codePointCount <= 0) {
             return "";
         }

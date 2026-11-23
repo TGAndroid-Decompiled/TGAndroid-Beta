@@ -2,17 +2,17 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class f61 {
-    public final boolean f35101a;
-    public final int f35102b;
-    public final int f35103c;
+    public final boolean f35076a;
+    public final int f35077b;
+    public final int f35078c;
     public final ArrayList d;
 
     public f61(h61 h61Var) {
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
-        this.f35101a = h61Var.f35800b;
-        this.f35102b = h61Var.f35805i;
-        this.f35103c = h61Var.f35806j;
+        this.f35076a = h61Var.f35753b;
+        this.f35077b = h61Var.f35758i;
+        this.f35078c = h61Var.f35759j;
         arrayList.add(h61Var);
     }
 
@@ -35,8 +35,8 @@ public final class f61 {
         long j3 = Long.MAX_VALUE;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             h61 h61Var3 = (h61) arrayList.get(i10);
-            if (h61Var3.f35807k < j3 && i61.D0(h61Var3.f35809m)) {
-                j3 = h61Var3.f35807k;
+            if (h61Var3.f35760k < j3 && i61.D0(h61Var3.f35762m)) {
+                j3 = h61Var3.f35760k;
                 h61Var = h61Var3;
             }
         }
@@ -47,7 +47,7 @@ public final class f61 {
     }
 
     public final int b() {
-        int min = Math.min(this.f35102b, this.f35103c);
+        int min = Math.min(this.f35077b, this.f35078c);
         if (Math.abs(min - 2160) < 55) {
             return 2160;
         }
@@ -78,13 +78,13 @@ public final class f61 {
     public final String toString() {
         String str;
         boolean z10 = org.telegram.messenger.cz.R0;
-        boolean z11 = this.f35101a;
+        boolean z11 = this.f35076a;
         String str2 = "";
         if (z10) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f35102b);
+            sb2.append(this.f35077b);
             sb2.append("x");
-            sb2.append(this.f35103c);
+            sb2.append(this.f35078c);
             if (!z11) {
                 str = "";
             } else {
@@ -93,10 +93,10 @@ public final class f61 {
             sb2.append(str);
             sb2.append("\n");
             ArrayList arrayList = this.d;
-            sb2.append(org.telegram.messenger.g0.i0((long) ((h61) arrayList.get(0)).f35808l, false, false).replace(" ", ""));
+            sb2.append(org.telegram.messenger.g0.i0((long) ((h61) arrayList.get(0)).f35761l, false, false).replace(" ", ""));
             sb2.append("/s");
-            if (((h61) arrayList.get(0)).f35809m != null) {
-                str2 = ", " + ((h61) arrayList.get(0)).f35809m;
+            if (((h61) arrayList.get(0)).f35762m != null) {
+                str2 = ", " + ((h61) arrayList.get(0)).f35762m;
             }
             sb2.append(str2);
             return sb2.toString();

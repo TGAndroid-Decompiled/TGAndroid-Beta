@@ -5,29 +5,29 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class p9 extends org.telegram.ui.ActionBar.w2 {
-    public final o9 f50820m1;
+    public final o9 f50793m1;
     public final org.telegram.ui.ActionBar.r4[] n1;
-    public final s9 f50821o1;
+    public final s9 f50794o1;
 
     public p9(Activity activity, org.telegram.ui.ActionBar.r4[] r4VarArr, int i7, s9 s9Var) {
         super(activity, false);
         this.n1 = r4VarArr;
-        this.f50821o1 = s9Var;
+        this.f50794o1 = s9Var;
         r4VarArr[0].setFragmentStack(new ArrayList());
         o9 o9Var = new o9(this, i7);
-        this.f50820m1 = o9Var;
-        o9Var.f52283y = true;
+        this.f50793m1 = o9Var;
+        o9Var.f52229y = true;
         ((ActionBarLayout) r4VarArr[0]).c(-1, o9Var);
         ((ActionBarLayout) r4VarArr[0]).f0();
         ViewGroup view = r4VarArr[0].getView();
-        int i10 = this.f30211u0;
+        int i10 = this.f30177u0;
         view.setPadding(i10, 0, i10, 0);
         o9Var.N = s9Var;
         if (s9Var.J0() != null) {
-            o9Var.f52270c.setText(s9Var.J0());
+            o9Var.f52216c.setText(s9Var.J0());
         }
-        this.f30176b = r4VarArr[0].getView();
-        this.f30214w0 = false;
+        this.f30142b = r4VarArr[0].getView();
+        this.f30180w0 = false;
         setOnDismissListener(new q5(this, 1));
     }
 
@@ -40,7 +40,7 @@ public final class p9 extends org.telegram.ui.ActionBar.w2 {
     public final void dismiss() {
         super.dismiss();
         this.n1[0] = null;
-        this.f50821o1.onDismiss();
+        this.f50794o1.onDismiss();
     }
 
     @Override

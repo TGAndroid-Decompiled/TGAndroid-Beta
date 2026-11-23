@@ -1,7 +1,7 @@
 package w7;
 
 import a8.b8;
-import a8.la;
+import a8.ma;
 import a8.r7;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +18,7 @@ import android.util.Log;
 import androidx.lifecycle.p0;
 import androidx.lifecycle.s0;
 import bi.y0;
-import c8.t9;
+import c8.u9;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.SuccessContinuation;
 import com.google.android.gms.tasks.Task;
@@ -51,7 +51,7 @@ import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.jb;
 import org.telegram.ui.Components.kb;
 import org.telegram.ui.Components.lb;
-import org.telegram.ui.Components.og;
+import org.telegram.ui.Components.ng;
 import org.telegram.ui.Components.rl;
 import org.telegram.ui.Components.si;
 import org.telegram.ui.Components.ua;
@@ -59,19 +59,19 @@ import org.telegram.ui.Components.wa;
 import org.telegram.ui.Components.xa;
 import org.telegram.ui.Components.y5;
 import org.telegram.ui.Components.ya;
-import org.telegram.ui.fr0;
+import org.telegram.ui.gr0;
 public final class s implements androidx.car.app.messaging.model.b, b7.e, com.google.android.gms.common.api.internal.r, eg.a, fg.a, si, ja.a, SuccessContinuation, u9.d, gh.a, kb, m1, q2.q, r0.q, u2.k, y9.a, s0 {
-    public static s f59669b;
-    public static final s f59670c = new s(13);
+    public static s f59634b;
+    public static final s f59635c = new s(13);
     public static s d;
-    public final int f59671a;
+    public final int f59636a;
 
     public s(int i7) {
-        this.f59671a = i7;
+        this.f59636a = i7;
     }
 
     public static MediaCodec V(b8 b8Var) {
-        String str = ((u2.o) b8Var.f341a).f58383a;
+        String str = ((u2.o) b8Var.f341a).f58348a;
         Trace.beginSection("createCodec:" + str);
         MediaCodec createByCodecName = MediaCodec.createByCodecName(str);
         Trace.endSection();
@@ -87,8 +87,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
             Bitmap bitmap = bVar.d;
             if (bitmap != null) {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                la.p(bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream));
-                a10.putByteArray(g2.b.f13131x, byteArrayOutputStream.toByteArray());
+                ma.p(bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream));
+                a10.putByteArray(g2.b.f13094x, byteArrayOutputStream.toByteArray());
             }
             arrayList.add(a10);
         }
@@ -117,14 +117,14 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     public static y s0(List list) {
         Iterator it = list.iterator();
         while (it.hasNext()) {
-            if (((l0) it.next()).f10533b == null) {
+            if (((l0) it.next()).f10496b == null) {
                 UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException();
                 ?? obj = new Object();
                 obj.n(unsupportedOperationException);
                 return obj;
             }
         }
-        return t9.b(list);
+        return u9.b(list);
     }
 
     @Override
@@ -173,13 +173,13 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void J(lb lbVar, wa waVar, og ogVar, rl rlVar) {
+    public void J(lb lbVar, wa waVar, ng ngVar, rl rlVar) {
         lbVar.setInOutOffset(lbVar.getMeasuredHeight());
         rlVar.accept(Float.valueOf(lbVar.getTranslationY()));
         r1.g gVar = new r1.g((Object) lbVar, lb.IN_OUT_OFFSET_Y, 0.0f);
-        gVar.f56368m.a(0.8f);
-        gVar.f56368m.b(400.0f);
-        gVar.a(new y0(2, lbVar, ogVar));
+        gVar.f56333m.a(0.8f);
+        gVar.f56333m.b(400.0f);
+        gVar.a(new y0(2, lbVar, ngVar));
         gVar.b(new jb(rlVar, lbVar, 1));
         gVar.h();
         waVar.run();
@@ -240,15 +240,15 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     public b7.d Q(Context context, String str, b7.c cVar) {
         b7.d dVar = new b7.d();
         int o4 = cVar.o(context, str, true);
-        dVar.f2963b = o4;
+        dVar.f2914b = o4;
         if (o4 != 0) {
-            dVar.f2964c = 1;
+            dVar.f2915c = 1;
             return dVar;
         }
         int C = cVar.C(context, str);
-        dVar.f2962a = C;
+        dVar.f2913a = C;
         if (C != 0) {
-            dVar.f2964c = -1;
+            dVar.f2915c = -1;
         }
         return dVar;
     }
@@ -339,7 +339,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public fr0 c2() {
+    public gr0 c2() {
         return null;
     }
 
@@ -355,7 +355,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
 
     @Override
     public Object e(r7 r7Var) {
-        switch (this.f59671a) {
+        switch (this.f59636a) {
             case 14:
                 return new ob.c(r7Var.L(ob.b.class));
             default:
@@ -421,8 +421,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     @Override
     public void j(lb lbVar, wa waVar, ua uaVar, xa xaVar) {
         r1.g gVar = new r1.g(lbVar, lb.IN_OUT_OFFSET_Y, lbVar.getHeight());
-        gVar.f56368m.a(0.8f);
-        gVar.f56368m.b(400.0f);
+        gVar.f56333m.a(0.8f);
+        gVar.f56333m.b(400.0f);
         gVar.a(new ya(uaVar, 1));
         gVar.b(new jb(xaVar, lbVar, 0));
         gVar.h();
@@ -563,7 +563,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     public s() {
-        this.f59671a = 12;
+        this.f59636a = 12;
         if (Build.VERSION.SDK_INT >= 35) {
         }
     }

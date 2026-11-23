@@ -6,35 +6,35 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class r00 implements y10 {
-    public final int f26541a;
-    public final long f26542b;
-    public final Object f26543c;
+    public final int f26505a;
+    public final long f26506b;
+    public final Object f26507c;
     public final Object d;
-    public final Object f26544e;
+    public final Object f26508e;
 
     public r00(Object obj, long j3, Object obj2, Object obj3, int i7) {
-        this.f26541a = i7;
-        this.f26543c = obj;
-        this.f26542b = j3;
+        this.f26505a = i7;
+        this.f26507c = obj;
+        this.f26506b = j3;
         this.d = obj2;
-        this.f26544e = obj3;
+        this.f26508e = obj3;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f26541a;
+        int i7 = this.f26505a;
         String str = null;
-        Object obj2 = this.f26544e;
+        Object obj2 = this.f26508e;
         Object obj3 = this.d;
-        long j3 = this.f26542b;
-        Object obj4 = this.f26543c;
+        long j3 = this.f26506b;
+        Object obj4 = this.f26507c;
         switch (i7) {
             case 0:
                 a10 a10Var = (a10) obj4;
                 gj gjVar = (gj) obj3;
                 String str2 = (String) obj2;
                 TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) obj;
-                TLRPC.Message message = gjVar.f24213k;
+                TLRPC.Message message = gjVar.f24177k;
                 if (tL_textWithEntities != null) {
                     str = str2;
                 }
@@ -43,7 +43,7 @@ public final class r00 implements y10 {
                 if (tL_textWithEntities == null) {
                     message.summarizedOpen = false;
                 }
-                a10Var.getMessagesStorage().X1(j3, gjVar.f24213k);
+                a10Var.getMessagesStorage().X1(j3, gjVar.f24177k);
                 ls.f(a10Var.currentAccount).k(128, gjVar, Boolean.TRUE);
                 return;
             case 1:
@@ -52,7 +52,7 @@ public final class r00 implements y10 {
                 HashMap hashMap = (HashMap) obj2;
                 ArrayList arrayList2 = (ArrayList) obj;
                 TLRPC.TL_getFactCheck tL_getFactCheck = new TLRPC.TL_getFactCheck();
-                int i10 = x6Var.f27852a;
+                int i10 = x6Var.f27816a;
                 tL_getFactCheck.peer = np.u1(i10).l1(j3);
                 ArrayList arrayList3 = new ArrayList();
                 int i11 = 0;
@@ -61,7 +61,7 @@ public final class r00 implements y10 {
                     TLRPC.TL_factCheck tL_factCheck = (TLRPC.TL_factCheck) arrayList2.get(i12);
                     if (tL_factCheck == null) {
                         arrayList3.add(w6Var);
-                        tL_getFactCheck.msg_id.add(Integer.valueOf(w6Var.f27691a));
+                        tL_getFactCheck.msg_id.add(Integer.valueOf(w6Var.f27655a));
                     } else {
                         x6Var.d.remove(w6Var);
                         y10 y10Var = (y10) hashMap.get(w6Var);
@@ -85,7 +85,7 @@ public final class r00 implements y10 {
                 org.telegram.ui.zd zdVar = (org.telegram.ui.zd) obj2;
                 org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
                 if (((Boolean) obj).booleanValue()) {
-                    npVar.f25811b8.add(Long.valueOf(j3));
+                    npVar.f25775b8.add(Long.valueOf(j3));
                     npVar.Q4(true);
                     if (T != null) {
                         org.telegram.ui.Components.lc.b0(T).P(2131623982, g0.H2(g0.x2(hd.N0(2131745378, null), new mn(0, T)), true)).k(true);
@@ -103,10 +103,10 @@ public final class r00 implements y10 {
     }
 
     public r00(a10 a10Var, gj gjVar, String str, long j3) {
-        this.f26541a = 0;
-        this.f26543c = a10Var;
+        this.f26505a = 0;
+        this.f26507c = a10Var;
         this.d = gjVar;
-        this.f26544e = str;
-        this.f26542b = j3;
+        this.f26508e = str;
+        this.f26506b = j3;
     }
 }

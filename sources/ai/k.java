@@ -1,114 +1,99 @@
 package ai;
 
-import android.util.Log;
-import java.util.HashMap;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.ls;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.h21;
-import org.telegram.ui.Components.j21;
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import org.telegram.messenger.np;
 import org.telegram.ui.Dictation.DictationAsr;
 public final class k implements Runnable {
-    public final int f1255a = 1;
-    public final float[] f1256b;
-    public final android.support.v4.media.session.a0 f1257c;
-    public final h21 d;
-    public final boolean[] f1258e;
+    public final int f1310a;
+    public final boolean f1311b;
+    public final p f1312c;
 
-    public k(float[] fArr, android.support.v4.media.session.a0 a0Var, h21 h21Var, boolean[] zArr) {
-        this.f1256b = fArr;
-        this.f1257c = a0Var;
-        this.d = h21Var;
-        this.f1258e = zArr;
+    public k(boolean z10, p pVar, int i7) {
+        this.f1310a = i7;
+        this.f1311b = z10;
+        this.f1312c = pVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f1255a) {
+        int i7;
+        CountDownLatch e10;
+        int i10 = 0;
+        boolean z10 = true;
+        switch (this.f1310a) {
             case 0:
-                final boolean[] zArr = this.f1258e;
-                final android.support.v4.media.session.a0 a0Var = this.f1257c;
-                final h21 h21Var = this.d;
-                final float[] fArr = this.f1256b;
-                t[] tVarArr = DictationAsr.f43067a;
-                if (!zArr[0]) {
-                    if (a0Var == null) {
-                        gj gjVar = h21Var.f35760b;
-                        Integer valueOf = Integer.valueOf(j21.r(gjVar));
-                        int i7 = gjVar.K1;
-                        j21.R.remove(valueOf);
-                        j21.S.remove(valueOf);
-                        HashMap hashMap = j21.P;
-                        if (hashMap != null) {
-                            hashMap.remove(valueOf);
-                        }
-                        if (org.telegram.messenger.s2.f26730a) {
-                            a8.b("local transcription of msg_id=" + gjVar.e1() + ": unknown language, no words");
-                        }
-                        TLRPC.Message message = gjVar.f24213k;
-                        message.voiceTranscription = "";
-                        message.voiceTranscriptionWords = null;
-                        message.voiceTranscriptionLocal = true;
-                        message.voiceTranscriptionFinal = true;
-                        message.voiceTranscriptionOpen = true;
-                        message.voiceTranscriptionId = 0L;
-                        j21.q(gjVar);
-                        ls f10 = ls.f(i7);
-                        Boolean bool = Boolean.TRUE;
-                        f10.k(115, gjVar, null, null, bool, bool);
-                        return;
+                final boolean z11 = this.f1311b;
+                p pVar = this.f1312c;
+                DictationAsr.s().mkdirs();
+                if (g1.d() && (e10 = g1.e()) != null) {
+                    try {
+                        e10.await(20000L, TimeUnit.MILLISECONDS);
+                    } catch (InterruptedException unused) {
                     }
-                    DictationAsr.f0((t) a0Var.f1724b, new u() {
-                        @Override
-                        public final void a(boolean z10) {
-                            boolean[] zArr2 = zArr;
-                            android.support.v4.media.session.a0 a0Var2 = a0Var;
-                            h21 h21Var2 = h21Var;
-                            float[] fArr2 = fArr;
-                            t[] tVarArr2 = DictationAsr.f43067a;
-                            if (zArr2[0]) {
-                                return;
-                            }
-                            if (!z10) {
-                                t tVar = (t) a0Var2.f1724b;
-                                if (tVar != null && tVar.f1520f == 0 && !DictationAsr.y(tVar) && !m1.b()) {
-                                    HashMap hashMap2 = j21.S;
-                                    Integer num = h21Var2.f35759a;
-                                    hashMap2.remove(num);
-                                    j21.R.remove(num);
-                                    j21.o(h21Var2.f35760b);
-                                    return;
-                                }
-                                h21Var2.a(null, null, true);
-                                return;
-                            }
-                            new Thread(new k(fArr2, a0Var2, h21Var2, zArr2), "DictationAsrFile").start();
-                        }
-                    });
+                }
+                final ArrayList a10 = g1.a();
+                Future submit = DictationAsr.f43037f.submit(new Callable() {
+                    @Override
+                    public final Object call() {
+                        ArrayList arrayList = a10;
+                        boolean z12 = z11;
+                        p[] pVarArr = DictationAsr.f43033a;
+                        return Integer.valueOf(DictationAsr.v("silero_vad.onnx", g1.f(arrayList, "silero-vad"), null, z12));
+                    }
+                });
+                int v = DictationAsr.v(pVar.b(), g1.f(a10, pVar.f1444c), pVar, z11);
+                try {
+                    i7 = ((Integer) submit.get()).intValue();
+                } catch (Exception unused2) {
+                    i7 = -1;
+                }
+                int[] iArr = {i7, v};
+                boolean z12 = false;
+                boolean z13 = true;
+                for (int i11 = 0; i11 < 2; i11++) {
+                    int i12 = iArr[i11];
+                    if (i12 < 0) {
+                        z13 = false;
+                    }
+                    if (i12 > 0) {
+                        z12 = true;
+                    }
+                }
+                pVar.f1449j = false;
+                if (z13) {
+                    np.g1().edit().putLong("tinyasr_checked_" + pVar.f1442a, System.currentTimeMillis()).apply();
+                }
+                if (DictationAsr.y(pVar) && (z12 || pVar.f1446f == 0)) {
+                    pVar.f1448i = true;
+                    DictationAsr.d.execute(new j(pVar, 1));
+                } else if (!DictationAsr.y(pVar)) {
+                    org.telegram.messenger.g0.g3(new k(false, pVar, 1));
+                }
+                DictationAsr.p();
+                return;
+            default:
+                boolean z14 = this.f1311b;
+                p pVar2 = this.f1312c;
+                p[] pVarArr = DictationAsr.f43033a;
+                if (pVar2.f1446f == 0) {
+                    z10 = false;
+                }
+                if (z14 == z10) {
+                    ArrayList arrayList = new ArrayList(pVar2.f1451l);
+                    pVar2.f1451l.clear();
+                    int size = arrayList.size();
+                    while (i10 < size) {
+                        Object obj = arrayList.get(i10);
+                        i10++;
+                        ((q) obj).a(z14);
+                    }
                     return;
                 }
                 return;
-            default:
-                float[] fArr2 = this.f1256b;
-                android.support.v4.media.session.a0 a0Var2 = this.f1257c;
-                h21 h21Var2 = this.d;
-                boolean[] zArr2 = this.f1258e;
-                try {
-                    DictationAsr.b0(fArr2, a0Var2, h21Var2, zArr2);
-                    return;
-                } catch (Throwable th2) {
-                    Log.e("Dictation", "tinyasr: transcription failed", th2);
-                    org.telegram.messenger.g0.g3(new j(zArr2, h21Var2, 1));
-                    return;
-                }
         }
-    }
-
-    public k(boolean[] zArr, android.support.v4.media.session.a0 a0Var, h21 h21Var, float[] fArr) {
-        this.f1258e = zArr;
-        this.f1257c = a0Var;
-        this.d = h21Var;
-        this.f1256b = fArr;
     }
 }

@@ -24,31 +24,31 @@ public final class c0 extends View {
     public final AtomicBoolean H;
     public final Handler I;
     public final sa J;
-    public int f3222a;
-    public long f3223b;
-    public int f3224c;
+    public int f3173a;
+    public long f3174b;
+    public int f3175c;
     public z d;
-    public final AtomicInteger f3225e;
-    public int f3226f;
+    public final AtomicInteger f3176e;
+    public int f3177f;
     public final Paint h;
-    public final Paint f3227n;
-    public WindowManager f3228r;
-    public WindowManager.LayoutParams f3229s;
-    public Window f3230w;
-    public HandlerThread f3231x;
-    public y f3232y;
+    public final Paint f3178n;
+    public WindowManager f3179r;
+    public WindowManager.LayoutParams f3180s;
+    public Window f3181w;
+    public HandlerThread f3182x;
+    public y f3183y;
 
     public c0(LaunchActivity launchActivity) {
         super(launchActivity.getApplicationContext());
-        this.f3222a = 0;
-        this.f3223b = 0L;
-        this.f3224c = 0;
-        this.f3225e = new AtomicInteger(0);
-        this.f3226f = 0;
+        this.f3173a = 0;
+        this.f3174b = 0L;
+        this.f3175c = 0;
+        this.f3176e = new AtomicInteger(0);
+        this.f3177f = 0;
         Paint paint = new Paint(1);
         this.h = paint;
         Paint paint2 = new Paint(1);
-        this.f3227n = paint2;
+        this.f3178n = paint2;
         this.G = new AtomicBoolean(false);
         this.H = new AtomicBoolean(false);
         this.I = new Handler(Looper.getMainLooper());
@@ -64,16 +64,16 @@ public final class c0 extends View {
     public static void a(FrameMetrics frameMetrics) {
         b0[] values;
         for (b0 b0Var : b0.values()) {
-            if (Build.VERSION.SDK_INT >= b0Var.f3212c) {
-                long metric = frameMetrics.getMetric(b0Var.f3210a);
+            if (Build.VERSION.SDK_INT >= b0Var.f3163c) {
+                long metric = frameMetrics.getMetric(b0Var.f3161a);
                 b0Var.d = metric;
                 if (metric >= 0) {
                     double d = metric / 1000000.0d;
-                    double d2 = b0Var.f3213e;
+                    double d2 = b0Var.f3164e;
                     if (d2 != 0.0d) {
                         d = ((d - d2) * 0.05d) + d2;
                     }
-                    b0Var.f3213e = d;
+                    b0Var.f3164e = d;
                 }
             } else {
                 b0Var.d = Long.MIN_VALUE;
@@ -84,28 +84,28 @@ public final class c0 extends View {
     public static c0 b(LaunchActivity launchActivity, org.telegram.ui.k0 k0Var) {
         c0 c0Var = new c0(launchActivity);
         c0Var.setObservedView(k0Var);
-        c0Var.f3228r = (WindowManager) launchActivity.getSystemService("window");
-        c0Var.f3230w = launchActivity.getWindow();
+        c0Var.f3179r = (WindowManager) launchActivity.getSystemService("window");
+        c0Var.f3181w = launchActivity.getWindow();
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(-2, -2, 2, 792, -3);
-        c0Var.f3229s = layoutParams;
+        c0Var.f3180s = layoutParams;
         layoutParams.gravity = 8388627;
         int L = org.telegram.messenger.g0.L(12);
-        WindowManager.LayoutParams layoutParams2 = c0Var.f3229s;
+        WindowManager.LayoutParams layoutParams2 = c0Var.f3180s;
         layoutParams2.x = L;
         layoutParams2.y = L;
         layoutParams2.width = org.telegram.messenger.g0.L(260.0f);
-        c0Var.f3228r.addView(c0Var, c0Var.f3229s);
+        c0Var.f3179r.addView(c0Var, c0Var.f3180s);
         c0Var.H.set(true);
         if (c0Var.G.getAndSet(true)) {
             return c0Var;
         }
         HandlerThread handlerThread = new HandlerThread("FrameMetrics");
-        c0Var.f3231x = handlerThread;
+        c0Var.f3182x = handlerThread;
         handlerThread.start();
-        Handler handler = new Handler(c0Var.f3231x.getLooper());
+        Handler handler = new Handler(c0Var.f3182x.getLooper());
         ?? obj = new Object();
-        c0Var.f3232y = obj;
-        c0Var.f3230w.addOnFrameMetricsAvailableListener(obj, handler);
+        c0Var.f3183y = obj;
+        c0Var.f3181w.addOnFrameMetricsAvailableListener(obj, handler);
         c0Var.d = new z(c0Var, 0);
         Choreographer.getInstance().postFrameCallback(c0Var.d);
         View view = c0Var.E;
@@ -124,8 +124,8 @@ public final class c0 extends View {
         y yVar;
         this.G.set(false);
         this.I.removeCallbacks(this.J);
-        Window window = this.f3230w;
-        if (window != null && (yVar = this.f3232y) != null) {
+        Window window = this.f3181w;
+        if (window != null && (yVar = this.f3183y) != null) {
             window.removeOnFrameMetricsAvailableListener(yVar);
         }
         if (this.d != null) {
@@ -140,19 +140,19 @@ public final class c0 extends View {
             }
             this.F = null;
         }
-        HandlerThread handlerThread = this.f3231x;
+        HandlerThread handlerThread = this.f3182x;
         if (handlerThread != null) {
             handlerThread.quitSafely();
         }
-        if (this.f3228r != null && this.H.getAndSet(false)) {
+        if (this.f3179r != null && this.H.getAndSet(false)) {
             try {
-                this.f3228r.removeViewImmediate(this);
+                this.f3179r.removeViewImmediate(this);
             } catch (Throwable unused) {
             }
         }
-        this.f3228r = null;
-        this.f3229s = null;
-        this.f3230w = null;
+        this.f3179r = null;
+        this.f3180s = null;
+        this.f3181w = null;
     }
 
     @Override
@@ -187,27 +187,27 @@ public final class c0 extends View {
         long j12 = 0;
         while (true) {
             float f12 = f11;
-            Paint paint = c0Var.f3227n;
+            Paint paint = c0Var.f3178n;
             if (i7 < length2) {
                 int i10 = length2;
                 b0 b0Var = values[i7];
                 int i11 = i7;
-                if (Build.VERSION.SDK_INT >= b0Var.f3212c) {
+                if (Build.VERSION.SDK_INT >= b0Var.f3163c) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                String str2 = b0Var.f3211b;
+                String str2 = b0Var.f3162b;
                 long j13 = j12;
                 if (z10) {
                     long j14 = b0Var.d;
                     if (j14 >= 0) {
-                        format = String.format(Locale.US, "%-16s : %5.2f / %5.2f ms", str2, Double.valueOf(j14 / 1000000.0d), Double.valueOf(b0Var.f3213e));
+                        format = String.format(Locale.US, "%-16s : %5.2f / %5.2f ms", str2, Double.valueOf(j14 / 1000000.0d), Double.valueOf(b0Var.f3164e));
                         switch (b0Var.ordinal()) {
                             case 0:
                             case 7:
                                 j12 = j13 + b0Var.d;
-                                d2 += b0Var.f3213e;
+                                d2 += b0Var.f3164e;
                                 continue;
                                 canvas.drawText(format, L2, f10, paint);
                                 f10 += f12;
@@ -220,24 +220,24 @@ public final class c0 extends View {
                             case 3:
                             case 4:
                                 j3 += b0Var.d;
-                                d10 += b0Var.f3213e;
+                                d10 += b0Var.f3164e;
                                 break;
                             case 5:
                                 long j15 = b0Var.d;
                                 j3 += j15;
-                                d = b0Var.f3213e;
+                                d = b0Var.f3164e;
                                 d10 += d;
                                 j10 += j15;
                                 d12 += d;
                                 break;
                             case 6:
                                 j10 += b0Var.d;
-                                d = b0Var.f3213e;
+                                d = b0Var.f3164e;
                                 d12 += d;
                                 break;
                             case 8:
                                 j11 += b0Var.d;
-                                d11 += b0Var.f3213e;
+                                d11 += b0Var.f3164e;
                                 break;
                         }
                         j12 = j13;
@@ -278,14 +278,14 @@ public final class c0 extends View {
                 float f17 = f16 + f12;
                 canvas.drawText(String.format(locale, "%-16s : %5.2f / %5.2f ms", "frame", Double.valueOf(max / 1000000.0d), Double.valueOf(max2)), L2, f17, paint);
                 float f18 = f17 + f12 + f12;
-                canvas.drawText(String.format(locale, "%-16s : %d /s", "vsync", Integer.valueOf(this.f3224c)), L2, f18, paint);
+                canvas.drawText(String.format(locale, "%-16s : %d /s", "vsync", Integer.valueOf(this.f3175c)), L2, f18, paint);
                 float f19 = f18 + f12;
                 if (this.E != null) {
                     str = "onDraw";
                 } else {
                     str = "onDraw (none)";
                 }
-                canvas.drawText(String.format(locale, "%-16s : %d /s", str, Integer.valueOf(this.f3226f)), L2, f19, paint);
+                canvas.drawText(String.format(locale, "%-16s : %d /s", str, Integer.valueOf(this.f3177f)), L2, f19, paint);
                 return;
             }
         }

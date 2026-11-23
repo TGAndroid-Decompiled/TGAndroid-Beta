@@ -1,17 +1,18 @@
 package o1;
 
 import android.content.Context;
+import b7.h;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import kotlin.jvm.internal.j;
 import p1.i;
 public final class d {
-    public final ka.b f21614a;
-    public final i f21615b;
-    public final Context f21616c;
+    public final ka.b f21580a;
+    public final i f21581b;
+    public final Context f21582c;
     public final String d;
-    public final gd.i f21617e;
-    public final LinkedHashSet f21618f;
+    public final gd.i f21583e;
+    public final LinkedHashSet f21584f;
 
     public d(Context context, String sharedPreferencesName, Set keysToMigrate, ka.b bVar, i iVar) {
         LinkedHashSet linkedHashSet;
@@ -19,17 +20,17 @@ public final class d {
         j.e(sharedPreferencesName, "sharedPreferencesName");
         j.e(keysToMigrate, "keysToMigrate");
         a aVar = new a(0, context, sharedPreferencesName);
-        this.f21614a = bVar;
-        this.f21615b = iVar;
-        this.f21616c = context;
+        this.f21580a = bVar;
+        this.f21581b = iVar;
+        this.f21582c = context;
         this.d = sharedPreferencesName;
-        this.f21617e = b5.a.c(aVar);
-        if (keysToMigrate == e.f21619a) {
+        this.f21583e = h.b(aVar);
+        if (keysToMigrate == e.f21585a) {
             linkedHashSet = null;
         } else {
             linkedHashSet = new LinkedHashSet(keysToMigrate);
         }
-        this.f21618f = linkedHashSet;
+        this.f21584f = linkedHashSet;
     }
 
     public final java.lang.Object a(java.lang.Object r5, kd.c r6) {

@@ -3,50 +3,50 @@ package f6;
 import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.bc;
+import c8.cc;
 import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class s extends r6.a {
     public static final Parcelable.Creator<s> CREATOR = new v(19);
-    public float f11486a;
-    public int f11487b;
-    public int f11488c;
+    public float f11449a;
+    public int f11450b;
+    public int f11451c;
     public int d;
-    public int f11489e;
-    public int f11490f;
+    public int f11452e;
+    public int f11453f;
     public int h;
-    public int f11491n;
-    public String f11492r;
-    public int f11493s;
-    public int f11494w;
-    public String f11495x;
-    public JSONObject f11496y;
+    public int f11454n;
+    public String f11455r;
+    public int f11456s;
+    public int f11457w;
+    public String f11458x;
+    public JSONObject f11459y;
 
     public s(float f10, int i7, int i10, int i11, int i12, int i13, int i14, int i15, String str, int i16, int i17, String str2) {
-        this.f11486a = f10;
-        this.f11487b = i7;
-        this.f11488c = i10;
+        this.f11449a = f10;
+        this.f11450b = i7;
+        this.f11451c = i10;
         this.d = i11;
-        this.f11489e = i12;
-        this.f11490f = i13;
+        this.f11452e = i12;
+        this.f11453f = i13;
         this.h = i14;
-        this.f11491n = i15;
-        this.f11492r = str;
-        this.f11493s = i16;
-        this.f11494w = i17;
-        this.f11495x = str2;
+        this.f11454n = i15;
+        this.f11455r = str;
+        this.f11456s = i16;
+        this.f11457w = i17;
+        this.f11458x = str2;
         if (str2 != null) {
             try {
-                this.f11496y = new JSONObject(this.f11495x);
+                this.f11459y = new JSONObject(this.f11458x);
                 return;
             } catch (JSONException unused) {
-                this.f11496y = null;
-                this.f11495x = null;
+                this.f11459y = null;
+                this.f11458x = null;
                 return;
             }
         }
-        this.f11496y = null;
+        this.f11459y = null;
     }
 
     public static final int c(String str) {
@@ -66,12 +66,12 @@ public final class s extends r6.a {
     public final JSONObject b() {
         JSONObject jSONObject = new JSONObject();
         try {
-            jSONObject.put("fontScale", this.f11486a);
-            int i7 = this.f11487b;
+            jSONObject.put("fontScale", this.f11449a);
+            int i7 = this.f11450b;
             if (i7 != 0) {
                 jSONObject.put("foregroundColor", d(i7));
             }
-            int i10 = this.f11488c;
+            int i10 = this.f11451c;
             if (i10 != 0) {
                 jSONObject.put("backgroundColor", d(i10));
             }
@@ -95,11 +95,11 @@ public final class s extends r6.a {
             } else {
                 jSONObject.put("edgeType", "NONE");
             }
-            int i12 = this.f11489e;
+            int i12 = this.f11452e;
             if (i12 != 0) {
                 jSONObject.put("edgeColor", d(i12));
             }
-            int i13 = this.f11490f;
+            int i13 = this.f11453f;
             if (i13 != 0) {
                 if (i13 != 1) {
                     if (i13 == 2) {
@@ -115,14 +115,14 @@ public final class s extends r6.a {
             if (i14 != 0) {
                 jSONObject.put("windowColor", d(i14));
             }
-            if (this.f11490f == 2) {
-                jSONObject.put("windowRoundedCornerRadius", this.f11491n);
+            if (this.f11453f == 2) {
+                jSONObject.put("windowRoundedCornerRadius", this.f11454n);
             }
-            String str = this.f11492r;
+            String str = this.f11455r;
             if (str != null) {
                 jSONObject.put("fontFamily", str);
             }
-            switch (this.f11493s) {
+            switch (this.f11456s) {
                 case 0:
                     jSONObject.put("fontGenericFamily", "SANS_SERIF");
                     break;
@@ -145,7 +145,7 @@ public final class s extends r6.a {
                     jSONObject.put("fontGenericFamily", "SMALL_CAPITALS");
                     break;
             }
-            int i15 = this.f11494w;
+            int i15 = this.f11457w;
             if (i15 != 0) {
                 if (i15 != 1) {
                     if (i15 != 2) {
@@ -161,7 +161,7 @@ public final class s extends r6.a {
             } else {
                 jSONObject.put("fontStyle", "NORMAL");
             }
-            JSONObject jSONObject2 = this.f11496y;
+            JSONObject jSONObject2 = this.f11459y;
             if (jSONObject2 != null) {
                 jSONObject.put("customData", jSONObject2);
             }
@@ -180,13 +180,13 @@ public final class s extends r6.a {
             return false;
         }
         s sVar = (s) obj;
-        JSONObject jSONObject = this.f11496y;
+        JSONObject jSONObject = this.f11459y;
         if (jSONObject != null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        JSONObject jSONObject2 = sVar.f11496y;
+        JSONObject jSONObject2 = sVar.f11459y;
         if (jSONObject2 != null) {
             z11 = false;
         } else {
@@ -195,59 +195,59 @@ public final class s extends r6.a {
         if (z10 != z11) {
             return false;
         }
-        if ((jSONObject == null || jSONObject2 == null || x6.c.a(jSONObject, jSONObject2)) && this.f11486a == sVar.f11486a && this.f11487b == sVar.f11487b && this.f11488c == sVar.f11488c && this.d == sVar.d && this.f11489e == sVar.f11489e && this.f11490f == sVar.f11490f && this.h == sVar.h && this.f11491n == sVar.f11491n && j6.a.d(this.f11492r, sVar.f11492r) && this.f11493s == sVar.f11493s && this.f11494w == sVar.f11494w) {
+        if ((jSONObject == null || jSONObject2 == null || x6.c.a(jSONObject, jSONObject2)) && this.f11449a == sVar.f11449a && this.f11450b == sVar.f11450b && this.f11451c == sVar.f11451c && this.d == sVar.d && this.f11452e == sVar.f11452e && this.f11453f == sVar.f11453f && this.h == sVar.h && this.f11454n == sVar.f11454n && j6.a.d(this.f11455r, sVar.f11455r) && this.f11456s == sVar.f11456s && this.f11457w == sVar.f11457w) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Float.valueOf(this.f11486a), Integer.valueOf(this.f11487b), Integer.valueOf(this.f11488c), Integer.valueOf(this.d), Integer.valueOf(this.f11489e), Integer.valueOf(this.f11490f), Integer.valueOf(this.h), Integer.valueOf(this.f11491n), this.f11492r, Integer.valueOf(this.f11493s), Integer.valueOf(this.f11494w), String.valueOf(this.f11496y)});
+        return Arrays.hashCode(new Object[]{Float.valueOf(this.f11449a), Integer.valueOf(this.f11450b), Integer.valueOf(this.f11451c), Integer.valueOf(this.d), Integer.valueOf(this.f11452e), Integer.valueOf(this.f11453f), Integer.valueOf(this.h), Integer.valueOf(this.f11454n), this.f11455r, Integer.valueOf(this.f11456s), Integer.valueOf(this.f11457w), String.valueOf(this.f11459y)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         String jSONObject;
-        JSONObject jSONObject2 = this.f11496y;
+        JSONObject jSONObject2 = this.f11459y;
         if (jSONObject2 == null) {
             jSONObject = null;
         } else {
             jSONObject = jSONObject2.toString();
         }
-        this.f11495x = jSONObject;
-        int r10 = bc.r(parcel, 20293);
-        float f10 = this.f11486a;
-        bc.q(parcel, 2, 4);
+        this.f11458x = jSONObject;
+        int r10 = cc.r(parcel, 20293);
+        float f10 = this.f11449a;
+        cc.q(parcel, 2, 4);
         parcel.writeFloat(f10);
-        int i10 = this.f11487b;
-        bc.q(parcel, 3, 4);
+        int i10 = this.f11450b;
+        cc.q(parcel, 3, 4);
         parcel.writeInt(i10);
-        int i11 = this.f11488c;
-        bc.q(parcel, 4, 4);
+        int i11 = this.f11451c;
+        cc.q(parcel, 4, 4);
         parcel.writeInt(i11);
         int i12 = this.d;
-        bc.q(parcel, 5, 4);
+        cc.q(parcel, 5, 4);
         parcel.writeInt(i12);
-        int i13 = this.f11489e;
-        bc.q(parcel, 6, 4);
+        int i13 = this.f11452e;
+        cc.q(parcel, 6, 4);
         parcel.writeInt(i13);
-        int i14 = this.f11490f;
-        bc.q(parcel, 7, 4);
+        int i14 = this.f11453f;
+        cc.q(parcel, 7, 4);
         parcel.writeInt(i14);
         int i15 = this.h;
-        bc.q(parcel, 8, 4);
+        cc.q(parcel, 8, 4);
         parcel.writeInt(i15);
-        int i16 = this.f11491n;
-        bc.q(parcel, 9, 4);
+        int i16 = this.f11454n;
+        cc.q(parcel, 9, 4);
         parcel.writeInt(i16);
-        bc.l(parcel, 10, this.f11492r);
-        int i17 = this.f11493s;
-        bc.q(parcel, 11, 4);
+        cc.l(parcel, 10, this.f11455r);
+        int i17 = this.f11456s;
+        cc.q(parcel, 11, 4);
         parcel.writeInt(i17);
-        int i18 = this.f11494w;
-        bc.q(parcel, 12, 4);
+        int i18 = this.f11457w;
+        cc.q(parcel, 12, 4);
         parcel.writeInt(i18);
-        bc.l(parcel, 13, this.f11495x);
-        bc.s(parcel, r10);
+        cc.l(parcel, 13, this.f11458x);
+        cc.s(parcel, r10);
     }
 }

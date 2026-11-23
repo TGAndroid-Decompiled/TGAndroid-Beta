@@ -1,60 +1,38 @@
 package p4;
-public final class z implements Runnable {
-    public final int f55505a;
-    public final Object f55506b;
-    public final Object f55507c;
+public final class z implements c0, l0 {
+    public final boolean f55470a;
+    public final boolean f55471b;
+    public final Object f55472c;
+    public final Object d;
 
-    public z(int i7, Object obj, Object obj2) {
-        this.f55505a = i7;
-        this.f55506b = obj;
-        this.f55507c = obj2;
-    }
-
-    private final void a() {
-        u2.c cVar = (u2.c) this.f55506b;
-        z zVar = (z) this.f55507c;
-        cVar.f58347c.j();
-        u2.f fVar = cVar.f58346b;
-        synchronized (fVar.f58360a) {
-            fVar.b();
-            zVar.run();
-        }
-    }
-
-    private final void b() {
-        ua.a aVar;
-        u9.o oVar = (u9.o) this.f55506b;
-        ua.b bVar = (ua.b) this.f55507c;
-        if (oVar.f58605b == u9.o.d) {
-            synchronized (oVar) {
-                aVar = oVar.f58604a;
-                oVar.f58604a = null;
-                oVar.f58605b = bVar;
-            }
-            aVar.b(bVar);
-            return;
-        }
-        throw new IllegalStateException("provide() can be called only once.");
-    }
-
-    private final void c() {
-        u9.n nVar = (u9.n) this.f55506b;
-        ua.b bVar = (ua.b) this.f55507c;
-        synchronized (nVar) {
-            try {
-                if (nVar.f58602b == null) {
-                    nVar.f58601a.add(bVar);
-                } else {
-                    nVar.f58602b.add(bVar.get());
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    public z(m0 m0Var, e2.l0 l0Var, boolean z10, boolean z11) {
+        this.f55472c = m0Var;
+        this.d = l0Var;
+        this.f55470a = z10;
+        this.f55471b = z11;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: p4.z.run():void");
+    public void b(u uVar, int i7) {
+        uVar.b(i7, (n1) this.f55472c, this.f55470a, this.f55471b, ((v) this.d).f55454c);
+    }
+
+    @Override
+    public void f(v vVar) {
+        m0 m0Var = (m0) this.f55472c;
+        m9.e0 q10 = m0Var.h.q(vVar, h9.i0.u((e2.l0) this.d), -1, -9223372036854775807L);
+        ?? obj = new Object();
+        obj.d = m0Var;
+        obj.f20020c = vVar;
+        obj.f20018a = this.f55470a;
+        obj.f20019b = this.f55471b;
+        q10.b(new m9.u(0, q10, (Object) obj), m9.r.f20949a);
+    }
+
+    public z(n1 n1Var, boolean z10, boolean z11, v vVar) {
+        this.f55472c = n1Var;
+        this.f55470a = z10;
+        this.f55471b = z11;
+        this.d = vVar;
     }
 }

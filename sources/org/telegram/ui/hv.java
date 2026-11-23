@@ -6,11 +6,11 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class hv implements e50, org.telegram.ui.Components.ng, org.telegram.ui.Components.a5, org.telegram.ui.Components.qm0, org.telegram.ui.Components.tj0, hi.ja, org.telegram.ui.Components.d10 {
-    public final cx f48533a;
+public final class hv implements e50, org.telegram.ui.Components.mg, org.telegram.ui.Components.a5, org.telegram.ui.Components.pm0, org.telegram.ui.Components.tj0, hi.ka, org.telegram.ui.Components.d10 {
+    public final cx f48501a;
 
     public hv(cx cxVar) {
-        this.f48533a = cxVar;
+        this.f48501a = cxVar;
     }
 
     @Override
@@ -20,18 +20,18 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
 
     @Override
     public void F(org.telegram.ui.Cells.u2 u2Var) {
-        this.f48533a.b5(u2Var);
+        this.f48501a.b5(u2Var);
     }
 
     @Override
     public void H(CharSequence charSequence, boolean z10, int i7, int i10, long j3) {
-        cx cxVar = this.f48533a;
+        cx cxVar = this.f48501a;
         if (cxVar.E2 != null && !cxVar.K2.isEmpty()) {
             ArrayList arrayList = new ArrayList();
             for (int i11 = 0; i11 < cxVar.K2.size(); i11++) {
                 arrayList.add(org.telegram.messenger.tr.a(((Long) cxVar.K2.get(i11)).longValue(), 0L));
             }
-            cx cxVar2 = this.f48533a;
+            cx cxVar2 = this.f48501a;
             cxVar2.E2.y(cxVar2, arrayList, charSequence, false, z10, i7, i10, null);
         }
     }
@@ -43,7 +43,7 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
 
     @Override
     public void O(int i7, int i10, boolean z10) {
-        cx cxVar = this.f48533a;
+        cx cxVar = this.f48501a;
         ArrayList arrayList = cxVar.K2;
         cxVar.M2 = i7;
         cxVar.N2 = i10;
@@ -58,20 +58,20 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
     }
 
     @Override
-    public hi.na a(long j3) {
+    public hi.oa a(long j3) {
         fi.p pVar;
-        tv tvVar = this.f48533a.F0;
+        tv tvVar = this.f48501a.F0;
         if (tvVar != null) {
             pVar = tvVar.e(j3);
         } else {
             pVar = null;
         }
-        return hi.na.c(pVar);
+        return hi.oa.c(pVar);
     }
 
     @Override
-    public void b(long j3, bi.c4 c4Var) {
-        cx cxVar = this.f48533a;
+    public void b(long j3, bi.e4 e4Var) {
+        cx cxVar = this.f48501a;
         if (cxVar.F0 != null) {
             cxVar.R4(false, true);
             cxVar.R = true;
@@ -81,10 +81,10 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
             } else {
                 cxVar.F0.T.h1(0, 0);
             }
-            cxVar.f46722f0[0].f46325a.getViewTreeObserver().addOnPreDrawListener(new pw(0, this, c4Var));
+            cxVar.f46683f0[0].f46318a.getViewTreeObserver().addOnPreDrawListener(new pw(0, this, e4Var));
             return;
         }
-        c4Var.run();
+        e4Var.run();
     }
 
     @Override
@@ -96,7 +96,7 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
     public void c(f50 f50Var, long j3) {
         ArrayList arrayList = new ArrayList();
         arrayList.add(org.telegram.messenger.tr.a(-j3, 0L));
-        cx cxVar = this.f48533a;
+        cx cxVar = this.f48501a;
         ww wwVar = cxVar.E2;
         if (cxVar.D2) {
             cxVar.removeSelfFromStack();
@@ -110,18 +110,18 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
     }
 
     public void e(jg.o0 o0Var) {
-        cx cxVar = this.f48533a;
-        if (!cxVar.f46788s3) {
+        cx cxVar = this.f48501a;
+        if (!cxVar.f46749s3) {
             return;
         }
         kw kwVar = cxVar.D0;
         if (kwVar != null) {
             kwVar.D0.remove(o0Var);
             kw kwVar2 = cxVar.D0;
-            String obj = cxVar.f46746k0.getSearchField().getText().toString();
+            String obj = cxVar.f46707k0.getSearchField().getText().toString();
             View currentView = kwVar2.getCurrentView();
             boolean z10 = true;
-            boolean z11 = !kwVar2.f40505h0;
+            boolean z11 = !kwVar2.f39908h0;
             if (!TextUtils.isEmpty(kwVar2.N0)) {
                 z10 = z11;
             }
@@ -129,7 +129,7 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
             kwVar2.L(currentView, kwVar2.getCurrentPosition(), obj, z10);
         }
         cxVar.r5(true, null, null, false, true);
-        cxVar.Z.f3342a.l(cxVar.Y.f34642r);
+        cxVar.Z.f3293a.l(cxVar.Y.f34632r);
     }
 
     @Override
@@ -140,24 +140,24 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
     @Override
     public boolean mo23f(float f10, float f11, int i7, View view) {
         boolean z10 = view instanceof org.telegram.ui.Cells.h6;
-        cx cxVar = this.f48533a;
+        cx cxVar = this.f48501a;
         if (z10) {
             org.telegram.ui.Cells.h6 h6Var = (org.telegram.ui.Cells.h6) view;
-            if (h6Var.f30749o0) {
+            if (h6Var.f30715o0) {
                 cxVar.h5(h6Var.getDialogId(), view);
                 return true;
             }
         }
         kw kwVar = cxVar.D0;
-        di.b1 b1Var = kwVar.f40499b0;
-        return cxVar.F4(view, i7, f10, kwVar.f40502e0);
+        di.b1 b1Var = kwVar.f39902b0;
+        return cxVar.F4(view, i7, f10, kwVar.f39905e0);
     }
 
     @Override
     public void finish() {
-        Point point = org.telegram.messenger.g0.f24046q;
+        Point point = org.telegram.messenger.g0.f24010q;
         if (point.x > point.y) {
-            this.f48533a.finishPreviewFragment();
+            this.f48501a.finishPreviewFragment();
         }
     }
 
@@ -168,15 +168,15 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
 
     @Override
     public void j() {
-        Point point = org.telegram.messenger.g0.f24046q;
+        Point point = org.telegram.messenger.g0.f24010q;
         if (point.x > point.y) {
-            this.f48533a.finishPreviewFragment();
+            this.f48501a.finishPreviewFragment();
         }
     }
 
     @Override
     public void j1(CharSequence charSequence, boolean z10, boolean z11) {
-        cx cxVar = this.f48533a;
+        cx cxVar = this.f48501a;
         org.telegram.messenger.g0.h3(new zu(cxVar, 17), 100L);
         org.telegram.ui.Components.ep0 ep0Var = cxVar.I2;
         if (ep0Var != null) {
@@ -187,13 +187,13 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
                 }
                 return;
             }
-            ss ssVar = cxVar.J2;
-            if (ssVar != null) {
-                org.telegram.messenger.g0.r(ssVar);
+            vs vsVar = cxVar.J2;
+            if (vsVar != null) {
+                org.telegram.messenger.g0.r(vsVar);
             }
-            ss ssVar2 = new ss(8, this, charSequence);
-            cxVar.J2 = ssVar2;
-            org.telegram.messenger.g0.h3(ssVar2, 1000L);
+            vs vsVar2 = new vs(6, this, charSequence);
+            cxVar.J2 = vsVar2;
+            org.telegram.messenger.g0.h3(vsVar2, 1000L);
         }
     }
 
@@ -219,17 +219,17 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
 
     @Override
     public void o(float f10) {
-        Point point = org.telegram.messenger.g0.f24046q;
+        Point point = org.telegram.messenger.g0.f24010q;
         if (point.x > point.y) {
-            this.f48533a.movePreviewFragment(f10);
+            this.f48501a.movePreviewFragment(f10);
         }
     }
 
     @Override
     public void r(float f10) {
-        Point point = org.telegram.messenger.g0.f24046q;
+        Point point = org.telegram.messenger.g0.f24010q;
         if (point.x > point.y) {
-            this.f48533a.movePreviewFragment(f10);
+            this.f48501a.movePreviewFragment(f10);
         }
     }
 

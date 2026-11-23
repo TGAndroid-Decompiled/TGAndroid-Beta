@@ -5,7 +5,7 @@ import android.graphics.PorterDuff;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
-import c8.ma;
+import c8.na;
 import fi.u3;
 import java.util.Date;
 import java.util.HashSet;
@@ -56,14 +56,14 @@ public final class r extends yg.c implements b6 {
         this.H = true;
         this.L = new av0(this);
         this.d.setTypeface(g0.o());
-        this.f61260f.setVisibility(8);
+        this.f61225f.setVisibility(8);
         if (z11) {
             op opVar = new op(21, context, h6Var);
             this.f1108w = opVar;
-            opVar.b(m6.B5, m6.f29454h5, m6.f29511k7);
+            opVar.b(m6.B5, m6.f29420h5, m6.f29477k7);
             opVar.setDrawUnchecked(false);
             opVar.setDrawBackgroundAsArc(3);
-            boolean z13 = hd.f24444a0;
+            boolean z13 = hd.f24408a0;
             if (z13) {
                 i12 = 5;
             } else {
@@ -75,26 +75,26 @@ public final class r extends yg.c implements b6 {
             } else {
                 f12 = 40.0f;
             }
-            addView(opVar, ma.d(24, 24.0f, i13, f12, 33.0f, z13 ? 39.0f : 0.0f, 0.0f));
+            addView(opVar, na.d(24, 24.0f, i13, f12, 33.0f, z13 ? 39.0f : 0.0f, 0.0f));
             d();
         } else if (z10) {
             op opVar2 = new op(21, context, h6Var);
             this.f1108w = opVar2;
             if (z12) {
-                opVar2.b(m6.i7, m6.f29491j7, m6.C5);
+                opVar2.b(m6.i7, m6.f29457j7, m6.C5);
             } else {
-                opVar2.b(m6.B5, m6.f29491j7, m6.C5);
+                opVar2.b(m6.B5, m6.f29457j7, m6.C5);
             }
             opVar2.setDrawUnchecked(true);
             opVar2.setDrawBackgroundAsArc(10);
             addView(opVar2);
             opVar2.a(false, false);
-            if (hd.f24444a0) {
+            if (hd.f24408a0) {
                 i7 = 5;
             } else {
                 i7 = 3;
             }
-            opVar2.setLayoutParams(ma.d(24, 24.0f, i7 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
+            opVar2.setLayoutParams(na.d(24, 24.0f, i7 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
             d();
         } else {
             this.f1108w = null;
@@ -104,22 +104,22 @@ public final class r extends yg.c implements b6 {
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(2131231244);
-        int i14 = m6.f29647rd;
+        int i14 = m6.f29613rd;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         t6.s(imageView, i14, h6Var, mode);
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i10 = 3;
         } else {
             i10 = 5;
         }
-        addView(imageView, ma.d(32, 32.0f, i10 | 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        addView(imageView, na.d(32, 32.0f, i10 | 16, 12.0f, 0.0f, 12.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.E = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(2131231847);
         int i15 = m6.Fi;
         t6.s(imageView2, i15, h6Var, mode);
-        boolean z14 = hd.f24444a0;
+        boolean z14 = hd.f24408a0;
         if (z14) {
             i11 = 3;
         } else {
@@ -136,14 +136,14 @@ public final class r extends yg.c implements b6 {
         } else {
             f11 = 52.0f;
         }
-        addView(imageView2, ma.d(32, 32.0f, i16, f10, 0.0f, f11, 0.0f));
+        addView(imageView2, na.d(32, 32.0f, i16, f10, 0.0f, f11, 0.0f));
         imageView2.setVisibility(8);
         ImageView imageView3 = new ImageView(context);
         this.G = imageView3;
         imageView3.setScaleType(scaleType);
         imageView3.setImageResource(2131231916);
         t6.s(imageView3, i15, h6Var, mode);
-        addView(imageView3, ma.d(32, 32.0f, (hd.f24444a0 ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        addView(imageView3, na.d(32, 32.0f, (hd.f24408a0 ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
         imageView3.setVisibility(8);
     }
 
@@ -165,7 +165,7 @@ public final class r extends yg.c implements b6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(m6.f29795z9));
+        hashSet.add(Integer.valueOf(m6.f29761z9));
     }
 
     @Override
@@ -307,7 +307,7 @@ public final class r extends yg.c implements b6 {
         this.f1109x.setVisibility(8);
         this.J = chat;
         this.I = null;
-        b9 b9Var = this.f61257b;
+        b9 b9Var = this.f61222b;
         b9Var.q(chat);
         if (v3.c0(chat)) {
             f10 = 12.0f;
@@ -315,7 +315,7 @@ public final class r extends yg.c implements b6 {
             f10 = 20.0f;
         }
         int L = g0.L(f10);
-        q9 q9Var = this.f61258c;
+        q9 q9Var = this.f61223c;
         q9Var.setRoundRadius(L);
         q9Var.f(chat, b9Var);
         String str2 = chat.title;
@@ -342,7 +342,7 @@ public final class r extends yg.c implements b6 {
             N0 = hd.N0(i10, null);
         }
         setSubtitle(N0);
-        t6.X(this.f61259e, m6.f29639r5, this.f61256a);
+        t6.X(this.f61224e, m6.f29605r5, this.f61221a);
         if (i7 > 200) {
             f11 = 0.3f;
         } else {
@@ -370,32 +370,32 @@ public final class r extends yg.c implements b6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.L.f33650a.a();
+        this.L.f33625a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.L.f33650a.b();
+        this.L.f33625a.b();
     }
 
     public void setBoost(TL_stories.TL_myBoost tL_myBoost) {
         this.f1109x.setVisibility(8);
         this.K = tL_myBoost;
-        TLRPC.Chat O0 = np.u1(k10.f24968t0).O0(Long.valueOf(-n5.o(tL_myBoost.peer)));
+        TLRPC.Chat O0 = np.u1(k10.f24932t0).O0(Long.valueOf(-n5.o(tL_myBoost.peer)));
         this.J = O0;
-        b9 b9Var = this.f61257b;
+        b9 b9Var = this.f61222b;
         b9Var.q(O0);
         int L = g0.L(20.0f);
-        q9 q9Var = this.f61258c;
+        q9 q9Var = this.f61223c;
         q9Var.setRoundRadius(L);
         q9Var.f(this.J, b9Var);
         String str = this.J.title;
         u3 u3Var = this.d;
         u3Var.k(str);
-        int i7 = m6.f29639r5;
-        h6 h6Var = this.f61256a;
-        m5 m5Var = this.f61259e;
+        int i7 = m6.f29605r5;
+        h6 h6Var = this.f61221a;
+        m5 m5Var = this.f61224e;
         t6.X(m5Var, i7, h6Var);
         setSubtitle(hd.a0(null, null, 2131753658, hd.E0().o0().format(new Date(tL_myBoost.expires * 1000))));
         int i10 = tL_myBoost.cooldown_until_date;
@@ -426,10 +426,10 @@ public final class r extends yg.c implements b6 {
         this.f1109x.setVisibility(8);
         this.I = user;
         this.J = null;
-        b9 b9Var = this.f61257b;
+        b9 b9Var = this.f61222b;
         b9Var.r(user);
         int L = g0.L(20.0f);
-        q9 q9Var = this.f61258c;
+        q9 q9Var = this.f61223c;
         q9Var.setRoundRadius(L);
         q9Var.f(user, b9Var);
         String q10 = p10.q(user);
@@ -445,19 +445,19 @@ public final class r extends yg.c implements b6 {
                 setSubtitle(hd.N0(2131753153, null));
             }
         } else {
-            setSubtitle(hd.d0(k10.f24968t0, user, zArr, null));
+            setSubtitle(hd.d0(k10.f24932t0, user, zArr, null));
         }
         if (zArr[0]) {
-            i7 = m6.f29562n5;
+            i7 = m6.f29528n5;
         } else {
-            i7 = m6.f29639r5;
+            i7 = m6.f29605r5;
         }
-        t6.X(this.f61259e, i7, this.f61256a);
+        t6.X(this.f61224e, i7, this.f61221a);
         op opVar = this.f1108w;
         if (opVar != null) {
             opVar.setAlpha(1.0f);
         }
-        int x02 = m6.x0(null, m6.f29795z9, false);
+        int x02 = m6.x0(null, m6.f29761z9, false);
         this.M = x02;
         u3Var.i(this.L.a(user, x02, false));
     }
@@ -468,7 +468,7 @@ public final class r extends yg.c implements b6 {
         u3 u3Var;
         int x02;
         try {
-            if (this.I != null && (av0Var = this.L) != null && (u3Var = this.d) != null && (x02 = m6.x0(null, m6.f29795z9, false)) != this.M) {
+            if (this.I != null && (av0Var = this.L) != null && (u3Var = this.d) != null && (x02 = m6.x0(null, m6.f29761z9, false)) != this.M) {
                 this.M = x02;
                 av0Var.a(this.I, x02, false);
                 u3Var.invalidate();

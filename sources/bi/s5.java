@@ -1,59 +1,168 @@
 package bi;
 
 import android.content.Context;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.k10;
-import org.telegram.messenger.np;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ap0;
-import org.telegram.ui.Components.gc;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.fq0;
 import org.telegram.ui.Components.gq0;
-import org.telegram.ui.Components.lc;
-public final class s5 extends ap0 {
-    public final org.telegram.ui.ActionBar.g2 V2;
-    public final gq0 W2;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.iq0;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.jq0;
+import org.telegram.ui.Components.jt0;
+import org.telegram.ui.Components.nq;
+import org.telegram.ui.ProfileActivity;
+public final class s5 extends j71 {
+    public final int W;
+    public Object f4054a0;
+    public final FrameLayout f4055b0;
 
-    public s5(gq0 gq0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.ui.ActionBar.g2 g2Var) {
-        super(context, null, str, false, str2, false, h6Var);
-        this.W2 = gq0Var;
-        this.V2 = g2Var;
+    public s5(FrameLayout frameLayout, Context context, Object obj, int i7) {
+        super(context, null);
+        this.W = i7;
+        this.f4055b0 = frameLayout;
+        this.f4054a0 = obj;
     }
 
     @Override
-    public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        lc b02;
-        String str;
-        if (z10 && (b02 = lc.b0(this.V2)) != null) {
-            if (hVar.m() == 1) {
-                long j3 = hVar.j(0);
-                if (j3 == k10.i(this.f30173a).f24987n) {
-                    gc G = b02.G(2131624191, 5000, org.telegram.messenger.g0.W2(hd.a0(null, null, 2131749785, new Object[0])));
-                    G.f35535r = false;
-                    G.j();
-                } else if (j3 < 0) {
-                    TLRPC.Chat O0 = np.u1(this.f30173a).O0(Long.valueOf(-j3));
-                    if (tL_forumTopic != null) {
-                        str = tL_forumTopic.title;
-                    } else {
-                        str = O0.title;
+    public void a() {
+        switch (this.W) {
+            case 0:
+                gq0 gq0Var = (gq0) this.f4055b0;
+                i71 i71Var = gq0Var.f4153n;
+                if (gq0Var.b() && i71Var != null) {
+                    if (gq0Var.K == null) {
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(i5.c.k(2131750081, null, new StringBuilder("+ ")));
+                        nq nqVar = new nq(2131232562, 0);
+                        nqVar.H = 0.8f;
+                        spannableStringBuilder.setSpan(nqVar, 0, 1, 33);
+                        gq0Var.K = spannableStringBuilder;
                     }
-                    gc G2 = b02.G(2131624029, 5000, org.telegram.messenger.g0.W2(hd.a0(null, null, 2131749789, str)));
-                    G2.f35535r = false;
-                    G2.j();
-                } else {
-                    gc G3 = b02.G(2131624029, 5000, org.telegram.messenger.g0.W2(hd.a0(null, null, 2131749789, np.u1(this.f30173a).c2(Long.valueOf(j3)).first_name)));
-                    G3.f35535r = false;
-                    G3.j();
+                    i71Var.a(-1, gq0Var.K);
+                    return;
                 }
-            } else {
-                gc Q = b02.Q(2131624029, 36, org.telegram.messenger.g0.W2(hd.G(hVar.m(), "GiftCollectionSharedToManyChats", Integer.valueOf(hVar.m()))));
-                Q.f35535r = false;
-                Q.j();
-            }
-            try {
-                this.W2.performHapticFeedback(3);
-            } catch (Exception unused) {
-            }
+                return;
+            default:
+                return;
         }
+    }
+
+    @Override
+    public boolean b(MotionEvent motionEvent) {
+        boolean g10;
+        switch (this.W) {
+            case 0:
+                g10 = ((gq0) this.f4055b0).g();
+                break;
+            case 1:
+                g10 = ((fq0) this.f4055b0).H.F1;
+                break;
+            default:
+                return super.b(motionEvent);
+        }
+        return !g10;
+    }
+
+    @Override
+    public final void s(boolean z10) {
+        switch (this.W) {
+            case 0:
+                gq0 gq0Var = (gq0) this.f4055b0;
+                gq0Var.l();
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f4054a0;
+                if (g2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) g2Var).W();
+                    View fragmentView = g2Var.getFragmentView();
+                    if (fragmentView != null) {
+                        fragmentView.invalidate();
+                    }
+                }
+                gq0Var.p();
+                return;
+            case 1:
+                fq0 fq0Var = (fq0) this.f4055b0;
+                String currentLang = fq0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.f4054a0, currentLang)) {
+                    this.f4054a0 = currentLang;
+                    fq0Var.H.Y0();
+                    return;
+                }
+                return;
+            default:
+                ((iq0) this.f4054a0).d.V0(((jq0) this.f4055b0).f50351b.getAnimatingIndicatorProgress());
+                return;
+        }
+    }
+
+    @Override
+    public void u(int i7) {
+        switch (this.W) {
+            case 1:
+                fq0 fq0Var = (fq0) this.f4055b0;
+                String currentLang = fq0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.f4054a0, currentLang)) {
+                    this.f4054a0 = currentLang;
+                    fq0Var.H.Y0();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void v(int i7, boolean z10) {
+        switch (this.W) {
+            case 2:
+                int i10 = ((jq0) this.f4055b0).f50351b.f36153c0.get(i7, -1);
+                jt0 jt0Var = ((iq0) this.f4054a0).d;
+                if (i10 <= 0) {
+                    jt0.t(jt0Var, 8, z10);
+                    return;
+                } else {
+                    jt0.t(jt0Var, jt0Var.x1(i10).f36266a, z10);
+                    return;
+                }
+            default:
+                super.v(i7, z10);
+                return;
+        }
+    }
+
+    @Override
+    public final void w(int i7) {
+        switch (this.W) {
+            case 0:
+                ((gq0) this.f4055b0).l();
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f4054a0;
+                if (g2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) g2Var).W();
+                    return;
+                }
+                return;
+            case 1:
+                fq0 fq0Var = (fq0) this.f4055b0;
+                String currentLang = fq0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.f4054a0, currentLang)) {
+                    this.f4054a0 = currentLang;
+                    fq0Var.H.Y0();
+                    return;
+                }
+                return;
+            default:
+                ((jq0) this.f4055b0).f50351b.f36153c0.get(i7, -1);
+                ((iq0) this.f4054a0).d.V0(1.0f);
+                return;
+        }
+    }
+
+    public s5(fq0 fq0Var, Context context) {
+        super(context, null);
+        this.W = 1;
+        this.f4055b0 = fq0Var;
     }
 }

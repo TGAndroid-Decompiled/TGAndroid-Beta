@@ -1,38 +1,35 @@
 package hi;
-public final class c9 implements r1.c {
-    public final int f14394a;
-    public final float f14395b;
-    public final Object f14396c;
+public final class c9 implements Runnable {
+    public final int f14280a;
+    public final ta f14281b;
+    public final boolean f14282c;
 
-    public c9(Object obj, float f10, int i7) {
-        this.f14394a = i7;
-        this.f14396c = obj;
-        this.f14395b = f10;
+    public c9(ta taVar, boolean z10, int i7) {
+        this.f14280a = i7;
+        this.f14281b = taVar;
+        this.f14282c = z10;
     }
 
     @Override
-    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
-        switch (this.f14394a) {
+    public final void run() {
+        switch (this.f14280a) {
             case 0:
-                sa saVar = (sa) this.f14396c;
-                if (!z10) {
-                    saVar.N0.setTranslationY(this.f14395b);
-                    saVar.N0.L = false;
-                    saVar.f15433p2 = null;
-                    saVar.f15436q2 = null;
-                    return;
-                }
+                this.f14281b.e(this.f14282c);
                 return;
-            default:
-                ki.r3 r3Var = (ki.r3) this.f14396c;
-                r3Var.f18912w = null;
-                float f12 = this.f14395b;
-                if (!z10) {
-                    r3Var.f18908f = f12;
-                    r3Var.c();
+            case 1:
+                ta taVar = this.f14281b;
+                if (!this.f14282c) {
+                    taVar.K0.b(false, false);
+                    return;
+                } else {
+                    taVar.getClass();
                     return;
                 }
-                r3Var.h = f12;
+            default:
+                ta taVar2 = this.f14281b;
+                taVar2.S = null;
+                taVar2.f15401e = false;
+                taVar2.p(this.f14282c);
                 return;
         }
     }

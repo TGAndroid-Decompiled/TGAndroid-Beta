@@ -16,29 +16,29 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
-import org.telegram.ui.n60;
+import org.telegram.ui.m60;
 import org.telegram.ui.p51;
 import org.telegram.ui.u60;
 import org.telegram.ui.u80;
 public final class e0 implements r10 {
-    public final int f44141a;
-    public final Object f44142b;
-    public final Object f44143c;
+    public final int f44107a;
+    public final Object f44108b;
+    public final Object f44109c;
 
     public e0(int i7, Object obj, Object obj2) {
-        this.f44141a = i7;
-        this.f44142b = obj;
-        this.f44143c = obj2;
+        this.f44107a = i7;
+        this.f44108b = obj;
+        this.f44109c = obj2;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         Object obj3 = null;
         int i7 = 0;
-        switch (this.f44141a) {
+        switch (this.f44107a) {
             case 0:
-                u0 u0Var = (u0) this.f44142b;
-                p51 p51Var = (p51) this.f44143c;
+                u0 u0Var = (u0) this.f44108b;
+                p51 p51Var = (p51) this.f44109c;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
@@ -55,17 +55,17 @@ public final class e0 implements r10 {
                 p51Var.a(null);
                 return;
             case 1:
-                r10 r10Var = (r10) this.f44143c;
+                r10 r10Var = (r10) this.f44109c;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str2 = (String) obj2;
-                if (!((g0) this.f44142b).f44282a) {
+                if (!((g0) this.f44108b).f44248a) {
                     r10Var.a(wallettransaction, str2);
                     return;
                 }
                 return;
             case 2:
-                String str3 = (String) this.f44142b;
-                ai.b2 b2Var = (ai.b2) this.f44143c;
+                String str3 = (String) this.f44108b;
+                hi.r3 r3Var = (hi.r3) this.f44109c;
                 TL_toncenter.apiResponse apiresponse = (TL_toncenter.apiResponse) obj;
                 if (((TLRPC.TL_error) obj2) == null && apiresponse != null && apiresponse.response != null) {
                     try {
@@ -83,11 +83,11 @@ public final class e0 implements r10 {
                         org.telegram.messenger.a8.g(e10, true);
                     }
                 }
-                b2Var.a(obj3);
+                r3Var.a(obj3);
                 return;
             case 3:
-                TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f44142b;
-                u60 u60Var = (u60) this.f44143c;
+                TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f44108b;
+                u60 u60Var = (u60) this.f44109c;
                 TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = (TL_wallet.inputTonConnectOauthSession) obj;
                 String str4 = (String) obj2;
                 if (str4 == null) {
@@ -96,22 +96,22 @@ public final class e0 implements r10 {
                 u60Var.a(str4);
                 return;
             case 4:
-                ((r0) this.f44142b).close();
-                ((n60) this.f44143c).a((h2) obj, (String) obj2);
+                ((r0) this.f44108b).close();
+                ((m60) this.f44109c).a((h2) obj, (String) obj2);
                 return;
             case 5:
-                ((r0) this.f44142b).close();
-                org.telegram.messenger.g0.g3(new p((Object) ((e0) this.f44143c), (Object) ((TL_wallet.inputTonConnectOauthSession) obj), (String) obj2, 3));
+                ((r0) this.f44108b).close();
+                org.telegram.messenger.g0.g3(new p((Object) ((e0) this.f44109c), (Object) ((TL_wallet.inputTonConnectOauthSession) obj), (String) obj2, 3));
                 return;
             case 6:
-                d9.g0((d9) this.f44142b, (y10) this.f44143c, (r0) obj, (String) obj2);
+                d9.g0((d9) this.f44108b, (y10) this.f44109c, (r0) obj, (String) obj2);
                 return;
             case 7:
-                na naVar = (na) this.f44142b;
-                o oVar = (o) this.f44143c;
+                na naVar = (na) this.f44108b;
+                o oVar = (o) this.f44109c;
                 TL_wallet.walletUserAddress walletuseraddress = (TL_wallet.walletUserAddress) obj;
                 if (((String) obj2) != null) {
-                    naVar.f44707a0.setLoading(false);
+                    naVar.f44673a0.setLoading(false);
                     return;
                 }
                 if (walletuseraddress != null) {
@@ -120,11 +120,11 @@ public final class e0 implements r10 {
                 oVar.a(obj3);
                 return;
             case 8:
-                sh.o oVar2 = (sh.o) this.f44142b;
-                String str5 = (String) this.f44143c;
+                sh.o oVar2 = (sh.o) this.f44108b;
+                String str5 = (String) this.f44109c;
                 TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                int i10 = oVar2.f57518a;
+                int i10 = oVar2.f57483a;
                 if (webpagepreview != null) {
                     np.u1(i10).f4(webpagepreview.users, false);
                     np.u1(i10).Z3(webpagepreview.chats, false);
@@ -133,8 +133,8 @@ public final class e0 implements r10 {
                         obj3 = messageMedia.webpage;
                     }
                 }
-                oVar2.f57519b.put(str5, obj3);
-                ArrayList arrayList = (ArrayList) oVar2.f57520c.remove(str5);
+                oVar2.f57484b.put(str5, obj3);
+                ArrayList arrayList = (ArrayList) oVar2.f57485c.remove(str5);
                 if (arrayList != null) {
                     int size = arrayList.size();
                     while (i7 < size) {
@@ -146,20 +146,20 @@ public final class e0 implements r10 {
                 }
                 return;
             default:
-                wg.a0 a0Var = (wg.a0) this.f44142b;
-                TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) this.f44143c;
+                wg.a0 a0Var = (wg.a0) this.f44108b;
+                TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) this.f44109c;
                 Boolean bool = (Boolean) obj;
                 String str6 = (String) obj2;
-                a0Var.f59749m2.f61245a.setLoading(false);
+                a0Var.f59714m2.f61210a.setLoading(false);
                 if (a0Var.getContext() != null) {
                     org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
-                    u80 u80Var = LaunchActivity.H1.f43153w0;
+                    u80 u80Var = LaunchActivity.H1.f43118w0;
                     if (T != null) {
                         if (bool.booleanValue()) {
                             a0Var.dismiss();
-                            bn ua2 = bn.ua(-a0Var.X1.f28434id);
+                            bn ua2 = bn.ua(-a0Var.X1.f28398id);
                             T.presentFragment(ua2);
-                            T.whenFullyVisible(new wg.q(3, ua2, tL_starsGiveawayOption));
+                            T.whenFullyVisible(new wg.r(1, ua2, tL_starsGiveawayOption));
                             if (u80Var != null) {
                                 u80Var.c(true);
                                 return;
@@ -167,7 +167,7 @@ public final class e0 implements r10 {
                             return;
                         } else if (str6 != null) {
                             a0Var.dismiss();
-                            lc.b0(T).Q(2131624012, 36, hd.a0(null, null, 2131743633, str6)).j();
+                            lc.b0(T).Q(2131624012, 36, hd.a0(null, null, 2131743635, str6)).j();
                             return;
                         } else {
                             return;

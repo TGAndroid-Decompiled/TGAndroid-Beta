@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import bi.e4;
+import bi.g4;
 import java.util.Date;
 import org.telegram.messenger.f3;
 import org.telegram.messenger.gj;
@@ -31,24 +31,24 @@ import org.telegram.ui.ActionBar.w2;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.zt;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.yn;
+import org.telegram.ui.xn;
 import tg.o1;
 public abstract class h {
     public static void a(t1 t1Var, boolean z10) {
-        xh.l lVar = t1Var.f30024f;
+        xh.l lVar = t1Var.f29990f;
         if (lVar != null) {
             lVar.setTextSize(1, 20);
         }
-        zt ztVar = t1Var.f30037n;
+        zt ztVar = t1Var.f30003n;
         if (ztVar != null) {
             ztVar.setTextSize(1, 14);
         }
-        zt ztVar2 = t1Var.f30037n;
+        zt ztVar2 = t1Var.f30003n;
         if (ztVar2 != null) {
             ztVar2.setLineSpacing(org.telegram.messenger.g0.L(2.5f), 1.0f);
         }
         if (!z10) {
-            ((ViewGroup.MarginLayoutParams) t1Var.f30047u0.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(-14.0f);
+            ((ViewGroup.MarginLayoutParams) t1Var.f30013u0.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(-14.0f);
         }
     }
 
@@ -58,7 +58,7 @@ public abstract class h {
         }
         String Y0 = gjVar.Y0();
         if (Y0 == null) {
-            TLRPC.Chat O0 = np.u1(k10.f24968t0).O0(Long.valueOf(-gj.B1(gjVar.f24213k.peer_id)));
+            TLRPC.Chat O0 = np.u1(k10.f24932t0).O0(Long.valueOf(-gj.B1(gjVar.f24177k.peer_id)));
             if (O0 == null) {
                 return "";
             }
@@ -113,7 +113,7 @@ public abstract class h {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, h6Var);
         String N0 = hd.N0(2131753491, "BoostingGiveAwayAbout");
-        t1 t1Var = alertDialog$Builder.f28777a;
+        t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.S = N0;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z12) {
@@ -198,7 +198,7 @@ public abstract class h {
             if (str8 != null && !str8.isEmpty()) {
                 spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.W2(hd.N0(2131753399, "BoostingGiveawayNotEligibleCountry")));
             } else if (tL_payments_giveawayInfo.admin_disallowed_chat_id != 0) {
-                TLRPC.Chat O0 = np.u1(k10.f24968t0).O0(Long.valueOf(tL_payments_giveawayInfo.admin_disallowed_chat_id));
+                TLRPC.Chat O0 = np.u1(k10.f24932t0).O0(Long.valueOf(tL_payments_giveawayInfo.admin_disallowed_chat_id));
                 if (O0 != null) {
                     str4 = O0.title;
                 } else {
@@ -252,7 +252,7 @@ public abstract class h {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, h6Var);
         String N02 = hd.N0(2131753475, "BoostingGiveawayEnd");
-        t1 t1Var = alertDialog$Builder.f28777a;
+        t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.S = N02;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z12) {
@@ -338,14 +338,14 @@ public abstract class h {
             textView.setTypeface(org.telegram.messenger.g0.o());
             textView.setGravity(17);
             textView.setText(N03);
-            int i13 = m6.f29602p7;
+            int i13 = m6.f29568p7;
             t6.U(textView, i13, h6Var);
             ShapeDrawable e02 = m6.e0(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), m6.r1(0.1f, m6.w0(i13, h6Var)));
             p6 K = t6.K(0.1f, i13);
             textView.setBackground(e02);
             t6.j(textView, e02, K, null, h6Var);
             textView.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
-            t1Var.f30016c = textView;
+            t1Var.f29982c = textView;
             t1Var.U = spannableStringBuilder;
             alertDialog$Builder.k(hd.N0(2131752029, "Close"), new ug.x(17));
             a(alertDialog$Builder.p(), true);
@@ -364,13 +364,13 @@ public abstract class h {
         }
         zt ztVar = new zt(context);
         ls.i(ztVar);
-        t6.U(ztVar, m6.f29489j5, h6Var);
+        t6.U(ztVar, m6.f29455j5, h6Var);
         ztVar.setTextSize(1, 14.0f);
         ztVar.setGravity(17);
         ztVar.setText(N0);
         int L = org.telegram.messenger.g0.L(8.0f);
         int L2 = org.telegram.messenger.g0.L(8.0f);
-        int i14 = m6.f29613pi;
+        int i14 = m6.f29579pi;
         ShapeDrawable e03 = m6.e0(L, L2, m6.w0(i14, h6Var));
         p6 M = t6.M(i14);
         ztVar.setBackground(e03);
@@ -384,7 +384,7 @@ public abstract class h {
         if (g2Var == null) {
             return;
         }
-        org.telegram.messenger.g0.h3(new yn(lc.b0(g2Var), z10, chat, g2Var.getResourceProvider(), 17), 300L);
+        org.telegram.messenger.g0.h3(new xn(lc.b0(g2Var), z10, chat, g2Var.getResourceProvider(), 17), 300L);
     }
 
     public static void g(int i7) {
@@ -407,7 +407,7 @@ public abstract class h {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, Q.getContext(), Q.getResourceProvider());
         String N0 = hd.N0(2131752553, null);
-        t1 t1Var = alertDialog$Builder.f28777a;
+        t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.S = N0;
         t1Var.U = org.telegram.messenger.g0.W2(hd.a0("CantBoostTooOftenDescription", null, 2131752552, str));
         alertDialog$Builder.k(hd.N0(2131747637, null), new ug.x(21));
@@ -416,27 +416,27 @@ public abstract class h {
 
     public static void h(long j3) {
         SpannableStringBuilder W2;
-        if (j3 == k10.i(k10.f24968t0).f24987n) {
+        if (j3 == k10.i(k10.f24932t0).f24951n) {
             W2 = org.telegram.messenger.g0.W2(hd.N0(2131753495, null));
         } else if (n5.z(j3)) {
-            W2 = org.telegram.messenger.g0.W2(hd.a0("BoostingGiftLinkForwardedTo", null, 2131753496, np.u1(k10.f24968t0).O0(Long.valueOf(-j3)).title));
+            W2 = org.telegram.messenger.g0.W2(hd.a0("BoostingGiftLinkForwardedTo", null, 2131753496, np.u1(k10.f24932t0).O0(Long.valueOf(-j3)).title));
         } else {
-            W2 = org.telegram.messenger.g0.W2(hd.a0("BoostingGiftLinkForwardedTo", null, 2131753496, p10.k(np.u1(k10.f24968t0).c2(Long.valueOf(j3)), true)));
+            W2 = org.telegram.messenger.g0.W2(hd.a0("BoostingGiftLinkForwardedTo", null, 2131753496, p10.k(np.u1(k10.f24932t0).c2(Long.valueOf(j3)), true)));
         }
-        org.telegram.messenger.g0.h3(new e4(W2, 1), 450L);
+        org.telegram.messenger.g0.h3(new g4(W2, 1), 450L);
     }
 
     public static void i(long j3, w2 w2Var) {
-        TLRPC.Chat O0 = np.u1(k10.f24968t0).O0(Long.valueOf(-j3));
+        TLRPC.Chat O0 = np.u1(k10.f24932t0).O0(Long.valueOf(-j3));
         g2 Q = LaunchActivity.Q();
         if (Q == null) {
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, Q.getContext(), Q.getResourceProvider());
         String N0 = hd.N0(2131753335, null);
-        t1 t1Var = alertDialog$Builder.f28777a;
+        t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.S = N0;
-        t1Var.U = org.telegram.messenger.g0.W2(hd.G((int) np.u1(k10.f24968t0).f25954s0, "BoostingGetMoreBoostByGiftingCount", O0.title));
+        t1Var.U = org.telegram.messenger.g0.W2(hd.G((int) np.u1(k10.f24932t0).f25918s0, "BoostingGetMoreBoostByGiftingCount", O0.title));
         alertDialog$Builder.h(hd.N0(2131749507, "GiftPremium"), new l2(w2Var));
         alertDialog$Builder.k(hd.N0(2131752029, "Close"), new ug.x(17));
         alertDialog$Builder.p();

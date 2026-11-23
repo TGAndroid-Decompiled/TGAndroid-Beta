@@ -10,34 +10,34 @@ import org.telegram.ui.Components.f21;
 import org.telegram.ui.Components.m80;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class u implements View.OnClickListener {
-    public final int f58186a;
-    public final Object f58187b;
+    public final int f58151a;
+    public final Object f58152b;
 
     public u(Object obj, int i7) {
-        this.f58186a = i7;
-        this.f58187b = obj;
+        this.f58151a = i7;
+        this.f58152b = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f58186a) {
+        switch (this.f58151a) {
             case 0:
-                ((f21) this.f58187b).run();
+                ((f21) this.f58152b).run();
                 return;
             case 1:
-                ((l2) this.f58187b).onBackPressed();
+                ((l2) this.f58152b).onBackPressed();
                 return;
             case 2:
-                ((m80) this.f58187b).performClick();
+                ((m80) this.f58152b).performClick();
                 return;
             case 3:
                 PremiumPreviewFragment.u0();
-                PremiumPreviewFragment.p0(((ug.h1) this.f58187b).f58730p2, null, "profile", null);
+                PremiumPreviewFragment.p0(((ug.h1) this.f58152b).f58695p2, null, "profile", null);
                 return;
             case 4:
-                final wg.g0 g0Var = (wg.g0) this.f58187b;
+                final wg.g0 g0Var = (wg.g0) this.f58152b;
                 yg.a aVar = g0Var.M2;
-                if (!aVar.f61245a.R) {
+                if (!aVar.f61210a.R) {
                     aVar.b(true);
                     String str = g0Var.N2;
                     y10 y10Var = new y10() {
@@ -54,7 +54,7 @@ public final class u implements View.OnClickListener {
                                 default:
                                     g0 g0Var3 = g0Var;
                                     g0Var3.M2.b(false);
-                                    h.c((TLRPC.TL_error) obj, (FrameLayout) g0Var3.f30176b, g0Var3.J0, new e0(g0Var3, 0));
+                                    h.c((TLRPC.TL_error) obj, (FrameLayout) g0Var3.f30142b, g0Var3.J0, new e0(g0Var3, 0));
                                     return;
                             }
                         }
@@ -73,12 +73,12 @@ public final class u implements View.OnClickListener {
                                 default:
                                     g0 g0Var3 = g0Var;
                                     g0Var3.M2.b(false);
-                                    h.c((TLRPC.TL_error) obj, (FrameLayout) g0Var3.f30176b, g0Var3.J0, new e0(g0Var3, 0));
+                                    h.c((TLRPC.TL_error) obj, (FrameLayout) g0Var3.f30142b, g0Var3.J0, new e0(g0Var3, 0));
                                     return;
                             }
                         }
                     };
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(k10.f24968t0);
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(k10.f24932t0);
                     TLRPC.TL_payments_applyGiftCode tL_payments_applyGiftCode = new TLRPC.TL_payments_applyGiftCode();
                     tL_payments_applyGiftCode.slug = str;
                     connectionsManager.sendRequest(tL_payments_applyGiftCode, new wg.n(y10Var2, y10Var, 0), 2);
@@ -86,10 +86,10 @@ public final class u implements View.OnClickListener {
                 }
                 return;
             case 5:
-                ((wg.j0) this.f58187b).dismiss();
+                ((wg.j0) this.f58152b).dismiss();
                 return;
             default:
-                ((wg.b0) ((xg.e) this.f58187b)).f59765r.dismiss();
+                ((wg.b0) ((xg.e) this.f58152b)).f59730r.dismiss();
                 return;
         }
     }

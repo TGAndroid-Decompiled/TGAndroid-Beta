@@ -1,58 +1,26 @@
 package c8;
-
-import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.graphics.drawable.NinePatchDrawable;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 public abstract class q0 {
-    public static NinePatchDrawable a(Bitmap bitmap, Rect rect, int i7, int i10) {
-        if (bitmap != null) {
-            if (!bitmap.isRecycled()) {
-                if (i7 >= 0 && i7 < bitmap.getWidth() && i10 >= 0 && i10 < bitmap.getHeight()) {
-                    return new NinePatchDrawable(org.telegram.messenger.t0.f26931b.getResources(), bitmap, c(i7, i7 + 1, i10, i10 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i7, i10)).array(), rect, null);
-                }
-                StringBuilder n10 = i5.c.n("center pixel is outside bitmap: (", i7, ", ", i10, ") for ");
-                n10.append(bitmap.getWidth());
-                n10.append("x");
-                n10.append(bitmap.getHeight());
-                throw new IllegalArgumentException(n10.toString());
-            }
-            throw new IllegalArgumentException("bitmap is recycled");
+    public static id.f a(id.f fVar, id.g key) {
+        kotlin.jvm.internal.j.e(key, "key");
+        if (kotlin.jvm.internal.j.a(fVar.getKey(), key)) {
+            return fVar;
         }
-        throw new IllegalArgumentException("bitmap == null");
+        return null;
     }
 
-    public static android.graphics.drawable.NinePatchDrawable b(android.graphics.Bitmap[] r38, int r39, float[] r40, float r41, int r42, float r43, int r44) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.q0.b(android.graphics.Bitmap[], int, float[], float, int, float, int):android.graphics.drawable.NinePatchDrawable");
+    public static id.h b(id.f fVar, id.g key) {
+        kotlin.jvm.internal.j.e(key, "key");
+        if (kotlin.jvm.internal.j.a(fVar.getKey(), key)) {
+            return id.i.f16220a;
+        }
+        return fVar;
     }
 
-    public static ByteBuffer c(int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        ByteBuffer order = ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
-        order.put((byte) 1);
-        order.put((byte) 2);
-        order.put((byte) 2);
-        order.put((byte) 9);
-        order.putInt(0);
-        order.putInt(0);
-        order.putInt(i13);
-        order.putInt(i15);
-        order.putInt(i14);
-        order.putInt(i16);
-        order.putInt(0);
-        order.putInt(i7);
-        order.putInt(i10);
-        order.putInt(i11);
-        order.putInt(i12);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(i17);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        return order;
+    public static id.h c(id.f fVar, id.h context) {
+        kotlin.jvm.internal.j.e(context, "context");
+        if (context == id.i.f16220a) {
+            return fVar;
+        }
+        return (id.h) context.fold(fVar, new b1.e(9));
     }
 }

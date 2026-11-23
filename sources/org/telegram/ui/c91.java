@@ -1,11 +1,11 @@
 package org.telegram.ui;
-public final class c91 extends v4.u0 {
-    public int f46498a;
-    public int f46499b;
-    public final y91 f46500c;
+public final class c91 extends v4.t0 {
+    public int f46484a;
+    public int f46485b;
+    public final y91 f46486c;
 
     public c91(y91 y91Var) {
-        this.f46500c = y91Var;
+        this.f46486c = y91Var;
     }
 
     @Override

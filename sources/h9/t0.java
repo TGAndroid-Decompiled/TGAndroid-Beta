@@ -1,14 +1,14 @@
 package h9;
 
-import a8.la;
+import a8.ma;
 import j$.util.Objects;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
 import java.util.SortedSet;
 public abstract class t0 extends d0 implements Set, j$.util.Set {
-    public static final int f14101c = 0;
-    public transient i0 f14102b;
+    public static final int f14064c = 0;
+    public transient i0 f14065b;
 
     public static int o(int i7) {
         int max = Math.max(i7, 2);
@@ -23,7 +23,7 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
         if (max >= 1073741824) {
             z10 = false;
         }
-        la.e("collection too large", z10);
+        ma.e("collection too large", z10);
         return 1073741824;
     }
 
@@ -78,7 +78,7 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
             Objects.requireNonNull(obj4);
             return new f2(obj4);
         }
-        return a2.f13994s;
+        return a2.f13957s;
     }
 
     public static t0 q(Collection collection) {
@@ -99,7 +99,7 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
         } else {
             z10 = false;
         }
-        la.e("the total number of elements must fit in an int", z10);
+        ma.e("the total number of elements must fit in an int", z10);
         int length = objArr.length + 6;
         Object[] objArr2 = new Object[length];
         objArr2[0] = obj;
@@ -125,10 +125,10 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
 
     @Override
     public i0 f() {
-        i0 i0Var = this.f14102b;
+        i0 i0Var = this.f14065b;
         if (i0Var == null) {
             i0 r10 = r();
-            this.f14102b = r10;
+            this.f14065b = r10;
             return r10;
         }
         return i0Var;
@@ -140,8 +140,8 @@ public abstract class t0 extends d0 implements Set, j$.util.Set {
     }
 
     public i0 r() {
-        Object[] array = toArray(d0.f14017a);
-        g0 g0Var = i0.f14035b;
+        Object[] array = toArray(d0.f13980a);
+        g0 g0Var = i0.f13998b;
         return i0.o(array.length, array);
     }
 }

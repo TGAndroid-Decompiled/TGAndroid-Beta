@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.SpannableStringBuilder;
-import bi.g5;
+import bi.j5;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.k10;
 import org.telegram.messenger.np;
@@ -23,7 +23,7 @@ public abstract class c4 {
         TLRPC.User c22 = np.u1(i7).c2(Long.valueOf(j3));
         TLRPC.UserFull d2 = np.u1(i7).d2(j3);
         if (d2 == null) {
-            np.u1(i7).c3(c22, 0, true, new g5(oVar, i7, c22, 1));
+            np.u1(i7).c3(c22, 0, true, new j5(oVar, i7, c22, 1));
         } else {
             b(i7, c22, d2, oVar);
         }
@@ -36,7 +36,7 @@ public abstract class c4 {
         }
         Context W = org.telegram.messenger.g0.W(LaunchActivity.H1);
         if (W == null) {
-            W = org.telegram.messenger.t0.f26931b;
+            W = org.telegram.messenger.t0.f26895b;
         }
         final Context context = W;
         TLRPC.User f10 = k10.i(i7).f();
@@ -46,12 +46,12 @@ public abstract class c4 {
         b4 b4Var = new b4(f10);
         int i10 = m6.L5;
         int x02 = m6.x0(null, i10, false);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
-        t1Var.f30017c0 = b4Var;
-        t1Var.f30019d0 = x02;
-        t1Var.f30022e0 = -1;
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
+        t1Var.f29983c0 = b4Var;
+        t1Var.f29985d0 = x02;
+        t1Var.f29988e0 = -1;
         alertDialog$Builder.n(i10, null);
-        alertDialog$Builder.f28777a.U = org.telegram.messenger.g0.W2(hd.a0(null, null, 2131753085, p10.q(user), p10.q(user)));
+        alertDialog$Builder.f28743a.U = org.telegram.messenger.g0.W2(hd.a0(null, null, 2131753085, p10.q(user), p10.q(user)));
         alertDialog$Builder.k(hd.N0(2131753087, null), new org.telegram.ui.ActionBar.q1() {
             @Override
             public final void h(org.telegram.ui.ActionBar.t1 t1Var2, int i11) {
@@ -71,7 +71,7 @@ public abstract class c4 {
                 }
                 zArr3[0] = true;
                 TLRPC.User user2 = user;
-                c4.e(context, i12, user2.f28583id);
+                c4.e(context, i12, user2.f28547id);
                 TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
                 toggleuseremojistatuspermission.bot = np.u1(i12).s1(user2);
                 toggleuseremojistatuspermission.enabled = true;
@@ -79,13 +79,13 @@ public abstract class c4 {
             }
         });
         alertDialog$Builder.h(hd.N0(2131753086, null), null);
-        org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28777a;
+        org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28743a;
         t1Var2.show();
         t1Var2.setOnDismissListener(new x3(zArr2, zArr, context, i7, user, oVar));
     }
 
     public static void c() {
-        Context context = org.telegram.messenger.t0.f26931b;
+        Context context = org.telegram.messenger.t0.f26895b;
         if (context != null) {
             for (int i7 = 0; i7 < 4; i7++) {
                 context.getSharedPreferences("botemojistatus_" + i7, 0).edit().clear().apply();
@@ -130,7 +130,7 @@ public abstract class c4 {
         }
         Context W = org.telegram.messenger.g0.W(LaunchActivity.H1);
         if (W == null) {
-            W = org.telegram.messenger.t0.f26931b;
+            W = org.telegram.messenger.t0.f26895b;
         }
         ConnectionsManager.getInstance(i7).getCurrentTime();
         TLRPC.User f10 = k10.i(i7).f();
@@ -168,15 +168,15 @@ public abstract class c4 {
         b4 b4Var = new b4(f10, document);
         int i14 = m6.L5;
         int x02 = m6.x0(null, i14, false);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
-        t1Var.f30017c0 = b4Var;
-        t1Var.f30019d0 = x02;
-        t1Var.f30022e0 = -1;
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
+        t1Var.f29983c0 = b4Var;
+        t1Var.f29985d0 = x02;
+        t1Var.f29988e0 = -1;
         alertDialog$Builder.n(i14, null);
-        alertDialog$Builder.f28777a.U = W2;
+        alertDialog$Builder.f28743a.U = W2;
         alertDialog$Builder.k(hd.N0(2131753088, null), new v3(i7, zArr2, document, i10, zArr, y10Var));
         alertDialog$Builder.h(hd.N0(2131752577, null), null);
-        org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28777a;
+        org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28743a;
         t1Var2.show();
         t1Var2.setOnDismissListener(new bi.k(zArr2, zArr, y10Var, 3));
     }

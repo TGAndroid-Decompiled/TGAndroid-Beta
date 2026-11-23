@@ -8,9 +8,9 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import j$.util.Objects;
 public final class w90 implements Menu {
-    public final a70 f41731a;
-    public final z2 f41732b;
-    public final Runnable f41733c;
+    public final a70 f41705a;
+    public final z2 f41706b;
+    public final Runnable f41707c;
     public final ft d;
 
     public w90(a70 a70Var, ot otVar) {
@@ -18,9 +18,9 @@ public final class w90 implements Menu {
         z2 z2Var = new z2(otVar, 7);
         Runnable onPremiumMenuLockClickListener = otVar.getOnPremiumMenuLockClickListener();
         ft ftVar = new ft(otVar, 2);
-        this.f41731a = a70Var;
-        this.f41732b = z2Var;
-        this.f41733c = onPremiumMenuLockClickListener;
+        this.f41705a = a70Var;
+        this.f41706b = z2Var;
+        this.f41707c = onPremiumMenuLockClickListener;
         this.d = ftVar;
     }
 
@@ -88,12 +88,12 @@ public final class w90 implements Menu {
     public final MenuItem add(int i7, int i10, int i11, CharSequence charSequence) {
         ft ftVar;
         if (i10 != 2131296504 || (ftVar = this.d) == null || ((Boolean) ftVar.run()).booleanValue()) {
-            Runnable runnable = this.f41733c;
-            if ((i10 != 2131296505 || runnable == null) && (runnable == null || !org.telegram.ui.ActionBar.l4.f29218r.contains(Integer.valueOf(i10)) || !org.telegram.messenger.np.u1(org.telegram.messenger.k10.f24968t0).K3())) {
-                org.telegram.ui.ii iiVar = new org.telegram.ui.ii(this, i10, 13);
-                a70 a70Var = this.f41731a;
+            Runnable runnable = this.f41707c;
+            if ((i10 != 2131296505 || runnable == null) && (runnable == null || !org.telegram.ui.ActionBar.l4.f29184r.contains(Integer.valueOf(i10)) || !org.telegram.messenger.np.u1(org.telegram.messenger.k10.f24932t0).K3())) {
+                org.telegram.ui.ii iiVar = new org.telegram.ui.ii(this, i10, 15);
+                a70 a70Var = this.f41705a;
                 a70Var.c(0, charSequence, iiVar, false);
-                if (runnable != null && org.telegram.ui.ActionBar.l4.f29218r.contains(Integer.valueOf(i10))) {
+                if (runnable != null && org.telegram.ui.ActionBar.l4.f29184r.contains(Integer.valueOf(i10))) {
                     a70Var.N(runnable);
                 }
             }

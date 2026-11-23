@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import bi.o;
-import c8.ma;
-import c8.ra;
+import c8.na;
+import c8.sa;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.h6;
@@ -17,33 +17,33 @@ import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.pi;
 public final class c extends LinearLayout {
-    public static final int f19881e = 0;
-    public final h6 f19882a;
-    public final r7 f19883b;
-    public final r7 f19884c;
+    public static final int f19847e = 0;
+    public final h6 f19848a;
+    public final r7 f19849b;
+    public final r7 f19850c;
     public float d;
 
     public c(Context context, h6 h6Var, pi piVar, dh.c cVar) {
         super(context);
         r7 r7Var = new r7(this);
-        this.f19883b = r7Var;
+        this.f19849b = r7Var;
         r7 r7Var2 = new r7(this);
-        this.f19884c = r7Var2;
-        this.f19882a = h6Var;
+        this.f19850c = r7Var2;
+        this.f19848a = h6Var;
         kh.a c10 = kh.a.c(context, cVar, piVar, h6Var);
-        r7Var.f617b = c10;
+        r7Var.f616b = c10;
         c10.setOnClickListener(new o(10));
-        ra.b((kh.a) r7Var.f617b, 0.065f, 2.0f);
+        sa.b((kh.a) r7Var.f616b, 0.065f, 2.0f);
         kh.a c11 = kh.a.c(context, cVar, piVar, h6Var);
-        r7Var2.f617b = c11;
+        r7Var2.f616b = c11;
         c11.setOnClickListener(new o(10));
-        ra.b((kh.a) r7Var2.f617b, 0.065f, 2.0f);
+        sa.b((kh.a) r7Var2.f616b, 0.065f, 2.0f);
         a(r7Var, hd.N0(2131746067, null), 2131231511, false);
         a(r7Var2, hd.N0(2131750570, null), 2131231503, true);
         setOrientation(0);
         setClipChildren(false);
-        addView((kh.a) r7Var.f617b, ma.m(1.0f, 0, 56, 1, -1, 0));
-        addView((kh.a) r7Var2.f617b, ma.m(1.0f, 0, 56, -1, 1, 0));
+        addView((kh.a) r7Var.f616b, na.m(1.0f, 0, 56, 1, -1, 0));
+        addView((kh.a) r7Var2.f616b, na.m(1.0f, 0, 56, -1, 1, 0));
     }
 
     public final void a(r7 r7Var, String str, int i7, boolean z10) {
@@ -55,7 +55,7 @@ public final class c extends LinearLayout {
         textView.setPadding(g0.L(21.0f), 0, g0.L(21.0f), 0);
         textView.setCompoundDrawablePadding(g0.L(6.0f));
         int i10 = m6.Ol;
-        h6 h6Var = this.f19882a;
+        h6 h6Var = this.f19848a;
         t6.U(textView, i10, h6Var);
         textView.setTypeface(g0.o());
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
@@ -69,22 +69,22 @@ public final class c extends LinearLayout {
             mutate = null;
         }
         textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, mutate, (Drawable) null);
-        r7Var.f618c = textView;
-        ((kh.a) r7Var.f617b).addView(textView, ma.e(-2, -2, 17));
+        r7Var.f617c = textView;
+        ((kh.a) r7Var.f616b).addView(textView, na.e(-2, -2, 17));
     }
 
     public final void b(r7 r7Var) {
         int i7;
-        float f10 = this.d * ((te.a) r7Var.d).f57700e;
+        float f10 = this.d * ((te.a) r7Var.d).f57665e;
         float f11 = (1.0f - f10) * (-g0.L(54.0f));
-        float interpolation = (1.0f - se.a.f57191a.getInterpolation(f10)) * (getMeasuredWidth() / 2.0f);
-        if (r7Var == this.f19883b) {
+        float interpolation = (1.0f - se.a.f57156a.getInterpolation(f10)) * (getMeasuredWidth() / 2.0f);
+        if (r7Var == this.f19849b) {
             interpolation *= -1.0f;
         }
-        ((kh.a) r7Var.f617b).setTranslationX(interpolation);
-        ((kh.a) r7Var.f617b).setTranslationY(f11);
-        ((kh.a) r7Var.f617b).setAlpha(f10);
-        kh.a aVar = (kh.a) r7Var.f617b;
+        ((kh.a) r7Var.f616b).setTranslationX(interpolation);
+        ((kh.a) r7Var.f616b).setTranslationY(f11);
+        ((kh.a) r7Var.f616b).setAlpha(f10);
+        kh.a aVar = (kh.a) r7Var.f616b;
         if (f10 > 0.0f) {
             i7 = 0;
         } else {
@@ -94,29 +94,29 @@ public final class c extends LinearLayout {
     }
 
     public View getForwardButton() {
-        return (kh.a) this.f19884c.f617b;
+        return (kh.a) this.f19850c.f616b;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        b(this.f19884c);
-        b(this.f19883b);
+        b(this.f19850c);
+        b(this.f19849b);
     }
 
     public void setForwardButtonOnClickListener(View.OnClickListener onClickListener) {
-        ((kh.a) this.f19884c.f617b).setOnClickListener(onClickListener);
+        ((kh.a) this.f19850c.f616b).setOnClickListener(onClickListener);
     }
 
     public void setReplyButtonOnClickListener(View.OnClickListener onClickListener) {
-        ((kh.a) this.f19883b.f617b).setOnClickListener(onClickListener);
+        ((kh.a) this.f19849b.f616b).setOnClickListener(onClickListener);
     }
 
     public void setTotalVisibilityFactor(float f10) {
         if (this.d != f10) {
             this.d = f10;
-            b(this.f19884c);
-            b(this.f19883b);
+            b(this.f19850c);
+            b(this.f19849b);
         }
     }
 }

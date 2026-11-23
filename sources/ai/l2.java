@@ -1,199 +1,384 @@
 package ai;
 
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Locale;
-public final class l2 {
-    public static final HashSet h = new HashSet(Arrays.asList("a", "an", "and", "the", "but", "so", "or", "to", "of", "in", "on", "at", "for", "with", "it", "it's", "that", "this", "these", "those", "then", "than", "also", "because", "which", "who", "if", "when", "while", "just", "like", "is", "are", "was", "were", "be", "been", "we", "you", "they", "he", "she", "my", "our", "your", "their", "his", "her", "not", "as", "what", "how", "why", "where", "there", "here", "now", "do", "does", "did", "have", "has", "had", "will", "would", "can", "could", "should", "maybe", "really", "very", "too", "и", "а", "но", "что", "как", "это", "в", "во", "на", "с", "со", "к", "по", "за", "из", "у", "о", "об", "от", "до", "для", "что-то", "где", "почему", "зачем", "сейчас", "не", "ни", "же", "ли", "бы", "то", "так", "там", "тут", "вот", "ну", "или", "если", "когда", "потому", "чтобы", "мы", "вы", "он", "она", "они", "оно", "ты", "я", "мой", "моя", "мне", "меня", "его", "её", "их", "был", "была", "было", "были", "будет", "уже", "ещё", "еще", "тоже", "очень", "просто", "наверное", "может"));
-    public boolean d;
-    public boolean f1287f;
-    public a3.l f1288g;
-    public final StringBuilder f1283a = new StringBuilder();
-    public String f1284b = "";
-    public String f1285c = "";
-    public int f1286e = -1;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.hd;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.w9;
+public final class l2 extends View {
+    public long E;
+    public final Paint f1358a;
+    public final Paint f1359b;
+    public final Paint f1360c;
+    public final Paint d;
+    public final TextPaint f1361e;
+    public final Drawable f1362f;
+    public final int h;
+    public LinearGradient f1363n;
+    public LinearGradient f1364r;
+    public int f1365s;
+    public final String f1366w;
+    public final w9 f1367x;
+    public final w9 f1368y;
 
-    public static String c(String str) {
-        if (str == null) {
-            return "null";
+    public l2(Activity activity, h6 h6Var) {
+        super(activity);
+        Paint paint = new Paint(1);
+        this.f1358a = paint;
+        Paint paint2 = new Paint(1);
+        Paint paint3 = new Paint(1);
+        this.f1359b = paint3;
+        Paint paint4 = new Paint(1);
+        this.f1360c = paint4;
+        this.d = new Paint(1);
+        TextPaint textPaint = new TextPaint(1);
+        this.f1361e = textPaint;
+        this.f1366w = hd.N0(2131745045, null) + " · ";
+        this.f1367x = new w9(12);
+        this.f1368y = new w9(11);
+        int w02 = m6.w0(m6.Fi, h6Var);
+        this.h = w02;
+        m6.w0(m6.f29455j5, h6Var);
+        paint.setColor(w02);
+        paint2.setStyle(Paint.Style.STROKE);
+        paint2.setStrokeWidth(org.telegram.messenger.g0.N(1.6f));
+        paint3.setColor(w02);
+        paint3.setStrokeCap(Paint.Cap.ROUND);
+        paint3.setStrokeWidth(org.telegram.messenger.g0.N(3.0f));
+        textPaint.setTextSize(org.telegram.messenger.g0.L(17.0f));
+        Drawable mutate = activity.getResources().getDrawable(2131231508).mutate();
+        this.f1362f = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        paint4.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+    }
+
+    public static float a(float f10) {
+        return org.telegram.ui.Cells.c0.g((((float) Math.sin((f10 * 0.113f) + 0.4f)) * 0.5f) + 0.5f, 0.2f, (((((float) Math.sin((0.053f * f10) + 1.7f)) * 0.5f) + 0.5f) * 0.35f) + (((((float) Math.sin(0.021f * f10)) * 0.5f) + 0.5f) * 0.45f), 0.82f, 0.18f);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f10;
+        float f11;
+        float f12;
+        boolean z10;
+        int i7;
+        float f13;
+        float f14;
+        float f15;
+        float f16;
+        char c10;
+        float f17;
+        long min;
+        float f18;
+        float f19;
+        float f20;
+        float f21;
+        float f22;
+        float f23;
+        float f24;
+        float f25;
+        float f26;
+        boolean z11;
+        float f27;
+        float e10;
+        int i10;
+        float f28;
+        float f29;
+        float f30;
+        float f31;
+        float f32;
+        float f33;
+        float f34;
+        int width = getWidth();
+        int height = getHeight();
+        if (width <= 0) {
+            return;
         }
-        return "<" + str.length() + " chars>";
-    }
-
-    public static java.lang.String e(java.lang.String r7, java.lang.String r8) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.l2.e(java.lang.String, java.lang.String):java.lang.String");
-    }
-
-    public static String f(int i7, String str) {
-        String[] split = str.trim().split("\\s+");
-        int i10 = 0;
-        int i11 = 0;
-        while (i10 < split.length && i11 < i7) {
-            if (!k(split[i10]).isEmpty()) {
-                i11++;
+        float uptimeMillis = ((float) (SystemClock.uptimeMillis() % 1000000)) / 1000.0f;
+        float f35 = width;
+        float f36 = f35 / 2.0f;
+        float f37 = height;
+        float f38 = f37 / 2.0f;
+        float L = org.telegram.messenger.g0.L(36.0f);
+        float L2 = uptimeMillis * org.telegram.messenger.g0.L(33.0f);
+        float L3 = (f36 - L) - org.telegram.messenger.g0.L(6.0f);
+        float L4 = f36 + L + org.telegram.messenger.g0.L(10.0f);
+        int saveLayer = canvas.saveLayer(0.0f, 0.0f, f35, f37, null);
+        float L5 = org.telegram.messenger.g0.L(6.0f);
+        float f39 = L3 - (L2 % L5);
+        while (true) {
+            f10 = f36;
+            float f40 = 1.0f;
+            if (f39 <= (-L5)) {
+                break;
             }
-            i10++;
-        }
-        StringBuilder sb2 = new StringBuilder();
-        while (i10 < split.length) {
-            if (sb2.length() > 0) {
-                sb2.append(' ');
+            float f41 = 0.7f;
+            float C = a8.p0.C(L3 - f39, org.telegram.messenger.g0.L(34.0f), 1.0f, 0.0f);
+            float f42 = 0.8f * C;
+            float B = com.google.android.gms.internal.vision.e2.B(f42, C, 0.2f, (a(f39 - L2) * org.telegram.messenger.g0.L(30.0f)) + org.telegram.messenger.g0.L(6.0f));
+            Paint paint = this.f1359b;
+            paint.setAlpha((int) ((f42 + 0.2f) * 255.0f));
+            float f43 = 1.0f - C;
+            float L6 = f43 * f43 * org.telegram.messenger.g0.L(7.0f);
+            if (C > 0.75f) {
+                float f44 = f39 - L6;
+                float f45 = B / 2.0f;
+                float f46 = f38 - f45;
+                float f47 = (L6 * 0.35f) + f39;
+                float f48 = f38;
+                f33 = L5;
+                canvas.drawLine(f44, f46, f47, f48, paint);
+                canvas.drawLine(f47, f48, f44, f48 + f45, paint);
+                f34 = f48;
+            } else {
+                float f49 = f38;
+                f33 = L5;
+                float f50 = 1.0f - (C / 0.75f);
+                float f51 = B / 3.0f;
+                int i11 = 0;
+                while (i11 < 3) {
+                    float f52 = B / 2.0f;
+                    float f53 = (i11 * f51) + (f49 - f52);
+                    float f54 = ((f53 + f51) + f53) / 2.0f;
+                    float f55 = f54 - f49;
+                    float f56 = ((f40 - (f50 * f41)) * f51) / 2.0f;
+                    float abs = f39 - ((Math.abs(f55) * L6) / Math.max(f40, f52));
+                    float f57 = f54 + (f55 * 0.6f * f50);
+                    canvas.drawLine(abs, f57 - f56, abs, f57 + f56, paint);
+                    i11++;
+                    f49 = f49;
+                    f40 = f40;
+                    f41 = 0.7f;
+                }
+                f34 = f49;
             }
-            sb2.append(split[i10]);
-            i10++;
+            f39 -= f33;
+            L5 = f33;
+            f38 = f34;
+            f36 = f10;
         }
-        return sb2.toString();
-    }
-
-    public static String i(String str, String str2) {
-        String trim;
-        String str3 = "";
-        if (str == null) {
-            trim = "";
+        Canvas canvas2 = canvas;
+        float f58 = 1.0f;
+        float f59 = f38;
+        LinearGradient linearGradient = this.f1364r;
+        Paint paint2 = this.f1361e;
+        int i12 = this.h;
+        if (linearGradient != null && this.f1365s == width) {
+            f11 = L4;
         } else {
-            trim = str.trim();
+            LinearGradient linearGradient2 = new LinearGradient(L4, 0.0f, L4 + 1.0f, 0.0f, i0.a.f(0.22f, i12, -1), i0.a.f(0.22f, i12, -1), Shader.TileMode.CLAMP);
+            f11 = L4;
+            this.f1364r = linearGradient2;
+            paint2.setShader(linearGradient2);
         }
-        if (str2 != null) {
-            str3 = str2.trim();
+        canvas2.save();
+        canvas2.clipRect(f11, 0.0f, f35, f37);
+        String str = this.f1366w;
+        float measureText = paint2.measureText(str);
+        float descent = f59 - ((paint2.descent() + paint2.ascent()) / 2.0f);
+        for (float L7 = (org.telegram.messenger.g0.L(4.0f) + f11) - (measureText - ((org.telegram.messenger.g0.L(55.0f) * uptimeMillis) % measureText)); L7 < f35; L7 += measureText) {
+            canvas2.drawText(str, L7, descent, paint2);
         }
-        if (trim.isEmpty()) {
-            return str3;
-        }
-        if (str3.isEmpty()) {
-            return trim;
-        }
-        boolean z10 = true;
-        char charAt = trim.charAt(trim.length() - 1);
-        if (charAt != '.' && charAt != '?' && charAt != '!' && charAt != 8230) {
+        canvas2.restore();
+        if (this.f1363n != null && this.f1365s == width) {
+            f12 = f11;
+            f14 = f59;
+            f15 = L2;
+            i7 = saveLayer;
+            f13 = f37;
+            f16 = L;
+            c10 = 65535;
             z10 = false;
+        } else {
+            this.f1365s = width;
+            f12 = f11;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            z10 = false;
+            i7 = saveLayer;
+            f13 = f37;
+            f14 = f59;
+            f15 = L2;
+            f16 = L;
+            c10 = 65535;
+            LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, f35, 0.0f, new int[]{0, -16777216, -16777216, 0}, new float[]{0.0f, 0.22f, 0.78f, 1.0f}, tileMode);
+            this.f1363n = linearGradient3;
+            this.f1360c.setShader(linearGradient3);
+            LinearGradient linearGradient4 = new LinearGradient(f12, 0.0f, f12 + 1.0f, 0.0f, i0.a.f(0.22f, i12, -1), i0.a.f(0.22f, i12, -1), tileMode);
+            this.f1364r = linearGradient4;
+            paint2.setShader(linearGradient4);
         }
-        int codePointAt = str3.codePointAt(0);
-        if (z10) {
-            if (Character.isLowerCase(codePointAt)) {
-                str3 = new String(Character.toChars(Character.toUpperCase(codePointAt))) + str3.substring(Character.charCount(codePointAt));
+        int i13 = i12;
+        float f60 = 3.0f;
+        float f61 = descent;
+        float f62 = f14;
+        canvas2.drawRect(0.0f, 0.0f, f35, f13, this.f1360c);
+        canvas2.restoreToCount(i7);
+        long uptimeMillis2 = SystemClock.uptimeMillis();
+        long j3 = this.E;
+        if (j3 == 0) {
+            min = 16;
+            f17 = f10;
+        } else {
+            f17 = f10;
+            min = Math.min(64L, uptimeMillis2 - j3);
+        }
+        this.E = uptimeMillis2;
+        w9 w9Var = this.f1367x;
+        int i14 = (w9Var.f41686a > 0.0f ? 1 : (w9Var.f41686a == 0.0f ? 0 : -1));
+        w9 w9Var2 = this.f1368y;
+        if (i14 == 0) {
+            w9Var2.f41686a = org.telegram.messenger.g0.L(1.0f) + f16;
+            f18 = 0.6f;
+            w9Var2.f41687b = (org.telegram.messenger.g0.L(12.0f) * 0.6f) + org.telegram.messenger.g0.L(1.0f) + f16;
+            w9Var.f41686a = org.telegram.messenger.g0.L(3.0f) + f16;
+            w9Var.f41687b = (org.telegram.messenger.g0.L(10.0f) * 0.6f) + org.telegram.messenger.g0.L(3.0f) + f16;
+            w9Var2.b();
+            w9Var.b();
+            w9Var.d.setColor(i0.a.o(i13, 48));
+            w9Var2.d.setColor(i0.a.o(i13, 72));
+        } else {
+            f18 = 0.6f;
+        }
+        float a10 = (a(-f15) * f18) + 0.25f;
+        w9Var.d(true, a10);
+        w9Var2.d(false, a10);
+        w9Var.f(min);
+        w9Var2.f(min);
+        w9Var.e(w9Var.f41703t, 1.01f);
+        w9Var2.e(w9Var2.f41703t, 1.02f);
+        canvas2.save();
+        float f63 = (w9Var.f41703t * 0.5f) + 0.878f;
+        float f64 = f17;
+        canvas2.scale(f63, f63, f64, f62);
+        w9Var.a(f64, f62, canvas2, w9Var.d);
+        canvas2.restore();
+        canvas2.save();
+        float f65 = (w9Var2.f41703t * 0.5f) + 0.926f;
+        canvas2.scale(f65, f65, f64, f62);
+        w9Var2.a(f64, f62, canvas2, w9Var2.d);
+        canvas2.restore();
+        int i15 = 0;
+        while (i15 < 96) {
+            double d = i15;
+            int i16 = i13;
+            float abs2 = (float) (Math.abs(Math.sin(78.233d * d) * 43758.5453d) % 1.0d);
+            float abs3 = (float) (Math.abs(Math.sin((d * 12.9898d) + 4.1d) * 43758.5453d) % 1.0d);
+            float f66 = (((abs3 * 7.0f) + uptimeMillis) / ((1.6f * abs2) + 2.4f)) % f58;
+            if (abs3 > 0.5f) {
+                f19 = f58;
+            } else {
+                f19 = -1.0f;
             }
-        } else if (Character.isUpperCase(codePointAt)) {
-            int i7 = 0;
-            while (true) {
-                if ((i7 >= str3.length() || !Character.isLetter(str3.charAt(i7))) && (i7 >= str3.length() || str3.charAt(i7) != '\'')) {
-                    break;
-                }
-                i7++;
+            if (f66 < 0.55f) {
+                float f67 = f66 / 0.55f;
+                float f68 = f60;
+                float f69 = f67 * f67;
+                f20 = f64;
+                float g10 = org.telegram.ui.Cells.c0.g(abs2, 0.4f, f18, ((1.25f * f69) + 0.15f) * f19 * 3.1415927f, 3.1415927f);
+                f22 = 0.4f;
+                float z12 = com.google.android.gms.internal.vision.e2.z(f58, f69, (org.telegram.messenger.g0.L(18.0f) * abs2) + org.telegram.messenger.g0.L(34.0f), org.telegram.messenger.g0.L(4.0f) + f16);
+                double d2 = g10;
+                f21 = uptimeMillis;
+                float L8 = (L3 - org.telegram.messenger.g0.L(6.0f)) - (org.telegram.messenger.g0.L(26.0f) * abs2);
+                float g11 = org.telegram.ui.Cells.c0.g(org.telegram.messenger.g0.L(13.0f), abs3, org.telegram.messenger.g0.L(f68), f19, f62);
+                float min2 = Math.min(1.0f, f67 / 0.35f);
+                f23 = f61;
+                f58 = 1.0f;
+                float C2 = com.google.android.gms.internal.vision.e2.C(min2, 2.0f, f68, min2 * min2);
+                float z13 = com.google.android.gms.internal.vision.e2.z((((float) Math.cos(d2)) * z12) + f20, L8, C2, L8);
+                f26 = com.google.android.gms.internal.vision.e2.z(f62 - (((abs2 * 0.2f) + 0.62f) * (((float) Math.sin(d2)) * z12)), g11, C2, g11);
+                f25 = z13;
+                f24 = abs2;
+            } else {
+                f20 = f64;
+                f21 = uptimeMillis;
+                f22 = 0.4f;
+                f23 = f61;
+                float f70 = (f66 - 0.55f) / 0.45f;
+                float f71 = f58 - f70;
+                float f72 = f58 - (f71 * f71);
+                float L9 = (org.telegram.messenger.g0.L(16.0f) * f72) + org.telegram.messenger.g0.L(3.0f) + f16;
+                double d10 = (f58 - f72) * f19 * 0.55f * 3.1415927f;
+                f24 = abs2;
+                float cos = (((float) Math.cos(d10)) * L9) + f20;
+                float z14 = org.telegram.ui.Cells.c0.z((float) Math.sin(d10), L9, 0.7f, f62);
+                float f73 = f70 * f70;
+                float L10 = cos + ((((org.telegram.messenger.g0.L(26.0f) * f24) + (f12 + org.telegram.messenger.g0.L(8.0f))) - cos) * f73);
+                float L11 = (((((abs3 - 0.5f) * org.telegram.messenger.g0.L(4.0f)) + (f23 - org.telegram.messenger.g0.L(6.0f))) - z14) * f73) + z14;
+                f25 = L10;
+                f26 = L11;
             }
-            String substring = str3.substring(0, i7);
-            Locale locale = Locale.ROOT;
-            String lowerCase = substring.toLowerCase(locale);
-            if (str3.substring(Character.charCount(codePointAt), i7).equals(str3.substring(Character.charCount(codePointAt), i7).toLowerCase(locale)) && h.contains(lowerCase)) {
-                str3 = new String(Character.toChars(Character.toLowerCase(codePointAt))) + str3.substring(Character.charCount(codePointAt));
+            float sin = (float) Math.sin(f66 * 3.141592653589793d);
+            i13 = i16;
+            int f74 = i0.a.f((abs3 * 0.25f) + 0.12f, i13, -1);
+            Paint paint3 = this.d;
+            paint3.setColor(f74);
+            if (f24 > 0.87f) {
+                z11 = true;
+            } else {
+                z11 = false;
             }
-        }
-        return a8.p0.E(trim, " ", str3);
-    }
-
-    public static String k(String str) {
-        StringBuilder sb2 = new StringBuilder();
-        for (int i7 = 0; i7 < str.length(); i7++) {
-            char charAt = str.charAt(i7);
-            if (Character.isLetterOrDigit(charAt) || charAt == '\'') {
-                sb2.append(Character.toLowerCase(charAt));
+            if (z11) {
+                e10 = org.telegram.messenger.g0.N(1.1f);
+                f27 = 0.6f;
+            } else {
+                f27 = 0.6f;
+                e10 = org.telegram.ui.Cells.c0.e(0.6f, f24, org.telegram.messenger.g0.N(0.5f));
             }
-        }
-        return sb2.toString();
-    }
-
-    public static boolean l(String str, String str2) {
-        if (str.length() < 3 || str2.length() < 3 || !str.regionMatches(0, str2, 0, Math.min(3, Math.min(str.length(), str2.length()))) || Math.abs(str.length() - str2.length()) > 4) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean m(ArrayList arrayList, ArrayList arrayList2, int i7) {
-        if (i7 > 0 && arrayList.size() >= i7 && arrayList2.size() >= i7) {
-            for (int i10 = 0; i10 < i7; i10++) {
-                if (((String) arrayList.get(i10)).equals(arrayList2.get(i10))) {
-                }
+            float f75 = e10;
+            if (z11) {
+                float sin2 = (((float) Math.sin((f21 * 6.0f) + i15)) * f22) + f27;
+                paint3.setAlpha((int) (70.0f * sin * sin2));
+                canvas2.drawCircle(f25, f26, 3.2f * f75, paint3);
+                paint3.setAlpha((int) (sin * 255.0f * sin2));
+                f29 = 0.6f;
+                paint3.setStrokeWidth(org.telegram.messenger.g0.N(0.6f));
+                f31 = 3.0f;
+                float f76 = f75 * 3.0f * sin2;
+                i10 = i15;
+                float f77 = f26;
+                f30 = f20;
+                canvas2.drawLine(f25 - f76, f77, f25 + f76, f26, paint3);
+                float f78 = f25;
+                f28 = f25;
+                f32 = f77;
+                canvas2 = canvas;
+                canvas2.drawLine(f28, f77 - f76, f78, f77 + f76, paint3);
+            } else {
+                i10 = i15;
+                f28 = f25;
+                f29 = f27;
+                f30 = f20;
+                f31 = 3.0f;
+                f32 = f26;
             }
-            return true;
+            paint3.setAlpha((int) com.google.android.gms.internal.vision.e2.B(f24, 0.55f, 0.45f, sin * 255.0f));
+            canvas2.drawCircle(f28, f32, f75, paint3);
+            i15 = i10 + 1;
+            f64 = f30;
+            f61 = f23;
+            f60 = f31;
+            uptimeMillis = f21;
+            f18 = f29;
         }
-        return false;
-    }
-
-    public static ArrayList o(String str) {
-        ArrayList arrayList = new ArrayList();
-        if (str != null) {
-            for (String str2 : str.trim().split("\\s+")) {
-                String k10 = k(str2);
-                if (!k10.isEmpty()) {
-                    arrayList.add(k10);
-                }
-            }
-        }
-        return arrayList;
-    }
-
-    public final void a(java.lang.String r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.l2.a(java.lang.String, boolean):void");
-    }
-
-    public final void b(int i7) {
-        if (this.f1287f) {
-            d("superseded");
-        }
-        this.f1286e = i7;
-        this.f1287f = true;
-        this.f1284b = "";
-        this.f1285c = "";
-        this.d = false;
-        j("session " + i7 + " begin");
-    }
-
-    public final void d(String str) {
-        String i7 = i(this.f1284b, this.f1285c);
-        this.f1284b = "";
-        this.f1285c = "";
-        this.d = false;
-        this.f1287f = false;
-        if (!i7.isEmpty()) {
-            StringBuilder sb2 = this.f1283a;
-            String e10 = e(sb2.toString(), i7);
-            if (!e10.isEmpty()) {
-                String i10 = i(sb2.toString(), e10);
-                sb2.setLength(0);
-                sb2.append(i10);
-            }
-            j("session " + this.f1286e + " close(" + str + ") +\"" + c(e10) + "\" → " + sb2.length() + " chars");
-            return;
-        }
-        j("session " + this.f1286e + " close(" + str + ") empty");
-    }
-
-    public final void g(int i7, String str) {
-        if (!h(i7)) {
-            j("session " + i7 + " end(" + str + ") for a closed session ignored");
-            return;
-        }
-        d(str);
-    }
-
-    public final boolean h(int i7) {
-        if (this.f1287f && i7 == this.f1286e) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void j(String str) {
-        a3.l lVar = this.f1288g;
-        if (lVar != null) {
-            lVar.getClass();
-            Log.d("Dictation", str);
-        }
-    }
-
-    public final String n() {
-        return i(i(this.f1283a.toString(), this.f1284b), this.f1285c);
+        float f79 = f64;
+        canvas2.drawCircle(f79, f62, f16, this.f1358a);
+        float L12 = org.telegram.messenger.g0.L(30.0f) / 2.0f;
+        Drawable drawable = this.f1362f;
+        drawable.setBounds((int) (f79 - L12), (int) (f62 - L12), (int) (f79 + L12), (int) (f62 + L12));
+        drawable.draw(canvas2);
+        invalidate();
     }
 }

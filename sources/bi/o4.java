@@ -1,60 +1,144 @@
 package bi;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.np;
+import org.telegram.messenger.y10;
+import org.telegram.messenger.ys;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class o4 implements Runnable {
-    public final int f3974a = 0;
-    public final boolean f3975b;
-    public final int f3976c;
-    public final int d;
-    public final long f3977e;
-    public final Object f3978f;
+import org.telegram.ui.Components.a70;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.bn;
+public final class o4 implements y10 {
+    public final int f3899a = 0;
+    public final int f3900b;
+    public final long f3901c;
+    public final long d;
+    public final Object f3902e;
+    public final Object f3903f;
+    public final Object f3904g;
 
-    public o4(int i7, int i10, long j3, String str, boolean z10) {
-        this.f3978f = str;
-        this.f3976c = i7;
-        this.f3975b = z10;
-        this.f3977e = j3;
-        this.d = i10;
+    public o4(TL_stars.TL_starGiftUnique tL_starGiftUnique, String str, c1.c cVar, int i7, long j3, long j10) {
+        this.f3902e = tL_starGiftUnique;
+        this.f3903f = str;
+        this.f3904g = cVar;
+        this.f3900b = i7;
+        this.f3901c = j3;
+        this.d = j10;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f3974a;
-        Object obj = this.f3978f;
+    public final void a(Object obj) {
+        boolean z10;
+        int i7 = this.f3899a;
+        Object obj2 = this.f3904g;
+        Object obj3 = this.f3903f;
+        int i10 = this.f3900b;
+        Object obj4 = this.f3902e;
         switch (i7) {
             case 0:
-                final String str = (String) obj;
-                TL_stars.getUniqueStarGift getuniquestargift = new TL_stars.getUniqueStarGift();
-                getuniquestargift.slug = str;
-                final int i10 = this.f3976c;
-                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
-                final int i11 = this.d;
-                final long j3 = this.f3977e;
-                final boolean z10 = this.f3975b;
-                connectionsManager.sendRequest(getuniquestargift, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        org.telegram.messenger.g0.g3(new q4(tLObject, i10, z10, j3, i11, str));
+                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj4;
+                String str = (String) obj3;
+                c1.c cVar = (c1.c) obj2;
+                if (!((Boolean) obj).booleanValue()) {
+                    a5.s(tL_starGiftUnique, hd.a0(null, null, 2131749619, str));
+                    return;
+                }
+                cVar.run();
+                di.y8 y10 = di.y8.y(i10, false);
+                String str2 = tL_starGiftUnique.slug;
+                LongSparseArray longSparseArray = y10.L;
+                LongSparseArray longSparseArray2 = y10.K;
+                if (!TextUtils.isEmpty(str2)) {
+                    ArrayList arrayList = new ArrayList();
+                    for (int i11 = 0; i11 < longSparseArray.size(); i11++) {
+                        if (((di.p8) longSparseArray.valueAt(i11)).j(str2)) {
+                            arrayList.add(Long.valueOf(longSparseArray.keyAt(i11)));
+                        }
                     }
-                });
+                    for (int i12 = 0; i12 < longSparseArray2.size(); i12++) {
+                        di.n8 n8Var = (di.n8) longSparseArray2.valueAt(i12);
+                        di.p8 p8Var = n8Var.f9378g;
+                        if (p8Var != null && p8Var.j(str2)) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        for (di.p8 p8Var2 : n8Var.h.values()) {
+                            if (!z10 && !p8Var2.j(str2)) {
+                                z10 = false;
+                            } else {
+                                z10 = true;
+                            }
+                        }
+                        if (z10 && !arrayList.contains(Long.valueOf(longSparseArray2.keyAt(i12)))) {
+                            arrayList.add(Long.valueOf(longSparseArray2.keyAt(i12)));
+                        }
+                    }
+                    for (int i13 = 0; i13 < arrayList.size(); i13++) {
+                        y10.O(((Long) arrayList.get(i13)).longValue());
+                    }
+                }
+                long j3 = this.f3901c;
+                if (j3 != 0) {
+                    di.y8.y(i10, false).O(j3);
+                    a5.s(tL_starGiftUnique, hd.a0(null, null, 2131749661, str, org.telegram.messenger.n5.s(i10, j3)));
+                    return;
+                }
+                di.y8.y(i10, false).O(this.d);
+                org.telegram.ui.Wallet.u0 D = org.telegram.ui.Wallet.u0.D(i10);
+                String str3 = tL_starGiftUnique.gift_address;
+                org.telegram.ui.Wallet.h hVar = D.B;
+                org.telegram.messenger.g0.r(hVar);
+                D.f45114y = str3;
+                D.f45115z = null;
+                D.A = 0;
+                D.B().e();
+                D.H().g();
+                D.K();
+                int i14 = D.A;
+                long[] jArr = org.telegram.ui.Wallet.u0.S;
+                if (i14 < 7) {
+                    D.A = i14 + 1;
+                    org.telegram.messenger.g0.h3(hVar, jArr[i14]);
+                }
+                a5.s(tL_starGiftUnique, hd.a0(null, null, 2131749662, str));
                 return;
             default:
-                int i12 = ChatActivityEnterView.f32569s7;
-                ((ChatActivityEnterView) obj).w1(this.f3975b, this.f3976c, this.d, this.f3977e, false);
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) obj3;
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj2;
+                Integer num = (Integer) obj;
+                ((a70) obj4).v();
+                int intValue = num.intValue();
+                long j10 = this.f3901c;
+                long j11 = this.d;
+                if (intValue == 0) {
+                    if (np.u1(i10).u2(j10, j11, null)) {
+                        ys.t(i10).G(j10, j11, false);
+                    }
+                    if (lc.a(g2Var)) {
+                        lc.z(g2Var, 4, num.intValue(), h6Var).j();
+                        return;
+                    }
+                    return;
+                }
+                ys.t(i10).H(j10, num.intValue(), j11);
+                if (lc.a(g2Var)) {
+                    lc.z(g2Var, 5, num.intValue(), h6Var).j();
+                    return;
+                }
                 return;
         }
     }
 
-    public o4(ChatActivityEnterView chatActivityEnterView, boolean z10, int i7, int i10, long j3) {
-        this.f3978f = chatActivityEnterView;
-        this.f3975b = z10;
-        this.f3976c = i7;
-        this.d = i10;
-        this.f3977e = j3;
+    public o4(a70 a70Var, int i7, long j3, long j10, bn bnVar, org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f3902e = a70Var;
+        this.f3900b = i7;
+        this.f3901c = j3;
+        this.d = j10;
+        this.f3903f = bnVar;
+        this.f3904g = h6Var;
     }
 }

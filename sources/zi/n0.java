@@ -1,15 +1,15 @@
 package zi;
 public final class n0 {
-    public static final n0 f62273a;
-    public static final n0 f62274b;
-    public static final n0[] f62275c;
+    public static final n0 f62238a;
+    public static final n0 f62239b;
+    public static final n0[] f62240c;
 
     static {
         ?? r02 = new Enum("FRONT", 0);
-        f62273a = r02;
+        f62238a = r02;
         ?? r12 = new Enum("BACK", 1);
-        f62274b = r12;
-        f62275c = new n0[]{r02, r12};
+        f62239b = r12;
+        f62240c = new n0[]{r02, r12};
     }
 
     public static n0 valueOf(String str) {
@@ -17,6 +17,6 @@ public final class n0 {
     }
 
     public static n0[] values() {
-        return (n0[]) f62275c.clone();
+        return (n0[]) f62240c.clone();
     }
 }

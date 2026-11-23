@@ -1,18 +1,18 @@
 package hh;
 
-import c8.i0;
+import c8.j0;
 import gh.d;
 import org.telegram.messenger.k10;
 import org.telegram.messenger.qc;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
 public final class a implements d {
-    public final int f14192a;
-    public final h6 f14193b;
+    public final int f14155a;
+    public final h6 f14156b;
 
     public a(int i7, h6 h6Var) {
-        this.f14192a = i7;
-        this.f14193b = h6Var;
+        this.f14155a = i7;
+        this.f14156b = h6Var;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class a implements d {
         int i7;
         float f12;
         int i10;
-        switch (this.f14192a) {
+        switch (this.f14155a) {
             case 0:
-                if (!i0.d(k10.f24968t0, this.f14193b)) {
+                if (!j0.d(k10.f24932t0, this.f14156b)) {
                     return i0.a.o(m6.w0(m6.Je, h6Var), 255);
                 }
                 if (qc.e(262144)) {
@@ -34,9 +34,9 @@ public final class a implements d {
                 }
                 return m6.r1(f10, m6.w0(m6.Je, h6Var));
             case 1:
-                if (!i0.d(k10.f24968t0, this.f14193b)) {
+                if (!j0.d(k10.f24932t0, this.f14156b)) {
                     if (z10) {
-                        i7 = m6.f29661s8;
+                        i7 = m6.f29627s8;
                     } else {
                         i7 = m6.Te;
                     }
@@ -49,9 +49,9 @@ public final class a implements d {
                 }
                 return m6.r1(f11, m6.w0(m6.Te, h6Var));
             default:
-                if (!i0.d(k10.f24968t0, this.f14193b)) {
+                if (!j0.d(k10.f24932t0, this.f14156b)) {
                     if (z10) {
-                        i10 = m6.f29661s8;
+                        i10 = m6.f29627s8;
                     } else {
                         i10 = m6.Te;
                     }

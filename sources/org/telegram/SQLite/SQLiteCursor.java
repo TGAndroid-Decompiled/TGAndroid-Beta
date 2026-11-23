@@ -113,7 +113,7 @@ public class SQLiteCursor {
                     break;
                 }
                 try {
-                    if (s2.f26730a) {
+                    if (s2.f26694a) {
                         a8.b("sqlite busy, waiting...");
                     }
                     Thread.sleep(500L);

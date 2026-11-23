@@ -9,22 +9,22 @@ import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class qv0 extends Drawable {
-    public final int f38996a;
-    public final int f38997b;
-    public final p5[] f38998c;
-    public final boolean f38999e;
+    public final int f38951a;
+    public final int f38952b;
+    public final p5[] f38953c;
+    public final boolean f38954e;
     public int d = 255;
-    public final RectF f39000f = new RectF();
-    public boolean f39001g = false;
+    public final RectF f38955f = new RectF();
+    public boolean f38956g = false;
 
     public qv0(int i7, ArrayList arrayList, boolean z10) {
         int i10;
-        this.f38999e = z10;
+        this.f38954e = z10;
         int max = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
-        this.f38996a = max;
+        this.f38951a = max;
         int min = Math.min(max * max, arrayList.size());
-        this.f38997b = min;
-        this.f38998c = new p5[min];
+        this.f38952b = min;
+        this.f38953c = new p5[min];
         if (!arrayList.isEmpty()) {
             org.telegram.messenger.gj.H2((TLRPC.Document) arrayList.get(0));
         }
@@ -33,33 +33,33 @@ public final class qv0 extends Drawable {
         } else {
             i10 = 0;
         }
-        for (int i11 = 0; i11 < this.f38997b; i11++) {
-            this.f38998c[i11] = p5.l(i7, i10, (TLRPC.Document) arrayList.get(i11));
+        for (int i11 = 0; i11 < this.f38952b; i11++) {
+            this.f38953c[i11] = p5.l(i7, i10, (TLRPC.Document) arrayList.get(i11));
         }
     }
 
     public final void a(org.telegram.ui.Cells.r1 r1Var) {
-        for (int i7 = 0; i7 < this.f38997b; i7++) {
-            this.f38998c[i7].n(r1Var);
+        for (int i7 = 0; i7 < this.f38952b; i7++) {
+            this.f38953c[i7].n(r1Var);
         }
     }
 
     public final boolean b() {
-        return this.f39001g;
+        return this.f38956g;
     }
 
     public final boolean c(ArrayList arrayList) {
         long j3;
-        p5[] p5VarArr = this.f38998c;
+        p5[] p5VarArr = this.f38953c;
         if (p5VarArr.length == arrayList.size()) {
             for (int i7 = 0; i7 < p5VarArr.length; i7++) {
-                TLRPC.Document document = p5VarArr[i7].f38494e;
+                TLRPC.Document document = p5VarArr[i7].f38452e;
                 if (document == null) {
                     j3 = 0;
                 } else {
-                    j3 = document.f28440id;
+                    j3 = document.f28404id;
                 }
-                if (j3 == ((TLRPC.Document) arrayList.get(i7)).f28440id) {
+                if (j3 == ((TLRPC.Document) arrayList.get(i7)).f28404id) {
                 }
             }
             return true;
@@ -68,7 +68,7 @@ public final class qv0 extends Drawable {
     }
 
     public final void d() {
-        this.f39001g = false;
+        this.f38956g = false;
     }
 
     @Override
@@ -79,12 +79,12 @@ public final class qv0 extends Drawable {
             return;
         }
         Rect bounds = getBounds();
-        RectF rectF = this.f39000f;
+        RectF rectF = this.f38955f;
         rectF.set(bounds);
         float centerX = rectF.centerX() - (org.telegram.messenger.g0.L(48.0f) / 2.0f);
         float centerY = rectF.centerY() - (org.telegram.messenger.g0.L(48.0f) / 2.0f);
         int L = org.telegram.messenger.g0.L(48.0f);
-        int i7 = this.f38996a;
+        int i7 = this.f38951a;
         float f10 = L / i7;
         float L2 = org.telegram.messenger.g0.L(48.0f) / i7;
         canvas.save();
@@ -93,15 +93,15 @@ public final class qv0 extends Drawable {
             for (int i11 = 0; i11 < i7; i11++) {
                 int i12 = (i10 * i7) + i11;
                 if (i12 >= 0) {
-                    p5[] p5VarArr = this.f38998c;
+                    p5[] p5VarArr = this.f38953c;
                     if (i12 < p5VarArr.length && (p5Var = p5VarArr[i12]) != null) {
                         p5Var.setBounds((int) ((i11 * f10) + centerX), (int) ((i10 * L2) + centerY), (int) (((i11 + 1) * f10) + centerX), (int) (((i10 + 1) * L2) + centerY));
                         p5VarArr[i12].setAlpha(this.d);
                         p5 p5Var2 = p5VarArr[i12];
-                        if (this.f38999e) {
-                            porterDuffColorFilter = org.telegram.ui.ActionBar.m6.f29732w3;
+                        if (this.f38954e) {
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.m6.f29698w3;
                         } else {
-                            porterDuffColorFilter = org.telegram.ui.ActionBar.m6.f29713v3;
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.m6.f29679v3;
                         }
                         p5Var2.setColorFilter(porterDuffColorFilter);
                         p5VarArr[i12].draw(canvas);
@@ -113,7 +113,7 @@ public final class qv0 extends Drawable {
     }
 
     public final void e() {
-        this.f39001g = true;
+        this.f38956g = true;
     }
 
     @Override

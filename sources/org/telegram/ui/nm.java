@@ -1,14 +1,14 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class nm extends c8.oa {
-    public org.telegram.messenger.gj f50215a;
-    public int f50216b = 0;
-    public boolean f50217c = true;
+public final class nm extends c8.ra {
+    public org.telegram.messenger.gj f50219a;
+    public int f50220b = 0;
+    public boolean f50221c = true;
     public int d = 0;
-    public int f50218e;
-    public boolean f50219f;
-    public int f50220g;
+    public int f50222e;
+    public boolean f50223f;
+    public int f50224g;
     public final bn h;
 
     public nm(bn bnVar) {
@@ -17,19 +17,19 @@ public final class nm extends c8.oa {
 
     @Override
     public final void a() {
-        org.telegram.messenger.gj gjVar = this.f50215a;
+        org.telegram.messenger.gj gjVar = this.f50219a;
         bn bnVar = this.h;
         if (gjVar != null) {
             bnVar.D0.T();
-            int indexOf = bnVar.M6.indexOf(this.f50215a) + bnVar.D0.K;
+            int indexOf = bnVar.M6.indexOf(this.f50219a) + bnVar.D0.K;
             if (indexOf >= 0) {
-                bnVar.C0.i1(indexOf, (int) ((this.f50218e + this.f50220g) - bnVar.P9), this.f50219f);
+                bnVar.C0.i1(indexOf, (int) ((this.f50222e + this.f50224g) - bnVar.P9), this.f50223f);
             }
         } else {
             bnVar.D0.T();
-            bnVar.C0.i1(this.f50216b, this.d, this.f50217c);
+            bnVar.C0.i1(this.f50220b, this.d, this.f50221c);
         }
-        this.f50215a = null;
+        this.f50219a = null;
         bnVar.B3 = true;
         bnVar.Gd(false);
         org.telegram.messenger.g0.g3(new bh(this, 9));
@@ -38,9 +38,9 @@ public final class nm extends c8.oa {
     @Override
     public final void c() {
         bn bnVar = this.h;
-        bnVar.fa = bnVar.getNotificationCenter().q(bn.f45946sd, bnVar.fa, true);
+        bnVar.fa = bnVar.getNotificationCenter().q(bn.f45899sd, bnVar.fa, true);
         zj zjVar = bnVar.Ta;
-        if (zjVar.f47832n) {
+        if (zjVar.f48110n) {
             zjVar.d();
         }
     }

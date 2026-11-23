@@ -6,22 +6,22 @@ import android.os.SystemClock;
 import android.view.TextureView;
 import android.view.View;
 public final class y40 extends TextureView {
-    public final int f42315a;
-    public final Object f42316b;
+    public final int f42293a;
+    public final Object f42294b;
 
     public y40(int i7, Context context, Object obj) {
         super(context);
-        this.f42315a = i7;
-        this.f42316b = obj;
+        this.f42293a = i7;
+        this.f42294b = obj;
     }
 
     @Override
     public void invalidate() {
         zi.t0 t0Var;
-        switch (this.f42315a) {
+        switch (this.f42293a) {
             case 0:
-                b50 b50Var = (b50) this.f42316b;
-                if (!b50Var.J0 && (t0Var = b50Var.R) != null && t0Var.f62348a == 3) {
+                b50 b50Var = (b50) this.f42294b;
+                if (!b50Var.J0 && (t0Var = b50Var.R) != null && t0Var.f62313a == 3) {
                     b50Var.J0 = true;
                     try {
                         b50Var.H0 = SystemClock.elapsedRealtimeNanos();
@@ -40,14 +40,14 @@ public final class y40 extends TextureView {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f42315a) {
+        switch (this.f42293a) {
             case 1:
                 View.MeasureSpec.getSize(i7);
                 super.onMeasure(i7, i10);
                 return;
             case 2:
-                xh.e eVar = (xh.e) this.f42316b;
-                setMeasuredDimension(eVar.f60586g, eVar.h);
+                xh.e eVar = (xh.e) this.f42294b;
+                setMeasuredDimension(eVar.f60551g, eVar.h);
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -57,10 +57,10 @@ public final class y40 extends TextureView {
 
     @Override
     public void setTransform(Matrix matrix) {
-        switch (this.f42315a) {
+        switch (this.f42293a) {
             case 1:
                 super.setTransform(matrix);
-                ez ezVar = ((ee0) this.f42316b).m0;
+                ez ezVar = ((ee0) this.f42294b).m0;
                 if (ezVar != null) {
                     int width = getWidth();
                     int height = getHeight();

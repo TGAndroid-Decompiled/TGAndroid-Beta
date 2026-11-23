@@ -4,14 +4,14 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ub implements org.telegram.messenger.t10 {
-    public final qc f52517a;
-    public final int f52518b;
-    public final View f52519c;
+    public final qc f52505a;
+    public final int f52506b;
+    public final View f52507c;
 
     public ub(qc qcVar, int i7, View view) {
-        this.f52517a = qcVar;
-        this.f52518b = i7;
-        this.f52519c = view;
+        this.f52505a = qcVar;
+        this.f52506b = i7;
+        this.f52507c = view;
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class ub implements org.telegram.messenger.t10 {
         Long l10 = (Long) obj;
         Integer num = (Integer) obj2;
         TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj3;
-        qc qcVar = this.f52517a;
+        qc qcVar = this.f52505a;
         int i7 = qcVar.V;
-        int i10 = this.f52518b;
+        int i10 = this.f52506b;
         if (i10 == i7) {
-            qcVar.f51226n = l10.longValue();
+            qcVar.f51157n = l10.longValue();
             qcVar.h1(true);
-        } else if (i10 == qcVar.f51215d0) {
-            qcVar.f51240x = l10.longValue();
+        } else if (i10 == qcVar.f51146d0) {
+            qcVar.f51171x = l10.longValue();
             qcVar.i1();
-        } else if (i10 == qcVar.f51220g0) {
+        } else if (i10 == qcVar.f51151g0) {
             if (l10.longValue() == 0) {
                 qcVar.E = null;
             } else if (tL_starGiftUnique != null) {
@@ -39,8 +39,8 @@ public final class ub implements org.telegram.messenger.t10 {
                     r02.until = num.intValue();
                 }
                 qcVar.E = r02;
-                qcVar.f51233s = -1;
-                qcVar.f51240x = 0L;
+                qcVar.f51164s = -1;
+                qcVar.f51171x = 0L;
             } else {
                 TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
                 tL_emojiStatus.document_id = l10.longValue();
@@ -53,7 +53,7 @@ public final class ub implements org.telegram.messenger.t10 {
             qcVar.i1();
         }
         qcVar.e1(true);
-        ec ecVar = (ec) this.f52519c;
+        ec ecVar = (ec) this.f52507c;
         long longValue = l10.longValue();
         if (tL_starGiftUnique != null) {
             z10 = true;

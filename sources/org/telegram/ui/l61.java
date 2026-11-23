@@ -5,12 +5,12 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class l61 implements org.telegram.messenger.kc, org.telegram.ui.Components.rj0, org.telegram.ui.Components.l71, org.telegram.ui.ActionBar.q1 {
-    public final int f49510a;
-    public final x71 f49511b;
+    public final int f49486a;
+    public final x71 f49487b;
 
     public l61(x71 x71Var, int i7) {
-        this.f49510a = i7;
-        this.f49511b = x71Var;
+        this.f49486a = i7;
+        this.f49487b = x71Var;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class l61 implements org.telegram.messenger.kc, org.telegram.ui.Com
         if (view instanceof org.telegram.ui.Cells.r1) {
             org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) view;
             boolean E2 = r1Var.E2(f10);
-            x71 x71Var = this.f49511b;
+            x71 x71Var = this.f49487b;
             if (E2) {
                 if (r1Var.getMessageObject().P3()) {
                     x71Var.d1(3, true);
@@ -39,58 +39,58 @@ public final class l61 implements org.telegram.messenger.kc, org.telegram.ui.Com
 
     @Override
     public void g(int i7, int i10) {
-        x71 x71Var = this.f49511b;
+        x71 x71Var = this.f49487b;
         if (!x71Var.G1) {
             return;
         }
-        x71Var.f53784z0.getBackground();
+        x71Var.f53706z0.getBackground();
         float f10 = 1.0f;
         if (x71Var.D0 != null) {
-            f10 = (x71Var.f53784z0.getScaleX() - 1.0f) / (x71Var.A1 - 1.0f);
+            f10 = (x71Var.f53706z0.getScaleX() - 1.0f) / (x71Var.A1 - 1.0f);
         }
-        x71Var.f53784z0.setTranslationX(i7 * f10);
-        x71Var.f53784z0.setTranslationY(i10 * f10);
+        x71Var.f53706z0.setTranslationX(i7 * f10);
+        x71Var.f53706z0.setTranslationY(i10 * f10);
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
         boolean z10;
-        switch (this.f49510a) {
+        switch (this.f49486a) {
             case 3:
-                this.f49511b.f53771u0.getActionBarMenuOnItemClick().b(4);
+                this.f49487b.f53693u0.getActionBarMenuOnItemClick().b(4);
                 return;
             case 4:
-                this.f49511b.S0(false);
+                this.f49487b.S0(false);
                 return;
             case 5:
-                x71 x71Var = this.f49511b;
-                org.telegram.ui.ActionBar.j6 j6Var = x71Var.f53775w;
-                if (j6Var.f29103j == 4294967296L) {
-                    j6Var.f29103j = 0L;
-                    j6Var.f29104k = 0L;
-                    j6Var.f29105l = 0L;
-                    j6Var.f29106m = 0L;
+                x71 x71Var = this.f49487b;
+                org.telegram.ui.ActionBar.j6 j6Var = x71Var.f53697w;
+                if (j6Var.f29069j == 4294967296L) {
+                    j6Var.f29069j = 0L;
+                    j6Var.f29070k = 0L;
+                    j6Var.f29071l = 0L;
+                    j6Var.f29072m = 0L;
                     x71Var.r1(false);
                     org.telegram.ui.ActionBar.m6.t1(false, false);
                 }
-                x71Var.f53778x = true;
+                x71Var.f53700x = true;
                 org.telegram.ui.ActionBar.m6.v1(true);
                 x71Var.d1(2, false);
                 return;
             case 6:
-                x71 x71Var2 = this.f49511b;
-                org.telegram.ui.ActionBar.j6 j6Var2 = x71Var2.f53775w;
-                if (org.telegram.ui.ActionBar.m6.c1() && org.telegram.ui.ActionBar.m6.I.f29246j0.d != 0) {
-                    org.telegram.ui.ActionBar.d6 d6Var = j6Var2.f29117y;
-                    j6Var2.f29103j = d6Var.d;
-                    j6Var2.f29104k = d6Var.f28886e;
-                    j6Var2.f29105l = d6Var.f28887f;
-                    j6Var2.f29106m = d6Var.f28888g;
-                    j6Var2.f29107n = d6Var.h;
-                    String str = d6Var.f28885c;
-                    j6Var2.f29108o = str;
-                    float f10 = d6Var.f28891k;
-                    j6Var2.f29109p = f10;
+                x71 x71Var2 = this.f49487b;
+                org.telegram.ui.ActionBar.j6 j6Var2 = x71Var2.f53697w;
+                if (org.telegram.ui.ActionBar.m6.c1() && org.telegram.ui.ActionBar.m6.I.f29212j0.d != 0) {
+                    org.telegram.ui.ActionBar.d6 d6Var = j6Var2.f29083y;
+                    j6Var2.f29069j = d6Var.d;
+                    j6Var2.f29070k = d6Var.f28852e;
+                    j6Var2.f29071l = d6Var.f28853f;
+                    j6Var2.f29072m = d6Var.f28854g;
+                    j6Var2.f29073n = d6Var.h;
+                    String str = d6Var.f28851c;
+                    j6Var2.f29074o = str;
+                    float f10 = d6Var.f28857k;
+                    j6Var2.f29075p = f10;
                     x71Var2.n1 = f10;
                     if (str != null && !"c".equals(str)) {
                         int size = x71Var2.W0.size();
@@ -98,7 +98,7 @@ public final class l61 implements org.telegram.messenger.kc, org.telegram.ui.Com
                         while (true) {
                             if (i10 < size) {
                                 TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) x71Var2.W0.get(i10);
-                                if (tL_wallPaper.pattern && j6Var2.f29108o.equals(tL_wallPaper.slug)) {
+                                if (tL_wallPaper.pattern && j6Var2.f29074o.equals(tL_wallPaper.slug)) {
                                     x71Var2.Y0 = tL_wallPaper;
                                 } else {
                                     i10++;
@@ -108,7 +108,7 @@ public final class l61 implements org.telegram.messenger.kc, org.telegram.ui.Com
                     } else {
                         x71Var2.Y0 = null;
                     }
-                    x71Var2.f53778x = true;
+                    x71Var2.f53700x = true;
                     org.telegram.ui.Components.k71 k71Var = x71Var2.L0[1];
                     if (x71Var2.Y0 != null) {
                         z10 = true;
@@ -119,13 +119,13 @@ public final class l61 implements org.telegram.messenger.kc, org.telegram.ui.Com
                     x71Var2.r1(false);
                     org.telegram.ui.ActionBar.m6.t1(false, false);
                 }
-                Drawable background = x71Var2.f53784z0.getBackground();
+                Drawable background = x71Var2.f53706z0.getBackground();
                 if (background instanceof org.telegram.ui.Components.cb0) {
                     org.telegram.ui.Components.cb0 cb0Var = (org.telegram.ui.Components.cb0) background;
                     cb0Var.s(100, null);
                     if (org.telegram.ui.ActionBar.m6.I.q()) {
                         if (x71Var2.n1 < 0.0f) {
-                            x71Var2.f53784z0.getImageReceiver().m0(cb0Var.f34155k);
+                            x71Var2.f53706z0.getImageReceiver().m0(cb0Var.f34119k);
                         }
                         org.telegram.ui.Cells.i0 i0Var = x71Var2.V0;
                         if (i0Var != null) {
@@ -146,17 +146,17 @@ public final class l61 implements org.telegram.messenger.kc, org.telegram.ui.Com
                 x71Var2.d1(2, false);
                 return;
             default:
-                x71 x71Var3 = this.f49511b;
-                org.telegram.ui.ActionBar.j6 j6Var3 = x71Var3.f53775w;
-                if (j6Var3.f29103j == 4294967296L) {
-                    j6Var3.f29103j = 0L;
-                    j6Var3.f29104k = 0L;
-                    j6Var3.f29105l = 0L;
-                    j6Var3.f29106m = 0L;
+                x71 x71Var3 = this.f49487b;
+                org.telegram.ui.ActionBar.j6 j6Var3 = x71Var3.f53697w;
+                if (j6Var3.f29069j == 4294967296L) {
+                    j6Var3.f29069j = 0L;
+                    j6Var3.f29070k = 0L;
+                    j6Var3.f29071l = 0L;
+                    j6Var3.f29072m = 0L;
                     x71Var3.r1(false);
                     org.telegram.ui.ActionBar.m6.t1(false, false);
                 }
-                x71Var3.f53778x = true;
+                x71Var3.f53700x = true;
                 org.telegram.ui.ActionBar.m6.v1(true);
                 x71Var3.d1(2, false);
                 return;
@@ -165,17 +165,17 @@ public final class l61 implements org.telegram.messenger.kc, org.telegram.ui.Com
 
     @Override
     public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        x71 x71Var = this.f49511b;
+        x71 x71Var = this.f49487b;
         if (!(x71Var.D1 instanceof rc1)) {
             Drawable t6 = imageReceiver.t();
             if (z10 && t6 != null) {
-                w61 w61Var = x71Var.f53715a;
+                w61 w61Var = x71Var.f53637a;
                 org.telegram.messenger.g0.q(t6);
                 w61Var.a(x71Var.T0(t6), t6, Float.valueOf(x71Var.n1));
-                if (!z11 && x71Var.H1 && x71Var.f53783y1 == null) {
-                    x71Var.f53784z0.getImageReceiver().B0 = false;
+                if (!z11 && x71Var.H1 && x71Var.f53705y1 == null) {
+                    x71Var.f53706z0.getImageReceiver().B0 = false;
                     x71Var.n1();
-                    x71Var.f53784z0.getImageReceiver().B0 = true;
+                    x71Var.f53706z0.getImageReceiver().B0 = true;
                 }
                 x71Var.a1();
             }

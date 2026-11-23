@@ -17,44 +17,44 @@ public final class kz extends DefaultHandler {
     public boolean I;
     public int J;
     public ArrayList K;
-    public Canvas f25160a;
-    public Bitmap f25161b;
-    public final mz f25162c;
+    public Canvas f25124a;
+    public Bitmap f25125b;
+    public final mz f25126c;
     public final int d;
-    public final int f25163e;
-    public float f25164f;
+    public final int f25127e;
+    public float f25128f;
     public final Paint h;
-    public final RectF f25165n;
-    public final RectF f25166r;
-    public final Integer f25167s;
-    public final float f25168w;
-    public final int f25169x;
-    public boolean f25170y;
+    public final RectF f25129n;
+    public final RectF f25130r;
+    public final Integer f25131s;
+    public final float f25132w;
+    public final int f25133x;
+    public boolean f25134y;
 
     public kz(int i7, int i10, Integer num, boolean z10) {
         this(i7, i10, num, z10, 1.0f, 1);
     }
 
-    public final void a(ji.l r3, java.lang.Integer r4, boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.kz.a(ji.l, java.lang.Integer, boolean):void");
+    public final void a(ji.k r3, java.lang.Integer r4, boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.kz.a(ji.k, java.lang.Integer, boolean):void");
     }
 
-    public final boolean b(ji.l lVar) {
-        if (!"none".equals(lVar.L("display"))) {
-            String L = lVar.L("fill");
+    public final boolean b(ji.k kVar) {
+        if (!"none".equals(kVar.L("display"))) {
+            String L = kVar.L("fill");
             if (L != null && L.startsWith("url(#")) {
                 L.substring(5, L.length() - 1);
                 return false;
             }
-            Integer N = lVar.N("fill");
+            Integer N = kVar.N("fill");
             Paint paint = this.h;
             if (N != null) {
-                a(lVar, N, true);
+                a(kVar, N, true);
                 paint.setStyle(Paint.Style.FILL);
                 return true;
-            } else if (lVar.L("fill") == null && lVar.L("stroke") == null) {
+            } else if (kVar.L("fill") == null && kVar.L("stroke") == null) {
                 paint.setStyle(Paint.Style.FILL);
-                Integer num = this.f25167s;
+                Integer num = this.f25131s;
                 if (num != null) {
                     paint.setColor(num.intValue());
                     return true;
@@ -66,8 +66,8 @@ public final class kz extends DefaultHandler {
         return false;
     }
 
-    public final boolean c(ji.l r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.kz.c(ji.l):boolean");
+    public final boolean c(ji.k r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.kz.c(ji.k):boolean");
     }
 
     @Override
@@ -79,7 +79,7 @@ public final class kz extends DefaultHandler {
     }
 
     public final Bitmap d() {
-        return this.f25161b;
+        return this.f25125b;
     }
 
     public final ArrayList e() {
@@ -153,12 +153,12 @@ public final class kz extends DefaultHandler {
     }
 
     public final void f() {
-        if (this.f25170y) {
-            mz mzVar = this.f25162c;
+        if (this.f25134y) {
+            mz mzVar = this.f25126c;
             if (mzVar != null) {
-                mzVar.f25689a.add(null);
+                mzVar.f25653a.add(null);
             } else {
-                this.f25160a.restore();
+                this.f25124a.restore();
             }
         }
     }
@@ -171,16 +171,16 @@ public final class kz extends DefaultHandler {
         } else {
             z10 = false;
         }
-        this.f25170y = z10;
+        this.f25134y = z10;
         if (z10) {
             Matrix o4 = nz.o(l10);
-            mz mzVar = this.f25162c;
+            mz mzVar = this.f25126c;
             if (mzVar != null) {
-                mzVar.f25689a.add(o4);
+                mzVar.f25653a.add(o4);
                 return;
             }
-            this.f25160a.save();
-            this.f25160a.concat(o4);
+            this.f25124a.save();
+            this.f25124a.concat(o4);
         }
     }
 
@@ -190,22 +190,22 @@ public final class kz extends DefaultHandler {
     }
 
     public kz(int i7, int i10, Integer num, boolean z10, float f10, int i11) {
-        this.f25164f = 1.0f;
+        this.f25128f = 1.0f;
         this.h = new Paint(1);
-        this.f25165n = new RectF();
-        this.f25166r = new RectF();
-        this.f25168w = 1.0f;
-        this.f25170y = false;
+        this.f25129n = new RectF();
+        this.f25130r = new RectF();
+        this.f25132w = 1.0f;
+        this.f25134y = false;
         this.E = new HashMap();
         this.I = false;
         this.J = 0;
-        this.f25168w = f10;
+        this.f25132w = f10;
         this.d = i7;
-        this.f25163e = i10;
-        this.f25167s = num;
-        this.f25169x = i11;
+        this.f25127e = i10;
+        this.f25131s = num;
+        this.f25133x = i11;
         if (z10) {
-            this.f25162c = new mz();
+            this.f25126c = new mz();
         }
     }
 

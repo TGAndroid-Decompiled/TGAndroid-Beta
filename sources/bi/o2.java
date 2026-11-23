@@ -1,62 +1,32 @@
 package bi;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.y10;
-import org.telegram.tgnet.TLObject;
-public final class o2 implements Runnable {
-    public final int f3967a;
-    public final long f3968b;
-    public final Object f3969c;
+public final class o2 implements y10 {
+    public final int f3893a;
+    public final Object f3894b;
+    public final Object f3895c;
     public final Object d;
-    public final Object f3970e;
-    public final Object f3971f;
+    public final Object f3896e;
 
-    public o2(di.e0 e0Var, org.telegram.ui.ActionBar.t1 t1Var, TLObject tLObject, long j3, y10 y10Var) {
-        this.f3967a = 1;
-        this.d = e0Var;
-        this.f3970e = t1Var;
-        this.f3971f = tLObject;
-        this.f3968b = j3;
-        this.f3969c = y10Var;
+    public o2(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
+        this.f3893a = i7;
+        this.f3894b = obj;
+        this.f3895c = obj2;
+        this.d = obj3;
+        this.f3896e = obj4;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.o2.run():void");
+    public final void a(java.lang.Object r36) {
+        throw new UnsupportedOperationException("Method not decompiled: bi.o2.a(java.lang.Object):void");
     }
 
-    public o2(Object obj, long j3, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f3967a = i7;
-        this.d = obj;
-        this.f3968b = j3;
-        this.f3970e = obj2;
-        this.f3969c = obj3;
-        this.f3971f = obj4;
-    }
-
-    public o2(Object obj, Object obj2, long j3, Object obj3, Object obj4, int i7) {
-        this.f3967a = i7;
-        this.d = obj;
-        this.f3970e = obj2;
-        this.f3968b = j3;
-        this.f3969c = obj3;
-        this.f3971f = obj4;
-    }
-
-    public o2(Object obj, Object obj2, Object obj3, long j3, Object obj4, int i7) {
-        this.f3967a = i7;
-        this.d = obj;
-        this.f3970e = obj2;
-        this.f3969c = obj3;
-        this.f3968b = j3;
-        this.f3971f = obj4;
-    }
-
-    public o2(Object obj, Object obj2, Object obj3, Object obj4, long j3, int i7) {
-        this.f3967a = i7;
-        this.d = obj;
-        this.f3970e = obj2;
-        this.f3969c = obj3;
-        this.f3971f = obj4;
-        this.f3968b = j3;
+    public o2(AtomicBoolean atomicBoolean, org.telegram.ui.ActionBar.g2 g2Var, String str, vf.b bVar) {
+        this.f3893a = 17;
+        this.f3894b = atomicBoolean;
+        this.d = g2Var;
+        this.f3896e = str;
+        this.f3895c = bVar;
     }
 }

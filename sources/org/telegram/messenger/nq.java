@@ -3,22 +3,22 @@ package org.telegram.messenger;
 import java.util.Comparator;
 import org.telegram.messenger.support.LongSparseIntArray;
 public final class nq implements Comparator {
-    public final int f26027a;
-    public final LongSparseIntArray f26028b;
+    public final int f25991a;
+    public final LongSparseIntArray f25992b;
 
     public nq(LongSparseIntArray longSparseIntArray, int i7) {
-        this.f26027a = i7;
-        this.f26028b = longSparseIntArray;
+        this.f25991a = i7;
+        this.f25992b = longSparseIntArray;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         Long l10 = (Long) obj;
         Long l11 = (Long) obj2;
-        switch (this.f26027a) {
+        switch (this.f25991a) {
             case 0:
                 long longValue = l10.longValue();
-                LongSparseIntArray longSparseIntArray = this.f26028b;
+                LongSparseIntArray longSparseIntArray = this.f25992b;
                 int i7 = longSparseIntArray.get(longValue);
                 int i10 = longSparseIntArray.get(l11.longValue());
                 if (i7 > i10) {
@@ -30,7 +30,7 @@ public final class nq implements Comparator {
                 return 0;
             default:
                 long longValue2 = l10.longValue();
-                LongSparseIntArray longSparseIntArray2 = this.f26028b;
+                LongSparseIntArray longSparseIntArray2 = this.f25992b;
                 int i11 = longSparseIntArray2.get(longValue2);
                 int i12 = longSparseIntArray2.get(l11.longValue());
                 if (i11 < i12) {

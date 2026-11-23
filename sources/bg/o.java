@@ -1,15 +1,15 @@
 package bg;
 public final class o {
-    public final int f3339a;
-    public final String f3340b;
+    public final int f3290a;
+    public final String f3291b;
 
     public o(int i7) {
-        this.f3339a = i7;
-        this.f3340b = null;
+        this.f3290a = i7;
+        this.f3291b = null;
     }
 
     public o(String str) {
-        this.f3339a = 1;
-        this.f3340b = str;
+        this.f3290a = 1;
+        this.f3291b = str;
     }
 }

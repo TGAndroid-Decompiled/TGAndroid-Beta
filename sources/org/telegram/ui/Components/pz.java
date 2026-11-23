@@ -27,48 +27,48 @@ public final class pz extends View {
     public StaticLayout U;
     public boolean V;
     public boolean W;
-    public ValueAnimator f38689a;
-    public boolean f38690a0;
-    public oz f38691b;
-    public float f38692b0;
-    public int f38693c;
-    public int f38694c0;
+    public ValueAnimator f38643a;
+    public boolean f38644a0;
+    public oz f38645b;
+    public float f38646b0;
+    public int f38647c;
+    public int f38648c0;
     public int d;
-    public int f38695d0;
-    public int f38696e;
-    public int f38697e0;
-    public final RectF f38698f;
-    public float f38699f0;
-    public float f38700g0;
+    public int f38649d0;
+    public int f38650e;
+    public int f38651e0;
+    public final RectF f38652f;
+    public float f38653f0;
+    public float f38654g0;
     public CharSequence h;
-    public float f38701h0;
-    public float f38702i0;
-    public float f38703j0;
-    public float f38704k0;
-    public float f38705l0;
+    public float f38655h0;
+    public float f38656i0;
+    public float f38657j0;
+    public float f38658k0;
+    public float f38659l0;
     public boolean m0;
-    public boolean f38706n;
-    public final rz f38707n0;
-    public u5 f38708r;
-    public StaticLayout f38709s;
-    public int f38710w;
-    public boolean f38711x;
-    public float f38712y;
+    public boolean f38660n;
+    public final rz f38661n0;
+    public u5 f38662r;
+    public StaticLayout f38663s;
+    public int f38664w;
+    public boolean f38665x;
+    public float f38666y;
 
     public pz(rz rzVar, Context context) {
         super(context);
-        this.f38707n0 = rzVar;
-        this.f38698f = new RectF();
+        this.f38661n0 = rzVar;
+        this.f38652f = new RectF();
         this.J = -1;
     }
 
     public final void a() {
-        this.f38711x = false;
+        this.f38665x = false;
         this.I = false;
         this.V = false;
         this.H = false;
-        this.f38690a0 = false;
-        this.f38689a = null;
+        this.f38644a0 = false;
+        this.f38643a = null;
         invalidate();
     }
 
@@ -88,7 +88,7 @@ public final class pz extends View {
 
     @Override
     public int getId() {
-        return this.f38691b.f38415a;
+        return this.f38645b.f38373a;
     }
 
     @Override
@@ -99,25 +99,25 @@ public final class pz extends View {
         this.m0 = true;
         super.onAttachedToWindow();
         int i12 = 26;
-        if (this.f38691b.f38420g) {
+        if (this.f38645b.f38378g) {
             i7 = 26;
         } else {
             i7 = 0;
         }
-        this.f38708r = y5.update(i7, this, this.f38708r, this.f38709s);
-        if (this.f38691b.f38420g) {
+        this.f38662r = y5.update(i7, this, this.f38662r, this.f38663s);
+        if (this.f38645b.f38378g) {
             i10 = 26;
         } else {
             i10 = 0;
         }
         this.P = y5.update(i10, this, this.P, this.Q);
-        if (this.f38691b.f38420g) {
+        if (this.f38645b.f38378g) {
             i11 = 26;
         } else {
             i11 = 0;
         }
         this.R = y5.update(i11, this, this.R, this.S);
-        if (!this.f38691b.f38420g) {
+        if (!this.f38645b.f38378g) {
             i12 = 0;
         }
         this.T = y5.update(i12, this, this.T, this.U);
@@ -127,20 +127,20 @@ public final class pz extends View {
     public final void onDetachedFromWindow() {
         this.m0 = false;
         super.onDetachedFromWindow();
-        this.f38711x = false;
+        this.f38665x = false;
         this.I = false;
         this.V = false;
         this.H = false;
-        this.f38690a0 = false;
-        ValueAnimator valueAnimator = this.f38689a;
+        this.f38644a0 = false;
+        ValueAnimator valueAnimator = this.f38643a;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f38689a.removeAllUpdateListeners();
-            this.f38689a.cancel();
-            this.f38689a = null;
+            this.f38643a.removeAllUpdateListeners();
+            this.f38643a.cancel();
+            this.f38643a = null;
         }
         invalidate();
-        y5.release(this, this.f38708r);
+        y5.release(this, this.f38662r);
         y5.release(this, this.P);
         y5.release(this, this.R);
         y5.release(this, this.T);
@@ -157,8 +157,8 @@ public final class pz extends View {
         int i7;
         int i10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        oz ozVar = this.f38691b;
-        if (ozVar != null && (i10 = this.f38707n0.M) != -1 && ozVar.f38415a == i10) {
+        oz ozVar = this.f38645b;
+        if (ozVar != null && (i10 = this.f38661n0.M) != -1 && ozVar.f38373a == i10) {
             z10 = true;
         } else {
             z10 = false;
@@ -166,10 +166,10 @@ public final class pz extends View {
         accessibilityNodeInfo.setSelected(z10);
         accessibilityNodeInfo.addAction(16);
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, org.telegram.messenger.hd.N0(2131754815, null)));
-        if (this.f38691b != null) {
+        if (this.f38645b != null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f38691b.f38416b);
-            oz ozVar2 = this.f38691b;
+            sb2.append(this.f38645b.f38374b);
+            oz ozVar2 = this.f38645b;
             if (ozVar2 != null) {
                 i7 = ozVar2.d;
             } else {
@@ -185,6 +185,6 @@ public final class pz extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(org.telegram.messenger.g0.L(24.0f) + this.f38691b.a(false) + this.f38707n0.O, View.MeasureSpec.getSize(i10));
+        setMeasuredDimension(org.telegram.messenger.g0.L(24.0f) + this.f38645b.a(false) + this.f38661n0.O, View.MeasureSpec.getSize(i10));
     }
 }

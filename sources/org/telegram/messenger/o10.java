@@ -65,10 +65,10 @@ public abstract class o10 {
         return new TextView(context);
     }
 
-    public static hi.e g(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
-        hi.e eVar = new hi.e(context, h6Var, z10);
-        eVar.setRoundRadius(i7);
-        return eVar;
+    public static hi.d g(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
+        hi.d dVar = new hi.d(context, h6Var, z10);
+        dVar.setRoundRadius(i7);
+        return dVar;
     }
 
     public static String h(StringBuilder sb2, String str, pf.b bVar) {

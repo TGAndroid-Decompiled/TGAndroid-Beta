@@ -16,11 +16,11 @@ public final class wb0 extends yb0 {
         iVar.setSingleLine(true);
         iVar.setInputType(1);
         iVar.setTypeface(Typeface.DEFAULT);
-        org.telegram.ui.ActionBar.t6.l(iVar, 30, org.telegram.ui.ActionBar.m6.f29528l6, null);
+        org.telegram.ui.ActionBar.t6.l(iVar, 30, org.telegram.ui.ActionBar.m6.f29494l6, null);
         iVar.setCursorWidth(1.5f);
         iVar.setPadding(org.telegram.messenger.g0.L(15.0f), 0, org.telegram.messenger.g0.L(15.0f), 0);
         e(iVar);
-        addView(iVar, c8.ma.e(-1, -2, 16));
+        addView(iVar, c8.na.e(-1, -2, 16));
     }
 
     public EditTextBoldCursor getEditText() {

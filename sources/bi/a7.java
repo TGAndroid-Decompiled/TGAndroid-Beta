@@ -1,62 +1,52 @@
 package bi;
 
-import org.telegram.ui.Components.a70;
-import org.telegram.ui.Components.h51;
-public final class a7 implements Runnable {
-    public final int f3412a;
-    public final j8 f3413b;
-    public final h51[] f3414c;
-    public final a70 d;
+import java.util.Comparator;
+import org.telegram.tgnet.tl.TL_stars;
+public final class a7 implements Comparator {
+    public final int f3359a;
+    public final m8 f3360b;
 
-    public a7(j8 j8Var, h51[] h51VarArr, a70 a70Var, int i7) {
-        this.f3412a = i7;
-        this.f3413b = j8Var;
-        this.f3414c = h51VarArr;
-        this.d = a70Var;
+    public a7(m8 m8Var, int i7) {
+        this.f3359a = i7;
+        this.f3360b = m8Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f3412a) {
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f3359a) {
             case 0:
-                x7 x7Var = this.f3413b.d;
-                if (!x7Var.f4263l.isEmpty()) {
-                    x7Var.f4263l.clear();
-                    x7Var.m();
-                    h51 h51Var = this.f3414c[0];
-                    if (h51Var != null) {
-                        h51Var.f35789g3.O(true);
-                    }
-                    this.d.f33394q0 = true;
-                    return;
+                a8 a8Var = this.f3360b.d;
+                Integer num = (Integer) a8Var.f3373o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f28404id));
+                Integer num2 = (Integer) a8Var.f3373o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f28404id));
+                if (num == null) {
+                    return 1;
                 }
-                return;
+                if (num2 == null) {
+                    return -1;
+                }
+                return num2.intValue() - num.intValue();
             case 1:
-                x7 x7Var2 = this.f3413b.d;
-                if (!x7Var2.f4262k.isEmpty()) {
-                    x7Var2.f4262k.clear();
-                    x7Var2.m();
-                    h51 h51Var2 = this.f3414c[0];
-                    if (h51Var2 != null) {
-                        h51Var2.f35789g3.O(true);
-                    }
-                    this.d.f33394q0 = true;
-                    return;
+                a8 a8Var2 = this.f3360b.d;
+                Integer num3 = (Integer) a8Var2.f3372n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                Integer num4 = (Integer) a8Var2.f3372n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                if (num3 == null) {
+                    return 1;
                 }
-                return;
+                if (num4 == null) {
+                    return -1;
+                }
+                return num4.intValue() - num3.intValue();
             default:
-                x7 x7Var3 = this.f3413b.d;
-                if (!x7Var3.f4261j.isEmpty()) {
-                    x7Var3.f4261j.clear();
-                    x7Var3.m();
-                    h51 h51Var3 = this.f3414c[0];
-                    if (h51Var3 != null) {
-                        h51Var3.f35789g3.O(true);
-                    }
-                    this.d.f33394q0 = true;
-                    return;
+                a8 a8Var3 = this.f3360b.d;
+                Integer num5 = (Integer) a8Var3.f3371m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f28404id));
+                Integer num6 = (Integer) a8Var3.f3371m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f28404id));
+                if (num5 == null) {
+                    return 1;
                 }
-                return;
+                if (num6 == null) {
+                    return -1;
+                }
+                return num6.intValue() - num5.intValue();
         }
     }
 }

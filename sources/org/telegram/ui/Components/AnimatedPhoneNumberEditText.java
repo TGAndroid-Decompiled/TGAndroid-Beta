@@ -21,7 +21,7 @@ public class AnimatedPhoneNumberEditText extends j30 {
     public final ArrayList X1;
     public Boolean Y1;
     public String Z1;
-    public di.p6 f32568a2;
+    public di.p6 f32534a2;
 
     public AnimatedPhoneNumberEditText(Context context) {
         super(context);
@@ -106,7 +106,7 @@ public class AnimatedPhoneNumberEditText extends j30 {
         if (isEmpty) {
             int length = str2.length();
             di.p6 p6Var = new di.p6(this, z10, str, 18);
-            Runnable runnable = this.f32568a2;
+            Runnable runnable = this.f32534a2;
             if (runnable != null) {
                 removeCallbacks(runnable);
             }
@@ -125,15 +125,15 @@ public class AnimatedPhoneNumberEditText extends j30 {
                 r1.h hVar = new r1.h(f12);
                 hVar.b(500.0f);
                 hVar.a(1.0f);
-                hVar.f56376i = f12;
-                gVar.f56368m = hVar;
-                gVar.f56359b = 100.0f * f10;
-                gVar.f56360c = true;
+                hVar.f56341i = f12;
+                gVar.f56333m = hVar;
+                gVar.f56324b = 100.0f * f10;
+                gVar.f56325c = true;
                 arrayList2.add(gVar);
                 arrayList.add(Float.valueOf(f10));
-                postDelayed(new og(gVar, 7), i10 * 5);
+                postDelayed(new ng(gVar, 7), i10 * 5);
             }
-            this.f32568a2 = p6Var;
+            this.f32534a2 = p6Var;
             postDelayed(p6Var, (length * 5) + 150);
         }
     }

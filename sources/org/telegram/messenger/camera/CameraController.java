@@ -10,6 +10,7 @@ import android.media.MediaRecorder;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Base64;
+import bi.s1;
 import di.o3;
 import di.p6;
 import h2.n0;
@@ -262,7 +263,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                     while (i14 < numberOfCameras) {
                         Camera.getCameraInfo(i14, cameraInfo2);
                         CameraInfo cameraInfo3 = new CameraInfo(i14, cameraInfo2.facing);
-                        if (t0.f26939x && t0.E) {
+                        if (t0.f26903x && t0.E) {
                             throw new RuntimeException("APP_PAUSED");
                         }
                         Camera open = Camera.open(cameraInfo3.getCameraId());
@@ -284,7 +285,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                                 if (i18 < 2160) {
                                     parameters = parameters2;
                                     cameraInfo3.previewSizes.add(new Size(i18, i16));
-                                    if (s2.f26730a) {
+                                    if (s2.f26694a) {
                                         a8.b("preview size = " + size.width + " " + size.height);
                                     }
                                     i15++;
@@ -313,7 +314,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             Camera.Size size2 = supportedPictureSizes.get(i20);
                             if (!"samsung".equals(Build.MANUFACTURER) || !"jflteuc".equals(Build.PRODUCT) || size2.width < 2048) {
                                 cameraInfo3.pictureSizes.add(new Size(size2.width, size2.height));
-                                if (s2.f26730a) {
+                                if (s2.f26694a) {
                                     a8.b("picture size = " + size2.width + " " + size2.height);
                                 }
                             }
@@ -409,7 +410,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
     public static void lambda$openRound$9(CameraSession cameraSession, Runnable runnable, SurfaceTexture surfaceTexture, Runnable runnable2) {
         Camera camera = cameraSession.cameraInfo.camera;
         try {
-            if (s2.f26730a) {
+            if (s2.f26694a) {
                 a8.b("start creating round camera session");
             }
             if (camera == null) {
@@ -442,7 +443,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             if (runnable2 != null) {
                 g0.g3(runnable2);
             }
-            if (s2.f26730a) {
+            if (s2.f26694a) {
                 a8.b("round camera session created");
             }
         } catch (Exception e10) {
@@ -485,7 +486,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             } else if (obj instanceof Camera2Session) {
                 ((Camera2Session) obj).setRecordingVideo(true);
             }
-            g0.g3(new ai.i(this, iCameraView, file, z10, runnable));
+            g0.g3(new ai.e(this, iCameraView, file, z10, runnable));
         } catch (Exception e11) {
             a8.g(e11, true);
         }
@@ -748,14 +749,14 @@ public class CameraController implements MediaRecorder.OnInfoListener {
 
     public void open(CameraSession cameraSession, SurfaceTexture surfaceTexture, Runnable runnable, Runnable runnable2) {
         if (cameraSession != null && surfaceTexture != null) {
-            this.threadPool.execute(new ai.b(this, cameraSession, runnable2, surfaceTexture, runnable, 21));
+            this.threadPool.execute(new s1(this, cameraSession, runnable2, surfaceTexture, runnable, 20));
         }
     }
 
     public void openRound(CameraSession cameraSession, SurfaceTexture surfaceTexture, Runnable runnable, Runnable runnable2) {
         if (cameraSession != null && surfaceTexture != null) {
             this.threadPool.execute(new i(cameraSession, runnable2, surfaceTexture, runnable));
-        } else if (s2.f26730a) {
+        } else if (s2.f26694a) {
             a8.b("failed to open round " + cameraSession + " tex = " + surfaceTexture);
         }
     }

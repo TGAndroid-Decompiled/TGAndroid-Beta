@@ -1,15 +1,15 @@
 package org.telegram.ui;
 public final class hi extends vf.b {
     public final int d;
-    public final int f48405e;
-    public final org.telegram.ui.Cells.r1 f48406f;
-    public final bn f48407g;
+    public final int f48369e;
+    public final org.telegram.ui.Cells.r1 f48370f;
+    public final bn f48371g;
 
     public hi(bn bnVar, int i7, org.telegram.ui.Cells.r1 r1Var, int i10) {
         this.d = i10;
-        this.f48407g = bnVar;
-        this.f48405e = i7;
-        this.f48406f = r1Var;
+        this.f48371g = bnVar;
+        this.f48369e = i7;
+        this.f48370f = r1Var;
     }
 
     @Override
@@ -17,19 +17,19 @@ public final class hi extends vf.b {
         switch (this.d) {
             case 0:
                 if (!z10) {
-                    org.telegram.messenger.g0.h3(new ai.c1(this, this.f48405e, 26), 240L);
+                    org.telegram.messenger.g0.h3(new ai.t0(this, this.f48369e, 28), 240L);
                     return;
                 }
                 return;
             case 1:
                 if (!z10) {
-                    org.telegram.messenger.g0.h3(new ai.c1(this, this.f48405e, 29), 240L);
+                    org.telegram.messenger.g0.h3(new ii(this, this.f48369e, 1), 240L);
                     return;
                 }
                 return;
             default:
                 if (!z10) {
-                    org.telegram.messenger.g0.h3(new ii(this, this.f48405e, 0), 240L);
+                    org.telegram.messenger.g0.h3(new ii(this, this.f48369e, 2), 240L);
                     return;
                 }
                 return;
@@ -40,26 +40,26 @@ public final class hi extends vf.b {
     public final void d() {
         switch (this.d) {
             case 0:
-                int i7 = this.f48405e;
-                bn bnVar = this.f48407g;
-                bnVar.f45962ac = i7;
-                bnVar.f45977bc = 6;
-                this.f48406f.invalidate();
+                int i7 = this.f48369e;
+                bn bnVar = this.f48371g;
+                bnVar.f45915ac = i7;
+                bnVar.f45930bc = 6;
+                this.f48370f.invalidate();
                 return;
             case 1:
-                int i10 = this.f48405e;
-                bn bnVar2 = this.f48407g;
-                bnVar2.f45962ac = i10;
-                bnVar2.f45977bc = 5;
+                int i10 = this.f48369e;
+                bn bnVar2 = this.f48371g;
+                bnVar2.f45915ac = i10;
+                bnVar2.f45930bc = 5;
                 bnVar2.dc = null;
-                this.f48406f.invalidate();
+                this.f48370f.invalidate();
                 return;
             default:
-                int i11 = this.f48405e;
-                bn bnVar3 = this.f48407g;
-                bnVar3.f45962ac = i11;
-                bnVar3.f45977bc = 7;
-                this.f48406f.invalidate();
+                int i11 = this.f48369e;
+                bn bnVar3 = this.f48371g;
+                bnVar3.f45915ac = i11;
+                bnVar3.f45930bc = 7;
+                this.f48370f.invalidate();
                 return;
         }
     }

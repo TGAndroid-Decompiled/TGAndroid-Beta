@@ -1,51 +1,202 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ActionMode;
+import android.app.Activity;
+import android.text.SpannableString;
+import android.view.KeyEvent;
+import android.view.View;
 import java.util.ArrayList;
-public final class kr0 extends org.telegram.ui.Cells.b6 {
-    public final nr0 G;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class kr0 implements org.telegram.ui.Components.tx {
+    public final qr0 f49346a;
 
-    public kr0(nr0 nr0Var, Context context, int i7) {
-        super(context, i7, null, null);
-        this.G = nr0Var;
+    public kr0(qr0 qr0Var) {
+        this.f49346a = qr0Var;
     }
 
     @Override
-    public final void j(boolean z10) {
-        pr0.i0(this.G.d, this, z10);
+    public final boolean A() {
+        return false;
     }
 
     @Override
-    public final void k(org.telegram.ui.Cells.b6 b6Var) {
-        pr0.j0(this.G.d, b6Var);
+    public final long a() {
+        return 0L;
     }
 
     @Override
-    public final boolean m(ArrayList arrayList) {
-        pr0 pr0Var = this.G.d;
-        if (arrayList.isEmpty()) {
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void i(int i7) {
+        boolean z10;
+        if (i7 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        qr0 qr0Var = this.f49346a;
+        qr0Var.C0 = z10;
+        qr0Var.f51288e.requestLayout();
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        EditTextBoldCursor editField = this.f49346a.f51286c0.getEditField();
+        if (editField == null) {
             return false;
         }
-        bi.u uVar = this.d;
-        uVar.getText().replace(uVar.getSelectionStart(), uVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-        int i7 = 0;
-        while (!arrayList.isEmpty() && i7 < pr0Var.f50950n) {
-            for (int length = pr0Var.f50962w.length - 1; length > i7; length--) {
-                CharSequence[] charSequenceArr = pr0Var.f50962w;
-                charSequenceArr[length] = charSequenceArr[length - 1];
-            }
-            pr0Var.f50962w[i7] = (CharSequence) arrayList.remove(0);
-            pr0Var.E++;
-            i7++;
-        }
-        pr0Var.w0();
-        pr0Var.f50945h0 = (pr0Var.f50952o0 + i7) - 1;
-        pr0Var.f50935b.f();
+        editField.dispatchKeyEvent(new KeyEvent(0, 67));
         return true;
     }
 
     @Override
-    public final void h(bi.u uVar, ActionMode actionMode) {
+    public final void l(String str) {
+        EditTextBoldCursor editField = this.f49346a.f51286c0.getEditField();
+        if (editField == null) {
+            return;
+        }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            CharSequence m10 = org.telegram.messenger.j6.m(str, editField.getPaint().getFontMetricsInt(), false, null, 0);
+            editField.setText(editField.getText().insert(selectionEnd, m10));
+            int length = selectionEnd + m10.length();
+            editField.setSelection(length, length);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final void n() {
+        org.telegram.ui.ActionBar.h6 h6Var;
+        qr0 qr0Var = this.f49346a;
+        Activity parentActivity = qr0Var.getParentActivity();
+        h6Var = ((org.telegram.ui.ActionBar.g2) qr0Var).resourceProvider;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, parentActivity, h6Var);
+        String N0 = org.telegram.messenger.hd.N0(2131752056, null);
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
+        t1Var.S = N0;
+        t1Var.U = org.telegram.messenger.hd.N0(2131752057, null);
+        alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131752087, null), new qi0(this, 4));
+        alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131752577, null), null);
+        alertDialog$Builder.p();
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
+        org.telegram.ui.Components.y5 y5Var;
+        qr0 qr0Var = this.f49346a;
+        EditTextBoldCursor editField = qr0Var.f51286c0.getEditField();
+        if (editField == null) {
+            return;
+        }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                y5Var = new org.telegram.ui.Components.y5(document, editField.getPaint().getFontMetricsInt());
+            } else {
+                y5Var = new org.telegram.ui.Components.y5(j3, editField.getPaint().getFontMetricsInt());
+            }
+            y5Var.cacheType = qr0Var.S.f40069c;
+            spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
+            editField.setText(editField.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            editField.setSelection(length, length);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return this.f49346a.C0;
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void o(org.telegram.ui.Components.k41 k41Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i7) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j3) {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.cj cjVar, boolean z10, int i7) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i7, int i10) {
     }
 }

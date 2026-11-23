@@ -8,67 +8,67 @@ import android.view.View;
 import android.view.animation.Interpolator;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class rj extends ChatActivityEnterView {
-    public int f51588t7;
-    public int f51589u7;
-    public int f51590v7;
-    public final bn f51591w7;
+    public int f51620t7;
+    public int f51621u7;
+    public int f51622v7;
+    public final bn f51623w7;
 
     public rj(bn bnVar, Activity activity, org.telegram.ui.Components.du0 du0Var, bn bnVar2, boolean z10, org.telegram.ui.ActionBar.h6 h6Var) {
         super(activity, du0Var, bnVar2, z10, h6Var);
-        this.f51591w7 = bnVar;
+        this.f51623w7 = bnVar;
     }
 
     public final void I2() {
         org.telegram.ui.ActionBar.k kVar;
         Interpolator interpolator;
         Interpolator interpolator2;
-        bn bnVar = this.f51591w7;
+        bn bnVar = this.f51623w7;
         kVar = ((org.telegram.ui.ActionBar.g2) bnVar).actionBar;
         if (!kVar.x() && !bnVar.Y9()) {
             int backgroundTop = getBackgroundTop();
-            int i7 = bnVar.f45993d0;
-            if (i7 != 0 && backgroundTop != i7 && this.f51588t7 == bnVar.f46111m1.getMeasuredHeight()) {
-                int i10 = (this.J2 + bnVar.f45993d0) - backgroundTop;
+            int i7 = bnVar.f45946d0;
+            if (i7 != 0 && backgroundTop != i7 && this.f51620t7 == bnVar.f46064m1.getMeasuredHeight()) {
+                int i10 = (this.J2 + bnVar.f45946d0) - backgroundTop;
                 setAnimatedTop(i10);
-                this.f32683o2.invalidate();
+                this.f32649o2.invalidate();
                 ValueAnimator valueAnimator = bnVar.M9;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
                     bnVar.M9.cancel();
                 }
-                View view = this.f32743w2;
+                View view = this.f32709w2;
                 if (view != null && view.getVisibility() == 0) {
-                    this.f32743w2.setTranslationY(((1.0f - getTopViewEnterProgress()) * this.f32743w2.getLayoutParams().height) + this.J2);
+                    this.f32709w2.setTranslationY(((1.0f - getTopViewEnterProgress()) * this.f32709w2.getLayoutParams().height) + this.J2);
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(i10, 0.0f);
                 bnVar.M9 = ofFloat;
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final rj f51294b;
+                    public final rj f51227b;
 
                     {
-                        this.f51294b = this;
+                        this.f51227b = this;
                     }
 
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                         switch (r2) {
                             case 0:
-                                rj rjVar = this.f51294b;
-                                bn bnVar2 = rjVar.f51591w7;
+                                rj rjVar = this.f51227b;
+                                bn bnVar2 = rjVar.f51623w7;
                                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                                 rjVar.setAnimatedTop((int) floatValue);
-                                View view2 = rjVar.f32743w2;
+                                View view2 = rjVar.f32709w2;
                                 if (view2 != null && view2.getVisibility() == 0) {
-                                    rjVar.f32743w2.setTranslationY(((1.0f - rjVar.getTopViewEnterProgress()) * rjVar.f32743w2.getLayoutParams().height) + floatValue);
+                                    rjVar.f32709w2.setTranslationY(((1.0f - rjVar.getTopViewEnterProgress()) * rjVar.f32709w2.getLayoutParams().height) + floatValue);
                                 } else {
                                     bnVar2.M9();
                                     bnVar2.O9();
                                 }
-                                rjVar.f32683o2.invalidate();
+                                rjVar.f32649o2.invalidate();
                                 rjVar.invalidate();
                                 return;
                             default:
-                                this.f51294b.F0.setOffsetY(((Float) valueAnimator2.getAnimatedValue()).floatValue());
+                                this.f51227b.F0.setOffsetY(((Float) valueAnimator2.getAnimatedValue()).floatValue());
                                 return;
                         }
                     }
@@ -87,42 +87,42 @@ public final class rj extends ChatActivityEnterView {
                 }
                 bnVar.M9();
                 bnVar.O9();
-                bnVar.f45993d0 = 0;
-            } else if (this.f51588t7 != bnVar.f46111m1.getMeasuredHeight()) {
-                bnVar.f45993d0 = 0;
+                bnVar.f45946d0 = 0;
+            } else if (this.f51620t7 != bnVar.f46064m1.getMeasuredHeight()) {
+                bnVar.f45946d0 = 0;
             }
-            if (this.f32600d4) {
-                float scrollY = (this.f51590v7 - this.F0.getScrollY()) + (this.f51589u7 - this.F0.getMeasuredHeight());
+            if (this.f32566d4) {
+                float scrollY = (this.f51622v7 - this.F0.getScrollY()) + (this.f51621u7 - this.F0.getMeasuredHeight());
                 org.telegram.ui.Components.gf gfVar = this.F0;
                 gfVar.setOffsetY(gfVar.getOffsetY() - scrollY);
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.F0.getOffsetY(), 0.0f);
                 ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final rj f51294b;
+                    public final rj f51227b;
 
                     {
-                        this.f51294b = this;
+                        this.f51227b = this;
                     }
 
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator22) {
                         switch (r2) {
                             case 0:
-                                rj rjVar = this.f51294b;
-                                bn bnVar2 = rjVar.f51591w7;
+                                rj rjVar = this.f51227b;
+                                bn bnVar2 = rjVar.f51623w7;
                                 float floatValue = ((Float) valueAnimator22.getAnimatedValue()).floatValue();
                                 rjVar.setAnimatedTop((int) floatValue);
-                                View view2 = rjVar.f32743w2;
+                                View view2 = rjVar.f32709w2;
                                 if (view2 != null && view2.getVisibility() == 0) {
-                                    rjVar.f32743w2.setTranslationY(((1.0f - rjVar.getTopViewEnterProgress()) * rjVar.f32743w2.getLayoutParams().height) + floatValue);
+                                    rjVar.f32709w2.setTranslationY(((1.0f - rjVar.getTopViewEnterProgress()) * rjVar.f32709w2.getLayoutParams().height) + floatValue);
                                 } else {
                                     bnVar2.M9();
                                     bnVar2.O9();
                                 }
-                                rjVar.f32683o2.invalidate();
+                                rjVar.f32649o2.invalidate();
                                 rjVar.invalidate();
                                 return;
                             default:
-                                this.f51294b.F0.setOffsetY(((Float) valueAnimator22.getAnimatedValue()).floatValue());
+                                this.f51227b.F0.setOffsetY(((Float) valueAnimator22.getAnimatedValue()).floatValue());
                                 return;
                         }
                     }
@@ -140,9 +140,9 @@ public final class rj extends ChatActivityEnterView {
                 ofFloat2.setInterpolator(interpolator4);
                 ofFloat2.setStartDelay(getLineAnimationDelay());
                 ofFloat2.start();
-                this.f32600d4 = false;
+                this.f32566d4 = false;
             }
-            this.f51588t7 = bnVar.f46111m1.getMeasuredHeight();
+            this.f51620t7 = bnVar.f46064m1.getMeasuredHeight();
             return;
         }
         ValueAnimator valueAnimator4 = bnVar.N9;
@@ -153,14 +153,14 @@ public final class rj extends ChatActivityEnterView {
         if (valueAnimator5 != null) {
             valueAnimator5.cancel();
         }
-        bnVar.f45993d0 = 0;
-        this.f32600d4 = false;
+        bnVar.f45946d0 = 0;
+        this.f32566d4 = false;
     }
 
     @Override
     public final void O0(boolean z10) {
         super.O0(z10);
-        bn bnVar = this.f51591w7;
+        bn bnVar = this.f51623w7;
         af afVar = bnVar.Rb;
         if (afVar != null) {
             org.telegram.messenger.g0.g3(afVar);
@@ -170,17 +170,17 @@ public final class rj extends ChatActivityEnterView {
 
     @Override
     public final void b1(float f10) {
-        this.f51591w7.F7();
+        this.f51623w7.F7();
     }
 
     @Override
     public final void d1(int i7, int i10) {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        bn bnVar = this.f51591w7;
-        if (bnVar.f45950a0 != null) {
+        bn bnVar = this.f51623w7;
+        if (bnVar.f45903a0 != null) {
             if (bnVar.A0 != null) {
-                if (bnVar.f45976bb <= 0.0f) {
+                if (bnVar.f45929bb <= 0.0f) {
                     kVar = ((org.telegram.ui.ActionBar.g2) bnVar).actionBar;
                     if (kVar != null) {
                         kVar2 = ((org.telegram.ui.ActionBar.g2) bnVar).actionBar;
@@ -192,11 +192,11 @@ public final class rj extends ChatActivityEnterView {
                     return;
                 }
             }
-            this.f32600d4 = true;
-            this.f51589u7 = this.F0.getMeasuredHeight();
-            this.f51590v7 = this.F0.getScrollY();
-            bnVar.f46111m1.invalidate();
-            bnVar.f45993d0 = bnVar.f45950a0.getBackgroundTop();
+            this.f32566d4 = true;
+            this.f51621u7 = this.F0.getMeasuredHeight();
+            this.f51622v7 = this.F0.getScrollY();
+            bnVar.f46064m1.invalidate();
+            bnVar.f45946d0 = bnVar.f45903a0.getBackgroundTop();
         }
     }
 
@@ -210,7 +210,7 @@ public final class rj extends ChatActivityEnterView {
 
     @Override
     public final void i1() {
-        if (this.f51591w7.f45990cb != null) {
+        if (this.f51623w7.f45943cb != null) {
             return;
         }
         super.i1();
@@ -218,7 +218,7 @@ public final class rj extends ChatActivityEnterView {
 
     @Override
     public final boolean o1() {
-        if (!this.f51591w7.f46026f6) {
+        if (!this.f51623w7.f45979f6) {
             return false;
         }
         return true;
@@ -244,8 +244,8 @@ public final class rj extends ChatActivityEnterView {
     public final void setVisibility(int i7) {
         boolean z10;
         super.setVisibility(i7);
-        bn bnVar = this.f51591w7;
-        m6.n nVar = bnVar.f46084jd;
+        bn bnVar = this.f51623w7;
+        m6.n nVar = bnVar.f46037jd;
         boolean z11 = false;
         if (i7 == 0) {
             z10 = true;

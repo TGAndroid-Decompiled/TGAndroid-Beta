@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public final class xz extends org.telegram.ui.Components.zj0 {
-    public final Context f53988r;
-    public final int f53989s;
-    public final c00 f53990w;
+    public final Context f53960r;
+    public final int f53961s;
+    public final c00 f53962w;
 
     public xz(c00 c00Var, Context context, int i7) {
-        this.f53990w = c00Var;
-        this.f53988r = context;
-        this.f53989s = i7;
+        this.f53962w = c00Var;
+        this.f53960r = context;
+        this.f53961s = i7;
     }
 
     @Override
@@ -29,12 +29,12 @@ public final class xz extends org.telegram.ui.Components.zj0 {
 
     @Override
     public final int M(int i7) {
-        c00 c00Var = this.f53990w;
+        c00 c00Var = this.f53962w;
         int i10 = 1;
-        if (i7 >= c00Var.f46363n.size()) {
+        if (i7 >= c00Var.f46356n.size()) {
             return 1;
         }
-        int size = ((ArrayList) c00Var.f46368r.get(c00Var.f46363n.get(i7))).size();
+        int size = ((ArrayList) c00Var.f46361r.get(c00Var.f46356n.get(i7))).size();
         if (i7 == 0) {
             i10 = 0;
         }
@@ -48,13 +48,13 @@ public final class xz extends org.telegram.ui.Components.zj0 {
 
     @Override
     public final int P(int i7, int i10) {
-        if (i7 >= this.f53990w.f46363n.size()) {
+        if (i7 >= this.f53962w.f46356n.size()) {
             return 2;
         }
         if (i7 != 0 && i10 == 0) {
             return 0;
         }
-        int i11 = this.f53989s;
+        int i11 = this.f53961s;
         if (i11 != 2 && i11 != 4) {
             return 1;
         }
@@ -63,13 +63,13 @@ public final class xz extends org.telegram.ui.Components.zj0 {
 
     @Override
     public final int R() {
-        c00 c00Var = this.f53990w;
+        c00 c00Var = this.f53962w;
         int i7 = 0;
-        if (c00Var.f46363n.isEmpty()) {
+        if (c00Var.f46356n.isEmpty()) {
             return 0;
         }
-        int size = c00Var.f46363n.size();
-        if (!c00Var.f46363n.isEmpty() && !c00Var.O) {
+        int size = c00Var.f46356n.size();
+        if (!c00Var.f46356n.isEmpty() && !c00Var.O) {
             i7 = 1;
         }
         return size + i7;
@@ -78,24 +78,24 @@ public final class xz extends org.telegram.ui.Components.zj0 {
     @Override
     public final View T(int i7, View view) {
         if (view == null) {
-            view = new org.telegram.ui.Cells.y3(this.f53988r, null);
-            view.setBackgroundColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29401e7, false) & (-218103809));
+            view = new org.telegram.ui.Cells.y3(this.f53960r, null);
+            view.setBackgroundColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29367e7, false) & (-218103809));
         }
         if (i7 == 0) {
             view.setAlpha(0.0f);
             return view;
         }
-        c00 c00Var = this.f53990w;
-        if (i7 < c00Var.f46363n.size()) {
+        c00 c00Var = this.f53962w;
+        if (i7 < c00Var.f46356n.size()) {
             view.setAlpha(1.0f);
             org.telegram.ui.Cells.y3 y3Var = (org.telegram.ui.Cells.y3) view;
-            y3Var.setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.gj) ((ArrayList) c00Var.f46368r.get((String) c00Var.f46363n.get(i7))).get(0)).f24213k.date, false));
+            y3Var.setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.gj) ((ArrayList) c00Var.f46361r.get((String) c00Var.f46356n.get(i7))).get(0)).f24177k.date, false));
         }
         return view;
     }
 
     @Override
-    public final boolean V(int i7, int i10, v4.f1 f1Var) {
+    public final boolean V(int i7, int i10, v4.e1 e1Var) {
         if (i7 != 0 && i10 == 0) {
             return false;
         }
@@ -103,16 +103,16 @@ public final class xz extends org.telegram.ui.Components.zj0 {
     }
 
     @Override
-    public final void W(int i7, int i10, v4.f1 f1Var) {
+    public final void W(int i7, int i10, v4.e1 e1Var) {
         boolean z10;
         boolean z11;
-        c00 c00Var = this.f53990w;
-        ArrayList arrayList = c00Var.f46363n;
-        int i11 = f1Var.f59169f;
-        View view = f1Var.f59165a;
+        c00 c00Var = this.f53962w;
+        ArrayList arrayList = c00Var.f46356n;
+        int i11 = e1Var.f59115f;
+        View view = e1Var.f59111a;
         if (i11 != 2) {
-            ArrayList arrayList2 = (ArrayList) c00Var.f46368r.get((String) arrayList.get(i7));
-            int i12 = f1Var.f59169f;
+            ArrayList arrayList2 = (ArrayList) c00Var.f46361r.get((String) arrayList.get(i7));
+            int i12 = e1Var.f59115f;
             boolean z12 = false;
             if (i12 != 0) {
                 boolean z13 = true;
@@ -155,15 +155,15 @@ public final class xz extends org.telegram.ui.Components.zj0 {
                 i7Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.kk(this, i7Var, gjVar2, z12, 2));
                 return;
             }
-            ((org.telegram.ui.Cells.y3) view).setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.gj) arrayList2.get(0)).f24213k.date, false));
+            ((org.telegram.ui.Cells.y3) view).setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.gj) arrayList2.get(0)).f24177k.date, false));
         }
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         FrameLayout frameLayout;
         FrameLayout frameLayout2;
-        Context context = this.f53988r;
+        Context context = this.f53960r;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -171,7 +171,7 @@ public final class xz extends org.telegram.ui.Components.zj0 {
                     return i5.c.q(frameLayout2, frameLayout2, -1, -2);
                 }
                 org.telegram.ui.Components.yz yzVar = new org.telegram.ui.Components.yz(context, null);
-                int i10 = this.f53989s;
+                int i10 = this.f53961s;
                 if (i10 != 2 && i10 != 4) {
                     yzVar.setViewType(3);
                 } else {

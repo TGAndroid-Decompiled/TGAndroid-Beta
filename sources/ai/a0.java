@@ -1,53 +1,72 @@
 package ai;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.ui.Components.sf;
-public final class a0 implements q0, bi.a1 {
-    public final int f1113a;
-    public final p0 f1114b;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+public final class a0 implements View.OnKeyListener {
+    public final int f1115a;
+    public final FrameLayout f1116b;
 
-    public a0(p0 p0Var, int i7) {
-        this.f1113a = i7;
-        this.f1114b = p0Var;
+    public a0(int i7, FrameLayout frameLayout) {
+        this.f1115a = i7;
+        this.f1116b = frameLayout;
     }
 
     @Override
-    public void a(Canvas canvas) {
-        switch (this.f1113a) {
+    public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.g1 g1Var;
+        switch (this.f1115a) {
+            case 0:
+                bi.b1 b1Var = (bi.b1) this.f1116b;
+                if (i7 != 4) {
+                    return false;
+                }
+                if (keyEvent.getAction() == 1) {
+                    LinearLayout linearLayout = b1Var.f3394e;
+                    if (linearLayout != null && !b1Var.O) {
+                        b1Var.f3394e = null;
+                        b1Var.h(linearLayout, false);
+                    } else {
+                        b1Var.c(null);
+                    }
+                }
+                return true;
             case 1:
-                int[] iArr = new int[2];
-                int[] iArr2 = new int[2];
-                p0 p0Var = this.f1114b;
-                sf sfVar = p0Var.f1392f;
-                sfVar.f39572a.f32591c2.getLocationInWindow(iArr);
-                p0Var.f1412w.getLocationInWindow(iArr2);
-                canvas.save();
-                canvas.translate(iArr[0] - iArr2[0], iArr[1] - iArr2[1]);
-                sfVar.a(canvas);
-                canvas.restore();
-                return;
+                bi.b1 b1Var2 = (bi.b1) this.f1116b;
+                if (i7 != 4) {
+                    return false;
+                }
+                if (keyEvent.getAction() == 1) {
+                    b1Var2.c(null);
+                }
+                return true;
+            case 2:
+                bi.b1 b1Var3 = (bi.b1) this.f1116b;
+                if (i7 != 4) {
+                    return false;
+                }
+                if (keyEvent.getAction() == 1) {
+                    b1Var3.c(null);
+                }
+                return true;
+            case 3:
+                bi.b1 b1Var4 = (bi.b1) this.f1116b;
+                if (i7 != 4) {
+                    return false;
+                }
+                if (keyEvent.getAction() == 1) {
+                    b1Var4.c(null);
+                }
+                return true;
             default:
-                int[] iArr3 = new int[2];
-                int[] iArr4 = new int[2];
-                p0 p0Var2 = this.f1114b;
-                sf sfVar2 = p0Var2.f1392f;
-                sfVar2.f39572a.f32591c2.getLocationInWindow(iArr3);
-                p0Var2.f1412w.getLocationInWindow(iArr4);
-                canvas.save();
-                canvas.translate(iArr3[0] - iArr4[0], iArr3[1] - iArr4[1]);
-                sfVar2.a(canvas);
-                canvas.restore();
-                return;
+                org.telegram.ui.ActionBar.q0 q0Var = (org.telegram.ui.ActionBar.q0) this.f1116b;
+                q0Var.getClass();
+                if (i7 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && (g1Var = q0Var.d) != null && g1Var.isShowing()) {
+                    q0Var.d.d(true);
+                    return true;
+                }
+                return false;
         }
-    }
-
-    public int b(float f10, float f11) {
-        p0 p0Var = this.f1114b;
-        RectF rectF = p0Var.f1416y;
-        if (p0Var.m(rectF)) {
-            return p0Var.f1414x.a(f10, f11, rectF);
-        }
-        return 0;
     }
 }

@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.util.Xml;
 import org.xmlpull.v1.XmlPullParserException;
 public abstract class c {
-    public static final ThreadLocal f13715a = new ThreadLocal();
+    public static final ThreadLocal f13678a = new ThreadLocal();
 
     public static ColorStateList a(Resources resources, XmlResourceParser xmlResourceParser, Resources.Theme theme) {
         int next;

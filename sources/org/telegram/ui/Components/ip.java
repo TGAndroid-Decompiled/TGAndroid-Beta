@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public final class ip extends v4.d0 {
+public final class ip extends v4.c0 {
     @Override
     public final int n(int i7) {
         return super.n(i7) * 6;

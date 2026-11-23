@@ -2,22 +2,22 @@ package z8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.bc;
+import c8.cc;
 import y8.v;
 public final class f extends r6.a {
     public static final Parcelable.Creator<f> CREATOR = new v(13);
-    public long f61832a;
-    public long f61833b;
+    public long f61797a;
+    public long f61798b;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = bc.r(parcel, 20293);
-        long j3 = this.f61832a;
-        bc.q(parcel, 2, 8);
+        int r10 = cc.r(parcel, 20293);
+        long j3 = this.f61797a;
+        cc.q(parcel, 2, 8);
         parcel.writeLong(j3);
-        long j10 = this.f61833b;
-        bc.q(parcel, 3, 8);
+        long j10 = this.f61798b;
+        cc.q(parcel, 3, 8);
         parcel.writeLong(j10);
-        bc.s(parcel, r10);
+        cc.s(parcel, r10);
     }
 }

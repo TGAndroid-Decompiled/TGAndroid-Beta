@@ -7,35 +7,35 @@ import org.telegram.messenger.gj;
 import org.telegram.ui.ActionBar.g2;
 import org.telegram.ui.bn;
 public final class i0 extends FrameLayout {
-    public final g2 f5405a;
-    public final View f5406b;
-    public final boolean f5407c;
+    public final g2 f5368a;
+    public final View f5369b;
+    public final boolean f5370c;
     public final gj d;
-    public final bn f5408e;
-    public final int f5409f;
+    public final bn f5371e;
+    public final int f5372f;
     public final int h;
-    public final boolean f5410n;
-    public final float f5411r;
-    public final float f5412s;
-    public final float f5413w;
-    public final p0 f5414x;
-    public final l0 f5415y;
+    public final boolean f5373n;
+    public final float f5374r;
+    public final float f5375s;
+    public final float f5376w;
+    public final p0 f5377x;
+    public final l0 f5378y;
 
     public i0(l0 l0Var, Context context, g2 g2Var, View view, boolean z10, gj gjVar, bn bnVar, int i7, int i10, boolean z11, float f10, float f11, float f12, p0 p0Var) {
         super(context);
-        this.f5415y = l0Var;
-        this.f5405a = g2Var;
-        this.f5406b = view;
-        this.f5407c = z10;
+        this.f5378y = l0Var;
+        this.f5368a = g2Var;
+        this.f5369b = view;
+        this.f5370c = z10;
         this.d = gjVar;
-        this.f5408e = bnVar;
-        this.f5409f = i7;
+        this.f5371e = bnVar;
+        this.f5372f = i7;
         this.h = i10;
-        this.f5410n = z11;
-        this.f5411r = f10;
-        this.f5412s = f11;
-        this.f5413w = f12;
-        this.f5414x = p0Var;
+        this.f5373n = z11;
+        this.f5374r = f10;
+        this.f5375s = f11;
+        this.f5376w = f12;
+        this.f5377x = p0Var;
     }
 
     @Override
@@ -48,9 +48,9 @@ public final class i0 extends FrameLayout {
         super.onAttachedToWindow();
         int i7 = 0;
         while (true) {
-            l0 l0Var = this.f5415y;
-            if (i7 < l0Var.f5452x.size()) {
-                ((k0) l0Var.f5452x.get(i7)).f5421a.P();
+            l0 l0Var = this.f5378y;
+            if (i7 < l0Var.f5415x.size()) {
+                ((k0) l0Var.f5415x.get(i7)).f5384a.P();
                 i7++;
             } else {
                 return;
@@ -63,9 +63,9 @@ public final class i0 extends FrameLayout {
         super.onDetachedFromWindow();
         int i7 = 0;
         while (true) {
-            l0 l0Var = this.f5415y;
-            if (i7 < l0Var.f5452x.size()) {
-                ((k0) l0Var.f5452x.get(i7)).f5421a.R();
+            l0 l0Var = this.f5378y;
+            if (i7 < l0Var.f5415x.size()) {
+                ((k0) l0Var.f5415x.get(i7)).f5384a.R();
                 i7++;
             } else {
                 return;

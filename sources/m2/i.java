@@ -3,30 +3,30 @@ package m2;
 import android.media.metrics.LogSessionId;
 import android.os.Build;
 public final class i {
-    public static final i f20549c;
-    public final String f20550a;
-    public final h f20551b;
+    public static final i f20515c;
+    public final String f20516a;
+    public final h f20517b;
 
     static {
         new i("");
-        f20549c = new i("preload");
+        f20515c = new i("preload");
     }
 
     public i(String str) {
         h hVar;
-        this.f20550a = str;
+        this.f20516a = str;
         if (Build.VERSION.SDK_INT >= 31) {
             hVar = new h();
         } else {
             hVar = null;
         }
-        this.f20551b = hVar;
+        this.f20517b = hVar;
     }
 
     public final synchronized LogSessionId a() {
         h hVar;
-        hVar = this.f20551b;
+        hVar = this.f20517b;
         hVar.getClass();
-        return (LogSessionId) hVar.f20548b;
+        return (LogSessionId) hVar.f20514b;
     }
 }

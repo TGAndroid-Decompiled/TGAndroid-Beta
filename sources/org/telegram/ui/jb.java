@@ -17,22 +17,22 @@ public abstract class jb extends org.telegram.ui.Components.du0 {
         boolean z10;
         long uptimeMillis = SystemClock.uptimeMillis();
         lb lbVar = this.f48954g0;
-        if (lbVar.f49572w.Y0()) {
+        if (lbVar.f49548w.Y0()) {
             canvas.save();
             canvas.clipRect(rectF);
-            drawChild(canvas, lbVar.f49572w, uptimeMillis);
+            drawChild(canvas, lbVar.f49548w, uptimeMillis);
             canvas.restore();
             return;
         }
         canvas.save();
         canvas.clipRect(rectF);
-        canvas.translate(0.0f, lbVar.f49572w.getY());
-        lbVar.f49572w.getClass();
-        for (int i7 = 0; i7 < lbVar.f49572w.getChildCount(); i7++) {
-            View childAt = lbVar.f49572w.getChildAt(i7);
+        canvas.translate(0.0f, lbVar.f49548w.getY());
+        lbVar.f49548w.getClass();
+        for (int i7 = 0; i7 < lbVar.f49548w.getChildCount(); i7++) {
+            View childAt = lbVar.f49548w.getChildAt(i7);
             RectF rectF2 = lbVar.Q0;
-            if (rectF != null && lbVar.f49572w != null && childAt != null) {
-                rectF2.set(childAt.getX(), lbVar.f49572w.getY() + childAt.getY(), childAt.getX() + childAt.getWidth(), lbVar.f49572w.getY() + childAt.getY() + childAt.getHeight());
+            if (rectF != null && lbVar.f49548w != null && childAt != null) {
+                rectF2.set(childAt.getX(), lbVar.f49548w.getY() + childAt.getY(), childAt.getX() + childAt.getWidth(), lbVar.f49548w.getY() + childAt.getY() + childAt.getHeight());
                 z10 = !rectF2.intersect(rectF);
             } else {
                 z10 = false;
@@ -49,7 +49,7 @@ public abstract class jb extends org.telegram.ui.Components.du0 {
                         canvas.restore();
                     }
                     canvas.restore();
-                    lbVar.f49572w.drawChild(canvas, childAt, uptimeMillis);
+                    lbVar.f49548w.drawChild(canvas, childAt, uptimeMillis);
                     if (r1Var.k2()) {
                         canvas.save();
                         canvas.translate(r1Var.getX(), r1Var.getY());
@@ -57,17 +57,17 @@ public abstract class jb extends org.telegram.ui.Components.du0 {
                         canvas.restore();
                     }
                 } else if (childAt instanceof org.telegram.ui.Cells.v0) {
-                    lbVar.f49572w.drawChild(canvas, childAt, uptimeMillis);
+                    lbVar.f49548w.drawChild(canvas, childAt, uptimeMillis);
                     canvas.save();
                     canvas.translate(childAt.getX(), childAt.getY());
                     ((org.telegram.ui.Cells.v0) childAt).I(canvas);
                     canvas.restore();
                 } else {
-                    lbVar.f49572w.drawChild(canvas, childAt, uptimeMillis);
+                    lbVar.f49548w.drawChild(canvas, childAt, uptimeMillis);
                 }
             }
         }
-        lbVar.f49572w.getClass();
+        lbVar.f49548w.getClass();
         canvas.restore();
     }
 }

@@ -2,92 +2,92 @@ package s4;
 
 import android.os.Bundle;
 public final class q0 extends q implements n0 {
-    public final String f57061a;
-    public final String f57062b;
-    public boolean f57063c;
+    public final String f57026a;
+    public final String f57027b;
+    public boolean f57028c;
     public int d = -1;
-    public int f57064e;
-    public m0 f57065f;
-    public int f57066g;
+    public int f57029e;
+    public m0 f57030f;
+    public int f57031g;
     public final r0 h;
 
     public q0(r0 r0Var, String str, String str2) {
         this.h = r0Var;
-        this.f57061a = str;
-        this.f57062b = str2;
+        this.f57026a = str;
+        this.f57027b = str2;
     }
 
     @Override
     public final void a(m0 m0Var) {
-        this.f57065f = m0Var;
-        int i7 = m0Var.f57038e;
-        m0Var.f57038e = i7 + 1;
+        this.f57030f = m0Var;
+        int i7 = m0Var.f57003e;
+        m0Var.f57003e = i7 + 1;
         Bundle bundle = new Bundle();
-        bundle.putString("routeId", this.f57061a);
-        bundle.putString("routeGroupId", this.f57062b);
+        bundle.putString("routeId", this.f57026a);
+        bundle.putString("routeGroupId", this.f57027b);
         int i10 = m0Var.d;
         m0Var.d = i10 + 1;
         m0Var.b(3, i10, i7, null, bundle);
-        this.f57066g = i7;
-        if (this.f57063c) {
+        this.f57031g = i7;
+        if (this.f57028c) {
             m0Var.a(i7);
             int i11 = this.d;
             if (i11 >= 0) {
-                m0Var.c(this.f57066g, i11);
+                m0Var.c(this.f57031g, i11);
                 this.d = -1;
             }
-            int i12 = this.f57064e;
+            int i12 = this.f57029e;
             if (i12 != 0) {
-                m0Var.d(this.f57066g, i12);
-                this.f57064e = 0;
+                m0Var.d(this.f57031g, i12);
+                this.f57029e = 0;
             }
         }
     }
 
     @Override
     public final int b() {
-        return this.f57066g;
+        return this.f57031g;
     }
 
     @Override
     public final void c() {
-        m0 m0Var = this.f57065f;
+        m0 m0Var = this.f57030f;
         if (m0Var != null) {
-            int i7 = this.f57066g;
+            int i7 = this.f57031g;
             int i10 = m0Var.d;
             m0Var.d = i10 + 1;
             m0Var.b(4, i10, i7, null, null);
-            this.f57065f = null;
-            this.f57066g = 0;
+            this.f57030f = null;
+            this.f57031g = 0;
         }
     }
 
     @Override
     public final void d() {
         r0 r0Var = this.h;
-        r0Var.f57072w.remove(this);
+        r0Var.f57037w.remove(this);
         c();
         r0Var.r();
     }
 
     @Override
     public final void e() {
-        this.f57063c = true;
-        m0 m0Var = this.f57065f;
+        this.f57028c = true;
+        m0 m0Var = this.f57030f;
         if (m0Var != null) {
-            m0Var.a(this.f57066g);
+            m0Var.a(this.f57031g);
         }
     }
 
     @Override
     public final void f(int i7) {
-        m0 m0Var = this.f57065f;
+        m0 m0Var = this.f57030f;
         if (m0Var != null) {
-            m0Var.c(this.f57066g, i7);
+            m0Var.c(this.f57031g, i7);
             return;
         }
         this.d = i7;
-        this.f57064e = 0;
+        this.f57029e = 0;
     }
 
     @Override
@@ -97,10 +97,10 @@ public final class q0 extends q implements n0 {
 
     @Override
     public final void h(int i7) {
-        this.f57063c = false;
-        m0 m0Var = this.f57065f;
+        this.f57028c = false;
+        m0 m0Var = this.f57030f;
         if (m0Var != null) {
-            int i10 = this.f57066g;
+            int i10 = this.f57031g;
             Bundle f10 = p5.c.f(i7, "unselectReason");
             int i11 = m0Var.d;
             m0Var.d = i11 + 1;
@@ -110,11 +110,11 @@ public final class q0 extends q implements n0 {
 
     @Override
     public final void i(int i7) {
-        m0 m0Var = this.f57065f;
+        m0 m0Var = this.f57030f;
         if (m0Var != null) {
-            m0Var.d(this.f57066g, i7);
+            m0Var.d(this.f57031g, i7);
         } else {
-            this.f57064e += i7;
+            this.f57029e += i7;
         }
     }
 }

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class wt implements tx {
-    public final yt f41891a;
+    public final yt f41855a;
 
     public wt(yt ytVar) {
-        this.f41891a = ytVar;
+        this.f41855a = ytVar;
     }
 
     @Override
@@ -46,16 +46,16 @@ public final class wt implements tx {
     @Override
     public final void i(int i7) {
         boolean z10;
-        yt ytVar = this.f41891a;
+        yt ytVar = this.f41855a;
         if (ytVar.b()) {
             if (i7 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            ytVar.f42544y = z10;
+            ytVar.f42505y = z10;
             ytVar.y();
-            du0 du0Var = ytVar.f42538f;
+            du0 du0Var = ytVar.f42499f;
             if (du0Var != null) {
                 du0Var.R();
             }
@@ -69,7 +69,7 @@ public final class wt implements tx {
 
     @Override
     public final boolean k() {
-        tt ttVar = this.f41891a.f42534a;
+        tt ttVar = this.f41855a.f42495a;
         if (ttVar.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class wt implements tx {
 
     @Override
     public final void l(String str) {
-        tt ttVar = this.f41891a.f42534a;
+        tt ttVar = this.f41855a.f42495a;
         int selectionEnd = ttVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -96,10 +96,10 @@ public final class wt implements tx {
 
     @Override
     public final void n() {
-        yt ytVar = this.f41891a;
+        yt ytVar = this.f41855a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ytVar.getContext(), ytVar.N);
         String N0 = org.telegram.messenger.hd.N0(2131752056, null);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.S = N0;
         t1Var.U = org.telegram.messenger.hd.N0(2131752057, null);
         alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131752087, null), new c0(this, 27));
@@ -119,9 +119,9 @@ public final class wt implements tx {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.g2 g2Var = this.f41891a.h;
+        org.telegram.ui.ActionBar.g2 g2Var = this.f41855a.h;
         if (g2Var == null) {
-            new ug.y0((org.telegram.ui.ActionBar.g2) new bi.b9(this, 6), 11, false).show();
+            new ug.y0((org.telegram.ui.ActionBar.g2) new bi.e9(this, 6), 11, false).show();
         } else {
             g2Var.showDialog(new ug.y0(g2Var, 11, false));
         }
@@ -130,8 +130,8 @@ public final class wt implements tx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         y5 y5Var;
-        yt ytVar = this.f41891a;
-        tt ttVar = ytVar.f42534a;
+        yt ytVar = this.f41855a;
+        tt ttVar = ytVar.f42495a;
         int selectionEnd = ttVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -143,7 +143,7 @@ public final class wt implements tx {
             } else {
                 y5Var = new y5(j3, ttVar.getPaint().getFontMetricsInt());
             }
-            y5Var.cacheType = ytVar.d.f40086c;
+            y5Var.cacheType = ytVar.d.f40069c;
             spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
             ttVar.setText(ttVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -157,7 +157,7 @@ public final class wt implements tx {
 
     @Override
     public final boolean z() {
-        return this.f41891a.f42544y;
+        return this.f41855a.f42505y;
     }
 
     @Override

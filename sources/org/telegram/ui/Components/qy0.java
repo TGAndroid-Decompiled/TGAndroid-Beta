@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import java.io.File;
 import org.telegram.tgnet.TLRPC;
 public final class qy0 {
-    public final File f39012a;
-    public long f39013b;
-    public long f39014c;
+    public final File f38967a;
+    public long f38968b;
+    public long f38969c;
     public boolean d;
-    public boolean f39015e;
-    public TLRPC.InputFile f39016f;
-    public TLRPC.InputEncryptedFile f39017g;
+    public boolean f38970e;
+    public TLRPC.InputFile f38971f;
+    public TLRPC.InputEncryptedFile f38972g;
     public byte[] h;
-    public byte[] f39018i;
+    public byte[] f38973i;
 
     public qy0(File file) {
-        this.f39012a = file;
+        this.f38967a = file;
     }
 }

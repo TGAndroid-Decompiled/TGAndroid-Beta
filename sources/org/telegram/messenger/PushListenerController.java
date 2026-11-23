@@ -624,7 +624,7 @@ public class PushListenerController {
 
     public static void lambda$processRemoteMessage$4(int i7) {
         rd f10 = rd.f(i7);
-        if (f10.f26591b.isEmpty()) {
+        if (f10.f26555b.isEmpty()) {
             return;
         }
         f10.I = SystemClock.elapsedRealtime() + 65000;
@@ -640,11 +640,11 @@ public class PushListenerController {
     }
 
     public static void lambda$processRemoteMessage$7(String str, String str2, long j3) {
-        if (s2.f26730a) {
+        if (s2.f26694a) {
             a8.b(str + " PRE INIT APP");
         }
         t0.w();
-        if (s2.f26730a) {
+        if (s2.f26694a) {
             a8.b(str + " POST INIT APP");
         }
         Utilities.d.c(new nt(j3, str, str2, 0));
@@ -659,14 +659,14 @@ public class PushListenerController {
         String str2;
         ConnectionsManager.setRegId(str, i7, cz.h);
         if (str != null) {
-            if (cz.f23412i != 0 && cz.f23415j != 0 && (!cz.f23418k || !TextUtils.equals(cz.f23407g, str))) {
-                cz.f23418k = false;
+            if (cz.f23376i != 0 && cz.f23379j != 0 && (!cz.f23382k || !TextUtils.equals(cz.f23371g, str))) {
+                cz.f23382k = false;
                 z10 = true;
             } else {
                 z10 = false;
             }
-            cz.f23407g = str;
-            cz.f23404f = i7;
+            cz.f23371g = str;
+            cz.f23368f = i7;
             for (int i10 = 0; i10 < 4; i10++) {
                 k10 i11 = k10.i(i10);
                 i11.d = false;
@@ -680,18 +680,18 @@ public class PushListenerController {
                         }
                         TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
                         TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                        tL_inputAppEvent.time = cz.f23412i;
+                        tL_inputAppEvent.time = cz.f23376i;
                         tL_inputAppEvent.type = str2.concat("_token_request");
                         tL_inputAppEvent.peer = 0L;
                         tL_inputAppEvent.data = new TLRPC.TL_jsonNull();
                         tL_help_saveAppLog.events.add(tL_inputAppEvent);
                         TLRPC.TL_inputAppEvent tL_inputAppEvent2 = new TLRPC.TL_inputAppEvent();
-                        tL_inputAppEvent2.time = cz.f23415j;
+                        tL_inputAppEvent2.time = cz.f23379j;
                         tL_inputAppEvent2.type = str2.concat("_token_response");
-                        tL_inputAppEvent2.peer = cz.f23415j - cz.f23412i;
+                        tL_inputAppEvent2.peer = cz.f23379j - cz.f23376i;
                         tL_inputAppEvent2.data = new TLRPC.TL_jsonNull();
                         tL_help_saveAppLog.events.add(tL_inputAppEvent2);
-                        cz.f23418k = true;
+                        cz.f23382k = true;
                         cz.y();
                         ConnectionsManager.getInstance(i10).sendRequest(tL_help_saveAppLog, null);
                         z10 = false;
@@ -720,7 +720,7 @@ public class PushListenerController {
             str2 = "HCM";
         }
         String str3 = str2;
-        if (s2.f26730a) {
+        if (s2.f26694a) {
             a8.b(str3.concat(" PRE START PROCESSING"));
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
@@ -729,7 +729,7 @@ public class PushListenerController {
             countDownLatch.await();
         } catch (Throwable unused) {
         }
-        boolean z10 = s2.f26730a;
+        boolean z10 = s2.f26694a;
         StringBuilder u10 = a8.p0.u("finished ", str3, " service, time = ");
         u10.append(SystemClock.elapsedRealtime() - elapsedRealtime);
         a8.b(u10.toString());

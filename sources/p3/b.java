@@ -1,6 +1,6 @@
 package p3;
 
-import c8.da;
+import c8.ea;
 import d4.f;
 import e2.q0;
 import h2.x;
@@ -9,20 +9,20 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-public final class b extends da {
-    public final int f55191a;
+public final class b extends ea {
+    public final int f55156a;
 
     public static q3.a c(x xVar) {
         String v = xVar.v();
         v.getClass();
         String v10 = xVar.v();
         v10.getClass();
-        return new q3.a(v, v10, xVar.u(), xVar.u(), Arrays.copyOfRange(xVar.f13865a, xVar.f13866b, xVar.f13867c));
+        return new q3.a(v, v10, xVar.u(), xVar.u(), Arrays.copyOfRange(xVar.f13828a, xVar.f13829b, xVar.f13830c));
     }
 
     @Override
     public final q0 b(o3.a aVar, ByteBuffer byteBuffer) {
-        switch (this.f55191a) {
+        switch (this.f55156a) {
             case 0:
                 if (byteBuffer.get() != 116) {
                     return null;

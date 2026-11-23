@@ -21,14 +21,14 @@ import org.json.JSONObject;
 import q6.m;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
-    public static final Charset f60481e = Charset.forName("UTF-8");
-    public final Context f60482a;
-    public final ua.b f60483b;
-    public final d f60484c = new d();
+    public static final Charset f60446e = Charset.forName("UTF-8");
+    public final Context f60447a;
+    public final ua.b f60448b;
+    public final d f60449c = new d();
 
     public c(Context context, ua.b bVar) {
-        this.f60482a = context;
-        this.f60483b = bVar;
+        this.f60447a = context;
+        this.f60448b = bVar;
     }
 
     public static URL a(String str) {
@@ -44,7 +44,7 @@ public final class c {
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f60481e));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f60446e));
             try {
                 StringBuilder sb2 = new StringBuilder();
                 while (true) {
@@ -90,7 +90,7 @@ public final class c {
 
     public static a e(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f60481e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f60446e));
         byte b10 = (byte) (0 | 1);
         jsonReader.beginObject();
         String str = null;
@@ -138,7 +138,7 @@ public final class c {
 
     public static b f(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f60481e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f60446e));
         byte b10 = (byte) (0 | 1);
         jsonReader.beginObject();
         String str = null;

@@ -1,55 +1,55 @@
 package hi;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.y10;
-public final class e1 implements y10 {
-    public final int f14584a;
-    public final i2 f14585b;
+import android.content.DialogInterface;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.wr;
+import org.telegram.ui.Components.pz0;
+import org.telegram.ui.f40;
+public final class e1 implements DialogInterface.OnDismissListener {
+    public final int f14497a;
 
-    public e1(i2 i2Var, int i7) {
-        this.f14584a = i7;
-        this.f14585b = i2Var;
+    public e1(int i7) {
+        this.f14497a = i7;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f14584a;
-        i2 i2Var = this.f14585b;
-        Integer num = (Integer) obj;
-        switch (i7) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f14497a) {
             case 0:
-                org.telegram.ui.ActionBar.m2 m2Var = i2Var.f30179c;
-                boolean z10 = i2Var.f14782v1;
-                boolean z11 = i2Var.d;
-                if (z10 != z11) {
-                    i2Var.f14782v1 = z11;
-                    m2Var.clearAnimation();
-                    float f10 = 0.0f;
-                    if (i2Var.d) {
-                        int i10 = org.telegram.messenger.g0.f24046q.y;
-                        int i11 = i2Var.f30187f;
-                        f10 = Math.min(0.0f, Math.max(((i10 - i11) * 0.3f) - i2Var.f14785y1, (-i11) / 3.0f));
-                    }
-                    m2Var.animate().translationY(f10).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.i1.f29005w).start();
-                    return;
-                }
+                int i7 = i2.C1;
                 return;
             case 1:
-                i1 i1Var = i2Var.f14777q1;
-                ValueAnimator valueAnimator = i1Var.T;
-                if ((valueAnimator == null || !valueAnimator.isRunning()) && i1Var.getCurrentPosition() != num.intValue()) {
-                    i1Var.A(num.intValue());
-                    h2 h2Var = i2Var.f14778r1;
-                    h2Var.G = num.intValue();
-                    h2Var.invalidate();
-                    return;
-                }
+                org.telegram.ui.b.f45684a = false;
+                return;
+            case 2:
+                return;
+            case 3:
+                wr.f27758j.edit().putInt("dismissed_count", wr.f27758j.getInt("dismissed_count", 0) + 1).apply();
+                return;
+            case 4:
+                int i10 = pz0.f38667e;
+                return;
+            case 5:
+                f40 f40Var = f40.C5;
+                return;
+            case 6:
+                return;
+            case 7:
+                org.telegram.utils.twidget.n0.f54862i = false;
                 return;
             default:
-                int intValue = num.intValue();
-                int i12 = i2.C1;
-                i2Var.N0(intValue);
+                MediaController.f22687h2 = false;
                 return;
         }
+    }
+
+    public e1(boolean[] zArr) {
+        this.f14497a = 2;
+    }
+
+    private final void a(DialogInterface dialogInterface) {
+    }
+
+    private final void b(DialogInterface dialogInterface) {
     }
 }

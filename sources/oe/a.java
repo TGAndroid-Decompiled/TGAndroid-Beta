@@ -1,15 +1,15 @@
 package oe;
 public final class a implements ke.a {
-    public static final a f21815a = new Object();
-    public static final n f21816b = new n("kotlin.Boolean", me.b.f20996b);
+    public static final a f21781a = new Object();
+    public static final n f21782b = new n("kotlin.Boolean", me.b.f20962b);
 
     @Override
     public final void a(qe.h hVar, Object obj) {
         boolean booleanValue = ((Boolean) obj).booleanValue();
-        if (hVar.f56162a) {
+        if (hVar.f56127a) {
             hVar.j(String.valueOf(booleanValue));
         } else {
-            ((mc.a) ((ca.i) hVar.f56163b).f5155c).c(String.valueOf(booleanValue));
+            ((mc.a) ((ca.i) hVar.f56128b).f5118c).c(String.valueOf(booleanValue));
         }
     }
 
@@ -68,6 +68,6 @@ public final class a implements ke.a {
 
     @Override
     public final me.d d() {
-        return f21816b;
+        return f21782b;
     }
 }

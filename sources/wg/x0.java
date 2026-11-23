@@ -5,18 +5,18 @@ import org.telegram.messenger.hd;
 import org.telegram.messenger.si;
 import org.telegram.ui.sg0;
 public final class x0 implements Runnable {
-    public final int f59898a;
-    public final e1 f59899b;
+    public final int f59863a;
+    public final e1 f59864b;
 
     public x0(e1 e1Var, int i7) {
-        this.f59898a = i7;
-        this.f59899b = e1Var;
+        this.f59863a = i7;
+        this.f59864b = e1Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f59898a;
-        e1 e1Var = this.f59899b;
+        int i7 = this.f59863a;
+        e1 e1Var = this.f59864b;
         switch (i7) {
             case 0:
                 e1Var.i1(true);
@@ -41,9 +41,9 @@ public final class x0 implements Runnable {
                 e1Var.m1(true, false);
                 return;
             case 6:
-                ArrayList arrayList = e1Var.f59791e2;
+                ArrayList arrayList = e1Var.f59756e2;
                 if (arrayList.isEmpty()) {
-                    arrayList.addAll(si.d0(e1Var.f30173a).f26834j1);
+                    arrayList.addAll(si.d0(e1Var.f30139a).f26798j1);
                     e1Var.l1(true, true);
                     return;
                 }

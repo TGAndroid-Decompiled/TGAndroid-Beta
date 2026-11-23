@@ -2,15 +2,15 @@ package j6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.bc;
+import c8.cc;
 import f7.t0;
 import java.util.Arrays;
 public final class c extends r6.a {
     public static final Parcelable.Creator<c> CREATOR = new t0(29);
-    public final String f17272a;
+    public final String f17238a;
 
     public c(String str) {
-        this.f17272a = str;
+        this.f17238a = str;
     }
 
     public final boolean equals(Object obj) {
@@ -20,17 +20,17 @@ public final class c extends r6.a {
         if (!(obj instanceof c)) {
             return false;
         }
-        return a.d(this.f17272a, ((c) obj).f17272a);
+        return a.d(this.f17238a, ((c) obj).f17238a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f17272a});
+        return Arrays.hashCode(new Object[]{this.f17238a});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = bc.r(parcel, 20293);
-        bc.l(parcel, 2, this.f17272a);
-        bc.s(parcel, r10);
+        int r10 = cc.r(parcel, 20293);
+        cc.l(parcel, 2, this.f17238a);
+        cc.s(parcel, r10);
     }
 }

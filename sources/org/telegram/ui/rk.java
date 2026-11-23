@@ -8,19 +8,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class rk implements Runnable {
-    public final int f51594a = 1;
-    public final int f51595b;
-    public final int f51596c;
+    public final int f51626a = 1;
+    public final int f51627b;
+    public final int f51628c;
     public final boolean d;
-    public final Object f51597e;
-    public final Object f51598f;
+    public final Object f51629e;
+    public final Object f51630f;
     public final Serializable h;
 
     public rk(h2.c cVar, Bitmap bitmap, int i7, int i10, String str, boolean z10) {
-        this.f51597e = cVar;
-        this.f51598f = bitmap;
-        this.f51595b = i7;
-        this.f51596c = i10;
+        this.f51629e = cVar;
+        this.f51630f = bitmap;
+        this.f51627b = i7;
+        this.f51628c = i10;
         this.h = str;
         this.d = z10;
     }
@@ -32,25 +32,25 @@ public final class rk implements Runnable {
         int i10;
         int i11;
         Rect rect;
-        int i12 = this.f51594a;
+        int i12 = this.f51626a;
         Serializable serializable = this.h;
-        int i13 = this.f51596c;
-        int i14 = this.f51595b;
-        Object obj = this.f51598f;
-        Object obj2 = this.f51597e;
+        int i13 = this.f51628c;
+        int i14 = this.f51627b;
+        Object obj = this.f51630f;
+        Object obj2 = this.f51629e;
         switch (i12) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
                 ArrayList arrayList2 = (ArrayList) serializable;
-                bn bnVar = ((sk) obj2).f52064b;
+                bn bnVar = ((sk) obj2).f52033b;
                 if (this.d) {
                     i7 = ((org.telegram.ui.ActionBar.g2) bnVar).currentAccount;
-                    org.telegram.messenger.np.u1(i7).f25857g7.edit().remove("pin_" + bnVar.f46103l6).commit();
+                    org.telegram.messenger.np.u1(i7).f25821g7.edit().remove("pin_" + bnVar.f46056l6).commit();
                     bnVar.gd(0, true);
                     gcVar = null;
                 } else {
                     gcVar = null;
-                    bnVar.getNotificationCenter().k(56, Long.valueOf(bnVar.f46103l6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(bnVar.f46037g5));
+                    bnVar.getNotificationCenter().k(56, Long.valueOf(bnVar.f46056l6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(bnVar.f45990g5));
                 }
                 if (i13 == bnVar.R3) {
                     bnVar.P3 = gcVar;
@@ -62,7 +62,7 @@ public final class rk implements Runnable {
                 Bitmap bitmap = (Bitmap) obj;
                 String str = (String) serializable;
                 Paint paint = (Paint) cVar.d;
-                int i15 = cVar.f13761a;
+                int i15 = cVar.f13724a;
                 if (bitmap != null && !bitmap.isRecycled()) {
                     float width = bitmap.getWidth() / bitmap.getHeight();
                     int round = (int) Math.round(Math.sqrt(width * 324.0f));
@@ -109,7 +109,7 @@ public final class rk implements Runnable {
                         canvas.drawRect(f12, f10, f14, f13, paint);
                         canvas.drawRect(0.0f, f13, f14, i18 + i15, paint);
                     }
-                    org.telegram.messenger.g0.g3(new ai.i(cVar, str, createBitmap, this.d, bitmap));
+                    org.telegram.messenger.g0.g3(new ai.e(cVar, str, createBitmap, this.d, bitmap));
                     return;
                 }
                 return;
@@ -117,11 +117,11 @@ public final class rk implements Runnable {
     }
 
     public rk(sk skVar, boolean z10, ArrayList arrayList, ArrayList arrayList2, int i7, int i10) {
-        this.f51597e = skVar;
+        this.f51629e = skVar;
         this.d = z10;
-        this.f51598f = arrayList;
+        this.f51630f = arrayList;
         this.h = arrayList2;
-        this.f51595b = i7;
-        this.f51596c = i10;
+        this.f51627b = i7;
+        this.f51628c = i10;
     }
 }

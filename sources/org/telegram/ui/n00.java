@@ -2,5 +2,5 @@ package org.telegram.ui;
 
 import android.widget.LinearLayout;
 public abstract class n00 extends LinearLayout {
-    public static final float f50058a = 1.0f;
+    public static final float f50040a = 1.0f;
 }

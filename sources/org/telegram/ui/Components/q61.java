@@ -2,6 +2,6 @@ package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
 public final class q61 {
-    public Bitmap f38796a;
-    public float f38797b;
+    public Bitmap f38750a;
+    public float f38751b;
 }

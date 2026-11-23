@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import c8.ma;
+import c8.na;
 import java.util.ArrayList;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.k10;
@@ -22,48 +22,48 @@ import org.telegram.ui.Components.nr;
 import org.telegram.ui.i2;
 import org.telegram.ui.ih0;
 public final class p0 extends LinearLayout {
-    public final ArrayList f59853a;
-    public final n0 f59854b;
-    public final FrameLayout f59855c;
+    public final ArrayList f59818a;
+    public final n0 f59819b;
+    public final FrameLayout f59820c;
     public final FrameLayout d;
-    public final m80 f59856e;
+    public final m80 f59821e;
 
     public p0(Context context) {
         super(context);
-        this.f59853a = new ArrayList();
+        this.f59818a = new ArrayList();
         setOrientation(1);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f59855c = frameLayout;
+        this.f59820c = frameLayout;
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         this.d = frameLayout2;
         frameLayout2.setClipChildren(false);
-        frameLayout.addView(frameLayout2, ma.d(-1, 70.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(frameLayout2, na.d(-1, 70.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
         ih0 ih0Var = new ih0(context, 21);
         ImageView imageView = new ImageView(ih0Var.getContext());
         imageView.setImageResource(2131232058);
         t6.s(imageView, m6.E6, null, PorterDuff.Mode.SRC_ATOP);
         ih0Var.addView(imageView);
-        frameLayout.addView(ih0Var, ma.e(24, 24, 17));
+        frameLayout.addView(ih0Var, na.e(24, 24, 17));
         n0 n0Var = new n0(context);
-        this.f59854b = n0Var;
+        this.f59819b = n0Var;
         n0Var.setLayerType(2, null);
-        frameLayout.addView(n0Var, ma.e(70, 70, 17));
-        addView(frameLayout, ma.k(0.0f, 15.0f, 0.0f, 0.0f, -1, 70));
+        frameLayout.addView(n0Var, na.e(70, 70, 17));
+        addView(frameLayout, na.k(0.0f, 15.0f, 0.0f, 0.0f, -1, 70));
         TextView textView = new TextView(context);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setText(hd.N0(2131753318, null));
         textView.setTextSize(1, 20.0f);
         t6.U(textView, m6.G6, null);
-        addView(textView, ma.t(-2, -2, 1, 0, 15, 0, 7));
+        addView(textView, na.t(-2, -2, 1, 0, 15, 0, 7));
         m80 m80Var = new m80(getContext(), null);
-        this.f59856e = m80Var;
+        this.f59821e = m80Var;
         m80Var.setTextSize(1, 14.0f);
         m80Var.setGravity(1);
-        t6.U(m80Var, m6.f29489j5, null);
+        t6.U(m80Var, m6.f29455j5, null);
         m80Var.setLineSpacing(m80Var.getLineSpacingExtra(), m80Var.getLineSpacingMultiplier() * 1.1f);
-        addView(m80Var, ma.t(-2, -2, 1, 28, 0, 28, 18));
+        addView(m80Var, na.t(-2, -2, 1, 28, 0, 28, 18));
     }
 
     public final void a(ArrayList arrayList, TLRPC.Chat chat) {
@@ -81,15 +81,15 @@ public final class p0 extends LinearLayout {
         while (i12 < size) {
             Object obj = arrayList.get(i12);
             i12++;
-            arrayList3.add(np.u1(k10.f24968t0).O0(Long.valueOf(-n5.o(((TL_stories.TL_myBoost) obj).peer))));
+            arrayList3.add(np.u1(k10.f24932t0).O0(Long.valueOf(-n5.o(((TL_stories.TL_myBoost) obj).peer))));
         }
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
-        nr nrVar = nr.f37960f;
+        nr nrVar = nr.f37917f;
         int size2 = arrayList3.size();
         int i13 = 0;
         while (true) {
-            arrayList2 = this.f59853a;
+            arrayList2 = this.f59818a;
             if (i13 >= size2) {
                 break;
             }
@@ -136,11 +136,11 @@ public final class p0 extends LinearLayout {
             n0 n0Var3 = new n0(getContext());
             n0Var3.setLayerType(2, null);
             n0Var3.d = chat4;
-            b9 b9Var = n0Var3.f59845e;
+            b9 b9Var = n0Var3.f59810e;
             b9Var.q(chat4);
-            n0Var3.f59842a.f(chat4, b9Var);
+            n0Var3.f59807a.f(chat4, b9Var);
             int size5 = arrayList6.size();
-            frameLayout.addView(n0Var3, i11, ma.e(70, 70, 17));
+            frameLayout.addView(n0Var3, i11, na.e(70, 70, 17));
             n0Var3.setTranslationX(org.telegram.messenger.g0.L(23.0f) * (-size5));
             n0Var3.setAlpha(0.0f);
             n0Var3.setScaleX(0.1f);
@@ -148,7 +148,7 @@ public final class p0 extends LinearLayout {
             ArrayList arrayList7 = arrayList5;
             n0Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setInterpolator(nrVar).setDuration(200).start();
             if (size5 == 0) {
-                i2 i2Var = n0Var3.f59843b;
+                i2 i2Var = n0Var3.f59808b;
                 i2Var.setScaleY(1.0f);
                 i2Var.setScaleX(1.0f);
                 i2Var.setAlpha(1.0f);
@@ -202,9 +202,9 @@ public final class p0 extends LinearLayout {
                 i7 = size6;
                 if (i5.c.h(1, arrayList6) == n0Var && arrayList6.size() > 1) {
                     c11 = 2;
-                    ((n0) i5.c.h(2, arrayList6)).f59843b.setScaleY(0.1f);
-                    ((n0) arrayList6.get(arrayList6.size() - 2)).f59843b.setScaleX(0.1f);
-                    ((n0) arrayList6.get(arrayList6.size() - 2)).f59843b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(nrVar).start();
+                    ((n0) i5.c.h(2, arrayList6)).f59808b.setScaleY(0.1f);
+                    ((n0) arrayList6.get(arrayList6.size() - 2)).f59808b.setScaleX(0.1f);
+                    ((n0) arrayList6.get(arrayList6.size() - 2)).f59808b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j3).setInterpolator(nrVar).start();
                     c10 = c11;
                     size6 = i7;
                 } else {
@@ -217,16 +217,16 @@ public final class p0 extends LinearLayout {
             c10 = c11;
             size6 = i7;
         }
-        n0 n0Var5 = this.f59854b;
+        n0 n0Var5 = this.f59819b;
         if (n0Var5.d == null) {
             n0Var5.d = chat;
-            b9 b9Var2 = n0Var5.f59845e;
+            b9 b9Var2 = n0Var5.f59810e;
             b9Var2.q(chat);
-            n0Var5.f59842a.f(chat, b9Var2);
+            n0Var5.f59807a.f(chat, b9Var2);
         }
         arrayList2.removeAll(arrayList4);
         arrayList2.addAll(arrayList8);
-        FrameLayout frameLayout2 = this.f59855c;
+        FrameLayout frameLayout2 = this.f59820c;
         frameLayout2.animate().cancel();
         if (!arrayList2.isEmpty() && arrayList2.size() != 1) {
             frameLayout2.animate().setInterpolator(nrVar).translationX(org.telegram.messenger.g0.L(11.5f) * (arrayList2.size() - 1)).setDuration(200).start();

@@ -1,17 +1,9 @@
 package bi;
 
-import org.telegram.messenger.y10;
-public final class t6 implements y10 {
-    public final int f4128a;
-    public final j8 f4129b;
-
-    public t6(j8 j8Var, int i7) {
-        this.f4128a = i7;
-        this.f4129b = j8Var;
-    }
-
+import org.telegram.ui.Components.h51;
+public final class t6 extends h51 {
     @Override
-    public final void a(java.lang.Object r15) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.t6.a(java.lang.Object):void");
+    public final Integer V0(int i7) {
+        return 0;
     }
 }

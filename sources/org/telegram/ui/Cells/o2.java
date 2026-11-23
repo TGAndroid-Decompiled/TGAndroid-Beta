@@ -3,34 +3,34 @@ package org.telegram.ui.Cells;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class o2 extends AnimatorListenerAdapter {
-    public final int f31195a;
-    public final u2 f31196b;
+    public final int f31161a;
+    public final u2 f31162b;
 
     public o2(u2 u2Var, int i7) {
-        this.f31195a = i7;
-        this.f31196b = u2Var;
+        this.f31161a = i7;
+        this.f31162b = u2Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i7;
         int i10;
-        switch (this.f31195a) {
+        switch (this.f31161a) {
             case 0:
-                u2 u2Var = this.f31196b;
+                u2 u2Var = this.f31162b;
                 u2Var.W3 = 1.0f;
                 u2Var.Z3 = null;
-                u2Var.f31926a4 = null;
-                u2Var.f31932b4 = null;
+                u2Var.f31892a4 = null;
+                u2Var.f31898b4 = null;
                 u2Var.invalidate();
                 return;
             case 1:
-                u2 u2Var2 = this.f31196b;
+                u2 u2Var2 = this.f31162b;
                 u2Var2.X3 = 1.0f;
                 u2Var2.invalidate();
                 return;
             default:
-                u2 u2Var3 = this.f31196b;
+                u2 u2Var3 = this.f31162b;
                 boolean z10 = u2Var3.T2;
                 if (u2Var3.R2) {
                     i7 = 2;
@@ -44,12 +44,12 @@ public final class o2 extends AnimatorListenerAdapter {
                     i10 = 0;
                 }
                 int i12 = i11 + i10;
-                int i13 = u2Var3.f32036w4;
+                int i13 = u2Var3.f32002w4;
                 if (i13 != i12) {
                     u2Var3.F(i13, i12);
                 } else {
                     u2Var3.A4 = false;
-                    u2Var3.f32048y4 = i13;
+                    u2Var3.f32014y4 = i13;
                 }
                 u2Var3.invalidate();
                 return;

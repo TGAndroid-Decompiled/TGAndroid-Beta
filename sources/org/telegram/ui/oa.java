@@ -4,32 +4,32 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 public final class oa implements eh.a {
-    public final int f50531a;
-    public final Object f50532b;
+    public final int f50516a;
+    public final Object f50517b;
 
     public oa(Object obj, int i7) {
-        this.f50531a = i7;
-        this.f50532b = obj;
+        this.f50516a = i7;
+        this.f50517b = obj;
     }
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        switch (this.f50531a) {
+        switch (this.f50516a) {
             case 0:
             case 1:
             case 2:
             case 3:
             case 4:
             default:
-                aVar.f8401a = true;
+                aVar.f8364a = true;
                 return;
         }
     }
 
     @Override
     public final void d(Canvas canvas, RectF rectF) {
-        int i7 = this.f50531a;
-        Object obj = this.f50532b;
+        int i7 = this.f50516a;
+        Object obj = this.f50517b;
         switch (i7) {
             case 0:
                 ((jb) obj).X(canvas, rectF);
@@ -39,8 +39,8 @@ public final class oa implements eh.a {
                 return;
             case 2:
                 PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) obj;
-                org.telegram.ui.Components.ek0 ek0Var = premiumPreviewFragment.f43465a;
-                ih.d.a(ek0Var, canvas, rectF, ek0Var, premiumPreviewFragment.f43473e0);
+                org.telegram.ui.Components.ek0 ek0Var = premiumPreviewFragment.f43430a;
+                ih.d.a(ek0Var, canvas, rectF, ek0Var, premiumPreviewFragment.f43438e0);
                 return;
             case 3:
                 View view = (View) obj;
@@ -51,7 +51,7 @@ public final class oa implements eh.a {
                 canvas.restore();
                 return;
             case 4:
-                zw0 zw0Var = ((ProfileActivity) obj).f43578d1;
+                zw0 zw0Var = ((ProfileActivity) obj).f43543d1;
                 zw0Var.P = true;
                 zw0Var.draw(canvas);
                 zw0Var.P = false;

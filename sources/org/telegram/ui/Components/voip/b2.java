@@ -14,7 +14,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import c8.ma;
+import c8.na;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -51,14 +51,14 @@ import org.telegram.ui.Components.q31;
 import org.telegram.ui.Components.u9;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.f40;
-import org.telegram.ui.ru0;
+import org.telegram.ui.su0;
 public abstract class b2 {
-    public static long f40916a;
+    public static long f40878a;
 
     public static boolean a(TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
         TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = tL_messageActionPhoneCall.reason;
         if (!(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy) && !(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed)) {
-            for (String str : np.u1(k10.f24968t0).f25857g7.getStringSet("calls_access_hashes", Collections.EMPTY_SET)) {
+            for (String str : np.u1(k10.f24932t0).f25821g7.getStringSet("calls_access_hashes", Collections.EMPTY_SET)) {
                 String[] split = str.split(" ");
                 if (split.length >= 2) {
                     String str2 = split[0];
@@ -81,12 +81,12 @@ public abstract class b2 {
             if (user == null && chat == null) {
                 return;
             }
-            if (SystemClock.elapsedRealtime() - f40916a < (chat != null ? 200 : 2000)) {
+            if (SystemClock.elapsedRealtime() - f40878a < (chat != null ? 200 : 2000)) {
                 return;
             }
-            if (z14 && chat != null && !z13 && (P02 = np.u1(cVar.f23202a).P0(chat.f28434id)) != null && (peer = P02.groupcall_default_join_as) != null) {
-                final TLRPC.InputPeer l1 = np.u1(cVar.f23202a).l1(gj.B1(peer));
-                i70.K0(activity, -chat.f28434id, cVar, new mr() {
+            if (z14 && chat != null && !z13 && (P02 = np.u1(cVar.f23166a).P0(chat.f28398id)) != null && (peer = P02.groupcall_default_join_as) != null) {
+                final TLRPC.InputPeer l1 = np.u1(cVar.f23166a).l1(gj.B1(peer));
+                i70.K0(activity, -chat.f28398id, cVar, new mr() {
                     @Override
                     public final void d(boolean z17) {
                         String str2 = str;
@@ -110,14 +110,14 @@ public abstract class b2 {
                     }
                 });
             } else if (z14 && chat != null) {
-                i70.L0(activity, -chat.f28434id, cVar, g2Var, !z13 ? 1 : 0, null, new u1(z13, activity, cVar, chat, str, user, z11, z12, g2Var));
+                i70.L0(activity, -chat.f28398id, cVar, g2Var, !z13 ? 1 : 0, null, new u1(z13, activity, cVar, chat, str, user, z11, z12, g2Var));
             } else if (z15 && !z10 && (inputPeer instanceof TLRPC.TL_inputPeerUser) && chat != null && (tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.anonymous && (!v3.T(chat) || chat.megagroup)) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-                String N0 = hd.N0(v3.W(chat) ? 2131743202 : 2131743061, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                String N0 = hd.N0(v3.W(chat) ? 2131743204 : 2131743063, null);
+                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                 t1Var.S = N0;
-                t1Var.U = hd.N0(v3.W(chat) ? 2131743232 : 2131743124, null);
-                alertDialog$Builder.k(hd.N0(2131743197, null), new org.telegram.ui.ActionBar.q1() {
+                t1Var.U = hd.N0(v3.W(chat) ? 2131743234 : 2131743126, null);
+                alertDialog$Builder.k(hd.N0(2131743199, null), new org.telegram.ui.ActionBar.q1() {
                     @Override
                     public final void h(org.telegram.ui.ActionBar.t1 t1Var2, int i7) {
                         b2.b(TLRPC.User.this, chat, str, inputPeer, false, z11, z12, z13, activity, g2Var, cVar, false, false, false);
@@ -125,7 +125,7 @@ public abstract class b2 {
                 });
                 i5.c.y(null, 2131752577, alertDialog$Builder, null);
             } else {
-                if (chat != null && inputPeer != null && (P0 = np.u1(cVar.f23202a).P0(chat.f28434id)) != null) {
+                if (chat != null && inputPeer != null && (P0 = np.u1(cVar.f23166a).P0(chat.f28398id)) != null) {
                     if (inputPeer instanceof TLRPC.TL_inputPeerUser) {
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                         P0.groupcall_default_join_as = tL_peerUser;
@@ -145,16 +145,16 @@ public abstract class b2 {
                         P0.flags |= 67108864;
                     }
                 }
-                if (chat != null && !z13 && (i12 = np.u1(cVar.f23202a).i1(chat.f28434id, false, null)) != null && i12.j()) {
+                if (chat != null && !z13 && (i12 = np.u1(cVar.f23166a).i1(chat.f28398id, false, null)) != null && i12.j()) {
                     f40.f1((LaunchActivity) activity, cVar, chat, inputPeer, z10, str);
                     return;
                 }
-                f40916a = SystemClock.elapsedRealtime();
+                f40878a = SystemClock.elapsedRealtime();
                 Intent intent = new Intent(activity, VoIPService.class);
                 if (user != null) {
-                    intent.putExtra("user_id", user.f28583id);
+                    intent.putExtra("user_id", user.f28547id);
                 } else {
-                    intent.putExtra("chat_id", chat.f28434id);
+                    intent.putExtra("chat_id", chat.f28398id);
                     intent.putExtra("createGroupCall", z13);
                     intent.putExtra("hasFewPeers", z10);
                     intent.putExtra("isRtmpStream", z16);
@@ -170,7 +170,7 @@ public abstract class b2 {
                 intent.putExtra("start_incall_activity", true);
                 intent.putExtra("video_call", z11);
                 intent.putExtra("can_video_call", z12);
-                intent.putExtra("account", k10.f24968t0);
+                intent.putExtra("account", k10.f24932t0);
                 try {
                     activity.startService(intent);
                 } catch (Throwable th2) {
@@ -181,9 +181,9 @@ public abstract class b2 {
     }
 
     public static int c() {
-        boolean z10 = a6.q(0).K.f28298f;
-        boolean z11 = a6.q(0).L.f28298f;
-        boolean z12 = a6.q(0).M.f28298f;
+        boolean z10 = a6.q(0).K.f28262f;
+        boolean z11 = a6.q(0).L.f28262f;
+        boolean z12 = a6.q(0).M.f28262f;
         if (z10 || z11 || z12) {
             if (z10 && !z11 && !z12) {
                 return 3;
@@ -194,7 +194,7 @@ public abstract class b2 {
             if (z10 && z11 && z12) {
                 return 2;
             }
-            if (org.telegram.messenger.s2.f26730a) {
+            if (org.telegram.messenger.s2.f26694a) {
                 a8.l("Invalid call data saving preset configuration: " + z10 + "/" + z11 + "/" + z12);
             }
         }
@@ -203,15 +203,15 @@ public abstract class b2 {
 
     public static String d(String str) {
         Calendar calendar = Calendar.getInstance();
-        return new File(org.telegram.messenger.t0.f26931b.getExternalFilesDir(null), String.format(Locale.US, "logs/%02d_%02d_%04d_%02d_%02d_%02d_%s.txt", Integer.valueOf(calendar.get(5)), Integer.valueOf(calendar.get(2) + 1), Integer.valueOf(calendar.get(1)), Integer.valueOf(calendar.get(11)), Integer.valueOf(calendar.get(12)), Integer.valueOf(calendar.get(13)), str)).getAbsolutePath();
+        return new File(org.telegram.messenger.t0.f26895b.getExternalFilesDir(null), String.format(Locale.US, "logs/%02d_%02d_%04d_%02d_%02d_%02d_%s.txt", Integer.valueOf(calendar.get(5)), Integer.valueOf(calendar.get(2) + 1), Integer.valueOf(calendar.get(1)), Integer.valueOf(calendar.get(11)), Integer.valueOf(calendar.get(12)), Integer.valueOf(calendar.get(13)), str)).getAbsolutePath();
     }
 
     public static String e(String str) {
-        File file = new File(org.telegram.messenger.t0.f26931b.getCacheDir(), "voip_logs");
+        File file = new File(org.telegram.messenger.t0.f26895b.getCacheDir(), "voip_logs");
         if (!file.exists()) {
             file.mkdirs();
         }
-        boolean z10 = org.telegram.messenger.s2.f26730a;
+        boolean z10 = org.telegram.messenger.s2.f26694a;
         return new File(file, p5.c.v(str, "_stats.log")).getAbsolutePath();
     }
 
@@ -231,19 +231,19 @@ public abstract class b2 {
                 VoIPService sharedInstance = VoIPService.getSharedInstance();
                 if (sharedInstance != null) {
                     if (user != null) {
-                        j3 = user.f28583id;
+                        j3 = user.f28547id;
                     } else {
-                        j3 = -chat.f28434id;
+                        j3 = -chat.f28398id;
                     }
                     long callerId = sharedInstance.getCallerId();
                     if (callerId == j3) {
                         cVar2 = cVar;
-                        if (sharedInstance.getAccount() == cVar2.f23202a) {
+                        if (sharedInstance.getAccount() == cVar2.f23166a) {
                             if (user == null && (activity instanceof LaunchActivity)) {
                                 if (!TextUtils.isEmpty(str)) {
                                     sharedInstance.setGroupCallHash(str);
                                 }
-                                f40.f1((LaunchActivity) activity, org.telegram.messenger.c.a(k10.f24968t0), null, null, false, null);
+                                f40.f1((LaunchActivity) activity, org.telegram.messenger.c.a(k10.f24932t0), null, null, false, null);
                                 return;
                             }
                             Intent intent = new Intent(activity, LaunchActivity.class);
@@ -288,9 +288,9 @@ public abstract class b2 {
                             j10 = 0;
                         }
                         if (j3 > j10) {
-                            i7 = 2131743022;
+                            i7 = 2131743024;
                         } else {
-                            i7 = 2131743021;
+                            i7 = 2131743023;
                         }
                         str2 = sb2.toString();
                     } else {
@@ -300,16 +300,16 @@ public abstract class b2 {
                             TLRPC.User user2 = sharedInstance.getUser();
                             str2 = i5.m(0, user2.first_name, user2.last_name);
                             if (j3 > 0) {
-                                i7 = 2131743028;
+                                i7 = 2131743030;
                             } else {
-                                i7 = 2131743027;
+                                i7 = 2131743029;
                             }
                         } else {
                             str2 = sharedInstance.getChat().title;
                             if (j3 > 0) {
-                                i7 = 2131743024;
+                                i7 = 2131743026;
                             } else {
-                                i7 = 2131743025;
+                                i7 = 2131743027;
                             }
                         }
                     }
@@ -320,12 +320,12 @@ public abstract class b2 {
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
                     if (callerId < j10) {
-                        i10 = 2131743023;
+                        i10 = 2131743025;
                     } else {
-                        i10 = 2131743026;
+                        i10 = 2131743028;
                     }
                     String N0 = hd.N0(i10, null);
-                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                     t1Var.S = N0;
                     Object[] objArr = new Object[2];
                     objArr[0] = str2;
@@ -350,10 +350,10 @@ public abstract class b2 {
             return;
         }
         if (VoIPService.getSharedInstance() != null) {
-            VoIPService.getSharedInstance().hangUp(new oi.q2(activity, i7, inputGroupCall, z10, groupCall, hashSet));
+            VoIPService.getSharedInstance().hangUp(new oi.o2(activity, i7, inputGroupCall, z10, groupCall, hashSet));
             return;
         }
-        f40916a = SystemClock.elapsedRealtime();
+        f40878a = SystemClock.elapsedRealtime();
         Intent intent = new Intent(activity, VoIPService.class);
         intent.putExtra("chat_id", 0L);
         int i10 = 0;
@@ -405,12 +405,12 @@ public abstract class b2 {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
         if (z10) {
-            i10 = 2131743039;
+            i10 = 2131743041;
         } else {
-            i10 = 2131743038;
+            i10 = 2131743040;
         }
         SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(hd.N0(i10, null));
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.U = W2;
         alertDialog$Builder.k(hd.N0(2131745299, null), new ki.m0(activity, 1));
         alertDialog$Builder.h(hd.N0(2131751760, null), null);
@@ -432,8 +432,8 @@ public abstract class b2 {
         TextView textView = new TextView(activity);
         textView.setTextSize(1, 15.0f);
         textView.setText("Please only change these settings if you know exactly what they do.");
-        t6.U(textView, m6.f29489j5, null);
-        f10.addView(textView, ma.k(16.0f, 8.0f, 16.0f, 8.0f, -1, -2));
+        t6.U(textView, m6.f29455j5, null);
+        f10.addView(textView, na.k(16.0f, 8.0f, 16.0f, 8.0f, -1, -2));
         final s8 s8Var = new s8(activity);
         s8Var.f("Force TCP", g12.getBoolean("dbg_force_tcp_in_calls", false), false);
         s8Var.setOnClickListener(new View.OnClickListener() {
@@ -471,7 +471,7 @@ public abstract class b2 {
             }
         });
         f10.addView(s8Var);
-        if (org.telegram.messenger.s2.f26730a) {
+        if (org.telegram.messenger.s2.f26694a) {
             final s8 s8Var2 = new s8(activity);
             s8Var2.f("Dump detailed stats", g12.getBoolean("dbg_dump_call_stats", false), false);
             s8Var2.setOnClickListener(new View.OnClickListener() {
@@ -550,19 +550,19 @@ public abstract class b2 {
             f10.addView(s8Var3);
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-        alertDialog$Builder.f28777a.S = hd.N0(2131751633, null);
+        alertDialog$Builder.f28743a.S = hd.N0(2131751633, null);
         alertDialog$Builder.o(f10);
         alertDialog$Builder.p();
     }
 
     public static void j(Activity activity, TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
-        for (String str : np.u1(k10.f24968t0).f25857g7.getStringSet("calls_access_hashes", Collections.EMPTY_SET)) {
+        for (String str : np.u1(k10.f24932t0).f25821g7.getStringSet("calls_access_hashes", Collections.EMPTY_SET)) {
             String[] split = str.split(" ");
             if (split.length >= 2) {
                 String str2 = split[0];
                 if (str2.equals(tL_messageActionPhoneCall.call_id + "")) {
                     try {
-                        k(activity, null, tL_messageActionPhoneCall.video, tL_messageActionPhoneCall.call_id, Long.parseLong(split[1]), k10.f24968t0, true);
+                        k(activity, null, tL_messageActionPhoneCall.video, tL_messageActionPhoneCall.call_id, Long.parseLong(split[1]), k10.f24932t0, true);
                         return;
                     } catch (Exception unused) {
                         return;
@@ -572,14 +572,14 @@ public abstract class b2 {
         }
     }
 
-    public static void k(final Context context, ru0 ru0Var, boolean z10, final long j3, final long j10, final int i7, final boolean z11) {
+    public static void k(final Context context, su0 su0Var, boolean z10, final long j3, final long j10, final int i7, final boolean z11) {
         File file;
         String str;
         String str2;
         String N0;
         String str3;
-        boolean z12 = org.telegram.messenger.s2.f26730a;
-        File file2 = new File(org.telegram.messenger.t0.f26931b.getExternalFilesDir(null), "logs");
+        boolean z12 = org.telegram.messenger.s2.f26694a;
+        File file2 = new File(org.telegram.messenger.t0.f26895b.getExternalFilesDir(null), "logs");
         String[] list = file2.list();
         if (list != null) {
             for (String str4 : list) {
@@ -589,7 +589,7 @@ public abstract class b2 {
                 }
             }
         }
-        File file3 = new File(org.telegram.messenger.t0.f26931b.getCacheDir(), "voip_logs");
+        File file3 = new File(org.telegram.messenger.t0.f26895b.getCacheDir(), "voip_logs");
         if (!file3.exists()) {
             file3.mkdirs();
         }
@@ -602,16 +602,16 @@ public abstract class b2 {
         g10.setPadding(L, L, L, 0);
         final TextView textView = new TextView(context);
         textView.setTextSize(2, 16.0f);
-        t6.U(textView, m6.f29489j5, null);
-        org.telegram.messenger.f3.k(textView, 17, null, 2131743011);
+        t6.U(textView, m6.f29455j5, null);
+        org.telegram.messenger.f3.k(textView, 17, null, 2131743013);
         g10.addView(textView);
         final ?? view = new View(context);
-        view.f40297c = new Paint();
+        view.f40280c = new Paint();
         view.d = 5;
-        view.f40298e = 0;
-        view.f40295a = BitmapFactory.decodeResource(view.getResources(), 2131231458).extractAlpha();
-        view.f40296b = BitmapFactory.decodeResource(view.getResources(), 2131231457).extractAlpha();
-        g10.addView((View) view, ma.t(-2, -2, 1, 0, 16, 0, 0));
+        view.f40281e = 0;
+        view.f40278a = BitmapFactory.decodeResource(view.getResources(), 2131231458).extractAlpha();
+        view.f40279b = BitmapFactory.decodeResource(view.getResources(), 2131231457).extractAlpha();
+        g10.addView((View) view, na.t(-2, -2, 1, 0, 16, 0, 0));
         final LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         bi.o oVar = new bi.o(18);
@@ -681,29 +681,29 @@ public abstract class b2 {
             i11++;
             i10 = 1;
         }
-        g10.addView(linearLayout, ma.k(-8.0f, 0.0f, -8.0f, 0.0f, -1, -2));
+        g10.addView(linearLayout, na.k(-8.0f, 0.0f, -8.0f, 0.0f, -1, -2));
         linearLayout.setVisibility(8);
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        editTextBoldCursor.setHint(hd.N0(2131743162, null));
+        editTextBoldCursor.setHint(hd.N0(2131743164, null));
         editTextBoldCursor.setInputType(147457);
-        t6.U(editTextBoldCursor, m6.f29489j5, null);
-        t6.D(editTextBoldCursor, m6.f29677t5, null);
+        t6.U(editTextBoldCursor, m6.f29455j5, null);
+        t6.D(editTextBoldCursor, m6.f29643t5, null);
         editTextBoldCursor.setBackground(null);
-        t6.F(editTextBoldCursor, m6.f29696u5, m6.f29715v5, m6.f29622q7, null);
+        t6.F(editTextBoldCursor, m6.f29662u5, m6.f29681v5, m6.f29588q7, null);
         editTextBoldCursor.setPadding(0, org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f));
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setVisibility(8);
-        g10.addView(editTextBoldCursor, ma.k(8.0f, 8.0f, 8.0f, 0.0f, -1, -2));
+        g10.addView(editTextBoldCursor, na.k(8.0f, 8.0f, 8.0f, 0.0f, -1, -2));
         final boolean[] zArr = {true};
         final org.telegram.ui.Cells.d2 d2Var2 = new org.telegram.ui.Cells.d2(context, 1);
         q31 q31Var = new q31(5, zArr, d2Var2);
         d2Var2.e(hd.N0(2131752592, null), null, true, false, false);
         d2Var2.setClipToPadding(false);
         d2Var2.setOnClickListener(q31Var);
-        g10.addView(d2Var2, ma.k(-8.0f, 0.0f, -8.0f, 0.0f, -1, -2));
+        g10.addView(d2Var2, na.k(-8.0f, 0.0f, -8.0f, 0.0f, -1, -2));
         final TextView textView2 = new TextView(context);
         textView2.setTextSize(2, 14.0f);
-        o10.r(textView2, m6.f29639r5, null, null, 2131752591);
+        o10.r(textView2, m6.f29605r5, null, null, 2131752591);
         textView2.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
         textView2.setOnClickListener(q31Var);
         g10.addView(textView2);
@@ -713,16 +713,16 @@ public abstract class b2 {
             zArr[0] = false;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-        alertDialog$Builder.f28777a.S = hd.N0(2131752602, null);
+        alertDialog$Builder.f28743a.S = hd.N0(2131752602, null);
         alertDialog$Builder.o(g10);
         alertDialog$Builder.k(hd.N0(2131745444, null), new ug.x(17));
         alertDialog$Builder.h(hd.N0(2131752577, null), null);
-        alertDialog$Builder.f28777a.setOnDismissListener(new org.telegram.ui.ActionBar.k2(2, ru0Var));
-        final org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
-        if (org.telegram.messenger.s2.f26730a && file4.exists()) {
+        alertDialog$Builder.f28743a.setOnDismissListener(new org.telegram.ui.ActionBar.k2(2, su0Var));
+        final org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
+        if (org.telegram.messenger.s2.f26694a && file4.exists()) {
             org.telegram.ui.Components.h2 h2Var = new org.telegram.ui.Components.h2(26, context, file4);
-            t1Var.f30045s0 = "Send log";
-            t1Var.f30046t0 = h2Var;
+            t1Var.f30011s0 = "Send log";
+            t1Var.f30012t0 = h2Var;
         }
         t1Var.show();
         t1Var.getWindow().setSoftInputMode(3);
@@ -756,7 +756,7 @@ public abstract class b2 {
                         return;
                     }
                 }
-                int i12 = k10.f24968t0;
+                int i12 = k10.f24932t0;
                 TL_phone.setCallRating setcallrating = new TL_phone.setCallRating();
                 setcallrating.rating = u9Var.getRating();
                 ArrayList arrayList = new ArrayList();
@@ -778,7 +778,7 @@ public abstract class b2 {
                 TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
                 setcallrating.peer = tL_inputPhoneCall;
                 tL_inputPhoneCall.access_hash = j10;
-                tL_inputPhoneCall.f28499id = j3;
+                tL_inputPhoneCall.f28463id = j3;
                 setcallrating.user_initiative = z11;
                 ConnectionsManager.getInstance(i7).sendRequest(setcallrating, new hx(i12, zArr2, file5, setcallrating, arrayList, context));
                 t1Var2.dismiss();
@@ -792,31 +792,31 @@ public abstract class b2 {
         if (activity == null) {
             return;
         }
-        if (ConnectionsManager.getInstance(k10.f24968t0).getConnectionState() != 3) {
+        if (ConnectionsManager.getInstance(k10.f24932t0).getConnectionState() != 3) {
             boolean z11 = false;
             if (Settings.System.getInt(activity.getContentResolver(), "airplane_mode_on", 0) != 0) {
                 z11 = true;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
             if (z11) {
-                i7 = 2131743031;
+                i7 = 2131743033;
             } else {
-                i7 = 2131743029;
+                i7 = 2131743031;
             }
             String N0 = hd.N0(i7, null);
-            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
             t1Var.S = N0;
             if (z11) {
-                i10 = 2131743110;
+                i10 = 2131743112;
             } else {
-                i10 = 2131743111;
+                i10 = 2131743113;
             }
             t1Var.U = hd.N0(i10, null);
             alertDialog$Builder.k(hd.N0(2131747637, null), null);
             if (z11) {
                 Intent intent = new Intent("android.settings.AIRPLANE_MODE_SETTINGS");
                 if (intent.resolveActivity(activity.getPackageManager()) != null) {
-                    alertDialog$Builder.i(hd.N0(2131743030, null), new y1(activity, intent, 1));
+                    alertDialog$Builder.i(hd.N0(2131743032, null), new y1(activity, intent, 1));
                 }
             }
             try {
@@ -836,16 +836,16 @@ public abstract class b2 {
         boolean z12;
         int i11;
         int i12;
-        if (cVar != null ? np.u1(cVar.f23202a).A2() : np.u1(k10.f24968t0).A2()) {
+        if (cVar != null ? np.u1(cVar.f23166a).A2() : np.u1(k10.f24932t0).A2()) {
             if (cVar == null) {
-                i7 = k10.f24968t0;
+                i7 = k10.f24932t0;
             } else {
-                i7 = cVar.f23202a;
+                i7 = cVar.f23166a;
             }
             org.telegram.ui.b.b(i7);
         } else if (userFull != null && userFull.phone_calls_private) {
-            c5.i0(activity, cVar.f23202a, user.f28583id);
-        } else if (ConnectionsManager.getInstance(k10.f24968t0).getConnectionState() != 3) {
+            c5.i0(activity, cVar.f23166a, user.f28547id);
+        } else if (ConnectionsManager.getInstance(k10.f24932t0).getConnectionState() != 3) {
             if (Settings.System.getInt(activity.getContentResolver(), "airplane_mode_on", 0) != 0) {
                 z12 = true;
             } else {
@@ -853,24 +853,24 @@ public abstract class b2 {
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
             if (z12) {
-                i11 = 2131743031;
+                i11 = 2131743033;
             } else {
-                i11 = 2131743029;
+                i11 = 2131743031;
             }
             String N0 = hd.N0(i11, null);
-            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
             t1Var.S = N0;
             if (z12) {
-                i12 = 2131743032;
+                i12 = 2131743034;
             } else {
-                i12 = 2131743033;
+                i12 = 2131743035;
             }
             t1Var.U = hd.N0(i12, null);
             alertDialog$Builder.k(hd.N0(2131747637, null), null);
             if (z12) {
                 Intent intent = new Intent("android.settings.AIRPLANE_MODE_SETTINGS");
                 if (intent.resolveActivity(activity.getPackageManager()) != null) {
-                    alertDialog$Builder.i(hd.N0(2131743030, null), new y1(activity, intent, 0));
+                    alertDialog$Builder.i(hd.N0(2131743032, null), new y1(activity, intent, 0));
                 }
             }
             try {

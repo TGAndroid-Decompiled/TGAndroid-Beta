@@ -2,37 +2,37 @@ package m4;
 
 import f3.i0;
 public final class t implements i {
-    public final String f20775a;
-    public final int f20776b;
-    public final h2.x f20777c;
+    public final String f20741a;
+    public final int f20742b;
+    public final h2.x f20743c;
     public final d4.f d;
-    public i0 f20778e;
-    public String f20779f;
-    public e2.u f20780g;
+    public i0 f20744e;
+    public String f20745f;
+    public e2.u f20746g;
     public int h;
-    public int f20781i;
-    public int f20782j;
-    public int f20783k;
-    public long f20784l;
-    public boolean f20785m;
-    public int f20786n;
-    public int f20787o;
-    public int f20788p;
-    public boolean f20789q;
-    public long f20790r;
-    public int f20791s;
-    public long f20792t;
-    public int f20793u;
+    public int f20747i;
+    public int f20748j;
+    public int f20749k;
+    public long f20750l;
+    public boolean f20751m;
+    public int f20752n;
+    public int f20753o;
+    public int f20754p;
+    public boolean f20755q;
+    public long f20756r;
+    public int f20757s;
+    public long f20758t;
+    public int f20759u;
     public String v;
 
     public t(String str, int i7) {
-        this.f20775a = str;
-        this.f20776b = i7;
+        this.f20741a = str;
+        this.f20742b = i7;
         h2.x xVar = new h2.x(1024);
-        this.f20777c = xVar;
-        byte[] bArr = xVar.f13865a;
+        this.f20743c = xVar;
+        byte[] bArr = xVar.f13828a;
         this.d = new d4.f(bArr, bArr.length);
-        this.f20784l = -9223372036854775807L;
+        this.f20750l = -9223372036854775807L;
     }
 
     @Override
@@ -43,22 +43,22 @@ public final class t implements i {
     @Override
     public final void d() {
         this.h = 0;
-        this.f20784l = -9223372036854775807L;
-        this.f20785m = false;
+        this.f20750l = -9223372036854775807L;
+        this.f20751m = false;
     }
 
     @Override
     public final void f(int i7, long j3) {
-        this.f20784l = j3;
+        this.f20750l = j3;
     }
 
     @Override
     public final void g(f3.q qVar, f0 f0Var) {
         f0Var.b();
         f0Var.c();
-        this.f20778e = qVar.d2(f0Var.f20644c, 1);
+        this.f20744e = qVar.d2(f0Var.f20610c, 1);
         f0Var.c();
-        this.f20779f = (String) f0Var.f20645e;
+        this.f20745f = (String) f0Var.f20611e;
     }
 
     @Override

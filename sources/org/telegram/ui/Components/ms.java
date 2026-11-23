@@ -14,12 +14,12 @@ public abstract class ms extends c51 {
     public boolean X;
     public final ArrayList Y;
     public boolean Z;
-    public boolean f37621a0;
-    public boolean f37622b0;
-    public int f37623c0;
-    public int f37624d0;
-    public String f37625e0;
-    public final oo f37626f0;
+    public boolean f37577a0;
+    public boolean f37578b0;
+    public int f37579c0;
+    public int f37580d0;
+    public String f37581e0;
+    public final oo f37582f0;
 
     public ms(ek0 ek0Var, Context context, int i7, int i10) {
         super(ek0Var, context, i7, 0, false, null, null);
@@ -28,9 +28,9 @@ public abstract class ms extends c51 {
         this.U = new ArrayList();
         this.V = new ArrayList();
         this.Y = new ArrayList();
-        pm0 pm0Var = (pm0) this;
-        this.f37626f0 = new oo(pm0Var, 8);
-        this.f34064w = new d(pm0Var, 10);
+        om0 om0Var = (om0) this;
+        this.f37582f0 = new oo(om0Var, 8);
+        this.f34028w = new d(om0Var, 10);
         this.Q = i7;
         this.R = i10;
         O(false);
@@ -43,13 +43,13 @@ public abstract class ms extends c51 {
     public final void X() {
         ArrayList arrayList = new ArrayList();
         int i7 = this.Q;
-        ArrayList arrayList2 = org.telegram.messenger.np.u1(i7).f26008y;
+        ArrayList arrayList2 = org.telegram.messenger.np.u1(i7).f25972y;
         int size = arrayList2.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList2.get(i10);
             i10++;
-            TLRPC.Chat O0 = org.telegram.messenger.np.u1(i7).O0(Long.valueOf(-((TLRPC.Dialog) obj).f28438id));
+            TLRPC.Chat O0 = org.telegram.messenger.np.u1(i7).O0(Long.valueOf(-((TLRPC.Dialog) obj).f28402id));
             if (O0 != null && org.telegram.messenger.v3.V(O0) && org.telegram.messenger.v3.t0(O0) && !org.telegram.messenger.v3.r0(O0)) {
                 arrayList.add(O0);
                 if (arrayList.size() >= 100) {

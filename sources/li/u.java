@@ -25,24 +25,24 @@ import org.telegram.ui.y91;
 import r0.i1;
 import r0.l1;
 public final class u implements w10, r0.m, x10 {
-    public final int f20034a;
-    public final d0 f20035b;
+    public final int f20000a;
+    public final d0 f20001b;
 
     public u(d0 d0Var, int i7) {
-        this.f20034a = i7;
-        this.f20035b = d0Var;
+        this.f20000a = i7;
+        this.f20001b = d0Var;
     }
 
     @Override
     public l1 P0(View view, l1 l1Var) {
-        i1 i1Var = l1Var.f56303a;
+        i1 i1Var = l1Var.f56268a;
         i0.b f10 = i1Var.f(527);
-        d0 d0Var = this.f20035b;
+        d0 d0Var = this.f20001b;
         d0Var.O1 = f10;
         d0Var.P1 = i1Var.f(519);
-        d0Var.A1.j(org.telegram.messenger.g0.L(56.0f) + d0Var.O1.f15918b, d0Var.O1.d, false);
+        d0Var.A1.j(org.telegram.messenger.g0.L(56.0f) + d0Var.O1.f15884b, d0Var.O1.d, false);
         d0Var.C1.invalidate();
-        return l1.f56302b;
+        return l1.f56267b;
     }
 
     @Override
@@ -54,13 +54,13 @@ public final class u implements w10, r0.m, x10 {
         int i7 = d0.Q1;
         Object obj = o41Var.H;
         boolean z13 = obj instanceof TLRPC.Chat;
-        d0 d0Var = this.f20035b;
+        d0 d0Var = this.f20001b;
         boolean z14 = true;
         if (z13) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            long j10 = -chat.f28434id;
+            long j10 = -chat.f28398id;
             boolean V = v3.V(chat);
-            TLRPC.Chat chat2 = d0Var.f19935q1;
+            TLRPC.Chat chat2 = d0Var.f19901q1;
             if (chat2 != null && (chat.creator || v3.y(27, chat2))) {
                 z10 = true;
             } else {
@@ -72,9 +72,9 @@ public final class u implements w10, r0.m, x10 {
         } else {
             if (obj instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj;
-                long j11 = user.f28583id;
+                long j11 = user.f28547id;
                 boolean u10 = p10.u(user);
-                TLRPC.Chat chat3 = d0Var.f19935q1;
+                TLRPC.Chat chat3 = d0Var.f19901q1;
                 if (chat3 != null && ((user.bot && user.bot_can_edit) || v3.y(27, chat3))) {
                     z10 = true;
                 } else {
@@ -88,9 +88,9 @@ public final class u implements w10, r0.m, x10 {
             return Boolean.valueOf(z14);
         }
         if (z10) {
-            a70 G = a70.G(d0Var.f30179c, null, view);
+            a70 G = a70.G(d0Var.f30145c, null, view);
             G.c(2131232089, hd.N0(2131751903, null), new m(d0Var, z11, z12, j3, 1), true);
-            G.X(d0Var.f19940v1.d.U0(view, true));
+            G.X(d0Var.f19906v1.d.U0(view, true));
             G.a0();
             return Boolean.valueOf(z14);
         }
@@ -103,8 +103,8 @@ public final class u implements w10, r0.m, x10 {
         long j3;
         TLRPC.Chat chat;
         int i7;
-        int i10 = this.f20034a;
-        d0 d0Var = this.f20035b;
+        int i10 = this.f20000a;
+        d0 d0Var = this.f20001b;
         switch (i10) {
             case 0:
                 View view = (View) obj2;
@@ -136,22 +136,22 @@ public final class u implements w10, r0.m, x10 {
                 Integer num4 = (Integer) number;
                 Float f16 = (Float) serializable;
                 Float f17 = (Float) serializable2;
-                g2 g2Var = d0Var.f19939u1;
+                g2 g2Var = d0Var.f19905u1;
                 if (!d0Var.J0(o41Var)) {
                     int i13 = o41Var.d;
                     boolean z10 = false;
                     if (i13 == 101) {
-                        d0Var.f19936r1 = !d0Var.f19936r1;
-                        np.u1(d0Var.f30173a).q5(d0Var.f19934p1, d0Var.f19936r1);
+                        d0Var.f19902r1 = !d0Var.f19902r1;
+                        np.u1(d0Var.f30139a).q5(d0Var.f19900p1, d0Var.f19902r1);
                         if (view4 instanceof r8) {
-                            ((r8) view4).getCheckBox().c(d0Var.f19936r1, true);
+                            ((r8) view4).getCheckBox().c(d0Var.f19902r1, true);
                             return;
                         } else {
-                            d0Var.f19940v1.d.f35789g3.O(false);
+                            d0Var.f19906v1.d.f35742g3.O(false);
                             return;
                         }
                     } else if (i13 == 100) {
-                        d0Var.f19933o1.A(1);
+                        d0Var.f19899o1.A(1);
                         d0Var.H1.e();
                         return;
                     } else {
@@ -159,23 +159,23 @@ public final class u implements w10, r0.m, x10 {
                         if (obj3 instanceof TLRPC.Chat) {
                             TLRPC.Chat chat2 = (TLRPC.Chat) obj3;
                             z10 = v3.V(chat2);
-                            j3 = -chat2.f28434id;
+                            j3 = -chat2.f28398id;
                             chat = chat2;
                         } else if (obj3 instanceof TLRPC.User) {
-                            j3 = ((TLRPC.User) obj3).f28583id;
+                            j3 = ((TLRPC.User) obj3).f28547id;
                             chat = null;
                         } else {
                             return;
                         }
-                        int b10 = l0.b(d0Var.f30173a, j3);
+                        int b10 = l0.b(d0Var.f30139a, j3);
                         if (b10 != 1 && b10 != 2) {
                             if (b10 == 3) {
-                                r70 r70Var = new r70(d0Var.getContext(), chat, null, d0Var.f19939u1, d0Var.J0);
-                                r70Var.f39111t1 = new lc((FrameLayout) d0Var.f30176b, d0Var.J0);
+                                r70 r70Var = new r70(d0Var.getContext(), chat, null, d0Var.f19905u1, d0Var.J0);
+                                r70Var.f39066t1 = new lc((FrameLayout) d0Var.f30142b, d0Var.J0);
                                 r70Var.show();
                                 return;
                             } else if (b10 == 4) {
-                                lc lcVar = new lc((FrameLayout) d0Var.f30176b, d0Var.J0);
+                                lc lcVar = new lc((FrameLayout) d0Var.f30142b, d0Var.J0);
                                 if (z10) {
                                     i7 = 2131751918;
                                 } else {
@@ -189,9 +189,9 @@ public final class u implements w10, r0.m, x10 {
                         }
                         if (g2Var instanceof bn) {
                             bn bnVar = (bn) g2Var;
-                            TLRPC.Chat chat3 = bnVar.f46005e;
+                            TLRPC.Chat chat3 = bnVar.f45958e;
                             TLRPC.User j10 = bnVar.j();
-                            if ((chat3 != null && chat3.f28434id == (-j3)) || (j10 != null && j10.f28583id == j3)) {
+                            if ((chat3 != null && chat3.f28398id == (-j3)) || (j10 != null && j10.f28547id == j3)) {
                                 d0Var.dismiss();
                                 return;
                             }
@@ -205,7 +205,7 @@ public final class u implements w10, r0.m, x10 {
                         if (v3.c0(chat)) {
                             if (v3.a(chat)) {
                                 bn bnVar2 = new bn(bundle);
-                                qg.c.a(bnVar2, tr.a(j3, np.u1(d0Var.f30173a).h7.getLong(p0.o(chat.f28434id, "forumlasttopic"), 1L)));
+                                qg.c.a(bnVar2, tr.a(j3, np.u1(d0Var.f30139a).h7.getLong(p0.o(chat.f28398id, "forumlasttopic"), 1L)));
                                 g2Var.presentFragment(bnVar2);
                             } else {
                                 g2Var.presentFragment(new y91(bundle));

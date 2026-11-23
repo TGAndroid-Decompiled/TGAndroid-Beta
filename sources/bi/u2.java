@@ -1,77 +1,35 @@
 package bi;
 
-import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.ui.Components.m80;
-public final class u2 extends m80 {
-    public final int M;
+public final class u2 implements View.OnAttachStateChangeListener {
+    public final int f4094a;
+    public final org.telegram.ui.Components.n5 f4095b;
 
-    public u2(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, h6Var);
-        this.M = i7;
+    public u2(org.telegram.ui.Components.n5 n5Var, int i7) {
+        this.f4094a = i7;
+        this.f4095b = n5Var;
     }
 
     @Override
-    public int a() {
-        switch (this.M) {
-            case 7:
-                return 3;
-            default:
-                return super.a();
-        }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.M) {
+    public final void onViewAttachedToWindow(View view) {
+        switch (this.f4094a) {
             case 0:
-                if (getAlpha() < 0.95f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 1:
-                if (getAlpha() < 0.95f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 6:
-                if (getAlpha() < 0.9f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.M) {
-            case 2:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+                this.f4095b.a();
                 return;
             default:
-                super.onMeasure(i7, i10);
+                this.f4095b.a();
                 return;
         }
     }
 
     @Override
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.M) {
-            case 3:
-                super.setText(org.telegram.messenger.j6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 4:
-                super.setText(org.telegram.messenger.j6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 5:
-                super.setText(org.telegram.messenger.j6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+    public final void onViewDetachedFromWindow(View view) {
+        switch (this.f4094a) {
+            case 0:
+                this.f4095b.b();
                 return;
             default:
-                super.setText(charSequence, bufferType);
+                this.f4095b.b();
                 return;
         }
     }

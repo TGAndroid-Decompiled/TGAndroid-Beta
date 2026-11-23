@@ -1,28 +1,28 @@
 package da;
 public final class b1 {
-    public long f7979a;
-    public String f7980b;
-    public String f7981c;
+    public long f7942a;
+    public String f7943b;
+    public String f7944c;
     public long d;
-    public int f7982e;
-    public byte f7983f;
+    public int f7945e;
+    public byte f7946f;
 
     public final c1 a() {
         String str;
-        if (this.f7983f == 7 && (str = this.f7980b) != null) {
-            return new c1(str, this.f7982e, this.f7981c, this.f7979a, this.d);
+        if (this.f7946f == 7 && (str = this.f7943b) != null) {
+            return new c1(str, this.f7945e, this.f7944c, this.f7942a, this.d);
         }
         StringBuilder sb2 = new StringBuilder();
-        if ((this.f7983f & 1) == 0) {
+        if ((this.f7946f & 1) == 0) {
             sb2.append(" pc");
         }
-        if (this.f7980b == null) {
+        if (this.f7943b == null) {
             sb2.append(" symbol");
         }
-        if ((this.f7983f & 2) == 0) {
+        if ((this.f7946f & 2) == 0) {
             sb2.append(" offset");
         }
-        if ((this.f7983f & 4) == 0) {
+        if ((this.f7946f & 4) == 0) {
             sb2.append(" importance");
         }
         throw new IllegalStateException(a8.p0.q("Missing required properties:", sb2));

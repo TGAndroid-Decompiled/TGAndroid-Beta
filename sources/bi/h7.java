@@ -1,36 +1,29 @@
 package bi;
+public final class h7 implements Runnable {
+    public final int f3647a;
+    public final org.telegram.ui.ActionBar.j5 f3648b;
 
-import android.os.Bundle;
-import org.telegram.messenger.hd;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.wz;
-import org.telegram.ui.bn;
-public final class h7 extends bn {
-    public boolean f3709vd;
-    public final TL_stars.TL_starGiftUnique f3710wd;
-    public final long f3711xd;
-
-    public h7(Bundle bundle, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
-        super(bundle);
-        this.f3710wd = tL_starGiftUnique;
-        this.f3711xd = j3;
-        this.f3709vd = false;
+    public h7(org.telegram.ui.ActionBar.j5 j5Var, int i7) {
+        this.f3647a = i7;
+        this.f3648b = j5Var;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.f3709vd) {
-            this.f3709vd = true;
-            gc O = lc.b0(this).O(this.f3710wd.getDocument(), hd.N0(2131752873, null), hd.a0(null, null, 2131752874, org.telegram.messenger.n5.s(this.currentAccount, this.f3711xd)));
-            O.f35535r = false;
-            O.j();
-            wz wzVar = this.J9;
-            if (wzVar != null) {
-                wzVar.c(true);
-            }
+    public final void run() {
+        switch (this.f3647a) {
+            case 0:
+                this.f3648b.a(true);
+                return;
+            case 1:
+                this.f3648b.a(true);
+                return;
+            default:
+                org.telegram.ui.ActionBar.j5 j5Var = this.f3648b;
+                if (!j5Var.I && j5Var.S) {
+                    j5Var.c();
+                    return;
+                }
+                return;
         }
     }
 }

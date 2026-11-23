@@ -1,190 +1,56 @@
 package hi;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.y10;
-import org.telegram.ui.Components.nr;
-public abstract class n7 extends FrameLayout implements m2 {
-    public final m7 f15117a;
-    public final FrameLayout f15118b;
-    public final TextView f15119c;
-    public final FrameLayout d;
-    public final TextView f15120e;
-    public final FrameLayout f15121f;
-    public final TextView h;
-    public float f15122n;
-    public float f15123r;
-    public int f15124s;
-    public ValueAnimator f15125w;
-    public y10 f15126x;
-    public y10 f15127y;
+import android.widget.LinearLayout;
+public final class n7 extends LinearLayout {
+    public final RectF f15074a;
+    public final RectF f15075b;
+    public final RectF f15076c;
+    public final Paint d;
+    public final o7 f15077e;
 
-    public n7(Context context) {
+    public n7(o7 o7Var, Context context) {
         super(context);
-        m7 m7Var = new m7(this, context);
-        this.f15117a = m7Var;
-        m7Var.setOrientation(0);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f15118b = frameLayout;
-        TextView textView = new TextView(context);
-        this.f15119c = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setTextColor(-1);
-        textView.setText(hd.N0(2131744388, null));
-        frameLayout.addView(textView, c8.ma.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        m7Var.addView(frameLayout, c8.ma.s(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
-        frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final n7 f15009b;
-
-            {
-                this.f15009b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f15009b.b(-1);
-                        return;
-                    case 1:
-                        this.f15009b.b(0);
-                        return;
-                    default:
-                        this.f15009b.b(1);
-                        return;
-                }
-            }
-        });
-        c8.ra.a(frameLayout);
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.d = frameLayout2;
-        TextView textView2 = new TextView(context);
-        this.f15120e = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(org.telegram.messenger.g0.o());
-        textView2.setTextColor(-1);
-        textView2.setText(hd.N0(2131744342, null));
-        frameLayout2.addView(textView2, c8.ma.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        m7Var.addView(frameLayout2, c8.ma.s(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
-        frameLayout2.setOnClickListener(new View.OnClickListener(this) {
-            public final n7 f15009b;
-
-            {
-                this.f15009b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f15009b.b(-1);
-                        return;
-                    case 1:
-                        this.f15009b.b(0);
-                        return;
-                    default:
-                        this.f15009b.b(1);
-                        return;
-                }
-            }
-        });
-        c8.ra.a(frameLayout2);
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f15121f = frameLayout3;
-        TextView textView3 = new TextView(context);
-        this.h = textView3;
-        textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(org.telegram.messenger.g0.o());
-        textView3.setTextColor(-1);
-        textView3.setText(hd.N0(2131744207, null));
-        frameLayout3.addView(textView3, c8.ma.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
-        m7Var.addView(frameLayout3, c8.ma.t(-2, -1, 112, 0, 0, 0, 0));
-        frameLayout3.setOnClickListener(new View.OnClickListener(this) {
-            public final n7 f15009b;
-
-            {
-                this.f15009b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        this.f15009b.b(-1);
-                        return;
-                    case 1:
-                        this.f15009b.b(0);
-                        return;
-                    default:
-                        this.f15009b.b(1);
-                        return;
-                }
-            }
-        });
-        c8.ra.a(frameLayout3);
-        addView(m7Var, c8.ma.e(-2, -1, 113));
+        this.f15077e = o7Var;
+        this.f15074a = new RectF();
+        this.f15075b = new RectF();
+        this.f15076c = new RectF();
+        this.d = new Paint(1);
     }
 
-    public final void a(int i7) {
-        if (this.f15124s == i7) {
-            return;
+    public final void a(RectF rectF, int i7) {
+        FrameLayout frameLayout;
+        o7 o7Var = this.f15077e;
+        if (i7 <= -1) {
+            frameLayout = o7Var.f15140b;
+        } else if (i7 >= 1) {
+            frameLayout = o7Var.f15143f;
+        } else {
+            frameLayout = o7Var.d;
         }
-        this.f15124s = i7;
-        ValueAnimator valueAnimator = this.f15125w;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f15123r, i7);
-        this.f15125w = ofFloat;
-        ofFloat.addUpdateListener(new j3(this, 5));
-        this.f15125w.setDuration(320L);
-        this.f15125w.setInterpolator(nr.h);
-        this.f15125w.start();
-    }
-
-    public final void b(int i7) {
-        if (this.f15124s != i7) {
-            a(i7);
-            y10 y10Var = this.f15126x;
-            if (y10Var != null) {
-                y10Var.a(Integer.valueOf(i7));
-            }
-        }
+        rectF.set(frameLayout.getLeft(), frameLayout.getBottom() - org.telegram.messenger.g0.L(30.0f), frameLayout.getRight(), frameLayout.getBottom());
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((m9) this).E.H()) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f15117a.invalidate();
-    }
-
-    @Override
-    public void setInvert(float f10) {
-        this.f15122n = f10;
-        this.f15119c.setTextColor(i0.a.f(f10, -1, -16777216));
-        this.f15120e.setTextColor(i0.a.f(f10, -1, -16777216));
-        this.h.setTextColor(i0.a.f(f10, -1, -16777216));
-    }
-
-    public void setOnSwitchModeListener(y10 y10Var) {
-        this.f15126x = y10Var;
-    }
-
-    public void setOnSwitchingModeListener(y10 y10Var) {
-        this.f15127y = y10Var;
+    public final void dispatchDraw(Canvas canvas) {
+        o7 o7Var = this.f15077e;
+        RectF rectF = this.f15074a;
+        a(rectF, (int) Math.floor(o7Var.f15145r));
+        int ceil = (int) Math.ceil(o7Var.f15145r);
+        RectF rectF2 = this.f15075b;
+        a(rectF2, ceil);
+        float f10 = o7Var.f15145r;
+        float floor = f10 - ((float) Math.floor(f10));
+        RectF rectF3 = this.f15076c;
+        org.telegram.messenger.g0.Z1(rectF, rectF2, floor, rectF3);
+        int r12 = org.telegram.ui.ActionBar.m6.r1(0.15f, i0.a.f(o7Var.f15144n, -1, -16777216));
+        Paint paint = this.d;
+        paint.setColor(r12);
+        canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, paint);
+        super.dispatchDraw(canvas);
     }
 }

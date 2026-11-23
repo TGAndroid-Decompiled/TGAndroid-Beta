@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.graphics.RectF;
 public final class na implements org.telegram.messenger.or {
-    public final int f50160a;
-    public final Object f50161b;
+    public final int f50148a;
+    public final Object f50149b;
 
     public na(Object obj, int i7) {
-        this.f50160a = i7;
-        this.f50161b = obj;
+        this.f50148a = i7;
+        this.f50149b = obj;
     }
 
     @Override
     public final void a(int i7) {
-        qq0 qq0Var;
-        int i10 = this.f50160a;
-        Object obj = this.f50161b;
+        rq0 rq0Var;
+        int i10 = this.f50148a;
+        Object obj = this.f50149b;
         switch (i10) {
             case 0:
                 ((lb) obj).Z0(true);
@@ -24,8 +24,8 @@ public final class na implements org.telegram.messenger.or {
                 return;
             case 2:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.E != null && (qq0Var = photoViewer.f43253f0) != null && i7 > 0) {
-                    org.telegram.ui.Components.lc.F(qq0Var, true).j();
+                if (photoViewer.E != null && (rq0Var = photoViewer.f43218f0) != null && i7 > 0) {
+                    org.telegram.ui.Components.lc.F(rq0Var, true).j();
                     return;
                 }
                 return;
@@ -39,10 +39,10 @@ public final class na implements org.telegram.messenger.or {
                     profileActivity.finishFragment();
                     return;
                 }
-                profileActivity.getNotificationCenter().k(79, Long.valueOf(profileActivity.f43585e1));
+                profileActivity.getNotificationCenter().k(79, Long.valueOf(profileActivity.f43550e1));
                 return;
             default:
-                y91 y91Var = ((e91) obj).f47213a;
+                y91 y91Var = ((e91) obj).f47182a;
                 if (i7 == 0) {
                     y91Var.S0(false);
                     return;

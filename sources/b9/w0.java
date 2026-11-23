@@ -2,17 +2,17 @@ package b9;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.bc;
+import c8.cc;
 public final class w0 extends r6.a {
     public static final Parcelable.Creator<w0> CREATOR = new o0(8);
-    public final byte f3092a;
-    public final byte f3093b;
-    public final String f3094c;
+    public final byte f3043a;
+    public final byte f3044b;
+    public final String f3045c;
 
     public w0(byte b10, byte b11, String str) {
-        this.f3092a = b10;
-        this.f3093b = b11;
-        this.f3094c = str;
+        this.f3043a = b10;
+        this.f3044b = b11;
+        this.f3045c = str;
     }
 
     public final boolean equals(Object obj) {
@@ -23,28 +23,28 @@ public final class w0 extends r6.a {
             return false;
         }
         w0 w0Var = (w0) obj;
-        if (this.f3092a == w0Var.f3092a && this.f3093b == w0Var.f3093b && this.f3094c.equals(w0Var.f3094c)) {
+        if (this.f3043a == w0Var.f3043a && this.f3044b == w0Var.f3044b && this.f3045c.equals(w0Var.f3045c)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f3094c.hashCode() + ((((this.f3092a + 31) * 31) + this.f3093b) * 31);
+        return this.f3045c.hashCode() + ((((this.f3043a + 31) * 31) + this.f3044b) * 31);
     }
 
     public final String toString() {
-        return a8.p0.s(i5.c.n("AmsEntityUpdateParcelable{, mEntityId=", this.f3092a, ", mAttributeId=", this.f3093b, ", mValue='"), this.f3094c, "'}");
+        return a8.p0.s(i5.c.n("AmsEntityUpdateParcelable{, mEntityId=", this.f3043a, ", mAttributeId=", this.f3044b, ", mValue='"), this.f3045c, "'}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = bc.r(parcel, 20293);
-        bc.q(parcel, 2, 4);
-        parcel.writeInt(this.f3092a);
-        bc.q(parcel, 3, 4);
-        parcel.writeInt(this.f3093b);
-        bc.l(parcel, 4, this.f3094c);
-        bc.s(parcel, r10);
+        int r10 = cc.r(parcel, 20293);
+        cc.q(parcel, 2, 4);
+        parcel.writeInt(this.f3043a);
+        cc.q(parcel, 3, 4);
+        parcel.writeInt(this.f3044b);
+        cc.l(parcel, 4, this.f3045c);
+        cc.s(parcel, r10);
     }
 }

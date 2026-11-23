@@ -7,11 +7,11 @@ public enum b {
     UTF_16BE(Charset.forName("UTF-16BE"), 2),
     UTF_8(Charset.forName("UTF-8"), 1);
     
-    public final Charset f57736a;
-    public final int f57737b;
+    public final Charset f57701a;
+    public final int f57702b;
 
     b(Charset charset, int i7) {
-        this.f57736a = charset;
-        this.f57737b = i7;
+        this.f57701a = charset;
+        this.f57702b = i7;
     }
 }

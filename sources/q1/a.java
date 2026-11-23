@@ -5,7 +5,7 @@ import kotlin.jvm.internal.j;
 import kotlin.jvm.internal.k;
 import rd.l;
 public final class a extends k implements l {
-    public static final a f55747b = new k(1);
+    public static final a f55712b = new k(1);
 
     @Override
     public final Object invoke(Object obj) {
@@ -30,6 +30,6 @@ public final class a extends k implements l {
         } else {
             valueOf = String.valueOf(entry.getValue());
         }
-        return p5.c.m(((e) entry.getKey()).f55754a, " = ", valueOf, new StringBuilder("  "));
+        return p5.c.m(((e) entry.getKey()).f55719a, " = ", valueOf, new StringBuilder("  "));
     }
 }

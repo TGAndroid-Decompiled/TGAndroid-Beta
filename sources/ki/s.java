@@ -1,12 +1,12 @@
 package ki;
 public final class s {
-    public boolean f18915a;
-    public boolean f18916b;
-    public boolean f18917c;
+    public boolean f18881a;
+    public boolean f18882b;
+    public boolean f18883c;
     public boolean d;
-    public String f18918e;
-    public long f18919f;
-    public int f18920g;
+    public String f18884e;
+    public long f18885f;
+    public int f18886g;
     public int h;
-    public String f18921i;
+    public String f18887i;
 }

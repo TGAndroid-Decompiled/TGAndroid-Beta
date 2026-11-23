@@ -4,48 +4,48 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import bi.w1;
+import bi.x1;
 public final class p0 implements TextWatcher {
-    public final w1 f3342a;
-    public final EditText f3343b;
-    public String f3344c;
+    public final x1 f3293a;
+    public final EditText f3294b;
+    public String f3295c;
     public boolean d;
-    public boolean f3345e;
+    public boolean f3296e;
 
-    public p0(ah.i iVar, w1 w1Var) {
-        this.f3342a = w1Var;
-        this.f3343b = iVar;
+    public p0(ah.i iVar, x1 x1Var) {
+        this.f3293a = x1Var;
+        this.f3294b = iVar;
     }
 
     public final void a() {
-        this.f3345e = true;
+        this.f3296e = true;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String obj = editable.toString();
-        boolean isEmpty = TextUtils.isEmpty(this.f3344c);
+        boolean isEmpty = TextUtils.isEmpty(this.f3295c);
         boolean isEmpty2 = TextUtils.isEmpty(obj);
         if (isEmpty && !isEmpty2) {
             b(true);
         }
-        this.f3344c = obj;
-        this.f3342a.l(this.f3343b);
-        if (!isEmpty && isEmpty2 && !this.f3345e) {
+        this.f3295c = obj;
+        this.f3293a.l(this.f3294b);
+        if (!isEmpty && isEmpty2 && !this.f3296e) {
             b(false);
         }
     }
 
     public final void b(boolean z10) {
         if (this.d != z10) {
-            w1 w1Var = this.f3342a;
-            if (!w1Var.c()) {
+            x1 x1Var = this.f3293a;
+            if (!x1Var.c()) {
                 return;
             }
             if (z10) {
-                w1Var.i();
+                x1Var.i();
             } else {
-                w1Var.h();
+                x1Var.h();
             }
             this.d = z10;
         }

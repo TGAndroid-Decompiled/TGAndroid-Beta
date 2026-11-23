@@ -1,25 +1,15 @@
 package org.telegram.ui;
+public final class iv0 extends i11 {
+    public final ProfileActivity f48837e;
 
-import org.telegram.tgnet.TLRPC;
-public final class iv0 extends np {
-    public final boolean[] f48835d1;
-    public final TLRPC.User f48836e1;
-    public final ProfileActivity f48837f1;
-
-    public iv0(ProfileActivity profileActivity, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i7, boolean[] zArr, TLRPC.User user) {
-        super(j3, j10, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i7, true, false, null);
-        this.f48837f1 = profileActivity;
-        this.f48835d1 = zArr;
-        this.f48836e1 = user;
+    public iv0(ProfileActivity profileActivity, hv0 hv0Var) {
+        super(hv0Var);
+        this.f48837e = profileActivity;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f48835d1[0]) {
-            ProfileActivity profileActivity = this.f48837f1;
-            if (org.telegram.ui.Components.lc.a(profileActivity)) {
-                org.telegram.ui.Components.lc.C(this.f48836e1.first_name, profileActivity).j();
-            }
-        }
+    public final void dismiss() {
+        super.dismiss();
+        this.f48837e.T5 = null;
     }
 }

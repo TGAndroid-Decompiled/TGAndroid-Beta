@@ -15,14 +15,14 @@ public final class ny0 extends org.telegram.ui.Cells.l3 {
     public final void b(Editable editable) {
         boolean z10;
         py0 py0Var = this.F;
-        hi.e eVar = py0Var.f51013s;
-        if (eVar != null) {
-            if (!py0Var.d.optional && TextUtils.isEmpty(py0Var.f51011n.getText())) {
+        hi.d dVar = py0Var.f50945s;
+        if (dVar != null) {
+            if (!py0Var.d.optional && TextUtils.isEmpty(py0Var.f50943n.getText())) {
                 z10 = false;
             } else {
                 z10 = true;
             }
-            eVar.setEnabled(z10);
+            dVar.setEnabled(z10);
         }
     }
 }

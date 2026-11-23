@@ -1,37 +1,37 @@
 package yg;
 
 import android.content.Context;
-import c8.ma;
+import c8.na;
 import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m5;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
 public final class i extends c {
-    public final m5 f61284s;
-    public Object f61285w;
+    public final m5 f61249s;
+    public Object f61250w;
 
     public i(Context context, h6 h6Var) {
         super(context, h6Var);
         int i7;
         float f10;
         float f11;
-        this.f61258c.setVisibility(8);
-        m5 m5Var = this.f61259e;
+        this.f61223c.setVisibility(8);
+        m5 m5Var = this.f61224e;
         int i10 = m6.B6;
         t6.X(m5Var, i10, h6Var);
         m5 m5Var2 = new m5(context);
-        this.f61284s = m5Var2;
+        this.f61249s = m5Var2;
         m5Var2.setTextSize(16);
         t6.X(m5Var2, i10, h6Var);
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i7 = 3;
         } else {
             i7 = 5;
         }
         m5Var2.setGravity(i7);
         addView(m5Var2);
-        boolean z10 = hd.f24444a0;
+        boolean z10 = hd.f24408a0;
         int i11 = (z10 ? 3 : 5) | 16;
         if (z10) {
             f10 = 20.0f;
@@ -43,7 +43,7 @@ public final class i extends c {
         } else {
             f11 = 20.0f;
         }
-        m5Var2.setLayoutParams(ma.d(-1, -2.0f, i11, f10, 0.0f, f11, 0.0f));
+        m5Var2.setLayoutParams(na.d(-1, -2.0f, i11, f10, 0.0f, f11, 0.0f));
     }
 
     @Override
@@ -52,6 +52,6 @@ public final class i extends c {
     }
 
     public Object getGifCode() {
-        return this.f61285w;
+        return this.f61250w;
     }
 }

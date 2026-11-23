@@ -1,15 +1,19 @@
 package g0;
 
-import java.util.ArrayList;
 import java.util.List;
-public abstract class d {
-    public abstract Object a(List list);
-
-    public List b() {
-        return new ArrayList();
+public final class d extends e {
+    @Override
+    public final Object a(List list) {
+        return null;
     }
 
-    public abstract Object c();
+    @Override
+    public final Object c() {
+        return null;
+    }
 
-    public abstract Object d(List list);
+    @Override
+    public final Object d(List list) {
+        return null;
+    }
 }

@@ -7,19 +7,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class ec extends db implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.ActionBar.h6 f34724a;
-    public Runnable f34725b;
-    public Runnable f34726c;
+    public final org.telegram.ui.ActionBar.h6 f34714a;
+    public Runnable f34715b;
+    public Runnable f34716c;
     public gc d;
-    public final TextView f34727e;
-    public boolean f34728f;
+    public final TextView f34717e;
+    public boolean f34718f;
     public final Drawable h;
-    public final Drawable f34729n;
+    public final Drawable f34719n;
 
     public ec(Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10, boolean z11) {
         super(context);
         int x02;
-        this.f34724a = h6Var;
+        this.f34714a = h6Var;
         int i7 = org.telegram.ui.ActionBar.m6.xj;
         if (h6Var != null) {
             x02 = h6Var.k(i7);
@@ -28,16 +28,16 @@ public final class ec extends db implements org.telegram.ui.ActionBar.b6 {
         }
         if (z10) {
             TextView textView = new TextView(context);
-            this.f34727e = textView;
+            this.f34717e = textView;
             textView.setBackground(org.telegram.ui.ActionBar.m6.h0((x02 & 16777215) | 419430400, 7, -1));
             this.h = textView.getBackground();
             i5.c.x(textView, 1, 14.0f);
-            org.telegram.messenger.o10.r(textView, i7, h6Var, null, 2131743640);
+            org.telegram.messenger.o10.r(textView, i7, h6Var, null, 2131743642);
             textView.setGravity(16);
             float f10 = z11 ? 34.0f : 12.0f;
-            boolean z12 = org.telegram.messenger.hd.f24444a0;
-            c8.xa.a(textView, z12 ? 12.0f : f10, 8.0f, z12 ? f10 : 12.0f, 8.0f);
-            addView(textView, c8.ma.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
+            boolean z12 = org.telegram.messenger.hd.f24408a0;
+            c8.ya.a(textView, z12 ? 12.0f : f10, 8.0f, z12 ? f10 : 12.0f, 8.0f);
+            addView(textView, c8.na.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
         }
         if (z11) {
             ImageView imageView = new ImageView(getContext());
@@ -45,10 +45,10 @@ public final class ec extends db implements org.telegram.ui.ActionBar.b6 {
             org.telegram.ui.ActionBar.t6.s(imageView, i7, h6Var, PorterDuff.Mode.MULTIPLY);
             if (!z10) {
                 imageView.setBackground(org.telegram.ui.ActionBar.m6.h0((x02 & 16777215) | 419430400, 1, -1));
-                this.f34729n = imageView.getBackground();
+                this.f34719n = imageView.getBackground();
             }
-            c8.xa.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
-            addView(imageView, c8.ma.h(56.0f, 48.0f, 16));
+            c8.ya.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
+            addView(imageView, c8.na.h(56.0f, 48.0f, 16));
         }
         setOnClickListener(new o0(this, 4));
     }
@@ -61,14 +61,14 @@ public final class ec extends db implements org.telegram.ui.ActionBar.b6 {
     @Override
     public final void d() {
         this.d = null;
-        Runnable runnable = this.f34726c;
-        if (runnable != null && !this.f34728f) {
+        Runnable runnable = this.f34716c;
+        if (runnable != null && !this.f34718f) {
             runnable.run();
         }
     }
 
     public final void e(CharSequence charSequence) {
-        TextView textView = this.f34727e;
+        TextView textView = this.f34717e;
         if (textView != null) {
             textView.setText(charSequence);
         }
@@ -76,8 +76,8 @@ public final class ec extends db implements org.telegram.ui.ActionBar.b6 {
 
     public final void f() {
         if (this.d != null) {
-            this.f34728f = true;
-            Runnable runnable = this.f34725b;
+            this.f34718f = true;
+            Runnable runnable = this.f34715b;
             if (runnable != null) {
                 runnable.run();
             }
@@ -94,18 +94,18 @@ public final class ec extends db implements org.telegram.ui.ActionBar.b6 {
         Drawable drawable;
         try {
             int i7 = org.telegram.ui.ActionBar.m6.xj;
-            org.telegram.ui.ActionBar.h6 h6Var = this.f34724a;
+            org.telegram.ui.ActionBar.h6 h6Var = this.f34714a;
             if (h6Var != null) {
                 x02 = h6Var.k(i7);
             } else {
                 x02 = org.telegram.ui.ActionBar.m6.x0(null, i7, false);
             }
             int i10 = (x02 & 16777215) | 419430400;
-            TextView textView = this.f34727e;
+            TextView textView = this.f34717e;
             if (textView != null && (drawable = this.h) != null && textView.getBackground() == drawable) {
                 org.telegram.ui.ActionBar.m6.H1(drawable, i10, true);
             }
-            Drawable drawable2 = this.f34729n;
+            Drawable drawable2 = this.f34719n;
             if (drawable2 != null) {
                 org.telegram.ui.ActionBar.m6.H1(drawable2, i10, true);
             }

@@ -1,18 +1,18 @@
 package e2;
 public final class x1 {
     public static final x1 d = new x1(0, 0);
-    public static final String f10829e;
-    public static final String f10830f;
-    public static final String f10831g;
-    public final int f10832a;
-    public final int f10833b;
-    public final float f10834c;
+    public static final String f10792e;
+    public static final String f10793f;
+    public static final String f10794g;
+    public final int f10795a;
+    public final int f10796b;
+    public final float f10797c;
 
     static {
-        String str = h2.l0.f13815a;
-        f10829e = Integer.toString(0, 36);
-        f10830f = Integer.toString(1, 36);
-        f10831g = Integer.toString(3, 36);
+        String str = h2.l0.f13778a;
+        f10792e = Integer.toString(0, 36);
+        f10793f = Integer.toString(1, 36);
+        f10794g = Integer.toString(3, 36);
     }
 
     public x1(int i7, int i10) {
@@ -25,7 +25,7 @@ public final class x1 {
         }
         if (obj instanceof x1) {
             x1 x1Var = (x1) obj;
-            if (this.f10832a == x1Var.f10832a && this.f10833b == x1Var.f10833b && this.f10834c == x1Var.f10834c) {
+            if (this.f10795a == x1Var.f10795a && this.f10796b == x1Var.f10796b && this.f10797c == x1Var.f10797c) {
                 return true;
             }
         }
@@ -33,12 +33,12 @@ public final class x1 {
     }
 
     public final int hashCode() {
-        return Float.floatToRawIntBits(this.f10834c) + ((((217 + this.f10832a) * 31) + this.f10833b) * 31);
+        return Float.floatToRawIntBits(this.f10797c) + ((((217 + this.f10795a) * 31) + this.f10796b) * 31);
     }
 
     public x1(float f10, int i7, int i10) {
-        this.f10832a = i7;
-        this.f10833b = i10;
-        this.f10834c = f10;
+        this.f10795a = i7;
+        this.f10796b = i10;
+        this.f10797c = f10;
     }
 }

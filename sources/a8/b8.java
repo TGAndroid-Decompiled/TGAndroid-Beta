@@ -21,7 +21,7 @@ import android.media.MediaCrypto;
 import android.media.MediaFormat;
 import android.os.Bundle;
 import android.view.Surface;
-import c8.nc;
+import c8.oc;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,7 +63,7 @@ public class b8 {
 
     public static ColorStateList e(Context context, int i7) {
         int c10 = m.z2.c(context, 2130968728);
-        return new ColorStateList(new int[][]{m.z2.f20309b, m.z2.d, m.z2.f20310c, m.z2.f20312f}, new int[]{m.z2.b(context, 2130968726), i0.a.k(c10, i7), i0.a.k(c10, i7), i7});
+        return new ColorStateList(new int[][]{m.z2.f20275b, m.z2.d, m.z2.f20276c, m.z2.f20278f}, new int[]{m.z2.b(context, 2130968726), i0.a.k(c10, i7), i0.a.k(c10, i7), i7});
     }
 
     public static x2.g0 f(e2.c1 c1Var, h9.i0 i0Var, x2.g0 g0Var, e2.i1 i1Var) {
@@ -77,7 +77,7 @@ public class b8 {
             l10 = y02.l(B);
         }
         if (!c1Var.p() && !y02.p()) {
-            i7 = y02.f(B, i1Var, false).b(h2.l0.S(c1Var.l()) - i1Var.f10466e);
+            i7 = y02.f(B, i1Var, false).b(h2.l0.S(c1Var.l()) - i1Var.f10429e);
         } else {
             i7 = -1;
         }
@@ -130,13 +130,13 @@ public class b8 {
     }
 
     public static boolean i(x2.g0 g0Var, Object obj, boolean z10, int i7, int i10, int i11) {
-        Object obj2 = g0Var.f60133a;
-        int i12 = g0Var.f60134b;
+        Object obj2 = g0Var.f60098a;
+        int i12 = g0Var.f60099b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z10 || i12 != i7 || g0Var.f60135c != i10) {
-            if (z10 || i12 != -1 || g0Var.f60136e != i11) {
+        if (!z10 || i12 != i7 || g0Var.f60100c != i10) {
+            if (z10 || i12 != -1 || g0Var.f60101e != i11) {
                 return false;
             }
             return true;
@@ -146,12 +146,12 @@ public class b8 {
 
     public static void n(Drawable drawable, int i7, PorterDuff.Mode mode) {
         PorterDuffColorFilter h;
-        int[] iArr = m.l1.f20147a;
+        int[] iArr = m.l1.f20113a;
         Drawable mutate = drawable.mutate();
         if (mode == null) {
-            mode = m.q.f20210b;
+            mode = m.q.f20176b;
         }
-        PorterDuff.Mode mode2 = m.q.f20210b;
+        PorterDuff.Mode mode2 = m.q.f20176b;
         synchronized (m.q.class) {
             h = m.m2.h(i7, mode);
         }
@@ -160,7 +160,7 @@ public class b8 {
 
     public void a(xa xaVar, x2.g0 g0Var, e2.l1 l1Var) {
         if (g0Var != null) {
-            if (l1Var.b(g0Var.f60133a) != -1) {
+            if (l1Var.b(g0Var.f60098a) != -1) {
                 xaVar.w(g0Var, l1Var);
                 return;
             }
@@ -217,29 +217,29 @@ public class b8 {
 
     public ColorStateList h(Context context, int i7) {
         if (i7 == 2131230803) {
-            return c8.z.a(context, 2131099669);
+            return c8.a0.a(context, 2131099669);
         }
         if (i7 == 2131230849) {
-            return c8.z.a(context, 2131099672);
+            return c8.a0.a(context, 2131099672);
         }
         if (i7 == 2131230848) {
             int[][] iArr = new int[3];
             int[] iArr2 = new int[3];
             ColorStateList d = m.z2.d(context, 2130968734);
             if (d != null && d.isStateful()) {
-                int[] iArr3 = m.z2.f20309b;
+                int[] iArr3 = m.z2.f20275b;
                 iArr[0] = iArr3;
                 iArr2[0] = d.getColorForState(iArr3, 0);
-                iArr[1] = m.z2.f20311e;
+                iArr[1] = m.z2.f20277e;
                 iArr2[1] = m.z2.c(context, 2130968727);
-                iArr[2] = m.z2.f20312f;
+                iArr[2] = m.z2.f20278f;
                 iArr2[2] = d.getDefaultColor();
             } else {
-                iArr[0] = m.z2.f20309b;
+                iArr[0] = m.z2.f20275b;
                 iArr2[0] = m.z2.b(context, 2130968734);
-                iArr[1] = m.z2.f20311e;
+                iArr[1] = m.z2.f20277e;
                 iArr2[1] = m.z2.c(context, 2130968727);
-                iArr[2] = m.z2.f20312f;
+                iArr[2] = m.z2.f20278f;
                 iArr2[2] = m.z2.c(context, 2130968734);
             }
             return new ColorStateList(iArr, iArr2);
@@ -257,17 +257,17 @@ public class b8 {
                     return m.z2.d(context, 2130968729);
                 }
                 if (b((int[]) this.f344e, i7)) {
-                    return c8.z.a(context, 2131099668);
+                    return c8.a0.a(context, 2131099668);
                 }
                 if (b((int[]) this.f345f, i7)) {
-                    return c8.z.a(context, 2131099667);
+                    return c8.a0.a(context, 2131099667);
                 }
                 if (i7 == 2131230841) {
-                    return c8.z.a(context, 2131099670);
+                    return c8.a0.a(context, 2131099670);
                 }
                 return null;
             }
-            return c8.z.a(context, 2131099671);
+            return c8.a0.a(context, 2131099671);
         }
     }
 
@@ -284,7 +284,7 @@ public class b8 {
                     sb2.append("String at ");
                     sb2.append(i10);
                     sb2.append(" is null and is ignored by put method.");
-                    nc.a(sb2.toString());
+                    oc.a(sb2.toString());
                 } else {
                     int i11 = 20000;
                     if (str2.length() > 20000) {
@@ -292,7 +292,7 @@ public class b8 {
                         sb3.append("String at ");
                         sb3.append(i10);
                         sb3.append(" is too long, truncating string.");
-                        nc.a(sb3.toString());
+                        oc.a(sb3.toString());
                         String str3 = strArr2[i7];
                         if (str3.length() > 20000) {
                             if (Character.isHighSurrogate(str3.charAt(19999)) && Character.isLowSurrogate(str3.charAt(20000))) {
@@ -308,7 +308,7 @@ public class b8 {
             if (i7 > 0) {
                 Object[] objArr = (String[]) Arrays.copyOfRange(strArr2, 0, i7);
                 if (objArr.length >= 100) {
-                    nc.a("Input Array of elements is too big, cutting off.");
+                    oc.a("Input Array of elements is too big, cutting off.");
                     objArr = Arrays.copyOf(objArr, 100);
                 }
                 bundle.putStringArray(str, (String[]) objArr);
@@ -316,7 +316,7 @@ public class b8 {
             }
             return;
         }
-        nc.a("String array is empty and is ignored by put method.");
+        oc.a("String array is empty and is ignored by put method.");
     }
 
     public void k(float f10, float f11, float f12, float f13) {
@@ -346,7 +346,7 @@ public class b8 {
 
     public void o() {
         if (((LocationManager) this.f342b) == null) {
-            this.f342b = (LocationManager) org.telegram.messenger.t0.f26931b.getSystemService("location");
+            this.f342b = (LocationManager) org.telegram.messenger.t0.f26895b.getSystemService("location");
         }
         try {
             ((LocationManager) this.f342b).requestLocationUpdates("gps", 1L, 0.0f, (pd) this.f343c);

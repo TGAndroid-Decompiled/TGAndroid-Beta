@@ -7,17 +7,17 @@ import android.view.TextureView;
 import android.view.View;
 import java.util.ArrayList;
 public final class oz0 extends TextureView {
-    public static Boolean f38421f;
-    public mz0 f38422a;
-    public final iz0 f38423b;
-    public final ArrayList f38424c;
+    public static Boolean f38379f;
+    public mz0 f38380a;
+    public final iz0 f38381b;
+    public final ArrayList f38382c;
     public Runnable d;
-    public boolean f38425e;
+    public boolean f38383e;
 
     public oz0(Context context, Runnable runnable) {
         super(context);
-        this.f38423b = new iz0(this, 0);
-        this.f38424c = new ArrayList();
+        this.f38381b = new iz0(this, 0);
+        this.f38382c = new ArrayList();
         this.d = runnable;
         setOpaque(false);
         setSurfaceTextureListener(new k40(this, 1));
@@ -35,10 +35,10 @@ public final class oz0 extends TextureView {
     }
 
     public static boolean c() {
-        if (f38421f == null) {
-            f38421f = Boolean.valueOf(org.telegram.messenger.np.g1().getBoolean("nothanos", false));
+        if (f38379f == null) {
+            f38379f = Boolean.valueOf(org.telegram.messenger.np.g1().getBoolean("nothanos", false));
         }
-        Boolean bool = f38421f;
+        Boolean bool = f38379f;
         if (bool != null && bool.booleanValue()) {
             return false;
         }
@@ -50,12 +50,12 @@ public final class oz0 extends TextureView {
         int i10 = 0;
         boolean z10 = false;
         while (true) {
-            ArrayList arrayList = this.f38424c;
+            ArrayList arrayList = this.f38382c;
             if (i10 >= arrayList.size()) {
                 break;
             }
             nz0 nz0Var = (nz0) arrayList.get(i10);
-            if (nz0Var.f38019a == view) {
+            if (nz0Var.f37986a == view) {
                 Runnable runnable = nz0Var.d;
                 if (runnable != null) {
                     b(runnable);
@@ -68,18 +68,18 @@ public final class oz0 extends TextureView {
             i10++;
         }
         if (!z10) {
-            mz0 mz0Var = this.f38422a;
+            mz0 mz0Var = this.f38380a;
             ArrayList arrayList2 = mz0Var.X;
-            if (mz0Var.f37668b.get()) {
+            if (mz0Var.f37624b.get()) {
                 Handler handler = mz0Var.getHandler();
                 if (handler == null) {
                     while (i7 < arrayList2.size()) {
                         lz0 lz0Var = (lz0) arrayList2.get(i7);
-                        if (lz0Var.f37331a.contains(view)) {
-                            Runnable runnable2 = lz0Var.f37335f;
+                        if (lz0Var.f37291a.contains(view)) {
+                            Runnable runnable2 = lz0Var.f37295f;
                             if (runnable2 != null) {
                                 b(runnable2);
-                                lz0Var.f37335f = null;
+                                lz0Var.f37295f = null;
                             }
                             arrayList2.remove(i7);
                             i7--;

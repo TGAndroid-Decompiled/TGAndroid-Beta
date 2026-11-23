@@ -9,7 +9,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 public final class ut extends n41 {
-    public static final int f27266b = 0;
+    public static final int f27230b = 0;
 
     static {
         n41.h(new n41());
@@ -19,12 +19,12 @@ public final class ut extends n41 {
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         vt vtVar = (vt) view;
         vtVar.set((TL_iv.RichMessage) o41Var.H);
-        vtVar.setTranslationLoading(o41Var.f38084e);
+        vtVar.setTranslationLoading(o41Var.f38051e);
     }
 
     @Override
     public final boolean c(o41 o41Var, o41 o41Var2) {
-        if (o41Var.d == o41Var2.d && o41Var.H == o41Var2.H && o41Var.f38084e == o41Var2.f38084e) {
+        if (o41Var.d == o41Var2.d && o41Var.H == o41Var2.H && o41Var.f38051e == o41Var2.f38051e) {
             return true;
         }
         return false;

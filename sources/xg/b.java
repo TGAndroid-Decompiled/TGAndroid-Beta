@@ -38,8 +38,7 @@ import org.telegram.ui.Components.nr;
 import org.telegram.ui.Components.o6;
 import org.telegram.ui.Components.q9;
 import ug.z;
-import v4.f1;
-import wg.q;
+import v4.e1;
 import wg.u;
 import yg.d0;
 import yg.i;
@@ -51,25 +50,25 @@ import yg.x;
 import yg.y;
 public final class b extends rg.b {
     public final h6 d;
-    public ek0 f60519f;
+    public ek0 f60484f;
     public u h;
-    public u f60520n;
-    public r f60521r;
-    public u f60522s;
-    public TLRPC.Chat f60523w;
-    public ArrayList f60518e = new ArrayList();
-    public final HashMap f60524x = new HashMap();
+    public u f60485n;
+    public r f60486r;
+    public u f60487s;
+    public TLRPC.Chat f60488w;
+    public ArrayList f60483e = new ArrayList();
+    public final HashMap f60489x = new HashMap();
 
     public b(h6 h6Var) {
         this.d = h6Var;
         z zVar = new z(this, 6);
-        ur a02 = ur.a0(k10.f24968t0);
-        a02.f27250a.c(new q(2, a02, zVar));
+        ur a02 = ur.a0(k10.f24932t0);
+        a02.f27214a.c(new wg.r(0, a02, zVar));
     }
 
     @Override
-    public final boolean D(f1 f1Var) {
-        int i7 = f1Var.f59169f;
+    public final boolean D(e1 e1Var) {
+        int i7 = e1Var.f59115f;
         if (i7 != 2 && i7 != 11 && i7 != 8 && i7 != 10 && i7 != 15 && i7 != 12 && i7 != 17 && i7 != 18) {
             return false;
         }
@@ -79,20 +78,20 @@ public final class b extends rg.b {
     public final int F(TLRPC.Chat chat) {
         Integer num;
         int i7;
-        TLRPC.ChatFull P0 = np.u1(k10.f24968t0).P0(chat.f28434id);
+        TLRPC.ChatFull P0 = np.u1(k10.f24932t0).P0(chat.f28398id);
         if (P0 != null && (i7 = P0.participants_count) > 0) {
             return i7;
         }
-        HashMap hashMap = this.f60524x;
-        if (!hashMap.isEmpty() && (num = (Integer) hashMap.get(Long.valueOf(chat.f28434id))) != null) {
+        HashMap hashMap = this.f60489x;
+        if (!hashMap.isEmpty() && (num = (Integer) hashMap.get(Long.valueOf(chat.f28398id))) != null) {
             return num.intValue();
         }
         return chat.participants_count;
     }
 
     public final void G() {
-        for (int i7 = 0; i7 < this.f60518e.size(); i7++) {
-            if (((a) this.f60518e.get(i7)).f56634a == 7) {
+        for (int i7 = 0; i7 < this.f60483e.size(); i7++) {
+            if (((a) this.f60483e.get(i7)).f56599a == 7) {
                 g(i7);
             }
         }
@@ -100,24 +99,24 @@ public final class b extends rg.b {
 
     @Override
     public final int b() {
-        return this.f60518e.size();
+        return this.f60483e.size();
     }
 
     @Override
     public final int d(int i7) {
-        return ((a) this.f60518e.get(i7)).f56634a;
+        return ((a) this.f60483e.get(i7)).f56599a;
     }
 
     @Override
-    public final void t(f1 f1Var, int i7) {
+    public final void t(e1 e1Var, int i7) {
         boolean z10;
         int i10;
         int i11;
         long j3;
         boolean z11;
-        int i12 = f1Var.f59169f;
-        View view = f1Var.f59165a;
-        a aVar = (a) this.f60518e.get(i7);
+        int i12 = e1Var.f59115f;
+        View view = e1Var.f59111a;
+        a aVar = (a) this.f60483e.get(i7);
         if (i12 != 0) {
             TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = null;
             if (i12 != 2) {
@@ -131,30 +130,30 @@ public final class b extends rg.b {
                                     TLRPC.InputPeer inputPeer = aVar.d;
                                     if (inputPeer != null) {
                                         if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
-                                            TLRPC.Chat O0 = np.u1(k10.f24968t0).O0(Long.valueOf(inputPeer.chat_id));
-                                            gVar.f(O0, aVar.f60513i, aVar.f60512g, F(O0));
+                                            TLRPC.Chat O0 = np.u1(k10.f24932t0).O0(Long.valueOf(inputPeer.chat_id));
+                                            gVar.f(O0, aVar.f60478i, aVar.f60477g, F(O0));
                                         } else if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
-                                            TLRPC.Chat O02 = np.u1(k10.f24968t0).O0(Long.valueOf(inputPeer.channel_id));
-                                            gVar.f(O02, aVar.f60513i, aVar.f60512g, F(O02));
+                                            TLRPC.Chat O02 = np.u1(k10.f24932t0).O0(Long.valueOf(inputPeer.channel_id));
+                                            gVar.f(O02, aVar.f60478i, aVar.f60477g, F(O02));
                                         }
                                     } else {
-                                        TLRPC.Chat chat = aVar.f60510e;
-                                        gVar.f(chat, aVar.f60513i, aVar.f60512g, F(chat));
+                                        TLRPC.Chat chat = aVar.f60475e;
+                                        gVar.f(chat, aVar.f60478i, aVar.f60477g, F(chat));
                                     }
-                                    gVar.setChatDeleteListener(this.f60520n);
+                                    gVar.setChatDeleteListener(this.f60485n);
                                     return;
                                 case 10:
                                     ((yg.h) view).setDate(aVar.h);
                                     return;
                                 case 11:
                                     yg.u uVar = (yg.u) view;
-                                    int i13 = aVar.f60516l;
-                                    boolean z12 = aVar.f56635b;
-                                    boolean z13 = aVar.f60512g;
-                                    List list = (List) aVar.f60511f;
-                                    TLRPC.Chat chat2 = this.f60523w;
+                                    int i13 = aVar.f60481l;
+                                    boolean z12 = aVar.f56600b;
+                                    boolean z13 = aVar.f60477g;
+                                    List list = (List) aVar.f60476f;
+                                    TLRPC.Chat chat2 = this.f60488w;
                                     u3 u3Var = uVar.d;
-                                    uVar.f61315s = i13;
+                                    uVar.f61280s = i13;
                                     boolean V = v3.V(chat2);
                                     if (i13 == 0) {
                                         if (V) {
@@ -171,9 +170,9 @@ public final class b extends rg.b {
                                         }
                                         u3Var.k(hd.a0(null, null, i10, new Object[0]));
                                     }
-                                    uVar.f61260f.a(z12, false);
+                                    uVar.f61225f.a(z12, false);
                                     uVar.setDivider(z13);
-                                    t6.X(uVar.f61259e, m6.f29562n5, uVar.f61256a);
+                                    t6.X(uVar.f61224e, m6.f29528n5, uVar.f61221a);
                                     if (list.size() == 0) {
                                         uVar.setSubtitle(uVar.e(hd.N0(2131753519, null)));
                                         return;
@@ -194,15 +193,15 @@ public final class b extends rg.b {
                                     }
                                 case 12:
                                     i iVar = (i) view;
-                                    TLObject tLObject = aVar.f60517m;
-                                    int i14 = aVar.f60513i;
-                                    int i15 = aVar.f60514j;
+                                    TLObject tLObject = aVar.f60482m;
+                                    int i14 = aVar.f60478i;
+                                    int i15 = aVar.f60479j;
                                     long j10 = aVar.h;
-                                    CharSequence charSequence = aVar.f60509c;
-                                    boolean z14 = aVar.f60512g;
-                                    boolean z15 = aVar.f56635b;
+                                    CharSequence charSequence = aVar.f60474c;
+                                    boolean z14 = aVar.f60477g;
+                                    boolean z15 = aVar.f56600b;
                                     u3 u3Var2 = iVar.d;
-                                    iVar.f61285w = tLObject;
+                                    iVar.f61250w = tLObject;
                                     if (i14 >= 12) {
                                         u3Var2.k(hd.G(1, "Years", new Object[0]));
                                     } else {
@@ -219,20 +218,20 @@ public final class b extends rg.b {
                                     sb2.append(" x ");
                                     sb2.append(i15);
                                     iVar.setSubtitle(sb2.toString());
-                                    m5 m5Var = iVar.f61284s;
+                                    m5 m5Var = iVar.f61249s;
                                     r1 i17 = r1.i();
                                     if (i15 <= 0) {
                                         j10 = 0;
                                     }
                                     m5Var.l(i17.f(j10, charSequence.toString()), false);
                                     iVar.setDivider(z14);
-                                    iVar.f61260f.a(z15, false);
+                                    iVar.f61225f.a(z15, false);
                                     return;
                                 case 13:
                                     x xVar = (x) view;
-                                    xVar.setText(aVar.f60509c);
-                                    int i18 = aVar.f60513i;
-                                    o6 o6Var = xVar.f61327r;
+                                    xVar.setText(aVar.f60474c);
+                                    int i18 = aVar.f60478i;
+                                    o6 o6Var = xVar.f61292r;
                                     if (i18 > 0) {
                                         str = hd.G(i18, "BoostingBoostsCountTitle", Integer.valueOf(i18));
                                     }
@@ -240,46 +239,46 @@ public final class b extends rg.b {
                                     o6Var.c(str, true, true);
                                     return;
                                 case 14:
-                                    ((yg.e) view).setGiveaway((TL_stories.PrepaidGiveaway) aVar.f60511f);
+                                    ((yg.e) view).setGiveaway((TL_stories.PrepaidGiveaway) aVar.f60476f);
                                     return;
                                 case 15:
                                     y yVar = (y) view;
-                                    CharSequence charSequence2 = aVar.f60509c;
-                                    boolean z16 = aVar.f56635b;
-                                    boolean z17 = aVar.f60512g;
-                                    yVar.L = aVar.f60516l;
+                                    CharSequence charSequence2 = aVar.f60474c;
+                                    boolean z16 = aVar.f56600b;
+                                    boolean z17 = aVar.f60477g;
+                                    yVar.L = aVar.f60481l;
                                     yVar.f(charSequence2, z16, z17);
                                     return;
                                 case 16:
                                     l lVar = (l) view;
-                                    lVar.setCount(aVar.f60513i);
-                                    lVar.setAfterTextChangedListener(this.f60522s);
+                                    lVar.setCount(aVar.f60478i);
+                                    lVar.setAfterTextChangedListener(this.f60487s);
                                     return;
                                 case 17:
                                     w wVar = (w) view;
-                                    TLObject tLObject2 = aVar.f60517m;
+                                    TLObject tLObject2 = aVar.f60482m;
                                     if (tLObject2 != null) {
                                         tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) tLObject2;
                                     }
-                                    int i19 = aVar.f60513i;
+                                    int i19 = aVar.f60478i;
                                     long j11 = aVar.h;
-                                    boolean z18 = aVar.f56635b;
-                                    TextView textView = wVar.f61322f;
+                                    boolean z18 = aVar.f56600b;
+                                    TextView textView = wVar.f61287f;
                                     o6 o6Var2 = wVar.d;
-                                    o6 o6Var3 = wVar.f61321e;
-                                    if (wVar.f61324r == tL_starsGiveawayOption) {
+                                    o6 o6Var3 = wVar.f61286e;
+                                    if (wVar.f61289r == tL_starsGiveawayOption) {
                                         z11 = true;
                                     } else {
                                         z11 = false;
                                     }
-                                    wVar.f61318a.a(z18, z11);
-                                    wVar.f61324r = tL_starsGiveawayOption;
+                                    wVar.f61283a.a(z18, z11);
+                                    wVar.f61289r = tL_starsGiveawayOption;
                                     if (z11) {
                                         o6Var3.a();
                                     }
                                     if (tL_starsGiveawayOption == null) {
                                         o6Var2.c(wVar.h, false, true);
-                                        o6Var3.c(wVar.f61323n, z11, true);
+                                        o6Var3.c(wVar.f61288n, z11, true);
                                         textView.setText("");
                                     } else {
                                         o6Var2.c(hd.H(' ', "GiveawayStars", (int) tL_starsGiveawayOption.stars), false, true);
@@ -287,9 +286,9 @@ public final class b extends rg.b {
                                         textView.setText(r1.i().f(tL_starsGiveawayOption.amount, tL_starsGiveawayOption.currency));
                                     }
                                     int i20 = i19 + 1;
-                                    wVar.f61325s = i20;
+                                    wVar.f61290s = i20;
                                     if (!z11) {
-                                        wVar.f61326w.e(true, i20);
+                                        wVar.f61291w.e(true, i20);
                                     }
                                     wVar.invalidate();
                                     return;
@@ -298,49 +297,49 @@ public final class b extends rg.b {
                             }
                         }
                         d0 d0Var = (d0) view;
-                        d0Var.setText(aVar.f60509c);
-                        d0Var.setBackground(aVar.f60512g);
+                        d0Var.setText(aVar.f60474c);
+                        d0Var.setBackground(aVar.f60477g);
                         return;
                     }
-                    ((o4) view).setText(aVar.f60509c);
+                    ((o4) view).setText(aVar.f60474c);
                     return;
                 }
                 v vVar = (v) view;
-                List list2 = aVar.f60515k;
-                int i21 = aVar.f60513i;
+                List list2 = aVar.f60480k;
+                int i21 = aVar.f60478i;
                 vVar.getClass();
                 String[] strArr = new String[list2.size()];
                 for (int i22 = 0; i22 < list2.size(); i22++) {
                     strArr[i22] = String.valueOf((Integer) list2.get(i22));
                 }
-                vVar.f61316a.b(i21, null, strArr);
+                vVar.f61281a.b(i21, null, strArr);
                 vVar.setCallBack(this.h);
                 return;
             }
             yg.d dVar = (yg.d) view;
-            int i23 = aVar.f60516l;
-            int i24 = aVar.f60513i;
-            TLRPC.User user = (TLRPC.User) aVar.f60511f;
-            boolean z19 = aVar.f56635b;
-            q9 q9Var = dVar.f61258c;
-            h6 h6Var = dVar.f61256a;
+            int i23 = aVar.f60481l;
+            int i24 = aVar.f60478i;
+            TLRPC.User user = (TLRPC.User) aVar.f60476f;
+            boolean z19 = aVar.f56600b;
+            q9 q9Var = dVar.f61223c;
+            h6 h6Var = dVar.f61221a;
             u3 u3Var3 = dVar.d;
-            m5 m5Var2 = dVar.f61259e;
-            b9 b9Var = dVar.f61257b;
-            if (dVar.f61275s == i23) {
+            m5 m5Var2 = dVar.f61224e;
+            b9 b9Var = dVar.f61222b;
+            if (dVar.f61240s == i23) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            dVar.f61275s = i23;
+            dVar.f61240s = i23;
             if (i23 == 0) {
                 u3Var3.k(hd.N0(2131753538, null));
                 dVar.setSubtitle(hd.N0(2131753164, null));
-                t6.X(m5Var2, m6.f29639r5, h6Var);
+                t6.X(m5Var2, m6.f29605r5, h6Var);
                 b9Var.g(16);
                 b9Var.i(-15292942, -15630089);
                 dVar.setDivider(true);
-                t6.Z(dVar, dVar.getContext(), 2131231230, m6.f29345b7);
+                t6.Z(dVar, dVar.getContext(), 2131231230, m6.f29311b7);
             } else if (i23 == 1) {
                 u3Var3.k(hd.N0(2131753590, null));
                 if (i24 == 1 && user != null) {
@@ -350,11 +349,11 @@ public final class b extends rg.b {
                 } else {
                     dVar.setSubtitle(dVar.e(hd.N0(2131753282, null)));
                 }
-                t6.X(m5Var2, m6.f29562n5, h6Var);
+                t6.X(m5Var2, m6.f29528n5, h6Var);
                 b9Var.g(6);
                 b9Var.i(-3905294, -6923014);
                 dVar.setDivider(false);
-                t6.Z(dVar, dVar.getContext(), 2131231231, m6.f29345b7);
+                t6.Z(dVar, dVar.getContext(), 2131231231, m6.f29311b7);
             } else if (i23 == 2) {
                 u3Var3.k(hd.N0(2131753329, null));
                 if (i24 == 1 && user != null) {
@@ -364,33 +363,33 @@ public final class b extends rg.b {
                 } else {
                     dVar.setSubtitle(dVar.e(hd.N0(2131753164, null)));
                 }
-                t6.X(m5Var2, m6.f29562n5, h6Var);
+                t6.X(m5Var2, m6.f29528n5, h6Var);
                 b9Var.g(25);
                 b9Var.i(-3905294, -6923014);
                 dVar.setDivider(true);
-                t6.Z(dVar, dVar.getContext(), 2131231230, m6.f29345b7);
+                t6.Z(dVar, dVar.getContext(), 2131231230, m6.f29311b7);
             } else if (i23 == 3) {
                 u3Var3.k(n8.b(hd.N0(2131753254, null)));
                 dVar.setSubtitle(hd.N0(2131753164, null));
-                t6.X(m5Var2, m6.f29639r5, h6Var);
+                t6.X(m5Var2, m6.f29605r5, h6Var);
                 b9Var.g(26);
                 b9Var.i(-146917, -625593);
                 dVar.setDivider(false);
-                t6.Z(dVar, dVar.getContext(), 2131231231, m6.f29345b7);
+                t6.Z(dVar, dVar.getContext(), 2131231231, m6.f29311b7);
             }
-            dVar.f61260f.a(z19, z10);
+            dVar.f61225f.a(z19, z10);
             q9Var.setImageDrawable(b9Var);
             q9Var.setRoundRadius(g0.L(20.0f));
             return;
         }
         r rVar = (r) view;
-        this.f60521r = rVar;
-        rVar.setBoostViaGifsText(this.f60523w);
-        this.f60521r.setStars(aVar.f60512g);
+        this.f60486r = rVar;
+        rVar.setBoostViaGifsText(this.f60488w);
+        this.f60486r.setStars(aVar.f60477g);
     }
 
     @Override
-    public final f1 x(ViewGroup viewGroup, int i7) {
+    public final e1 x(ViewGroup viewGroup, int i7) {
         xa xaVar;
         boolean z10;
         Context context = viewGroup.getContext();
@@ -403,7 +402,7 @@ public final class b extends rg.b {
                 xaVar = new View(context);
                 break;
             case 4:
-                int i10 = m6.f29324a7;
+                int i10 = m6.f29290a7;
                 View z6Var = new z6(context, m6.w0(i10, h6Var), 0);
                 t6.h(i10, z6Var, h6Var);
                 xaVar = z6Var;
@@ -413,7 +412,7 @@ public final class b extends rg.b {
                 break;
             case 6:
                 View o4Var = new o4(context, m6.L6, 21, 15, 3, false, false, this.d);
-                t6.h(m6.f29454h5, o4Var, h6Var);
+                t6.h(m6.f29420h5, o4Var, h6Var);
                 xaVar = o4Var;
                 break;
             case 7:
@@ -430,7 +429,7 @@ public final class b extends rg.b {
                 break;
             case 11:
                 yg.c cVar = new yg.c(context, h6Var);
-                cVar.f61258c.setVisibility(8);
+                cVar.f61223c.setVisibility(8);
                 xaVar = cVar;
                 break;
             case 12:
@@ -438,7 +437,7 @@ public final class b extends rg.b {
                 break;
             case 13:
                 View xVar = new x(context, h6Var);
-                t6.h(m6.f29454h5, xVar, h6Var);
+                t6.h(m6.f29420h5, xVar, h6Var);
                 xaVar = xVar;
                 break;
             case 14:
@@ -458,19 +457,19 @@ public final class b extends rg.b {
             case 18:
                 xa xaVar2 = new xa(context);
                 String N0 = hd.N0(2131747642, null);
-                if (xaVar2.f10054c == -1) {
+                if (xaVar2.f10017c == -1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                xaVar2.f10054c = -1;
-                o6 o6Var = xaVar2.f10052a;
+                xaVar2.f10017c = -1;
+                o6 o6Var = xaVar2.f10015a;
                 o6Var.c(N0, z10, true);
-                int i11 = m6.f29581o6;
+                int i11 = m6.f29547o6;
                 m6.v0(i11);
                 t6.Y(o6Var, i11, null);
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                ImageView imageView = xaVar2.f10053b;
+                ImageView imageView = xaVar2.f10016b;
                 t6.s(imageView, i11, null, mode);
                 if (z10) {
                     imageView.animate().rotation(0.0f).setDuration(340L).setInterpolator(nr.h);

@@ -1,31 +1,33 @@
 package bi;
 
-import android.content.DialogInterface;
-public final class y3 implements DialogInterface.OnDismissListener {
-    public final int f4304a;
-    public final boolean[] f4305b;
-    public final long f4306c;
+import android.content.Context;
+import org.telegram.messenger.y10;
+import org.telegram.ui.Components.lc;
+public final class y3 implements y10 {
+    public final int f4251a;
+    public final Context f4252b;
+    public final int f4253c;
+    public final org.telegram.ui.ActionBar.h6 d;
+    public final u3 f4254e;
 
-    public y3(boolean[] zArr, long j3, int i7) {
-        this.f4304a = i7;
-        this.f4305b = zArr;
-        this.f4306c = j3;
+    public y3(Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var, u3 u3Var, int i10) {
+        this.f4251a = i10;
+        this.f4252b = context;
+        this.f4253c = i7;
+        this.d = h6Var;
+        this.f4254e = u3Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f4304a) {
+    public final void a(Object obj) {
+        switch (this.f4251a) {
             case 0:
-                if (!this.f4305b[0]) {
-                    i4.g(this.f4306c);
-                    return;
-                }
+                lc k10 = this.f4254e.k();
+                a5.q(this.f4252b, this.f4253c, this.d, k10, (String) obj, null);
                 return;
             default:
-                if (!this.f4305b[0]) {
-                    i4.g(this.f4306c);
-                    return;
-                }
+                lc k11 = this.f4254e.k();
+                a5.q(this.f4252b, this.f4253c, this.d, k11, (String) obj, null);
                 return;
         }
     }

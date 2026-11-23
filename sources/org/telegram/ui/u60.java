@@ -6,36 +6,36 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class u60 implements org.telegram.messenger.y10 {
-    public final int f52460a;
-    public final Object f52461b;
-    public final Object f52462c;
+    public final int f52450a;
+    public final Object f52451b;
+    public final Object f52452c;
     public final Object d;
-    public final Object f52463e;
-    public final Object f52464f;
-    public final Object f52465g;
+    public final Object f52453e;
+    public final Object f52454f;
+    public final Object f52455g;
 
     public u60(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
-        this.f52460a = i7;
-        this.f52461b = obj;
-        this.f52462c = obj2;
-        this.f52463e = obj3;
-        this.f52465g = obj4;
-        this.f52464f = obj5;
+        this.f52450a = i7;
+        this.f52451b = obj;
+        this.f52452c = obj2;
+        this.f52453e = obj3;
+        this.f52455g = obj4;
+        this.f52454f = obj5;
         this.d = obj6;
     }
 
     @Override
     public final void a(Object obj) {
         xv xvVar;
-        int i7 = this.f52460a;
+        int i7 = this.f52450a;
         boolean z10 = true;
         boolean z11 = false;
         Object obj2 = this.d;
-        Object obj3 = this.f52464f;
-        Object obj4 = this.f52465g;
-        Object obj5 = this.f52463e;
-        Object obj6 = this.f52462c;
-        Object obj7 = this.f52461b;
+        Object obj3 = this.f52454f;
+        Object obj4 = this.f52455g;
+        Object obj5 = this.f52453e;
+        Object obj6 = this.f52452c;
+        Object obj7 = this.f52451b;
         switch (i7) {
             case 0:
                 LaunchActivity launchActivity = (LaunchActivity) obj7;
@@ -50,8 +50,8 @@ public final class u60 implements org.telegram.messenger.y10 {
                     bVar.b();
                 }
                 org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
-                if (Q instanceof me0) {
-                    Q = ((me0) Q).c0();
+                if (Q instanceof le0) {
+                    Q = ((le0) Q).c0();
                 }
                 org.telegram.ui.ActionBar.g2 g2Var = Q;
                 if (g2Var != null) {
@@ -66,7 +66,7 @@ public final class u60 implements org.telegram.messenger.y10 {
                     }
                     k0Var.A1(tL_premium_boostsStatus, z11);
                     k0Var.C1(l10.longValue());
-                    k0Var.f58770c2 = r1Var;
+                    k0Var.f58735c2 = r1Var;
                     g2Var.showDialog(k0Var);
                     if (runnable != null) {
                         try {
@@ -108,7 +108,7 @@ public final class u60 implements org.telegram.messenger.y10 {
                 bg.m0 m0Var = (bg.m0) obj2;
                 TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = (TL_wallet.inputTonConnectOauthSession) obj;
                 ((org.telegram.ui.ActionBar.w2[]) obj7)[0] = null;
-                gi0.f48124a = null;
+                gi0.f48060a = null;
                 if (((boolean[]) obj6)[0]) {
                     Arrays.fill(inputtonconnectoauthsession.challenge_answer, (byte) 0);
                     return;
@@ -118,36 +118,36 @@ public final class u60 implements org.telegram.messenger.y10 {
                     m0Var.run();
                     return;
                 }
-                gi0.f48124a = w2Var;
+                gi0.f48060a = w2Var;
                 w2Var.show();
                 return;
             case 3:
-                hi.e eVar = (hi.e) obj6;
+                hi.d dVar = (hi.d) obj6;
                 org.telegram.ui.Wallet.d3 d3Var = (org.telegram.ui.Wallet.d3) obj5;
                 org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj4;
                 org.telegram.ui.Wallet.p pVar = (org.telegram.ui.Wallet.p) obj3;
                 org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) obj2;
                 String str3 = (String) obj;
-                ((hi.e) obj7).setLoading(false);
-                eVar.setLoading(false);
+                ((hi.d) obj7).setLoading(false);
+                dVar.setLoading(false);
                 if (str3 == null) {
                     d3Var.dismiss();
                     return;
                 }
                 org.telegram.ui.Components.lc.d0(str3, d3Var.F, h6Var);
                 pVar.run();
-                if (h2Var.f44344n || h2Var.f44345o) {
+                if (h2Var.f44310n || h2Var.f44311o) {
                     z10 = false;
                 }
-                eVar.setEnabled(z10);
+                dVar.setEnabled(z10);
                 return;
             default:
                 org.telegram.ui.Wallet.e3 e3Var = (org.telegram.ui.Wallet.e3) obj4;
                 org.telegram.ui.ActionBar.h6 h6Var2 = (org.telegram.ui.ActionBar.h6) obj3;
                 jg.w0 w0Var = (jg.w0) obj2;
                 String str4 = (String) obj;
-                ((hi.e) obj7).setLoading(false);
-                ((hi.e) obj6).setEnabled(true);
+                ((hi.d) obj7).setLoading(false);
+                ((hi.d) obj6).setEnabled(true);
                 ((ImageView) obj5).setEnabled(true);
                 if (str4 == null) {
                     e3Var.dismiss();
@@ -160,12 +160,12 @@ public final class u60 implements org.telegram.messenger.y10 {
     }
 
     public u60(LaunchActivity launchActivity, vf.b bVar, Runnable runnable, org.telegram.messenger.h3 h3Var, Long l10, org.telegram.ui.Cells.r1 r1Var) {
-        this.f52460a = 1;
-        this.f52461b = launchActivity;
-        this.f52462c = bVar;
+        this.f52450a = 1;
+        this.f52451b = launchActivity;
+        this.f52452c = bVar;
         this.d = runnable;
-        this.f52465g = h3Var;
-        this.f52463e = l10;
-        this.f52464f = r1Var;
+        this.f52455g = h3Var;
+        this.f52453e = l10;
+        this.f52454f = r1Var;
     }
 }

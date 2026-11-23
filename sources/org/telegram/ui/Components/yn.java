@@ -25,15 +25,15 @@ public final class yn extends q9 {
     public final void onDraw(Canvas canvas) {
         long j3;
         co coVar = this.L;
-        if (coVar.f34229b && this.f38838e == null) {
+        if (coVar.f34197b && this.f38792e == null) {
             org.telegram.ui.Cells.l6 l6Var = this.H;
             l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            l6Var.f11934a = true;
+            l6Var.f11884a = true;
             l6Var.v = true;
             l6Var.J = this.K;
-            Integer num = coVar.f34231c;
+            Integer num = coVar.f34199c;
             if (num != null) {
-                l6Var.f11956z = num.intValue();
+                l6Var.f11906z = num.intValue();
             }
             org.telegram.ui.bn bnVar = coVar.H;
             if (bnVar != null) {
@@ -41,12 +41,12 @@ public final class yn extends q9 {
             } else {
                 org.telegram.ui.ActionBar.g2 g2Var = this.I;
                 if (g2Var instanceof y91) {
-                    j3 = -((y91) g2Var).f54099a;
+                    j3 = -((y91) g2Var).f54075a;
                 } else {
                     j3 = 0;
                 }
             }
-            fi.i7.h(j3, canvas, this.f38835a, l6Var);
+            fi.i7.h(j3, canvas, this.f38789a, l6Var);
             return;
         }
         super.onDraw(canvas);
@@ -65,7 +65,7 @@ public final class yn extends q9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.L.f34229b && this.H.a(this, motionEvent)) {
+        if (this.L.f34197b && this.H.a(this, motionEvent)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);

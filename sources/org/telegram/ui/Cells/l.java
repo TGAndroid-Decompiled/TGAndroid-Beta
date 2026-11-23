@@ -11,36 +11,36 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.hd;
 import org.telegram.tgnet.ConnectionsManager;
 public final class l extends FrameLayout {
-    public final org.telegram.ui.Components.n6 f30978a;
-    public final Paint f30979b;
-    public final bg.r f30980c;
+    public final org.telegram.ui.Components.n6 f30944a;
+    public final Paint f30945b;
+    public final bg.r f30946c;
     public final Drawable d;
-    public final int f30981e;
-    public int f30982f;
+    public final int f30947e;
+    public int f30948f;
 
     public l(Context context, int i7) {
         super(context);
         Paint paint = new Paint(1);
-        this.f30979b = paint;
-        this.f30980c = new bg.r(new ea(this, 1));
-        this.f30981e = i7;
+        this.f30945b = paint;
+        this.f30946c = new bg.r(new ea(this, 1));
+        this.f30947e = i7;
         this.d = i5.c.g(context, 2131231117);
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, false, false);
-        this.f30978a = n6Var;
-        n6Var.N = org.telegram.messenger.g0.f24046q.x;
+        this.f30944a = n6Var;
+        n6Var.N = org.telegram.messenger.g0.f24010q.x;
         n6Var.setCallback(this);
         n6Var.x(org.telegram.messenger.g0.o());
         n6Var.w(org.telegram.messenger.g0.L(14.0f));
         n6Var.u(-1);
-        n6Var.f37795b = 3;
+        n6Var.f37751b = 3;
         paint.setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(72.0f), 0.0f, new int[]{-13460514, -10042885}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     public final void a(int i7) {
-        this.f30982f = i7;
+        this.f30948f = i7;
         if (isAttachedToWindow()) {
-            long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f30981e).getCurrentTime());
-            this.f30980c.a(max);
+            long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f30947e).getCurrentTime());
+            this.f30946c.a(max);
             b(max);
         }
     }
@@ -48,7 +48,7 @@ public final class l extends FrameLayout {
     public final void b(long j3) {
         String h02;
         int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        org.telegram.ui.Components.n6 n6Var = this.f30978a;
+        org.telegram.ui.Components.n6 n6Var = this.f30944a;
         if (i7 == 0) {
             n6Var.t(hd.N0(2131750319, null), true, true);
             return;
@@ -64,12 +64,12 @@ public final class l extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(14.0f);
-        org.telegram.ui.Components.n6 n6Var = this.f30978a;
+        org.telegram.ui.Components.n6 n6Var = this.f30944a;
         int c10 = measuredWidth - ((int) n6Var.c());
         int L = c10 - org.telegram.messenger.g0.L(30.0f);
         canvas.save();
         canvas.translate(L, 0.0f);
-        canvas.drawRoundRect(0.0f, 0.0f, getWidth() - L, getHeight(), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), this.f30979b);
+        canvas.drawRoundRect(0.0f, 0.0f, getWidth() - L, getHeight(), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), this.f30945b);
         canvas.restore();
         n6Var.setBounds(c10, 0, getMeasuredWidth() - org.telegram.messenger.g0.L(8.0f), getMeasuredHeight() - org.telegram.messenger.g0.L(1.0f));
         n6Var.draw(canvas);
@@ -86,13 +86,13 @@ public final class l extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        a(this.f30982f);
+        a(this.f30948f);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f30980c.b();
+        this.f30946c.b();
     }
 
     @Override
@@ -102,7 +102,7 @@ public final class l extends FrameLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f30978a && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f30944a && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

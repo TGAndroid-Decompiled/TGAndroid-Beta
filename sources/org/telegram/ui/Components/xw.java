@@ -13,7 +13,7 @@ public final class xw extends sy {
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
         if (i7 == 0) {
-            this.d.f40100g0 = false;
+            this.d.f40083g0 = false;
         }
         super.a(recyclerView, i7);
     }
@@ -26,12 +26,12 @@ public final class xw extends sy {
         super.b(recyclerView, i7, i10);
         sx sxVar = tyVar.T;
         if (sxVar != null && tyVar.Q.getAdapter() == sxVar) {
-            sx sxVar2 = sxVar.f39717y.f39367a;
+            sx sxVar2 = sxVar.f39672y.f39323a;
             if (!sxVar2.G.W.G && !sxVar2.F) {
                 if (uwVar.N0() + 20 > sxVar.b()) {
-                    rx rxVar = sxVar.f39717y;
+                    rx rxVar = sxVar.f39672y;
                     Objects.requireNonNull(rxVar);
-                    org.telegram.messenger.g0.g3(new cw(rxVar, 1));
+                    org.telegram.messenger.g0.g3(new bw(rxVar, 1));
                 }
             }
         }

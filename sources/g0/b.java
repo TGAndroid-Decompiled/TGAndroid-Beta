@@ -1,140 +1,112 @@
 package g0;
 
-import android.app.Person;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.LocusId;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.PersistableBundle;
 import android.text.TextUtils;
-import androidx.core.graphics.drawable.IconCompat;
+import c8.ub;
 import e0.j0;
-import f0.g;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.Arrays;
 public final class b {
-    public Context f13093a;
-    public String f13094b;
-    public Intent[] f13095c;
-    public ComponentName d;
-    public CharSequence f13096e;
-    public CharSequence f13097f;
-    public CharSequence f13098g;
-    public IconCompat h;
-    public j0[] f13099i;
-    public Set f13100j;
-    public g f13101k;
-    public boolean f13102l;
-    public int f13103m;
-    public PersistableBundle f13104n;
+    public final c f13055a;
 
-    public static ArrayList a(Context context, List list) {
-        ArrayList arrayList = new ArrayList(list.size());
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            arrayList.add(new a(context, (ShortcutInfo) it.next()).a());
-        }
-        return arrayList;
-    }
-
-    public final String b() {
-        return this.f13094b;
-    }
-
-    public final Intent c() {
-        Intent[] intentArr = this.f13095c;
-        return intentArr[intentArr.length - 1];
-    }
-
-    public final ShortcutInfo d() {
-        String str;
-        ShortcutInfo.Builder intents = new ShortcutInfo.Builder(this.f13093a, this.f13094b).setShortLabel(this.f13096e).setIntents(this.f13095c);
-        IconCompat iconCompat = this.h;
-        if (iconCompat != null) {
-            intents.setIcon(iconCompat.m(this.f13093a));
-        }
-        if (!TextUtils.isEmpty(this.f13097f)) {
-            intents.setLongLabel(this.f13097f);
-        }
-        if (!TextUtils.isEmpty(this.f13098g)) {
-            intents.setDisabledMessage(this.f13098g);
-        }
-        ComponentName componentName = this.d;
-        if (componentName != null) {
-            intents.setActivity(componentName);
-        }
-        Set<String> set = this.f13100j;
-        if (set != null) {
-            intents.setCategories(set);
-        }
-        intents.setRank(this.f13103m);
-        PersistableBundle persistableBundle = this.f13104n;
-        if (persistableBundle != null) {
-            intents.setExtras(persistableBundle);
-        }
-        int i7 = 0;
-        if (Build.VERSION.SDK_INT >= 29) {
-            j0[] j0VarArr = this.f13099i;
-            if (j0VarArr != null && j0VarArr.length > 0) {
-                int length = j0VarArr.length;
-                Person[] personArr = new Person[length];
-                while (i7 < length) {
-                    j0 j0Var = this.f13099i[i7];
-                    j0Var.getClass();
-                    personArr[i7] = d1.f.E(j0Var);
-                    i7++;
-                }
-                intents.setPersons(personArr);
-            }
-            g gVar = this.f13101k;
-            if (gVar != null) {
-                intents.setLocusId(gVar.f11047b);
-            }
-            intents.setLongLived(this.f13102l);
+    public b(Context context, ShortcutInfo shortcutInfo) {
+        j0[] j0VarArr;
+        String string;
+        ?? obj = new Object();
+        this.f13055a = obj;
+        obj.f13056a = context;
+        obj.f13057b = shortcutInfo.getId();
+        shortcutInfo.getPackage();
+        Intent[] intents = shortcutInfo.getIntents();
+        obj.f13058c = (Intent[]) Arrays.copyOf(intents, intents.length);
+        obj.d = shortcutInfo.getActivity();
+        obj.f13059e = shortcutInfo.getShortLabel();
+        obj.f13060f = shortcutInfo.getLongLabel();
+        obj.f13061g = shortcutInfo.getDisabledMessage();
+        if (Build.VERSION.SDK_INT >= 28) {
+            shortcutInfo.getDisabledReason();
         } else {
-            if (this.f13104n == null) {
-                this.f13104n = new PersistableBundle();
+            shortcutInfo.isEnabled();
+        }
+        obj.f13063j = shortcutInfo.getCategories();
+        PersistableBundle extras = shortcutInfo.getExtras();
+        f0.g gVar = null;
+        if (extras != null && extras.containsKey("extraPersonCount")) {
+            int i7 = extras.getInt("extraPersonCount");
+            j0VarArr = new j0[i7];
+            int i10 = 0;
+            while (i10 < i7) {
+                StringBuilder sb2 = new StringBuilder("extraPerson_");
+                int i11 = i10 + 1;
+                sb2.append(i11);
+                PersistableBundle persistableBundle = extras.getPersistableBundle(sb2.toString());
+                String string2 = persistableBundle.getString("name");
+                String string3 = persistableBundle.getString("uri");
+                String string4 = persistableBundle.getString("key");
+                boolean z10 = persistableBundle.getBoolean("isBot");
+                boolean z11 = persistableBundle.getBoolean("isImportant");
+                ?? obj2 = new Object();
+                obj2.f10223a = string2;
+                obj2.f10224b = null;
+                obj2.f10225c = string3;
+                obj2.d = string4;
+                obj2.f10226e = z10;
+                obj2.f10227f = z11;
+                j0VarArr[i10] = obj2;
+                i10 = i11;
             }
-            j0[] j0VarArr2 = this.f13099i;
-            if (j0VarArr2 != null && j0VarArr2.length > 0) {
-                this.f13104n.putInt("extraPersonCount", j0VarArr2.length);
-                while (i7 < this.f13099i.length) {
-                    PersistableBundle persistableBundle2 = this.f13104n;
-                    StringBuilder sb2 = new StringBuilder("extraPerson_");
-                    int i10 = i7 + 1;
-                    sb2.append(i10);
-                    String sb3 = sb2.toString();
-                    j0 j0Var2 = this.f13099i[i7];
-                    j0Var2.getClass();
-                    PersistableBundle persistableBundle3 = new PersistableBundle();
-                    CharSequence charSequence = j0Var2.f10260a;
-                    if (charSequence != null) {
-                        str = charSequence.toString();
-                    } else {
-                        str = null;
-                    }
-                    persistableBundle3.putString("name", str);
-                    persistableBundle3.putString("uri", j0Var2.f10262c);
-                    persistableBundle3.putString("key", j0Var2.d);
-                    persistableBundle3.putBoolean("isBot", j0Var2.f10263e);
-                    persistableBundle3.putBoolean("isImportant", j0Var2.f10264f);
-                    persistableBundle2.putPersistableBundle(sb3, persistableBundle3);
-                    i7 = i10;
+        } else {
+            j0VarArr = 0;
+        }
+        obj.f13062i = j0VarArr;
+        shortcutInfo.getUserHandle();
+        shortcutInfo.getLastChangedTimestamp();
+        int i12 = Build.VERSION.SDK_INT;
+        if (i12 >= 30) {
+            shortcutInfo.isCached();
+        }
+        shortcutInfo.isDynamic();
+        shortcutInfo.isPinned();
+        shortcutInfo.isDeclaredInManifest();
+        shortcutInfo.isImmutable();
+        shortcutInfo.isEnabled();
+        shortcutInfo.hasKeyFieldsOnly();
+        c cVar = this.f13055a;
+        if (i12 >= 29) {
+            if (shortcutInfo.getLocusId() != null) {
+                LocusId locusId = shortcutInfo.getLocusId();
+                ub.a(locusId, "locusId cannot be null");
+                String id2 = locusId.getId();
+                if (!TextUtils.isEmpty(id2)) {
+                    gVar = new f0.g(id2);
+                } else {
+                    throw new IllegalArgumentException("id cannot be empty");
                 }
             }
-            g gVar2 = this.f13101k;
-            if (gVar2 != null) {
-                this.f13104n.putString("extraLocusId", gVar2.f11046a);
+        } else {
+            PersistableBundle extras2 = shortcutInfo.getExtras();
+            if (extras2 != null && (string = extras2.getString("extraLocusId")) != null) {
+                gVar = new f0.g(string);
             }
-            this.f13104n.putBoolean("extraLongLived", this.f13102l);
-            intents.setExtras(this.f13104n);
         }
-        if (Build.VERSION.SDK_INT >= 33) {
-            ai.d.l(intents);
+        cVar.f13064k = gVar;
+        this.f13055a.f13066m = shortcutInfo.getRank();
+        this.f13055a.f13067n = shortcutInfo.getExtras();
+    }
+
+    public final c a() {
+        c cVar = this.f13055a;
+        if (!TextUtils.isEmpty(cVar.f13059e)) {
+            Intent[] intentArr = cVar.f13058c;
+            if (intentArr != null && intentArr.length != 0) {
+                return cVar;
+            }
+            throw new IllegalArgumentException("Shortcut must have an intent");
         }
-        return intents.build();
+        throw new IllegalArgumentException("Shortcut must have a non-empty label");
     }
 }

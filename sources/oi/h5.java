@@ -5,21 +5,23 @@ import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.u9;
 public final class h5 implements u9 {
-    public final Layout f22163a;
-    public final int f22164b;
-    public final int f22165c;
-    public final m5 d;
+    public final Layout f22123a;
+    public final int f22124b;
+    public final int f22125c;
+    public final int d;
+    public final TL_iv.pageTableCell f22126e;
 
-    public h5(m5 m5Var, Layout layout, int i7, int i10) {
-        this.d = m5Var;
-        this.f22163a = layout;
-        this.f22164b = i7;
-        this.f22165c = i10;
+    public h5(Layout layout, int i7, int i10, int i11, TL_iv.pageTableCell pagetablecell) {
+        this.f22123a = layout;
+        this.f22124b = i7;
+        this.f22125c = i10;
+        this.d = i11;
+        this.f22126e = pagetablecell;
     }
 
     @Override
     public final Layout a() {
-        return this.f22163a;
+        return this.f22123a;
     }
 
     @Override
@@ -34,30 +36,21 @@ public final class h5 implements u9 {
 
     @Override
     public final int getRow() {
-        return 0;
+        return this.d;
     }
 
     @Override
     public final CharSequence getText() {
-        TL_iv.RichText richText;
-        a aVar = this.d.f22531a;
-        if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f21935b;
-            if ((pageBlock instanceof TL_iv.pageBlockTable) && (richText = ((TL_iv.pageBlockTable) pageBlock).title) != null) {
-                return c6.r(richText, null, true);
-            }
-            return "";
-        }
-        return "";
+        return d6.h(this.f22126e);
     }
 
     @Override
     public final int getX() {
-        return this.f22164b;
+        return this.f22124b;
     }
 
     @Override
     public final int getY() {
-        return this.f22165c;
+        return this.f22125c;
     }
 }

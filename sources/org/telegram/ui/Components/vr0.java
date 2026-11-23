@@ -7,18 +7,18 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class vr0 extends dk0 {
-    public final Context f41544c;
+    public final Context f41506c;
     public TLRPC.ChatFull d;
-    public ArrayList f41545e;
-    public final jt0 f41546f;
+    public ArrayList f41507e;
+    public final jt0 f41508f;
 
     public vr0(jt0 jt0Var, Context context) {
-        this.f41546f = jt0Var;
-        this.f41544c = context;
+        this.f41508f = jt0Var;
+        this.f41506c = context;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
+    public final boolean D(v4.e1 e1Var) {
         return true;
     }
 
@@ -45,7 +45,7 @@ public final class vr0 extends dk0 {
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
+    public final void t(v4.e1 e1Var, int i7) {
         TLRPC.ChatParticipant chatParticipant;
         String str;
         boolean z10;
@@ -56,13 +56,13 @@ public final class vr0 extends dk0 {
         boolean z15;
         boolean z16;
         boolean z17;
-        jt0 jt0Var = this.f41546f;
-        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36683y1;
-        View view = f1Var.f59165a;
+        jt0 jt0Var = this.f41508f;
+        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36638y1;
+        View view = e1Var.f59111a;
         if (view instanceof org.telegram.ui.Cells.ra) {
             org.telegram.ui.Cells.ra raVar = (org.telegram.ui.Cells.ra) view;
-            if (!this.f41545e.isEmpty()) {
-                chatParticipant = this.d.participants.participants.get(((Integer) this.f41545e.get(i7)).intValue());
+            if (!this.f41507e.isEmpty()) {
+                chatParticipant = this.d.participants.participants.get(((Integer) this.f41507e.get(i7)).intValue());
             } else {
                 chatParticipant = this.d.participants.participants.get(i7);
             }
@@ -130,7 +130,7 @@ public final class vr0 extends dk0 {
                     }
                 }
                 TLRPC.User c22 = g2Var.getMessagesController().c2(Long.valueOf(chatParticipant.user_id));
-                if (org.telegram.messenger.p10.C(c22) && org.telegram.messenger.v3.h(g2Var.getMessagesController().O0(Long.valueOf(-jt0Var.f36647m1)))) {
+                if (org.telegram.messenger.p10.C(c22) && org.telegram.messenger.v3.h(g2Var.getMessagesController().O0(Long.valueOf(-jt0Var.f36602m1)))) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -145,15 +145,15 @@ public final class vr0 extends dk0 {
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        jt0 jt0Var = this.f41546f;
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        jt0 jt0Var = this.f41508f;
         if (i7 == 20) {
-            y3 X = jt0.X(7, jt0Var.f36647m1, this.f41544c, jt0Var.I1);
-            X.setLayoutParams(new v4.q0(-1, -1));
-            return new v4.f1(X);
+            y3 X = jt0.X(7, jt0Var.f36602m1, this.f41506c, jt0Var.I1);
+            X.setLayoutParams(new v4.p0(-1, -1));
+            return new v4.e1(X);
         }
-        org.telegram.ui.Cells.ra raVar = new org.telegram.ui.Cells.ra(9, 0, this.f41544c, jt0Var.I1, true, false);
-        raVar.setLayoutParams(new v4.q0(-1, -2));
-        return new v4.f1(raVar);
+        org.telegram.ui.Cells.ra raVar = new org.telegram.ui.Cells.ra(9, 0, this.f41506c, jt0Var.I1, true, false);
+        raVar.setLayoutParams(new v4.p0(-1, -2));
+        return new v4.e1(raVar);
     }
 }

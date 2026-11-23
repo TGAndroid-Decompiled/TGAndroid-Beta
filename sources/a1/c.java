@@ -5,8 +5,8 @@ import a8.b8;
 import a8.r7;
 import ab.m0;
 import ab.o0;
-import ai.a3;
-import ai.l1;
+import ai.f1;
+import ai.q2;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ import android.view.View;
 import bg.q;
 import bi.a1;
 import bi.e0;
-import bi.e2;
+import bi.f2;
 import bi.k1;
 import com.google.android.gms.common.api.h;
 import com.google.android.gms.tasks.Continuation;
@@ -61,9 +61,10 @@ import org.telegram.ui.Components.o41;
 import org.telegram.ui.Dictation.DictationAsr;
 import org.telegram.ui.Dictation.DictationLid;
 import org.telegram.ui.ll0;
+import r0.l1;
 import r0.m;
 import ri.n;
-public final class c implements OnSuccessListener, p, Continuation, OnCompleteListener, l1, a1, q, q1, m, n, j, i, com.google.android.gms.common.api.internal.q, w10, a5, te.b, ll0 {
+public final class c implements OnSuccessListener, p, Continuation, OnCompleteListener, f1, a1, q, q1, m, n, j, i, com.google.android.gms.common.api.internal.q, w10, a5, te.b, ll0 {
     public final int f37a;
     public final Object f38b;
 
@@ -74,7 +75,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
 
     @Override
     public void H(int i7, float f10, float f11, te.c cVar) {
-        View view = ((h6) this.f38b).f8974b;
+        View view = ((h6) this.f38b).f8937b;
         if (view instanceof v0) {
             ((v0) view).U();
         } else {
@@ -89,24 +90,24 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
             long j3 = i7;
             if (r0Var.D1 != j3) {
                 r0Var.D1 = j3;
-                r0Var.f9646t1.setText(r0.L0(j3));
+                r0Var.f9611t1.setText(r0.L0(j3));
             }
             r0Var.K0(true);
         }
     }
 
     @Override
-    public r0.l1 P0(View view, r0.l1 l1Var) {
-        ((k1) this.f38b).f3775r1.j(l1Var);
-        return r0.l1.f56302b;
+    public l1 P0(View view, l1 l1Var) {
+        ((k1) this.f38b).f3739r1.j(l1Var);
+        return l1.f56267b;
     }
 
     @Override
     public void a(Canvas canvas) {
-        a3 a3Var = (a3) this.f38b;
+        q2 q2Var = (q2) this.f38b;
         canvas.save();
-        canvas.translate(a3Var.f34681a.getX(), a3Var.f34681a.getY());
-        a3Var.f34681a.draw(canvas);
+        canvas.translate(q2Var.f34671a.getX(), q2Var.f34671a.getY());
+        q2Var.f34671a.draw(canvas);
         canvas.restore();
     }
 
@@ -116,11 +117,11 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         kotlin.jvm.internal.j.e(clientImpl, "clientImpl");
         u uVar = new u((TaskCompletionSource) obj2);
         com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new h(-1, -1, 0, true), false);
-        gVar.f6235c = false;
+        gVar.f6198c = false;
         r rVar = (r) ((t) clientImpl.n());
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.firebase.pnv.internal.IFpnvService");
-        int i7 = db.e.f8279a;
+        int i7 = db.e.f8242a;
         obtain.writeStrongBinder(uVar);
         obtain.writeInt(1);
         ((db.q) this.f38b).writeToParcel(obtain, 0);
@@ -128,7 +129,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         gVar.writeToParcel(obtain, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            rVar.f8294a.transact(3, obtain, obtain2, 0);
+            rVar.f8257a.transact(3, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -140,13 +141,13 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
     public void b(k2.j jVar) {
         d4.i iVar = (d4.i) jVar;
         iVar.clear();
-        ((d4.j) this.f38b).f7880b.add(iVar);
+        ((d4.j) this.f38b).f7843b.add(iVar);
     }
 
     @Override
     public void c(long j3, long j10) {
         long[] jArr = (long[]) this.f38b;
-        ExecutorService executorService = DictationLid.f43074a;
+        ExecutorService executorService = DictationLid.f43040a;
         long[] jArr2 = (long[]) DictationAsr.h.get("tinylid.bin");
         if (jArr2 != null) {
             jArr2[0] = j3;
@@ -173,16 +174,16 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
 
     @Override
     public int e() {
-        e2 e2Var = (e2) this.f38b;
-        e2Var.getClass();
-        return m6.w0(m6.f29324a7, e2Var.J0);
+        f2 f2Var = (f2) this.f38b;
+        f2Var.getClass();
+        return m6.w0(m6.f29290a7, f2Var.J0);
     }
 
     @Override
     public t1 f(int i7, m1 m1Var, int[] iArr) {
         a3.n nVar = (a3.n) this.f38b;
         f0 p10 = i0.p();
-        for (int i10 = 0; i10 < m1Var.f10556a; i10++) {
+        for (int i10 = 0; i10 < m1Var.f10519a; i10++) {
             p10.c(new a3.j(i7, m1Var, i10, nVar, iArr[i10]));
         }
         return p10.f();
@@ -222,9 +223,9 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
-                di.t tVar = sVar.f9719r;
+                di.t tVar = sVar.f9683r;
                 if (o41Var.H instanceof TL_stars.StarsTransaction) {
-                    pb.l1(sVar.getContext(), true, tVar.f9771b, di.t.q0(tVar), (TL_stars.StarsTransaction) o41Var.H, di.t.r0(tVar));
+                    pb.l1(sVar.getContext(), true, tVar.f9734b, di.t.q0(tVar), (TL_stars.StarsTransaction) o41Var.H, di.t.r0(tVar));
                     return;
                 } else if (sVar.h) {
                     sVar.h = false;
@@ -284,7 +285,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 r7Var.getClass();
                 if (!task.isSuccessful() && (exception = task.getException()) != null && !TextUtils.isEmpty(exception.getMessage()) && exception.getMessage().contains("FID_ALREADY_USED:")) {
                     Log.w("FirebaseMessaging", "FID_ALREADY_USED Detected. Retrying with FID cache clearing!");
-                    ((va.c) ((va.d) r7Var.d)).f59384c.c().delete();
+                    ((va.c) ((va.d) r7Var.d)).f59347c.c().delete();
                     return r7Var.J();
                 }
                 return task;
@@ -313,21 +314,21 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 db.n this$0 = (db.n) this.f38b;
                 kotlin.jvm.internal.j.e(this$0, "this$0");
                 kotlin.jvm.internal.j.e(task, "task");
-                d1 d1Var = db.n.f8290b;
+                d1 d1Var = db.n.f8253b;
                 if (task.isSuccessful()) {
                     d1Var.a("Successfully completed the operation", new Object[0]);
-                    Task forResult = Tasks.forResult(db.m.f8289b.invoke(task.getResult()));
+                    Task forResult = Tasks.forResult(db.m.f8252b.invoke(task.getResult()));
                     kotlin.jvm.internal.j.d(forResult, "{\n      logger.d(\"Succes…ccess(task.result))\n    }");
                     return forResult;
                 }
-                Log.e(d1Var.f23471b, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
+                Log.e(d1Var.f23435b, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
                 Exception exception2 = task.getException();
                 if (exception2 != null && (message = exception2.getMessage()) != null && xd.d.e(message, "test_number_token is invalid")) {
                     d1Var.a("Backend rejected the test number token.", new Object[0]);
                     forException = Tasks.forException(new db.b(55507, "Invalid test number ID(s) - might be empty, expired or duplicated."));
                 } else {
                     if (exception2 instanceof com.google.android.gms.common.api.f) {
-                        i7 = ((com.google.android.gms.common.api.f) exception2).getStatus().f6226a;
+                        i7 = ((com.google.android.gms.common.api.f) exception2).getStatus().f6189a;
                     } else {
                         i7 = 55501;
                     }
@@ -344,9 +345,9 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
             case 17:
                 c4.h hVar = (c4.h) this.f38b;
                 c4.a aVar = (c4.a) obj;
-                c4.g gVar = new c4.g(aVar.f4405b, w7.s.a0(aVar.f4404a, aVar.f4406c));
-                hVar.f4415c.add(gVar);
-                long j3 = hVar.f4420j;
+                c4.g gVar = new c4.g(aVar.f4368b, w7.s.a0(aVar.f4367a, aVar.f4369c));
+                hVar.f4378c.add(gVar);
+                long j3 = hVar.f4383j;
                 if (j3 == -9223372036854775807L || aVar.d >= j3) {
                     hVar.g(gVar);
                     return;

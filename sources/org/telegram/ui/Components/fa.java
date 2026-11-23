@@ -13,53 +13,53 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class fa extends Drawable {
-    public float f35187a = 1.0f;
-    public final Paint f35188b = new Paint(1);
-    public final Rect f35189c = new Rect();
+    public float f35162a = 1.0f;
+    public final Paint f35163b = new Paint(1);
+    public final Rect f35164c = new Rect();
     public final Path d = new Path();
-    public final float f35190e;
-    public final float f35191f;
-    public final Drawable f35192g;
+    public final float f35165e;
+    public final float f35166f;
+    public final Drawable f35167g;
     public final float h;
-    public final ga f35193i;
+    public final ga f35168i;
 
     public fa(ga gaVar, float f10, float f11, Drawable drawable, float f12) {
-        this.f35193i = gaVar;
-        this.f35190e = f10;
-        this.f35191f = f11;
-        this.f35192g = drawable;
+        this.f35168i = gaVar;
+        this.f35165e = f10;
+        this.f35166f = f11;
+        this.f35167g = drawable;
         this.h = f12;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Bitmap b10;
-        ga gaVar = this.f35193i;
-        ca caVar = gaVar.f35487a;
-        Matrix matrix = gaVar.f35500p;
+        ga gaVar = this.f35168i;
+        ca caVar = gaVar.f35449a;
+        Matrix matrix = gaVar.f35462p;
         Paint paint = null;
         if (caVar != null && (b10 = caVar.b()) != null) {
-            if (gaVar.f35499o == null || gaVar.f35498n != b10) {
-                gaVar.f35498n = b10;
+            if (gaVar.f35461o == null || gaVar.f35460n != b10) {
+                gaVar.f35460n = b10;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
-                gaVar.f35499o = bitmapShader;
+                gaVar.f35461o = bitmapShader;
                 gaVar.h.setShader(bitmapShader);
             }
             matrix.reset();
-            matrix.postTranslate((-0.0f) - this.f35190e, (-0.0f) - this.f35191f);
-            View view = caVar.f34126b;
+            matrix.postTranslate((-0.0f) - this.f35165e, (-0.0f) - this.f35166f);
+            View view = caVar.f34090b;
             if (view != null) {
-                matrix.preScale(view.getWidth() / b10.getWidth(), caVar.f34126b.getHeight() / b10.getHeight());
+                matrix.preScale(view.getWidth() / b10.getWidth(), caVar.f34090b.getHeight() / b10.getHeight());
             }
-            gaVar.f35499o.setLocalMatrix(matrix);
-            gaVar.h.setAlpha((int) (this.f35187a * 255.0f));
+            gaVar.f35461o.setLocalMatrix(matrix);
+            gaVar.h.setAlpha((int) (this.f35162a * 255.0f));
             paint = gaVar.h;
         }
         Paint paint2 = paint;
         Rect bounds = getBounds();
-        Drawable drawable = this.f35192g;
-        Paint paint3 = this.f35188b;
+        Drawable drawable = this.f35167g;
+        Paint paint3 = this.f35163b;
         float f10 = this.h;
         if (paint2 == null && (caVar == null || !caVar.c())) {
             if (drawable != null) {
@@ -82,7 +82,7 @@ public final class fa extends Drawable {
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
             drawable.setBounds(bounds);
             drawable.draw(canvas);
-            Rect rect = this.f35189c;
+            Rect rect = this.f35164c;
             if (caVar != null && caVar.c()) {
                 canvas.save();
                 getPadding(rect);
@@ -143,7 +143,7 @@ public final class fa extends Drawable {
 
     @Override
     public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.f35192g;
+        Drawable drawable = this.f35167g;
         if (drawable != null) {
             return drawable.getPadding(rect);
         }
@@ -153,7 +153,7 @@ public final class fa extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f35187a = i7 / 255.0f;
+        this.f35162a = i7 / 255.0f;
     }
 
     @Override

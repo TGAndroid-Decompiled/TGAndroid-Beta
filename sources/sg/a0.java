@@ -11,28 +11,28 @@ import java.util.List;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.cd0;
 public final class a0 {
-    public static final a0 f57195e;
-    public static final List f57196f;
-    public static final List f57197g;
+    public static final a0 f57160e;
+    public static final List f57161f;
+    public static final List f57162g;
     public static ArrayList h;
-    public static boolean f57198i;
-    public final String f57199a;
-    public final String f57200b;
-    public final String f57201c;
-    public final ji.l d;
+    public static boolean f57163i;
+    public final String f57164a;
+    public final String f57165b;
+    public final String f57166c;
+    public final ji.k d;
 
     static {
-        a0 a0Var = new a0("roboto", "PhotoEditorTypefaceRoboto", new ji.l(new r0.f1(18), 28));
-        f57195e = a0Var;
-        f57196f = Arrays.asList(a0Var, new a0("italic", "PhotoEditorTypefaceItalic", new ji.l(new r0.f1(19), 28)), new a0("serif", "PhotoEditorTypefaceSerif", new ji.l(new r0.f1(20), 28)), new a0("condensed", "PhotoEditorTypefaceCondensed", new ji.l(new r0.f1(21), 28)), new a0("mono", "PhotoEditorTypefaceMono", new ji.l(new r0.f1(22), 28)), new a0("mw_bold", "PhotoEditorTypefaceMerriweather", new ji.l(new r0.f1(23), 28)));
-        f57197g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
+        a0 a0Var = new a0("roboto", "PhotoEditorTypefaceRoboto", new ji.k(new r0.f1(18), 28));
+        f57160e = a0Var;
+        f57161f = Arrays.asList(a0Var, new a0("italic", "PhotoEditorTypefaceItalic", new ji.k(new r0.f1(19), 28)), new a0("serif", "PhotoEditorTypefaceSerif", new ji.k(new r0.f1(20), 28)), new a0("condensed", "PhotoEditorTypefaceCondensed", new ji.k(new r0.f1(21), 28)), new a0("mono", "PhotoEditorTypefaceMono", new ji.k(new r0.f1(22), 28)), new a0("mw_bold", "PhotoEditorTypefaceMerriweather", new ji.k(new r0.f1(23), 28)));
+        f57162g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
-    public a0(String str, String str2, ji.l lVar) {
-        this.f57199a = str;
-        this.f57200b = str2;
-        this.f57201c = null;
-        this.d = lVar;
+    public a0(String str, String str2, ji.k kVar) {
+        this.f57164a = str;
+        this.f57165b = str2;
+        this.f57166c = null;
+        this.d = kVar;
     }
 
     public static void b() {
@@ -42,11 +42,11 @@ public final class a0 {
     public static List c() {
         ArrayList arrayList = h;
         if (arrayList == null) {
-            if (arrayList == null && !f57198i) {
-                f57198i = true;
-                Utilities.f22813i.c(new cd0(22));
+            if (arrayList == null && !f57163i) {
+                f57163i = true;
+                Utilities.f22777i.c(new cd0(22));
             }
-            return f57196f;
+            return f57161f;
         }
         return arrayList;
     }
@@ -57,9 +57,9 @@ public final class a0 {
             return null;
         }
         randomAccessFile.seek(i7 + zVar.d);
-        byte[] bArr = new byte[zVar.f57456c];
+        byte[] bArr = new byte[zVar.f57421c];
         randomAccessFile.read(bArr);
-        if (zVar.f57454a == 1) {
+        if (zVar.f57419a == 1) {
             charset = StandardCharsets.UTF_16BE;
         } else {
             charset = StandardCharsets.UTF_8;
@@ -68,17 +68,17 @@ public final class a0 {
     }
 
     public final Typeface d() {
-        ji.l lVar = this.d;
-        if (((Typeface) lVar.f17980c) == null) {
-            lVar.f17980c = ((y) lVar.f17979b).a();
+        ji.k kVar = this.d;
+        if (((Typeface) kVar.f17943c) == null) {
+            kVar.f17943c = ((y) kVar.f17942b).a();
         }
-        return (Typeface) lVar.f17980c;
+        return (Typeface) kVar.f17943c;
     }
 
     public a0(Font font, String str) {
-        this.f57199a = str;
-        this.f57201c = str;
-        this.f57200b = null;
-        this.d = new ji.l(new org.telegram.tgnet.u(font, 23), 28);
+        this.f57164a = str;
+        this.f57166c = str;
+        this.f57165b = null;
+        this.d = new ji.k(new org.telegram.tgnet.v(font, 23), 28);
     }
 }

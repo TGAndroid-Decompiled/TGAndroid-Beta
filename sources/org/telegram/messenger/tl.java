@@ -2,21 +2,21 @@ package org.telegram.messenger;
 
 import android.util.SparseArray;
 public final class tl implements Runnable {
-    public final int f27051a;
-    public final np f27052b;
-    public final SparseArray f27053c;
+    public final int f27015a;
+    public final np f27016b;
+    public final SparseArray f27017c;
 
     public tl(np npVar, SparseArray sparseArray, int i7) {
-        this.f27051a = i7;
-        this.f27052b = npVar;
-        this.f27053c = sparseArray;
+        this.f27015a = i7;
+        this.f27016b = npVar;
+        this.f27017c = sparseArray;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f27051a;
-        SparseArray sparseArray = this.f27053c;
-        np npVar = this.f27052b;
+        int i7 = this.f27015a;
+        SparseArray sparseArray = this.f27017c;
+        np npVar = this.f27016b;
         char c10 = 2;
         switch (i7) {
             case 0:

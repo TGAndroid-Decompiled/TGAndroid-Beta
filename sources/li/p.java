@@ -9,15 +9,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.View;
-import bi.e3;
-import bi.g7;
-import bi.v1;
-import c8.ma;
-import c8.ra;
+import bi.g3;
+import bi.j7;
+import bi.w1;
+import c8.na;
+import c8.sa;
 import di.d1;
-import hi.f1;
-import hi.l5;
-import hi.o4;
+import hi.e1;
+import hi.m5;
+import hi.p4;
 import java.util.WeakHashMap;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.gc;
@@ -50,7 +50,7 @@ import org.telegram.ui.Components.x30;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.bn;
 import org.telegram.ui.rq;
-import org.telegram.ui.wq0;
+import org.telegram.ui.xq0;
 public final class p extends g2 implements w30, gs, te.b {
     public RadialProgressView E;
     public b9 F;
@@ -61,23 +61,23 @@ public final class p extends g2 implements w30, gs, te.b {
     public TLRPC.ChatFull K;
     public final t1[] L;
     public final n M;
-    public ui.c f20008a;
-    public final te.a f20009b;
-    public long f20010c;
+    public ui.c f19974a;
+    public final te.a f19975b;
+    public long f19976c;
     public d1 d;
-    public h51 f20011e;
-    public String f20012f;
+    public h51 f19977e;
+    public String f19978f;
     public boolean h;
-    public boolean f20013n;
-    public e3 f20014r;
-    public o f20015s;
-    public l5 f20016w;
-    public q9 f20017x;
-    public AnimatorSet f20018y;
+    public boolean f19979n;
+    public g3 f19980r;
+    public o f19981s;
+    public m5 f19982w;
+    public q9 f19983x;
+    public AnimatorSet f19984y;
 
     public p(Bundle bundle) {
         super(bundle);
-        this.f20009b = new te.a(0, this, nr.h, 320L, false);
+        this.f19975b = new te.a(0, this, nr.h, 320L, false);
         this.L = new t1[1];
         this.M = new n(this);
     }
@@ -92,7 +92,7 @@ public final class p extends g2 implements w30, gs, te.b {
         Object obj = o41Var.H;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            j3 = -chat.f28434id;
+            j3 = -chat.f28398id;
             boolean V = v3.V(chat);
             TLRPC.Chat chat2 = pVar.J;
             if (chat2 != null && (chat.creator || v3.y(27, chat2))) {
@@ -105,7 +105,7 @@ public final class p extends g2 implements w30, gs, te.b {
         } else {
             if (obj instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj;
-                j3 = user.f28583id;
+                j3 = user.f28547id;
                 u10 = p10.u(user);
                 TLRPC.Chat chat3 = pVar.J;
                 if (chat3 != null && ((user.bot && user.bot_can_edit) || v3.y(27, chat3))) {
@@ -135,7 +135,7 @@ public final class p extends g2 implements w30, gs, te.b {
             }
             G.l(2131232424, hd.N0(i7, null), new h(pVar, j3, 1), z12);
             G.m(2131232089, new m(pVar, u10, z11, j3, 0), hd.N0(2131751903, null), z13, true);
-            G.X(pVar.f20011e.U0(view, true));
+            G.X(pVar.f19977e.U0(view, true));
             G.a0();
             return true;
         }
@@ -147,7 +147,7 @@ public final class p extends g2 implements w30, gs, te.b {
         TLRPC.ChatPhoto chatPhoto;
         int i7 = o41Var.d;
         if (i7 == 140) {
-            if (!pVar.G.g() && (chatPhoto = (O0 = pVar.getMessagesController().O0(Long.valueOf(pVar.f20010c))).photo) != null && chatPhoto.photo_big != null) {
+            if (!pVar.G.g() && (chatPhoto = (O0 = pVar.getMessagesController().O0(Long.valueOf(pVar.f19976c))).photo) != null && chatPhoto.photo_big != null) {
                 gc gcVar = null;
                 PhotoViewer.p1().I2(null, pVar, null);
                 TLRPC.ChatPhoto chatPhoto2 = O0.photo;
@@ -173,24 +173,24 @@ public final class p extends g2 implements w30, gs, te.b {
             if (pVar.H == null) {
                 z10 = false;
             }
-            x30Var.n(z10, new i(pVar, 0), new f1(6), 0);
+            x30Var.n(z10, new i(pVar, 0), new e1(6), 0);
         } else if (i7 == 142) {
             Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", pVar.f20010c);
+            bundle.putLong("chat_id", pVar.f19976c);
             bundle.putInt("type", 1);
             rq rqVar = new rq(bundle);
             rqVar.C0(pVar.K);
             pVar.presentFragment(rqVar);
         } else if (i7 == 144) {
             Bundle bundle2 = new Bundle();
-            bundle2.putLong("chat_id", pVar.f20010c);
+            bundle2.putLong("chat_id", pVar.f19976c);
             bundle2.putInt("type", 0);
             rq rqVar2 = new rq(bundle2);
             rqVar2.C0(pVar.K);
             pVar.presentFragment(rqVar2);
         } else if (i7 == 143) {
             Bundle bundle3 = new Bundle();
-            bundle3.putLong("community_id", pVar.f20010c);
+            bundle3.putLong("community_id", pVar.f19976c);
             pVar.presentFragment(new s(bundle3));
         } else if (i7 == 150) {
             pVar.e0(true);
@@ -203,22 +203,22 @@ public final class p extends g2 implements w30, gs, te.b {
         } else {
             Object obj = o41Var.H;
             if (obj instanceof TLRPC.Chat) {
-                pVar.presentFragment(bn.ua(-((TLRPC.Chat) obj).f28434id));
+                pVar.presentFragment(bn.ua(-((TLRPC.Chat) obj).f28398id));
             } else if (obj instanceof TLRPC.User) {
-                pVar.presentFragment(bn.ua(((TLRPC.User) obj).f28583id));
+                pVar.presentFragment(bn.ua(((TLRPC.User) obj).f28547id));
             }
         }
     }
 
     public static void b0(p pVar) {
         pVar.H = null;
-        np.u1(pVar.currentAccount).B(pVar.f20010c, null, null, null, null, 0.0d, null, null, null, null);
+        np.u1(pVar.currentAccount).B(pVar.f19976c, null, null, null, null, 0.0d, null, null, null, null);
         pVar.f0(false, true);
-        pVar.f20017x.j(null, null, pVar.F, pVar.J);
+        pVar.f19983x.j(null, null, pVar.F, pVar.J);
     }
 
     public static void c0(p pVar, long j3) {
-        np.u1(pVar.currentAccount).W2(j3, pVar.f20010c, true, false, new j(pVar, 0));
+        np.u1(pVar.currentAccount).W2(j3, pVar.f19976c, true, false, new j(pVar, 0));
     }
 
     @Override
@@ -267,26 +267,26 @@ public final class p extends g2 implements w30, gs, te.b {
         this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new v1(this, 18));
+        this.actionBar.setActionBarMenuOnItemClick(new w1(this, 18));
         ui.c cVar = new ui.c();
-        this.f20008a = cVar;
-        cVar.a(getThemedColor(m6.f29381d6));
-        this.actionBar.P(new dh.c(cVar, cVar, cVar), c8.i0.p(this.resourceProvider), false);
+        this.f19974a = cVar;
+        cVar.a(getThemedColor(m6.f29347d6));
+        this.actionBar.P(new dh.c(cVar, cVar, cVar), c8.j0.p(this.resourceProvider), false);
         this.actionBar.R0 = true;
         d1 d1Var = new d1(this, context);
         this.d = d1Var;
-        t6.h(m6.f29324a7, d1Var, null);
+        t6.h(m6.f29290a7, d1Var, null);
         this.F = new b9(this.J);
         o oVar = new o(context);
-        this.f20015s = oVar;
-        oVar.f20007a.f(this.J, this.F);
-        this.f20017x = this.f20015s.f20007a;
+        this.f19981s = oVar;
+        oVar.f19973a.f(this.J, this.F);
+        this.f19983x = this.f19981s.f19973a;
         String m10 = n5.m(this.J);
-        this.f20012f = m10;
+        this.f19978f = m10;
         h6 h6Var = this.resourceProvider;
-        e3 e3Var = new e3(context, 9);
+        g3 g3Var = new g3(context, 9);
         di.q qVar = new di.q(context, 2);
-        e3Var.f3595b = qVar;
+        g3Var.f3604b = qVar;
         t6.U(qVar, m6.G6, h6Var);
         t6.G(qVar, m6.Xc, h6Var);
         t6.D(qVar, m6.H6, h6Var);
@@ -297,16 +297,16 @@ public final class p extends g2 implements w30, gs, te.b {
         qVar.setInputType(qVar.getInputType() | 16384);
         qVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(11.0f));
         qVar.setMinHeight(org.telegram.messenger.g0.L(50.0f));
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        e3Var.addView(qVar, ma.d(-1, -2.0f, i7 | 16, 13.0f, 0.0f, 13.0f, 0.0f));
-        this.f20014r = e3Var;
+        g3Var.addView(qVar, na.d(-1, -2.0f, i7 | 16, 13.0f, 0.0f, 13.0f, 0.0f));
+        this.f19980r = g3Var;
         qVar.setText(m10);
-        ((di.q) this.f20014r.f3595b).setSelection(m10.length());
-        ((di.q) this.f20014r.f3595b).addTextChangedListener(new ah.j(this, 13));
+        ((di.q) this.f19980r.f3604b).setSelection(m10.length());
+        ((di.q) this.f19980r.f3604b).addTextChangedListener(new ah.j(this, 13));
         gi.j jVar = new gi.j(this, context);
         this.I = jVar;
         t6.U(jVar, m6.Ji, getResourceProvider());
@@ -316,33 +316,33 @@ public final class p extends g2 implements w30, gs, te.b {
         this.I.setGravity(17);
         this.I.setVisibility(8);
         this.I.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
-        this.I.setOnClickListener(new o4(this, 13));
-        ra.a(this.I);
-        this.actionBar.addView(this.I, ma.d(-2, 56.0f, 85, 0.0f, 0.0f, 12.0f, 0.0f));
-        l5 l5Var = new l5(this, context);
-        this.f20016w = l5Var;
-        this.f20015s.addView(l5Var, ma.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
+        this.I.setOnClickListener(new p4(this, 13));
+        sa.a(this.I);
+        this.actionBar.addView(this.I, na.d(-2, 56.0f, 85, 0.0f, 0.0f, 12.0f, 0.0f));
+        m5 m5Var = new m5(this, context);
+        this.f19982w = m5Var;
+        this.f19981s.addView(m5Var, na.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
         this.E = radialProgressView;
         radialProgressView.setSize(org.telegram.messenger.g0.L(30.0f));
         this.E.setProgressColor(-1);
         this.E.setNoProgress(false);
-        this.f20015s.addView(this.E, ma.d(64, 64.0f, 81, 0.0f, 0.0f, 0.0f, 32.0f));
+        this.f19981s.addView(this.E, na.d(64, 64.0f, 81, 0.0f, 0.0f, 0.0f, 32.0f));
         f0(false, false);
         h51 h51Var = new h51(this, new j(this, 1), new k(this), new k(this));
-        this.f20011e = h51Var;
+        this.f19977e = h51Var;
         h51Var.setClipToPadding(false);
-        h51 h51Var2 = this.f20011e;
-        c51 c51Var = h51Var2.f35789g3;
-        c51Var.f34062r = false;
-        c51Var.f34063s = true;
+        h51 h51Var2 = this.f19977e;
+        c51 c51Var = h51Var2.f35742g3;
+        c51Var.f34026r = false;
+        c51Var.f34027s = true;
         h51Var2.r1();
         this.actionBar.setBackground(null);
-        this.d.addView(this.f20011e, ma.c(-1.0f, -1));
-        this.d.addView(this.actionBar, ma.e(-1, -2, 48));
+        this.d.addView(this.f19977e, na.c(-1.0f, -1));
+        this.d.addView(this.actionBar, na.e(-1, -2, 48));
         d1 d1Var2 = this.d;
         k kVar = new k(this);
-        WeakHashMap weakHashMap = r0.i0.f56289a;
+        WeakHashMap weakHashMap = r0.i0.f56254a;
         r0.a0.i(d1Var2, kVar);
         d1 d1Var3 = this.d;
         this.fragmentView = d1Var3;
@@ -351,21 +351,21 @@ public final class p extends g2 implements w30, gs, te.b {
 
     public final void d0() {
         boolean z10;
-        if (this.h == this.f20013n && TextUtils.equals(((di.q) this.f20014r.f3595b).getText().toString(), this.f20012f)) {
+        if (this.h == this.f19979n && TextUtils.equals(((di.q) this.f19980r.f3604b).getText().toString(), this.f19978f)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f20009b.a(z10, true);
+        this.f19975b.a(z10, true);
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == ls.T) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            if (chatFull.f28435id == this.f20010c) {
+            if (chatFull.f28399id == this.f19976c) {
                 this.K = chatFull;
-                this.f20011e.f35789g3.O(true);
+                this.f19977e.f35742g3.O(true);
             }
         }
     }
@@ -380,7 +380,7 @@ public final class p extends g2 implements w30, gs, te.b {
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.G.f41960c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.G.f41917c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -397,18 +397,18 @@ public final class p extends g2 implements w30, gs, te.b {
     }
 
     public final void e0(boolean z10) {
-        if (this.f20013n == z10) {
+        if (this.f19979n == z10) {
             return;
         }
-        i6 i6Var = (i6) this.f20011e.B1(151);
+        i6 i6Var = (i6) this.f19977e.B1(151);
         if (i6Var != null) {
             i6Var.a(!z10);
         }
-        i6 i6Var2 = (i6) this.f20011e.B1(150);
+        i6 i6Var2 = (i6) this.f19977e.B1(150);
         if (i6Var2 != null) {
             i6Var2.a(z10);
         }
-        this.f20013n = z10;
+        this.f19979n = z10;
         d0();
     }
 
@@ -416,50 +416,50 @@ public final class p extends g2 implements w30, gs, te.b {
         if (this.E == null) {
             return;
         }
-        AnimatorSet animatorSet = this.f20018y;
+        AnimatorSet animatorSet = this.f19984y;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f20018y = null;
+            this.f19984y = null;
         }
         if (z11) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f20018y = animatorSet2;
+            this.f19984y = animatorSet2;
             if (z10) {
                 this.E.setVisibility(0);
-                this.f20016w.setVisibility(0);
-                AnimatorSet animatorSet3 = this.f20018y;
+                this.f19982w.setVisibility(0);
+                AnimatorSet animatorSet3 = this.f19984y;
                 RadialProgressView radialProgressView = this.E;
                 Property property = View.ALPHA;
-                animatorSet3.playTogether(ObjectAnimator.ofFloat(radialProgressView, property, 1.0f), ObjectAnimator.ofFloat(this.f20016w, property, 1.0f));
+                animatorSet3.playTogether(ObjectAnimator.ofFloat(radialProgressView, property, 1.0f), ObjectAnimator.ofFloat(this.f19982w, property, 1.0f));
             } else {
                 RadialProgressView radialProgressView2 = this.E;
                 Property property2 = View.ALPHA;
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(radialProgressView2, property2, 0.0f), ObjectAnimator.ofFloat(this.f20016w, property2, 0.0f));
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(radialProgressView2, property2, 0.0f), ObjectAnimator.ofFloat(this.f19982w, property2, 0.0f));
             }
-            this.f20018y.setDuration(180L);
-            this.f20018y.addListener(new g7(17, this, z10));
-            this.f20018y.start();
+            this.f19984y.setDuration(180L);
+            this.f19984y.addListener(new j7(17, this, z10));
+            this.f19984y.start();
         } else if (z10) {
             this.E.setAlpha(1.0f);
             this.E.setVisibility(0);
-            this.f20016w.setAlpha(1.0f);
-            this.f20016w.setVisibility(0);
+            this.f19982w.setAlpha(1.0f);
+            this.f19982w.setVisibility(0);
         } else {
             this.E.setAlpha(0.0f);
             this.E.setVisibility(4);
-            this.f20016w.setAlpha(0.0f);
-            this.f20016w.setVisibility(4);
+            this.f19982w.setAlpha(0.0f);
+            this.f19982w.setVisibility(4);
         }
     }
 
     @Override
-    public final wq0 getCloseIntoObject() {
+    public final xq0 getCloseIntoObject() {
         return null;
     }
 
     @Override
     public final String getInitialSearchString() {
-        return ((di.q) this.f20014r.f3595b).getText().toString();
+        return ((di.q) this.f19980r.f3604b).getText().toString();
     }
 
     @Override
@@ -476,8 +476,8 @@ public final class p extends g2 implements w30, gs, te.b {
     public final boolean onFragmentCreate() {
         boolean z10;
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
-        this.f20010c = this.arguments.getLong("community_id", 0L);
-        TLRPC.Chat O0 = getMessagesController().O0(Long.valueOf(this.f20010c));
+        this.f19976c = this.arguments.getLong("community_id", 0L);
+        TLRPC.Chat O0 = getMessagesController().O0(Long.valueOf(this.f19976c));
         this.J = O0;
         if (O0 != null && ((tL_chatBannedRights = O0.default_banned_rights) == null || !tL_chatBannedRights.manage_linked_peers)) {
             z10 = true;
@@ -485,12 +485,12 @@ public final class p extends g2 implements w30, gs, te.b {
             z10 = false;
         }
         this.h = z10;
-        this.f20013n = z10;
-        this.K = getMessagesController().P0(this.f20010c);
+        this.f19979n = z10;
+        this.K = getMessagesController().P0(this.f19976c);
         x30 x30Var = new x30(3, true, true);
         this.G = x30Var;
-        x30Var.f41958a = this;
-        x30Var.f41959b = this;
+        x30Var.f41915a = this;
+        x30Var.f41916b = this;
         getNotificationCenter().c(this, ls.T);
         return super.onFragmentCreate();
     }
@@ -526,9 +526,9 @@ public final class p extends g2 implements w30, gs, te.b {
     public final void onThemeColorsChanged() {
         super.onThemeColorsChanged();
         try {
-            ui.c cVar = this.f20008a;
+            ui.c cVar = this.f19974a;
             if (cVar != null) {
-                cVar.a(getThemedColor(m6.f29381d6));
+                cVar.a(getThemedColor(m6.f29347d6));
             }
             org.telegram.ui.ActionBar.k kVar = this.actionBar;
             if (kVar != null) {
@@ -543,7 +543,7 @@ public final class p extends g2 implements w30, gs, te.b {
     public final void restoreSelfArgs(Bundle bundle) {
         x30 x30Var = this.G;
         if (x30Var != null) {
-            x30Var.f41962f = bundle.getString("path");
+            x30Var.f41919f = bundle.getString("path");
         }
     }
 
@@ -551,12 +551,12 @@ public final class p extends g2 implements w30, gs, te.b {
     public final void saveSelfArgs(Bundle bundle) {
         String str;
         x30 x30Var = this.G;
-        if (x30Var != null && (str = x30Var.f41962f) != null) {
+        if (x30Var != null && (str = x30Var.f41919f) != null) {
             bundle.putString("path", str);
         }
-        e3 e3Var = this.f20014r;
-        if (e3Var != null) {
-            String obj = ((di.q) e3Var.f3595b).getText().toString();
+        g3 g3Var = this.f19980r;
+        if (g3Var != null) {
+            String obj = ((di.q) g3Var.f3604b).getText().toString();
             if (!obj.isEmpty()) {
                 bundle.putString("nameTextView", obj);
             }

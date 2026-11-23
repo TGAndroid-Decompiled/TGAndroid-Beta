@@ -1,39 +1,39 @@
 package g9;
 public final class v implements t {
     public static final d3.p d = new d3.p(1);
-    public final Object f13296a = new Object();
-    public volatile t f13297b;
-    public Object f13298c;
+    public final Object f13259a = new Object();
+    public volatile t f13260b;
+    public Object f13261c;
 
     public v(t tVar) {
-        this.f13297b = tVar;
+        this.f13260b = tVar;
     }
 
     @Override
     public final Object get() {
-        t tVar = this.f13297b;
+        t tVar = this.f13260b;
         d3.p pVar = d;
         if (tVar != pVar) {
-            synchronized (this.f13296a) {
+            synchronized (this.f13259a) {
                 try {
-                    if (this.f13297b != pVar) {
-                        Object obj = this.f13297b.get();
-                        this.f13298c = obj;
-                        this.f13297b = pVar;
+                    if (this.f13260b != pVar) {
+                        Object obj = this.f13260b.get();
+                        this.f13261c = obj;
+                        this.f13260b = pVar;
                         return obj;
                     }
                 } finally {
                 }
             }
         }
-        return this.f13298c;
+        return this.f13261c;
     }
 
     public final String toString() {
-        Object obj = this.f13297b;
+        Object obj = this.f13260b;
         StringBuilder sb2 = new StringBuilder("Suppliers.memoize(");
         if (obj == d) {
-            obj = "<supplier that returned " + this.f13298c + ">";
+            obj = "<supplier that returned " + this.f13261c + ">";
         }
         sb2.append(obj);
         sb2.append(")");

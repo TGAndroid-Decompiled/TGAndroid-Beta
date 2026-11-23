@@ -1,17 +1,17 @@
 package org.telegram.messenger;
 public final class gm implements Runnable {
-    public final int f24281a;
-    public final Object f24282b;
-    public final long f24283c;
+    public final int f24245a;
+    public final Object f24246b;
+    public final long f24247c;
     public final Object d;
-    public final Object f24284e;
+    public final Object f24248e;
 
     public gm(Object obj, Object obj2, long j3, Object obj3, int i7) {
-        this.f24281a = i7;
-        this.f24282b = obj;
+        this.f24245a = i7;
+        this.f24246b = obj;
         this.d = obj2;
-        this.f24283c = j3;
-        this.f24284e = obj3;
+        this.f24247c = j3;
+        this.f24248e = obj3;
     }
 
     private final void a() {
@@ -28,18 +28,18 @@ public final class gm implements Runnable {
     }
 
     public gm(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f24281a = i7;
-        this.f24282b = obj;
+        this.f24245a = i7;
+        this.f24246b = obj;
         this.d = obj2;
-        this.f24284e = obj3;
-        this.f24283c = j3;
+        this.f24248e = obj3;
+        this.f24247c = j3;
     }
 
     public gm(c1 c1Var, long j3, Object obj, Object obj2, int i7) {
-        this.f24281a = i7;
-        this.f24282b = c1Var;
-        this.f24283c = j3;
+        this.f24245a = i7;
+        this.f24246b = c1Var;
+        this.f24247c = j3;
         this.d = obj;
-        this.f24284e = obj2;
+        this.f24248e = obj2;
     }
 }

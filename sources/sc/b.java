@@ -3,11 +3,11 @@ package sc;
 import org.telegram.ui.md0;
 import tc.g;
 public final class b {
-    public final md0 f57187a;
-    public final Exception f57188b;
+    public final md0 f57152a;
+    public final Exception f57153b;
 
     public b(md0 md0Var, g gVar) {
-        this.f57188b = gVar;
-        this.f57187a = md0Var;
+        this.f57153b = gVar;
+        this.f57152a = md0Var;
     }
 }

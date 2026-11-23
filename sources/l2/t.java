@@ -6,28 +6,28 @@ import org.telegram.messenger.hd;
 import org.telegram.ui.Components.nj0;
 import org.telegram.ui.Components.pb0;
 public final class t implements h2.o, g9.k, nj0, pb0, h2.j {
-    public final int f19575a;
-    public final int f19576b;
+    public final int f19541a;
+    public final int f19542b;
 
     public t(int i7, int i10) {
-        this.f19575a = i10;
-        this.f19576b = i7;
+        this.f19541a = i10;
+        this.f19542b = i7;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f19575a) {
+        switch (this.f19541a) {
             case 6:
-                ((p4.i1) obj).i0(this.f19576b);
+                ((p4.i1) obj).i0(this.f19542b);
                 return;
             case 7:
-                ((p4.i1) obj).N(this.f19576b);
+                ((p4.i1) obj).N(this.f19542b);
                 return;
             case 8:
-                ((p4.i1) obj).k(this.f19576b);
+                ((p4.i1) obj).k(this.f19542b);
                 return;
             default:
-                ((p4.i1) obj).G0(this.f19576b);
+                ((p4.i1) obj).G0(this.f19542b);
                 return;
         }
     }
@@ -35,13 +35,13 @@ public final class t implements h2.o, g9.k, nj0, pb0, h2.j {
     @Override
     public Object apply(Object obj) {
         Integer num = (Integer) obj;
-        return Integer.valueOf(this.f19576b);
+        return Integer.valueOf(this.f19542b);
     }
 
     @Override
     public String i(int i7) {
-        int i10 = this.f19575a;
-        int i11 = this.f19576b;
+        int i10 = this.f19541a;
+        int i11 = this.f19542b;
         switch (i10) {
             case 4:
                 if (i7 == 0) {
@@ -64,18 +64,18 @@ public final class t implements h2.o, g9.k, nj0, pb0, h2.j {
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f19575a) {
+        switch (this.f19541a) {
             case 0:
-                ((e2.a1) obj).e(this.f19576b);
+                ((e2.a1) obj).e(this.f19542b);
                 return;
             default:
-                ((e2.a1) obj).d(this.f19576b);
+                ((e2.a1) obj).d(this.f19542b);
                 return;
         }
     }
 
     @Override
     public int run() {
-        return this.f19576b;
+        return this.f19542b;
     }
 }

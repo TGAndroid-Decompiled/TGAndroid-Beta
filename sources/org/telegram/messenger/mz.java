@@ -23,46 +23,46 @@ import java.util.ArrayList;
 import java.util.HashMap;
 public final class mz extends Drawable {
     public static float v;
-    public static float f25685w;
-    public static long f25686x;
-    public static j2 f25687y;
-    public static WeakReference f25688z;
-    public Paint f25691c;
+    public static float f25649w;
+    public static long f25650x;
+    public static j2 f25651y;
+    public static WeakReference f25652z;
+    public Paint f25655c;
     public Paint d;
-    public int f25692e;
-    public int f25693f;
-    public ImageReceiver f25697k;
-    public int f25699m;
-    public Integer f25700n;
-    public org.telegram.ui.ActionBar.h6 f25701o;
-    public float f25702p;
-    public static final int[] f25684u = new int[2];
+    public int f25656e;
+    public int f25657f;
+    public ImageReceiver f25661k;
+    public int f25663m;
+    public Integer f25664n;
+    public org.telegram.ui.ActionBar.h6 f25665o;
+    public float f25666p;
+    public static final int[] f25648u = new int[2];
     public static boolean A = qc.e(32);
-    public final ArrayList f25689a = new ArrayList();
-    public final HashMap f25690b = new HashMap();
-    public final Bitmap[] f25694g = new Bitmap[3];
+    public final ArrayList f25653a = new ArrayList();
+    public final HashMap f25654b = new HashMap();
+    public final Bitmap[] f25658g = new Bitmap[3];
     public final Canvas[] h = new Canvas[3];
-    public final LinearGradient[] f25695i = new LinearGradient[3];
-    public final Matrix[] f25696j = new Matrix[3];
-    public final int[] f25698l = new int[2];
-    public float f25703q = 1.0f;
-    public final SparseArray f25704r = new SparseArray();
-    public boolean f25705s = true;
-    public boolean f25706t = false;
+    public final LinearGradient[] f25659i = new LinearGradient[3];
+    public final Matrix[] f25660j = new Matrix[3];
+    public final int[] f25662l = new int[2];
+    public float f25667q = 1.0f;
+    public final SparseArray f25668r = new SparseArray();
+    public boolean f25669s = true;
+    public boolean f25670t = false;
 
     public static void a(mz mzVar, Object obj, Paint paint) {
-        mzVar.f25689a.add(obj);
-        mzVar.f25690b.put(obj, new Paint(paint));
+        mzVar.f25653a.add(obj);
+        mzVar.f25654b.put(obj, new Paint(paint));
     }
 
     public final mz clone() {
         mz mzVar = new mz();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f25689a;
+            ArrayList arrayList = this.f25653a;
             if (i7 < arrayList.size()) {
-                mzVar.f25689a.add(arrayList.get(i7));
-                Paint paint = (Paint) this.f25690b.get(arrayList.get(i7));
+                mzVar.f25653a.add(arrayList.get(i7));
+                Paint paint = (Paint) this.f25654b.get(arrayList.get(i7));
                 if (paint != null) {
                     Paint paint2 = new Paint();
                     paint2.setColor(paint.getColor());
@@ -70,12 +70,12 @@ public final class mz extends Drawable {
                     paint2.setStrokeJoin(paint.getStrokeJoin());
                     paint2.setStrokeWidth(paint.getStrokeWidth());
                     paint2.setStyle(paint.getStyle());
-                    mzVar.f25690b.put(arrayList.get(i7), paint2);
+                    mzVar.f25654b.put(arrayList.get(i7), paint2);
                 }
                 i7++;
             } else {
-                mzVar.f25692e = this.f25692e;
-                mzVar.f25693f = this.f25693f;
+                mzVar.f25656e = this.f25656e;
+                mzVar.f25657f = this.f25657f;
                 return mzVar;
             }
         }
@@ -87,43 +87,43 @@ public final class mz extends Drawable {
         int i10;
         int i11;
         long j11;
-        int i12 = this.f25699m;
+        int i12 = this.f25663m;
         if (i12 >= 0) {
-            f(i12, this.f25701o, this.f25702p, z10);
+            f(i12, this.f25665o, this.f25666p, z10);
         }
-        float f14 = ((int) f12) / this.f25692e;
-        float f15 = ((int) f13) / this.f25693f;
-        if (this.f25705s) {
+        float f14 = ((int) f12) / this.f25656e;
+        float f15 = ((int) f13) / this.f25657f;
+        if (this.f25669s) {
             min = Math.max(f14, f15);
         } else {
             min = Math.min(f14, f15);
         }
-        LinearGradient[] linearGradientArr = this.f25695i;
+        LinearGradient[] linearGradientArr = this.f25659i;
         if (linearGradientArr[i7] != null) {
-            float f16 = f25685w;
+            float f16 = f25649w;
             if (f16 > 0.0f && A) {
                 long j12 = 64;
                 if (z10) {
-                    long j13 = j3 - f25686x;
+                    long j13 = j3 - f25650x;
                     if (j13 > 64) {
                         j11 = 64;
                     } else {
                         j11 = j13;
                     }
                     if (j11 > 0) {
-                        f25686x = j3;
+                        f25650x = j3;
                         v = a8.p0.f((float) j11, f16, 1800.0f, v);
                         while (true) {
                             float f17 = v;
-                            float f18 = f25685w * 2.0f;
+                            float f18 = f25649w * 2.0f;
                             if (f17 < f18) {
                                 break;
                             }
                             v = f17 - f18;
                         }
                     }
-                } else if (f25687y == null || f25688z.get() == this) {
-                    long j14 = j3 - f25686x;
+                } else if (f25651y == null || f25652z.get() == this) {
+                    long j14 = j3 - f25650x;
                     if (j14 <= 64) {
                         j12 = j14;
                     }
@@ -132,29 +132,29 @@ public final class mz extends Drawable {
                     } else {
                         j10 = j12;
                     }
-                    f25686x = j3;
-                    v = a8.p0.f((float) j10, f25685w, 1800.0f, v);
+                    f25650x = j3;
+                    v = a8.p0.f((float) j10, f25649w, 1800.0f, v);
                     while (true) {
                         float f19 = v;
-                        float f20 = f25685w;
+                        float f20 = f25649w;
                         if (f19 < f20 / 2.0f) {
                             break;
                         }
                         v = f19 - f20;
                     }
-                    f25688z = new WeakReference(this);
-                    j2 j2Var = f25687y;
+                    f25652z = new WeakReference(this);
+                    j2 j2Var = f25651y;
                     if (j2Var != null) {
                         g0.r(j2Var);
                     }
                     j2 j2Var2 = new j2(18);
-                    f25687y = j2Var2;
-                    g0.h3(j2Var2, ((int) (1000.0f / g0.f24047r)) - 1);
+                    f25651y = j2Var2;
+                    g0.h3(j2Var2, ((int) (1000.0f / g0.f24011r)) - 1);
                 }
-                ImageReceiver imageReceiver = this.f25697k;
+                ImageReceiver imageReceiver = this.f25661k;
                 if (imageReceiver != null && !z10) {
-                    View view = imageReceiver.f22661e;
-                    int[] iArr = f25684u;
+                    View view = imageReceiver.f22625e;
+                    int[] iArr = f25648u;
                     if (view != null) {
                         view.getLocationInWindow(iArr);
                     }
@@ -167,7 +167,7 @@ public final class mz extends Drawable {
                 } else {
                     i11 = 0;
                 }
-                Matrix[] matrixArr = this.f25696j;
+                Matrix[] matrixArr = this.f25660j;
                 Matrix matrix = matrixArr[i11];
                 if (matrix != null) {
                     matrix.reset();
@@ -179,7 +179,7 @@ public final class mz extends Drawable {
                     float f21 = 1.0f / min;
                     matrixArr[i11].postScale(f21, f21);
                     linearGradientArr[i11].setLocalMatrix(matrixArr[i11]);
-                    ImageReceiver imageReceiver2 = this.f25697k;
+                    ImageReceiver imageReceiver2 = this.f25661k;
                     if (imageReceiver2 != null && !z10) {
                         imageReceiver2.invalidate();
                     }
@@ -188,11 +188,11 @@ public final class mz extends Drawable {
         }
         canvas.save();
         canvas.translate(f10, f11);
-        if (!this.f25705s || this.f25706t) {
-            canvas.translate(com.google.android.gms.internal.vision.e2.w(this.f25692e, min, f12, 2.0f), com.google.android.gms.internal.vision.e2.w(this.f25693f, min, f13, 2.0f));
+        if (!this.f25669s || this.f25670t) {
+            canvas.translate(com.google.android.gms.internal.vision.e2.w(this.f25656e, min, f12, 2.0f), com.google.android.gms.internal.vision.e2.w(this.f25657f, min, f13, 2.0f));
         }
         canvas.scale(min, min);
-        ArrayList arrayList = this.f25689a;
+        ArrayList arrayList = this.f25653a;
         int size = arrayList.size();
         for (int i13 = 0; i13 < size; i13++) {
             Object obj = arrayList.get(i13);
@@ -202,17 +202,17 @@ public final class mz extends Drawable {
             } else if (obj == null) {
                 canvas.restore();
             } else {
-                Paint paint = (Paint) this.f25704r.get(i13);
+                Paint paint = (Paint) this.f25668r.get(i13);
                 if (paint == null) {
-                    paint = this.f25691c;
+                    paint = this.f25655c;
                 }
                 if (z10) {
                     paint = this.d;
                 } else if (paint == null) {
-                    paint = (Paint) this.f25690b.get(obj);
+                    paint = (Paint) this.f25654b.get(obj);
                 }
                 int alpha = paint.getAlpha();
-                paint.setAlpha((int) (this.f25703q * alpha));
+                paint.setAlpha((int) (this.f25667q * alpha));
                 if (obj instanceof Path) {
                     canvas.drawPath((Path) obj, paint);
                 } else if (obj instanceof Rect) {
@@ -221,16 +221,16 @@ public final class mz extends Drawable {
                     canvas.drawRect((RectF) obj, paint);
                 } else if (obj instanceof fz) {
                     fz fzVar = (fz) obj;
-                    canvas.drawLine(fzVar.f24013a, fzVar.f24014b, fzVar.f24015c, fzVar.d, paint);
+                    canvas.drawLine(fzVar.f23977a, fzVar.f23978b, fzVar.f23979c, fzVar.d, paint);
                 } else if (obj instanceof ez) {
                     ez ezVar = (ez) obj;
-                    canvas.drawCircle(ezVar.f23800a, ezVar.f23801b, ezVar.f23802c, paint);
+                    canvas.drawCircle(ezVar.f23764a, ezVar.f23765b, ezVar.f23766c, paint);
                 } else if (obj instanceof hz) {
-                    canvas.drawOval(((hz) obj).f24561a, paint);
+                    canvas.drawOval(((hz) obj).f24525a, paint);
                 } else if (obj instanceof jz) {
                     jz jzVar = (jz) obj;
-                    RectF rectF = jzVar.f24959a;
-                    float f22 = jzVar.f24960b;
+                    RectF rectF = jzVar.f24923a;
+                    float f22 = jzVar.f24924b;
                     canvas.drawRoundRect(rectF, f22, f22, paint);
                 }
                 paint.setAlpha(alpha);
@@ -240,7 +240,7 @@ public final class mz extends Drawable {
     }
 
     public final void d() {
-        this.f25706t = true;
+        this.f25670t = true;
     }
 
     @Override
@@ -249,28 +249,28 @@ public final class mz extends Drawable {
     }
 
     public final void e(int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f25699m = i7;
-        this.f25701o = h6Var;
+        this.f25663m = i7;
+        this.f25665o = h6Var;
     }
 
     public final void f(int i7, org.telegram.ui.ActionBar.h6 h6Var, float f10, boolean z10) {
         int intValue;
         BitmapShader bitmapShader;
-        Integer num = this.f25700n;
+        Integer num = this.f25664n;
         if (num == null) {
             intValue = org.telegram.ui.ActionBar.m6.w0(i7, h6Var);
         } else {
             intValue = num.intValue();
         }
-        this.f25701o = h6Var;
-        int[] iArr = this.f25698l;
+        this.f25665o = h6Var;
+        int[] iArr = this.f25662l;
         if (iArr[z10 ? 1 : 0] != intValue) {
-            this.f25702p = f10;
-            this.f25699m = i7;
+            this.f25666p = f10;
+            this.f25663m = i7;
             iArr[z10 ? 1 : 0] = intValue;
-            f25685w = g0.f24046q.x * 2;
+            f25649w = g0.f24010q.x * 2;
             boolean z11 = A;
-            HashMap hashMap = this.f25690b;
+            HashMap hashMap = this.f25654b;
             if (!z11) {
                 int o4 = i0.a.o(intValue, 70);
                 if (z10) {
@@ -287,18 +287,18 @@ public final class mz extends Drawable {
                 }
                 return;
             }
-            float L = g0.L(180.0f) / f25685w;
-            int argb = Color.argb((int) ((Color.alpha(intValue) / 2) * this.f25702p), Color.red(intValue), Color.green(intValue), Color.blue(intValue));
+            float L = g0.L(180.0f) / f25649w;
+            int argb = Color.argb((int) ((Color.alpha(intValue) / 2) * this.f25666p), Color.red(intValue), Color.green(intValue), Color.blue(intValue));
             float f11 = (1.0f - L) / 2.0f;
             float f12 = L / 2.0f;
             Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, f25685w, 0.0f, new int[]{0, 0, argb, 0, 0}, new float[]{0.0f, f11 - f12, f11, f12 + f11, 1.0f}, tileMode);
-            LinearGradient[] linearGradientArr = this.f25695i;
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, f25649w, 0.0f, new int[]{0, 0, argb, 0, 0}, new float[]{0.0f, f11 - f12, f11, f12 + f11, 1.0f}, tileMode);
+            LinearGradient[] linearGradientArr = this.f25659i;
             linearGradientArr[z10 ? 1 : 0] = linearGradient;
             if (Build.VERSION.SDK_INT >= 28) {
-                bitmapShader = new LinearGradient(0.0f, 0.0f, f25685w, 0.0f, new int[]{argb, argb}, (float[]) null, tileMode);
+                bitmapShader = new LinearGradient(0.0f, 0.0f, f25649w, 0.0f, new int[]{argb, argb}, (float[]) null, tileMode);
             } else {
-                Bitmap[] bitmapArr = this.f25694g;
+                Bitmap[] bitmapArr = this.f25658g;
                 Bitmap bitmap = bitmapArr[z10 ? 1 : 0];
                 Canvas[] canvasArr = this.h;
                 if (bitmap == null) {
@@ -309,7 +309,7 @@ public final class mz extends Drawable {
                 bitmapShader = new BitmapShader(bitmapArr[z10 ? 1 : 0], tileMode, tileMode);
             }
             Matrix matrix = new Matrix();
-            this.f25696j[z10 ? 1 : 0] = matrix;
+            this.f25660j[z10 ? 1 : 0] = matrix;
             linearGradientArr[z10 ? 1 : 0].setLocalMatrix(matrix);
             if (z10) {
                 if (this.d == null) {
@@ -326,12 +326,12 @@ public final class mz extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f25692e;
+        return this.f25656e;
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f25693f;
+        return this.f25657f;
     }
 
     @Override
@@ -341,7 +341,7 @@ public final class mz extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f25703q = i7 / 255.0f;
+        this.f25667q = i7 / 255.0f;
     }
 
     @Override

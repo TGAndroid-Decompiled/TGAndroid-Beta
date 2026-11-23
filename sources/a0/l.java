@@ -12,13 +12,13 @@ public class l {
         int[] iArr;
         Object[] objArr;
         if (i7 == 0) {
-            iArr = b0.a.f2856a;
+            iArr = b0.a.f2807a;
         } else {
             iArr = new int[i7];
         }
         this.f29a = iArr;
         if (i7 == 0) {
-            objArr = b0.a.f2858c;
+            objArr = b0.a.f2809c;
         } else {
             objArr = new Object[i7 << 1];
         }
@@ -70,8 +70,8 @@ public class l {
 
     public final void clear() {
         if (this.f31c > 0) {
-            this.f29a = b0.a.f2856a;
-            this.f30b = b0.a.f2858c;
+            this.f29a = b0.a.f2807a;
+            this.f30b = b0.a.f2809c;
             this.f31c = 0;
         }
         if (this.f31c <= 0) {

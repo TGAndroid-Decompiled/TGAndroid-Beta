@@ -7,11 +7,11 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import bi.l5;
-import c8.ma;
-import c8.ra;
+import bi.o5;
+import c8.na;
+import c8.sa;
 import di.xb;
-import hi.w4;
+import hi.x4;
 import java.util.Calendar;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -40,18 +40,18 @@ import org.telegram.ui.Components.tn;
 import org.telegram.ui.Components.w3;
 import org.telegram.ui.cr;
 public final class i implements Runnable {
-    public final int f23269a;
-    public final Object f23270b;
-    public final Object f23271c;
+    public final int f23233a;
+    public final Object f23234b;
+    public final Object f23235c;
     public final Object d;
-    public final Object f23272e;
+    public final Object f23236e;
 
     public i(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f23269a = i7;
-        this.f23271c = obj;
-        this.f23270b = obj2;
+        this.f23233a = i7;
+        this.f23235c = obj;
+        this.f23234b = obj2;
         this.d = obj3;
-        this.f23272e = obj4;
+        this.f23236e = obj4;
     }
 
     private final void a() {
@@ -62,20 +62,20 @@ public final class i implements Runnable {
         me meVar;
         ViewGroup viewGroup;
         w3 w3Var;
-        tn tnVar = (tn) this.f23271c;
-        Context context = (Context) this.f23270b;
-        h6 h6Var = (h6) this.f23272e;
+        tn tnVar = (tn) this.f23235c;
+        Context context = (Context) this.f23234b;
+        h6 h6Var = (h6) this.f23236e;
         long j3 = tnVar.W;
         final h2 h2Var = new h2(13, tnVar, (View) this.d);
         me meVar2 = new me(3);
-        int i7 = m6.f29489j5;
+        int i7 = m6.f29455j5;
         if (h6Var != null) {
             x02 = h6Var.i(i7);
         } else {
             x02 = m6.x0(null, i7, false);
         }
         int i10 = x02;
-        int i11 = m6.f29454h5;
+        int i11 = m6.f29420h5;
         if (h6Var != null) {
             x03 = h6Var.i(i11);
         } else {
@@ -105,7 +105,7 @@ public final class i implements Runnable {
         } else {
             m6.x0(null, i15, false);
         }
-        int i16 = m6.f29473i6;
+        int i16 = m6.f29439i6;
         if (h6Var != null) {
             h6Var.i(i16);
         } else {
@@ -129,13 +129,13 @@ public final class i implements Runnable {
         } else {
             m6.x0(null, i19, false);
         }
-        Pattern pattern = c5.f34013a;
+        Pattern pattern = c5.f33977a;
         if (context == null) {
             return;
         }
-        final int n22 = (int) np.u1(k10.f24968t0).A7.J.n2(TimeUnit.SECONDS);
-        final w4 w4Var = new w4(context, h6Var);
-        ((w2) w4Var.f15708b).f30214w0 = false;
+        final int n22 = (int) np.u1(k10.f24932t0).A7.J.n2(TimeUnit.SECONDS);
+        final x4 x4Var = new x4(context, h6Var);
+        ((w2) x4Var.f15680b).f30180w0 = false;
         int i20 = x04;
         final tb0 tb0Var = new tb0(context, h6Var);
         tb0Var.setTextColor(i10);
@@ -158,46 +158,46 @@ public final class i implements Runnable {
         int i22 = x03;
         w3 w3Var2 = new w3(context, tb0Var, tb0Var2, tb0Var3, 3);
         w3Var2.setOrientation(1);
-        frameLayout.addView(w3Var2, ma.c(-1.0f, -1));
-        frameLayout.addView(new FrameLayout(context), ma.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 120.0f));
+        frameLayout.addView(w3Var2, na.c(-1.0f, -1));
+        frameLayout.addView(new FrameLayout(context), na.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 120.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        w3Var2.addView(frameLayout2, ma.t(-1, -2, 51, 22, 0, 0, 4));
+        w3Var2.addView(frameLayout2, na.t(-1, -2, 51, 22, 0, 0, 4));
         TextView textView = new TextView(context);
-        textView.setText(hd.N0(2131744584, null));
+        textView.setText(hd.N0(2131744586, null));
         textView.setTextColor(i10);
         i5.c.x(textView, 1, 20.0f);
-        frameLayout2.addView(textView, ma.d(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
+        frameLayout2.addView(textView, na.d(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         textView.setOnTouchListener(new gi.a(10));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setWeightSum(1.0f);
-        w3Var2.addView(linearLayout, ma.q(-1, -2, 1.0f, 0, 0, 23, 0, 23));
+        w3Var2.addView(linearLayout, na.q(-1, -2, 1.0f, 0, 0, 23, 0, 23));
         final TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 12.0f);
-        t6.U(textView2, m6.f29620q5, h6Var);
+        t6.U(textView2, m6.f29586q5, h6Var);
         textView2.setGravity(17);
         final Calendar calendar = Calendar.getInstance();
         xb xbVar = new xb(context, 16);
-        xbVar.setText(hd.N0(2131744585, null));
-        ra.b(xbVar, 0.02f, 1.2f);
-        linearLayout.addView(tb0Var, ma.l(0.5f, 0, 270));
+        xbVar.setText(hd.N0(2131744587, null));
+        sa.b(xbVar, 0.02f, 1.2f);
+        linearLayout.addView(tb0Var, na.l(0.5f, 0, 270));
         tb0Var.setMinValue(0);
         tb0Var.setMaxValue(365);
         tb0Var.setWrapSelectorWheel(false);
         tb0Var.setFormatter(new cr(28));
-        l5 l5Var = new l5(n22, tb0Var, (g4) tb0Var2, (h4) tb0Var3, textView2);
-        tb0Var.setOnValueChangedListener(l5Var);
+        o5 o5Var = new o5(n22, tb0Var, (g4) tb0Var2, (h4) tb0Var3, textView2);
+        tb0Var.setOnValueChangedListener(o5Var);
         tb0Var2.setMinValue(0);
         tb0Var2.setMaxValue(23);
-        linearLayout.addView((View) tb0Var2, ma.l(0.2f, 0, 270));
+        linearLayout.addView((View) tb0Var2, na.l(0.2f, 0, 270));
         tb0Var2.setFormatter(new cr(29));
-        tb0Var2.setOnValueChangedListener(l5Var);
+        tb0Var2.setOnValueChangedListener(o5Var);
         tb0Var3.setMinValue(0);
         tb0Var3.setMaxValue(59);
         tb0Var3.setValue(0);
         tb0Var3.setFormatter(new l2(0));
-        linearLayout.addView((View) tb0Var3, ma.l(0.3f, 0, 270));
-        tb0Var3.setOnValueChangedListener(l5Var);
+        linearLayout.addView((View) tb0Var3, na.l(0.3f, 0, 270));
+        tb0Var3.setOnValueChangedListener(o5Var);
         if (j3 > 0 && j3 != 2147483646) {
             long j10 = 1000 * j3;
             meVar = meVar2;
@@ -230,7 +230,7 @@ public final class i implements Runnable {
         xbVar.setTypeface(g0.o());
         xbVar.setBackground(a6.e(i21, 24.0f));
         w3 w3Var3 = w3Var;
-        w3Var3.addView(xbVar, ma.t(-1, 48, 83, 14, 15, 14, 16));
+        w3Var3.addView(xbVar, na.t(-1, 48, 83, 14, 15, 14, 16));
         xbVar.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -251,11 +251,11 @@ public final class i implements Runnable {
                     calendar2.set(14, 0);
                 }
                 h2Var.O((int) (calendar2.getTimeInMillis() / 1000), 0, true);
-                ((org.telegram.ui.ActionBar.w2) w4Var.f15708b).f30218y0.run();
+                ((org.telegram.ui.ActionBar.w2) x4Var.f15680b).f30184y0.run();
             }
         });
-        w3Var3.addView(textView2, ma.t(-1, -2, 83, 14, 0, 14, 16));
-        w2 w2Var = (w2) w4Var.f15708b;
+        w3Var3.addView(textView2, na.t(-1, -2, 83, 14, 0, 14, 16));
+        w2 w2Var = (w2) x4Var.f15680b;
         w2Var.O = viewGroup;
         w2Var.show();
         w2Var.setOnDismissListener(new n2(0, meVar, zArr));
@@ -269,26 +269,26 @@ public final class i implements Runnable {
     }
 
     public i(Runnable runnable, CameraSession cameraSession, CountDownLatch countDownLatch, Runnable runnable2) {
-        this.f23269a = 1;
-        this.f23270b = runnable;
-        this.f23271c = cameraSession;
-        this.f23272e = countDownLatch;
+        this.f23233a = 1;
+        this.f23234b = runnable;
+        this.f23235c = cameraSession;
+        this.f23236e = countDownLatch;
         this.d = runnable2;
     }
 
     public i(CameraSession cameraSession, Runnable runnable, SurfaceTexture surfaceTexture, Runnable runnable2) {
-        this.f23269a = 0;
-        this.f23271c = cameraSession;
-        this.f23270b = runnable;
-        this.f23272e = surfaceTexture;
+        this.f23233a = 0;
+        this.f23235c = cameraSession;
+        this.f23234b = runnable;
+        this.f23236e = surfaceTexture;
         this.d = runnable2;
     }
 
     public i(ny nyVar, TLRPC.TL_messages_getStickers tL_messages_getStickers, TLObject tLObject, Runnable runnable) {
-        this.f23269a = 27;
-        this.f23271c = nyVar;
+        this.f23233a = 27;
+        this.f23235c = nyVar;
         this.d = tL_messages_getStickers;
-        this.f23272e = tLObject;
-        this.f23270b = runnable;
+        this.f23236e = tLObject;
+        this.f23234b = runnable;
     }
 }

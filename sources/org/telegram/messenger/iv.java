@@ -8,28 +8,28 @@ import java.util.IdentityHashMap;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_iv;
 public final class iv {
-    public final TL_iv.RichText f24782a;
-    public final IdentityHashMap f24783b;
-    public final int f24784c;
+    public final TL_iv.RichText f24746a;
+    public final IdentityHashMap f24747b;
+    public final int f24748c;
     public final int d;
 
     public iv(TL_iv.RichText richText, IdentityHashMap identityHashMap, int i7, int i10) {
-        this.f24782a = richText;
-        this.f24783b = identityHashMap;
-        this.f24784c = i7;
+        this.f24746a = richText;
+        this.f24747b = identityHashMap;
+        this.f24748c = i7;
         this.d = i10;
     }
 
     public static iv a(fv fvVar, h2.j0 j0Var) {
         IdentityHashMap identityHashMap = new IdentityHashMap();
-        xt xtVar = (xt) j0Var.f13803c;
-        SpannableStringBuilder o4 = fvVar.o(xtVar.f27960a, xtVar.f27961b, identityHashMap);
+        xt xtVar = (xt) j0Var.f13766c;
+        SpannableStringBuilder o4 = fvVar.o(xtVar.f27924a, xtVar.f27925b, identityHashMap);
         Spanned spanned = (Spanned) j0Var.d;
         int spanEnd = spanned.getSpanEnd(xtVar);
-        int i7 = j0Var.f13802b;
+        int i7 = j0Var.f13765b;
         int i10 = spanEnd - i7;
         if (o4.length() == i10 && TextUtils.regionMatches(o4, 0, spanned, i7, i10)) {
-            return new iv(xtVar.f27960a, identityHashMap, o4.length(), xtVar.f27961b);
+            return new iv(xtVar.f27924a, identityHashMap, o4.length(), xtVar.f27925b);
         }
         a8.d("RichQuote: laid out text doesn't match the formatted one");
         return null;
@@ -37,12 +37,12 @@ public final class iv {
 
     public final TL_iv.RichText b(int i7, int i10) {
         int max = Math.max(0, i7);
-        int i11 = this.f24784c;
+        int i11 = this.f24748c;
         int min = Math.min(i11, i10);
         if (max >= min) {
             return null;
         }
-        TL_iv.RichText richText = this.f24782a;
+        TL_iv.RichText richText = this.f24746a;
         if (max == 0 && min == i11) {
             return richText;
         }
@@ -53,7 +53,7 @@ public final class iv {
         int[] iArr;
         int i11;
         int i12;
-        if (richText != null && (iArr = (int[]) this.f24783b.get(richText)) != null && (i11 = iArr[0]) != (i12 = iArr[1]) && i12 > i7 && i11 < i10) {
+        if (richText != null && (iArr = (int[]) this.f24747b.get(richText)) != null && (i11 = iArr[0]) != (i12 = iArr[1]) && i12 > i7 && i11 < i10) {
             if (i7 > i11 || i12 > i10) {
                 if (richText instanceof TL_iv.textPlain) {
                     String str = ((TL_iv.textPlain) richText).text;

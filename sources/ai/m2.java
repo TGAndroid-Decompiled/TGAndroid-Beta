@@ -1,79 +1,75 @@
 package ai;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.os.SystemClock;
-import java.lang.reflect.Array;
-public abstract class m2 {
-    public static final Paint f1298a;
-    public static final LinearGradient f1299b;
-    public static final Matrix f1300c;
-    public static final RectF d;
-    public static int f1301e;
-    public static int f1302f;
-    public static final ColorFilter[][] f1303g;
+import android.app.Activity;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import c8.na;
+import di.f6;
+import java.util.Arrays;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.o10;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.w2;
+import org.telegram.ui.Dictation.DictationAsr;
+public final class m2 implements Runnable {
+    public final int f1376a;
+    public final q2 f1377b;
 
-    static {
-        Paint paint = new Paint(1);
-        f1298a = paint;
-        Paint paint2 = new Paint(1);
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, 16777215, -1, tileMode);
-        f1299b = linearGradient;
-        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{-637534209, 872415231, 234881023, 654311423}, new float[]{0.0f, 0.4f, 0.75f, 1.0f}, tileMode);
-        f1300c = new Matrix();
-        d = new RectF();
-        paint.setShader(linearGradient);
-        paint2.setShader(linearGradient2);
-        paint2.setStyle(Paint.Style.STROKE);
-        f1301e = -16733772;
-        f1302f = -14774554;
-        f1303g = (ColorFilter[][]) Array.newInstance(ColorFilter.class, 2, 49);
+    public m2(q2 q2Var, int i7) {
+        this.f1376a = i7;
+        this.f1377b = q2Var;
     }
 
-    public static void a(Canvas canvas, float f10, float f11, float f12, float f13, float f14, boolean z10, float f15, float f16) {
-        float f17;
-        int f18;
-        if (f15 <= 0.01f) {
-            return;
+    @Override
+    public final void run() {
+        int i7 = this.f1376a;
+        q2 q2Var = this.f1377b;
+        switch (i7) {
+            case 0:
+                if (!Arrays.equals(q2Var.h, DictationAsr.D()) && q2Var.getParentActivity() != null && q2Var.f34671a != null) {
+                    q2Var.d0(q2Var.getParentActivity());
+                    q2Var.f34671a.f35742g3.O(true);
+                    return;
+                }
+                q2Var.e0();
+                return;
+            default:
+                Activity parentActivity = q2Var.getParentActivity();
+                h6 resourceProvider = q2Var.getResourceProvider();
+                k2 k2Var = new k2(parentActivity, 0);
+                k2Var.setOrientation(1);
+                k2Var.addView(new l2(parentActivity, resourceProvider), na.t(-1, 120, 1, 0, 16, 0, 10));
+                TextView textView = new TextView(parentActivity);
+                textView.setTextSize(1, 20.0f);
+                textView.setTextColor(m6.w0(m6.f29455j5, resourceProvider));
+                textView.setTypeface(org.telegram.messenger.g0.o());
+                textView.setGravity(1);
+                textView.setText(hd.N0(2131745039, null));
+                k2Var.addView(textView, na.t(-1, -2, 1, 32, 0, 32, 9));
+                TextView textView2 = new TextView(parentActivity);
+                textView2.setTextSize(1, 14.0f);
+                textView2.setTextColor(m6.w0(m6.f29758z6, resourceProvider));
+                textView2.setGravity(1);
+                textView2.setText(hd.N0(2131745040, null));
+                k2Var.addView(textView2, na.t(-1, -2, 1, 32, 0, 32, 25));
+                k2Var.addView(a8.j1.a(parentActivity, resourceProvider, 2131232025, hd.N0(2131745042, null), hd.N0(2131745041, null)), na.t(-1, -2, 7, 32, 0, 32, 16));
+                k2Var.addView(a8.j1.a(parentActivity, resourceProvider, 2131231861, hd.N0(2131745044, null), hd.N0(2131745043, null)), na.t(-1, -2, 7, 32, 0, 32, 16));
+                k2Var.addView(a8.j1.a(parentActivity, resourceProvider, 2131232024, hd.N0(2131745047, null), hd.N0(2131745046, null)), na.t(-1, -2, 7, 32, 0, 32, 16));
+                hi.d dVar = new hi.d(parentActivity, resourceProvider, true);
+                dVar.setRoundRadius(24);
+                dVar.i(f6.t2("👌 " + hd.N0(2131749355, null)), false, true);
+                dVar.setOnClickListener(new j2(r4, 0));
+                k2Var.addView(dVar, na.k(14.0f, 18.0f, 14.0f, 0.0f, -1, 48));
+                FrameLayout frameLayout = new FrameLayout(parentActivity);
+                frameLayout.addView(k2Var, na.e(-1, -2, 1));
+                w2 j3 = o10.j(parentActivity, false, 1, resourceProvider);
+                j3.O = frameLayout;
+                j3.V0 = 49;
+                j3.show();
+                w2[] w2VarArr = {j3};
+                j3.Q(m6.f29420h5);
+                return;
         }
-        int round = Math.round(((((float) Math.sin(((SystemClock.uptimeMillis() / 1000.0d) * 0.9d) + 1.3d)) * 0.5f) + 0.5f) * 48.0f);
-        ColorFilter[][] colorFilterArr = f1303g;
-        ColorFilter colorFilter = colorFilterArr[z10 ? 1 : 0][round];
-        if (colorFilter == null) {
-            float f19 = round / 48.0f;
-            if (z10) {
-                f18 = u0.e(i0.a.f(f19, -14717953, -7447553));
-            } else {
-                f18 = i0.a.f(f19, f1301e, f1302f);
-            }
-            ColorFilter[] colorFilterArr2 = colorFilterArr[z10 ? 1 : 0];
-            colorFilter = new PorterDuffColorFilter(f18, PorterDuff.Mode.SRC_IN);
-            colorFilterArr2[round] = colorFilter;
-        }
-        Paint paint = f1298a;
-        paint.setColorFilter(colorFilter);
-        float f20 = f13 - f11;
-        Matrix matrix = f1300c;
-        matrix.setScale(1.0f, 0.65f * f20);
-        matrix.postTranslate(0.0f, (f20 * 0.35f) + f11);
-        f1299b.setLocalMatrix(matrix);
-        float f21 = f15 * 255.0f;
-        if (z10) {
-            f17 = 0.26f;
-        } else {
-            f17 = 0.2f;
-        }
-        paint.setAlpha((int) (Math.min(1.0f, (f16 * 0.11f) + f17) * f21));
-        RectF rectF = d;
-        rectF.set(f10, f11, f12, f13);
-        canvas.drawRoundRect(rectF, f14, f14, paint);
     }
 }

@@ -1,19 +1,447 @@
 package ai;
 
-import android.graphics.RuntimeShader;
-public abstract class t0 {
-    public static RuntimeShader a() {
-        return new RuntimeShader("uniform float2 uSize;\nuniform float2 uOrigin;\nuniform float uRadius;\nuniform float uTime;\nuniform float uIntensity;\nuniform float uSweep;\nuniform float uDark;\nuniform float uHalo;\nuniform float uDp;\nuniform float uLevel;\nuniform float uPulse;\nuniform float uPulseAng;\nuniform float3 uL0;\nuniform float3 uL1;\nuniform float3 uL2;\nuniform float3 uLHi;\nuniform float uHaloW;\nuniform float uHaloS;\nuniform float uLift;\nuniform float uRimW;\nuniform float uRimB;\nuniform float3 uRim;\nuniform float uThin;\nuniform float uNStroke;\nuniform float uNGlow;\nuniform float uNSat;\nuniform float uHue;\nfloat3 hueShift(float3 c, float h) {\n  float mx = max(c.r, max(c.g, c.b)), mn = min(c.r, min(c.g, c.b)), d = mx - mn;\n  if (d < 0.0001) return c;\n  float hh = mx == c.r ? (c.g - c.b) / d : (mx == c.g ? 2.0 + (c.b - c.r) / d : 4.0 + (c.r - c.g) / d);\n  hh = fract(hh / 6.0 + h);\n  float3 k = clamp(abs(fract(hh + float3(1.0, 2.0 / 3.0, 1.0 / 3.0)) * 6.0 - 3.0) - 1.0, 0.0, 1.0);\n  return mx * mix(float3(1.0), k, d / mx);\n}\nfloat sdRound(float2 p, float2 b, float r) {\n  float2 q = abs(p) - b + r;\n  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;\n}\nfloat hotAt(float a, float t) {\n  float h = 0.5 + 0.5 * sin(a * 2.0 + t * 1.15) * sin(a * 3.0 - t * 0.73 + 1.7);\n  h = smoothstep(0.15, 1.0, h);\n  return clamp(h * (0.75 + 0.6 * uLevel) + 0.12 * uLevel, 0.0, 1.0);\n}\nhalf4 main(float2 fc) {\n  float2 hs = uSize * 0.5;\n  float2 c = uOrigin + hs;\n  float2 p = fc - c;\n  float d = sdRound(p, hs, uRadius);\n  float t = uTime;\n  float2 uv = (fc - uOrigin) / max(uSize.y, 1.0);\n  float ang = atan(p.y / max(hs.y, 1.0), p.x / max(hs.x, 1.0));\n  float hot = 0.5 + 0.5 * sin(ang * 2.0 + t * 1.15) * sin(ang * 3.0 - t * 0.73 + 1.7);\n  hot = smoothstep(0.15, 1.0, hot);\n  hot = clamp(hot * (0.75 + 0.6 * uLevel) + 0.12 * uLevel, 0.0, 1.0);\n  float3 cA = mix(uL0, float3(0.12, 0.40, 1.0), uDark);\n  float3 cB = mix(uL1, float3(0.22, 0.86, 1.0), uDark);\n  float3 cC = mix(uL2, float3(0.43, 0.33, 1.0), uDark);\n  float tc = t * uDark;\n  float3 col = mix(cA, cB, 0.5 + 0.5 * sin(ang * 1.0 + tc * 0.9));\n  col = mix(col, cC, 0.5 + 0.5 * sin(ang * 2.0 - tc * 0.6 + uv.x * 1.3));\n  float dO = max(d, 0.0), dI = min(d, 0.0);\n  float aO = 0.0; float3 cO = col;\n  {\n    float hw = mix(uHaloW, 1.0, uDark), hsx = mix(uHaloS, 1.0, uDark);\n    float wav = 1.0 + (1.0 - uDark) * 0.40 * sin(ang * 3.0 + t * 1.3) * sin(ang * 2.0 - t * 0.8 + 1.1);\n    float halo = exp(-dO / (uHalo * mix(0.22, 0.36, uDark) * hw * wav)) * (mix(0.58, 0.22, uDark) + mix(0.42, 0.78, uDark) * hot);\n    halo *= 1.0 - smoothstep(uHalo * 0.7 * hw, uHalo * hw, dO);\n    aO = clamp(halo * mix(1.0 + 0.35 * uLevel, 0.85, uDark) * hsx, 0.0, 1.0);\n    float lift = (1.0 - uDark) * 0.5 * uLift * exp(-dO / (uHalo * 0.32 * hw)) * (1.0 - smoothstep(uHalo * 0.8 * hw, uHalo * 1.1 * hw, dO));\n    cO = (cO * aO + float3(1.0) * lift * (1.0 - aO)) / max(aO + lift * (1.0 - aO), 0.0001);\n    aO = aO + lift * (1.0 - aO);\n    float qb = dO / (0.6 * uDp);\n    float bline = (1.0 - uDark) * exp(-qb * qb) * 0.26;\n    float3 bc = mix(col, uRim, 0.5) * 0.72;\n    cO = (cO * aO + bc * bline) / max(aO + bline, 0.0001);\n    aO = min(1.0, aO + bline);\n    aO *= mix(1.0, uNGlow, uDark);\n  }\n  float aI = 0.0; float3 cI = col;\n  {\n    float mI = smoothstep(0.0, 9.0 * uDp, -dI) * uDark * 0.55;\n    if (mI > 0.0) {\n      float wy = smoothstep(-0.35 * hs.y, 0.35 * hs.y, p.y);\n      float aN = atan(-1.0, p.x / max(hs.x, 1.0)), aS = atan(1.0, p.x / max(hs.x, 1.0));\n      float hb = mix(hotAt(aN, t), hotAt(aS, t), wy);\n      float3 cN = mix(mix(cA, cB, 0.5 + 0.5 * sin(aN + tc * 0.9)), cC, 0.5 + 0.5 * sin(aN * 2.0 - tc * 0.6 + uv.x * 1.3));\n      float3 cS = mix(mix(cA, cB, 0.5 + 0.5 * sin(aS + tc * 0.9)), cC, 0.5 + 0.5 * sin(aS * 2.0 - tc * 0.6 + uv.x * 1.3));\n      hot = mix(hot, hb, mI);\n      col = mix(col, mix(cN, cS, wy), mI);\n    }\n  }\n  {\n    float rim = exp(dI / (mix(0.9 * uRimW, 1.4, uDark) * uDp)) * (mix(0.62, 0.45, uDark) + mix(0.38, 0.55, uDark) * hot) * mix(uRimB, 1.0, uDark);\n    float band = (exp(dI / (11.0 * uDp)) + exp(-(2.0 * hs.y + dI) / (11.0 * uDp))) * (0.25 + 0.75 * hot);\n    float n = sin(uv.x * 3.1 + t * 0.8 + sin(uv.y * 4.0 - t * 0.5) * 1.2) * sin(uv.y * 5.0 - t * 0.6 + sin(uv.x * 2.3 + t * 0.4) * 1.4);\n    n = 0.5 + 0.5 * n; n = n * n;\n    float inner = n * mix(0.0, 0.20, uDark) * (0.7 + 0.5 * uLevel);\n    float rim2 = exp(dI / (mix(1.8, 2.2, uDark) * uDp)) * (0.5 + 0.5 * hot);\n    float thinK = 1.0 - 0.45 * uThin * uDark;\n    aI = rim * mix(0.22, 0.95, uDark) * mix(1.0, uNStroke, uDark) + rim2 * mix(0.02, 0.0, uDark) + (band * mix(0.0, 0.42, uDark) * mix(1.0, uNGlow, uDark) + inner) * thinK;\n    cI = mix(col, mix(uLHi, float3(0.86, 0.95, 1.0), uDark), clamp(rim, 0.0, 1.0) * mix(0.12, 0.55, uDark));\n    cI = mix(cI, uRim, (1.0 - uDark) * clamp(rim * 1.2, 0.0, 1.0) * 0.85);\n    float wf = (1.0 - uDark) * 0.55 * (1.0 - clamp(rim * 1.3 + rim2 * 0.6, 0.0, 1.0));\n    cI = (cI * aI + float3(1.0) * wf) / max(aI + wf, 0.0001);\n    aI += wf;\n    float ql = (dI + 1.4 * uDp) / (0.6 * uDp);\n    float hl = (1.0 - uDark) * exp(-ql * ql) * 0.6;\n    float3 hlc = mix(uLHi, float3(1.0), 0.35);\n    cI = (cI * aI + hlc * hl) / max(aI + hl, 0.0001);\n    aI = min(1.0, aI + hl);\n  }\n  float kx = smoothstep(-0.7 * uDp, 0.7 * uDp, d);\n  float a = mix(aI, aO, kx);\n  float3 outc = (cI * aI * (1.0 - kx) + cO * aO * kx) / max(a, 0.0001);\n  if (uPulse >= 0.0) {\n    float head = uPulseAng + uPulse * 3.77;\n    float da = abs(mod(ang - head + 3.14159, 6.28318) - 3.14159);\n    float seg = exp(-da * da / 0.8) * sin(uPulse * 3.14159);\n    float edge = exp(-abs(d) / (1.6 * uDp));\n    float pa = seg * edge * 0.38;\n    outc = mix(outc, mix(uLHi, float3(0.80, 0.93, 1.0), uDark), clamp(pa / max(a + pa, 0.0001), 0.0, 1.0));\n    a += pa;\n  }\n  if (uSweep >= 0.0) {\n    float x = (fc.x - uOrigin.x) / max(uSize.x, 1.0);\n    float pos = mix(-0.35, 1.35, uSweep);\n    float k = (x - pos + (fc.y - c.y) / max(uSize.x, 1.0) * 0.9) / 0.15;\n    float core = exp(-k * k * 1.6);\n    float body = exp(-k * k * 0.22);\n    float trail = k < 0.0 ? exp(k * 0.32) * (1.0 - exp(-k * k * 0.5)) : 0.0;\n    float inside = 1.0 - smoothstep(-1.0, 1.0, d);\n    float near = exp(-max(d, 0.0) / (uHalo * 0.3));\n    float m = inside * mix(0.22, 1.0, uDark) + 0.6 * near * (1.0 - inside);\n    float3 cBand = mix(uL0, float3(0.18, 0.55, 1.0), uDark);\n    float3 cCore = mix(uLHi, float3(0.62, 0.95, 1.0), uDark);\n    float3 cTrail = mix(uL2, float3(0.42, 0.30, 0.95), uDark);\n    float aB = body * 0.30 * m, aC = core * mix(0.30, 0.34, uDark) * m, aT = trail * mix(0.20, 0.26, uDark) * m;\n    float sa = aB + aC + aT;\n    float3 sc = (cBand * aB + cCore * aC + cTrail * aT) / max(sa, 0.0001);\n    outc = mix(outc, sc, clamp(sa / max(a + sa, 0.0001), 0.0, 1.0));\n    a += sa;\n  }\n  if (uDark > 0.5 && uHue != 0.0) outc = hueShift(clamp(outc, 0.0, 1.0), uHue);\n  if (uDark > 0.5 && uNSat != 1.0) { float lu = dot(outc, float3(0.299, 0.587, 0.114)); outc = clamp(mix(float3(lu), outc, uNSat), 0.0, 1.0); }\n  a = clamp(a * uIntensity, 0.0, 1.0);\n  return half4(half3(outc * a), half(a));\n}\n");
+import a8.ma;
+import android.graphics.RectF;
+import android.os.Bundle;
+import android.os.Looper;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.util.Log;
+import android.util.StateSet;
+import android.widget.FrameLayout;
+import bi.f5;
+import bi.i5;
+import bi.l4;
+import di.s4;
+import di.y8;
+import fi.a6;
+import fi.p6;
+import hi.d7;
+import hi.ta;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.concurrent.ExecutorService;
+import oi.k3;
+import oi.p3;
+import oi.s3;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
+import org.telegram.messenger.si;
+import org.telegram.messenger.ur;
+import org.telegram.messenger.y10;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.r4;
+import org.telegram.ui.Cells.c5;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.dd;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.pf;
+import org.telegram.ui.Components.qf;
+import org.telegram.ui.Dictation.DictationAsr;
+import org.telegram.ui.Dictation.DictationLid;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.bn;
+import org.telegram.ui.gi;
+import org.telegram.ui.hi;
+import org.telegram.ui.ip;
+import org.telegram.ui.oi;
+import org.telegram.ui.p4;
+import org.telegram.ui.sd;
+import org.telegram.ui.td;
+public final class t0 implements Runnable {
+    public final int f1535a;
+    public final int f1536b;
+    public final Object f1537c;
+
+    public t0(int i7, Object obj, int i10) {
+        this.f1535a = i10;
+        this.f1536b = i7;
+        this.f1537c = obj;
     }
 
-    public static RuntimeShader b(String str) {
-        return new RuntimeShader(str);
+    @Override
+    public final void run() {
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        boolean z10;
+        int i7;
+        ji.q qVar;
+        int i10 = this.f1535a;
+        int i11 = -1;
+        boolean z11 = false;
+        int i12 = this.f1536b;
+        Object obj = this.f1537c;
+        switch (i10) {
+            case 0:
+                ExecutorService executorService = DictationLid.f43040a;
+                ((r1) obj).a(Integer.valueOf(i12));
+                return;
+            case 1:
+                ExecutorService executorService2 = DictationLid.f43040a;
+                ((y0) obj).a(null, 0L, i12);
+                return;
+            case 2:
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", k10.i(i12).f24951n);
+                ((r4) obj).getLastFragment().presentFragment(new ProfileActivity(bundle, null));
+                return;
+            case 3:
+                gc t6 = l4.h().t(hd.a0(null, null, i12, (String) obj), null);
+                t6.f35499t = true;
+                t6.j();
+                return;
+            case 4:
+                ((f5) obj).L0(i12);
+                return;
+            case 5:
+                ch.f fVar = (ch.f) obj;
+                if (fVar.f5343b) {
+                    y10 y10Var = fVar.d;
+                    if (y10Var != null) {
+                        if (i12 < 300) {
+                            z11 = true;
+                        }
+                        y10Var.a(Boolean.valueOf(z11));
+                        try {
+                            fVar.f5342a.performHapticFeedback(3);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    fVar.f5344c = true;
+                    int max = Math.max(50, i12 - 100);
+                    org.telegram.messenger.g0.h3(new t0(fVar, max, 5), max);
+                    return;
+                }
+                return;
+            case 6:
+                ((di.o0) obj).L0(i12, true);
+                return;
+            case 7:
+                ConnectionsManager.getInstance(((y8) obj).f10048a).cancelRequest(i12, true);
+                return;
+            case 8:
+                ((f2.g) obj).f11033b.onAudioFocusChange(i12);
+                return;
+            case 9:
+                p6 p6Var = (p6) obj;
+                ArrayList arrayList3 = p6Var.f12382g;
+                p6Var.v(arrayList3);
+                s4 s4Var = p6Var.J;
+                Collections.sort(arrayList3, s4Var);
+                ArrayList arrayList4 = p6Var.h;
+                p6Var.v(arrayList4);
+                Collections.sort(arrayList4, s4Var);
+                ls.f(i12).k(327, new Object[0]);
+                return;
+            case 10:
+                ((hi.o) obj).a(Integer.valueOf(i12));
+                return;
+            case 11:
+                ((y10) obj).a(Integer.valueOf(i12));
+                return;
+            case 12:
+                ((hi.i2) obj).N0(i12);
+                return;
+            case 13:
+                np.u1(i12).f4((ArrayList) obj, true);
+                return;
+            case 14:
+                ta taVar = (ta) obj;
+                int i13 = taVar.f15395c;
+                taVar.l();
+                taVar.Y1 = false;
+                File file = taVar.L1.O0;
+                if (file != null) {
+                    file.delete();
+                    taVar.L1.O0 = null;
+                }
+                taVar.V(taVar.L1, true);
+                CharSequence[] charSequenceArr = {taVar.f15400d1.getText()};
+                if (np.u1(i13).j5()) {
+                    arrayList = si.d0(i13).Y(charSequenceArr, true, true);
+                } else {
+                    arrayList = new ArrayList();
+                }
+                CharSequence[] charSequenceArr2 = {taVar.L1.C0};
+                if (np.u1(i13).j5()) {
+                    arrayList2 = si.d0(i13).Y(charSequenceArr2, true, true);
+                } else {
+                    arrayList2 = new ArrayList();
+                }
+                d7 d7Var = taVar.L1;
+                if (TextUtils.equals(d7Var.C0, charSequenceArr[0]) && si.M(arrayList, arrayList2)) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+                d7Var.f14385k = z10;
+                taVar.L1.C0 = new SpannableString(taVar.f15400d1.getText());
+                taVar.y();
+                taVar.x();
+                d7 d7Var2 = taVar.L1;
+                if (d7Var2 != null && d7Var2.K) {
+                    i7 = 1;
+                } else {
+                    i7 = 0;
+                }
+                taVar.P1 = i7;
+                taVar.L1 = (d7) taVar.I1.get(i12);
+                taVar.N(0, 1);
+                taVar.M(0, 1);
+                taVar.f15403e1.f15669b.f35742g3.O(false);
+                taVar.f15400d1.setText(taVar.L1.C0);
+                return;
+            case 15:
+                ((jg.h0) obj).g(i12);
+                return;
+            case 16:
+                jh.g gVar = (jh.g) obj;
+                gVar.getClass();
+                try {
+                    gVar.f17778a.scrollBy(0, i12);
+                    return;
+                } catch (Throwable th2) {
+                    a8.g(th2, true);
+                    return;
+                }
+            case 17:
+                ji.q qVar2 = (ji.q) obj;
+                ji.n nVar = qVar2.f17986a;
+                if (qVar2.f18019p0) {
+                    if (i12 == 0) {
+                        String trim = nVar.f17973n.trim();
+                        if (!trim.isEmpty()) {
+                            Log.d("VoiceLive", "Edit: " + trim.length() + " chars → field");
+                            qf qfVar = nVar.f17958b;
+                            nVar.g("edit", true);
+                            ChatActivityEnterView chatActivityEnterView = qfVar.f38848a;
+                            int i14 = ChatActivityEnterView.f32535s7;
+                            chatActivityEnterView.A2(trim, null);
+                            return;
+                        }
+                        return;
+                    } else if (i12 == 1) {
+                        String trim2 = nVar.f17973n.trim();
+                        if (!trim2.isEmpty()) {
+                            Log.d("VoiceLive", "Send: " + trim2.length() + " chars as text");
+                            qf qfVar2 = nVar.f17958b;
+                            nVar.g("send", true);
+                            ChatActivityEnterView chatActivityEnterView2 = qfVar2.f38848a;
+                            int i15 = ChatActivityEnterView.f32535s7;
+                            chatActivityEnterView2.A2(trim2, new dd(chatActivityEnterView2, 20));
+                            return;
+                        }
+                        return;
+                    } else if (i12 == 3) {
+                        if (nVar.f17960c == 3 && nVar.h != null && nVar.H != null) {
+                            Log.d("VoiceLive", "review: back to the text before the style");
+                            nVar.f17973n = nVar.H;
+                            nVar.H = null;
+                            nVar.h.setStyleIcon(null);
+                            nVar.h.setStyleLabel(null);
+                            nVar.h.r(nVar.f17973n);
+                            return;
+                        }
+                        return;
+                    } else if (i12 == 4) {
+                        if (nVar.h != null && nVar.f17960c == 2) {
+                            String[] D = DictationAsr.D();
+                            ArrayList arrayList5 = new ArrayList();
+                            arrayList5.add(hd.N0(2131745068, null));
+                            boolean x10 = DictationAsr.x();
+                            if (x10) {
+                                i11 = 0;
+                            }
+                            int i16 = i11;
+                            for (int i17 = 0; i17 < D.length; i17++) {
+                                arrayList5.add(k0.q(D[i17]));
+                                if (!x10 && i16 < 0 && DictationAsr.z(D[i17])) {
+                                    i16 = i17 + 1;
+                                }
+                            }
+                            ji.f fVar2 = new ji.f(nVar, D, 0);
+                            qf qfVar3 = nVar.f17958b;
+                            ji.q qVar3 = nVar.h;
+                            ArrayList v = ji.n.v(D, x10, fVar2);
+                            ChatActivityEnterView chatActivityEnterView3 = qfVar3.f38848a;
+                            if (chatActivityEnterView3.F3 != null) {
+                                RectF rectF = new RectF();
+                                rectF.set(qVar3.R);
+                                if (!rectF.isEmpty()) {
+                                    ji.o oVar = new ji.o(qVar3, qVar3.getContext(), 0);
+                                    FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams((int) rectF.width(), (int) rectF.height());
+                                    layoutParams.gravity = 51;
+                                    layoutParams.leftMargin = (int) (rectF.left + qVar3.getLeft());
+                                    layoutParams.topMargin = (int) (rectF.top + qVar3.getTop());
+                                    oVar.setAlpha(0.0f);
+                                    chatActivityEnterView3.f32557c2.addView(oVar, layoutParams);
+                                    oVar.post(new i5(qfVar3, oVar, new c5(qVar3), arrayList5, v, i16, fVar2));
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    } else if (i12 == 5) {
+                        qf qfVar4 = nVar.f17958b;
+                        if (nVar.f17960c == 2) {
+                            qfVar4.e();
+                            bn bnVar = qfVar4.f38848a.F3;
+                            if (bnVar != null) {
+                                bnVar.presentFragment(new q2());
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    } else {
+                        RectF rectF2 = qVar2.f18002f1;
+                        float f10 = rectF2.left;
+                        float f11 = rectF2.top;
+                        float f12 = qVar2.f18010j1;
+                        new RectF(f10, f11 + f12, rectF2.right, rectF2.bottom + f12);
+                        if (!nVar.f17973n.trim().isEmpty() && (qVar = nVar.h) != null) {
+                            qf qfVar5 = nVar.f17958b;
+                            ji.g gVar2 = new ji.g(nVar, 1);
+                            ChatActivityEnterView chatActivityEnterView4 = qfVar5.f38848a;
+                            if (chatActivityEnterView4.F3 != null) {
+                                RectF rectF3 = new RectF();
+                                qVar.l(rectF3);
+                                ji.o oVar2 = new ji.o(qVar, qVar.getContext(), 1);
+                                FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams((int) rectF3.width(), (int) rectF3.height());
+                                layoutParams2.gravity = 51;
+                                layoutParams2.leftMargin = (int) (rectF3.left + qVar.getLeft());
+                                layoutParams2.topMargin = (int) (rectF3.top + qVar.getTop());
+                                oVar2.setAlpha(0.0f);
+                                chatActivityEnterView4.f32557c2.addView(oVar2, layoutParams2);
+                                oVar2.post(new ip(qfVar5, oVar2, new pf(qVar, 0), gVar2, qVar, 2));
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                }
+                return;
+            case 18:
+                try {
+                    SQLiteDatabase sQLiteDatabase = ((ur) obj).f27216b;
+                    sQLiteDatabase.executeFast("DELETE FROM business_replies WHERE topic_id = " + i12).stepThis().dispose();
+                    sQLiteDatabase.executeFast("DELETE FROM quick_replies_messages WHERE topic_id = " + i12).stepThis().dispose();
+                    return;
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    return;
+                }
+            case 19:
+                m2.d dVar = ((l2.o0) obj).N;
+                m2.a Q = dVar.Q();
+                dVar.V(Q, 1034, new li.c(Q, i12, 15, (char) 0));
+                return;
+            case 20:
+                String str = h2.l0.f13778a;
+                h2.c cVar = ((l2.z) ((n2.s) ((k8.a) obj).f18178c)).f19594a.C;
+                l2.t tVar = new l2.t(i12, 2);
+                cVar.getClass();
+                if (Looper.myLooper() == ((h2.i0) cVar.f13726c).f13763a.getLooper()) {
+                    z11 = true;
+                }
+                ma.p(z11);
+                cVar.f13724a++;
+                cVar.A(new a6(21, cVar, tVar));
+                Integer num = (Integer) cVar.f13727e;
+                cVar.G(Integer.valueOf(i12));
+                return;
+            case 21:
+                oi.a0 a0Var = (oi.a0) obj;
+                oi.d0 d0Var = a0Var.f21922f;
+                if (a0Var.f21920c && d0Var.F != null && d0Var.f22468a != null) {
+                    a0Var.d = true;
+                    a0Var.f21918a.m(false);
+                    try {
+                        a0Var.performHapticFeedback(0);
+                    } catch (Exception unused2) {
+                    }
+                    oi.b0 b0Var = d0Var.F;
+                    oi.a aVar = d0Var.f22468a;
+                    s3 s3Var = ((k3) b0Var).f22163a;
+                    s3Var.r3(false);
+                    s3Var.f22365p3.x(new p3(s3Var, aVar, i12), a0Var);
+                    return;
+                }
+                return;
+            case 22:
+                ConnectionsManager.lambda$onUpdateConfig$21(i12, (TLRPC.TL_config) obj);
+                return;
+            case 23:
+                np.u1(i12).b3(0, ((TLRPC.Chat) obj).f28398id, true);
+                return;
+            case 24:
+                ((p4) ((org.telegram.ui.f) obj).f47394b).a0(i12, true);
+                return;
+            case 25:
+                org.telegram.ui.Cells.r1 r1Var = ((org.telegram.ui.Cells.g1) obj).f30640a;
+                int i18 = r1Var.N5;
+                if (i12 == i18) {
+                    org.telegram.ui.Cells.d0 d0Var2 = (org.telegram.ui.Cells.d0) r1Var.I5.get(i18);
+                    if (d0Var2 != null) {
+                        org.telegram.ui.Cells.y yVar = d0Var2.f30511s;
+                        if (yVar != null) {
+                            yVar.setState(StateSet.NOTHING);
+                        }
+                        d0Var2.b(false);
+                        if (!r1Var.Q5.f24206r1) {
+                            if (d0Var2.f30502j != null) {
+                                r1Var.n();
+                            } else if (d0Var2.f30501i != null) {
+                                r1Var.n();
+                                org.telegram.ui.Cells.m1 m1Var = r1Var.Sa;
+                                if (m1Var != null) {
+                                    m1Var.I1(r1Var, d0Var2.f30501i);
+                                }
+                            }
+                        }
+                    }
+                    r1Var.N5 = -1;
+                    r1Var.q2();
+                    return;
+                }
+                return;
+            case 26:
+                td tdVar = ((sd) obj).f51997f;
+                tdVar.getClass();
+                tdVar.c(i12);
+                return;
+            case 27:
+                bn bnVar2 = ((gi) obj).f48059g;
+                if (bnVar2.f45915ac == i12) {
+                    bnVar2.pb();
+                    return;
+                }
+                return;
+            case 28:
+                bn bnVar3 = ((hi) obj).f48371g;
+                if (bnVar3.f45915ac == i12) {
+                    bnVar3.pb();
+                    return;
+                }
+                return;
+            default:
+                ((oi) obj).f50588a.l(this.f1536b, 0, true, 0, true, 0);
+                return;
+        }
     }
 
-    public static void c() {
-    }
-
-    public static RuntimeShader d() {
-        return new RuntimeShader("uniform shader content;\nuniform shader alphaMask;\nuniform shader overlay;\nuniform float4 background_color_premultiplied;\nuniform float2 shader_offset;\nhalf4 main(float2 coord) {\n    half4 source = content.eval(coord);\n    half4 background = half4(background_color_premultiplied);\n    half4 base = source + background * (1.0 - source.a);\n    float2 shaderCoord = coord + shader_offset;\n    base *= alphaMask.eval(shaderCoord).a;\n    half4 top = overlay.eval(shaderCoord);\n    return top + base * (1.0 - top.a);\n}");
+    public t0(Object obj, int i7, int i10) {
+        this.f1535a = i10;
+        this.f1537c = obj;
+        this.f1536b = i7;
     }
 }

@@ -6,50 +6,50 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.ImageReceiver;
 public class rh0 extends ImageView {
-    public HashMap f39230a;
-    public oh0 f39231b;
-    public ph0 f39232c;
+    public HashMap f39185a;
+    public oh0 f39186b;
+    public ph0 f39187c;
     public boolean d;
-    public boolean f39233e;
-    public boolean f39234f;
+    public boolean f39188e;
+    public boolean f39189f;
     public Integer h;
-    public boolean f39235n;
+    public boolean f39190n;
 
     public rh0(Context context) {
         super(context);
     }
 
     public final void a() {
-        oh0 oh0Var = this.f39231b;
+        oh0 oh0Var = this.f39186b;
         if (oh0Var != null) {
             oh0Var.stop();
         }
-        ph0 ph0Var = this.f39232c;
+        ph0 ph0Var = this.f39187c;
         if (ph0Var != null) {
             ph0Var.R();
-            this.f39232c = null;
+            this.f39187c = null;
         }
-        this.f39231b = null;
+        this.f39186b = null;
         setImageDrawable(null);
     }
 
     public final boolean b() {
-        oh0 oh0Var = this.f39231b;
-        if (oh0Var != null && oh0Var.f38219l0) {
+        oh0 oh0Var = this.f39186b;
+        if (oh0Var != null && oh0Var.f38188l0) {
             return true;
         }
         return false;
     }
 
     public final void d() {
-        oh0 oh0Var = this.f39231b;
-        if (oh0Var != null || this.f39232c != null) {
-            this.f39234f = true;
-            if (this.f39233e) {
+        oh0 oh0Var = this.f39186b;
+        if (oh0Var != null || this.f39187c != null) {
+            this.f39189f = true;
+            if (this.f39188e) {
                 if (oh0Var != null) {
                     oh0Var.start();
                 }
-                ph0 ph0Var = this.f39232c;
+                ph0 ph0Var = this.f39187c;
                 if (ph0Var != null) {
                     ph0Var.P0(false);
                 }
@@ -70,33 +70,33 @@ public class rh0 extends ImageView {
     }
 
     public oh0 getAnimatedDrawable() {
-        return this.f39231b;
+        return this.f39186b;
     }
 
     public ImageReceiver getImageReceiver() {
-        return this.f39232c;
+        return this.f39187c;
     }
 
     public final void h(int i7, String str) {
-        if (this.f39230a == null) {
-            this.f39230a = new HashMap();
+        if (this.f39185a == null) {
+            this.f39185a = new HashMap();
         }
-        this.f39230a.put(str, Integer.valueOf(i7));
-        oh0 oh0Var = this.f39231b;
+        this.f39185a.put(str, Integer.valueOf(i7));
+        oh0 oh0Var = this.f39186b;
         if (oh0Var != null) {
             oh0Var.Q(i7, str);
         }
     }
 
     public final void i() {
-        oh0 oh0Var = this.f39231b;
-        if (oh0Var != null || this.f39232c != null) {
-            this.f39234f = false;
-            if (this.f39233e) {
+        oh0 oh0Var = this.f39186b;
+        if (oh0Var != null || this.f39187c != null) {
+            this.f39189f = false;
+            if (this.f39188e) {
                 if (oh0Var != null) {
                     oh0Var.stop();
                 }
-                ph0 ph0Var = this.f39232c;
+                ph0 ph0Var = this.f39187c;
                 if (ph0Var != null) {
                     ph0Var.Q0();
                 }
@@ -107,19 +107,19 @@ public class rh0 extends ImageView {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f39233e = true;
-        ph0 ph0Var = this.f39232c;
+        this.f39188e = true;
+        ph0 ph0Var = this.f39187c;
         if (ph0Var != null) {
             ph0Var.P();
-            if (this.f39234f) {
-                this.f39232c.P0(false);
+            if (this.f39189f) {
+                this.f39187c.P0(false);
             }
         }
-        oh0 oh0Var = this.f39231b;
+        oh0 oh0Var = this.f39186b;
         if (oh0Var != null) {
             oh0Var.setCallback(this);
-            if (this.f39234f) {
-                this.f39231b.start();
+            if (this.f39189f) {
+                this.f39186b.start();
             }
         }
     }
@@ -127,45 +127,45 @@ public class rh0 extends ImageView {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f39233e = false;
-        oh0 oh0Var = this.f39231b;
+        this.f39188e = false;
+        oh0 oh0Var = this.f39186b;
         if (oh0Var != null) {
             oh0Var.stop();
         }
-        ph0 ph0Var = this.f39232c;
+        ph0 ph0Var = this.f39187c;
         if (ph0Var != null) {
             ph0Var.R();
         }
     }
 
     public void setAnimation(oh0 oh0Var) {
-        if (this.f39231b == oh0Var) {
+        if (this.f39186b == oh0Var) {
             return;
         }
-        ph0 ph0Var = this.f39232c;
+        ph0 ph0Var = this.f39187c;
         if (ph0Var != null) {
             ph0Var.R();
-            this.f39232c = null;
+            this.f39187c = null;
         }
-        this.f39231b = oh0Var;
+        this.f39186b = oh0Var;
         oh0Var.R(this);
         if (this.d) {
-            this.f39231b.K(1);
+            this.f39186b.K(1);
         }
-        HashMap hashMap = this.f39230a;
+        HashMap hashMap = this.f39185a;
         if (hashMap != null) {
-            this.f39231b.f38204a0 = true;
+            this.f39186b.f38173a0 = true;
             for (Map.Entry entry : hashMap.entrySet()) {
-                oh0 oh0Var2 = this.f39231b;
+                oh0 oh0Var2 = this.f39186b;
                 Integer num = (Integer) entry.getValue();
                 num.getClass();
-                oh0Var2.f38227s.put((String) entry.getKey(), num);
+                oh0Var2.f38196s.put((String) entry.getKey(), num);
                 oh0Var2.G();
             }
-            this.f39231b.o();
+            this.f39186b.o();
         }
-        this.f39231b.J(true);
-        setImageDrawable(this.f39231b);
+        this.f39186b.J(true);
+        setImageDrawable(this.f39186b);
     }
 
     public void setAutoRepeat(boolean z10) {
@@ -175,30 +175,30 @@ public class rh0 extends ImageView {
     @Override
     public void setImageResource(int i7) {
         super.setImageResource(i7);
-        this.f39231b = null;
+        this.f39186b = null;
     }
 
     public void setLayerNum(Integer num) {
         this.h = num;
-        ph0 ph0Var = this.f39232c;
+        ph0 ph0Var = this.f39187c;
         if (ph0Var != null) {
             ph0Var.E0(num.intValue());
         }
     }
 
     public void setOnAnimationEndListener(Runnable runnable) {
-        oh0 oh0Var = this.f39231b;
+        oh0 oh0Var = this.f39186b;
         if (oh0Var != null) {
-            oh0Var.f38230u0 = runnable;
+            oh0Var.f38199u0 = runnable;
         }
     }
 
     public void setOnlyLastFrame(boolean z10) {
-        this.f39235n = z10;
+        this.f39190n = z10;
     }
 
     public void setProgress(float f10) {
-        oh0 oh0Var = this.f39231b;
+        oh0 oh0Var = this.f39186b;
         if (oh0Var != null) {
             oh0Var.T(true, f10);
         }

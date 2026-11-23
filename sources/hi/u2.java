@@ -25,11 +25,11 @@ public final class u2 extends org.telegram.ui.ActionBar.q0 {
                 return;
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.B0).f32846y.getText());
+                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.B0).f32812y.getText());
                 return;
             case 2:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((rm) this.B0).f39284y.getText());
+                accessibilityNodeInfo.setText(((rm) this.B0).f39239y.getText());
                 return;
             default:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);

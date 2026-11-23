@@ -1,13 +1,13 @@
 package z7;
 
-import c8.le;
+import c8.me;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class ta extends l9 implements List, RandomAccess {
-    public static final ra f61772b = new ra(va.f61786e, 0);
+    public static final ra f61737b = new ra(va.f61751e, 0);
 
     @Override
     public final void add(int i7, Object obj) {
@@ -103,13 +103,13 @@ public abstract class ta extends l9 implements List, RandomAccess {
 
     @Override
     public ta subList(int i7, int i10) {
-        le.b(i7, i10, size());
+        me.b(i7, i10, size());
         int i11 = i10 - i7;
         if (i11 == size()) {
             return this;
         }
         if (i11 == 0) {
-            return va.f61786e;
+            return va.f61751e;
         }
         return new sa(this, i7, i11);
     }
@@ -137,11 +137,11 @@ public abstract class ta extends l9 implements List, RandomAccess {
         int size = size();
         if (i7 >= 0 && i7 <= size) {
             if (isEmpty()) {
-                return f61772b;
+                return f61737b;
             }
             return new ra(this, i7);
         }
-        throw new IndexOutOfBoundsException(le.c(i7, size, "index"));
+        throw new IndexOutOfBoundsException(me.c(i7, size, "index"));
     }
 
     @Override

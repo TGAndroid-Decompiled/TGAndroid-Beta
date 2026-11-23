@@ -11,13 +11,13 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 public abstract class v implements Map, Serializable, j$.util.Map {
-    public final int f676a;
-    public transient AbstractCollection f677b;
-    public transient AbstractCollection f678c;
+    public final int f675a;
+    public transient AbstractCollection f676b;
+    public transient AbstractCollection f677c;
     public transient AbstractCollection d;
 
     public v(int i7) {
-        this.f676a = i7;
+        this.f675a = i7;
     }
 
     public static void b(java.util.Set r18) {
@@ -26,7 +26,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public final void clear() {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 throw new UnsupportedOperationException();
             case 1:
@@ -46,25 +46,25 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public Object compute(Object obj, BiFunction biFunction) {
-        int i7 = this.f676a;
+        int i7 = this.f675a;
         return Map.CC.$default$compute(this, obj, biFunction);
     }
 
     @Override
     public Object computeIfAbsent(Object obj, Function function) {
-        int i7 = this.f676a;
+        int i7 = this.f675a;
         return Map.CC.$default$computeIfAbsent(this, obj, function);
     }
 
     @Override
     public Object computeIfPresent(Object obj, BiFunction biFunction) {
-        int i7 = this.f676a;
+        int i7 = this.f675a;
         return Map.CC.$default$computeIfPresent(this, obj, biFunction);
     }
 
     @Override
     public final boolean containsKey(Object obj) {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 if (get(obj) != null) {
                     return true;
@@ -105,7 +105,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public final boolean containsValue(Object obj) {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 e0 e0Var = (e0) this.d;
                 if (e0Var == null) {
@@ -117,7 +117,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
             case 1:
                 c8.q qVar = (c8.q) this.d;
                 if (qVar == null) {
-                    c8.q qVar2 = new c8.q(1, ((c8.r) this).f4963e);
+                    c8.q qVar2 = new c8.q(1, ((c8.r) this).f4928e);
                     this.d = qVar2;
                     qVar = qVar2;
                 }
@@ -126,7 +126,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 com.google.android.gms.internal.cast.o0 o0Var = (com.google.android.gms.internal.cast.o0) this.d;
                 if (o0Var == null) {
                     com.google.android.gms.internal.cast.p0 p0Var = (com.google.android.gms.internal.cast.p0) this;
-                    com.google.android.gms.internal.cast.o0 o0Var2 = new com.google.android.gms.internal.cast.o0(1, p0Var.h, p0Var.f6649f);
+                    com.google.android.gms.internal.cast.o0 o0Var2 = new com.google.android.gms.internal.cast.o0(1, p0Var.h, p0Var.f6612f);
                     this.d = o0Var2;
                     o0Var = o0Var2;
                 }
@@ -135,7 +135,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 com.google.android.gms.internal.play_billing.z zVar = (com.google.android.gms.internal.play_billing.z) this.d;
                 if (zVar == null) {
                     com.google.android.gms.internal.play_billing.a0 a0Var = (com.google.android.gms.internal.play_billing.a0) this;
-                    com.google.android.gms.internal.play_billing.z zVar2 = new com.google.android.gms.internal.play_billing.z(1, a0Var.h, a0Var.f7003f);
+                    com.google.android.gms.internal.play_billing.z zVar2 = new com.google.android.gms.internal.play_billing.z(1, a0Var.h, a0Var.f6966f);
                     this.d = zVar2;
                     zVar = zVar2;
                 }
@@ -144,7 +144,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 w7.k kVar = (w7.k) this.d;
                 if (kVar == null) {
                     w7.l lVar = (w7.l) this;
-                    w7.k kVar2 = new w7.k(1, lVar.h, lVar.f59663f);
+                    w7.k kVar2 = new w7.k(1, lVar.h, lVar.f59628f);
                     this.d = kVar2;
                     kVar = kVar2;
                 }
@@ -152,7 +152,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
             case 5:
                 y7.c cVar = (y7.c) this.d;
                 if (cVar == null) {
-                    y7.c cVar2 = new y7.c(1, ((y7.d) this).f60828e);
+                    y7.c cVar2 = new y7.c(1, ((y7.d) this).f60793e);
                     this.d = cVar2;
                     cVar = cVar2;
                 }
@@ -160,7 +160,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
             default:
                 z7.za zaVar = (z7.za) this.d;
                 if (zaVar == null) {
-                    z7.za zaVar2 = new z7.za(1, ((z7.ab) this).f61538e);
+                    z7.za zaVar2 = new z7.za(1, ((z7.ab) this).f61503e);
                     this.d = zaVar2;
                     zaVar = zaVar2;
                 }
@@ -170,67 +170,67 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Set entrySet() {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
-                c0 c0Var = (c0) this.f677b;
+                c0 c0Var = (c0) this.f676b;
                 if (c0Var == null) {
                     f0 f0Var = (f0) this;
                     c0 c0Var2 = new c0(f0Var, f0Var.f390e);
-                    this.f677b = c0Var2;
+                    this.f676b = c0Var2;
                     return c0Var2;
                 }
                 return c0Var;
             case 1:
-                c8.o oVar = (c8.o) this.f677b;
+                c8.o oVar = (c8.o) this.f676b;
                 if (oVar == null) {
                     c8.r rVar = (c8.r) this;
-                    c8.o oVar2 = new c8.o(rVar, rVar.f4963e);
-                    this.f677b = oVar2;
+                    c8.o oVar2 = new c8.o(rVar, rVar.f4928e);
+                    this.f676b = oVar2;
                     return oVar2;
                 }
                 return oVar;
             case 2:
-                com.google.android.gms.internal.cast.l0 l0Var = (com.google.android.gms.internal.cast.l0) this.f677b;
+                com.google.android.gms.internal.cast.l0 l0Var = (com.google.android.gms.internal.cast.l0) this.f676b;
                 if (l0Var == null) {
                     com.google.android.gms.internal.cast.p0 p0Var = (com.google.android.gms.internal.cast.p0) this;
-                    com.google.android.gms.internal.cast.l0 l0Var2 = new com.google.android.gms.internal.cast.l0(p0Var, p0Var.f6649f, p0Var.h);
-                    this.f677b = l0Var2;
+                    com.google.android.gms.internal.cast.l0 l0Var2 = new com.google.android.gms.internal.cast.l0(p0Var, p0Var.f6612f, p0Var.h);
+                    this.f676b = l0Var2;
                     return l0Var2;
                 }
                 return l0Var;
             case 3:
-                com.google.android.gms.internal.play_billing.x xVar = (com.google.android.gms.internal.play_billing.x) this.f677b;
+                com.google.android.gms.internal.play_billing.x xVar = (com.google.android.gms.internal.play_billing.x) this.f676b;
                 if (xVar == null) {
                     com.google.android.gms.internal.play_billing.a0 a0Var = (com.google.android.gms.internal.play_billing.a0) this;
-                    com.google.android.gms.internal.play_billing.x xVar2 = new com.google.android.gms.internal.play_billing.x(a0Var, a0Var.f7003f, a0Var.h);
-                    this.f677b = xVar2;
+                    com.google.android.gms.internal.play_billing.x xVar2 = new com.google.android.gms.internal.play_billing.x(a0Var, a0Var.f6966f, a0Var.h);
+                    this.f676b = xVar2;
                     return xVar2;
                 }
                 return xVar;
             case 4:
-                w7.i iVar = (w7.i) this.f677b;
+                w7.i iVar = (w7.i) this.f676b;
                 if (iVar == null) {
                     w7.l lVar = (w7.l) this;
-                    w7.i iVar2 = new w7.i(lVar, lVar.f59663f, lVar.h);
-                    this.f677b = iVar2;
+                    w7.i iVar2 = new w7.i(lVar, lVar.f59628f, lVar.h);
+                    this.f676b = iVar2;
                     return iVar2;
                 }
                 return iVar;
             case 5:
-                y7.a aVar = (y7.a) this.f677b;
+                y7.a aVar = (y7.a) this.f676b;
                 if (aVar == null) {
                     y7.d dVar = (y7.d) this;
-                    y7.a aVar2 = new y7.a(dVar, dVar.f60828e);
-                    this.f677b = aVar2;
+                    y7.a aVar2 = new y7.a(dVar, dVar.f60793e);
+                    this.f676b = aVar2;
                     return aVar2;
                 }
                 return aVar;
             default:
-                z7.xa xaVar = (z7.xa) this.f677b;
+                z7.xa xaVar = (z7.xa) this.f676b;
                 if (xaVar == null) {
                     z7.ab abVar = (z7.ab) this;
-                    z7.xa xaVar2 = new z7.xa(abVar, abVar.f61538e);
-                    this.f677b = xaVar2;
+                    z7.xa xaVar2 = new z7.xa(abVar, abVar.f61503e);
+                    this.f676b = xaVar2;
                     return xaVar2;
                 }
                 return xaVar;
@@ -239,7 +239,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public final boolean equals(Object obj) {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 if (this == obj) {
                     return true;
@@ -301,7 +301,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public void forEach(BiConsumer biConsumer) {
-        int i7 = this.f676a;
+        int i7 = this.f675a;
         Map.CC.$default$forEach(this, biConsumer);
     }
 
@@ -310,7 +310,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Object getOrDefault(Object obj, Object obj2) {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 Object obj3 = get(obj);
                 if (obj3 != null) {
@@ -365,13 +365,13 @@ public abstract class v implements Map, Serializable, j$.util.Map {
         int i13;
         int i14;
         int i15;
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
-                c0 c0Var = (c0) this.f677b;
+                c0 c0Var = (c0) this.f676b;
                 if (c0Var == null) {
                     f0 f0Var = (f0) this;
                     c0 c0Var2 = new c0(f0Var, f0Var.f390e);
-                    this.f677b = c0Var2;
+                    this.f676b = c0Var2;
                     c0Var = c0Var2;
                 }
                 int i16 = 0;
@@ -385,11 +385,11 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 }
                 return i16;
             case 1:
-                c8.o oVar = (c8.o) this.f677b;
+                c8.o oVar = (c8.o) this.f676b;
                 if (oVar == null) {
                     c8.r rVar = (c8.r) this;
-                    c8.o oVar2 = new c8.o(rVar, rVar.f4963e);
-                    this.f677b = oVar2;
+                    c8.o oVar2 = new c8.o(rVar, rVar.f4928e);
+                    this.f676b = oVar2;
                     oVar = oVar2;
                 }
                 int i17 = 0;
@@ -403,11 +403,11 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 }
                 return i17;
             case 2:
-                com.google.android.gms.internal.cast.l0 l0Var = (com.google.android.gms.internal.cast.l0) this.f677b;
+                com.google.android.gms.internal.cast.l0 l0Var = (com.google.android.gms.internal.cast.l0) this.f676b;
                 if (l0Var == null) {
                     com.google.android.gms.internal.cast.p0 p0Var = (com.google.android.gms.internal.cast.p0) this;
-                    com.google.android.gms.internal.cast.l0 l0Var2 = new com.google.android.gms.internal.cast.l0(p0Var, p0Var.f6649f, p0Var.h);
-                    this.f677b = l0Var2;
+                    com.google.android.gms.internal.cast.l0 l0Var2 = new com.google.android.gms.internal.cast.l0(p0Var, p0Var.f6612f, p0Var.h);
+                    this.f676b = l0Var2;
                     l0Var = l0Var2;
                 }
                 int i18 = 0;
@@ -421,11 +421,11 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 }
                 return i18;
             case 3:
-                com.google.android.gms.internal.play_billing.x xVar = (com.google.android.gms.internal.play_billing.x) this.f677b;
+                com.google.android.gms.internal.play_billing.x xVar = (com.google.android.gms.internal.play_billing.x) this.f676b;
                 if (xVar == null) {
                     com.google.android.gms.internal.play_billing.a0 a0Var = (com.google.android.gms.internal.play_billing.a0) this;
-                    com.google.android.gms.internal.play_billing.x xVar2 = new com.google.android.gms.internal.play_billing.x(a0Var, a0Var.f7003f, a0Var.h);
-                    this.f677b = xVar2;
+                    com.google.android.gms.internal.play_billing.x xVar2 = new com.google.android.gms.internal.play_billing.x(a0Var, a0Var.f6966f, a0Var.h);
+                    this.f676b = xVar2;
                     xVar = xVar2;
                 }
                 int i19 = 0;
@@ -439,11 +439,11 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 }
                 return i19;
             case 4:
-                w7.i iVar = (w7.i) this.f677b;
+                w7.i iVar = (w7.i) this.f676b;
                 if (iVar == null) {
                     w7.l lVar = (w7.l) this;
-                    w7.i iVar2 = new w7.i(lVar, lVar.f59663f, lVar.h);
-                    this.f677b = iVar2;
+                    w7.i iVar2 = new w7.i(lVar, lVar.f59628f, lVar.h);
+                    this.f676b = iVar2;
                     iVar = iVar2;
                 }
                 int i20 = 0;
@@ -457,11 +457,11 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 }
                 return i20;
             case 5:
-                y7.a aVar = (y7.a) this.f677b;
+                y7.a aVar = (y7.a) this.f676b;
                 if (aVar == null) {
                     y7.d dVar = (y7.d) this;
-                    y7.a aVar2 = new y7.a(dVar, dVar.f60828e);
-                    this.f677b = aVar2;
+                    y7.a aVar2 = new y7.a(dVar, dVar.f60793e);
+                    this.f676b = aVar2;
                     aVar = aVar2;
                 }
                 int i21 = 0;
@@ -475,11 +475,11 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 }
                 return i21;
             default:
-                z7.xa xaVar = (z7.xa) this.f677b;
+                z7.xa xaVar = (z7.xa) this.f676b;
                 if (xaVar == null) {
                     z7.ab abVar = (z7.ab) this;
-                    z7.xa xaVar2 = new z7.xa(abVar, abVar.f61538e);
-                    this.f677b = xaVar2;
+                    z7.xa xaVar2 = new z7.xa(abVar, abVar.f61503e);
+                    this.f676b = xaVar2;
                     xaVar = xaVar2;
                 }
                 int i22 = 0;
@@ -497,7 +497,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public final boolean isEmpty() {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 return false;
             case 1:
@@ -526,67 +526,67 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Set keySet() {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
-                d0 d0Var = (d0) this.f678c;
+                d0 d0Var = (d0) this.f677c;
                 if (d0Var == null) {
                     f0 f0Var = (f0) this;
                     d0 d0Var2 = new d0(f0Var, new e0(0, f0Var.f390e));
-                    this.f678c = d0Var2;
+                    this.f677c = d0Var2;
                     return d0Var2;
                 }
                 return d0Var;
             case 1:
-                c8.p pVar = (c8.p) this.f678c;
+                c8.p pVar = (c8.p) this.f677c;
                 if (pVar == null) {
                     c8.r rVar = (c8.r) this;
-                    c8.p pVar2 = new c8.p(rVar, new c8.q(0, rVar.f4963e));
-                    this.f678c = pVar2;
+                    c8.p pVar2 = new c8.p(rVar, new c8.q(0, rVar.f4928e));
+                    this.f677c = pVar2;
                     return pVar2;
                 }
                 return pVar;
             case 2:
-                com.google.android.gms.internal.cast.n0 n0Var = (com.google.android.gms.internal.cast.n0) this.f678c;
+                com.google.android.gms.internal.cast.n0 n0Var = (com.google.android.gms.internal.cast.n0) this.f677c;
                 if (n0Var == null) {
                     com.google.android.gms.internal.cast.p0 p0Var = (com.google.android.gms.internal.cast.p0) this;
-                    com.google.android.gms.internal.cast.n0 n0Var2 = new com.google.android.gms.internal.cast.n0(p0Var, new com.google.android.gms.internal.cast.o0(0, p0Var.h, p0Var.f6649f));
-                    this.f678c = n0Var2;
+                    com.google.android.gms.internal.cast.n0 n0Var2 = new com.google.android.gms.internal.cast.n0(p0Var, new com.google.android.gms.internal.cast.o0(0, p0Var.h, p0Var.f6612f));
+                    this.f677c = n0Var2;
                     return n0Var2;
                 }
                 return n0Var;
             case 3:
-                com.google.android.gms.internal.play_billing.y yVar = (com.google.android.gms.internal.play_billing.y) this.f678c;
+                com.google.android.gms.internal.play_billing.y yVar = (com.google.android.gms.internal.play_billing.y) this.f677c;
                 if (yVar == null) {
                     com.google.android.gms.internal.play_billing.a0 a0Var = (com.google.android.gms.internal.play_billing.a0) this;
-                    com.google.android.gms.internal.play_billing.y yVar2 = new com.google.android.gms.internal.play_billing.y(a0Var, new com.google.android.gms.internal.play_billing.z(0, a0Var.h, a0Var.f7003f));
-                    this.f678c = yVar2;
+                    com.google.android.gms.internal.play_billing.y yVar2 = new com.google.android.gms.internal.play_billing.y(a0Var, new com.google.android.gms.internal.play_billing.z(0, a0Var.h, a0Var.f6966f));
+                    this.f677c = yVar2;
                     return yVar2;
                 }
                 return yVar;
             case 4:
-                w7.j jVar = (w7.j) this.f678c;
+                w7.j jVar = (w7.j) this.f677c;
                 if (jVar == null) {
                     w7.l lVar = (w7.l) this;
-                    w7.j jVar2 = new w7.j(lVar, new w7.k(0, lVar.h, lVar.f59663f));
-                    this.f678c = jVar2;
+                    w7.j jVar2 = new w7.j(lVar, new w7.k(0, lVar.h, lVar.f59628f));
+                    this.f677c = jVar2;
                     return jVar2;
                 }
                 return jVar;
             case 5:
-                y7.b bVar = (y7.b) this.f678c;
+                y7.b bVar = (y7.b) this.f677c;
                 if (bVar == null) {
                     y7.d dVar = (y7.d) this;
-                    y7.b bVar2 = new y7.b(dVar, new y7.c(0, dVar.f60828e));
-                    this.f678c = bVar2;
+                    y7.b bVar2 = new y7.b(dVar, new y7.c(0, dVar.f60793e));
+                    this.f677c = bVar2;
                     return bVar2;
                 }
                 return bVar;
             default:
-                z7.ya yaVar = (z7.ya) this.f678c;
+                z7.ya yaVar = (z7.ya) this.f677c;
                 if (yaVar == null) {
                     z7.ab abVar = (z7.ab) this;
-                    z7.ya yaVar2 = new z7.ya(abVar, new z7.za(0, abVar.f61538e));
-                    this.f678c = yaVar2;
+                    z7.ya yaVar2 = new z7.ya(abVar, new z7.za(0, abVar.f61503e));
+                    this.f677c = yaVar2;
                     return yaVar2;
                 }
                 return yaVar;
@@ -595,13 +595,13 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public Object merge(Object obj, Object obj2, BiFunction biFunction) {
-        int i7 = this.f676a;
+        int i7 = this.f675a;
         return Map.CC.$default$merge(this, obj, obj2, biFunction);
     }
 
     @Override
     public final Object put(Object obj, Object obj2) {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 throw new UnsupportedOperationException();
             case 1:
@@ -621,7 +621,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public final void putAll(java.util.Map map) {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 throw new UnsupportedOperationException();
             case 1:
@@ -641,30 +641,30 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public Object putIfAbsent(Object obj, Object obj2) {
-        int i7 = this.f676a;
+        int i7 = this.f675a;
         return Map.CC.$default$putIfAbsent(this, obj, obj2);
     }
 
     @Override
     public boolean remove(Object obj, Object obj2) {
-        int i7 = this.f676a;
+        int i7 = this.f675a;
         return Map.CC.$default$remove(this, obj, obj2);
     }
 
     @Override
     public Object replace(Object obj, Object obj2) {
-        int i7 = this.f676a;
+        int i7 = this.f675a;
         return Map.CC.$default$replace(this, obj, obj2);
     }
 
     @Override
     public void replaceAll(BiFunction biFunction) {
-        int i7 = this.f676a;
+        int i7 = this.f675a;
         Map.CC.$default$replaceAll(this, biFunction);
     }
 
     public final String toString() {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 boolean z10 = true;
                 StringBuilder sb2 = new StringBuilder((int) Math.min(1 * 8, 1073741824L));
@@ -801,7 +801,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Collection values() {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 e0 e0Var = (e0) this.d;
                 if (e0Var == null) {
@@ -813,7 +813,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
             case 1:
                 c8.q qVar = (c8.q) this.d;
                 if (qVar == null) {
-                    c8.q qVar2 = new c8.q(1, ((c8.r) this).f4963e);
+                    c8.q qVar2 = new c8.q(1, ((c8.r) this).f4928e);
                     this.d = qVar2;
                     return qVar2;
                 }
@@ -822,7 +822,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 com.google.android.gms.internal.cast.o0 o0Var = (com.google.android.gms.internal.cast.o0) this.d;
                 if (o0Var == null) {
                     com.google.android.gms.internal.cast.p0 p0Var = (com.google.android.gms.internal.cast.p0) this;
-                    com.google.android.gms.internal.cast.o0 o0Var2 = new com.google.android.gms.internal.cast.o0(1, p0Var.h, p0Var.f6649f);
+                    com.google.android.gms.internal.cast.o0 o0Var2 = new com.google.android.gms.internal.cast.o0(1, p0Var.h, p0Var.f6612f);
                     this.d = o0Var2;
                     return o0Var2;
                 }
@@ -831,7 +831,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 com.google.android.gms.internal.play_billing.z zVar = (com.google.android.gms.internal.play_billing.z) this.d;
                 if (zVar == null) {
                     com.google.android.gms.internal.play_billing.a0 a0Var = (com.google.android.gms.internal.play_billing.a0) this;
-                    com.google.android.gms.internal.play_billing.z zVar2 = new com.google.android.gms.internal.play_billing.z(1, a0Var.h, a0Var.f7003f);
+                    com.google.android.gms.internal.play_billing.z zVar2 = new com.google.android.gms.internal.play_billing.z(1, a0Var.h, a0Var.f6966f);
                     this.d = zVar2;
                     return zVar2;
                 }
@@ -840,7 +840,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
                 w7.k kVar = (w7.k) this.d;
                 if (kVar == null) {
                     w7.l lVar = (w7.l) this;
-                    w7.k kVar2 = new w7.k(1, lVar.h, lVar.f59663f);
+                    w7.k kVar2 = new w7.k(1, lVar.h, lVar.f59628f);
                     this.d = kVar2;
                     return kVar2;
                 }
@@ -848,7 +848,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
             case 5:
                 y7.c cVar = (y7.c) this.d;
                 if (cVar == null) {
-                    y7.c cVar2 = new y7.c(1, ((y7.d) this).f60828e);
+                    y7.c cVar2 = new y7.c(1, ((y7.d) this).f60793e);
                     this.d = cVar2;
                     return cVar2;
                 }
@@ -856,7 +856,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
             default:
                 z7.za zaVar = (z7.za) this.d;
                 if (zaVar == null) {
-                    z7.za zaVar2 = new z7.za(1, ((z7.ab) this).f61538e);
+                    z7.za zaVar2 = new z7.za(1, ((z7.ab) this).f61503e);
                     this.d = zaVar2;
                     return zaVar2;
                 }
@@ -866,7 +866,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Object remove(Object obj) {
-        switch (this.f676a) {
+        switch (this.f675a) {
             case 0:
                 throw new UnsupportedOperationException();
             case 1:
@@ -886,7 +886,7 @@ public abstract class v implements Map, Serializable, j$.util.Map {
 
     @Override
     public boolean replace(Object obj, Object obj2, Object obj3) {
-        int i7 = this.f676a;
+        int i7 = this.f675a;
         return Map.CC.$default$replace(this, obj, obj2, obj3);
     }
 }

@@ -13,12 +13,12 @@ public final class f0 extends c51 {
     }
 
     @Override
-    public boolean D(v4.f1 f1Var) {
+    public boolean D(v4.e1 e1Var) {
         switch (this.Q) {
             case 0:
                 return false;
             default:
-                return super.D(f1Var);
+                return super.D(e1Var);
         }
     }
 
@@ -26,10 +26,10 @@ public final class f0 extends c51 {
     public int I(int i7) {
         switch (this.Q) {
             case 1:
-                if (i7 == org.telegram.ui.ActionBar.m6.f29472i5) {
+                if (i7 == org.telegram.ui.ActionBar.m6.f29438i5) {
                     return -15921907;
                 }
-                return org.telegram.ui.ActionBar.m6.w0(i7, this.f34065x);
+                return org.telegram.ui.ActionBar.m6.w0(i7, this.f34029x);
             default:
                 return super.I(i7);
         }

@@ -7,7 +7,7 @@ public class NotificationBadge$HuaweiHomeBadger implements xr {
     @Override
     public final void a(int i7) {
         Bundle bundle = new Bundle();
-        bundle.putString("package", t0.f26931b.getPackageName());
+        bundle.putString("package", t0.f26895b.getPackageName());
         bundle.putString("class", as.d.getClassName());
         bundle.putInt("badgenumber", i7);
         g0.g3(new yr(bundle, 0));

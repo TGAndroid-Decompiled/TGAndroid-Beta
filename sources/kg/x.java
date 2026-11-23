@@ -10,19 +10,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class x implements RequestDelegate {
-    public final int f18559a;
-    public final z f18560b;
+    public final int f18523a;
+    public final z f18524b;
 
     public x(z zVar, int i7) {
-        this.f18559a = i7;
-        this.f18560b = zVar;
+        this.f18523a = i7;
+        this.f18524b = zVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18559a) {
+        switch (this.f18523a) {
             case 0:
-                final z zVar = this.f18560b;
+                final z zVar = this.f18524b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -31,10 +31,10 @@ public final class x implements RequestDelegate {
                         z zVar2 = zVar;
                         switch (i7) {
                             case 0:
-                                int i10 = zVar2.f18578a;
+                                int i10 = zVar2.f18541a;
                                 if (tLObject2 instanceof TL_account.TL_businessChatLink) {
                                     TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject2;
-                                    zVar2.f18579b.add(tL_businessChatLink);
+                                    zVar2.f18542b.add(tL_businessChatLink);
                                     ls.f(i10).k(125, new Object[0]);
                                     ls.f(i10).k(126, tL_businessChatLink);
                                     zVar2.f();
@@ -42,8 +42,8 @@ public final class x implements RequestDelegate {
                                 }
                                 return;
                             default:
-                                ArrayList arrayList = zVar2.f18579b;
-                                int i11 = zVar2.f18578a;
+                                ArrayList arrayList = zVar2.f18542b;
+                                int i11 = zVar2.f18541a;
                                 if (tLObject2 instanceof TL_account.businessChatLinks) {
                                     TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject2;
                                     arrayList.clear();
@@ -56,7 +56,7 @@ public final class x implements RequestDelegate {
                                 } else {
                                     a8.g(new RuntimeException("Unexpected response from server!"), true);
                                 }
-                                zVar2.f18580c = false;
+                                zVar2.f18543c = false;
                                 zVar2.d = true;
                                 return;
                         }
@@ -64,7 +64,7 @@ public final class x implements RequestDelegate {
                 });
                 return;
             default:
-                final z zVar2 = this.f18560b;
+                final z zVar2 = this.f18524b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -73,10 +73,10 @@ public final class x implements RequestDelegate {
                         z zVar22 = zVar2;
                         switch (i7) {
                             case 0:
-                                int i10 = zVar22.f18578a;
+                                int i10 = zVar22.f18541a;
                                 if (tLObject2 instanceof TL_account.TL_businessChatLink) {
                                     TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject2;
-                                    zVar22.f18579b.add(tL_businessChatLink);
+                                    zVar22.f18542b.add(tL_businessChatLink);
                                     ls.f(i10).k(125, new Object[0]);
                                     ls.f(i10).k(126, tL_businessChatLink);
                                     zVar22.f();
@@ -84,8 +84,8 @@ public final class x implements RequestDelegate {
                                 }
                                 return;
                             default:
-                                ArrayList arrayList = zVar22.f18579b;
-                                int i11 = zVar22.f18578a;
+                                ArrayList arrayList = zVar22.f18542b;
+                                int i11 = zVar22.f18541a;
                                 if (tLObject2 instanceof TL_account.businessChatLinks) {
                                     TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject2;
                                     arrayList.clear();
@@ -98,7 +98,7 @@ public final class x implements RequestDelegate {
                                 } else {
                                     a8.g(new RuntimeException("Unexpected response from server!"), true);
                                 }
-                                zVar22.f18580c = false;
+                                zVar22.f18543c = false;
                                 zVar22.d = true;
                                 return;
                         }

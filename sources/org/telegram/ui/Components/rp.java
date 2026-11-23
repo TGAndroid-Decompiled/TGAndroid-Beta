@@ -19,7 +19,7 @@ public final class rp extends hi.l3 {
         this.Y0 = paint;
         this.Z0 = l1Var;
         l1Var.a(this);
-        paint.setPathEffect(new CornerPathEffect(this.f14994w));
+        paint.setPathEffect(new CornerPathEffect(this.f14874w));
         if (z10) {
             k(true);
         }
@@ -35,7 +35,7 @@ public final class rp extends hi.l3 {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.G.getAlpha(), l1Var.b().getAlpha()) * f10), 31);
                 Path path = this.F0;
                 canvas.drawPath(path, paint);
-                if (l1Var.f41157e) {
+                if (l1Var.f41119e) {
                     paint.setShader(((Paint) l1Var.d.f341a).getShader());
                     canvas.drawPath(path, paint);
                 }
@@ -83,9 +83,9 @@ public final class rp extends hi.l3 {
         this.L = Layout.Alignment.ALIGN_NORMAL;
         this.d = 3200L;
         this.U = true;
-        this.f14972e = true;
+        this.f14852e = true;
         n(8.0f, 6.0f, 10.0f, 6.0f);
-        this.f14993v0 = 0.0f;
+        this.f14873v0 = 0.0f;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         while (i7 < 2) {
             ((oh0[]) this.Y0)[i7] = new oh0(i7 == 0 ? 2131624291 : 2131624290, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f));

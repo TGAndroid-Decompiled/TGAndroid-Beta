@@ -1,13 +1,8 @@
 package org.telegram.ui;
-public final class ar0 extends v4.k {
-    public final br0 F;
+public final class ar0 {
+    public final float f45640a;
 
-    public ar0(br0 br0Var) {
-        this.F = br0Var;
-    }
-
-    @Override
-    public final void P(v4.f1 f1Var) {
-        this.F.invalidate();
+    public ar0(float f10) {
+        this.f45640a = f10;
     }
 }

@@ -1,33 +1,1326 @@
 package hi;
 
-import android.view.TextureView;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-public final class u5 {
-    public TextureView f15541a;
-    public s6 f15542b;
-    public org.telegram.ui.web.b f15543c;
-    public boolean d;
-    public int f15544e;
-    public int f15545f;
-    public boolean f15546g;
+import android.content.ContentProviderClient;
+import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.location.Location;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.os.SystemClock;
+import android.text.Editable;
+import android.util.Log;
+import android.util.LongSparseArray;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import org.json.JSONObject;
+import org.telegram.messenger.az;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.rd;
+import org.telegram.messenger.wy;
+import org.telegram.messenger.yy;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.a70;
+import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.ui;
+import org.telegram.ui.eg0;
+public final class u5 implements xa, i6.a, com.google.android.gms.common.api.internal.q, ib.b, jg.y1, m.e2, l.w, m.k, ce.c, o0.a, org.telegram.ui.Components.a5, oi.g0, oi.q3, oi.d1, org.telegram.messenger.wa, org.telegram.messenger.qa, wy, gh.a {
+    public final int f15494a;
+    public Object f15495b;
 
-    public final void a(TextureView textureView) {
-        TextureView textureView2 = this.f15541a;
-        if (textureView2 != textureView) {
-            if (textureView2 != null) {
-                ViewParent parent = textureView2.getParent();
-                if (parent instanceof ViewGroup) {
-                    ((ViewGroup) parent).removeView(this.f15541a);
-                }
-                this.f15541a = null;
-            }
-            this.d = false;
-            this.f15541a = textureView;
-            s6 s6Var = this.f15542b;
-            if (s6Var != null) {
-                s6Var.a(textureView);
+    public u5(int i7) {
+        this.f15494a = i7;
+    }
+
+    @Override
+    public void A(int i7, int i10) {
+        oi.e2 e2Var;
+        oi.l5 l5Var = (oi.l5) this.f15495b;
+        oi.a3 a3Var = l5Var.F;
+        if (a3Var != null && l5Var.f22468a != null && (e2Var = a3Var.f21961a.R3) != null) {
+            e2Var.f(i7, i10);
+        }
+    }
+
+    @Override
+    public float A1() {
+        float f10;
+        gh.a i7 = i();
+        gh.a l10 = l();
+        if (i7 != null) {
+            f10 = i7.A1();
+        } else {
+            f10 = 0.0f;
+        }
+        if (l10 != null) {
+            return org.telegram.messenger.g0.T1(l10.A1(), f10, ((org.telegram.ui.ActionBar.j5) this.f15495b).f29039a);
+        }
+        return f10;
+    }
+
+    @Override
+    public int A2() {
+        int i7;
+        org.telegram.ui.ActionBar.t4 t4Var;
+        org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) this.f15495b;
+        gh.a i10 = i();
+        if (i10 != null) {
+            i7 = i10.A2();
+        } else {
+            i7 = 0;
+        }
+        if (j5Var.f29039a < 1.0f && (t4Var = j5Var.d) != null) {
+            return i0.a.f(j5Var.f29039a, t4Var.getButtonsGlassBackgroundColor(), i7);
+        }
+        return i7;
+    }
+
+    @Override
+    public boolean C(l.k kVar) {
+        m.h hVar = (m.h) this.f15495b;
+        if (kVar == hVar.f20067c) {
+            return false;
+        }
+        ((l.d0) kVar).A.getClass();
+        hVar.getClass();
+        l.w wVar = hVar.f20068e;
+        if (wVar == null) {
+            return false;
+        }
+        return wVar.C(kVar);
+    }
+
+    @Override
+    public void D(int i7) {
+        ((oi.a2) this.f15495b).t0(74, i7);
+    }
+
+    @Override
+    public void D0(boolean z10) {
+        w5 w5Var = (w5) this.f15495b;
+        if (w5Var.j()) {
+            w5Var.F.getClass();
+        }
+        w5Var.x(-4, z10);
+    }
+
+    @Override
+    public int D1() {
+        int i7;
+        gh.a i10 = i();
+        gh.a l10 = l();
+        if (i10 != null) {
+            i7 = i10.D1();
+        } else {
+            i7 = 0;
+        }
+        if (l10 != null) {
+            return i0.a.f(((org.telegram.ui.ActionBar.j5) this.f15495b).f29039a, l10.D1(), i7);
+        }
+        return i7;
+    }
+
+    @Override
+    public boolean E1(boolean z10) {
+        return false;
+    }
+
+    @Override
+    public void F(float f10) {
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var == null) {
+            return;
+        }
+        d7Var.G = f10;
+        d7Var.f14383j = true;
+        w5Var.c();
+    }
+
+    @Override
+    public void G() {
+        int i7;
+        oi.a2 a2Var = (oi.a2) this.f15495b;
+        oi.g3 g3Var = a2Var.Q.f22377v3;
+        if (g3Var != null && g3Var.x() && a2Var.Q.F4()) {
+            i7 = 1;
+        } else {
+            i7 = 0;
+        }
+        a2Var.C0(i7, true);
+        a2Var.D0();
+        a2Var.B0();
+    }
+
+    @Override
+    public a70 G0(View view) {
+        return a70.I((oi.a2) this.f15495b, view);
+    }
+
+    @Override
+    public void G1(float f10, int i7) {
+        ArrayList arrayList;
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var != null && (arrayList = d7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
+            ((d7) w5Var.d.T.get(i7)).W = f10;
+        }
+    }
+
+    @Override
+    public void H(oi.a aVar) {
+        oi.a2 a2Var = (oi.a2) this.f15495b;
+        if (aVar != null && (aVar.f21901b instanceof TL_iv.pageBlockMap) && org.telegram.messenger.g0.J1(a2Var)) {
+            ui uiVar = new ui(a2Var.getParentActivity(), a2Var, false, false, false, a2Var.getResourceProvider());
+            uiVar.X3 = new sa.d(16);
+            uiVar.K1 = true;
+            uiVar.f40422v3.setVisibility(8);
+            uiVar.f40419u4 = new a3.h(a2Var, aVar, uiVar, 16);
+            uiVar.f1();
+            uiVar.show();
+        }
+    }
+
+    @Override
+    public boolean J(oi.e1 e1Var) {
+        return false;
+    }
+
+    @Override
+    public void J0(float f10, int i7) {
+        ArrayList arrayList;
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var != null && (arrayList = d7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
+            ((d7) w5Var.d.T.get(i7)).P = f10;
+        }
+    }
+
+    @Override
+    public a0.h K0() {
+        return null;
+    }
+
+    @Override
+    public void M(long j3, boolean z10) {
+        w5 w5Var = (w5) this.f15495b;
+        if (!z10) {
+            w5Var.m(j3);
+            return;
+        }
+        i61 i61Var = w5Var.f15601e;
+        if (i61Var != null) {
+            i61Var.q0(j3, true);
+        } else if (w5Var.j()) {
+            w5Var.F.m(j3, true);
+        } else {
+            i61 i61Var2 = w5Var.E;
+            if (i61Var2 != null) {
+                i61Var2.q0(j3, false);
             }
         }
+    }
+
+    @Override
+    public int M0() {
+        int i7;
+        gh.a i10 = i();
+        gh.a l10 = l();
+        if (i10 != null) {
+            i7 = i10.M0();
+        } else {
+            i7 = 0;
+        }
+        if (l10 != null) {
+            return i0.a.f(((org.telegram.ui.ActionBar.j5) this.f15495b).f29039a, l10.M0(), i7);
+        }
+        return i7;
+    }
+
+    @Override
+    public void M1(float f10) {
+        d7 d7Var = ((w5) this.f15495b).d;
+        if (d7Var == null) {
+            return;
+        }
+        d7Var.f14363a0 = f10;
+        d7Var.f14383j = true;
+    }
+
+    @Override
+    public void N1() {
+        ((w5) this.f15495b).q(null);
+    }
+
+    @Override
+    public void O(int i7, int i10, boolean z10) {
+        ((oi.o) this.f15495b).M(z10, i7, i10, 0L, false);
+        oi.o oVar = (oi.o) this.f15495b;
+        eg0 eg0Var = oVar.P;
+        if (eg0Var != null) {
+            eg0Var.i();
+            oVar.P = null;
+        }
+    }
+
+    @Override
+    public org.telegram.ui.Cells.j9 P0() {
+        switch (this.f15494a) {
+            case 19:
+                oi.n3 n3Var = ((oi.v0) this.f15495b).T;
+                if (n3Var == null) {
+                    return null;
+                }
+                return n3Var.f22218a.getTextSelectionHelper();
+            default:
+                oi.j4 j4Var = ((oi.l4) this.f15495b).H;
+                if (j4Var != null) {
+                    return ((oi.o3) j4Var).f22250a.getTextSelectionHelper();
+                }
+                return null;
+        }
+    }
+
+    @Override
+    public void P1(ArrayList arrayList) {
+        jg.h1 h1Var = (jg.h1) this.f15495b;
+        String str = h1Var.f17494a0;
+        if (str != null) {
+            h1Var.U(str, h1Var.f17498d0, h1Var.f17500e0, h1Var.f17497c0, h1Var.f17495b0);
+        }
+    }
+
+    @Override
+    public void Q() {
+        oi.a2 a2Var = (oi.a2) this.f15495b;
+        a2Var.J0 = a2Var.L0;
+        oi.a2.e0(a2Var, false, false);
+        a2Var.C0(2, true);
+    }
+
+    @Override
+    public void Q0(float f10) {
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var == null) {
+            return;
+        }
+        d7Var.P = f10;
+        w5Var.c();
+    }
+
+    @Override
+    public void R0(oi.r3 r3Var, View view) {
+        oi.a2 a2Var = (oi.a2) this.f15495b;
+        a70 I = a70.I(a2Var, view);
+        I.T = true;
+        a2Var.getParentActivity();
+        a2Var.getResourceProvider();
+        a2Var.f21959y0 = oi.g4.b(I, a2Var, r3Var, false);
+    }
+
+    @Override
+    public void S0(CharSequence charSequence) {
+        switch (this.f15494a) {
+            case 19:
+                oi.n3 n3Var = ((oi.v0) this.f15495b).T;
+                if (n3Var != null) {
+                    n3Var.getClass();
+                    if (charSequence != null && charSequence.length() > 0) {
+                        n3Var.f22218a.w4(charSequence.toString());
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                oi.j4 j4Var = ((oi.l4) this.f15495b).H;
+                if (j4Var != null) {
+                    oi.o3 o3Var = (oi.o3) j4Var;
+                    o3Var.getClass();
+                    if (charSequence != null && charSequence.length() > 0) {
+                        o3Var.f22250a.w4(charSequence.toString());
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public int U0() {
+        int i7;
+        org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) this.f15495b;
+        gh.a i10 = i();
+        if (i10 != null && j5Var.d.e()) {
+            i7 = i10.U0();
+        } else {
+            i7 = 0;
+        }
+        gh.a l10 = l();
+        if (l10 != null) {
+            return i0.a.f(j5Var.f29039a, l10.U0(), i7);
+        }
+        return i7;
+    }
+
+    @Override
+    public int W1() {
+        int i7;
+        gh.a i10 = i();
+        gh.a l10 = l();
+        if (i10 != null) {
+            i7 = i10.W1();
+        } else {
+            i7 = 0;
+        }
+        if (l10 != null) {
+            return i0.a.f(((org.telegram.ui.ActionBar.j5) this.f15495b).f29039a, l10.W1(), i7);
+        }
+        return i7;
+    }
+
+    @Override
+    public float Y0() {
+        float f10;
+        float f11;
+        org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) this.f15495b;
+        gh.a i7 = i();
+        gh.a l10 = l();
+        if (i7 != null) {
+            f10 = i7.Y0();
+        } else {
+            f10 = -1.0f;
+        }
+        if (l10 != null) {
+            f11 = l10.Y0();
+        } else {
+            f11 = f10;
+        }
+        if (f11 >= 0.0f && f10 >= 0.0f) {
+            return org.telegram.messenger.g0.T1(f11, f10, j5Var.f29039a);
+        }
+        if (j5Var.f29039a < 0.5f) {
+            return f11;
+        }
+        return f10;
+    }
+
+    @Override
+    public float Z0() {
+        float f10;
+        float f11;
+        org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) this.f15495b;
+        gh.a i7 = i();
+        gh.a l10 = l();
+        if (i7 != null) {
+            f10 = i7.Z0();
+        } else {
+            f10 = -1.0f;
+        }
+        if (l10 != null) {
+            f11 = l10.Z0();
+        } else {
+            f11 = f10;
+        }
+        if (f11 >= 0.0f && f10 >= 0.0f) {
+            return org.telegram.messenger.g0.T1(f11, f10, j5Var.f29039a);
+        }
+        if (j5Var.f29039a < 0.5f) {
+            return f11;
+        }
+        return f10;
+    }
+
+    @Override
+    public boolean a(float f10) {
+        boolean z10;
+        int[] iArr;
+        oi.a2 a2Var = (oi.a2) this.f15495b;
+        FrameLayout frameLayout = a2Var.f21955w0;
+        if (frameLayout != null) {
+            frameLayout.getLocationOnScreen(new int[2]);
+            if (f10 >= iArr[1]) {
+                z10 = true;
+                oi.a2.e0(a2Var, z10, true);
+                return z10;
+            }
+        }
+        z10 = false;
+        oi.a2.e0(a2Var, z10, true);
+        return z10;
+    }
+
+    @Override
+    public void a0(oi.z5 z5Var, String str) {
+        oi.a2 a2Var = (oi.a2) this.f15495b;
+        if (a2Var.A0 == null) {
+            a2Var.A0 = new ga.d(new kg.y1(this, 21), a2Var.getResourceProvider());
+        }
+        a2Var.A0.k(z5Var, str);
+    }
+
+    @Override
+    public org.telegram.ui.Cells.i9 a1() {
+        switch (this.f15494a) {
+            case 19:
+                return (oi.v0) this.f15495b;
+            default:
+                return (oi.l4) this.f15495b;
+        }
+    }
+
+    @Override
+    public void accept(Object obj, Object obj2) {
+        switch (this.f15494a) {
+            case 4:
+                j6.r rVar = new j6.r(1, (TaskCompletionSource) obj2);
+                j6.i iVar = (j6.i) ((j6.t) obj).n();
+                Parcel p12 = iVar.p1();
+                com.google.android.gms.internal.cast.t.d(p12, rVar);
+                p12.writeStringArray((String[]) this.f15495b);
+                iVar.u1(p12, 6);
+                return;
+            case 7:
+                k7.f fVar = new k7.f(0, (TaskCompletionSource) obj2);
+                com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true), false);
+                gVar.f6198c = false;
+                Parcel obtain = Parcel.obtain();
+                obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
+                int i7 = t7.a.f57628a;
+                obtain.writeStrongBinder(fVar);
+                t7.a.b(obtain, (j7.g) this.f15495b);
+                t7.a.b(obtain, gVar);
+                ((k7.b) ((k7.d) ((k7.e) obj).n())).h1(obtain, 6);
+                return;
+            default:
+                d6.l lVar = new d6.l((TaskCompletionSource) obj2);
+                l7.i iVar2 = (l7.i) ((l7.c) obj).n();
+                Parcel l1 = iVar2.l1();
+                int i10 = l7.f.f19696a;
+                l1.writeStrongBinder(lVar);
+                l7.f.c(l1, (a6.e) this.f15495b);
+                iVar2.m1(l1, 1);
+                return;
+        }
+    }
+
+    @Override
+    public void b() {
+        az azVar = (az) this.f15495b;
+        HashMap hashMap = azVar.f22973n;
+        azVar.getNotificationCenter().k(ls.R0, new HashMap(hashMap));
+        hashMap.clear();
+    }
+
+    @Override
+    public void b1(CharSequence charSequence) {
+        oi.a3 a3Var = ((oi.l5) this.f15495b).F;
+        if (a3Var != null && charSequence != null && charSequence.length() > 0) {
+            a3Var.f21961a.w4(charSequence.toString());
+        }
+    }
+
+    @Override
+    public void b2(float f10) {
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var == null) {
+            return;
+        }
+        d7Var.f14403t0 = f10;
+        d7Var.f14383j = true;
+        w5Var.y(true);
+    }
+
+    @Override
+    public Cursor c(Uri uri, String[] strArr, String[] strArr2) {
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15495b;
+        if (contentProviderClient == null) {
+            return null;
+        }
+        try {
+            return contentProviderClient.query(uri, strArr, "query = ?", strArr2, null, null);
+        } catch (RemoteException e10) {
+            Log.w("FontsProvider", "Unable to query the content provider", e10);
+            return null;
+        }
+    }
+
+    @Override
+    public oi.a c1() {
+        switch (this.f15494a) {
+            case 19:
+                return ((oi.v0) this.f15495b).f22468a;
+            default:
+                return ((oi.l4) this.f15495b).f22468a;
+        }
+    }
+
+    @Override
+    public void close() {
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15495b;
+        if (contentProviderClient != null) {
+            contentProviderClient.release();
+        }
+    }
+
+    @Override
+    public void d(l.k kVar, boolean z10) {
+        if (kVar instanceof l.d0) {
+            ((l.d0) kVar).f19150z.k().c(false);
+        }
+        l.w wVar = ((m.h) this.f15495b).f20068e;
+        if (wVar != null) {
+            wVar.d(kVar, z10);
+        }
+    }
+
+    @Override
+    public a0.h d1() {
+        return null;
+    }
+
+    @Override
+    public boolean d2(oi.e1 e1Var) {
+        return false;
+    }
+
+    @Override
+    public void e(oi.e1 e1Var) {
+        switch (this.f15494a) {
+            case 19:
+                oi.n3 n3Var = ((oi.v0) this.f15495b).T;
+                if (n3Var != null) {
+                    oi.s3 s3Var = n3Var.f22218a;
+                    oi.s3.Q1(s3Var, e1Var);
+                    s3Var.f22365p3.k(e1Var, true);
+                    return;
+                }
+                return;
+            case 20:
+            default:
+                oi.a3 a3Var = ((oi.l5) this.f15495b).F;
+                if (a3Var != null) {
+                    oi.s3 s3Var2 = a3Var.f21961a;
+                    oi.s3.Q1(s3Var2, e1Var);
+                    s3Var2.f22365p3.k(e1Var, true);
+                    return;
+                }
+                return;
+            case 21:
+                oi.j4 j4Var = ((oi.l4) this.f15495b).H;
+                if (j4Var != null) {
+                    oi.s3 s3Var3 = ((oi.o3) j4Var).f22250a;
+                    oi.s3.Q1(s3Var3, e1Var);
+                    s3Var3.f22365p3.k(e1Var, true);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void e1(long j3) {
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var == null) {
+            return;
+        }
+        d7Var.f14399r0 = j3;
+        d7Var.f14383j = true;
+        w5Var.y(true);
+    }
+
+    @Override
+    public void f(Location location) {
+        az azVar = (az) this.f15495b;
+        TLRPC.TL_messageMediaGeo tL_messageMediaGeo = new TLRPC.TL_messageMediaGeo();
+        TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
+        tL_messageMediaGeo.geo = tL_geoPoint;
+        tL_geoPoint.lat = org.telegram.messenger.g0.b0(location.getLatitude());
+        tL_messageMediaGeo.geo._long = org.telegram.messenger.g0.b0(location.getLongitude());
+        HashMap hashMap = azVar.f22973n;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            gj gjVar = (gj) entry.getValue();
+            azVar.r0(yy.d(tL_messageMediaGeo, gj.B0(gjVar.f24177k), gjVar, null, null, null, true, 0));
+        }
+        hashMap.clear();
+    }
+
+    @Override
+    public void f0() {
+        w5 w5Var = (w5) this.f15495b;
+        w5Var.s(null, null, true);
+        ta taVar = ((ha) w5Var).D0;
+        ha haVar = taVar.Y0;
+        if (haVar != null) {
+            haVar.s(null, null, true);
+        }
+        v9 v9Var = taVar.f15459w1;
+        if (v9Var != null) {
+            v9Var.n0();
+        }
+        ja jaVar = taVar.f15400d1;
+        if (jaVar != null) {
+            jaVar.setHasRoundVideo(false);
+        }
+        d7 d7Var = taVar.L1;
+        if (d7Var != null) {
+            File file = d7Var.f14393o0;
+            if (file != null) {
+                try {
+                    file.delete();
+                } catch (Exception unused) {
+                }
+                taVar.L1.f14393o0 = null;
+            }
+            if (taVar.L1.f14395p0 != null) {
+                try {
+                    new File(taVar.L1.f14395p0).delete();
+                } catch (Exception unused2) {
+                }
+                taVar.L1.f14395p0 = null;
+            }
+        }
+    }
+
+    @Override
+    public void g(int i7) {
+        f0 f0Var = ((w5) this.f15495b).F;
+        if (f0Var != null) {
+            ArrayList arrayList = f0Var.h;
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                e0 e0Var = (e0) obj;
+                if (e0Var.f14483a == i7) {
+                    e0Var.f14484b.e(true, 1.0f);
+                    f0Var.invalidate();
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
+    public void g0(boolean z10, float f10) {
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var != null) {
+            d7Var.Z = f10;
+            d7Var.f14383j = true;
+            i61 i61Var = w5Var.f15601e;
+            if (i61Var != null && i61Var.U() != -9223372036854775807L) {
+                w5Var.m(f10 * ((float) w5Var.f15601e.U()));
+            }
+        }
+    }
+
+    @Override
+    public boolean g1() {
+        switch (this.f15494a) {
+            case 19:
+                oi.v0 v0Var = (oi.v0) this.f15495b;
+                oi.n3 n3Var = v0Var.T;
+                if (n3Var != null) {
+                    oi.a aVar = v0Var.f22468a;
+                    if (n3Var.f22218a.V4()) {
+                        return true;
+                    }
+                }
+                return false;
+            default:
+                oi.l4 l4Var = (oi.l4) this.f15495b;
+                oi.j4 j4Var = l4Var.H;
+                if (j4Var != null) {
+                    oi.a aVar2 = l4Var.f22468a;
+                    if (((oi.o3) j4Var).f22250a.V4()) {
+                        return true;
+                    }
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public Object mo24get() {
+        return new jb.a((Context) ((d9.o) this.f15495b).f7917a);
+    }
+
+    @Override
+    public void h(l.k kVar, MenuItem menuItem) {
+        ((l.e) this.f15495b).f19154f.removeCallbacksAndMessages(kVar);
+    }
+
+    @Override
+    public void h1(boolean z10) {
+        tg.t1 t1Var;
+        ta taVar = ((ha) ((w5) this.f15495b)).D0;
+        v9 v9Var = taVar.f15459w1;
+        if (v9Var != null) {
+            tg.t1 t1Var2 = null;
+            if (!z10 && (v9Var.getSelectedEntity() instanceof tg.t1)) {
+                taVar.f15459w1.A0(null, true);
+            } else if (z10 && !(taVar.f15459w1.getSelectedEntity() instanceof tg.t1)) {
+                g5 g5Var = taVar.f15459w1.B0;
+                int i7 = 0;
+                int i10 = 0;
+                while (true) {
+                    if (i10 < g5Var.getChildCount()) {
+                        View childAt = g5Var.getChildAt(i10);
+                        if (childAt instanceof tg.t1) {
+                            t1Var = (tg.t1) childAt;
+                            break;
+                        }
+                        i10++;
+                    } else {
+                        t1Var = null;
+                        break;
+                    }
+                }
+                if (t1Var != null) {
+                    v9 v9Var2 = taVar.f15459w1;
+                    g5 g5Var2 = v9Var2.B0;
+                    while (true) {
+                        if (i7 >= g5Var2.getChildCount()) {
+                            break;
+                        }
+                        View childAt2 = g5Var2.getChildAt(i7);
+                        if (childAt2 instanceof tg.t1) {
+                            t1Var2 = (tg.t1) childAt2;
+                            break;
+                        }
+                        i7++;
+                    }
+                    v9Var2.A0(t1Var2, true);
+                }
+            }
+        }
+    }
+
+    public gh.a i() {
+        org.telegram.ui.ActionBar.t4 t4Var = ((org.telegram.ui.ActionBar.j5) this.f15495b).d;
+        if (t4Var != null) {
+            return t4Var.getMenuGlassColorProvider();
+        }
+        return null;
+    }
+
+    @Override
+    public void i2(int i7, long j3) {
+        ArrayList arrayList;
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var != null && (arrayList = d7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
+            ((d7) w5Var.d.T.get(i7)).X = j3;
+        }
+    }
+
+    public org.telegram.messenger.ca j() {
+        m8.d dVar = (m8.d) this.f15495b;
+        q6.m.j("no included points", !Double.isNaN(dVar.d));
+        LatLngBounds latLngBounds = new LatLngBounds(new LatLng(dVar.f20893b, dVar.d), new LatLng(dVar.f20894c, dVar.f20895e));
+        ?? obj = new Object();
+        obj.f23212a = latLngBounds;
+        return obj;
+    }
+
+    @Override
+    public void j1() {
+        oi.a2 a2Var = (oi.a2) this.f15495b;
+        a2Var.E0();
+        a2Var.H0();
+    }
+
+    @Override
+    public void k2() {
+        switch (this.f15494a) {
+            case 19:
+                oi.v0 v0Var = (oi.v0) this.f15495b;
+                oi.n3 n3Var = v0Var.T;
+                if (n3Var != null) {
+                    oi.a aVar = v0Var.f22468a;
+                    oi.s3.S1(n3Var.f22218a);
+                    return;
+                }
+                return;
+            default:
+                oi.l4 l4Var = (oi.l4) this.f15495b;
+                oi.j4 j4Var = l4Var.H;
+                if (j4Var != null) {
+                    oi.a aVar2 = l4Var.f22468a;
+                    oi.s3.S1(((oi.o3) j4Var).f22250a);
+                    return;
+                }
+                return;
+        }
+    }
+
+    public gh.a l() {
+        org.telegram.ui.ActionBar.t4 t4Var;
+        org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) this.f15495b;
+        if (j5Var.f29039a < 1.0f && (t4Var = j5Var.d) != null) {
+            return t4Var.getButtonsGlassColorProvider();
+        }
+        return null;
+    }
+
+    @Override
+    public void l1(int i7, int i10) {
+        switch (this.f15494a) {
+            case 19:
+                oi.v0 v0Var = (oi.v0) this.f15495b;
+                oi.n3 n3Var = v0Var.T;
+                if (n3Var != null) {
+                    oi.a aVar = v0Var.f22468a;
+                    oi.e2 e2Var = n3Var.f22218a.R3;
+                    if (e2Var != null) {
+                        e2Var.f(i7, i10);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                oi.l4 l4Var = (oi.l4) this.f15495b;
+                oi.j4 j4Var = l4Var.H;
+                if (j4Var != null) {
+                    oi.a aVar2 = l4Var.f22468a;
+                    oi.e2 e2Var2 = ((oi.o3) j4Var).f22250a.R3;
+                    if (e2Var2 != null) {
+                        e2Var2.f(i7, i10);
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
+    }
+
+    public int m() {
+        return ((org.telegram.messenger.j0) this.f15495b).f24776c;
+    }
+
+    @Override
+    public void m0() {
+        oi.a2 a2Var = (oi.a2) this.f15495b;
+        int i7 = 0;
+        oi.a2.e0(a2Var, false, true);
+        int i10 = a2Var.J0;
+        if (i10 != 2) {
+            i7 = i10;
+        }
+        a2Var.C0(i7, true);
+    }
+
+    @Override
+    public void m2(long j3) {
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var == null) {
+            return;
+        }
+        d7Var.D = j3;
+        d7Var.f14383j = true;
+        w5Var.w(true);
+    }
+
+    @Override
+    public void n(l.k kVar, l.m mVar) {
+        l.e eVar = (l.e) this.f15495b;
+        Handler handler = eVar.f19154f;
+        l.d dVar = null;
+        handler.removeCallbacksAndMessages(null);
+        ArrayList arrayList = eVar.f19155n;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (true) {
+            if (i7 < size) {
+                if (kVar == ((l.d) arrayList.get(i7)).f19148b) {
+                    break;
+                }
+                i7++;
+            } else {
+                i7 = -1;
+                break;
+            }
+        }
+        if (i7 == -1) {
+            return;
+        }
+        int i10 = i7 + 1;
+        if (i10 < arrayList.size()) {
+            dVar = (l.d) arrayList.get(i10);
+        }
+        handler.postAtTime(new a8.qa(this, dVar, mVar, kVar, false, 3), kVar, SystemClock.uptimeMillis() + 200);
+    }
+
+    @Override
+    public void n1(float f10, int i7) {
+        ArrayList arrayList;
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var != null && (arrayList = d7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
+            ((d7) w5Var.d.T.get(i7)).V = f10;
+        }
+    }
+
+    @Override
+    public boolean o() {
+        oi.l5 l5Var = (oi.l5) this.f15495b;
+        oi.a3 a3Var = l5Var.F;
+        if (a3Var != null && l5Var.f22468a != null) {
+            return a3Var.f21961a.V4();
+        }
+        return false;
+    }
+
+    @Override
+    public void onContentChanged() {
+        oi.a2 a2Var = (oi.a2) this.f15495b;
+        if (a2Var.f21960z0 != null) {
+            boolean p32 = a2Var.Q.p3();
+            a2Var.M0 = p32;
+            a2Var.f21960z0.g(p32);
+            a2Var.f21960z0.invalidate();
+        }
+        a2Var.H0();
+        Runnable runnable = a2Var.N0;
+        org.telegram.messenger.g0.r(runnable);
+        org.telegram.messenger.g0.h3(runnable, 1000L);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        if (location == null) {
+            return;
+        }
+        ((rd) this.f15495b).m(location);
+    }
+
+    public LongSparseArray p(long j3, long j10) {
+        LongSparseArray longSparseArray = (LongSparseArray) ((LongSparseArray) this.f15495b).get(j3);
+        if (longSparseArray == null) {
+            return null;
+        }
+        return (LongSparseArray) longSparseArray.get(j10);
+    }
+
+    public u5 q(org.telegram.messenger.bb bbVar) {
+        m8.d dVar = (m8.d) this.f15495b;
+        LatLng latLng = new LatLng(bbVar.f23030a, bbVar.f23031b);
+        dVar.getClass();
+        double d = dVar.f20893b;
+        double d2 = latLng.f7361a;
+        dVar.f20893b = Math.min(d, d2);
+        dVar.f20894c = Math.max(dVar.f20894c, d2);
+        boolean isNaN = Double.isNaN(dVar.d);
+        double d10 = latLng.f7362b;
+        if (isNaN) {
+            dVar.d = d10;
+            dVar.f20895e = d10;
+            return this;
+        }
+        double d11 = dVar.d;
+        double d12 = dVar.f20895e;
+        if (d11 > d12 ? !(d11 <= d10 || d10 <= d12) : !(d11 <= d10 && d10 <= d12)) {
+            if (((d11 - d10) + 360.0d) % 360.0d < ((d10 - d12) + 360.0d) % 360.0d) {
+                dVar.d = d10;
+                return this;
+            }
+            dVar.f20895e = d10;
+        }
+        return this;
+    }
+
+    @Override
+    public void q1(float f10) {
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var == null) {
+            return;
+        }
+        d7Var.F = f10;
+        d7Var.f14383j = true;
+        w5Var.w(true);
+    }
+
+    @Override
+    public void r(int i7) {
+        ((jg.h1) this.f15495b).f();
+    }
+
+    @Override
+    public void r1(oi.e1 e1Var, int i7, int i10) {
+        oi.a3 a3Var;
+        org.telegram.ui.Cells.j9 textSelectionHelper;
+        oi.l5 l5Var = (oi.l5) this.f15495b;
+        if (!l5Var.H && i7 != i10 && (a3Var = l5Var.F) != null && (textSelectionHelper = a3Var.f21961a.getTextSelectionHelper()) != null) {
+            if (!textSelectionHelper.x() || textSelectionHelper.W != l5Var) {
+                l5Var.post(new jg.o1(this, e1Var, i10, textSelectionHelper, i7, 4));
+            }
+        }
+    }
+
+    public ia.b s(JSONObject jSONObject) {
+        ia.d aVar;
+        int i7 = jSONObject.getInt("settings_version");
+        if (i7 != 3) {
+            Log.e("FirebaseCrashlytics", "Could not determine SettingsJsonTransform for settings version " + i7 + ". Using default settings values.", null);
+            aVar = new pb.b(11);
+        } else {
+            aVar = new qb.a(11);
+        }
+        return aVar.g((w7.s) this.f15495b, jSONObject);
+    }
+
+    @Override
+    public void s0(float f10) {
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var == null) {
+            return;
+        }
+        d7Var.f14401s0 = f10;
+        d7Var.f14383j = true;
+        w5Var.y(true);
+    }
+
+    @Override
+    public void s1(Editable editable) {
+        oi.l5 l5Var = (oi.l5) this.f15495b;
+        oi.a aVar = l5Var.f22468a;
+        if (aVar != null) {
+            aVar.f21916s = true;
+            aVar.f21915r = l5Var.f22184r.f22048q2;
+        }
+        l5Var.w();
+        oi.a3 a3Var = l5Var.F;
+        if (a3Var != null && l5Var.f22468a != null) {
+            a3Var.a();
+        }
+    }
+
+    @Override
+    public void t(float f10) {
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var == null) {
+            return;
+        }
+        d7Var.f14405u0 = f10;
+        d7Var.f14383j = true;
+        w5Var.c();
+    }
+
+    @Override
+    public int t0() {
+        int i7;
+        org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) this.f15495b;
+        gh.a i10 = i();
+        if (i10 != null && j5Var.d.e()) {
+            i7 = i10.t0();
+        } else {
+            i7 = 0;
+        }
+        gh.a l10 = l();
+        if (l10 != null) {
+            return i0.a.f(j5Var.f29039a, l10.t0(), i7);
+        }
+        return i7;
+    }
+
+    @Override
+    public void u() {
+        switch (this.f15494a) {
+            case 19:
+                oi.v0 v0Var = (oi.v0) this.f15495b;
+                oi.n3 n3Var = v0Var.T;
+                if (n3Var != null) {
+                    oi.s3.T1(n3Var.f22218a, v0Var.f22468a);
+                    return;
+                }
+                return;
+            default:
+                oi.l4 l4Var = (oi.l4) this.f15495b;
+                oi.j4 j4Var = l4Var.H;
+                if (j4Var != null) {
+                    oi.s3.T1(((oi.o3) j4Var).f22250a, l4Var.f22468a);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void u1() {
+        switch (this.f15494a) {
+            case 19:
+                oi.v0 v0Var = (oi.v0) this.f15495b;
+                oi.n3 n3Var = v0Var.T;
+                if (n3Var != null) {
+                    oi.a aVar = v0Var.f22468a;
+                    oi.s3 s3Var = n3Var.f22218a;
+                    oi.e2 e2Var = s3Var.R3;
+                    if (e2Var != null) {
+                        e2Var.g();
+                    }
+                    s3Var.f22365p3.onContentChanged();
+                    return;
+                }
+                return;
+            default:
+                oi.l4 l4Var = (oi.l4) this.f15495b;
+                oi.j4 j4Var = l4Var.H;
+                if (j4Var != null) {
+                    oi.a aVar2 = l4Var.f22468a;
+                    oi.s3 s3Var2 = ((oi.o3) j4Var).f22250a;
+                    oi.e2 e2Var2 = s3Var2.R3;
+                    if (e2Var2 != null) {
+                        e2Var2.g();
+                    }
+                    s3Var2.f22365p3.onContentChanged();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public Object v(ce.d dVar, kd.c cVar) {
+        Object v = ((q4.q) this.f15495b).v(new gb.y0(dVar, 1), cVar);
+        if (v == jd.a.f17375a) {
+            return v;
+        }
+        return gd.k.f13480a;
+    }
+
+    @Override
+    public void v0(Bitmap bitmap) {
+        ((i6.h) this.f15495b).e(3, bitmap);
+    }
+
+    @Override
+    public boolean v1(int i7) {
+        return true;
+    }
+
+    public void w(long j3, long j10, long j11, Object obj) {
+        LongSparseArray longSparseArray = (LongSparseArray) this.f15495b;
+        LongSparseArray longSparseArray2 = (LongSparseArray) longSparseArray.get(j3);
+        if (longSparseArray2 == null) {
+            longSparseArray2 = new LongSparseArray();
+            longSparseArray.put(j3, longSparseArray2);
+        }
+        LongSparseArray longSparseArray3 = (LongSparseArray) longSparseArray2.get(j10);
+        if (longSparseArray3 == null) {
+            longSparseArray3 = new LongSparseArray();
+            longSparseArray2.put(j10, longSparseArray3);
+        }
+        longSparseArray3.get(j11);
+        longSparseArray3.put(j11, obj);
+    }
+
+    @Override
+    public void w1(float f10) {
+        w5 w5Var = (w5) this.f15495b;
+        d7 d7Var = w5Var.d;
+        if (d7Var == null) {
+            return;
+        }
+        d7Var.E = f10;
+        d7Var.f14383j = true;
+        w5Var.w(true);
+    }
+
+    @Override
+    public void x(oi.p3 p3Var, View view) {
+        oi.a2 a2Var = (oi.a2) this.f15495b;
+        a70 I = a70.I(a2Var, view);
+        I.T = true;
+        a2Var.f21959y0 = oi.g4.c(I, a2Var, a2Var.getParentActivity(), a2Var.getResourceProvider(), p3Var, false);
+    }
+
+    public Object y(long j3, long j10, long j11) {
+        LongSparseArray longSparseArray;
+        LongSparseArray longSparseArray2 = (LongSparseArray) ((LongSparseArray) this.f15495b).get(j3);
+        if (longSparseArray2 == null || (longSparseArray = (LongSparseArray) longSparseArray2.get(j10)) == null) {
+            return null;
+        }
+        Object obj = longSparseArray.get(j11);
+        longSparseArray.remove(j11);
+        return obj;
+    }
+
+    public u5(com.google.android.gms.common.api.j jVar, Object obj, int i7) {
+        this.f15494a = i7;
+        this.f15495b = obj;
+    }
+
+    public u5(Object obj, int i7) {
+        this.f15494a = i7;
+        this.f15495b = obj;
+    }
+
+    public u5(a7.a aVar) {
+        this.f15494a = 15;
+        q6.m.h(aVar);
+        this.f15495b = aVar;
+    }
+
+    public u5(String str, int i7) {
+        this.f15494a = 23;
+        this.f15495b = new org.telegram.messenger.j0(str, i7);
+    }
+
+    public u5(Context context, Uri uri) {
+        this.f15494a = 17;
+        this.f15495b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
+    }
+
+    public u5(String str, String str2) {
+        this.f15494a = 24;
+        this.f15495b = new org.telegram.messenger.n0(str, str2);
+    }
+
+    public u5() {
+        this.f15494a = 25;
+        this.f15495b = new LongSparseArray();
+    }
+
+    @Override
+    public void E0() {
+    }
+
+    @Override
+    public void V() {
+    }
+
+    @Override
+    public void b0(int i7) {
+    }
+
+    @Override
+    public void x0(oi.e1 e1Var) {
+    }
+
+    @Override
+    public void k(oi.e1 e1Var, boolean z10) {
     }
 }

@@ -1,4 +1,4 @@
 package qi;
 public interface m {
-    void a(ji.l lVar);
+    void a(ji.k kVar);
 }

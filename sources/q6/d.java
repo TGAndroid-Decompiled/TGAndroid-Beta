@@ -1,6 +1,6 @@
 package q6;
 
-import a8.j8;
+import a8.k8;
 import android.accounts.Account;
 import android.content.AttributionSource;
 import android.content.Context;
@@ -27,55 +27,55 @@ public abstract class d {
     public boolean A;
     public volatile h0 B;
     public final AtomicInteger C;
-    public int f55905a;
-    public long f55906b;
-    public long f55907c;
+    public int f55870a;
+    public long f55871b;
+    public long f55872c;
     public int d;
-    public long f55908e;
-    public volatile String f55909f;
-    public androidx.activity.n f55910g;
+    public long f55873e;
+    public volatile String f55874f;
+    public androidx.activity.n f55875g;
     public final Context h;
-    public final Looper f55911i;
-    public final l0 f55912j;
-    public final c0 f55913k;
-    public final Object f55914l;
-    public final Object f55915m;
-    public z f55916n;
-    public b f55917o;
-    public IInterface f55918p;
-    public final ArrayList f55919q;
-    public e0 f55920r;
-    public int f55921s;
-    public final n f55922t;
-    public final n f55923u;
+    public final Looper f55876i;
+    public final l0 f55877j;
+    public final c0 f55878k;
+    public final Object f55879l;
+    public final Object f55880m;
+    public z f55881n;
+    public b f55882o;
+    public IInterface f55883p;
+    public final ArrayList f55884q;
+    public e0 f55885r;
+    public int f55886s;
+    public final n f55887t;
+    public final n f55888u;
     public final int v;
-    public final String f55924w;
-    public volatile String f55925x;
-    public volatile v4.f0 f55926y;
-    public n6.a f55927z;
+    public final String f55889w;
+    public volatile String f55890x;
+    public volatile v4.e0 f55891y;
+    public n6.a f55892z;
 
     public d(Context context, Looper looper, l0 l0Var, int i7, n nVar, n nVar2, String str) {
         Object obj = n6.d.d;
-        this.f55909f = null;
-        this.f55914l = new Object();
-        this.f55915m = new Object();
-        this.f55919q = new ArrayList();
-        this.f55921s = 1;
-        this.f55927z = null;
+        this.f55874f = null;
+        this.f55879l = new Object();
+        this.f55880m = new Object();
+        this.f55884q = new ArrayList();
+        this.f55886s = 1;
+        this.f55892z = null;
         this.A = false;
         this.B = null;
         this.C = new AtomicInteger(0);
         m.i(context, "Context must not be null");
         this.h = context;
         m.i(looper, "Looper must not be null");
-        this.f55911i = looper;
+        this.f55876i = looper;
         m.i(l0Var, "Supervisor must not be null");
-        this.f55912j = l0Var;
-        this.f55913k = new c0(this, looper);
+        this.f55877j = l0Var;
+        this.f55878k = new c0(this, looper);
         this.v = i7;
-        this.f55922t = nVar;
-        this.f55923u = nVar2;
-        this.f55924w = str;
+        this.f55887t = nVar;
+        this.f55888u = nVar2;
+        this.f55889w = str;
     }
 
     public final void A(int i7, IInterface iInterface) {
@@ -97,22 +97,22 @@ public abstract class d {
             z12 = true;
         }
         m.b(z12);
-        synchronized (this.f55914l) {
+        synchronized (this.f55879l) {
             try {
-                this.f55921s = i7;
-                this.f55918p = iInterface;
+                this.f55886s = i7;
+                this.f55883p = iInterface;
                 Bundle bundle = null;
                 if (i7 != 1) {
                     if (i7 != 2 && i7 != 3) {
                         if (i7 == 4) {
                             m.h(iInterface);
                             IInterface iInterface2 = iInterface;
-                            this.f55907c = System.currentTimeMillis();
+                            this.f55872c = System.currentTimeMillis();
                         }
                     } else {
-                        e0 e0Var = this.f55920r;
-                        if (e0Var != null && (nVar = this.f55910g) != null) {
-                            String str = (String) nVar.f1808c;
+                        e0 e0Var = this.f55885r;
+                        if (e0Var != null && (nVar = this.f55875g) != null) {
+                            String str = (String) nVar.f1759c;
                             String str2 = (String) nVar.d;
                             StringBuilder sb2 = new StringBuilder(String.valueOf(str).length() + 70 + String.valueOf(str2).length());
                             sb2.append("Calling connect() while still connected, missing disconnect() for ");
@@ -120,37 +120,37 @@ public abstract class d {
                             sb2.append(" on ");
                             sb2.append(str2);
                             Log.e("GmsClient", sb2.toString());
-                            l0 l0Var = this.f55912j;
-                            String str3 = (String) this.f55910g.f1808c;
+                            l0 l0Var = this.f55877j;
+                            String str3 = (String) this.f55875g.f1759c;
                             m.h(str3);
-                            String str4 = (String) this.f55910g.d;
-                            if (this.f55924w == null) {
+                            String str4 = (String) this.f55875g.d;
+                            if (this.f55889w == null) {
                                 this.h.getClass();
                             }
-                            l0Var.c(str3, str4, e0Var, this.f55910g.f1807b);
+                            l0Var.c(str3, str4, e0Var, this.f55875g.f1758b);
                             this.C.incrementAndGet();
                         }
                         e0 e0Var2 = new e0(this, this.C.get());
-                        this.f55920r = e0Var2;
+                        this.f55885r = e0Var2;
                         String q10 = q();
                         String p10 = p();
                         boolean r10 = r();
-                        this.f55910g = new androidx.activity.n(q10, p10, r10);
+                        this.f55875g = new androidx.activity.n(q10, p10, r10);
                         if (r10 && d() < 17895000) {
-                            throw new IllegalStateException("Internal Error, the minimum apk version of this BaseGmsClient is too low to support dynamic lookup. Start service action: ".concat(String.valueOf((String) this.f55910g.f1808c)));
+                            throw new IllegalStateException("Internal Error, the minimum apk version of this BaseGmsClient is too low to support dynamic lookup. Start service action: ".concat(String.valueOf((String) this.f55875g.f1759c)));
                         }
-                        l0 l0Var2 = this.f55912j;
-                        String str5 = (String) this.f55910g.f1808c;
+                        l0 l0Var2 = this.f55877j;
+                        String str5 = (String) this.f55875g.f1759c;
                         m.h(str5);
-                        String str6 = (String) this.f55910g.d;
-                        String str7 = this.f55924w;
+                        String str6 = (String) this.f55875g.d;
+                        String str7 = this.f55889w;
                         if (str7 == null) {
                             str7 = this.h.getClass().getName();
                         }
-                        n6.a b10 = l0Var2.b(new i0(str5, str6, this.f55910g.f1807b), e0Var2, str7);
+                        n6.a b10 = l0Var2.b(new i0(str5, str6, this.f55875g.f1758b), e0Var2, str7);
                         if (!b10.c()) {
-                            androidx.activity.n nVar2 = this.f55910g;
-                            String str8 = (String) nVar2.f1808c;
+                            androidx.activity.n nVar2 = this.f55875g;
+                            String str8 = (String) nVar2.f1759c;
                             String str9 = (String) nVar2.d;
                             StringBuilder sb3 = new StringBuilder(String.valueOf(str8).length() + 34 + String.valueOf(str9).length());
                             sb3.append("unable to connect to service: ");
@@ -158,32 +158,32 @@ public abstract class d {
                             sb3.append(" on ");
                             sb3.append(str9);
                             Log.w("GmsClient", sb3.toString());
-                            int i10 = b10.f21450b;
+                            int i10 = b10.f21416b;
                             if (i10 == -1) {
                                 i10 = 16;
                             }
-                            if (b10.f21451c != null) {
+                            if (b10.f21417c != null) {
                                 bundle = new Bundle();
-                                bundle.putParcelable("pendingIntent", b10.f21451c);
+                                bundle.putParcelable("pendingIntent", b10.f21417c);
                             }
                             int i11 = this.C.get();
                             g0 g0Var = new g0(this, i10, bundle);
-                            c0 c0Var = this.f55913k;
+                            c0 c0Var = this.f55878k;
                             c0Var.sendMessage(c0Var.obtainMessage(7, i11, -1, g0Var));
                         }
                     }
                 } else {
-                    e0 e0Var3 = this.f55920r;
+                    e0 e0Var3 = this.f55885r;
                     if (e0Var3 != null) {
-                        l0 l0Var3 = this.f55912j;
-                        String str10 = (String) this.f55910g.f1808c;
+                        l0 l0Var3 = this.f55877j;
+                        String str10 = (String) this.f55875g.f1759c;
                         m.h(str10);
-                        String str11 = (String) this.f55910g.d;
-                        if (this.f55924w == null) {
+                        String str11 = (String) this.f55875g.d;
+                        if (this.f55889w == null) {
                             this.h.getClass();
                         }
-                        l0Var3.c(str10, str11, e0Var3, this.f55910g.f1807b);
-                        this.f55920r = null;
+                        l0Var3.c(str10, str11, e0Var3, this.f55875g.f1758b);
+                        this.f55885r = null;
                     }
                 }
             } finally {
@@ -193,7 +193,7 @@ public abstract class d {
 
     public void a() {
         this.C.incrementAndGet();
-        ArrayList arrayList = this.f55919q;
+        ArrayList arrayList = this.f55884q;
         synchronized (arrayList) {
             try {
                 int size = arrayList.size();
@@ -205,8 +205,8 @@ public abstract class d {
                 throw th2;
             }
         }
-        synchronized (this.f55915m) {
-            this.f55916n = null;
+        synchronized (this.f55880m) {
+            this.f55881n = null;
         }
         A(1, null);
     }
@@ -216,12 +216,12 @@ public abstract class d {
         IInterface iInterface;
         z zVar;
         long j3;
-        synchronized (this.f55914l) {
-            i7 = this.f55921s;
-            iInterface = this.f55918p;
+        synchronized (this.f55879l) {
+            i7 = this.f55886s;
+            iInterface = this.f55883p;
         }
-        synchronized (this.f55915m) {
-            zVar = this.f55916n;
+        synchronized (this.f55880m) {
+            zVar = this.f55881n;
         }
         printWriter.append((CharSequence) str).append("mConnectState=");
         if (i7 != 1) {
@@ -255,12 +255,12 @@ public abstract class d {
         if (zVar == null) {
             printWriter.println("null");
         } else {
-            printWriter.append("IGmsServiceBroker@").println(Integer.toHexString(System.identityHashCode(zVar.f56025a)));
+            printWriter.append("IGmsServiceBroker@").println(Integer.toHexString(System.identityHashCode(zVar.f55990a)));
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US);
-        if (this.f55907c > 0) {
+        if (this.f55872c > 0) {
             PrintWriter append = printWriter.append((CharSequence) str).append("lastConnectedTime=");
-            long j10 = this.f55907c;
+            long j10 = this.f55872c;
             String format = simpleDateFormat.format(new Date(j10));
             j3 = 0;
             StringBuilder sb2 = new StringBuilder(String.valueOf(j10).length() + 1 + String.valueOf(format).length());
@@ -271,9 +271,9 @@ public abstract class d {
         } else {
             j3 = 0;
         }
-        if (this.f55906b > j3) {
+        if (this.f55871b > j3) {
             printWriter.append((CharSequence) str).append("lastSuspendedCause=");
-            int i10 = this.f55905a;
+            int i10 = this.f55870a;
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 3) {
@@ -288,7 +288,7 @@ public abstract class d {
                 printWriter.append("CAUSE_SERVICE_DISCONNECTED");
             }
             PrintWriter append2 = printWriter.append(" lastSuspendedTime=");
-            long j11 = this.f55906b;
+            long j11 = this.f55871b;
             String format2 = simpleDateFormat.format(new Date(j11));
             StringBuilder sb3 = new StringBuilder(String.valueOf(j11).length() + 1 + String.valueOf(format2).length());
             sb3.append(j11);
@@ -296,10 +296,10 @@ public abstract class d {
             sb3.append(format2);
             append2.println(sb3.toString());
         }
-        if (this.f55908e > j3) {
-            printWriter.append((CharSequence) str).append("lastFailedStatus=").append((CharSequence) j8.a(this.d));
+        if (this.f55873e > j3) {
+            printWriter.append((CharSequence) str).append("lastFailedStatus=").append((CharSequence) k8.a(this.d));
             PrintWriter append3 = printWriter.append(" lastFailedTime=");
-            long j12 = this.f55908e;
+            long j12 = this.f55873e;
             String format3 = simpleDateFormat.format(new Date(j12));
             StringBuilder sb4 = new StringBuilder(String.valueOf(j12).length() + 1 + String.valueOf(format3).length());
             sb4.append(j12);
@@ -327,22 +327,22 @@ public abstract class d {
         String attributionTag;
         Bundle m10 = m();
         if (Build.VERSION.SDK_INT < 31) {
-            attributionTag = this.f55925x;
-        } else if (this.f55926y == null) {
-            attributionTag = this.f55925x;
+            attributionTag = this.f55890x;
+        } else if (this.f55891y == null) {
+            attributionTag = this.f55890x;
         } else {
-            AttributionSource attributionSource = (AttributionSource) this.f55926y.f59163a;
+            AttributionSource attributionSource = (AttributionSource) this.f55891y.f59109a;
             if (attributionSource == null) {
-                attributionTag = this.f55925x;
+                attributionTag = this.f55890x;
             } else if (attributionSource.getAttributionTag() == null) {
-                attributionTag = this.f55925x;
+                attributionTag = this.f55890x;
             } else {
                 attributionTag = attributionSource.getAttributionTag();
             }
         }
         String str = attributionTag;
         int i7 = this.v;
-        int i10 = n6.e.f21461a;
+        int i10 = n6.e.f21427a;
         Scope[] scopeArr = g.F;
         Bundle bundle = new Bundle();
         n6.c[] cVarArr = g.G;
@@ -350,25 +350,25 @@ public abstract class d {
         gVar.d = this.h.getPackageName();
         gVar.h = m10;
         if (set != null) {
-            gVar.f55944f = (Scope[]) set.toArray(new Scope[0]);
+            gVar.f55909f = (Scope[]) set.toArray(new Scope[0]);
         }
         if (f()) {
-            gVar.f55945n = new Account("<<default account>>", "com.google");
+            gVar.f55910n = new Account("<<default account>>", "com.google");
             if (iVar != null) {
-                gVar.f55943e = iVar.asBinder();
+                gVar.f55908e = iVar.asBinder();
             }
         } else if (this instanceof h8.b) {
-            gVar.f55945n = null;
+            gVar.f55910n = null;
         }
-        gVar.f55946r = D;
-        gVar.f55947s = k();
+        gVar.f55911r = D;
+        gVar.f55912s = k();
         if (x()) {
-            gVar.f55950y = true;
+            gVar.f55915y = true;
         }
         try {
-            synchronized (this.f55915m) {
+            synchronized (this.f55880m) {
                 try {
-                    z zVar = this.f55916n;
+                    z zVar = this.f55881n;
                     if (zVar != null) {
                         zVar.h1(new d0(this, this.C.get()), gVar);
                     } else {
@@ -380,7 +380,7 @@ public abstract class d {
         } catch (DeadObjectException e10) {
             Log.w("GmsClient", "IGmsServiceBroker.getService failed", e10);
             int i11 = this.C.get();
-            c0 c0Var = this.f55913k;
+            c0 c0Var = this.f55878k;
             c0Var.sendMessage(c0Var.obtainMessage(6, i11, 3));
         } catch (RemoteException e11) {
             e = e11;
@@ -397,14 +397,14 @@ public abstract class d {
 
     public void h(b bVar) {
         m.i(bVar, "Connection progress callbacks cannot be null.");
-        this.f55917o = bVar;
+        this.f55882o = bVar;
         A(2, null);
     }
 
     public abstract IInterface i(IBinder iBinder);
 
     public final void j(String str) {
-        this.f55909f = str;
+        this.f55874f = str;
         a();
     }
 
@@ -422,11 +422,11 @@ public abstract class d {
 
     public final IInterface n() {
         IInterface iInterface;
-        synchronized (this.f55914l) {
+        synchronized (this.f55879l) {
             try {
-                if (this.f55921s != 5) {
+                if (this.f55886s != 5) {
                     if (s()) {
-                        IInterface iInterface2 = this.f55918p;
+                        IInterface iInterface2 = this.f55883p;
                         m.i(iInterface2, "Client is connected but service is null");
                         iInterface = iInterface2;
                     } else {
@@ -459,8 +459,8 @@ public abstract class d {
 
     public final boolean s() {
         boolean z10;
-        synchronized (this.f55914l) {
-            if (this.f55921s == 4) {
+        synchronized (this.f55879l) {
+            if (this.f55886s == 4) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -471,8 +471,8 @@ public abstract class d {
 
     public final boolean t() {
         boolean z10;
-        synchronized (this.f55914l) {
-            int i7 = this.f55921s;
+        synchronized (this.f55879l) {
+            int i7 = this.f55886s;
             z10 = true;
             if (i7 != 2 && i7 != 3) {
                 z10 = false;
@@ -482,18 +482,18 @@ public abstract class d {
     }
 
     public void u(n6.a aVar) {
-        this.d = aVar.f21450b;
-        this.f55908e = System.currentTimeMillis();
+        this.d = aVar.f21416b;
+        this.f55873e = System.currentTimeMillis();
     }
 
     public void v(int i7) {
-        this.f55905a = i7;
-        this.f55906b = System.currentTimeMillis();
+        this.f55870a = i7;
+        this.f55871b = System.currentTimeMillis();
     }
 
     public void w(int i7, IBinder iBinder, Bundle bundle, int i10) {
         f0 f0Var = new f0(this, i7, iBinder, bundle);
-        c0 c0Var = this.f55913k;
+        c0 c0Var = this.f55878k;
         c0Var.sendMessage(c0Var.obtainMessage(1, i10, -1, f0Var));
     }
 
@@ -502,9 +502,9 @@ public abstract class d {
     }
 
     public final boolean y(int i7, int i10, IInterface iInterface) {
-        synchronized (this.f55914l) {
+        synchronized (this.f55879l) {
             try {
-                if (this.f55921s != i7) {
+                if (this.f55886s != i7) {
                     return false;
                 }
                 A(i10, iInterface);
@@ -518,8 +518,8 @@ public abstract class d {
     public final void z() {
         int i7;
         int i10;
-        synchronized (this.f55914l) {
-            i7 = this.f55921s;
+        synchronized (this.f55879l) {
+            i7 = this.f55886s;
         }
         if (i7 == 3) {
             this.A = true;
@@ -527,7 +527,7 @@ public abstract class d {
         } else {
             i10 = 4;
         }
-        c0 c0Var = this.f55913k;
+        c0 c0Var = this.f55878k;
         c0Var.sendMessage(c0Var.obtainMessage(i10, this.C.get(), 16));
     }
 }

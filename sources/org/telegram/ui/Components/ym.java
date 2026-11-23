@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ym implements tx {
-    public final tn f42455a;
+    public final tn f42436a;
 
     public ym(tn tnVar) {
-        this.f42455a = tnVar;
+        this.f42436a = tnVar;
     }
 
     @Override
@@ -51,9 +51,9 @@ public final class ym implements tx {
         } else {
             z10 = false;
         }
-        tn tnVar = this.f42455a;
-        tnVar.f39965i1 = z10;
-        tnVar.f37519b.f40413p3.requestLayout();
+        tn tnVar = this.f42436a;
+        tnVar.f39944i1 = z10;
+        tnVar.f37477b.f40398p3.requestLayout();
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class ym implements tx {
     @Override
     public final boolean k() {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.b6 b6Var = this.f42455a.f39963h1;
+        org.telegram.ui.Cells.b6 b6Var = this.f42436a.f39942h1;
         if (b6Var == null || (editField = b6Var.getEditField()) == null) {
             return false;
         }
@@ -75,7 +75,7 @@ public final class ym implements tx {
     @Override
     public final void l(String str) {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.b6 b6Var = this.f42455a.f39963h1;
+        org.telegram.ui.Cells.b6 b6Var = this.f42436a.f39942h1;
         if (b6Var == null || (editField = b6Var.getEditField()) == null) {
             return;
         }
@@ -95,10 +95,10 @@ public final class ym implements tx {
 
     @Override
     public final void n() {
-        tn tnVar = this.f42455a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, tnVar.getContext(), tnVar.f37518a);
+        tn tnVar = this.f42436a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, tnVar.getContext(), tnVar.f37476a);
         String N0 = org.telegram.messenger.hd.N0(2131752056, null);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.S = N0;
         t1Var.U = org.telegram.messenger.hd.N0(2131752057, null);
         alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131752087, null), new c0(this, 23));
@@ -115,7 +115,7 @@ public final class ym implements tx {
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         EditTextBoldCursor editField;
         y5 y5Var;
-        org.telegram.ui.Cells.b6 b6Var = this.f42455a.f39963h1;
+        org.telegram.ui.Cells.b6 b6Var = this.f42436a.f39942h1;
         if (b6Var == null || (editField = b6Var.getEditField()) == null) {
             return;
         }
@@ -142,7 +142,7 @@ public final class ym implements tx {
 
     @Override
     public final boolean z() {
-        return this.f42455a.f39965i1;
+        return this.f42436a.f39944i1;
     }
 
     @Override

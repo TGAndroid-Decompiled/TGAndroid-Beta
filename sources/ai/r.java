@@ -1,402 +1,228 @@
 package ai;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import di.f6;
-import hi.c7;
-import hi.v5;
-import java.io.File;
-import java.util.ArrayList;
-import ki.h3;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.e20;
-import org.telegram.messenger.f20;
-import org.telegram.messenger.video.MediaCodecVideoConvertor;
-import org.telegram.messenger.xe;
-import org.telegram.messenger.y10;
+import android.net.Uri;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ur;
+import org.telegram.messenger.xp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Dictation.DictationAsr;
+import org.telegram.ui.e4;
+import org.telegram.ui.g4;
+import org.telegram.ui.k3;
 public final class r implements Runnable {
-    public final int f1431a;
-    public final Object f1432b;
-    public final Object f1433c;
+    public final int f1501a = 0;
+    public final int f1502b;
+    public final boolean f1503c;
     public final Object d;
-    public final Object f1434e;
+    public final Object f1504e;
+    public final Object f1505f;
+    public final Object h;
+    public final Object f1506n;
 
-    public r(f6 f6Var, TLObject tLObject, TL_wallet.nftItem nftitem, String str) {
-        this.f1431a = 10;
-        this.f1433c = f6Var;
-        this.d = tLObject;
-        this.f1434e = nftitem;
-        this.f1432b = str;
-    }
-
-    private final void a() {
-        String path;
-        String path2;
-        String path3;
-        String path4;
-        int i7;
-        long j3;
-        float f10;
-        float f11;
-        int i10;
-        long j10;
-        long j11;
-        int[] iArr;
-        int i11;
-        String path5;
-        ArrayList arrayList;
-        c7 c7Var = (c7) this.f1433c;
-        String str = (String) this.f1432b;
-        int[][] iArr2 = (int[][]) this.d;
-        y10 y10Var = (y10) this.f1434e;
-        c7Var.getClass();
-        f20 f20Var = new f20();
-        char c10 = 1;
-        f20Var.J = true;
-        f20Var.f23827a0 = c7Var.f14346c1;
-        f20Var.h = c7Var.f14362k0;
-        f20Var.f23834i = c7Var.f14364l0;
-        f20Var.f23836k = c7Var.f14358i0;
-        f20Var.f23837l = c7Var.f14360j0;
-        File file = c7Var.P0;
-        if (file == null) {
-            path = null;
-        } else {
-            path = file.getPath();
-        }
-        f20Var.B = path;
-        File file2 = c7Var.W0;
-        if (file2 == null) {
-            path2 = null;
-        } else {
-            path2 = file2.getPath();
-        }
-        f20Var.D = path2;
-        File file3 = c7Var.X0;
-        if (file3 == null) {
-            path3 = null;
-        } else {
-            path3 = file3.getPath();
-        }
-        f20Var.E = path3;
-        File file4 = c7Var.Y0;
-        if (file4 == null) {
-            path4 = null;
-        } else {
-            path4 = file4.getPath();
-        }
-        f20Var.F = path4;
-        int v = MediaController.v(f20Var.f23836k, f20Var.f23837l, f20Var.f23838m, true);
-        if (c7Var.K && str != null && !c7Var.v()) {
-            f20Var.f23840o = str;
-            f20Var.I = false;
-            f20Var.f23839n = Math.min(59, iArr2[0][7]);
-            int E = MediaController.E(str);
-            if (E == -1) {
-                E = iArr2[0][3];
-            }
-            f20Var.f23835j = E;
-            if (E < 1000000 && (arrayList = c7Var.T0) != null && !arrayList.isEmpty()) {
-                f20Var.f23838m = 2000000;
-                f20Var.f23835j = -1;
-            } else {
-                int i12 = f20Var.f23835j;
-                if (i12 < 500000) {
-                    f20Var.f23838m = 2500000;
-                    f20Var.f23835j = -1;
-                } else {
-                    f20Var.f23838m = Utilities.j(i12, 3000000, 500000);
-                }
-            }
-            StringBuilder sb2 = new StringBuilder("story bitrate, original = ");
-            sb2.append(f20Var.f23835j);
-            sb2.append(" => ");
-            i5.c.t(f20Var.f23838m, sb2);
-            long j12 = iArr2[0][4];
-            c7Var.f14356h0 = j12;
-            f20Var.v = j12 * 1000;
-            float f12 = (float) j12;
-            long j13 = c7Var.Z * f12 * 1000;
-            f20Var.f23826a = j13;
-            long j14 = c7Var.f14339a0 * f12 * 1000;
-            f20Var.f23828b = j14;
-            f20Var.f23843r = j14 - j13;
-            f20Var.f23846u = c7Var.P;
-            f20Var.f23845t = c7Var.Y;
-            f20Var.f23842q = a8.p0.f(i11 / 1000.0f, v, 8.0f, iArr[5]);
-            f20Var.f23842q = Math.max(c7Var.L.length(), f20Var.f23842q);
-            f20Var.A = c7Var.f14340a1;
-            File file5 = c7Var.Q0;
-            if (file5 == null) {
-                path5 = null;
-            } else {
-                path5 = file5.getPath();
-            }
-            f20Var.C = path5;
-            j3 = 0;
-        } else {
-            File file6 = c7Var.Z0;
-            if (file6 != null) {
-                f20Var.f23840o = file6.getAbsolutePath();
-            } else {
-                f20Var.f23840o = str;
-            }
-            f20Var.I = true;
-            f20Var.L = c7Var.S;
-            if (c7Var.v()) {
-                int i13 = 0;
-                boolean z10 = false;
-                while (i13 < c7Var.T.size()) {
-                    c7 c7Var2 = (c7) c7Var.T.get(i13);
-                    if (c7Var2.K) {
-                        c7Var2.f14362k0 = Math.max(c7Var2.f14362k0, iArr2[i13][c10]);
-                        c7Var2.f14364l0 = Math.max(c7Var2.f14364l0, iArr2[i13][2]);
-                        i10 = v;
-                        c7Var2.f14356h0 = Math.max(c7Var2.f14356h0, iArr2[i13][4]);
-                        z10 = true;
-                    } else {
-                        i10 = v;
-                    }
-                    i13++;
-                    v = i10;
-                    c10 = 1;
-                }
-                i7 = v;
-                ArrayList a10 = e20.a(c7Var);
-                f20Var.M = a10;
-                if (!z10) {
-                    long j15 = c7Var.S0;
-                    c7Var.f14356h0 = j15;
-                    f20Var.v = j15;
-                    f20Var.f23843r = j15;
-                } else {
-                    int size = a10.size();
-                    long j16 = 0;
-                    e20 e20Var = null;
-                    int i14 = 0;
-                    while (i14 < size) {
-                        Object obj = a10.get(i14);
-                        i14++;
-                        e20 e20Var2 = (e20) obj;
-                        if (e20Var2.f23662b) {
-                            long j17 = e20Var2.f23671o;
-                            if (j17 > j16) {
-                                e20Var = e20Var2;
-                                j16 = j17;
-                            }
-                        }
-                    }
-                    if (e20Var != null) {
-                        long j18 = (e20Var.f23668k - e20Var.f23667j) * ((float) e20Var.f23671o);
-                        c7Var.f14356h0 = j18;
-                        f20Var.v = j18;
-                        f20Var.f23843r = j18;
-                        j3 = -(e20Var.f23665f + (f11 * f10));
-                        e20Var.f23665f = j3;
-                        ArrayList arrayList2 = f20Var.M;
-                        int size2 = arrayList2.size();
-                        int i15 = 0;
-                        while (i15 < size2) {
-                            Object obj2 = arrayList2.get(i15);
-                            i15++;
-                            e20 e20Var3 = (e20) obj2;
-                            if (e20Var3.f23662b && e20Var3 != e20Var) {
-                                e20Var3.f23665f += j3;
-                            }
-                        }
-                        f20Var.f23826a = -1L;
-                        f20Var.f23828b = -1L;
-                        f20Var.f23845t = true;
-                        f20Var.f23835j = -1;
-                        f20Var.f23846u = 1.0f;
-                        f20Var.f23838m = -1;
-                        f20Var.f23839n = 30;
-                        f20Var.f23842q = ((((float) c7Var.f14356h0) / 1000.0f) * i7) / 8.0f;
-                        f20Var.A = null;
-                    }
-                }
-            } else {
-                i7 = v;
-                if (c7Var.f14369o0 != null) {
-                    long j19 = (c7Var.f14379t0 - c7Var.f14377s0) * ((float) c7Var.f14373q0);
-                    c7Var.f14356h0 = j19;
-                    f20Var.v = j19;
-                    f20Var.f23843r = j19;
-                } else if (c7Var.f14387y != null) {
-                    long j20 = (c7Var.F - c7Var.E) * ((float) c7Var.C);
-                    c7Var.f14356h0 = j20;
-                    f20Var.v = j20;
-                    f20Var.f23843r = j20;
-                } else {
-                    long j21 = c7Var.S0;
-                    c7Var.f14356h0 = j21;
-                    f20Var.v = j21;
-                    f20Var.f23843r = j21;
-                }
-            }
-            j3 = 0;
-            f20Var.f23826a = -1L;
-            f20Var.f23828b = -1L;
-            f20Var.f23845t = true;
-            f20Var.f23835j = -1;
-            f20Var.f23846u = 1.0f;
-            f20Var.f23838m = -1;
-            f20Var.f23839n = 30;
-            f20Var.f23842q = ((((float) c7Var.f14356h0) / 1000.0f) * i7) / 8.0f;
-            f20Var.A = null;
-        }
-        f20Var.S = c7Var.f14338a;
-        f20Var.U = c7Var.f14390z0;
-        f20Var.T = c7Var.f14388y0;
-        f20Var.f23830c = -1L;
-        xe xeVar = c7Var.m0;
-        if (xeVar != null) {
-            f20Var.H = xeVar.clone();
-        } else {
-            f20Var.H = new xe();
-        }
-        f20Var.H.B = new Matrix();
-        f20Var.H.B.set(c7Var.f14367n0);
-        f20Var.G = c7Var.T0;
-        f20Var.Q = Integer.valueOf(c7Var.A0);
-        f20Var.R = Integer.valueOf(c7Var.B0);
-        f20Var.V = true;
-        f20Var.K = c7Var.f14348d1;
-        f20Var.f23829b0.clear();
-        if (c7Var.v() && !c7Var.Y) {
-            ArrayList arrayList3 = f20Var.M;
-            int size3 = arrayList3.size();
-            int i16 = 0;
-            while (i16 < size3) {
-                Object obj3 = arrayList3.get(i16);
-                i16++;
-                e20 e20Var4 = (e20) obj3;
-                if (e20Var4.f23662b && e20Var4.f23664e > 0.0f && !e20Var4.f23663c) {
-                    MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo = new MediaCodecVideoConvertor.MixedSoundInfo(e20Var4.d);
-                    mixedSoundInfo.volume = e20Var4.f23664e;
-                    float f13 = e20Var4.f23667j;
-                    float f14 = (float) e20Var4.f23671o;
-                    mixedSoundInfo.audioOffset = f13 * f14 * 1000;
-                    mixedSoundInfo.startTime = e20Var4.f23665f * 1000;
-                    mixedSoundInfo.duration = (e20Var4.f23668k - f13) * f14 * 1000;
-                    f20Var.f23829b0.add(mixedSoundInfo);
-                }
-            }
-        }
-        File file7 = c7Var.f14369o0;
-        if (file7 != null) {
-            MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo2 = new MediaCodecVideoConvertor.MixedSoundInfo(file7.getAbsolutePath());
-            mixedSoundInfo2.volume = c7Var.f14381u0;
-            float f15 = c7Var.f14377s0;
-            float f16 = (float) c7Var.f14373q0;
-            long j22 = f15 * f16 * 1000;
-            mixedSoundInfo2.audioOffset = j22;
-            if (c7Var.K) {
-                mixedSoundInfo2.startTime = (((float) c7Var.f14375r0) - (c7Var.Z * ((float) c7Var.f14356h0))) * 1000;
-                j11 = 0;
-            } else {
-                j11 = 0;
-                mixedSoundInfo2.startTime = 0L;
-            }
-            long j23 = mixedSoundInfo2.startTime + j3;
-            mixedSoundInfo2.startTime = j23;
-            if (j23 < j11) {
-                mixedSoundInfo2.audioOffset = j22 - j23;
-                mixedSoundInfo2.startTime = j11;
-            }
-            mixedSoundInfo2.duration = (c7Var.f14379t0 - f15) * f16 * 1000;
-            f20Var.f23829b0.add(mixedSoundInfo2);
-        }
-        String str2 = c7Var.f14387y;
-        if (str2 != null) {
-            MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo3 = new MediaCodecVideoConvertor.MixedSoundInfo(str2);
-            mixedSoundInfo3.volume = c7Var.G;
-            float f17 = c7Var.E;
-            float f18 = (float) c7Var.C;
-            long j24 = f17 * f18 * 1000;
-            mixedSoundInfo3.audioOffset = j24;
-            if (c7Var.K) {
-                mixedSoundInfo3.startTime = (((float) c7Var.D) - (c7Var.Z * ((float) c7Var.f14356h0))) * 1000;
-                j10 = 0;
-            } else {
-                j10 = 0;
-                mixedSoundInfo3.startTime = 0L;
-            }
-            long j25 = mixedSoundInfo3.startTime + j3;
-            mixedSoundInfo3.startTime = j25;
-            if (j25 < j10) {
-                mixedSoundInfo3.audioOffset = j24 - j25;
-                mixedSoundInfo3.startTime = j10;
-            }
-            mixedSoundInfo3.duration = (c7Var.F - f17) * f18 * 1000;
-            f20Var.f23829b0.add(mixedSoundInfo3);
-        }
-        y10Var.a(f20Var);
-    }
-
-    private final void b() {
-        h3.A0((h3) this.f1432b, (Context) this.f1433c, (TLRPC.User) this.d, (TL_payments.connectedBotStarRef) this.f1434e);
-    }
-
-    private final void c() {
-        boolean[] zArr = (boolean[]) this.f1433c;
-        org.telegram.ui.web.o oVar = (org.telegram.ui.web.o) this.d;
-        TLRPC.UserFull userFull = (TLRPC.UserFull) this.f1434e;
-        if (!(((TLObject) this.f1432b) instanceof TLRPC.TL_boolTrue)) {
-            if (!zArr[0]) {
-                zArr[0] = true;
-                oVar.a(Boolean.TRUE, "cancelled");
-                return;
-            }
-            return;
-        }
-        userFull.bot_can_manage_emoji_status = true;
-        if (!zArr[0]) {
-            zArr[0] = true;
-            oVar.a(Boolean.TRUE, "allowed");
-        }
+    public r(s sVar, int[] iArr, String str, String str2, boolean z10, int i7, Runnable runnable) {
+        this.f1504e = sVar;
+        this.f1505f = iArr;
+        this.d = str;
+        this.h = str2;
+        this.f1503c = z10;
+        this.f1502b = i7;
+        this.f1506n = runnable;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.r.run():void");
+        int length;
+        v4.e1 K;
+        String str = null;
+        int i7 = 0;
+        switch (this.f1501a) {
+            case 0:
+                s sVar = (s) this.f1504e;
+                int[] iArr = (int[]) this.f1505f;
+                String str2 = (String) this.d;
+                String str3 = (String) this.h;
+                boolean z10 = this.f1503c;
+                int i10 = this.f1502b;
+                Runnable runnable = (Runnable) this.f1506n;
+                if (!sVar.f1520l) {
+                    sVar.f1516g = iArr;
+                    n1 n1Var = sVar.d;
+                    v1 v1Var = (v1) n1Var.f1430c;
+                    int i11 = n1Var.f1429b;
+                    android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) n1Var.d;
+                    if (!v1Var.h && i11 == v1Var.f1565p) {
+                        String q10 = DictationAsr.q(str2, str3, z10);
+                        v1Var.f1564o = q10;
+                        if (!q10.trim().isEmpty()) {
+                            s sVar2 = v1Var.f1563n;
+                            if (sVar2 != null) {
+                                str = sVar2.f1522n;
+                            }
+                            if (str == null) {
+                                str = a0Var.i();
+                            }
+                            v1Var.k(str);
+                        }
+                        if (i10 <= 0) {
+                            length = str2.length();
+                        } else {
+                            length = DictationAsr.q(str2, str3.substring(0, i10), z10).length();
+                        }
+                        if (!v1Var.f1557g) {
+                            v1Var.f1554c.l(length, v1Var.f1564o);
+                        }
+                    }
+                    if (runnable != null) {
+                        runnable.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                g4 g4Var = (g4) this.f1504e;
+                TLObject tLObject = (TLObject) this.f1505f;
+                int i12 = this.f1502b;
+                TLRPC.WebPage webPage = (TLRPC.WebPage) this.h;
+                gj gjVar = (gj) this.f1506n;
+                boolean z11 = this.f1503c;
+                String str4 = (String) this.d;
+                boolean z12 = tLObject instanceof TLRPC.TL_messages_webPage;
+                TLRPC.WebPage webPage2 = tLObject;
+                if (z12) {
+                    TLRPC.TL_messages_webPage tL_messages_webPage = (TLRPC.TL_messages_webPage) tLObject;
+                    np.u1(i12).f4(tL_messages_webPage.users, false);
+                    np.u1(i12).Z3(tL_messages_webPage.chats, false);
+                    webPage2 = tL_messages_webPage.webpage;
+                }
+                if (webPage2 instanceof TLRPC.TL_webPage) {
+                    TLRPC.TL_webPage tL_webPage = (TLRPC.TL_webPage) webPage2;
+                    if (tL_webPage.cached_page != null) {
+                        if (!g4Var.f47904e0.isEmpty() && g4Var.f47904e0.get(0) == webPage) {
+                            if (gjVar != null) {
+                                gjVar.f24177k.media.webpage = tL_webPage;
+                                TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
+                                tL_messages_messages.messages.add(gjVar.f24177k);
+                                ur.a0(i12).h1(-2, 0, gjVar.f24206r1 ? 1 : 0, gj.B0(gjVar.f24177k), 0L, tL_messages_messages, false);
+                            }
+                            if (z11) {
+                                g4Var.f47904e0.add(tL_webPage);
+                            } else {
+                                g4Var.f47904e0.set(0, tL_webPage);
+                            }
+                            if (g4Var.f47904e0.size() == 1) {
+                                org.telegram.messenger.t0.f26895b.getSharedPreferences("articles", 0).edit().remove("article" + tL_webPage.f28553id).commit();
+                                g4Var.c0(z11 ? 1 : 0, tL_webPage, false);
+                                if (str4 != null) {
+                                    g4Var.T(str4, false);
+                                }
+                            }
+                        }
+                        a0.h hVar = new a0.h(1);
+                        hVar.k(tL_webPage, tL_webPage.f28553id);
+                        ur a02 = ur.a0(i12);
+                        if (!ur.s0(hVar)) {
+                            a02.f27214a.c(new xp(a02, hVar, 0));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } else if (webPage2 instanceof TLRPC.TL_webPageNotModified) {
+                    TLRPC.TL_webPageNotModified tL_webPageNotModified = (TLRPC.TL_webPageNotModified) webPage2;
+                    TL_iv.Page page = webPage.cached_page;
+                    if (page != null) {
+                        int i13 = page.views;
+                        int i14 = tL_webPageNotModified.cached_page_views;
+                        if (i13 != i14) {
+                            page.views = i14;
+                            page.flags |= 8;
+                            while (true) {
+                                k3[] k3VarArr = g4Var.f47920v0;
+                                if (i7 < k3VarArr.length) {
+                                    e4 e4Var = k3VarArr[i7].f49137c;
+                                    if (e4Var.F == webPage && (K = g4Var.f47920v0[i7].f49136b.K(e4Var.b() - 1)) != null) {
+                                        g4Var.f47920v0[i7].f49137c.y(K);
+                                    }
+                                    i7++;
+                                } else if (gjVar != null) {
+                                    TLRPC.TL_messages_messages tL_messages_messages2 = new TLRPC.TL_messages_messages();
+                                    tL_messages_messages2.messages.add(gjVar.f24177k);
+                                    ur.a0(i12).h1(-2, 0, gjVar.f24206r1 ? 1 : 0, gj.B0(gjVar.f24177k), 0L, tL_messages_messages2, false);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            }
+                        } else {
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+                break;
+            default:
+                vf.b bVar = (vf.b) this.f1504e;
+                org.telegram.ui.ActionBar.t1[] t1VarArr = (org.telegram.ui.ActionBar.t1[]) this.f1505f;
+                TLObject tLObject2 = (TLObject) this.d;
+                int i15 = this.f1502b;
+                Uri uri = (Uri) this.h;
+                Context context = (Context) this.f1506n;
+                boolean z13 = this.f1503c;
+                if (bVar != null) {
+                    bVar.b();
+                } else {
+                    try {
+                        t1VarArr[0].dismiss();
+                    } catch (Throwable unused) {
+                    }
+                    t1VarArr[0] = null;
+                }
+                if (tLObject2 instanceof TL_account.webPagePreview) {
+                    TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) tLObject2;
+                    np.u1(i15).f4(webpagepreview.users, false);
+                    np.u1(i15).Z3(webpagepreview.chats, false);
+                    TLRPC.MessageMedia messageMedia = webpagepreview.media;
+                    if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+                        TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = (TLRPC.TL_messageMediaWebPage) messageMedia;
+                        TLRPC.WebPage webPage3 = tL_messageMediaWebPage.webpage;
+                        if ((webPage3 instanceof TLRPC.TL_webPage) && webPage3.cached_page != null) {
+                            ls.f(i15).k(91, tL_messageMediaWebPage.webpage, uri.toString());
+                            return;
+                        }
+                    }
+                }
+                vf.c.q(context, uri, z13, false);
+                return;
+        }
     }
 
-    public r(v5 v5Var, Bitmap[] bitmapArr, c7 c7Var, boolean[] zArr) {
-        this.f1431a = 19;
-        this.f1432b = v5Var;
-        this.d = bitmapArr;
-        this.f1434e = c7Var;
-        this.f1433c = zArr;
+    public r(g4 g4Var, TLObject tLObject, int i7, TLRPC.WebPage webPage, gj gjVar, boolean z10, String str) {
+        this.f1504e = g4Var;
+        this.f1505f = tLObject;
+        this.f1502b = i7;
+        this.h = webPage;
+        this.f1506n = gjVar;
+        this.f1503c = z10;
+        this.d = str;
     }
 
-    public r(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f1431a = i7;
-        this.f1432b = obj;
-        this.f1433c = obj2;
-        this.d = obj3;
-        this.f1434e = obj4;
-    }
-
-    public r(Object obj, Object obj2, String str, Object obj3, int i7) {
-        this.f1431a = i7;
-        this.f1433c = obj;
-        this.d = obj2;
-        this.f1432b = str;
-        this.f1434e = obj3;
-    }
-
-    public r(Object obj, String str, Object obj2, Object obj3, int i7) {
-        this.f1431a = i7;
-        this.f1433c = obj;
-        this.f1432b = str;
-        this.d = obj2;
-        this.f1434e = obj3;
+    public r(vf.b bVar, org.telegram.ui.ActionBar.t1[] t1VarArr, TLObject tLObject, int i7, Uri uri, Context context, boolean z10) {
+        this.f1504e = bVar;
+        this.f1505f = t1VarArr;
+        this.d = tLObject;
+        this.f1502b = i7;
+        this.h = uri;
+        this.f1506n = context;
+        this.f1503c = z10;
     }
 }

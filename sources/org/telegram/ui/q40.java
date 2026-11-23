@@ -1,10 +1,10 @@
 package org.telegram.ui;
 public final class q40 {
-    public final int f51065a;
-    public final Object f51066b;
+    public final int f50996a;
+    public final Object f50997b;
 
     public q40(Object obj, int i7) {
-        this.f51065a = i7;
-        this.f51066b = obj;
+        this.f50996a = i7;
+        this.f50997b = obj;
     }
 }

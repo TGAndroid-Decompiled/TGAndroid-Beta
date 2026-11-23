@@ -4,35 +4,35 @@ import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
 public final class sd extends org.telegram.ui.Components.b71 {
-    public final Context f52024a;
-    public final int f52025b;
-    public final int f52026c;
+    public final Context f51993a;
+    public final int f51994b;
+    public final int f51995c;
     public final org.telegram.ui.ActionBar.h6 d;
-    public final ArrayList f52027e = new ArrayList();
-    public final td f52028f;
+    public final ArrayList f51996e = new ArrayList();
+    public final td f51997f;
 
     public sd(td tdVar, Context context, int i7, long j3, int i10, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f52028f = tdVar;
-        this.f52024a = context;
-        this.f52025b = i7;
-        this.f52026c = i10;
+        this.f51997f = tdVar;
+        this.f51993a = context;
+        this.f51994b = i7;
+        this.f51995c = i10;
         this.d = h6Var;
         i();
     }
 
     @Override
     public final void b(View view, int i7, int i10) {
-        this.f52028f.f52307b.H(view);
+        this.f51997f.f52253b.H(view);
     }
 
     @Override
     public final View d(int i7) {
-        return new rd(this.f52028f, this.f52024a, i7, this.f52025b, this.f52026c, new ai.c1(this, i7, 24), this.d);
+        return new rd(this.f51997f, this.f51993a, i7, this.f51994b, this.f51995c, new ai.t0(this, i7, 26), this.d);
     }
 
     @Override
     public final int e() {
-        return this.f52027e.size();
+        return this.f51996e.size();
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class sd extends org.telegram.ui.Components.b71 {
     @Override
     public final int h(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f52027e;
+            ArrayList arrayList = this.f51996e;
             if (i7 < arrayList.size()) {
                 return ((org.telegram.ui.Components.o41) arrayList.get(i7)).A;
             }
@@ -60,13 +60,13 @@ public final class sd extends org.telegram.ui.Components.b71 {
     }
 
     public final void i() {
-        ArrayList arrayList = this.f52027e;
+        ArrayList arrayList = this.f51996e;
         arrayList.clear();
-        td tdVar = this.f52028f;
-        if (!tdVar.f52311n.isEmpty()) {
+        td tdVar = this.f51997f;
+        if (!tdVar.f52257n.isEmpty()) {
             arrayList.add(org.telegram.ui.Components.o41.D(1));
         }
-        if (!tdVar.f52312r.isEmpty()) {
+        if (!tdVar.f52258r.isEmpty()) {
             arrayList.add(org.telegram.ui.Components.o41.D(0));
         }
     }

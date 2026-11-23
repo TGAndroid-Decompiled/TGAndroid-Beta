@@ -4,16 +4,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 public final class jj extends org.telegram.ui.Cells.v0 {
-    public final bn f49007z2;
+    public final bn f49011z2;
 
     public jj(Context context, org.telegram.ui.ActionBar.h6 h6Var, bn bnVar) {
         super(context, h6Var, false);
-        this.f49007z2 = bnVar;
+        this.f49011z2 = bnVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        bn bnVar = this.f49007z2;
+        bn bnVar = this.f49011z2;
         if (bnVar.R8 == null) {
             float y10 = ((bnVar.A0.getY() + bnVar.P9) - getY()) - org.telegram.messenger.g0.L(4.0f);
             if (y10 > 0.0f) {
@@ -34,7 +34,7 @@ public final class jj extends org.telegram.ui.Cells.v0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            bn bnVar = this.f49007z2;
+            bn bnVar = this.f49011z2;
             kVar = ((org.telegram.ui.ActionBar.g2) bnVar).actionBar;
             if (!kVar.x() && !bnVar.Y9()) {
                 return super.onInterceptTouchEvent(motionEvent);
@@ -48,7 +48,7 @@ public final class jj extends org.telegram.ui.Cells.v0 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            bn bnVar = this.f49007z2;
+            bn bnVar = this.f49011z2;
             kVar = ((org.telegram.ui.ActionBar.g2) bnVar).actionBar;
             if (!kVar.x() && !bnVar.Y9()) {
                 return super.onTouchEvent(motionEvent);

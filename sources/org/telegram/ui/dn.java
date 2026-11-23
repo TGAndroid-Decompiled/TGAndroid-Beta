@@ -6,35 +6,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public abstract class dn extends FrameLayout {
-    public final cn f47013a;
-    public final org.telegram.ui.ActionBar.r4 f47014b;
-    public View f47015c;
+    public final cn f46973a;
+    public final org.telegram.ui.ActionBar.r4 f46974b;
+    public View f46975c;
     public int d;
-    public boolean f47016e;
+    public boolean f46976e;
 
     public dn(Context context, org.telegram.ui.ActionBar.r4 r4Var, Bundle bundle) {
         super(context);
-        this.f47016e = true;
-        this.f47014b = r4Var;
+        this.f46976e = true;
+        this.f46974b = r4Var;
         cn cnVar = new cn(this, bundle);
-        this.f47013a = cnVar;
+        this.f46973a = cnVar;
         cnVar.mb = true;
     }
 
     public void a() {
         int i7;
-        cn cnVar = this.f47013a;
+        cn cnVar = this.f46973a;
         if (cnVar.onFragmentCreate()) {
-            this.f47015c = cnVar.fragmentView;
-            cnVar.setParentLayout(this.f47014b);
-            View view = this.f47015c;
+            this.f46975c = cnVar.fragmentView;
+            cnVar.setParentLayout(this.f46974b);
+            View view = this.f46975c;
             if (view == null) {
-                this.f47015c = cnVar.createView(getContext());
+                this.f46975c = cnVar.createView(getContext());
             } else {
                 ViewGroup viewGroup = (ViewGroup) view.getParent();
                 if (viewGroup != null) {
                     cnVar.onRemoveFromParent();
-                    viewGroup.removeView(this.f47015c);
+                    viewGroup.removeView(this.f46975c);
                 }
             }
             bj bjVar = cnVar.A0;
@@ -42,8 +42,8 @@ public abstract class dn extends FrameLayout {
                 bjVar.setPadding(0, i7, 0, 0);
             }
             cnVar.Sa();
-            addView(this.f47015c, c8.ma.c(-1.0f, -1));
-            if (this.f47016e) {
+            addView(this.f46975c, c8.na.c(-1.0f, -1));
+            if (this.f46976e) {
                 cnVar.onResume();
             }
         }

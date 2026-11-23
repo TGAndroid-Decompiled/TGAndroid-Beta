@@ -1,14 +1,14 @@
 package org.telegram.messenger;
 public final class vp implements Runnable {
-    public final int f27568a;
-    public final ur f27569b;
-    public final long f27570c;
+    public final int f27532a;
+    public final ur f27533b;
+    public final long f27534c;
     public final boolean d;
 
     public vp(int i7, long j3, ur urVar, boolean z10) {
-        this.f27568a = i7;
-        this.f27569b = urVar;
-        this.f27570c = j3;
+        this.f27532a = i7;
+        this.f27533b = urVar;
+        this.f27534c = j3;
         this.d = z10;
     }
 

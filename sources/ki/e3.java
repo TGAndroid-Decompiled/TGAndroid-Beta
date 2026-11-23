@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import c8.ma;
+import c8.na;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.o10;
 import org.telegram.ui.ActionBar.h6;
@@ -19,51 +19,51 @@ import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.q9;
 public final class e3 extends FrameLayout {
-    public final int f18668a;
-    public final h6 f18669b;
-    public final q9 f18670c;
+    public final int f18634a;
+    public final h6 f18635b;
+    public final q9 f18636c;
     public final View d;
-    public final View f18671e;
-    public final ImageView f18672f;
+    public final View f18637e;
+    public final ImageView f18638f;
     public final TextView h;
-    public final TextView f18673n;
-    public final ImageView f18674r;
-    public boolean f18675s;
+    public final TextView f18639n;
+    public final ImageView f18640r;
+    public boolean f18641s;
 
     public e3(int i7, Context context, h6 h6Var) {
         super(context);
-        this.f18668a = i7;
-        this.f18669b = h6Var;
+        this.f18634a = i7;
+        this.f18635b = h6Var;
         q9 q9Var = new q9(context);
-        this.f18670c = q9Var;
+        this.f18636c = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(46.0f));
-        addView(q9Var, ma.d(46, 46.0f, 19, 13.0f, 0.0f, 13.0f, 0.0f));
+        addView(q9Var, na.d(46, 46.0f, 19, 13.0f, 0.0f, 13.0f, 0.0f));
         View view = new View(context);
         this.d = view;
         int L = org.telegram.messenger.g0.L(11.0f);
-        int i10 = m6.f29381d6;
+        int i10 = m6.f29347d6;
         Drawable L2 = m6.L(L, m6.w0(i10, h6Var));
         p6 M = t6.M(i10);
         view.setBackground(L2);
         t6.j(view, L2, M, null, h6Var);
-        addView(view, ma.d(22, 22.0f, 19, 40.0f, 15.0f, 0.0f, 0.0f));
+        addView(view, na.d(22, 22.0f, 19, 40.0f, 15.0f, 0.0f, 0.0f));
         View view2 = new View(context);
-        this.f18671e = view2;
+        this.f18637e = view2;
         int L3 = org.telegram.messenger.g0.L(9.665f);
         int i11 = m6.lk;
         Drawable L4 = m6.L(L3, m6.w0(i11, h6Var));
         p6 M2 = t6.M(i11);
         view2.setBackground(L4);
         t6.j(view2, L4, M2, null, h6Var);
-        addView(view2, ma.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
+        addView(view2, na.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f18672f = imageView;
+        this.f18638f = imageView;
         imageView.setScaleX(0.6f);
         imageView.setScaleY(0.6f);
-        addView(imageView, ma.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
+        addView(imageView, na.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        addView(linearLayout, ma.d(-1, -2.0f, 55, 66.0f, 8.66f, 10.0f, 0.0f));
+        addView(linearLayout, na.d(-1, -2.0f, 55, 66.0f, 8.66f, 10.0f, 0.0f));
         TextView textView = new TextView(context);
         this.h = textView;
         textView.setMaxLines(1);
@@ -74,27 +74,27 @@ public final class e3 extends FrameLayout {
         textView.setTextSize(1, 16.0f);
         t6.U(textView, m6.G6, h6Var);
         ls.i(textView);
-        TextView f10 = o10.f(linearLayout, textView, ma.t(-1, -2, 55, 6, 0, 24, 0), context);
-        this.f18673n = f10;
+        TextView f10 = o10.f(linearLayout, textView, na.t(-1, -2, 55, 6, 0, 24, 0), context);
+        this.f18639n = f10;
         f10.setMaxLines(1);
         f10.setSingleLine(true);
         f10.setEllipsize(truncateAt);
         f10.setTextSize(1, 14.0f);
-        t6.U(f10, m6.f29792z6, h6Var);
-        linearLayout.addView(f10, ma.t(-1, -2, 55, 6, 1, 24, 0));
+        t6.U(f10, m6.f29758z6, h6Var);
+        linearLayout.addView(f10, na.t(-1, -2, 55, 6, 1, 24, 0));
         ImageView imageView2 = new ImageView(context);
-        this.f18674r = imageView2;
+        this.f18640r = imageView2;
         t6.s(imageView2, m6.M6, h6Var, PorterDuff.Mode.SRC_IN);
         imageView2.setImageResource(2131232061);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView2, ma.d(24, 24.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
+        addView(imageView2, na.d(24, 24.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f18675s) {
-            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getHeight() - 1, getWidth(), getHeight(), m6.f29504k0);
+        if (this.f18641s) {
+            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getHeight() - 1, getWidth(), getHeight(), m6.f29470k0);
         }
     }
 

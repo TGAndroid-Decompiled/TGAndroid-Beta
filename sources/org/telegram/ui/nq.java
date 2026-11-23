@@ -6,25 +6,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 public final class nq extends org.telegram.ui.Components.dk0 {
-    public final Context f50274c;
+    public final Context f50282c;
     public final rq d;
 
     public nq(rq rqVar, Context context) {
         this.d = rqVar;
-        this.f50274c = context;
+        this.f50282c = context;
     }
 
     @Override
-    public final void A(v4.f1 f1Var) {
-        View view = f1Var.f59165a;
+    public final void A(v4.e1 e1Var) {
+        View view = e1Var.f59111a;
         if (view instanceof org.telegram.ui.Cells.b5) {
             ((org.telegram.ui.Cells.b5) view).a();
         }
     }
 
     @Override
-    public final boolean D(v4.f1 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nq.D(v4.f1):boolean");
+    public final boolean D(v4.e1 r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nq.D(v4.e1):boolean");
     }
 
     public final TLObject E(int i7) {
@@ -46,37 +46,37 @@ public final class nq extends org.telegram.ui.Components.dk0 {
 
     @Override
     public final int b() {
-        return this.d.f51705d1;
+        return this.d.f51735d1;
     }
 
     @Override
     public final int d(int i7) {
         rq rqVar = this.d;
-        if (i7 != rqVar.f51753z0 && i7 != rqVar.A0 && i7 != rqVar.f51742v0 && i7 != rqVar.f51738t0) {
+        if (i7 != rqVar.f51783z0 && i7 != rqVar.A0 && i7 != rqVar.f51772v0 && i7 != rqVar.f51768t0) {
             if ((i7 >= rqVar.E0 && i7 < rqVar.F0) || ((i7 >= rqVar.X0 && i7 < rqVar.Y0) || (i7 >= rqVar.U0 && i7 < rqVar.V0))) {
                 return 0;
             }
             if (i7 != rqVar.C0 && i7 != rqVar.G0 && i7 != rqVar.H0) {
-                if (i7 != rqVar.D0 && i7 != rqVar.S && i7 != rqVar.N0 && i7 != rqVar.f51736s0 && i7 != rqVar.f51728p0) {
-                    if (i7 != rqVar.f51700b1 && i7 != rqVar.P0 && i7 != rqVar.R0 && i7 != rqVar.f51740u0 && i7 != rqVar.f51751y0 && i7 != rqVar.K0 && i7 != rqVar.M0 && i7 != rqVar.f51719j1 && i7 != rqVar.f51726o0 && i7 != rqVar.f51733r0) {
-                        if (i7 == rqVar.f51703c1) {
+                if (i7 != rqVar.D0 && i7 != rqVar.S && i7 != rqVar.N0 && i7 != rqVar.f51766s0 && i7 != rqVar.f51758p0) {
+                    if (i7 != rqVar.f51730b1 && i7 != rqVar.P0 && i7 != rqVar.R0 && i7 != rqVar.f51770u0 && i7 != rqVar.f51781y0 && i7 != rqVar.K0 && i7 != rqVar.M0 && i7 != rqVar.f51749j1 && i7 != rqVar.f51756o0 && i7 != rqVar.f51763r0) {
+                        if (i7 == rqVar.f51733c1) {
                             return 4;
                         }
                         if (i7 == rqVar.B0) {
                             return 6;
                         }
-                        if (i7 != rqVar.f51712g0 && i7 != rqVar.f51714h0 && i7 != rqVar.m0 && i7 != rqVar.f51716i0 && i7 != rqVar.f51718j0 && i7 != rqVar.T && i7 != rqVar.f51707e0 && i7 != rqVar.f51710f0 && i7 != rqVar.f51722l0 && i7 != rqVar.Q0) {
-                            if (i7 != rqVar.Z0 && i7 != rqVar.T0 && i7 != rqVar.W0 && i7 != rqVar.f51713g1) {
+                        if (i7 != rqVar.f51742g0 && i7 != rqVar.f51744h0 && i7 != rqVar.m0 && i7 != rqVar.f51746i0 && i7 != rqVar.f51748j0 && i7 != rqVar.T && i7 != rqVar.f51737e0 && i7 != rqVar.f51740f0 && i7 != rqVar.f51752l0 && i7 != rqVar.Q0) {
+                            if (i7 != rqVar.Z0 && i7 != rqVar.T0 && i7 != rqVar.W0 && i7 != rqVar.f51743g1) {
                                 if (i7 == rqVar.O0) {
                                     return 9;
                                 }
-                                if (i7 == rqVar.f51697a1) {
+                                if (i7 == rqVar.f51727a1) {
                                     return 10;
                                 }
-                                if (i7 == rqVar.f51711f1) {
+                                if (i7 == rqVar.f51741f1) {
                                     return 11;
                                 }
-                                if (i7 != rqVar.f51748x0 && i7 != rqVar.J0 && i7 != rqVar.L0) {
+                                if (i7 != rqVar.f51778x0 && i7 != rqVar.J0 && i7 != rqVar.L0) {
                                     if (rqVar.u0(i7)) {
                                         return 13;
                                     }
@@ -86,8 +86,8 @@ public final class nq extends org.telegram.ui.Components.dk0 {
                                     if (i7 == rqVar.S0) {
                                         return 15;
                                     }
-                                    if (i7 != rqVar.f51715h1 && i7 != rqVar.f51717i1 && i7 != rqVar.f51725n0) {
-                                        if (i7 != rqVar.f51730q0) {
+                                    if (i7 != rqVar.f51745h1 && i7 != rqVar.f51747i1 && i7 != rqVar.f51755n0) {
+                                        if (i7 != rqVar.f51760q0) {
                                             return 0;
                                         }
                                         return 17;
@@ -110,12 +110,12 @@ public final class nq extends org.telegram.ui.Components.dk0 {
     }
 
     @Override
-    public final void t(v4.f1 r27, int r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nq.t(v4.f1, int):void");
+    public final void t(v4.e1 r27, int r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nq.t(v4.e1, int):void");
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         int i10;
         boolean z10;
         org.telegram.ui.ActionBar.h6 h6Var;
@@ -123,7 +123,7 @@ public final class nq extends org.telegram.ui.Components.dk0 {
         org.telegram.ui.Components.hu0 hu0Var2;
         int i11 = 2;
         int i12 = 0;
-        Context context = this.f50274c;
+        Context context = this.f50282c;
         rq rqVar = this.d;
         switch (i7) {
             case 0:
@@ -136,12 +136,12 @@ public final class nq extends org.telegram.ui.Components.dk0 {
                 if (i13 == 0 || i13 == 3) {
                     i11 = 6;
                 }
-                if (rqVar.f51708e1 == 0) {
+                if (rqVar.f51738e1 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(this.f50274c, i10, i11, z10, null);
+                org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(this.f50282c, i10, i11, z10, null);
                 b5Var.setDelegate(new mq(this, 0));
                 hu0Var2 = b5Var;
                 hu0Var = hu0Var2;
@@ -157,11 +157,11 @@ public final class nq extends org.telegram.ui.Components.dk0 {
                 break;
             case 4:
                 org.telegram.ui.Cells.a9 a9Var = new org.telegram.ui.Cells.a9(context);
-                if (rqVar.f51735s) {
+                if (rqVar.f51765s) {
                     a9Var.setText(org.telegram.messenger.hd.N0(2131748045, null));
                     hu0Var = a9Var;
                     break;
-                } else if (rqVar.f51744w) {
+                } else if (rqVar.f51774w) {
                     a9Var.setText(org.telegram.messenger.hd.N0(2131748044, null));
                     hu0Var = a9Var;
                     break;
@@ -171,7 +171,7 @@ public final class nq extends org.telegram.ui.Components.dk0 {
                     break;
                 }
             case 5:
-                org.telegram.ui.Cells.o4 o4Var = new org.telegram.ui.Cells.o4(this.f50274c, org.telegram.ui.ActionBar.m6.L6, 21, 11, false, null);
+                org.telegram.ui.Cells.o4 o4Var = new org.telegram.ui.Cells.o4(this.f50282c, org.telegram.ui.ActionBar.m6.L6, 21, 11, false, null);
                 o4Var.setHeight(43);
                 hu0Var2 = o4Var;
                 hu0Var = hu0Var2;
@@ -192,7 +192,7 @@ public final class nq extends org.telegram.ui.Components.dk0 {
             case 9:
             default:
                 org.telegram.ui.Components.hu0 hu0Var3 = new org.telegram.ui.Components.hu0(context, null);
-                hu0Var3.b(rqVar.f51729p1, null, org.telegram.messenger.hd.N0(2131745109, "SlowmodeOff"), org.telegram.messenger.hd.a0(null, null, 2131745108, 5), org.telegram.messenger.hd.a0(null, null, 2131745108, 10), org.telegram.messenger.hd.a0(null, null, 2131745108, 30), org.telegram.messenger.hd.a0(null, null, 2131745110, 1), org.telegram.messenger.hd.a0(null, null, 2131745110, 5), org.telegram.messenger.hd.a0(null, null, 2131745110, 15), org.telegram.messenger.hd.a0(null, null, 2131745113, 1));
+                hu0Var3.b(rqVar.f51759p1, null, org.telegram.messenger.hd.N0(2131745109, "SlowmodeOff"), org.telegram.messenger.hd.a0(null, null, 2131745108, 5), org.telegram.messenger.hd.a0(null, null, 2131745108, 10), org.telegram.messenger.hd.a0(null, null, 2131745108, 30), org.telegram.messenger.hd.a0(null, null, 2131745110, 1), org.telegram.messenger.hd.a0(null, null, 2131745110, 5), org.telegram.messenger.hd.a0(null, null, 2131745110, 15), org.telegram.messenger.hd.a0(null, null, 2131745113, 1));
                 hu0Var3.setCallback(new mq(this, 1));
                 hu0Var = hu0Var3;
                 break;
@@ -203,33 +203,33 @@ public final class nq extends org.telegram.ui.Components.dk0 {
                 org.telegram.ui.Components.yz yzVar = new org.telegram.ui.Components.yz(context, null);
                 yzVar.setIsSingleCell(true);
                 yzVar.setViewType(6);
-                yzVar.f42605x = false;
+                yzVar.f42563x = false;
                 yzVar.setUseHeaderOffset(false);
                 yzVar.setPaddingLeft(org.telegram.messenger.g0.L(5.0f));
-                v4.q0 q0Var = new v4.q0(-1, -1);
+                v4.p0 p0Var = new v4.p0(-1, -1);
                 int L = org.telegram.messenger.g0.L(12.0f);
-                ((ViewGroup.MarginLayoutParams) q0Var).rightMargin = L;
-                ((ViewGroup.MarginLayoutParams) q0Var).leftMargin = L;
-                ((ViewGroup.MarginLayoutParams) q0Var).topMargin = org.telegram.messenger.g0.L(30.0f);
-                yzVar.setLayoutParams(q0Var);
+                ((ViewGroup.MarginLayoutParams) p0Var).rightMargin = L;
+                ((ViewGroup.MarginLayoutParams) p0Var).leftMargin = L;
+                ((ViewGroup.MarginLayoutParams) p0Var).topMargin = org.telegram.messenger.g0.L(30.0f);
+                yzVar.setLayoutParams(p0Var);
                 hu0Var = yzVar;
                 break;
             case 12:
-                org.telegram.ui.Cells.n8 n8Var = new org.telegram.ui.Cells.n8(23, this.f50274c, rqVar.getResourceProvider(), false, true);
-                n8Var.f31173w = 50;
+                org.telegram.ui.Cells.n8 n8Var = new org.telegram.ui.Cells.n8(23, this.f50282c, rqVar.getResourceProvider(), false, true);
+                n8Var.f31139w = 50;
                 hu0Var = n8Var;
                 break;
             case 13:
-                org.telegram.ui.Cells.d2 d2Var = new org.telegram.ui.Cells.d2(this.f50274c, 4, 21, false, rqVar.getResourceProvider());
+                org.telegram.ui.Cells.d2 d2Var = new org.telegram.ui.Cells.d2(this.f50282c, 4, 21, false, rqVar.getResourceProvider());
                 d2Var.getCheckBoxRound().setDrawBackgroundAsArc(14);
-                d2Var.getCheckBoxRound().b(org.telegram.ui.ActionBar.m6.V6, org.telegram.ui.ActionBar.m6.f29437g7, org.telegram.ui.ActionBar.m6.f29511k7);
+                d2Var.getCheckBoxRound().b(org.telegram.ui.ActionBar.m6.V6, org.telegram.ui.ActionBar.m6.f29403g7, org.telegram.ui.ActionBar.m6.f29477k7);
                 d2Var.setEnabled(true);
                 hu0Var = d2Var;
                 break;
             case 15:
                 org.telegram.ui.Components.hu0 hu0Var4 = new org.telegram.ui.Components.hu0(context, null);
                 Drawable[] drawableArr = {rqVar.getParentActivity().getDrawable(2131231931), rqVar.getParentActivity().getDrawable(2131231932), rqVar.getParentActivity().getDrawable(2131231932), rqVar.getParentActivity().getDrawable(2131231932), rqVar.getParentActivity().getDrawable(2131231932)};
-                int i14 = rqVar.f51737s1;
+                int i14 = rqVar.f51767s1;
                 if (i14 > 0) {
                     i12 = i14 - 1;
                 }
@@ -245,6 +245,6 @@ public final class nq extends org.telegram.ui.Components.dk0 {
                 hu0Var = new org.telegram.ui.Cells.u7(context, rqVar.getResourceProvider());
                 break;
         }
-        return new v4.f1(hu0Var);
+        return new v4.e1(hu0Var);
     }
 }

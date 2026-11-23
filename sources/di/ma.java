@@ -6,26 +6,26 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import org.telegram.messenger.hd;
 public final class ma extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.w2[] f9358a;
-    public final Context f9359b;
-    public final boolean f9360c;
+    public final org.telegram.ui.ActionBar.w2[] f9323a;
+    public final Context f9324b;
+    public final boolean f9325c;
 
     public ma(org.telegram.ui.ActionBar.w2[] w2VarArr, Context context, boolean z10) {
-        this.f9358a = w2VarArr;
-        this.f9359b = context;
-        this.f9360c = z10;
+        this.f9323a = w2VarArr;
+        this.f9324b = context;
+        this.f9325c = z10;
     }
 
     @Override
     public final void onClick(View view) {
         int i7;
-        this.f9358a[0].dismiss();
-        if (this.f9360c) {
-            i7 = 2131744684;
+        this.f9323a[0].dismiss();
+        if (this.f9325c) {
+            i7 = 2131744686;
         } else {
-            i7 = 2131744681;
+            i7 = 2131744683;
         }
-        vf.c.t(this.f9359b, hd.N0(i7, null));
+        vf.c.t(this.f9324b, hd.N0(i7, null));
     }
 
     @Override

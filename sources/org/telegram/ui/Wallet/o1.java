@@ -2,46 +2,46 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.y10;
 public final class o1 implements y10 {
-    public final h2 f44726a;
-    public final boolean[] f44727b;
-    public final hi.e f44728c;
-    public final hi.e d;
-    public final l2 f44729e;
-    public final d3 f44730f;
-    public final boolean[] f44731g;
+    public final h2 f44692a;
+    public final boolean[] f44693b;
+    public final hi.d f44694c;
+    public final hi.d d;
+    public final l2 f44695e;
+    public final d3 f44696f;
+    public final boolean[] f44697g;
     public final org.telegram.ui.ActionBar.h6 h;
 
-    public o1(h2 h2Var, boolean[] zArr, hi.e eVar, hi.e eVar2, l2 l2Var, d3 d3Var, boolean[] zArr2, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f44726a = h2Var;
-        this.f44727b = zArr;
-        this.f44728c = eVar;
-        this.d = eVar2;
-        this.f44729e = l2Var;
-        this.f44730f = d3Var;
-        this.f44731g = zArr2;
+    public o1(h2 h2Var, boolean[] zArr, hi.d dVar, hi.d dVar2, l2 l2Var, d3 d3Var, boolean[] zArr2, org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f44692a = h2Var;
+        this.f44693b = zArr;
+        this.f44694c = dVar;
+        this.d = dVar2;
+        this.f44695e = l2Var;
+        this.f44696f = d3Var;
+        this.f44697g = zArr2;
         this.h = h6Var;
     }
 
     @Override
     public final void a(Object obj) {
-        hi.e eVar;
+        hi.d dVar;
         Boolean bool = (Boolean) obj;
-        h2 h2Var = this.f44726a;
-        if (!h2Var.f44343m && !h2Var.f44344n) {
+        h2 h2Var = this.f44692a;
+        if (!h2Var.f44309m && !h2Var.f44310n) {
             boolean booleanValue = bool.booleanValue();
-            boolean[] zArr = this.f44727b;
+            boolean[] zArr = this.f44693b;
             if (booleanValue || zArr[0]) {
-                hi.e eVar2 = this.f44728c;
-                eVar2.setEnabled(false);
-                hi.e eVar3 = this.d;
-                eVar3.setEnabled(false);
+                hi.d dVar2 = this.f44694c;
+                dVar2.setEnabled(false);
+                hi.d dVar3 = this.d;
+                dVar3.setEnabled(false);
                 if (bool.booleanValue()) {
-                    eVar = eVar3;
+                    dVar = dVar3;
                 } else {
-                    eVar = eVar2;
+                    dVar = dVar2;
                 }
-                eVar.setLoading(true);
-                this.f44729e.f(h2Var, bool.booleanValue(), new u1(eVar2, eVar3, this.f44730f, this.f44731g, this.h, h2Var, zArr));
+                dVar.setLoading(true);
+                this.f44695e.f(h2Var, bool.booleanValue(), new u1(dVar2, dVar3, this.f44696f, this.f44697g, this.h, h2Var, zArr));
             }
         }
     }

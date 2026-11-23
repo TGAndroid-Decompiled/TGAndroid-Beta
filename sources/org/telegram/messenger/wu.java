@@ -11,7 +11,7 @@ public abstract class wu extends au {
     public final ev X;
     public final ev Y;
     public final ev[] Z;
-    public final boolean f27804a0;
+    public final boolean f27768a0;
 
     public wu(fv fvVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2, Layout.Alignment alignment) {
         super(fvVar, rect, i7);
@@ -22,11 +22,11 @@ public abstract class wu extends au {
         } else {
             z10 = false;
         }
-        this.f27804a0 = z10;
-        ev evVar2 = new ev(fvVar, spannableStringBuilder, this.f22970c, alignment);
+        this.f27768a0 = z10;
+        ev evVar2 = new ev(fvVar, spannableStringBuilder, this.f22934c, alignment);
         this.X = evVar2;
         if (!TextUtils.isEmpty(spannableStringBuilder2)) {
-            evVar = new ev(fvVar, spannableStringBuilder2, this.f22970c, alignment);
+            evVar = new ev(fvVar, spannableStringBuilder2, this.f22934c, alignment);
         } else {
             evVar = null;
         }
@@ -37,11 +37,11 @@ public abstract class wu extends au {
     @Override
     public final int I() {
         int i7;
-        Rect rect = this.f22969b;
-        int i02 = i0() + this.X.f23770b.getHeight() + rect.top;
+        Rect rect = this.f22933b;
+        int i02 = i0() + this.X.f23734b.getHeight() + rect.top;
         ev evVar = this.Y;
         if (evVar != null) {
-            i7 = evVar.f23770b.getHeight();
+            i7 = evVar.f23734b.getHeight();
         } else {
             i7 = 0;
         }
@@ -54,14 +54,14 @@ public abstract class wu extends au {
         if (evVar == null) {
             evVar = this.X;
         }
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         return evVar.q() + rect.left + rect.right;
     }
 
     @Override
     public final int K() {
         int i7;
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         int i10 = rect.left;
         int r10 = this.X.r();
         ev evVar = this.Y;
@@ -106,7 +106,7 @@ public abstract class wu extends au {
         ev evVar2 = this.Y;
         if (evVar2 != null) {
             canvas.save();
-            canvas.translate(j0(evVar2), i0() + evVar.f23770b.getHeight());
+            canvas.translate(j0(evVar2), i0() + evVar.f23734b.getHeight());
             evVar2.d(canvas, evVar2.T);
             canvas.restore();
         }
@@ -116,7 +116,7 @@ public abstract class wu extends au {
     public final boolean Y(MotionEvent motionEvent) {
         int i7;
         ev evVar = this.X;
-        int height = evVar.f23770b.getHeight();
+        int height = evVar.f23734b.getHeight();
         float y10 = motionEvent.getY();
         int i10 = 0;
         if (y10 >= 0.0f && y10 < height) {
@@ -139,20 +139,20 @@ public abstract class wu extends au {
     @Override
     public final void Z(int i7, int i10, int i11) {
         ev evVar = this.X;
-        evVar.f23771c = (j0(evVar) + i7) - evVar.f23773f;
+        evVar.f23735c = (j0(evVar) + i7) - evVar.f23737f;
         evVar.d = i10;
-        evVar.f23772e = i11;
+        evVar.f23736e = i11;
         ev evVar2 = this.Y;
         if (evVar2 != null) {
-            evVar2.f23771c = (j0(evVar2) + i7) - evVar2.f23773f;
-            evVar2.d = i0() + evVar.f23770b.getHeight() + i10;
-            evVar2.f23772e = i11;
+            evVar2.f23735c = (j0(evVar2) + i7) - evVar2.f23737f;
+            evVar2.d = i0() + evVar.f23734b.getHeight() + i10;
+            evVar2.f23736e = i11;
         }
     }
 
     @Override
     public final Layout a() {
-        return this.X.f23770b;
+        return this.X.f23734b;
     }
 
     public final int i0() {
@@ -165,9 +165,9 @@ public abstract class wu extends au {
     public final int j0(ev evVar) {
         int L;
         int r10;
-        boolean z10 = this.f27804a0;
-        Rect rect = this.f22969b;
-        fv fvVar = this.f22968a;
+        boolean z10 = this.f27768a0;
+        Rect rect = this.f22933b;
+        fv fvVar = this.f22932a;
         if (z10) {
             L = (((fvVar.C + fvVar.T) - fvVar.S) - evVar.r()) / 2;
             r10 = rect.left;
@@ -189,16 +189,16 @@ public abstract class wu extends au {
     public final boolean u(CharacterStyle characterStyle, int i7, rt rtVar) {
         ev evVar = this.X;
         boolean o4 = evVar.o(characterStyle, rtVar);
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         if (o4) {
-            rtVar.f26661e = (j0(evVar) + rect.left) - evVar.f23773f;
-            rtVar.f26662f = i7 + rect.top;
+            rtVar.f26625e = (j0(evVar) + rect.left) - evVar.f23737f;
+            rtVar.f26626f = i7 + rect.top;
             return true;
         }
         ev evVar2 = this.Y;
         if (evVar2 != null && evVar2.o(characterStyle, rtVar)) {
-            rtVar.f26661e = (j0(evVar2) + rect.left) - evVar2.f23773f;
-            rtVar.f26662f = i0() + evVar.f23770b.getHeight() + i7 + rect.top;
+            rtVar.f26625e = (j0(evVar2) + rect.left) - evVar2.f23737f;
+            rtVar.f26626f = i0() + evVar.f23734b.getHeight() + i7 + rect.top;
             return true;
         }
         return false;
@@ -206,6 +206,6 @@ public abstract class wu extends au {
 
     @Override
     public final boolean v() {
-        return this.f27804a0;
+        return this.f27768a0;
     }
 }

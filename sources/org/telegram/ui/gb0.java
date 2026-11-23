@@ -6,24 +6,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class gb0 implements RequestDelegate {
-    public final int f48028a;
-    public final pb0 f48029b;
-    public final Bundle f48030c;
+    public final int f47972a;
+    public final pb0 f47973b;
+    public final Bundle f47974c;
     public final TLRPC.TL_auth_resetLoginEmail d;
 
     public gb0(pb0 pb0Var, Bundle bundle, TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail, int i7) {
-        this.f48028a = i7;
-        this.f48029b = pb0Var;
-        this.f48030c = bundle;
+        this.f47972a = i7;
+        this.f47973b = pb0Var;
+        this.f47974c = bundle;
         this.d = tL_auth_resetLoginEmail;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f48028a) {
+        switch (this.f47972a) {
             case 0:
-                final pb0 pb0Var = this.f48029b;
-                final Bundle bundle = this.f48030c;
+                final pb0 pb0Var = this.f47973b;
+                final Bundle bundle = this.f47974c;
                 final TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail = this.d;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
@@ -40,7 +40,7 @@ public final class gb0 implements RequestDelegate {
                         pb0 pb0Var2 = pb0Var;
                         switch (i11) {
                             case 0:
-                                de0 de0Var = pb0Var2.f50834a0;
+                                de0 de0Var = pb0Var2.f50807a0;
                                 if (de0Var.getParentActivity() != null) {
                                     pb0Var2.W = false;
                                     if (tLObject2 instanceof TLRPC.TL_auth_sentCode) {
@@ -50,7 +50,7 @@ public final class gb0 implements RequestDelegate {
                                         if (str.contains("TASK_ALREADY_EXISTS")) {
                                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pb0Var2.getContext());
                                             String N0 = org.telegram.messenger.hd.N0(2131748536, null);
-                                            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                                            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                                             t1Var.S = N0;
                                             pf.b c10 = pf.b.c();
                                             t1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0(null, null, 2131748537, org.telegram.messenger.hd.a(c10.b("+" + pb0Var2.M))));
@@ -71,13 +71,13 @@ public final class gb0 implements RequestDelegate {
                                 }
                                 return;
                             default:
-                                de0 de0Var2 = pb0Var2.f50834a0;
+                                de0 de0Var2 = pb0Var2.f50807a0;
                                 if (tLObject2 instanceof TLRPC.TL_auth_sentCode) {
                                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject2;
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
                                         auth_sentcodetype.email_pattern = pb0Var2.E.getString("emailPattern");
-                                        pb0Var2.f50844y = true;
+                                        pb0Var2.f50817y = true;
                                     }
                                     de0Var2.y1(bundle2, tL_auth_sentCode, true);
                                     return;
@@ -98,8 +98,8 @@ public final class gb0 implements RequestDelegate {
                 });
                 return;
             default:
-                final pb0 pb0Var2 = this.f48029b;
-                final Bundle bundle2 = this.f48030c;
+                final pb0 pb0Var2 = this.f47973b;
+                final Bundle bundle2 = this.f47974c;
                 final TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail2 = this.d;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
@@ -116,7 +116,7 @@ public final class gb0 implements RequestDelegate {
                         pb0 pb0Var22 = pb0Var2;
                         switch (i11) {
                             case 0:
-                                de0 de0Var = pb0Var22.f50834a0;
+                                de0 de0Var = pb0Var22.f50807a0;
                                 if (de0Var.getParentActivity() != null) {
                                     pb0Var22.W = false;
                                     if (tLObject2 instanceof TLRPC.TL_auth_sentCode) {
@@ -126,7 +126,7 @@ public final class gb0 implements RequestDelegate {
                                         if (str.contains("TASK_ALREADY_EXISTS")) {
                                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pb0Var22.getContext());
                                             String N0 = org.telegram.messenger.hd.N0(2131748536, null);
-                                            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                                            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                                             t1Var.S = N0;
                                             pf.b c10 = pf.b.c();
                                             t1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0(null, null, 2131748537, org.telegram.messenger.hd.a(c10.b("+" + pb0Var22.M))));
@@ -147,13 +147,13 @@ public final class gb0 implements RequestDelegate {
                                 }
                                 return;
                             default:
-                                de0 de0Var2 = pb0Var22.f50834a0;
+                                de0 de0Var2 = pb0Var22.f50807a0;
                                 if (tLObject2 instanceof TLRPC.TL_auth_sentCode) {
                                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject2;
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
                                         auth_sentcodetype.email_pattern = pb0Var22.E.getString("emailPattern");
-                                        pb0Var22.f50844y = true;
+                                        pb0Var22.f50817y = true;
                                     }
                                     de0Var2.y1(bundle22, tL_auth_sentCode, true);
                                     return;

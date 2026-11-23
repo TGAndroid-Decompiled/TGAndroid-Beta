@@ -2,19 +2,19 @@ package cc;
 
 import java.lang.reflect.Array;
 public final class h extends g {
-    public b f5209e;
+    public b f5172e;
 
     @Override
     public final b a() {
         int min;
         int min2;
-        b bVar = this.f5209e;
+        b bVar = this.f5172e;
         if (bVar != null) {
             return bVar;
         }
-        bc.d dVar = this.f5206a;
-        int i7 = dVar.f3137a;
-        int i10 = dVar.f3138b;
+        bc.d dVar = this.f5169a;
+        int i7 = dVar.f3088a;
+        int i10 = dVar.f3089b;
         if (i7 >= 40 && i10 >= 40) {
             byte[] a10 = dVar.a();
             int i11 = i7 >> 3;
@@ -175,10 +175,10 @@ public final class h extends g {
                 i37 = 2;
                 i38++;
             }
-            this.f5209e = bVar2;
+            this.f5172e = bVar2;
         } else {
-            this.f5209e = super.a();
+            this.f5172e = super.a();
         }
-        return this.f5209e;
+        return this.f5172e;
     }
 }

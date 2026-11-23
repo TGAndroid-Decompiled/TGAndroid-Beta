@@ -11,25 +11,25 @@ public final class p0 extends sa {
     public final boolean X1;
     public final ah.a Y1;
     public boolean Z1;
-    public boolean f38427a2;
-    public boolean f38428b2;
-    public org.telegram.ui.ra f38429c2;
+    public boolean f38385a2;
+    public boolean f38386b2;
+    public org.telegram.ui.ra f38387c2;
     public int d2;
 
     public p0(org.telegram.ui.ActionBar.g2 g2Var, TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, a0.h hVar, boolean z10) {
         super(g2Var.getContext(), g2Var, false, true, 2, g2Var.getResourceProvider());
         this.U1 = new TLRPC.TL_channelAdminLogEventsFilter();
         this.Z1 = false;
-        this.f38427a2 = false;
-        this.f38428b2 = false;
-        this.f39538v1 = 0.35f;
+        this.f38385a2 = false;
+        this.f38386b2 = false;
+        this.f39494v1 = 0.35f;
         O();
-        int i7 = org.telegram.ui.ActionBar.m6.f29472i5;
+        int i7 = org.telegram.ui.ActionBar.m6.f29438i5;
         int w02 = org.telegram.ui.ActionBar.m6.w0(i7, this.J0);
         this.d2 = w02;
         v0(w02);
         Z0();
-        this.f39541y1 = true;
+        this.f39497y1 = true;
         if (tL_channelAdminLogEventsFilter != null) {
             TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter2 = this.U1;
             tL_channelAdminLogEventsFilter2.join = tL_channelAdminLogEventsFilter.join;
@@ -75,40 +75,40 @@ public final class p0 extends sa {
         this.X1 = z10;
         this.T1.O(false);
         v4.k kVar = new v4.k();
-        kVar.f59194m = false;
+        kVar.f59139m = false;
         kVar.C = false;
         kVar.o(nr.h);
         kVar.n(350L);
-        this.f39531o1.setItemAnimator(kVar);
-        this.f39531o1.setOnItemClickListener(new c0(this, 1));
+        this.f39487o1.setItemAnimator(kVar);
+        this.f39487o1.setOnItemClickListener(new c0(this, 1));
         ah.a aVar = new ah.a(getContext(), this.J0, (ek0) null);
         this.Y1 = aVar;
         aVar.setClickable(true);
         aVar.setOrientation(1);
         aVar.setPadding(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f));
         org.telegram.ui.ActionBar.t6.h(i7, aVar, this.J0);
-        hi.e eVar = new hi.e(getContext(), this.J0, true);
-        eVar.f();
-        eVar.i(org.telegram.messenger.hd.N0(2131750991, null), false, true);
-        eVar.setOnClickListener(new o0(this, 0));
-        aVar.addView(eVar, c8.ma.r(-1, 48, 87));
-        ViewGroup viewGroup = this.f30176b;
-        int i10 = this.f30211u0;
-        viewGroup.addView(aVar, c8.ma.f(-2.0f, -1, 87, i10, 0, i10, 0));
-        ek0 ek0Var = this.f39531o1;
-        int i11 = this.f30211u0;
+        hi.d dVar = new hi.d(getContext(), this.J0, true);
+        dVar.f();
+        dVar.i(org.telegram.messenger.hd.N0(2131750991, null), false, true);
+        dVar.setOnClickListener(new o0(this, 0));
+        aVar.addView(dVar, c8.na.r(-1, 48, 87));
+        ViewGroup viewGroup = this.f30142b;
+        int i10 = this.f30177u0;
+        viewGroup.addView(aVar, c8.na.f(-2.0f, -1, 87, i10, 0, i10, 0));
+        ek0 ek0Var = this.f39487o1;
+        int i11 = this.f30177u0;
         ek0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(68.0f));
-        this.f39531o1.r1();
+        this.f39487o1.r1();
     }
 
     @Override
     public final boolean G() {
-        return !this.f39531o1.canScrollVertically(-1);
+        return !this.f39487o1.canScrollVertically(-1);
     }
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(ek0Var, getContext(), this.f30173a, 0, true, new d(this, 3), this.J0);
+        c51 c51Var = new c51(ek0Var, getContext(), this.f30139a, 0, true, new d(this, 3), this.J0);
         this.T1 = c51Var;
         return c51Var;
     }
@@ -179,7 +179,7 @@ public final class p0 extends sa {
                 Object obj = arrayList2.get(i7);
                 i7++;
                 long o4 = org.telegram.messenger.n5.o(((TLRPC.ChannelParticipant) obj).peer);
-                this.W1.k(org.telegram.messenger.np.u1(this.f30173a).c2(Long.valueOf(o4)), o4);
+                this.W1.k(org.telegram.messenger.np.u1(this.f30139a).c2(Long.valueOf(o4)), o4);
             }
         }
         c51 c51Var = this.T1;
@@ -198,7 +198,7 @@ public final class p0 extends sa {
     public final void s0() {
         try {
             super.s0();
-            int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29472i5, this.J0);
+            int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29438i5, this.J0);
             if (w02 != this.d2) {
                 this.d2 = w02;
                 v0(w02);

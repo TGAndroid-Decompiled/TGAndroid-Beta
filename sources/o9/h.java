@@ -1,6 +1,6 @@
 package o9;
 
-import a8.j8;
+import a8.k8;
 import a8.r7;
 import ab.b0;
 import com.google.android.gms.common.api.Status;
@@ -10,19 +10,19 @@ import kotlin.jvm.internal.j;
 import u9.q;
 import zd.v0;
 public final class h implements u9.d, r {
-    public static final h f21796b = new h(0);
-    public static final h f21797c = new h(1);
+    public static final h f21762b = new h(0);
+    public static final h f21763c = new h(1);
     public static final h d = new h(2);
-    public static final h f21798e = new h(3);
-    public final int f21799a;
+    public static final h f21764e = new h(3);
+    public final int f21765a;
 
     public h(int i7) {
-        this.f21799a = i7;
+        this.f21765a = i7;
     }
 
     @Override
     public Object e(r7 r7Var) {
-        switch (this.f21799a) {
+        switch (this.f21765a) {
             case 0:
                 Object e10 = r7Var.e(new q(q9.a.class, Executor.class));
                 j.d(e10, "get(...)");
@@ -44,17 +44,17 @@ public final class h implements u9.d, r {
 
     @Override
     public Exception k(Status status) {
-        int i7 = status.f6226a;
-        int i10 = status.f6226a;
-        String str = status.f6227b;
+        int i7 = status.f6189a;
+        int i10 = status.f6189a;
+        String str = status.f6190b;
         if (i7 == 8) {
             if (str == null) {
-                str = j8.a(i10);
+                str = k8.a(i10);
             }
             return new b0(str);
         }
         if (str == null) {
-            str = j8.a(i10);
+            str = k8.a(i10);
         }
         return new b0(str);
     }

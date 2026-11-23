@@ -1,264 +1,70 @@
 package hi;
 
+import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.RectF;
+import android.media.MediaMetadataRetriever;
 import java.util.ArrayList;
-public final class bb extends Path {
-    public final int f14306a = org.telegram.messenger.g0.L(10.0f);
-    public final float[] f14307b;
-    public ArrayList f14308c;
-    public ArrayList d;
-    public float f14309e;
-    public float f14310f;
-    public float f14311g;
-    public float h;
-    public float f14312i;
-    public float f14313j;
-    public float f14314k;
+import org.telegram.messenger.Utilities;
+public final class bb {
+    public long f14233a;
+    public volatile long f14234b;
+    public int f14235c;
+    public volatile int f14237f;
+    public volatile int f14238g;
+    public final boolean h;
+    public boolean f14239i;
+    public long f14240j;
+    public Path f14243m;
+    public final db f14244n;
+    public final ArrayList d = new ArrayList();
+    public boolean f14241k = false;
+    public final Paint f14242l = new Paint(3);
+    public MediaMetadataRetriever f14236e = new MediaMetadataRetriever();
 
-    public bb() {
-        this.f14307b = r0;
-        float L = org.telegram.messenger.g0.L(2.0f);
-        float[] fArr = {L, L, L, L, 0.0f, 0.0f, 0.0f, 0.0f};
+    public bb(db dbVar, boolean z10, final String str, final int i7, final int i10, final Long l10, final long j3, final long j10, final long j11, final Runnable runnable) {
+        this.f14244n = dbVar;
+        this.h = z10;
+        Utilities.f22777i.c(new Runnable() {
+            @Override
+            public final void run() {
+                throw new UnsupportedOperationException("Method not decompiled: hi.za.run():void");
+            }
+        });
     }
 
-    public static int c(ArrayList arrayList) {
-        if (arrayList == null) {
-            return 0;
-        }
+    public final void b() {
+        this.f14239i = true;
+        Utilities.f22777i.a(new b0(this, 23));
+        ArrayList arrayList = this.d;
+        int size = arrayList.size();
         int i7 = 0;
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (arrayList.get(i10) != null) {
-                i7 += ((va) arrayList.get(i10)).f15672e;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            Bitmap bitmap = ((ab) obj).f14201a;
+            if (bitmap != null) {
+                bitmap.recycle();
             }
         }
-        return i7;
+        this.d.clear();
+        MediaMetadataRetriever mediaMetadataRetriever = this.f14236e;
+        if (mediaMetadataRetriever != null) {
+            try {
+                mediaMetadataRetriever.release();
+            } catch (Exception e10) {
+                this.f14236e = null;
+                org.telegram.messenger.a8.g(e10, true);
+            }
+        }
     }
 
-    public final void a(float f10, float f11, float f12, float f13, float f14, float f15, ArrayList arrayList) {
-        float f16;
-        float f17;
-        float f18;
-        short s5;
-        float e10;
-        int i7;
-        float e11;
-        int i10;
-        float f19 = f10;
-        float f20 = f12;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            float f21 = 0.0f;
-            if (Math.abs(this.f14309e - f13) <= 1.0f && Math.abs(this.f14310f - f14) <= 0.01f && Math.abs(this.f14311g - 0.0f) <= 0.1f && Math.abs(this.h - f15) <= 1.0f && Math.abs(this.f14312i - f19) <= 1.0f && Math.abs(this.f14313j - f11) <= 1.0f && Math.abs(this.f14314k - f20) <= 1.0f) {
-                ArrayList arrayList2 = this.f14308c;
-                if (arrayList2 != null && arrayList2.size() == arrayList.size()) {
-                    for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                        int intValue = ((Integer) arrayList2.get(i11)).intValue();
-                        if (arrayList.get(i11) == null) {
-                            i10 = 0;
-                        } else {
-                            i10 = ((va) arrayList.get(i11)).f15670b;
-                        }
-                        if (intValue == i10) {
-                        }
-                    }
-                }
-                ArrayList arrayList3 = this.d;
-                if (arrayList3 != null && arrayList3.size() == arrayList.size()) {
-                    for (int i12 = 0; i12 < arrayList3.size(); i12++) {
-                        float floatValue = ((Float) arrayList3.get(i12)).floatValue();
-                        if (arrayList.get(i12) == null) {
-                            e11 = 0.0f;
-                        } else {
-                            e11 = ((va) arrayList.get(i12)).f15669a.e(false, ((va) arrayList.get(i12)).f15671c);
-                        }
-                        if (floatValue != e11) {
-                            return;
-                        }
-                    }
-                } else {
-                    return;
-                }
-            }
-            ArrayList arrayList4 = this.f14308c;
-            if (arrayList4 == null) {
-                this.f14308c = new ArrayList();
-            } else {
-                arrayList4.clear();
-            }
-            int i13 = 0;
-            while (i13 < arrayList.size()) {
-                ArrayList arrayList5 = this.f14308c;
-                if (arrayList.get(i13) == null) {
-                    i7 = 0;
-                } else {
-                    i7 = ((va) arrayList.get(i13)).f15670b;
-                }
-                i13 = com.google.android.gms.internal.vision.e2.f(i7, i13, 1, arrayList5);
-            }
-            ArrayList arrayList6 = this.d;
-            if (arrayList6 == null) {
-                this.d = new ArrayList();
-            } else {
-                arrayList6.clear();
-            }
-            for (int i14 = 0; i14 < arrayList.size(); i14++) {
-                ArrayList arrayList7 = this.d;
-                if (arrayList.get(i14) == null) {
-                    e10 = 0.0f;
-                } else {
-                    e10 = ((va) arrayList.get(i14)).f15669a.e(false, ((va) arrayList.get(i14)).f15671c);
-                }
-                arrayList7.add(Float.valueOf(e10));
-            }
-            this.f14312i = f19;
-            this.f14313j = f11;
-            this.f14314k = f20;
-            this.f14311g = 0.0f;
-            this.f14310f = f14;
-            this.f14309e = f13;
-            this.h = f15;
-            ArrayList arrayList8 = this.d;
-            rewind();
-            float round = Math.round(org.telegram.messenger.g0.N(3.3333f));
-            int i15 = 0;
-            for (int i16 = 0; i16 < arrayList.size(); i16++) {
-                if (arrayList.get(i16) != null) {
-                    i15 = Math.max(i15, ((va) arrayList.get(i16)).f15670b);
-                }
-            }
-            int max = Math.max(0, (int) (((f11 - this.f14306a) - f19) / round));
-            int min = Math.min(i15 - 1, (int) Math.ceil(((f20 + f16) - f19) / round));
-            while (max <= min) {
-                float f22 = max;
-                float L = (f22 * round) + f19 + org.telegram.messenger.g0.L(2.0f);
-                float f23 = f21;
-                int i17 = 0;
-                for (int i18 = 0; i18 < arrayList.size(); i18++) {
-                    if (arrayList.get(i18) != null && max < ((va) arrayList.get(i18)).f15670b) {
-                        s5 = ((va) arrayList.get(i18)).d[max];
-                    } else {
-                        s5 = 0;
-                    }
-                    if (f22 < ((Float) arrayList8.get(i18)).floatValue() && max + 1 > ((Float) arrayList8.get(i18)).floatValue()) {
-                        s5 = (short) ((((Float) arrayList8.get(i18)).floatValue() - f22) * s5);
-                    } else if (f22 > ((Float) arrayList8.get(i18)).floatValue()) {
-                        s5 = 0;
-                    }
-                    i17 += s5;
-                }
-                if (f14 <= f23) {
-                    f17 = f23;
-                } else {
-                    f17 = (i17 / f14) * f13 * 0.6f;
-                }
-                if (L < f11 || L > f20) {
-                    f17 *= f23;
-                    if (f17 <= f23) {
-                        f18 = f23;
-                        max++;
-                        f19 = f10;
-                        f20 = f12;
-                        f21 = f18;
-                    }
-                }
-                f18 = f23;
-                float max2 = Math.max(f17, org.telegram.messenger.g0.T1(org.telegram.messenger.g0.N(0.66f), org.telegram.messenger.g0.N(1.5f), f18));
-                RectF rectF = org.telegram.messenger.g0.P;
-                rectF.set(L, org.telegram.messenger.g0.T1(f15 - max2, f15 - ((f13 + max2) / 2.0f), f18), org.telegram.messenger.g0.N(1.66f) + L, org.telegram.messenger.g0.T1(f15, org.telegram.messenger.f3.y(f13, max2, 2.0f, f15), f18));
-                addRoundRect(rectF, this.f14307b, Path.Direction.CW);
-                max++;
-                f19 = f10;
-                f20 = f12;
-                f21 = f18;
-            }
-            return;
-        }
-        rewind();
-    }
-
-    public final void b(float f10, float f11, float f12, float f13, long j3, float f14, float f15, float f16, va vaVar) {
-        float f17;
-        float f18;
-        ArrayList arrayList;
-        float f19;
-        float f20 = f10;
-        float f21 = f11;
-        float f22 = f12;
-        if (vaVar == null) {
-            rewind();
-            return;
-        }
-        int i7 = vaVar.f15670b;
-        org.telegram.ui.Components.d6 d6Var = vaVar.f15669a;
-        float e10 = d6Var.e(false, vaVar.f15671c);
-        if (0 == j3 && Math.abs(this.f14309e - f14) <= 1.0f && Math.abs(this.f14310f - f15) <= 0.01f && Math.abs(this.f14311g - f13) <= 0.1f && Math.abs(this.h - f16) <= 1.0f && Math.abs(this.f14312i - f20) <= 1.0f && Math.abs(this.f14313j - f21) <= 1.0f && Math.abs(this.f14314k - f22) <= 1.0f && (arrayList = this.f14308c) != null && arrayList.size() == 1) {
-            ArrayList arrayList2 = this.d;
-            if (arrayList2 != null && !arrayList2.isEmpty()) {
-                f19 = ((Float) this.d.get(0)).floatValue();
-            } else {
-                f19 = 0.0f;
-            }
-            if (Math.abs(f19 - e10) <= 0.01f) {
-                return;
-            }
-        }
-        ArrayList arrayList3 = this.f14308c;
-        if (arrayList3 == null) {
-            this.f14308c = new ArrayList();
-        } else {
-            arrayList3.clear();
-        }
-        this.f14308c.add(Integer.valueOf(i7));
-        ArrayList arrayList4 = this.d;
-        if (arrayList4 == null) {
-            this.d = new ArrayList();
-        } else {
-            arrayList4.clear();
-        }
-        this.d.add(Float.valueOf(e10));
-        this.f14312i = f20;
-        this.f14313j = f21;
-        this.f14314k = f22;
-        this.f14311g = f13;
-        this.f14310f = f15;
-        this.f14309e = f14;
-        this.h = f16;
-        float e11 = d6Var.e(false, vaVar.f15671c);
-        rewind();
-        float round = Math.round(org.telegram.messenger.g0.N(3.3333f));
-        int max = Math.max(0, (int) (((f21 - this.f14306a) - f20) / round));
-        int min = Math.min(i7 - 1, (int) Math.ceil(((f17 + f22) - f20) / round));
-        while (max <= min) {
-            float f23 = max;
-            float L = (f23 * round) + f20 + org.telegram.messenger.g0.L(2.0f);
-            short s5 = vaVar.d[max];
-            if (f15 <= 0.0f) {
-                f18 = 0.0f;
-            } else {
-                f18 = (s5 / f15) * f14 * 0.6f;
-            }
-            if (f23 < e11 && max + 1 > e11) {
-                f18 *= e11 - f23;
-            } else if (f23 > e11) {
-                f18 = 0.0f;
-            }
-            if (L < f21 || L > f22) {
-                f18 *= f13;
-                if (f18 <= 0.0f) {
-                    max++;
-                    f20 = f10;
-                    f21 = f11;
-                    f22 = f12;
-                }
-            }
-            float max2 = Math.max(f18, org.telegram.messenger.g0.T1(org.telegram.messenger.g0.N(0.66f), org.telegram.messenger.g0.N(1.5f), f13));
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(L, org.telegram.messenger.g0.T1(f16 - max2, f16 - ((f14 + max2) / 2.0f), f13), org.telegram.messenger.g0.N(1.66f) + L, org.telegram.messenger.g0.T1(f16, org.telegram.messenger.f3.y(f14, max2, 2.0f, f16), f13));
-            addRoundRect(rectF, this.f14307b, Path.Direction.CW);
-            max++;
-            f20 = f10;
-            f21 = f11;
-            f22 = f12;
+    public final void c() {
+        if (!this.f14241k && this.f14236e != null && this.d.size() < this.f14235c) {
+            this.f14241k = true;
+            this.f14240j += this.f14234b;
+            Utilities.f22777i.a(new b0(this, 23));
+            Utilities.f22777i.c(new b0(this, 23));
         }
     }
 }

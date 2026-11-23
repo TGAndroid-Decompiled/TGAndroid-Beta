@@ -31,24 +31,24 @@ public final class y2 extends i1.a implements View.OnClickListener {
     public int L;
     public int M;
     public int N;
-    public final int f20294n;
-    public final int f20295r;
-    public final LayoutInflater f20296s;
-    public final SearchView f20297w;
-    public final SearchableInfo f20298x;
-    public final Context f20299y;
+    public final int f20260n;
+    public final int f20261r;
+    public final LayoutInflater f20262s;
+    public final SearchView f20263w;
+    public final SearchableInfo f20264x;
+    public final Context f20265y;
 
     public y2(Context context, SearchView searchView, SearchableInfo searchableInfo, WeakHashMap weakHashMap) {
         int suggestionRowLayout = searchView.getSuggestionRowLayout();
-        this.f15939b = true;
-        this.f15940c = null;
-        this.f15938a = false;
+        this.f15905b = true;
+        this.f15906c = null;
+        this.f15904a = false;
         this.d = -1;
-        this.f15941e = new com.google.android.gms.internal.clearcut.c(this);
-        this.f15942f = new c5.i(this, 1);
-        this.f20295r = suggestionRowLayout;
-        this.f20294n = suggestionRowLayout;
-        this.f20296s = (LayoutInflater) context.getSystemService("layout_inflater");
+        this.f15907e = new com.google.android.gms.internal.clearcut.c(this);
+        this.f15908f = new c5.i(this, 1);
+        this.f20261r = suggestionRowLayout;
+        this.f20260n = suggestionRowLayout;
+        this.f20262s = (LayoutInflater) context.getSystemService("layout_inflater");
         this.G = 1;
         this.I = -1;
         this.J = -1;
@@ -56,10 +56,10 @@ public final class y2 extends i1.a implements View.OnClickListener {
         this.L = -1;
         this.M = -1;
         this.N = -1;
-        this.f20297w = searchView;
-        this.f20298x = searchableInfo;
+        this.f20263w = searchView;
+        this.f20264x = searchableInfo;
         this.F = searchView.getSuggestionCommitIconResId();
-        this.f20299y = context;
+        this.f20265y = context;
         this.E = weakHashMap;
     }
 
@@ -106,7 +106,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
             if (g12 != null) {
                 return g12;
             }
-            SearchableInfo searchableInfo = this.f20298x;
+            SearchableInfo searchableInfo = this.f20264x;
             if (searchableInfo.shouldRewriteQueryFromData() && (g11 = g(cursor, cursor.getColumnIndex("suggest_intent_data"))) != null) {
                 return g11;
             }
@@ -123,7 +123,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
         String authority = uri.getAuthority();
         if (!TextUtils.isEmpty(authority)) {
             try {
-                Resources resourcesForApplication = this.f20299y.getPackageManager().getResourcesForApplication(authority);
+                Resources resourcesForApplication = this.f20265y.getPackageManager().getResourcesForApplication(authority);
                 List<String> pathSegments = uri.getPathSegments();
                 if (pathSegments != null) {
                     int size = pathSegments.size();
@@ -175,7 +175,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
         }
         String[] strArr2 = strArr;
         fragment.appendQueryParameter("limit", String.valueOf(50));
-        return this.f20299y.getContentResolver().query(fragment.build(), null, suggestSelection, strArr2, null);
+        return this.f20265y.getContentResolver().query(fragment.build(), null, suggestSelection, strArr2, null);
     }
 
     @Override
@@ -184,9 +184,9 @@ public final class y2 extends i1.a implements View.OnClickListener {
             return super.getDropDownView(i7, view, viewGroup);
         } catch (RuntimeException e10) {
             Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e10);
-            View inflate = this.f20296s.inflate(this.f20295r, viewGroup, false);
+            View inflate = this.f20262s.inflate(this.f20261r, viewGroup, false);
             if (inflate != null) {
-                ((x2) inflate.getTag()).f20286a.setText(e10.toString());
+                ((x2) inflate.getTag()).f20252a.setText(e10.toString());
             }
             return inflate;
         }
@@ -198,10 +198,10 @@ public final class y2 extends i1.a implements View.OnClickListener {
             return super.getView(i7, view, viewGroup);
         } catch (RuntimeException e10) {
             Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e10);
-            View inflate = this.f20296s.inflate(this.f20294n, viewGroup, false);
+            View inflate = this.f20262s.inflate(this.f20260n, viewGroup, false);
             inflate.setTag(new x2(inflate));
             ((ImageView) inflate.findViewById(2131296422)).setImageResource(this.F);
-            ((x2) inflate.getTag()).f20286a.setText(e10.toString());
+            ((x2) inflate.getTag()).f20252a.setText(e10.toString());
             return inflate;
         }
     }
@@ -215,7 +215,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
     public final void notifyDataSetChanged() {
         Bundle bundle;
         super.notifyDataSetChanged();
-        Cursor cursor = this.f15940c;
+        Cursor cursor = this.f15906c;
         if (cursor != null) {
             bundle = cursor.getExtras();
         } else {
@@ -230,7 +230,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
     public final void notifyDataSetInvalidated() {
         Bundle bundle;
         super.notifyDataSetInvalidated();
-        Cursor cursor = this.f15940c;
+        Cursor cursor = this.f15906c;
         if (cursor != null) {
             bundle = cursor.getExtras();
         } else {
@@ -245,7 +245,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
     public final void onClick(View view) {
         Object tag = view.getTag();
         if (tag instanceof CharSequence) {
-            this.f20297w.o((CharSequence) tag);
+            this.f20263w.o((CharSequence) tag);
         }
     }
 }

@@ -12,38 +12,38 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class j10 implements Runnable {
-    public final int f24818a;
-    public final boolean f24819b;
-    public final Object f24820c;
+    public final int f24782a;
+    public final boolean f24783b;
+    public final Object f24784c;
 
     public j10(int i7, Object obj, boolean z10) {
-        this.f24818a = i7;
-        this.f24820c = obj;
-        this.f24819b = z10;
+        this.f24782a = i7;
+        this.f24784c = obj;
+        this.f24783b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f24818a) {
+        switch (this.f24782a) {
             case 0:
-                k10 k10Var = (k10) this.f24820c;
-                boolean z10 = this.f24819b;
-                if (k10Var.f24972b) {
-                    synchronized (k10Var.f24970a) {
+                k10 k10Var = (k10) this.f24784c;
+                boolean z10 = this.f24783b;
+                if (k10Var.f24936b) {
+                    synchronized (k10Var.f24934a) {
                         try {
                             try {
                                 SharedPreferences.Editor edit = k10Var.k().edit();
                                 if (k10Var.currentAccount == 0) {
-                                    edit.putInt("selectedAccount", k10.f24968t0);
+                                    edit.putInt("selectedAccount", k10.f24932t0);
                                 }
                                 edit.putBoolean("registeredForPush", k10Var.d);
-                                edit.putInt("lastSendMessageId", k10Var.f24977e);
+                                edit.putInt("lastSendMessageId", k10Var.f24941e);
                                 edit.putInt("contactsSavedCount", k10Var.h);
-                                edit.putInt("lastBroadcastId", k10Var.f24979f);
-                                edit.putInt("lastContactsSyncTime", k10Var.f24992r);
-                                edit.putInt("lastHintsSyncTime", k10Var.f24994s);
-                                edit.putBoolean("draftsLoaded", k10Var.f24996w);
-                                edit.putBoolean("unreadDialogsLoaded", k10Var.f24997x);
+                                edit.putInt("lastBroadcastId", k10Var.f24943f);
+                                edit.putInt("lastContactsSyncTime", k10Var.f24956r);
+                                edit.putInt("lastHintsSyncTime", k10Var.f24958s);
+                                edit.putBoolean("draftsLoaded", k10Var.f24960w);
+                                edit.putBoolean("unreadDialogsLoaded", k10Var.f24961x);
                                 edit.putInt("ratingLoadTime", k10Var.E);
                                 edit.putInt("botRatingLoadTime", k10Var.F);
                                 edit.putInt("botGuestRatingLoadTime", k10Var.G);
@@ -56,15 +56,15 @@ public final class j10 implements Runnable {
                                 edit.putBoolean("hasSecureData", k10Var.Y);
                                 edit.putBoolean("notificationsSettingsLoaded4", k10Var.T);
                                 edit.putBoolean("notificationsSignUpSettingsLoaded", k10Var.U);
-                                edit.putLong("autoDownloadConfigLoadTime", k10Var.f24973b0);
+                                edit.putLong("autoDownloadConfigLoadTime", k10Var.f24937b0);
                                 edit.putBoolean("hasValidDialogLoadIds", k10Var.J);
                                 edit.putInt("sharingMyLocationUntil", k10Var.R);
                                 edit.putInt("lastMyLocationShareTime", k10Var.S);
                                 edit.putBoolean("filtersLoaded", k10Var.Q);
-                                edit.putString("premiumGiftsStickerPack", k10Var.f24975c0);
-                                edit.putLong("lastUpdatedPremiumGiftsStickerPack", k10Var.f24981g0);
-                                edit.putString("genericAnimationsStickerPack", k10Var.f24978e0);
-                                edit.putLong("lastUpdatedGenericAnimations", k10Var.f24983i0);
+                                edit.putString("premiumGiftsStickerPack", k10Var.f24939c0);
+                                edit.putLong("lastUpdatedPremiumGiftsStickerPack", k10Var.f24945g0);
+                                edit.putString("genericAnimationsStickerPack", k10Var.f24942e0);
+                                edit.putLong("lastUpdatedGenericAnimations", k10Var.f24947i0);
                                 edit.putInt("6migrateOffsetId", k10Var.K);
                                 if (k10Var.K != -1) {
                                     edit.putInt("6migrateOffsetDate", k10Var.L);
@@ -73,11 +73,11 @@ public final class j10 implements Runnable {
                                     edit.putLong("6migrateOffsetChannelId", k10Var.O);
                                     edit.putLong("6migrateOffsetAccess", k10Var.P);
                                 }
-                                TLRPC.TL_help_termsOfService tL_help_termsOfService = k10Var.f24971a0;
+                                TLRPC.TL_help_termsOfService tL_help_termsOfService = k10Var.f24935a0;
                                 if (tL_help_termsOfService != null) {
                                     try {
                                         SerializedData serializedData = new SerializedData(tL_help_termsOfService.getObjectSize());
-                                        k10Var.f24971a0.serializeToStream(serializedData);
+                                        k10Var.f24935a0.serializeToStream(serializedData);
                                         edit.putString("terms", Base64.encodeToString(serializedData.toByteArray(), 0));
                                         serializedData.cleanup();
                                     } catch (Exception unused) {
@@ -86,18 +86,18 @@ public final class j10 implements Runnable {
                                     edit.remove("terms");
                                 }
                                 cz.y();
-                                if (k10Var.f24998y != null) {
+                                if (k10Var.f24962y != null) {
                                     SerializedData serializedData2 = new SerializedData();
-                                    k10Var.f24998y.serializeToStream(serializedData2);
+                                    k10Var.f24962y.serializeToStream(serializedData2);
                                     edit.putString("tmpPassword", Base64.encodeToString(serializedData2.toByteArray(), 0));
                                     serializedData2.cleanup();
                                 } else {
                                     edit.remove("tmpPassword");
                                 }
-                                if (k10Var.f24974c != null) {
+                                if (k10Var.f24938c != null) {
                                     if (z10) {
                                         SerializedData serializedData3 = new SerializedData();
-                                        k10Var.f24974c.serializeToStream(serializedData3);
+                                        k10Var.f24938c.serializeToStream(serializedData3);
                                         edit.putString("user", Base64.encodeToString(serializedData3.toByteArray(), 0));
                                         serializedData3.cleanup();
                                     }
@@ -116,58 +116,58 @@ public final class j10 implements Runnable {
                 }
                 return;
             case 1:
-                w7 w7Var = (w7) this.f24820c;
-                boolean z11 = this.f24819b;
+                w7 w7Var = (w7) this.f24784c;
+                boolean z11 = this.f24783b;
                 for (Map.Entry entry : w7Var.h.entrySet()) {
                     y8 y8Var = (y8) entry.getValue();
-                    if (y8Var.f28029m == 1) {
+                    if (y8Var.f27993m == 1) {
                         Utilities.d.c(new j10(2, y8Var, z11));
                         g0.g3(new u8(y8Var, 2));
                     }
                 }
-                for (Map.Entry entry2 : w7Var.f27698n.entrySet()) {
+                for (Map.Entry entry2 : w7Var.f27662n.entrySet()) {
                     y8 y8Var2 = (y8) entry2.getValue();
-                    if (y8Var2.f28029m == 1) {
+                    if (y8Var2.f27993m == 1) {
                         Utilities.d.c(new j10(2, y8Var2, z11));
                         g0.g3(new u8(y8Var2, 2));
                     }
                 }
                 return;
             case 2:
-                y8 y8Var3 = (y8) this.f24820c;
-                boolean z12 = this.f24819b;
-                SparseIntArray sparseIntArray = y8Var3.f28032p;
-                if (y8Var3.f28025i != z12) {
-                    y8Var3.f28025i = z12;
-                    if (s2.f26730a) {
-                        a8.b("network changed to slow = " + y8Var3.f28025i);
+                y8 y8Var3 = (y8) this.f24784c;
+                boolean z12 = this.f24783b;
+                SparseIntArray sparseIntArray = y8Var3.f27996p;
+                if (y8Var3.f27989i != z12) {
+                    y8Var3.f27989i = z12;
+                    if (s2.f26694a) {
+                        a8.b("network changed to slow = " + y8Var3.f27989i);
                     }
                     int i7 = 0;
                     while (true) {
                         int i10 = 1;
                         if (i7 < sparseIntArray.size()) {
-                            ConnectionsManager.getInstance(y8Var3.f28019a).cancelRequest(sparseIntArray.valueAt(i7), true);
+                            ConnectionsManager.getInstance(y8Var3.f27983a).cancelRequest(sparseIntArray.valueAt(i7), true);
                             i7++;
                         } else {
                             sparseIntArray.clear();
                             y8Var3.b();
-                            y8Var3.f28020b = false;
-                            y8Var3.f28021c = false;
-                            y8Var3.f28027k = 0;
-                            y8Var3.f28034r = 0;
+                            y8Var3.f27984b = false;
+                            y8Var3.f27985c = false;
+                            y8Var3.f27991k = 0;
+                            y8Var3.f27998r = 0;
                             y8Var3.v = 0L;
-                            y8Var3.f28038w = 0L;
-                            y8Var3.f28039x = 0;
-                            y8Var3.f28040y = null;
-                            y8Var3.f28041z = null;
+                            y8Var3.f28002w = 0L;
+                            y8Var3.f28003x = 0;
+                            y8Var3.f28004y = null;
+                            y8Var3.f28005z = null;
                             y8Var3.A = null;
                             y8Var3.K = 0;
-                            Arrays.fill(y8Var3.f28024g, 0);
+                            Arrays.fill(y8Var3.f27988g, 0);
                             y8Var3.N = 0;
                             y8Var3.P = false;
                             y8Var3.Q.clear();
                             y8Var3.d++;
-                            if (!y8Var3.f28025i) {
+                            if (!y8Var3.f27989i) {
                                 i10 = 8;
                             }
                             for (int i11 = 0; i11 < i10; i11++) {
@@ -180,16 +180,16 @@ public final class j10 implements Runnable {
                     return;
                 }
             case 3:
-                rd rdVar = (rd) this.f24820c;
-                boolean z13 = this.f24819b;
+                rd rdVar = (rd) this.f24784c;
+                boolean z13 = this.f24783b;
                 if (!z13) {
                     rdVar.L = Boolean.FALSE;
                 }
-                if (!rdVar.f26591b.isEmpty()) {
+                if (!rdVar.f26555b.isEmpty()) {
                     if (z13) {
                         try {
                             ((h6.m) t0.j()).getLastLocation(new ld(rdVar, 0));
-                            ((h6.m) t0.j()).requestLocationUpdates(rdVar.O, rdVar.f26596r);
+                            ((h6.m) t0.j()).requestLocationUpdates(rdVar.O, rdVar.f26560r);
                             return;
                         } catch (Throwable th3) {
                             a8.g(th3, true);
@@ -201,8 +201,8 @@ public final class j10 implements Runnable {
                 }
                 return;
             case 4:
-                np npVar = (np) this.f24820c;
-                boolean z14 = this.f24819b;
+                np npVar = (np) this.f24784c;
+                boolean z14 = this.f24783b;
                 npVar.R0 = null;
                 npVar.S0.clear();
                 npVar.getNotificationCenter().k(184, new Object[0]);
@@ -212,9 +212,9 @@ public final class j10 implements Runnable {
                 }
                 return;
             default:
-                au auVar = (au) this.f24820c;
-                fv fvVar = auVar.f22968a;
-                boolean z15 = !this.f24819b;
+                au auVar = (au) this.f24784c;
+                fv fvVar = auVar.f22932a;
+                boolean z15 = !this.f24783b;
                 TLObject tLObject = auVar.H;
                 if (tLObject instanceof TL_iv.PageListItem) {
                     ((TL_iv.PageListItem) tLObject).checked = z15;
@@ -223,9 +223,9 @@ public final class j10 implements Runnable {
                 }
                 View view = fvVar.Q;
                 if (view != null) {
-                    auVar.f22974r.f32860a = view;
+                    auVar.f22938r.f32826a = view;
                 }
-                auVar.f22974r.f(-1, z15, true);
+                auVar.f22938r.f(-1, z15, true);
                 View view2 = fvVar.Q;
                 if (view2 != null) {
                     view2.invalidate();

@@ -9,9 +9,9 @@ import android.provider.MediaStore;
 import bi.j1;
 import bi.k1;
 import di.f6;
-import hi.a7;
-import hi.c7;
-import hi.v5;
+import hi.b7;
+import hi.d7;
+import hi.w5;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ScheduledFuture;
@@ -33,34 +33,34 @@ import org.telegram.ui.bn;
 import org.telegram.ui.cx;
 import org.telegram.ui.f40;
 import org.telegram.ui.oa1;
-import org.telegram.ui.rv0;
-import org.telegram.ui.wq0;
-import p4.z;
-public final class f0 implements w30, j1, a7, oa1, a5, q1, w5.b, v9.g {
-    public final int f3248a;
-    public final long f3249b;
-    public final Object f3250c;
+import org.telegram.ui.sv0;
+import org.telegram.ui.xq0;
+import p4.o0;
+public final class f0 implements w30, j1, b7, oa1, a5, q1, w5.b, v9.g {
+    public final int f3199a;
+    public final long f3200b;
+    public final Object f3201c;
     public final Object d;
-    public final Object f3251e;
+    public final Object f3202e;
 
     public f0(Object obj, long j3, g2 g2Var, Object obj2, int i7) {
-        this.f3248a = i7;
-        this.f3250c = obj;
-        this.f3249b = j3;
+        this.f3199a = i7;
+        this.f3201c = obj;
+        this.f3200b = j3;
         this.d = g2Var;
-        this.f3251e = obj2;
+        this.f3202e = obj2;
     }
 
     @Override
     public void O(int i7, int i10, boolean z10) {
-        bn.A1((bn) this.f3250c, (ArrayList) this.d, this.f3249b, (yk0) this.f3251e, z10, i7);
+        bn.A1((bn) this.f3201c, (ArrayList) this.d, this.f3200b, (yk0) this.f3202e, z10, i7);
     }
 
     @Override
     public void V(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        bn bnVar = (bn) this.f3250c;
+        bn bnVar = (bn) this.f3201c;
         TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
-        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f3251e;
+        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f3202e;
         if (inputFile == null && inputFile2 == null && videoSize == null) {
             fileLocationArr[0] = photoSize2.location;
             fileLocationArr2[0] = photoSize.location;
@@ -81,54 +81,54 @@ public final class f0 implements w30, j1, a7, oa1, a5, q1, w5.b, v9.g {
             tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
             tL_photos_uploadProfilePhoto.flags |= 16;
         }
-        bnVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new h0(bnVar, fileLocationArr, str, fileLocationArr2, this.f3249b));
+        bnVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new h0(bnVar, fileLocationArr, str, fileLocationArr2, this.f3200b));
     }
 
     @Override
-    public ScheduledFuture a(final v4.f0 f0Var) {
-        switch (this.f3248a) {
+    public ScheduledFuture a(final v4.e0 e0Var) {
+        switch (this.f3199a) {
             case 8:
-                v9.f fVar = (v9.f) this.f3250c;
-                return fVar.f59366b.schedule(new v9.d(fVar, (Runnable) this.d, f0Var, 1), this.f3249b, (TimeUnit) this.f3251e);
+                v9.f fVar = (v9.f) this.f3201c;
+                return fVar.f59329b.schedule(new v9.d(fVar, (Runnable) this.d, e0Var, 1), this.f3200b, (TimeUnit) this.f3202e);
             default:
-                final v9.f fVar2 = (v9.f) this.f3250c;
+                final v9.f fVar2 = (v9.f) this.f3201c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f59366b.schedule(new Callable() {
+                return fVar2.f59329b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f59365a.submit(new z(26, callable, f0Var));
+                        return f.this.f59328a.submit(new o0(24, callable, e0Var));
                     }
-                }, this.f3249b, (TimeUnit) this.f3251e);
+                }, this.f3200b, (TimeUnit) this.f3202e);
         }
     }
 
     @Override
     public void b(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10) {
-        f6 f6Var = (f6) this.f3250c;
+        f6 f6Var = (f6) this.f3201c;
         k1 k1Var = (k1) this.d;
-        TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f3251e;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f3202e;
         f6Var.getClass();
         if (k1Var.G1) {
             return;
         }
-        f6Var.p1(tL_starGiftUnique, this.f3249b, tL_textWithEntities, z10, k1Var);
+        f6Var.p1(tL_starGiftUnique, this.f3200b, tL_textWithEntities, z10, k1Var);
     }
 
     @Override
     public Bitmap c(BitmapFactory.Options options) {
-        v5 v5Var = (v5) this.f3250c;
-        c7 c7Var = (c7) this.d;
-        long j3 = this.f3249b;
-        String str = (String) this.f3251e;
-        if (c7Var.K) {
-            String str2 = c7Var.N;
+        w5 w5Var = (w5) this.f3201c;
+        d7 d7Var = (d7) this.d;
+        long j3 = this.f3200b;
+        String str = (String) this.f3202e;
+        if (d7Var.K) {
+            String str2 = d7Var.N;
             if (str2 != null) {
                 return BitmapFactory.decodeFile(str2, options);
             }
             try {
-                return MediaStore.Video.Thumbnails.getThumbnail(v5Var.getContext().getContentResolver(), j3, 1, options);
+                return MediaStore.Video.Thumbnails.getThumbnail(w5Var.getContext().getContentResolver(), j3, 1, options);
             } catch (Throwable unused) {
-                v5Var.invalidate();
+                w5Var.invalidate();
                 return null;
             }
         }
@@ -142,10 +142,10 @@ public final class f0 implements w30, j1, a7, oa1, a5, q1, w5.b, v9.g {
 
     @Override
     public Object g() {
-        ia.c cVar = (ia.c) this.f3250c;
+        ia.c cVar = (ia.c) this.f3201c;
         Iterable iterable = (Iterable) this.d;
-        o5.i iVar = (o5.i) this.f3251e;
-        v5.g gVar = (v5.g) ((v5.d) cVar.f16218c);
+        o5.i iVar = (o5.i) this.f3202e;
+        v5.g gVar = (v5.g) ((v5.d) cVar.f16184c);
         gVar.getClass();
         if (iterable.iterator().hasNext()) {
             String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + v5.g.g(iterable);
@@ -164,12 +164,12 @@ public final class f0 implements w30, j1, a7, oa1, a5, q1, w5.b, v9.g {
                 a10.endTransaction();
             }
         }
-        gVar.c(new ai.d0(((x5.a) cVar.f16221g).r() + this.f3249b, iVar));
+        gVar.c(new ai.y(((x5.a) cVar.f16187g).r() + this.f3200b, iVar));
         return null;
     }
 
     @Override
-    public wq0 getCloseIntoObject() {
+    public xq0 getCloseIntoObject() {
         return null;
     }
 
@@ -180,23 +180,23 @@ public final class f0 implements w30, j1, a7, oa1, a5, q1, w5.b, v9.g {
 
     @Override
     public void h(t1 t1Var, int i7) {
-        switch (this.f3248a) {
+        switch (this.f3199a) {
             case 5:
-                t3 t3Var = (t3) this.f3250c;
-                Runnable runnable = (Runnable) this.f3251e;
+                t3 t3Var = (t3) this.f3201c;
+                Runnable runnable = (Runnable) this.f3202e;
                 boolean z10 = false;
                 d2 d2Var = ((d2[]) this.d)[0];
                 if (d2Var != null && d2Var.b()) {
                     z10 = true;
                 }
-                f40.C1(t3Var, z10, this.f3249b, runnable);
+                f40.C1(t3Var, z10, this.f3200b, runnable);
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) this.f3251e;
-                ProfileActivity profileActivity = ((rv0) this.f3250c).f51776b;
+                TLRPC.User user = (TLRPC.User) this.f3202e;
+                ProfileActivity profileActivity = ((sv0) this.f3201c).f52091b;
                 profileActivity.N1 = true;
                 Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
-                long j3 = -this.f3249b;
+                long j3 = -this.f3200b;
                 k10.putLong("chat_id", j3);
                 if (profileActivity.getMessagesController().E(k10, (cx) this.d, null, null)) {
                     bn bnVar = new bn(k10);
@@ -212,16 +212,16 @@ public final class f0 implements w30, j1, a7, oa1, a5, q1, w5.b, v9.g {
 
     @Override
     public void k(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        g2 g2Var = (g2) this.f3250c;
+        g2 g2Var = (g2) this.f3201c;
         TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.d;
-        r10 r10Var = (r10) this.f3251e;
+        r10 r10Var = (r10) this.f3202e;
         int currentAccount = g2Var.getCurrentAccount();
-        boolean[] zArr = ii.n.f16350a;
+        boolean[] zArr = ii.n.f16316a;
         if (zArr[currentAccount]) {
             return;
         }
         zArr[currentAccount] = true;
-        ii.n.b(g2Var, this.f3249b, tL_inputCheckPasswordSRP, twoStepVerificationActivity, r10Var, null);
+        ii.n.b(g2Var, this.f3200b, tL_inputCheckPasswordSRP, twoStepVerificationActivity, r10Var, null);
     }
 
     @Override
@@ -230,19 +230,19 @@ public final class f0 implements w30, j1, a7, oa1, a5, q1, w5.b, v9.g {
     }
 
     public f0(Object obj, Object obj2, long j3, Object obj3, int i7) {
-        this.f3248a = i7;
-        this.f3250c = obj;
+        this.f3199a = i7;
+        this.f3201c = obj;
         this.d = obj2;
-        this.f3249b = j3;
-        this.f3251e = obj3;
+        this.f3200b = j3;
+        this.f3202e = obj3;
     }
 
     public f0(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f3248a = i7;
-        this.f3250c = obj;
+        this.f3199a = i7;
+        this.f3201c = obj;
         this.d = obj2;
-        this.f3251e = obj3;
-        this.f3249b = j3;
+        this.f3202e = obj3;
+        this.f3200b = j3;
     }
 
     @Override

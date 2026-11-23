@@ -5,14 +5,14 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 public final class bi implements TextWatcher {
-    public boolean f33847a;
-    public boolean f33848b;
-    public final org.telegram.ui.ActionBar.g2 f33849c;
+    public boolean f33825a;
+    public boolean f33826b;
+    public final org.telegram.ui.ActionBar.g2 f33827c;
     public final ui d;
 
     public bi(ui uiVar, org.telegram.ui.ActionBar.g2 g2Var) {
         this.d = uiVar;
-        this.f33849c = g2Var;
+        this.f33827c = g2Var;
     }
 
     @Override
@@ -22,28 +22,28 @@ public final class bi implements TextWatcher {
         int i7;
         boolean z12;
         ui uiVar = this.d;
-        o6 o6Var = uiVar.f40431u1;
+        o6 o6Var = uiVar.f40416u1;
         zh zhVar = uiVar.N2;
         int i10 = uiVar.H3;
-        o6 o6Var2 = uiVar.f40435v1;
-        if (this.f33848b != TextUtils.isEmpty(editable)) {
-            mi miVar = uiVar.f40440w2;
+        o6 o6Var2 = uiVar.f40420v1;
+        if (this.f33826b != TextUtils.isEmpty(editable)) {
+            mi miVar = uiVar.f40425w2;
             if (miVar != null) {
                 miVar.E(miVar.getSelectedItemsCount());
             }
-            this.f33848b = !this.f33848b;
+            this.f33826b = !this.f33826b;
         }
         boolean z13 = false;
-        if (this.f33847a) {
+        if (this.f33825a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             org.telegram.messenger.j6.l(editable, zhVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f33847a = false;
+            this.f33825a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         uiVar.G1 = codePointCount;
-        te.a aVar = uiVar.f40411p1;
+        te.a aVar = uiVar.f40396p1;
         if (codePointCount > 0) {
             z10 = true;
         } else {
@@ -72,10 +72,10 @@ public final class bi implements TextWatcher {
             o6Var2.animate().setListener(null).cancel();
             o6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i7 < 0) {
-                org.telegram.ui.ActionBar.t6.Y(o6Var2, org.telegram.ui.ActionBar.m6.f29602p7, uiVar.J0);
+                org.telegram.ui.ActionBar.t6.Y(o6Var2, org.telegram.ui.ActionBar.m6.f29568p7, uiVar.J0);
                 z11 = false;
             } else {
-                org.telegram.ui.ActionBar.t6.Y(o6Var2, org.telegram.ui.ActionBar.m6.f29773y6, uiVar.J0);
+                org.telegram.ui.ActionBar.t6.Y(o6Var2, org.telegram.ui.ActionBar.m6.f29739y6, uiVar.J0);
                 z11 = true;
             }
             o6Var.c(org.telegram.messenger.hd.E(j3, ','), false, true);
@@ -89,9 +89,9 @@ public final class bi implements TextWatcher {
             uiVar.S2 = z11;
             uiVar.G2.invalidate();
         }
-        if (!uiVar.f40386g4 && !org.telegram.messenger.np.u1(i10).K3() && !org.telegram.messenger.k10.i(i10).q() && uiVar.G1 > org.telegram.messenger.np.u1(i10).W4 && uiVar.G1 < org.telegram.messenger.np.u1(i10).X4) {
-            uiVar.f40386g4 = true;
-            uiVar.E1(this.f33849c);
+        if (!uiVar.f40371g4 && !org.telegram.messenger.np.u1(i10).K3() && !org.telegram.messenger.k10.i(i10).q() && uiVar.G1 > org.telegram.messenger.np.u1(i10).W4 && uiVar.G1 < org.telegram.messenger.np.u1(i10).X4) {
+            uiVar.f40371g4 = true;
+            uiVar.E1(this.f33827c);
         }
         if (uiVar.X1) {
             if (zhVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(zhVar.getText().toString().trim())) {
@@ -105,7 +105,7 @@ public final class bi implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         if (i11 - i10 >= 1) {
-            this.f33847a = true;
+            this.f33825a = true;
         }
         ui uiVar = this.d;
         if (uiVar.C4 == null) {

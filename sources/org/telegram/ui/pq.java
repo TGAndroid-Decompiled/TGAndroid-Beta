@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class pq implements org.telegram.ui.Cells.a5, jg.y1 {
-    public final qq f50926a;
+    public final qq f50901a;
 
     public pq(qq qqVar) {
-        this.f50926a = qqVar;
+        this.f50901a = qqVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class pq implements org.telegram.ui.Cells.a5, jg.y1 {
     @Override
     public boolean b(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
         int intValue = ((Integer) b5Var.getTag()).intValue();
-        qq qqVar = this.f50926a;
+        qq qqVar = this.f50901a;
         TLObject E = qqVar.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
             return qqVar.E.m0((TLRPC.ChannelParticipant) E, !z10, b5Var);
@@ -33,16 +33,16 @@ public final class pq implements org.telegram.ui.Cells.a5, jg.y1 {
 
     @Override
     public void r(int i7) {
-        qq qqVar = this.f50926a;
+        qq qqVar = this.f50901a;
         rq rqVar = qqVar.E;
         if (!qqVar.h.e()) {
-            int i10 = qqVar.f51326r;
+            int i10 = qqVar.f51258r;
             qqVar.f();
-            if (qqVar.f51326r > i10) {
+            if (qqVar.f51258r > i10) {
                 rqVar.D0(i10);
             }
-            if (!qqVar.f51327s && qqVar.f51326r == 0 && i7 != 0) {
-                rqVar.f51698b.e(false, true);
+            if (!qqVar.f51259s && qqVar.f51258r == 0 && i7 != 0) {
+                rqVar.f51728b.e(false, true);
             }
         }
     }

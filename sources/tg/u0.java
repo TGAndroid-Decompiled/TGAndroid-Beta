@@ -4,31 +4,31 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
-import hi.a5;
+import hi.b5;
 import org.telegram.messenger.cz;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.u4;
 public final class u0 implements h6 {
-    public final TextPaint f58188a;
-    public final TextPaint f58189b;
-    public final TextPaint f58190c;
+    public final TextPaint f58153a;
+    public final TextPaint f58154b;
+    public final TextPaint f58155c;
     public final Paint d;
-    public final Paint f58191e;
-    public final a5 f58192f;
+    public final Paint f58156e;
+    public final b5 f58157f;
 
-    public u0(a5 a5Var) {
-        this.f58192f = a5Var;
+    public u0(b5 b5Var) {
+        this.f58157f = b5Var;
         TextPaint textPaint = new TextPaint();
-        this.f58188a = textPaint;
+        this.f58153a = textPaint;
         TextPaint textPaint2 = new TextPaint();
-        this.f58189b = textPaint2;
+        this.f58154b = textPaint2;
         TextPaint textPaint3 = new TextPaint();
-        this.f58190c = textPaint3;
+        this.f58155c = textPaint3;
         new Paint(3);
         this.d = new Paint(3);
         Paint paint = new Paint(3);
-        this.f58191e = paint;
+        this.f58156e = paint;
         textPaint.setTextSize(org.telegram.messenger.g0.L(Math.max(16, cz.W0) - 2));
         textPaint2.setTextSize(org.telegram.messenger.g0.L(Math.max(16, cz.W0) - 2));
         textPaint3.setTextSize(org.telegram.messenger.g0.L(15.0f));
@@ -38,7 +38,7 @@ public final class u0 implements h6 {
 
     @Override
     public final boolean d() {
-        return this.f58192f.C0;
+        return this.f58157f.C0;
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class u0 implements h6 {
 
     @Override
     public final ColorFilter f() {
-        return m6.f29713v3;
+        return m6.f29679v3;
     }
 
     @Override
@@ -89,15 +89,15 @@ public final class u0 implements h6 {
         }
         switch (c10) {
             case 0:
-                return this.f58189b;
+                return this.f58154b;
             case 1:
-                return this.f58190c;
+                return this.f58155c;
             case 2:
-                return this.f58191e;
+                return this.f58156e;
             case 3:
                 return this.d;
             case 4:
-                return this.f58188a;
+                return this.f58153a;
             default:
                 return m6.V0(str);
         }
@@ -105,49 +105,49 @@ public final class u0 implements h6 {
 
     @Override
     public final Drawable getDrawable(String str) {
-        a5 a5Var = this.f58192f;
-        u0 u0Var = a5Var.E0;
+        b5 b5Var = this.f58157f;
+        u0 u0Var = b5Var.E0;
         if (str.equals("drawableMsgIn")) {
-            if (a5Var.F0 == null) {
-                a5Var.F0 = new u4(0, false, false, u0Var);
+            if (b5Var.F0 == null) {
+                b5Var.F0 = new u4(0, false, false, u0Var);
             }
-            return a5Var.F0;
+            return b5Var.F0;
         } else if (str.equals("drawableMsgInSelected")) {
-            if (a5Var.G0 == null) {
-                a5Var.G0 = new u4(0, false, true, u0Var);
+            if (b5Var.G0 == null) {
+                b5Var.G0 = new u4(0, false, true, u0Var);
             }
-            return a5Var.G0;
+            return b5Var.G0;
         } else if (str.equals("drawableMsgOut")) {
-            if (a5Var.H0 == null) {
-                a5Var.H0 = new u4(0, true, false, u0Var);
+            if (b5Var.H0 == null) {
+                b5Var.H0 = new u4(0, true, false, u0Var);
             }
-            return a5Var.H0;
+            return b5Var.H0;
         } else if (str.equals("drawableMsgOutSelected")) {
-            if (a5Var.I0 == null) {
-                a5Var.I0 = new u4(0, true, true, u0Var);
+            if (b5Var.I0 == null) {
+                b5Var.I0 = new u4(0, true, true, u0Var);
             }
-            return a5Var.I0;
+            return b5Var.I0;
         } else if (str.equals("drawableMsgInMedia")) {
-            if (a5Var.J0 == null) {
-                a5Var.J0 = new u4(1, false, false, u0Var);
+            if (b5Var.J0 == null) {
+                b5Var.J0 = new u4(1, false, false, u0Var);
             }
-            a5Var.J0.invalidateSelf();
-            return a5Var.J0;
+            b5Var.J0.invalidateSelf();
+            return b5Var.J0;
         } else if (str.equals("drawableMsgInMediaSelected")) {
-            if (a5Var.K0 == null) {
-                a5Var.K0 = new u4(1, false, true, u0Var);
+            if (b5Var.K0 == null) {
+                b5Var.K0 = new u4(1, false, true, u0Var);
             }
-            return a5Var.K0;
+            return b5Var.K0;
         } else if (str.equals("drawableMsgOutMedia")) {
-            if (a5Var.L0 == null) {
-                a5Var.L0 = new u4(1, true, false, u0Var);
+            if (b5Var.L0 == null) {
+                b5Var.L0 = new u4(1, true, false, u0Var);
             }
-            return a5Var.L0;
+            return b5Var.L0;
         } else if (str.equals("drawableMsgOutMediaSelected")) {
-            if (a5Var.M0 == null) {
-                a5Var.M0 = new u4(1, true, true, u0Var);
+            if (b5Var.M0 == null) {
+                b5Var.M0 = new u4(1, true, true, u0Var);
             }
-            return a5Var.M0;
+            return b5Var.M0;
         } else {
             return m6.R0(str);
         }
@@ -170,7 +170,7 @@ public final class u0 implements h6 {
 
     @Override
     public final int k(int i7) {
-        return this.f58192f.D0.get(i7, m6.x0(null, i7, false));
+        return this.f58157f.D0.get(i7, m6.x0(null, i7, false));
     }
 
     @Override

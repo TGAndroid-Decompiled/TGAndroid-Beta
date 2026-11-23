@@ -5,27 +5,27 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class g implements Runnable {
-    public final int f35341a;
-    public final Object f35342b;
-    public final Object f35343c;
+    public final int f35303a;
+    public final Object f35304b;
+    public final Object f35305c;
     public final Object d;
 
     public g(Object obj, Object obj2, Object obj3, int i7) {
-        this.f35341a = i7;
-        this.f35342b = obj;
-        this.f35343c = obj2;
+        this.f35303a = i7;
+        this.f35304b = obj;
+        this.f35305c = obj2;
         this.d = obj3;
     }
 
     private final void a() {
-        jt0 jt0Var = (jt0) this.f35342b;
-        c5.P(jt0Var.getContext(), null, jt0Var.I1, new vp0(jt0Var, (TL_stories.StoryItem) this.f35343c));
+        jt0 jt0Var = (jt0) this.f35304b;
+        c5.P(jt0Var.getContext(), null, jt0Var.I1, new vp0(jt0Var, (TL_stories.StoryItem) this.f35305c));
         ((a70) this.d).v();
     }
 
     private final void b() {
-        jt0 jt0Var = (jt0) this.f35342b;
-        String str = (String) this.f35343c;
+        jt0 jt0Var = (jt0) this.f35304b;
+        String str = (String) this.f35305c;
         org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.d;
         or0 or0Var = new or0(jt0Var.getContext(), str, str, jt0Var.I1, g2Var);
         if (g2Var != null) {
@@ -38,15 +38,15 @@ public final class g implements Runnable {
     private final void c() {
         nq0 nq0Var;
         boolean z10;
-        wr0 wr0Var = (wr0) this.f35342b;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f35343c;
+        wr0 wr0Var = (wr0) this.f35304b;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f35305c;
         TLObject tLObject = (TLObject) this.d;
-        jt0 jt0Var = wr0Var.f41885r;
-        wr0Var.f41884n = 0;
+        jt0 jt0Var = wr0Var.f41849r;
+        wr0Var.f41848n = 0;
         int b10 = wr0Var.b();
         if (tL_error == null) {
             TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject;
-            jt0Var.f36683y1.getMessagesController().Z3(messages_chats.chats, false);
+            jt0Var.f36638y1.getMessagesController().Z3(messages_chats.chats, false);
             if (!messages_chats.chats.isEmpty() && messages_chats.chats.size() == 100) {
                 z10 = false;
             } else {
@@ -59,16 +59,16 @@ public final class g implements Runnable {
         }
         int i7 = 0;
         while (true) {
-            ds0[] ds0VarArr = jt0Var.f36650n0;
+            ds0[] ds0VarArr = jt0Var.f36605n0;
             if (i7 < ds0VarArr.length) {
                 ds0 ds0Var = ds0VarArr[i7];
-                if (ds0Var.F == 6 && (nq0Var = ds0Var.h) != null && (wr0Var.f41883f || b10 == 0)) {
+                if (ds0Var.F == 6 && (nq0Var = ds0Var.h) != null && (wr0Var.f41847f || b10 == 0)) {
                     jt0Var.D(nq0Var, 0, null);
                 }
                 i7++;
             } else {
-                wr0Var.f41882e = false;
-                wr0Var.f41883f = true;
+                wr0Var.f41846e = false;
+                wr0Var.f41847f = true;
                 wr0Var.f();
                 return;
             }
@@ -82,10 +82,10 @@ public final class g implements Runnable {
         boolean z10;
         char c10;
         Object obj;
-        bs0 bs0Var = (bs0) this.f35342b;
+        bs0 bs0Var = (bs0) this.f35304b;
         ArrayList arrayList2 = (ArrayList) this.d;
-        org.telegram.ui.ActionBar.g2 g2Var = bs0Var.f33915s.f36683y1;
-        String lowerCase = ((String) this.f35343c).trim().toLowerCase();
+        org.telegram.ui.ActionBar.g2 g2Var = bs0Var.f33876s.f36638y1;
+        String lowerCase = ((String) this.f35305c).trim().toLowerCase();
         if (lowerCase.length() == 0) {
             org.telegram.messenger.g0.g3(new g(bs0Var, new ArrayList(), new ArrayList(), 29));
             return;
@@ -125,7 +125,7 @@ public final class g implements Runnable {
                 z12 = 0;
             }
             TLRPC.User c22 = g2Var.getMessagesController().c2(Long.valueOf(B1));
-            if (c22.f28583id != g2Var.getUserConfig().e()) {
+            if (c22.f28547id != g2Var.getUserConfig().e()) {
                 String lowerCase2 = org.telegram.messenger.p10.q(c22).toLowerCase();
                 String T02 = org.telegram.messenger.hd.E0().T0(lowerCase2, z11, z12);
                 if (lowerCase2.equals(T02)) {
@@ -181,9 +181,9 @@ public final class g implements Runnable {
     }
 
     public g(yc0 yc0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
-        this.f35341a = 20;
-        this.f35342b = yc0Var;
-        this.f35343c = tL_error;
+        this.f35303a = 20;
+        this.f35304b = yc0Var;
+        this.f35305c = tL_error;
         this.d = tLObject;
     }
 }

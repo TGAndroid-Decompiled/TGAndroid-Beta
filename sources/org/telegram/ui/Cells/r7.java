@@ -11,27 +11,27 @@ import org.telegram.messenger.hd;
 import org.telegram.messenger.rd;
 import org.telegram.ui.Components.ml;
 public final class r7 implements Runnable {
-    public final int f31743a;
-    public final FrameLayout f31744b;
-    public final double f31745c;
+    public final int f31709a;
+    public final FrameLayout f31710b;
+    public final double f31711c;
     public final double d;
 
     public r7(FrameLayout frameLayout, double d, double d2, int i7) {
-        this.f31743a = i7;
-        this.f31744b = frameLayout;
-        this.f31745c = d;
+        this.f31709a = i7;
+        this.f31710b = frameLayout;
+        this.f31711c = d;
         this.d = d2;
     }
 
     @Override
     public final void run() {
-        switch (this.f31743a) {
+        switch (this.f31709a) {
             case 0:
-                s7 s7Var = (s7) this.f31744b;
-                double d = this.f31745c;
+                s7 s7Var = (s7) this.f31710b;
+                double d = this.f31711c;
                 double d2 = this.d;
                 try {
-                    List<Address> fromLocation = new Geocoder(org.telegram.messenger.t0.f26931b, hd.E0().f24472y).getFromLocation(d, d2, 1);
+                    List<Address> fromLocation = new Geocoder(org.telegram.messenger.t0.f26895b, hd.E0().f24436y).getFromLocation(d, d2, 1);
                     if (fromLocation.isEmpty()) {
                         String c10 = rd.c(d2, d);
                         s7Var.L = c10;
@@ -69,8 +69,8 @@ public final class r7 implements Runnable {
                 org.telegram.messenger.g0.g3(new r7(s7Var, d, d2, 1));
                 return;
             case 1:
-                s7 s7Var2 = (s7) this.f31744b;
-                double d10 = this.f31745c;
+                s7 s7Var2 = (s7) this.f31710b;
+                double d10 = this.f31711c;
                 double d11 = this.d;
                 s7Var2.I = d10;
                 s7Var2.J = d11;
@@ -82,7 +82,7 @@ public final class r7 implements Runnable {
                 m5Var.l(m10, false);
                 return;
             default:
-                ((ml) this.f31744b).h0(this.f31745c, this.d);
+                ((ml) this.f31710b).h0(this.f31711c, this.d);
                 return;
         }
     }

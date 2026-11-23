@@ -9,34 +9,34 @@ public final class xq implements Runnable {
     public final int E;
     public final org.telegram.ui.ii F;
     public final org.telegram.ui.ActionBar.w2 G;
-    public final boolean[] f42189a;
-    public final int[] f42190b;
-    public final ai.b1 f42191c;
+    public final boolean[] f42167a;
+    public final int[] f42168b;
+    public final ai.w0 f42169c;
     public final String[] d;
-    public final hi.e f42192e;
-    public final org.telegram.ui.Cells.l3 f42193f;
+    public final hi.d f42170e;
+    public final org.telegram.ui.Cells.l3 f42171f;
     public final TreeSet h;
-    public final g f42194n;
-    public final org.telegram.ui.Cells.a9 f42195r;
-    public final org.telegram.ui.ActionBar.h6 f42196s;
-    public final int[] f42197w;
-    public final Runnable[] f42198x;
-    public final int[] f42199y;
+    public final g f42172n;
+    public final org.telegram.ui.Cells.a9 f42173r;
+    public final org.telegram.ui.ActionBar.h6 f42174s;
+    public final int[] f42175w;
+    public final Runnable[] f42176x;
+    public final int[] f42177y;
 
-    public xq(boolean[] zArr, int[] iArr, ai.b1 b1Var, String[] strArr, hi.e eVar, org.telegram.ui.Cells.l3 l3Var, TreeSet treeSet, g gVar, org.telegram.ui.Cells.a9 a9Var, org.telegram.ui.ActionBar.h6 h6Var, int[] iArr2, Runnable[] runnableArr, int[] iArr3, int i7, org.telegram.ui.ii iiVar, org.telegram.ui.ActionBar.w2 w2Var) {
-        this.f42189a = zArr;
-        this.f42190b = iArr;
-        this.f42191c = b1Var;
+    public xq(boolean[] zArr, int[] iArr, ai.w0 w0Var, String[] strArr, hi.d dVar, org.telegram.ui.Cells.l3 l3Var, TreeSet treeSet, g gVar, org.telegram.ui.Cells.a9 a9Var, org.telegram.ui.ActionBar.h6 h6Var, int[] iArr2, Runnable[] runnableArr, int[] iArr3, int i7, org.telegram.ui.ii iiVar, org.telegram.ui.ActionBar.w2 w2Var) {
+        this.f42167a = zArr;
+        this.f42168b = iArr;
+        this.f42169c = w0Var;
         this.d = strArr;
-        this.f42192e = eVar;
-        this.f42193f = l3Var;
+        this.f42170e = dVar;
+        this.f42171f = l3Var;
         this.h = treeSet;
-        this.f42194n = gVar;
-        this.f42195r = a9Var;
-        this.f42196s = h6Var;
-        this.f42197w = iArr2;
-        this.f42198x = runnableArr;
-        this.f42199y = iArr3;
+        this.f42172n = gVar;
+        this.f42173r = a9Var;
+        this.f42174s = h6Var;
+        this.f42175w = iArr2;
+        this.f42176x = runnableArr;
+        this.f42177y = iArr3;
         this.E = i7;
         this.F = iiVar;
         this.G = w2Var;
@@ -45,15 +45,15 @@ public final class xq implements Runnable {
     @Override
     public final void run() {
         int i7;
-        final boolean[] zArr = this.f42189a;
-        if (!zArr[0] && this.f42190b[0] < 0) {
-            this.f42191c.run();
+        final boolean[] zArr = this.f42167a;
+        if (!zArr[0] && this.f42168b[0] < 0) {
+            this.f42169c.run();
             final String[] strArr = this.d;
             strArr[0] = null;
-            final hi.e eVar = this.f42192e;
-            eVar.setLoading(false);
-            eVar.setEnabled(false);
-            String charSequence = this.f42193f.getText().toString();
+            final hi.d dVar = this.f42170e;
+            dVar.setLoading(false);
+            dVar.setEnabled(false);
+            String charSequence = this.f42171f.getText().toString();
             StringBuilder m10 = com.google.android.gms.internal.vision.e2.m(charSequence);
             String str = "bot";
             boolean a10 = br.a(charSequence, "bot");
@@ -61,21 +61,21 @@ public final class xq implements Runnable {
             m10.append((a10 || br.c(charSequence, treeSet) != null) ? "" : "");
             final String sb2 = m10.toString();
             boolean isEmpty = TextUtils.isEmpty(charSequence);
-            final g gVar = this.f42194n;
+            final g gVar = this.f42172n;
             if (isEmpty) {
                 gVar.run();
                 return;
             }
             int length = sb2.length();
-            final org.telegram.ui.Cells.a9 a9Var = this.f42195r;
-            final org.telegram.ui.ActionBar.h6 h6Var = this.f42196s;
+            final org.telegram.ui.Cells.a9 a9Var = this.f42173r;
+            final org.telegram.ui.ActionBar.h6 h6Var = this.f42174s;
             if (length >= 4 && sb2.length() <= 32) {
-                a9Var.setText(org.telegram.messenger.hd.N0(2131743421, null));
+                a9Var.setText(org.telegram.messenger.hd.N0(2131743423, null));
                 org.telegram.ui.ActionBar.t6.U(a9Var.getTextView(), org.telegram.ui.ActionBar.m6.B6, h6Var);
-                final int[] iArr = this.f42197w;
+                final int[] iArr = this.f42175w;
                 final int i10 = iArr[0];
-                final Runnable[] runnableArr = this.f42198x;
-                final int[] iArr2 = this.f42199y;
+                final Runnable[] runnableArr = this.f42176x;
+                final int[] iArr2 = this.f42177y;
                 final int i11 = this.E;
                 final org.telegram.ui.ii iiVar = this.F;
                 final org.telegram.ui.ActionBar.w2 w2Var = this.G;
@@ -97,7 +97,7 @@ public final class xq implements Runnable {
                                 d3.b bVar = new d3.b(1);
                                 final int[] iArr4 = iArr2;
                                 final String[] strArr2 = strArr;
-                                final hi.e eVar2 = eVar;
+                                final hi.d dVar2 = dVar;
                                 final g gVar2 = gVar;
                                 final TreeSet treeSet2 = treeSet;
                                 final org.telegram.ui.ii iiVar2 = iiVar;
@@ -116,10 +116,10 @@ public final class xq implements Runnable {
                                                 iArr4[0] = -1;
                                                 boolean z10 = bool instanceof TLRPC.TL_boolTrue;
                                                 String str4 = str2;
-                                                hi.e eVar3 = eVar2;
+                                                hi.d dVar3 = dVar2;
                                                 if (z10) {
                                                     strArr2[0] = str4;
-                                                    eVar3.setEnabled(true);
+                                                    dVar3.setEnabled(true);
                                                     gVar2.run();
                                                     return;
                                                 }
@@ -141,9 +141,9 @@ public final class xq implements Runnable {
                                                 }
                                                 org.telegram.ui.Cells.a9 a9Var3 = a9Var2;
                                                 a9Var3.setText(N0);
-                                                org.telegram.ui.ActionBar.t6.U(a9Var3.getTextView(), org.telegram.ui.ActionBar.m6.f29622q7, h6Var3);
+                                                org.telegram.ui.ActionBar.t6.U(a9Var3.getTextView(), org.telegram.ui.ActionBar.m6.f29588q7, h6Var3);
                                                 if (d == null && tL_error != null) {
-                                                    eVar3.setEnabled(true);
+                                                    dVar3.setEnabled(true);
                                                     org.telegram.ui.Cells.c0.t(w2Var2.F, h6Var3, tL_error, false);
                                                 }
                                             }
@@ -159,12 +159,12 @@ public final class xq implements Runnable {
                 return;
             }
             if (sb2.length() < 4) {
-                i7 = 2131743409;
+                i7 = 2131743411;
             } else {
-                i7 = 2131743410;
+                i7 = 2131743412;
             }
             a9Var.setText(org.telegram.messenger.hd.N0(i7, null));
-            org.telegram.ui.ActionBar.t6.U(a9Var.getTextView(), org.telegram.ui.ActionBar.m6.f29622q7, h6Var);
+            org.telegram.ui.ActionBar.t6.U(a9Var.getTextView(), org.telegram.ui.ActionBar.m6.f29588q7, h6Var);
         }
     }
 }

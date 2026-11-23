@@ -1,6 +1,7 @@
 package hi;
 
-import android.app.Activity;
+import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,98 +14,158 @@ import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.ui.Components.nr;
-public final class eb extends View implements m2 {
-    public final Drawable f14607a;
-    public final int f14608b;
-    public Bitmap f14609c;
-    public final Paint d;
-    public final Paint f14610e;
-    public float f14611f;
-    public final org.telegram.ui.Components.d6 h;
-    public final Path f14612n;
+public class eb extends View implements m2 {
+    public final Path f14550a;
+    public final Paint f14551b;
+    public final Paint f14552c;
+    public boolean d;
+    public final org.telegram.ui.Components.d6 f14553e;
+    public Drawable f14554f;
+    public Bitmap h;
+    public int f14555n;
+    public ValueAnimator f14556r;
 
-    public eb(Activity activity) {
-        super(activity);
+    public eb(Context context) {
+        super(context);
+        this.f14550a = new Path();
         Paint paint = new Paint(1);
-        this.d = paint;
+        this.f14551b = paint;
         Paint paint2 = new Paint(3);
-        this.f14610e = paint2;
-        this.h = new org.telegram.ui.Components.d6(this, 0L, 350L, nr.h);
-        this.f14612n = new Path();
-        this.f14607a = activity.getResources().getDrawable(2131231742).mutate();
-        this.f14608b = 2131231741;
+        this.f14552c = paint2;
+        this.f14553e = new org.telegram.ui.Components.d6(this, 0L, 380L, nr.h);
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+    }
+
+    public final void a(u uVar, boolean z10) {
+        if (this.f14554f == uVar) {
+            return;
+        }
+        ValueAnimator valueAnimator = this.f14556r;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f14556r = null;
+        }
+        if (z10) {
+            this.f14556r = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+            this.f14556r.addUpdateListener(new fi.z2(this, new AtomicBoolean(), uVar, 2));
+            this.f14556r.start();
+            return;
+        }
+        setDrawable(uVar);
+    }
+
+    public final void b(boolean z10, boolean z11) {
+        float f10;
+        this.d = z10;
+        if (!z11) {
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            this.f14553e.e(true, f10);
+        }
+        invalidate();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.f14554f != null) {
+            float d = this.f14553e.d(this.d);
+            int intrinsicWidth = this.f14554f.getIntrinsicWidth();
+            int intrinsicHeight = this.f14554f.getIntrinsicHeight();
+            Rect rect = org.telegram.messenger.g0.Q;
+            rect.set((getWidth() - intrinsicWidth) / 2, (getHeight() - intrinsicHeight) / 2, (getWidth() + intrinsicWidth) / 2, (getHeight() + intrinsicHeight) / 2);
+            if (d <= 0.0f) {
+                this.f14554f.setBounds(rect);
+                this.f14554f.draw(canvas);
+            } else if (d < 1.0f) {
+                canvas.save();
+                Path path = this.f14550a;
+                path.rewind();
+                path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, org.telegram.messenger.g0.L(16.0f) * d, Path.Direction.CW);
+                canvas.clipPath(path, Region.Op.DIFFERENCE);
+                this.f14554f.setBounds(rect);
+                this.f14554f.draw(canvas);
+                canvas.restore();
+            }
+            if (d > 0.0f) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, org.telegram.messenger.g0.L(16.0f) * d, this.f14551b);
+                canvas.save();
+                Bitmap bitmap = this.h;
+                if (bitmap != null) {
+                    canvas.drawBitmap(bitmap, (Rect) null, rect, this.f14552c);
+                }
+                canvas.restore();
+                canvas.restore();
+            }
+        }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f14609c == null) {
-            this.f14609c = BitmapFactory.decodeResource(getResources(), this.f14608b);
+        if (this.h == null && this.f14555n != 0) {
+            this.h = BitmapFactory.decodeResource(getResources(), this.f14555n);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Bitmap bitmap = this.f14609c;
+        Bitmap bitmap = this.h;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f14609c = null;
+            this.h = null;
         }
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float e10 = this.h.e(false, this.f14611f);
-        Drawable drawable = this.f14607a;
-        int intrinsicWidth = drawable.getIntrinsicWidth();
-        int intrinsicHeight = drawable.getIntrinsicHeight();
-        Rect rect = org.telegram.messenger.g0.Q;
-        rect.set((getWidth() - intrinsicWidth) / 2, (getHeight() - intrinsicHeight) / 2, (getWidth() + intrinsicWidth) / 2, (getHeight() + intrinsicHeight) / 2);
-        if (e10 <= 0.0f) {
-            drawable.setBounds(rect);
-            drawable.draw(canvas);
-        } else if (e10 < 1.0f) {
-            canvas.save();
-            Path path = this.f14612n;
-            path.rewind();
-            path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, org.telegram.messenger.g0.L(16.0f) * e10, Path.Direction.CW);
-            canvas.clipPath(path, Region.Op.DIFFERENCE);
-            drawable.setBounds(rect);
-            drawable.draw(canvas);
-            canvas.restore();
+    public void setDrawable(int i7) {
+        this.f14554f = getContext().getResources().getDrawable(i7).mutate();
+        Bitmap bitmap = this.h;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.h = null;
         }
-        if (e10 > 0.0f) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, org.telegram.messenger.g0.L(16.0f) * e10, this.d);
-            canvas.save();
-            Bitmap bitmap = this.f14609c;
-            if (bitmap != null) {
-                canvas.drawBitmap(bitmap, (Rect) null, rect, this.f14610e);
-            }
-            canvas.restore();
-            canvas.restore();
+        if (this.h == null && i7 != 0) {
+            this.h = BitmapFactory.decodeResource(getResources(), i7);
         }
+        invalidate();
     }
 
     @Override
     public void setInvert(float f10) {
-        this.f14607a.setColorFilter(new PorterDuffColorFilter(i0.a.f(f10, -1, -16777216), PorterDuff.Mode.MULTIPLY));
-        this.d.setColor(i0.a.f(f10, -1, -16777216));
+        Drawable drawable = this.f14554f;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(i0.a.f(f10, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        }
+        this.f14551b.setColor(i0.a.f(f10, -1, -16777216));
+        invalidate();
     }
 
-    public void setValue(boolean z10) {
-        float f10;
-        if (z10) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
+    @Override
+    public void setSelected(boolean z10) {
+        this.d = z10;
+        invalidate();
+    }
+
+    public void setDrawable(Drawable drawable) {
+        this.f14554f = drawable;
+        Bitmap bitmap = this.h;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.h = null;
         }
-        this.f14611f = f10;
+        if (this.h == null && drawable != null && drawable.getIntrinsicWidth() > 0 && drawable.getIntrinsicHeight() > 0) {
+            Bitmap createBitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            this.h = createBitmap;
+            drawable.setBounds(0, 0, createBitmap.getWidth(), this.h.getHeight());
+            drawable.draw(new Canvas(this.h));
+        }
         invalidate();
     }
 }

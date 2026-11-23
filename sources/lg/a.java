@@ -31,33 +31,33 @@ public final class a extends g {
         ArrayList arrayList2;
         float f12;
         int measuredHeight = getMeasuredHeight();
-        int i12 = g.f19804r1;
+        int i12 = g.f19770r1;
         int i13 = measuredHeight - i12;
         int measuredHeight2 = (getMeasuredHeight() - this.C0) - i12;
         ArrayList arrayList3 = this.d;
         int size = arrayList3.size();
-        if (this.f19834i0 != null) {
+        if (this.f19800i0 != null) {
             int i14 = 0;
             while (i14 < size) {
                 ng.a aVar = (ng.a) arrayList3.get(i14);
-                boolean z10 = aVar.f21541n;
-                Paint paint = aVar.f21532c;
-                float[] fArr = aVar.f21538k;
-                if (!z10 && aVar.f21542o == 0.0f) {
+                boolean z10 = aVar.f21507n;
+                Paint paint = aVar.f21498c;
+                float[] fArr = aVar.f21504k;
+                if (!z10 && aVar.f21508o == 0.0f) {
                     i7 = i13;
                     arrayList = arrayList3;
                     i10 = i14;
                 } else {
-                    aVar.f21533e.reset();
-                    float[] fArr2 = this.f19834i0.f21013b;
+                    aVar.f21499e.reset();
+                    float[] fArr2 = this.f19800i0.f20979b;
                     int length = fArr2.length;
                     if (fArr2.length < 2) {
                         f10 = 1.0f;
                     } else {
                         f10 = fArr2[1] * this.D0;
                     }
-                    long[] jArr = aVar.f21530a.f21005a;
-                    float f13 = aVar.f21542o;
+                    long[] jArr = aVar.f21496a.f20971a;
+                    float f13 = aVar.f21508o;
                     int i15 = 0;
                     int i16 = 0;
                     while (i15 < length) {
@@ -67,17 +67,17 @@ public final class a extends g {
                             i11 = i13;
                             arrayList2 = arrayList3;
                         } else {
-                            mg.b bVar = this.f19834i0;
+                            mg.b bVar = this.f19800i0;
                             i11 = i13;
-                            float f14 = this.D0 * bVar.f21013b[i15];
+                            float f14 = this.D0 * bVar.f20979b[i15];
                             if (g.C1) {
-                                f12 = this.f19838k0;
+                                f12 = this.f19804k0;
                                 f11 = f14;
                                 arrayList2 = arrayList3;
                             } else {
                                 f11 = f14;
                                 arrayList2 = arrayList3;
-                                f12 = (float) bVar.f21015e;
+                                f12 = (float) bVar.f20981e;
                             }
                             float w10 = o10.w((float) j3, f12, f13, 1.0f) * (i11 - measuredHeight2);
                             fArr[i16] = f11;
@@ -85,7 +85,7 @@ public final class a extends g {
                             int i18 = i16 + 3;
                             fArr[i16 + 2] = f11;
                             i16 += 4;
-                            fArr[i18] = getMeasuredHeight() - this.f19848s;
+                            fArr[i18] = getMeasuredHeight() - this.f19814s;
                         }
                         i15++;
                         i14 = i17;
@@ -110,16 +110,16 @@ public final class a extends g {
         F();
         k(canvas);
         i(canvas);
-        ArrayList arrayList = this.f19816b;
-        this.f19842n0 = arrayList.size();
+        ArrayList arrayList = this.f19782b;
+        this.f19808n0 = arrayList.size();
         int i7 = 0;
         while (true) {
-            this.f19843o0 = i7;
-            int i10 = this.f19843o0;
-            if (i10 < this.f19842n0) {
+            this.f19809o0 = i7;
+            int i10 = this.f19809o0;
+            if (i10 < this.f19808n0) {
                 l(canvas, (ng.d) arrayList.get(i10));
-                p(canvas, (ng.d) arrayList.get(this.f19843o0));
-                i7 = this.f19843o0 + 1;
+                p(canvas, (ng.d) arrayList.get(this.f19809o0));
+                i7 = this.f19809o0 + 1;
             } else {
                 j(canvas);
                 m(canvas);

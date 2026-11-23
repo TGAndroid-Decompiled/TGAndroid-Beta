@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public final class n implements List, Serializable, RandomAccess {
-    public static final n f14177a = new Object();
+    public static final n f14140a = new Object();
 
     @Override
     public final void add(int i7, Object obj) {
@@ -66,7 +66,7 @@ public final class n implements List, Serializable, RandomAccess {
 
     @Override
     public final Iterator iterator() {
-        return m.f14176a;
+        return m.f14139a;
     }
 
     @Override
@@ -76,7 +76,7 @@ public final class n implements List, Serializable, RandomAccess {
 
     @Override
     public final ListIterator listIterator() {
-        return m.f14176a;
+        return m.f14139a;
     }
 
     @Override
@@ -134,7 +134,7 @@ public final class n implements List, Serializable, RandomAccess {
     @Override
     public final ListIterator listIterator(int i7) {
         if (i7 == 0) {
-            return m.f14176a;
+            return m.f14139a;
         }
         throw new IndexOutOfBoundsException(i5.c.i(i7, "Index: "));
     }

@@ -2,29 +2,29 @@ package gf;
 
 import kf.t;
 public final class f extends mf.a {
-    public final int f13574a;
-    public final kf.a f13575b;
+    public final int f13537a;
+    public final kf.a f13538b;
 
     public f(int i7) {
-        this.f13574a = i7;
+        this.f13537a = i7;
         switch (i7) {
             case 1:
-                this.f13575b = new kf.p();
+                this.f13538b = new kf.p();
                 return;
             default:
-                this.f13575b = new kf.p();
+                this.f13538b = new kf.p();
                 return;
         }
     }
 
     @Override
     public void a(CharSequence charSequence) {
-        int i7 = this.f13574a;
+        int i7 = this.f13537a;
     }
 
     @Override
     public boolean b(kf.a aVar) {
-        switch (this.f13574a) {
+        switch (this.f13537a) {
             case 0:
                 return true;
             default:
@@ -34,17 +34,17 @@ public final class f extends mf.a {
 
     @Override
     public final kf.a e() {
-        switch (this.f13574a) {
+        switch (this.f13537a) {
             case 0:
-                return (kf.f) this.f13575b;
+                return (kf.f) this.f13538b;
             default:
-                return (t) this.f13575b;
+                return (t) this.f13538b;
         }
     }
 
     @Override
     public boolean f() {
-        switch (this.f13574a) {
+        switch (this.f13537a) {
             case 0:
                 return true;
             default:
@@ -54,9 +54,9 @@ public final class f extends mf.a {
 
     @Override
     public final a h(g gVar) {
-        switch (this.f13574a) {
+        switch (this.f13537a) {
             case 0:
-                return a.a(gVar.f13579b);
+                return a.a(gVar.f13542b);
             default:
                 return null;
         }

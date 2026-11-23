@@ -13,7 +13,7 @@ import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 import org.telegram.ui.Components.r80;
 public final class b9 extends n41 {
-    public static final int f44003b = 0;
+    public static final int f43975b = 0;
 
     static {
         n41.h(new n41());
@@ -24,12 +24,12 @@ public final class b9 extends n41 {
         float f10;
         float f11;
         c9 c9Var = (c9) view;
-        String charSequence = o41Var.f38091m.toString();
+        String charSequence = o41Var.f38058m.toString();
         long j3 = o41Var.C;
         int i7 = o41Var.A;
-        boolean z11 = o41Var.f38096r;
-        TextView textView = c9Var.f44048c;
-        TextView textView2 = c9Var.f44047b;
+        boolean z11 = o41Var.f38063r;
+        TextView textView = c9Var.f44014c;
+        TextView textView2 = c9Var.f44013b;
         textView2.setText(u8.c0(charSequence));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (j3 < 0) {
@@ -39,7 +39,7 @@ public final class b9 extends n41 {
             spannableStringBuilder.append((CharSequence) u0.x(j3, false));
         }
         if (i7 > 0) {
-            spannableStringBuilder = new SpannableStringBuilder(hd.V(null, null, 2131742784, spannableStringBuilder, hd.Q(i7)));
+            spannableStringBuilder = new SpannableStringBuilder(hd.V(null, null, 2131742786, spannableStringBuilder, hd.Q(i7)));
         }
         textView.setText(spannableStringBuilder);
         float f12 = 1.0f;

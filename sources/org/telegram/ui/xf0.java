@@ -5,12 +5,12 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class xf0 implements org.telegram.ui.Components.wi0 {
-    public final org.telegram.ui.ActionBar.g2 f53880a;
-    public final eg0 f53881b;
+    public final org.telegram.ui.ActionBar.g2 f53800a;
+    public final eg0 f53801b;
 
     public xf0(eg0 eg0Var, org.telegram.ui.ActionBar.g2 g2Var) {
-        this.f53881b = eg0Var;
-        this.f53880a = g2Var;
+        this.f53801b = eg0Var;
+        this.f53800a = g2Var;
     }
 
     @Override
@@ -31,10 +31,10 @@ public final class xf0 implements org.telegram.ui.Components.wi0 {
         ch.p0 p0Var3;
         ch.p0 p0Var4 = p0Var;
         if (p0Var4 != null) {
-            eg0 eg0Var = this.f53881b;
-            vf0 vf0Var = eg0Var.f47271e0;
-            tf0 tf0Var = eg0Var.f47264a0;
-            int i7 = eg0Var.f47267c;
+            eg0 eg0Var = this.f53801b;
+            vf0 vf0Var = eg0Var.f47240e0;
+            tf0 tf0Var = eg0Var.f47233a0;
+            int i7 = eg0Var.f47236c;
             if (vf0Var != null) {
                 boolean z15 = true;
                 if (!org.telegram.messenger.k10.i(i7).q() && p0Var4.d) {
@@ -46,9 +46,9 @@ public final class xf0 implements org.telegram.ui.Components.wi0 {
                 if (r1Var != null) {
                     org.telegram.messenger.gj messageObject = r1Var.getMessageObject();
                     if (messageObject != null) {
-                        TLRPC.Message message = messageObject.f24213k;
+                        TLRPC.Message message = messageObject.f24177k;
                         long j11 = message.effect;
-                        long j12 = p0Var4.f5505c;
+                        long j12 = p0Var4.f5468c;
                         if (j12 == j11) {
                             message.flags2 &= -5;
                             message.effect = 0L;
@@ -67,20 +67,20 @@ public final class xf0 implements org.telegram.ui.Components.wi0 {
                             j3 = 0;
                             j10 = j11;
                             r1Var2.y3(messageObject, l10, z15, false, false, false);
-                            vf0 vf0Var2 = eg0Var.f47271e0;
+                            vf0 vf0Var2 = eg0Var.f47240e0;
                             if (z14) {
                                 p0Var3 = null;
                             } else {
                                 p0Var3 = p0Var4;
                             }
                             vf0Var2.setSelectedReactionAnimated(p0Var3);
-                            if (eg0Var.f47271e0.getReactionsWindow() != null && eg0Var.f47271e0.getReactionsWindow().f5336m != null) {
-                                ch.x xVar = eg0Var.f47271e0.getReactionsWindow().f5336m;
+                            if (eg0Var.f47240e0.getReactionsWindow() != null && eg0Var.f47240e0.getReactionsWindow().f5299m != null) {
+                                ch.x xVar = eg0Var.f47240e0.getReactionsWindow().f5299m;
                                 if (z14) {
                                     p0Var4 = null;
                                 }
                                 xVar.setSelectedReaction(p0Var4);
-                                eg0Var.f47271e0.getReactionsWindow().f5326a.invalidate();
+                                eg0Var.f47240e0.getReactionsWindow().f5289a.invalidate();
                             }
                         } else {
                             j3 = 0;
@@ -91,7 +91,7 @@ public final class xf0 implements org.telegram.ui.Components.wi0 {
                             tf0Var.n(eg0Var.Q, 0, false, false);
                         }
                         if (z12) {
-                            TLRPC.Message message2 = messageObject.f24213k;
+                            TLRPC.Message message2 = messageObject.f24177k;
                             message2.effect = j10;
                             if (j10 == j3) {
                                 message2.flags2 &= -5;
@@ -99,14 +99,14 @@ public final class xf0 implements org.telegram.ui.Components.wi0 {
                         }
                         uf0 uf0Var = eg0Var.X;
                         if (uf0Var != null) {
-                            uf0Var.setEffect(messageObject.f24213k.effect);
+                            uf0Var.setEffect(messageObject.f24177k.effect);
                         }
-                        eg0Var.m(messageObject.f24213k.effect);
+                        eg0Var.m(messageObject.f24177k.effect);
                     } else {
                         return;
                     }
-                } else if (eg0Var.f47279l0 != null) {
-                    long j13 = p0Var4.f5505c;
+                } else if (eg0Var.f47248l0 != null) {
+                    long j13 = p0Var4.f5468c;
                     if (j13 == eg0Var.I) {
                         eg0Var.I = 0L;
                         z13 = true;
@@ -133,20 +133,20 @@ public final class xf0 implements org.telegram.ui.Components.wi0 {
                                 n5Var.g(null, true);
                             }
                         }
-                        vf0 vf0Var3 = eg0Var.f47271e0;
+                        vf0 vf0Var3 = eg0Var.f47240e0;
                         if (z13) {
                             p0Var2 = null;
                         } else {
                             p0Var2 = p0Var4;
                         }
                         vf0Var3.setSelectedReactionAnimated(p0Var2);
-                        if (eg0Var.f47271e0.getReactionsWindow() != null && eg0Var.f47271e0.getReactionsWindow().f5336m != null) {
-                            ch.x xVar2 = eg0Var.f47271e0.getReactionsWindow().f5336m;
+                        if (eg0Var.f47240e0.getReactionsWindow() != null && eg0Var.f47240e0.getReactionsWindow().f5299m != null) {
+                            ch.x xVar2 = eg0Var.f47240e0.getReactionsWindow().f5299m;
                             if (z13) {
                                 p0Var4 = null;
                             }
                             xVar2.setSelectedReaction(p0Var4);
-                            eg0Var.f47271e0.getReactionsWindow().f5326a.invalidate();
+                            eg0Var.f47240e0.getReactionsWindow().f5289a.invalidate();
                         }
                     }
                     tf0Var.c();
@@ -157,11 +157,11 @@ public final class xf0 implements org.telegram.ui.Components.wi0 {
                         if (j14 != 0) {
                             tL_message.flags2 |= 4;
                         }
-                        eg0Var.f47264a0.d(null, 0, null, new org.telegram.messenger.gj(i7, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
+                        eg0Var.f47233a0.d(null, 0, null, new org.telegram.messenger.gj(i7, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
                     }
                 }
-                if (z12 && (g2Var = this.f53880a) != null) {
-                    new org.telegram.ui.Components.lc(eg0Var.G, eg0Var.f47265b).Q(2131624217, 36, org.telegram.messenger.g0.x2(org.telegram.messenger.hd.N0(2131754250, null), new wf0(0, g2Var))).j();
+                if (z12 && (g2Var = this.f53800a) != null) {
+                    new org.telegram.ui.Components.lc(eg0Var.G, eg0Var.f47234b).Q(2131624217, 36, org.telegram.messenger.g0.x2(org.telegram.messenger.hd.N0(2131754250, null), new wf0(0, g2Var))).j();
                 }
                 eg0Var.H.invalidate();
             }

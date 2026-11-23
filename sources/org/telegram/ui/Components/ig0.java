@@ -10,20 +10,20 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import org.telegram.messenger.Utilities;
 public final class ig0 implements kg0 {
-    public Bitmap f36246a;
-    public Canvas f36247b;
-    public final Paint f36248c;
+    public Bitmap f36202a;
+    public Canvas f36203b;
+    public final Paint f36204c;
     public final Paint d;
-    public int f36249e;
-    public int f36250f;
-    public int f36251g;
+    public int f36205e;
+    public int f36206f;
+    public int f36207g;
     public int h;
-    public final lg0 f36252i;
+    public final lg0 f36208i;
 
     public ig0(lg0 lg0Var) {
-        this.f36252i = lg0Var;
+        this.f36208i = lg0Var;
         Paint paint = new Paint();
-        this.f36248c = paint;
+        this.f36204c = paint;
         Paint paint2 = new Paint();
         this.d = paint2;
         paint.setFlags(7);
@@ -39,54 +39,54 @@ public final class ig0 implements kg0 {
         Canvas canvas2;
         int i7;
         int i10;
-        lg0 lg0Var = (lg0) kyVar.f37037b;
-        lg0 lg0Var2 = this.f36252i;
-        Paint paint = lg0Var2.f37183a;
-        Bitmap bitmap = this.f36246a;
+        lg0 lg0Var = (lg0) kyVar.f36994b;
+        lg0 lg0Var2 = this.f36208i;
+        Paint paint = lg0Var2.f37139a;
+        Bitmap bitmap = this.f36202a;
         if (bitmap != null && !bitmap.isRecycled()) {
-            int a10 = (int) ((1.0f - ((c8.l9.a(lg0Var2.f37187f, 0.2f, 0.3f) - 0.2f) / 0.10000001f)) * 255.0f);
-            float width = (lg0Var2.getWidth() - this.f36250f) / 2.0f;
+            int a10 = (int) ((1.0f - ((c8.m9.a(lg0Var2.f37143f, 0.2f, 0.3f) - 0.2f) / 0.10000001f)) * 255.0f);
+            float width = (lg0Var2.getWidth() - this.f36206f) / 2.0f;
             canvas.save();
             canvas.translate(0.0f, -org.telegram.messenger.g0.L(32.0f));
             if (a10 != 255) {
-                this.f36246a.eraseColor(0);
-                this.f36247b.save();
-                this.f36247b.scale(this.f36246a.getWidth() / this.f36251g, this.f36246a.getHeight() / this.h);
+                this.f36202a.eraseColor(0);
+                this.f36203b.save();
+                this.f36203b.scale(this.f36202a.getWidth() / this.f36207g, this.f36202a.getHeight() / this.h);
                 float f10 = -width;
-                this.f36247b.translate(f10, 0.0f);
-                lg0.a(lg0Var, this.f36247b);
-                this.f36247b.restore();
-                this.f36247b.save();
-                this.f36247b.scale(this.f36246a.getWidth() / this.f36251g, this.f36246a.getHeight() / this.h);
-                if (lg0Var2.f37188n != null) {
-                    this.f36247b.save();
-                    this.f36247b.translate(f10, org.telegram.messenger.g0.L(32.0f));
-                    bi.c2 c2Var = lg0Var2.f37188n;
-                    if (c2Var.f3458c) {
-                        Canvas canvas3 = this.f36247b;
-                        float centerX = ((RectF) lg0Var2.f37188n.f3459e).centerX();
-                        RectF rectF = (RectF) lg0Var2.f37188n.f3459e;
-                        canvas3.drawCircle(centerX, rectF.bottom - (rectF.width() / 2.0f), Math.min(((RectF) c2Var.f3459e).width(), ((RectF) lg0Var2.f37188n.f3459e).height()) / 2.0f, paint);
-                    } else if (c2Var.f3457b) {
-                        this.f36247b.drawPath((Path) c2Var.d, paint);
+                this.f36203b.translate(f10, 0.0f);
+                lg0.a(lg0Var, this.f36203b);
+                this.f36203b.restore();
+                this.f36203b.save();
+                this.f36203b.scale(this.f36202a.getWidth() / this.f36207g, this.f36202a.getHeight() / this.h);
+                if (lg0Var2.f37144n != null) {
+                    this.f36203b.save();
+                    this.f36203b.translate(f10, org.telegram.messenger.g0.L(32.0f));
+                    bi.d2 d2Var = lg0Var2.f37144n;
+                    if (d2Var.f3457c) {
+                        Canvas canvas3 = this.f36203b;
+                        float centerX = ((RectF) lg0Var2.f37144n.f3458e).centerX();
+                        RectF rectF = (RectF) lg0Var2.f37144n.f3458e;
+                        canvas3.drawCircle(centerX, rectF.bottom - (rectF.width() / 2.0f), Math.min(((RectF) d2Var.f3458e).width(), ((RectF) lg0Var2.f37144n.f3458e).height()) / 2.0f, paint);
+                    } else if (d2Var.f3456b) {
+                        this.f36203b.drawPath((Path) d2Var.d, paint);
                     } else {
-                        float max = Math.max(((RectF) c2Var.f3459e).width(), ((RectF) lg0Var2.f37188n.f3459e).height()) / 2.0f;
-                        this.f36247b.drawRoundRect((RectF) lg0Var2.f37188n.f3459e, max, max, paint);
+                        float max = Math.max(((RectF) d2Var.f3458e).width(), ((RectF) lg0Var2.f37144n.f3458e).height()) / 2.0f;
+                        this.f36203b.drawRoundRect((RectF) lg0Var2.f37144n.f3458e, max, max, paint);
                     }
-                    this.f36247b.restore();
+                    this.f36203b.restore();
                 } else {
-                    this.f36247b.drawRect(0.0f, 0.0f, this.f36250f, org.telegram.messenger.g0.L(32.0f), paint);
+                    this.f36203b.drawRect(0.0f, 0.0f, this.f36206f, org.telegram.messenger.g0.L(32.0f), paint);
                 }
-                this.f36247b.restore();
-                Utilities.stackBlurBitmap(this.f36246a, (int) ((lg0Var2.d * 2.0f) / 6.0f));
+                this.f36203b.restore();
+                Utilities.stackBlurBitmap(this.f36202a, (int) ((lg0Var2.d * 2.0f) / 6.0f));
                 canvas.save();
                 canvas.translate(width, 0.0f);
                 i7 = 255;
                 canvas2 = canvas;
-                canvas2.saveLayer(0.0f, 0.0f, this.f36251g, this.h, null);
-                canvas2.scale(this.f36251g / this.f36246a.getWidth(), this.h / this.f36246a.getHeight());
-                canvas2.drawBitmap(this.f36246a, 0.0f, 0.0f, this.f36248c);
-                canvas2.drawBitmap(this.f36246a, 0.0f, 0.0f, this.d);
+                canvas2.saveLayer(0.0f, 0.0f, this.f36207g, this.h, null);
+                canvas2.scale(this.f36207g / this.f36202a.getWidth(), this.h / this.f36202a.getHeight());
+                canvas2.drawBitmap(this.f36202a, 0.0f, 0.0f, this.f36204c);
+                canvas2.drawBitmap(this.f36202a, 0.0f, 0.0f, this.d);
                 canvas2.restore();
                 canvas2.restore();
             } else {
@@ -96,7 +96,7 @@ public final class ig0 implements kg0 {
             if (a10 != 0) {
                 if (a10 != i7) {
                     i10 = a10;
-                    canvas2.saveLayerAlpha(width, 0.0f, width + this.f36250f, this.f36249e, i10);
+                    canvas2.saveLayerAlpha(width, 0.0f, width + this.f36206f, this.f36205e, i10);
                 } else {
                     i10 = a10;
                 }
@@ -111,19 +111,19 @@ public final class ig0 implements kg0 {
 
     @Override
     public final void d(int i7, int i10) {
-        Bitmap bitmap = this.f36246a;
+        Bitmap bitmap = this.f36202a;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f36246a = null;
+            this.f36202a = null;
         }
-        this.f36250f = Math.min(org.telegram.messenger.g0.L(120.0f), i7);
+        this.f36206f = Math.min(org.telegram.messenger.g0.L(120.0f), i7);
         int min = Math.min(org.telegram.messenger.g0.L(220.0f), i10);
-        this.f36249e = min;
-        this.f36251g = this.f36250f;
+        this.f36205e = min;
+        this.f36207g = this.f36206f;
         int L = org.telegram.messenger.g0.L(32.0f) + min;
         this.h = L;
-        this.f36246a = Bitmap.createBitmap((int) (this.f36251g / 6.0f), (int) (L / 6.0f), Bitmap.Config.ARGB_8888);
-        this.f36247b = new Canvas(this.f36246a);
+        this.f36202a = Bitmap.createBitmap((int) (this.f36207g / 6.0f), (int) (L / 6.0f), Bitmap.Config.ARGB_8888);
+        this.f36203b = new Canvas(this.f36202a);
     }
 
     @Override

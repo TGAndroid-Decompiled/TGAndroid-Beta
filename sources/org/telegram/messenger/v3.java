@@ -150,7 +150,7 @@ public abstract class v3 {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (chat.f28434id % 7);
+        return (int) (chat.f28398id % 7);
     }
 
     public static long G(TLRPC.Chat chat) {
@@ -324,19 +324,19 @@ public abstract class v3 {
             }
             return j10;
         } else if (chat != null && (tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.anonymous) {
-            long j11 = chat.f28434id;
+            long j11 = chat.f28398id;
             if (z10) {
                 return -j11;
             }
             return j11;
         } else if (chat != null && V(chat) && !chat.signatures) {
-            long j12 = chat.f28434id;
+            long j12 = chat.f28398id;
             if (z10) {
                 return -j12;
             }
             return j12;
         } else {
-            return k10.i(k10.f24968t0).e();
+            return k10.i(k10.f24932t0).e();
         }
     }
 
@@ -454,7 +454,7 @@ public abstract class v3 {
     }
 
     public static boolean a(TLRPC.Chat chat) {
-        if (!cz.f23425n) {
+        if (!cz.f23389n) {
             if (chat == null || !chat.forum_tabs) {
                 return false;
             }
@@ -521,10 +521,10 @@ public abstract class v3 {
         TLRPC.Message message;
         TLRPC.Message message2;
         int size;
-        if (tL_forumTopic == null || tL_forumTopic.f28486id != 1) {
+        if (tL_forumTopic == null || tL_forumTopic.f28450id != 1) {
             if (!w(13, chat)) {
                 if (q0(i7, tL_forumTopic) && (message = tL_forumTopic.topMessage) != null && (message2 = tL_forumTopic.topicStartMessage) != null) {
-                    int i10 = message.f28455id - message2.f28455id;
+                    int i10 = message.f28419id - message2.f28419id;
                     ArrayList<gj> arrayList = tL_forumTopic.groupedMessages;
                     if (arrayList == null) {
                         size = 0;
@@ -541,7 +541,7 @@ public abstract class v3 {
     }
 
     public static boolean e0(int i7, TLRPC.Chat chat) {
-        if (chat != null && g0(chat.linked_community_id, i7, -chat.f28434id)) {
+        if (chat != null && g0(chat.linked_community_id, i7, -chat.f28398id)) {
             return true;
         }
         return false;
@@ -552,7 +552,7 @@ public abstract class v3 {
     }
 
     public static boolean f0(int i7, TLRPC.User user) {
-        if (user != null && g0(user.linked_community_id, i7, user.f28583id)) {
+        if (user != null && g0(user.linked_community_id, i7, user.f28547id)) {
             return true;
         }
         return false;
@@ -572,7 +572,7 @@ public abstract class v3 {
                 TL_communities.CommunityPeer communityPeer = arrayList.get(i10);
                 i10++;
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
-                if (n5.o(communityPeer2.peer) == j10 && c8.dd.a(communityPeer2.flags, 1) && !communityPeer2.visible) {
+                if (n5.o(communityPeer2.peer) == j10 && c8.ed.a(communityPeer2.flags, 1) && !communityPeer2.visible) {
                     return true;
                 }
             }
@@ -603,7 +603,7 @@ public abstract class v3 {
 
     public static boolean h0(TLRPC.Chat chat) {
         if (chat != null) {
-            return i0(np.u1(k10.f24968t0).P0(chat.f28434id));
+            return i0(np.u1(k10.f24932t0).P0(chat.f28398id));
         }
         return false;
     }
@@ -754,7 +754,7 @@ public abstract class v3 {
         if (tL_forumTopic != null) {
             if (!tL_forumTopic.my) {
                 TLRPC.Peer peer = tL_forumTopic.from_id;
-                if ((peer instanceof TLRPC.TL_peerUser) && peer.user_id == k10.i(i7).f24987n) {
+                if ((peer instanceof TLRPC.TL_peerUser) && peer.user_id == k10.i(i7).f24951n) {
                     return true;
                 }
                 return false;
@@ -790,7 +790,7 @@ public abstract class v3 {
 
     public static boolean s0(TLRPC.Chat chat) {
         TLRPC.ChatFull P0;
-        if (chat == null || (P0 = np.u1(k10.f24968t0).P0(chat.f28434id)) == null || P0.boosts_unrestrict <= 0) {
+        if (chat == null || (P0 = np.u1(k10.f24932t0).P0(chat.f28398id)) == null || P0.boosts_unrestrict <= 0) {
             return false;
         }
         return true;

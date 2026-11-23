@@ -9,14 +9,14 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.ui.Components.nr;
 public final class l9 extends ReplacementSpan {
-    public View f12279a;
+    public View f12228a;
     public float d;
-    public boolean f12282e;
-    public long f12283f;
-    public boolean f12284n;
-    public boolean f12285r;
-    public int f12280b = 1;
-    public int f12281c = 2;
+    public boolean f12231e;
+    public long f12232f;
+    public boolean f12233n;
+    public boolean f12234r;
+    public int f12229b = 1;
+    public int f12230c = 2;
     public final nr h = new nr(0.0f, 0.5f, 0.5f, 1.0f);
 
     public static CharSequence a(TextView textView, String str) {
@@ -38,8 +38,8 @@ public final class l9 extends ReplacementSpan {
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             l9 l9Var = new l9();
-            l9Var.f12279a = textView;
-            l9Var.f12284n = false;
+            l9Var.f12228a = textView;
+            l9Var.f12233n = false;
             spannableStringBuilder.setSpan(l9Var, i11, i11 + i10, 33);
             i11 += i10 - 1;
             i11++;
@@ -51,8 +51,8 @@ public final class l9 extends ReplacementSpan {
     }
 
     public final void b(org.telegram.ui.Cells.v0 v0Var) {
-        this.f12279a = v0Var;
-        this.f12284n = false;
+        this.f12228a = v0Var;
+        this.f12233n = false;
     }
 
     @Override
@@ -63,44 +63,44 @@ public final class l9 extends ReplacementSpan {
         float y10;
         TextPaint textPaint = (TextPaint) paint;
         float measureText = paint.measureText("…") / 3.0f;
-        if (this.f12285r) {
+        if (this.f12234r) {
             f11 = textPaint.getFontMetrics().ascent;
         } else {
             f11 = textPaint.getFontMetrics().top;
         }
         float f14 = -f11;
         float f15 = textPaint.getFontMetrics().bottom - textPaint.getFontMetrics().top;
-        if (this.f12284n) {
+        if (this.f12233n) {
             f12 = 0.05f;
         } else {
             f12 = 0.0365f;
         }
         float f16 = f15 * f12;
         float f17 = f14 - f16;
-        if (this.f12282e) {
-            if (System.currentTimeMillis() - this.f12283f > 1000) {
-                this.f12282e = false;
+        if (this.f12231e) {
+            if (System.currentTimeMillis() - this.f12232f > 1000) {
+                this.f12231e = false;
             }
         } else {
             float f18 = this.d + 0.053333335f;
             this.d = f18;
             if (f18 > 1.0f) {
                 this.d = 0.0f;
-                int i14 = this.f12280b - 1;
-                this.f12280b = i14;
-                this.f12281c--;
+                int i14 = this.f12229b - 1;
+                this.f12229b = i14;
+                this.f12230c--;
                 if (i14 < 0) {
-                    this.f12280b = 1;
-                    this.f12281c = 2;
-                    this.f12282e = true;
-                    this.f12283f = System.currentTimeMillis();
+                    this.f12229b = 1;
+                    this.f12230c = 2;
+                    this.f12231e = true;
+                    this.f12232f = System.currentTimeMillis();
                 }
             }
         }
         for (int i15 = 0; i15 < 3; i15++) {
             float f19 = measureText / 2.0f;
             float f20 = (i15 * measureText) + f10 + f19;
-            if (i15 == this.f12280b) {
+            if (i15 == this.f12229b) {
                 f20 = org.telegram.messenger.g0.T1(f20, p5.c.e(measureText, i15 + 1, f10, f19), this.d);
                 float f21 = this.d;
                 if (f21 < 0.5f) {
@@ -110,14 +110,14 @@ public final class l9 extends ReplacementSpan {
                 }
                 f13 = org.telegram.messenger.g0.T1(f17, f17 - f19, this.h.getInterpolation(y10));
             } else {
-                if (i15 == this.f12281c) {
+                if (i15 == this.f12230c) {
                     f20 = org.telegram.messenger.g0.T1(f20, p5.c.e(measureText, i15 - 1, f10, f19), this.d);
                 }
                 f13 = f17;
             }
             canvas.drawCircle(f20, f13, f16, paint);
         }
-        View view = this.f12279a;
+        View view = this.f12228a;
         if (view != null) {
             view.invalidate();
         }

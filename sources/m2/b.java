@@ -3,10 +3,10 @@ package m2;
 import e2.c1;
 import e2.v0;
 import e2.x1;
-import ji.l;
+import ji.k;
 import x2.c0;
 public interface b {
-    void A(c1 c1Var, l lVar);
+    void A(c1 c1Var, k kVar);
 
     void C(a aVar, int i7);
 

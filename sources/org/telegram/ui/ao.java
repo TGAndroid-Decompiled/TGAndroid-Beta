@@ -1,39 +1,34 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class ao extends org.telegram.ui.Components.wm0 {
-    public final jo O;
+public final class ao implements org.telegram.ui.Components.f80 {
+    public final Context f45619a;
+    public final io f45620b;
 
-    public ao(jo joVar, Context context, org.telegram.ui.Components.vm0 vm0Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, vm0Var, h6Var, false);
-        this.O = joVar;
+    public ao(io ioVar, Context context) {
+        this.f45620b = ioVar;
+        this.f45619a = context;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!this.O.M && super.onInterceptTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
+    public final void e() {
+        this.f45620b.d0(true);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0) {
-            return super.onTouchEvent(motionEvent);
-        }
-        if (!this.O.M && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
+    public final void f() {
+        io ioVar = this.f45620b;
+        org.telegram.ui.Components.a60 a60Var = new org.telegram.ui.Components.a60(this.f45619a, ioVar.m0, ioVar.Z, ioVar.f48797p0, ioVar, ioVar.f48778a0, true, org.telegram.messenger.v3.T(ioVar.Y));
+        io ioVar2 = this.f45620b;
+        ioVar2.f48798q0 = a60Var;
+        ioVar2.f48798q0.show();
     }
 
     @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        rect.bottom = org.telegram.messenger.g0.L(60.0f) + rect.bottom;
-        return super.requestChildRectangleOnScreen(view, rect, z10);
+    public final void d() {
+    }
+
+    @Override
+    public final void i() {
     }
 }

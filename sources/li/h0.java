@@ -23,20 +23,20 @@ public final class h0 extends n41 {
 
     public static o41 i(ro roVar, q2 q2Var) {
         long j3;
-        TLRPC.User user = roVar.f26642c;
+        TLRPC.User user = roVar.f26606c;
         if (user != null) {
             o41 K = o41.K(h0.class);
-            long j10 = user.f28583id;
+            long j10 = user.f28547id;
             K.C = j10;
             K.d = (int) (j10 ^ (j10 >>> 32));
             K.H = user;
             K.I = q2Var;
             return K;
         }
-        TLRPC.Chat chat = roVar.f26641b;
+        TLRPC.Chat chat = roVar.f26605b;
         o41 K2 = o41.K(h0.class);
         if (chat != null) {
-            j3 = -chat.f28434id;
+            j3 = -chat.f28398id;
         } else {
             j3 = 0;
         }
@@ -55,8 +55,8 @@ public final class h0 extends n41 {
         boolean z11 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            u2Var.R0 = v3.e0(k10.f24968t0, chat);
-            TLRPC.Dialog U0 = np.u1(k10.f24968t0).U0(-chat.f28434id);
+            u2Var.R0 = v3.e0(k10.f24932t0, chat);
+            TLRPC.Dialog U0 = np.u1(k10.f24932t0).U0(-chat.f28398id);
             if (U0 != null) {
                 z11 = false;
             }
@@ -67,11 +67,11 @@ public final class h0 extends n41 {
                 return;
             }
             u2Var.setCustomMessageWithoutRebuild(hd.G(chat.participants_count, "Members", new Object[0]));
-            u2Var.d0(-chat.f28434id, null, 0, false, false);
+            u2Var.d0(-chat.f28398id, null, 0, false, false);
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
-            u2Var.R0 = v3.f0(k10.f24968t0, user);
-            TLRPC.Dialog U02 = np.u1(k10.f24968t0).U0(user.f28583id);
+            u2Var.R0 = v3.f0(k10.f24932t0, user);
+            TLRPC.Dialog U02 = np.u1(k10.f24932t0).U0(user.f28547id);
             if (U02 != null) {
                 z11 = false;
             }
@@ -82,7 +82,7 @@ public final class h0 extends n41 {
                 return;
             }
             u2Var.setCustomMessageWithoutRebuild(hd.N0(2131753153, null));
-            u2Var.d0(user.f28583id, null, 0, false, false);
+            u2Var.d0(user.f28547id, null, 0, false, false);
         }
     }
 

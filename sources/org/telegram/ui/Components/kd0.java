@@ -6,11 +6,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class kd0 extends FrameLayout {
-    public TextView f36890a;
-    public TextView f36891b;
-    public ImageView f36892c;
+    public TextView f36856a;
+    public TextView f36857b;
+    public ImageView f36858c;
     public Switch d;
-    public boolean f36893e;
+    public boolean f36859e;
 
     @Override
     public final void invalidate() {
@@ -25,8 +25,8 @@ public final class kd0 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         float L;
         int i7;
-        if (this.f36893e) {
-            if (org.telegram.messenger.hd.f24444a0) {
+        if (this.f36859e) {
+            if (org.telegram.messenger.hd.f24408a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(70.0f);
@@ -34,35 +34,35 @@ public final class kd0 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.hd.f24444a0) {
+            if (org.telegram.messenger.hd.f24408a0) {
                 i7 = org.telegram.messenger.g0.L(70.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29504k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29470k0);
         }
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        int L = org.telegram.messenger.g0.L(13.0f) + this.f36890a.getMeasuredHeight();
-        TextView textView = this.f36891b;
+        int L = org.telegram.messenger.g0.L(13.0f) + this.f36856a.getMeasuredHeight();
+        TextView textView = this.f36857b;
         textView.layout(textView.getLeft(), L, textView.getRight(), textView.getMeasuredHeight() + L);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        TextView textView = this.f36890a;
+        TextView textView = this.f36856a;
         measureChildWithMargins(textView, i7, 0, i10, 0);
-        TextView textView2 = this.f36891b;
+        TextView textView2 = this.f36857b;
         measureChildWithMargins(textView2, i7, 0, i10, 0);
-        measureChildWithMargins(this.f36892c, i7, 0, i10, 0);
+        measureChildWithMargins(this.f36858c, i7, 0, i10, 0);
         Switch r72 = this.d;
         if (r72 != null) {
             measureChildWithMargins(r72, i7, 0, i10, 0);
         }
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.f3.b(20.0f, textView2.getMeasuredHeight() + textView.getMeasuredHeight(), org.telegram.messenger.g0.L(64.0f)) + (this.f36893e ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.f3.b(20.0f, textView2.getMeasuredHeight() + textView.getMeasuredHeight(), org.telegram.messenger.g0.L(64.0f)) + (this.f36859e ? 1 : 0));
     }
 
     public void setChecked(boolean z10) {

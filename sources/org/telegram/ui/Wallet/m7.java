@@ -8,8 +8,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.ui.Components.nr;
 import org.telegram.ui.Components.rh0;
-import org.telegram.ui.jw0;
 import org.telegram.ui.k71;
+import org.telegram.ui.zn0;
 public final class m7 extends FrameLayout {
     public int E;
     public float F;
@@ -30,57 +30,57 @@ public final class m7 extends FrameLayout {
     public float U;
     public float V;
     public long W;
-    public final int f44612a;
-    public boolean f44613a0;
-    public final int f44614b;
-    public final i7 f44615b0;
-    public View f44616c;
-    public float f44617c0;
+    public final int f44578a;
+    public boolean f44579a0;
+    public final int f44580b;
+    public final i7 f44581b0;
+    public View f44582c;
+    public float f44583c0;
     public l7 d;
-    public Runnable f44618d0;
-    public k7 f44619e;
-    public float f44620e0;
-    public vg.f f44621f;
-    public double f44622f0;
-    public long f44623g0;
+    public Runnable f44584d0;
+    public k7 f44585e;
+    public float f44586e0;
+    public vg.g f44587f;
+    public double f44588f0;
+    public long f44589g0;
     public rh0 h;
-    public float f44624h0;
-    public float f44625i0;
-    public float f44626j0;
-    public final i7 f44627k0;
-    public int f44628l0;
+    public float f44590h0;
+    public float f44591i0;
+    public float f44592j0;
+    public final i7 f44593k0;
+    public int f44594l0;
     public final j7 m0;
-    public boolean f44629n;
-    public boolean f44630r;
-    public boolean f44631s;
-    public boolean f44632w;
-    public boolean f44633x;
-    public boolean f44634y;
+    public boolean f44595n;
+    public boolean f44596r;
+    public boolean f44597s;
+    public boolean f44598w;
+    public boolean f44599x;
+    public boolean f44600y;
 
     public m7(int r3, android.content.Context r4, boolean r5) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.m7.<init>(int, android.content.Context, boolean):void");
     }
 
     public static void a(m7 m7Var) {
-        if (m7Var.f44621f != null && m7Var.f44630r && !m7Var.f44634y) {
+        if (m7Var.f44587f != null && m7Var.f44596r && !m7Var.f44600y) {
             m7Var.setIdleAnimationEnabled(true);
         }
     }
 
     public static void b(m7 m7Var, boolean z10, float f10) {
-        if (!z10 && f10 <= 1.001f && m7Var.f44621f != null) {
+        if (!z10 && f10 <= 1.001f && m7Var.f44587f != null) {
             m7Var.setRenderScale(1.0f);
         }
     }
 
     public static void c(m7 m7Var) {
-        if (m7Var.f44621f != null) {
+        if (m7Var.f44587f != null) {
             m7Var.h(false);
-            m7Var.f44628l0++;
+            m7Var.f44594l0++;
             m7Var.removeCallbacks(m7Var.m0);
-            Choreographer.getInstance().removeFrameCallback(m7Var.f44627k0);
-            m7Var.f44623g0 = 0L;
-            m7Var.f44620e0 = 0.0f;
+            Choreographer.getInstance().removeFrameCallback(m7Var.f44593k0);
+            m7Var.f44589g0 = 0L;
+            m7Var.f44586e0 = 0.0f;
             m7Var.m(null);
             m7Var.setIdleAnimationEnabled(false);
             m7Var.setRendererPaused(true);
@@ -89,25 +89,25 @@ public final class m7 extends FrameLayout {
                 l7Var.setPaused(true);
                 l7Var.onPause();
             }
-            k7 k7Var = m7Var.f44619e;
+            k7 k7Var = m7Var.f44585e;
             if (k7Var != null) {
                 k7Var.o();
             }
-            m7Var.removeView(m7Var.f44616c);
+            m7Var.removeView(m7Var.f44582c);
             m7Var.d = null;
-            m7Var.f44619e = null;
-            m7Var.f44621f = null;
+            m7Var.f44585e = null;
+            m7Var.f44587f = null;
             m7Var.g();
-            View view = m7Var.f44616c;
-            int i7 = m7Var.f44612a;
+            View view = m7Var.f44582c;
+            int i7 = m7Var.f44578a;
             m7Var.addView(view, new FrameLayout.LayoutParams(i7, i7, 17));
-            m7Var.f44630r = false;
-            if (m7Var.f44617c0 != 0.0f) {
+            m7Var.f44596r = false;
+            if (m7Var.f44583c0 != 0.0f) {
                 m7Var.h.getAnimatedDrawable().K(1);
             }
             m7Var.j();
-            Runnable runnable = m7Var.f44618d0;
-            m7Var.f44618d0 = null;
+            Runnable runnable = m7Var.f44584d0;
+            m7Var.f44584d0 = null;
             if (runnable != null) {
                 runnable.run();
             }
@@ -119,7 +119,7 @@ public final class m7 extends FrameLayout {
         if (l7Var != null) {
             l7Var.setIdleAnimationEnabled(z10);
         }
-        k7 k7Var = this.f44619e;
+        k7 k7Var = this.f44585e;
         if (k7Var != null) {
             k7Var.setIdleAnimationEnabled(z10);
         }
@@ -130,8 +130,8 @@ public final class m7 extends FrameLayout {
         if (l7Var != null) {
             l7Var.setRenderScale(f10);
         }
-        if (this.f44619e != null) {
-            this.f44621f.h = f10 / 3.5f;
+        if (this.f44585e != null) {
+            this.f44587f.h = f10 / 3.5f;
         }
     }
 
@@ -140,23 +140,23 @@ public final class m7 extends FrameLayout {
         if (l7Var != null) {
             l7Var.setPaused(z10);
         }
-        k7 k7Var = this.f44619e;
+        k7 k7Var = this.f44585e;
         if (k7Var != null) {
             k7Var.setPaused(z10);
         }
     }
 
     public final void d(float f10) {
-        if (f10 > 1.0f && this.f44621f != null) {
+        if (f10 > 1.0f && this.f44587f != null) {
             setRenderScale(3.5f);
         }
         if (this.K == null) {
-            r1.g gVar = new r1.g(new r1.f(this.f44616c.getScaleX()));
+            r1.g gVar = new r1.g(new r1.f(this.f44582c.getScaleX()));
             this.K = gVar;
             r1.h hVar = new r1.h(f10);
             hVar.a(0.55f);
             hVar.b(280.0f);
-            gVar.f56368m = hVar;
+            gVar.f56333m = hVar;
             this.K.f(0.001f);
             this.K.b(new g7(this, 0));
             this.K.a(new h7(this, 0));
@@ -165,22 +165,22 @@ public final class m7 extends FrameLayout {
     }
 
     public final void e() {
-        vg.f fVar = this.f44621f;
-        if (fVar == null) {
+        vg.g gVar = this.f44587f;
+        if (gVar == null) {
             return;
         }
         float f10 = this.H;
-        float f11 = this.f44624h0;
-        float f12 = this.f44626j0;
-        fVar.d = com.google.android.gms.internal.vision.e2.z(1.0f, f12, f11, f10);
-        fVar.f59473i = com.google.android.gms.internal.vision.e2.z(1.0f, f12, this.f44625i0, this.I);
+        float f11 = this.f44590h0;
+        float f12 = this.f44592j0;
+        gVar.d = com.google.android.gms.internal.vision.e2.z(1.0f, f12, f11, f10);
+        gVar.f59438i = com.google.android.gms.internal.vision.e2.z(1.0f, f12, this.f44591i0, this.I);
     }
 
     public final void f(m7 m7Var) {
-        vg.f fVar;
-        if (m7Var != null && (fVar = m7Var.f44621f) != null && this.f44621f != null) {
-            this.H = fVar.d;
-            this.I = fVar.f59473i;
+        vg.g gVar;
+        if (m7Var != null && (gVar = m7Var.f44587f) != null && this.f44587f != null) {
+            this.H = gVar.d;
+            this.I = gVar.f59438i;
             e();
         }
     }
@@ -190,12 +190,12 @@ public final class m7 extends FrameLayout {
         this.h = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         rh0 rh0Var = this.h;
-        int i7 = this.f44614b;
+        int i7 = this.f44580b;
         rh0Var.f(2131624356, i7, i7, null);
         this.h.getAnimatedDrawable().K(0);
-        this.f44616c = this.h;
+        this.f44582c = this.h;
         setOnClickListener(new o3(this, 4));
-        setClickable(!this.f44634y);
+        setClickable(!this.f44600y);
     }
 
     public float getConversionWobble() {
@@ -203,19 +203,19 @@ public final class m7 extends FrameLayout {
     }
 
     public float getFlightPitch() {
-        vg.f fVar = this.f44621f;
-        if (fVar == null) {
+        vg.g gVar = this.f44587f;
+        if (gVar == null) {
             return 0.0f;
         }
-        return (float) Math.toRadians(fVar.f59473i + fVar.f59474j);
+        return (float) Math.toRadians(gVar.f59438i + gVar.f59439j);
     }
 
     public float getFlightYaw() {
-        vg.f fVar = this.f44621f;
-        if (fVar == null) {
+        vg.g gVar = this.f44587f;
+        if (gVar == null) {
             return 0.0f;
         }
-        return (float) Math.toRadians(fVar.d + fVar.f59471f);
+        return (float) Math.toRadians(gVar.d + gVar.f59436f);
     }
 
     public final void h(boolean z10) {
@@ -225,12 +225,12 @@ public final class m7 extends FrameLayout {
             if (getParent() != null) {
                 getParent().requestDisallowInterceptTouchEvent(false);
             }
-            vg.f fVar = this.f44621f;
-            if (fVar != null) {
+            vg.g gVar = this.f44587f;
+            if (gVar != null) {
                 if (z10) {
-                    this.f44624h0 = (float) Math.IEEEremainder(fVar.d - this.H, 360.0d);
-                    this.f44625i0 = (float) Math.IEEEremainder(this.f44621f.f59473i - this.I, 360.0d);
-                    this.f44626j0 = 0.0f;
+                    this.f44590h0 = (float) Math.IEEEremainder(gVar.d - this.H, 360.0d);
+                    this.f44591i0 = (float) Math.IEEEremainder(this.f44587f.f59438i - this.I, 360.0d);
+                    this.f44592j0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     this.J = ofFloat;
                     ofFloat.setDuration(350L);
@@ -239,9 +239,9 @@ public final class m7 extends FrameLayout {
                     this.J.addListener(new k71(this, 10));
                     this.J.start();
                 } else {
-                    this.f44626j0 = 1.0f;
-                    this.f44625i0 = 0.0f;
-                    this.f44624h0 = 0.0f;
+                    this.f44592j0 = 1.0f;
+                    this.f44591i0 = 0.0f;
+                    this.f44590h0 = 0.0f;
                     e();
                 }
             }
@@ -250,52 +250,52 @@ public final class m7 extends FrameLayout {
             valueAnimator.removeAllListeners();
             this.J.cancel();
             this.J = null;
-            this.f44626j0 = 1.0f;
-            this.f44625i0 = 0.0f;
-            this.f44624h0 = 0.0f;
+            this.f44592j0 = 1.0f;
+            this.f44591i0 = 0.0f;
+            this.f44590h0 = 0.0f;
             e();
         }
-        if (this.f44616c != null) {
+        if (this.f44582c != null) {
             if (z10) {
                 d(1.0f);
                 return;
             }
-            r1.g gVar = this.K;
-            if (gVar != null) {
-                gVar.d();
+            r1.g gVar2 = this.K;
+            if (gVar2 != null) {
+                gVar2.d();
                 this.K = null;
             }
-            this.f44616c.setScaleX(1.0f);
-            this.f44616c.setScaleY(1.0f);
-            if (this.f44621f != null) {
+            this.f44582c.setScaleX(1.0f);
+            this.f44582c.setScaleY(1.0f);
+            if (this.f44587f != null) {
                 setRenderScale(1.0f);
             }
         }
     }
 
     public final void i() {
-        this.f44634y = true;
+        this.f44600y = true;
         setClipChildren(false);
         setClipToPadding(false);
         removeCallbacks(this.m0);
         setClickable(false);
-        if (this.f44621f != null) {
+        if (this.f44587f != null) {
             l7 l7Var = this.d;
             if (l7Var != null) {
                 float max = Math.max(1.0f, 3.5f);
                 l7Var.K = max;
-                l7Var.f59456a.h = l7Var.J / max;
+                l7Var.f59421a.h = l7Var.J / max;
                 l7Var.f();
             }
             setIdleAnimationEnabled(false);
-            vg.f fVar = this.f44621f;
-            this.H = fVar.d;
-            this.I = fVar.f59473i;
-            if (this.f44630r) {
+            vg.g gVar = this.f44587f;
+            this.H = gVar.d;
+            this.I = gVar.f59438i;
+            if (this.f44596r) {
                 Choreographer choreographer = Choreographer.getInstance();
-                i7 i7Var = this.f44627k0;
+                i7 i7Var = this.f44593k0;
                 choreographer.removeFrameCallback(i7Var);
-                this.f44623g0 = 0L;
+                this.f44589g0 = 0L;
                 Choreographer.getInstance().postFrameCallback(i7Var);
             }
         }
@@ -303,37 +303,37 @@ public final class m7 extends FrameLayout {
 
     public final void j() {
         boolean z10;
-        if (!this.f44631s && this.f44629n && isShown() && getWindowVisibility() == 0 && hasWindowFocus()) {
+        if (!this.f44597s && this.f44595n && isShown() && getWindowVisibility() == 0 && hasWindowFocus()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f44630r != z10) {
-            this.f44630r = z10;
+        if (this.f44596r != z10) {
+            this.f44596r = z10;
             if (!z10) {
                 h(false);
             }
-            int i7 = this.f44628l0 + 1;
-            this.f44628l0 = i7;
-            if (this.f44621f != null) {
+            int i7 = this.f44594l0 + 1;
+            this.f44594l0 = i7;
+            if (this.f44587f != null) {
                 removeCallbacks(this.m0);
                 setIdleAnimationEnabled(false);
-                if (this.f44634y) {
-                    i7 i7Var = this.f44627k0;
+                if (this.f44600y) {
+                    i7 i7Var = this.f44593k0;
                     if (z10) {
                         Choreographer.getInstance().removeFrameCallback(i7Var);
-                        this.f44623g0 = 0L;
+                        this.f44589g0 = 0L;
                         Choreographer.getInstance().postFrameCallback(i7Var);
                     } else {
                         Choreographer.getInstance().removeFrameCallback(i7Var);
-                        this.f44623g0 = 0L;
-                        this.f44620e0 = 0.0f;
+                        this.f44589g0 = 0L;
+                        this.f44586e0 = 0.0f;
                     }
                 } else if (z10) {
-                    vg.f fVar = this.f44621f;
-                    fVar.d = 0.0f;
-                    fVar.f59473i = 0.0f;
-                    m(new jw0(this, i7, 8));
+                    vg.g gVar = this.f44587f;
+                    gVar.d = 0.0f;
+                    gVar.f59438i = 0.0f;
+                    m(new zn0(this, i7, 10));
                 }
                 setRendererPaused(!z10);
                 return;
@@ -341,22 +341,22 @@ public final class m7 extends FrameLayout {
             rh0 rh0Var = this.h;
             if (rh0Var != null) {
                 if (z10) {
-                    if (!this.f44632w || this.f44633x) {
+                    if (!this.f44598w || this.f44599x) {
                         rh0Var.d();
                     }
-                    this.f44632w = true;
+                    this.f44598w = true;
                     return;
                 }
-                this.f44633x = rh0Var.b();
+                this.f44599x = rh0Var.b();
                 this.h.i();
             }
         }
     }
 
     public final void k() {
-        vg.f fVar = this.f44621f;
-        if (fVar != null) {
-            fVar.f59471f = this.U + this.M;
+        vg.g gVar = this.f44587f;
+        if (gVar != null) {
+            gVar.f59436f = this.U + this.M;
             return;
         }
         rh0 rh0Var = this.h;
@@ -366,8 +366,8 @@ public final class m7 extends FrameLayout {
     }
 
     public final void l(Runnable runnable) {
-        this.f44618d0 = runnable;
-        if (this.f44621f != null) {
+        this.f44584d0 = runnable;
+        if (this.f44587f != null) {
             m(new j7(this, 1));
         } else if (runnable != null) {
             post(new j7(this, 1));
@@ -377,17 +377,17 @@ public final class m7 extends FrameLayout {
     public final void m(Runnable runnable) {
         l7 l7Var = this.d;
         if (l7Var != null) {
-            l7Var.f59464w = runnable;
-            if (l7Var.f59463s && runnable != null) {
-                l7Var.f59464w = null;
+            l7Var.f59429w = runnable;
+            if (l7Var.f59428s && runnable != null) {
+                l7Var.f59429w = null;
                 runnable.run();
             }
         }
-        k7 k7Var = this.f44619e;
+        k7 k7Var = this.f44585e;
         if (k7Var != null) {
-            k7Var.f59506b0 = runnable;
-            if (k7Var.f59504a0 && runnable != null) {
-                k7Var.f59506b0 = null;
+            k7Var.f59471b0 = runnable;
+            if (k7Var.f59469a0 && runnable != null) {
+                k7Var.f59471b0 = null;
                 runnable.run();
             }
         }
@@ -396,14 +396,14 @@ public final class m7 extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f44629n = true;
+        this.f44595n = true;
         j();
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f44629n = false;
-        Choreographer.getInstance().removeFrameCallback(this.f44615b0);
+        this.f44595n = false;
+        Choreographer.getInstance().removeFrameCallback(this.f44581b0);
         r1.g gVar = this.P;
         if (gVar != null) {
             gVar.d();
@@ -413,7 +413,7 @@ public final class m7 extends FrameLayout {
         this.Q = 0.0f;
         this.R = 0.0f;
         this.S = 0L;
-        this.f44613a0 = false;
+        this.f44579a0 = false;
         this.T = false;
         this.W = 0L;
         this.V = 0.0f;
@@ -425,7 +425,7 @@ public final class m7 extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if ((isEnabled() && this.f44634y && this.f44621f != null && this.f44630r) || super.onInterceptTouchEvent(motionEvent)) {
+        if ((isEnabled() && this.f44600y && this.f44587f != null && this.f44596r) || super.onInterceptTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -434,17 +434,17 @@ public final class m7 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int paddingLeft = getPaddingLeft();
-        int i11 = this.f44612a;
+        int i11 = this.f44578a;
         int resolveSize = View.resolveSize(getPaddingRight() + paddingLeft + i11, i7);
         int resolveSize2 = View.resolveSize(getPaddingBottom() + getPaddingTop() + i11, i10);
         setMeasuredDimension(resolveSize, resolveSize2);
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, Math.min((resolveSize - getPaddingLeft()) - getPaddingRight(), (resolveSize2 - getPaddingTop()) - getPaddingBottom())), 1073741824);
-        this.f44616c.measure(makeMeasureSpec, makeMeasureSpec);
+        this.f44582c.measure(makeMeasureSpec, makeMeasureSpec);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (isEnabled() && this.f44634y && this.f44621f != null && this.f44630r) {
+        if (isEnabled() && this.f44600y && this.f44587f != null && this.f44596r) {
             int actionMasked = motionEvent.getActionMasked();
             int i7 = 0;
             if (actionMasked != 0) {
@@ -471,11 +471,11 @@ public final class m7 extends FrameLayout {
                             h(true);
                             return true;
                         }
-                        float f10 = 0.8f / org.telegram.messenger.g0.f24045p;
-                        vg.f fVar = this.f44621f;
-                        fVar.d = com.google.android.gms.internal.vision.e2.z(motionEvent.getX(findPointerIndex), this.F, f10, fVar.d);
-                        vg.f fVar2 = this.f44621f;
-                        fVar2.f59473i = com.google.android.gms.internal.vision.e2.z(motionEvent.getY(findPointerIndex), this.G, f10, fVar2.f59473i);
+                        float f10 = 0.8f / org.telegram.messenger.g0.f24009p;
+                        vg.g gVar = this.f44587f;
+                        gVar.d = com.google.android.gms.internal.vision.e2.z(motionEvent.getX(findPointerIndex), this.F, f10, gVar.d);
+                        vg.g gVar2 = this.f44587f;
+                        gVar2.f59438i = com.google.android.gms.internal.vision.e2.z(motionEvent.getY(findPointerIndex), this.G, f10, gVar2.f59438i);
                         this.F = motionEvent.getX(findPointerIndex);
                         this.G = motionEvent.getY(findPointerIndex);
                         return true;
@@ -490,7 +490,7 @@ public final class m7 extends FrameLayout {
                 this.J.cancel();
                 this.J = null;
             }
-            this.f44620e0 = 0.0f;
+            this.f44586e0 = 0.0f;
             this.E = motionEvent.getPointerId(0);
             this.F = motionEvent.getX();
             this.G = motionEvent.getY();
@@ -522,7 +522,7 @@ public final class m7 extends FrameLayout {
     }
 
     public void setContinuousRotation(float f10) {
-        this.f44617c0 = f10;
+        this.f44583c0 = f10;
         i();
         setEnabled(false);
         rh0 rh0Var = this.h;
@@ -533,9 +533,9 @@ public final class m7 extends FrameLayout {
 
     public void setConversionWobble(float f10) {
         this.L = f10;
-        vg.f fVar = this.f44621f;
-        if (fVar != null) {
-            fVar.f59472g = f10 + this.N;
+        vg.g gVar = this.f44587f;
+        if (gVar != null) {
+            gVar.f59437g = f10 + this.N;
             return;
         }
         rh0 rh0Var = this.h;
@@ -553,9 +553,9 @@ public final class m7 extends FrameLayout {
     }
 
     public void setHeaderTilt(float f10) {
-        vg.f fVar = this.f44621f;
-        if (fVar != null) {
-            fVar.f59474j = f10;
+        vg.g gVar = this.f44587f;
+        if (gVar != null) {
+            gVar.f59439j = f10;
         }
     }
 
@@ -563,9 +563,9 @@ public final class m7 extends FrameLayout {
         float f11 = 1.0f;
         float f12 = 1.0f - f10;
         float f13 = (2.0f * f12) + 1.0f;
-        this.f44616c.setScaleX(f13);
-        this.f44616c.setScaleY(f13);
-        if (this.f44621f != null) {
+        this.f44582c.setScaleX(f13);
+        this.f44582c.setScaleY(f13);
+        if (this.f44587f != null) {
             if (f13 > 1.0f) {
                 f11 = 3.5f;
             }
@@ -574,9 +574,9 @@ public final class m7 extends FrameLayout {
         this.M = f12 * (-720.0f);
         this.N = ((float) Math.sin(f10 * 3.141592653589793d)) * 35.0f;
         k();
-        vg.f fVar = this.f44621f;
-        if (fVar != null) {
-            fVar.f59472g = this.L + this.N;
+        vg.g gVar = this.f44587f;
+        if (gVar != null) {
+            gVar.f59437g = this.L + this.N;
             return;
         }
         rh0 rh0Var = this.h;
@@ -586,7 +586,7 @@ public final class m7 extends FrameLayout {
     }
 
     public void setPaused(boolean z10) {
-        this.f44631s = z10;
+        this.f44597s = z10;
         j();
     }
 
@@ -595,7 +595,7 @@ public final class m7 extends FrameLayout {
         if (l7Var != null) {
             l7Var.setStarParticlesView(t1Var);
         }
-        k7 k7Var = this.f44619e;
+        k7 k7Var = this.f44585e;
         if (k7Var != null) {
             k7Var.setStarParticlesView(t1Var);
         }

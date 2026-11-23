@@ -1,6 +1,6 @@
 package k7;
 
-import a8.l8;
+import a8.m8;
 import a8.q;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
@@ -8,22 +8,22 @@ import j7.m;
 import j7.r;
 import kotlin.jvm.internal.j;
 public final class f extends q implements a {
-    public final int f18210b;
-    public final TaskCompletionSource f18211c;
+    public final int f18173b;
+    public final TaskCompletionSource f18174c;
 
     public f(int i7, TaskCompletionSource taskCompletionSource) {
         super(10);
-        this.f18210b = i7;
-        this.f18211c = taskCompletionSource;
+        this.f18173b = i7;
+        this.f18174c = taskCompletionSource;
         attachInterface(this, "com.google.android.gms.identitycredentials.internal.IIdentityCredentialCallbacks");
     }
 
     @Override
     public void H0(Status status, m mVar) {
-        switch (this.f18210b) {
+        switch (this.f18173b) {
             case 1:
                 j.e(status, "status");
-                l8.a(status, mVar, this.f18211c);
+                m8.a(status, mVar, this.f18174c);
                 return;
             default:
                 j.e(status, "status");
@@ -45,10 +45,10 @@ public final class f extends q implements a {
 
     @Override
     public void w0(Status status, j7.f fVar) {
-        switch (this.f18210b) {
+        switch (this.f18173b) {
             case 0:
                 j.e(status, "status");
-                l8.a(status, fVar, this.f18211c);
+                m8.a(status, fVar, this.f18174c);
                 return;
             default:
                 j.e(status, "status");

@@ -20,90 +20,90 @@ public final class xy extends ez {
 
     @Override
     public final void c() {
-        org.telegram.ui.Components.a70 G = org.telegram.ui.Components.a70.G(this.F.d.f30179c, null, this);
+        org.telegram.ui.Components.a70 G = org.telegram.ui.Components.a70.G(this.F.d.f30145c, null, this);
         G.c(2131232105, org.telegram.messenger.hd.N0(2131751750, null), new Runnable(this) {
-            public final xy f53557b;
+            public final xy f53474b;
 
             {
-                this.f53557b = this;
+                this.f53474b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        xy xyVar = this.f53557b;
-                        String str = xyVar.f47429y;
+                        xy xyVar = this.f53474b;
+                        String str = xyVar.f47390y;
                         if (str != null && org.telegram.messenger.g0.g(str)) {
                             new org.telegram.ui.Components.lc(xyVar.F.d.W1, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f53557b.d();
+                        this.f53474b.d();
                         return;
                     default:
-                        this.f53557b.a();
+                        this.f53474b.a();
                         return;
                 }
             }
         }, false);
         G.c(2131232322, org.telegram.messenger.hd.N0(2131750455, null), new Runnable(this) {
-            public final xy f53557b;
+            public final xy f53474b;
 
             {
-                this.f53557b = this;
+                this.f53474b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        xy xyVar = this.f53557b;
-                        String str = xyVar.f47429y;
+                        xy xyVar = this.f53474b;
+                        String str = xyVar.f47390y;
                         if (str != null && org.telegram.messenger.g0.g(str)) {
                             new org.telegram.ui.Components.lc(xyVar.F.d.W1, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f53557b.d();
+                        this.f53474b.d();
                         return;
                     default:
-                        this.f53557b.a();
+                        this.f53474b.a();
                         return;
                 }
             }
         }, false);
         G.c(2131232110, org.telegram.messenger.hd.N0(2131751522, null), new Runnable(this) {
-            public final xy f53557b;
+            public final xy f53474b;
 
             {
-                this.f53557b = this;
+                this.f53474b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        xy xyVar = this.f53557b;
-                        String str = xyVar.f47429y;
+                        xy xyVar = this.f53474b;
+                        String str = xyVar.f47390y;
                         if (str != null && org.telegram.messenger.g0.g(str)) {
                             new org.telegram.ui.Components.lc(xyVar.F.d.W1, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f53557b.d();
+                        this.f53474b.d();
                         return;
                     default:
-                        this.f53557b.a();
+                        this.f53474b.a();
                         return;
                 }
             }
         }, true);
-        if (org.telegram.messenger.hd.f24444a0) {
-            G.f33378i = 3;
+        if (org.telegram.messenger.hd.f24408a0) {
+            G.f33344i = 3;
         }
         G.a0();
     }

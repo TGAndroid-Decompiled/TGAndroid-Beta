@@ -12,7 +12,7 @@ public final class s1 extends wy {
         super(100, true);
         this.Y = t1Var;
         this.X = new Object();
-        this.O = new bi.w2(this, 5);
+        this.O = new bi.y2(this, 5);
     }
 
     @Override
@@ -28,8 +28,8 @@ public final class s1 extends wy {
         int i10;
         int i11;
         yt0 yt0Var = this.X;
-        yt0Var.f42547c = false;
-        Object F = this.Y.f15496c.F(i7);
+        yt0Var.f42508c = false;
+        Object F = this.Y.f15366c.F(i7);
         if (F instanceof TLRPC.BotInlineResult) {
             TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) F;
             document = botInlineResult.document;
@@ -52,22 +52,22 @@ public final class s1 extends wy {
             document = (TLRPC.Document) F;
             arrayList = document.attributes;
         } else {
-            yt0Var.f42547c = true;
+            yt0Var.f42508c = true;
             return yt0Var;
         }
-        yt0Var.f42546b = 100.0f;
-        yt0Var.f42545a = 100.0f;
-        yt0Var.f42547c = false;
-        if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i10 = w10.f28459w) != 0 && (i11 = w10.h) != 0) {
-            yt0Var.f42545a = i10;
-            yt0Var.f42546b = i11;
+        yt0Var.f42507b = 100.0f;
+        yt0Var.f42506a = 100.0f;
+        yt0Var.f42508c = false;
+        if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i10 = w10.f28423w) != 0 && (i11 = w10.h) != 0) {
+            yt0Var.f42506a = i10;
+            yt0Var.f42507b = i11;
         }
         if (arrayList != null) {
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i12);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    yt0Var.f42545a = documentAttribute.f28441w;
-                    yt0Var.f42546b = documentAttribute.h;
+                    yt0Var.f42506a = documentAttribute.f28405w;
+                    yt0Var.f42507b = documentAttribute.h;
                     break;
                 }
             }

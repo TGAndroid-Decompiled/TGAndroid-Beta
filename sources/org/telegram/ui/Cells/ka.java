@@ -6,21 +6,21 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class ka extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public boolean f30975a;
-    public org.telegram.ui.Components.q9 f30976b;
-    public TextView f30977c;
+    public boolean f30941a;
+    public org.telegram.ui.Components.q9 f30942b;
+    public TextView f30943c;
     public TextView d;
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.f29366c9));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.f29332c9));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f30975a) {
-            canvas.drawLine(org.telegram.messenger.g0.L(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29504k0);
+        if (this.f30941a) {
+            canvas.drawLine(org.telegram.messenger.g0.L(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29470k0);
         }
     }
 
@@ -31,11 +31,11 @@ public final class ka extends FrameLayout implements org.telegram.ui.ActionBar.b
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.Components.q9 q9Var = this.f30976b;
+        org.telegram.ui.Components.q9 q9Var = this.f30942b;
         if (q9Var != null) {
             try {
                 if (q9Var.getImageReceiver() != null && (q9Var.getImageReceiver().t() instanceof qg.b)) {
-                    ((qg.b) q9Var.getImageReceiver().t()).a(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29366c9, false));
+                    ((qg.b) q9Var.getImageReceiver().t()).a(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29332c9, false));
                     q9Var.invalidate();
                 }
             } catch (Exception e10) {

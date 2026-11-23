@@ -33,48 +33,48 @@ public abstract class ug extends View implements z60 {
     public boolean U;
     public final x1.a V;
     public boolean W;
-    public boolean f40326a;
-    public float f40327a0;
-    public final d6 f40328b;
-    public final d6 f40329b0;
-    public final org.telegram.ui.ActionBar.h6 f40330c;
-    public final d6 f40331c0;
+    public boolean f40311a;
+    public float f40312a0;
+    public final d6 f40313b;
+    public final d6 f40314b0;
+    public final org.telegram.ui.ActionBar.h6 f40315c;
+    public final d6 f40316c0;
     public int d;
-    public final Path f40332d0;
-    public Drawable f40333e;
-    public final Paint f40334e0;
-    public Drawable f40335f;
-    public final n6 f40336f0;
-    public float f40337g0;
+    public final Path f40317d0;
+    public Drawable f40318e;
+    public final Paint f40319e0;
+    public Drawable f40320f;
+    public final n6 f40321f0;
+    public float f40322g0;
     public Drawable h;
-    public q0 f40338h0;
-    public ChatActivityEnterView f40339i0;
-    public float f40340j0;
-    public float f40341k0;
-    public float f40342l0;
+    public q0 f40323h0;
+    public ChatActivityEnterView f40324i0;
+    public float f40325j0;
+    public float f40326k0;
+    public float f40327l0;
     public int m0;
-    public final n5 f40343n;
-    public int f40344n0;
-    public boolean f40345o0;
-    public final d6 f40346p0;
-    public Drawable f40347q0;
-    public float f40348r;
-    public fh.g f40349r0;
-    public float f40350s;
-    public boolean f40351s0;
-    public int f40352t0;
-    public int f40353u0;
-    public int f40354v0;
-    public long f40355w;
-    public ValueAnimator f40356w0;
-    public int f40357x;
-    public final RectF f40358x0;
-    public boolean f40359y;
+    public final n5 f40328n;
+    public int f40329n0;
+    public boolean f40330o0;
+    public final d6 f40331p0;
+    public Drawable f40332q0;
+    public float f40333r;
+    public fh.g f40334r0;
+    public float f40335s;
+    public boolean f40336s0;
+    public int f40337t0;
+    public int f40338u0;
+    public int f40339v0;
+    public long f40340w;
+    public ValueAnimator f40341w0;
+    public int f40342x;
+    public final RectF f40343x0;
+    public boolean f40344y;
 
     public ug(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
         super(context);
         nr nrVar = nr.h;
-        this.f40328b = new d6(this, 0L, 260L, nrVar);
+        this.f40313b = new d6(this, 0L, 260L, nrVar);
         this.F = new d6(this, 0L, 320L, nrVar);
         this.G = new Paint(1);
         this.L = -1;
@@ -84,31 +84,31 @@ public abstract class ug extends View implements z60 {
         this.S = new d6(this, 0L, 420L, nrVar);
         this.T = new mc(this);
         this.V = new x1.a();
-        this.f40329b0 = new d6(this, 0L, 420L, nrVar);
-        this.f40331c0 = new d6(this, 0L, 500L, nrVar);
-        this.f40332d0 = new Path();
+        this.f40314b0 = new d6(this, 0L, 420L, nrVar);
+        this.f40316c0 = new d6(this, 0L, 500L, nrVar);
+        this.f40317d0 = new Path();
         Paint paint = new Paint(1);
-        this.f40334e0 = paint;
+        this.f40319e0 = paint;
         n6 n6Var = new n6(true, true, true);
-        this.f40336f0 = n6Var;
-        this.f40337g0 = 1.0f;
-        this.f40346p0 = new d6(this, 0L, 320L, nrVar);
-        this.f40358x0 = new RectF();
+        this.f40321f0 = n6Var;
+        this.f40322g0 = 1.0f;
+        this.f40331p0 = new d6(this, 0L, 320L, nrVar);
+        this.f40343x0 = new RectF();
         this.d = i7;
-        this.f40330c = h6Var;
+        this.f40315c = h6Var;
         this.H = z10;
         n6 n6Var2 = new n6(false, false, false);
         this.E = n6Var2;
         n6Var2.w(org.telegram.messenger.g0.L(15.0f));
         n6Var2.x(org.telegram.messenger.g0.o());
         n6Var2.u(-1);
-        n6Var2.f37795b = 3;
+        n6Var2.f37751b = 3;
         n6Var2.setCallback(this);
-        n6Var2.N = org.telegram.messenger.g0.f24046q.x;
-        this.f40333e = i5.c.g(context, i7);
-        this.f40335f = i5.c.g(context, i7);
+        n6Var2.N = org.telegram.messenger.g0.f24010q.x;
+        this.f40318e = i5.c.g(context, i7);
+        this.f40320f = i5.c.g(context, i7);
         this.h = i5.c.g(context, i7);
-        this.f40343n = new n5(org.telegram.messenger.g0.L(14.0f), this);
+        this.f40328n = new n5(org.telegram.messenger.g0.L(14.0f), this);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -117,21 +117,21 @@ public abstract class ug extends View implements z60 {
         n6Var.u(-1);
         n6Var.w(org.telegram.messenger.g0.L(12.0f));
         n6Var.x(org.telegram.messenger.g0.o());
-        n6Var.f37795b = 17;
+        n6Var.f37751b = 17;
     }
 
     public final void a() {
-        ValueAnimator valueAnimator = this.f40356w0;
+        ValueAnimator valueAnimator = this.f40341w0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.9f, 1.0f);
-        this.f40356w0 = ofFloat;
+        this.f40341w0 = ofFloat;
         ofFloat.addUpdateListener(new x(this, 9));
-        this.f40356w0.addListener(new y(this, 8));
-        this.f40356w0.setDuration(180L);
-        this.f40356w0.setInterpolator(new OvershootInterpolator());
-        this.f40356w0.start();
+        this.f40341w0.addListener(new y(this, 8));
+        this.f40341w0.setDuration(180L);
+        this.f40341w0.setInterpolator(new OvershootInterpolator());
+        this.f40341w0.start();
     }
 
     public boolean b() {
@@ -152,7 +152,7 @@ public abstract class ug extends View implements z60 {
         }
         canvas.saveLayerAlpha(-org.telegram.messenger.g0.L(6.0f), -org.telegram.messenger.g0.L(6.0f), getWidth(), getHeight(), 255, 31);
         super.draw(canvas);
-        RectF rectF = this.f40358x0;
+        RectF rectF = this.f40343x0;
         float L = org.telegram.messenger.g0.L(18.0f) / 2.0f;
         float L2 = (rectF.left + L) - org.telegram.messenger.g0.L(6.0f);
         float L3 = (rectF.top + L) - org.telegram.messenger.g0.L(6.0f);
@@ -161,13 +161,13 @@ public abstract class ug extends View implements z60 {
         if (this.J == null) {
             Drawable mutate = getContext().getResources().getDrawable(2131231977).mutate();
             this.J = mutate;
-            int i7 = this.f40352t0;
+            int i7 = this.f40337t0;
             this.K = i7;
             mutate.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
         }
-        if (this.K != this.f40352t0) {
+        if (this.K != this.f40337t0) {
             Drawable drawable = this.J;
-            int i10 = this.f40352t0;
+            int i10 = this.f40337t0;
             this.K = i10;
             drawable.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
         }
@@ -181,7 +181,7 @@ public abstract class ug extends View implements z60 {
         if (i7 > 0) {
             str = i5.c.i(i7, "");
         }
-        this.f40336f0.t(str, z10, true);
+        this.f40321f0.t(str, z10, true);
         invalidate();
     }
 
@@ -197,7 +197,7 @@ public abstract class ug extends View implements z60 {
         boolean z11;
         float f10 = -3.0f;
         boolean z12 = false;
-        if (this.W == z10 && (!z10 || Math.abs(this.f40327a0 - (-3.0f)) < 0.01f)) {
+        if (this.W == z10 && (!z10 || Math.abs(this.f40312a0 - (-3.0f)) < 0.01f)) {
             boolean z13 = this.U;
             if (Math.abs(0.0f) < 0.01f) {
                 z11 = true;
@@ -213,20 +213,20 @@ public abstract class ug extends View implements z60 {
         }
         this.U = z12;
         if (!this.W && z10) {
-            this.f40331c0.e(true, 0.0f);
+            this.f40316c0.e(true, 0.0f);
         }
-        d6 d6Var = this.f40329b0;
-        if (z10 && d6Var.f34386c >= 1.0f) {
+        d6 d6Var = this.f40314b0;
+        if (z10 && d6Var.f34349c >= 1.0f) {
             j3 = 650;
         } else {
             j3 = 0;
         }
-        d6Var.f34388f = j3;
+        d6Var.f34351f = j3;
         this.W = z10;
         if (!z10) {
             f10 = 1.0f;
         }
-        this.f40327a0 = f10;
+        this.f40312a0 = f10;
         invalidate();
     }
 
@@ -247,7 +247,7 @@ public abstract class ug extends View implements z60 {
     }
 
     public int getFillColor() {
-        return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Pe, this.f40330c);
+        return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Pe, this.f40315c);
     }
 
     @Override
@@ -263,9 +263,9 @@ public abstract class ug extends View implements z60 {
             Paint paint = this.O;
             paint.setColor(i7);
             paint.setAlpha((int) (Color.alpha(this.N) * f10));
-            float f14 = this.S.f34386c;
-            float f15 = this.F.f34386c;
-            if (this.f40351s0) {
+            float f14 = this.S.f34349c;
+            float f15 = this.F.f34349c;
+            if (this.f40336s0) {
                 T1 = org.telegram.messenger.g0.T1(getMeasuredWidth() - (getMeasuredHeight() / 2.0f), getMeasuredWidth() - org.telegram.messenger.g0.L(4.0f), f14) - this.P;
                 W1 = getCircleHeight() * f14;
                 T12 = ((getMeasuredHeight() - this.Q) - org.telegram.messenger.g0.L(4.0f)) - (W1 / 2.0f);
@@ -289,11 +289,11 @@ public abstract class ug extends View implements z60 {
                 float min = (Math.min(T13, W1) / 2.0f) + org.telegram.messenger.g0.L(4.0f);
                 canvas.drawRoundRect(rectF, min, min, paint);
             }
-            n6 n6Var = this.f40336f0;
+            n6 n6Var = this.f40321f0;
             float i10 = (1.0f - f15) * n6Var.i();
             if (i10 > 0.0f) {
                 float max = Math.max(n6Var.c() + org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(18.0f));
-                if (this.f40351s0) {
+                if (this.f40336s0) {
                     f12 = T1 - org.telegram.messenger.g0.L(50.0f);
                     f13 = (max / 2.0f) + (T12 - (getCircleHeight() / 2.0f));
                 } else {
@@ -303,28 +303,28 @@ public abstract class ug extends View implements z60 {
                     f12 = measuredWidth;
                     f13 = measuredHeight;
                 }
-                canvas.drawCircle(f12, f13, ((max / 2.0f) + org.telegram.messenger.g0.L(2.0f)) * i10 * this.f40337g0, paint);
+                canvas.drawCircle(f12, f13, ((max / 2.0f) + org.telegram.messenger.g0.L(2.0f)) * i10 * this.f40322g0, paint);
             }
         }
         draw(canvas);
     }
 
     public final void i(int i7, long j3, boolean z10) {
-        if (this.f40355w == j3 && this.f40357x == i7) {
+        if (this.f40340w == j3 && this.f40342x == i7) {
             return;
         }
-        this.f40355w = j3;
-        this.f40357x = i7;
+        this.f40340w = j3;
+        this.f40342x = i7;
         int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         boolean z11 = false;
         n6 n6Var = this.E;
         if (i10 > 0) {
-            n6Var.t(di.pb.Z0(false, i5.c.l(j3 * Math.max(1, this.f40357x), ',', new StringBuilder("⭐️")), this.R), z10, true);
+            n6Var.t(di.pb.Z0(false, i5.c.l(j3 * Math.max(1, this.f40342x), ',', new StringBuilder("⭐️")), this.R), z10, true);
         } else {
             n6Var.t("", z10, true);
         }
         if (!z10) {
-            if (this.f40355w > 0) {
+            if (this.f40340w > 0) {
                 z11 = true;
             }
             this.F.a(z11);
@@ -340,7 +340,7 @@ public abstract class ug extends View implements z60 {
     public final void k() {
         int w02;
         boolean z10 = this.H;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f40330c;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f40315c;
         if (z10) {
             w02 = -1;
         } else {
@@ -348,14 +348,14 @@ public abstract class ug extends View implements z60 {
         }
         int w03 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Nl, h6Var);
         int w04 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Tf, h6Var);
-        if (w02 != this.f40352t0 || w03 != this.f40353u0 || w04 != this.f40354v0) {
-            this.f40352t0 = w02;
-            this.f40353u0 = w03;
-            this.f40354v0 = w04;
-            Drawable drawable = this.f40333e;
+        if (w02 != this.f40337t0 || w03 != this.f40338u0 || w04 != this.f40339v0) {
+            this.f40337t0 = w02;
+            this.f40338u0 = w03;
+            this.f40339v0 = w04;
+            Drawable drawable = this.f40318e;
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
             drawable.setColorFilter(new PorterDuffColorFilter(w02, mode));
-            this.f40335f.setColorFilter(new PorterDuffColorFilter(Color.argb(180, Color.red(w03), Color.green(w03), Color.blue(w03)), mode));
+            this.f40320f.setColorFilter(new PorterDuffColorFilter(Color.argb(180, Color.red(w03), Color.green(w03), Color.blue(w03)), mode));
             this.h.setColorFilter(new PorterDuffColorFilter(w04, mode));
         }
         boolean z11 = this.H;
@@ -383,7 +383,7 @@ public abstract class ug extends View implements z60 {
         } else {
             f10 = 0.0f;
         }
-        if (this.f40355w > 0) {
+        if (this.f40340w > 0) {
             f12 = 1.0f;
         }
         float circleWidth = this.P + getCircleWidth() + this.P;
@@ -407,9 +407,9 @@ public abstract class ug extends View implements z60 {
     }
 
     public void setBlurredBackgroundDrawable(fh.g gVar) {
-        this.f40349r0 = gVar;
+        this.f40334r0 = gVar;
         gVar.r(org.telegram.messenger.g0.L(22.0f));
-        this.f40349r0.q(org.telegram.messenger.g0.L(4.0f));
+        this.f40334r0.q(org.telegram.messenger.g0.L(4.0f));
     }
 
     public void setCircleSize(int i7) {
@@ -419,7 +419,7 @@ public abstract class ug extends View implements z60 {
 
     public void setEffect(long j3) {
         org.telegram.messenger.f6 f6Var;
-        TLRPC.TL_availableEffect b12 = org.telegram.messenger.np.u1(org.telegram.messenger.k10.f24968t0).b1(j3);
+        TLRPC.TL_availableEffect b12 = org.telegram.messenger.np.u1(org.telegram.messenger.k10.f24932t0).b1(j3);
         if (b12 != null) {
             f6Var = org.telegram.messenger.j6.g(b12.emoticon);
         } else {
@@ -429,19 +429,19 @@ public abstract class ug extends View implements z60 {
     }
 
     public void setEmoji(Drawable drawable) {
-        this.f40343n.g(drawable, true);
+        this.f40328n.g(drawable, true);
     }
 
     public void setEphemeralFactor(float f10) {
-        if (this.f40348r != f10) {
-            this.f40348r = f10;
+        if (this.f40333r != f10) {
+            this.f40333r = f10;
             invalidate();
         }
     }
 
     public void setIconDimmed(boolean z10) {
-        if (this.f40326a != z10) {
-            this.f40326a = z10;
+        if (this.f40311a != z10) {
+            this.f40311a = z10;
             invalidate();
         }
     }
@@ -463,16 +463,16 @@ public abstract class ug extends View implements z60 {
     public void setResourceId(int i7) {
         if (this.d != i7) {
             this.d = i7;
-            this.f40333e = getContext().getResources().getDrawable(i7).mutate();
-            this.f40335f = getContext().getResources().getDrawable(i7).mutate();
+            this.f40318e = getContext().getResources().getDrawable(i7).mutate();
+            this.f40320f = getContext().getResources().getDrawable(i7).mutate();
             this.h = getContext().getResources().getDrawable(i7).mutate();
             invalidate();
         }
     }
 
     public void setSameWidthFactor(float f10) {
-        if (this.f40350s != f10) {
-            this.f40350s = f10;
+        if (this.f40335s != f10) {
+            this.f40335s = f10;
             invalidate();
         }
     }
@@ -489,7 +489,7 @@ public abstract class ug extends View implements z60 {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f40336f0 && drawable != this.f40343n && drawable != this.E && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f40321f0 && drawable != this.f40328n && drawable != this.E && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

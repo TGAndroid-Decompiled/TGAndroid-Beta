@@ -12,23 +12,23 @@ import java.util.Map;
 import kf.r;
 import kf.t;
 public final class g {
-    public static final LinkedHashSet f13576p = new LinkedHashSet(Arrays.asList(kf.b.class, kf.i.class, kf.h.class, kf.j.class, t.class, kf.n.class, kf.l.class));
-    public static final Map f13577q;
-    public CharSequence f13578a;
+    public static final LinkedHashSet f13539p = new LinkedHashSet(Arrays.asList(kf.b.class, kf.i.class, kf.h.class, kf.j.class, t.class, kf.n.class, kf.l.class));
+    public static final Map f13540q;
+    public CharSequence f13541a;
     public boolean d;
     public boolean h;
-    public final List f13584i;
-    public final lf.b f13585j;
-    public final List f13586k;
-    public final f f13587l;
-    public final ArrayList f13589n;
-    public final LinkedHashSet f13590o;
-    public int f13579b = 0;
-    public int f13580c = 0;
-    public int f13581e = 0;
-    public int f13582f = 0;
-    public int f13583g = 0;
-    public final LinkedHashMap f13588m = new LinkedHashMap();
+    public final List f13547i;
+    public final lf.b f13548j;
+    public final List f13549k;
+    public final f f13550l;
+    public final ArrayList f13552n;
+    public final LinkedHashSet f13553o;
+    public int f13542b = 0;
+    public int f13543c = 0;
+    public int f13544e = 0;
+    public int f13545f = 0;
+    public int f13546g = 0;
+    public final LinkedHashMap f13551m = new LinkedHashMap();
 
     static {
         HashMap hashMap = new HashMap();
@@ -39,19 +39,19 @@ public final class g {
         hashMap.put(t.class, new ff.a(7));
         hashMap.put(kf.n.class, new ff.a(6));
         hashMap.put(kf.l.class, new ff.a(5));
-        f13577q = DesugarCollections.unmodifiableMap(hashMap);
+        f13540q = DesugarCollections.unmodifiableMap(hashMap);
     }
 
     public g(ArrayList arrayList, lf.b bVar, ArrayList arrayList2) {
         ArrayList arrayList3 = new ArrayList();
-        this.f13589n = arrayList3;
+        this.f13552n = arrayList3;
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        this.f13590o = linkedHashSet;
-        this.f13584i = arrayList;
-        this.f13585j = bVar;
-        this.f13586k = arrayList2;
+        this.f13553o = linkedHashSet;
+        this.f13547i = arrayList;
+        this.f13548j = bVar;
+        this.f13549k = arrayList2;
         f fVar = new f(0);
-        this.f13587l = fVar;
+        this.f13550l = fVar;
         arrayList3.add(fVar);
         linkedHashSet.add(fVar);
     }
@@ -61,36 +61,36 @@ public final class g {
             e(h());
         }
         h().e().b(aVar.e());
-        this.f13589n.add(aVar);
-        this.f13590o.add(aVar);
+        this.f13552n.add(aVar);
+        this.f13553o.add(aVar);
     }
 
     public final void b(p pVar) {
-        l lVar = pVar.f13635b;
+        l lVar = pVar.f13598b;
         lVar.a();
-        ArrayList arrayList = lVar.f13621c;
+        ArrayList arrayList = lVar.f13584c;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             kf.m mVar = (kf.m) obj;
-            r rVar = pVar.f13634a;
+            r rVar = pVar.f13597a;
             mVar.g();
-            kf.p pVar2 = (kf.p) rVar.f18268e;
-            mVar.f18268e = pVar2;
+            kf.p pVar2 = (kf.p) rVar.f18231e;
+            mVar.f18231e = pVar2;
             if (pVar2 != null) {
-                pVar2.f18269f = mVar;
+                pVar2.f18232f = mVar;
             }
-            mVar.f18269f = rVar;
-            rVar.f18268e = mVar;
-            kf.p pVar3 = (kf.p) rVar.f18266b;
-            mVar.f18266b = pVar3;
-            if (((kf.p) mVar.f18268e) == null) {
-                pVar3.f18267c = mVar;
+            mVar.f18232f = rVar;
+            rVar.f18231e = mVar;
+            kf.p pVar3 = (kf.p) rVar.f18229b;
+            mVar.f18229b = pVar3;
+            if (((kf.p) mVar.f18231e) == null) {
+                pVar3.f18230c = mVar;
             }
-            String str = mVar.f18263g;
-            LinkedHashMap linkedHashMap = this.f13588m;
+            String str = mVar.f18226g;
+            LinkedHashMap linkedHashMap = this.f13551m;
             if (!linkedHashMap.containsKey(str)) {
                 linkedHashMap.put(str, mVar);
             }
@@ -100,9 +100,9 @@ public final class g {
     public final void c() {
         CharSequence subSequence;
         if (this.d) {
-            CharSequence charSequence = this.f13578a;
-            CharSequence subSequence2 = charSequence.subSequence(this.f13579b + 1, charSequence.length());
-            int i7 = 4 - (this.f13580c % 4);
+            CharSequence charSequence = this.f13541a;
+            CharSequence subSequence2 = charSequence.subSequence(this.f13542b + 1, charSequence.length());
+            int i7 = 4 - (this.f13543c % 4);
             StringBuilder sb2 = new StringBuilder(subSequence2.length() + i7);
             for (int i10 = 0; i10 < i7; i10++) {
                 sb2.append(' ');
@@ -110,26 +110,26 @@ public final class g {
             sb2.append(subSequence2);
             subSequence = sb2.toString();
         } else {
-            CharSequence charSequence2 = this.f13578a;
-            subSequence = charSequence2.subSequence(this.f13579b, charSequence2.length());
+            CharSequence charSequence2 = this.f13541a;
+            subSequence = charSequence2.subSequence(this.f13542b, charSequence2.length());
         }
         h().a(subSequence);
     }
 
     public final void d() {
-        if (this.f13578a.charAt(this.f13579b) == '\t') {
-            this.f13579b++;
-            int i7 = this.f13580c;
-            this.f13580c = (4 - (i7 % 4)) + i7;
+        if (this.f13541a.charAt(this.f13542b) == '\t') {
+            this.f13542b++;
+            int i7 = this.f13543c;
+            this.f13543c = (4 - (i7 % 4)) + i7;
             return;
         }
-        this.f13579b++;
-        this.f13580c++;
+        this.f13542b++;
+        this.f13543c++;
     }
 
     public final void e(mf.a aVar) {
         if (h() == aVar) {
-            p0.z(1, this.f13589n);
+            p0.z(1, this.f13552n);
         }
         if (aVar instanceof p) {
             b((p) aVar);
@@ -144,15 +144,15 @@ public final class g {
     }
 
     public final void g() {
-        int i7 = this.f13579b;
-        int i10 = this.f13580c;
+        int i7 = this.f13542b;
+        int i10 = this.f13543c;
         this.h = true;
-        int length = this.f13578a.length();
+        int length = this.f13541a.length();
         while (true) {
             if (i7 >= length) {
                 break;
             }
-            char charAt = this.f13578a.charAt(i7);
+            char charAt = this.f13541a.charAt(i7);
             if (charAt != '\t') {
                 if (charAt != ' ') {
                     this.h = false;
@@ -166,13 +166,13 @@ public final class g {
                 i10 += 4 - (i10 % 4);
             }
         }
-        this.f13581e = i7;
-        this.f13582f = i10;
-        this.f13583g = i10 - this.f13580c;
+        this.f13544e = i7;
+        this.f13545f = i10;
+        this.f13546g = i10 - this.f13543c;
     }
 
     public final mf.a h() {
-        return (mf.a) i5.c.h(1, this.f13589n);
+        return (mf.a) i5.c.h(1, this.f13552n);
     }
 
     public final void i(java.lang.String r23) {
@@ -181,22 +181,22 @@ public final class g {
 
     public final void j(int i7) {
         int i10;
-        int i11 = this.f13582f;
+        int i11 = this.f13545f;
         if (i7 >= i11) {
-            this.f13579b = this.f13581e;
-            this.f13580c = i11;
+            this.f13542b = this.f13544e;
+            this.f13543c = i11;
         }
-        int length = this.f13578a.length();
+        int length = this.f13541a.length();
         while (true) {
-            i10 = this.f13580c;
-            if (i10 >= i7 || this.f13579b == length) {
+            i10 = this.f13543c;
+            if (i10 >= i7 || this.f13542b == length) {
                 break;
             }
             d();
         }
         if (i10 > i7) {
-            this.f13579b--;
-            this.f13580c = i7;
+            this.f13542b--;
+            this.f13543c = i7;
             this.d = true;
             return;
         }
@@ -204,14 +204,14 @@ public final class g {
     }
 
     public final void k(int i7) {
-        int i10 = this.f13581e;
+        int i10 = this.f13544e;
         if (i7 >= i10) {
-            this.f13579b = i10;
-            this.f13580c = this.f13582f;
+            this.f13542b = i10;
+            this.f13543c = this.f13545f;
         }
-        int length = this.f13578a.length();
+        int length = this.f13541a.length();
         while (true) {
-            int i11 = this.f13579b;
+            int i11 = this.f13542b;
             if (i11 >= i7 || i11 == length) {
                 break;
             }

@@ -1,190 +1,79 @@
 package hi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.Shader;
-import android.os.Build;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import android.widget.ScrollView;
 import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.y10;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.p20;
-public abstract class m8 extends ScrollView implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.Components.d6 E;
-    public final LinearGradient F;
-    public final Paint G;
-    public final Matrix H;
-    public boolean I;
-    public int J;
-    public float K;
-    public int L;
-    public boolean M;
-    public final org.telegram.ui.ActionBar.h6 f15030a;
-    public final ah.i f15031b;
-    public final int f15032c;
-    public final ah.n d;
-    public final ArrayList f15033e;
-    public p20 f15034f;
-    public final a8 h;
-    public boolean f15035n;
-    public y10 f15036r;
-    public final org.telegram.ui.Components.d6 f15037s;
-    public final LinearGradient f15038w;
-    public final Paint f15039x;
-    public final Matrix f15040y;
+public final class m8 extends AnimatorListenerAdapter {
+    public final int f15020a;
+    public final ArrayList f15021b;
+    public final ah.n f15022c;
 
-    public m8(Context context, org.telegram.ui.ActionBar.h6 h6Var, a8 a8Var) {
-        super(context);
-        int i7;
-        this.f15033e = new ArrayList();
-        nr nrVar = nr.h;
-        this.f15037s = new org.telegram.ui.Components.d6(this, 0L, 300L, nrVar);
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
-        this.f15038w = linearGradient;
-        Paint paint = new Paint(1);
-        this.f15039x = paint;
-        this.f15040y = new Matrix();
-        this.E = new org.telegram.ui.Components.d6(this, 0L, 300L, nrVar);
-        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
-        this.F = linearGradient2;
-        Paint paint2 = new Paint(1);
-        this.G = paint2;
-        this.H = new Matrix();
-        paint.setShader(linearGradient);
-        PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
-        paint.setXfermode(new PorterDuffXfermode(mode));
-        paint2.setShader(linearGradient2);
-        paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f15030a = h6Var;
-        this.h = a8Var;
-        setVerticalScrollBarEnabled(false);
-        org.telegram.messenger.g0.x3(this, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29381d6, false));
-        ah.n nVar = new ah.n(this, context);
-        this.d = nVar;
-        addView(nVar, c8.ma.c(-2.0f, -1));
-        ah.i iVar = new ah.i(2, context, this);
-        this.f15031b = iVar;
-        if (Build.VERSION.SDK_INT >= 25) {
-            iVar.setRevealOnFocusHint(false);
-        }
-        iVar.setTextSize(1, 16.0f);
-        org.telegram.ui.ActionBar.t6.l(iVar, 34, org.telegram.ui.ActionBar.m6.Oi, h6Var);
-        org.telegram.ui.ActionBar.t6.U(iVar, org.telegram.ui.ActionBar.m6.G6, h6Var);
-        int i10 = org.telegram.ui.ActionBar.m6.Pi;
-        org.telegram.ui.ActionBar.t6.l(iVar, 30, i10, h6Var);
-        org.telegram.ui.ActionBar.t6.l(iVar, 36, i10, h6Var);
-        iVar.setCursorWidth(1.5f);
-        iVar.setInputType(iVar.getInputType() | 176);
-        iVar.setSingleLine(true);
-        iVar.setBackgroundDrawable(null);
-        iVar.setVerticalScrollBarEnabled(false);
-        iVar.setHorizontalScrollBarEnabled(false);
-        iVar.setTextIsSelectable(false);
-        iVar.setPadding(0, 0, 0, 0);
-        iVar.setImeOptions(268435462);
-        if (hd.f24444a0) {
-            i7 = 5;
-        } else {
-            i7 = 3;
-        }
-        iVar.setGravity(i7 | 16);
-        nVar.addView(iVar);
-        iVar.setHintText(hd.N0(2131745640, null));
-        this.f15032c = (int) iVar.getPaint().measureText(hd.N0(2131745640, null));
-        iVar.addTextChangedListener(new ah.j(this, 8));
+    public m8(ah.n nVar, ArrayList arrayList, int i7) {
+        this.f15020a = i7;
+        this.f15022c = nVar;
+        this.f15021b = arrayList;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int scrollY;
-        float scrollY2 = getScrollY();
-        canvas.saveLayerAlpha(0.0f, scrollY2, getWidth(), getHeight() + scrollY, 255, 31);
-        super.dispatchDraw(canvas);
-        canvas.save();
-        float d = this.f15037s.d(canScrollVertically(-1));
-        Matrix matrix = this.f15040y;
-        matrix.reset();
-        matrix.postTranslate(0.0f, scrollY2);
-        this.f15038w.setLocalMatrix(matrix);
-        Paint paint = this.f15039x;
-        paint.setAlpha((int) (d * 255.0f));
-        canvas.drawRect(0.0f, scrollY2, getWidth(), org.telegram.messenger.g0.L(8.0f) + scrollY, paint);
-        float d2 = this.E.d(canScrollVertically(1));
-        Matrix matrix2 = this.H;
-        matrix2.reset();
-        matrix2.postTranslate(0.0f, (getHeight() + scrollY) - org.telegram.messenger.g0.L(8.0f));
-        this.F.setLocalMatrix(matrix2);
-        Paint paint2 = this.G;
-        paint2.setAlpha((int) (d2 * 255.0f));
-        canvas.drawRect(0.0f, (getHeight() + scrollY) - org.telegram.messenger.g0.L(8.0f), getWidth(), getHeight() + scrollY, paint2);
-        canvas.restore();
-        canvas.restore();
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(150.0f), Integer.MIN_VALUE));
-    }
-
-    @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        if (this.I) {
-            this.I = false;
-            return false;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f15020a) {
+            case 0:
+                int i7 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f15021b;
+                    int size = arrayList.size();
+                    ah.n nVar = this.f15022c;
+                    if (i7 < size) {
+                        nVar.removeView((View) arrayList.get(i7));
+                        i7++;
+                    } else {
+                        nVar.getClass();
+                        n8 n8Var = (n8) nVar.f1092n;
+                        nVar.h.clear();
+                        nVar.f1088b = null;
+                        nVar.f1089c = false;
+                        n8Var.f15079b.setAllowDrawCursor(true);
+                        b8 b8Var = n8Var.h;
+                        if (b8Var != null) {
+                            b8Var.run();
+                        }
+                        if (n8Var.M) {
+                            n8Var.fullScroll(130);
+                            n8Var.M = false;
+                            return;
+                        }
+                        return;
+                    }
+                }
+            default:
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f15021b;
+                    int size2 = arrayList2.size();
+                    ah.n nVar2 = this.f15022c;
+                    if (i10 < size2) {
+                        nVar2.removeView((View) arrayList2.get(i10));
+                        i10++;
+                    } else {
+                        ArrayList arrayList3 = nVar2.h;
+                        n8 n8Var2 = (n8) nVar2.f1092n;
+                        arrayList3.clear();
+                        nVar2.f1088b = null;
+                        nVar2.f1089c = false;
+                        n8Var2.f15079b.setAllowDrawCursor(true);
+                        b8 b8Var2 = n8Var2.h;
+                        if (b8Var2 != null) {
+                            b8Var2.run();
+                        }
+                        if (n8Var2.M) {
+                            n8Var2.fullScroll(130);
+                            n8Var2.M = false;
+                            return;
+                        }
+                        return;
+                    }
+                }
         }
-        rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-        rect.top = org.telegram.messenger.f3.C(20.0f, this.J, rect.top);
-        rect.bottom = org.telegram.messenger.f3.C(50.0f, this.J, rect.bottom);
-        return super.requestChildRectangleOnScreen(view, rect, z10);
-    }
-
-    public void setContainerHeight(float f10) {
-        this.K = f10;
-        ah.n nVar = this.d;
-        if (nVar != null) {
-            nVar.requestLayout();
-        }
-    }
-
-    public void setOnSearchTextChange(y10 y10Var) {
-        this.f15036r = y10Var;
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f15035n = true;
-        this.f15031b.setText(charSequence);
-        this.f15035n = false;
-    }
-
-    @Override
-    public final void updateColors() {
-        org.telegram.ui.ActionBar.h6 h6Var = this.f15030a;
-        ah.i iVar = this.f15031b;
-        if (iVar != null) {
-            try {
-                iVar.setHintColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Oi, h6Var));
-                int i7 = org.telegram.ui.ActionBar.m6.Pi;
-                iVar.setCursorColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
-                iVar.setHandlesColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
-            } catch (Exception e10) {
-                org.telegram.messenger.a8.g(e10, true);
-                return;
-            }
-        }
-        org.telegram.messenger.g0.x3(this, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29381d6, false));
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

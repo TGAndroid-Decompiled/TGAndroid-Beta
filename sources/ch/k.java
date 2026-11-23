@@ -6,11 +6,11 @@ import android.os.SystemClock;
 import di.f6;
 import di.h1;
 import di.h4;
-import hi.k5;
+import hi.l5;
 import hi.p3;
 import hi.q3;
-import hi.u9;
-import hi.v6;
+import hi.v9;
+import hi.w6;
 import hi.z2;
 import ki.k2;
 import ki.q2;
@@ -36,7 +36,7 @@ import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.i00;
 import org.telegram.ui.Components.lp;
 import org.telegram.ui.Components.mp;
-import org.telegram.ui.Components.ov;
+import org.telegram.ui.Components.nv;
 import org.telegram.ui.Components.rk0;
 import org.telegram.ui.Components.sl0;
 import org.telegram.ui.Components.u40;
@@ -44,14 +44,14 @@ import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ml;
 import org.telegram.ui.rn;
 public final class k implements Runnable {
-    public final int f5418a;
-    public final boolean f5419b;
-    public final Object f5420c;
+    public final int f5381a;
+    public final boolean f5382b;
+    public final Object f5383c;
 
     public k(int i7, Object obj, boolean z10) {
-        this.f5418a = i7;
-        this.f5420c = obj;
-        this.f5419b = z10;
+        this.f5381a = i7;
+        this.f5383c = obj;
+        this.f5382b = z10;
     }
 
     @Override
@@ -61,19 +61,19 @@ public final class k implements Runnable {
         l6 K0;
         String str;
         String str2;
-        int i11 = this.f5418a;
+        int i11 = this.f5381a;
         long j3 = 0;
         TLRPC.User user = null;
         TLRPC.WallPaper wallPaper = null;
         int i12 = 8;
         boolean z10 = true;
-        boolean z11 = this.f5419b;
-        Object obj = this.f5420c;
+        boolean z11 = this.f5382b;
+        Object obj = this.f5383c;
         switch (i11) {
             case 0:
                 l lVar = (l) obj;
                 if (z11) {
-                    ((p) lVar.f5431x.f1282c).f5500w.setVisibility(4);
+                    ((p) lVar.f5394x.f1200c).f5463w.setVisibility(4);
                     return;
                 } else {
                     lVar.getClass();
@@ -82,7 +82,7 @@ public final class k implements Runnable {
             case 1:
                 h1 h1Var = (h1) obj;
                 if (!z11) {
-                    h1Var.f8937m2.setVisibility(8);
+                    h1Var.f8902m2.setVisibility(8);
                     return;
                 } else {
                     h1Var.getClass();
@@ -96,23 +96,23 @@ public final class k implements Runnable {
                 } else {
                     i7 = 2131750404;
                 }
-                f6Var.C2(f6Var.f8811i3, org.telegram.messenger.g0.W2(hd.a0(null, null, i7, f6Var.E1())), true);
+                f6Var.C2(f6Var.f8773i3, org.telegram.messenger.g0.W2(hd.a0(null, null, i7, f6Var.E1())), true);
                 return;
             case 3:
                 f6 f6Var2 = ((h4) obj).W;
                 TL_stars.SavedStarGift J1 = f6Var2.J1(z11);
                 if (J1 != null) {
-                    f6Var2.f8796a3 = true;
+                    f6Var2.f8758a3 = true;
                     f6Var2.w2(J1, f6Var2.C2);
                 } else {
                     TL_stars.TL_starGiftUnique K1 = f6Var2.K1(z11);
                     if (K1 != null) {
-                        f6Var2.f8796a3 = true;
+                        f6Var2.f8758a3 = true;
                         f6Var2.u2(K1.slug, K1, f6Var2.C2);
                     }
                 }
                 f6Var2.Q2 = -1;
-                gc gcVar = gc.f35519w;
+                gc gcVar = gc.f35481w;
                 if (gcVar != null) {
                     gcVar.c(0L, false);
                     return;
@@ -120,12 +120,12 @@ public final class k implements Runnable {
                 return;
             case 4:
                 gi.m mVar = (gi.m) obj;
-                fq0 fq0Var = mVar.f13681a0;
+                fq0 fq0Var = mVar.f13644a0;
                 if (z11) {
-                    new gi.p(fq0Var.f13696a, hd.N0(2131746497, null), new ai.h0(fq0Var, 20)).show();
+                    new gi.p(fq0Var.f13659a, hd.N0(2131746497, null), new ai.c0(fq0Var, 20)).show();
                     return;
                 } else {
-                    fq0Var.b(mVar.f13680a.E);
+                    fq0Var.b(mVar.f13643a.E);
                     return;
                 }
             case 5:
@@ -138,37 +138,37 @@ public final class k implements Runnable {
                     return;
                 }
             case 6:
-                p3 p3Var = ((q3) obj).f15293b;
+                p3 p3Var = ((q3) obj).f15219b;
                 if (z11) {
                     i12 = 0;
                 }
                 p3Var.setVisibility(i12);
                 return;
             case 7:
-                k5 k5Var = (k5) obj;
+                l5 l5Var = (l5) obj;
                 if (!z11) {
-                    k5Var.H0.setVisibility(8);
+                    l5Var.H0.setVisibility(8);
                     return;
                 } else {
-                    k5Var.getClass();
+                    l5Var.getClass();
                     return;
                 }
             case 8:
-                v6 v6Var = (v6) obj;
+                w6 w6Var = (w6) obj;
                 if (!z11) {
-                    v6Var.setVisibility(8);
+                    w6Var.setVisibility(8);
                     return;
                 } else {
-                    v6Var.getClass();
+                    w6Var.getClass();
                     return;
                 }
             case 9:
-                u9 u9Var = (u9) obj;
+                v9 v9Var = (v9) obj;
                 if (!z11) {
-                    u9Var.f15584k2.f15419k1.setVisibility(8);
+                    v9Var.f15569k2.f15422k1.setVisibility(8);
                     return;
                 } else {
-                    u9Var.getClass();
+                    v9Var.getClass();
                     return;
                 }
             case 10:
@@ -195,11 +195,11 @@ public final class k implements Runnable {
                 ((li.k0) obj).f(z11, false);
                 return;
             case 12:
-                String str3 = h2.l0.f13815a;
-                l2.f0 f0Var = ((l2.z) ((n2.s) ((k8.a) obj).f18215c)).f19628a;
-                if (f0Var.f19348d0 != z11) {
-                    f0Var.f19348d0 = z11;
-                    f0Var.f19364m.e(23, new l2.v(1, z11));
+                String str3 = h2.l0.f13778a;
+                l2.f0 f0Var = ((l2.z) ((n2.s) ((k8.a) obj).f18178c)).f19594a;
+                if (f0Var.f19314d0 != z11) {
+                    f0Var.f19314d0 = z11;
+                    f0Var.f19330m.e(23, new l2.v(1, z11));
                     return;
                 }
                 return;
@@ -228,7 +228,7 @@ public final class k implements Runnable {
                     q0Var.performHapticFeedback(0);
                 }
                 q0Var.V(null, null);
-                q0Var.f29923r0 = true;
+                q0Var.f29889r0 = true;
                 return;
             case 19:
                 Context context = (Context) obj;
@@ -240,7 +240,7 @@ public final class k implements Runnable {
                 vf.c.t(context, hd.N0(i10, null));
                 return;
             case 20:
-                ax0 ax0Var = ((ml) obj).f49895b.f46188s1;
+                ax0 ax0Var = ((ml) obj).f49864b.f46141s1;
                 if (ax0Var != null && z11) {
                     ax0Var.setVisibility(8);
                     return;
@@ -248,8 +248,8 @@ public final class k implements Runnable {
                 return;
             case 21:
                 rn rnVar = (rn) obj;
-                rnVar.f51675x0.autotranslation = z11;
-                rnVar.getMessagesController().X3(rnVar.f51675x0, false);
+                rnVar.f51707x0.autotranslation = z11;
+                rnVar.getMessagesController().X3(rnVar.f51707x0, false);
                 return;
             case 22:
                 org.telegram.ui.Components.n0 n0Var = (org.telegram.ui.Components.n0) obj;
@@ -262,24 +262,24 @@ public final class k implements Runnable {
                 return;
             case 23:
                 org.telegram.ui.Components.np npVar = (org.telegram.ui.Components.np) obj;
-                lp lpVar = npVar.f37930r1;
+                lp lpVar = npVar.f37887r1;
                 if (lpVar != null && lpVar.d != null && !npVar.J) {
                     npVar.V0(z11, true);
                     if (npVar.G1 != null) {
                         npVar.J1 = true;
                         if (!npVar.Q0()) {
-                            wallPaper = npVar.f37931s1.f54590g;
+                            wallPaper = npVar.f37888s1.f54553g;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        s3 s3Var = npVar.G1.f37592a;
-                        if (s3Var.f29983a) {
-                            npVar.f37931s1.r(null, wallPaper2, false, Boolean.valueOf(z11), false);
+                        s3 s3Var = npVar.G1.f37548a;
+                        if (s3Var.f29949a) {
+                            npVar.f37888s1.r(null, wallPaper2, false, Boolean.valueOf(z11), false);
                         } else {
-                            npVar.f37931s1.r(s3Var, wallPaper2, false, Boolean.valueOf(z11), false);
+                            npVar.f37888s1.r(s3Var, wallPaper2, false, Boolean.valueOf(z11), false);
                         }
                     }
                     if (org.telegram.messenger.g0.Q1() && (K0 = org.telegram.ui.Components.np.K0(z11)) != null && K0 != m6.I) {
-                        if (z11 == npVar.f37933u1) {
+                        if (z11 == npVar.f37890u1) {
                             z10 = false;
                         }
                         npVar.d2 = z10;
@@ -287,7 +287,7 @@ public final class k implements Runnable {
                     }
                     if (lpVar.d != null) {
                         for (int i13 = 0; i13 < lpVar.d.size(); i13++) {
-                            ((mp) lpVar.d.get(i13)).f37594c = z11 ? 1 : 0;
+                            ((mp) lpVar.d.get(i13)).f37550c = z11 ? 1 : 0;
                         }
                         lpVar.f();
                         return;
@@ -296,20 +296,20 @@ public final class k implements Runnable {
                 }
                 return;
             case 24:
-                ov ovVar = (ov) obj;
+                nv nvVar = (nv) obj;
                 if (!z11) {
-                    ovVar.F.setVisibility(8);
+                    nvVar.F.setVisibility(8);
                     return;
                 }
                 return;
             case 25:
                 i00 i00Var = (i00) obj;
-                i00Var.f1(i00Var.f36086u2, z11);
+                i00Var.f1(i00Var.f36041u2, z11);
                 return;
             case 26:
                 f30 f30Var = (f30) obj;
                 if (!z11) {
-                    f30Var.f35076r.setVisibility(8);
+                    f30Var.f35051r.setVisibility(8);
                     return;
                 } else {
                     f30Var.getClass();
@@ -317,21 +317,21 @@ public final class k implements Runnable {
                 }
             case 27:
                 c50 c50Var = ((u40) obj).I0;
-                if (!c50Var.f34039l0) {
+                if (!c50Var.f34003l0) {
                     try {
                         c50Var.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                     org.telegram.messenger.g0.f2(c50Var.h.getParentActivity());
                     if (z11) {
-                        j3 = c50Var.f34037k0;
+                        j3 = c50Var.f34001k0;
                     }
-                    c50Var.f34033i0 = j3;
-                    c50Var.f34031h0 = System.currentTimeMillis();
-                    c50Var.f34035j0 = true;
+                    c50Var.f33997i0 = j3;
+                    c50Var.f33995h0 = System.currentTimeMillis();
+                    c50Var.f33999j0 = true;
                     c50Var.w();
                     c50Var.invalidate();
-                    ls.f(c50Var.f34023e).k(155, Integer.valueOf(c50Var.V), Boolean.FALSE);
+                    ls.f(c50Var.f33987e).k(155, Integer.valueOf(c50Var.V), Boolean.FALSE);
                     return;
                 }
                 return;

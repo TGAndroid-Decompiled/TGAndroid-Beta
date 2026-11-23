@@ -15,7 +15,7 @@ import android.os.Build;
 import android.util.Property;
 import android.view.View;
 import android.widget.ScrollView;
-import c8.ma;
+import c8.na;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -82,12 +82,12 @@ public abstract class o extends ScrollView implements b6 {
         paint2.setXfermode(new PorterDuffXfermode(mode));
         this.f1093a = h6Var;
         setVerticalScrollBarEnabled(false);
-        int x02 = m6.x0(null, m6.f29381d6, false);
+        int x02 = m6.x0(null, m6.f29347d6, false);
         this.f1099r = x02;
         g0.x3(this, x02);
         n nVar = new n(this, context);
         this.d = nVar;
-        addView(nVar, ma.c(-2.0f, -1));
+        addView(nVar, na.c(-2.0f, -1));
         i iVar = new i(0, context, this);
         this.f1094b = iVar;
         if (Build.VERSION.SDK_INT >= 25) {
@@ -108,7 +108,7 @@ public abstract class o extends ScrollView implements b6 {
         iVar.setTextIsSelectable(false);
         iVar.setPadding(0, 0, 0, 0);
         iVar.setImeOptions(268435462);
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -173,7 +173,7 @@ public abstract class o extends ScrollView implements b6 {
         np npVar;
         TLRPC.TL_help_country tL_help_country;
         ArrayList arrayList3 = arrayList;
-        np u12 = np.u1(k10.f24968t0);
+        np u12 = np.u1(k10.f24932t0);
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
         int i10 = 0;
@@ -371,7 +371,7 @@ public abstract class o extends ScrollView implements b6 {
     @Override
     public final void updateColors() {
         try {
-            int x02 = m6.x0(null, m6.f29381d6, false);
+            int x02 = m6.x0(null, m6.f29347d6, false);
             int i7 = this.f1099r;
             if (i7 != 0 && x02 != i7) {
                 this.f1099r = x02;

@@ -1,24 +1,24 @@
 package tg;
 
 import android.content.Context;
-import hi.a5;
+import hi.b5;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ek0;
 public final class q0 extends ek0 {
-    public final ArrayList f58135f3;
-    public final ArrayList f58136g3;
-    public final ArrayList f58137h3;
-    public final ArrayList f58138i3;
+    public final ArrayList f58100f3;
+    public final ArrayList f58101g3;
+    public final ArrayList f58102h3;
+    public final ArrayList f58103i3;
     public final ArrayList j3;
-    public final a5 f58139k3;
+    public final b5 f58104k3;
 
-    public q0(a5 a5Var, Context context, u0 u0Var) {
+    public q0(b5 b5Var, Context context, u0 u0Var) {
         super(context, u0Var);
-        this.f58139k3 = a5Var;
-        this.f58135f3 = new ArrayList();
-        this.f58136g3 = new ArrayList();
-        this.f58137h3 = new ArrayList();
-        this.f58138i3 = new ArrayList();
+        this.f58104k3 = b5Var;
+        this.f58100f3 = new ArrayList();
+        this.f58101g3 = new ArrayList();
+        this.f58102h3 = new ArrayList();
+        this.f58103i3 = new ArrayList();
         this.j3 = new ArrayList(10);
     }
 

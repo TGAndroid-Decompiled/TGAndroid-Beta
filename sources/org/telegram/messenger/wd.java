@@ -2,33 +2,33 @@ package org.telegram.messenger;
 
 import android.media.AudioRecord;
 public final class wd implements Runnable {
-    public final int f27721a;
-    public final MediaController f27722b;
-    public final boolean f27723c;
+    public final int f27685a;
+    public final MediaController f27686b;
+    public final boolean f27687c;
 
     public wd(MediaController mediaController, boolean z10, int i7) {
-        this.f27721a = i7;
-        this.f27722b = mediaController;
-        this.f27723c = z10;
+        this.f27685a = i7;
+        this.f27686b = mediaController;
+        this.f27687c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f27721a) {
+        switch (this.f27685a) {
             case 0:
-                MediaController mediaController = this.f27722b;
+                MediaController mediaController = this.f27686b;
                 q5 q5Var = mediaController.N1;
-                if (mediaController.f22742g1 != null && mediaController.f22750k1 != null) {
-                    boolean z10 = mediaController.f22737e1;
-                    mediaController.f22737e1 = !z10;
+                if (mediaController.f22706g1 != null && mediaController.f22714k1 != null) {
+                    boolean z10 = mediaController.f22701e1;
+                    mediaController.f22701e1 = !z10;
                     if (!z10) {
-                        AudioRecord audioRecord = mediaController.f22740f1;
+                        AudioRecord audioRecord = mediaController.f22704f1;
                         if (audioRecord != null) {
                             mediaController.C1 = 4;
                             audioRecord.stop();
-                            mediaController.f22740f1.release();
-                            mediaController.f22740f1 = null;
-                            q5Var.c(new wd(mediaController, this.f27723c, 1));
+                            mediaController.f22704f1.release();
+                            mediaController.f22704f1 = null;
+                            q5Var.c(new wd(mediaController, this.f27687c, 1));
                             return;
                         }
                         return;
@@ -39,7 +39,7 @@ public final class wd implements Runnable {
                 }
                 return;
             default:
-                MediaController.a(this.f27722b, this.f27723c);
+                MediaController.a(this.f27686b, this.f27687c);
                 return;
         }
     }

@@ -3,228 +3,243 @@ package c8;
 import android.media.MediaCodec;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
-import android.opengl.EGL14;
-import android.opengl.EGLExt;
-import android.opengl.GLES20;
-import android.os.SystemClock;
+import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
+import java.util.ArrayList;
 public abstract class pe {
-    public static int a(MediaExtractor mediaExtractor) {
+    public static n2.q0 a(File file, zi.x xVar, long j3, long j10, boolean z10, b7.d dVar) {
+        MediaFormat mediaFormat;
+        long j11;
+        long j12;
+        String str;
+        MediaFormat mediaFormat2;
+        boolean z11;
+        zi.x xVar2 = xVar;
+        long max = Math.max(0L, j3 * 1000);
+        long max2 = Math.max(max, j10 * 1000);
+        MediaExtractor mediaExtractor = new MediaExtractor();
+        try {
+            mediaExtractor.setDataSource(file.getAbsolutePath());
+            int d = d(mediaExtractor, true);
+            int d2 = d(mediaExtractor, false);
+            if (d >= 0 && (!z10 || d2 >= 0)) {
+                MediaFormat trackFormat = mediaExtractor.getTrackFormat(d);
+                if (z10) {
+                    mediaFormat = mediaExtractor.getTrackFormat(d2);
+                } else {
+                    mediaFormat = null;
+                }
+                mediaExtractor.release();
+                int i7 = dVar.f2915c;
+                synchronized (xVar) {
+                    xVar2.f62382s = i7;
+                }
+                if (mediaFormat != null) {
+                    xVar2.n(mediaFormat, false);
+                }
+                mediaExtractor = new MediaExtractor();
+                try {
+                    mediaExtractor.setDataSource(file.getAbsolutePath());
+                    int d10 = d(mediaExtractor, true);
+                    long j13 = Long.MAX_VALUE;
+                    if (d10 >= 0) {
+                        mediaExtractor.selectTrack(d10);
+                        j11 = Long.MIN_VALUE;
+                        while (true) {
+                            if (mediaExtractor.getSampleTime() < 0) {
+                                break;
+                            }
+                            long sampleTime = mediaExtractor.getSampleTime();
+                            if ((mediaExtractor.getSampleFlags() & 1) != 0) {
+                                z11 = true;
+                            } else {
+                                z11 = false;
+                            }
+                            if (sampleTime >= max2) {
+                                break;
+                            }
+                            if (z11) {
+                                if (sampleTime <= max) {
+                                    j11 = sampleTime;
+                                } else {
+                                    j13 = sampleTime;
+                                    break;
+                                }
+                            }
+                            mediaExtractor.advance();
+                        }
+                    } else {
+                        j11 = Long.MIN_VALUE;
+                    }
+                    mediaExtractor.release();
+                    long[] jArr = {j11, j13};
+                    long j14 = jArr[0];
+                    long j15 = jArr[1];
+                    if (j14 != Long.MIN_VALUE) {
+                        if (j14 == max) {
+                            xVar2.n(trackFormat, true);
+                            b(file, xVar2, max, max, max2);
+                            str = "copy";
+                            j12 = 0;
+                        } else {
+                            long min = Math.min(j15, max2);
+                            y7.f7 f7Var = new y7.f7(4);
+                            j12 = 0;
+                            qe.c(file, j14, max, min, dVar.f2913a, dVar.f2914b, dVar.f2915c, f7Var);
+                            if (((MediaFormat) f7Var.f60823c) != null && !((ArrayList) f7Var.f60821a).isEmpty()) {
+                                boolean m10 = zi.x.m(trackFormat, (MediaFormat) f7Var.f60823c, "csd-0", "csd-1");
+                                if (min >= max2) {
+                                    if (m10) {
+                                        mediaFormat2 = trackFormat;
+                                    } else {
+                                        mediaFormat2 = (MediaFormat) f7Var.f60823c;
+                                    }
+                                    xVar2.n(mediaFormat2, true);
+                                    e(xVar2, f7Var, max);
+                                    str = "reencode-range-in-gop";
+                                    max = max;
+                                } else if (m10) {
+                                    xVar2.n(trackFormat, true);
+                                    e(xVar2, f7Var, max);
+                                    b(file, xVar2, j15, max, max2);
+                                    max = max;
+                                    str = "reencode-head";
+                                } else {
+                                    max = max;
+                                    qe.c(file, j14, max, max2, dVar.f2913a, dVar.f2914b, dVar.f2915c, new a8.va(xVar2, max, 11));
+                                    str = "reencode-all";
+                                }
+                            } else {
+                                throw new IOException("Re-encoded trim start produced no frames");
+                            }
+                        }
+                        if (z10) {
+                            mediaExtractor = new MediaExtractor();
+                            MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
+                            ByteBuffer allocateDirect = ByteBuffer.allocateDirect(2097152);
+                            try {
+                                mediaExtractor.setDataSource(file.getAbsolutePath());
+                                int d11 = d(mediaExtractor, false);
+                                if (d11 >= 0) {
+                                    mediaExtractor.selectTrack(d11);
+                                    mediaExtractor.seekTo(max, 2);
+                                    while (mediaExtractor.getSampleTime() >= j12 && mediaExtractor.getSampleTime() < max) {
+                                        mediaExtractor.advance();
+                                    }
+                                    while (mediaExtractor.getSampleTime() >= j12 && mediaExtractor.getSampleTime() < max2) {
+                                        allocateDirect.clear();
+                                        int readSampleData = mediaExtractor.readSampleData(allocateDirect, 0);
+                                        if (readSampleData >= 0) {
+                                            bufferInfo.set(0, readSampleData, mediaExtractor.getSampleTime(), mediaExtractor.getSampleFlags());
+                                            ByteBuffer byteBuffer = allocateDirect;
+                                            xVar2.q(false, byteBuffer, bufferInfo, -max);
+                                            mediaExtractor.advance();
+                                            allocateDirect = byteBuffer;
+                                            xVar2 = xVar;
+                                        }
+                                    }
+                                } else {
+                                    throw new IOException("Source track disappeared");
+                                }
+                            } finally {
+                            }
+                        }
+                        long h = xVar.h();
+                        ?? obj = new Object();
+                        obj.f21201a = max / 1000;
+                        obj.f21202b = h;
+                        obj.f21203c = str;
+                        return obj;
+                    }
+                    throw new IOException("Trim range has no video sync sample");
+                } finally {
+                }
+            }
+            throw new IOException("Source file has no required tracks");
+        } finally {
+        }
+    }
+
+    public static void b(File file, zi.x xVar, long j3, long j10, long j11) {
+        ByteBuffer byteBuffer;
+        MediaCodec.BufferInfo bufferInfo;
+        zi.x xVar2;
+        MediaExtractor mediaExtractor = new MediaExtractor();
+        MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(2097152);
+        try {
+            mediaExtractor.setDataSource(file.getAbsolutePath());
+            int d = d(mediaExtractor, true);
+            if (d >= 0) {
+                mediaExtractor.selectTrack(d);
+                mediaExtractor.seekTo(j3, 0);
+                while (mediaExtractor.getSampleTime() >= 0) {
+                    long sampleTime = mediaExtractor.getSampleTime();
+                    if (sampleTime < j11) {
+                        if (sampleTime >= j3) {
+                            allocateDirect.clear();
+                            int readSampleData = mediaExtractor.readSampleData(allocateDirect, 0);
+                            if (readSampleData < 0) {
+                                break;
+                            }
+                            bufferInfo2.set(0, readSampleData, sampleTime, mediaExtractor.getSampleFlags());
+                            byteBuffer = allocateDirect;
+                            bufferInfo = bufferInfo2;
+                            xVar2 = xVar;
+                            xVar2.q(true, byteBuffer, bufferInfo, -j10);
+                        } else {
+                            byteBuffer = allocateDirect;
+                            bufferInfo = bufferInfo2;
+                            xVar2 = xVar;
+                        }
+                        mediaExtractor.advance();
+                        xVar = xVar2;
+                        allocateDirect = byteBuffer;
+                        bufferInfo2 = bufferInfo;
+                    }
+                }
+                return;
+            }
+            throw new IOException("Source track disappeared");
+        } finally {
+            mediaExtractor.release();
+        }
+    }
+
+    public static void c(File file) {
+        try {
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+            randomAccessFile.setLength(0L);
+            randomAccessFile.close();
+        } catch (IOException unused) {
+        }
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+
+    public static int d(MediaExtractor mediaExtractor, boolean z10) {
+        String str;
+        if (z10) {
+            str = "video/";
+        } else {
+            str = "audio/";
+        }
         for (int i7 = 0; i7 < mediaExtractor.getTrackCount(); i7++) {
             String string = mediaExtractor.getTrackFormat(i7).getString("mime");
-            if (string != null && string.startsWith("video/")) {
+            if (string != null && string.startsWith(str)) {
                 return i7;
             }
         }
         return -1;
     }
 
-    public static int b(MediaExtractor mediaExtractor, MediaCodec mediaCodec, MediaCodec mediaCodec2, zi.w0 w0Var, long j3, long j10, zi.x0 x0Var) {
-        long j11;
-        boolean z10;
-        long j12;
-        long j13;
-        boolean z11;
-        boolean z12;
-        long j14;
-        int i7;
-        boolean z13;
-        boolean z14;
-        int i10;
-        int dequeueOutputBuffer;
-        boolean z15;
-        int dequeueInputBuffer;
-        int i11;
-        int readSampleData;
-        MediaCodec mediaCodec3 = mediaCodec;
-        MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
-        MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
-        int i12 = 0;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        boolean z16 = false;
-        int i13 = 0;
-        boolean z17 = false;
-        boolean z18 = false;
-        int i14 = 0;
-        while (!z16) {
-            if (!z17 && (dequeueInputBuffer = mediaCodec3.dequeueInputBuffer(10000L)) >= 0) {
-                long sampleTime = mediaExtractor.getSampleTime();
-                if ((mediaExtractor.getSampleFlags() & 1) != 0) {
-                    i11 = 1;
-                } else {
-                    i11 = i12;
-                }
-                if (sampleTime < 0 || (sampleTime >= j10 && i11 != 0)) {
-                    j11 = elapsedRealtime;
-                    z10 = z16;
-                    j13 = 0;
-                    j12 = 10000;
-                    mediaCodec3 = mediaCodec;
-                    mediaCodec3.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 4);
-                } else {
-                    ByteBuffer inputBuffer = mediaCodec3.getInputBuffer(dequeueInputBuffer);
-                    if (inputBuffer == null) {
-                        readSampleData = -1;
-                    } else {
-                        readSampleData = mediaExtractor.readSampleData(inputBuffer, i12);
-                    }
-                    if (readSampleData < 0) {
-                        j11 = elapsedRealtime;
-                        z10 = z16;
-                        j13 = 0;
-                        j12 = 10000;
-                        mediaCodec3.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 4);
-                        mediaCodec3 = mediaCodec;
-                    } else {
-                        j11 = elapsedRealtime;
-                        z10 = z16;
-                        j13 = 0;
-                        j12 = 10000;
-                        mediaCodec3 = mediaCodec;
-                        mediaCodec3.queueInputBuffer(dequeueInputBuffer, 0, readSampleData, sampleTime, 0);
-                        mediaExtractor.advance();
-                        z11 = true;
-                    }
-                }
-                z17 = true;
-                z11 = true;
-            } else {
-                j11 = elapsedRealtime;
-                z10 = z16;
-                j12 = 10000;
-                j13 = 0;
-                z11 = false;
-            }
-            if (!z18 && (dequeueOutputBuffer = mediaCodec3.dequeueOutputBuffer(bufferInfo, j12)) >= 0) {
-                long j15 = bufferInfo.presentationTimeUs;
-                if (bufferInfo.size > 0 && j15 >= j3 && j15 < j10) {
-                    z15 = true;
-                } else {
-                    z15 = false;
-                }
-                mediaCodec3.releaseOutputBuffer(dequeueOutputBuffer, z15);
-                if (z15) {
-                    synchronized (w0Var.f62391b) {
-                        long elapsedRealtime2 = SystemClock.elapsedRealtime() + 2500;
-                        while (!w0Var.f62400m) {
-                            long elapsedRealtime3 = elapsedRealtime2 - SystemClock.elapsedRealtime();
-                            if (elapsedRealtime3 > j13) {
-                                try {
-                                    w0Var.f62391b.wait(elapsedRealtime3);
-                                    j13 = 0;
-                                } catch (InterruptedException e10) {
-                                    Thread.currentThread().interrupt();
-                                    throw new IOException("Video re-encoding was interrupted", e10);
-                                }
-                            } else {
-                                throw new IOException("Decoded frame did not arrive");
-                            }
-                        }
-                        w0Var.f62400m = false;
-                    }
-                    w0Var.f62398k.updateTexImage();
-                    w0Var.f62398k.getTransformMatrix(w0Var.f62392c);
-                    int i15 = w0Var.f62390a;
-                    GLES20.glViewport(0, 0, i15, i15);
-                    GLES20.glUseProgram(w0Var.f62396i);
-                    GLES20.glActiveTexture(33984);
-                    GLES20.glBindTexture(36197, w0Var.f62397j);
-                    int glGetAttribLocation = GLES20.glGetAttribLocation(w0Var.f62396i, "aPosition");
-                    int glGetAttribLocation2 = GLES20.glGetAttribLocation(w0Var.f62396i, "aTextureCoord");
-                    FloatBuffer floatBuffer = w0Var.d;
-                    floatBuffer.position(0);
-                    GLES20.glVertexAttribPointer(glGetAttribLocation, 2, 5126, false, 16, (Buffer) w0Var.d);
-                    GLES20.glEnableVertexAttribArray(glGetAttribLocation);
-                    floatBuffer.position(2);
-                    GLES20.glVertexAttribPointer(glGetAttribLocation2, 2, 5126, false, 16, (Buffer) w0Var.d);
-                    GLES20.glEnableVertexAttribArray(glGetAttribLocation2);
-                    z12 = true;
-                    GLES20.glUniformMatrix4fv(GLES20.glGetUniformLocation(w0Var.f62396i, "uTextureMatrix"), 1, false, w0Var.f62392c, 0);
-                    GLES20.glDrawArrays(5, 0, 4);
-                    EGLExt.eglPresentationTimeANDROID(w0Var.f62394f, w0Var.h, j15 * 1000);
-                    if (!EGL14.eglSwapBuffers(w0Var.f62394f, w0Var.h)) {
-                        throw new IllegalStateException("eglSwapBuffers failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
-                    }
-                } else {
-                    z12 = true;
-                }
-                if ((bufferInfo.flags & 4) != 0) {
-                    mediaCodec2.signalEndOfInputStream();
-                    z18 = z12;
-                }
-                z11 = z12;
-            } else {
-                z12 = true;
-            }
-            if (z18) {
-                j14 = 10000;
-            } else {
-                j14 = 0;
-            }
-            int dequeueOutputBuffer2 = mediaCodec2.dequeueOutputBuffer(bufferInfo2, j14);
-            int i16 = i14;
-            z16 = z10;
-            while (true) {
-                if (dequeueOutputBuffer2 != -1) {
-                    if (dequeueOutputBuffer2 == -2) {
-                        MediaFormat outputFormat = mediaCodec2.getOutputFormat();
-                        i16 = zi.n.f(outputFormat);
-                        x0Var.A(outputFormat);
-                    } else if (dequeueOutputBuffer2 >= 0) {
-                        ByteBuffer outputBuffer = mediaCodec2.getOutputBuffer(dequeueOutputBuffer2);
-                        int i17 = bufferInfo2.flags;
-                        if ((i17 & 2) != 0) {
-                            z13 = z12;
-                        } else {
-                            z13 = false;
-                        }
-                        if (outputBuffer != null && (i10 = bufferInfo2.size) > 0 && !z13) {
-                            if (i16 > 0 && (i17 & 1) != 0 && i10 > i16) {
-                                bufferInfo2.offset += i16;
-                                bufferInfo2.size = i10 - i16;
-                            }
-                            x0Var.q(outputBuffer, bufferInfo2);
-                            i13++;
-                        }
-                        if ((bufferInfo2.flags & 4) != 0) {
-                            z14 = z12;
-                        } else {
-                            z14 = false;
-                        }
-                        i7 = 0;
-                        mediaCodec2.releaseOutputBuffer(dequeueOutputBuffer2, false);
-                        z16 = z14;
-                        if (z14) {
-                            break;
-                        }
-                        dequeueOutputBuffer2 = mediaCodec2.dequeueOutputBuffer(bufferInfo2, 0L);
-                        z11 = z12;
-                    }
-                    dequeueOutputBuffer2 = mediaCodec2.dequeueOutputBuffer(bufferInfo2, 0L);
-                    z11 = z12;
-                } else {
-                    i7 = 0;
-                    break;
-                }
-            }
-            long elapsedRealtime4 = SystemClock.elapsedRealtime();
-            if (z11) {
-                elapsedRealtime = elapsedRealtime4;
-            } else if (elapsedRealtime4 - j11 <= 5000) {
-                elapsedRealtime = j11;
-            } else {
-                throw new IOException("Video re-encoding stalled");
-            }
-            i14 = i16;
-            i12 = i7;
+    public static void e(zi.x xVar, y7.f7 f7Var, long j3) {
+        ArrayList arrayList = (ArrayList) f7Var.f60821a;
+        for (int i7 = 0; i7 < arrayList.size(); i7++) {
+            xVar.q(true, (ByteBuffer) arrayList.get(i7), (MediaCodec.BufferInfo) ((ArrayList) f7Var.f60822b).get(i7), -j3);
         }
-        return i13;
-    }
-
-    public static void c(java.io.File r3, long r4, long r6, long r8, int r10, int r11, int r12, zi.x0 r13) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.pe.c(java.io.File, long, long, long, int, int, int, zi.x0):void");
     }
 }

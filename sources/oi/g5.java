@@ -1,115 +1,63 @@
 package oi;
 
-import android.text.Editable;
+import android.graphics.Rect;
+import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.j9;
-public final class g5 implements e1 {
-    public final p5 f22153a;
-    public final m5 f22154b;
+import org.telegram.ui.Cells.u9;
+public final class g5 implements u9 {
+    public final Layout f22101a;
+    public final int f22102b;
+    public final int f22103c;
+    public final l5 d;
 
-    public g5(m5 m5Var, p5 p5Var) {
-        this.f22154b = m5Var;
-        this.f22153a = p5Var;
+    public g5(l5 l5Var, Layout layout, int i7, int i10) {
+        this.d = l5Var;
+        this.f22101a = layout;
+        this.f22102b = i7;
+        this.f22103c = i10;
     }
 
     @Override
-    public final void A(int i7, int i10) {
-        g2 g2Var;
-        m5 m5Var = this.f22154b;
-        b3 b3Var = m5Var.F;
-        if (b3Var != null && m5Var.f22531a != null && (g2Var = b3Var.f22024a.R3) != null) {
-            g2Var.f(i7, i10);
-        }
+    public final Layout a() {
+        return this.f22101a;
     }
 
     @Override
-    public final boolean E1(boolean z10) {
-        return this.f22154b.u(this.f22153a, z10);
+    public final Rect c() {
+        return null;
     }
 
     @Override
-    public final boolean J(f1 f1Var) {
-        return false;
+    public final CharSequence getPrefix() {
+        return null;
     }
 
     @Override
-    public final void b1(CharSequence charSequence) {
-        b3 b3Var = this.f22154b.F;
-        if (b3Var != null && charSequence != null && charSequence.length() > 0) {
-            b3Var.f22024a.w4(charSequence.toString());
-        }
+    public final int getRow() {
+        return 0;
     }
 
     @Override
-    public final boolean d2(f1 f1Var) {
-        return false;
-    }
-
-    @Override
-    public final void e(f1 f1Var) {
-        b3 b3Var = this.f22154b.F;
-        if (b3Var != null) {
-            t3 t3Var = b3Var.f22024a;
-            t3.Q1(t3Var, f1Var);
-            t3Var.f22428p3.k(f1Var, true);
-        }
-    }
-
-    @Override
-    public final boolean o() {
-        m5 m5Var = this.f22154b;
-        b3 b3Var = m5Var.F;
-        if (b3Var != null && m5Var.f22531a != null) {
-            return b3Var.f22024a.V4();
-        }
-        return false;
-    }
-
-    @Override
-    public final void r1(final f1 f1Var, final int i7, final int i10) {
-        b3 b3Var;
-        final j9 textSelectionHelper;
-        final int l10;
-        m5 m5Var = this.f22154b;
-        if (!m5Var.H && i7 != i10 && (b3Var = m5Var.F) != null && (textSelectionHelper = b3Var.f22024a.getTextSelectionHelper()) != null) {
-            if ((!textSelectionHelper.x() || textSelectionHelper.W != m5Var) && (l10 = m5Var.l(this.f22153a.f22316b)) >= 0) {
-                m5Var.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        m5 m5Var2 = g5.this.f22154b;
-                        f1 f1Var2 = f1Var;
-                        int length = f1Var2.length();
-                        int i11 = i10;
-                        if (length >= i11 && f1Var2.getSelectionStart() != f1Var2.getSelectionEnd() && textSelectionHelper.j0(m5Var2, l10, i7, i11)) {
-                            m5Var2.H = true;
-                            f1Var2.setSelection(i11);
-                            m5Var2.H = false;
-                        }
-                    }
-                });
+    public final CharSequence getText() {
+        TL_iv.RichText richText;
+        a aVar = this.d.f22468a;
+        if (aVar != null) {
+            TL_iv.PageBlock pageBlock = aVar.f21901b;
+            if ((pageBlock instanceof TL_iv.pageBlockTable) && (richText = ((TL_iv.pageBlockTable) pageBlock).title) != null) {
+                return b6.r(richText, null, true);
             }
+            return "";
         }
+        return "";
     }
 
     @Override
-    public final void s1(Editable editable) {
-        TL_iv.pageTableCell pagetablecell = this.f22153a.f22316b;
-        if (pagetablecell != null) {
-            e6.d(pagetablecell, editable);
-        }
-        m5 m5Var = this.f22154b;
-        m5Var.f22248w.requestLayout();
-        b3 b3Var = m5Var.F;
-        if (b3Var != null && m5Var.f22531a != null) {
-            b3Var.a();
-        }
+    public final int getX() {
+        return this.f22102b;
     }
 
     @Override
-    public final void E0() {
-    }
-
-    @Override
-    public final void x0(f1 f1Var) {
+    public final int getY() {
+        return this.f22103c;
     }
 }

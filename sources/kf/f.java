@@ -1,9 +1,9 @@
 package kf;
 
-import c8.f1;
+import c8.g1;
 public final class f extends a {
     @Override
-    public final void a(f1 f1Var) {
-        f1Var.v(this);
+    public final void a(g1 g1Var) {
+        g1Var.v(this);
     }
 }

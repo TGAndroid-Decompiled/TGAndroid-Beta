@@ -1,13 +1,13 @@
 package vd;
 
-import c8.n1;
+import c8.h9;
 public final class i {
-    public static final i[] f59415a;
+    public static final i[] f59378a;
 
     static {
         i[] iVarArr = {new Enum("PUBLIC", 0), new Enum("PROTECTED", 1), new Enum("INTERNAL", 2), new Enum("PRIVATE", 3)};
-        f59415a = iVarArr;
-        n1.a(iVarArr);
+        f59378a = iVarArr;
+        h9.a(iVarArr);
     }
 
     public static i valueOf(String str) {
@@ -15,6 +15,6 @@ public final class i {
     }
 
     public static i[] values() {
-        return (i[]) f59415a.clone();
+        return (i[]) f59378a.clone();
     }
 }

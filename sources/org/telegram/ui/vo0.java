@@ -1,22 +1,21 @@
 package org.telegram.ui;
-public final class vo0 extends org.telegram.ui.Cells.t9 {
-    public final int f52870q0 = 0;
+public final class vo0 implements org.telegram.ui.Components.y20 {
+    public final PhotoViewer f52842a;
 
-    public vo0(fi.w7 w7Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(w7Var, h6Var);
+    public vo0(PhotoViewer photoViewer) {
+        this.f52842a = photoViewer;
     }
 
-    @Override
-    public final int o() {
-        switch (this.f52870q0) {
-            case 0:
-                return 0;
-            default:
-                return 0;
+    public final void a(int i7) {
+        PhotoViewer photoViewer = this.f52842a;
+        photoViewer.P4 = -1;
+        org.telegram.messenger.ic icVar = photoViewer.f43256j5;
+        if (icVar != null) {
+            icVar.a();
+            photoViewer.f43256j5 = null;
         }
-    }
-
-    public vo0(fi.b bVar) {
-        super(null, bVar);
+        photoViewer.f43273l5 = true;
+        photoViewer.z2(i7);
+        photoViewer.f43273l5 = false;
     }
 }

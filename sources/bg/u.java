@@ -6,15 +6,15 @@ import org.telegram.messenger.gj;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
 public class u {
-    public final ArrayList f3359a = new ArrayList();
-    public final a0.h f3360b = new a0.h();
-    public final a0.h f3361c = new a0.h();
+    public final ArrayList f3310a = new ArrayList();
+    public final a0.h f3311b = new a0.h();
+    public final a0.h f3312c = new a0.h();
 
     public static void a(u uVar, TL_ephemeral.EphemeralMessage ephemeralMessage, TLRPC.TL_message tL_message, gj gjVar) {
-        a0.h hVar = uVar.f3361c;
+        a0.h hVar = uVar.f3312c;
         long B0 = gj.B0(tL_message);
-        uVar.f3359a.add(ephemeralMessage);
-        a0.h hVar2 = uVar.f3360b;
+        uVar.f3310a.add(ephemeralMessage);
+        a0.h hVar2 = uVar.f3311b;
         TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) hVar2.f(B0);
         if (tL_messages_messages == null) {
             tL_messages_messages = new TLRPC.TL_messages_messages();

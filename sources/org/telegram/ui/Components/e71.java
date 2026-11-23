@@ -7,7 +7,7 @@ public final class e71 extends v4.k {
     }
 
     @Override
-    public final void P(v4.f1 f1Var) {
+    public final void P(v4.e1 e1Var) {
         this.F.invalidate();
     }
 }

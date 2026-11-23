@@ -1,7 +1,7 @@
 package me;
 
-import c8.w9;
-public final class e extends w9 {
-    public static final e f21000b = new w9();
-    public static final e f21001c = new w9();
+import c8.x9;
+public final class e extends x9 {
+    public static final e f20966b = new x9();
+    public static final e f20967c = new x9();
 }

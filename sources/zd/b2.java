@@ -1,6 +1,6 @@
 package zd;
 public final class b2 implements id.f, id.g {
-    public static final b2 f61871a = new Object();
+    public static final b2 f61836a = new Object();
 
     @Override
     public final Object fold(Object obj, rd.p pVar) {
@@ -9,17 +9,17 @@ public final class b2 implements id.f, id.g {
 
     @Override
     public final id.f get(id.g gVar) {
-        return c8.p0.a(this, gVar);
+        return c8.q0.a(this, gVar);
     }
 
     @Override
     public final id.h minusKey(id.g gVar) {
-        return c8.p0.b(this, gVar);
+        return c8.q0.b(this, gVar);
     }
 
     @Override
     public final id.h plus(id.h hVar) {
-        return c8.p0.c(this, hVar);
+        return c8.q0.c(this, hVar);
     }
 
     @Override

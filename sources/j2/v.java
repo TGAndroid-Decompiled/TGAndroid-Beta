@@ -1,15 +1,15 @@
 package j2;
 
-import a8.ja;
+import a8.ka;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.SocketTimeoutException;
 public class v extends j {
-    public final int f17249b;
+    public final int f17215b;
 
     public v() {
         super(2008);
-        this.f17249b = 1;
+        this.f17215b = 1;
     }
 
     public static v a(IOException iOException, int i7) {
@@ -19,7 +19,7 @@ public class v extends j {
             i10 = 2002;
         } else if (iOException instanceof InterruptedIOException) {
             i10 = 1004;
-        } else if (message != null && ja.c(message).matches("cleartext.*not permitted.*")) {
+        } else if (message != null && ka.c(message).matches("cleartext.*not permitted.*")) {
             i10 = 2007;
         } else {
             i10 = 2001;
@@ -32,7 +32,7 @@ public class v extends j {
 
     public v(String str, int i7) {
         super(str, i7 == 2000 ? 2001 : i7);
-        this.f17249b = 1;
+        this.f17215b = 1;
     }
 
     public v(java.io.IOException r2, int r3, int r4) {
@@ -41,6 +41,6 @@ public class v extends j {
 
     public v(String str, IOException iOException, int i7) {
         super(str, iOException, i7 == 2000 ? 2001 : i7);
-        this.f17249b = 1;
+        this.f17215b = 1;
     }
 }

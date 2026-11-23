@@ -19,11 +19,11 @@ public final class kl extends jg.s0 {
             case 0:
                 ml mlVar = (ml) gsVar;
                 kl klVar = mlVar.O;
-                org.telegram.ui.ActionBar.q0 q0Var = mlVar.f37572x;
+                org.telegram.ui.ActionBar.q0 q0Var = mlVar.f37530x;
                 if (q0Var != null) {
-                    q0Var.setShowSearchProgress(klVar.f17438w);
+                    q0Var.setShowSearchProgress(klVar.f17404w);
                 }
-                TextView textView = mlVar.f37570w;
+                TextView textView = mlVar.f37528w;
                 if (textView != null) {
                     textView.setText(org.telegram.messenger.hd.a0(null, null, 2131747972, klVar.h));
                 }
@@ -31,11 +31,11 @@ public final class kl extends jg.s0 {
                 return;
             default:
                 org.telegram.ui.qa0 qa0Var = (org.telegram.ui.qa0) gsVar;
-                org.telegram.ui.ActionBar.g5 g5Var = qa0Var.f51178r;
+                org.telegram.ui.ActionBar.g5 g5Var = qa0Var.f51109r;
                 if (g5Var != null) {
-                    g5Var.setShowSearchProgress(qa0Var.T.f17438w);
+                    g5Var.setShowSearchProgress(qa0Var.T.f17404w);
                 }
-                TextView textView2 = qa0Var.f51173n;
+                TextView textView2 = qa0Var.f51104n;
                 if (textView2 != null) {
                     textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131747972, qa0Var.T.h));
                 }

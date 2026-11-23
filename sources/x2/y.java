@@ -1,29 +1,29 @@
 package x2;
 public final class y implements e0, d0 {
-    public final g0 f60325a;
-    public final long f60326b;
-    public final h6.m f60327c;
+    public final g0 f60290a;
+    public final long f60291b;
+    public final h6.m f60292c;
     public a d;
-    public e0 f60328e;
-    public d0 f60329f;
+    public e0 f60293e;
+    public d0 f60294f;
     public long h = -9223372036854775807L;
 
     public y(g0 g0Var, h6.m mVar, long j3) {
-        this.f60325a = g0Var;
-        this.f60327c = mVar;
-        this.f60326b = j3;
+        this.f60290a = g0Var;
+        this.f60292c = mVar;
+        this.f60291b = j3;
     }
 
     public final void a(g0 g0Var) {
         long j3 = this.h;
         if (j3 == -9223372036854775807L) {
-            j3 = this.f60326b;
+            j3 = this.f60291b;
         }
         a aVar = this.d;
         aVar.getClass();
-        e0 c10 = aVar.c(g0Var, this.f60327c, j3);
-        this.f60328e = c10;
-        if (this.f60329f != null) {
+        e0 c10 = aVar.c(g0Var, this.f60292c, j3);
+        this.f60293e = c10;
+        if (this.f60294f != null) {
             c10.t(this, j3);
         }
     }
@@ -32,20 +32,20 @@ public final class y implements e0, d0 {
     public final long b(a3.u[] uVarArr, boolean[] zArr, d1[] d1VarArr, boolean[] zArr2, long j3) {
         long j10;
         long j11 = this.h;
-        if (j11 != -9223372036854775807L && j3 == this.f60326b) {
+        if (j11 != -9223372036854775807L && j3 == this.f60291b) {
             j10 = j11;
         } else {
             j10 = j3;
         }
         this.h = -9223372036854775807L;
-        e0 e0Var = this.f60328e;
-        String str = h2.l0.f13815a;
+        e0 e0Var = this.f60293e;
+        String str = h2.l0.f13778a;
         return e0Var.b(uVarArr, zArr, d1VarArr, zArr2, j10);
     }
 
     @Override
     public final boolean c(l2.s0 s0Var) {
-        e0 e0Var = this.f60328e;
+        e0 e0Var = this.f60293e;
         if (e0Var != null && e0Var.c(s0Var)) {
             return true;
         }
@@ -55,28 +55,28 @@ public final class y implements e0, d0 {
     @Override
     public final void c0(f1 f1Var) {
         e0 e0Var = (e0) f1Var;
-        d0 d0Var = this.f60329f;
-        String str = h2.l0.f13815a;
+        d0 d0Var = this.f60294f;
+        String str = h2.l0.f13778a;
         d0Var.c0(this);
     }
 
     @Override
     public final long e() {
-        e0 e0Var = this.f60328e;
-        String str = h2.l0.f13815a;
+        e0 e0Var = this.f60293e;
+        String str = h2.l0.f13778a;
         return e0Var.e();
     }
 
     @Override
     public final long f(long j3, l2.p1 p1Var) {
-        e0 e0Var = this.f60328e;
-        String str = h2.l0.f13815a;
+        e0 e0Var = this.f60293e;
+        String str = h2.l0.f13778a;
         return e0Var.f(j3, p1Var);
     }
 
     @Override
     public final boolean g() {
-        e0 e0Var = this.f60328e;
+        e0 e0Var = this.f60293e;
         if (e0Var != null && e0Var.g()) {
             return true;
         }
@@ -85,7 +85,7 @@ public final class y implements e0, d0 {
 
     @Override
     public final void i() {
-        e0 e0Var = this.f60328e;
+        e0 e0Var = this.f60293e;
         if (e0Var != null) {
             e0Var.i();
             return;
@@ -98,54 +98,54 @@ public final class y implements e0, d0 {
 
     @Override
     public final long k(long j3) {
-        e0 e0Var = this.f60328e;
-        String str = h2.l0.f13815a;
+        e0 e0Var = this.f60293e;
+        String str = h2.l0.f13778a;
         return e0Var.k(j3);
     }
 
     @Override
     public final void m(e0 e0Var) {
-        d0 d0Var = this.f60329f;
-        String str = h2.l0.f13815a;
+        d0 d0Var = this.f60294f;
+        String str = h2.l0.f13778a;
         d0Var.m(this);
     }
 
     @Override
     public final void n(long j3) {
-        e0 e0Var = this.f60328e;
-        String str = h2.l0.f13815a;
+        e0 e0Var = this.f60293e;
+        String str = h2.l0.f13778a;
         e0Var.n(j3);
     }
 
     @Override
     public final long o() {
-        e0 e0Var = this.f60328e;
-        String str = h2.l0.f13815a;
+        e0 e0Var = this.f60293e;
+        String str = h2.l0.f13778a;
         return e0Var.o();
     }
 
     @Override
     public final r1 q() {
-        e0 e0Var = this.f60328e;
-        String str = h2.l0.f13815a;
+        e0 e0Var = this.f60293e;
+        String str = h2.l0.f13778a;
         return e0Var.q();
     }
 
     @Override
     public final long r() {
-        e0 e0Var = this.f60328e;
-        String str = h2.l0.f13815a;
+        e0 e0Var = this.f60293e;
+        String str = h2.l0.f13778a;
         return e0Var.r();
     }
 
     @Override
     public final void t(d0 d0Var, long j3) {
-        this.f60329f = d0Var;
-        e0 e0Var = this.f60328e;
+        this.f60294f = d0Var;
+        e0 e0Var = this.f60293e;
         if (e0Var != null) {
             long j10 = this.h;
             if (j10 == -9223372036854775807L) {
-                j10 = this.f60326b;
+                j10 = this.f60291b;
             }
             e0Var.t(this, j10);
         }
@@ -153,8 +153,8 @@ public final class y implements e0, d0 {
 
     @Override
     public final void u(long j3) {
-        e0 e0Var = this.f60328e;
-        String str = h2.l0.f13815a;
+        e0 e0Var = this.f60293e;
+        String str = h2.l0.f13778a;
         e0Var.u(j3);
     }
 }

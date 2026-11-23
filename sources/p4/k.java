@@ -3,13 +3,13 @@ package p4;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcel;
-import c8.hb;
+import c8.ib;
 public final class k implements l {
-    public IBinder f55361a;
+    public IBinder f55325a;
 
     @Override
     public final IBinder asBinder() {
-        return this.f55361a;
+        return this.f55325a;
     }
 
     public final void h1(int i7, Bundle bundle) {
@@ -17,8 +17,8 @@ public final class k implements l {
         try {
             obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
             obtain.writeInt(i7);
-            hb.a(obtain, bundle);
-            this.f55361a.transact(3001, obtain, null, 1);
+            ib.a(obtain, bundle);
+            this.f55325a.transact(3001, obtain, null, 1);
         } finally {
             obtain.recycle();
         }

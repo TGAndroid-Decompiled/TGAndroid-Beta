@@ -3,34 +3,34 @@ package org.telegram.ui.Cells;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 public final class m8 implements View.OnAttachStateChangeListener {
-    public final int f31109a;
-    public final ImageReceiver f31110b;
+    public final int f31075a;
+    public final ImageReceiver f31076b;
 
     public m8(ImageReceiver imageReceiver, int i7) {
-        this.f31109a = i7;
-        this.f31110b = imageReceiver;
+        this.f31075a = i7;
+        this.f31076b = imageReceiver;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        switch (this.f31109a) {
+        switch (this.f31075a) {
             case 0:
-                this.f31110b.P();
+                this.f31076b.P();
                 return;
             default:
-                this.f31110b.P();
+                this.f31076b.P();
                 return;
         }
     }
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        switch (this.f31109a) {
+        switch (this.f31075a) {
             case 0:
-                this.f31110b.R();
+                this.f31076b.R();
                 return;
             default:
-                this.f31110b.R();
+                this.f31076b.R();
                 return;
         }
     }

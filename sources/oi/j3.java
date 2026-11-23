@@ -1,82 +1,68 @@
 package oi;
 
-import android.view.View;
-import c8.ha;
-public final class j3 extends ha {
-    public final r3 f22199a;
-    public final t3 f22200b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class j3 {
+    public final int f22150a;
+    public final int f22151b;
+    public final int f22152c;
+    public final int d;
+    public final s3 f22153e;
 
-    public j3(t3 t3Var, r3 r3Var) {
-        this.f22200b = t3Var;
-        this.f22199a = r3Var;
+    public j3(s3 s3Var, int i7, int i10, int i11, int i12) {
+        this.f22153e = s3Var;
+        this.f22150a = i7;
+        this.f22151b = i10;
+        this.f22152c = i11;
+        this.d = i12;
     }
 
-    @Override
-    public final void a(boolean z10) {
-        this.f22199a.G();
-        t3 t3Var = this.f22200b;
-        if (z10) {
-            h3 h3Var = t3Var.f22440v3;
-            t3Var.f22444x3 = h3Var.B0;
-            t3Var.f22446y3 = h3Var.C0;
-            t3Var.f22448z3 = h3Var.D0;
-            t3Var.setEditTextsLocked(true);
-            t3Var.q3();
-            t3Var.Y2();
-            return;
-        }
-        final int i7 = t3Var.f22444x3;
-        final int i10 = t3Var.f22446y3;
-        final int i11 = t3Var.f22448z3;
-        t3Var.f22444x3 = -1;
-        t3Var.f22446y3 = -1;
-        t3Var.f22448z3 = 0;
-        boolean z11 = t3Var.A3;
-        final float f10 = t3Var.B3;
-        final float f11 = t3Var.C3;
-        t3Var.A3 = false;
-        t3Var.setEditTextsLocked(false);
-        t3Var.Y2();
-        if (z11) {
-            t3Var.post(new Runnable() {
-                @Override
-                public final void run() {
-                    t3 t3Var2 = j3.this.f22200b;
-                    for (int i12 = 0; i12 < t3Var2.getChildCount(); i12++) {
-                        View childAt = t3Var2.getChildAt(i12);
-                        boolean z12 = childAt instanceof a6;
-                        float f12 = f10;
-                        float f13 = f11;
-                        if (z12) {
-                            a6 a6Var = (a6) childAt;
-                            if (!t3.k4(a6Var.getEditText(), f12, f13)) {
-                                if (a6Var.n() && t3.k4(a6Var.getAuthorEditText(), f12, f13)) {
-                                    return;
-                                }
-                            } else {
-                                return;
-                            }
-                        } else if (childAt instanceof j0) {
-                            if (t3.k4(((j0) childAt).getCaptionEditText(), f12, f13)) {
-                                return;
-                            }
-                        } else if ((childAt instanceof q0) && t3.k4(((q0) childAt).getEditText(), f12, f13)) {
-                            return;
-                        }
-                    }
-                    int i13 = i7;
-                    if (i13 >= 0) {
-                        t3.O1(t3Var2, i13, i11, i10);
-                    }
-                }
-            });
-        } else if (i7 >= 0) {
-            t3Var.post(new hi.d0(this, i7, i11, i10, 2));
+    public final TL_iv.RichMessage a() {
+        int i7;
+        TL_iv.PageBlock P1;
+        s3 s3Var = this.f22153e;
+        ArrayList arrayList = s3Var.f22373t3;
+        int i10 = this.f22150a;
+        a aVar = (a) arrayList.get(i10);
+        ArrayList arrayList2 = s3Var.f22373t3;
+        int i11 = this.f22151b;
+        a aVar2 = (a) arrayList2.get(i11);
+        TL_iv.PageBlock pageBlock = aVar.f21901b;
+        TL_iv.PageBlock pageBlock2 = aVar2.f21901b;
+        int i12 = this.d;
+        if (i10 == i11) {
+            i7 = i12;
         } else {
-            View findFocus = t3Var.findFocus();
-            if (findFocus instanceof f1) {
-                t3Var.post(new y0((f1) findFocus, 2));
-            }
+            i7 = -1;
+        }
+        TL_iv.PageBlock P12 = s3.P1(s3Var, aVar, this.f22152c, i7);
+        if (i10 == i11) {
+            P1 = null;
+        } else {
+            P1 = s3.P1(s3Var, aVar2, 0, i12);
+        }
+        if (P12 != null) {
+            aVar.f21901b = P12;
+        }
+        if (P1 != null) {
+            aVar2.f21901b = P1;
+        }
+        try {
+            ArrayList<TL_iv.PageBlock> b32 = s3Var.b3(i10, i11 + 1, 0, false);
+            ArrayList<TLRPC.Photo> D2 = s3Var.D2(i10, i11);
+            ArrayList<TLRPC.Document> C2 = s3Var.C2(i10, i11);
+            aVar.f21901b = pageBlock;
+            aVar2.f21901b = pageBlock2;
+            TL_iv.RichMessage richMessage = new TL_iv.RichMessage();
+            richMessage.blocks = b32;
+            richMessage.photos = D2;
+            richMessage.documents = C2;
+            return richMessage;
+        } catch (Throwable th2) {
+            aVar.f21901b = pageBlock;
+            aVar2.f21901b = pageBlock2;
+            throw th2;
         }
     }
 }

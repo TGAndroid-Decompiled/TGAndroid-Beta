@@ -1,56 +1,59 @@
 package c8;
 
-import android.util.LongSparseArray;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.y10;
-import org.telegram.ui.cd0;
+import java.nio.ByteBuffer;
 public abstract class cb {
-    public static boolean f4546a;
-    public static boolean f4547b;
-    public static ArrayList f4548c;
-    public static LongSparseArray d;
-    public static ArrayList f4549e;
-
-    public static ArrayList a(y10 y10Var) {
-        boolean z10;
-        if (y10Var != null && !f4547b) {
-            if (f4549e == null) {
-                f4549e = new ArrayList();
-            }
-            f4549e.add(y10Var);
-            z10 = true;
-        } else {
-            z10 = false;
+    public static boolean a(int i7, byte[] bArr) {
+        if (((bArr[i7 / 8] >> (7 - (i7 % 8))) & 1) != 0) {
+            return true;
         }
-        b();
-        if (z10) {
-            return null;
-        }
-        return f4548c;
+        return false;
     }
 
-    public static void b() {
-        if (!f4546a && !f4547b) {
-            f4546a = true;
-            f4548c = new ArrayList();
-            d = new LongSparseArray();
-            Utilities.f22810e.c(new cd0(14));
+    public static int b(byte[] bArr, int[] iArr) {
+        int i7 = 0;
+        if (a(0, bArr) && !a(1, bArr) && !a(2, bArr) && !a(3, bArr) && a(4, bArr) && !a(5, bArr) && !a(6, bArr)) {
+            int i10 = 271;
+            int i11 = 0;
+            while (i7 < 4) {
+                i11 = (i11 << 1) | (a(i10, bArr) ? 1 : 0);
+                i7++;
+                i10++;
+            }
+            int i12 = (i11 * 8) + i10;
+            int i13 = i12 + 1;
+            if (a(i12, bArr)) {
+                int i14 = i12 + 2;
+                if (!a(i13, bArr)) {
+                    int i15 = i12 + 3;
+                    if (a(i14, bArr)) {
+                        i15 = i12 + 8;
+                    }
+                    int i16 = i15 + 1;
+                    if (a(i15, bArr)) {
+                        i16 = i15 + 3;
+                    }
+                    i13 = i16 + 3;
+                } else {
+                    i13 = i14;
+                }
+            }
+            if (a(i13, bArr) && iArr.length > 0) {
+                return iArr[iArr.length - 1];
+            }
         }
+        return -1;
     }
 
-    public static void c(org.telegram.ui.web.w0 w0Var) {
-        if (w0Var != null && w0Var.d != null) {
-            b();
-            org.telegram.ui.web.w0 w0Var2 = (org.telegram.ui.web.w0) d.get(w0Var.f53385a);
-            if (w0Var2 != null) {
-                w0Var2.d = w0Var.d;
-            } else {
-                f4548c.add(w0Var);
-                d.put(w0Var.f53385a, w0Var);
-            }
-            org.telegram.messenger.g0.r(new cd0(13));
-            org.telegram.messenger.g0.h3(new cd0(13), 1000L);
+    public static void c(int i7, byte[] bArr) {
+        int i10 = i7 / 8;
+        bArr[i10] = (byte) (((byte) (1 << (7 - (i7 % 8)))) | bArr[i10]);
+    }
+
+    public static long d(int i7, ByteBuffer byteBuffer) {
+        long j3 = 0;
+        for (int i10 = 0; i10 < i7; i10++) {
+            j3 = (j3 << 8) | (byteBuffer.get() & 255);
         }
+        return j3;
     }
 }

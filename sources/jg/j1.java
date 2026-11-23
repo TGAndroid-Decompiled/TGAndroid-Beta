@@ -10,7 +10,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 public final class j1 extends n41 {
-    public static final int f17573b = 0;
+    public static final int f17539b = 0;
 
     static {
         n41.h(new n41());

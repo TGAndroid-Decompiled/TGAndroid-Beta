@@ -1,30 +1,29 @@
 package hi;
 
-import org.telegram.messenger.y10;
-import org.telegram.ui.LaunchActivity;
-public final class h9 implements Runnable {
-    public final int f14762a;
-    public final y10 f14763b;
+import android.content.DialogInterface;
+public final class h9 implements DialogInterface.OnDismissListener {
+    public final int f14693a;
+    public final ta f14694b;
 
-    public h9(y10 y10Var, int i7) {
-        this.f14762a = i7;
-        this.f14763b = y10Var;
+    public h9(ta taVar, int i7) {
+        this.f14693a = i7;
+        this.f14694b = taVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f14762a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f14693a) {
             case 0:
-                this.f14763b.a(LaunchActivity.T());
-                return;
-            case 1:
-                org.telegram.messenger.g0.g3(new h9(this.f14763b, 3));
-                return;
-            case 2:
-                this.f14763b.a(null);
+                ta taVar = this.f14694b;
+                taVar.Y0.x(3, false);
+                taVar.f15441r0 = null;
                 return;
             default:
-                this.f14763b.a(null);
+                ha haVar = this.f14694b.Y0;
+                if (haVar != null) {
+                    haVar.x(4, false);
+                    return;
+                }
                 return;
         }
     }

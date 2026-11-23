@@ -6,43 +6,43 @@ import java.util.WeakHashMap;
 import r0.i0;
 import r0.n0;
 public final class z extends n0 {
-    public final int f13090a;
-    public final b0 f13091b;
+    public final int f13053a;
+    public final b0 f13054b;
 
     public z(b0 b0Var, int i7) {
-        this.f13090a = i7;
-        this.f13091b = b0Var;
+        this.f13053a = i7;
+        this.f13054b = b0Var;
     }
 
     @Override
     public final void c() {
         View view;
-        int i7 = this.f13090a;
-        b0 b0Var = this.f13091b;
+        int i7 = this.f13053a;
+        b0 b0Var = this.f13054b;
         switch (i7) {
             case 0:
-                if (b0Var.f12984o && (view = b0Var.f12977g) != null) {
+                if (b0Var.f12947o && (view = b0Var.f12940g) != null) {
                     view.setTranslationY(0.0f);
                     b0Var.d.setTranslationY(0.0f);
                 }
                 b0Var.d.setVisibility(8);
                 b0Var.d.setTransitioning(false);
-                b0Var.f12988s = null;
-                q4.q qVar = b0Var.f12980k;
+                b0Var.f12951s = null;
+                q4.q qVar = b0Var.f12943k;
                 if (qVar != null) {
-                    qVar.c(b0Var.f12979j);
-                    b0Var.f12979j = null;
-                    b0Var.f12980k = null;
+                    qVar.c(b0Var.f12942j);
+                    b0Var.f12942j = null;
+                    b0Var.f12943k = null;
                 }
-                ActionBarOverlayLayout actionBarOverlayLayout = b0Var.f12974c;
+                ActionBarOverlayLayout actionBarOverlayLayout = b0Var.f12937c;
                 if (actionBarOverlayLayout != null) {
-                    WeakHashMap weakHashMap = i0.f56289a;
+                    WeakHashMap weakHashMap = i0.f56254a;
                     r0.y.c(actionBarOverlayLayout);
                     return;
                 }
                 return;
             default:
-                b0Var.f12988s = null;
+                b0Var.f12951s = null;
                 b0Var.d.requestLayout();
                 return;
         }

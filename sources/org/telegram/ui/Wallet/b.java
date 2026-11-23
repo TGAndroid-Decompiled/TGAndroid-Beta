@@ -21,7 +21,7 @@ import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 import org.telegram.ui.Components.oq;
 public final class b extends n41 {
-    public static final int f43986b = 0;
+    public static final int f43951b = 0;
 
     static {
         n41.h(new n41());
@@ -41,11 +41,11 @@ public final class b extends n41 {
         cVar.setGrid(z11);
         TL_wallet.nftItem nftitem = (TL_wallet.nftItem) o41Var.H;
         TextView textView = cVar.d;
-        TextView textView2 = cVar.f44014c;
-        org.telegram.ui.Components.q9 q9Var = cVar.f44013b;
+        TextView textView2 = cVar.f43986c;
+        org.telegram.ui.Components.q9 q9Var = cVar.f43985b;
         gc gcVar = null;
         if (TextUtils.isEmpty(nftitem.name)) {
-            textView2.setText(hd.N0(2131742930, null));
+            textView2.setText(hd.N0(2131742932, null));
         } else {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(nftitem.name);
             int indexOf = nftitem.name.indexOf(35);
@@ -57,15 +57,15 @@ public final class b extends n41 {
         String b10 = c.b(nftitem, "Model");
         String b11 = c.b(nftitem, "Backdrop");
         if (!TextUtils.isEmpty(b10) && !TextUtils.isEmpty(b11)) {
-            textView.setText(hd.V(null, null, 2131742928, b10, b11));
+            textView.setText(hd.V(null, null, 2131742930, b10, b11));
         } else {
             textView.setText(nftitem.description);
         }
-        gc c10 = c.c(nftitem, !cVar.f44016f);
-        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29773y6, cVar.f44012a);
+        gc c10 = c.c(nftitem, !cVar.f43988f);
+        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29739y6, cVar.f43984a);
         Drawable mutate = cVar.getContext().getResources().getDrawable(2131232838).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
-        if (cVar.f44016f) {
+        if (cVar.f43988f) {
             f10 = 11.0f;
         } else {
             f10 = 8.0f;
@@ -73,23 +73,23 @@ public final class b extends n41 {
         ShapeDrawable d02 = org.telegram.ui.ActionBar.m6.d0(org.telegram.messenger.g0.L(f10), org.telegram.ui.ActionBar.m6.r1(0.1f, w02));
         oq oqVar = new oq(d02, mutate);
         cVar.h = mutate;
-        cVar.f44017n = d02;
-        cVar.f44018r = w02;
-        if (c10 != null && cVar.f44016f) {
+        cVar.f43989n = d02;
+        cVar.f43990r = w02;
+        if (c10 != null && cVar.f43988f) {
             if (nftitem.image_small != null && nftitem.image != null) {
                 gcVar = c.c(nftitem, true);
             }
-            q9Var.f38835a.r0(c10, "160_160", gcVar, "100_100", oqVar, 0L, null, nftitem, 0);
+            q9Var.f38789a.r0(c10, "160_160", gcVar, "100_100", oqVar, 0L, null, nftitem, 0);
             q9Var.d();
         } else if (c10 != null) {
             q9Var.j(c10, "46_46", oqVar, nftitem);
         } else {
             q9Var.setImageDrawable(oqVar);
         }
-        if (z10 && !cVar.f44016f) {
+        if (z10 && !cVar.f43988f) {
             z12 = true;
         }
-        cVar.f44015e = z12;
+        cVar.f43987e = z12;
         cVar.updateColors();
         cVar.invalidate();
     }

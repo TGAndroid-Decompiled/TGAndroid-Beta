@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class ee0 implements org.telegram.ui.Components.rj0, org.telegram.ui.ActionBar.q1 {
-    public final ge0 f47251a;
+    public final fe0 f47220a;
 
-    public ee0(ge0 ge0Var) {
-        this.f47251a = ge0Var;
+    public ee0(fe0 fe0Var) {
+        this.f47220a = fe0Var;
     }
 
     @Override
@@ -15,12 +15,12 @@ public final class ee0 implements org.telegram.ui.Components.rj0, org.telegram.u
 
     @Override
     public void f(float f10, float f11, int i7, View view) {
-        ge0.b0(this.f47251a, i7);
+        fe0.b0(this.f47220a, i7);
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        ge0.a0(this.f47251a);
+        fe0.a0(this.f47220a);
     }
 
     @Override

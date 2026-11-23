@@ -1,100 +1,19 @@
 package org.telegram.ui;
 
 import android.view.View;
-import java.util.HashMap;
-public final class e21 extends org.telegram.ui.Components.sa implements org.telegram.messenger.gs {
-    public final org.telegram.ui.Components.wy T1;
-    public final hi.e U1;
-    public final fi.h6 V1;
-    public final HashMap W1;
-    public final int X1;
-    public int Y1;
-    public org.telegram.ui.Components.c51 Z1;
+public final class e21 implements View.OnClickListener {
+    public final m21 f47083a;
 
-    public e21(org.telegram.ui.ActionBar.g2 r17, long r18, int r20, bi.a5 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.e21.<init>(org.telegram.ui.ActionBar.g2, long, int, bi.a5):void");
+    public e21(m21 m21Var) {
+        this.f47083a = m21Var;
     }
 
     @Override
-    public final org.telegram.ui.Components.dk0 M0(org.telegram.ui.Components.ek0 ek0Var) {
-        org.telegram.ui.Components.c51 c51Var = new org.telegram.ui.Components.c51(ek0Var, getContext(), this.f30173a, 0, false, new a5(this, 26), this.J0);
-        this.Z1 = c51Var;
-        c51Var.f34062r = false;
-        return c51Var;
-    }
-
-    @Override
-    public final CharSequence P0() {
-        return org.telegram.messenger.hd.N0(2131744555, null);
-    }
-
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ls.A5 && ((fi.h6) objArr[0]) == this.V1) {
-            this.Z1.O(false);
-            e1();
+    public final void onClick(View view) {
+        org.telegram.ui.Components.rh0 rh0Var = this.f47083a.f49721o1;
+        if (!rh0Var.b() && rh0Var.getAnimatedDrawable() != null) {
+            rh0Var.getAnimatedDrawable().M(40);
+            rh0Var.d();
         }
-    }
-
-    public final void e1() {
-        int abs;
-        org.telegram.ui.Components.wy wyVar = this.T1;
-        int L0 = wyVar.L0();
-        if (L0 == -1) {
-            abs = 0;
-        } else {
-            abs = Math.abs(wyVar.N0() - L0) + 1;
-        }
-        fi.h6 h6Var = this.V1;
-        if (h6Var != null) {
-            int i7 = L0 + abs;
-            int i10 = h6Var.i();
-            int i11 = this.X1;
-            if (i7 > i10 - i11) {
-                h6Var.p(Math.min(100, Math.max(1, i11 / 2) * i11 * i11), false);
-            }
-        }
-    }
-
-    public final boolean f1(int i7, View view) {
-        org.telegram.ui.Components.o41 G;
-        org.telegram.ui.Components.c51 c51Var = this.Z1;
-        if (c51Var == null || i7 == 0 || (G = c51Var.G(i7 - 1)) == null) {
-            return false;
-        }
-        Object obj = G.H;
-        if (obj instanceof org.telegram.messenger.gj) {
-            org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) obj;
-            int e12 = gjVar.e1();
-            Integer valueOf = Integer.valueOf(e12);
-            HashMap hashMap = this.W1;
-            if (hashMap.containsKey(valueOf)) {
-                hashMap.remove(Integer.valueOf(e12));
-                G.f38084e = false;
-                ((org.telegram.ui.Cells.p7) view).i(false, true);
-            } else {
-                hashMap.put(Integer.valueOf(e12), gjVar.f24218l);
-                G.f38084e = true;
-                ((org.telegram.ui.Cells.p7) view).i(true, true);
-            }
-            hi.e eVar = this.U1;
-            eVar.setEnabled(!hashMap.isEmpty());
-            eVar.c(hashMap.size(), true);
-        }
-        return true;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.Y1 = this.V1.o();
-        org.telegram.messenger.ls.f(this.f30173a).c(this, org.telegram.messenger.ls.A5);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.V1.z(this.Y1);
-        org.telegram.messenger.ls.f(this.f30173a).n(this, org.telegram.messenger.ls.A5);
     }
 }

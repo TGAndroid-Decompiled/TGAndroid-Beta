@@ -1,6 +1,6 @@
 package a8;
 public final class u5 implements na.d {
-    public static final u5 f655a = new Object();
+    public static final u5 f654a = new Object();
 
     static {
         p5.c.u(p0.w(n0.class, new j0(1)));

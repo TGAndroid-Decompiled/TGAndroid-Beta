@@ -1,49 +1,27 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.ViewGroup;
-public final class us0 extends org.telegram.ui.Components.dk0 {
-    public final Context f52631c;
-    public final vs0 d;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
+public final class us0 extends ug.n1 {
+    public final vs0 O;
 
     public us0(vs0 vs0Var, Context context) {
-        this.d = vs0Var;
-        this.f52631c = context;
+        super(context);
+        this.O = vs0Var;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        return !((xs0) this.d.f52890n.d.get(f1Var.b())).f53947a.current;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.f52890n.d.size();
-    }
-
-    @Override
-    public final void t(v4.f1 f1Var, int i7) {
-        boolean z10;
-        ug.n1 n1Var = (ug.n1) f1Var.f59165a;
-        PremiumPreviewFragment premiumPreviewFragment = this.d.f52890n;
-        xs0 xs0Var = (xs0) premiumPreviewFragment.d.get(i7);
-        boolean z11 = true;
-        if (i7 != b() - 1) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void dispatchDraw(Canvas canvas) {
+        TextView textView = this.f58812r;
+        if (textView.getVisibility() == 0) {
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
+            vs0 vs0Var = this.O;
+            vs0Var.d.f53450n.f43449o0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f58811n.h, vs0Var.d.f53450n.P);
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), vs0Var.d.f53450n.f43449o0.f58612f);
         }
-        n1Var.a(xs0Var, z10);
-        if (premiumPreviewFragment.f43472e != i7) {
-            z11 = false;
-        }
-        n1Var.c(z11, false);
-    }
-
-    @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        ts0 ts0Var = new ts0(this, this.f52631c);
-        ts0Var.setCirclePaintProvider(new aj0(10, this, ts0Var));
-        return new v4.f1(ts0Var);
+        super.dispatchDraw(canvas);
     }
 }

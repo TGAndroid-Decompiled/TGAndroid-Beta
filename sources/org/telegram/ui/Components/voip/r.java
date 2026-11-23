@@ -8,21 +8,21 @@ import org.telegram.messenger.u3;
 import org.telegram.ui.f40;
 import org.telegram.ui.i40;
 public abstract class r extends FrameLayout {
-    public int f41309a;
-    public i40 f41310b;
-    public y f41311c;
+    public int f41271a;
+    public i40 f41272b;
+    public y f41273c;
     public u3 d;
-    public boolean f41312e;
-    public final boolean f41313f;
+    public boolean f41274e;
+    public final boolean f41275f;
 
     public r(Context context, boolean z10) {
         super(context);
-        this.f41313f = z10;
+        this.f41275f = z10;
     }
 
     public float getItemHeight() {
         int measuredHeight;
-        i40 i40Var = this.f41310b;
+        i40 i40Var = this.f41272b;
         if (i40Var != null) {
             measuredHeight = i40Var.F();
         } else {
@@ -36,19 +36,19 @@ public abstract class r extends FrameLayout {
     }
 
     public y getRenderer() {
-        return this.f41311c;
+        return this.f41273c;
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f41312e = true;
+        this.f41274e = true;
     }
 
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f41312e = false;
+        this.f41274e = false;
     }
 
     @Override
@@ -56,9 +56,9 @@ public abstract class r extends FrameLayout {
         float f10;
         int i11;
         float f11;
-        if (this.f41313f) {
+        if (this.f41275f) {
             ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(this.f41310b.F(), 1073741824));
+            super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(this.f41272b.F(), 1073741824));
             return;
         }
         if (f40.E5) {
@@ -66,7 +66,7 @@ public abstract class r extends FrameLayout {
         } else {
             f10 = 2.0f;
         }
-        int B = o10.B(14.0f, 2, org.telegram.messenger.g0.f24046q.x);
+        int B = o10.B(14.0f, 2, org.telegram.messenger.g0.f24010q.x);
         if (f40.E5) {
             i11 = -org.telegram.messenger.g0.L(90.0f);
         } else {
@@ -82,6 +82,6 @@ public abstract class r extends FrameLayout {
     }
 
     public void setRenderer(y yVar) {
-        this.f41311c = yVar;
+        this.f41273c = yVar;
     }
 }

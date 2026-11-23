@@ -1,50 +1,82 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class yu0 implements kp {
-    public final TLRPC.Chat f54298a;
-    public final np f54299b;
-    public final ProfileActivity f54300c;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class yu0 extends v4.t0 {
+    public final int f54260a;
+    public final ProfileActivity f54261b;
 
-    public yu0(ProfileActivity profileActivity, TLRPC.Chat chat, np npVar) {
-        this.f54300c = profileActivity;
-        this.f54298a = chat;
-        this.f54299b = npVar;
+    public yu0(ProfileActivity profileActivity, int i7) {
+        this.f54260a = i7;
+        this.f54261b = profileActivity;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i7;
-        ProfileActivity profileActivity = this.f54300c;
-        UndoView undoView = profileActivity.M;
-        long j3 = -profileActivity.f43593f1;
-        if (profileActivity.F2.megagroup) {
-            i7 = 10;
-        } else {
-            i7 = 9;
-        }
-        undoView.m(j3, user, i7);
-    }
-
-    @Override
-    public final void b(int i7, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = this.f54300c;
-        profileActivity.removeSelfFromStack();
-        TLRPC.User c22 = profileActivity.getMessagesController().c2(Long.valueOf(profileActivity.f43585e1));
-        if (c22 != null && (chat = this.f54298a) != null && profileActivity.f43585e1 != 0) {
-            np npVar = this.f54299b;
-            if (npVar.R && npVar.getParentLayout() != null) {
-                for (org.telegram.ui.ActionBar.g2 g2Var : npVar.getParentLayout().getFragmentStack()) {
-                    if (g2Var instanceof lb) {
-                        lb lbVar = (lb) g2Var;
-                        lbVar.a1();
-                        org.telegram.messenger.g0.g3(new mc0(lbVar, c22, chat, 28));
-                        return;
-                    }
+    public final void a(RecyclerView recyclerView, int i7) {
+        boolean z10;
+        View m10;
+        switch (this.f54260a) {
+            case 0:
+                if (i7 == 1) {
+                    org.telegram.messenger.g0.v1(this.f54261b.getParentActivity().getCurrentFocus());
+                    return;
                 }
-            }
+                return;
+            default:
+                ProfileActivity profileActivity = this.f54261b;
+                boolean z11 = true;
+                if (i7 == 1) {
+                    org.telegram.messenger.g0.v1(profileActivity.getParentActivity().getCurrentFocus());
+                }
+                if (profileActivity.G0 && i7 != 2) {
+                    profileActivity.G0 = false;
+                }
+                if (i7 == 0 && !profileActivity.G1 && (m10 = profileActivity.f43534c.m(0)) != null) {
+                    ProfileActivity.R0(profileActivity, m10, 0.0f);
+                }
+                org.telegram.ui.ActionBar.g5 g5Var = profileActivity.U0;
+                if (g5Var != null) {
+                    if (i7 != 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    profileActivity.f43697z1 = z10;
+                    if (z10 || profileActivity.f43632q2) {
+                        z11 = false;
+                    }
+                    g5Var.setEnabled(z11);
+                }
+                wv0 wv0Var = profileActivity.O;
+                boolean z12 = profileActivity.f43518a.J1;
+                wv0Var.getClass();
+                return;
+        }
+    }
+
+    @Override
+    public void b(RecyclerView recyclerView, int i7, int i10) {
+        switch (this.f54260a) {
+            case 1:
+                ProfileActivity profileActivity = this.f54261b;
+                hi.l3 l3Var = profileActivity.X;
+                boolean z10 = true;
+                if (l3Var != null) {
+                    l3Var.f(true);
+                }
+                profileActivity.O3();
+                if (profileActivity.C1 != null && !profileActivity.D1 && profileActivity.f43534c.N0() > profileActivity.f43693y4 - 8) {
+                    profileActivity.h4(false);
+                }
+                wv0 wv0Var = profileActivity.O;
+                if (wv0Var.getY() > 0.0f) {
+                    z10 = false;
+                }
+                wv0Var.setPinnedToTop(z10);
+                profileActivity.s5();
+                return;
+            default:
+                return;
         }
     }
 }

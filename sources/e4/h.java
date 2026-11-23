@@ -18,15 +18,15 @@ import h9.t1;
 import java.util.ArrayList;
 import java.util.List;
 public final class h implements m {
-    public static final byte[] f10876n = {0, 7, 8, 15};
-    public static final byte[] f10877r = {0, 119, -120, -1};
-    public static final byte[] f10878s = {0, 17, 34, 51, 68, 85, 102, 119, -120, -103, -86, -69, -52, -35, -18, -1};
-    public final Paint f10879a;
-    public final Paint f10880b;
-    public final Canvas f10881c;
+    public static final byte[] f10839n = {0, 7, 8, 15};
+    public static final byte[] f10840r = {0, 119, -120, -1};
+    public static final byte[] f10841s = {0, 17, 34, 51, 68, 85, 102, 119, -120, -103, -86, -69, -52, -35, -18, -1};
+    public final Paint f10842a;
+    public final Paint f10843b;
+    public final Canvas f10844c;
     public final b d;
-    public final a f10882e;
-    public final g f10883f;
+    public final a f10845e;
+    public final g f10846f;
     public Bitmap h;
 
     public h(List list) {
@@ -34,19 +34,19 @@ public final class h implements m {
         int H = xVar.H();
         int H2 = xVar.H();
         Paint paint = new Paint();
-        this.f10879a = paint;
+        this.f10842a = paint;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         paint.setPathEffect(null);
         Paint paint2 = new Paint();
-        this.f10880b = paint2;
+        this.f10843b = paint2;
         paint2.setStyle(Paint.Style.FILL);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OVER));
         paint2.setPathEffect(null);
-        this.f10881c = new Canvas();
+        this.f10844c = new Canvas();
         this.d = new b(719, 575, 0, 719, 0, 575);
-        this.f10882e = new a(0, new int[]{0, -1, -16777216, -8421505}, b(), c());
-        this.f10883f = new g(H, H2);
+        this.f10845e = new a(0, new int[]{0, -1, -16777216, -8421505}, b(), c());
+        this.f10846f = new g(H, H2);
     }
 
     public static byte[] a(int i7, int i10, d4.f fVar) {
@@ -356,7 +356,7 @@ public final class h implements m {
         int j10 = fVar.j(2);
         boolean i7 = fVar.i();
         fVar.L(1);
-        byte[] bArr2 = l0.f13816b;
+        byte[] bArr2 = l0.f13779b;
         if (j10 == 1) {
             fVar.L(fVar.j(8) * 16);
         } else if (j10 == 0) {
@@ -383,14 +383,14 @@ public final class h implements m {
 
     @Override
     public final void reset() {
-        g gVar = this.f10883f;
-        gVar.f10871c.clear();
+        g gVar = this.f10846f;
+        gVar.f10834c.clear();
         gVar.d.clear();
-        gVar.f10872e.clear();
-        gVar.f10873f.clear();
-        gVar.f10874g.clear();
+        gVar.f10835e.clear();
+        gVar.f10836f.clear();
+        gVar.f10837g.clear();
         gVar.h = null;
-        gVar.f10875i = null;
+        gVar.f10838i = null;
     }
 
     @Override
@@ -422,7 +422,7 @@ public final class h implements m {
         fVar.J(i7);
         while (true) {
             int b10 = fVar.b();
-            gVar = this.f10883f;
+            gVar = this.f10846f;
             z10 = true;
             if (b10 >= 48 && fVar.j(8) == 15) {
                 int j3 = fVar.j(8);
@@ -435,8 +435,8 @@ public final class h implements m {
                 } else {
                     switch (j3) {
                         case 16:
-                            if (j10 == gVar.f10869a) {
-                                cc.c cVar = gVar.f10875i;
+                            if (j10 == gVar.f10832a) {
+                                cc.c cVar = gVar.f10838i;
                                 fVar.j(8);
                                 int j12 = fVar.j(4);
                                 int j13 = fVar.j(2);
@@ -451,21 +451,21 @@ public final class h implements m {
                                 }
                                 cc.c cVar2 = new cc.c(j12, j13, sparseArray);
                                 if (j13 != 0) {
-                                    gVar.f10875i = cVar2;
-                                    gVar.f10871c.clear();
+                                    gVar.f10838i = cVar2;
+                                    gVar.f10834c.clear();
                                     gVar.d.clear();
-                                    gVar.f10872e.clear();
+                                    gVar.f10835e.clear();
                                     break;
-                                } else if (cVar != null && cVar.f5191b != j12) {
-                                    gVar.f10875i = cVar2;
+                                } else if (cVar != null && cVar.f5154b != j12) {
+                                    gVar.f10838i = cVar2;
                                     break;
                                 }
                             }
                             break;
                         case 17:
-                            cc.c cVar3 = gVar.f10875i;
-                            SparseArray sparseArray2 = gVar.f10871c;
-                            if (j10 == gVar.f10869a && cVar3 != null) {
+                            cc.c cVar3 = gVar.f10838i;
+                            SparseArray sparseArray2 = gVar.f10834c;
+                            if (j10 == gVar.f10832a && cVar3 != null) {
                                 int j15 = fVar.j(8);
                                 fVar.L(4);
                                 boolean i22 = fVar.i();
@@ -500,40 +500,40 @@ public final class h implements m {
                                     sparseArray3.put(j23, new f(j25, j26));
                                 }
                                 e eVar3 = new e(j15, i22, j16, j17, j18, j19, j20, j21, j22, sparseArray3);
-                                if (cVar3.f5192c == 0 && (eVar2 = (e) sparseArray2.get(j15)) != null) {
-                                    SparseArray sparseArray4 = eVar2.f10866j;
+                                if (cVar3.f5155c == 0 && (eVar2 = (e) sparseArray2.get(j15)) != null) {
+                                    SparseArray sparseArray4 = eVar2.f10829j;
                                     for (int i25 = 0; i25 < sparseArray4.size(); i25++) {
-                                        eVar3.f10866j.put(sparseArray4.keyAt(i25), (f) sparseArray4.valueAt(i25));
+                                        eVar3.f10829j.put(sparseArray4.keyAt(i25), (f) sparseArray4.valueAt(i25));
                                     }
                                 }
-                                sparseArray2.put(eVar3.f10859a, eVar3);
+                                sparseArray2.put(eVar3.f10822a, eVar3);
                                 break;
                             }
                             break;
                         case 18:
-                            if (j10 == gVar.f10869a) {
+                            if (j10 == gVar.f10832a) {
                                 a f10 = f(fVar, j11);
-                                gVar.d.put(f10.f10846a, f10);
+                                gVar.d.put(f10.f10809a, f10);
                                 break;
-                            } else if (j10 == gVar.f10870b) {
+                            } else if (j10 == gVar.f10833b) {
                                 a f11 = f(fVar, j11);
-                                gVar.f10873f.put(f11.f10846a, f11);
+                                gVar.f10836f.put(f11.f10809a, f11);
                                 break;
                             }
                             break;
                         case 19:
-                            if (j10 == gVar.f10869a) {
+                            if (j10 == gVar.f10832a) {
                                 c g10 = g(fVar);
-                                gVar.f10872e.put(g10.f10854a, g10);
+                                gVar.f10835e.put(g10.f10817a, g10);
                                 break;
-                            } else if (j10 == gVar.f10870b) {
+                            } else if (j10 == gVar.f10833b) {
                                 c g11 = g(fVar);
-                                gVar.f10874g.put(g11.f10854a, g11);
+                                gVar.f10837g.put(g11.f10817a, g11);
                                 break;
                             }
                             break;
                         case 20:
-                            if (j10 == gVar.f10869a) {
+                            if (j10 == gVar.f10832a) {
                                 fVar.L(4);
                                 boolean i26 = fVar.i();
                                 fVar.L(3);
@@ -560,19 +560,19 @@ public final class h implements m {
                 }
             }
         }
-        cc.c cVar4 = gVar.f10875i;
+        cc.c cVar4 = gVar.f10838i;
         if (cVar4 == null) {
-            g0 g0Var = i0.f14035b;
-            aVar = new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14103e);
+            g0 g0Var = i0.f13998b;
+            aVar = new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14066e);
         } else {
             b bVar2 = gVar.h;
             if (bVar2 == null) {
                 bVar2 = this.d;
             }
             Bitmap bitmap = this.h;
-            Canvas canvas = this.f10881c;
-            if (bitmap == null || bVar2.f10849a + 1 != bitmap.getWidth() || bVar2.f10850b + 1 != this.h.getHeight()) {
-                Bitmap createBitmap = Bitmap.createBitmap(bVar2.f10849a + 1, bVar2.f10850b + 1, Bitmap.Config.ARGB_8888);
+            Canvas canvas = this.f10844c;
+            if (bitmap == null || bVar2.f10812a + 1 != bitmap.getWidth() || bVar2.f10813b + 1 != this.h.getHeight()) {
+                Bitmap createBitmap = Bitmap.createBitmap(bVar2.f10812a + 1, bVar2.f10813b + 1, Bitmap.Config.ARGB_8888);
                 this.h = createBitmap;
                 canvas.setBitmap(createBitmap);
             }
@@ -582,22 +582,22 @@ public final class h implements m {
             while (i27 < sparseArray5.size()) {
                 canvas.save();
                 d dVar = (d) sparseArray5.valueAt(i27);
-                e eVar4 = (e) gVar.f10871c.get(sparseArray5.keyAt(i27));
-                int i28 = dVar.f10857a + bVar2.f10851c;
-                int i29 = dVar.f10858b + bVar2.f10852e;
-                int i30 = eVar4.f10861c;
-                int i31 = eVar4.f10863f;
+                e eVar4 = (e) gVar.f10834c.get(sparseArray5.keyAt(i27));
+                int i28 = dVar.f10820a + bVar2.f10814c;
+                int i29 = dVar.f10821b + bVar2.f10815e;
+                int i30 = eVar4.f10824c;
+                int i31 = eVar4.f10826f;
                 int i32 = eVar4.d;
                 boolean z11 = z10;
                 int i33 = i28 + i30;
                 int i34 = i29 + i32;
                 SparseArray sparseArray6 = sparseArray5;
-                canvas.clipRect(i28, i29, Math.min(i33, bVar2.d), Math.min(i34, bVar2.f10853f));
+                canvas.clipRect(i28, i29, Math.min(i33, bVar2.d), Math.min(i34, bVar2.f10816f));
                 a aVar2 = (a) gVar.d.get(i31);
-                if (aVar2 == null && (aVar2 = (a) gVar.f10873f.get(i31)) == null) {
-                    aVar2 = this.f10882e;
+                if (aVar2 == null && (aVar2 = (a) gVar.f10836f.get(i31)) == null) {
+                    aVar2 = this.f10845e;
                 }
-                SparseArray sparseArray7 = eVar4.f10866j;
+                SparseArray sparseArray7 = eVar4.f10829j;
                 int i35 = i27;
                 int i36 = 0;
                 while (i36 < sparseArray7.size()) {
@@ -605,28 +605,28 @@ public final class h implements m {
                     SparseArray sparseArray8 = sparseArray7;
                     f fVar2 = (f) sparseArray7.valueAt(i36);
                     int i37 = i29;
-                    c cVar5 = (c) gVar.f10872e.get(keyAt);
+                    c cVar5 = (c) gVar.f10835e.get(keyAt);
                     if (cVar5 == null) {
-                        cVar5 = (c) gVar.f10874g.get(keyAt);
+                        cVar5 = (c) gVar.f10837g.get(keyAt);
                     }
                     c cVar6 = cVar5;
                     if (cVar6 != null) {
-                        if (cVar6.f10855b) {
+                        if (cVar6.f10818b) {
                             paint = null;
                         } else {
-                            paint = this.f10879a;
+                            paint = this.f10842a;
                         }
                         int i38 = i28;
-                        int i39 = eVar4.f10862e;
+                        int i39 = eVar4.f10825e;
                         gVar2 = gVar;
-                        int i40 = i38 + fVar2.f10867a;
-                        int i41 = i37 + fVar2.f10868b;
+                        int i40 = i38 + fVar2.f10830a;
+                        int i41 = i37 + fVar2.f10831b;
                         if (i39 == 3) {
                             iArr = aVar2.d;
                         } else if (i39 == 2) {
-                            iArr = aVar2.f10848c;
+                            iArr = aVar2.f10811c;
                         } else {
-                            iArr = aVar2.f10847b;
+                            iArr = aVar2.f10810b;
                         }
                         int i42 = i32;
                         Paint paint2 = paint;
@@ -640,7 +640,7 @@ public final class h implements m {
                         eVar = eVar5;
                         i15 = i36;
                         i16 = i42;
-                        e(cVar6.f10856c, iArr2, i39, i40, i41, paint2, canvas);
+                        e(cVar6.f10819c, iArr2, i39, i40, i41, paint2, canvas);
                         e(cVar6.d, iArr2, i39, i40, i41 + 1, paint2, canvas);
                     } else {
                         arrayList = arrayList2;
@@ -672,20 +672,20 @@ public final class h implements m {
                 int i44 = i28;
                 int i45 = i30;
                 int i46 = i32;
-                if (eVar6.f10860b) {
-                    int i47 = eVar6.f10862e;
+                if (eVar6.f10823b) {
+                    int i47 = eVar6.f10825e;
                     if (i47 == 3) {
-                        i11 = aVar2.d[eVar6.f10864g];
+                        i11 = aVar2.d[eVar6.f10827g];
                         c12 = 2;
                     } else {
                         c12 = 2;
                         if (i47 == 2) {
-                            i11 = aVar2.f10848c[eVar6.h];
+                            i11 = aVar2.f10811c[eVar6.h];
                         } else {
-                            i11 = aVar2.f10847b[eVar6.f10865i];
+                            i11 = aVar2.f10810b[eVar6.f10828i];
                         }
                     }
-                    Paint paint3 = this.f10880b;
+                    Paint paint3 = this.f10843b;
                     paint3.setColor(i11);
                     c10 = c12;
                     c11 = 3;
@@ -695,8 +695,8 @@ public final class h implements m {
                     c11 = 3;
                 }
                 Bitmap createBitmap2 = Bitmap.createBitmap(this.h, i44, i43, i45, i46);
-                float f12 = bVar3.f10849a;
-                float f13 = bVar3.f10850b;
+                float f12 = bVar3.f10812a;
+                float f13 = bVar3.f10813b;
                 arrayList3.add(new g2.b(null, null, null, createBitmap2, i43 / f13, 0, 0, i44 / f12, 0, Integer.MIN_VALUE, -3.4028235E38f, i45 / f12, i46 / f13, false, -16777216, Integer.MIN_VALUE, 0.0f, 0));
                 canvas.drawColor(0, PorterDuff.Mode.CLEAR);
                 canvas.restore();

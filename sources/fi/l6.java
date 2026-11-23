@@ -11,12 +11,12 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 public final class l6 implements RequestDelegate {
-    public final int f12266a;
-    public final o6 f12267b;
+    public final int f12215a;
+    public final o6 f12216b;
 
     public l6(o6 o6Var, int i7) {
-        this.f12266a = i7;
-        this.f12267b = o6Var;
+        this.f12215a = i7;
+        this.f12216b = o6Var;
     }
 
     @Override
@@ -31,18 +31,18 @@ public final class l6 implements RequestDelegate {
         ArrayList arrayList;
         int i11;
         int i12;
-        switch (this.f12266a) {
+        switch (this.f12215a) {
             case 0:
-                o6 o6Var = this.f12267b;
+                o6 o6Var = this.f12216b;
                 long j3 = o6Var.K;
-                String str = o6Var.f12377f;
-                boolean z12 = o6Var.f12374b;
-                hi.c7 c7Var = o6Var.f12375c;
-                int i13 = o6Var.N.f12425a;
+                String str = o6Var.f12327f;
+                boolean z12 = o6Var.f12324b;
+                hi.d7 d7Var = o6Var.f12325c;
+                int i13 = o6Var.N.f12377a;
                 if (tLObject instanceof TLRPC.Updates) {
                     o6Var.J = false;
                     TLRPC.Updates updates3 = (TLRPC.Updates) tLObject;
-                    if (c7Var.f14342b0) {
+                    if (d7Var.f14366b0) {
                         np.u1(i13).V3(updates3, false);
                         org.telegram.messenger.g0.g3(new m6(o6Var, 1));
                         return;
@@ -53,10 +53,10 @@ public final class l6 implements RequestDelegate {
                     while (i14 < updates3.updates.size()) {
                         if (updates3.updates.get(i14) instanceof TL_stories.TL_updateStory) {
                             TL_stories.StoryItem storyItem2 = ((TL_stories.TL_updateStory) updates3.updates.get(i14)).story;
-                            storyItem2.attachPath = o6Var.f12376e;
+                            storyItem2.attachPath = o6Var.f12326e;
                             storyItem2.firstFramePath = str;
                             storyItem2.justUploaded = !z12;
-                            int i16 = storyItem2.f28673id;
+                            int i16 = storyItem2.f28637id;
                             if (storyItem == null) {
                                 storyItem = storyItem2;
                             } else {
@@ -70,13 +70,13 @@ public final class l6 implements RequestDelegate {
                                 storyItem = new TL_stories.TL_storyItem();
                                 int currentTime = ConnectionsManager.getInstance(i13).getCurrentTime();
                                 storyItem.date = currentTime;
-                                int i17 = c7Var.I0;
+                                int i17 = d7Var.I0;
                                 if (i17 == Integer.MAX_VALUE) {
                                     i17 = 86400;
                                 }
                                 storyItem.expire_date = currentTime + i17;
                                 storyItem.parsedPrivacy = null;
-                                ArrayList arrayList2 = c7Var.F0;
+                                ArrayList arrayList2 = d7Var.F0;
                                 ArrayList<TLRPC.PrivacyRule> arrayList3 = new ArrayList<>();
                                 int i18 = 0;
                                 while (true) {
@@ -141,16 +141,16 @@ public final class l6 implements RequestDelegate {
                                         i7 = i14;
                                         i10 = i13;
                                         storyItem.privacy = arrayList3;
-                                        if (c7Var.I0 == Integer.MAX_VALUE) {
+                                        if (d7Var.I0 == Integer.MAX_VALUE) {
                                             z11 = true;
                                         } else {
                                             z11 = false;
                                         }
                                         storyItem.pinned = z11;
-                                        storyItem.dialogId = k10.i(i10).f24987n;
-                                        storyItem.attachPath = o6Var.f12376e;
+                                        storyItem.dialogId = k10.i(i10).f24951n;
+                                        storyItem.attachPath = o6Var.f12326e;
                                         storyItem.firstFramePath = str;
-                                        storyItem.f28673id = tL_updateStoryID.f28693id;
+                                        storyItem.f28637id = tL_updateStoryID.f28657id;
                                         storyItem.justUploaded = !z10;
                                         i14 = i7 + 1;
                                         z12 = z10;
@@ -172,17 +172,17 @@ public final class l6 implements RequestDelegate {
                     TLRPC.Updates updates4 = updates3;
                     boolean z13 = z12;
                     int i21 = i13;
-                    if (o6Var.f12381w) {
+                    if (o6Var.f12331w) {
                         TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
                         tL_stories_deleteStories.peer = np.u1(i21).l1(j3);
-                        tL_stories_deleteStories.f28676id.add(Integer.valueOf(i15));
+                        tL_stories_deleteStories.f28640id.add(Integer.valueOf(i15));
                         ConnectionsManager.getInstance(i21).sendRequest(tL_stories_deleteStories, new l6(o6Var, 1));
                     } else {
                         if ((i15 == 0 || z13) && storyItem != null) {
                             TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
                             tL_updateStory.peer = np.u1(i21).B1(j3);
                             tL_updateStory.story = storyItem;
-                            org.telegram.messenger.g0.g3(new l4(6, o6Var, tL_updateStory));
+                            org.telegram.messenger.g0.g3(new a6(4, o6Var, tL_updateStory));
                         }
                         TLRPC.MessageMedia messageMedia = storyItem.media;
                         if (messageMedia != null && storyItem.attachPath != null) {
@@ -195,22 +195,22 @@ public final class l6 implements RequestDelegate {
                                 }
                             }
                         }
-                        org.telegram.messenger.g0.g3(new bi.q2(o6Var, j3, storyItem, 7));
+                        org.telegram.messenger.g0.g3(new bi.s2(o6Var, j3, storyItem, 7));
                         np.u1(i21).U3(updates4.updates, updates4.users, updates4.chats, false, updates4.date);
                     }
                 } else if (tLObject instanceof TL_bots.botPreviewMedia) {
                     o6Var.M = (TL_bots.botPreviewMedia) tLObject;
-                } else if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && c7Var.f14345c0 != null && (jVar = c7Var.f14347d0) != null) {
+                } else if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && d7Var.f14369c0 != null && (jVar = d7Var.f14371d0) != null) {
                     jVar.a(new n6(o6Var, 0));
-                    c7Var.f14347d0 = null;
+                    d7Var.f14371d0 = null;
                     return;
                 } else if (tL_error != null && !z12) {
-                    org.telegram.messenger.g0.g3(new l4(7, o6Var, tL_error));
+                    org.telegram.messenger.g0.g3(new a6(5, o6Var, tL_error));
                 }
                 org.telegram.messenger.g0.g3(new m6(o6Var, 1));
                 return;
             default:
-                org.telegram.messenger.g0.g3(new v5(this.f12267b.N, 2));
+                org.telegram.messenger.g0.g3(new u5(this.f12216b.N, 2));
                 return;
         }
     }

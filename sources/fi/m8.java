@@ -41,22 +41,22 @@ public final class m8 extends h8 {
         l8Var.c(getScaleX());
         g0Var.e(d);
         nxVar.getClass();
-        String str = d.f5507f;
-        str = str == null ? gj.U(org.telegram.ui.Components.p5.e(nxVar.f50337b, d.f5508g)) : str;
-        if (str != null && (arrayList = (ArrayList) nxVar.f50339e.get(str)) != null && !arrayList.isEmpty()) {
+        String str = d.f5470f;
+        str = str == null ? gj.U(org.telegram.ui.Components.p5.e(nxVar.f50340b, d.f5471g)) : str;
+        if (str != null && (arrayList = (ArrayList) nxVar.f50342e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i7 = 0; i7 < min; i7++) {
                 nxVar.l((TLRPC.Document) arrayList.get(i7));
             }
         }
-        if (this.J.f5507f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) si.d0(k10.f24968t0).f26847r.get(this.J.f5507f)) != null) {
+        if (this.J.f5470f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) si.d0(k10.f24932t0).f26811r.get(this.J.f5470f)) != null) {
             this.M.q0(gc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.n6 n6Var = this.O;
-        n6Var.f37795b = 17;
+        n6Var.f37751b = 17;
         n6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
         this.O.w(org.telegram.messenger.g0.L(18.0f));
-        this.O.N = org.telegram.messenger.g0.f24046q.x;
+        this.O.N = org.telegram.messenger.g0.f24010q.x;
         if (tL_mediaAreaSuggestedReaction.dark) {
             this.K.a();
             this.O.u(-1);
@@ -88,7 +88,7 @@ public final class m8 extends h8 {
         float e10 = this.N.e(false, f10);
         Rect rect = org.telegram.messenger.g0.Q;
         rect.set((int) centerX, (int) org.telegram.messenger.g0.T1(centerY, f11, e10), (int) centerX2, (int) org.telegram.messenger.g0.T1(centerY2, f12, e10));
-        if (l8Var.f12271a == 1) {
+        if (l8Var.f12220a == 1) {
             i7 = -1;
         } else {
             i7 = -16777216;
@@ -148,7 +148,7 @@ public final class m8 extends h8 {
     }
 
     public org.telegram.ui.Components.p5 getAnimatedEmojiDrawable() {
-        return this.L.f5391b;
+        return this.L.f5354b;
     }
 
     @Override

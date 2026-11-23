@@ -8,14 +8,14 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class sp implements Runnable {
-    public final int f26900a;
-    public final ur f26901b;
-    public final int f26902c;
+    public final int f26864a;
+    public final ur f26865b;
+    public final int f26866c;
 
     public sp(ur urVar, int i7, int i10) {
-        this.f26900a = i10;
-        this.f26901b = urVar;
-        this.f26902c = i7;
+        this.f26864a = i10;
+        this.f26865b = urVar;
+        this.f26866c = i7;
     }
 
     @Override
@@ -24,10 +24,10 @@ public final class sp implements Runnable {
         boolean z10;
         boolean z11;
         boolean z12;
-        int i7 = this.f26900a;
+        int i7 = this.f26864a;
         SQLiteCursor sQLiteCursor = null;
-        int i10 = this.f26902c;
-        ur urVar = this.f26901b;
+        int i10 = this.f26866c;
+        ur urVar = this.f26865b;
         switch (i7) {
             case 0:
                 urVar.getDownloadController().t(i10);
@@ -35,14 +35,14 @@ public final class sp implements Runnable {
             case 1:
                 urVar.getClass();
                 try {
-                    urVar.f27252b.executeFast("DELETE FROM shortcut_widget WHERE id = " + i10).stepThis().dispose();
+                    urVar.f27216b.executeFast("DELETE FROM shortcut_widget WHERE id = " + i10).stepThis().dispose();
                     return;
                 } catch (Exception e10) {
                     urVar.o(e10, true);
                     return;
                 }
             case 2:
-                ur urVar2 = this.f26901b;
+                ur urVar2 = this.f26865b;
                 try {
                     try {
                         ArrayList arrayList = new ArrayList();
@@ -50,18 +50,18 @@ public final class sp implements Runnable {
                         ArrayList arrayList3 = new ArrayList();
                         a0.h hVar = new a0.h();
                         if (i10 >= 0) {
-                            queryFinalized = urVar2.f27252b.queryFinalized(String.format(Locale.US, "SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0 AND folder_id = %1$d", Integer.valueOf(i10)), new Object[0]);
+                            queryFinalized = urVar2.f27216b.queryFinalized(String.format(Locale.US, "SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0 AND folder_id = %1$d", Integer.valueOf(i10)), new Object[0]);
                         } else {
-                            queryFinalized = urVar2.f27252b.queryFinalized("SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0", new Object[0]);
+                            queryFinalized = urVar2.f27216b.queryFinalized("SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0", new Object[0]);
                         }
                         while (queryFinalized.next()) {
                             try {
                                 long longValue = queryFinalized.longValue(0);
                                 if (!n5.D(longValue)) {
                                     ?? obj = new Object();
-                                    obj.f26498a = queryFinalized.intValue(1);
-                                    obj.f26500c = queryFinalized.intValue(2);
-                                    obj.f26499b = queryFinalized.intValue(3);
+                                    obj.f26462a = queryFinalized.intValue(1);
+                                    obj.f26464c = queryFinalized.intValue(2);
+                                    obj.f26463b = queryFinalized.intValue(3);
                                     hVar.k(obj, longValue);
                                     if (!n5.C(longValue)) {
                                         if (n5.z(longValue)) {
@@ -124,9 +124,9 @@ public final class sp implements Runnable {
             case 4:
                 try {
                     if (i10 == 0) {
-                        urVar.f27252b.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
+                        urVar.f27216b.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
                     } else {
-                        SQLiteDatabase sQLiteDatabase = urVar.f27252b;
+                        SQLiteDatabase sQLiteDatabase = urVar.f27216b;
                         Locale locale = Locale.US;
                         sQLiteDatabase.executeFast("DELETE FROM download_queue WHERE type = " + i10).stepThis().dispose();
                     }
@@ -139,22 +139,22 @@ public final class sp implements Runnable {
                 try {
                     try {
                         ArrayList arrayList7 = new ArrayList();
-                        SQLiteDatabase sQLiteDatabase2 = urVar.f27252b;
+                        SQLiteDatabase sQLiteDatabase2 = urVar.f27216b;
                         Locale locale2 = Locale.US;
                         SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized("SELECT uid, type, data, parent FROM download_queue WHERE type = " + i10 + " ORDER BY date DESC LIMIT 3", new Object[0]);
                         while (queryFinalized2.next()) {
                             try {
                                 ?? obj2 = new Object();
-                                obj2.f23052b = queryFinalized2.intValue(1);
-                                obj2.f23053c = queryFinalized2.longValue(0);
-                                obj2.f23055f = queryFinalized2.stringValue(3);
+                                obj2.f23016b = queryFinalized2.intValue(1);
+                                obj2.f23017c = queryFinalized2.longValue(0);
+                                obj2.f23019f = queryFinalized2.stringValue(3);
                                 NativeByteBuffer byteBufferValue = queryFinalized2.byteBufferValue(2);
                                 if (byteBufferValue != null) {
                                     TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                                     byteBufferValue.reuse();
                                     TLRPC.Document document = TLdeserialize.document;
                                     if (document != null) {
-                                        obj2.f23051a = document;
+                                        obj2.f23015a = document;
                                         if (!gj.K4(document)) {
                                             if (!gj.Q4(TLdeserialize.document)) {
                                                 if (gj.i4(TLdeserialize.document)) {
@@ -173,7 +173,7 @@ public final class sp implements Runnable {
                                     } else {
                                         TLRPC.Photo photo = TLdeserialize.photo;
                                         if (photo != null) {
-                                            obj2.f23051a = photo;
+                                            obj2.f23015a = photo;
                                             int i13 = TLdeserialize.ttl_seconds;
                                             if ((i13 > 0 && i13 <= 60) || i13 == Integer.MAX_VALUE) {
                                                 z10 = true;
@@ -188,7 +188,7 @@ public final class sp implements Runnable {
                                     } else {
                                         z11 = false;
                                     }
-                                    obj2.f23054e = z11;
+                                    obj2.f23018e = z11;
                                 }
                                 arrayList7.add(obj2);
                             } catch (Exception e14) {
@@ -221,10 +221,10 @@ public final class sp implements Runnable {
             default:
                 np messagesController = urVar.getMessagesController();
                 k10 userConfig = messagesController.getUserConfig();
-                int i14 = this.f26902c;
+                int i14 = this.f26866c;
                 if (userConfig.g(i14)[0] == 2147483647L) {
                     if (i14 == 1) {
-                        messagesController.f25892l0 = false;
+                        messagesController.f25856l0 = false;
                         messagesController.D();
                         return;
                     }

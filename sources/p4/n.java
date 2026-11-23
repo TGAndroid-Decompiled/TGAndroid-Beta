@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 public abstract class n {
-    public static final int f55378a = 0;
+    public static final int f55358a = 0;
 
     static {
         h9.t0.s("android.media.metadata.TITLE", "android.media.metadata.ARTIST", "android.media.metadata.DURATION", "android.media.metadata.ALBUM", "android.media.metadata.AUTHOR", "android.media.metadata.WRITER", "android.media.metadata.COMPOSER", "android.media.metadata.COMPILATION", "android.media.metadata.DATE", "android.media.metadata.YEAR", "android.media.metadata.GENRE", "android.media.metadata.TRACK_NUMBER", "android.media.metadata.NUM_TRACKS", "android.media.metadata.DISC_NUMBER", "android.media.metadata.ALBUM_ARTIST", "android.media.metadata.ART", "android.media.metadata.ART_URI", "android.media.metadata.ALBUM_ART", "android.media.metadata.ALBUM_ART_URI", "android.media.metadata.USER_RATING", "android.media.metadata.RATING", "android.media.metadata.DISPLAY_TITLE", "android.media.metadata.DISPLAY_SUBTITLE", "android.media.metadata.DISPLAY_DESCRIPTION", "android.media.metadata.DISPLAY_ICON", "android.media.metadata.DISPLAY_ICON_URI", "android.media.metadata.MEDIA_ID", "android.media.metadata.MEDIA_URI", "android.media.metadata.BT_FOLDER_TYPE", "android.media.metadata.ADVERTISEMENT", "android.media.metadata.DOWNLOAD_STATUS", "androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT");
@@ -34,32 +34,32 @@ public abstract class n {
     public static q4.i b(e2.o0 o0Var, String str, Uri uri, long j3, Bitmap bitmap) {
         Long l10;
         ?? obj = new Object();
-        obj.f55879a = new Bundle();
+        obj.f55844a = new Bundle();
         obj.f("android.media.metadata.MEDIA_ID", str);
-        CharSequence charSequence = o0Var.f10610a;
+        CharSequence charSequence = o0Var.f10573a;
         Bundle bundle = o0Var.J;
-        Integer num = o0Var.f10624q;
-        Uri uri2 = o0Var.f10621n;
+        Integer num = o0Var.f10587q;
+        Uri uri2 = o0Var.f10584n;
         if (charSequence != null) {
             obj.g(charSequence, "android.media.metadata.TITLE");
         }
-        CharSequence charSequence2 = o0Var.f10613e;
+        CharSequence charSequence2 = o0Var.f10576e;
         if (charSequence2 != null) {
             obj.g(charSequence2, "android.media.metadata.DISPLAY_TITLE");
         }
-        CharSequence charSequence3 = o0Var.f10614f;
+        CharSequence charSequence3 = o0Var.f10577f;
         if (charSequence3 != null) {
             obj.g(charSequence3, "android.media.metadata.DISPLAY_SUBTITLE");
         }
-        CharSequence charSequence4 = o0Var.f10615g;
+        CharSequence charSequence4 = o0Var.f10578g;
         if (charSequence4 != null) {
             obj.g(charSequence4, "android.media.metadata.DISPLAY_DESCRIPTION");
         }
-        CharSequence charSequence5 = o0Var.f10611b;
+        CharSequence charSequence5 = o0Var.f10574b;
         if (charSequence5 != null) {
             obj.g(charSequence5, "android.media.metadata.ARTIST");
         }
-        CharSequence charSequence6 = o0Var.f10612c;
+        CharSequence charSequence6 = o0Var.f10575c;
         if (charSequence6 != null) {
             obj.g(charSequence6, "android.media.metadata.ALBUM");
         }
@@ -67,7 +67,7 @@ public abstract class n {
         if (charSequence7 != null) {
             obj.g(charSequence7, "android.media.metadata.ALBUM_ARTIST");
         }
-        Integer num2 = o0Var.f10628u;
+        Integer num2 = o0Var.f10591u;
         if (num2 != null) {
             obj.d(num2.intValue(), "android.media.metadata.YEAR");
         }
@@ -101,11 +101,11 @@ public abstract class n {
             j3 = -1;
         }
         obj.d(j3, "android.media.metadata.DURATION");
-        q4.y d = d(o0Var.f10616i);
+        q4.y d = d(o0Var.f10579i);
         if (d != null) {
             obj.e("android.media.metadata.USER_RATING", d);
         }
-        q4.y d2 = d(o0Var.f10617j);
+        q4.y d2 = d(o0Var.f10580j);
         if (d2 != null) {
             obj.e("android.media.metadata.RATING", d2);
         }
@@ -125,13 +125,13 @@ public abstract class n {
                 }
             }
         }
-        return new q4.i((Bundle) obj.f55879a);
+        return new q4.i((Bundle) obj.f55844a);
     }
 
     public static e2.d1 c(q4.y yVar) {
         if (yVar != null) {
-            float f10 = yVar.f55895b;
-            int i7 = yVar.f55894a;
+            float f10 = yVar.f55860b;
+            int i7 = yVar.f55859a;
             boolean z10 = true;
             switch (i7) {
                 case 1:
@@ -196,21 +196,21 @@ public abstract class n {
             float f10 = 0.0f;
             switch (e10) {
                 case 1:
-                    if (((e2.w) d1Var).f10818c) {
+                    if (((e2.w) d1Var).f10781c) {
                         f10 = 1.0f;
                     }
                     return new q4.y(1, f10);
                 case 2:
-                    if (((e2.g1) d1Var).f10450c) {
+                    if (((e2.g1) d1Var).f10413c) {
                         f10 = 1.0f;
                     }
                     return new q4.y(2, f10);
                 case 3:
                 case 4:
                 case 5:
-                    return q4.y.d(((e2.e1) d1Var).f10418c, e10);
+                    return q4.y.d(((e2.e1) d1Var).f10381c, e10);
                 case 6:
-                    return q4.y.c(((e2.u0) d1Var).f10806b);
+                    return q4.y.c(((e2.u0) d1Var).f10769b);
             }
         }
         return null;
@@ -224,7 +224,7 @@ public abstract class n {
             return 2;
         }
         if (d1Var instanceof e2.e1) {
-            int i7 = ((e2.e1) d1Var).f10417b;
+            int i7 = ((e2.e1) d1Var).f10380b;
             int i10 = 3;
             if (i7 != 3) {
                 i10 = 4;

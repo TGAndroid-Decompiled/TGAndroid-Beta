@@ -11,17 +11,17 @@ public final class x5 extends es {
     public x5(n6 n6Var, Context context) {
         super(context);
         this.I = n6Var;
-        this.H = org.telegram.ui.ActionBar.m6.d0(org.telegram.messenger.g0.L(22.0f), n6Var.getThemedColor(org.telegram.ui.ActionBar.m6.f29381d6));
+        this.H = org.telegram.ui.ActionBar.m6.d0(org.telegram.messenger.g0.L(22.0f), n6Var.getThemedColor(org.telegram.ui.ActionBar.m6.f29347d6));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int ceil = (int) Math.ceil(getMetadata().f57719g.f57726a);
+        int ceil = (int) Math.ceil(getMetadata().f57684g.f57691a);
         if (ceil > 0) {
             ShapeDrawable shapeDrawable = this.H;
-            shapeDrawable.getPaint().setColor(this.I.getThemedColor(org.telegram.ui.ActionBar.m6.f29381d6));
+            shapeDrawable.getPaint().setColor(this.I.getThemedColor(org.telegram.ui.ActionBar.m6.f29347d6));
             shapeDrawable.setBounds(0, 0, getWidth(), ceil);
-            shapeDrawable.setAlpha((int) (getMetadata().f57716c.f57726a * 255.0f));
+            shapeDrawable.setAlpha((int) (getMetadata().f57681c.f57691a * 255.0f));
             shapeDrawable.draw(canvas);
         }
         super.dispatchDraw(canvas);

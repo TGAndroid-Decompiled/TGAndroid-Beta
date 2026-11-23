@@ -3,17 +3,17 @@ package f2;
 import h2.l0;
 import j$.util.Objects;
 public final class k {
-    public static final k f11080e = new k(-1, -1, -1);
-    public final int f11081a;
-    public final int f11082b;
-    public final int f11083c;
+    public static final k f11043e = new k(-1, -1, -1);
+    public final int f11044a;
+    public final int f11045b;
+    public final int f11046c;
     public final int d;
 
     public k(int i7, int i10, int i11) {
         int i12;
-        this.f11081a = i7;
-        this.f11082b = i10;
-        this.f11083c = i11;
+        this.f11044a = i7;
+        this.f11045b = i10;
+        this.f11046c = i11;
         if (l0.M(i11)) {
             i12 = l0.u(i11) * i10;
         } else {
@@ -30,17 +30,17 @@ public final class k {
             return false;
         }
         k kVar = (k) obj;
-        if (this.f11081a == kVar.f11081a && this.f11082b == kVar.f11082b && this.f11083c == kVar.f11083c) {
+        if (this.f11044a == kVar.f11044a && this.f11045b == kVar.f11045b && this.f11046c == kVar.f11046c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f11081a), Integer.valueOf(this.f11082b), Integer.valueOf(this.f11083c));
+        return Objects.hash(Integer.valueOf(this.f11044a), Integer.valueOf(this.f11045b), Integer.valueOf(this.f11046c));
     }
 
     public final String toString() {
-        return "AudioFormat[sampleRate=" + this.f11081a + ", channelCount=" + this.f11082b + ", encoding=" + this.f11083c + ']';
+        return "AudioFormat[sampleRate=" + this.f11044a + ", channelCount=" + this.f11045b + ", encoding=" + this.f11046c + ']';
     }
 }

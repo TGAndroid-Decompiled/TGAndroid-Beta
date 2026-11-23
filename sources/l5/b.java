@@ -1,9 +1,9 @@
 package l5;
 public final class b {
-    public final Integer f19701a;
+    public final Integer f19667a;
 
     public b(Integer num) {
-        this.f19701a = num;
+        this.f19667a = num;
     }
 
     public final boolean equals(Object obj) {
@@ -13,8 +13,8 @@ public final class b {
         if (!(obj instanceof b)) {
             return false;
         }
-        Integer num = ((b) obj).f19701a;
-        Integer num2 = this.f19701a;
+        Integer num = ((b) obj).f19667a;
+        Integer num2 = this.f19667a;
         if (num2 == null) {
             if (num == null) {
                 return true;
@@ -26,7 +26,7 @@ public final class b {
 
     public final int hashCode() {
         int hashCode;
-        Integer num = this.f19701a;
+        Integer num = this.f19667a;
         if (num == null) {
             hashCode = 0;
         } else {
@@ -36,6 +36,6 @@ public final class b {
     }
 
     public final String toString() {
-        return "ProductData{productId=" + this.f19701a + "}";
+        return "ProductData{productId=" + this.f19667a + "}";
     }
 }

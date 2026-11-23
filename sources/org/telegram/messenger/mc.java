@@ -2,15 +2,15 @@ package org.telegram.messenger;
 
 import android.graphics.drawable.Drawable;
 public final class mc {
-    public gc f25561a;
-    public String f25562b;
-    public gc f25563c;
+    public gc f25525a;
+    public String f25526b;
+    public gc f25527c;
     public String d;
-    public gc f25564e;
-    public String f25565f;
-    public Drawable f25566g;
+    public gc f25528e;
+    public String f25529f;
+    public Drawable f25530g;
     public long h;
-    public int f25567i;
-    public Object f25568j;
-    public String f25569k;
+    public int f25531i;
+    public Object f25532j;
+    public String f25533k;
 }

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 
-import oi.c2;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.ls;
@@ -16,14 +15,14 @@ public class TLParseException extends RuntimeException {
         } else {
             tLDataSourceType = null;
         }
-        boolean z11 = false;
+        boolean z11 = true;
         TLParseException tLParseException = new TLParseException(String.format("can't parse magic %x in %s. Source: %s", Integer.valueOf(i7), str, tLDataSourceType));
-        if (i7 != -847714938) {
-            z11 = true;
+        if (i7 == -847714938) {
+            z11 = false;
         }
         a8.g(tLParseException, z11);
         if (i7 != -847714938 && i7 != -779361553 && i7 != -212046591) {
-            g0.g3(new c2(tLParseException, 1));
+            g0.g3(new m(tLParseException, 0));
         }
         if (!z10) {
             return;

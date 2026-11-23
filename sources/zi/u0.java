@@ -1,6 +1,5 @@
 package zi;
 
-import ai.z0;
 import android.content.Context;
 import android.graphics.Matrix;
 import android.os.Build;
@@ -8,7 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.view.TextureView;
-import c8.oe;
+import c8.pe;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -18,7 +17,7 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.ls;
 import org.telegram.ui.Components.b50;
 import org.telegram.ui.Components.ky;
-import org.telegram.ui.Components.qf;
+import org.telegram.ui.Components.pf;
 import org.telegram.ui.Components.sy0;
 import org.telegram.ui.Components.w40;
 import org.telegram.ui.wc1;
@@ -46,33 +45,33 @@ public final class u0 {
     public volatile File V;
     public l2.f0 W;
     public final h2.z Z;
-    public final Context f62354a;
-    public final TextureView f62356b;
-    public final File f62358c;
-    public final qf d;
-    public final r0 f62359e;
-    public final ky f62360f;
-    public final k f62365l;
-    public final o f62366m;
-    public final s0 f62367n;
-    public final int f62368o;
-    public final p0 f62369p;
-    public final long f62370q;
-    public n0 f62371r;
-    public n0 f62372s;
-    public o0 f62373t;
-    public p0 f62374u;
-    public boolean f62375w;
-    public boolean f62376x;
-    public boolean f62377y;
-    public boolean f62378z;
-    public final Object f62361g = new Object();
+    public final Context f62319a;
+    public final TextureView f62321b;
+    public final File f62323c;
+    public final pf d;
+    public final r0 f62324e;
+    public final ky f62325f;
+    public final k f62330l;
+    public final o f62331m;
+    public final s0 f62332n;
+    public final int f62333o;
+    public final p0 f62334p;
+    public final long f62335q;
+    public n0 f62336r;
+    public n0 f62337s;
+    public o0 f62338t;
+    public p0 f62339u;
+    public boolean f62340w;
+    public boolean f62341x;
+    public boolean f62342y;
+    public boolean f62343z;
+    public final Object f62326g = new Object();
     public final Matrix h = new Matrix();
-    public final Handler f62362i = new Handler(Looper.getMainLooper());
-    public final ExecutorService f62363j = Executors.newSingleThreadExecutor(new z0(11));
-    public final ExecutorService f62364k = Executors.newSingleThreadExecutor(new z0(12));
-    public int f62355a0 = 1;
-    public int f62357b0 = 1;
+    public final Handler f62327i = new Handler(Looper.getMainLooper());
+    public final ExecutorService f62328j = Executors.newSingleThreadExecutor(new ai.u0(11));
+    public final ExecutorService f62329k = Executors.newSingleThreadExecutor(new ai.u0(12));
+    public int f62320a0 = 1;
+    public int f62322b0 = 1;
     public float v = 1.0f;
     public long M = 1;
     public final i0 X = new i0(this, 0);
@@ -83,33 +82,33 @@ public final class u0 {
         k0 k0Var = new k0(this);
         this.Z = new h2.z(this, 3);
         v();
-        Context context2 = l0Var.f62231a;
+        Context context2 = l0Var.f62196a;
         Context applicationContext = context2.getApplicationContext();
         if (applicationContext == null) {
             context = context2;
         } else {
             context = applicationContext;
         }
-        this.f62354a = context;
-        TextureView textureView = l0Var.f62232b;
-        this.f62356b = textureView;
-        File file = l0Var.f62233c;
-        this.f62358c = file == null ? context.getCacheDir() : file;
-        this.f62371r = l0Var.d;
-        s0 s0Var = l0Var.f62234e;
-        this.f62367n = s0Var;
+        this.f62319a = context;
+        TextureView textureView = l0Var.f62197b;
+        this.f62321b = textureView;
+        File file = l0Var.f62198c;
+        this.f62323c = file == null ? context.getCacheDir() : file;
+        this.f62336r = l0Var.d;
+        s0 s0Var = l0Var.f62199e;
+        this.f62332n = s0Var;
         int i7 = l0Var.h;
-        this.f62368o = i7;
-        o0 o0Var = l0Var.f62235f;
-        p0 p0Var = l0Var.f62236g;
-        this.f62369p = p0Var;
-        this.f62370q = 60000L;
-        boolean z10 = l0Var.f62237i;
-        this.d = l0Var.f62238j;
-        this.f62359e = l0Var.f62239k;
-        this.f62360f = l0Var.f62240l;
+        this.f62333o = i7;
+        o0 o0Var = l0Var.f62200f;
+        p0 p0Var = l0Var.f62201g;
+        this.f62334p = p0Var;
+        this.f62335q = 60000L;
+        boolean z10 = l0Var.f62202i;
+        this.d = l0Var.f62203j;
+        this.f62324e = l0Var.f62204k;
+        this.f62325f = l0Var.f62205l;
         o oVar = new o();
-        this.f62366m = oVar;
+        this.f62331m = oVar;
         StringBuilder sb2 = new StringBuilder("session created: device=");
         sb2.append(Build.MANUFACTURER);
         sb2.append(" ");
@@ -117,19 +116,19 @@ public final class u0 {
         sb2.append(", sdk=");
         sb2.append(Build.VERSION.SDK_INT);
         sb2.append(", output=");
-        sb2.append(s0Var.f62300a);
+        sb2.append(s0Var.f62265a);
         sb2.append("x");
-        i5.c.z(sb2, s0Var.f62300a, ", bitrate=", i7, ", cameraMode=");
+        i5.c.z(sb2, s0Var.f62265a, ", bitrate=", i7, ", cameraMode=");
         sb2.append(o0Var);
         sb2.append(", fps=");
-        sb2.append(p0Var.f62286a);
+        sb2.append(p0Var.f62251a);
         sb2.append(", composition=");
         sb2.append(z10);
         sb2.append(", facing=");
-        sb2.append(this.f62371r);
+        sb2.append(this.f62336r);
         sb2.append(", maxDurationMs=60000");
         oVar.b(sb2.toString());
-        this.f62365l = new k(context, textureView, s0Var, i7, o0Var, p0Var, z10, oVar, k0Var);
+        this.f62330l = new k(context, textureView, s0Var, i7, o0Var, p0Var, z10, oVar, k0Var);
     }
 
     public static long f(long j3) {
@@ -145,14 +144,14 @@ public final class u0 {
 
     public final boolean a() {
         v();
-        int i7 = this.f62355a0;
+        int i7 = this.f62320a0;
         if (i7 != 10 && i7 != 8) {
-            this.f62366m.b("cancel requested: state=".concat(yi.i.e(i7)));
+            this.f62331m.b("cancel requested: state=".concat(yi.i.e(i7)));
             b(3, true);
             e();
             t();
             x(10);
-            if (!this.E && !this.f62365l.W()) {
+            if (!this.E && !this.f62330l.W()) {
                 i();
                 return true;
             }
@@ -164,18 +163,18 @@ public final class u0 {
     }
 
     public final boolean b(int i7, boolean z10) {
-        synchronized (this.f62361g) {
+        synchronized (this.f62326g) {
             try {
                 q0 q0Var = this.T;
-                if (q0Var != null && q0Var.f62292e && !z10) {
+                if (q0Var != null && q0Var.f62257e && !z10) {
                     return false;
                 }
                 this.H = true;
                 if (q0Var != null && !q0Var.d) {
                     q0Var.d = true;
-                    o oVar = this.f62366m;
-                    oVar.b("output generation invalidated: id=" + q0Var.f62289a + ", reason=" + yi.i.d(i7) + ", availableSize=" + q0Var.f62291c);
-                    this.f62364k.execute(new h0(this, q0Var, i7, 2));
+                    o oVar = this.f62331m;
+                    oVar.b("output generation invalidated: id=" + q0Var.f62254a + ", reason=" + yi.i.d(i7) + ", availableSize=" + q0Var.f62256c);
+                    this.f62329k.execute(new h0(this, q0Var, i7, 2));
                 }
                 return true;
             } catch (Throwable th2) {
@@ -185,22 +184,22 @@ public final class u0 {
     }
 
     public final void c(boolean z10) {
-        synchronized (this.f62361g) {
+        synchronized (this.f62326g) {
             g();
             File d = d("round_video_");
             long j3 = this.M;
             this.M = 1 + j3;
             q0 q0Var = new q0(j3, d);
             this.T = q0Var;
-            this.U = new x(d, this.f62367n.f62300a, z10, this.f62366m, new wc1(29, this, q0Var));
-            o oVar = this.f62366m;
+            this.U = new x(d, this.f62332n.f62265a, z10, this.f62331m, new wc1(29, this, q0Var));
+            o oVar = this.f62331m;
             oVar.b("output generation started: id=" + j3 + ", includeAudio=" + z10 + ", file=" + d.getName());
-            this.f62364k.execute(new wg.p(this, q0Var, d, 9));
+            this.f62329k.execute(new wg.p(this, q0Var, d, 9));
         }
     }
 
     public final File d(String str) {
-        File file = this.f62358c;
+        File file = this.f62323c;
         if (file.exists()) {
             if (!file.isDirectory()) {
                 throw new IOException("Round-video output path is not a directory: " + file);
@@ -212,8 +211,8 @@ public final class u0 {
     }
 
     public final void e() {
-        this.f62375w = false;
-        k kVar = this.f62365l;
+        this.f62340w = false;
+        k kVar = this.f62330l;
         kVar.T(0.0f);
         kVar.S(false);
         w(false);
@@ -227,20 +226,20 @@ public final class u0 {
     }
 
     public final void h(Exception exc) {
-        int i7 = this.f62355a0;
+        int i7 = this.f62320a0;
         if (i7 != 9 && i7 != 10) {
-            this.f62366m.a("fatal error in state=".concat(yi.i.e(i7)), exc);
+            this.f62331m.a("fatal error in state=".concat(yi.i.e(i7)), exc);
             if (b(4, false)) {
                 e();
                 t();
-                this.f62362i.removeCallbacks(this.X);
+                this.f62327i.removeCallbacks(this.X);
                 q0 q0Var = this.T;
                 if (q0Var != null) {
-                    this.f62364k.execute(new h0(this, q0Var, exc));
+                    this.f62329k.execute(new h0(this, q0Var, exc));
                 }
                 x(9);
                 m("error");
-                b50 b50Var = (b50) this.d.f38895b;
+                b50 b50Var = (b50) this.d.f38544b;
                 b50Var.C();
                 a8.g(exc, true);
                 sy0 sy0Var = b50Var.T;
@@ -248,19 +247,19 @@ public final class u0 {
                     sy0Var.d(true);
                 }
                 b50Var.T = null;
-                if (b50Var.f33736a0) {
-                    b50Var.f33736a0 = false;
+                if (b50Var.f33713a0) {
+                    b50Var.f33713a0 = false;
                     b50Var.P = null;
                 } else {
                     MediaController.B().Y(false);
-                    if (b50Var.f33745h0) {
+                    if (b50Var.f33722h0) {
                         b50Var.z(6);
                     } else {
-                        ls.f(b50Var.f33742f).k(ls.f25345m2, Integer.valueOf(b50Var.h));
+                        ls.f(b50Var.f33719f).k(ls.f25309m2, Integer.valueOf(b50Var.h));
                     }
                     b50Var.B(false, false);
                 }
-                if (!this.E && !this.f62365l.W()) {
+                if (!this.E && !this.f62330l.W()) {
                     i();
                     return;
                 }
@@ -277,30 +276,30 @@ public final class u0 {
         this.F = true;
         m("cancelled");
         i0 i0Var = new i0(this, 1);
-        ExecutorService executorService = this.f62363j;
+        ExecutorService executorService = this.f62328j;
         executorService.execute(i0Var);
-        this.f62365l.K();
-        this.f62362i.removeCallbacksAndMessages(null);
+        this.f62330l.K();
+        this.f62327i.removeCallbacksAndMessages(null);
         executorService.shutdown();
-        this.f62364k.shutdown();
+        this.f62329k.shutdown();
     }
 
     public final long j() {
         v();
-        if (this.f62355a0 != 3) {
+        if (this.f62320a0 != 3) {
             return this.I;
         }
-        return Math.min(this.f62370q, (SystemClock.elapsedRealtime() + this.I) - this.J);
+        return Math.min(this.f62335q, (SystemClock.elapsedRealtime() + this.I) - this.J);
     }
 
     public final void k(q0 q0Var, int i7) {
-        synchronized (this.f62361g) {
+        synchronized (this.f62326g) {
             try {
-                if (!q0Var.d && !q0Var.f62292e) {
+                if (!q0Var.d && !q0Var.f62257e) {
                     q0Var.d = true;
-                    o oVar = this.f62366m;
-                    oVar.b("output generation invalidated: id=" + q0Var.f62289a + ", reason=" + yi.i.d(i7) + ", availableSize=" + q0Var.f62291c);
-                    this.f62364k.execute(new h0(this, q0Var, i7, 0));
+                    o oVar = this.f62331m;
+                    oVar.b("output generation invalidated: id=" + q0Var.f62254a + ", reason=" + yi.i.d(i7) + ", availableSize=" + q0Var.f62256c);
+                    this.f62329k.execute(new h0(this, q0Var, i7, 0));
                 }
             } finally {
             }
@@ -312,7 +311,7 @@ public final class u0 {
         if (j3 <= 0) {
             j3 = this.I;
         }
-        if (j3 <= this.f62370q && this.K <= 0 && this.L + 10 >= j3) {
+        if (j3 <= this.f62335q && this.K <= 0 && this.L + 10 >= j3) {
             return false;
         }
         return true;
@@ -325,9 +324,9 @@ public final class u0 {
         }
         this.S = true;
         q0 q0Var = this.T;
-        o oVar = this.f62366m;
+        o oVar = this.f62331m;
         StringBuilder u10 = a8.p0.u("session summary: terminal=", str, ", state=");
-        u10.append(yi.i.e(this.f62355a0));
+        u10.append(yi.i.e(this.f62320a0));
         u10.append(", durationMs=");
         u10.append(j());
         u10.append(", pauses=");
@@ -337,77 +336,77 @@ public final class u0 {
         u10.append(", cameraSwitches=");
         u10.append(this.R);
         u10.append(", facing=");
-        u10.append(this.f62372s);
+        u10.append(this.f62337s);
         u10.append(", cameraMode=");
-        u10.append(this.f62373t);
+        u10.append(this.f62338t);
         u10.append(", generation=");
         long j10 = 0;
         if (q0Var == null) {
             j3 = 0;
         } else {
-            j3 = q0Var.f62289a;
+            j3 = q0Var.f62254a;
         }
         u10.append(j3);
         u10.append(", availableSize=");
         if (q0Var != null) {
-            j10 = q0Var.f62291c;
+            j10 = q0Var.f62256c;
         }
         u10.append(j10);
         oVar.b(u10.toString());
     }
 
     public final void n() {
-        n0 n0Var = this.f62371r;
-        n0 n0Var2 = this.f62372s;
-        m0 m0Var = new m0(n0Var, n0Var2, this.f62357b0, this.v);
-        b50 b50Var = (b50) this.d.f38895b;
+        n0 n0Var = this.f62336r;
+        n0 n0Var2 = this.f62337s;
+        m0 m0Var = new m0(n0Var, n0Var2, this.f62322b0, this.v);
+        b50 b50Var = (b50) this.d.f38544b;
         b50Var.S = m0Var;
         if (n0Var2 != null) {
-            aj.e.f1675j.b(n0Var2);
+            aj.e.f1626j.b(n0Var2);
         }
         b50Var.D();
     }
 
     public final void o() {
         int i7;
-        int i10 = this.f62355a0;
+        int i10 = this.f62320a0;
         long j3 = this.I;
         long j10 = this.J;
-        boolean z10 = this.f62378z;
-        boolean z11 = this.f62377y;
-        boolean z12 = this.f62375w;
-        long j11 = this.f62370q;
+        boolean z10 = this.f62343z;
+        boolean z11 = this.f62342y;
+        boolean z12 = this.f62340w;
+        long j11 = this.f62335q;
         t0 t0Var = new t0(i10, j3, j10, j11, z10, z11, z12);
-        b50 b50Var = (b50) this.d.f38895b;
+        b50 b50Var = (b50) this.d.f38544b;
         t0 t0Var2 = b50Var.R;
-        int i11 = b50Var.f33742f;
+        int i11 = b50Var.f33719f;
         if (t0Var2 == null) {
             i7 = 0;
         } else {
-            i7 = t0Var2.f62348a;
+            i7 = t0Var2.f62313a;
         }
         b50Var.R = t0Var;
         if (i7 == 3 && i10 != 3) {
             b50Var.A(true);
         }
-        b50Var.f33763w0 = Math.max(b50Var.f33763w0, j3);
+        b50Var.f33740w0 = Math.max(b50Var.f33740w0, j3);
         if (i10 != 3) {
             b50Var.setRecordingUiFrameClockActive(false);
-            b50Var.f33762w.setProgress(((float) j3) / ((float) j11));
+            b50Var.f33739w.setProgress(((float) j3) / ((float) j11));
         } else {
             if (!b50Var.E0) {
                 b50Var.E0 = true;
-                ls.e().k(ls.f25329j1, 512);
+                ls.e().k(ls.f25293j1, 512);
             }
             b50.o(b50Var);
             b50Var.setRecordingUiFrameClockActive(true);
             b50Var.F();
-            if (!b50Var.f33745h0) {
-                b50Var.f33745h0 = true;
-                ls.f(i11).k(ls.f25340l2, Integer.valueOf(b50Var.h), Boolean.FALSE);
-            } else if (b50Var.f33746i0) {
-                b50Var.f33746i0 = false;
-                ls.f(i11).k(ls.f25361p2, new Object[0]);
+            if (!b50Var.f33722h0) {
+                b50Var.f33722h0 = true;
+                ls.f(i11).k(ls.f25304l2, Integer.valueOf(b50Var.h), Boolean.FALSE);
+            } else if (b50Var.f33723i0) {
+                b50Var.f33723i0 = false;
+                ls.f(i11).k(ls.f25325p2, new Object[0]);
             }
         }
         if (i10 == 8 || i10 == 9 || i10 == 10) {
@@ -429,7 +428,7 @@ public final class u0 {
     public final void p() {
         l2.f0 f0Var;
         v();
-        if (this.f62355a0 == 5 && (f0Var = this.W) != null) {
+        if (this.f62320a0 == 5 && (f0Var = this.W) != null) {
             f0Var.b();
             z(false);
             this.W.l();
@@ -439,16 +438,16 @@ public final class u0 {
 
     public final void q() {
         v();
-        if (this.f62355a0 != 3) {
+        if (this.f62320a0 != 3) {
             return;
         }
         this.I = j();
         this.P++;
-        this.f62366m.b("pause requested: durationMs=" + this.I);
+        this.f62331m.b("pause requested: durationMs=" + this.I);
         e();
-        this.f62362i.removeCallbacks(this.X);
+        this.f62327i.removeCallbacks(this.X);
         x(4);
-        boolean W = this.f62365l.W();
+        boolean W = this.f62330l.W();
         this.E = W;
         if (!W) {
             h(new IllegalStateException("Unable to stop the camera segment"));
@@ -458,7 +457,7 @@ public final class u0 {
     public final void r() {
         l2.f0 f0Var;
         v();
-        if (this.f62355a0 == 5 && (f0Var = this.W) != null) {
+        if (this.f62320a0 == 5 && (f0Var = this.W) != null) {
             long l10 = f0Var.l();
             long j3 = this.K;
             if (l10 < j3 || l10 >= this.L) {
@@ -471,7 +470,7 @@ public final class u0 {
 
     public final void s() {
         v();
-        int i7 = this.f62355a0;
+        int i7 = this.f62320a0;
         if (i7 == 10) {
             if (!this.F) {
                 i();
@@ -481,7 +480,7 @@ public final class u0 {
                 return;
             }
             this.G = true;
-            this.f62366m.b("release deferred: output is still finishing");
+            this.f62331m.b("release deferred: output is still finishing");
             e();
             t();
         } else if (i7 != 8) {
@@ -489,19 +488,19 @@ public final class u0 {
         } else {
             e();
             t();
-            this.f62365l.K();
+            this.f62330l.K();
             this.F = true;
             x(10);
             m("released");
-            this.f62362i.removeCallbacksAndMessages(null);
-            this.f62363j.shutdown();
-            this.f62364k.shutdown();
+            this.f62327i.removeCallbacksAndMessages(null);
+            this.f62328j.shutdown();
+            this.f62329k.shutdown();
         }
     }
 
     public final void t() {
-        this.f62362i.removeCallbacks(this.Y);
-        this.f62378z = false;
+        this.f62327i.removeCallbacks(this.Y);
+        this.f62343z = false;
         l2.f0 f0Var = this.W;
         if (f0Var == null) {
             return;
@@ -509,7 +508,7 @@ public final class u0 {
         f0Var.h0(this.Z);
         l2.f0 f0Var2 = this.W;
         f0Var2.F1();
-        TextureView textureView = this.f62356b;
+        TextureView textureView = this.f62321b;
         if (textureView != null && textureView == f0Var2.X) {
             f0Var2.F1();
             f0Var2.s1();
@@ -522,7 +521,7 @@ public final class u0 {
 
     public final void u(File file, int i7, long j3, long j10, boolean z10, int i10) {
         long nanoTime = System.nanoTime();
-        o oVar = this.f62366m;
+        o oVar = this.f62331m;
         StringBuilder t6 = a8.p0.t(j3, "final range remux started: range=", "..");
         t6.append(j10);
         t6.append(", includeAudio=");
@@ -536,60 +535,60 @@ public final class u0 {
         g();
         x xVar = this.U;
         int i11 = i7;
-        int i12 = this.f62367n.f62300a;
-        int i13 = this.f62368o;
+        int i12 = this.f62332n.f62265a;
+        int i13 = this.f62333o;
         if (i11 <= 0) {
-            i11 = this.f62369p.f62286a;
+            i11 = this.f62334p.f62251a;
         }
-        n2.q0 a10 = oe.a(file, xVar, j3, j10, z10, new b7.d(i12, i13, i11));
+        n2.q0 a10 = pe.a(file, xVar, j3, j10, z10, new b7.d(i12, i13, i11));
         this.U.g();
         long h = this.U.h();
-        o oVar2 = this.f62366m;
+        o oVar2 = this.f62331m;
         StringBuilder t10 = a8.p0.t(h, "final range remux completed: durationMs=", ", requestedDurationMs=");
         t10.append(j10 - j3);
         t10.append(", actualStartMs=");
-        t10.append(a10.f21235a);
+        t10.append(a10.f21201a);
         t10.append(", mode=");
-        t10.append((String) a10.f21237c);
+        t10.append((String) a10.f21203c);
         t10.append(", size=");
-        t10.append(this.U.f62401a.length());
+        t10.append(this.U.f62366a.length());
         t10.append(", elapsedMs=");
         t10.append(f(nanoTime));
         oVar2.b(t10.toString());
         g();
-        this.f62364k.execute(new g0(this, this.T, this.U.f62401a, h, z10));
+        this.f62329k.execute(new g0(this, this.T, this.U.f62366a, h, z10));
     }
 
     public final void w(boolean z10) {
-        if (this.f62376x != z10) {
-            this.f62376x = z10;
-            ky kyVar = this.f62360f;
+        if (this.f62341x != z10) {
+            this.f62341x = z10;
+            ky kyVar = this.f62325f;
             if (kyVar != null) {
-                ((b50) kyVar.f37037b).setScreenFlashEnabled(z10);
+                ((b50) kyVar.f36994b).setScreenFlashEnabled(z10);
             }
         }
     }
 
     public final void x(int i7) {
-        int i10 = this.f62355a0;
-        this.f62355a0 = i7;
-        this.f62366m.b("state: " + yi.i.e(i10) + " -> " + yi.i.e(i7) + ", durationMs=" + j());
+        int i10 = this.f62320a0;
+        this.f62320a0 = i7;
+        this.f62331m.b("state: " + yi.i.e(i10) + " -> " + yi.i.e(i7) + ", durationMs=" + j());
         o();
     }
 
     public final void y(float f10) {
         v();
-        if (this.f62355a0 == 3 && !this.f62377y) {
-            this.f62365l.T(Math.max(0.0f, Math.min(1.0f, f10)));
+        if (this.f62320a0 == 3 && !this.f62342y) {
+            this.f62330l.T(Math.max(0.0f, Math.min(1.0f, f10)));
         }
     }
 
     public final void z(boolean z10) {
-        if (this.f62378z == z10) {
+        if (this.f62343z == z10) {
             return;
         }
-        this.f62378z = z10;
-        Handler handler = this.f62362i;
+        this.f62343z = z10;
+        Handler handler = this.f62327i;
         s4.s0 s0Var = this.Y;
         handler.removeCallbacks(s0Var);
         if (z10) {

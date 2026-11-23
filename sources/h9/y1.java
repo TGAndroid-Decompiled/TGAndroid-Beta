@@ -1,19 +1,19 @@
 package h9;
 
-import a8.la;
+import a8.ma;
 import a8.xa;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class y1 extends l0 {
     public static final y1 h = new y1(null, new Object[0], 0);
     public final transient Object d;
-    public final transient Object[] f14124e;
-    public final transient int f14125f;
+    public final transient Object[] f14087e;
+    public final transient int f14088f;
 
     public y1(Object obj, Object[] objArr, int i7) {
         this.d = obj;
-        this.f14124e = objArr;
-        this.f14125f = i7;
+        this.f14087e = objArr;
+        this.f14088f = i7;
     }
 
     public static y1 g(int i7, Object[] objArr, xa xaVar) {
@@ -25,7 +25,7 @@ public final class y1 extends l0 {
             Objects.requireNonNull(objArr[1]);
             return new y1(null, objArr, 1);
         }
-        la.m(i7, objArr.length >> 1);
+        ma.m(i7, objArr.length >> 1);
         Object h7 = h(objArr, i7, t0.o(i7), 0);
         if (h7 instanceof Object[]) {
             Object[] objArr2 = (Object[]) h7;
@@ -254,22 +254,22 @@ public final class y1 extends l0 {
 
     @Override
     public final v1 c() {
-        return new v1(this, this.f14124e, 0, this.f14125f);
+        return new v1(this, this.f14087e, 0, this.f14088f);
     }
 
     @Override
     public final w1 d() {
-        return new w1(this, new x1(0, this.f14125f, this.f14124e));
+        return new w1(this, new x1(0, this.f14088f, this.f14087e));
     }
 
     @Override
     public final d0 e() {
-        return new x1(1, this.f14125f, this.f14124e);
+        return new x1(1, this.f14088f, this.f14087e);
     }
 
     @Override
     public final Object get(Object obj) {
-        Object i7 = i(this.d, this.f14124e, this.f14125f, 0, obj);
+        Object i7 = i(this.d, this.f14087e, this.f14088f, 0, obj);
         if (i7 == null) {
             return null;
         }
@@ -278,6 +278,6 @@ public final class y1 extends l0 {
 
     @Override
     public final int size() {
-        return this.f14125f;
+        return this.f14088f;
     }
 }

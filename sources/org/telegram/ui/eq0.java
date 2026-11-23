@@ -1,108 +1,81 @@
 package org.telegram.ui;
 
-import android.media.MediaExtractor;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.camera.Size;
-import org.telegram.ui.Components.AnimatedFileNative;
-public final class eq0 implements Runnable {
-    public final String f47367a;
-    public final long f47368b;
-    public final int f47369c;
-    public final PhotoViewer d;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.webkit.CookieManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.ui.Components.RadialProgressView;
+public final class eq0 extends org.telegram.ui.Components.le0 {
+    public final Rect N;
+    public final PhotoViewer O;
 
-    public eq0(PhotoViewer photoViewer, String str, long j3, int i7) {
-        this.d = photoViewer;
-        this.f47367a = str;
-        this.f47368b = j3;
-        this.f47369c = i7;
+    public eq0(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, org.telegram.ui.ActionBar.y0 y0Var) {
+        super(context);
+        this.O = photoViewer;
+        this.f37124a = org.telegram.messenger.k10.f24932t0;
+        this.f37132w = new ArrayList();
+        this.M = new org.telegram.ui.Components.hb0(this, 9);
+        this.f37125b = photoViewer2;
+        this.f37130r = y0Var;
+        org.telegram.ui.Components.eu euVar = new org.telegram.ui.Components.eu(this, context, context, 1);
+        this.f37128f = euVar;
+        euVar.getSettings().setJavaScriptEnabled(true);
+        euVar.getSettings().setDomStorageEnabled(true);
+        euVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        euVar.getSettings().setMixedContentMode(0);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(euVar, true);
+        euVar.setWebViewClient(new n1(this, 2));
+        addView(euVar, c8.na.e(-1, -1, 51));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f37126c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(17);
+        linearLayout.setVisibility(8);
+        addView(linearLayout, c8.na.e(-2, -2, 17));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29739y6, null);
+        textView.setGravity(17);
+        linearLayout.addView(textView, c8.na.r(-2, -2, 1));
+        TextView textView2 = new TextView(context);
+        this.f37127e = textView2;
+        textView2.setTextSize(1, 16.0f);
+        int i7 = org.telegram.ui.ActionBar.m6.f29529n6;
+        org.telegram.ui.ActionBar.t6.U(textView2, i7, null);
+        textView2.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f));
+        int i10 = org.telegram.ui.ActionBar.a6.f28762a;
+        textView2.setBackground(org.telegram.ui.ActionBar.a6.d(0, org.telegram.ui.ActionBar.a6.b(org.telegram.ui.ActionBar.m6.x0(null, i7, false)), 12.0f));
+        textView2.setVisibility(8);
+        linearLayout.addView(textView2, c8.na.t(-2, -2, 1, 0, 8, 0, 0));
+        bi.o3 o3Var = new bi.o3(22, context, this);
+        this.h = o3Var;
+        o3Var.setBackgroundColor(-16777216);
+        o3Var.setVisibility(4);
+        addView(o3Var, c8.na.c(-1.0f, -1));
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        this.f37129n = radialProgressView;
+        radialProgressView.setVisibility(4);
+        addView(radialProgressView, c8.na.e(-2, -2, 17));
+        this.N = new Rect();
     }
 
-    @Override
-    public final void run() {
-        boolean z10;
-        boolean z11;
-        if (this.d.f43419x8 == this) {
-            int E = MediaController.E(this.f47367a);
-            int[] iArr = new int[11];
-            AnimatedFileNative.d(this.f47367a, iArr, this.f47368b);
-            boolean z12 = false;
-            if (iArr[10] != 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            PhotoViewer photoViewer = this.d;
-            if (iArr[0] != 0 && (!z10 || iArr[9] != 0)) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            photoViewer.f43303k8 = z11;
-            PhotoViewer photoViewer2 = this.d;
-            if (E == -1) {
-                E = iArr[3];
-            }
-            photoViewer2.f43270g8 = E;
-            photoViewer2.f43278h8 = E;
-            if (this.d.f43303k8) {
-                PhotoViewer photoViewer3 = this.d;
-                int i7 = iArr[1];
-                photoViewer3.f43233c8 = i7;
-                photoViewer3.f43251e8 = i7;
-                PhotoViewer photoViewer4 = this.d;
-                int i10 = iArr[2];
-                photoViewer4.f43241d8 = i10;
-                photoViewer4.f43261f8 = i10;
-                PhotoViewer photoViewer5 = this.d;
-                int max = Math.max(photoViewer5.f43233c8, this.d.f43241d8);
-                if (max > 1280) {
-                    photoViewer5.Z7 = 4;
-                } else if (max > 854) {
-                    photoViewer5.Z7 = 3;
-                } else if (max > 640) {
-                    photoViewer5.Z7 = 2;
-                } else {
-                    photoViewer5.Z7 = 1;
-                }
-                PhotoViewer photoViewer6 = this.d;
-                int i11 = this.f47369c;
-                if (i11 == -1) {
-                    i11 = photoViewer6.t2();
-                }
-                photoViewer6.Y7 = i11;
-                PhotoViewer photoViewer7 = this.d;
-                if (photoViewer7.f43270g8 != 0 && photoViewer7.d2 != 1) {
-                    Size i02 = photoViewer7.i0();
-                    if (i02.getWidth() == photoViewer7.f43233c8 && i02.getHeight() == photoViewer7.f43241d8) {
-                        MediaController.v(i02.getWidth(), i02.getHeight(), photoViewer7.f43278h8, false);
-                    } else {
-                        MediaController.v(i02.getWidth(), i02.getHeight(), MediaController.Q(photoViewer7.f43241d8, photoViewer7.f43233c8, photoViewer7.f43278h8, i02.getHeight(), i02.getWidth()), false);
-                    }
-                }
-                PhotoViewer photoViewer8 = this.d;
-                String str = this.f47367a;
-                MediaExtractor mediaExtractor = new MediaExtractor();
-                try {
-                    try {
-                        mediaExtractor.setDataSource(str);
-                        int w10 = MediaController.w(mediaExtractor, false);
-                        if (w10 >= 0) {
-                            if (mediaExtractor.getTrackFormat(w10).getString("mime").equals("video/avc")) {
-                                z12 = true;
-                            }
-                        }
-                    } catch (Exception e10) {
-                        org.telegram.messenger.a8.g(e10, true);
-                    }
-                    photoViewer8.f43311l8 = z12;
-                } finally {
-                    mediaExtractor.release();
-                }
-            }
-            if (this.d.f43419x8 != this) {
-                return;
-            }
-            org.telegram.messenger.g0.g3(new mc0(this, this, iArr, 22));
+    public final void j(Canvas canvas, int i7, int i10) {
+        Bitmap n10 = this.O.C4.n();
+        if (n10 != null) {
+            float min = Math.min(i7 / n10.getWidth(), i10 / n10.getHeight());
+            int width = (int) (n10.getWidth() * min);
+            int height = (int) (n10.getHeight() * min);
+            int i11 = (i10 - height) / 2;
+            int i12 = (i7 - width) / 2;
+            Rect rect = this.N;
+            rect.set(i12, i11, width + i12, height + i11);
+            canvas.drawBitmap(n10, (Rect) null, rect, (Paint) null);
         }
     }
 }

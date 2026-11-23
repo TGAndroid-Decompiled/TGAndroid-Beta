@@ -11,20 +11,20 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class zn implements RequestDelegate {
-    public final int f28360a;
-    public final c1 f28361b;
-    public final Object f28362c;
+    public final int f28324a;
+    public final c1 f28325b;
+    public final Object f28326c;
     public final Object d;
-    public final Object f28363e;
-    public final Object f28364f;
+    public final Object f28327e;
+    public final Object f28328f;
 
     public zn(c1 c1Var, Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f28360a = i7;
-        this.f28361b = c1Var;
-        this.f28362c = obj;
+        this.f28324a = i7;
+        this.f28325b = c1Var;
+        this.f28326c = obj;
         this.d = obj2;
-        this.f28363e = obj3;
-        this.f28364f = obj4;
+        this.f28327e = obj3;
+        this.f28328f = obj4;
     }
 
     @Override
@@ -35,14 +35,14 @@ public final class zn implements RequestDelegate {
         TLRPC.Photo photo;
         TLRPC.EncryptedChat encryptedChat;
         byte[] bArr;
-        int i7 = this.f28360a;
+        int i7 = this.f28324a;
         String str = "";
         int i10 = 0;
-        Object obj = this.f28364f;
-        Object obj2 = this.f28363e;
+        Object obj = this.f28328f;
+        Object obj2 = this.f28327e;
         Object obj3 = this.d;
-        Object obj4 = this.f28362c;
-        c1 c1Var = this.f28361b;
+        Object obj4 = this.f28326c;
+        c1 c1Var = this.f28325b;
         switch (i7) {
             case 0:
                 final np npVar = (np) c1Var;
@@ -63,12 +63,12 @@ public final class zn implements RequestDelegate {
                     TLRPC.Document document2 = (TLRPC.Document) tLObject;
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
                     tL_inputDocument.access_hash = document2.access_hash;
-                    tL_inputDocument.f28446id = document2.f28440id;
+                    tL_inputDocument.f28410id = document2.f28404id;
                     tL_inputDocument.file_reference = document2.file_reference;
                     if (tL_theme != null && tL_theme.creator) {
                         TL_account.updateTheme updatetheme = new TL_account.updateTheme();
                         TLRPC.TL_inputTheme tL_inputTheme = new TLRPC.TL_inputTheme();
-                        tL_inputTheme.f28505id = tL_theme.f28573id;
+                        tL_inputTheme.f28469id = tL_theme.f28537id;
                         tL_inputTheme.access_hash = tL_theme.access_hash;
                         updatetheme.theme = tL_inputTheme;
                         updatetheme.slug = tL_theme.slug;
@@ -294,7 +294,7 @@ public final class zn implements RequestDelegate {
                     g0.g3(new uj(yvVar, context, t1Var2, tLObject, bArr2, user, 8));
                     return;
                 }
-                yvVar.f28223f.clear();
+                yvVar.f28187f.clear();
                 g0.g3(new vv(yvVar, context, t1Var2, 1));
                 return;
             case 3:
@@ -304,7 +304,7 @@ public final class zn implements RequestDelegate {
                 TLRPC.Message message = (TLRPC.Message) obj2;
                 gj gjVar2 = (gj) obj;
                 if (tL_error == null && (decryptedMessage.action instanceof TLRPC.TL_decryptedMessageActionNotifyLayer)) {
-                    TLRPC.EncryptedChat c12 = yvVar2.getMessagesController().c1(Integer.valueOf(encryptedChat2.f28442id));
+                    TLRPC.EncryptedChat c12 = yvVar2.getMessagesController().c1(Integer.valueOf(encryptedChat2.f28406id));
                     if (c12 == null) {
                         encryptedChat = encryptedChat2;
                     } else {
@@ -312,7 +312,7 @@ public final class zn implements RequestDelegate {
                     }
                     if (encryptedChat.key_hash == null) {
                         byte[] bArr3 = encryptedChat.auth_key;
-                        Typeface typeface = g0.f24018a;
+                        Typeface typeface = g0.f23982a;
                         byte[] bArr4 = new byte[16];
                         System.arraycopy(Utilities.n(bArr3), 0, bArr4, 0, 16);
                         encryptedChat.key_hash = bArr4;
@@ -329,12 +329,12 @@ public final class zn implements RequestDelegate {
                             a8.g(th2, true);
                         }
                     }
-                    yvVar2.f28219a.remove(Integer.valueOf(encryptedChat.f28442id));
+                    yvVar2.f28183a.remove(Integer.valueOf(encryptedChat.f28406id));
                     int i12 = encryptedChat.layer;
-                    Typeface typeface2 = g0.f24018a;
+                    Typeface typeface2 = g0.f23982a;
                     encryptedChat.layer = (i12 & (-65536)) | 151;
                     ur messagesStorage = yvVar2.getMessagesStorage();
-                    messagesStorage.f27250a.c(new aq(messagesStorage, encryptedChat, 2));
+                    messagesStorage.f27214a.c(new aq(messagesStorage, encryptedChat, 2));
                 }
                 if (tL_error == null) {
                     String str2 = message.attachPath;
@@ -349,7 +349,7 @@ public final class zn implements RequestDelegate {
                     if (gjVar2 != null) {
                         TLRPC.EncryptedFile encryptedFile = messages_sentencryptedmessage.file;
                         if (encryptedFile instanceof TLRPC.TL_encryptedFile) {
-                            TLRPC.Message message2 = gjVar2.f24213k;
+                            TLRPC.Message message2 = gjVar2.f24177k;
                             TLRPC.MessageMedia messageMedia = message2.media;
                             if ((messageMedia instanceof TLRPC.TL_messageMediaPhoto) && (photo = messageMedia.photo) != null) {
                                 TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) i5.c.h(1, photo.sizes);
@@ -361,7 +361,7 @@ public final class zn implements RequestDelegate {
                                 tL_fileEncryptedLocation.iv = decryptedMessageMedia.iv;
                                 tL_fileEncryptedLocation.dc_id = encryptedFile.dc_id;
                                 gjVar = gjVar2;
-                                tL_fileEncryptedLocation.volume_id = encryptedFile.f28443id;
+                                tL_fileEncryptedLocation.volume_id = encryptedFile.f28407id;
                                 tL_fileEncryptedLocation.secret = encryptedFile.access_hash;
                                 tL_fileEncryptedLocation.local_id = encryptedFile.key_fingerprint;
                                 File file = new File(w7.z(4), p5.c.v(str3, ".jpg"));
@@ -376,7 +376,7 @@ public final class zn implements RequestDelegate {
                                 if ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && (document = messageMedia.document) != null) {
                                     messageMedia.document = new TLRPC.TL_documentEncrypted();
                                     TLRPC.Document document3 = message2.media.document;
-                                    document3.f28440id = encryptedFile.f28443id;
+                                    document3.f28404id = encryptedFile.f28407id;
                                     document3.access_hash = encryptedFile.access_hash;
                                     document3.date = document.date;
                                     document3.attributes = document.attributes;
@@ -400,8 +400,8 @@ public final class zn implements RequestDelegate {
                                         TLRPC.Document document4 = message2.media.document;
                                         fileLoader.getClass();
                                         if (file2.renameTo(w7.I(document4))) {
-                                            gjVar.f24272z0 = gjVar.f24268y0;
-                                            gjVar.f24268y0 = false;
+                                            gjVar.f24236z0 = gjVar.f24232y0;
+                                            gjVar.f24232y0 = false;
                                             message2.attachPath = "";
                                         }
                                     }
@@ -413,7 +413,7 @@ public final class zn implements RequestDelegate {
                             i10 = gjVar.o1();
                         }
                     }
-                    yvVar2.getMessagesStorage().f27250a.c(new eg(yvVar2, message, messages_sentencryptedmessage, i10, 16));
+                    yvVar2.getMessagesStorage().f27214a.c(new eg(yvVar2, message, messages_sentencryptedmessage, i10, 16));
                     return;
                 }
                 yvVar2.getMessagesStorage().N0(0, message);
@@ -426,11 +426,11 @@ public final class zn implements RequestDelegate {
     }
 
     public zn(yv yvVar, TLRPC.DecryptedMessage decryptedMessage, TLRPC.EncryptedChat encryptedChat, TLRPC.Message message, gj gjVar, String str) {
-        this.f28360a = 3;
-        this.f28361b = yvVar;
-        this.f28362c = decryptedMessage;
+        this.f28324a = 3;
+        this.f28325b = yvVar;
+        this.f28326c = decryptedMessage;
         this.d = encryptedChat;
-        this.f28363e = message;
-        this.f28364f = gjVar;
+        this.f28327e = message;
+        this.f28328f = gjVar;
     }
 }

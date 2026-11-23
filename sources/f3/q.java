@@ -1,6 +1,6 @@
 package f3;
 public interface q {
-    public static final qb.a f11227q = new qb.a(8);
+    public static final qb.a f11190q = new qb.a(8);
 
     void d1();
 

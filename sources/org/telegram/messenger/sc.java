@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 public final class sc implements Runnable {
-    public final int f26781a;
-    public final zf f26782b;
-    public final cd f26783c;
+    public final int f26745a;
+    public final zf f26746b;
+    public final cd f26747c;
 
     public sc(zf zfVar, cd cdVar, int i7) {
-        this.f26781a = i7;
-        this.f26782b = zfVar;
-        this.f26783c = cdVar;
+        this.f26745a = i7;
+        this.f26746b = zfVar;
+        this.f26747c = cdVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f26781a) {
+        switch (this.f26745a) {
             case 0:
-                this.f26782b.run();
-                this.f26783c.a();
+                this.f26746b.run();
+                this.f26747c.a();
                 return;
             default:
-                this.f26782b.run();
-                this.f26783c.a();
+                this.f26746b.run();
+                this.f26747c.a();
                 return;
         }
     }

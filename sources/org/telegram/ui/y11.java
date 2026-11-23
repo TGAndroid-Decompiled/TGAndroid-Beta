@@ -1,15 +1,19 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class y11 implements View.OnLayoutChangeListener {
-    public final c21 f54019a;
+import androidx.recyclerview.widget.RecyclerView;
+public final class y11 extends v4.t0 {
+    public final b21 f53992a;
 
-    public y11(c21 c21Var) {
-        this.f54019a = c21Var;
+    public y11(b21 b21Var) {
+        this.f53992a = b21Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        c21.e1(this.f54019a);
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        b21 b21Var = this.f53992a;
+        if (b21Var.f39487o1.J1) {
+            org.telegram.messenger.g0.v1(b21Var.Y1);
+        }
+        b21.e1(b21Var);
     }
 }

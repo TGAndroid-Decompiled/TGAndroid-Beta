@@ -1,12 +1,12 @@
 package ee;
 public final class o {
-    public final j f10976a;
+    public final j f10939a;
 
     public o(j jVar) {
-        this.f10976a = jVar;
+        this.f10939a = jVar;
     }
 
     public final String toString() {
-        return "Removed[" + this.f10976a + ']';
+        return "Removed[" + this.f10939a + ']';
     }
 }

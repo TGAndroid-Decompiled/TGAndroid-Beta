@@ -6,19 +6,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ga1 implements RequestDelegate {
-    public final int f48025a;
-    public final TwoStepVerificationActivity f48026b;
+    public final int f47969a;
+    public final TwoStepVerificationActivity f47970b;
 
     public ga1(TwoStepVerificationActivity twoStepVerificationActivity, int i7) {
-        this.f48025a = i7;
-        this.f48026b = twoStepVerificationActivity;
+        this.f47969a = i7;
+        this.f47970b = twoStepVerificationActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f48025a) {
+        switch (this.f47969a) {
             case 0:
-                final TwoStepVerificationActivity twoStepVerificationActivity = this.f48026b;
+                final TwoStepVerificationActivity twoStepVerificationActivity = this.f47970b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -33,7 +33,7 @@ public final class ga1 implements RequestDelegate {
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(twoStepVerificationActivity2.getParentActivity());
                                     alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131747637, null), null);
                                     String N0 = org.telegram.messenger.hd.N0(2131745897, null);
-                                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                                     t1Var.S = N0;
                                     t1Var.U = org.telegram.messenger.hd.N0(2131745871, null);
                                     twoStepVerificationActivity2.showDialog(t1Var, new q5(twoStepVerificationActivity2, 17));
@@ -71,7 +71,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f48026b;
+                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f47970b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -96,7 +96,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             case 2:
-                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f48026b;
+                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f47970b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -111,7 +111,7 @@ public final class ga1 implements RequestDelegate {
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(twoStepVerificationActivity22.getParentActivity());
                                     alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131747637, null), null);
                                     String N0 = org.telegram.messenger.hd.N0(2131745897, null);
-                                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                                     t1Var.S = N0;
                                     t1Var.U = org.telegram.messenger.hd.N0(2131745871, null);
                                     twoStepVerificationActivity22.showDialog(t1Var, new q5(twoStepVerificationActivity22, 17));
@@ -149,7 +149,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             case 3:
-                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f48026b;
+                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f47970b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -174,7 +174,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             case 4:
-                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f48026b;
+                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f47970b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -199,7 +199,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             case 5:
-                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f48026b;
+                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f47970b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -224,7 +224,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             default:
-                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f48026b;
+                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f47970b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {

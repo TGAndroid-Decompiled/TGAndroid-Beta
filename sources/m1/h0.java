@@ -1,22 +1,22 @@
 package m1;
 public final class h0 extends kd.c {
-    public i0 f20376a;
-    public Object f20377b;
-    public Object f20378c;
+    public i0 f20342a;
+    public Object f20343b;
+    public Object f20344c;
     public k0 d;
-    public Object f20379e;
-    public final i0 f20380f;
+    public Object f20345e;
+    public final i0 f20346f;
     public int h;
 
     public h0(i0 i0Var, kd.c cVar) {
         super(cVar);
-        this.f20380f = i0Var;
+        this.f20346f = i0Var;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f20379e = obj;
+        this.f20345e = obj;
         this.h |= Integer.MIN_VALUE;
-        return this.f20380f.b(null, this);
+        return this.f20346f.b(null, this);
     }
 }

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import java.util.ArrayList;
 public final class c9 extends org.telegram.ui.ActionBar.w2 {
-    public final int f23247m1 = 0;
+    public final int f23211m1 = 0;
     public org.telegram.ui.ActionBar.g2 n1;
 
     public c9(Context context, boolean z10) {
@@ -15,7 +15,7 @@ public final class c9 extends org.telegram.ui.ActionBar.w2 {
 
     @Override
     public boolean G() {
-        switch (this.f23247m1) {
+        switch (this.f23211m1) {
             case 0:
                 return false;
             default:
@@ -25,7 +25,7 @@ public final class c9 extends org.telegram.ui.ActionBar.w2 {
 
     @Override
     public boolean I() {
-        switch (this.f23247m1) {
+        switch (this.f23211m1) {
             case 0:
                 return false;
             default:
@@ -47,8 +47,8 @@ public final class c9 extends org.telegram.ui.ActionBar.w2 {
             z11 = true;
         }
         if (z11 && z10) {
-            boolean z12 = FilesMigrationService.f22644c;
-            t0.f26931b.startService(new Intent(t0.f26931b, FilesMigrationService.class));
+            boolean z12 = FilesMigrationService.f22608c;
+            t0.f26895b.startService(new Intent(t0.f26895b, FilesMigrationService.class));
             dismiss();
             return;
         }
@@ -70,7 +70,7 @@ public final class c9 extends org.telegram.ui.ActionBar.w2 {
 
     @Override
     public void L() {
-        switch (this.f23247m1) {
+        switch (this.f23211m1) {
             case 1:
                 super.L();
                 org.telegram.ui.Components.y8 y8Var = (org.telegram.ui.Components.y8) this.n1;
@@ -85,18 +85,18 @@ public final class c9 extends org.telegram.ui.ActionBar.w2 {
 
     @Override
     public final void dismiss() {
-        switch (this.f23247m1) {
+        switch (this.f23211m1) {
             case 0:
                 super.dismiss();
-                FilesMigrationService.f22645e = null;
+                FilesMigrationService.f22609e = null;
                 return;
             default:
                 super.dismiss();
                 org.telegram.ui.Components.y8 y8Var = (org.telegram.ui.Components.y8) this.n1;
                 y8Var.K.z1(y8Var.Z);
-                y8Var.f42349f = true;
+                y8Var.f42327f = true;
                 y8Var.fragmentView.invalidate();
-                y8Var.f42348e.animate().setListener(new org.telegram.ui.Components.y(this, 5)).alpha(0.0f).setDuration(200L).start();
+                y8Var.f42326e.animate().setListener(new org.telegram.ui.Components.y(this, 5)).alpha(0.0f).setDuration(200L).start();
                 return;
         }
     }

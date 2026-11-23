@@ -13,18 +13,18 @@ import android.os.Build;
 import android.os.Looper;
 import android.view.Display;
 import android.view.MenuItem;
-import di.f2;
+import di.w2;
 public abstract class i {
-    public static AudioManager f11076a;
+    public static AudioManager f11039a;
 
     public static void a(AudioManager audioManager, h hVar) {
         if (Build.VERSION.SDK_INT >= 26) {
-            Object obj = hVar.f11075f;
+            Object obj = hVar.f11038f;
             obj.getClass();
             audioManager.abandonAudioFocusRequest((AudioFocusRequest) obj);
             return;
         }
-        audioManager.abandonAudioFocus(hVar.f11072b);
+        audioManager.abandonAudioFocus(hVar.f11035b);
     }
 
     public static Icon b(Bitmap bitmap) {
@@ -56,23 +56,23 @@ public abstract class i {
             synchronized (i.class) {
                 Context applicationContext = context.getApplicationContext();
                 if (applicationContext != null) {
-                    f11076a = null;
+                    f11039a = null;
                 }
-                AudioManager audioManager = f11076a;
+                AudioManager audioManager = f11039a;
                 if (audioManager != null) {
                     return audioManager;
                 }
                 Looper myLooper = Looper.myLooper();
                 if (myLooper != null && myLooper != Looper.getMainLooper()) {
                     h2.i iVar = new h2.i();
-                    h2.a.e().execute(new f2(21, applicationContext, iVar));
+                    h2.a.e().execute(new w2(19, applicationContext, iVar));
                     iVar.b();
-                    AudioManager audioManager2 = f11076a;
+                    AudioManager audioManager2 = f11039a;
                     audioManager2.getClass();
                     return audioManager2;
                 }
                 AudioManager audioManager3 = (AudioManager) applicationContext.getSystemService("audio");
-                f11076a = audioManager3;
+                f11039a = audioManager3;
                 audioManager3.getClass();
                 return audioManager3;
             }

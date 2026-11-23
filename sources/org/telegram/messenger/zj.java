@@ -7,29 +7,29 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zj implements Runnable {
-    public final int f28342a;
-    public final int f28343b;
-    public final Object f28344c;
+    public final int f28306a;
+    public final int f28307b;
+    public final Object f28308c;
     public final Object d;
-    public final Object f28345e;
-    public final Object f28346f;
+    public final Object f28309e;
+    public final Object f28310f;
 
     public zj(Object obj, Object obj2, int i7, Object obj3, Object obj4, int i10) {
-        this.f28342a = i10;
-        this.f28344c = obj;
+        this.f28306a = i10;
+        this.f28308c = obj;
         this.d = obj2;
-        this.f28343b = i7;
-        this.f28345e = obj3;
-        this.f28346f = obj4;
+        this.f28307b = i7;
+        this.f28309e = obj3;
+        this.f28310f = obj4;
     }
 
     private final void a() {
         TLRPC.MessageMedia messageMedia;
-        ur urVar = (ur) this.f28344c;
+        ur urVar = (ur) this.f28308c;
         String str = (String) this.d;
-        TLObject tLObject = (TLObject) this.f28345e;
-        int i7 = this.f28343b;
-        String str2 = (String) this.f28346f;
+        TLObject tLObject = (TLObject) this.f28309e;
+        int i7 = this.f28307b;
+        String str2 = (String) this.f28310f;
         urVar.getClass();
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
@@ -48,7 +48,7 @@ public final class zj implements Runnable {
                         messageMedia = null;
                     }
                     if (messageMedia != null) {
-                        sQLitePreparedStatement = urVar.f27252b.executeFast("REPLACE INTO sent_files_v2 VALUES(?, ?, ?, ?)");
+                        sQLitePreparedStatement = urVar.f27216b.executeFast("REPLACE INTO sent_files_v2 VALUES(?, ?, ?, ?)");
                         sQLitePreparedStatement.requery();
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(messageMedia.getObjectSize());
                         messageMedia.serializeToStream(nativeByteBuffer);
@@ -85,29 +85,29 @@ public final class zj implements Runnable {
     }
 
     public zj(Object obj, Object obj2, Object obj3, Object obj4, int i7, int i10) {
-        this.f28342a = i10;
-        this.f28344c = obj;
+        this.f28306a = i10;
+        this.f28308c = obj;
         this.d = obj2;
-        this.f28345e = obj3;
-        this.f28346f = obj4;
-        this.f28343b = i7;
+        this.f28309e = obj3;
+        this.f28310f = obj4;
+        this.f28307b = i7;
     }
 
     public zj(c1 c1Var, Serializable serializable, Object obj, int i7, Serializable serializable2, int i10) {
-        this.f28342a = i10;
-        this.f28344c = c1Var;
+        this.f28306a = i10;
+        this.f28308c = c1Var;
         this.d = serializable;
-        this.f28345e = obj;
-        this.f28343b = i7;
-        this.f28346f = serializable2;
+        this.f28309e = obj;
+        this.f28307b = i7;
+        this.f28310f = serializable2;
     }
 
     public zj(rz rzVar, int i7, ArrayList arrayList, a0.h hVar, a0.h hVar2) {
-        this.f28342a = 6;
-        this.f28344c = rzVar;
-        this.f28343b = i7;
+        this.f28306a = 6;
+        this.f28308c = rzVar;
+        this.f28307b = i7;
         this.d = arrayList;
-        this.f28345e = hVar;
-        this.f28346f = hVar2;
+        this.f28309e = hVar;
+        this.f28310f = hVar2;
     }
 }

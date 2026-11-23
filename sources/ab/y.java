@@ -13,7 +13,7 @@ import android.media.MediaCodecInfo;
 import android.os.Binder;
 import android.os.Build;
 import android.util.Log;
-import c8.rc;
+import c8.sc;
 import e2.s0;
 import h9.h2;
 import h9.t0;
@@ -44,22 +44,22 @@ public abstract class y {
                     break;
                 }
             }
-            if (i11 == 1 && rc.f4973a == null) {
+            if (i11 == 1 && sc.f4950a == null) {
                 int i13 = Build.VERSION.SDK_INT;
                 if (i13 < 37) {
                     int c10 = c(true);
                     if (i13 < 35) {
-                        rc.f4973a = Boolean.valueOf(z10);
+                        sc.f4950a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     } else {
-                        rc.f4973a = Boolean.valueOf(z10);
+                        sc.f4950a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     }
                 }
                 z10 = false;
-                rc.f4973a = Boolean.valueOf(z10);
+                sc.f4950a = Boolean.valueOf(z10);
                 if (z10) {
                 }
             }
@@ -74,14 +74,14 @@ public abstract class y {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
         try {
             e2.t tVar = new e2.t();
-            tVar.f10746r = s0.n("video/avc");
+            tVar.f10709r = s0.n("video/avc");
             e2.u uVar = new e2.u(tVar);
-            String str = uVar.f10798s;
+            String str = uVar.f10761s;
             if (str != null) {
                 List e11 = u2.w.e(str, z10, false);
                 String c10 = u2.w.c(uVar);
                 if (c10 == null) {
-                    e10 = t1.f14103e;
+                    e10 = t1.f14066e;
                 } else {
                     e10 = u2.w.e(c10, z10, false);
                 }
@@ -109,10 +109,10 @@ public abstract class y {
     public static t1 d(e2.e eVar) {
         h9.f0 p10 = h9.i0.p();
         h9.l0 l0Var = n2.b.h;
-        t0 t0Var = l0Var.f14049b;
+        t0 t0Var = l0Var.f14012b;
         if (t0Var == null) {
             t0Var = l0Var.d();
-            l0Var.f14049b = t0Var;
+            l0Var.f14012b = t0Var;
         }
         h2 it = t0Var.iterator();
         while (it.hasNext()) {

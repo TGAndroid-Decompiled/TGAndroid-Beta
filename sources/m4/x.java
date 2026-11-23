@@ -3,32 +3,32 @@ package m4;
 import h2.k0;
 import h2.l0;
 public final class x {
-    public final int f20835a;
-    public final k0 f20836b;
-    public final h2.x f20837c;
+    public final int f20801a;
+    public final k0 f20802b;
+    public final h2.x f20803c;
     public boolean d;
-    public boolean f20838e;
-    public boolean f20839f;
-    public long f20840g;
+    public boolean f20804e;
+    public boolean f20805f;
+    public long f20806g;
     public long h;
-    public long f20841i;
+    public long f20807i;
 
     public x(int i7) {
-        this.f20835a = i7;
+        this.f20801a = i7;
         switch (i7) {
             case 1:
-                this.f20836b = new k0(0L);
-                this.f20840g = -9223372036854775807L;
+                this.f20802b = new k0(0L);
+                this.f20806g = -9223372036854775807L;
                 this.h = -9223372036854775807L;
-                this.f20841i = -9223372036854775807L;
-                this.f20837c = new h2.x();
+                this.f20807i = -9223372036854775807L;
+                this.f20803c = new h2.x();
                 return;
             default:
-                this.f20836b = new k0(0L);
-                this.f20840g = -9223372036854775807L;
+                this.f20802b = new k0(0L);
+                this.f20806g = -9223372036854775807L;
                 this.h = -9223372036854775807L;
-                this.f20841i = -9223372036854775807L;
-                this.f20837c = new h2.x();
+                this.f20807i = -9223372036854775807L;
+                this.f20803c = new h2.x();
                 return;
         }
     }
@@ -38,7 +38,7 @@ public final class x {
     }
 
     public static long c(h2.x xVar) {
-        int i7 = xVar.f13866b;
+        int i7 = xVar.f13829b;
         if (xVar.a() < 9) {
             return -9223372036854775807L;
         }
@@ -61,18 +61,18 @@ public final class x {
     }
 
     public final void a(f3.p pVar) {
-        switch (this.f20835a) {
+        switch (this.f20801a) {
             case 0:
-                byte[] bArr = l0.f13816b;
-                h2.x xVar = this.f20837c;
+                byte[] bArr = l0.f13779b;
+                h2.x xVar = this.f20803c;
                 xVar.getClass();
                 xVar.L(bArr.length, bArr);
                 this.d = true;
                 pVar.n();
                 return;
             default:
-                byte[] bArr2 = l0.f13816b;
-                h2.x xVar2 = this.f20837c;
+                byte[] bArr2 = l0.f13779b;
+                h2.x xVar2 = this.f20803c;
                 xVar2.getClass();
                 xVar2.L(bArr2.length, bArr2);
                 this.d = true;

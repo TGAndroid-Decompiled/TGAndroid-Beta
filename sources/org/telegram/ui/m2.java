@@ -3,20 +3,20 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
 public final class m2 extends c5.a {
-    public final o2 f49745c;
+    public final o2 f49714c;
 
     public m2(o2 o2Var) {
-        this.f49745c = o2Var;
+        this.f49714c = o2Var;
     }
 
     @Override
     public final void a(c5.l lVar, Object obj) {
-        lVar.removeView(((l2) obj).f49452b);
+        lVar.removeView(((l2) obj).f49430b);
     }
 
     @Override
     public final int b() {
-        TL_iv.pageBlockSlideshow pageblockslideshow = this.f49745c.f50412e;
+        TL_iv.pageBlockSlideshow pageblockslideshow = this.f49714c.f50400e;
         if (pageblockslideshow == null) {
             return 0;
         }
@@ -25,7 +25,7 @@ public final class m2 extends c5.a {
 
     @Override
     public final int c(Object obj) {
-        if (this.f49745c.f50412e.items.contains(((l2) obj).f49451a)) {
+        if (this.f49714c.f50400e.items.contains(((l2) obj).f49429a)) {
             return -1;
         }
         return -2;
@@ -34,10 +34,10 @@ public final class m2 extends c5.a {
     @Override
     public final Object e(c5.l lVar, int i7) {
         v2 v2Var;
-        o2 o2Var = this.f49745c;
-        e4 e4Var = o2Var.f50419y;
+        o2 o2Var = this.f49714c;
+        e4 e4Var = o2Var.f50407y;
         g4 g4Var = o2Var.E;
-        TL_iv.PageBlock pageBlock = o2Var.f50412e.items.get(i7);
+        TL_iv.PageBlock pageBlock = o2Var.f50400e.items.get(i7);
         if (pageBlock instanceof TL_iv.pageBlockPhoto) {
             a2 a2Var = new a2(o2Var.getContext(), g4Var, e4Var, 1);
             a2Var.a((TL_iv.pageBlockPhoto) pageBlock, e4Var.F.cached_page, false, true);
@@ -50,14 +50,14 @@ public final class m2 extends c5.a {
         }
         lVar.addView(v2Var);
         ?? obj = new Object();
-        obj.f49452b = v2Var;
-        obj.f49451a = pageBlock;
+        obj.f49430b = v2Var;
+        obj.f49429a = pageBlock;
         return obj;
     }
 
     @Override
     public final boolean f(View view, Object obj) {
-        if (((l2) obj).f49452b == view) {
+        if (((l2) obj).f49430b == view) {
             return true;
         }
         return false;

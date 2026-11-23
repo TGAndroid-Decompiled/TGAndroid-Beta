@@ -1,6 +1,6 @@
 package i9;
 
-import c8.k1;
+import c8.l1;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayDeque;
@@ -53,7 +53,7 @@ public abstract class f {
             } else {
                 i7 = 2;
             }
-            min = k1.e(min * i7);
+            min = l1.e(min * i7);
         }
         if (inputStream.read() == -1) {
             return a(arrayDeque, 2147483639);

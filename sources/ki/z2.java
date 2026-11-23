@@ -17,83 +17,83 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.py0;
 import org.telegram.ui.LaunchActivity;
 public final class z2 implements View.OnClickListener {
-    public final int f19129a = 1;
-    public final hi.e f19130b;
-    public final long f19131c;
+    public final int f19095a = 1;
+    public final hi.d f19096b;
+    public final long f19097c;
     public final TLRPC.User d;
-    public final int f19132e;
-    public final org.telegram.ui.ActionBar.w2 f19133f;
+    public final int f19098e;
+    public final org.telegram.ui.ActionBar.w2 f19099f;
     public final boolean h;
-    public final h6 f19134n;
-    public final Object f19135r;
-    public final Object f19136s;
-    public final Object f19137w;
+    public final h6 f19100n;
+    public final Object f19101r;
+    public final Object f19102s;
+    public final Object f19103w;
 
-    public z2(hi.e eVar, py0 py0Var, np npVar, long j3, TLRPC.User user, String[] strArr, int i7, org.telegram.ui.ActionBar.w2 w2Var, boolean z10, h6 h6Var) {
-        this.f19130b = eVar;
-        this.f19135r = py0Var;
-        this.f19136s = npVar;
-        this.f19131c = j3;
+    public z2(hi.d dVar, py0 py0Var, np npVar, long j3, TLRPC.User user, String[] strArr, int i7, org.telegram.ui.ActionBar.w2 w2Var, boolean z10, h6 h6Var) {
+        this.f19096b = dVar;
+        this.f19101r = py0Var;
+        this.f19102s = npVar;
+        this.f19097c = j3;
         this.d = user;
-        this.f19137w = strArr;
-        this.f19132e = i7;
-        this.f19133f = w2Var;
+        this.f19103w = strArr;
+        this.f19098e = i7;
+        this.f19099f = w2Var;
         this.h = z10;
-        this.f19134n = h6Var;
+        this.f19100n = h6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f19129a) {
+        switch (this.f19095a) {
             case 0:
-                long[] jArr = (long[]) this.f19135r;
-                final TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) this.f19136s;
-                final Context context = (Context) this.f19137w;
-                final hi.e eVar = this.f19130b;
-                if (!eVar.R) {
-                    eVar.setLoading(true);
+                long[] jArr = (long[]) this.f19101r;
+                final TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) this.f19102s;
+                final Context context = (Context) this.f19103w;
+                final hi.d dVar = this.f19096b;
+                if (!dVar.R) {
+                    dVar.setLoading(true);
                     final long j3 = jArr[0];
                     TL_payments.connectStarRefBot connectstarrefbot = new TL_payments.connectStarRefBot();
-                    final int i7 = this.f19132e;
+                    final int i7 = this.f19098e;
                     connectstarrefbot.bot = np.u1(i7).q1(starrefprogram.bot_id);
                     connectstarrefbot.peer = np.u1(i7).l1(j3);
                     ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i7);
-                    final org.telegram.ui.ActionBar.w2 w2Var = this.f19133f;
-                    final long j10 = this.f19131c;
+                    final org.telegram.ui.ActionBar.w2 w2Var = this.f19099f;
+                    final long j10 = this.f19097c;
                     final boolean z10 = this.h;
-                    final h6 h6Var = this.f19134n;
+                    final h6 h6Var = this.f19100n;
                     final TLRPC.User user = this.d;
                     connectionsManager.sendRequest(connectstarrefbot, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            org.telegram.messenger.g0.g3(new x2(hi.e.this, tLObject, i7, j3, w2Var, starrefprogram, j10, z10, context, h6Var, user, tL_error));
+                            org.telegram.messenger.g0.g3(new x2(hi.d.this, tLObject, i7, j3, w2Var, starrefprogram, j10, z10, context, h6Var, user, tL_error));
                         }
                     });
                     return;
                 }
                 return;
             default:
-                py0 py0Var = (py0) this.f19135r;
+                py0 py0Var = (py0) this.f19101r;
                 b6 b6Var = py0Var.h;
-                final np npVar = (np) this.f19136s;
-                String[] strArr = (String[]) this.f19137w;
-                final hi.e eVar2 = this.f19130b;
-                if (!eVar2.R) {
+                final np npVar = (np) this.f19102s;
+                String[] strArr = (String[]) this.f19103w;
+                final hi.d dVar2 = this.f19096b;
+                if (!dVar2.R) {
                     EditTextBoldCursor textView = b6Var.getTextView();
                     if (textView.getText().toString().trim().length() <= 16) {
-                        eVar2.setLoading(true);
+                        dVar2.setLoading(true);
                         org.telegram.messenger.g0.v1(b6Var);
                         final TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank = new TLRPC.TL_messages_editChatParticipantRank();
-                        final long j11 = this.f19131c;
+                        final long j11 = this.f19097c;
                         tL_messages_editChatParticipantRank.peer = npVar.l1(j11);
                         final TLRPC.User user2 = this.d;
                         tL_messages_editChatParticipantRank.participant = np.p1(user2);
                         tL_messages_editChatParticipantRank.rank = strArr[0];
-                        ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(this.f19132e);
+                        ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(this.f19098e);
                         d3.b bVar = new d3.b(1);
-                        final org.telegram.ui.ActionBar.w2 w2Var2 = this.f19133f;
+                        final org.telegram.ui.ActionBar.w2 w2Var2 = this.f19099f;
                         final boolean z11 = this.h;
-                        final h6 h6Var2 = this.f19134n;
+                        final h6 h6Var2 = this.f19100n;
                         connectionsManager2.sendRequestTyped(tL_messages_editChatParticipantRank, bVar, new r10() {
                             @Override
                             public final void a(Object obj, Object obj2) {
@@ -102,7 +102,7 @@ public final class z2 implements View.OnClickListener {
                                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                                 org.telegram.ui.ActionBar.w2 w2Var3 = w2Var2;
                                 if (updates != null) {
-                                    long j12 = user2.f28583id;
+                                    long j12 = user2.f28547id;
                                     TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank2 = tL_messages_editChatParticipantRank;
                                     String str = tL_messages_editChatParticipantRank2.rank;
                                     org.telegram.messenger.np npVar2 = org.telegram.messenger.np.this;
@@ -113,12 +113,12 @@ public final class z2 implements View.OnClickListener {
                                     if (!TextUtils.isEmpty(tL_messages_editChatParticipantRank2.rank) && T != null) {
                                         lc b02 = lc.b0(T);
                                         if (z11) {
-                                            i10 = 2131744045;
+                                            i10 = 2131744047;
                                         } else {
-                                            i10 = 2131744044;
+                                            i10 = 2131744046;
                                         }
                                         gc I = b02.I(2131623990, org.telegram.messenger.hd.N0(i10, null), tL_messages_editChatParticipantRank2.rank);
-                                        lb lbVar = I.f35523e;
+                                        lb lbVar = I.f35485e;
                                         if (lbVar.getLayoutParams() instanceof FrameLayout.LayoutParams) {
                                             ((FrameLayout.LayoutParams) lbVar.getLayoutParams()).width = -2;
                                             ((FrameLayout.LayoutParams) lbVar.getLayoutParams()).gravity |= 1;
@@ -127,7 +127,7 @@ public final class z2 implements View.OnClickListener {
                                     }
                                 } else if (tL_error != null) {
                                     org.telegram.ui.Cells.c0.t(w2Var3.F, h6Var2, tL_error, false);
-                                    eVar2.setLoading(false);
+                                    dVar2.setLoading(false);
                                 }
                             }
                         });
@@ -143,16 +143,16 @@ public final class z2 implements View.OnClickListener {
         }
     }
 
-    public z2(hi.e eVar, long[] jArr, int i7, TL_payments.starRefProgram starrefprogram, org.telegram.ui.ActionBar.w2 w2Var, long j3, boolean z10, Context context, h6 h6Var, TLRPC.User user) {
-        this.f19130b = eVar;
-        this.f19135r = jArr;
-        this.f19132e = i7;
-        this.f19136s = starrefprogram;
-        this.f19133f = w2Var;
-        this.f19131c = j3;
+    public z2(hi.d dVar, long[] jArr, int i7, TL_payments.starRefProgram starrefprogram, org.telegram.ui.ActionBar.w2 w2Var, long j3, boolean z10, Context context, h6 h6Var, TLRPC.User user) {
+        this.f19096b = dVar;
+        this.f19101r = jArr;
+        this.f19098e = i7;
+        this.f19102s = starrefprogram;
+        this.f19099f = w2Var;
+        this.f19097c = j3;
         this.h = z10;
-        this.f19137w = context;
-        this.f19134n = h6Var;
+        this.f19103w = context;
+        this.f19100n = h6Var;
         this.d = user;
     }
 }

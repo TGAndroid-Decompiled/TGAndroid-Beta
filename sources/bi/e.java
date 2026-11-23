@@ -2,7 +2,7 @@ package bi;
 
 import android.content.Context;
 import android.widget.FrameLayout;
-import c8.ma;
+import c8.na;
 import java.util.List;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.r9;
@@ -20,31 +20,31 @@ public final class e extends sa {
         super(context, null, false, false, 2, h6Var);
         this.U1 = r9Var;
         this.T1 = list;
-        this.f39538v1 = 0.2f;
+        this.f39494v1 = 0.2f;
         this.G1 = false;
         this.F1 = org.telegram.messenger.g0.L(12.0f);
-        this.f39532p1.setTitle(P0());
+        this.f39488p1.setTitle(P0());
         O();
-        this.f39531o1.setPadding(this.f30211u0, org.telegram.messenger.g0.L(9.0f), this.f30211u0, org.telegram.messenger.g0.L(64.0f));
-        this.f39531o1.setOnItemClickListener(new a(0));
-        this.f39531o1.setOverScrollMode(2);
-        hi.e eVar = new hi.e(context, h6Var, true);
-        eVar.setOnClickListener(new ah.d(this, 3));
-        eVar.i(hd.N0(2131747637, null), false, true);
-        FrameLayout.LayoutParams d = ma.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        this.f39487o1.setPadding(this.f30177u0, org.telegram.messenger.g0.L(9.0f), this.f30177u0, org.telegram.messenger.g0.L(64.0f));
+        this.f39487o1.setOnItemClickListener(new a(0));
+        this.f39487o1.setOverScrollMode(2);
+        hi.d dVar = new hi.d(context, h6Var, true);
+        dVar.setOnClickListener(new ah.d(this, 3));
+        dVar.i(hd.N0(2131747637, null), false, true);
+        FrameLayout.LayoutParams d = na.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
         int i7 = d.leftMargin;
-        int i10 = this.f30211u0;
+        int i10 = this.f30177u0;
         d.leftMargin = i7 + i10;
         d.rightMargin += i10;
-        this.f30176b.addView(eVar, d);
+        this.f30142b.addView(dVar, d);
         this.V1.O(false);
     }
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new b(this, 0), this.J0);
+        c51 c51Var = new c51(this.f39487o1, getContext(), this.f30139a, 0, true, new b(this, 0), this.J0);
         this.V1 = c51Var;
-        c51Var.f34062r = false;
+        c51Var.f34026r = false;
         return c51Var;
     }
 

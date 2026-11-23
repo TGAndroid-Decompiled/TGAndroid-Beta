@@ -13,18 +13,18 @@ import android.view.View;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 public final class en0 extends org.telegram.ui.Components.du0 {
-    public int f47340g0;
-    public boolean f47341h0;
-    public boolean f47342i0;
-    public int f47343j0;
-    public int f47344k0;
-    public VelocityTracker f47345l0;
+    public int f47309g0;
+    public boolean f47310h0;
+    public boolean f47311i0;
+    public int f47312j0;
+    public int f47313k0;
+    public VelocityTracker f47314l0;
     public boolean m0;
-    public final fn0 f47346n0;
+    public final fn0 f47315n0;
 
     public en0(fn0 fn0Var, Context context) {
         super(context, null);
-        this.f47346n0 = fn0Var;
+        this.f47315n0 = fn0Var;
     }
 
     public final boolean X() {
@@ -34,11 +34,11 @@ public final class en0 extends org.telegram.ui.Components.du0 {
     public final boolean Y(MotionEvent motionEvent, boolean z10) {
         int i7;
         org.telegram.ui.ActionBar.k kVar;
-        fn0 fn0Var = this.f47346n0;
-        org.telegram.ui.ActionBar.y4[] y4VarArr = fn0Var.f47799n;
+        fn0 fn0Var = this.f47315n0;
+        org.telegram.ui.ActionBar.y4[] y4VarArr = fn0Var.f47767n;
         ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = fn0Var.h;
         SparseIntArray sparseIntArray = scrollSlidingTextTabStrip.P;
-        int i10 = scrollSlidingTextTabStrip.f33150n;
+        int i10 = scrollSlidingTextTabStrip.f33116n;
         if (z10) {
             i7 = 1;
         } else {
@@ -49,16 +49,16 @@ public final class en0 extends org.telegram.ui.Components.du0 {
             return false;
         }
         getParent().requestDisallowInterceptTouchEvent(true);
-        this.f47342i0 = false;
-        this.f47341h0 = true;
-        this.f47343j0 = (int) motionEvent.getX();
+        this.f47311i0 = false;
+        this.f47310h0 = true;
+        this.f47312j0 = (int) motionEvent.getX();
         kVar = ((org.telegram.ui.ActionBar.g2) fn0Var).actionBar;
         kVar.setEnabled(false);
         fn0Var.h.setEnabled(false);
         org.telegram.ui.ActionBar.y4 y4Var = y4VarArr[1];
-        y4Var.f30303b = i11;
+        y4Var.f30269b = i11;
         y4Var.setVisibility(0);
-        fn0Var.f47802w = z10;
+        fn0Var.f47770w = z10;
         fn0Var.o0(true);
         if (z10) {
             y4VarArr[1].setTranslationX(y4VarArr[0].getMeasuredWidth());
@@ -73,21 +73,21 @@ public final class en0 extends org.telegram.ui.Components.du0 {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
         super.dispatchDraw(canvas);
-        fn0 fn0Var = this.f47346n0;
+        fn0 fn0Var = this.f47315n0;
         kVar = ((org.telegram.ui.ActionBar.g2) fn0Var).actionBar;
         int measuredHeight = kVar.getMeasuredHeight();
         kVar2 = ((org.telegram.ui.ActionBar.g2) fn0Var).actionBar;
         float translationY = measuredHeight + ((int) kVar2.getTranslationY());
-        canvas.drawLine(0.0f, translationY, getWidth(), translationY, org.telegram.ui.ActionBar.m6.f29504k0);
+        canvas.drawLine(0.0f, translationY, getWidth(), translationY, org.telegram.ui.ActionBar.m6.f29470k0);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        fn0 fn0Var = this.f47346n0;
-        Paint paint = fn0Var.f47798f;
-        paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29324a7, false));
+        fn0 fn0Var = this.f47315n0;
+        Paint paint = fn0Var.f47766f;
+        paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29290a7, false));
         kVar = ((org.telegram.ui.ActionBar.g2) fn0Var).actionBar;
         kVar2 = ((org.telegram.ui.ActionBar.g2) fn0Var).actionBar;
         canvas.drawRect(0.0f, kVar2.getTranslationY() + kVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight(), paint);
@@ -95,7 +95,7 @@ public final class en0 extends org.telegram.ui.Components.du0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!X() && !this.f47346n0.h.I && !onTouchEvent(motionEvent)) {
+        if (!X() && !this.f47315n0.h.I && !onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
@@ -128,70 +128,70 @@ public final class en0 extends org.telegram.ui.Components.du0 {
         boolean z12;
         boolean z13;
         int i7;
-        fn0 fn0Var = this.f47346n0;
-        org.telegram.ui.ActionBar.y4[] y4VarArr = fn0Var.f47799n;
+        fn0 fn0Var = this.f47315n0;
+        org.telegram.ui.ActionBar.y4[] y4VarArr = fn0Var.f47767n;
         r4Var = ((org.telegram.ui.ActionBar.g2) fn0Var).parentLayout;
         boolean z14 = false;
         if (((ActionBarLayout) r4Var).i() || X()) {
             return false;
         }
         if (motionEvent != null) {
-            if (this.f47345l0 == null) {
-                this.f47345l0 = VelocityTracker.obtain();
+            if (this.f47314l0 == null) {
+                this.f47314l0 = VelocityTracker.obtain();
             }
-            this.f47345l0.addMovement(motionEvent);
+            this.f47314l0.addMovement(motionEvent);
         }
-        if (motionEvent != null && motionEvent.getAction() == 0 && !this.f47341h0 && !this.f47342i0) {
-            this.f47340g0 = motionEvent.getPointerId(0);
-            this.f47342i0 = true;
-            this.f47343j0 = (int) motionEvent.getX();
-            this.f47344k0 = (int) motionEvent.getY();
-            this.f47345l0.clear();
-        } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f47340g0) {
-            int x10 = (int) (motionEvent.getX() - this.f47343j0);
-            int abs = Math.abs(((int) motionEvent.getY()) - this.f47344k0);
-            if (this.f47341h0 && (((z12 = fn0Var.f47802w) && x10 > 0) || (!z12 && x10 < 0))) {
+        if (motionEvent != null && motionEvent.getAction() == 0 && !this.f47310h0 && !this.f47311i0) {
+            this.f47309g0 = motionEvent.getPointerId(0);
+            this.f47311i0 = true;
+            this.f47312j0 = (int) motionEvent.getX();
+            this.f47313k0 = (int) motionEvent.getY();
+            this.f47314l0.clear();
+        } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f47309g0) {
+            int x10 = (int) (motionEvent.getX() - this.f47312j0);
+            int abs = Math.abs(((int) motionEvent.getY()) - this.f47313k0);
+            if (this.f47310h0 && (((z12 = fn0Var.f47770w) && x10 > 0) || (!z12 && x10 < 0))) {
                 if (x10 < 0) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
                 if (!Y(motionEvent, z13)) {
-                    this.f47342i0 = true;
-                    this.f47341h0 = false;
+                    this.f47311i0 = true;
+                    this.f47310h0 = false;
                     y4VarArr[0].setTranslationX(0.0f);
                     org.telegram.ui.ActionBar.y4 y4Var5 = y4VarArr[1];
-                    if (fn0Var.f47802w) {
+                    if (fn0Var.f47770w) {
                         i7 = y4VarArr[0].getMeasuredWidth();
                     } else {
                         i7 = -y4VarArr[0].getMeasuredWidth();
                     }
                     y4Var5.setTranslationX(i7);
-                    fn0Var.h.i(0.0f, y4VarArr[1].f30303b);
+                    fn0Var.h.i(0.0f, y4VarArr[1].f30269b);
                 }
             }
-            if (this.f47342i0 && !this.f47341h0) {
+            if (this.f47311i0 && !this.f47310h0) {
                 if (Math.abs(x10) >= org.telegram.messenger.g0.a1(true, 0.3f) && Math.abs(x10) > abs) {
                     if (x10 < 0) {
                         z14 = true;
                     }
                     Y(motionEvent, z14);
                 }
-            } else if (this.f47341h0) {
+            } else if (this.f47310h0) {
                 y4VarArr[0].setTranslationX(x10);
-                if (fn0Var.f47802w) {
+                if (fn0Var.f47770w) {
                     y4VarArr[1].setTranslationX(y4VarArr[0].getMeasuredWidth() + x10);
                 } else {
                     y4VarArr[1].setTranslationX(x10 - y4VarArr[0].getMeasuredWidth());
                 }
-                fn0Var.h.i(Math.abs(x10) / y4VarArr[0].getMeasuredWidth(), y4VarArr[1].f30303b);
+                fn0Var.h.i(Math.abs(x10) / y4VarArr[0].getMeasuredWidth(), y4VarArr[1].f30269b);
             }
-        } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.f47340g0 && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-            this.f47345l0.computeCurrentVelocity(1000, fn0Var.f47804y);
+        } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.f47309g0 && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+            this.f47314l0.computeCurrentVelocity(1000, fn0Var.f47772y);
             if (motionEvent != null && motionEvent.getAction() != 3) {
-                f10 = this.f47345l0.getXVelocity();
-                f11 = this.f47345l0.getYVelocity();
-                if (!this.f47341h0 && Math.abs(f10) >= 3000.0f && Math.abs(f10) > Math.abs(f11)) {
+                f10 = this.f47314l0.getXVelocity();
+                f11 = this.f47314l0.getYVelocity();
+                if (!this.f47310h0 && Math.abs(f10) >= 3000.0f && Math.abs(f10) > Math.abs(f11)) {
                     if (f10 < 0.0f) {
                         z11 = true;
                     } else {
@@ -203,32 +203,32 @@ public final class en0 extends org.telegram.ui.Components.du0 {
                 f10 = 0.0f;
                 f11 = 0.0f;
             }
-            if (this.f47341h0) {
+            if (this.f47310h0) {
                 float x11 = y4VarArr[0].getX();
-                fn0Var.f47800r = new AnimatorSet();
+                fn0Var.f47768r = new AnimatorSet();
                 if (Math.abs(x11) < y4VarArr[0].getMeasuredWidth() / 3.0f && (Math.abs(f10) < 3500.0f || Math.abs(f10) < Math.abs(f11))) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                fn0Var.f47803x = z10;
+                fn0Var.f47771x = z10;
                 Property property = View.TRANSLATION_X;
                 if (z10) {
                     measuredWidth = Math.abs(x11);
-                    if (fn0Var.f47802w) {
-                        fn0Var.f47800r.playTogether(ObjectAnimator.ofFloat(y4VarArr[0], property, 0.0f), ObjectAnimator.ofFloat(y4VarArr[1], property, y4Var4.getMeasuredWidth()));
+                    if (fn0Var.f47770w) {
+                        fn0Var.f47768r.playTogether(ObjectAnimator.ofFloat(y4VarArr[0], property, 0.0f), ObjectAnimator.ofFloat(y4VarArr[1], property, y4Var4.getMeasuredWidth()));
                     } else {
-                        fn0Var.f47800r.playTogether(ObjectAnimator.ofFloat(y4VarArr[0], property, 0.0f), ObjectAnimator.ofFloat(y4VarArr[1], property, -y4Var3.getMeasuredWidth()));
+                        fn0Var.f47768r.playTogether(ObjectAnimator.ofFloat(y4VarArr[0], property, 0.0f), ObjectAnimator.ofFloat(y4VarArr[1], property, -y4Var3.getMeasuredWidth()));
                     }
                 } else {
                     measuredWidth = y4VarArr[0].getMeasuredWidth() - Math.abs(x11);
-                    if (fn0Var.f47802w) {
-                        fn0Var.f47800r.playTogether(ObjectAnimator.ofFloat(y4VarArr[0], property, -y4Var2.getMeasuredWidth()), ObjectAnimator.ofFloat(y4VarArr[1], property, 0.0f));
+                    if (fn0Var.f47770w) {
+                        fn0Var.f47768r.playTogether(ObjectAnimator.ofFloat(y4VarArr[0], property, -y4Var2.getMeasuredWidth()), ObjectAnimator.ofFloat(y4VarArr[1], property, 0.0f));
                     } else {
-                        fn0Var.f47800r.playTogether(ObjectAnimator.ofFloat(y4VarArr[0], property, y4Var.getMeasuredWidth()), ObjectAnimator.ofFloat(y4VarArr[1], property, 0.0f));
+                        fn0Var.f47768r.playTogether(ObjectAnimator.ofFloat(y4VarArr[0], property, y4Var.getMeasuredWidth()), ObjectAnimator.ofFloat(y4VarArr[1], property, 0.0f));
                     }
                 }
-                fn0Var.f47800r.setInterpolator(fn0.E);
+                fn0Var.f47768r.setInterpolator(fn0.E);
                 int measuredWidth3 = getMeasuredWidth();
                 float f12 = measuredWidth3 / 2;
                 float I = (org.telegram.messenger.g0.I(Math.min(1.0f, (measuredWidth * 1.0f) / measuredWidth3)) * f12) + f12;
@@ -238,24 +238,24 @@ public final class en0 extends org.telegram.ui.Components.du0 {
                 } else {
                     measuredWidth2 = (int) (((measuredWidth / getMeasuredWidth()) + 1.0f) * 100.0f);
                 }
-                fn0Var.f47800r.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
-                fn0Var.f47800r.addListener(new ay(this, 10));
-                fn0Var.f47800r.start();
-                fn0Var.f47801s = true;
-                this.f47341h0 = false;
+                fn0Var.f47768r.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
+                fn0Var.f47768r.addListener(new ay(this, 10));
+                fn0Var.f47768r.start();
+                fn0Var.f47769s = true;
+                this.f47310h0 = false;
             } else {
-                this.f47342i0 = false;
+                this.f47311i0 = false;
                 kVar = ((org.telegram.ui.ActionBar.g2) fn0Var).actionBar;
                 kVar.setEnabled(true);
                 fn0Var.h.setEnabled(true);
             }
-            VelocityTracker velocityTracker = this.f47345l0;
+            VelocityTracker velocityTracker = this.f47314l0;
             if (velocityTracker != null) {
                 velocityTracker.recycle();
-                this.f47345l0 = null;
+                this.f47314l0 = null;
             }
         }
-        return this.f47341h0;
+        return this.f47310h0;
     }
 
     @Override

@@ -2,15 +2,15 @@ package a8;
 
 import java.util.AbstractCollection;
 public final class u9 {
-    public String f657a;
-    public String f658b;
-    public String f659c;
+    public String f656a;
+    public String f657b;
+    public String f658c;
     public String d;
-    public String f660e;
-    public Boolean f661f;
-    public Boolean f662g;
+    public String f659e;
+    public Boolean f660f;
+    public Boolean f661g;
     public Boolean h;
-    public Integer f663i;
-    public Integer f664j;
-    public AbstractCollection f665k;
+    public Integer f662i;
+    public Integer f663j;
+    public AbstractCollection f664k;
 }

@@ -1,14 +1,14 @@
 package u7;
 
-import c8.sc;
 import c8.tc;
+import c8.uc;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class r extends o implements List, RandomAccess {
-    public static final p f58508b = new p(s.f58509e, 0);
+    public static final p f58473b = new p(s.f58474e, 0);
 
     @Override
     public final void add(int i7, Object obj) {
@@ -37,7 +37,7 @@ public abstract class r extends o implements List, RandomAccess {
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
                         for (int i7 = 0; i7 < size; i7++) {
-                            if (sc.a(get(i7), list.get(i7))) {
+                            if (tc.a(get(i7), list.get(i7))) {
                             }
                         }
                         return true;
@@ -47,7 +47,7 @@ public abstract class r extends o implements List, RandomAccess {
                     while (true) {
                         if (listIterator.hasNext()) {
                             if (it.hasNext()) {
-                                if (!sc.a(listIterator.next(), it.next())) {
+                                if (!tc.a(listIterator.next(), it.next())) {
                                     break;
                                 }
                             } else {
@@ -122,13 +122,13 @@ public abstract class r extends o implements List, RandomAccess {
 
     @Override
     public r subList(int i7, int i10) {
-        tc.b(i7, i10, size());
+        uc.b(i7, i10, size());
         int i11 = i10 - i7;
         if (i11 == size()) {
             return this;
         }
         if (i11 == 0) {
-            return s.f58509e;
+            return s.f58474e;
         }
         return new q(this, i7, i11);
     }
@@ -138,11 +138,11 @@ public abstract class r extends o implements List, RandomAccess {
         int size = size();
         if (i7 >= 0 && i7 <= size) {
             if (isEmpty()) {
-                return f58508b;
+                return f58473b;
             }
             return new p(this, i7);
         }
-        throw new IndexOutOfBoundsException(tc.c(i7, size, "index"));
+        throw new IndexOutOfBoundsException(uc.c(i7, size, "index"));
     }
 
     @Override

@@ -29,11 +29,11 @@ public final class ma0 extends pi.k {
 
     @Override
     public final void W() {
-        wa0 wa0Var = this.Y.f38857d0;
+        wa0 wa0Var = this.Y.f38811d0;
         org.telegram.messenger.g0.r(wa0Var.E);
         wa0Var.E.run();
         if (this.W == -1) {
-            this.W = org.telegram.messenger.ls.f(wa0Var.f41745x).q(null, this.W, false);
+            this.W = org.telegram.messenger.ls.f(wa0Var.f41719x).q(null, this.W, false);
         }
         Runnable runnable = this.X;
         if (runnable != null) {

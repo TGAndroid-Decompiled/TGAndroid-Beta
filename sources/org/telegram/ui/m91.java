@@ -47,21 +47,21 @@ public final class m91 extends v4.k {
     }
 
     @Override
-    public final void z(v4.f1 f1Var) {
+    public final void z(v4.e1 e1Var) {
         y91 y91Var = this.H;
-        View view = y91Var.f54109d1;
-        if (view == f1Var.f59165a) {
+        View view = y91Var.f54085d1;
+        if (view == e1Var.f59111a) {
             view.setTranslationX(0.0f);
             d91 d91Var = y91Var.P;
             if (d91Var != null) {
                 d91Var.G.clear();
             }
-            View view2 = y91Var.f54109d1;
+            View view2 = y91Var.f54085d1;
             if (view2 instanceof v91) {
                 v91 v91Var = (v91) view2;
-                v91Var.setTopicIcon(v91Var.f52764d5);
+                v91Var.setTopicIcon(v91Var.f52743d5);
             }
-            y91Var.f54109d1 = null;
+            y91Var.f54085d1 = null;
         }
     }
 }

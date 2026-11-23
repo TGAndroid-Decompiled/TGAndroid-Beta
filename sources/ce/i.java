@@ -1,21 +1,21 @@
 package ce;
 public final class i extends kd.c {
-    public Object f5251a;
-    public int f5252b;
-    public final q4.q f5253c;
+    public Object f5214a;
+    public int f5215b;
+    public final q4.q f5216c;
     public q4.q d;
-    public d f5254e;
-    public de.h f5255f;
+    public d f5217e;
+    public de.h f5218f;
 
     public i(q4.q qVar, kd.c cVar) {
         super(cVar);
-        this.f5253c = qVar;
+        this.f5216c = qVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f5251a = obj;
-        this.f5252b |= Integer.MIN_VALUE;
-        return this.f5253c.v(null, this);
+        this.f5214a = obj;
+        this.f5215b |= Integer.MIN_VALUE;
+        return this.f5216c.v(null, this);
     }
 }

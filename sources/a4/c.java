@@ -1,6 +1,6 @@
 package a4;
 
-import a8.la;
+import a8.ma;
 import f3.b0;
 import f3.p;
 import f3.t;
@@ -13,7 +13,7 @@ public final class c implements h {
     public Object d;
 
     public c(long j3, int i7) {
-        la.p(((b3.a) this.f160c) == null);
+        ma.p(((b3.a) this.f160c) == null);
         this.f158a = j3;
         this.f159b = j3 + i7;
     }
@@ -26,7 +26,7 @@ public final class c implements h {
         } else {
             z10 = false;
         }
-        la.p(z10);
+        ma.p(z10);
         return new t((u) this.f160c, this.f158a, 0);
     }
 
@@ -43,7 +43,7 @@ public final class c implements h {
 
     @Override
     public void v0(long j3) {
-        long[] jArr = (long[]) ((wf.b) this.d).f59715b;
+        long[] jArr = (long[]) ((wf.b) this.d).f59680b;
         this.f159b = jArr[l0.f(jArr, j3, true)];
     }
 

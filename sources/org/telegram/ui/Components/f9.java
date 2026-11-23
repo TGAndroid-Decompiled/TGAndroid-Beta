@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 public final class f9 implements te.f, we.a {
-    public final ImageReceiver f35160a;
-    public final b9 f35161b;
-    public long f35162c;
+    public final ImageReceiver f35135a;
+    public final b9 f35136b;
+    public long f35137c;
     public boolean d;
-    public final g9 f35163e;
+    public final g9 f35138e;
 
     public f9(g9 g9Var, View view) {
-        this.f35163e = g9Var;
+        this.f35138e = g9Var;
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f35160a = imageReceiver;
-        imageReceiver.J0(g9Var.f35481e / 2);
+        this.f35135a = imageReceiver;
+        imageReceiver.J0(g9Var.f35443e / 2);
         b9 b9Var = new b9((org.telegram.ui.ActionBar.h6) null);
-        this.f35161b = b9Var;
+        this.f35136b = b9Var;
         b9Var.u(org.telegram.messenger.g0.L(22.0f));
     }
 
@@ -23,9 +23,9 @@ public final class f9 implements te.f, we.a {
     public final void a() {
         if (this.d) {
             this.d = false;
-            this.f35160a.R();
+            this.f35135a.R();
         }
-        this.f35162c = 0L;
+        this.f35137c = 0L;
     }
 
     @Override
@@ -33,11 +33,11 @@ public final class f9 implements te.f, we.a {
         if (z10) {
             return 0;
         }
-        return -this.f35163e.f35482f;
+        return -this.f35138e.f35444f;
     }
 
     public final boolean equals(Object obj) {
-        if (!(obj instanceof f9) || this.f35162c != ((f9) obj).f35162c) {
+        if (!(obj instanceof f9) || this.f35137c != ((f9) obj).f35137c) {
             return false;
         }
         return true;
@@ -45,11 +45,11 @@ public final class f9 implements te.f, we.a {
 
     @Override
     public final int getHeight() {
-        return this.f35163e.f35481e;
+        return this.f35138e.f35443e;
     }
 
     @Override
     public final int getWidth() {
-        return this.f35163e.f35481e;
+        return this.f35138e.f35443e;
     }
 }

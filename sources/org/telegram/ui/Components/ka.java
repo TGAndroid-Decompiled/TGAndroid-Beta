@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 public abstract class ka extends sa {
     public final LinearLayout T1;
     public FrameLayout U1;
-    public hi.e V1;
+    public hi.d V1;
 
     public ka(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, null, false, false, h6Var);
@@ -27,6 +27,6 @@ public abstract class ka extends sa {
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f39532p1.setTitle(charSequence);
+        this.f39488p1.setTitle(charSequence);
     }
 }

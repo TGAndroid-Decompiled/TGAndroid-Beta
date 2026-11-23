@@ -2,32 +2,32 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 public final class wf0 implements Runnable {
-    public final int f53428a;
-    public final org.telegram.ui.ActionBar.g2 f53429b;
+    public final int f53391a;
+    public final org.telegram.ui.ActionBar.g2 f53392b;
 
     public wf0(int i7, org.telegram.ui.ActionBar.g2 g2Var) {
-        this.f53428a = i7;
-        this.f53429b = g2Var;
+        this.f53391a = i7;
+        this.f53392b = g2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f53428a) {
+        switch (this.f53391a) {
             case 0:
                 ?? obj = new Object();
-                obj.f28905a = true;
-                this.f53429b.showAsSheet(new PremiumPreviewFragment(0, "effect"), obj);
+                obj.f28871a = true;
+                this.f53392b.showAsSheet(new PremiumPreviewFragment(0, "effect"), obj);
                 return;
             case 1:
-                org.telegram.ui.ActionBar.g2 g2Var = this.f53429b;
+                org.telegram.ui.ActionBar.g2 g2Var = this.f53392b;
                 if (g2Var instanceof PremiumPreviewFragment) {
                     PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) g2Var;
-                    premiumPreviewFragment.f43486q0 = true;
+                    premiumPreviewFragment.f43451q0 = true;
                     premiumPreviewFragment.getMediaDataController().U0(false);
-                    premiumPreviewFragment.f43465a.y0(0);
+                    premiumPreviewFragment.f43430a.y0(0);
                 } else {
                     PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, null);
-                    premiumPreviewFragment2.f43486q0 = true;
+                    premiumPreviewFragment2.f43451q0 = true;
                     if (g2Var != null) {
                         g2Var.presentFragment(premiumPreviewFragment2);
                     } else {
@@ -42,96 +42,96 @@ public final class wf0 implements Runnable {
                         g2Var.getFragmentView().performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    ((LaunchActivity) g2Var.getParentActivity()).f43153w0.c(false);
+                    ((LaunchActivity) g2Var.getParentActivity()).f43118w0.c(false);
                     return;
                 }
                 return;
             case 2:
-                this.f53429b.presentFragment(new DataSettingsActivity());
+                this.f53392b.presentFragment(new DataSettingsActivity());
                 return;
             case 3:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 4:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 5:
-                this.f53429b.presentFragment(new WallpapersListActivity(0));
+                this.f53392b.presentFragment(new WallpapersListActivity(0));
                 return;
             case 6:
-                this.f53429b.presentFragment(new WallpapersListActivity(1));
+                this.f53392b.presentFragment(new WallpapersListActivity(1));
                 return;
             case 7:
-                this.f53429b.presentFragment(new NotificationsCustomSettingsActivity(2, new ArrayList(), null, true));
+                this.f53392b.presentFragment(new NotificationsCustomSettingsActivity(2, new ArrayList(), null, true));
                 return;
             case 8:
-                this.f53429b.presentFragment(new WallpapersListActivity(0));
+                this.f53392b.presentFragment(new WallpapersListActivity(0));
                 return;
             case 9:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 10:
-                org.telegram.messenger.o10.m(3, this.f53429b);
+                org.telegram.messenger.o10.m(3, this.f53392b);
                 return;
             case 11:
-                org.telegram.messenger.o10.m(3, this.f53429b);
+                org.telegram.messenger.o10.m(3, this.f53392b);
                 return;
             case 12:
-                org.telegram.ui.ActionBar.g2 g2Var2 = this.f53429b;
+                org.telegram.ui.ActionBar.g2 g2Var2 = this.f53392b;
                 ug.y0 y0Var = new ug.y0(g2Var2, 5, false);
                 y0Var.L0();
                 g2Var2.showDialog(y0Var);
                 return;
             case 13:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 14:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 15:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 16:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 17:
-                org.telegram.messenger.o10.m(1, this.f53429b);
+                org.telegram.messenger.o10.m(1, this.f53392b);
                 return;
             case 18:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 19:
-                this.f53429b.presentFragment(new NotificationsSettingsActivity());
+                this.f53392b.presentFragment(new NotificationsSettingsActivity());
                 return;
             case 20:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 21:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 22:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 23:
-                this.f53429b.presentFragment(new NotificationsSettingsActivity());
+                this.f53392b.presentFragment(new NotificationsSettingsActivity());
                 return;
             case 24:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 25:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 26:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 27:
-                org.telegram.messenger.o10.m(0, this.f53429b);
+                org.telegram.messenger.o10.m(0, this.f53392b);
                 return;
             case 28:
-                this.f53429b.presentFragment(new StickersActivity(0, null));
+                this.f53392b.presentFragment(new StickersActivity(0, null));
                 return;
             default:
-                this.f53429b.presentFragment(new StickersActivity(0, null));
+                this.f53392b.presentFragment(new StickersActivity(0, null));
                 return;
         }
     }

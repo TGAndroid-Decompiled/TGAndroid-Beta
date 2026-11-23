@@ -1,25 +1,25 @@
 package tg;
 
-import c8.ma;
-import hi.n4;
+import c8.na;
+import hi.o4;
 import java.util.List;
 import org.telegram.ui.Components.f21;
 import org.telegram.ui.Components.oz0;
 public final class n implements Runnable {
-    public final int f58063a;
-    public final h0 f58064b;
+    public final int f58028a;
+    public final h0 f58029b;
 
     public n(h0 h0Var, int i7) {
-        this.f58063a = i7;
-        this.f58064b = h0Var;
+        this.f58028a = i7;
+        this.f58029b = h0Var;
     }
 
     @Override
     public final void run() {
         int e10;
-        switch (this.f58063a) {
+        switch (this.f58028a) {
             case 0:
-                h0 h0Var = this.f58064b;
+                h0 h0Var = this.f58029b;
                 oz0 oz0Var = h0Var.K0;
                 if (oz0Var != null) {
                     h0Var.K0 = null;
@@ -28,28 +28,28 @@ public final class n implements Runnable {
                 }
                 return;
             case 1:
-                h0 h0Var2 = this.f58064b;
-                if (h0Var2.f57923o0 != null) {
-                    h0Var2.f57927q0.postRunnable(new n(h0Var2, 3), 200L);
+                h0 h0Var2 = this.f58029b;
+                if (h0Var2.f57888o0 != null) {
+                    h0Var2.f57892q0.postRunnable(new n(h0Var2, 3), 200L);
                     return;
                 }
                 return;
             case 2:
-                n1 n1Var = this.f58064b.V0;
+                n1 n1Var = this.f58029b.V0;
                 if (n1Var != null) {
                     n1Var.invalidate();
                     return;
                 }
                 return;
             case 3:
-                h0.Y(this.f58064b);
+                h0.Y(this.f58029b);
                 return;
             default:
-                h0 h0Var3 = this.f58064b;
-                boolean z10 = sg.k0.e(h0Var3.f57946z1).f57314k;
+                h0 h0Var3 = this.f58029b;
+                boolean z10 = sg.k0.e(h0Var3.f57911z1).f57279k;
                 int i7 = 0;
                 while (true) {
-                    List list = sg.g.f57241c;
+                    List list = sg.g.f57206c;
                     if (i7 < list.size()) {
                         sg.g gVar = (sg.g) list.get(i7);
                         if (z10) {
@@ -64,8 +64,8 @@ public final class n implements Runnable {
                         g0Var.setText(n10);
                         g0Var.setSelected(false);
                         g0Var.setOnClickListener(new u(f21Var, 0));
-                        g0Var.setOnLongClickListener(new n4(h0Var3, 6));
-                        h0Var3.C1.a(g0Var, ma.o(-1, 48));
+                        g0Var.setOnLongClickListener(new o4(h0Var3, 6));
+                        h0Var3.C1.a(g0Var, na.o(-1, 48));
                         i7++;
                     } else {
                         return;

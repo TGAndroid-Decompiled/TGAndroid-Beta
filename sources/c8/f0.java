@@ -1,11 +1,3 @@
 package c8;
-
-import java.util.Collections;
-import java.util.List;
 public abstract class f0 {
-    public static List a(Object obj) {
-        List singletonList = Collections.singletonList(obj);
-        kotlin.jvm.internal.j.d(singletonList, "singletonList(...)");
-        return singletonList;
-    }
 }

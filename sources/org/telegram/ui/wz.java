@@ -2,50 +2,50 @@ package org.telegram.ui;
 
 import android.view.ViewGroup;
 public final class wz extends org.telegram.ui.Components.dk0 {
-    public final c00 f53561c;
+    public final c00 f53478c;
 
     public wz(c00 c00Var) {
-        this.f53561c = c00Var;
+        this.f53478c = c00Var;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
+    public final boolean D(v4.e1 e1Var) {
         return true;
     }
 
     @Override
     public final int b() {
-        c00 c00Var = this.f53561c;
-        if (c00Var.f46355f.isEmpty()) {
+        c00 c00Var = this.f53478c;
+        if (c00Var.f46348f.isEmpty()) {
             return 0;
         }
-        return c00Var.f46355f.size() + (!c00Var.O ? 1 : 0);
+        return c00Var.f46348f.size() + (!c00Var.O ? 1 : 0);
     }
 
     @Override
     public final int d(int i7) {
-        if (i7 >= this.f53561c.f46355f.size()) {
+        if (i7 >= this.f53478c.f46348f.size()) {
             return 3;
         }
         return 0;
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
+    public final void t(v4.e1 e1Var, int i7) {
         boolean z10;
         boolean z11;
-        if (f1Var.f59169f == 0) {
-            org.telegram.ui.Cells.u2 u2Var = (org.telegram.ui.Cells.u2) f1Var.f59165a;
-            c00 c00Var = this.f53561c;
-            org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) c00Var.f46355f.get(i7);
-            u2Var.P = c00Var.f46367q0;
-            u2Var.d0(org.telegram.messenger.gj.B0(gjVar.f24213k), gjVar, gjVar.f24213k.date, false, false);
+        if (e1Var.f59115f == 0) {
+            org.telegram.ui.Cells.u2 u2Var = (org.telegram.ui.Cells.u2) e1Var.f59111a;
+            c00 c00Var = this.f53478c;
+            org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) c00Var.f46348f.get(i7);
+            u2Var.P = c00Var.f46360q0;
+            u2Var.d0(org.telegram.messenger.gj.B0(gjVar.f24177k), gjVar, gjVar.f24177k.date, false, false);
             if (i7 != b() - 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            u2Var.f32018t2 = z10;
+            u2Var.f31984t2 = z10;
             if (u2Var.getMessage() != null && u2Var.getMessage().e1() == gjVar.e1()) {
                 z11 = true;
             } else {
@@ -56,7 +56,7 @@ public final class wz extends org.telegram.ui.Components.dk0 {
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         jg.a0 a0Var;
         if (i7 != 0) {
             if (i7 != 3) {

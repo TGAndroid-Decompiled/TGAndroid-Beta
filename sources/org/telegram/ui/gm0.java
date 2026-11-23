@@ -8,41 +8,41 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class gm0 extends Drawable {
-    public static final int f48141j = 0;
-    public float f48142a = org.telegram.messenger.g0.N(10.6665f);
-    public final boolean f48143b;
-    public Paint f48144c;
+    public static final int f48077j = 0;
+    public float f48078a = org.telegram.messenger.g0.N(10.6665f);
+    public final boolean f48079b;
+    public Paint f48080c;
     public final Paint d;
-    public final Paint f48145e;
-    public final Paint f48146f;
-    public final Path f48147g;
+    public final Paint f48081e;
+    public final Paint f48082f;
+    public final Path f48083g;
     public final Path h;
-    public final org.telegram.ui.Components.n5 f48148i;
+    public final org.telegram.ui.Components.n5 f48084i;
 
     public gm0(int i7, int i10, int i11) {
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(1);
-        this.f48145e = paint2;
+        this.f48081e = paint2;
         Paint paint3 = new Paint(1);
-        this.f48146f = paint3;
-        this.f48147g = new Path();
+        this.f48082f = paint3;
+        this.f48083g = new Path();
         this.h = new Path();
-        this.f48143b = i11 != i7;
+        this.f48079b = i11 != i7;
         paint.setColor(i7);
         paint2.setColor(i10);
         paint3.setColor(i11);
-        this.f48148i = null;
+        this.f48084i = null;
         d();
     }
 
     public static gm0 a(int i7, int i10) {
         org.telegram.messenger.cp cpVar = null;
         if (i10 < 7) {
-            int[] iArr = org.telegram.ui.ActionBar.m6.f29642r8;
+            int[] iArr = org.telegram.ui.ActionBar.m6.f29608r8;
             return new gm0(org.telegram.ui.ActionBar.m6.x0(null, iArr[i10], false), org.telegram.ui.ActionBar.m6.x0(null, iArr[i10], false), org.telegram.ui.ActionBar.m6.x0(null, iArr[i10], false));
         }
-        org.telegram.messenger.dp dpVar = org.telegram.messenger.np.u1(i7).f25966t4;
+        org.telegram.messenger.dp dpVar = org.telegram.messenger.np.u1(i7).f25930t4;
         if (dpVar != null) {
             cpVar = dpVar.d(i10);
         }
@@ -71,7 +71,7 @@ public final class gm0 extends Drawable {
 
     public static gm0 c(int i7, int i10) {
         org.telegram.messenger.cp d;
-        org.telegram.messenger.dp dpVar = org.telegram.messenger.np.u1(i7).f25974u4;
+        org.telegram.messenger.dp dpVar = org.telegram.messenger.np.u1(i7).f25938u4;
         if (dpVar == null) {
             d = null;
         } else {
@@ -83,38 +83,38 @@ public final class gm0 extends Drawable {
     public final void d() {
         Path path = this.h;
         path.rewind();
-        float f10 = this.f48142a;
+        float f10 = this.f48078a;
         path.addCircle(f10, f10, f10, Path.Direction.CW);
-        Path path2 = this.f48147g;
+        Path path2 = this.f48083g;
         path2.rewind();
-        path2.moveTo(this.f48142a * 2.0f, 0.0f);
-        float f11 = this.f48142a;
+        path2.moveTo(this.f48078a * 2.0f, 0.0f);
+        float f11 = this.f48078a;
         path2.lineTo(f11 * 2.0f, f11 * 2.0f);
-        path2.lineTo(0.0f, this.f48142a * 2.0f);
+        path2.lineTo(0.0f, this.f48078a * 2.0f);
         path2.close();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         canvas.save();
-        canvas.translate(getBounds().centerX() - this.f48142a, getBounds().centerY() - this.f48142a);
-        Paint paint = this.f48144c;
+        canvas.translate(getBounds().centerX() - this.f48078a, getBounds().centerY() - this.f48078a);
+        Paint paint = this.f48080c;
         if (paint != null) {
-            float f10 = this.f48142a;
+            float f10 = this.f48078a;
             canvas.drawCircle(f10, f10, f10, paint);
         }
         canvas.clipPath(this.h);
         canvas.drawPaint(this.d);
-        canvas.drawPath(this.f48147g, this.f48145e);
-        if (this.f48143b) {
+        canvas.drawPath(this.f48083g, this.f48081e);
+        if (this.f48079b) {
             RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(this.f48142a - org.telegram.messenger.g0.L(3.66f), this.f48142a - org.telegram.messenger.g0.L(3.66f), this.f48142a + org.telegram.messenger.g0.L(3.66f), this.f48142a + org.telegram.messenger.g0.L(3.66f));
-            float f11 = this.f48142a;
+            rectF.set(this.f48078a - org.telegram.messenger.g0.L(3.66f), this.f48078a - org.telegram.messenger.g0.L(3.66f), this.f48078a + org.telegram.messenger.g0.L(3.66f), this.f48078a + org.telegram.messenger.g0.L(3.66f));
+            float f11 = this.f48078a;
             canvas.rotate(45.0f, f11, f11);
-            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.33f), org.telegram.messenger.g0.L(2.33f), this.f48146f);
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.33f), org.telegram.messenger.g0.L(2.33f), this.f48082f);
         }
         canvas.restore();
-        org.telegram.ui.Components.n5 n5Var = this.f48148i;
+        org.telegram.ui.Components.n5 n5Var = this.f48084i;
         if (n5Var != null) {
             int L = org.telegram.messenger.g0.L(14.0f) / 2;
             n5Var.setBounds(getBounds().centerX() - L, getBounds().centerY() - L, getBounds().centerX() + L, getBounds().centerY() + L);
@@ -123,7 +123,7 @@ public final class gm0 extends Drawable {
     }
 
     public final void e(View view) {
-        org.telegram.ui.Components.n5 n5Var = this.f48148i;
+        org.telegram.ui.Components.n5 n5Var = this.f48084i;
         if (view == null) {
             if (n5Var != null) {
                 n5Var.b();
@@ -139,23 +139,23 @@ public final class gm0 extends Drawable {
     }
 
     public final void f(float f10, int i7) {
-        if (this.f48144c == null) {
+        if (this.f48080c == null) {
             Paint paint = new Paint(1);
-            this.f48144c = paint;
+            this.f48080c = paint;
             paint.setStyle(Paint.Style.STROKE);
         }
-        this.f48144c.setStrokeWidth(f10);
-        this.f48144c.setColor(i7);
+        this.f48080c.setStrokeWidth(f10);
+        this.f48080c.setColor(i7);
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return (int) (this.f48142a * 2.0f);
+        return (int) (this.f48078a * 2.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return (int) (this.f48142a * 2.0f);
+        return (int) (this.f48078a * 2.0f);
     }
 
     @Override
@@ -167,18 +167,18 @@ public final class gm0 extends Drawable {
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(1);
-        this.f48145e = paint2;
+        this.f48081e = paint2;
         Paint paint3 = new Paint(1);
-        this.f48146f = paint3;
-        this.f48147g = new Path();
+        this.f48082f = paint3;
+        this.f48083g = new Path();
         this.h = new Path();
-        this.f48143b = i11 != i7;
+        this.f48079b = i11 != i7;
         paint.setColor(i7);
         paint2.setColor(i10);
         paint3.setColor(i11);
         d();
         org.telegram.ui.Components.n5 n5Var = new org.telegram.ui.Components.n5(org.telegram.messenger.g0.L(14.0f), null);
-        this.f48148i = n5Var;
+        this.f48084i = n5Var;
         n5Var.j(j3, false);
     }
 

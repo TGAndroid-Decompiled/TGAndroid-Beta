@@ -1,12 +1,12 @@
 package m;
 
-import hi.w4;
-public final class y0 extends w4 {
-    public final z0 f20293c;
+import hi.x4;
+public final class y0 extends x4 {
+    public final z0 f20259c;
 
     public y0(z0 z0Var) {
         super(z0Var, 11);
-        this.f20293c = z0Var;
+        this.f20259c = z0Var;
     }
 
     @Override

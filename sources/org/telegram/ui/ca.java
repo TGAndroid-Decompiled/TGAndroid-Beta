@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ca implements org.telegram.ui.Components.qj0 {
-    public final la f46501a;
+    public final la f46487a;
 
     public ca(la laVar) {
-        this.f46501a = laVar;
+        this.f46487a = laVar;
     }
 
     @Override
@@ -16,29 +16,29 @@ public final class ca implements org.telegram.ui.Components.qj0 {
         int i11;
         int i12;
         boolean z10 = view instanceof ia;
-        la laVar = this.f46501a;
+        la laVar = this.f46487a;
         if (z10) {
             ia iaVar = (ia) view;
-            TLRPC.TL_username tL_username = iaVar.f48707w;
-            if (tL_username != null && !iaVar.f48705r) {
-                if (tL_username.editable && laVar.f49541y == 0) {
-                    laVar.f49532b.y0(0);
+            TLRPC.TL_username tL_username = iaVar.f48687w;
+            if (tL_username != null && !iaVar.f48685r) {
+                if (tL_username.editable && laVar.f49517y == 0) {
+                    laVar.f49508b.y0(0);
                     laVar.j0(true);
                     return;
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, laVar.getParentActivity(), laVar.getResourceProvider());
                 if (tL_username.active) {
-                    i10 = 2131743419;
+                    i10 = 2131743421;
                 } else {
-                    i10 = 2131743426;
+                    i10 = 2131743428;
                 }
                 String N0 = org.telegram.messenger.hd.N0(i10, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                 t1Var.S = N0;
                 if (tL_username.active) {
-                    i11 = 2131743417;
+                    i11 = 2131743419;
                 } else {
-                    i11 = 2131743424;
+                    i11 = 2131743426;
                 }
                 t1Var.U = org.telegram.messenger.hd.N0(i11, null);
                 if (tL_username.active) {

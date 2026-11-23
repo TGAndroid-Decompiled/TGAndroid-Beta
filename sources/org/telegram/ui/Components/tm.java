@@ -14,16 +14,16 @@ import java.util.List;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.messenger.b20, org.telegram.messenger.pi, a5, org.telegram.messenger.kc, org.telegram.messenger.mr, p4.m0, m9.q, w5.b, v5.e, h2.j {
-    public final int f39942a;
-    public final Object f39943b;
-    public final Object f39944c;
+public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.messenger.b20, org.telegram.messenger.pi, a5, org.telegram.messenger.kc, org.telegram.messenger.mr, p4.l0, m9.q, w5.b, v5.e, h2.j {
+    public final int f39896a;
+    public final Object f39897b;
+    public final Object f39898c;
     public final Object d;
 
     public tm(Object obj, Object obj2, Object obj3, int i7) {
-        this.f39942a = i7;
-        this.f39943b = obj;
-        this.f39944c = obj2;
+        this.f39896a = i7;
+        this.f39897b = obj;
+        this.f39898c = obj2;
         this.d = obj3;
     }
 
@@ -34,26 +34,26 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void a(int i7, TLObject tLObject) {
-        as asVar = (as) this.f39943b;
-        ArrayList arrayList = (ArrayList) this.f39944c;
+        as asVar = (as) this.f39897b;
+        ArrayList arrayList = (ArrayList) this.f39898c;
         ArrayList arrayList2 = (ArrayList) this.d;
         long d = org.telegram.messenger.n5.d(tLObject);
         int size = arrayList.size();
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
-            org.telegram.messenger.np.u1(asVar.f30173a).h0(-asVar.U1.f28434id, ((Integer) arrayList.get(i11)).intValue(), d);
+            org.telegram.messenger.np.u1(asVar.f30139a).h0(-asVar.U1.f28398id, ((Integer) arrayList.get(i11)).intValue(), d);
         }
         int size2 = arrayList2.size();
         while (i10 < size2) {
             Object obj = arrayList2.get(i10);
             i10++;
-            org.telegram.messenger.np.u1(asVar.f30173a).h0(asVar.Y1, ((Integer) obj).intValue(), d);
+            org.telegram.messenger.np.u1(asVar.f30139a).h0(asVar.Y1, ((Integer) obj).intValue(), d);
         }
     }
 
     @Override
     public void accept(Object obj) {
-        ((x2.k0) obj).C(((a8.xa) this.f39943b).f713b, (x2.g0) this.f39944c, (x2.c0) this.d);
+        ((x2.k0) obj).C(((a8.xa) this.f39897b).f713b, (x2.g0) this.f39898c, (x2.c0) this.d);
     }
 
     @Override
@@ -63,33 +63,33 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void d(boolean z10) {
-        TLRPC.Chat chat = (TLRPC.Chat) this.f39943b;
-        org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f39944c;
+        TLRPC.Chat chat = (TLRPC.Chat) this.f39897b;
+        org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f39898c;
         org.telegram.ui.Components.voip.b2.l(chat, null, true, null, g2Var.getParentActivity(), g2Var, (org.telegram.messenger.c) this.d);
     }
 
     @Override
     public void e(String str, ArrayList arrayList) {
-        switch (this.f39942a) {
+        switch (this.f39896a) {
             case 2:
                 Runnable runnable = (Runnable) this.d;
-                sx sxVar = ((rx) this.f39943b).f39367a;
-                if (((String) this.f39944c).equals(sxVar.f39715w)) {
-                    sxVar.f39716x = str;
-                    sxVar.f39712n.addAll(arrayList);
+                sx sxVar = ((rx) this.f39897b).f39323a;
+                if (((String) this.f39898c).equals(sxVar.f39670w)) {
+                    sxVar.f39671x = str;
+                    sxVar.f39667n.addAll(arrayList);
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                ny nyVar = (ny) this.f39943b;
-                HashMap hashMap = (HashMap) this.f39944c;
+                ny nyVar = (ny) this.f39897b;
+                HashMap hashMap = (HashMap) this.f39898c;
                 Runnable runnable2 = (Runnable) this.d;
-                HashMap hashMap2 = nyVar.f38010f;
-                if (nyVar.f38015x.N == nyVar.f38007b) {
+                HashMap hashMap2 = nyVar.f37977f;
+                if (nyVar.f37982x.N == nyVar.f37974b) {
                     int size = arrayList.size();
                     for (int i7 = 0; i7 < size; i7++) {
-                        String str2 = ((org.telegram.messenger.oi) arrayList.get(i7)).f26126a;
+                        String str2 = ((org.telegram.messenger.oi) arrayList.get(i7)).f26090a;
                         ArrayList arrayList2 = (ArrayList) hashMap.get(str2);
                         if (arrayList2 != null && !arrayList2.isEmpty() && !hashMap2.containsKey(arrayList2)) {
                             hashMap2.put(arrayList2, str2);
@@ -105,29 +105,29 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void f(p4.v vVar) {
-        Bundle bundle = (Bundle) this.f39944c;
+        Bundle bundle = (Bundle) this.f39898c;
         ResultReceiver resultReceiver = (ResultReceiver) this.d;
-        p4.e0 e0Var = ((p4.n0) this.f39943b).h;
+        p4.d0 d0Var = ((p4.m0) this.f39897b).h;
         if (bundle == null) {
             Bundle bundle2 = Bundle.EMPTY;
         }
-        m9.w n10 = e0Var.n(vVar);
+        m9.w n10 = d0Var.n(vVar);
         if (resultReceiver != null) {
-            n10.b(new p4.z(1, n10, resultReceiver), m9.r.f20983a);
+            n10.b(new org.telegram.ui.Wallet.c5(29, n10, resultReceiver), m9.r.f20949a);
         }
     }
 
     @Override
     public Object g() {
-        t5.a aVar = (t5.a) this.f39943b;
-        o5.i iVar = (o5.i) this.f39944c;
+        t5.a aVar = (t5.a) this.f39897b;
+        o5.i iVar = (o5.i) this.f39898c;
         o5.h hVar = (o5.h) this.d;
         v5.g gVar = (v5.g) aVar.d;
         gVar.getClass();
-        l5.d dVar = iVar.f21741c;
-        String str = hVar.f21731a;
-        String str2 = iVar.f21739a;
-        String c10 = c8.gc.c("SQLiteEventStore");
+        l5.d dVar = iVar.f21707c;
+        String str = hVar.f21697a;
+        String str2 = iVar.f21705a;
+        String c10 = c8.hc.c("SQLiteEventStore");
         if (Log.isLoggable(c10, 3)) {
             StringBuilder sb2 = new StringBuilder("Storing event with priority=");
             sb2.append(dVar);
@@ -137,16 +137,16 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
             p5.c.t(sb2, str2, c10);
         }
         ((Long) gVar.c(new tm(gVar, hVar, iVar, 14))).getClass();
-        aVar.f57659a.H(iVar, 1, false);
+        aVar.f57624a.H(iVar, 1, false);
         return null;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        int i10 = this.f39942a;
+        int i10 = this.f39896a;
         Object obj = this.d;
-        Object obj2 = this.f39944c;
-        Object obj3 = this.f39943b;
+        Object obj2 = this.f39898c;
+        Object obj3 = this.f39897b;
         switch (i10) {
             case 0:
                 tn tnVar = (tn) obj3;
@@ -158,8 +158,8 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
             case 5:
                 jt0 jt0Var = (jt0) obj3;
                 ArrayList arrayList = (ArrayList) obj;
-                ((fi.a6) obj2).F(arrayList);
-                lc.b0(jt0Var.f36683y1).Q(2131624052, 36, org.telegram.messenger.hd.G(arrayList.size(), "BotPreviewsDeleted", new Object[0])).j();
+                ((fi.z5) obj2).F(arrayList);
+                lc.b0(jt0Var.f36638y1).Q(2131624052, 36, org.telegram.messenger.hd.G(arrayList.size(), "BotPreviewsDeleted", new Object[0])).j();
                 jt0Var.V(false);
                 return;
             case 8:
@@ -179,8 +179,8 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
                 k0Var.dismiss();
                 for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                     TLRPC.Chat chat = (TLRPC.Chat) arrayList2.get(i11);
-                    org.telegram.messenger.np.u1(k0Var.f30173a).X3(chat, false);
-                    org.telegram.messenger.np.u1(k0Var.f30173a).f0(chat.f28434id, user);
+                    org.telegram.messenger.np.u1(k0Var.f30139a).X3(chat, false);
+                    org.telegram.messenger.np.u1(k0Var.f30139a).f0(chat.f28398id, user);
                 }
                 return;
         }
@@ -190,12 +190,12 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
     public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         Bitmap bitmap;
         int i7;
-        k01 k01Var = (k01) this.f39943b;
-        mp mpVar = (mp) this.f39944c;
+        k01 k01Var = (k01) this.f39897b;
+        mp mpVar = (mp) this.f39898c;
         TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.d;
         org.telegram.messenger.ic p10 = imageReceiver.p();
-        if (z10 && p10 != null && (bitmap = p10.f24704c) != null) {
-            Drawable drawable = mpVar.f37593b;
+        if (z10 && p10 != null && (bitmap = p10.f24668c) != null) {
+            Drawable drawable = mpVar.f37549b;
             if (drawable instanceof cb0) {
                 cb0 cb0Var = (cb0) drawable;
                 TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
@@ -211,10 +211,10 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
         }
     }
 
-    public tm(p4.n0 n0Var, p4.k1 k1Var, Bundle bundle, ResultReceiver resultReceiver) {
-        this.f39942a = 9;
-        this.f39943b = n0Var;
-        this.f39944c = bundle;
+    public tm(p4.m0 m0Var, p4.k1 k1Var, Bundle bundle, ResultReceiver resultReceiver) {
+        this.f39896a = 9;
+        this.f39897b = m0Var;
+        this.f39898c = bundle;
         this.d = resultReceiver;
     }
 
@@ -228,30 +228,30 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public m9.y apply(Object obj) {
-        int i7 = this.f39942a;
+        int i7 = this.f39896a;
         Object obj2 = this.d;
-        Object obj3 = this.f39944c;
-        Object obj4 = this.f39943b;
+        Object obj3 = this.f39898c;
+        Object obj4 = this.f39897b;
         switch (i7) {
             case 10:
-                p4.e0 e0Var = (p4.e0) obj4;
-                Handler handler = e0Var.f55241l;
-                org.telegram.ui.Wallet.u4 u4Var = new org.telegram.ui.Wallet.u4(e0Var, (p4.v) obj3, new es0(e0Var, (p4.r0) obj2, (p4.w) obj, 21));
+                p4.d0 d0Var = (p4.d0) obj4;
+                Handler handler = d0Var.f55197l;
+                org.telegram.ui.Wallet.c5 c5Var = new org.telegram.ui.Wallet.c5(d0Var, (p4.v) obj3, new es0(d0Var, (p4.r0) obj2, (p4.w) obj, 21));
                 p4.o1 o1Var = new p4.o1(0);
-                String str = h2.l0.f13815a;
+                String str = h2.l0.f13778a;
                 ?? obj5 = new Object();
-                h2.l0.W(handler, new di.a8(obj5, u4Var, o1Var, 11));
+                h2.l0.W(handler, new di.a8(obj5, c5Var, o1Var, 11));
                 return obj5;
             default:
-                p4.e0 e0Var2 = (p4.e0) obj4;
+                p4.d0 d0Var2 = (p4.d0) obj4;
                 p4.v vVar = (p4.v) obj3;
                 List list = (List) obj;
-                Handler handler2 = e0Var2.f55241l;
-                org.telegram.ui.Wallet.u4 u4Var2 = new org.telegram.ui.Wallet.u4(e0Var2, vVar, new p4.s0(e0Var2, (Object) ((p4.b1) obj2), (Object) vVar, (Object) list, 2));
+                Handler handler2 = d0Var2.f55197l;
+                org.telegram.ui.Wallet.c5 c5Var2 = new org.telegram.ui.Wallet.c5(d0Var2, vVar, new p4.s0(d0Var2, (Object) ((p4.b1) obj2), (Object) vVar, (Object) list, 2));
                 p4.o1 o1Var2 = new p4.o1(0);
-                String str2 = h2.l0.f13815a;
+                String str2 = h2.l0.f13778a;
                 ?? obj6 = new Object();
-                h2.l0.W(handler2, new di.a8(obj6, u4Var2, o1Var2, 11));
+                h2.l0.W(handler2, new di.a8(obj6, c5Var2, o1Var2, 11));
                 return obj6;
         }
     }

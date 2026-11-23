@@ -1,23 +1,21 @@
 package a8;
+
+import android.os.Bundle;
+import j$.util.DesugarCollections;
+import java.util.HashMap;
+import java.util.Map;
 public abstract class n8 {
-    public static String a(String str) {
-        int length = str.length();
-        int i7 = 0;
-        while (i7 < length) {
-            char charAt = str.charAt(i7);
-            if (charAt >= 'a' && charAt <= 'z') {
-                char[] charArray = str.toCharArray();
-                while (i7 < length) {
-                    char c10 = charArray[i7];
-                    if (c10 >= 'a' && c10 <= 'z') {
-                        charArray[i7] = (char) (c10 ^ ' ');
-                    }
-                    i7++;
-                }
-                return String.valueOf(charArray);
-            }
-            i7++;
+    public static Map a(String str, Bundle bundle) {
+        Map map = (Map) bundle.getSerializable(str);
+        if (map == null) {
+            return com.google.android.gms.internal.cast.p0.f6610n;
         }
-        return str;
+        HashMap hashMap = new HashMap();
+        for (Map.Entry entry : map.entrySet()) {
+            if (entry != null && entry.getKey() != null && entry.getValue() != null) {
+                hashMap.put((Integer) entry.getKey(), (Integer) entry.getValue());
+            }
+        }
+        return DesugarCollections.unmodifiableMap(hashMap);
     }
 }

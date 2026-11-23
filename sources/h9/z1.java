@@ -1,30 +1,30 @@
 package h9;
 
-import a8.la;
+import a8.ma;
 public final class z1 extends r0 {
-    public static final z1 f14128n;
-    public final transient q1 f14129e;
-    public final transient int f14130f;
+    public static final z1 f14091n;
+    public final transient q1 f14092e;
+    public final transient int f14093f;
     public transient q0 h;
 
     static {
         ?? obj = new Object();
         obj.d(3);
-        f14128n = new z1(obj);
+        f14091n = new z1(obj);
     }
 
     public z1(q1 q1Var) {
-        this.f14129e = q1Var;
+        this.f14092e = q1Var;
         long j3 = 0;
         int i7 = 0;
         while (true) {
-            int i10 = q1Var.f14079c;
+            int i10 = q1Var.f14042c;
             if (i7 < i10) {
-                la.j(i7, i10);
-                j3 += q1Var.f14078b[i7];
+                ma.j(i7, i10);
+                j3 += q1Var.f14041b[i7];
                 i7++;
             } else {
-                this.f14130f = c8.k1.e(j3);
+                this.f14093f = c8.l1.e(j3);
                 return;
             }
         }
@@ -48,6 +48,6 @@ public final class z1 extends r0 {
 
     @Override
     public final int size() {
-        return this.f14130f;
+        return this.f14093f;
     }
 }

@@ -3,21 +3,21 @@ package org.telegram.messenger;
 import android.util.SparseArray;
 import java.util.ArrayList;
 public final class ss implements Runnable {
-    public final int f26906a;
-    public final ys f26907b;
-    public final int f26908c;
+    public final int f26870a;
+    public final ys f26871b;
+    public final int f26872c;
 
     public ss(ys ysVar, int i7, int i10) {
-        this.f26906a = i10;
-        this.f26907b = ysVar;
-        this.f26908c = i7;
+        this.f26870a = i10;
+        this.f26871b = ysVar;
+        this.f26872c = i7;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26906a;
-        int i10 = this.f26908c;
-        ys ysVar = this.f26907b;
+        int i7 = this.f26870a;
+        int i10 = this.f26872c;
+        ys ysVar = this.f26871b;
         switch (i7) {
             case 0:
                 ls.e().k(286, Integer.valueOf(ysVar.currentAccount));
@@ -37,31 +37,31 @@ public final class ss implements Runnable {
                 return;
             case 4:
                 if (ysVar.J == 0) {
-                    ysVar.f28194w.clear();
+                    ysVar.f28158w.clear();
                     ls.e().k(257, new Object[0]);
                 }
                 ls.e().k(286, Integer.valueOf(ysVar.currentAccount));
                 ysVar.getNotificationCenter().k(147, Integer.valueOf(i10));
                 return;
             case 5:
-                a0.h hVar = ysVar.f28180c;
-                ArrayList arrayList = ysVar.f28176a;
+                a0.h hVar = ysVar.f28144c;
+                ArrayList arrayList = ysVar.f28140a;
                 int i11 = 0;
                 boolean z10 = false;
                 while (i11 < arrayList.size()) {
                     gj gjVar = (gj) arrayList.get(i11);
                     if (gjVar.J && Math.abs(gjVar.e1()) == i10) {
                         arrayList.remove(i11);
-                        SparseArray sparseArray = (SparseArray) hVar.f(gj.B0(gjVar.f24213k));
+                        SparseArray sparseArray = (SparseArray) hVar.f(gj.B0(gjVar.f24177k));
                         if (sparseArray != null) {
                             sparseArray.remove(gjVar.e1());
                         }
                         if (sparseArray != null && sparseArray.size() <= 0) {
-                            hVar.l(gj.B0(gjVar.f24213k));
+                            hVar.l(gj.B0(gjVar.f24177k));
                         }
                         ArrayList arrayList2 = new ArrayList();
                         arrayList2.add(Integer.valueOf(gjVar.e1()));
-                        ysVar.getMessagesStorage().E(arrayList2, gj.B0(gjVar.f24213k));
+                        ysVar.getMessagesStorage().E(arrayList2, gj.B0(gjVar.f24177k));
                         i11--;
                         z10 = true;
                     }
@@ -79,7 +79,7 @@ public final class ss implements Runnable {
                 ysVar.M(hVar2, false);
                 return;
             case 7:
-                if (s2.f26730a) {
+                if (s2.f26694a) {
                     a8.b("set last online from other device = " + i10);
                 }
                 ysVar.M = i10;

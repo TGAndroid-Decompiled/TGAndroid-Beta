@@ -1,7 +1,7 @@
 package h9;
 public final class p0 extends c0 {
-    public q1 f14069a;
-    public boolean f14070b;
+    public q1 f14032a;
+    public boolean f14033b;
 
     @Override
     public final c0 a(Object obj) {

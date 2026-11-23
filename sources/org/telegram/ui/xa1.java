@@ -5,23 +5,23 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class xa1 implements Runnable {
-    public final int f53808a;
-    public final bb1 f53809b;
-    public final TLRPC.TL_error f53810c;
+    public final int f53728a;
+    public final bb1 f53729b;
+    public final TLRPC.TL_error f53730c;
 
     public xa1(bb1 bb1Var, TLRPC.TL_error tL_error, int i7) {
-        this.f53808a = i7;
-        this.f53809b = bb1Var;
-        this.f53810c = tL_error;
+        this.f53728a = i7;
+        this.f53729b = bb1Var;
+        this.f53730c = tL_error;
     }
 
     @Override
     public final void run() {
         String G;
         String G2;
-        int i7 = this.f53808a;
-        TLRPC.TL_error tL_error = this.f53810c;
-        bb1 bb1Var = this.f53809b;
+        int i7 = this.f53728a;
+        TLRPC.TL_error tL_error = this.f53730c;
+        bb1 bb1Var = this.f53729b;
         switch (i7) {
             case 0:
                 bb1Var.B0();
@@ -30,9 +30,9 @@ public final class xa1 implements Runnable {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bb1Var.getParentActivity());
                     alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131747637, null), new ta1(bb1Var, 3));
                     String N0 = org.telegram.messenger.hd.N0(2131747242, null);
-                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                     t1Var.U = N0;
-                    t1Var.S = org.telegram.messenger.hd.N0(2131743686, null);
+                    t1Var.S = org.telegram.messenger.hd.N0(2131743688, null);
                     Dialog showDialog = bb1Var.showDialog(t1Var);
                     if (showDialog != null) {
                         showDialog.setCanceledOnTouchOutside(false);
@@ -47,10 +47,10 @@ public final class xa1 implements Runnable {
                     } else {
                         G = org.telegram.messenger.hd.G(intValue / 60, "Minutes", new Object[0]);
                     }
-                    bb1Var.L0(org.telegram.messenger.hd.N0(2131743686, null), org.telegram.messenger.hd.a0("FloodWaitTime", null, 2131750669, G));
+                    bb1Var.L0(org.telegram.messenger.hd.N0(2131743688, null), org.telegram.messenger.hd.a0("FloodWaitTime", null, 2131750669, G));
                     return;
                 } else {
-                    bb1Var.L0(org.telegram.messenger.hd.N0(2131743686, null), tL_error.text);
+                    bb1Var.L0(org.telegram.messenger.hd.N0(2131743688, null), tL_error.text);
                     return;
                 }
             case 1:

@@ -2,26 +2,26 @@ package org.telegram.messenger;
 
 import java.io.File;
 public final class zd implements Runnable {
-    public final MediaController f28315a;
-    public final boolean f28316b;
-    public final boolean f28317c;
+    public final MediaController f28279a;
+    public final boolean f28280b;
+    public final boolean f28281c;
     public final kf d;
-    public final File f28318e;
-    public final float f28319f;
+    public final File f28282e;
+    public final float f28283f;
     public final long h;
-    public final boolean f28320n;
-    public final long f28321r;
+    public final boolean f28284n;
+    public final long f28285r;
 
     public zd(MediaController mediaController, boolean z10, boolean z11, kf kfVar, File file, float f10, long j3, boolean z12, long j10) {
-        this.f28315a = mediaController;
-        this.f28316b = z10;
-        this.f28317c = z11;
+        this.f28279a = mediaController;
+        this.f28280b = z10;
+        this.f28281c = z11;
         this.d = kfVar;
-        this.f28318e = file;
-        this.f28319f = f10;
+        this.f28282e = file;
+        this.f28283f = f10;
         this.h = j3;
-        this.f28320n = z12;
-        this.f28321r = j10;
+        this.f28284n = z12;
+        this.f28285r = j10;
     }
 
     @Override
@@ -31,46 +31,46 @@ public final class zd implements Runnable {
         VideoEncodingService videoEncodingService;
         char c11;
         long j3;
-        MediaController mediaController = this.f28315a;
-        boolean z11 = this.f28316b;
-        boolean z12 = this.f28317c;
+        MediaController mediaController = this.f28279a;
+        boolean z11 = this.f28280b;
+        boolean z12 = this.f28281c;
         kf kfVar = this.d;
-        File file = this.f28318e;
-        float f10 = this.f28319f;
+        File file = this.f28282e;
+        float f10 = this.f28283f;
         long j10 = this.h;
-        boolean z13 = this.f28320n;
-        long j11 = this.f28321r;
+        boolean z13 = this.f28284n;
+        long j11 = this.f28285r;
         String[] strArr = MediaController.W1;
         if (!z11 && !z12) {
             c10 = 1;
         } else {
-            boolean z14 = kfVar.f25063b.W;
-            synchronized (mediaController.f22727b) {
+            boolean z14 = kfVar.f25027b.W;
+            synchronized (mediaController.f22691b) {
                 c10 = 1;
-                kfVar.f25063b.W = false;
+                kfVar.f25027b.W = false;
             }
-            mediaController.f22731c0.remove(kfVar);
-            mediaController.f22725a0.remove(kfVar);
+            mediaController.f22695c0.remove(kfVar);
+            mediaController.f22689a0.remove(kfVar);
             if (!z14 && !z11) {
                 z10 = false;
             } else {
                 z10 = true;
             }
             mediaController.k(z10);
-            if (kfVar.d && (videoEncodingService = VideoEncodingService.f22817e) != null && videoEncodingService.f22819b == kfVar) {
-                kf kfVar2 = MediaController.B().f22728b0;
+            if (kfVar.d && (videoEncodingService = VideoEncodingService.f22781e) != null && videoEncodingService.f22783b == kfVar) {
+                kf kfVar2 = MediaController.B().f22692b0;
                 if (kfVar2 != null) {
-                    VideoEncodingService.f22817e.a(kfVar2);
+                    VideoEncodingService.f22781e.a(kfVar2);
                 } else {
-                    VideoEncodingService.f22817e.stopSelf();
+                    VideoEncodingService.f22781e.stopSelf();
                 }
             }
             mediaController.y0();
         }
         if (z11) {
-            ls f11 = ls.f(kfVar.f25064c);
-            int i7 = ls.f25289c2;
-            gj gjVar = kfVar.f25062a;
+            ls f11 = ls.f(kfVar.f25028c);
+            int i7 = ls.f25253c2;
+            gj gjVar = kfVar.f25026a;
             String file2 = file.toString();
             Float valueOf = Float.valueOf(f10);
             Long valueOf2 = Long.valueOf(j10);
@@ -83,9 +83,9 @@ public final class zd implements Runnable {
             return;
         }
         if (z13) {
-            ls f12 = ls.f(kfVar.f25064c);
-            int i10 = ls.f25276a2;
-            gj gjVar2 = kfVar.f25062a;
+            ls f12 = ls.f(kfVar.f25028c);
+            int i10 = ls.f25240a2;
+            gj gjVar2 = kfVar.f25026a;
             String file3 = file.toString();
             Float valueOf3 = Float.valueOf(f10);
             Long valueOf4 = Long.valueOf(j10);
@@ -99,9 +99,9 @@ public final class zd implements Runnable {
         } else {
             c11 = 3;
         }
-        ls f13 = ls.f(kfVar.f25064c);
-        int i11 = ls.f25283b2;
-        gj gjVar3 = kfVar.f25062a;
+        ls f13 = ls.f(kfVar.f25028c);
+        int i11 = ls.f25247b2;
+        gj gjVar3 = kfVar.f25026a;
         String file4 = file.toString();
         Long valueOf5 = Long.valueOf(j11);
         if (z12) {

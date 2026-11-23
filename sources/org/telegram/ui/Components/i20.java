@@ -27,27 +27,27 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
     public float M;
     public final OvershootInterpolator N;
     public float O;
-    public final Paint f36117a;
-    public final w9 f36118b;
-    public final w9 f36119c;
+    public final Paint f36072a;
+    public final w9 f36073b;
+    public final w9 f36074c;
     public float d;
-    public float f36120e;
-    public float f36121f;
+    public float f36075e;
+    public float f36076f;
     public h20 h;
-    public h20 f36122n;
-    public float f36123r;
-    public boolean f36124s;
-    public float f36125w;
-    public final LinearGradient f36126x;
-    public final Matrix f36127y;
+    public h20 f36077n;
+    public float f36078r;
+    public boolean f36079s;
+    public float f36080w;
+    public final LinearGradient f36081x;
+    public final Matrix f36082y;
 
     public i20(Context context, int i7) {
         super(context);
-        this.f36117a = new Paint(1);
-        this.f36118b = new w9(8);
-        this.f36119c = new w9(9);
-        this.f36123r = 1.0f;
-        this.f36127y = new Matrix();
+        this.f36072a = new Paint(1);
+        this.f36073b = new w9(8);
+        this.f36074c = new w9(9);
+        this.f36078r = 1.0f;
+        this.f36082y = new Matrix();
         this.E = 0.0f;
         new Random();
         this.J = new h20[4];
@@ -56,12 +56,12 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
         for (int i10 = 0; i10 < 4; i10++) {
             this.J[i10] = new h20(i10);
         }
-        this.f36118b.f41713b = org.telegram.messenger.g0.L(37.0f);
-        this.f36118b.f41712a = org.telegram.messenger.g0.L(32.0f);
-        this.f36119c.f41713b = org.telegram.messenger.g0.L(37.0f);
-        this.f36119c.f41712a = org.telegram.messenger.g0.L(32.0f);
-        this.f36118b.b();
-        this.f36119c.b();
+        this.f36073b.f41687b = org.telegram.messenger.g0.L(37.0f);
+        this.f36073b.f41686a = org.telegram.messenger.g0.L(32.0f);
+        this.f36074c.f41687b = org.telegram.messenger.g0.L(37.0f);
+        this.f36074c.f41686a = org.telegram.messenger.g0.L(32.0f);
+        this.f36073b.b();
+        this.f36074c.b();
         oh0 oh0Var = new oh0(2131624334, org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(30.0f), true, null);
         this.H = oh0Var;
         setWillNotDraw(false);
@@ -70,13 +70,13 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
         imageView.setAnimation(oh0Var);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        this.f36126x = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f36081x = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
     }
 
     private void setAmplitude(double d) {
         float min = (float) (Math.min(8500.0d, d) / 8500.0d);
-        this.f36120e = min;
-        this.f36121f = (min - this.d) / 265.0f;
+        this.f36075e = min;
+        this.f36076f = (min - this.d) / 265.0f;
     }
 
     public final void a() {
@@ -109,7 +109,7 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == org.telegram.messenger.ls.Q4) {
             setAmplitude(((Float) objArr[0]).floatValue() * 4000.0f);
-        } else if (i7 == org.telegram.messenger.ls.f25407w2) {
+        } else if (i7 == org.telegram.messenger.ls.f25371w2) {
             a();
         }
     }
@@ -121,7 +121,7 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
         super.onAttachedToWindow();
         setAmplitude(0.0d);
         org.telegram.messenger.ls.e().c(this, org.telegram.messenger.ls.Q4);
-        org.telegram.messenger.ls.f(this.F).c(this, org.telegram.messenger.ls.f25407w2);
+        org.telegram.messenger.ls.f(this.F).c(this, org.telegram.messenger.ls.f25371w2);
         if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
             z10 = true;
         } else {
@@ -137,7 +137,7 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
         }
         oh0 oh0Var = this.H;
         oh0Var.P(i7);
-        oh0Var.N(oh0Var.f38212f - 1, false, true);
+        oh0Var.N(oh0Var.f38181f - 1, false, true);
         a();
     }
 
@@ -181,7 +181,7 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         org.telegram.messenger.ls.e().n(this, org.telegram.messenger.ls.Q4);
-        org.telegram.messenger.ls.f(this.F).n(this, org.telegram.messenger.ls.f25407w2);
+        org.telegram.messenger.ls.f(this.F).n(this, org.telegram.messenger.ls.f25371w2);
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().unregisterStateListener(this);
         }
@@ -196,9 +196,9 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         int i7;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        c20 c20Var = c20.f33981f0;
+        c20 c20Var = c20.f33945f0;
         if (c20Var != null) {
-            if (c20Var.f33998y) {
+            if (c20Var.f33962y) {
                 i7 = 2131754901;
             } else {
                 i7 = 2131754815;
@@ -247,18 +247,18 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
     public void setState(int i7) {
         String N0;
         h20 h20Var = this.h;
-        if (h20Var != null && h20Var.f35755i == i7) {
+        if (h20Var != null && h20Var.f35708i == i7) {
             return;
         }
-        this.f36122n = h20Var;
+        this.f36077n = h20Var;
         h20 h20Var2 = this.J[i7];
         this.h = h20Var2;
         float f10 = 0.0f;
         if (h20Var != null) {
-            this.f36123r = 0.0f;
+            this.f36078r = 0.0f;
         } else {
-            this.f36123r = 1.0f;
-            int i10 = h20Var2.f35755i;
+            this.f36078r = 1.0f;
+            int i10 = h20Var2.f35708i;
             if (i10 != 3 && i10 != 2) {
                 f10 = 1.0f;
             }
@@ -266,16 +266,16 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
         }
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && org.telegram.messenger.v3.W(sharedInstance.getChat())) {
-            N0 = org.telegram.messenger.hd.N0(2131743202, null);
+            N0 = org.telegram.messenger.hd.N0(2131743204, null);
         } else {
-            N0 = org.telegram.messenger.hd.N0(2131743061, null);
+            N0 = org.telegram.messenger.hd.N0(2131743063, null);
         }
         if (i7 == 0) {
-            N0 = i5.c.k(2131742988, null, p5.c.n(N0, ", "));
+            N0 = i5.c.k(2131742990, null, p5.c.n(N0, ", "));
         } else if (i7 == 2) {
             N0 = i5.c.k(2131751797, null, p5.c.n(N0, ", "));
         } else if (i7 == 3) {
-            N0 = i5.c.k(2131743047, null, p5.c.n(N0, ", "));
+            N0 = i5.c.k(2131743049, null, p5.c.n(N0, ", "));
         }
         setContentDescription(N0);
         invalidate();

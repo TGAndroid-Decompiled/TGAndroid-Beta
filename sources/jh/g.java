@@ -4,51 +4,51 @@ import a8.va;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import e2.r0;
-import org.telegram.ui.Components.qf;
+import org.telegram.ui.Components.pf;
 import org.telegram.ui.md0;
-import v4.f1;
-import v4.h1;
-import v4.p0;
-import v4.x0;
+import v4.e1;
+import v4.g1;
+import v4.o0;
+import v4.w0;
 public final class g {
-    public final RecyclerView f17812a;
+    public final RecyclerView f17778a;
 
     public g(RecyclerView recyclerView) {
-        this.f17812a = recyclerView;
+        this.f17778a = recyclerView;
     }
 
-    public void a(f1 f1Var, r0 r0Var, r0 r0Var2) {
+    public void a(e1 e1Var, r0 r0Var, r0 r0Var2) {
         int i7;
         int i10;
         boolean z10;
-        f1 T;
+        e1 T;
         int i11;
-        RecyclerView recyclerView = this.f17812a;
-        recyclerView.f2810b.k(f1Var);
-        recyclerView.h(f1Var);
-        f1Var.q(false);
-        h1 h1Var = (h1) recyclerView.f2814d0;
-        h1Var.getClass();
-        int i12 = r0Var.f10716a;
-        int i13 = r0Var.f10717b;
-        View view = f1Var.f59165a;
+        RecyclerView recyclerView = this.f17778a;
+        recyclerView.f2761b.k(e1Var);
+        recyclerView.h(e1Var);
+        e1Var.q(false);
+        g1 g1Var = (g1) recyclerView.f2765d0;
+        g1Var.getClass();
+        int i12 = r0Var.f10679a;
+        int i13 = r0Var.f10680b;
+        View view = e1Var.f59111a;
         if (r0Var2 == null) {
             i7 = view.getLeft();
         } else {
-            i7 = r0Var2.f10716a;
+            i7 = r0Var2.f10679a;
         }
         int i14 = i7;
         if (r0Var2 == null) {
             i10 = view.getTop();
         } else {
-            i10 = r0Var2.f10717b;
+            i10 = r0Var2.f10680b;
         }
         int i15 = i10;
-        if (!f1Var.j() && (i12 != i14 || i13 != i15)) {
+        if (!e1Var.j() && (i12 != i14 || i13 != i15)) {
             view.layout(i14, i15, view.getWidth() + i14, view.getHeight() + i15);
-            z10 = h1Var.r(f1Var, r0Var, i12, i13, i14, i15);
+            z10 = g1Var.r(e1Var, r0Var, i12, i13, i14, i15);
         } else {
-            int i16 = f1Var.h;
+            int i16 = e1Var.h;
             int i17 = -1;
             if (i16 != -1) {
                 for (int i18 = 0; i18 < recyclerView.getChildCount(); i18++) {
@@ -58,8 +58,8 @@ public final class g {
                     }
                 }
             }
-            f1Var.f59171i = (f1Var.h - i17) + (i17 * 1000);
-            h1Var.s(f1Var, r0Var);
+            e1Var.f59117i = (e1Var.h - i17) + (i17 * 1000);
+            g1Var.s(e1Var, r0Var);
             z10 = true;
         }
         if (z10) {
@@ -67,20 +67,20 @@ public final class g {
         }
     }
 
-    public void b(f1 f1Var) {
-        RecyclerView recyclerView = this.f17812a;
-        p0 p0Var = recyclerView.f2841y;
-        View view = f1Var.f59165a;
-        x0 x0Var = recyclerView.f2810b;
-        md0 md0Var = p0Var.f59249a;
-        qf qfVar = (qf) md0Var.f49857b;
-        int indexOfChild = ((RecyclerView) qfVar.f38895b).indexOfChild(view);
+    public void b(e1 e1Var) {
+        RecyclerView recyclerView = this.f17778a;
+        o0 o0Var = recyclerView.f2792y;
+        View view = e1Var.f59111a;
+        w0 w0Var = recyclerView.f2761b;
+        md0 md0Var = o0Var.f59196a;
+        pf pfVar = (pf) md0Var.f49830b;
+        int indexOfChild = ((RecyclerView) pfVar.f38544b).indexOfChild(view);
         if (indexOfChild >= 0) {
-            if (((va) md0Var.f49858c).I(indexOfChild)) {
+            if (((va) md0Var.f49831c).I(indexOfChild)) {
                 md0Var.K(view);
             }
-            qfVar.x0(indexOfChild);
+            pfVar.x0(indexOfChild);
         }
-        x0Var.g(view);
+        w0Var.g(view);
     }
 }

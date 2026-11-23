@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class d8 implements Runnable {
-    public final int f34397a = 0;
-    public final e8 f34398b;
-    public final ArrayList f34399c;
+    public final int f34360a = 0;
+    public final e8 f34361b;
+    public final ArrayList f34362c;
     public final String d;
 
     public d8(e8 e8Var, String str, ArrayList arrayList) {
-        this.f34398b = e8Var;
+        this.f34361b = e8Var;
         this.d = str;
-        this.f34399c = arrayList;
+        this.f34362c = arrayList;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class d8 implements Runnable {
         TLRPC.Document document;
         boolean z10;
         String str;
-        int i10 = this.f34397a;
+        int i10 = this.f34360a;
         String str2 = null;
         String str3 = this.d;
-        ArrayList arrayList = this.f34399c;
-        e8 e8Var = this.f34398b;
+        ArrayList arrayList = this.f34362c;
+        e8 e8Var = this.f34361b;
         switch (i10) {
             case 0:
                 e8Var.getClass();
@@ -61,9 +61,9 @@ public final class d8 implements Runnable {
                                     arrayList2.add(gjVar);
                                 } else {
                                     if (gjVar.D == 0) {
-                                        document = gjVar.f24213k.media.webpage.document;
+                                        document = gjVar.f24177k.media.webpage.document;
                                     } else {
-                                        document = gjVar.f24213k.media.document;
+                                        document = gjVar.f24177k.media.document;
                                     }
                                     int i14 = 0;
                                     while (true) {
@@ -98,14 +98,14 @@ public final class d8 implements Runnable {
                 org.telegram.messenger.g0.g3(new d8(e8Var, arrayList2, str3));
                 return;
             default:
-                f8 f8Var = e8Var.f34698n;
-                if (f8Var.f35131r1) {
-                    f8Var.f35129q1 = true;
+                f8 f8Var = e8Var.f34688n;
+                if (f8Var.f35106r1) {
+                    f8Var.f35104q1 = true;
                     e8Var.d = arrayList;
-                    e8Var.f34696e = str3;
+                    e8Var.f34686e = str3;
                     e8Var.f();
-                    f8Var.f35135t1.n0(0);
-                    org.telegram.messenger.f3.q(null, null, 2131748047, new Object[]{str3}, f8Var.f35143x1);
+                    f8Var.f35110t1.n0(0);
+                    org.telegram.messenger.f3.q(null, null, 2131748047, new Object[]{str3}, f8Var.f35118x1);
                     return;
                 }
                 return;
@@ -113,8 +113,8 @@ public final class d8 implements Runnable {
     }
 
     public d8(e8 e8Var, ArrayList arrayList, String str) {
-        this.f34398b = e8Var;
-        this.f34399c = arrayList;
+        this.f34361b = e8Var;
+        this.f34362c = arrayList;
         this.d = str;
     }
 }

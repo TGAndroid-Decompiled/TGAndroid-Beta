@@ -54,7 +54,7 @@ public abstract class i80 extends org.telegram.ui.ActionBar.m5 {
                 h80 b10 = this.P0.b();
                 b10.e(null, 0, 0.0f, 0.0f);
                 b10.addRect(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight(), Path.Direction.CW);
-                org.telegram.messenger.g0.h3(new ou(19, this, n80Var), ViewConfiguration.getLongPressTimeout());
+                org.telegram.messenger.g0.h3(new fw(17, this, n80Var), ViewConfiguration.getLongPressTimeout());
                 return true;
             } else if (motionEvent.getAction() == 1) {
                 o0Var.f(true);

@@ -3,21 +3,21 @@ package ia;
 import android.util.Log;
 import com.google.android.gms.internal.vision.e2;
 import h9.g1;
-import hi.t5;
+import hi.u5;
 import java.util.concurrent.atomic.AtomicReference;
 import org.json.JSONObject;
 import p1.g;
 import w7.s;
 public final class c {
-    public Object f16216a;
-    public Object f16217b;
-    public Object f16218c;
+    public Object f16182a;
+    public Object f16183b;
+    public Object f16184c;
     public Object d;
-    public Object f16219e;
-    public Object f16220f;
-    public Object f16221g;
+    public Object f16185e;
+    public Object f16186f;
+    public Object f16187g;
     public Object h;
-    public Object f16222i;
+    public Object f16188i;
 
     public static void d(String str, JSONObject jSONObject) {
         StringBuilder m10 = e2.m(str);
@@ -32,13 +32,13 @@ public final class c {
         b bVar = null;
         try {
             if (!g.b(2, i7)) {
-                JSONObject K = ((g1) this.f16219e).K();
+                JSONObject K = ((g1) this.f16185e).K();
                 if (K != null) {
-                    b s5 = ((t5) this.f16218c).s(K);
+                    b s5 = ((u5) this.f16184c).s(K);
                     d("Loaded cached settings: ", K);
                     ((s) this.d).getClass();
                     long currentTimeMillis = System.currentTimeMillis();
-                    if (!g.b(3, i7) && s5.f16213c < currentTimeMillis) {
+                    if (!g.b(3, i7) && s5.f16179c < currentTimeMillis) {
                         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                             Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
                             return null;

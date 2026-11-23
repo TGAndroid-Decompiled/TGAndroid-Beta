@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class jf implements TextWatcher {
-    public boolean f36483a;
-    public boolean f36484b;
-    public String f36485c;
+    public boolean f36442a;
+    public boolean f36443b;
+    public String f36444c;
     public boolean d;
-    public boolean f36486e;
-    public final ChatActivityEnterView f36487f;
+    public boolean f36445e;
+    public final ChatActivityEnterView f36446f;
 
     public jf(ChatActivityEnterView chatActivityEnterView) {
-        this.f36487f = chatActivityEnterView;
+        this.f36446f = chatActivityEnterView;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class jf implements TextWatcher {
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f36487f;
-            if (chatActivityEnterView.f32736v3 && !chatActivityEnterView.p0()) {
-                this.f36485c = charSequence.toString();
+            ChatActivityEnterView chatActivityEnterView = this.f36446f;
+            if (chatActivityEnterView.f32702v3 && !chatActivityEnterView.p0()) {
+                this.f36444c = charSequence.toString();
             }
         }
     }
@@ -40,14 +40,14 @@ public final class jf implements TextWatcher {
         boolean z15;
         boolean z16;
         if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f36487f;
-            fg fgVar = chatActivityEnterView.V0;
-            if (fgVar == null) {
+            ChatActivityEnterView chatActivityEnterView = this.f36446f;
+            eg egVar = chatActivityEnterView.V0;
+            if (egVar == null) {
                 currentPage = org.telegram.messenger.np.f1().getInt("selected_page", 0);
             } else {
-                currentPage = fgVar.getCurrentPage();
+                currentPage = egVar.getCurrentPage();
             }
-            if (currentPage != 0 && (chatActivityEnterView.f32767z3 || chatActivityEnterView.A3)) {
+            if (currentPage != 0 && (chatActivityEnterView.f32733z3 || chatActivityEnterView.A3)) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -71,7 +71,7 @@ public final class jf implements TextWatcher {
                 } else {
                     z14 = false;
                 }
-                this.f36486e = z14;
+                this.f36445e = z14;
                 if (!chatActivityEnterView.T && chatActivityEnterView.F0.getMeasuredWidth() > 0) {
                     chatActivityEnterView.d1(chatActivityEnterView.U, chatActivityEnterView.F0.getLineCount());
                 }
@@ -90,13 +90,13 @@ public final class jf implements TextWatcher {
                 }
                 chatActivityEnterView.Z1(z16);
             } else {
-                this.f36486e = false;
+                this.f36445e = false;
             }
             if (chatActivityEnterView.I3 == 1) {
                 return;
             }
-            if (chatActivityEnterView.f32708r3 && !chatActivityEnterView.D0 && !chatActivityEnterView.E0 && !chatActivityEnterView.H3 && !chatActivityEnterView.N2 && chatActivityEnterView.P2 == null && i11 > i10 && charSequence.length() > 0 && charSequence.length() == i7 + i11 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f36484b = true;
+            if (chatActivityEnterView.f32674r3 && !chatActivityEnterView.D0 && !chatActivityEnterView.E0 && !chatActivityEnterView.H3 && !chatActivityEnterView.N2 && chatActivityEnterView.P2 == null && i11 > i10 && charSequence.length() > 0 && charSequence.length() == i7 + i11 && charSequence.charAt(charSequence.length() - 1) == '\n') {
+                this.f36443b = true;
             }
             chatActivityEnterView.N2 = false;
             chatActivityEnterView.P(true);
@@ -106,22 +106,22 @@ public final class jf implements TextWatcher {
                 if (i10 > i12 || i11 - i10 > 2 || TextUtils.isEmpty(charSequence)) {
                     chatActivityEnterView.O3 = true;
                 }
-                ng ngVar = chatActivityEnterView.P3;
+                mg mgVar = chatActivityEnterView.P3;
                 if (i10 <= i12 && i11 - i10 <= 2) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
-                ngVar.j1(charSequence, z11, false);
+                mgVar.j1(charSequence, z11, false);
             }
             if (chatActivityEnterView.I3 != 2 && i11 - i10 > 1) {
-                this.f36483a = true;
+                this.f36442a = true;
             }
-            if (chatActivityEnterView.P2 == null && !chatActivityEnterView.X2 && n1.length() != 0 && chatActivityEnterView.f32717s3 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.H3) {
-                chatActivityEnterView.f32717s3 = System.currentTimeMillis();
-                ng ngVar2 = chatActivityEnterView.P3;
-                if (ngVar2 != null) {
-                    ngVar2.G1();
+            if (chatActivityEnterView.P2 == null && !chatActivityEnterView.X2 && n1.length() != 0 && chatActivityEnterView.f32683s3 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.H3) {
+                chatActivityEnterView.f32683s3 = System.currentTimeMillis();
+                mg mgVar2 = chatActivityEnterView.P3;
+                if (mgVar2 != null) {
+                    mgVar2.G1();
                 }
             }
             chatActivityEnterView.y2();

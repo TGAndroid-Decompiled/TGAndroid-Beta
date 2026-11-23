@@ -1,110 +1,125 @@
 package ai;
 
-import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.gf;
-import org.telegram.ui.Components.nr;
-import org.telegram.ui.Components.sf;
+import bi.i6;
+import java.util.HashMap;
+import org.telegram.messenger.fp;
+import org.telegram.messenger.np;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.rn;
 public final class b0 implements Runnable {
-    public final int f1127a;
-    public final p0 f1128b;
+    public final int f1131a;
+    public final long f1132b;
+    public final long f1133c;
+    public final Object d;
 
-    public b0(p0 p0Var, int i7) {
-        this.f1127a = i7;
-        this.f1128b = p0Var;
+    public b0(Object obj, long j3, long j10, int i7) {
+        this.f1131a = i7;
+        this.d = obj;
+        this.f1132b = j3;
+        this.f1133c = j10;
     }
 
     @Override
     public final void run() {
-        s0 s0Var;
-        s0 s0Var2;
-        s0 s0Var3;
-        switch (this.f1127a) {
+        c51 c51Var;
+        switch (this.f1131a) {
             case 0:
-                p0 p0Var = this.f1128b;
-                if (!p0Var.p() && (s0Var = p0Var.f1407s) != null) {
-                    s0Var.setShown(false);
-                    return;
-                }
+                k0 k0Var = (k0) this.d;
+                long j3 = this.f1132b;
+                long j10 = this.f1133c;
+                k0Var.getClass();
+                k0Var.f(j3, Math.max(120L, j10 - j3));
                 return;
             case 1:
-                p0 p0Var2 = this.f1128b;
-                if (!p0Var2.p() && (s0Var2 = p0Var2.f1407s) != null) {
-                    s0Var2.e();
+                np npVar = (np) this.d;
+                long j11 = this.f1132b;
+                long j12 = this.f1133c;
+                a0.h hVar = npVar.T1;
+                HashMap hashMap = npVar.V1;
+                if (j11 != 0) {
+                    String str = j12 + "_" + j11;
+                    fp fpVar = (fp) hashMap.get(str);
+                    if (fpVar != null) {
+                        npVar.R(fpVar);
+                        npVar.U1.remove(fpVar);
+                        hashMap.remove(str);
+                        return;
+                    }
+                    return;
+                }
+                fp fpVar2 = (fp) hVar.f(j12);
+                if (fpVar2 != null) {
+                    npVar.R(fpVar2);
+                    npVar.S1.remove(fpVar2);
+                    hVar.l(j12);
                     return;
                 }
                 return;
             case 2:
-                gf gfVar = this.f1128b.f1392f.f39572a.F0;
-                if (gfVar != null) {
-                    gfVar.requestFocus();
-                    return;
-                }
+                rn.b0((rn) this.d, this.f1132b, this.f1133c);
                 return;
             case 3:
-                ChatActivityEnterView chatActivityEnterView = this.f1128b.f1392f.f39572a;
-                chatActivityEnterView.G1 = 0L;
-                chatActivityEnterView.H1 = null;
+                org.telegram.ui.web.n1 n1Var = (org.telegram.ui.web.n1) this.d;
+                long j13 = this.f1132b;
+                long j14 = this.f1133c;
+                n1Var.h = j13;
+                n1Var.f53221n = j14;
+                i6 i6Var = n1Var.f34671a;
+                if (i6Var != null && (c51Var = i6Var.f35742g3) != null && i6Var.H) {
+                    c51Var.O(true);
+                    return;
+                }
                 return;
             case 4:
-                p0 p0Var3 = this.f1128b;
-                sf sfVar = p0Var3.f1392f;
-                String z10 = p0Var3.z();
-                h0 h0Var = new h0(p0Var3, 0);
-                sfVar.getClass();
-                ChatActivityEnterView chatActivityEnterView2 = sfVar.f39572a;
-                org.telegram.ui.Components.n0 n0Var = new org.telegram.ui.Components.n0(chatActivityEnterView2.getContext(), chatActivityEnterView2.M4);
-                n0Var.x1(z10);
-                n0Var.f37685f2 = h0Var;
-                n0Var.show();
-                return;
-            case 5:
-                gf gfVar2 = this.f1128b.f1392f.f39572a.F0;
-                if (gfVar2 != null) {
-                    gfVar2.requestFocus();
+                yi.j jVar = (yi.j) this.d;
+                long j15 = this.f1132b;
+                long j16 = this.f1133c;
+                if (jVar.G == 7) {
+                    long j17 = ((j15 - j16) * 48000) / 1000;
+                    jVar.f61340p = j17;
+                    jVar.f61342r = 0L;
+                    jVar.f61343s = yi.j.r(j17);
+                    jVar.i();
                     return;
                 }
-                return;
-            case 6:
-                p0 p0Var4 = this.f1128b;
-                if (p0Var4.f1405r == 3 && (s0Var3 = p0Var4.f1407s) != null) {
-                    s0Var3.e();
-                    return;
-                }
-                return;
-            case 7:
-                p0 p0Var5 = this.f1128b;
-                int i7 = p0Var5.f1405r;
-                if (i7 == 3 || i7 == 4) {
-                    p0Var5.f1412w.setIsland(true);
-                    return;
-                }
-                return;
-            case 8:
-                p0 p0Var6 = this.f1128b;
-                if (p0Var6.f1405r == 1) {
-                    p0Var6.M(true);
-                    return;
-                }
-                return;
-            case 9:
-                p0 p0Var7 = this.f1128b;
-                if (p0Var7.f1405r == 1) {
-                    p0Var7.M(false);
-                    return;
-                }
-                return;
-            case 10:
-                nr nrVar = nr.h;
-                p0 p0Var8 = this.f1128b;
-                p0Var8.b(0.0f, 320L, nrVar);
-                org.telegram.messenger.g0.h3(new b0(p0Var8, 1), 360L);
                 return;
             default:
-                p0 p0Var9 = this.f1128b;
-                if (!p0Var9.p()) {
-                    p0Var9.f1392f.f39572a.M1(null, true);
-                    p0Var9.b(0.0f, 240L, nr.f37961g);
-                    return;
+                long j18 = this.f1132b;
+                long j19 = this.f1133c;
+                yi.j jVar2 = (yi.j) ((ac.e) this.d).f1022c;
+                if (j18 == jVar2.f61339o) {
+                    jVar2.f61338n = null;
+                    jVar2.f61340p += j19;
+                    jVar2.f61341q = 0L;
+                    jVar2.f61333i.removeCallbacks(jVar2.D);
+                    int i7 = jVar2.G;
+                    if (i7 == 10) {
+                        jVar2.c();
+                        jVar2.t();
+                        jVar2.l("cancelled");
+                        return;
+                    } else if (i7 == 9) {
+                        jVar2.c();
+                        jVar2.t();
+                        return;
+                    } else if (jVar2.v) {
+                        jVar2.v = false;
+                        jVar2.i();
+                        return;
+                    } else if (i7 == 4) {
+                        yi.h hVar2 = jVar2.f61349z;
+                        if (hVar2 == null) {
+                            jVar2.g(new IllegalStateException("Output generation is missing"));
+                            return;
+                        }
+                        long j20 = jVar2.j();
+                        jVar2.f61342r = 0L;
+                        jVar2.f61343s = j20;
+                        jVar2.f61334j.execute(new org.telegram.utils.recorder.audio.c(1, jVar2, hVar2));
+                        return;
+                    } else {
+                        return;
+                    }
                 }
                 return;
         }

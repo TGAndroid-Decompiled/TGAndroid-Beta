@@ -2,26 +2,26 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class gg implements Runnable {
-    public final int f48110a;
-    public final bn f48111b;
-    public final TLRPC.User f48112c;
+    public final int f48047a;
+    public final bn f48048b;
+    public final TLRPC.User f48049c;
 
     public gg(bn bnVar, TLRPC.User user, int i7) {
-        this.f48110a = i7;
-        this.f48111b = bnVar;
-        this.f48112c = user;
+        this.f48047a = i7;
+        this.f48048b = bnVar;
+        this.f48049c = user;
     }
 
     @Override
     public final void run() {
-        switch (this.f48110a) {
+        switch (this.f48047a) {
             case 0:
-                bn bnVar = this.f48111b;
+                bn bnVar = this.f48048b;
                 bnVar.getClass();
-                bnVar.presentFragment(bn.ua(this.f48112c.f28583id));
+                bnVar.presentFragment(bn.ua(this.f48049c.f28547id));
                 return;
             default:
-                this.f48111b.Pa(this.f48112c);
+                this.f48048b.Pa(this.f48049c);
                 return;
         }
     }

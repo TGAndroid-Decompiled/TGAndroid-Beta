@@ -6,29 +6,29 @@ import android.view.View;
 import android.view.ViewParent;
 import org.telegram.tgnet.TLRPC;
 public final class o00 implements org.telegram.messenger.z10 {
-    public final int f50388a;
-    public final Object f50389b;
+    public final int f50387a;
+    public final Object f50388b;
 
     public o00(Object obj, int i7) {
-        this.f50388a = i7;
-        this.f50389b = obj;
+        this.f50387a = i7;
+        this.f50388b = obj;
     }
 
     @Override
     public final Object a(Object obj) {
-        int i7 = this.f50388a;
-        Object obj2 = this.f50389b;
+        int i7 = this.f50387a;
+        Object obj2 = this.f50388b;
         switch (i7) {
             case 0:
                 s00 s00Var = (s00) obj2;
                 View view = (View) obj;
                 s00Var.getClass();
                 ViewParent parent = view.getParent();
-                org.telegram.ui.Components.ek0 ek0Var = s00Var.f51803c;
+                org.telegram.ui.Components.ek0 ek0Var = s00Var.f51836c;
                 if (parent != ek0Var) {
                     return Boolean.FALSE;
                 }
-                return Boolean.valueOf(!org.telegram.ui.Components.c51.K(ek0Var.T(view).f59169f));
+                return Boolean.valueOf(!org.telegram.ui.Components.c51.K(ek0Var.T(view).f59115f));
             case 1:
                 ld0 ld0Var = (ld0) obj2;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;

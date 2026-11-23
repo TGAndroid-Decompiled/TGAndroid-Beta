@@ -1,17 +1,17 @@
 package s2;
 
-import a8.la;
+import a8.ma;
 import j$.util.Objects;
 public final class e {
-    public final String f56813a;
-    public final int f56814b;
-    public final double f56815c;
+    public final String f56778a;
+    public final int f56779b;
+    public final double f56780c;
     public final String d;
 
     public e(String str, double d) {
-        this.f56813a = str;
-        this.f56814b = 2;
-        this.f56815c = d;
+        this.f56778a = str;
+        this.f56779b = 2;
+        this.f56780c = d;
         this.d = null;
     }
 
@@ -19,7 +19,7 @@ public final class e {
         if (this != obj) {
             if (obj instanceof e) {
                 e eVar = (e) obj;
-                if (this.f56814b == eVar.f56814b && Double.compare(this.f56815c, eVar.f56815c) == 0 && Objects.equals(this.f56813a, eVar.f56813a) && Objects.equals(this.d, eVar.d)) {
+                if (this.f56779b == eVar.f56779b && Double.compare(this.f56780c, eVar.f56780c) == 0 && Objects.equals(this.f56778a, eVar.f56778a) && Objects.equals(this.d, eVar.d)) {
                     return true;
                 }
                 return false;
@@ -30,7 +30,7 @@ public final class e {
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f56813a, Integer.valueOf(this.f56814b), Double.valueOf(this.f56815c), this.d);
+        return Objects.hash(this.f56778a, Integer.valueOf(this.f56779b), Double.valueOf(this.f56780c), this.d);
     }
 
     public e(int i7, String str, String str2) {
@@ -38,10 +38,10 @@ public final class e {
         if (i7 == 1 && !str2.startsWith("0x") && !str2.startsWith("0X")) {
             z10 = false;
         }
-        la.p(z10);
-        this.f56813a = str;
-        this.f56814b = i7;
+        ma.p(z10);
+        this.f56778a = str;
+        this.f56779b = i7;
         this.d = str2;
-        this.f56815c = 0.0d;
+        this.f56780c = 0.0d;
     }
 }

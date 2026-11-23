@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 public class f implements Iterable {
-    public c f21583a;
-    public c f21584b;
-    public final WeakHashMap f21585c = new WeakHashMap();
+    public c f21549a;
+    public c f21550b;
+    public final WeakHashMap f21551c = new WeakHashMap();
     public int d = 0;
 
     public final boolean equals(java.lang.Object r7) {
@@ -14,9 +14,9 @@ public class f implements Iterable {
     }
 
     public c f(Object obj) {
-        c cVar = this.f21583a;
-        while (cVar != null && !cVar.f21577a.equals(obj)) {
-            cVar = cVar.f21579c;
+        c cVar = this.f21549a;
+        while (cVar != null && !cVar.f21543a.equals(obj)) {
+            cVar = cVar.f21545c;
         }
         return cVar;
     }
@@ -40,7 +40,7 @@ public class f implements Iterable {
             return null;
         }
         this.d--;
-        WeakHashMap weakHashMap = this.f21585c;
+        WeakHashMap weakHashMap = this.f21551c;
         if (!weakHashMap.isEmpty()) {
             for (e eVar : weakHashMap.keySet()) {
                 eVar.a(f10);
@@ -48,25 +48,25 @@ public class f implements Iterable {
         }
         c cVar = f10.d;
         if (cVar != null) {
-            cVar.f21579c = f10.f21579c;
+            cVar.f21545c = f10.f21545c;
         } else {
-            this.f21583a = f10.f21579c;
+            this.f21549a = f10.f21545c;
         }
-        c cVar2 = f10.f21579c;
+        c cVar2 = f10.f21545c;
         if (cVar2 != null) {
             cVar2.d = cVar;
         } else {
-            this.f21584b = cVar;
+            this.f21550b = cVar;
         }
-        f10.f21579c = null;
+        f10.f21545c = null;
         f10.d = null;
-        return f10.f21578b;
+        return f10.f21544b;
     }
 
     @Override
     public final Iterator iterator() {
-        b bVar = new b(this.f21583a, this.f21584b, 0);
-        this.f21585c.put(bVar, Boolean.FALSE);
+        b bVar = new b(this.f21549a, this.f21550b, 0);
+        this.f21551c.put(bVar, Boolean.FALSE);
         return bVar;
     }
 

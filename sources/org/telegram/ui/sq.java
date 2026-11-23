@@ -1,27 +1,27 @@
 package org.telegram.ui;
 public final class sq implements Runnable {
-    public final int f52099a;
-    public final tq f52100b;
+    public final int f52071a;
+    public final tq f52072b;
 
     public sq(tq tqVar, int i7) {
-        this.f52099a = i7;
-        this.f52100b = tqVar;
+        this.f52071a = i7;
+        this.f52072b = tqVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f52099a) {
+        switch (this.f52071a) {
             case 0:
-                bi.f6 f6Var = this.f52100b.f34681a;
-                if (f6Var != null) {
-                    f6Var.f35789g3.O(true);
+                bi.i6 i6Var = this.f52072b.f34671a;
+                if (i6Var != null) {
+                    i6Var.f35742g3.O(true);
                     return;
                 }
                 return;
             default:
-                bi.f6 f6Var2 = this.f52100b.f34681a;
-                if (f6Var2 != null) {
-                    f6Var2.f35789g3.O(true);
+                bi.i6 i6Var2 = this.f52072b.f34671a;
+                if (i6Var2 != null) {
+                    i6Var2.f35742g3.O(true);
                     return;
                 }
                 return;

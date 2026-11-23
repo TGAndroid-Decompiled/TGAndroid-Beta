@@ -1,87 +1,34 @@
 package bi;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import org.telegram.ui.Components.gq0;
-import org.telegram.ui.Components.iq0;
-public final class r5 extends Drawable {
-    public final int f4052a;
-    public final ShapeDrawable f4053b;
-    public final Rect f4054c;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.wv0;
+public final class r5 implements Runnable {
+    public final int f4028a;
+    public final ProfileActivity f4029b;
 
-    public r5(gq0 gq0Var) {
-        this.f4052a = 0;
-        this.f4053b = org.telegram.ui.ActionBar.m6.e0(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), 0);
-        this.f4054c = new Rect();
+    public r5(ProfileActivity profileActivity, int i7) {
+        this.f4028a = i7;
+        this.f4029b = profileActivity;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f4052a) {
+    public final void run() {
+        switch (this.f4028a) {
             case 0:
-                Rect bounds = getBounds();
-                Rect rect = this.f4054c;
-                rect.set(bounds);
-                rect.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.0f));
-                ShapeDrawable shapeDrawable = this.f4053b;
-                shapeDrawable.setBounds(rect);
-                shapeDrawable.draw(canvas);
+                this.f4029b.X4(true);
+                return;
+            case 1:
+                this.f4029b.X4(true);
                 return;
             default:
-                Rect bounds2 = getBounds();
-                Rect rect2 = this.f4054c;
-                rect2.set(bounds2);
-                rect2.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.0f));
-                ShapeDrawable shapeDrawable2 = this.f4053b;
-                shapeDrawable2.setBounds(rect2);
-                shapeDrawable2.draw(canvas);
+                ProfileActivity profileActivity = this.f4029b;
+                wv0 wv0Var = profileActivity.O;
+                if (wv0Var != null) {
+                    wv0Var.k1(14);
+                    profileActivity.X4(false);
+                    return;
+                }
                 return;
         }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f4052a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        switch (this.f4052a) {
-            case 0:
-                this.f4053b.setAlpha(i7);
-                return;
-            default:
-                this.f4053b.setAlpha(i7);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i7 = this.f4052a;
-    }
-
-    public r5(iq0 iq0Var) {
-        this.f4052a = 1;
-        int L = org.telegram.messenger.g0.L(16.0f);
-        int L2 = org.telegram.messenger.g0.L(16.0f);
-        int i7 = org.telegram.ui.ActionBar.m6.f29381d6;
-        org.telegram.ui.ActionBar.h6 h6Var = iq0Var.f36301c;
-        this.f4053b = org.telegram.ui.ActionBar.m6.e0(L, L2, org.telegram.ui.ActionBar.m6.w(org.telegram.ui.ActionBar.m6.w0(i7, h6Var), org.telegram.ui.ActionBar.m6.r1(0.04f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, h6Var))));
-        this.f4054c = new Rect();
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
     }
 }

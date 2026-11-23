@@ -14,50 +14,50 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.mz0;
+import org.telegram.ui.b31;
 public final class n implements Runnable {
     public final y10 E;
     public final k2 F;
-    public final int f44639a;
-    public final u0 f44640b;
-    public final String f44641c;
+    public final int f44605a;
+    public final u0 f44606b;
+    public final String f44607c;
     public final y10 d;
-    public final TL_wallet.nftItem f44642e;
-    public final String f44643f;
+    public final TL_wallet.nftItem f44608e;
+    public final String f44609f;
     public final String h;
-    public final byte[] f44644n;
-    public final long f44645r;
-    public final p0 f44646s;
-    public final k2 f44647w;
-    public final TLRPC.User f44648x;
-    public final String f44649y;
+    public final byte[] f44610n;
+    public final long f44611r;
+    public final p0 f44612s;
+    public final k2 f44613w;
+    public final TLRPC.User f44614x;
+    public final String f44615y;
 
     public n(u0 u0Var, String str, y10 y10Var, TL_wallet.nftItem nftitem, String str2, String str3, byte[] bArr, long j3, p0 p0Var, k2 k2Var, TLRPC.User user, String str4, y10 y10Var2, k2 k2Var2, int i7) {
-        this.f44639a = i7;
-        this.f44640b = u0Var;
-        this.f44641c = str;
+        this.f44605a = i7;
+        this.f44606b = u0Var;
+        this.f44607c = str;
         this.d = y10Var;
-        this.f44642e = nftitem;
-        this.f44643f = str2;
+        this.f44608e = nftitem;
+        this.f44609f = str2;
         this.h = str3;
-        this.f44644n = bArr;
-        this.f44645r = j3;
-        this.f44646s = p0Var;
-        this.f44647w = k2Var;
-        this.f44648x = user;
-        this.f44649y = str4;
+        this.f44610n = bArr;
+        this.f44611r = j3;
+        this.f44612s = p0Var;
+        this.f44613w = k2Var;
+        this.f44614x = user;
+        this.f44615y = str4;
         this.E = y10Var2;
         this.F = k2Var2;
     }
 
     @Override
     public final void run() {
-        switch (this.f44639a) {
+        switch (this.f44605a) {
             case 0:
-                u0 u0Var = this.f44640b;
-                String str = this.f44641c;
+                u0 u0Var = this.f44606b;
+                String str = this.f44607c;
                 y10 y10Var = this.d;
-                n nVar = new n(u0Var, str, y10Var, this.f44642e, this.f44643f, this.h, this.f44644n, this.f44645r, this.f44646s, this.f44647w, this.f44648x, this.f44649y, this.E, this.F, 1);
+                n nVar = new n(u0Var, str, y10Var, this.f44608e, this.f44609f, this.h, this.f44610n, this.f44611r, this.f44612s, this.f44613w, this.f44614x, this.f44615y, this.E, this.F, 1);
                 if (u0Var.S() && !u0Var.R()) {
                     u0.P("send " + str + ": asking passcode");
                     org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
@@ -66,10 +66,10 @@ public final class n implements Runnable {
                         return;
                     }
                     ?? obj = new Object();
-                    obj.f28905a = true;
+                    obj.f28871a = true;
                     boolean[] zArr = {false};
                     f0 f0Var = new f0(zArr, y10Var);
-                    f0Var.W = new mz0(27, zArr, nVar);
+                    f0Var.W = new b31(25, zArr, nVar);
                     T.showAsSheet(f0Var, obj);
                     return;
                 }
@@ -77,21 +77,21 @@ public final class n implements Runnable {
                 return;
             default:
                 StringBuilder sb2 = new StringBuilder("send ");
-                final String str2 = this.f44641c;
+                final String str2 = this.f44607c;
                 sb2.append(str2);
                 sb2.append(": ready, get secret phrase");
                 u0.P(sb2.toString());
-                final u0 u0Var2 = this.f44640b;
+                final u0 u0Var2 = this.f44606b;
                 final y10 y10Var2 = this.d;
-                final TL_wallet.nftItem nftitem = this.f44642e;
-                final String str3 = this.f44643f;
+                final TL_wallet.nftItem nftitem = this.f44608e;
+                final String str3 = this.f44609f;
                 final String str4 = this.h;
-                final byte[] bArr = this.f44644n;
-                final long j3 = this.f44645r;
-                final p0 p0Var = this.f44646s;
-                final k2 k2Var = this.f44647w;
-                final TLRPC.User user = this.f44648x;
-                final String str5 = this.f44649y;
+                final byte[] bArr = this.f44610n;
+                final long j3 = this.f44611r;
+                final p0 p0Var = this.f44612s;
+                final k2 k2Var = this.f44613w;
+                final TLRPC.User user = this.f44614x;
+                final String str5 = this.f44615y;
                 final y10 y10Var3 = this.E;
                 final k2 k2Var2 = this.F;
                 u0Var2.F(false, true, true, new r10() {
@@ -112,13 +112,13 @@ public final class n implements Runnable {
                         r0 r0Var = (r0) obj2;
                         String str6 = (String) obj3;
                         u0 u0Var4 = u0.this;
-                        int i7 = u0Var4.f45127a;
+                        int i7 = u0Var4.f45093a;
                         y10 y10Var4 = y10Var2;
                         if (str6 != null) {
                             y10Var4.a(str6);
                         } else if (r0Var == null) {
                             y10Var4.a("NULL_ERROR");
-                        } else if (u0Var4.f45128b == null) {
+                        } else if (u0Var4.f45094b == null) {
                             y10Var4.a("NULL_ENGINE");
                         } else {
                             TL_wallet.nftItem nftitem4 = nftitem;
@@ -156,14 +156,14 @@ public final class n implements Runnable {
                                 wallettransactionpeeronchaingift.action = walletOnchainGiftAction;
                                 wallettransactionpeeronchaingift.address = f3.a(walletOnchainGiftAction);
                                 wallettransaction.peer = wallettransactionpeeronchaingift;
-                                TL_stars.StarGift starGift = p0Var2.f44781i;
+                                TL_stars.StarGift starGift = p0Var2.f44747i;
                                 if (!(starGift instanceof TL_stars.TL_starGiftUnique)) {
                                     u0Var3 = u0Var4;
                                     nftitem2 = nftitem4;
                                     nftitem3 = null;
                                 } else {
                                     TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) starGift;
-                                    ArrayList arrayList = u0Var4.B().f44505b;
+                                    ArrayList arrayList = u0Var4.B().f44471b;
                                     u0Var3 = u0Var4;
                                     int size = arrayList.size();
                                     nftitem2 = nftitem4;
@@ -208,7 +208,7 @@ public final class n implements Runnable {
                                 nftitem2 = nftitem4;
                                 if (k2Var4 != null && nftitem2 != null) {
                                     TL_wallet.walletTransactionPeerTelegramGift wallettransactionpeertelegramgift = new TL_wallet.walletTransactionPeerTelegramGift();
-                                    if (user3 != null && user3.f28583id == k10.i(i7).e()) {
+                                    if (user3 != null && user3.f28547id == k10.i(i7).e()) {
                                         z11 = true;
                                     } else {
                                         z11 = false;
@@ -222,12 +222,12 @@ public final class n implements Runnable {
                             u0 u0Var5 = u0Var3;
                             TL_wallet.nftItem nftitem6 = nftitem2;
                             v7 v7Var = new v7(u0Var5, wallettransaction, nftitem6, H, 4);
-                            long nextLong = Utilities.f22808b.nextLong();
+                            long nextLong = Utilities.f22772b.nextLong();
                             wallettransaction.random_id = nextLong;
-                            u0Var5.f45140p.add(0, wallettransaction);
+                            u0Var5.f45106p.add(0, wallettransaction);
                             if (nftitem6 != null) {
                                 l0 B = u0Var5.B();
-                                B.f44506c.add(wallettransaction);
+                                B.f44472c.add(wallettransaction);
                                 B.j();
                                 B.h();
                             }
@@ -235,7 +235,7 @@ public final class n implements Runnable {
                             H.i();
                             u0Var5.a0();
                             az C = az.C(i7);
-                            if (user3 != null && user3.f28583id != k10.i(i7).e() && nftitem6 == null) {
+                            if (user3 != null && user3.f28547id != k10.i(i7).e() && nftitem6 == null) {
                                 user2 = user3;
                                 j10 = nextLong;
                                 j11 = j13;
@@ -258,9 +258,9 @@ public final class n implements Runnable {
                             }
                             String str10 = null;
                             y10Var4.a(null);
-                            TL_update.TL_updateWalletGaslessInfo tL_updateWalletGaslessInfo = u0Var5.f45131f;
+                            TL_update.TL_updateWalletGaslessInfo tL_updateWalletGaslessInfo = u0Var5.f45097f;
                             if (tL_updateWalletGaslessInfo != null && !TextUtils.isEmpty(tL_updateWalletGaslessInfo.relayer_address)) {
-                                TL_update.TL_updateWalletGaslessInfo tL_updateWalletGaslessInfo2 = u0Var5.f45131f;
+                                TL_update.TL_updateWalletGaslessInfo tL_updateWalletGaslessInfo2 = u0Var5.f45097f;
                                 if (tL_updateWalletGaslessInfo2.available) {
                                     str10 = tL_updateWalletGaslessInfo2.relayer_address;
                                 }
@@ -269,7 +269,7 @@ public final class n implements Runnable {
                             long j14 = j10;
                             final a0 a0Var = new a0(u0Var5, v7Var, C, gjVar, wallettransaction, str8, H, j14, user2);
                             if (k2Var4 != null && (k2Var3 = k2Var2) != null) {
-                                u0Var5.f45128b.prepareTonConnectTransferPair(r0Var, k2Var4, k2Var3, a8.p0.o(j14, "prepared:"), new r10() {
+                                u0Var5.f45094b.prepareTonConnectTransferPair(r0Var, k2Var4, k2Var3, a8.p0.o(j14, "prepared:"), new r10() {
                                     @Override
                                     public final void a(Object obj5, Object obj6) {
                                         TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj5;
@@ -291,7 +291,7 @@ public final class n implements Runnable {
                             }
                             String str11 = str10;
                             if (k2Var4 != null) {
-                                u0Var5.f45128b.prepareTonConnectTransfer(r0Var, k2Var4, a8.p0.o(j14, "deposit:"), new r10() {
+                                u0Var5.f45094b.prepareTonConnectTransfer(r0Var, k2Var4, a8.p0.o(j14, "deposit:"), new r10() {
                                     @Override
                                     public final void a(Object obj5, Object obj6) {
                                         TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj5;
@@ -310,7 +310,7 @@ public final class n implements Runnable {
                                     }
                                 });
                             } else if (nftitem6 != null) {
-                                u0Var5.f45128b.prepareSendNFT(r0Var, str8, nftitem6.address, str7, new r10() {
+                                u0Var5.f45094b.prepareSendNFT(r0Var, str8, nftitem6.address, str7, new r10() {
                                     @Override
                                     public final void a(Object obj5, Object obj6) {
                                         TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj5;
@@ -329,7 +329,7 @@ public final class n implements Runnable {
                                     }
                                 });
                             } else {
-                                u0Var5.f45128b.prepareSend(r0Var, str8, j11, str7, bArr2, str11, a0Var);
+                                u0Var5.f45094b.prepareSend(r0Var, str8, j11, str7, bArr2, str11, a0Var);
                             }
                         }
                     }

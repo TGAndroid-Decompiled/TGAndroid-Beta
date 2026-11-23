@@ -1,6 +1,6 @@
 package yg;
 
-import c8.ma;
+import c8.na;
 import fi.u3;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.hd;
@@ -19,13 +19,13 @@ public final class e extends d {
         float f12;
         float f13;
         int i11 = 3;
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        this.f61258c.setLayoutParams(ma.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        boolean z10 = hd.f24444a0;
+        this.f61223c.setLayoutParams(na.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        boolean z10 = hd.f24408a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -42,8 +42,8 @@ public final class e extends d {
         } else {
             f11 = 20.0f;
         }
-        this.d.setLayoutParams(ma.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z11 = hd.f24444a0;
+        this.d.setLayoutParams(na.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
+        boolean z11 = hd.f24408a0;
         if (z11) {
             i11 = 5;
         }
@@ -58,14 +58,14 @@ public final class e extends d {
         } else {
             f13 = 20.0f;
         }
-        this.f61259e.setLayoutParams(ma.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        this.f61224e.setLayoutParams(na.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
     }
 
     public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        t6.X(this.f61259e, m6.f29639r5, this.f61256a);
+        t6.X(this.f61224e, m6.f29605r5, this.f61221a);
         boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
         u3 u3Var = this.d;
-        b9 b9Var = this.f61257b;
+        b9 b9Var = this.f61222b;
         if (z10) {
             TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
             b9Var.g(26);
@@ -85,7 +85,7 @@ public final class e extends d {
             }
             setSubtitle(hd.G(prepaidGiveaway.quantity, "BoostingPreparedGiveawaySubscriptionsPlural", hd.G(tL_prepaidGiveaway.months, "Months", new Object[0])));
         }
-        q9 q9Var = this.f61258c;
+        q9 q9Var = this.f61223c;
         q9Var.setImageDrawable(b9Var);
         q9Var.setRoundRadius(g0.L(20.0f));
     }

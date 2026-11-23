@@ -25,29 +25,29 @@ public final class ou extends au {
     public final ev X;
     public final ev[] Y;
     public final int Z;
-    public final int f26167a0;
-    public final int f26168b0;
-    public int f26169c0;
-    public float f26170d0;
-    public int f26171e0;
-    public boolean f26172f0;
-    public boolean f26173g0;
-    public int f26174h0;
-    public final Paint f26175i0;
-    public final Path f26176j0;
-    public final xy0 f26177k0;
-    public Drawable f26178l0;
+    public final int f26131a0;
+    public final int f26132b0;
+    public int f26133c0;
+    public float f26134d0;
+    public int f26135e0;
+    public boolean f26136f0;
+    public boolean f26137g0;
+    public int f26138h0;
+    public final Paint f26139i0;
+    public final Path f26140j0;
+    public final xy0 f26141k0;
+    public Drawable f26142l0;
     public int m0;
-    public boolean f26179n0;
-    public final String f26180o0;
-    public final SpannableString f26181p0;
-    public final String f26182q0;
-    public final int f26183r0;
-    public int f26184s0;
-    public int f26185t0;
-    public VelocityTracker f26186u0;
-    public OverScroller f26187v0;
-    public final j6.o f26188w0;
+    public boolean f26143n0;
+    public final String f26144o0;
+    public final SpannableString f26145p0;
+    public final String f26146q0;
+    public final int f26147r0;
+    public int f26148s0;
+    public int f26149t0;
+    public VelocityTracker f26150u0;
+    public OverScroller f26151v0;
+    public final j6.o f26152w0;
 
     public ou(fv fvVar, Rect rect, int i7, TL_iv.pageBlockPreformatted pageblockpreformatted, ou ouVar) {
         super(fvVar, rect, i7);
@@ -55,19 +55,19 @@ public final class ou extends au {
         xy0 xy0Var;
         int i11;
         StaticLayout staticLayout;
-        this.f26175i0 = new Paint(1);
-        this.f26176j0 = new Path();
-        this.f26188w0 = new j6.o(this, 14);
-        this.Z = this.f22970c;
-        this.f26182q0 = pageblockpreformatted.language;
+        this.f26139i0 = new Paint(1);
+        this.f26140j0 = new Path();
+        this.f26152w0 = new j6.o(this, 14);
+        this.Z = this.f22934c;
+        this.f26146q0 = pageblockpreformatted.language;
         String x10 = fv.x(pageblockpreformatted.text);
-        this.f26180o0 = x10;
+        this.f26144o0 = x10;
         if (x10 == null) {
-            this.f26180o0 = "";
+            this.f26144o0 = "";
         }
-        SpannableString spannableString = new SpannableString(this.f26180o0);
-        this.f26181p0 = spannableString;
-        int length = this.f26180o0.length();
+        SpannableString spannableString = new SpannableString(this.f26144o0);
+        this.f26145p0 = spannableString;
+        int length = this.f26144o0.length();
         if (length > 500) {
             i10 = 3;
         } else if (length > 220) {
@@ -77,30 +77,30 @@ public final class ou extends au {
         } else {
             i10 = 0;
         }
-        this.f26183r0 = i10;
+        this.f26147r0 = i10;
         if (spannableString.length() > 0) {
-            bv bvVar = new bv(this.f22968a, 8, false);
-            bvVar.f23187e = i10;
+            bv bvVar = new bv(this.f22932a, 8, false);
+            bvVar.f23151e = i10;
             spannableString.setSpan(bvVar, 0, spannableString.length(), 33);
             spannableString.setSpan(new xt(pageblockpreformatted.text, 0), 0, spannableString.length(), 33);
             if (ouVar != null) {
-                CharSequence charSequence = ouVar.f26181p0;
+                CharSequence charSequence = ouVar.f26145p0;
                 if (charSequence instanceof qi.e) {
                     qi.e eVar = (qi.e) charSequence;
-                    if (!eVar.f56220a) {
-                        charSequence = eVar.f56221b;
+                    if (!eVar.f56185a) {
+                        charSequence = eVar.f56186b;
                     }
                 }
-                if (charSequence != null && charSequence.length() > 0 && this.f26180o0.length() >= charSequence.length()) {
+                if (charSequence != null && charSequence.length() > 0 && this.f26144o0.length() >= charSequence.length()) {
                     if (charSequence instanceof qi.e) {
-                        ((qi.e) charSequence).f56221b = null;
+                        ((qi.e) charSequence).f56186b = null;
                     }
-                    SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) this.f26180o0.substring(charSequence.length()));
+                    SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) this.f26144o0.substring(charSequence.length()));
                     for (bv bvVar2 : (bv[]) append.getSpans(0, append.length(), bv.class)) {
                         append.removeSpan(bvVar2);
                     }
-                    bv bvVar3 = new bv(this.f22968a, 8, false);
-                    bvVar3.f23187e = this.f26183r0;
+                    bv bvVar3 = new bv(this.f22932a, 8, false);
+                    bvVar3.f23151e = this.f26147r0;
                     append.setSpan(bvVar3, 0, append.length(), 33);
                     qi.g[] gVarArr = (qi.g[]) append.getSpans(0, append.length(), qi.g.class);
                     for (int i12 = 0; i12 < gVarArr.length; i12++) {
@@ -109,45 +109,45 @@ public final class ou extends au {
                         append.removeSpan(gVarArr[i12]);
                         append.setSpan(gVarArr[i12], spanStart, spanStart2, 33);
                     }
-                    ?? dVar = new qi.d(this.f26181p0);
-                    dVar.f56221b = append;
-                    this.f26181p0 = dVar;
+                    ?? dVar = new qi.d(this.f26145p0);
+                    dVar.f56186b = append;
+                    this.f26145p0 = dVar;
                 }
             }
             if (!TextUtils.isEmpty(pageblockpreformatted.language)) {
-                SpannableString spannableString2 = this.f26181p0;
+                SpannableString spannableString2 = this.f26145p0;
                 qi.j.c(spannableString2, spannableString2.length(), pageblockpreformatted.language);
             }
         }
-        ev evVar = new ev(fvVar, this.f26181p0, g0.L(5000.0f), Layout.Alignment.ALIGN_NORMAL, 1.22f);
+        ev evVar = new ev(fvVar, this.f26145p0, g0.L(5000.0f), Layout.Alignment.ALIGN_NORMAL, 1.22f);
         this.X = evVar;
         this.Y = new ev[]{evVar};
-        if (!TextUtils.isEmpty(this.f26182q0)) {
-            this.f26177k0 = new xy0(this.f26182q0, Math.max(8, cz.W0 - 4), null);
+        if (!TextUtils.isEmpty(this.f26146q0)) {
+            this.f26141k0 = new xy0(this.f26146q0, Math.max(8, cz.W0 - 4), null);
         }
         int L = g0.L(14.0f);
-        if (this.f26177k0 != null) {
-            i11 = g0.L(12.0f) + ((int) Math.ceil(xy0Var.f42246c));
+        if (this.f26141k0 != null) {
+            i11 = g0.L(12.0f) + ((int) Math.ceil(xy0Var.f42224c));
         } else {
             i11 = 0;
         }
         int L2 = g0.L(28.0f) + L + i11;
-        int D = f3.D(14.0f, 2, Math.max(0, evVar.h - evVar.f23773f));
-        if (this.f26177k0 == null && (staticLayout = evVar.f23770b) != null && staticLayout.getLineCount() > 0) {
-            D = f3.b(36.0f, g0.L(14.0f) + (((int) Math.ceil(evVar.f23770b.getLineRight(0))) - evVar.f23773f), D);
+        int D = f3.D(14.0f, 2, Math.max(0, evVar.h - evVar.f23737f));
+        if (this.f26141k0 == null && (staticLayout = evVar.f23734b) != null && staticLayout.getLineCount() > 0) {
+            D = f3.b(36.0f, g0.L(14.0f) + (((int) Math.ceil(evVar.f23734b.getLineRight(0))) - evVar.f23737f), D);
         }
         int max = Math.max(L2, D);
-        this.f26167a0 = max;
+        this.f26131a0 = max;
         int max2 = Math.max(0, max - this.Z);
-        this.f26168b0 = max2;
+        this.f26132b0 = max2;
         if (ouVar != null) {
-            this.f26169c0 = Utilities.j(ouVar.f26169c0, max2, 0);
+            this.f26133c0 = Utilities.j(ouVar.f26133c0, max2, 0);
         }
     }
 
     @Override
     public final int I() {
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         return l0() + f3.D(6.0f, 2, rect.top) + rect.bottom;
     }
 
@@ -158,8 +158,8 @@ public final class ou extends au {
 
     @Override
     public final int K() {
-        Rect rect = this.f22969b;
-        return Math.min(this.Z, this.f26167a0) + rect.left + rect.right;
+        Rect rect = this.f22933b;
+        return Math.min(this.Z, this.f26131a0) + rect.left + rect.right;
     }
 
     @Override
@@ -169,8 +169,8 @@ public final class ou extends au {
 
     @Override
     public final boolean Q() {
-        if (!this.f26172f0) {
-            OverScroller overScroller = this.f26187v0;
+        if (!this.f26136f0) {
+            OverScroller overScroller = this.f26151v0;
             if (overScroller == null || overScroller.isFinished()) {
                 return false;
             }
@@ -201,7 +201,7 @@ public final class ou extends au {
 
     @Override
     public final void X(Canvas canvas, int i7, float f10) {
-        StaticLayout staticLayout = this.X.f23770b;
+        StaticLayout staticLayout = this.X.f23734b;
         if (staticLayout != null && i7 >= 0 && i7 < staticLayout.getLineCount()) {
             canvas.save();
             canvas.translate(0.0f, g0.L(6.0f));
@@ -219,10 +219,10 @@ public final class ou extends au {
         VelocityTracker velocityTracker;
         View view;
         int actionMasked = motionEvent.getActionMasked();
-        float L = g0.L(14.0f) - this.f26169c0;
+        float L = g0.L(14.0f) - this.f26133c0;
         float n02 = n0() + g0.L(6.0f);
         if (actionMasked == 0 && p0(motionEvent.getX(), motionEvent.getY() - g0.L(6.0f))) {
-            this.f26179n0 = true;
+            this.f26143n0 = true;
             View view2 = this.W;
             if (view2 != null) {
                 view2.invalidate();
@@ -230,86 +230,86 @@ public final class ou extends au {
             }
         } else {
             int i7 = 0;
-            if (this.f26179n0) {
+            if (this.f26143n0) {
                 if (actionMasked == 2 && !p0(motionEvent.getX(), motionEvent.getY() - g0.L(6.0f))) {
-                    this.f26179n0 = false;
+                    this.f26143n0 = false;
                     View view3 = this.W;
                     if (view3 != null) {
                         view3.invalidate();
                         return true;
                     }
                 } else if (actionMasked == 1 || actionMasked == 3) {
-                    this.f26179n0 = false;
+                    this.f26143n0 = false;
                     View view4 = this.W;
                     if (view4 != null) {
                         view4.invalidate();
                     }
-                    org.telegram.ui.Cells.m1 m1Var = this.f22968a.F;
+                    org.telegram.ui.Cells.m1 m1Var = this.f22932a.F;
                     if (actionMasked == 1 && m1Var != null) {
-                        m1Var.e2(this.f26180o0, this.f26182q0);
+                        m1Var.e2(this.f26144o0, this.f26146q0);
                         return true;
                     }
                 }
             } else {
                 ev evVar = this.X;
                 if (actionMasked == 0) {
-                    if (this.f26174h0 == 0 && (view = this.W) != null) {
+                    if (this.f26138h0 == 0 && (view = this.W) != null) {
                         ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-                        this.f26174h0 = viewConfiguration.getScaledTouchSlop();
-                        this.f26184s0 = viewConfiguration.getScaledMinimumFlingVelocity();
-                        this.f26185t0 = viewConfiguration.getScaledMaximumFlingVelocity();
+                        this.f26138h0 = viewConfiguration.getScaledTouchSlop();
+                        this.f26148s0 = viewConfiguration.getScaledMinimumFlingVelocity();
+                        this.f26149t0 = viewConfiguration.getScaledMaximumFlingVelocity();
                     }
-                    if (this.f26187v0 == null && this.W != null) {
-                        this.f26187v0 = new OverScroller(this.W.getContext());
+                    if (this.f26151v0 == null && this.W != null) {
+                        this.f26151v0 = new OverScroller(this.W.getContext());
                     }
-                    OverScroller overScroller = this.f26187v0;
+                    OverScroller overScroller = this.f26151v0;
                     if (overScroller != null && !overScroller.isFinished()) {
-                        this.f26187v0.forceFinished(true);
+                        this.f26151v0.forceFinished(true);
                     }
-                    this.f26170d0 = motionEvent.getX();
-                    this.f26171e0 = this.f26169c0;
-                    this.f26172f0 = false;
-                    VelocityTracker velocityTracker2 = this.f26186u0;
+                    this.f26134d0 = motionEvent.getX();
+                    this.f26135e0 = this.f26133c0;
+                    this.f26136f0 = false;
+                    VelocityTracker velocityTracker2 = this.f26150u0;
                     if (velocityTracker2 == null) {
-                        this.f26186u0 = VelocityTracker.obtain();
+                        this.f26150u0 = VelocityTracker.obtain();
                     } else {
                         velocityTracker2.clear();
                     }
-                    this.f26186u0.addMovement(motionEvent);
+                    this.f26150u0.addMovement(motionEvent);
                     motionEvent.offsetLocation(-L, -n02);
-                    this.f26173g0 = evVar.t(motionEvent);
+                    this.f26137g0 = evVar.t(motionEvent);
                     motionEvent.offsetLocation(L, n02);
                     return true;
                 } else if (actionMasked == 2) {
-                    VelocityTracker velocityTracker3 = this.f26186u0;
+                    VelocityTracker velocityTracker3 = this.f26150u0;
                     if (velocityTracker3 != null) {
                         velocityTracker3.addMovement(motionEvent);
                     }
-                    float x10 = motionEvent.getX() - this.f26170d0;
-                    boolean z10 = this.f26172f0;
-                    int i10 = this.f26168b0;
-                    if (!z10 && i10 > 0 && Math.abs(x10) > this.f26174h0) {
-                        this.f26172f0 = true;
+                    float x10 = motionEvent.getX() - this.f26134d0;
+                    boolean z10 = this.f26136f0;
+                    int i10 = this.f26132b0;
+                    if (!z10 && i10 > 0 && Math.abs(x10) > this.f26138h0) {
+                        this.f26136f0 = true;
                         a0(true);
-                        if (this.f26173g0) {
+                        if (this.f26137g0) {
                             MotionEvent obtain = MotionEvent.obtain(motionEvent);
                             obtain.setAction(3);
                             obtain.offsetLocation(-L, -n02);
                             evVar.t(obtain);
                             obtain.recycle();
-                            this.f26173g0 = false;
+                            this.f26137g0 = false;
                         }
                     }
-                    if (this.f26172f0) {
-                        int i11 = (int) (this.f26171e0 - x10);
+                    if (this.f26136f0) {
+                        int i11 = (int) (this.f26135e0 - x10);
                         if (i11 >= 0) {
                             i7 = i11;
                         }
                         if (i7 <= i10) {
                             i10 = i7;
                         }
-                        if (i10 != this.f26169c0) {
-                            this.f26169c0 = i10;
+                        if (i10 != this.f26133c0) {
+                            this.f26133c0 = i10;
                             Z(this.T, this.U, this.V);
                             View view5 = this.W;
                             if (view5 != null) {
@@ -318,34 +318,34 @@ public final class ou extends au {
                             }
                         }
                     } else {
-                        return this.f26173g0;
+                        return this.f26137g0;
                     }
                 } else {
                     if (actionMasked == 1 || actionMasked == 3) {
-                        boolean z11 = this.f26172f0;
-                        this.f26172f0 = false;
+                        boolean z11 = this.f26136f0;
+                        this.f26136f0 = false;
                         if (z11) {
                             a0(false);
-                            if (actionMasked == 1 && (velocityTracker = this.f26186u0) != null && this.f26187v0 != null && this.W != null) {
+                            if (actionMasked == 1 && (velocityTracker = this.f26150u0) != null && this.f26151v0 != null && this.W != null) {
                                 velocityTracker.addMovement(motionEvent);
-                                this.f26186u0.computeCurrentVelocity(1000, this.f26185t0);
-                                float f10 = -this.f26186u0.getXVelocity();
-                                if (Math.abs(f10) > this.f26184s0) {
-                                    this.f26187v0.fling(this.f26169c0, 0, (int) f10, 0, 0, this.f26168b0, 0, 0);
-                                    this.W.postOnAnimation(this.f26188w0);
+                                this.f26150u0.computeCurrentVelocity(1000, this.f26149t0);
+                                float f10 = -this.f26150u0.getXVelocity();
+                                if (Math.abs(f10) > this.f26148s0) {
+                                    this.f26151v0.fling(this.f26133c0, 0, (int) f10, 0, 0, this.f26132b0, 0, 0);
+                                    this.W.postOnAnimation(this.f26152w0);
                                 }
                             }
                         }
-                        if (!z11 && this.f26173g0) {
+                        if (!z11 && this.f26137g0) {
                             motionEvent.offsetLocation(-L, -n02);
                             evVar.t(motionEvent);
                             motionEvent.offsetLocation(L, n02);
                         }
-                        this.f26173g0 = false;
-                        VelocityTracker velocityTracker4 = this.f26186u0;
+                        this.f26137g0 = false;
+                        VelocityTracker velocityTracker4 = this.f26150u0;
                         if (velocityTracker4 != null) {
                             velocityTracker4.recycle();
-                            this.f26186u0 = null;
+                            this.f26150u0 = null;
                         }
                         if (z11 || actionMasked == 1) {
                         }
@@ -362,28 +362,28 @@ public final class ou extends au {
         this.T = i7;
         this.U = i10;
         this.V = i11;
-        int L = (g0.L(14.0f) + i7) - this.f26169c0;
+        int L = (g0.L(14.0f) + i7) - this.f26133c0;
         ev evVar = this.X;
-        evVar.f23771c = L - evVar.f23773f;
+        evVar.f23735c = L - evVar.f23737f;
         evVar.d = n0() + g0.L(6.0f) + i10;
-        evVar.f23772e = i11;
+        evVar.f23736e = i11;
     }
 
     @Override
     public final Layout a() {
-        return this.X.f23770b;
+        return this.X.f23734b;
     }
 
     public final void i0(Canvas canvas) {
         int i7;
-        fv fvVar = this.f22968a;
+        fv fvVar = this.f22932a;
         if (fvVar.E()) {
             i7 = org.telegram.ui.ActionBar.m6.pl;
         } else {
             i7 = org.telegram.ui.ActionBar.m6.ol;
         }
         int w02 = org.telegram.ui.ActionBar.m6.w0(i7, fvVar.D);
-        Paint paint = this.f26175i0;
+        Paint paint = this.f26139i0;
         paint.setColor(w02);
         RectF rectF = g0.P;
         rectF.set(0.0f, 0.0f, m0(), l0());
@@ -394,31 +394,31 @@ public final class ou extends au {
         int i7;
         Canvas canvas2;
         int i10;
-        fv fvVar = this.f22968a;
+        fv fvVar = this.f22932a;
         if (fvVar.E()) {
             i7 = org.telegram.ui.ActionBar.m6.Wc;
         } else {
             i7 = org.telegram.ui.ActionBar.m6.Vc;
         }
         int r12 = org.telegram.ui.ActionBar.m6.r1(0.5f, org.telegram.ui.ActionBar.m6.w0(i7, fvVar.D));
-        xy0 xy0Var = this.f26177k0;
+        xy0 xy0Var = this.f26141k0;
         if (xy0Var != null) {
-            xy0Var.f42257p = m0() - g0.L(54.0f);
+            xy0Var.f42235p = m0() - g0.L(54.0f);
             canvas2 = canvas;
-            this.f26177k0.c(g0.L(14.0f), g0.L(17.0f), 1.0f, r12, canvas2);
+            this.f26141k0.c(g0.L(14.0f), g0.L(17.0f), 1.0f, r12, canvas2);
         } else {
             canvas2 = canvas;
         }
-        if (this.f26178l0 == null) {
-            this.f26178l0 = i5.c.g(t0.f26931b, 2131232105);
+        if (this.f26142l0 == null) {
+            this.f26142l0 = i5.c.g(t0.f26895b, 2131232105);
         }
         if (this.m0 != r12) {
-            Drawable drawable = this.f26178l0;
+            Drawable drawable = this.f26142l0;
             this.m0 = r12;
             drawable.setColorFilter(new PorterDuffColorFilter(r12, PorterDuff.Mode.SRC_IN));
         }
-        Drawable drawable2 = this.f26178l0;
-        if (this.f26179n0) {
+        Drawable drawable2 = this.f26142l0;
+        if (this.f26143n0) {
             i10 = 128;
         } else {
             i10 = 255;
@@ -426,8 +426,8 @@ public final class ou extends au {
         drawable2.setAlpha(i10);
         int m0 = m0() - g0.L(10.0f);
         int o02 = o0();
-        this.f26178l0.setBounds(m0 - g0.L(18.0f), o02, m0, g0.L(18.0f) + o02);
-        this.f26178l0.draw(canvas2);
+        this.f26142l0.setBounds(m0 - g0.L(18.0f), o02, m0, g0.L(18.0f) + o02);
+        this.f26142l0.draw(canvas2);
     }
 
     @Override
@@ -440,14 +440,14 @@ public final class ou extends au {
         float f11;
         int m0 = m0();
         int l02 = l0();
-        int i10 = this.f26168b0;
+        int i10 = this.f26132b0;
         if (i10 > 0) {
             z11 = true;
         } else {
             z11 = false;
         }
         canvas.save();
-        Path path = this.f26176j0;
+        Path path = this.f26140j0;
         path.rewind();
         RectF rectF = g0.P;
         float f12 = m0;
@@ -459,7 +459,7 @@ public final class ou extends au {
             canvas.saveLayerAlpha(0.0f, 0.0f, f12, f13, 255, 31);
         }
         canvas.save();
-        canvas.translate(g0.L(14.0f) - this.f26169c0, n0());
+        canvas.translate(g0.L(14.0f) - this.f26133c0, n0());
         ev evVar = this.X;
         if (z10) {
             evVar.m(canvas, i7, f10);
@@ -468,20 +468,20 @@ public final class ou extends au {
         }
         canvas.restore();
         if (z11) {
-            if (this.f26177k0 != null) {
+            if (this.f26141k0 != null) {
                 f11 = g0.L(30.0f);
             } else {
                 f11 = 0.0f;
             }
-            int i11 = this.f26169c0;
-            fv fvVar = this.f22968a;
+            int i11 = this.f26133c0;
+            fv fvVar = this.f22932a;
             if (i11 > 0) {
                 rectF.set(0.0f, f11, g0.L(14.0f), f13);
-                fvVar.f23998z.n(canvas, rectF, 0, Math.min(1.0f, this.f26169c0 / g0.L(14.0f)));
+                fvVar.f23962z.n(canvas, rectF, 0, Math.min(1.0f, this.f26133c0 / g0.L(14.0f)));
             }
-            if (this.f26169c0 < i10) {
+            if (this.f26133c0 < i10) {
                 rectF.set(m0 - g0.L(14.0f), f11, f12, f13);
-                fvVar.f23998z.n(canvas, rectF, 2, Math.min(1.0f, (i10 - this.f26169c0) / g0.L(14.0f)));
+                fvVar.f23962z.n(canvas, rectF, 2, Math.min(1.0f, (i10 - this.f26133c0) / g0.L(14.0f)));
             }
             canvas.restore();
         }
@@ -489,18 +489,18 @@ public final class ou extends au {
     }
 
     public final int l0() {
-        return g0.L(12.0f) + this.X.f23770b.getHeight() + n0();
+        return g0.L(12.0f) + this.X.f23734b.getHeight() + n0();
     }
 
     public final int m0() {
-        int i7 = this.f22968a.C;
-        Rect rect = this.f22969b;
+        int i7 = this.f22932a.C;
+        Rect rect = this.f22933b;
         return (i7 - rect.left) - rect.right;
     }
 
     public final int n0() {
         float f10;
-        if (this.f26177k0 != null) {
+        if (this.f26141k0 != null) {
             f10 = 32.0f;
         } else {
             f10 = 12.0f;
@@ -511,8 +511,8 @@ public final class ou extends au {
     public final int o0() {
         ev evVar;
         StaticLayout staticLayout;
-        if (this.f26177k0 == null && (staticLayout = (evVar = this.X).f23770b) != null && staticLayout.getLineCount() != 0) {
-            return Math.round(((evVar.f23770b.getLineBaseline(0) + n0()) - (g0.L(Math.max(Math.min(10, cz.W0 - 2), (cz.W0 - 2) - this.f26183r0)) * 0.36f)) - (g0.L(18.0f) / 2.0f));
+        if (this.f26141k0 == null && (staticLayout = (evVar = this.X).f23734b) != null && staticLayout.getLineCount() != 0) {
+            return Math.round(((evVar.f23734b.getLineBaseline(0) + n0()) - (g0.L(Math.max(Math.min(10, cz.W0 - 2), (cz.W0 - 2) - this.f26147r0)) * 0.36f)) - (g0.L(18.0f) / 2.0f));
         }
         return g0.L(8.0f);
     }
@@ -532,9 +532,9 @@ public final class ou extends au {
     public final boolean u(CharacterStyle characterStyle, int i7, rt rtVar) {
         ev evVar = this.X;
         if (evVar.o(characterStyle, rtVar)) {
-            Rect rect = this.f22969b;
-            rtVar.f26661e = ((g0.L(14.0f) + rect.left) - this.f26169c0) - evVar.f23773f;
-            rtVar.f26662f = n0() + g0.L(6.0f) + i7 + rect.top;
+            Rect rect = this.f22933b;
+            rtVar.f26625e = ((g0.L(14.0f) + rect.left) - this.f26133c0) - evVar.f23737f;
+            rtVar.f26626f = n0() + g0.L(6.0f) + i7 + rect.top;
             return true;
         }
         return false;
@@ -543,7 +543,7 @@ public final class ou extends au {
     @Override
     public final CharSequence y() {
         CharSequence y10 = super.y();
-        String str = this.f26182q0;
+        String str = this.f26146q0;
         if (!TextUtils.isEmpty(str)) {
             String b10 = dj.b(str);
             if (!TextUtils.isEmpty(b10)) {

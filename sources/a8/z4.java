@@ -11,9 +11,9 @@ public final class z4 implements na.d {
     public final void a(Object obj, Object obj2) {
         r8 r8Var = (r8) obj;
         na.e eVar = (na.e) obj2;
-        eVar.a(f742b, r8Var.f621a);
-        eVar.a(f743c, r8Var.f622b);
-        eVar.a(d, r8Var.f623c);
+        eVar.a(f742b, r8Var.f620a);
+        eVar.a(f743c, r8Var.f621b);
+        eVar.a(d, r8Var.f622c);
         eVar.a(f744e, null);
         eVar.a(f745f, null);
     }

@@ -27,8 +27,8 @@ public final class f51 extends wy {
         switch (this.X) {
             case 2:
                 yt0 yt0Var = (yt0) this.Y;
-                yt0Var.f42546b = 100.0f;
-                yt0Var.f42545a = 100.0f;
+                yt0Var.f42507b = 100.0f;
+                yt0Var.f42506a = 100.0f;
                 return yt0Var;
             default:
                 return super.D1(i7);
@@ -36,20 +36,20 @@ public final class f51 extends wy {
     }
 
     @Override
-    public void U(v4.x0 x0Var, v4.c1 c1Var, View view, s0.c cVar) {
-        qf qfVar;
+    public void U(v4.w0 w0Var, v4.b1 b1Var, View view, s0.c cVar) {
+        pf pfVar;
         switch (this.X) {
             case 2:
-                super.U(x0Var, c1Var, view, cVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56785a;
+                super.U(w0Var, b1Var, view, cVar);
+                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56750a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
-                    qfVar = new qf(collectionItemInfo, 15);
+                    pfVar = new pf(collectionItemInfo, 15);
                 } else {
-                    qfVar = null;
+                    pfVar = null;
                 }
-                if (qfVar != null) {
-                    Object obj = qfVar.f38895b;
+                if (pfVar != null) {
+                    Object obj = pfVar.f38544b;
                     if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
                         accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
                         return;
@@ -58,38 +58,38 @@ public final class f51 extends wy {
                 }
                 return;
             default:
-                super.U(x0Var, c1Var, view, cVar);
+                super.U(w0Var, b1Var, view, cVar);
                 return;
         }
     }
 
     @Override
-    public int W0(v4.c1 c1Var) {
+    public int W0(v4.b1 b1Var) {
         switch (this.X) {
             case 0:
-                if (((h51) this.Y).f35791i3) {
-                    return org.telegram.messenger.g0.f24046q.y;
+                if (((h51) this.Y).f35744i3) {
+                    return org.telegram.messenger.g0.f24010q.y;
                 }
-                return super.W0(c1Var);
+                return super.W0(b1Var);
             case 1:
-                if (((h51) this.Y).f35791i3) {
-                    return org.telegram.messenger.g0.f24046q.y;
+                if (((h51) this.Y).f35744i3) {
+                    return org.telegram.messenger.g0.f24010q.y;
                 }
-                return super.W0(c1Var);
+                return super.W0(b1Var);
             default:
-                return super.W0(c1Var);
+                return super.W0(b1Var);
         }
     }
 
     @Override
-    public void z0(v4.c1 c1Var, int[] iArr) {
+    public void z0(v4.b1 b1Var, int[] iArr) {
         switch (this.X) {
             case 2:
-                super.z0(c1Var, iArr);
+                super.z0(b1Var, iArr);
                 iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.q7.a(1) * 2);
                 return;
             default:
-                super.z0(c1Var, iArr);
+                super.z0(b1Var, iArr);
                 return;
         }
     }

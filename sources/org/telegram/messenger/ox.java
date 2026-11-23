@@ -9,23 +9,23 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class ox implements Runnable {
-    public final int f26199a = 0;
-    public final az f26200b;
-    public final TLRPC.TL_error f26201c;
+    public final int f26163a = 0;
+    public final az f26164b;
+    public final TLRPC.TL_error f26165c;
     public final TLObject d;
-    public final boolean f26202e;
-    public final TLObject f26203f;
+    public final boolean f26166e;
+    public final TLObject f26167f;
     public final Object h;
-    public final Object f26204n;
+    public final Object f26168n;
 
     public ox(az azVar, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10, ArrayList arrayList, ArrayList arrayList2, TLObject tLObject2) {
-        this.f26200b = azVar;
-        this.f26201c = tL_error;
+        this.f26164b = azVar;
+        this.f26165c = tL_error;
         this.d = tLObject;
-        this.f26202e = z10;
+        this.f26166e = z10;
         this.h = arrayList;
-        this.f26204n = arrayList2;
-        this.f26203f = tLObject2;
+        this.f26168n = arrayList2;
+        this.f26167f = tLObject2;
     }
 
     @Override
@@ -67,15 +67,15 @@ public final class ox implements Runnable {
         int i16;
         a0.h hVar4;
         a0.h hVar5 = null;
-        switch (this.f26199a) {
+        switch (this.f26163a) {
             case 0:
-                az azVar = this.f26200b;
-                TLRPC.TL_error tL_error3 = this.f26201c;
+                az azVar = this.f26164b;
+                TLRPC.TL_error tL_error3 = this.f26165c;
                 TLObject tLObject = this.d;
-                boolean z14 = this.f26202e;
+                boolean z14 = this.f26166e;
                 ArrayList arrayList6 = (ArrayList) this.h;
-                ArrayList arrayList7 = (ArrayList) this.f26204n;
-                TLObject tLObject2 = this.f26203f;
+                ArrayList arrayList7 = (ArrayList) this.f26168n;
+                TLObject tLObject2 = this.f26167f;
                 if (tL_error3 == null) {
                     SparseArray sparseArray3 = new SparseArray();
                     a0.h hVar6 = new a0.h();
@@ -88,7 +88,7 @@ public final class ox implements Runnable {
                         TLRPC.Update update = arrayList8.get(i17);
                         if (update instanceof TL_update.TL_updateMessageID) {
                             TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) update;
-                            hVar6.k(Integer.valueOf(tL_updateMessageID.f28692id), tL_updateMessageID.random_id);
+                            hVar6.k(Integer.valueOf(tL_updateMessageID.f28656id), tL_updateMessageID.random_id);
                             arrayList8.remove(i17);
                             i17--;
                             tL_error2 = tL_error3;
@@ -97,7 +97,7 @@ public final class ox implements Runnable {
                             if (update instanceof TL_update.TL_updateNewMessage) {
                                 TL_update.TL_updateNewMessage tL_updateNewMessage = (TL_update.TL_updateNewMessage) update;
                                 TLRPC.Message message4 = tL_updateNewMessage.message;
-                                sparseArray3.put(message4.f28455id, message4);
+                                sparseArray3.put(message4.f28419id, message4);
                                 tL_error2 = tL_error4;
                                 Utilities.d.c(new cy(azVar, tL_updateNewMessage, 0));
                                 arrayList8.remove(i17);
@@ -112,7 +112,7 @@ public final class ox implements Runnable {
                                 if (update instanceof TL_update.TL_updateNewEphemeralMessage) {
                                     TL_update.TL_updateNewEphemeralMessage tL_updateNewEphemeralMessage = (TL_update.TL_updateNewEphemeralMessage) update;
                                     TLRPC.TL_message b10 = bg.x.b(tL_updateNewEphemeralMessage.message);
-                                    sparseArray3.put(b10.f28455id, b10);
+                                    sparseArray3.put(b10.f28419id, b10);
                                     arrayList9.add(tL_updateNewEphemeralMessage.message);
                                     arrayList8.remove(i17);
                                     i17--;
@@ -152,7 +152,7 @@ public final class ox implements Runnable {
                                             hVar5 = hVar3;
                                         }
                                         TLRPC.Message message5 = tL_updateNewChannelMessage.message;
-                                        sparseArray3.put(message5.f28455id, message5);
+                                        sparseArray3.put(message5.f28419id, message5);
                                         Utilities.d.c(new dy(azVar, tL_updateNewChannelMessage, 0));
                                         arrayList8.remove(i17);
                                         int i19 = i17 - 1;
@@ -184,27 +184,27 @@ public final class ox implements Runnable {
                                         arrayList5 = arrayList9;
                                         if (update instanceof TL_update.TL_updateNewScheduledMessage) {
                                             TLRPC.Message message6 = ((TL_update.TL_updateNewScheduledMessage) update).message;
-                                            sparseArray2.put(message6.f28455id, message6);
+                                            sparseArray2.put(message6.f28419id, message6);
                                             arrayList4.remove(i17);
                                             i17--;
                                             z15 = true;
                                         } else if (update instanceof TL_update.TL_updateQuickReplyMessage) {
-                                            kg.v1 f10 = kg.v1.f(azVar.currentAccount);
+                                            kg.w1 f10 = kg.w1.f(azVar.currentAccount);
                                             if (arrayList6.isEmpty()) {
                                                 i15 = 0;
                                                 J1 = null;
                                             } else {
                                                 i15 = 0;
-                                                J1 = gj.J1(((gj) arrayList6.get(0)).f24213k);
+                                                J1 = gj.J1(((gj) arrayList6.get(0)).f24177k);
                                             }
                                             if (arrayList6.isEmpty()) {
                                                 valueOf = null;
                                             } else {
-                                                valueOf = Integer.valueOf(gj.I1(((gj) arrayList6.get(i15)).f24213k));
+                                                valueOf = Integer.valueOf(gj.I1(((gj) arrayList6.get(i15)).f24177k));
                                             }
                                             f10.j(update, J1, valueOf.intValue());
                                             TLRPC.Message message7 = ((TL_update.TL_updateQuickReplyMessage) update).message;
-                                            sparseArray2.put(message7.f28455id, message7);
+                                            sparseArray2.put(message7.f28419id, message7);
                                             arrayList4.remove(i17);
                                             i17--;
                                         }
@@ -275,8 +275,8 @@ public final class ox implements Runnable {
                     while (i21 < arrayList6.size()) {
                         gj gjVar2 = (gj) arrayList6.get(i21);
                         String str2 = (String) arrayList7.get(i21);
-                        TLRPC.Message message8 = gjVar2.f24213k;
-                        int i22 = message8.f28455id;
+                        TLRPC.Message message8 = gjVar2.f24177k;
+                        int i22 = message8.f28419id;
                         char c13 = c11;
                         ArrayList arrayList12 = new ArrayList();
                         i7 = i20;
@@ -286,7 +286,7 @@ public final class ox implements Runnable {
                             gj.B0(message);
                             arrayList12.add(message);
                             if ((message.flags & 33554432) != 0) {
-                                TLRPC.Message message9 = gjVar2.f24213k;
+                                TLRPC.Message message9 = gjVar2.f24177k;
                                 c10 = c12;
                                 message9.ttl_period = message.ttl_period;
                                 message9.flags |= 33554432;
@@ -297,7 +297,7 @@ public final class ox implements Runnable {
                                 arrayList6 = arrayList13;
                                 gj gjVar3 = (gj) arrayList6.get(0);
                                 i12 = i21;
-                                int i23 = message.f28455id;
+                                int i23 = message.f28419id;
                                 arrayList = arrayList12;
                                 HashMap<String, String> hashMap = message.params;
                                 arrayList2 = arrayList11;
@@ -318,10 +318,10 @@ public final class ox implements Runnable {
                                 arrayList3 = arrayList7;
                                 message3 = message8;
                                 i13 = i22;
-                                azVar.z0(gjVar, message2, message2.f28455id, Collections.singletonList(str2), false, -1, message2.params);
+                                azVar.z0(gjVar, message2, message2.f28419id, Collections.singletonList(str2), false, -1, message2.params);
                             }
                             final int o12 = gjVar.o1();
-                            message3.f28455id = message2.f28455id;
+                            message3.f28419id = message2.f28419id;
                             int i24 = message2.quick_reply_shortcut_id;
                             message3.quick_reply_shortcut_id = i24;
                             if (i24 != 0) {
@@ -341,7 +341,7 @@ public final class ox implements Runnable {
                                     i14 = i12;
                                     sparseArray = sparseArray5;
                                 }
-                                if (num2.intValue() < message2.f28455id) {
+                                if (num2.intValue() < message2.f28419id) {
                                     z12 = true;
                                 } else {
                                     z12 = false;
@@ -361,7 +361,7 @@ public final class ox implements Runnable {
                             message3.errorNewPriceStars = 0L;
                             ls notificationCenter2 = azVar.getNotificationCenter();
                             Integer valueOf2 = Integer.valueOf(i13);
-                            Integer valueOf3 = Integer.valueOf(message3.f28455id);
+                            Integer valueOf3 = Integer.valueOf(message3.f28419id);
                             Long valueOf4 = Long.valueOf(message3.dialog_id);
                             Long valueOf5 = Long.valueOf(j3);
                             Integer valueOf6 = Integer.valueOf(o12);
@@ -378,7 +378,7 @@ public final class ox implements Runnable {
                             notificationCenter2.k(21, objArr2);
                             ls notificationCenter3 = azVar.getNotificationCenter();
                             Integer valueOf8 = Integer.valueOf(i13);
-                            Integer valueOf9 = Integer.valueOf(message3.f28455id);
+                            Integer valueOf9 = Integer.valueOf(message3.f28419id);
                             Long valueOf10 = Long.valueOf(message3.dialog_id);
                             Long valueOf11 = Long.valueOf(j3);
                             Integer valueOf12 = Integer.valueOf(o12);
@@ -403,7 +403,7 @@ public final class ox implements Runnable {
                             final int i25 = i13;
                             arrayList11 = arrayList15;
                             azVar = azVar3;
-                            azVar.getMessagesStorage().f27250a.c(new Runnable() {
+                            azVar.getMessagesStorage().f27214a.c(new Runnable() {
                                 @Override
                                 public final void run() {
                                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ey.run():void");
@@ -445,7 +445,7 @@ public final class ox implements Runnable {
                     int i26 = 0;
                     while (i26 < arrayList6.size()) {
                         gj gjVar5 = (gj) arrayList6.get(i26);
-                        TLRPC.Message message11 = gjVar5.f24213k;
+                        TLRPC.Message message11 = gjVar5.f24177k;
                         azVar.getMessagesStorage().N0(r12, message11);
                         int i27 = i7;
                         message11.send_state = i27;
@@ -456,9 +456,9 @@ public final class ox implements Runnable {
                             di.y8.y(azVar.currentAccount, false).d0(Arrays.asList(gjVar5));
                             azVar.getMessagesStorage().X1(gj.B0(message11), message11);
                         }
-                        azVar.getNotificationCenter().k(23, Integer.valueOf(message11.f28455id));
-                        azVar.d0(message11.f28455id);
-                        azVar.i0(message11.f28455id, r12);
+                        azVar.getNotificationCenter().k(23, Integer.valueOf(message11.f28419id));
+                        azVar.d0(message11.f28419id);
+                        azVar.i0(message11.f28419id, r12);
                         i26++;
                         i7 = i27;
                     }
@@ -466,13 +466,13 @@ public final class ox implements Runnable {
                 }
                 return;
             default:
-                az azVar4 = this.f26200b;
-                TLRPC.TL_error tL_error6 = this.f26201c;
+                az azVar4 = this.f26164b;
+                TLRPC.TL_error tL_error6 = this.f26165c;
                 TLRPC.Message message12 = (TLRPC.Message) this.h;
                 TLObject tLObject3 = this.d;
-                gj gjVar6 = (gj) this.f26204n;
-                boolean z19 = this.f26202e;
-                TLObject tLObject4 = this.f26203f;
+                gj gjVar6 = (gj) this.f26168n;
+                boolean z19 = this.f26166e;
+                TLObject tLObject4 = this.f26167f;
                 if (tL_error6 == null) {
                     String str3 = message12.attachPath;
                     TLRPC.Updates updates2 = (TLRPC.Updates) tLObject3;
@@ -481,8 +481,8 @@ public final class ox implements Runnable {
                     ArrayList arrayList18 = new ArrayList();
                     arrayList18.add(message12);
                     azVar4.getMessagesStorage().j1(arrayList18, false, true, false, 0, false, 0, 0L);
-                    f00 f00Var = azVar4.getMessagesController().f25968t7;
-                    TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) f00Var.f23810e.f(f00.p(message12.f28455id, -message12.dialog_id));
+                    f00 f00Var = azVar4.getMessagesController().f25932t7;
+                    TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) f00Var.f23774e.f(f00.p(message12.f28419id, -message12.dialog_id));
                     if (tL_forumTopic != null) {
                         tL_forumTopic.topMessage = message12;
                         f00Var.y(-message12.dialog_id, true);
@@ -491,19 +491,19 @@ public final class ox implements Runnable {
                     return;
                 }
                 org.telegram.ui.Components.c5.c0(azVar4.currentAccount, tL_error6, null, tLObject4, new Object[0]);
-                azVar4.i0(message12.f28455id, z19);
+                azVar4.i0(message12.f28419id, z19);
                 azVar4.l0(gjVar6);
                 return;
         }
     }
 
     public ox(az azVar, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, gj gjVar, String str, HashMap hashMap, boolean z10, TLObject tLObject2) {
-        this.f26200b = azVar;
-        this.f26201c = tL_error;
+        this.f26164b = azVar;
+        this.f26165c = tL_error;
         this.h = message;
         this.d = tLObject;
-        this.f26204n = gjVar;
-        this.f26202e = z10;
-        this.f26203f = tLObject2;
+        this.f26168n = gjVar;
+        this.f26166e = z10;
+        this.f26167f = tLObject2;
     }
 }

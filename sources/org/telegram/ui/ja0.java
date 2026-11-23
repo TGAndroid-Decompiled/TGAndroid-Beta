@@ -27,8 +27,8 @@ public final class ja0 implements org.telegram.ui.Components.xr0 {
         } else {
             z10 = false;
         }
-        if (ia0Var.f17667a0 != z10) {
-            ia0Var.f17667a0 = z10;
+        if (ia0Var.f17633a0 != z10) {
+            ia0Var.f17633a0 = z10;
             ia0Var.f();
             qa0Var.R.w0(0, org.telegram.messenger.g0.L(200.0f), null);
         }

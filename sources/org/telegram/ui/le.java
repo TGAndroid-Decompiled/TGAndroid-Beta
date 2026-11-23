@@ -6,33 +6,33 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
 public final class le implements org.telegram.messenger.r10 {
-    public final int f49602a;
-    public final bn f49603b;
+    public final int f49578a;
+    public final bn f49579b;
 
     public le(bn bnVar, int i7) {
-        this.f49602a = i7;
-        this.f49603b = bnVar;
+        this.f49578a = i7;
+        this.f49579b = bnVar;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f49602a) {
+        switch (this.f49578a) {
             case 0:
-                bn.l1(this.f49603b, (Integer) obj, (Boolean) obj2);
+                bn.l1(this.f49579b, (Integer) obj, (Boolean) obj2);
                 return;
             case 1:
-                bn.x1(this.f49603b, (Long) obj, (Boolean) obj2);
+                bn.x1(this.f49579b, (Long) obj, (Boolean) obj2);
                 return;
             case 2:
                 Bitmap bitmap = (Bitmap) obj;
-                bn bnVar = this.f49603b;
+                bn bnVar = this.f49579b;
                 ui.b bVar = bnVar.P8;
                 bVar.a((Bitmap) obj2);
                 ih.d.c(bVar, bnVar.fragmentView);
                 bnVar.Q8.d();
                 return;
             default:
-                bn bnVar2 = this.f49603b;
+                bn bnVar2 = this.f49579b;
                 bnVar2.R8 = (Bitmap) obj;
                 Paint paint = new Paint(1);
                 bnVar2.T8 = paint;

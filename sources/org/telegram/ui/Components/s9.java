@@ -8,71 +8,71 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 public final class s9 extends Drawable {
-    public TextPaint f39523a;
-    public final Paint f39524b;
-    public final Paint f39525c;
+    public TextPaint f39479a;
+    public final Paint f39480b;
+    public final Paint f39481c;
     public final Paint d;
-    public final float f39526e;
-    public float f39527f;
-    public float f39528g;
+    public final float f39482e;
+    public float f39483f;
+    public float f39484g;
     public final RectF h;
-    public ValueAnimator f39529i;
+    public ValueAnimator f39485i;
 
     public s9() {
         Paint paint = new Paint(1);
-        this.f39524b = paint;
-        this.f39525c = new Paint(1);
+        this.f39480b = paint;
+        this.f39481c = new Paint(1);
         this.d = new Paint(1);
-        this.f39526e = 1.0f;
-        this.f39527f = 0.0f;
-        this.f39528g = 1.0f;
+        this.f39482e = 1.0f;
+        this.f39483f = 0.0f;
+        this.f39484g = 1.0f;
         this.h = new RectF();
         paint.setStyle(Paint.Style.STROKE);
     }
 
     public final void a(boolean z10, float f10) {
         float max = Math.max(Math.min(f10, 1.0f), 0.0f);
-        ValueAnimator valueAnimator = this.f39529i;
+        ValueAnimator valueAnimator = this.f39485i;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f39529i = null;
+            this.f39485i = null;
         }
         if (!z10) {
-            this.f39528g = max;
+            this.f39484g = max;
             invalidateSelf();
             return;
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f39528g, max);
-        this.f39529i = ofFloat;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f39484g, max);
+        this.f39485i = ofFloat;
         ofFloat.addUpdateListener(new x(this, 6));
-        this.f39529i.addListener(new org.telegram.ui.ActionBar.s0(this, max, 4));
-        this.f39529i.setInterpolator(nr.h);
-        this.f39529i.setDuration(200L);
-        this.f39529i.start();
+        this.f39485i.addListener(new org.telegram.ui.ActionBar.s0(this, max, 4));
+        this.f39485i.setInterpolator(nr.h);
+        this.f39485i.setDuration(200L);
+        this.f39485i.start();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         if (getBounds() != null) {
             int i7 = getBounds().left;
-            int i10 = getBounds().top + ((int) this.f39527f);
+            int i10 = getBounds().top + ((int) this.f39483f);
             int width = getBounds().width();
             int height = getBounds().height();
             int centerX = getBounds().centerX();
-            int centerY = getBounds().centerY() + ((int) this.f39527f);
-            TextPaint textPaint = this.f39523a;
+            int centerY = getBounds().centerY() + ((int) this.f39483f);
+            TextPaint textPaint = this.f39479a;
             Paint paint = this.d;
-            Paint paint2 = this.f39525c;
-            Paint paint3 = this.f39524b;
+            Paint paint2 = this.f39481c;
+            Paint paint3 = this.f39480b;
             if (textPaint != null) {
                 int color = textPaint.getColor();
                 paint3.setColor(color);
                 paint2.setColor(color);
                 paint.setColor(color);
             }
-            if (this.f39526e != 1.0f) {
+            if (this.f39482e != 1.0f) {
                 canvas.save();
-                float f10 = this.f39526e;
+                float f10 = this.f39482e;
                 canvas.scale(f10, f10, centerX, centerY);
             }
             paint3.setStrokeWidth(org.telegram.messenger.g0.N(1.1f));
@@ -83,12 +83,12 @@ public final class s9 extends Drawable {
             RectF rectF = this.h;
             rectF.set((((f12 - org.telegram.messenger.g0.N(16.33f)) / 2.0f) + f11) - org.telegram.messenger.g0.N(1.33f), ((f14 - org.telegram.messenger.g0.N(10.33f)) / 2.0f) + f13, (((org.telegram.messenger.g0.N(16.33f) + f12) / 2.0f) + f11) - org.telegram.messenger.g0.N(1.33f), ((org.telegram.messenger.g0.N(10.33f) + f14) / 2.0f) + f13);
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(2.33f), org.telegram.messenger.g0.N(2.33f), paint3);
-            rectF.set((((f12 - org.telegram.messenger.g0.N(13.0f)) / 2.0f) + f11) - org.telegram.messenger.g0.N(1.66f), ((f14 - org.telegram.messenger.g0.N(7.33f)) / 2.0f) + f13, Math.max(org.telegram.messenger.g0.N(1.1f), this.f39528g * org.telegram.messenger.g0.N(13.0f)) + ((((f12 - org.telegram.messenger.g0.N(13.0f)) / 2.0f) + f11) - org.telegram.messenger.g0.N(1.66f)), ((org.telegram.messenger.g0.N(7.33f) + f14) / 2.0f) + f13);
+            rectF.set((((f12 - org.telegram.messenger.g0.N(13.0f)) / 2.0f) + f11) - org.telegram.messenger.g0.N(1.66f), ((f14 - org.telegram.messenger.g0.N(7.33f)) / 2.0f) + f13, Math.max(org.telegram.messenger.g0.N(1.1f), this.f39484g * org.telegram.messenger.g0.N(13.0f)) + ((((f12 - org.telegram.messenger.g0.N(13.0f)) / 2.0f) + f11) - org.telegram.messenger.g0.N(1.66f)), ((org.telegram.messenger.g0.N(7.33f) + f14) / 2.0f) + f13);
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(0.83f), org.telegram.messenger.g0.N(0.83f), paint);
             float f15 = centerY;
             rectF.set((((org.telegram.messenger.g0.N(17.5f) + f12) - org.telegram.messenger.g0.N(4.66f)) / 2.0f) + f11, f15 - org.telegram.messenger.g0.N(2.65f), ((org.telegram.messenger.g0.N(4.66f) + (org.telegram.messenger.g0.N(17.5f) + f12)) / 2.0f) + f11, org.telegram.messenger.g0.N(2.65f) + f15);
             canvas.drawArc(rectF, -90.0f, 180.0f, false, paint2);
-            if (this.f39526e != 1.0f) {
+            if (this.f39482e != 1.0f) {
                 canvas.restore();
             }
         }
@@ -96,12 +96,12 @@ public final class s9 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(this.f39526e * 24.0f);
+        return org.telegram.messenger.g0.L(this.f39482e * 24.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(this.f39526e * 24.0f);
+        return org.telegram.messenger.g0.L(this.f39482e * 24.0f);
     }
 
     @Override
@@ -111,25 +111,25 @@ public final class s9 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f39524b.setAlpha(i7);
-        this.f39525c.setAlpha(i7);
+        this.f39480b.setAlpha(i7);
+        this.f39481c.setAlpha(i7);
         this.d.setAlpha(i7);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f39524b.setColorFilter(colorFilter);
-        this.f39525c.setColorFilter(colorFilter);
+        this.f39480b.setColorFilter(colorFilter);
+        this.f39481c.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
     }
 
     public s9(float f10, int i7) {
         this();
         a(false, f10);
-        this.f39524b.setColor(-1);
-        this.f39525c.setColor(-1);
+        this.f39480b.setColor(-1);
+        this.f39481c.setColor(-1);
         this.d.setColor(i7);
-        this.f39526e = 1.3f;
+        this.f39482e = 1.3f;
         invalidateSelf();
     }
 }

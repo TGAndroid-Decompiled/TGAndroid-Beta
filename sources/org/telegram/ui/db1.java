@@ -1,33 +1,33 @@
 package org.telegram.ui;
 public final class db1 implements Runnable {
-    public final int f46913a;
-    public final UserInfoActivity f46914b;
+    public final int f46873a;
+    public final UserInfoActivity f46874b;
 
     public db1(UserInfoActivity userInfoActivity, int i7) {
-        this.f46913a = i7;
-        this.f46914b = userInfoActivity;
+        this.f46873a = i7;
+        this.f46874b = userInfoActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f46913a) {
+        switch (this.f46873a) {
             case 0:
-                this.f46914b.presentFragment(new PrivacyControlActivity(9, true));
+                this.f46874b.presentFragment(new PrivacyControlActivity(9, true));
                 return;
             case 1:
-                bi.f6 f6Var = this.f46914b.f43938y;
-                if (f6Var != null) {
-                    f6Var.f35789g3.O(true);
+                bi.i6 i6Var = this.f46874b.f43903y;
+                if (i6Var != null) {
+                    i6Var.f35742g3.O(true);
                     return;
                 }
                 return;
             case 2:
-                UserInfoActivity userInfoActivity = this.f46914b;
+                UserInfoActivity userInfoActivity = this.f46874b;
                 userInfoActivity.getClass();
                 userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
                 return;
             default:
-                UserInfoActivity userInfoActivity2 = this.f46914b;
+                UserInfoActivity userInfoActivity2 = this.f46874b;
                 userInfoActivity2.getClass();
                 userInfoActivity2.presentFragment(new PremiumPreviewFragment(0, "add_account"));
                 return;

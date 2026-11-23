@@ -4,35 +4,35 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Trace;
 import android.util.Log;
-import c8.ke;
-import c8.m0;
+import c8.le;
+import c8.n0;
 import java.lang.reflect.Method;
 public abstract class e {
-    public static final m0 f15923a;
-    public static final a0.j f15924b;
+    public static final n0 f15889a;
+    public static final a0.j f15890b;
 
     static {
-        ke.a("TypefaceCompat static init");
+        le.a("TypefaceCompat static init");
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 29) {
-            f15923a = new m0();
+            f15889a = new n0();
         } else if (i7 >= 28) {
-            f15923a = new h();
+            f15889a = new h();
         } else if (i7 >= 26) {
-            f15923a = new h();
+            f15889a = new h();
         } else {
             if (i7 >= 24) {
-                Method method = g.f15931c;
+                Method method = g.f15897c;
                 if (method == null) {
                     Log.w("TypefaceCompatApi24Impl", "Unable to collect necessary private methods.Fallback to legacy implementation.");
                 }
                 if (method != null) {
-                    f15923a = new m0();
+                    f15889a = new n0();
                 }
             }
-            f15923a = new m0();
+            f15889a = new n0();
         }
-        f15924b = new a0.j(16);
+        f15890b = new a0.j(16);
         Trace.endSection();
     }
 

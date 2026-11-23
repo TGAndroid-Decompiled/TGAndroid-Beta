@@ -6,18 +6,18 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.FrameLayout;
 public abstract class h50 extends FrameLayout {
-    public d50 f35785a;
-    public g50 f35786b;
-    public f50 f35787c;
+    public d50 f35738a;
+    public g50 f35739b;
+    public f50 f35740c;
     public boolean d;
 
     public static boolean e(int i7) {
         aj.a aVar = aj.e.d;
         aVar.a();
-        if (aVar.f1661c) {
+        if (aVar.f1612c) {
             aVar.a();
             return aVar.d;
-        } else if (!((org.telegram.messenger.h0) org.telegram.messenger.np.u1(i7).A7.m0.f14030b).f24341c) {
+        } else if (!((org.telegram.messenger.h0) org.telegram.messenger.np.u1(i7).A7.m0.f13993b).f24305c) {
             return true;
         } else {
             return false;
@@ -57,7 +57,7 @@ public abstract class h50 extends FrameLayout {
     public abstract void k();
 
     public final void setAnimationCallback(d50 d50Var) {
-        this.f35785a = d50Var;
+        this.f35738a = d50Var;
     }
 
     public abstract void setInternalPadding(int i7);
@@ -65,10 +65,10 @@ public abstract class h50 extends FrameLayout {
     public abstract void setIsMessageTransition(boolean z10);
 
     public final void setRecordingUiFrameCallback(f50 f50Var) {
-        this.f35787c = f50Var;
+        this.f35740c = f50Var;
         if (f50Var != null) {
             boolean z10 = this.d;
-            org.telegram.ui.rj rjVar = ((org.telegram.ui.xi) f50Var).f53889a.f45950a0;
+            org.telegram.ui.rj rjVar = ((org.telegram.ui.xi) f50Var).f53811a.f45903a0;
             if (rjVar != null) {
                 rjVar.setRoundVideoUiFrameClockActive(z10);
             }
@@ -76,6 +76,6 @@ public abstract class h50 extends FrameLayout {
     }
 
     public final void setTrimCallback(g50 g50Var) {
-        this.f35786b = g50Var;
+        this.f35739b = g50Var;
     }
 }

@@ -9,60 +9,60 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.h60;
 import org.telegram.ui.j70;
+import org.telegram.ui.o60;
 public final class q4 implements RequestDelegate {
-    public final int f26398a = 0;
-    public final boolean f26399b;
-    public final int f26400c;
+    public final int f26362a = 0;
+    public final boolean f26363b;
+    public final int f26364c;
     public final Object d;
-    public final Object f26401e;
-    public final Serializable f26402f;
-    public final Object f26403g;
+    public final Object f26365e;
+    public final Serializable f26366f;
+    public final Object f26367g;
     public final Serializable h;
-    public final Serializable f26404i;
-    public final Object f26405j;
-    public final Object f26406k;
-    public final Object f26407l;
-    public final Cloneable f26408m;
+    public final Serializable f26368i;
+    public final Object f26369j;
+    public final Object f26370k;
+    public final Object f26371l;
+    public final Cloneable f26372m;
 
     public q4(i5 i5Var, HashMap hashMap, SparseArray sparseArray, boolean[] zArr, HashMap hashMap2, TLRPC.TL_contacts_importContacts tL_contacts_importContacts, int i7, HashMap hashMap3, boolean z10, HashMap hashMap4, ArrayList arrayList, HashMap hashMap5) {
         this.d = i5Var;
-        this.f26401e = hashMap;
-        this.f26405j = sparseArray;
-        this.f26406k = zArr;
-        this.f26402f = hashMap2;
-        this.f26407l = tL_contacts_importContacts;
-        this.f26400c = i7;
-        this.f26403g = hashMap3;
-        this.f26399b = z10;
+        this.f26365e = hashMap;
+        this.f26369j = sparseArray;
+        this.f26370k = zArr;
+        this.f26366f = hashMap2;
+        this.f26371l = tL_contacts_importContacts;
+        this.f26364c = i7;
+        this.f26367g = hashMap3;
+        this.f26363b = z10;
         this.h = hashMap4;
-        this.f26408m = arrayList;
-        this.f26404i = hashMap5;
+        this.f26372m = arrayList;
+        this.f26368i = hashMap5;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         int i7;
         boolean z10;
-        switch (this.f26398a) {
+        switch (this.f26362a) {
             case 0:
                 i5 i5Var = (i5) this.d;
-                HashMap hashMap = (HashMap) this.f26401e;
-                SparseArray sparseArray = (SparseArray) this.f26405j;
-                boolean[] zArr = (boolean[]) this.f26406k;
-                HashMap hashMap2 = (HashMap) this.f26402f;
-                TLRPC.TL_contacts_importContacts tL_contacts_importContacts = (TLRPC.TL_contacts_importContacts) this.f26407l;
-                int i10 = this.f26400c;
-                HashMap hashMap3 = (HashMap) this.f26403g;
-                boolean z11 = this.f26399b;
+                HashMap hashMap = (HashMap) this.f26365e;
+                SparseArray sparseArray = (SparseArray) this.f26369j;
+                boolean[] zArr = (boolean[]) this.f26370k;
+                HashMap hashMap2 = (HashMap) this.f26366f;
+                TLRPC.TL_contacts_importContacts tL_contacts_importContacts = (TLRPC.TL_contacts_importContacts) this.f26371l;
+                int i10 = this.f26364c;
+                HashMap hashMap3 = (HashMap) this.f26367g;
+                boolean z11 = this.f26363b;
                 HashMap hashMap4 = (HashMap) this.h;
-                ArrayList arrayList = (ArrayList) this.f26408m;
-                HashMap hashMap5 = (HashMap) this.f26404i;
+                ArrayList arrayList = (ArrayList) this.f26372m;
+                HashMap hashMap5 = (HashMap) this.f26368i;
                 boolean z12 = true;
-                i5Var.f24613n0++;
+                i5Var.f24577n0++;
                 if (tL_error == null) {
-                    if (s2.f26730a) {
+                    if (s2.f26694a) {
                         a8.b("contacts imported");
                     }
                     TLRPC.TL_contacts_importedContacts tL_contacts_importedContacts = (TLRPC.TL_contacts_importedContacts) tLObject;
@@ -76,7 +76,7 @@ public final class q4 implements RequestDelegate {
                         z10 = z12;
                         i7 = 0;
                         zArr[0] = z10;
-                        if (s2.f26730a) {
+                        if (s2.f26694a) {
                             a8.b("result has retry contacts");
                         }
                     } else {
@@ -87,7 +87,7 @@ public final class q4 implements RequestDelegate {
                         TLRPC.TL_popularContact tL_popularContact = tL_contacts_importedContacts.popular_invites.get(i12);
                         f5 f5Var = (f5) hashMap2.get(sparseArray.get((int) tL_popularContact.client_id));
                         if (f5Var != null) {
-                            f5Var.f23869l = tL_popularContact.importers;
+                            f5Var.f23833l = tL_popularContact.importers;
                         }
                     }
                     boolean z13 = z10;
@@ -112,11 +112,11 @@ public final class q4 implements RequestDelegate {
                     }
                     i7 = i14;
                     zArr[i7] = true;
-                    if (s2.f26730a) {
+                    if (s2.f26694a) {
                         p5.c.s(tL_error.text, new StringBuilder("import contacts error "));
                     }
                 }
-                if (i5Var.f24613n0 == i10) {
+                if (i5Var.f24577n0 == i10) {
                     if (!hashMap.isEmpty()) {
                         boolean z14 = i7;
                         i5Var.getMessagesStorage().Z0(hashMap, z14, z14);
@@ -127,35 +127,35 @@ public final class q4 implements RequestDelegate {
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) this.d;
-                h60 h60Var = (h60) this.f26401e;
-                boolean z15 = this.f26399b;
-                Long l10 = (Long) this.f26402f;
-                vf.b bVar = (vf.b) this.f26403g;
+                o60 o60Var = (o60) this.f26365e;
+                boolean z15 = this.f26363b;
+                Long l10 = (Long) this.f26366f;
+                vf.b bVar = (vf.b) this.f26367g;
                 Long l11 = (Long) this.h;
-                Integer num = (Integer) this.f26404i;
-                Integer num2 = (Integer) this.f26405j;
-                byte[] bArr = (byte[]) this.f26406k;
-                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f26407l;
-                int i16 = this.f26400c;
-                Bundle bundle = (Bundle) this.f26408m;
+                Integer num = (Integer) this.f26368i;
+                Integer num2 = (Integer) this.f26369j;
+                byte[] bArr = (byte[]) this.f26370k;
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f26371l;
+                int i16 = this.f26364c;
+                Bundle bundle = (Bundle) this.f26372m;
                 String str = LaunchActivity.C1;
-                g0.g3(new j70(launchActivity, h60Var, tLObject, z15, l10, bVar, l11, num, num2, bArr, g2Var, i16, bundle));
+                g0.g3(new j70(launchActivity, o60Var, tLObject, z15, l10, bVar, l11, num, num2, bArr, g2Var, i16, bundle));
                 return;
         }
     }
 
-    public q4(LaunchActivity launchActivity, h60 h60Var, boolean z10, Long l10, vf.b bVar, Long l11, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.g2 g2Var, int i7, Bundle bundle) {
+    public q4(LaunchActivity launchActivity, o60 o60Var, boolean z10, Long l10, vf.b bVar, Long l11, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.g2 g2Var, int i7, Bundle bundle) {
         this.d = launchActivity;
-        this.f26401e = h60Var;
-        this.f26399b = z10;
-        this.f26402f = l10;
-        this.f26403g = bVar;
+        this.f26365e = o60Var;
+        this.f26363b = z10;
+        this.f26366f = l10;
+        this.f26367g = bVar;
         this.h = l11;
-        this.f26404i = num;
-        this.f26405j = num2;
-        this.f26406k = bArr;
-        this.f26407l = g2Var;
-        this.f26400c = i7;
-        this.f26408m = bundle;
+        this.f26368i = num;
+        this.f26369j = num2;
+        this.f26370k = bArr;
+        this.f26371l = g2Var;
+        this.f26364c = i7;
+        this.f26372m = bundle;
     }
 }

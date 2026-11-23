@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public final class nb0 extends zm0 {
+public final class nb0 extends ym0 {
     public final tb0 d;
 
     public nb0(tb0 tb0Var) {
@@ -24,7 +24,7 @@ public final class nb0 extends zm0 {
     @Override
     public final CharSequence d() {
         tb0 tb0Var = this.d;
-        org.telegram.messenger.z10 z10Var = tb0Var.f39842v0;
+        org.telegram.messenger.z10 z10Var = tb0Var.f39797v0;
         if (z10Var != null) {
             return (CharSequence) z10Var.a(Integer.valueOf(tb0Var.I));
         }

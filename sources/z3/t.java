@@ -1,18 +1,18 @@
 package z3;
 
-import a8.la;
+import a8.ma;
 import h2.l0;
 public final class t {
-    public final q f61516a;
-    public final int f61517b;
-    public final long[] f61518c;
+    public final q f61481a;
+    public final int f61482b;
+    public final long[] f61483c;
     public final int[] d;
-    public final int f61519e;
-    public final long[] f61520f;
-    public final int[] f61521g;
+    public final int f61484e;
+    public final long[] f61485f;
+    public final int[] f61486g;
     public final int[] h;
-    public final long f61522i;
-    public final boolean f61523j;
+    public final long f61487i;
+    public final boolean f61488j;
 
     public t(q qVar, long[] jArr, int[] iArr, int i7, long[] jArr2, int[] iArr2, int[] iArr3, boolean z10, long j3, int i10) {
         boolean z11;
@@ -22,24 +22,24 @@ public final class t {
         } else {
             z11 = false;
         }
-        la.f(z11);
+        ma.f(z11);
         if (jArr.length == jArr2.length) {
             z12 = true;
         } else {
             z12 = false;
         }
-        la.f(z12);
-        la.f(iArr2.length == jArr2.length);
-        this.f61516a = qVar;
-        this.f61518c = jArr;
+        ma.f(z12);
+        ma.f(iArr2.length == jArr2.length);
+        this.f61481a = qVar;
+        this.f61483c = jArr;
         this.d = iArr;
-        this.f61519e = i7;
-        this.f61520f = jArr2;
-        this.f61521g = iArr2;
+        this.f61484e = i7;
+        this.f61485f = jArr2;
+        this.f61486g = iArr2;
         this.h = iArr3;
-        this.f61523j = z10;
-        this.f61522i = j3;
-        this.f61517b = i10;
+        this.f61488j = z10;
+        this.f61487i = j3;
+        this.f61482b = i10;
         if (iArr2.length > 0) {
             int length = iArr2.length - 1;
             iArr2[length] = iArr2[length] | 536870912;
@@ -47,12 +47,12 @@ public final class t {
     }
 
     public final int a(long j3) {
-        long[] jArr = this.f61520f;
+        long[] jArr = this.f61485f;
         if (jArr.length <= 0) {
             return -1;
         }
         int i7 = 0;
-        if (this.f61523j) {
+        if (this.f61488j) {
             return l0.f(jArr, j3, false);
         }
         int[] iArr = this.h;
@@ -80,11 +80,11 @@ public final class t {
     }
 
     public final int b(long j3) {
-        long[] jArr = this.f61520f;
+        long[] jArr = this.f61485f;
         if (jArr.length <= 0) {
             return -1;
         }
-        if (this.f61523j) {
+        if (this.f61488j) {
             return l0.b(jArr, j3, true);
         }
         int[] iArr = this.h;

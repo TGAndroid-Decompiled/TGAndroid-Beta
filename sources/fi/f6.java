@@ -2,14 +2,14 @@ package fi;
 
 import org.telegram.messenger.ur;
 public final class f6 implements Runnable {
-    public final int f11986a;
-    public final h6 f11987b;
-    public final ur f11988c;
+    public final int f11937a;
+    public final h6 f11938b;
+    public final ur f11939c;
 
     public f6(h6 h6Var, ur urVar, int i7) {
-        this.f11986a = i7;
-        this.f11987b = h6Var;
-        this.f11988c = urVar;
+        this.f11937a = i7;
+        this.f11938b = h6Var;
+        this.f11939c = urVar;
     }
 
     @Override

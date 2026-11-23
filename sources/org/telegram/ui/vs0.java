@@ -1,124 +1,49 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.Arrays;
-public final class vs0 extends LinearLayout {
-    public final TextView f52885a;
-    public final TextView f52886b;
-    public final FrameLayout f52887c;
-    public final di.bc d;
-    public final br0 f52888e;
-    public boolean f52889f;
-    public boolean h;
-    public final PremiumPreviewFragment f52890n;
+import android.view.ViewGroup;
+public final class vs0 extends org.telegram.ui.Components.dk0 {
+    public final Context f52854c;
+    public final ws0 d;
 
-    public vs0(PremiumPreviewFragment premiumPreviewFragment, Context context) {
-        super(context);
-        int i7;
-        int i10;
-        int i11;
-        this.f52890n = premiumPreviewFragment;
-        setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f52887c = frameLayout;
-        int i12 = premiumPreviewFragment.f43477h0;
-        if (i12 == 1) {
-            i7 = 175;
-        } else {
-            i7 = 190;
-        }
-        addView(frameLayout, c8.ma.r(i7, i7, 1));
-        boolean z10 = premiumPreviewFragment.f43478i0;
-        if (i12 == 1) {
-            i10 = 1;
-        } else {
-            i10 = 0;
-        }
-        di.bc bcVar = new di.bc(this, context, z10 ? 1 : 0, i10, context);
-        this.d = bcVar;
-        frameLayout.addView(bcVar, c8.ma.c(-1.0f, -1));
-        frameLayout.setClipChildren(false);
-        setClipChildren(false);
-        TextView textView = new TextView(context);
-        this.f52885a = textView;
-        textView.setTextSize(1, 22.0f);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setGravity(1);
-        if (i12 == 1) {
-            i11 = 8;
-        } else {
-            i11 = 20;
-        }
-        addView(textView, c8.ma.q(-2, -2, 0.0f, 1, 16, i11, 16, 0));
-        TextView textView2 = new TextView(context);
-        this.f52886b = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
-        textView2.setGravity(1);
-        addView(textView2, c8.ma.q(-1, -2, 0.0f, 1, 16, 7, 16, 0));
-        br0 br0Var = new br0(this, context);
-        this.f52888e = br0Var;
-        br0Var.setOverScrollMode(2);
-        br0Var.setLayoutManager(new v4.c0());
-        br0Var.setAdapter(new us0(this, context));
-        br0Var.setOnItemClickListener(new h(this, 25));
-        final Path path = new Path();
-        final float[] fArr = new float[8];
-        br0Var.setSelectorTransformer(new q0.a() {
-            @Override
-            public final void accept(Object obj) {
-                int b10;
-                Canvas canvas = (Canvas) obj;
-                br0 br0Var2 = vs0.this.f52888e;
-                View pressedChildView = br0Var2.getPressedChildView();
-                if (pressedChildView == null) {
-                    b10 = -1;
-                } else {
-                    b10 = br0Var2.T(pressedChildView).b();
-                }
-                Path path2 = path;
-                path2.rewind();
-                Rect selectorRect = br0Var2.getSelectorRect();
-                RectF rectF = org.telegram.messenger.g0.P;
-                rectF.set(selectorRect.left, selectorRect.top, selectorRect.right, selectorRect.bottom);
-                float[] fArr2 = fArr;
-                Arrays.fill(fArr2, 0.0f);
-                if (b10 == 0) {
-                    Arrays.fill(fArr2, 0, 4, org.telegram.messenger.g0.L(12.0f));
-                }
-                if (b10 == br0Var2.getAdapter().b() - 1) {
-                    Arrays.fill(fArr2, 4, 8, org.telegram.messenger.g0.L(12.0f));
-                }
-                path2.addRoundRect(rectF, fArr2, Path.Direction.CW);
-                canvas.clipPath(path2);
-            }
-        });
-        setClipChildren(false);
-        setClipToPadding(false);
-        addView(br0Var, c8.ma.k(12.0f, 16.0f, 12.0f, 4.0f, -1, -2));
-        a();
-        b();
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vs0.a():void");
-    }
-
-    public final void b() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vs0.b():void");
+    public vs0(ws0 ws0Var, Context context) {
+        this.d = ws0Var;
+        this.f52854c = context;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return true;
+    public final boolean D(v4.e1 e1Var) {
+        return !((ys0) this.d.f53450n.d.get(e1Var.b())).f54246a.current;
+    }
+
+    @Override
+    public final int b() {
+        return this.d.f53450n.d.size();
+    }
+
+    @Override
+    public final void t(v4.e1 e1Var, int i7) {
+        boolean z10;
+        ug.n1 n1Var = (ug.n1) e1Var.f59111a;
+        PremiumPreviewFragment premiumPreviewFragment = this.d.f53450n;
+        ys0 ys0Var = (ys0) premiumPreviewFragment.d.get(i7);
+        boolean z11 = true;
+        if (i7 != b() - 1) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        n1Var.a(ys0Var, z10);
+        if (premiumPreviewFragment.f43437e != i7) {
+            z11 = false;
+        }
+        n1Var.c(z11, false);
+    }
+
+    @Override
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        us0 us0Var = new us0(this, this.f52854c);
+        us0Var.setCirclePaintProvider(new aj0(10, this, us0Var));
+        return new v4.e1(us0Var);
     }
 }

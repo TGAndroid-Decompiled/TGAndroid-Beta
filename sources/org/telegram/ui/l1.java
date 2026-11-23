@@ -5,22 +5,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.HashMap;
 public final class l1 implements org.telegram.ui.Components.w71 {
-    public final q1 f49447a;
+    public final q1 f49423a;
 
     public l1(q1 q1Var) {
-        this.f49447a = q1Var;
+        this.f49423a = q1Var;
     }
 
     @Override
     public final TextureView a(View view, boolean z10, float f10, int i7, boolean z11) {
-        q1 q1Var = this.f49447a;
-        g4 g4Var = q1Var.f51033y;
+        q1 q1Var = this.f49423a;
+        g4 g4Var = q1Var.f50963y;
         if (z10) {
-            g4Var.S.addView(g4Var.R, c8.ma.c(-1.0f, -1));
+            g4Var.S.addView(g4Var.R, c8.na.c(-1.0f, -1));
             g4Var.S.setVisibility(0);
             g4Var.S.a(f10, i7);
-            g4Var.G0 = q1Var.f51024b;
-            g4Var.Q.addView(view, c8.ma.c(-1.0f, -1));
+            g4Var.G0 = q1Var.f50954b;
+            g4Var.Q.addView(view, c8.na.c(-1.0f, -1));
             g4Var.Q.setVisibility(0);
         } else {
             g4Var.S.removeView(g4Var.R);
@@ -33,29 +33,29 @@ public final class l1 implements org.telegram.ui.Components.w71 {
 
     @Override
     public final void c(float f10) {
-        this.f49447a.f51033y.S.a(f10, 0);
+        this.f49423a.f50963y.S.a(f10, 0);
     }
 
     @Override
     public final void d() {
-        this.f49447a.f51023a.setVisibility(0);
-        this.f49447a.f51024b.setVisibility(4);
-        this.f49447a.f51024b.g(null, null, null, null, false);
+        this.f49423a.f50953a.setVisibility(0);
+        this.f49423a.f50954b.setVisibility(4);
+        this.f49423a.f50954b.g(null, null, null, null, false);
         HashMap hashMap = new HashMap();
-        hashMap.put("Referer", org.telegram.messenger.t0.f26931b.getPackageName());
-        q1 q1Var = this.f49447a;
-        q1Var.f51023a.loadUrl(q1Var.f51031w.url, hashMap);
+        hashMap.put("Referer", org.telegram.messenger.t0.f26895b.getPackageName());
+        q1 q1Var = this.f49423a;
+        q1Var.f50953a.loadUrl(q1Var.f50961w.url, hashMap);
     }
 
     @Override
     public final void e(org.telegram.ui.Components.z71 z71Var, boolean z10) {
-        g4 g4Var = this.f49447a.f51033y;
+        g4 g4Var = this.f49423a.f50963y;
         if (z10) {
             org.telegram.ui.Components.z71 z71Var2 = g4Var.F0;
             if (z71Var2 != null && z71Var2 != z71Var) {
-                z71Var2.f42709a.g0();
+                z71Var2.f42667a.g0();
                 z71Var2.n();
-                z71Var2.f42720g0.d(true, true);
+                z71Var2.f42678g0.d(true, true);
             }
             g4Var.F0 = z71Var;
             try {

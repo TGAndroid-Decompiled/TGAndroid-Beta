@@ -8,11 +8,11 @@ import h2.o0;
 import java.util.Locale;
 import pb.g;
 public final class c extends q {
-    public final g f61170b;
+    public final g f61135b;
 
     public c(g gVar) {
         super(4);
-        this.f61170b = gVar;
+        this.f61135b = gVar;
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class c extends q {
         String str;
         o0 o0Var;
         xb.a aVar = (xb.a) obj;
-        Context b10 = this.f61170b.b();
-        n6.e.f21462b.getClass();
+        Context b10 = this.f61135b.b();
+        n6.e.f21428b.getClass();
         if (n6.e.a(b10) >= 204700000) {
             o0Var = new o0(b10, aVar);
         } else {
             ?? obj2 = new Object();
-            obj2.f4012b = b10;
+            obj2.f4061b = b10;
             Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage());
-            obj2.f4013c = new y6(1, -1, aVar.f59701a, 1);
-            n6.e.f21462b.getClass();
+            obj2.f4062c = new y6(1, -1, aVar.f59666a, 1);
+            n6.e.f21428b.getClass();
             if (n6.e.a(b10) >= 200400000) {
                 str = "com.google.android.gms.vision.ica";
             } else {

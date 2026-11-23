@@ -5,26 +5,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 public final class bb0 implements r1.d {
-    public final int f45833a;
-    public final Object f45834b;
+    public final int f45781a;
+    public final Object f45782b;
 
     public bb0(Object obj, int i7) {
-        this.f45833a = i7;
-        this.f45834b = obj;
+        this.f45781a = i7;
+        this.f45782b = obj;
     }
 
     @Override
     public final void a(r1.g gVar, float f10, float f11) {
-        int i7 = this.f45833a;
+        int i7 = this.f45781a;
         int i10 = 0;
-        Object obj = this.f45834b;
+        Object obj = this.f45782b;
         switch (i7) {
             case 0:
-                qd0 qd0Var = ((de0) obj).f46931c0;
+                qd0 qd0Var = ((de0) obj).f46891c0;
                 if (qd0Var != null) {
                     int i11 = qd0.G;
-                    View view = qd0Var.f51261c;
-                    ViewGroup viewGroup = qd0Var.f51260b;
+                    View view = qd0Var.f51192c;
+                    ViewGroup viewGroup = qd0Var.f51191b;
                     PointF pointF = qd0Var.E;
                     jh.k.b(view, viewGroup, pointF);
                     org.telegram.ui.Components.c10 c10Var = qd0Var.h;
@@ -37,7 +37,7 @@ public final class bb0 implements r1.d {
             case 1:
                 il0 il0Var = (il0) obj;
                 float f12 = f10 / 100.0f;
-                il0Var.f48777b = f12;
+                il0Var.f48759b = f12;
                 TextView textView = il0Var.d.V;
                 if (textView != null) {
                     textView.setAlpha((f12 * 0.2f) + 0.8f);
@@ -45,21 +45,21 @@ public final class bb0 implements r1.d {
                 il0Var.invalidate();
                 return;
             case 2:
-                jq0 jq0Var = (jq0) obj;
-                jq0Var.f49071d0 = f10;
-                jq0Var.f49073f0 = f11;
-                jq0Var.G();
+                kq0 kq0Var = (kq0) obj;
+                kq0Var.f49332d0 = f10;
+                kq0Var.f49334f0 = f11;
+                kq0Var.G();
                 return;
             case 3:
-                cr0 cr0Var = (cr0) obj;
-                if (cr0Var.f46661e > cr0Var.f46662f) {
+                dr0 dr0Var = (dr0) obj;
+                if (dr0Var.f46999e > dr0Var.f47000f) {
                     i10 = org.telegram.messenger.g0.L(48.0f);
                 }
-                org.telegram.ui.Components.k61 k61Var = cr0Var.f46665s.f43349q3;
-                int measuredWidth = (int) (((cr0Var.getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f)) - f10) - i10);
-                int measuredHeight = cr0Var.getMeasuredHeight();
+                org.telegram.ui.Components.k61 k61Var = dr0Var.f47003s.f43314q3;
+                int measuredWidth = (int) (((dr0Var.getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f)) - f10) - i10);
+                int measuredHeight = dr0Var.getMeasuredHeight();
                 k61Var.h = measuredWidth;
-                k61Var.f36825i = measuredHeight;
+                k61Var.f36791i = measuredHeight;
                 View view2 = k61Var.v;
                 if (view2 != null) {
                     view2.invalidate();
@@ -72,12 +72,12 @@ public final class bb0 implements r1.d {
                 yy0Var.invalidate();
                 return;
             default:
-                oz0 oz0Var = (oz0) obj;
-                org.telegram.ui.Components.k61 k61Var2 = oz0Var.f50693r.P;
-                int measuredWidth2 = (int) (((oz0Var.getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f)) - f10) - 0);
-                int measuredHeight2 = oz0Var.getMeasuredHeight();
+                nz0 nz0Var = (nz0) obj;
+                org.telegram.ui.Components.k61 k61Var2 = nz0Var.f50375r.P;
+                int measuredWidth2 = (int) (((nz0Var.getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f)) - f10) - 0);
+                int measuredHeight2 = nz0Var.getMeasuredHeight();
                 k61Var2.h = measuredWidth2;
-                k61Var2.f36825i = measuredHeight2;
+                k61Var2.f36791i = measuredHeight2;
                 View view3 = k61Var2.v;
                 if (view3 != null) {
                     view3.invalidate();

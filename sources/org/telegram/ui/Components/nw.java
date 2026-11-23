@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class nw extends ev {
+public final class nw extends dv {
     public final TLRPC.StickerSet R1;
     public final ty S1;
 
@@ -16,21 +16,21 @@ public final class nw extends ev {
     @Override
     public final void L0(boolean z10) {
         ty tyVar = this.S1;
-        ArrayList arrayList = tyVar.f40129q1;
+        ArrayList arrayList = tyVar.f40112q1;
         TLRPC.StickerSet stickerSet = this.R1;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f28461id))) {
-                arrayList.add(Long.valueOf(stickerSet.f28461id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f28425id))) {
+                arrayList.add(Long.valueOf(stickerSet.f28425id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f28461id));
+            arrayList.remove(Long.valueOf(stickerSet.f28425id));
         }
         tyVar.U();
     }
 
     @Override
     public final void dismiss() {
-        this.S1.f40155x2 = false;
+        this.S1.f40138x2 = false;
         super.dismiss();
     }
 }

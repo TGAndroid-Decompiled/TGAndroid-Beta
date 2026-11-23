@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.accessibility.AccessibilityNodeInfo;
 public final class p7 extends rh0 {
     public final f8 E;
-    public float f38519r;
-    public float f38520s;
-    public boolean f38521w;
-    public final j6.o f38522x;
-    public final float f38523y;
+    public float f38477r;
+    public float f38478s;
+    public boolean f38479w;
+    public final j6.o f38480x;
+    public final float f38481y;
 
     public p7(f8 f8Var, Context context, float f10) {
         super(context);
         this.E = f8Var;
-        this.f38523y = f10;
-        this.f38522x = new j6.o(this, 27);
+        this.f38481y = f10;
+        this.f38480x = new j6.o(this, 27);
     }
 
     @Override

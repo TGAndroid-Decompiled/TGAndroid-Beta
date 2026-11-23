@@ -1,37 +1,52 @@
 package p4;
+public final class i0 implements l0 {
+    public final int f55294a;
+    public final m0 f55295b;
+    public final int f55296c;
 
-import org.telegram.messenger.qe;
-public final class i0 implements Runnable {
-    public final int f55329a;
-    public final n0 f55330b;
-    public final i1 f55331c;
-
-    public i0(n0 n0Var, i1 i1Var, int i7) {
-        this.f55329a = i7;
-        this.f55330b = n0Var;
-        this.f55331c = i1Var;
+    public i0(m0 m0Var, int i7, int i10) {
+        this.f55294a = i10;
+        this.f55295b = m0Var;
+        this.f55296c = i7;
     }
 
     @Override
-    public final void run() {
-        e2.l1 l1Var;
-        switch (this.f55329a) {
+    public final void f(v vVar) {
+        int i7 = this.f55294a;
+        int i10 = 0;
+        r0 = false;
+        boolean z10 = false;
+        i10 = 0;
+        i10 = 0;
+        int i11 = this.f55296c;
+        m0 m0Var = this.f55295b;
+        switch (i7) {
             case 0:
-                n0 n0Var = this.f55330b;
-                q4.q qVar = n0Var.f55386n;
-                i1 i1Var = this.f55331c;
-                qVar.f(n0Var.h0(i1Var));
-                qe qeVar = n0Var.f55382j;
-                if (i1Var.t().a(17)) {
-                    l1Var = i1Var.y0();
-                } else {
-                    l1Var = e2.l1.f10537a;
+                i1 i1Var = m0Var.h.f55205t;
+                int i12 = n.f55358a;
+                if (i11 != -1 && i11 != 0) {
+                    if (i11 != 1) {
+                        if (i11 != 2 && i11 != 3) {
+                            h2.a.l("LegacyConversions", "Unrecognized PlaybackStateCompat.RepeatMode: " + i11 + " was converted to `Player.REPEAT_MODE_OFF`");
+                        } else {
+                            i10 = 2;
+                        }
+                    } else {
+                        i10 = 1;
+                    }
                 }
-                qeVar.w(l1Var);
+                i1Var.k(i10);
                 return;
             default:
-                n0 n0Var2 = this.f55330b;
-                n0Var2.f55386n.f(n0Var2.h0(this.f55331c));
+                i1 i1Var2 = m0Var.h.f55205t;
+                int i13 = n.f55358a;
+                if (i11 != -1 && i11 != 0) {
+                    if (i11 != 1 && i11 != 2) {
+                        throw new IllegalArgumentException(i5.c.i(i11, "Unrecognized ShuffleMode: "));
+                    }
+                    z10 = true;
+                }
+                i1Var2.x(z10);
                 return;
         }
     }

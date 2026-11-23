@@ -10,8 +10,8 @@ import android.widget.FrameLayout;
 public abstract class ds0 extends FrameLayout {
     public org.telegram.ui.ActionBar.k5 E;
     public int F;
-    public bi.t2 G;
-    public fm0 H;
+    public bi.v2 G;
+    public jn0 H;
     public boolean I;
     public int J;
     public boolean K;
@@ -20,19 +20,19 @@ public abstract class ds0 extends FrameLayout {
     public final Paint N;
     public org.telegram.ui.ActionBar.h6 O;
     public Drawable P;
-    public long f34556a;
-    public boolean f34557b;
-    public ObjectAnimator f34558c;
+    public long f34535a;
+    public boolean f34536b;
+    public ObjectAnimator f34537c;
     public v4.k d;
-    public v4.w0 f34559e;
-    public v4.w0 f34560f;
+    public v4.v0 f34538e;
+    public v4.v0 f34539f;
     public nq0 h;
-    public cs0 f34561n;
-    public oq0 f34562r;
-    public xq0 f34563s;
-    public zq0 f34564w;
-    public lq0 f34565x;
-    public wq0 f34566y;
+    public cs0 f34540n;
+    public oq0 f34541r;
+    public xq0 f34542s;
+    public zq0 f34543w;
+    public lq0 f34544x;
+    public wq0 f34545y;
 
     public ds0(Context context) {
         super(context);
@@ -62,11 +62,11 @@ public abstract class ds0 extends FrameLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        bi.t2 t2Var;
+        bi.v2 v2Var;
         h(canvas);
         super.dispatchDraw(canvas);
-        bi.t2 t2Var2 = this.G;
-        if (t2Var2 != null && t2Var2.getVisibility() == 0) {
+        bi.v2 v2Var2 = this.G;
+        if (v2Var2 != null && v2Var2.getVisibility() == 0) {
             jj0 fastScroll = this.h.getFastScroll();
             if (fastScroll != null) {
                 float L = org.telegram.messenger.g0.L(36.0f) + fastScroll.getScrollBarY();
@@ -77,7 +77,7 @@ public abstract class ds0 extends FrameLayout {
                 if (i7 == 8 || jt0.J0(i7)) {
                     L += org.telegram.messenger.g0.L(42.0f);
                 }
-                this.G.setPivotX(t2Var.getMeasuredWidth());
+                this.G.setPivotX(v2Var.getMeasuredWidth());
                 this.G.setPivotY(0.0f);
                 this.G.setTranslationX((getMeasuredWidth() - this.G.getMeasuredWidth()) - org.telegram.messenger.g0.L(16.0f));
                 this.G.setTranslationY(L);
@@ -90,7 +90,7 @@ public abstract class ds0 extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f34561n) {
+        if (view == this.f34540n) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -108,7 +108,7 @@ public abstract class ds0 extends FrameLayout {
             this.P.draw(canvas);
             canvas.restore();
         } else if (this.M) {
-            int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, this.O);
+            int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29290a7, this.O);
             Paint paint = this.N;
             paint.setColor(w02);
             canvas.drawRect(-L, min, getWidth() + L, max, paint);

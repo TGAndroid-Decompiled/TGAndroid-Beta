@@ -3,23 +3,23 @@ package n6;
 import android.app.PendingIntent;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.bc;
+import c8.cc;
 import java.util.Arrays;
 public final class a extends r6.a {
-    public final int f21449a;
-    public final int f21450b;
-    public final PendingIntent f21451c;
+    public final int f21415a;
+    public final int f21416b;
+    public final PendingIntent f21417c;
     public final String d;
-    public final Integer f21452e;
-    public static final a f21448f = new a(0, null, null);
+    public final Integer f21418e;
+    public static final a f21414f = new a(0, null, null);
     public static final Parcelable.Creator<a> CREATOR = new m6.e(9);
 
     public a(int i7, int i10, PendingIntent pendingIntent, String str, Integer num) {
-        this.f21449a = i7;
-        this.f21450b = i10;
-        this.f21451c = pendingIntent;
+        this.f21415a = i7;
+        this.f21416b = i10;
+        this.f21417c = pendingIntent;
         this.d = str;
-        this.f21452e = num;
+        this.f21418e = num;
     }
 
     public static String d(int i7) {
@@ -95,14 +95,14 @@ public final class a extends r6.a {
     }
 
     public final boolean b() {
-        if (this.f21450b != 0 && this.f21451c != null) {
+        if (this.f21416b != 0 && this.f21417c != null) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        if (this.f21450b == 0) {
+        if (this.f21416b == 0) {
             return true;
         }
         return false;
@@ -116,36 +116,36 @@ public final class a extends r6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f21450b == aVar.f21450b && q6.m.l(this.f21451c, aVar.f21451c) && q6.m.l(this.d, aVar.d) && q6.m.l(this.f21452e, aVar.f21452e)) {
+        if (this.f21416b == aVar.f21416b && q6.m.l(this.f21417c, aVar.f21417c) && q6.m.l(this.d, aVar.d) && q6.m.l(this.f21418e, aVar.f21418e)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f21450b), this.f21451c, this.d, this.f21452e});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f21416b), this.f21417c, this.d, this.f21418e});
     }
 
     public final String toString() {
-        ji.l lVar = new ji.l(this);
-        lVar.E(d(this.f21450b), "statusCode");
-        lVar.E(this.f21451c, "resolution");
-        lVar.E(this.d, "message");
-        lVar.E(this.f21452e, "clientMethodKey");
-        return lVar.toString();
+        ji.k kVar = new ji.k(this);
+        kVar.E(d(this.f21416b), "statusCode");
+        kVar.E(this.f21417c, "resolution");
+        kVar.E(this.d, "message");
+        kVar.E(this.f21418e, "clientMethodKey");
+        return kVar.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = bc.r(parcel, 20293);
-        bc.q(parcel, 1, 4);
-        parcel.writeInt(this.f21449a);
-        bc.q(parcel, 2, 4);
-        parcel.writeInt(this.f21450b);
-        bc.k(parcel, 3, this.f21451c, i7);
-        bc.l(parcel, 4, this.d);
-        bc.i(parcel, 5, this.f21452e);
-        bc.s(parcel, r10);
+        int r10 = cc.r(parcel, 20293);
+        cc.q(parcel, 1, 4);
+        parcel.writeInt(this.f21415a);
+        cc.q(parcel, 2, 4);
+        parcel.writeInt(this.f21416b);
+        cc.k(parcel, 3, this.f21417c, i7);
+        cc.l(parcel, 4, this.d);
+        cc.i(parcel, 5, this.f21418e);
+        cc.s(parcel, r10);
     }
 
     public a(int i7, PendingIntent pendingIntent, String str) {

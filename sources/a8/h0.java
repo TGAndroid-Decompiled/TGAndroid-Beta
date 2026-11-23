@@ -5,15 +5,15 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 public abstract class h0 extends AbstractSet {
-    public final int f464a;
+    public final int f458a;
 
     @Override
     public boolean removeAll(Collection collection) {
-        switch (this.f464a) {
+        switch (this.f458a) {
             case 0:
                 return v0.a(this, collection);
             case 1:
-                return e8.a(this, collection);
+                return f8.a(this, collection);
             default:
                 collection.getClass();
                 if (collection instanceof h9.n1) {
@@ -39,7 +39,7 @@ public abstract class h0 extends AbstractSet {
 
     @Override
     public boolean retainAll(Collection collection) {
-        switch (this.f464a) {
+        switch (this.f458a) {
             case 0:
                 collection.getClass();
                 return super.retainAll(collection);

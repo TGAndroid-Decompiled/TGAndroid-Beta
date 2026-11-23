@@ -1,17 +1,12 @@
 package a8;
 public abstract class t7 {
-    public static c0.l a(c0.j jVar) {
-        ?? obj = new Object();
-        obj.f4374c = new Object();
-        c0.l lVar = new c0.l(obj);
-        obj.f4373b = lVar;
-        obj.f4372a = jVar.getClass();
-        try {
-            obj.f4372a = jVar.e(obj);
-            return lVar;
-        } catch (Exception e10) {
-            lVar.f4377b.l(e10);
-            return lVar;
-        }
-    }
+    public abstract boolean a(c0.h hVar, c0.d dVar, c0.d dVar2);
+
+    public abstract boolean b(c0.h hVar, Object obj, Object obj2);
+
+    public abstract boolean c(c0.h hVar, c0.g gVar, c0.g gVar2);
+
+    public abstract void d(c0.g gVar, c0.g gVar2);
+
+    public abstract void e(c0.g gVar, Thread thread);
 }

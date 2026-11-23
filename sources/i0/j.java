@@ -9,11 +9,11 @@ import android.graphics.fonts.FontFamily;
 import android.graphics.fonts.FontStyle;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
-import c8.m0;
+import c8.n0;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-public final class j extends m0 {
+public final class j extends n0 {
     public static Font g(FontFamily fontFamily, int i7) {
         int i10;
         int i11;
@@ -46,7 +46,7 @@ public final class j extends m0 {
         FontFamily.Builder builder = null;
         for (o0.h hVar : hVarArr) {
             try {
-                openFileDescriptor = contentResolver.openFileDescriptor(hVar.f21604a, "r", null);
+                openFileDescriptor = contentResolver.openFileDescriptor(hVar.f21570a, "r", null);
             } catch (IOException e10) {
                 Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
             }
@@ -54,7 +54,7 @@ public final class j extends m0 {
                 if (openFileDescriptor == null) {
                 }
             } else {
-                Font build = new Font.Builder(openFileDescriptor).setWeight(hVar.f21606c).setSlant(hVar.d ? 1 : 0).setTtcIndex(hVar.f21605b).build();
+                Font build = new Font.Builder(openFileDescriptor).setWeight(hVar.f21572c).setSlant(hVar.d ? 1 : 0).setTtcIndex(hVar.f21571b).build();
                 if (builder == null) {
                     builder = new FontFamily.Builder(build);
                 } else {
@@ -85,9 +85,9 @@ public final class j extends m0 {
         h0.f[] fVarArr;
         try {
             FontFamily.Builder builder = null;
-            for (h0.f fVar : eVar.f13716a) {
+            for (h0.f fVar : eVar.f13679a) {
                 try {
-                    Font build = new Font.Builder(resources, fVar.f13721f).setWeight(fVar.f13718b).setSlant(fVar.f13719c ? 1 : 0).setTtcIndex(fVar.f13720e).setFontVariationSettings(fVar.d).build();
+                    Font build = new Font.Builder(resources, fVar.f13684f).setWeight(fVar.f13681b).setSlant(fVar.f13682c ? 1 : 0).setTtcIndex(fVar.f13683e).setFontVariationSettings(fVar.d).build();
                     if (builder == null) {
                         builder = new FontFamily.Builder(build);
                     } else {

@@ -4,39 +4,39 @@ import android.animation.ValueAnimator;
 import org.telegram.ui.d30;
 import org.telegram.ui.f40;
 public final class g0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f41008a;
-    public final k0 f41009b;
+    public final int f40970a;
+    public final k0 f40971b;
 
     public g0(k0 k0Var, int i7) {
-        this.f41008a = i7;
-        this.f41009b = k0Var;
+        this.f40970a = i7;
+        this.f40971b = k0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f10;
-        switch (this.f41008a) {
+        switch (this.f40970a) {
             case 0:
-                k0 k0Var = this.f41009b;
+                k0 k0Var = this.f40971b;
                 k0Var.getClass();
                 k0Var.J0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 k0Var.invalidate();
                 return;
             default:
-                k0 k0Var2 = this.f41009b;
+                k0 k0Var2 = this.f40971b;
                 k0Var2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k0Var2.f41111c = floatValue;
-                f40 f40Var = k0Var2.f41122k0;
-                f40Var.f47576y3.setAlpha(1.0f - floatValue);
+                k0Var2.f41073c = floatValue;
+                f40 f40Var = k0Var2.f41084k0;
+                f40Var.f47538y3.setAlpha(1.0f - floatValue);
                 d30 d30Var = f40Var.J1;
                 if (d30Var.getTag() != null) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
                 }
-                d30Var.setAlpha((1.0f - f40Var.Z3.f41111c) * f10);
-                f40Var.K1(f40Var.f47550t2);
+                d30Var.setAlpha((1.0f - f40Var.Z3.f41073c) * f10);
+                f40Var.K1(f40Var.f47512t2);
                 k0Var2.l();
                 return;
         }

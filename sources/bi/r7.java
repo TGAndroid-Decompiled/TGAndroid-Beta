@@ -2,60 +2,69 @@ package bi;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.c51;
-import org.telegram.ui.Components.ek0;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.n41;
-import org.telegram.ui.Components.o41;
-import org.telegram.ui.Components.rh0;
-public final class r7 extends n41 {
-    public static final int f4056b = 0;
+import android.widget.TextView;
+import c8.sa;
+import org.telegram.ui.Components.nq;
+public final class r7 extends TextView {
+    public final nq f4033a;
+    public final int f4034b;
+    public final boolean f4035c;
 
-    static {
-        n41.h(new n41());
+    public r7(Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
+        super(context);
+        this.f4035c = z10;
+        if (z10) {
+            org.telegram.ui.ActionBar.t6.U(this, org.telegram.ui.ActionBar.m6.G6, h6Var);
+            setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
+            setTextSize(1, 15.0f);
+            this.f4034b = org.telegram.messenger.g0.L(40.0f);
+        } else {
+            int i7 = org.telegram.ui.ActionBar.m6.f29741y8;
+            int w02 = org.telegram.ui.ActionBar.m6.w0(i7, h6Var);
+            org.telegram.ui.ActionBar.t6.U(this, i7, h6Var);
+            org.telegram.ui.Cells.y b02 = org.telegram.ui.ActionBar.m6.b0(org.telegram.ui.ActionBar.m6.r1(0.08f, w02), org.telegram.ui.ActionBar.m6.r1(0.15f, w02), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f));
+            org.telegram.ui.ActionBar.p6 K = org.telegram.ui.ActionBar.t6.K(0.08f, i7);
+            org.telegram.ui.ActionBar.p6 K2 = org.telegram.ui.ActionBar.t6.K(0.15f, i7);
+            setBackground(b02);
+            org.telegram.ui.ActionBar.t6.j(this, b02, K, K2, h6Var);
+            setPadding(org.telegram.messenger.g0.L(11.0f), 0, org.telegram.messenger.g0.L(11.0f), 0);
+            this.f4034b = org.telegram.messenger.g0.L(26.0f);
+        }
+        setGravity(17);
+        setTypeface(org.telegram.messenger.g0.o());
+        if (!z10) {
+            sa.a(this);
+        }
+        nq nqVar = new nq(2131230873, 0);
+        this.f4033a = nqVar;
+        nqVar.H = 0.8f;
+        nqVar.f37907r = 0.0f;
+        nqVar.f37908s = org.telegram.messenger.g0.L(1.0f);
     }
 
     @Override
-    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
-        s7 s7Var = (s7) view;
-        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) o41Var.H;
-        int i7 = o41Var.A;
-        String str = (String) o41Var.f38091m;
-        boolean z11 = o41Var.f38084e;
-        rh0 rh0Var = s7Var.f30289c;
-        q7 q7Var = s7Var.f4103b0;
-        if (q7Var == null || s7Var.f4102a0 != stargiftattributemodel.document.f28440id) {
-            s7Var.f4102a0 = stargiftattributemodel.document.f28440id;
-            if (q7Var != null) {
-                q7Var.n(rh0Var);
-            }
-            s7Var.f4103b0 = new org.telegram.ui.Components.p5(3, s7Var.W, stargiftattributemodel.document);
-        }
-        if (rh0Var.isAttachedToWindow()) {
-            s7Var.f4103b0.a(rh0Var);
-        }
-        SpannableStringBuilder spannableStringBuilder = stargiftattributemodel.name;
-        if (!TextUtils.isEmpty(str)) {
-            spannableStringBuilder = org.telegram.messenger.g0.w1(spannableStringBuilder, str, s7Var.P);
-        }
-        if (i7 > 0) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
-            spannableStringBuilder2.append((CharSequence) "  ");
-            int length = spannableStringBuilder2.length();
-            spannableStringBuilder2.append((CharSequence) Integer.toString(i7));
-            spannableStringBuilder2.setSpan(new l41(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
-            spannableStringBuilder = spannableStringBuilder2;
-        }
-        s7Var.j(spannableStringBuilder, 0, s7Var.f4103b0);
-        s7Var.setChecked(z11);
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(this.f4034b, 1073741824));
     }
 
     @Override
-    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        return new s7(i7, context, h6Var);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f4035c && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setSorting(bi.z7 r7) {
+        throw new UnsupportedOperationException("Method not decompiled: bi.r7.setSorting(bi.z7):void");
+    }
+
+    public void setValue(CharSequence charSequence) {
+        SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
+        int length = append.length();
+        append.setSpan(this.f4033a, append.length() - 1, length, 33);
+        setText(append);
     }
 }

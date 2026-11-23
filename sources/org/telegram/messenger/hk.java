@@ -3,32 +3,32 @@ package org.telegram.messenger;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 public final class hk implements y10 {
-    public final int f24497a = 2;
-    public final np f24498b;
-    public final Object f24499c;
+    public final int f24461a = 2;
+    public final np f24462b;
+    public final Object f24463c;
     public final int d;
-    public final Object f24500e;
-    public final Object f24501f;
-    public final Object f24502g;
+    public final Object f24464e;
+    public final Object f24465f;
+    public final Object f24466g;
 
     public hk(np npVar, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, TLRPC.Chat chat, Runnable runnable) {
-        this.f24498b = npVar;
-        this.f24500e = tL_messages_invitedUsers;
-        this.f24501f = iArr;
+        this.f24462b = npVar;
+        this.f24464e = tL_messages_invitedUsers;
+        this.f24465f = iArr;
         this.d = i7;
-        this.f24502g = chat;
-        this.f24499c = runnable;
+        this.f24466g = chat;
+        this.f24463c = runnable;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f24497a;
-        Object obj2 = this.f24499c;
-        Object obj3 = this.f24502g;
+        int i7 = this.f24461a;
+        Object obj2 = this.f24463c;
+        Object obj3 = this.f24466g;
         int i10 = this.d;
-        Object obj4 = this.f24501f;
-        Object obj5 = this.f24500e;
-        np npVar = this.f24498b;
+        Object obj4 = this.f24465f;
+        Object obj5 = this.f24464e;
+        np npVar = this.f24462b;
         switch (i7) {
             case 0:
                 vf.b bVar = (vf.b) obj5;
@@ -80,7 +80,7 @@ public final class hk implements y10 {
                 if (!zArr2[0]) {
                     botInfoArr[0] = botInfo;
                     if (botInfo == null) {
-                        TLRPC.UserFull d2 = npVar.d2(user.f28583id);
+                        TLRPC.UserFull d2 = npVar.d2(user.f28547id);
                         if (d2 == null) {
                             if (!zArr2[0]) {
                                 npVar.c3(user, i10, true, new e3(zArr2, botInfoArr, rlVar, 5));
@@ -123,20 +123,20 @@ public final class hk implements y10 {
     }
 
     public hk(np npVar, vf.b bVar, org.telegram.ui.ActionBar.t1[] t1VarArr, org.telegram.ui.ActionBar.g2 g2Var, boolean[] zArr, int i7) {
-        this.f24498b = npVar;
-        this.f24500e = bVar;
-        this.f24501f = t1VarArr;
-        this.f24502g = g2Var;
-        this.f24499c = zArr;
+        this.f24462b = npVar;
+        this.f24464e = bVar;
+        this.f24465f = t1VarArr;
+        this.f24466g = g2Var;
+        this.f24463c = zArr;
         this.d = i7;
     }
 
     public hk(np npVar, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i7, rl rlVar) {
-        this.f24498b = npVar;
-        this.f24499c = zArr;
-        this.f24500e = botInfoArr;
-        this.f24501f = user;
+        this.f24462b = npVar;
+        this.f24463c = zArr;
+        this.f24464e = botInfoArr;
+        this.f24465f = user;
         this.d = i7;
-        this.f24502g = rlVar;
+        this.f24466g = rlVar;
     }
 }

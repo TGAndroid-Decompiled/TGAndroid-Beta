@@ -1,43 +1,114 @@
 package bi;
 
-import di.gb;
-public final class q8 implements Runnable {
-    public final int f4040a;
-    public final c9 f4041b;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ls;
+import org.telegram.ui.Components.a70;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.sa;
+import org.telegram.ui.Components.wy;
+import org.telegram.ui.Components.yz;
+public final class q8 extends sa implements gs {
+    public final int T1;
+    public final di.p8 U1;
+    public final HashSet V1;
+    public final wy W1;
+    public final FrameLayout X1;
+    public final hi.d Y1;
+    public a70 Z1;
+    public final ui.c f4007a2;
+    public final ui.c f4008b2;
+    public c51 f4009c2;
+    public i0.b d2;
+    public boolean f4010e2;
+    public int f4011f2;
 
-    public q8(c9 c9Var, int i7) {
-        this.f4040a = i7;
-        this.f4041b = c9Var;
+    public q8(org.telegram.ui.ActionBar.g2 r21, long r22, int r24, bi.j5 r25) {
+        throw new UnsupportedOperationException("Method not decompiled: bi.q8.<init>(org.telegram.ui.ActionBar.g2, long, int, bi.j5):void");
     }
 
     @Override
-    public final void run() {
-        switch (this.f4040a) {
-            case 0:
-                this.f4041b.g1(false);
+    public final dk0 M0(ek0 ek0Var) {
+        c51 c51Var = new c51(ek0Var, getContext(), this.f30139a, 0, false, new b(this, 11), this.J0);
+        this.f4009c2 = c51Var;
+        c51Var.f34026r = false;
+        return c51Var;
+    }
+
+    @Override
+    public final CharSequence P0() {
+        return hd.N0(2131750232, null);
+    }
+
+    @Override
+    public final r0.l1 b0(r0.l1 l1Var) {
+        this.d2 = org.telegram.messenger.g0.I0(l1Var, false);
+        e1();
+        return r0.l1.f56267b;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        c51 c51Var;
+        if (i7 == ls.I3 && (c51Var = this.f4009c2) != null) {
+            c51Var.O(true);
+            if (f1()) {
+                this.U1.a();
+            }
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        ls.f(this.f30139a).n(this, ls.I3);
+        super.dismiss();
+    }
+
+    public final void e1() {
+        this.f39487o1.setPadding(org.telegram.messenger.g0.L(9.0f) + this.d2.f15883a + this.f30177u0, 0, org.telegram.messenger.g0.L(9.0f) + this.d2.f15885c + this.f30177u0, this.d2.d);
+        i0.b bVar = this.d2;
+        int i7 = bVar.f15883a;
+        int i10 = this.f30177u0;
+        this.X1.setPadding(i7 + i10, 0, bVar.f15885c + i10, bVar.d);
+    }
+
+    public final boolean f1() {
+        ek0 ek0Var = this.f39487o1;
+        if (ek0Var != null && ek0Var.H) {
+            for (int i7 = 0; i7 < ek0Var.getChildCount(); i7++) {
+                if (ek0Var.getChildAt(i7) instanceof yz) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void s0() {
+        super.s0();
+        try {
+            ui.c cVar = this.f4007a2;
+            if (cVar != null) {
+                cVar.a(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29347d6, this.J0));
+            }
+            ui.c cVar2 = this.f4008b2;
+            if (cVar2 != null) {
+                cVar2.a(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29290a7, this.J0));
+            }
+            int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29290a7, this.J0);
+            if (this.f4010e2 && w02 == this.f4011f2) {
                 return;
-            case 1:
-                this.f4041b.g1(true);
-                return;
-            case 2:
-                c9 c9Var = this.f4041b;
-                di.f6 f6Var = new di.f6(c9Var.getContext(), c9Var.U1, c9Var.V1, c9Var.J0, null);
-                long j3 = c9Var.Y1.f28663id;
-                String str = c9Var.f3508b2;
-                f6Var.f8818m3 = true;
-                di.y8.y(f6Var.f30173a, false).K(j3, new ai.y1(9, f6Var, str));
-                return;
-            case 3:
-                c9 c9Var2 = this.f4041b;
-                m0.h1(c9Var2.getContext(), c9Var2.Y1, c9Var2.J0);
-                return;
-            case 4:
-                c9 c9Var3 = this.f4041b;
-                new gb(c9Var3.getContext(), c9Var3.J0).show();
-                return;
-            default:
-                this.f4041b.dismiss();
-                return;
+            }
+            this.f4010e2 = true;
+            this.f4011f2 = w02;
+            v0(w02);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 }

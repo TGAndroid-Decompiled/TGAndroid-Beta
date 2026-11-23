@@ -12,7 +12,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 public final class wa extends n41 {
-    public static final int f45271b = 0;
+    public static final int f45237b = 0;
 
     static {
         n41.h(new n41());
@@ -27,9 +27,9 @@ public final class wa extends n41 {
         if (tonconnectmanifest != null) {
             TLRPC.WebDocument webDocument = tonconnectmanifest.icon;
             if (webDocument != null) {
-                xaVar.f45334b.p(gc.p(i20.c(webDocument)), "28_28", null, tonconnectsession.manifest);
+                xaVar.f45300b.p(gc.p(i20.c(webDocument)), "28_28", null, tonconnectsession.manifest);
             }
-            xaVar.f45335c.setText(tonconnectsession.manifest.name);
+            xaVar.f45301c.setText(tonconnectsession.manifest.name);
             xaVar.d.setText(org.telegram.messenger.g0.K0(tonconnectsession.manifest.url, false));
         }
     }

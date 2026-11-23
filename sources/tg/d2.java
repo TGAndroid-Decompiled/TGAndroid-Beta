@@ -9,31 +9,31 @@ import org.telegram.messenger.r10;
 import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLRPC;
 public final class d2 {
-    public String f57816a;
-    public String f57817b;
-    public String f57818c;
+    public String f57781a;
+    public String f57782b;
+    public String f57783c;
     public CharSequence d;
-    public TLRPC.TL_inputStickerSetItem f57819e;
-    public TLRPC.TL_messageMediaDocument f57820f;
-    public TLRPC.InputFile f57821g;
+    public TLRPC.TL_inputStickerSetItem f57784e;
+    public TLRPC.TL_messageMediaDocument f57785f;
+    public TLRPC.InputFile f57786g;
     public boolean h;
-    public long f57822i;
-    public TLRPC.StickerSet f57823j;
-    public TLRPC.Document f57824k;
-    public String f57825l;
-    public r10 f57826m;
-    public y10 f57827n;
-    public boolean f57828o;
-    public ArrayList f57829p;
-    public ArrayList f57830q;
-    public gj f57831r;
-    public f20 f57832s;
-    public float f57833t;
-    public float f57834u;
+    public long f57787i;
+    public TLRPC.StickerSet f57788j;
+    public TLRPC.Document f57789k;
+    public String f57790l;
+    public r10 f57791m;
+    public y10 f57792n;
+    public boolean f57793o;
+    public ArrayList f57794p;
+    public ArrayList f57795q;
+    public gj f57796r;
+    public f20 f57797s;
+    public float f57798t;
+    public float f57799u;
 
     public final void a() {
-        ArrayList arrayList = this.f57830q;
-        ArrayList arrayList2 = this.f57829p;
+        ArrayList arrayList = this.f57795q;
+        ArrayList arrayList2 = this.f57794p;
         int size = arrayList2.size();
         int i7 = 0;
         int i10 = 0;
@@ -62,14 +62,14 @@ public final class d2 {
 
     public final float b() {
         float f10;
-        if (this.f57826m == null) {
+        if (this.f57791m == null) {
             f10 = 0.9f;
         } else {
             f10 = 1.0f;
         }
-        if (this.f57832s == null) {
-            return f10 * this.f57834u;
+        if (this.f57797s == null) {
+            return f10 * this.f57799u;
         }
-        return com.google.android.gms.internal.vision.e2.B(this.f57834u, 0.5f, this.f57833t * 0.5f, f10);
+        return com.google.android.gms.internal.vision.e2.B(this.f57799u, 0.5f, this.f57798t * 0.5f, f10);
     }
 }

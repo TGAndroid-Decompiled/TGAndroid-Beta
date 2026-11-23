@@ -1,21 +1,11 @@
 package org.telegram.ui.Components;
-
-import android.content.Context;
-public final class hv extends q9 {
-    public final kv H;
-
-    public hv(kv kvVar, Context context) {
-        super(context);
-        this.H = kvVar;
-    }
-
+public final class hv extends ug.b1 {
     @Override
     public final void invalidate() {
         if (ch.f0.b(this)) {
             return;
         }
         super.invalidate();
-        this.H.f();
     }
 
     @Override

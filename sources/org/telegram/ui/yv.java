@@ -5,22 +5,22 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class yv extends s11 {
-    public final j11[] f54301f2;
-    public final cx f54302g2;
+public final class yv extends r11 {
+    public final i11[] f54262f2;
+    public final cx f54263g2;
 
-    public yv(cx cxVar, cx cxVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.h6 h6Var, j11[] j11VarArr) {
+    public yv(cx cxVar, cx cxVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.h6 h6Var, i11[] i11VarArr) {
         super(cxVar2, activity, true, num, 0, h6Var);
-        this.f54302g2 = cxVar;
-        this.f54301f2 = j11VarArr;
+        this.f54263g2 = cxVar;
+        this.f54262f2 = i11VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i7;
         if (tL_starGiftUnique != null) {
-            i7 = ((org.telegram.ui.ActionBar.g2) this.f54302g2).currentAccount;
-            if (di.y8.y(i7, false).n(tL_starGiftUnique.f28663id) != null && org.telegram.messenger.np.g1().getInt("statusgiftpage", 0) < 2) {
+            i7 = ((org.telegram.ui.ActionBar.g2) this.f54263g2).currentAccount;
+            if (di.y8.y(i7, false).n(tL_starGiftUnique.f28627id) != null && org.telegram.messenger.np.g1().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -36,14 +36,14 @@ public final class yv extends s11 {
         int i10;
         int i11;
         org.telegram.ui.ActionBar.h6 h6Var;
-        j11[] j11VarArr = this.f54301f2;
-        cx cxVar = this.f54302g2;
+        i11[] i11VarArr = this.f54262f2;
+        cx cxVar = this.f54263g2;
         if (l10 == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             if (tL_starGiftUnique != null) {
                 i7 = ((org.telegram.ui.ActionBar.g2) cxVar).currentAccount;
-                TL_stars.SavedStarGift n10 = di.y8.y(i7, false).n(tL_starGiftUnique.f28663id);
+                TL_stars.SavedStarGift n10 = di.y8.y(i7, false).n(tL_starGiftUnique.f28627id);
                 if (n10 != null && org.telegram.messenger.np.g1().getInt("statusgiftpage", 0) < 2) {
                     org.telegram.messenger.np.g1().edit().putInt("statusgiftpage", org.telegram.messenger.np.g1().getInt("statusgiftpage", 0) + 1).apply();
                     Context context = getContext();
@@ -55,16 +55,16 @@ public final class yv extends s11 {
                     f6Var.w2(n10, null);
                     f6Var.A2();
                     f6Var.show();
-                    j11 j11Var = j11VarArr[0];
-                    if (j11Var != null) {
+                    i11 i11Var = i11VarArr[0];
+                    if (i11Var != null) {
                         cxVar.N0 = null;
-                        j11Var.dismiss();
+                        i11Var.dismiss();
                         return;
                     }
                     return;
                 }
                 TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible = new TLRPC.TL_inputEmojiStatusCollectible();
-                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f28663id;
+                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f28627id;
                 tL_emojiStatus = tL_inputEmojiStatusCollectible;
                 if (num != null) {
                     tL_inputEmojiStatusCollectible.flags |= 1;
@@ -88,14 +88,14 @@ public final class yv extends s11 {
             org.telegram.ui.Cells.o oVar = cxVar.G3;
             ?? obj = new Object();
             long longValue = l10.longValue();
-            obj.f5508g = longValue;
+            obj.f5471g = longValue;
             obj.h = longValue;
             oVar.a(obj);
         }
-        j11 j11Var2 = j11VarArr[0];
-        if (j11Var2 != null) {
+        i11 i11Var2 = i11VarArr[0];
+        if (i11Var2 != null) {
             cxVar.N0 = null;
-            j11Var2.dismiss();
+            i11Var2.dismiss();
         }
     }
 }

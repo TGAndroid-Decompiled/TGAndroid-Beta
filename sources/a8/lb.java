@@ -59,7 +59,7 @@ public class lb extends AbstractMap {
                 }
                 return;
             case 1:
-                c8.d dVar2 = ((jg) this.f535e).f4881c;
+                c8.d dVar2 = ((jg) this.f535e).f4842c;
                 if (this.f533b == dVar2) {
                     for (Collection collection2 : dVar2.values()) {
                         collection2.clear();
@@ -75,7 +75,7 @@ public class lb extends AbstractMap {
                 return;
             default:
                 h9.l1 l1Var = (h9.l1) this.f535e;
-                if (this.f533b == l1Var.f14051e) {
+                if (this.f533b == l1Var.f14014e) {
                     l1Var.clear();
                     return;
                 }
@@ -260,19 +260,19 @@ public class lb extends AbstractMap {
         switch (this.f532a) {
             case 0:
                 i iVar = (i) this.f535e;
-                b bVar = iVar.f462a;
+                b bVar = iVar.f456a;
                 if (bVar == null) {
                     b bVar2 = new b(iVar, iVar.f486c);
-                    iVar.f462a = bVar2;
+                    iVar.f456a = bVar2;
                     return bVar2;
                 }
                 return bVar;
             case 1:
                 jg jgVar = (jg) this.f535e;
-                cd cdVar = jgVar.f4862a;
+                cd cdVar = jgVar.f4826a;
                 if (cdVar == null) {
-                    cd cdVar2 = new cd(jgVar, jgVar.f4881c);
-                    jgVar.f4862a = cdVar2;
+                    cd cdVar2 = new cd(jgVar, jgVar.f4842c);
+                    jgVar.f4826a = cdVar2;
                     return cdVar2;
                 }
                 return cdVar;
@@ -316,7 +316,7 @@ public class lb extends AbstractMap {
                 }
                 Collection h = l1Var.h();
                 h.addAll(collection3);
-                l1Var.f14052f -= collection3.size();
+                l1Var.f14015f -= collection3.size();
                 collection3.clear();
                 return h;
         }

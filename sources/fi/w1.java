@@ -2,14 +2,14 @@ package fi;
 
 import org.telegram.messenger.v10;
 public final class w1 implements v10 {
-    public final int f12715a;
-    public final Object f12716b;
-    public final Object f12717c;
+    public final int f12665a;
+    public final Object f12666b;
+    public final Object f12667c;
 
     public w1(int i7, Object obj, Object obj2) {
-        this.f12715a = i7;
-        this.f12716b = obj;
-        this.f12717c = obj2;
+        this.f12665a = i7;
+        this.f12666b = obj;
+        this.f12667c = obj2;
     }
 
     @Override

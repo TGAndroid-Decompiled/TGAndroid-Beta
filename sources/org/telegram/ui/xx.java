@@ -4,19 +4,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xx implements RequestDelegate {
-    public final int f53983a;
-    public final ky f53984b;
+    public final int f53955a;
+    public final ky f53956b;
 
     public xx(ky kyVar, int i7) {
-        this.f53983a = i7;
-        this.f53984b = kyVar;
+        this.f53955a = i7;
+        this.f53956b = kyVar;
     }
 
     @Override
     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f53983a) {
+        switch (this.f53955a) {
             case 0:
-                final ky kyVar = this.f53984b;
+                final ky kyVar = this.f53956b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,7 +39,7 @@ public final class xx implements RequestDelegate {
                 });
                 return;
             default:
-                final ky kyVar2 = this.f53984b;
+                final ky kyVar2 = this.f53956b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {

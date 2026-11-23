@@ -10,34 +10,34 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.LaunchActivity;
 public final class qv {
-    public final int f26502a;
-    public boolean f26503b;
+    public final int f26466a;
+    public boolean f26467b;
     public boolean d;
-    public boolean f26505e;
-    public boolean f26506f;
-    public int f26507g;
+    public boolean f26469e;
+    public boolean f26470f;
+    public int f26471g;
     public int h;
-    public boolean f26510k;
-    public boolean f26511l;
-    public boolean f26512m;
-    public boolean f26514o;
-    public final ArrayList f26504c = new ArrayList();
-    public final ArrayList f26508i = new ArrayList();
-    public final ArrayList f26509j = new ArrayList();
-    public final ov f26513n = new ov(this, 4);
-    public final a0.h f26515p = new a0.h();
+    public boolean f26474k;
+    public boolean f26475l;
+    public boolean f26476m;
+    public boolean f26478o;
+    public final ArrayList f26468c = new ArrayList();
+    public final ArrayList f26472i = new ArrayList();
+    public final ArrayList f26473j = new ArrayList();
+    public final ov f26477n = new ov(this, 4);
+    public final a0.h f26479p = new a0.h();
 
     public qv(int i7) {
-        this.f26502a = i7;
-        this.f26503b = np.u1(i7).h7.getBoolean("savedMessagesUnsupported", true);
+        this.f26466a = i7;
+        this.f26467b = np.u1(i7).h7.getBoolean("savedMessagesUnsupported", true);
     }
 
     public static ArrayList d(ArrayList arrayList) {
         ArrayList arrayList2 = new ArrayList();
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             pv pvVar = (pv) arrayList.get(i7);
-            if (pvVar.f26351b) {
-                arrayList2.add(Long.valueOf(pvVar.f26350a));
+            if (pvVar.f26315b) {
+                arrayList2.add(Long.valueOf(pvVar.f26314a));
             }
         }
         return arrayList2;
@@ -72,8 +72,8 @@ public final class qv {
         int i7 = 0;
         while (i7 < arrayList.size()) {
             pv pvVar = (pv) arrayList.get(i7);
-            if (pvVar.f26351b) {
-                pvVar.f26351b = false;
+            if (pvVar.f26315b) {
+                pvVar.f26315b = false;
                 arrayList3.add(pvVar);
                 arrayList.remove(i7);
                 i7--;
@@ -85,10 +85,10 @@ public final class qv {
         int i10 = 0;
         while (i10 < arrayList.size()) {
             pv pvVar2 = (pv) arrayList.get(i10);
-            int indexOf = arrayList2.indexOf(Long.valueOf(pvVar2.f26350a));
+            int indexOf = arrayList2.indexOf(Long.valueOf(pvVar2.f26314a));
             if (indexOf >= 0) {
-                pvVar2.f26358k = indexOf;
-                pvVar2.f26351b = true;
+                pvVar2.f26322k = indexOf;
+                pvVar2.f26315b = true;
                 arrayList4.add(pvVar2);
                 arrayList.remove(i10);
                 i10--;
@@ -102,49 +102,49 @@ public final class qv {
     }
 
     public final void a() {
-        this.f26504c.clear();
-        this.f26508i.clear();
-        this.f26505e = false;
-        this.f26507g = 0;
+        this.f26468c.clear();
+        this.f26472i.clear();
+        this.f26469e = false;
+        this.f26471g = 0;
         this.h = 0;
-        this.f26506f = false;
-        this.f26511l = true;
-        boolean z10 = this.f26514o;
-        int i7 = this.f26502a;
+        this.f26470f = false;
+        this.f26475l = true;
+        boolean z10 = this.f26478o;
+        int i7 = this.f26466a;
         if (!z10) {
-            this.f26514o = true;
+            this.f26478o = true;
             ur a02 = ur.a0(i7);
-            a02.f27250a.c(new sq(this, a02));
+            a02.f27214a.c(new sq(this, a02));
         }
-        this.f26503b = true;
+        this.f26467b = true;
         np.u1(i7).h7.edit().remove("savedMessagesUnsupported").apply();
     }
 
     public final void b() {
-        this.f26507g = 0;
-        this.f26509j.clear();
-        this.f26508i.clear();
-        this.f26504c.clear();
+        this.f26471g = 0;
+        this.f26473j.clear();
+        this.f26472i.clear();
+        this.f26468c.clear();
         l();
     }
 
     public final int c() {
-        if (this.f26506f) {
-            return this.f26509j.size();
+        if (this.f26470f) {
+            return this.f26473j.size();
         }
-        if (this.f26505e) {
-            return this.f26507g - this.h;
+        if (this.f26469e) {
+            return this.f26471g - this.h;
         }
-        return this.f26504c.size();
+        return this.f26468c.size();
     }
 
     public final boolean e() {
         if (c() <= 0) {
             return false;
         }
-        long e10 = k10.i(this.f26502a).e();
-        ArrayList arrayList = this.f26509j;
-        if (arrayList.size() == 1 && ((pv) arrayList.get(0)).f26350a == e10) {
+        long e10 = k10.i(this.f26466a).e();
+        ArrayList arrayList = this.f26473j;
+        if (arrayList.size() == 1 && ((pv) arrayList.get(0)).f26314a == e10) {
             return false;
         }
         return true;
@@ -154,10 +154,10 @@ public final class qv {
         pv pvVar;
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f26509j;
+            ArrayList arrayList = this.f26473j;
             if (i7 < arrayList.size()) {
                 pvVar = (pv) arrayList.get(i7);
-                if (pvVar.f26350a == j3) {
+                if (pvVar.f26314a == j3) {
                     break;
                 }
                 i7++;
@@ -166,14 +166,14 @@ public final class qv {
                 break;
             }
         }
-        if (pvVar != null && pvVar.f26353e > 0 && pvVar.f26356i) {
+        if (pvVar != null && pvVar.f26317e > 0 && pvVar.f26320i) {
             if (y10Var != null) {
                 y10Var.a(Boolean.TRUE);
                 return;
             }
             return;
         }
-        a0.h hVar = this.f26515p;
+        a0.h hVar = this.f26479p;
         ArrayList arrayList2 = (ArrayList) hVar.f(j3);
         if (arrayList2 != null) {
             if (y10Var != null) {
@@ -188,7 +188,7 @@ public final class qv {
         }
         hVar.k(arrayList3, j3);
         TLRPC.TL_messages_getSavedHistory tL_messages_getSavedHistory = new TLRPC.TL_messages_getSavedHistory();
-        int i10 = this.f26502a;
+        int i10 = this.f26466a;
         tL_messages_getSavedHistory.peer = np.u1(i10).l1(j3);
         tL_messages_getSavedHistory.limit = 1;
         tL_messages_getSavedHistory.hash = 0L;
@@ -202,31 +202,31 @@ public final class qv {
         boolean z11;
         pv pvVar;
         long j3;
-        this.f26512m = z10;
-        if (!this.d && !this.f26506f && !(z11 = this.f26510k)) {
-            boolean z12 = this.f26511l;
-            int i7 = this.f26502a;
+        this.f26476m = z10;
+        if (!this.d && !this.f26470f && !(z11 = this.f26474k)) {
+            boolean z12 = this.f26475l;
+            int i7 = this.f26466a;
             if (!z12) {
                 ov ovVar = new ov(this, 0);
                 if (!z11) {
-                    this.f26510k = true;
+                    this.f26474k = true;
                     long e10 = k10.i(i7).e();
                     ur a02 = ur.a0(i7);
-                    a02.f27250a.c(new gm(this, a02, e10, ovVar, 18));
+                    a02.f27214a.c(new gm(this, a02, e10, ovVar, 18));
                 }
             } else if (!z10) {
                 this.d = true;
                 TLRPC.TL_messages_getSavedDialogs tL_messages_getSavedDialogs = new TLRPC.TL_messages_getSavedDialogs();
-                ArrayList arrayList = this.f26508i;
+                ArrayList arrayList = this.f26472i;
                 if (arrayList.isEmpty()) {
                     pvVar = null;
                 } else {
                     pvVar = (pv) i5.c.h(1, arrayList);
                 }
                 if (pvVar != null) {
-                    tL_messages_getSavedDialogs.offset_id = pvVar.f26352c;
+                    tL_messages_getSavedDialogs.offset_id = pvVar.f26316c;
                     tL_messages_getSavedDialogs.offset_date = pvVar.c();
-                    tL_messages_getSavedDialogs.offset_peer = np.u1(i7).l1(pvVar.f26350a);
+                    tL_messages_getSavedDialogs.offset_peer = np.u1(i7).l1(pvVar.f26314a);
                 } else {
                     tL_messages_getSavedDialogs.offset_id = Integer.MAX_VALUE;
                     tL_messages_getSavedDialogs.offset_date = 0;
@@ -235,21 +235,21 @@ public final class qv {
                 tL_messages_getSavedDialogs.limit = 20;
                 ArrayList arrayList2 = new ArrayList();
                 int size = arrayList.size();
-                ArrayList arrayList3 = this.f26509j;
+                ArrayList arrayList3 = this.f26473j;
                 arrayList2.addAll(arrayList3.subList(Math.min(size, arrayList3.size()), Math.min(arrayList.size() + tL_messages_getSavedDialogs.limit, arrayList3.size())));
                 for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                     pv pvVar2 = (pv) arrayList2.get(i10);
                     long j10 = tL_messages_getSavedDialogs.hash;
-                    if (pvVar2.f26351b) {
+                    if (pvVar2.f26315b) {
                         j3 = 1;
                     } else {
                         j3 = 0;
                     }
                     long r10 = si.r(j10, j3);
                     tL_messages_getSavedDialogs.hash = r10;
-                    long r11 = si.r(r10, Math.abs(pvVar2.f26350a));
+                    long r11 = si.r(r10, Math.abs(pvVar2.f26314a));
                     tL_messages_getSavedDialogs.hash = r11;
-                    long r12 = si.r(r11, pvVar2.f26352c);
+                    long r12 = si.r(r11, pvVar2.f26316c);
                     tL_messages_getSavedDialogs.hash = r12;
                     tL_messages_getSavedDialogs.hash = si.r(r12, pvVar2.c());
                 }
@@ -278,8 +278,8 @@ public final class qv {
                     arrayList2.add(Long.valueOf(n5.o(((TLRPC.TL_dialogPeer) dialogPeer2).peer)));
                 }
             }
-            boolean o10 = o(this.f26508i, arrayList2);
-            boolean o11 = o(this.f26504c, arrayList2);
+            boolean o10 = o(this.f26472i, arrayList2);
+            boolean o11 = o(this.f26468c, arrayList2);
             if (o10 || o11) {
                 z10 = true;
             }
@@ -294,11 +294,11 @@ public final class qv {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.f26509j;
+            ArrayList arrayList = this.f26473j;
             if (i10 >= arrayList.size()) {
                 break;
             }
-            if (((pv) arrayList.get(i10)).f26350a == j3) {
+            if (((pv) arrayList.get(i10)).f26314a == j3) {
                 arrayList.remove(i10);
                 i11++;
                 i10--;
@@ -308,11 +308,11 @@ public final class qv {
         int i12 = 0;
         int i13 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f26508i;
+            ArrayList arrayList2 = this.f26472i;
             if (i12 >= arrayList2.size()) {
                 break;
             }
-            if (((pv) arrayList2.get(i12)).f26350a == j3) {
+            if (((pv) arrayList2.get(i12)).f26314a == j3) {
                 arrayList2.remove(i12);
                 i13++;
                 i12--;
@@ -320,9 +320,9 @@ public final class qv {
             i12++;
         }
         while (true) {
-            ArrayList arrayList3 = this.f26504c;
+            ArrayList arrayList3 = this.f26468c;
             if (i7 < arrayList3.size()) {
-                if (((pv) arrayList3.get(i7)).f26350a == j3) {
+                if (((pv) arrayList3.get(i7)).f26314a == j3) {
                     arrayList3.remove(i7);
                     i7--;
                 }
@@ -335,7 +335,7 @@ public final class qv {
 
     public final void l() {
         m();
-        ov ovVar = this.f26513n;
+        ov ovVar = this.f26477n;
         g0.r(ovVar);
         g0.h3(ovVar, 450L);
     }
@@ -343,64 +343,64 @@ public final class qv {
     public final void m() {
         ArrayList arrayList;
         ArrayList arrayList2;
-        ArrayList arrayList3 = this.f26509j;
+        ArrayList arrayList3 = this.f26473j;
         arrayList3.clear();
         HashSet hashSet = new HashSet();
         int i7 = 0;
         while (true) {
-            arrayList = this.f26504c;
+            arrayList = this.f26468c;
             if (i7 >= arrayList.size()) {
                 break;
             }
             pv pvVar = (pv) arrayList.get(i7);
-            if (pvVar.f26351b && !hashSet.contains(Long.valueOf(pvVar.f26350a)) && !pvVar.d()) {
+            if (pvVar.f26315b && !hashSet.contains(Long.valueOf(pvVar.f26314a)) && !pvVar.d()) {
                 arrayList3.add(pvVar);
-                hashSet.add(Long.valueOf(pvVar.f26350a));
+                hashSet.add(Long.valueOf(pvVar.f26314a));
             }
             i7++;
         }
         int i10 = 0;
         while (true) {
-            arrayList2 = this.f26508i;
+            arrayList2 = this.f26472i;
             if (i10 >= arrayList2.size()) {
                 break;
             }
             pv pvVar2 = (pv) arrayList2.get(i10);
-            if (pvVar2.f26351b && !hashSet.contains(Long.valueOf(pvVar2.f26350a)) && !pvVar2.d()) {
+            if (pvVar2.f26315b && !hashSet.contains(Long.valueOf(pvVar2.f26314a)) && !pvVar2.d()) {
                 arrayList3.add(pvVar2);
-                hashSet.add(Long.valueOf(pvVar2.f26350a));
+                hashSet.add(Long.valueOf(pvVar2.f26314a));
             }
             i10++;
         }
         ArrayList arrayList4 = new ArrayList();
         for (int i11 = 0; i11 < arrayList2.size(); i11++) {
             pv pvVar3 = (pv) arrayList2.get(i11);
-            if (!hashSet.contains(Long.valueOf(pvVar3.f26350a)) && !pvVar3.d()) {
+            if (!hashSet.contains(Long.valueOf(pvVar3.f26314a)) && !pvVar3.d()) {
                 arrayList4.add(pvVar3);
-                hashSet.add(Long.valueOf(pvVar3.f26350a));
+                hashSet.add(Long.valueOf(pvVar3.f26314a));
             }
         }
-        if (!this.f26506f) {
+        if (!this.f26470f) {
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
                 pv pvVar4 = (pv) arrayList.get(i12);
-                if (!hashSet.contains(Long.valueOf(pvVar4.f26350a)) && !pvVar4.d()) {
+                if (!hashSet.contains(Long.valueOf(pvVar4.f26314a)) && !pvVar4.d()) {
                     arrayList4.add(pvVar4);
-                    hashSet.add(Long.valueOf(pvVar4.f26350a));
+                    hashSet.add(Long.valueOf(pvVar4.f26314a));
                 }
             }
         }
         Collections.sort(arrayList4, new el(16));
         arrayList3.addAll(arrayList4);
-        int i13 = this.f26502a;
-        ls.f(i13).k(ls.f25325i3, new Object[0]);
-        if (!e() && np.u1(i13).f25950r6) {
+        int i13 = this.f26466a;
+        ls.f(i13).k(ls.f25289i3, new Object[0]);
+        if (!e() && np.u1(i13).f25914r6) {
             np.u1(i13).Z4(false);
         }
     }
 
     public final boolean n(ArrayList arrayList, boolean z10, boolean z11) {
         int i7;
-        ArrayList d = d(this.f26509j);
+        ArrayList d = d(this.f26473j);
         ArrayList arrayList2 = new ArrayList(d);
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             Long l10 = (Long) arrayList.get(size);
@@ -411,19 +411,19 @@ public final class qv {
                 arrayList2.remove(l10);
             }
         }
-        int i10 = this.f26502a;
+        int i10 = this.f26466a;
         if (k10.i(i10).q()) {
-            i7 = np.u1(i10).f25940q6;
+            i7 = np.u1(i10).f25904q6;
         } else {
-            i7 = np.u1(i10).f25931p6;
+            i7 = np.u1(i10).f25895p6;
         }
         if (arrayList2.size() <= i7 && !k(d, arrayList2)) {
             if (z11) {
                 p(arrayList2);
                 return true;
             }
-            boolean o4 = o(this.f26508i, arrayList2);
-            boolean o10 = o(this.f26504c, arrayList2);
+            boolean o4 = o(this.f26472i, arrayList2);
+            boolean o10 = o(this.f26468c, arrayList2);
             if (o4 || o10) {
                 return true;
             }
@@ -432,8 +432,8 @@ public final class qv {
     }
 
     public final void p(ArrayList arrayList) {
-        boolean o4 = o(this.f26508i, arrayList);
-        boolean o10 = o(this.f26504c, arrayList);
+        boolean o4 = o(this.f26472i, arrayList);
+        boolean o10 = o(this.f26468c, arrayList);
         if (!o4 && !o10) {
             return;
         }
@@ -442,7 +442,7 @@ public final class qv {
         int i7 = 0;
         while (true) {
             int size = arrayList.size();
-            int i10 = this.f26502a;
+            int i10 = this.f26466a;
             if (i7 < size) {
                 long longValue = ((Long) arrayList.get(i7)).longValue();
                 TLRPC.TL_inputDialogPeer tL_inputDialogPeer = new TLRPC.TL_inputDialogPeer();
@@ -474,14 +474,14 @@ public final class qv {
         a0.h hVar2 = new a0.h();
         a0.h hVar3 = new a0.h();
         new HashSet();
-        int i13 = this.f26502a;
+        int i13 = this.f26466a;
         long e10 = k10.i(i13).e();
         for (int i14 = 0; i14 < arrayList.size(); i14++) {
             TLRPC.Message message = (TLRPC.Message) arrayList.get(i14);
             long Q1 = gj.Q1(e10, message);
-            if (Q1 == e10 || (message.f28455id >= 0 && (message.send_state == 0 || message.fwd_from == null))) {
+            if (Q1 == e10 || (message.f28419id >= 0 && (message.send_state == 0 || message.fwd_from == null))) {
                 TLRPC.Message message2 = (TLRPC.Message) hVar2.f(Q1);
-                if (message2 == null || message2.f28455id < message.f28455id) {
+                if (message2 == null || message2.f28419id < message.f28419id) {
                     hVar2.k(message, Q1);
                 }
                 Integer num = (Integer) hVar3.f(Q1);
@@ -501,32 +501,32 @@ public final class qv {
             Integer num2 = (Integer) hVar3.f(j3);
             int i16 = i12;
             while (true) {
-                arrayList2 = this.f26504c;
+                arrayList2 = this.f26468c;
                 if (i16 < arrayList2.size()) {
                     pv pvVar = (pv) arrayList2.get(i16);
                     hVar = hVar2;
-                    if (pvVar.f26350a == j3) {
-                        int i17 = pvVar.f26352c;
-                        int i18 = message3.f28455id;
+                    if (pvVar.f26314a == j3) {
+                        int i17 = pvVar.f26316c;
+                        int i18 = message3.f28419id;
                         if (i17 < i18 || (i18 < 0 && message3.date > pvVar.c())) {
-                            if (pvVar.f26352c < message3.f28455id) {
+                            if (pvVar.f26316c < message3.f28419id) {
                                 int i19 = 0;
                                 for (int i20 = 0; i20 < arrayList.size(); i20++) {
-                                    if (((TLRPC.Message) arrayList.get(i20)).f28455id > pvVar.f26352c) {
+                                    if (((TLRPC.Message) arrayList.get(i20)).f28419id > pvVar.f26316c) {
                                         i19++;
                                     }
                                 }
-                                pvVar.f26353e += i19;
+                                pvVar.f26317e += i19;
                             }
                             gj gjVar = new gj(i13, message3, false, false);
                             pvVar.d = gjVar;
-                            pvVar.f26352c = gjVar.e1();
+                            pvVar.f26316c = gjVar.e1();
                             z12 = true;
                         }
                         if (num2 != null) {
-                            i11 = Math.max(num2.intValue(), pvVar.f26353e);
+                            i11 = Math.max(num2.intValue(), pvVar.f26317e);
                         } else {
-                            i11 = pvVar.f26353e;
+                            i11 = pvVar.f26317e;
                         }
                         num2 = Integer.valueOf(i11);
                         z10 = true;
@@ -543,41 +543,41 @@ public final class qv {
             if (!z10) {
                 pv a10 = pv.a(i13, message3);
                 if (num2 != null) {
-                    a10.f26353e = num2.intValue();
+                    a10.f26317e = num2.intValue();
                 }
                 arrayList2.add(a10);
                 z12 = true;
             }
             int i21 = 0;
             while (true) {
-                arrayList3 = this.f26508i;
+                arrayList3 = this.f26472i;
                 if (i21 < arrayList3.size()) {
                     pv pvVar2 = (pv) arrayList3.get(i21);
-                    if (pvVar2.f26350a == j3) {
-                        int i22 = pvVar2.f26352c;
-                        int i23 = message3.f28455id;
+                    if (pvVar2.f26314a == j3) {
+                        int i22 = pvVar2.f26316c;
+                        int i23 = message3.f28419id;
                         if (i22 >= i23 && (i23 >= 0 || message3.date <= pvVar2.c())) {
                             i7 = 0;
                         } else {
-                            if (pvVar2.f26352c < message3.f28455id) {
+                            if (pvVar2.f26316c < message3.f28419id) {
                                 int i24 = 0;
                                 for (int i25 = 0; i25 < arrayList.size(); i25++) {
-                                    if (((TLRPC.Message) arrayList.get(i25)).f28455id > pvVar2.f26352c) {
+                                    if (((TLRPC.Message) arrayList.get(i25)).f28419id > pvVar2.f26316c) {
                                         i24++;
                                     }
                                 }
-                                pvVar2.f26353e += i24;
+                                pvVar2.f26317e += i24;
                             }
                             i7 = 0;
                             gj gjVar2 = new gj(i13, message3, false, false);
                             pvVar2.d = gjVar2;
-                            pvVar2.f26352c = gjVar2.e1();
+                            pvVar2.f26316c = gjVar2.e1();
                             z12 = true;
                         }
                         if (num2 != null) {
-                            i10 = Math.max(num2.intValue(), pvVar2.f26353e);
+                            i10 = Math.max(num2.intValue(), pvVar2.f26317e);
                         } else {
-                            i10 = pvVar2.f26353e;
+                            i10 = pvVar2.f26317e;
                         }
                         num2 = Integer.valueOf(i10);
                         z11 = true;
@@ -593,7 +593,7 @@ public final class qv {
             if (!z11) {
                 pv a11 = pv.a(i13, message3);
                 if (num2 != null) {
-                    a11.f26353e = num2.intValue();
+                    a11.f26317e = num2.intValue();
                 }
                 arrayList3.add(a11);
                 z12 = true;
@@ -608,15 +608,15 @@ public final class qv {
     public final boolean r(int i7, long j3, boolean z10) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f26509j;
+            ArrayList arrayList = this.f26473j;
             if (i10 >= arrayList.size()) {
                 break;
             }
             pv pvVar = (pv) arrayList.get(i10);
-            if (pvVar.f26350a == j3) {
-                if (pvVar.f26353e != i7 || (!pvVar.f26356i && z10)) {
-                    pvVar.f26353e = i7;
-                    pvVar.f26356i = true;
+            if (pvVar.f26314a == j3) {
+                if (pvVar.f26317e != i7 || (!pvVar.f26320i && z10)) {
+                    pvVar.f26317e = i7;
+                    pvVar.f26320i = true;
                     return true;
                 }
             } else {

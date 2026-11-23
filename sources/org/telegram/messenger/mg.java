@@ -5,20 +5,20 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 public final class mg implements Runnable {
-    public final int f25579a;
-    public final si f25580b;
-    public final long f25581c;
+    public final int f25543a;
+    public final si f25544b;
+    public final long f25545c;
     public final long d;
-    public final int f25582e;
-    public final int f25583f;
+    public final int f25546e;
+    public final int f25547f;
 
     public mg(si siVar, long j3, long j10, int i7, int i10, int i11) {
-        this.f25579a = i11;
-        this.f25580b = siVar;
-        this.f25581c = j3;
+        this.f25543a = i11;
+        this.f25544b = siVar;
+        this.f25545c = j3;
         this.d = j10;
-        this.f25582e = i7;
-        this.f25583f = i10;
+        this.f25546e = i7;
+        this.f25547f = i10;
     }
 
     @Override
@@ -32,17 +32,17 @@ public final class mg implements Runnable {
         int i12;
         SQLitePreparedStatement executeFast;
         int i13;
-        switch (this.f25579a) {
+        switch (this.f25543a) {
             case 0:
-                int i14 = this.f25583f;
-                long j10 = this.f25581c;
+                int i14 = this.f25547f;
+                long j10 = this.f25545c;
                 int i15 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-                si siVar = this.f25580b;
+                si siVar = this.f25544b;
                 long j11 = this.d;
-                int i16 = this.f25582e;
+                int i16 = this.f25546e;
                 if (i15 != 0) {
                     try {
-                        SQLiteDatabase sQLiteDatabase = siVar.getMessagesStorage().f27252b;
+                        SQLiteDatabase sQLiteDatabase = siVar.getMessagesStorage().f27216b;
                         Locale locale = Locale.US;
                         queryFinalized = sQLiteDatabase.queryFinalized("SELECT count, old FROM media_counts_topics WHERE uid = " + j11 + " AND topic_id = " + j10 + " AND type = " + i16 + " LIMIT 1", new Object[0]);
                     } catch (Exception e10) {
@@ -53,7 +53,7 @@ public final class mg implements Runnable {
                     }
                 } else {
                     try {
-                        SQLiteDatabase sQLiteDatabase2 = siVar.getMessagesStorage().f27252b;
+                        SQLiteDatabase sQLiteDatabase2 = siVar.getMessagesStorage().f27216b;
                         Locale locale2 = Locale.US;
                         queryFinalized = sQLiteDatabase2.queryFinalized("SELECT count, old FROM media_counts_v2 WHERE uid = " + j11 + " AND type = " + i16 + " LIMIT 1", new Object[0]);
                     } catch (Exception e11) {
@@ -72,7 +72,7 @@ public final class mg implements Runnable {
                 }
                 queryFinalized.dispose();
                 if (i7 == -1 && n5.C(j11)) {
-                    SQLiteDatabase sQLiteDatabase3 = siVar.getMessagesStorage().f27252b;
+                    SQLiteDatabase sQLiteDatabase3 = siVar.getMessagesStorage().f27216b;
                     Locale locale3 = Locale.US;
                     SQLiteCursor queryFinalized2 = sQLiteDatabase3.queryFinalized("SELECT COUNT(mid) FROM media_v4 WHERE uid = " + j11 + " AND type = " + i16 + " LIMIT 1", new Object[0]);
                     if (queryFinalized2.next()) {
@@ -98,16 +98,16 @@ public final class mg implements Runnable {
                 return;
             default:
                 long j12 = this.d;
-                int i18 = this.f25582e;
-                int i19 = this.f25583f;
-                long j13 = this.f25581c;
+                int i18 = this.f25546e;
+                int i19 = this.f25547f;
+                long j13 = this.f25545c;
                 int i20 = (j13 > 0L ? 1 : (j13 == 0L ? 0 : -1));
-                si siVar2 = this.f25580b;
+                si siVar2 = this.f25544b;
                 try {
                     if (i20 != 0) {
-                        executeFast = siVar2.getMessagesStorage().f27252b.executeFast("REPLACE INTO media_counts_topics VALUES(?, ?, ?, ?, ?)");
+                        executeFast = siVar2.getMessagesStorage().f27216b.executeFast("REPLACE INTO media_counts_topics VALUES(?, ?, ?, ?, ?)");
                     } else {
-                        executeFast = siVar2.getMessagesStorage().f27252b.executeFast("REPLACE INTO media_counts_v2 VALUES(?, ?, ?, ?)");
+                        executeFast = siVar2.getMessagesStorage().f27216b.executeFast("REPLACE INTO media_counts_v2 VALUES(?, ?, ?, ?)");
                     }
                     executeFast.requery();
                     executeFast.bindLong(1, j12);

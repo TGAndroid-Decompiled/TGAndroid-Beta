@@ -1,27 +1,79 @@
 package org.telegram.ui;
-public final class ep implements Runnable {
-    public final int f47358a;
-    public final np f47359b;
-    public final long f47360c;
 
-    public ep(np npVar, long j3, int i7) {
-        this.f47358a = i7;
-        this.f47359b = npVar;
-        this.f47360c = j3;
+import android.os.Bundle;
+import org.telegram.tgnet.TLRPC;
+public final class ep implements Runnable {
+    public final int f47323a;
+    public final np f47324b;
+
+    public ep(np npVar, int i7) {
+        this.f47323a = i7;
+        this.f47324b = npVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f47358a) {
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        int i7 = this.f47323a;
+        np npVar = this.f47324b;
+        int i10 = 1;
+        switch (i7) {
             case 0:
-                long j3 = this.f47360c;
-                np npVar = this.f47359b;
-                npVar.f50254n = j3;
-                npVar.f50259r = true;
-                npVar.s0();
+                TLRPC.User user = npVar.f50273w;
+                kp kpVar = npVar.Y0;
+                if (kpVar != null) {
+                    if (npVar.L) {
+                        tL_chatAdminRights = npVar.N;
+                    } else {
+                        tL_chatAdminRights = null;
+                    }
+                    kpVar.b(0, tL_chatAdminRights, null, npVar.T);
+                }
+                Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
+                k10.putLong("chat_id", npVar.f50275x.f28398id);
+                if (!npVar.getMessagesController().E(k10, npVar, null, null)) {
+                    npVar.y0(false);
+                    return;
+                }
+                bn bnVar = new bn(k10);
+                npVar.presentFragment(bnVar, true);
+                if (org.telegram.ui.Components.lc.a(bnVar)) {
+                    boolean z10 = npVar.f50243a1;
+                    if (z10 && npVar.L) {
+                        String str = user.first_name;
+                        org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(bnVar.getParentActivity(), bnVar.Ba);
+                        obVar.d(2131624049, "Shield");
+                        org.telegram.messenger.f3.q("UserAddedAsAdminHint", null, 2131743525, new Object[]{str}, obVar.f38124b);
+                        org.telegram.ui.Components.gc.g(bnVar, obVar, 1500).j();
+                        return;
+                    } else if (!z10 && !npVar.M && npVar.L) {
+                        org.telegram.ui.Components.lc.C(user.first_name, bnVar).j();
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            case 1:
+                npVar.w0(false);
                 return;
             default:
-                np.e0(this.f47359b, this.f47360c);
+                if (npVar.f50266r) {
+                    long j3 = npVar.f50261n;
+                    org.telegram.ui.ActionBar.t1[] t1VarArr = {new org.telegram.ui.ActionBar.t1(3, npVar.getParentActivity(), null)};
+                    npVar.getMessagesController().o5(npVar.f50268s, j3, true, false, true, new zf(t1VarArr, 2), new zf(t1VarArr, 3));
+                    t1VarArr[0].r(300L);
+                }
+                kp kpVar2 = npVar.Y0;
+                if (kpVar2 != null) {
+                    TLRPC.TL_chatAdminRights tL_chatAdminRights2 = npVar.N;
+                    if (!tL_chatAdminRights2.change_info && !tL_chatAdminRights2.post_messages && !tL_chatAdminRights2.manage_direct_messages && !tL_chatAdminRights2.manage_welcome_messages && !tL_chatAdminRights2.edit_messages && !tL_chatAdminRights2.delete_messages && !tL_chatAdminRights2.ban_users && !tL_chatAdminRights2.invite_users && ((!npVar.H || !tL_chatAdminRights2.manage_topics) && !tL_chatAdminRights2.pin_messages && !tL_chatAdminRights2.manage_ranks && !tL_chatAdminRights2.add_admins && !tL_chatAdminRights2.anonymous && !tL_chatAdminRights2.manage_call && ((!npVar.F || (!tL_chatAdminRights2.post_stories && !tL_chatAdminRights2.edit_stories && !tL_chatAdminRights2.delete_stories)) && !tL_chatAdminRights2.other))) {
+                        i10 = 0;
+                    }
+                    kpVar2.b(i10, tL_chatAdminRights2, npVar.P, npVar.T);
+                    npVar.finishFragment();
+                    return;
+                }
                 return;
         }
     }

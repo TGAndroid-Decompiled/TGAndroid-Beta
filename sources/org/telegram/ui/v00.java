@@ -4,23 +4,23 @@ import android.graphics.Typeface;
 import android.provider.Settings;
 import org.telegram.messenger.voip.VoIPService;
 public final class v00 implements Runnable {
-    public final int f52679a;
-    public final f40 f52680b;
+    public final int f52662a;
+    public final f40 f52663b;
 
     public v00(f40 f40Var, int i7) {
-        this.f52679a = i7;
-        this.f52680b = f40Var;
+        this.f52662a = i7;
+        this.f52663b = f40Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f52679a;
-        f40 f40Var = this.f52680b;
+        int i7 = this.f52662a;
+        f40 f40Var = this.f52663b;
         switch (i7) {
             case 0:
                 if (f40Var.v1()) {
                     LaunchActivity launchActivity = f40Var.d2;
-                    Typeface typeface = org.telegram.messenger.g0.f24018a;
+                    Typeface typeface = org.telegram.messenger.g0.f23982a;
                     if (Settings.canDrawOverlays(launchActivity) && !org.telegram.ui.Components.voip.j1.j()) {
                         org.telegram.ui.Components.voip.j1.k(f40Var.d2);
                         return;
@@ -28,9 +28,9 @@ public final class v00 implements Runnable {
                 }
                 if (!f40Var.v1()) {
                     LaunchActivity launchActivity2 = f40Var.d2;
-                    Typeface typeface2 = org.telegram.messenger.g0.f24018a;
+                    Typeface typeface2 = org.telegram.messenger.g0.f23982a;
                     if (Settings.canDrawOverlays(launchActivity2)) {
-                        org.telegram.ui.Components.c20.f33982g0 = false;
+                        org.telegram.ui.Components.c20.f33946g0 = false;
                         return;
                     }
                     return;
@@ -42,11 +42,11 @@ public final class v00 implements Runnable {
             case 2:
                 if (f40Var.V2 != null && f40Var.Q3 && VoIPService.getSharedInstance() != null) {
                     try {
-                        f40Var.f47564w1.performHapticFeedback(3, 2);
+                        f40Var.f47526w1.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                     f40Var.S1(1, true);
-                    org.telegram.messenger.g0.h3(f40Var.f47567w4, 80L);
+                    org.telegram.messenger.g0.h3(f40Var.f47529w4, 80L);
                     f40Var.Q3 = false;
                     f40Var.R3 = true;
                     return;
@@ -63,10 +63,10 @@ public final class v00 implements Runnable {
                 f40Var.b1();
                 f40Var.Y0();
                 f40Var.X0();
-                f40Var.A1.setTranslationY((-f40Var.B3.d()) + f40Var.f30176b.getPaddingBottom());
+                f40Var.A1.setTranslationY((-f40Var.B3.d()) + f40Var.f30142b.getPaddingBottom());
                 f40Var.B1.invalidate();
                 f40Var.c1();
-                f40Var.f30176b.invalidate();
+                f40Var.f30142b.invalidate();
                 return;
             case 5:
                 f40Var.B1();
@@ -79,17 +79,17 @@ public final class v00 implements Runnable {
                 org.telegram.messenger.g0.h3(f40Var.C3, 1000L);
                 return;
             case 8:
-                b30 b30Var = f40Var.f47518m2;
+                b30 b30Var = f40Var.f47480m2;
                 if (b30Var != null) {
                     b30Var.show();
                     return;
                 }
                 return;
             case 9:
-                org.telegram.messenger.np.u1(f40Var.f47526o1.f23202a).l0(null);
+                org.telegram.messenger.np.u1(f40Var.f47488o1.f23166a).l0(null);
                 return;
             default:
-                f40Var.f47568w5 = null;
+                f40Var.f47530w5 = null;
                 f40Var.O1(true);
                 return;
         }

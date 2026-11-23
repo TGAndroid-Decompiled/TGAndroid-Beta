@@ -1,58 +1,62 @@
 package org.telegram.ui;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.transition.Fade;
+import android.transition.TransitionValues;
+import android.view.View;
 import android.view.ViewGroup;
-import java.lang.reflect.Method;
-public final class yp0 extends AnimatorListenerAdapter {
-    public final int f54271a;
-    public final org.telegram.ui.Components.cl0 f54272b;
+public final class yp0 extends Fade {
+    public final int f54222a;
+    public final boolean f54223b;
+    public final boolean f54224c;
+    public final PhotoViewer d;
 
-    public yp0(org.telegram.ui.Components.cl0 cl0Var, int i7) {
-        this.f54271a = i7;
-        this.f54272b = cl0Var;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f54271a) {
-            case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f54272b.f34216b;
-                photoViewer.R1.getNextView().setText((CharSequence) null);
-                wp0 wp0Var = photoViewer.U1;
-                wp0Var.m0 = false;
-                if (wp0Var.f49080n0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) wp0Var.f49082p0.getLayoutParams()).topMargin = wp0Var.f49080n0;
-                    wp0Var.f49080n0 = -1;
-                    wp0Var.requestLayout();
-                    return;
-                }
+    public yp0(PhotoViewer photoViewer, boolean z10, boolean z11, int i7) {
+        super(1);
+        this.f54222a = i7;
+        switch (i7) {
+            case 1:
+                this.d = photoViewer;
+                this.f54223b = z10;
+                this.f54224c = z11;
+                super(2);
                 return;
             default:
-                ((PhotoViewer) this.f54272b.f34216b).R1.setTranslationY(0.0f);
+                this.d = photoViewer;
+                this.f54223b = z10;
+                this.f54224c = z11;
                 return;
         }
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f54271a) {
+    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f54222a) {
             case 0:
-                wp0 wp0Var = ((PhotoViewer) this.f54272b.f34216b).U1;
-                Method method = wp0Var.f49074g0;
-                if (method != null) {
-                    try {
-                        method.invoke(wp0Var, null);
-                        return;
-                    } catch (Exception e10) {
-                        org.telegram.messenger.a8.g(e10, true);
-                        return;
-                    }
+                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                if (this.f54223b && !this.f54224c && view == this.d.R1) {
+                    onAppear.addListener(new ay(this, 15));
+                    ((ObjectAnimator) onAppear).addUpdateListener(new a3(this, 18));
                 }
-                return;
+                return onAppear;
             default:
-                super.onAnimationStart(animator);
-                return;
+                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+        }
+    }
+
+    @Override
+    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f54222a) {
+            case 1:
+                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                if (!this.f54223b && this.f54224c && view == this.d.R1) {
+                    onDisappear.addListener(new ay(this, 16));
+                    ((ObjectAnimator) onDisappear).addUpdateListener(new a3(this, 19));
+                }
+                return onDisappear;
+            default:
+                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
         }
     }
 }

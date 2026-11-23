@@ -1,21 +1,30 @@
 package a8;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.content.Context;
+import android.util.Log;
 public abstract class p1 {
-    public static Object a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() != 0) {
-            return creator.createFromParcel(parcel);
+    public static String a(Context context, int i7) {
+        if (context == null) {
+            return "";
         }
-        return null;
-    }
-
-    public static void b(Parcel parcel, Parcelable parcelable, int i7) {
-        if (parcelable != null) {
-            parcel.writeInt(1);
-            parcelable.writeToParcel(parcel, i7);
-            return;
+        if (i7 != 1) {
+            if (i7 != 7) {
+                switch (i7) {
+                    case 9:
+                        break;
+                    case 10:
+                        return context.getString(2131689613);
+                    case 11:
+                        return context.getString(2131689612);
+                    case 12:
+                        return context.getString(2131689610);
+                    default:
+                        Log.e("BiometricUtils", "Unknown error code: " + i7);
+                        return context.getString(2131689578);
+                }
+            }
+            return context.getString(2131689611);
         }
-        parcel.writeInt(0);
+        return context.getString(2131689609);
     }
 }

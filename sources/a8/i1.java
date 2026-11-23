@@ -1,34 +1,43 @@
 package a8;
 
-import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.content.Context;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import org.telegram.ui.Dictation.DictationAsr;
 public abstract class i1 {
-    public static FrameLayout a(Activity activity, org.telegram.ui.ActionBar.h6 h6Var, int i7, String str, String str2) {
-        FrameLayout frameLayout = new FrameLayout(activity);
-        ImageView imageView = new ImageView(activity);
-        int i10 = org.telegram.ui.ActionBar.m6.f29489j5;
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.m6.w0(i10, h6Var), PorterDuff.Mode.SRC_IN));
-        imageView.setImageResource(i7);
-        frameLayout.addView(imageView, c8.ma.d(24, 24.0f, 51, 0.0f, 8.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(activity);
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(activity);
-        textView.setTextColor(org.telegram.ui.ActionBar.m6.w0(i10, h6Var));
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setTextSize(0, org.telegram.messenger.g0.L(14.0f));
-        textView.setText(str);
-        linearLayout.addView(textView, c8.ma.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
-        TextView textView2 = new TextView(activity);
-        textView2.setTextColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29792z6, h6Var));
-        textView2.setTextSize(0, org.telegram.messenger.g0.L(14.0f));
-        textView2.setText(str2);
-        linearLayout.addView(textView2, c8.ma.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
-        frameLayout.addView(linearLayout, c8.ma.d(-1, -2.0f, 55, 41.0f, 0.0f, 0.0f, 0.0f));
-        return frameLayout;
+    public static boolean a(Context context) {
+        if (context != null && DictationAsr.B()) {
+            ArrayList arrayList = new ArrayList();
+            HashMap hashMap = ai.r0.f1507a;
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            ai.r0.b(linkedHashMap, context);
+            ArrayList arrayList2 = new ArrayList(linkedHashMap.values());
+            int size = arrayList2.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = arrayList2.get(i7);
+                i7++;
+                String language = Locale.forLanguageTag((String) obj).getLanguage();
+                if (!TextUtils.isEmpty(language) && !arrayList.contains(language)) {
+                    arrayList.add(language);
+                }
+            }
+            if (arrayList.size() > 1) {
+                arrayList.remove("en");
+            }
+            int size2 = arrayList.size();
+            int i10 = 0;
+            while (i10 < size2) {
+                Object obj2 = arrayList.get(i10);
+                i10++;
+                if (DictationAsr.I((String) obj2) != null) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

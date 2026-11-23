@@ -1,6 +1,6 @@
 package p5;
 
-import a8.la;
+import a8.ma;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
@@ -325,7 +325,7 @@ public abstract class c {
     }
 
     public static Object i(HashMap hashMap, Uri uri, Uri uri2) {
-        la.p(hashMap.containsKey(uri));
+        ma.p(hashMap.containsKey(uri));
         return hashMap.get(uri2);
     }
 

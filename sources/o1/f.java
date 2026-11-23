@@ -4,12 +4,12 @@ import android.content.SharedPreferences;
 import java.util.Set;
 import kotlin.jvm.internal.j;
 public final class f {
-    public final SharedPreferences f21620a;
-    public final Set f21621b;
+    public final SharedPreferences f21586a;
+    public final Set f21587b;
 
     public f(SharedPreferences prefs, Set set) {
         j.e(prefs, "prefs");
-        this.f21620a = prefs;
-        this.f21621b = set;
+        this.f21586a = prefs;
+        this.f21587b = set;
     }
 }

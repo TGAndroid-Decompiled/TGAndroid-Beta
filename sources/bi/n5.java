@@ -1,27 +1,36 @@
 package bi;
-public final class n5 implements Runnable {
-    public final int f3953a;
-    public final m6 f3954b;
-    public final int f3955c;
 
-    public n5(m6 m6Var, int i7, int i10) {
-        this.f3953a = i10;
-        this.f3954b = m6Var;
-        this.f3955c = i7;
+import org.telegram.messenger.y10;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.ProfileActivity;
+public final class n5 implements y10 {
+    public final int f3885a;
+    public final v6 f3886b;
+
+    public n5(v6 v6Var, int i7) {
+        this.f3885a = i7;
+        this.f3886b = v6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f3953a) {
+    public final void a(Object obj) {
+        switch (this.f3885a) {
             case 0:
-                this.f3954b.f3901f.scrollBy(0, this.f3955c);
+                v6 v6Var = this.f3886b;
+                v6Var.f(true);
+                i71 i71Var = v6Var.f4153n;
+                int i7 = ((TL_stars.TL_starGiftCollection) obj).collection_id;
+                i71Var.e(i7, v6Var.f4151e.f(i7) + 1);
+                org.telegram.ui.ActionBar.g2 g2Var = v6Var.f4148a;
+                if (g2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) g2Var).X4(true);
+                }
+                v6Var.o();
                 return;
             default:
-                f6 f6Var = this.f3954b.f3901f;
-                if (f6Var != null) {
-                    f6Var.setSpanCount(this.f3955c);
-                    return;
-                }
+                v6 v6Var2 = this.f3886b;
+                v6Var2.f4151e.b((String) obj, new n5(v6Var2, 0));
                 return;
         }
     }

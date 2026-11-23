@@ -1,17 +1,17 @@
 package org.telegram.messenger;
 public final class nr {
-    public final int f26029a;
-    public final int f26030b;
-    public final int f26031c;
+    public final int f25993a;
+    public final int f25994b;
+    public final int f25995c;
 
     public nr(int i7, int i10) {
-        this.f26029a = i7;
-        this.f26030b = i10;
+        this.f25993a = i7;
+        this.f25994b = i10;
     }
 
     public nr(int i7, int i10, int i11) {
-        this.f26031c = i7;
-        this.f26029a = i10;
-        this.f26030b = i11;
+        this.f25995c = i7;
+        this.f25993a = i10;
+        this.f25994b = i11;
     }
 }

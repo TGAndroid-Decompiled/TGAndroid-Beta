@@ -3,18 +3,18 @@ package org.telegram.ui.Wallet;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.view.MotionEvent;
-public final class k7 extends vg.m {
-    public final m7 f44495j0;
+public final class k7 extends vg.n {
+    public final m7 f44461j0;
 
     public k7(m7 m7Var, Context context) {
         super(context, 1, 4);
-        this.f44495j0 = m7Var;
+        this.f44461j0 = m7Var;
     }
 
     @Override
     public final void i() {
-        m7 m7Var = this.f44495j0;
-        if (m7Var.f44619e == this) {
+        m7 m7Var = this.f44461j0;
+        if (m7Var.f44585e == this) {
             m7.c(m7Var);
         }
     }
@@ -31,7 +31,7 @@ public final class k7 extends vg.m {
         int round = Math.round(Math.min(i7, i10) * 3.5f);
         surfaceTexture.setDefaultBufferSize(round, round);
         this.E = round;
-        this.f59522y = round;
+        this.f59487y = round;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class k7 extends vg.m {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f44495j0.f44634y && super.onTouchEvent(motionEvent)) {
+        if (!this.f44461j0.f44600y && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

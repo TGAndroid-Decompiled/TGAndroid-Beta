@@ -4,7 +4,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Choreographer;
-import b7.h;
+import c8.z;
 import kotlin.jvm.internal.j;
 public abstract class f {
     private static volatile Choreographer choreographer;
@@ -14,7 +14,7 @@ public abstract class f {
         try {
             a10 = new e(a(Looper.getMainLooper()), false);
         } catch (Throwable th2) {
-            a10 = h.a(th2);
+            a10 = z.a(th2);
         }
         if (a10 instanceof gd.f) {
             a10 = null;

@@ -1,41 +1,32 @@
 package hi;
 
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraView;
-public final class f6 implements CameraView.CameraViewDelegate, CameraController.VideoTakeCallback {
-    public final i6 f14649a;
+import org.telegram.ui.Components.nr;
+public final class f6 implements Runnable {
+    public final int f14605a;
+    public final j6 f14606b;
 
-    public f6(i6 i6Var) {
-        this.f14649a = i6Var;
+    public f6(j6 j6Var, int i7) {
+        this.f14605a = i7;
+        this.f14606b = j6Var;
     }
 
     @Override
-    public void onCameraInit() {
-        i6 i6Var = this.f14649a;
-        h6 h6Var = i6Var.f14791a;
-        if (i6Var.f14793c > 0) {
-            return;
-        }
-        CameraController.getInstance().recordVideo(h6Var.getCameraSessionObject(), i6Var.f14792b, false, new f6(i6Var), new e6(i6Var, 1), h6Var, true);
-    }
-
-    @Override
-    public void onFinishVideoRecording(String str, long j3) {
-        long currentTimeMillis = System.currentTimeMillis();
-        i6 i6Var = this.f14649a;
-        i6Var.d = currentTimeMillis;
-        org.telegram.messenger.g0.r(i6Var.h);
-        if (!i6Var.f14801y) {
-            if (j3 > 1000) {
-                i6Var.f14791a.destroy(true, null);
-                fi.b0 b0Var = i6Var.f14796n;
-                if (b0Var != null) {
-                    b0Var.a(i6Var.f14792b, str, Long.valueOf(j3));
-                    return;
-                }
+    public final void run() {
+        switch (this.f14605a) {
+            case 0:
+                this.f14606b.c();
                 return;
-            }
-            i6Var.a(false);
+            default:
+                j6 j6Var = this.f14606b;
+                j6Var.f14767a.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(nr.h).setDuration(280L).start();
+                j6Var.f14769c = System.currentTimeMillis();
+                j6Var.invalidate();
+                try {
+                    j6Var.performHapticFeedback(3);
+                } catch (Exception unused) {
+                }
+                org.telegram.messenger.g0.h3(j6Var.h, 59500L);
+                return;
         }
     }
 }

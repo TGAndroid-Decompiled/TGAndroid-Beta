@@ -6,54 +6,54 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import v4.f1;
-public final class k extends v4.i0 {
-    public final h0 f5731c;
+import v4.e1;
+public final class k extends v4.h0 {
+    public final h0 f5694c;
 
     public k(h0 h0Var) {
-        this.f5731c = h0Var;
+        this.f5694c = h0Var;
     }
 
     @Override
     public final int b() {
-        return this.f5731c.f5796s;
+        return this.f5694c.f5759s;
     }
 
     @Override
     public final int d(int i7) {
-        h0 h0Var = this.f5731c;
-        o oVar = (o) h0Var.f5794n.get(h0Var.f(i7));
-        if (oVar.f5758b != null && i7 == oVar.d) {
+        h0 h0Var = this.f5694c;
+        o oVar = (o) h0Var.f5757n.get(h0Var.f(i7));
+        if (oVar.f5721b != null && i7 == oVar.d) {
             return 0;
         }
         return 1;
     }
 
     @Override
-    public final void t(f1 f1Var, int i7) {
+    public final void t(e1 e1Var, int i7) {
         String str;
         int i10;
-        h0 h0Var = this.f5731c;
-        o oVar = (o) h0Var.f5794n.get(h0Var.f(i7));
-        int i11 = f1Var.f59169f;
-        View view = f1Var.f59165a;
+        h0 h0Var = this.f5694c;
+        o oVar = (o) h0Var.f5757n.get(h0Var.f(i7));
+        int i11 = e1Var.f59115f;
+        View view = e1Var.f59111a;
         int i12 = 1;
         int i13 = 0;
         if (i11 == 0) {
             n nVar = (n) view;
-            String str2 = oVar.f5758b;
-            if (h0Var.f5798x || oVar.f5757a != 2) {
+            String str2 = oVar.f5721b;
+            if (h0Var.f5761x || oVar.f5720a != 2) {
                 i12 = 0;
             }
-            TextView textView = nVar.f5753b;
-            TextView textView2 = nVar.f5752a;
+            TextView textView = nVar.f5716b;
+            TextView textView2 = nVar.f5715a;
             if (str2 != null) {
                 str = str2.replace('\n', ' ');
             } else {
                 str = null;
             }
             textView2.setText(str);
-            textView2.setTextColor(nVar.f5754c.f5799y);
+            textView2.setTextColor(nVar.f5717c.f5762y);
             if (i12 != 0) {
                 i10 = 0;
             } else {
@@ -73,25 +73,25 @@ public final class k extends v4.i0 {
             }
             return;
         }
-        ArrayList arrayList = oVar.f5759c;
+        ArrayList arrayList = oVar.f5722c;
         int i15 = i7 - oVar.d;
-        if (oVar.f5758b == null) {
+        if (oVar.f5721b == null) {
             i12 = 0;
         }
         ((l) view).set((TLRPC.Document) arrayList.get(i15 - i12));
     }
 
     @Override
-    public final f1 x(ViewGroup viewGroup, int i7) {
+    public final e1 x(ViewGroup viewGroup, int i7) {
         View lVar;
-        h0 h0Var = this.f5731c;
+        h0 h0Var = this.f5694c;
         if (i7 == 0) {
             lVar = new n(h0Var, viewGroup.getContext());
-            lVar.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(44.0f)));
+            lVar.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(44.0f)));
         } else {
-            lVar = new l(viewGroup.getContext(), h0Var.f5789a);
-            lVar.setLayoutParams(new v4.q0(-1, -2));
+            lVar = new l(viewGroup.getContext(), h0Var.f5752a);
+            lVar.setLayoutParams(new v4.p0(-1, -2));
         }
-        return new f1(lVar);
+        return new e1(lVar);
     }
 }

@@ -1,34 +1,12 @@
 package a8;
 public abstract class i7 {
-    public static be.c a(int i7, be.a aVar, int i10) {
-        if ((i10 & 2) != 0) {
-            aVar = be.a.f3154a;
+    public static boolean a(Object obj, Object obj2) {
+        if (obj == obj2) {
+            return true;
         }
-        if (i7 != -2) {
-            if (i7 != -1) {
-                if (i7 != 0) {
-                    if (i7 != Integer.MAX_VALUE) {
-                        if (aVar == be.a.f3154a) {
-                            return new be.c(i7);
-                        }
-                        return new be.o(i7, aVar);
-                    }
-                    return new be.c(Integer.MAX_VALUE);
-                } else if (aVar == be.a.f3154a) {
-                    return new be.c(0);
-                } else {
-                    return new be.o(1, aVar);
-                }
-            } else if (aVar == be.a.f3154a) {
-                return new be.o(1, be.a.f3155b);
-            } else {
-                throw new IllegalArgumentException("CONFLATED capacity cannot be used with non-default onBufferOverflow");
-            }
-        } else if (aVar == be.a.f3154a) {
-            be.g.f3188g.getClass();
-            return new be.c(be.f.f3187b);
-        } else {
-            return new be.o(1, aVar);
+        if (obj != null && obj.equals(obj2)) {
+            return true;
         }
+        return false;
     }
 }

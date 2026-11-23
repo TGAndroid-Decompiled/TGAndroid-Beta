@@ -6,10 +6,10 @@ import android.view.ViewPropertyAnimator;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class f01 implements TextWatcher {
-    public final g01 f35049a;
+    public final g01 f35024a;
 
     public f01(g01 g01Var) {
-        this.f35049a = g01Var;
+        this.f35024a = g01Var;
     }
 
     @Override
@@ -17,19 +17,19 @@ public final class f01 implements TextWatcher {
         boolean z10;
         boolean z11;
         float f10;
-        if (this.f35049a.f35358b.length() > 0) {
+        if (this.f35024a.f35320b.length() > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         float f11 = 0.0f;
-        if (this.f35049a.f35357a.getAlpha() != 0.0f) {
+        if (this.f35024a.f35319a.getAlpha() != 0.0f) {
             z11 = true;
         } else {
             z11 = false;
         }
         if (z10 != z11) {
-            ViewPropertyAnimator animate = this.f35049a.f35357a.animate();
+            ViewPropertyAnimator animate = this.f35024a.f35319a.animate();
             float f12 = 1.0f;
             if (z10) {
                 f11 = 1.0f;
@@ -46,37 +46,37 @@ public final class f01 implements TextWatcher {
             }
             scaleX.scaleY(f12).start();
         }
-        String obj = this.f35049a.f35358b.getText().toString();
+        String obj = this.f35024a.f35320b.getText().toString();
         if (obj.length() != 0) {
-            vy vyVar = this.f35049a.f35359c.f33196p1;
+            vy vyVar = this.f35024a.f35321c.f33162p1;
             if (vyVar != null) {
                 vyVar.setText(org.telegram.messenger.hd.N0(2131747974, null));
             }
         } else {
-            v4.i0 adapter = this.f35049a.f35359c.n1.getAdapter();
-            ThemeEditorView.EditorAlert editorAlert = this.f35049a.f35359c;
-            if (adapter != editorAlert.f33199s1) {
+            v4.h0 adapter = this.f35024a.f35321c.n1.getAdapter();
+            ThemeEditorView.EditorAlert editorAlert = this.f35024a.f35321c;
+            if (adapter != editorAlert.f33165s1) {
                 int K0 = ThemeEditorView.EditorAlert.K0(editorAlert);
-                this.f35049a.f35359c.f33196p1.setText(org.telegram.messenger.hd.N0(2131748037, null));
-                this.f35049a.f35359c.f33196p1.c();
-                ThemeEditorView.EditorAlert editorAlert2 = this.f35049a.f35359c;
-                editorAlert2.n1.setAdapter(editorAlert2.f33199s1);
-                this.f35049a.f35359c.f33199s1.f();
+                this.f35024a.f35321c.f33162p1.setText(org.telegram.messenger.hd.N0(2131748037, null));
+                this.f35024a.f35321c.f33162p1.c();
+                ThemeEditorView.EditorAlert editorAlert2 = this.f35024a.f35321c;
+                editorAlert2.n1.setAdapter(editorAlert2.f33165s1);
+                this.f35024a.f35321c.f33165s1.f();
                 if (K0 > 0) {
-                    this.f35049a.f35359c.f33198r1.h1(0, -K0);
+                    this.f35024a.f35321c.f33164r1.h1(0, -K0);
                 }
             }
         }
-        c01 c01Var = this.f35049a.f35359c.f33200t1;
-        if (c01Var != null && !obj.equals(c01Var.f33957n)) {
-            c01Var.f33957n = obj;
+        c01 c01Var = this.f35024a.f35321c.f33166t1;
+        if (c01Var != null && !obj.equals(c01Var.f33921n)) {
+            c01Var.f33921n = obj;
             if (c01Var.h != null) {
-                Utilities.f22812g.a(c01Var.h);
+                Utilities.f22776g.a(c01Var.h);
                 c01Var.h = null;
             }
             if (obj.length() == 0) {
-                c01Var.f33955e.clear();
-                ThemeEditorView.EditorAlert editorAlert3 = c01Var.f33958r;
+                c01Var.f33919e.clear();
+                ThemeEditorView.EditorAlert editorAlert3 = c01Var.f33922r;
                 editorAlert3.A1 = ThemeEditorView.EditorAlert.K0(editorAlert3);
                 c01Var.d = -1;
                 c01Var.f();
@@ -85,7 +85,7 @@ public final class f01 implements TextWatcher {
             int i7 = c01Var.d + 1;
             c01Var.d = i7;
             c01Var.h = new org.telegram.ui.f0(c01Var, obj, i7, 28);
-            Utilities.f22812g.d(c01Var.h, 300L);
+            Utilities.f22776g.d(c01Var.h, 300L);
         }
     }
 

@@ -53,15 +53,15 @@ public abstract class eb extends lb {
         this.button = dbVar;
         if (dbVar != null) {
             addCallback(dbVar);
-            addView(dbVar, 0, c8.ma.h(-2.0f, -2.0f, 8388629));
+            addView(dbVar, 0, c8.na.h(-2.0f, -2.0f, 8388629));
         }
     }
 
     public void setTimer() {
         zb zbVar = new zb(getContext(), this.resourcesProvider);
         this.timerView = zbVar;
-        zbVar.f42765b = 5000L;
-        addView(zbVar, c8.ma.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
+        zbVar.f42723b = 5000L;
+        addView(zbVar, c8.na.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
     public void setWrapWidth() {

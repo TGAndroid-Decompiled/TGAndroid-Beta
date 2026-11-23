@@ -9,18 +9,18 @@ public final class cj extends n41 {
 
     public static o41 i(CharSequence charSequence, String str) {
         o41 K = o41.K(cj.class);
-        K.f38091m = str;
-        K.f38092n = charSequence;
+        K.f38058m = str;
+        K.f38059n = charSequence;
         return K;
     }
 
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         dj djVar = (dj) view;
-        CharSequence charSequence = o41Var.f38091m;
-        CharSequence charSequence2 = o41Var.f38092n;
-        djVar.f34510b.setText(charSequence);
-        djVar.f34511c.setText(charSequence2);
+        CharSequence charSequence = o41Var.f38058m;
+        CharSequence charSequence2 = o41Var.f38059n;
+        djVar.f34472b.setText(charSequence);
+        djVar.f34473c.setText(charSequence2);
     }
 
     @Override

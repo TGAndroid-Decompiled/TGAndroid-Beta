@@ -16,7 +16,7 @@ public final class s5 extends org.telegram.ui.Components.nc {
     }
 
     public final void f(String str, int i7, q1 q1Var) {
-        ai.j1 j1Var;
+        ai.d1 d1Var;
         if (str == this.R && this.S == i7) {
             return;
         }
@@ -24,11 +24,11 @@ public final class s5 extends org.telegram.ui.Components.nc {
         SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) " ");
         String J0 = ki.j.J0(i7);
         if (q1Var != null) {
-            j1Var = new ai.j1(this, q1Var, i7, 6);
+            d1Var = new ai.d1(this, q1Var, i7, 6);
         } else {
-            j1Var = null;
+            d1Var = null;
         }
-        append.append((CharSequence) org.telegram.ui.Components.oc.b(J0, j1Var, this.Q, null));
+        append.append((CharSequence) org.telegram.ui.Components.oc.b(J0, d1Var, this.Q, null));
         setText(spannableStringBuilder);
         this.R = str;
         this.S = i7;

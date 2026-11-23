@@ -18,8 +18,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.util.Xml;
-import c8.l0;
-import c8.r0;
+import c8.m0;
+import c8.s0;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import org.xmlpull.v1.XmlPullParser;
@@ -51,7 +51,7 @@ public final class q extends h {
         int next;
         if (Build.VERSION.SDK_INT >= 24) {
             q qVar = new q();
-            ThreadLocal threadLocal = h0.j.f13731a;
+            ThreadLocal threadLocal = h0.j.f13694a;
             qVar.f220b = resources.getDrawable(i7, theme);
             new p(((Drawable) qVar.f220b).getConstantState());
             return qVar;
@@ -418,7 +418,7 @@ public final class q extends h {
     public final void setTint(int i7) {
         Drawable drawable = (Drawable) this.f220b;
         if (drawable != null) {
-            r0.a(i7, drawable);
+            s0.a(i7, drawable);
         } else {
             setTintList(ColorStateList.valueOf(i7));
         }
@@ -525,7 +525,7 @@ public final class q extends h {
             } else {
                 Resources resources2 = f10.getResources();
                 int resourceId = f10.getResourceId(1, 0);
-                ThreadLocal threadLocal = h0.c.f13715a;
+                ThreadLocal threadLocal = h0.c.f13678a;
                 try {
                     colorStateList = h0.c.a(resources2, resources2.getXml(resourceId), theme);
                 } catch (Exception e10) {
@@ -609,7 +609,7 @@ public final class q extends h {
                                 }
                                 String string3 = f13.getString(2);
                                 if (string3 != null) {
-                                    mVar.f239a = l0.c(string3);
+                                    mVar.f239a = m0.c(string3);
                                 }
                                 mVar.f222f = h0.b.a(f13, xmlPullParser, theme, "fillColor", 1);
                                 float f14 = mVar.h;
@@ -694,7 +694,7 @@ public final class q extends h {
                                     }
                                     String string5 = f21.getString(1);
                                     if (string5 != null) {
-                                        mVar2.f239a = l0.c(string5);
+                                        mVar2.f239a = m0.c(string5);
                                     }
                                     mVar2.f241c = !h0.b.c(xmlPullParser, "fillType") ? 0 : f21.getInt(2, 0);
                                     f21.recycle();

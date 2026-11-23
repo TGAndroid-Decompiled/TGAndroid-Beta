@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class oi implements org.telegram.ui.Components.rj0 {
-    public final bn f50611a;
+    public final bn f50588a;
 
     public oi(bn bnVar) {
-        this.f50611a = bnVar;
+        this.f50588a = bnVar;
     }
 
     @Override
@@ -18,17 +18,17 @@ public final class oi implements org.telegram.ui.Components.rj0 {
         org.telegram.messenger.gj messageObject;
         org.telegram.ui.ActionBar.k kVar;
         TLRPC.ChatFull chatFull;
-        bn bnVar = this.f50611a;
+        bn bnVar = this.f50588a;
         if (!bnVar.X9() && (!((z10 = view instanceof org.telegram.ui.Cells.r1)) || !((org.telegram.ui.Cells.r1) view).S2())) {
             String S = bnVar.getMediaDataController().S();
-            TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) bnVar.getMediaDataController().f26847r.get(S);
+            TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) bnVar.getMediaDataController().f26811r.get(S);
             if (tL_availableReaction != null || (S != null && S.startsWith("animated_"))) {
-                if (bnVar.f46103l6 >= 0) {
+                if (bnVar.f46056l6 >= 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (!z11 && (chatFull = bnVar.f46181r8) != null) {
+                if (!z11 && (chatFull = bnVar.f46134r8) != null) {
                     if (tL_availableReaction != null) {
                         S = tL_availableReaction.reaction;
                     }
@@ -40,7 +40,7 @@ public final class oi implements org.telegram.ui.Components.rj0 {
                     } else if (view instanceof org.telegram.ui.Cells.v0) {
                         messageObject = ((org.telegram.ui.Cells.v0) view).getMessageObject();
                     }
-                    if (messageObject != null && !messageObject.f24219l0 && !messageObject.o4() && messageObject.z() && !messageObject.Y2()) {
+                    if (messageObject != null && !messageObject.f24183l0 && !messageObject.o4() && messageObject.z() && !messageObject.Y2()) {
                         kVar = ((org.telegram.ui.ActionBar.g2) bnVar).actionBar;
                         if (!kVar.x() && !bnVar.z() && !bnVar.c() && !messageObject.r4()) {
                             return true;
@@ -61,16 +61,16 @@ public final class oi implements org.telegram.ui.Components.rj0 {
         org.telegram.messenger.gj messageObject2;
         int i10;
         org.telegram.ui.ActionBar.h6 h6Var;
-        bn bnVar = this.f50611a;
+        bn bnVar = this.f50588a;
         z10 = ((org.telegram.ui.ActionBar.g2) bnVar).inPreviewMode;
         if (!z10) {
             bnVar.R4 = true;
             boolean z11 = view instanceof org.telegram.ui.Cells.v0;
             if (z11 && (messageObject2 = ((org.telegram.ui.Cells.v0) view).getMessageObject()) != null) {
-                TLRPC.MessageAction messageAction = messageObject2.f24213k.action;
+                TLRPC.MessageAction messageAction = messageObject2.f24177k.action;
                 if (messageAction instanceof TLRPC.TL_messageActionWalletTonConnectRequest) {
                     TLRPC.TL_messageActionWalletTonConnectRequest tL_messageActionWalletTonConnectRequest = (TLRPC.TL_messageActionWalletTonConnectRequest) messageAction;
-                    if (tL_messageActionWalletTonConnectRequest.expires > bnVar.getConnectionsManager().getCurrentTime() && !messageObject2.N3() && org.telegram.messenger.gj.B0(messageObject2.f24213k) == 777000) {
+                    if (tL_messageActionWalletTonConnectRequest.expires > bnVar.getConnectionsManager().getCurrentTime() && !messageObject2.N3() && org.telegram.messenger.gj.B0(messageObject2.f24177k) == 777000) {
                         Activity parentActivity = bnVar.getParentActivity();
                         i10 = ((org.telegram.ui.ActionBar.g2) bnVar).currentAccount;
                         long j3 = tL_messageActionWalletTonConnectRequest.session_id;
@@ -85,11 +85,11 @@ public final class oi implements org.telegram.ui.Components.rj0 {
             boolean z12 = false;
             if (z11) {
                 org.telegram.ui.Cells.v0 v0Var = (org.telegram.ui.Cells.v0) view;
-                if (v0Var.getMessageObject().f24219l0) {
+                if (v0Var.getMessageObject().f24183l0) {
                     if (!bnVar.mb) {
                         Bundle bundle = new Bundle();
-                        int i11 = v0Var.getMessageObject().f24213k.date;
-                        bundle.putLong("dialog_id", bnVar.f46103l6);
+                        int i11 = v0Var.getMessageObject().f24177k.date;
+                        bundle.putLong("dialog_id", bnVar.f46056l6);
                         bundle.putLong("topic_id", bnVar.d());
                         bundle.putInt("type", 0);
                         i8 i8Var = new i8(0, i11, bundle);
@@ -102,15 +102,15 @@ public final class oi implements org.telegram.ui.Components.rj0 {
             }
             if (z11) {
                 org.telegram.ui.Cells.v0 v0Var2 = (org.telegram.ui.Cells.v0) view;
-                if (v0Var2.getMessageObject() != null && (v0Var2.getMessageObject().f24213k.action instanceof TLRPC.TL_messageActionBoostApply)) {
-                    bnVar.getNotificationCenter().k(org.telegram.messenger.ls.f25362p3, Long.valueOf(bnVar.f46103l6));
+                if (v0Var2.getMessageObject() != null && (v0Var2.getMessageObject().f24177k.action instanceof TLRPC.TL_messageActionBoostApply)) {
+                    bnVar.getNotificationCenter().k(org.telegram.messenger.ls.f25326p3, Long.valueOf(bnVar.f46056l6));
                     return;
                 }
             }
             if (z11) {
                 org.telegram.ui.Cells.v0 v0Var3 = (org.telegram.ui.Cells.v0) view;
-                if (v0Var3.getMessageObject() != null && (v0Var3.getMessageObject().f24213k.action instanceof TLRPC.TL_messageActionSetSameChatWallPaper)) {
-                    org.telegram.messenger.g0.h3(new ai.c1(this, v0Var3.getMessageObject().N1(), 27), 16L);
+                if (v0Var3.getMessageObject() != null && (v0Var3.getMessageObject().f24177k.action instanceof TLRPC.TL_messageActionSetSameChatWallPaper)) {
+                    org.telegram.messenger.g0.h3(new ai.t0(this, v0Var3.getMessageObject().N1(), 29), 16L);
                     return;
                 }
             }
@@ -132,7 +132,7 @@ public final class oi implements org.telegram.ui.Components.rj0 {
             }
             if (view instanceof org.telegram.ui.Cells.r1) {
                 org.telegram.ui.Cells.r1 r1Var2 = (org.telegram.ui.Cells.r1) view;
-                if (bnVar.f46219u9.z(r1Var2.getMessageObject())) {
+                if (bnVar.f46172u9.z(r1Var2.getMessageObject())) {
                     return;
                 }
                 z12 = !r1Var2.E2(f10);
@@ -146,30 +146,30 @@ public final class oi implements org.telegram.ui.Components.rj0 {
         org.telegram.messenger.gj messageObject;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
-        bn bnVar = this.f50611a;
+        bn bnVar = this.f50588a;
         if (bnVar.getParentActivity() != null && !bnVar.z() && !bnVar.c() && !bnVar.isInPreviewMode() && !bnVar.X9()) {
             if (view instanceof org.telegram.ui.Cells.r1) {
                 messageObject = ((org.telegram.ui.Cells.r1) view).getPrimaryMessageObject();
             } else if (view instanceof org.telegram.ui.Cells.v0) {
                 messageObject = ((org.telegram.ui.Cells.v0) view).getMessageObject();
-                if (messageObject.f24219l0) {
+                if (messageObject.f24183l0) {
                     return;
                 }
             } else {
                 return;
             }
             org.telegram.messenger.gj gjVar = messageObject;
-            if (!(gjVar.f24213k instanceof TLRPC.TL_message_secret) && gjVar.z() && !gjVar.g3() && gjVar.D != 27) {
-                TLRPC.Chat chat = bnVar.f46005e;
-                if (chat == null || org.telegram.messenger.v3.V(chat) || org.telegram.messenger.v3.w(26, bnVar.f46005e)) {
+            if (!(gjVar.f24177k instanceof TLRPC.TL_message_secret) && gjVar.z() && !gjVar.g3() && gjVar.D != 27) {
+                TLRPC.Chat chat = bnVar.f45958e;
+                if (chat == null || org.telegram.messenger.v3.V(chat) || org.telegram.messenger.v3.w(26, bnVar.f45958e)) {
                     boolean z10 = false;
                     ch.l0.b(false);
                     String S = bnVar.getMediaDataController().S();
                     if (S.startsWith("animated_")) {
-                        if (bnVar.f46103l6 >= 0) {
+                        if (bnVar.f46056l6 >= 0) {
                             z10 = true;
                         }
-                        if (!z10 && (chatFull2 = bnVar.f46181r8) != null) {
+                        if (!z10 && (chatFull2 = bnVar.f46134r8) != null) {
                             z10 = org.telegram.messenger.v3.w0(chatFull2, S);
                         }
                         if (z10) {
@@ -178,12 +178,12 @@ public final class oi implements org.telegram.ui.Components.rj0 {
                         }
                         return;
                     }
-                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) bnVar.getMediaDataController().f26847r.get(S);
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) bnVar.getMediaDataController().f26811r.get(S);
                     if (tL_availableReaction != null && !gjVar.r4()) {
-                        if (bnVar.f46103l6 >= 0) {
+                        if (bnVar.f46056l6 >= 0) {
                             z10 = true;
                         }
-                        if (!z10 && (chatFull = bnVar.f46181r8) != null) {
+                        if (!z10 && (chatFull = bnVar.f46134r8) != null) {
                             z10 = org.telegram.messenger.v3.w0(chatFull, tL_availableReaction.reaction);
                         }
                         if (z10) {

@@ -10,15 +10,15 @@ import java.net.URI;
 import org.json.JSONArray;
 import org.json.JSONTokener;
 public final class r21 extends Thread {
-    public final String f39056a;
-    public final String f39057b;
-    public final String f39058c;
+    public final String f39011a;
+    public final String f39012b;
+    public final String f39013c;
     public final org.telegram.messenger.r10 d;
 
     public r21(String str, String str2, String str3, org.telegram.messenger.r10 r10Var) {
-        this.f39056a = str;
-        this.f39057b = str2;
-        this.f39058c = str3;
+        this.f39011a = str;
+        this.f39012b = str2;
+        this.f39013c = str3;
         this.d = r10Var;
     }
 
@@ -28,17 +28,17 @@ public final class r21 extends Thread {
         Integer num;
         String str;
         org.telegram.messenger.r10 r10Var = this.d;
-        String str2 = this.f39058c;
+        String str2 = this.f39013c;
         boolean z10 = false;
         String str3 = null;
         try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f39056a) + "&tl=" + Uri.encode(this.f39057b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
+            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f39011a) + "&tl=" + Uri.encode(this.f39012b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
             try {
                 httpURLConnection.setRequestMethod("GET");
                 httpURLConnection.setRequestProperty("User-Agent", b31.S1[(int) Math.round(Math.random() * 5)]);
                 httpURLConnection.setRequestProperty("Content-Type", "application/json");
                 StringBuilder sb2 = new StringBuilder();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), g9.j.f13284a));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), g9.j.f13247a));
                 while (true) {
                     int read = bufferedReader.read();
                     if (read == -1) {

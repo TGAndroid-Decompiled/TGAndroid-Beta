@@ -1,6 +1,6 @@
 package ab;
 
-import a8.la;
+import a8.ma;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import c8.ma;
+import c8.na;
 import e2.v0;
 import e2.y0;
 import gb.w0;
@@ -29,15 +29,15 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Cells.u2;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.ou;
+import org.telegram.ui.Components.fw;
 import org.telegram.ui.Components.wi0;
 import org.telegram.ui.Components.x5;
 import org.telegram.ui.Components.xy0;
-import org.telegram.ui.Wallet.u4;
+import org.telegram.ui.Wallet.c5;
+import org.telegram.ui.gu0;
 import org.telegram.ui.hy0;
 import org.telegram.ui.ly0;
-import org.telegram.ui.tr0;
-import org.telegram.ui.wt0;
+import org.telegram.ui.ur0;
 import p4.g1;
 import p4.k1;
 import p4.l1;
@@ -94,8 +94,8 @@ public final class c0 implements ib.b, wi0, ly0 {
         synchronized (this.f908b) {
             hVar = (p4.h) ((a0.f) this.d).get(vVar);
         }
-        p4.e0 e0Var = (p4.e0) ((WeakReference) this.f910e).get();
-        if (hVar != null && hVar.f55310e.a(i7) && e0Var != null && e0Var.f55249t.t().a(i7)) {
+        p4.d0 d0Var = (p4.d0) ((WeakReference) this.f910e).get();
+        if (hVar != null && hVar.f55274e.a(i7) && d0Var != null && d0Var.f55205t.t().a(i7)) {
             return true;
         }
         return false;
@@ -115,9 +115,9 @@ public final class c0 implements ib.b, wi0, ly0 {
             } else {
                 z10 = false;
             }
-            la.e("Use contains(Command) for custom command", z10);
-            for (k1 k1Var : l1Var.f55372a) {
-                if (k1Var.f55367a == i7) {
+            ma.e("Use contains(Command) for custom command", z10);
+            for (k1 k1Var : l1Var.f55334a) {
+                if (k1Var.f55330a == i7) {
                     return true;
                 }
             }
@@ -141,9 +141,9 @@ public final class c0 implements ib.b, wi0, ly0 {
             hVar = (p4.h) ((a0.f) this.d).get(vVar);
         }
         if (hVar != null) {
-            t0 t0Var = hVar.d.f55372a;
+            t0 t0Var = hVar.d.f55334a;
             k1Var.getClass();
-            if (t0Var.contains(k1Var) || p4.d.j(k1Var.f55368b)) {
+            if (t0Var.contains(k1Var) || p4.d.j(k1Var.f55331b)) {
                 return true;
             }
             return false;
@@ -174,11 +174,11 @@ public final class c0 implements ib.b, wi0, ly0 {
                 if (hVar == null) {
                     return;
                 }
-                ((a0.f) this.f909c).remove(hVar.f55307a);
-                hVar.f55308b.g();
-                p4.e0 e0Var = (p4.e0) ((WeakReference) this.f910e).get();
-                if (e0Var != null && !e0Var.j()) {
-                    h2.l0.W(e0Var.f55241l, new p4.e(e0Var, vVar, 0));
+                ((a0.f) this.f909c).remove(hVar.f55271a);
+                hVar.f55272b.g();
+                p4.d0 d0Var = (p4.d0) ((WeakReference) this.f910e).get();
+                if (d0Var != null && !d0Var.j()) {
+                    h2.l0.W(d0Var.f55197l, new p4.e(d0Var, vVar, 0));
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -192,7 +192,7 @@ public final class c0 implements ib.b, wi0, ly0 {
 
     @Override
     public void a() {
-        org.telegram.messenger.g0.h3(new hy0((g2) this.f908b, (Context) this.f909c, (h6) this.d, (ou) this.f910e, 2), 200L);
+        org.telegram.messenger.g0.h3(new hy0((g2) this.f908b, (Context) this.f909c, (h6) this.d, (fw) this.f910e, 2), 200L);
     }
 
     public void b(Object obj, p4.v vVar, l1 l1Var, y0 y0Var) {
@@ -202,14 +202,14 @@ public final class c0 implements ib.b, wi0, ly0 {
                 if (r10 == null) {
                     ((a0.f) this.f909c).put(obj, vVar);
                     ?? obj2 = new Object();
-                    obj2.f6386c = new Object();
+                    obj2.f6349c = new Object();
                     obj2.d = new a0.l(0);
                     ((a0.f) this.d).put(vVar, new p4.h(obj, obj2, l1Var, y0Var));
                 } else {
                     p4.h hVar = (p4.h) ((a0.f) this.d).get(r10);
                     hVar.getClass();
                     hVar.d = l1Var;
-                    hVar.f55310e = y0Var;
+                    hVar.f55274e = y0Var;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -222,13 +222,13 @@ public final class c0 implements ib.b, wi0, ly0 {
             try {
                 p4.h hVar = (p4.h) ((a0.f) this.d).get(vVar);
                 if (hVar != null) {
-                    y0 y0Var = hVar.f55312g;
+                    y0 y0Var = hVar.f55276g;
                     y0Var.getClass();
                     ca.i iVar = new ca.i();
-                    iVar.c(y0Var.f10839a);
+                    iVar.c(y0Var.f10802a);
                     iVar.b(i7);
-                    hVar.f55312g = new y0(iVar.d());
-                    hVar.f55309c.add(gVar);
+                    hVar.f55276g = new y0(iVar.d());
+                    hVar.f55273c.add(gVar);
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -238,7 +238,7 @@ public final class c0 implements ib.b, wi0, ly0 {
 
     @Override
     public void d() {
-        org.telegram.messenger.g0.h3(new tr0(28, (g2) this.f908b, (ou) this.f910e), 200L);
+        org.telegram.messenger.g0.h3(new ur0(26, (g2) this.f908b, (fw) this.f910e), 200L);
     }
 
     public java.lang.Object e(kd.c r7) {
@@ -252,53 +252,53 @@ public final class c0 implements ib.b, wi0, ly0 {
         float f10 = i7;
         rectF.set(0.0f, 0.0f, f10, org.telegram.messenger.g0.L(14.66f));
         canvas.saveLayerAlpha(rectF, 255, 31);
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             canvas.translate(f10, 0.0f);
         }
         int L = i7 - org.telegram.messenger.g0.L(25.0f);
         int i10 = 0;
         while (i10 < arrayList.size()) {
             bs bsVar = (bs) arrayList.get(i10);
-            L = o10.x(4.0f, bsVar.f33909g, L);
+            L = o10.x(4.0f, bsVar.f33870g, L);
             if (L < 0) {
                 break;
             }
-            if (hd.f24444a0) {
-                canvas.translate(-bsVar.f33909g, 0.0f);
+            if (hd.f24408a0) {
+                canvas.translate(-bsVar.f33870g, 0.0f);
                 bsVar.a(canvas);
                 canvas.translate(-org.telegram.messenger.g0.L(4.0f), 0.0f);
             } else {
                 bsVar.a(canvas);
-                canvas.translate(org.telegram.messenger.g0.L(4.0f) + bsVar.f33909g, 0.0f);
+                canvas.translate(org.telegram.messenger.g0.L(4.0f) + bsVar.f33870g, 0.0f);
             }
             i10++;
         }
         if (i10 < arrayList.size()) {
             int size = arrayList.size() - i10;
             bs bsVar2 = (bs) this.f910e;
-            if (bsVar2 == null || bsVar2.f33904a != size) {
+            if (bsVar2 == null || bsVar2.f33865a != size) {
                 ?? obj = new Object();
-                obj.f33904a = size;
+                obj.f33865a = size;
                 xy0 xy0Var = new xy0(i5.c.i(size, "+"), 10.0f, org.telegram.messenger.g0.o());
                 xy0Var.r((u2) this.f908b);
-                obj.f33906c = xy0Var;
+                obj.f33867c = xy0Var;
                 int L2 = org.telegram.messenger.g0.L(9.32f);
-                xy0 xy0Var2 = obj.f33906c;
-                obj.f33909g = L2 + ((int) xy0Var2.f42246c);
+                xy0 xy0Var2 = obj.f33867c;
+                obj.f33870g = L2 + ((int) xy0Var2.f42224c);
                 xy0Var2.i();
-                int i11 = m6.f29565n8;
-                obj.f33908f = i11;
-                obj.f33907e = true;
+                int i11 = m6.f29531n8;
+                obj.f33869f = i11;
+                obj.f33868e = true;
                 obj.d = m6.x0(null, i11, false);
                 this.f910e = obj;
             }
-            if (hd.f24444a0) {
-                canvas.translate(-((bs) this.f910e).f33909g, 0.0f);
+            if (hd.f24408a0) {
+                canvas.translate(-((bs) this.f910e).f33870g, 0.0f);
                 ((bs) this.f910e).a(canvas);
                 canvas.translate(-org.telegram.messenger.g0.L(4.0f), 0.0f);
             } else {
                 ((bs) this.f910e).a(canvas);
-                canvas.translate(org.telegram.messenger.g0.L(4.0f) + ((bs) this.f910e).f33909g, 0.0f);
+                canvas.translate(org.telegram.messenger.g0.L(4.0f) + ((bs) this.f910e).f33870g, 0.0f);
             }
         }
         canvas.restore();
@@ -311,7 +311,7 @@ public final class c0 implements ib.b, wi0, ly0 {
 
     @Override
     public Object mo24get() {
-        return new gb.n((o9.g) ((d9.o) this.f908b).f7954a, (jb.l) ((ib.c) this.f909c).mo24get(), (id.h) ((ib.c) this.d).mo24get(), (w0) ((ib.c) this.f910e).mo24get());
+        return new gb.n((o9.g) ((d9.o) this.f908b).f7917a, (jb.l) ((ib.c) this.f909c).mo24get(), (id.h) ((ib.c) this.d).mo24get(), (w0) ((ib.c) this.f910e).mo24get());
     }
 
     @Override
@@ -321,19 +321,19 @@ public final class c0 implements ib.b, wi0, ly0 {
     }
 
     public void k(p4.h hVar) {
-        p4.e0 e0Var = (p4.e0) ((WeakReference) this.f910e).get();
-        if (e0Var != null) {
+        p4.d0 d0Var = (p4.d0) ((WeakReference) this.f910e).get();
+        if (d0Var != null) {
             AtomicBoolean atomicBoolean = new AtomicBoolean(true);
             while (atomicBoolean.get()) {
                 atomicBoolean.set(false);
-                p4.g gVar = (p4.g) hVar.f55309c.poll();
+                p4.g gVar = (p4.g) hVar.f55273c.poll();
                 if (gVar == null) {
-                    hVar.f55311f = false;
+                    hVar.f55275f = false;
                     return;
                 }
                 AtomicBoolean atomicBoolean2 = new AtomicBoolean(true);
                 p4.h hVar2 = hVar;
-                h2.l0.W(e0Var.f55241l, new u4(e0Var, r(hVar.f55307a), new wt0(this, gVar, atomicBoolean2, hVar2, atomicBoolean, 13)));
+                h2.l0.W(d0Var.f55197l, new c5(d0Var, r(hVar.f55271a), new gu0(this, gVar, atomicBoolean2, hVar2, atomicBoolean, 12)));
                 atomicBoolean2.set(false);
                 hVar = hVar2;
             }
@@ -347,24 +347,24 @@ public final class c0 implements ib.b, wi0, ly0 {
                 if (hVar == null) {
                     return;
                 }
-                final y0 y0Var = hVar.f55312g;
-                hVar.f55312g = y0.f10837b;
-                hVar.f55309c.add(new p4.g(vVar, y0Var) {
-                    public final v f55262b;
+                final y0 y0Var = hVar.f55276g;
+                hVar.f55276g = y0.f10800b;
+                hVar.f55273c.add(new p4.g(vVar, y0Var) {
+                    public final v f55226b;
 
                     @Override
                     public final m9.y run() {
-                        e0 e0Var = (e0) ((WeakReference) ab.c0.this.f910e).get();
-                        if (e0Var != null) {
-                            e0Var.p(this.f55262b);
+                        d0 d0Var = (d0) ((WeakReference) ab.c0.this.f910e).get();
+                        if (d0Var != null) {
+                            d0Var.p(this.f55226b);
                         }
-                        return m9.w.f20988b;
+                        return m9.w.f20954b;
                     }
                 });
-                if (hVar.f55311f) {
+                if (hVar.f55275f) {
                     return;
                 }
-                hVar.f55311f = true;
+                hVar.f55275f = true;
                 k(hVar);
             } catch (Throwable th2) {
                 throw th2;
@@ -377,7 +377,7 @@ public final class c0 implements ib.b, wi0, ly0 {
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             k.e eVar = (k.e) arrayList.get(i7);
-            if (eVar != null && eVar.f18099b == aVar) {
+            if (eVar != null && eVar.f18062b == aVar) {
                 return eVar;
             }
         }
@@ -391,7 +391,7 @@ public final class c0 implements ib.b, wi0, ly0 {
             try {
                 p4.h hVar = (p4.h) ((a0.f) this.d).get(vVar);
                 if (hVar != null) {
-                    return hVar.f55310e;
+                    return hVar.f55274e;
                 }
                 return null;
             } catch (Throwable th2) {
@@ -474,7 +474,7 @@ public final class c0 implements ib.b, wi0, ly0 {
             hVar = (p4.h) ((a0.f) this.d).get(vVar);
         }
         if (hVar != null) {
-            return hVar.f55308b;
+            return hVar.f55272b;
         }
         return null;
     }
@@ -537,12 +537,12 @@ public final class c0 implements ib.b, wi0, ly0 {
         this.f908b = u2Var;
     }
 
-    public c0(p4.e0 e0Var) {
+    public c0(p4.d0 d0Var) {
         this.f907a = 13;
         this.f909c = new a0.l(0);
         this.d = new a0.l(0);
         this.f908b = new Object();
-        this.f910e = new WeakReference(e0Var);
+        this.f910e = new WeakReference(d0Var);
     }
 
     public c0(Typeface typeface, s1.b bVar) {
@@ -556,7 +556,7 @@ public final class c0 implements ib.b, wi0, ly0 {
         this.d = new androidx.emoji2.text.t(1024);
         int a10 = bVar.a(6);
         if (a10 != 0) {
-            int i13 = a10 + bVar.f56337a;
+            int i13 = a10 + bVar.f56302a;
             i7 = ((ByteBuffer) bVar.d).getInt(((ByteBuffer) bVar.d).getInt(i13) + i13);
         } else {
             i7 = 0;
@@ -564,7 +564,7 @@ public final class c0 implements ib.b, wi0, ly0 {
         this.f909c = new char[i7 * 2];
         int a11 = bVar.a(6);
         if (a11 != 0) {
-            int i14 = a11 + bVar.f56337a;
+            int i14 = a11 + bVar.f56302a;
             i10 = ((ByteBuffer) bVar.d).getInt(((ByteBuffer) bVar.d).getInt(i14) + i14);
         } else {
             i10 = 0;
@@ -573,11 +573,11 @@ public final class c0 implements ib.b, wi0, ly0 {
             androidx.emoji2.text.p pVar = new androidx.emoji2.text.p(this, i15);
             s1.a b10 = pVar.b();
             int a12 = b10.a(4);
-            Character.toChars(a12 != 0 ? ((ByteBuffer) b10.d).getInt(a12 + b10.f56337a) : 0, (char[]) this.f909c, i15 * 2);
+            Character.toChars(a12 != 0 ? ((ByteBuffer) b10.d).getInt(a12 + b10.f56302a) : 0, (char[]) this.f909c, i15 * 2);
             s1.a b11 = pVar.b();
             int a13 = b11.a(16);
             if (a13 != 0) {
-                int i16 = a13 + b11.f56337a;
+                int i16 = a13 + b11.f56302a;
                 i11 = ((ByteBuffer) b11.d).getInt(((ByteBuffer) b11.d).getInt(i16) + i16);
             } else {
                 i11 = 0;
@@ -587,7 +587,7 @@ public final class c0 implements ib.b, wi0, ly0 {
                 s1.a b12 = pVar.b();
                 int a14 = b12.a(16);
                 if (a14 != 0) {
-                    int i17 = a14 + b12.f56337a;
+                    int i17 = a14 + b12.f56302a;
                     i12 = ((ByteBuffer) b12.d).getInt(((ByteBuffer) b12.d).getInt(i17) + i17);
                 } else {
                     i12 = 0;
@@ -649,10 +649,10 @@ public final class c0 implements ib.b, wi0, ly0 {
         }
         TextView textView2 = new TextView(eVar.getContext());
         this.f909c = textView2;
-        linearLayout.addView(textView2, ma.k(0.0f, 0.0f, 20.0f, 0.0f, -2, -2));
+        linearLayout.addView(textView2, na.k(0.0f, 0.0f, 20.0f, 0.0f, -2, -2));
         x5 x5Var = new x5(eVar.getContext());
         this.f908b = x5Var;
-        linearLayout.addView(x5Var, ma.o(-1, -2));
+        linearLayout.addView(x5Var, na.o(-1, -2));
         textView2.setGravity(8388611);
         x5Var.setGravity(8388613);
         x5Var.setTypeface(org.telegram.messenger.g0.o());
@@ -672,7 +672,7 @@ public final class c0 implements ib.b, wi0, ly0 {
         this.f907a = 15;
         this.f908b = r1Var;
         this.f909c = zArr;
-        int i7 = r1Var.f60258a;
+        int i7 = r1Var.f60223a;
         this.d = new boolean[i7];
         this.f910e = new boolean[i7];
     }

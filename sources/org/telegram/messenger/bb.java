@@ -1,10 +1,10 @@
 package org.telegram.messenger;
 public final class bb {
-    public final double f23066a;
-    public final double f23067b;
+    public final double f23030a;
+    public final double f23031b;
 
     public bb(double d, double d2) {
-        this.f23066a = d;
-        this.f23067b = d2;
+        this.f23030a = d;
+        this.f23031b = d2;
     }
 }

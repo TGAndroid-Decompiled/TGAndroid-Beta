@@ -1,34 +1,32 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_account;
-public final class t21 implements org.telegram.messenger.y10 {
-    public final int f52190a;
-    public final SessionsActivity f52191b;
+import android.content.Intent;
+import android.net.Uri;
+public final class t21 implements org.telegram.ui.ActionBar.q1 {
+    public final int f52136a;
+    public final SessionsActivity f52137b;
 
     public t21(SessionsActivity sessionsActivity, int i7) {
-        this.f52190a = i7;
-        this.f52191b = sessionsActivity;
+        this.f52136a = i7;
+        this.f52137b = sessionsActivity;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f52190a) {
+    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f52136a) {
             case 0:
-                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
-                SessionsActivity sessionsActivity = this.f52191b;
-                sessionsActivity.getClass();
-                if (connectedbots != null) {
-                    sessionsActivity.f43822f = connectedbots.connected_bots;
-                    if (sessionsActivity.f43818a != null) {
-                        sessionsActivity.r0();
-                        sessionsActivity.f43818a.f();
-                        return;
-                    }
+                SessionsActivity sessionsActivity = this.f52137b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26895b.getPackageName()));
+                    sessionsActivity.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
                     return;
                 }
-                return;
             default:
-                SessionsActivity.a0(this.f52191b, (Boolean) obj);
+                SessionsActivity.b0(this.f52137b);
                 return;
         }
     }

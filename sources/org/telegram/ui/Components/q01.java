@@ -5,41 +5,41 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 public abstract class q01 extends View {
-    public final r01 f38742a;
-    public org.telegram.messenger.y10 f38743b;
-    public final org.telegram.ui.ActionBar.h6 f38744c;
+    public final r01 f38696a;
+    public org.telegram.messenger.y10 f38697b;
+    public final org.telegram.ui.ActionBar.h6 f38698c;
     public int d;
 
     public q01(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.f38744c = h6Var;
+        this.f38698c = h6Var;
         r01 r01Var = new r01(i7, this, h6Var, false);
-        this.f38742a = r01Var;
-        r01Var.f39045s = new cp0(this, 19);
+        this.f38696a = r01Var;
+        r01Var.f39000s = new cp0(this, 19);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        org.telegram.ui.ActionBar.h6 h6Var = this.f38744c;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f38698c;
         if (h6Var != null) {
             h6Var.e(0.0f, 0.0f, getMeasuredWidth(), this.d);
         } else {
             org.telegram.ui.ActionBar.m6.r(0.0f, 0.0f, getMeasuredWidth(), this.d);
         }
-        this.f38742a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
+        this.f38696a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f38742a.a();
+        this.f38696a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f38742a.b();
+        this.f38696a.b();
     }
 
     @Override
@@ -49,14 +49,14 @@ public abstract class q01 extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f38742a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
+        if (!this.f38696a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
     }
 
     public void set(org.telegram.messenger.gj gjVar) {
-        r01 r01Var = this.f38742a;
+        r01 r01Var = this.f38696a;
         r01Var.e(gjVar);
         if (isAttachedToWindow()) {
             r01Var.a();
@@ -68,6 +68,6 @@ public abstract class q01 extends View {
     }
 
     public void setOnTopicClickListener(org.telegram.messenger.y10 y10Var) {
-        this.f38743b = y10Var;
+        this.f38697b = y10Var;
     }
 }

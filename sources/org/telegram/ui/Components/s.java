@@ -9,21 +9,21 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class s implements TextWatcher {
-    public final ImageView f39428a;
-    public final int f39429b;
-    public final int f39430c;
+    public final ImageView f39384a;
+    public final int f39385b;
+    public final int f39386c;
     public final LinearLayout d;
-    public final ArrayList f39431e;
-    public final TextView f39432f;
+    public final ArrayList f39387e;
+    public final TextView f39388f;
     public final ScrollView h;
 
     public s(ImageView imageView, int i7, int i10, LinearLayout linearLayout, ArrayList arrayList, TextView textView, ScrollView scrollView) {
-        this.f39428a = imageView;
-        this.f39429b = i7;
-        this.f39430c = i10;
+        this.f39384a = imageView;
+        this.f39385b = i7;
+        this.f39386c = i10;
         this.d = linearLayout;
-        this.f39431e = arrayList;
-        this.f39432f = textView;
+        this.f39387e = arrayList;
+        this.f39388f = textView;
         this.h = scrollView;
     }
 
@@ -44,11 +44,11 @@ public final class s implements TextWatcher {
         } else {
             i7 = 8;
         }
-        this.f39428a.setVisibility(i7);
-        int i14 = this.f39429b;
+        this.f39384a.setVisibility(i7);
+        int i14 = this.f39385b;
         while (true) {
             linearLayout = this.d;
-            i10 = this.f39430c;
+            i10 = this.f39386c;
             if (i14 >= i10) {
                 break;
             }
@@ -64,16 +64,16 @@ public final class s implements TextWatcher {
         int i15 = 0;
         int i16 = 0;
         while (true) {
-            ArrayList arrayList = this.f39431e;
+            ArrayList arrayList = this.f39387e;
             if (i15 >= arrayList.size() || i10 + i15 >= linearLayout.getChildCount()) {
                 break;
             }
             org.telegram.messenger.t00 t00Var = (org.telegram.messenger.t00) arrayList.get(i15);
             String str2 = t00Var.d;
             if (str2 == null) {
-                str2 = (t00Var.f26942b + " " + t00Var.f26943c).toLowerCase();
+                str2 = (t00Var.f26906b + " " + t00Var.f26907c).toLowerCase();
             }
-            if (!isEmpty && !str2.contains(lowerCase) && ((str = t00Var.f26941a) == null || !str.toLowerCase().startsWith(lowerCase))) {
+            if (!isEmpty && !str2.contains(lowerCase) && ((str = t00Var.f26905a) == null || !str.toLowerCase().startsWith(lowerCase))) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -93,7 +93,7 @@ public final class s implements TextWatcher {
         if (!isEmpty && i16 == 0) {
             i13 = 0;
         }
-        this.f39432f.setVisibility(i13);
+        this.f39388f.setVisibility(i13);
         this.h.scrollTo(0, 0);
     }
 

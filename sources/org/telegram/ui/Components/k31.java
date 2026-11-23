@@ -16,9 +16,9 @@ public final class k31 extends n41 {
     public static o41 i(int i7, CharSequence charSequence, boolean z10, View.OnClickListener onClickListener, l80 l80Var, View.OnClickListener onClickListener2) {
         o41 K = o41.K(k31.class);
         K.d = i7;
-        K.f38091m = charSequence;
-        K.f38085f = z10;
-        K.f38099u = false;
+        K.f38058m = charSequence;
+        K.f38052f = z10;
+        K.f38066u = false;
         K.E = onClickListener;
         K.H = l80Var;
         K.F = onClickListener2;
@@ -37,8 +37,8 @@ public final class k31 extends n41 {
         int i12;
         ImageView imageView;
         l31 l31Var = (l31) view;
-        CharSequence charSequence = o41Var.f38091m;
-        boolean z13 = o41Var.f38085f;
+        CharSequence charSequence = o41Var.f38058m;
+        boolean z13 = o41Var.f38052f;
         View.OnClickListener onClickListener = o41Var.E;
         Object obj = o41Var.H;
         if (obj != null) {
@@ -46,12 +46,12 @@ public final class k31 extends n41 {
         } else {
             l80Var = null;
         }
-        boolean z14 = o41Var.f38099u;
+        boolean z14 = o41Var.f38066u;
         View.OnClickListener onClickListener2 = o41Var.F;
-        ImageView imageView2 = l31Var.f37095n;
+        ImageView imageView2 = l31Var.f37052n;
         TextView textView = l31Var.d;
-        i31 i31Var = l31Var.f37092c;
-        j31 j31Var = l31Var.f37094f;
+        i31 i31Var = l31Var.f37049c;
+        j31 j31Var = l31Var.f37051f;
         if (charSequence == null) {
             cloneSpans = "";
         } else {
@@ -69,12 +69,12 @@ public final class k31 extends n41 {
                 int i14 = i13;
                 r80 r80Var = r80VarArr[i14];
                 View.OnClickListener onClickListener3 = onClickListener2;
-                r80 r80Var2 = new r80(j31Var, r80Var.f39114a, r80Var.d, null);
+                r80 r80Var2 = new r80(j31Var, r80Var.f39069a, r80Var.d, null);
                 r80 r80Var3 = r80VarArr[i14];
-                r80Var2.f39118f = r80Var3.f39118f;
+                r80Var2.f39073f = r80Var3.f39073f;
                 r80Var2.h = r80Var3.h;
-                r80Var2.f39119n = r80Var3.f39119n;
-                if (r80Var3.f39119n && i0.a.h(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, l31Var.f37090a)) > 0.5d) {
+                r80Var2.f39074n = r80Var3.f39074n;
+                if (r80Var3.f39074n && i0.a.h(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, l31Var.f37047a)) > 0.5d) {
                     float max = Math.max(0.05f, r80VarArr[i14].h);
                     imageView = imageView2;
                     r80Var2.a(org.telegram.ui.ActionBar.m6.r1(Math.min(1.0f, 0.07f / max), -1), org.telegram.ui.ActionBar.m6.r1(Math.min(1.0f, 0.115f / max), -1));
@@ -139,13 +139,13 @@ public final class k31 extends n41 {
         }
         imageView3.setVisibility(i12);
         imageView3.setOnClickListener(onClickListener4);
-        l31Var.f37091b = z10;
+        l31Var.f37048b = z10;
         l31Var.setWillNotDraw(!z10);
     }
 
     @Override
     public final boolean c(o41 o41Var, o41 o41Var2) {
-        if (TextUtils.equals(o41Var.f38091m, o41Var2.f38091m) && o41Var.f38085f == o41Var2.f38085f) {
+        if (TextUtils.equals(o41Var.f38058m, o41Var2.f38058m) && o41Var.f38052f == o41Var2.f38052f) {
             return true;
         }
         return false;

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
-import bi.q2;
+import bi.s2;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -29,7 +29,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f27382w;
+    int f27346w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -116,7 +116,7 @@ public class VideoFramesRewinder {
         char c11 = 4;
         int i11 = iArr[4];
         int i12 = 0;
-        int min = Math.min(this.f27382w / 4, iArr[0]);
+        int min = Math.min(this.f27346w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i13 = this.maxFrameSide;
         if (min > i13 || min2 > i13) {
@@ -182,7 +182,7 @@ public class VideoFramesRewinder {
             c12 = c10;
             i12 = 0;
         }
-        g0.g3(new q2(this, arrayList, currentTimeMillis, 13));
+        g0.g3(new s2(this, arrayList, currentTimeMillis, 13));
     }
 
     private void prepare(long j3) {
@@ -193,7 +193,7 @@ public class VideoFramesRewinder {
         this.isPreparing = true;
         this.prepareToMs = j3;
         this.prepareWithSpeed = this.lastSpeed;
-        Utilities.f22813i.c(this.prepareRunnable);
+        Utilities.f22777i.c(this.prepareRunnable);
     }
 
     public void clearCurrent() {
@@ -204,7 +204,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i7, int i10) {
-        this.f27382w = i7;
+        this.f27346w = i7;
         this.h = i10;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();
@@ -305,6 +305,6 @@ public class VideoFramesRewinder {
             return;
         }
         this.stop.set(false);
-        this.mDecoder = AnimatedFileNative.a(file.getAbsolutePath(), this.meta, k10.f24968t0, 0L, null, true);
+        this.mDecoder = AnimatedFileNative.a(file.getAbsolutePath(), this.meta, k10.f24932t0, 0L, null, true);
     }
 }

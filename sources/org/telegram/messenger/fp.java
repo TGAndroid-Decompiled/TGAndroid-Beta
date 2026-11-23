@@ -1,9 +1,9 @@
 package org.telegram.messenger;
 public final class fp {
-    public long f23956a;
-    public long f23957b;
-    public long f23958c;
+    public long f23920a;
+    public long f23921b;
+    public long f23922c;
     public int d;
-    public int f23959e;
-    public long f23960f;
+    public int f23923e;
+    public long f23924f;
 }

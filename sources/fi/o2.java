@@ -12,15 +12,15 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.si;
 public final class o2 implements si {
-    public final z3 f12366a;
+    public final z3 f12316a;
 
     public o2(z3 z3Var) {
-        this.f12366a = z3Var;
+        this.f12316a = z3Var;
     }
 
     @Override
     public final void K0() {
-        this.f12366a.L1.U();
+        this.f12316a.L1.U();
     }
 
     @Override
@@ -33,8 +33,8 @@ public final class o2 implements si {
         org.telegram.messenger.c accountInstance;
         CharSequence charSequence2;
         boolean z12;
-        z3 z3Var = this.f12366a;
-        TL_stories.StoryItem storyItem = z3Var.f12937y1.f12765a;
+        z3 z3Var = this.f12316a;
+        TL_stories.StoryItem storyItem = z3Var.f12888y1.f12715a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = z3Var.getAccountInstance();
             if (charSequence != null) {
@@ -56,12 +56,12 @@ public final class o2 implements si {
 
     @Override
     public final void f0(gh ghVar) {
-        ls.f(this.f12366a.f12891m2).d(ghVar);
+        ls.f(this.f12316a.f12842m2).d(ghVar);
     }
 
     @Override
     public final boolean g0() {
-        return this.f12366a.L0();
+        return this.f12316a.L0();
     }
 
     @Override
@@ -74,10 +74,10 @@ public final class o2 implements si {
         boolean z17;
         String str;
         String str2;
-        z3 z3Var = this.f12366a;
-        if (z3Var.f12916t0.f12026n0 && (storyItem = z3Var.f12937y1.f12765a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || z3Var.f12914s2.f40378e2.getSelectedPhotos().isEmpty())) {
-                n2 n2Var = z3Var.f12914s2;
+        z3 z3Var = this.f12316a;
+        if (z3Var.f12867t0.f11977n0 && (storyItem = z3Var.f12888y1.f12715a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || z3Var.f12865s2.f40363e2.getSelectedPhotos().isEmpty())) {
+                n2 n2Var = z3Var.f12865s2;
                 if (n2Var != null) {
                     n2Var.M(i7);
                     return;
@@ -86,10 +86,10 @@ public final class o2 implements si {
             }
             boolean z18 = true;
             if (i7 != 8) {
-                z3Var.f12914s2.a(true);
+                z3Var.f12865s2.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = z3Var.f12914s2.f40378e2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = z3Var.f12914s2.f40378e2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = z3Var.f12865s2.f40363e2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = z3Var.f12865s2.f40363e2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i12 = 0;
                 int i13 = 0;
@@ -102,38 +102,38 @@ public final class o2 implements si {
                         if (i16 < selectedPhotosOrder.size()) {
                             ff ffVar = (ff) selectedPhotos.get(selectedPhotosOrder.get(i16));
                             ?? obj = new Object();
-                            boolean z19 = ffVar.f28059b;
+                            boolean z19 = ffVar.f28023b;
                             if (!z19 && (str2 = ffVar.h) != null) {
-                                obj.f28407c = str2;
+                                obj.f28371c = str2;
                             } else {
                                 String str3 = ffVar.I;
                                 if (str3 != null) {
-                                    obj.f28407c = str3;
+                                    obj.f28371c = str3;
                                 }
                             }
-                            obj.f28408e = ffVar.f28060c;
-                            obj.f28409f = ffVar.f28063g;
-                            obj.f28417o = z19;
-                            CharSequence charSequence = ffVar.f28058a;
+                            obj.f28372e = ffVar.f28024c;
+                            obj.f28373f = ffVar.f28027g;
+                            obj.f28381o = z19;
+                            CharSequence charSequence = ffVar.f28022a;
                             if (charSequence != null) {
                                 str = charSequence.toString();
                             } else {
                                 str = null;
                             }
                             obj.d = str;
-                            obj.f28411i = ffVar.f28069n;
-                            obj.f28412j = ffVar.f28073r;
-                            obj.h = ffVar.f28078x;
-                            obj.f28413k = ffVar.f28074s;
-                            obj.f28420r = ffVar.L;
-                            obj.f28422t = az.h(ffVar.f28058a);
-                            obj.f28423u = ffVar.M;
+                            obj.f28375i = ffVar.f28033n;
+                            obj.f28376j = ffVar.f28037r;
+                            obj.h = ffVar.f28042x;
+                            obj.f28377k = ffVar.f28038s;
+                            obj.f28384r = ffVar.L;
+                            obj.f28386t = az.h(ffVar.f28022a);
+                            obj.f28387u = ffVar.M;
                             arrayList.add(obj);
                             ffVar.e();
                         }
                     }
                     if (i13 == 0) {
-                        z15 = ((zy) arrayList.get(i12)).f28422t;
+                        z15 = ((zy) arrayList.get(i12)).f28386t;
                     } else {
                         z15 = i12;
                     }

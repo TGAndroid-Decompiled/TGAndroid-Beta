@@ -1,110 +1,110 @@
 package vg;
 
 import android.content.Context;
-import android.opengl.EGL14;
-import android.opengl.EGLConfig;
-import android.opengl.EGLContext;
-import android.opengl.EGLDisplay;
-import android.opengl.EGLSurface;
-import android.os.Handler;
-import android.os.HandlerThread;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
+import android.graphics.Bitmap;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.FloatBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public final class o {
-    public final Context f59553a;
-    public final Handler f59554b;
-    public final int f59555c;
-    public final int f59556e;
-    public EGLConfig f59563m;
-    public a f59564n;
-    public a f59565o;
-    public a f59566p;
-    public long f59567q;
-    public long f59568r;
-    public int f59569s;
-    public final ArrayList f59557f = new ArrayList();
-    public volatile q[] f59558g = new q[0];
-    public final AtomicBoolean h = new AtomicBoolean();
-    public final int[] f59559i = new int[2];
-    public EGLDisplay f59560j = EGL14.EGL_NO_DISPLAY;
-    public EGLContext f59561k = EGL14.EGL_NO_CONTEXT;
-    public EGLSurface f59562l = EGL14.EGL_NO_SURFACE;
-    public final int d = 378;
+    public static final String[] f59488e0 = {"models/star.binobj"};
+    public static final String[] f59489f0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
+    public static final String[] f59490g0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/deal_logo.binobj", "models/coin_stars.binobj"};
+    public int E;
+    public int F;
+    public boolean J;
+    public final int K;
+    public final int L;
+    public final int M;
+    public final int N;
+    public final int O;
+    public final int P;
+    public final int Q;
+    public final int R;
+    public final int S;
+    public final int T;
+    public final int U;
+    public final int V;
+    public final int W;
+    public final int X;
+    public final Bitmap Y;
+    public Bitmap Z;
+    public a f59491a;
+    public final int f59492a0;
+    public float f59493b;
+    public final int f59494b0;
+    public float f59495c;
+    public final int[] f59496c0;
+    public float d;
+    public final int f59499f;
+    public final int f59500g;
+    public final int h;
+    public final FloatBuffer[] f59501i;
+    public final FloatBuffer[] f59502j;
+    public final FloatBuffer[] f59503k;
+    public final int f59504l;
+    public final int f59505m;
+    public final int f59506n;
+    public final int f59507o;
+    public final int f59508p;
+    public final int f59509q;
+    public final int f59510r;
+    public final int f59511s;
+    public final int f59512t;
+    public final int f59513u;
+    public final int v;
+    public final int f59514w;
+    public float f59515x;
+    public final int[] f59516y;
+    public float f59498e = 1.0f;
+    public float f59517z = 0.0f;
+    public float A = 1.0f;
+    public float B = 2.0f;
+    public float C = 0.13f;
+    public final float D = 1.0f;
+    public final float G = 0.2f;
+    public final int H = -1;
+    public final int I = -1;
+    public float f59497d0 = 0.0f;
 
-    public o(Context context, int i7) {
-        this.f59553a = context;
-        this.f59556e = i7;
-        this.f59555c = Math.max(1, Math.min(192, Math.round(context.getResources().getDisplayMetrics().density * 42.0f)));
-        HandlerThread handlerThread = new HandlerThread("WalletDiamondTextures");
-        handlerThread.start();
-        this.f59554b = new Handler(handlerThread.getLooper());
+    public o(android.content.Context r30, int r31) {
+        throw new UnsupportedOperationException("Method not decompiled: vg.o.<init>(android.content.Context, int):void");
     }
 
-    public final void a() {
-        EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-        this.f59560j = eglGetDisplay;
-        int[] iArr = new int[2];
-        if (EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
-            EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            int[] iArr2 = new int[1];
-            if (EGL14.eglChooseConfig(this.f59560j, new int[]{12352, 64, 12339, 5, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12344}, 0, eGLConfigArr, 0, 1, iArr2, 0) && iArr2[0] != 0) {
-                EGLConfig eGLConfig = eGLConfigArr[0];
-                this.f59563m = eGLConfig;
-                this.f59561k = EGL14.eglCreateContext(this.f59560j, eGLConfig, EGL14.EGL_NO_CONTEXT, new int[]{12440, 3, 12344}, 0);
-                EGLSurface eglCreatePbufferSurface = EGL14.eglCreatePbufferSurface(this.f59560j, this.f59563m, new int[]{12375, 1, 12374, 1, 12344}, 0);
-                this.f59562l = eglCreatePbufferSurface;
-                if (EGL14.eglMakeCurrent(this.f59560j, eglCreatePbufferSurface, eglCreatePbufferSurface, this.f59561k)) {
-                    Context context = this.f59553a;
-                    a aVar = new a(context, 2);
-                    int i7 = this.f59556e;
-                    aVar.C = i7;
-                    this.f59564n = aVar;
-                    a aVar2 = new a(context, 2);
-                    aVar2.C = i7;
-                    this.f59565o = aVar2;
-                    this.f59568r = 0L;
-                    this.f59567q = 0L;
-                    this.f59569s = 0;
-                    return;
+    public static String a(Context context, String str) {
+        StringBuilder sb2 = new StringBuilder();
+        try {
+            InputStream open = context.getAssets().open(str);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(open, StandardCharsets.UTF_8));
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine == null) {
+                    break;
                 }
-                throw new IllegalStateException("Wallet EGL context failed");
+                sb2.append(readLine);
+                sb2.append("\n");
             }
-            throw new IllegalStateException("Wallet EGL config failed");
+            bufferedReader.close();
+            open.close();
+        } catch (IOException e10) {
+            e10.printStackTrace();
         }
-        throw new IllegalStateException("Wallet EGL initialize failed");
+        return sb2.toString();
     }
 
-    public final void b() {
-        a aVar = this.f59564n;
-        if (aVar != null) {
-            aVar.b();
+    public static String b(String str) {
+        Matcher matcher = Pattern.compile("RGB#([0-9a-fA-F]{6})").matcher(str);
+        StringBuffer stringBuffer = new StringBuffer();
+        while (matcher.find()) {
+            String group = matcher.group(1);
+            matcher.appendReplacement(stringBuffer, String.format(Locale.US, "vec3(%.3f, %.3f, %.3f)", Double.valueOf(Integer.parseInt(group.substring(0, 2), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(2, 4), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(4, 6), 16) / 255.0d)));
         }
-        a aVar2 = this.f59565o;
-        if (aVar2 != null) {
-            aVar2.b();
-        }
-        a aVar3 = this.f59566p;
-        if (aVar3 != null) {
-            aVar3.b();
-        }
-        this.f59566p = null;
-        this.f59565o = null;
-        this.f59564n = null;
-        EGLDisplay eGLDisplay = this.f59560j;
-        EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
-        EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-        EGL14.eglDestroySurface(this.f59560j, this.f59562l);
-        EGL14.eglDestroyContext(this.f59560j, this.f59561k);
-        EGL14.eglTerminate(this.f59560j);
-        EGL14.eglReleaseThread();
-        this.f59560j = EGL14.EGL_NO_DISPLAY;
-        this.f59561k = EGL14.EGL_NO_CONTEXT;
-        this.f59562l = EGL14.EGL_NO_SURFACE;
-    }
-
-    public final void c() {
-        if (this.h.compareAndSet(false, true)) {
-            this.f59554b.post(new v4.p(this, 2));
-        }
+        matcher.appendTail(stringBuffer);
+        return stringBuffer.toString();
     }
 }

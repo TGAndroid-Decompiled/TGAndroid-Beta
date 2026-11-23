@@ -11,18 +11,18 @@ public final class eu extends au {
     public final ev X;
     public final ev Y;
     public final boolean Z;
-    public final org.telegram.ui.Cells.u9[] f23768a0;
+    public final org.telegram.ui.Cells.u9[] f23732a0;
 
     public eu(fv fvVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
         super(fvVar, rect, i7);
         ev evVar;
         if (!TextUtils.isEmpty(spannableStringBuilder)) {
-            evVar = new ev(fvVar, spannableStringBuilder, this.f22970c);
+            evVar = new ev(fvVar, spannableStringBuilder, this.f22934c);
         } else {
             evVar = null;
         }
         this.X = evVar;
-        ev evVar2 = TextUtils.isEmpty(spannableStringBuilder2) ? null : new ev(fvVar, spannableStringBuilder2, this.f22970c);
+        ev evVar2 = TextUtils.isEmpty(spannableStringBuilder2) ? null : new ev(fvVar, spannableStringBuilder2, this.f22934c);
         this.Y = evVar2;
         this.Z = fvVar.I();
         ArrayList arrayList = new ArrayList(2);
@@ -32,25 +32,25 @@ public final class eu extends au {
         if (evVar2 != null) {
             arrayList.add(evVar2);
         }
-        this.f23768a0 = (org.telegram.ui.Cells.u9[]) arrayList.toArray(new org.telegram.ui.Cells.u9[0]);
+        this.f23732a0 = (org.telegram.ui.Cells.u9[]) arrayList.toArray(new org.telegram.ui.Cells.u9[0]);
     }
 
     @Override
     public final int I() {
         int i7;
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         int i10 = rect.top;
         int i11 = 0;
         ev evVar = this.X;
         if (evVar != null) {
-            i7 = evVar.f23770b.getHeight();
+            i7 = evVar.f23734b.getHeight();
         } else {
             i7 = 0;
         }
         int j02 = j0() + i7 + i10;
         ev evVar2 = this.Y;
         if (evVar2 != null) {
-            i11 = evVar2.f23770b.getHeight();
+            i11 = evVar2.f23734b.getHeight();
         }
         return j02 + i11 + rect.bottom;
     }
@@ -59,7 +59,7 @@ public final class eu extends au {
     public final int J() {
         int i7;
         int i10;
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         ev evVar = this.Y;
         if (evVar != null) {
             i7 = evVar.q() + rect.left;
@@ -88,13 +88,13 @@ public final class eu extends au {
         if (evVar2 != null) {
             i7 = Math.max(i7, evVar2.r());
         }
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         return rect.left + i7 + rect.right;
     }
 
     @Override
     public final org.telegram.ui.Cells.u9[] L() {
-        return this.f23768a0;
+        return this.f23732a0;
     }
 
     @Override
@@ -133,7 +133,7 @@ public final class eu extends au {
             canvas.save();
             float i02 = i0();
             if (evVar != null) {
-                i7 = evVar.f23770b.getHeight();
+                i7 = evVar.f23734b.getHeight();
             } else {
                 i7 = 0;
             }
@@ -150,13 +150,13 @@ public final class eu extends au {
         int i10;
         ev evVar = this.X;
         if (evVar != null) {
-            i7 = evVar.f23770b.getHeight();
+            i7 = evVar.f23734b.getHeight();
         } else {
             i7 = 0;
         }
         int j02 = j0();
         float y10 = motionEvent.getY();
-        int i11 = this.f22969b.top;
+        int i11 = this.f22933b.top;
         float f10 = y10 - i11;
         if (evVar != null && f10 >= 0.0f && f10 < i7) {
             motionEvent.offsetLocation(0.0f, -i11);
@@ -183,20 +183,20 @@ public final class eu extends au {
         this.V = i11;
         ev evVar = this.X;
         if (evVar != null) {
-            evVar.f23771c = i7 - evVar.f23773f;
+            evVar.f23735c = i7 - evVar.f23737f;
             evVar.d = i10;
-            evVar.f23772e = i11;
+            evVar.f23736e = i11;
         }
         ev evVar2 = this.Y;
         if (evVar2 != null) {
-            evVar2.f23771c = (i0() + i7) - evVar2.f23773f;
+            evVar2.f23735c = (i0() + i7) - evVar2.f23737f;
             if (evVar != null) {
-                i12 = evVar.f23770b.getHeight();
+                i12 = evVar.f23734b.getHeight();
             } else {
                 i12 = 0;
             }
             evVar2.d = j0() + i12 + i10;
-            evVar2.f23772e = i11;
+            evVar2.f23736e = i11;
         }
     }
 
@@ -205,8 +205,8 @@ public final class eu extends au {
         if (evVar == null || !this.Z) {
             return 0;
         }
-        int i7 = this.f22968a.C;
-        Rect rect = this.f22969b;
+        int i7 = this.f22932a.C;
+        Rect rect = this.f22933b;
         return Math.max(0, ((i7 - rect.left) - rect.right) - evVar.r());
     }
 
@@ -222,7 +222,7 @@ public final class eu extends au {
         StaticLayout staticLayout;
         au.l(spannableStringBuilder, this.X, null);
         ev evVar = this.Y;
-        if (evVar != null && (staticLayout = evVar.f23770b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
+        if (evVar != null && (staticLayout = evVar.f23734b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
             if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) != '\n') {
                 spannableStringBuilder.append('\n');
             }

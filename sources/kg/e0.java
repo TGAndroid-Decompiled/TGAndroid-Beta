@@ -8,19 +8,19 @@ import org.telegram.messenger.k10;
 import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.zj0;
 public final class e0 extends zj0 {
-    public final ArrayList f18330r;
-    public final int f18331s;
-    public final Context f18332w;
-    public final h0 f18333x;
+    public final ArrayList f18296r;
+    public final int f18297s;
+    public final Context f18298w;
+    public final h0 f18299x;
 
     public e0(h0 h0Var, Context context) {
-        this.f18333x = h0Var;
+        this.f18299x = h0Var;
         ArrayList arrayList = new ArrayList();
-        this.f18330r = arrayList;
-        int i7 = k10.f24968t0;
-        this.f18331s = i7;
-        this.f18332w = context;
-        arrayList.addAll(v1.f(i7).e());
+        this.f18296r = arrayList;
+        int i7 = k10.f24932t0;
+        this.f18297s = i7;
+        this.f18298w = context;
+        arrayList.addAll(w1.f(i7).e());
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class e0 extends zj0 {
     @Override
     public final int M(int i7) {
         if (i7 != 0 && i7 != 2) {
-            return this.f18330r.size();
+            return this.f18296r.size();
         }
         return 1;
     }
@@ -45,7 +45,7 @@ public final class e0 extends zj0 {
     @Override
     public final Object O(int i7, int i10) {
         if (i7 != 0 && i10 >= 0) {
-            ArrayList arrayList = this.f18330r;
+            ArrayList arrayList = this.f18296r;
             if (i10 < arrayList.size()) {
                 return arrayList.get(i10);
             }
@@ -75,55 +75,55 @@ public final class e0 extends zj0 {
     }
 
     @Override
-    public final boolean V(int i7, int i10, v4.f1 f1Var) {
-        if (i7 != 0 && i7 != 2 && i10 < this.f18330r.size()) {
+    public final boolean V(int i7, int i10, v4.e1 e1Var) {
+        if (i7 != 0 && i7 != 2 && i10 < this.f18296r.size()) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final void W(int i7, int i10, v4.f1 f1Var) {
-        if (f1Var.f59169f == 0) {
-            r1 r1Var = (r1) f1Var.f59165a;
+    public final void W(int i7, int i10, v4.e1 e1Var) {
+        if (e1Var.f59115f == 0) {
+            s1 s1Var = (s1) e1Var.f59111a;
             Object O = O(i7, i10);
             boolean z10 = true;
             if (i7 == 1 && i10 == M(i7) - 1) {
                 z10 = false;
             }
-            if (O instanceof u1) {
-                u1 u1Var = (u1) O;
-                r1Var.a(u1Var, null, z10);
-                r1Var.d.a(this.f18333x.f18367x.contains(Integer.valueOf(u1Var.f18533a)), false);
+            if (O instanceof v1) {
+                v1 v1Var = (v1) O;
+                s1Var.a(v1Var, null, z10);
+                s1Var.d.a(this.f18299x.f18328x.contains(Integer.valueOf(v1Var.f18505a)), false);
             }
         }
     }
 
     @Override
     public final void f() {
-        ArrayList arrayList = this.f18330r;
+        ArrayList arrayList = this.f18296r;
         arrayList.clear();
-        arrayList.addAll(v1.f(this.f18331s).e());
+        arrayList.addAll(w1.f(this.f18297s).e());
         X(false);
-        this.f18333x.Q();
+        this.f18299x.Q();
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View r1Var;
-        Context context = this.f18332w;
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        View s1Var;
+        Context context = this.f18298w;
         if (i7 != 0) {
             if (i7 != 1) {
-                r1Var = new View(context);
-                r1Var.setTag(-33024);
+                s1Var = new View(context);
+                s1Var.setTag(-33024);
             } else {
-                r1Var = new View(context);
-                r1Var.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(56.0f)));
-                r1Var.setTag(-33024);
+                s1Var = new View(context);
+                s1Var.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(56.0f)));
+                s1Var.setTag(-33024);
             }
         } else {
-            r1Var = new r1(context, this.f18333x.f37518a, false);
+            s1Var = new s1(context, this.f18299x.f37476a, false);
         }
-        return new v4.f1(r1Var);
+        return new v4.e1(s1Var);
     }
 }

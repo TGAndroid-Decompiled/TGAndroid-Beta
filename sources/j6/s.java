@@ -3,14 +3,14 @@ package j6;
 import com.google.android.gms.tasks.Task;
 import f3.k0;
 public final class s extends com.google.android.gms.common.api.j {
-    public static final com.google.android.gms.common.api.e f17309l = new com.google.android.gms.common.api.e("CastApi.API", new a9.e(6), new Object());
+    public static final com.google.android.gms.common.api.e f17275l = new com.google.android.gms.common.api.e("CastApi.API", new a9.e(6), new Object());
 
     public final Task f(String[] strArr) {
         com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
-        b10.f6386c = new k0(this, strArr);
-        b10.d = new n6.c[]{f6.y.f11509b};
-        b10.f6385b = false;
-        b10.f6384a = 8425;
+        b10.f6349c = new k0(this, strArr);
+        b10.d = new n6.c[]{f6.y.f11472b};
+        b10.f6348b = false;
+        b10.f6347a = 8425;
         return e(0, b10.a());
     }
 }

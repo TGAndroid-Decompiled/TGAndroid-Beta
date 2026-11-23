@@ -4,12 +4,12 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jo implements RequestDelegate {
-    public final int f24894a;
-    public final x2 f24895b;
+    public final int f24858a;
+    public final x2 f24859b;
 
     public jo(x2 x2Var, int i7) {
-        this.f24894a = i7;
-        this.f24895b = x2Var;
+        this.f24858a = i7;
+        this.f24859b = x2Var;
     }
 
     @Override
@@ -22,10 +22,10 @@ public final class jo implements RequestDelegate {
         boolean z11;
         int i10;
         TLRPC.TL_messages_availableEffects tL_messages_availableEffects;
-        switch (this.f24894a) {
+        switch (this.f24858a) {
             case 0:
                 boolean z12 = tLObject instanceof TLRPC.TL_help_appConfigNotModified;
-                x2 x2Var = this.f24895b;
+                x2 x2Var = this.f24859b;
                 if (z12) {
                     Boolean bool = Boolean.TRUE;
                     x2Var.a(bool, null, 0L, bool);
@@ -53,7 +53,7 @@ public final class jo implements RequestDelegate {
                 }
             default:
                 boolean z13 = tLObject instanceof TLRPC.TL_messages_availableEffectsNotModified;
-                x2 x2Var2 = this.f24895b;
+                x2 x2Var2 = this.f24859b;
                 if (z13) {
                     Boolean bool3 = Boolean.TRUE;
                     x2Var2.a(bool3, null, 0L, bool3);

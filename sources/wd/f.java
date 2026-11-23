@@ -1,5 +1,5 @@
 package wd;
 
-import c8.ld;
-public abstract class f extends ld {
+import c8.md;
+public abstract class f extends md {
 }

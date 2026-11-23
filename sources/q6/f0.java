@@ -6,24 +6,24 @@ import android.os.IInterface;
 import android.os.RemoteException;
 import android.util.Log;
 public final class f0 extends y {
-    public final IBinder f55939g;
+    public final IBinder f55904g;
     public final d h;
 
     public f0(d dVar, int i7, IBinder iBinder, Bundle bundle) {
         super(dVar, i7, bundle);
         this.h = dVar;
-        this.f55939g = iBinder;
+        this.f55904g = iBinder;
     }
 
     @Override
     public final boolean a() {
-        IBinder iBinder = this.f55939g;
+        IBinder iBinder = this.f55904g;
         try {
             m.h(iBinder);
             String interfaceDescriptor = iBinder.getInterfaceDescriptor();
             d dVar = this.h;
             String o4 = dVar.o();
-            n nVar = dVar.f55922t;
+            n nVar = dVar.f55887t;
             if (!o4.equals(interfaceDescriptor)) {
                 String o10 = dVar.o();
                 StringBuilder sb2 = new StringBuilder(o10.length() + 34 + String.valueOf(interfaceDescriptor).length());
@@ -38,10 +38,10 @@ public final class f0 extends y {
             if (i7 == null || (!dVar.y(2, 4, i7) && !dVar.y(3, 4, i7))) {
                 return false;
             }
-            dVar.f55927z = null;
+            dVar.f55892z = null;
             Bundle l10 = dVar.l();
             if (nVar != null) {
-                ((com.google.android.gms.common.api.k) nVar.f55986a).onConnected(l10);
+                ((com.google.android.gms.common.api.k) nVar.f55951a).onConnected(l10);
                 return true;
             }
             return true;
@@ -54,9 +54,9 @@ public final class f0 extends y {
     @Override
     public final void b(n6.a aVar) {
         d dVar = this.h;
-        n nVar = dVar.f55923u;
+        n nVar = dVar.f55888u;
         if (nVar != null) {
-            ((com.google.android.gms.common.api.l) nVar.f55986a).onConnectionFailed(aVar);
+            ((com.google.android.gms.common.api.l) nVar.f55951a).onConnectionFailed(aVar);
         }
         dVar.u(aVar);
     }

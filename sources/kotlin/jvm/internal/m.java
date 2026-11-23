@@ -6,7 +6,7 @@ public final class m extends n implements vd.f {
 
     @Override
     public final vd.b computeReflected() {
-        s.f19153a.getClass();
+        s.f19119a.getClass();
         return this;
     }
 

@@ -5,16 +5,16 @@ public enum b {
     Q(3),
     H(2);
     
-    public static final b[] f13481e;
-    public final int f13483a;
+    public static final b[] f13444e;
+    public final int f13446a;
 
     static {
         b bVar;
         b bVar2 = L;
-        f13481e = new b[]{M, bVar2, H, bVar};
+        f13444e = new b[]{M, bVar2, H, bVar};
     }
 
     b(int i7) {
-        this.f13483a = i7;
+        this.f13446a = i7;
     }
 }

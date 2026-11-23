@@ -24,17 +24,17 @@ import org.telegram.ui.cd0;
 import org.telegram.ui.qc;
 import org.telegram.ui.sy0;
 public final class e implements y10 {
-    public final int f11909a;
+    public final int f11860a;
 
     public e(int i7) {
-        this.f11909a = i7;
+        this.f11860a = i7;
     }
 
     @Override
     public final void a(Object obj) {
         gj messageObject;
         gj messageObject2;
-        switch (this.f11909a) {
+        switch (this.f11860a) {
             case 0:
                 View view = (View) obj;
                 view.setAlpha(1.0f);
@@ -49,15 +49,15 @@ public final class e implements y10 {
                 return;
             case 3:
                 View view2 = (View) obj;
-                if (view2 instanceof kg.r1) {
-                    ((kg.r1) view2).f18477c.invalidate();
+                if (view2 instanceof kg.s1) {
+                    ((kg.s1) view2).f18448c.invalidate();
                     return;
                 }
                 return;
             case 4:
                 View view3 = (View) obj;
-                if (view3 instanceof kg.r1) {
-                    ((kg.r1) view3).d.a(false, true);
+                if (view3 instanceof kg.s1) {
+                    ((kg.s1) view3).d.a(false, true);
                     return;
                 }
                 return;
@@ -71,11 +71,11 @@ public final class e implements y10 {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i7 = org.telegram.ui.ActionBar.d3.f28874r;
+                int i7 = org.telegram.ui.ActionBar.d3.f28840r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i10 = oa.f31217n;
+                int i10 = oa.f31183n;
                 return;
             case 9:
                 qc.f1((View) obj);
@@ -112,11 +112,11 @@ public final class e implements y10 {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.h5) {
                     org.telegram.ui.Cells.h5 h5Var = (org.telegram.ui.Cells.h5) view7;
-                    h5Var.f30729b.invalidate();
-                    h5Var.f30730c.invalidate();
+                    h5Var.f30695b.invalidate();
+                    h5Var.f30696c.invalidate();
                     return;
-                } else if (view7 instanceof kg.r1) {
-                    ((kg.r1) view7).f18477c.invalidate();
+                } else if (view7 instanceof kg.s1) {
+                    ((kg.s1) view7).f18448c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -179,7 +179,7 @@ public final class e implements y10 {
                 return;
             case 24:
                 HashSet hashSet = (HashSet) obj;
-                String str2 = hd.E0().B.f23533f;
+                String str2 = hd.E0().B.f23497f;
                 hashSet.addAll(sy0.d0());
                 SharedPreferences.Editor edit = np.g1().edit();
                 if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str2)) {
@@ -188,10 +188,10 @@ public final class e implements y10 {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                sy0.f52158s = false;
+                sy0.f52106s = false;
                 for (int i11 = 0; i11 < 4; i11++) {
                     try {
-                        np.u1(i11).f25986v7.g();
+                        np.u1(i11).f25950v7.g();
                     } catch (Exception unused) {
                     }
                 }
@@ -225,6 +225,6 @@ public final class e implements y10 {
     }
 
     public e(qc qcVar) {
-        this.f11909a = 9;
+        this.f11860a = 9;
     }
 }

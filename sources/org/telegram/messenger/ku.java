@@ -13,14 +13,14 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class ku extends au {
-    public static Paint f25136e0;
+    public static Paint f25100e0;
     public final TL_iv.pageBlockMap X;
     public final ImageReceiver Y;
     public final int Z;
-    public final int f25137a0;
-    public final int f25138b0;
-    public boolean f25139c0;
-    public Drawable f25140d0;
+    public final int f25101a0;
+    public final int f25102b0;
+    public boolean f25103c0;
+    public Drawable f25104d0;
 
     public ku(fv fvVar, Rect rect, int i7, TL_iv.pageBlockMap pageblockmap) {
         super(fvVar, rect, i7);
@@ -28,37 +28,37 @@ public final class ku extends au {
         this.Y = imageReceiver;
         this.X = pageblockmap;
         imageReceiver.A1 = true;
-        int i10 = pageblockmap.f28659w;
+        int i10 = pageblockmap.f28623w;
         i10 = i10 <= 0 ? 100 : i10;
         int i11 = pageblockmap.h;
         int i12 = i11 > 0 ? i11 : 100;
-        int i13 = this.f22970c;
+        int i13 = this.f22934c;
         int max = (int) ((i13 / Math.max(1, i10)) * i12);
-        Point point = g0.f24046q;
+        Point point = g0.f24010q;
         int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
         if (max > max2) {
             i13 = (int) ((max2 / Math.max(1, i12)) * i10);
             max = max2;
         }
         this.Z = i13;
-        this.f25137a0 = max;
+        this.f25101a0 = max;
         float f10 = i13;
         float f11 = max;
         imageReceiver.y0(0.0f, 0.0f, f10, f11);
-        fv fvVar2 = this.f22968a;
+        fv fvVar2 = this.f22932a;
         if (pageblockmap.geo == null) {
             return;
         }
-        int i14 = fvVar2.f23976a;
-        int i15 = np.u1(i14).f25928p3;
-        this.f25138b0 = i15;
-        float f12 = g0.f24045p;
+        int i14 = fvVar2.f23940a;
+        int i15 = np.u1(i14).f25892p3;
+        this.f25102b0 = i15;
+        float f12 = g0.f24009p;
         int i16 = (int) (f10 / f12);
         int i17 = (int) (f11 / f12);
         int i18 = pageblockmap.zoom;
         int i19 = i18 <= 0 ? 15 : i18;
         if (i15 == 2) {
-            imageReceiver.q0(gc.p(i20.b(pageblockmap.geo, i16, i17, i19, Math.min(2, (int) Math.ceil(f12)))), null, null, null, fvVar2.f23977b, 0);
+            imageReceiver.q0(gc.p(i20.b(pageblockmap.geo, i16, i17, i19, Math.min(2, (int) Math.ceil(f12)))), null, null, null, fvVar2.f23941b, 0);
             return;
         }
         TLRPC.GeoPoint geoPoint = pageblockmap.geo;
@@ -67,8 +67,8 @@ public final class ku extends au {
 
     @Override
     public final int I() {
-        Rect rect = this.f22969b;
-        return rect.top + this.f25137a0 + rect.bottom;
+        Rect rect = this.f22933b;
+        return rect.top + this.f25101a0 + rect.bottom;
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class ku extends au {
 
     @Override
     public final int K() {
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         return rect.left + this.Z + rect.right;
     }
 
@@ -101,12 +101,12 @@ public final class ku extends au {
         Canvas canvas2;
         Drawable drawable;
         View view;
-        if (f25136e0 == null) {
-            f25136e0 = new Paint(1);
+        if (f25100e0 == null) {
+            f25100e0 = new Paint(1);
         }
-        Paint paint = f25136e0;
-        int i10 = org.telegram.ui.ActionBar.m6.f29445gf;
-        fv fvVar = this.f22968a;
+        Paint paint = f25100e0;
+        int i10 = org.telegram.ui.ActionBar.m6.f29411gf;
+        fv fvVar = this.f22932a;
         paint.setColor(org.telegram.ui.ActionBar.m6.w0(i10, fvVar.D));
         boolean R = R();
         boolean D = fvVar.D();
@@ -120,17 +120,17 @@ public final class ku extends au {
             i11 = fvVar.T;
         }
         ImageReceiver imageReceiver = this.Y;
-        int i12 = this.f25137a0;
+        int i12 = this.f25101a0;
         int i13 = this.Z;
         if (D) {
             RectF rectF = g0.P;
             rectF.set(0.0f, 0.0f, i13, i12);
-            canvas.drawRoundRect(rectF, g0.L(12.0f), g0.L(12.0f), f25136e0);
+            canvas.drawRoundRect(rectF, g0.L(12.0f), g0.L(12.0f), f25100e0);
             imageReceiver.J0(g0.L(12.0f));
             canvas2 = canvas;
         } else {
             canvas2 = canvas;
-            canvas2.drawRect(-i7, 0.0f, i13 + i11, i12, f25136e0);
+            canvas2.drawRect(-i7, 0.0f, i13 + i11, i12, f25100e0);
         }
         Drawable drawable2 = org.telegram.ui.ActionBar.m6.S4[fvVar.E() ? 1 : 0];
         if (drawable2 != null) {
@@ -143,18 +143,18 @@ public final class ku extends au {
         }
         imageReceiver.y0(-i7, 0.0f, i7 + i13 + i11, i12);
         imageReceiver.h(canvas2, null);
-        if (this.f25138b0 == 2 && imageReceiver.L()) {
-            if (this.f25140d0 == null && (view = this.W) != null) {
-                this.f25140d0 = view.getContext().getDrawable(2131231647).mutate();
+        if (this.f25102b0 == 2 && imageReceiver.L()) {
+            if (this.f25104d0 == null && (view = this.W) != null) {
+                this.f25104d0 = view.getContext().getDrawable(2131231647).mutate();
             }
-            if (this.f25140d0 != null) {
+            if (this.f25104d0 != null) {
                 int intrinsicWidth2 = (int) (drawable.getIntrinsicWidth() * 0.8f);
-                int intrinsicHeight2 = (int) (this.f25140d0.getIntrinsicHeight() * 0.8f);
+                int intrinsicHeight2 = (int) (this.f25104d0.getIntrinsicHeight() * 0.8f);
                 int i16 = (i13 - intrinsicWidth2) / 2;
                 int i17 = (i12 / 2) - intrinsicHeight2;
-                this.f25140d0.setAlpha((int) (imageReceiver.f22672i1 * 255.0f));
-                this.f25140d0.setBounds(i16, i17, intrinsicWidth2 + i16, intrinsicHeight2 + i17);
-                this.f25140d0.draw(canvas2);
+                this.f25104d0.setAlpha((int) (imageReceiver.f22636i1 * 255.0f));
+                this.f25104d0.setBounds(i16, i17, intrinsicWidth2 + i16, intrinsicHeight2 + i17);
+                this.f25104d0.draw(canvas2);
             }
         }
     }
@@ -165,22 +165,22 @@ public final class ku extends au {
         View view;
         int actionMasked = motionEvent.getActionMasked();
         float x10 = motionEvent.getX();
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         float f10 = x10 - rect.left;
         float y10 = motionEvent.getY() - rect.top;
-        if (f10 >= 0.0f && f10 <= this.Z && y10 >= 0.0f && y10 <= this.f25137a0) {
+        if (f10 >= 0.0f && f10 <= this.Z && y10 >= 0.0f && y10 <= this.f25101a0) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (actionMasked == 0) {
             if (z10) {
-                this.f25139c0 = true;
+                this.f25103c0 = true;
                 return true;
             }
         } else if (actionMasked == 1) {
-            if (this.f25139c0) {
-                this.f25139c0 = false;
+            if (this.f25103c0) {
+                this.f25103c0 = false;
                 if (z10) {
                     TL_iv.pageBlockMap pageblockmap = this.X;
                     if (pageblockmap.geo != null && (view = this.W) != null) {
@@ -200,9 +200,9 @@ public final class ku extends au {
             }
         } else {
             if (actionMasked == 3) {
-                this.f25139c0 = false;
+                this.f25103c0 = false;
             }
-            return this.f25139c0;
+            return this.f25103c0;
         }
         return false;
     }

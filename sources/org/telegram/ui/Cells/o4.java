@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.hd;
 public class o4 extends FrameLayout {
-    public int f31204a;
-    public final int f31205b;
-    public final int f31206c;
+    public int f31170a;
+    public final int f31171b;
+    public final int f31172c;
     public final TextView d;
-    public final org.telegram.ui.Components.o6 f31207e;
-    public final org.telegram.ui.ActionBar.m5 f31208f;
+    public final org.telegram.ui.Components.o6 f31173e;
+    public final org.telegram.ui.ActionBar.m5 f31174f;
     public int h;
-    public final boolean f31209n;
+    public final boolean f31175n;
 
     public o4(Context context) {
         this(context, org.telegram.ui.ActionBar.m6.L6, 20, 7, false, null);
@@ -56,17 +56,17 @@ public class o4 extends FrameLayout {
 
     public final void c(CharSequence charSequence, boolean z10) {
         int i7 = 3;
-        if (this.f31209n) {
-            if (hd.f24444a0) {
+        if (this.f31175n) {
+            if (hd.f24408a0) {
                 i7 = 5;
             }
             int i10 = i7 | 16;
-            org.telegram.ui.Components.o6 o6Var = this.f31207e;
+            org.telegram.ui.Components.o6 o6Var = this.f31173e;
             o6Var.setGravity(i10);
             o6Var.c(charSequence, z10, true);
             return;
         }
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i7 = 5;
         }
         TextView textView = this.d;
@@ -75,7 +75,7 @@ public class o4 extends FrameLayout {
     }
 
     public float getAnimatedWidth() {
-        return this.f31207e.getDrawable().c();
+        return this.f31173e.getDrawable().c();
     }
 
     public TextView getTextView() {
@@ -83,7 +83,7 @@ public class o4 extends FrameLayout {
     }
 
     public org.telegram.ui.ActionBar.m5 getTextView2() {
-        return this.f31208f;
+        return this.f31174f;
     }
 
     @Override
@@ -108,7 +108,7 @@ public class o4 extends FrameLayout {
     public void setBottomMargin(int i7) {
         float f10 = i7;
         ((FrameLayout.LayoutParams) this.d.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(f10);
-        org.telegram.ui.ActionBar.m5 m5Var = this.f31208f;
+        org.telegram.ui.ActionBar.m5 m5Var = this.f31174f;
         if (m5Var != null) {
             ((FrameLayout.LayoutParams) m5Var.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(f10);
         }
@@ -126,7 +126,7 @@ public class o4 extends FrameLayout {
     }
 
     public void setOnWidthUpdateListener(Runnable runnable) {
-        this.f31207e.setOnWidthUpdatedListener(runnable);
+        this.f31173e.setOnWidthUpdatedListener(runnable);
     }
 
     public void setText(CharSequence charSequence) {
@@ -134,7 +134,7 @@ public class o4 extends FrameLayout {
     }
 
     public void setText2(CharSequence charSequence) {
-        org.telegram.ui.ActionBar.m5 m5Var = this.f31208f;
+        org.telegram.ui.ActionBar.m5 m5Var = this.f31174f;
         if (m5Var == null) {
             return;
         }
@@ -146,15 +146,15 @@ public class o4 extends FrameLayout {
         if (textView != null) {
             textView.setTextColor(i7);
         }
-        org.telegram.ui.Components.o6 o6Var = this.f31207e;
+        org.telegram.ui.Components.o6 o6Var = this.f31173e;
         if (o6Var != null) {
             o6Var.setTextColor(i7);
         }
     }
 
     public void setTextSize(float f10) {
-        if (this.f31209n) {
-            this.f31207e.setTextSize(org.telegram.messenger.g0.L(f10));
+        if (this.f31175n) {
+            this.f31173e.setTextSize(org.telegram.messenger.g0.L(f10));
             return;
         }
         this.d.setTextSize(1, f10);
@@ -180,41 +180,41 @@ public class o4 extends FrameLayout {
     public o4(Context context, int i7, int i10, int i11, int i12, boolean z10, boolean z11, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         this.h = 40;
-        this.f31205b = i10;
-        this.f31206c = i12;
-        this.f31209n = z11;
+        this.f31171b = i10;
+        this.f31172c = i12;
+        this.f31175n = z11;
         if (z11) {
             org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(getContext(), false, false, false);
-            this.f31207e = o6Var;
+            this.f31173e = o6Var;
             o6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
             o6Var.setTypeface(org.telegram.messenger.g0.o());
-            o6Var.setGravity((hd.f24444a0 ? 5 : 3) | 16);
+            o6Var.setGravity((hd.f24408a0 ? 5 : 3) | 16);
             org.telegram.ui.ActionBar.t6.Y(o6Var, i7, h6Var);
             o6Var.setTag(Integer.valueOf(i7));
             o6Var.getDrawable().r(true, false);
             float f10 = i10;
-            addView(o6Var, c8.ma.d(-1, this.h - i11, (hd.f24444a0 ? 5 : 3) | 48, f10, i11, f10, z10 ? 0.0f : i12));
+            addView(o6Var, c8.na.d(-1, this.h - i11, (hd.f24408a0 ? 5 : 3) | 48, f10, i11, f10, z10 ? 0.0f : i12));
         } else {
             TextView textView = new TextView(getContext());
             this.d = textView;
             i5.c.x(textView, 1, 14.0f);
             textView.setEllipsize(TextUtils.TruncateAt.END);
-            textView.setGravity((hd.f24444a0 ? 5 : 3) | 16);
+            textView.setGravity((hd.f24408a0 ? 5 : 3) | 16);
             textView.setMinHeight(org.telegram.messenger.g0.L(this.h - i11));
             org.telegram.ui.ActionBar.t6.U(textView, i7, h6Var);
             textView.setTag(Integer.valueOf(i7));
             float f11 = i10;
-            addView(textView, c8.ma.d(-1, -1.0f, (hd.f24444a0 ? 5 : 3) | 48, f11, i11, f11, z10 ? 0.0f : i12));
+            addView(textView, c8.na.d(-1, -1.0f, (hd.f24408a0 ? 5 : 3) | 48, f11, i11, f11, z10 ? 0.0f : i12));
         }
         if (z10) {
             org.telegram.ui.ActionBar.m5 m5Var = new org.telegram.ui.ActionBar.m5(getContext());
-            this.f31208f = m5Var;
+            this.f31174f = m5Var;
             m5Var.setTextSize(13);
-            m5Var.setGravity((hd.f24444a0 ? 3 : 5) | 48);
+            m5Var.setGravity((hd.f24408a0 ? 3 : 5) | 48);
             float f12 = i10;
-            addView(m5Var, c8.ma.d(-1, -1.0f, (hd.f24444a0 ? 3 : 5) | 48, f12, 21.0f, f12, i12));
+            addView(m5Var, c8.na.d(-1, -1.0f, (hd.f24408a0 ? 3 : 5) | 48, f12, 21.0f, f12, i12));
         }
-        WeakHashMap weakHashMap = r0.i0.f56289a;
+        WeakHashMap weakHashMap = r0.i0.f56254a;
         new r0.v(2131296686, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 }

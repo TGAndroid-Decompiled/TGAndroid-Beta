@@ -4,8 +4,8 @@ import com.google.android.gms.internal.play_billing.s0;
 import java.util.Arrays;
 import java.util.HashMap;
 public final class q {
-    public static final HashMap f56255b;
-    public final int[] f56256a;
+    public static final HashMap f56220b;
+    public final int[] f56221a;
 
     static {
         HashMap hashMap = new HashMap();
@@ -33,20 +33,20 @@ public final class q {
         a(hashMap, 256, "bold");
         a(hashMap, 512, "italic");
         a(hashMap, 257, "important");
-        f56255b = hashMap;
+        f56220b = hashMap;
     }
 
     public q(String[] strArr) {
-        this.f56256a = new int[strArr.length];
+        this.f56221a = new int[strArr.length];
         for (int i7 = 0; i7 < strArr.length; i7++) {
             int i10 = 0;
             for (String str : strArr[i7].split("\\s+")) {
-                Integer num = (Integer) f56255b.get(str);
+                Integer num = (Integer) f56220b.get(str);
                 if (num != null) {
                     i10 = ((i10 & 255) == 0 ? i10 | (num.intValue() & 255) : i10) | (num.intValue() & (-256));
                 }
             }
-            this.f56256a[i7] = i10;
+            this.f56221a[i7] = i10;
         }
     }
 
@@ -58,7 +58,7 @@ public final class q {
 
     public final int[] b(s0 s0Var) {
         int i7;
-        int[] iArr = (int[]) s0Var.f7157c;
+        int[] iArr = (int[]) s0Var.f7120c;
         int length = iArr.length / 5;
         if (length == 0) {
             return new int[0];
@@ -67,7 +67,7 @@ public final class q {
         int[] iArr3 = new int[length];
         int[] iArr4 = new int[length];
         b3.j jVar = new b3.j(12, false, false);
-        jVar.f2922c = new int[48];
+        jVar.f2873c = new int[48];
         int i10 = -1;
         int i11 = 0;
         int i12 = 0;
@@ -94,7 +94,7 @@ public final class q {
                 i7 = iArr2[i17];
             }
             int i18 = iArr[i13 + 2];
-            int[] iArr5 = this.f56256a;
+            int[] iArr5 = this.f56221a;
             int i19 = iArr5[i18];
             int i20 = iArr5[iArr[i13 + 3]];
             int i21 = i20 & 255;
@@ -117,6 +117,6 @@ public final class q {
             i12 = iArr3[i10];
             i10--;
         }
-        return Arrays.copyOf((int[]) jVar.f2922c, jVar.f2921b);
+        return Arrays.copyOf((int[]) jVar.f2873c, jVar.f2872b);
     }
 }

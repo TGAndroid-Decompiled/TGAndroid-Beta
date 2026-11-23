@@ -10,31 +10,31 @@ import org.telegram.ui.lm0;
 import org.telegram.ui.mt;
 import org.telegram.ui.pt;
 public final class x extends b71 {
-    public final int f20040a;
-    public final Object f20041b;
+    public final int f20006a;
+    public final Object f20007b;
 
     public x(Object obj, int i7) {
-        this.f20040a = i7;
-        this.f20041b = obj;
+        this.f20006a = i7;
+        this.f20007b = obj;
     }
 
     @Override
     public final void b(View view, int i7, int i10) {
         boolean z10;
-        switch (this.f20040a) {
+        switch (this.f20006a) {
             case 0:
                 ((b0) view).getClass();
                 return;
             case 1:
                 mt mtVar = (mt) view;
-                mtVar.f49973g3 = i7;
-                mtVar.f49979n3.clear();
+                mtVar.f49943g3 = i7;
+                mtVar.f49949n3.clear();
                 if (mtVar.z1(6) + mtVar.B1(6) <= 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                mtVar.f49986u3 = z10;
+                mtVar.f49956u3 = z10;
                 mtVar.C1();
                 mtVar.D1(false);
                 mtVar.v0(0);
@@ -54,49 +54,49 @@ public final class x extends b71 {
 
     @Override
     public final View d(int i7) {
-        switch (this.f20040a) {
+        switch (this.f20006a) {
             case 0:
-                d0 d0Var = (d0) this.f20041b;
+                d0 d0Var = (d0) this.f20007b;
                 if (i7 == 2) {
-                    return d0Var.f19942x1;
+                    return d0Var.f19908x1;
                 }
                 if (i7 == 0) {
-                    return d0Var.f19940v1;
+                    return d0Var.f19906v1;
                 }
-                return d0Var.f19941w1;
+                return d0Var.f19907w1;
             case 1:
-                pt ptVar = (pt) this.f20041b;
+                pt ptVar = (pt) this.f20007b;
                 mt mtVar = new mt(ptVar, ptVar.getParentActivity());
-                ptVar.f50982e.add(mtVar);
+                ptVar.f50914e.add(mtVar);
                 return mtVar;
             case 2:
-                lm0 lm0Var = (lm0) this.f20041b;
+                lm0 lm0Var = (lm0) this.f20007b;
                 if (i7 == 1) {
                     return lm0Var.h;
                 }
                 if (i7 == 0) {
-                    return lm0Var.f49656n;
+                    return lm0Var.f49633n;
                 }
                 return null;
             case 3:
-                return (View) ((d3) this.f20041b).n1.get(i7);
+                return (View) ((d3) this.f20007b).n1.get(i7);
             default:
-                za zaVar = (za) this.f20041b;
+                za zaVar = (za) this.f20007b;
                 if (i7 != 1) {
                     if (i7 != 2) {
-                        return (sg.o) zaVar.f10205b;
+                        return (sg.o) zaVar.f10168b;
                     }
                     return (sg.p) zaVar.d;
                 }
-                return (sg.n) zaVar.f10206c;
+                return (sg.n) zaVar.f10169c;
         }
     }
 
     @Override
     public final int e() {
-        switch (this.f20040a) {
+        switch (this.f20006a) {
             case 0:
-                if (((d0) this.f20041b).I1) {
+                if (((d0) this.f20007b).I1) {
                     return 1;
                 }
                 return 3;
@@ -105,7 +105,7 @@ public final class x extends b71 {
             case 2:
                 return 2;
             case 3:
-                return ((d3) this.f20041b).n1.size();
+                return ((d3) this.f20007b).n1.size();
             default:
                 return 3;
         }
@@ -113,7 +113,7 @@ public final class x extends b71 {
 
     @Override
     public CharSequence g(int i7) {
-        switch (this.f20040a) {
+        switch (this.f20006a) {
             case 1:
                 if (i7 != 0) {
                     if (i7 != 1) {
@@ -143,9 +143,9 @@ public final class x extends b71 {
 
     @Override
     public int h(int i7) {
-        switch (this.f20040a) {
+        switch (this.f20006a) {
             case 0:
-                if (((d0) this.f20041b).I1 || i7 == 2) {
+                if (((d0) this.f20007b).I1 || i7 == 2) {
                     return 2;
                 }
                 if (i7 == 0) {

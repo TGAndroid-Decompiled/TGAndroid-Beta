@@ -1,38 +1,14 @@
 package p4;
-public final class a0 implements d0, m0 {
-    public final boolean f55194a;
-    public final boolean f55195b;
-    public final Object f55196c;
-    public final Object d;
 
-    public a0(n0 n0Var, e2.l0 l0Var, boolean z10, boolean z11) {
-        this.f55196c = n0Var;
-        this.d = l0Var;
-        this.f55194a = z10;
-        this.f55195b = z11;
-    }
+import android.os.Handler;
+import android.os.Looper;
+import org.telegram.ui.Components.es0;
+public final class a0 extends Handler {
+    public es0 f55159a;
+    public final d0 f55160b;
 
-    @Override
-    public void b(u uVar, int i7) {
-        uVar.b(i7, (n1) this.f55196c, this.f55194a, this.f55195b, ((v) this.d).f55489c);
-    }
-
-    @Override
-    public void f(v vVar) {
-        n0 n0Var = (n0) this.f55196c;
-        m9.e0 q10 = n0Var.h.q(vVar, h9.i0.u((e2.l0) this.d), -1, -9223372036854775807L);
-        ?? obj = new Object();
-        obj.d = n0Var;
-        obj.f20054c = vVar;
-        obj.f20052a = this.f55194a;
-        obj.f20053b = this.f55195b;
-        q10.b(new m9.u(0, q10, (Object) obj), m9.r.f20983a);
-    }
-
-    public a0(n1 n1Var, boolean z10, boolean z11, v vVar) {
-        this.f55196c = n1Var;
-        this.f55194a = z10;
-        this.f55195b = z11;
-        this.d = vVar;
+    public a0(d0 d0Var, Looper looper) {
+        super(looper);
+        this.f55160b = d0Var;
     }
 }

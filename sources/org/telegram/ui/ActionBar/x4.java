@@ -1,21 +1,21 @@
 package org.telegram.ui.ActionBar;
 public final class x4 implements Runnable {
-    public final int f30275a;
-    public final m5 f30276b;
+    public final int f30241a;
+    public final m5 f30242b;
 
     public x4(m5 m5Var, int i7) {
-        this.f30275a = i7;
-        this.f30276b = m5Var;
+        this.f30241a = i7;
+        this.f30242b = m5Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f30275a) {
+        switch (this.f30241a) {
             case 0:
-                this.f30276b.setVisibility(8);
+                this.f30242b.setVisibility(8);
                 return;
             default:
-                this.f30276b.setVisibility(8);
+                this.f30242b.setVisibility(8);
                 return;
         }
     }

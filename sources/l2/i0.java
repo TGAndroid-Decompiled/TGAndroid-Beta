@@ -1,18 +1,18 @@
 package l2;
 public final class i0 {
-    public final o0 f19440a;
+    public final o0 f19406a;
 
     public i0(o0 o0Var) {
-        this.f19440a = o0Var;
+        this.f19406a = o0Var;
     }
 
     public final void a() {
-        o0 o0Var = this.f19440a;
+        o0 o0Var = this.f19406a;
         if (o0Var.U) {
             o0Var.T.getClass();
-        } else if (!o0Var.f19531k0) {
+        } else if (!o0Var.f19497k0) {
             return;
         }
-        o0Var.f19533n.f(2);
+        o0Var.f19499n.f(2);
     }
 }

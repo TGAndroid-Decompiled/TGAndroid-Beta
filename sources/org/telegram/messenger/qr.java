@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 public final class qr {
-    public int f26498a;
-    public int f26499b;
-    public int f26500c;
+    public int f26462a;
+    public int f26463b;
+    public int f26464c;
 }

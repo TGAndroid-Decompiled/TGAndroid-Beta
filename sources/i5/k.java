@@ -11,20 +11,20 @@ public final class k extends com.googlecode.mp4parser.c {
     public static final ze.b E;
     public static final ze.b F;
     public static final ze.b G;
-    public static final ze.b f16095x;
-    public static final ze.b f16096y;
-    public String f16097e;
-    public String f16098f;
+    public static final ze.b f16061x;
+    public static final ze.b f16062y;
+    public String f16063e;
+    public String f16064f;
     public long h;
-    public long f16099n;
-    public long f16100r;
-    public boolean f16101s;
-    public long f16102w;
+    public long f16065n;
+    public long f16066r;
+    public boolean f16067s;
+    public long f16068w;
 
     static {
         ze.a aVar = new ze.a(k.class, "HandlerBox.java");
-        f16095x = aVar.e(aVar.d("getHandlerType", "com.coremedia.iso.boxes.HandlerBox", "", "", "java.lang.String"));
-        f16096y = aVar.e(aVar.d("setName", "com.coremedia.iso.boxes.HandlerBox", "java.lang.String", "name", "void"));
+        f16061x = aVar.e(aVar.d("getHandlerType", "com.coremedia.iso.boxes.HandlerBox", "", "", "java.lang.String"));
+        f16062y = aVar.e(aVar.d("setName", "com.coremedia.iso.boxes.HandlerBox", "java.lang.String", "name", "void"));
         E = aVar.e(aVar.d("setHandlerType", "com.coremedia.iso.boxes.HandlerBox", "java.lang.String", "handlerType", "void"));
         F = aVar.e(aVar.d("getName", "com.coremedia.iso.boxes.HandlerBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("getHumanReadableTrackType", "com.coremedia.iso.boxes.HandlerBox", "", "", "java.lang.String"));
@@ -51,44 +51,44 @@ public final class k extends com.googlecode.mp4parser.c {
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        this.f16102w = h5.b.i(byteBuffer);
-        this.f16097e = h5.b.d(byteBuffer);
+        this.f16068w = h5.b.i(byteBuffer);
+        this.f16063e = h5.b.d(byteBuffer);
         this.h = h5.b.i(byteBuffer);
-        this.f16099n = h5.b.i(byteBuffer);
-        this.f16100r = h5.b.i(byteBuffer);
+        this.f16065n = h5.b.i(byteBuffer);
+        this.f16066r = h5.b.i(byteBuffer);
         if (byteBuffer.remaining() > 0) {
             byte[] bArr = new byte[byteBuffer.remaining()];
             byteBuffer.get(bArr);
             try {
                 String str = new String(bArr, "UTF-8");
-                this.f16098f = str;
+                this.f16064f = str;
                 if (str.endsWith("\u0000")) {
-                    this.f16098f = e2.k(this.f16098f, 1, 0);
-                    this.f16101s = true;
+                    this.f16064f = e2.k(this.f16064f, 1, 0);
+                    this.f16067s = true;
                     return;
                 }
-                this.f16101s = false;
+                this.f16067s = false;
                 return;
             } catch (UnsupportedEncodingException e10) {
                 throw new Error(e10);
             }
         }
-        this.f16101s = false;
+        this.f16067s = false;
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        byteBuffer.putInt((int) this.f16102w);
-        byteBuffer.put(h5.c.d(this.f16097e));
+        byteBuffer.putInt((int) this.f16068w);
+        byteBuffer.put(h5.c.d(this.f16063e));
         byteBuffer.putInt((int) this.h);
-        byteBuffer.putInt((int) this.f16099n);
-        byteBuffer.putInt((int) this.f16100r);
-        String str = this.f16098f;
+        byteBuffer.putInt((int) this.f16065n);
+        byteBuffer.putInt((int) this.f16066r);
+        String str = this.f16064f;
         if (str != null) {
             byteBuffer.put(h5.b.b(str));
         }
-        if (this.f16101s) {
+        if (this.f16067s) {
             byteBuffer.put((byte) 0);
         }
     }
@@ -96,10 +96,10 @@ public final class k extends com.googlecode.mp4parser.c {
     @Override
     public final long getContentSize() {
         int l10;
-        if (this.f16101s) {
-            l10 = h5.b.l(this.f16098f) + 25;
+        if (this.f16067s) {
+            l10 = h5.b.l(this.f16064f) + 25;
         } else {
-            l10 = h5.b.l(this.f16098f) + 24;
+            l10 = h5.b.l(this.f16064f) + 24;
         }
         return l10;
     }
@@ -109,10 +109,10 @@ public final class k extends com.googlecode.mp4parser.c {
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("HandlerBox[handlerType=");
-        c.w(ze.a.b(f16095x, this, this));
-        sb2.append(this.f16097e);
+        c.w(ze.a.b(f16061x, this, this));
+        sb2.append(this.f16063e);
         sb2.append(";name=");
         c.w(ze.a.b(F, this, this));
-        return p0.s(sb2, this.f16098f, "]");
+        return p0.s(sb2, this.f16064f, "]");
     }
 }

@@ -8,31 +8,31 @@ import android.view.animation.Interpolator;
 public final class ll0 {
     public static final float A;
     public static final float v = (float) (Math.log(0.75d) / Math.log(0.9d));
-    public static final float f37214w = 0.4f;
-    public static final float f37215x = 1.0f - 0.4f;
-    public static final float[] f37216y = new float[101];
-    public static final float f37217z;
-    public int f37218a;
-    public int f37219b;
-    public int f37220c;
+    public static final float f37170w = 0.4f;
+    public static final float f37171x = 1.0f - 0.4f;
+    public static final float[] f37172y = new float[101];
+    public static final float f37173z;
+    public int f37174a;
+    public int f37175b;
+    public int f37176c;
     public int d;
-    public int f37221e;
-    public int f37222f;
-    public int f37223g;
+    public int f37177e;
+    public int f37178f;
+    public int f37179g;
     public int h;
-    public int f37224i;
-    public int f37225j;
-    public int f37226k;
-    public long f37227l;
-    public int f37228m;
-    public float f37229n;
-    public float f37230o;
-    public float f37231p;
-    public final Interpolator f37233r;
-    public float f37235t;
-    public final float f37236u;
-    public boolean f37232q = true;
-    public final boolean f37234s = true;
+    public int f37180i;
+    public int f37181j;
+    public int f37182k;
+    public long f37183l;
+    public int f37184m;
+    public float f37185n;
+    public float f37186o;
+    public float f37187p;
+    public final Interpolator f37189r;
+    public float f37191t;
+    public final float f37192u;
+    public boolean f37188q = true;
+    public final boolean f37190s = true;
 
     static {
         float f10;
@@ -46,7 +46,7 @@ public final class ll0 {
                 float f15 = 1.0f - A2;
                 f10 = 3.0f * A2 * f15;
                 f11 = A2 * A2 * A2;
-                float B = com.google.android.gms.internal.vision.e2.B(A2, f37215x, f15 * f37214w, f10) + f11;
+                float B = com.google.android.gms.internal.vision.e2.B(A2, f37171x, f15 * f37170w, f10) + f11;
                 if (Math.abs(B - f13) < 1.0E-5d) {
                     break;
                 } else if (B > f13) {
@@ -55,22 +55,22 @@ public final class ll0 {
                     f12 = A2;
                 }
             }
-            f37216y[i7] = f10 + f11;
+            f37172y[i7] = f10 + f11;
         }
-        f37216y[100] = 1.0f;
-        f37217z = 8.0f;
+        f37172y[100] = 1.0f;
+        f37173z = 8.0f;
         A = 1.0f;
         A = 1.0f / e(1.0f);
     }
 
     public ll0(Context context, DecelerateInterpolator decelerateInterpolator) {
-        this.f37233r = decelerateInterpolator;
-        this.f37236u = context.getResources().getDisplayMetrics().density * 160.0f * 386.0878f * ViewConfiguration.getScrollFriction();
+        this.f37189r = decelerateInterpolator;
+        this.f37192u = context.getResources().getDisplayMetrics().density * 160.0f * 386.0878f * ViewConfiguration.getScrollFriction();
     }
 
     public static float e(float f10) {
         float z10;
-        float f11 = f10 * f37217z;
+        float f11 = f10 * f37173z;
         if (f11 < 1.0f) {
             z10 = f11 - (1.0f - ((float) Math.exp(-f11)));
         } else {
@@ -80,62 +80,62 @@ public final class ll0 {
     }
 
     public final void a() {
-        this.f37225j = this.d;
-        this.f37226k = this.f37221e;
-        this.f37232q = true;
+        this.f37181j = this.d;
+        this.f37182k = this.f37177e;
+        this.f37188q = true;
     }
 
     public final boolean b() {
         float interpolation;
-        if (this.f37232q) {
+        if (this.f37188q) {
             return false;
         }
-        int currentAnimationTimeMillis = (int) (AnimationUtils.currentAnimationTimeMillis() - this.f37227l);
-        int i7 = this.f37228m;
+        int currentAnimationTimeMillis = (int) (AnimationUtils.currentAnimationTimeMillis() - this.f37183l);
+        int i7 = this.f37184m;
         if (currentAnimationTimeMillis < i7) {
-            int i10 = this.f37218a;
+            int i10 = this.f37174a;
             if (i10 != 0) {
                 if (i10 == 1) {
                     float f10 = currentAnimationTimeMillis / i7;
                     int i11 = (int) (f10 * 100.0f);
                     float f11 = i11 / 100.0f;
                     int i12 = i11 + 1;
-                    float[] fArr = f37216y;
+                    float[] fArr = f37172y;
                     float f12 = fArr[i11];
                     float z10 = com.google.android.gms.internal.vision.e2.z(fArr[i12], f12, (f10 - f11) / ((i12 / 100.0f) - f11), f12);
-                    int i13 = this.f37219b;
+                    int i13 = this.f37175b;
                     int round = Math.round((this.d - i13) * z10) + i13;
-                    this.f37225j = round;
-                    int min = Math.min(round, this.f37223g);
-                    this.f37225j = min;
-                    this.f37225j = Math.max(min, this.f37222f);
-                    int i14 = this.f37220c;
-                    int round2 = Math.round(z10 * (this.f37221e - i14)) + i14;
-                    this.f37226k = round2;
-                    int min2 = Math.min(round2, this.f37224i);
-                    this.f37226k = min2;
+                    this.f37181j = round;
+                    int min = Math.min(round, this.f37179g);
+                    this.f37181j = min;
+                    this.f37181j = Math.max(min, this.f37178f);
+                    int i14 = this.f37176c;
+                    int round2 = Math.round(z10 * (this.f37177e - i14)) + i14;
+                    this.f37182k = round2;
+                    int min2 = Math.min(round2, this.f37180i);
+                    this.f37182k = min2;
                     int max = Math.max(min2, this.h);
-                    this.f37226k = max;
-                    if (this.f37225j == this.d && max == this.f37221e) {
-                        this.f37232q = true;
+                    this.f37182k = max;
+                    if (this.f37181j == this.d && max == this.f37177e) {
+                        this.f37188q = true;
                     }
                 }
                 return true;
             }
-            float f13 = currentAnimationTimeMillis * this.f37229n;
-            Interpolator interpolator = this.f37233r;
+            float f13 = currentAnimationTimeMillis * this.f37185n;
+            Interpolator interpolator = this.f37189r;
             if (interpolator == null) {
                 interpolation = e(f13);
             } else {
                 interpolation = interpolator.getInterpolation(f13);
             }
-            this.f37225j = Math.round(this.f37230o * interpolation) + this.f37219b;
-            this.f37226k = Math.round(interpolation * this.f37231p) + this.f37220c;
+            this.f37181j = Math.round(this.f37186o * interpolation) + this.f37175b;
+            this.f37182k = Math.round(interpolation * this.f37187p) + this.f37176c;
             return true;
         }
-        this.f37225j = this.d;
-        this.f37226k = this.f37221e;
-        this.f37232q = true;
+        this.f37181j = this.d;
+        this.f37182k = this.f37177e;
+        this.f37188q = true;
         return true;
     }
 
@@ -144,16 +144,16 @@ public final class ll0 {
     }
 
     public final void d(int i7, int i10) {
-        this.f37218a = 0;
-        this.f37232q = false;
-        this.f37228m = i10;
-        this.f37227l = AnimationUtils.currentAnimationTimeMillis();
-        this.f37219b = 0;
-        this.f37220c = 0;
+        this.f37174a = 0;
+        this.f37188q = false;
+        this.f37184m = i10;
+        this.f37183l = AnimationUtils.currentAnimationTimeMillis();
+        this.f37175b = 0;
+        this.f37176c = 0;
         this.d = 0;
-        this.f37221e = i7;
-        this.f37230o = 0;
-        this.f37231p = i7;
-        this.f37229n = 1.0f / this.f37228m;
+        this.f37177e = i7;
+        this.f37186o = 0;
+        this.f37187p = i7;
+        this.f37185n = 1.0f / this.f37184m;
     }
 }

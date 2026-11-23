@@ -11,22 +11,22 @@ import java.util.HashSet;
 import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
 public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public org.telegram.ui.Components.q9 f32536a;
-    public org.telegram.ui.ActionBar.m5 f32537b;
-    public org.telegram.ui.ActionBar.m5 f32538c;
+    public org.telegram.ui.Components.q9 f32502a;
+    public org.telegram.ui.ActionBar.m5 f32503b;
+    public org.telegram.ui.ActionBar.m5 f32504c;
     public ImageView d;
-    public org.telegram.ui.Components.b9 f32539e;
-    public TLRPC.User f32540f;
+    public org.telegram.ui.Components.b9 f32505e;
+    public TLRPC.User f32506f;
     public Paint h;
-    public int f32541n;
-    public boolean f32542r;
-    public int f32543s;
+    public int f32507n;
+    public boolean f32508r;
+    public int f32509s;
 
     public final void a(int i7, int i10) {
-        this.f32541n = i7;
+        this.f32507n = i7;
         ImageView imageView = this.d;
         imageView.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
-        this.f32538c.setTextColor(i10);
+        this.f32504c.setTextColor(i10);
         org.telegram.ui.ActionBar.m6.H1(imageView.getDrawable(), i10 & 620756991, true);
     }
 
@@ -35,8 +35,8 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
         Canvas canvas2;
         float L;
         int i7;
-        if (this.f32542r) {
-            if (hd.f24444a0) {
+        if (this.f32508r) {
+            if (hd.f24408a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(68.0f);
@@ -44,7 +44,7 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24444a0) {
+            if (hd.f24408a0) {
                 i7 = org.telegram.messenger.g0.L(68.0f);
             } else {
                 i7 = 0;
@@ -58,11 +58,11 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
     }
 
     public CharSequence getName() {
-        return this.f32537b.getText();
+        return this.f32503b.getText();
     }
 
     public TLRPC.User getUser() {
-        return this.f32540f;
+        return this.f32506f;
     }
 
     @Override
@@ -76,7 +76,7 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
     }
 
     public void setDrawDivider(boolean z10) {
-        this.f32542r = z10;
+        this.f32508r = z10;
         invalidate();
     }
 
@@ -85,9 +85,9 @@ public abstract class z3 extends FrameLayout implements org.telegram.ui.ActionBa
         int x02;
         try {
             this.h.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Xg, false));
-            if (this.d != null && this.f32538c != null && (x02 = org.telegram.ui.ActionBar.m6.x0(null, this.f32541n, false)) != this.f32543s) {
-                this.f32543s = x02;
-                a(this.f32541n, x02);
+            if (this.d != null && this.f32504c != null && (x02 = org.telegram.ui.ActionBar.m6.x0(null, this.f32507n, false)) != this.f32509s) {
+                this.f32509s = x02;
+                a(this.f32507n, x02);
             }
             invalidate();
         } catch (Exception e10) {

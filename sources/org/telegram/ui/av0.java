@@ -1,18 +1,32 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class av0 extends org.telegram.ui.Components.hg0 {
-    public final ProfileActivity f45711t1;
-
-    public av0(ProfileActivity profileActivity, Context context, long j3, org.telegram.ui.ActionBar.k kVar, qu0 qu0Var, zu0 zu0Var, org.telegram.ui.Components.dg0 dg0Var, org.telegram.ui.Components.zf0 zf0Var) {
-        super(context, j3, kVar, qu0Var, zu0Var, dg0Var, zf0Var);
-        this.f45711t1 = profileActivity;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class av0 extends xv0 {
+    public av0(Context context) {
+        super(context);
     }
 
     @Override
-    public final void setCustomAvatarProgress(float f10) {
-        ProfileActivity profileActivity = this.f45711t1;
-        profileActivity.f43692t5 = f10;
-        profileActivity.Q3();
+    public final void dispatchDraw(Canvas canvas) {
+        fi.s2 s2Var;
+        super.dispatchDraw(canvas);
+        org.telegram.ui.Components.p5 p5Var = this.f38792e;
+        if (p5Var != null && (s2Var = p5Var.f38457k) != null) {
+            s2Var.P0(false);
+        }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (getImageReceiver().L()) {
+            accessibilityNodeInfo.setText(org.telegram.messenger.hd.N0(2131754797, null));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, org.telegram.messenger.hd.N0(2131747623, null)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, org.telegram.messenger.hd.N0(2131754817, null)));
+            return;
+        }
+        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

@@ -10,21 +10,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ud0;
 public final class ht implements v0.g {
-    public final ud0 f24531a;
-    public final Context f24532b;
-    public final int f24533c;
+    public final ud0 f24495a;
+    public final Context f24496b;
+    public final int f24497c;
 
     public ht(ud0 ud0Var, Context context, int i7) {
-        this.f24531a = ud0Var;
-        this.f24532b = context;
-        this.f24533c = i7;
+        this.f24495a = ud0Var;
+        this.f24496b = context;
+        this.f24497c = i7;
     }
 
     @Override
     public final void a(Object obj) {
         w0.i iVar = (w0.i) obj;
         boolean z10 = iVar instanceof w0.k;
-        ud0 ud0Var = this.f24531a;
+        ud0 ud0Var = this.f24495a;
         if (z10) {
             ud0Var.a(0L, null, "EMPTY");
         } else if (iVar instanceof w0.g) {
@@ -38,13 +38,13 @@ public final class ht implements v0.g {
 
     @Override
     public final void onResult(Object obj) {
-        final ud0 ud0Var = this.f24531a;
-        com.google.android.gms.common.api.q qVar = ((v0.n) obj).f59068a;
+        final ud0 ud0Var = this.f24495a;
+        com.google.android.gms.common.api.q qVar = ((v0.n) obj).f59033a;
         TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
         finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
         try {
-            JSONObject jSONObject = new JSONObject(((Bundle) qVar.f6427a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
-            finishpasskeylogin.credential.f28645id = jSONObject.getString("id");
+            JSONObject jSONObject = new JSONObject(((Bundle) qVar.f6390a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
+            finishpasskeylogin.credential.f28609id = jSONObject.getString("id");
             finishpasskeylogin.credential.raw_id = jSONObject.getString("rawId");
             JSONObject jSONObject2 = jSONObject.getJSONObject("response");
             TL_account.inputPasskeyResponseLogin inputpasskeyresponselogin = new TL_account.inputPasskeyResponseLogin();
@@ -58,9 +58,9 @@ public final class ht implements v0.g {
             int parseInt = Integer.parseInt(str.split(":")[0]);
             final long parseLong = Long.parseLong(inputpasskeyresponselogin.user_handle.split(":")[1]);
             finishpasskeylogin.credential.response = inputpasskeyresponselogin;
-            org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, this.f24532b, null);
+            org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, this.f24496b, null);
             t1Var.r(500L);
-            int i7 = this.f24533c;
+            int i7 = this.f24497c;
             if (parseInt != ConnectionsManager.getInstance(i7).getCurrentDatacenterId()) {
                 int currentDatacenterId = ConnectionsManager.getInstance(i7).getCurrentDatacenterId();
                 long currentAuthKeyId = ConnectionsManager.getInstance(i7).getCurrentAuthKeyId();
@@ -70,7 +70,7 @@ public final class ht implements v0.g {
                 finishpasskeylogin.from_auth_key_id = currentAuthKeyId;
             }
             final int sendRequestTyped = ConnectionsManager.getInstance(i7).sendRequestTyped(finishpasskeylogin, new d3.b(1), new p9(t1Var, ud0Var, parseLong, 3), parseInt, 72);
-            final int i10 = this.f24533c;
+            final int i10 = this.f24497c;
             t1Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {

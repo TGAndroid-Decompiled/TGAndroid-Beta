@@ -1,45 +1,38 @@
 package oi;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.view.View;
-import java.util.HashSet;
+import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m6;
-public final class s0 extends View implements org.telegram.ui.ActionBar.b6 {
-    public final h6 f22365a;
-    public final Paint f22366b;
-    public a f22367c;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.n41;
+import org.telegram.ui.Components.o41;
+public final class s0 extends n41 {
+    public static final int f22341b = 0;
 
-    public s0(Context context, h6 h6Var) {
-        super(context);
-        this.f22366b = new Paint();
-        this.f22365a = h6Var;
-        updateColors();
+    static {
+        n41.h(new n41());
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(m6.wl));
-    }
-
-    public a getRow() {
-        return this.f22367c;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, org.telegram.messenger.g0.L(6.0f), getMeasuredWidth(), org.telegram.messenger.g0.L(6.0f) + 1, this.f22366b);
+    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
+        t0 t0Var = (t0) view;
+        a aVar = (a) o41Var.H;
+        t0Var.f22468a = aVar;
+        t0Var.f22393w = (p2) o41Var.I;
+        t0Var.f22394x = hd.f24408a0;
+        t0Var.c(aVar);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(6.0f) + 1);
+    public final View d(Context context, ek0 ek0Var, int i7, h6 h6Var) {
+        return new t0(context, h6Var);
     }
 
     @Override
-    public final void updateColors() {
-        this.f22366b.setColor(m6.w0(m6.wl, this.f22365a));
+    public final boolean f() {
+        return false;
     }
 }

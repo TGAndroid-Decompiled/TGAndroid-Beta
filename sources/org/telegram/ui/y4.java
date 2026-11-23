@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLObject;
 public abstract class y4 {
-    public final x4 f54036a = new x4(this, 0);
-    public final org.telegram.messenger.ls f54037b = org.telegram.messenger.ls.f(org.telegram.messenger.k10.f24968t0);
-    public final Object f54038c;
+    public final x4 f54010a = new x4(this, 0);
+    public final org.telegram.messenger.ls f54011b = org.telegram.messenger.ls.f(org.telegram.messenger.k10.f24932t0);
+    public final Object f54012c;
     public final int d;
-    public final int f54039e;
-    public di.d7 f54040f;
-    public boolean f54041g;
+    public final int f54013e;
+    public di.d7 f54014f;
+    public boolean f54015g;
 
     public y4(int i7, int i10, TLObject tLObject) {
-        this.f54038c = tLObject;
+        this.f54012c = tLObject;
         this.d = i7;
-        this.f54039e = i10;
+        this.f54013e = i10;
     }
 
     public abstract void a();

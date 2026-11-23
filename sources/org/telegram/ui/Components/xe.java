@@ -17,41 +17,41 @@ public final class xe extends qn0 {
         super(context);
         int width;
         this.H = chatActivityEnterView;
-        this.f28975b = true;
-        this.f28976c = 150;
-        this.f28978f = -1L;
-        this.f28981j = new h2.f((int[]) null);
+        this.f28941b = true;
+        this.f28942c = 150;
+        this.f28944f = -1L;
+        this.f28947j = new h2.f((int[]) null);
         e();
-        this.f38964z = new ArrayList();
+        this.f38918z = new ArrayList();
         this.G = new ArrayList();
-        this.f38957r = peer;
-        this.f38958s = tL_channels_sendAsPeers;
-        bi.e3 e3Var = new bi.e3(25, context, this);
-        this.f38959t = e3Var;
-        e3Var.setLayoutParams(c8.ma.c(-2.0f, -2));
-        setContentView(e3Var);
+        this.f38911r = peer;
+        this.f38912s = tL_channels_sendAsPeers;
+        bi.g3 g3Var = new bi.g3(25, context, this);
+        this.f38913t = g3Var;
+        g3Var.setLayoutParams(c8.na.c(-2.0f, -2));
+        setContentView(g3Var);
         setWidth(-2);
         setHeight(-2);
         setBackgroundDrawable(null);
         Drawable mutate = context.getDrawable(2131232569).mutate();
-        org.telegram.ui.ActionBar.t6.x(e3Var, mutate, org.telegram.ui.ActionBar.m6.G8, h6Var, PorterDuff.Mode.MULTIPLY);
-        e3Var.setBackground(mutate);
+        org.telegram.ui.ActionBar.t6.x(g3Var, mutate, org.telegram.ui.ActionBar.m6.G8, h6Var, PorterDuff.Mode.MULTIPLY);
+        g3Var.setBackground(mutate);
         Rect rect = new Rect();
         mutate.getPadding(rect);
-        e3Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+        g3Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
         int L = org.telegram.messenger.g0.L(450.0f);
         if (bnVar == null) {
-            width = org.telegram.messenger.g0.f24046q.x;
+            width = org.telegram.messenger.g0.f24010q.x;
         } else {
-            width = bnVar.f46111m1.getWidth();
+            width = bnVar.f46064m1.getWidth();
         }
         int i7 = (int) (width * 0.75f);
         kn0 kn0Var = new kn0(context, i7, L);
-        this.f38954o = kn0Var;
+        this.f38908o = kn0Var;
         kn0Var.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f38955p = textView;
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29545m5, h6Var);
+        this.f38909p = textView;
+        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29511m5, h6Var);
         textView.setTextSize(1, 16.0f);
         textView.setText(org.telegram.messenger.hd.N0(2131745404, null));
         textView.setTypeface(org.telegram.messenger.g0.o(), 1);
@@ -62,52 +62,52 @@ public final class xe extends qn0 {
         final ArrayList<TLRPC.TL_sendAsPeer> arrayList = tL_channels_sendAsPeers.peers;
         ek0 ek0Var = new ek0(context, null);
         this.v = ek0Var;
-        v4.c0 c0Var = new v4.c0();
-        this.f38961w = c0Var;
-        ek0Var.setLayoutManager(c0Var);
+        v4.b0 b0Var = new v4.b0();
+        this.f38915w = b0Var;
+        ek0Var.setLayoutManager(b0Var);
         ek0Var.setAdapter(new ln0(h6Var, arrayList, npVar, i7, peer));
         ek0Var.j(new mn0(this));
         ek0Var.setOnItemClickListener(new qj0(arrayList, context, bnVar, z10, hVar) {
-            public final List f36568b;
-            public final Context f36569c;
+            public final List f36241b;
+            public final Context f36242c;
             public final org.telegram.ui.bn d;
-            public final a3.h f36570e;
+            public final a3.h f36243e;
 
             {
-                this.f36570e = hVar;
+                this.f36243e = hVar;
             }
 
             @Override
             public final void c(int i10, View view) {
-                qn0.k(xe.this, this.f36568b, this.f36569c, this.d, this.f36570e, view, i10);
+                qn0.k(xe.this, this.f36241b, this.f36242c, this.d, this.f36243e, view, i10);
             }
         });
         ek0Var.setOverScrollMode(2);
         frameLayout.addView(ek0Var);
         View view = new View(context);
-        this.f38960u = view;
+        this.f38914u = view;
         Drawable drawable = context.getDrawable(2131231237);
         drawable.setAlpha(153);
         view.setBackground(drawable);
         view.setAlpha(0.0f);
-        frameLayout.addView(view, c8.ma.c(4.0f, -1));
-        kn0Var.addView(frameLayout, c8.ma.c(-2.0f, -1));
-        e3Var.addView(kn0Var);
+        frameLayout.addView(view, c8.na.c(4.0f, -1));
+        kn0Var.addView(frameLayout, c8.na.c(-2.0f, -1));
+        g3Var.addView(kn0Var);
     }
 
     @Override
     public final void dismiss() {
-        ArrayList arrayList = this.f38964z;
+        ArrayList arrayList = this.f38918z;
         ChatActivityEnterView chatActivityEnterView = this.H;
-        if (chatActivityEnterView.f32705r0 != this) {
+        if (chatActivityEnterView.f32671r0 != this) {
             super.dismiss();
             return;
         }
-        chatActivityEnterView.f32705r0 = null;
+        chatActivityEnterView.f32671r0 = null;
         int i7 = 0;
-        if (!this.f38956q) {
+        if (!this.f38910q) {
             l(new r1.g[0]);
-            chatActivityEnterView.f32696q0.a(true, true, 0.0f);
+            chatActivityEnterView.f32662q0.a(true, true, 0.0f);
             return;
         }
         int size = arrayList.size();

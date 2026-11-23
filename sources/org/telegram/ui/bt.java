@@ -1,34 +1,34 @@
 package org.telegram.ui;
 public final class bt implements Runnable {
-    public final int f46309a;
-    public final DataSettingsActivity f46310b;
+    public final int f46296a;
+    public final DataSettingsActivity f46297b;
 
     public bt(DataSettingsActivity dataSettingsActivity, int i7) {
-        this.f46309a = i7;
-        this.f46310b = dataSettingsActivity;
+        this.f46296a = i7;
+        this.f46297b = dataSettingsActivity;
     }
 
     @Override
     public final void run() {
         int i7;
-        switch (this.f46309a) {
+        switch (this.f46296a) {
             case 0:
-                this.f46310b.getMediaDataController().G(true);
+                this.f46297b.getMediaDataController().G(true);
                 return;
             case 1:
-                DataSettingsActivity dataSettingsActivity = this.f46310b;
+                DataSettingsActivity dataSettingsActivity = this.f46297b;
                 dataSettingsActivity.X = true;
-                if (dataSettingsActivity.f43056a != null && (i7 = dataSettingsActivity.f43063s) >= 0) {
+                if (dataSettingsActivity.f43022a != null && (i7 = dataSettingsActivity.f43029s) >= 0) {
                     dataSettingsActivity.s0(i7);
                     return;
                 }
                 return;
             default:
-                x6.f53646k0 = null;
-                DataSettingsActivity dataSettingsActivity2 = this.f46310b;
+                x6.f53568k0 = null;
+                DataSettingsActivity dataSettingsActivity2 = this.f46297b;
                 bt btVar = new bt(dataSettingsActivity2, 1);
                 org.telegram.messenger.g0.h3(btVar, 100L);
-                x6.m0(new bi.b4(dataSettingsActivity2, btVar, System.currentTimeMillis(), 3));
+                x6.m0(new bi.d4(dataSettingsActivity2, btVar, System.currentTimeMillis(), 3));
                 return;
         }
     }

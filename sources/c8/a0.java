@@ -1,19 +1,13 @@
 package c8;
 
-import com.google.android.gms.cast.framework.media.internal.ResourceProvider;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 public abstract class a0 {
-    public static int a(String str) {
-        Integer num;
-        try {
-            Map map = ResourceProvider.f6217a;
-            num = (Integer) ResourceProvider.class.getMethod("findResourceByName", String.class).invoke(null, str);
-        } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
-        }
-        if (num == null) {
-            return 0;
-        }
-        return num.intValue();
+    public static android.content.res.ColorStateList a(android.content.Context r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: c8.a0.a(android.content.Context, int):android.content.res.ColorStateList");
+    }
+
+    public static Drawable b(Context context, int i7) {
+        return m.m2.d().g(context, i7);
     }
 }

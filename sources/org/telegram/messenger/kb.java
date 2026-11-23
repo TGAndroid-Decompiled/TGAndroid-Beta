@@ -5,18 +5,18 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.tgnet.TLRPC;
 public final class kb implements Runnable {
-    public final int f25052a;
-    public final long f25053b;
-    public final long f25054c;
+    public final int f25016a;
+    public final long f25017b;
+    public final long f25018c;
     public final int d;
-    public final Object f25055e;
+    public final Object f25019e;
 
     public kb(int i7, long j3, long j10, String str) {
-        this.f25052a = 0;
+        this.f25016a = 0;
         this.d = i7;
-        this.f25055e = str;
-        this.f25053b = j3;
-        this.f25054c = j10;
+        this.f25019e = str;
+        this.f25017b = j3;
+        this.f25018c = j10;
     }
 
     @Override
@@ -28,12 +28,12 @@ public final class kb implements Runnable {
         int i10;
         long j11;
         long j12;
-        int i11 = this.f25052a;
+        int i11 = this.f25016a;
         int i12 = 0;
-        long j13 = this.f25054c;
-        long j14 = this.f25053b;
+        long j13 = this.f25018c;
+        long j14 = this.f25017b;
         int i13 = this.d;
-        Object obj = this.f25055e;
+        Object obj = this.f25019e;
         switch (i11) {
             case 0:
                 ls.f(i13).k(141, (String) obj, Long.valueOf(j14), Long.valueOf(j13));
@@ -74,16 +74,16 @@ public final class kb implements Runnable {
                     iArr3[6] = 0;
                     iArr3[7] = 0;
                     iArr3[8] = 0;
-                    long j15 = this.f25053b;
+                    long j15 = this.f25017b;
                     int i16 = (j15 > 0L ? 1 : (j15 == 0L ? 0 : -1));
                     int i17 = 4;
-                    long j16 = this.f25054c;
+                    long j16 = this.f25018c;
                     if (i16 != 0) {
-                        SQLiteDatabase sQLiteDatabase = siVar.getMessagesStorage().f27252b;
+                        SQLiteDatabase sQLiteDatabase = siVar.getMessagesStorage().f27216b;
                         Locale locale = Locale.US;
                         queryFinalized = sQLiteDatabase.queryFinalized("SELECT type, count, old FROM media_counts_topics WHERE uid = " + j16 + " AND topic_id = " + j15, new Object[0]);
                     } else {
-                        SQLiteDatabase sQLiteDatabase2 = siVar.getMessagesStorage().f27252b;
+                        SQLiteDatabase sQLiteDatabase2 = siVar.getMessagesStorage().f27216b;
                         Locale locale2 = Locale.US;
                         queryFinalized = sQLiteDatabase2.queryFinalized("SELECT type, count, old FROM media_counts_v2 WHERE uid = " + j16, new Object[0]);
                     }
@@ -101,7 +101,7 @@ public final class kb implements Runnable {
                         int i18 = 0;
                         while (i18 < 9) {
                             if (iArr[i18] == -1) {
-                                SQLiteDatabase sQLiteDatabase3 = siVar.getMessagesStorage().f27252b;
+                                SQLiteDatabase sQLiteDatabase3 = siVar.getMessagesStorage().f27216b;
                                 Locale locale3 = Locale.US;
                                 SQLiteCursor queryFinalized2 = sQLiteDatabase3.queryFinalized("SELECT COUNT(mid) FROM media_v4 WHERE uid = " + j16 + " AND type = " + i18 + " LIMIT 1", new Object[0]);
                                 if (queryFinalized2.next()) {
@@ -218,10 +218,10 @@ public final class kb implements Runnable {
     }
 
     public kb(c1 c1Var, long j3, long j10, int i7, int i10) {
-        this.f25052a = i10;
-        this.f25055e = c1Var;
-        this.f25053b = j3;
-        this.f25054c = j10;
+        this.f25016a = i10;
+        this.f25019e = c1Var;
+        this.f25017b = j3;
+        this.f25018c = j10;
         this.d = i7;
     }
 }

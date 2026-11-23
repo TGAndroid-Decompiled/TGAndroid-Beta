@@ -5,21 +5,21 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.View;
 public final class wh extends View {
-    public final int f41818a;
-    public final ui f41819b;
+    public final int f41793a;
+    public final ui f41794b;
 
     public wh(ui uiVar, Context context, int i7) {
         super(context);
-        this.f41818a = i7;
-        this.f41819b = uiVar;
+        this.f41793a = i7;
+        this.f41794b = uiVar;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f41818a) {
+        switch (this.f41793a) {
             case 0:
                 super.draw(canvas);
-                this.f41819b.W1.draw(canvas);
+                this.f41794b.W1.draw(canvas);
                 return;
             default:
                 super.draw(canvas);
@@ -29,16 +29,16 @@ public final class wh extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f41818a) {
+        switch (this.f41793a) {
             case 1:
-                ui uiVar = this.f41819b;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, uiVar.f40440w2.getSelectedItemsCount())));
+                ui uiVar = this.f41794b;
+                String format = String.format("%d", Integer.valueOf(Math.max(1, uiVar.f40425w2.getSelectedItemsCount())));
                 int ceil = (int) Math.ceil(uiVar.H2.measureText(format));
                 int max = Math.max(org.telegram.messenger.g0.L(16.0f) + ceil, org.telegram.messenger.g0.L(24.0f));
                 int measuredWidth = getMeasuredWidth() / 2;
                 int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.C5, uiVar.J0);
                 uiVar.H2.setColor(i0.a.o(w02, (int) (((uiVar.T2 * 0.42d) + 0.58d) * Color.alpha(w02))));
-                uiVar.J2.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, uiVar.J0));
+                uiVar.J2.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29420h5, uiVar.J0));
                 int i7 = max / 2;
                 int i10 = measuredWidth - i7;
                 int i11 = i7 + measuredWidth;
@@ -57,10 +57,10 @@ public final class wh extends View {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f41818a) {
+        switch (this.f41793a) {
             case 0:
                 super.onSizeChanged(i7, i10, i11, i12);
-                this.f41819b.W1.setBounds(0, (i10 - org.telegram.messenger.g0.f24041n) - org.telegram.messenger.g0.L(48.0f), i7, i10);
+                this.f41794b.W1.setBounds(0, (i10 - org.telegram.messenger.g0.f24005n) - org.telegram.messenger.g0.L(48.0f), i7, i10);
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);

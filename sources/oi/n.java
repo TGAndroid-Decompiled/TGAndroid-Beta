@@ -10,10 +10,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.tx;
 public final class n implements tx {
-    public final o f22251a;
+    public final o f22208a;
 
     public n(o oVar) {
-        this.f22251a = oVar;
+        this.f22208a = oVar;
     }
 
     @Override
@@ -48,10 +48,10 @@ public final class n implements tx {
 
     @Override
     public final void i(int i7) {
-        f1 focusedEditTextOrNull;
+        e1 focusedEditTextOrNull;
         boolean z10 = false;
-        o oVar = this.f22251a;
-        if (i7 != 0 && (focusedEditTextOrNull = oVar.f22270r.getFocusedEditTextOrNull()) != null) {
+        o oVar = this.f22208a;
+        if (i7 != 0 && (focusedEditTextOrNull = oVar.f22237r.getFocusedEditTextOrNull()) != null) {
             oVar.G = focusedEditTextOrNull;
             oVar.H = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
@@ -69,7 +69,7 @@ public final class n implements tx {
 
     @Override
     public final boolean k() {
-        f1 R = o.R(this.f22251a);
+        e1 R = o.R(this.f22208a);
         if (R == null || R.length() == 0) {
             return false;
         }
@@ -79,8 +79,8 @@ public final class n implements tx {
 
     @Override
     public final void l(String str) {
-        o oVar = this.f22251a;
-        f1 R = o.R(oVar);
+        o oVar = this.f22208a;
+        e1 R = o.R(oVar);
         if (R != null) {
             int S = o.S(oVar, R);
             try {
@@ -104,8 +104,8 @@ public final class n implements tx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.y5 y5Var;
-        o oVar = this.f22251a;
-        f1 R = o.R(oVar);
+        o oVar = this.f22208a;
+        e1 R = o.R(oVar);
         if (R != null) {
             int S = o.S(oVar, R);
             try {
@@ -133,7 +133,7 @@ public final class n implements tx {
 
     @Override
     public final boolean z() {
-        return this.f22251a.E;
+        return this.f22208a.E;
     }
 
     @Override

@@ -16,45 +16,45 @@ import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.xi0;
 public final class a0 extends FrameLayout implements b6 {
-    public final Drawable f5311a;
-    public final Rect f5312b;
-    public final Paint f5313c;
+    public final Drawable f5274a;
+    public final Rect f5275b;
+    public final Paint f5276c;
     public final int[] d;
-    public final HashMap f5314e;
-    public float f5315f;
+    public final HashMap f5277e;
+    public float f5278f;
     public float h;
-    public float f5316n;
-    public float f5317r;
-    public float f5318s;
-    public final Path f5319w;
-    public final b0 f5320x;
+    public float f5279n;
+    public float f5280r;
+    public float f5281s;
+    public final Path f5282w;
+    public final b0 f5283x;
 
     public a0(b0 b0Var, Context context) {
         super(context);
-        this.f5320x = b0Var;
+        this.f5283x = b0Var;
         Rect rect = new Rect();
-        this.f5312b = rect;
+        this.f5275b = rect;
         Paint paint = new Paint(1);
-        this.f5313c = paint;
+        this.f5276c = paint;
         this.d = new int[4];
-        this.f5314e = new HashMap();
-        this.f5315f = 0.0f;
+        this.f5277e = new HashMap();
+        this.f5278f = 0.0f;
         this.h = 0.0f;
-        this.f5316n = 1.0f;
-        this.f5317r = 0.0f;
-        this.f5318s = 0.0f;
-        this.f5319w = new Path();
+        this.f5279n = 1.0f;
+        this.f5280r = 0.0f;
+        this.f5281s = 0.0f;
+        this.f5282w = new Path();
         Drawable mutate = context.getDrawable(2131232675).mutate();
-        this.f5311a = mutate;
+        this.f5274a = mutate;
         int L = org.telegram.messenger.g0.L(7.0f);
         rect.bottom = L;
         rect.right = L;
         rect.top = L;
         rect.left = L;
         int i7 = m6.Ke;
-        h6 h6Var = b0Var.f5342s;
+        h6 h6Var = b0Var.f5305s;
         t6.x(this, mutate, i7, h6Var, PorterDuff.Mode.MULTIPLY);
-        if (b0Var.f5347y == 2) {
+        if (b0Var.f5310y == 2) {
             paint.setColor(i0.a.f(0.13f, -16777216, -1));
         } else {
             paint.setColor(m6.w0(m6.G8, h6Var));
@@ -69,12 +69,12 @@ public final class a0 extends FrameLayout implements b6 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        b0 b0Var = this.f5320x;
-        xi0 xi0Var = b0Var.f5337n;
-        if (b0Var.f5347y != 1 && (xi0Var == null || xi0Var.getDelegate() == null || !xi0Var.getDelegate().E())) {
+        b0 b0Var = this.f5283x;
+        xi0 xi0Var = b0Var.f5300n;
+        if (b0Var.f5310y != 1 && (xi0Var == null || xi0Var.getDelegate() == null || !xi0Var.getDelegate().E())) {
             return;
         }
-        b0Var.f5336m.f51840g0.invalidate();
+        b0Var.f5299m.f51418g0.invalidate();
     }
 
     @Override
@@ -86,9 +86,9 @@ public final class a0 extends FrameLayout implements b6 {
     public final void updateColors() {
         Paint paint;
         try {
-            b0 b0Var = this.f5320x;
-            if (b0Var.f5347y != 2 && (paint = this.f5313c) != null) {
-                paint.setColor(m6.w0(m6.G8, b0Var.f5342s));
+            b0 b0Var = this.f5283x;
+            if (b0Var.f5310y != 2 && (paint = this.f5276c) != null) {
+                paint.setColor(m6.w0(m6.G8, b0Var.f5305s));
                 invalidate();
             }
         } catch (Exception e10) {

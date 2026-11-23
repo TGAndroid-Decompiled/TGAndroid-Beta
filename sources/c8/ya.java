@@ -1,32 +1,8 @@
 package c8;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import org.telegram.ui.z80;
+import android.view.View;
 public abstract class ya {
-    public static boolean a(z80 z80Var) {
-        Context context = org.telegram.messenger.t0.f26931b;
-        int componentEnabledSetting = context.getPackageManager().getComponentEnabledSetting(z80Var.a(context));
-        if (componentEnabledSetting == 1 || (componentEnabledSetting == 0 && z80Var == z80.DEFAULT)) {
-            return true;
-        }
-        return false;
-    }
-
-    public static void b(z80 z80Var) {
-        z80[] values;
-        int i7;
-        Context context = org.telegram.messenger.t0.f26931b;
-        PackageManager packageManager = context.getPackageManager();
-        for (z80 z80Var2 : z80.values()) {
-            ComponentName a10 = z80Var2.a(context);
-            if (z80Var2 == z80Var) {
-                i7 = 1;
-            } else {
-                i7 = 2;
-            }
-            packageManager.setComponentEnabledSetting(a10, i7, 1);
-        }
+    public static void a(View view, float f10, float f11, float f12, float f13) {
+        view.setPadding(org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(f12), org.telegram.messenger.g0.L(f13));
     }
 }

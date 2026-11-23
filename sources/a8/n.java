@@ -154,7 +154,7 @@ public class n extends AbstractCollection {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused2) {
                     for (Map.Entry entry2 : lbVar2.entrySet()) {
-                        if (f8.a(obj, entry2.getValue())) {
+                        if (g8.a(obj, entry2.getValue())) {
                             lbVar2.remove(entry2.getKey());
                             return true;
                         }
@@ -173,7 +173,7 @@ public class n extends AbstractCollection {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused3) {
                     for (Map.Entry entry4 : abstractMap.entrySet()) {
-                        if (ka.a(obj, entry4.getValue())) {
+                        if (la.a(obj, entry4.getValue())) {
                             abstractMap.remove(entry4.getKey());
                             return true;
                         }
@@ -305,7 +305,7 @@ public class n extends AbstractCollection {
             case 4:
                 return ((h9.l) this.f546b).size();
             case 5:
-                return ((h9.l1) this.f546b).f14052f;
+                return ((h9.l1) this.f546b).f14015f;
             case 6:
                 return ((h9.s) this.f546b).size();
             default:

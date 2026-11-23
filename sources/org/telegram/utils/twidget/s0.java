@@ -1,25 +1,25 @@
 package org.telegram.utils.twidget;
 public final class s0 implements p0 {
-    public final int f54974a;
-    public final x0 f54975b;
-    public final byte[] f54976c;
+    public final int f54939a;
+    public final x0 f54940b;
+    public final byte[] f54941c;
 
     public s0(x0 x0Var, byte[] bArr, int i7) {
-        this.f54974a = i7;
-        this.f54975b = x0Var;
-        this.f54976c = bArr;
+        this.f54939a = i7;
+        this.f54940b = x0Var;
+        this.f54941c = bArr;
     }
 
     @Override
     public final Object run() {
-        switch (this.f54974a) {
+        switch (this.f54939a) {
             case 0:
-                x0 x0Var = this.f54975b;
-                x0Var.f55024b.selectableText(x0Var.i1(this.f54976c));
+                x0 x0Var = this.f54940b;
+                x0Var.f54989b.selectableText(x0Var.i1(this.f54941c));
                 return null;
             default:
-                x0 x0Var2 = this.f54975b;
-                byte[] bArr = this.f54976c;
+                x0 x0Var2 = this.f54940b;
+                byte[] bArr = this.f54941c;
                 synchronized (x0Var2) {
                     if (bArr != null) {
                         try {

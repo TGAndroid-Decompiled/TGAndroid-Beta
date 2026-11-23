@@ -13,19 +13,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class wd0 implements RequestDelegate {
-    public final int f53084a;
-    public final ce0 f53085b;
+    public final int f53047a;
+    public final ce0 f53048b;
 
     public wd0(ce0 ce0Var, int i7) {
-        this.f53084a = i7;
-        this.f53085b = ce0Var;
+        this.f53047a = i7;
+        this.f53048b = ce0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f53084a) {
+        switch (this.f53047a) {
             case 0:
-                final ce0 ce0Var = this.f53085b;
+                final ce0 ce0Var = this.f53048b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -37,7 +37,7 @@ public final class wd0 implements RequestDelegate {
                         ce0 ce0Var2 = ce0Var;
                         switch (i10) {
                             case 0:
-                                ae0 ae0Var = ce0Var2.f46530a;
+                                ae0 ae0Var = ce0Var2.f46516a;
                                 HashMap hashMap = ce0Var2.J;
                                 ArrayList arrayList = ce0Var2.H;
                                 HashMap hashMap2 = ce0Var2.I;
@@ -53,13 +53,13 @@ public final class wd0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f50969a = str;
+                                                obj.f50902a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f50970b = str2;
+                                                obj.f50903b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f50969a = str2;
+                                                    obj.f50902a = str2;
                                                 }
-                                                obj.f50971c = tL_help_countryCode.country_code;
+                                                obj.f50904c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -76,7 +76,7 @@ public final class wd0 implements RequestDelegate {
                                             }
                                         }
                                     }
-                                    de0 de0Var = ce0Var2.f46542h0;
+                                    de0 de0Var = ce0Var2.f46528h0;
                                     if (de0Var.G == 2) {
                                         i7 = ((org.telegram.ui.ActionBar.g2) de0Var).currentAccount;
                                         String d = pf.b.d(org.telegram.messenger.k10.i(i7).d(), false);
@@ -126,12 +126,12 @@ public final class wd0 implements RequestDelegate {
                                 return;
                             default:
                                 ce0Var2.N = false;
-                                de0 de0Var2 = ce0Var2.f46542h0;
+                                de0 de0Var2 = ce0Var2.f46528h0;
                                 de0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;
                                     if (!TwoStepVerificationActivity.n0(password, true)) {
-                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.hd.N0(2131743575, "UpdateAppAlert"), true);
+                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.hd.N0(2131743577, "UpdateAppAlert"), true);
                                         return;
                                     }
                                     Bundle bundle = new Bundle();
@@ -148,7 +148,7 @@ public final class wd0 implements RequestDelegate {
                 });
                 return;
             default:
-                final ce0 ce0Var2 = this.f53085b;
+                final ce0 ce0Var2 = this.f53048b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -160,7 +160,7 @@ public final class wd0 implements RequestDelegate {
                         ce0 ce0Var22 = ce0Var2;
                         switch (i10) {
                             case 0:
-                                ae0 ae0Var = ce0Var22.f46530a;
+                                ae0 ae0Var = ce0Var22.f46516a;
                                 HashMap hashMap = ce0Var22.J;
                                 ArrayList arrayList = ce0Var22.H;
                                 HashMap hashMap2 = ce0Var22.I;
@@ -176,13 +176,13 @@ public final class wd0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f50969a = str;
+                                                obj.f50902a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f50970b = str2;
+                                                obj.f50903b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f50969a = str2;
+                                                    obj.f50902a = str2;
                                                 }
-                                                obj.f50971c = tL_help_countryCode.country_code;
+                                                obj.f50904c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -199,7 +199,7 @@ public final class wd0 implements RequestDelegate {
                                             }
                                         }
                                     }
-                                    de0 de0Var = ce0Var22.f46542h0;
+                                    de0 de0Var = ce0Var22.f46528h0;
                                     if (de0Var.G == 2) {
                                         i7 = ((org.telegram.ui.ActionBar.g2) de0Var).currentAccount;
                                         String d = pf.b.d(org.telegram.messenger.k10.i(i7).d(), false);
@@ -249,12 +249,12 @@ public final class wd0 implements RequestDelegate {
                                 return;
                             default:
                                 ce0Var22.N = false;
-                                de0 de0Var2 = ce0Var22.f46542h0;
+                                de0 de0Var2 = ce0Var22.f46528h0;
                                 de0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;
                                     if (!TwoStepVerificationActivity.n0(password, true)) {
-                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.hd.N0(2131743575, "UpdateAppAlert"), true);
+                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.hd.N0(2131743577, "UpdateAppAlert"), true);
                                         return;
                                     }
                                     Bundle bundle = new Bundle();

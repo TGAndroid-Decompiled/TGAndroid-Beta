@@ -5,11 +5,11 @@ import android.view.MotionEvent;
 import android.view.View;
 public final class a41 extends org.telegram.ui.Components.j71 {
     public boolean W;
-    public final c51 f45500a0;
+    public final c51 f45466a0;
 
     public a41(c51 c51Var, Activity activity) {
         super(activity, null);
-        this.f45500a0 = c51Var;
+        this.f45466a0 = c51Var;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class a41 extends org.telegram.ui.Components.j71 {
         boolean z10;
         int actionMasked = motionEvent.getActionMasked();
         if (actionMasked == 0) {
-            c51 c51Var = this.f45500a0;
-            if (c51Var.f46446k0 != null) {
+            c51 c51Var = this.f45466a0;
+            if (c51Var.f46430k0 != null) {
                 View currentView = getCurrentView();
-                xd xdVar = c51Var.f46446k0;
+                xd xdVar = c51Var.f46430k0;
                 if (currentView == xdVar) {
-                    boolean G = xdVar.G(motionEvent.getX() - c51Var.f46446k0.getX(), motionEvent.getY() - c51Var.f46446k0.getY());
+                    boolean G = xdVar.G(motionEvent.getX() - c51Var.f46430k0.getX(), motionEvent.getY() - c51Var.f46430k0.getY());
                     xdVar.R0 = G;
-                    if (G && xdVar.f53834b1.f52307b.canScrollHorizontally(-1)) {
+                    if (G && xdVar.f53754b1.f52253b.canScrollHorizontally(-1)) {
                         z10 = true;
                         this.W = z10;
                     }
@@ -66,15 +66,15 @@ public final class a41 extends org.telegram.ui.Components.j71 {
 
     @Override
     public final void q() {
-        c51 c51Var = this.f45500a0;
-        c51Var.p0(c51Var.f46444i0.getCurrentPosition(), true);
+        c51 c51Var = this.f45466a0;
+        c51Var.p0(c51Var.f46428i0.getCurrentPosition(), true);
         c51Var.q0(false, 0.0f);
     }
 
     @Override
     public final void s(boolean z10) {
-        c51 c51Var = this.f45500a0;
-        float positionAnimated = c51Var.f46444i0.getPositionAnimated();
+        c51 c51Var = this.f45466a0;
+        float positionAnimated = c51Var.f46428i0.getPositionAnimated();
         c51Var.q0(!z10, positionAnimated);
         if (!z10) {
             c51Var.p0(Math.round(positionAnimated), true);

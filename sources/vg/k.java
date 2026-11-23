@@ -1,37 +1,46 @@
 package vg;
-public final class k implements Runnable {
-    public final int f59498a;
-    public final l f59499b;
 
-    public k(l lVar, int i7) {
-        this.f59498a = i7;
-        this.f59499b = lVar;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class k extends AnimatorListenerAdapter {
+    public final int f59461a;
+    public final n f59462b;
+
+    public k(n nVar, int i7) {
+        this.f59461a = i7;
+        this.f59462b = nVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f59498a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f59461a) {
             case 0:
-                l lVar = this.f59499b;
-                if (lVar.d.K == lVar) {
-                    lVar.d.f59504a0 = false;
-                    lVar.d.f59506b0 = null;
-                    lVar.d.i();
-                    return;
-                }
+                super.onAnimationEnd(animator);
+                n nVar = this.f59462b;
+                nVar.f59470b.d = 0.0f;
+                nVar.f59476e0 = null;
+                nVar.j(nVar.M);
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                n nVar2 = this.f59462b;
+                nVar2.f59470b.d = 0.0f;
+                nVar2.f59476e0 = null;
+                nVar2.j(nVar2.M);
+                return;
+            case 2:
+                super.onAnimationEnd(animator);
+                n nVar3 = this.f59462b;
+                nVar3.f59470b.d = 0.0f;
+                nVar3.f59476e0 = null;
+                nVar3.j(nVar3.M);
                 return;
             default:
-                l lVar2 = this.f59499b;
-                if (lVar2.d.K == lVar2 && !lVar2.f59501b) {
-                    lVar2.d.f59504a0 = true;
-                    Runnable runnable = lVar2.d.f59506b0;
-                    lVar2.d.f59506b0 = null;
-                    if (runnable != null) {
-                        runnable.run();
-                        return;
-                    }
-                    return;
-                }
+                super.onAnimationEnd(animator);
+                n nVar4 = this.f59462b;
+                nVar4.f59470b.d = 0.0f;
+                nVar4.f59476e0 = null;
+                nVar4.j(nVar4.M);
                 return;
         }
     }

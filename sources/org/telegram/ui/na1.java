@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class na1 extends org.telegram.ui.Components.dk0 {
-    public final Context f50162c;
+    public final Context f50150c;
     public final TwoStepVerificationActivity d;
 
     public na1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
         this.d = twoStepVerificationActivity;
-        this.f50162c = context;
+        this.f50150c = context;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59169f == 0) {
+    public final boolean D(v4.e1 e1Var) {
+        if (e1Var.f59115f == 0) {
             return true;
         }
         return false;
@@ -39,11 +39,11 @@ public final class na1 extends org.telegram.ui.Components.dk0 {
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
+    public final void t(v4.e1 e1Var, int i7) {
         int i10;
         int i11;
-        int i12 = f1Var.f59169f;
-        View view = f1Var.f59165a;
+        int i12 = e1Var.f59115f;
+        View view = e1Var.f59111a;
         TwoStepVerificationActivity twoStepVerificationActivity = this.d;
         if (i12 != 0) {
             if (i12 == 1) {
@@ -70,7 +70,7 @@ public final class na1 extends org.telegram.ui.Components.dk0 {
         } else if (i7 != twoStepVerificationActivity.P) {
             i11 = twoStepVerificationActivity.turnPasswordOffRow;
             if (i7 == i11) {
-                x9Var.b(org.telegram.messenger.hd.N0(2131743697, null), true);
+                x9Var.b(org.telegram.messenger.hd.N0(2131743699, null), true);
             } else if (i7 == twoStepVerificationActivity.S) {
                 x9Var.b(org.telegram.messenger.hd.N0(2131752519, null), false);
             } else if (i7 == twoStepVerificationActivity.R) {
@@ -82,15 +82,15 @@ public final class na1 extends org.telegram.ui.Components.dk0 {
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View x9Var;
-        Context context = this.f50162c;
+        Context context = this.f50150c;
         if (i7 != 0) {
             x9Var = new org.telegram.ui.Cells.a9(context);
         } else {
             x9Var = new org.telegram.ui.Cells.x9(context);
-            org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29381d6, x9Var, null);
+            org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29347d6, x9Var, null);
         }
-        return new v4.f1(x9Var);
+        return new v4.e1(x9Var);
     }
 }

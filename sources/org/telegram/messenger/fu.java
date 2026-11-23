@@ -9,12 +9,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class fu extends au {
-    public static Paint f23973c0;
+    public static Paint f23937c0;
     public final boolean X;
     public final ArrayList Y;
     public final int[] Z;
-    public final int f23974a0;
-    public tt f23975b0;
+    public final int f23938a0;
+    public tt f23939b0;
 
     public fu(fv fvVar, Rect rect, int i7, TL_iv.pageBlockCollage pageblockcollage, boolean z10) {
         super(fvVar, rect, i7);
@@ -42,11 +42,11 @@ public final class fu extends au {
                 this.Y.add(ttVar);
             }
         }
-        int i14 = this.f22970c;
+        int i14 = this.f22934c;
         ArrayList arrayList = this.Y;
         this.Z = new int[arrayList.size()];
         if (arrayList.isEmpty()) {
-            this.f23974a0 = 0;
+            this.f23938a0 = 0;
             return;
         }
         int i15 = 1;
@@ -55,7 +55,7 @@ public final class fu extends au {
             float f13 = ttVar2.F;
             f13 = f13 <= 0.0f ? 1.0f : f13;
             int i16 = (int) (i14 / f13);
-            Point point = g0.f24046q;
+            Point point = g0.f24010q;
             int max = (int) (Math.max(point.x, point.y) * 0.55f);
             if (i16 > max) {
                 i14 = (int) (max * f13);
@@ -63,7 +63,7 @@ public final class fu extends au {
             }
             ttVar2.l(0, 0, i14, i16);
             this.Z[0] = 15;
-            this.f23974a0 = i16;
+            this.f23938a0 = i16;
             return;
         }
         float[] fArr = new float[arrayList.size()];
@@ -78,31 +78,31 @@ public final class fu extends au {
         int i19 = i18 + 1;
         float[] fArr2 = new float[i19];
         for (yi yiVar2 : e10) {
-            byte b10 = yiVar2.f28094c;
+            byte b10 = yiVar2.f28058c;
             if (b10 == yiVar2.d) {
-                fArr2[b10] = Math.max(fArr2[b10], yiVar2.f28096f);
+                fArr2[b10] = Math.max(fArr2[b10], yiVar2.f28060f);
             }
         }
         int length = e10.length;
         int i20 = 0;
         while (i20 < length) {
             yi yiVar3 = e10[i20];
-            int i21 = yiVar3.f28094c;
+            int i21 = yiVar3.f28058c;
             byte b11 = yiVar3.d;
             if (i21 != b11) {
                 int i22 = (b11 - i21) + i15;
-                float[] fArr3 = yiVar3.f28102m;
+                float[] fArr3 = yiVar3.f28066m;
                 if (fArr3 != null && fArr3.length == i22) {
                     int i23 = 0;
                     while (i23 < i22) {
-                        int i24 = yiVar3.f28094c + i23;
-                        fArr2[i24] = Math.max(fArr2[i24], yiVar3.f28102m[i23]);
+                        int i24 = yiVar3.f28058c + i23;
+                        fArr2[i24] = Math.max(fArr2[i24], yiVar3.f28066m[i23]);
                         i23++;
                         i15 = i15;
                     }
                 } else {
                     i11 = i15;
-                    float f14 = yiVar3.f28096f / i22;
+                    float f14 = yiVar3.f28060f / i22;
                     while (i21 <= yiVar3.d) {
                         fArr2[i21] = Math.max(fArr2[i21], f14);
                         i21++;
@@ -115,7 +115,7 @@ public final class fu extends au {
             i20++;
             i15 = i11;
         }
-        Point point2 = g0.f24046q;
+        Point point2 = g0.f24010q;
         float max2 = Math.max(point2.x, point2.y) * 0.5f;
         int[] iArr = new int[i18 + 2];
         float f15 = 0.0f;
@@ -124,7 +124,7 @@ public final class fu extends au {
             f15 += fArr2[i25];
         }
         iArr[i19] = Math.round(f15 * max2);
-        if (this.f22968a.D()) {
+        if (this.f22932a.D()) {
             f10 = 3.0f;
         } else {
             f10 = 2.0f;
@@ -133,10 +133,10 @@ public final class fu extends au {
         int i26 = 0;
         while (i26 < e10.length) {
             yi yiVar4 = e10[i26];
-            int i27 = iArr[yiVar4.f28094c];
+            int i27 = iArr[yiVar4.f28058c];
             int i28 = iArr[yiVar4.d + 1] - i27;
             float f16 = 1000.0f;
-            if (yiVar4.f28099j > 0) {
+            if (yiVar4.f28063j > 0) {
                 round = Math.round((i10 * i14) / 1000.0f);
                 f11 = 1000.0f;
             } else {
@@ -148,10 +148,10 @@ public final class fu extends au {
                     } else {
                         yi yiVar5 = e10[i29];
                         f12 = f16;
-                        byte b12 = yiVar5.f28094c;
-                        byte b13 = yiVar4.f28094c;
-                        if (b12 <= b13 && yiVar5.d >= b13 && yiVar5.f28092a < yiVar4.f28092a) {
-                            i30 += yiVar5.f28095e;
+                        byte b12 = yiVar5.f28058c;
+                        byte b13 = yiVar4.f28058c;
+                        if (b12 <= b13 && yiVar5.d >= b13 && yiVar5.f28056a < yiVar4.f28056a) {
+                            i30 += yiVar5.f28059e;
                         }
                     }
                     i29++;
@@ -160,20 +160,20 @@ public final class fu extends au {
                 f11 = f16;
                 round = Math.round((i30 * i14) / f11);
             }
-            if ((yiVar4.f28101l & 2) != 0) {
+            if ((yiVar4.f28065l & 2) != 0) {
                 round2 = i14 - round;
             } else {
-                round2 = Math.round((yiVar4.f28095e * i14) / f11) - L;
+                round2 = Math.round((yiVar4.f28059e * i14) / f11) - L;
             }
-            if ((yiVar4.f28101l & 8) == 0) {
+            if ((yiVar4.f28065l & 8) == 0) {
                 i28 -= L;
             }
             ((tt) arrayList.get(i26)).l(round, i27, Math.max(0, round2), Math.max(0, i28));
-            this.Z[i26] = yiVar4.f28101l;
+            this.Z[i26] = yiVar4.f28065l;
             i26++;
             i12 = 0;
         }
-        this.f23974a0 = iArr[i19];
+        this.f23938a0 = iArr[i19];
     }
 
     @Override
@@ -182,7 +182,7 @@ public final class fu extends au {
             ArrayList arrayList = this.Y;
             if (i7 < arrayList.size()) {
                 tt ttVar = (tt) arrayList.get(i7);
-                Rect rect2 = this.f22969b;
+                Rect rect2 = this.f22933b;
                 int i10 = rect2.left + ttVar.G;
                 int i11 = ((int) this.N) + rect2.top + ttVar.H;
                 rect.set(i10, i11, ttVar.I + i10, ttVar.J + i11);
@@ -209,7 +209,7 @@ public final class fu extends au {
 
     @Override
     public final int I() {
-        return this.f23974a0;
+        return this.f23938a0;
     }
 
     @Override
@@ -219,8 +219,8 @@ public final class fu extends au {
 
     @Override
     public final int K() {
-        Rect rect = this.f22969b;
-        return rect.left + this.f22970c + rect.right;
+        Rect rect = this.f22933b;
+        return rect.left + this.f22934c + rect.right;
     }
 
     @Override
@@ -234,7 +234,7 @@ public final class fu extends au {
             tt ttVar = (tt) obj;
             View view = this.W;
             ttVar.T = view;
-            ImageReceiver imageReceiver = ttVar.f27078c;
+            ImageReceiver imageReceiver = ttVar.f27042c;
             imageReceiver.H0(view);
             imageReceiver.P();
             ImageReceiver imageReceiver2 = ttVar.d;
@@ -266,10 +266,10 @@ public final class fu extends au {
             Object obj = arrayList.get(i7);
             i7++;
             tt ttVar = (tt) obj;
-            ttVar.f27078c.R();
+            ttVar.f27042c.R();
             ttVar.d.R();
-            ttVar.f27079e = null;
-            a6.q(ttVar.f27076a.f23976a).v(ttVar);
+            ttVar.f27043e = null;
+            a6.q(ttVar.f27040a.f23940a).v(ttVar);
         }
     }
 
@@ -294,14 +294,14 @@ public final class fu extends au {
         int i18;
         fu fuVar = this;
         boolean z14 = true;
-        if (f23973c0 == null) {
+        if (f23937c0 == null) {
             Paint paint = new Paint(1);
-            f23973c0 = paint;
+            f23937c0 = paint;
             paint.setColor(251658240);
         }
         boolean R = fuVar.R();
         int L2 = g0.L(2.0f);
-        fv fvVar = fuVar.f22968a;
+        fv fvVar = fuVar.f22932a;
         if (!R && !fvVar.D()) {
             i7 = fvVar.S - L2;
         } else {
@@ -312,7 +312,7 @@ public final class fu extends au {
         } else {
             i10 = 0;
         }
-        int i19 = fuVar.f22970c;
+        int i19 = fuVar.f22934c;
         if (i19 > 0 && (i7 > 0 || i10 > 0)) {
             f10 = ((i19 + i7) + i10) / i19;
         } else {
@@ -324,7 +324,7 @@ public final class fu extends au {
             if (i20 < arrayList.size()) {
                 tt ttVar = (tt) arrayList.get(i20);
                 int i21 = ttVar.G;
-                ImageReceiver imageReceiver = ttVar.f27078c;
+                ImageReceiver imageReceiver = ttVar.f27042c;
                 int round = Math.round(i21 * f10) - i7;
                 int round2 = Math.round(ttVar.I * f10);
                 int[] iArr = fuVar.Z;
@@ -416,8 +416,8 @@ public final class fu extends au {
                 }
                 float f12 = round;
                 imageReceiver.y0(f12, ttVar.H, round2, ttVar.J);
-                if (!imageReceiver.I() || imageReceiver.f22672i1 != f11) {
-                    canvas.drawRect(f12, ttVar.H, round + round2, i14 + ttVar.J, f23973c0);
+                if (!imageReceiver.I() || imageReceiver.f22636i1 != f11) {
+                    canvas.drawRect(f12, ttVar.H, round + round2, i14 + ttVar.J, f23937c0);
                 }
                 ttVar.c(canvas);
                 i20++;
@@ -433,24 +433,24 @@ public final class fu extends au {
     public final boolean Y(MotionEvent motionEvent) {
         ArrayList arrayList = this.Y;
         int actionMasked = motionEvent.getActionMasked();
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         motionEvent.offsetLocation(-rect.left, -rect.top);
         try {
             if (actionMasked == 0) {
-                this.f23975b0 = null;
+                this.f23939b0 = null;
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
                     tt ttVar = (tt) arrayList.get(i7);
                     if (ttVar.g(motionEvent.getX(), motionEvent.getY()) && ttVar.k(this.W, motionEvent)) {
-                        this.f23975b0 = ttVar;
+                        this.f23939b0 = ttVar;
                         return true;
                     }
                 }
             } else {
-                tt ttVar2 = this.f23975b0;
+                tt ttVar2 = this.f23939b0;
                 if (ttVar2 != null) {
                     boolean k10 = ttVar2.k(this.W, motionEvent);
                     if (actionMasked == 1 || actionMasked == 3) {
-                        this.f23975b0 = null;
+                        this.f23939b0 = null;
                     }
                     return k10;
                 }

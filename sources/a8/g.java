@@ -21,7 +21,7 @@ public abstract class g implements Map.Entry {
                     return false;
                 }
                 Map.Entry entry2 = (Map.Entry) obj;
-                if (!f8.a(getKey(), entry2.getKey()) || !f8.a(getValue(), entry2.getValue())) {
+                if (!g8.a(getKey(), entry2.getKey()) || !g8.a(getValue(), entry2.getValue())) {
                     return false;
                 }
                 return true;

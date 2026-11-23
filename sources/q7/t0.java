@@ -3,14 +3,14 @@ package q7;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 public abstract class t0 {
-    public static final byte[] f56094a;
+    public static final byte[] f56059a;
 
     static {
         Charset.forName("US-ASCII");
         Charset.forName("UTF-8");
         Charset.forName("ISO-8859-1");
         byte[] bArr = new byte[0];
-        f56094a = bArr;
+        f56059a = bArr;
         ByteBuffer.wrap(bArr);
     }
 }

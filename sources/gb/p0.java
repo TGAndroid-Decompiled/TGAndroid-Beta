@@ -5,26 +5,26 @@ import android.content.pm.PackageInfo;
 import android.os.Build;
 import org.telegram.ui.Cells.c5;
 public final class p0 {
-    public static final p0 f13427a = new Object();
-    public static final c5 f13428b;
+    public static final p0 f13390a = new Object();
+    public static final c5 f13391b;
 
     static {
         pa.d dVar = new pa.d();
-        dVar.b(o0.class, g.f13371a);
-        dVar.b(v0.class, h.f13378a);
-        dVar.b(k.class, e.f13360a);
-        dVar.b(b.class, d.f13340a);
-        dVar.b(a.class, c.f13328a);
-        dVar.b(e0.class, f.f13367a);
+        dVar.b(o0.class, g.f13334a);
+        dVar.b(v0.class, h.f13341a);
+        dVar.b(k.class, e.f13323a);
+        dVar.b(b.class, d.f13303a);
+        dVar.b(a.class, c.f13291a);
+        dVar.b(e0.class, f.f13330a);
         dVar.d = true;
-        f13428b = new c5(dVar);
+        f13391b = new c5(dVar);
     }
 
     public static b a(o9.g gVar) {
         String valueOf;
         String str;
         gVar.a();
-        Context context = gVar.f21788a;
+        Context context = gVar.f21754a;
         kotlin.jvm.internal.j.d(context, "getApplicationContext(...)");
         String packageName = context.getPackageName();
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
@@ -35,13 +35,13 @@ public final class p0 {
         }
         String str2 = valueOf;
         gVar.a();
-        String str3 = gVar.f21790c.f21801b;
+        String str3 = gVar.f21756c.f21767b;
         kotlin.jvm.internal.j.d(str3, "getApplicationId(...)");
         String MODEL = Build.MODEL;
         kotlin.jvm.internal.j.d(MODEL, "MODEL");
         String RELEASE = Build.VERSION.RELEASE;
         kotlin.jvm.internal.j.d(RELEASE, "RELEASE");
-        y yVar = y.f13469b;
+        y yVar = y.f13432b;
         kotlin.jvm.internal.j.b(packageName);
         String str4 = packageInfo.versionName;
         if (str4 == null) {

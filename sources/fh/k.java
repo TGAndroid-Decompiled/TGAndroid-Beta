@@ -1,22 +1,22 @@
 package fh;
 public final class k {
-    public int f11716a;
-    public final int[] f11717b = new int[8];
-    public float f11718c;
+    public int f11679a;
+    public final int[] f11680b = new int[8];
+    public float f11681c;
     public float d;
-    public int f11719e;
-    public int f11720f;
-    public int f11721g;
+    public int f11682e;
+    public int f11683f;
+    public int f11684g;
     public int h;
-    public int f11722i;
-    public boolean f11723j;
-    public boolean f11724k;
-    public int f11725l;
-    public int f11726m;
-    public int f11727n;
-    public int f11728o;
-    public int f11729p;
-    public int f11730q;
+    public int f11685i;
+    public boolean f11686j;
+    public boolean f11687k;
+    public int f11688l;
+    public int f11689m;
+    public int f11690n;
+    public int f11691o;
+    public int f11692p;
+    public int f11693q;
 
     public static long b(int i7, long j3) {
         return (j3 ^ i7) * 1099511628211L;
@@ -24,21 +24,21 @@ public final class k {
 
     public final long a() {
         int i7;
-        long b10 = b(this.f11716a, -3750763034362895579L);
-        for (int i10 : this.f11717b) {
+        long b10 = b(this.f11679a, -3750763034362895579L);
+        for (int i10 : this.f11680b) {
             b10 = b(i10, b10);
         }
-        long b11 = b(Float.floatToIntBits(this.d), b(Float.floatToIntBits(this.f11718c), b10));
+        long b11 = b(Float.floatToIntBits(this.d), b(Float.floatToIntBits(this.f11681c), b10));
         int i11 = -1;
-        if (this.f11723j) {
+        if (this.f11686j) {
             i7 = -1;
         } else {
             i7 = this.h;
         }
         long b12 = b(i7, b11);
-        if (!this.f11724k) {
-            i11 = this.f11722i;
+        if (!this.f11687k) {
+            i11 = this.f11685i;
         }
-        return b(this.f11730q, b(this.f11729p, b(this.f11728o, b(this.f11727n, b(this.f11726m, b(this.f11725l, b(i11, b12)))))));
+        return b(this.f11693q, b(this.f11692p, b(this.f11691o, b(this.f11690n, b(this.f11689m, b(this.f11688l, b(i11, b12)))))));
     }
 }

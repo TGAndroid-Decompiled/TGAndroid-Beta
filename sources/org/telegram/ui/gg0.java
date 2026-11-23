@@ -4,19 +4,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gg0 implements RequestDelegate {
-    public final int f48113a;
-    public final og0 f48114b;
+    public final int f48050a;
+    public final og0 f48051b;
 
     public gg0(og0 og0Var, int i7) {
-        this.f48113a = i7;
-        this.f48114b = og0Var;
+        this.f48050a = i7;
+        this.f48051b = og0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f48113a) {
+        switch (this.f48050a) {
             case 0:
-                final og0 og0Var = this.f48114b;
+                final og0 og0Var = this.f48051b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -35,7 +35,7 @@ public final class gg0 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final og0 og0Var2 = this.f48114b;
+                final og0 og0Var2 = this.f48051b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -54,7 +54,7 @@ public final class gg0 implements RequestDelegate {
                 });
                 return;
             default:
-                final og0 og0Var3 = this.f48114b;
+                final og0 og0Var3 = this.f48051b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {

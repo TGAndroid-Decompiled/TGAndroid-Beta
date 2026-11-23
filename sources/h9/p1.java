@@ -1,35 +1,35 @@
 package h9;
 
-import a8.ka;
+import a8.la;
 public final class p1 {
-    public final Object f14071a;
-    public int f14072b;
-    public final q1 f14073c;
+    public final Object f14034a;
+    public int f14035b;
+    public final q1 f14036c;
 
     public p1(q1 q1Var, int i7) {
-        this.f14073c = q1Var;
-        this.f14071a = q1Var.f14077a[i7];
-        this.f14072b = i7;
+        this.f14036c = q1Var;
+        this.f14034a = q1Var.f14040a[i7];
+        this.f14035b = i7;
     }
 
     public final int a() {
-        int i7 = this.f14072b;
-        Object obj = this.f14071a;
-        q1 q1Var = this.f14073c;
-        if (i7 == -1 || i7 >= q1Var.f14079c || !ka.a(obj, q1Var.f14077a[i7])) {
-            this.f14072b = q1Var.c(obj);
+        int i7 = this.f14035b;
+        Object obj = this.f14034a;
+        q1 q1Var = this.f14036c;
+        if (i7 == -1 || i7 >= q1Var.f14042c || !la.a(obj, q1Var.f14040a[i7])) {
+            this.f14035b = q1Var.c(obj);
         }
-        int i10 = this.f14072b;
+        int i10 = this.f14035b;
         if (i10 == -1) {
             return 0;
         }
-        return q1Var.f14078b[i10];
+        return q1Var.f14041b[i10];
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof p1) {
             p1 p1Var = (p1) obj;
-            if (a() == p1Var.a() && ka.a(this.f14071a, p1Var.f14071a)) {
+            if (a() == p1Var.a() && la.a(this.f14034a, p1Var.f14034a)) {
                 return true;
             }
         }
@@ -38,7 +38,7 @@ public final class p1 {
 
     public final int hashCode() {
         int hashCode;
-        Object obj = this.f14071a;
+        Object obj = this.f14034a;
         if (obj == null) {
             hashCode = 0;
         } else {
@@ -48,7 +48,7 @@ public final class p1 {
     }
 
     public final String toString() {
-        String valueOf = String.valueOf(this.f14071a);
+        String valueOf = String.valueOf(this.f14034a);
         int a10 = a();
         if (a10 == 1) {
             return valueOf;

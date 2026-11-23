@@ -11,48 +11,48 @@ import h9.i0;
 import h9.t1;
 import java.util.List;
 public final class b implements o {
-    public final x f19635a = new x(4);
-    public final x f19636b = new x(9);
-    public final x f19637c = new x(11);
+    public final x f19601a = new x(4);
+    public final x f19602b = new x(9);
+    public final x f19603c = new x(11);
     public final x d = new x();
-    public final c f19638e;
-    public q f19639f;
-    public int f19640g;
+    public final c f19604e;
+    public q f19605f;
+    public int f19606g;
     public boolean h;
-    public long f19641i;
-    public int f19642j;
-    public int f19643k;
-    public int f19644l;
-    public long f19645m;
-    public boolean f19646n;
-    public a f19647o;
-    public e f19648p;
+    public long f19607i;
+    public int f19608j;
+    public int f19609k;
+    public int f19610l;
+    public long f19611m;
+    public boolean f19612n;
+    public a f19613o;
+    public e f19614p;
 
     public b() {
         ?? qVar = new com.google.android.gms.common.api.q(new n());
-        qVar.f19649b = -9223372036854775807L;
-        qVar.f19650c = new long[0];
+        qVar.f19615b = -9223372036854775807L;
+        qVar.f19616c = new long[0];
         qVar.d = new long[0];
-        this.f19638e = qVar;
-        this.f19640g = 1;
+        this.f19604e = qVar;
+        this.f19606g = 1;
     }
 
     @Override
     public final boolean b(p pVar) {
-        x xVar = this.f19635a;
+        x xVar = this.f19601a;
         l lVar = (l) pVar;
-        lVar.g(xVar.f13865a, 0, 3, false);
+        lVar.g(xVar.f13828a, 0, 3, false);
         xVar.N(0);
         if (xVar.D() == 4607062) {
-            lVar.g(xVar.f13865a, 0, 2, false);
+            lVar.g(xVar.f13828a, 0, 2, false);
             xVar.N(0);
             if ((xVar.H() & 250) == 0) {
-                lVar.g(xVar.f13865a, 0, 4, false);
+                lVar.g(xVar.f13828a, 0, 4, false);
                 xVar.N(0);
                 int m10 = xVar.m();
-                lVar.f11218f = 0;
+                lVar.f11181f = 0;
                 lVar.x(m10, false);
-                lVar.g(xVar.f13865a, 0, 4, false);
+                lVar.g(xVar.f13828a, 0, 4, false);
                 xVar.N(0);
                 if (xVar.m() == 0) {
                     return true;
@@ -64,24 +64,24 @@ public final class b implements o {
 
     @Override
     public final void c(q qVar) {
-        this.f19639f = qVar;
+        this.f19605f = qVar;
     }
 
     @Override
     public final void d(long j3, long j10) {
         if (j3 == 0) {
-            this.f19640g = 1;
+            this.f19606g = 1;
             this.h = false;
         } else {
-            this.f19640g = 3;
+            this.f19606g = 3;
         }
-        this.f19642j = 0;
+        this.f19608j = 0;
     }
 
     @Override
     public final List e() {
-        g0 g0Var = i0.f14035b;
-        return t1.f14103e;
+        g0 g0Var = i0.f13998b;
+        return t1.f14066e;
     }
 
     @Override
@@ -90,16 +90,16 @@ public final class b implements o {
     }
 
     public final x g(p pVar) {
-        int i7 = this.f19644l;
+        int i7 = this.f19610l;
         x xVar = this.d;
-        byte[] bArr = xVar.f13865a;
+        byte[] bArr = xVar.f13828a;
         if (i7 > bArr.length) {
             xVar.L(0, new byte[Math.max(bArr.length * 2, i7)]);
         } else {
             xVar.N(0);
         }
-        xVar.M(this.f19644l);
-        pVar.readFully(xVar.f13865a, 0, this.f19644l);
+        xVar.M(this.f19610l);
+        pVar.readFully(xVar.f13828a, 0, this.f19610l);
         return xVar;
     }
 

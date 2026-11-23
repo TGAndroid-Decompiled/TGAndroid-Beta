@@ -6,22 +6,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xh implements RequestDelegate {
-    public final int f27898a;
-    public final si f27899b;
-    public final String f27900c;
+    public final int f27862a;
+    public final si f27863b;
+    public final String f27864c;
 
     public xh(si siVar, String str, int i7) {
-        this.f27898a = i7;
-        this.f27899b = siVar;
-        this.f27900c = str;
+        this.f27862a = i7;
+        this.f27863b = siVar;
+        this.f27864c = str;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27898a) {
+        switch (this.f27862a) {
             case 0:
-                final si siVar = this.f27899b;
-                final String str = this.f27900c;
+                final si siVar = this.f27863b;
+                final String str = this.f27864c;
                 g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -50,12 +50,12 @@ public final class xh implements RequestDelegate {
                                 si siVar3 = siVar;
                                 String str3 = str;
                                 TLObject tLObject3 = tLObject;
-                                ArrayList arrayList4 = (ArrayList) siVar3.f26814b0.get(str3);
+                                ArrayList arrayList4 = (ArrayList) siVar3.f26778b0.get(str3);
                                 if (tLObject3 != null) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject3;
                                     TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
                                     if (stickerSet != null) {
-                                        siVar3.J.k(tL_messages_stickerSet, stickerSet.f28461id);
+                                        siVar3.J.k(tL_messages_stickerSet, stickerSet.f28425id);
                                         String str4 = tL_messages_stickerSet.set.short_name;
                                         if (str4 != null) {
                                             siVar3.O.put(str4.toLowerCase(), tL_messages_stickerSet);
@@ -72,7 +72,7 @@ public final class xh implements RequestDelegate {
                                             if (i11 < size2) {
                                                 TLRPC.Document document = tL_messages_stickerSet.documents.get(i11);
                                                 arrayList2 = arrayList4;
-                                                if (document.f28440id == G0.f28440id && document.dc_id == G0.dc_id) {
+                                                if (document.f28404id == G0.f28404id && document.dc_id == G0.dc_id) {
                                                     message.stickerVerified = 1;
                                                 } else {
                                                     i11++;
@@ -115,8 +115,8 @@ public final class xh implements RequestDelegate {
                 });
                 return;
             default:
-                final si siVar2 = this.f27899b;
-                final String str2 = this.f27900c;
+                final si siVar2 = this.f27863b;
+                final String str2 = this.f27864c;
                 g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -145,12 +145,12 @@ public final class xh implements RequestDelegate {
                                 si siVar3 = siVar2;
                                 String str3 = str2;
                                 TLObject tLObject3 = tLObject;
-                                ArrayList arrayList4 = (ArrayList) siVar3.f26814b0.get(str3);
+                                ArrayList arrayList4 = (ArrayList) siVar3.f26778b0.get(str3);
                                 if (tLObject3 != null) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject3;
                                     TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
                                     if (stickerSet != null) {
-                                        siVar3.J.k(tL_messages_stickerSet, stickerSet.f28461id);
+                                        siVar3.J.k(tL_messages_stickerSet, stickerSet.f28425id);
                                         String str4 = tL_messages_stickerSet.set.short_name;
                                         if (str4 != null) {
                                             siVar3.O.put(str4.toLowerCase(), tL_messages_stickerSet);
@@ -167,7 +167,7 @@ public final class xh implements RequestDelegate {
                                             if (i11 < size2) {
                                                 TLRPC.Document document = tL_messages_stickerSet.documents.get(i11);
                                                 arrayList2 = arrayList4;
-                                                if (document.f28440id == G0.f28440id && document.dc_id == G0.dc_id) {
+                                                if (document.f28404id == G0.f28404id && document.dc_id == G0.dc_id) {
                                                     message.stickerVerified = 1;
                                                 } else {
                                                     i11++;

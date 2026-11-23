@@ -3,22 +3,22 @@ package org.telegram.utils.twidget;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public final class j {
-    public final ByteBuffer f54835a;
-    public final int f54836b;
-    public final boolean f54837c;
+    public final ByteBuffer f54800a;
+    public final int f54801b;
+    public final boolean f54802c;
     public final int d;
-    public final int[] f54838e;
-    public final int[] f54839f;
-    public final String[] f54840g;
+    public final int[] f54803e;
+    public final int[] f54804f;
+    public final String[] f54805g;
 
     public j(ByteBuffer byteBuffer, int i7, boolean z10, int i10, int[] iArr, int[] iArr2) {
-        this.f54835a = byteBuffer;
-        this.f54836b = i7;
-        this.f54837c = z10;
+        this.f54800a = byteBuffer;
+        this.f54801b = i7;
+        this.f54802c = z10;
         this.d = i10;
-        this.f54838e = iArr;
-        this.f54839f = iArr2;
-        this.f54840g = new String[iArr.length];
+        this.f54803e = iArr;
+        this.f54804f = iArr2;
+        this.f54805g = new String[iArr.length];
     }
 
     public static IllegalArgumentException a() {

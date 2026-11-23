@@ -1,27 +1,27 @@
 package n2;
 
-import a8.la;
+import a8.bb;
 import a8.ma;
 import java.nio.ByteBuffer;
 public final class w0 extends f2.o {
-    public int f21299n;
-    public boolean f21300o;
-    public int f21301p;
-    public long f21302q;
-    public byte[] f21304s;
+    public int f21265n;
+    public boolean f21266o;
+    public int f21267p;
+    public long f21268q;
+    public byte[] f21270s;
     public byte[] v;
-    public int f21303r = 0;
-    public int f21305t = 0;
-    public int f21306u = 0;
-    public final long f21297l = 100000;
-    public final float f21294i = 0.2f;
-    public final long f21298m = 2000000;
-    public final int f21296k = 10;
-    public final short f21295j = 1024;
+    public int f21269r = 0;
+    public int f21271t = 0;
+    public int f21272u = 0;
+    public final long f21263l = 100000;
+    public final float f21260i = 0.2f;
+    public final long f21264m = 2000000;
+    public final int f21262k = 10;
+    public final short f21261j = 1024;
 
     public w0() {
-        byte[] bArr = h2.l0.f13816b;
-        this.f21304s = bArr;
+        byte[] bArr = h2.l0.f13779b;
+        this.f21270s = bArr;
         this.v = bArr;
     }
 
@@ -32,24 +32,24 @@ public final class w0 extends f2.o {
         boolean z11;
         boolean z12;
         int position;
-        while (byteBuffer.hasRemaining() && !this.f11091g.hasRemaining()) {
-            int i7 = this.f21301p;
-            short s5 = this.f21295j;
+        while (byteBuffer.hasRemaining() && !this.f11054g.hasRemaining()) {
+            int i7 = this.f21267p;
+            short s5 = this.f21261j;
             boolean z13 = true;
             if (i7 != 0) {
                 if (i7 == 1) {
-                    if (this.f21305t < this.f21304s.length) {
+                    if (this.f21271t < this.f21270s.length) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    la.p(z10);
+                    ma.p(z10);
                     int limit2 = byteBuffer.limit();
                     int position2 = byteBuffer.position() + 1;
                     while (true) {
                         if (position2 < byteBuffer.limit()) {
                             if (Math.abs((byteBuffer.get(position2) << 8) | (byteBuffer.get(position2 - 1) & 255)) > s5) {
-                                int i10 = this.f21299n;
+                                int i10 = this.f21265n;
                                 limit = (position2 / i10) * i10;
                                 break;
                             }
@@ -60,10 +60,10 @@ public final class w0 extends f2.o {
                         }
                     }
                     int position3 = limit - byteBuffer.position();
-                    int i11 = this.f21305t;
-                    int i12 = this.f21306u;
+                    int i11 = this.f21271t;
+                    int i12 = this.f21272u;
                     int i13 = i11 + i12;
-                    byte[] bArr = this.f21304s;
+                    byte[] bArr = this.f21270s;
                     if (i13 < bArr.length) {
                         i11 = bArr.length;
                     } else {
@@ -77,22 +77,22 @@ public final class w0 extends f2.o {
                     }
                     int min = Math.min(position3, i14);
                     byteBuffer.limit(byteBuffer.position() + min);
-                    byteBuffer.get(this.f21304s, i13, min);
-                    int i15 = this.f21306u + min;
-                    this.f21306u = i15;
-                    if (i15 <= this.f21304s.length) {
+                    byteBuffer.get(this.f21270s, i13, min);
+                    int i15 = this.f21272u + min;
+                    this.f21272u = i15;
+                    if (i15 <= this.f21270s.length) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    la.p(z12);
+                    ma.p(z12);
                     if (!z11 || position3 >= i14) {
                         z13 = false;
                     }
                     n(z13);
                     if (z13) {
-                        this.f21301p = 0;
-                        this.f21303r = 0;
+                        this.f21267p = 0;
+                        this.f21269r = 0;
                     }
                     byteBuffer.limit(limit2);
                 } else {
@@ -100,12 +100,12 @@ public final class w0 extends f2.o {
                 }
             } else {
                 int limit3 = byteBuffer.limit();
-                byteBuffer.limit(Math.min(limit3, byteBuffer.position() + this.f21304s.length));
+                byteBuffer.limit(Math.min(limit3, byteBuffer.position() + this.f21270s.length));
                 int limit4 = byteBuffer.limit() - 1;
                 while (true) {
                     if (limit4 >= byteBuffer.position()) {
                         if (Math.abs((byteBuffer.get(limit4) << 8) | (byteBuffer.get(limit4 - 1) & 255)) > s5) {
-                            int i16 = this.f21299n;
+                            int i16 = this.f21265n;
                             position = ((limit4 / i16) * i16) + i16;
                             break;
                         }
@@ -116,7 +116,7 @@ public final class w0 extends f2.o {
                     }
                 }
                 if (position == byteBuffer.position()) {
-                    this.f21301p = 1;
+                    this.f21267p = 1;
                 } else {
                     byteBuffer.limit(Math.min(position, byteBuffer.capacity()));
                     l(byteBuffer.remaining()).put(byteBuffer).flip();
@@ -128,9 +128,9 @@ public final class w0 extends f2.o {
 
     @Override
     public final f2.k h(f2.k kVar) {
-        if (kVar.f11083c == 2) {
-            if (kVar.f11081a == -1) {
-                return f2.k.f11080e;
+        if (kVar.f11046c == 2) {
+            if (kVar.f11044a == -1) {
+                return f2.k.f11043e;
             }
             return kVar;
         }
@@ -140,25 +140,25 @@ public final class w0 extends f2.o {
     @Override
     public final void i() {
         if (isActive()) {
-            f2.k kVar = this.f11087b;
-            int i7 = kVar.f11082b * 2;
-            this.f21299n = i7;
-            int i10 = ((((int) ((this.f21297l * kVar.f11081a) / 1000000)) / 2) / i7) * i7 * 2;
-            if (this.f21304s.length != i10) {
-                this.f21304s = new byte[i10];
+            f2.k kVar = this.f11050b;
+            int i7 = kVar.f11045b * 2;
+            this.f21265n = i7;
+            int i10 = ((((int) ((this.f21263l * kVar.f11044a) / 1000000)) / 2) / i7) * i7 * 2;
+            if (this.f21270s.length != i10) {
+                this.f21270s = new byte[i10];
                 this.v = new byte[i10];
             }
         }
-        this.f21301p = 0;
-        this.f21302q = 0L;
-        this.f21303r = 0;
-        this.f21305t = 0;
-        this.f21306u = 0;
+        this.f21267p = 0;
+        this.f21268q = 0L;
+        this.f21269r = 0;
+        this.f21271t = 0;
+        this.f21272u = 0;
     }
 
     @Override
     public final boolean isActive() {
-        if (super.isActive() && this.f21300o) {
+        if (super.isActive() && this.f21266o) {
             return true;
         }
         return false;
@@ -166,31 +166,31 @@ public final class w0 extends f2.o {
 
     @Override
     public final void j() {
-        if (this.f21306u > 0) {
+        if (this.f21272u > 0) {
             n(true);
-            this.f21303r = 0;
+            this.f21269r = 0;
         }
     }
 
     @Override
     public final void k() {
-        this.f21300o = false;
-        byte[] bArr = h2.l0.f13816b;
-        this.f21304s = bArr;
+        this.f21266o = false;
+        byte[] bArr = h2.l0.f13779b;
+        this.f21270s = bArr;
         this.v = bArr;
     }
 
     public final int m(int i7) {
         boolean z10;
-        int length = ((((int) ((this.f21298m * this.f11087b.f11081a) / 1000000)) - this.f21303r) * this.f21299n) - (this.f21304s.length / 2);
+        int length = ((((int) ((this.f21264m * this.f11050b.f11044a) / 1000000)) - this.f21269r) * this.f21265n) - (this.f21270s.length / 2);
         if (length >= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        la.p(z10);
-        int i10 = this.f21299n;
-        return (((int) Math.min((i7 * this.f21294i) + 0.5f, length)) / i10) * i10;
+        ma.p(z10);
+        int i10 = this.f21265n;
+        return (((int) Math.min((i7 * this.f21260i) + 0.5f, length)) / i10) * i10;
     }
 
     public final void n(boolean z10) {
@@ -199,13 +199,13 @@ public final class w0 extends f2.o {
         boolean z11;
         int i7;
         boolean z12;
-        int i10 = this.f21306u;
-        byte[] bArr = this.f21304s;
+        int i10 = this.f21272u;
+        byte[] bArr = this.f21270s;
         if (i10 != bArr.length && !z10) {
             return;
         }
         boolean z13 = false;
-        if (this.f21303r == 0) {
+        if (this.f21269r == 0) {
             if (z10) {
                 o(i10, 3);
                 length = i10;
@@ -215,15 +215,15 @@ public final class w0 extends f2.o {
                 } else {
                     z12 = false;
                 }
-                la.p(z12);
-                length = this.f21304s.length / 2;
+                ma.p(z12);
+                length = this.f21270s.length / 2;
                 o(length, 0);
             }
             m10 = length;
         } else if (z10) {
             int length2 = i10 - (bArr.length / 2);
             int length3 = (bArr.length / 2) + length2;
-            int m11 = m(length2) + (this.f21304s.length / 2);
+            int m11 = m(length2) + (this.f21270s.length / 2);
             o(m11, 2);
             m10 = m11;
             length = length3;
@@ -232,7 +232,7 @@ public final class w0 extends f2.o {
             m10 = m(length);
             o(m10, 1);
         }
-        if (length % this.f21299n == 0) {
+        if (length % this.f21265n == 0) {
             z11 = true;
         } else {
             z11 = false;
@@ -241,16 +241,16 @@ public final class w0 extends f2.o {
             if (i10 >= m10) {
                 z13 = true;
             }
-            la.p(z13);
-            this.f21306u -= length;
-            int i11 = this.f21305t + length;
-            this.f21305t = i11;
-            this.f21305t = i11 % this.f21304s.length;
-            this.f21303r = (m10 / this.f21299n) + this.f21303r;
-            this.f21302q += (length - m10) / i7;
+            ma.p(z13);
+            this.f21272u -= length;
+            int i11 = this.f21271t + length;
+            this.f21271t = i11;
+            this.f21271t = i11 % this.f21270s.length;
+            this.f21269r = (m10 / this.f21265n) + this.f21269r;
+            this.f21268q += (length - m10) / i7;
             return;
         }
-        throw new IllegalStateException(ma.a("bytesConsumed is not aligned to frame size: %s", Integer.valueOf(length)));
+        throw new IllegalStateException(bb.a("bytesConsumed is not aligned to frame size: %s", Integer.valueOf(length)));
     }
 
     public final void o(int i7, int i10) {
@@ -261,17 +261,17 @@ public final class w0 extends f2.o {
             return;
         }
         boolean z13 = true;
-        if (this.f21306u >= i7) {
+        if (this.f21272u >= i7) {
             z10 = true;
         } else {
             z10 = false;
         }
-        la.f(z10);
+        ma.f(z10);
         if (i10 == 2) {
-            int i11 = this.f21305t;
-            int i12 = this.f21306u;
+            int i11 = this.f21271t;
+            int i12 = this.f21272u;
             int i13 = i11 + i12;
-            byte[] bArr = this.f21304s;
+            byte[] bArr = this.f21270s;
             if (i13 <= bArr.length) {
                 System.arraycopy(bArr, i13 - i7, this.v, 0, i7);
             } else {
@@ -281,43 +281,43 @@ public final class w0 extends f2.o {
                 } else {
                     int i14 = i7 - length;
                     System.arraycopy(bArr, bArr.length - i14, this.v, 0, i14);
-                    System.arraycopy(this.f21304s, 0, this.v, i14, length);
+                    System.arraycopy(this.f21270s, 0, this.v, i14, length);
                 }
             }
         } else {
-            int i15 = this.f21305t;
+            int i15 = this.f21271t;
             int i16 = i15 + i7;
-            byte[] bArr2 = this.f21304s;
+            byte[] bArr2 = this.f21270s;
             if (i16 <= bArr2.length) {
                 System.arraycopy(bArr2, i15, this.v, 0, i7);
             } else {
                 int length2 = bArr2.length - i15;
                 System.arraycopy(bArr2, i15, this.v, 0, length2);
-                System.arraycopy(this.f21304s, 0, this.v, length2, i7 - length2);
+                System.arraycopy(this.f21270s, 0, this.v, length2, i7 - length2);
             }
         }
-        if (i7 % this.f21299n == 0) {
+        if (i7 % this.f21265n == 0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        la.c(i7, "sizeToOutput is not aligned to frame size: %s", z11);
-        if (this.f21305t < this.f21304s.length) {
+        ma.c(i7, "sizeToOutput is not aligned to frame size: %s", z11);
+        if (this.f21271t < this.f21270s.length) {
             z12 = true;
         } else {
             z12 = false;
         }
-        la.p(z12);
+        ma.p(z12);
         byte[] bArr3 = this.v;
-        if (i7 % this.f21299n != 0) {
+        if (i7 % this.f21265n != 0) {
             z13 = false;
         }
-        la.c(i7, "byteOutput size is not aligned to frame size %s", z13);
+        ma.c(i7, "byteOutput size is not aligned to frame size %s", z13);
         if (i10 != 3) {
             for (int i17 = 0; i17 < i7; i17 += 2) {
                 int i18 = i17 + 1;
                 int i19 = (bArr3[i18] << 8) | (bArr3[i17] & 255);
-                int i20 = this.f21296k;
+                int i20 = this.f21262k;
                 if (i10 == 0) {
                     i20 = ((((i17 * 1000) / (i7 - 1)) * (i20 - 100)) / 1000) + 100;
                 } else if (i10 == 2) {

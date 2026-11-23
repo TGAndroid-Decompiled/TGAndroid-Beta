@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class ux extends n41 {
-    public static final int f40603b = 0;
+    public static final int f40555b = 0;
 
     static {
         n41.h(new n41());
@@ -12,13 +12,13 @@ public final class ux extends n41 {
 
     public static o41 i(TLRPC.StickerSetCovered stickerSetCovered, mx mxVar, boolean z10) {
         o41 K = o41.K(ux.class);
-        long j3 = stickerSetCovered.set.f28461id;
+        long j3 = stickerSetCovered.set.f28425id;
         long j10 = 1 + j3;
         K.d = (int) (j10 ^ (j10 >>> 32));
         K.C = j3;
         K.H = stickerSetCovered;
         K.I = mxVar;
-        K.f38084e = z10;
+        K.f38051e = z10;
         return K;
     }
 
@@ -29,16 +29,16 @@ public final class ux extends n41 {
         if (obj instanceof TLRPC.TL_messages_stickerSet) {
             bVar.setPack((TLRPC.TL_messages_stickerSet) obj);
         } else if (obj instanceof TLRPC.StickerSetCovered) {
-            TLRPC.Document document = ((mx) o41Var.I).f37657e;
+            TLRPC.Document document = ((mx) o41Var.I).f37613e;
             bVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            bVar.f55676c.d(document, null, null, null, false, false);
+            bVar.f55641c.d(document, null, null, null, false, false);
         }
-        bVar.a(o41Var.f38084e, false);
+        bVar.a(o41Var.f38051e, false);
     }
 
     @Override
     public final boolean c(o41 o41Var, o41 o41Var2) {
-        if (o41Var.C == o41Var2.C && o41Var.f38084e == o41Var2.f38084e) {
+        if (o41Var.C == o41Var2.C && o41Var.f38051e == o41Var2.f38051e) {
             return true;
         }
         return false;
@@ -47,7 +47,7 @@ public final class ux extends n41 {
     @Override
     public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
         ph.b bVar = new ph.b(context, h6Var);
-        bVar.setLayoutParams(new v4.q0(org.telegram.messenger.g0.L(64.0f), -1));
+        bVar.setLayoutParams(new v4.p0(org.telegram.messenger.g0.L(64.0f), -1));
         return bVar;
     }
 

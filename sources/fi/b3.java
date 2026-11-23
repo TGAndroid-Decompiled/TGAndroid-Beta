@@ -5,10 +5,10 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.Components.wi0;
 public final class b3 implements wi0 {
-    public final z3 f11797a;
+    public final z3 f11759a;
 
     public b3(z3 z3Var) {
-        this.f11797a = z3Var;
+        this.f11759a = z3Var;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class b3 implements wi0 {
     public final void g(View view, ch.p0 p0Var, boolean z10, boolean z11) {
         di.a8 a8Var = new di.a8(this, p0Var, view, 2);
         if (!z10) {
-            this.f11797a.l0(a8Var);
+            this.f11759a.l0(a8Var);
         } else {
             a8Var.run();
         }
@@ -33,7 +33,7 @@ public final class b3 implements wi0 {
 
     @Override
     public final boolean q() {
-        ((w8) this.f11797a.A1).b(false);
+        ((w8) this.f11759a.A1).b(false);
         return false;
     }
 

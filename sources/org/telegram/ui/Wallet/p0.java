@@ -7,22 +7,22 @@ import java.util.List;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class p0 {
-    public final String f44775a;
-    public final long f44776b;
-    public final byte[] f44777c;
+    public final String f44741a;
+    public final long f44742b;
+    public final byte[] f44743c;
     public final byte[] d;
-    public final int f44778e;
-    public p0 f44779f;
-    public List f44780g;
+    public final int f44744e;
+    public p0 f44745f;
+    public List f44746g;
     public TL_wallet.WalletOnchainGiftAction h;
-    public TL_stars.StarGift f44781i;
+    public TL_stars.StarGift f44747i;
 
     public p0(String str, long j3, byte[] bArr, byte[] bArr2, int i7) {
-        this.f44775a = str;
-        this.f44776b = j3;
-        this.f44777c = bArr;
+        this.f44741a = str;
+        this.f44742b = j3;
+        this.f44743c = bArr;
         this.d = bArr2;
-        this.f44778e = i7;
+        this.f44744e = i7;
     }
 
     public static p0 a(ArrayList arrayList) {
@@ -39,11 +39,11 @@ public final class p0 {
                 i7++;
                 p0 b10 = b((TL_stars.TL_payments_starGiftOnchainOfferTxMessage) obj);
                 arrayList2.add(b10);
-                j3 += b10.f44776b;
+                j3 += b10.f44742b;
             }
             p0 p0Var = (p0) arrayList2.get(0);
-            p0 p0Var2 = new p0(p0Var.f44775a, j3, p0Var.f44777c, p0Var.d, p0Var.f44778e);
-            p0Var2.f44780g = DesugarCollections.unmodifiableList(arrayList2);
+            p0 p0Var2 = new p0(p0Var.f44741a, j3, p0Var.f44743c, p0Var.d, p0Var.f44744e);
+            p0Var2.f44746g = DesugarCollections.unmodifiableList(arrayList2);
             return p0Var2;
         }
         throw new IllegalArgumentException("Invalid prepared message count");
@@ -61,22 +61,22 @@ public final class p0 {
             byte[] bArr2 = tL_payments_starGiftOnchainOfferTxInitState.code;
             byte[] bArr3 = tL_payments_starGiftOnchainOfferTxInitState.data;
             if (bArr2 != null && bArr2.length > 0) {
-                qVar = c8.ab.b(bArr2);
+                qVar = c8.bb.b(bArr2);
             } else {
                 qVar = null;
             }
             if (bArr3 != null && bArr3.length > 0) {
-                qVar2 = c8.ab.b(bArr3);
+                qVar2 = c8.bb.b(bArr3);
             }
             ArrayList arrayList = new ArrayList();
             ?? obj = new Object();
             arrayList.add(obj);
             ArrayList arrayList2 = new ArrayList();
             if (qVar != null) {
-                arrayList2.add(Integer.valueOf(c8.ab.a(arrayList, qVar)));
+                arrayList2.add(Integer.valueOf(c8.bb.a(arrayList, qVar)));
             }
             if (qVar2 != null) {
-                arrayList2.add(Integer.valueOf(c8.ab.a(arrayList, qVar2)));
+                arrayList2.add(Integer.valueOf(c8.bb.a(arrayList, qVar2)));
             }
             if (qVar != null) {
                 i7 = 4;
@@ -88,7 +88,7 @@ public final class p0 {
             } else {
                 i10 = 0;
             }
-            obj.f45294c = new byte[]{(byte) (((i10 | i7) << 3) | 4)};
+            obj.f45260c = new byte[]{(byte) (((i10 | i7) << 3) | 4)};
             obj.d = new int[arrayList2.size()];
             int i11 = 0;
             while (true) {
@@ -99,8 +99,8 @@ public final class p0 {
                 iArr[i11] = ((Integer) arrayList2.get(i11)).intValue();
                 i11++;
             }
-            obj.f45292a = iArr.length;
-            obj.f45293b = 1;
+            obj.f45258a = iArr.length;
+            obj.f45259b = 1;
             int size = arrayList.size();
             int i12 = 1;
             while (i12 < 4 && (size >>> (i12 * 8)) != 0) {
@@ -113,7 +113,7 @@ public final class p0 {
                 Object obj2 = arrayList.get(i14);
                 i14++;
                 x3 x3Var = (x3) obj2;
-                i13 += (x3Var.d.length * i12) + x3Var.f45294c.length + 2;
+                i13 += (x3Var.d.length * i12) + x3Var.f45260c.length + 2;
             }
             int i15 = 1;
             while (i15 < 4 && (i13 >>> (i15 * 8)) != 0) {
@@ -121,30 +121,30 @@ public final class p0 {
             }
             int max = Math.max(1, i15);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            c8.ab.d(byteArrayOutputStream, -1242653582, 4);
+            c8.bb.d(byteArrayOutputStream, -1242653582, 4);
             byteArrayOutputStream.write(i12 | 64);
             byteArrayOutputStream.write(max);
-            c8.ab.d(byteArrayOutputStream, arrayList.size(), i12);
-            c8.ab.d(byteArrayOutputStream, 1, i12);
-            c8.ab.d(byteArrayOutputStream, 0, i12);
-            c8.ab.d(byteArrayOutputStream, i13, max);
-            c8.ab.d(byteArrayOutputStream, 0, i12);
+            c8.bb.d(byteArrayOutputStream, arrayList.size(), i12);
+            c8.bb.d(byteArrayOutputStream, 1, i12);
+            c8.bb.d(byteArrayOutputStream, 0, i12);
+            c8.bb.d(byteArrayOutputStream, i13, max);
+            c8.bb.d(byteArrayOutputStream, 0, i12);
             int size3 = arrayList.size();
             int i16 = 0;
             while (i16 < size3) {
                 Object obj3 = arrayList.get(i16);
                 i16++;
                 x3 x3Var2 = (x3) obj3;
-                byteArrayOutputStream.write(x3Var2.f45292a);
-                byteArrayOutputStream.write(x3Var2.f45293b);
-                byte[] bArr4 = x3Var2.f45294c;
+                byteArrayOutputStream.write(x3Var2.f45258a);
+                byteArrayOutputStream.write(x3Var2.f45259b);
+                byte[] bArr4 = x3Var2.f45260c;
                 byteArrayOutputStream.write(bArr4, 0, bArr4.length);
                 for (int i17 : x3Var2.d) {
-                    c8.ab.d(byteArrayOutputStream, i17, i12);
+                    c8.bb.d(byteArrayOutputStream, i17, i12);
                 }
             }
             byte[] byteArray = byteArrayOutputStream.toByteArray();
-            if (c8.ab.f4514a == null) {
+            if (c8.bb.f4496a == null) {
                 int[] iArr2 = new int[256];
                 for (int i18 = 0; i18 < 256; i18++) {
                     int i19 = i18;
@@ -157,11 +157,11 @@ public final class p0 {
                     }
                     iArr2[i18] = i19;
                 }
-                c8.ab.f4514a = iArr2;
+                c8.bb.f4496a = iArr2;
             }
             int i22 = -1;
             for (byte b10 : byteArray) {
-                i22 = (i22 >>> 8) ^ c8.ab.f4514a[(b10 ^ i22) & 255];
+                i22 = (i22 >>> 8) ^ c8.bb.f4496a[(b10 ^ i22) & 255];
             }
             int i23 = ~i22;
             byte[] bArr5 = new byte[byteArray.length + 4];

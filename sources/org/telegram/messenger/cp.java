@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.tgnet.TLRPC;
 public final class cp {
-    public boolean f23354b;
-    public int f23355c;
+    public boolean f23318b;
+    public int f23319c;
     public boolean d;
-    public int f23356e;
-    public int f23357f;
-    public int f23353a = 0;
-    public final int[] f23358g = new int[6];
+    public int f23320e;
+    public int f23321f;
+    public int f23317a = 0;
+    public final int[] f23322g = new int[6];
     public final int[] h = new int[6];
 
     public static cp a(TLRPC.EmojiStatus emojiStatus) {
@@ -19,10 +19,10 @@ public final class cp {
         }
         TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
         cp cpVar = new cp();
-        cpVar.f23355c = -1;
+        cpVar.f23319c = -1;
         cpVar.d = true;
         int i7 = tL_emojiStatusCollectible.edge_color;
-        int[] iArr = cpVar.f23358g;
+        int[] iArr = cpVar.f23322g;
         iArr[0] = i7 | (-16777216);
         int i10 = tL_emojiStatusCollectible.center_color;
         iArr[1] = i10 | (-16777216);
@@ -32,7 +32,7 @@ public final class cp {
         iArr[4] = i11 | (-16777216);
         iArr[5] = i11 | (-16777216);
         System.arraycopy(iArr, 0, cpVar.h, 0, 6);
-        cpVar.f23353a = tL_emojiStatusCollectible.pattern_color | (-16777216);
+        cpVar.f23317a = tL_emojiStatusCollectible.pattern_color | (-16777216);
         return cpVar;
     }
 
@@ -41,16 +41,16 @@ public final class cp {
             return null;
         }
         cp cpVar = new cp();
-        cpVar.f23355c = tL_help_peerColorOption.color_id;
+        cpVar.f23319c = tL_help_peerColorOption.color_id;
         cpVar.d = tL_help_peerColorOption.hidden;
         int i7 = tL_help_peerColorOption.flags;
         if ((i7 & 8) != 0) {
-            cpVar.f23356e = tL_help_peerColorOption.channel_min_level;
+            cpVar.f23320e = tL_help_peerColorOption.channel_min_level;
         }
         if ((i7 & 16) != 0) {
-            cpVar.f23357f = tL_help_peerColorOption.group_min_level;
+            cpVar.f23321f = tL_help_peerColorOption.group_min_level;
         }
-        System.arraycopy(p(tL_help_peerColorOption.colors), 0, cpVar.f23358g, 0, 6);
+        System.arraycopy(p(tL_help_peerColorOption.colors), 0, cpVar.f23322g, 0, 6);
         System.arraycopy(p(tL_help_peerColorOption.dark_colors), 0, cpVar.h, 0, 6);
         return cpVar;
     }
@@ -115,7 +115,7 @@ public final class cp {
             if (z10) {
                 iArr = this.h;
             } else {
-                iArr = this.f23358g;
+                iArr = this.f23322g;
             }
             return iArr[3];
         }
@@ -127,8 +127,8 @@ public final class cp {
         int[] iArr;
         int i10;
         if (i7 >= 0 && i7 <= 5) {
-            if (this.f23354b && (i10 = this.f23355c) >= 0 && i10 < 7) {
-                return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29642r8[i10], h6Var);
+            if (this.f23318b && (i10 = this.f23319c) >= 0 && i10 < 7) {
+                return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29608r8[i10], h6Var);
             }
             if (h6Var != null) {
                 q10 = h6Var.d();
@@ -138,7 +138,7 @@ public final class cp {
             if (q10) {
                 iArr = this.h;
             } else {
-                iArr = this.f23358g;
+                iArr = this.f23322g;
             }
             return iArr[i7];
         }
@@ -150,7 +150,7 @@ public final class cp {
         if (org.telegram.ui.ActionBar.m6.I.q()) {
             iArr = this.h;
         } else {
-            iArr = this.f23358g;
+            iArr = this.f23322g;
         }
         return iArr[0];
     }
@@ -160,7 +160,7 @@ public final class cp {
         if (org.telegram.ui.ActionBar.m6.I.q()) {
             iArr = this.h;
         } else {
-            iArr = this.f23358g;
+            iArr = this.f23322g;
         }
         return iArr[1];
     }
@@ -170,7 +170,7 @@ public final class cp {
         if (z10) {
             iArr = this.h;
         } else {
-            iArr = this.f23358g;
+            iArr = this.f23322g;
         }
         return iArr[1];
     }
@@ -180,7 +180,7 @@ public final class cp {
         if (org.telegram.ui.ActionBar.m6.I.q()) {
             iArr = this.h;
         } else {
-            iArr = this.f23358g;
+            iArr = this.f23322g;
         }
         return iArr[2];
     }
@@ -190,7 +190,7 @@ public final class cp {
         if (z10) {
             iArr = this.h;
         } else {
-            iArr = this.f23358g;
+            iArr = this.f23322g;
         }
         return iArr[2];
     }
@@ -200,16 +200,16 @@ public final class cp {
         if (org.telegram.ui.ActionBar.m6.I.q()) {
             iArr = this.h;
         } else {
-            iArr = this.f23358g;
+            iArr = this.f23322g;
         }
         return iArr[4];
     }
 
     public final int l(boolean z10) {
         if (z10) {
-            return this.f23357f;
+            return this.f23321f;
         }
-        return this.f23356e;
+        return this.f23320e;
     }
 
     public final int m(boolean z10) {
@@ -218,7 +218,7 @@ public final class cp {
             if (z10) {
                 iArr = this.h;
             } else {
-                iArr = this.f23358g;
+                iArr = this.f23322g;
             }
             return iArr[4];
         }
@@ -227,7 +227,7 @@ public final class cp {
 
     public final int n(boolean z10) {
         boolean o4 = o(z10);
-        int[] iArr = this.f23358g;
+        int[] iArr = this.f23322g;
         int[] iArr2 = this.h;
         if (o4) {
             if (z10) {
@@ -243,7 +243,7 @@ public final class cp {
 
     public final boolean o(boolean z10) {
         int[] iArr;
-        int[] iArr2 = this.f23358g;
+        int[] iArr2 = this.f23322g;
         int[] iArr3 = this.h;
         if (z10) {
             iArr = iArr3;

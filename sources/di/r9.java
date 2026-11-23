@@ -7,32 +7,32 @@ import org.telegram.ui.Components.yb0;
 import org.telegram.ui.PasscodeActivity;
 import org.telegram.ui.er;
 public final class r9 implements View.OnFocusChangeListener {
-    public final int f9701a;
-    public final Object f9702b;
-    public final EditTextBoldCursor f9703c;
+    public final int f9665a;
+    public final Object f9666b;
+    public final EditTextBoldCursor f9667c;
 
     public r9(Object obj, EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f9701a = i7;
-        this.f9702b = obj;
-        this.f9703c = editTextBoldCursor;
+        this.f9665a = i7;
+        this.f9666b = obj;
+        this.f9667c = editTextBoldCursor;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
-        switch (this.f9701a) {
+        switch (this.f9665a) {
             case 0:
-                ((yb0) this.f9702b).c(z10, !TextUtils.isEmpty(this.f9703c.getText()));
+                ((yb0) this.f9666b).c(z10, !TextUtils.isEmpty(this.f9667c.getText()));
                 return;
             case 1:
-                ((yb0) this.f9702b).c(z10, !TextUtils.isEmpty(this.f9703c.getText()));
+                ((yb0) this.f9666b).c(z10, !TextUtils.isEmpty(this.f9667c.getText()));
                 return;
             case 2:
-                ((yb0) this.f9702b).c(z10, !TextUtils.isEmpty(this.f9703c.getText()));
+                ((yb0) this.f9666b).c(z10, !TextUtils.isEmpty(this.f9667c.getText()));
                 return;
             default:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f9702b;
-                passcodeActivity.f43191w.setEditText((er) this.f9703c);
-                passcodeActivity.f43191w.setDispatchBackWhenEmpty(true);
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f9666b;
+                passcodeActivity.f43156w.setEditText((er) this.f9667c);
+                passcodeActivity.f43156w.setDispatchBackWhenEmpty(true);
                 return;
         }
     }

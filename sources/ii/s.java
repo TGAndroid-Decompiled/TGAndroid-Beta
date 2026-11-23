@@ -4,7 +4,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import di.y8;
 import di.za;
-import hi.d7;
+import hi.e7;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.gs;
 import org.telegram.messenger.hd;
@@ -35,13 +35,13 @@ public final class s extends sa implements gs {
     @Override
     public final void L() {
         super.L();
-        ls.f(this.f30173a).n(this, ls.f25415x3);
-        ls.f(this.f30173a).n(this, ls.A3);
+        ls.f(this.f30139a).n(this, ls.f25379x3);
+        ls.f(this.f30139a).n(this, ls.A3);
     }
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new d7(this, 5), this.J0);
+        c51 c51Var = new c51(this.f39487o1, getContext(), this.f30139a, 0, true, new e7(this, 5), this.J0);
         this.Y1 = c51Var;
         return c51Var;
     }
@@ -52,25 +52,25 @@ public final class s extends sa implements gs {
         if (zaVar == null) {
             return null;
         }
-        return ((TextView) zaVar.f10206c).getText();
+        return ((TextView) zaVar.f10169c).getText();
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         Runnable runnable;
-        if (i7 == ls.f25415x3 || i7 == ls.A3) {
+        if (i7 == ls.f25379x3 || i7 == ls.A3) {
             c51 c51Var = this.Y1;
             if (c51Var != null) {
                 c51Var.O(true);
             }
-            cg.a s5 = y8.y(this.f30173a, true).s();
+            cg.a s5 = y8.y(this.f30139a, true).s();
             cg.a aVar = this.T1;
-            ((TextView) this.U1.f10206c).setText(hd.a0(null, null, 2131743802, cg.a.j(aVar.f5304b - s5.f5304b, cg.b.f5306b).d()));
-            na naVar = this.f39532p1;
+            ((TextView) this.U1.f10169c).setText(hd.a0(null, null, 2131743804, cg.a.j(aVar.f5267b - s5.f5267b, cg.b.f5269b).d()));
+            na naVar = this.f39488p1;
             if (naVar != null) {
                 naVar.setTitle(P0());
             }
-            if (s5.f5304b >= aVar.f5304b && (runnable = this.W1) != null) {
+            if (s5.f5267b >= aVar.f5267b && (runnable = this.W1) != null) {
                 runnable.run();
                 this.W1 = null;
                 dismiss();
@@ -83,7 +83,7 @@ public final class s extends sa implements gs {
         super.dismiss();
         za zaVar = this.U1;
         if (zaVar != null) {
-            ((m7) zaVar.f10205b).setPaused(true);
+            ((m7) zaVar.f10168b).setPaused(true);
         }
     }
 
@@ -91,7 +91,7 @@ public final class s extends sa implements gs {
     public final void s0() {
         super.s0();
         try {
-            int w02 = m6.w0(m6.f29454h5, this.J0);
+            int w02 = m6.w0(m6.f29420h5, this.J0);
             if (w02 != this.X1) {
                 this.X1 = w02;
                 v0(w02);
@@ -104,7 +104,7 @@ public final class s extends sa implements gs {
     @Override
     public final void show() {
         rj rjVar;
-        if (y8.y(this.f30173a, true).s().f5304b >= this.T1.f5304b) {
+        if (y8.y(this.f30139a, true).s().f5267b >= this.T1.f5267b) {
             Runnable runnable = this.W1;
             if (runnable != null) {
                 runnable.run();
@@ -116,12 +116,12 @@ public final class s extends sa implements gs {
         g2 Q = LaunchActivity.Q();
         if (Q instanceof bn) {
             bn bnVar = (bn) Q;
-            if (bnVar.V9() && (rjVar = bnVar.f45950a0) != null) {
+            if (bnVar.V9() && (rjVar = bnVar.f45903a0) != null) {
                 rjVar.U();
             }
         }
         super.show();
-        ls.f(this.f30173a).c(this, ls.f25415x3);
-        ls.f(this.f30173a).c(this, ls.A3);
+        ls.f(this.f30139a).c(this, ls.f25379x3);
+        ls.f(this.f30139a).c(this, ls.A3);
     }
 }

@@ -1,24 +1,24 @@
 package org.telegram.ui;
 public final class dz implements Runnable {
-    public final int f47081a;
-    public final ez f47082b;
+    public final int f47053a;
+    public final ez f47054b;
 
     public dz(ez ezVar, int i7) {
-        this.f47081a = i7;
-        this.f47082b = ezVar;
+        this.f47053a = i7;
+        this.f47054b = ezVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f47081a) {
+        switch (this.f47053a) {
             case 0:
-                this.f47082b.d();
+                this.f47054b.d();
                 return;
             case 1:
-                this.f47082b.a();
+                this.f47054b.a();
                 return;
             default:
-                ez ezVar = this.f47082b;
+                ez ezVar = this.f47054b;
                 ezVar.b(ezVar.E);
                 return;
         }

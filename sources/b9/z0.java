@@ -72,7 +72,7 @@ public final class z0 extends q6.h {
     @Override
     public final void h(q6.b bVar) {
         int i7;
-        q6.c0 c0Var = this.f55913k;
+        q6.c0 c0Var = this.f55878k;
         AtomicInteger atomicInteger = this.C;
         Context context = this.h;
         if (!c()) {
@@ -89,15 +89,15 @@ public final class z0 extends q6.h {
                     if (context.getPackageManager().resolveActivity(intent, 65536) == null) {
                         intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.wearable.app.cn").build());
                     }
-                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, i8.b.f16197a);
+                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, i8.b.f16163a);
                     q6.m.i(bVar, "Connection progress callbacks cannot be null.");
-                    this.f55917o = bVar;
+                    this.f55882o = bVar;
                     c0Var.sendMessage(c0Var.obtainMessage(3, atomicInteger.get(), 6, activity));
                     return;
                 }
             } catch (PackageManager.NameNotFoundException unused) {
                 q6.m.i(bVar, "Connection progress callbacks cannot be null.");
-                this.f55917o = bVar;
+                this.f55882o = bVar;
                 c0Var.sendMessage(c0Var.obtainMessage(3, atomicInteger.get(), 16, null));
                 return;
             }

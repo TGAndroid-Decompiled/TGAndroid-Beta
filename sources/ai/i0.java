@@ -1,30 +1,43 @@
 package ai;
 
-import org.telegram.messenger.y10;
-public final class i0 implements Runnable {
-    public final int f1234a = 1;
-    public final String f1235b;
-    public final y10 f1236c;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.style.ReplacementSpan;
+public final class i0 extends ReplacementSpan {
+    public final Paint f1268a;
+    public final Path f1269b;
+    public final float f1270c;
 
-    public i0(String str, y10 y10Var) {
-        this.f1235b = str;
-        this.f1236c = y10Var;
+    public i0() {
+        Paint paint = new Paint(1);
+        this.f1268a = paint;
+        this.f1269b = new Path();
+        this.f1270c = 3.25f;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
     }
 
     @Override
-    public final void run() {
-        switch (this.f1234a) {
-            case 0:
-                this.f1236c.a(this.f1235b);
-                return;
-            default:
-                org.telegram.messenger.g0.g3(new c1.a(19, this.f1236c, ci.f.c(this.f1235b, org.telegram.messenger.g0.L(240.0f), gc.b.M, 0.75f, null)));
-                return;
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        float L = f10 + org.telegram.messenger.g0.L(3.0f);
+        float textSize = i12 - (paint.getTextSize() * 0.36f);
+        int color = paint.getColor();
+        Paint paint2 = this.f1268a;
+        paint2.setColor(color);
+        Path path = this.f1269b;
+        path.rewind();
+        float f11 = this.f1270c;
+        path.moveTo(L, textSize - org.telegram.messenger.g0.L(f11));
+        path.lineTo(org.telegram.messenger.g0.L(f11) + L, textSize);
+        path.lineTo(L, textSize + org.telegram.messenger.g0.L(f11));
+        canvas.drawPath(path, paint2);
     }
 
-    public i0(y10 y10Var, String str) {
-        this.f1236c = y10Var;
-        this.f1235b = str;
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        return org.telegram.messenger.g0.L(this.f1270c + 3.0f + 1.0f);
     }
 }

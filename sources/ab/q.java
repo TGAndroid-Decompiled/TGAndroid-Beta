@@ -1,6 +1,6 @@
 package ab;
 
-import a8.la;
+import a8.ma;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import c8.vb;
+import c8.wb;
 import com.google.android.gms.internal.vision.e2;
 import com.google.firebase.messaging.FirebaseMessaging;
 import fi.a3;
@@ -70,8 +70,8 @@ public final class q implements f3.q, bn0 {
     }
 
     public static void a(ic.d[][][] dVarArr, int i7, ic.d dVar) {
-        ic.d[] dVarArr2 = dVarArr[i7 + dVar.d][dVar.f16243c];
-        gc.d dVar2 = dVar.f16241a;
+        ic.d[] dVarArr2 = dVarArr[i7 + dVar.d][dVar.f16209c];
+        gc.d dVar2 = dVar.f16207a;
         int ordinal = dVar2.ordinal();
         char c10 = 2;
         if (ordinal != 1) {
@@ -90,7 +90,7 @@ public final class q implements f3.q, bn0 {
             }
         }
         ic.d dVar3 = dVarArr2[c10];
-        if (dVar3 != null && dVar3.f16245f <= dVar.f16245f) {
+        if (dVar3 != null && dVar3.f16211f <= dVar.f16211f) {
             return;
         }
         dVarArr2[c10] = dVar;
@@ -108,7 +108,7 @@ public final class q implements f3.q, bn0 {
                     return false;
                 }
             } else {
-                int[] iArr = ic.b.f16236a;
+                int[] iArr = ic.b.f16202a;
                 if (c10 < '`') {
                     i7 = iArr[c10];
                 } else {
@@ -125,7 +125,7 @@ public final class q implements f3.q, bn0 {
     }
 
     public static boolean h(w4 w4Var) {
-        if (w4Var.f52964a == null && w4Var.f52965b == null) {
+        if (w4Var.f52927a == null && w4Var.f52928b == null) {
             return false;
         }
         return true;
@@ -157,14 +157,14 @@ public final class q implements f3.q, bn0 {
                 }
                 AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) this.f988b;
                 atomicMarkableReference.set((ca.e) atomicMarkableReference.getReference(), true);
-                ca.r rVar = new ca.r(this, 1);
+                ca.r rVar = new ca.r(this, 0);
                 AtomicReference atomicReference = (AtomicReference) this.f989c;
                 while (!atomicReference.compareAndSet(null, rVar)) {
                     if (atomicReference.get() != null) {
                         return true;
                     }
                 }
-                ((ba.e) ((o3) this.d).f20190b).f3108b.a(rVar);
+                ((ba.e) ((o3) this.d).f20156b).f3059b.a(rVar);
                 return true;
             } catch (Throwable th2) {
                 throw th2;
@@ -175,7 +175,7 @@ public final class q implements f3.q, bn0 {
     public void C(boolean z10) {
         if (!((boolean[]) this.f989c)[0]) {
             ji.e eVar = (ji.e) ((androidx.activity.n) this.d).d;
-            eVar.f17925p3 = z10;
+            eVar.f17891p3 = z10;
             eVar.invalidate();
         }
     }
@@ -193,7 +193,7 @@ public final class q implements f3.q, bn0 {
             r4 r4Var = new r4(this, context, h6Var, u4Var);
             this.d = r4Var;
             w0 w0Var = new w0(this, 3);
-            WeakHashMap weakHashMap = r0.i0.f56289a;
+            WeakHashMap weakHashMap = r0.i0.f56254a;
             r0.a0.i(r4Var, w0Var);
         }
         ((r4) this.d).a(w4Var);
@@ -244,7 +244,7 @@ public final class q implements f3.q, bn0 {
                     return;
                 }
                 pb.t tVar = (pb.t) ((ArrayDeque) this.f989c).remove();
-                H(tVar.f55600b, tVar.f55599a);
+                H(tVar.f55565b, tVar.f55564a);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -284,8 +284,8 @@ public final class q implements f3.q, bn0 {
             try {
                 try {
                     rc.u uVar = (rc.u) this.f988b;
-                    i1 i1Var = h1Var.f44332c;
-                    int i10 = h1Var.f44330a;
+                    i1 i1Var = h1Var.f44298c;
+                    int i10 = h1Var.f44296a;
                     org.telegram.messenger.g0.g3(new lp0(i1Var, uVar, i10, "websocket error: " + i1.a(vVar), 20));
                 } catch (Throwable unused) {
                 }
@@ -301,7 +301,7 @@ public final class q implements f3.q, bn0 {
         ((f3.q) this.f988b).d1();
         if (this.f987a) {
             for (int i7 = 0; i7 < sparseArray.size(); i7++) {
-                ((c4.o) sparseArray.valueAt(i7)).f4437i = true;
+                ((c4.o) sparseArray.valueAt(i7)).f4400i = true;
             }
         }
     }
@@ -327,7 +327,7 @@ public final class q implements f3.q, bn0 {
 
     @Override
     public boolean e() {
-        return ((x30) this.d).f41959b.e();
+        return ((x30) this.d).f41916b.e();
     }
 
     public void f() {
@@ -373,7 +373,7 @@ public final class q implements f3.q, bn0 {
         ofInt.addUpdateListener(new ch.w(15, this, tVar));
         ofInt.setDuration(i12);
         ofInt.setStartDelay(i11);
-        ofInt.setInterpolator(nr.f37960f);
+        ofInt.setInterpolator(nr.f37917f);
         return ofInt;
     }
 
@@ -382,8 +382,8 @@ public final class q implements f3.q, bn0 {
         String str = (String) this.f988b;
         int length = str.length();
         cc.f fVar = (cc.f) this.f989c;
-        CharsetEncoder[] charsetEncoderArr = fVar.f5204a;
-        CharsetEncoder[] charsetEncoderArr2 = fVar.f5204a;
+        CharsetEncoder[] charsetEncoderArr = fVar.f5167a;
+        CharsetEncoder[] charsetEncoderArr2 = fVar.f5167a;
         ic.d[][][] dVarArr = (ic.d[][][]) Array.newInstance(ic.d.class, length + 1, charsetEncoderArr.length, 4);
         b(eVar, dVarArr, 0, null);
         for (int i10 = 1; i10 <= length; i10++) {
@@ -402,7 +402,7 @@ public final class q implements f3.q, bn0 {
         for (int i16 = 0; i16 < charsetEncoderArr2.length; i16++) {
             for (int i17 = 0; i17 < 4; i17++) {
                 ic.d dVar2 = dVarArr[length][i16][i17];
-                if (dVar2 != null && (i7 = dVar2.f16245f) < i14) {
+                if (dVar2 != null && (i7 = dVar2.f16211f) < i14) {
                     i13 = i16;
                     i15 = i17;
                     i14 = i7;
@@ -417,13 +417,13 @@ public final class q implements f3.q, bn0 {
 
     public q2.v m(UUID uuid, q2.o oVar) {
         String str;
-        String str2 = oVar.f55810b;
+        String str2 = oVar.f55775b;
         if (this.f987a || TextUtils.isEmpty(str2)) {
             str2 = (String) this.f989c;
         }
         if (!TextUtils.isEmpty(str2)) {
             HashMap hashMap = new HashMap();
-            UUID uuid2 = e2.l.f10525f;
+            UUID uuid2 = e2.l.f10488f;
             if (uuid2.equals(uuid)) {
                 str = "text/xml";
             } else if (e2.l.d.equals(uuid)) {
@@ -438,18 +438,18 @@ public final class q implements f3.q, bn0 {
             synchronized (((HashMap) this.d)) {
                 hashMap.putAll((HashMap) this.d);
             }
-            return vb.a(((j2.o) this.f988b).createDataSource(), str2, oVar.f55809a, hashMap);
+            return wb.a(((j2.o) this.f988b).createDataSource(), str2, oVar.f55774a, hashMap);
         }
         Map map = Collections.EMPTY_MAP;
         Uri uri = Uri.EMPTY;
-        la.k(uri, "The uri must be set.");
+        ma.k(uri, "The uri must be set.");
         throw new q2.w(new j2.m(uri, 1, null, map, 0L, -1L, null, 0), uri, y1.h, 0L, new IllegalStateException("No license URL"));
     }
 
     public q2.v n(q2.p pVar) {
         boolean z10;
         Charset charset = StandardCharsets.UTF_8;
-        byte[][] bArr = {"{\"signedRequest\":\"".getBytes(charset), pVar.f55811a, "\"}".getBytes(charset)};
+        byte[][] bArr = {"{\"signedRequest\":\"".getBytes(charset), pVar.f55776a, "\"}".getBytes(charset)};
         long j3 = 0;
         for (int i7 = 0; i7 < 3; i7++) {
             j3 += bArr[i7].length;
@@ -460,7 +460,7 @@ public final class q implements f3.q, bn0 {
         } else {
             z10 = false;
         }
-        la.d(j3, "the total number of elements (%s) in the arrays must fit in an int", z10);
+        ma.d(j3, "the total number of elements (%s) in the arrays must fit in an int", z10);
         byte[] bArr2 = new byte[i10];
         int i11 = 0;
         for (int i12 = 0; i12 < 3; i12++) {
@@ -469,12 +469,12 @@ public final class q implements f3.q, bn0 {
             i11 += bArr3.length;
         }
         j2.h createDataSource = ((j2.o) this.f988b).createDataSource();
-        String str = pVar.f55812b;
-        String aVar = k9.a.f18222i.toString();
+        String str = pVar.f55777b;
+        String aVar = k9.a.f18185i.toString();
         String valueOf = String.valueOf(i10);
         h9.o.f("Content-Type", aVar);
         h9.o.f("Content-Length", valueOf);
-        return vb.a(createDataSource, str, bArr2, y1.g(2, new Object[]{"Content-Type", aVar, "Content-Length", valueOf}, null));
+        return wb.a(createDataSource, str, bArr2, y1.g(2, new Object[]{"Content-Type", aVar, "Content-Length", valueOf}, null));
     }
 
     public List p() {
@@ -525,7 +525,7 @@ public final class q implements f3.q, bn0 {
             if (bool != null) {
                 h = bool.booleanValue();
             } else {
-                h = ((FirebaseMessaging) this.d).f7591a.h();
+                h = ((FirebaseMessaging) this.d).f7554a.h();
             }
         } catch (Throwable th2) {
             throw th2;
@@ -536,9 +536,9 @@ public final class q implements f3.q, bn0 {
     public Boolean t() {
         ApplicationInfo applicationInfo;
         Bundle bundle;
-        o9.g gVar = ((FirebaseMessaging) this.d).f7591a;
+        o9.g gVar = ((FirebaseMessaging) this.d).f7554a;
         gVar.a();
-        Context context = gVar.f21788a;
+        Context context = gVar.f21754a;
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.firebase.messaging", 0);
         if (sharedPreferences.contains("auto_init")) {
             return Boolean.valueOf(sharedPreferences.getBoolean("auto_init", false));
@@ -568,7 +568,7 @@ public final class q implements f3.q, bn0 {
         for (int i13 = 5; i13 >= 0; i13--) {
             i12 = i(8, i13, i12);
         }
-        int i14 = ((cc.b) this.f988b).f5188b;
+        int i14 = ((cc.b) this.f988b).f5151b;
         int i15 = i14 - 7;
         for (int i16 = i14 - 1; i16 >= i15; i16--) {
             i7 = i(8, i16, i7);
@@ -593,7 +593,7 @@ public final class q implements f3.q, bn0 {
         ArrayList arrayList = (ArrayList) this.f989c;
         x30 x30Var = (x30) this.d;
         HashMap hashMap = (HashMap) this.f988b;
-        if (!hashMap.isEmpty() && x30Var.f41959b != null && !this.f987a && !z10) {
+        if (!hashMap.isEmpty() && x30Var.f41916b != null && !this.f987a && !z10) {
             this.f987a = true;
             ArrayList arrayList2 = new ArrayList();
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
@@ -604,12 +604,12 @@ public final class q implements f3.q, bn0 {
                     jf jfVar = (jf) obj;
                     String str2 = jfVar.h;
                     if (str2 != null) {
-                        obj2.f28407c = str2;
+                        obj2.f28371c = str2;
                     } else {
-                        obj2.f28414l = jfVar;
+                        obj2.f28378l = jfVar;
                     }
-                    obj2.f28413k = jfVar.f28074s;
-                    obj2.f28408e = jfVar.f28060c;
+                    obj2.f28377k = jfVar.f28038s;
+                    obj2.f28372e = jfVar.f28024c;
                     CharSequence charSequence = jfVar.I;
                     if (charSequence != null) {
                         str = charSequence.toString();
@@ -617,9 +617,9 @@ public final class q implements f3.q, bn0 {
                         str = null;
                     }
                     obj2.d = str;
-                    obj2.f28411i = jfVar.f28069n;
-                    obj2.f28412j = jfVar.f28073r;
-                    obj2.h = jfVar.f28078x;
+                    obj2.f28375i = jfVar.f28033n;
+                    obj2.f28376j = jfVar.f28037r;
+                    obj2.h = jfVar.f28042x;
                 }
             }
             x30.a(x30Var, false, arrayList2);
@@ -631,7 +631,7 @@ public final class q implements f3.q, bn0 {
         if (eVar != null) {
             return eVar;
         }
-        int i7 = ((cc.b) this.f988b).f5188b;
+        int i7 = ((cc.b) this.f988b).f5151b;
         int i10 = (i7 - 17) / 4;
         if (i10 <= 6) {
             return gc.e.c(i10);
@@ -645,7 +645,7 @@ public final class q implements f3.q, bn0 {
             }
         }
         gc.e b10 = gc.e.b(i13);
-        if (b10 != null && (b10.f13500a * 4) + 17 == i7) {
+        if (b10 != null && (b10.f13463a * 4) + 17 == i7) {
             this.f989c = b10;
             return b10;
         }
@@ -655,7 +655,7 @@ public final class q implements f3.q, bn0 {
             }
         }
         gc.e b11 = gc.e.b(i12);
-        if (b11 != null && (b11.f13500a * 4) + 17 == i7) {
+        if (b11 != null && (b11.f13463a * 4) + 17 == i7) {
             this.f989c = b11;
             return b11;
         }
@@ -664,9 +664,9 @@ public final class q implements f3.q, bn0 {
 
     public void x() {
         if (((gc.c) this.d) != null) {
-            int i7 = p1.g.d(8)[((gc.c) this.d).f13486b];
+            int i7 = p1.g.d(8)[((gc.c) this.d).f13449b];
             cc.b bVar = (cc.b) this.f988b;
-            int i10 = bVar.f5188b;
+            int i10 = bVar.f5151b;
             for (int i11 = 0; i11 < i10; i11++) {
                 for (int i12 = 0; i12 < i10; i12++) {
                     if (e2.b(i7, i11, i12)) {
@@ -690,7 +690,7 @@ public final class q implements f3.q, bn0 {
         if (!this.f987a) {
             return;
         }
-        i0Var.d(new f2.a(this, 0));
+        i0Var.d(new ca.r(this, 29));
         this.f987a = false;
     }
 

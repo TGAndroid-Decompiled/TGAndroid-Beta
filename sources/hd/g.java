@@ -1,9 +1,9 @@
 package hd;
 
-import c8.f0;
+import c8.g0;
 import java.util.Arrays;
 import java.util.List;
-public abstract class g extends f0 {
+public abstract class g extends g0 {
     public static int b(List list) {
         kotlin.jvm.internal.j.e(list, "<this>");
         return list.size() - 1;
@@ -15,6 +15,6 @@ public abstract class g extends f0 {
             kotlin.jvm.internal.j.d(asList, "asList(...)");
             return asList;
         }
-        return n.f14177a;
+        return n.f14140a;
     }
 }

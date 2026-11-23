@@ -22,30 +22,30 @@ import org.telegram.ui.Components.yz;
 import org.telegram.ui.bn;
 public final class l1 extends dk0 implements gs {
     public b6 E;
-    public final Context f17592c;
-    public final bn f17594f;
+    public final Context f17558c;
+    public final bn f17560f;
     public int h;
-    public int f17595n;
-    public final h6 f17597s;
-    public final int f17598w;
-    public final boolean f17599x;
-    public String f17600y;
+    public int f17561n;
+    public final h6 f17563s;
+    public final int f17564w;
+    public final boolean f17565x;
+    public String f17566y;
     public final HashSet d = new HashSet();
-    public final ArrayList f17593e = new ArrayList();
-    public final int f17596r = k10.f24968t0;
-    public final hi.l F = new hi.l(this, 26);
+    public final ArrayList f17559e = new ArrayList();
+    public final int f17562r = k10.f24932t0;
+    public final hi.b0 F = new hi.b0(this, 25);
 
     public l1(Context context, bn bnVar, h6 h6Var, int i7, boolean z10) {
-        this.f17597s = h6Var;
-        this.f17592c = context;
-        this.f17594f = bnVar;
-        this.f17598w = i7;
-        this.f17599x = z10;
+        this.f17563s = h6Var;
+        this.f17558c = context;
+        this.f17560f = bnVar;
+        this.f17564w = i7;
+        this.f17565x = z10;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59169f;
+    public final boolean D(v4.e1 e1Var) {
+        int i7 = e1Var.f59115f;
         if (i7 != 0 && i7 != 2) {
             return false;
         }
@@ -54,7 +54,7 @@ public final class l1 extends dk0 implements gs {
 
     public final Object E(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f17593e;
+            ArrayList arrayList = this.f17559e;
             if (i7 < arrayList.size()) {
                 return arrayList.get(i7);
             }
@@ -65,12 +65,12 @@ public final class l1 extends dk0 implements gs {
 
     @Override
     public final int b() {
-        return this.f17593e.size() + this.f17595n;
+        return this.f17559e.size() + this.f17561n;
     }
 
     @Override
     public final int d(int i7) {
-        if (i7 < this.f17593e.size()) {
+        if (i7 < this.f17559e.size()) {
             return 0;
         }
         return 1;
@@ -87,16 +87,16 @@ public final class l1 extends dk0 implements gs {
     public final void f() {
         ArrayList arrayList;
         int b10 = b();
-        ArrayList arrayList2 = this.f17593e;
+        ArrayList arrayList2 = this.f17559e;
         arrayList2.clear();
         HashSet hashSet = this.d;
         hashSet.clear();
-        int i7 = this.f17596r;
-        int i10 = this.f17598w;
+        int i7 = this.f17562r;
+        int i10 = this.f17564w;
         if (i10 == 0) {
             arrayList = si.d0(i7).Z0;
         } else {
-            arrayList = na.a(i7).b(i10).f25545a;
+            arrayList = na.a(i7).b(i10).f25509a;
         }
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
@@ -106,18 +106,18 @@ public final class l1 extends dk0 implements gs {
                 hashSet.add(Integer.valueOf(gjVar.e1()));
             }
         }
-        int i13 = this.f17595n;
+        int i13 = this.f17561n;
         this.h = arrayList2.size();
         if (i10 != 0) {
-            if (!na.a(i7).b(i10).f25556n && this.h != 0) {
-                i11 = Utilities.j(na.a(i7).b(i10).f25555m - this.h, 3, 0);
+            if (!na.a(i7).b(i10).f25520n && this.h != 0) {
+                i11 = Utilities.j(na.a(i7).b(i10).f25519m - this.h, 3, 0);
             }
-            this.f17595n = i11;
+            this.f17561n = i11;
         } else {
             if (!si.d0(i7).b2() && this.h != 0) {
                 i11 = Utilities.j(si.d0(i7).l0() - this.h, 3, 0);
             }
-            this.f17595n = i11;
+            this.f17561n = i11;
         }
         int b11 = b();
         if (b10 < b11) {
@@ -131,22 +131,22 @@ public final class l1 extends dk0 implements gs {
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
+    public final void t(v4.e1 e1Var, int i7) {
         boolean z10;
         int i10;
         int i11;
-        int i12 = f1Var.f59169f;
-        View view = f1Var.f59165a;
+        int i12 = e1Var.f59115f;
+        View view = e1Var.f59111a;
         if (i12 == 0) {
             u2 u2Var = (u2) view;
-            u2Var.f32018t2 = true;
+            u2Var.f31984t2 = true;
             gj gjVar = (gj) E(i7);
-            long B0 = gj.B0(gjVar.f24213k);
-            int i13 = gjVar.f24213k.date;
-            if (this.f17599x) {
-                u2Var.f32011s0 = true;
+            long B0 = gj.B0(gjVar.f24177k);
+            int i13 = gjVar.f24177k.date;
+            if (this.f17565x) {
+                u2Var.f31977s0 = true;
                 long P1 = gjVar.P1();
-                TLRPC.Message message = gjVar.f24213k;
+                TLRPC.Message message = gjVar.f24177k;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                 if (messageFwdHeader != null && ((i10 = messageFwdHeader.date) != 0 || messageFwdHeader.saved_date != 0)) {
                     if (i10 == 0) {
@@ -161,7 +161,7 @@ public final class l1 extends dk0 implements gs {
                 z10 = false;
                 B0 = P1;
             } else {
-                if (gjVar.P3() || v3.o0(this.f17596r, B0)) {
+                if (gjVar.P3() || v3.o0(this.f17562r, B0)) {
                     B0 = gjVar.Z0();
                 }
                 z10 = true;
@@ -175,12 +175,12 @@ public final class l1 extends dk0 implements gs {
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View u2Var;
         yz yzVar;
         if (i7 != 0) {
-            h6 h6Var = this.f17597s;
-            Context context = this.f17592c;
+            h6 h6Var = this.f17563s;
+            Context context = this.f17558c;
             if (i7 != 1) {
                 if (i7 != 2) {
                     u2Var = null;
@@ -195,7 +195,7 @@ public final class l1 extends dk0 implements gs {
             }
             u2Var = yzVar;
         } else {
-            u2Var = new u2(null, this.f17592c, true, this.f17596r, this.f17597s);
+            u2Var = new u2(null, this.f17558c, true, this.f17562r, this.f17563s);
         }
         return i5.c.q(u2Var, u2Var, -1, -2);
     }

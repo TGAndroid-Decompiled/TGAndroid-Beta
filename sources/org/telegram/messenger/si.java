@@ -66,14 +66,14 @@ public final class si extends c1 {
     public static final Pattern X1 = Pattern.compile("~~(.+?)~~");
     public static final String Y1 = "org.telegram.messenger.SHORTCUT_SHARE";
     public static volatile si[] Z1 = new si[4];
-    public static final Object[] f26803a2 = new Object[4];
-    public static Paint f26804b2;
-    public static Paint f26805c2;
+    public static final Object[] f26767a2 = new Object[4];
+    public static Paint f26768b2;
+    public static Paint f26769c2;
     public static RectF d2;
-    public static Path f26806e2;
-    public static final int f26807f2;
-    public static final jg.w f26808g2;
-    public static final Pattern f26809h2;
+    public static Path f26770e2;
+    public static final int f26771f2;
+    public static final jg.w f26772g2;
+    public static final Pattern f26773h2;
     public final yf.c A0;
     public final HashMap A1;
     public final ArrayList B0;
@@ -142,79 +142,79 @@ public final class si extends c1 {
     public final boolean[] Y0;
     public final int[] Z;
     public final ArrayList Z0;
-    public long f26810a;
-    public final HashMap f26811a0;
-    public final ArrayList f26812a1;
-    public TLRPC.TL_attachMenuBots f26813b;
-    public final HashMap f26814b0;
-    public ArrayList f26815b1;
-    public boolean f26816c;
-    public final int[] f26817c0;
-    public final SparseArray[] f26818c1;
+    public long f26774a;
+    public final HashMap f26775a0;
+    public final ArrayList f26776a1;
+    public TLRPC.TL_attachMenuBots f26777b;
+    public final HashMap f26778b0;
+    public ArrayList f26779b1;
+    public boolean f26780c;
+    public final int[] f26781c0;
+    public final SparseArray[] f26782c1;
     public boolean d;
-    public a0.h f26819d0;
-    public final ArrayList f26820d1;
-    public int f26821e;
-    public HashMap f26822e0;
-    public String f26823e1;
-    public int f26824f;
-    public HashMap f26825f0;
-    public int f26826f1;
-    public final ArrayList[] f26827g0;
-    public boolean f26828g1;
+    public a0.h f26783d0;
+    public final ArrayList f26784d1;
+    public int f26785e;
+    public HashMap f26786e0;
+    public String f26787e1;
+    public int f26788f;
+    public HashMap f26789f0;
+    public int f26790f1;
+    public final ArrayList[] f26791g0;
+    public boolean f26792g1;
     public final ArrayList h;
-    public final boolean[] f26829h0;
-    public boolean f26830h1;
-    public final boolean[] f26831i0;
-    public boolean f26832i1;
-    public ArrayList f26833j0;
-    public ArrayList f26834j1;
-    public boolean f26835k0;
-    public ArrayList f26836k1;
-    public boolean f26837l0;
+    public final boolean[] f26793h0;
+    public boolean f26794h1;
+    public final boolean[] f26795i0;
+    public boolean f26796i1;
+    public ArrayList f26797j0;
+    public ArrayList f26798j1;
+    public boolean f26799k0;
+    public ArrayList f26800k1;
+    public boolean f26801l0;
     public ArrayList l1;
     public boolean m0;
-    public ArrayList f26838m1;
-    public final ArrayList f26839n;
-    public boolean f26840n0;
+    public ArrayList f26802m1;
+    public final ArrayList f26803n;
+    public boolean f26804n0;
     public boolean n1;
-    public boolean f26841o0;
-    public boolean f26842o1;
-    public boolean f26843p0;
-    public final HashMap f26844p1;
-    public final long[] f26845q0;
-    public final a0.h f26846q1;
-    public final HashMap f26847r;
-    public final int[] f26848r0;
-    public final a0.h f26849r1;
-    public String f26850s;
-    public boolean f26851s0;
-    public SharedPreferences f26852s1;
-    public final ArrayList[] f26853t0;
-    public final a0.h f26854t1;
-    public final a0.h[] f26855u0;
-    public final a0.h f26856u1;
-    public final ArrayList[] f26857v0;
-    public final a0.h f26858v1;
-    public boolean f26859w;
-    public final ArrayList[] f26860w0;
-    public final SharedPreferences f26861w1;
-    public int f26862x;
-    public final boolean[] f26863x0;
-    public boolean f26864x1;
-    public boolean f26865y;
-    public final boolean[] f26866y0;
-    public final HashMap f26867y1;
-    public TLRPC.Document f26868z0;
-    public final a0.h f26869z1;
+    public boolean f26805o0;
+    public boolean f26806o1;
+    public boolean f26807p0;
+    public final HashMap f26808p1;
+    public final long[] f26809q0;
+    public final a0.h f26810q1;
+    public final HashMap f26811r;
+    public final int[] f26812r0;
+    public final a0.h f26813r1;
+    public String f26814s;
+    public boolean f26815s0;
+    public SharedPreferences f26816s1;
+    public final ArrayList[] f26817t0;
+    public final a0.h f26818t1;
+    public final a0.h[] f26819u0;
+    public final a0.h f26820u1;
+    public final ArrayList[] f26821v0;
+    public final a0.h f26822v1;
+    public boolean f26823w;
+    public final ArrayList[] f26824w0;
+    public final SharedPreferences f26825w1;
+    public int f26826x;
+    public final boolean[] f26827x0;
+    public boolean f26828x1;
+    public boolean f26829y;
+    public final boolean[] f26830y0;
+    public final HashMap f26831y1;
+    public TLRPC.Document f26832z0;
+    public final a0.h f26833z1;
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
-            f26803a2[i7] = new Object();
+            f26767a2[i7] = new Object();
         }
-        f26807f2 = 1;
-        f26808g2 = new jg.w(19);
-        f26809h2 = Pattern.compile("(?<![A-Za-z0-9_+/=:-])(?:-?[0-9]{1,10}:[0-9a-fA-F]{64}|[A-Za-z0-9_+/-]{48})(?![A-Za-z0-9_+/=:-])");
+        f26771f2 = 1;
+        f26772g2 = new jg.w(19);
+        f26773h2 = Pattern.compile("(?<![A-Za-z0-9_+/=:-])(?:-?[0-9]{1,10}:[0-9a-fA-F]{64}|[A-Za-z0-9_+/-]{48})(?![A-Za-z0-9_+/=:-])");
     }
 
     public si(int i7) {
@@ -225,10 +225,10 @@ public final class si extends c1 {
         boolean z10;
         int i10;
         long j3;
-        this.f26813b = new TLRPC.TL_attachMenuBots();
+        this.f26777b = new TLRPC.TL_attachMenuBots();
         this.h = new ArrayList();
-        this.f26839n = new ArrayList();
-        this.f26847r = new HashMap();
+        this.f26803n = new ArrayList();
+        this.f26811r = new HashMap();
         this.H = new ArrayList[]{new ArrayList(), new ArrayList(), new ArrayList(0), new ArrayList(), new ArrayList(), new ArrayList()};
         this.I = new a0.h[]{new a0.h(), new a0.h(), new a0.h(), new a0.h(), new a0.h(), new a0.h()};
         this.J = new a0.h();
@@ -248,24 +248,24 @@ public final class si extends c1 {
         this.X = new boolean[7];
         this.Y = new long[7];
         this.Z = new int[7];
-        this.f26811a0 = new HashMap();
-        this.f26814b0 = new HashMap();
-        this.f26817c0 = new int[7];
-        this.f26819d0 = new a0.h();
-        this.f26822e0 = new HashMap();
-        this.f26825f0 = new HashMap();
-        this.f26827g0 = new ArrayList[]{new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList()};
-        this.f26829h0 = new boolean[9];
-        this.f26831i0 = new boolean[9];
-        this.f26833j0 = new ArrayList();
-        this.f26845q0 = new long[2];
-        this.f26848r0 = new int[2];
-        this.f26853t0 = new ArrayList[]{new ArrayList(), new ArrayList()};
-        this.f26855u0 = new a0.h[]{new a0.h(), new a0.h()};
-        this.f26857v0 = new ArrayList[]{new ArrayList(), new ArrayList()};
-        this.f26860w0 = new ArrayList[]{new ArrayList(), new ArrayList()};
-        this.f26863x0 = new boolean[2];
-        this.f26866y0 = new boolean[2];
+        this.f26775a0 = new HashMap();
+        this.f26778b0 = new HashMap();
+        this.f26781c0 = new int[7];
+        this.f26783d0 = new a0.h();
+        this.f26786e0 = new HashMap();
+        this.f26789f0 = new HashMap();
+        this.f26791g0 = new ArrayList[]{new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList()};
+        this.f26793h0 = new boolean[9];
+        this.f26795i0 = new boolean[9];
+        this.f26797j0 = new ArrayList();
+        this.f26809q0 = new long[2];
+        this.f26812r0 = new int[2];
+        this.f26817t0 = new ArrayList[]{new ArrayList(), new ArrayList()};
+        this.f26819u0 = new a0.h[]{new a0.h(), new a0.h()};
+        this.f26821v0 = new ArrayList[]{new ArrayList(), new ArrayList()};
+        this.f26824w0 = new ArrayList[]{new ArrayList(), new ArrayList()};
+        this.f26827x0 = new boolean[2];
+        this.f26830y0 = new boolean[2];
         this.B0 = new ArrayList();
         this.C0 = new ArrayList();
         this.E0 = new long[4];
@@ -278,22 +278,22 @@ public final class si extends c1 {
         this.X0 = new int[]{0, 0};
         this.Y0 = new boolean[]{false, false};
         this.Z0 = new ArrayList();
-        this.f26812a1 = new ArrayList();
-        this.f26815b1 = new ArrayList();
-        this.f26818c1 = new SparseArray[]{new SparseArray(), new SparseArray()};
-        this.f26820d1 = new ArrayList();
-        this.f26834j1 = new ArrayList();
-        this.f26836k1 = new ArrayList();
+        this.f26776a1 = new ArrayList();
+        this.f26779b1 = new ArrayList();
+        this.f26782c1 = new SparseArray[]{new SparseArray(), new SparseArray()};
+        this.f26784d1 = new ArrayList();
+        this.f26798j1 = new ArrayList();
+        this.f26800k1 = new ArrayList();
         this.l1 = new ArrayList();
-        this.f26838m1 = new ArrayList();
-        this.f26844p1 = new HashMap();
-        this.f26846q1 = new a0.h();
-        this.f26849r1 = new a0.h();
-        this.f26854t1 = new a0.h();
-        this.f26856u1 = new a0.h();
-        this.f26858v1 = new a0.h();
-        this.f26867y1 = new HashMap();
-        this.f26869z1 = new a0.h();
+        this.f26802m1 = new ArrayList();
+        this.f26808p1 = new HashMap();
+        this.f26810q1 = new a0.h();
+        this.f26813r1 = new a0.h();
+        this.f26818t1 = new a0.h();
+        this.f26820u1 = new a0.h();
+        this.f26822v1 = new a0.h();
+        this.f26831y1 = new HashMap();
+        this.f26833z1 = new a0.h();
         this.A1 = new HashMap();
         this.B1 = new a0.h();
         this.C1 = new HashMap();
@@ -307,12 +307,12 @@ public final class si extends c1 {
         this.S1 = new HashMap();
         this.T1 = new LruCache(25);
         if (this.currentAccount == 0) {
-            this.f26861w1 = t0.f26931b.getSharedPreferences("drafts", 0);
+            this.f26825w1 = t0.f26895b.getSharedPreferences("drafts", 0);
         } else {
-            this.f26861w1 = f3.e(new StringBuilder("drafts"), this.currentAccount, t0.f26931b, 0);
+            this.f26825w1 = f3.e(new StringBuilder("drafts"), this.currentAccount, t0.f26895b, 0);
         }
         ArrayList arrayList = new ArrayList();
-        for (Map.Entry<String, ?> entry : this.f26861w1.getAll().entrySet()) {
+        for (Map.Entry<String, ?> entry : this.f26825w1.getAll().entrySet()) {
             try {
                 key = entry.getKey();
                 longValue = Utilities.A(key).longValue();
@@ -324,10 +324,10 @@ public final class si extends c1 {
                 if (!z10) {
                     TLRPC.DraftMessage TLdeserialize = TLRPC.DraftMessage.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                     if (TLdeserialize != null) {
-                        a0.h hVar = (a0.h) this.f26856u1.f(longValue);
+                        a0.h hVar = (a0.h) this.f26820u1.f(longValue);
                         if (hVar == null) {
                             hVar = new a0.h();
-                            this.f26856u1.k(hVar, longValue);
+                            this.f26820u1.k(hVar, longValue);
                         }
                         if (key.startsWith("t_")) {
                             j3 = Utilities.A(key.substring(key.lastIndexOf(95) + 1)).longValue();
@@ -343,11 +343,11 @@ public final class si extends c1 {
             }
             TLRPC.Message TLdeserialize2 = TLRPC.Message.TLdeserialize(serializedData, serializedData.readInt32(true), true);
             if (TLdeserialize2 != null) {
-                TLdeserialize2.readAttachPath(serializedData, getUserConfig().f24987n);
-                a0.h hVar2 = (a0.h) this.f26858v1.f(longValue);
+                TLdeserialize2.readAttachPath(serializedData, getUserConfig().f24951n);
+                a0.h hVar2 = (a0.h) this.f26822v1.f(longValue);
                 if (hVar2 == null) {
                     hVar2 = new a0.h();
-                    this.f26858v1.k(hVar2, longValue);
+                    this.f26822v1.k(hVar2, longValue);
                 }
                 if (z10) {
                     i10 = Utilities.z(key.substring(key.lastIndexOf(95) + 1)).intValue();
@@ -362,10 +362,10 @@ public final class si extends c1 {
             serializedData.cleanup();
         }
         if (!arrayList.isEmpty()) {
-            getMessagesStorage().f27250a.c(new kh(this, arrayList, 1));
+            getMessagesStorage().f27214a.c(new kh(this, arrayList, 1));
         }
         f1("tg_placeholders_android", false, true);
-        SharedPreferences e10 = f3.e(new StringBuilder("emojithemes_config_"), this.currentAccount, t0.f26931b, 0);
+        SharedPreferences e10 = f3.e(new StringBuilder("emojithemes_config_"), this.currentAccount, t0.f26895b, 0);
         int i11 = e10.getInt("count", 0);
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add(new org.telegram.ui.Components.mp(org.telegram.ui.ActionBar.s3.b(this.currentAccount)));
@@ -373,10 +373,10 @@ public final class si extends c1 {
             SerializedData serializedData2 = new SerializedData(Utilities.v(e10.getString("theme_" + i12, "")));
             try {
                 org.telegram.ui.ActionBar.s3 c10 = org.telegram.ui.ActionBar.s3.c(this.currentAccount, TLRPC.Theme.TLdeserialize(serializedData2, serializedData2.readInt32(true), true));
-                if (c10.f29987f.size() >= 4) {
+                if (c10.f29953f.size() >= 4) {
                     arrayList2.add(new org.telegram.ui.Components.mp(c10));
                 }
-                f4.f23851s.c(new m9.u(this, arrayList2, false, 26));
+                f4.f23815s.c(new m9.u(this, arrayList2, false, 26));
             } catch (Throwable th2) {
                 a8.g(th2, true);
             }
@@ -385,7 +385,7 @@ public final class si extends c1 {
         I0(false);
         I0(true);
         this.A0 = new yf.c(this.currentAccount);
-        this.f26821e = getMessagesController().h7.getInt("menuBotsUpdateDate", 0);
+        this.f26785e = getMessagesController().h7.getInt("menuBotsUpdateDate", 0);
     }
 
     public static boolean A(int r5, java.util.ArrayList r6, boolean r7) {
@@ -411,9 +411,9 @@ public final class si extends c1 {
                 str = "bdid_";
             }
             String str2 = str + j3;
-            List k10 = g0.f.k(t0.f26931b);
+            List k10 = g0.g.k(t0.f26895b);
             for (int i10 = 0; i10 < k10.size(); i10++) {
-                if (((g0.b) k10.get(i10)).f13094b.equals(str2)) {
+                if (((g0.c) k10.get(i10)).f13057b.equals(str2)) {
                     return true;
                 }
             }
@@ -427,7 +427,7 @@ public final class si extends c1 {
             if (z10) {
                 fz0Var3.b(fz0Var2);
             } else {
-                fz0Var3.f35337a = fz0Var2.f35337a;
+                fz0Var3.f35299a = fz0Var2.f35299a;
                 fz0Var3.d = fz0Var2.d;
             }
         }
@@ -527,7 +527,7 @@ public final class si extends c1 {
     public static TLRPC.TL_inputStickerSetID b0(TLRPC.StickerSet stickerSet) {
         if (stickerSet != null) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-            tL_inputStickerSetID.f28454id = stickerSet.f28461id;
+            tL_inputStickerSetID.f28418id = stickerSet.f28425id;
             tL_inputStickerSetID.access_hash = stickerSet.access_hash;
             return tL_inputStickerSetID;
         }
@@ -538,7 +538,7 @@ public final class si extends c1 {
         TLRPC.TL_inputStickerSetItem tL_inputStickerSetItem = new TLRPC.TL_inputStickerSetItem();
         TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
         tL_inputStickerSetItem.document = tL_inputDocument;
-        tL_inputDocument.f28446id = document.f28440id;
+        tL_inputDocument.f28410id = document.f28404id;
         tL_inputDocument.access_hash = document.access_hash;
         tL_inputDocument.file_reference = document.file_reference;
         tL_inputStickerSetItem.emoji = str;
@@ -549,7 +549,7 @@ public final class si extends c1 {
         si siVar;
         si siVar2 = Z1[i7];
         if (siVar2 == null) {
-            synchronized (f26803a2) {
+            synchronized (f26767a2) {
                 try {
                     siVar = Z1[i7];
                     if (siVar == null) {
@@ -652,36 +652,36 @@ public final class si extends c1 {
                         } else {
                             ?? obj = new Object();
                             int i19 = messageEntity2.offset;
-                            obj.f35338b = i19;
-                            obj.f35339c = Math.min(messageEntity2.length, charSequence.length() - obj.f35338b) + i19;
+                            obj.f35300b = i19;
+                            obj.f35301c = Math.min(messageEntity2.length, charSequence.length() - obj.f35300b) + i19;
                             if (messageEntity2 instanceof TLRPC.TL_messageEntitySpoiler) {
-                                obj.f35337a = 256;
+                                obj.f35299a = 256;
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityStrike) {
-                                obj.f35337a = 8;
+                                obj.f35299a = 8;
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityUnderline) {
-                                obj.f35337a = 16;
+                                obj.f35299a = 16;
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityBold) {
-                                obj.f35337a = i14;
+                                obj.f35299a = i14;
                             } else if (messageEntity2 instanceof TLRPC.TL_messageEntityItalic) {
-                                obj.f35337a = 2;
+                                obj.f35299a = 2;
                             } else if (!(messageEntity2 instanceof TLRPC.TL_messageEntityCode) && !(messageEntity2 instanceof TLRPC.TL_messageEntityPre)) {
                                 if (messageEntity2 instanceof TLRPC.TL_messageEntityMentionName) {
-                                    obj.f35337a = 64;
+                                    obj.f35299a = 64;
                                     obj.d = messageEntity2;
                                 } else if (messageEntity2 instanceof TLRPC.TL_inputMessageEntityMentionName) {
-                                    obj.f35337a = 64;
+                                    obj.f35299a = 64;
                                     obj.d = messageEntity2;
                                 } else {
-                                    obj.f35337a = 128;
+                                    obj.f35299a = 128;
                                     obj.d = messageEntity2;
                                 }
                             } else {
-                                obj.f35337a = 4;
+                                obj.f35299a = 4;
                             }
                             if (messageEntity2 instanceof TLRPC.TL_messageEntityTextUrl) {
-                                obj.f35337a |= 1024;
+                                obj.f35299a |= 1024;
                             }
-                            obj.f35337a &= i7;
+                            obj.f35299a &= i7;
                             int size3 = arrayList4.size();
                             int i20 = 0;
                             while (true) {
@@ -692,14 +692,14 @@ public final class si extends c1 {
                                         break loop3;
                                     }
                                     fz0 fz0Var = (fz0) arrayList4.get(i20);
-                                    int i21 = obj.f35338b;
+                                    int i21 = obj.f35300b;
                                     i10 = i14;
-                                    int i22 = fz0Var.f35338b;
+                                    int i22 = fz0Var.f35300b;
                                     if (i21 > i22) {
-                                        int i23 = fz0Var.f35339c;
+                                        int i23 = fz0Var.f35301c;
                                         if (i21 >= i23) {
                                             continue;
-                                        } else if (obj.f35339c < i23) {
+                                        } else if (obj.f35301c < i23) {
                                             if (arrayList4.size() > 98) {
                                                 break loop3;
                                             }
@@ -707,33 +707,33 @@ public final class si extends c1 {
                                             fz0Var2.b(fz0Var);
                                             arrayList4.add(i20 + 1, fz0Var2);
                                             fz0 fz0Var3 = new fz0(fz0Var);
-                                            fz0Var3.f35338b = obj.f35339c;
+                                            fz0Var3.f35300b = obj.f35301c;
                                             i20 += 2;
                                             arrayList4.add(i20, fz0Var3);
                                             size3 += 2;
-                                            int i24 = obj.f35338b;
-                                            obj.f35338b = fz0Var.f35339c;
-                                            fz0Var.f35339c = i24;
+                                            int i24 = obj.f35300b;
+                                            obj.f35300b = fz0Var.f35301c;
+                                            fz0Var.f35301c = i24;
                                         } else if (arrayList4.size() >= i15) {
                                             break loop3;
                                         } else {
                                             fz0 fz0Var4 = new fz0(obj);
                                             fz0Var4.b(fz0Var);
-                                            fz0Var4.f35339c = fz0Var.f35339c;
+                                            fz0Var4.f35301c = fz0Var.f35301c;
                                             i20++;
                                             arrayList4.add(i20, fz0Var4);
                                             size3++;
-                                            int i242 = obj.f35338b;
-                                            obj.f35338b = fz0Var.f35339c;
-                                            fz0Var.f35339c = i242;
+                                            int i242 = obj.f35300b;
+                                            obj.f35300b = fz0Var.f35301c;
+                                            fz0Var.f35301c = i242;
                                         }
                                         i20++;
                                         i14 = i10;
                                         i15 = 100;
                                     } else {
-                                        int i25 = obj.f35339c;
+                                        int i25 = obj.f35301c;
                                         if (i22 < i25) {
-                                            int i26 = fz0Var.f35339c;
+                                            int i26 = fz0Var.f35301c;
                                             if (i25 == i26) {
                                                 fz0Var.b(obj);
                                             } else if (i25 < i26) {
@@ -742,22 +742,22 @@ public final class si extends c1 {
                                                 }
                                                 fz0 fz0Var5 = new fz0(fz0Var);
                                                 fz0Var5.b(obj);
-                                                fz0Var5.f35339c = obj.f35339c;
+                                                fz0Var5.f35301c = obj.f35301c;
                                                 i20++;
                                                 arrayList4.add(i20, fz0Var5);
                                                 size3++;
-                                                fz0Var.f35338b = obj.f35339c;
+                                                fz0Var.f35300b = obj.f35301c;
                                             } else if (arrayList4.size() >= 100) {
                                                 break loop3;
                                             } else {
                                                 fz0 fz0Var6 = new fz0(obj);
-                                                fz0Var6.f35338b = fz0Var.f35339c;
+                                                fz0Var6.f35300b = fz0Var.f35301c;
                                                 i20++;
                                                 arrayList4.add(i20, fz0Var6);
                                                 size3++;
                                                 fz0Var.b(obj);
                                             }
-                                            obj.f35339c = i22;
+                                            obj.f35301c = i22;
                                         } else {
                                             continue;
                                         }
@@ -767,7 +767,7 @@ public final class si extends c1 {
                                     }
                                 } else {
                                     i10 = i14;
-                                    if (obj.f35338b < obj.f35339c) {
+                                    if (obj.f35300b < obj.f35301c) {
                                         i12 = 100;
                                         if (arrayList4.size() >= 100) {
                                             break;
@@ -787,8 +787,8 @@ public final class si extends c1 {
                         int size4 = arrayList4.size();
                         for (int i27 = 0; i27 < size4; i27++) {
                             fz0 fz0Var7 = (fz0) arrayList4.get(i27);
-                            int i28 = fz0Var7.f35338b;
-                            if (i28 >= 0 && i28 < (i11 = fz0Var7.f35339c) && i11 <= charSequence.length()) {
+                            int i28 = fz0Var7.f35300b;
+                            if (i28 >= 0 && i28 < (i11 = fz0Var7.f35301c) && i11 <= charSequence.length()) {
                             }
                         }
                         arrayList2 = arrayList4;
@@ -804,12 +804,12 @@ public final class si extends c1 {
         }
         for (int i29 = 0; i29 < Math.min(1000, v02.size()); i29++) {
             fz0 fz0Var8 = (fz0) v02.get(i29);
-            f(new gz0(fz0Var8, 0), fz0Var8.f35338b, fz0Var8.f35339c, spannable, i10);
+            f(new gz0(fz0Var8, 0), fz0Var8.f35300b, fz0Var8.f35301c, spannable, i10);
         }
     }
 
     public static void h(gj gjVar, Spannable spannable) {
-        g(gjVar.f24213k.entities, gjVar.v, spannable, -1);
+        g(gjVar.f24177k.entities, gjVar.v, spannable, -1);
     }
 
     public static int h0(TLRPC.Message message) {
@@ -1008,7 +1008,7 @@ public final class si extends c1 {
         for (int i10 = 0; i10 < min; i10++) {
             TLRPC.Document document = (TLRPC.Document) arrayList.get(i10);
             if (document != null) {
-                j3 = r(j3, document.f28440id);
+                j3 = r(j3, document.f28404id);
             }
         }
         return j3;
@@ -1018,7 +1018,7 @@ public final class si extends c1 {
         if (!qc.e(8200)) {
             return;
         }
-        imageReceiver.f22701w1 = "preload";
+        imageReceiver.f22665w1 = "preload";
         imageReceiver.h0(0);
         imageReceiver.q0(gcVar, str, null, null, 0, 11);
     }
@@ -1053,7 +1053,7 @@ public final class si extends c1 {
                 if (!(inputStickerSet instanceof TLRPC.TL_inputStickerSetID)) {
                     return -1L;
                 }
-                return inputStickerSet.f28454id;
+                return inputStickerSet.f28418id;
             }
         }
         return -1L;
@@ -1088,8 +1088,8 @@ public final class si extends c1 {
             TLRPC.AttachMenuPeerType attachMenuPeerType = arrayList.get(i7);
             i7++;
             TLRPC.AttachMenuPeerType attachMenuPeerType2 = attachMenuPeerType;
-            if (!(attachMenuPeerType2 instanceof TLRPC.TL_attachMenuPeerTypeSameBotPM) || user == null || !user.bot || user.f28583id != tL_attachMenuBot.bot_id) {
-                if (!(attachMenuPeerType2 instanceof TLRPC.TL_attachMenuPeerTypeBotPM) || user == null || !user.bot || user.f28583id == tL_attachMenuBot.bot_id) {
+            if (!(attachMenuPeerType2 instanceof TLRPC.TL_attachMenuPeerTypeSameBotPM) || user == null || !user.bot || user.f28547id != tL_attachMenuBot.bot_id) {
+                if (!(attachMenuPeerType2 instanceof TLRPC.TL_attachMenuPeerTypeBotPM) || user == null || !user.bot || user.f28547id == tL_attachMenuBot.bot_id) {
                     if (!(attachMenuPeerType2 instanceof TLRPC.TL_attachMenuPeerTypePM) || user == null || user.bot) {
                         if (!(attachMenuPeerType2 instanceof TLRPC.TL_attachMenuPeerTypeChat) || chat == null || v3.V(chat)) {
                             if ((attachMenuPeerType2 instanceof TLRPC.TL_attachMenuPeerTypeBroadcast) && chat != null && v3.V(chat)) {
@@ -1136,36 +1136,36 @@ public final class si extends c1 {
                     int min = Math.min(messageEntity2.length, charSequence.length() - i15) + i15;
                     if (!(messageEntity2 instanceof TLRPC.TL_messageEntityCustomEmoji)) {
                         ?? obj = new Object();
-                        obj.f35338b = i15;
-                        obj.f35339c = min;
+                        obj.f35300b = i15;
+                        obj.f35301c = min;
                         if (messageEntity2 instanceof TLRPC.TL_messageEntitySpoiler) {
-                            obj.f35337a = 256;
+                            obj.f35299a = 256;
                         } else if (messageEntity2 instanceof TLRPC.TL_messageEntityStrike) {
-                            obj.f35337a = 8;
+                            obj.f35299a = 8;
                         } else if (messageEntity2 instanceof TLRPC.TL_messageEntityUnderline) {
-                            obj.f35337a = 16;
+                            obj.f35299a = 16;
                         } else if (messageEntity2 instanceof TLRPC.TL_messageEntityBold) {
-                            obj.f35337a = 1;
+                            obj.f35299a = 1;
                         } else if (messageEntity2 instanceof TLRPC.TL_messageEntityItalic) {
-                            obj.f35337a = 2;
+                            obj.f35299a = 2;
                         } else if (!(messageEntity2 instanceof TLRPC.TL_messageEntityCode) && !(messageEntity2 instanceof TLRPC.TL_messageEntityPre)) {
                             if (messageEntity2 instanceof TLRPC.TL_messageEntityMentionName) {
-                                obj.f35337a = 64;
+                                obj.f35299a = 64;
                                 obj.d = messageEntity2;
                             } else if (messageEntity2 instanceof TLRPC.TL_inputMessageEntityMentionName) {
-                                obj.f35337a = 64;
+                                obj.f35299a = 64;
                                 obj.d = messageEntity2;
                             } else {
-                                obj.f35337a = 128;
+                                obj.f35299a = 128;
                                 obj.d = messageEntity2;
                             }
                         } else {
-                            obj.f35337a = 4;
+                            obj.f35299a = 4;
                         }
                         if (messageEntity2 instanceof TLRPC.TL_messageEntityTextUrl) {
-                            obj.f35337a |= 1024;
+                            obj.f35299a |= 1024;
                         }
-                        obj.f35337a &= i7;
+                        obj.f35299a &= i7;
                         arrayList4.add(obj);
                         int i16 = i13 + 1;
                         iArr[i13] = i15;
@@ -1192,20 +1192,20 @@ public final class si extends c1 {
                     int i21 = i11;
                     while (i21 < size3) {
                         fz0 fz0Var2 = (fz0) arrayList4.get(i21);
-                        if (fz0Var2.f35338b <= i18) {
+                        if (fz0Var2.f35300b <= i18) {
                             fz0Var = fz0Var;
-                            if (fz0Var2.f35339c >= i19) {
+                            if (fz0Var2.f35301c >= i19) {
                                 if (fz0Var == null) {
                                     ?? obj2 = new Object();
-                                    obj2.f35338b = i18;
-                                    obj2.f35339c = i19;
+                                    obj2.f35300b = i18;
+                                    obj2.f35301c = i19;
                                     fz0Var = obj2;
                                 }
-                                fz0Var.f35337a = fz0Var2.f35337a | fz0Var.f35337a;
+                                fz0Var.f35299a = fz0Var2.f35299a | fz0Var.f35299a;
                                 TLRPC.MessageEntity messageEntity3 = fz0Var2.d;
-                                if (messageEntity3 != null && (fz0Var.d == null || fz0Var2.f35338b > i20)) {
+                                if (messageEntity3 != null && (fz0Var.d == null || fz0Var2.f35300b > i20)) {
                                     fz0Var.d = messageEntity3;
-                                    i20 = fz0Var2.f35338b;
+                                    i20 = fz0Var2.f35300b;
                                 }
                             }
                         }
@@ -1215,8 +1215,8 @@ public final class si extends c1 {
                     if (fz0Var != null) {
                         if (!arrayList2.isEmpty()) {
                             fz0 fz0Var3 = (fz0) i5.c.h(1, arrayList2);
-                            if (fz0Var3.f35339c == fz0Var.f35338b && fz0Var3.f35337a == fz0Var.f35337a && fz0Var3.d == fz0Var.d) {
-                                fz0Var3.f35339c = fz0Var.f35339c;
+                            if (fz0Var3.f35301c == fz0Var.f35300b && fz0Var3.f35299a == fz0Var.f35299a && fz0Var3.d == fz0Var.d) {
+                                fz0Var3.f35301c = fz0Var.f35301c;
                             }
                         }
                         if (arrayList2.size() >= 1000) {
@@ -1234,7 +1234,7 @@ public final class si extends c1 {
 
     public static String z0(TLRPC.InputStickerSet inputStickerSet) {
         if (inputStickerSet instanceof TLRPC.TL_inputStickerSetID) {
-            return "id" + inputStickerSet.f28454id + "access_hash" + inputStickerSet.access_hash;
+            return "id" + inputStickerSet.f28418id + "access_hash" + inputStickerSet.access_hash;
         } else if (inputStickerSet instanceof TLRPC.TL_inputStickerSetShortName) {
             return "short" + inputStickerSet.short_name;
         } else if (inputStickerSet instanceof TLRPC.TL_inputStickerSetEmpty) {
@@ -1277,9 +1277,9 @@ public final class si extends c1 {
         if (list != null && i10 != 0) {
             ArrayList arrayList2 = this.h;
             arrayList2.clear();
-            HashMap hashMap = this.f26847r;
+            HashMap hashMap = this.f26811r;
             hashMap.clear();
-            ArrayList arrayList3 = this.f26839n;
+            ArrayList arrayList3 = this.f26803n;
             arrayList3.clear();
             arrayList2.addAll(list);
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
@@ -1289,20 +1289,20 @@ public final class si extends c1 {
                     arrayList3.add((TLRPC.TL_availableReaction) arrayList2.get(i11));
                 }
             }
-            this.f26824f = i7;
+            this.f26788f = i7;
         }
-        this.f26862x = i10;
+        this.f26826x = i10;
         if (list != null) {
             g0.g3(new fg(this, 8));
         }
-        this.f26859w = false;
+        this.f26823w = false;
         if (!z10) {
             if (list != null) {
                 arrayList = new ArrayList(list);
             } else {
                 arrayList = null;
             }
-            getMessagesStorage().f27250a.c(new l2.x(this, arrayList, i7, i10, 3));
+            getMessagesStorage().f27214a.c(new l2.x(this, arrayList, i7, i10, 3));
             return;
         }
         Math.abs((System.currentTimeMillis() / 1000) - i10);
@@ -1310,8 +1310,8 @@ public final class si extends c1 {
     }
 
     public final void B() {
-        if (getUserConfig().f24975c0 != null) {
-            String str = getUserConfig().f24975c0;
+        if (getUserConfig().f24939c0 != null) {
+            String str = getUserConfig().f24939c0;
             TLRPC.TL_messages_stickerSet r02 = r0(str);
             if (r02 == null) {
                 r02 = p0(str);
@@ -1320,7 +1320,7 @@ public final class si extends c1 {
                 d0(this.currentAccount).f1(str, false, true);
             }
         }
-        if (!this.m0 && System.currentTimeMillis() - getUserConfig().f24981g0 >= 86400000) {
+        if (!this.m0 && System.currentTimeMillis() - getUserConfig().f24945g0 >= 86400000) {
             this.m0 = true;
             TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
             tL_messages_getStickerSet.stickerset = new TLRPC.TL_inputStickerSetPremiumGifts();
@@ -1338,7 +1338,7 @@ public final class si extends c1 {
             arrayList2 = arrayList;
             z12 = z10;
             i12 = i10;
-            getMessagesStorage().f27250a.c(new vf(this, z12, i11, arrayList2, z11, i12));
+            getMessagesStorage().f27214a.c(new vf(this, z12, i11, arrayList2, z11, i12));
         } else {
             i11 = i7;
             arrayList2 = arrayList;
@@ -1351,7 +1351,7 @@ public final class si extends c1 {
     }
 
     public final void C() {
-        if (!this.f26859w && Math.abs((System.currentTimeMillis() / 1000) - this.f26862x) >= 3600) {
+        if (!this.f26823w && Math.abs((System.currentTimeMillis() / 1000) - this.f26826x) >= 3600) {
             V0(true, null);
         }
     }
@@ -1375,12 +1375,12 @@ public final class si extends c1 {
         }
         int i7 = 0;
         while (true) {
-            ArrayList[] arrayListArr = this.f26827g0;
+            ArrayList[] arrayListArr = this.f26791g0;
             if (i7 >= arrayListArr[2].size()) {
                 return false;
             }
             TLRPC.Document document2 = (TLRPC.Document) arrayListArr[2].get(i7);
-            if (document2.f28440id == document.f28440id && document2.dc_id == document.dc_id) {
+            if (document2.f28404id == document.f28404id && document2.dc_id == document.dc_id) {
                 return true;
             }
             i7++;
@@ -1397,8 +1397,8 @@ public final class si extends c1 {
     }
 
     public final void E() {
-        if (getUserConfig().f24976d0 != null) {
-            String str = getUserConfig().f24976d0;
+        if (getUserConfig().f24940d0 != null) {
+            String str = getUserConfig().f24940d0;
             TLRPC.TL_messages_stickerSet r02 = r0(str);
             if (r02 == null) {
                 r02 = p0(str);
@@ -1407,8 +1407,8 @@ public final class si extends c1 {
                 d0(this.currentAccount).f1(str, false, true);
             }
         }
-        if (!this.f26840n0 && System.currentTimeMillis() - getUserConfig().f24982h0 >= 86400000) {
-            this.f26840n0 = true;
+        if (!this.f26804n0 && System.currentTimeMillis() - getUserConfig().f24946h0 >= 86400000) {
+            this.f26804n0 = true;
             TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
             tL_messages_getStickerSet.stickerset = new TLRPC.TL_inputStickerSetTonGifts();
             getConnectionsManager().sendRequest(tL_messages_getStickerSet, new jh(this, 7));
@@ -1429,7 +1429,7 @@ public final class si extends c1 {
         org.telegram.ui.ActionBar.g2 g2Var2;
         int size = tL_messages_stickerSetInstallResultArchive.sets.size();
         for (int i10 = 0; i10 < size; i10++) {
-            this.K.l(tL_messages_stickerSetInstallResultArchive.sets.get(i10).set.f28461id);
+            this.K.l(tL_messages_stickerSetInstallResultArchive.sets.get(i10).set.f28425id);
         }
         F0(i7, false);
         getNotificationCenter().k(ls.Y0, tL_messages_stickerSetInstallResultArchive.sets);
@@ -1444,7 +1444,7 @@ public final class si extends c1 {
             ?? alertDialog$Builder = new AlertDialog$Builder(parentActivity);
             TLRPC.StickerSetCovered stickerSetCovered = arrayList.get(0);
             boolean z11 = stickerSetCovered.set.masks;
-            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
             if (z11) {
                 alertDialog$Builder.d = 1;
                 t1Var.S = hd.N0(2131754128, null);
@@ -1452,14 +1452,14 @@ public final class si extends c1 {
                 alertDialog$Builder.d = 0;
                 t1Var.S = hd.N0(2131754123, null);
             }
-            alertDialog$Builder.f37652c = new ArrayList(arrayList);
-            alertDialog$Builder.f37653e = g2Var2;
+            alertDialog$Builder.f37608c = new ArrayList(arrayList);
+            alertDialog$Builder.f37609e = g2Var2;
             LinearLayout linearLayout = new LinearLayout(parentActivity);
             linearLayout.setOrientation(1);
             alertDialog$Builder.o(linearLayout);
             TextView textView = new TextView(parentActivity);
             org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.G6, null);
-            textView.setGravity(c8.ma.y());
+            textView.setGravity(c8.na.y());
             textView.setTextSize(1, 16.0f);
             textView.setPadding(g0.L(23.0f), g0.L(10.0f), g0.L(23.0f), 0);
             if (stickerSetCovered.set.masks) {
@@ -1467,15 +1467,15 @@ public final class si extends c1 {
             } else {
                 textView.setText(hd.N0(2131754124, null));
             }
-            linearLayout.addView(textView, c8.ma.o(-2, -2));
+            linearLayout.addView(textView, c8.na.o(-2, -2));
             ek0 ek0Var = new ek0(parentActivity, null);
             t1Var.getContext();
-            ek0Var.setLayoutManager(new v4.c0(1, false));
+            ek0Var.setLayoutManager(new v4.b0(1, false));
             ek0Var.setAdapter(new lw0(alertDialog$Builder, parentActivity));
             ek0Var.setVerticalScrollBarEnabled(false);
             ek0Var.setPadding(g0.L(10.0f), 0, g0.L(10.0f), 0);
             ek0Var.setGlowColor(-657673);
-            linearLayout.addView(ek0Var, c8.ma.k(0.0f, 10.0f, 0.0f, 0.0f, -1, -2));
+            linearLayout.addView(ek0Var, c8.na.k(0.0f, 10.0f, 0.0f, 0.0f, -1, -2));
             alertDialog$Builder.h(hd.N0(2131752029, null), new xb0(18));
             if (g2Var2 != null) {
                 alertDialog$Builder.k(hd.N0(2131745299, null), new org.telegram.ui.Components.ky(alertDialog$Builder, 21));
@@ -1486,7 +1486,7 @@ public final class si extends c1 {
 
     public final void F(long j3, long j10, boolean z10) {
         TLRPC.DraftMessage draftMessage;
-        a0.h hVar = this.f26856u1;
+        a0.h hVar = this.f26820u1;
         a0.h hVar2 = (a0.h) hVar.f(j3);
         if (hVar2 != null) {
             draftMessage = (TLRPC.DraftMessage) hVar2.f(j10);
@@ -1502,7 +1502,7 @@ public final class si extends c1 {
                         hVar.l(j3);
                     }
                 }
-                a0.h hVar4 = this.f26858v1;
+                a0.h hVar4 = this.f26822v1;
                 a0.h hVar5 = (a0.h) hVar4.f(j3);
                 if (hVar5 != null) {
                     hVar5.l(j10);
@@ -1511,11 +1511,11 @@ public final class si extends c1 {
                     }
                 }
                 int i7 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-                SharedPreferences sharedPreferences = this.f26861w1;
+                SharedPreferences sharedPreferences = this.f26825w1;
                 if (i7 == 0) {
                     sharedPreferences.edit().remove("" + j3).remove("r_" + j3).commit();
                     getMessagesController().f5(null);
-                    getNotificationCenter().k(ls.f25378s, new Object[0]);
+                    getNotificationCenter().k(ls.f25342s, new Object[0]);
                     return;
                 }
                 SharedPreferences.Editor edit = sharedPreferences.edit();
@@ -1543,12 +1543,12 @@ public final class si extends c1 {
         boolean z11;
         boolean z12 = false;
         if (z10) {
-            int i10 = np.u1(this.currentAccount).f25857g7.getInt("archivedStickersCount" + i7, -1);
+            int i10 = np.u1(this.currentAccount).f25821g7.getInt("archivedStickersCount" + i7, -1);
             if (i10 == -1) {
                 F0(i7, false);
                 return;
             }
-            this.f26817c0[i7] = i10;
+            this.f26781c0[i7] = i10;
             getNotificationCenter().k(ls.Z0, Integer.valueOf(i7));
             return;
         }
@@ -1568,7 +1568,7 @@ public final class si extends c1 {
     }
 
     public final void F1(long j3, long j10, ni niVar) {
-        SharedPreferences e10 = f3.e(new StringBuilder("2voicedrafts_"), this.currentAccount, t0.f26931b, 0);
+        SharedPreferences e10 = f3.e(new StringBuilder("2voicedrafts_"), this.currentAccount, t0.f26895b, 0);
         long hash = Objects.hash(Long.valueOf(j3), Long.valueOf(j10));
         String str = hash + "";
         if (niVar == null) {
@@ -1581,13 +1581,13 @@ public final class si extends c1 {
     }
 
     public final void G(boolean z10) {
-        this.f26856u1.b();
-        this.f26858v1.b();
-        this.f26854t1.b();
-        this.f26861w1.edit().clear().commit();
+        this.f26820u1.b();
+        this.f26822v1.b();
+        this.f26818t1.b();
+        this.f26825w1.edit().clear().commit();
         if (z10) {
             getMessagesController().f5(null);
-            getNotificationCenter().k(ls.f25378s, new Object[0]);
+            getNotificationCenter().k(ls.f25342s, new Object[0]);
         }
     }
 
@@ -1614,38 +1614,38 @@ public final class si extends c1 {
             TL_account.TL_emojiStatuses tL_emojiStatuses = new TL_account.TL_emojiStatuses();
             tL_emojiStatuses.hash = this.E0[0];
             tL_emojiStatuses.statuses = arrayListArr[0];
-            getMessagesStorage().f27250a.c(new l7(this, 0, tL_emojiStatuses, 8));
+            getMessagesStorage().f27214a.c(new l7(this, 0, tL_emojiStatuses, 8));
         }
     }
 
     public final void H() {
-        this.f26834j1.clear();
-        this.f26836k1.clear();
+        this.f26798j1.clear();
+        this.f26800k1.clear();
         this.l1.clear();
-        this.f26838m1.clear();
+        this.f26802m1.clear();
         getNotificationCenter().k(ls.S0, new Object[0]);
         getNotificationCenter().k(ls.T0, new Object[0]);
         getNotificationCenter().k(ls.U0, new Object[0]);
         getNotificationCenter().k(ls.V0, new Object[0]);
-        getMessagesStorage().f27250a.c(new fg(this, 17));
+        getMessagesStorage().f27214a.c(new fg(this, 17));
         o();
     }
 
-    public final void H0(boolean z10, boolean z11, org.telegram.ui.wn wnVar) {
+    public final void H0(boolean z10, boolean z11, org.telegram.ui.ip ipVar) {
         long j3;
-        this.f26816c = true;
+        this.f26780c = true;
         if (z10) {
-            getMessagesStorage().f27250a.c(new fg(this, 16));
+            getMessagesStorage().f27214a.c(new fg(this, 16));
             return;
         }
         TLRPC.TL_messages_getAttachMenuBots tL_messages_getAttachMenuBots = new TLRPC.TL_messages_getAttachMenuBots();
         if (z11) {
             j3 = 0;
         } else {
-            j3 = this.f26810a;
+            j3 = this.f26774a;
         }
         tL_messages_getAttachMenuBots.hash = j3;
-        getConnectionsManager().sendRequest(tL_messages_getAttachMenuBots, new t4(5, this, wnVar));
+        getConnectionsManager().sendRequest(tL_messages_getAttachMenuBots, new t4(5, this, ipVar));
     }
 
     public final void H1(long j3, TL_aicompose.inputAiComposeStyle inputaicomposestyle) {
@@ -1653,7 +1653,7 @@ public final class si extends c1 {
         if (B0(inputaicomposestyle)) {
             inputaicomposestyle = null;
         }
-        a0.h hVar = this.f26849r1;
+        a0.h hVar = this.f26813r1;
         if (j((TL_aicompose.inputAiComposeStyle) hVar.f(j3), inputaicomposestyle)) {
             return;
         }
@@ -1677,8 +1677,8 @@ public final class si extends c1 {
     }
 
     public final boolean I(long j3) {
-        for (int i7 = 0; i7 < this.f26834j1.size(); i7++) {
-            if (n5.o(((TLRPC.TL_topPeer) this.f26834j1.get(i7)).peer) == j3) {
+        for (int i7 = 0; i7 < this.f26798j1.size(); i7++) {
+            if (n5.o(((TLRPC.TL_topPeer) this.f26798j1.get(i7)).peer) == j3) {
                 return true;
             }
         }
@@ -1693,18 +1693,18 @@ public final class si extends c1 {
         if (botInfo == null) {
             return;
         }
-        this.f26867y1.put(botInfo.user_id + "_" + j3, botInfo);
-        getMessagesStorage().f27250a.c(new d4(this, botInfo, j3, 12));
+        this.f26831y1.put(botInfo.user_id + "_" + j3, botInfo);
+        getMessagesStorage().f27214a.c(new d4(this, botInfo, j3, 12));
     }
 
     public final Intent J(long j3) {
         if (j3 != 0) {
-            Intent intent = new Intent(t0.f26931b, OpenAttachedMenuBotReceiver.class);
+            Intent intent = new Intent(t0.f26895b, OpenAttachedMenuBotReceiver.class);
             if (n5.E(j3)) {
                 intent.putExtra("botId", j3);
                 intent.putExtra("currentAccount", this.currentAccount);
                 StringBuilder sb2 = new StringBuilder("com.tmessages.openshortcutbot");
-                int i7 = OpenAttachedMenuBotReceiver.f22804a;
+                int i7 = OpenAttachedMenuBotReceiver.f22768a;
                 sb2.append(j3);
                 intent.setAction(sb2.toString());
                 intent.addFlags(67108864);
@@ -1717,13 +1717,13 @@ public final class si extends c1 {
 
     public final void J0(long j3, long j10, boolean z10, int i7, hk hkVar) {
         if (z10) {
-            TL_bots.BotInfo botInfo = (TL_bots.BotInfo) this.f26867y1.get(j3 + "_" + j10);
+            TL_bots.BotInfo botInfo = (TL_bots.BotInfo) this.f26831y1.get(j3 + "_" + j10);
             if (botInfo != null) {
                 getNotificationCenter().k(ls.D0, botInfo, Integer.valueOf(i7));
                 return;
             }
         }
-        getMessagesStorage().f27250a.c(new vh(this, j3, j10, hkVar, i7, 0));
+        getMessagesStorage().f27214a.c(new vh(this, j3, j10, hkVar, i7, 0));
     }
 
     public final void J1(tr trVar, TLRPC.Message message) {
@@ -1732,42 +1732,42 @@ public final class si extends c1 {
         if (trVar != null) {
             try {
                 int i7 = 0;
-                if (trVar.f27074b != 0) {
-                    SQLiteDatabase sQLiteDatabase = getMessagesStorage().f27252b;
+                if (trVar.f27038b != 0) {
+                    SQLiteDatabase sQLiteDatabase = getMessagesStorage().f27216b;
                     Locale locale = Locale.US;
-                    long j3 = trVar.f27073a;
-                    long j10 = trVar.f27074b;
+                    long j3 = trVar.f27037a;
+                    long j10 = trVar.f27038b;
                     queryFinalized = sQLiteDatabase.queryFinalized("SELECT mid FROM bot_keyboard_topics WHERE uid = " + j3 + " AND tid = " + j10, new Object[0]);
                 } else {
-                    SQLiteDatabase sQLiteDatabase2 = getMessagesStorage().f27252b;
+                    SQLiteDatabase sQLiteDatabase2 = getMessagesStorage().f27216b;
                     Locale locale2 = Locale.US;
-                    long j11 = trVar.f27073a;
+                    long j11 = trVar.f27037a;
                     queryFinalized = sQLiteDatabase2.queryFinalized("SELECT mid FROM bot_keyboard WHERE uid = " + j11, new Object[0]);
                 }
                 if (queryFinalized.next()) {
                     i7 = queryFinalized.intValue(0);
                 }
                 queryFinalized.dispose();
-                if (i7 >= message.f28455id && !gj.f3(i7) && !gj.f3(message.f28455id)) {
+                if (i7 >= message.f28419id && !gj.f3(i7) && !gj.f3(message.f28419id)) {
                     return;
                 }
-                if (trVar.f27074b != 0) {
-                    executeFast = getMessagesStorage().f27252b.executeFast("REPLACE INTO bot_keyboard_topics VALUES(?, ?, ?, ?)");
+                if (trVar.f27038b != 0) {
+                    executeFast = getMessagesStorage().f27216b.executeFast("REPLACE INTO bot_keyboard_topics VALUES(?, ?, ?, ?)");
                 } else {
-                    executeFast = getMessagesStorage().f27252b.executeFast("REPLACE INTO bot_keyboard VALUES(?, ?, ?)");
+                    executeFast = getMessagesStorage().f27216b.executeFast("REPLACE INTO bot_keyboard VALUES(?, ?, ?)");
                 }
                 executeFast.requery();
                 gj.q5(message);
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(message.getObjectSize());
                 message.serializeToStream(nativeByteBuffer);
-                if (trVar.f27074b != 0) {
-                    executeFast.bindLong(1, trVar.f27073a);
-                    executeFast.bindLong(2, trVar.f27074b);
-                    executeFast.bindInteger(3, message.f28455id);
+                if (trVar.f27038b != 0) {
+                    executeFast.bindLong(1, trVar.f27037a);
+                    executeFast.bindLong(2, trVar.f27038b);
+                    executeFast.bindInteger(3, message.f28419id);
                     executeFast.bindByteBuffer(4, nativeByteBuffer);
                 } else {
-                    executeFast.bindLong(1, trVar.f27073a);
-                    executeFast.bindInteger(2, message.f28455id);
+                    executeFast.bindLong(1, trVar.f27037a);
+                    executeFast.bindInteger(2, message.f28419id);
                     executeFast.bindByteBuffer(3, nativeByteBuffer);
                 }
                 executeFast.step();
@@ -1781,7 +1781,7 @@ public final class si extends c1 {
     }
 
     public final Intent K(long j3) {
-        Intent intent = new Intent(t0.f26931b, OpenChatReceiver.class);
+        Intent intent = new Intent(t0.f26895b, OpenChatReceiver.class);
         if (n5.C(j3)) {
             int i7 = (int) (4294967295L & j3);
             intent.putExtra("encId", i7);
@@ -1804,7 +1804,7 @@ public final class si extends c1 {
     public final TL_bots.BotInfo K0(long j3, long j10) {
         TL_bots.BotInfo botInfo;
         NativeByteBuffer byteBufferValue;
-        SQLiteDatabase sQLiteDatabase = getMessagesStorage().f27252b;
+        SQLiteDatabase sQLiteDatabase = getMessagesStorage().f27216b;
         Locale locale = Locale.US;
         StringBuilder t6 = a8.p0.t(j3, "SELECT info FROM bot_info_v2 WHERE uid = ", " AND dialogId = ");
         t6.append(j10);
@@ -1823,7 +1823,7 @@ public final class si extends c1 {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        getMessagesStorage().f27250a.c(new eg(this, tL_messages_stickerSet, str, i7, 7));
+        getMessagesStorage().f27214a.c(new eg(this, tL_messages_stickerSet, str, i7, 7));
     }
 
     public final void L0(tr trVar, boolean z10) {
@@ -1831,7 +1831,7 @@ public final class si extends c1 {
         if (message != null) {
             getNotificationCenter().k(ls.G0, message, trVar);
         } else {
-            getMessagesStorage().f27250a.c(new yf(this, trVar, z10, 7));
+            getMessagesStorage().f27214a.c(new yf(this, trVar, z10, 7));
         }
     }
 
@@ -1843,7 +1843,7 @@ public final class si extends c1 {
             arrayList3 = null;
         }
         final ArrayList arrayList4 = arrayList3;
-        getMessagesStorage().f27250a.c(new Runnable() {
+        getMessagesStorage().f27214a.c(new Runnable() {
             @Override
             public final void run() {
                 int i10;
@@ -1857,7 +1857,7 @@ public final class si extends c1 {
                 int i12 = i7;
                 try {
                     if (arrayList6 != null) {
-                        SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27252b.executeFast("REPLACE INTO stickers_featured VALUES(?, ?, ?, ?, ?, ?, ?)");
+                        SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27216b.executeFast("REPLACE INTO stickers_featured VALUES(?, ?, ?, ?, ?, ?, ?)");
                         executeFast.requery();
                         int i13 = 4;
                         for (int i14 = 0; i14 < arrayList6.size(); i14++) {
@@ -1891,7 +1891,7 @@ public final class si extends c1 {
                         executeFast.dispose();
                         return;
                     }
-                    SQLitePreparedStatement executeFast2 = siVar.getMessagesStorage().f27252b.executeFast("UPDATE stickers_featured SET date = ? WHERE id = ? AND emoji = ?");
+                    SQLitePreparedStatement executeFast2 = siVar.getMessagesStorage().f27216b.executeFast("UPDATE stickers_featured SET date = ? WHERE id = ? AND emoji = ?");
                     executeFast2.requery();
                     executeFast2.bindInteger(1, i12);
                     if (z13) {
@@ -1911,14 +1911,14 @@ public final class si extends c1 {
     }
 
     public final void M0() {
-        if (!getUserConfig().f24996w && !this.f26864x1) {
-            this.f26864x1 = true;
+        if (!getUserConfig().f24960w && !this.f26828x1) {
+            this.f26828x1 = true;
             getConnectionsManager().sendRequest(new TLRPC.TL_messages_getAllDrafts(), new jh(this, 0));
         }
     }
 
     public final void M1(long j3, long j10, int i7, int i10) {
-        getMessagesStorage().f27250a.c(new mg(this, j10, j3, i7, i10, 1));
+        getMessagesStorage().f27214a.c(new mg(this, j10, j3, i7, i10, 1));
     }
 
     public final void N(int i7, boolean z10) {
@@ -1929,7 +1929,7 @@ public final class si extends c1 {
         }
         zArr[i7] = true;
         if (z10) {
-            getMessagesStorage().f27250a.c(new ng(this, i7, 1));
+            getMessagesStorage().f27214a.c(new ng(this, i7, 1));
             return;
         }
         long[] jArr = this.E0;
@@ -1952,16 +1952,16 @@ public final class si extends c1 {
     public final void N0(boolean z10, boolean z11) {
         long j3;
         TLRPC.TL_messages_getFeaturedStickers tL_messages_getFeaturedStickers;
-        boolean[] zArr = this.f26863x0;
+        boolean[] zArr = this.f26827x0;
         if (zArr[z10 ? 1 : 0]) {
             return;
         }
         zArr[z10 ? 1 : 0] = true;
         if (z11) {
-            getMessagesStorage().f27250a.c(new qh(this, z10, 1));
+            getMessagesStorage().f27214a.c(new qh(this, z10, 1));
             return;
         }
-        long[] jArr = this.f26845q0;
+        long[] jArr = this.f26809q0;
         if (z10) {
             TLRPC.TL_messages_getFeaturedEmojiStickers tL_messages_getFeaturedEmojiStickers = new TLRPC.TL_messages_getFeaturedEmojiStickers();
             j3 = jArr[1];
@@ -1981,7 +1981,7 @@ public final class si extends c1 {
         int i7;
         TLRPC.StickerSet stickerSet2;
         if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
-            this.J.k(tL_messages_stickerSet, stickerSet.f28461id);
+            this.J.k(tL_messages_stickerSet, stickerSet.f28425id);
             if (!TextUtils.isEmpty(tL_messages_stickerSet.set.short_name)) {
                 this.O.put(tL_messages_stickerSet.set.short_name.toLowerCase(), tL_messages_stickerSet);
             }
@@ -1995,17 +1995,17 @@ public final class si extends c1 {
                 if (arrayList != null) {
                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
                         TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) arrayList.get(i11);
-                        if (tL_messages_stickerSet2 != null && (stickerSet2 = tL_messages_stickerSet2.set) != null && stickerSet2.f28461id == tL_messages_stickerSet.set.f28461id) {
+                        if (tL_messages_stickerSet2 != null && (stickerSet2 = tL_messages_stickerSet2.set) != null && stickerSet2.f28425id == tL_messages_stickerSet.set.f28425id) {
                             arrayList.set(i11, tL_messages_stickerSet);
                         }
                     }
                 }
                 i10++;
             }
-            long j3 = tL_messages_stickerSet.set.f28461id;
+            long j3 = tL_messages_stickerSet.set.f28425id;
             a0.h hVar = this.N;
             if (hVar.d(j3)) {
-                hVar.k(tL_messages_stickerSet, tL_messages_stickerSet.set.f28461id);
+                hVar.k(tL_messages_stickerSet, tL_messages_stickerSet.set.f28425id);
             }
             Z1(tL_messages_stickerSet);
             TLRPC.StickerSet stickerSet3 = tL_messages_stickerSet.set;
@@ -2017,7 +2017,7 @@ public final class si extends c1 {
                 i7 = 0;
             }
             if (z10) {
-                getNotificationCenter().k(ls.f25412x0, Integer.valueOf(i7), Boolean.TRUE);
+                getNotificationCenter().k(ls.f25376x0, Integer.valueOf(i7), Boolean.TRUE);
             }
         }
     }
@@ -2030,7 +2030,7 @@ public final class si extends c1 {
                     if (hashMap.get(str) == null) {
                         if (!z10 || !this.D1.contains(str)) {
                             hashMap.put(str, Boolean.TRUE);
-                            getMessagesStorage().f27250a.c(new ih(this, str, 5));
+                            getMessagesStorage().f27214a.c(new ih(this, str, 5));
                         } else {
                             return;
                         }
@@ -2046,13 +2046,13 @@ public final class si extends c1 {
 
     public final void O0(TLRPC.StickerSet stickerSet, boolean z10) {
         if (z10) {
-            getMessagesStorage().f27250a.c(new z4(29, this, stickerSet));
+            getMessagesStorage().f27214a.c(new z4(29, this, stickerSet));
             return;
         }
         TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
         TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
         tL_messages_getStickerSet.stickerset = tL_inputStickerSetID;
-        tL_inputStickerSetID.f28454id = stickerSet.f28461id;
+        tL_inputStickerSetID.f28418id = stickerSet.f28425id;
         tL_inputStickerSetID.access_hash = stickerSet.access_hash;
         getConnectionsManager().sendRequest(tL_messages_getStickerSet, new jh(this, 6));
     }
@@ -2064,7 +2064,7 @@ public final class si extends c1 {
         } else {
             arrayList2 = null;
         }
-        getMessagesStorage().f27250a.c(new b1(this, arrayList2, i7, i10, j3));
+        getMessagesStorage().f27214a.c(new b1(this, arrayList2, i7, i10, j3));
     }
 
     public final void P(TLRPC.InputStickerSet inputStickerSet, r10 r10Var) {
@@ -2086,17 +2086,17 @@ public final class si extends c1 {
     }
 
     public final void P0(boolean z10) {
-        if (!this.f26842o1 && getUserConfig().W) {
+        if (!this.f26806o1 && getUserConfig().W) {
             if (z10) {
                 if (!this.n1) {
-                    this.f26842o1 = true;
-                    getMessagesStorage().f27250a.c(new fg(this, 14));
+                    this.f26806o1 = true;
+                    getMessagesStorage().f27214a.c(new fg(this, 14));
                     this.n1 = true;
                     return;
                 }
                 return;
             }
-            this.f26842o1 = true;
+            this.f26806o1 = true;
             TLRPC.TL_contacts_getTopPeers tL_contacts_getTopPeers = new TLRPC.TL_contacts_getTopPeers();
             tL_contacts_getTopPeers.hash = 0L;
             tL_contacts_getTopPeers.bots_pm = false;
@@ -2135,15 +2135,15 @@ public final class si extends c1 {
     }
 
     public final void Q1(long j3) {
-        ArrayList arrayList = this.f26836k1;
+        ArrayList arrayList = this.f26800k1;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             if (((TLRPC.TL_topPeer) arrayList.get(i7)).peer.user_id == j3) {
                 arrayList.remove(i7);
                 TLRPC.TL_contacts_resetTopPeerRating tL_contacts_resetTopPeerRating = new TLRPC.TL_contacts_resetTopPeerRating();
                 tL_contacts_resetTopPeerRating.category = new TLRPC.TL_topPeerCategoryBotsInline();
                 tL_contacts_resetTopPeerRating.peer = getMessagesController().l1(j3);
-                getConnectionsManager().sendRequest(tL_contacts_resetTopPeerRating, new fi.l5(11));
-                getMessagesStorage().f27250a.c(new di.c9(this, j3, 1, 4));
+                getConnectionsManager().sendRequest(tL_contacts_resetTopPeerRating, new fi.k5(11));
+                getMessagesStorage().f27214a.c(new di.c9(this, j3, 1, 4));
                 getNotificationCenter().k(ls.T0, new Object[0]);
                 return;
             }
@@ -2155,14 +2155,14 @@ public final class si extends c1 {
     }
 
     public final void R0() {
-        if (!this.f26828g1 && this.M0 == 0) {
+        if (!this.f26792g1 && this.M0 == 0) {
             boolean[] zArr = this.Y0;
             if (!zArr[0] || this.O0 != 0 || !zArr[1]) {
-                int i7 = this.f26826f1;
-                this.f26826f1 = this.Z0.size();
-                this.f26828g1 = true;
+                int i7 = this.f26790f1;
+                this.f26790f1 = this.Z0.size();
+                this.f26792g1 = true;
                 c2(null, this.Q0, this.O0, this.T0, 1, this.P0, false, this.U0, this.V0, false, this.R0);
-                this.f26826f1 = i7;
+                this.f26790f1 = i7;
             }
         }
     }
@@ -2176,14 +2176,14 @@ public final class si extends c1 {
                 break;
             }
             if (i7 == ((gj) arrayList.get(i11)).e1()) {
-                this.f26820d1.add((gj) arrayList.remove(i11));
+                this.f26784d1.add((gj) arrayList.remove(i11));
                 i11--;
             }
             i11++;
         }
         int i12 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f26812a1;
+            ArrayList arrayList2 = this.f26776a1;
             if (i12 >= arrayList2.size()) {
                 break;
             }
@@ -2193,9 +2193,9 @@ public final class si extends c1 {
             }
             i12++;
         }
-        while (i10 < this.f26815b1.size()) {
-            if (i7 == ((gj) this.f26815b1.get(i10)).e1()) {
-                this.f26815b1.remove(i10);
+        while (i10 < this.f26779b1.size()) {
+            if (i7 == ((gj) this.f26779b1.get(i10)).e1()) {
+                this.f26779b1.remove(i10);
                 i10--;
             }
             i10++;
@@ -2203,7 +2203,7 @@ public final class si extends c1 {
     }
 
     public final String S() {
-        String str = this.f26850s;
+        String str = this.f26814s;
         if (str != null) {
             return str;
         }
@@ -2212,8 +2212,8 @@ public final class si extends c1 {
             return null;
         }
         String string = np.u1(this.currentAccount).i7.getString("reaction_on_double_tap", null);
-        if (string != null && (this.f26847r.get(string) != null || string.startsWith("animated_"))) {
-            this.f26850s = string;
+        if (string != null && (this.f26811r.get(string) != null || string.startsWith("animated_"))) {
+            this.f26814s = string;
             return string;
         }
         return ((TLRPC.TL_availableReaction) arrayList.get(0)).reaction;
@@ -2247,24 +2247,24 @@ public final class si extends c1 {
             ArrayList arrayList8 = new ArrayList();
             ArrayList arrayList9 = new ArrayList();
             int i11 = 1;
-            long j11 = getUserConfig().f24987n;
+            long j11 = getUserConfig().f24951n;
             Object obj = join;
             char c11 = 2;
             ?? r10 = 0;
-            SQLiteCursor queryFinalized = getMessagesStorage().f27252b.queryFinalized(String.format(Locale.US, "SELECT data, mid, date FROM messages_v2 WHERE mid IN (%s) AND uid = %d", obj, Long.valueOf(j3)), new Object[0]);
+            SQLiteCursor queryFinalized = getMessagesStorage().f27216b.queryFinalized(String.format(Locale.US, "SELECT data, mid, date FROM messages_v2 WHERE mid IN (%s) AND uid = %d", obj, Long.valueOf(j3)), new Object[0]);
             while (queryFinalized.next()) {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(r10);
                 if (byteBufferValue != null) {
                     TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(r10), r10);
                     if (!(TLdeserialize.action instanceof TLRPC.TL_messageActionHistoryClear)) {
                         TLdeserialize.readAttachPath(byteBufferValue, j11);
-                        TLdeserialize.f28455id = queryFinalized.intValue(i11);
+                        TLdeserialize.f28419id = queryFinalized.intValue(i11);
                         c10 = 2;
                         TLdeserialize.date = queryFinalized.intValue(2);
                         TLdeserialize.dialog_id = j3;
                         ur.e(TLdeserialize, arrayList8, arrayList9, null);
                         arrayList5.add(TLdeserialize);
-                        arrayList4.remove(Integer.valueOf(TLdeserialize.f28455id));
+                        arrayList4.remove(Integer.valueOf(TLdeserialize.f28419id));
                     } else {
                         c10 = c11;
                     }
@@ -2280,7 +2280,7 @@ public final class si extends c1 {
             if (arrayList4.isEmpty()) {
                 charSequence = ",";
             } else {
-                SQLiteDatabase sQLiteDatabase = getMessagesStorage().f27252b;
+                SQLiteDatabase sQLiteDatabase = getMessagesStorage().f27216b;
                 Locale locale = Locale.US;
                 charSequence = ",";
                 ?? r11 = 0;
@@ -2294,7 +2294,7 @@ public final class si extends c1 {
                             TLdeserialize2.dialog_id = j3;
                             ur.e(TLdeserialize2, arrayList8, arrayList9, null);
                             arrayList5.add(TLdeserialize2);
-                            arrayList4.remove(Integer.valueOf(TLdeserialize2.f28455id));
+                            arrayList4.remove(Integer.valueOf(TLdeserialize2.f28419id));
                         }
                         byteBufferValue2.reuse();
                     }
@@ -2306,13 +2306,13 @@ public final class si extends c1 {
                 if (i7 != 0) {
                     TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
                     tL_channels_getMessages.channel = getMessagesController().j1(j10);
-                    tL_channels_getMessages.f28472id = arrayList4;
+                    tL_channels_getMessages.f28436id = arrayList4;
                     arrayList2 = arrayList9;
                     getConnectionsManager().sendRequest(tL_channels_getMessages, new bg(this, j10, j3, tL_channels_getMessages));
                 } else {
                     arrayList2 = arrayList9;
                     TLRPC.TL_messages_getMessages tL_messages_getMessages = new TLRPC.TL_messages_getMessages();
-                    tL_messages_getMessages.f28530id = arrayList4;
+                    tL_messages_getMessages.f28494id = arrayList4;
                     getConnectionsManager().sendRequest(tL_messages_getMessages, new ho(this, j3, tL_messages_getMessages, 1));
                 }
             } else {
@@ -2347,22 +2347,22 @@ public final class si extends c1 {
     }
 
     public final void S1(long j3) {
-        for (int i7 = 0; i7 < this.f26834j1.size(); i7++) {
-            if (((TLRPC.TL_topPeer) this.f26834j1.get(i7)).peer.user_id == j3) {
-                this.f26834j1.remove(i7);
+        for (int i7 = 0; i7 < this.f26798j1.size(); i7++) {
+            if (((TLRPC.TL_topPeer) this.f26798j1.get(i7)).peer.user_id == j3) {
+                this.f26798j1.remove(i7);
                 getNotificationCenter().k(ls.S0, new Object[0]);
                 TLRPC.TL_contacts_resetTopPeerRating tL_contacts_resetTopPeerRating = new TLRPC.TL_contacts_resetTopPeerRating();
                 tL_contacts_resetTopPeerRating.category = new TLRPC.TL_topPeerCategoryCorrespondents();
                 tL_contacts_resetTopPeerRating.peer = getMessagesController().l1(j3);
-                getMessagesStorage().f27250a.c(new di.c9(this, j3, 0, 4));
-                getConnectionsManager().sendRequest(tL_contacts_resetTopPeerRating, new fi.l5(11));
+                getMessagesStorage().f27214a.c(new di.c9(this, j3, 0, 4));
+                getConnectionsManager().sendRequest(tL_contacts_resetTopPeerRating, new fi.k5(11));
                 return;
             }
         }
     }
 
     public final TLRPC.DraftMessage T(long j3, long j10) {
-        a0.h hVar = (a0.h) this.f26856u1.f(j3);
+        a0.h hVar = (a0.h) this.f26820u1.f(j3);
         if (hVar == null) {
             return null;
         }
@@ -2370,7 +2370,7 @@ public final class si extends c1 {
     }
 
     public final void T0(final int i7, final int i10, final long j3) {
-        a0.h hVar = this.f26846q1;
+        a0.h hVar = this.f26810q1;
         if (hVar.h(j3) >= 0) {
             return;
         }
@@ -2379,7 +2379,7 @@ public final class si extends c1 {
         tL_messages_search.peer = getMessagesController().l1(j3);
         tL_messages_search.limit = 40;
         tL_messages_search.offset_id = i7;
-        tL_messages_search.f28545q = "";
+        tL_messages_search.f28509q = "";
         tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterPinned();
         getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate() {
             @Override
@@ -2399,12 +2399,12 @@ public final class si extends c1 {
                     a0.h hVar3 = new a0.h();
                     for (int i14 = 0; i14 < messages_messages.users.size(); i14++) {
                         TLRPC.User user = messages_messages.users.get(i14);
-                        hVar3.k(user, user.f28583id);
+                        hVar3.k(user, user.f28547id);
                     }
                     a0.h hVar4 = new a0.h();
                     for (int i15 = 0; i15 < messages_messages.chats.size(); i15++) {
                         TLRPC.Chat chat = messages_messages.chats.get(i15);
-                        hVar4.k(chat, chat.f28434id);
+                        hVar4.k(chat, chat.f28398id);
                     }
                     siVar.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
                     siVar.getMessagesController().f4(messages_messages.users, false);
@@ -2416,9 +2416,9 @@ public final class si extends c1 {
                         if ((message instanceof TLRPC.TL_messageService) || (message instanceof TLRPC.TL_messageEmpty)) {
                             hVar2 = hVar4;
                         } else {
-                            arrayList.add(Integer.valueOf(message.f28455id));
+                            arrayList.add(Integer.valueOf(message.f28419id));
                             hVar2 = hVar4;
-                            hashMap.put(Integer.valueOf(message.f28455id), new gj(siVar.currentAccount, message, hVar3, hVar2, false, false));
+                            hashMap.put(Integer.valueOf(message.f28419id), new gj(siVar.currentAccount, message, hVar3, hVar2, false, false));
                         }
                         i16++;
                         hVar4 = hVar2;
@@ -2452,14 +2452,14 @@ public final class si extends c1 {
         ArrayList[] arrayListArr = this.H;
         Collections.sort(arrayListArr[i7], new gh(0, arrayList));
         this.Y[i7] = s(arrayListArr[i7]);
-        getNotificationCenter().k(ls.f25412x0, Integer.valueOf(i7), Boolean.FALSE);
+        getNotificationCenter().k(ls.f25376x0, Integer.valueOf(i7), Boolean.FALSE);
     }
 
     public final ni U(long j3, long j10) {
         boolean z10;
         boolean z11;
         if (!this.Q1) {
-            Set<Map.Entry<String, ?>> entrySet = t0.f26931b.getSharedPreferences("2voicedrafts_" + this.currentAccount, 0).getAll().entrySet();
+            Set<Map.Entry<String, ?>> entrySet = t0.f26895b.getSharedPreferences("2voicedrafts_" + this.currentAccount, 0).getAll().entrySet();
             this.R1.b();
             for (Map.Entry<String, ?> entry : entrySet) {
                 String key = entry.getKey();
@@ -2471,9 +2471,9 @@ public final class si extends c1 {
                             String[] split = str.substring(1).split("\n");
                             if (split.length >= 6) {
                                 ni niVar2 = new ni();
-                                niVar2.f25767a = split[0];
-                                niVar2.f25768b = Long.parseLong(split[1]);
-                                niVar2.f25769c = Integer.parseInt(split[2]);
+                                niVar2.f25731a = split[0];
+                                niVar2.f25732b = Long.parseLong(split[1]);
+                                niVar2.f25733c = Integer.parseInt(split[2]);
                                 niVar2.d = Long.parseLong(split[3]);
                                 if (split[4].contains(";")) {
                                     String[] split2 = split[4].split(";");
@@ -2482,18 +2482,18 @@ public final class si extends c1 {
                                     } else {
                                         z11 = false;
                                     }
-                                    niVar2.f25772g = z11;
+                                    niVar2.f25736g = z11;
                                     niVar2.h = Float.parseFloat(split2[1]);
-                                    niVar2.f25773i = Float.parseFloat(split2[2]);
+                                    niVar2.f25737i = Float.parseFloat(split2[2]);
                                 } else {
                                     if (Integer.parseInt(split[4]) != 0) {
                                         z10 = true;
                                     } else {
                                         z10 = false;
                                     }
-                                    niVar2.f25772g = z10;
+                                    niVar2.f25736g = z10;
                                     niVar2.h = 0.0f;
-                                    niVar2.f25773i = 1.0f;
+                                    niVar2.f25737i = 1.0f;
                                 }
                                 int length = split.length - 5;
                                 String[] strArr = new String[length];
@@ -2501,10 +2501,10 @@ public final class si extends c1 {
                                     strArr[i7] = split[i7 + 5];
                                 }
                                 String join = TextUtils.join("\n", strArr);
-                                niVar2.f25771f = new short[join.length()];
+                                niVar2.f25735f = new short[join.length()];
                                 int i10 = 0;
                                 while (true) {
-                                    short[] sArr = niVar2.f25771f;
+                                    short[] sArr = niVar2.f25735f;
                                     if (i10 >= sArr.length) {
                                         break;
                                     }
@@ -2530,7 +2530,7 @@ public final class si extends c1 {
     public final void U0(boolean z10) {
         this.F = true;
         if (z10) {
-            getMessagesStorage().f27250a.c(new fg(this, 18));
+            getMessagesStorage().f27214a.c(new fg(this, 18));
             return;
         }
         getConnectionsManager().sendRequest(new TLRPC.TL_help_getPremiumPromo(), new jh(this, 9));
@@ -2562,16 +2562,16 @@ public final class si extends c1 {
 
     public final void V0(boolean z10, Integer num) {
         int i7;
-        this.f26859w = true;
+        this.f26823w = true;
         if (z10) {
-            getMessagesStorage().f27250a.c(new fg(this, 15));
+            getMessagesStorage().f27214a.c(new fg(this, 15));
             return;
         }
         TLRPC.TL_messages_getAvailableReactions tL_messages_getAvailableReactions = new TLRPC.TL_messages_getAvailableReactions();
         if (num != null) {
             i7 = num.intValue();
         } else {
-            i7 = this.f26824f;
+            i7 = this.f26788f;
         }
         tL_messages_getAvailableReactions.hash = i7;
         getConnectionsManager().sendRequest(tL_messages_getAvailableReactions, new jh(this, 3));
@@ -2599,11 +2599,11 @@ public final class si extends c1 {
                 ((TLRPC.TL_inputReplyToMessage) inputReplyTo2).reply_to_msg_id = 0;
             }
         }
-        SharedPreferences sharedPreferences = this.f26861w1;
+        SharedPreferences sharedPreferences = this.f26825w1;
         SharedPreferences.Editor edit = sharedPreferences.edit();
         np messagesController = getMessagesController();
-        a0.h hVar = this.f26856u1;
-        a0.h hVar2 = this.f26858v1;
+        a0.h hVar = this.f26820u1;
+        a0.h hVar2 = this.f26822v1;
         if (draftMessage != null && !(draftMessage instanceof TLRPC.TL_draftMessageEmpty)) {
             a0.h hVar3 = (a0.h) hVar.f(j3);
             if (hVar3 == null) {
@@ -2661,8 +2661,8 @@ public final class si extends c1 {
             a0.h hVar6 = messagesController.R;
             TLRPC.Dialog dialog = (TLRPC.Dialog) hVar6.f(j3);
             if (dialog != null && dialog.top_message == 0) {
-                hVar6.l(dialog.f28438id);
-                messagesController.f26008y.remove(dialog);
+                hVar6.l(dialog.f28402id);
+                messagesController.f25972y.remove(dialog);
             }
         }
         a0.h hVar7 = (a0.h) hVar2.f(j3);
@@ -2729,12 +2729,12 @@ public final class si extends c1 {
                     }
                     if (user != null || O0 != null) {
                         if (v3.T(O0)) {
-                            j12 = O0.f28434id;
+                            j12 = O0.f28398id;
                         } else {
                             j12 = 0;
                         }
                         final int i10 = draftMessage.reply_to.reply_to_msg_id;
-                        getMessagesStorage().f27250a.c(new Runnable() {
+                        getMessagesStorage().f27214a.c(new Runnable() {
                             @Override
                             public final void run() {
                                 TLRPC.Message message3;
@@ -2744,14 +2744,14 @@ public final class si extends c1 {
                                 int i11 = i10;
                                 long j13 = j11;
                                 try {
-                                    SQLiteDatabase sQLiteDatabase = siVar.getMessagesStorage().f27252b;
+                                    SQLiteDatabase sQLiteDatabase = siVar.getMessagesStorage().f27216b;
                                     Locale locale = Locale.US;
                                     SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data, replydata FROM messages_v2 WHERE mid = " + i11 + " and uid = " + j13, new Object[0]);
                                     if (queryFinalized.next()) {
                                         NativeByteBuffer byteBufferValue2 = queryFinalized.byteBufferValue(0);
                                         if (byteBufferValue2 != null) {
                                             message4 = TLRPC.Message.TLdeserialize(byteBufferValue2, byteBufferValue2.readInt32(false), false);
-                                            message4.readAttachPath(byteBufferValue2, siVar.getUserConfig().f24987n);
+                                            message4.readAttachPath(byteBufferValue2, siVar.getUserConfig().f24951n);
                                             byteBufferValue2.reuse();
                                         } else {
                                             message4 = null;
@@ -2767,7 +2767,7 @@ public final class si extends c1 {
                                                     if (!queryFinalized.isNull(1) && (byteBufferValue = queryFinalized.byteBufferValue(1)) != null) {
                                                         TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                                                         message4.replyMessage = TLdeserialize;
-                                                        TLdeserialize.readAttachPath(byteBufferValue, siVar.getUserConfig().f24987n);
+                                                        TLdeserialize.readAttachPath(byteBufferValue, siVar.getUserConfig().f24951n);
                                                         byteBufferValue.reuse();
                                                         TLRPC.Message message5 = message4.replyMessage;
                                                         if (message5 != null) {
@@ -2795,7 +2795,7 @@ public final class si extends c1 {
                                         if (j16 != 0) {
                                             TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
                                             tL_channels_getMessages.channel = siVar.getMessagesController().j1(j16);
-                                            tL_channels_getMessages.f28472id.add(Integer.valueOf(i11));
+                                            tL_channels_getMessages.f28436id.add(Integer.valueOf(i11));
                                             siVar.getConnectionsManager().sendRequest(tL_channels_getMessages, new RequestDelegate() {
                                                 @Override
                                                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -2828,7 +2828,7 @@ public final class si extends c1 {
                                             return;
                                         }
                                         TLRPC.TL_messages_getMessages tL_messages_getMessages = new TLRPC.TL_messages_getMessages();
-                                        tL_messages_getMessages.f28530id.add(Integer.valueOf(i11));
+                                        tL_messages_getMessages.f28494id.add(Integer.valueOf(i11));
                                         siVar.getConnectionsManager().sendRequest(tL_messages_getMessages, new RequestDelegate() {
                                             @Override
                                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -2875,8 +2875,8 @@ public final class si extends c1 {
 
     public final void X(final String[] strArr, final String str, final boolean z10, final pi piVar, final boolean z11, final boolean z12, final boolean z13, final boolean z14, final Integer num) {
         if (!TextUtils.isEmpty(str) && strArr != null) {
-            final ArrayList arrayList = new ArrayList(j6.f24836i);
-            getMessagesStorage().f27250a.c(new Runnable() {
+            final ArrayList arrayList = new ArrayList(j6.f24800i);
+            getMessagesStorage().f27214a.c(new Runnable() {
                 @Override
                 public final void run() {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.fh.run():void");
@@ -2890,8 +2890,8 @@ public final class si extends c1 {
     public final void X0(boolean z10) {
         if (!this.I1) {
             if (!this.J1 || z10) {
-                final SharedPreferences e10 = f3.e(new StringBuilder("recent_reactions_"), this.currentAccount, t0.f26931b, 0);
-                final SharedPreferences e11 = f3.e(new StringBuilder("top_reactions_"), this.currentAccount, t0.f26931b, 0);
+                final SharedPreferences e10 = f3.e(new StringBuilder("recent_reactions_"), this.currentAccount, t0.f26895b, 0);
+                final SharedPreferences e11 = f3.e(new StringBuilder("top_reactions_"), this.currentAccount, t0.f26895b, 0);
                 this.F1.clear();
                 this.G1.clear();
                 this.F1.addAll(W0(e10));
@@ -2903,17 +2903,17 @@ public final class si extends c1 {
                 tL_messages_getRecentReactions.hash = e10.getLong("hash", 0L);
                 tL_messages_getRecentReactions.limit = 50;
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getRecentReactions, new RequestDelegate(this) {
-                    public final si f23553b;
+                    public final si f23517b;
 
                     {
-                        this.f23553b = this;
+                        this.f23517b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                final si siVar = this.f23553b;
+                                final si siVar = this.f23517b;
                                 final SharedPreferences sharedPreferences = e10;
                                 final boolean[] zArr2 = zArr;
                                 g0.g3(new Runnable() {
@@ -2963,7 +2963,7 @@ public final class si extends c1 {
                                 });
                                 return;
                             default:
-                                final si siVar2 = this.f23553b;
+                                final si siVar2 = this.f23517b;
                                 final SharedPreferences sharedPreferences2 = e10;
                                 final boolean[] zArr3 = zArr;
                                 g0.g3(new Runnable() {
@@ -3019,17 +3019,17 @@ public final class si extends c1 {
                 tL_messages_getTopReactions.hash = e11.getLong("hash", 0L);
                 tL_messages_getTopReactions.limit = 100;
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getTopReactions, new RequestDelegate(this) {
-                    public final si f23553b;
+                    public final si f23517b;
 
                     {
-                        this.f23553b = this;
+                        this.f23517b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r4) {
                             case 0:
-                                final si siVar = this.f23553b;
+                                final si siVar = this.f23517b;
                                 final SharedPreferences sharedPreferences = e11;
                                 final boolean[] zArr2 = zArr;
                                 g0.g3(new Runnable() {
@@ -3079,7 +3079,7 @@ public final class si extends c1 {
                                 });
                                 return;
                             default:
-                                final si siVar2 = this.f23553b;
+                                final si siVar2 = this.f23517b;
                                 final SharedPreferences sharedPreferences2 = e11;
                                 final boolean[] zArr3 = zArr;
                                 g0.g3(new Runnable() {
@@ -3331,7 +3331,7 @@ public final class si extends c1 {
                         if (arrayList == null) {
                             arrayList = new ArrayList();
                         }
-                        e(gz0Var.f35730b.f35337a, spanStart, spanEnd, arrayList);
+                        e(gz0Var.f35683b.f35299a, spanStart, spanEnd, arrayList);
                     }
                 }
             }
@@ -3363,9 +3363,9 @@ public final class si extends c1 {
                     tL_messageEntityTextUrl.length = Math.min(spanned.getSpanEnd(u41VarArr[i33]), charSequenceArr[0].length()) - tL_messageEntityTextUrl.offset;
                     tL_messageEntityTextUrl.url = u41VarArr[i33].getURL();
                     arrayList.add(tL_messageEntityTextUrl);
-                    fz0 fz0Var = u41VarArr[i33].f40259a;
+                    fz0 fz0Var = u41VarArr[i33].f40242a;
                     if (fz0Var != null) {
-                        int i34 = fz0Var.f35337a;
+                        int i34 = fz0Var.f35299a;
                         int i35 = tL_messageEntityTextUrl.offset;
                         e(i34, i35, tL_messageEntityTextUrl.length + i35, arrayList);
                     }
@@ -3402,7 +3402,7 @@ public final class si extends c1 {
                             TLRPC.TL_messageEntityPre tL_messageEntityPre2 = new TLRPC.TL_messageEntityPre();
                             tL_messageEntityPre2.offset = spanned.getSpanStart(gVar);
                             tL_messageEntityPre2.length = Math.min(spanned.getSpanEnd(gVar), charSequenceArr[0].length()) - tL_messageEntityPre2.offset;
-                            tL_messageEntityPre2.language = gVar.f56224a;
+                            tL_messageEntityPre2.language = gVar.f56189a;
                             arrayList.add(tL_messageEntityPre2);
                         } catch (Exception e11) {
                             a8.g(e11, true);
@@ -3421,7 +3421,7 @@ public final class si extends c1 {
                             TLRPC.TL_messageEntityBlockquote tL_messageEntityBlockquote = new TLRPC.TL_messageEntityBlockquote();
                             tL_messageEntityBlockquote.offset = spanned.getSpanStart(jh0Var);
                             tL_messageEntityBlockquote.length = Math.min(spanned.getSpanEnd(jh0Var), charSequenceArr[0].length()) - tL_messageEntityBlockquote.offset;
-                            tL_messageEntityBlockquote.collapsed = jh0Var.f36504e;
+                            tL_messageEntityBlockquote.collapsed = jh0Var.f36463e;
                             arrayList.add(tL_messageEntityBlockquote);
                         } catch (Exception e12) {
                             a8.g(e12, true);
@@ -3440,7 +3440,7 @@ public final class si extends c1 {
                             TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
                             tL_messageEntityFormattedDate.offset = spanned.getSpanStart(m00Var);
                             tL_messageEntityFormattedDate.length = Math.min(spanned.getSpanEnd(m00Var), charSequenceArr[0].length()) - tL_messageEntityFormattedDate.offset;
-                            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate2 = m00Var.f37368b;
+                            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate2 = m00Var.f37328b;
                             tL_messageEntityFormattedDate.relative = tL_messageEntityFormattedDate2.relative;
                             tL_messageEntityFormattedDate.short_time = tL_messageEntityFormattedDate2.short_time;
                             tL_messageEntityFormattedDate.long_time = tL_messageEntityFormattedDate2.long_time;
@@ -3482,7 +3482,7 @@ public final class si extends c1 {
             arrayList = new ArrayList();
         }
         if (charSequence7 != null && charSequence7.length() >= 48) {
-            Matcher matcher = f26809h2.matcher(charSequence7);
+            Matcher matcher = f26773h2.matcher(charSequence7);
             while (matcher.find()) {
                 int start = matcher.start();
                 int end = matcher.end();
@@ -3550,18 +3550,18 @@ public final class si extends c1 {
     }
 
     public final void Y1(a0.h hVar, ArrayList arrayList, boolean z10) {
-        getMessagesStorage().f27250a.c(new aa.c0(this, z10, arrayList, hVar, 15));
+        getMessagesStorage().f27214a.c(new aa.c0(this, z10, arrayList, hVar, 15));
     }
 
     public final long Z() {
         long j3 = 0;
         int i7 = 0;
         while (true) {
-            ArrayList[] arrayListArr = this.f26853t0;
+            ArrayList[] arrayListArr = this.f26817t0;
             if (i7 < arrayListArr[0].size()) {
                 TLRPC.StickerSet stickerSet = ((TLRPC.StickerSetCovered) arrayListArr[0].get(i7)).set;
                 if (!stickerSet.archived) {
-                    j3 = r(j3, stickerSet.f28461id);
+                    j3 = r(j3, stickerSet.f28425id);
                 }
                 i7++;
             } else {
@@ -3576,19 +3576,19 @@ public final class si extends c1 {
 
     public final void Z1(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         if (tL_messages_stickerSet != null && tL_messages_stickerSet.set != null) {
-            getMessagesStorage().f27250a.c(new dg(this, tL_messages_stickerSet, 4));
+            getMessagesStorage().f27214a.c(new dg(this, tL_messages_stickerSet, 4));
             if (!this.K0) {
                 this.K0 = true;
-                getMessagesStorage().f27250a.c(new fg(this, 5));
+                getMessagesStorage().f27214a.c(new fg(this, 5));
             }
         }
     }
 
     public final TLRPC.TL_messages_stickerSet a0(TLRPC.StickerSet stickerSet) {
         TLRPC.StickerSet stickerSet2;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.J.f(stickerSet.f28461id);
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.J.f(stickerSet.f28425id);
         if (tL_messages_stickerSet == null) {
-            tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.N.f(stickerSet.f28461id);
+            tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.N.f(stickerSet.f28425id);
             if (tL_messages_stickerSet != null && (stickerSet2 = tL_messages_stickerSet.set) != null) {
                 if (stickerSet2.hash != stickerSet.hash) {
                     O0(stickerSet, false);
@@ -3608,26 +3608,26 @@ public final class si extends c1 {
         if (document == null) {
             return false;
         }
-        if (this.A0.c(document.f28440id) != null) {
+        if (this.A0.c(document.f28404id) != null) {
             return true;
         }
         int i7 = (document.size > np.u1(this.currentAccount).o4 ? 1 : (document.size == np.u1(this.currentAccount).o4 ? 0 : -1));
         int i10 = ls.S4;
         if (i7 > 0) {
-            ls.e().k(i10, 4, hd.a0("TooLargeError", null, 2131743799, new Object[0]), hd.a0("ErrorRingtoneSizeTooBig", null, 2131751090, Integer.valueOf(np.u1(k10.f24968t0).o4 / 1024)));
+            ls.e().k(i10, 4, hd.a0("TooLargeError", null, 2131743801, new Object[0]), hd.a0("ErrorRingtoneSizeTooBig", null, 2131751090, Integer.valueOf(np.u1(k10.f24932t0).o4 / 1024)));
             return false;
         }
         for (int i11 = 0; i11 < document.attributes.size(); i11++) {
             TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i11);
-            if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration > np.u1(this.currentAccount).f25912n4) {
-                ls.e().k(i10, 4, hd.a0("TooLongError", null, 2131743798, new Object[0]), hd.a0("ErrorRingtoneDurationTooLong", null, 2131751092, Integer.valueOf(np.u1(k10.f24968t0).f25912n4)));
+            if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration > np.u1(this.currentAccount).f25876n4) {
+                ls.e().k(i10, 4, hd.a0("TooLongError", null, 2131743800, new Object[0]), hd.a0("ErrorRingtoneDurationTooLong", null, 2131751092, Integer.valueOf(np.u1(k10.f24932t0).f25876n4)));
                 return false;
             }
         }
         TL_account.saveRingtone saveringtone = new TL_account.saveRingtone();
         TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-        saveringtone.f28646id = tL_inputDocument;
-        tL_inputDocument.f28446id = document.f28440id;
+        saveringtone.f28610id = tL_inputDocument;
+        tL_inputDocument.f28410id = document.f28404id;
         tL_inputDocument.file_reference = document.file_reference;
         tL_inputDocument.access_hash = document.access_hash;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(saveringtone, new t4(4, this, document));
@@ -3636,7 +3636,7 @@ public final class si extends c1 {
 
     public final void b(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         int i7;
-        long j3 = tL_messages_stickerSet.set.f28461id;
+        long j3 = tL_messages_stickerSet.set.f28425id;
         a0.h hVar = this.J;
         if (hVar.h(j3) < 0) {
             String str = tL_messages_stickerSet.set.short_name;
@@ -3652,27 +3652,27 @@ public final class si extends c1 {
                 }
                 ArrayList[] arrayListArr = this.H;
                 arrayListArr[i7].add(0, tL_messages_stickerSet);
-                hVar.k(tL_messages_stickerSet, tL_messages_stickerSet.set.f28461id);
-                this.K.k(tL_messages_stickerSet, tL_messages_stickerSet.set.f28461id);
+                hVar.k(tL_messages_stickerSet, tL_messages_stickerSet.set.f28425id);
+                this.K.k(tL_messages_stickerSet, tL_messages_stickerSet.set.f28425id);
                 concurrentHashMap.put(tL_messages_stickerSet.set.short_name, tL_messages_stickerSet);
                 a0.h hVar2 = new a0.h();
                 for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
                     TLRPC.Document document = tL_messages_stickerSet.documents.get(i10);
-                    hVar2.k(document, document.f28440id);
+                    hVar2.k(document, document.f28404id);
                 }
                 for (int i11 = 0; i11 < tL_messages_stickerSet.packs.size(); i11++) {
                     TLRPC.TL_stickerPack tL_stickerPack = tL_messages_stickerSet.packs.get(i11);
                     String replace = tL_stickerPack.emoticon.replace("️", "");
                     tL_stickerPack.emoticon = replace;
-                    ArrayList arrayList = (ArrayList) this.f26822e0.get(replace);
+                    ArrayList arrayList = (ArrayList) this.f26786e0.get(replace);
                     if (arrayList == null) {
                         arrayList = new ArrayList();
-                        this.f26822e0.put(tL_stickerPack.emoticon, arrayList);
+                        this.f26786e0.put(tL_stickerPack.emoticon, arrayList);
                     }
                     for (int i12 = 0; i12 < tL_stickerPack.documents.size(); i12++) {
                         Long l10 = tL_stickerPack.documents.get(i12);
-                        if (this.f26819d0.h(l10.longValue()) < 0) {
-                            this.f26819d0.k(tL_stickerPack.emoticon, l10.longValue());
+                        if (this.f26783d0.h(l10.longValue()) < 0) {
+                            this.f26783d0.k(tL_stickerPack.emoticon, l10.longValue());
                         }
                         TLRPC.Document document2 = (TLRPC.Document) hVar2.f(l10.longValue());
                         if (document2 != null) {
@@ -3681,7 +3681,7 @@ public final class si extends c1 {
                     }
                 }
                 this.Y[i7] = s(arrayListArr[i7]);
-                getNotificationCenter().k(ls.f25412x0, Integer.valueOf(i7), Boolean.TRUE);
+                getNotificationCenter().k(ls.f25376x0, Integer.valueOf(i7), Boolean.TRUE);
                 d1(i7, false, true);
             }
         }
@@ -3693,7 +3693,7 @@ public final class si extends c1 {
 
     public final boolean b2() {
         boolean[] zArr = this.Y0;
-        if ((!zArr[0] || this.O0 != 0 || !zArr[1]) && !this.f26830h1 && !this.f26832i1) {
+        if ((!zArr[0] || this.O0 != 0 || !zArr[1]) && !this.f26794h1 && !this.f26796i1) {
             return false;
         }
         return true;
@@ -3705,21 +3705,21 @@ public final class si extends c1 {
         }
         int i10 = 0;
         while (true) {
-            if (i10 < this.f26833j0.size()) {
-                TLRPC.Document document2 = (TLRPC.Document) this.f26833j0.get(i10);
-                if (document2.f28440id == document.f28440id) {
-                    this.f26833j0.remove(i10);
-                    this.f26833j0.add(0, document2);
+            if (i10 < this.f26797j0.size()) {
+                TLRPC.Document document2 = (TLRPC.Document) this.f26797j0.get(i10);
+                if (document2.f28404id == document.f28404id) {
+                    this.f26797j0.remove(i10);
+                    this.f26797j0.add(0, document2);
                     break;
                 }
                 i10++;
             } else {
-                this.f26833j0.add(0, document);
+                this.f26797j0.add(0, document);
                 break;
             }
         }
-        if ((this.f26833j0.size() > getMessagesController().I4 && !k10.i(this.currentAccount).q()) || this.f26833j0.size() > getMessagesController().J4) {
-            getMessagesStorage().f27250a.c(new of(this, (TLRPC.Document) p5.c.g(1, this.f26833j0), 0));
+        if ((this.f26797j0.size() > getMessagesController().I4 && !k10.i(this.currentAccount).q()) || this.f26797j0.size() > getMessagesController().J4) {
+            getMessagesStorage().f27214a.c(new of(this, (TLRPC.Document) p5.c.g(1, this.f26797j0), 0));
             if (z10) {
                 g0.g3(new a(document, 21));
             }
@@ -3732,7 +3732,7 @@ public final class si extends c1 {
     public final void c1(boolean z10) {
         if (!this.K1) {
             if (!this.L1 || z10) {
-                SharedPreferences e10 = f3.e(new StringBuilder("saved_reactions_"), this.currentAccount, t0.f26931b, 0);
+                SharedPreferences e10 = f3.e(new StringBuilder("saved_reactions_"), this.currentAccount, t0.f26895b, 0);
                 this.H1.clear();
                 this.H1.addAll(W0(e10));
                 this.K1 = true;
@@ -3758,10 +3758,10 @@ public final class si extends c1 {
             if (gj.u4(document) || gj.K2(document, true)) {
                 int i13 = 0;
                 while (true) {
-                    arrayListArr = this.f26827g0;
+                    arrayListArr = this.f26791g0;
                     if (i13 < arrayListArr[i7].size()) {
                         TLRPC.Document document3 = (TLRPC.Document) arrayListArr[i7].get(i13);
-                        if (document3.f28440id == document.f28440id) {
+                        if (document3.f28404id == document.f28404id) {
                             arrayListArr[i7].remove(i13);
                             if (!z10) {
                                 arrayListArr[i7].add(0, document3);
@@ -3778,7 +3778,7 @@ public final class si extends c1 {
                     if (z10) {
                         ls.e().k(i14, 0, document, 4);
                     } else {
-                        if (arrayListArr[i7].size() > getMessagesController().f25862h3) {
+                        if (arrayListArr[i7].size() > getMessagesController().f25826h3) {
                             z11 = true;
                         } else {
                             z11 = false;
@@ -3793,8 +3793,8 @@ public final class si extends c1 {
                     }
                     TLRPC.TL_messages_faveSticker tL_messages_faveSticker = new TLRPC.TL_messages_faveSticker();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    tL_messages_faveSticker.f28520id = tL_inputDocument;
-                    tL_inputDocument.f28446id = document.f28440id;
+                    tL_messages_faveSticker.f28484id = tL_inputDocument;
+                    tL_inputDocument.f28410id = document.f28404id;
                     tL_inputDocument.access_hash = document.access_hash;
                     byte[] bArr = document.file_reference;
                     tL_inputDocument.file_reference = bArr;
@@ -3803,14 +3803,14 @@ public final class si extends c1 {
                     }
                     tL_messages_faveSticker.unfave = z10;
                     getConnectionsManager().sendRequest(tL_messages_faveSticker, new di(this, obj, tL_messages_faveSticker, 0));
-                    i11 = getMessagesController().f25862h3;
+                    i11 = getMessagesController().f25826h3;
                 } else {
                     if (i7 == 0 && z10) {
                         ls.e().k(i14, 0, document, 3);
                         TLRPC.TL_messages_saveRecentSticker tL_messages_saveRecentSticker = new TLRPC.TL_messages_saveRecentSticker();
                         TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
-                        tL_messages_saveRecentSticker.f28544id = tL_inputDocument2;
-                        tL_inputDocument2.f28446id = document.f28440id;
+                        tL_messages_saveRecentSticker.f28508id = tL_inputDocument2;
+                        tL_inputDocument2.f28410id = document.f28404id;
                         tL_inputDocument2.access_hash = document.access_hash;
                         byte[] bArr2 = document.file_reference;
                         tL_inputDocument2.file_reference = bArr2;
@@ -3820,7 +3820,7 @@ public final class si extends c1 {
                         tL_messages_saveRecentSticker.unsave = true;
                         getConnectionsManager().sendRequest(tL_messages_saveRecentSticker, new di(this, obj, tL_messages_saveRecentSticker, 1));
                     }
-                    i11 = getMessagesController().f25853g3;
+                    i11 = getMessagesController().f25817g3;
                 }
                 if (arrayListArr[i7].size() > i11 || z10) {
                     if (z10) {
@@ -3828,7 +3828,7 @@ public final class si extends c1 {
                     } else {
                         document2 = (TLRPC.Document) p5.c.g(1, arrayListArr[i7]);
                     }
-                    getMessagesStorage().f27250a.c(new l7(this, i7, document2, 10));
+                    getMessagesStorage().f27214a.c(new l7(this, i7, document2, 10));
                 }
                 if (!z10) {
                     ArrayList arrayList = new ArrayList();
@@ -3850,11 +3850,11 @@ public final class si extends c1 {
         TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets;
         if (z10) {
             TLRPC.TL_messages_searchEmojiStickerSets tL_messages_searchEmojiStickerSets = new TLRPC.TL_messages_searchEmojiStickerSets();
-            tL_messages_searchEmojiStickerSets.f28546q = str;
+            tL_messages_searchEmojiStickerSets.f28510q = str;
             tL_messages_searchStickerSets = tL_messages_searchEmojiStickerSets;
         } else {
             TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets2 = new TLRPC.TL_messages_searchStickerSets();
-            tL_messages_searchStickerSets2.f28548q = str;
+            tL_messages_searchStickerSets2.f28512q = str;
             tL_messages_searchStickerSets = tL_messages_searchStickerSets2;
         }
         getConnectionsManager().sendRequestTyped(tL_messages_searchStickerSets, new d3.b(1), new q9(y10Var, 1));
@@ -3862,13 +3862,13 @@ public final class si extends c1 {
 
     public final int e0() {
         int i7 = 1;
-        if (this.f26826f1 >= this.Z0.size() - 1) {
+        if (this.f26790f1 >= this.Z0.size() - 1) {
             boolean[] zArr = this.Y0;
             if (zArr[0] && zArr[1]) {
                 i7 = 0;
             }
         }
-        if (this.f26826f1 > 0) {
+        if (this.f26790f1 > 0) {
             return i7 | 2;
         }
         return i7;
@@ -3889,7 +3889,7 @@ public final class si extends c1 {
             }
         }
         char c10 = 1;
-        ArrayList[] arrayListArr = this.f26853t0;
+        ArrayList[] arrayListArr = this.f26817t0;
         if (i7 == 3) {
             if (arrayListArr[0].isEmpty() || !getMessagesController().C3) {
                 if (y10Var != null) {
@@ -3911,7 +3911,7 @@ public final class si extends c1 {
         }
         zArr[i7] = true;
         if (z10) {
-            getMessagesStorage().f27250a.c(new l7(this, i7, y10Var, 6));
+            getMessagesStorage().f27214a.c(new l7(this, i7, y10Var, 6));
         } else if (i7 != 3 && i7 != 6) {
             if (i7 == 4) {
                 TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
@@ -3949,7 +3949,7 @@ public final class si extends c1 {
                 c10 = 0;
             }
             TLRPC.TL_messages_allStickers tL_messages_allStickers = new TLRPC.TL_messages_allStickers();
-            tL_messages_allStickers.hash2 = this.f26845q0[c10];
+            tL_messages_allStickers.hash2 = this.f26809q0[c10];
             int size = arrayListArr[c10].size();
             for (int i10 = 0; i10 < size; i10++) {
                 tL_messages_allStickers.sets.add(((TLRPC.StickerSetCovered) arrayListArr[c10].get(i10)).set);
@@ -3961,7 +3961,7 @@ public final class si extends c1 {
     public final qi e2(boolean z10, String str, String str2, y10 y10Var, boolean z11) {
         qi qiVar = new qi(str, str2, z10);
         ri riVar = (ri) this.T1.get(qiVar);
-        if (riVar == null || (riVar.f26619b != null && z11)) {
+        if (riVar == null || (riVar.f26583b != null && z11)) {
             HashMap hashMap = this.S1;
             if (!hashMap.containsKey(qiVar)) {
                 hashMap.put(qiVar, 0);
@@ -3970,7 +3970,7 @@ public final class si extends c1 {
             }
         }
         if (riVar != null) {
-            y10Var.a(riVar.f26618a);
+            y10Var.a(riVar.f26582a);
             return qiVar;
         }
         y10Var.a(new ArrayList());
@@ -4018,7 +4018,7 @@ public final class si extends c1 {
             }), i10);
             return;
         }
-        getMessagesStorage().f27250a.c(new mg(this, j10, j3, i7, i10, 0));
+        getMessagesStorage().f27214a.c(new mg(this, j10, j3, i7, i10, 0));
     }
 
     public final void f1(String str, boolean z10, boolean z11) {
@@ -4027,11 +4027,11 @@ public final class si extends c1 {
             if (!z10 || this.R.get(str) == null) {
                 hashSet.add(str);
                 if (z11) {
-                    getMessagesStorage().f27250a.c(new kg(this, str, z10, 1));
+                    getMessagesStorage().f27214a.c(new kg(this, str, z10, 1));
                     return;
                 }
                 TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
-                if (Objects.equals(getUserConfig().f24975c0, str)) {
+                if (Objects.equals(getUserConfig().f24939c0, str)) {
                     tL_messages_getStickerSet.stickerset = new TLRPC.TL_inputStickerSetPremiumGifts();
                 } else if (z10) {
                     TLRPC.TL_inputStickerSetDice tL_inputStickerSetDice = new TLRPC.TL_inputStickerSetDice();
@@ -4049,32 +4049,32 @@ public final class si extends c1 {
 
     public final void f2(String str) {
         np.u1(this.currentAccount).i7.edit().putString("reaction_on_double_tap", str).apply();
-        this.f26850s = str;
+        this.f26814s = str;
     }
 
     public final void g0(long j3, int i7, long j10) {
-        getMessagesStorage().f27250a.c(new kb(this, j10, j3, i7, 1));
+        getMessagesStorage().f27214a.c(new kb(this, j10, j3, i7, 1));
     }
 
     public final void g1(boolean z10, boolean z11) {
         int i7;
-        ArrayList[] arrayListArr = this.f26857v0;
+        ArrayList[] arrayListArr = this.f26821v0;
         if (!arrayListArr[z10 ? 1 : 0].isEmpty()) {
             arrayListArr[z10 ? 1 : 0].clear();
-            ArrayList[] arrayListArr2 = this.f26853t0;
+            ArrayList[] arrayListArr2 = this.f26817t0;
             long q10 = q(arrayListArr2[z10 ? 1 : 0], z10);
-            long[] jArr = this.f26845q0;
+            long[] jArr = this.f26809q0;
             jArr[z10 ? 1 : 0] = q10;
             ls notificationCenter = getNotificationCenter();
             if (z10) {
                 i7 = ls.A0;
             } else {
-                i7 = ls.f25426z0;
+                i7 = ls.f25390z0;
             }
             notificationCenter.k(i7, new Object[0]);
-            L1(z10, arrayListArr2[z10 ? 1 : 0], arrayListArr[z10 ? 1 : 0], this.f26848r0[z10 ? 1 : 0], jArr[z10 ? 1 : 0], this.f26851s0);
+            L1(z10, arrayListArr2[z10 ? 1 : 0], arrayListArr[z10 ? 1 : 0], this.f26812r0[z10 ? 1 : 0], jArr[z10 ? 1 : 0], this.f26815s0);
             if (z11) {
-                getConnectionsManager().sendRequest(new TLRPC.TL_messages_readFeaturedStickers(), new fi.l5(11));
+                getConnectionsManager().sendRequest(new TLRPC.TL_messages_readFeaturedStickers(), new fi.k5(11));
             }
         }
     }
@@ -4082,10 +4082,10 @@ public final class si extends c1 {
     public final void g2(long j3, long j10, float f10, float f11) {
         ni U = U(j3, j10);
         if (U != null) {
-            if (Math.abs(U.h - f10) >= 0.001f || Math.abs(U.f25773i - f11) >= 0.001f) {
+            if (Math.abs(U.h - f10) >= 0.001f || Math.abs(U.f25737i - f11) >= 0.001f) {
                 U.h = f10;
-                U.f25773i = f11;
-                Context context = t0.f26931b;
+                U.f25737i = f11;
+                Context context = t0.f26895b;
                 SharedPreferences.Editor edit = context.getSharedPreferences("2voicedrafts_" + this.currentAccount, 0).edit();
                 edit.putString(Objects.hash(Long.valueOf(j3), Long.valueOf(j10)) + "", U.toString()).apply();
             }
@@ -4093,13 +4093,13 @@ public final class si extends c1 {
     }
 
     public final void h1(long j3) {
-        if (this.f26857v0[0].contains(Long.valueOf(j3))) {
-            ArrayList[] arrayListArr = this.f26860w0;
+        if (this.f26821v0[0].contains(Long.valueOf(j3))) {
+            ArrayList[] arrayListArr = this.f26824w0;
             if (!arrayListArr[0].contains(Long.valueOf(j3))) {
                 arrayListArr[0].add(Long.valueOf(j3));
                 TLRPC.TL_messages_readFeaturedStickers tL_messages_readFeaturedStickers = new TLRPC.TL_messages_readFeaturedStickers();
-                tL_messages_readFeaturedStickers.f28538id.add(Long.valueOf(j3));
-                getConnectionsManager().sendRequest(tL_messages_readFeaturedStickers, new fi.l5(11));
+                tL_messages_readFeaturedStickers.f28502id.add(Long.valueOf(j3));
+                getConnectionsManager().sendRequest(tL_messages_readFeaturedStickers, new fi.k5(11));
                 g0.h3(new xg(this, j3, 3), 1000L);
             }
         }
@@ -4125,7 +4125,7 @@ public final class si extends c1 {
         int i11;
         f5.m mVar2;
         f5.l lVar3;
-        if ((z10 && (!r1.i().k() || r1.i().f26553e == null)) || (tL_help_premiumPromo = this.E) == null) {
+        if ((z10 && (!r1.i().k() || r1.i().f26517e == null)) || (tL_help_premiumPromo = this.E) == null) {
             return null;
         }
         ArrayList<TLRPC.TL_premiumSubscriptionOption> arrayList2 = tL_help_premiumPromo.period_options;
@@ -4141,8 +4141,8 @@ public final class si extends c1 {
             if (z10) {
                 if (tL_premiumSubscriptionOption2.current) {
                     lVar2 = null;
-                    if (Objects.equals(tL_premiumSubscriptionOption2.transaction.replaceAll("^(.*?)(?:\\.\\.\\d*|)$", "$1"), r1.i().f26553e)) {
-                        if (s2.b() && (mVar2 = r1.f26546l) != null) {
+                    if (Objects.equals(tL_premiumSubscriptionOption2.transaction.replaceAll("^(.*?)(?:\\.\\.\\d*|)$", "$1"), r1.i().f26517e)) {
+                        if (s2.b() && (mVar2 = r1.f26510l) != null) {
                             ArrayList arrayList3 = mVar2.h;
                             int size2 = arrayList3.size();
                             int i14 = 0;
@@ -4151,7 +4151,7 @@ public final class si extends c1 {
                                     Object obj = arrayList3.get(i14);
                                     i14++;
                                     lVar3 = (f5.l) obj;
-                                    String str = ((f5.j) lVar3.f11330b.f11328a.get(0)).d;
+                                    String str = ((f5.j) lVar3.f11293b.f11291a.get(0)).d;
                                     int i15 = tL_premiumSubscriptionOption2.months;
                                     if (i15 == 12) {
                                         if (str.equals("P1Y")) {
@@ -4172,7 +4172,7 @@ public final class si extends c1 {
                                 d11 = tL_premiumSubscriptionOption2.amount;
                                 i11 = tL_premiumSubscriptionOption2.months;
                             } else {
-                                d11 = ((f5.j) lVar3.f11330b.f11328a.get(0)).f11326b;
+                                d11 = ((f5.j) lVar3.f11293b.f11291a.get(0)).f11289b;
                                 i11 = tL_premiumSubscriptionOption2.months;
                             }
                         } else {
@@ -4204,7 +4204,7 @@ public final class si extends c1 {
             i17++;
             TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption4 = tL_premiumSubscriptionOption3;
             if (z11 && tL_premiumSubscriptionOption4.months == 12) {
-                if (!s2.b() && (mVar = r1.f26546l) != null) {
+                if (!s2.b() && (mVar = r1.f26510l) != null) {
                     ArrayList arrayList5 = mVar.h;
                     int size4 = arrayList5.size();
                     int i18 = i12;
@@ -4213,7 +4213,7 @@ public final class si extends c1 {
                             Object obj2 = arrayList5.get(i18);
                             i18++;
                             lVar = (f5.l) obj2;
-                            String str2 = ((f5.j) lVar.f11330b.f11328a.get(i12)).d;
+                            String str2 = ((f5.j) lVar.f11293b.f11291a.get(i12)).d;
                             int i19 = tL_premiumSubscriptionOption4.months;
                             arrayList = arrayList4;
                             if (i19 == 12) {
@@ -4242,7 +4242,7 @@ public final class si extends c1 {
                         i16 = (int) ((1.0d - (d10 / d12)) * 100.0d);
                     } else {
                         i7 = 0;
-                        d = ((f5.j) lVar.f11330b.f11328a.get(0)).f11326b;
+                        d = ((f5.j) lVar.f11293b.f11291a.get(0)).f11289b;
                         i10 = tL_premiumSubscriptionOption4.months;
                     }
                 } else {
@@ -4294,36 +4294,36 @@ public final class si extends c1 {
 
     public final void j2(long j3, long j10, boolean z10) {
         ni U = U(j3, j10);
-        if (U != null && U.f25772g != z10) {
-            U.f25772g = z10;
-            Context context = t0.f26931b;
+        if (U != null && U.f25736g != z10) {
+            U.f25736g = z10;
+            Context context = t0.f26895b;
             SharedPreferences.Editor edit = context.getSharedPreferences("2voicedrafts_" + this.currentAccount, 0).edit();
             edit.putString(Objects.hash(Long.valueOf(j3), Long.valueOf(j10)) + "", U.toString()).apply();
         }
     }
 
     public final SharedPreferences k() {
-        if (this.f26852s1 == null) {
-            SharedPreferences e10 = f3.e(new StringBuilder("ai_chat_styles"), this.currentAccount, t0.f26931b, 0);
-            this.f26852s1 = e10;
+        if (this.f26816s1 == null) {
+            SharedPreferences e10 = f3.e(new StringBuilder("ai_chat_styles"), this.currentAccount, t0.f26895b, 0);
+            this.f26816s1 = e10;
             for (Map.Entry<String, ?> entry : e10.getAll().entrySet()) {
                 try {
                     SerializedData serializedData = new SerializedData(Utilities.v((String) entry.getValue()));
                     TL_aicompose.inputAiComposeStyle TLdeserialize = TL_aicompose.inputAiComposeStyle.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                     serializedData.cleanup();
                     if (TLdeserialize != null) {
-                        this.f26849r1.k(TLdeserialize, Utilities.A(entry.getKey()).longValue());
+                        this.f26813r1.k(TLdeserialize, Utilities.A(entry.getKey()).longValue());
                     }
                 } catch (Exception e11) {
                     a8.g(e11, true);
                 }
             }
         }
-        return this.f26852s1;
+        return this.f26816s1;
     }
 
     public final ArrayList k0(int i7, boolean z10) {
-        ArrayList[] arrayListArr = this.f26827g0;
+        ArrayList[] arrayListArr = this.f26791g0;
         ArrayList arrayList = arrayListArr[i7];
         if (i7 == 7) {
             return new ArrayList(arrayListArr[i7]);
@@ -4347,10 +4347,10 @@ public final class si extends c1 {
         ArrayList u02 = u0(i7);
         if (u02 != null) {
             for (int i10 = 0; i10 < u02.size(); i10++) {
-                if (((TLRPC.TL_messages_stickerSet) u02.get(i10)).set.f28461id == j3) {
+                if (((TLRPC.TL_messages_stickerSet) u02.get(i10)).set.f28425id == j3) {
                     u02.remove(i10);
                     u02.add(0, (TLRPC.TL_messages_stickerSet) u02.get(i10));
-                    getNotificationCenter().k(ls.f25412x0, Integer.valueOf(i7), Boolean.FALSE);
+                    getNotificationCenter().k(ls.f25376x0, Integer.valueOf(i7), Boolean.FALSE);
                     return;
                 }
             }
@@ -4362,8 +4362,8 @@ public final class si extends c1 {
     }
 
     public final boolean l(long j3) {
-        for (int i7 = 0; i7 < this.f26813b.bots.size(); i7++) {
-            if (this.f26813b.bots.get(i7).bot_id == j3) {
+        for (int i7 = 0; i7 < this.f26777b.bots.size(); i7++) {
+            if (this.f26777b.bots.get(i7).bot_id == j3) {
                 return true;
             }
         }
@@ -4371,7 +4371,7 @@ public final class si extends c1 {
     }
 
     public final int l0() {
-        ArrayList arrayList = this.f26812a1;
+        ArrayList arrayList = this.f26776a1;
         boolean isEmpty = arrayList.isEmpty();
         int[] iArr = this.X0;
         if (isEmpty) {
@@ -4381,15 +4381,15 @@ public final class si extends c1 {
     }
 
     public final void l1(String str, TLRPC.Document document, boolean z10) {
-        this.f26811a0.remove(str);
+        this.f26775a0.remove(str);
         yf.c cVar = this.A0;
-        ArrayList arrayList = cVar.f61238e;
+        ArrayList arrayList = cVar.f61203e;
         boolean z11 = true;
         if (z10) {
             int i7 = 0;
             while (true) {
                 if (i7 < arrayList.size()) {
-                    if (((yf.b) arrayList.get(i7)).d && str.equals(((yf.b) arrayList.get(i7)).f61231b)) {
+                    if (((yf.b) arrayList.get(i7)).d && str.equals(((yf.b) arrayList.get(i7)).f61196b)) {
                         arrayList.remove(i7);
                         break;
                     }
@@ -4403,9 +4403,9 @@ public final class si extends c1 {
             int i10 = 0;
             while (true) {
                 if (i10 < arrayList.size()) {
-                    if (((yf.b) arrayList.get(i10)).d && str.equals(((yf.b) arrayList.get(i10)).f61231b)) {
+                    if (((yf.b) arrayList.get(i10)).d && str.equals(((yf.b) arrayList.get(i10)).f61196b)) {
                         ((yf.b) arrayList.get(i10)).d = false;
-                        ((yf.b) arrayList.get(i10)).f61230a = document;
+                        ((yf.b) arrayList.get(i10)).f61195a = document;
                         break;
                     }
                     i10++;
@@ -4419,7 +4419,7 @@ public final class si extends c1 {
             }
         }
         if (z11) {
-            ls.f(cVar.f61237c).k(ls.f25321h5, new Object[0]);
+            ls.f(cVar.f61202c).k(ls.f25285h5, new Object[0]);
         }
     }
 
@@ -4435,12 +4435,12 @@ public final class si extends c1 {
         a0.h hVar = new a0.h();
         for (int i7 = 0; i7 < arrayList2.size(); i7++) {
             TLRPC.User user = (TLRPC.User) arrayList2.get(i7);
-            hVar.k(user, user.f28583id);
+            hVar.k(user, user.f28547id);
         }
         a0.h hVar2 = new a0.h();
         for (int i10 = 0; i10 < arrayList3.size(); i10++) {
             TLRPC.Chat chat = (TLRPC.Chat) arrayList3.get(i10);
-            hVar2.k(chat, chat.f28434id);
+            hVar2.k(chat, chat.f28398id);
         }
         ArrayList arrayList4 = new ArrayList();
         if (z11) {
@@ -4476,8 +4476,8 @@ public final class si extends c1 {
         boolean z12;
         TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
         tL_inputStickerSetID.access_hash = stickerSet.access_hash;
-        long j3 = stickerSet.f28461id;
-        tL_inputStickerSetID.f28454id = j3;
+        long j3 = stickerSet.f28425id;
+        tL_inputStickerSetID.f28418id = j3;
         if (i7 != 0) {
             TLRPC.TL_messages_installStickerSet tL_messages_installStickerSet = new TLRPC.TL_messages_installStickerSet();
             tL_messages_installStickerSet.stickerset = tL_inputStickerSetID;
@@ -4487,7 +4487,7 @@ public final class si extends c1 {
                 z12 = false;
             }
             tL_messages_installStickerSet.archived = z12;
-            i1(stickerSet.f28461id, true);
+            i1(stickerSet.f28425id, true);
             getConnectionsManager().sendRequest(tL_messages_installStickerSet, new RequestDelegate() {
                 @Override
                 public final void run(final TLObject tLObject2, final TLRPC.TL_error tL_error) {
@@ -4507,7 +4507,7 @@ public final class si extends c1 {
                             si siVar2 = si.this;
                             a0.h hVar = siVar2.U;
                             TLRPC.StickerSet stickerSet3 = stickerSet2;
-                            hVar.l(stickerSet3.f28461id);
+                            hVar.l(stickerSet3.f28425id);
                             TLObject tLObject4 = tLObject2;
                             boolean z15 = tLObject4 instanceof TLRPC.TL_messages_stickerSetInstallResultArchive;
                             org.telegram.ui.ActionBar.g2 g2Var3 = g2Var2;
@@ -4543,12 +4543,12 @@ public final class si extends c1 {
         a0.h hVar2 = new a0.h();
         for (int i7 = 0; i7 < arrayList2.size(); i7++) {
             TLRPC.User user = (TLRPC.User) arrayList2.get(i7);
-            hVar2.k(user, user.f28583id);
+            hVar2.k(user, user.f28547id);
         }
         a0.h hVar3 = new a0.h();
         for (int i10 = 0; i10 < arrayList3.size(); i10++) {
             TLRPC.Chat chat = (TLRPC.Chat) arrayList3.get(i10);
-            hVar3.k(chat, chat.f28434id);
+            hVar3.k(chat, chat.f28398id);
         }
         ArrayList arrayList4 = new ArrayList();
         int size = arrayList.size();
@@ -4564,8 +4564,8 @@ public final class si extends c1 {
 
     public final void n1() {
         ArrayList arrayList = this.h;
-        if (arrayList != null && !this.f26865y && qc.e(8200) && this.currentAccount == k10.f24968t0) {
-            this.f26865y = true;
+        if (arrayList != null && !this.f26829y && qc.e(8200) && this.currentAccount == k10.f24932t0) {
+            this.f26829y = true;
             ArrayList arrayList2 = new ArrayList(arrayList);
             int min = Math.min(arrayList2.size(), 10);
             for (int i7 = 0; i7 < min; i7++) {
@@ -4584,15 +4584,15 @@ public final class si extends c1 {
     }
 
     public final void o() {
-        int g10 = g0.f.g(t0.f26931b) - 2;
+        int g10 = g0.g.g(t0.f26895b) - 2;
         if (g10 <= 0) {
             g10 = 5;
         }
         ArrayList arrayList = new ArrayList();
         boolean z10 = false;
-        if (cz.f23439s.length() <= 0) {
-            for (int i7 = 0; i7 < this.f26834j1.size(); i7++) {
-                arrayList.add((TLRPC.TL_topPeer) this.f26834j1.get(i7));
+        if (cz.f23403s.length() <= 0) {
+            for (int i7 = 0; i7 < this.f26798j1.size(); i7++) {
+                arrayList.add((TLRPC.TL_topPeer) this.f26798j1.get(i7));
                 if (arrayList.size() == g10 - 2) {
                     break;
                 }
@@ -4601,7 +4601,7 @@ public final class si extends c1 {
         if (Build.VERSION.SDK_INT >= 30) {
             z10 = true;
         }
-        Utilities.f22810e.c(new yf(this, z10, arrayList, 0));
+        Utilities.f22774e.c(new yf(this, z10, arrayList, 0));
     }
 
     public final TLRPC.TL_messages_stickerSet o0(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
@@ -4613,12 +4613,12 @@ public final class si extends c1 {
     }
 
     public final void o2(long j3, TL_update.TL_updateBotCommands tL_updateBotCommands) {
-        TL_bots.BotInfo botInfo = (TL_bots.BotInfo) this.f26867y1.get(tL_updateBotCommands.bot_id + "_" + j3);
+        TL_bots.BotInfo botInfo = (TL_bots.BotInfo) this.f26831y1.get(tL_updateBotCommands.bot_id + "_" + j3);
         if (botInfo != null) {
             botInfo.commands = tL_updateBotCommands.commands;
             getNotificationCenter().k(ls.D0, botInfo, 0);
         }
-        getMessagesStorage().f27250a.c(new d4(this, tL_updateBotCommands, j3, 13));
+        getMessagesStorage().f27214a.c(new d4(this, tL_updateBotCommands, j3, 13));
     }
 
     public final TLRPC.TL_messages_stickerSet p0(String str) {
@@ -4633,7 +4633,7 @@ public final class si extends c1 {
         HashSet hashSet = new HashSet();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList3 = this.f26812a1;
+            ArrayList arrayList3 = this.f26776a1;
             gj gjVar2 = null;
             if (i7 >= arrayList3.size()) {
                 break;
@@ -4653,17 +4653,17 @@ public final class si extends c1 {
                 }
                 if (gjVar2 != null) {
                     gjVar3.N(gjVar2);
-                    gjVar3.f24272z0 = gjVar2.f24272z0;
-                    gjVar3.f24268y0 = gjVar2.f24268y0;
+                    gjVar3.f24236z0 = gjVar2.f24236z0;
+                    gjVar3.f24232y0 = gjVar2.f24232y0;
                 }
-                gjVar3.f24231o2 = true;
+                gjVar3.f24195o2 = true;
                 arrayList.add(gjVar3);
                 hashSet.add(Integer.valueOf(gjVar3.e1()));
             }
             i7++;
         }
-        for (int i11 = 0; i11 < this.f26815b1.size(); i11++) {
-            gj gjVar4 = (gj) this.f26815b1.get(i11);
+        for (int i11 = 0; i11 < this.f26779b1.size(); i11++) {
+            gj gjVar4 = (gj) this.f26779b1.get(i11);
             if (!hashSet.contains(Integer.valueOf(gjVar4.e1()))) {
                 int i12 = 0;
                 while (true) {
@@ -4680,10 +4680,10 @@ public final class si extends c1 {
                 }
                 if (gjVar != null) {
                     gjVar4.N(gjVar);
-                    gjVar4.f24272z0 = gjVar.f24272z0;
-                    gjVar4.f24268y0 = gjVar.f24268y0;
+                    gjVar4.f24236z0 = gjVar.f24236z0;
+                    gjVar4.f24232y0 = gjVar.f24232y0;
                 }
-                gjVar4.f24231o2 = true;
+                gjVar4.f24195o2 = true;
                 arrayList.add(gjVar4);
                 hashSet.add(Integer.valueOf(gjVar4.e1()));
             }
@@ -4696,8 +4696,8 @@ public final class si extends c1 {
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 TLRPC.StickerSet stickerSet = ((TLRPC.StickerSetCovered) arrayList.get(i7)).set;
                 if (!stickerSet.archived) {
-                    j3 = r(j3, stickerSet.f28461id);
-                    if (this.f26857v0[z10 ? 1 : 0].contains(Long.valueOf(stickerSet.f28461id))) {
+                    j3 = r(j3, stickerSet.f28425id);
+                    if (this.f26821v0[z10 ? 1 : 0].contains(Long.valueOf(stickerSet.f28425id))) {
                         j3 = r(j3, 1L);
                     }
                 }
@@ -4711,17 +4711,17 @@ public final class si extends c1 {
     }
 
     public final void q1() {
-        ArrayList[] arrayListArr = this.f26827g0;
+        ArrayList[] arrayListArr = this.f26791g0;
         if (arrayListArr[3].isEmpty()) {
             return;
         }
         ArrayList arrayList = arrayListArr[3];
-        this.f26868z0 = (TLRPC.Document) arrayList.get(Utilities.f22808b.nextInt(arrayList.size()));
-        getFileLoader().V(gc.b(this.f26868z0), this.f26868z0, null, 0, 1);
+        this.f26832z0 = (TLRPC.Document) arrayList.get(Utilities.f22772b.nextInt(arrayList.size()));
+        getFileLoader().V(gc.b(this.f26832z0), this.f26832z0, null, 0, 1);
     }
 
     public final void q2(String str) {
-        HashMap hashMap = this.f26811a0;
+        HashMap hashMap = this.f26775a0;
         if (hashMap.containsKey(str)) {
             return;
         }
@@ -4729,12 +4729,12 @@ public final class si extends c1 {
         yf.c cVar = this.A0;
         cVar.getClass();
         ?? obj = new Object();
-        obj.f61231b = str;
+        obj.f61196b = str;
         int i7 = cVar.d;
         cVar.d = i7 + 1;
-        obj.f61232c = i7;
+        obj.f61197c = i7;
         obj.d = true;
-        cVar.f61238e.add(obj);
+        cVar.f61203e.add(obj);
     }
 
     public final TLRPC.TL_messages_stickerSet r0(String str) {
@@ -4795,7 +4795,7 @@ public final class si extends c1 {
             }
             gc k10 = gc.k(w10, document, stickerSetCovered.set.thumb_version);
             if (k10 != null) {
-                if (k10.f24125p == 1) {
+                if (k10.f24089p == 1) {
                     str = "tgs";
                 } else {
                     str = "webp";
@@ -4832,7 +4832,7 @@ public final class si extends c1 {
                     int size = tL_messages_stickerSet.documents.size();
                     for (int i10 = 0; i10 < size; i10++) {
                         TLRPC.Document document = tL_messages_stickerSet.documents.get(i10);
-                        if (document.f28440id == G0.f28440id && document.dc_id == G0.dc_id) {
+                        if (document.f28404id == G0.f28404id && document.dc_id == G0.dc_id) {
                             message.stickerVerified = 1;
                             return;
                         }
@@ -4851,7 +4851,7 @@ public final class si extends c1 {
         if (tL_messages_stickerSet != null) {
             return tL_messages_stickerSet.set.short_name;
         }
-        a0.h[] hVarArr = this.f26855u0;
+        a0.h[] hVarArr = this.f26819u0;
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) hVarArr[0].f(j3);
         if (stickerSetCovered != null) {
             return stickerSetCovered.set.short_name;
@@ -4870,7 +4870,7 @@ public final class si extends c1 {
         gc k10;
         String str;
         if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && (w10 = w7.w(stickerSet.thumbs, 90, false, null, false)) != null && (arrayList = tL_messages_stickerSet.documents) != null && !arrayList.isEmpty() && (k10 = gc.k(w10, arrayList.get(0), tL_messages_stickerSet.set.thumb_version)) != null) {
-            if (k10.f24125p == 1) {
+            if (k10.f24089p == 1) {
                 str = "tgs";
             } else {
                 str = "webp";
@@ -4880,7 +4880,7 @@ public final class si extends c1 {
     }
 
     public final void t2(TLRPC.Message message, String str) {
-        HashMap hashMap = this.f26814b0;
+        HashMap hashMap = this.f26778b0;
         ArrayList arrayList = (ArrayList) hashMap.get(str);
         if (arrayList == null) {
             arrayList = new ArrayList();
@@ -4893,7 +4893,7 @@ public final class si extends c1 {
     }
 
     public final boolean u() {
-        if (this.X[0] && this.H[0].size() < 5 && this.f26827g0[2].isEmpty()) {
+        if (this.X[0] && this.H[0].size() < 5 && this.f26791g0[2].isEmpty()) {
             return false;
         }
         return true;
@@ -4918,14 +4918,14 @@ public final class si extends c1 {
         final int i10 = 0;
         while (i10 < tL_messages_allStickers2.sets.size()) {
             final TLRPC.StickerSet stickerSet = tL_messages_allStickers2.sets.get(i10);
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.J.f(stickerSet.f28461id);
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.J.f(stickerSet.f28425id);
             if (tL_messages_stickerSet != null) {
                 TLRPC.StickerSet stickerSet2 = tL_messages_stickerSet.set;
                 if (stickerSet2.hash == stickerSet.hash) {
                     stickerSet2.archived = stickerSet.archived;
                     stickerSet2.installed = stickerSet.installed;
                     stickerSet2.official = stickerSet.official;
-                    hVar.k(tL_messages_stickerSet, stickerSet2.f28461id);
+                    hVar.k(tL_messages_stickerSet, stickerSet2.f28425id);
                     arrayList.add(tL_messages_stickerSet);
                     if (hVar.m() == tL_messages_allStickers2.sets.size()) {
                         C1(i7, arrayList, false, (int) (System.currentTimeMillis() / 1000), tL_messages_allStickers2.hash2, null);
@@ -4938,7 +4938,7 @@ public final class si extends c1 {
             TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             tL_messages_getStickerSet.stickerset = tL_inputStickerSetID;
-            tL_inputStickerSetID.f28454id = stickerSet.f28461id;
+            tL_inputStickerSetID.f28418id = stickerSet.f28425id;
             tL_inputStickerSetID.access_hash = stickerSet.access_hash;
             getConnectionsManager().sendRequest(tL_messages_getStickerSet, new RequestDelegate() {
                 @Override
@@ -4959,8 +4959,8 @@ public final class si extends c1 {
 
     public final void w(boolean z10) {
         if (z10) {
-            this.f26862x = 0;
-            int[] iArr = this.f26848r0;
+            this.f26826x = 0;
+            int[] iArr = this.f26812r0;
             iArr[0] = 0;
             iArr[1] = 0;
         }
@@ -4970,7 +4970,7 @@ public final class si extends c1 {
         z();
         y();
         C();
-        if (!this.f26816c && (!this.d || Math.abs((System.currentTimeMillis() / 1000) - this.f26821e) >= 3600)) {
+        if (!this.f26780c && (!this.d || Math.abs((System.currentTimeMillis() / 1000) - this.f26785e) >= 3600)) {
             H0(true, false, null);
         }
         if (!this.F && (this.E == null || Math.abs((System.currentTimeMillis() / 1000) - this.G) >= 3600)) {
@@ -4978,8 +4978,8 @@ public final class si extends c1 {
         }
         B();
         E();
-        if (getUserConfig().f24978e0 != null) {
-            String str = getUserConfig().f24978e0;
+        if (getUserConfig().f24942e0 != null) {
+            String str = getUserConfig().f24942e0;
             TLRPC.TL_messages_stickerSet r02 = r0(str);
             if (r02 == null) {
                 r02 = p0(str);
@@ -4988,8 +4988,8 @@ public final class si extends c1 {
                 d0(this.currentAccount).f1(str, false, true);
             }
         }
-        if (!this.f26841o0 && System.currentTimeMillis() - getUserConfig().f24983i0 >= 86400000) {
-            this.f26841o0 = true;
+        if (!this.f26805o0 && System.currentTimeMillis() - getUserConfig().f24947i0 >= 86400000) {
+            this.f26805o0 = true;
             TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
             tL_messages_getStickerSet.stickerset = new TLRPC.TL_inputStickerSetEmojiGenericAnimations();
             getConnectionsManager().sendRequest(tL_messages_getStickerSet, new jh(this, 8));
@@ -5012,8 +5012,8 @@ public final class si extends c1 {
     }
 
     public final void x() {
-        if (getUserConfig().f24980f0 != null) {
-            String str = getUserConfig().f24980f0;
+        if (getUserConfig().f24944f0 != null) {
+            String str = getUserConfig().f24944f0;
             TLRPC.TL_messages_stickerSet r02 = r0(str);
             if (r02 == null) {
                 r02 = p0(str);
@@ -5022,8 +5022,8 @@ public final class si extends c1 {
                 d0(this.currentAccount).f1(str, false, true);
             }
         }
-        if (!this.f26843p0 && System.currentTimeMillis() - getUserConfig().f24984j0 >= 86400000) {
-            this.f26843p0 = true;
+        if (!this.f26807p0 && System.currentTimeMillis() - getUserConfig().f24948j0 >= 86400000) {
+            this.f26807p0 = true;
             TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
             tL_messages_getStickerSet.stickerset = new TLRPC.TL_inputStickerSetEmojiDefaultTopicIcons();
             getConnectionsManager().sendRequest(tL_messages_getStickerSet, new jh(this, 5));
@@ -5054,7 +5054,7 @@ public final class si extends c1 {
         if (z10) {
             arrayList = this.l1;
         } else {
-            arrayList = this.f26836k1;
+            arrayList = this.f26800k1;
         }
         int i13 = 0;
         while (true) {
@@ -5076,7 +5076,7 @@ public final class si extends c1 {
             tL_peerUser.user_id = j3;
             arrayList.add(tL_topPeer);
         }
-        tL_topPeer.rating = Math.exp(i10 / getMessagesController().f25816c3) + tL_topPeer.rating;
+        tL_topPeer.rating = Math.exp(i10 / getMessagesController().f25780c3) + tL_topPeer.rating;
         Collections.sort(arrayList, new jg.w(18));
         if (arrayList.size() > 20) {
             a8.p0.z(1, arrayList);
@@ -5084,7 +5084,7 @@ public final class si extends c1 {
         if (z10) {
             i12 = 3;
         }
-        getMessagesStorage().f27250a.c(new ch(this, j3, i12, tL_topPeer.rating));
+        getMessagesStorage().f27214a.c(new ch(this, j3, i12, tL_topPeer.rating));
         ls notificationCenter = getNotificationCenter();
         if (z10) {
             i11 = ls.U0;
@@ -5104,7 +5104,7 @@ public final class si extends c1 {
         ArrayList<TLRPC.Message> arrayList;
         int i20;
         ArrayList<TLRPC.Message> arrayList2;
-        if (s2.f26730a) {
+        if (s2.f26694a) {
             if (messages_messages != null && (arrayList2 = messages_messages.messages) != null) {
                 i20 = arrayList2.size();
             } else {
@@ -5146,9 +5146,9 @@ public final class si extends c1 {
         if (i13 == 0) {
             fc.X(messages_messages.messages);
             getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
-            getMessagesStorage().f27250a.c(new sg(this, i11, messages_messages.messages, z11, j3, i10, i12, j10));
+            getMessagesStorage().f27214a.c(new sg(this, i11, messages_messages.messages, z11, j3, i10, i12, j10));
         }
-        Utilities.f22812g.c(new Runnable() {
+        Utilities.f22776g.c(new Runnable() {
             @Override
             public final void run() {
                 TLRPC.messages_Messages messages_messages2;
@@ -5161,7 +5161,7 @@ public final class si extends c1 {
                         break;
                     }
                     TLRPC.User user = messages_messages2.users.get(i21);
-                    hVar.k(user, user.f28583id);
+                    hVar.k(user, user.f28547id);
                     i21++;
                 }
                 ArrayList arrayList3 = new ArrayList();
@@ -5181,8 +5181,8 @@ public final class si extends c1 {
                 int i23 = i13;
                 long j12 = j3;
                 qf qfVar = new qf(siVar, messages_messages2, i23, j12, arrayList3, i14, i12, z10, i11, i15, 0);
-                if (siVar.getMessagesController().f25986v7.v(j12)) {
-                    siVar.getMessagesStorage().f27250a.c(new zf(siVar, arrayList3, qfVar, 29));
+                if (siVar.getMessagesController().f25950v7.v(j12)) {
+                    siVar.getMessagesStorage().f27214a.c(new zf(siVar, arrayList3, qfVar, 29));
                 } else {
                     qfVar.run();
                 }
@@ -5191,8 +5191,8 @@ public final class si extends c1 {
     }
 
     public final void y() {
-        if (!this.f26863x0[1]) {
-            if (!this.f26866y0[1] || Math.abs((System.currentTimeMillis() / 1000) - this.f26848r0[1]) >= 3600) {
+        if (!this.f26827x0[1]) {
+            if (!this.f26830y0[1] || Math.abs((System.currentTimeMillis() / 1000) - this.f26812r0[1]) >= 3600) {
                 N0(true, true);
             }
         }
@@ -5201,18 +5201,18 @@ public final class si extends c1 {
     public final void y0(long j3) {
         TLRPC.User c22;
         if (getUserConfig().W && n5.E(j3) && (c22 = getMessagesController().c2(Long.valueOf(j3))) != null && !c22.bot && !c22.self) {
-            getMessagesStorage().f27250a.c(new xg(this, j3, 2));
+            getMessagesStorage().f27214a.c(new xg(this, j3, 2));
         }
     }
 
     public final void y1(TLRPC.TL_attachMenuBots tL_attachMenuBots, long j3, int i7, boolean z10) {
         boolean z11;
         if (tL_attachMenuBots != null && i7 != 0) {
-            this.f26813b = tL_attachMenuBots;
-            this.f26810a = j3;
+            this.f26777b = tL_attachMenuBots;
+            this.f26774a = j3;
         }
         SharedPreferences.Editor edit = getMessagesController().h7.edit();
-        this.f26821e = i7;
+        this.f26785e = i7;
         edit.putInt("menuBotsUpdateDate", i7).commit();
         this.d = true;
         if (tL_attachMenuBots != null) {
@@ -5232,15 +5232,15 @@ public final class si extends c1 {
             z11 = false;
         }
         if (!z10) {
-            getMessagesStorage().f27250a.c(new fk(i7, 2, j3, this, tL_attachMenuBots));
+            getMessagesStorage().f27214a.c(new fk(i7, 2, j3, this, tL_attachMenuBots));
         } else if (z11 || Math.abs((System.currentTimeMillis() / 1000) - i7) >= 3600) {
             H0(false, true, null);
         }
     }
 
     public final void z() {
-        if (!this.f26863x0[0]) {
-            if (!this.f26866y0[0] || Math.abs((System.currentTimeMillis() / 1000) - this.f26848r0[0]) >= 3600) {
+        if (!this.f26827x0[0]) {
+            if (!this.f26830y0[0] || Math.abs((System.currentTimeMillis() / 1000) - this.f26812r0[0]) >= 3600) {
                 N0(false, true);
             }
         }
@@ -5255,7 +5255,7 @@ public final class si extends c1 {
         }
         if (!z10) {
             if (tL_help_premiumPromo != null) {
-                getMessagesStorage().f27250a.c(new l7(this, tL_help_premiumPromo, i7, 7));
+                getMessagesStorage().f27214a.c(new l7(this, tL_help_premiumPromo, i7, 7));
             }
             this.F = false;
         } else if (tL_help_premiumPromo != null && Math.abs((System.currentTimeMillis() / 1000) - i7) < 86400) {

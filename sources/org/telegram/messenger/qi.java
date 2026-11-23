@@ -2,21 +2,21 @@ package org.telegram.messenger;
 
 import j$.util.Objects;
 public final class qi {
-    public final boolean f26460a;
-    public final String f26461b;
-    public final String f26462c;
+    public final boolean f26424a;
+    public final String f26425b;
+    public final String f26426c;
 
     public qi(String str, String str2, boolean z10) {
-        this.f26460a = z10;
-        this.f26461b = str;
-        this.f26462c = str2;
+        this.f26424a = z10;
+        this.f26425b = str;
+        this.f26426c = str2;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && qi.class == obj.getClass()) {
                 qi qiVar = (qi) obj;
-                if (this.f26460a == qiVar.f26460a && Objects.equals(this.f26461b, qiVar.f26461b) && Objects.equals(this.f26462c, qiVar.f26462c)) {
+                if (this.f26424a == qiVar.f26424a && Objects.equals(this.f26425b, qiVar.f26425b) && Objects.equals(this.f26426c, qiVar.f26426c)) {
                     return true;
                 }
                 return false;
@@ -27,6 +27,6 @@ public final class qi {
     }
 
     public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f26460a), this.f26461b, this.f26462c);
+        return Objects.hash(Boolean.valueOf(this.f26424a), this.f26425b, this.f26426c);
     }
 }

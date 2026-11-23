@@ -2,19 +2,19 @@ package d1;
 
 import kotlin.jvm.internal.j;
 public final class d implements Runnable {
-    public final int f7640a;
-    public final e f7641b;
+    public final int f7603a;
+    public final e f7604b;
 
     public d(e eVar, int i7) {
-        this.f7640a = i7;
-        this.f7641b = eVar;
+        this.f7603a = i7;
+        this.f7604b = eVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f7640a) {
+        switch (this.f7603a) {
             case 0:
-                v0.g gVar = this.f7641b.f7643f;
+                v0.g gVar = this.f7604b.f7606f;
                 if (gVar != null) {
                     gVar.a(new w0.c(2, "Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context."));
                     return;
@@ -23,7 +23,7 @@ public final class d implements Runnable {
                     throw null;
                 }
             default:
-                v0.g gVar2 = this.f7641b.f7643f;
+                v0.g gVar2 = this.f7604b.f7606f;
                 if (gVar2 != null) {
                     gVar2.a(new y0.a(new x0.a(26), "Upon handling create public key credential response, fido module giving null bytes indicating internal error"));
                     return;

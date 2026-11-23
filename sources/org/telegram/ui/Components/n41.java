@@ -5,12 +5,12 @@ import android.util.LongSparseArray;
 import android.view.View;
 import java.util.HashMap;
 public abstract class n41 {
-    public final int f37772a;
+    public final int f37728a;
 
     public n41() {
         int i7 = o41.K;
         o41.K = i7 + 1;
-        this.f37772a = i7;
+        this.f37728a = i7;
     }
 
     public static void h(n41 n41Var) {
@@ -23,7 +23,7 @@ public abstract class n41 {
         Class<?> cls = n41Var.getClass();
         if (!o41.M.containsKey(cls)) {
             o41.M.put(cls, n41Var);
-            o41.L.put(n41Var.f37772a, n41Var);
+            o41.L.put(n41Var.f37728a, n41Var);
         }
     }
 

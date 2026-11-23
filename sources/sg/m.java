@@ -9,20 +9,20 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.view.MotionEvent;
 import android.view.View;
-import c8.l9;
+import c8.m9;
 public final class m extends View {
-    public final Paint f57325a;
-    public final Paint f57326b;
-    public int f57327c;
+    public final Paint f57290a;
+    public final Paint f57291b;
+    public int f57292c;
     public int d;
-    public final q f57328e;
+    public final q f57293e;
 
     public m(q qVar, Context context) {
         super(context);
-        this.f57328e = qVar;
-        this.f57325a = new Paint(1);
+        this.f57293e = qVar;
+        this.f57290a = new Paint(1);
         Paint paint = new Paint(1);
-        this.f57326b = paint;
+        this.f57291b = paint;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
@@ -31,39 +31,39 @@ public final class m extends View {
     public final void a() {
         int argb;
         int argb2;
-        int i7 = this.f57327c;
-        q qVar = this.f57328e;
+        int i7 = this.f57292c;
+        q qVar = this.f57293e;
         if (i7 != 1) {
             if (i7 != 2) {
-                argb = Color.argb(255, 0, Color.green(qVar.f57366q1), Color.blue(qVar.f57366q1));
-                argb2 = Color.argb(255, 255, Color.green(qVar.f57366q1), Color.blue(qVar.f57366q1));
+                argb = Color.argb(255, 0, Color.green(qVar.f57331q1), Color.blue(qVar.f57331q1));
+                argb2 = Color.argb(255, 255, Color.green(qVar.f57331q1), Color.blue(qVar.f57331q1));
             } else {
-                argb = Color.argb(255, Color.red(qVar.f57366q1), Color.green(qVar.f57366q1), 0);
-                argb2 = Color.argb(255, Color.red(qVar.f57366q1), Color.green(qVar.f57366q1), 255);
+                argb = Color.argb(255, Color.red(qVar.f57331q1), Color.green(qVar.f57331q1), 0);
+                argb2 = Color.argb(255, Color.red(qVar.f57331q1), Color.green(qVar.f57331q1), 255);
             }
         } else {
-            argb = Color.argb(255, Color.red(qVar.f57366q1), 0, Color.blue(qVar.f57366q1));
-            argb2 = Color.argb(255, Color.red(qVar.f57366q1), 255, Color.blue(qVar.f57366q1));
+            argb = Color.argb(255, Color.red(qVar.f57331q1), 0, Color.blue(qVar.f57331q1));
+            argb2 = Color.argb(255, Color.red(qVar.f57331q1), 255, Color.blue(qVar.f57331q1));
         }
-        this.f57325a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{argb, argb2}, (float[]) null, Shader.TileMode.CLAMP));
+        this.f57290a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{argb, argb2}, (float[]) null, Shader.TileMode.CLAMP));
     }
 
     public final void b(float f10) {
         int argb;
         float L = org.telegram.messenger.g0.L(6.0f);
-        float a10 = l9.a(((f10 - L) + (org.telegram.messenger.g0.L(13.0f) - (this.f57326b.getStrokeWidth() / 2.0f))) / (getWidth() - (L * 2.0f)), 0.0f, 1.0f);
-        int i7 = this.f57327c;
-        q qVar = this.f57328e;
+        float a10 = m9.a(((f10 - L) + (org.telegram.messenger.g0.L(13.0f) - (this.f57291b.getStrokeWidth() / 2.0f))) / (getWidth() - (L * 2.0f)), 0.0f, 1.0f);
+        int i7 = this.f57292c;
+        q qVar = this.f57293e;
         if (i7 != 1) {
             if (i7 != 2) {
-                argb = Color.argb(255, (int) (a10 * 255.0f), Color.green(qVar.f57366q1), Color.blue(qVar.f57366q1));
+                argb = Color.argb(255, (int) (a10 * 255.0f), Color.green(qVar.f57331q1), Color.blue(qVar.f57331q1));
             } else {
-                argb = Color.argb(255, Color.red(qVar.f57366q1), Color.green(qVar.f57366q1), (int) (a10 * 255.0f));
+                argb = Color.argb(255, Color.red(qVar.f57331q1), Color.green(qVar.f57331q1), (int) (a10 * 255.0f));
             }
         } else {
-            argb = Color.argb(255, Color.red(qVar.f57366q1), (int) (a10 * 255.0f), Color.blue(qVar.f57366q1));
+            argb = Color.argb(255, Color.red(qVar.f57331q1), (int) (a10 * 255.0f), Color.blue(qVar.f57331q1));
         }
-        qVar.J0(i0.a.o(argb, Color.alpha(qVar.f57366q1)), 4);
+        qVar.J0(i0.a.o(argb, Color.alpha(qVar.f57331q1)), 4);
         invalidate();
     }
 
@@ -75,21 +75,21 @@ public final class m extends View {
         float L = org.telegram.messenger.g0.L(6.0f);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(L, height - L, getWidth() - L, height + L);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), this.f57325a);
-        int i7 = this.f57327c;
-        q qVar = this.f57328e;
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), this.f57290a);
+        int i7 = this.f57292c;
+        q qVar = this.f57293e;
         if (i7 != 1) {
             if (i7 != 2) {
-                green = Color.red(qVar.f57366q1);
+                green = Color.red(qVar.f57331q1);
             } else {
-                green = Color.blue(qVar.f57366q1);
+                green = Color.blue(qVar.f57331q1);
             }
         } else {
-            green = Color.green(qVar.f57366q1);
+            green = Color.green(qVar.f57331q1);
         }
         float f10 = green / 255.0f;
         float L2 = org.telegram.messenger.g0.L(13.0f);
-        Paint paint = this.f57326b;
+        Paint paint = this.f57291b;
         float strokeWidth = L2 - (paint.getStrokeWidth() / 2.0f);
         float max = Math.max(L + strokeWidth, (((getWidth() - (2.0f * L)) * f10) + L) - strokeWidth);
         canvas.drawCircle(max, height, L2, paint);

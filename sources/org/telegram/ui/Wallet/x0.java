@@ -10,52 +10,52 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_toncenter;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class x0 {
-    public static final long[] f45276o = {500, 1000, 3000, 5000, 10000};
-    public final int f45277a;
-    public final String f45278b;
-    public final String f45279c;
+    public static final long[] f45242o = {500, 1000, 3000, 5000, 10000};
+    public final int f45243a;
+    public final String f45244b;
+    public final String f45245c;
     public final l d;
-    public final l f45280e;
-    public boolean f45281f;
-    public int f45282g;
+    public final l f45246e;
+    public boolean f45247f;
+    public int f45248g;
     public int h;
-    public int f45284j;
-    public int f45283i = -1;
-    public int f45285k = -1;
-    public final v0 f45286l = new Runnable(this) {
-        public final x0 f45201b;
+    public int f45250j;
+    public int f45249i = -1;
+    public int f45251k = -1;
+    public final v0 f45252l = new Runnable(this) {
+        public final x0 f45166b;
 
         {
-            this.f45201b = this;
+            this.f45166b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    x0 x0Var = this.f45201b;
-                    int i7 = x0Var.f45277a;
-                    if (x0Var.f45281f) {
-                        org.telegram.messenger.a8.b("[gram-wallet-polling] account=" + i7 + " msg_hash=" + x0Var.f45278b + " no answer in 45000 ms");
-                        x0Var.f45282g = x0Var.f45282g + 1;
-                        if (x0Var.f45283i >= 0) {
-                            ConnectionsManager.getInstance(i7).cancelRequest(x0Var.f45283i, true);
-                            x0Var.f45283i = -1;
+                    x0 x0Var = this.f45166b;
+                    int i7 = x0Var.f45243a;
+                    if (x0Var.f45247f) {
+                        org.telegram.messenger.a8.b("[gram-wallet-polling] account=" + i7 + " msg_hash=" + x0Var.f45244b + " no answer in 45000 ms");
+                        x0Var.f45248g = x0Var.f45248g + 1;
+                        if (x0Var.f45249i >= 0) {
+                            ConnectionsManager.getInstance(i7).cancelRequest(x0Var.f45249i, true);
+                            x0Var.f45249i = -1;
                         }
                         x0Var.b();
                         return;
                     }
                     return;
                 case 1:
-                    final x0 x0Var2 = this.f45201b;
-                    int i10 = x0Var2.f45277a;
-                    if (x0Var2.f45281f && x0Var2.f45285k < 0) {
-                        final int i11 = x0Var2.f45284j + 1;
-                        x0Var2.f45284j = i11;
+                    final x0 x0Var2 = this.f45166b;
+                    int i10 = x0Var2.f45243a;
+                    if (x0Var2.f45247f && x0Var2.f45251k < 0) {
+                        final int i11 = x0Var2.f45250j + 1;
+                        x0Var2.f45250j = i11;
                         TL_toncenter.performApiRequest performapirequest = new TL_toncenter.performApiRequest();
                         performapirequest.endpoint = "/api/v3/traces";
-                        performapirequest.query = "msg_hash=" + Uri.encode(x0Var2.f45278b) + "&include_actions=false";
-                        x0Var2.f45285k = ConnectionsManager.getInstance(i10).sendRequestTyped(performapirequest, new d3.b(1), new r10() {
+                        performapirequest.query = "msg_hash=" + Uri.encode(x0Var2.f45244b) + "&include_actions=false";
+                        x0Var2.f45251k = ConnectionsManager.getInstance(i10).sendRequestTyped(performapirequest, new d3.b(1), new r10() {
                             @Override
                             public final void a(java.lang.Object r8, java.lang.Object r9) {
                                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.w0.a(java.lang.Object, java.lang.Object):void");
@@ -65,14 +65,14 @@ public final class x0 {
                     }
                     return;
                 default:
-                    final x0 x0Var3 = this.f45201b;
-                    if (x0Var3.f45281f) {
-                        final int i12 = x0Var3.f45282g + 1;
-                        x0Var3.f45282g = i12;
+                    final x0 x0Var3 = this.f45166b;
+                    if (x0Var3.f45247f) {
+                        final int i12 = x0Var3.f45248g + 1;
+                        x0Var3.f45248g = i12;
                         TL_wallet.getTransactionsByMsgHash gettransactionsbymsghash = new TL_wallet.getTransactionsByMsgHash();
-                        gettransactionsbymsghash.msg_hash.add(x0Var3.f45278b);
-                        org.telegram.messenger.g0.h3(x0Var3.f45286l, 45000L);
-                        x0Var3.f45283i = ConnectionsManager.getInstance(x0Var3.f45277a).sendRequestTyped(gettransactionsbymsghash, new d3.b(1), new r10() {
+                        gettransactionsbymsghash.msg_hash.add(x0Var3.f45244b);
+                        org.telegram.messenger.g0.h3(x0Var3.f45252l, 45000L);
+                        x0Var3.f45249i = ConnectionsManager.getInstance(x0Var3.f45243a).sendRequestTyped(gettransactionsbymsghash, new d3.b(1), new r10() {
                             @Override
                             public final void a(java.lang.Object r8, java.lang.Object r9) {
                                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.w0.a(java.lang.Object, java.lang.Object):void");
@@ -84,40 +84,40 @@ public final class x0 {
             }
         }
     };
-    public final v0 f45287m = new Runnable(this) {
-        public final x0 f45201b;
+    public final v0 f45253m = new Runnable(this) {
+        public final x0 f45166b;
 
         {
-            this.f45201b = this;
+            this.f45166b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    x0 x0Var = this.f45201b;
-                    int i7 = x0Var.f45277a;
-                    if (x0Var.f45281f) {
-                        org.telegram.messenger.a8.b("[gram-wallet-polling] account=" + i7 + " msg_hash=" + x0Var.f45278b + " no answer in 45000 ms");
-                        x0Var.f45282g = x0Var.f45282g + 1;
-                        if (x0Var.f45283i >= 0) {
-                            ConnectionsManager.getInstance(i7).cancelRequest(x0Var.f45283i, true);
-                            x0Var.f45283i = -1;
+                    x0 x0Var = this.f45166b;
+                    int i7 = x0Var.f45243a;
+                    if (x0Var.f45247f) {
+                        org.telegram.messenger.a8.b("[gram-wallet-polling] account=" + i7 + " msg_hash=" + x0Var.f45244b + " no answer in 45000 ms");
+                        x0Var.f45248g = x0Var.f45248g + 1;
+                        if (x0Var.f45249i >= 0) {
+                            ConnectionsManager.getInstance(i7).cancelRequest(x0Var.f45249i, true);
+                            x0Var.f45249i = -1;
                         }
                         x0Var.b();
                         return;
                     }
                     return;
                 case 1:
-                    final x0 x0Var2 = this.f45201b;
-                    int i10 = x0Var2.f45277a;
-                    if (x0Var2.f45281f && x0Var2.f45285k < 0) {
-                        final int i11 = x0Var2.f45284j + 1;
-                        x0Var2.f45284j = i11;
+                    final x0 x0Var2 = this.f45166b;
+                    int i10 = x0Var2.f45243a;
+                    if (x0Var2.f45247f && x0Var2.f45251k < 0) {
+                        final int i11 = x0Var2.f45250j + 1;
+                        x0Var2.f45250j = i11;
                         TL_toncenter.performApiRequest performapirequest = new TL_toncenter.performApiRequest();
                         performapirequest.endpoint = "/api/v3/traces";
-                        performapirequest.query = "msg_hash=" + Uri.encode(x0Var2.f45278b) + "&include_actions=false";
-                        x0Var2.f45285k = ConnectionsManager.getInstance(i10).sendRequestTyped(performapirequest, new d3.b(1), new r10() {
+                        performapirequest.query = "msg_hash=" + Uri.encode(x0Var2.f45244b) + "&include_actions=false";
+                        x0Var2.f45251k = ConnectionsManager.getInstance(i10).sendRequestTyped(performapirequest, new d3.b(1), new r10() {
                             @Override
                             public final void a(java.lang.Object r8, java.lang.Object r9) {
                                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.w0.a(java.lang.Object, java.lang.Object):void");
@@ -127,14 +127,14 @@ public final class x0 {
                     }
                     return;
                 default:
-                    final x0 x0Var3 = this.f45201b;
-                    if (x0Var3.f45281f) {
-                        final int i12 = x0Var3.f45282g + 1;
-                        x0Var3.f45282g = i12;
+                    final x0 x0Var3 = this.f45166b;
+                    if (x0Var3.f45247f) {
+                        final int i12 = x0Var3.f45248g + 1;
+                        x0Var3.f45248g = i12;
                         TL_wallet.getTransactionsByMsgHash gettransactionsbymsghash = new TL_wallet.getTransactionsByMsgHash();
-                        gettransactionsbymsghash.msg_hash.add(x0Var3.f45278b);
-                        org.telegram.messenger.g0.h3(x0Var3.f45286l, 45000L);
-                        x0Var3.f45283i = ConnectionsManager.getInstance(x0Var3.f45277a).sendRequestTyped(gettransactionsbymsghash, new d3.b(1), new r10() {
+                        gettransactionsbymsghash.msg_hash.add(x0Var3.f45244b);
+                        org.telegram.messenger.g0.h3(x0Var3.f45252l, 45000L);
+                        x0Var3.f45249i = ConnectionsManager.getInstance(x0Var3.f45243a).sendRequestTyped(gettransactionsbymsghash, new d3.b(1), new r10() {
                             @Override
                             public final void a(java.lang.Object r8, java.lang.Object r9) {
                                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.w0.a(java.lang.Object, java.lang.Object):void");
@@ -146,40 +146,40 @@ public final class x0 {
             }
         }
     };
-    public final v0 f45288n = new Runnable(this) {
-        public final x0 f45201b;
+    public final v0 f45254n = new Runnable(this) {
+        public final x0 f45166b;
 
         {
-            this.f45201b = this;
+            this.f45166b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    x0 x0Var = this.f45201b;
-                    int i7 = x0Var.f45277a;
-                    if (x0Var.f45281f) {
-                        org.telegram.messenger.a8.b("[gram-wallet-polling] account=" + i7 + " msg_hash=" + x0Var.f45278b + " no answer in 45000 ms");
-                        x0Var.f45282g = x0Var.f45282g + 1;
-                        if (x0Var.f45283i >= 0) {
-                            ConnectionsManager.getInstance(i7).cancelRequest(x0Var.f45283i, true);
-                            x0Var.f45283i = -1;
+                    x0 x0Var = this.f45166b;
+                    int i7 = x0Var.f45243a;
+                    if (x0Var.f45247f) {
+                        org.telegram.messenger.a8.b("[gram-wallet-polling] account=" + i7 + " msg_hash=" + x0Var.f45244b + " no answer in 45000 ms");
+                        x0Var.f45248g = x0Var.f45248g + 1;
+                        if (x0Var.f45249i >= 0) {
+                            ConnectionsManager.getInstance(i7).cancelRequest(x0Var.f45249i, true);
+                            x0Var.f45249i = -1;
                         }
                         x0Var.b();
                         return;
                     }
                     return;
                 case 1:
-                    final x0 x0Var2 = this.f45201b;
-                    int i10 = x0Var2.f45277a;
-                    if (x0Var2.f45281f && x0Var2.f45285k < 0) {
-                        final int i11 = x0Var2.f45284j + 1;
-                        x0Var2.f45284j = i11;
+                    final x0 x0Var2 = this.f45166b;
+                    int i10 = x0Var2.f45243a;
+                    if (x0Var2.f45247f && x0Var2.f45251k < 0) {
+                        final int i11 = x0Var2.f45250j + 1;
+                        x0Var2.f45250j = i11;
                         TL_toncenter.performApiRequest performapirequest = new TL_toncenter.performApiRequest();
                         performapirequest.endpoint = "/api/v3/traces";
-                        performapirequest.query = "msg_hash=" + Uri.encode(x0Var2.f45278b) + "&include_actions=false";
-                        x0Var2.f45285k = ConnectionsManager.getInstance(i10).sendRequestTyped(performapirequest, new d3.b(1), new r10() {
+                        performapirequest.query = "msg_hash=" + Uri.encode(x0Var2.f45244b) + "&include_actions=false";
+                        x0Var2.f45251k = ConnectionsManager.getInstance(i10).sendRequestTyped(performapirequest, new d3.b(1), new r10() {
                             @Override
                             public final void a(java.lang.Object r8, java.lang.Object r9) {
                                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.w0.a(java.lang.Object, java.lang.Object):void");
@@ -189,14 +189,14 @@ public final class x0 {
                     }
                     return;
                 default:
-                    final x0 x0Var3 = this.f45201b;
-                    if (x0Var3.f45281f) {
-                        final int i12 = x0Var3.f45282g + 1;
-                        x0Var3.f45282g = i12;
+                    final x0 x0Var3 = this.f45166b;
+                    if (x0Var3.f45247f) {
+                        final int i12 = x0Var3.f45248g + 1;
+                        x0Var3.f45248g = i12;
                         TL_wallet.getTransactionsByMsgHash gettransactionsbymsghash = new TL_wallet.getTransactionsByMsgHash();
-                        gettransactionsbymsghash.msg_hash.add(x0Var3.f45278b);
-                        org.telegram.messenger.g0.h3(x0Var3.f45286l, 45000L);
-                        x0Var3.f45283i = ConnectionsManager.getInstance(x0Var3.f45277a).sendRequestTyped(gettransactionsbymsghash, new d3.b(1), new r10() {
+                        gettransactionsbymsghash.msg_hash.add(x0Var3.f45244b);
+                        org.telegram.messenger.g0.h3(x0Var3.f45252l, 45000L);
+                        x0Var3.f45249i = ConnectionsManager.getInstance(x0Var3.f45243a).sendRequestTyped(gettransactionsbymsghash, new d3.b(1), new r10() {
                             @Override
                             public final void a(java.lang.Object r8, java.lang.Object r9) {
                                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.w0.a(java.lang.Object, java.lang.Object):void");
@@ -210,11 +210,11 @@ public final class x0 {
     };
 
     public x0(int i7, String str, String str2, l lVar, l lVar2) {
-        this.f45277a = i7;
-        this.f45278b = str;
-        this.f45279c = str2;
+        this.f45243a = i7;
+        this.f45244b = str;
+        this.f45245c = str2;
         this.d = lVar;
-        this.f45280e = lVar2;
+        this.f45246e = lVar2;
     }
 
     public final boolean a(JSONObject jSONObject) {
@@ -233,7 +233,7 @@ public final class x0 {
         } else {
             optJSONObject = optJSONArray.optJSONObject(0);
         }
-        String str = this.f45278b;
+        String str = this.f45244b;
         if (optJSONObject == null) {
             org.telegram.messenger.a8.b("[gram-wallet-polling] chain: msg_hash=" + str + " not on chain yet");
             return false;
@@ -255,7 +255,7 @@ public final class x0 {
             jSONObject2 = null;
             for (int i7 = 0; i7 < optJSONArray2.length() && jSONObject2 == null; i7++) {
                 JSONObject optJSONObject5 = optJSONObject4.optJSONObject(optJSONArray2.optString(i7));
-                if (optJSONObject5 != null && u0.c(optJSONObject5.optString("account"), this.f45279c)) {
+                if (optJSONObject5 != null && u0.c(optJSONObject5.optString("account"), this.f45245c)) {
                     jSONObject2 = optJSONObject5;
                 }
             }
@@ -310,9 +310,9 @@ public final class x0 {
         if (!z10 || TextUtils.isEmpty(optString3)) {
             return false;
         }
-        l lVar = this.f45280e;
-        u0 u0Var = lVar.f44502a;
-        TL_wallet.walletTransaction wallettransaction = lVar.f44503b;
+        l lVar = this.f45246e;
+        u0 u0Var = lVar.f44468a;
+        TL_wallet.walletTransaction wallettransaction = lVar.f44469b;
         if (!wallettransaction.pending) {
             return true;
         }
@@ -320,44 +320,44 @@ public final class x0 {
         com.google.android.gms.internal.vision.e2.r(sb2, wallettransaction.messageHash, ", id=", str2, ", success=");
         sb2.append(z11);
         u0.P(sb2.toString());
-        wallettransaction.f28697id = str2;
+        wallettransaction.f28661id = str2;
         u0Var.h(wallettransaction, z11, optString3);
-        if (wallettransaction.nft != null && (l0Var = u0Var.f45139o) != null) {
+        if (wallettransaction.nft != null && (l0Var = u0Var.f45105o) != null) {
             l0.a(l0Var, wallettransaction);
-            u0Var.f45139o.e();
+            u0Var.f45105o.e();
         }
         u0Var.K();
         return true;
     }
 
     public final void b() {
-        if (!this.f45281f) {
+        if (!this.f45247f) {
             return;
         }
         int i7 = this.h;
-        long j3 = f45276o[i7];
+        long j3 = f45242o[i7];
         if (i7 < 4) {
             this.h = i7 + 1;
         }
-        org.telegram.messenger.g0.h3(this.f45288n, j3);
+        org.telegram.messenger.g0.h3(this.f45254n, j3);
     }
 
     public final void c() {
-        this.f45281f = false;
-        this.f45282g++;
-        this.f45284j++;
-        org.telegram.messenger.g0.r(this.f45288n);
-        org.telegram.messenger.g0.r(this.f45286l);
-        org.telegram.messenger.g0.r(this.f45287m);
-        int i7 = this.f45283i;
-        int i10 = this.f45277a;
+        this.f45247f = false;
+        this.f45248g++;
+        this.f45250j++;
+        org.telegram.messenger.g0.r(this.f45254n);
+        org.telegram.messenger.g0.r(this.f45252l);
+        org.telegram.messenger.g0.r(this.f45253m);
+        int i7 = this.f45249i;
+        int i10 = this.f45243a;
         if (i7 >= 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(this.f45283i, true);
-            this.f45283i = -1;
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f45249i, true);
+            this.f45249i = -1;
         }
-        if (this.f45285k >= 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(this.f45285k, true);
-            this.f45285k = -1;
+        if (this.f45251k >= 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f45251k, true);
+            this.f45251k = -1;
         }
     }
 }

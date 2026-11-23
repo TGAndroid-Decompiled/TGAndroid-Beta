@@ -1,70 +1,127 @@
 package oi;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.HorizontalScrollView;
-import org.telegram.ui.Components.nr;
-public final class v1 extends HorizontalScrollView {
-    public final h6.m f22476a;
-    public final org.telegram.ui.Components.d6 f22477b;
-    public final org.telegram.ui.Components.d6 f22478c;
-    public final b2 d;
+import android.graphics.drawable.Drawable;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import org.telegram.messenger.hd;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.ap0;
+import org.telegram.ui.Components.ug;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.cx;
+public final class v1 extends ug {
+    public final int f22433y0 = 0;
+    public final Object f22434z0;
 
-    public v1(b2 b2Var, Context context) {
-        super(context);
-        this.d = b2Var;
-        this.f22476a = new h6.m(29);
-        nr nrVar = nr.h;
-        this.f22477b = new org.telegram.ui.Components.d6(this, 300L, nrVar);
-        this.f22478c = new org.telegram.ui.Components.d6(this, 300L, nrVar);
+    public v1(x3 x3Var, Context context, h6 h6Var) {
+        super(2131232696, context, h6Var, true);
+        this.f22434z0 = x3Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        float d = this.f22477b.d(canScrollHorizontally(-1));
-        float d2 = this.f22478c.d(canScrollHorizontally(1));
-        int i7 = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
-        if (i7 <= 0 && d2 <= 0.0f) {
-            canvas2 = canvas;
-        } else {
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(getScrollX(), 0.0f, getWidth() + getScrollX(), getHeight(), 255, 31);
+    public boolean b() {
+        switch (this.f22433y0) {
+            case 0:
+                return ((a2) this.f22434z0).q0();
+            case 1:
+            case 2:
+            default:
+                return super.b();
+            case 3:
+                return false;
+            case 4:
+                return false;
         }
-        super.dispatchDraw(canvas2);
-        if (i7 <= 0 && d2 <= 0.0f) {
-            return;
-        }
-        canvas2.save();
-        h6.m mVar = this.f22476a;
-        if (i7 > 0) {
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(getScrollX(), 0.0f, org.telegram.messenger.g0.L(48.0f) + getScrollX(), getHeight());
-            mVar.n(canvas2, rectF, 0, d);
-        }
-        if (d2 > 0.0f) {
-            RectF rectF2 = org.telegram.messenger.g0.P;
-            rectF2.set((getWidth() + getScrollX()) - org.telegram.messenger.g0.L(48.0f), 0.0f, getWidth() + getScrollX(), getHeight());
-            mVar.n(canvas2, rectF2, 2, d2);
-        }
-        canvas2.restore();
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int mode = View.MeasureSpec.getMode(i7);
-        if (mode == 1073741824) {
-            super.onMeasure(i7, i10);
-            return;
+    public final boolean d() {
+        switch (this.f22433y0) {
+            case 0:
+                if (!((a2) this.f22434z0).M0 && this.f40340w <= 0) {
+                    return false;
+                }
+                return true;
+            case 1:
+                if (!((x3) this.f22434z0).f22482a0 && this.f40340w <= 0) {
+                    return false;
+                }
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            default:
+                return true;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 0), i10);
-        int measuredWidth = getMeasuredWidth();
-        int i11 = this.d.f22004l0;
-        if (mode == Integer.MIN_VALUE) {
-            i11 = Math.min(i11, View.MeasureSpec.getSize(i7));
+    }
+
+    @Override
+    public int getFillColor() {
+        int i7 = this.f22433y0;
+        Object obj = this.f22434z0;
+        switch (i7) {
+            case 2:
+                return m6.w0(m6.S5, ((ap0) obj).J0);
+            case 3:
+            default:
+                return super.getFillColor();
+            case 4:
+                int i10 = m6.f29596qg;
+                Drawable[] drawableArr = PhotoViewer.Z8;
+                return ((PhotoViewer) obj).w1(i10);
         }
-        setMeasuredDimension(Math.min(measuredWidth, i11), getMeasuredHeight());
+    }
+
+    @Override
+    public boolean j() {
+        switch (this.f22433y0) {
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return true;
+            default:
+                return super.j();
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f22433y0) {
+            case 3:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(hd.G(((cx) this.f22434z0).K2.size(), "AccDescrShareInChats", new Object[0]));
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    public v1(a2 a2Var, Context context, int i7, h6 h6Var) {
+        super(i7, context, h6Var, true);
+        this.f22434z0 = a2Var;
+    }
+
+    public v1(ap0 ap0Var, Context context, h6 h6Var) {
+        super(2131232696, context, h6Var, false);
+        this.f22434z0 = ap0Var;
+    }
+
+    public v1(cx cxVar, Context context, h6 h6Var) {
+        super(2131232696, context, h6Var, false);
+        this.f22434z0 = cxVar;
+    }
+
+    public v1(PhotoViewer photoViewer, Context context, h6 h6Var) {
+        super(2131232696, context, h6Var, false);
+        this.f22434z0 = photoViewer;
     }
 }

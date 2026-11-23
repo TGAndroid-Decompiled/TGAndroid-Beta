@@ -12,30 +12,30 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class mi implements Runnable {
-    public final int f25587a;
-    public final long f25588b;
-    public final int f25589c;
+    public final int f25551a;
+    public final long f25552b;
+    public final int f25553c;
     public final long d;
-    public final int f25590e;
-    public final ch.p0 f25591f;
+    public final int f25554e;
+    public final ch.p0 f25555f;
     public final int h;
-    public final int f25592n;
-    public final int f25593r;
-    public final int f25594s;
-    public final si f25595w;
+    public final int f25556n;
+    public final int f25557r;
+    public final int f25558s;
+    public final si f25559w;
 
     public mi(si siVar, int i7, long j3, int i10, long j10, int i11, ch.p0 p0Var, int i12, int i13, int i14, boolean z10, int i15) {
-        this.f25595w = siVar;
-        this.f25587a = i7;
-        this.f25588b = j3;
-        this.f25589c = i10;
+        this.f25559w = siVar;
+        this.f25551a = i7;
+        this.f25552b = j3;
+        this.f25553c = i10;
         this.d = j10;
-        this.f25590e = i11;
-        this.f25591f = p0Var;
+        this.f25554e = i11;
+        this.f25555f = p0Var;
         this.h = i12;
-        this.f25592n = i13;
-        this.f25593r = i14;
-        this.f25594s = i15;
+        this.f25556n = i13;
+        this.f25557r = i14;
+        this.f25558s = i15;
     }
 
     @Override
@@ -107,10 +107,10 @@ public final class mi implements Runnable {
         SQLitePreparedStatement executeFast;
         int i33;
         mi miVar = this;
-        int i34 = miVar.f25587a;
-        int i35 = miVar.f25592n;
-        long j16 = miVar.f25588b;
-        si siVar2 = miVar.f25595w;
+        int i34 = miVar.f25551a;
+        int i35 = miVar.f25556n;
+        long j16 = miVar.f25552b;
+        si siVar2 = miVar.f25559w;
         long e10 = siVar2.getUserConfig().e();
         TLRPC.TL_messages_messages tL_messages_messages4 = new TLRPC.TL_messages_messages();
         boolean z14 = false;
@@ -123,12 +123,12 @@ public final class mi implements Runnable {
                 R = siVar2.getMessagesStorage().R();
                 C = n5.C(j16);
                 tL_messages_messages2 = tL_messages_messages4;
-                p0Var = miVar.f25591f;
+                p0Var = miVar.f25555f;
                 j11 = e10;
                 i17 = miVar.h;
-                i18 = miVar.f25589c;
+                i18 = miVar.f25553c;
                 j12 = miVar.d;
-                i19 = miVar.f25590e;
+                i19 = miVar.f25554e;
             } catch (Exception e11) {
                 e = e11;
                 tL_messages_messages = tL_messages_messages4;
@@ -212,10 +212,10 @@ public final class mi implements Runnable {
                         queryFinalized5.dispose();
                     }
                     if (p0Var != null) {
-                        if (!TextUtils.isEmpty(p0Var.f5507f)) {
-                            j15 = p0Var.f5507f.hashCode();
+                        if (!TextUtils.isEmpty(p0Var.f5470f)) {
+                            j15 = p0Var.f5470f.hashCode();
                         } else {
-                            j15 = p0Var.f5508g;
+                            j15 = p0Var.f5471g;
                         }
                         str3 = "INNER JOIN tag_message_id t ON m.mid = t.mid";
                         str4 = "t.tag = " + j15 + " AND";
@@ -456,7 +456,7 @@ public final class mi implements Runnable {
                             j14 = j11;
                             TLdeserialize.readAttachPath(byteBufferValue, j14);
                             byteBufferValue.reuse();
-                            TLdeserialize.f28455id = queryFinalized.intValue(1);
+                            TLdeserialize.f28419id = queryFinalized.intValue(1);
                             TLdeserialize.dialog_id = j16;
                             if (n5.C(j16)) {
                                 TLdeserialize.random_id = queryFinalized.longValue(2);
@@ -481,23 +481,23 @@ public final class mi implements Runnable {
                                         tL_messages_messages.users.clear();
                                         a8.f(e);
                                         g0.g3(new l7(miVar, miVar, i35, 11));
-                                        int i41 = miVar.f25592n;
-                                        int i42 = miVar.f25594s;
-                                        j10 = miVar.f25588b;
-                                        int i43 = miVar.f25587a;
+                                        int i41 = miVar.f25556n;
+                                        int i42 = miVar.f25558s;
+                                        j10 = miVar.f25552b;
+                                        int i43 = miVar.f25551a;
                                         i10 = i41;
                                         i7 = i42;
                                         i15 = i43;
                                         i14 = miVar.h;
-                                        i13 = miVar.f25589c;
-                                        i12 = miVar.f25590e;
+                                        i13 = miVar.f25553c;
+                                        i12 = miVar.f25554e;
                                         j3 = miVar.d;
-                                        i11 = miVar.f25593r;
+                                        i11 = miVar.f25557r;
                                         siVar.x1(tL_messages_messages, j10, i15, i14, i13, i12, j3, i11, i10, z14, i7);
                                     } catch (Throwable th3) {
                                         th = th3;
                                         g0.g3(new l7(miVar, miVar, i35, 11));
-                                        siVar.x1(tL_messages_messages, miVar.f25588b, miVar.f25587a, miVar.h, miVar.f25589c, miVar.f25590e, miVar.d, miVar.f25593r, miVar.f25592n, false, miVar.f25594s);
+                                        siVar.x1(tL_messages_messages, miVar.f25552b, miVar.f25551a, miVar.h, miVar.f25553c, miVar.f25554e, miVar.d, miVar.f25557r, miVar.f25556n, false, miVar.f25558s);
                                         throw th;
                                     }
                                 } catch (Throwable th4) {
@@ -507,7 +507,7 @@ public final class mi implements Runnable {
                                     siVar = siVar2;
                                     i35 = i35;
                                     g0.g3(new l7(miVar, miVar, i35, 11));
-                                    siVar.x1(tL_messages_messages, miVar.f25588b, miVar.f25587a, miVar.h, miVar.f25589c, miVar.f25590e, miVar.d, miVar.f25593r, miVar.f25592n, false, miVar.f25594s);
+                                    siVar.x1(tL_messages_messages, miVar.f25552b, miVar.f25551a, miVar.h, miVar.f25553c, miVar.f25554e, miVar.d, miVar.f25557r, miVar.f25556n, false, miVar.f25558s);
                                     throw th;
                                 }
                             } else {
@@ -539,18 +539,18 @@ public final class mi implements Runnable {
                         tL_messages_messages.users.clear();
                         a8.f(e);
                         g0.g3(new l7(miVar, miVar, i35, 11));
-                        int i412 = miVar.f25592n;
-                        int i422 = miVar.f25594s;
-                        j10 = miVar.f25588b;
-                        int i432 = miVar.f25587a;
+                        int i412 = miVar.f25556n;
+                        int i422 = miVar.f25558s;
+                        j10 = miVar.f25552b;
+                        int i432 = miVar.f25551a;
                         i10 = i412;
                         i7 = i422;
                         i15 = i432;
                         i14 = miVar.h;
-                        i13 = miVar.f25589c;
-                        i12 = miVar.f25590e;
+                        i13 = miVar.f25553c;
+                        i12 = miVar.f25554e;
                         j3 = miVar.d;
-                        i11 = miVar.f25593r;
+                        i11 = miVar.f25557r;
                         siVar.x1(tL_messages_messages, j10, i15, i14, i13, i12, j3, i11, i10, z14, i7);
                     } catch (Throwable th5) {
                         th = th5;
@@ -560,7 +560,7 @@ public final class mi implements Runnable {
                         siVar = siVar2;
                         i35 = i35;
                         g0.g3(new l7(miVar, miVar, i35, 11));
-                        siVar.x1(tL_messages_messages, miVar.f25588b, miVar.f25587a, miVar.h, miVar.f25589c, miVar.f25590e, miVar.d, miVar.f25593r, miVar.f25592n, false, miVar.f25594s);
+                        siVar.x1(tL_messages_messages, miVar.f25552b, miVar.f25551a, miVar.h, miVar.f25553c, miVar.f25554e, miVar.d, miVar.f25557r, miVar.f25556n, false, miVar.f25558s);
                         throw th;
                     }
                 }
@@ -602,7 +602,7 @@ public final class mi implements Runnable {
                                     TLRPC.Message TLdeserialize2 = TLRPC.Message.TLdeserialize(byteBufferValue2, byteBufferValue2.readInt32(false), false);
                                     TLdeserialize2.readAttachPath(byteBufferValue2, j18);
                                     byteBufferValue2.reuse();
-                                    TLdeserialize2.f28455id = intValue2;
+                                    TLdeserialize2.f28419id = intValue2;
                                     long j19 = j13;
                                     TLdeserialize2.dialog_id = j19;
                                     arrayList9.add(TLdeserialize2);
@@ -638,18 +638,18 @@ public final class mi implements Runnable {
                     z14 = z11;
                 }
                 g0.g3(new l7(this, this, i35, 11));
-                int i45 = this.f25592n;
-                int i46 = this.f25594s;
-                j10 = this.f25588b;
-                int i47 = this.f25587a;
+                int i45 = this.f25556n;
+                int i46 = this.f25558s;
+                j10 = this.f25552b;
+                int i47 = this.f25551a;
                 i10 = i45;
                 i7 = i46;
                 i14 = this.h;
-                i13 = this.f25589c;
+                i13 = this.f25553c;
                 tL_messages_messages = tL_messages_messages3;
-                i12 = this.f25590e;
+                i12 = this.f25554e;
                 j3 = this.d;
-                i11 = this.f25593r;
+                i11 = this.f25557r;
                 siVar = siVar2;
                 i15 = i47;
             } catch (Exception e14) {
@@ -663,18 +663,18 @@ public final class mi implements Runnable {
                 tL_messages_messages.users.clear();
                 a8.f(e);
                 g0.g3(new l7(miVar, miVar, i35, 11));
-                int i4122 = miVar.f25592n;
-                int i4222 = miVar.f25594s;
-                j10 = miVar.f25588b;
-                int i4322 = miVar.f25587a;
+                int i4122 = miVar.f25556n;
+                int i4222 = miVar.f25558s;
+                j10 = miVar.f25552b;
+                int i4322 = miVar.f25551a;
                 i10 = i4122;
                 i7 = i4222;
                 i15 = i4322;
                 i14 = miVar.h;
-                i13 = miVar.f25589c;
-                i12 = miVar.f25590e;
+                i13 = miVar.f25553c;
+                i12 = miVar.f25554e;
                 j3 = miVar.d;
-                i11 = miVar.f25593r;
+                i11 = miVar.f25557r;
                 siVar.x1(tL_messages_messages, j10, i15, i14, i13, i12, j3, i11, i10, z14, i7);
             } catch (Throwable th6) {
                 th = th6;
@@ -683,7 +683,7 @@ public final class mi implements Runnable {
                 i35 = i35;
                 tL_messages_messages = tL_messages_messages2;
                 g0.g3(new l7(miVar, miVar, i35, 11));
-                siVar.x1(tL_messages_messages, miVar.f25588b, miVar.f25587a, miVar.h, miVar.f25589c, miVar.f25590e, miVar.d, miVar.f25593r, miVar.f25592n, false, miVar.f25594s);
+                siVar.x1(tL_messages_messages, miVar.f25552b, miVar.f25551a, miVar.h, miVar.f25553c, miVar.f25554e, miVar.d, miVar.f25557r, miVar.f25556n, false, miVar.f25558s);
                 throw th;
             }
         } catch (Exception e15) {

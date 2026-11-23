@@ -6,9 +6,9 @@ import android.util.Log;
 import android.widget.ListAdapter;
 import androidx.appcompat.app.AlertController$RecycleListView;
 public final class i0 implements o0, DialogInterface.OnClickListener {
-    public g.f f20113a;
-    public j0 f20114b;
-    public CharSequence f20115c;
+    public g.f f20079a;
+    public j0 f20080b;
+    public CharSequence f20081c;
     public final p0 d;
 
     public i0(p0 p0Var) {
@@ -17,7 +17,7 @@ public final class i0 implements o0, DialogInterface.OnClickListener {
 
     @Override
     public final boolean a() {
-        g.f fVar = this.f20113a;
+        g.f fVar = this.f20079a;
         if (fVar != null) {
             return fVar.isShowing();
         }
@@ -36,15 +36,15 @@ public final class i0 implements o0, DialogInterface.OnClickListener {
 
     @Override
     public final CharSequence d() {
-        return this.f20115c;
+        return this.f20081c;
     }
 
     @Override
     public final void dismiss() {
-        g.f fVar = this.f20113a;
+        g.f fVar = this.f20079a;
         if (fVar != null) {
             fVar.dismiss();
-            this.f20113a = null;
+            this.f20079a = null;
         }
     }
 
@@ -55,7 +55,7 @@ public final class i0 implements o0, DialogInterface.OnClickListener {
 
     @Override
     public final void i(CharSequence charSequence) {
-        this.f20115c = charSequence;
+        this.f20081c = charSequence;
     }
 
     @Override
@@ -75,28 +75,28 @@ public final class i0 implements o0, DialogInterface.OnClickListener {
 
     @Override
     public final void m(int i7, int i10) {
-        if (this.f20114b == null) {
+        if (this.f20080b == null) {
             return;
         }
         p0 p0Var = this.d;
         b3.j jVar = new b3.j(p0Var.getPopupContext());
-        g.b bVar = (g.b) jVar.f2922c;
-        CharSequence charSequence = this.f20115c;
+        g.b bVar = (g.b) jVar.f2873c;
+        CharSequence charSequence = this.f20081c;
         if (charSequence != null) {
-            bVar.f12963f = charSequence;
+            bVar.f12926f = charSequence;
         }
-        j0 j0Var = this.f20114b;
+        j0 j0Var = this.f20080b;
         int selectedItemPosition = p0Var.getSelectedItemPosition();
-        bVar.f12968l = j0Var;
-        bVar.f12969m = this;
-        bVar.f12960b = selectedItemPosition;
-        bVar.f12959a = true;
+        bVar.f12931l = j0Var;
+        bVar.f12932m = this;
+        bVar.f12923b = selectedItemPosition;
+        bVar.f12922a = true;
         g.f g10 = jVar.g();
-        this.f20113a = g10;
-        AlertController$RecycleListView alertController$RecycleListView = g10.f13017f.f12997e;
+        this.f20079a = g10;
+        AlertController$RecycleListView alertController$RecycleListView = g10.f12980f.f12960e;
         g0.d(alertController$RecycleListView, i7);
         g0.c(alertController$RecycleListView, i10);
-        this.f20113a.show();
+        this.f20079a.show();
     }
 
     @Override
@@ -109,13 +109,13 @@ public final class i0 implements o0, DialogInterface.OnClickListener {
         p0 p0Var = this.d;
         p0Var.setSelection(i7);
         if (p0Var.getOnItemClickListener() != null) {
-            p0Var.performItemClick(null, i7, this.f20114b.getItemId(i7));
+            p0Var.performItemClick(null, i7, this.f20080b.getItemId(i7));
         }
         dismiss();
     }
 
     @Override
     public final void p(ListAdapter listAdapter) {
-        this.f20114b = (j0) listAdapter;
+        this.f20080b = (j0) listAdapter;
     }
 }

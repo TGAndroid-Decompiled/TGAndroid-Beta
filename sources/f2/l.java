@@ -1,9 +1,9 @@
 package f2;
 
-import a8.la;
+import a8.ma;
 public final class l {
-    public static final l f11084b = new l(0);
-    public final long f11085a;
+    public static final l f11047b = new l(0);
+    public final long f11048a;
 
     public l(long j3) {
         boolean z10;
@@ -12,7 +12,7 @@ public final class l {
         } else {
             z10 = false;
         }
-        la.f(z10);
-        this.f11085a = j3;
+        ma.f(z10);
+        this.f11048a = j3;
     }
 }

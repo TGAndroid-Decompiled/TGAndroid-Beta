@@ -2,7 +2,7 @@ package li;
 
 import android.content.Context;
 import android.widget.TextView;
-import bi.c4;
+import bi.e4;
 import java.util.ArrayList;
 import org.telegram.messenger.gs;
 import org.telegram.messenger.hd;
@@ -14,29 +14,29 @@ import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.c5;
 import org.telegram.ui.bn;
 public final class m implements Runnable {
-    public final int f20002a;
-    public final boolean f20003b;
-    public final boolean f20004c;
+    public final int f19968a;
+    public final boolean f19969b;
+    public final boolean f19970c;
     public final long d;
-    public final gs f20005e;
+    public final gs f19971e;
 
     public m(gs gsVar, boolean z10, boolean z11, long j3, int i7) {
-        this.f20002a = i7;
-        this.f20005e = gsVar;
-        this.f20003b = z10;
-        this.f20004c = z11;
+        this.f19968a = i7;
+        this.f19971e = gsVar;
+        this.f19969b = z10;
+        this.f19970c = z11;
         this.d = j3;
     }
 
     @Override
     public final void run() {
         ArrayList arrayList;
-        int i7 = this.f20002a;
+        int i7 = this.f19968a;
         int i10 = 2131751902;
-        boolean z10 = this.f20004c;
-        boolean z11 = this.f20003b;
+        boolean z10 = this.f19970c;
+        boolean z11 = this.f19969b;
         long j3 = this.d;
-        gs gsVar = this.f20005e;
+        gs gsVar = this.f19971e;
         switch (i7) {
             case 0:
                 p pVar = (p) gsVar;
@@ -58,20 +58,20 @@ public final class m implements Runnable {
                 } else if (z10) {
                     i10 = 2131751904;
                 }
-                t1 M = c5.M(context, h6Var, N02, hd.N0(i10, null), hd.N0(2131746125, null), new c4(d0Var, j3, 12));
+                t1 M = c5.M(context, h6Var, N02, hd.N0(i10, null), hd.N0(2131746125, null), new e4(d0Var, j3, 12));
                 M.show();
                 TextView textView = (TextView) M.d(-1);
                 if (textView != null) {
-                    t6.U(textView, m6.f29622q7, null);
+                    t6.U(textView, m6.f29588q7, null);
                     return;
                 }
                 return;
             case 2:
                 np npVar = (np) gsVar;
                 if (z11) {
-                    arrayList = npVar.f25989w0;
+                    arrayList = npVar.f25953w0;
                 } else {
-                    arrayList = npVar.f25979v0;
+                    arrayList = npVar.f25943v0;
                 }
                 if (z10) {
                     if (!arrayList.contains(Long.valueOf(j3))) {
@@ -89,10 +89,10 @@ public final class m implements Runnable {
     }
 
     public m(bn bnVar, long j3, boolean z10, boolean z11) {
-        this.f20002a = 3;
-        this.f20005e = bnVar;
+        this.f19968a = 3;
+        this.f19971e = bnVar;
         this.d = j3;
-        this.f20003b = z10;
-        this.f20004c = z11;
+        this.f19969b = z10;
+        this.f19970c = z11;
     }
 }

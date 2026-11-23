@@ -1,109 +1,114 @@
 package ai;
 
-import android.text.TextUtils;
-import bi.o6;
-import di.f6;
-import org.telegram.messenger.r10;
+import android.graphics.Bitmap;
+import java.io.File;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.lc;
-public final class e implements r10 {
-    public final int f1157a = 0;
-    public final long f1158b;
-    public final Object f1159c;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.ay;
+import org.telegram.ui.ml0;
+import org.telegram.ui.ow;
+public final class e implements Runnable {
+    public final int f1169a;
+    public final boolean f1170b;
+    public final Object f1171c;
     public final Object d;
-    public final Object f1160e;
+    public final Object f1172e;
+    public final Object f1173f;
 
-    public e(h hVar, boolean[] zArr, long j3, f fVar) {
-        this.f1159c = hVar;
-        this.d = zArr;
-        this.f1158b = j3;
-        this.f1160e = fVar;
+    public e(h2.c cVar, String str, Bitmap bitmap, boolean z10, Bitmap bitmap2) {
+        this.f1169a = 8;
+        this.d = cVar;
+        this.f1171c = str;
+        this.f1172e = bitmap;
+        this.f1170b = z10;
+        this.f1173f = bitmap2;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        TLRPC.TL_textWithEntities tL_textWithEntities;
-        String str;
-        switch (this.f1157a) {
-            case 0:
-                boolean[] zArr = (boolean[]) this.d;
-                f fVar = (f) this.f1160e;
-                TLRPC.TL_composedMessageWithAI tL_composedMessageWithAI = (TLRPC.TL_composedMessageWithAI) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                ((h) this.f1159c).f1220b = -1;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    if (tL_composedMessageWithAI != null && (tL_textWithEntities = tL_composedMessageWithAI.result_text) != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
-                        org.telegram.messenger.g0.h3(new a1.e(10, fVar, tL_composedMessageWithAI), Math.max(0L, 900 - (System.currentTimeMillis() - this.f1158b)));
-                        return;
-                    } else {
-                        fVar.c(tL_error, null);
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                f6 f6Var = (f6) this.f1159c;
-                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) this.d;
-                bi.e2 e2Var = (bi.e2) this.f1160e;
-                TL_stars.starGiftDepositPayload stargiftdepositpayload = (TL_stars.starGiftDepositPayload) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                if (stargiftdepositpayload == null) {
-                    t1Var.dismiss();
-                    new lc(e2Var.f30179c, f6Var.J0).g0(tL_error2, false);
-                    return;
-                }
-                di.p2 p2Var = new di.p2(f6Var, new boolean[1], t1Var, e2Var, this.f1158b, stargiftdepositpayload);
-                di.f2 f2Var = new di.f2(1, r11, p2Var);
-                org.telegram.messenger.g0.h3(f2Var, 5000L);
-                Runnable[] runnableArr = {org.telegram.ui.Wallet.u0.D(f6Var.f30173a).k(stargiftdepositpayload, new o6(1, f2Var, p2Var))};
-                return;
-            default:
-                boolean[] zArr2 = (boolean[]) this.d;
-                bi.o2 o2Var = (bi.o2) this.f1159c;
-                org.telegram.utils.twidget.d1 d1Var = (org.telegram.utils.twidget.d1) this.f1160e;
-                TLRPC.TL_messages_botWidgetQueryAnswer tL_messages_botWidgetQueryAnswer = (TLRPC.TL_messages_botWidgetQueryAnswer) obj;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                if (!zArr2[0]) {
-                    int i7 = 1;
-                    zArr2[0] = true;
-                    org.telegram.messenger.g0.r(o2Var);
-                    long j3 = this.f1158b;
-                    if (tL_messages_botWidgetQueryAnswer != null) {
-                        d1Var.b(0, org.telegram.utils.twidget.n0.C(tL_messages_botWidgetQueryAnswer.result), j3);
-                        return;
-                    }
-                    if (tL_error3 != null) {
-                        str = tL_error3.text;
-                    } else {
-                        str = "";
-                    }
-                    if (!"WIDGET_RESPONSE_TIMEOUT".equals(str)) {
-                        if (str != null && str.startsWith("FLOOD_WAIT")) {
-                            i7 = 2;
-                        } else {
-                            i7 = 3;
-                        }
-                    }
-                    d1Var.b(i7, null, j3);
-                    return;
-                }
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: ai.e.run():void");
     }
 
-    public e(f6 f6Var, org.telegram.ui.ActionBar.t1 t1Var, bi.e2 e2Var, long j3) {
-        this.f1159c = f6Var;
-        this.d = t1Var;
-        this.f1160e = e2Var;
-        this.f1158b = j3;
+    public e(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, int i7) {
+        this.f1169a = i7;
+        this.d = obj;
+        this.f1172e = obj2;
+        this.f1171c = obj3;
+        this.f1173f = obj4;
+        this.f1170b = z10;
     }
 
-    public e(boolean[] zArr, bi.o2 o2Var, org.telegram.utils.twidget.d1 d1Var, long j3) {
-        this.d = zArr;
-        this.f1159c = o2Var;
-        this.f1160e = d1Var;
-        this.f1158b = j3;
+    public e(Object obj, Object obj2, boolean z10, Object obj3, Object obj4, int i7) {
+        this.f1169a = i7;
+        this.d = obj;
+        this.f1172e = obj2;
+        this.f1170b = z10;
+        this.f1171c = obj3;
+        this.f1173f = obj4;
+    }
+
+    public e(Object obj, TLObject tLObject, boolean z10, TLObject tLObject2, String str, int i7) {
+        this.f1169a = i7;
+        this.d = obj;
+        this.f1172e = tLObject;
+        this.f1170b = z10;
+        this.f1173f = tLObject2;
+        this.f1171c = str;
+    }
+
+    public e(Object obj, boolean z10, Object obj2, Object obj3, Object obj4, int i7) {
+        this.f1169a = i7;
+        this.d = obj;
+        this.f1170b = z10;
+        this.f1172e = obj2;
+        this.f1171c = obj3;
+        this.f1173f = obj4;
+    }
+
+    public e(CameraController cameraController, CameraController.ICameraView iCameraView, File file, boolean z10, Runnable runnable) {
+        this.f1169a = 5;
+        this.d = cameraController;
+        this.f1172e = iCameraView;
+        this.f1171c = file;
+        this.f1170b = z10;
+        this.f1173f = runnable;
+    }
+
+    public e(TLRPC.payments_GiveawayInfo payments_giveawayinfo, boolean z10, String str, long j3, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, org.telegram.ui.ActionBar.g2 g2Var) {
+        this.f1169a = 16;
+        this.d = payments_giveawayinfo;
+        this.f1170b = z10;
+        this.f1171c = str;
+        this.f1172e = tL_messageMediaGiveaway;
+        this.f1173f = g2Var;
+    }
+
+    public e(ay ayVar, String str, boolean z10, String str2, TLObject tLObject) {
+        this.f1169a = 10;
+        this.d = ayVar;
+        this.f1171c = str;
+        this.f1170b = z10;
+        this.f1172e = str2;
+        this.f1173f = tLObject;
+    }
+
+    public e(ow owVar, TLRPC.TL_error tL_error, TLObject tLObject, String str, boolean z10) {
+        this.f1169a = 12;
+        this.d = owVar;
+        this.f1172e = tL_error;
+        this.f1173f = tLObject;
+        this.f1171c = str;
+        this.f1170b = z10;
+    }
+
+    public e(ml0 ml0Var, boolean z10, String str, String str2, TL_account.updatePasswordSettings updatepasswordsettings) {
+        this.f1169a = 13;
+        this.d = ml0Var;
+        this.f1170b = z10;
+        this.f1171c = str;
+        this.f1172e = str2;
+        this.f1173f = updatepasswordsettings;
     }
 }

@@ -25,7 +25,7 @@ public final class d0 extends yy {
     public int[] t(View view, Rect rect) {
         switch (this.U) {
             case 4:
-                int C = this.f59260n - C();
+                int C = this.f59207n - C();
                 int top = (view.getTop() + rect.top) - view.getScrollY();
                 int min = Math.min(0, top);
                 int max = Math.max(0, (rect.height() + top) - C);
@@ -39,45 +39,45 @@ public final class d0 extends yy {
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
+    public final void v0(RecyclerView recyclerView, v4.b1 b1Var, int i7) {
         switch (this.U) {
             case 0:
                 c0 c0Var = new c0(this, recyclerView.getContext());
-                c0Var.f59109a = i7;
+                c0Var.f59055a = i7;
                 w0(c0Var);
                 return;
             case 1:
                 kj kjVar = new kj(this, recyclerView.getContext());
-                kjVar.f59109a = i7;
+                kjVar.f59055a = i7;
                 w0(kjVar);
                 return;
             case 2:
                 bk bkVar = new bk(this, recyclerView.getContext());
-                bkVar.f59109a = i7;
+                bkVar.f59055a = i7;
                 w0(bkVar);
                 return;
             case 3:
                 il ilVar = new il(this, recyclerView.getContext());
-                ilVar.f59109a = i7;
+                ilVar.f59055a = i7;
                 w0(ilVar);
                 return;
             default:
                 in inVar = new in(this, recyclerView.getContext());
-                inVar.f59109a = i7;
+                inVar.f59055a = i7;
                 w0(inVar);
                 return;
         }
     }
 
     @Override
-    public void z0(v4.c1 c1Var, int[] iArr) {
+    public void z0(v4.b1 b1Var, int[] iArr) {
         switch (this.U) {
             case 3:
-                super.z0(c1Var, iArr);
+                super.z0(b1Var, iArr);
                 iArr[1] = Math.max(iArr[1], ((ml) this.V).M.getHeight());
                 return;
             default:
-                super.z0(c1Var, iArr);
+                super.z0(b1Var, iArr);
                 return;
         }
     }

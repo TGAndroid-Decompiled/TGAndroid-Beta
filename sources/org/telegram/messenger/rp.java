@@ -12,14 +12,14 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class rp implements Runnable {
-    public final int f26643a;
-    public final ur f26644b;
-    public final ArrayList f26645c;
+    public final int f26607a;
+    public final ur f26608b;
+    public final ArrayList f26609c;
 
     public rp(ur urVar, ArrayList arrayList, int i7) {
-        this.f26643a = i7;
-        this.f26644b = urVar;
-        this.f26645c = arrayList;
+        this.f26607a = i7;
+        this.f26608b = urVar;
+        this.f26609c = arrayList;
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class rp implements Runnable {
         SQLiteDatabase sQLiteDatabase2;
         SQLitePreparedStatement executeFast;
         int i7;
-        int i10 = this.f26643a;
+        int i10 = this.f26607a;
         SQLiteCursor sQLiteCursor = null;
         r6 = null;
         r6 = null;
@@ -41,8 +41,8 @@ public final class rp implements Runnable {
         sQLiteCursor = null;
         sQLiteCursor = null;
         int i11 = 0;
-        ur urVar = this.f26644b;
-        ArrayList arrayList = this.f26645c;
+        ur urVar = this.f26608b;
+        ArrayList arrayList = this.f26609c;
         switch (i10) {
             case 0:
                 ur.a(urVar, arrayList);
@@ -63,11 +63,11 @@ public final class rp implements Runnable {
                 }
                 return;
             case 3:
-                ur urVar2 = this.f26644b;
+                ur urVar2 = this.f26608b;
                 try {
                     try {
                         String join = TextUtils.join(",", arrayList);
-                        SQLiteDatabase sQLiteDatabase3 = urVar2.f27252b;
+                        SQLiteDatabase sQLiteDatabase3 = urVar2.f27216b;
                         Locale locale = Locale.US;
                         queryFinalized = sQLiteDatabase3.queryFinalized("SELECT mid, uid FROM randoms_v2 WHERE random_id IN(" + join + ")", new Object[0]);
                     } catch (Exception e10) {
@@ -146,9 +146,9 @@ public final class rp implements Runnable {
                 boolean z11 = false;
                 while (i12 < arrayList.size()) {
                     rr rrVar = (rr) arrayList.get(i12);
-                    TLRPC.TL_messageReactions tL_messageReactions = rrVar.f26653b;
-                    long j10 = rrVar.f26652a;
-                    TLRPC.TL_messageReactions tL_messageReactions2 = rrVar.f26654c;
+                    TLRPC.TL_messageReactions tL_messageReactions = rrVar.f26617b;
+                    long j10 = rrVar.f26616a;
+                    TLRPC.TL_messageReactions tL_messageReactions2 = rrVar.f26618c;
                     hVar2.b();
                     hVar3.b();
                     if (tL_messageReactions != null && tL_messageReactions.results != null && tL_messageReactions.reactions_as_tags) {
@@ -199,8 +199,8 @@ public final class rp implements Runnable {
                 sparseArray.clear();
                 arrayList4.addAll(arrayList);
                 while (i11 < arrayList.size()) {
-                    ((so) arrayList.get(i11)).f26890f = i11;
-                    sparseArray.put(((so) arrayList.get(i11)).f26886a, (so) arrayList.get(i11));
+                    ((so) arrayList.get(i11)).f26854f = i11;
+                    sparseArray.put(((so) arrayList.get(i11)).f26850a, (so) arrayList.get(i11));
                     i11++;
                 }
                 urVar.z1();
@@ -221,7 +221,7 @@ public final class rp implements Runnable {
                 for (int i17 = 0; i17 < size2; i17++) {
                     b6 b6Var = (b6) downloadController.h.get((Pair) arrayList.get(i17));
                     if (b6Var != null) {
-                        TLObject tLObject = b6Var.f23051a;
+                        TLObject tLObject = b6Var.f23015a;
                         if (tLObject instanceof TLRPC.Document) {
                             downloadController.getFileLoader().f((TLRPC.Document) tLObject);
                         } else if ((tLObject instanceof TLRPC.Photo) && (w10 = w7.w(((TLRPC.Photo) tLObject).sizes, g0.Z0(false), false, null, false)) != null) {
@@ -244,7 +244,7 @@ public final class rp implements Runnable {
                 while (i18 < arrayList.size()) {
                     si mediaDataController = urVar.getMediaDataController();
                     int intValue = ((Integer) arrayList.get(i18)).intValue();
-                    ArrayList arrayList5 = mediaDataController.f26820d1;
+                    ArrayList arrayList5 = mediaDataController.f26784d1;
                     int i19 = 0;
                     while (true) {
                         if (i19 < arrayList5.size()) {
@@ -257,9 +257,9 @@ public final class rp implements Runnable {
                             gjVar = null;
                         }
                     }
-                    if (gjVar != null && gj.B0(gjVar.f24213k) == mediaDataController.getUserConfig().e()) {
-                        z10 = mediaDataController.getMessagesController().N3(gjVar.f24213k);
-                        jArr[0] = gj.Q1(mediaDataController.getUserConfig().e(), gjVar.f24213k);
+                    if (gjVar != null && gj.B0(gjVar.f24177k) == mediaDataController.getUserConfig().e()) {
+                        z10 = mediaDataController.getMessagesController().N3(gjVar.f24177k);
+                        jArr[0] = gj.Q1(mediaDataController.getUserConfig().e(), gjVar.f24177k);
                     } else {
                         z10 = false;
                     }
@@ -294,9 +294,9 @@ public final class rp implements Runnable {
                 urVar.getClass();
                 try {
                     try {
-                        urVar.f27252b.beginTransaction();
+                        urVar.f27216b.beginTransaction();
                         try {
-                            executeFast = urVar.f27252b.executeFast("UPDATE messages_v2 SET imp = ? WHERE mid = ? AND uid = ?");
+                            executeFast = urVar.f27216b.executeFast("UPDATE messages_v2 SET imp = ? WHERE mid = ? AND uid = ?");
                         } catch (Exception e13) {
                             e = e13;
                         } catch (Throwable th4) {
@@ -322,19 +322,19 @@ public final class rp implements Runnable {
                             i7 = 0;
                         }
                         executeFast.bindInteger(1, i7);
-                        executeFast.bindInteger(2, message.f28455id);
+                        executeFast.bindInteger(2, message.f28419id);
                         executeFast.bindLong(3, gj.B0(message));
                         executeFast.step();
                     }
                     executeFast.dispose();
-                    urVar.f27252b.commitTransaction();
+                    urVar.f27216b.commitTransaction();
                     return;
                 } catch (Exception e15) {
                     e = e15;
                     sQLitePreparedStatement = executeFast;
                     i11 = 1;
                     urVar.o(e, true);
-                    if (i11 != 0 && (sQLiteDatabase2 = urVar.f27252b) != null) {
+                    if (i11 != 0 && (sQLiteDatabase2 = urVar.f27216b) != null) {
                         sQLiteDatabase2.commitTransaction();
                     }
                     if (sQLitePreparedStatement != null) {
@@ -346,7 +346,7 @@ public final class rp implements Runnable {
                     th = th6;
                     sQLitePreparedStatement = executeFast;
                     i11 = 1;
-                    if (i11 != 0 && (sQLiteDatabase = urVar.f27252b) != null) {
+                    if (i11 != 0 && (sQLiteDatabase = urVar.f27216b) != null) {
                         sQLiteDatabase.commitTransaction();
                     }
                     if (sQLitePreparedStatement != null) {
@@ -364,7 +364,7 @@ public final class rp implements Runnable {
                 urVar.getClass();
                 try {
                     String join2 = TextUtils.join(",", arrayList);
-                    urVar.f27252b.executeFast("DELETE FROM contacts WHERE uid IN(" + join2 + ")").stepThis().dispose();
+                    urVar.f27216b.executeFast("DELETE FROM contacts WHERE uid IN(" + join2 + ")").stepThis().dispose();
                     return;
                 } catch (Exception e16) {
                     urVar.o(e16, true);

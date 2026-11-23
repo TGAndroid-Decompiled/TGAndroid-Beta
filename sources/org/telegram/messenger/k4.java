@@ -5,19 +5,19 @@ import java.util.HashMap;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.jh0;
 public final class k4 implements Runnable {
-    public final int f25006a;
-    public final boolean f25007b;
-    public final boolean f25008c;
+    public final int f24970a;
+    public final boolean f24971b;
+    public final boolean f24972c;
     public final boolean d;
-    public final Object f25009e;
-    public final Object f25010f;
+    public final Object f24973e;
+    public final Object f24974f;
 
     public k4(Object obj, Object obj2, boolean z10, boolean z11, boolean z12, int i7) {
-        this.f25006a = i7;
-        this.f25009e = obj;
-        this.f25010f = obj2;
-        this.f25007b = z10;
-        this.f25008c = z11;
+        this.f24970a = i7;
+        this.f24973e = obj;
+        this.f24974f = obj2;
+        this.f24971b = z10;
+        this.f24972c = z11;
         this.d = z12;
     }
 
@@ -25,33 +25,33 @@ public final class k4 implements Runnable {
     public final void run() {
         org.telegram.ui.Wallet.u uVar;
         String p10;
-        int i7 = this.f25006a;
-        boolean z10 = this.f25007b;
-        Object obj = this.f25010f;
-        Object obj2 = this.f25009e;
+        int i7 = this.f24970a;
+        boolean z10 = this.f24971b;
+        Object obj = this.f24974f;
+        Object obj2 = this.f24973e;
         switch (i7) {
             case 0:
                 i5 i5Var = (i5) obj2;
                 HashMap hashMap = (HashMap) obj;
-                if (s2.f26730a) {
+                if (s2.f26694a) {
                     a8.b("sync contacts by alert");
                 }
-                i5Var.F(hashMap, true, this.f25007b, this.f25008c, false, false, this.d);
+                i5Var.F(hashMap, true, this.f24971b, this.f24972c, false, false, this.d);
                 return;
             case 1:
                 org.telegram.ui.cx cxVar = (org.telegram.ui.cx) obj2;
                 Activity activity = (Activity) obj;
                 if (cxVar.getParentActivity() != null) {
-                    cxVar.f46802v2 = false;
-                    boolean z11 = this.f25008c;
+                    cxVar.f46763v2 = false;
+                    boolean z11 = this.f24972c;
                     boolean z12 = this.d;
                     if (z10 || z11 || z12) {
                         cxVar.B0 = true;
                         if (z10 && jh0.K0(activity)) {
-                            c8.na.e(new String[]{"android.permission.POST_NOTIFICATIONS"}, new org.telegram.ui.Components.dn(new org.telegram.ui.Components.rh(14, cxVar, activity), 1));
+                            c8.oa.e(new String[]{"android.permission.POST_NOTIFICATIONS"}, new org.telegram.ui.Components.dn(new org.telegram.ui.Components.rh(14, cxVar, activity), 1));
                             return;
                         } else if (z11 && cxVar.W1 && cxVar.getUserConfig().V && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
-                            org.telegram.ui.ActionBar.t1 t1Var = org.telegram.ui.Components.c5.v(activity, new org.telegram.ui.xu(cxVar, 1)).f28777a;
+                            org.telegram.ui.ActionBar.t1 t1Var = org.telegram.ui.Components.c5.v(activity, new org.telegram.ui.xu(cxVar, 1)).f28743a;
                             cxVar.V1 = t1Var;
                             cxVar.showDialog(t1Var);
                             return;
@@ -75,19 +75,19 @@ public final class k4 implements Runnable {
                 org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) obj2;
                 r10 r10Var = (r10) obj;
                 org.telegram.ui.Wallet.u0.P("getSecretPhrase: ready!");
-                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) u0Var.f45130e;
-                if (u0Var.f45129c.f(tL_walletState.public_key)) {
+                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) u0Var.f45096e;
+                if (u0Var.f45095c.f(tL_walletState.public_key)) {
                     org.telegram.ui.Wallet.u0.P("getSecretPhrase: device has secured phrase, requesting");
-                    org.telegram.ui.Wallet.z0 z0Var = u0Var.f45129c;
+                    org.telegram.ui.Wallet.z0 z0Var = u0Var.f45095c;
                     byte[] bArr = tL_walletState.public_key;
-                    hi.kb kbVar = new hi.kb(u0Var, r10Var, z10, 5);
+                    hi.lb lbVar = new hi.lb(u0Var, r10Var, z10, 5);
                     if (bArr == null) {
                         p10 = "";
                     } else {
                         z0Var.getClass();
                         p10 = org.telegram.ui.Wallet.z0.p(bArr);
                     }
-                    org.telegram.ui.Wallet.z0.f45377i.execute(new org.telegram.ui.Components.s2(z0Var, z0Var.l(), p10, true, (y10) kbVar));
+                    org.telegram.ui.Wallet.z0.f45343i.execute(new org.telegram.ui.Components.s2(z0Var, z0Var.l(), p10, true, (y10) lbVar));
                     return;
                 } else if (!tL_walletState.backup_enabled) {
                     org.telegram.ui.Wallet.u0.n("getSecretPhrase: no server backup!");
@@ -95,7 +95,7 @@ public final class k4 implements Runnable {
                     return;
                 } else {
                     org.telegram.ui.Wallet.u0.P("getSecretPhrase: exportSecretPhrase through password request");
-                    int i10 = u0Var.f45127a;
+                    int i10 = u0Var.f45093a;
                     ci.y yVar = new ci.y(9);
                     fi.b0 b0Var = new fi.b0(4, u0Var, r10Var);
                     if (!z10) {
@@ -103,18 +103,18 @@ public final class k4 implements Runnable {
                     } else {
                         uVar = new org.telegram.ui.Wallet.u(u0Var, r10Var);
                     }
-                    org.telegram.ui.Wallet.n3.a(i10, yVar, null, null, null, b0Var, this.f25008c, this.d, new m.b3(null, uVar));
+                    org.telegram.ui.Wallet.n3.a(i10, yVar, null, null, null, b0Var, this.f24972c, this.d, new m.b3(null, uVar));
                     return;
                 }
         }
     }
 
     public k4(org.telegram.ui.cx cxVar, boolean z10, boolean z11, boolean z12, Activity activity) {
-        this.f25006a = 1;
-        this.f25009e = cxVar;
-        this.f25007b = z10;
-        this.f25008c = z11;
+        this.f24970a = 1;
+        this.f24973e = cxVar;
+        this.f24971b = z10;
+        this.f24972c = z11;
         this.d = z12;
-        this.f25010f = activity;
+        this.f24974f = activity;
     }
 }

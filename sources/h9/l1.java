@@ -1,7 +1,7 @@
 package h9;
 
-import a8.la;
 import a8.lb;
+import a8.ma;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
@@ -12,28 +12,28 @@ import java.util.RandomAccess;
 import java.util.Set;
 import java.util.SortedMap;
 public final class l1 extends l implements a1, Serializable {
-    public final transient Map f14051e;
-    public transient int f14052f;
+    public final transient Map f14014e;
+    public transient int f14015f;
     public transient k1 h;
 
     public l1(Map map) {
-        la.f(map.isEmpty());
-        this.f14051e = map;
+        ma.f(map.isEmpty());
+        this.f14014e = map;
     }
 
     @Override
     public final void clear() {
-        Map map = this.f14051e;
+        Map map = this.f14014e;
         for (Collection collection : map.values()) {
             collection.clear();
         }
         map.clear();
-        this.f14052f = 0;
+        this.f14015f = 0;
     }
 
     @Override
     public final Map d() {
-        Map map = this.f14051e;
+        Map map = this.f14014e;
         if (map instanceof NavigableMap) {
             return new e(this, (NavigableMap) map);
         }
@@ -50,7 +50,7 @@ public final class l1 extends l implements a1, Serializable {
 
     @Override
     public final Set f() {
-        Map map = this.f14051e;
+        Map map = this.f14014e;
         if (map instanceof NavigableMap) {
             return new f(this, (NavigableMap) map);
         }
@@ -67,7 +67,7 @@ public final class l1 extends l implements a1, Serializable {
 
     @Override
     public final Collection get(Object obj) {
-        Collection collection = (Collection) this.f14051e.get(obj);
+        Collection collection = (Collection) this.f14014e.get(obj);
         if (collection == null) {
             collection = h();
         }
@@ -84,6 +84,6 @@ public final class l1 extends l implements a1, Serializable {
 
     @Override
     public final int size() {
-        return this.f14052f;
+        return this.f14015f;
     }
 }

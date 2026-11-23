@@ -5,7 +5,7 @@ import android.content.Context;
 import android.opengl.Matrix;
 import android.util.Log;
 import android.widget.LinearLayout;
-import c8.ma;
+import c8.na;
 import com.google.android.gms.internal.vision.e2;
 import da.e1;
 import gb.d0;
@@ -20,12 +20,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executor;
 import jb.l;
-import kg.i0;
-import kg.w1;
+import kg.s0;
+import kg.x1;
 import m1.g;
-import oi.a6;
+import oi.j0;
 import oi.k0;
-import oi.l0;
+import oi.z5;
 import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
@@ -34,24 +34,24 @@ import org.telegram.ui.Components.a70;
 import org.telegram.ui.md0;
 import p5.e;
 public final class d implements ib.b, q5.b {
-    public final int f13308a;
-    public Object f13309b;
-    public Object f13310c;
+    public final int f13271a;
+    public Object f13272b;
+    public Object f13273c;
     public Object d;
-    public Object f13311e;
-    public Object f13312f;
+    public Object f13274e;
+    public Object f13275f;
     public Object h;
-    public Object f13313n;
+    public Object f13276n;
 
     public d(fd.a aVar, fd.a aVar2, fd.a aVar3, fd.a aVar4, fd.a aVar5, fd.a aVar6, fd.a aVar7, int i7) {
-        this.f13308a = i7;
-        this.f13309b = aVar;
-        this.f13310c = aVar2;
+        this.f13271a = i7;
+        this.f13272b = aVar;
+        this.f13273c = aVar2;
         this.d = aVar3;
-        this.f13311e = aVar4;
-        this.f13312f = aVar5;
+        this.f13274e = aVar4;
+        this.f13275f = aVar5;
         this.h = aVar6;
-        this.f13313n = aVar7;
+        this.f13276n = aVar7;
     }
 
     public static synchronized void e(File file) {
@@ -94,7 +94,7 @@ public final class d implements ib.b, q5.b {
     }
 
     public void a(String str) {
-        File file = new File((File) this.f13310c, str);
+        File file = new File((File) this.f13273c, str);
         if (file.exists() && h(file)) {
             String str2 = "Deleted previous Crashlytics file system: " + file.getPath();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
@@ -104,7 +104,7 @@ public final class d implements ib.b, q5.b {
     }
 
     public File b(String str, String str2) {
-        File file = new File((File) this.f13311e, str);
+        File file = new File((File) this.f13274e, str);
         file.mkdirs();
         return new File(file, str2);
     }
@@ -116,14 +116,14 @@ public final class d implements ib.b, q5.b {
             a70Var.v();
             this.d = null;
         }
-        this.f13311e = null;
-        this.f13312f = null;
+        this.f13274e = null;
+        this.f13275f = null;
         this.h = null;
     }
 
-    public void d(a6 a6Var, ArrayList arrayList) {
-        h6 h6Var = (h6) this.f13310c;
-        LinearLayout linearLayout = (LinearLayout) this.f13311e;
+    public void d(z5 z5Var, ArrayList arrayList) {
+        h6 h6Var = (h6) this.f13273c;
+        LinearLayout linearLayout = (LinearLayout) this.f13274e;
         if (linearLayout != null) {
             linearLayout.removeAllViews();
             int size = arrayList.size();
@@ -131,26 +131,26 @@ public final class d implements ib.b, q5.b {
             while (i7 < size) {
                 Object obj = arrayList.get(i7);
                 i7++;
-                k0 k0Var = (k0) obj;
-                w1 w1Var = new w1(a6Var.getContext(), k0Var, h6Var);
-                w1Var.setPadding(g0.L(8.0f), 0, g0.L(12.0f), 0);
-                w1Var.setBackground(m6.a0(m6.w0(m6.f29473i6, h6Var), 0, 0));
-                w1Var.setOnClickListener(new h(this, a6Var, k0Var, 19));
-                ((LinearLayout) this.f13311e).addView(w1Var, ma.o(-1, 48));
+                j0 j0Var = (j0) obj;
+                x1 x1Var = new x1(z5Var.getContext(), j0Var, h6Var);
+                x1Var.setPadding(g0.L(8.0f), 0, g0.L(12.0f), 0);
+                x1Var.setBackground(m6.a0(m6.w0(m6.f29439i6, h6Var), 0, 0));
+                x1Var.setOnClickListener(new h(this, z5Var, j0Var, 19));
+                ((LinearLayout) this.f13274e).addView(x1Var, na.o(-1, 48));
             }
         }
     }
 
     public void f(int i7, int i10, float f10, float f11, boolean z10, float[] fArr) {
         float f12;
-        float[] fArr2 = (float[]) this.f13309b;
+        float[] fArr2 = (float[]) this.f13272b;
         float f13 = (i7 - i10) / 0.3902439f;
         if (f13 <= 0.0f || f13 > i7) {
             f13 = i7;
         }
         float f14 = 1.0f;
         Matrix.perspectiveM(fArr2, 0, (float) Math.toDegrees(Math.atan(Math.tan(Math.toRadians(5.199999809265137d)) * (i10 / Math.max(1.0f, f13 / 1.64f))) * 2.0d), i7 / Math.max(1, i10), 0.1f, 20.0f);
-        Matrix.setLookAtM((float[]) this.f13310c, 0, 0.0f, 0.0f, 6.7f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+        Matrix.setLookAtM((float[]) this.f13273c, 0, 0.0f, 0.0f, 6.7f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
         float[] fArr3 = (float[]) this.d;
         Matrix.setIdentityM(fArr3, 0);
         Matrix.rotateM(fArr3, 0, -f10, 1.0f, 0.0f, 0.0f);
@@ -158,8 +158,8 @@ public final class d implements ib.b, q5.b {
         Matrix.rotateM(fArr3, 0, 90.0f, 0.0f, 1.0f, 0.0f);
         Matrix.translateM(fArr3, 0, -0.02f, 0.0f, 0.0f);
         Matrix.scaleM(fArr3, 0, 0.965f, 0.965f, 0.965f);
-        Matrix.multiplyMM((float[]) this.f13311e, 0, (float[]) this.f13310c, 0, (float[]) this.d, 0);
-        Matrix.multiplyMM((float[]) this.f13312f, 0, (float[]) this.f13309b, 0, (float[]) this.f13311e, 0);
+        Matrix.multiplyMM((float[]) this.f13274e, 0, (float[]) this.f13273c, 0, (float[]) this.d, 0);
+        Matrix.multiplyMM((float[]) this.f13275f, 0, (float[]) this.f13272b, 0, (float[]) this.f13274e, 0);
         if (z10) {
             f12 = 0.0125f;
         } else {
@@ -182,8 +182,8 @@ public final class d implements ib.b, q5.b {
         fArr2[1] = f11;
         fArr2[2] = f12;
         fArr2[3] = 1.0f;
-        Matrix.multiplyMV((float[]) this.f13313n, 0, (float[]) this.f13312f, 0, fArr2, 0);
-        float[] fArr3 = (float[]) this.f13313n;
+        Matrix.multiplyMV((float[]) this.f13276n, 0, (float[]) this.f13275f, 0, fArr2, 0);
+        float[] fArr3 = (float[]) this.f13276n;
         float f13 = 1.0f / fArr3[3];
         fArr[i11] = e2.x(fArr3[0], f13, 0.5f, 0.5f) * i7;
         fArr[i11 + 1] = c0.z(fArr3[1], f13, 0.5f, 0.5f) * i10;
@@ -192,117 +192,117 @@ public final class d implements ib.b, q5.b {
 
     @Override
     public Object mo24get() {
-        switch (this.f13308a) {
+        switch (this.f13271a) {
             case 2:
-                return new d1((l) ((ib.c) this.f13309b).mo24get(), (u0) ((ib.c) this.f13310c).mo24get(), (q0) ((ib.c) this.d).mo24get(), (h1) ((ib.c) this.f13311e).mo24get(), (g) ((ib.c) this.f13312f).mo24get(), (d0) ((ib.c) this.h).mo24get(), (id.h) ((ib.c) this.f13313n).mo24get());
+                return new d1((l) ((ib.c) this.f13272b).mo24get(), (u0) ((ib.c) this.f13273c).mo24get(), (q0) ((ib.c) this.d).mo24get(), (h1) ((ib.c) this.f13274e).mo24get(), (g) ((ib.c) this.f13275f).mo24get(), (d0) ((ib.c) this.h).mo24get(), (id.h) ((ib.c) this.f13276n).mo24get());
             default:
                 qb.a aVar = new qb.a(28);
                 pb.b bVar = new pb.b(28);
                 ?? obj = new Object();
-                obj.f16216a = (Context) ((fd.a) this.f13309b).mo24get();
-                obj.f16217b = (e) ((fd.a) this.f13310c).mo24get();
-                obj.f16218c = (v5.d) ((fd.a) this.d).mo24get();
-                obj.d = (md0) ((md0) this.f13311e).mo24get();
-                obj.f16219e = (Executor) ((fd.a) this.f13312f).mo24get();
-                obj.f16220f = (w5.c) ((fd.a) this.h).mo24get();
-                obj.f16221g = aVar;
+                obj.f16182a = (Context) ((fd.a) this.f13272b).mo24get();
+                obj.f16183b = (e) ((fd.a) this.f13273c).mo24get();
+                obj.f16184c = (v5.d) ((fd.a) this.d).mo24get();
+                obj.d = (md0) ((md0) this.f13274e).mo24get();
+                obj.f16185e = (Executor) ((fd.a) this.f13275f).mo24get();
+                obj.f16186f = (w5.c) ((fd.a) this.h).mo24get();
+                obj.f16187g = aVar;
                 obj.h = bVar;
-                obj.f16222i = (v5.c) ((fd.a) this.f13313n).mo24get();
+                obj.f16188i = (v5.c) ((fd.a) this.f13276n).mo24get();
                 return obj;
         }
     }
 
-    public void j(a6 a6Var) {
-        a6 a6Var2 = (a6) this.f13313n;
-        if (a6Var2 != a6Var) {
-            if (a6Var2 != null) {
-                a6Var2.setShowCommandBackground(false);
+    public void j(z5 z5Var) {
+        z5 z5Var2 = (z5) this.f13276n;
+        if (z5Var2 != z5Var) {
+            if (z5Var2 != null) {
+                z5Var2.setShowCommandBackground(false);
             }
-            this.f13313n = a6Var;
-            if (a6Var != null) {
-                a6Var.setShowCommandBackground(true);
+            this.f13276n = z5Var;
+            if (z5Var != null) {
+                z5Var.setShowCommandBackground(true);
             }
         }
     }
 
-    public void k(a6 a6Var, String str) {
+    public void k(z5 z5Var, String str) {
         a70 a70Var;
         a70 a70Var2;
         if (str == null) {
             c();
             return;
         }
-        ArrayList a10 = k0.a(str);
+        ArrayList a10 = j0.a(str);
         if (a10.isEmpty()) {
             c();
             return;
         }
-        j(a6Var);
-        if (((a6) this.h) == a6Var && a10.equals((ArrayList) this.f13312f) && (a70Var2 = (a70) this.d) != null && a70Var2.E()) {
+        j(z5Var);
+        if (((z5) this.h) == z5Var && a10.equals((ArrayList) this.f13275f) && (a70Var2 = (a70) this.d) != null && a70Var2.E()) {
             return;
         }
-        if (((a6) this.h) == a6Var && (a70Var = (a70) this.d) != null && a70Var.E() && ((LinearLayout) this.f13311e) != null) {
-            this.f13312f = a10;
-            d(a6Var, a10);
+        if (((z5) this.h) == z5Var && (a70Var = (a70) this.d) != null && a70Var.E() && ((LinearLayout) this.f13274e) != null) {
+            this.f13275f = a10;
+            d(z5Var, a10);
             ((a70) this.d).P();
             return;
         }
         c();
-        j(a6Var);
-        this.h = a6Var;
-        this.f13312f = a10;
-        LinearLayout linearLayout = new LinearLayout(a6Var.getContext());
-        this.f13311e = linearLayout;
+        j(z5Var);
+        this.h = z5Var;
+        this.f13275f = a10;
+        LinearLayout linearLayout = new LinearLayout(z5Var.getContext());
+        this.f13274e = linearLayout;
         linearLayout.setOrientation(1);
-        d(a6Var, a10);
-        a70 j3 = ((l0) this.f13309b).j(a6Var.getEditText());
-        j3.T = true;
-        j3.f33397s = 0;
-        j3.f33399t = false;
-        j3.r((LinearLayout) this.f13311e, ma.o(220, -2));
-        j3.f33365a0 = g0.L(240.0f);
-        j3.f33378i = 3;
-        j3.b0(-g0.L(12.0f), 0.0f);
-        j3.f33391p = new i0(this, 28);
-        j3.f33376g0 = true;
-        if (j3.E()) {
-            j3.D();
+        d(z5Var, a10);
+        a70 m10 = ((k0) this.f13272b).m(z5Var.getEditText());
+        m10.T = true;
+        m10.f33363s = 0;
+        m10.f33365t = false;
+        m10.r((LinearLayout) this.f13274e, na.o(220, -2));
+        m10.f33331a0 = g0.L(240.0f);
+        m10.f33344i = 3;
+        m10.b0(-g0.L(12.0f), 0.0f);
+        m10.f33357p = new s0(this, 27);
+        m10.f33342g0 = true;
+        if (m10.E()) {
+            m10.D();
         }
-        j3.a0();
-        this.d = j3;
+        m10.a0();
+        this.d = m10;
     }
 
     public d(int i7) {
-        this.f13308a = i7;
+        this.f13271a = i7;
         switch (i7) {
             case 4:
-                this.f13309b = new float[16];
-                this.f13310c = new float[16];
+                this.f13272b = new float[16];
+                this.f13273c = new float[16];
                 this.d = new float[16];
-                this.f13311e = new float[16];
-                this.f13312f = new float[16];
+                this.f13274e = new float[16];
+                this.f13275f = new float[16];
                 this.h = new float[4];
-                this.f13313n = new float[4];
+                this.f13276n = new float[4];
                 return;
             default:
                 return;
         }
     }
 
-    public d(l0 l0Var, h6 h6Var) {
-        this.f13308a = 3;
-        this.f13309b = l0Var;
-        this.f13310c = h6Var;
+    public d(k0 k0Var, h6 h6Var) {
+        this.f13271a = 3;
+        this.f13272b = k0Var;
+        this.f13273c = h6Var;
     }
 
     public d(Context context) {
         String str;
         String replaceAll;
-        this.f13308a = 0;
-        String str2 = ((e1) x9.c.f60473a.b(context)).f8038a;
-        this.f13309b = str2;
+        this.f13271a = 0;
+        String str2 = ((e1) x9.c.f60438a.b(context)).f8001a;
+        this.f13272b = str2;
         File filesDir = context.getFilesDir();
-        this.f13310c = filesDir;
+        this.f13273c = filesDir;
         if (!str2.isEmpty()) {
             StringBuilder sb2 = new StringBuilder(".crashlytics.v3");
             sb2.append(File.separator);
@@ -321,15 +321,15 @@ public final class d implements ib.b, q5.b {
         this.d = file;
         File file2 = new File(file, "open-sessions");
         e(file2);
-        this.f13311e = file2;
+        this.f13274e = file2;
         File file3 = new File(file, "reports");
         e(file3);
-        this.f13312f = file3;
+        this.f13275f = file3;
         File file4 = new File(file, "priority-reports");
         e(file4);
         this.h = file4;
         File file5 = new File(file, "native-reports");
         e(file5);
-        this.f13313n = file5;
+        this.f13276n = file5;
     }
 }

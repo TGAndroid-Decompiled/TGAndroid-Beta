@@ -2,6 +2,7 @@ package wg;
 
 import android.content.Intent;
 import android.net.Uri;
+import bi.o2;
 import bi.q1;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.hd;
@@ -34,18 +35,18 @@ public final class c0 extends sa {
         this.U1 = z10;
         this.T1 = tL_payments_checkedGiftCode;
         this.W1 = str;
-        this.f30212v0 = false;
-        this.f30214w0 = false;
+        this.f30178v0 = false;
+        this.f30180w0 = false;
         O();
         c1();
         b0 b0Var = this.V1;
-        m2 m2Var = this.f30179c;
+        m2 m2Var = this.f30145c;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.f60531e = g2Var;
-        b0Var.f60532f = tL_payments_checkedGiftCode;
+        b0Var.f60496e = g2Var;
+        b0Var.f60497f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f60533n = m2Var;
+        b0Var.f60498n = m2Var;
     }
 
     public static boolean e1(Intent intent, vf.b bVar) {
@@ -86,15 +87,15 @@ public final class c0 extends sa {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (bVar != null) {
             bVar.d();
-            bVar.f59417b = new c(atomicBoolean, 1);
+            bVar.f59380b = new c(atomicBoolean, 1);
         }
-        bi.m2 m2Var = new bi.m2(atomicBoolean, g2Var, str, bVar);
+        o2 o2Var = new o2(atomicBoolean, g2Var, str, bVar);
         e eVar = new e(atomicBoolean, bVar, 1);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(k10.f24968t0);
-        np u12 = np.u1(k10.f24968t0);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(k10.f24932t0);
+        np u12 = np.u1(k10.f24932t0);
         TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
         tL_payments_checkGiftCode.slug = str;
-        connectionsManager.sendRequest(tL_payments_checkGiftCode, new q1(u12, m2Var, eVar, 25));
+        connectionsManager.sendRequest(tL_payments_checkGiftCode, new q1(u12, o2Var, eVar, 25));
     }
 
     @Override
@@ -114,6 +115,6 @@ public final class c0 extends sa {
 
     @Override
     public final void V0(du0 du0Var) {
-        gc.a(this.f30179c, new bi.t(15));
+        gc.a(this.f30145c, new bi.t(15));
     }
 }

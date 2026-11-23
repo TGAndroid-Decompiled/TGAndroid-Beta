@@ -1,6 +1,6 @@
 package org.telegram.ui;
 public final class h8 {
-    public float f48293a;
-    public float f48294b;
-    public float f48295c;
+    public float f48256a;
+    public float f48257b;
+    public float f48258c;
 }

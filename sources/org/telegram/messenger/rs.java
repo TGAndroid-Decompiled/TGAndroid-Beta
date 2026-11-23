@@ -3,15 +3,15 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.messenger.support.LongSparseIntArray;
 public final class rs implements Runnable {
-    public final int f26655a;
-    public final ys f26656b;
-    public final LongSparseIntArray f26657c;
+    public final int f26619a;
+    public final ys f26620b;
+    public final LongSparseIntArray f26621c;
     public final ArrayList d;
 
     public rs(ys ysVar, LongSparseIntArray longSparseIntArray, ArrayList arrayList, int i7) {
-        this.f26655a = i7;
-        this.f26656b = ysVar;
-        this.f26657c = longSparseIntArray;
+        this.f26619a = i7;
+        this.f26620b = ysVar;
+        this.f26621c = longSparseIntArray;
         this.d = arrayList;
     }
 

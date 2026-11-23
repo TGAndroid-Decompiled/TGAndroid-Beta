@@ -6,28 +6,28 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class lw0 extends dk0 {
-    public final Context f37311c;
+    public final Context f37271c;
     public final mw0 d;
 
     public lw0(mw0 mw0Var, Activity activity) {
         this.d = mw0Var;
-        this.f37311c = activity;
+        this.f37271c = activity;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
+    public final boolean D(v4.e1 e1Var) {
         return false;
     }
 
     @Override
     public final int b() {
-        return this.d.f37652c.size();
+        return this.d.f37608c.size();
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
-        org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) f1Var.f59165a;
-        ArrayList arrayList = this.d.f37652c;
+    public final void t(v4.e1 e1Var, int i7) {
+        org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) e1Var.f59111a;
+        ArrayList arrayList = this.d.f37608c;
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i7);
         boolean z10 = true;
         if (i7 == arrayList.size() - 1) {
@@ -37,9 +37,9 @@ public final class lw0 extends dk0 {
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.v vVar = new org.telegram.ui.Cells.v(this.f37311c, false);
-        vVar.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(82.0f)));
-        return new v4.f1(vVar);
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        org.telegram.ui.Cells.v vVar = new org.telegram.ui.Cells.v(this.f37271c, false);
+        vVar.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(82.0f)));
+        return new v4.e1(vVar);
     }
 }

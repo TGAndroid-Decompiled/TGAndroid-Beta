@@ -1,20 +1,20 @@
 package org.telegram.ui;
 public final class za0 implements org.telegram.ui.Components.cu0 {
-    public final int f54513a;
-    public final org.telegram.ui.ActionBar.g2 f54514b;
+    public final int f54476a;
+    public final org.telegram.ui.ActionBar.g2 f54477b;
 
     public za0(int i7, org.telegram.ui.ActionBar.g2 g2Var) {
-        this.f54513a = i7;
-        this.f54514b = g2Var;
+        this.f54476a = i7;
+        this.f54477b = g2Var;
     }
 
     @Override
     public final void L(int i7, boolean z10) {
         rd0 rd0Var;
         ji0 ji0Var;
-        switch (this.f54513a) {
+        switch (this.f54476a) {
             case 0:
-                de0 de0Var = (de0) this.f54514b;
+                de0 de0Var = (de0) this.f54477b;
                 if (i7 > org.telegram.messenger.g0.L(20.0f) && de0Var.z1()) {
                     org.telegram.messenger.g0.v1(de0Var.fragmentView);
                 }
@@ -25,7 +25,7 @@ public final class za0 implements org.telegram.ui.Components.cu0 {
                 }
                 return;
             default:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f54514b;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f54477b;
                 if (i7 >= org.telegram.messenger.g0.L(20.0f) && (ji0Var = passcodeActivity.U) != null) {
                     ji0Var.run();
                     passcodeActivity.U = null;

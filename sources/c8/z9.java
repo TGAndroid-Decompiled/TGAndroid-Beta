@@ -1,12 +1,18 @@
 package c8;
 
-import android.content.res.Configuration;
+import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcelable;
 public abstract class z9 {
-    public static n0.c a(Configuration configuration) {
-        if (Build.VERSION.SDK_INT >= 24) {
-            return new n0.c(new n0.f(androidx.emoji2.text.x.f(configuration)));
+    public static Object a(Bundle bundle) {
+        if (Build.VERSION.SDK_INT >= 34) {
+            return g0.a.e(bundle);
         }
-        return n0.c.a(configuration.locale);
+        Parcelable parcelable = bundle.getParcelable("RESULT_DATA");
+        if (Intent.class.isInstance(parcelable)) {
+            return parcelable;
+        }
+        return null;
     }
 }

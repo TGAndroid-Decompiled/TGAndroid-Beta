@@ -1,40 +1,38 @@
 package hi;
+public final class d9 implements r1.c {
+    public final int f14418a;
+    public final float f14419b;
+    public final Object f14420c;
 
-import android.animation.ValueAnimator;
-public final class d9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f14550a;
-    public final sa f14551b;
-
-    public d9(sa saVar, int i7) {
-        this.f14550a = i7;
-        this.f14551b = saVar;
+    public d9(Object obj, float f10, int i7) {
+        this.f14418a = i7;
+        this.f14420c = obj;
+        this.f14419b = f10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f14550a) {
+    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
+        switch (this.f14418a) {
             case 0:
-                this.f14551b.N0.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                this.f14551b.f15443s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 2:
-                this.f14551b.f15443s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 3:
-                this.f14551b.f15446t1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 4:
-                this.f14551b.f15446t1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ta taVar = (ta) this.f14420c;
+                if (!z10) {
+                    taVar.N0.setTranslationY(this.f14419b);
+                    taVar.N0.L = false;
+                    taVar.f15436p2 = null;
+                    taVar.f15439q2 = null;
+                    return;
+                }
                 return;
             default:
-                sa saVar = this.f14551b;
-                saVar.getClass();
-                saVar.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                saVar.n();
-                saVar.f15437r.invalidate();
-                saVar.f15425n.invalidate();
+                ki.r3 r3Var = (ki.r3) this.f14420c;
+                r3Var.f18878w = null;
+                float f12 = this.f14419b;
+                if (!z10) {
+                    r3Var.f18874f = f12;
+                    r3Var.c();
+                    return;
+                }
+                r3Var.h = f12;
                 return;
         }
     }

@@ -12,7 +12,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Cells.k9;
 import org.telegram.ui.Components.y5;
-import org.telegram.ui.fr0;
+import org.telegram.ui.gr0;
 public final class c1 implements org.telegram.ui.Cells.m1 {
     @Override
     public final boolean H1(org.telegram.ui.Cells.r1 r1Var, TLRPC.Chat chat) {
@@ -90,7 +90,7 @@ public final class c1 implements org.telegram.ui.Cells.m1 {
     }
 
     @Override
-    public final fr0 c2() {
+    public final gr0 c2() {
         return null;
     }
 

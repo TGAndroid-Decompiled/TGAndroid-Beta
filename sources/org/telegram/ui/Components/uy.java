@@ -4,20 +4,20 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 public final class uy extends ReplacementSpan {
-    public final int f40605a;
+    public final int f40557a;
 
     public uy(int i7) {
-        this.f40605a = i7;
+        this.f40557a = i7;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        int i14 = this.f40605a;
+        int i14 = this.f40557a;
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f40605a) {
+        switch (this.f40557a) {
             case 0:
                 return (int) paint.measureText(charSequence, i7, i10);
             case 1:
@@ -32,7 +32,7 @@ public final class uy extends ReplacementSpan {
     }
 
     public uy(boolean z10) {
-        this.f40605a = 0;
+        this.f40557a = 0;
     }
 
     private final void a(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {

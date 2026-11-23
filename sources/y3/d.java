@@ -15,27 +15,27 @@ import h9.t1;
 import java.io.EOFException;
 import java.util.List;
 public final class d implements o {
-    public final int f60761a;
-    public final long f60762b;
-    public final x f60763c;
+    public final int f60726a;
+    public final long f60727b;
+    public final x f60728c;
     public final z d;
-    public final w f60764e;
-    public final ob.c f60765f;
-    public final n f60766g;
+    public final w f60729e;
+    public final ob.c f60730f;
+    public final n f60731g;
     public q h;
-    public i0 f60767i;
-    public i0 f60768j;
-    public int f60769k;
-    public q0 f60770l;
-    public q0 f60771m;
-    public long f60772n;
-    public long f60773o;
-    public long f60774p;
-    public long f60775q;
-    public int f60776r;
-    public h f60777s;
-    public boolean f60778t;
-    public boolean f60779u;
+    public i0 f60732i;
+    public i0 f60733j;
+    public int f60734k;
+    public q0 f60735l;
+    public q0 f60736m;
+    public long f60737n;
+    public long f60738o;
+    public long f60739p;
+    public long f60740q;
+    public int f60741r;
+    public h f60742s;
+    public boolean f60743t;
+    public boolean f60744u;
     public long v;
 
     public d(int i7) {
@@ -51,20 +51,20 @@ public final class d implements o {
     public final void c(q qVar) {
         this.h = qVar;
         i0 d2 = qVar.d2(0, 1);
-        this.f60767i = d2;
-        this.f60768j = d2;
+        this.f60732i = d2;
+        this.f60733j = d2;
         this.h.d1();
     }
 
     @Override
     public final void d(long j3, long j10) {
-        this.f60769k = 0;
-        this.f60772n = -9223372036854775807L;
-        this.f60773o = 0L;
-        this.f60776r = 0;
-        this.f60775q = -1L;
+        this.f60734k = 0;
+        this.f60737n = -9223372036854775807L;
+        this.f60738o = 0L;
+        this.f60741r = 0;
+        this.f60740q = -1L;
         this.v = j10;
-        if (!(this.f60777s instanceof b)) {
+        if (!(this.f60742s instanceof b)) {
             return;
         }
         throw null;
@@ -72,8 +72,8 @@ public final class d implements o {
 
     @Override
     public final List e() {
-        g0 g0Var = h9.i0.f14035b;
-        return t1.f14103e;
+        g0 g0Var = h9.i0.f13998b;
+        return t1.f14066e;
     }
 
     @Override
@@ -82,28 +82,28 @@ public final class d implements o {
     }
 
     public final a g(p pVar, boolean z10) {
-        x xVar = this.f60763c;
-        pVar.b(0, 4, xVar.f13865a);
+        x xVar = this.f60728c;
+        pVar.b(0, 4, xVar.f13828a);
         xVar.N(0);
         int m10 = xVar.m();
         z zVar = this.d;
         zVar.a(m10);
-        return new a(pVar.getLength(), pVar.getPosition(), zVar.f11265e, zVar.f11263b, z10, true);
+        return new a(pVar.getLength(), pVar.getPosition(), zVar.f11228e, zVar.f11226b, z10, true);
     }
 
     public final void h() {
-        h hVar = this.f60777s;
+        h hVar = this.f60742s;
         if ((hVar instanceof a) && ((k) hVar).d()) {
-            long j3 = this.f60775q;
-            if (j3 != -1 && j3 != this.f60777s.b()) {
-                a aVar = (a) this.f60777s;
-                this.f60777s = new a(this.f60775q, aVar.f60753i, aVar.f60754j, aVar.f60755k, aVar.f60756l, false);
+            long j3 = this.f60740q;
+            if (j3 != -1 && j3 != this.f60742s.b()) {
+                a aVar = (a) this.f60742s;
+                this.f60742s = new a(this.f60740q, aVar.f60718i, aVar.f60719j, aVar.f60720k, aVar.f60721l, false);
                 q qVar = this.h;
                 qVar.getClass();
-                qVar.j(this.f60777s);
-                i0 i0Var = this.f60767i;
+                qVar.j(this.f60742s);
+                i0 i0Var = this.f60732i;
                 i0Var.getClass();
-                i0Var.d(this.f60777s.h());
+                i0Var.d(this.f60742s.h());
             }
         }
     }
@@ -118,10 +118,10 @@ public final class d implements o {
         int h;
         pVar.n();
         if (pVar.getPosition() == 0) {
-            q0 M = this.f60765f.M(pVar, null, 131072);
-            this.f60770l = M;
+            q0 M = this.f60730f.M(pVar, null, 131072);
+            this.f60735l = M;
             if (M != null) {
-                this.f60764e.b(M);
+                this.f60729e.b(M);
             }
             i7 = (int) pVar.l();
             if (!z10) {
@@ -141,7 +141,7 @@ public final class d implements o {
                     throw new EOFException();
                 }
             } else {
-                x xVar = this.f60763c;
+                x xVar = this.f60728c;
                 xVar.N(0);
                 int m10 = xVar.m();
                 if ((i10 != 0 && ((-128000) & m10) != (i10 & (-128000))) || (h = f3.b.h(m10)) == -1) {
@@ -179,22 +179,22 @@ public final class d implements o {
         } else {
             pVar.n();
         }
-        this.f60769k = i10;
+        this.f60734k = i10;
         return true;
     }
 
     public d(int i7, long j3) {
-        this.f60761a = i7;
-        this.f60762b = j3;
-        this.f60763c = new x(10);
+        this.f60726a = i7;
+        this.f60727b = j3;
+        this.f60728c = new x(10);
         this.d = new Object();
-        this.f60764e = new w();
-        this.f60772n = -9223372036854775807L;
-        this.f60765f = new ob.c(19);
+        this.f60729e = new w();
+        this.f60737n = -9223372036854775807L;
+        this.f60730f = new ob.c(19);
         n nVar = new n();
-        this.f60766g = nVar;
-        this.f60768j = nVar;
-        this.f60775q = -1L;
+        this.f60731g = nVar;
+        this.f60733j = nVar;
+        this.f60740q = -1L;
     }
 
     @Override

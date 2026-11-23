@@ -3,16 +3,16 @@ package j7;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.bc;
+import c8.cc;
 import com.google.android.gms.internal.vision.e2;
 public final class i extends r6.a {
     public static final Parcelable.Creator<i> CREATOR = new b(7);
-    public final String f17333a;
-    public final Bundle f17334b;
-    public final Bundle f17335c;
+    public final String f17299a;
+    public final Bundle f17300b;
+    public final Bundle f17301c;
     public final String d;
-    public final String f17336e;
-    public final String f17337f;
+    public final String f17302e;
+    public final String f17303f;
 
     public i(String type, Bundle credentialRetrievalData, Bundle candidateQueryData, String requestMatcher, String requestType, String protocolType) {
         boolean z10;
@@ -22,12 +22,12 @@ public final class i extends r6.a {
         kotlin.jvm.internal.j.e(requestMatcher, "requestMatcher");
         kotlin.jvm.internal.j.e(requestType, "requestType");
         kotlin.jvm.internal.j.e(protocolType, "protocolType");
-        this.f17333a = type;
-        this.f17334b = credentialRetrievalData;
-        this.f17335c = candidateQueryData;
+        this.f17299a = type;
+        this.f17300b = credentialRetrievalData;
+        this.f17301c = candidateQueryData;
         this.d = requestMatcher;
-        this.f17336e = requestType;
-        this.f17337f = protocolType;
+        this.f17302e = requestType;
+        this.f17303f = protocolType;
         boolean z11 = true;
         if (!xd.d.j(requestType) && !xd.d.j(protocolType)) {
             z10 = true;
@@ -45,13 +45,13 @@ public final class i extends r6.a {
     @Override
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
-        int r10 = bc.r(dest, 20293);
-        bc.l(dest, 1, this.f17333a);
-        bc.b(dest, 2, this.f17334b);
-        bc.b(dest, 3, this.f17335c);
-        bc.l(dest, 4, this.d);
-        bc.l(dest, 5, this.f17336e);
-        bc.l(dest, 6, this.f17337f);
-        bc.s(dest, r10);
+        int r10 = cc.r(dest, 20293);
+        cc.l(dest, 1, this.f17299a);
+        cc.b(dest, 2, this.f17300b);
+        cc.b(dest, 3, this.f17301c);
+        cc.l(dest, 4, this.d);
+        cc.l(dest, 5, this.f17302e);
+        cc.l(dest, 6, this.f17303f);
+        cc.s(dest, r10);
     }
 }

@@ -1,71 +1,72 @@
 package ai;
 
-import java.util.ArrayList;
+import android.content.Context;
+import org.telegram.messenger.cz;
 import org.telegram.ui.Dictation.DictationAsr;
 public final class t {
-    public final String f1516a;
-    public final String[] f1517b;
-    public volatile String[] f1518c;
-    public volatile String[] d;
-    public volatile long f1519e;
-    public volatile long f1520f;
-    public int f1521g;
-    public boolean f1522i;
-    public boolean f1523j;
-    public volatile float f1524k;
-    public final ArrayList h = new ArrayList();
-    public final ArrayList f1525l = new ArrayList();
+    public boolean f1529a;
+    public boolean f1530b;
+    public long f1531c;
+    public final Object d;
+    public final Object f1532e;
+    public Object f1533f;
+    public Object f1534g;
+    public Object h;
 
-    public t(String str, String[] strArr, String[] strArr2, long j3) {
-        this.f1516a = str;
-        this.f1517b = strArr;
-        this.f1518c = strArr2;
-        this.f1519e = j3;
+    public t(Context context, d3.x xVar) {
+        this.d = context.getApplicationContext();
+        this.f1532e = xVar;
+        this.f1531c = 15000L;
+        this.h = new d3.y();
+        this.f1534g = h2.g0.f13755a;
     }
 
-    public final String a(String str) {
-        String[] split;
-        StringBuilder sb2 = new StringBuilder();
-        for (String str2 : str.split(",")) {
-            if (sb2.length() > 0) {
-                sb2.append(',');
-            }
-            sb2.append(DictationAsr.d0(this, str2));
+    public static t c(android.support.v4.media.session.a0 a0Var, h2 h2Var) {
+        int i7;
+        long nativeSessionNew;
+        p pVar = (p) a0Var.f1675b;
+        long k10 = DictationAsr.k(pVar);
+        if (k10 == 0) {
+            return null;
         }
-        return sb2.toString();
-    }
-
-    public final String b() {
-        return a8.p0.s(new StringBuilder(), this.f1516a, ".tzf");
-    }
-
-    public final boolean c(String str) {
-        for (String str2 : this.f1517b) {
-            if (str2.equals(str)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final String[] d(String str) {
-        String[] strArr;
-        if (this.d != null) {
-            strArr = this.d;
+        t tVar = new t(a0Var, h2Var);
+        String a10 = pVar.a((String) a0Var.f1676c);
+        String str = a10.split(",")[0];
+        if (cz.o() == 0) {
+            i7 = 2;
         } else {
-            strArr = this.f1518c;
+            i7 = 4;
         }
-        ArrayList arrayList = new ArrayList();
-        for (String str2 : strArr) {
-            if (DictationAsr.o(str2).equals(str)) {
-                arrayList.add(str2);
-            }
+        nativeSessionNew = DictationAsr.nativeSessionNew(k10, a10, str, i7);
+        tVar.f1531c = nativeSessionNew;
+        if (nativeSessionNew == 0) {
+            DictationAsr.P(pVar);
+            return null;
         }
-        String b10 = DictationAsr.b(arrayList);
-        if (b10 != null) {
-            arrayList.remove(b10);
-            arrayList.add(0, b10);
+        return tVar;
+    }
+
+    public void a() {
+        String nativeSessionFinish;
+        long j3 = this.f1531c;
+        if (j3 != 0) {
+            nativeSessionFinish = DictationAsr.nativeSessionFinish(j3);
+            b(nativeSessionFinish);
+            DictationAsr.nativeSessionFree(this.f1531c);
+            this.f1531c = 0L;
+            DictationAsr.P((p) this.f1532e);
         }
-        return (String[]) arrayList.toArray(new String[0]);
+    }
+
+    public void b(java.lang.String r18) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.t.b(java.lang.String):void");
+    }
+
+    public t(android.support.v4.media.session.a0 a0Var, h2 h2Var) {
+        this.f1534g = new StringBuilder();
+        this.h = "";
+        this.d = a0Var;
+        this.f1532e = (p) a0Var.f1675b;
+        this.f1533f = h2Var;
     }
 }

@@ -8,15 +8,15 @@ import org.telegram.messenger.ls;
 import org.telegram.messenger.o10;
 import org.telegram.ui.Components.ek0;
 public final class k1 extends ek0 implements gs {
-    public final Path f58034f3;
-    public q0.a f58035g3;
+    public final Path f57999f3;
+    public q0.a f58000g3;
 
     public k1(Context context) {
         super(context, null);
-        this.f58034f3 = new Path();
+        this.f57999f3 = new Path();
         setWillNotDraw(false);
-        setLayoutManager(new v4.c0());
-        setAdapter(new v4.i0());
+        setLayoutManager(new v4.b0());
+        setAdapter(new v4.h0());
         setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
         setClipToPadding(false);
     }
@@ -35,15 +35,15 @@ public final class k1 extends ek0 implements gs {
 
     @Override
     public final void draw(Canvas canvas) {
-        q0.a aVar = this.f58035g3;
+        q0.a aVar = this.f58000g3;
         if (aVar != null) {
-            Path path = this.f58034f3;
+            Path path = this.f57999f3;
             aVar.accept(path);
             canvas.save();
             canvas.clipPath(path);
         }
         super.draw(canvas);
-        if (this.f58035g3 != null) {
+        if (this.f58000g3 != null) {
             canvas.restore();
         }
     }
@@ -66,7 +66,7 @@ public final class k1 extends ek0 implements gs {
     }
 
     public void setMaskProvider(q0.a aVar) {
-        this.f58035g3 = aVar;
+        this.f58000g3 = aVar;
         invalidate();
     }
 }

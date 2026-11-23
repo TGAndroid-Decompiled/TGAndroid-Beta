@@ -1,15 +1,34 @@
 package c8;
 
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.StateListAnimator;
+import android.util.Property;
 import android.view.View;
-import java.util.ArrayList;
+import android.view.animation.OvershootInterpolator;
 public abstract class sa {
-    public static ArrayList a(org.telegram.ui.ActionBar.u6 u6Var, int... iArr) {
-        ArrayList arrayList = new ArrayList(iArr.length);
-        for (int i7 : iArr) {
-            arrayList.add(new org.telegram.ui.ActionBar.v6((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, u6Var, i7));
+    public static void a(View view) {
+        b(view, 0.1f, 1.5f);
+    }
+
+    public static void b(View view, float f10, float f11) {
+        if (view == null) {
+            return;
         }
-        return arrayList;
+        AnimatorSet animatorSet = new AnimatorSet();
+        Property property = View.SCALE_X;
+        float f12 = 1.0f - f10;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, property, f12);
+        Property property2 = View.SCALE_Y;
+        animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property2, f12));
+        animatorSet.setDuration(80L);
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, property, 1.0f), ObjectAnimator.ofFloat(view, property2, 1.0f));
+        animatorSet2.setInterpolator(new OvershootInterpolator(f11));
+        animatorSet2.setDuration(350L);
+        StateListAnimator stateListAnimator = new StateListAnimator();
+        stateListAnimator.addState(new int[]{16842919}, animatorSet);
+        stateListAnimator.addState(new int[0], animatorSet2);
+        view.setStateListAnimator(stateListAnimator);
     }
 }

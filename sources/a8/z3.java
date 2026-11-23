@@ -16,11 +16,11 @@ public final class z3 implements na.d {
     public final void a(Object obj, Object obj2) {
         s7 s7Var = (s7) obj;
         na.e eVar = (na.e) obj2;
-        eVar.a(f733b, s7Var.f634a);
-        eVar.a(f734c, s7Var.f635b);
-        eVar.a(d, s7Var.f636c);
+        eVar.a(f733b, s7Var.f633a);
+        eVar.a(f734c, s7Var.f634b);
+        eVar.a(d, s7Var.f635c);
         eVar.a(f735e, s7Var.d);
-        eVar.a(f736f, s7Var.f637e);
+        eVar.a(f736f, s7Var.f636e);
         eVar.a(f737g, null);
         eVar.a(h, null);
         eVar.a(f738i, null);

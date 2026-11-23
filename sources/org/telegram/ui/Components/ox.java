@@ -5,7 +5,7 @@ import android.view.View;
 public final class ox extends h51 {
     public ox(Context context, int i7, org.telegram.messenger.r10 r10Var, org.telegram.messenger.w10 w10Var, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, i7, -1, false, r10Var, w10Var, null, h6Var, -1, 0);
-        this.f34895z2 = true;
+        this.f34881z2 = true;
         setOverScrollMode(2);
     }
 

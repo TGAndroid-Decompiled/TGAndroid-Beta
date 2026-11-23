@@ -1,12 +1,12 @@
 package a8;
 public final class r8 {
-    public final s7 f621a;
-    public final u8 f622b;
-    public final p7 f623c;
+    public final s7 f620a;
+    public final u8 f621b;
+    public final p7 f622c;
 
     public r8(android.support.v4.media.session.a0 a0Var) {
-        this.f621a = (s7) a0Var.f1724b;
-        this.f622b = (u8) a0Var.f1725c;
-        this.f623c = (p7) a0Var.d;
+        this.f620a = (s7) a0Var.f1675b;
+        this.f621b = (u8) a0Var.f1676c;
+        this.f622c = (p7) a0Var.d;
     }
 }

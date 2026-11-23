@@ -1,17 +1,29 @@
 package hi;
-public final class c implements Runnable {
-    public final int f14315a;
-    public final Object f14316b;
-    public final Object f14317c;
 
-    public c(int i7, Object obj, Object obj2) {
-        this.f14315a = i7;
-        this.f14316b = obj;
-        this.f14317c = obj2;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class c extends AnimatorListenerAdapter {
+    public final int f14245a;
+    public final d f14246b;
+
+    public c(d dVar, int i7) {
+        this.f14245a = i7;
+        this.f14246b = dVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: hi.c.run():void");
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f14245a) {
+            case 0:
+                d dVar = this.f14246b;
+                dVar.N = false;
+                dVar.f14302e.t(null, false, true);
+                return;
+            default:
+                d dVar2 = this.f14246b;
+                dVar2.U = 1.0f;
+                dVar2.invalidate();
+                return;
+        }
     }
 }

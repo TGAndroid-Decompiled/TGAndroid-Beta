@@ -2,15 +2,15 @@ package h9;
 
 import java.util.Iterator;
 public final class w0 extends g2 {
-    public final g9.k f14116b;
+    public final g9.k f14079b;
 
     public w0(Iterator it, g9.k kVar) {
         super(it);
-        this.f14116b = kVar;
+        this.f14079b = kVar;
     }
 
     @Override
     public final Object a(Object obj) {
-        return this.f14116b.apply(obj);
+        return this.f14079b.apply(obj);
     }
 }

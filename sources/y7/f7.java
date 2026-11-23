@@ -8,33 +8,33 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class f7 implements oa.a, zi.x0 {
-    public Object f60856a;
-    public Object f60857b;
-    public Object f60858c;
+    public Object f60821a;
+    public Object f60822b;
+    public Object f60823c;
 
     public f7(int i7) {
         switch (i7) {
             case 4:
-                this.f60856a = new ArrayList();
-                this.f60857b = new ArrayList();
+                this.f60821a = new ArrayList();
+                this.f60822b = new ArrayList();
                 return;
             default:
-                this.f60856a = new HashMap();
-                this.f60857b = new HashMap();
-                this.f60858c = z7.e.f61562c;
+                this.f60821a = new HashMap();
+                this.f60822b = new HashMap();
+                this.f60823c = z7.e.f61527c;
                 return;
         }
     }
 
     @Override
     public void A(MediaFormat mediaFormat) {
-        this.f60858c = mediaFormat;
+        this.f60823c = mediaFormat;
     }
 
     @Override
     public oa.a b(Class cls, na.d dVar) {
-        ((HashMap) this.f60856a).put(cls, dVar);
-        ((HashMap) this.f60857b).remove(cls);
+        ((HashMap) this.f60821a).put(cls, dVar);
+        ((HashMap) this.f60822b).remove(cls);
         return this;
     }
 
@@ -46,13 +46,13 @@ public final class f7 implements oa.a, zi.x0 {
         allocateDirect.put(byteBuffer).flip();
         MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
         bufferInfo2.set(0, bufferInfo.size, bufferInfo.presentationTimeUs, bufferInfo.flags);
-        ((ArrayList) this.f60856a).add(allocateDirect);
-        ((ArrayList) this.f60857b).add(bufferInfo2);
+        ((ArrayList) this.f60821a).add(allocateDirect);
+        ((ArrayList) this.f60822b).add(bufferInfo2);
     }
 
     public f7(zi.p0 p0Var, Range range, xa xaVar) {
-        this.f60856a = p0Var;
-        this.f60857b = range;
-        this.f60858c = xaVar;
+        this.f60821a = p0Var;
+        this.f60822b = range;
+        this.f60823c = xaVar;
     }
 }

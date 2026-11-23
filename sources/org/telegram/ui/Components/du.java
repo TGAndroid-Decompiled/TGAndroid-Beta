@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class du implements DialogInterface.OnShowListener {
-    public final iu f34572a;
+    public final iu f34551a;
 
     public du(iu iuVar) {
-        this.f34572a = iuVar;
+        this.f34551a = iuVar;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        iu iuVar = this.f34572a;
+        iu iuVar = this.f34551a;
         z71 z71Var = iuVar.n1;
         if (iuVar.N0() && z71Var.f()) {
             z71Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.ActionBar.h1(this, 2));

@@ -2,20 +2,20 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class tq implements Runnable {
-    public final ur f27068a;
-    public final int f27069b;
-    public final ArrayList f27070c;
+    public final ur f27032a;
+    public final int f27033b;
+    public final ArrayList f27034c;
     public final int d;
-    public final int f27071e;
-    public final int f27072f;
+    public final int f27035e;
+    public final int f27036f;
 
     public tq(ur urVar, int i7, ArrayList arrayList, int i10, int i11, int i12) {
-        this.f27068a = urVar;
-        this.f27069b = i7;
-        this.f27070c = arrayList;
+        this.f27032a = urVar;
+        this.f27033b = i7;
+        this.f27034c = arrayList;
         this.d = i10;
-        this.f27071e = i11;
-        this.f27072f = i12;
+        this.f27035e = i11;
+        this.f27036f = i12;
     }
 
     @Override

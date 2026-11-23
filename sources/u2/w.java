@@ -1,6 +1,6 @@
 package u2;
 
-import a8.ja;
+import a8.ka;
 import android.media.MediaCodecInfo;
 import android.os.Build;
 import android.util.Pair;
@@ -14,16 +14,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 public abstract class w {
-    public static final HashMap f58430a = new HashMap();
+    public static final HashMap f58395a = new HashMap();
 
     public static void a(String str, ArrayList arrayList) {
         if ("audio/raw".equals(str)) {
-            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f58383a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f58348a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
                 arrayList.add(o.i("OMX.google.raw.decoder", "audio/raw", "audio/raw", null, false, true, false, false));
             }
             Collections.sort(arrayList, new s4(new Object(), 4));
         }
-        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f58383a)) {
+        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f58348a)) {
             arrayList.add((o) arrayList.remove(0));
         }
     }
@@ -37,8 +37,8 @@ public abstract class w {
 
     public static String c(e2.u uVar) {
         Pair b10;
-        String str = uVar.f10798s;
-        String str2 = uVar.f10798s;
+        String str = uVar.f10761s;
+        String str2 = uVar.f10761s;
         if ("audio/eac3-joc".equals(str)) {
             return "audio/eac3";
         }
@@ -52,7 +52,7 @@ public abstract class w {
             }
             if (intValue == 1024) {
                 e2.m mVar = uVar.I;
-                if (mVar != null && mVar.f10548c == 6 && mVar.f10547b == 1) {
+                if (mVar != null && mVar.f10511c == 6 && mVar.f10510b == 1) {
                     return null;
                 }
                 return "video/av01";
@@ -101,7 +101,7 @@ public abstract class w {
         synchronized (w.class) {
             try {
                 s sVar = new s(str, z10, z11);
-                HashMap hashMap = f58430a;
+                HashMap hashMap = f58395a;
                 List list = (List) hashMap.get(sVar);
                 if (list != null) {
                     return list;
@@ -110,7 +110,7 @@ public abstract class w {
                 if (z10 && f10.isEmpty() && Build.VERSION.SDK_INT == 23) {
                     f10 = f(sVar, new sa.d(25));
                     if (!f10.isEmpty()) {
-                        h2.a.l("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) f10.get(0)).f58383a);
+                        h2.a.l("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) f10.get(0)).f58348a);
                     }
                 }
                 a(str, f10);
@@ -129,10 +129,10 @@ public abstract class w {
 
     public static t1 g(i iVar, e2.u uVar, boolean z10, boolean z11) {
         List a10;
-        List a11 = iVar.a(uVar.f10798s, z10, z11);
+        List a11 = iVar.a(uVar.f10761s, z10, z11);
         String c10 = c(uVar);
         if (c10 == null) {
-            a10 = t1.f14103e;
+            a10 = t1.f14066e;
         } else {
             a10 = iVar.a(c10, z10, z11);
         }
@@ -174,7 +174,7 @@ public abstract class w {
             return mediaCodecInfo.isSoftwareOnly();
         }
         if (!s0.i(str)) {
-            String c10 = ja.c(mediaCodecInfo.getName());
+            String c10 = ka.c(mediaCodecInfo.getName());
             if (!c10.startsWith("arc.")) {
                 if (!c10.startsWith("omx.google.") && !c10.startsWith("omx.ffmpeg.")) {
                     if ((!c10.startsWith("omx.sec.") || !c10.contains(".sw.")) && !c10.equals("omx.qcom.video.decoder.hevcswvdec") && !c10.startsWith("c2.android.") && !c10.startsWith("c2.google.")) {

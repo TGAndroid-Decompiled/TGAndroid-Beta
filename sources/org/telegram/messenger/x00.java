@@ -8,25 +8,25 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class x00 extends TLObject {
-    public TLRPC.TL_textWithEntities f27833a;
-    public ArrayList f27834b = new ArrayList();
-    public TLRPC.TL_textWithEntities f27835c;
+    public TLRPC.TL_textWithEntities f27797a;
+    public ArrayList f27798b = new ArrayList();
+    public TLRPC.TL_textWithEntities f27799c;
 
     public static x00 a(TLRPC.TL_messageMediaPoll tL_messageMediaPoll) {
         TLRPC.Poll poll = tL_messageMediaPoll.poll;
         x00 x00Var = new x00();
-        x00Var.f27833a = poll.question;
+        x00Var.f27797a = poll.question;
         for (int i7 = 0; i7 < poll.answers.size(); i7++) {
             TLRPC.PollAnswer pollAnswer = poll.answers.get(i7);
             TLRPC.TL_pollAnswer tL_pollAnswer = new TLRPC.TL_pollAnswer();
             tL_pollAnswer.text = pollAnswer.text;
             tL_pollAnswer.option = pollAnswer.option;
-            x00Var.f27834b.add(tL_pollAnswer);
+            x00Var.f27798b.add(tL_pollAnswer);
         }
         TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
         if (pollResults != null && !TextUtils.isEmpty(pollResults.solution)) {
             TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-            x00Var.f27835c = tL_textWithEntities;
+            x00Var.f27799c = tL_textWithEntities;
             TLRPC.PollResults pollResults2 = tL_messageMediaPoll.results;
             tL_textWithEntities.text = pollResults2.solution;
             tL_textWithEntities.entities = pollResults2.solution_entities;
@@ -50,7 +50,7 @@ public final class x00 extends TLObject {
         } else {
             z10 = false;
         }
-        if (x00Var.f27833a != null) {
+        if (x00Var.f27797a != null) {
             z11 = true;
         } else {
             z11 = false;
@@ -64,12 +64,12 @@ public final class x00 extends TLObject {
         } else {
             z12 = false;
         }
-        if (x00Var.f27835c != null) {
+        if (x00Var.f27799c != null) {
             z13 = true;
         } else {
             z13 = false;
         }
-        if (z12 == z13 && poll.answers.size() == x00Var.f27834b.size()) {
+        if (z12 == z13 && poll.answers.size() == x00Var.f27798b.size()) {
             return true;
         }
         return false;
@@ -79,13 +79,13 @@ public final class x00 extends TLObject {
     public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
         int readInt32 = inputSerializedData.readInt32(z10);
         if ((readInt32 & 1) != 0) {
-            this.f27833a = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.f27797a = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
         if ((readInt32 & 2) != 0) {
-            this.f27834b = Vector.deserialize(inputSerializedData, new fd(17), z10);
+            this.f27798b = Vector.deserialize(inputSerializedData, new fd(17), z10);
         }
         if ((readInt32 & 4) != 0) {
-            this.f27835c = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.f27799c = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
     }
 
@@ -93,27 +93,27 @@ public final class x00 extends TLObject {
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
         int i7;
         outputSerializedData.writeInt32(613759672);
-        if (this.f27833a != null) {
+        if (this.f27797a != null) {
             i7 = 1;
         } else {
             i7 = 0;
         }
-        ArrayList arrayList = this.f27834b;
+        ArrayList arrayList = this.f27798b;
         if (arrayList != null && !arrayList.isEmpty()) {
             i7 |= 2;
         }
-        if (this.f27835c != null) {
+        if (this.f27799c != null) {
             i7 |= 4;
         }
         outputSerializedData.writeInt32(i7);
         if ((i7 & 1) != 0) {
-            this.f27833a.serializeToStream(outputSerializedData);
+            this.f27797a.serializeToStream(outputSerializedData);
         }
         if ((i7 & 2) != 0) {
-            Vector.serialize(outputSerializedData, this.f27834b);
+            Vector.serialize(outputSerializedData, this.f27798b);
         }
         if ((i7 & 4) != 0) {
-            this.f27835c.serializeToStream(outputSerializedData);
+            this.f27799c.serializeToStream(outputSerializedData);
         }
     }
 }

@@ -1,15 +1,15 @@
 package org.telegram.ui;
 public final class f20 implements c5.h {
-    public final f40 f47461a;
+    public final f40 f47422a;
 
     public f20(f40 f40Var) {
-        this.f47461a = f40Var;
+        this.f47422a = f40Var;
     }
 
     @Override
     public final void a(int i7) {
-        f40 f40Var = this.f47461a;
-        f40Var.f47517m1.E0.k(i7);
+        f40 f40Var = this.f47422a;
+        f40Var.f47479m1.E0.k(i7);
         c20 c20Var = f40Var.C4;
         c20Var.K = c20Var.M;
         c20Var.L = c20Var.N;

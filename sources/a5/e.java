@@ -12,7 +12,7 @@ import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
-import c8.r0;
+import c8.s0;
 import org.xmlpull.v1.XmlPullParser;
 public final class e extends h implements Animatable {
     public final Context d;
@@ -221,7 +221,7 @@ public final class e extends h implements Animatable {
     public final void setTint(int i7) {
         Drawable drawable = (Drawable) this.f220b;
         if (drawable != null) {
-            r0.a(i7, drawable);
+            s0.a(i7, drawable);
         } else {
             this.f215c.f211a.setTint(i7);
         }

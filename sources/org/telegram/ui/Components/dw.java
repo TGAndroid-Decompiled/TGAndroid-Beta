@@ -1,84 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import j$.util.Objects;
-public final class dw extends rg.d {
-    public boolean f34592g3;
-    public final ty f34593h3;
+import androidx.recyclerview.widget.RecyclerView;
+public final class dw extends v4.s {
+    public final ty Q;
 
-    public dw(ty tyVar, Context context) {
-        super(context, null);
-        this.f34593h3 = tyVar;
+    public dw(ty tyVar) {
+        super(5);
+        this.Q = tyVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.f34593h3.f40124o2.g();
+    public final int o0(int i7, v4.w0 w0Var, v4.b1 b1Var) {
+        int o02 = super.o0(i7, w0Var, b1Var);
+        ty tyVar = this.Q;
+        if (o02 != 0 && tyVar.E0.getScrollState() == 1) {
+            tyVar.Y1 = false;
+            tyVar.Z();
+        }
+        if (tyVar.U0 == null) {
+            jg.d1 d1Var = new jg.d1(tyVar, tyVar.f40074d1, tyVar.f40126u1.a(), tyVar.f40126u1.f(), 1);
+            tyVar.U0 = d1Var;
+            d1Var.a();
+        }
+        tyVar.U0.b();
+        return o02;
     }
 
     @Override
-    public final void l0(int i7) {
-        int i10;
-        ty tyVar = this.f34593h3;
-        oy oyVar = tyVar.A0;
-        if (tyVar.D0 != null) {
-            hw hwVar = tyVar.C0;
-            if (tyVar.E0.canScrollVertically(-1)) {
-                i10 = org.telegram.messenger.g0.f1();
-            } else {
-                i10 = 0;
-            }
-            hwVar.setUnderlineHeight(i10);
+    public final void v0(RecyclerView recyclerView, v4.b1 b1Var, int i7) {
+        try {
+            pi.l lVar = new pi.l(recyclerView.getContext(), 2);
+            lVar.f59055a = i7;
+            w0(lVar);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
-        if (oyVar != null && getAdapter() == oyVar && oyVar.d == 0) {
-            oy oyVar2 = oyVar.P.f38015x;
-            if (!oyVar2.R.H0.G && !oyVar2.E) {
-                if (tyVar.F0.N0() + 50 > oyVar.b()) {
-                    ny nyVar = oyVar.P;
-                    Objects.requireNonNull(nyVar);
-                    org.telegram.messenger.g0.g3(new cw(nyVar, 0));
-                }
-            }
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        ty tyVar = this.f34593h3;
-        if (!tyVar.f40096f) {
-            org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
-            dw dwVar = tyVar.E0;
-            tyVar.getMeasuredHeight();
-            boolean q10 = p10.q(motionEvent, dwVar, tyVar.f40105h2, this.f34873o2);
-            if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        ty tyVar = this.f34593h3;
-        if (tyVar.J0 && tyVar.f40160z0.b() > 0) {
-            this.f34592g3 = true;
-            tyVar.F0.h1(0, 0);
-            tyVar.J0 = false;
-            this.f34592g3 = false;
-        }
-        super.onLayout(z10, i7, i10, i11, i12);
-        tyVar.q(true);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f34592g3) {
-            return;
-        }
-        super.requestLayout();
     }
 }

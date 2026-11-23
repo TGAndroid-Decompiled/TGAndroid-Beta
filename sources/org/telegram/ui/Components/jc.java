@@ -5,13 +5,13 @@ public enum jc {
     SAVED_TO_MUSIC(2131624058, 2, "Box", "Arrow"),
     SAVED_TO_GIFS(2131624057, 0, "gif");
     
-    public final int f36463a;
-    public final String[] f36464b;
-    public final int f36465c;
+    public final int f36422a;
+    public final String[] f36423b;
+    public final int f36424c;
 
     jc(int i7, int i10, String... strArr) {
-        this.f36463a = i7;
-        this.f36465c = i10;
-        this.f36464b = strArr;
+        this.f36422a = i7;
+        this.f36424c = i10;
+        this.f36423b = strArr;
     }
 }

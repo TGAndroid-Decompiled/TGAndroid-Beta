@@ -1,36 +1,25 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.widget.TextView;
-public final class a9 extends TextView {
-    public final Paint f45546a;
-    public final org.telegram.ui.ActionBar.h6 f45547b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class a9 extends AnimatorListenerAdapter {
+    public final AtomicBoolean f45512a;
+    public final org.telegram.ui.Components.m80 f45513b;
+    public final String f45514c;
 
-    public a9(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context);
-        this.f45547b = h6Var;
-        this.f45546a = new Paint(1);
+    public a9(AtomicBoolean atomicBoolean, org.telegram.ui.Components.m80 m80Var, String str) {
+        this.f45512a = atomicBoolean;
+        this.f45513b = m80Var;
+        this.f45514c = str;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int r12 = org.telegram.ui.ActionBar.m6.r1(0.8f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29792z6, this.f45547b));
-        Paint paint = this.f45546a;
-        paint.setColor(r12);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1.0f);
-        float height = getHeight() / 2.0f;
-        Layout layout = getLayout();
-        int i7 = 0;
-        for (int i10 = 0; i10 < layout.getLineCount(); i10++) {
-            i7 = Math.max(i7, (int) layout.getLineWidth(i10));
+    public final void onAnimationEnd(Animator animator) {
+        AtomicBoolean atomicBoolean = this.f45512a;
+        if (!atomicBoolean.get()) {
+            atomicBoolean.set(true);
+            this.f45513b.setText(this.f45514c);
         }
-        float f10 = i7 / 2.0f;
-        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f10) - org.telegram.messenger.g0.L(8.0f), height, paint);
-        canvas.drawLine((getWidth() / 2.0f) + f10 + org.telegram.messenger.g0.L(8.0f), height, getWidth(), height, paint);
-        super.dispatchDraw(canvas);
     }
 }

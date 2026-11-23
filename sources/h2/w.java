@@ -2,7 +2,7 @@ package h2;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
-import fi.l4;
+import fi.a6;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executor;
@@ -15,29 +15,29 @@ import org.telegram.ui.Components.i61;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.j4;
 public final class w implements g61 {
-    public static w f13857f;
-    public boolean f13858a;
-    public int f13859b;
-    public final Object f13860c;
+    public static w f13820f;
+    public boolean f13821a;
+    public int f13822b;
+    public final Object f13823c;
     public final Object d;
-    public final Object f13861e;
+    public final Object f13824e;
 
     public w(com.google.android.gms.common.api.internal.p pVar, com.google.android.gms.common.api.internal.o oVar, n6.c[] cVarArr, boolean z10, int i7) {
-        this.f13861e = pVar;
-        this.f13860c = oVar;
+        this.f13824e = pVar;
+        this.f13823c = oVar;
         this.d = cVarArr;
-        this.f13858a = z10;
-        this.f13859b = i7;
+        this.f13821a = z10;
+        this.f13822b = i7;
     }
 
     public static synchronized w a(Context context) {
         w wVar;
         synchronized (w.class) {
             try {
-                if (f13857f == null) {
-                    f13857f = new w(context);
+                if (f13820f == null) {
+                    f13820f = new w(context);
                 }
-                wVar = f13857f;
+                wVar = f13820f;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -47,8 +47,8 @@ public final class w implements g61 {
 
     public int b() {
         int i7;
-        synchronized (this.f13861e) {
-            i7 = this.f13859b;
+        synchronized (this.f13824e) {
+            i7 = this.f13822b;
         }
         return i7;
     }
@@ -58,21 +58,21 @@ public final class w implements g61 {
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             v vVar = (v) it.next();
-            if (vVar.f13854a.get() == null) {
+            if (vVar.f13817a.get() == null) {
                 copyOnWriteArrayList.remove(vVar);
             }
         }
-        synchronized (this.f13861e) {
+        synchronized (this.f13824e) {
             try {
-                if (this.f13858a && this.f13859b == i7) {
+                if (this.f13821a && this.f13822b == i7) {
                     return;
                 }
-                this.f13858a = true;
-                this.f13859b = i7;
+                this.f13821a = true;
+                this.f13822b = i7;
                 Iterator it2 = ((CopyOnWriteArrayList) this.d).iterator();
                 while (it2.hasNext()) {
                     v vVar2 = (v) it2.next();
-                    vVar2.f13855b.execute(new f2.a(vVar2, 28));
+                    vVar2.f13818b.execute(new f2.a(vVar2, 27));
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -91,17 +91,17 @@ public final class w implements g61 {
 
     @Override
     public void onStateChanged(boolean z10, int i7) {
-        int i10 = this.f13859b;
-        MediaController mediaController = (MediaController) this.f13861e;
-        if (i10 != mediaController.f22754n0) {
+        int i10 = this.f13822b;
+        MediaController mediaController = (MediaController) this.f13824e;
+        if (i10 != mediaController.f22718n0) {
             return;
         }
-        MediaController.f(mediaController, (gj) this.f13860c, (int[]) this.d, this.f13858a, z10, i7);
+        MediaController.f(mediaController, (gj) this.f13823c, (int[]) this.d, this.f13821a, z10, i7);
     }
 
     @Override
     public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        MediaController mediaController = (MediaController) this.f13861e;
+        MediaController mediaController = (MediaController) this.f13824e;
         if (mediaController.F0 != null) {
             int i7 = mediaController.J0;
             if (i7 == 2) {
@@ -133,10 +133,10 @@ public final class w implements g61 {
                     }
                     PipRoundVideoView pipRoundVideoView2 = mediaController.I0;
                     if (pipRoundVideoView2 != null) {
-                        if (pipRoundVideoView2.f33039c.getSurfaceTexture() != surfaceTexture) {
-                            mediaController.I0.f33039c.setSurfaceTexture(surfaceTexture);
+                        if (pipRoundVideoView2.f33005c.getSurfaceTexture() != surfaceTexture) {
+                            mediaController.I0.f33005c.setSurfaceTexture(surfaceTexture);
                         }
-                        mediaController.F0.A0(mediaController.I0.f33039c);
+                        mediaController.F0.A0(mediaController.I0.f33005c);
                     }
                 }
                 mediaController.J0 = 0;
@@ -152,7 +152,7 @@ public final class w implements g61 {
     @Override
     public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
         float f11;
-        MediaController mediaController = (MediaController) this.f13861e;
+        MediaController mediaController = (MediaController) this.f13824e;
         if (i10 == 0) {
             f11 = 1.0f;
         } else {
@@ -167,7 +167,7 @@ public final class w implements g61 {
 
     @Override
     public void onRenderedFirstFrame() {
-        MediaController mediaController = (MediaController) this.f13861e;
+        MediaController mediaController = (MediaController) this.f13824e;
         j4 j4Var = mediaController.M0;
         if (j4Var != null && !j4Var.d) {
             mediaController.N0 = true;
@@ -182,19 +182,19 @@ public final class w implements g61 {
 
     public w(Context context) {
         Executor e10 = a.e();
-        this.f13860c = e10;
+        this.f13823c = e10;
         this.d = new CopyOnWriteArrayList();
-        this.f13861e = new Object();
-        this.f13859b = 0;
-        e10.execute(new l4(24, this, context));
+        this.f13824e = new Object();
+        this.f13822b = 0;
+        e10.execute(new a6(22, this, context));
     }
 
     public w(MediaController mediaController, int i7, gj gjVar, int[] iArr, boolean z10) {
-        this.f13861e = mediaController;
-        this.f13859b = i7;
-        this.f13860c = gjVar;
+        this.f13824e = mediaController;
+        this.f13822b = i7;
+        this.f13823c = gjVar;
         this.d = iArr;
-        this.f13858a = z10;
+        this.f13821a = z10;
     }
 
     @Override

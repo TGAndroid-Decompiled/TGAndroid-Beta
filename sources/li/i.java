@@ -3,18 +3,18 @@ package li;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.np;
 public final class i implements Runnable {
-    public final int f19972a;
-    public final p f19973b;
+    public final int f19938a;
+    public final p f19939b;
 
     public i(p pVar, int i7) {
-        this.f19972a = i7;
-        this.f19973b = pVar;
+        this.f19938a = i7;
+        this.f19939b = pVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f19972a;
-        p pVar = this.f19973b;
+        int i7 = this.f19938a;
+        p pVar = this.f19939b;
         switch (i7) {
             case 0:
                 p.b0(pVar);

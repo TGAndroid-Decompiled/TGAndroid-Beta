@@ -5,33 +5,33 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xa0 implements RequestDelegate {
-    public final int f53804a;
-    public final de0 f53805b;
-    public final TLRPC.auth_SentCode f53806c;
+    public final int f53724a;
+    public final de0 f53725b;
+    public final TLRPC.auth_SentCode f53726c;
     public final Bundle d;
-    public final boolean f53807e;
+    public final boolean f53727e;
 
     public xa0(int i7, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, de0 de0Var, boolean z10) {
-        this.f53804a = i7;
-        this.f53805b = de0Var;
-        this.f53806c = auth_sentcode;
+        this.f53724a = i7;
+        this.f53725b = de0Var;
+        this.f53726c = auth_sentcode;
         this.d = bundle;
-        this.f53807e = z10;
+        this.f53727e = z10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f53804a) {
+        switch (this.f53724a) {
             case 0:
                 boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
-                final de0 de0Var = this.f53805b;
-                final TLRPC.auth_SentCode auth_sentcode = this.f53806c;
+                final de0 de0Var = this.f53725b;
+                final TLRPC.auth_SentCode auth_sentcode = this.f53726c;
                 final Bundle bundle = this.d;
                 if (z10) {
                     de0Var.C1(false, true);
-                    de0Var.f46949r0 = false;
+                    de0Var.f46909r0 = false;
                     auth_sentcode.type.verifiedFirebase = true;
-                    final boolean z11 = this.f53807e;
+                    final boolean z11 = this.f53727e;
                     org.telegram.messenger.g0.g3(new Runnable() {
                         @Override
                         public final void run() {
@@ -52,14 +52,14 @@ public final class xa0 implements RequestDelegate {
                 return;
             default:
                 boolean z12 = tLObject instanceof TLRPC.TL_boolTrue;
-                final de0 de0Var2 = this.f53805b;
-                final TLRPC.auth_SentCode auth_sentcode2 = this.f53806c;
+                final de0 de0Var2 = this.f53725b;
+                final TLRPC.auth_SentCode auth_sentcode2 = this.f53726c;
                 final Bundle bundle2 = this.d;
                 if (z12) {
                     de0Var2.C1(false, true);
-                    de0Var2.f46949r0 = false;
+                    de0Var2.f46909r0 = false;
                     auth_sentcode2.type.verifiedFirebase = true;
-                    final boolean z13 = this.f53807e;
+                    final boolean z13 = this.f53727e;
                     org.telegram.messenger.g0.g3(new Runnable() {
                         @Override
                         public final void run() {

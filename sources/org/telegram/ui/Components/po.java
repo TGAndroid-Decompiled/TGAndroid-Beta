@@ -51,7 +51,7 @@ public final class po extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         switch (this.U) {
             case 2:
                 a70 a70Var = (a70) this.V;
-                if (this == a70Var.A && (i11 = a70Var.f33365a0) > 0) {
+                if (this == a70Var.A && (i11 = a70Var.f33331a0) > 0) {
                     i10 = View.MeasureSpec.makeMeasureSpec(Math.min(i11, View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10));
                 }
                 super.onMeasure(i7, i10);

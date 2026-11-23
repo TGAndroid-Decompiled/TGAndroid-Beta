@@ -1,20 +1,11 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.RectF;
-public final class gw0 extends org.telegram.ui.Cells.j5 {
-    public final lw0 f48179w;
+public final class gw0 extends org.telegram.ui.Cells.j {
+    public final lw0 f48141f0;
 
-    public gw0(lw0 lw0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, 18, 70, false, h6Var);
-        this.f48179w = lw0Var;
-    }
-
-    @Override
-    public final int a(int i7) {
-        ProfileActivity profileActivity = this.f48179w.f49718e;
-        RectF rectF = ProfileActivity.Z6;
-        profileActivity.getClass();
-        return i7;
+    public gw0(lw0 lw0Var, Context context, org.telegram.ui.ActionBar.g2 g2Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, g2Var, h6Var);
+        this.f48141f0 = lw0Var;
     }
 }

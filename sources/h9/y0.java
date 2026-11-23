@@ -1,16 +1,16 @@
 package h9;
 
-import a8.la;
+import a8.ma;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class y0 implements Iterator {
-    public static final y0 f14122a;
-    public static final y0[] f14123b;
+    public static final y0 f14085a;
+    public static final y0[] f14086b;
 
     static {
         ?? r02 = new Enum("INSTANCE", 0);
-        f14122a = r02;
-        f14123b = new y0[]{r02};
+        f14085a = r02;
+        f14086b = new y0[]{r02};
     }
 
     public static y0 valueOf(String str) {
@@ -18,7 +18,7 @@ public final class y0 implements Iterator {
     }
 
     public static y0[] values() {
-        return (y0[]) f14123b.clone();
+        return (y0[]) f14086b.clone();
     }
 
     @Override
@@ -33,6 +33,6 @@ public final class y0 implements Iterator {
 
     @Override
     public final void remove() {
-        la.o("no calls to next() since the last call to remove()", false);
+        ma.o("no calls to next() since the last call to remove()", false);
     }
 }

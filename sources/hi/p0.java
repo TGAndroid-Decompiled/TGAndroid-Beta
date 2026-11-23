@@ -1,44 +1,42 @@
 package hi;
 
-import org.telegram.messenger.hd;
+import java.io.File;
+import org.telegram.messenger.MediaController;
 public final class p0 implements Runnable {
-    public final int f15245a;
-    public final v0 f15246b;
+    public final int f15164a;
+    public final u0 f15165b;
+    public final File f15166c;
 
-    public p0(v0 v0Var, int i7) {
-        this.f15245a = i7;
-        this.f15246b = v0Var;
+    public p0(u0 u0Var, File file, int i7) {
+        this.f15164a = i7;
+        this.f15165b = u0Var;
+        this.f15166c = file;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f15245a;
-        v0 v0Var = this.f15246b;
-        switch (i7) {
+        switch (this.f15164a) {
             case 0:
-                v0Var.b();
-                return;
-            case 1:
-                v0Var.f15595e = false;
-                s0 s0Var = v0Var.f15599s;
-                if (s0Var != null) {
-                    s0Var.a(true);
-                    v0Var.f15599s = null;
-                }
-                u0 u0Var = v0Var.f15597n;
-                if (u0Var != null) {
-                    u0Var.a();
-                }
-                v0Var.f15594c = false;
-                v0Var.d();
-                return;
-            default:
-                if (v0Var.f15594c && v0Var.f15598r != null) {
-                    v0Var.f15597n.b(2131624012, 3500, hd.O0("VideoConvertFail"));
-                    v0Var.f15594c = false;
-                    v0Var.d();
+                u0 u0Var = this.f15165b;
+                if (u0Var.f15480c && u0Var.f15484r != null) {
+                    MediaController.d0(this.f15166c.getAbsolutePath(), u0Var.getContext(), 1, null, null, new q0(u0Var, 1));
                     return;
                 }
+                return;
+            case 1:
+                u0 u0Var2 = this.f15165b;
+                d7 d7Var = u0Var2.f15484r;
+                File file = this.f15166c;
+                d7Var.c(file);
+                if (u0Var2.f15480c && u0Var2.f15484r != null) {
+                    org.telegram.messenger.g0.g3(new p0(u0Var2, file, 2));
+                    return;
+                }
+                return;
+            default:
+                String absolutePath = this.f15166c.getAbsolutePath();
+                u0 u0Var3 = this.f15165b;
+                MediaController.d0(absolutePath, u0Var3.getContext(), 0, null, null, new q0(u0Var3, 2));
                 return;
         }
     }

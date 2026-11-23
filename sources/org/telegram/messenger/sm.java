@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class sm implements Runnable {
-    public final int f26877a;
-    public final np f26878b;
-    public final long f26879c;
+    public final int f26841a;
+    public final np f26842b;
+    public final long f26843c;
     public final Runnable d;
 
     public sm(np npVar, long j3, Runnable runnable, int i7) {
-        this.f26877a = i7;
-        this.f26878b = npVar;
-        this.f26879c = j3;
+        this.f26841a = i7;
+        this.f26842b = npVar;
+        this.f26843c = j3;
         this.d = runnable;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26877a;
+        int i7 = this.f26841a;
         Runnable runnable = this.d;
-        long j3 = this.f26879c;
-        np npVar = this.f26878b;
+        long j3 = this.f26843c;
+        np npVar = this.f26842b;
         switch (i7) {
             case 0:
                 if (runnable != null) {
@@ -44,9 +44,9 @@ public final class sm implements Runnable {
     }
 
     public sm(np npVar, Runnable runnable, long j3) {
-        this.f26877a = 0;
-        this.f26878b = npVar;
+        this.f26841a = 0;
+        this.f26842b = npVar;
         this.d = runnable;
-        this.f26879c = j3;
+        this.f26843c = j3;
     }
 }

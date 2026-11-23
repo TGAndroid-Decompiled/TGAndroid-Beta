@@ -2,6 +2,6 @@ package c7;
 
 import n6.c;
 public abstract class a {
-    public static final c f4501a = new c("is_user_verifying_platform_authenticator_available_for_credential", 1);
-    public static final c f4502b = new c("is_user_verifying_platform_authenticator_available", 1);
+    public static final c f4464a = new c("is_user_verifying_platform_authenticator_available_for_credential", 1);
+    public static final c f4465b = new c("is_user_verifying_platform_authenticator_available", 1);
 }

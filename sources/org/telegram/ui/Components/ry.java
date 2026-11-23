@@ -6,26 +6,26 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ry extends dk0 {
-    public final boolean f39385c;
+    public final boolean f39341c;
     public final ty d;
 
     public ry(ty tyVar, boolean z10) {
         this.d = tyVar;
-        this.f39385c = z10;
+        this.f39341c = z10;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
+    public final boolean D(v4.e1 e1Var) {
         return true;
     }
 
     @Override
     public final int b() {
         ArrayList arrayList;
-        boolean z10 = this.f39385c;
+        boolean z10 = this.f39341c;
         ty tyVar = this.d;
         if (z10) {
-            arrayList = tyVar.f40123o1;
+            arrayList = tyVar.f40106o1;
         } else {
             arrayList = tyVar.n1;
         }
@@ -38,18 +38,18 @@ public final class ry extends dk0 {
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
+    public final void t(v4.e1 e1Var, int i7) {
         ArrayList arrayList;
         ArrayList<TLRPC.Document> arrayList2;
         org.telegram.messenger.gc k10;
         int i10;
         String str;
         ColorFilter colorFilter;
-        q9 q9Var = (q9) f1Var.f59165a;
+        q9 q9Var = (q9) e1Var.f59111a;
         ty tyVar = this.d;
-        boolean z10 = this.f39385c;
+        boolean z10 = this.f39341c;
         if (z10) {
-            arrayList = tyVar.f40123o1;
+            arrayList = tyVar.f40106o1;
         } else {
             arrayList = tyVar.n1;
         }
@@ -58,7 +58,7 @@ public final class ry extends dk0 {
         if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
             arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
         } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-            TLRPC.TL_messages_stickerSet o02 = org.telegram.messenger.si.d0(tyVar.f40091d1).o0(org.telegram.messenger.si.b0(stickerSetCovered.set), false);
+            TLRPC.TL_messages_stickerSet o02 = org.telegram.messenger.si.d0(tyVar.f40074d1).o0(org.telegram.messenger.si.b0(stickerSetCovered.set), false);
             if (o02 == null) {
                 arrayList2 = null;
             } else {
@@ -72,7 +72,7 @@ public final class ry extends dk0 {
             if (arrayList2 != null && !arrayList2.isEmpty()) {
                 if (stickerSetCovered.set != null) {
                     for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                        if (arrayList2.get(i11).f28440id == stickerSetCovered.set.thumb_document_id) {
+                        if (arrayList2.get(i11).f28404id == stickerSetCovered.set.thumb_document_id) {
                             document = arrayList2.get(i11);
                             break;
                         }
@@ -89,17 +89,17 @@ public final class ry extends dk0 {
         if (document != null) {
             if (z10) {
                 if (org.telegram.messenger.gj.C4(document)) {
-                    colorFilter = org.telegram.ui.ActionBar.m6.o0(tyVar.f40081a2);
+                    colorFilter = org.telegram.ui.ActionBar.m6.o0(tyVar.f40064a2);
                 } else {
                     colorFilter = null;
                 }
                 q9Var.setColorFilter(colorFilter);
             }
             TLObject w10 = org.telegram.messenger.w7.w(stickerSetCovered.set.thumbs, 90, false, null, false);
-            org.telegram.messenger.mz d = org.telegram.messenger.u5.d(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.m6.f29364c7, 0.2f, false);
+            org.telegram.messenger.mz d = org.telegram.messenger.u5.d(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.m6.f29330c7, 0.2f, false);
             if (d != null) {
-                d.f25692e = 512;
-                d.f25693f = 512;
+                d.f25656e = 512;
+                d.f25657f = 512;
             }
             if (w10 == null || org.telegram.messenger.gj.N4(document)) {
                 w10 = document;
@@ -131,7 +131,7 @@ public final class ry extends dk0 {
                     } else {
                         q9Var.l(org.telegram.messenger.gc.b(document), str2, gcVar, null, 0, stickerSetCovered);
                     }
-                } else if (gcVar.f24125p == 1) {
+                } else if (gcVar.f24089p == 1) {
                     q9Var.k(gcVar, str2, "tgs", d, stickerSetCovered);
                 } else {
                     q9Var.k(gcVar, null, "webp", d, stickerSetCovered);
@@ -141,12 +141,12 @@ public final class ry extends dk0 {
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         qy qyVar = new qy(this, this.d.getContext());
         qyVar.u(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f));
         qyVar.setLayerNum(1);
         qyVar.setAspectFit(true);
-        qyVar.setLayoutParams(new v4.q0(org.telegram.messenger.g0.L(34.0f), org.telegram.messenger.g0.L(34.0f)));
-        return new v4.f1(qyVar);
+        qyVar.setLayoutParams(new v4.p0(org.telegram.messenger.g0.L(34.0f), org.telegram.messenger.g0.L(34.0f)));
+        return new v4.e1(qyVar);
     }
 }

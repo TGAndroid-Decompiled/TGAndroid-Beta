@@ -1,6 +1,6 @@
 package d3;
 
-import a8.la;
+import a8.ma;
 import android.content.Context;
 import android.os.Build;
 import android.os.Looper;
@@ -13,21 +13,21 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executor;
 public final class o implements k0 {
-    public h9.i0 f7768a;
-    public e2.u f7769b;
-    public long f7770c;
+    public h9.i0 f7731a;
+    public e2.u f7732b;
+    public long f7733c;
     public long d;
-    public int f7771e;
-    public Executor f7772f;
-    public final t f7773g;
+    public int f7734e;
+    public Executor f7735f;
+    public final t f7736g;
 
     public o(t tVar, Context context) {
-        this.f7773g = tVar;
+        this.f7736g = tVar;
         l0.N(context);
-        h9.g0 g0Var = h9.i0.f14035b;
-        this.f7768a = t1.f14103e;
+        h9.g0 g0Var = h9.i0.f13998b;
+        this.f7731a = t1.f14066e;
         this.d = -9223372036854775807L;
-        this.f7772f = t.f7776q;
+        this.f7735f = t.f7739q;
     }
 
     @Override
@@ -37,76 +37,76 @@ public final class o implements k0 {
 
     @Override
     public final Surface b() {
-        la.p(false);
+        ma.p(false);
         throw null;
     }
 
     @Override
     public final void c(v vVar) {
-        this.f7773g.f7780e.f7702j = vVar;
+        this.f7736g.f7743e.f7665j = vVar;
     }
 
     @Override
     public final void d(float f10) {
-        t tVar = this.f7773g;
-        tVar.f7783i.c(f10);
-        tVar.f7780e.d(f10);
+        t tVar = this.f7736g;
+        tVar.f7746i.c(f10);
+        tVar.f7743e.d(f10);
     }
 
     @Override
     public final void e() {
-        t tVar = this.f7773g;
+        t tVar = this.f7736g;
         if (tVar.d) {
-            tVar.f7780e.e();
+            tVar.f7743e.e();
         }
     }
 
     @Override
     public final void f(Surface surface, h2.y yVar) {
-        t tVar = this.f7773g;
-        Pair pair = tVar.f7786l;
-        if (pair != null && ((Surface) pair.first).equals(surface) && ((h2.y) tVar.f7786l.second).equals(yVar)) {
+        t tVar = this.f7736g;
+        Pair pair = tVar.f7749l;
+        if (pair != null && ((Surface) pair.first).equals(surface) && ((h2.y) tVar.f7749l.second).equals(yVar)) {
             return;
         }
-        tVar.f7786l = Pair.create(surface, yVar);
-        int i7 = yVar.f13869a;
+        tVar.f7749l = Pair.create(surface, yVar);
+        int i7 = yVar.f13832a;
     }
 
     @Override
     public final void g(d6.i iVar) {
-        this.f7772f = m9.r.f20983a;
+        this.f7735f = m9.r.f20949a;
     }
 
     @Override
     public final void h() {
-        t tVar = this.f7773g;
+        t tVar = this.f7736g;
         if (tVar.d) {
-            tVar.f7780e.h();
+            tVar.f7743e.h();
         }
     }
 
     @Override
     public final void i(long j3) {
-        this.f7770c = j3;
+        this.f7733c = j3;
     }
 
     @Override
     public final boolean j(e2.u uVar) {
         boolean z10;
         boolean z11;
-        t tVar = this.f7773g;
+        t tVar = this.f7736g;
         boolean z12 = true;
-        if (tVar.f7788n == 0) {
+        if (tVar.f7751n == 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        la.p(z10);
+        ma.p(z10);
         e2.m mVar = uVar.I;
         if (mVar == null || !mVar.d()) {
             mVar = e2.m.h;
         }
-        int i7 = mVar.f10548c;
+        int i7 = mVar.f10511c;
         if (i7 == 7) {
             try {
                 int i10 = Build.VERSION.SDK_INT;
@@ -117,11 +117,11 @@ public final class o implements k0 {
                         z11 = false;
                     }
                     if (z11) {
-                        h2.g0 g0Var = tVar.f7781f;
+                        h2.g0 g0Var = tVar.f7744f;
                         Looper myLooper = Looper.myLooper();
                         myLooper.getClass();
-                        tVar.f7785k = g0Var.a(myLooper, null);
-                        tVar.f7778b.a();
+                        tVar.f7748k = g0Var.a(myLooper, null);
+                        tVar.f7741b.a();
                         throw null;
                     }
                 }
@@ -140,44 +140,44 @@ public final class o implements k0 {
             Locale locale = Locale.US;
             h2.a.l("PlaybackVidGraphWrapper", "Color transfer " + i7 + " is not supported. Falling back to OpenGl tone mapping.");
             e2.m mVar2 = e2.m.h;
-            h2.g0 g0Var2 = tVar.f7781f;
+            h2.g0 g0Var2 = tVar.f7744f;
             Looper myLooper2 = Looper.myLooper();
             myLooper2.getClass();
-            tVar.f7785k = g0Var2.a(myLooper2, null);
-            tVar.f7778b.a();
+            tVar.f7748k = g0Var2.a(myLooper2, null);
+            tVar.f7741b.a();
             throw null;
         }
         if (i7 == 2 || i7 == 10) {
             e2.m mVar3 = e2.m.h;
         }
-        h2.g0 g0Var22 = tVar.f7781f;
+        h2.g0 g0Var22 = tVar.f7744f;
         Looper myLooper22 = Looper.myLooper();
         myLooper22.getClass();
-        tVar.f7785k = g0Var22.a(myLooper22, null);
-        tVar.f7778b.a();
+        tVar.f7748k = g0Var22.a(myLooper22, null);
+        tVar.f7741b.a();
         throw null;
     }
 
     @Override
     public final void k() {
         long j3 = this.d;
-        t tVar = this.f7773g;
-        if (tVar.f7789o >= j3) {
-            tVar.f7780e.k();
+        t tVar = this.f7736g;
+        if (tVar.f7752o >= j3) {
+            tVar.f7743e.k();
         }
     }
 
     @Override
     public final void l(int i7) {
-        this.f7773g.f7780e.l(i7);
+        this.f7736g.f7743e.l(i7);
     }
 
     @Override
     public final void m() {
-        t tVar = this.f7773g;
+        t tVar = this.f7736g;
         tVar.getClass();
-        int i7 = h2.y.f13868c.f13869a;
-        tVar.f7786l = null;
+        int i7 = h2.y.f13831c.f13832a;
+        tVar.f7749l = null;
     }
 
     @Override
@@ -185,30 +185,30 @@ public final class o implements k0 {
         long j10;
         long j11;
         int i7;
-        la.p(false);
-        long j12 = j3 + this.f7770c;
-        t tVar = this.f7773g;
-        y yVar = tVar.f7783i;
-        if (yVar.f7806a == -9223372036854775807L) {
+        ma.p(false);
+        long j12 = j3 + this.f7733c;
+        t tVar = this.f7736g;
+        y yVar = tVar.f7746i;
+        if (yVar.f7769a == -9223372036854775807L) {
             j11 = -9223372036854775807L;
         } else {
-            j11 = (long) (((j12 - j10) * yVar.f7808c) + yVar.f7807b);
+            j11 = (long) (((j12 - j10) * yVar.f7771c) + yVar.f7770b);
         }
         if (j11 != -9223372036854775807L) {
             long j13 = tVar.h;
-            if (j13 != -9223372036854775807L && j11 < j13 && (i7 = this.f7771e) < 2) {
-                this.f7771e = i7 + 1;
-                l lVar = iVar.f7725c;
-                u2.l lVar2 = iVar.f7723a;
-                int i10 = iVar.f7724b;
+            if (j13 != -9223372036854775807L && j11 < j13 && (i7 = this.f7734e) < 2) {
+                this.f7734e = i7 + 1;
+                l lVar = iVar.f7688c;
+                u2.l lVar2 = iVar.f7686a;
+                int i10 = iVar.f7687b;
                 Trace.beginSection("dropVideoBuffer");
-                lVar2.e(i10);
+                lVar2.d(i10);
                 Trace.endSection();
                 lVar.R0(0, 1);
                 return true;
             }
         }
-        int i11 = tVar.f7790p;
+        int i11 = tVar.f7753p;
         if (i11 == -1 || i11 != 0) {
             return false;
         }
@@ -218,31 +218,31 @@ public final class o implements k0 {
     @Override
     public final void o(boolean z10) {
         this.d = -9223372036854775807L;
-        t tVar = this.f7773g;
-        e eVar = tVar.f7780e;
-        if (tVar.f7788n == 1) {
-            tVar.f7787m++;
+        t tVar = this.f7736g;
+        e eVar = tVar.f7743e;
+        if (tVar.f7751n == 1) {
+            tVar.f7750m++;
             eVar.o(z10);
-            while (tVar.f7784j.p() > 1) {
-                tVar.f7784j.i();
+            while (tVar.f7747j.p() > 1) {
+                tVar.f7747j.i();
             }
-            if (tVar.f7784j.p() != 1) {
-                tVar.f7789o = -9223372036854775807L;
-                h2.i0 i0Var = tVar.f7785k;
+            if (tVar.f7747j.p() != 1) {
+                tVar.f7752o = -9223372036854775807L;
+                h2.i0 i0Var = tVar.f7748k;
                 i0Var.getClass();
-                i0Var.d(new ca.r(tVar, 7));
+                i0Var.d(new ca.r(tVar, 6));
                 return;
             }
-            ((s) tVar.f7784j.i()).getClass();
+            ((s) tVar.f7747j.i()).getClass();
             throw null;
         }
     }
 
     @Override
     public final void p(List list) {
-        if (!this.f7768a.equals(list)) {
-            this.f7768a = h9.i0.q(list);
-            e2.u uVar = this.f7769b;
+        if (!this.f7731a.equals(list)) {
+            this.f7731a = h9.i0.q(list);
+            e2.u uVar = this.f7732b;
             if (uVar == null) {
                 return;
             }
@@ -259,41 +259,41 @@ public final class o implements k0 {
 
     @Override
     public final void q(long j3, long j10) {
-        this.f7773g.f7780e.q(j3 + this.f7770c, j10);
+        this.f7736g.f7743e.q(j3 + this.f7733c, j10);
     }
 
     @Override
     public final void r(boolean z10) {
-        t tVar = this.f7773g;
+        t tVar = this.f7736g;
         if (tVar.d) {
-            tVar.f7780e.r(z10);
+            tVar.f7743e.r(z10);
         }
     }
 
     @Override
     public final void release() {
-        t tVar = this.f7773g;
-        if (tVar.f7788n == 2) {
+        t tVar = this.f7736g;
+        if (tVar.f7751n == 2) {
             return;
         }
-        h2.i0 i0Var = tVar.f7785k;
+        h2.i0 i0Var = tVar.f7748k;
         if (i0Var != null) {
-            i0Var.f13800a.removeCallbacksAndMessages(null);
+            i0Var.f13763a.removeCallbacksAndMessages(null);
         }
-        tVar.f7786l = null;
-        tVar.f7788n = 2;
+        tVar.f7749l = null;
+        tVar.f7751n = 2;
     }
 
     @Override
     public final boolean s(boolean z10) {
-        return this.f7773g.f7780e.f7695a.b(false);
+        return this.f7736g.f7743e.f7658a.b(false);
     }
 
     @Override
     public final void u(e2.u uVar, long j3, int i7, List list) {
-        la.p(false);
-        this.f7768a = h9.i0.q(list);
-        this.f7769b = uVar;
+        ma.p(false);
+        this.f7731a = h9.i0.q(list);
+        this.f7732b = uVar;
         e2.t a10 = uVar.a();
         e2.m mVar = uVar.I;
         if (mVar == null || !mVar.d()) {
@@ -311,16 +311,16 @@ public final class o implements k0 {
 
     @Override
     public final void w() {
-        t tVar = this.f7773g;
-        if (tVar.f7784j.p() == 0) {
-            tVar.f7780e.w();
+        t tVar = this.f7736g;
+        if (tVar.f7747j.p() == 0) {
+            tVar.f7743e.w();
             return;
         }
         h2.j0 j0Var = new h2.j0();
-        if (tVar.f7784j.p() <= 0) {
-            tVar.f7784j = j0Var;
+        if (tVar.f7747j.p() <= 0) {
+            tVar.f7747j = j0Var;
         } else {
-            ((s) tVar.f7784j.i()).getClass();
+            ((s) tVar.f7747j.i()).getClass();
             throw null;
         }
     }

@@ -4,22 +4,22 @@ import gb.h1;
 import java.util.concurrent.atomic.AtomicReference;
 import zd.b0;
 public final class p {
-    public final h1 f17404a;
-    public final m1.g f17405b;
-    public final AtomicReference f17406c;
+    public final h1 f17370a;
+    public final m1.g f17371b;
+    public final AtomicReference f17372c;
 
     public p(id.h backgroundDispatcher, h1 timeProvider, m1.g sessionConfigsDataStore) {
         kotlin.jvm.internal.j.e(backgroundDispatcher, "backgroundDispatcher");
         kotlin.jvm.internal.j.e(timeProvider, "timeProvider");
         kotlin.jvm.internal.j.e(sessionConfigsDataStore, "sessionConfigsDataStore");
-        this.f17404a = timeProvider;
-        this.f17405b = sessionConfigsDataStore;
-        this.f17406c = new AtomicReference();
+        this.f17370a = timeProvider;
+        this.f17371b = sessionConfigsDataStore;
+        this.f17372c = new AtomicReference();
         b0.q(b0.b(backgroundDispatcher), new n(this, null, 0));
     }
 
     public final i a() {
-        AtomicReference atomicReference = this.f17406c;
+        AtomicReference atomicReference = this.f17372c;
         if (atomicReference.get() == null) {
             Object u10 = b0.u(new n(this, null, 1));
             while (!atomicReference.compareAndSet(null, u10) && atomicReference.get() == null) {
@@ -31,9 +31,9 @@ public final class p {
     }
 
     public final boolean b() {
-        Long l10 = a().f17389e;
+        Long l10 = a().f17355e;
         Integer num = a().d;
-        if (l10 != null && num != null && this.f17404a.a().f13377c - l10.longValue() < num.intValue()) {
+        if (l10 != null && num != null && this.f17370a.a().f13340c - l10.longValue() < num.intValue()) {
             return false;
         }
         return true;

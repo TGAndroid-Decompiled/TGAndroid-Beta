@@ -3,11 +3,11 @@ package t3;
 import com.google.android.gms.internal.vision.e2;
 import java.util.Arrays;
 public final class b extends i {
-    public final byte[] f57599b;
+    public final byte[] f57564b;
 
     public b(String str, byte[] bArr) {
         super(str);
-        this.f57599b = bArr;
+        this.f57564b = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -16,7 +16,7 @@ public final class b extends i {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f57616a.equals(bVar.f57616a) && Arrays.equals(this.f57599b, bVar.f57599b)) {
+            if (this.f57581a.equals(bVar.f57581a) && Arrays.equals(this.f57564b, bVar.f57564b)) {
                 return true;
             }
         }
@@ -24,6 +24,6 @@ public final class b extends i {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f57599b) + e2.h(527, 31, this.f57616a);
+        return Arrays.hashCode(this.f57564b) + e2.h(527, 31, this.f57581a);
     }
 }

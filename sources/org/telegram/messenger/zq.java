@@ -1,13 +1,13 @@
 package org.telegram.messenger;
 public final class zq implements Runnable {
-    public final int f28371a;
-    public final ur f28372b;
-    public final boolean f28373c;
+    public final int f28335a;
+    public final ur f28336b;
+    public final boolean f28337c;
 
     public zq(ur urVar, boolean z10, int i7) {
-        this.f28371a = i7;
-        this.f28372b = urVar;
-        this.f28373c = z10;
+        this.f28335a = i7;
+        this.f28336b = urVar;
+        this.f28337c = z10;
     }
 
     @Override

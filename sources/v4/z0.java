@@ -1,19 +1,50 @@
 package v4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class z0 extends j1.b {
-    public static final Parcelable.Creator<z0> CREATOR = new c5.j(4);
-    public Parcelable f59313c;
+import android.util.Log;
+import android.view.animation.Interpolator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class z0 {
+    public int f59271a;
+    public int f59272b;
+    public int f59273c;
+    public int d;
+    public Interpolator f59274e;
+    public boolean f59275f;
+    public int f59276g;
 
-    public z0(Parcel parcel, ClassLoader classLoader) {
-        super(parcel, classLoader);
-        this.f59313c = parcel.readParcelable(classLoader == null ? p0.class.getClassLoader() : classLoader);
+    public final void a(RecyclerView recyclerView) {
+        int i7 = this.d;
+        if (i7 >= 0) {
+            this.d = -1;
+            recyclerView.d0(i7);
+            this.f59275f = false;
+        } else if (this.f59275f) {
+            Interpolator interpolator = this.f59274e;
+            if (interpolator != null && this.f59273c < 1) {
+                throw new IllegalStateException("If you provide an interpolator, you must set a positive duration");
+            }
+            int i10 = this.f59273c;
+            if (i10 >= 1) {
+                recyclerView.f2784s0.b(this.f59271a, this.f59272b, i10, interpolator);
+                int i11 = this.f59276g + 1;
+                this.f59276g = i11;
+                if (i11 > 10) {
+                    Log.e("RecyclerView", "Smooth Scroll action is being updated too frequently. Make sure you are not changing it unless necessary");
+                }
+                this.f59275f = false;
+                return;
+            }
+            throw new IllegalStateException("Scroll duration must be a positive number");
+        } else {
+            this.f59276g = 0;
+        }
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i7) {
-        super.writeToParcel(parcel, i7);
-        parcel.writeParcelable(this.f59313c, 0);
+    public final void b(int i7, int i10, int i11, Interpolator interpolator) {
+        this.f59271a = i7;
+        this.f59272b = i10;
+        this.f59273c = i11;
+        this.f59274e = interpolator;
+        this.f59275f = true;
     }
 }

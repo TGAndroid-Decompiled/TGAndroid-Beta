@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class o30 implements org.telegram.ui.Components.w30 {
-    public float f50446a;
-    public TLRPC.FileLocation f50447b;
-    public TLRPC.FileLocation f50448c;
+    public float f50435a;
+    public TLRPC.FileLocation f50436b;
+    public TLRPC.FileLocation f50437c;
     public org.telegram.messenger.gc d;
-    public final long f50449e;
-    public final f40 f50450f;
+    public final long f50438e;
+    public final f40 f50439f;
 
     public o30(f40 f40Var, long j3) {
-        this.f50450f = f40Var;
-        this.f50449e = j3;
+        this.f50439f = f40Var;
+        this.f50438e = j3;
     }
 
     @Override
     public final void I(float f10) {
-        this.f50450f.f47517m1.O(this.d, f10);
+        this.f50439f.f47479m1.O(this.d, f10);
         a(f10);
     }
 
@@ -27,15 +27,15 @@ public final class o30 implements org.telegram.ui.Components.w30 {
     }
 
     public final void a(float f10) {
-        this.f50446a = f10;
-        n30 n30Var = this.f50450f.L1;
+        this.f50435a = f10;
+        n30 n30Var = this.f50439f.L1;
         if (n30Var != null) {
             for (int i7 = 0; i7 < n30Var.getChildCount(); i7++) {
                 View childAt = n30Var.getChildAt(i7);
                 if (childAt instanceof org.telegram.ui.Cells.g4) {
                     org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) childAt;
                     if (g4Var.c()) {
-                        org.telegram.ui.Cells.c4 c4Var = g4Var.f30698y;
+                        org.telegram.ui.Cells.c4 c4Var = g4Var.f30664y;
                         c4Var.setProgress(f10);
                         if (f10 < 1.0f) {
                             org.telegram.messenger.g0.X3(c4Var, true, 1.0f, true, true);
@@ -54,7 +54,7 @@ public final class o30 implements org.telegram.ui.Components.w30 {
     }
 
     @Override
-    public final wq0 getCloseIntoObject() {
+    public final xq0 getCloseIntoObject() {
         return null;
     }
 

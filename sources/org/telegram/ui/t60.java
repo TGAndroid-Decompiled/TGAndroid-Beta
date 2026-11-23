@@ -5,26 +5,26 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class t60 implements Runnable {
-    public final int f52242a;
-    public final LaunchActivity f52243b;
+    public final int f52188a;
+    public final LaunchActivity f52189b;
 
     public t60(LaunchActivity launchActivity, int i7) {
-        this.f52242a = i7;
-        this.f52243b = launchActivity;
+        this.f52188a = i7;
+        this.f52189b = launchActivity;
     }
 
     @Override
     public final void run() {
         WeakReference weakReference;
-        int i7 = this.f52242a;
+        int i7 = this.f52188a;
         org.telegram.ui.ActionBar.g2 g2Var = null;
-        LaunchActivity launchActivity = this.f52243b;
+        LaunchActivity launchActivity = this.f52189b;
         switch (i7) {
             case 0:
                 String str = LaunchActivity.C1;
                 org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(launchActivity, null);
                 obVar.d(2131624009, new String[0]);
-                obVar.f38157b.setText(org.telegram.messenger.hd.N0(2131742545, null));
+                obVar.f38124b.setText(org.telegram.messenger.hd.N0(2131742547, null));
                 org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     org.telegram.ui.Components.gc.g(Q, obVar, 1500).j();
@@ -44,11 +44,11 @@ public final class t60 implements Runnable {
                 }
                 return;
             case 2:
-                if (!launchActivity.f43154w1) {
+                if (!launchActivity.f43119w1) {
                     try {
                         org.telegram.ui.ActionBar.t1 z10 = org.telegram.ui.Components.c5.z(launchActivity);
                         z10.setOnDismissListener(new l70(launchActivity, 0));
-                        launchActivity.f43154w1 = true;
+                        launchActivity.f43119w1 = true;
                         z10.show();
                     } catch (Throwable unused2) {
                         return;
@@ -64,25 +64,25 @@ public final class t60 implements Runnable {
                 }
                 return;
             case 4:
-                if (!launchActivity.f43139p0.getFragmentStack().isEmpty()) {
-                    launchActivity.f43139p0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.kw0(launchActivity, launchActivity.f43132k0, launchActivity.f43128i0, launchActivity.f43130j0));
+                if (!launchActivity.f43104p0.getFragmentStack().isEmpty()) {
+                    launchActivity.f43104p0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.kw0(launchActivity, launchActivity.f43097k0, launchActivity.f43093i0, launchActivity.f43095j0));
                     return;
                 }
                 return;
             case 5:
                 String str3 = LaunchActivity.C1;
                 launchActivity.getClass();
-                org.telegram.ui.Components.c20.f33982g0 = false;
+                org.telegram.ui.Components.c20.f33946g0 = false;
                 org.telegram.ui.Components.c20.k(launchActivity);
                 return;
             case 6:
                 String str4 = LaunchActivity.C1;
-                if (org.telegram.messenger.g0.f24029g != -10 && org.telegram.messenger.g0.f24027f == -10 && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (weakReference = org.telegram.messenger.g0.f24032i) != null && weakReference.get() == launchActivity) {
+                if (org.telegram.messenger.g0.f23993g != -10 && org.telegram.messenger.g0.f23991f == -10 && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (weakReference = org.telegram.messenger.g0.f23996i) != null && weakReference.get() == launchActivity) {
                     int i10 = org.telegram.messenger.g0.h;
-                    int i11 = org.telegram.messenger.g0.f24029g;
-                    org.telegram.messenger.g0.f24029g = -10;
+                    int i11 = org.telegram.messenger.g0.f23993g;
+                    org.telegram.messenger.g0.f23993g = -10;
                     org.telegram.messenger.g0.h = -10;
-                    org.telegram.messenger.g0.f24032i = null;
+                    org.telegram.messenger.g0.f23996i = null;
                     try {
                         launchActivity.setRequestedOrientation(i10);
                         launchActivity.setRequestedOrientation(i11);
@@ -94,11 +94,11 @@ public final class t60 implements Runnable {
                 }
                 return;
             case 7:
-                launchActivity.f43150u1 = null;
+                launchActivity.f43115u1 = null;
                 return;
             case 8:
                 if (launchActivity.T0 != null) {
-                    File file = new File(org.telegram.messenger.t0.h(), a8.p0.r(new StringBuilder("remote"), launchActivity.T0.f28573id, ".attheme"));
+                    File file = new File(org.telegram.messenger.t0.h(), a8.p0.r(new StringBuilder("remote"), launchActivity.T0.f28537id, ".attheme"));
                     TLRPC.TL_theme tL_theme = launchActivity.T0;
                     org.telegram.ui.ActionBar.l6 v = org.telegram.ui.ActionBar.m6.v(file, tL_theme.title, tL_theme, true);
                     if (v != null) {
@@ -109,8 +109,8 @@ public final class t60 implements Runnable {
                 }
                 return;
             case 9:
-                ArrayList arrayList = launchActivity.f43120e0;
-                ArrayList arrayList2 = launchActivity.f43122f0;
+                ArrayList arrayList = launchActivity.f43085e0;
+                ArrayList arrayList2 = launchActivity.f43087f0;
                 if (org.telegram.messenger.g0.Q1()) {
                     if (!arrayList2.isEmpty()) {
                         g2Var = (org.telegram.ui.ActionBar.g2) i5.c.h(1, arrayList2);
@@ -124,7 +124,7 @@ public final class t60 implements Runnable {
                 }
                 return;
             case 10:
-                launchActivity.f43152v1 = null;
+                launchActivity.f43117v1 = null;
                 return;
             default:
                 String str5 = LaunchActivity.C1;

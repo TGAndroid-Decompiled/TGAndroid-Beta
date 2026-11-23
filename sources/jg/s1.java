@@ -24,21 +24,21 @@ public abstract class s1 extends dk0 {
     public ArrayList I;
     public String J;
     public int K;
-    public Context f17678c;
+    public Context f17644c;
     public ArrayList d;
-    public ArrayList f17679e;
-    public z1 f17680f;
+    public ArrayList f17645e;
+    public z1 f17646f;
     public a0.h h;
-    public Timer f17681n;
-    public boolean f17682r;
-    public boolean f17683s;
-    public boolean f17684w;
-    public boolean f17685x;
-    public long f17686y;
+    public Timer f17647n;
+    public boolean f17648r;
+    public boolean f17649s;
+    public boolean f17650w;
+    public boolean f17651x;
+    public long f17652y;
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59169f;
+    public final boolean D(v4.e1 e1Var) {
+        int i7 = e1Var.f59115f;
         if (i7 != 0 && i7 != 2 && i7 != 3) {
             return false;
         }
@@ -48,9 +48,9 @@ public abstract class s1 extends dk0 {
     public final Object E(int i7) {
         int size = this.d.size();
         int size2 = this.I.size();
-        z1 z1Var = this.f17680f;
-        int size3 = z1Var.f17758e.size();
-        int size4 = z1Var.f17762j.size();
+        z1 z1Var = this.f17646f;
+        int size3 = z1Var.f17724e.size();
+        int size4 = z1Var.f17728j.size();
         if (i7 >= 0 && i7 < size) {
             return this.d.get(i7);
         }
@@ -65,20 +65,20 @@ public abstract class s1 extends dk0 {
             i10 -= size2 + 1;
         }
         if (i10 >= 0 && i10 < size4) {
-            return z1Var.f17762j.get(i10);
+            return z1Var.f17728j.get(i10);
         }
         int i11 = i10 - size4;
         if (i11 <= 0 || i11 > size3) {
             return null;
         }
-        return z1Var.f17758e.get(i11 - 1);
+        return z1Var.f17724e.get(i11 - 1);
     }
 
     public abstract void F();
 
     public final void G(String str) {
         try {
-            Timer timer = this.f17681n;
+            Timer timer = this.f17647n;
             if (timer != null) {
                 timer.cancel();
             }
@@ -87,32 +87,32 @@ public abstract class s1 extends dk0 {
         }
         this.d.clear();
         this.I.clear();
-        this.f17679e.clear();
-        if (this.f17682r) {
-            this.f17680f.g(null, true, false, this.f17683s, this.f17684w, this.f17686y, this.f17685x, 0, 0);
+        this.f17645e.clear();
+        if (this.f17648r) {
+            this.f17646f.g(null, true, false, this.f17649s, this.f17650w, this.f17652y, this.f17651x, 0, 0);
         }
         f();
         if (!TextUtils.isEmpty(str)) {
             Timer timer2 = new Timer();
-            this.f17681n = timer2;
+            this.f17647n = timer2;
             timer2.schedule(new q1(0, this, str), 200L, 300L);
         }
     }
 
     @Override
     public final int b() {
-        z1 z1Var = this.f17680f;
+        z1 z1Var = this.f17646f;
         this.K = -1;
         int size = this.d.size();
         if (!this.I.isEmpty()) {
             this.K = size;
             size += this.I.size() + 1;
         }
-        int size2 = z1Var.f17758e.size();
+        int size2 = z1Var.f17724e.size();
         if (size2 != 0) {
             size += size2 + 1;
         }
-        int size3 = z1Var.f17762j.size();
+        int size3 = z1Var.f17728j.size();
         if (size3 != 0) {
             return size + size3;
         }
@@ -138,14 +138,14 @@ public abstract class s1 extends dk0 {
     }
 
     @Override
-    public final void t(v4.f1 r18, int r19) {
-        throw new UnsupportedOperationException("Method not decompiled: jg.s1.t(v4.f1, int):void");
+    public final void t(v4.e1 r18, int r19) {
+        throw new UnsupportedOperationException("Method not decompiled: jg.s1.t(v4.e1, int):void");
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         y3 y3Var;
-        Context context = this.f17678c;
+        Context context = this.f17644c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 3) {
@@ -156,7 +156,7 @@ public abstract class s1 extends dk0 {
                             yz yzVar = new yz(context, null);
                             yzVar.setIsSingleCell(true);
                             yzVar.setViewType(29);
-                            t6.h(m6.f29381d6, yzVar, null);
+                            t6.h(m6.f29347d6, yzVar, null);
                             y3Var = yzVar;
                         }
                     } else {
@@ -182,6 +182,6 @@ public abstract class s1 extends dk0 {
             h6Var2.F0 = true;
             y3Var = h6Var2;
         }
-        return new v4.f1(y3Var);
+        return new v4.e1(y3Var);
     }
 }

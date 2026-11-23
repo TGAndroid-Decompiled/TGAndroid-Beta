@@ -2,46 +2,46 @@ package hi;
 
 import android.animation.ValueAnimator;
 public final class b implements ValueAnimator.AnimatorUpdateListener {
-    public final int f14280a;
-    public final e f14281b;
+    public final int f14203a;
+    public final d f14204b;
 
-    public b(e eVar, int i7) {
-        this.f14280a = i7;
-        this.f14281b = eVar;
+    public b(d dVar, int i7) {
+        this.f14203a = i7;
+        this.f14204b = dVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f14280a) {
+        switch (this.f14203a) {
             case 0:
-                e eVar = this.f14281b;
-                eVar.getClass();
-                eVar.U = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                eVar.invalidate();
+                d dVar = this.f14204b;
+                dVar.getClass();
+                dVar.U = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                dVar.invalidate();
                 return;
             case 1:
-                e eVar2 = this.f14281b;
-                eVar2.getClass();
-                eVar2.f14565d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                eVar2.invalidate();
+                d dVar2 = this.f14204b;
+                dVar2.getClass();
+                dVar2.f14301d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar2.invalidate();
                 return;
             case 2:
-                e eVar3 = this.f14281b;
-                eVar3.getClass();
-                eVar3.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                eVar3.invalidate();
+                d dVar3 = this.f14204b;
+                dVar3.getClass();
+                dVar3.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar3.invalidate();
                 return;
             case 3:
-                e eVar4 = this.f14281b;
-                eVar4.getClass();
-                eVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                eVar4.invalidate();
+                d dVar4 = this.f14204b;
+                dVar4.getClass();
+                dVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar4.invalidate();
                 return;
             default:
-                e eVar5 = this.f14281b;
-                eVar5.getClass();
-                eVar5.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                eVar5.invalidate();
+                d dVar5 = this.f14204b;
+                dVar5.getClass();
+                dVar5.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar5.invalidate();
                 return;
         }
     }

@@ -1,7 +1,9 @@
 package c8;
 public abstract class ha {
-    public abstract void a(boolean z10);
-
-    public void b() {
+    public static boolean a(char c10) {
+        if (c10 != ' ' && c10 != '\t' && c10 != '\n' && c10 != '\r' && c10 != '\f') {
+            return false;
+        }
+        return true;
     }
 }

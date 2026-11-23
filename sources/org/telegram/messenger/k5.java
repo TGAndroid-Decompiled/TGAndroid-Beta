@@ -8,13 +8,13 @@ import android.widget.RemoteViewsService;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 public final class k5 implements RemoteViewsService.RemoteViewsFactory {
-    public ArrayList f25011a;
-    public Context f25012b;
-    public int f25013c;
+    public ArrayList f24975a;
+    public Context f24976b;
+    public int f24977c;
     public c d;
-    public Paint f25014e;
-    public RectF f25015f;
-    public a0.h f25016g;
+    public Paint f24978e;
+    public RectF f24979f;
+    public a0.h f24980g;
     public boolean h;
 
     @Override
@@ -22,7 +22,7 @@ public final class k5 implements RemoteViewsService.RemoteViewsFactory {
         if (this.h) {
             return 1;
         }
-        return ((int) Math.ceil(this.f25011a.size() / 2.0f)) + 1;
+        return ((int) Math.ceil(this.f24975a.size() / 2.0f)) + 1;
     }
 
     @Override
@@ -57,20 +57,20 @@ public final class k5 implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public final void onDataSetChanged() {
-        ArrayList arrayList = this.f25011a;
+        ArrayList arrayList = this.f24975a;
         arrayList.clear();
         c cVar = this.d;
         if (cVar != null) {
-            int i7 = cVar.f23202a;
+            int i7 = cVar.f23166a;
             if (k10.i(i7).p()) {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
                 a0.h hVar = new a0.h();
                 ur a02 = ur.a0(i7);
-                int i10 = this.f25013c;
-                a0.h hVar2 = this.f25016g;
+                int i10 = this.f24977c;
+                a0.h hVar2 = this.f24980g;
                 CountDownLatch countDownLatch = new CountDownLatch(1);
-                a02.f27250a.c(new bg.c(a02, i10, arrayList, 1, hVar2, hVar, arrayList3, arrayList2, countDownLatch));
+                a02.f27214a.c(new bg.c(a02, i10, arrayList, 1, hVar2, hVar, arrayList3, arrayList2, countDownLatch));
                 try {
                     countDownLatch.await();
                 } catch (Exception e10) {

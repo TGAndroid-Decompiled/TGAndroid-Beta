@@ -3,25 +3,25 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class bj {
-    public long f23110a;
-    public boolean f23111b;
-    public boolean f23112c;
+    public long f23074a;
+    public boolean f23075b;
+    public boolean f23076c;
     public gj h;
-    public boolean f23116i;
-    public boolean f23117j;
-    public final aj f23120m;
-    public boolean f23121n;
+    public boolean f23080i;
+    public boolean f23081j;
+    public final aj f23084m;
+    public boolean f23085n;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f23113e = new ArrayList();
-    public final HashMap f23114f = new HashMap();
-    public final a0.h f23115g = new a0.h();
-    public int f23118k = -1;
-    public int f23119l = 800;
+    public final ArrayList f23077e = new ArrayList();
+    public final HashMap f23078f = new HashMap();
+    public final a0.h f23079g = new a0.h();
+    public int f23082k = -1;
+    public int f23083l = 800;
 
     public bj() {
         ?? obj = new Object();
-        obj.f22930n = 1.0f;
-        this.f23120m = obj;
+        obj.f22894n = 1.0f;
+        this.f23084m = obj;
     }
 
     public final void a() {
@@ -31,14 +31,14 @@ public final class bj {
     public final gj b(int i7) {
         ArrayList arrayList = this.d;
         boolean isEmpty = arrayList.isEmpty();
-        HashMap hashMap = this.f23114f;
+        HashMap hashMap = this.f23078f;
         if (!isEmpty && hashMap.isEmpty()) {
             a();
         }
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             gj gjVar = (gj) arrayList.get(i10);
             yi yiVar = (yi) hashMap.get(gjVar);
-            if (yiVar != null && (yiVar.f28101l & i7) == i7) {
+            if (yiVar != null && (yiVar.f28065l & i7) == i7) {
                 return gjVar;
             }
         }
@@ -47,7 +47,7 @@ public final class bj {
 
     public final gj c() {
         int i7;
-        if (this.f23121n) {
+        if (this.f23085n) {
             i7 = 10;
         } else {
             i7 = 5;
@@ -59,9 +59,9 @@ public final class bj {
         if (gjVar == null) {
             return null;
         }
-        yi yiVar = (yi) this.f23114f.get(gjVar);
+        yi yiVar = (yi) this.f23078f.get(gjVar);
         if (yiVar == null) {
-            return (yi) this.f23115g.f(gjVar.e1());
+            return (yi) this.f23079g.f(gjVar.e1());
         }
         return yiVar;
     }
@@ -72,6 +72,6 @@ public final class bj {
             f10 += fArr[i7];
             i7++;
         }
-        return this.f23119l / f10;
+        return this.f23083l / f10;
     }
 }

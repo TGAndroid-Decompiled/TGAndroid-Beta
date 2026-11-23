@@ -10,19 +10,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class vy extends FrameLayout {
     public static final int h = 0;
-    public final org.telegram.ui.ActionBar.h6 f41587a;
-    public final TextView f41588b;
-    public final View f41589c;
+    public final org.telegram.ui.ActionBar.h6 f41561a;
+    public final TextView f41562b;
+    public final View f41563c;
     public final rh0 d;
-    public boolean f41590e;
-    public int f41591f;
+    public boolean f41564e;
+    public int f41565f;
 
     public vy(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.f41587a = h6Var;
+        this.f41561a = h6Var;
         View radialProgressView = new RadialProgressView(context, null);
-        addView(radialProgressView, c8.ma.c(-2.0f, -2));
-        this.f41589c = radialProgressView;
+        addView(radialProgressView, c8.na.c(-2.0f, -2));
+        this.f41563c = radialProgressView;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setPadding(org.telegram.messenger.g0.L(20.0f), 0, org.telegram.messenger.g0.L(20.0f), 0);
         linearLayout.setGravity(1);
@@ -34,14 +34,14 @@ public final class vy extends FrameLayout {
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setImportantForAccessibility(2);
         imageView.setVisibility(8);
-        linearLayout.addView((View) imageView, c8.ma.t(150, 150, 17, 0, 0, 0, 20));
+        linearLayout.addView((View) imageView, c8.na.t(150, 150, 17, 0, 0, 0, 20));
         TextView textView = new TextView(context);
-        this.f41588b = textView;
+        this.f41562b = textView;
         textView.setTextSize(1, 20.0f);
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29364c7, h6Var);
+        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29330c7, h6Var);
         org.telegram.messenger.f3.k(textView, 1, null, 2131747974);
-        linearLayout.addView(textView, c8.ma.r(-2, -2, 17));
-        addView(linearLayout, c8.ma.c(-2.0f, -2));
+        linearLayout.addView(textView, c8.na.r(-2, -2, 17));
+        addView(linearLayout, c8.na.c(-2.0f, -2));
         org.telegram.messenger.g0.X3(textView, false, 2.0f, true, false);
         org.telegram.messenger.g0.X3(radialProgressView, false, 1.0f, true, false);
         setOnTouchListener(new gi.a(19));
@@ -63,13 +63,13 @@ public final class vy extends FrameLayout {
     }
 
     public final void b() {
-        org.telegram.messenger.g0.X3(this.f41588b, false, 0.9f, true, true);
-        org.telegram.messenger.g0.X3(this.f41589c, true, 1.0f, true, true);
+        org.telegram.messenger.g0.X3(this.f41562b, false, 0.9f, true, true);
+        org.telegram.messenger.g0.X3(this.f41563c, true, 1.0f, true, true);
     }
 
     public final void c() {
-        org.telegram.messenger.g0.X3(this.f41588b, true, 0.9f, true, true);
-        org.telegram.messenger.g0.X3(this.f41589c, false, 1.0f, true, true);
+        org.telegram.messenger.g0.X3(this.f41562b, true, 0.9f, true, true);
+        org.telegram.messenger.g0.X3(this.f41563c, false, 1.0f, true, true);
     }
 
     @Override
@@ -81,7 +81,7 @@ public final class vy extends FrameLayout {
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         int measuredHeight;
         int paddingTop;
-        this.f41590e = true;
+        this.f41564e = true;
         int i13 = i11 - i7;
         int i14 = i12 - i10;
         int childCount = getChildCount();
@@ -89,12 +89,12 @@ public final class vy extends FrameLayout {
             View childAt = getChildAt(i15);
             if (childAt.getVisibility() != 8) {
                 int measuredWidth = (i13 - childAt.getMeasuredWidth()) / 2;
-                View view = this.f41589c;
+                View view = this.f41563c;
                 if (childAt == view && (view instanceof yz)) {
                     measuredHeight = (i14 - childAt.getMeasuredHeight()) / 2;
                     paddingTop = getPaddingTop();
                 } else {
-                    int i16 = this.f41591f;
+                    int i16 = this.f41565f;
                     if (i16 == 2) {
                         measuredHeight = (org.telegram.messenger.g0.L(100.0f) - childAt.getMeasuredHeight()) / 2;
                         paddingTop = getPaddingTop();
@@ -110,25 +110,25 @@ public final class vy extends FrameLayout {
                 childAt.layout(measuredWidth, i17, childAt.getMeasuredWidth() + measuredWidth, childAt.getMeasuredHeight() + i17);
             }
         }
-        this.f41590e = false;
+        this.f41564e = false;
     }
 
     @Override
     public final void requestLayout() {
-        if (!this.f41590e) {
+        if (!this.f41564e) {
             super.requestLayout();
         }
     }
 
     public void setProgressBarColor(int i7) {
-        View view = this.f41589c;
+        View view = this.f41563c;
         if (view instanceof RadialProgressView) {
             ((RadialProgressView) view).setProgressColor(i7);
         }
     }
 
     public void setShowAtCenter(boolean z10) {
-        this.f41591f = z10 ? 1 : 0;
+        this.f41565f = z10 ? 1 : 0;
     }
 
     public void setShowAtTop(boolean z10) {
@@ -138,32 +138,32 @@ public final class vy extends FrameLayout {
         } else {
             i7 = 0;
         }
-        this.f41591f = i7;
+        this.f41565f = i7;
     }
 
     public void setText(String str) {
-        this.f41588b.setText(str);
+        this.f41562b.setText(str);
     }
 
     public void setTextColor(int i7) {
-        TextView textView = this.f41588b;
+        TextView textView = this.f41562b;
         org.telegram.ui.ActionBar.t6.q(textView);
         textView.setTextColor(i7);
     }
 
     public void setTextSize(int i7) {
-        this.f41588b.setTextSize(1, i7);
+        this.f41562b.setTextSize(1, i7);
     }
 
     public void setTopImage(int i7) {
-        TextView textView = this.f41588b;
+        TextView textView = this.f41562b;
         if (i7 == 0) {
             textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
             return;
         }
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
         if (mutate != null) {
-            org.telegram.ui.ActionBar.t6.x(this, mutate, org.telegram.ui.ActionBar.m6.f29364c7, this.f41587a, PorterDuff.Mode.MULTIPLY);
+            org.telegram.ui.ActionBar.t6.x(this, mutate, org.telegram.ui.ActionBar.m6.f29330c7, this.f41561a, PorterDuff.Mode.MULTIPLY);
         }
         textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
         textView.setCompoundDrawablePadding(org.telegram.messenger.g0.L(1.0f));

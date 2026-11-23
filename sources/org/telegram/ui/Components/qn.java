@@ -16,23 +16,23 @@ public final class qn extends org.telegram.ui.Cells.b6 {
         if (uVar.isFocused() && uVar.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) ((tn) this.G.f49474e).f37519b.f40367a2).h, false, true, true, true);
+                org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) ((tn) this.G.f49452e).f37477b.f40352a2).h, false, true, true, true);
             }
         }
     }
 
     @Override
     public final void j(boolean z10) {
-        tn.R((tn) this.G.f49474e, this, z10);
+        tn.R((tn) this.G.f49452e, this, z10);
     }
 
     @Override
     public final void k(org.telegram.ui.Cells.b6 b6Var) {
-        tn.S((tn) this.G.f49474e, b6Var);
+        tn.S((tn) this.G.f49452e, b6Var);
     }
 
     @Override
     public final void l(bi.u uVar) {
-        ((tn) this.G.f49474e).f37519b.i1(uVar, true);
+        ((tn) this.G.f49452e).f37477b.i1(uVar, true);
     }
 }

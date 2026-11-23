@@ -7,12 +7,12 @@ import java.util.Arrays;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.PhotoViewer;
 public final class iu implements View.OnClickListener {
-    public final int f48827a;
-    public final cx f48828b;
+    public final int f48830a;
+    public final cx f48831b;
 
     public iu(cx cxVar, int i7) {
-        this.f48827a = i7;
-        this.f48828b = cxVar;
+        this.f48830a = i7;
+        this.f48831b = cxVar;
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class iu implements View.OnClickListener {
         CharSequence charSequence;
         tv tvVar;
         tv tvVar2;
-        int i7 = this.f48827a;
+        int i7 = this.f48830a;
         int i10 = 0;
-        cx cxVar = this.f48828b;
+        cx cxVar = this.f48831b;
         switch (i7) {
             case 0:
                 if (cxVar.o4() && (arrayList = cxVar.F2) != null && !arrayList.isEmpty() && cxVar.getParentActivity() != null) {
@@ -32,24 +32,24 @@ public final class iu implements View.OnClickListener {
                     if (nvVar != null) {
                         charSequence = nvVar.getFieldText();
                     } else {
-                        charSequence = ffVar.f28058a;
+                        charSequence = ffVar.f28022a;
                     }
                     ArrayList arrayList2 = cxVar.F2;
                     int size = arrayList2.size();
                     while (i10 < size) {
                         Object obj = arrayList2.get(i10);
                         i10++;
-                        ((org.telegram.messenger.ff) obj).f28058a = charSequence;
+                        ((org.telegram.messenger.ff) obj).f28022a = charSequence;
                     }
                     PhotoViewer.p1().I2(null, cxVar, cxVar.getResourceProvider());
-                    PhotoViewer.p1().f43344p7 = true;
-                    PhotoViewer.p1().f43353q7 = charSequence;
+                    PhotoViewer.p1().f43309p7 = true;
+                    PhotoViewer.p1().f43318q7 = charSequence;
                     ArrayList arrayList3 = new ArrayList(cxVar.F2);
                     boolean[] zArr = new boolean[cxVar.F2.size()];
                     Arrays.fill(zArr, true);
                     PhotoViewer.p1().f2(arrayList3, 0, 0, false, new hw(cxVar, zArr), null);
                     PhotoViewer p12 = PhotoViewer.p1();
-                    p12.f43257f4 = true;
+                    p12.f43222f4 = true;
                     CheckBox checkBox = p12.O0;
                     if (checkBox != null) {
                         checkBox.setVisibility(8);
@@ -86,11 +86,11 @@ public final class iu implements View.OnClickListener {
             case 4:
                 cxVar.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("community_id", cxVar.f46697a3);
+                bundle.putLong("community_id", cxVar.f46658a3);
                 cxVar.presentFragment(new li.s(bundle));
                 return;
             case 5:
-                cx cxVar2 = this.f48828b;
+                cx cxVar2 = this.f48831b;
                 ArrayList arrayList4 = cxVar2.K2;
                 if (cxVar2.E2 != null && !arrayList4.isEmpty()) {
                     cxVar2.O2 = false;
@@ -134,7 +134,7 @@ public final class iu implements View.OnClickListener {
                 cx.u0(cxVar);
                 return;
             case 15:
-                cxVar.showDialog((org.telegram.ui.ActionBar.w2) org.telegram.ui.Components.c5.l(cxVar.getParentActivity(), org.telegram.messenger.hd.N0(2131751226, null), org.telegram.messenger.hd.N0(2131751231, null), null, new hu(cxVar, 1), new zu(cxVar, 12), false, false, cxVar.getResourceProvider()).f15708b);
+                cxVar.showDialog((org.telegram.ui.ActionBar.w2) org.telegram.ui.Components.c5.l(cxVar.getParentActivity(), org.telegram.messenger.hd.N0(2131751226, null), org.telegram.messenger.hd.N0(2131751231, null), null, new hu(cxVar, 1), new zu(cxVar, 12), false, false, cxVar.getResourceProvider()).f15680b);
                 return;
             case 16:
                 cx.B0(cxVar);
@@ -144,7 +144,7 @@ public final class iu implements View.OnClickListener {
                 return;
             case 18:
                 PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment.f43480k0 = true;
+                premiumPreviewFragment.f43445k0 = true;
                 cxVar.presentFragment(premiumPreviewFragment);
                 org.telegram.messenger.g0.h3(new gu(cxVar, 10), 250L);
                 return;
@@ -153,7 +153,7 @@ public final class iu implements View.OnClickListener {
                 return;
             case 20:
                 PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment2.f43480k0 = true;
+                premiumPreviewFragment2.f43445k0 = true;
                 cxVar.presentFragment(premiumPreviewFragment2);
                 org.telegram.messenger.g0.h3(new zu(cxVar, 8), 250L);
                 return;

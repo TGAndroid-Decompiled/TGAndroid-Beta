@@ -6,55 +6,55 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.View;
-import bi.k8;
+import bi.n8;
 import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.nr;
 public abstract class z0 extends ek0 {
-    public static final Paint f58233k3;
-    public static final Paint f58234l3;
-    public static final Path f58235m3;
-    public static final Paint f58236n3;
-    public final Paint f58237f3;
-    public final Paint f58238g3;
-    public int f58239h3;
-    public sg.k0 f58240i3;
+    public static final Paint f58198k3;
+    public static final Paint f58199l3;
+    public static final Path f58200m3;
+    public static final Paint f58201n3;
+    public final Paint f58202f3;
+    public final Paint f58203g3;
+    public int f58204h3;
+    public sg.k0 f58205i3;
     public q0.a j3;
 
     static {
         Paint paint = new Paint(1);
-        f58233k3 = paint;
+        f58198k3 = paint;
         Paint paint2 = new Paint(1);
-        f58234l3 = paint2;
+        f58199l3 = paint2;
         paint.setColor(-2013265920);
         paint2.setColor(-1996488705);
-        f58235m3 = new Path();
-        f58236n3 = new Paint(1);
+        f58200m3 = new Path();
+        f58201n3 = new Paint(1);
     }
 
     public z0(Context context) {
         super(context, null);
-        this.f58237f3 = new Paint(1);
+        this.f58202f3 = new Paint(1);
         Paint paint = new Paint(1);
-        this.f58238g3 = paint;
-        this.f58239h3 = -1;
+        this.f58203g3 = paint;
+        this.f58204h3 = -1;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f));
-        setLayoutManager(new v4.t(7));
+        setLayoutManager(new v4.s(7));
         setAdapter(new x0(this, context));
         setOverScrollMode(2);
-        setOnItemClickListener(new k8(this, 21));
+        setOnItemClickListener(new n8(this, 21));
     }
 
     public static void A1(float f10, float f11, float f12, int i7, Canvas canvas) {
-        Paint paint = f58236n3;
+        Paint paint = f58201n3;
         paint.setColor(i7);
         if (paint.getAlpha() != 255) {
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(f10 - f12, f11 - f12, f10 + f12, f11 + f12);
             paint.setAlpha(255);
             canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
-            Path path = f58235m3;
+            Path path = f58200m3;
             path.rewind();
             path.moveTo(rectF.centerX(), rectF.centerY());
             path.lineTo((float) i5.c.c(-1.5707963267948966d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(-1.5707963267948966d) * (rectF.height() / 2.0f)) + rectF.centerY()));
@@ -80,12 +80,12 @@ public abstract class z0 extends ek0 {
                 float f12 = i7;
                 float f13 = f10 + f12;
                 float f14 = f11 + f12;
-                Paint paint = f58233k3;
+                Paint paint = f58198k3;
                 Canvas canvas2 = canvas;
                 canvas2.drawRect(f10, f11, f13, f14, paint);
                 float f15 = i7 * 2;
                 float f16 = f10 + f15;
-                Paint paint2 = f58234l3;
+                Paint paint2 = f58199l3;
                 float f17 = f11;
                 canvas2.drawRect(f13, f17, f16, f14, paint2);
                 float f18 = f17 + f15;
@@ -103,9 +103,9 @@ public abstract class z0 extends ek0 {
         float interpolation;
         float f11;
         if (z10) {
-            interpolation = nr.f37961g.getInterpolation(f10);
+            interpolation = nr.f37918g.getInterpolation(f10);
         } else {
-            interpolation = nr.f37962i.getInterpolation(f10);
+            interpolation = nr.f37919i.getInterpolation(f10);
         }
         float childCount = 1.0f / (getChildCount() - 1);
         for (int i7 = 0; i7 < getChildCount(); i7++) {
@@ -128,7 +128,7 @@ public abstract class z0 extends ek0 {
     }
 
     public int getSelectedColorIndex() {
-        return this.f58239h3;
+        return this.f58204h3;
     }
 
     public void setColorListener(q0.a aVar) {
@@ -136,12 +136,12 @@ public abstract class z0 extends ek0 {
     }
 
     public void setColorPalette(sg.k0 k0Var) {
-        this.f58240i3 = k0Var;
+        this.f58205i3 = k0Var;
         getAdapter().f();
     }
 
     public void setSelectedColorIndex(int i7) {
-        this.f58239h3 = i7;
+        this.f58204h3 = i7;
         getAdapter().f();
     }
 }

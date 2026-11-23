@@ -1,16 +1,13 @@
 package c8;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import android.util.Log;
 public abstract class kc {
-    public abstract void a(Rect rect, RectF rectF);
-
-    public abstract void b();
-
-    public abstract void c(Canvas canvas);
-
-    public abstract boolean d();
-
-    public abstract void e(float f10);
+    public static void a() {
+        int glGetError = GLES20.glGetError();
+        if (glGetError != 0) {
+            Log.d("Paint", GLUtils.getEGLErrorString(glGetError));
+        }
+    }
 }

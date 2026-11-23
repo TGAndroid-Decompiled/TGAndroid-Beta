@@ -1,8 +1,12 @@
 package a8;
 
-import android.view.View;
+import android.content.Context;
+import android.content.res.TypedArray;
 public abstract class z6 {
-    public abstract View b(int i7);
-
-    public abstract boolean c();
+    public static int a(Context context, int i7) {
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(16973825, new int[]{i7});
+        int resourceId = obtainStyledAttributes.getResourceId(0, -1);
+        obtainStyledAttributes.recycle();
+        return resourceId;
+    }
 }

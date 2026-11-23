@@ -10,17 +10,17 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class v1 {
-    public static volatile v1[] f27307f = new v1[4];
-    public static final Object[] f27308g = new Object[4];
-    public final int f27309a;
-    public long f27310b;
-    public t1 f27311c;
+    public static volatile v1[] f27271f = new v1[4];
+    public static final Object[] f27272g = new Object[4];
+    public final int f27273a;
+    public long f27274b;
+    public t1 f27275c;
     public final Set d;
-    public boolean f27312e;
+    public boolean f27276e;
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
-            f27308g[i7] = new Object();
+            f27272g[i7] = new Object();
         }
     }
 
@@ -28,9 +28,9 @@ public final class v1 {
         v1 v1Var;
         Exception exc;
         u1 u1Var;
-        this.f27309a = i7;
+        this.f27273a = i7;
         SharedPreferences sharedPreferences = np.u1(i7).h7;
-        this.f27310b = sharedPreferences.getLong("bday_check", 0L);
+        this.f27274b = sharedPreferences.getLong("bday_check", 0L);
         u1 u1Var2 = null;
         String string = sharedPreferences.getString("bday_contacts", null);
         if (string != null) {
@@ -39,7 +39,7 @@ public final class v1 {
                 int readInt32 = serializedData.readInt32(true);
                 if (readInt32 != 290452237) {
                     try {
-                        int i10 = u1.f27150b;
+                        int i10 = u1.f27114b;
                     } catch (Exception e10) {
                         exc = e10;
                         v1Var = this;
@@ -54,14 +54,14 @@ public final class v1 {
                 e = e11;
                 v1Var = this;
             }
-            if (u1Var != null && !u1Var.f27151a.isEmpty()) {
+            if (u1Var != null && !u1Var.f27115a.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
-                for (int i11 = 0; i11 < u1Var.f27151a.size(); i11++) {
-                    arrayList.add(Long.valueOf(((TL_account.TL_contactBirthday) u1Var.f27151a.get(i11)).contact_id));
+                for (int i11 = 0; i11 < u1Var.f27115a.size(); i11++) {
+                    arrayList.add(Long.valueOf(((TL_account.TL_contactBirthday) u1Var.f27115a.get(i11)).contact_id));
                 }
                 v1Var = this;
                 try {
-                    ur.a0(i7).f27250a.c(new eg(v1Var, i7, arrayList, u1Var, 2));
+                    ur.a0(i7).f27214a.c(new eg(v1Var, i7, arrayList, u1Var, 2));
                 } catch (Exception e12) {
                     e = e12;
                     exc = e;
@@ -77,13 +77,13 @@ public final class v1 {
 
     public static v1 a(int i7) {
         v1 v1Var;
-        v1 v1Var2 = f27307f[i7];
+        v1 v1Var2 = f27271f[i7];
         if (v1Var2 == null) {
-            synchronized (f27308g[i7]) {
+            synchronized (f27272g[i7]) {
                 try {
-                    v1Var = f27307f[i7];
+                    v1Var = f27271f[i7];
                     if (v1Var == null) {
-                        v1[] v1VarArr = f27307f;
+                        v1[] v1VarArr = f27271f;
                         v1 v1Var3 = new v1(i7);
                         v1VarArr[i7] = v1Var3;
                         v1Var = v1Var3;
@@ -118,19 +118,19 @@ public final class v1 {
     }
 
     public final t1 b() {
-        t1 t1Var = this.f27311c;
-        if (t1Var == null || this.d.contains(t1Var.f26944a)) {
+        t1 t1Var = this.f27275c;
+        if (t1Var == null || this.d.contains(t1Var.f26908a)) {
             return null;
         }
-        return this.f27311c;
+        return this.f27275c;
     }
 
     public final boolean c(long j3) {
-        t1 t1Var = this.f27311c;
+        t1 t1Var = this.f27275c;
         if (t1Var != null && t1Var.a(j3)) {
             return true;
         }
-        TLRPC.UserFull d2 = np.u1(this.f27309a).d2(j3);
+        TLRPC.UserFull d2 = np.u1(this.f27273a).d2(j3);
         if (d2 != null && e(d2.birthday) && !p10.c(d2)) {
             return true;
         }

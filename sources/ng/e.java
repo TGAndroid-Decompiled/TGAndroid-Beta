@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import c8.ma;
+import c8.na;
 import di.pb;
 import j6.o;
 import java.text.DecimalFormat;
@@ -44,55 +44,55 @@ public class e extends FrameLayout {
     public final h6 K;
     public final o L;
     public DecimalFormat M;
-    public boolean f21519a;
-    public final LinearLayout f21520b;
-    public c0[] f21521c;
+    public boolean f21485a;
+    public final LinearLayout f21486b;
+    public c0[] f21487c;
     public final TextView d;
-    public final TextView f21522e;
-    public final ImageView f21523f;
+    public final TextView f21488e;
+    public final ImageView f21489f;
     public final RadialProgressView h;
-    public final SimpleDateFormat f21524n;
-    public final SimpleDateFormat f21525r;
-    public final SimpleDateFormat f21526s;
-    public final SimpleDateFormat f21527w;
-    public final SimpleDateFormat f21528x;
-    public boolean f21529y;
+    public final SimpleDateFormat f21490n;
+    public final SimpleDateFormat f21491r;
+    public final SimpleDateFormat f21492s;
+    public final SimpleDateFormat f21493w;
+    public final SimpleDateFormat f21494x;
+    public boolean f21495y;
 
     public e(Context context, h6 h6Var) {
         super(context);
-        this.f21524n = new SimpleDateFormat("E, ");
-        this.f21525r = new SimpleDateFormat("MMM dd");
-        this.f21526s = new SimpleDateFormat("d MMM yyyy");
-        this.f21527w = new SimpleDateFormat("d MMM");
-        this.f21528x = new SimpleDateFormat(" HH:mm");
+        this.f21490n = new SimpleDateFormat("E, ");
+        this.f21491r = new SimpleDateFormat("MMM dd");
+        this.f21492s = new SimpleDateFormat("d MMM yyyy");
+        this.f21493w = new SimpleDateFormat("d MMM");
+        this.f21494x = new SimpleDateFormat(" HH:mm");
         this.H = true;
         this.L = new o(this, 4);
         this.K = h6Var;
         setPadding(g0.L(8.0f), g0.L(8.0f), g0.L(8.0f), g0.L(8.0f));
         LinearLayout linearLayout = new LinearLayout(getContext());
-        this.f21520b = linearLayout;
+        this.f21486b = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(g0.o());
         TextView textView2 = new TextView(context);
-        this.f21522e = textView2;
+        this.f21488e = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(g0.o());
         ImageView imageView = new ImageView(context);
-        this.f21523f = imageView;
+        this.f21489f = imageView;
         imageView.setImageResource(2131231268);
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
         this.h = radialProgressView;
         radialProgressView.setSize(g0.L(12.0f));
         radialProgressView.setStrokeWidth(g0.L(0.5f));
         radialProgressView.setVisibility(8);
-        addView(linearLayout, ma.d(-2, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
-        addView(textView, ma.d(-2, -2.0f, 8388611, 4.0f, 0.0f, 4.0f, 0.0f));
-        addView(textView2, ma.d(-2, -2.0f, 8388613, 4.0f, 0.0f, 4.0f, 0.0f));
-        addView(imageView, ma.d(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
-        addView(radialProgressView, ma.d(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
+        addView(linearLayout, na.d(-2, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
+        addView(textView, na.d(-2, -2.0f, 8388611, 4.0f, 0.0f, 4.0f, 0.0f));
+        addView(textView2, na.d(-2, -2.0f, 8388613, 4.0f, 0.0f, 4.0f, 0.0f));
+        addView(imageView, na.d(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
+        addView(radialProgressView, na.d(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
         b();
     }
 
@@ -104,19 +104,19 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i7 = m6.f29489j5;
+        int i7 = m6.f29455j5;
         TextView textView = this.d;
         h6 h6Var = this.K;
         t6.U(textView, i7, h6Var);
-        t6.U(this.f21522e, i7, h6Var);
+        t6.U(this.f21488e, i7, h6Var);
         int i10 = m6.Xj;
-        t6.s(this.f21523f, i10, h6Var, PorterDuff.Mode.SRC_ATOP);
+        t6.s(this.f21489f, i10, h6Var, PorterDuff.Mode.SRC_ATOP);
         this.h.setProgressColor(m6.w0(i10, h6Var));
         this.I = getContext().getResources().getDrawable(2131232756).mutate();
         int L = g0.L(4.0f);
-        this.J = m6.k0(L, L, L, L, m6.w0(m6.f29454h5, h6Var), m6.w0(m6.f29473i6, h6Var), -16777216);
+        this.J = m6.k0(L, L, L, L, m6.w0(m6.f29420h5, h6Var), m6.w0(m6.f29439i6, h6Var), -16777216);
         oq oqVar = new oq(this.I, this.J, g0.L(3.0f), g0.L(3.0f));
-        oqVar.f38338x = true;
+        oqVar.f38309x = true;
         setBackground(oqVar);
     }
 
@@ -131,7 +131,7 @@ public class e extends FrameLayout {
         int i15;
         boolean z12;
         int i16;
-        int length = this.f21521c.length;
+        int length = this.f21487c.length;
         int i17 = 2;
         boolean z13 = true;
         int i18 = 0;
@@ -141,37 +141,37 @@ public class e extends FrameLayout {
             transitionSet.setOrdering(0);
             TransitionManager.beginDelayedTransition(this, transitionSet);
         }
-        boolean z14 = this.f21519a;
+        boolean z14 = this.f21485a;
         TextView textView = this.d;
         if (z14) {
             textView.setText(String.format(Locale.ENGLISH, "%02d:00", Long.valueOf(j3)));
         } else {
-            if (this.f21529y) {
-                textView.setText(this.f21527w.format(new Date(j3)) + " — " + this.f21526s.format(new Date(604800000 + j3)));
+            if (this.f21495y) {
+                textView.setText(this.f21493w.format(new Date(j3)) + " — " + this.f21492s.format(new Date(604800000 + j3)));
             } else {
                 Date date = new Date(j3);
                 boolean z15 = this.E;
-                SimpleDateFormat simpleDateFormat = this.f21525r;
+                SimpleDateFormat simpleDateFormat = this.f21491r;
                 if (z15) {
                     str = a(simpleDateFormat.format(date));
                 } else {
-                    str = a(this.f21524n.format(date)) + a(simpleDateFormat.format(date));
+                    str = a(this.f21490n.format(date)) + a(simpleDateFormat.format(date));
                 }
                 textView.setText(str);
             }
             if (this.E) {
-                this.f21522e.setText(this.f21528x.format(Long.valueOf(j3)));
+                this.f21488e.setText(this.f21494x.format(Long.valueOf(j3)));
             }
         }
         long j10 = 0;
         for (int i19 = 0; i19 < arrayList.size(); i19++) {
-            if (((f) arrayList.get(i19)).f21541n) {
-                j10 += ((f) arrayList.get(i19)).f21530a.f21005a[i7];
+            if (((f) arrayList.get(i19)).f21507n) {
+                j10 += ((f) arrayList.get(i19)).f21496a.f20971a[i7];
             }
         }
         int i20 = 0;
         while (i20 < length) {
-            c0 c0Var = this.f21521c[i20];
+            c0 c0Var = this.f21487c[i20];
             int i21 = i20 % 2;
             if (i10 != z13 && i10 != i17) {
                 i12 = i20;
@@ -179,8 +179,8 @@ public class e extends FrameLayout {
                 i12 = i20 / 2;
             }
             f fVar = (f) arrayList.get(i12);
-            boolean z16 = fVar.f21541n;
-            mg.a aVar = fVar.f21530a;
+            boolean z16 = fVar.f21507n;
+            mg.a aVar = fVar.f21496a;
             if (!z16) {
                 ((LinearLayout) c0Var.f910e).setVisibility(8);
                 z12 = z13;
@@ -196,7 +196,7 @@ public class e extends FrameLayout {
                 }
                 linearLayout.setVisibility(i18);
                 int i22 = i20;
-                long j11 = aVar.f21005a[i7];
+                long j11 = aVar.f20971a[i7];
                 if (i10 == z13) {
                     if (i21 == 0) {
                         if (this.M == null) {
@@ -232,11 +232,11 @@ public class e extends FrameLayout {
                         charSequence = String.format("%d", Long.valueOf(j11));
                     } else {
                         int i23 = 0;
-                        while (f11 >= 1000.0f && i23 < g0.f24030g0.length - 1) {
+                        while (f11 >= 1000.0f && i23 < g0.f23994g0.length - 1) {
                             f11 /= 1000.0f;
                             i23++;
                         }
-                        charSequence = String.format("%.2f", Float.valueOf(f11)) + g0.f24030g0[i23];
+                        charSequence = String.format("%.2f", Float.valueOf(f11)) + g0.f23994g0[i23];
                     }
                 }
                 x5Var.setText(charSequence);
@@ -254,27 +254,27 @@ public class e extends FrameLayout {
                 } else {
                     textView3.setText(aVar.d);
                 }
-                int i25 = aVar.f21010g;
+                int i25 = aVar.f20976g;
                 h6 h6Var = this.K;
                 if (i25 >= 0 && m6.f1(i25)) {
-                    t6.U(x5Var, aVar.f21010g, h6Var);
+                    t6.U(x5Var, aVar.f20976g, h6Var);
                 } else {
-                    s6 s6Var = t6.f30068a;
+                    s6 s6Var = t6.f30034a;
                     x5Var.setTag(2131296711, null);
                     if (m6.D0().q()) {
-                        i13 = aVar.f21011i;
+                        i13 = aVar.f20977i;
                     } else {
                         i13 = aVar.h;
                     }
                     x5Var.setTextColor(i13);
                 }
-                int i26 = m6.f29489j5;
+                int i26 = m6.f29455j5;
                 t6.U(textView3, i26, h6Var);
                 if (this.F && textView2 != null) {
                     textView2.setVisibility(0);
                     t6.U(textView2, i26, h6Var);
                     i14 = i22;
-                    float f12 = ((float) ((f) arrayList.get(i14)).f21530a.f21005a[i7]) / ((float) j10);
+                    float f12 = ((float) ((f) arrayList.get(i14)).f21496a.f20971a[i7]) / ((float) j10);
                     if (f12 < 0.1f && f12 != 0.0f) {
                         i15 = 2;
                         z12 = true;
@@ -299,7 +299,7 @@ public class e extends FrameLayout {
         }
         boolean z17 = z13;
         boolean z18 = this.G;
-        ImageView imageView = this.f21523f;
+        ImageView imageView = this.f21489f;
         if (z18) {
             int i28 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
             if (i28 > 0) {
@@ -332,23 +332,23 @@ public class e extends FrameLayout {
             radialProgressView.setVisibility(8);
             return;
         }
-        this.f21523f.animate().setDuration(80L).alpha(1.0f).start();
+        this.f21489f.animate().setDuration(80L).alpha(1.0f).start();
         if (radialProgressView.getVisibility() == 0) {
             radialProgressView.animate().setDuration(80L).alpha(0.0f).setListener(new m3(this, 3)).start();
         }
     }
 
     public void setSize(int i7) {
-        LinearLayout linearLayout = this.f21520b;
+        LinearLayout linearLayout = this.f21486b;
         linearLayout.removeAllViews();
-        this.f21521c = new c0[i7];
+        this.f21487c = new c0[i7];
         for (int i10 = 0; i10 < i7; i10++) {
-            this.f21521c[i10] = new c0(this);
-            linearLayout.addView((LinearLayout) this.f21521c[i10].f910e);
+            this.f21487c[i10] = new c0(this);
+            linearLayout.addView((LinearLayout) this.f21487c[i10].f910e);
         }
     }
 
     public void setUseWeek(boolean z10) {
-        this.f21529y = z10;
+        this.f21495y = z10;
     }
 }

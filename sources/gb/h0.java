@@ -1,14 +1,14 @@
 package gb;
 
-import c8.h9;
+import c8.i9;
 import java.util.Map;
 public final class h0 implements oe.e {
-    public static final h0 f13384a;
+    public static final h0 f13347a;
     private static final me.d descriptor;
 
     static {
         ?? obj = new Object();
-        f13384a = obj;
+        f13347a = obj;
         oe.m mVar = new oe.m("com.google.firebase.sessions.SessionData", obj, 3);
         mVar.k("sessionDetails", false);
         mVar.k("backgroundTime", true);
@@ -23,13 +23,13 @@ public final class h0 implements oe.e {
         me.d dVar = descriptor;
         qe.h a10 = hVar.a(dVar);
         gd.c[] cVarArr = j0.d;
-        l0 l0Var = l0.f13413a;
-        n0 n0Var = value.f13405a;
-        Map map = value.f13407c;
-        g1 g1Var = value.f13406b;
+        l0 l0Var = l0.f13376a;
+        n0 n0Var = value.f13368a;
+        Map map = value.f13370c;
+        g1 g1Var = value.f13369b;
         a10.h(dVar, 0, l0Var, n0Var);
         if (a10.p(dVar) || g1Var != null) {
-            a10.g(dVar, 1, e1.f13366a, g1Var);
+            a10.g(dVar, 1, e1.f13329a, g1Var);
         }
         if (a10.p(dVar) || map != null) {
             a10.g(dVar, 2, (ke.a) cVarArr[2].getValue(), map);
@@ -60,11 +60,11 @@ public final class h0 implements oe.e {
                             throw new ke.d(d);
                         }
                     } else {
-                        g1Var = (g1) c10.j(dVar, 1, e1.f13366a, g1Var);
+                        g1Var = (g1) c10.j(dVar, 1, e1.f13329a, g1Var);
                         i7 |= 2;
                     }
                 } else {
-                    n0Var = (n0) c10.k(dVar, 0, l0.f13413a, n0Var);
+                    n0Var = (n0) c10.k(dVar, 0, l0.f13376a, n0Var);
                     i7 |= 1;
                 }
             } else {
@@ -77,7 +77,7 @@ public final class h0 implements oe.e {
 
     @Override
     public final ke.a[] c() {
-        return new ke.a[]{l0.f13413a, h9.a(e1.f13366a), h9.a((ke.a) j0.d[2].getValue())};
+        return new ke.a[]{l0.f13376a, i9.a(e1.f13329a), i9.a((ke.a) j0.d[2].getValue())};
     }
 
     @Override

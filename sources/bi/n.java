@@ -11,31 +11,31 @@ import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.LaunchActivity;
 public final class n implements r10 {
-    public final int f3911a;
-    public final long f3912b;
-    public final Object f3913c;
+    public final int f3860a;
+    public final long f3861b;
+    public final Object f3862c;
 
     public n(Object obj, long j3, int i7) {
-        this.f3911a = i7;
-        this.f3913c = obj;
-        this.f3912b = j3;
+        this.f3860a = i7;
+        this.f3862c = obj;
+        this.f3861b = j3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         boolean z10;
         int i7;
-        int i10 = this.f3911a;
-        long j3 = this.f3912b;
-        Object obj3 = this.f3913c;
+        int i10 = this.f3860a;
+        long j3 = this.f3861b;
+        Object obj3 = this.f3862c;
         switch (i10) {
             case 0:
                 y yVar = (y) obj3;
                 Boolean bool = (Boolean) obj;
                 String str = (String) obj2;
-                FrameLayout frameLayout = yVar.f4283g2;
+                FrameLayout frameLayout = yVar.f4228g2;
                 yVar.W1.setLoading(false);
-                yVar.f4298v2 = false;
+                yVar.f4243v2 = false;
                 if (bool != null) {
                     if (j3 > 0) {
                         z10 = true;
@@ -43,31 +43,31 @@ public final class n implements r10 {
                         z10 = false;
                     }
                     cc ccVar = new cc(yVar.getContext(), yVar.J0);
-                    ccVar.f34170a.setImageResource(2131231117);
+                    ccVar.f34134a.setImageResource(2131231117);
                     if (z10) {
                         i7 = 2131750290;
                     } else {
                         i7 = 2131750289;
                     }
                     String N0 = hd.N0(i7, null);
-                    TextView textView = ccVar.f34171b;
+                    TextView textView = ccVar.f34135b;
                     textView.setText(N0);
                     textView.setSingleLine(true);
                     textView.setTextSize(1, 15.0f);
                     textView.setMaxLines(1);
                     textView.setTypeface(org.telegram.messenger.g0.o());
-                    String a02 = hd.a0(null, null, 2131750325, Integer.valueOf(yVar.f4284h2.d.gifts_per_round));
-                    TextView textView2 = ccVar.f34172c;
+                    String a02 = hd.a0(null, null, 2131750325, Integer.valueOf(yVar.f4229h2.d.gifts_per_round));
+                    TextView textView2 = ccVar.f34136c;
                     textView2.setText(a02);
                     textView2.setSingleLine(false);
                     textView2.setMaxLines(5);
                     yVar.i1();
                     gc.f(frameLayout, ccVar, 2750).j();
-                    di.y8.y(yVar.f30173a, false).q(null, false, true);
+                    di.y8.y(yVar.f30139a, false).q(null, false, true);
                 }
                 if (str != null) {
                     yVar.i1();
-                    new lc(frameLayout, yVar.J0).Q(2131624012, 36, hd.a0(null, null, 2131743633, str)).j();
+                    new lc(frameLayout, yVar.J0).Q(2131624012, 36, hd.a0(null, null, 2131743635, str)).j();
                     return;
                 }
                 return;
@@ -91,7 +91,7 @@ public final class n implements r10 {
                 Long l10 = (Long) obj2;
                 String str2 = LaunchActivity.C1;
                 if ("paid".equals((String) obj) && l10.longValue() != 0) {
-                    org.telegram.messenger.g0.g3(new q2(launchActivity, l10, this.f3912b, 29));
+                    org.telegram.messenger.g0.g3(new s2(launchActivity, l10, this.f3861b, 29));
                     return;
                 }
                 return;

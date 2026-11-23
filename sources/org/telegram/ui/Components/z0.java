@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.content.DialogInterface;
 import android.view.View;
 public final class z0 implements DialogInterface.OnDismissListener {
-    public final int f42608a;
-    public final Object f42609b;
+    public final int f42566a;
+    public final Object f42567b;
 
     public z0(Object obj, int i7) {
-        this.f42608a = i7;
-        this.f42609b = obj;
+        this.f42566a = i7;
+        this.f42567b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i7 = this.f42608a;
-        Object obj = this.f42609b;
+        int i7 = this.f42566a;
+        Object obj = this.f42567b;
         switch (i7) {
             case 0:
                 ((org.telegram.ui.vf) obj).run();
@@ -35,7 +35,7 @@ public final class z0 implements DialogInterface.OnDismissListener {
                 return;
             case 5:
                 ot otVar = (ot) obj;
-                otVar.f38346b2 = null;
+                otVar.f38317b2 = null;
                 otVar.requestFocus();
                 return;
             case 6:
@@ -51,11 +51,11 @@ public final class z0 implements DialogInterface.OnDismissListener {
                 return;
             default:
                 ThemeEditorView themeEditorView = ((pz0) obj).d;
-                themeEditorView.f33192n = null;
+                themeEditorView.f33158n = null;
                 if (themeEditorView.d != null) {
-                    org.telegram.messenger.g0.w3(themeEditorView.f33188j, themeEditorView.f33183c, themeEditorView.f33187i);
+                    org.telegram.messenger.g0.w3(themeEditorView.f33154j, themeEditorView.f33149c, themeEditorView.f33153i);
                     try {
-                        themeEditorView.f33188j.addView(themeEditorView.f33183c, themeEditorView.f33187i);
+                        themeEditorView.f33154j.addView(themeEditorView.f33149c, themeEditorView.f33153i);
                         themeEditorView.e();
                         return;
                     } catch (Exception unused) {

@@ -2,18 +2,18 @@ package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.ls;
 public final class k6 implements Runnable {
-    public final int f29194a;
-    public final l6 f29195b;
+    public final int f29160a;
+    public final l6 f29161b;
 
     public k6(l6 l6Var, int i7) {
-        this.f29194a = i7;
-        this.f29195b = l6Var;
+        this.f29160a = i7;
+        this.f29161b = l6Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f29194a;
-        l6 l6Var = this.f29195b;
+        int i7 = this.f29160a;
+        l6 l6Var = this.f29161b;
         switch (i7) {
             case 0:
                 l6Var.s();

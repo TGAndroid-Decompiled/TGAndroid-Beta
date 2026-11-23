@@ -11,12 +11,12 @@ import org.telegram.ui.Components.c51;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.o41;
 public final class j implements r10 {
-    public final int f19976a;
-    public final p f19977b;
+    public final int f19942a;
+    public final p f19943b;
 
     public j(p pVar, int i7) {
-        this.f19976a = i7;
-        this.f19977b = pVar;
+        this.f19942a = i7;
+        this.f19943b = pVar;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class j implements r10 {
         String str2;
         int i7;
         TLRPC.ChatPhoto chatPhoto;
-        int i10 = this.f19976a;
+        int i10 = this.f19942a;
         int i11 = 0;
-        p pVar = this.f19977b;
+        p pVar = this.f19943b;
         switch (i10) {
             case 0:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
@@ -42,7 +42,7 @@ public final class j implements r10 {
             default:
                 ArrayList arrayList2 = (ArrayList) obj;
                 c51 c51Var = (c51) obj2;
-                arrayList2.add(o41.l(140, pVar.f20015s));
+                arrayList2.add(o41.l(140, pVar.f19981s));
                 if (v3.y(1, pVar.J)) {
                     TLRPC.Chat chat = pVar.J;
                     if (chat != null && (chatPhoto = chat.photo) != null && !(chatPhoto instanceof TLRPC.TL_chatPhotoEmpty)) {
@@ -51,20 +51,20 @@ public final class j implements r10 {
                         i7 = 2131751839;
                     }
                     o41 c10 = o41.c(141, 2131232498, hd.N0(i7, null));
-                    c10.f38096r = true;
+                    c10.f38063r = true;
                     arrayList2.add(c10);
                     arrayList2.add(o41.E(2, org.telegram.messenger.g0.L(14.0f)));
                     arrayList2.add(o41.t(0, hd.N0(2131751862, null)));
-                    arrayList2.add(o41.j(7, pVar.f20014r));
+                    arrayList2.add(o41.j(7, pVar.f19980r));
                     arrayList2.add(o41.E(1, org.telegram.messenger.g0.L(14.0f)));
                 }
                 if (v3.w(2, pVar.J)) {
                     arrayList2.add(o41.t(3, hd.N0(2131751860, null)));
                     o41 y10 = o41.y(150, hd.N0(2131751831, null), hd.N0(2131751830, null));
-                    y10.L(pVar.f20013n);
+                    y10.L(pVar.f19979n);
                     arrayList2.add(y10);
                     o41 y11 = o41.y(151, hd.N0(2131751829, null), hd.N0(2131751828, null));
-                    y11.L(!pVar.f20013n);
+                    y11.L(!pVar.f19979n);
                     arrayList2.add(y11);
                     arrayList2.add(o41.E(4, org.telegram.messenger.g0.L(14.0f)));
                 }
@@ -95,7 +95,7 @@ public final class j implements r10 {
                 }
                 arrayList2.add(o41.E(5, org.telegram.messenger.g0.L(14.0f)));
                 o41 c11 = o41.c(146, 2131232178, hd.N0(2131751906, null));
-                c11.f38096r = true;
+                c11.f38063r = true;
                 arrayList2.add(c11);
                 TLRPC.ChatFull chatFull4 = pVar.K;
                 if (chatFull4 != null && (arrayList = chatFull4.linked_peers) != null) {

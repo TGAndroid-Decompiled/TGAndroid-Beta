@@ -1,47 +1,30 @@
 package hi;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.ek0;
-public final class r6 implements eh.a {
-    public final int f15338a;
-    public final org.telegram.ui.ActionBar.w2 f15339b;
+import android.os.Build;
+import c8.ed;
+public final class r6 implements ri.n, ri.m {
+    public final v6 f15307a;
 
-    public r6(org.telegram.ui.ActionBar.w2 w2Var, int i7) {
-        this.f15338a = i7;
-        this.f15339b = w2Var;
+    public r6(v6 v6Var) {
+        this.f15307a = v6Var;
     }
 
     @Override
-    public final void c(dh.a aVar, RectF rectF) {
-        switch (this.f15338a) {
-            case 0:
-            default:
-                aVar.f8401a = true;
-                return;
-        }
+    public int e() {
+        v6 v6Var = this.f15307a;
+        v6Var.getClass();
+        return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29347d6, v6Var.J0);
     }
 
     @Override
-    public final void d(Canvas canvas, RectF rectF) {
-        switch (this.f15338a) {
-            case 0:
-                u6 u6Var = (u6) this.f15339b;
-                ek0 ek0Var = u6Var.f39531o1;
-                ih.d.b(ek0Var, canvas, rectF, ek0Var, u6Var.f30176b, 255);
-                return;
-            default:
-                org.telegram.ui.ActionBar.w2 w2Var = this.f15339b;
-                ViewGroup viewGroup = w2Var.f30176b;
-                if (viewGroup != null && viewGroup.getVisibility() == 0 && viewGroup.getParent() == w2Var.f30179c) {
-                    canvas.save();
-                    canvas.translate(viewGroup.getX(), viewGroup.getY());
-                    viewGroup.draw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
+    public void l(int i7) {
+        v6 v6Var = this.f15307a;
+        dh.g gVar = v6Var.f15538h2;
+        if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
+            if (ed.a(i7, 4)) {
+                gVar.h(v6Var.Y0.e());
+            }
+            gVar.e(v6Var.f15541k2, v6Var.f30142b.getWidth(), v6Var.f30142b.getHeight());
         }
     }
 }

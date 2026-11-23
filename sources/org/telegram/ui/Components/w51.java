@@ -3,29 +3,29 @@ package org.telegram.ui.Components;
 import android.view.TextureView;
 import java.util.ArrayList;
 public final class w51 implements Runnable {
-    public final int f41650a;
-    public final Object f41651b;
+    public final int f41624a;
+    public final Object f41625b;
 
     public w51(Object obj, int i7) {
-        this.f41650a = i7;
-        this.f41651b = obj;
+        this.f41624a = i7;
+        this.f41625b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f41650a) {
+        switch (this.f41624a) {
             case 0:
-                ez ezVar = ((y51) this.f41651b).f42322b;
+                ez ezVar = ((y51) this.f41625b).f42300b;
                 if (ezVar != null) {
                     ezVar.c(false, true, false);
                     return;
                 }
                 return;
             case 1:
-                i61 i61Var = (i61) this.f41651b;
+                i61 i61Var = (i61) this.f41625b;
                 l2.f0 f0Var = i61Var.d;
                 if (f0Var != null) {
-                    TextureView textureView = i61Var.f36169n;
+                    TextureView textureView = i61Var.f36124n;
                     f0Var.F1();
                     if (textureView != null && textureView == f0Var.X) {
                         f0Var.F1();
@@ -33,7 +33,7 @@ public final class w51 implements Runnable {
                         f0Var.x1(null);
                         f0Var.q1(0, 0);
                     }
-                    i61Var.d.z1(i61Var.f36169n);
+                    i61Var.d.z1(i61Var.f36124n);
                     ArrayList arrayList = i61Var.O;
                     if (arrayList != null) {
                         i61Var.k0(arrayList, i61Var.P);
@@ -47,18 +47,18 @@ public final class w51 implements Runnable {
                 }
                 return;
             case 2:
-                i61 i61Var2 = (i61) ((oi.b6) this.f41651b).f22032f;
-                i61Var2.f36157b0.removeCallbacksAndMessages(null);
+                i61 i61Var2 = (i61) ((oi.a6) this.f41625b).f21969f;
+                i61Var2.f36112b0.removeCallbacksAndMessages(null);
                 i61Var2.L.x(false, null);
                 return;
             case 3:
-                ((k61) this.f41651b).f36824g = false;
+                ((k61) this.f41625b).f36790g = false;
                 return;
             case 4:
-                ((z71) ((k40) ((org.telegram.ui.ActionBar.h1) this.f41651b).f28995b).f36766b).f42729w.b();
+                ((z71) ((k40) ((org.telegram.ui.ActionBar.h1) this.f41625b).f28961b).f36732b).f42687w.b();
                 return;
             default:
-                ((v71) this.f41651b).d(false, true);
+                ((v71) this.f41625b).d(false, true);
                 return;
         }
     }

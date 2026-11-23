@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
-public final class ia0 extends v4.u {
+public final class ia0 extends v4.t {
     public final int S;
     public final KeyEvent.Callback T;
 
@@ -22,22 +22,22 @@ public final class ia0 extends v4.u {
         switch (this.S) {
             case 0:
                 qa0 qa0Var = (qa0) this.T;
-                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) qa0Var.f38861r.f24737f.get(i7);
+                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) qa0Var.f38815r.f24701f.get(i7);
                 org.telegram.messenger.bj a10 = qa0.a(qa0Var, gjVar);
                 if (a10 == null) {
                     return false;
                 }
-                ArrayList arrayList = a10.f23113e;
+                ArrayList arrayList = a10.f23077e;
                 org.telegram.messenger.yi d2 = a10.d(gjVar);
-                if (d2.f28092a == d2.f28093b || (b10 = d2.f28094c) != d2.d || b10 == 0) {
+                if (d2.f28056a == d2.f28057b || (b10 = d2.f28058c) != d2.d || b10 == 0) {
                     return false;
                 }
                 int size = arrayList.size();
                 for (int i10 = 0; i10 < size; i10++) {
                     org.telegram.messenger.yi yiVar = (org.telegram.messenger.yi) arrayList.get(i10);
                     if (yiVar != d2) {
-                        byte b13 = yiVar.f28094c;
-                        byte b14 = d2.f28094c;
+                        byte b13 = yiVar.f28058c;
+                        byte b14 = d2.f28058c;
                         if (b13 <= b14 && yiVar.d >= b14) {
                             return true;
                         }
@@ -49,15 +49,15 @@ public final class ia0 extends v4.u {
                 org.telegram.messenger.gj gjVar2 = (org.telegram.messenger.gj) eg0Var.N.get((B() - 1) - i7);
                 org.telegram.messenger.bj l10 = eg0Var.l(gjVar2);
                 if (l10 != null) {
-                    ArrayList arrayList2 = l10.f23113e;
+                    ArrayList arrayList2 = l10.f23077e;
                     org.telegram.messenger.yi d10 = l10.d(gjVar2);
-                    if (d10.f28092a != d10.f28093b && (b11 = d10.f28094c) == d10.d && b11 != 0) {
+                    if (d10.f28056a != d10.f28057b && (b11 = d10.f28058c) == d10.d && b11 != 0) {
                         int size2 = arrayList2.size();
                         for (int i11 = 0; i11 < size2; i11++) {
                             org.telegram.messenger.yi yiVar2 = (org.telegram.messenger.yi) arrayList2.get(i11);
                             if (yiVar2 != d10) {
-                                byte b15 = yiVar2.f28094c;
-                                byte b16 = d10.f28094c;
+                                byte b15 = yiVar2.f28058c;
+                                byte b16 = d10.f28058c;
                                 if (b15 <= b16 && yiVar2.d >= b16) {
                                     return true;
                                 }
@@ -67,17 +67,17 @@ public final class ia0 extends v4.u {
                 }
                 return false;
             default:
-                hi.a5 a5Var = (hi.a5) this.T;
-                ArrayList arrayList3 = a5Var.f58202t0;
+                hi.b5 b5Var = (hi.b5) this.T;
+                ArrayList arrayList3 = b5Var.f58167t0;
                 int size3 = (arrayList3.size() - 1) - i7;
-                org.telegram.messenger.bj bjVar = a5Var.f58203u0;
-                if (bjVar != null && size3 >= 0 && size3 < arrayList3.size() && (d = bjVar.d((org.telegram.messenger.gj) arrayList3.get(size3))) != null && d.f28092a != d.f28093b && (b12 = d.f28094c) == d.d && b12 != 0) {
-                    int size4 = bjVar.f23113e.size();
+                org.telegram.messenger.bj bjVar = b5Var.f58168u0;
+                if (bjVar != null && size3 >= 0 && size3 < arrayList3.size() && (d = bjVar.d((org.telegram.messenger.gj) arrayList3.get(size3))) != null && d.f28056a != d.f28057b && (b12 = d.f28058c) == d.d && b12 != 0) {
+                    int size4 = bjVar.f23077e.size();
                     for (int i12 = 0; i12 < size4; i12++) {
-                        org.telegram.messenger.yi yiVar3 = (org.telegram.messenger.yi) bjVar.f23113e.get(i12);
+                        org.telegram.messenger.yi yiVar3 = (org.telegram.messenger.yi) bjVar.f23077e.get(i12);
                         if (yiVar3 != d) {
-                            byte b17 = yiVar3.f28094c;
-                            byte b18 = d.f28094c;
+                            byte b17 = yiVar3.f28058c;
+                            byte b18 = d.f28058c;
                             if (b17 <= b18 && yiVar3.d >= b18) {
                                 return true;
                             }
@@ -107,12 +107,12 @@ public final class ia0 extends v4.u {
     }
 
     @Override
-    public void b0(v4.x0 x0Var, v4.c1 c1Var) {
+    public void b0(v4.w0 w0Var, v4.b1 b1Var) {
         switch (this.S) {
             case 0:
-                boolean z10 = org.telegram.messenger.s2.f26730a;
+                boolean z10 = org.telegram.messenger.s2.f26694a;
                 try {
-                    super.b0(x0Var, c1Var);
+                    super.b0(w0Var, b1Var);
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -120,38 +120,38 @@ public final class ia0 extends v4.u {
                     return;
                 }
             default:
-                super.b0(x0Var, c1Var);
+                super.b0(w0Var, b1Var);
                 return;
         }
     }
 
     @Override
-    public int j(v4.c1 c1Var) {
+    public int j(v4.b1 b1Var) {
         switch (this.S) {
             case 1:
-                return B0(c1Var);
+                return B0(b1Var);
             default:
-                return super.j(c1Var);
+                return super.j(b1Var);
         }
     }
 
     @Override
-    public int k(v4.c1 c1Var) {
+    public int k(v4.b1 b1Var) {
         switch (this.S) {
             case 1:
-                return C0(c1Var);
+                return C0(b1Var);
             default:
-                return super.k(c1Var);
+                return super.k(b1Var);
         }
     }
 
     @Override
-    public int l(v4.c1 c1Var) {
+    public int l(v4.b1 b1Var) {
         switch (this.S) {
             case 1:
-                return D0(c1Var);
+                return D0(b1Var);
             default:
-                return super.l(c1Var);
+                return super.l(b1Var);
         }
     }
 

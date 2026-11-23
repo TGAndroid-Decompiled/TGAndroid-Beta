@@ -5,28 +5,28 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.view.View;
 public final class f6 implements org.telegram.ui.ActionBar.u6 {
-    public final int f47607a;
-    public final org.telegram.ui.ActionBar.g2 f47608b;
+    public final int f47569a;
+    public final org.telegram.ui.ActionBar.g2 f47570b;
 
     public f6(int i7, org.telegram.ui.ActionBar.g2 g2Var) {
-        this.f47607a = i7;
-        this.f47608b = g2Var;
+        this.f47569a = i7;
+        this.f47570b = g2Var;
     }
 
     @Override
     public final void a(float f10) {
-        int i7 = this.f47607a;
+        int i7 = this.f47569a;
     }
 
     @Override
     public final void b() {
-        int i7 = this.f47607a;
-        org.telegram.ui.ActionBar.g2 g2Var = this.f47608b;
+        int i7 = this.f47569a;
+        org.telegram.ui.ActionBar.g2 g2Var = this.f47570b;
         switch (i7) {
             case 0:
-                au auVar = ((x6) g2Var).f53649a0;
+                au auVar = ((x6) g2Var).f53571a0;
                 if (auVar != null) {
-                    auVar.v0(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29454h5, false));
+                    auVar.v0(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29420h5, false));
                     return;
                 }
                 return;
@@ -34,10 +34,10 @@ public final class f6 implements org.telegram.ui.ActionBar.u6 {
                 ((bn) g2Var).Fb();
                 return;
             case 2:
-                ((vo) g2Var).getClass();
+                ((uo) g2Var).getClass();
                 return;
             case 3:
-                ((cp) g2Var).h.f();
+                ((bp) g2Var).h.f();
                 return;
             case 4:
                 ((np) g2Var).getClass();
@@ -54,11 +54,11 @@ public final class f6 implements org.telegram.ui.ActionBar.u6 {
                 if (kwVar != null) {
                     org.telegram.ui.ActionBar.y actionMode = kwVar.getActionMode();
                     if (actionMode != null) {
-                        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29737w8, actionMode, cxVar.getResourceProvider());
+                        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29703w8, actionMode, cxVar.getResourceProvider());
                     }
                     org.telegram.ui.ActionBar.q0 speedItem = cxVar.D0.getSpeedItem();
                     if (speedItem != null) {
-                        speedItem.getIconView().setColorFilter(new PorterDuffColorFilter(cxVar.getThemedColor(org.telegram.ui.ActionBar.m6.f29775y8), PorterDuff.Mode.SRC_IN));
+                        speedItem.getIconView().setColorFilter(new PorterDuffColorFilter(cxVar.getThemedColor(org.telegram.ui.ActionBar.m6.f29741y8), PorterDuff.Mode.SRC_IN));
                         return;
                     }
                     return;
@@ -92,7 +92,7 @@ public final class f6 implements org.telegram.ui.ActionBar.u6 {
                 ((PremiumPreviewFragment) g2Var).z0();
                 return;
             case 17:
-                ((st0) g2Var).getClass();
+                ((tt0) g2Var).getClass();
                 return;
             case 18:
                 RectF rectF = ProfileActivity.Z6;
@@ -102,39 +102,39 @@ public final class f6 implements org.telegram.ui.ActionBar.u6 {
                 ((jx0) g2Var).getClass();
                 return;
             case 20:
-                ((ey0) g2Var).f47414b.f();
+                ((ey0) g2Var).f47375b.f();
                 return;
             case 21:
                 ((c51) g2Var).s0();
                 return;
             case 22:
                 ThemeActivity themeActivity = (ThemeActivity) g2Var;
-                for (int i10 = 0; i10 < themeActivity.f43877b.getChildCount(); i10++) {
-                    View childAt = themeActivity.f43877b.getChildAt(i10);
+                for (int i10 = 0; i10 < themeActivity.f43842b.getChildCount(); i10++) {
+                    View childAt = themeActivity.f43842b.getChildAt(i10);
                     if (childAt instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) childAt).getAdapter().f();
                     } else if (childAt instanceof rl0) {
                         ((rl0) childAt).updateColors();
                     }
                 }
-                for (int i11 = 0; i11 < themeActivity.f43877b.getCachedChildCount(); i11++) {
-                    View P = themeActivity.f43877b.P(i11);
+                for (int i11 = 0; i11 < themeActivity.f43842b.getCachedChildCount(); i11++) {
+                    View P = themeActivity.f43842b.P(i11);
                     if (P instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) P).getAdapter().f();
                     } else if (P instanceof rl0) {
                         ((rl0) P).updateColors();
                     }
                 }
-                for (int i12 = 0; i12 < themeActivity.f43877b.getHiddenChildCount(); i12++) {
-                    View V = themeActivity.f43877b.V(i12);
+                for (int i12 = 0; i12 < themeActivity.f43842b.getHiddenChildCount(); i12++) {
+                    View V = themeActivity.f43842b.V(i12);
                     if (V instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) V).getAdapter().f();
                     } else if (V instanceof rl0) {
                         ((rl0) V).updateColors();
                     }
                 }
-                for (int i13 = 0; i13 < themeActivity.f43877b.getAttachedScrapChildCount(); i13++) {
-                    View O = themeActivity.f43877b.O(i13);
+                for (int i13 = 0; i13 < themeActivity.f43842b.getAttachedScrapChildCount(); i13++) {
+                    View O = themeActivity.f43842b.O(i13);
                     if (O instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) O).getAdapter().f();
                     } else if (O instanceof rl0) {

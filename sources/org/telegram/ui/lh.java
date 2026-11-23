@@ -1,61 +1,46 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-public final class lh implements ViewTreeObserver.OnPreDrawListener {
-    public final int f49618a = 0;
-    public boolean f49619b;
-    public final Object f49620c;
-    public final Object d;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class lh implements org.telegram.ui.Components.j8 {
+    public final bn f49597a;
 
-    public lh(f40 f40Var, org.telegram.messenger.u3 u3Var, boolean z10) {
-        this.d = f40Var;
-        this.f49620c = u3Var;
-        this.f49619b = z10;
+    public lh(bn bnVar) {
+        this.f49597a = bnVar;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f49618a) {
-            case 0:
-                bn bnVar = (bn) this.d;
-                ViewTreeObserver viewTreeObserver = (ViewTreeObserver) this.f49620c;
-                if (viewTreeObserver.isAlive()) {
-                    viewTreeObserver.removeOnPreDrawListener(this);
-                }
-                vi viVar = bnVar.f46147p1;
-                if (viVar != null) {
-                    viVar.getViewTreeObserver().removeOnPreDrawListener(this);
-                }
-                if (this.f49619b) {
-                    return true;
-                }
-                this.f49619b = true;
-                return bnVar.M8();
-            default:
-                f40 f40Var = (f40) this.d;
-                n30 n30Var = f40Var.L1;
-                n30Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                f40Var.f47533p4 = null;
-                b20 b20Var = f40Var.Z3;
-                org.telegram.messenger.u3 u3Var = (org.telegram.messenger.u3) this.f49620c;
-                b20Var.j(u3Var);
-                if (f40Var.f47522n2) {
-                    f40Var.f47522n2 = false;
-                    f40Var.R0(true);
-                    if (this.f49619b && u3Var != null) {
-                        n30Var.v0(0);
-                    }
-                    f40Var.f47522n2 = true;
-                } else {
-                    f40Var.R0(true);
-                }
-                f40Var.f30176b.requestLayout();
-                return false;
+    public final void R0(int i7, int i10) {
+        int i11;
+        bn bnVar = this.f49597a;
+        bnVar.getMessagesController().T4(i7, bnVar.f46056l6);
+        if (bnVar.f46147s8 != null || bnVar.f46134r8 != null) {
+            bnVar.h8();
+            UndoView undoView = bnVar.N3;
+            if (undoView == null) {
+                return;
+            }
+            long j3 = bnVar.f46056l6;
+            TLRPC.User user = bnVar.f45972f;
+            TLRPC.UserFull userFull = bnVar.f46147s8;
+            if (userFull != null) {
+                i11 = userFull.ttl_period;
+            } else {
+                i11 = bnVar.f46134r8.ttl_period;
+            }
+            undoView.k(j3, i10, user, Integer.valueOf(i11), null, null);
         }
     }
 
-    public lh(bn bnVar, ViewTreeObserver viewTreeObserver) {
-        this.d = bnVar;
-        this.f49620c = viewTreeObserver;
+    @Override
+    public final void dismiss() {
+        org.telegram.ui.ActionBar.g1 g1Var = this.f49597a.f45994g9;
+        if (g1Var != null) {
+            g1Var.dismiss();
+        }
+    }
+
+    @Override
+    public final void d1() {
     }
 }

@@ -9,9 +9,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class vy extends FrameLayout {
-    public final TextView f52916a;
-    public final ImageView f52917b;
-    public boolean f52918c;
+    public final TextView f52884a;
+    public final ImageView f52885b;
+    public boolean f52886c;
 
     public vy(Context context) {
         super(context);
@@ -23,16 +23,16 @@ public final class vy extends FrameLayout {
         float f12;
         float f13;
         TextView textView = new TextView(context);
-        this.f52916a = textView;
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29621q6, null);
+        this.f52884a = textView;
+        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29587q6, null);
         i5.c.r(16.0f, 1, 2131751701, textView, null);
-        if (org.telegram.messenger.hd.f24444a0) {
+        if (org.telegram.messenger.hd.f24408a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7);
-        boolean z10 = org.telegram.messenger.hd.f24444a0;
+        boolean z10 = org.telegram.messenger.hd.f24408a0;
         if (z10) {
             i10 = 16;
         } else {
@@ -44,7 +44,7 @@ public final class vy extends FrameLayout {
             i11 = 16;
         }
         textView.setPadding(i10, 0, i11, 0);
-        boolean z11 = org.telegram.messenger.hd.f24444a0;
+        boolean z11 = org.telegram.messenger.hd.f24408a0;
         if (z11) {
             f10 = 0.0f;
         } else {
@@ -55,18 +55,18 @@ public final class vy extends FrameLayout {
         } else {
             f11 = 0.0f;
         }
-        addView(textView, c8.ma.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
+        addView(textView, c8.na.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f52917b = imageView;
+        this.f52885b = imageView;
         Drawable drawable = context.getResources().getDrawable(2131232561);
         Drawable drawable2 = context.getResources().getDrawable(2131232562);
         int i12 = org.telegram.ui.ActionBar.m6.Fi;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         org.telegram.ui.ActionBar.t6.x(this, drawable, i12, null, mode);
-        org.telegram.ui.ActionBar.t6.x(this, drawable2, org.telegram.ui.ActionBar.m6.f29511k7, null, mode);
+        org.telegram.ui.ActionBar.t6.x(this, drawable2, org.telegram.ui.ActionBar.m6.f29477k7, null, mode);
         imageView.setImageDrawable(new org.telegram.ui.Components.oq(drawable, drawable2));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        boolean z12 = org.telegram.messenger.hd.f24444a0;
+        boolean z12 = org.telegram.messenger.hd.f24408a0;
         int i13 = (z12 ? 5 : 3) | 16;
         if (z12) {
             f12 = 0.0f;
@@ -78,15 +78,15 @@ public final class vy extends FrameLayout {
         } else {
             f13 = 0.0f;
         }
-        addView(imageView, c8.ma.d(32, 32.0f, i13, f12, 0.0f, f13, 0.0f));
+        addView(imageView, c8.na.d(32, 32.0f, i13, f12, 0.0f, f13, 0.0f));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f52918c) {
-            TextView textView = this.f52916a;
-            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.m6.f29504k0);
+        if (this.f52886c) {
+            TextView textView = this.f52884a;
+            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.m6.f29470k0);
         }
     }
 
@@ -105,10 +105,10 @@ public final class vy extends FrameLayout {
         } else {
             f10 = 0.5f;
         }
-        this.f52916a.setAlpha(f10);
+        this.f52884a.setAlpha(f10);
         if (z10) {
             f11 = 1.0f;
         }
-        this.f52917b.setAlpha(f11);
+        this.f52885b.setAlpha(f11);
     }
 }

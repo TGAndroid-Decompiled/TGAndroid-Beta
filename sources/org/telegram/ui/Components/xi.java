@@ -4,15 +4,15 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class xi implements org.telegram.messenger.r10 {
-    public final int f42097a;
-    public final ej f42098b;
-    public final org.telegram.messenger.np f42099c;
+    public final int f42052a;
+    public final ej f42053b;
+    public final org.telegram.messenger.np f42054c;
     public final int d;
 
     public xi(ej ejVar, org.telegram.messenger.np npVar, int i7, int i10) {
-        this.f42097a = i10;
-        this.f42098b = ejVar;
-        this.f42099c = npVar;
+        this.f42052a = i10;
+        this.f42053b = ejVar;
+        this.f42054c = npVar;
         this.d = i7;
     }
 
@@ -21,15 +21,15 @@ public final class xi implements org.telegram.messenger.r10 {
         String str;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio2;
-        switch (this.f42097a) {
+        switch (this.f42052a) {
             case 0:
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                ej ejVar = this.f42098b;
-                ejVar.f34819e0 = -1;
-                ejVar.f34828n0 = false;
+                ej ejVar = this.f42053b;
+                ejVar.f34805e0 = -1;
+                ejVar.f34814n0 = false;
                 if (messages_botresults != null) {
-                    this.f42099c.f4(messages_botresults.users, false);
+                    this.f42054c.f4(messages_botresults.users, false);
                     ArrayList<TLRPC.BotInlineResult> arrayList = messages_botresults.results;
                     int size = arrayList.size();
                     int i7 = 0;
@@ -44,7 +44,7 @@ public final class xi implements org.telegram.messenger.r10 {
                                 tL_message.out = true;
                                 int i10 = ejVar.m0;
                                 ejVar.m0 = i10 - 1;
-                                tL_message.f28455id = i10;
+                                tL_message.f28419id = i10;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
@@ -62,7 +62,7 @@ public final class xi implements org.telegram.messenger.r10 {
                                 tL_message.flags |= 768;
                                 ?? obj3 = new Object();
                                 org.telegram.messenger.gj gjVar = new org.telegram.messenger.gj(i11, tL_message, false, true);
-                                obj3.f27727e = gjVar;
+                                obj3.f27691e = gjVar;
                                 TLRPC.Document F0 = gjVar.F0();
                                 if (F0 != null) {
                                     int i12 = 0;
@@ -78,17 +78,17 @@ public final class xi implements org.telegram.messenger.r10 {
                                         }
                                     }
                                     if (tL_documentAttributeAudio != null) {
-                                        obj3.f27724a = tL_documentAttributeAudio.performer;
-                                        obj3.f27725b = tL_documentAttributeAudio.title;
-                                        obj3.f27726c = (int) tL_documentAttributeAudio.duration;
+                                        obj3.f27688a = tL_documentAttributeAudio.performer;
+                                        obj3.f27689b = tL_documentAttributeAudio.title;
+                                        obj3.f27690c = (int) tL_documentAttributeAudio.duration;
                                         ejVar.N.add(obj3);
                                     }
                                 }
                             }
                         }
                     }
-                    ejVar.f34826l0 = messages_botresults.next_offset;
-                    ejVar.f34822h0 = !TextUtils.isEmpty(str);
+                    ejVar.f34812l0 = messages_botresults.next_offset;
+                    ejVar.f34808h0 = !TextUtils.isEmpty(str);
                     ejVar.U();
                     return;
                 }
@@ -96,14 +96,14 @@ public final class xi implements org.telegram.messenger.r10 {
             default:
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ej ejVar2 = this.f42098b;
+                ej ejVar2 = this.f42053b;
                 ArrayList arrayList2 = ejVar2.M;
                 ejVar2.V = -1;
                 boolean z10 = false;
-                ejVar2.f34815a0 = false;
+                ejVar2.f34801a0 = false;
                 if (messages_messages != null) {
                     ArrayList<TLRPC.User> arrayList3 = messages_messages.users;
-                    org.telegram.messenger.np npVar = this.f42099c;
+                    org.telegram.messenger.np npVar = this.f42054c;
                     npVar.f4(arrayList3, false);
                     npVar.Z3(messages_messages.chats, false);
                     ArrayList<TLRPC.Message> arrayList4 = messages_messages.messages;
@@ -114,7 +114,7 @@ public final class xi implements org.telegram.messenger.r10 {
                         i13++;
                         ?? obj4 = new Object();
                         org.telegram.messenger.gj gjVar2 = new org.telegram.messenger.gj(this.d, message, false, true);
-                        obj4.f27727e = gjVar2;
+                        obj4.f27691e = gjVar2;
                         TLRPC.Document F02 = gjVar2.F0();
                         if (F02 != null) {
                             int i14 = 0;
@@ -130,19 +130,19 @@ public final class xi implements org.telegram.messenger.r10 {
                                 }
                             }
                             if (tL_documentAttributeAudio2 != null) {
-                                obj4.f27724a = tL_documentAttributeAudio2.performer;
-                                obj4.f27725b = tL_documentAttributeAudio2.title;
-                                obj4.f27726c = (int) tL_documentAttributeAudio2.duration;
+                                obj4.f27688a = tL_documentAttributeAudio2.performer;
+                                obj4.f27689b = tL_documentAttributeAudio2.title;
+                                obj4.f27690c = (int) tL_documentAttributeAudio2.duration;
                                 arrayList2.add(obj4);
                             }
                         }
                     }
                     int i15 = messages_messages.next_rate;
-                    ejVar2.f34817c0 = i15;
+                    ejVar2.f34803c0 = i15;
                     if (i15 != 0 || (messages_messages.count > 0 && arrayList2.size() < messages_messages.count)) {
                         z10 = true;
                     }
-                    ejVar2.f34818d0 = z10;
+                    ejVar2.f34804d0 = z10;
                     ejVar2.U();
                     return;
                 }

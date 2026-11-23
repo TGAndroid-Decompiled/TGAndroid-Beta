@@ -1,12 +1,6 @@
 package a8;
 public abstract class n7 {
-    public static boolean a(float[] fArr) {
-        if (fArr != null && fArr.length == 8) {
-            float f10 = fArr[0];
-            if (f10 == fArr[1] && f10 == fArr[2] && f10 == fArr[3] && f10 == fArr[4] && f10 == fArr[5] && f10 == fArr[6] && f10 == fArr[7]) {
-                return true;
-            }
-        }
-        return false;
+    public static float a(float f10) {
+        return 1.0f - c8.m9.a(f10, 0.0f, 1.0f);
     }
 }

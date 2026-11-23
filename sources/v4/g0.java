@@ -1,231 +1,40 @@
 package v4;
 
-import android.graphics.Rect;
-import android.view.View;
-import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
-public final class g0 extends androidx.emoji2.text.g {
-    public final int d;
+public final class g0 implements Runnable {
+    public final int f59137a;
+    public final RecyclerView f59138b;
 
-    public g0(c0 c0Var, int i7) {
-        super(c0Var);
-        this.d = i7;
+    public g0(RecyclerView recyclerView, int i7) {
+        this.f59137a = i7;
+        this.f59138b = recyclerView;
     }
 
     @Override
-    public final int a(View view) {
-        int y10;
-        int i7;
-        switch (this.d) {
+    public final void run() {
+        switch (this.f59137a) {
             case 0:
-                ((c0) this.f2265b).getClass();
-                y10 = p0.y(view);
-                i7 = ((ViewGroup.MarginLayoutParams) ((q0) view.getLayoutParams())).rightMargin;
-                break;
-            default:
-                ((c0) this.f2265b).getClass();
-                y10 = p0.v(view);
-                i7 = ((ViewGroup.MarginLayoutParams) ((q0) view.getLayoutParams())).bottomMargin;
-                break;
-        }
-        return y10 + i7;
-    }
-
-    @Override
-    public final int b(View view) {
-        int measuredWidth;
-        int i7;
-        switch (this.d) {
-            case 0:
-                q0 q0Var = (q0) view.getLayoutParams();
-                ((c0) this.f2265b).getClass();
-                Rect rect = ((q0) view.getLayoutParams()).f59266b;
-                measuredWidth = view.getMeasuredWidth() + rect.left + rect.right + ((ViewGroup.MarginLayoutParams) q0Var).leftMargin;
-                i7 = ((ViewGroup.MarginLayoutParams) q0Var).rightMargin;
-                break;
-            default:
-                q0 q0Var2 = (q0) view.getLayoutParams();
-                ((c0) this.f2265b).getClass();
-                Rect rect2 = ((q0) view.getLayoutParams()).f59266b;
-                measuredWidth = view.getMeasuredHeight() + rect2.top + rect2.bottom + ((ViewGroup.MarginLayoutParams) q0Var2).topMargin;
-                i7 = ((ViewGroup.MarginLayoutParams) q0Var2).bottomMargin;
-                break;
-        }
-        return measuredWidth + i7;
-    }
-
-    @Override
-    public final int c(View view) {
-        int measuredHeight;
-        int i7;
-        switch (this.d) {
-            case 0:
-                q0 q0Var = (q0) view.getLayoutParams();
-                ((c0) this.f2265b).getClass();
-                Rect rect = ((q0) view.getLayoutParams()).f59266b;
-                measuredHeight = view.getMeasuredHeight() + rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) q0Var).topMargin;
-                i7 = ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin;
-                break;
-            default:
-                q0 q0Var2 = (q0) view.getLayoutParams();
-                ((c0) this.f2265b).getClass();
-                Rect rect2 = ((q0) view.getLayoutParams()).f59266b;
-                measuredHeight = view.getMeasuredWidth() + rect2.left + rect2.right + ((ViewGroup.MarginLayoutParams) q0Var2).leftMargin;
-                i7 = ((ViewGroup.MarginLayoutParams) q0Var2).rightMargin;
-                break;
-        }
-        return measuredHeight + i7;
-    }
-
-    @Override
-    public final int d(View view) {
-        int x10;
-        int i7;
-        switch (this.d) {
-            case 0:
-                ((c0) this.f2265b).getClass();
-                x10 = p0.x(view);
-                i7 = ((ViewGroup.MarginLayoutParams) ((q0) view.getLayoutParams())).leftMargin;
-                break;
-            default:
-                ((c0) this.f2265b).getClass();
-                x10 = p0.z(view);
-                i7 = ((ViewGroup.MarginLayoutParams) ((q0) view.getLayoutParams())).topMargin;
-                break;
-        }
-        return x10 - i7;
-    }
-
-    @Override
-    public final int e() {
-        switch (this.d) {
-            case 0:
-                return ((c0) this.f2265b).f59259m;
-            default:
-                return ((c0) this.f2265b).f59260n;
-        }
-    }
-
-    @Override
-    public final int f() {
-        int i7;
-        int E;
-        switch (this.d) {
-            case 0:
-                c0 c0Var = (c0) this.f2265b;
-                i7 = c0Var.f59259m;
-                E = c0Var.E();
-                break;
-            default:
-                c0 c0Var2 = (c0) this.f2265b;
-                i7 = c0Var2.f59260n;
-                E = c0Var2.C();
-                break;
-        }
-        return i7 - E;
-    }
-
-    @Override
-    public final int g() {
-        switch (this.d) {
-            case 0:
-                return ((c0) this.f2265b).E();
-            default:
-                return ((c0) this.f2265b).C();
-        }
-    }
-
-    @Override
-    public final int h() {
-        switch (this.d) {
-            case 0:
-                return ((c0) this.f2265b).f59257k;
-            default:
-                return ((c0) this.f2265b).f59258l;
-        }
-    }
-
-    @Override
-    public final int i() {
-        switch (this.d) {
-            case 0:
-                return ((c0) this.f2265b).f59258l;
-            default:
-                return ((c0) this.f2265b).f59257k;
-        }
-    }
-
-    @Override
-    public final int j() {
-        switch (this.d) {
-            case 0:
-                return ((c0) this.f2265b).D();
-            default:
-                return ((c0) this.f2265b).J();
-        }
-    }
-
-    @Override
-    public final int k() {
-        switch (this.d) {
-            case 0:
-                c0 c0Var = (c0) this.f2265b;
-                return (c0Var.f59259m - c0Var.D()) - c0Var.E();
-            default:
-                return ((c0) this.f2265b).K();
-        }
-    }
-
-    @Override
-    public final int l(View view) {
-        switch (this.d) {
-            case 0:
-                Rect rect = (Rect) this.f2266c;
-                ((c0) this.f2265b).L(view, rect);
-                return rect.right;
-            default:
-                Rect rect2 = (Rect) this.f2266c;
-                ((c0) this.f2265b).L(view, rect2);
-                return rect2.bottom;
-        }
-    }
-
-    @Override
-    public final int m(View view) {
-        switch (this.d) {
-            case 0:
-                Rect rect = (Rect) this.f2266c;
-                ((c0) this.f2265b).L(view, rect);
-                return rect.left;
-            default:
-                Rect rect2 = (Rect) this.f2266c;
-                ((c0) this.f2265b).L(view, rect2);
-                return rect2.top;
-        }
-    }
-
-    @Override
-    public final void n(int i7) {
-        switch (this.d) {
-            case 0:
-                RecyclerView recyclerView = ((c0) this.f2265b).f59250b;
-                if (recyclerView != null) {
-                    int u10 = recyclerView.f2815e.u();
-                    for (int i10 = 0; i10 < u10; i10++) {
-                        recyclerView.f2815e.t(i10).offsetLeftAndRight(i7);
+                RecyclerView recyclerView = this.f59138b;
+                if (recyclerView.J && !recyclerView.isLayoutRequested()) {
+                    if (!recyclerView.H) {
+                        recyclerView.requestLayout();
+                        return;
+                    } else if (recyclerView.M) {
+                        recyclerView.L = true;
+                        return;
+                    } else {
+                        recyclerView.p();
+                        return;
                     }
-                    return;
                 }
                 return;
             default:
-                RecyclerView recyclerView2 = ((c0) this.f2265b).f59250b;
-                if (recyclerView2 != null) {
-                    int u11 = recyclerView2.f2815e.u();
-                    for (int i11 = 0; i11 < u11; i11++) {
-                        recyclerView2.f2815e.t(i11).offsetTopAndBottom(i7);
-                    }
-                    return;
+                RecyclerView recyclerView2 = this.f59138b;
+                m0 m0Var = recyclerView2.f2765d0;
+                if (m0Var != null) {
+                    m0Var.m();
                 }
+                recyclerView2.B0 = false;
                 return;
         }
     }

@@ -1,5 +1,5 @@
 package me;
 
-import c8.w9;
-public abstract class a extends w9 {
+import c8.x9;
+public abstract class a extends x9 {
 }

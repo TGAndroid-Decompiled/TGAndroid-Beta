@@ -4,21 +4,21 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class nj0 extends AnimatorListenerAdapter {
-    public final int f50204a;
-    public final boolean f50205b;
-    public final hk0 f50206c;
+    public final int f50208a;
+    public final boolean f50209b;
+    public final hk0 f50210c;
 
     public nj0(hk0 hk0Var, boolean z10, int i7) {
-        this.f50204a = i7;
-        this.f50206c = hk0Var;
-        this.f50205b = z10;
+        this.f50208a = i7;
+        this.f50210c = hk0Var;
+        this.f50209b = z10;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        switch (this.f50204a) {
+        switch (this.f50208a) {
             case 0:
-                hk0 hk0Var = this.f50206c;
+                hk0 hk0Var = this.f50210c;
                 AnimatorSet animatorSet = hk0Var.N;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     hk0Var.N = null;
@@ -26,7 +26,7 @@ public final class nj0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                hk0 hk0Var2 = this.f50206c;
+                hk0 hk0Var2 = this.f50210c;
                 AnimatorSet animatorSet2 = hk0Var2.N;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
                     hk0Var2.N = null;
@@ -38,12 +38,12 @@ public final class nj0 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f50204a) {
+        switch (this.f50208a) {
             case 0:
-                hk0 hk0Var = this.f50206c;
+                hk0 hk0Var = this.f50210c;
                 AnimatorSet animatorSet = hk0Var.N;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f50205b) {
+                    if (!this.f50209b) {
                         hk0Var.O.setVisibility(4);
                         return;
                     } else {
@@ -53,10 +53,10 @@ public final class nj0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                hk0 hk0Var2 = this.f50206c;
+                hk0 hk0Var2 = this.f50210c;
                 AnimatorSet animatorSet2 = hk0Var2.N;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f50205b) {
+                    if (!this.f50209b) {
                         hk0Var2.Q.setVisibility(4);
                         return;
                     } else {

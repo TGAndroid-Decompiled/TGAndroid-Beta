@@ -33,28 +33,28 @@ public final class q2 extends ap0 {
         lc lcVar = new lc(z3Var.M0, this.J0);
         if (hVar.m() == 1) {
             long j3 = hVar.j(0);
-            if (j3 == k10.i(this.f30173a).f24987n) {
-                gc G = lcVar.G(2131624191, 5000, org.telegram.messenger.g0.W2(hd.a0(null, null, 2131744220, new Object[0])));
-                G.f35535r = false;
+            if (j3 == k10.i(this.f30139a).f24951n) {
+                gc G = lcVar.G(2131624191, 5000, org.telegram.messenger.g0.W2(hd.a0(null, null, 2131744222, new Object[0])));
+                G.f35497r = false;
                 G.j();
             } else if (j3 < 0) {
-                TLRPC.Chat O0 = np.u1(this.f30173a).O0(Long.valueOf(-j3));
+                TLRPC.Chat O0 = np.u1(this.f30139a).O0(Long.valueOf(-j3));
                 if (tL_forumTopic != null) {
                     str = tL_forumTopic.title;
                 } else {
                     str = O0.title;
                 }
-                gc G2 = lcVar.G(2131624029, 5000, org.telegram.messenger.g0.W2(hd.a0(null, null, 2131744233, str)));
-                G2.f35535r = false;
+                gc G2 = lcVar.G(2131624029, 5000, org.telegram.messenger.g0.W2(hd.a0(null, null, 2131744235, str)));
+                G2.f35497r = false;
                 G2.j();
             } else {
-                gc G3 = lcVar.G(2131624029, 5000, org.telegram.messenger.g0.W2(hd.a0(null, null, 2131744233, np.u1(this.f30173a).c2(Long.valueOf(j3)).first_name)));
-                G3.f35535r = false;
+                gc G3 = lcVar.G(2131624029, 5000, org.telegram.messenger.g0.W2(hd.a0(null, null, 2131744235, np.u1(this.f30139a).c2(Long.valueOf(j3)).first_name)));
+                G3.f35497r = false;
                 G3.j();
             }
         } else {
             gc Q = lcVar.Q(2131624029, 36, org.telegram.messenger.g0.W2(hd.G(hVar.m(), "StorySharedToManyChats", Integer.valueOf(hVar.m()))));
-            Q.f35535r = false;
+            Q.f35497r = false;
             Q.j();
         }
         try {

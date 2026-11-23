@@ -13,39 +13,39 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 public final class c {
-    public long f13925b;
-    public final h f13926c;
+    public long f13888b;
+    public final h f13889c;
     public ArrayList d;
-    public final SparseIntArray f13927e;
-    public final s f13928f;
-    public final ArrayList f13929g;
+    public final SparseIntArray f13890e;
+    public final s f13891f;
+    public final ArrayList f13892g;
     public final ArrayDeque h;
-    public final y f13930i;
-    public final r f13931j;
-    public BasePendingResult f13932k;
-    public BasePendingResult f13933l;
-    public final Set f13934m = DesugarCollections.synchronizedSet(new HashSet());
-    public final j6.b f13924a = new j6.b("MediaQueue", null);
+    public final y f13893i;
+    public final r f13894j;
+    public BasePendingResult f13895k;
+    public BasePendingResult f13896l;
+    public final Set f13897m = DesugarCollections.synchronizedSet(new HashSet());
+    public final j6.b f13887a = new j6.b("MediaQueue", null);
 
     public c(h hVar) {
-        this.f13926c = hVar;
+        this.f13889c = hVar;
         Math.max(20, 1);
         this.d = new ArrayList();
-        this.f13927e = new SparseIntArray();
-        this.f13929g = new ArrayList();
+        this.f13890e = new SparseIntArray();
+        this.f13892g = new ArrayList();
         this.h = new ArrayDeque(20);
-        this.f13930i = new y(Looper.getMainLooper(), 0);
-        this.f13931j = new r(this, 0);
+        this.f13893i = new y(Looper.getMainLooper(), 0);
+        this.f13894j = new r(this, 0);
         hVar.p(new c0(this, 1));
-        this.f13928f = new s(this);
-        this.f13925b = e();
+        this.f13891f = new s(this);
+        this.f13888b = e();
         d();
     }
 
     public static void a(c cVar) {
-        synchronized (cVar.f13934m) {
+        synchronized (cVar.f13897m) {
             try {
-                Iterator it = cVar.f13934m.iterator();
+                Iterator it = cVar.f13897m.iterator();
                 if (it.hasNext()) {
                     if (it.next() == null) {
                         throw null;
@@ -59,7 +59,7 @@ public final class c {
     }
 
     public static void b(c cVar) {
-        SparseIntArray sparseIntArray = cVar.f13927e;
+        SparseIntArray sparseIntArray = cVar.f13890e;
         sparseIntArray.clear();
         for (int i7 = 0; i7 < cVar.d.size(); i7++) {
             sparseIntArray.put(((Integer) cVar.d.get(i7)).intValue(), i7);
@@ -69,20 +69,20 @@ public final class c {
     public final void c() {
         h();
         this.d.clear();
-        this.f13927e.clear();
-        this.f13928f.evictAll();
-        this.f13929g.clear();
-        this.f13930i.removeCallbacks(this.f13931j);
+        this.f13890e.clear();
+        this.f13891f.evictAll();
+        this.f13892g.clear();
+        this.f13893i.removeCallbacks(this.f13894j);
         this.h.clear();
-        BasePendingResult basePendingResult = this.f13933l;
+        BasePendingResult basePendingResult = this.f13896l;
         if (basePendingResult != null) {
             basePendingResult.c();
-            this.f13933l = null;
+            this.f13896l = null;
         }
-        BasePendingResult basePendingResult2 = this.f13932k;
+        BasePendingResult basePendingResult2 = this.f13895k;
         if (basePendingResult2 != null) {
             basePendingResult2.c();
-            this.f13932k = null;
+            this.f13895k = null;
         }
         g();
         f();
@@ -92,17 +92,17 @@ public final class c {
         BasePendingResult basePendingResult;
         BasePendingResult basePendingResult2;
         q6.m.e("Must be called from the main thread.");
-        if (this.f13925b != 0 && (basePendingResult = this.f13933l) == null) {
+        if (this.f13888b != 0 && (basePendingResult = this.f13896l) == null) {
             if (basePendingResult != null) {
                 basePendingResult.c();
-                this.f13933l = null;
+                this.f13896l = null;
             }
-            BasePendingResult basePendingResult3 = this.f13932k;
+            BasePendingResult basePendingResult3 = this.f13895k;
             if (basePendingResult3 != null) {
                 basePendingResult3.c();
-                this.f13932k = null;
+                this.f13895k = null;
             }
-            h hVar = this.f13926c;
+            h hVar = this.f13889c;
             hVar.getClass();
             q6.m.e("Must be called from the main thread.");
             if (!hVar.w()) {
@@ -112,24 +112,24 @@ public final class c {
                 h.x(iVar);
                 basePendingResult2 = iVar;
             }
-            this.f13933l = basePendingResult2;
+            this.f13896l = basePendingResult2;
             basePendingResult2.i(new q(this, 0));
         }
     }
 
     public final long e() {
         int i7;
-        f6.q e10 = this.f13926c.e();
+        f6.q e10 = this.f13889c.e();
         if (e10 != null) {
-            MediaInfo mediaInfo = e10.f11472a;
+            MediaInfo mediaInfo = e10.f11435a;
             if (mediaInfo == null) {
                 i7 = -1;
             } else {
-                i7 = mediaInfo.f6192b;
+                i7 = mediaInfo.f6155b;
             }
-            int i10 = e10.f11475e;
-            int i11 = e10.f11476f;
-            int i12 = e10.f11481x;
+            int i10 = e10.f11438e;
+            int i11 = e10.f11439f;
+            int i12 = e10.f11444x;
             if (i10 == 1) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -144,15 +144,15 @@ public final class c {
                     return 0L;
                 }
             }
-            return e10.f11473b;
+            return e10.f11436b;
         }
         return 0L;
     }
 
     public final void f() {
-        synchronized (this.f13934m) {
+        synchronized (this.f13897m) {
             try {
-                Iterator it = this.f13934m.iterator();
+                Iterator it = this.f13897m.iterator();
                 if (it.hasNext()) {
                     if (it.next() == null) {
                         throw null;
@@ -166,9 +166,9 @@ public final class c {
     }
 
     public final void g() {
-        synchronized (this.f13934m) {
+        synchronized (this.f13897m) {
             try {
-                Iterator it = this.f13934m.iterator();
+                Iterator it = this.f13897m.iterator();
                 if (it.hasNext()) {
                     if (it.next() == null) {
                         throw null;
@@ -182,9 +182,9 @@ public final class c {
     }
 
     public final void h() {
-        synchronized (this.f13934m) {
+        synchronized (this.f13897m) {
             try {
-                Iterator it = this.f13934m.iterator();
+                Iterator it = this.f13897m.iterator();
                 if (it.hasNext()) {
                     if (it.next() == null) {
                         throw null;

@@ -1,87 +1,62 @@
 package oi;
 
+import android.content.Intent;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.ff;
-import org.telegram.messenger.ls;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.gj;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.si;
+import org.telegram.ui.Components.ck;
 import org.telegram.ui.Components.ui;
-public final class q1 implements si {
-    public final ui f22328a;
-    public final b2 f22329b;
+public final class q1 implements ck {
+    public final ui f22283a;
+    public final a2 f22284b;
 
-    public q1(b2 b2Var, ui uiVar) {
-        this.f22329b = b2Var;
-        this.f22328a = uiVar;
+    public q1(a2 a2Var, ui uiVar) {
+        this.f22284b = a2Var;
+        this.f22283a = uiVar;
     }
 
     @Override
-    public final boolean V1() {
-        return false;
+    public final void A() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("*/*");
+            this.f22284b.startActivityForResult(intent, 21);
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
     }
 
     @Override
-    public final void f0(gh ghVar) {
-        ls.f(this.f22329b.getCurrentAccount()).d(ghVar);
-    }
-
-    @Override
-    public final boolean g0() {
-        return false;
-    }
-
-    @Override
-    public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-        ui uiVar = this.f22328a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40378e2;
-        b2 b2Var = this.f22329b;
-        if (i7 == 7 || i7 == 8) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            t3 t3Var = b2Var.Q;
-            a aVar = t3Var.f22421j4;
-            t3Var.f22421j4 = null;
-            int i12 = 0;
-            while (true) {
-                if (i12 >= selectedPhotosOrder.size()) {
-                    break;
-                }
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i12));
-                if (obj instanceof ff) {
-                    if (aVar != null) {
-                        b2Var.Q.X1(aVar, (ff) obj);
-                    } else {
-                        b2Var.Q.i2((ff) obj);
-                    }
+    public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i7, long j3, boolean z11, long j10) {
+        String str2;
+        boolean isEmpty = arrayList.isEmpty();
+        a2 a2Var = this.f22284b;
+        if (!isEmpty) {
+            a2Var.Q.f2((String) arrayList.get(0));
+        } else if (!arrayList3.isEmpty()) {
+            s3 s3Var = a2Var.Q;
+            gj gjVar = (gj) arrayList3.get(0);
+            s3Var.getClass();
+            if (gjVar != null && gjVar.F0() != null) {
+                TLRPC.Document F0 = gjVar.F0();
+                TLRPC.Message message = gjVar.f24177k;
+                if (message != null) {
+                    str2 = message.attachPath;
                 } else {
-                    i12++;
+                    str2 = null;
                 }
+                s3Var.g2(F0, str2);
             }
         }
-        b2Var.Q.f22421j4 = null;
-        uiVar.a(true);
+        this.f22283a.a(true);
     }
 
     @Override
-    public final void K0() {
+    public final void T() {
     }
 
     @Override
-    public final void v0() {
-    }
-
-    @Override
-    public final void R0(Object obj) {
-    }
-
-    @Override
-    public final void h1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void b2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10) {
+    public final void p(ArrayList arrayList, boolean z10, int i7, long j3) {
     }
 }

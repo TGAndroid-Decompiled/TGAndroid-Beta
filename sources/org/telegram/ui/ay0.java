@@ -5,17 +5,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
 public final class ay0 extends org.telegram.ui.Components.dk0 {
-    public final Context f45733c;
+    public final Context f45677c;
     public final ey0 d;
 
     public ay0(ey0 ey0Var, Context context) {
         this.d = ey0Var;
-        this.f45733c = context;
+        this.f45677c = context;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59169f;
+    public final boolean D(v4.e1 e1Var) {
+        int i7 = e1Var.f59115f;
         if (i7 != 3 && i7 != 2) {
             return false;
         }
@@ -26,8 +26,8 @@ public final class ay0 extends org.telegram.ui.Components.dk0 {
     public final int b() {
         int i7;
         ey0 ey0Var = this.d;
-        int i10 = ey0Var.f47417f;
-        if (ey0Var.f47416e < 0) {
+        int i10 = ey0Var.f47378f;
+        if (ey0Var.f47377e < 0) {
             i7 = ey0Var.getMediaDataController().h.size();
         } else {
             i7 = 0;
@@ -41,10 +41,10 @@ public final class ay0 extends org.telegram.ui.Components.dk0 {
             return 0;
         }
         ey0 ey0Var = this.d;
-        if (i7 == ey0Var.f47415c) {
+        if (i7 == ey0Var.f47376c) {
             return 2;
         }
-        if (i7 == ey0Var.f47416e) {
+        if (i7 == ey0Var.f47377e) {
             return 3;
         }
         if (i7 != b() - 1) {
@@ -54,7 +54,7 @@ public final class ay0 extends org.telegram.ui.Components.dk0 {
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
+    public final void t(v4.e1 e1Var, int i7) {
         int i10;
         int i11;
         if (d(i7) != 1) {
@@ -66,20 +66,20 @@ public final class ay0 extends org.telegram.ui.Components.dk0 {
         i10 = ((org.telegram.ui.ActionBar.g2) ey0Var).currentAccount;
         boolean contains = str.contains(org.telegram.messenger.si.d0(i10).S());
         i11 = ((org.telegram.ui.ActionBar.g2) ey0Var).currentAccount;
-        ((org.telegram.ui.Cells.x) f1Var.f59165a).a(tL_availableReaction, contains, i11);
+        ((org.telegram.ui.Cells.x) e1Var.f59111a).a(tL_availableReaction, contains, i11);
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         org.telegram.ui.ActionBar.r4 r4Var;
         dy0 dy0Var;
         ey0 ey0Var = this.d;
-        Context context = this.f45733c;
+        Context context = this.f45677c;
         if (i7 == 0) {
             r4Var = ((org.telegram.ui.ActionBar.g2) ey0Var).parentLayout;
             org.telegram.ui.Cells.ba baVar = new org.telegram.ui.Cells.ba(context, r4Var, 2);
             baVar.setImportantForAccessibility(4);
-            baVar.f30498x = ey0Var;
+            baVar.f30464x = ey0Var;
             dy0Var = baVar;
         } else if (i7 != 2) {
             if (i7 != 3) {
@@ -100,6 +100,6 @@ public final class ay0 extends org.telegram.ui.Components.dk0 {
             a9Var.setText(org.telegram.messenger.hd.N0(2131751340, null));
             dy0Var = a9Var;
         }
-        return new v4.f1(dy0Var);
+        return new v4.e1(dy0Var);
     }
 }

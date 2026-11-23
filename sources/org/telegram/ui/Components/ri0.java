@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.graphics.Paint;
 import androidx.recyclerview.widget.RecyclerView;
-public final class ri0 extends v4.u0 {
-    public boolean f39245a;
-    public boolean f39246b;
-    public ValueAnimator f39247c;
+public final class ri0 extends v4.t0 {
+    public boolean f39200a;
+    public boolean f39201b;
+    public ValueAnimator f39202c;
     public ValueAnimator d;
-    public final xi0 f39248e;
+    public final xi0 f39203e;
 
     public ri0(xi0 xi0Var) {
-        this.f39248e = xi0Var;
+        this.f39203e = xi0Var;
     }
 
     public static ValueAnimator c(float f10, float f11, q0.a aVar, Runnable runnable) {
@@ -26,8 +26,8 @@ public final class ri0 extends v4.u0 {
     public final void b(RecyclerView recyclerView, int i7, int i10) {
         boolean z10;
         float f10;
-        xi0 xi0Var = this.f39248e;
-        jg.i0 i0Var = xi0Var.f42102a0;
+        xi0 xi0Var = this.f39203e;
+        jg.i0 i0Var = xi0Var.f42057a0;
         boolean z11 = false;
         if (i0Var.L0() != 0) {
             z10 = true;
@@ -35,22 +35,22 @@ public final class ri0 extends v4.u0 {
             z10 = false;
         }
         float f11 = 0.0f;
-        if (z10 != this.f39245a) {
-            ValueAnimator valueAnimator = this.f39247c;
+        if (z10 != this.f39200a) {
+            ValueAnimator valueAnimator = this.f39202c;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            float f12 = xi0Var.f42134r;
+            float f12 = xi0Var.f42089r;
             if (z10) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
-            this.f39247c = c(f12, f10, new q0.a(this) {
-                public final ri0 f38603b;
+            this.f39202c = c(f12, f10, new q0.a(this) {
+                public final ri0 f38560b;
 
                 {
-                    this.f38603b = this;
+                    this.f38560b = this;
                 }
 
                 @Override
@@ -58,61 +58,61 @@ public final class ri0 extends v4.u0 {
                     Float f13 = (Float) obj;
                     switch (r2) {
                         case 0:
-                            xi0 xi0Var2 = this.f38603b.f39248e;
+                            xi0 xi0Var2 = this.f38560b.f39203e;
                             Paint paint = xi0Var2.h;
                             float floatValue = f13.floatValue();
-                            xi0Var2.f42134r = floatValue;
+                            xi0Var2.f42089r = floatValue;
                             paint.setAlpha((int) (floatValue * 255.0f));
                             xi0Var2.invalidate();
                             return;
                         default:
-                            xi0 xi0Var3 = this.f38603b.f39248e;
-                            Paint paint2 = xi0Var3.f42129n;
+                            xi0 xi0Var3 = this.f38560b.f39203e;
+                            Paint paint2 = xi0Var3.f42084n;
                             float floatValue2 = f13.floatValue();
-                            xi0Var3.f42136s = floatValue2;
+                            xi0Var3.f42091s = floatValue2;
                             paint2.setAlpha((int) (floatValue2 * 255.0f));
                             xi0Var3.invalidate();
                             return;
                     }
                 }
             }, new Runnable(this) {
-                public final ri0 f38933b;
+                public final ri0 f38886b;
 
                 {
-                    this.f38933b = this;
+                    this.f38886b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f38933b.f39247c = null;
+                            this.f38886b.f39202c = null;
                             return;
                         default:
-                            this.f38933b.d = null;
+                            this.f38886b.d = null;
                             return;
                     }
                 }
             });
-            this.f39245a = z10;
+            this.f39200a = z10;
         }
-        if (i0Var.N0() != xi0Var.f42105b0.b() - 1) {
+        if (i0Var.N0() != xi0Var.f42060b0.b() - 1) {
             z11 = true;
         }
-        if (z11 != this.f39246b) {
+        if (z11 != this.f39201b) {
             ValueAnimator valueAnimator2 = this.d;
             if (valueAnimator2 != null) {
                 valueAnimator2.cancel();
             }
-            float f13 = xi0Var.f42136s;
+            float f13 = xi0Var.f42091s;
             if (z11) {
                 f11 = 1.0f;
             }
             this.d = c(f13, f11, new q0.a(this) {
-                public final ri0 f38603b;
+                public final ri0 f38560b;
 
                 {
-                    this.f38603b = this;
+                    this.f38560b = this;
                 }
 
                 @Override
@@ -120,43 +120,43 @@ public final class ri0 extends v4.u0 {
                     Float f132 = (Float) obj;
                     switch (r2) {
                         case 0:
-                            xi0 xi0Var2 = this.f38603b.f39248e;
+                            xi0 xi0Var2 = this.f38560b.f39203e;
                             Paint paint = xi0Var2.h;
                             float floatValue = f132.floatValue();
-                            xi0Var2.f42134r = floatValue;
+                            xi0Var2.f42089r = floatValue;
                             paint.setAlpha((int) (floatValue * 255.0f));
                             xi0Var2.invalidate();
                             return;
                         default:
-                            xi0 xi0Var3 = this.f38603b.f39248e;
-                            Paint paint2 = xi0Var3.f42129n;
+                            xi0 xi0Var3 = this.f38560b.f39203e;
+                            Paint paint2 = xi0Var3.f42084n;
                             float floatValue2 = f132.floatValue();
-                            xi0Var3.f42136s = floatValue2;
+                            xi0Var3.f42091s = floatValue2;
                             paint2.setAlpha((int) (floatValue2 * 255.0f));
                             xi0Var3.invalidate();
                             return;
                     }
                 }
             }, new Runnable(this) {
-                public final ri0 f38933b;
+                public final ri0 f38886b;
 
                 {
-                    this.f38933b = this;
+                    this.f38886b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f38933b.f39247c = null;
+                            this.f38886b.f39202c = null;
                             return;
                         default:
-                            this.f38933b.d = null;
+                            this.f38886b.d = null;
                             return;
                     }
                 }
             });
-            this.f39246b = z11;
+            this.f39201b = z11;
         }
     }
 }

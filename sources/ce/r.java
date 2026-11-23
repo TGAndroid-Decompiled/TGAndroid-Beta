@@ -1,21 +1,21 @@
 package ce;
 public final class r implements d {
-    public final int f5283a;
-    public final kotlin.jvm.internal.r f5284b;
+    public final int f5246a;
+    public final kotlin.jvm.internal.r f5247b;
 
     public r(kotlin.jvm.internal.r rVar, int i7) {
-        this.f5283a = i7;
-        this.f5284b = rVar;
+        this.f5246a = i7;
+        this.f5247b = rVar;
     }
 
     @Override
     public final Object a(Object obj, id.c cVar) {
-        switch (this.f5283a) {
+        switch (this.f5246a) {
             case 0:
-                this.f5284b.f19152a = obj;
+                this.f5247b.f19118a = obj;
                 throw new de.a(this);
             default:
-                this.f5284b.f19152a = obj;
+                this.f5247b.f19118a = obj;
                 throw new de.a(this);
         }
     }

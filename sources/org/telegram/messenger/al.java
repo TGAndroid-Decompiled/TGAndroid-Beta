@@ -8,16 +8,16 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class al implements RequestDelegate {
-    public final int f22937a = 0;
-    public final np f22938b;
-    public final boolean f22939c;
+    public final int f22901a = 0;
+    public final np f22902b;
+    public final boolean f22903c;
     public final long d;
-    public final TLObject f22940e;
+    public final TLObject f22904e;
 
     public al(np npVar, TLRPC.Chat chat, boolean z10, long j3) {
-        this.f22938b = npVar;
-        this.f22940e = chat;
-        this.f22939c = z10;
+        this.f22902b = npVar;
+        this.f22904e = chat;
+        this.f22903c = z10;
         this.d = j3;
     }
 
@@ -25,23 +25,23 @@ public final class al implements RequestDelegate {
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         long j3;
         ArrayList arrayList;
-        switch (this.f22937a) {
+        switch (this.f22901a) {
             case 0:
-                TLRPC.Chat chat = (TLRPC.Chat) this.f22940e;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f22904e;
                 TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) tLObject;
                 if (tL_channels_channelParticipant != null) {
                     TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipant.participant;
                     if (channelParticipant instanceof TLRPC.TL_channelParticipantSelf) {
                         TLRPC.TL_channelParticipantSelf tL_channelParticipantSelf = (TLRPC.TL_channelParticipantSelf) channelParticipant;
                         boolean z10 = chat.megagroup;
-                        np npVar = this.f22938b;
+                        np npVar = this.f22902b;
                         if (z10) {
                             ur messagesStorage = npVar.getMessagesStorage();
-                            long j10 = chat.f28434id;
+                            long j10 = chat.f28398id;
                             messagesStorage.getClass();
                             CountDownLatch countDownLatch = new CountDownLatch(1);
                             boolean[] zArr = new boolean[1];
-                            messagesStorage.f27250a.c(new bq(messagesStorage, j10, zArr, countDownLatch, 0));
+                            messagesStorage.f27214a.c(new bq(messagesStorage, j10, zArr, countDownLatch, 0));
                             try {
                                 countDownLatch.await();
                             } catch (Exception e10) {
@@ -53,7 +53,7 @@ public final class al implements RequestDelegate {
                         }
                         g0.g3(new gi(16, npVar, tL_channels_channelParticipant));
                         npVar.getMessagesStorage().m1(tL_channels_channelParticipant.users, tL_channels_channelParticipant.chats, true, true);
-                        boolean z11 = this.f22939c;
+                        boolean z11 = this.f22903c;
                         long j11 = this.d;
                         if (z11 && Math.abs(npVar.getConnectionsManager().getCurrentTime() - tL_channels_channelParticipant.participant.date) < 86400) {
                             ur messagesStorage2 = npVar.getMessagesStorage();
@@ -61,7 +61,7 @@ public final class al implements RequestDelegate {
                             j3 = j11;
                             CountDownLatch countDownLatch2 = new CountDownLatch(1);
                             boolean[] zArr2 = new boolean[1];
-                            messagesStorage2.f27250a.c(new bq(messagesStorage2, j3, zArr2, countDownLatch2, 1));
+                            messagesStorage2.f27214a.c(new bq(messagesStorage2, j3, zArr2, countDownLatch2, 1));
                             try {
                                 countDownLatch2.await();
                             } catch (Exception e11) {
@@ -71,7 +71,7 @@ public final class al implements RequestDelegate {
                                 TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
                                 tL_messageService.flags = 256;
                                 int j12 = npVar.getUserConfig().j();
-                                tL_messageService.f28455id = j12;
+                                tL_messageService.f28419id = j12;
                                 tL_messageService.local_id = j12;
                                 tL_messageService.date = tL_channels_channelParticipant.participant.date;
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
@@ -96,18 +96,18 @@ public final class al implements RequestDelegate {
                                 ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
                                 for (int i7 = 0; i7 < tL_channels_channelParticipant.users.size(); i7++) {
                                     TLRPC.User user = tL_channels_channelParticipant.users.get(i7);
-                                    concurrentHashMap.put(Long.valueOf(user.f28583id), user);
+                                    concurrentHashMap.put(Long.valueOf(user.f28547id), user);
                                 }
                                 arrayList2.add(tL_messageService);
                                 arrayList.add(new gj(npVar.currentAccount, (TLRPC.Message) tL_messageService, (AbstractMap) concurrentHashMap, (AbstractMap) null, true, false));
                                 if (tL_messageService.from_id.user_id != npVar.getUserConfig().e()) {
-                                    npVar.getMessagesStorage().f27250a.c(new yj(npVar, arrayList, 3));
+                                    npVar.getMessagesStorage().f27214a.c(new yj(npVar, arrayList, 3));
                                 }
                                 npVar.getMessagesStorage().j1(arrayList2, true, true, false, 0, false, 0, 0L);
                                 ArrayList arrayList3 = arrayList;
                                 ur messagesStorage3 = npVar.getMessagesStorage();
                                 long j13 = j3;
-                                messagesStorage3.f27250a.c(new op(2, tL_channels_channelParticipant.participant.inviter_id, j13, messagesStorage3));
+                                messagesStorage3.f27214a.c(new op(2, tL_channels_channelParticipant.participant.inviter_id, j13, messagesStorage3));
                                 g0.g3(new gm(npVar, j13, arrayList3, tL_channels_channelParticipant, 4));
                                 return;
                             }
@@ -118,7 +118,7 @@ public final class al implements RequestDelegate {
                         ArrayList arrayList32 = arrayList;
                         ur messagesStorage32 = npVar.getMessagesStorage();
                         long j132 = j3;
-                        messagesStorage32.f27250a.c(new op(2, tL_channels_channelParticipant.participant.inviter_id, j132, messagesStorage32));
+                        messagesStorage32.f27214a.c(new op(2, tL_channels_channelParticipant.participant.inviter_id, j132, messagesStorage32));
                         g0.g3(new gm(npVar, j132, arrayList32, tL_channels_channelParticipant, 4));
                         return;
                     }
@@ -126,14 +126,14 @@ public final class al implements RequestDelegate {
                 }
                 return;
             default:
-                TLRPC.User user2 = (TLRPC.User) this.f22940e;
+                TLRPC.User user2 = (TLRPC.User) this.f22904e;
                 if (tL_error == null) {
                     boolean z12 = tLObject instanceof TLRPC.Updates;
-                    np npVar2 = this.f22938b;
+                    np npVar2 = this.f22902b;
                     if (z12) {
                         npVar2.V3((TLRPC.Updates) tLObject, false);
                     }
-                    if (this.f22939c && !p10.C(user2)) {
+                    if (this.f22903c && !p10.C(user2)) {
                         g0.h3(new jk(npVar2, this.d, 11), 1000L);
                         return;
                     }
@@ -144,9 +144,9 @@ public final class al implements RequestDelegate {
     }
 
     public al(np npVar, boolean z10, TLRPC.User user, long j3) {
-        this.f22938b = npVar;
-        this.f22939c = z10;
-        this.f22940e = user;
+        this.f22902b = npVar;
+        this.f22903c = z10;
+        this.f22904e = user;
         this.d = j3;
     }
 }

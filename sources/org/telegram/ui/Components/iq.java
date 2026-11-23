@@ -54,7 +54,7 @@ public final class iq extends EditTextBoldCursor {
         int i10;
         gy gyVar;
         View view;
-        v4.c0 c0Var;
+        v4.b0 b0Var;
         ek0 ek0Var;
         ?? r16;
         iq iqVar2;
@@ -99,39 +99,39 @@ public final class iq extends EditTextBoldCursor {
                 }
                 if (motionEvent.getAction() == 0) {
                     int i15 = 2;
-                    if (!tyVar.f40143u1.z()) {
+                    if (!tyVar.f40126u1.z()) {
                         ek0 ek0Var2 = tyVar.E0;
                         ek0 ek0Var3 = tyVar.Q;
-                        xx xxVar = tyVar.f40112k0;
-                        ek0 ek0Var4 = tyVar.f40106i0;
+                        xx xxVar = tyVar.f40095k0;
+                        ek0 ek0Var4 = tyVar.f40089i0;
                         AnimatorSet animatorSet = tyVar.N0;
                         if (animatorSet != null) {
                             animatorSet.cancel();
                             tyVar.N0 = null;
                         }
                         tyVar.J0 = false;
-                        tyVar.f40132r0 = false;
-                        tyVar.f40090d0 = false;
+                        tyVar.f40115r0 = false;
+                        tyVar.f40073d0 = false;
                         int i16 = 0;
                         while (i16 < 3) {
                             if (i16 == 0) {
                                 gyVar = tyVar.W;
                                 view = tyVar.J;
                                 r16 = z12;
-                                c0Var = tyVar.R;
+                                b0Var = tyVar.R;
                                 ek0Var = ek0Var3;
                             } else {
                                 boolean z13 = z12;
                                 if (i16 == i14) {
-                                    gyVar = tyVar.f40125p0;
-                                    view = tyVar.f40128q0;
-                                    c0Var = tyVar.f40109j0;
+                                    gyVar = tyVar.f40108p0;
+                                    view = tyVar.f40111q0;
+                                    b0Var = tyVar.f40092j0;
                                     ek0Var = ek0Var4;
                                     r16 = z13;
                                 } else {
                                     gyVar = tyVar.H0;
                                     view = tyVar.C0;
-                                    c0Var = tyVar.F0;
+                                    b0Var = tyVar.F0;
                                     ek0Var = ek0Var2;
                                     r16 = z13;
                                 }
@@ -140,7 +140,7 @@ public final class iq extends EditTextBoldCursor {
                                 iqVar2 = iqVar3;
                                 i11 = i15;
                                 z10 = r16;
-                            } else if (gyVar2 == gyVar && (txVar = tyVar.f40143u1) != null && txVar.A()) {
+                            } else if (gyVar2 == gyVar && (txVar = tyVar.f40126u1) != null && txVar.A()) {
                                 AnimatorSet animatorSet2 = new AnimatorSet();
                                 tyVar.N0 = animatorSet2;
                                 Property property = View.TRANSLATION_Y;
@@ -180,7 +180,7 @@ public final class iq extends EditTextBoldCursor {
                                     animatorSet2.playTogether(animatorArr2);
                                 }
                                 tyVar.N0.setDuration(220L);
-                                tyVar.N0.setInterpolator(nr.f37960f);
+                                tyVar.N0.setInterpolator(nr.f37917f);
                                 tyVar.N0.addListener(new ah.l(28, tyVar, ek0Var));
                                 tyVar.N0.start();
                                 z10 = r16;
@@ -194,17 +194,17 @@ public final class iq extends EditTextBoldCursor {
                                 }
                                 if (ek0Var == ek0Var2) {
                                     int i18 = r16;
-                                    ek0Var.setPadding(i18, i18, i18, tyVar.f40134r2);
+                                    ek0Var.setPadding(i18, i18, i18, tyVar.f40117r2);
                                 } else {
                                     int i19 = r16;
                                     if (ek0Var == ek0Var3) {
-                                        ek0Var.setPadding(org.telegram.messenger.g0.L(5.0f), i19, org.telegram.messenger.g0.L(5.0f), tyVar.f40134r2);
+                                        ek0Var.setPadding(org.telegram.messenger.g0.L(5.0f), i19, org.telegram.messenger.g0.L(5.0f), tyVar.f40117r2);
                                     } else if (ek0Var == ek0Var4) {
-                                        ek0Var.setPadding(i19, tyVar.f40088c1, i19, tyVar.f40134r2);
+                                        ek0Var.setPadding(i19, tyVar.f40071c1, i19, tyVar.f40117r2);
                                     }
                                 }
                                 if (ek0Var == ek0Var4) {
-                                    if (tyVar.f40122o0.f42243y.size() > 0) {
+                                    if (tyVar.f40105o0.f42221y.size() > 0) {
                                         z11 = true;
                                     } else {
                                         z11 = false;
@@ -218,7 +218,7 @@ public final class iq extends EditTextBoldCursor {
                                     }
                                 }
                                 z10 = false;
-                                c0Var.h1(0, 0);
+                                b0Var.h1(0, 0);
                             }
                             i16++;
                             i15 = i11;
@@ -233,7 +233,7 @@ public final class iq extends EditTextBoldCursor {
                         iqVar = iqVar3;
                         i7 = 2;
                     }
-                    tx txVar2 = tyVar.f40143u1;
+                    tx txVar2 = tyVar.f40126u1;
                     if (i13 == 1) {
                         i10 = i7;
                     } else {

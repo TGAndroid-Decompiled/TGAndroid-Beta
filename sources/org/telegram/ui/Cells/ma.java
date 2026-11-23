@@ -17,38 +17,38 @@ import org.telegram.ui.Components.nq;
 import org.telegram.ui.bn;
 import org.telegram.ui.cx;
 public final class ma implements View.OnClickListener {
-    public final int f31115a = 1;
-    public final boolean f31116b;
-    public final int f31117c;
+    public final int f31081a = 1;
+    public final boolean f31082b;
+    public final int f31083c;
     public final org.telegram.ui.ActionBar.g2 d;
-    public final Serializable f31118e;
+    public final Serializable f31084e;
 
     public ma(bn bnVar, TLRPC.User user, String str, boolean z10, int i7) {
         this.d = bnVar;
-        this.f31118e = str;
-        this.f31116b = z10;
-        this.f31117c = i7;
+        this.f31084e = str;
+        this.f31082b = z10;
+        this.f31083c = i7;
     }
 
     @Override
     public final void onClick(View view) {
         int i7;
         int i10;
-        int i11 = this.f31115a;
-        int i12 = this.f31117c;
-        boolean z10 = this.f31116b;
-        Serializable serializable = this.f31118e;
+        int i11 = this.f31081a;
+        int i12 = this.f31083c;
+        boolean z10 = this.f31082b;
+        Serializable serializable = this.f31084e;
         org.telegram.ui.ActionBar.g2 g2Var = this.d;
         switch (i11) {
             case 0:
                 cx cxVar = (cx) g2Var;
                 ArrayList arrayList = (ArrayList) serializable;
-                String N0 = hd.N0(2131743662, null);
+                String N0 = hd.N0(2131743664, null);
                 int i13 = org.telegram.ui.ActionBar.m6.xj;
                 SpannableStringBuilder R2 = org.telegram.messenger.g0.R2(N0, i13, 0, new f(cxVar, 12), null);
                 SpannableString spannableString = new SpannableString(">");
                 nq nqVar = new nq(2131230875, 0);
-                nqVar.f37954y = org.telegram.ui.ActionBar.m6.x0(null, i13, false);
+                nqVar.f37911y = org.telegram.ui.ActionBar.m6.x0(null, i13, false);
                 nqVar.I = 0.7f;
                 nqVar.J = 0.7f;
                 nqVar.F = org.telegram.messenger.g0.L(12.0f);
@@ -56,9 +56,9 @@ public final class ma implements View.OnClickListener {
                 org.telegram.messenger.g0.K2(R2, spannableString, ">");
                 lc b02 = lc.b0(cxVar);
                 if (z10) {
-                    i7 = 2131743663;
+                    i7 = 2131743665;
                 } else {
-                    i7 = 2131743664;
+                    i7 = 2131743666;
                 }
                 b02.I(2131623990, hd.N0(i7, null), R2).j();
                 np.u1(i12).W1().f(true, arrayList, new fi.e(8));
@@ -67,7 +67,7 @@ public final class ma implements View.OnClickListener {
             default:
                 bn bnVar = (bn) g2Var;
                 String str = (String) serializable;
-                Pattern pattern = org.telegram.ui.Components.c5.f34013a;
+                Pattern pattern = org.telegram.ui.Components.c5.f33977a;
                 if (bnVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.w2 j3 = o10.j(bnVar.getParentActivity(), false, 1, null);
                     if (z10) {
@@ -80,7 +80,7 @@ public final class ma implements View.OnClickListener {
                     LinearLayout linearLayout = new LinearLayout(bnVar.getParentActivity());
                     linearLayout.setOrientation(1);
                     TextView textView = new TextView(bnVar.getParentActivity());
-                    linearLayout.addView(textView, c8.ma.t(-1, -1, 0, 21, 0, 21, 8));
+                    linearLayout.addView(textView, c8.na.t(-1, -1, 0, 21, 0, 21, 8));
                     org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.G6, null);
                     textView.setTextSize(1, 16.0f);
                     textView.setText(org.telegram.messenger.g0.W2(hd.a0("ChatWithAdminMessage", null, 2131752180, str, hd.s(i12, false))));
@@ -101,7 +101,7 @@ public final class ma implements View.OnClickListener {
                     org.telegram.ui.ActionBar.p6 M2 = org.telegram.ui.ActionBar.t6.M(i15);
                     textView2.setBackground(k02);
                     org.telegram.ui.ActionBar.t6.j(textView2, k02, M, M2, null);
-                    linearLayout.addView(textView2, c8.ma.t(-1, 48, 0, 16, 12, 16, 8));
+                    linearLayout.addView(textView2, c8.na.t(-1, 48, 0, 16, 12, 16, 8));
                     j3.O = linearLayout;
                     j3.show();
                     textView2.setOnClickListener(new org.telegram.ui.Components.f3(j3, 0));
@@ -113,8 +113,8 @@ public final class ma implements View.OnClickListener {
 
     public ma(cx cxVar, boolean z10, int i7, ArrayList arrayList) {
         this.d = cxVar;
-        this.f31116b = z10;
-        this.f31117c = i7;
-        this.f31118e = arrayList;
+        this.f31082b = z10;
+        this.f31083c = i7;
+        this.f31084e = arrayList;
     }
 }

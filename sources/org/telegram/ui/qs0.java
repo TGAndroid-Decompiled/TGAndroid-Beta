@@ -1,99 +1,69 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class qs0 extends org.telegram.ui.Components.dk0 {
-    public final PremiumPreviewFragment f51351c;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.ImageView;
+public final class qs0 extends ks0 {
+    public final int f51319r = 1;
+    public final org.telegram.ui.Components.dk0 f51320s;
 
-    public qs0(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f51351c = premiumPreviewFragment;
+    public qs0(di.l4 l4Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, h6Var);
+        this.f51320s = l4Var;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59169f;
-        if (i7 == 1 || i7 == 8) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.f51351c.h;
-    }
-
-    @Override
-    public final int d(int i7) {
-        if (i7 != 0) {
-            PremiumPreviewFragment premiumPreviewFragment = this.f51351c;
-            if (i7 < premiumPreviewFragment.f43482n || i7 >= premiumPreviewFragment.f43487r) {
-                if (i7 >= premiumPreviewFragment.f43494w && i7 < premiumPreviewFragment.f43496x) {
-                    return 1;
-                }
-                if (i7 == 0) {
-                    return 4;
-                }
-                if (i7 != premiumPreviewFragment.f43498y && i7 != premiumPreviewFragment.E && i7 != premiumPreviewFragment.F && i7 != premiumPreviewFragment.I) {
-                    if (i7 == premiumPreviewFragment.G) {
-                        return 6;
-                    }
-                    if (i7 != premiumPreviewFragment.f43489s && i7 != premiumPreviewFragment.H) {
-                        if (i7 == premiumPreviewFragment.showAdsRow) {
-                            return 8;
-                        }
-                        return 0;
-                    }
-                    return 7;
-                }
-                return 5;
-            }
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(v4.f1 r18, int r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qs0.t(v4.f1, int):void");
-    }
-
-    @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View ps0Var;
+    public final void dispatchDraw(Canvas canvas) {
         org.telegram.ui.ActionBar.h6 h6Var;
-        Context context = viewGroup.getContext();
-        switch (i7) {
-            case 1:
-                ps0Var = new ps0(this, context);
-                break;
-            case 2:
-                ps0Var = new org.telegram.ui.Cells.z6(context, 0, 0);
-                break;
-            case 3:
+        boolean q10;
+        org.telegram.ui.ActionBar.h6 h6Var2;
+        switch (this.f51319r) {
+            case 0:
+                float L = org.telegram.messenger.g0.L(10.0f);
+                RectF rectF = org.telegram.messenger.g0.P;
+                ImageView imageView = this.f49350c;
+                rectF.set(imageView.getLeft(), imageView.getTop(), imageView.getRight(), imageView.getBottom());
+                PremiumPreviewFragment premiumPreviewFragment = ((rs0) this.f51320s).f51797c;
+                premiumPreviewFragment.T.reset();
+                premiumPreviewFragment.T.postScale(1.0f, premiumPreviewFragment.O / 100.0f, 0.0f, 0.0f);
+                premiumPreviewFragment.T.postTranslate(0.0f, -this.f49352f.f53921e);
+                premiumPreviewFragment.S.setLocalMatrix(premiumPreviewFragment.T);
+                canvas.drawRoundRect(rectF, L, L, premiumPreviewFragment.U);
+                h6Var = ((org.telegram.ui.ActionBar.g2) premiumPreviewFragment).resourceProvider;
+                if (h6Var != null) {
+                    h6Var2 = ((org.telegram.ui.ActionBar.g2) premiumPreviewFragment).resourceProvider;
+                    q10 = h6Var2.d();
+                } else {
+                    q10 = org.telegram.ui.ActionBar.m6.I.q();
+                }
+                if (q10) {
+                    float L2 = org.telegram.messenger.g0.L(1.0f);
+                    premiumPreviewFragment.R.setStrokeWidth(L2);
+                    canvas.save();
+                    canvas.translate(rectF.left, rectF.top);
+                    rectF.offset(-rectF.left, -rectF.top);
+                    float f10 = L2 / 2.0f;
+                    rectF.inset(f10, f10);
+                    canvas.drawRoundRect(rectF, L, L, premiumPreviewFragment.R);
+                    canvas.restore();
+                }
+                super.dispatchDraw(canvas);
+                return;
             default:
-                ps0Var = new uv(7, context, this);
-                ps0Var.setTag(-33024);
-                break;
-            case 4:
-                ps0Var = new ai.u2(context);
-                break;
-            case 5:
-                ps0Var = new org.telegram.ui.Cells.a9(context);
-                break;
-            case 6:
-                ps0Var = new View(context);
-                ps0Var.setTag(-33024);
-                break;
-            case 7:
-                ps0Var = new org.telegram.ui.Cells.o4(context);
-                break;
-            case 8:
-                h6Var = ((org.telegram.ui.ActionBar.g2) this.f51351c).resourceProvider;
-                ps0Var = new org.telegram.ui.Cells.n8(23, context, h6Var, false, true);
-                break;
+                RectF rectF2 = org.telegram.messenger.g0.P;
+                ImageView imageView2 = this.f49350c;
+                rectF2.set(imageView2.getLeft(), imageView2.getTop(), imageView2.getRight(), imageView2.getBottom());
+                di.l4 l4Var = (di.l4) this.f51320s;
+                ((ug.h1) l4Var.d).f58691l2.d(0, 0.0f, 0, getMeasuredWidth(), -this.f49352f.f53921e, ((ug.h1) l4Var.d).f58681a2);
+                canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), ((ug.h1) l4Var.d).f58691l2.f58612f);
+                super.dispatchDraw(canvas);
+                return;
         }
-        return i5.c.q(ps0Var, ps0Var, -1, -2);
+    }
+
+    public qs0(rs0 rs0Var, Context context) {
+        super(context, null);
+        this.f51320s = rs0Var;
     }
 }

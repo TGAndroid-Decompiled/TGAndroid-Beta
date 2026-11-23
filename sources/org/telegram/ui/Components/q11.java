@@ -6,15 +6,15 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class q11 extends Drawable {
-    public Paint f38754a;
-    public RectF f38755b;
+    public Paint f38708a;
+    public RectF f38709b;
 
     @Override
     public final void draw(Canvas canvas) {
-        RectF rectF = this.f38755b;
+        RectF rectF = this.f38709b;
         rectF.set(getBounds());
         rectF.inset(org.telegram.messenger.g0.L(1.0f), (rectF.height() - org.telegram.messenger.g0.L(28.0f)) / 2.0f);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), this.f38754a);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), this.f38708a);
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class q11 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f38754a.setAlpha(i7);
+        this.f38708a.setAlpha(i7);
     }
 
     @Override

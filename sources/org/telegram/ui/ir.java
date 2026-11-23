@@ -2,31 +2,31 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class ir implements Runnable {
-    public final int f48810a;
-    public final qr f48811b;
-    public final TLRPC.User f48812c;
+    public final int f48820a;
+    public final qr f48821b;
+    public final TLRPC.User f48822c;
 
     public ir(qr qrVar, TLRPC.User user, int i7) {
-        this.f48810a = i7;
-        this.f48811b = qrVar;
-        this.f48812c = user;
+        this.f48820a = i7;
+        this.f48821b = qrVar;
+        this.f48822c = user;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f48810a) {
+        switch (this.f48820a) {
             case 0:
-                qr qrVar = this.f48811b;
-                TLRPC.User user = this.f48812c;
+                qr qrVar = this.f48821b;
+                TLRPC.User user = this.f48822c;
                 if (user != null && qrVar.N == null && qrVar.O == null) {
                     if (user.phone == null && (str = qrVar.M) != null) {
                         user.phone = pf.b.d(str, false);
                     }
-                    qrVar.f51337b.setText(user.first_name);
-                    org.telegram.ui.Cells.j3 j3Var = qrVar.f51337b.d;
+                    qrVar.f51271b.setText(user.first_name);
+                    org.telegram.ui.Cells.j3 j3Var = qrVar.f51271b.d;
                     j3Var.setSelection(j3Var.length());
-                    qrVar.f51338c.setText(user.last_name);
+                    qrVar.f51272c.setText(user.last_name);
                 }
                 TLRPC.UserFull d2 = qrVar.getMessagesController().d2(qrVar.I);
                 if (d2 != null) {
@@ -44,7 +44,7 @@ public final class ir implements Runnable {
                 }
                 return;
             default:
-                qr.a0(this.f48811b, this.f48812c);
+                qr.a0(this.f48821b, this.f48822c);
                 return;
         }
     }

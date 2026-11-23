@@ -13,43 +13,43 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import java.util.ArrayList;
 import org.telegram.ui.LaunchActivity;
 public final class rz {
-    public static volatile rz f26709p;
-    public final Context f26710a;
-    public final android.support.v4.media.session.a0 f26711b;
-    public int f26712c;
+    public static volatile rz f26673p;
+    public final Context f26674a;
+    public final android.support.v4.media.session.a0 f26675b;
+    public int f26676c;
     public long d;
-    public boolean f26713e;
-    public boolean f26714f;
-    public Paint f26720m;
-    public RectF f26721n;
-    public final ArrayList f26715g = new ArrayList();
+    public boolean f26677e;
+    public boolean f26678f;
+    public Paint f26684m;
+    public RectF f26685n;
+    public final ArrayList f26679g = new ArrayList();
     public final a0.h h = new a0.h();
-    public final a0.h f26716i = new a0.h();
-    public final a0.h f26717j = new a0.h();
-    public final a0.h f26718k = new a0.h();
-    public final a0.h f26719l = new a0.h();
-    public final ArrayList f26722o = new ArrayList();
+    public final a0.h f26680i = new a0.h();
+    public final a0.h f26681j = new a0.h();
+    public final a0.h f26682k = new a0.h();
+    public final a0.h f26683l = new a0.h();
+    public final ArrayList f26686o = new ArrayList();
 
     public rz(Context context) {
-        this.f26710a = context;
-        int i7 = k10.f24968t0;
-        this.f26712c = i7;
-        this.d = g0.b1(np.u1(i7).f25857g7, "auto_lastSelectedDialog", 0L);
+        this.f26674a = context;
+        int i7 = k10.f24932t0;
+        this.f26676c = i7;
+        this.d = g0.b1(np.u1(i7).f25821g7, "auto_lastSelectedDialog", 0L);
         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(context, "TelegramMediaSession", (ComponentName) null, (PendingIntent) null);
-        this.f26711b = a0Var;
-        android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) a0Var.f1724b;
-        uVar.f1754a.setFlags(3);
+        this.f26675b = a0Var;
+        android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) a0Var.f1675b;
+        uVar.f1705a.setFlags(3);
         a0Var.s(new qz(this), null);
-        uVar.f1754a.setSessionActivity(PendingIntent.getActivity(context, 99, new Intent(context, LaunchActivity.class), 167772160));
+        uVar.f1705a.setSessionActivity(PendingIntent.getActivity(context, 99, new Intent(context, LaunchActivity.class), 167772160));
         Bundle bundle = new Bundle();
         bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_QUEUE", true);
         bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS", true);
         bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT", true);
-        uVar.f1754a.setExtras(bundle);
+        uVar.f1705a.setExtras(bundle);
         a0Var.r(true);
         ArrayList arrayList = new ArrayList();
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        gj gjVar = MediaController.B().f22771v0;
+        gj gjVar = MediaController.B().f22735v0;
         if (gjVar != null) {
             r3 = MediaController.B().H() ? 2477828L : 2477830L;
             if (gjVar.I3()) {
@@ -59,29 +59,29 @@ public final class rz {
         a0Var.u(new PlaybackStateCompat(0, 0L, 0L, 1.0f, r3, 0, null, elapsedRealtime, arrayList, -1L, null));
         f();
         a0Var.x(cz.N0 ? 1 : 0);
-        ls.e().b(new j5(this, 1), ls.f25308f4);
+        ls.e().b(new j5(this, 1), ls.f25272f4);
     }
 
     public static rz a(MusicBrowserService musicBrowserService) {
-        if (f26709p == null) {
+        if (f26673p == null) {
             synchronized (rz.class) {
                 try {
-                    if (f26709p == null) {
-                        f26709p = new rz(musicBrowserService.getApplicationContext());
+                    if (f26673p == null) {
+                        f26673p = new rz(musicBrowserService.getApplicationContext());
                     }
                 } finally {
                 }
             }
         }
-        return f26709p;
+        return f26673p;
     }
 
     public static boolean b() {
         int i7;
         int elapsedRealtime = (int) (SystemClock.elapsedRealtime() / 1000);
-        if (cz.f23439s.length() > 0) {
-            if (!cz.f23453x) {
-                if ((cz.f23456y != 0 && (i7 = cz.B) != 0 && i7 + cz.f23456y <= elapsedRealtime) || elapsedRealtime + 5 < cz.B) {
+        if (cz.f23403s.length() > 0) {
+            if (!cz.f23417x) {
+                if ((cz.f23420y != 0 && (i7 = cz.B) != 0 && i7 + cz.f23420y <= elapsedRealtime) || elapsedRealtime + 5 < cz.B) {
                     return true;
                 }
                 return false;
@@ -93,15 +93,15 @@ public final class rz {
 
     public final void c(String str, j1 j1Var) {
         long j3;
-        if (!this.f26713e) {
-            this.f26722o.add(new oz(str, j1Var));
-            if (this.f26714f) {
+        if (!this.f26677e) {
+            this.f26686o.add(new oz(str, j1Var));
+            if (this.f26678f) {
                 return;
             }
-            this.f26714f = true;
-            int i7 = this.f26712c;
+            this.f26678f = true;
+            int i7 = this.f26676c;
             ur a02 = ur.a0(i7);
-            a02.f27250a.c(new l7(this, a02, i7, 22));
+            a02.f27214a.c(new l7(this, a02, i7, 22));
             return;
         }
         if (str != null && str.startsWith("__CHAT_")) {
@@ -110,16 +110,16 @@ public final class rz {
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
-            if (j3 == 0 && this.f26717j.f(j3) == null) {
+            if (j3 == 0 && this.f26681j.f(j3) == null) {
                 e(new lg((Object) this, (Object) j1Var, str, 29), j3);
                 return;
             }
-            ((MediaBrowserService.Result) j1Var.f24817b).sendResult(d(str));
+            ((MediaBrowserService.Result) j1Var.f24781b).sendResult(d(str));
         }
         j3 = 0;
         if (j3 == 0) {
         }
-        ((MediaBrowserService.Result) j1Var.f24817b).sendResult(d(str));
+        ((MediaBrowserService.Result) j1Var.f24781b).sendResult(d(str));
     }
 
     public final java.util.ArrayList d(java.lang.String r17) {
@@ -127,7 +127,7 @@ public final class rz {
     }
 
     public final void e(Runnable runnable, long j3) {
-        a0.h hVar = this.f26719l;
+        a0.h hVar = this.f26683l;
         ArrayList arrayList = (ArrayList) hVar.f(j3);
         if (arrayList != null) {
             arrayList.add(runnable);
@@ -136,9 +136,9 @@ public final class rz {
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add(runnable);
         hVar.k(arrayList2, j3);
-        int i7 = this.f26712c;
+        int i7 = this.f26676c;
         ur a02 = ur.a0(i7);
-        a02.f27250a.c(new fk(i7, 11, j3, this, a02));
+        a02.f27214a.c(new fk(i7, 11, j3, this, a02));
     }
 
     public final void f() {
@@ -151,6 +151,6 @@ public final class rz {
                 i10 = 1;
             }
         }
-        this.f26711b.w(i10);
+        this.f26675b.w(i10);
     }
 }

@@ -3,7 +3,7 @@ package f7;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
-import c8.bc;
+import c8.cc;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,8 +12,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class q0 extends r6.a {
     public static final Parcelable.Creator<q0> CREATOR = new db.k(12);
-    public static final byte[] f11578b = "WebAuthn PRF\u0000".getBytes(StandardCharsets.UTF_8);
-    public final byte[][] f11579a;
+    public static final byte[] f11541b = "WebAuthn PRF\u0000".getBytes(StandardCharsets.UTF_8);
+    public final byte[][] f11542a;
 
     public q0(byte[][] bArr) {
         boolean z10;
@@ -55,7 +55,7 @@ public final class q0 extends r6.a {
             }
             q6.m.b(z14);
         }
-        this.f11579a = bArr;
+        this.f11542a = bArr;
     }
 
     public static q0 b(JSONObject jSONObject, boolean z10) {
@@ -130,13 +130,13 @@ public final class q0 extends r6.a {
         if (!(obj instanceof q0)) {
             return false;
         }
-        return Arrays.deepEquals(this.f11579a, ((q0) obj).f11579a);
+        return Arrays.deepEquals(this.f11542a, ((q0) obj).f11542a);
     }
 
     public final int hashCode() {
         byte[][] bArr;
         int i7 = 0;
-        for (byte[] bArr2 : this.f11579a) {
+        for (byte[] bArr2 : this.f11542a) {
             if (bArr2 != null) {
                 i7 ^= Arrays.hashCode(new Object[]{bArr2});
             }
@@ -145,7 +145,7 @@ public final class q0 extends r6.a {
     }
 
     public final String toString() {
-        byte[][] bArr = this.f11579a;
+        byte[][] bArr = this.f11542a;
         try {
             JSONObject jSONObject = new JSONObject();
             JSONObject jSONObject2 = null;
@@ -169,8 +169,8 @@ public final class q0 extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = bc.r(parcel, 20293);
-        bc.d(parcel, 1, this.f11579a);
-        bc.s(parcel, r10);
+        int r10 = cc.r(parcel, 20293);
+        cc.d(parcel, 1, this.f11542a);
+        cc.s(parcel, r10);
     }
 }

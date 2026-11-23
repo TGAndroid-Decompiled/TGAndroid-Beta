@@ -1,12 +1,12 @@
 package j6;
 
-import hi.t5;
+import hi.u5;
 public final class o implements Runnable {
-    public final int f17295a;
-    public Object f17296b;
+    public final int f17261a;
+    public Object f17262b;
 
     public o() {
-        this.f17295a = 10;
+        this.f17261a = 10;
     }
 
     private final void a() {
@@ -19,12 +19,12 @@ public final class o implements Runnable {
     }
 
     public o(Object obj, int i7) {
-        this.f17295a = i7;
-        this.f17296b = obj;
+        this.f17261a = i7;
+        this.f17262b = obj;
     }
 
-    public o(t5 t5Var, int i7) {
-        this.f17295a = 5;
-        this.f17296b = t5Var;
+    public o(u5 u5Var, int i7) {
+        this.f17261a = 5;
+        this.f17262b = u5Var;
     }
 }

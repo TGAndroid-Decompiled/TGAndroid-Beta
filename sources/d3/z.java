@@ -3,14 +3,14 @@ package d3;
 import android.hardware.display.DisplayManager;
 import android.view.Choreographer;
 public abstract class z implements DisplayManager.DisplayListener {
-    public final Choreographer f7809a;
-    public final DisplayManager f7810b;
-    public volatile long f7811c = -9223372036854775807L;
+    public final Choreographer f7772a;
+    public final DisplayManager f7773b;
+    public volatile long f7774c = -9223372036854775807L;
     public volatile long d = -9223372036854775807L;
 
     public z(Choreographer choreographer, DisplayManager displayManager) {
-        this.f7809a = choreographer;
-        this.f7810b = displayManager;
+        this.f7772a = choreographer;
+        this.f7773b = displayManager;
     }
 
     public abstract void a();

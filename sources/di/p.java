@@ -20,16 +20,16 @@ public final class p extends yb0 {
         switch (this.M) {
             case 0:
                 t tVar = (t) this.N;
-                q qVar = tVar.f9770a0;
+                q qVar = tVar.f9733a0;
                 if (qVar != null && !qVar.isFocusable()) {
-                    tVar.f9770a0.setFocusable(true);
-                    tVar.f9770a0.setFocusableInTouchMode(true);
-                    int A1 = tVar.f9776e.A1(1);
-                    if (A1 >= 0 && A1 < tVar.f9776e.f35789g3.E.size()) {
-                        tVar.f9776e.C0();
-                        tVar.f9776e.y0(A1);
+                    tVar.f9733a0.setFocusable(true);
+                    tVar.f9733a0.setFocusableInTouchMode(true);
+                    int A1 = tVar.f9739e.A1(1);
+                    if (A1 >= 0 && A1 < tVar.f9739e.f35742g3.E.size()) {
+                        tVar.f9739e.C0();
+                        tVar.f9739e.y0(A1);
                     }
-                    tVar.f9770a0.requestFocus();
+                    tVar.f9733a0.requestFocus();
                 }
                 return super.dispatchTouchEvent(motionEvent);
             default:
@@ -40,7 +40,7 @@ public final class p extends yb0 {
                     qVar2.setFocusable(true);
                     qVar2.setFocusableInTouchMode(true);
                     int A12 = h51Var.A1(3);
-                    if (A12 >= 0 && A12 < h51Var.f35789g3.E.size()) {
+                    if (A12 >= 0 && A12 < h51Var.f35742g3.E.size()) {
                         h51Var.C0();
                         h51Var.y0(A12);
                     }

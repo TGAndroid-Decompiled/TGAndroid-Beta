@@ -9,23 +9,23 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import java.util.HashMap;
 public final class ea {
-    public k8.a f23691a;
-    public HashMap f23692b;
-    public HashMap f23693c;
+    public k8.a f23655a;
+    public HashMap f23656b;
+    public HashMap f23657c;
 
     public final da a(h9.g1 g1Var) {
         v7.a aVar;
-        k8.a aVar2 = this.f23691a;
-        m8.g gVar = (m8.g) g1Var.f14030b;
+        k8.a aVar2 = this.f23655a;
+        m8.g gVar = (m8.g) g1Var.f13993b;
         aVar2.getClass();
         try {
             q6.m.i(gVar, "MarkerOptions must not be null.");
-            l8.e eVar = (l8.e) aVar2.f18214b;
+            l8.e eVar = (l8.e) aVar2.f18177b;
             Parcel p12 = eVar.p1();
             v7.b.b(p12, gVar);
             Parcel o12 = eVar.o1(p12, 11);
             IBinder readStrongBinder = o12.readStrongBinder();
-            int i7 = v7.j.f59343b;
+            int i7 = v7.j.f59306b;
             m8.f fVar = null;
             if (readStrongBinder == null) {
                 aVar = 0;
@@ -42,7 +42,7 @@ public final class ea {
                 fVar = new m8.f(aVar);
             }
             da daVar = new da(fVar);
-            this.f23692b.put(fVar, daVar);
+            this.f23656b.put(fVar, daVar);
             return daVar;
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
@@ -50,13 +50,13 @@ public final class ea {
     }
 
     public final void b(ta taVar) {
-        k8.a aVar = this.f23691a;
-        hi.w4 w4Var = ((ba) taVar).f23065a;
+        k8.a aVar = this.f23655a;
+        hi.x4 x4Var = ((ba) taVar).f23029a;
         aVar.getClass();
         try {
-            l8.e eVar = (l8.e) aVar.f18214b;
+            l8.e eVar = (l8.e) aVar.f18177b;
             Parcel p12 = eVar.p1();
-            v7.b.c(p12, (a7.a) w4Var.f15708b);
+            v7.b.c(p12, (a7.a) x4Var.f15680b);
             eVar.t1(p12, 5);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
@@ -64,13 +64,13 @@ public final class ea {
     }
 
     public final void c(ta taVar) {
-        k8.a aVar = this.f23691a;
-        hi.w4 w4Var = ((ba) taVar).f23065a;
+        k8.a aVar = this.f23655a;
+        hi.x4 x4Var = ((ba) taVar).f23029a;
         aVar.getClass();
         try {
-            l8.e eVar = (l8.e) aVar.f18214b;
+            l8.e eVar = (l8.e) aVar.f18177b;
             Parcel p12 = eVar.p1();
-            v7.b.c(p12, (a7.a) w4Var.f15708b);
+            v7.b.c(p12, (a7.a) x4Var.f15680b);
             p12.writeInt(500);
             v7.b.c(p12, null);
             eVar.t1(p12, 7);
@@ -79,15 +79,15 @@ public final class ea {
         }
     }
 
-    public final hi.u4 d() {
+    public final hi.v4 d() {
         CameraPosition createFromParcel;
-        k8.a aVar = this.f23691a;
+        k8.a aVar = this.f23655a;
         aVar.getClass();
         try {
-            l8.e eVar = (l8.e) aVar.f18214b;
+            l8.e eVar = (l8.e) aVar.f18177b;
             Parcel o12 = eVar.o1(eVar.p1(), 1);
             Parcelable.Creator<CameraPosition> creator = CameraPosition.CREATOR;
-            int i7 = v7.b.f59340a;
+            int i7 = v7.b.f59303a;
             if (o12.readInt() == 0) {
                 createFromParcel = null;
             } else {
@@ -95,18 +95,18 @@ public final class ea {
             }
             CameraPosition cameraPosition = createFromParcel;
             o12.recycle();
-            LatLng latLng = cameraPosition.f7395a;
-            return new hi.u4(new bb(latLng.f7398a, latLng.f7399b), cameraPosition.f7396b, 2);
+            LatLng latLng = cameraPosition.f7358a;
+            return new hi.v4(new bb(latLng.f7361a, latLng.f7362b), cameraPosition.f7359b, 2);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
     }
 
     public final float e() {
-        k8.a aVar = this.f23691a;
+        k8.a aVar = this.f23655a;
         aVar.getClass();
         try {
-            l8.e eVar = (l8.e) aVar.f18214b;
+            l8.e eVar = (l8.e) aVar.f18177b;
             Parcel o12 = eVar.o1(eVar.p1(), 2);
             float readFloat = o12.readFloat();
             o12.recycle();
@@ -117,10 +117,10 @@ public final class ea {
     }
 
     public final float f() {
-        k8.a aVar = this.f23691a;
+        k8.a aVar = this.f23655a;
         aVar.getClass();
         try {
-            l8.e eVar = (l8.e) aVar.f18214b;
+            l8.e eVar = (l8.e) aVar.f18177b;
             Parcel o12 = eVar.o1(eVar.p1(), 3);
             float readFloat = o12.readFloat();
             o12.recycle();
@@ -130,13 +130,13 @@ public final class ea {
         }
     }
 
-    public final hi.w4 g() {
+    public final hi.x4 g() {
         a8.a aVar;
-        k8.a aVar2 = this.f23691a;
+        k8.a aVar2 = this.f23655a;
         aVar2.getClass();
         try {
-            if (((hi.t5) aVar2.f18215c) == null) {
-                l8.e eVar = (l8.e) aVar2.f18214b;
+            if (((hi.u5) aVar2.f18178c) == null) {
+                l8.e eVar = (l8.e) aVar2.f18177b;
                 Parcel o12 = eVar.o1(eVar.p1(), 25);
                 IBinder readStrongBinder = o12.readStrongBinder();
                 if (readStrongBinder == null) {
@@ -150,25 +150,25 @@ public final class ea {
                     }
                 }
                 o12.recycle();
-                aVar2.f18215c = new hi.t5(aVar, 8);
+                aVar2.f18178c = new hi.u5(aVar, 8);
             }
-            hi.t5 t5Var = (hi.t5) aVar2.f18215c;
-            hi.w4 w4Var = new hi.w4(24, false);
-            w4Var.f15708b = t5Var;
-            return w4Var;
+            hi.u5 u5Var = (hi.u5) aVar2.f18178c;
+            hi.x4 x4Var = new hi.x4(24, false);
+            x4Var.f15680b = u5Var;
+            return x4Var;
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
     }
 
     public final void h(ta taVar) {
-        k8.a aVar = this.f23691a;
-        hi.w4 w4Var = ((ba) taVar).f23065a;
+        k8.a aVar = this.f23655a;
+        hi.x4 x4Var = ((ba) taVar).f23029a;
         aVar.getClass();
         try {
-            l8.e eVar = (l8.e) aVar.f18214b;
+            l8.e eVar = (l8.e) aVar.f18177b;
             Parcel p12 = eVar.p1();
-            v7.b.c(p12, (a7.a) w4Var.f15708b);
+            v7.b.c(p12, (a7.a) x4Var.f15680b);
             eVar.t1(p12, 4);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
@@ -177,15 +177,15 @@ public final class ea {
 
     public final void i(xa xaVar) {
         m8.e eVar;
-        k8.a aVar = this.f23691a;
+        k8.a aVar = this.f23655a;
         if (xaVar == null) {
             eVar = null;
         } else {
-            eVar = ((fa) xaVar).f23884a;
+            eVar = ((fa) xaVar).f23848a;
         }
         aVar.getClass();
         try {
-            l8.e eVar2 = (l8.e) aVar.f18214b;
+            l8.e eVar2 = (l8.e) aVar.f18177b;
             Parcel p12 = eVar2.p1();
             v7.b.b(p12, eVar);
             Parcel o12 = eVar2.o1(p12, 91);
@@ -197,7 +197,7 @@ public final class ea {
     }
 
     public final void j(int i7) {
-        k8.a aVar = this.f23691a;
+        k8.a aVar = this.f23655a;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -213,12 +213,12 @@ public final class ea {
     }
 
     public final void k(boolean z10) {
-        k8.a aVar = this.f23691a;
+        k8.a aVar = this.f23655a;
         aVar.getClass();
         try {
-            l8.e eVar = (l8.e) aVar.f18214b;
+            l8.e eVar = (l8.e) aVar.f18177b;
             Parcel p12 = eVar.p1();
-            int i7 = v7.b.f59340a;
+            int i7 = v7.b.f59303a;
             p12.writeInt(z10 ? 1 : 0);
             eVar.t1(p12, 22);
         } catch (RemoteException e10) {
@@ -227,9 +227,9 @@ public final class ea {
     }
 
     public final void l(cb cbVar) {
-        k8.a aVar = this.f23691a;
+        k8.a aVar = this.f23655a;
         j1 j1Var = new j1(cbVar, 9);
-        l8.e eVar = (l8.e) aVar.f18214b;
+        l8.e eVar = (l8.e) aVar.f18177b;
         try {
             k8.c cVar = new k8.c(j1Var, (char) 0);
             Parcel p12 = eVar.p1();
@@ -241,9 +241,9 @@ public final class ea {
     }
 
     public final void m(db dbVar) {
-        k8.a aVar = this.f23691a;
+        k8.a aVar = this.f23655a;
         o oVar = new o(3, this, dbVar);
-        l8.e eVar = (l8.e) aVar.f18214b;
+        l8.e eVar = (l8.e) aVar.f18177b;
         try {
             k8.c cVar = new k8.c(oVar);
             Parcel p12 = eVar.p1();
@@ -255,10 +255,10 @@ public final class ea {
     }
 
     public final void n(int i7, int i10, int i11, int i12) {
-        k8.a aVar = this.f23691a;
+        k8.a aVar = this.f23655a;
         aVar.getClass();
         try {
-            l8.e eVar = (l8.e) aVar.f18214b;
+            l8.e eVar = (l8.e) aVar.f18177b;
             Parcel p12 = eVar.p1();
             p12.writeInt(i7);
             p12.writeInt(i10);

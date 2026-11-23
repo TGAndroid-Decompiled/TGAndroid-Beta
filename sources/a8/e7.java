@@ -1,26 +1,20 @@
 package a8;
 
-import android.os.CancellationSignal;
-import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.ResolveInfo;
 public abstract class e7 {
-    public static void a(CancellationSignal cancellationSignal, rd.a onResultOrException) {
-        kotlin.jvm.internal.j.e(onResultOrException, "onResultOrException");
-        CredentialProviderPlayServicesImpl.Companion.getClass();
-        if (a1.g.a(cancellationSignal)) {
-            return;
-        }
-        onResultOrException.invoke();
-    }
-
-    public static boolean b(int i7, rd.p pVar, rd.l lVar, CancellationSignal cancellationSignal) {
-        if (i7 != -1) {
-            ?? obj = new Object();
-            obj.f19152a = new w0.h(2, i5.c.j(i7, "activity with result code: ", " indicating not RESULT_OK"));
-            if (i7 == 0) {
-                obj.f19152a = new w0.g("activity is cancelled by the user.");
+    public static boolean a(Context context) {
+        ApplicationInfo applicationInfo;
+        Intent putExtra = new Intent().addFlags(268435456).setAction("com.android.settings.panel.action.MEDIA_OUTPUT").putExtra("com.android.settings.panel.extra.PACKAGE_NAME", context.getPackageName());
+        for (ResolveInfo resolveInfo : context.getPackageManager().queryIntentActivities(putExtra, 0)) {
+            ActivityInfo activityInfo = resolveInfo.activityInfo;
+            if (activityInfo != null && (applicationInfo = activityInfo.applicationInfo) != null && (applicationInfo.flags & 129) != 0) {
+                context.startActivity(putExtra);
+                return true;
             }
-            pVar.invoke(cancellationSignal, new b1.c(lVar, obj, 1));
-            return true;
         }
         return false;
     }

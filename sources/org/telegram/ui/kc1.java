@@ -16,29 +16,29 @@ import java.util.ArrayList;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.RadialProgress2;
 public final class kc1 implements if0 {
-    public final org.telegram.ui.Cells.r1 f49281a;
-    public final org.telegram.ui.Components.ek0 f49282b;
-    public final float f49283c;
+    public final org.telegram.ui.Cells.r1 f49239a;
+    public final org.telegram.ui.Components.ek0 f49240b;
+    public final float f49241c;
     public float d;
-    public final Paint f49284e = new Paint(1);
-    public final ValueAnimator f49285f;
-    public final ChatActivityEnterView.RecordCircle f49286g;
+    public final Paint f49242e = new Paint(1);
+    public final ValueAnimator f49243f;
+    public final ChatActivityEnterView.RecordCircle f49244g;
     public final int h;
-    public final org.telegram.ui.Components.ti f49287i;
-    public final org.telegram.ui.ActionBar.h6 f49288j;
-    public float f49289k;
-    public float f49290l;
+    public final org.telegram.ui.Components.ti f49245i;
+    public final org.telegram.ui.ActionBar.h6 f49246j;
+    public float f49247k;
+    public float f49248l;
 
     public kc1(org.telegram.ui.Cells.r1 r1Var, rj rjVar, org.telegram.ui.Components.ek0 ek0Var, org.telegram.ui.Components.ti tiVar, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f49288j = h6Var;
-        this.f49281a = r1Var;
-        this.f49287i = tiVar;
-        this.f49282b = ek0Var;
+        this.f49246j = h6Var;
+        this.f49239a = r1Var;
+        this.f49245i = tiVar;
+        this.f49240b = ek0Var;
         r1Var.setEnterTransitionInProgress(true);
         ChatActivityEnterView.RecordCircle recordCircle = rjVar.getRecordCircle();
-        this.f49286g = recordCircle;
+        this.f49244g = recordCircle;
         if (recordCircle != null) {
-            this.f49283c = recordCircle.M;
+            this.f49241c = recordCircle.M;
             recordCircle.N = true;
             recordCircle.O = true;
         }
@@ -46,20 +46,20 @@ public final class kc1 implements if0 {
         Paint paint = new Paint(1);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         paint.setShader(new LinearGradient(0.0f, org.telegram.messenger.g0.L(12.0f), 0.0f, 0.0f, 0, -16777216, Shader.TileMode.CLAMP));
-        this.h = r1Var.getMessageObject().f24223m1;
-        ((ArrayList) tiVar.f39919c).add(this);
+        this.h = r1Var.getMessageObject().f24187m1;
+        ((ArrayList) tiVar.f39873c).add(this);
         tiVar.a();
         ((ViewGroup) tiVar.d).invalidate();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f49285f = ofFloat;
+        this.f49243f = ofFloat;
         ofFloat.addUpdateListener(new ch.w(24, this, tiVar));
         ofFloat.setInterpolator(new LinearInterpolator());
         ofFloat.setDuration(220L);
         ofFloat.addListener(new jc1(this, r1Var, tiVar));
         if (r1Var.getSeekBarWaveform() != null) {
-            org.telegram.ui.Components.en0 seekBarWaveform = r1Var.getSeekBarWaveform();
+            org.telegram.ui.Components.dn0 seekBarWaveform = r1Var.getSeekBarWaveform();
             seekBarWaveform.v.e(true, 0.0f);
-            org.telegram.ui.Cells.r1 r1Var2 = seekBarWaveform.f34927n;
+            org.telegram.ui.Cells.r1 r1Var2 = seekBarWaveform.f34509n;
             if (r1Var2 != null) {
                 r1Var2.invalidate();
             }
@@ -81,8 +81,8 @@ public final class kc1 implements if0 {
             f10 = f13 / 0.6f;
         }
         float f14 = 0.0f;
-        ChatActivityEnterView.RecordCircle recordCircle = this.f49286g;
-        org.telegram.ui.Components.ti tiVar = this.f49287i;
+        ChatActivityEnterView.RecordCircle recordCircle = this.f49244g;
+        org.telegram.ui.Components.ti tiVar = this.f49245i;
         if (recordCircle == null) {
             x10 = 0.0f;
         } else {
@@ -92,49 +92,49 @@ public final class kc1 implements if0 {
             f14 = (recordCircle.getY() + recordCircle.L) - tiVar.getY();
         }
         final float f15 = f14;
-        org.telegram.ui.Cells.r1 r1Var = this.f49281a;
-        int i7 = r1Var.getMessageObject().f24223m1;
+        org.telegram.ui.Cells.r1 r1Var = this.f49239a;
+        int i7 = r1Var.getMessageObject().f24187m1;
         int i10 = this.h;
-        org.telegram.ui.Components.ek0 ek0Var = this.f49282b;
+        org.telegram.ui.Components.ek0 ek0Var = this.f49240b;
         if (i7 != i10) {
-            x11 = this.f49289k;
-            y10 = this.f49290l;
+            x11 = this.f49247k;
+            y10 = this.f49248l;
         } else {
-            y10 = (ek0Var.getY() + (r1Var.getY() + r1Var.getRadialProgress().f33088a.centerY())) - tiVar.getY();
-            x11 = (ek0Var.getX() + (r1Var.getX() + r1Var.getRadialProgress().f33088a.centerX())) - tiVar.getX();
+            y10 = (ek0Var.getY() + (r1Var.getY() + r1Var.getRadialProgress().f33054a.centerY())) - tiVar.getY();
+            x11 = (ek0Var.getX() + (r1Var.getX() + r1Var.getRadialProgress().f33054a.centerX())) - tiVar.getX();
         }
-        this.f49289k = x11;
-        this.f49290l = y10;
-        float interpolation = org.telegram.ui.Components.nr.f37960f.getInterpolation(f13);
+        this.f49247k = x11;
+        this.f49248l = y10;
+        float interpolation = org.telegram.ui.Components.nr.f37917f.getInterpolation(f13);
         float interpolation2 = org.telegram.ui.Components.nr.h.getInterpolation(f13);
         final float f16 = (x11 * interpolation2) + ((1.0f - interpolation2) * x10);
         float f17 = 1.0f - interpolation;
         final float f18 = (y10 * interpolation) + (f15 * f17);
-        float height = r1Var.getRadialProgress().f33088a.height() / 2.0f;
-        float f19 = (height * interpolation) + (this.f49283c * f17);
+        float height = r1Var.getRadialProgress().f33054a.height() / 2.0f;
+        float f19 = (height * interpolation) + (this.f49241c * f17);
         ek0Var.getY();
         tiVar.getY();
         ek0Var.getMeasuredHeight();
         if (tiVar.getMeasuredHeight() > 0) {
             tiVar.getMeasuredHeight();
         }
-        int i11 = r1Var.getRadialProgress().f33101p;
+        int i11 = r1Var.getRadialProgress().f33067p;
         int i12 = org.telegram.ui.ActionBar.m6.Uf;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f49288j;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f49246j;
         float f20 = f10;
         int w02 = org.telegram.ui.ActionBar.m6.w0(i12, h6Var);
         if (i11 < 0) {
             i11 = i12;
         }
         int f21 = i0.a.f(interpolation, w02, org.telegram.ui.ActionBar.m6.w0(i11, h6Var));
-        Paint paint = this.f49284e;
+        Paint paint = this.f49242e;
         paint.setColor(f21);
         if (recordCircle != null) {
             float f22 = 1.0f - f20;
             org.telegram.ui.Components.w9 w9Var = recordCircle.h;
-            org.telegram.ui.Components.w9 w9Var2 = recordCircle.f32781n;
+            org.telegram.ui.Components.w9 w9Var2 = recordCircle.f32747n;
             f11 = x10;
-            float interpolation3 = org.telegram.ui.Components.nr.f37961g.getInterpolation(recordCircle.I);
+            float interpolation3 = org.telegram.ui.Components.nr.f37918g.getInterpolation(recordCircle.I);
             ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
             float f23 = chatActivityEnterView.Z4;
             if (f23 > 0.7f) {
@@ -143,11 +143,11 @@ public final class kc1 implements if0 {
                 f12 = f23 / 0.7f;
             }
             canvas.save();
-            float f24 = ((w9Var2.f41729t * 1.4f) + 0.878f) * chatActivityEnterView.X4 * f12 * interpolation3 * f22;
+            float f24 = ((w9Var2.f41703t * 1.4f) + 0.878f) * chatActivityEnterView.X4 * f12 * interpolation3 * f22;
             canvas.scale(f24, f24, f16, f18);
             w9Var2.a(f16, f18, canvas, w9Var2.d);
             canvas.restore();
-            float f25 = ((w9Var.f41729t * 1.4f) + 0.926f) * chatActivityEnterView.X4 * f12 * interpolation3 * f22;
+            float f25 = ((w9Var.f41703t * 1.4f) + 0.926f) * chatActivityEnterView.X4 * f12 * interpolation3 * f22;
             canvas.save();
             canvas.scale(f25, f25, f16, f18);
             w9Var.a(f16, f18, canvas, w9Var.d);
@@ -159,8 +159,8 @@ public final class kc1 implements if0 {
         canvas.save();
         final float f26 = f19 / height;
         canvas.scale(f26, f26, f16, f18);
-        final float centerX = f16 - r1Var.getRadialProgress().f33088a.centerX();
-        final float centerY = f18 - r1Var.getRadialProgress().f33088a.centerY();
+        final float centerX = f16 - r1Var.getRadialProgress().f33054a.centerX();
+        final float centerY = f18 - r1Var.getRadialProgress().f33054a.centerY();
         canvas.translate(centerX, centerY);
         r1Var.getRadialProgress().E = interpolation;
         r1Var.getRadialProgress().B = false;
@@ -174,7 +174,7 @@ public final class kc1 implements if0 {
                 Drawable drawable2;
                 Drawable drawable3;
                 kc1 kc1Var = kc1.this;
-                RadialProgress2 radialProgress = kc1Var.f49281a.getRadialProgress();
+                RadialProgress2 radialProgress = kc1Var.f49239a.getRadialProgress();
                 Canvas canvas3 = canvas;
                 radialProgress.draw(canvas3);
                 float f29 = centerX;
@@ -185,19 +185,19 @@ public final class kc1 implements if0 {
                 float f33 = f16;
                 float f34 = f18;
                 canvas3.scale(f32, f32, f33, f34);
-                ChatActivityEnterView.RecordCircle recordCircle2 = kc1Var.f49286g;
+                ChatActivityEnterView.RecordCircle recordCircle2 = kc1Var.f49244g;
                 if (recordCircle2 != null) {
                     int i13 = (int) f27;
                     int i14 = (int) f15;
                     float f35 = 1.0f - f13;
                     recordCircle2.b();
                     ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
-                    boolean z10 = chatActivityEnterView2.f32642i5;
+                    boolean z10 = chatActivityEnterView2.f32608i5;
                     Rect rect = chatActivityEnterView2.J4;
                     Drawable drawable4 = null;
                     if (z10) {
-                        if (recordCircle2.f32780f != 1.0f) {
-                            if (chatActivityEnterView2.f32598d1) {
+                        if (recordCircle2.f32746f != 1.0f) {
+                            if (chatActivityEnterView2.f32564d1) {
                                 drawable3 = chatActivityEnterView2.G4;
                             } else {
                                 drawable3 = chatActivityEnterView2.F4;
@@ -214,7 +214,7 @@ public final class kc1 implements if0 {
                     } else {
                         canvas2 = canvas3;
                         f28 = f35;
-                        if (chatActivityEnterView2.f32598d1) {
+                        if (chatActivityEnterView2.f32564d1) {
                             drawable = chatActivityEnterView2.G4;
                         } else {
                             drawable = chatActivityEnterView2.F4;
@@ -226,15 +226,15 @@ public final class kc1 implements if0 {
                     Drawable drawable6 = drawable4;
                     drawable5.setBounds(rect);
                     float f36 = 1.0f;
-                    float L = (recordCircle2.M - org.telegram.messenger.g0.L(19.0f)) / Math.max(1.0f, recordCircle2.f32782r - org.telegram.messenger.g0.L(19.0f));
+                    float L = (recordCircle2.M - org.telegram.messenger.g0.L(19.0f)) / Math.max(1.0f, recordCircle2.f32748r - org.telegram.messenger.g0.L(19.0f));
                     if (L < 0.0f) {
                         f36 = 0.0f;
                     } else if (L <= 1.0f) {
                         f36 = L;
                     }
-                    recordCircle2.f32777d0 = f36;
+                    recordCircle2.f32743d0 = f36;
                     canvas3 = canvas2;
-                    recordCircle2.c(canvas3, drawable5, drawable6, recordCircle2.f32780f, (int) (255.0f * f28));
+                    recordCircle2.c(canvas3, drawable5, drawable6, recordCircle2.f32746f, (int) (255.0f * f28));
                 }
                 canvas3.scale(f31, f31, f33, f34);
                 canvas3.translate(f29, f30);

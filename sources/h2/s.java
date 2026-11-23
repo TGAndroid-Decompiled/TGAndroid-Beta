@@ -2,11 +2,11 @@ package h2;
 
 import java.util.NoSuchElementException;
 public final class s implements z3.b {
-    public int f13849a;
-    public int f13850b;
-    public int f13851c;
+    public int f13812a;
+    public int f13813b;
+    public int f13814c;
     public int d;
-    public Object f13852e;
+    public Object f13815e;
 
     @Override
     public int a() {
@@ -15,21 +15,21 @@ public final class s implements z3.b {
 
     @Override
     public int b() {
-        return this.f13849a;
+        return this.f13812a;
     }
 
     @Override
     public int c() {
-        x xVar = (x) this.f13852e;
-        int i7 = this.f13850b;
+        x xVar = (x) this.f13815e;
+        int i7 = this.f13813b;
         if (i7 == 8) {
             return xVar.A();
         }
         if (i7 == 16) {
             return xVar.H();
         }
-        int i10 = this.f13851c;
-        this.f13851c = i10 + 1;
+        int i10 = this.f13814c;
+        this.f13814c = i10 + 1;
         if (i10 % 2 == 0) {
             int A = xVar.A();
             this.d = A;
@@ -39,12 +39,12 @@ public final class s implements z3.b {
     }
 
     public long d() {
-        int i7 = this.f13851c;
+        int i7 = this.f13814c;
         if (i7 != 0) {
-            int i10 = this.f13849a;
-            long j3 = ((long[]) this.f13852e)[i10];
-            this.f13849a = this.d & (i10 + 1);
-            this.f13851c = i7 - 1;
+            int i10 = this.f13812a;
+            long j3 = ((long[]) this.f13815e)[i10];
+            this.f13812a = this.d & (i10 + 1);
+            this.f13814c = i7 - 1;
             return j3;
         }
         throw new NoSuchElementException();

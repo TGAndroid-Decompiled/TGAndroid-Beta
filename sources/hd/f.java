@@ -1,7 +1,7 @@
 package hd;
 
-import c8.f0;
-import c8.vd;
+import c8.g0;
+import c8.wd;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,7 +21,7 @@ public abstract class f extends l {
             if (i7 > 1) {
                 sb2.append(charSequence);
             }
-            vd.a(sb2, obj, lVar);
+            wd.a(sb2, obj, lVar);
         }
         sb2.append(charSequence3);
     }
@@ -57,7 +57,7 @@ public abstract class f extends l {
         Object next;
         kotlin.jvm.internal.j.e(iterable, "<this>");
         if (i7 >= 0) {
-            n nVar = n.f14177a;
+            n nVar = n.f14140a;
             if (i7 == 0) {
                 return nVar;
             }
@@ -81,7 +81,7 @@ public abstract class f extends l {
                             throw new NoSuchElementException("Collection is empty.");
                         }
                     }
-                    return f0.a(next);
+                    return g0.a(next);
                 }
             }
             ArrayList arrayList = new ArrayList(i7);
@@ -98,7 +98,7 @@ public abstract class f extends l {
                 if (size != 1) {
                     return arrayList;
                 }
-                return f0.a(arrayList.get(0));
+                return g0.a(arrayList.get(0));
             }
             return nVar;
         }
@@ -145,7 +145,7 @@ public abstract class f extends l {
         Object next;
         kotlin.jvm.internal.j.e(iterable, "<this>");
         boolean z10 = iterable instanceof Collection;
-        n nVar = n.f14177a;
+        n nVar = n.f14140a;
         if (z10) {
             Collection collection = (Collection) iterable;
             int size = collection.size();
@@ -158,7 +158,7 @@ public abstract class f extends l {
                 } else {
                     next = collection.iterator().next();
                 }
-                return f0.a(next);
+                return g0.a(next);
             }
             return nVar;
         }
@@ -174,7 +174,7 @@ public abstract class f extends l {
             if (size2 != 1) {
                 return arrayList;
             }
-            return f0.a(arrayList.get(0));
+            return g0.a(arrayList.get(0));
         }
         return nVar;
     }
@@ -230,6 +230,6 @@ public abstract class f extends l {
                 return singleton2;
             }
         }
-        return p.f14179a;
+        return p.f14142a;
     }
 }

@@ -1,22 +1,28 @@
 package c8;
-public abstract class l9 {
-    public static float a(float f10, float f11, float f12) {
-        if (f10 < f11) {
-            return f11;
-        }
-        if (f10 > f12) {
-            return f12;
-        }
-        return f10;
-    }
 
-    public static int b(int i7, int i10, int i11) {
-        if (i7 < i10) {
-            return i10;
+import android.os.Build;
+import android.text.TextUtils;
+import android.view.View;
+public abstract class l9 {
+    public static void a(View view, CharSequence charSequence) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            m.l3.a(view, charSequence);
+            return;
         }
-        if (i7 > i11) {
-            return i11;
+        m.n3 n3Var = m.n3.f20136w;
+        if (n3Var != null && n3Var.f20138a == view) {
+            m.n3.b(null);
         }
-        return i7;
+        if (TextUtils.isEmpty(charSequence)) {
+            m.n3 n3Var2 = m.n3.f20137x;
+            if (n3Var2 != null && n3Var2.f20138a == view) {
+                n3Var2.a();
+            }
+            view.setOnLongClickListener(null);
+            view.setLongClickable(false);
+            view.setOnHoverListener(null);
+            return;
+        }
+        new m.n3(view, charSequence);
     }
 }

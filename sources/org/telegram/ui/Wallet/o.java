@@ -9,26 +9,26 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.lc;
 public final class o implements y10 {
-    public final int f44720a;
-    public final Object f44721b;
-    public final Object f44722c;
+    public final int f44686a;
+    public final Object f44687b;
+    public final Object f44688c;
     public final Object d;
 
     public o(Object obj, Object obj2, Object obj3, int i7) {
-        this.f44720a = i7;
-        this.f44721b = obj;
-        this.f44722c = obj2;
+        this.f44686a = i7;
+        this.f44687b = obj;
+        this.f44688c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void a(Object obj) {
         String str;
-        int i7 = this.f44720a;
+        int i7 = this.f44686a;
         boolean z10 = false;
         Object obj2 = this.d;
-        Object obj3 = this.f44722c;
-        Object obj4 = this.f44721b;
+        Object obj3 = this.f44688c;
+        Object obj4 = this.f44687b;
         switch (i7) {
             case 0:
                 u0 u0Var = (u0) obj4;
@@ -53,10 +53,10 @@ public final class o implements y10 {
                 Runnable runnable = (Runnable) obj2;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 if (y10Var != null) {
-                    u0Var2.f45141q.put(wallettransaction, y10Var);
+                    u0Var2.f45107q.put(wallettransaction, y10Var);
                 }
                 if (runnable != null) {
-                    u0Var2.f45142r.put(wallettransaction, runnable);
+                    u0Var2.f45108r.put(wallettransaction, runnable);
                     return;
                 } else {
                     u0Var2.getClass();
@@ -68,10 +68,10 @@ public final class o implements y10 {
                 oi.c cVar = (oi.c) obj2;
                 String str3 = (String) obj;
                 l2Var.getClass();
-                if (!h2Var.f44344n && !l2Var.j(h2Var) && l2Var.A(h2Var) && str3 == null) {
+                if (!h2Var.f44310n && !l2Var.j(h2Var) && l2Var.A(h2Var) && str3 == null) {
                     z10 = true;
                 }
-                h2Var.f44346p = z10;
+                h2Var.f44312p = z10;
                 cVar.a(null, str3);
                 return;
             case 3:
@@ -80,9 +80,9 @@ public final class o implements y10 {
                 y10 y10Var2 = (y10) obj2;
                 String str4 = (String) obj;
                 l2Var2.getClass();
-                h2Var2.f44343m = false;
-                if (h2Var2.f44348r == null && l2Var2.f44528g == h2Var2) {
-                    l2Var2.f44528g = null;
+                h2Var2.f44309m = false;
+                if (h2Var2.f44314r == null && l2Var2.f44494g == h2Var2) {
+                    l2Var2.f44494g = null;
                 }
                 y10Var2.a(str4);
                 return;
@@ -108,7 +108,7 @@ public final class o implements y10 {
                 e3[] e3VarArr = (e3[]) obj3;
                 org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj2;
                 String str5 = (String) obj;
-                ((hi.e) obj4).setLoading(false);
+                ((hi.d) obj4).setLoading(false);
                 if (!u0.L(str5)) {
                     if (!TextUtils.isEmpty(str5)) {
                         new lc(e3VarArr[0].F, h6Var).f0(str5, false);
@@ -127,18 +127,18 @@ public final class o implements y10 {
                 u0 u0Var3 = (u0) obj4;
                 TLRPC.User user = (TLRPC.User) obj2;
                 String str6 = (String) obj;
-                if (!naVar.f44715r) {
-                    if (!TextUtils.isEmpty(str6) && u0.c(naVar.f44713f, u0Var3.y())) {
-                        i0 i0Var = new i0(u0Var3, str6, naVar.f44711e, null, new s(naVar, u0Var3, user, str6));
+                if (!naVar.f44681r) {
+                    if (!TextUtils.isEmpty(str6) && u0.c(naVar.f44679f, u0Var3.y())) {
+                        i0 i0Var = new i0(u0Var3, str6, naVar.f44677e, null, new s(naVar, u0Var3, user, str6));
                         u0Var3.x0(i0Var);
-                        naVar.f44714n = new m(i0Var, 2);
+                        naVar.f44680n = new m(i0Var, 2);
                         return;
                     }
                     naVar.h = false;
-                    naVar.f44707a0.setLoading(false);
+                    naVar.f44673a0.setLoading(false);
                     lc b02 = lc.b0(naVar);
                     if (TextUtils.isEmpty(str6)) {
-                        str = hd.N0(2131742773, null);
+                        str = hd.N0(2131742775, null);
                     } else {
                         str = "WALLET_CHANGED";
                     }
@@ -153,7 +153,7 @@ public final class o implements y10 {
                 e3 e3Var = (e3) obj3;
                 org.telegram.ui.ActionBar.h6 h6Var2 = (org.telegram.ui.ActionBar.h6) obj2;
                 String str7 = (String) obj;
-                ((hi.e) obj4).setLoading(false);
+                ((hi.d) obj4).setLoading(false);
                 if (str7 == null) {
                     e3Var.dismiss();
                     return;
@@ -165,16 +165,16 @@ public final class o implements y10 {
     }
 
     public o(y10 y10Var, u0 u0Var, z0 z0Var, d9 d9Var) {
-        this.f44720a = 7;
-        this.f44721b = d9Var;
-        this.f44722c = y10Var;
+        this.f44686a = 7;
+        this.f44687b = d9Var;
+        this.f44688c = y10Var;
         this.d = z0Var;
     }
 
     public o(na naVar, u0 u0Var, TLRPC.User user) {
-        this.f44720a = 8;
-        this.f44722c = naVar;
-        this.f44721b = u0Var;
+        this.f44686a = 8;
+        this.f44688c = naVar;
+        this.f44687b = u0Var;
         this.d = user;
     }
 }

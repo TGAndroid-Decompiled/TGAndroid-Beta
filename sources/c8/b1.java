@@ -1,16 +1,79 @@
 package c8;
-
-import android.os.Build;
-import org.telegram.messenger.np;
-import org.telegram.ui.Dictation.DictationAsr;
 public abstract class b1 {
-    public static boolean a(long j3) {
-        if (np.g1().getBoolean("asr_live_text", true) && DictationAsr.D()) {
-            if (!DictationAsr.z(j3) || (Build.VERSION.SDK_INT >= 33 && ai.d.i())) {
-                return true;
+    public static boolean a(int i7, CharSequence charSequence) {
+        if (i7 < charSequence.length()) {
+            char charAt = charSequence.charAt(i7);
+            switch (charAt) {
+                case '!':
+                case '\"':
+                case '#':
+                case '$':
+                case '%':
+                case '&':
+                case '\'':
+                case '(':
+                case ')':
+                case '*':
+                case '+':
+                case ',':
+                case '-':
+                case '.':
+                case '/':
+                    return true;
+                default:
+                    switch (charAt) {
+                        case ':':
+                        case ';':
+                        case '<':
+                        case '=':
+                        case '>':
+                        case '?':
+                        case '@':
+                            return true;
+                        default:
+                            switch (charAt) {
+                                case '[':
+                                case '\\':
+                                case ']':
+                                case '^':
+                                case '_':
+                                case '`':
+                                    return true;
+                                default:
+                                    switch (charAt) {
+                                        case '{':
+                                        case '|':
+                                        case '}':
+                                        case '~':
+                                            return true;
+                                        default:
+                                            return false;
+                                    }
+                            }
+                    }
             }
-            return false;
         }
         return false;
+    }
+
+    public static int b(char c10, int i7, int i10, CharSequence charSequence) {
+        while (i7 < i10) {
+            if (charSequence.charAt(i7) != c10) {
+                return i7;
+            }
+            i7++;
+        }
+        return i10;
+    }
+
+    public static int c(int i7, int i10, CharSequence charSequence) {
+        while (i7 < i10) {
+            char charAt = charSequence.charAt(i7);
+            if (charAt != '\t' && charAt != ' ') {
+                return i7;
+            }
+            i7++;
+        }
+        return i10;
     }
 }

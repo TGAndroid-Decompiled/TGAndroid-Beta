@@ -8,11 +8,11 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class c {
-    public static final c f19300b = new c(new HashMap());
-    public final Map f19301a;
+    public static final c f19266b = new c(new HashMap());
+    public final Map f19267a;
 
     public c(HashMap hashMap) {
-        this.f19301a = DesugarCollections.unmodifiableMap(hashMap);
+        this.f19267a = DesugarCollections.unmodifiableMap(hashMap);
     }
 
     public static b9.g0 a(MediaFormat mediaFormat, Set set) {
@@ -22,7 +22,7 @@ public final class c {
             String str = (String) it.next();
             if (mediaFormat.containsKey(str)) {
                 int valueTypeForKey = mediaFormat.getValueTypeForKey(str);
-                HashMap hashMap = g0Var.f3024a;
+                HashMap hashMap = g0Var.f2975a;
                 if (valueTypeForKey != 1) {
                     if (valueTypeForKey != 2) {
                         if (valueTypeForKey != 3) {
@@ -62,10 +62,10 @@ public final class c {
         if (!(obj instanceof c)) {
             return false;
         }
-        return this.f19301a.equals(((c) obj).f19301a);
+        return this.f19267a.equals(((c) obj).f19267a);
     }
 
     public final int hashCode() {
-        return this.f19301a.hashCode();
+        return this.f19267a.hashCode();
     }
 }

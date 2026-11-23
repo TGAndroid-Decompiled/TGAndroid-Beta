@@ -3459,7 +3459,6 @@ This action cannot be undone. This will permanently destroy the gift.";
 "UsernameHelp" = "You can choose a username on **Telegram**. If you do, other people will be able to find you by this username and contact you without knowing your phone number.
 
 You can use **a–z**, **0–9** and underscores. Minimum length is **5** characters.";
-"#res_1172174021" = "Fallback to Google";
 "BusinessHoursProfileOpensInMinutes_other" = "opens in %d minutes";
 "ThemeDay" = "Day";
 "ChannelAffiliateProgramJoinText" = "**%1$s** will share **%2$s** of the revenue from each user you refer to it for **%3$s**.";
@@ -6653,7 +6652,6 @@ Ask your **Premium** subscribers to boost your channel with this link:";
 "SharingOfferDisable2" = "> no saving photos and videos";
 "SharingOfferDisable3" = "> no copying messages";
 "SharingOfferDisable4" = "> no screenshots";
-"#res_-2000755949" = "For other languages, the app can use system speech recognition. This might send your voice data to Google or other vendor servers.";
 "FactCheckDeleted" = "Fact check removed.";
 "BusinessBotPermissionsGiftsSettings" = "Change Gift Settings";
 "ChannelCantSendMessage" = "Sorry, you can't send messages to this channel.";

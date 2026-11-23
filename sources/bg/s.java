@@ -11,25 +11,25 @@ import org.telegram.ui.Components.y5;
 public abstract class s {
     public static void a(fz0 fz0Var, StringBuilder sb2) {
         if (fz0Var != null) {
-            if ((fz0Var.f35337a & 768) > 0) {
+            if ((fz0Var.f35299a & 768) > 0) {
                 sb2.append("<spoiler>");
             }
-            if ((fz0Var.f35337a & 1) > 0) {
+            if ((fz0Var.f35299a & 1) > 0) {
                 sb2.append("<b>");
             }
-            if ((fz0Var.f35337a & 2) > 0) {
+            if ((fz0Var.f35299a & 2) > 0) {
                 sb2.append("<i>");
             }
-            if ((fz0Var.f35337a & 16) > 0) {
+            if ((fz0Var.f35299a & 16) > 0) {
                 sb2.append("<u>");
             }
-            if ((fz0Var.f35337a & 8) > 0) {
+            if ((fz0Var.f35299a & 8) > 0) {
                 sb2.append("<s>");
             }
-            if ((fz0Var.f35337a & 4) > 0) {
+            if ((fz0Var.f35299a & 4) > 0) {
                 sb2.append("<code>");
             }
-            if ((fz0Var.f35337a & 128) > 0 && fz0Var.d != null) {
+            if ((fz0Var.f35299a & 128) > 0 && fz0Var.d != null) {
                 sb2.append("<a href=\"");
                 sb2.append(fz0Var.d.url);
                 sb2.append("\">");
@@ -39,25 +39,25 @@ public abstract class s {
 
     public static void b(fz0 fz0Var, StringBuilder sb2) {
         if (fz0Var != null) {
-            if ((fz0Var.f35337a & 128) > 0 && fz0Var.d != null) {
+            if ((fz0Var.f35299a & 128) > 0 && fz0Var.d != null) {
                 sb2.append("</a>");
             }
-            if ((fz0Var.f35337a & 4) > 0) {
+            if ((fz0Var.f35299a & 4) > 0) {
                 sb2.append("</code>");
             }
-            if ((fz0Var.f35337a & 8) > 0) {
+            if ((fz0Var.f35299a & 8) > 0) {
                 sb2.append("</s>");
             }
-            if ((fz0Var.f35337a & 16) > 0) {
+            if ((fz0Var.f35299a & 16) > 0) {
                 sb2.append("</u>");
             }
-            if ((fz0Var.f35337a & 2) > 0) {
+            if ((fz0Var.f35299a & 2) > 0) {
                 sb2.append("</i>");
             }
-            if ((fz0Var.f35337a & 1) > 0) {
+            if ((fz0Var.f35299a & 1) > 0) {
                 sb2.append("</b>");
             }
-            if ((fz0Var.f35337a & 768) > 0) {
+            if ((fz0Var.f35299a & 768) > 0) {
                 sb2.append("</spoiler>");
             }
         }
@@ -84,7 +84,7 @@ public abstract class s {
             jh0[] jh0VarArr = (jh0[]) spanned.getSpans(i15, nextSpanTransition, jh0.class);
             if (jh0VarArr != null) {
                 for (jh0 jh0Var : jh0VarArr) {
-                    if (jh0Var.f36504e) {
+                    if (jh0Var.f36463e) {
                         str3 = "<blockquote collapsed>";
                     } else {
                         str3 = "<blockquote>";
@@ -102,7 +102,7 @@ public abstract class s {
                 if (gz0VarArr != null) {
                     for (gz0 gz0Var : gz0VarArr) {
                         if (gz0Var != null) {
-                            a(gz0Var.f35730b, sb2);
+                            a(gz0Var.f35683b, sb2);
                         }
                     }
                 }
@@ -115,7 +115,7 @@ public abstract class s {
                     String str5 = "\">";
                     if (u41VarArr != null) {
                         for (u41 u41Var : u41VarArr) {
-                            a(u41Var.f40259a, sb2);
+                            a(u41Var.f40242a, sb2);
                             sb2.append("<a href=\"");
                             sb2.append(u41Var.getURL());
                             sb2.append("\">");
@@ -150,7 +150,7 @@ public abstract class s {
                                 while (i19 < gVarArr.length) {
                                     qi.g gVar = gVarArr[i19];
                                     if (gVar != null) {
-                                        String str6 = gVar.f56224a;
+                                        String str6 = gVar.f56189a;
                                         if (TextUtils.isEmpty(str6)) {
                                             sb2.append(str4);
                                         } else {
@@ -332,7 +332,7 @@ public abstract class s {
                     if (u41VarArr != null) {
                         for (u41 u41Var2 : u41VarArr) {
                             sb2.append("</a>");
-                            b(u41Var2.f40259a, sb2);
+                            b(u41Var2.f40242a, sb2);
                         }
                     }
                     length = i36;
@@ -347,7 +347,7 @@ public abstract class s {
                 if (gz0VarArr != null) {
                     for (gz0 gz0Var2 : gz0VarArr) {
                         if (gz0Var2 != null) {
-                            b(gz0Var2.f35730b, sb2);
+                            b(gz0Var2.f35683b, sb2);
                         }
                     }
                 }

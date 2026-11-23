@@ -9,55 +9,55 @@ import android.widget.TextView;
 import org.telegram.messenger.hd;
 public final class v8 extends FrameLayout {
     public static Paint d;
-    public final TextView f32209a;
-    public int f32210b;
-    public float f32211c;
+    public final TextView f32175a;
+    public int f32176b;
+    public float f32177c;
 
     public v8(Context context) {
         super(context);
         int i7;
         int i10;
-        this.f32211c = 1.0f;
+        this.f32177c = 1.0f;
         if (d == null) {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f32209a = textView;
+        this.f32175a = textView;
         textView.setTextColor(-14606047);
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
         textView.setPadding(0, 0, 0, org.telegram.messenger.g0.L(3.0f));
-        boolean z10 = hd.f24444a0;
+        boolean z10 = hd.f24408a0;
         int i11 = (z10 ? 5 : 3) | 48;
         if (z10) {
             i10 = 21;
         } else {
             i10 = 57;
         }
-        addView(textView, c8.ma.d(-1, -1.0f, i11, i10, 0.0f, z10 ? 57 : 21, 0.0f));
+        addView(textView, c8.na.d(-1, -1.0f, i11, i10, 0.0f, z10 ? 57 : 21, 0.0f));
     }
 
     @Override
     public float getAlpha() {
-        return this.f32211c;
+        return this.f32177c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int measuredWidth;
-        int i7 = this.f32210b;
+        int i7 = this.f32176b;
         if (i7 != 0) {
             d.setColor(i7);
-            d.setAlpha((int) (this.f32211c * 255.0f));
-            if (!hd.f24444a0) {
+            d.setAlpha((int) (this.f32177c * 255.0f));
+            if (!hd.f24408a0) {
                 measuredWidth = org.telegram.messenger.g0.L(28.0f);
             } else {
                 measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(28.0f);
@@ -73,7 +73,7 @@ public final class v8 extends FrameLayout {
 
     @Override
     public void setAlpha(float f10) {
-        this.f32211c = f10;
+        this.f32177c = f10;
         invalidate();
     }
 }

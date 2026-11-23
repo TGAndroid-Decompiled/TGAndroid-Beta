@@ -41,7 +41,7 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, yo, c1, h2
     @Override
     public void a(xh.f fVar, float f10, float f11) {
         xh.l lVar = (xh.l) this.f1008c;
-        if (!lVar.d && !lVar.f60642e && !lVar.f60643f && this.f1007b) {
+        if (!lVar.d && !lVar.f60607e && !lVar.f60608f && this.f1007b) {
             lVar.c(f10, f11);
         }
     }
@@ -56,15 +56,15 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, yo, c1, h2
         fi.q qVar = (fi.q) this.f1008c;
         if (!this.f1007b && z10) {
             boolean z11 = true;
-            if (qVar.f12454b != 1) {
+            if (qVar.f12406b != 1) {
                 z11 = false;
             }
-            p6 p6Var = qVar.f12476s;
+            p6 p6Var = qVar.f12428s;
             if (z11) {
-                if (!p6Var.f12447z) {
+                if (!p6Var.f12399z) {
                     return;
                 }
-            } else if (!p6Var.f12438p) {
+            } else if (!p6Var.f12390p) {
                 return;
             }
             p6Var.T(z11);
@@ -76,11 +76,11 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, yo, c1, h2
         switch (this.f1006a) {
             case 2:
                 kg.b0 b0Var = (kg.b0) this.f1008c;
-                ArrayList arrayList2 = b0Var.f18286k;
-                ArrayList arrayList3 = b0Var.f18285j;
+                ArrayList arrayList2 = b0Var.f18253k;
+                ArrayList arrayList3 = b0Var.f18252j;
                 int i10 = 0;
                 if (this.f1007b) {
-                    b0Var.f18282f = i7;
+                    b0Var.f18249f = i7;
                     arrayList3.clear();
                     arrayList3.addAll(arrayList);
                     while (i10 < arrayList3.size()) {
@@ -88,7 +88,7 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, yo, c1, h2
                         i10++;
                     }
                 } else {
-                    b0Var.f18283g = i7;
+                    b0Var.f18250g = i7;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
                     while (i10 < arrayList2.size()) {
@@ -96,7 +96,7 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, yo, c1, h2
                         i10++;
                     }
                 }
-                b0Var.f18281e.run();
+                b0Var.f18248e.run();
                 return;
             default:
                 kz kzVar = (kz) this.f1008c;
@@ -156,7 +156,7 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, yo, c1, h2
                 return;
             case 4:
             default:
-                f40 f40Var = ((k30) this.f1008c).f49193b;
+                f40 f40Var = ((k30) this.f1008c).f49147b;
                 f40Var.V2.A(0, null);
                 UndoView o12 = f40Var.o1();
                 if (this.f1007b) {
@@ -168,7 +168,7 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, yo, c1, h2
                 return;
             case 5:
                 bn bnVar = (bn) this.f1008c;
-                rj rjVar = bnVar.f45950a0;
+                rj rjVar = bnVar.f45903a0;
                 if (rjVar != null) {
                     if (this.f1007b) {
                         bnVar.finishFragment();
@@ -184,14 +184,14 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, yo, c1, h2
 
     @Override
     public void i(long j3) {
-        n6 n6Var = ((x1) this.f1008c).f32315a.f31690z3;
+        n6 n6Var = ((x1) this.f1008c).f32281a.f31656z3;
         if (n6Var != null) {
             n6Var.t(hd.M((int) j3, this.f1007b), true, true);
         }
     }
 
     @Override
-    public Object k(p4.e0 e0Var, p4.v vVar, int i7) {
+    public Object k(p4.d0 d0Var, p4.v vVar, int i7) {
         int o02;
         long l10;
         int o03;
@@ -203,30 +203,30 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, yo, c1, h2
                 if (z10) {
                     o02 = -1;
                 } else {
-                    o02 = e0Var.f55249t.o0();
+                    o02 = d0Var.f55205t.o0();
                 }
                 int i10 = o02;
                 if (z10) {
                     l10 = -9223372036854775807L;
                 } else {
-                    l10 = e0Var.f55249t.l();
+                    l10 = d0Var.f55205t.l();
                 }
-                return e0Var.q(vVar, u10, i10, l10);
+                return d0Var.q(vVar, u10, i10, l10);
             default:
                 List list = (List) this.f1008c;
                 boolean z11 = this.f1007b;
                 if (z11) {
                     o03 = -1;
                 } else {
-                    o03 = e0Var.f55249t.o0();
+                    o03 = d0Var.f55205t.o0();
                 }
                 int i11 = o03;
                 if (z11) {
                     l11 = -9223372036854775807L;
                 } else {
-                    l11 = e0Var.f55249t.l();
+                    l11 = d0Var.f55205t.l();
                 }
-                return e0Var.q(vVar, list, i11, l11);
+                return d0Var.q(vVar, list, i11, l11);
         }
     }
 

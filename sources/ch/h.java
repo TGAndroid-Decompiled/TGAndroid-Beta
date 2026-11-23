@@ -3,18 +3,18 @@ package ch;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.ls;
 public final class h implements Runnable {
-    public final int f5399a;
-    public final p f5400b;
+    public final int f5362a;
+    public final p f5363b;
 
     public h(p pVar, int i7) {
-        this.f5399a = i7;
-        this.f5400b = pVar;
+        this.f5362a = i7;
+        this.f5363b = pVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f5399a;
-        p pVar = this.f5400b;
+        int i7 = this.f5362a;
+        p pVar = this.f5363b;
         switch (i7) {
             case 0:
                 pVar.h.requestFocus();
@@ -29,9 +29,9 @@ public final class h implements Runnable {
                 if (pVar.Q && !pVar.P) {
                     pVar.P = true;
                     ls.e().k(98, 512);
-                    pVar.f5494c.setVisibility(0);
-                    pVar.f5494c.setLayerType(2, null);
-                    pVar.j0(pVar.R.f57700e);
+                    pVar.f5457c.setVisibility(0);
+                    pVar.f5457c.setLayerType(2, null);
+                    pVar.j0(pVar.R.f57665e);
                     pVar.R.a(true, true);
                     return;
                 }

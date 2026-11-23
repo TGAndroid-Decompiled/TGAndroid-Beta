@@ -1,44 +1,68 @@
 package bi;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import org.telegram.messenger.y10;
-import org.telegram.ui.Components.c51;
-public final class g2 implements y10 {
-    public final int f3642a;
-    public final n3 f3643b;
+public final class g2 implements te.b, ri.n, org.telegram.messenger.q1 {
+    public final p3 f3602a;
 
-    public g2(n3 n3Var, int i7) {
-        this.f3642a = i7;
-        this.f3643b = n3Var;
+    public g2(p3 p3Var) {
+        this.f3602a = p3Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f3642a) {
-            case 0:
-                this.f3643b.f3942v2.setTitleMinSideInset(org.telegram.messenger.g0.L(6.0f) + ((Integer) obj).intValue());
-                return;
-            default:
-                List list = (List) obj;
-                n3 n3Var = this.f3643b;
-                if (n3Var.getContext() != null && !n3Var.J) {
-                    ArrayList b10 = wg.s.b(1, list);
-                    n3Var.V1 = b10;
-                    List c10 = wg.s.c(b10);
-                    n3Var.V1 = c10;
-                    if (!((ArrayList) c10).isEmpty()) {
-                        n3Var.h1();
-                        c51 c51Var = n3Var.U1;
-                        if (c51Var != null) {
-                            c51Var.O(true);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public void H(int i7, float f10, float f11, te.c cVar) {
+        org.telegram.ui.ActionBar.z4 z4Var = this.f3602a.f3952v2;
+        if (z4Var != null) {
+            z4Var.setTitlesAlpha(f10);
         }
+    }
+
+    @Override
+    public void a(f5.f fVar, List list) {
+        int i7;
+        p3 p3Var = this.f3602a;
+        ArrayList arrayList = p3Var.f3938h2;
+        Iterator it = list.iterator();
+        long j3 = 0;
+        while (true) {
+            i7 = 0;
+            if (!it.hasNext()) {
+                break;
+            }
+            f5.m mVar = (f5.m) it.next();
+            int size = arrayList.size();
+            while (true) {
+                if (i7 < size) {
+                    Object obj = arrayList.get(i7);
+                    i7++;
+                    ug.j jVar = (ug.j) obj;
+                    if (jVar.h() != null && jVar.h().equals(mVar.f11296c)) {
+                        jVar.h = mVar;
+                        if (jVar.f() > j3) {
+                            j3 = jVar.f();
+                        }
+                    }
+                }
+            }
+        }
+        int size2 = arrayList.size();
+        while (i7 < size2) {
+            Object obj2 = arrayList.get(i7);
+            i7++;
+            ((ug.j) obj2).f58716g = j3;
+        }
+        org.telegram.messenger.g0.g3(new a3.f(p3Var, 20));
+    }
+
+    @Override
+    public int e() {
+        p3 p3Var = this.f3602a;
+        p3Var.getClass();
+        return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29310b6, p3Var.J0);
+    }
+
+    @Override
+    public void D(float f10, int i7) {
     }
 }

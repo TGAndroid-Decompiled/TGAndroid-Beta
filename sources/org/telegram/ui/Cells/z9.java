@@ -8,20 +8,20 @@ import android.view.animation.PathInterpolator;
 import org.telegram.messenger.si;
 import org.telegram.ui.k71;
 public final class z9 extends GestureDetector.SimpleOnGestureListener {
-    public final int f32556a;
-    public final View f32557b;
+    public final int f32522a;
+    public final View f32523b;
 
     public z9(int i7, View view) {
-        this.f32556a = i7;
-        this.f32557b = view;
+        this.f32522a = i7;
+        this.f32523b = view;
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent motionEvent) {
-        switch (this.f32556a) {
+        switch (this.f32522a) {
             case 0:
-                aa aaVar = (aa) this.f32557b;
-                int i7 = aaVar.f31361a6;
+                aa aaVar = (aa) this.f32523b;
+                int i7 = aaVar.f31327a6;
                 boolean z10 = false;
                 if (aaVar.Cd == 2 && si.d0(i7).S() != null) {
                     boolean H5 = aaVar.getMessageObject().H5(ch.p0.b(si.d0(i7).S()), false);
@@ -31,7 +31,7 @@ public final class z9 extends GestureDetector.SimpleOnGestureListener {
                     z10 = true;
                     if (H5) {
                         ba baVar = aaVar.Dd;
-                        ch.l0.d(baVar.f30498x, null, baVar.f30494n[1], null, motionEvent.getX(), motionEvent.getY(), ch.p0.b(si.d0(i7).S()), aaVar.f31361a6, 0);
+                        ch.l0.d(baVar.f30464x, null, baVar.f30460n[1], null, motionEvent.getX(), motionEvent.getY(), ch.p0.b(si.d0(i7).S()), aaVar.f31327a6, 0);
                         ch.l0.f();
                     }
                     aaVar.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.ActionBar.h1(this, 1));
@@ -44,11 +44,11 @@ public final class z9 extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public boolean onDown(MotionEvent motionEvent) {
-        switch (this.f32556a) {
+        switch (this.f32522a) {
             case 1:
-                vg.e eVar = (vg.e) this.f32557b;
-                eVar.f59461n = true;
-                eVar.b();
+                vg.f fVar = (vg.f) this.f32523b;
+                fVar.f59426n = true;
+                fVar.b();
                 return true;
             case 2:
                 return true;
@@ -59,11 +59,11 @@ public final class z9 extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        switch (this.f32556a) {
+        switch (this.f32522a) {
             case 1:
-                vg.f fVar = ((vg.e) this.f32557b).f59456a;
-                fVar.d -= f10 * 0.5f;
-                fVar.f59473i -= f11 * 0.05f;
+                vg.g gVar = ((vg.f) this.f32523b).f59421a;
+                gVar.d -= f10 * 0.5f;
+                gVar.f59438i -= f11 * 0.05f;
                 return true;
             default:
                 return super.onScroll(motionEvent, motionEvent2, f10, f11);
@@ -72,33 +72,33 @@ public final class z9 extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public boolean onSingleTapUp(MotionEvent motionEvent) {
-        int i7 = this.f32556a;
-        View view = this.f32557b;
+        int i7 = this.f32522a;
+        View view = this.f32523b;
         switch (i7) {
             case 1:
-                vg.e eVar = (vg.e) view;
-                vg.f fVar = eVar.f59456a;
-                if (Math.abs(fVar.d) <= 10.0f) {
-                    float max = Math.max(1.0f, eVar.getWidth() / 2.0f);
+                vg.f fVar = (vg.f) view;
+                vg.g gVar = fVar.f59421a;
+                if (Math.abs(gVar.d) <= 10.0f) {
+                    float max = Math.max(1.0f, fVar.getWidth() / 2.0f);
                     float x10 = ((max - motionEvent.getX()) * ((((float) Math.random()) * 30.0f) + 40.0f)) / max;
                     float y10 = ((max - motionEvent.getY()) * ((((float) Math.random()) * 30.0f) + 40.0f)) / max;
-                    eVar.b();
-                    float f10 = fVar.d;
-                    float f11 = fVar.f59473i;
+                    fVar.b();
+                    float f10 = gVar.d;
+                    float f11 = gVar.f59438i;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    eVar.d = ofFloat;
+                    fVar.d = ofFloat;
                     ofFloat.setDuration(220L);
-                    eVar.d.setInterpolator(new PathInterpolator(0.23f, 1.0f, 0.32f, 1.0f));
-                    eVar.d.addUpdateListener(new hi.g6(this, f10, x10, f11, y10, 2));
-                    eVar.d.addListener(new k71(this, 21));
-                    eVar.d.start();
+                    fVar.d.setInterpolator(new PathInterpolator(0.23f, 1.0f, 0.32f, 1.0f));
+                    fVar.d.addUpdateListener(new hi.h6(this, f10, x10, f11, y10, 2));
+                    fVar.d.addListener(new k71(this, 21));
+                    fVar.d.start();
                     return true;
                 }
                 return true;
             case 2:
                 zh.j jVar = (zh.j) view;
-                if (!jVar.f62042e.f62045c.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (jVar.f62042e.f62047f.getLeft() >= motionEvent.getX() || motionEvent.getX() >= jVar.f62042e.f62047f.getRight() || jVar.f62042e.f62047f.getTop() >= motionEvent.getY() || motionEvent.getY() >= jVar.f62042e.f62047f.getBottom())) {
-                    jVar.f62042e.e(false);
+                if (!jVar.f62007e.f62010c.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (jVar.f62007e.f62012f.getLeft() >= motionEvent.getX() || motionEvent.getX() >= jVar.f62007e.f62012f.getRight() || jVar.f62007e.f62012f.getTop() >= motionEvent.getY() || motionEvent.getY() >= jVar.f62007e.f62012f.getBottom())) {
+                    jVar.f62007e.e(false);
                 }
                 return super.onSingleTapUp(motionEvent);
             default:

@@ -5,21 +5,21 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import com.google.android.gms.maps.model.LatLng;
 public final class da {
-    public final m8.f f23524a;
+    public final m8.f f23488a;
 
     public da(m8.f fVar) {
-        this.f23524a = fVar;
+        this.f23488a = fVar;
     }
 
     public final bb a() {
         LatLng createFromParcel;
-        m8.f fVar = this.f23524a;
+        m8.f fVar = this.f23488a;
         fVar.getClass();
         try {
-            v7.i iVar = (v7.i) fVar.f20931a;
+            v7.i iVar = (v7.i) fVar.f20897a;
             Parcel o12 = iVar.o1(iVar.p1(), 4);
             Parcelable.Creator<LatLng> creator = LatLng.CREATOR;
-            int i7 = v7.b.f59340a;
+            int i7 = v7.b.f59303a;
             if (o12.readInt() == 0) {
                 createFromParcel = null;
             } else {
@@ -27,18 +27,18 @@ public final class da {
             }
             LatLng latLng = createFromParcel;
             o12.recycle();
-            return new bb(latLng.f7398a, latLng.f7399b);
+            return new bb(latLng.f7361a, latLng.f7362b);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
         }
     }
 
     public final void b(bb bbVar) {
-        LatLng latLng = new LatLng(bbVar.f23066a, bbVar.f23067b);
-        m8.f fVar = this.f23524a;
+        LatLng latLng = new LatLng(bbVar.f23030a, bbVar.f23031b);
+        m8.f fVar = this.f23488a;
         fVar.getClass();
         try {
-            v7.i iVar = (v7.i) fVar.f20931a;
+            v7.i iVar = (v7.i) fVar.f20897a;
             Parcel p12 = iVar.p1();
             v7.b.b(p12, latLng);
             iVar.t1(p12, 3);
@@ -48,10 +48,10 @@ public final class da {
     }
 
     public final void c(float f10) {
-        m8.f fVar = this.f23524a;
+        m8.f fVar = this.f23488a;
         fVar.getClass();
         try {
-            v7.i iVar = (v7.i) fVar.f20931a;
+            v7.i iVar = (v7.i) fVar.f20897a;
             Parcel p12 = iVar.p1();
             p12.writeFloat(f10);
             iVar.t1(p12, 22);

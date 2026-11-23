@@ -4,24 +4,24 @@ import android.content.Context;
 import fi.h6;
 import org.telegram.ui.Components.nv0;
 public final class h extends l {
-    public final m f13669w;
+    public final m f13632w;
 
     public h(m mVar, Context context) {
         super(mVar, context);
-        this.f13669w = mVar;
+        this.f13632w = mVar;
     }
 
     @Override
     public final void f() {
         boolean z10;
         super.f();
-        m mVar = this.f13669w;
-        if (mVar.f13687r.getVisibility() == 0) {
-            mVar.f13690x.f();
+        m mVar = this.f13632w;
+        if (mVar.f13650r.getVisibility() == 0) {
+            mVar.f13653x.f();
         }
         nv0 nv0Var = mVar.E;
         if (nv0Var != null) {
-            h6 h6Var = this.f13674e;
+            h6 h6Var = this.f13637e;
             if (h6Var != null && h6Var.k()) {
                 z10 = true;
             } else {

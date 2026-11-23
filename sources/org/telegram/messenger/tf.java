@@ -5,15 +5,15 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class tf implements Runnable {
-    public final int f27021a;
-    public final si f27022b;
-    public final boolean f27023c;
+    public final int f26985a;
+    public final si f26986b;
+    public final boolean f26987c;
     public final int d;
 
     public tf(si siVar, boolean z10, int i7, int i10) {
-        this.f27021a = i10;
-        this.f27022b = siVar;
-        this.f27023c = z10;
+        this.f26985a = i10;
+        this.f26986b = siVar;
+        this.f26987c = z10;
         this.d = i7;
     }
 
@@ -21,21 +21,21 @@ public final class tf implements Runnable {
     public final void run() {
         int i7;
         NativeByteBuffer byteBufferValue;
-        switch (this.f27021a) {
+        switch (this.f26985a) {
             case 0:
-                si siVar = this.f27022b;
-                boolean[] zArr = siVar.f26863x0;
-                boolean z10 = this.f27023c;
+                si siVar = this.f26986b;
+                boolean[] zArr = siVar.f26827x0;
+                boolean z10 = this.f26987c;
                 zArr[z10 ? 1 : 0] = false;
-                siVar.f26866y0[z10 ? 1 : 0] = true;
-                siVar.f26848r0[z10 ? 1 : 0] = this.d;
+                siVar.f26830y0[z10 ? 1 : 0] = true;
+                siVar.f26812r0[z10 ? 1 : 0] = this.d;
                 return;
             case 1:
-                this.f27022b.f26848r0[this.f27023c ? 1 : 0] = this.d;
+                this.f26986b.f26812r0[this.f26987c ? 1 : 0] = this.d;
                 return;
             default:
-                si siVar2 = this.f27022b;
-                boolean z11 = this.f27023c;
+                si siVar2 = this.f26986b;
+                boolean z11 = this.f26987c;
                 int i10 = this.d;
                 if (z11) {
                     i7 = 2;
@@ -59,7 +59,7 @@ public final class tf implements Runnable {
                     }
                 }
                 try {
-                    SQLiteCursor queryFinalized = siVar2.getMessagesStorage().f27252b.queryFinalized("SELECT document FROM web_recent_v3 WHERE type = " + i7 + " ORDER BY date DESC", new Object[0]);
+                    SQLiteCursor queryFinalized = siVar2.getMessagesStorage().f27216b.queryFinalized("SELECT document FROM web_recent_v3 WHERE type = " + i7 + " ORDER BY date DESC", new Object[0]);
                     ArrayList arrayList = new ArrayList();
                     while (queryFinalized.next()) {
                         if (!queryFinalized.isNull(0) && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {

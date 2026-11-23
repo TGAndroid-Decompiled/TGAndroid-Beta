@@ -15,20 +15,20 @@ import org.telegram.ui.Components.a70;
 import org.telegram.ui.Components.gd;
 import org.telegram.ui.Components.hd;
 import org.telegram.ui.Components.lf;
+import org.telegram.ui.Components.ng;
 import org.telegram.ui.Components.o0;
-import org.telegram.ui.Components.og;
+import org.telegram.ui.Components.qf;
 import org.telegram.ui.Components.re;
-import org.telegram.ui.Components.rf;
 import org.telegram.ui.bn;
+import org.telegram.ui.ci;
 import org.telegram.ui.eg0;
-import org.telegram.ui.eh;
 public final class a implements Runnable {
-    public final int f17832a;
-    public final e f17833b;
+    public final int f17798a;
+    public final e f17799b;
 
     public a(e eVar, int i7) {
-        this.f17832a = i7;
-        this.f17833b = eVar;
+        this.f17798a = i7;
+        this.f17799b = eVar;
     }
 
     @Override
@@ -36,30 +36,30 @@ public final class a implements Runnable {
         e eVar;
         androidx.activity.n nVar;
         int i7;
-        int i10 = this.f17832a;
-        e eVar2 = this.f17833b;
+        int i10 = this.f17798a;
+        e eVar2 = this.f17799b;
         switch (i10) {
             case 0:
-                if (!eVar2.R && eVar2.W <= 0.0f && (eVar = ((o) eVar2.f17861a.d).K) != null) {
+                if (!eVar2.R && eVar2.W <= 0.0f && (eVar = ((n) eVar2.f17827a.d).K) != null) {
                     g0.E2(eVar);
                     return;
                 }
                 return;
             default:
-                if (eVar2.f17885f0 == 0) {
-                    eVar2.f17885f0 = -1;
+                if (eVar2.f17851f0 == 0) {
+                    eVar2.f17851f0 = -1;
                     eVar2.invalidate();
                     try {
                         eVar2.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    o oVar = (o) eVar2.f17861a.d;
-                    String trim = oVar.f18010n.trim();
-                    if (!trim.isEmpty() && oVar.f17997c == 4) {
-                        rf rfVar = oVar.f17995b;
-                        h hVar = new h(oVar, 3);
-                        e eVar3 = oVar.K;
-                        ChatActivityEnterView chatActivityEnterView = rfVar.f39177a;
+                    n nVar2 = (n) eVar2.f17827a.d;
+                    String trim = nVar2.f17973n.trim();
+                    if (!trim.isEmpty() && nVar2.f17960c == 4) {
+                        qf qfVar = nVar2.f17958b;
+                        h hVar = new h(nVar2, 3);
+                        e eVar3 = nVar2.K;
+                        ChatActivityEnterView chatActivityEnterView = qfVar.f38848a;
                         h6 h6Var = chatActivityEnterView.M4;
                         bn bnVar = chatActivityEnterView.F3;
                         re reVar = chatActivityEnterView.K0;
@@ -68,7 +68,7 @@ public final class a implements Runnable {
                             if (eg0Var != null) {
                                 eg0Var.h(false);
                             }
-                            g0.r(chatActivityEnterView.f32620f6);
+                            g0.r(chatActivityEnterView.f32586f6);
                             lf lfVar = new lf(chatActivityEnterView, chatActivityEnterView.getContext(), h6Var, eVar3);
                             chatActivityEnterView.M0 = lfVar;
                             lfVar.setOnDismissListener(new gd(chatActivityEnterView, 0));
@@ -86,7 +86,7 @@ public final class a implements Runnable {
                                 obj.d = nVar;
                                 obj.f988b = new float[4];
                                 eg0Var2.m0 = obj;
-                                eg0Var2.f47281n0 = nVar;
+                                eg0Var2.f47250n0 = nVar;
                             }
                             TLRPC.TL_message tL_message = new TLRPC.TL_message();
                             tL_message.out = true;
@@ -97,7 +97,7 @@ public final class a implements Runnable {
                             tL_message.entities.addAll(si.d0(chatActivityEnterView.R).Y(charSequenceArr, true, true));
                             tL_message.message = charSequenceArr[0].toString();
                             gj gjVar = chatActivityEnterView.J3;
-                            if (gjVar != null && !gjVar.f24232p) {
+                            if (gjVar != null && !gjVar.f24196p) {
                                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                                 gj gjVar2 = chatActivityEnterView.K3;
                                 if (gjVar2 != null) {
@@ -110,14 +110,14 @@ public final class a implements Runnable {
                             }
                             gj gjVar3 = new gj(chatActivityEnterView.R, tL_message, false, false);
                             gj gjVar4 = chatActivityEnterView.J3;
-                            if (gjVar4 != null && !gjVar4.f24232p) {
+                            if (gjVar4 != null && !gjVar4.f24196p) {
                                 gjVar3.C = gjVar4;
                             }
                             gjVar3.B0 = true;
                             gjVar3.W2 = Boolean.TRUE;
                             gjVar3.D = 0;
                             gjVar3.n0(null);
-                            gjVar3.f24261w1 = true;
+                            gjVar3.f24225w1 = true;
                             chatActivityEnterView.M0.r(f3.i(gjVar3));
                             hd hdVar = new hd(chatActivityEnterView, zArr, hVar, trim);
                             chatActivityEnterView.M0.s(reVar, true, new o0(hdVar, 6));
@@ -135,10 +135,10 @@ public final class a implements Runnable {
                                 } else {
                                     i7 = 2131745663;
                                 }
-                                G.c(2131232079, org.telegram.messenger.hd.N0(i7, null), new eh(24, chatActivityEnterView, hdVar), false);
+                                G.c(2131232079, org.telegram.messenger.hd.N0(i7, null), new ci(22, chatActivityEnterView, hdVar), false);
                             }
                             if (!z10 && (chatActivityEnterView.H0 <= 0 || chatActivityEnterView.c())) {
-                                G.c(2131231509, org.telegram.messenger.hd.N0(2131745387, null), new og(hdVar, 18), false);
+                                G.c(2131231509, org.telegram.messenger.hd.N0(2131745387, null), new ng(hdVar, 18), false);
                             }
                             G.Z();
                             chatActivityEnterView.M0.q(G);

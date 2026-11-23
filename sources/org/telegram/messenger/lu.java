@@ -17,49 +17,49 @@ public final class lu extends au {
     public final TL_iv.pageBlockMath X;
     public final Bitmap Y;
     public final int Z;
-    public final int f25450a0;
-    public final int f25451b0;
-    public final int f25452c0;
-    public final int f25453d0;
-    public int f25454e0;
-    public float f25455f0;
-    public int f25456g0;
-    public boolean f25457h0;
-    public int f25458i0;
-    public final Paint f25459j0;
-    public int f25460k0;
-    public int f25461l0;
+    public final int f25414a0;
+    public final int f25415b0;
+    public final int f25416c0;
+    public final int f25417d0;
+    public int f25418e0;
+    public float f25419f0;
+    public int f25420g0;
+    public boolean f25421h0;
+    public int f25422i0;
+    public final Paint f25423j0;
+    public int f25424k0;
+    public int f25425l0;
     public VelocityTracker m0;
-    public OverScroller f25462n0;
-    public final j6.o f25463o0;
+    public OverScroller f25426n0;
+    public final j6.o f25427o0;
 
     public lu(fv fvVar, Rect rect, int i7, TL_iv.pageBlockMath pageblockmath) {
         super(fvVar, rect, i7);
         oi.p pVar;
-        this.f25459j0 = new Paint(3);
-        this.f25463o0 = new j6.o(this, 13);
+        this.f25423j0 = new Paint(3);
+        this.f25427o0 = new j6.o(this, 13);
         this.X = pageblockmath;
-        int i10 = this.f22970c;
-        this.f25451b0 = i10;
+        int i10 = this.f22934c;
+        this.f25415b0 = i10;
         if (pageblockmath != null && !TextUtils.isEmpty(pageblockmath.source)) {
             pVar = oi.p.a(pageblockmath.source, g0.L(fvVar.M + 4), false);
         } else {
             pVar = null;
         }
         if (pVar != null) {
-            this.Y = pVar.f22303a;
-            this.Z = pVar.f22304b;
-            this.f25450a0 = pVar.f22305c;
+            this.Y = pVar.f22256a;
+            this.Z = pVar.f22257b;
+            this.f25414a0 = pVar.f22258c;
         }
         int D = f3.D(0.0f, 2, this.Z);
-        this.f25452c0 = D;
-        this.f25453d0 = Math.max(0, D - i10);
+        this.f25416c0 = D;
+        this.f25417d0 = Math.max(0, D - i10);
     }
 
     @Override
     public final int I() {
-        Rect rect = this.f22969b;
-        return f3.D(8.0f, 2, rect.top + this.f25450a0) + rect.bottom;
+        Rect rect = this.f22933b;
+        return f3.D(8.0f, 2, rect.top + this.f25414a0) + rect.bottom;
     }
 
     @Override
@@ -69,14 +69,14 @@ public final class lu extends au {
 
     @Override
     public final int K() {
-        Rect rect = this.f22969b;
-        return Math.min(this.f25451b0, this.f25452c0) + rect.left + rect.right;
+        Rect rect = this.f22933b;
+        return Math.min(this.f25415b0, this.f25416c0) + rect.left + rect.right;
     }
 
     @Override
     public final boolean Q() {
-        if (!this.f25457h0) {
-            OverScroller overScroller = this.f25462n0;
+        if (!this.f25421h0) {
+            OverScroller overScroller = this.f25426n0;
             if (overScroller == null || overScroller.isFinished()) {
                 return false;
             }
@@ -96,24 +96,24 @@ public final class lu extends au {
         if (bitmap == null) {
             return;
         }
-        fv fvVar = this.f22968a;
+        fv fvVar = this.f22932a;
         if (fvVar.E()) {
             i7 = org.telegram.ui.ActionBar.m6.Wc;
         } else {
             i7 = org.telegram.ui.ActionBar.m6.Vc;
         }
         int w02 = org.telegram.ui.ActionBar.m6.w0(i7, fvVar.D);
-        Paint paint = this.f25459j0;
+        Paint paint = this.f25423j0;
         paint.setColor(w02);
-        int D = f3.D(8.0f, 2, this.f25450a0);
-        int i12 = this.f25453d0;
-        Rect rect = this.f22969b;
+        int D = f3.D(8.0f, 2, this.f25414a0);
+        int i12 = this.f25417d0;
+        Rect rect = this.f22933b;
         if (i12 > 0) {
             f10 = 0.0f;
             canvas2 = canvas;
             canvas2.saveLayerAlpha(-fvVar.S, 0.0f, ((fvVar.C + fvVar.T) - rect.left) - rect.right, D, 255, 31);
             canvas2.save();
-            canvas2.translate(g0.L(0.0f) - this.f25454e0, g0.L(8.0f));
+            canvas2.translate(g0.L(0.0f) - this.f25418e0, g0.L(8.0f));
         } else {
             f10 = 0.0f;
             canvas2 = canvas;
@@ -127,9 +127,9 @@ public final class lu extends au {
             RectF rectF = g0.P;
             float f12 = D;
             rectF.set(-i10, f11, g0.L(12.0f) + (-fvVar.S), f12);
-            fvVar.f23998z.n(canvas2, rectF, 0, 1.0f);
+            fvVar.f23962z.n(canvas2, rectF, 0, 1.0f);
             rectF.set(i11 - g0.L(12.0f), f11, ((fvVar.C + fvVar.T) - rect.left) - rect.right, f12);
-            fvVar.f23998z.n(canvas2, rectF, 2, 1.0f);
+            fvVar.f23962z.n(canvas2, rectF, 2, 1.0f);
         }
         canvas2.restore();
     }
@@ -139,26 +139,26 @@ public final class lu extends au {
         VelocityTracker velocityTracker;
         View view;
         int i7 = 0;
-        int i10 = this.f25453d0;
+        int i10 = this.f25417d0;
         if (i10 > 0) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked == 0) {
-                if (this.f25458i0 == 0 && (view = this.W) != null) {
+                if (this.f25422i0 == 0 && (view = this.W) != null) {
                     ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-                    this.f25458i0 = viewConfiguration.getScaledTouchSlop();
-                    this.f25460k0 = viewConfiguration.getScaledMinimumFlingVelocity();
-                    this.f25461l0 = viewConfiguration.getScaledMaximumFlingVelocity();
+                    this.f25422i0 = viewConfiguration.getScaledTouchSlop();
+                    this.f25424k0 = viewConfiguration.getScaledMinimumFlingVelocity();
+                    this.f25425l0 = viewConfiguration.getScaledMaximumFlingVelocity();
                 }
-                if (this.f25462n0 == null && this.W != null) {
-                    this.f25462n0 = new OverScroller(this.W.getContext());
+                if (this.f25426n0 == null && this.W != null) {
+                    this.f25426n0 = new OverScroller(this.W.getContext());
                 }
-                OverScroller overScroller = this.f25462n0;
+                OverScroller overScroller = this.f25426n0;
                 if (overScroller != null && !overScroller.isFinished()) {
-                    this.f25462n0.forceFinished(true);
+                    this.f25426n0.forceFinished(true);
                 }
-                this.f25455f0 = motionEvent.getX();
-                this.f25456g0 = this.f25454e0;
-                this.f25457h0 = false;
+                this.f25419f0 = motionEvent.getX();
+                this.f25420g0 = this.f25418e0;
+                this.f25421h0 = false;
                 VelocityTracker velocityTracker2 = this.m0;
                 if (velocityTracker2 == null) {
                     this.m0 = VelocityTracker.obtain();
@@ -172,21 +172,21 @@ public final class lu extends au {
                 if (velocityTracker3 != null) {
                     velocityTracker3.addMovement(motionEvent);
                 }
-                float x10 = motionEvent.getX() - this.f25455f0;
-                if (!this.f25457h0 && Math.abs(x10) > this.f25458i0) {
-                    this.f25457h0 = true;
+                float x10 = motionEvent.getX() - this.f25419f0;
+                if (!this.f25421h0 && Math.abs(x10) > this.f25422i0) {
+                    this.f25421h0 = true;
                     a0(true);
                 }
-                if (this.f25457h0) {
-                    int i11 = (int) (this.f25456g0 - x10);
+                if (this.f25421h0) {
+                    int i11 = (int) (this.f25420g0 - x10);
                     if (i11 >= 0) {
                         i7 = i11;
                     }
                     if (i7 <= i10) {
                         i10 = i7;
                     }
-                    if (i10 != this.f25454e0) {
-                        this.f25454e0 = i10;
+                    if (i10 != this.f25418e0) {
+                        this.f25418e0 = i10;
                         View view2 = this.W;
                         if (view2 != null) {
                             view2.invalidate();
@@ -196,17 +196,17 @@ public final class lu extends au {
                     return true;
                 }
             } else if (actionMasked == 1 || actionMasked == 3) {
-                boolean z10 = this.f25457h0;
-                this.f25457h0 = false;
+                boolean z10 = this.f25421h0;
+                this.f25421h0 = false;
                 if (z10) {
                     a0(false);
-                    if (actionMasked == 1 && (velocityTracker = this.m0) != null && this.f25462n0 != null && this.W != null) {
+                    if (actionMasked == 1 && (velocityTracker = this.m0) != null && this.f25426n0 != null && this.W != null) {
                         velocityTracker.addMovement(motionEvent);
-                        this.m0.computeCurrentVelocity(1000, this.f25461l0);
+                        this.m0.computeCurrentVelocity(1000, this.f25425l0);
                         float f10 = -this.m0.getXVelocity();
-                        if (Math.abs(f10) > this.f25460k0) {
-                            this.f25462n0.fling(this.f25454e0, 0, (int) f10, 0, 0, this.f25453d0, 0, 0);
-                            this.W.postOnAnimation(this.f25463o0);
+                        if (Math.abs(f10) > this.f25424k0) {
+                            this.f25426n0.fling(this.f25418e0, 0, (int) f10, 0, 0, this.f25417d0, 0, 0);
+                            this.W.postOnAnimation(this.f25427o0);
                         }
                     }
                 }

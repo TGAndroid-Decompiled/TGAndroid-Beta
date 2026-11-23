@@ -17,20 +17,20 @@ import org.telegram.ui.Components.voip.q1;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.bn;
 public final class a extends ViewOutlineProvider {
-    public final int f11643a;
-    public final Object f11644b;
+    public final int f11606a;
+    public final Object f11607b;
 
     public a(Object obj, int i7) {
-        this.f11643a = i7;
-        this.f11644b = obj;
+        this.f11606a = i7;
+        this.f11607b = obj;
     }
 
     @Override
     public final void getOutline(View view, Outline outline) {
         float f10;
-        int i7 = this.f11643a;
+        int i7 = this.f11606a;
         float f11 = 0.0f;
-        Object obj = this.f11644b;
+        Object obj = this.f11607b;
         switch (i7) {
             case 0:
                 ((g) obj).getOutline(outline);
@@ -51,33 +51,33 @@ public final class a extends ViewOutlineProvider {
                 return;
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                ui uiVar = chatAttachAlertPhotoLayout.f37519b;
+                ui uiVar = chatAttachAlertPhotoLayout.f37477b;
                 float f12 = uiVar.E2[1];
-                hi.j jVar = uiVar.C4;
-                if (jVar != null) {
-                    f10 = jVar.d() + g0.L(16.0f);
+                hi.i iVar = uiVar.C4;
+                if (iVar != null) {
+                    f10 = iVar.d() + g0.L(16.0f);
                 } else {
                     f10 = 0.0f;
                 }
-                int min = (int) Math.min((uiVar.f30176b.getTranslationY() + ((f12 - f10) + chatAttachAlertPhotoLayout.X0)) - chatAttachAlertPhotoLayout.Q.getTranslationY(), view.getMeasuredHeight());
-                if (chatAttachAlertPhotoLayout.f32807c0) {
+                int min = (int) Math.min((uiVar.f30142b.getTranslationY() + ((f12 - f10) + chatAttachAlertPhotoLayout.X0)) - chatAttachAlertPhotoLayout.Q.getTranslationY(), view.getMeasuredHeight());
+                if (chatAttachAlertPhotoLayout.f32773c0) {
                     min = view.getMeasuredHeight();
-                } else if (chatAttachAlertPhotoLayout.f32811e0) {
-                    min = g0.W1(chatAttachAlertPhotoLayout.f32813f0, min, view.getMeasuredHeight());
+                } else if (chatAttachAlertPhotoLayout.f32777e0) {
+                    min = g0.W1(chatAttachAlertPhotoLayout.f32779f0, min, view.getMeasuredHeight());
                 }
-                boolean z10 = chatAttachAlertPhotoLayout.f32811e0;
+                boolean z10 = chatAttachAlertPhotoLayout.f32777e0;
                 if (z10) {
                     RectF rectF = g0.P;
-                    float f13 = chatAttachAlertPhotoLayout.f32830o1;
-                    boolean z11 = ChatAttachAlertPhotoLayout.f32798r1;
-                    float f14 = 1.0f - chatAttachAlertPhotoLayout.f32813f0;
-                    rectF.set((0.0f * f14) + f13, (f14 * chatAttachAlertPhotoLayout.f32803a0) + chatAttachAlertPhotoLayout.l1, chatAttachAlertPhotoLayout.n1, chatAttachAlertPhotoLayout.f32826m1);
+                    float f13 = chatAttachAlertPhotoLayout.f32796o1;
+                    boolean z11 = ChatAttachAlertPhotoLayout.f32764r1;
+                    float f14 = 1.0f - chatAttachAlertPhotoLayout.f32779f0;
+                    rectF.set((0.0f * f14) + f13, (f14 * chatAttachAlertPhotoLayout.f32769a0) + chatAttachAlertPhotoLayout.l1, chatAttachAlertPhotoLayout.n1, chatAttachAlertPhotoLayout.f32792m1);
                     outline.setRect((int) rectF.left, (int) rectF.top, (int) rectF.right, Math.min(min, (int) rectF.bottom));
                     return;
-                } else if (!z10 && !chatAttachAlertPhotoLayout.f32807c0) {
+                } else if (!z10 && !chatAttachAlertPhotoLayout.f32773c0) {
                     int L = g0.L(16.0f);
-                    boolean z12 = ChatAttachAlertPhotoLayout.f32798r1;
-                    outline.setRoundRect((int) 0.0f, (int) chatAttachAlertPhotoLayout.f32803a0, view.getMeasuredWidth() + L, Math.min(min, view.getMeasuredHeight()) + L, L);
+                    boolean z12 = ChatAttachAlertPhotoLayout.f32764r1;
+                    outline.setRoundRect((int) 0.0f, (int) chatAttachAlertPhotoLayout.f32769a0, view.getMeasuredWidth() + L, Math.min(min, view.getMeasuredHeight()) + L, L);
                     return;
                 } else {
                     outline.setRect(0, 0, view.getMeasuredWidth(), Math.min(min, view.getMeasuredHeight()));
@@ -88,11 +88,11 @@ public final class a extends ViewOutlineProvider {
                 if (s5Var.getTag() != null) {
                     int intValue = ((Integer) s5Var.getTag()).intValue();
                     jm jmVar = (jm) obj;
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = jmVar.f36560w;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = jmVar.f36519w;
                     if (jmVar.d && chatAttachAlertPhotoLayout2.U0 == chatAttachAlertPhotoLayout2.V0 && !chatAttachAlertPhotoLayout2.P0) {
                         intValue++;
                     }
-                    if (chatAttachAlertPhotoLayout2.f32818h1) {
+                    if (chatAttachAlertPhotoLayout2.f32784h1) {
                         intValue++;
                     }
                     if (intValue == 0) {
@@ -144,11 +144,11 @@ public final class a extends ViewOutlineProvider {
                 }
             case 8:
                 n2 n2Var = (n2) obj;
-                if (n2Var.f41212b < 1.0f) {
+                if (n2Var.f41174b < 1.0f) {
                     outline.setRect((int) n2Var.P, (int) n2Var.O, (int) (view.getMeasuredWidth() - n2Var.P), (int) (view.getMeasuredHeight() - n2Var.O));
                     return;
                 } else {
-                    outline.setRoundRect((int) n2Var.P, (int) n2Var.O, (int) (view.getMeasuredWidth() - n2Var.P), (int) (view.getMeasuredHeight() - n2Var.O), n2Var.f41212b);
+                    outline.setRoundRect((int) n2Var.P, (int) n2Var.O, (int) (view.getMeasuredWidth() - n2Var.P), (int) (view.getMeasuredHeight() - n2Var.O), n2Var.f41174b);
                     return;
                 }
             default:

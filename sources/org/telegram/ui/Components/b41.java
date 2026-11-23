@@ -13,7 +13,7 @@ public final class b41 extends xy {
     @Override
     public final boolean D1() {
         k41 k41Var = this.Y;
-        if (k41Var.f36772n.getAdapter() == k41Var.f36775w) {
+        if (k41Var.f36738n.getAdapter() == k41Var.f36741w) {
             return true;
         }
         return false;
@@ -21,16 +21,16 @@ public final class b41 extends xy {
 
     @Override
     public final boolean Y0() {
-        return org.telegram.messenger.hd.f24444a0;
+        return org.telegram.messenger.hd.f24408a0;
     }
 
     @Override
-    public final int o0(int i7, v4.x0 x0Var, v4.c1 c1Var) {
+    public final int o0(int i7, v4.w0 w0Var, v4.b1 b1Var) {
         int i10;
         View m10;
         k41 k41Var = this.Y;
         if (k41Var.O) {
-            return super.o0(i7, x0Var, c1Var);
+            return super.o0(i7, w0Var, b1Var);
         }
         int i11 = 0;
         if (k41Var.M != null) {
@@ -42,7 +42,7 @@ public final class b41 extends xy {
                 if (i11 >= r()) {
                     break;
                 }
-                a41 a41Var = k41Var.f36772n;
+                a41 a41Var = k41Var.f36738n;
                 View q10 = q(i11);
                 a41Var.getClass();
                 int R = RecyclerView.R(q10);
@@ -52,11 +52,11 @@ public final class b41 extends xy {
                 }
                 i11++;
             }
-            if (i10 == 0 && (m10 = k41Var.f36773r.m(i10)) != null && m10.getTop() - i7 > org.telegram.messenger.g0.L(58.0f)) {
+            if (i10 == 0 && (m10 = k41Var.f36739r.m(i10)) != null && m10.getTop() - i7 > org.telegram.messenger.g0.L(58.0f)) {
                 i7 = m10.getTop() - org.telegram.messenger.g0.L(58.0f);
             }
         }
-        return super.o0(i7, x0Var, c1Var);
+        return super.o0(i7, w0Var, b1Var);
     }
 
     @Override

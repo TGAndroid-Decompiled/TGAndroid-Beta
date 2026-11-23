@@ -3,75 +3,116 @@ package hi;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RectF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.hd;
+import org.telegram.ui.Components.mc;
 import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.oh0;
 public final class gb extends View {
-    public final Paint f14724a;
-    public final org.telegram.ui.Components.n6 f14725b;
-    public boolean f14726c;
+    public final oh0 f14655a;
+    public final org.telegram.ui.Components.n6 f14656b;
+    public final Paint f14657c;
+    public final Paint d;
+    public final mc f14658e;
+    public boolean f14659f;
+    public final org.telegram.ui.Components.d6 h;
 
     public gb(Activity activity) {
         super(activity);
         Paint paint = new Paint(1);
-        this.f14724a = paint;
-        this.f14726c = true;
-        paint.setColor(Integer.MIN_VALUE);
-        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true);
-        this.f14725b = n6Var;
-        n6Var.n(0.2f, 200L, nr.h);
-        n6Var.w(org.telegram.messenger.g0.L(13.0f));
+        this.f14657c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.f14658e = new mc(this);
+        nr nrVar = nr.h;
+        this.h = new org.telegram.ui.Components.d6(this, 0L, 240L, nrVar);
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.g0.N(2.66f));
+        paint.setShadowLayer(org.telegram.messenger.g0.N(3.0f), 0.0f, org.telegram.messenger.g0.L(1.66f), 805306368);
+        paint2.setColor(855638016);
+        oh0 oh0Var = new oh0(2131624043, org.telegram.messenger.g0.L(48.0f), org.telegram.messenger.g0.L(48.0f), true, null);
+        this.f14655a = oh0Var;
+        oh0Var.R(this);
+        oh0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        oh0Var.h = true;
+        oh0Var.P(0);
+        oh0Var.J(true);
+        oh0Var.start();
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(true, true, false);
+        this.f14656b = n6Var;
+        n6Var.n(0.3f, 250L, nrVar);
+        n6Var.N = org.telegram.messenger.g0.f24010q.x;
+        n6Var.w(org.telegram.messenger.g0.L(14.0f));
         n6Var.u(-1);
-        n6Var.x(org.telegram.messenger.g0.o());
-        n6Var.setCallback(this);
-        n6Var.f37795b = 1;
-        StringBuilder sb2 = new StringBuilder(8);
-        sb2.append("00:00:00");
-        if (!TextUtils.equals(sb2, n6Var.f37802i)) {
-            n6Var.a();
-            n6Var.t(sb2, false, true);
-        }
+        n6Var.s(org.telegram.messenger.g0.N(1.33f), org.telegram.messenger.g0.L(1.0f), 1073741824);
+        n6Var.t(hd.N0(2131743702, null), true, true);
+        n6Var.f37751b = 17;
     }
 
-    public final void a(boolean z10) {
-        if (!this.f14726c && z10) {
-            return;
+    public final void a(boolean z10, boolean z11) {
+        int i7;
+        this.f14658e.c(z10);
+        if (!z10 && !z11) {
+            i7 = 2131743702;
+        } else {
+            i7 = 2131743701;
         }
-        this.f14726c = false;
-        animate().cancel();
-        if (z10) {
-            o10.o(animate().translationY(org.telegram.messenger.g0.L(6.0f)).alpha(0.0f).scaleX(0.8f).scaleY(0.8f), nr.h, 220L);
-            return;
+        boolean z12 = true;
+        this.f14656b.t(hd.N0(i7, null), true, true);
+        int i10 = 0;
+        if (!z10 || z11) {
+            z12 = false;
         }
-        setTranslationY(org.telegram.messenger.g0.L(6.0f));
-        setScaleX(0.8f);
-        setScaleY(0.8f);
-        setAlpha(0.0f);
+        this.f14659f = z12;
+        oh0 oh0Var = this.f14655a;
+        if (z12) {
+            if (oh0Var.f38175b0 > 34) {
+                oh0Var.N(0, false, false);
+            }
+            oh0Var.P(33);
+            oh0Var.start();
+        } else {
+            if (z11) {
+                i10 = 66;
+            }
+            oh0Var.P(i10);
+            oh0Var.start();
+        }
+        invalidate();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        org.telegram.ui.Components.n6 n6Var = this.f14725b;
-        float c10 = n6Var.c();
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(((getWidth() - c10) / 2.0f) - org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(2.0f), ((getWidth() + c10) / 2.0f) + org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(23.0f));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(5.0f), this.f14724a);
-        n6Var.setBounds((int) rectF.left, ((int) rectF.top) - org.telegram.messenger.g0.L(1.0f), (int) rectF.right, (int) rectF.bottom);
+    public final void dispatchDraw(Canvas canvas) {
+        float L = org.telegram.messenger.g0.L(30.0f);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        float d = (this.h.d(this.f14659f) * org.telegram.messenger.g0.L(3.0f)) + L;
+        canvas.drawCircle(width, height, d, this.d);
+        canvas.drawCircle(width, height, d, this.f14657c);
+        float L2 = org.telegram.messenger.g0.L(48.0f) / 2.0f;
+        oh0 oh0Var = this.f14655a;
+        oh0Var.setBounds((int) (width - L2), (int) (height - L2), (int) (width + L2), (int) (L2 + height));
+        oh0Var.draw(canvas);
+        int L3 = (int) (height + L + org.telegram.messenger.g0.L(7.0f));
+        int width2 = getWidth();
+        int height2 = getHeight();
+        org.telegram.ui.Components.n6 n6Var = this.f14656b;
+        n6Var.setBounds(0, L3, width2, height2);
         n6Var.draw(canvas);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(25.0f), 1073741824));
+        setMeasuredDimension(i7, org.telegram.messenger.g0.L(120.0f));
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f14725b != drawable && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f14656b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

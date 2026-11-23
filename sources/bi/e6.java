@@ -1,69 +1,52 @@
 package bi;
 
-import org.telegram.ui.Components.a70;
-import org.telegram.ui.Components.t60;
-public final class e6 implements Runnable {
-    public final int f3600a;
-    public final a70 f3601b;
+import java.util.ArrayList;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.y10;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.gq0;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.ProfileActivity;
+public final class e6 implements y10 {
+    public final int f3508a;
+    public final p6 f3509b;
+    public final TL_stars.SavedStarGift f3510c;
 
-    public e6(a70 a70Var, int i7) {
-        this.f3600a = i7;
-        this.f3601b = a70Var;
+    public e6(p6 p6Var, TL_stars.SavedStarGift savedStarGift, int i7) {
+        this.f3508a = i7;
+        this.f3509b = p6Var;
+        this.f3510c = savedStarGift;
     }
 
     @Override
-    public final void run() {
-        switch (this.f3600a) {
+    public final void a(Object obj) {
+        int i7 = this.f3508a;
+        TL_stars.SavedStarGift savedStarGift = this.f3510c;
+        p6 p6Var = this.f3509b;
+        switch (i7) {
             case 0:
-                this.f3601b.s();
-                return;
-            case 1:
-                t60 t60Var = this.f3601b.f33386m;
-                if (t60Var != null) {
-                    org.telegram.messenger.g0.v1(t60Var.getContentView());
-                    return;
-                }
-                return;
-            case 2:
-                t60 t60Var2 = this.f3601b.f33386m;
-                if (t60Var2 != null) {
-                    org.telegram.messenger.g0.v1(t60Var2.getContentView());
-                    return;
-                }
-                return;
-            case 3:
-                t60 t60Var3 = this.f3601b.f33386m;
-                if (t60Var3 != null) {
-                    org.telegram.messenger.g0.v1(t60Var3.getContentView());
-                    return;
-                }
-                return;
-            case 4:
-                t60 t60Var4 = this.f3601b.f33386m;
-                if (t60Var4 != null) {
-                    org.telegram.messenger.g0.v1(t60Var4.getContentView());
-                    return;
-                }
-                return;
-            case 5:
-                t60 t60Var5 = this.f3601b.f33386m;
-                if (t60Var5 != null) {
-                    org.telegram.messenger.g0.v1(t60Var5.getContentView());
-                    return;
-                }
-                return;
-            case 6:
-                t60 t60Var6 = this.f3601b.f33386m;
-                if (t60Var6 != null) {
-                    org.telegram.messenger.g0.v1(t60Var6.getContentView());
-                    return;
-                }
-                return;
-            case 7:
-                this.f3601b.s();
+                p6Var.f3966a.f4151e.b((String) obj, new e6(p6Var, savedStarGift, 1));
                 return;
             default:
-                this.f3601b.s();
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
+                gq0 gq0Var = p6Var.f3966a;
+                di.n8 n8Var = gq0Var.f4151e;
+                int i10 = tL_starGiftCollection.collection_id;
+                n8Var.getClass();
+                ArrayList arrayList = new ArrayList();
+                arrayList.add(savedStarGift);
+                n8Var.a(i10, arrayList);
+                gq0Var.f(true);
+                i71 i71Var = gq0Var.f4153n;
+                int i11 = tL_starGiftCollection.collection_id;
+                i71Var.e(i11, gq0Var.f4151e.f(i11) + 1);
+                org.telegram.ui.ActionBar.g2 g2Var = gq0Var.f4148a;
+                if (g2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) g2Var).X4(true);
+                }
+                gq0Var.o();
+                lc.b0(g2Var).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(hd.a0(null, null, 2131750376, di.f6.F1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 return;
         }
     }

@@ -1,57 +1,71 @@
 package bi;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class b5 implements TextWatcher {
-    public final c5 f3441a;
+import android.view.View;
+import android.widget.TextView;
+import di.j9;
+import java.util.HashMap;
+import org.telegram.messenger.az;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ur;
+import org.telegram.ui.Components.a70;
+public final class b5 implements View.OnClickListener {
+    public final int f3412a;
+    public final f5 f3413b;
 
-    public b5(c5 c5Var) {
-        this.f3441a = c5Var;
+    public b5(f5 f5Var, int i7) {
+        this.f3412a = i7;
+        this.f3413b = f5Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        String obj;
+    public final void onClick(View view) {
         boolean z10;
-        cg.a i7;
-        long j3;
-        if (editable == null) {
-            obj = "";
-        } else {
-            obj = editable.toString();
+        int i7 = this.f3412a;
+        f5 f5Var = this.f3413b;
+        switch (i7) {
+            case 0:
+                TextView textView = f5Var.f3565v1;
+                a70 G = a70.G(f5Var.f30145c, f5Var.J0, textView);
+                int[] iArr = f5.A1;
+                for (int i10 = 0; i10 < 6; i10++) {
+                    int i11 = iArr[i10];
+                    if (i11 == f5Var.f3568y1) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    G.i(new ai.t0(f5Var, i11, 4), hd.G(i11 / 3600, "GiftOfferHours", new Object[0]), z10);
+                }
+                G.W(5);
+                f5Var.I0(textView, G, true);
+                return;
+            case 1:
+                f5 f5Var2 = this.f3413b;
+                hi.d dVar = f5Var2.f3566w1;
+                if (dVar.f14303e0 && !dVar.R) {
+                    if (np.u1(f5Var2.f30139a).A2()) {
+                        org.telegram.ui.b.b(f5Var2.f30139a);
+                        return;
+                    }
+                    org.telegram.messenger.g0.v1(f5Var2.f3562s1);
+                    long j3 = f5Var2.f3567x1;
+                    int i12 = f5Var2.f3568y1;
+                    dVar.setLoading(true);
+                    int i13 = f5Var2.f30139a;
+                    String str = f5Var2.f3557m1.slug;
+                    d5 d5Var = new d5(f5Var2, j3, i12, 0);
+                    HashMap hashMap = l4.f3801a;
+                    az.C(i13);
+                    long E = az.E();
+                    ur a02 = ur.a0(i13);
+                    a02.f27214a.c(new j9(a02, E, str, j3, i12, d5Var));
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Wallet.n6.N0(f5Var.f30139a, f5Var.getContext(), f5Var.J0);
+                return;
         }
-        int indexOf = obj.indexOf(46);
-        if (indexOf >= 0 && (obj.length() - indexOf) - 1 > 2) {
-            editable.delete(indexOf + 3, obj.length());
-            return;
-        }
-        if (!obj.isEmpty() && !".".equals(obj)) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (z10) {
-            i7 = null;
-        } else {
-            i7 = cg.a.i(obj, cg.b.f5306b);
-        }
-        if (!z10 && i7 == null) {
-            editable.delete(obj.length() - 1, obj.length());
-            return;
-        }
-        if (z10) {
-            j3 = 0;
-        } else {
-            j3 = i7.f5304b;
-        }
-        this.f3441a.K0(j3);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

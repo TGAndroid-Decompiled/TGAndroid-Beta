@@ -14,39 +14,39 @@ import org.telegram.ui.Components.pp;
 import org.telegram.ui.Components.sj0;
 import org.telegram.ui.LaunchActivity;
 public final class ea implements sj0, bg.q, kc, org.telegram.messenger.i9, pp, s10 {
-    public final int f30621a;
-    public final Object f30622b;
+    public final int f30587a;
+    public final Object f30588b;
 
     public ea(Object obj, int i7) {
-        this.f30621a = i7;
-        this.f30622b = obj;
+        this.f30587a = i7;
+        this.f30588b = obj;
     }
 
     @Override
     public void G0(int i7, Drawable drawable) {
-        int i10 = this.f30621a;
+        int i10 = this.f30587a;
     }
 
     @Override
     public void V(ImageReceiver imageReceiver) {
-        int i7 = this.f30621a;
+        int i7 = this.f30587a;
     }
 
     @Override
     public void a() {
-        switch (this.f30621a) {
+        switch (this.f30587a) {
             case 4:
-                p4 p4Var = (p4) this.f30622b;
-                float progress = 1.0f - (p4Var.f31245w.getProgress() * 0.143f);
-                org.telegram.ui.Components.q9 q9Var = p4Var.f31237a;
+                p4 p4Var = (p4) this.f30588b;
+                float progress = 1.0f - (p4Var.f31211w.getProgress() * 0.143f);
+                org.telegram.ui.Components.q9 q9Var = p4Var.f31203a;
                 q9Var.setScaleX(progress);
                 q9Var.setScaleY(progress);
                 p4Var.invalidate();
                 return;
             default:
-                e7 e7Var = (e7) this.f30622b;
+                e7 e7Var = (e7) this.f30588b;
                 float progress2 = 1.0f - (e7Var.d.getProgress() * 0.143f);
-                org.telegram.ui.Components.q9 q9Var2 = e7Var.f30605a;
+                org.telegram.ui.Components.q9 q9Var2 = e7Var.f30571a;
                 q9Var2.setScaleX(progress2);
                 q9Var2.setScaleY(progress2);
                 e7Var.invalidate();
@@ -56,21 +56,21 @@ public final class ea implements sj0, bg.q, kc, org.telegram.messenger.i9, pp, s
 
     @Override
     public boolean c(int i7, View view) {
-        ia iaVar = (ia) this.f30622b;
+        ia iaVar = (ia) this.f30588b;
         iaVar.getClass();
-        iaVar.C1(((ThemesHorizontalListCell$InnerThemeView) view).f30374b);
+        iaVar.C1(((ThemesHorizontalListCell$InnerThemeView) view).f30340b);
         return true;
     }
 
     @Override
     public Object g(Number number, Object obj) {
         Integer num = (Integer) number;
-        return (CharSequence) ((ci.y) this.f30622b).a((Integer) obj);
+        return (CharSequence) ((ci.y) this.f30588b).a((Integer) obj);
     }
 
     @Override
     public void i(long j3) {
-        ((l) this.f30622b).b(j3);
+        ((l) this.f30588b).b(j3);
     }
 
     @Override
@@ -79,13 +79,13 @@ public final class ea implements sj0, bg.q, kc, org.telegram.messenger.i9, pp, s
         s0 s0Var;
         int w10;
         gj gjVar;
-        switch (this.f30621a) {
+        switch (this.f30587a) {
             case 2:
-                v0 v0Var = (v0) this.f30622b;
+                v0 v0Var = (v0) this.f30588b;
                 if (z10 && (B = v0Var.J.B()) != null) {
                     gj gjVar2 = v0Var.Q0;
-                    if (gjVar2 != null && !gjVar2.f24230o1) {
-                        gjVar2.f24230o1 = true;
+                    if (gjVar2 != null && !gjVar2.f24194o1) {
+                        gjVar2.f24194o1 = true;
                         B.N(0, false, false);
                         org.telegram.messenger.g0.g3(new p0(B, 0));
                         if (gjVar2.n1 || v0Var.M1) {
@@ -96,19 +96,19 @@ public final class ea implements sj0, bg.q, kc, org.telegram.messenger.i9, pp, s
                             } catch (Exception unused) {
                             }
                             if (v0Var.getContext() instanceof LaunchActivity) {
-                                ((LaunchActivity) v0Var.getContext()).f43153w0.c(false);
+                                ((LaunchActivity) v0Var.getContext()).f43118w0.c(false);
                             }
                             TLRPC.VideoSize videoSize = v0Var.J1;
-                            if (videoSize != null && (s0Var = v0Var.f32114g1) != null) {
+                            if (videoSize != null && (s0Var = v0Var.f32080g1) != null) {
                                 s0Var.Q(v0Var, v0Var.I1, videoSize);
                                 return;
                             }
                             return;
                         }
                         return;
-                    } else if (B.f38206b0 < 1) {
+                    } else if (B.f38175b0 < 1) {
                         B.stop();
-                        B.N(B.f38210e[0] - 1, false, false);
+                        B.N(B.f38179e[0] - 1, false, false);
                         return;
                     } else {
                         return;
@@ -116,21 +116,21 @@ public final class ea implements sj0, bg.q, kc, org.telegram.messenger.i9, pp, s
                 }
                 return;
             default:
-                p7 p7Var = (p7) this.f30622b;
+                p7 p7Var = (p7) this.f30588b;
                 ImageReceiver imageReceiver2 = p7Var.d;
-                ImageReceiver imageReceiver3 = p7Var.f31257c;
-                if (z10 && !z11 && (gjVar = p7Var.f31270n) != null && gjVar.t2() && imageReceiver3.n() != null) {
+                ImageReceiver imageReceiver3 = p7Var.f31223c;
+                if (z10 && !z11 && (gjVar = p7Var.f31236n) != null && gjVar.t2() && imageReceiver3.n() != null) {
                     if (imageReceiver2.n() != null) {
                         imageReceiver2.n().recycle();
                     }
                     imageReceiver2.v0(Utilities.D(imageReceiver3.n(), false));
                 }
-                if (z10 && !z11 && p7Var.f31285x0 && imageReceiver3.n() != null) {
+                if (z10 && !z11 && p7Var.f31251x0 && imageReceiver3.n() != null) {
                     int J0 = org.telegram.messenger.g0.J0(imageReceiver3.n());
-                    p7Var.f31253a = J0;
+                    p7Var.f31219a = J0;
                     CheckBoxBase checkBoxBase = p7Var.Q;
-                    if (checkBoxBase != null && checkBoxBase.f32880x != (w10 = org.telegram.ui.ActionBar.m6.w(J0, org.telegram.ui.ActionBar.m6.r1(0.25f, -1)))) {
-                        checkBoxBase.f32880x = w10;
+                    if (checkBoxBase != null && checkBoxBase.f32846x != (w10 = org.telegram.ui.ActionBar.m6.w(J0, org.telegram.ui.ActionBar.m6.r1(0.25f, -1)))) {
+                        checkBoxBase.f32846x = w10;
                         checkBoxBase.b();
                         return;
                     }
@@ -144,10 +144,10 @@ public final class ea implements sj0, bg.q, kc, org.telegram.messenger.i9, pp, s
     public boolean run() {
         TLRPC.Message message;
         m4 m4Var;
-        r1 r1Var = (r1) this.f30622b;
+        r1 r1Var = (r1) this.f30588b;
         gj gjVar = r1Var.Q5;
-        if (gjVar != null && (message = gjVar.f24213k) != null) {
-            if (gjVar.D != 29 || ((m4Var = r1Var.X5) != null && m4Var.f31090i)) {
+        if (gjVar != null && (message = gjVar.f24177k) != null) {
+            if (gjVar.D != 29 || ((m4Var = r1Var.X5) != null && m4Var.f31056i)) {
                 if ((message.noforwards && !gj.c3(message)) || r1Var.Q5.S4() || r1Var.Q5.y2()) {
                     return true;
                 }

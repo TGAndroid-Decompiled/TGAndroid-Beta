@@ -10,15 +10,15 @@ import java.util.concurrent.Executor;
 import kotlin.jvm.internal.j;
 import v0.g;
 public final class a extends d {
-    public final Context f11048e;
-    public g f11049f;
-    public Executor f11050g;
+    public final Context f11011e;
+    public g f11012f;
+    public Executor f11013g;
     public CancellationSignal h;
-    public final e f11051i;
+    public final e f11014i;
 
     public a(Context context) {
         j.e(context, "context");
-        this.f11048e = context;
-        this.f11051i = new e(this, new Handler(Looper.getMainLooper()), 3);
+        this.f11011e = context;
+        this.f11014i = new e(this, new Handler(Looper.getMainLooper()), 3);
     }
 }

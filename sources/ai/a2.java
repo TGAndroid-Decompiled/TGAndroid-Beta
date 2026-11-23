@@ -1,76 +1,308 @@
 package ai;
 
+import a8.sa;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Shader;
 import android.os.SystemClock;
-import android.text.TextUtils;
-import org.telegram.ui.Dictation.DictationLid;
-public final class a2 implements Runnable {
-    public final int f1117a;
-    public final f2 f1118b;
+import android.text.Editable;
+import android.text.style.CharacterStyle;
+import android.view.inputmethod.BaseInputConnection;
+import android.widget.EditText;
+import android.widget.TextView;
+public final class a2 {
+    public final TextView f1119a;
+    public int f1120b;
+    public int f1121c;
+    public int d;
+    public int f1122e;
+    public boolean f1124g;
+    public v h;
+    public w1 f1125i;
+    public z1 f1126j;
+    public LinearGradient f1127k;
+    public float f1129m;
+    public float f1123f = 0.5f;
+    public final Matrix f1128l = new Matrix();
+    public final sa f1130n = new sa(this, 3);
 
-    public a2(f2 f2Var, int i7) {
-        this.f1117a = i7;
-        this.f1118b = f2Var;
+    public a2(TextView textView) {
+        this.f1119a = textView;
     }
 
-    @Override
-    public final void run() {
-        z zVar;
-        switch (this.f1117a) {
-            case 0:
-                f2 f2Var = this.f1118b;
-                if (!f2Var.f1193j && !f2Var.f1191i) {
-                    f2Var.f1186f.postDelayed(this, 700L);
-                    if (!f2Var.E && DictationLid.f()) {
-                        int c10 = f2Var.f1204u.c();
-                        if (c10 - f2Var.H >= 16000) {
-                            f2Var.H = c10;
-                            f2Var.E = true;
-                            byte[] b10 = f2Var.f1204u.b(0, c10);
-                            DictationLid.f43074a.execute(new a1.e(16, b10, new y1(0, this, b10)));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                f2 f2Var2 = this.f1118b;
-                if (!f2Var2.f1193j) {
-                    f2Var2.f1186f.postDelayed(this, 700L);
-                    if (!f2Var2.W && !f2Var2.f1191i && (zVar = f2Var2.f1204u) != null) {
-                        int i7 = f2Var2.Y;
-                        int c11 = zVar.c();
-                        if (c11 - f2Var2.Z >= 16000) {
-                            f2Var2.Z = c11;
-                            f2Var2.W = true;
-                            int max = Math.max(f2Var2.X, c11 - 960000);
-                            if (DictationLid.f() && DictationLid.e(f2Var2.f1200q) && f2Var2.f1202s < 3) {
-                                DictationLid.j(2000, new v1(this, i7, 1), TextUtils.join(",", f2Var2.f1200q), f2Var2.f1204u.b(max, c11));
-                                return;
-                            }
-                            DictationLid.f43074a.execute(new a1.e(16, f2Var2.f1204u.b(max, c11), new b2(this, i7, 0)));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                f2 f2Var3 = this.f1118b;
-                if (!f2Var3.f1193j) {
-                    long elapsedRealtime = SystemClock.elapsedRealtime();
-                    double d = elapsedRealtime - f2Var3.f1190h0;
-                    float sin = (((float) Math.sin(d / 90.0d)) * 0.03f) + 0.04f;
-                    if (elapsedRealtime < f2Var3.f1187f0) {
-                        sin = (((float) Math.random()) * 0.12f) + (((float) Math.sin(d / 61.0d)) * 0.28f * ((float) Math.sin((d / 173.0d) + 1.3d))) + 0.45f;
-                    }
-                    f2Var3.d.h(Math.max(0.0f, Math.min(1.0f, sin)));
-                    f2Var3.f1186f.postDelayed(this, 50L);
-                    return;
-                }
-                return;
+    public static float b(float f10) {
+        if (f10 < 0.5f) {
+            return com.google.android.gms.internal.vision.e2.D(f10, 4.0f, f10, f10);
         }
+        return 1.0f - (((float) Math.pow((f10 * (-2.0f)) + 2.0f, 3.0d)) / 2.0f);
+    }
+
+    public final void a() {
+        Editable editableText = this.f1119a.getEditableText();
+        if (editableText == null) {
+            return;
+        }
+        for (x1 x1Var : (x1[]) editableText.getSpans(0, editableText.length(), x1.class)) {
+            editableText.removeSpan(x1Var);
+        }
+        for (y1 y1Var : (y1[]) editableText.getSpans(0, editableText.length(), y1.class)) {
+            editableText.removeSpan(y1Var);
+        }
+        for (w1 w1Var : (w1[]) editableText.getSpans(0, editableText.length(), w1.class)) {
+            editableText.removeSpan(w1Var);
+        }
+        this.f1125i = null;
+    }
+
+    public final void c(int i7, int i10, boolean z10) {
+        int i11;
+        int i12;
+        float f10;
+        this.f1120b = i7;
+        this.f1121c = i10;
+        if (z10) {
+            i11 = -10777345;
+        } else {
+            i11 = -15374904;
+        }
+        this.d = p0.e(i11);
+        if (z10) {
+            i12 = -6128385;
+        } else {
+            i12 = -15823740;
+        }
+        this.f1122e = p0.e(i12);
+        if (z10) {
+            f10 = 0.6f;
+        } else {
+            f10 = 0.75f;
+        }
+        this.f1123f = f10;
+        this.f1127k = null;
+    }
+
+    public final void d(Editable editable, int i7) {
+        w1[] w1VarArr;
+        int length = editable.length();
+        int max = Math.max(0, Math.min(i7, length));
+        long uptimeMillis = SystemClock.uptimeMillis();
+        w1 w1Var = this.f1125i;
+        if (w1Var != null) {
+            int spanStart = editable.getSpanStart(w1Var);
+            if (spanStart >= 0 && spanStart < max) {
+                ?? characterStyle = new CharacterStyle();
+                characterStyle.f1581a = uptimeMillis;
+                editable.setSpan(characterStyle, spanStart, max, 33);
+            }
+            editable.removeSpan(this.f1125i);
+            this.f1125i = null;
+        }
+        for (w1 w1Var2 : (w1[]) editable.getSpans(0, length, w1.class)) {
+            int spanStart2 = editable.getSpanStart(w1Var2);
+            int spanEnd = editable.getSpanEnd(w1Var2);
+            editable.removeSpan(w1Var2);
+            if (spanEnd > spanStart2) {
+                editable.setSpan(w1Var2, spanStart2, spanEnd, 33);
+            }
+        }
+        if (max < length) {
+            ?? characterStyle2 = new CharacterStyle();
+            this.f1125i = characterStyle2;
+            editable.setSpan(characterStyle2, max, length, 33);
+        }
+        g();
+    }
+
+    public final void e(int i7, int i10, String str) {
+        String[] split;
+        boolean z10;
+        int i11;
+        boolean z11;
+        long j3;
+        long j10;
+        int i12;
+        TextView textView = this.f1119a;
+        Editable editableText = textView.getEditableText();
+        if (editableText == null) {
+            return;
+        }
+        boolean z12 = false;
+        int max = Math.max(0, Math.min(i7, editableText.length()));
+        String charSequence = editableText.subSequence(max, editableText.length()).toString();
+        if (charSequence.equals(str)) {
+            if (i10 < 0) {
+                i12 = editableText.length();
+            } else {
+                i12 = max + i10;
+            }
+            d(editableText, i12);
+            return;
+        }
+        int min = Math.min(charSequence.length(), str.length());
+        int i13 = 0;
+        while (i13 < min && charSequence.charAt(i13) == str.charAt(i13)) {
+            i13++;
+        }
+        String substring = str.substring(i13);
+        int i14 = 0;
+        for (String str2 : charSequence.substring(i13).trim().split("\\s+")) {
+            int length = str2.length();
+            int i15 = 0;
+            while (true) {
+                if (i15 >= length) {
+                    break;
+                } else if (Character.isLetterOrDigit(str2.charAt(i15))) {
+                    i14++;
+                    break;
+                } else {
+                    i15++;
+                }
+            }
+        }
+        BaseInputConnection.removeComposingSpans(editableText);
+        int i16 = i13 + max;
+        if (i16 == editableText.length()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10) {
+            editableText.append((CharSequence) substring);
+        } else {
+            editableText.replace(i16, editableText.length(), substring);
+        }
+        int length2 = substring.length() + i16;
+        if (z10) {
+            i14 = 0;
+        }
+        long uptimeMillis = SystemClock.uptimeMillis();
+        int i17 = 0;
+        int i18 = 0;
+        while (i16 < length2) {
+            while (i16 < length2 && Character.isWhitespace(editableText.charAt(i16))) {
+                i16++;
+            }
+            if (i16 >= length2) {
+                break;
+            }
+            int i19 = i16;
+            while (i19 < length2 && !Character.isWhitespace(editableText.charAt(i19))) {
+                i19++;
+            }
+            if (i17 < i14) {
+                z11 = true;
+            } else {
+                z11 = z12;
+            }
+            int i20 = i16;
+            while (true) {
+                if (i20 >= i19) {
+                    break;
+                } else if (Character.isLetterOrDigit(editableText.charAt(i20))) {
+                    i17++;
+                    break;
+                } else {
+                    i20++;
+                }
+            }
+            int i21 = i17;
+            if (z11) {
+                j3 = 0;
+            } else {
+                j3 = (i18 * 22) + uptimeMillis;
+            }
+            int i22 = i16;
+            while (true) {
+                if (i22 > 0) {
+                    j10 = 0;
+                    if (Character.isWhitespace(editableText.charAt(i22 - 1))) {
+                        break;
+                    }
+                    i22--;
+                } else {
+                    j10 = 0;
+                    break;
+                }
+            }
+            int i23 = length2;
+            int i24 = i19;
+            while (i24 < editableText.length() && !Character.isWhitespace(editableText.charAt(i24))) {
+                i24++;
+            }
+            Object[] objArr = (x1[]) editableText.getSpans(i22, i24, x1.class);
+            int i25 = max;
+            int length3 = objArr.length;
+            int i26 = 0;
+            while (i26 < length3) {
+                int i27 = i26;
+                Object obj = objArr[i27];
+                int i28 = length3;
+                if (editableText.getSpanStart(obj) < i24 && editableText.getSpanEnd(obj) > i22) {
+                    editableText.removeSpan(obj);
+                }
+                i26 = i27 + 1;
+                length3 = i28;
+            }
+            if (j3 > j10) {
+                y1 y1Var = new y1(j3, this.f1120b);
+                y1Var.f1598c = i19 - i16;
+                editableText.setSpan(y1Var, i16, i19, 33);
+            }
+            int i29 = i16;
+            editableText.setSpan(new x1(Math.max(uptimeMillis, j3), this.f1120b, this.f1121c), i22, i24, 33);
+            if (!z11) {
+                i18 += i19 - i29;
+            }
+            i17 = i21;
+            i16 = i19;
+            length2 = i23;
+            max = i25;
+            z12 = false;
+        }
+        int i30 = max;
+        if (i10 < 0) {
+            i11 = editableText.length();
+        } else {
+            i11 = i30 + i10;
+        }
+        d(editableText, i11);
+        if (textView instanceof EditText) {
+            ((EditText) textView).setSelection(editableText.length());
+        }
+        g();
+    }
+
+    public final void f(boolean z10) {
+        Editable editableText = this.f1119a.getEditableText();
+        if (editableText != null) {
+            if (z10) {
+                if (this.f1127k == null) {
+                    float L = org.telegram.messenger.g0.L(150.0f);
+                    int f10 = i0.a.f(this.f1123f, this.f1121c, this.d);
+                    int f11 = i0.a.f(this.f1123f, this.f1121c, this.f1122e);
+                    this.f1127k = new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{this.f1121c, f10, i0.a.f(0.5f, f10, f11), f11, this.f1121c}, new float[]{0.0f, 0.3f, 0.5f, 0.7f, 1.0f}, Shader.TileMode.MIRROR);
+                }
+                if (this.f1126j == null) {
+                    this.f1126j = new z1(this, 0);
+                }
+                this.f1129m = 1.0f;
+                editableText.setSpan(this.f1126j, 0, editableText.length(), 18);
+                g();
+                return;
+            }
+            z1 z1Var = this.f1126j;
+            if (z1Var != null) {
+                this.f1129m = 0.0f;
+                editableText.removeSpan(z1Var);
+            }
+        }
+    }
+
+    public final void g() {
+        if (this.f1124g) {
+            return;
+        }
+        this.f1124g = true;
+        this.f1119a.postOnAnimation(this.f1130n);
     }
 }

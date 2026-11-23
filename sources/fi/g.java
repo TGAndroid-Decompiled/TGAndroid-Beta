@@ -24,9 +24,9 @@ public final class g extends oq {
         int i7;
         int i10;
         tv tvVar = this.H;
-        int i11 = tvVar.f12454b;
+        int i11 = tvVar.f12406b;
         if (i11 == 0) {
-            i7 = org.telegram.ui.ActionBar.m6.f29661s8;
+            i7 = org.telegram.ui.ActionBar.m6.f29627s8;
         } else {
             i7 = org.telegram.ui.ActionBar.m6.M8;
         }

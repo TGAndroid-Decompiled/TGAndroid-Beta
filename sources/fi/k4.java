@@ -14,12 +14,12 @@ import org.telegram.ui.Components.aa0;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.sj0;
 public final class k4 implements sj0 {
-    public final f9 f12223a;
-    public final b5 f12224b;
+    public final f9 f12176a;
+    public final a5 f12177b;
 
-    public k4(b5 b5Var, f9 f9Var) {
-        this.f12224b = b5Var;
-        this.f12223a = f9Var;
+    public k4(a5 a5Var, f9 f9Var) {
+        this.f12177b = a5Var;
+        this.f12176a = f9Var;
     }
 
     @Override
@@ -37,24 +37,24 @@ public final class k4 implements sj0 {
         boolean z16;
         boolean z17;
         TLRPC.InputStickerSet c10;
-        b5 b5Var = this.f12224b;
-        b bVar = b5Var.f11819s;
-        int i10 = b5Var.f11820w;
+        a5 a5Var = this.f12177b;
+        b bVar = a5Var.f11727s;
+        int i10 = a5Var.f11728w;
         if (view instanceof org.telegram.ui.Cells.n6) {
             final org.telegram.ui.Cells.n6 n6Var = (org.telegram.ui.Cells.n6) view;
-            f9 f9Var = this.f12223a;
-            if (f9Var.f12045w != null && (storyView = ((s4) b5Var.f11821x.f12774c.get(i7)).f12562b) != null && (c22 = (u12 = np.u1(i10)).c2(Long.valueOf(storyView.user_id))) != null) {
-                if (u12.H0.indexOfKey(c22.f28583id) >= 0) {
+            f9 f9Var = this.f12176a;
+            if (f9Var.f11996w != null && (storyView = ((r4) a5Var.f11729x.f12691c.get(i7)).f12495b) != null && (c22 = (u12 = np.u1(i10)).c2(Long.valueOf(storyView.user_id))) != null) {
+                if (u12.H0.indexOfKey(c22.f28547id) >= 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (!c22.contact && org.telegram.messenger.i5.r(i10).f24606g0.get(Long.valueOf(c22.f28583id)) == null) {
+                if (!c22.contact && org.telegram.messenger.i5.r(i10).f24570g0.get(Long.valueOf(c22.f28547id)) == null) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
-                boolean d = b5Var.d(storyView);
+                boolean d = a5Var.d(storyView);
                 boolean N = u12.R1().N(storyView);
                 boolean C = p10.C(c22);
                 if (TextUtils.isEmpty(c22.first_name)) {
@@ -73,22 +73,22 @@ public final class k4 implements sj0 {
                 if (C) {
                     return false;
                 }
-                a70 G = a70.G(f9Var.f12045w, bVar, view);
-                G.f33378i = 3;
-                G.f33380j = true;
-                G.X(new ColorDrawable(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, bVar)));
-                G.f33397s = 133;
+                a70 G = a70.G(f9Var.f11996w, bVar, view);
+                G.f33344i = 3;
+                G.f33346j = true;
+                G.X(new ColorDrawable(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29420h5, bVar)));
+                G.f33363s = 133;
                 if (d && !N && !z10 && !C) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
                 final String str2 = str;
-                G.l(2131232390, hd.a0(null, null, 2131744419, str), new Runnable(this) {
-                    public final k4 f12138b;
+                G.l(2131232390, hd.a0(null, null, 2131744421, str), new Runnable(this) {
+                    public final k4 f12089b;
 
                     {
-                        this.f12138b = this;
+                        this.f12089b = this;
                     }
 
                     @Override
@@ -100,22 +100,22 @@ public final class k4 implements sj0 {
                         String str3 = str2;
                         TLRPC.User user = c22;
                         np npVar = u12;
-                        k4 k4Var = this.f12138b;
+                        k4 k4Var = this.f12089b;
                         switch (i11) {
                             case 0:
-                                npVar.R1().m0(user.f28583id, true, true);
-                                b5 b5Var2 = k4Var.f12224b;
-                                new lc(b5Var2, b5Var2.f11819s).Q(2131624050, 36, hd.a0(null, null, 2131744420, str3)).j();
-                                if (b5Var2.d(storyView2)) {
+                                npVar.R1().m0(user.f28547id, true, true);
+                                a5 a5Var2 = k4Var.f12177b;
+                                new lc(a5Var2, a5Var2.f11727s).Q(2131624050, 36, hd.a0(null, null, 2131744422, str3)).j();
+                                if (a5Var2.d(storyView2)) {
                                     f10 = 1.0f;
                                 }
                                 n6Var2.a(true, f10);
                                 return;
                             default:
-                                npVar.R1().m0(user.f28583id, false, true);
-                                b5 b5Var3 = k4Var.f12224b;
-                                new lc(b5Var3, b5Var3.f11819s).Q(2131623990, 36, hd.a0(null, null, 2131744218, str3)).j();
-                                if (b5Var3.d(storyView2)) {
+                                npVar.R1().m0(user.f28547id, false, true);
+                                a5 a5Var3 = k4Var.f12177b;
+                                new lc(a5Var3, a5Var3.f11727s).Q(2131623990, 36, hd.a0(null, null, 2131744220, str3)).j();
+                                if (a5Var3.d(storyView2)) {
                                     f10 = 1.0f;
                                 }
                                 n6Var2.a(true, f10);
@@ -130,11 +130,11 @@ public final class k4 implements sj0 {
                 } else {
                     z13 = false;
                 }
-                G.l(2131232225, hd.a0(null, null, 2131744219, str2), new Runnable(this) {
-                    public final k4 f12138b;
+                G.l(2131232225, hd.a0(null, null, 2131744221, str2), new Runnable(this) {
+                    public final k4 f12089b;
 
                     {
-                        this.f12138b = this;
+                        this.f12089b = this;
                     }
 
                     @Override
@@ -146,22 +146,22 @@ public final class k4 implements sj0 {
                         String str3 = str2;
                         TLRPC.User user = c22;
                         np npVar = u12;
-                        k4 k4Var = this.f12138b;
+                        k4 k4Var = this.f12089b;
                         switch (i11) {
                             case 0:
-                                npVar.R1().m0(user.f28583id, true, true);
-                                b5 b5Var2 = k4Var.f12224b;
-                                new lc(b5Var2, b5Var2.f11819s).Q(2131624050, 36, hd.a0(null, null, 2131744420, str3)).j();
-                                if (b5Var2.d(storyView2)) {
+                                npVar.R1().m0(user.f28547id, true, true);
+                                a5 a5Var2 = k4Var.f12177b;
+                                new lc(a5Var2, a5Var2.f11727s).Q(2131624050, 36, hd.a0(null, null, 2131744422, str3)).j();
+                                if (a5Var2.d(storyView2)) {
                                     f10 = 1.0f;
                                 }
                                 n6Var2.a(true, f10);
                                 return;
                             default:
-                                npVar.R1().m0(user.f28583id, false, true);
-                                b5 b5Var3 = k4Var.f12224b;
-                                new lc(b5Var3, b5Var3.f11819s).Q(2131623990, 36, hd.a0(null, null, 2131744218, str3)).j();
-                                if (b5Var3.d(storyView2)) {
+                                npVar.R1().m0(user.f28547id, false, true);
+                                a5 a5Var3 = k4Var.f12177b;
+                                new lc(a5Var3, a5Var3.f11727s).Q(2131623990, 36, hd.a0(null, null, 2131744220, str3)).j();
+                                if (a5Var3.d(storyView2)) {
                                     f10 = 1.0f;
                                 }
                                 n6Var2.a(true, f10);
@@ -177,10 +177,10 @@ public final class k4 implements sj0 {
                     z14 = false;
                 }
                 G.m(2131232417, new Runnable(this) {
-                    public final k4 f12183b;
+                    public final k4 f12143b;
 
                     {
-                        this.f12183b = this;
+                        this.f12143b = this;
                     }
 
                     @Override
@@ -189,10 +189,10 @@ public final class k4 implements sj0 {
                         float f11;
                         switch (r6) {
                             case 0:
-                                u12.w(c22.f28583id);
-                                b5 b5Var2 = this.f12183b.f12224b;
-                                new lc(b5Var2, b5Var2.f11819s).e(true).j();
-                                if (b5Var2.d(storyView)) {
+                                u12.w(c22.f28547id);
+                                a5 a5Var2 = this.f12143b.f12177b;
+                                new lc(a5Var2, a5Var2.f11727s).e(true).j();
+                                if (a5Var2.d(storyView)) {
                                     f10 = 1.0f;
                                 } else {
                                     f10 = 0.5f;
@@ -203,11 +203,11 @@ public final class k4 implements sj0 {
                                 np npVar = u12;
                                 p6 R1 = npVar.R1();
                                 TLRPC.User user = c22;
-                                R1.m0(user.f28583id, false, true);
-                                npVar.r5(null, user.f28583id);
-                                b5 b5Var3 = this.f12183b.f12224b;
-                                new lc(b5Var3, b5Var3.f11819s).e(false).j();
-                                if (b5Var3.d(storyView)) {
+                                R1.m0(user.f28547id, false, true);
+                                npVar.r5(null, user.f28547id);
+                                a5 a5Var3 = this.f12143b.f12177b;
+                                new lc(a5Var3, a5Var3.f11727s).e(false).j();
+                                if (a5Var3.d(storyView)) {
                                     f11 = 1.0f;
                                 } else {
                                     f11 = 0.5f;
@@ -222,11 +222,11 @@ public final class k4 implements sj0 {
                 } else {
                     z15 = false;
                 }
-                G.l(2131232069, hd.N0(2131743666, null), new Runnable(this) {
-                    public final k4 f12183b;
+                G.l(2131232069, hd.N0(2131743668, null), new Runnable(this) {
+                    public final k4 f12143b;
 
                     {
-                        this.f12183b = this;
+                        this.f12143b = this;
                     }
 
                     @Override
@@ -235,10 +235,10 @@ public final class k4 implements sj0 {
                         float f11;
                         switch (r6) {
                             case 0:
-                                u12.w(c22.f28583id);
-                                b5 b5Var2 = this.f12183b.f12224b;
-                                new lc(b5Var2, b5Var2.f11819s).e(true).j();
-                                if (b5Var2.d(storyView)) {
+                                u12.w(c22.f28547id);
+                                a5 a5Var2 = this.f12143b.f12177b;
+                                new lc(a5Var2, a5Var2.f11727s).e(true).j();
+                                if (a5Var2.d(storyView)) {
                                     f10 = 1.0f;
                                 } else {
                                     f10 = 0.5f;
@@ -249,11 +249,11 @@ public final class k4 implements sj0 {
                                 np npVar = u12;
                                 p6 R1 = npVar.R1();
                                 TLRPC.User user = c22;
-                                R1.m0(user.f28583id, false, true);
-                                npVar.r5(null, user.f28583id);
-                                b5 b5Var3 = this.f12183b.f12224b;
-                                new lc(b5Var3, b5Var3.f11819s).e(false).j();
-                                if (b5Var3.d(storyView)) {
+                                R1.m0(user.f28547id, false, true);
+                                npVar.r5(null, user.f28547id);
+                                a5 a5Var3 = this.f12143b.f12177b;
+                                new lc(a5Var3, a5Var3.f11727s).e(false).j();
+                                if (a5Var3.d(storyView)) {
                                     f11 = 1.0f;
                                 } else {
                                     f11 = 0.5f;
@@ -268,13 +268,13 @@ public final class k4 implements sj0 {
                 } else {
                     z16 = false;
                 }
-                G.m(2131232417, new ai.b(this, c22, str2, n6Var, storyView, 14), hd.N0(2131744444, null), z16, true);
+                G.m(2131232417, new bi.s1(this, c22, str2, n6Var, storyView, 13), hd.N0(2131744446, null), z16, true);
                 TLRPC.Reaction reaction = storyView.reaction;
                 if ((reaction instanceof TLRPC.TL_reactionCustomEmoji) && (c10 = org.telegram.ui.Components.p5.g(i10).c(((TLRPC.TL_reactionCustomEmoji) reaction).document_id)) != null) {
                     G.k();
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(c10);
-                    aa0 aa0Var = new aa0(b5Var.f11820w, 3, b5Var.getContext(), arrayList, bVar);
+                    aa0 aa0Var = new aa0(a5Var.f11728w, 3, a5Var.getContext(), arrayList, bVar);
                     aa0Var.setOnClickListener(new ah.h(this, arrayList, G, 12));
                     G.q(aa0Var);
                     z17 = true;
@@ -286,7 +286,7 @@ public final class k4 implements sj0 {
                 }
                 G.a0();
                 try {
-                    b5Var.performHapticFeedback(0, 1);
+                    a5Var.performHapticFeedback(0, 1);
                 } catch (Exception unused) {
                 }
                 return true;

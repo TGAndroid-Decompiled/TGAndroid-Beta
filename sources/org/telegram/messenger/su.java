@@ -6,15 +6,15 @@ import org.telegram.ui.Components.qx0;
 import org.telegram.ui.Components.rx0;
 import org.telegram.ui.wg0;
 public final class su implements wg0 {
-    public final rx0 f26910a;
+    public final rx0 f26874a;
 
     public su(rx0 rx0Var) {
-        this.f26910a = rx0Var;
+        this.f26874a = rx0Var;
     }
 
     @Override
     public final Layout a() {
-        qx0 qx0Var = this.f26910a.f39369b;
+        qx0 qx0Var = this.f26874a.f39325b;
         if (qx0Var == null) {
             return null;
         }

@@ -17,36 +17,36 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ev;
+import org.telegram.ui.Components.dv;
 import org.telegram.ui.Components.pv0;
 import org.telegram.ui.Dictation.DictationAsr;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.h60;
+import org.telegram.ui.o60;
 public final class p9 implements y10 {
-    public final int f9558a;
-    public final int f9559b;
-    public final Object f9560c;
+    public final int f9521a;
+    public final int f9522b;
+    public final Object f9523c;
     public final Object d;
-    public final Object f9561e;
+    public final Object f9524e;
 
     public p9(Object obj, int i7, Object obj2, Object obj3, int i10) {
-        this.f9558a = i10;
-        this.f9560c = obj;
-        this.f9559b = i7;
+        this.f9521a = i10;
+        this.f9523c = obj;
+        this.f9522b = i7;
         this.d = obj2;
-        this.f9561e = obj3;
+        this.f9524e = obj3;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f9558a;
+        int i7 = this.f9521a;
         boolean z10 = false;
-        int i10 = this.f9559b;
-        Object obj2 = this.f9561e;
+        int i10 = this.f9522b;
+        Object obj2 = this.f9524e;
         Object obj3 = this.d;
-        Object obj4 = this.f9560c;
+        Object obj4 = this.f9523c;
         switch (i7) {
             case 0:
                 org.telegram.ui.Components.nc ncVar = (org.telegram.ui.Components.nc) obj4;
@@ -55,56 +55,56 @@ public final class p9 implements y10 {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (savedStarGift != null) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(ncVar.getText());
-                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) org.telegram.ui.Components.oc.b(hd.N0(2131744976, null), new ai.b1(this.f9559b, context, h6Var, savedStarGift, 4), h6Var, null));
+                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) org.telegram.ui.Components.oc.b(hd.N0(2131744978, null), new ai.w0(this.f9522b, context, h6Var, savedStarGift, 4), h6Var, null));
                     ncVar.setText(spannableStringBuilder);
                     return;
                 }
                 return;
             case 1:
                 org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) obj3;
-                bi.w4 w4Var = (bi.w4) obj2;
-                ((ai.y1) obj4).a(Boolean.FALSE);
+                bi.z4 z4Var = (bi.z4) obj2;
+                ((ai.r1) obj4).a(Boolean.FALSE);
                 if (!((Boolean) obj).booleanValue()) {
                     org.telegram.ui.Components.gc Q = org.telegram.ui.Components.lc.Y().Q(2131624012, 36, hd.N0(2131749333, null));
-                    Q.f35527j = 5000;
+                    Q.f35489j = 5000;
                     Q.j();
                     return;
-                } else if (LaunchActivity.T() == g2Var && k10.f24968t0 == i10) {
-                    w4Var.run();
+                } else if (LaunchActivity.T() == g2Var && k10.f24932t0 == i10) {
+                    z4Var.run();
                     return;
                 } else {
                     org.telegram.ui.Components.gc Q2 = org.telegram.ui.Components.lc.Y().Q(2131623990, 36, hd.N0(2131749334, null));
-                    Q2.f35527j = 5000;
+                    Q2.f35489j = 5000;
                     Q2.j();
                     return;
                 }
             case 2:
-                DictationAsr.Z((String) obj4, ((String[]) obj3)[((Integer) obj).intValue()]);
+                DictationAsr.Y((String) obj4, ((String[]) obj3)[((Integer) obj).intValue()]);
                 ((y10) obj2).a(Integer.valueOf(i10));
                 return;
             case 3:
                 org.telegram.ui.ActionBar.g2 g2Var2 = (org.telegram.ui.ActionBar.g2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j3 = ((TLRPC.Chat) obj2).f28434id;
+                long j3 = ((TLRPC.Chat) obj2).f28398id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean T = org.telegram.messenger.v3.T(chat);
-                int i11 = this.f9559b;
+                int i11 = this.f9522b;
                 if (!T) {
                     org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, g2Var2.getContext(), null);
                     t1Var.r(250L);
-                    np.u1(i11).T(g2Var2.getParentActivity(), chat.f28434id, g2Var2, new li.f0(t1Var, g2Var2, i11, j3, booleanValue), null);
+                    np.u1(i11).T(g2Var2.getParentActivity(), chat.f28398id, g2Var2, new li.f0(t1Var, g2Var2, i11, j3, booleanValue), null);
                     return;
                 }
-                long j10 = chat.f28434id;
+                long j10 = chat.f28398id;
                 np.u1(i11).W2(-j10, j3, false, booleanValue, new bi.n(g2Var2, j10, 1));
                 return;
             case 4:
-                oi.a6 a6Var = (oi.a6) obj4;
+                oi.z5 z5Var = (oi.z5) obj4;
                 oi.a aVar = (oi.a) obj3;
                 String str = (String) obj2;
                 SpannableString spannableString = (SpannableString) obj;
-                if (i10 == a6Var.J && a6Var.f21978y == aVar) {
-                    Editable text = a6Var.f21972f.getText();
+                if (i10 == z5Var.J && z5Var.f22560y == aVar) {
+                    Editable text = z5Var.f22554f.getText();
                     if (TextUtils.equals(str, text)) {
                         for (qi.c cVar : (qi.c[]) text.getSpans(0, text.length(), qi.c.class)) {
                             text.removeSpan(cVar);
@@ -118,35 +118,35 @@ public final class p9 implements y10 {
                                 text.setSpan(cVarArr[i12], spanStart, spanEnd, 33);
                             }
                         }
-                        a6Var.I = str;
+                        z5Var.I = str;
                         return;
                     }
                     return;
                 }
                 return;
             case 5:
-                ev evVar = (ev) obj4;
+                dv dvVar = (dv) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                org.telegram.ui.ActionBar.g2 g2Var3 = evVar.n1;
+                org.telegram.ui.ActionBar.g2 g2Var3 = dvVar.n1;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
                 }
                 if (iArr[0] == i10 && iArr[1] > 0) {
-                    evVar.dismiss();
+                    dvVar.dismiss();
                     org.telegram.ui.Components.gc.g(g2Var3, new pv0(g2Var3.getFragmentView().getContext(), (TLObject) arrayList.get(0), iArr[1], 2, null, g2Var3.getResourceProvider()), 1500).j();
                     return;
                 }
                 return;
             case 6:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
-                h60 h60Var = (h60) obj3;
+                o60 o60Var = (o60) obj3;
                 Long l10 = (Long) obj2;
                 TL_stories.TL_storyAlbum tL_storyAlbum = (TL_stories.TL_storyAlbum) obj;
                 String str2 = LaunchActivity.C1;
                 try {
-                    h60Var.run();
+                    o60Var.run();
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
@@ -154,7 +154,7 @@ public final class p9 implements y10 {
                 if (tL_storyAlbum == null) {
                     org.telegram.ui.Components.lc Y = org.telegram.ui.Components.lc.Y();
                     if (Y != null) {
-                        org.telegram.messenger.f3.n(null, 2131744487, Y, 2131624237, 36);
+                        org.telegram.messenger.f3.n(null, 2131744489, Y, 2131624237, 36);
                         return;
                     }
                     return;
@@ -178,19 +178,19 @@ public final class p9 implements y10 {
                 gj gjVar = (gj) obj2;
                 String str3 = (String) obj;
                 if (i10 == photoViewer.Q4) {
-                    photoViewer.f43333o5 = str3;
-                    if (a10Var.s() && a10Var.b(gjVar, photoViewer.f43333o5)) {
-                        if (photoViewer.f43325n5) {
-                            photoViewer.f43337p0.T(20);
-                            photoViewer.f43337p0.u(19);
+                    photoViewer.f43298o5 = str3;
+                    if (a10Var.s() && a10Var.b(gjVar, photoViewer.f43298o5)) {
+                        if (photoViewer.f43290n5) {
+                            photoViewer.f43302p0.T(20);
+                            photoViewer.f43302p0.u(19);
                             return;
                         }
-                        photoViewer.f43337p0.T(19);
-                        photoViewer.f43337p0.u(20);
+                        photoViewer.f43302p0.T(19);
+                        photoViewer.f43302p0.u(20);
                         return;
                     }
-                    photoViewer.f43337p0.u(19);
-                    photoViewer.f43337p0.u(20);
+                    photoViewer.f43302p0.u(19);
+                    photoViewer.f43302p0.u(20);
                     return;
                 }
                 return;
@@ -198,18 +198,18 @@ public final class p9 implements y10 {
     }
 
     public p9(Object obj, Object obj2, int i7, Object obj3, int i10) {
-        this.f9558a = i10;
-        this.f9560c = obj;
+        this.f9521a = i10;
+        this.f9523c = obj;
         this.d = obj2;
-        this.f9559b = i7;
-        this.f9561e = obj3;
+        this.f9522b = i7;
+        this.f9524e = obj3;
     }
 
     public p9(Object obj, Object obj2, Object obj3, int i7, int i10) {
-        this.f9558a = i10;
-        this.f9560c = obj;
+        this.f9521a = i10;
+        this.f9523c = obj;
         this.d = obj2;
-        this.f9561e = obj3;
-        this.f9559b = i7;
+        this.f9524e = obj3;
+        this.f9522b = i7;
     }
 }

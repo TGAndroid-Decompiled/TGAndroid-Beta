@@ -4,13 +4,14 @@ import android.graphics.Canvas;
 import android.util.SparseArray;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import fi.a6;
 import fi.h6;
-import fi.l5;
+import fi.k5;
+import fi.z5;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-import oi.y1;
+import oi.x1;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a6;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.gj;
 import org.telegram.messenger.pv;
@@ -33,160 +34,160 @@ import org.telegram.ui.Components.tn;
 import org.telegram.ui.Components.us0;
 import org.telegram.ui.ea;
 import org.telegram.ui.f61;
+import org.telegram.ui.go;
 import org.telegram.ui.ho;
 import org.telegram.ui.ia;
 import org.telegram.ui.io;
-import org.telegram.ui.jo;
 import org.telegram.ui.l4;
 import org.telegram.ui.la;
-import org.telegram.ui.nr0;
-import org.telegram.ui.pr0;
-import v4.f1;
-import v4.w;
-public final class c extends w {
+import org.telegram.ui.or0;
+import org.telegram.ui.qr0;
+import v4.e1;
+import v4.v;
+public final class c extends v {
     public final int d;
-    public final Object f13664e;
+    public final Object f13627e;
 
     public c(Object obj, int i7) {
         this.d = i7;
-        this.f13664e = obj;
+        this.f13627e = obj;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, f1 f1Var) {
+    public void a(RecyclerView recyclerView, e1 e1Var) {
         switch (this.d) {
             case 0:
-                super.a(recyclerView, f1Var);
-                f1Var.f59165a.setPressed(false);
+                super.a(recyclerView, e1Var);
+                e1Var.f59111a.setPressed(false);
                 return;
             case 1:
-                super.a(recyclerView, f1Var);
-                View view = f1Var.f59165a;
+                super.a(recyclerView, e1Var);
+                View view = e1Var.f59111a;
                 view.setPressed(false);
                 view.setTag(2131296421, null);
                 return;
             case 2:
-                super.a(recyclerView, f1Var);
-                f1Var.f59165a.setPressed(false);
+                super.a(recyclerView, e1Var);
+                e1Var.f59111a.setPressed(false);
                 return;
             case 3:
-                super.a(recyclerView, f1Var);
-                View view2 = f1Var.f59165a;
+                super.a(recyclerView, e1Var);
+                View view2 = e1Var.f59111a;
                 view2.setPressed(false);
                 view2.setTag(2131296421, null);
                 return;
             case 4:
-                super.a(recyclerView, f1Var);
-                View view3 = f1Var.f59165a;
+                super.a(recyclerView, e1Var);
+                View view3 = e1Var.f59111a;
                 view3.setPressed(false);
                 view3.setBackground(null);
                 return;
             case 5:
-                super.a(recyclerView, f1Var);
-                f1Var.f59165a.setPressed(false);
+                super.a(recyclerView, e1Var);
+                e1Var.f59111a.setPressed(false);
                 return;
             case 6:
-                super.a(recyclerView, f1Var);
-                f1Var.f59165a.setPressed(false);
+                super.a(recyclerView, e1Var);
+                e1Var.f59111a.setPressed(false);
                 return;
             case 7:
-                h51 h51Var = (h51) this.f13664e;
-                super.a(recyclerView, f1Var);
-                View view4 = f1Var.f59165a;
+                h51 h51Var = (h51) this.f13627e;
+                super.a(recyclerView, e1Var);
+                View view4 = e1Var.f59111a;
                 view4.setPressed(false);
-                if (view4.getBackground() instanceof y1) {
-                    y1 y1Var = (y1) view4.getBackground();
-                    if (y1Var.f22540c) {
-                        y1Var.f22540c = false;
-                        y1Var.invalidateSelf();
+                if (view4.getBackground() instanceof x1) {
+                    x1 x1Var = (x1) view4.getBackground();
+                    if (x1Var.f22477c) {
+                        x1Var.f22477c = false;
+                        x1Var.invalidateSelf();
                     }
                 }
                 if (h51Var.D1()) {
-                    h51Var.I1(f1Var);
+                    h51Var.I1(e1Var);
                     view4.animate().scaleX(0.5f).scaleY(0.5f).setDuration(200L).setInterpolator(nr.h).start();
                     return;
                 }
                 return;
             case 8:
             default:
-                super.a(recyclerView, f1Var);
+                super.a(recyclerView, e1Var);
                 return;
             case 9:
-                super.a(recyclerView, f1Var);
-                f1Var.f59165a.setPressed(false);
+                super.a(recyclerView, e1Var);
+                e1Var.f59111a.setPressed(false);
                 return;
         }
     }
 
     @Override
-    public final int e(RecyclerView recyclerView, f1 f1Var) {
+    public final int e(RecyclerView recyclerView, e1 e1Var) {
         pv s5;
         switch (this.d) {
             case 0:
-                m mVar = (m) this.f13664e;
-                if (mVar.f13681a0.H.F1 && mVar.f13689w.L(f1Var.b())) {
-                    mVar.f13685f.setItemAnimator(mVar.f13686n);
-                    return w.l(15, 0);
+                m mVar = (m) this.f13627e;
+                if (mVar.f13644a0.H.F1 && mVar.f13652w.L(e1Var.b())) {
+                    mVar.f13648f.setItemAnimator(mVar.f13649n);
+                    return v.l(15, 0);
                 }
-                return w.l(0, 0);
+                return v.l(0, 0);
             case 1:
-                if (f1Var.f59169f == 4 && ((ia) f1Var.f59165a).H) {
-                    return w.l(3, 0);
+                if (e1Var.f59115f == 4 && ((ia) e1Var.f59111a).H) {
+                    return v.l(3, 0);
                 }
-                return w.l(0, 0);
+                return v.l(0, 0);
             case 2:
-                if (f1Var.f59169f == 1 && ((ia) f1Var.f59165a).H) {
-                    return w.l(3, 0);
+                if (e1Var.f59115f == 1 && ((ia) e1Var.f59111a).H) {
+                    return v.l(3, 0);
                 }
-                return w.l(0, 0);
+                return v.l(0, 0);
             case 3:
-                if (f1Var.f59169f != 0) {
+                if (e1Var.f59115f != 0) {
                     return 0;
                 }
-                return w.l(3, 0);
+                return v.l(3, 0);
             case 4:
-                if (f1Var.f59169f != 5) {
-                    return w.l(0, 0);
+                if (e1Var.f59115f != 5) {
+                    return v.l(0, 0);
                 }
-                return w.l(3, 0);
+                return v.l(3, 0);
             case 5:
-                int b10 = f1Var.b();
-                sl0 sl0Var = (sl0) this.f13664e;
-                if (b10 >= sl0Var.f39623w && f1Var.b() < sl0Var.f39624x) {
-                    return w.l(3, 0);
+                int b10 = e1Var.b();
+                sl0 sl0Var = (sl0) this.f13627e;
+                if (b10 >= sl0Var.f39579w && e1Var.b() < sl0Var.f39580x) {
+                    return v.l(3, 0);
                 }
-                return w.l(0, 0);
+                return v.l(0, 0);
             case 6:
-                int l10 = w.l(0, 0);
-                jt0 jt0Var = ((us0) this.f13664e).f40580y;
-                if (jt0Var.F1 && recyclerView.getAdapter() != jt0Var.V && (s5 = s(f1Var)) != null && s5.f26351b) {
-                    return w.l(3, 0);
+                int l10 = v.l(0, 0);
+                jt0 jt0Var = ((us0) this.f13627e).f40538y;
+                if (jt0Var.F1 && recyclerView.getAdapter() != jt0Var.V && (s5 = s(e1Var)) != null && s5.f26315b) {
+                    return v.l(3, 0);
                 }
                 return l10;
             case 7:
-                h51 h51Var = (h51) this.f13664e;
-                if (h51Var.f35792k3 && h51Var.f35789g3.H(f1Var.b()) >= 0) {
+                h51 h51Var = (h51) this.f13627e;
+                if (h51Var.f35745k3 && h51Var.f35742g3.H(e1Var.b()) >= 0) {
                     int i7 = 15;
-                    if (h51Var.f35788f3.f59117o == 0) {
+                    if (h51Var.f35741f3.f59064o == 0) {
                         if (!h51Var.j3) {
                             i7 = 12;
                         }
                     } else if (!h51Var.j3) {
                         i7 = 3;
                     }
-                    return w.l(i7, 0);
+                    return v.l(i7, 0);
                 }
-                return w.l(0, 0);
+                return v.l(0, 0);
             case 8:
-                if (((i71) this.f13664e).E.h(f1Var.b())) {
-                    return w.l(12, 0);
+                if (((i71) this.f13627e).E.h(e1Var.b())) {
+                    return v.l(12, 0);
                 }
-                return w.l(0, 0);
+                return v.l(0, 0);
             default:
-                if (f1Var.f59169f == 5 && r(f1Var.b())) {
-                    return w.l(3, 0);
+                if (e1Var.f59115f == 5 && r(e1Var.b())) {
+                    return v.l(3, 0);
                 }
-                return w.l(0, 0);
+                return v.l(0, 0);
         }
     }
 
@@ -194,12 +195,12 @@ public final class c extends w {
     public boolean k() {
         switch (this.d) {
             case 0:
-                return ((m) this.f13664e).f13681a0.H.F1;
+                return ((m) this.f13627e).f13644a0.H.F1;
             case 5:
-                return ((sl0) this.f13664e).J.V1();
+                return ((sl0) this.f13627e).J.V1();
             case 7:
-                h51 h51Var = (h51) this.f13664e;
-                if (h51Var.f35792k3 && h51Var.f35794m3) {
+                h51 h51Var = (h51) this.f13627e;
+                if (h51Var.f35745k3 && h51Var.f35747m3) {
                     return true;
                 }
                 return false;
@@ -211,82 +212,82 @@ public final class c extends w {
     }
 
     @Override
-    public void m(Canvas canvas, RecyclerView recyclerView, f1 f1Var, float f10, float f11, int i7, boolean z10) {
+    public void m(Canvas canvas, RecyclerView recyclerView, e1 e1Var, float f10, float f11, int i7, boolean z10) {
         switch (this.d) {
             case 7:
-                h51 h51Var = (h51) this.f13664e;
+                h51 h51Var = (h51) this.f13627e;
                 if (i7 != 2 || z10 || !h51Var.D1()) {
-                    super.m(canvas, recyclerView, f1Var, f10, f11, i7, z10);
+                    super.m(canvas, recyclerView, e1Var, f10, f11, i7, z10);
                     if (i7 == 2 && z10) {
-                        h51Var.H1(f1Var);
+                        h51Var.H1(e1Var);
                         return;
                     }
                     return;
                 }
                 return;
             case 8:
-                super.m(canvas, recyclerView, f1Var, f10, f11, i7, z10);
-                ((i71) this.f13664e).invalidate();
+                super.m(canvas, recyclerView, e1Var, f10, f11, i7, z10);
+                ((i71) this.f13627e).invalidate();
                 return;
             default:
-                super.m(canvas, recyclerView, f1Var, f10, f11, i7, z10);
+                super.m(canvas, recyclerView, e1Var, f10, f11, i7, z10);
                 return;
         }
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, f1 f1Var, f1 f1Var2) {
+    public final boolean n(RecyclerView recyclerView, e1 e1Var, e1 e1Var2) {
         ArrayList arrayList;
         int i7;
         int i10;
         int i11;
         int i12 = this.d;
         int i13 = 0;
-        Object obj = this.f13664e;
+        Object obj = this.f13627e;
         switch (i12) {
             case 0:
-                h hVar = ((m) obj).f13689w;
-                if (!hVar.L(f1Var.b()) || !hVar.L(f1Var2.b())) {
+                h hVar = ((m) obj).f13652w;
+                if (!hVar.L(e1Var.b()) || !hVar.L(e1Var2.b())) {
                     return false;
                 }
-                int b10 = f1Var.b();
-                int b11 = f1Var2.b();
-                ArrayList arrayList2 = hVar.f13676n;
-                h6 h6Var = hVar.f13674e;
-                if (h6Var == null || b10 < 0 || b10 >= h6Var.f12089i.size() || b11 < 0 || b11 >= hVar.f13674e.f12089i.size()) {
+                int b10 = e1Var.b();
+                int b11 = e1Var2.b();
+                ArrayList arrayList2 = hVar.f13639n;
+                h6 h6Var = hVar.f13637e;
+                if (h6Var == null || b10 < 0 || b10 >= h6Var.f12040i.size() || b11 < 0 || b11 >= hVar.f13637e.f12040i.size()) {
                     return true;
                 }
-                if (hVar.f13674e instanceof a6) {
+                if (hVar.f13637e instanceof z5) {
                     arrayList = new ArrayList();
-                    for (int i14 = 0; i14 < hVar.f13674e.f12089i.size(); i14++) {
-                        arrayList.add(Integer.valueOf(((gj) hVar.f13674e.f12089i.get(i14)).e1()));
+                    for (int i14 = 0; i14 < hVar.f13637e.f12040i.size(); i14++) {
+                        arrayList.add(Integer.valueOf(((gj) hVar.f13637e.f12040i.get(i14)).e1()));
                     }
                 } else {
-                    arrayList = new ArrayList(hVar.f13674e.f12088g);
+                    arrayList = new ArrayList(hVar.f13637e.f12039g);
                 }
-                if (!hVar.f13677r) {
+                if (!hVar.f13640r) {
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
-                    hVar.f13677r = true;
+                    hVar.f13640r = true;
                 }
-                gj gjVar = (gj) hVar.f13674e.f12089i.get(b10);
-                gj gjVar2 = (gj) hVar.f13674e.f12089i.get(b11);
+                gj gjVar = (gj) hVar.f13637e.f12040i.get(b10);
+                gj gjVar2 = (gj) hVar.f13637e.f12040i.get(b11);
                 arrayList.remove(Integer.valueOf(gjVar.e1()));
                 arrayList.add(Utilities.j(b11, arrayList.size(), 0), Integer.valueOf(gjVar.e1()));
-                hVar.f13674e.C(arrayList, false);
+                hVar.f13637e.C(arrayList, false);
                 hVar.j(b10, b11);
                 return true;
             case 1:
-                if (f1Var.f59169f == f1Var2.f59169f) {
-                    View view = f1Var2.f59165a;
+                if (e1Var.f59115f == e1Var2.f59115f) {
+                    View view = e1Var2.f59111a;
                     if (!(view instanceof ia) || ((ia) view).H) {
-                        ea eaVar = ((la) obj).f49533c;
-                        int b12 = f1Var.b();
-                        int b13 = f1Var2.b();
+                        ea eaVar = ((la) obj).f49509c;
+                        int b12 = e1Var.b();
+                        int b13 = e1Var2.b();
                         int i15 = b12 - 4;
                         int i16 = b13 - 4;
-                        la laVar = eaVar.f47214c;
-                        ArrayList arrayList3 = laVar.f49539w;
+                        la laVar = eaVar.f47183c;
+                        ArrayList arrayList3 = laVar.f49515w;
                         if (i15 >= arrayList3.size() || i16 >= arrayList3.size()) {
                             return true;
                         }
@@ -310,61 +311,61 @@ public final class c extends w {
                 }
                 return false;
             case 2:
-                if (f1Var.f59169f == f1Var2.f59169f) {
-                    View view2 = f1Var2.f59165a;
+                if (e1Var.f59115f == e1Var2.f59115f) {
+                    View view2 = e1Var2.f59111a;
                     if (!(view2 instanceof ia) || ((ia) view2).H) {
-                        ho hoVar = ((io) obj).f48795f3;
-                        int b14 = f1Var.b();
-                        int b15 = f1Var2.b();
+                        go goVar = ((ho) obj).f48468f3;
+                        int b14 = e1Var.b();
+                        int b15 = e1Var2.b();
                         int i18 = b14 - 1;
                         int i19 = b15 - 1;
-                        io ioVar = hoVar.f48504c;
-                        jo joVar = ioVar.f48798i3;
-                        ArrayList arrayList4 = joVar.O;
-                        if (i18 >= joVar.O.size() || i19 >= arrayList4.size()) {
+                        ho hoVar = goVar.f48090c;
+                        io ioVar = hoVar.f48471i3;
+                        ArrayList arrayList4 = ioVar.O;
+                        if (i18 >= ioVar.O.size() || i19 >= arrayList4.size()) {
                             return true;
                         }
                         if (b14 != b15) {
-                            ioVar.f48796g3 = true;
+                            hoVar.f48469g3 = true;
                         }
                         arrayList4.set(i18, (TLRPC.TL_username) arrayList4.get(i19));
                         arrayList4.set(i19, (TLRPC.TL_username) arrayList4.get(i18));
-                        hoVar.j(b14, b15);
+                        goVar.j(b14, b15);
                         int size2 = arrayList4.size();
                         if (b14 != size2 && b15 != size2) {
                             return true;
                         }
-                        hoVar.h(b14, 3);
-                        hoVar.h(b15, 3);
+                        goVar.h(b14, 3);
+                        goVar.h(b15, 3);
                         return true;
                     }
                 }
                 return false;
             case 3:
-                int b16 = f1Var.b();
-                int b17 = f1Var2.b();
+                int b16 = e1Var.b();
+                int b17 = e1Var2.b();
                 f8 f8Var = (f8) obj;
-                if (f8Var.f35128p2) {
+                if (f8Var.f35103p2) {
                     if (b16 <= 0 || b17 <= 0) {
                         return false;
                     }
-                    f8Var.f35130q2.c(b16 - 1, b17 - 1);
+                    f8Var.f35105q2.c(b16 - 1, b17 - 1);
                 } else {
-                    f8Var.f35130q2.c(b16, b17);
+                    f8Var.f35105q2.c(b16, b17);
                 }
-                f8Var.f35132r2.clear();
-                f8Var.f35132r2.addAll(f8Var.f35130q2.f24522c);
-                f8Var.f35137u1.j(b16, b17);
+                f8Var.f35107r2.clear();
+                f8Var.f35107r2.addAll(f8Var.f35105q2.f24486c);
+                f8Var.f35112u1.j(b16, b17);
                 return true;
             case 4:
-                if (f1Var.f59169f != f1Var2.f59169f) {
+                if (e1Var.f59115f != e1Var2.f59115f) {
                     return false;
                 }
-                l4 l4Var = ((tn) obj).f39980r;
-                int b18 = f1Var.b();
-                int b19 = f1Var2.b();
-                tn tnVar = (tn) l4Var.f49474e;
-                int i20 = tnVar.f39986u0;
+                l4 l4Var = ((tn) obj).f39959r;
+                int b18 = e1Var.b();
+                int b19 = e1Var2.b();
+                tn tnVar = (tn) l4Var.f49452e;
+                int i20 = tnVar.f39965u0;
                 sh.d dVar = tnVar.n1;
                 int i21 = b18 - i20;
                 int i22 = b19 - i20;
@@ -372,7 +373,7 @@ public final class c extends w {
                     return true;
                 }
                 sh.c b20 = dVar.b(i21);
-                SparseArray sparseArray = dVar.f57477a;
+                SparseArray sparseArray = dVar.f57442a;
                 sparseArray.put(i21, dVar.b(i22));
                 sparseArray.put(i22, b20);
                 CharSequence[] charSequenceArr = tnVar.L;
@@ -386,22 +387,22 @@ public final class c extends w {
                 l4Var.j(b18, b19);
                 return true;
             case 5:
-                int b21 = f1Var2.b();
+                int b21 = e1Var2.b();
                 sl0 sl0Var = (sl0) obj;
-                ArrayList arrayList5 = sl0Var.f39618e;
-                if (b21 >= sl0Var.f39623w && f1Var2.b() < sl0Var.f39624x) {
-                    int b22 = f1Var.b();
-                    int b23 = f1Var2.b();
-                    int i23 = sl0Var.f39623w;
+                ArrayList arrayList5 = sl0Var.f39574e;
+                if (b21 >= sl0Var.f39579w && e1Var2.b() < sl0Var.f39580x) {
+                    int b22 = e1Var.b();
+                    int b23 = e1Var2.b();
+                    int i23 = sl0Var.f39579w;
                     int i24 = b22 - i23;
                     int i25 = b23 - i23;
                     arrayList5.indexOf(Integer.valueOf(i24));
-                    arrayList5.get(b22 - sl0Var.f39623w);
+                    arrayList5.get(b22 - sl0Var.f39579w);
                     gj gjVar3 = (gj) arrayList5.get(i24);
                     gj gjVar4 = (gj) arrayList5.get(i25);
                     arrayList5.set(i24, gjVar4);
                     arrayList5.set(i25, gjVar3);
-                    org.telegram.messenger.a6 q10 = org.telegram.messenger.a6.q(sl0Var.d);
+                    a6 q10 = a6.q(sl0Var.d);
                     ArrayList arrayList6 = q10.H;
                     int indexOf = arrayList6.indexOf(gjVar3);
                     int indexOf2 = arrayList6.indexOf(gjVar4);
@@ -410,19 +411,19 @@ public final class c extends w {
                         arrayList6.set(indexOf2, gjVar3);
                     }
                     q10.y();
-                    sl0Var.f39617c.j(b22, b23);
+                    sl0Var.f39573c.j(b22, b23);
                 }
                 return false;
             case 6:
                 us0 us0Var = (us0) obj;
-                ArrayList arrayList7 = us0Var.f40574f;
-                jt0 jt0Var = us0Var.f40580y;
+                ArrayList arrayList7 = us0Var.f40532f;
+                jt0 jt0Var = us0Var.f40538y;
                 if (jt0Var.F1 && recyclerView.getAdapter() != jt0Var.V) {
-                    pv s5 = s(f1Var);
-                    pv s9 = s(f1Var2);
-                    if (s5 != null && s9 != null && s5.f26351b && s9.f26351b) {
-                        int b24 = f1Var.b();
-                        int b25 = f1Var2.b();
+                    pv s5 = s(e1Var);
+                    pv s9 = s(e1Var2);
+                    if (s5 != null && s9 != null && s5.f26315b && s9.f26315b) {
+                        int b24 = e1Var.b();
+                        int b25 = e1Var2.b();
                         arrayList7.remove(b24);
                         arrayList7.add(b25, s5);
                         us0Var.j(b24, b25);
@@ -433,12 +434,12 @@ public final class c extends w {
                 return false;
             case 7:
                 h51 h51Var = (h51) obj;
-                c51 c51Var = h51Var.f35789g3;
-                if (c51Var.H(f1Var.b()) < 0 || c51Var.H(f1Var.b()) != c51Var.H(f1Var2.b())) {
+                c51 c51Var = h51Var.f35742g3;
+                if (c51Var.H(e1Var.b()) < 0 || c51Var.H(e1Var.b()) != c51Var.H(e1Var2.b())) {
                     return false;
                 }
-                int b26 = f1Var.b();
-                int b27 = f1Var2.b();
+                int b26 = e1Var.b();
+                int b27 = e1Var2.b();
                 ArrayList arrayList8 = c51Var.E;
                 if (c51Var.N != null) {
                     int H = c51Var.H(b26);
@@ -464,99 +465,99 @@ public final class c extends w {
                 h51Var.K1();
                 return true;
             case 8:
-                int b28 = f1Var.b();
-                int b29 = f1Var2.b();
+                int b28 = e1Var.b();
+                int b29 = e1Var2.b();
                 i71 i71Var = (i71) obj;
                 ArrayList arrayList9 = i71Var.h;
                 if (!i71Var.E.h(b28) || !i71Var.E.h(b29)) {
                     return false;
                 }
-                Pattern pattern = Utilities.f22807a;
+                Pattern pattern = Utilities.f22771a;
                 Object obj2 = arrayList9.get(b28);
                 arrayList9.set(b28, arrayList9.get(b29));
                 arrayList9.set(b29, obj2);
-                i71Var.f36221y.j(b28, b29);
+                i71Var.f36176y.j(b28, b29);
                 ArrayList arrayList10 = new ArrayList();
                 int size3 = arrayList9.size();
                 while (i13 < size3) {
                     Object obj3 = arrayList9.get(i13);
                     i13++;
-                    arrayList10.add(Integer.valueOf(((f71) obj3).f35108a));
+                    arrayList10.add(Integer.valueOf(((f71) obj3).f35083a));
                 }
                 i71Var.E.k(arrayList10);
                 return true;
             default:
-                if (f1Var.f59169f != f1Var2.f59169f || !r(f1Var.b()) || !r(f1Var2.b())) {
+                if (e1Var.f59115f != e1Var2.f59115f || !r(e1Var.b()) || !r(e1Var2.b())) {
                     return false;
                 }
-                nr0 nr0Var = ((pr0) obj).f50935b;
-                int b30 = f1Var.b();
-                int b31 = f1Var2.b();
-                pr0 pr0Var = nr0Var.d;
-                int i26 = pr0Var.f50952o0;
+                or0 or0Var = ((qr0) obj).f51283b;
+                int b30 = e1Var.b();
+                int b31 = e1Var2.b();
+                qr0 qr0Var = or0Var.d;
+                int i26 = qr0Var.f51300o0;
                 int i27 = b30 - i26;
                 int i28 = b31 - i26;
-                if (i27 < 0 || i28 < 0 || i27 >= (i11 = pr0Var.E) || i28 >= i11) {
+                if (i27 < 0 || i28 < 0 || i27 >= (i11 = qr0Var.E) || i28 >= i11) {
                     return true;
                 }
-                CharSequence[] charSequenceArr2 = pr0Var.f50962w;
+                CharSequence[] charSequenceArr2 = qr0Var.f51310w;
                 CharSequence charSequence2 = charSequenceArr2[i27];
                 charSequenceArr2[i27] = charSequenceArr2[i28];
                 charSequenceArr2[i28] = charSequence2;
-                int[] iArr = pr0Var.f50955r;
+                int[] iArr = qr0Var.f51303r;
                 if (iArr != null) {
                     int i29 = iArr[i27];
                     iArr[i27] = iArr[i28];
                     iArr[i28] = i29;
                 }
-                boolean[] zArr2 = pr0Var.f50964x;
+                boolean[] zArr2 = qr0Var.f51312x;
                 boolean z11 = zArr2[i27];
                 zArr2[i27] = zArr2[i28];
                 zArr2[i28] = z11;
-                nr0Var.j(b30, b31);
+                or0Var.j(b30, b31);
                 return true;
         }
     }
 
     @Override
-    public void o(RecyclerView recyclerView, f1 f1Var, f1 f1Var2, int i7, int i10, int i11) {
+    public void o(RecyclerView recyclerView, e1 e1Var, e1 e1Var2, int i7, int i10, int i11) {
         switch (this.d) {
             case 1:
             case 7:
                 return;
             default:
-                super.o(recyclerView, f1Var, f1Var2, i7, i10, i11);
+                super.o(recyclerView, e1Var, e1Var2, i7, i10, i11);
                 return;
         }
     }
 
     @Override
-    public void p(f1 f1Var, int i7) {
+    public void p(e1 e1Var, int i7) {
         ArrayList arrayList;
         boolean z10;
         cs0 cs0Var;
         int i10 = this.d;
         Boolean bool = null;
-        Object obj = this.f13664e;
+        Object obj = this.f13627e;
         switch (i10) {
             case 0:
                 m mVar = (m) obj;
-                e eVar = mVar.f13685f;
-                if (f1Var != null) {
+                e eVar = mVar.f13648f;
+                if (e1Var != null) {
                     eVar.d1(false);
                 }
                 if (i7 == 0) {
-                    h hVar = mVar.f13689w;
-                    ArrayList arrayList2 = hVar.f13676n;
-                    h6 h6Var = hVar.f13674e;
-                    if (h6Var != null && hVar.f13677r) {
-                        if (h6Var instanceof a6) {
+                    h hVar = mVar.f13652w;
+                    ArrayList arrayList2 = hVar.f13639n;
+                    h6 h6Var = hVar.f13637e;
+                    if (h6Var != null && hVar.f13640r) {
+                        if (h6Var instanceof z5) {
                             arrayList = new ArrayList();
-                            for (int i11 = 0; i11 < hVar.f13674e.f12089i.size(); i11++) {
-                                arrayList.add(Integer.valueOf(((gj) hVar.f13674e.f12089i.get(i11)).e1()));
+                            for (int i11 = 0; i11 < hVar.f13637e.f12040i.size(); i11++) {
+                                arrayList.add(Integer.valueOf(((gj) hVar.f13637e.f12040i.get(i11)).e1()));
                             }
                         } else {
-                            arrayList = h6Var.f12088g;
+                            arrayList = h6Var.f12039g;
                         }
                         if (arrayList2.size() != arrayList.size()) {
                             z10 = true;
@@ -576,16 +577,16 @@ public final class c extends w {
                             }
                         }
                         if (z10) {
-                            hVar.f13674e.C(arrayList, true);
+                            hVar.f13637e.C(arrayList, true);
                         }
-                        hVar.f13677r = false;
+                        hVar.f13640r = false;
                     }
                     eVar.setItemAnimator(null);
                     return;
                 }
                 eVar.I0(false);
-                if (f1Var != null) {
-                    f1Var.f59165a.setPressed(true);
+                if (e1Var != null) {
+                    e1Var.f59111a.setPressed(true);
                     return;
                 }
                 return;
@@ -594,11 +595,11 @@ public final class c extends w {
                 if (i7 == 0) {
                     la.d0(laVar);
                 } else {
-                    laVar.f49532b.I0(false);
-                    f1Var.f59165a.setPressed(true);
+                    laVar.f49508b.I0(false);
+                    e1Var.f59111a.setPressed(true);
                 }
-                if (f1Var != null) {
-                    View view = f1Var.f59165a;
+                if (e1Var != null) {
+                    View view = e1Var.f59111a;
                     if (i7 == 2) {
                         bool = Boolean.TRUE;
                     }
@@ -607,20 +608,20 @@ public final class c extends w {
                 }
                 return;
             case 2:
-                io ioVar = (io) obj;
-                jo joVar = ioVar.f48798i3;
+                ho hoVar = (ho) obj;
+                io ioVar = hoVar.f48471i3;
                 if (i7 == 0) {
-                    joVar.M = false;
-                    if (ioVar.f48796g3) {
-                        TLRPC.Chat chat = joVar.Y;
-                        ArrayList arrayList3 = joVar.O;
-                        ArrayList arrayList4 = joVar.N;
+                    ioVar.M = false;
+                    if (hoVar.f48469g3) {
+                        TLRPC.Chat chat = ioVar.Y;
+                        ArrayList arrayList3 = ioVar.O;
+                        ArrayList arrayList4 = ioVar.N;
                         if (chat != null) {
-                            ioVar.f48796g3 = false;
+                            hoVar.f48469g3 = false;
                             TLRPC.TL_channels_reorderUsernames tL_channels_reorderUsernames = new TLRPC.TL_channels_reorderUsernames();
                             TLRPC.TL_inputChannel tL_inputChannel = new TLRPC.TL_inputChannel();
-                            TLRPC.Chat chat2 = joVar.Y;
-                            tL_inputChannel.channel_id = chat2.f28434id;
+                            TLRPC.Chat chat2 = ioVar.Y;
+                            tL_inputChannel.channel_id = chat2.f28398id;
                             tL_inputChannel.access_hash = chat2.access_hash;
                             tL_channels_reorderUsernames.channel = tL_inputChannel;
                             ArrayList<String> arrayList5 = new ArrayList<>();
@@ -635,34 +636,34 @@ public final class c extends w {
                                 }
                             }
                             tL_channels_reorderUsernames.order = arrayList5;
-                            joVar.getConnectionsManager().sendRequest(tL_channels_reorderUsernames, new l5(16));
-                            joVar.Y.usernames.clear();
-                            joVar.Y.usernames.addAll(arrayList4);
-                            joVar.Y.usernames.addAll(arrayList3);
-                            joVar.getMessagesController().X3(joVar.Y, true);
+                            ioVar.getConnectionsManager().sendRequest(tL_channels_reorderUsernames, new k5(16));
+                            ioVar.Y.usernames.clear();
+                            ioVar.Y.usernames.addAll(arrayList4);
+                            ioVar.Y.usernames.addAll(arrayList3);
+                            ioVar.getMessagesController().X3(ioVar.Y, true);
                             return;
                         }
                         return;
                     }
                     return;
                 }
-                joVar.M = true;
-                ioVar.I0(false);
-                f1Var.f59165a.setPressed(true);
+                ioVar.M = true;
+                hoVar.I0(false);
+                e1Var.f59111a.setPressed(true);
                 return;
             case 3:
-                r7 r7Var = ((f8) obj).f35133s1;
-                if (f1Var != null) {
+                r7 r7Var = ((f8) obj).f35108s1;
+                if (e1Var != null) {
                     r7Var.d1(false);
                 }
                 if (i7 != 0) {
                     r7Var.I0(false);
-                    if (f1Var != null) {
-                        f1Var.f59165a.setPressed(true);
+                    if (e1Var != null) {
+                        e1Var.f59111a.setPressed(true);
                     }
                 }
-                if (f1Var != null) {
-                    View view2 = f1Var.f59165a;
+                if (e1Var != null) {
+                    View view2 = e1Var.f59111a;
                     if (i7 == 2) {
                         bool = Boolean.TRUE;
                     }
@@ -672,26 +673,26 @@ public final class c extends w {
                 return;
             case 4:
                 tn tnVar = (tn) obj;
-                f61 f61Var = tnVar.f39983s;
+                f61 f61Var = tnVar.f39962s;
                 if (i7 != 0) {
-                    f61Var.setItemAnimator(tnVar.f39988w);
+                    f61Var.setItemAnimator(tnVar.f39967w);
                     f61Var.I0(false);
-                    f1Var.f59165a.setPressed(true);
-                    t6.h(m6.f29454h5, f1Var.f59165a, tnVar.f37518a);
+                    e1Var.f59111a.setPressed(true);
+                    t6.h(m6.f29420h5, e1Var.f59111a, tnVar.f37476a);
                     return;
                 }
                 return;
             case 5:
                 if (i7 != 0) {
-                    ((sl0) obj).f39616b.I0(false);
-                    f1Var.f59165a.setPressed(true);
+                    ((sl0) obj).f39572b.I0(false);
+                    e1Var.f59111a.setPressed(true);
                     return;
                 }
                 return;
             case 6:
                 us0 us0Var = (us0) obj;
-                cp0 cp0Var = us0Var.f40575n;
-                if (f1Var != null && (cs0Var = us0Var.f40577s) != null) {
+                cp0 cp0Var = us0Var.f40533n;
+                if (e1Var != null && (cs0Var = us0Var.f40535s) != null) {
                     cs0Var.d1(false);
                 }
                 if (i7 == 0) {
@@ -702,35 +703,35 @@ public final class c extends w {
                 return;
             case 7:
                 h51 h51Var = (h51) obj;
-                if (f1Var != null) {
+                if (e1Var != null) {
                     h51Var.d1(false);
                 }
                 if (i7 == 0) {
-                    c51 c51Var = h51Var.f35789g3;
+                    c51 c51Var = h51Var.f35742g3;
                     if (c51Var.M) {
                         c51Var.F(c51Var.L);
                     }
-                    if (h51Var.f35793l3 != null) {
+                    if (h51Var.f35746l3 != null) {
                         h51Var.G1();
-                        h51Var.f35793l3 = null;
+                        h51Var.f35746l3 = null;
                         return;
                     }
                     return;
                 }
                 h51Var.I0(false);
-                if (f1Var != null) {
-                    View view3 = f1Var.f59165a;
+                if (e1Var != null) {
+                    View view3 = e1Var.f59111a;
                     view3.setPressed(true);
-                    if (view3.getBackground() instanceof y1) {
-                        y1 y1Var = (y1) view3.getBackground();
-                        if (!y1Var.f22540c) {
-                            y1Var.f22540c = true;
-                            y1Var.invalidateSelf();
+                    if (view3.getBackground() instanceof x1) {
+                        x1 x1Var = (x1) view3.getBackground();
+                        if (!x1Var.f22477c) {
+                            x1Var.f22477c = true;
+                            x1Var.invalidateSelf();
                         }
                     }
                     if (i7 == 2) {
-                        h51Var.f35793l3 = f1Var;
-                        h51Var.J1(f1Var);
+                        h51Var.f35746l3 = e1Var;
+                        h51Var.J1(e1Var);
                         return;
                     }
                     return;
@@ -741,8 +742,8 @@ public final class c extends w {
                 return;
             case 9:
                 if (i7 != 0) {
-                    ((pr0) obj).f50937c.I0(false);
-                    f1Var.f59165a.setPressed(true);
+                    ((qr0) obj).f51285c.I0(false);
+                    e1Var.f59111a.setPressed(true);
                     return;
                 }
                 return;
@@ -750,60 +751,60 @@ public final class c extends w {
     }
 
     @Override
-    public final void q(f1 f1Var) {
+    public final void q(e1 e1Var) {
         int i7 = this.d;
     }
 
     public boolean r(int i7) {
-        pr0 pr0Var = (pr0) this.f13664e;
-        if (!pr0Var.J || i7 - pr0Var.f50952o0 >= pr0Var.f50966y) {
+        qr0 qr0Var = (qr0) this.f13627e;
+        if (!qr0Var.J || i7 - qr0Var.f51300o0 >= qr0Var.f51314y) {
             return true;
         }
         return false;
     }
 
-    public pv s(f1 f1Var) {
+    public pv s(e1 e1Var) {
         int b10;
-        us0 us0Var = (us0) this.f13664e;
-        if (f1Var == null || (b10 = f1Var.b()) < 0 || b10 >= us0Var.f40574f.size()) {
+        us0 us0Var = (us0) this.f13627e;
+        if (e1Var == null || (b10 = e1Var.b()) < 0 || b10 >= us0Var.f40532f.size()) {
             return null;
         }
-        return (pv) us0Var.f40574f.get(b10);
+        return (pv) us0Var.f40532f.get(b10);
     }
 
-    private final void A(f1 f1Var) {
+    private final void A(e1 e1Var) {
     }
 
-    private final void B(f1 f1Var) {
+    private final void B(e1 e1Var) {
     }
 
-    private final void C(f1 f1Var) {
+    private final void C(e1 e1Var) {
     }
 
-    private final void D(f1 f1Var) {
+    private final void D(e1 e1Var) {
     }
 
-    private final void E(f1 f1Var) {
+    private final void E(e1 e1Var) {
     }
 
-    private final void v(f1 f1Var) {
+    private final void v(e1 e1Var) {
     }
 
-    private final void w(f1 f1Var) {
+    private final void w(e1 e1Var) {
     }
 
-    private final void x(f1 f1Var) {
+    private final void x(e1 e1Var) {
     }
 
-    private final void y(f1 f1Var) {
+    private final void y(e1 e1Var) {
     }
 
-    private final void z(f1 f1Var) {
+    private final void z(e1 e1Var) {
     }
 
-    private final void t(RecyclerView recyclerView, f1 f1Var, f1 f1Var2, int i7, int i10, int i11) {
+    private final void t(RecyclerView recyclerView, e1 e1Var, e1 e1Var2, int i7, int i10, int i11) {
     }
 
-    private final void u(RecyclerView recyclerView, f1 f1Var, f1 f1Var2, int i7, int i10, int i11) {
+    private final void u(RecyclerView recyclerView, e1 e1Var, e1 e1Var2, int i7, int i10, int i11) {
     }
 }

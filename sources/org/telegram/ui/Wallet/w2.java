@@ -2,51 +2,51 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.tgnet.TLRPC;
 public final class w2 implements x2 {
-    public final boolean[] f45243a;
-    public final org.telegram.utils.twidget.i0 f45244b;
+    public final boolean[] f45208a;
+    public final org.telegram.utils.twidget.i0 f45209b;
 
     public w2(boolean[] zArr, org.telegram.utils.twidget.i0 i0Var) {
-        this.f45243a = zArr;
-        this.f45244b = i0Var;
+        this.f45208a = zArr;
+        this.f45209b = i0Var;
     }
 
     @Override
     public final void a() {
-        boolean[] zArr = this.f45243a;
+        boolean[] zArr = this.f45208a;
         if (zArr[0]) {
             return;
         }
         zArr[0] = true;
-        this.f45244b.a();
+        this.f45209b.a();
     }
 
     @Override
     public final void b() {
-        boolean[] zArr = this.f45243a;
+        boolean[] zArr = this.f45208a;
         if (zArr[0]) {
             return;
         }
         zArr[0] = true;
-        this.f45244b.b();
+        this.f45209b.b();
     }
 
     public final void c() {
-        boolean[] zArr = this.f45243a;
+        boolean[] zArr = this.f45208a;
         if (zArr[0]) {
             return;
         }
         zArr[0] = true;
-        org.telegram.utils.twidget.i0 i0Var = this.f45244b;
-        i0Var.f54831b.b(4, null, i0Var.f54832c);
+        org.telegram.utils.twidget.i0 i0Var = this.f45209b;
+        i0Var.f54796b.b(4, null, i0Var.f54797c);
     }
 
     public final void d(TLRPC.WidgetQueryType widgetQueryType) {
-        boolean[] zArr = this.f45243a;
+        boolean[] zArr = this.f45208a;
         if (zArr[0]) {
             return;
         }
         zArr[0] = true;
-        org.telegram.utils.twidget.i0 i0Var = this.f45244b;
-        org.telegram.utils.twidget.n0.w(i0Var.f54830a, i0Var.f54831b, i0Var.f54832c, widgetQueryType, i0Var.d);
+        org.telegram.utils.twidget.i0 i0Var = this.f45209b;
+        org.telegram.utils.twidget.n0.w(i0Var.f54795a, i0Var.f54796b, i0Var.f54797c, widgetQueryType, i0Var.d);
     }
 }

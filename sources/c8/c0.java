@@ -1,30 +1,22 @@
 package c8;
-public abstract class c0 {
-    public static gb.d1 f4535a;
 
-    public static final void a() {
-        try {
-            if (f4535a == null) {
-                gb.d1 d1Var = (gb.d1) ((gb.i) ((gb.r) o9.g.c().b(gb.r.class))).f13398o.mo24get();
-                kotlin.jvm.internal.j.e(d1Var, "<set-?>");
-                f4535a = d1Var;
-            }
-            gb.d1 d1Var2 = f4535a;
-            if (d1Var2 != null) {
-                if (d1Var2.f13357i) {
-                    if (d1Var2 != null) {
-                        d1Var2.b();
-                        return;
-                    } else {
-                        kotlin.jvm.internal.j.h("sharedSessionRepository");
-                        throw null;
-                    }
+import android.content.Context;
+import android.content.SharedPreferences;
+public abstract class c0 {
+    public static SharedPreferences f4499a;
+
+    public static SharedPreferences a(Context context) {
+        SharedPreferences sharedPreferences;
+        synchronized (SharedPreferences.class) {
+            try {
+                if (f4499a == null) {
+                    f4499a = (SharedPreferences) ec.a(new a2.b(context, 4));
                 }
-                return;
+                sharedPreferences = f4499a;
+            } catch (Throwable th2) {
+                throw th2;
             }
-            kotlin.jvm.internal.j.h("sharedSessionRepository");
-            throw null;
-        } catch (Exception unused) {
         }
+        return sharedPreferences;
     }
 }

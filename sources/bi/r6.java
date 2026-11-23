@@ -1,40 +1,145 @@
 package bi;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import c8.ma;
-import c8.va;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.q10;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.h51;
-public final class r6 extends org.telegram.ui.ActionBar.w2 {
-    public long f4055m1;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.r10;
+import org.telegram.messenger.y10;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_toncenter;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.Wallet.WalletEngine2;
+import org.telegram.ui.ks0;
+import org.telegram.ui.nl0;
+import org.telegram.ui.p51;
+public final class r6 implements r10 {
+    public final int f4030a;
+    public final Object f4031b;
+    public final Object f4032c;
 
-    public r6(Context context, long j3, TL_stars.SavedStarGift savedStarGift, org.telegram.ui.ActionBar.h6 h6Var, q10 q10Var) {
-        super(1, context, h6Var, false);
-        this.f4055m1 = 0L;
-        O();
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        TextView b10 = va.b(context, 20.0f, org.telegram.ui.ActionBar.m6.G6, true, h6Var);
-        b10.setText(hd.N0(2131749864, null));
-        linearLayout.addView(b10, ma.k(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
-        TextView b11 = va.b(context, 14.0f, org.telegram.ui.ActionBar.m6.f29773y6, false, h6Var);
-        b11.setText(hd.N0(2131749865, null));
-        linearLayout.addView(b11, ma.k(22.0f, 4.33f, 22.0f, 10.0f, -1, -2));
-        hi.e eVar = new hi.e(context, h6Var, true);
-        di.p8 G = di.y8.y(this.f30173a, false).G(j3, true);
-        h51 h51Var = new h51(context, this.f30173a, 0, false, new o6(0, this, G), new ab.g(5, this, eVar), null, h6Var);
-        h51Var.setSpanCount(3);
-        h51Var.setOverScrollMode(2);
-        h51Var.setScrollEnabled(false);
-        linearLayout.addView(h51Var, ma.k(11.0f, 0.0f, 11.0f, 0.0f, -1, -2));
-        eVar.i(hd.N0(2131749866, null), false, true);
-        linearLayout.addView(eVar, ma.k(22.0f, 9.0f, 22.0f, 9.0f, -1, 48));
-        eVar.setEnabled(false);
-        eVar.setOnClickListener(new p6(this, G, savedStarGift, q10Var, 0));
-        this.O = linearLayout;
+    public r6(int i7, Object obj, Object obj2) {
+        this.f4030a = i7;
+        this.f4031b = obj;
+        this.f4032c = obj2;
+    }
+
+    private final void b(Object obj, Object obj2) {
+        String str = (String) obj2;
+        ((vf.b) this.f4031b).b();
+        ((nl0) this.f4032c).a((Boolean) obj);
+    }
+
+    private final void c(Object obj, Object obj2) {
+        TLRPC.EmojiStatus emojiStatus;
+        long longValue;
+        PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f4031b;
+        ks0 ks0Var = (ks0) this.f4032c;
+        Long l10 = (Long) obj;
+        Integer num = (Integer) obj2;
+        if (l10 == null) {
+            emojiStatus = new TLRPC.TL_emojiStatusEmpty();
+        } else {
+            TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
+            tL_emojiStatus.document_id = l10.longValue();
+            if (num != null) {
+                tL_emojiStatus.flags |= 1;
+                tL_emojiStatus.until = num.intValue();
+            }
+            emojiStatus = tL_emojiStatus;
+        }
+        premiumPreviewFragment.getMessagesController().t5(emojiStatus, null);
+        if (l10 == null) {
+            longValue = 0;
+        } else {
+            longValue = l10.longValue();
+        }
+        ks0Var.b(longValue, true);
+    }
+
+    private final void d(Object obj, Object obj2) {
+        JSONArray jSONArray;
+        String str;
+        String str2 = (String) this.f4031b;
+        y10 y10Var = (y10) this.f4032c;
+        TL_toncenter.apiResponse apiresponse = (TL_toncenter.apiResponse) obj;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+        byte[] bArr = null;
+        if (apiresponse != null) {
+            try {
+                JSONObject jSONObject = new JSONObject(apiresponse.response.data);
+                if (jSONObject.has("stack")) {
+                    jSONArray = jSONObject.getJSONArray("stack");
+                    if (jSONObject.has("exit_code") && jSONObject.getInt("exit_code") != 0) {
+                        throw new Exception("received exit code: " + jSONObject.getInt("exit_code"));
+                    }
+                } else {
+                    JSONObject jSONObject2 = jSONObject.getJSONObject("result");
+                    if (jSONObject2.has("exit_code") && jSONObject2.getInt("exit_code") != 0) {
+                        throw new Exception("received exit code: " + jSONObject2.getInt("exit_code"));
+                    }
+                    jSONArray = jSONObject2.getJSONArray("stack");
+                }
+                if (jSONArray.get(0) instanceof JSONArray) {
+                    str = jSONArray.getJSONArray(0).getString(1);
+                } else if (jSONArray.get(0) instanceof JSONObject) {
+                    str = jSONArray.getJSONObject(0).getString("value");
+                } else {
+                    str = "";
+                }
+                if (str.startsWith("0x")) {
+                    bArr = Utilities.v(str.substring(2));
+                }
+            } catch (Exception e10) {
+                org.telegram.ui.Wallet.u0.o("failed to get public key of " + str2, e10);
+            }
+        }
+        y10Var.a(bArr);
+    }
+
+    private final void e(Object obj, Object obj2) {
+        String str;
+        org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) this.f4031b;
+        org.telegram.ui.Wallet.v8 v8Var = (org.telegram.ui.Wallet.v8) this.f4032c;
+        org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) obj;
+        String str2 = (String) obj2;
+        String str3 = "NULL_ERROR";
+        if (r0Var == null) {
+            if (str2 == null) {
+                str = "NULL_ERROR";
+            } else {
+                str = str2;
+            }
+            org.telegram.ui.Wallet.u0.n("enable backup: didnt get secret phrase: ".concat(str));
+            if (str2 == null) {
+                str2 = "NULL_ERROR";
+            }
+            v8Var.a(str2);
+            return;
+        }
+        org.telegram.ui.Wallet.r0 b10 = r0Var.b();
+        p51 p51Var = new p51(3, b10, v8Var);
+        org.telegram.ui.Wallet.u0.P("enable backup: got secret phrase");
+        try {
+            ConnectionsManager.getInstance(u0Var.f45093a).sendRequestTyped(new TL_wallet.getBackupHolderDcs(), new d3.b(1), new org.telegram.ui.Wallet.s(u0Var, p51Var, b10, WalletEngine2.secretPhraseToPublicKey(b10), 2));
+        } catch (Exception e10) {
+            org.telegram.ui.Wallet.u0.o("failed to get public key from secret phrase", e10);
+            if (e10.getMessage() != null) {
+                str3 = e10.getMessage();
+            }
+            p51Var.a(str3);
+        }
+    }
+
+    @Override
+    public final void a(java.lang.Object r35, java.lang.Object r36) {
+        throw new UnsupportedOperationException("Method not decompiled: bi.r6.a(java.lang.Object, java.lang.Object):void");
+    }
+
+    public r6(org.telegram.ui.Wallet.u0 u0Var, String str, y10 y10Var) {
+        this.f4030a = 27;
+        this.f4031b = str;
+        this.f4032c = y10Var;
     }
 }

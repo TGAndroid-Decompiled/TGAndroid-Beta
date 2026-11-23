@@ -5,29 +5,29 @@ import org.telegram.messenger.hd;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 public final class d implements Runnable {
-    public final int f18641a;
-    public final j f18642b;
+    public final int f18607a;
+    public final j f18608b;
 
     public d(j jVar, int i7) {
-        this.f18641a = i7;
-        this.f18642b = jVar;
+        this.f18607a = i7;
+        this.f18608b = jVar;
     }
 
     @Override
     public final void run() {
         int i7;
         int i10;
-        int i11 = this.f18641a;
+        int i11 = this.f18607a;
         String str = null;
-        j jVar = this.f18642b;
+        j jVar = this.f18608b;
         switch (i11) {
             case 0:
                 bi.s sVar = jVar.W;
-                if (jVar.f18750b0.end_date != 0) {
+                if (jVar.f18716b0.end_date != 0) {
                     str = ah.r.f((i7 - jVar.getConnectionsManager().getCurrentTime()) * 1000);
                 }
                 sVar.g(str, true);
-                if (jVar.f18750b0.end_date != 0 && jVar.f18753e0) {
+                if (jVar.f18716b0.end_date != 0 && jVar.f18719e0) {
                     org.telegram.messenger.g0.h3(jVar.Y, 1000L);
                     return;
                 }
@@ -35,7 +35,7 @@ public final class d implements Runnable {
             case 1:
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
                 updatestarrefprogram.bot = jVar.getMessagesController().q1(jVar.S);
-                TL_payments.starRefProgram starrefprogram = jVar.f18750b0;
+                TL_payments.starRefProgram starrefprogram = jVar.f18716b0;
                 updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
                 int i12 = starrefprogram.duration_months;
                 updatestarrefprogram.duration_months = i12;
@@ -52,7 +52,7 @@ public final class d implements Runnable {
                 return;
             default:
                 Activity parentActivity = jVar.getParentActivity();
-                if (!jVar.Z && jVar.f18750b0.end_date == 0) {
+                if (!jVar.Z && jVar.f18716b0.end_date == 0) {
                     i10 = 2131754324;
                 } else {
                     i10 = 2131754311;

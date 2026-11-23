@@ -2,7 +2,7 @@ package f7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.bc;
+import c8.cc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -11,23 +11,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 public final class k0 extends r6.a {
     public static final Parcelable.Creator<k0> CREATOR = new db.k(27);
-    public final List f11562a;
+    public final List f11525a;
 
     public k0(ArrayList arrayList) {
-        this.f11562a = arrayList;
+        this.f11525a = arrayList;
     }
 
     public final JSONArray b() {
         try {
             JSONArray jSONArray = new JSONArray();
-            List list = this.f11562a;
+            List list = this.f11525a;
             if (list != null) {
                 for (int i7 = 0; i7 < list.size(); i7++) {
                     l0 l0Var = (l0) list.get(i7);
                     JSONArray jSONArray2 = new JSONArray();
-                    jSONArray2.put((int) l0Var.f11565c);
-                    jSONArray2.put((int) l0Var.f11564b);
-                    jSONArray2.put((int) l0Var.f11565c);
+                    jSONArray2.put((int) l0Var.f11528c);
+                    jSONArray2.put((int) l0Var.f11527b);
+                    jSONArray2.put((int) l0Var.f11528c);
                     jSONArray.put(i7, jSONArray2);
                 }
             }
@@ -41,8 +41,8 @@ public final class k0 extends r6.a {
         if (!(obj instanceof k0)) {
             return false;
         }
-        List list = ((k0) obj).f11562a;
-        List list2 = this.f11562a;
+        List list = ((k0) obj).f11525a;
+        List list2 = this.f11525a;
         if (list2 == null && list == null) {
             return true;
         }
@@ -54,7 +54,7 @@ public final class k0 extends r6.a {
 
     public final int hashCode() {
         HashSet hashSet;
-        List list = this.f11562a;
+        List list = this.f11525a;
         if (list == null) {
             hashSet = null;
         } else {
@@ -65,8 +65,8 @@ public final class k0 extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = bc.r(parcel, 20293);
-        bc.p(parcel, 1, this.f11562a);
-        bc.s(parcel, r10);
+        int r10 = cc.r(parcel, 20293);
+        cc.p(parcel, 1, this.f11525a);
+        cc.s(parcel, r10);
     }
 }

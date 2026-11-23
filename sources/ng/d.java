@@ -12,13 +12,13 @@ import org.telegram.messenger.g0;
 import org.telegram.messenger.r1;
 import org.telegram.ui.xd;
 public final class d {
-    public final long[] f21513a;
-    public final CharSequence[] f21514b;
-    public final CharSequence[] f21515c;
+    public final long[] f21479a;
+    public final CharSequence[] f21480b;
+    public final CharSequence[] f21481c;
     public final StaticLayout[] d;
-    public final StaticLayout[] f21516e;
-    public int f21517f;
-    public int f21518g;
+    public final StaticLayout[] f21482e;
+    public int f21483f;
+    public int f21484g;
     public DecimalFormat h;
 
     public d(long r24, long r26, boolean r28, float r29, int r30, android.text.TextPaint r31, android.text.TextPaint r32) {
@@ -28,7 +28,7 @@ public final class d {
     public final void a(Canvas canvas, int i7, int i10, float f10, float f11, TextPaint textPaint) {
         StaticLayout[] staticLayoutArr;
         CharSequence[] charSequenceArr;
-        StaticLayout[] staticLayoutArr2 = this.f21516e;
+        StaticLayout[] staticLayoutArr2 = this.f21482e;
         StaticLayout[] staticLayoutArr3 = this.d;
         if (i7 == 0) {
             staticLayoutArr = staticLayoutArr3;
@@ -38,15 +38,15 @@ public final class d {
         StaticLayout staticLayout = staticLayoutArr[i10];
         if (staticLayout == null) {
             if (i7 == 0) {
-                charSequenceArr = this.f21514b;
+                charSequenceArr = this.f21480b;
             } else {
-                charSequenceArr = this.f21515c;
+                charSequenceArr = this.f21481c;
             }
             CharSequence charSequence = charSequenceArr[i10];
             if (i7 == 0) {
                 staticLayoutArr2 = staticLayoutArr3;
             }
-            StaticLayout staticLayout2 = new StaticLayout(charSequence, textPaint, g0.f24046q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout2 = new StaticLayout(charSequence, textPaint, g0.f24010q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             staticLayoutArr2[i10] = staticLayout2;
             staticLayout = staticLayout2;
         }

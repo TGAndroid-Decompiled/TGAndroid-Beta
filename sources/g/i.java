@@ -14,18 +14,18 @@ import m.r3;
 import r0.i0;
 import r0.l1;
 public final class i implements r0.m, l.w {
-    public final s f13023a;
+    public final s f12986a;
 
     public i(s sVar) {
-        this.f13023a = sVar;
+        this.f12986a = sVar;
     }
 
     @Override
     public boolean C(l.k kVar) {
         Window.Callback callback;
         if (kVar == kVar.k()) {
-            s sVar = this.f13023a;
-            if (sVar.P && (callback = sVar.f13058f.getCallback()) != null && !sVar.f13052a0) {
+            s sVar = this.f12986a;
+            if (sVar.P && (callback = sVar.f13021f.getCallback()) != null && !sVar.f13015a0) {
                 callback.onMenuOpened(108, kVar);
                 return true;
             }
@@ -43,8 +43,8 @@ public final class i implements r0.m, l.w {
         boolean z11;
         int color;
         int d = l1Var.d();
-        s sVar = this.f13023a;
-        Context context = sVar.f13056e;
+        s sVar = this.f12986a;
+        Context context = sVar.f13019e;
         int d2 = l1Var.d();
         ActionBarContextView actionBarContextView = sVar.E;
         int i7 = 8;
@@ -54,13 +54,13 @@ public final class i implements r0.m, l.w {
             if (sVar.E.isShown()) {
                 if (sVar.m0 == null) {
                     sVar.m0 = new Rect();
-                    sVar.f13067n0 = new Rect();
+                    sVar.f13030n0 = new Rect();
                 }
                 Rect rect = sVar.m0;
-                Rect rect2 = sVar.f13067n0;
+                Rect rect2 = sVar.f13030n0;
                 rect.set(l1Var.b(), l1Var.d(), l1Var.c(), l1Var.a());
                 ViewGroup viewGroup = sVar.K;
-                Method method = r3.f20229a;
+                Method method = r3.f20195a;
                 if (method != null) {
                     try {
                         method.invoke(viewGroup, rect, rect2);
@@ -72,7 +72,7 @@ public final class i implements r0.m, l.w {
                 int i11 = rect.left;
                 int i12 = rect.right;
                 ViewGroup viewGroup2 = sVar.K;
-                WeakHashMap weakHashMap = i0.f56289a;
+                WeakHashMap weakHashMap = i0.f56254a;
                 l1 a10 = r0.b0.a(viewGroup2);
                 if (a10 == null) {
                     b10 = 0;
@@ -175,7 +175,7 @@ public final class i implements r0.m, l.w {
         if (z11) {
             kVar = k10;
         }
-        s sVar = this.f13023a;
+        s sVar = this.f12986a;
         r[] rVarArr = sVar.V;
         if (rVarArr != null) {
             i7 = rVarArr.length;
@@ -196,7 +196,7 @@ public final class i implements r0.m, l.w {
         }
         if (rVar != null) {
             if (z11) {
-                sVar.g(rVar.f13035a, rVar, k10);
+                sVar.g(rVar.f12998a, rVar, k10);
                 sVar.j(rVar, true);
                 return;
             }

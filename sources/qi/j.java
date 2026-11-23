@@ -12,11 +12,11 @@ import java.util.Map;
 import ki.l1;
 import p4.r0;
 public abstract class j {
-    public static int f56234c;
-    public static final p f56232a = new p(new r0(24), new r0(25));
-    public static final LinkedHashMap f56233b = new LinkedHashMap(8, 0.75f, true);
+    public static int f56199c;
+    public static final p f56197a = new p(new r0(24), new r0(25));
+    public static final LinkedHashMap f56198b = new LinkedHashMap(8, 0.75f, true);
     public static final Object d = new Object();
-    public static final ArrayList f56235e = new ArrayList();
+    public static final ArrayList f56200e = new ArrayList();
 
     public static void a(Spannable spannable, int i7, s0 s0Var) {
         Object[] spans;
@@ -77,7 +77,7 @@ public abstract class j {
             } else {
                 z10 = false;
             }
-            LinkedHashMap linkedHashMap = f56233b;
+            LinkedHashMap linkedHashMap = f56198b;
             synchronized (linkedHashMap) {
                 if (z10) {
                     try {
@@ -92,14 +92,14 @@ public abstract class j {
                 d dVar = new d(charSequence);
                 if (z10) {
                     linkedHashMap.put(bVar, dVar);
-                    f56234c += charSequence2.length();
+                    f56199c += charSequence2.length();
                     while (true) {
-                        LinkedHashMap linkedHashMap2 = f56233b;
-                        if (linkedHashMap2.size() <= 8 && f56234c <= 65536) {
+                        LinkedHashMap linkedHashMap2 = f56198b;
+                        if (linkedHashMap2.size() <= 8 && f56199c <= 65536) {
                             break;
                         }
                         Map.Entry entry = (Map.Entry) linkedHashMap2.entrySet().iterator().next();
-                        f56234c -= ((b) entry.getKey()).f56218b.length();
+                        f56199c -= ((b) entry.getKey()).f56183b.length();
                         linkedHashMap2.remove(entry.getKey());
                     }
                 }
@@ -122,12 +122,12 @@ public abstract class j {
             long j3 = (0 << 32) | (i7 & 4294967295L);
             synchronized (d) {
                 try {
-                    ArrayList arrayList = f56235e;
+                    ArrayList arrayList = f56200e;
                     Iterator it = arrayList.iterator();
                     while (true) {
                         if (it.hasNext()) {
                             iVar = (i) it.next();
-                            Spannable spannable2 = (Spannable) iVar.f56230a.get();
+                            Spannable spannable2 = (Spannable) iVar.f56195a.get();
                             if (spannable2 == null) {
                                 it.remove();
                             } else if (spannable2 == spannable) {
@@ -140,20 +140,20 @@ public abstract class j {
                         }
                     }
                     iVar2 = iVar;
-                    f fVar2 = (f) iVar2.f56231b.put(Long.valueOf(j3), fVar);
-                    if (fVar2 != null && (oVar = fVar2.f56223b) != null) {
-                        oVar.f56243a = null;
+                    f fVar2 = (f) iVar2.f56196b.put(Long.valueOf(j3), fVar);
+                    if (fVar2 != null && (oVar = fVar2.f56188b) != null) {
+                        oVar.f56208a = null;
                     }
                 } finally {
                 }
             }
-            o d2 = f56232a.d(fVar.f56222a, str, new l1(i7, 4, j3, iVar2, fVar));
+            o d2 = f56197a.d(fVar.f56187a, str, new l1(i7, 4, j3, iVar2, fVar));
             synchronized (d) {
                 try {
-                    if (iVar2.f56231b.get(Long.valueOf(j3)) == fVar) {
-                        fVar.f56223b = d2;
+                    if (iVar2.f56196b.get(Long.valueOf(j3)) == fVar) {
+                        fVar.f56188b = d2;
                     } else {
-                        d2.f56243a = null;
+                        d2.f56208a = null;
                     }
                 } finally {
                 }
@@ -178,17 +178,17 @@ public abstract class j {
         }
         if (spanStart >= 0 && spanStart < 0) {
             if (characterStyle instanceof c) {
-                hVar2 = new c(((c) characterStyle).f56219a);
+                hVar2 = new c(((c) characterStyle).f56184a);
             } else {
-                hVar2 = new h(((h) characterStyle).f56229b);
+                hVar2 = new h(((h) characterStyle).f56194b);
             }
             spannable.setSpan(hVar2, spanStart, Math.min(0, spanEnd), 33);
         }
         if (spanEnd > i7) {
             if (characterStyle instanceof c) {
-                hVar = new c(((c) characterStyle).f56219a);
+                hVar = new c(((c) characterStyle).f56184a);
             } else {
-                hVar = new h(((h) characterStyle).f56229b);
+                hVar = new h(((h) characterStyle).f56194b);
             }
             spannable.setSpan(hVar, Math.max(i7, spanStart), spanEnd, 33);
         }

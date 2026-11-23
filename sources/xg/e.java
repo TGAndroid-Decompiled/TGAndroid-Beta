@@ -10,25 +10,25 @@ import org.telegram.ui.ActionBar.g2;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.dk0;
-import v4.f1;
+import v4.e1;
 import yg.c0;
 import yg.d0;
 import yg.r;
 import yg.t;
 public abstract class e extends dk0 {
-    public final h6 f60530c;
+    public final h6 f60495c;
     public boolean d;
-    public g2 f60531e;
-    public TLRPC.TL_payments_checkedGiftCode f60532f;
+    public g2 f60496e;
+    public TLRPC.TL_payments_checkedGiftCode f60497f;
     public String h;
-    public m2 f60533n;
+    public m2 f60498n;
 
     public e(h6 h6Var) {
-        this.f60530c = h6Var;
+        this.f60495c = h6Var;
     }
 
     @Override
-    public final boolean D(f1 f1Var) {
+    public final boolean D(e1 e1Var) {
         return false;
     }
 
@@ -63,15 +63,15 @@ public abstract class e extends dk0 {
     }
 
     @Override
-    public final void t(v4.f1 r22, int r23) {
-        throw new UnsupportedOperationException("Method not decompiled: xg.e.t(v4.f1, int):void");
+    public final void t(v4.e1 r23, int r24) {
+        throw new UnsupportedOperationException("Method not decompiled: xg.e.t(v4.e1, int):void");
     }
 
     @Override
-    public final f1 x(ViewGroup viewGroup, int i7) {
+    public final e1 x(ViewGroup viewGroup, int i7) {
         View tVar;
         Context context = viewGroup.getContext();
-        h6 h6Var = this.f60530c;
+        h6 h6Var = this.f60495c;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {

@@ -1,15 +1,15 @@
 package y7;
 public final class s3 implements na.d {
-    public static final s3 f60984a = new Object();
-    public static final na.c f60985b = new na.c("confidence", i5.c.p(p5.c.o(h.class, new e(1))));
-    public static final na.c f60986c = new na.c("languageCode", i5.c.p(p5.c.o(h.class, new e(2))));
+    public static final s3 f60949a = new Object();
+    public static final na.c f60950b = new na.c("confidence", i5.c.p(p5.c.o(h.class, new e(1))));
+    public static final na.c f60951c = new na.c("languageCode", i5.c.p(p5.c.o(h.class, new e(2))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         g7 g7Var = (g7) obj;
         na.e eVar = (na.e) obj2;
         g7Var.getClass();
-        eVar.a(f60985b, null);
-        eVar.a(f60986c, g7Var.f60866a);
+        eVar.a(f60950b, null);
+        eVar.a(f60951c, g7Var.f60831a);
     }
 }

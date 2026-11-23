@@ -12,34 +12,34 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Components.nr;
 public final class m6 extends Drawable {
-    public final int f44608a;
-    public final Path f44609b;
-    public final Paint f44610c;
+    public final int f44574a;
+    public final Path f44575b;
+    public final Paint f44576c;
     public final Object d;
-    public final Object f44611e;
+    public final Object f44577e;
 
     public m6(org.telegram.ui.l0 l0Var) {
-        this.f44608a = 1;
-        this.f44611e = l0Var;
-        this.f44609b = new Path();
+        this.f44574a = 1;
+        this.f44577e = l0Var;
+        this.f44575b = new Path();
         Paint paint = new Paint(1);
-        this.f44610c = paint;
+        this.f44576c = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
-        this.d = new org.telegram.ui.Components.d6(new org.telegram.ui.web.z0(this, 1), 350L, nr.h, 0);
+        this.d = new org.telegram.ui.Components.d6(new org.telegram.ui.web.i1(this, 0), 350L, nr.h, 0);
     }
 
     public void c() {
         invalidateSelf();
-        ((org.telegram.ui.l0) this.f44611e).P.setContentDescription(hd.N0(2131750570, null));
+        ((org.telegram.ui.l0) this.f44577e).P.setContentDescription(hd.N0(2131750570, null));
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f44608a) {
+        switch (this.f44574a) {
             case 0:
-                canvas.drawPath(this.f44609b, this.f44610c);
+                canvas.drawPath(this.f44575b, this.f44576c);
                 return;
             default:
                 float d = ((org.telegram.ui.Components.d6) this.d).d(true);
@@ -47,7 +47,7 @@ public final class m6 extends Drawable {
                 float centerY = getBounds().centerY();
                 float width = getBounds().width();
                 float f10 = 0.57f * width;
-                Path path = this.f44609b;
+                Path path = this.f44575b;
                 path.rewind();
                 float f11 = f10 / 2.0f;
                 path.moveTo(centerX - org.telegram.messenger.g0.T1(f11, (-f10) / 2.0f, d), centerY);
@@ -59,7 +59,7 @@ public final class m6 extends Drawable {
                 path.lineTo(f12, centerY);
                 path.lineTo(f13, f14 + centerY);
                 canvas.save();
-                Paint paint = this.f44610c;
+                Paint paint = this.f44576c;
                 paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
                 canvas.translate(0.0f, (-width) * 0.1f * d);
                 canvas.rotate(d * 90.0f, centerX, centerY);
@@ -71,7 +71,7 @@ public final class m6 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f44608a) {
+        switch (this.f44574a) {
             case 1:
                 return org.telegram.messenger.g0.L(24.0f);
             default:
@@ -81,7 +81,7 @@ public final class m6 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f44608a) {
+        switch (this.f44574a) {
             case 1:
                 return org.telegram.messenger.g0.L(24.0f);
             default:
@@ -91,7 +91,7 @@ public final class m6 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f44608a) {
+        switch (this.f44574a) {
             case 0:
                 return -3;
             default:
@@ -101,15 +101,15 @@ public final class m6 extends Drawable {
 
     @Override
     public void onBoundsChange(Rect rect) {
-        switch (this.f44608a) {
+        switch (this.f44574a) {
             case 0:
                 super.onBoundsChange(rect);
                 RectF rectF = (RectF) this.d;
                 rectF.set(rect);
-                Path path = this.f44609b;
+                Path path = this.f44575b;
                 path.reset();
-                path.addRoundRect(rectF, (float[]) this.f44611e, Path.Direction.CW);
-                this.f44610c.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{-16216082, -12207881}, new float[]{0.15f, 0.53f}, Shader.TileMode.CLAMP));
+                path.addRoundRect(rectF, (float[]) this.f44577e, Path.Direction.CW);
+                this.f44576c.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{-16216082, -12207881}, new float[]{0.15f, 0.53f}, Shader.TileMode.CLAMP));
                 return;
             default:
                 super.onBoundsChange(rect);
@@ -119,9 +119,9 @@ public final class m6 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f44608a) {
+        switch (this.f44574a) {
             case 0:
-                this.f44610c.setAlpha(i7);
+                this.f44576c.setAlpha(i7);
                 invalidateSelf();
                 return;
             default:
@@ -131,9 +131,9 @@ public final class m6 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f44608a) {
+        switch (this.f44574a) {
             case 0:
-                this.f44610c.setColorFilter(colorFilter);
+                this.f44576c.setColorFilter(colorFilter);
                 invalidateSelf();
                 return;
             default:
@@ -142,11 +142,11 @@ public final class m6 extends Drawable {
     }
 
     public m6() {
-        this.f44608a = 0;
-        this.f44610c = new Paint(1);
-        this.f44609b = new Path();
+        this.f44574a = 0;
+        this.f44576c = new Paint(1);
+        this.f44575b = new Path();
         this.d = new RectF();
-        this.f44611e = new float[]{org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), 0.0f, 0.0f, 0.0f, 0.0f};
+        this.f44577e = new float[]{org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), 0.0f, 0.0f, 0.0f, 0.0f};
     }
 
     private final void a(int i7) {

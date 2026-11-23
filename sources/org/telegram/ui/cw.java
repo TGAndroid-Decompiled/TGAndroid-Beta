@@ -4,22 +4,22 @@ import android.os.Bundle;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class cw implements e50 {
-    public final org.telegram.ui.ActionBar.t1 f46689a;
-    public final cx f46690b;
+    public final org.telegram.ui.ActionBar.t1 f46652a;
+    public final cx f46653b;
 
     public cw(cx cxVar, org.telegram.ui.ActionBar.t1 t1Var) {
-        this.f46690b = cxVar;
-        this.f46689a = t1Var;
+        this.f46653b = cxVar;
+        this.f46652a = t1Var;
     }
 
     @Override
     public final void c(f50 f50Var, final long j3) {
         final org.telegram.ui.ActionBar.g2[] g2VarArr = {f50Var, null};
         org.telegram.messenger.y10 y10Var = new org.telegram.messenger.y10(this) {
-            public final cw f45713b;
+            public final cw f45659b;
 
             {
-                this.f45713b = this;
+                this.f45659b = this;
             }
 
             @Override
@@ -27,7 +27,7 @@ public final class cw implements e50 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        cx cxVar = this.f45713b.f46690b;
+                        cx cxVar = this.f45659b.f46653b;
                         Boolean bool = cxVar.H.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -35,7 +35,7 @@ public final class cw implements e50 {
                             bundle.putLong("chat_id", j3);
                             bundle.putBoolean("forcePublic", cxVar.H.has_username.booleanValue());
                             ad adVar = new ad(bundle);
-                            adVar.f45603v0 = new a5(runnable, 12);
+                            adVar.f45570v0 = new a5(runnable, 12);
                             cxVar.presentFragment(adVar);
                             g2VarArr[1] = adVar;
                             return;
@@ -43,18 +43,18 @@ public final class cw implements e50 {
                         runnable.run();
                         return;
                     default:
-                        cw cwVar = this.f45713b;
-                        cx cxVar2 = cwVar.f46690b;
-                        cxVar2.k5(cxVar2.getMessagesController().O0(Long.valueOf(j3)), runnable, new ss(9, cwVar, g2VarArr));
+                        cw cwVar = this.f45659b;
+                        cx cxVar2 = cwVar.f46653b;
+                        cxVar2.k5(cxVar2.getMessagesController().O0(Long.valueOf(j3)), runnable, new vs(7, cwVar, g2VarArr));
                         return;
                 }
             }
         };
         org.telegram.messenger.y10 y10Var2 = new org.telegram.messenger.y10(this) {
-            public final cw f45713b;
+            public final cw f45659b;
 
             {
-                this.f45713b = this;
+                this.f45659b = this;
             }
 
             @Override
@@ -62,7 +62,7 @@ public final class cw implements e50 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        cx cxVar = this.f45713b.f46690b;
+                        cx cxVar = this.f45659b.f46653b;
                         Boolean bool = cxVar.H.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -70,7 +70,7 @@ public final class cw implements e50 {
                             bundle.putLong("chat_id", j3);
                             bundle.putBoolean("forcePublic", cxVar.H.has_username.booleanValue());
                             ad adVar = new ad(bundle);
-                            adVar.f45603v0 = new a5(runnable, 12);
+                            adVar.f45570v0 = new a5(runnable, 12);
                             cxVar.presentFragment(adVar);
                             g2VarArr[1] = adVar;
                             return;
@@ -78,19 +78,19 @@ public final class cw implements e50 {
                         runnable.run();
                         return;
                     default:
-                        cw cwVar = this.f45713b;
-                        cx cxVar2 = cwVar.f46690b;
-                        cxVar2.k5(cxVar2.getMessagesController().O0(Long.valueOf(j3)), runnable, new ss(9, cwVar, g2VarArr));
+                        cw cwVar = this.f45659b;
+                        cx cxVar2 = cwVar.f46653b;
+                        cxVar2.k5(cxVar2.getMessagesController().O0(Long.valueOf(j3)), runnable, new vs(7, cwVar, g2VarArr));
                         return;
                 }
             }
         };
-        org.telegram.ui.ActionBar.t1 t1Var = this.f46689a;
-        Utilities.u(0, y10Var, y10Var2, new bi.b4(this, t1Var, j3, 4), new org.telegram.messenger.y10(this) {
-            public final cw f46323b;
+        org.telegram.ui.ActionBar.t1 t1Var = this.f46652a;
+        Utilities.u(0, y10Var, y10Var2, new bi.d4(this, t1Var, j3, 4), new org.telegram.messenger.y10(this) {
+            public final cw f46311b;
 
             {
-                this.f46323b = this;
+                this.f46311b = this;
             }
 
             @Override
@@ -99,7 +99,7 @@ public final class cw implements e50 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        cx cxVar = this.f46323b.f46690b;
+                        cx cxVar = this.f46311b.f46653b;
                         if (cxVar.H.bot_admin_rights != null) {
                             TLRPC.User c22 = cxVar.getMessagesController().c2(Long.valueOf(cxVar.I));
                             org.telegram.messenger.np messagesController = cxVar.getMessagesController();
@@ -119,11 +119,11 @@ public final class cw implements e50 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        cx cxVar2 = this.f46323b.f46690b;
+                        cx cxVar2 = this.f46311b.f46653b;
                         if (cxVar2.H.user_admin_rights != null) {
                             org.telegram.messenger.np messagesController2 = cxVar2.getMessagesController();
                             long j10 = j3;
-                            cxVar2.getMessagesController().b5(j10, org.telegram.messenger.k10.i(cxVar2.getAccountInstance().f23202a).f(), np.x0(messagesController2.O0(Long.valueOf(j10)).admin_rights, cxVar2.H.user_admin_rights), null, false, cxVar2, false, true, null, runnable2, new ve(7, runnable2));
+                            cxVar2.getMessagesController().b5(j10, org.telegram.messenger.k10.i(cxVar2.getAccountInstance().f23166a).f(), np.x0(messagesController2.O0(Long.valueOf(j10)).admin_rights, cxVar2.H.user_admin_rights), null, false, cxVar2, false, true, null, runnable2, new ve(7, runnable2));
                             return;
                         }
                         runnable2.run();
@@ -131,10 +131,10 @@ public final class cw implements e50 {
                 }
             }
         }, new org.telegram.messenger.y10(this) {
-            public final cw f46323b;
+            public final cw f46311b;
 
             {
-                this.f46323b = this;
+                this.f46311b = this;
             }
 
             @Override
@@ -143,7 +143,7 @@ public final class cw implements e50 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        cx cxVar = this.f46323b.f46690b;
+                        cx cxVar = this.f46311b.f46653b;
                         if (cxVar.H.bot_admin_rights != null) {
                             TLRPC.User c22 = cxVar.getMessagesController().c2(Long.valueOf(cxVar.I));
                             org.telegram.messenger.np messagesController = cxVar.getMessagesController();
@@ -163,17 +163,17 @@ public final class cw implements e50 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        cx cxVar2 = this.f46323b.f46690b;
+                        cx cxVar2 = this.f46311b.f46653b;
                         if (cxVar2.H.user_admin_rights != null) {
                             org.telegram.messenger.np messagesController2 = cxVar2.getMessagesController();
                             long j10 = j3;
-                            cxVar2.getMessagesController().b5(j10, org.telegram.messenger.k10.i(cxVar2.getAccountInstance().f23202a).f(), np.x0(messagesController2.O0(Long.valueOf(j10)).admin_rights, cxVar2.H.user_admin_rights), null, false, cxVar2, false, true, null, runnable2, new ve(7, runnable2));
+                            cxVar2.getMessagesController().b5(j10, org.telegram.messenger.k10.i(cxVar2.getAccountInstance().f23166a).f(), np.x0(messagesController2.O0(Long.valueOf(j10)).admin_rights, cxVar2.H.user_admin_rights), null, false, cxVar2, false, true, null, runnable2, new ve(7, runnable2));
                             return;
                         }
                         runnable2.run();
                         return;
                 }
             }
-        }, new bi.i2(this, t1Var, j3, g2VarArr, 6));
+        }, new bi.k2(this, t1Var, j3, g2VarArr, 6));
     }
 }

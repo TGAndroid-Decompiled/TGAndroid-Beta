@@ -1,6 +1,6 @@
 package i2;
 
-import a8.la;
+import a8.ma;
 import j$.util.Objects;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
@@ -8,9 +8,9 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 public abstract class o {
-    public static final byte[] f16002a = {0, 0, 0, 1};
-    public static final float[] f16003b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
-    public static final Object f16004c = new Object();
+    public static final byte[] f15968a = {0, 0, 0, 1};
+    public static final float[] f15969b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
+    public static final Object f15970c = new Object();
     public static int[] d = new int[10];
 
     public static ArrayList a(byte[] bArr) {
@@ -38,7 +38,7 @@ public abstract class o {
         } else {
             z10 = false;
         }
-        la.p(z10);
+        ma.p(z10);
         if (i11 == 0) {
             return i10;
         }
@@ -87,8 +87,8 @@ public abstract class o {
     }
 
     public static String d(e2.u uVar) {
-        String str = uVar.f10798s;
-        String str2 = uVar.f10790k;
+        String str = uVar.f10761s;
+        String str2 = uVar.f10753k;
         if (Objects.equals(str, "video/dolby-vision") && str2 != null) {
             if (!str2.startsWith("dva1") && !str2.startsWith("dvav")) {
                 if (str2.startsWith("dvh1") || str2.startsWith("dvhe")) {
@@ -98,7 +98,7 @@ public abstract class o {
                 return "video/avc";
             }
         }
-        return uVar.f10798s;
+        return uVar.f10761s;
     }
 
     public static long e(byte b10, byte b11) {
@@ -130,16 +130,16 @@ public abstract class o {
 
     public static boolean f(byte[] bArr, int i7, e2.u uVar) {
         int i10;
-        if (Objects.equals(uVar.f10798s, "video/avc")) {
+        if (Objects.equals(uVar.f10761s, "video/avc")) {
             byte b10 = bArr[4];
             if (((b10 & 96) >> 5) == 0 && ((i10 = b10 & 31) == 1 || i10 == 9 || i10 == 14)) {
                 return false;
             }
-        } else if (Objects.equals(uVar.f10798s, "video/hevc")) {
+        } else if (Objects.equals(uVar.f10761s, "video/hevc")) {
             b7.d h = h(new s(bArr, 4, i7 + 4));
-            int i11 = h.f2962a;
+            int i11 = h.f2913a;
             if (i11 != 35) {
-                if (i11 <= 14 && i11 % 2 == 0 && h.f2964c == uVar.J - 1) {
+                if (i11 <= 14 && i11 % 2 == 0 && h.f2915c == uVar.J - 1) {
                     return false;
                 }
             } else {
@@ -314,7 +314,7 @@ public abstract class o {
 
     public static int p(int i7, byte[] bArr) {
         int i10;
-        synchronized (f16004c) {
+        synchronized (f15970c) {
             int i11 = 0;
             int i12 = 0;
             while (i11 < i7) {

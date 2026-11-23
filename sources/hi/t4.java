@@ -1,17 +1,33 @@
 package hi;
-public final class t4 extends o3 {
-    public final u9 f15506m;
 
-    public t4(u9 u9Var, ra raVar, ai.y1 y1Var) {
-        super(raVar, false, y1Var);
-        this.f15506m = u9Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+public final class t4 extends tg.z0 {
+    public final Path f15376o3;
+    public final v9 f15377p3;
+
+    public t4(v9 v9Var, Context context) {
+        super(context);
+        this.f15377p3 = v9Var;
+        this.f15376o3 = new Path();
     }
 
     @Override
-    public final void b(boolean z10) {
-        super.b(z10);
-        if (z10) {
-            this.f15506m.M0(false);
-        }
+    public final void draw(Canvas canvas) {
+        ViewGroup barView;
+        v9 v9Var = this.f15377p3;
+        barView = v9Var.getBarView();
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(org.telegram.messenger.g0.W1(v9Var.n1, barView.getLeft() - getLeft(), 0), org.telegram.messenger.g0.W1(v9Var.n1, barView.getTop() - getTop(), 0), org.telegram.messenger.g0.W1(v9Var.n1, barView.getRight() - getLeft(), getWidth()), org.telegram.messenger.g0.W1(v9Var.n1, barView.getBottom() - getTop(), getHeight()));
+        Path path = this.f15376o3;
+        path.rewind();
+        path.addRoundRect(rectF, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f), Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        super.draw(canvas);
+        canvas.restore();
     }
 }

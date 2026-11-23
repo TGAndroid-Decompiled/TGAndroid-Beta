@@ -1,24 +1,24 @@
 package org.telegram.ui;
 public final class nf0 implements Runnable {
-    public final int f50188a;
-    public final eg0 f50189b;
+    public final int f50180a;
+    public final eg0 f50181b;
 
     public nf0(eg0 eg0Var, int i7) {
-        this.f50188a = i7;
-        this.f50189b = eg0Var;
+        this.f50180a = i7;
+        this.f50181b = eg0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f50188a) {
+        switch (this.f50180a) {
             case 0:
                 super/*android.app.Dialog*/.dismiss();
                 return;
             case 1:
-                eg0 eg0Var = this.f50189b;
+                eg0 eg0Var = this.f50181b;
                 eg0Var.getClass();
                 xh.e.f(false);
-                xh.e eVar = eg0Var.f47276i0;
+                xh.e eVar = eg0Var.f47245i0;
                 if (eVar != null) {
                     eVar.b(eg0Var.F);
                 }
@@ -26,8 +26,8 @@ public final class nf0 implements Runnable {
                 return;
             case 2:
                 xh.e.f(false);
-                eg0 eg0Var2 = this.f50189b;
-                xh.e eVar2 = eg0Var2.f47276i0;
+                eg0 eg0Var2 = this.f50181b;
+                xh.e eVar2 = eg0Var2.f47245i0;
                 if (eVar2 != null) {
                     eVar2.b(eg0Var2.F);
                 }

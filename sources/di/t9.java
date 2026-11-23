@@ -5,29 +5,29 @@ import android.view.View;
 import org.telegram.messenger.r10;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class t9 implements View.OnClickListener {
-    public final int f9854a = 1;
-    public final boolean[] f9855b;
-    public final r10 f9856c;
-    public final hi.e d;
-    public final EditTextBoldCursor f9857e;
-    public final org.telegram.ui.ActionBar.w2[] f9858f;
+    public final int f9816a = 1;
+    public final boolean[] f9817b;
+    public final r10 f9818c;
+    public final hi.d d;
+    public final EditTextBoldCursor f9819e;
+    public final org.telegram.ui.ActionBar.w2[] f9820f;
 
-    public t9(boolean[] zArr, r10 r10Var, hi.e eVar, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.ActionBar.w2[] w2VarArr) {
-        this.f9855b = zArr;
-        this.f9856c = r10Var;
-        this.d = eVar;
-        this.f9857e = editTextBoldCursor;
-        this.f9858f = w2VarArr;
+    public t9(boolean[] zArr, r10 r10Var, hi.d dVar, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.ActionBar.w2[] w2VarArr) {
+        this.f9817b = zArr;
+        this.f9818c = r10Var;
+        this.d = dVar;
+        this.f9819e = editTextBoldCursor;
+        this.f9820f = w2VarArr;
     }
 
     @Override
     public final void onClick(View view) {
         long parseLong;
-        switch (this.f9854a) {
+        switch (this.f9816a) {
             case 0:
-                boolean[] zArr = this.f9855b;
+                boolean[] zArr = this.f9817b;
                 if (!zArr[0]) {
-                    EditTextBoldCursor editTextBoldCursor = this.f9857e;
+                    EditTextBoldCursor editTextBoldCursor = this.f9819e;
                     String obj = editTextBoldCursor.getText().toString();
                     zArr[0] = true;
                     this.d.setLoading(true);
@@ -36,27 +36,27 @@ public final class t9 implements View.OnClickListener {
                     } else {
                         parseLong = Long.parseLong(obj);
                     }
-                    this.f9856c.a(Long.valueOf(parseLong), new w9(editTextBoldCursor, this.f9858f, 2));
+                    this.f9818c.a(Long.valueOf(parseLong), new w9(editTextBoldCursor, this.f9820f, 2));
                     return;
                 }
                 return;
             default:
-                boolean[] zArr2 = this.f9855b;
+                boolean[] zArr2 = this.f9817b;
                 if (!zArr2[0]) {
                     zArr2[0] = true;
                     this.d.setLoading(true);
-                    this.f9856c.a(0L, new a8(zArr2, this.f9857e, this.f9858f, 1));
+                    this.f9818c.a(0L, new a8(zArr2, this.f9819e, this.f9820f, 1));
                     return;
                 }
                 return;
         }
     }
 
-    public t9(boolean[] zArr, r10 r10Var, EditTextBoldCursor editTextBoldCursor, hi.e eVar, org.telegram.ui.ActionBar.w2[] w2VarArr) {
-        this.f9855b = zArr;
-        this.f9856c = r10Var;
-        this.f9857e = editTextBoldCursor;
-        this.d = eVar;
-        this.f9858f = w2VarArr;
+    public t9(boolean[] zArr, r10 r10Var, EditTextBoldCursor editTextBoldCursor, hi.d dVar, org.telegram.ui.ActionBar.w2[] w2VarArr) {
+        this.f9817b = zArr;
+        this.f9818c = r10Var;
+        this.f9819e = editTextBoldCursor;
+        this.d = dVar;
+        this.f9820f = w2VarArr;
     }
 }

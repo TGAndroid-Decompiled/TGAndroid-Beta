@@ -1,37 +1,71 @@
 package a8;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
+import android.os.Build;
 public abstract class b7 {
-    public static int a(Context context) {
+    public static Boolean f335a;
+    public static Boolean f336b;
+    public static Boolean f337c;
+    public static Boolean d;
+    public static Boolean f338e;
+    public static Boolean f339f;
+    public static Boolean f340g;
+
+    public static boolean a(Context context) {
         boolean z10;
-        int i7;
-        float fraction;
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        if (displayMetrics.widthPixels < displayMetrics.heightPixels) {
-            z10 = true;
-        } else {
-            z10 = false;
+        PackageManager packageManager = context.getPackageManager();
+        if (f339f == null) {
+            if (Build.VERSION.SDK_INT >= 26 && packageManager.hasSystemFeature("android.hardware.type.automotive")) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            f339f = Boolean.valueOf(z10);
         }
-        TypedValue typedValue = new TypedValue();
+        return f339f.booleanValue();
+    }
+
+    public static boolean b(Resources resources) {
+        boolean z10 = false;
+        if (resources == null) {
+            return false;
+        }
+        if (d == null) {
+            Configuration configuration = resources.getConfiguration();
+            if ((configuration.screenLayout & 15) <= 3 && configuration.smallestScreenWidthDp >= 600) {
+                z10 = true;
+            }
+            d = Boolean.valueOf(z10);
+        }
+        return d.booleanValue();
+    }
+
+    public static boolean c(Context context) {
         Resources resources = context.getResources();
-        if (z10) {
-            i7 = 2131165335;
-        } else {
-            i7 = 2131165334;
+        boolean z10 = false;
+        if (resources == null) {
+            return false;
         }
-        resources.getValue(i7, typedValue, true);
-        int i10 = typedValue.type;
-        if (i10 == 5) {
-            fraction = typedValue.getDimension(displayMetrics);
-        } else if (i10 == 6) {
-            int i11 = displayMetrics.widthPixels;
-            fraction = typedValue.getFraction(i11, i11);
-        } else {
-            return -2;
+        if (f336b == null) {
+            f336b = Boolean.valueOf(((resources.getConfiguration().screenLayout & 15) > 3 || b(resources)) ? true : true);
         }
-        return (int) fraction;
+        return f336b.booleanValue();
+    }
+
+    public static boolean d(Context context) {
+        boolean z10;
+        PackageManager packageManager = context.getPackageManager();
+        if (f340g == null) {
+            if (!packageManager.hasSystemFeature("com.google.android.tv") && !packageManager.hasSystemFeature("android.hardware.type.television") && !packageManager.hasSystemFeature("android.software.leanback")) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            f340g = Boolean.valueOf(z10);
+        }
+        return f340g.booleanValue();
     }
 }

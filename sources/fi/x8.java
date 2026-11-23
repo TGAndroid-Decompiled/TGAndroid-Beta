@@ -2,17 +2,17 @@ package fi;
 
 import android.content.Context;
 public final class x8 extends x {
-    public final f9 f12801a;
+    public final f9 f12753a;
 
     public x8(Context context, f9 f9Var) {
         super(context);
-        this.f12801a = f9Var;
+        this.f12753a = f9Var;
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        y3 y3Var = this.f12801a.G0;
+        y3 y3Var = this.f12753a.G0;
         if (y3Var != null) {
             y3Var.b();
         }

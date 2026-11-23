@@ -3,16 +3,16 @@ package a8;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 public final class s extends i0 implements ListIterator {
-    public final int f627b;
-    public int f628c;
+    public final int f626b;
+    public int f627c;
     public final u d;
 
     public s(u uVar, int i7) {
         super(0);
         int size = uVar.size();
         if (i7 >= 0 && i7 <= size) {
-            this.f627b = size;
-            this.f628c = i7;
+            this.f626b = size;
+            this.f627c = i7;
             this.d = uVar;
             return;
         }
@@ -30,7 +30,7 @@ public final class s extends i0 implements ListIterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f628c < this.f627b) {
+        if (this.f627c < this.f626b) {
             return true;
         }
         return false;
@@ -38,7 +38,7 @@ public final class s extends i0 implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f628c > 0) {
+        if (this.f627c > 0) {
             return true;
         }
         return false;
@@ -47,8 +47,8 @@ public final class s extends i0 implements ListIterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            int i7 = this.f628c;
-            this.f628c = i7 + 1;
+            int i7 = this.f627c;
+            this.f627c = i7 + 1;
             return a(i7);
         }
         throw new NoSuchElementException();
@@ -56,14 +56,14 @@ public final class s extends i0 implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f628c;
+        return this.f627c;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i7 = this.f628c - 1;
-            this.f628c = i7;
+            int i7 = this.f627c - 1;
+            this.f627c = i7;
             return a(i7);
         }
         throw new NoSuchElementException();
@@ -71,7 +71,7 @@ public final class s extends i0 implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f628c - 1;
+        return this.f627c - 1;
     }
 
     @Override

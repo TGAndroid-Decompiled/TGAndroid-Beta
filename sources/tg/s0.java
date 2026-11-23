@@ -11,8 +11,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.TextureView;
-import hi.a5;
-import hi.u5;
+import hi.b5;
+import hi.v5;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.ga;
 public final class s0 extends org.telegram.ui.Cells.r1 {
@@ -22,12 +22,12 @@ public final class s0 extends org.telegram.ui.Cells.r1 {
     public final Rect Dd;
     public final RectF Ed;
     public final t0 Fd;
-    public final ga f58160zd;
+    public final ga f58125zd;
 
     public s0(t0 t0Var, Context context, int i7, u0 u0Var) {
         super(context, i7, false, null, u0Var);
         this.Fd = t0Var;
-        this.f58160zd = new ga(t0Var.d, this, 10, false);
+        this.f58125zd = new ga(t0Var.d, this, 10, false);
         this.Ad = new float[8];
         this.Bd = new Path();
         Paint paint = new Paint();
@@ -40,8 +40,8 @@ public final class s0 extends org.telegram.ui.Cells.r1 {
     @Override
     public final Paint a2(String str) {
         if ("paintChatActionBackground".equals(str)) {
-            this.Fd.h.f58205w0 = true;
-            Paint c10 = this.f58160zd.c(1.0f);
+            this.Fd.h.f58170w0 = true;
+            Paint c10 = this.f58125zd.c(1.0f);
             if (c10 != null) {
                 return c10;
             }
@@ -51,12 +51,12 @@ public final class s0 extends org.telegram.ui.Cells.r1 {
 
     @Override
     public final boolean l1(Canvas canvas) {
-        u5 u5Var;
+        v5 v5Var;
         float[] fArr;
         ImageReceiver photoImage = getPhotoImage();
         t0 t0Var = this.Fd;
-        a5 a5Var = t0Var.h;
-        if (t0Var.f58176f && photoImage != null && (((u5Var = t0Var.f58175e) != null && u5Var.f15546g && u5Var.d && a5Var.f58207y0) || a5Var.f58204v0 || (a5Var.f58206x0 != null && a5Var.N0.f14902s0))) {
+        b5 b5Var = t0Var.h;
+        if (t0Var.f58141f && photoImage != null && (((v5Var = t0Var.f58140e) != null && v5Var.f15531g && v5Var.d && b5Var.f58172y0) || b5Var.f58169v0 || (b5Var.f58171x0 != null && b5Var.N0.f14914s0))) {
             int i7 = 0;
             while (true) {
                 int[] iArr = photoImage.X0;
@@ -76,22 +76,22 @@ public final class s0 extends org.telegram.ui.Cells.r1 {
             Path path = this.Bd;
             path.rewind();
             path.addRoundRect(rectF, fArr, Path.Direction.CW);
-            TextureView textureView = a5Var.f58206x0;
-            if (textureView != null && a5Var.N0.f14902s0) {
+            TextureView textureView = b5Var.f58171x0;
+            if (textureView != null && b5Var.N0.f14914s0) {
                 Bitmap bitmap = textureView.getBitmap();
                 if (bitmap != null) {
                     canvas.save();
                     canvas.clipPath(path);
                     canvas.translate(-getX(), -getY());
-                    float max = Math.max(photoImage.N0 / a5Var.f58208z0, photoImage.O0 / a5Var.A0);
-                    canvas.translate(photoImage.r() - ((a5Var.f58208z0 * max) / 2.0f), photoImage.s() - ((a5Var.A0 * max) / 2.0f));
-                    canvas.scale((a5Var.f58208z0 / a5Var.f58206x0.getWidth()) * max, (a5Var.A0 / a5Var.f58206x0.getHeight()) * max);
+                    float max = Math.max(photoImage.N0 / b5Var.f58173z0, photoImage.O0 / b5Var.A0);
+                    canvas.translate(photoImage.r() - ((b5Var.f58173z0 * max) / 2.0f), photoImage.s() - ((b5Var.A0 * max) / 2.0f));
+                    canvas.scale((b5Var.f58173z0 / b5Var.f58171x0.getWidth()) * max, (b5Var.A0 / b5Var.f58171x0.getHeight()) * max);
                     int width = bitmap.getWidth();
                     int height = bitmap.getHeight();
                     Rect rect = this.Dd;
                     rect.set(0, 0, width, height);
                     RectF rectF2 = this.Ed;
-                    rectF2.set(0.0f, 0.0f, a5Var.f58206x0.getWidth(), a5Var.f58206x0.getHeight());
+                    rectF2.set(0.0f, 0.0f, b5Var.f58171x0.getWidth(), b5Var.f58171x0.getHeight());
                     canvas.drawBitmap(bitmap, rect, rectF2, (Paint) null);
                     canvas.restore();
                     return true;
@@ -108,8 +108,8 @@ public final class s0 extends org.telegram.ui.Cells.r1 {
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
         t0 t0Var = this.Fd;
-        u5 u5Var = t0Var.f58175e;
-        if ((u5Var != null && u5Var.f15546g && u5Var.d) || t0Var.h.f58204v0) {
+        v5 v5Var = t0Var.f58140e;
+        if ((v5Var != null && v5Var.f15531g && v5Var.d) || t0Var.h.f58169v0) {
             canvas2 = canvas;
             canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         } else {

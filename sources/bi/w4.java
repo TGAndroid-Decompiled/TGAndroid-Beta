@@ -1,73 +1,201 @@
 package bi;
 
-import android.content.Context;
-import java.util.concurrent.atomic.AtomicInteger;
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import org.telegram.messenger.az;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
 import org.telegram.messenger.si;
-import org.telegram.messenger.tz;
-import org.telegram.messenger.uz;
+import org.telegram.messenger.ys;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.qb;
+import org.telegram.ui.Components.xi0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.cx;
+import org.telegram.ui.NotificationsSettingsActivity;
+import org.telegram.ui.bn;
+import org.telegram.ui.vf;
 public final class w4 implements Runnable {
-    public final int f4212a = 0;
-    public final int f4213b;
-    public final boolean f4214c;
-    public final long d;
-    public final Object f4215e;
-    public final Object f4216f;
-    public final Object h;
-    public final Object f4217n;
-    public final Object f4218r;
-    public final Object f4219s;
-    public final Object f4220w;
-    public final Object f4221x;
+    public final int f4176a = 1;
+    public final int f4177b;
+    public final int f4178c;
+    public final boolean d;
+    public final Object f4179e;
+    public final Object f4180f;
 
-    public w4(Context context, int i7, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10, org.telegram.ui.ActionBar.h6 h6Var, ai.y1 y1Var, lc lcVar, c1.a aVar, di.f2 f2Var) {
-        this.f4215e = context;
-        this.f4213b = i7;
-        this.f4216f = tL_starGiftUnique;
-        this.d = j3;
-        this.h = tL_textWithEntities;
-        this.f4214c = z10;
-        this.f4217n = h6Var;
-        this.f4218r = y1Var;
-        this.f4219s = lcVar;
-        this.f4220w = aVar;
-        this.f4221x = f2Var;
+    public w4(az azVar, TLRPC.Message message, int i7, int i10, boolean z10) {
+        this.f4179e = azVar;
+        this.f4180f = message;
+        this.f4177b = i7;
+        this.f4178c = i10;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.w4.run():void");
+        TLRPC.Document e10;
+        int i7;
+        int i10 = this.f4176a;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = null;
+        jg.q qVar = null;
+        tL_starGiftUnique = null;
+        int i11 = this.f4178c;
+        Object obj = this.f4180f;
+        boolean z10 = this.d;
+        int i12 = this.f4177b;
+        Object obj2 = this.f4179e;
+        switch (i10) {
+            case 0:
+                TLObject tLObject = (TLObject) obj2;
+                String str = (String) obj;
+                if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
+                    TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
+                    np.u1(i12).f4(tL_payments_uniqueStarGift.users, false);
+                    np.u1(i12).Z3(tL_payments_uniqueStarGift.chats, false);
+                    TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
+                    if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                        tL_starGiftUnique = (TL_stars.TL_starGiftUnique) starGift;
+                    }
+                }
+                if (tL_starGiftUnique != null && (!z10 ? TextUtils.isEmpty(tL_starGiftUnique.owner_address) : org.telegram.ui.Wallet.u0.c(tL_starGiftUnique.owner_address, org.telegram.ui.Wallet.u0.D(i12).y()))) {
+                    if (z10) {
+                        org.telegram.ui.Wallet.u0.D(i12).B().i(tL_starGiftUnique);
+                    }
+                    di.y8.y(i12, false).a0(tL_starGiftUnique);
+                    di.y8.y(i12, false).O(k10.i(i12).e());
+                    return;
+                }
+                int i13 = i11 + 1;
+                if (i13 < 8) {
+                    org.telegram.messenger.g0.h3(new u4(i12, i13, str, z10), a5.f3355b[i13]);
+                    return;
+                }
+                return;
+            case 1:
+                az azVar = (az) obj2;
+                TLRPC.Message message = (TLRPC.Message) obj;
+                azVar.getMediaDataController().y0(message.dialog_id);
+                azVar.getNotificationCenter().k(21, Integer.valueOf(i12), Integer.valueOf(message.f28419id), message, Long.valueOf(message.dialog_id), 0L, Integer.valueOf(i11), Boolean.valueOf(z10));
+                azVar.getNotificationCenter().k(22, Integer.valueOf(i12), Integer.valueOf(message.f28419id), message, Long.valueOf(message.dialog_id), 0L, Integer.valueOf(i11), Boolean.valueOf(z10));
+                azVar.d0(i12);
+                azVar.i0(i12, z10);
+                return;
+            case 2:
+                bn bnVar = (bn) obj2;
+                xi0 xi0Var = (xi0) obj;
+                org.telegram.ui.ActionBar.g1 g1Var = bnVar.f45994g9;
+                if (g1Var != null && bnVar.fragmentView != null && !g1Var.isShowing()) {
+                    Activity parentActivity = bnVar.getParentActivity();
+                    Typeface typeface = org.telegram.messenger.g0.f23982a;
+                    if (parentActivity != null && !parentActivity.isDestroyed() && !parentActivity.isFinishing()) {
+                        bnVar.f45994g9.showAtLocation(bnVar.A0, 51, i12, i11);
+                        bnVar.ia(bnVar.f45994g9);
+                        if (z10 && xi0Var != null) {
+                            xi0Var.r(true);
+                        }
+                        org.telegram.messenger.g0.h3(new vf(bnVar, 1), 420L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 3:
+                qb qbVar = (qb) obj2;
+                ch.p0 p0Var = (ch.p0) obj;
+                org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
+                long j3 = p0Var.f5471g;
+                if (j3 == 0) {
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) si.d0(k10.f24932t0).f26811r.get(p0Var.f5470f);
+                    if (tL_availableReaction != null) {
+                        e10 = tL_availableReaction.activate_animation;
+                    } else {
+                        return;
+                    }
+                } else {
+                    e10 = org.telegram.ui.Components.p5.e(k10.f24932t0, j3);
+                }
+                if (e10 != null && Q != null) {
+                    lc b02 = lc.b0(Q);
+                    int i14 = qbVar.f38820a.h;
+                    if (z10) {
+                        qVar = new jg.q(i12, i11, Q, 10);
+                    }
+                    b02.y(i14, e10, qVar).k(true);
+                    return;
+                }
+                return;
+            default:
+                NotificationsSettingsActivity notificationsSettingsActivity = (NotificationsSettingsActivity) obj2;
+                org.telegram.ui.Cells.j5 j5Var = (org.telegram.ui.Cells.j5) obj;
+                if (i12 == 3) {
+                    SharedPreferences.Editor edit = notificationsSettingsActivity.getNotificationsSettings().edit();
+                    if (z10) {
+                        edit.remove("EnableAllStories");
+                    } else {
+                        edit.putBoolean("EnableAllStories", true);
+                    }
+                    edit.apply();
+                    notificationsSettingsActivity.getNotificationsController().b0(i12);
+                } else if (i12 != 4 && i12 != 5) {
+                    ys notificationsController = notificationsSettingsActivity.getNotificationsController();
+                    if (!z10) {
+                        i7 = 0;
+                    } else {
+                        i7 = Integer.MAX_VALUE;
+                    }
+                    notificationsController.U(i12, i7);
+                } else {
+                    SharedPreferences.Editor edit2 = notificationsSettingsActivity.getNotificationsSettings().edit();
+                    if (z10) {
+                        edit2.putBoolean("EnableReactionsMessages", false);
+                        edit2.putBoolean("EnableReactionsStories", false);
+                    } else {
+                        edit2.putBoolean("EnableReactionsMessages", true);
+                        edit2.putBoolean("EnableReactionsStories", true);
+                    }
+                    edit2.apply();
+                    notificationsSettingsActivity.getNotificationsController().b0(i12);
+                    notificationsSettingsActivity.getNotificationsController().m(i12);
+                }
+                j5Var.f30877e.b(0, !z10, true);
+                notificationsSettingsActivity.f43139c.g(i11);
+                return;
+        }
     }
 
-    public w4(si siVar, tz tzVar, a0.h hVar, AtomicInteger atomicInteger, Runnable runnable, int i7, uz uzVar, a0.h hVar2, a0.h hVar3, boolean z10, long j3) {
-        this.f4215e = siVar;
-        this.f4216f = tzVar;
-        this.h = hVar;
-        this.f4217n = atomicInteger;
-        this.f4218r = runnable;
-        this.f4213b = i7;
-        this.f4219s = uzVar;
-        this.f4220w = hVar2;
-        this.f4221x = hVar3;
-        this.f4214c = z10;
-        this.d = j3;
+    public w4(TLObject tLObject, int i7, boolean z10, int i10, String str) {
+        this.f4179e = tLObject;
+        this.f4177b = i7;
+        this.d = z10;
+        this.f4178c = i10;
+        this.f4180f = str;
     }
 
-    public w4(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z10, String str2, int i7, TLRPC.Chat chat, cx cxVar, TLRPC.User user, long j3, String str3) {
-        this.f4215e = launchActivity;
-        this.f4216f = str;
-        this.h = tL_chatAdminRights;
-        this.f4214c = z10;
-        this.f4217n = str2;
-        this.f4213b = i7;
-        this.f4218r = chat;
-        this.f4219s = cxVar;
-        this.f4220w = user;
-        this.d = j3;
-        this.f4221x = str3;
+    public w4(bn bnVar, int i7, int i10, boolean z10, xi0 xi0Var) {
+        this.f4179e = bnVar;
+        this.f4177b = i7;
+        this.f4178c = i10;
+        this.d = z10;
+        this.f4180f = xi0Var;
+    }
+
+    public w4(qb qbVar, ch.p0 p0Var, boolean z10, int i7, int i10) {
+        this.f4179e = qbVar;
+        this.f4180f = p0Var;
+        this.d = z10;
+        this.f4177b = i7;
+        this.f4178c = i10;
+    }
+
+    public w4(NotificationsSettingsActivity notificationsSettingsActivity, int i7, boolean z10, org.telegram.ui.Cells.j5 j5Var, int i10) {
+        this.f4179e = notificationsSettingsActivity;
+        this.f4177b = i7;
+        this.d = z10;
+        this.f4180f = j5Var;
+        this.f4178c = i10;
     }
 }

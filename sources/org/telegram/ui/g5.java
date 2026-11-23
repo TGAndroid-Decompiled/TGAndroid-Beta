@@ -24,11 +24,11 @@ public abstract class g5 extends androidx.fragment.app.v {
             if (z10) {
                 f40 f40Var = f40.C5;
                 if (f40Var != null) {
-                    f40Var.f47545s1.callOnClick();
+                    f40Var.f47507s1.callOnClick();
                     return true;
                 }
             } else {
-                w(2131624117, org.telegram.messenger.hd.N0(2131743040, null));
+                w(2131624117, org.telegram.messenger.hd.N0(2131743042, null));
                 return true;
             }
         } else if (i7 != 4 && i7 != 151) {
@@ -41,8 +41,8 @@ public abstract class g5 extends androidx.fragment.app.v {
                 return true;
             } else if (i7 != 3 && i7 != 150) {
                 if (i7 != 18 && i7 != 19 && i7 != 20 && i7 != 22) {
-                    int i10 = org.telegram.messenger.ls.f25430z4;
-                    int i11 = org.telegram.messenger.ls.f25423y4;
+                    int i10 = org.telegram.messenger.ls.f25394z4;
+                    int i11 = org.telegram.messenger.ls.f25387y4;
                     if (i7 == 2) {
                         org.telegram.messenger.ls e10 = org.telegram.messenger.ls.e();
                         if (z10) {
@@ -90,7 +90,7 @@ public abstract class g5 extends androidx.fragment.app.v {
                     w(2131624117, org.telegram.messenger.hd.N0(2131747114, null));
                     return true;
                 } else {
-                    if (org.telegram.messenger.cz.f23457y0) {
+                    if (org.telegram.messenger.cz.f23421y0) {
                         CameraController.getInstance().initCamera(null);
                     }
                     return false;
@@ -117,7 +117,7 @@ public abstract class g5 extends androidx.fragment.app.v {
         alertDialog$Builder.m(i7, 72, org.telegram.ui.ActionBar.m6.x0(null, i10, false), null);
         alertDialog$Builder.n(i10, null);
         SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(str);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.U = W2;
         alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131747106, null), new w0(this, 4));
         alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131751760, null), null);

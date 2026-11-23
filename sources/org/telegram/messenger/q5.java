@@ -7,11 +7,11 @@ import android.os.SystemClock;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 public final class q5 extends Thread {
-    public volatile Handler f26409a;
-    public final Object f26410b = new Object();
-    public ArrayList f26411c = new ArrayList();
+    public volatile Handler f26373a;
+    public final Object f26374b = new Object();
+    public ArrayList f26375c = new ArrayList();
     public final CountDownLatch d = new CountDownLatch(1);
-    public final int f26412e = -1000;
+    public final int f26376e = -1000;
 
     public q5(String str) {
         setName(str);
@@ -19,23 +19,23 @@ public final class q5 extends Thread {
     }
 
     public final void a(Runnable runnable) {
-        Handler handler = this.f26409a;
+        Handler handler = this.f26373a;
         if (handler != null) {
             handler.removeCallbacks(runnable);
             return;
         }
-        synchronized (this.f26410b) {
+        synchronized (this.f26374b) {
             try {
-                ArrayList arrayList = this.f26411c;
+                ArrayList arrayList = this.f26375c;
                 if (arrayList != null) {
                     for (int size = arrayList.size() - 1; size >= 0; size--) {
-                        if (((p5) this.f26411c.get(size)).f26274b == runnable) {
-                            this.f26411c.remove(size);
+                        if (((p5) this.f26375c.get(size)).f26238b == runnable) {
+                            this.f26375c.remove(size);
                         }
                     }
                     return;
                 }
-                this.f26409a.removeCallbacks(runnable);
+                this.f26373a.removeCallbacks(runnable);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -48,7 +48,7 @@ public final class q5 extends Thread {
         } catch (Exception e10) {
             a8.g(e10, false);
         }
-        return this.f26409a;
+        return this.f26373a;
     }
 
     public final void c(Runnable runnable) {
@@ -57,7 +57,7 @@ public final class q5 extends Thread {
     }
 
     public final boolean d(Runnable runnable, long j3) {
-        Handler handler = this.f26409a;
+        Handler handler = this.f26373a;
         if (handler != null) {
             if (j3 <= 0) {
                 return handler.post(runnable);
@@ -65,14 +65,14 @@ public final class q5 extends Thread {
             return handler.postDelayed(runnable, j3);
         }
         long max = Math.max(0L, j3) + SystemClock.uptimeMillis();
-        synchronized (this.f26410b) {
+        synchronized (this.f26374b) {
             try {
-                ArrayList arrayList = this.f26411c;
+                ArrayList arrayList = this.f26375c;
                 if (arrayList != null) {
                     arrayList.add(new p5(0, max, runnable));
                     return true;
                 }
-                return this.f26409a.postAtTime(runnable, max);
+                return this.f26373a.postAtTime(runnable, max);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -83,27 +83,27 @@ public final class q5 extends Thread {
     public final void run() {
         Looper.prepare();
         Handler handler = new Handler(Looper.myLooper(), new o5(this, 1));
-        synchronized (this.f26410b) {
-            for (int i7 = 0; i7 < this.f26411c.size(); i7++) {
+        synchronized (this.f26374b) {
+            for (int i7 = 0; i7 < this.f26375c.size(); i7++) {
                 try {
-                    p5 p5Var = (p5) this.f26411c.get(i7);
-                    int i10 = p5Var.f26273a;
+                    p5 p5Var = (p5) this.f26375c.get(i7);
+                    int i10 = p5Var.f26237a;
                     if (i10 == 0) {
-                        handler.postAtTime(p5Var.f26274b, p5Var.f26275c);
+                        handler.postAtTime(p5Var.f26238b, p5Var.f26239c);
                     } else if (i10 == 1) {
-                        handler.postAtFrontOfQueue(p5Var.f26274b);
+                        handler.postAtFrontOfQueue(p5Var.f26238b);
                     } else {
-                        handler.sendMessageAtTime(null, p5Var.f26275c);
+                        handler.sendMessageAtTime(null, p5Var.f26239c);
                     }
                 } catch (Throwable th2) {
                     throw th2;
                 }
             }
-            this.f26411c = null;
-            this.f26409a = handler;
+            this.f26375c = null;
+            this.f26373a = handler;
         }
         this.d.countDown();
-        int i11 = this.f26412e;
+        int i11 = this.f26376e;
         if (i11 != -1000) {
             Process.setThreadPriority(i11);
         }

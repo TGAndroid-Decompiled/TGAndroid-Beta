@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public final class oq0 extends v4.t {
+public final class oq0 extends v4.s {
     public final jt0 Q;
 
     public oq0(jt0 jt0Var) {
@@ -8,11 +8,11 @@ public final class oq0 extends v4.t {
     }
 
     @Override
-    public final int o0(int i7, v4.x0 x0Var, v4.c1 c1Var) {
-        if (this.Q.f36663r1) {
+    public final int o0(int i7, v4.w0 w0Var, v4.b1 b1Var) {
+        if (this.Q.f36618r1) {
             i7 = 0;
         }
-        return super.o0(i7, x0Var, c1Var);
+        return super.o0(i7, w0Var, b1Var);
     }
 
     @Override

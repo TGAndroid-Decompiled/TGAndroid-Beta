@@ -13,23 +13,23 @@ import android.view.ViewConfiguration;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class ru extends au {
-    public static Paint f26663n0;
-    public static Paint f26664o0;
+    public static Paint f26627n0;
+    public static Paint f26628o0;
     public final boolean X;
     public final ArrayList Y;
     public final int Z;
-    public final int f26665a0;
-    public int f26666b0;
-    public float f26667c0;
-    public boolean f26668d0;
-    public boolean f26669e0;
-    public float f26670f0;
-    public float f26671g0;
-    public int f26672h0;
-    public int f26673i0;
-    public int f26674j0;
-    public VelocityTracker f26675k0;
-    public ValueAnimator f26676l0;
+    public final int f26629a0;
+    public int f26630b0;
+    public float f26631c0;
+    public boolean f26632d0;
+    public boolean f26633e0;
+    public float f26634f0;
+    public float f26635g0;
+    public int f26636h0;
+    public int f26637i0;
+    public int f26638j0;
+    public VelocityTracker f26639k0;
+    public ValueAnimator f26640l0;
     public final Path m0;
 
     public ru(fv fvVar, Rect rect, int i7, TL_iv.pageBlockSlideshow pageblockslideshow, boolean z10) {
@@ -53,11 +53,11 @@ public final class ru extends au {
         }
         ArrayList arrayList = this.Y;
         if (arrayList.isEmpty()) {
-            this.f26665a0 = 0;
+            this.f26629a0 = 0;
             this.Z = 0;
             return;
         }
-        this.Z = this.f22970c;
+        this.Z = this.f22934c;
         int size = arrayList.size();
         int i11 = 0;
         float f10 = 0.0f;
@@ -71,24 +71,24 @@ public final class ru extends au {
             f10 += f11;
         }
         int max = (int) (this.Z / Math.max(0.5f, f10 / arrayList.size()));
-        Point point = g0.f24046q;
+        Point point = g0.f24010q;
         int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
-        this.f26665a0 = max > max2 ? max2 : max;
+        this.f26629a0 = max > max2 ? max2 : max;
         int size2 = arrayList.size();
         int i12 = 0;
         while (i12 < size2) {
             Object obj2 = arrayList.get(i12);
             i12++;
-            ((tt) obj2).l(0, 0, this.Z, this.f26665a0);
+            ((tt) obj2).l(0, 0, this.Z, this.f26629a0);
         }
     }
 
     @Override
     public final void A(int i7, Rect rect) {
-        Rect rect2 = this.f22969b;
+        Rect rect2 = this.f22933b;
         int i10 = rect2.left;
         int i11 = ((int) this.N) + rect2.top;
-        rect.set(i10, i11, this.Z + i10, this.f26665a0 + i11);
+        rect.set(i10, i11, this.Z + i10, this.f26629a0 + i11);
     }
 
     @Override
@@ -102,13 +102,13 @@ public final class ru extends au {
         if (arrayList.isEmpty()) {
             return null;
         }
-        int max = Math.max(0, Math.min(this.f26666b0, arrayList.size() - 1));
+        int max = Math.max(0, Math.min(this.f26630b0, arrayList.size() - 1));
         return TextUtils.concat(((tt) arrayList.get(max)).f(), ", ", hd.a0(null, null, 2131747635, Integer.valueOf(max + 1), Integer.valueOf(arrayList.size())));
     }
 
     @Override
     public final int I() {
-        return this.f26665a0;
+        return this.f26629a0;
     }
 
     @Override
@@ -118,14 +118,14 @@ public final class ru extends au {
 
     @Override
     public final int K() {
-        Rect rect = this.f22969b;
-        return rect.left + this.f22970c + rect.right;
+        Rect rect = this.f22933b;
+        return rect.left + this.f22934c + rect.right;
     }
 
     @Override
     public final boolean Q() {
-        if (!this.f26668d0) {
-            ValueAnimator valueAnimator = this.f26676l0;
+        if (!this.f26632d0) {
+            ValueAnimator valueAnimator = this.f26640l0;
             if (valueAnimator == null || !valueAnimator.isRunning()) {
                 return false;
             }
@@ -145,7 +145,7 @@ public final class ru extends au {
             tt ttVar = (tt) obj;
             View view = this.W;
             ttVar.T = view;
-            ImageReceiver imageReceiver = ttVar.f27078c;
+            ImageReceiver imageReceiver = ttVar.f27042c;
             imageReceiver.H0(view);
             imageReceiver.P();
             ImageReceiver imageReceiver2 = ttVar.d;
@@ -162,19 +162,19 @@ public final class ru extends au {
         if (arrayList.isEmpty()) {
             return false;
         }
-        return ((tt) arrayList.get(Math.max(0, Math.min(this.f26666b0, arrayList.size() - 1)))).j(view);
+        return ((tt) arrayList.get(Math.max(0, Math.min(this.f26630b0, arrayList.size() - 1)))).j(view);
     }
 
     @Override
     public final void V() {
         int i7 = 0;
         a0(false);
-        this.f26668d0 = false;
-        this.f26669e0 = false;
-        VelocityTracker velocityTracker = this.f26675k0;
+        this.f26632d0 = false;
+        this.f26633e0 = false;
+        VelocityTracker velocityTracker = this.f26639k0;
         if (velocityTracker != null) {
             velocityTracker.recycle();
-            this.f26675k0 = null;
+            this.f26639k0 = null;
         }
         ArrayList arrayList = this.Y;
         int size = arrayList.size();
@@ -182,10 +182,10 @@ public final class ru extends au {
             Object obj = arrayList.get(i7);
             i7++;
             tt ttVar = (tt) obj;
-            ttVar.f27078c.R();
+            ttVar.f27042c.R();
             ttVar.d.R();
-            ttVar.f27079e = null;
-            a6.q(ttVar.f27076a.f23976a).v(ttVar);
+            ttVar.f27043e = null;
+            a6.q(ttVar.f27040a.f23940a).v(ttVar);
         }
     }
 
@@ -200,87 +200,87 @@ public final class ru extends au {
         VelocityTracker velocityTracker;
         View view;
         int actionMasked = motionEvent.getActionMasked();
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         motionEvent.offsetLocation(-rect.left, -rect.top);
         ArrayList arrayList = this.Y;
         try {
             if (actionMasked == 0) {
-                if (this.f26672h0 == 0 && (view = this.W) != null) {
+                if (this.f26636h0 == 0 && (view = this.W) != null) {
                     ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-                    this.f26672h0 = viewConfiguration.getScaledTouchSlop();
-                    this.f26673i0 = viewConfiguration.getScaledMinimumFlingVelocity();
-                    this.f26674j0 = viewConfiguration.getScaledMaximumFlingVelocity();
+                    this.f26636h0 = viewConfiguration.getScaledTouchSlop();
+                    this.f26637i0 = viewConfiguration.getScaledMinimumFlingVelocity();
+                    this.f26638j0 = viewConfiguration.getScaledMaximumFlingVelocity();
                 }
-                this.f26670f0 = motionEvent.getX();
-                this.f26671g0 = motionEvent.getY();
-                this.f26668d0 = false;
-                this.f26669e0 = false;
-                VelocityTracker velocityTracker2 = this.f26675k0;
+                this.f26634f0 = motionEvent.getX();
+                this.f26635g0 = motionEvent.getY();
+                this.f26632d0 = false;
+                this.f26633e0 = false;
+                VelocityTracker velocityTracker2 = this.f26639k0;
                 if (velocityTracker2 == null) {
-                    this.f26675k0 = VelocityTracker.obtain();
+                    this.f26639k0 = VelocityTracker.obtain();
                 } else {
                     velocityTracker2.clear();
                 }
-                this.f26675k0.addMovement(motionEvent);
+                this.f26639k0.addMovement(motionEvent);
                 a0(true);
-                ValueAnimator valueAnimator = this.f26676l0;
+                ValueAnimator valueAnimator = this.f26640l0;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    this.f26676l0 = null;
+                    this.f26640l0 = null;
                 }
-                int i7 = this.f26666b0;
+                int i7 = this.f26630b0;
                 if (i7 >= 0 && i7 < arrayList.size()) {
-                    ((tt) arrayList.get(this.f26666b0)).k(this.W, motionEvent);
+                    ((tt) arrayList.get(this.f26630b0)).k(this.W, motionEvent);
                 }
             } else {
                 float f10 = 0.0f;
                 if (actionMasked == 2) {
-                    if (!this.f26669e0) {
-                        VelocityTracker velocityTracker3 = this.f26675k0;
+                    if (!this.f26633e0) {
+                        VelocityTracker velocityTracker3 = this.f26639k0;
                         if (velocityTracker3 != null) {
                             velocityTracker3.addMovement(motionEvent);
                         }
-                        float x10 = motionEvent.getX() - this.f26670f0;
-                        float y10 = motionEvent.getY() - this.f26671g0;
-                        if (!this.f26668d0 && Math.abs(y10) > this.f26672h0 && Math.abs(y10) > Math.abs(x10)) {
-                            this.f26669e0 = true;
-                            int i10 = this.f26666b0;
+                        float x10 = motionEvent.getX() - this.f26634f0;
+                        float y10 = motionEvent.getY() - this.f26635g0;
+                        if (!this.f26632d0 && Math.abs(y10) > this.f26636h0 && Math.abs(y10) > Math.abs(x10)) {
+                            this.f26633e0 = true;
+                            int i10 = this.f26630b0;
                             if (i10 >= 0 && i10 < arrayList.size()) {
                                 MotionEvent obtain = MotionEvent.obtain(motionEvent);
                                 obtain.setAction(3);
-                                ((tt) arrayList.get(this.f26666b0)).k(this.W, obtain);
+                                ((tt) arrayList.get(this.f26630b0)).k(this.W, obtain);
                                 obtain.recycle();
                             }
                             a0(false);
                         } else {
-                            if (!this.f26668d0 && Math.abs(x10) > this.f26672h0 && Math.abs(x10) > Math.abs(y10)) {
-                                this.f26668d0 = true;
-                                int i11 = this.f26666b0;
+                            if (!this.f26632d0 && Math.abs(x10) > this.f26636h0 && Math.abs(x10) > Math.abs(y10)) {
+                                this.f26632d0 = true;
+                                int i11 = this.f26630b0;
                                 if (i11 >= 0 && i11 < arrayList.size()) {
                                     MotionEvent obtain2 = MotionEvent.obtain(motionEvent);
                                     obtain2.setAction(3);
-                                    ((tt) arrayList.get(this.f26666b0)).k(this.W, obtain2);
+                                    ((tt) arrayList.get(this.f26630b0)).k(this.W, obtain2);
                                     obtain2.recycle();
                                 }
                             }
-                            if (this.f26668d0) {
+                            if (this.f26632d0) {
                                 float f11 = (-x10) / this.Z;
-                                int i12 = this.f26666b0;
+                                int i12 = this.f26630b0;
                                 if (i12 == 0 && f11 < 0.0f) {
                                     f11 *= 0.3f;
                                 }
                                 if (i12 == arrayList.size() - 1 && f11 > 0.0f) {
                                     f11 *= 0.3f;
                                 }
-                                this.f26667c0 = f11;
+                                this.f26631c0 = f11;
                                 View view2 = this.W;
                                 if (view2 != null) {
                                     view2.invalidate();
                                 }
                             } else {
-                                int i13 = this.f26666b0;
+                                int i13 = this.f26630b0;
                                 if (i13 >= 0 && i13 < arrayList.size()) {
-                                    k10 = ((tt) arrayList.get(this.f26666b0)).k(this.W, motionEvent);
+                                    k10 = ((tt) arrayList.get(this.f26630b0)).k(this.W, motionEvent);
                                     motionEvent.offsetLocation(rect.left, rect.top);
                                     return k10;
                                 }
@@ -291,31 +291,31 @@ public final class ru extends au {
                     }
                 } else {
                     if (actionMasked == 1 || actionMasked == 3) {
-                        boolean z10 = this.f26669e0;
-                        this.f26669e0 = false;
-                        if (!z10 && actionMasked == 1 && (velocityTracker = this.f26675k0) != null) {
+                        boolean z10 = this.f26633e0;
+                        this.f26633e0 = false;
+                        if (!z10 && actionMasked == 1 && (velocityTracker = this.f26639k0) != null) {
                             velocityTracker.addMovement(motionEvent);
-                            this.f26675k0.computeCurrentVelocity(1000, this.f26674j0);
-                            float xVelocity = this.f26675k0.getXVelocity();
-                            float yVelocity = this.f26675k0.getYVelocity();
-                            if (Math.abs(xVelocity) >= this.f26673i0 && Math.abs(xVelocity) > Math.abs(yVelocity)) {
+                            this.f26639k0.computeCurrentVelocity(1000, this.f26638j0);
+                            float xVelocity = this.f26639k0.getXVelocity();
+                            float yVelocity = this.f26639k0.getYVelocity();
+                            if (Math.abs(xVelocity) >= this.f26637i0 && Math.abs(xVelocity) > Math.abs(yVelocity)) {
                                 f10 = xVelocity;
                             }
                         }
-                        VelocityTracker velocityTracker4 = this.f26675k0;
+                        VelocityTracker velocityTracker4 = this.f26639k0;
                         if (velocityTracker4 != null) {
                             velocityTracker4.recycle();
-                            this.f26675k0 = null;
+                            this.f26639k0 = null;
                         }
                         a0(false);
                         if (!z10) {
-                            if (this.f26668d0) {
-                                this.f26668d0 = false;
+                            if (this.f26632d0) {
+                                this.f26632d0 = false;
                                 i0(f10);
                             } else {
-                                int i14 = this.f26666b0;
+                                int i14 = this.f26630b0;
                                 if (i14 >= 0 && i14 < arrayList.size()) {
-                                    k10 = ((tt) arrayList.get(this.f26666b0)).k(this.W, motionEvent);
+                                    k10 = ((tt) arrayList.get(this.f26630b0)).k(this.W, motionEvent);
                                     motionEvent.offsetLocation(rect.left, rect.top);
                                     return k10;
                                 }
@@ -337,32 +337,32 @@ public final class ru extends au {
         int i10;
         int i11 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
         ArrayList arrayList = this.Y;
-        if (i11 >= 0 || this.f26666b0 >= arrayList.size() - 1) {
+        if (i11 >= 0 || this.f26630b0 >= arrayList.size() - 1) {
             i7 = -1;
-            if (f10 <= 0.0f || this.f26666b0 <= 0) {
-                if (this.f26667c0 <= 0.5f || this.f26666b0 >= arrayList.size() - 1) {
-                    if (this.f26667c0 >= -0.5f || this.f26666b0 <= 0) {
+            if (f10 <= 0.0f || this.f26630b0 <= 0) {
+                if (this.f26631c0 <= 0.5f || this.f26630b0 >= arrayList.size() - 1) {
+                    if (this.f26631c0 >= -0.5f || this.f26630b0 <= 0) {
                         i7 = 0;
                     }
                 }
             }
-            int i12 = i7 + this.f26666b0;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f26667c0, i12 - i10);
-            this.f26676l0 = ofFloat;
+            int i12 = i7 + this.f26630b0;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f26631c0, i12 - i10);
+            this.f26640l0 = ofFloat;
             ofFloat.setDuration(420L);
-            this.f26676l0.setInterpolator(org.telegram.ui.Components.nr.h);
-            this.f26676l0.addUpdateListener(new g(this, 2));
-            this.f26676l0.addListener(new ki.e2(this, i12, 3));
-            this.f26676l0.start();
+            this.f26640l0.setInterpolator(org.telegram.ui.Components.nr.h);
+            this.f26640l0.addUpdateListener(new g(this, 2));
+            this.f26640l0.addListener(new ki.e2(this, i12, 3));
+            this.f26640l0.start();
         }
         i7 = 1;
-        int i122 = i7 + this.f26666b0;
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f26667c0, i122 - i10);
-        this.f26676l0 = ofFloat2;
+        int i122 = i7 + this.f26630b0;
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f26631c0, i122 - i10);
+        this.f26640l0 = ofFloat2;
         ofFloat2.setDuration(420L);
-        this.f26676l0.setInterpolator(org.telegram.ui.Components.nr.h);
-        this.f26676l0.addUpdateListener(new g(this, 2));
-        this.f26676l0.addListener(new ki.e2(this, i122, 3));
-        this.f26676l0.start();
+        this.f26640l0.setInterpolator(org.telegram.ui.Components.nr.h);
+        this.f26640l0.addUpdateListener(new g(this, 2));
+        this.f26640l0.addListener(new ki.e2(this, i122, 3));
+        this.f26640l0.start();
     }
 }

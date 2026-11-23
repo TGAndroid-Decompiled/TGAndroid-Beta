@@ -1,28 +1,17 @@
 package org.telegram.ui;
-
-import android.view.View;
 public final class ve0 implements Runnable {
-    public final ff0 f52807a;
+    public final int f52786a;
+    public final Object f52787b;
+    public final Object f52788c;
 
-    public ve0(ff0 ff0Var) {
-        this.f52807a = ff0Var;
+    public ve0(int i7, Object obj, Object obj2) {
+        this.f52786a = i7;
+        this.f52787b = obj;
+        this.f52788c = obj2;
     }
 
     @Override
     public final void run() {
-        ff0 ff0Var = this.f52807a;
-        if (ff0Var.f47691b == null) {
-            return;
-        }
-        for (int i7 = 0; i7 < ff0Var.f47691b.getChildCount(); i7++) {
-            View childAt = ff0Var.f47691b.getChildAt(i7);
-            if (childAt instanceof cf0) {
-                cf0 cf0Var = (cf0) childAt;
-                if (cf0Var.J) {
-                    cf0Var.b(cf0Var.f46556n, cf0Var.f46557r);
-                }
-            }
-        }
-        org.telegram.messenger.g0.h3(this, 500L);
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ve0.run():void");
     }
 }

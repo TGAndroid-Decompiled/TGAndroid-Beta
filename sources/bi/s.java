@@ -2,7 +2,7 @@ package bi;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class s extends hi.e {
+public final class s extends hi.d {
     public final int m0;
 
     public s(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
@@ -14,7 +14,7 @@ public final class s extends hi.e {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         switch (this.m0) {
             case 0:
-                if (!this.f14567e0) {
+                if (!this.f14303e0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);

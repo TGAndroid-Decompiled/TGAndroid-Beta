@@ -1,9 +1,9 @@
 package da;
 public final class l0 extends y1 {
-    public final int f8112a;
+    public final int f8075a;
 
     public l0(int i7) {
-        this.f8112a = i7;
+        this.f8075a = i7;
     }
 
     public final boolean equals(Object obj) {
@@ -11,7 +11,7 @@ public final class l0 extends y1 {
             return true;
         }
         if (obj instanceof y1) {
-            if (this.f8112a == ((l0) ((y1) obj)).f8112a) {
+            if (this.f8075a == ((l0) ((y1) obj)).f8075a) {
                 return true;
             }
         }
@@ -19,10 +19,10 @@ public final class l0 extends y1 {
     }
 
     public final int hashCode() {
-        return 1000003 ^ this.f8112a;
+        return 1000003 ^ this.f8075a;
     }
 
     public final String toString() {
-        return a8.p0.n(this.f8112a, "}", new StringBuilder("ProfilingTrigger{trigger="));
+        return a8.p0.n(this.f8075a, "}", new StringBuilder("ProfilingTrigger{trigger="));
     }
 }

@@ -1,20 +1,20 @@
 package w7;
 
 import a8.i0;
-import c8.id;
+import c8.jd;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 public final class b extends i0 implements ListIterator {
-    public final int f59644b;
-    public int f59645c;
+    public final int f59609b;
+    public int f59610c;
     public final d d;
 
     public b(d dVar, int i7) {
         super(7);
         int size = dVar.size();
-        id.b(i7, size);
-        this.f59644b = size;
-        this.f59645c = i7;
+        jd.b(i7, size);
+        this.f59609b = size;
+        this.f59610c = i7;
         this.d = dVar;
     }
 
@@ -29,7 +29,7 @@ public final class b extends i0 implements ListIterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f59645c < this.f59644b) {
+        if (this.f59610c < this.f59609b) {
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ public final class b extends i0 implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f59645c > 0) {
+        if (this.f59610c > 0) {
             return true;
         }
         return false;
@@ -46,8 +46,8 @@ public final class b extends i0 implements ListIterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            int i7 = this.f59645c;
-            this.f59645c = i7 + 1;
+            int i7 = this.f59610c;
+            this.f59610c = i7 + 1;
             return a(i7);
         }
         throw new NoSuchElementException();
@@ -55,14 +55,14 @@ public final class b extends i0 implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f59645c;
+        return this.f59610c;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i7 = this.f59645c - 1;
-            this.f59645c = i7;
+            int i7 = this.f59610c - 1;
+            this.f59610c = i7;
             return a(i7);
         }
         throw new NoSuchElementException();
@@ -70,7 +70,7 @@ public final class b extends i0 implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f59645c - 1;
+        return this.f59610c - 1;
     }
 
     @Override

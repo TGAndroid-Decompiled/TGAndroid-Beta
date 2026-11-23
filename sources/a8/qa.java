@@ -1,17 +1,17 @@
 package a8;
 public final class qa implements Runnable {
-    public final int f597a;
-    public final Object f598b;
-    public final Object f599c;
+    public final int f596a;
+    public final Object f597b;
+    public final Object f598c;
     public final Object d;
-    public final Object f600e;
+    public final Object f599e;
 
     public qa(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f597a = i7;
-        this.f599c = obj;
+        this.f596a = i7;
+        this.f598c = obj;
         this.d = obj2;
-        this.f600e = obj3;
-        this.f598b = obj4;
+        this.f599e = obj3;
+        this.f597b = obj4;
     }
 
     private final void a() {
@@ -28,10 +28,10 @@ public final class qa implements Runnable {
     }
 
     public qa(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, int i7) {
-        this.f597a = i7;
-        this.f598b = obj;
-        this.f599c = obj2;
+        this.f596a = i7;
+        this.f597b = obj;
+        this.f598c = obj2;
         this.d = obj3;
-        this.f600e = obj4;
+        this.f599e = obj4;
     }
 }

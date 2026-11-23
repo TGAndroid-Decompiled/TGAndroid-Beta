@@ -7,26 +7,26 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 public final class b6 implements Runnable {
-    public final int f45793a;
-    public final x6 f45794b;
+    public final int f45744a;
+    public final x6 f45745b;
 
     public b6(x6 x6Var, int i7) {
-        this.f45793a = i7;
-        this.f45794b = x6Var;
+        this.f45744a = i7;
+        this.f45745b = x6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f45793a) {
+        switch (this.f45744a) {
             case 0:
-                x6 x6Var = this.f45794b;
+                x6 x6Var = this.f45745b;
                 x6Var.resumeDelayedFragmentAnimation();
                 x6Var.L = false;
                 x6Var.A0(true);
                 x6Var.y0();
                 return;
             case 1:
-                x6 x6Var2 = this.f45794b;
+                x6 x6Var2 = this.f45745b;
                 x6Var2.getFileLoader().d.c();
                 ei.c cVar = new ei.c(false);
                 LongSparseArray longSparseArray = new LongSparseArray();
@@ -45,8 +45,8 @@ public final class b6 implements Runnable {
                 for (int i7 = 0; i7 < longSparseArray.size(); i7++) {
                     r6 r6Var = (r6) longSparseArray.valueAt(i7);
                     arrayList.add(r6Var);
-                    if (x6Var2.getMessagesController().g2(((r6) arrayList.get(i7)).f51464a) == null) {
-                        long j3 = r6Var.f51464a;
+                    if (x6Var2.getMessagesController().g2(((r6) arrayList.get(i7)).f51495a) == null) {
+                        long j3 = r6Var.f51495a;
                         if (j3 > 0) {
                             arrayList2.add(Long.valueOf(j3));
                         } else {
@@ -55,57 +55,57 @@ public final class b6 implements Runnable {
                     }
                 }
                 Collections.sort(cVar.d, new a3.c(18));
-                Collections.sort(cVar.f11004e, new a3.c(18));
-                Collections.sort(cVar.f11005f, new a3.c(18));
-                Collections.sort(cVar.f11006g, new a3.c(18));
+                Collections.sort(cVar.f10967e, new a3.c(18));
+                Collections.sort(cVar.f10968f, new a3.c(18));
+                Collections.sort(cVar.f10969g, new a3.c(18));
                 Collections.sort(cVar.h, new a3.c(18));
-                x6Var2.getMessagesStorage().f27250a.c(new d6(x6Var2, arrayList2, arrayList3, arrayList, cVar, 0));
+                x6Var2.getMessagesStorage().f27214a.c(new d6(x6Var2, arrayList2, arrayList3, arrayList, cVar, 0));
                 return;
             default:
-                x6 x6Var3 = this.f45794b;
-                x6Var3.f53657f = x6.s0(org.telegram.messenger.w7.j(4), 5);
-                if (!x6.f53644i0) {
-                    x6Var3.f53661n = x6.s0(org.telegram.messenger.w7.j(4), 4);
-                    if (!x6.f53644i0) {
+                x6 x6Var3 = this.f45745b;
+                x6Var3.f53579f = x6.s0(org.telegram.messenger.w7.j(4), 5);
+                if (!x6.f53566i0) {
+                    x6Var3.f53583n = x6.s0(org.telegram.messenger.w7.j(4), 4);
+                    if (!x6.f53566i0) {
                         long s02 = x6.s0(org.telegram.messenger.w7.j(0), 0);
-                        x6Var3.f53666y = s02;
-                        x6Var3.f53666y = x6.s0(org.telegram.messenger.w7.j(100), 0) + s02;
-                        if (!x6.f53644i0) {
+                        x6Var3.f53588y = s02;
+                        x6Var3.f53588y = x6.s0(org.telegram.messenger.w7.j(100), 0) + s02;
+                        if (!x6.f53566i0) {
                             long s03 = x6.s0(org.telegram.messenger.w7.j(2), 0);
                             x6Var3.E = s03;
                             x6Var3.E = x6.s0(org.telegram.messenger.w7.j(101), 0) + s03;
-                            if (!x6.f53644i0) {
+                            if (!x6.f53566i0) {
                                 x6Var3.F = x6.s0(org.telegram.messenger.g0.P0(), 1);
-                                boolean z10 = org.telegram.messenger.s2.f26730a;
-                                if (!x6.f53644i0) {
+                                boolean z10 = org.telegram.messenger.s2.f26694a;
+                                if (!x6.f53566i0) {
                                     long s04 = x6.s0(org.telegram.messenger.w7.j(3), 1);
-                                    x6Var3.f53662r = s04;
-                                    x6Var3.f53662r = x6.s0(org.telegram.messenger.w7.j(5), 1) + s04;
-                                    if (!x6.f53644i0) {
+                                    x6Var3.f53584r = s04;
+                                    x6Var3.f53584r = x6.s0(org.telegram.messenger.w7.j(5), 1) + s04;
+                                    if (!x6.f53566i0) {
                                         long s05 = x6.s0(org.telegram.messenger.w7.j(3), 2);
-                                        x6Var3.f53665x = s05;
-                                        x6Var3.f53665x = x6.s0(org.telegram.messenger.w7.j(5), 2) + s05;
-                                        if (!x6.f53644i0) {
+                                        x6Var3.f53587x = s05;
+                                        x6Var3.f53587x = x6.s0(org.telegram.messenger.w7.j(5), 2) + s05;
+                                        if (!x6.f53566i0) {
                                             x6Var3.G = x6.s0(new File(org.telegram.messenger.w7.j(4), "acache"), 0);
-                                            if (!x6.f53644i0) {
+                                            if (!x6.f53566i0) {
                                                 x6Var3.h = x6.s0(org.telegram.messenger.w7.j(4), 3);
-                                                if (!x6.f53644i0) {
+                                                if (!x6.f53566i0) {
                                                     x6Var3.G += x6Var3.h;
-                                                    x6Var3.f53663s = x6.s0(org.telegram.messenger.w7.j(1), 0);
-                                                    x6Var3.f53664w = x6.s0(org.telegram.messenger.w7.j(6), 0);
-                                                    if (!x6.f53644i0) {
-                                                        long j10 = x6Var3.f53657f + x6Var3.f53661n + x6Var3.E + x6Var3.F + x6Var3.f53663s + x6Var3.f53666y + x6Var3.f53662r + x6Var3.f53665x + x6Var3.f53664w + x6Var3.G;
-                                                        x6.f53646k0 = Long.valueOf(j10);
+                                                    x6Var3.f53585s = x6.s0(org.telegram.messenger.w7.j(1), 0);
+                                                    x6Var3.f53586w = x6.s0(org.telegram.messenger.w7.j(6), 0);
+                                                    if (!x6.f53566i0) {
+                                                        long j10 = x6Var3.f53579f + x6Var3.f53583n + x6Var3.E + x6Var3.F + x6Var3.f53585s + x6Var3.f53588y + x6Var3.f53584r + x6Var3.f53587x + x6Var3.f53586w + x6Var3.G;
+                                                        x6.f53568k0 = Long.valueOf(j10);
                                                         x6Var3.H = j10;
-                                                        x6.f53645j0 = System.currentTimeMillis();
+                                                        x6.f53567j0 = System.currentTimeMillis();
                                                         ArrayList d12 = org.telegram.messenger.g0.d1();
                                                         File file = (File) d12.get(0);
                                                         file.getAbsolutePath();
-                                                        if (!TextUtils.isEmpty(org.telegram.messenger.cz.f23410h0)) {
+                                                        if (!TextUtils.isEmpty(org.telegram.messenger.cz.f23374h0)) {
                                                             int size = d12.size();
                                                             for (int i10 = 0; i10 < size; i10++) {
                                                                 File file2 = (File) d12.get(i10);
-                                                                if (file2.getAbsolutePath().startsWith(org.telegram.messenger.cz.f23410h0)) {
+                                                                if (file2.getAbsolutePath().startsWith(org.telegram.messenger.cz.f23374h0)) {
                                                                     file = file2;
                                                                 }
                                                             }
@@ -122,7 +122,7 @@ public final class b6 implements Runnable {
                                                         org.telegram.messenger.g0.g3(new b6(x6Var3, 0));
                                                         org.telegram.messenger.f8 f8Var = x6Var3.getFileLoader().d;
                                                         f8Var.d();
-                                                        f8Var.f23875a.c(new b6(x6Var3, 1));
+                                                        f8Var.f23839a.c(new b6(x6Var3, 1));
                                                         return;
                                                     }
                                                     return;

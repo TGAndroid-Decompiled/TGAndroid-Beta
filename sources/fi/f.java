@@ -5,22 +5,22 @@ import java.util.ArrayList;
 import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLRPC;
 public final class f implements y10 {
-    public final int f11966a;
-    public final int f11967b;
+    public final int f11916a;
+    public final int f11917b;
 
     public f(int i7, int i10) {
-        this.f11966a = i10;
-        this.f11967b = i7;
+        this.f11916a = i10;
+        this.f11917b = i7;
     }
 
     @Override
     public final void a(Object obj) {
         ArrayList<TLRPC.EmojiGroup> arrayList;
-        switch (this.f11966a) {
+        switch (this.f11916a) {
             case 0:
                 p pVar = (p) ((View) obj);
                 pVar.invalidate();
-                pVar.E.setTextColor(this.f11967b);
+                pVar.E.setTextColor(this.f11917b);
                 return;
             default:
                 TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
@@ -30,7 +30,7 @@ public final class f implements y10 {
                     while (i7 < size) {
                         TLRPC.EmojiGroup emojiGroup = arrayList.get(i7);
                         i7++;
-                        org.telegram.ui.Components.p5.g(this.f11967b).b(emojiGroup.icon_emoji_id, null);
+                        org.telegram.ui.Components.p5.g(this.f11917b).b(emojiGroup.icon_emoji_id, null);
                     }
                     return;
                 }

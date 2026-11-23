@@ -2,19 +2,19 @@ package f6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.bc;
+import c8.cc;
 import java.util.Arrays;
 public final class u extends r6.a {
-    public final int f11499a;
-    public final int f11500b;
-    public final int f11501c;
+    public final int f11462a;
+    public final int f11463b;
+    public final int f11464c;
     public static final j6.b d = new j6.b("VideoInfo", null);
     public static final Parcelable.Creator<u> CREATOR = new v(21);
 
     public u(int i7, int i10, int i11) {
-        this.f11499a = i7;
-        this.f11500b = i10;
-        this.f11501c = i11;
+        this.f11462a = i7;
+        this.f11463b = i10;
+        this.f11464c = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -25,25 +25,25 @@ public final class u extends r6.a {
             return false;
         }
         u uVar = (u) obj;
-        if (this.f11500b == uVar.f11500b && this.f11499a == uVar.f11499a && this.f11501c == uVar.f11501c) {
+        if (this.f11463b == uVar.f11463b && this.f11462a == uVar.f11462a && this.f11464c == uVar.f11464c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f11500b), Integer.valueOf(this.f11499a), Integer.valueOf(this.f11501c)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f11463b), Integer.valueOf(this.f11462a), Integer.valueOf(this.f11464c)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = bc.r(parcel, 20293);
-        bc.q(parcel, 2, 4);
-        parcel.writeInt(this.f11499a);
-        bc.q(parcel, 3, 4);
-        parcel.writeInt(this.f11500b);
-        bc.q(parcel, 4, 4);
-        parcel.writeInt(this.f11501c);
-        bc.s(parcel, r10);
+        int r10 = cc.r(parcel, 20293);
+        cc.q(parcel, 2, 4);
+        parcel.writeInt(this.f11462a);
+        cc.q(parcel, 3, 4);
+        parcel.writeInt(this.f11463b);
+        cc.q(parcel, 4, 4);
+        parcel.writeInt(this.f11464c);
+        cc.s(parcel, r10);
     }
 }

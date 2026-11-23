@@ -1,15 +1,10 @@
 package c8;
-
-import android.view.View;
-import android.view.ViewParent;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.TextView;
 public abstract class i9 {
-    public static void a(EditorInfo editorInfo, InputConnection inputConnection, TextView textView) {
-        if (inputConnection != null && editorInfo.hintText == null) {
-            for (ViewParent parent = textView.getParent(); parent instanceof View; parent = parent.getParent()) {
-            }
+    public static final ke.a a(ke.a aVar) {
+        kotlin.jvm.internal.j.e(aVar, "<this>");
+        if (aVar.d().c()) {
+            return aVar;
         }
+        return new oe.j(aVar);
     }
 }

@@ -3,34 +3,34 @@ package org.telegram.messenger.voip;
 import org.telegram.messenger.voip.Instance;
 import org.telegram.messenger.voip.NativeInstance;
 public final class i0 implements NativeInstance.AudioLevelsCallback, Instance.OnStateUpdatedListener, Instance.OnSignalBarsUpdatedListener, Instance.OnSignalingDataListener, Instance.OnRemoteMediaStateUpdatedListener {
-    public final VoIPService f27495a;
+    public final VoIPService f27459a;
 
     public i0(VoIPService voIPService) {
-        this.f27495a = voIPService;
+        this.f27459a = voIPService;
     }
 
     @Override
     public void onMediaStateUpdated(int i7, int i10) {
-        this.f27495a.lambda$initiateActualEncryptedCall$87(i7, i10);
+        this.f27459a.lambda$initiateActualEncryptedCall$87(i7, i10);
     }
 
     @Override
     public void onSignalBarsUpdated(int i7) {
-        this.f27495a.onSignalBarCountChanged(i7);
+        this.f27459a.onSignalBarCountChanged(i7);
     }
 
     @Override
     public void onSignalingData(byte[] bArr) {
-        this.f27495a.onSignalingData(bArr);
+        this.f27459a.onSignalingData(bArr);
     }
 
     @Override
     public void onStateUpdated(int i7, boolean z10) {
-        this.f27495a.onConnectionStateChanged(i7, z10);
+        this.f27459a.onConnectionStateChanged(i7, z10);
     }
 
     @Override
     public void run(int[] iArr, float[] fArr, boolean[] zArr) {
-        this.f27495a.lambda$initiateActualEncryptedCall$85(iArr, fArr, zArr);
+        this.f27459a.lambda$initiateActualEncryptedCall$85(iArr, fArr, zArr);
     }
 }

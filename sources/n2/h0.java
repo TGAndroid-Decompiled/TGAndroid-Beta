@@ -2,11 +2,11 @@ package n2;
 
 import android.content.Context;
 public final class h0 {
-    public final Context f21148a;
-    public l0 f21149b;
-    public s0 f21150c;
+    public final Context f21114a;
+    public l0 f21115b;
+    public s0 f21116c;
     public b d;
-    public final float f21151e;
+    public final float f21117e;
 
     public h0(Context context) {
         Context context2;
@@ -15,11 +15,11 @@ public final class h0 {
         } else {
             context2 = null;
         }
-        this.f21148a = context2;
-        this.f21150c = s0.f21267a;
+        this.f21114a = context2;
+        this.f21116c = s0.f21233a;
         if (context == null) {
-            this.d = b.f21097f;
+            this.d = b.f21063f;
         }
-        this.f21151e = 8.0f;
+        this.f21117e = 8.0f;
     }
 }

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import c8.ma;
+import c8.na;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.j6;
@@ -25,21 +25,21 @@ public final class c extends yg.c {
         this.f1060x = textPaint;
         this.f1061y = new a3.f(this, 3);
         textPaint.setTextSize(g0.L(20.0f));
-        this.f61260f.setVisibility(8);
-        this.f61258c.setVisibility(8);
+        this.f61225f.setVisibility(8);
+        this.f61223c.setVisibility(8);
         op opVar = new op(21, context, h6Var);
         this.f1058s = opVar;
-        opVar.b(m6.B5, m6.f29491j7, m6.C5);
+        opVar.b(m6.B5, m6.f29457j7, m6.C5);
         opVar.setDrawUnchecked(true);
         opVar.setDrawBackgroundAsArc(10);
         addView(opVar);
         opVar.a(false, false);
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        opVar.setLayoutParams(ma.d(24, 24.0f, i7 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
+        opVar.setLayoutParams(na.d(24, 24.0f, i7 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
     }
 
     @Override
@@ -70,7 +70,7 @@ public final class c extends yg.c {
         float f13;
         float f14;
         float f15;
-        boolean z10 = hd.f24444a0;
+        boolean z10 = hd.f24408a0;
         int i11 = 3;
         if (z10) {
             i7 = 5;
@@ -88,8 +88,8 @@ public final class c extends yg.c {
         } else {
             f11 = 20.0f;
         }
-        this.d.setLayoutParams(ma.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z11 = hd.f24444a0;
+        this.d.setLayoutParams(na.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
+        boolean z11 = hd.f24408a0;
         if (z11) {
             i10 = 5;
         } else {
@@ -106,8 +106,8 @@ public final class c extends yg.c {
         } else {
             f13 = 20.0f;
         }
-        this.f61259e.setLayoutParams(ma.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
-        boolean z12 = hd.f24444a0;
+        this.f61224e.setLayoutParams(na.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        boolean z12 = hd.f24408a0;
         if (z12) {
             i11 = 5;
         }
@@ -122,7 +122,7 @@ public final class c extends yg.c {
         } else {
             f15 = 15.0f;
         }
-        this.f61260f.setLayoutParams(ma.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
+        this.f61225f.setLayoutParams(na.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
     }
 
     public final void f() {

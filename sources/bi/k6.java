@@ -1,12 +1,30 @@
 package bi;
-public final class k6 extends org.telegram.ui.Components.p5 {
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(24.0f);
+
+import org.telegram.ui.Components.gq0;
+public final class k6 extends v4.k {
+    public final gq0 F;
+
+    public k6(gq0 gq0Var) {
+        this.F = gq0Var;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(24.0f);
+    public final void M() {
+        this.F.p();
+    }
+
+    @Override
+    public final void O() {
+        this.F.p();
+    }
+
+    @Override
+    public final void P(v4.e1 e1Var) {
+        this.F.p();
+    }
+
+    @Override
+    public final void Q() {
+        this.F.p();
     }
 }

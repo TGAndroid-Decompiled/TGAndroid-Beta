@@ -6,8 +6,8 @@ import android.view.View;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class cn implements org.telegram.ui.ls {
-    public int f34219a;
-    public Object f34220b;
+    public int f34187a;
+    public Object f34188b;
 
     @Override
     public boolean A() {
@@ -25,46 +25,46 @@ public final class cn implements org.telegram.ui.ls {
     }
 
     @Override
-    public a70 E(ai.l0 l0Var) {
-        a70 G = a70.G(l0Var, null, new View(((tn) this.f34220b).getContext()));
-        G.f33397s = 0;
-        G.f33399t = false;
+    public a70 E(ai.g0 g0Var) {
+        a70 G = a70.G(g0Var, null, new View(((tn) this.f34188b).getContext()));
+        G.f33363s = 0;
+        G.f33365t = false;
         String N0 = org.telegram.messenger.hd.N0(2131746075, null);
-        final int i7 = this.f34219a;
+        final int i7 = this.f34187a;
         G.c(2131232333, N0, new Runnable(this) {
-            public final cn f33860b;
+            public final cn f33838b;
 
             {
-                this.f33860b = this;
+                this.f33838b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        ((tn) this.f33860b.f34220b).g0(i7);
+                        ((tn) this.f33838b.f34188b).g0(i7);
                         return;
                     default:
-                        ((tn) this.f33860b.f34220b).j0(i7, null);
+                        ((tn) this.f33838b.f34188b).j0(i7, null);
                         return;
                 }
             }
         }, false);
         G.c(2131232110, org.telegram.messenger.hd.N0(2131751586, null), new Runnable(this) {
-            public final cn f33860b;
+            public final cn f33838b;
 
             {
-                this.f33860b = this;
+                this.f33838b = this;
             }
 
             @Override
             public final void run() {
                 switch (r3) {
                     case 0:
-                        ((tn) this.f33860b.f34220b).g0(i7);
+                        ((tn) this.f33838b.f34188b).g0(i7);
                         return;
                     default:
-                        ((tn) this.f33860b.f34220b).j0(i7, null);
+                        ((tn) this.f33838b.f34188b).j0(i7, null);
                         return;
                 }
             }
@@ -103,11 +103,11 @@ public final class cn implements org.telegram.ui.ls {
     }
 
     public boolean R(int i7) {
-        if (((bg.l) this.f34220b) != null && this.f34219a == i7) {
+        if (((bg.l) this.f34188b) != null && this.f34187a == i7) {
             return false;
         }
-        this.f34219a = i7;
-        this.f34220b = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{i7, i7}, (float[]) null, Shader.TileMode.CLAMP);
+        this.f34187a = i7;
+        this.f34188b = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{i7, i7}, (float[]) null, Shader.TileMode.CLAMP);
         return true;
     }
 

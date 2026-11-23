@@ -6,8 +6,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
-import hi.l8;
 import hi.m8;
+import hi.n8;
 import java.util.ArrayList;
 import org.telegram.ui.Components.p20;
 public final class n extends ViewGroup {
@@ -30,9 +30,9 @@ public final class n extends ViewGroup {
     }
 
     public void a() {
-        m8 m8Var = (m8) this.f1092n;
-        m8Var.I = true;
-        ArrayList arrayList = m8Var.f15033e;
+        n8 n8Var = (n8) this.f1092n;
+        n8Var.I = true;
+        ArrayList arrayList = n8Var.f15081e;
         ArrayList arrayList2 = new ArrayList(arrayList);
         ArrayList arrayList3 = this.h;
         arrayList3.clear();
@@ -45,7 +45,7 @@ public final class n extends ViewGroup {
         this.f1089c = false;
         AnimatorSet animatorSet = new AnimatorSet();
         this.f1088b = animatorSet;
-        animatorSet.addListener(new l8(this, arrayList2, 1));
+        animatorSet.addListener(new m8(this, arrayList2, 1));
         ArrayList arrayList4 = this.f1091f;
         arrayList4.clear();
         ArrayList arrayList5 = this.d;
@@ -193,9 +193,9 @@ public final class n extends ViewGroup {
         throw new UnsupportedOperationException("Method not decompiled: ah.n.onMeasure(int, int):void");
     }
 
-    public n(m8 m8Var, Context context) {
+    public n(n8 n8Var, Context context) {
         super(context);
-        this.f1092n = m8Var;
+        this.f1092n = n8Var;
         this.d = new ArrayList();
         this.f1090e = new ArrayList();
         this.f1091f = new ArrayList();

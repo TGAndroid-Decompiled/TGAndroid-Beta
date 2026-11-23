@@ -1,13 +1,13 @@
 package e2;
 
-import a8.ja;
+import a8.ka;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public abstract class s0 {
-    public static final ArrayList f10726a = new ArrayList();
-    public static final Pattern f10727b = Pattern.compile("^mp4a\\.([a-zA-Z0-9]{2})(?:\\.([0-9]{1,2}))?$");
+    public static final ArrayList f10689a = new ArrayList();
+    public static final Pattern f10690b = Pattern.compile("^mp4a\\.([a-zA-Z0-9]{2})(?:\\.([0-9]{1,2}))?$");
 
     public static boolean a(String str, String str2) {
         r0 f10;
@@ -318,7 +318,7 @@ public abstract class s0 {
         r0 f10;
         String str2 = null;
         if (str != null) {
-            String c10 = ja.c(str.trim());
+            String c10 = ka.c(str.trim());
             if (!c10.startsWith("avc1") && !c10.startsWith("avc3")) {
                 if (!c10.startsWith("hev1") && !c10.startsWith("hvc1")) {
                     if (!c10.startsWith("vvc1") && !c10.startsWith("vvi1")) {
@@ -330,7 +330,7 @@ public abstract class s0 {
                                 if (!c10.startsWith("vp8") && !c10.startsWith("vp08")) {
                                     if (c10.startsWith("mp4a")) {
                                         if (c10.startsWith("mp4a.") && (f10 = f(c10)) != null) {
-                                            str2 = e(f10.f10716a);
+                                            str2 = e(f10.f10679a);
                                         }
                                         if (str2 == null) {
                                             return "audio/mp4a-latm";
@@ -377,7 +377,7 @@ public abstract class s0 {
                                                             return "application/cea-708";
                                                         }
                                                         if (!c10.contains("eia608") && !c10.contains("cea608")) {
-                                                            ArrayList arrayList = f10726a;
+                                                            ArrayList arrayList = f10689a;
                                                             if (arrayList.size() > 0) {
                                                                 arrayList.get(0).getClass();
                                                                 throw new ClassCastException();
@@ -487,7 +487,7 @@ public abstract class s0 {
 
     public static r0 f(String str) {
         int i7;
-        Matcher matcher = f10727b.matcher(str);
+        Matcher matcher = f10690b.matcher(str);
         if (matcher.matches()) {
             String group = matcher.group(1);
             group.getClass();
@@ -533,7 +533,7 @@ public abstract class s0 {
                 if ("application/x-camera-motion".equals(str)) {
                     return 6;
                 }
-                ArrayList arrayList = f10726a;
+                ArrayList arrayList = f10689a;
                 if (arrayList.size() <= 0) {
                     return -1;
                 }
@@ -587,7 +587,7 @@ public abstract class s0 {
         if (str == null) {
             return null;
         }
-        String c10 = ja.c(str);
+        String c10 = ka.c(str);
         c10.getClass();
         char c11 = 65535;
         switch (c10.hashCode()) {

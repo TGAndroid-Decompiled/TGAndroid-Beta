@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import c8.ma;
+import c8.na;
 import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g2;
@@ -24,21 +24,21 @@ public final class g0 extends h1 {
     public g0(g2 g2Var, int i7, TLRPC.User user, ug.j jVar, String str, boolean z10, h6 h6Var) {
         super(g2Var, i7, user, jVar, null, h6Var);
         this.N2 = str;
-        gc.a((FrameLayout) this.f30176b, new bi.t(16));
+        gc.a((FrameLayout) this.f30142b, new bi.t(16));
         if (!z10) {
-            ek0 ek0Var = this.f39531o1;
-            int i10 = this.f30211u0;
+            ek0 ek0Var = this.f39487o1;
+            int i10 = this.f30177u0;
             ek0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(68.0f));
             yg.a aVar = new yg.a(getContext(), this.J0);
             this.M2 = aVar;
             aVar.setOnClickListener(new tg.u(this, 4));
             yg.a aVar2 = this.M2;
-            aVar2.f61248e = true;
-            hi.e eVar = aVar2.f61245a;
-            eVar.setEnabled(true);
-            eVar.i(hd.N0(2131749502, null), false, true);
-            t6.h(m6.f29454h5, aVar2.f61246b, aVar2.f61247c);
-            this.f30176b.addView(this.M2, ma.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+            aVar2.f61213e = true;
+            hi.d dVar = aVar2.f61210a;
+            dVar.setEnabled(true);
+            dVar.i(hd.N0(2131749502, null), false, true);
+            t6.h(m6.f29420h5, aVar2.f61211b, aVar2.f61212c);
+            this.f30142b.addView(this.M2, na.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         O();
     }
@@ -46,7 +46,7 @@ public final class g0 extends h1 {
     public static void m1(g0 g0Var) {
         cx cxVar = new cx(org.telegram.ui.Cells.c0.l(3, "onlySelect", "dialogsType", true));
         cxVar.E2 = new wc1(25, g0Var, "https://t.me/giftcode/" + g0Var.N2);
-        g0Var.f39535s1.presentFragment(cxVar);
+        g0Var.f39491s1.presentFragment(cxVar);
         g0Var.dismiss();
     }
 
@@ -87,16 +87,16 @@ public final class g0 extends h1 {
 
     @Override
     public final void l1() {
-        int i7 = this.f58717b2;
-        this.f58718c2 = i7;
+        int i7 = this.f58682b2;
+        this.f58683c2 = i7;
         this.d2 = i7 + 1;
         int i10 = i7 + 2;
-        this.f58717b2 = i10;
-        this.f58719e2 = i10;
-        this.f58720f2 = i10;
+        this.f58682b2 = i10;
+        this.f58684e2 = i10;
+        this.f58685f2 = i10;
         int size = this.T1.size() + i10;
-        this.f58721g2 = size;
-        this.f58717b2 = size + 1;
-        this.f58722h2 = size;
+        this.f58686g2 = size;
+        this.f58682b2 = size + 1;
+        this.f58687h2 = size;
     }
 }

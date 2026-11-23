@@ -12,7 +12,7 @@ public final class gl extends org.telegram.ui.Cells.g0 {
     @Override
     public final int getSideMenuWidth() {
         bn bnVar = this.M.R;
-        int i7 = bn.f45940md;
+        int i7 = bn.f45893md;
         return bnVar.n9();
     }
 }

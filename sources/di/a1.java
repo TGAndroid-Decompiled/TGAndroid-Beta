@@ -13,17 +13,17 @@ public final class a1 extends c51 {
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
-        super.t(f1Var, i7);
-        View view = f1Var.f59165a;
+    public final void t(v4.e1 e1Var, int i7) {
+        super.t(e1Var, i7);
+        View view = e1Var.f59111a;
         if (!(view instanceof f1)) {
             return;
         }
-        f1 f1Var2 = (f1) view;
-        c1 c1Var = f1Var2.f8780w;
+        f1 f1Var = (f1) view;
+        c1 c1Var = f1Var.f8743w;
         boolean g12 = this.Q.g1(c1Var);
-        f1Var2.f8774c.f(g12, false);
-        f1Var2.f8778r.a(g12, false);
-        f1Var2.setOnClickListener(new ai.y2(12, this, c1Var));
+        f1Var.f8737c.f(g12, false);
+        f1Var.f8741r.a(g12, false);
+        f1Var.setOnClickListener(new ai.o2(12, this, c1Var));
     }
 }

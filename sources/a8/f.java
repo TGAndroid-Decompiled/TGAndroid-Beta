@@ -58,7 +58,7 @@ public class f extends AbstractCollection implements List {
                 boolean isEmpty3 = this.f387c.isEmpty();
                 boolean add3 = this.f387c.add(obj);
                 if (add3) {
-                    ((h9.l1) this.f389f).f14052f++;
+                    ((h9.l1) this.f389f).f14015f++;
                     if (isEmpty3) {
                         f();
                     }
@@ -109,7 +109,7 @@ public class f extends AbstractCollection implements List {
                 boolean addAll3 = this.f387c.addAll(collection);
                 if (addAll3) {
                     int size5 = this.f387c.size();
-                    ((h9.l1) this.f389f).f14052f += size5 - size4;
+                    ((h9.l1) this.f389f).f14015f += size5 - size4;
                     if (size4 == 0) {
                         f();
                         return addAll3;
@@ -143,7 +143,7 @@ public class f extends AbstractCollection implements List {
                 int size2 = size();
                 if (size2 != 0) {
                     this.f387c.clear();
-                    ((h9.l1) this.f389f).f14052f -= size2;
+                    ((h9.l1) this.f389f).f14015f -= size2;
                     j();
                     return;
                 }
@@ -210,7 +210,7 @@ public class f extends AbstractCollection implements List {
         if (fVar != null) {
             fVar.f();
         } else {
-            ((h9.l1) this.f389f).f14051e.put(this.f386b, this.f387c);
+            ((h9.l1) this.f389f).f14014e.put(this.f386b, this.f387c);
         }
     }
 
@@ -252,7 +252,7 @@ public class f extends AbstractCollection implements List {
             if (fVar.f387c != this.d) {
                 throw new ConcurrentModificationException();
             }
-        } else if (this.f387c.isEmpty() && (collection = (Collection) ((h9.l1) this.f389f).f14051e.get(this.f386b)) != null) {
+        } else if (this.f387c.isEmpty() && (collection = (Collection) ((h9.l1) this.f389f).f14014e.get(this.f386b)) != null) {
             this.f387c = collection;
         }
     }
@@ -292,7 +292,7 @@ public class f extends AbstractCollection implements List {
         if (fVar != null) {
             fVar.j();
         } else if (this.f387c.isEmpty()) {
-            ((h9.l1) this.f389f).f14051e.remove(this.f386b);
+            ((h9.l1) this.f389f).f14014e.remove(this.f386b);
         }
     }
 
@@ -313,7 +313,7 @@ public class f extends AbstractCollection implements List {
                     fVar2.k();
                     return;
                 }
-                ((jg) this.f389f).f4881c.put(this.f386b, this.f387c);
+                ((jg) this.f389f).f4842c.put(this.f386b, this.f387c);
                 return;
         }
     }
@@ -337,7 +337,7 @@ public class f extends AbstractCollection implements List {
                     fVar2.l();
                     return;
                 } else if (this.f387c.isEmpty()) {
-                    ((jg) this.f389f).f4881c.remove(this.f386b);
+                    ((jg) this.f389f).f4842c.remove(this.f386b);
                     return;
                 } else {
                     return;
@@ -399,7 +399,7 @@ public class f extends AbstractCollection implements List {
                 boolean remove3 = this.f387c.remove(obj);
                 if (remove3) {
                     h9.l1 l1Var = (h9.l1) this.f389f;
-                    l1Var.f14052f--;
+                    l1Var.f14015f--;
                     j();
                 }
                 return remove3;
@@ -442,7 +442,7 @@ public class f extends AbstractCollection implements List {
                 boolean removeAll3 = this.f387c.removeAll(collection);
                 if (removeAll3) {
                     int size4 = this.f387c.size();
-                    ((h9.l1) this.f389f).f14052f += size4 - size3;
+                    ((h9.l1) this.f389f).f14015f += size4 - size3;
                     j();
                     return removeAll3;
                 }
@@ -478,7 +478,7 @@ public class f extends AbstractCollection implements List {
                 boolean retainAll3 = this.f387c.retainAll(collection);
                 if (retainAll3) {
                     int size4 = this.f387c.size();
-                    ((h9.l1) this.f389f).f14052f += size4 - size3;
+                    ((h9.l1) this.f389f).f14015f += size4 - size3;
                     j();
                 }
                 return retainAll3;
@@ -604,7 +604,7 @@ public class f extends AbstractCollection implements List {
                     }
                     return;
                 } else if (this.f387c.isEmpty()) {
-                    Collection collection2 = (Collection) ((jg) this.f389f).f4881c.get(this.f386b);
+                    Collection collection2 = (Collection) ((jg) this.f389f).f4842c.get(this.f386b);
                     if (collection2 != null) {
                         this.f387c = collection2;
                         return;
@@ -668,7 +668,7 @@ public class f extends AbstractCollection implements List {
                 i();
                 Object remove3 = ((List) this.f387c).remove(i7);
                 h9.l1 l1Var = (h9.l1) this.h;
-                l1Var.f14052f--;
+                l1Var.f14015f--;
                 j();
                 return remove3;
         }
@@ -700,7 +700,7 @@ public class f extends AbstractCollection implements List {
                 i();
                 boolean isEmpty3 = this.f387c.isEmpty();
                 ((List) this.f387c).add(i7, obj);
-                ((h9.l1) this.h).f14052f++;
+                ((h9.l1) this.h).f14015f++;
                 if (isEmpty3) {
                     f();
                     return;
@@ -751,7 +751,7 @@ public class f extends AbstractCollection implements List {
                 boolean addAll3 = ((List) this.f387c).addAll(i7, collection);
                 if (addAll3) {
                     int size5 = this.f387c.size();
-                    ((h9.l1) this.h).f14052f += size5 - size4;
+                    ((h9.l1) this.h).f14015f += size5 - size4;
                     if (size4 == 0) {
                         f();
                         return addAll3;

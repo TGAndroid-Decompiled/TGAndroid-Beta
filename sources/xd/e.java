@@ -1,5 +1,5 @@
 package xd;
 
-import c8.vd;
-public abstract class e extends vd {
+import c8.wd;
+public abstract class e extends wd {
 }

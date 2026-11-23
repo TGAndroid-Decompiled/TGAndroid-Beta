@@ -15,14 +15,14 @@ public final class aa extends r1 {
     public final org.telegram.ui.Components.g5 Bd;
     public final int Cd;
     public final ba Dd;
-    public final GestureDetector f30437zd;
+    public final GestureDetector f30403zd;
 
     public aa(ba baVar, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var, Context context2, int i10) {
         super(context, i7, false, null, h6Var);
         this.Dd = baVar;
         this.Cd = i10;
-        this.f30437zd = new GestureDetector(context2, new z9(0, this));
-        nr nrVar = nr.f37961g;
+        this.f30403zd = new GestureDetector(context2, new z9(0, this));
+        nr nrVar = nr.f37918g;
         this.Ad = new org.telegram.ui.Components.g5(this, 180L, nrVar, 0);
         this.Bd = new org.telegram.ui.Components.g5(this, 180L, nrVar, 0);
     }
@@ -36,10 +36,10 @@ public final class aa extends r1 {
         org.telegram.ui.Components.g5 g5Var = this.Bd;
         org.telegram.ui.Components.g5 g5Var2 = this.Ad;
         org.telegram.ui.Components.b9 b9Var = this.B7;
-        if (messageObject != null && getMessageObject().f24187e1 >= 0) {
-            int i7 = getMessageObject().f24187e1;
+        if (messageObject != null && getMessageObject().f24151e1 >= 0) {
+            int i7 = getMessageObject().f24151e1;
             if (i7 >= 14) {
-                dp dpVar = np.u1(k10.f24968t0).f25966t4;
+                dp dpVar = np.u1(k10.f24932t0).f25930t4;
                 if (dpVar != null) {
                     cpVar = dpVar.d(i7);
                 } else {
@@ -47,17 +47,17 @@ public final class aa extends r1 {
                 }
                 if (cpVar != null) {
                     int f10 = cpVar.f();
-                    w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29603p8[org.telegram.ui.Components.b9.f(f10)], this.Qb);
-                    w03 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29623q8[org.telegram.ui.Components.b9.f(f10)], this.Qb);
+                    w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29569p8[org.telegram.ui.Components.b9.f(f10)], this.Qb);
+                    w03 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29589q8[org.telegram.ui.Components.b9.f(f10)], this.Qb);
                 } else {
                     long j3 = i7;
-                    w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29603p8[org.telegram.ui.Components.b9.e(j3)], this.Qb);
-                    w03 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29623q8[org.telegram.ui.Components.b9.e(j3)], this.Qb);
+                    w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29569p8[org.telegram.ui.Components.b9.e(j3)], this.Qb);
+                    w03 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29589q8[org.telegram.ui.Components.b9.e(j3)], this.Qb);
                 }
             } else {
                 long j10 = i7;
-                w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29603p8[org.telegram.ui.Components.b9.e(j10)], this.Qb);
-                w03 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29623q8[org.telegram.ui.Components.b9.e(j10)], this.Qb);
+                w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29569p8[org.telegram.ui.Components.b9.e(j10)], this.Qb);
+                w03 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29589q8[org.telegram.ui.Components.b9.e(j10)], this.Qb);
             }
             b9Var.i(g5Var2.a(w02, false), g5Var.a(w03, false));
         } else {
@@ -79,7 +79,7 @@ public final class aa extends r1 {
         if (this.Dd.a()) {
             return super.onTouchEvent(motionEvent);
         }
-        this.f30437zd.onTouchEvent(motionEvent);
+        this.f30403zd.onTouchEvent(motionEvent);
         return true;
     }
 }

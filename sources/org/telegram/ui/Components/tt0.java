@@ -31,46 +31,46 @@ public class tt0 extends FrameLayout implements r0.l {
     public int U;
     public float V;
     public float W;
-    public boolean f40037a;
-    public float f40038a0;
-    public int f40039b;
-    public float f40040b0;
-    public int f40041c;
-    public float f40042c0;
+    public boolean f40016a;
+    public float f40017a0;
+    public int f40018b;
+    public float f40019b0;
+    public int f40020c;
+    public float f40021c0;
     public long d;
-    public boolean f40043d0;
-    public long f40044e;
-    public boolean f40045e0;
-    public long f40046f;
-    public boolean f40047f0;
-    public boolean f40048g0;
+    public boolean f40022d0;
+    public long f40023e;
+    public boolean f40024e0;
+    public long f40025f;
+    public boolean f40026f0;
+    public boolean f40027g0;
     public long h;
-    public boolean f40049h0;
-    public boolean f40050i0;
-    public final jn f40051j0;
-    public final oa f40052k0;
-    public final hl f40053l0;
-    public int f40054n;
-    public int f40055r;
-    public final RectF f40056s;
-    public final bi.e3 f40057w;
-    public final e2.r0 f40058x;
-    public final int[] f40059y;
+    public boolean f40028h0;
+    public boolean f40029i0;
+    public final jn f40030j0;
+    public final oa f40031k0;
+    public final hl f40032l0;
+    public int f40033n;
+    public int f40034r;
+    public final RectF f40035s;
+    public final bi.g3 f40036w;
+    public final e2.r0 f40037x;
+    public final int[] f40038y;
 
     public tt0(Context context) {
         super(context);
-        this.f40056s = new RectF();
-        this.f40058x = new Object();
-        this.f40059y = new int[2];
+        this.f40035s = new RectF();
+        this.f40037x = new Object();
+        this.f40038y = new int[2];
         this.E = new Object();
-        this.f40051j0 = new jn(this, 6);
-        this.f40052k0 = new oa(this, 19);
-        this.f40053l0 = new hl(3, this);
+        this.f40030j0 = new jn(this, 6);
+        this.f40031k0 = new oa(this, 19);
+        this.f40032l0 = new hl(3, this);
         setClipChildren(false);
         setClipToPadding(false);
-        bi.e3 e3Var = new bi.e3(this, context);
-        this.f40057w = e3Var;
-        addView(e3Var, new FrameLayout.LayoutParams(-1, -1));
+        bi.g3 g3Var = new bi.g3(this, context);
+        this.f40036w = g3Var;
+        addView(g3Var, new FrameLayout.LayoutParams(-1, -1));
     }
 
     public static String h(View view) {
@@ -124,10 +124,10 @@ public class tt0 extends FrameLayout implements r0.l {
 
     private void setTabsPinned(boolean z10) {
         String str;
-        if (this.f40047f0 == z10) {
+        if (this.f40026f0 == z10) {
             return;
         }
-        this.f40047f0 = z10;
+        this.f40026f0 = z10;
         if (z10) {
             str = "TABS_PINNED";
         } else {
@@ -141,7 +141,7 @@ public class tt0 extends FrameLayout implements r0.l {
         View view;
         int b10;
         if (recyclerView.getPaddingTop() != i7 || recyclerView.getPaddingBottom() != i10) {
-            v4.p0 layoutManager = recyclerView.getLayoutManager();
+            v4.o0 layoutManager = recyclerView.getLayoutManager();
             int i11 = 0;
             if (layoutManager != null && layoutManager.r() != 0) {
                 view = layoutManager.q(0);
@@ -152,15 +152,15 @@ public class tt0 extends FrameLayout implements r0.l {
                 b10 = -1;
             } else {
                 layoutManager.getClass();
-                b10 = ((v4.q0) view.getLayoutParams()).b();
+                b10 = ((v4.p0) view.getLayoutParams()).b();
             }
             if (view != null) {
                 layoutManager.getClass();
-                i11 = (v4.p0.z(view) - recyclerView.getPaddingTop()) - ((ViewGroup.MarginLayoutParams) ((v4.q0) view.getLayoutParams())).topMargin;
+                i11 = (v4.o0.z(view) - recyclerView.getPaddingTop()) - ((ViewGroup.MarginLayoutParams) ((v4.p0) view.getLayoutParams())).topMargin;
             }
             recyclerView.setPadding(recyclerView.getPaddingLeft(), i7, recyclerView.getPaddingRight(), i10);
-            if (b10 != -1 && (layoutManager instanceof v4.c0)) {
-                ((v4.c0) layoutManager).h1(b10, i11);
+            if (b10 != -1 && (layoutManager instanceof v4.b0)) {
+                ((v4.b0) layoutManager).h1(b10, i11);
             }
         }
     }
@@ -187,14 +187,14 @@ public class tt0 extends FrameLayout implements r0.l {
         float j3;
         View view;
         fk0 fk0Var = this.E;
-        if (!this.f40043d0 && this.N != null) {
+        if (!this.f40022d0 && this.N != null) {
             boolean z10 = true;
-            this.f40043d0 = true;
+            this.f40022d0 = true;
             try {
-                float f10 = this.f40040b0;
+                float f10 = this.f40019b0;
                 C();
                 RecyclerView recyclerView = this.F;
-                if (recyclerView != null && !this.f40050i0) {
+                if (recyclerView != null && !this.f40029i0) {
                     setBleed(recyclerView);
                     RecyclerView recyclerView2 = this.F;
                     int i7 = this.T;
@@ -211,10 +211,10 @@ public class tt0 extends FrameLayout implements r0.l {
                     q();
                     float n10 = n();
                     boolean isInfinite = Float.isInfinite(n10);
-                    bi.e3 e3Var = this.f40057w;
+                    bi.g3 g3Var = this.f40036w;
                     float f11 = 0.0f;
                     if (isInfinite) {
-                        this.f40040b0 = Float.POSITIVE_INFINITY;
+                        this.f40019b0 = Float.POSITIVE_INFINITY;
                         this.J.setVisibility(4);
                         this.K.setVisibility(4);
                         RecyclerView recyclerView3 = this.F;
@@ -222,26 +222,26 @@ public class tt0 extends FrameLayout implements r0.l {
                             recyclerView3.setTranslationY(0.0f);
                         }
                         setTabsPinned(false);
-                        if (f10 != this.f40040b0) {
-                            e3Var.invalidate();
+                        if (f10 != this.f40019b0) {
+                            g3Var.invalidate();
                         }
-                        this.f40043d0 = false;
+                        this.f40022d0 = false;
                         return;
                     }
                     float f12 = this.V;
                     if (n10 > f12 + 0.5f) {
                         f12 = n10;
                     }
-                    this.f40038a0 = f12;
+                    this.f40017a0 = f12;
                     this.J.setVisibility(0);
                     this.K.setVisibility(0);
-                    if (this.f40045e0) {
-                        this.f40040b0 = fk0Var.b();
-                        this.f40042c0 = Math.max(fk0Var.d, fk0Var.b());
+                    if (this.f40024e0) {
+                        this.f40019b0 = fk0Var.b();
+                        this.f40021c0 = Math.max(fk0Var.d, fk0Var.b());
                         View view3 = this.L;
-                        float max = Math.max(0.0f, fk0Var.f35251a - fk0Var.d);
-                        if (!fk0Var.f35255f) {
-                            f11 = fk0Var.b() - fk0Var.f35252b;
+                        float max = Math.max(0.0f, fk0Var.f35230a - fk0Var.d);
+                        if (!fk0Var.f35234f) {
+                            f11 = fk0Var.b() - fk0Var.f35231b;
                         }
                         w(view3, max + f11);
                         w(this.M, Math.max(fk0Var.d, fk0Var.b()) - fk0Var.d);
@@ -252,25 +252,25 @@ public class tt0 extends FrameLayout implements r0.l {
                         } else {
                             j3 = this.P.j(recyclerView4);
                         }
-                        float max2 = this.f40038a0 - Math.max(0.0f, Math.min(j3, Math.max(0.0f, this.V - this.W)));
-                        this.f40040b0 = max2;
-                        this.f40042c0 = Math.max(this.V, max2);
-                        w(this.I.getCurrentView(), Math.max(0.0f, this.f40038a0 - this.V));
+                        float max2 = this.f40017a0 - Math.max(0.0f, Math.min(j3, Math.max(0.0f, this.V - this.W)));
+                        this.f40019b0 = max2;
+                        this.f40021c0 = Math.max(this.V, max2);
+                        w(this.I.getCurrentView(), Math.max(0.0f, this.f40017a0 - this.V));
                     }
-                    this.F.setTranslationY(this.f40040b0 - n10);
-                    this.K.setTranslationY(this.f40042c0 - view.getTop());
-                    if (this.f40042c0 > this.V + 0.5f) {
+                    this.F.setTranslationY(this.f40019b0 - n10);
+                    this.K.setTranslationY(this.f40021c0 - view.getTop());
+                    if (this.f40021c0 > this.V + 0.5f) {
                         z10 = false;
                     }
                     setTabsPinned(z10);
                     this.N.getClass();
-                    if (f10 != this.f40040b0) {
-                        e3Var.invalidate();
+                    if (f10 != this.f40019b0) {
+                        g3Var.invalidate();
                     }
-                    this.f40043d0 = false;
+                    this.f40022d0 = false;
                 }
             } finally {
-                this.f40043d0 = false;
+                this.f40022d0 = false;
             }
         }
     }
@@ -284,7 +284,7 @@ public class tt0 extends FrameLayout implements r0.l {
         float U0 = qt0Var.U0();
         this.N.getClass();
         if (!Float.isNaN(U0) && !Float.isInfinite(U0) && !Float.isNaN(0.0f) && !Float.isInfinite(0.0f) && U0 >= 0.0f) {
-            if (this.f40048g0 && (U0 != this.V || 0.0f != this.W)) {
+            if (this.f40027g0 && (U0 != this.V || 0.0f != this.W)) {
                 float n10 = n();
                 if (!Float.isInfinite(n10)) {
                     float f10 = this.V;
@@ -294,24 +294,24 @@ public class tt0 extends FrameLayout implements r0.l {
                         z10 = true;
                     }
                     if (z10 && U0 != f10) {
-                        this.f40049h0 = true;
+                        this.f40028h0 = true;
                     }
-                    if (this.f40045e0) {
+                    if (this.f40024e0) {
                         fk0 fk0Var = this.E;
-                        float f11 = fk0Var.f35254e;
+                        float f11 = fk0Var.f35233e;
                         if (z10) {
                             n10 = U0;
                         }
                         rt0 rt0Var = this.P;
                         fk0Var.a(n10, rt0Var.j(rt0Var.n(this.L)), U0, 0.0f);
-                        fk0Var.f35254e = Math.max(0.0f, Math.min(1.0f, f11));
-                        this.f40057w.invalidate();
+                        fk0Var.f35233e = Math.max(0.0f, Math.min(1.0f, f11));
+                        this.f40036w.invalidate();
                     }
                 }
             }
             this.V = U0;
             this.W = 0.0f;
-            this.f40048g0 = true;
+            this.f40027g0 = true;
             return;
         }
         throw new IllegalArgumentException("Require finite 0 <= commonHiddenTop <= tabsPinnedTop");
@@ -322,11 +322,11 @@ public class tt0 extends FrameLayout implements r0.l {
         f("ALIGN_BOUNDARY", this.F, 0, 0, true);
         if (this.F != null && (pt0Var = this.O) != null && this.N != null) {
             int b10 = pt0Var.b();
-            v4.p0 layoutManager = this.F.getLayoutManager();
-            if (b10 != -1 && (layoutManager instanceof v4.c0)) {
+            v4.o0 layoutManager = this.F.getLayoutManager();
+            if (b10 != -1 && (layoutManager instanceof v4.b0)) {
                 C();
-                ((v4.c0) layoutManager).h1(b10, (Math.round(this.V) - this.F.getTop()) - this.F.getPaddingTop());
-                this.f40049h0 = true;
+                ((v4.b0) layoutManager).h1(b10, (Math.round(this.V) - this.F.getTop()) - this.F.getPaddingTop());
+                this.f40028h0 = true;
                 requestLayout();
             }
         }
@@ -354,7 +354,7 @@ public class tt0 extends FrameLayout implements r0.l {
 
     public final boolean c() {
         j71 j71Var = this.I;
-        if (j71Var != null && j71Var.getCurrentView() != null && !Float.isInfinite(n()) && this.f40042c0 < getHeight()) {
+        if (j71Var != null && j71Var.getCurrentView() != null && !Float.isInfinite(n()) && this.f40021c0 < getHeight()) {
             return true;
         }
         return false;
@@ -368,9 +368,9 @@ public class tt0 extends FrameLayout implements r0.l {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         String str;
         if (motionEvent.getActionMasked() == 0) {
-            if (this.f40037a) {
-                this.f40054n++;
-                this.f40044e = 0L;
+            if (this.f40016a) {
+                this.f40033n++;
+                this.f40023e = 0L;
                 f("TOUCH_DOWN", null, 0, 0, true);
             }
             A();
@@ -387,12 +387,12 @@ public class tt0 extends FrameLayout implements r0.l {
 
     public final void e(String str, View view, int i7, int i10) {
         String str2;
-        if (this.f40037a) {
+        if (this.f40016a) {
             long uptimeMillis = SystemClock.uptimeMillis();
-            if (uptimeMillis - this.f40044e < 250) {
+            if (uptimeMillis - this.f40023e < 250) {
                 return;
             }
-            this.f40044e = uptimeMillis;
+            this.f40023e = uptimeMillis;
             if (i10 == 0) {
                 str2 = "_TOUCH";
             } else {
@@ -407,12 +407,12 @@ public class tt0 extends FrameLayout implements r0.l {
         View view3;
         long j3;
         int b10;
-        v4.p0 layoutManager;
+        v4.o0 layoutManager;
         int top;
         int height;
         float f10;
         rt0 rt0Var;
-        if (this.f40037a) {
+        if (this.f40016a) {
             long uptimeMillis = SystemClock.uptimeMillis();
             if (!z10) {
                 if (uptimeMillis - this.d < 250) {
@@ -437,9 +437,9 @@ public class tt0 extends FrameLayout implements r0.l {
             StringBuilder sb2 = new StringBuilder("root=");
             sb2.append(Integer.toHexString(System.identityHashCode(this)));
             sb2.append(" gesture=");
-            sb2.append(this.f40054n);
+            sb2.append(this.f40033n);
             sb2.append(" transition=");
-            sb2.append(this.f40055r);
+            sb2.append(this.f40034r);
             sb2.append(" event=");
             sb2.append(str);
             sb2.append(" target=");
@@ -449,26 +449,26 @@ public class tt0 extends FrameLayout implements r0.l {
             sb2.append(" used=");
             sb2.append(i10);
             sb2.append(" transitioning=");
-            sb2.append(this.f40045e0);
+            sb2.append(this.f40024e0);
             sb2.append(" progress=");
-            sb2.append(this.E.f35254e);
+            sb2.append(this.E.f35233e);
             sb2.append(" ageMs=");
             long j10 = 0;
-            if (this.f40045e0) {
-                j3 = uptimeMillis - this.f40046f;
+            if (this.f40024e0) {
+                j3 = uptimeMillis - this.f40025f;
             } else {
                 j3 = 0;
             }
             sb2.append(j3);
             sb2.append(" unchangedMs=");
-            if (this.f40045e0) {
+            if (this.f40024e0) {
                 j10 = uptimeMillis - this.h;
             }
             sb2.append(j10);
             sb2.append(" depth=");
             sb2.append(this.R);
             sb2.append(" updating=");
-            sb2.append(this.f40043d0);
+            sb2.append(this.f40022d0);
             sb2.append(" callback=");
             sb2.append(h(this.Q));
             sb2.append(" common=");
@@ -488,9 +488,9 @@ public class tt0 extends FrameLayout implements r0.l {
             sb2.append(" pin=");
             sb2.append(this.V);
             sb2.append(" tail=");
-            sb2.append(this.f40040b0);
+            sb2.append(this.f40019b0);
             sb2.append(" alignPending=");
-            sb2.append(this.f40049h0);
+            sb2.append(this.f40028h0);
             pt0 pt0Var = this.O;
             int i12 = -1;
             if (pt0Var == null) {
@@ -526,7 +526,7 @@ public class tt0 extends FrameLayout implements r0.l {
             m10.append(" decoratedTop=");
             if (view4 != null) {
                 layoutManager.getClass();
-                i11 = v4.p0.z(view4);
+                i11 = v4.o0.z(view4);
             }
             m10.append(i11);
             m10.append(" adapterPosition=");
@@ -544,9 +544,9 @@ public class tt0 extends FrameLayout implements r0.l {
             }
             m10.append(f10);
             m10.append(" tabsTop=");
-            m10.append(this.f40042c0);
+            m10.append(this.f40021c0);
             m10.append(" draw=");
-            m10.append(this.f40041c);
+            m10.append(this.f40020c);
             sb2.append(m10.toString());
             Log.d("SiblingScroll", sb2.toString());
         }
@@ -562,11 +562,11 @@ public class tt0 extends FrameLayout implements r0.l {
 
     @Override
     public int getNestedScrollAxes() {
-        return this.f40058x.b();
+        return this.f40037x.b();
     }
 
     public float getTabsTop() {
-        return this.f40042c0;
+        return this.f40021c0;
     }
 
     public int getTopBleed() {
@@ -575,16 +575,16 @@ public class tt0 extends FrameLayout implements r0.l {
 
     public final void i(String str) {
         tt0 tt0Var;
-        if (this.f40037a) {
+        if (this.f40016a) {
             tt0Var = this;
             tt0Var.f("TRANSITION_END_".concat(str), null, 0, 0, true);
         } else {
             tt0Var = this;
         }
-        tt0Var.f40045e0 = false;
+        tt0Var.f40024e0 = false;
         tt0Var.M = null;
         tt0Var.L = null;
-        tt0Var.f40057w.invalidate();
+        tt0Var.f40036w.invalidate();
     }
 
     public final boolean j(float r4, float r5) {
@@ -600,11 +600,11 @@ public class tt0 extends FrameLayout implements r0.l {
             str = "NESTED_STOP_NON_TOUCH";
         }
         f(str, view, 0, 0, true);
-        e2.r0 r0Var = this.f40058x;
+        e2.r0 r0Var = this.f40037x;
         if (i7 == 1) {
-            r0Var.f10717b = 0;
+            r0Var.f10680b = 0;
         } else {
-            r0Var.f10716a = 0;
+            r0Var.f10679a = 0;
         }
     }
 
@@ -613,14 +613,14 @@ public class tt0 extends FrameLayout implements r0.l {
         RecyclerView recyclerView;
         boolean z10;
         if (this.R == 0 && (view == (recyclerView = this.F) || view == this.G)) {
-            if (this.f40045e0) {
+            if (this.f40024e0) {
                 e("POST_BLOCKED", view, i12, i13);
                 iArr[1] = iArr[1] + i12;
                 return;
             }
             this.Q = view;
             try {
-                jn jnVar = this.f40051j0;
+                jn jnVar = this.f40030j0;
                 int i14 = 0;
                 if (view == recyclerView) {
                     z10 = true;
@@ -628,13 +628,13 @@ public class tt0 extends FrameLayout implements r0.l {
                     z10 = false;
                 }
                 if (z10 && i10 > 0 && i12 > 0) {
-                    tt0 tt0Var = (tt0) jnVar.f36566b;
+                    tt0 tt0Var = (tt0) jnVar.f36522b;
                     pt0 pt0Var = tt0Var.O;
                     if (pt0Var != null && pt0Var.b() != -1) {
                         i14 = tt0Var.t(tt0Var.G, i12);
                     }
                 } else if (!z10 && i12 < 0) {
-                    tt0 tt0Var2 = (tt0) jnVar.f36566b;
+                    tt0 tt0Var2 = (tt0) jnVar.f36522b;
                     i14 = tt0Var2.t(tt0Var2.F, i12);
                 }
                 iArr[1] = iArr[1] + i14;
@@ -650,7 +650,7 @@ public class tt0 extends FrameLayout implements r0.l {
 
     @Override
     public final void m(View view, int i7, int i10, int i11, int i12, int i13) {
-        int[] iArr = this.f40059y;
+        int[] iArr = this.f40038y;
         iArr[1] = 0;
         iArr[0] = 0;
         l(view, i7, i10, i11, i12, i13, iArr);
@@ -660,10 +660,10 @@ public class tt0 extends FrameLayout implements r0.l {
         View m10;
         RecyclerView recyclerView = this.F;
         if (recyclerView != null && this.O != null && recyclerView.getLayoutManager() != null) {
-            v4.p0 layoutManager = this.F.getLayoutManager();
+            v4.o0 layoutManager = this.F.getLayoutManager();
             int b10 = this.O.b();
             if (b10 != -1 && (m10 = layoutManager.m(b10)) != null) {
-                return (v4.p0.z(m10) + this.F.getTop()) - ((ViewGroup.MarginLayoutParams) ((v4.q0) m10.getLayoutParams())).topMargin;
+                return (v4.o0.z(m10) + this.F.getTop()) - ((ViewGroup.MarginLayoutParams) ((v4.p0) m10.getLayoutParams())).topMargin;
             }
             return Float.POSITIVE_INFINITY;
         }
@@ -683,7 +683,7 @@ public class tt0 extends FrameLayout implements r0.l {
         if (this.R == 0 && z10 && (view2 == this.F || view2 == this.G)) {
             z11 = true;
         }
-        if (this.f40037a) {
+        if (this.f40016a) {
             StringBuilder sb2 = new StringBuilder();
             if (z11) {
                 str = "NESTED_START";
@@ -703,13 +703,13 @@ public class tt0 extends FrameLayout implements r0.l {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        getViewTreeObserver().addOnPreDrawListener(this.f40053l0);
+        getViewTreeObserver().addOnPreDrawListener(this.f40032l0);
     }
 
     @Override
     public void onDetachedFromWindow() {
         A();
-        getViewTreeObserver().removeOnPreDrawListener(this.f40053l0);
+        getViewTreeObserver().removeOnPreDrawListener(this.f40032l0);
         super.onDetachedFromWindow();
     }
 
@@ -764,10 +764,10 @@ public class tt0 extends FrameLayout implements r0.l {
         if (recyclerView2 != this.G) {
             f("ACTIVE_CHANGE", recyclerView2, 0, 0, true);
             RecyclerView recyclerView3 = this.G;
-            oa oaVar = this.f40052k0;
+            oa oaVar = this.f40031k0;
             if (recyclerView3 != null) {
                 recyclerView3.C0();
-                ArrayList arrayList = this.G.f2840x0;
+                ArrayList arrayList = this.G.f2791x0;
                 if (arrayList != null) {
                     arrayList.remove(oaVar);
                 }
@@ -781,11 +781,11 @@ public class tt0 extends FrameLayout implements r0.l {
 
     @Override
     public final void r(View view, View view2, int i7, int i10) {
-        e2.r0 r0Var = this.f40058x;
+        e2.r0 r0Var = this.f40037x;
         if (i10 == 1) {
-            r0Var.f10717b = i7;
+            r0Var.f10680b = i7;
         } else {
-            r0Var.f10716a = i7;
+            r0Var.f10679a = i7;
         }
     }
 
@@ -795,21 +795,21 @@ public class tt0 extends FrameLayout implements r0.l {
     }
 
     public void setCommonInsetsManagedExternally(boolean z10) {
-        if (this.f40050i0 == z10) {
+        if (this.f40029i0 == z10) {
             return;
         }
-        this.f40050i0 = z10;
+        this.f40029i0 = z10;
         B();
         requestLayout();
     }
 
     public void setDebugLoggingEnabled(boolean z10) {
-        this.f40037a = z10;
+        this.f40016a = z10;
         if (z10) {
             this.d = 0L;
-            this.f40044e = 0L;
+            this.f40023e = 0L;
             long uptimeMillis = SystemClock.uptimeMillis();
-            this.f40046f = uptimeMillis;
+            this.f40025f = uptimeMillis;
             this.h = uptimeMillis;
             f("DEBUG_ENABLED", null, 0, 0, true);
         }
@@ -864,19 +864,19 @@ public class tt0 extends FrameLayout implements r0.l {
 
     public final void u(ek0 ek0Var, pt0 pt0Var) {
         RecyclerView recyclerView = this.F;
-        bi.e3 e3Var = this.f40057w;
-        oa oaVar = this.f40052k0;
+        bi.g3 g3Var = this.f40036w;
+        oa oaVar = this.f40031k0;
         if (recyclerView != null) {
             recyclerView.C0();
-            ArrayList arrayList = this.F.f2840x0;
+            ArrayList arrayList = this.F.f2791x0;
             if (arrayList != null) {
                 arrayList.remove(oaVar);
             }
-            e3Var.removeView(this.F);
+            g3Var.removeView(this.F);
         }
         this.F = ek0Var;
         this.O = pt0Var;
-        e3Var.addView(ek0Var, new FrameLayout.LayoutParams(-1, -1));
+        g3Var.addView(ek0Var, new FrameLayout.LayoutParams(-1, -1));
         ek0Var.j(oaVar);
         ek0Var.setNestedScrollingEnabled(true);
         B();

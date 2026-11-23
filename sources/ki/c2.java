@@ -4,22 +4,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c2 implements RequestDelegate {
-    public final int f18638a;
-    public final s2 f18639b;
+    public final int f18604a;
+    public final s2 f18605b;
 
     public c2(s2 s2Var, int i7) {
-        this.f18638a = i7;
-        this.f18639b = s2Var;
+        this.f18604a = i7;
+        this.f18605b = s2Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f18638a) {
+        switch (this.f18604a) {
             case 0:
-                org.telegram.messenger.g0.g3(new ji.i(10, this.f18639b, tL_error));
+                org.telegram.messenger.g0.g3(new kg.i0(8, this.f18605b, tL_error));
                 return;
             case 1:
-                final s2 s2Var = this.f18639b;
+                final s2 s2Var = this.f18605b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -30,7 +30,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var2.getClass();
                                     return;
                                 }
-                                e4 e4Var = s2Var2.f18963x0;
+                                e4 e4Var = s2Var2.f18929x0;
                                 if (e4Var != null) {
                                     e4Var.a(tLObject);
                                     s2Var2.s();
@@ -43,7 +43,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var3.getClass();
                                     return;
                                 }
-                                e4 e4Var2 = s2Var3.f18963x0;
+                                e4 e4Var2 = s2Var3.f18929x0;
                                 if (e4Var2 != null) {
                                     e4Var2.a(tLObject);
                                     s2Var3.s();
@@ -56,7 +56,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var4.getClass();
                                     return;
                                 }
-                                e4 e4Var3 = s2Var4.f18963x0;
+                                e4 e4Var3 = s2Var4.f18929x0;
                                 if (e4Var3 != null) {
                                     e4Var3.a(tLObject);
                                     s2Var4.s();
@@ -69,7 +69,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var5.getClass();
                                     return;
                                 }
-                                e4 e4Var4 = s2Var5.f18963x0;
+                                e4 e4Var4 = s2Var5.f18929x0;
                                 if (e4Var4 != null) {
                                     e4Var4.a(tLObject);
                                     s2Var5.s();
@@ -82,7 +82,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var6.getClass();
                                     return;
                                 }
-                                e4 e4Var5 = s2Var6.f18963x0;
+                                e4 e4Var5 = s2Var6.f18929x0;
                                 if (e4Var5 != null) {
                                     e4Var5.a(tLObject);
                                     s2Var6.s();
@@ -94,7 +94,7 @@ public final class c2 implements RequestDelegate {
                 });
                 return;
             case 2:
-                final s2 s2Var2 = this.f18639b;
+                final s2 s2Var2 = this.f18605b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -105,7 +105,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var22.getClass();
                                     return;
                                 }
-                                e4 e4Var = s2Var22.f18963x0;
+                                e4 e4Var = s2Var22.f18929x0;
                                 if (e4Var != null) {
                                     e4Var.a(tLObject);
                                     s2Var22.s();
@@ -118,7 +118,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var3.getClass();
                                     return;
                                 }
-                                e4 e4Var2 = s2Var3.f18963x0;
+                                e4 e4Var2 = s2Var3.f18929x0;
                                 if (e4Var2 != null) {
                                     e4Var2.a(tLObject);
                                     s2Var3.s();
@@ -131,7 +131,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var4.getClass();
                                     return;
                                 }
-                                e4 e4Var3 = s2Var4.f18963x0;
+                                e4 e4Var3 = s2Var4.f18929x0;
                                 if (e4Var3 != null) {
                                     e4Var3.a(tLObject);
                                     s2Var4.s();
@@ -144,7 +144,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var5.getClass();
                                     return;
                                 }
-                                e4 e4Var4 = s2Var5.f18963x0;
+                                e4 e4Var4 = s2Var5.f18929x0;
                                 if (e4Var4 != null) {
                                     e4Var4.a(tLObject);
                                     s2Var5.s();
@@ -157,7 +157,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var6.getClass();
                                     return;
                                 }
-                                e4 e4Var5 = s2Var6.f18963x0;
+                                e4 e4Var5 = s2Var6.f18929x0;
                                 if (e4Var5 != null) {
                                     e4Var5.a(tLObject);
                                     s2Var6.s();
@@ -169,7 +169,7 @@ public final class c2 implements RequestDelegate {
                 });
                 return;
             case 3:
-                final s2 s2Var3 = this.f18639b;
+                final s2 s2Var3 = this.f18605b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -180,7 +180,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var22.getClass();
                                     return;
                                 }
-                                e4 e4Var = s2Var22.f18963x0;
+                                e4 e4Var = s2Var22.f18929x0;
                                 if (e4Var != null) {
                                     e4Var.a(tLObject);
                                     s2Var22.s();
@@ -193,7 +193,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var32.getClass();
                                     return;
                                 }
-                                e4 e4Var2 = s2Var32.f18963x0;
+                                e4 e4Var2 = s2Var32.f18929x0;
                                 if (e4Var2 != null) {
                                     e4Var2.a(tLObject);
                                     s2Var32.s();
@@ -206,7 +206,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var4.getClass();
                                     return;
                                 }
-                                e4 e4Var3 = s2Var4.f18963x0;
+                                e4 e4Var3 = s2Var4.f18929x0;
                                 if (e4Var3 != null) {
                                     e4Var3.a(tLObject);
                                     s2Var4.s();
@@ -219,7 +219,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var5.getClass();
                                     return;
                                 }
-                                e4 e4Var4 = s2Var5.f18963x0;
+                                e4 e4Var4 = s2Var5.f18929x0;
                                 if (e4Var4 != null) {
                                     e4Var4.a(tLObject);
                                     s2Var5.s();
@@ -232,7 +232,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var6.getClass();
                                     return;
                                 }
-                                e4 e4Var5 = s2Var6.f18963x0;
+                                e4 e4Var5 = s2Var6.f18929x0;
                                 if (e4Var5 != null) {
                                     e4Var5.a(tLObject);
                                     s2Var6.s();
@@ -244,7 +244,7 @@ public final class c2 implements RequestDelegate {
                 });
                 return;
             case 4:
-                final s2 s2Var4 = this.f18639b;
+                final s2 s2Var4 = this.f18605b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -255,7 +255,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var22.getClass();
                                     return;
                                 }
-                                e4 e4Var = s2Var22.f18963x0;
+                                e4 e4Var = s2Var22.f18929x0;
                                 if (e4Var != null) {
                                     e4Var.a(tLObject);
                                     s2Var22.s();
@@ -268,7 +268,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var32.getClass();
                                     return;
                                 }
-                                e4 e4Var2 = s2Var32.f18963x0;
+                                e4 e4Var2 = s2Var32.f18929x0;
                                 if (e4Var2 != null) {
                                     e4Var2.a(tLObject);
                                     s2Var32.s();
@@ -281,7 +281,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var42.getClass();
                                     return;
                                 }
-                                e4 e4Var3 = s2Var42.f18963x0;
+                                e4 e4Var3 = s2Var42.f18929x0;
                                 if (e4Var3 != null) {
                                     e4Var3.a(tLObject);
                                     s2Var42.s();
@@ -294,7 +294,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var5.getClass();
                                     return;
                                 }
-                                e4 e4Var4 = s2Var5.f18963x0;
+                                e4 e4Var4 = s2Var5.f18929x0;
                                 if (e4Var4 != null) {
                                     e4Var4.a(tLObject);
                                     s2Var5.s();
@@ -307,7 +307,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var6.getClass();
                                     return;
                                 }
-                                e4 e4Var5 = s2Var6.f18963x0;
+                                e4 e4Var5 = s2Var6.f18929x0;
                                 if (e4Var5 != null) {
                                     e4Var5.a(tLObject);
                                     s2Var6.s();
@@ -319,7 +319,7 @@ public final class c2 implements RequestDelegate {
                 });
                 return;
             default:
-                final s2 s2Var5 = this.f18639b;
+                final s2 s2Var5 = this.f18605b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -330,7 +330,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var22.getClass();
                                     return;
                                 }
-                                e4 e4Var = s2Var22.f18963x0;
+                                e4 e4Var = s2Var22.f18929x0;
                                 if (e4Var != null) {
                                     e4Var.a(tLObject);
                                     s2Var22.s();
@@ -343,7 +343,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var32.getClass();
                                     return;
                                 }
-                                e4 e4Var2 = s2Var32.f18963x0;
+                                e4 e4Var2 = s2Var32.f18929x0;
                                 if (e4Var2 != null) {
                                     e4Var2.a(tLObject);
                                     s2Var32.s();
@@ -356,7 +356,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var42.getClass();
                                     return;
                                 }
-                                e4 e4Var3 = s2Var42.f18963x0;
+                                e4 e4Var3 = s2Var42.f18929x0;
                                 if (e4Var3 != null) {
                                     e4Var3.a(tLObject);
                                     s2Var42.s();
@@ -369,7 +369,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var52.getClass();
                                     return;
                                 }
-                                e4 e4Var4 = s2Var52.f18963x0;
+                                e4 e4Var4 = s2Var52.f18929x0;
                                 if (e4Var4 != null) {
                                     e4Var4.a(tLObject);
                                     s2Var52.s();
@@ -382,7 +382,7 @@ public final class c2 implements RequestDelegate {
                                     s2Var6.getClass();
                                     return;
                                 }
-                                e4 e4Var5 = s2Var6.f18963x0;
+                                e4 e4Var5 = s2Var6.f18929x0;
                                 if (e4Var5 != null) {
                                     e4Var5.a(tLObject);
                                     s2Var6.s();

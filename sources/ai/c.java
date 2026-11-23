@@ -1,30 +1,24 @@
 package ai;
 
-import android.speech.RecognitionSupport;
-import android.speech.RecognitionSupportCallback;
-import android.util.Log;
-public final class c implements RecognitionSupportCallback {
-    public final boolean[] f1136a;
-    public final b f1137b;
+import org.telegram.messenger.hd;
+import org.telegram.tgnet.tl.TL_aicompose;
+public final class c {
+    public final String f1142a;
+    public final long f1143b;
+    public final TL_aicompose.AiComposeTone f1144c;
+    public final boolean d;
 
-    public c(boolean[] zArr, b bVar) {
-        this.f1136a = zArr;
-        this.f1137b = bVar;
+    public c(String str, long j3, TL_aicompose.AiComposeTone aiComposeTone, boolean z10) {
+        this.f1142a = str;
+        this.f1143b = j3;
+        this.f1144c = aiComposeTone;
+        this.d = z10;
     }
 
-    public final void onError(int i7) {
-        Log.d("Dictation", "support probe: error " + i7);
-        if (i7 == 14) {
-            this.f1136a[0] = true;
+    public final String a() {
+        if (this.d) {
+            return hd.N0(2131745060, null);
         }
-        this.f1137b.run();
-    }
-
-    public final void onSupportResult(RecognitionSupport recognitionSupport) {
-        Log.d("Dictation", "support probe: installed=" + recognitionSupport.getInstalledOnDeviceLanguages().size() + " pending=" + recognitionSupport.getPendingOnDeviceLanguages().size() + " onDevice=" + recognitionSupport.getSupportedOnDeviceLanguages().size() + " online=" + recognitionSupport.getOnlineLanguages().size());
-        if (!recognitionSupport.getInstalledOnDeviceLanguages().isEmpty() || !recognitionSupport.getPendingOnDeviceLanguages().isEmpty() || !recognitionSupport.getSupportedOnDeviceLanguages().isEmpty() || !recognitionSupport.getOnlineLanguages().isEmpty()) {
-            this.f1136a[0] = true;
-        }
-        this.f1137b.run();
+        return this.f1142a;
     }
 }

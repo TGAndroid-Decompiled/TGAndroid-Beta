@@ -2,8 +2,8 @@ package a3;
 
 import aa.c0;
 import aa.f0;
-import ai.n1;
-import ai.p0;
+import ai.h1;
+import ai.k0;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,14 +11,14 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import e2.m1;
-import fi.l4;
+import fi.a6;
 import h9.i0;
 import h9.t1;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import oi.q3;
+import oi.p3;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.np;
@@ -36,7 +36,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.nw0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bn;
-public final class g implements p, ai.f, l5.g, pr, q1, yo {
+public final class g implements p, ai.b, l5.g, pr, q1, yo {
     public final int f83a;
     public final boolean f84b;
     public final Object f85c;
@@ -63,7 +63,7 @@ public final class g implements p, ai.f, l5.g, pr, q1, yo {
         if (this.f84b) {
             boolean z10 = true;
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            new Thread(new l4(29, bVar, countDownLatch)).start();
+            new Thread(new a6(27, bVar, countDownLatch)).start();
             TimeUnit timeUnit = TimeUnit.SECONDS;
             ExecutorService executorService = f0.f808a;
             boolean z11 = false;
@@ -101,33 +101,33 @@ public final class g implements p, ai.f, l5.g, pr, q1, yo {
     @Override
     public void c(TLRPC.TL_error tL_error, String str) {
         boolean z10;
-        p0 p0Var = (p0) this.f85c;
-        ai.g gVar = (ai.g) this.d;
-        ai.g gVar2 = (ai.g) this.f86e;
-        if (p0Var.f1405r != 4) {
+        k0 k0Var = (k0) this.f85c;
+        ai.c cVar = (ai.c) this.d;
+        ai.c cVar2 = (ai.c) this.f86e;
+        if (k0Var.f1335r != 4) {
             return;
         }
         if (str == null) {
-            p0Var.f1405r = 3;
-            p0Var.K = gVar;
-            p0Var.F.f(false);
-            p0Var.f(0L, 240L);
+            k0Var.f1335r = 3;
+            k0Var.K = cVar;
+            k0Var.F.f(false);
+            k0Var.f(0L, 240L);
             if (!this.f84b) {
-                p0Var.J = null;
+                k0Var.J = null;
             }
-            p0Var.f1412w.d(gVar.a(), false);
-            n1 n1Var = p0Var.f1412w;
-            if (p0Var.J != null) {
+            k0Var.f1342w.d(cVar.a(), false);
+            h1 h1Var = k0Var.f1342w;
+            if (k0Var.J != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            n1Var.setRevert(z10);
-            p0Var.D(false);
-            p0.G(tL_error);
+            h1Var.setRevert(z10);
+            k0Var.D(false);
+            k0.G(tL_error);
             return;
         }
-        g0.h3(new aa.r(p0Var, str, gVar2, 4), Math.max(0L, (p0Var.V + 1200) - SystemClock.uptimeMillis()));
+        g0.h3(new aa.r(k0Var, str, cVar2, 4), Math.max(0L, (k0Var.V + 1200) - SystemClock.uptimeMillis()));
     }
 
     @Override
@@ -143,7 +143,7 @@ public final class g implements p, ai.f, l5.g, pr, q1, yo {
         e eVar = new e(sVar, nVar);
         int i10 = ((int[]) this.f86e)[i7];
         h9.f0 p10 = i0.p();
-        for (int i11 = 0; i11 < m1Var.f10556a; i11++) {
+        for (int i11 = 0; i11 < m1Var.f10519a; i11++) {
             p10.c(new i(i7, m1Var, i11, nVar, iArr[i11], this.f84b, eVar, i10));
         }
         return p10.f();
@@ -160,15 +160,15 @@ public final class g implements p, ai.f, l5.g, pr, q1, yo {
                 boolean z10 = this.f84b;
                 c0 c0Var = (c0) this.f85c;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                q3 q3Var = (q3) this.f86e;
-                int i10 = q3Var.f22336b;
+                p3 p3Var = (p3) this.f86e;
+                int i10 = p3Var.f22269b;
                 if (!z10) {
                     c0Var.run();
                     return;
                 }
                 String trim = editTextBoldCursor.getText().toString().trim();
                 if (!TextUtils.isEmpty(trim)) {
-                    TL_iv.pageBlockButtonRow d = q3Var.d();
+                    TL_iv.pageBlockButtonRow d = p3Var.d();
                     TL_keyboard.InlineButtonType inlineButtonType2 = null;
                     if (d != null && i10 >= 0 && i10 < d.buttons.size()) {
                         pageButton = d.buttons.get(i10);
@@ -188,7 +188,7 @@ public final class g implements p, ai.f, l5.g, pr, q1, yo {
                     }
                     if (j3 > 0) {
                         TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
-                        TL_iv.pageBlockButtonRow d2 = q3Var.d();
+                        TL_iv.pageBlockButtonRow d2 = p3Var.d();
                         if (d2 != null && i10 >= 0 && i10 < d2.buttons.size()) {
                             pageButton2 = d2.buttons.get(i10);
                         } else {
@@ -201,7 +201,7 @@ public final class g implements p, ai.f, l5.g, pr, q1, yo {
                             j10 = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType2).user_id;
                         }
                         tL_inlineButtonTypeUserProfile.user_id = j10;
-                        q3Var.a(trim, tL_inlineButtonTypeUserProfile);
+                        p3Var.a(trim, tL_inlineButtonTypeUserProfile);
                         return;
                     }
                     return;
@@ -223,7 +223,7 @@ public final class g implements p, ai.f, l5.g, pr, q1, yo {
                 if (z12) {
                     try {
                         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.parse("package:" + t0.f26931b.getPackageName()));
+                        intent.setData(Uri.parse("package:" + t0.f26895b.getPackageName()));
                         context.startActivity(intent);
                         return;
                     } catch (Exception e10) {
@@ -268,8 +268,8 @@ public final class g implements p, ai.f, l5.g, pr, q1, yo {
         if (j3 == 0) {
             return;
         }
-        gVar.f19960b = -j3;
-        gVar.f19961c = gVar.getMessagesController().O0(Long.valueOf(j3));
+        gVar.f19926b = -j3;
+        gVar.f19927c = gVar.getMessagesController().O0(Long.valueOf(j3));
         gVar.a0(str, this.f84b);
     }
 

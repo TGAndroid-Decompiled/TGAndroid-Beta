@@ -3,29 +3,29 @@ package jg;
 import org.telegram.ui.ju;
 import org.telegram.ui.tz;
 public final class v implements Runnable {
-    public final int f17715a;
-    public final h0 f17716b;
+    public final int f17681a;
+    public final h0 f17682b;
 
     public v(h0 h0Var, int i7) {
-        this.f17715a = i7;
-        this.f17716b = h0Var;
+        this.f17681a = i7;
+        this.f17682b = h0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f17715a) {
+        switch (this.f17681a) {
             case 0:
-                h0 h0Var = this.f17716b;
+                h0 h0Var = this.f17682b;
                 tz tzVar = h0Var.B0;
                 if (tzVar != null) {
-                    ((ju) tzVar).j(false, null, h0Var.f17527z0, h0Var.A0);
+                    ((ju) tzVar).j(false, null, h0Var.f17493z0, h0Var.A0);
                     return;
                 }
                 return;
             default:
                 e0 e0Var = e0.All;
-                h0 h0Var2 = this.f17716b;
-                h0Var2.f17496c = e0Var;
+                h0 h0Var2 = this.f17682b;
+                h0Var2.f17462c = e0Var;
                 h0Var2.J.clear();
                 int i7 = h0Var2.G0;
                 if (i7 >= 0 && i7 < h0Var2.b()) {

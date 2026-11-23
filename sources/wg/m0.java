@@ -19,18 +19,17 @@ import org.telegram.ui.Cells.o4;
 import org.telegram.ui.Cells.z6;
 import org.telegram.ui.Components.dk0;
 import org.telegram.ui.Components.m80;
-import org.telegram.ui.jw0;
-import v4.f1;
+import org.telegram.ui.zn0;
 public final class m0 extends dk0 {
-    public final q0 f59838c;
+    public final q0 f59803c;
 
     public m0(q0 q0Var) {
-        this.f59838c = q0Var;
+        this.f59803c = q0Var;
     }
 
     @Override
-    public final boolean D(f1 f1Var) {
-        if (f1Var.f59169f == 3) {
+    public final boolean D(v4.e1 e1Var) {
+        if (e1Var.f59115f == 3) {
             return true;
         }
         return false;
@@ -38,7 +37,7 @@ public final class m0 extends dk0 {
 
     @Override
     public final int b() {
-        return this.f59838c.U1.size() + 3;
+        return this.f59803c.U1.size() + 3;
     }
 
     @Override
@@ -57,11 +56,11 @@ public final class m0 extends dk0 {
     }
 
     @Override
-    public final void t(f1 f1Var, int i7) {
+    public final void t(v4.e1 e1Var, int i7) {
         String str;
-        int i10 = f1Var.f59169f;
-        View view = f1Var.f59165a;
-        q0 q0Var = this.f59838c;
+        int i10 = e1Var.f59115f;
+        View view = e1Var.f59111a;
+        q0 q0Var = this.f59803c;
         if (i10 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) q0Var.U1.get(i7 - 3);
             ah.r rVar = (ah.r) view;
@@ -76,9 +75,9 @@ public final class m0 extends dk0 {
             p0 p0Var = (p0) view;
             q0Var.X1 = p0Var;
             TLRPC.Chat chat = q0Var.V1;
-            m80 m80Var = p0Var.f59856e;
+            m80 m80Var = p0Var.f59821e;
             try {
-                int i11 = (int) np.u1(k10.f24968t0).f25954s0;
+                int i11 = (int) np.u1(k10.f24932t0).f25918s0;
                 if (chat == null) {
                     str = "";
                 } else {
@@ -89,7 +88,7 @@ public final class m0 extends dk0 {
                 int indexOf = TextUtils.indexOf(W2, "%3$s");
                 W2.replace(indexOf, indexOf + 4, (CharSequence) R2);
                 m80Var.setText(W2, TextView.BufferType.EDITABLE);
-                m80Var.post(new jw0(p0Var, indexOf, 16));
+                m80Var.post(new zn0(p0Var, indexOf, 18));
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
@@ -97,10 +96,10 @@ public final class m0 extends dk0 {
     }
 
     @Override
-    public final f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View view;
         Context context = viewGroup.getContext();
-        q0 q0Var = this.f59838c;
+        q0 q0Var = this.f59803c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -113,7 +112,7 @@ public final class m0 extends dk0 {
                     view = new o4(context, 22);
                 }
             } else {
-                int i10 = m6.f29324a7;
+                int i10 = m6.f29290a7;
                 view = new z6(context, m6.x0(null, i10, false), 0);
                 t6.h(i10, view, null);
             }

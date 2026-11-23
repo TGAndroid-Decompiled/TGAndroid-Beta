@@ -1,22 +1,22 @@
 package h9;
 
-import a8.la;
+import a8.ma;
 import j$.util.Objects;
 import java.util.AbstractMap;
 public final class u1 extends i0 {
-    public final v1 f14106c;
+    public final v1 f14069c;
 
     public u1(v1 v1Var) {
-        this.f14106c = v1Var;
+        this.f14069c = v1Var;
     }
 
     @Override
     public final Object get(int i7) {
-        v1 v1Var = this.f14106c;
-        la.j(i7, v1Var.h);
-        Object[] objArr = v1Var.f14111e;
+        v1 v1Var = this.f14069c;
+        ma.j(i7, v1Var.h);
+        Object[] objArr = v1Var.f14074e;
         int i10 = i7 * 2;
-        int i11 = v1Var.f14112f;
+        int i11 = v1Var.f14075f;
         Object obj = objArr[i10 + i11];
         Objects.requireNonNull(obj);
         Object obj2 = objArr[i10 + (i11 ^ 1)];
@@ -31,6 +31,6 @@ public final class u1 extends i0 {
 
     @Override
     public final int size() {
-        return this.f14106c.h;
+        return this.f14069c.h;
     }
 }

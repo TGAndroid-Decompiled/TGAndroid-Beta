@@ -7,44 +7,44 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class t5 extends FrameLayout {
-    public final q1 f9828a;
-    public final s5 f9829b;
-    public final s5 f9830c;
+    public final q1 f9790a;
+    public final s5 f9791b;
+    public final s5 f9792c;
     public final s5 d;
-    public boolean f9831e;
-    public final h6.m f9832f;
+    public boolean f9793e;
+    public final h6.m f9794f;
     public final RectF h;
 
     public t5(Context context, org.telegram.ui.ActionBar.h6 h6Var, q1 q1Var) {
         super(context);
-        this.f9832f = new h6.m(29);
+        this.f9794f = new h6.m(29);
         this.h = new RectF();
-        this.f9828a = q1Var;
+        this.f9790a = q1Var;
         s5 s5Var = new s5(context, h6Var);
-        this.f9829b = s5Var;
+        this.f9791b = s5Var;
         s5 s5Var2 = new s5(context, h6Var);
-        this.f9830c = s5Var2;
+        this.f9792c = s5Var2;
         s5 s5Var3 = new s5(context, h6Var);
         this.d = s5Var3;
-        addView(s5Var, c8.ma.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
-        addView(s5Var2, c8.ma.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
-        addView(s5Var3, c8.ma.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
+        addView(s5Var, c8.na.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
+        addView(s5Var2, c8.na.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
+        addView(s5Var3, c8.na.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
     }
 
     public final void a(j5 j5Var, float f10, boolean z10, j5 j5Var2, float f11, boolean z11, j5 j5Var3, float f12, boolean z12) {
-        q1 q1Var = this.f9828a;
-        s5 s5Var = this.f9829b;
+        q1 q1Var = this.f9790a;
+        s5 s5Var = this.f9791b;
         if (j5Var != null) {
             if (z10) {
                 f10 = Math.max(0.5f, f10);
             }
             s5Var.setVisibility(0);
-            s5Var.f(j5Var.f9103a, j5Var.f9104b, q1Var);
+            s5Var.f(j5Var.f9068a, j5Var.f9069b, q1Var);
             s5Var.setTranslationY(org.telegram.messenger.g0.L(36.0f) * ((f10 - 0.5f) / 1.5f));
         } else {
             s5Var.setVisibility(4);
         }
-        s5 s5Var2 = this.f9830c;
+        s5 s5Var2 = this.f9792c;
         if (j5Var2 != null) {
             float f13 = f11;
             if (z11) {
@@ -52,10 +52,10 @@ public final class t5 extends FrameLayout {
             }
             float f14 = (f13 - 0.5f) / 1.5f;
             s5Var2.setVisibility(0);
-            s5Var2.f(j5Var2.f9103a, j5Var2.f9104b, q1Var);
+            s5Var2.f(j5Var2.f9068a, j5Var2.f9069b, q1Var);
             s5Var2.setTranslationY(org.telegram.messenger.g0.L(36.0f) * f14);
-            if (z11 && f14 <= 0.0f && !this.f9831e) {
-                this.f9831e = true;
+            if (z11 && f14 <= 0.0f && !this.f9793e) {
+                this.f9793e = true;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new ah.g(s5Var2, 8));
                 ofFloat.setDuration(180L);
@@ -71,7 +71,7 @@ public final class t5 extends FrameLayout {
                 f15 = Math.max(0.5f, f15);
             }
             s5Var3.setVisibility(0);
-            s5Var3.f(j5Var3.f9103a, j5Var3.f9104b, q1Var);
+            s5Var3.f(j5Var3.f9068a, j5Var3.f9069b, q1Var);
             s5Var3.setTranslationY(org.telegram.messenger.g0.L(36.0f) * ((f15 - 0.5f) / 1.5f));
             return;
         }
@@ -85,7 +85,7 @@ public final class t5 extends FrameLayout {
         canvas.save();
         RectF rectF = this.h;
         rectF.set(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.L(8.0f));
-        h6.m mVar = this.f9832f;
+        h6.m mVar = this.f9794f;
         mVar.n(canvas, rectF, 1, 1.0f);
         rectF.set(0.0f, getHeight() - org.telegram.messenger.g0.L(8.0f), getWidth(), getHeight());
         mVar.n(canvas, rectF, 3, 1.0f);

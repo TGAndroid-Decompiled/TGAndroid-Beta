@@ -35,7 +35,7 @@ public abstract class kt {
     }
 
     public static void b(final int i7, final Context context, final r10 r10Var) {
-        if (!s2.f26736i) {
+        if (!s2.f26700i) {
             return;
         }
         kotlin.jvm.internal.j.e(context, "context");

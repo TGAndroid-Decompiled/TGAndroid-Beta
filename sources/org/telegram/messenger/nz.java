@@ -18,18 +18,18 @@ import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 public abstract class nz {
-    public static final double[] f26064a = new double[128];
-    public static final Pattern f26065b;
+    public static final double[] f26028a = new double[128];
+    public static final Pattern f26029b;
 
     static {
         int i7 = 0;
         while (true) {
-            double[] dArr = f26064a;
+            double[] dArr = f26028a;
             if (i7 < dArr.length) {
                 dArr[i7] = Math.pow(10.0d, i7);
                 i7++;
             } else {
-                f26065b = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
+                f26029b = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
                 return;
             }
         }
@@ -66,12 +66,12 @@ public abstract class nz {
 
     public static Bitmap c(float f10, int i7, int i10, int i11, int i12, int i13) {
         try {
-            InputStream openRawResource = t0.f26931b.getResources().openRawResource(i7);
+            InputStream openRawResource = t0.f26895b.getResources().openRawResource(i7);
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             kz kzVar = new kz(i10, i11, Integer.valueOf(i12), false, f10, i13);
             xMLReader.setContentHandler(kzVar);
             xMLReader.parse(new InputSource(openRawResource));
-            Bitmap bitmap = kzVar.f25161b;
+            Bitmap bitmap = kzVar.f25125b;
             if (openRawResource != null) {
                 openRawResource.close();
             }
@@ -92,7 +92,7 @@ public abstract class nz {
             kz kzVar = new kz(i7, i10, null, false);
             xMLReader.setContentHandler(kzVar);
             xMLReader.parse(new InputSource(new StringReader(str)));
-            return kzVar.f25161b;
+            return kzVar.f25125b;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -107,7 +107,7 @@ public abstract class nz {
             kzVar.F = true;
             xMLReader.setContentHandler(kzVar);
             xMLReader.parse(new InputSource(fileInputStream));
-            Bitmap bitmap = kzVar.f25161b;
+            Bitmap bitmap = kzVar.f25125b;
             fileInputStream.close();
             return bitmap;
         } catch (Exception e10) {
@@ -122,7 +122,7 @@ public abstract class nz {
             kz kzVar = new kz(i7, i10, null, false);
             xMLReader.setContentHandler(kzVar);
             xMLReader.parse(new InputSource(filterInputStream));
-            return kzVar.f25161b;
+            return kzVar.f25125b;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -134,8 +134,8 @@ public abstract class nz {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             kz kzVar = new kz(0, 0, num, true);
             xMLReader.setContentHandler(kzVar);
-            xMLReader.parse(new InputSource(t0.f26931b.getResources().openRawResource(i7)));
-            return kzVar.f25162c;
+            xMLReader.parse(new InputSource(t0.f26895b.getResources().openRawResource(i7)));
+            return kzVar.f25126c;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -148,7 +148,7 @@ public abstract class nz {
             kz kzVar = new kz(0, 0, null, true);
             xMLReader.setContentHandler(kzVar);
             xMLReader.parse(new InputSource(new StringReader(str)));
-            return kzVar.f25162c;
+            return kzVar.f25126c;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -158,10 +158,10 @@ public abstract class nz {
     public static mz j(int i7, int i10, Path path) {
         try {
             mz mzVar = new mz();
-            mzVar.f25689a.add(path);
-            mzVar.f25690b.put(path, new Paint(1));
-            mzVar.f25692e = i7;
-            mzVar.f25693f = i10;
+            mzVar.f25653a.add(path);
+            mzVar.f25654b.put(path, new Paint(1));
+            mzVar.f25656e = i7;
+            mzVar.f25657f = i10;
             return mzVar;
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -302,7 +302,7 @@ public abstract class nz {
             if (trim.isEmpty()) {
                 list = Collections.EMPTY_LIST;
             } else {
-                String[] split = f26065b.split(trim);
+                String[] split = f26029b.split(trim);
                 ArrayList arrayList = new ArrayList(split.length);
                 for (String str2 : split) {
                     String trim2 = str2.trim();
@@ -316,14 +316,14 @@ public abstract class nz {
         for (String str3 : list) {
             float f10 = 0.0f;
             if (str3.startsWith("matrix(")) {
-                ArrayList arrayList2 = n(str3.substring(7)).f24335a;
+                ArrayList arrayList2 = n(str3.substring(7)).f24299a;
                 if (arrayList2.size() == 6) {
                     matrix = new Matrix();
                     matrix.setValues(new float[]{((Float) arrayList2.get(0)).floatValue(), ((Float) arrayList2.get(2)).floatValue(), ((Float) arrayList2.get(4)).floatValue(), ((Float) arrayList2.get(1)).floatValue(), ((Float) arrayList2.get(3)).floatValue(), ((Float) arrayList2.get(5)).floatValue(), 0.0f, 0.0f, 1.0f});
                 }
                 matrix = null;
             } else if (str3.startsWith("translate(")) {
-                ArrayList arrayList3 = n(str3.substring(10)).f24335a;
+                ArrayList arrayList3 = n(str3.substring(10)).f24299a;
                 if (arrayList3.size() > 0) {
                     float floatValue = ((Float) arrayList3.get(0)).floatValue();
                     if (arrayList3.size() > 1) {
@@ -336,7 +336,7 @@ public abstract class nz {
                 matrix = null;
             } else {
                 if (str3.startsWith("scale(")) {
-                    ArrayList arrayList4 = n(str3.substring(6)).f24335a;
+                    ArrayList arrayList4 = n(str3.substring(6)).f24299a;
                     if (arrayList4.size() > 0) {
                         float floatValue2 = ((Float) arrayList4.get(0)).floatValue();
                         if (arrayList4.size() > 1) {
@@ -347,21 +347,21 @@ public abstract class nz {
                         matrix = matrix2;
                     }
                 } else if (str3.startsWith("skewX(")) {
-                    ArrayList arrayList5 = n(str3.substring(6)).f24335a;
+                    ArrayList arrayList5 = n(str3.substring(6)).f24299a;
                     if (arrayList5.size() > 0) {
                         float floatValue3 = ((Float) arrayList5.get(0)).floatValue();
                         matrix = new Matrix();
                         matrix.postSkew((float) Math.tan(floatValue3), 0.0f);
                     }
                 } else if (str3.startsWith("skewY(")) {
-                    ArrayList arrayList6 = n(str3.substring(6)).f24335a;
+                    ArrayList arrayList6 = n(str3.substring(6)).f24299a;
                     if (arrayList6.size() > 0) {
                         float floatValue4 = ((Float) arrayList6.get(0)).floatValue();
                         matrix = new Matrix();
                         matrix.postSkew(0.0f, (float) Math.tan(floatValue4));
                     }
                 } else if (str3.startsWith("rotate(")) {
-                    ArrayList arrayList7 = n(str3.substring(7)).f24335a;
+                    ArrayList arrayList7 = n(str3.substring(7)).f24299a;
                     if (arrayList7.size() > 0) {
                         matrix = new Matrix();
                         float floatValue5 = ((Float) arrayList7.get(0)).floatValue();

@@ -3,29 +3,29 @@ package org.telegram.ui.Components;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
 public final class go implements org.telegram.messenger.kc {
-    public boolean f35642a;
-    public final kg.g f35643b;
-    public final io f35644c;
+    public boolean f35602a;
+    public final kg.g f35603b;
+    public final io f35604c;
 
     public go(kg.i iVar, kg.g gVar) {
-        this.f35644c = iVar;
-        this.f35643b = gVar;
+        this.f35604c = iVar;
+        this.f35603b = gVar;
     }
 
     @Override
     public final void G0(int i7, Drawable drawable) {
         oh0 oh0Var;
         bg.i iVar;
-        if (!this.f35642a) {
+        if (!this.f35602a) {
             if ((i7 == 0 || i7 == 3) && drawable != null) {
-                this.f35642a = true;
+                this.f35602a = true;
                 boolean z10 = drawable instanceof oh0;
-                kg.g gVar = this.f35643b;
+                kg.g gVar = this.f35603b;
                 if (z10 && (iVar = (oh0Var = (oh0) drawable).C0) != null && iVar.g()) {
-                    oh0Var.B0 = new mf(19, this, gVar);
+                    oh0Var.B0 = new og(17, this, gVar);
                     return;
                 }
-                io.a(this.f35644c);
+                io.a(this.f35604c);
                 gVar.run();
             }
         }

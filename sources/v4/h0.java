@@ -1,41 +1,111 @@
 package v4;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class h0 implements Runnable {
-    public final int f59192a;
-    public final RecyclerView f59193b;
+import android.database.Observable;
+import android.os.Trace;
+import android.view.ViewGroup;
+import java.util.List;
+public abstract class h0 {
+    public final i0 f59145a = new Observable();
+    public boolean f59146b = false;
 
-    public h0(RecyclerView recyclerView, int i7) {
-        this.f59192a = i7;
-        this.f59193b = recyclerView;
+    public void B(j0 j0Var) {
+        this.f59145a.registerObserver(j0Var);
     }
 
-    @Override
-    public final void run() {
-        switch (this.f59192a) {
-            case 0:
-                RecyclerView recyclerView = this.f59193b;
-                if (recyclerView.J && !recyclerView.isLayoutRequested()) {
-                    if (!recyclerView.H) {
-                        recyclerView.requestLayout();
-                        return;
-                    } else if (recyclerView.M) {
-                        recyclerView.L = true;
-                        return;
-                    } else {
-                        recyclerView.p();
-                        return;
-                    }
-                }
-                return;
-            default:
-                RecyclerView recyclerView2 = this.f59193b;
-                n0 n0Var = recyclerView2.f2814d0;
-                if (n0Var != null) {
-                    n0Var.m();
-                }
-                recyclerView2.B0 = false;
-                return;
+    public final void C(boolean z10) {
+        if (!this.f59145a.a()) {
+            this.f59146b = z10;
+            return;
         }
+        throw new IllegalStateException("Cannot change whether this adapter has stable IDs while the adapter has registered observers.");
+    }
+
+    public final e1 a(ViewGroup viewGroup, int i7) {
+        try {
+            int i10 = n0.g.f21050a;
+            Trace.beginSection("RV CreateView");
+            e1 x10 = x(viewGroup, i7);
+            if (x10.f59111a.getParent() == null) {
+                x10.f59115f = i7;
+                Trace.endSection();
+                return x10;
+            }
+            throw new IllegalStateException("ViewHolder views must not be attached when created. Ensure that you are not passing 'true' to the attachToRoot parameter of LayoutInflater.inflate(..., boolean attachToRoot)");
+        } catch (Throwable th2) {
+            int i11 = n0.g.f21050a;
+            Trace.endSection();
+            throw th2;
+        }
+    }
+
+    public abstract int b();
+
+    public long c(int i7) {
+        return -1L;
+    }
+
+    public int d(int i7) {
+        return 0;
+    }
+
+    public int e() {
+        return b();
+    }
+
+    public void f() {
+        this.f59145a.b();
+    }
+
+    public void g(int i7) {
+        this.f59145a.d(i7, 1, null);
+    }
+
+    public final void h(int i7, Object obj) {
+        this.f59145a.d(i7, 1, obj);
+    }
+
+    public void i(int i7) {
+        this.f59145a.e(i7, 1);
+    }
+
+    public void j(int i7, int i10) {
+        this.f59145a.c(i7, i10);
+    }
+
+    public void k(int i7, int i10) {
+        this.f59145a.d(i7, i10, null);
+    }
+
+    public void n(int i7, int i10, Object obj) {
+        this.f59145a.d(i7, i10, obj);
+    }
+
+    public void o(int i7, int i10) {
+        this.f59145a.e(i7, i10);
+    }
+
+    public void p(int i7, int i10) {
+        this.f59145a.f(i7, i10);
+    }
+
+    public void s(int i7) {
+        this.f59145a.f(i7, 1);
+    }
+
+    public abstract void t(e1 e1Var, int i7);
+
+    public void v(e1 e1Var, int i7, List list) {
+        t(e1Var, i7);
+    }
+
+    public abstract e1 x(ViewGroup viewGroup, int i7);
+
+    public void A(e1 e1Var) {
+    }
+
+    public void y(e1 e1Var) {
+    }
+
+    public void z(e1 e1Var) {
     }
 }

@@ -1,7 +1,7 @@
 package h9;
 
-import a8.ka;
 import a8.la;
+import a8.ma;
 import j$.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,11 +13,11 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List {
-    public static final g0 f14035b = new g0(t1.f14103e, 0);
+    public static final g0 f13998b = new g0(t1.f14066e, 0);
 
     public static t1 o(int i7, Object[] objArr) {
         if (i7 == 0) {
-            return t1.f14103e;
+            return t1.f14066e;
         }
         return new t1(i7, objArr);
     }
@@ -30,7 +30,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
         if (collection instanceof d0) {
             i0 f10 = ((d0) collection).f();
             if (f10.m()) {
-                Object[] array = f10.toArray(d0.f14017a);
+                Object[] array = f10.toArray(d0.f13980a);
                 return o(array.length, array);
             }
             return f10;
@@ -42,7 +42,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
 
     public static t1 r(Object[] objArr) {
         if (objArr.length == 0) {
-            return t1.f14103e;
+            return t1.f14066e;
         }
         Object[] objArr2 = (Object[]) objArr.clone();
         o.e(objArr2.length, objArr2);
@@ -114,14 +114,14 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
                         for (int i7 = 0; i7 < size; i7++) {
-                            if (ka.a(get(i7), list.get(i7))) {
+                            if (la.a(get(i7), list.get(i7))) {
                             }
                         }
                     } else {
                         Iterator it = list.iterator();
                         for (Object obj2 : this) {
                             if (it.hasNext()) {
-                                if (!ka.a(obj2, it.next())) {
+                                if (!la.a(obj2, it.next())) {
                                 }
                             }
                         }
@@ -202,9 +202,9 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
 
     @Override
     public final g0 listIterator(int i7) {
-        la.m(i7, size());
+        ma.m(i7, size());
         if (isEmpty()) {
-            return f14035b;
+            return f13998b;
         }
         return new g0(this, i7);
     }
@@ -221,13 +221,13 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
 
     @Override
     public i0 subList(int i7, int i10) {
-        la.n(i7, i10, size());
+        ma.n(i7, i10, size());
         int i11 = i10 - i7;
         if (i11 == size()) {
             return this;
         }
         if (i11 == 0) {
-            return t1.f14103e;
+            return t1.f14066e;
         }
         return new h0(this, i7, i11);
     }

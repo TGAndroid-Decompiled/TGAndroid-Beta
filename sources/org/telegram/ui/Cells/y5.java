@@ -12,30 +12,30 @@ import org.telegram.messenger.jf;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.op;
 public final class y5 extends FrameLayout {
-    public org.telegram.ui.Components.q9 f32496a;
-    public FrameLayout f32497b;
-    public op f32498c;
+    public org.telegram.ui.Components.q9 f32462a;
+    public FrameLayout f32463b;
+    public op f32464c;
     public TextView d;
-    public di.n4 f32499e;
-    public int f32500f;
+    public di.n4 f32465e;
+    public int f32466f;
     public int h;
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f32498c.b(org.telegram.ui.ActionBar.m6.W9, org.telegram.ui.ActionBar.m6.X9, org.telegram.ui.ActionBar.m6.V9);
+        this.f32464c.b(org.telegram.ui.ActionBar.m6.W9, org.telegram.ui.ActionBar.m6.X9, org.telegram.ui.ActionBar.m6.V9);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f32500f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f32500f, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f32466f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f32466f, 1073741824));
     }
 
     public void setImage(ff ffVar) {
-        di.n4 n4Var = this.f32499e;
-        org.telegram.ui.Components.q9 q9Var = this.f32496a;
+        di.n4 n4Var = this.f32465e;
+        org.telegram.ui.Components.q9 q9Var = this.f32462a;
         Drawable drawable = getResources().getDrawable(2131232452);
-        String str = ffVar.f28060c;
+        String str = ffVar.f28024c;
         int i7 = ffVar.C;
         String str2 = ffVar.I;
         if (str != null) {
@@ -46,7 +46,7 @@ public final class y5 extends FrameLayout {
                 n4Var.setVisibility(4);
                 setContentDescription(hd.N0(2131753959, null));
                 q9Var.h("thumb://" + i7 + ":" + str2, null, drawable);
-            } else if (ffVar.f28059b) {
+            } else if (ffVar.f28023b) {
                 n4Var.setVisibility(0);
                 this.d.setText(org.telegram.messenger.g0.g0(ffVar.E, false, false));
                 StringBuilder sb2 = new StringBuilder();
@@ -67,11 +67,11 @@ public final class y5 extends FrameLayout {
     }
 
     public void setNum(int i7) {
-        this.f32498c.setNum(i7);
+        this.f32464c.setNum(i7);
     }
 
     public void setImage(jf jfVar) {
-        org.telegram.ui.Components.q9 q9Var = this.f32496a;
+        org.telegram.ui.Components.q9 q9Var = this.f32462a;
         Drawable drawable = getResources().getDrawable(2131232452);
         TLRPC.PhotoSize photoSize = jfVar.M;
         if (photoSize != null) {
@@ -83,7 +83,7 @@ public final class y5 extends FrameLayout {
             q9Var.j(gc.i(photoSize2, jfVar.K), "80_80", drawable, jfVar);
             return;
         }
-        String str = jfVar.f28060c;
+        String str = jfVar.f28024c;
         if (str != null) {
             q9Var.h(str, null, drawable);
             return;

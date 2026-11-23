@@ -21,25 +21,25 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
 public final class o implements View.OnClickListener {
-    public final int f3963a;
+    public final int f3889a;
 
     public o(int i7) {
-        this.f3963a = i7;
+        this.f3889a = i7;
     }
 
     @Override
     public final void onClick(View view) {
         int i7;
         org.telegram.ui.Cells.d2 d2Var;
-        switch (this.f3963a) {
+        switch (this.f3889a) {
             case 0:
-                int i10 = y.f4277w2;
+                int i10 = y.f4222w2;
                 return;
             case 1:
-                nc[] ncVarArr = m0.f3869l2;
+                nc[] ncVarArr = m0.f3817l2;
                 return;
             case 2:
-                int i11 = t0.f4107c2;
+                int i11 = t0.f4068c2;
                 return;
             case 3:
                 org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
@@ -56,22 +56,22 @@ public final class o implements View.OnClickListener {
                 }
                 return;
             case 5:
-                int i12 = ch.f.f5378e;
+                int i12 = ch.f.f5341e;
                 return;
             case 6:
-                int i13 = di.h1.f8925w2;
+                int i13 = di.h1.f8890w2;
                 return;
             case 7:
-                int i14 = hi.p3.f15252e;
+                int i14 = hi.p3.f15169e;
                 return;
             case 8:
                 PhotoViewer.p1().c0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 9:
-                int i15 = ki.l.f18778n;
+                int i15 = ki.l.f18744n;
                 return;
             case 10:
-                int i16 = lh.c.f19881e;
+                int i16 = lh.c.f19847e;
                 return;
             case 11:
                 return;
@@ -88,19 +88,19 @@ public final class o implements View.OnClickListener {
             case 14:
                 if (!MediaController.B().B0) {
                     if (MediaController.B().H()) {
-                        MediaController.B().S(MediaController.B().f22771v0);
+                        MediaController.B().S(MediaController.B().f22735v0);
                         return;
                     } else {
-                        MediaController.B().R(MediaController.B().f22771v0, true);
+                        MediaController.B().R(MediaController.B().f22735v0, true);
                         return;
                     }
                 }
                 return;
             case 15:
-                int i18 = mq.f37598g0;
+                int i18 = mq.f37554g0;
                 return;
             case 16:
-                int i19 = rr.f39320x;
+                int i19 = rr.f39276x;
                 return;
             case 17:
                 float[] fArr = FragmentContextView.X0;
@@ -111,10 +111,10 @@ public final class o implements View.OnClickListener {
                 }
                 B.n0();
                 B.m();
-                gj gjVar = B.f22771v0;
+                gj gjVar = B.f22735v0;
                 if (gjVar != null) {
                     ls f10 = ls.f(gjVar.K1);
-                    gj gjVar2 = B.f22771v0;
+                    gj gjVar2 = B.f22735v0;
                     if (gjVar2 != null) {
                         i7 = gjVar2.e1();
                     } else {
@@ -137,10 +137,10 @@ public final class o implements View.OnClickListener {
                     return;
                 }
             case 20:
-                e2.l1(false, null);
+                f2.l1(false, null);
                 return;
             case 21:
-                ArrayList arrayList = ExternalActionActivity.f43083y;
+                ArrayList arrayList = ExternalActionActivity.f43048y;
                 return;
             case 22:
                 return;
@@ -168,7 +168,7 @@ public final class o implements View.OnClickListener {
     }
 
     public o(Object obj, int i7) {
-        this.f3963a = i7;
+        this.f3889a = i7;
     }
 
     private final void a(View view) {

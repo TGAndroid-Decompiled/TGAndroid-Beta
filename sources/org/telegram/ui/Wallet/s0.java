@@ -10,14 +10,14 @@ import org.telegram.messenger.r10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class s0 implements r10 {
-    public final int f45012a;
-    public final t0 f45013b;
-    public final TL_wallet.getTransactions f45014c;
+    public final int f44978a;
+    public final t0 f44979b;
+    public final TL_wallet.getTransactions f44980c;
 
     public s0(t0 t0Var, TL_wallet.getTransactions gettransactions, int i7) {
-        this.f45012a = i7;
-        this.f45013b = t0Var;
-        this.f45014c = gettransactions;
+        this.f44978a = i7;
+        this.f44979b = t0Var;
+        this.f44980c = gettransactions;
     }
 
     @Override
@@ -27,15 +27,15 @@ public final class s0 implements r10 {
         boolean z12;
         boolean z13;
         boolean z14;
-        switch (this.f45012a) {
+        switch (this.f44978a) {
             case 0:
                 TL_wallet.walletTransactions wallettransactions = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                t0 t0Var = this.f45013b;
-                int i7 = t0Var.f45095m.f45127a;
-                t0Var.f45094l = -1;
+                t0 t0Var = this.f44979b;
+                int i7 = t0Var.f45061m.f45093a;
+                t0Var.f45060l = -1;
                 int i10 = 0;
-                t0Var.f45093k = false;
+                t0Var.f45059k = false;
                 if (wallettransactions != null) {
                     np.u1(i7).f4(wallettransactions.users, false);
                     np.u1(i7).Z3(wallettransactions.chats, false);
@@ -52,17 +52,17 @@ public final class s0 implements r10 {
                             t0Var.e(wallettransaction2);
                             if (c10 != null) {
                                 c10.set(wallettransaction2);
-                                if (!TextUtils.equals(c10.f28697id, wallettransaction2.f28697id)) {
-                                    c10.f28697id = wallettransaction2.f28697id;
+                                if (!TextUtils.equals(c10.f28661id, wallettransaction2.f28661id)) {
+                                    c10.f28661id = wallettransaction2.f28661id;
                                 }
                             } else {
-                                t0Var.f45086b.add(wallettransaction2);
+                                t0Var.f45052b.add(wallettransaction2);
                             }
                         }
                     }
                     String str = wallettransactions.next_offset;
-                    t0Var.f45090g = str;
-                    if (size < this.f45014c.limit || TextUtils.isEmpty(str)) {
+                    t0Var.f45056g = str;
+                    if (size < this.f44980c.limit || TextUtils.isEmpty(str)) {
                         t0Var.h = true;
                     }
                 } else {
@@ -72,17 +72,17 @@ public final class s0 implements r10 {
                 t0Var.i();
                 return;
             default:
-                t0 t0Var2 = this.f45013b;
-                HashMap hashMap = t0Var2.f45089f;
+                t0 t0Var2 = this.f44979b;
+                HashMap hashMap = t0Var2.f45055f;
                 HashSet hashSet = t0Var2.d;
                 TL_wallet.walletTransactions wallettransactions2 = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList2 = t0Var2.f45086b;
-                u0 u0Var = t0Var2.f45095m;
-                int i11 = u0Var.f45127a;
+                ArrayList arrayList2 = t0Var2.f45052b;
+                u0 u0Var = t0Var2.f45061m;
+                int i11 = u0Var.f45093a;
                 h hVar = u0Var.I;
-                t0Var2.f45092j = -1;
-                t0Var2.f45091i = false;
+                t0Var2.f45058j = -1;
+                t0Var2.f45057i = false;
                 if (wallettransactions2 != null) {
                     np.u1(i11).f4(wallettransactions2.users, false);
                     np.u1(i11).Z3(wallettransactions2.chats, false);
@@ -104,8 +104,8 @@ public final class s0 implements r10 {
                                     if (c11 != null) {
                                         boolean a10 = u0.a(c11);
                                         boolean z16 = c11.set(wallettransaction4);
-                                        if (!TextUtils.equals(c11.f28697id, wallettransaction4.f28697id)) {
-                                            c11.f28697id = wallettransaction4.f28697id;
+                                        if (!TextUtils.equals(c11.f28661id, wallettransaction4.f28661id)) {
+                                            c11.f28661id = wallettransaction4.f28661id;
                                             z16 = true;
                                         }
                                         if (z16) {
@@ -132,7 +132,7 @@ public final class s0 implements r10 {
                             } else {
                                 z11 = true;
                             }
-                            boolean z17 = t0Var2.f45093k;
+                            boolean z17 = t0Var2.f45059k;
                             if (z17) {
                                 t0Var2.a();
                             }
@@ -193,8 +193,8 @@ public final class s0 implements r10 {
                                 }
                             }
                             String str2 = wallettransactions2.next_offset;
-                            t0Var2.f45090g = str2;
-                            if (size3 >= this.f45014c.limit && !TextUtils.isEmpty(str2)) {
+                            t0Var2.f45056g = str2;
+                            if (size3 >= this.f44980c.limit && !TextUtils.isEmpty(str2)) {
                                 z12 = false;
                             } else {
                                 z12 = true;

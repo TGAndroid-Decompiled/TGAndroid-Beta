@@ -23,9 +23,9 @@ import org.telegram.ui.Components.ek0;
 import org.telegram.ui.d30;
 import org.telegram.ui.n30;
 public abstract class t6 {
-    public static final s6 f30068a = new s6();
-    public static int f30069b = 1;
-    public static long f30070c = -1;
+    public static final s6 f30034a = new s6();
+    public static int f30035b = 1;
+    public static long f30036c = -1;
     public static float d;
 
     public static void A(EditTextBoldCursor editTextBoldCursor, int i7, h6 h6Var) {
@@ -51,9 +51,9 @@ public abstract class t6 {
 
     public static void F(EditTextBoldCursor editTextBoldCursor, int i7, int i10, int i11, h6 h6Var) {
         editTextBoldCursor.u(m6.w0(i7, h6Var), m6.w0(i10, h6Var), m6.w0(i11, h6Var));
-        T(editTextBoldCursor, 31, i7, h6Var).f29821g = editTextBoldCursor.getLineColor();
-        T(editTextBoldCursor, 32, i10, h6Var).f29821g = editTextBoldCursor.getActiveLineColor();
-        T(editTextBoldCursor, 33, i11, h6Var).f29821g = editTextBoldCursor.getErrorLineColor();
+        T(editTextBoldCursor, 31, i7, h6Var).f29787g = editTextBoldCursor.getLineColor();
+        T(editTextBoldCursor, 32, i10, h6Var).f29787g = editTextBoldCursor.getActiveLineColor();
+        T(editTextBoldCursor, 33, i11, h6Var).f29787g = editTextBoldCursor.getErrorLineColor();
     }
 
     public static void G(TextView textView, int i7, h6 h6Var) {
@@ -77,15 +77,15 @@ public abstract class t6 {
     }
 
     public static s6 L(boolean z10, int i7, HashSet hashSet) {
-        s6 s6Var = f30068a;
-        if (s6Var.f30005e) {
+        s6 s6Var = f30034a;
+        if (s6Var.f29971e) {
             s6Var = new s6();
         }
-        s6Var.f30005e = true;
-        s6Var.f30003b = z10;
-        s6Var.f30004c = i7;
+        s6Var.f29971e = true;
+        s6Var.f29969b = z10;
+        s6Var.f29970c = i7;
         s6Var.d = hashSet;
-        s6Var.f30002a.clear();
+        s6Var.f29968a.clear();
         return s6Var;
     }
 
@@ -94,7 +94,7 @@ public abstract class t6 {
     }
 
     public static n6 N(View view, int i7, int i10, int i11, int i12, float f10, h6 h6Var, int i13, PorterDuffColorFilter porterDuffColorFilter) {
-        n6[] n6VarArr = o(view, true).f29855a;
+        n6[] n6VarArr = o(view, true).f29821a;
         n6 n6Var = n6VarArr[i7];
         if (n6Var == null) {
             n6Var = new n6();
@@ -102,8 +102,8 @@ public abstract class t6 {
         }
         n6 n6Var2 = n6Var;
         n6Var2.c(i10, i11, i12, f10, h6Var);
-        n6Var2.f29821g = i13;
-        n6Var2.f29822i = porterDuffColorFilter;
+        n6Var2.f29787g = i13;
+        n6Var2.f29788i = porterDuffColorFilter;
         return n6Var2;
     }
 
@@ -144,7 +144,7 @@ public abstract class t6 {
 
     public static void S(View view, n6 n6Var, int i7) {
         Drawable drawable;
-        int i10 = n6Var.f29825l;
+        int i10 = n6Var.f29791l;
         boolean z10 = false;
         switch (i10) {
             case 1:
@@ -196,13 +196,13 @@ public abstract class t6 {
                         }
                         return;
                     case 22:
-                        WeakReference weakReference = n6Var.f29823j;
+                        WeakReference weakReference = n6Var.f29789j;
                         if (weakReference != null) {
                             drawable = (Drawable) weakReference.get();
                         } else {
                             drawable = null;
                         }
-                        if (drawable != null && i7 != n6Var.f29821g) {
+                        if (drawable != null && i7 != n6Var.f29787g) {
                             drawable.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
                             view.invalidate();
                             return;
@@ -257,9 +257,9 @@ public abstract class t6 {
     public static n6 T(View view, int i7, int i10, h6 h6Var) {
         n6 w10 = w(i7, view);
         w10.c(i10, -1, 0, 0.0f, h6Var);
-        w10.f29827n = null;
-        w10.f29828o = null;
-        w10.f29826m = true;
+        w10.f29793n = null;
+        w10.f29794o = null;
+        w10.f29792m = true;
         return w10;
     }
 
@@ -268,7 +268,7 @@ public abstract class t6 {
     }
 
     public static void V(TextView textView, p6 p6Var, h6 h6Var) {
-        m(textView, p6Var.f29895a, p6Var.f29896b, p6Var.f29897c, p6Var.d, h6Var);
+        m(textView, p6Var.f29861a, p6Var.f29862b, p6Var.f29863c, p6Var.d, h6Var);
     }
 
     public static void W(m5 m5Var, int i7) {
@@ -290,8 +290,8 @@ public abstract class t6 {
             return;
         }
         n6 T = T(view, 22, i10, null);
-        T.f29823j = new WeakReference(X0);
-        T.f29821g = m6.v0(i10);
+        T.f29789j = new WeakReference(X0);
+        T.f29787g = m6.v0(i10);
     }
 
     public static void a(k kVar, int i7, h6 h6Var, boolean z10) {
@@ -319,7 +319,7 @@ public abstract class t6 {
     }
 
     public static void b0(ActionBarLayout actionBarLayout, boolean z10) {
-        f30069b++;
+        f30035b++;
         s6 L = L(z10, 0, null);
         try {
             List j3 = org.telegram.messenger.g0.j();
@@ -359,8 +359,8 @@ public abstract class t6 {
     }
 
     public static void f(n6 n6Var, HashSet hashSet) {
-        hashSet.add(Integer.valueOf(n6Var.f29816a));
-        int i7 = n6Var.f29817b;
+        hashSet.add(Integer.valueOf(n6Var.f29782a));
+        int i7 = n6Var.f29783b;
         if (i7 >= 0) {
             hashSet.add(Integer.valueOf(i7));
         }
@@ -377,9 +377,9 @@ public abstract class t6 {
     }
 
     public static void i(View view, p6 p6Var, h6 h6Var) {
-        int i7 = p6Var.f29895a;
-        int i10 = p6Var.f29896b;
-        int i11 = p6Var.f29897c;
+        int i7 = p6Var.f29861a;
+        int i10 = p6Var.f29862b;
+        int i11 = p6Var.f29863c;
         float f10 = p6Var.d;
         int P = P(i7, i10, i11, f10, h6Var);
         view.setBackgroundColor(P);
@@ -389,20 +389,20 @@ public abstract class t6 {
     public static void j(View view, Drawable drawable, p6 p6Var, p6 p6Var2, h6 h6Var) {
         o6 o4 = o(view, true);
         o4.d = drawable;
-        o4.f29858e = null;
-        o4.f29859f = null;
+        o4.f29824e = null;
+        o4.f29825f = null;
         if (drawable != null) {
             if (p6Var != null) {
                 n6 n6Var = new n6();
-                o4.f29858e = n6Var;
-                n6Var.c(p6Var.f29895a, p6Var.f29896b, p6Var.f29897c, p6Var.d, h6Var);
-                n6Var.f29821g = t(drawable);
+                o4.f29824e = n6Var;
+                n6Var.c(p6Var.f29861a, p6Var.f29862b, p6Var.f29863c, p6Var.d, h6Var);
+                n6Var.f29787g = t(drawable);
             }
             if (p6Var2 != null) {
                 n6 n6Var2 = new n6();
-                o4.f29859f = n6Var2;
-                n6Var2.c(p6Var2.f29895a, p6Var2.f29896b, p6Var2.f29897c, p6Var2.d, h6Var);
-                n6Var2.f29821g = n6Var2.b();
+                o4.f29825f = n6Var2;
+                n6Var2.c(p6Var2.f29861a, p6Var2.f29862b, p6Var2.f29863c, p6Var2.d, h6Var);
+                n6Var2.f29787g = n6Var2.b();
             }
         }
     }
@@ -416,40 +416,40 @@ public abstract class t6 {
         }
         boolean z10 = true;
         o6 o4 = o(view, true);
-        if (o4.f29856b == null) {
-            o4.f29856b = new ArrayList(2);
+        if (o4.f29822b == null) {
+            o4.f29822b = new ArrayList(2);
         }
         n6 n6Var = null;
-        for (int size = o4.f29856b.size() - 1; size >= 0; size--) {
-            n6 n6Var2 = (n6) o4.f29856b.get(size);
-            Drawable drawable2 = (Drawable) n6Var2.f29823j.get();
+        for (int size = o4.f29822b.size() - 1; size >= 0; size--) {
+            n6 n6Var2 = (n6) o4.f29822b.get(size);
+            Drawable drawable2 = (Drawable) n6Var2.f29789j.get();
             if (drawable2 == drawable) {
                 n6Var = n6Var2;
-            } else if (drawable2 == null || (!n6Var2.f29824k && drawable2.getColorFilter() != n6Var2.f29822i)) {
-                o4.f29856b.remove(size);
+            } else if (drawable2 == null || (!n6Var2.f29790k && drawable2.getColorFilter() != n6Var2.f29788i)) {
+                o4.f29822b.remove(size);
             }
         }
         if (n6Var == null) {
             n6Var = new n6();
-            n6Var.f29823j = new WeakReference(drawable);
-            o4.f29856b.add(n6Var);
+            n6Var.f29789j = new WeakReference(drawable);
+            o4.f29822b.add(n6Var);
         }
         n6 n6Var3 = n6Var;
         n6Var3.c(i7, i10, i11, f10, h6Var);
-        n6Var3.f29821g = P;
-        n6Var3.f29822i = porterDuffColorFilter;
+        n6Var3.f29787g = P;
+        n6Var3.f29788i = porterDuffColorFilter;
         n6Var3.h = mode;
         if (drawable.getColorFilter() == porterDuffColorFilter) {
             z10 = false;
         }
-        n6Var3.f29824k = z10;
+        n6Var3.f29790k = z10;
     }
 
     public static void l(View view, int i7, int i10, h6 h6Var) {
         n6 T = T(view, i7, i10, h6Var);
         int b10 = T.b();
         S(view, T, b10);
-        T.f29821g = b10;
+        T.f29787g = b10;
     }
 
     public static void m(View view, int i7, int i10, int i11, float f10, h6 h6Var) {
@@ -558,17 +558,17 @@ public abstract class t6 {
 
     public static n6 w(int i7, View view) {
         o6 o4 = o(view, true);
-        if (o4.f29857c == null) {
-            o4.f29857c = new ArrayList(2);
+        if (o4.f29823c == null) {
+            o4.f29823c = new ArrayList(2);
         }
-        for (int i10 = 0; i10 < o4.f29857c.size(); i10++) {
-            if (((n6) o4.f29857c.get(i10)).f29825l == i7) {
-                return (n6) o4.f29857c.get(i10);
+        for (int i10 = 0; i10 < o4.f29823c.size(); i10++) {
+            if (((n6) o4.f29823c.get(i10)).f29791l == i7) {
+                return (n6) o4.f29823c.get(i10);
             }
         }
         n6 n6Var = new n6();
-        n6Var.f29825l = i7;
-        o4.f29857c.add(n6Var);
+        n6Var.f29791l = i7;
+        o4.f29823c.add(n6Var);
         return n6Var;
     }
 

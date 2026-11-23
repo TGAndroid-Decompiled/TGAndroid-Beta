@@ -5,12 +5,12 @@ import android.text.TextWatcher;
 import java.util.HashMap;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class bl0 implements TextWatcher {
-    public final int f45932a;
-    public final ml0 f45933b;
+    public final int f45885a;
+    public final ml0 f45886b;
 
     public bl0(ml0 ml0Var, int i7) {
-        this.f45932a = i7;
-        this.f45933b = ml0Var;
+        this.f45885a = i7;
+        this.f45886b = ml0Var;
     }
 
     @Override
@@ -18,22 +18,22 @@ public final class bl0 implements TextWatcher {
         boolean z10;
         String str;
         String str2;
-        int i7 = this.f45932a;
-        ml0 ml0Var = this.f45933b;
+        int i7 = this.f45885a;
+        ml0 ml0Var = this.f45886b;
         switch (i7) {
             case 0:
-                if (ml0Var.f49907d0 != 0 && editable.length() == ml0Var.f49907d0) {
+                if (ml0Var.f49876d0 != 0 && editable.length() == ml0Var.f49876d0) {
                     ml0Var.G0(false);
                     return;
                 }
                 return;
             default:
-                HashMap hashMap = ml0Var.f49904c;
-                if (!ml0Var.f49923n0) {
-                    ml0Var.f49923n0 = true;
-                    String d = pf.b.d(ml0Var.f49912f[8].getText().toString(), false);
-                    ml0Var.f49912f[8].setText(d);
-                    org.telegram.ui.Components.j30 j30Var = (org.telegram.ui.Components.j30) ml0Var.f49912f[9];
+                HashMap hashMap = ml0Var.f49873c;
+                if (!ml0Var.f49892n0) {
+                    ml0Var.f49892n0 = true;
+                    String d = pf.b.d(ml0Var.f49881f[8].getText().toString(), false);
+                    ml0Var.f49881f[8].setText(d);
+                    org.telegram.ui.Components.j30 j30Var = (org.telegram.ui.Components.j30) ml0Var.f49881f[9];
                     if (d.length() == 0) {
                         j30Var.setHintText((String) null);
                         j30Var.setHint(org.telegram.messenger.hd.N0(2131747178, null));
@@ -44,8 +44,8 @@ public final class bl0 implements TextWatcher {
                                 if (i10 >= 1) {
                                     String substring = d.substring(0, i10);
                                     if (((String) hashMap.get(substring)) != null) {
-                                        ml0Var.f49912f[8].setText(substring);
-                                        str = d.substring(i10) + ml0Var.f49912f[9].getText().toString();
+                                        ml0Var.f49881f[8].setText(substring);
+                                        str = d.substring(i10) + ml0Var.f49881f[9].getText().toString();
                                         d = substring;
                                         z10 = true;
                                     } else {
@@ -57,8 +57,8 @@ public final class bl0 implements TextWatcher {
                                 }
                             }
                             if (!z10) {
-                                str = d.substring(1) + ml0Var.f49912f[9].getText().toString();
-                                EditTextBoldCursor editTextBoldCursor = ml0Var.f49912f[8];
+                                str = d.substring(1) + ml0Var.f49881f[9].getText().toString();
+                                EditTextBoldCursor editTextBoldCursor = ml0Var.f49881f[8];
                                 d = d.substring(0, 1);
                                 editTextBoldCursor.setText(d);
                             }
@@ -67,7 +67,7 @@ public final class bl0 implements TextWatcher {
                             str = null;
                         }
                         String str3 = (String) hashMap.get(d);
-                        if (str3 != null && ml0Var.f49898a.indexOf(str3) != -1 && (str2 = (String) ml0Var.d.get(d)) != null) {
+                        if (str3 != null && ml0Var.f49867a.indexOf(str3) != -1 && (str2 = (String) ml0Var.d.get(d)) != null) {
                             j30Var.setHintText(str2.replace('X', (char) 8211));
                             j30Var.setHint((CharSequence) null);
                         } else {
@@ -75,7 +75,7 @@ public final class bl0 implements TextWatcher {
                             j30Var.setHint(org.telegram.messenger.hd.N0(2131747178, null));
                         }
                         if (!z10) {
-                            EditTextBoldCursor editTextBoldCursor2 = ml0Var.f49912f[8];
+                            EditTextBoldCursor editTextBoldCursor2 = ml0Var.f49881f[8];
                             editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
                         }
                         if (str != null) {
@@ -84,7 +84,7 @@ public final class bl0 implements TextWatcher {
                             j30Var.setSelection(j30Var.length());
                         }
                     }
-                    ml0Var.f49923n0 = false;
+                    ml0Var.f49892n0 = false;
                     return;
                 }
                 return;
@@ -93,12 +93,12 @@ public final class bl0 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f45932a;
+        int i12 = this.f45885a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f45932a;
+        int i12 = this.f45885a;
     }
 
     private final void a(int i7, int i10, int i11, CharSequence charSequence) {

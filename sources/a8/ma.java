@@ -1,49 +1,134 @@
 package a8;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public abstract class ma {
-    public static String a(String str, Object... objArr) {
-        int indexOf;
-        String sb2;
-        String valueOf = String.valueOf(str);
-        int i7 = 0;
-        for (int i10 = 0; i10 < objArr.length; i10++) {
-            Object obj = objArr[i10];
-            if (obj == null) {
-                sb2 = "null";
+    public static String a(int i7, int i10, String str) {
+        if (i7 < 0) {
+            return bb.a("%s (%s) must not be negative", str, Integer.valueOf(i7));
+        }
+        if (i10 >= 0) {
+            return bb.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i7), Integer.valueOf(i10));
+        }
+        throw new IllegalArgumentException(i5.c.i(i10, "negative size: "));
+    }
+
+    public static void b(int i7, int i10, String str, boolean z10) {
+        if (z10) {
+            return;
+        }
+        throw new IllegalArgumentException(bb.a(str, Integer.valueOf(i7), Integer.valueOf(i10)));
+    }
+
+    public static void c(int i7, String str, boolean z10) {
+        if (z10) {
+            return;
+        }
+        throw new IllegalArgumentException(bb.a(str, Integer.valueOf(i7)));
+    }
+
+    public static void d(long j3, String str, boolean z10) {
+        if (z10) {
+            return;
+        }
+        throw new IllegalArgumentException(bb.a(str, Long.valueOf(j3)));
+    }
+
+    public static void e(String str, boolean z10) {
+        if (z10) {
+            return;
+        }
+        throw new IllegalArgumentException(String.valueOf(str));
+    }
+
+    public static void f(boolean z10) {
+        if (z10) {
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static void g(boolean z10, String str, long j3, long j10) {
+        if (z10) {
+            return;
+        }
+        throw new IllegalArgumentException(bb.a(str, Long.valueOf(j3), Long.valueOf(j10)));
+    }
+
+    public static void h(boolean z10, String str, Object obj) {
+        if (z10) {
+            return;
+        }
+        throw new IllegalArgumentException(bb.a(str, obj));
+    }
+
+    public static void i(boolean z10, String str, Object obj, Comparable comparable) {
+        if (z10) {
+            return;
+        }
+        throw new IllegalArgumentException(bb.a(str, obj, comparable));
+    }
+
+    public static void j(int i7, int i10) {
+        String a10;
+        if (i7 >= 0 && i7 < i10) {
+            return;
+        }
+        if (i7 >= 0) {
+            if (i10 >= 0) {
+                a10 = bb.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i7), Integer.valueOf(i10));
             } else {
-                try {
-                    sb2 = obj.toString();
-                } catch (Exception e10) {
-                    String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
-                    Logger.getLogger("com.google.common.base.Strings").log(Level.WARNING, "Exception during lenientFormat for " + str2, (Throwable) e10);
-                    StringBuilder u10 = p0.u("<", str2, " threw ");
-                    u10.append(e10.getClass().getName());
-                    u10.append(">");
-                    sb2 = u10.toString();
-                }
+                throw new IllegalArgumentException(i5.c.i(i10, "negative size: "));
             }
-            objArr[i10] = sb2;
+        } else {
+            a10 = bb.a("%s (%s) must not be negative", "index", Integer.valueOf(i7));
         }
-        StringBuilder sb3 = new StringBuilder((objArr.length * 16) + valueOf.length());
-        int i11 = 0;
-        while (i7 < objArr.length && (indexOf = valueOf.indexOf("%s", i11)) != -1) {
-            sb3.append((CharSequence) valueOf, i11, indexOf);
-            sb3.append(objArr[i7]);
-            i11 = indexOf + 2;
-            i7++;
+        throw new IndexOutOfBoundsException(a10);
+    }
+
+    public static void k(Object obj, String str) {
+        if (obj != null) {
+            return;
         }
-        sb3.append((CharSequence) valueOf, i11, valueOf.length());
-        if (i7 < objArr.length) {
-            sb3.append(" [");
-            sb3.append(objArr[i7]);
-            for (int i12 = i7 + 1; i12 < objArr.length; i12++) {
-                sb3.append(", ");
-                sb3.append(objArr[i12]);
+        throw new NullPointerException(str);
+    }
+
+    public static void l(l2.u0 u0Var) {
+        u0Var.getClass();
+    }
+
+    public static void m(int i7, int i10) {
+        if (i7 >= 0 && i7 <= i10) {
+            return;
+        }
+        throw new IndexOutOfBoundsException(a(i7, i10, "index"));
+    }
+
+    public static void n(int i7, int i10, int i11) {
+        String a10;
+        if (i7 >= 0 && i10 >= i7 && i10 <= i11) {
+            return;
+        }
+        if (i7 >= 0 && i7 <= i11) {
+            if (i10 >= 0 && i10 <= i11) {
+                a10 = bb.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i10), Integer.valueOf(i7));
+            } else {
+                a10 = a(i10, i11, "end index");
             }
-            sb3.append(']');
+        } else {
+            a10 = a(i7, i11, "start index");
         }
-        return sb3.toString();
+        throw new IndexOutOfBoundsException(a10);
+    }
+
+    public static void o(String str, boolean z10) {
+        if (z10) {
+            return;
+        }
+        throw new IllegalStateException(String.valueOf(str));
+    }
+
+    public static void p(boolean z10) {
+        if (z10) {
+            return;
+        }
+        throw new IllegalStateException();
     }
 }

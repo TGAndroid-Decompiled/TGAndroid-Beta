@@ -1,19 +1,19 @@
 package ca;
 public final class f implements l {
-    public static final qb.a f5148c = new qb.a(6);
-    public final Object f5149a;
-    public Object f5150b;
+    public static final qb.a f5111c = new qb.a(6);
+    public final Object f5112a;
+    public Object f5113b;
 
     public f(ga.d dVar) {
-        this.f5149a = dVar;
-        this.f5150b = f5148c;
+        this.f5112a = dVar;
+        this.f5113b = f5111c;
     }
 
     @Override
     public void a(k kVar, int i7) {
-        int[] iArr = (int[]) this.f5150b;
+        int[] iArr = (int[]) this.f5113b;
         try {
-            kVar.read((byte[]) this.f5149a, iArr[0], i7);
+            kVar.read((byte[]) this.f5112a, iArr[0], i7);
             iArr[0] = iArr[0] + i7;
         } finally {
             kVar.close();
@@ -21,7 +21,7 @@ public final class f implements l {
     }
 
     public f(byte[] bArr, int[] iArr) {
-        this.f5149a = bArr;
-        this.f5150b = iArr;
+        this.f5112a = bArr;
+        this.f5113b = iArr;
     }
 }

@@ -1,11 +1,11 @@
 package org.telegram.messenger;
 public final class fg implements Runnable {
-    public final int f23912a;
-    public final si f23913b;
+    public final int f23876a;
+    public final si f23877b;
 
     public fg(si siVar, int i7) {
-        this.f23912a = i7;
-        this.f23913b = siVar;
+        this.f23876a = i7;
+        this.f23877b = siVar;
     }
 
     @Override

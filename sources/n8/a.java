@@ -3,8 +3,8 @@ package n8;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
-import c8.ba;
-import c8.bc;
+import c8.ca;
+import c8.cc;
 import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,24 +13,24 @@ import java.util.List;
 import m6.e;
 public final class a extends r6.a {
     public static final Parcelable.Creator<a> CREATOR = new e(11);
-    public final String f21487a;
-    public final byte[] f21488b;
-    public final byte[][] f21489c;
+    public final String f21453a;
+    public final byte[] f21454b;
+    public final byte[][] f21455c;
     public final byte[][] d;
-    public final byte[][] f21490e;
-    public final byte[][] f21491f;
+    public final byte[][] f21456e;
+    public final byte[][] f21457f;
     public final int[] h;
-    public final byte[][] f21492n;
+    public final byte[][] f21458n;
 
     public a(String str, byte[] bArr, byte[][] bArr2, byte[][] bArr3, byte[][] bArr4, byte[][] bArr5, int[] iArr, byte[][] bArr6) {
-        this.f21487a = str;
-        this.f21488b = bArr;
-        this.f21489c = bArr2;
+        this.f21453a = str;
+        this.f21454b = bArr;
+        this.f21455c = bArr2;
         this.d = bArr3;
-        this.f21490e = bArr4;
-        this.f21491f = bArr5;
+        this.f21456e = bArr4;
+        this.f21457f = bArr5;
         this.h = iArr;
-        this.f21492n = bArr6;
+        this.f21458n = bArr6;
     }
 
     public static List b(int[] iArr) {
@@ -89,7 +89,7 @@ public final class a extends r6.a {
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (ba.a(this.f21487a, aVar.f21487a) && Arrays.equals(this.f21488b, aVar.f21488b) && ba.a(c(this.f21489c), c(aVar.f21489c)) && ba.a(c(this.d), c(aVar.d)) && ba.a(c(this.f21490e), c(aVar.f21490e)) && ba.a(c(this.f21491f), c(aVar.f21491f)) && ba.a(b(this.h), b(aVar.h)) && ba.a(c(this.f21492n), c(aVar.f21492n))) {
+            if (ca.a(this.f21453a, aVar.f21453a) && Arrays.equals(this.f21454b, aVar.f21454b) && ca.a(c(this.f21455c), c(aVar.f21455c)) && ca.a(c(this.d), c(aVar.d)) && ca.a(c(this.f21456e), c(aVar.f21456e)) && ca.a(c(this.f21457f), c(aVar.f21457f)) && ca.a(b(this.h), b(aVar.h)) && ca.a(c(this.f21458n), c(aVar.f21458n))) {
                 return true;
             }
         }
@@ -100,7 +100,7 @@ public final class a extends r6.a {
         String sb2;
         StringBuilder sb3 = new StringBuilder("ExperimentTokens");
         sb3.append("(");
-        String str = this.f21487a;
+        String str = this.f21453a;
         if (str == null) {
             sb2 = "null";
         } else {
@@ -112,7 +112,7 @@ public final class a extends r6.a {
         }
         sb3.append(sb2);
         sb3.append(", direct=");
-        byte[] bArr = this.f21488b;
+        byte[] bArr = this.f21454b;
         if (bArr == null) {
             sb3.append("null");
         } else {
@@ -121,13 +121,13 @@ public final class a extends r6.a {
             sb3.append("'");
         }
         sb3.append(", ");
-        d(sb3, "GAIA", this.f21489c);
+        d(sb3, "GAIA", this.f21455c);
         sb3.append(", ");
         d(sb3, "PSEUDO", this.d);
         sb3.append(", ");
-        d(sb3, "ALWAYS", this.f21490e);
+        d(sb3, "ALWAYS", this.f21456e);
         sb3.append(", ");
-        d(sb3, "OTHER", this.f21491f);
+        d(sb3, "OTHER", this.f21457f);
         sb3.append(", ");
         sb3.append("weak");
         sb3.append("=");
@@ -151,22 +151,22 @@ public final class a extends r6.a {
             sb3.append(")");
         }
         sb3.append(", ");
-        d(sb3, "directs", this.f21492n);
+        d(sb3, "directs", this.f21458n);
         sb3.append(")");
         return sb3.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = bc.r(parcel, 20293);
-        bc.l(parcel, 2, this.f21487a);
-        bc.c(parcel, 3, this.f21488b);
-        bc.d(parcel, 4, this.f21489c);
-        bc.d(parcel, 5, this.d);
-        bc.d(parcel, 6, this.f21490e);
-        bc.d(parcel, 7, this.f21491f);
-        bc.g(parcel, 8, this.h);
-        bc.d(parcel, 9, this.f21492n);
-        bc.s(parcel, r10);
+        int r10 = cc.r(parcel, 20293);
+        cc.l(parcel, 2, this.f21453a);
+        cc.c(parcel, 3, this.f21454b);
+        cc.d(parcel, 4, this.f21455c);
+        cc.d(parcel, 5, this.d);
+        cc.d(parcel, 6, this.f21456e);
+        cc.d(parcel, 7, this.f21457f);
+        cc.g(parcel, 8, this.h);
+        cc.d(parcel, 9, this.f21458n);
+        cc.s(parcel, r10);
     }
 }

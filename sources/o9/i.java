@@ -3,34 +3,34 @@ package o9;
 import android.content.Context;
 import android.text.TextUtils;
 import j$.util.Objects;
-import ji.l;
+import ji.k;
 import q6.m;
 public final class i {
-    public final String f21800a;
-    public final String f21801b;
-    public final String f21802c;
+    public final String f21766a;
+    public final String f21767b;
+    public final String f21768c;
     public final String d;
-    public final String f21803e;
-    public final String f21804f;
-    public final String f21805g;
+    public final String f21769e;
+    public final String f21770f;
+    public final String f21771g;
     public final String h;
 
     public i(String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8) {
         boolean z10;
-        int i7 = x6.e.f60448a;
+        int i7 = x6.e.f60413a;
         if (str != null && !str.trim().isEmpty()) {
             z10 = false;
         } else {
             z10 = true;
         }
         m.j("ApplicationId must be set.", true ^ z10);
-        this.f21801b = str;
-        this.f21800a = str2;
-        this.f21802c = str3;
+        this.f21767b = str;
+        this.f21766a = str2;
+        this.f21768c = str3;
         this.d = str4;
-        this.f21803e = str5;
-        this.f21804f = str6;
-        this.f21805g = str7;
+        this.f21769e = str5;
+        this.f21770f = str6;
+        this.f21771g = str7;
         this.h = str8;
     }
 
@@ -48,25 +48,25 @@ public final class i {
             return false;
         }
         i iVar = (i) obj;
-        if (!Objects.equals(this.f21801b, iVar.f21801b) || !Objects.equals(this.f21800a, iVar.f21800a) || !Objects.equals(this.f21802c, iVar.f21802c) || !Objects.equals(this.d, iVar.d) || !Objects.equals(this.f21803e, iVar.f21803e) || !Objects.equals(this.f21804f, iVar.f21804f) || !Objects.equals(this.f21805g, iVar.f21805g) || !Objects.equals(this.h, iVar.h)) {
+        if (!Objects.equals(this.f21767b, iVar.f21767b) || !Objects.equals(this.f21766a, iVar.f21766a) || !Objects.equals(this.f21768c, iVar.f21768c) || !Objects.equals(this.d, iVar.d) || !Objects.equals(this.f21769e, iVar.f21769e) || !Objects.equals(this.f21770f, iVar.f21770f) || !Objects.equals(this.f21771g, iVar.f21771g) || !Objects.equals(this.h, iVar.h)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f21801b, this.f21800a, this.f21802c, this.d, this.f21803e, this.f21804f, this.f21805g, this.h);
+        return Objects.hash(this.f21767b, this.f21766a, this.f21768c, this.d, this.f21769e, this.f21770f, this.f21771g, this.h);
     }
 
     public final String toString() {
-        l lVar = new l(this);
-        lVar.E(this.f21801b, "applicationId");
-        lVar.E(this.f21800a, "apiKey");
-        lVar.E(this.f21802c, "databaseUrl");
-        lVar.E(this.f21803e, "gcmSenderId");
-        lVar.E(this.f21804f, "storageBucket");
-        lVar.E(this.f21805g, "recaptchaSiteKey");
-        lVar.E(this.h, "projectId");
-        return lVar.toString();
+        k kVar = new k(this);
+        kVar.E(this.f21767b, "applicationId");
+        kVar.E(this.f21766a, "apiKey");
+        kVar.E(this.f21768c, "databaseUrl");
+        kVar.E(this.f21769e, "gcmSenderId");
+        kVar.E(this.f21770f, "storageBucket");
+        kVar.E(this.f21771g, "recaptchaSiteKey");
+        kVar.E(this.h, "projectId");
+        return kVar.toString();
     }
 }

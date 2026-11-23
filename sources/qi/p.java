@@ -1,6 +1,6 @@
 package qi;
 
-import ai.z0;
+import ai.u0;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -9,26 +9,26 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import p4.o0;
 import p4.r0;
-import p4.z;
 public final class p implements AutoCloseable {
-    public final r0 f56245b;
-    public final r0 f56246c;
-    public long f56250r;
-    public boolean f56251s;
-    public a f56252w;
-    public Throwable f56253x;
-    public volatile Set f56254y;
-    public final Object f56244a = new Object();
+    public final r0 f56210b;
+    public final r0 f56211c;
+    public long f56215r;
+    public boolean f56216s;
+    public a f56217w;
+    public Throwable f56218x;
+    public volatile Set f56219y;
+    public final Object f56209a = new Object();
     public final LinkedHashMap h = new LinkedHashMap(16, 0.75f, true);
-    public final HashMap f56249n = new HashMap();
-    public final int f56247e = 256;
-    public final long f56248f = 8388608;
-    public final ExecutorService d = Executors.newSingleThreadExecutor(new z0(8));
+    public final HashMap f56214n = new HashMap();
+    public final int f56212e = 256;
+    public final long f56213f = 8388608;
+    public final ExecutorService d = Executors.newSingleThreadExecutor(new u0(8));
 
     public p(r0 r0Var, r0 r0Var2) {
-        this.f56245b = r0Var;
-        this.f56246c = r0Var2;
+        this.f56210b = r0Var;
+        this.f56211c = r0Var2;
     }
 
     public static String b(String str) {
@@ -90,20 +90,20 @@ public final class p implements AutoCloseable {
         throw new UnsupportedOperationException("Method not decompiled: qi.p.a():boolean");
     }
 
-    public final void c(n nVar, ji.l lVar) {
-        l lVar2 = new l(nVar, lVar);
-        int i7 = this.f56247e;
+    public final void c(n nVar, ji.k kVar) {
+        l lVar = new l(nVar, kVar);
+        int i7 = this.f56212e;
         if (i7 != 0) {
-            long j3 = lVar2.f56239b;
-            long j10 = this.f56248f;
+            long j3 = lVar.f56204b;
+            long j10 = this.f56213f;
             if (j3 <= j10) {
                 LinkedHashMap linkedHashMap = this.h;
-                linkedHashMap.put(nVar, lVar2);
-                this.f56250r += j3;
+                linkedHashMap.put(nVar, lVar);
+                this.f56215r += j3;
                 while (true) {
-                    if (linkedHashMap.size() > i7 || this.f56250r > j10) {
+                    if (linkedHashMap.size() > i7 || this.f56215r > j10) {
                         Map.Entry entry = (Map.Entry) linkedHashMap.entrySet().iterator().next();
-                        this.f56250r -= ((l) entry.getValue()).f56239b;
+                        this.f56215r -= ((l) entry.getValue()).f56204b;
                         linkedHashMap.remove(entry.getKey());
                     } else {
                         return;
@@ -115,24 +115,24 @@ public final class p implements AutoCloseable {
 
     @Override
     public final void close() {
-        synchronized (this.f56244a) {
+        synchronized (this.f56209a) {
             try {
-                if (this.f56251s) {
+                if (this.f56216s) {
                     return;
                 }
-                this.f56251s = true;
-                for (ArrayList arrayList : this.f56249n.values()) {
+                this.f56216s = true;
+                for (ArrayList arrayList : this.f56214n.values()) {
                     int size = arrayList.size();
                     int i7 = 0;
                     while (i7 < size) {
                         Object obj = arrayList.get(i7);
                         i7++;
-                        ((o) obj).f56243a = null;
+                        ((o) obj).f56208a = null;
                     }
                 }
-                this.f56249n.clear();
+                this.f56214n.clear();
                 this.h.clear();
-                this.f56250r = 0L;
+                this.f56215r = 0L;
                 this.d.execute(new k(this, 0));
                 this.d.shutdown();
             } catch (Throwable th2) {
@@ -145,19 +145,19 @@ public final class p implements AutoCloseable {
         if (str != null) {
             n nVar = new n(str, b(str2));
             ?? obj = new Object();
-            obj.f56243a = mVar;
-            synchronized (this.f56244a) {
+            obj.f56208a = mVar;
+            synchronized (this.f56209a) {
                 try {
-                    if (!this.f56251s) {
-                        ArrayList arrayList = (ArrayList) this.f56249n.get(nVar);
+                    if (!this.f56216s) {
+                        ArrayList arrayList = (ArrayList) this.f56214n.get(nVar);
                         if (arrayList != null) {
                             arrayList.add(obj);
                             return obj;
                         }
                         ArrayList arrayList2 = new ArrayList();
                         arrayList2.add(obj);
-                        this.f56249n.put(nVar, arrayList2);
-                        this.d.execute(new z(6, this, nVar));
+                        this.f56214n.put(nVar, arrayList2);
+                        this.d.execute(new o0(4, this, nVar));
                         return obj;
                     }
                     throw new IllegalStateException("Service is closed");

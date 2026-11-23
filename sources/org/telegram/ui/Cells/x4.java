@@ -6,18 +6,18 @@ import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.messenger.hd;
 public final class x4 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.ActionBar.h6 f32340a;
-    public final FrameLayout f32341b;
-    public int f32342c;
+    public final org.telegram.ui.ActionBar.h6 f32306a;
+    public final FrameLayout f32307b;
+    public int f32308c;
     public boolean d;
 
     public x4(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.f32340a = h6Var;
+        this.f32306a = h6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f32341b = frameLayout;
+        this.f32307b = frameLayout;
         frameLayout.setBackground(org.telegram.ui.ActionBar.a6.e(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, h6Var), 8.0f));
-        addView(frameLayout, c8.ma.d(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
+        addView(frameLayout, c8.na.d(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
         org.telegram.ui.ActionBar.m5 m5Var = new org.telegram.ui.ActionBar.m5(context);
         m5Var.setPadding(org.telegram.messenger.g0.L(34.0f), 0, org.telegram.messenger.g0.L(34.0f), 0);
         m5Var.setGravity(17);
@@ -27,10 +27,10 @@ public final class x4 extends FrameLayout implements org.telegram.ui.ActionBar.b
         m5Var.l(hd.N0(2131751424, null), false);
         m5Var.setLeftDrawable(2131231104);
         m5Var.setTypeface(org.telegram.messenger.g0.o());
-        frameLayout.addView(m5Var, c8.ma.c(-1.0f, -1));
-        frameLayout.setOutlineProvider(bg.u0.f3363b);
+        frameLayout.addView(m5Var, c8.na.c(-1.0f, -1));
+        frameLayout.setOutlineProvider(bg.u0.f3314b);
         frameLayout.setClipToOutline(true);
-        c8.ra.b(frameLayout, 0.02f, 1.2f);
+        c8.sa.b(frameLayout, 0.02f, 1.2f);
     }
 
     @Override
@@ -39,21 +39,21 @@ public final class x4 extends FrameLayout implements org.telegram.ui.ActionBar.b
     }
 
     public void setOnButtonClick(View.OnClickListener onClickListener) {
-        this.f32341b.setOnClickListener(onClickListener);
+        this.f32307b.setOnClickListener(onClickListener);
     }
 
     @Override
     public final void updateColors() {
         try {
-            int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.f32340a);
-            FrameLayout frameLayout = this.f32341b;
+            int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.f32306a);
+            FrameLayout frameLayout = this.f32307b;
             if (frameLayout != null) {
-                if (w02 == this.f32342c) {
+                if (w02 == this.f32308c) {
                     if (this.d != org.telegram.ui.ActionBar.m6.I.q()) {
                     }
                 }
                 this.d = org.telegram.ui.ActionBar.m6.I.q();
-                this.f32342c = w02;
+                this.f32308c = w02;
                 org.telegram.ui.ActionBar.m6.H1(frameLayout.getBackground(), w02, false);
                 org.telegram.ui.ActionBar.m6.H1(frameLayout.getBackground(), org.telegram.ui.ActionBar.a6.b(w02), true);
                 frameLayout.invalidate();

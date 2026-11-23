@@ -1,12 +1,12 @@
 package z2;
 
-import v4.f0;
+import v4.e0;
 public interface d {
-    public static final f0 D;
+    public static final e0 D;
 
     static {
         ?? obj = new Object();
-        obj.f59163a = new nb.a(6);
+        obj.f59109a = new nb.a(6);
         D = obj;
     }
 }

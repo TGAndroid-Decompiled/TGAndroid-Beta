@@ -1,42 +1,44 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.io.Serializable;
-public final class gs0 implements org.telegram.ui.ActionBar.q1, org.telegram.messenger.w10 {
-    public final int f48169a;
-    public final is0 f48170b;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+public final class gs0 implements ViewTreeObserver.OnPreDrawListener {
+    public final int f48123a;
+    public final PopupNotificationActivity f48124b;
 
-    public gs0(is0 is0Var, int i7) {
-        this.f48169a = i7;
-        this.f48170b = is0Var;
+    public gs0(PopupNotificationActivity popupNotificationActivity, int i7) {
+        this.f48123a = i7;
+        this.f48124b = popupNotificationActivity;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f48169a) {
+    public final boolean onPreDraw() {
+        switch (this.f48123a) {
             case 0:
-                this.f48170b.d0();
-                return;
+                PopupNotificationActivity popupNotificationActivity = this.f48124b;
+                FrameLayout frameLayout = popupNotificationActivity.f43423f;
+                if (frameLayout != null) {
+                    frameLayout.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                int z10 = org.telegram.messenger.o10.z(48.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
+                FrameLayout frameLayout2 = popupNotificationActivity.f43423f;
+                frameLayout2.setPadding(frameLayout2.getPaddingLeft(), z10, popupNotificationActivity.f43423f.getPaddingRight(), z10);
+                return true;
             default:
-                this.f48170b.finishFragment();
-                return;
-        }
-    }
-
-    @Override
-    public void l(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        if (((org.telegram.ui.Components.o41) obj).d == 1) {
-            org.telegram.ui.Cells.s8 s8Var = (org.telegram.ui.Cells.s8) view;
-            boolean z10 = !s8Var.f31814e.h;
-            is0 is0Var = this.f48170b;
-            is0Var.f48821n = z10;
-            s8Var.setChecked(z10);
-            is0Var.d.f35789g3.O(true);
-            is0Var.a0(true);
+                PopupNotificationActivity popupNotificationActivity2 = this.f48124b;
+                popupNotificationActivity2.f43424n.getViewTreeObserver().removeOnPreDrawListener(this);
+                if (!popupNotificationActivity2.c() && !popupNotificationActivity2.Y) {
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) popupNotificationActivity2.f43424n.getLayoutParams();
+                    marginLayoutParams.topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+                    marginLayoutParams.bottomMargin = org.telegram.messenger.g0.L(48.0f);
+                    marginLayoutParams.width = -1;
+                    marginLayoutParams.height = -1;
+                    popupNotificationActivity2.f43424n.setLayoutParams(marginLayoutParams);
+                    popupNotificationActivity2.a(0);
+                    return true;
+                }
+                return true;
         }
     }
 }

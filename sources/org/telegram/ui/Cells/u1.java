@@ -9,33 +9,33 @@ import org.telegram.ui.Components.cb0;
 import org.telegram.ui.Components.mc;
 import org.telegram.ui.Components.q80;
 public final class u1 {
-    public final r1 f31901a;
-    public GradientDrawable f31902b;
-    public int f31903c;
+    public final r1 f31867a;
+    public GradientDrawable f31868b;
+    public int f31869c;
     public int d;
-    public int f31904e;
-    public int f31905f;
-    public int f31906g;
+    public int f31870e;
+    public int f31871f;
+    public int f31872g;
     public StaticLayout h;
-    public StaticLayout f31907i;
-    public int f31908j;
-    public float f31909k;
-    public int f31910l;
-    public int f31911m;
-    public int f31912n;
-    public int f31913o = 45;
-    public LinearGradient f31914p;
-    public cb0 f31915q;
-    public int f31916r;
-    public q80 f31917s;
-    public Path f31918t;
-    public Paint f31919u;
+    public StaticLayout f31873i;
+    public int f31874j;
+    public float f31875k;
+    public int f31876l;
+    public int f31877m;
+    public int f31878n;
+    public int f31879o = 45;
+    public LinearGradient f31880p;
+    public cb0 f31881q;
+    public int f31882r;
+    public q80 f31883s;
+    public Path f31884t;
+    public Paint f31885u;
     public boolean v;
-    public mc f31920w;
-    public y f31921x;
+    public mc f31886w;
+    public y f31887x;
 
     public u1(r1 r1Var) {
-        this.f31901a = r1Var;
+        this.f31867a = r1Var;
     }
 
     public final void a(android.graphics.Canvas r60, float r61) {

@@ -5,16 +5,16 @@ import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public abstract class gf0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public TLRPC.User f48106a;
-    public org.telegram.ui.Components.m80 f48107b;
-    public org.telegram.ui.Components.yz f48108c;
+    public TLRPC.User f48043a;
+    public org.telegram.ui.Components.m80 f48044b;
+    public org.telegram.ui.Components.yz f48045c;
     public boolean d;
-    public int f48109e;
+    public int f48046e;
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        org.telegram.ui.Components.m80 m80Var = this.f48107b;
-        org.telegram.ui.Components.yz yzVar = this.f48108c;
+        org.telegram.ui.Components.m80 m80Var = this.f48044b;
+        org.telegram.ui.Components.yz yzVar = this.f48045c;
         View view = (View) getParent();
         if (view != null && view.getWidth() > 0) {
             i7 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
@@ -52,8 +52,8 @@ public abstract class gf0 extends FrameLayout implements org.telegram.ui.ActionB
     public final void updateColors() {
         try {
             int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.I5, false);
-            if (x02 != this.f48109e) {
-                this.f48109e = x02;
+            if (x02 != this.f48046e) {
+                this.f48046e = x02;
                 org.telegram.ui.ActionBar.m6.H1(getBackground(), x02, true);
             }
             invalidate();

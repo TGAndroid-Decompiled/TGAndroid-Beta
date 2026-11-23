@@ -2,8 +2,8 @@ package n5;
 
 import android.util.SparseArray;
 public final class g0 {
-    public static final SparseArray f21387a;
-    public static final g0[] f21388b;
+    public static final SparseArray f21353a;
+    public static final g0[] f21354b;
     g0 EF0;
 
     static {
@@ -27,9 +27,9 @@ public final class g0 {
         Enum r43 = new Enum("TD_SCDMA", 17);
         Enum r23 = new Enum("IWLAN", 18);
         Enum r64 = new Enum("LTE_CA", 19);
-        f21388b = new g0[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r14, r122, r10, r82, r62, r42, r22, r63, r43, r23, r64, new Enum("COMBINED", 20)};
+        f21354b = new g0[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r14, r122, r10, r82, r62, r42, r22, r63, r43, r23, r64, new Enum("COMBINED", 20)};
         SparseArray sparseArray = new SparseArray();
-        f21387a = sparseArray;
+        f21353a = sparseArray;
         sparseArray.put(0, r02);
         sparseArray.put(1, r12);
         sparseArray.put(2, r32);
@@ -57,6 +57,6 @@ public final class g0 {
     }
 
     public static g0[] values() {
-        return (g0[]) f21388b.clone();
+        return (g0[]) f21354b.clone();
     }
 }

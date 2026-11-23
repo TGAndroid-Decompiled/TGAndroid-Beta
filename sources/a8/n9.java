@@ -1,13 +1,9 @@
 package a8;
-
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public abstract class n9 {
-    public static boolean a(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, com.google.android.gms.internal.play_billing.g4 g4Var, Object obj, Object obj2) {
-        while (!atomicReferenceFieldUpdater.compareAndSet(g4Var, obj, obj2)) {
-            if (atomicReferenceFieldUpdater.get(g4Var) != obj && atomicReferenceFieldUpdater.get(g4Var) != obj) {
-                return false;
-            }
+    public static boolean a(byte b10) {
+        if (b10 > -65) {
+            return true;
         }
-        return true;
+        return false;
     }
 }

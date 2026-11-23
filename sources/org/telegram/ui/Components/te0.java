@@ -5,25 +5,25 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.ui.LaunchActivity;
 public final class te0 extends FrameLayout {
-    public float f39878a;
-    public float f39879b;
-    public boolean f39880c;
+    public float f39833a;
+    public float f39834b;
+    public boolean f39835c;
     public boolean d;
-    public final PipRoundVideoView f39881e;
+    public final PipRoundVideoView f39836e;
 
     public te0(PipRoundVideoView pipRoundVideoView, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f39881e = pipRoundVideoView;
+        this.f39836e = pipRoundVideoView;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        hi.k3 k3Var = org.telegram.ui.ActionBar.m6.f29507k3;
+        hi.k3 k3Var = org.telegram.ui.ActionBar.m6.f29473k3;
         if (k3Var != null) {
             k3Var.setAlpha((int) (getAlpha() * 255.0f));
-            org.telegram.ui.ActionBar.m6.f29507k3.setBounds(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(125.0f), org.telegram.messenger.g0.L(125.0f));
-            org.telegram.ui.ActionBar.m6.f29507k3.draw(canvas);
-            org.telegram.ui.ActionBar.m6.S1.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29644ra, false));
+            org.telegram.ui.ActionBar.m6.f29473k3.setBounds(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(125.0f), org.telegram.messenger.g0.L(125.0f));
+            org.telegram.ui.ActionBar.m6.f29473k3.draw(canvas);
+            org.telegram.ui.ActionBar.m6.S1.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29610ra, false));
             org.telegram.ui.ActionBar.m6.S1.setAlpha((int) (getAlpha() * 255.0f));
             canvas.drawCircle(org.telegram.messenger.g0.L(63.0f), org.telegram.messenger.g0.L(63.0f), org.telegram.messenger.g0.L(59.5f), org.telegram.ui.ActionBar.m6.S1);
         }
@@ -32,8 +32,8 @@ public final class te0 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f39878a = motionEvent.getRawX();
-            this.f39879b = motionEvent.getRawY();
+            this.f39833a = motionEvent.getRawX();
+            this.f39834b = motionEvent.getRawY();
             this.d = true;
         }
         return true;

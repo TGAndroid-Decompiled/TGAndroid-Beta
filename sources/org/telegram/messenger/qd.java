@@ -1,11 +1,11 @@
 package org.telegram.messenger;
 public final class qd {
-    public long f26434a;
-    public int f26435b;
-    public int f26436c;
+    public long f26398a;
+    public int f26399b;
+    public int f26400c;
     public int d;
-    public int f26437e;
-    public int f26438f;
-    public int f26439g;
+    public int f26401e;
+    public int f26402f;
+    public int f26403g;
     public gj h;
 }

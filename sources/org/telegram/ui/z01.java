@@ -1,35 +1,34 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class z01 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f54362a;
-    public final c11 f54363b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class z01 extends AnimatorListenerAdapter {
+    public final int f54325a;
+    public final b11 f54326b;
 
-    public z01(c11 c11Var, int i7) {
-        this.f54362a = i7;
-        this.f54363b = c11Var;
+    public z01(b11 b11Var, int i7) {
+        this.f54325a = i7;
+        this.f54326b = b11Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f54362a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f54325a) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c11 c11Var = this.f54363b;
-                c11Var.O = floatValue;
-                c11Var.W.f51844i0.invalidate();
+                super.onAnimationEnd(animator);
+                this.f54326b.J = null;
                 return;
             case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c11 c11Var2 = this.f54363b;
-                c11Var2.O = floatValue2;
-                c11Var2.W.f51844i0.invalidate();
+                super.onAnimationEnd(animator);
+                this.f54326b.J = null;
                 return;
             default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c11 c11Var3 = this.f54363b;
-                c11Var3.O = floatValue3;
-                c11Var3.W.f51844i0.invalidate();
+                super.onAnimationEnd(animator);
+                b11 b11Var = this.f54326b;
+                b11Var.O = 0.0f;
+                b11Var.J = null;
+                b11Var.N = false;
+                b11Var.d(true, false);
                 return;
         }
     }

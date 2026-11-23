@@ -1,8 +1,9 @@
 package qe;
 
+import c8.z;
 import xd.k;
 public abstract class a {
-    public static final int f56154a;
+    public static final int f56119a;
 
     static {
         Object a10;
@@ -12,7 +13,7 @@ public abstract class a {
             kotlin.jvm.internal.j.d(property, "getProperty(...)");
             a10 = k.b(property);
         } catch (Throwable th2) {
-            a10 = b7.h.a(th2);
+            a10 = z.a(th2);
         }
         if (a10 instanceof gd.f) {
             a10 = null;
@@ -23,6 +24,6 @@ public abstract class a {
         } else {
             i7 = 2097152;
         }
-        f56154a = i7;
+        f56119a = i7;
     }
 }

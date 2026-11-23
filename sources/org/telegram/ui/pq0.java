@@ -1,70 +1,263 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.widget.ImageView;
-public final class pq0 extends ImageView {
-    public int f50927a;
-    public boolean f50928b;
-    public boolean f50929c;
-    public boolean d;
-    public org.telegram.ui.Components.i61 f50930e;
-    public final org.telegram.ui.Components.nr f50931f;
-    public ValueAnimator h;
-    public final PhotoViewer f50932n;
-
-    public pq0(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.f50932n = photoViewer;
-        this.f50927a = 0;
-        this.f50928b = false;
-        this.f50929c = false;
-        this.d = false;
-        this.f50931f = org.telegram.ui.Components.nr.f37962i;
-        setAlpha(0.0f);
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
+public class pq0 implements vq0 {
+    @Override
+    public boolean A() {
+        return false;
     }
 
-    public static void a(pq0 pq0Var) {
-        PhotoViewer photoViewer = pq0Var.f50932n;
-        org.telegram.ui.Components.i61 i61Var = photoViewer.G2;
-        if (i61Var != null && i61Var.U() != -9223372036854775807L) {
-            long max = Math.max(0L, photoViewer.G2.U() - photoViewer.G2.S());
-            float max2 = 1.0f - Math.max(Math.min(((float) max) / 250.0f, 1.0f), 0.0f);
-            if (max2 <= 0.0f) {
-                ValueAnimator valueAnimator = pq0Var.h;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    pq0Var.h = null;
-                }
-                pq0Var.setAlpha(0.0f);
-                return;
-            } else if (photoViewer.G2.d0()) {
-                if (pq0Var.h == null) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(max2, 1.0f);
-                    pq0Var.h = ofFloat;
-                    ofFloat.addUpdateListener(new a3(pq0Var, 22));
-                    pq0Var.h.setDuration(max);
-                    pq0Var.h.setInterpolator(pq0Var.f50931f);
-                    pq0Var.h.start();
-                    pq0Var.setAlpha(max2);
-                    return;
-                }
-                return;
-            } else {
-                ValueAnimator valueAnimator2 = pq0Var.h;
-                if (valueAnimator2 != null) {
-                    valueAnimator2.cancel();
-                    pq0Var.h = null;
-                }
-                pq0Var.setAlpha(max2);
-                return;
-            }
-        }
-        ValueAnimator valueAnimator3 = pq0Var.h;
-        if (valueAnimator3 != null) {
-            valueAnimator3.cancel();
-            pq0Var.h = null;
-        }
-        pq0Var.setAlpha(0.0f);
+    @Override
+    public CharSequence C(int i7) {
+        return null;
+    }
+
+    @Override
+    public xq0 E(org.telegram.messenger.gj gjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
+        return null;
+    }
+
+    @Override
+    public int H() {
+        return 0;
+    }
+
+    @Override
+    public boolean I() {
+        return true;
+    }
+
+    @Override
+    public boolean K() {
+        return false;
+    }
+
+    @Override
+    public boolean L() {
+        return false;
+    }
+
+    @Override
+    public boolean N() {
+        return true;
+    }
+
+    @Override
+    public boolean O() {
+        return false;
+    }
+
+    @Override
+    public boolean P() {
+        return false;
+    }
+
+    @Override
+    public boolean Q() {
+        return false;
+    }
+
+    @Override
+    public int R(Object obj) {
+        return -1;
+    }
+
+    @Override
+    public int S(int i7) {
+        return -1;
+    }
+
+    @Override
+    public boolean T() {
+        return !(this instanceof wk);
+    }
+
+    @Override
+    public boolean U() {
+        return !(this instanceof yk);
+    }
+
+    @Override
+    public org.telegram.messenger.gj V() {
+        return null;
+    }
+
+    @Override
+    public boolean Z() {
+        return false;
+    }
+
+    @Override
+    public long a() {
+        return 0L;
+    }
+
+    @Override
+    public boolean b() {
+        return false;
+    }
+
+    @Override
+    public String b0() {
+        return null;
+    }
+
+    @Override
+    public ArrayList c() {
+        return null;
+    }
+
+    @Override
+    public CharSequence c0(int i7) {
+        return null;
+    }
+
+    @Override
+    public boolean g() {
+        return !(this instanceof wk);
+    }
+
+    @Override
+    public boolean h() {
+        return false;
+    }
+
+    @Override
+    public org.telegram.messenger.ic j(int i7) {
+        return null;
+    }
+
+    @Override
+    public int k(int i7, org.telegram.messenger.f20 f20Var) {
+        return -1;
+    }
+
+    @Override
+    public boolean l() {
+        return false;
+    }
+
+    @Override
+    public boolean p() {
+        return false;
+    }
+
+    @Override
+    public boolean q() {
+        return false;
+    }
+
+    @Override
+    public boolean r() {
+        return false;
+    }
+
+    @Override
+    public boolean t() {
+        return true;
+    }
+
+    @Override
+    public boolean u() {
+        return !(this instanceof org.telegram.ui.Components.cm);
+    }
+
+    @Override
+    public HashMap v() {
+        return null;
+    }
+
+    @Override
+    public boolean w() {
+        return false;
+    }
+
+    @Override
+    public boolean x(int i7) {
+        return false;
+    }
+
+    @Override
+    public int y() {
+        return -1;
+    }
+
+    @Override
+    public boolean z() {
+        return !(this instanceof org.telegram.ui.Components.li);
+    }
+
+    @Override
+    public void B(int i7) {
+    }
+
+    @Override
+    public void F(boolean z10) {
+    }
+
+    @Override
+    public void M(org.telegram.messenger.f20 f20Var) {
+    }
+
+    @Override
+    public void X(int i7) {
+    }
+
+    @Override
+    public void Y(int i7) {
+    }
+
+    @Override
+    public void a0(int i7) {
+    }
+
+    @Override
+    public void e(CharSequence charSequence) {
+    }
+
+    @Override
+    public void D() {
+    }
+
+    @Override
+    public void G() {
+    }
+
+    @Override
+    public void J() {
+    }
+
+    @Override
+    public void W() {
+    }
+
+    @Override
+    public void d() {
+    }
+
+    @Override
+    public void i() {
+    }
+
+    @Override
+    public void m() {
+    }
+
+    @Override
+    public void n() {
+    }
+
+    @Override
+    public void s() {
+    }
+
+    @Override
+    public void f(String str, String str2, boolean z10) {
+    }
+
+    @Override
+    public void o(int i7, org.telegram.messenger.f20 f20Var, boolean z10, int i10, int i11, boolean z11) {
     }
 }

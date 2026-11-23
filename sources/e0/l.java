@@ -3,29 +3,29 @@ package e0;
 import android.app.Notification;
 import java.util.ArrayList;
 public final class l extends y {
-    public final int f10269e;
-    public Object f10270f;
+    public final int f10232e;
+    public Object f10233f;
 
     public l(boolean z10) {
-        this.f10269e = 0;
+        this.f10232e = 0;
     }
 
     @Override
     public final void b(a4.k kVar) {
-        switch (this.f10269e) {
+        switch (this.f10232e) {
             case 0:
-                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) kVar.d).setBigContentTitle(this.f10310b).bigText((CharSequence) this.f10270f);
+                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) kVar.d).setBigContentTitle(this.f10273b).bigText((CharSequence) this.f10233f);
                 if (this.d) {
-                    bigText.setSummaryText(this.f10311c);
+                    bigText.setSummaryText(this.f10274c);
                     return;
                 }
                 return;
             default:
-                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) kVar.d).setBigContentTitle(this.f10310b);
+                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) kVar.d).setBigContentTitle(this.f10273b);
                 if (this.d) {
-                    bigContentTitle.setSummaryText(this.f10311c);
+                    bigContentTitle.setSummaryText(this.f10274c);
                 }
-                ArrayList arrayList = (ArrayList) this.f10270f;
+                ArrayList arrayList = (ArrayList) this.f10233f;
                 int size = arrayList.size();
                 int i7 = 0;
                 while (i7 < size) {
@@ -39,7 +39,7 @@ public final class l extends y {
 
     @Override
     public final String c() {
-        switch (this.f10269e) {
+        switch (this.f10232e) {
             case 0:
                 return "androidx.core.app.NotificationCompat$BigTextStyle";
             default:
@@ -49,28 +49,28 @@ public final class l extends y {
 
     public void d(String str) {
         if (str != null) {
-            ((ArrayList) this.f10270f).add(q.d(str));
+            ((ArrayList) this.f10233f).add(q.d(str));
         }
     }
 
     public void e(String str) {
-        this.f10270f = q.d(str);
+        this.f10233f = q.d(str);
     }
 
     public void f(String str) {
-        this.f10310b = q.d(str);
+        this.f10273b = q.d(str);
     }
 
     public void g(String str) {
-        this.f10311c = q.d(str);
+        this.f10274c = q.d(str);
         this.d = true;
     }
 
     public l(int i7) {
-        this.f10269e = i7;
+        this.f10232e = i7;
         switch (i7) {
             case 1:
-                this.f10270f = new ArrayList();
+                this.f10233f = new ArrayList();
                 return;
             default:
                 return;

@@ -1,14 +1,52 @@
 package org.telegram.ui;
-public final class no implements e50 {
-    public final vo f50231a;
 
-    public no(vo voVar) {
-        this.f50231a = voVar;
+import android.widget.LinearLayout;
+import org.telegram.tgnet.TLRPC;
+public final class no extends LinearLayout implements org.telegram.messenger.gs {
+    public org.telegram.ui.Components.q9 f50235a;
+    public org.telegram.ui.Components.s80 f50236b;
+    public int f50237c;
+
+    public final void a() {
+        boolean z10;
+        org.telegram.ui.Components.q9 q9Var = this.f50235a;
+        int i7 = this.f50237c;
+        TLRPC.TL_messages_stickerSet r02 = org.telegram.messenger.si.d0(i7).r0("tg_placeholders_android");
+        if (r02 == null) {
+            r02 = org.telegram.messenger.si.d0(i7).p0("tg_placeholders_android");
+        }
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = r02;
+        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 3) {
+            q9Var.k(org.telegram.messenger.gc.b(tL_messages_stickerSet.documents.get(2)), "104_104", "tgs", this.f50236b, tL_messages_stickerSet);
+            return;
+        }
+        org.telegram.messenger.si d02 = org.telegram.messenger.si.d0(i7);
+        if (tL_messages_stickerSet == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        d02.f1("tg_placeholders_android", false, z10);
+        q9Var.setImageDrawable(this.f50236b);
     }
 
     @Override
-    public final void c(f50 f50Var, long j3) {
-        vo voVar = this.f50231a;
-        voVar.d0(voVar.getMessagesController().O0(Long.valueOf(j3)), f50Var);
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == org.telegram.messenger.ls.f25383y0 && "tg_placeholders_android".equals((String) objArr[0])) {
+            a();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+        org.telegram.messenger.ls.f(this.f50237c).c(this, org.telegram.messenger.ls.f25383y0);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.ls.f(this.f50237c).n(this, org.telegram.messenger.ls.f25383y0);
     }
 }

@@ -16,10 +16,10 @@ public final class qy extends q9 {
         super.onDraw(canvas);
         ry ryVar = this.H;
         ty tyVar = ryVar.d;
-        boolean z10 = ryVar.f39385c;
+        boolean z10 = ryVar.f39341c;
         if (!z10) {
-            if (org.telegram.messenger.si.d0(tyVar.f40091d1).f26857v0[z10 ? 1 : 0].contains(Long.valueOf(((TLRPC.StickerSetCovered) getTag()).set.f28461id)) && tyVar.f40140t1 != null) {
-                canvas.drawCircle(canvas.getWidth() - org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(3.0f), tyVar.f40140t1);
+            if (org.telegram.messenger.si.d0(tyVar.f40074d1).f26821v0[z10 ? 1 : 0].contains(Long.valueOf(((TLRPC.StickerSetCovered) getTag()).set.f28425id)) && tyVar.f40123t1 != null) {
+                canvas.drawCircle(canvas.getWidth() - org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(3.0f), tyVar.f40123t1);
             }
         }
     }

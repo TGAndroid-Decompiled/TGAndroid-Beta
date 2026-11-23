@@ -6,17 +6,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class ej0 implements View.OnLayoutChangeListener {
-    public final v4.i0 f34834a;
-    public final ArrayList f34835b;
-    public final boolean f34836c;
+    public final v4.h0 f34820a;
+    public final ArrayList f34821b;
+    public final boolean f34822c;
     public final fj0 d;
-    public final org.telegram.ui.ActionBar.k5 f34837e;
+    public final org.telegram.ui.ActionBar.k5 f34823e;
 
-    public ej0(org.telegram.ui.ActionBar.k5 k5Var, v4.i0 i0Var, ArrayList arrayList, boolean z10, fj0 fj0Var) {
-        this.f34837e = k5Var;
-        this.f34834a = i0Var;
-        this.f34835b = arrayList;
-        this.f34836c = z10;
+    public ej0(org.telegram.ui.ActionBar.k5 k5Var, v4.h0 h0Var, ArrayList arrayList, boolean z10, fj0 fj0Var) {
+        this.f34823e = k5Var;
+        this.f34820a = h0Var;
+        this.f34821b = arrayList;
+        this.f34822c = z10;
         this.d = fj0Var;
     }
 
@@ -28,9 +28,9 @@ public final class ej0 implements View.OnLayoutChangeListener {
         int i18;
         long min;
         View view2;
-        org.telegram.ui.ActionBar.k5 k5Var = this.f34837e;
-        HashMap hashMap = (HashMap) k5Var.f29193w;
-        ek0 ek0Var = (ek0) k5Var.f29188e;
+        org.telegram.ui.ActionBar.k5 k5Var = this.f34823e;
+        HashMap hashMap = (HashMap) k5Var.f29159w;
+        ek0 ek0Var = (ek0) k5Var.f29154e;
         ek0Var.removeOnLayoutChangeListener(this);
         final ArrayList arrayList2 = new ArrayList();
         ek0Var.C0();
@@ -41,7 +41,7 @@ public final class ej0 implements View.OnLayoutChangeListener {
         int i22 = 0;
         boolean z10 = false;
         while (true) {
-            arrayList = this.f34835b;
+            arrayList = this.f34821b;
             if (i19 >= childCount) {
                 break;
             }
@@ -56,18 +56,18 @@ public final class ej0 implements View.OnLayoutChangeListener {
             if (childAt instanceof org.telegram.ui.Cells.q4) {
                 ((org.telegram.ui.Cells.q4) childAt).c(true, false);
             }
-            v4.i0 i0Var = this.f34834a;
-            if (i0Var != null && (i0Var.f59202b || k5Var.f29187c)) {
+            v4.h0 h0Var = this.f34820a;
+            if (h0Var != null && (h0Var.f59146b || k5Var.f29153c)) {
                 ek0Var.getClass();
-                long c10 = i0Var.c(RecyclerView.R(childAt));
+                long c10 = h0Var.c(RecyclerView.R(childAt));
                 if (hashMap.containsKey(Long.valueOf(c10)) && (view2 = (View) hashMap.get(Long.valueOf(c10))) != null) {
                     if (view2 instanceof org.telegram.ui.Cells.q4) {
                         ((org.telegram.ui.Cells.q4) view2).c(false, false);
                     }
                     arrayList.remove(view2);
-                    c8.oa oaVar = (c8.oa) k5Var.f29191r;
-                    if (oaVar != null) {
-                        oaVar.d(view2);
+                    c8.ra raVar = (c8.ra) k5Var.f29157r;
+                    if (raVar != null) {
+                        raVar.d(view2);
                     }
                     int top = childAt.getTop() - view2.getTop();
                     if (top != 0) {
@@ -97,7 +97,7 @@ public final class ej0 implements View.OnLayoutChangeListener {
             }
             if (view3.getParent() == null) {
                 ek0Var.addView(view3);
-                ((v4.c0) k5Var.f29189f).M(view3);
+                ((v4.b0) k5Var.f29155f).M(view3);
             }
             if (view3 instanceof org.telegram.ui.Cells.q4) {
                 ((org.telegram.ui.Cells.q4) view3).c(true, true);
@@ -108,14 +108,14 @@ public final class ej0 implements View.OnLayoutChangeListener {
         } else {
             i17 = i25;
         }
-        c8.oa oaVar2 = (c8.oa) k5Var.f29191r;
-        if (oaVar2 != null) {
-            oaVar2.b();
+        c8.ra raVar2 = (c8.ra) k5Var.f29157r;
+        if (raVar2 != null) {
+            raVar2.b();
         }
         if (arrayList.isEmpty()) {
             i18 = Math.abs(i22);
         } else {
-            boolean z11 = this.f34836c;
+            boolean z11 = this.f34822c;
             if (!z11) {
                 i23 = ek0Var.getHeight() - i17;
             }
@@ -134,15 +134,15 @@ public final class ej0 implements View.OnLayoutChangeListener {
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         k5Var.h = ofFloat;
-        final boolean z12 = this.f34836c;
+        final boolean z12 = this.f34822c;
         final int i26 = i18;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 boolean z13;
                 int i27;
-                org.telegram.ui.ActionBar.k5 k5Var2 = ej0.this.f34837e;
-                ek0 ek0Var2 = (ek0) k5Var2.f29188e;
+                org.telegram.ui.ActionBar.k5 k5Var2 = ej0.this.f34823e;
+                ek0 ek0Var2 = (ek0) k5Var2.f29154e;
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 ArrayList arrayList3 = arrayList;
                 int size2 = arrayList3.size();
@@ -176,7 +176,7 @@ public final class ej0 implements View.OnLayoutChangeListener {
                     }
                 }
                 ek0Var2.invalidate();
-                gj0 gj0Var = (gj0) k5Var2.f29190n;
+                gj0 gj0Var = (gj0) k5Var2.f29156n;
                 if (gj0Var != null) {
                     gj0Var.i();
                 }
@@ -187,7 +187,7 @@ public final class ej0 implements View.OnLayoutChangeListener {
         if (k5Var.d) {
             if (z10) {
                 ((ValueAnimator) k5Var.h).setDuration(150L);
-                ((ValueAnimator) k5Var.h).setInterpolator(nr.f37961g);
+                ((ValueAnimator) k5Var.h).setInterpolator(nr.f37918g);
             } else {
                 long measuredHeight = ((i26 / ek0Var.getMeasuredHeight()) + 1.0f) * 200.0f;
                 if (measuredHeight >= 300) {

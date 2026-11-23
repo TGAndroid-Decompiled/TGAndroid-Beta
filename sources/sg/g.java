@@ -4,15 +4,15 @@ import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.hd;
 public final class g extends h {
-    public static final List f57241c = Arrays.asList(new g(2), new g(3), new g(4), new g(1), new g(0));
-    public final int f57242b;
+    public static final List f57206c = Arrays.asList(new g(2), new g(3), new g(4), new g(1), new g(0));
+    public final int f57207b;
 
     public g(int i7) {
-        this.f57242b = i7;
+        this.f57207b = i7;
     }
 
     public static g p(int i7) {
-        List list = f57241c;
+        List list = f57206c;
         if (i7 >= 0 && i7 <= list.size()) {
             return (g) list.get(i7);
         }
@@ -30,7 +30,7 @@ public final class g extends h {
 
     @Override
     public final int e() {
-        switch (this.f57242b) {
+        switch (this.f57207b) {
             case 0:
                 return 2131232521;
             case 1:
@@ -56,7 +56,7 @@ public final class g extends h {
     }
 
     public final int m() {
-        switch (this.f57242b) {
+        switch (this.f57207b) {
             case 0:
                 return 2131232521;
             case 1:
@@ -71,7 +71,7 @@ public final class g extends h {
     }
 
     public final String n() {
-        switch (this.f57242b) {
+        switch (this.f57207b) {
             case 0:
                 return hd.N0(2131747482, null);
             case 1:
@@ -86,7 +86,7 @@ public final class g extends h {
     }
 
     public final int o() {
-        switch (this.f57242b) {
+        switch (this.f57207b) {
             case 0:
                 return 4;
             case 1:

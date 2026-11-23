@@ -1,34 +1,44 @@
 package hi;
+public final class v4 implements tg.m1 {
+    public final int f15523a;
+    public final Object f15524b;
+    public final float f15525c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class v4 extends AnimatorListenerAdapter {
-    public final int f15617a;
-    public final k5 f15618b;
-
-    public v4(k5 k5Var, int i7) {
-        this.f15617a = i7;
-        this.f15618b = k5Var;
+    public v4(Object obj, float f10, int i7) {
+        this.f15523a = i7;
+        this.f15524b = obj;
+        this.f15525c = f10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f15617a) {
+    public float get() {
+        float baseFontSize;
+        float f10;
+        switch (this.f15523a) {
             case 0:
-                k5 k5Var = this.f15618b;
-                k5Var.L1 = 0.0f;
-                k5Var.J1.setAlpha(1.0f);
-                k5Var.J1.setVisibility(8);
-                k5Var.J1.n();
-                return;
-            case 1:
-                this.f15618b.Z1.setTranslationY(0.0f);
+                baseFontSize = ((tg.n2) this.f15524b).getBaseFontSize();
+                f10 = this.f15525c;
+                break;
+            default:
+                baseFontSize = ((tg.n2) this.f15524b).getBaseFontSize();
+                f10 = this.f15525c;
+                break;
+        }
+        return baseFontSize / f10;
+    }
+
+    @Override
+    public void y1(float f10) {
+        switch (this.f15523a) {
+            case 0:
+                tg.n2 n2Var = (tg.n2) this.f15524b;
+                n2Var.A0 = true;
+                n2Var.setBaseFontSize((int) (this.f15525c * f10));
                 return;
             default:
-                k5 k5Var2 = this.f15618b;
-                k5Var2.f14876c2 = false;
-                k5Var2.Z1.setTranslationY(0.0f);
-                k5Var2.t0();
+                tg.n2 n2Var2 = (tg.n2) this.f15524b;
+                n2Var2.A0 = true;
+                n2Var2.setBaseFontSize((int) (this.f15525c * f10));
                 return;
         }
     }

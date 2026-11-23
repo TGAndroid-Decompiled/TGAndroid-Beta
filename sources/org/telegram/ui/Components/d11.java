@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
 public final class d11 {
-    public long f34344a;
-    public Boolean f34345b;
+    public long f34307a;
+    public Boolean f34308b;
 }

@@ -4,24 +4,24 @@ import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 public final class be0 implements TextureView.SurfaceTextureListener {
-    public final boolean f33835a;
-    public final ca f33836b;
-    public final ee0 f33837c;
+    public final boolean f33812a;
+    public final ca f33813b;
+    public final ee0 f33814c;
 
     public be0(ee0 ee0Var, boolean z10, ca caVar) {
-        this.f33837c = ee0Var;
-        this.f33835a = z10;
-        this.f33836b = caVar;
+        this.f33814c = ee0Var;
+        this.f33812a = z10;
+        this.f33813b = caVar;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        ee0 ee0Var = this.f33837c;
-        TextureView textureView = ee0Var.f34757j0;
+        ee0 ee0Var = this.f33814c;
+        TextureView textureView = ee0Var.f34747j0;
         if (ee0Var.m0 == null && surfaceTexture != null) {
-            ez ezVar = new ez(surfaceTexture, ee0Var.D0, ee0Var.I0, ee0Var.f34775x0, this.f33835a, this.f33836b, i7, i10);
+            ez ezVar = new ez(surfaceTexture, ee0Var.D0, ee0Var.I0, ee0Var.f34765x0, this.f33812a, this.f33813b, i7, i10);
             ee0Var.m0 = ezVar;
-            if (!this.f33835a) {
+            if (!this.f33812a) {
                 ezVar.h(ee0Var.K0, ee0Var.L0);
                 ez ezVar2 = ee0Var.m0;
                 Matrix transform = textureView.getTransform(null);
@@ -49,7 +49,7 @@ public final class be0 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        ee0 ee0Var = this.f33837c;
+        ee0 ee0Var = this.f33814c;
         ez ezVar = ee0Var.m0;
         if (ezVar != null) {
             ezVar.postRunnable(new bz(ezVar, 0));
@@ -61,7 +61,7 @@ public final class be0 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        ee0 ee0Var = this.f33837c;
+        ee0 ee0Var = this.f33814c;
         ez ezVar = ee0Var.m0;
         if (ezVar != null) {
             ezVar.postRunnable(new az(ezVar, i7, i10, 1));

@@ -7,14 +7,14 @@ import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import androidx.recyclerview.widget.RecyclerView;
-public class sy extends v4.u0 {
-    public final int f39720a;
-    public boolean f39721b;
-    public final ty f39722c;
+public class sy extends v4.t0 {
+    public final int f39675a;
+    public boolean f39676b;
+    public final ty f39677c;
 
     public sy(ty tyVar, int i7) {
-        this.f39722c = tyVar;
-        this.f39720a = i7;
+        this.f39677c = tyVar;
+        this.f39675a = i7;
     }
 
     @Override
@@ -23,19 +23,19 @@ public class sy extends v4.u0 {
         gy gyVar;
         float f10;
         int i10;
-        ty tyVar = this.f39722c;
+        ty tyVar = this.f39677c;
         ObjectAnimator[] objectAnimatorArr = tyVar.S0;
-        v4.b1 b1Var = recyclerView.getLayoutManager().f59252e;
+        v4.a1 a1Var = recyclerView.getLayoutManager().f59199e;
         boolean z10 = true;
-        if (b1Var != null && b1Var.f59112e) {
-            this.f39721b = true;
+        if (a1Var != null && a1Var.f59058e) {
+            this.f39676b = true;
             return;
         }
-        int i11 = this.f39720a;
+        int i11 = this.f39675a;
         if (i7 == 0) {
-            if (!this.f39721b) {
+            if (!this.f39676b) {
                 int[] iArr = tyVar.R0;
-                tx txVar = tyVar.f40143u1;
+                tx txVar = tyVar.f40126u1;
                 if ((txVar == null || !txVar.z()) && i11 != 0) {
                     float f11 = 48.0f;
                     if (i11 == 1) {
@@ -75,11 +75,11 @@ public class sy extends v4.u0 {
                             f11 = 38.0f;
                         }
                         int L = org.telegram.messenger.g0.L(f11);
-                        v4.f1 K = x10.K(0);
+                        v4.e1 K = x10.K(0);
                         if (K != null) {
-                            int bottom = K.f59165a.getBottom();
+                            int bottom = K.f59111a.getBottom();
                             int i13 = iArr[i11];
-                            float f13 = (bottom - (L + i13)) / tyVar.f40088c1;
+                            float f13 = (bottom - (L + i13)) / tyVar.f40071c1;
                             if (f13 > 0.0f || f13 < 1.0f) {
                                 if (f13 <= 0.5f) {
                                     z10 = false;
@@ -93,7 +93,7 @@ public class sy extends v4.u0 {
             if (tyVar.K0) {
                 tyVar.K0 = false;
             }
-            this.f39721b = false;
+            this.f39676b = false;
             return;
         }
         if (i7 == 1) {
@@ -103,7 +103,7 @@ public class sy extends v4.u0 {
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 == 2) {
-                        gyVar = tyVar.f40125p0;
+                        gyVar = tyVar.f40108p0;
                     } else {
                         throw new IllegalArgumentException(i5.c.i(i11, "Unexpected argument: "));
                     }
@@ -116,14 +116,14 @@ public class sy extends v4.u0 {
             if (gyVar != null) {
                 gyVar.b();
             }
-            this.f39721b = false;
+            this.f39676b = false;
         }
-        if (!this.f39721b && (objectAnimator = objectAnimatorArr[i11]) != null && objectAnimator.isRunning()) {
+        if (!this.f39676b && (objectAnimator = objectAnimatorArr[i11]) != null && objectAnimator.isRunning()) {
             objectAnimatorArr[i11].cancel();
         }
         if (i11 == 0) {
             if (tyVar.U0 == null) {
-                jg.d1 d1Var = new jg.d1(tyVar, tyVar.f40091d1, tyVar.f40143u1.a(), tyVar.f40143u1.f(), 1);
+                jg.d1 d1Var = new jg.d1(tyVar, tyVar.f40074d1, tyVar.f40126u1.a(), tyVar.f40126u1.f(), 1);
                 tyVar.U0 = d1Var;
                 d1Var.a();
             }
@@ -134,8 +134,8 @@ public class sy extends v4.u0 {
     @Override
     public void b(RecyclerView recyclerView, int i7, int i10) {
         int L;
-        ty tyVar = this.f39722c;
-        int i11 = this.f39720a;
+        ty tyVar = this.f39677c;
+        int i11 = this.f39675a;
         tyVar.p(i11);
         ty.e(tyVar, i11, i10);
         if (i11 != 0) {
@@ -149,9 +149,9 @@ public class sy extends v4.u0 {
         } else {
             tyVar.q(false);
         }
-        if (!this.f39721b) {
+        if (!this.f39676b) {
             float f10 = i10;
-            FrameLayout frameLayout = tyVar.f40119n;
+            FrameLayout frameLayout = tyVar.f40102n;
             if (SystemClock.elapsedRealtime() - tyVar.E2 >= ViewConfiguration.getTapTimeout()) {
                 tyVar.I += f10;
                 if (tyVar.h.getCurrentItem() == 0) {

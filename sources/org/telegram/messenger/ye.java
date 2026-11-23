@@ -4,55 +4,55 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public abstract class ye {
     public xe A;
-    public CharSequence f28058a;
-    public boolean f28059b;
-    public String f28060c;
+    public CharSequence f28022a;
+    public boolean f28023b;
+    public String f28024c;
     public long d;
-    public TLRPC.Photo f28061e;
-    public gj f28062f;
-    public String f28063g;
+    public TLRPC.Photo f28025e;
+    public gj f28026f;
+    public String f28027g;
     public String h;
-    public String f28064i;
-    public String f28065j;
-    public String f28066k;
-    public String f28067l;
-    public long f28068m;
-    public ArrayList f28069n;
-    public gf f28070o;
-    public ArrayList f28071p;
-    public ArrayList f28072q;
-    public ArrayList f28073r;
-    public f20 f28074s;
-    public long f28075t;
-    public boolean f28076u;
+    public String f28028i;
+    public String f28029j;
+    public String f28030k;
+    public String f28031l;
+    public long f28032m;
+    public ArrayList f28033n;
+    public gf f28034o;
+    public ArrayList f28035p;
+    public ArrayList f28036q;
+    public ArrayList f28037r;
+    public f20 f28038s;
+    public long f28039t;
+    public boolean f28040u;
     public boolean v;
-    public boolean f28077w;
-    public int f28078x;
-    public long f28079y;
-    public Boolean f28080z;
+    public boolean f28041w;
+    public int f28042x;
+    public long f28043y;
+    public Boolean f28044z;
 
     public abstract String a();
 
     public final boolean b() {
         ArrayList arrayList;
-        if (!this.f28059b) {
+        if (!this.f28023b) {
             return false;
         }
-        f20 f20Var = this.f28074s;
-        if (f20Var != null && (f20Var.f23845t || f20Var.f23826a > 0 || f20Var.f23828b > 0)) {
+        f20 f20Var = this.f28038s;
+        if (f20Var != null && (f20Var.f23809t || f20Var.f23790a > 0 || f20Var.f23792b > 0)) {
             return true;
         }
         xe xeVar = this.A;
-        if ((xeVar == null || xeVar.b()) && this.f28070o == null && this.f28065j == null && (((arrayList = this.f28071p) == null || arrayList.isEmpty()) && this.f28063g == null)) {
+        if ((xeVar == null || xeVar.b()) && this.f28034o == null && this.f28029j == null && (((arrayList = this.f28035p) == null || arrayList.isEmpty()) && this.f28027g == null)) {
             return false;
         }
         return true;
     }
 
     public final boolean c() {
-        Boolean bool = this.f28080z;
+        Boolean bool = this.f28044z;
         if (bool == null) {
-            return cz.f23411h1;
+            return cz.f23375h1;
         }
         return bool.booleanValue();
     }
@@ -65,26 +65,26 @@ public abstract class ye {
     }
 
     public void e() {
-        this.f28058a = null;
-        this.f28063g = null;
-        this.f28061e = null;
-        this.f28062f = null;
-        this.f28060c = null;
-        this.f28064i = null;
+        this.f28022a = null;
+        this.f28027g = null;
+        this.f28025e = null;
+        this.f28026f = null;
+        this.f28024c = null;
+        this.f28028i = null;
         this.h = null;
-        this.f28065j = null;
-        this.f28067l = null;
-        this.f28066k = null;
-        this.f28076u = false;
+        this.f28029j = null;
+        this.f28031l = null;
+        this.f28030k = null;
+        this.f28040u = false;
         this.v = false;
-        this.f28077w = false;
-        this.f28078x = 0;
-        this.f28071p = null;
-        this.f28074s = null;
-        this.f28069n = null;
-        this.f28070o = null;
-        this.f28073r = null;
+        this.f28041w = false;
+        this.f28042x = 0;
+        this.f28035p = null;
+        this.f28038s = null;
+        this.f28033n = null;
+        this.f28034o = null;
+        this.f28037r = null;
         this.A = null;
-        this.f28080z = null;
+        this.f28044z = null;
     }
 }

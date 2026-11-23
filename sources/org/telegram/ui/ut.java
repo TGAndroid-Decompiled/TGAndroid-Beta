@@ -15,6 +15,6 @@ public final class ut extends org.telegram.ui.Components.ap0 {
         if (!z10) {
             return;
         }
-        org.telegram.messenger.g0.h3(new ss(this, hVar, i7), 250L);
+        org.telegram.messenger.g0.h3(new vs(this, hVar, i7), 250L);
     }
 }

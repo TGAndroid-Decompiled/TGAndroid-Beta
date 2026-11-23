@@ -5,25 +5,25 @@ import android.location.LocationListener;
 import android.os.Bundle;
 import android.os.SystemClock;
 public final class pd implements LocationListener {
-    public final int f26297a;
-    public final Object f26298b;
+    public final int f26261a;
+    public final Object f26262b;
 
     public pd(Object obj, int i7) {
-        this.f26297a = i7;
-        this.f26298b = obj;
+        this.f26261a = i7;
+        this.f26262b = obj;
     }
 
     @Override
     public final void onLocationChanged(Location location) {
-        switch (this.f26297a) {
+        switch (this.f26261a) {
             case 0:
-                rd rdVar = (rd) this.f26298b;
+                rd rdVar = (rd) this.f26262b;
                 if (location != null) {
-                    Location location2 = rdVar.f26597s;
-                    if (location2 != null && (this == rdVar.h || this == rdVar.f26595n)) {
+                    Location location2 = rdVar.f26561s;
+                    if (location2 != null && (this == rdVar.h || this == rdVar.f26559n)) {
                         if (!rdVar.E && location.distanceTo(location2) > 20.0f) {
                             rdVar.m(location);
-                            rdVar.f26598w = SystemClock.elapsedRealtime() - 25000;
+                            rdVar.f26562w = SystemClock.elapsedRealtime() - 25000;
                             return;
                         }
                         return;
@@ -33,9 +33,9 @@ public final class pd implements LocationListener {
                 }
                 return;
             default:
-                a8.b8 b8Var = (a8.b8) this.f26298b;
+                a8.b8 b8Var = (a8.b8) this.f26262b;
                 if (location != null && ((yr) b8Var.f344e) != null) {
-                    if (s2.f26730a) {
+                    if (s2.f26694a) {
                         a8.b("found location " + location);
                     }
                     b8Var.f345f = location;
@@ -56,17 +56,17 @@ public final class pd implements LocationListener {
 
     @Override
     public final void onProviderDisabled(String str) {
-        int i7 = this.f26297a;
+        int i7 = this.f26261a;
     }
 
     @Override
     public final void onProviderEnabled(String str) {
-        int i7 = this.f26297a;
+        int i7 = this.f26261a;
     }
 
     @Override
     public final void onStatusChanged(String str, int i7, Bundle bundle) {
-        int i10 = this.f26297a;
+        int i10 = this.f26261a;
     }
 
     private final void a(String str) {

@@ -6,22 +6,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public final class e9 implements OnSuccessListener, OnFailureListener {
-    public final org.telegram.ui.r3 f23690a;
+    public final org.telegram.ui.r3 f23654a;
 
     @Override
     public void onFailure(Exception exc) {
         a8.g(exc, true);
-        this.f23690a.a(Collections.EMPTY_LIST);
+        this.f23654a.a(Collections.EMPTY_LIST);
     }
 
     @Override
     public void onSuccess(Object obj) {
         ArrayList arrayList = new ArrayList();
         for (db.c cVar : (List) obj) {
-            if (cVar.f8277c == 1) {
+            if (cVar.f8240c == 1) {
                 arrayList.add(cVar);
             }
         }
-        this.f23690a.a(arrayList);
+        this.f23654a.a(arrayList);
     }
 }

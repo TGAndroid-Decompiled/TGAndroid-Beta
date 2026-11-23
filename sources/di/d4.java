@@ -5,11 +5,11 @@ import android.text.TextPaint;
 import android.view.View;
 import android.widget.TextView;
 public final class d4 extends TextView {
-    public final float f8683a;
+    public final float f8646a;
 
     public d4(Context context, float f10) {
         super(context);
-        this.f8683a = f10;
+        this.f8646a = f10;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class d4 extends TextView {
         if (View.MeasureSpec.getMode(i7) != 0) {
             int size = (View.MeasureSpec.getSize(i7) - getPaddingLeft()) - getPaddingRight();
             TextPaint textPaint = new TextPaint(getPaint());
-            float f11 = this.f8683a;
+            float f11 = this.f8646a;
             textPaint.setTextSize(f11);
             if (textPaint.measureText("0000 0000 0000 0000") > size && size > 0) {
                 f11 = (float) Math.floor((f11 * f10) / measureText);

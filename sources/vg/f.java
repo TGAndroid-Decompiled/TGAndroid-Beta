@@ -1,239 +1,291 @@
 package vg;
 
+import ai.v0;
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
-import android.opengl.GLUtils;
-import android.opengl.Matrix;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-import org.telegram.ui.ActionBar.m6;
-public final class f implements GLSurfaceView.Renderer {
-    public final int D;
-    public final int E;
-    public boolean F;
-    public float G;
-    public int f59467a;
-    public int f59468b;
-    public n f59469c;
-    public float f59476l;
-    public final Context f59481q;
-    public Bitmap f59482r;
-    public float f59483s;
-    public float f59484t;
-    public float f59485u;
-    public float v;
-    public boolean f59486w;
-    public int f59487x;
-    public int f59488y;
-    public float d = 0.0f;
-    public float f59470e = 0.0f;
-    public volatile float f59471f = 0.0f;
-    public volatile float f59472g = 0.0f;
-    public volatile float h = 1.0f;
-    public float f59473i = 0.0f;
-    public volatile float f59474j = 0.0f;
-    public float f59475k = 0.0f;
-    public final float[] f59477m = new float[16];
-    public final float[] f59478n = new float[16];
-    public final float[] f59479o = new float[16];
-    public final float[] f59480p = new float[16];
-    public int f59489z = m6.Mk;
-    public int A = m6.Nk;
-    public final int B = m6.Wk;
-    public final int C = m6.Xk;
+import android.os.Build;
+import android.view.Choreographer;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.View;
+import android.view.ViewParent;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
+import hi.j9;
+import java.util.ArrayList;
+import org.telegram.ui.Cells.z9;
+import org.telegram.ui.k71;
+import p4.o0;
+import tg.z1;
+import ug.t1;
+public abstract class f extends GLSurfaceView implements Choreographer.FrameCallback {
+    public static final int L = 0;
+    public volatile boolean E;
+    public volatile int F;
+    public long G;
+    public volatile int H;
+    public final ArrayList I;
+    public float J;
+    public float K;
+    public final g f59421a;
+    public final GestureDetector f59422b;
+    public t1 f59423c;
+    public ValueAnimator d;
+    public boolean f59424e;
+    public boolean f59425f;
+    public boolean h;
+    public boolean f59426n;
+    public volatile boolean f59427r;
+    public boolean f59428s;
+    public Runnable f59429w;
+    public volatile float f59430x;
+    public volatile boolean f59431y;
 
-    public f(Context context, int i7, int i10) {
-        this.f59476l = 0.0f;
-        this.f59481q = context;
-        this.D = i7;
-        this.E = i10;
-        if (i10 == 2) {
-            this.f59476l = 1.0f;
-        }
-        b();
+    public f(Context context) {
+        super(context);
+        this.f59425f = true;
+        this.f59430x = 1.0f;
+        this.I = new ArrayList();
+        this.J = 1.0f;
+        this.K = 1.0f;
+        setEGLContextClientVersion(3);
+        setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+        getHolder().setFormat(-3);
+        setZOrderOnTop(true);
+        this.f59421a = new g(context, 1, 4);
+        setRenderer(new e(this));
+        setRenderMode(0);
+        this.f59422b = new GestureDetector(context, new z9(1, this));
     }
 
-    public static int a(int i7, String str) {
-        int[] iArr = new int[1];
-        int glCreateShader = GLES20.glCreateShader(i7);
-        if (glCreateShader == 0) {
-            return 0;
+    public static void a(f fVar, int i7) {
+        if (fVar.f59424e && i7 == fVar.F) {
+            b bVar = new b(fVar, i7, 0);
+            if (Build.VERSION.SDK_INT >= 29 && fVar.isHardwareAccelerated()) {
+                fVar.getViewTreeObserver().registerFrameCommitCallback(bVar);
+                fVar.getRootView().invalidate();
+                return;
+            }
+            fVar.postOnAnimation(bVar);
         }
-        GLES20.glShaderSource(glCreateShader, str);
-        GLES20.glCompileShader(glCreateShader);
-        GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
-        if (iArr[0] != 0) {
-            return glCreateShader;
-        }
-        throw new RuntimeException("Could not compile program: " + GLES20.glGetShaderInfoLog(glCreateShader) + " " + str);
     }
 
     public final void b() {
-        boolean z10;
-        int i7 = m6.f29454h5;
-        boolean z11 = false;
-        if (i0.a.h(m6.x0(null, i7, false)) < 0.5d) {
-            z10 = true;
-        } else {
-            z10 = false;
+        ValueAnimator valueAnimator = this.d;
+        if (valueAnimator == null) {
+            return;
         }
-        this.f59486w = z10;
-        this.f59487x = i0.a.f(this.f59476l, m6.x0(null, this.f59489z, false), m6.x0(null, this.B, false));
-        this.f59488y = i0.a.f(this.f59476l, m6.x0(null, this.A, false), m6.x0(null, this.C, false));
-        if (this.D == 1 && i0.a.h(m6.x0(null, i7, false)) < 0.5d) {
-            z11 = true;
-        }
-        this.F = z11;
+        valueAnimator.removeAllListeners();
+        this.d.cancel();
+        this.d = null;
     }
 
-    @Override
-    public final void onDrawFrame(GL10 gl10) {
-        float f10;
+    public final void c(ArrayList arrayList) {
         int i7;
-        GLES20.glClear(16640);
-        GLES20.glEnable(2929);
-        float[] fArr = this.f59479o;
-        if (this.E == 4) {
-            f10 = 40.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        Matrix.setLookAtM(fArr, 0, 0.0f, f10, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        Matrix.setIdentityM(this.f59480p, 0);
-        Matrix.translateM(this.f59480p, 0, 0.0f, this.f59470e, 0.0f);
-        Matrix.rotateM(this.f59480p, 0, (-this.f59473i) - this.f59474j, 1.0f, 0.0f, 0.0f);
-        Matrix.rotateM(this.f59480p, 0, (-this.d) - this.f59471f, 0.0f, 1.0f, 0.0f);
-        Matrix.multiplyMM(this.f59477m, 0, this.f59479o, 0, this.f59480p, 0);
-        float[] fArr2 = this.f59477m;
-        Matrix.multiplyMM(fArr2, 0, this.f59478n, 0, fArr2, 0);
-        n nVar = this.f59469c;
-        if (nVar != null) {
-            nVar.f59528b = (float) Math.toRadians(this.d + this.f59471f);
-            this.f59469c.f59530c = (float) Math.toRadians(this.f59473i + this.f59474j);
-            this.f59469c.d = (float) Math.toRadians(this.f59472g);
-            this.f59469c.f59533e = this.h;
-            n nVar2 = this.f59469c;
-            nVar2.getClass();
-            nVar2.J = this.f59486w;
-            nVar2.E = this.f59487x;
-            nVar2.F = this.f59488y;
-            float[] fArr3 = this.f59477m;
-            float[] fArr4 = this.f59480p;
-            int i10 = this.f59467a;
-            int i11 = this.f59468b;
-            float f11 = this.f59483s;
-            float f12 = this.f59485u;
-            float f13 = this.f59484t;
-            float f14 = this.v;
-            float f15 = this.f59475k;
-            float f16 = this.f59476l;
-            float f17 = this.G;
-            if (nVar2.f59526a != null) {
-                float min = Math.min(1.0f, (Math.max(0.0f, Math.min(f17, 0.1f)) / 0.22f) + nVar2.f59552z);
-                nVar2.f59552z = min;
-                a aVar = nVar2.f59526a;
-                aVar.B = nVar2.f59533e;
-                aVar.C = 0;
-                aVar.c(i10, i11, nVar2.f59528b, nVar2.f59530c, nVar2.d, f17, min * nVar2.A, f15, false);
-                return;
-            }
-            if (nVar2.Z != null) {
-                GLES20.glBindTexture(3553, nVar2.f59542o);
+        ArrayList arrayList2 = new ArrayList();
+        synchronized (this.I) {
+            try {
+                int size = arrayList.size();
                 i7 = 0;
-                GLUtils.texImage2D(3553, 0, nVar2.Z, 0);
-                nVar2.Z = null;
-            } else {
-                i7 = 0;
-            }
-            GLES20.glUniform1i(nVar2.f59539l, i7);
-            GLES20.glUniform1f(nVar2.f59546s, nVar2.f59550x);
-            GLES20.glUniform1f(nVar2.f59547t, nVar2.f59552z);
-            GLES20.glUniform1f(nVar2.v, f15);
-            GLES20.glUniform1f(nVar2.f59549w, f16);
-            GLES20.glUniformMatrix4fv(nVar2.f59535g, 1, false, fArr3, 0);
-            GLES20.glUniformMatrix4fv(nVar2.h, 1, false, fArr4, 0);
-            GLES20.glUniform1f(nVar2.K, nVar2.B);
-            GLES20.glUniform1f(nVar2.L, nVar2.C);
-            GLES20.glUniform1f(nVar2.M, nVar2.D);
-            GLES20.glUniform1f(nVar2.P, nVar2.G);
-            GLES20.glUniform3f(nVar2.N, Color.red(nVar2.E) / 255.0f, Color.green(nVar2.E) / 255.0f, Color.blue(nVar2.E) / 255.0f);
-            GLES20.glUniform3f(nVar2.O, Color.red(nVar2.F) / 255.0f, Color.green(nVar2.F) / 255.0f, Color.blue(nVar2.F) / 255.0f);
-            GLES20.glUniform3f(nVar2.Q, Color.red(nVar2.H) / 255.0f, Color.green(nVar2.H) / 255.0f, Color.blue(nVar2.H) / 255.0f);
-            GLES20.glUniform3f(nVar2.R, Color.red(nVar2.I) / 255.0f, Color.green(nVar2.I) / 255.0f, Color.blue(nVar2.I) / 255.0f);
-            GLES20.glUniform2f(nVar2.S, i10, i11);
-            GLES20.glUniform4f(nVar2.T, f11, f12, f13, f14);
-            GLES20.glUniform1i(nVar2.W, nVar2.J ? 1 : 0);
-            float f18 = nVar2.f59532d0 + f17;
-            nVar2.f59532d0 = f18;
-            GLES20.glUniform1f(nVar2.X, f18);
-            for (int i12 = 0; i12 < nVar2.f59527a0; i12++) {
-                int i13 = i12 * 3;
-                GLES20.glBindBuffer(34962, nVar2.f59531c0[i13]);
-                GLES20.glVertexAttribPointer(nVar2.f59544q, 2, 5126, false, 0, 0);
-                GLES20.glBindBuffer(34962, nVar2.f59531c0[i13 + 1]);
-                GLES20.glVertexAttribPointer(nVar2.f59545r, 3, 5126, false, 0, 0);
-                GLES20.glBindBuffer(34962, nVar2.f59531c0[i13 + 2]);
-                GLES20.glVertexAttribPointer(nVar2.f59543p, 3, 5126, false, 0, 0);
-                GLES20.glUniform1i(nVar2.U, i12);
-                GLES20.glUniform1i(nVar2.V, nVar2.f59529b0);
-                GLES20.glDrawArrays(4, 0, nVar2.f59551y[i12] / 3);
-            }
-            float f19 = nVar2.f59552z;
-            if (f19 < 1.0f) {
-                float f20 = f19 + 0.07272727f;
-                nVar2.f59552z = f20;
-                if (f20 > 1.0f) {
-                    nVar2.f59552z = 1.0f;
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    Runnable runnable = (Runnable) obj;
+                    if (this.I.remove(runnable)) {
+                        arrayList2.add(runnable);
+                    }
                 }
+            } catch (Throwable th2) {
+                throw th2;
             }
-            float f21 = nVar2.f59550x + 5.0E-4f;
-            nVar2.f59550x = f21;
-            if (f21 > 1.0f) {
-                nVar2.f59550x = f21 - 1.0f;
-            }
+        }
+        int size2 = arrayList2.size();
+        while (i7 < size2) {
+            Object obj2 = arrayList2.get(i7);
+            i7++;
+            ((Runnable) obj2).run();
+        }
+    }
+
+    public final void d() {
+        b();
+        g gVar = this.f59421a;
+        float f10 = gVar.d;
+        float f11 = gVar.f59438i;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
+        this.d = ofFloat;
+        ofFloat.setDuration(600L);
+        this.d.setInterpolator(new OvershootInterpolator());
+        this.d.addUpdateListener(new j9(this, f10, f11, 8));
+        this.d.addListener(new k71(this, 22));
+        this.d.start();
+        t1 t1Var = this.f59423c;
+        if (t1Var != null) {
+            t1Var.b(Math.abs(f10 + f11));
         }
     }
 
     @Override
-    public final void onSurfaceChanged(GL10 gl10, int i7, int i10) {
+    public final void doFrame(long j3) {
         float f10;
-        this.f59467a = i7;
-        this.f59468b = i10;
-        GLES20.glViewport(0, 0, i7, i10);
-        float f11 = i7 / i10;
-        if (this.E == 4) {
-            f10 = 12.0f;
-        } else {
-            f10 = 53.13f;
+        if (this.f59424e && !this.f59425f && !this.f59427r) {
+            if (Build.VERSION.SDK_INT < 34) {
+                f10 = getAlpha();
+            } else {
+                f10 = 1.0f;
+            }
+            for (ViewParent parent = getParent(); parent instanceof View; parent = parent.getParent()) {
+                f10 *= ((View) parent).getAlpha();
+            }
+            this.f59430x = f10;
+            long j10 = this.G;
+            int i7 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
+            if (i7 == 0 || j3 >= j10) {
+                if (i7 == 0 || j3 - j10 > 16666666) {
+                    this.G = j3;
+                }
+                this.G += 16666666;
+                requestRender();
+            }
+            Choreographer.getInstance().postFrameCallback(this);
         }
-        Matrix.perspectiveM(this.f59478n, 0, f10, f11, 1.0f, 200.0f);
+    }
+
+    public final void e() {
+        if (this.f59424e && !this.f59425f && this.h && !this.f59426n && this.d == null) {
+            float f10 = this.f59421a.d;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 360.0f + f10);
+            this.d = ofFloat;
+            ofFloat.setDuration(Math.round(10540.18445322793d));
+            this.d.setRepeatCount(-1);
+            this.d.setInterpolator(new LinearInterpolator());
+            this.d.addUpdateListener(new z1(this, 5));
+            this.d.start();
+        }
+    }
+
+    public final void f() {
+        if (this.K == 1.0f) {
+            getHolder().setSizeFromLayout();
+        } else if (getWidth() > 0 && getHeight() > 0) {
+            getHolder().setFixedSize(Math.round(getWidth() * this.K), Math.round(getHeight() * this.K));
+        }
     }
 
     @Override
-    public final void onSurfaceCreated(GL10 gl10, EGLConfig eGLConfig) {
-        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        n nVar = this.f59469c;
-        if (nVar != null) {
-            a aVar = nVar.f59526a;
-            if (aVar != null) {
-                aVar.b();
-                nVar.f59526a = null;
-            } else {
-                GLES20.glDeleteProgram(nVar.f59534f);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f59424e = true;
+        setPaused(this.f59425f);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        ArrayList arrayList;
+        this.f59424e = false;
+        this.f59428s = false;
+        this.H++;
+        Choreographer.getInstance().removeFrameCallback(this);
+        this.G = 0L;
+        b();
+        super.onDetachedFromWindow();
+        synchronized (this.I) {
+            arrayList = new ArrayList(this.I);
+        }
+        c(arrayList);
+    }
+
+    @Override
+    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
+        super.onSizeChanged(i7, i10, i11, i12);
+        if (this.K > 1.0f) {
+            f();
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getActionMasked() == 0) {
+            if (getParent() != null) {
+                getParent().requestDisallowInterceptTouchEvent(true);
+            }
+        } else if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
+            this.f59426n = false;
+            d();
+            if (getParent() != null) {
+                getParent().requestDisallowInterceptTouchEvent(false);
             }
         }
-        n nVar2 = new n(this.f59481q, this.E);
-        this.f59469c = nVar2;
-        Bitmap bitmap = this.f59482r;
-        if (bitmap != null && nVar2.f59526a == null) {
-            nVar2.Z = bitmap;
+        return this.f59422b.onTouchEvent(motionEvent);
+    }
+
+    public void setIdleAnimationEnabled(boolean z10) {
+        this.h = z10;
+        if (z10) {
+            e();
+        } else {
+            b();
         }
-        if (this.F) {
-            nVar2.B = 1.0f;
-            nVar2.C = 0.2f;
+    }
+
+    public void setPaused(boolean z10) {
+        this.f59425f = z10;
+        Choreographer.getInstance().removeFrameCallback(this);
+        this.G = 0L;
+        if (z10) {
+            b();
+        } else if (this.f59424e && !this.f59427r) {
+            e();
+            Choreographer.getInstance().postFrameCallback(this);
         }
+    }
+
+    public void setRenderScale(float f10) {
+        float max = Math.max(1.0f, Math.min(this.K, f10));
+        if (this.J == max) {
+            return;
+        }
+        this.J = max;
+        this.f59421a.h = max / this.K;
+    }
+
+    public void setStarParticlesView(t1 t1Var) {
+        this.f59423c = t1Var;
+    }
+
+    @Override
+    public final void surfaceCreated(SurfaceHolder surfaceHolder) {
+        this.F++;
+        this.E = false;
+        this.f59431y = false;
+        this.f59428s = false;
+        super.surfaceCreated(surfaceHolder);
+    }
+
+    @Override
+    public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        ArrayList arrayList;
+        this.F++;
+        this.E = false;
+        this.f59431y = false;
+        this.f59428s = false;
+        super.surfaceDestroyed(surfaceHolder);
+        synchronized (this.I) {
+            arrayList = new ArrayList(this.I);
+        }
+        c(arrayList);
+    }
+
+    @Override
+    public final void surfaceRedrawNeededAsync(SurfaceHolder surfaceHolder, Runnable runnable) {
+        ArrayList arrayList;
+        synchronized (this.I) {
+            this.I.add(new v0(5, runnable));
+            arrayList = new ArrayList(this.I);
+        }
+        super.surfaceRedrawNeededAsync(surfaceHolder, new o0(25, this, arrayList));
     }
 }

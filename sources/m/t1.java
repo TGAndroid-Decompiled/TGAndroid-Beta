@@ -5,26 +5,26 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 public final class t1 implements Runnable {
-    public final int f20238a;
-    public final u1 f20239b;
+    public final int f20204a;
+    public final u1 f20205b;
 
     public t1(u1 u1Var, int i7) {
-        this.f20238a = i7;
-        this.f20239b = u1Var;
+        this.f20204a = i7;
+        this.f20205b = u1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f20238a) {
+        switch (this.f20204a) {
             case 0:
-                ViewParent parent = this.f20239b.d.getParent();
+                ViewParent parent = this.f20205b.d.getParent();
                 if (parent != null) {
                     parent.requestDisallowInterceptTouchEvent(true);
                     return;
                 }
                 return;
             default:
-                u1 u1Var = this.f20239b;
+                u1 u1Var = this.f20205b;
                 u1Var.a();
                 View view = u1Var.d;
                 if (view.isEnabled() && !view.isLongClickable() && u1Var.c()) {

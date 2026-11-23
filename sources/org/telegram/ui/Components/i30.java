@@ -15,19 +15,19 @@ public abstract class i30 extends c51 {
     public int X;
     public boolean Y;
     public int Z;
-    public String f36133a0;
-    public String f36134b0;
-    public int f36135c0;
-    public org.telegram.ui.f0 f36136d0;
-    public final boolean[] f36137e0;
+    public String f36088a0;
+    public String f36089b0;
+    public int f36090c0;
+    public org.telegram.ui.f0 f36091d0;
+    public final boolean[] f36092e0;
 
     public i30(ek0 ek0Var, Context context, int i7) {
         super(ek0Var, context, i7, 0, false, null, null);
         this.R = new ArrayList();
         this.W = 0;
         this.X = -1;
-        this.f36137e0 = new boolean[1];
-        this.f34064w = new d(this, 17);
+        this.f36092e0 = new boolean[1];
+        this.f34028w = new d(this, 17);
         this.Q = i7;
     }
 
@@ -60,7 +60,7 @@ public abstract class i30 extends c51 {
     public final void W() {
         fi.b6 b6Var = this.T;
         if (b6Var != null && b6Var.I != 0) {
-            ConnectionsManager.getInstance(b6Var.f12085c).cancelRequest(b6Var.I, true);
+            ConnectionsManager.getInstance(b6Var.f12036c).cancelRequest(b6Var.I, true);
             b6Var.I = 0;
         }
         this.S = false;
@@ -68,17 +68,17 @@ public abstract class i30 extends c51 {
             ConnectionsManager.getInstance(this.Q).cancelRequest(this.X, true);
             this.X = -1;
         }
-        org.telegram.messenger.g0.r(this.f36136d0);
+        org.telegram.messenger.g0.r(this.f36091d0);
         this.W++;
         this.V = false;
     }
 
     public final void X() {
         ek0 ek0Var;
-        if (!TextUtils.isEmpty(this.f36133a0) && !this.Y && !this.V && (ek0Var = this.d) != null) {
+        if (!TextUtils.isEmpty(this.f36088a0) && !this.Y && !this.V && (ek0Var = this.d) != null) {
             for (int i7 = 0; i7 < ek0Var.getChildCount(); i7++) {
                 if (ek0Var.getChildAt(i7) instanceof yz) {
-                    Z(this.f36133a0);
+                    Z(this.f36088a0);
                     return;
                 }
             }
@@ -86,9 +86,9 @@ public abstract class i30 extends c51 {
     }
 
     public final void Z(String str) {
-        this.f36133a0 = str;
-        String Y = Y(str, this.f36137e0);
-        if (!TextUtils.equals(this.f36134b0, Y)) {
+        this.f36088a0 = str;
+        String Y = Y(str, this.f36092e0);
+        if (!TextUtils.equals(this.f36089b0, Y)) {
             this.R.clear();
             this.Y = false;
             this.Z = 0;
@@ -104,7 +104,7 @@ public abstract class i30 extends c51 {
         this.V = true;
         O(true);
         org.telegram.ui.f0 f0Var = new org.telegram.ui.f0(this, i7, Y, 13);
-        this.f36136d0 = f0Var;
+        this.f36091d0 = f0Var;
         org.telegram.messenger.g0.h3(f0Var, 300L);
     }
 }

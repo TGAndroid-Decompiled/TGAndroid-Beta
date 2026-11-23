@@ -3,33 +3,33 @@ package m;
 import android.view.View;
 import android.view.ViewConfiguration;
 public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChangeListener {
-    public final float f20243a;
-    public final int f20244b;
-    public final int f20245c;
+    public final float f20209a;
+    public final int f20210b;
+    public final int f20211c;
     public final View d;
-    public t1 f20246e;
-    public t1 f20247f;
+    public t1 f20212e;
+    public t1 f20213f;
     public boolean h;
-    public int f20248n;
-    public final int[] f20249r = new int[2];
+    public int f20214n;
+    public final int[] f20215r = new int[2];
 
     public u1(View view) {
         this.d = view;
         view.setLongClickable(true);
         view.addOnAttachStateChangeListener(this);
-        this.f20243a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+        this.f20209a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
         int tapTimeout = ViewConfiguration.getTapTimeout();
-        this.f20244b = tapTimeout;
-        this.f20245c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
+        this.f20210b = tapTimeout;
+        this.f20211c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
     }
 
     public final void a() {
-        t1 t1Var = this.f20247f;
+        t1 t1Var = this.f20213f;
         View view = this.d;
         if (t1Var != null) {
             view.removeCallbacks(t1Var);
         }
-        t1 t1Var2 = this.f20246e;
+        t1 t1Var2 = this.f20212e;
         if (t1Var2 != null) {
             view.removeCallbacks(t1Var2);
         }
@@ -56,8 +56,8 @@ public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChan
     @Override
     public final void onViewDetachedFromWindow(View view) {
         this.h = false;
-        this.f20248n = -1;
-        t1 t1Var = this.f20246e;
+        this.f20214n = -1;
+        t1 t1Var = this.f20212e;
         if (t1Var != null) {
             this.d.removeCallbacks(t1Var);
         }

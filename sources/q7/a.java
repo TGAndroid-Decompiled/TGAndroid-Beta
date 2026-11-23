@@ -12,9 +12,9 @@ import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public abstract class a {
-    public static volatile ab.b0 f56027b;
-    public static final Object f56026a = new Object();
-    public static final a1 f56028c = new a1("id");
+    public static volatile ab.b0 f55992b;
+    public static final Object f55991a = new Object();
+    public static final a1 f55993c = new a1("id");
     public static final a1 d = new a1("type");
 
     public static int a(int i7, int i10) {
@@ -25,7 +25,7 @@ public abstract class a {
             int i12 = i7 - (i10 * i11);
             if (i12 != 0) {
                 int i13 = ((i7 ^ i10) >> 31) | 1;
-                switch (n0.f56076a[roundingMode.ordinal()]) {
+                switch (n0.f56041a[roundingMode.ordinal()]) {
                     case 1:
                         throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
                     case 2:
@@ -245,7 +245,7 @@ public abstract class a {
         if (collection instanceof SortedSet) {
             obj = ((SortedSet) collection).comparator();
             if (obj == null) {
-                obj = v.f56097b;
+                obj = v.f56062b;
             }
         } else if (collection instanceof c0) {
             obj = ((s) ((c0) collection)).d;
@@ -282,8 +282,8 @@ public abstract class a {
             if (d2 != null) {
                 try {
                     try {
-                        byte b10 = d2.f56032a;
-                        byte b11 = d2.f56033b;
+                        byte b10 = d2.f55997a;
+                        byte b11 = d2.f55998b;
                         int i7 = 0;
                         if (b10 != Byte.MIN_VALUE) {
                             if (b10 != -96) {
@@ -337,8 +337,8 @@ public abstract class a {
                                 TreeMap treeMap = new TreeMap();
                                 while (i7 < i10) {
                                     k8.a aVar = aVarArr[i7];
-                                    if (!treeMap.containsKey((c1) aVar.f18214b)) {
-                                        treeMap.put((c1) aVar.f18214b, (c1) aVar.f18215c);
+                                    if (!treeMap.containsKey((c1) aVar.f18177b)) {
+                                        treeMap.put((c1) aVar.f18177b, (c1) aVar.f18178c);
                                         i7++;
                                     } else {
                                         throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");

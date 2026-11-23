@@ -1,6 +1,6 @@
 package a5;
 
-import c8.l0;
+import c8.m0;
 public abstract class m extends l {
     public i0.d[] f239a;
     public String f240b;
@@ -20,18 +20,18 @@ public abstract class m extends l {
     }
 
     public void setPathData(i0.d[] dVarArr) {
-        if (!l0.a(this.f239a, dVarArr)) {
-            this.f239a = l0.e(dVarArr);
+        if (!m0.a(this.f239a, dVarArr)) {
+            this.f239a = m0.e(dVarArr);
             return;
         }
         i0.d[] dVarArr2 = this.f239a;
         for (int i7 = 0; i7 < dVarArr.length; i7++) {
-            dVarArr2[i7].f15921a = dVarArr[i7].f15921a;
+            dVarArr2[i7].f15887a = dVarArr[i7].f15887a;
             int i10 = 0;
             while (true) {
-                float[] fArr = dVarArr[i7].f15922b;
+                float[] fArr = dVarArr[i7].f15888b;
                 if (i10 < fArr.length) {
-                    dVarArr2[i7].f15922b[i10] = fArr[i10];
+                    dVarArr2[i7].f15888b[i10] = fArr[i10];
                     i10++;
                 }
             }
@@ -42,6 +42,6 @@ public abstract class m extends l {
         this.f239a = null;
         this.f241c = 0;
         this.f240b = mVar.f240b;
-        this.f239a = l0.e(mVar.f239a);
+        this.f239a = m0.e(mVar.f239a);
     }
 }

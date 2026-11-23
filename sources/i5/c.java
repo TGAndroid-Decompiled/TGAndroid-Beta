@@ -16,8 +16,8 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.q1;
 import org.telegram.ui.Components.mj0;
 import org.telegram.ui.Components.o41;
-import v4.f1;
-import v4.q0;
+import v4.e1;
+import v4.p0;
 public abstract class c {
     public static void A(jg.m mVar, int i7, ArrayList arrayList) {
         arrayList.add(new jg.k(mVar, i7));
@@ -119,8 +119,8 @@ public abstract class c {
     }
 
     public static mj0 q(View view, View view2, int i7, int i10) {
-        view.setLayoutParams(new q0(i7, i10));
-        return new f1(view2);
+        view.setLayoutParams(new p0(i7, i10));
+        return new e1(view2);
     }
 
     public static void r(float f10, int i7, int i10, TextView textView, String str) {

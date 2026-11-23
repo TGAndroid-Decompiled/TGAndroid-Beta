@@ -3,17 +3,17 @@ package tc;
 import a8.p0;
 import java.io.IOException;
 public abstract class g extends Exception {
-    public final String f57696a;
+    public final String f57661a;
 
     public g(String str, String str2) {
         super(str, null);
-        this.f57696a = str2;
+        this.f57661a = str2;
     }
 
     @Override
     public final String toString() {
         String str;
-        String str2 = this.f57696a;
+        String str2 = this.f57661a;
         if (str2 != null) {
             str = p5.c.k("; request-id: ", str2);
         } else {
@@ -24,6 +24,6 @@ public abstract class g extends Exception {
 
     public g(String str, String str2, IOException iOException) {
         super(str, iOException);
-        this.f57696a = str2;
+        this.f57661a = str2;
     }
 }

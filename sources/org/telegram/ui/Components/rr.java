@@ -7,27 +7,27 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.EditText;
 public final class rr extends ViewGroup {
-    public static final int f39320x = 0;
-    public final pr f39321a;
-    public EditText f39322b;
-    public final View[] f39323c;
+    public static final int f39276x = 0;
+    public final pr f39277a;
+    public EditText f39278b;
+    public final View[] f39279c;
     public View d;
-    public boolean f39324e;
-    public boolean f39325f;
+    public boolean f39280e;
+    public boolean f39281f;
     public final or h;
-    public boolean f39326n;
-    public final or f39327r;
-    public int f39328s;
-    public int f39329w;
+    public boolean f39282n;
+    public final or f39283r;
+    public int f39284s;
+    public int f39285w;
 
     public rr(Context context) {
         super(context);
         String str;
         int i7;
-        this.f39323c = new View[12];
+        this.f39279c = new View[12];
         int i10 = 0;
         this.h = new or(this, 0);
-        this.f39327r = new or(this, 1);
+        this.f39283r = new or(this, 1);
         for (int i11 = 0; i11 < 11; i11++) {
             if (i11 != 9) {
                 switch (i11) {
@@ -69,26 +69,26 @@ public final class rr extends ViewGroup {
                     i7 = 0;
                 }
                 String valueOf = String.valueOf(i7);
-                this.f39323c[i11] = new qr(context, valueOf, str);
-                this.f39323c[i11].setOnClickListener(new m8(7, this, valueOf));
-                addView(this.f39323c[i11]);
+                this.f39279c[i11] = new qr(context, valueOf, str);
+                this.f39279c[i11].setOnClickListener(new m8(7, this, valueOf));
+                addView(this.f39279c[i11]);
             }
         }
         pr prVar = new pr(this, context, new jn(context, new ki.p3(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f39321a = prVar;
+        this.f39277a = prVar;
         prVar.setImageResource(2131232095);
         org.telegram.ui.ActionBar.t6.s(prVar, org.telegram.ui.ActionBar.m6.G6, null, PorterDuff.Mode.SRC_ATOP);
         int L = org.telegram.messenger.g0.L(11.0f);
         prVar.setPadding(L, L, L, L);
         prVar.setOnClickListener(new bi.o(16));
-        this.f39323c[11] = prVar;
+        this.f39279c[11] = prVar;
         addView(prVar);
         while (true) {
-            View[] viewArr = this.f39323c;
+            View[] viewArr = this.f39279c;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
-                    c8.ra.b(view, 0.02f, 1.2f);
+                    c8.sa.b(view, 0.02f, 1.2f);
                     a(i10, view);
                 }
                 i10++;
@@ -125,7 +125,7 @@ public final class rr extends ViewGroup {
         if (i7 <= 8) {
             z13 = false;
         }
-        int i11 = org.telegram.ui.ActionBar.m6.f29473i6;
+        int i11 = org.telegram.ui.ActionBar.m6.f29439i6;
         int x02 = org.telegram.ui.ActionBar.m6.x0(null, i11, false);
         int o4 = i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, i11, false), 30);
         float f13 = 12.0f;
@@ -168,7 +168,7 @@ public final class rr extends ViewGroup {
         int z12 = org.telegram.messenger.o10.z(42.0f, getHeight(), 4);
         int i13 = 0;
         while (true) {
-            View[] viewArr = this.f39323c;
+            View[] viewArr = this.f39279c;
             if (i13 < viewArr.length) {
                 int L = org.telegram.messenger.g0.L(6.0f) + z11;
                 int L2 = org.telegram.messenger.g0.L(10.0f) + (L * (i13 % 3));
@@ -191,7 +191,7 @@ public final class rr extends ViewGroup {
         setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
         int z10 = org.telegram.messenger.o10.z(32.0f, getWidth(), 3);
         int z11 = org.telegram.messenger.o10.z(42.0f, getHeight(), 4);
-        for (View view : this.f39323c) {
+        for (View view : this.f39279c) {
             if (view != null) {
                 view.measure(View.MeasureSpec.makeMeasureSpec(z10, 1073741824), View.MeasureSpec.makeMeasureSpec(z11, 1073741824));
             }
@@ -199,12 +199,12 @@ public final class rr extends ViewGroup {
     }
 
     public void setDispatchBackWhenEmpty(boolean z10) {
-        this.f39324e = z10;
+        this.f39280e = z10;
     }
 
     public void setEditText(EditText editText) {
-        this.f39322b = editText;
-        this.f39324e = false;
+        this.f39278b = editText;
+        this.f39280e = false;
     }
 
     public void setViewToFindFocus(View view) {

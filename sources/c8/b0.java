@@ -1,22 +1,19 @@
 package c8;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import com.google.android.gms.cast.framework.media.internal.ResourceProvider;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 public abstract class b0 {
-    public static SharedPreferences f4520a;
-
-    public static SharedPreferences a(Context context) {
-        SharedPreferences sharedPreferences;
-        synchronized (SharedPreferences.class) {
-            try {
-                if (f4520a == null) {
-                    f4520a = (SharedPreferences) dc.a(new a2.b(context, 4));
-                }
-                sharedPreferences = f4520a;
-            } catch (Throwable th2) {
-                throw th2;
-            }
+    public static int a(String str) {
+        Integer num;
+        try {
+            Map map = ResourceProvider.f6180a;
+            num = (Integer) ResourceProvider.class.getMethod("findResourceByName", String.class).invoke(null, str);
+        } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
         }
-        return sharedPreferences;
+        if (num == null) {
+            return 0;
+        }
+        return num.intValue();
     }
 }

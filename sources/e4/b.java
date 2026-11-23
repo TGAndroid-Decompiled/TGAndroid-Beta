@@ -1,30 +1,30 @@
 package e4;
 
-import a8.ja;
-import a8.la;
+import a8.ka;
+import a8.ma;
 import android.opengl.GLES20;
 import android.text.TextUtils;
 import org.telegram.ui.Components.d40;
 public class b {
-    public final int f10849a;
-    public final int f10850b;
-    public final int f10851c;
+    public final int f10812a;
+    public final int f10813b;
+    public final int f10814c;
     public final int d;
-    public final int f10852e;
-    public final int f10853f;
+    public final int f10815e;
+    public final int f10816f;
 
     public b(int i7, int i10, int i11, int i12, int i13, int i14) {
-        this.f10849a = i7;
-        this.f10850b = i10;
-        this.f10851c = i11;
+        this.f10812a = i7;
+        this.f10813b = i10;
+        this.f10814c = i11;
         this.d = i12;
-        this.f10852e = i13;
-        this.f10853f = i14;
+        this.f10815e = i13;
+        this.f10816f = i14;
     }
 
     public static b b(String str) {
         char c10;
-        la.f(str.startsWith("Format:"));
+        ma.f(str.startsWith("Format:"));
         String[] split = TextUtils.split(str.substring(7), ",");
         int i7 = -1;
         int i10 = -1;
@@ -32,7 +32,7 @@ public class b {
         int i12 = -1;
         int i13 = -1;
         for (int i14 = 0; i14 < split.length; i14++) {
-            String c11 = ja.c(split[i14].trim());
+            String c11 = ka.c(split[i14].trim());
             c11.getClass();
             switch (c11.hashCode()) {
                 case 100571:
@@ -99,16 +99,16 @@ public class b {
     }
 
     public void a() {
-        GLES20.glDeleteProgram(this.f10849a);
-        GLES20.glDeleteShader(this.f10850b);
-        GLES20.glDeleteShader(this.f10851c);
+        GLES20.glDeleteProgram(this.f10812a);
+        GLES20.glDeleteShader(this.f10813b);
+        GLES20.glDeleteShader(this.f10814c);
     }
 
     public b(int i7) {
         int a10 = d40.a(35633, 2131624185);
-        this.f10850b = a10;
+        this.f10813b = a10;
         int a11 = d40.a(35632, i7);
-        this.f10851c = a11;
+        this.f10814c = a11;
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, a10);
         GLES20.glAttachShader(glCreateProgram, a11);
@@ -119,9 +119,9 @@ public class b {
             GLES20.glDeleteProgram(glCreateProgram);
             glCreateProgram = 0;
         }
-        this.f10849a = glCreateProgram;
+        this.f10812a = glCreateProgram;
         this.d = GLES20.glGetAttribLocation(glCreateProgram, "aPosition");
-        this.f10852e = GLES20.glGetAttribLocation(glCreateProgram, "aTextureCoord");
-        this.f10853f = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
+        this.f10815e = GLES20.glGetAttribLocation(glCreateProgram, "aTextureCoord");
+        this.f10816f = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
     }
 }

@@ -1,6 +1,6 @@
 package vc;
 
-import c8.rd;
+import c8.sd;
 import ee.t;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -15,7 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import tc.g;
 public abstract class b {
-    public static final c f59411a = new c();
+    public static final c f59374a = new c();
 
     public static HttpURLConnection a(String str, t tVar) {
         Throwable th2;
@@ -28,7 +28,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = tVar.f10980b;
+        String str2 = tVar.f10943b;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -44,7 +44,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f59411a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f59374a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -76,8 +76,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f59409a;
-            String str2 = aVar.f59410b;
+            String str = aVar.f59372a;
+            String str2 = aVar.f59373b;
             if (str == null) {
                 encode = null;
             } else {
@@ -150,12 +150,12 @@ public abstract class b {
         String str3;
         try {
             JSONObject jSONObject = new JSONObject(str).getJSONObject("error");
-            rd.a(jSONObject.optString("charge"));
-            rd.a(jSONObject.optString("code"));
-            rd.a(jSONObject.optString("decline_code"));
-            str3 = rd.a(jSONObject.optString("message"));
-            rd.a(jSONObject.optString("param"));
-            rd.a(jSONObject.optString("type"));
+            sd.a(jSONObject.optString("charge"));
+            sd.a(jSONObject.optString("code"));
+            sd.a(jSONObject.optString("decline_code"));
+            str3 = sd.a(jSONObject.optString("message"));
+            sd.a(jSONObject.optString("param"));
+            sd.a(jSONObject.optString("type"));
         } catch (JSONException unused) {
             str3 = "An improperly formatted error response was found.";
         }

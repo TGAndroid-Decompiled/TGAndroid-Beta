@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import c8.ma;
+import c8.na;
 import java.util.ArrayList;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.k10;
@@ -30,45 +30,45 @@ public final class j0 extends h1 {
         arrayList2.addAll(arrayList);
         l1();
         this.U0 = false;
-        this.f30212v0 = false;
-        this.f30210t0 = 0;
+        this.f30178v0 = false;
+        this.f30176t0 = 0;
         yg.a aVar = new yg.a(getContext(), this.J0);
         aVar.setOnClickListener(new tg.u(this, 5));
         aVar.setCloseStyle(true);
-        this.f30176b.addView(aVar, ma.d(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-        ek0 ek0Var = this.f39531o1;
-        int i10 = this.f30211u0;
+        this.f30142b.addView(aVar, na.d(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+        ek0 ek0Var = this.f39487o1;
+        int i10 = this.f30177u0;
         ek0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(64.0f));
         Context context = getContext();
-        int i11 = i0.f59814f;
+        int i11 = i0.f59779f;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout2.setClipChildren(false);
         if (arrayList2.size() == 1) {
-            frameLayout.addView(frameLayout2, ma.d(-1, 94.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+            frameLayout.addView(frameLayout2, na.d(-1, 94.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
             i0 i0Var = new i0(context, 47.0f);
             i0Var.d = false;
             TLRPC.User user = (TLRPC.User) arrayList2.get(0);
-            b9 b9Var = i0Var.f59818e;
+            b9 b9Var = i0Var.f59783e;
             b9Var.r(user);
-            i0Var.f59815a.f(user, b9Var);
-            frameLayout2.addView(i0Var, 0, ma.e(94, 94, 17));
+            i0Var.f59780a.f(user, b9Var);
+            frameLayout2.addView(i0Var, 0, na.e(94, 94, 17));
         } else {
-            frameLayout.addView(frameLayout2, ma.d(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+            frameLayout.addView(frameLayout2, na.d(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
             int i12 = 0;
             for (int i13 = 0; i13 < arrayList2.size(); i13++) {
                 TLRPC.User user2 = (TLRPC.User) arrayList2.get(i13);
                 i0 i0Var2 = new i0(context, 41.5f);
-                b9 b9Var2 = i0Var2.f59818e;
+                b9 b9Var2 = i0Var2.f59783e;
                 b9Var2.r(user2);
-                i0Var2.f59815a.f(user2, b9Var2);
-                frameLayout2.addView(i0Var2, 0, ma.e(83, 83, 17));
+                i0Var2.f59780a.f(user2, b9Var2);
+                frameLayout2.addView(i0Var2, 0, na.e(83, 83, 17));
                 i0Var2.setTranslationX(org.telegram.messenger.g0.L(29.0f) * (-i13));
                 if (i13 == 0 && arrayList2.size() > 3) {
-                    h0 h0Var = i0Var2.f59816b;
+                    h0 h0Var = i0Var2.f59781b;
                     h0Var.setAlpha(1.0f);
-                    h0Var.f59811b = arrayList2.size() - 3;
+                    h0Var.f59776b = arrayList2.size() - 3;
                 }
                 i12++;
                 if (i13 == 2) {
@@ -77,7 +77,7 @@ public final class j0 extends h1 {
             }
             frameLayout.setTranslationX((i12 - 1) * org.telegram.messenger.g0.L(14.5f));
         }
-        this.f58738x2 = frameLayout;
+        this.f58703x2 = frameLayout;
         O();
     }
 
@@ -86,7 +86,7 @@ public final class j0 extends h1 {
         if (Q == null) {
             return;
         }
-        j0 j0Var = new j0(Q, k10.f24968t0, arrayList, Q.getResourceProvider());
+        j0 j0Var = new j0(Q, k10.f24932t0, arrayList, Q.getResourceProvider());
         j0Var.F2 = true;
         j0Var.G2 = true;
         j0Var.show();
@@ -97,7 +97,7 @@ public final class j0 extends h1 {
         if (i7 == 0) {
             view.setOutlineProvider(new bg.q0(22));
             view.setClipToOutline(true);
-            t6.h(m6.f29324a7, view, this.J0);
+            t6.h(m6.f29290a7, view, this.J0);
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -org.telegram.messenger.g0.L(6.0f);
         }
     }
@@ -107,7 +107,7 @@ public final class j0 extends h1 {
         int i7;
         float f10;
         float f11;
-        View view = this.f58738x2;
+        View view = this.f58703x2;
         ArrayList arrayList = this.M2;
         if (arrayList.size() == 1) {
             i7 = 94;
@@ -126,7 +126,7 @@ public final class j0 extends h1 {
         } else {
             f11 = 14.0f;
         }
-        d61Var.addView(view, ma.k(0.0f, f12, 0.0f, f11, -1, i10));
+        d61Var.addView(view, na.k(0.0f, f12, 0.0f, f11, -1, i10));
     }
 
     @Override
@@ -166,13 +166,13 @@ public final class j0 extends h1 {
 
     @Override
     public final void l1() {
-        this.f58717b2 = 1;
-        this.f58718c2 = 0;
-        this.f58720f2 = 1;
+        this.f58682b2 = 1;
+        this.f58683c2 = 0;
+        this.f58685f2 = 1;
         int size = this.T1.size();
         int i7 = 1 + size;
-        this.f58721g2 = i7;
-        this.f58717b2 = size + 2;
-        this.f58724j2 = i7;
+        this.f58686g2 = i7;
+        this.f58682b2 = size + 2;
+        this.f58689j2 = i7;
     }
 }

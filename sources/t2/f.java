@@ -1,6 +1,6 @@
 package t2;
 
-import a8.la;
+import a8.ma;
 import android.graphics.Bitmap;
 import android.os.Trace;
 import androidx.emoji2.text.n;
@@ -26,17 +26,17 @@ public final class f extends l2.b {
     public h0 X;
     public Bitmap Y;
     public boolean Z;
-    public m5.b f57592a0;
-    public m5.b f57593b0;
-    public int f57594c0;
-    public boolean f57595d0;
+    public m5.b f57557a0;
+    public m5.b f57558b0;
+    public int f57559c0;
+    public boolean f57560d0;
 
     public f(n nVar) {
         super(4);
         this.J = nVar;
-        this.W = d.f57588a;
+        this.W = d.f57553a;
         this.K = new h(0, 0);
-        this.O = e.f57589c;
+        this.O = e.f57554c;
         this.L = new ArrayDeque();
         this.Q = -9223372036854775807L;
         this.P = -9223372036854775807L;
@@ -59,7 +59,7 @@ public final class f extends l2.b {
     }
 
     public final void H() {
-        if (!this.f57595d0) {
+        if (!this.f57560d0) {
             return;
         }
         u uVar = this.T;
@@ -74,8 +74,8 @@ public final class f extends l2.b {
         if (bVar != null) {
             bVar.release();
         }
-        this.U = new b(nVar.f2280a);
-        this.f57595d0 = false;
+        this.U = new b(nVar.f2231a);
+        this.f57560d0 = false;
     }
 
     public final void I() {
@@ -105,7 +105,7 @@ public final class f extends l2.b {
             dVar = null;
         }
         if (dVar == null) {
-            dVar = d.f57588a;
+            dVar = d.f57553a;
         }
         this.W = dVar;
     }
@@ -135,7 +135,7 @@ public final class f extends l2.b {
     @Override
     public final void n() {
         this.T = null;
-        this.O = e.f57589c;
+        this.O = e.f57554c;
         this.L.clear();
         I();
         this.W.getClass();
@@ -152,8 +152,8 @@ public final class f extends l2.b {
         this.N = false;
         this.M = false;
         this.Y = null;
-        this.f57592a0 = null;
-        this.f57593b0 = null;
+        this.f57557a0 = null;
+        this.f57558b0 = null;
         this.Z = false;
         this.V = null;
         b bVar = this.U;
@@ -183,18 +183,18 @@ public final class f extends l2.b {
     public final void x(long j3, long j10) {
         if (!this.N) {
             if (this.T == null) {
-                k8.a aVar = this.f19285c;
+                k8.a aVar = this.f19251c;
                 aVar.g0();
                 h hVar = this.K;
                 hVar.clear();
                 int w10 = w(aVar, hVar, 2);
                 if (w10 == -5) {
-                    u uVar = (u) aVar.f18215c;
+                    u uVar = (u) aVar.f18178c;
                     uVar.getClass();
                     this.T = uVar;
-                    this.f57595d0 = true;
+                    this.f57560d0 = true;
                 } else if (w10 == -4) {
-                    la.p(hVar.isEndOfStream());
+                    ma.p(hVar.isEndOfStream());
                     this.M = true;
                     this.N = true;
                     return;

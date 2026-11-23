@@ -12,48 +12,48 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.dk0;
 public abstract class c3 extends dk0 {
     public boolean d;
-    public String f14324f;
+    public String f14266f;
     public String h;
-    public TLRPC.User f14325n;
-    public boolean f14326r;
-    public final d3 f14329x;
-    public final ArrayList f14322c = new ArrayList();
-    public int f14323e = -1;
-    public final ColorDrawable f14327s = new ColorDrawable(285212671);
-    public final l f14328w = new l(this, 11);
+    public TLRPC.User f14267n;
+    public boolean f14268r;
+    public final d3 f14271x;
+    public final ArrayList f14264c = new ArrayList();
+    public int f14265e = -1;
+    public final ColorDrawable f14269s = new ColorDrawable(285212671);
+    public final b0 f14270w = new b0(this, 10);
 
     public c3(d3 d3Var) {
-        this.f14329x = d3Var;
+        this.f14271x = d3Var;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
+    public final boolean D(v4.e1 e1Var) {
         return true;
     }
 
     public final void E() {
-        int i7 = this.f14329x.f14487a;
+        int i7 = this.f14271x.f14333a;
         if (!this.d) {
             this.d = true;
             F(true);
             np u12 = np.u1(i7);
             String str = u12.O3;
-            if (this.f14325n == null) {
+            if (this.f14267n == null) {
                 TLObject h22 = u12.h2(str);
                 if (h22 instanceof TLRPC.User) {
-                    this.f14325n = (TLRPC.User) h22;
+                    this.f14267n = (TLRPC.User) h22;
                 }
             }
-            TLRPC.User user = this.f14325n;
-            if (user == null && !this.f14326r) {
+            TLRPC.User user = this.f14267n;
+            if (user == null && !this.f14268r) {
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 tL_contacts_resolveUsername.username = str;
-                this.f14323e = ConnectionsManager.getInstance(i7).sendRequest(tL_contacts_resolveUsername, new bi.o1(16, this, u12));
+                this.f14265e = ConnectionsManager.getInstance(i7).sendRequest(tL_contacts_resolveUsername, new bi.o1(16, this, u12));
             } else if (user == null) {
             } else {
                 TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-                tL_messages_getInlineBotResults.bot = u12.s1(this.f14325n);
-                String str2 = this.f14324f;
+                tL_messages_getInlineBotResults.bot = u12.s1(this.f14267n);
+                String str2 = this.f14266f;
                 String str3 = "";
                 if (str2 == null) {
                     str2 = "";
@@ -65,7 +65,7 @@ public abstract class c3 extends dk0 {
                     str3 = str4;
                 }
                 tL_messages_getInlineBotResults.offset = str3;
-                this.f14323e = ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getInlineBotResults, new b3(0, this, TextUtils.isEmpty(str3)));
+                this.f14265e = ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getInlineBotResults, new b3(0, this, TextUtils.isEmpty(str3)));
             }
         }
     }
@@ -74,15 +74,15 @@ public abstract class c3 extends dk0 {
 
     @Override
     public final int b() {
-        return this.f14322c.size();
+        return this.f14264c.size();
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
-        org.telegram.ui.Components.q9 q9Var = (org.telegram.ui.Components.q9) f1Var.f59165a;
-        TLObject tLObject = (TLObject) this.f14322c.get(i7);
+    public final void t(v4.e1 e1Var, int i7) {
+        org.telegram.ui.Components.q9 q9Var = (org.telegram.ui.Components.q9) e1Var.f59111a;
+        TLObject tLObject = (TLObject) this.f14264c.get(i7);
         boolean z10 = tLObject instanceof TLRPC.Document;
-        ColorDrawable colorDrawable = this.f14327s;
+        ColorDrawable colorDrawable = this.f14269s;
         if (z10) {
             q9Var.j(gc.b((TLRPC.Document) tLObject), "200_200", colorDrawable, null);
         } else if (tLObject instanceof TLRPC.Photo) {
@@ -102,7 +102,7 @@ public abstract class c3 extends dk0 {
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        return new v4.f1(new di.w5(this.f14329x.getContext(), 1));
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        return new v4.e1(new di.w5(this.f14271x.getContext(), 1));
     }
 }

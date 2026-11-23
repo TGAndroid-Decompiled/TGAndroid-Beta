@@ -1,138 +1,77 @@
 package bi;
 
-import android.app.Activity;
 import android.content.Context;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import di.pb;
-import org.telegram.messenger.r10;
-import org.telegram.ui.Components.c51;
-import org.telegram.ui.Components.ek0;
-import org.telegram.ui.s00;
-public final class g8 extends c51 {
-    public final int Q;
-    public final Object R;
+import org.telegram.messenger.y10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.lm0;
+import org.telegram.ui.nl0;
+public final class g8 implements y10 {
+    public final int f3621a = 0;
+    public final long f3622b;
+    public final Object f3623c;
+    public final Object d;
+    public final Object f3624e;
+    public final Object f3625f;
 
-    public g8(KeyEvent.Callback callback, ek0 ek0Var, Context context, int i7, r10 r10Var, org.telegram.ui.ActionBar.h6 h6Var, int i10) {
-        super(ek0Var, context, i7, 0, false, r10Var, h6Var);
-        this.Q = i10;
-        this.R = callback;
+    public g8(l8 l8Var, org.telegram.ui.ActionBar.t1 t1Var, cg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
+        this.f3623c = l8Var;
+        this.d = t1Var;
+        this.f3624e = bVar;
+        this.f3625f = tL_starGiftUnique;
+        this.f3622b = j3;
     }
 
     @Override
-    public void t(v4.f1 f1Var, int i7) {
-        fi.m0 m0Var;
-        fi.r0 r0Var;
-        switch (this.Q) {
-            case 2:
-                super.t(f1Var, i7);
-                fi.a2 a2Var = (fi.a2) this.R;
-                if (a2Var.E) {
-                    View view = f1Var.f59165a;
-                    if ((view instanceof fi.m0) && (r0Var = (m0Var = (fi.m0) view).L) != null && r0Var.f12517a == a2Var.f12616y) {
-                        m0Var.a();
-                        a2Var.E = false;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.t(f1Var, i7);
-                return;
-        }
-    }
-
-    @Override
-    public v4.f1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.ActionBar.h6 h6Var;
-        org.telegram.ui.ActionBar.h6 h6Var2;
-        org.telegram.ui.ActionBar.h6 h6Var3;
-        switch (this.Q) {
+    public final void a(Object obj) {
+        switch (this.f3621a) {
             case 0:
-                i8 i8Var = (i8) this.R;
-                if (i7 == 0) {
-                    return new v4.f1(new org.telegram.ui.Cells.o4(i8Var.getContext(), org.telegram.ui.ActionBar.m6.L6, 13, 12, 4, false, false, i8Var.J0));
-                }
-                if (i7 == 42) {
-                    return new v4.f1(new org.telegram.ui.Cells.o4(i8Var.getContext(), org.telegram.ui.ActionBar.m6.L6, 13, 12, 4, false, true, i8Var.J0));
-                }
-                return super.x(viewGroup, i7);
-            case 1:
-                pb pbVar = (pb) this.R;
-                if (i7 == 42) {
-                    Activity parentActivity = pbVar.getParentActivity();
-                    int i10 = org.telegram.ui.ActionBar.m6.L6;
-                    h6Var = ((org.telegram.ui.ActionBar.g2) pbVar).resourceProvider;
-                    org.telegram.ui.Cells.o4 o4Var = new org.telegram.ui.Cells.o4(parentActivity, i10, 21, 0, false, h6Var);
-                    o4Var.setHeight(25);
-                    return new v4.f1(o4Var);
-                }
-                return super.x(viewGroup, i7);
-            case 2:
-            default:
-                return super.x(viewGroup, i7);
-            case 3:
-                ii.t tVar = (ii.t) this.R;
-                if (i7 == 42) {
-                    Activity parentActivity2 = tVar.getParentActivity();
-                    int i11 = org.telegram.ui.ActionBar.m6.L6;
-                    h6Var2 = ((org.telegram.ui.ActionBar.g2) tVar).resourceProvider;
-                    org.telegram.ui.Cells.o4 o4Var2 = new org.telegram.ui.Cells.o4(parentActivity2, i11, 21, 0, false, h6Var2);
-                    o4Var2.setHeight(25);
-                    return new v4.f1(o4Var2);
-                }
-                return super.x(viewGroup, i7);
-            case 4:
-                ki.j jVar = (ki.j) this.R;
-                if (i7 == 42) {
-                    Activity parentActivity3 = jVar.getParentActivity();
-                    int i12 = org.telegram.ui.ActionBar.m6.L6;
-                    h6Var3 = ((org.telegram.ui.ActionBar.g2) jVar).resourceProvider;
-                    org.telegram.ui.Cells.o4 o4Var3 = new org.telegram.ui.Cells.o4(parentActivity3, i12, 21, 0, false, h6Var3);
-                    o4Var3.setHeight(25);
-                    return new v4.f1(o4Var3);
-                }
-                return super.x(viewGroup, i7);
-            case 5:
-                ki.h3 h3Var = (ki.h3) this.R;
-                if (i7 == 42) {
-                    org.telegram.ui.Cells.o4 o4Var4 = new org.telegram.ui.Cells.o4(h3Var.getParentActivity(), org.telegram.ui.ActionBar.m6.L6, 21, 0, false, ki.h3.H0(h3Var));
-                    o4Var4.setHeight(25);
-                    return new v4.f1(o4Var4);
-                }
-                return super.x(viewGroup, i7);
-        }
-    }
-
-    @Override
-    public void y(v4.f1 f1Var) {
-        fi.m0 m0Var;
-        fi.r0 r0Var;
-        switch (this.Q) {
-            case 2:
-                super.y(f1Var);
-                fi.a2 a2Var = (fi.a2) this.R;
-                if (a2Var.E) {
-                    View view = f1Var.f59165a;
-                    if ((view instanceof fi.m0) && (r0Var = (m0Var = (fi.m0) view).L) != null && r0Var.f12517a == a2Var.f12616y) {
-                        m0Var.a();
-                        a2Var.E = false;
-                        return;
-                    }
+                l8 l8Var = (l8) this.f3623c;
+                cg.b bVar = (cg.b) this.f3624e;
+                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f3625f;
+                TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift = (TLRPC.TL_payments_paymentFormStarGift) obj;
+                ((org.telegram.ui.ActionBar.t1) this.d).dismiss();
+                if (tL_payments_paymentFormStarGift != null) {
+                    di.f5 f5Var = new di.f5(bVar, tL_payments_paymentFormStarGift);
+                    Context context = l8Var.getContext();
+                    org.telegram.ui.ActionBar.h6 h6Var = l8Var.J0;
+                    int i7 = l8Var.f30139a;
+                    StringBuilder sb2 = new StringBuilder();
+                    sb2.append(tL_starGiftUnique.title);
+                    sb2.append(" #");
+                    String l10 = i5.c.l(tL_starGiftUnique.num, ',', sb2);
+                    long j3 = this.f3622b;
+                    new di.h5(context, h6Var, tL_starGiftUnique, f5Var, i7, j3, l10, true, new h8(l8Var, tL_starGiftUnique, j3, 0)).b();
                     return;
                 }
                 return;
+            case 1:
+                di.f6 f6Var = (di.f6) this.f3623c;
+                TL_stars.starGiftDepositPayload stargiftdepositpayload = (TL_stars.starGiftDepositPayload) this.d;
+                f2 f2Var = (f2) this.f3625f;
+                f6Var.getClass();
+                long longValue = ((Long) this.f3624e).longValue();
+                f6Var.v1(this.f3622b, stargiftdepositpayload, longValue, (vf.b) obj, f2Var);
+                return;
             default:
-                super.y(f1Var);
+                lm0.a0((lm0) this.f3623c, (cg.b) this.f3624e, (TL_stars.TL_starGiftUnique) this.f3625f, this.f3622b, (nl0) this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
                 return;
         }
     }
 
-    public g8(s00 s00Var, ek0 ek0Var, Activity activity, int i7, int i10, r10 r10Var, org.telegram.ui.ActionBar.h6 h6Var, int i11) {
-        super(ek0Var, activity, i7, i10, true, r10Var, h6Var);
-        this.Q = i11;
-        this.R = s00Var;
+    public g8(di.f6 f6Var, long j3, TL_stars.starGiftDepositPayload stargiftdepositpayload, Long l10, f2 f2Var) {
+        this.f3623c = f6Var;
+        this.f3622b = j3;
+        this.d = stargiftdepositpayload;
+        this.f3624e = l10;
+        this.f3625f = f2Var;
+    }
+
+    public g8(lm0 lm0Var, cg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, nl0 nl0Var) {
+        this.f3623c = lm0Var;
+        this.f3624e = bVar;
+        this.f3625f = tL_starGiftUnique;
+        this.f3622b = j3;
+        this.d = nl0Var;
     }
 }

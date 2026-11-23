@@ -1,6 +1,7 @@
 package ee;
 
 import a8.p0;
+import c8.z;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import zd.a1;
@@ -12,13 +13,13 @@ import zd.v1;
 import zd.x;
 import zd.y;
 public abstract class a {
-    public static final t f10946a = new t("CLOSED", 0);
-    public static final t f10947b = new t("UNDEFINED", 0);
-    public static final t f10948c = new t("REUSABLE_CLAIMED", 0);
+    public static final t f10909a = new t("CLOSED", 0);
+    public static final t f10910b = new t("UNDEFINED", 0);
+    public static final t f10911c = new t("REUSABLE_CLAIMED", 0);
     public static final t d = new t("NO_THREAD_ELEMENTS", 0);
-    public static final b1.e f10949e = new b1.e(5);
-    public static final b1.e f10950f = new b1.e(6);
-    public static final b1.e f10951g = new b1.e(7);
+    public static final b1.e f10912e = new b1.e(5);
+    public static final b1.e f10913f = new b1.e(6);
+    public static final b1.e f10914g = new b1.e(7);
 
     public static final void a(int i7) {
         if (i7 >= 1) {
@@ -29,18 +30,18 @@ public abstract class a {
 
     public static final Object b(r rVar, long j3, rd.p pVar) {
         while (true) {
-            if (rVar.f10977c >= j3 && !rVar.d()) {
+            if (rVar.f10940c >= j3 && !rVar.d()) {
                 return rVar;
             }
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = b.f10952a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = b.f10915a;
             Object obj = atomicReferenceFieldUpdater.get(rVar);
-            t tVar = f10946a;
+            t tVar = f10909a;
             if (obj == tVar) {
                 return tVar;
             }
             r rVar2 = (r) ((b) obj);
             if (rVar2 == null) {
-                rVar2 = (r) pVar.invoke(Long.valueOf(rVar.f10977c + 1), rVar);
+                rVar2 = (r) pVar.invoke(Long.valueOf(rVar.f10940c + 1), rVar);
                 while (!atomicReferenceFieldUpdater.compareAndSet(rVar, null, rVar2)) {
                     if (atomicReferenceFieldUpdater.get(rVar) != null) {
                         break;
@@ -55,7 +56,7 @@ public abstract class a {
     }
 
     public static final r c(Object obj) {
-        if (obj != f10946a) {
+        if (obj != f10909a) {
             return (r) obj;
         }
         throw new IllegalStateException("Does not contain segment");
@@ -63,7 +64,7 @@ public abstract class a {
 
     public static final void d(id.h hVar, Throwable th2) {
         Throwable runtimeException;
-        for (ae.b bVar : d.f10955a) {
+        for (ae.b bVar : d.f10918a) {
             try {
                 bVar.c(th2);
             } catch (Throwable th3) {
@@ -71,14 +72,14 @@ public abstract class a {
                     runtimeException = th2;
                 } else {
                     runtimeException = new RuntimeException("Exception while trying to handle coroutine exception", th3);
-                    af.b.a(runtimeException, th2);
+                    b5.a.a(runtimeException, th2);
                 }
                 Thread currentThread = Thread.currentThread();
                 currentThread.getUncaughtExceptionHandler().uncaughtException(currentThread, runtimeException);
             }
         }
         try {
-            af.b.a(th2, new e(hVar));
+            b5.a.a(th2, new e(hVar));
         } catch (Throwable unused) {
         }
         Thread currentThread2 = Thread.currentThread();
@@ -86,7 +87,7 @@ public abstract class a {
     }
 
     public static final boolean e(Object obj) {
-        if (obj == f10946a) {
+        if (obj == f10909a) {
             return true;
         }
         return false;
@@ -110,17 +111,17 @@ public abstract class a {
         if (obj != d) {
             if (obj instanceof w) {
                 w wVar = (w) obj;
-                u1[] u1VarArr = wVar.f10985b;
+                u1[] u1VarArr = wVar.f10948b;
                 int length = u1VarArr.length - 1;
                 if (length < 0) {
                     return;
                 }
                 u1 u1Var = u1VarArr[length];
                 kotlin.jvm.internal.j.b(null);
-                Object obj2 = wVar.f10984a[length];
+                Object obj2 = wVar.f10947a[length];
                 throw null;
             }
-            Object fold = hVar.fold(null, f10950f);
+            Object fold = hVar.fold(null, f10913f);
             kotlin.jvm.internal.j.c(fold, "null cannot be cast to non-null type kotlinx.coroutines.ThreadContextElement<kotlin.Any?>");
             p0.A(fold);
             throw null;
@@ -133,7 +134,7 @@ public abstract class a {
         if (cVar instanceof f) {
             f fVar = (f) cVar;
             x xVar = fVar.d;
-            kd.c cVar2 = fVar.f10958e;
+            kd.c cVar2 = fVar.f10921e;
             Throwable a10 = gd.g.a(obj);
             if (a10 == null) {
                 vVar = obj;
@@ -141,28 +142,28 @@ public abstract class a {
                 vVar = new zd.v(a10, false);
             }
             if (xVar.d(cVar2.getContext())) {
-                fVar.f10959f = vVar;
-                fVar.f61899c = 1;
+                fVar.f10922f = vVar;
+                fVar.f61864c = 1;
                 xVar.c(cVar2.getContext(), fVar);
                 return;
             }
             t0 a11 = v1.a();
-            if (a11.f61932c >= 4294967296L) {
-                fVar.f10959f = vVar;
-                fVar.f61899c = 1;
-                hd.d dVar = a11.f61933e;
+            if (a11.f61897c >= 4294967296L) {
+                fVar.f10922f = vVar;
+                fVar.f61864c = 1;
+                hd.d dVar = a11.f61898e;
                 if (dVar == null) {
                     dVar = new hd.d();
-                    a11.f61933e = dVar;
+                    a11.f61898e = dVar;
                 }
                 dVar.addLast(fVar);
                 return;
             }
             a11.i(true);
             try {
-                a1 a1Var = (a1) cVar2.getContext().get(y.f61950b);
+                a1 a1Var = (a1) cVar2.getContext().get(y.f61915b);
                 if (a1Var != null && !a1Var.isActive()) {
-                    fVar.resumeWith(b7.h.a(a1Var.getCancellationException()));
+                    fVar.resumeWith(z.a(a1Var.getCancellationException()));
                 } else {
                     Object obj2 = fVar.h;
                     id.h context = cVar2.getContext();
@@ -205,7 +206,7 @@ public abstract class a {
     }
 
     public static final Object k(id.h hVar) {
-        Object fold = hVar.fold(0, f10949e);
+        Object fold = hVar.fold(0, f10912e);
         kotlin.jvm.internal.j.b(fold);
         return fold;
     }
@@ -218,7 +219,7 @@ public abstract class a {
             return d;
         }
         if (obj instanceof Integer) {
-            return hVar.fold(new w(((Number) obj).intValue(), hVar), f10951g);
+            return hVar.fold(new w(((Number) obj).intValue(), hVar), f10914g);
         }
         p0.A(obj);
         throw null;

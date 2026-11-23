@@ -1,96 +1,35 @@
 package oi;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-public final class q3 {
-    public final a f22335a;
-    public final int f22336b;
-    public final t3 f22337c;
+import android.view.View;
+import org.telegram.ui.Components.a70;
+public interface q3 {
+    void D(int i7);
 
-    public q3(t3 t3Var, a aVar, int i7) {
-        this.f22337c = t3Var;
-        this.f22335a = aVar;
-        this.f22336b = i7;
-    }
+    void G();
 
-    public final void a(String str, TL_keyboard.InlineButtonType inlineButtonType) {
-        TL_iv.pageBlockButtonRow d;
-        boolean z10;
-        TL_keyboard.PageButton pageButton;
-        if (!TextUtils.isEmpty(str) && i4.c(inlineButtonType) && (d = d()) != null) {
-            int i7 = this.f22336b;
-            if (i7 >= 0 && i7 < d.buttons.size()) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (z10 || d.buttons.size() < 8) {
-                t3 t3Var = this.f22337c;
-                g2 g2Var = t3Var.R3;
-                if (g2Var != null) {
-                    g2Var.d();
-                }
-                if (z10) {
-                    pageButton = d.buttons.get(i7);
-                } else {
-                    pageButton = new TL_keyboard.PageButton();
-                }
-                pageButton.text = c6.f(str);
-                pageButton.type = inlineButtonType;
-                if (pageButton.style == null) {
-                    pageButton.style = new TL_keyboard.RichButtonStyle();
-                }
-                if (!z10) {
-                    d.buttons.add(pageButton);
-                }
-                t3Var.f35789g3.O(false);
-                g2 g2Var2 = t3Var.R3;
-                if (g2Var2 != null) {
-                    g2Var2.h();
-                }
-                t3Var.f22428p3.onContentChanged();
-            }
-        }
-    }
+    a70 G0(View view);
 
-    public final void b() {
-        int i7;
-        TL_iv.pageBlockButtonRow d = d();
-        if (d != null && (i7 = this.f22336b) >= 0 && i7 < d.buttons.size()) {
-            t3 t3Var = this.f22337c;
-            g2 g2Var = t3Var.R3;
-            if (g2Var != null) {
-                g2Var.d();
-            }
-            d.buttons.remove(i7);
-            t3Var.f35789g3.O(false);
-            g2 g2Var2 = t3Var.R3;
-            if (g2Var2 != null) {
-                g2Var2.h();
-            }
-            t3Var.f22428p3.onContentChanged();
-        }
-    }
+    void H(a aVar);
 
-    public final boolean c() {
-        int i7;
-        TL_iv.pageBlockButtonRow d = d();
-        if (d != null && (i7 = this.f22336b) >= 0 && i7 < d.buttons.size()) {
-            return true;
-        }
-        return false;
-    }
+    void Q();
 
-    public final TL_iv.pageBlockButtonRow d() {
-        a aVar = this.f22335a;
-        if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f21935b;
-            if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
-                return (TL_iv.pageBlockButtonRow) pageBlock;
-            }
-            return null;
-        }
-        return null;
-    }
+    void R0(r3 r3Var, View view);
+
+    void V();
+
+    boolean a(float f10);
+
+    void a0(z5 z5Var, String str);
+
+    void b0(int i7);
+
+    void j1();
+
+    void k(e1 e1Var, boolean z10);
+
+    void m0();
+
+    void onContentChanged();
+
+    void x(p3 p3Var, View view);
 }

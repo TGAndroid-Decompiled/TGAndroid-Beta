@@ -19,7 +19,7 @@ public final class i extends j {
         if (xVar.a() < bArr.length) {
             return false;
         }
-        int i7 = xVar.f13866b;
+        int i7 = xVar.f13829b;
         byte[] bArr2 = new byte[bArr.length];
         xVar.k(0, bArr.length, bArr2);
         xVar.N(i7);
@@ -28,7 +28,7 @@ public final class i extends j {
 
     @Override
     public final long b(x xVar) {
-        byte[] bArr = xVar.f13865a;
+        byte[] bArr = xVar.f13828a;
         byte b10 = 0;
         byte b11 = bArr[0];
         if (bArr.length > 1) {
@@ -40,34 +40,34 @@ public final class i extends j {
     @Override
     public final boolean c(x xVar, long j3, q qVar) {
         if (e(xVar, f176o)) {
-            byte[] copyOf = Arrays.copyOf(xVar.f13865a, xVar.f13867c);
+            byte[] copyOf = Arrays.copyOf(xVar.f13828a, xVar.f13830c);
             int i7 = copyOf[9] & 255;
             ArrayList a10 = o.a(copyOf);
-            if (((u) qVar.f55871b) == null) {
+            if (((u) qVar.f55836b) == null) {
                 t tVar = new t();
-                tVar.f10745q = s0.n("audio/ogg");
-                tVar.f10746r = s0.n("audio/opus");
+                tVar.f10708q = s0.n("audio/ogg");
+                tVar.f10709r = s0.n("audio/opus");
                 tVar.J = i7;
                 tVar.K = 48000;
-                tVar.f10749u = a10;
-                qVar.f55871b = new u(tVar);
+                tVar.f10712u = a10;
+                qVar.f55836b = new u(tVar);
                 return true;
             }
         } else if (e(xVar, f177p)) {
-            ((u) qVar.f55871b).getClass();
+            ((u) qVar.f55836b).getClass();
             if (!this.f178n) {
                 this.f178n = true;
                 xVar.O(8);
-                q0 r10 = f3.b.r(i0.r(f3.b.u(xVar, false, false).f11213a));
+                q0 r10 = f3.b.r(i0.r(f3.b.u(xVar, false, false).f11176a));
                 if (r10 != null) {
-                    t a11 = ((u) qVar.f55871b).a();
-                    a11.f10739k = r10.b(((u) qVar.f55871b).f10791l);
-                    qVar.f55871b = new u(a11);
+                    t a11 = ((u) qVar.f55836b).a();
+                    a11.f10702k = r10.b(((u) qVar.f55836b).f10754l);
+                    qVar.f55836b = new u(a11);
                     return true;
                 }
             }
         } else {
-            ((u) qVar.f55871b).getClass();
+            ((u) qVar.f55836b).getClass();
             return false;
         }
         return true;

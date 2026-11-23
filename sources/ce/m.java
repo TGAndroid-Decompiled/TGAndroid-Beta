@@ -2,13 +2,13 @@ package ce;
 
 import java.io.Serializable;
 public final class m implements d {
-    public final int f5266a = 0;
-    public final d f5267b;
-    public final Serializable f5268c;
+    public final int f5229a = 0;
+    public final d f5230b;
+    public final Serializable f5231c;
 
     public m(d dVar, kotlin.jvm.internal.r rVar) {
-        this.f5267b = dVar;
-        this.f5268c = rVar;
+        this.f5230b = dVar;
+        this.f5231c = rVar;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class m implements d {
     }
 
     public m(jb.c cVar, d dVar) {
-        this.f5268c = cVar;
-        this.f5267b = dVar;
+        this.f5231c = cVar;
+        this.f5230b = dVar;
     }
 }

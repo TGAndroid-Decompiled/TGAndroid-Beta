@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.view.KeyEvent;
 import android.widget.TextView;
 public final class t2 implements TextView.OnEditorActionListener {
-    public final int f39753a;
+    public final int f39708a;
 
     public t2(int i7) {
-        this.f39753a = i7;
+        this.f39708a = i7;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        switch (this.f39753a) {
+        switch (this.f39708a) {
             case 0:
                 org.telegram.messenger.g0.v1(textView);
                 return false;

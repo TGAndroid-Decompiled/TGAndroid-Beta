@@ -12,19 +12,19 @@ public final class bx extends FrameLayout {
     public final fv J;
     public final fv K;
     public final cx L;
-    public yw f46325a;
-    public a8.xa f46326b;
-    public gv f46327c;
+    public yw f46318a;
+    public a8.xa f46319b;
+    public gv f46320c;
     public kv d;
-    public v4.z f46328e;
-    public ax f46329f;
+    public v4.y f46321e;
+    public ax f46322f;
     public int h;
-    public jv f46330n;
-    public org.telegram.ui.ActionBar.k5 f46331r;
-    public int f46332s;
-    public int f46333w;
-    public org.telegram.ui.Components.yz f46334x;
-    public ev f46335y;
+    public jv f46323n;
+    public org.telegram.ui.ActionBar.k5 f46324r;
+    public int f46325s;
+    public int f46326w;
+    public org.telegram.ui.Components.yz f46327x;
+    public ev f46328y;
 
     public bx(Context context, cx cxVar) {
         super(context);
@@ -34,43 +34,43 @@ public final class bx extends FrameLayout {
     }
 
     public static void a(bx bxVar, jv jvVar) {
-        bxVar.f46330n = jvVar;
+        bxVar.f46323n = jvVar;
     }
 
     public static void b(bx bxVar, gv gvVar) {
-        bxVar.f46327c = gvVar;
+        bxVar.f46320c = gvVar;
     }
 
-    public static v4.z c(bx bxVar) {
-        return bxVar.f46328e;
+    public static v4.y c(bx bxVar) {
+        return bxVar.f46321e;
     }
 
-    public static void d(bx bxVar, v4.z zVar) {
-        bxVar.f46328e = zVar;
+    public static void d(bx bxVar, v4.y yVar) {
+        bxVar.f46321e = yVar;
     }
 
     public static int e(bx bxVar) {
-        return bxVar.f46333w;
+        return bxVar.f46326w;
     }
 
     public static void f(bx bxVar, int i7) {
-        bxVar.f46333w = i7;
+        bxVar.f46326w = i7;
     }
 
     public static void g(bx bxVar, org.telegram.ui.Components.yz yzVar) {
-        bxVar.f46334x = yzVar;
+        bxVar.f46327x = yzVar;
     }
 
     public static ax h(bx bxVar) {
-        return bxVar.f46329f;
+        return bxVar.f46322f;
     }
 
     public static void i(bx bxVar, ax axVar) {
-        bxVar.f46329f = axVar;
+        bxVar.f46322f = axVar;
     }
 
     public static void j(bx bxVar, ev evVar) {
-        bxVar.f46335y = evVar;
+        bxVar.f46328y = evVar;
     }
 
     public static void k(bx bxVar, org.telegram.ui.Components.hj0 hj0Var) {
@@ -78,11 +78,11 @@ public final class bx extends FrameLayout {
     }
 
     public static void l(bx bxVar, org.telegram.ui.ActionBar.k5 k5Var) {
-        bxVar.f46331r = k5Var;
+        bxVar.f46324r = k5Var;
     }
 
     public static void m(bx bxVar, int i7) {
-        bxVar.f46332s = i7;
+        bxVar.f46325s = i7;
     }
 
     public static jg.m n(bx bxVar) {
@@ -95,12 +95,12 @@ public final class bx extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        ((FrameLayout.LayoutParams) this.f46325a.getLayoutParams()).bottomMargin = 0;
+        ((FrameLayout.LayoutParams) this.f46318a.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i7, i10);
     }
 
     public final boolean p() {
-        int i7 = this.f46332s;
+        int i7 = this.f46325s;
         if (i7 != 0 && i7 != 7 && i7 != 8) {
             return false;
         }
@@ -114,13 +114,13 @@ public final class bx extends FrameLayout {
             fv fvVar = this.K;
             if (z10) {
                 org.telegram.messenger.g0.r(fvVar);
-                this.f46325a.setItemAnimator(this.f46335y);
+                this.f46318a.setItemAnimator(this.f46328y);
                 fvVar.run();
             } else if (this.I) {
             } else {
                 this.I = true;
-                if (!this.f46335y.k()) {
-                    this.f46325a.setItemAnimator(null);
+                if (!this.f46328y.k()) {
+                    this.f46318a.setItemAnimator(null);
                 }
                 org.telegram.messenger.g0.h3(fvVar, 36L);
             }
@@ -134,8 +134,8 @@ public final class bx extends FrameLayout {
         if (getTranslationX() != f10) {
             super.setTranslationX(f10);
             cx cxVar = this.L;
-            if (cxVar.j3 && (bxVar = cxVar.f46722f0[0]) == this) {
-                cxVar.A0.h(Math.abs(bxVar.getTranslationX()) / cxVar.f46722f0[0].getMeasuredWidth(), cxVar.f46722f0[1].h);
+            if (cxVar.j3 && (bxVar = cxVar.f46683f0[0]) == this) {
+                cxVar.A0.h(Math.abs(bxVar.getTranslationX()) / cxVar.f46683f0[0].getMeasuredWidth(), cxVar.f46683f0[1].h);
             }
             qVar = ((org.telegram.ui.ActionBar.g2) cxVar).glassEngine;
             qVar.g();

@@ -1,42 +1,42 @@
 package org.telegram.ui;
 public final class tn implements Runnable {
-    public final int f52356a;
-    public final jo f52357b;
+    public final int f52302a;
+    public final io f52303b;
 
-    public tn(jo joVar, int i7) {
-        this.f52356a = i7;
-        this.f52357b = joVar;
+    public tn(io ioVar, int i7) {
+        this.f52302a = i7;
+        this.f52303b = ioVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f52356a) {
+        switch (this.f52302a) {
             case 0:
-                jo joVar = this.f52357b;
-                joVar.f49038d0 = true;
-                joVar.h0();
+                io ioVar = this.f52303b;
+                ioVar.f48783d0 = true;
+                ioVar.h0();
                 return;
             case 1:
-                jo joVar2 = this.f52357b;
-                joVar2.Y = joVar2.getMessagesController().O0(Long.valueOf(joVar2.f49033a0));
-                joVar2.e0();
+                io ioVar2 = this.f52303b;
+                ioVar2.Y = ioVar2.getMessagesController().O0(Long.valueOf(ioVar2.f48778a0));
+                ioVar2.e0();
                 return;
             case 2:
-                this.f52357b.g0(false);
+                this.f52303b.g0(false);
                 return;
             case 3:
-                jo joVar3 = this.f52357b;
-                joVar3.f49038d0 = true;
-                if (joVar3.f49034b.length() > 0) {
-                    joVar3.c0(joVar3.f49034b.getText().toString());
+                io ioVar3 = this.f52303b;
+                ioVar3.f48783d0 = true;
+                if (ioVar3.f48779b.length() > 0) {
+                    ioVar3.c0(ioVar3.f48779b.getText().toString());
                 }
-                joVar3.h0();
+                ioVar3.h0();
                 return;
             case 4:
-                this.f52357b.e0();
+                this.f52303b.e0();
                 return;
             default:
-                this.f52357b.g0(true);
+                this.f52303b.g0(true);
                 return;
         }
     }

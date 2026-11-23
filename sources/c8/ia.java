@@ -1,8 +1,7 @@
 package c8;
 public abstract class ia {
-    public void a() {
-    }
+    public abstract void a(boolean z10);
 
-    public void b(int i7, int i10) {
+    public void b() {
     }
 }

@@ -1,14 +1,14 @@
 package m1;
 public final class j {
-    public final ie.a f20395a;
-    public final kotlin.jvm.internal.o f20396b;
-    public final kotlin.jvm.internal.r f20397c;
+    public final ie.a f20361a;
+    public final kotlin.jvm.internal.o f20362b;
+    public final kotlin.jvm.internal.r f20363c;
     public final b0 d;
 
     public j(ie.a aVar, kotlin.jvm.internal.o oVar, kotlin.jvm.internal.r rVar, b0 b0Var) {
-        this.f20395a = aVar;
-        this.f20396b = oVar;
-        this.f20397c = rVar;
+        this.f20361a = aVar;
+        this.f20362b = oVar;
+        this.f20363c = rVar;
         this.d = b0Var;
     }
 

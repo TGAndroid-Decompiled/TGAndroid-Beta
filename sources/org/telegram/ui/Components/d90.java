@@ -21,14 +21,14 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public abstract class d90 {
-    public static final Pattern f34447a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
-    public static final Pattern f34448b = Pattern.compile("\\[\\^([^\\]]+)\\]");
-    public static final Pattern f34449c = Pattern.compile("^(\\d+)[.)]\\s");
+    public static final Pattern f34410a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
+    public static final Pattern f34411b = Pattern.compile("\\[\\^([^\\]]+)\\]");
+    public static final Pattern f34412c = Pattern.compile("^(\\d+)[.)]\\s");
 
     public static TL_iv.RichText a(kf.p pVar, TL_iv.PageBlock pageBlock) {
         a90 a90Var = new a90(pageBlock);
         pVar.a(a90Var);
-        return k(l(a90.x(a90Var.f33443c)));
+        return k(l(a90.x(a90Var.f33409c)));
     }
 
     public static List b(TL_iv.RichText richText) {
@@ -77,10 +77,10 @@ public abstract class d90 {
         textmath.tried = true;
         oi.p a10 = oi.p.a(trim, org.telegram.messenger.g0.L(20.0f), true);
         if (a10 != null) {
-            textmath.f28661w = a10.f22304b;
-            textmath.h = a10.f22305c;
+            textmath.f28625w = a10.f22257b;
+            textmath.h = a10.f22258c;
             textmath.depth = a10.d;
-            textmath.bitmap = a10.f22303a;
+            textmath.bitmap = a10.f22256a;
         }
         return textmath;
     }
@@ -140,20 +140,20 @@ public abstract class d90 {
 
     public static File i(org.telegram.messenger.gj gjVar) {
         File file;
-        TLRPC.Message message = gjVar.f24213k;
+        TLRPC.Message message = gjVar.f24177k;
         int i7 = gjVar.K1;
         if (!TextUtils.isEmpty(message.attachPath)) {
-            file = new File(gjVar.f24213k.attachPath);
+            file = new File(gjVar.f24177k.attachPath);
         } else {
             file = null;
         }
         if (file == null || !file.exists()) {
             org.telegram.messenger.w7.G(i7);
-            file = org.telegram.messenger.w7.M(gjVar.f24213k, false, true);
+            file = org.telegram.messenger.w7.M(gjVar.f24177k, false, true);
         }
         if (file == null || !file.exists()) {
             org.telegram.messenger.w7.G(i7);
-            file = org.telegram.messenger.w7.M(gjVar.f24213k, true, true);
+            file = org.telegram.messenger.w7.M(gjVar.f24177k, true, true);
         }
         if (file == null || !file.exists()) {
             return null;
@@ -191,7 +191,7 @@ public abstract class d90 {
         } else if (richText instanceof c90) {
             c90 c90Var = (c90) richText;
             TL_iv.textStrike k10 = k(c90Var.text);
-            int i10 = c90Var.f34124a;
+            int i10 = c90Var.f34088a;
             if ((i10 & 4) != 0) {
                 TL_iv.textFixed textfixed = new TL_iv.textFixed();
                 textfixed.text = k10;
@@ -255,7 +255,7 @@ public abstract class d90 {
         StringBuilder sb2 = new StringBuilder();
         int i7 = 0;
         while (i7 < split2.length) {
-            Matcher matcher = f34447a.matcher(split2[i7]);
+            Matcher matcher = f34410a.matcher(split2[i7]);
             if (matcher.matches()) {
                 String group = matcher.group(1);
                 StringBuilder sb3 = new StringBuilder(matcher.group(2));
@@ -296,7 +296,7 @@ public abstract class d90 {
                 i7++;
             }
         }
-        Matcher matcher2 = f34448b.matcher(sb2.toString());
+        Matcher matcher2 = f34411b.matcher(sb2.toString());
         StringBuffer stringBuffer = new StringBuffer();
         while (matcher2.find()) {
             String group2 = matcher2.group(1);
@@ -305,7 +305,7 @@ public abstract class d90 {
         matcher2.appendTail(stringBuffer);
         String stringBuffer2 = stringBuffer.toString();
         List<bf.a> asList = Arrays.asList(new cf.b(0), new cf.b(1));
-        Pattern pattern = ed.i.f10930j;
+        Pattern pattern = ed.i.f10893j;
         ArrayList arrayList2 = new ArrayList(3);
         ArrayList arrayList3 = new ArrayList(3);
         arrayList2.addAll(Arrays.asList(new Object(), new Object(), new Object(), new ed.d(0), new Object(), new Object(), new Object(), new Object(), new ed.d(1)));
@@ -320,34 +320,34 @@ public abstract class d90 {
         if (asList != null) {
             for (bf.a aVar : asList) {
                 if (aVar instanceof cf.b) {
-                    switch (((cf.b) aVar).f5302a) {
+                    switch (((cf.b) aVar).f5265a) {
                         case 0:
-                            ((ArrayList) r7Var.f618c).add(new Object());
+                            ((ArrayList) r7Var.f617c).add(new Object());
                             continue;
                         default:
-                            ((ArrayList) r7Var.f617b).add(new ff.a(0));
+                            ((ArrayList) r7Var.f616b).add(new ff.a(0));
                             continue;
                     }
                 }
             }
-            r7Var.f620f = new wf.b(15, arrayList2, arrayList3);
-            ((ArrayList) r7Var.f617b).add(new ff.a(8));
+            r7Var.f619f = new wf.b(15, arrayList2, arrayList3);
+            ((ArrayList) r7Var.f616b).add(new ff.a(8));
             ?? obj = new Object();
-            LinkedHashSet linkedHashSet = gf.g.f13576p;
+            LinkedHashSet linkedHashSet = gf.g.f13539p;
             ArrayList arrayList4 = new ArrayList();
-            arrayList4.addAll((ArrayList) r7Var.f617b);
-            for (Class cls : (LinkedHashSet) r7Var.f619e) {
-                arrayList4.add(gf.g.f13577q.get(cls));
+            arrayList4.addAll((ArrayList) r7Var.f616b);
+            for (Class cls : (LinkedHashSet) r7Var.f618e) {
+                arrayList4.add(gf.g.f13540q.get(cls));
             }
-            obj.f60666a = arrayList4;
-            lf.b bVar = (wf.b) r7Var.f620f;
+            obj.f60631a = arrayList4;
+            lf.b bVar = (wf.b) r7Var.f619f;
             if (bVar == null) {
                 bVar = new nb.a(13);
             }
-            obj.f60668c = bVar;
+            obj.f60633c = bVar;
             obj.d = (ArrayList) r7Var.d;
-            ArrayList arrayList5 = (ArrayList) r7Var.f618c;
-            obj.f60667b = arrayList5;
+            ArrayList arrayList5 = (ArrayList) r7Var.f617c;
+            obj.f60632b = arrayList5;
             bVar.d(new wf.b(23, arrayList5, Collections.EMPTY_MAP));
             ArrayDeque arrayDeque = new ArrayDeque();
             String str3 = null;
@@ -368,7 +368,7 @@ public abstract class d90 {
                     if (!substring2.startsWith("```")) {
                         str5 = "~~~";
                         if (!substring2.startsWith("~~~")) {
-                            Matcher matcher3 = f34449c.matcher(str4);
+                            Matcher matcher3 = f34412c.matcher(str4);
                             if (matcher3.find()) {
                                 arrayDeque.add(matcher3.group(1));
                             }
@@ -441,7 +441,7 @@ public abstract class d90 {
                 }
                 arrayList.add(pageblockdetails);
             }
-            TL_iv.RichText richText2 = z80Var.f42734b;
+            TL_iv.RichText richText2 = z80Var.f42692b;
             if (richText2 == null) {
                 return null;
             }

@@ -3,7 +3,7 @@ package bi;
 import android.content.Context;
 import android.util.LongSparseArray;
 import android.widget.LinearLayout;
-import c8.ma;
+import c8.na;
 import java.util.ArrayList;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.r9;
@@ -29,10 +29,10 @@ public final class g extends sa implements t9 {
         int i7 = 0;
         this.U1 = new LongSparseArray();
         this.V1 = new ArrayList();
-        int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29324a7, false);
+        int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29290a7, false);
         this.Y1 = x02;
         v0(x02);
-        v9.c(this.f30173a).f27338f.add(this);
+        v9.c(this.f30139a).f27302f.add(this);
         this.G1 = false;
         this.F1 = org.telegram.messenger.g0.L(12.0f);
         O();
@@ -42,28 +42,28 @@ public final class g extends sa implements t9 {
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
         this.T1 = o41.j(-1, linearLayout);
-        this.f39531o1.setPadding(this.f30211u0, org.telegram.messenger.g0.L(9.0f), this.f30211u0, org.telegram.messenger.g0.L(9.0f));
-        this.f39531o1.setOverScrollMode(2);
+        this.f39487o1.setPadding(this.f30177u0, org.telegram.messenger.g0.L(9.0f), this.f30177u0, org.telegram.messenger.g0.L(9.0f));
+        this.f39487o1.setOverScrollMode(2);
         this.X1.O(false);
-        ArrayList arrayList = v9.c(this.f30173a).f27336c;
+        ArrayList arrayList = v9.c(this.f30139a).f27300c;
         int size = arrayList.size();
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             r9 r9Var = (r9) obj;
             f fVar = new f(context, r9Var);
-            fVar.f3607a.setOnClickListener(new ah.h(this, context, r9Var, 1));
-            linearLayout.addView(fVar, ma.o(-1, -2));
-            this.U1.put(r9Var.f26580b, fVar);
+            fVar.f3517a.setOnClickListener(new ah.h(this, context, r9Var, 1));
+            linearLayout.addView(fVar, na.o(-1, -2));
+            this.U1.put(r9Var.f26544b, fVar);
         }
         g(arrayList);
     }
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new b(this, 1), this.J0);
+        c51 c51Var = new c51(this.f39487o1, getContext(), this.f30139a, 0, true, new b(this, 1), this.J0);
         this.X1 = c51Var;
-        c51Var.f34062r = false;
+        c51Var.f34026r = false;
         return c51Var;
     }
 
@@ -78,7 +78,7 @@ public final class g extends sa implements t9 {
 
     @Override
     public final void dismiss() {
-        v9.c(this.f30173a).f27338f.remove(this);
+        v9.c(this.f30139a).f27302f.remove(this);
         super.dismiss();
     }
 
@@ -86,25 +86,25 @@ public final class g extends sa implements t9 {
     public final void g(ArrayList arrayList) {
         int i7;
         this.V1 = new ArrayList(arrayList);
-        this.f39532p1.setTitle(P0());
+        this.f39488p1.setTitle(P0());
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             r9 r9Var = (r9) obj;
-            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = r9Var.f26583f;
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = r9Var.f26547f;
             if (tL_starGiftAuctionState != null) {
                 i7 = tL_starGiftAuctionState.next_round_at;
             } else {
                 i7 = 0;
             }
-            f fVar = (f) this.U1.get(r9Var.f26580b);
+            f fVar = (f) this.U1.get(r9Var.f26544b);
             if (fVar != null) {
                 fVar.b(this.W1);
-                long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f30173a).getCurrentTime());
+                long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f30139a).getCurrentTime());
                 fVar.a(max, this.W1);
-                fVar.f3611f.a(max);
+                fVar.f3521f.a(max);
             }
         }
     }
@@ -113,7 +113,7 @@ public final class g extends sa implements t9 {
     public final void s0() {
         try {
             super.s0();
-            int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29324a7, false);
+            int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29290a7, false);
             if (x02 != this.Y1) {
                 this.Y1 = x02;
                 v0(x02);

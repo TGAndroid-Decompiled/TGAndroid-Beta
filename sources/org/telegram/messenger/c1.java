@@ -19,70 +19,70 @@ public abstract class c1 {
     }
 
     public final sg.k0 getColorPalette() {
-        return sg.k0.e(this.parentAccountInstance.f23202a);
+        return sg.k0.e(this.parentAccountInstance.f23166a);
     }
 
     public final ConnectionsManager getConnectionsManager() {
-        return ConnectionsManager.getInstance(this.parentAccountInstance.f23202a);
+        return ConnectionsManager.getInstance(this.parentAccountInstance.f23166a);
     }
 
     public final i5 getContactsController() {
-        return i5.r(this.parentAccountInstance.f23202a);
+        return i5.r(this.parentAccountInstance.f23166a);
     }
 
     public final a6 getDownloadController() {
-        return a6.q(this.parentAccountInstance.f23202a);
+        return a6.q(this.parentAccountInstance.f23166a);
     }
 
     public final w7 getFileLoader() {
-        return w7.G(this.parentAccountInstance.f23202a);
+        return w7.G(this.parentAccountInstance.f23166a);
     }
 
     public final r8 getFileRefController() {
-        return r8.n(this.parentAccountInstance.f23202a);
+        return r8.n(this.parentAccountInstance.f23166a);
     }
 
     public final rd getLocationController() {
-        return rd.f(this.parentAccountInstance.f23202a);
+        return rd.f(this.parentAccountInstance.f23166a);
     }
 
     public final si getMediaDataController() {
-        return si.d0(this.parentAccountInstance.f23202a);
+        return si.d0(this.parentAccountInstance.f23166a);
     }
 
     public final ti getMemberRequestsController() {
-        return ti.b(this.parentAccountInstance.f23202a);
+        return ti.b(this.parentAccountInstance.f23166a);
     }
 
     public final np getMessagesController() {
-        return np.u1(this.parentAccountInstance.f23202a);
+        return np.u1(this.parentAccountInstance.f23166a);
     }
 
     public final ur getMessagesStorage() {
-        return ur.a0(this.parentAccountInstance.f23202a);
+        return ur.a0(this.parentAccountInstance.f23166a);
     }
 
     public final ls getNotificationCenter() {
-        return ls.f(this.parentAccountInstance.f23202a);
+        return ls.f(this.parentAccountInstance.f23166a);
     }
 
     public final ys getNotificationsController() {
-        return ys.t(this.parentAccountInstance.f23202a);
+        return ys.t(this.parentAccountInstance.f23166a);
     }
 
     public final yv getSecretChatHelper() {
-        return yv.i(this.parentAccountInstance.f23202a);
+        return yv.i(this.parentAccountInstance.f23166a);
     }
 
     public final az getSendMessagesHelper() {
-        return az.C(this.parentAccountInstance.f23202a);
+        return az.C(this.parentAccountInstance.f23166a);
     }
 
     public final dz getStatsController() {
-        return dz.e(this.parentAccountInstance.f23202a);
+        return dz.e(this.parentAccountInstance.f23166a);
     }
 
     public final k10 getUserConfig() {
-        return k10.i(this.parentAccountInstance.f23202a);
+        return k10.i(this.parentAccountInstance.f23166a);
     }
 }

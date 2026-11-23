@@ -4,26 +4,26 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import c8.ma;
+import c8.na;
 import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
 public final class s implements Runnable {
-    public final int f58157a;
-    public final h0 f58158b;
-    public final j f58159c;
+    public final int f58122a;
+    public final h0 f58123b;
+    public final j f58124c;
 
     public s(h0 h0Var, j jVar, int i7) {
-        this.f58157a = i7;
-        this.f58158b = h0Var;
-        this.f58159c = jVar;
+        this.f58122a = i7;
+        this.f58123b = h0Var;
+        this.f58124c = jVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f58157a;
-        final j jVar = this.f58159c;
-        final h0 h0Var = this.f58158b;
+        int i7 = this.f58122a;
+        final j jVar = this.f58124c;
+        final h0 h0Var = this.f58123b;
         switch (i7) {
             case 0:
                 h0Var.q0(jVar);
@@ -70,7 +70,7 @@ public final class s implements Runnable {
                         }
                     }
                 });
-                linearLayout.addView(textView, ma.o(-2, 48));
+                linearLayout.addView(textView, na.o(-2, 48));
                 if (jVar instanceof n2) {
                     TextView textView2 = new TextView(h0Var.getContext());
                     t6.U(textView2, i10, vVar);
@@ -82,7 +82,7 @@ public final class s implements Runnable {
                     textView2.setTag(1);
                     textView2.setText(hd.N0(2131747476, null));
                     textView2.setOnClickListener(new k(h0Var, 2));
-                    linearLayout.addView(textView2, ma.o(-2, 48));
+                    linearLayout.addView(textView2, na.o(-2, 48));
                 }
                 if (jVar instanceof g2) {
                     TextView textView3 = new TextView(h0Var.getContext());
@@ -121,7 +121,7 @@ public final class s implements Runnable {
                             }
                         }
                     });
-                    linearLayout.addView(textView3, ma.o(-2, 48));
+                    linearLayout.addView(textView3, na.o(-2, 48));
                 }
                 if (!(jVar instanceof p1)) {
                     TextView textView4 = new TextView(h0Var.getContext());
@@ -134,7 +134,7 @@ public final class s implements Runnable {
                     textView4.setTag(2);
                     textView4.setText(hd.N0(2131747477, null));
                     textView4.setOnClickListener(new k(h0Var, 3));
-                    linearLayout.addView(textView4, ma.o(-2, 48));
+                    linearLayout.addView(textView4, na.o(-2, 48));
                 }
                 h0Var.C1.addView(linearLayout);
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();

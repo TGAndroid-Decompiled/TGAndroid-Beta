@@ -49,40 +49,40 @@ public final class l6 implements gs {
     public int X;
     public int Y;
     public int Z;
-    public String f29232a;
-    public int f29233a0;
-    public String f29234b;
-    public SparseArray f29235b0;
-    public String f29236c;
-    public ArrayList f29237c0;
+    public String f29198a;
+    public int f29199a0;
+    public String f29200b;
+    public SparseArray f29201b0;
+    public String f29202c;
+    public ArrayList f29203c0;
     public String d;
-    public LongSparseArray f29238d0;
-    public String f29239e;
-    public final LongSparseArray f29240e0;
-    public boolean f29241f;
-    public int f29242f0;
-    public int f29243g0;
+    public LongSparseArray f29204d0;
+    public String f29205e;
+    public final LongSparseArray f29206e0;
+    public boolean f29207f;
+    public int f29208f0;
+    public int f29209g0;
     public boolean h;
-    public String f29244h0;
-    public String f29245i0;
-    public d6 f29246j0;
-    public int f29247k0;
-    public boolean f29248n;
-    public int f29249r;
-    public int f29250s;
-    public int f29251w;
-    public int f29252x;
-    public int f29253y;
+    public String f29210h0;
+    public String f29211i0;
+    public d6 f29212j0;
+    public int f29213k0;
+    public boolean f29214n;
+    public int f29215r;
+    public int f29216s;
+    public int f29217w;
+    public int f29218x;
+    public int f29219y;
 
     public l6() {
-        this.f29253y = 45;
+        this.f29219y = 45;
         this.H = true;
         this.V = true;
-        this.f29233a0 = -1;
-        this.f29240e0 = new LongSparseArray();
-        this.f29242f0 = 0;
-        this.f29243g0 = 100;
-        this.f29247k0 = -1;
+        this.f29199a0 = -1;
+        this.f29206e0 = new LongSparseArray();
+        this.f29208f0 = 0;
+        this.f29209g0 = 100;
+        this.f29213k0 = -1;
     }
 
     public static boolean a(j6 j6Var, TLRPC.ThemeSettings themeSettings) {
@@ -151,7 +151,7 @@ public final class l6 implements gs {
                 str = wallPaper2.slug;
                 f10 = wallPaper2.settings.intensity / 100.0f;
                 long j12 = j10;
-                if (themeSettings.accent_color != j6Var.f29098c && themeSettings.outbox_accent_color == j6Var.d && i7 == j6Var.f29099e && i10 == j6Var.f29100f && i11 == j6Var.f29101g && i12 == j6Var.h && themeSettings.message_colors_animated == j6Var.f29102i && i13 == j6Var.f29103j && j3 == j6Var.f29104k && j12 == j6Var.f29105l && j11 == j6Var.f29106m && i14 == j6Var.f29107n && TextUtils.equals(str, j6Var.f29108o) && Math.abs(f10 - j6Var.f29109p) < 0.001d) {
+                if (themeSettings.accent_color != j6Var.f29064c && themeSettings.outbox_accent_color == j6Var.d && i7 == j6Var.f29065e && i10 == j6Var.f29066f && i11 == j6Var.f29067g && i12 == j6Var.h && themeSettings.message_colors_animated == j6Var.f29068i && i13 == j6Var.f29069j && j3 == j6Var.f29070k && j12 == j6Var.f29071l && j11 == j6Var.f29072m && i14 == j6Var.f29073n && TextUtils.equals(str, j6Var.f29074o) && Math.abs(f10 - j6Var.f29075p) < 0.001d) {
                     return z11;
                 }
                 return z10;
@@ -168,89 +168,89 @@ public final class l6 implements gs {
         str = null;
         f10 = 0.0f;
         long j122 = j10;
-        if (themeSettings.accent_color != j6Var.f29098c) {
+        if (themeSettings.accent_color != j6Var.f29064c) {
         }
         return z10;
     }
 
     public static void b(l6 l6Var, int[] iArr, int[] iArr2, int[] iArr3, int[] iArr4, int[] iArr5, int[] iArr6, int[] iArr7, int[] iArr8, String[] strArr, int[] iArr9, int[] iArr10) {
         l6Var.X = iArr.length;
-        l6Var.f29237c0 = new ArrayList();
-        l6Var.f29235b0 = new SparseArray();
-        l6Var.f29238d0 = new LongSparseArray();
+        l6Var.f29203c0 = new ArrayList();
+        l6Var.f29201b0 = new SparseArray();
+        l6Var.f29204d0 = new LongSparseArray();
         for (int i7 = 0; i7 < iArr.length; i7++) {
             j6 j6Var = new j6();
-            j6Var.f29096a = iArr8[i7];
+            j6Var.f29062a = iArr8[i7];
             if (m6.l1(j6Var)) {
-                j6Var.f29118z = true;
+                j6Var.f29084z = true;
             }
-            j6Var.f29098c = iArr[i7];
-            j6Var.f29097b = l6Var;
-            j6Var.f29099e = iArr2[i7];
-            j6Var.f29100f = iArr3[i7];
+            j6Var.f29064c = iArr[i7];
+            j6Var.f29063b = l6Var;
+            j6Var.f29065e = iArr2[i7];
+            j6Var.f29066f = iArr3[i7];
             long j3 = iArr4[i7];
-            j6Var.f29103j = j3;
+            j6Var.f29069j = j3;
             boolean z10 = l6Var.T;
-            if (z10 && j6Var.f29096a == m6.f29557n) {
-                j6Var.f29103j = 4294967296L;
+            if (z10 && j6Var.f29062a == m6.f29523n) {
+                j6Var.f29069j = 4294967296L;
             } else {
-                j6Var.f29103j = j3;
+                j6Var.f29069j = j3;
             }
-            if (z10 && j6Var.f29096a == m6.f29557n) {
-                j6Var.f29104k = 4294967296L;
+            if (z10 && j6Var.f29062a == m6.f29523n) {
+                j6Var.f29070k = 4294967296L;
             } else {
-                j6Var.f29104k = iArr5[i7];
+                j6Var.f29070k = iArr5[i7];
             }
             if (iArr6 != null) {
-                if (z10 && j6Var.f29096a == m6.f29557n) {
-                    j6Var.f29105l = 4294967296L;
+                if (z10 && j6Var.f29062a == m6.f29523n) {
+                    j6Var.f29071l = 4294967296L;
                 } else {
-                    j6Var.f29105l = iArr6[i7];
+                    j6Var.f29071l = iArr6[i7];
                 }
             }
             if (iArr7 != null) {
-                if (z10 && j6Var.f29096a == m6.f29557n) {
-                    j6Var.f29106m = 4294967296L;
+                if (z10 && j6Var.f29062a == m6.f29523n) {
+                    j6Var.f29072m = 4294967296L;
                 } else {
-                    j6Var.f29106m = iArr7[i7];
+                    j6Var.f29072m = iArr7[i7];
                 }
             }
-            j6Var.f29109p = iArr10[i7] / 100.0f;
-            j6Var.f29107n = iArr9[i7];
-            j6Var.f29108o = strArr[i7];
-            if ((m6.l1(j6Var) && l6Var.f29232a.equals("Dark Blue")) || l6Var.f29232a.equals("Night")) {
-                j6Var.f29099e = -14316059;
-                j6Var.f29100f = -12422433;
-                j6Var.f29101g = -8304937;
+            j6Var.f29075p = iArr10[i7] / 100.0f;
+            j6Var.f29073n = iArr9[i7];
+            j6Var.f29074o = strArr[i7];
+            if ((m6.l1(j6Var) && l6Var.f29198a.equals("Dark Blue")) || l6Var.f29198a.equals("Night")) {
+                j6Var.f29065e = -14316059;
+                j6Var.f29066f = -12422433;
+                j6Var.f29067g = -8304937;
                 j6Var.h = -6340950;
-                if (l6Var.f29232a.equals("Night")) {
-                    j6Var.f29109p = -0.57f;
-                    j6Var.f29103j = -9666650L;
-                    j6Var.f29104k = -13749173L;
-                    j6Var.f29105l = -8883033L;
-                    j6Var.f29106m = -13421992L;
+                if (l6Var.f29198a.equals("Night")) {
+                    j6Var.f29075p = -0.57f;
+                    j6Var.f29069j = -9666650L;
+                    j6Var.f29070k = -13749173L;
+                    j6Var.f29071l = -8883033L;
+                    j6Var.f29072m = -13421992L;
                 }
             }
-            l6Var.f29235b0.put(j6Var.f29096a, j6Var);
-            l6Var.f29237c0.add(j6Var);
+            l6Var.f29201b0.put(j6Var.f29062a, j6Var);
+            l6Var.f29203c0.add(j6Var);
         }
-        l6Var.Y = ((j6) l6Var.f29235b0.get(0)).f29098c;
+        l6Var.Y = ((j6) l6Var.f29201b0.get(0)).f29064c;
     }
 
     public static void c(l6 l6Var, SharedPreferences sharedPreferences) {
-        ArrayList arrayList = l6Var.f29237c0;
+        ArrayList arrayList = l6Var.f29203c0;
         if (arrayList != null && !arrayList.isEmpty()) {
-            int size = l6Var.f29237c0.size();
+            int size = l6Var.f29203c0.size();
             for (int i7 = 0; i7 < size; i7++) {
-                j6 j6Var = (j6) l6Var.f29237c0.get(i7);
+                j6 j6Var = (j6) l6Var.f29203c0.get(i7);
                 StringBuilder sb2 = new StringBuilder();
-                sb2.append(l6Var.f29232a);
+                sb2.append(l6Var.f29198a);
                 sb2.append("_");
-                l6Var.r(sharedPreferences, j6Var, a8.p0.n(j6Var.f29096a, "_owp", sb2));
+                l6Var.r(sharedPreferences, j6Var, a8.p0.n(j6Var.f29062a, "_owp", sb2));
             }
             return;
         }
-        l6Var.r(sharedPreferences, null, a8.p0.s(new StringBuilder(), l6Var.f29232a, "_owp"));
+        l6Var.r(sharedPreferences, null, a8.p0.s(new StringBuilder(), l6Var.f29198a, "_owp"));
     }
 
     public static l6 g(JSONObject jSONObject) {
@@ -259,8 +259,8 @@ public final class l6 implements gs {
         }
         try {
             l6 l6Var = new l6();
-            l6Var.f29232a = jSONObject.getString("name");
-            l6Var.f29234b = jSONObject.getString("path");
+            l6Var.f29198a = jSONObject.getString("name");
+            l6Var.f29200b = jSONObject.getString("path");
             if (jSONObject.has("account")) {
                 l6Var.F = jSONObject.getInt("account");
             }
@@ -287,8 +287,8 @@ public final class l6 implements gs {
             return null;
         }
         l6 l6Var = new l6();
-        l6Var.f29232a = split[0];
-        l6Var.f29234b = split[1];
+        l6Var.f29198a = split[0];
+        l6Var.f29200b = split[1];
         return l6Var;
     }
 
@@ -299,68 +299,68 @@ public final class l6 implements gs {
         int i12;
         TLRPC.WallPaperSettings wallPaperSettings;
         int i13;
-        j6Var.f29098c = themeSettings.accent_color;
+        j6Var.f29064c = themeSettings.accent_color;
         j6Var.d = themeSettings.outbox_accent_color;
         if (themeSettings.message_colors.size() > 0) {
             i7 = themeSettings.message_colors.get(0).intValue() | (-16777216);
         } else {
             i7 = 0;
         }
-        j6Var.f29099e = i7;
+        j6Var.f29065e = i7;
         if (themeSettings.message_colors.size() > 1) {
             i10 = themeSettings.message_colors.get(1).intValue() | (-16777216);
         } else {
             i10 = 0;
         }
-        j6Var.f29100f = i10;
-        if (j6Var.f29099e == i10) {
-            j6Var.f29100f = 0;
+        j6Var.f29066f = i10;
+        if (j6Var.f29065e == i10) {
+            j6Var.f29066f = 0;
         }
         if (themeSettings.message_colors.size() > 2) {
             i11 = themeSettings.message_colors.get(2).intValue() | (-16777216);
         } else {
             i11 = 0;
         }
-        j6Var.f29101g = i11;
+        j6Var.f29067g = i11;
         if (themeSettings.message_colors.size() > 3) {
             i12 = themeSettings.message_colors.get(3).intValue() | (-16777216);
         } else {
             i12 = 0;
         }
         j6Var.h = i12;
-        j6Var.f29102i = themeSettings.message_colors_animated;
+        j6Var.f29068i = themeSettings.message_colors_animated;
         TLRPC.WallPaper wallPaper = themeSettings.wallpaper;
         if (wallPaper != null && (wallPaperSettings = wallPaper.settings) != null) {
             if (wallPaperSettings.background_color == 0) {
-                j6Var.f29103j = 4294967296L;
+                j6Var.f29069j = 4294967296L;
             } else {
-                j6Var.f29103j = m6.a1(i13);
+                j6Var.f29069j = m6.a1(i13);
             }
             TLRPC.WallPaperSettings wallPaperSettings2 = themeSettings.wallpaper.settings;
             if ((wallPaperSettings2.flags & 16) != 0 && wallPaperSettings2.second_background_color == 0) {
-                j6Var.f29104k = 4294967296L;
+                j6Var.f29070k = 4294967296L;
             } else {
-                j6Var.f29104k = m6.a1(wallPaperSettings2.second_background_color);
+                j6Var.f29070k = m6.a1(wallPaperSettings2.second_background_color);
             }
             TLRPC.WallPaperSettings wallPaperSettings3 = themeSettings.wallpaper.settings;
             if ((wallPaperSettings3.flags & 32) != 0 && wallPaperSettings3.third_background_color == 0) {
-                j6Var.f29105l = 4294967296L;
+                j6Var.f29071l = 4294967296L;
             } else {
-                j6Var.f29105l = m6.a1(wallPaperSettings3.third_background_color);
+                j6Var.f29071l = m6.a1(wallPaperSettings3.third_background_color);
             }
             TLRPC.WallPaperSettings wallPaperSettings4 = themeSettings.wallpaper.settings;
             if ((wallPaperSettings4.flags & 64) != 0 && wallPaperSettings4.fourth_background_color == 0) {
-                j6Var.f29106m = 4294967296L;
+                j6Var.f29072m = 4294967296L;
             } else {
-                j6Var.f29106m = m6.a1(wallPaperSettings4.fourth_background_color);
+                j6Var.f29072m = m6.a1(wallPaperSettings4.fourth_background_color);
             }
-            j6Var.f29107n = org.telegram.messenger.g0.s1(themeSettings.wallpaper.settings.rotation, false);
+            j6Var.f29073n = org.telegram.messenger.g0.s1(themeSettings.wallpaper.settings.rotation, false);
             TLRPC.WallPaper wallPaper2 = themeSettings.wallpaper;
             if (!(wallPaper2 instanceof TLRPC.TL_wallPaperNoFile) && wallPaper2.pattern) {
-                j6Var.f29108o = wallPaper2.slug;
+                j6Var.f29074o = wallPaper2.slug;
                 TLRPC.WallPaperSettings wallPaperSettings5 = wallPaper2.settings;
-                j6Var.f29109p = wallPaperSettings5.intensity / 100.0f;
-                j6Var.f29110q = wallPaperSettings5.motion;
+                j6Var.f29075p = wallPaperSettings5.intensity / 100.0f;
+                j6Var.f29076q = wallPaperSettings5.motion;
             }
         }
     }
@@ -370,22 +370,22 @@ public final class l6 implements gs {
         int V0;
         try {
             Bitmap e12 = org.telegram.messenger.g0.e1(org.telegram.messenger.g0.L(640.0f), org.telegram.messenger.g0.L(360.0f), file.getAbsolutePath(), null, 0);
-            if (e12 != null && this.f29249r != 0) {
+            if (e12 != null && this.f29215r != 0) {
                 Bitmap createBitmap = Bitmap.createBitmap(e12.getWidth(), e12.getHeight(), e12.getConfig());
                 Canvas canvas = new Canvas(createBitmap);
-                int i7 = this.f29251w;
+                int i7 = this.f29217w;
                 if (i7 != 0) {
-                    V0 = cb0.g(this.f29249r, this.f29250s, i7, this.f29252x);
+                    V0 = cb0.g(this.f29215r, this.f29216s, i7, this.f29218x);
                 } else {
-                    int i10 = this.f29250s;
+                    int i10 = this.f29216s;
                     if (i10 != 0) {
-                        V0 = org.telegram.messenger.g0.w0(this.f29249r, i10);
-                        GradientDrawable gradientDrawable = new GradientDrawable(p9.d(this.f29253y), new int[]{this.f29249r, this.f29250s});
+                        V0 = org.telegram.messenger.g0.w0(this.f29215r, i10);
+                        GradientDrawable gradientDrawable = new GradientDrawable(p9.d(this.f29219y), new int[]{this.f29215r, this.f29216s});
                         gradientDrawable.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
                         gradientDrawable.draw(canvas);
                     } else {
-                        V0 = org.telegram.messenger.g0.V0(this.f29249r, false);
-                        canvas.drawColor(this.f29249r);
+                        V0 = org.telegram.messenger.g0.V0(this.f29215r, false);
+                        canvas.drawColor(this.f29215r);
                     }
                 }
                 Paint paint = new Paint(2);
@@ -399,7 +399,7 @@ public final class l6 implements gs {
                 e12 = Utilities.e(e12);
             }
             FileOutputStream fileOutputStream = new FileOutputStream(str);
-            if (this.f29251w != 0) {
+            if (this.f29217w != 0) {
                 compressFormat = Bitmap.CompressFormat.PNG;
             } else {
                 compressFormat = Bitmap.CompressFormat.JPEG;
@@ -420,27 +420,27 @@ public final class l6 implements gs {
             String str = (String) objArr[0];
             TLRPC.TL_theme tL_theme = this.G;
             if (tL_theme != null && tL_theme.document != null) {
-                if (str.equals(this.f29244h0)) {
-                    this.f29244h0 = null;
-                    Utilities.f22810e.c(new z1(8, this, (File) objArr[1]));
+                if (str.equals(this.f29210h0)) {
+                    this.f29210h0 = null;
+                    Utilities.f22774e.c(new z1(8, this, (File) objArr[1]));
                 } else if (str.equals(w7.r(null, this.G.document))) {
                     t();
                     if (i7 == i11) {
-                        File file = new File(this.f29234b);
+                        File file = new File(this.f29200b);
                         TLRPC.TL_theme tL_theme2 = this.G;
                         l6 m0 = m6.m0(file, tL_theme2.title, tL_theme2);
-                        if (m0 != null && m0.f29236c != null && !new File(m0.f29236c).exists()) {
-                            this.f29249r = m0.f29249r;
-                            this.f29250s = m0.f29250s;
-                            this.f29251w = m0.f29251w;
-                            this.f29252x = m0.f29252x;
-                            this.f29253y = m0.f29253y;
+                        if (m0 != null && m0.f29202c != null && !new File(m0.f29202c).exists()) {
+                            this.f29215r = m0.f29215r;
+                            this.f29216s = m0.f29216s;
+                            this.f29217w = m0.f29217w;
+                            this.f29218x = m0.f29218x;
+                            this.f29219y = m0.f29219y;
                             this.h = m0.h;
                             this.E = m0.E;
-                            this.f29245i0 = m0.f29236c;
+                            this.f29211i0 = m0.f29202c;
                             TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
                             TLRPC.TL_inputWallPaperSlug tL_inputWallPaperSlug = new TLRPC.TL_inputWallPaperSlug();
-                            tL_inputWallPaperSlug.slug = m0.f29239e;
+                            tL_inputWallPaperSlug.slug = m0.f29205e;
                             getwallpaper.wallpaper = tL_inputWallPaperSlug;
                             ConnectionsManager.getInstance(m0.F).sendRequest(getwallpaper, new e6(this, m0, 1));
                             return;
@@ -454,38 +454,38 @@ public final class l6 implements gs {
 
     public final j6 e(long j3, TLRPC.ThemeSettings themeSettings, TLRPC.TL_theme tL_theme, int i7, boolean z10) {
         if (z10) {
-            LongSparseArray longSparseArray = this.f29240e0;
+            LongSparseArray longSparseArray = this.f29206e0;
             j6 j6Var = (j6) longSparseArray.get(j3);
             if (j6Var != null) {
                 return j6Var;
             }
-            int i10 = this.f29242f0 + 1;
-            this.f29242f0 = i10;
+            int i10 = this.f29208f0 + 1;
+            this.f29208f0 = i10;
             j6 j6Var2 = new j6();
             i(j6Var2, themeSettings);
-            j6Var2.f29097b = this;
-            j6Var2.f29096a = i10;
-            j6Var2.f29111r = tL_theme;
-            j6Var2.f29113t = i7;
+            j6Var2.f29063b = this;
+            j6Var2.f29062a = i10;
+            j6Var2.f29077r = tL_theme;
+            j6Var2.f29079t = i7;
             longSparseArray.put(i10, j6Var2);
             return j6Var2;
         }
-        j6 j6Var3 = (j6) this.f29238d0.get(j3);
+        j6 j6Var3 = (j6) this.f29204d0.get(j3);
         if (j6Var3 != null) {
             return j6Var3;
         }
-        int i11 = this.f29243g0 + 1;
-        this.f29243g0 = i11;
+        int i11 = this.f29209g0 + 1;
+        this.f29209g0 = i11;
         j6 j6Var4 = new j6();
         i(j6Var4, themeSettings);
-        j6Var4.f29097b = this;
-        j6Var4.f29096a = i11;
-        j6Var4.f29111r = tL_theme;
-        j6Var4.f29113t = i7;
-        this.f29235b0.put(i11, j6Var4);
-        this.f29237c0.add(0, j6Var4);
+        j6Var4.f29063b = this;
+        j6Var4.f29062a = i11;
+        j6Var4.f29077r = tL_theme;
+        j6Var4.f29079t = i7;
+        this.f29201b0.put(i11, j6Var4);
+        this.f29203c0.add(0, j6Var4);
         m6.J1(this);
-        this.f29238d0.put(j3, j6Var4);
+        this.f29204d0.put(j3, j6Var4);
         return j6Var4;
     }
 
@@ -497,7 +497,7 @@ public final class l6 implements gs {
         if (i10 < tL_theme.settings.size()) {
             themeSettings = tL_theme.settings.get(i10);
         }
-        return e(tL_theme.f28573id, themeSettings, tL_theme, i7, false);
+        return e(tL_theme.f28537id, themeSettings, tL_theme, i7, false);
     }
 
     public final String j(j6 j6Var, boolean z10) {
@@ -510,114 +510,114 @@ public final class l6 implements gs {
             StringBuilder sb2 = new StringBuilder();
             if (z10) {
                 StringBuilder sb3 = new StringBuilder();
-                sb3.append(this.f29232a);
+                sb3.append(this.f29198a);
                 sb3.append("_");
-                n10 = a8.p0.n(j6Var.f29096a, "_wp_o", sb3);
+                n10 = a8.p0.n(j6Var.f29062a, "_wp_o", sb3);
             } else {
                 StringBuilder sb4 = new StringBuilder();
-                sb4.append(this.f29232a);
+                sb4.append(this.f29198a);
                 sb4.append("_");
-                n10 = a8.p0.n(j6Var.f29096a, "_wp", sb4);
+                n10 = a8.p0.n(j6Var.f29062a, "_wp", sb4);
             }
             sb2.append(n10);
-            sb2.append(Utilities.f22808b.nextInt());
+            sb2.append(Utilities.f22772b.nextInt());
             sb2.append(".jpg");
             return sb2.toString();
         }
         StringBuilder sb5 = new StringBuilder();
         if (z10) {
-            s5 = a8.p0.s(new StringBuilder(), this.f29232a, "_wp_o");
+            s5 = a8.p0.s(new StringBuilder(), this.f29198a, "_wp_o");
         } else {
-            s5 = a8.p0.s(new StringBuilder(), this.f29232a, "_wp");
+            s5 = a8.p0.s(new StringBuilder(), this.f29198a, "_wp");
         }
         sb5.append(s5);
-        sb5.append(Utilities.f22808b.nextInt());
+        sb5.append(Utilities.f22772b.nextInt());
         sb5.append(".jpg");
         return sb5.toString();
     }
 
     public final j6 k(boolean z10) {
         j6 j6Var;
-        if (this.f29237c0 == null || (j6Var = (j6) this.f29235b0.get(this.Z)) == null) {
+        if (this.f29203c0 == null || (j6Var = (j6) this.f29201b0.get(this.Z)) == null) {
             return null;
         }
         if (z10) {
-            int i7 = this.f29243g0 + 1;
-            this.f29243g0 = i7;
+            int i7 = this.f29209g0 + 1;
+            this.f29209g0 = i7;
             j6 j6Var2 = new j6();
-            j6Var2.f29098c = j6Var.f29098c;
+            j6Var2.f29064c = j6Var.f29064c;
             j6Var2.d = j6Var.d;
-            j6Var2.f29099e = j6Var.f29099e;
-            j6Var2.f29100f = j6Var.f29100f;
-            j6Var2.f29101g = j6Var.f29101g;
+            j6Var2.f29065e = j6Var.f29065e;
+            j6Var2.f29066f = j6Var.f29066f;
+            j6Var2.f29067g = j6Var.f29067g;
             j6Var2.h = j6Var.h;
-            j6Var2.f29102i = j6Var.f29102i;
-            j6Var2.f29103j = j6Var.f29103j;
-            j6Var2.f29104k = j6Var.f29104k;
-            j6Var2.f29105l = j6Var.f29105l;
-            j6Var2.f29106m = j6Var.f29106m;
-            j6Var2.f29107n = j6Var.f29107n;
-            j6Var2.f29108o = j6Var.f29108o;
-            j6Var2.f29109p = j6Var.f29109p;
-            j6Var2.f29110q = j6Var.f29110q;
-            j6Var2.f29097b = this;
-            d6 d6Var = this.f29246j0;
+            j6Var2.f29068i = j6Var.f29068i;
+            j6Var2.f29069j = j6Var.f29069j;
+            j6Var2.f29070k = j6Var.f29070k;
+            j6Var2.f29071l = j6Var.f29071l;
+            j6Var2.f29072m = j6Var.f29072m;
+            j6Var2.f29073n = j6Var.f29073n;
+            j6Var2.f29074o = j6Var.f29074o;
+            j6Var2.f29075p = j6Var.f29075p;
+            j6Var2.f29076q = j6Var.f29076q;
+            j6Var2.f29063b = this;
+            d6 d6Var = this.f29212j0;
             if (d6Var != null) {
                 ?? obj = new Object();
-                obj.f28883a = "";
-                obj.f28884b = "";
-                obj.f28885c = "";
-                obj.f28885c = d6Var.f28885c;
+                obj.f28849a = "";
+                obj.f28850b = "";
+                obj.f28851c = "";
+                obj.f28851c = d6Var.f28851c;
                 obj.d = d6Var.d;
-                obj.f28886e = d6Var.f28886e;
-                obj.f28887f = d6Var.f28887f;
-                obj.f28888g = d6Var.f28888g;
+                obj.f28852e = d6Var.f28852e;
+                obj.f28853f = d6Var.f28853f;
+                obj.f28854g = d6Var.f28854g;
                 obj.h = d6Var.h;
-                obj.f28889i = d6Var.f28889i;
-                obj.f28890j = d6Var.f28890j;
-                obj.f28891k = d6Var.f28891k;
-                obj.f28896p = this;
-                obj.f28897q = j6Var2;
-                if (!TextUtils.isEmpty(d6Var.f28883a)) {
+                obj.f28855i = d6Var.f28855i;
+                obj.f28856j = d6Var.f28856j;
+                obj.f28857k = d6Var.f28857k;
+                obj.f28862p = this;
+                obj.f28863q = j6Var2;
+                if (!TextUtils.isEmpty(d6Var.f28849a)) {
                     try {
-                        File file = new File(org.telegram.messenger.t0.h(), d6Var.f28883a);
+                        File file = new File(org.telegram.messenger.t0.h(), d6Var.f28849a);
                         File h = org.telegram.messenger.t0.h();
-                        String j3 = obj.f28896p.j(obj.f28897q, false);
-                        obj.f28883a = j3;
+                        String j3 = obj.f28862p.j(obj.f28863q, false);
+                        obj.f28849a = j3;
                         org.telegram.messenger.g0.E(file, new File(h, j3));
                     } catch (Exception e10) {
-                        obj.f28883a = "";
+                        obj.f28849a = "";
                         a8.g(e10, true);
                     }
                 } else {
-                    obj.f28883a = "";
+                    obj.f28849a = "";
                 }
-                if (!TextUtils.isEmpty(d6Var.f28884b)) {
-                    if (!d6Var.f28884b.equals(d6Var.f28883a)) {
+                if (!TextUtils.isEmpty(d6Var.f28850b)) {
+                    if (!d6Var.f28850b.equals(d6Var.f28849a)) {
                         try {
-                            File file2 = new File(org.telegram.messenger.t0.h(), d6Var.f28884b);
+                            File file2 = new File(org.telegram.messenger.t0.h(), d6Var.f28850b);
                             File h7 = org.telegram.messenger.t0.h();
-                            String j10 = obj.f28896p.j(obj.f28897q, true);
-                            obj.f28884b = j10;
+                            String j10 = obj.f28862p.j(obj.f28863q, true);
+                            obj.f28850b = j10;
                             org.telegram.messenger.g0.E(file2, new File(h7, j10));
                         } catch (Exception e11) {
-                            obj.f28884b = "";
+                            obj.f28850b = "";
                             a8.g(e11, true);
                         }
                     } else {
-                        obj.f28884b = obj.f28883a;
+                        obj.f28850b = obj.f28849a;
                     }
                 } else {
-                    obj.f28884b = "";
+                    obj.f28850b = "";
                 }
-                j6Var2.f29117y = obj;
+                j6Var2.f29083y = obj;
             }
-            this.f29233a0 = this.Z;
-            j6Var2.f29096a = i7;
+            this.f29199a0 = this.Z;
+            j6Var2.f29062a = i7;
             this.Z = i7;
-            this.f29246j0 = j6Var2.f29117y;
-            this.f29235b0.put(i7, j6Var2);
-            this.f29237c0.add(0, j6Var2);
+            this.f29212j0 = j6Var2.f29083y;
+            this.f29201b0.put(i7, j6Var2);
+            this.f29203c0.add(0, j6Var2);
             m6.J1(this);
             return j6Var2;
         }
@@ -625,76 +625,76 @@ public final class l6 implements gs {
     }
 
     public final int l(int i7) {
-        j6 j6Var = (j6) this.f29235b0.get(i7);
+        j6 j6Var = (j6) this.f29201b0.get(i7);
         if (j6Var != null) {
-            return j6Var.f29098c;
+            return j6Var.f29064c;
         }
         return 0;
     }
 
     public final String m() {
         if (this.G != null) {
-            return "remote" + this.G.f28573id;
+            return "remote" + this.G.f28537id;
         }
-        return this.f29232a;
+        return this.f29198a;
     }
 
     public final String n() {
-        if ("Blue".equals(this.f29232a)) {
-            return hd.N0(2131743943, null);
+        if ("Blue".equals(this.f29198a)) {
+            return hd.N0(2131743945, null);
         }
-        if ("Dark Blue".equals(this.f29232a)) {
-            return hd.N0(2131743940, null);
+        if ("Dark Blue".equals(this.f29198a)) {
+            return hd.N0(2131743942, null);
         }
-        if ("Arctic Blue".equals(this.f29232a)) {
-            return hd.N0(2131743944, null);
+        if ("Arctic Blue".equals(this.f29198a)) {
+            return hd.N0(2131743946, null);
         }
-        if ("Day".equals(this.f29232a)) {
-            return hd.N0(2131743939, null);
+        if ("Day".equals(this.f29198a)) {
+            return hd.N0(2131743941, null);
         }
-        if ("Night".equals(this.f29232a)) {
-            return hd.N0(2131743932, null);
+        if ("Night".equals(this.f29198a)) {
+            return hd.N0(2131743934, null);
         }
         TLRPC.TL_theme tL_theme = this.G;
         if (tL_theme != null) {
             return tL_theme.title;
         }
-        return this.f29232a;
+        return this.f29198a;
     }
 
     public final int o() {
-        if (this.T && this.Z == m6.f29557n) {
+        if (this.T && this.Z == m6.f29523n) {
             return -3155485;
         }
         return this.M;
     }
 
     public final int p() {
-        if (this.T && this.Z == m6.f29557n) {
+        if (this.T && this.Z == m6.f29523n) {
             return -983328;
         }
         return this.S;
     }
 
     public final boolean q() {
-        int i7 = this.f29247k0;
+        int i7 = this.f29213k0;
         if (i7 != -1) {
             if (i7 != 1) {
                 return false;
             }
             return true;
         }
-        if (!"Dark Blue".equals(this.f29232a) && !"Night".equals(this.f29232a)) {
-            if ("Blue".equals(this.f29232a) || "Arctic Blue".equals(this.f29232a) || "Day".equals(this.f29232a)) {
-                this.f29247k0 = 0;
+        if (!"Dark Blue".equals(this.f29198a) && !"Night".equals(this.f29198a)) {
+            if ("Blue".equals(this.f29198a) || "Arctic Blue".equals(this.f29198a) || "Day".equals(this.f29198a)) {
+                this.f29213k0 = 0;
             }
         } else {
-            this.f29247k0 = 1;
+            this.f29213k0 = 1;
         }
-        if (this.f29247k0 == -1) {
-            m6.H(m6.T0(new File(this.f29234b), null, new String[1]), this);
+        if (this.f29213k0 == -1) {
+            m6.H(m6.T0(new File(this.f29200b), null, new String[1]), this);
         }
-        if (this.f29247k0 != 1) {
+        if (this.f29213k0 != 1) {
             return false;
         }
         return true;
@@ -706,26 +706,26 @@ public final class l6 implements gs {
             if (!TextUtils.isEmpty(string)) {
                 JSONObject jSONObject = new JSONObject(string);
                 d6 d6Var = new d6();
-                d6Var.f28883a = jSONObject.getString("wall");
-                d6Var.f28884b = jSONObject.getString("owall");
+                d6Var.f28849a = jSONObject.getString("wall");
+                d6Var.f28850b = jSONObject.getString("owall");
                 d6Var.d = jSONObject.getInt("pColor");
-                d6Var.f28886e = jSONObject.getInt("pGrColor");
-                d6Var.f28887f = jSONObject.optInt("pGrColor2");
-                d6Var.f28888g = jSONObject.optInt("pGrColor3");
+                d6Var.f28852e = jSONObject.getInt("pGrColor");
+                d6Var.f28853f = jSONObject.optInt("pGrColor2");
+                d6Var.f28854g = jSONObject.optInt("pGrColor3");
                 d6Var.h = jSONObject.getInt("pGrAngle");
-                d6Var.f28885c = jSONObject.getString("wallSlug");
-                d6Var.f28889i = jSONObject.getBoolean("wBlur");
-                d6Var.f28890j = jSONObject.getBoolean("wMotion");
-                d6Var.f28891k = (float) jSONObject.getDouble("pIntensity");
-                d6Var.f28896p = this;
-                d6Var.f28897q = j6Var;
+                d6Var.f28851c = jSONObject.getString("wallSlug");
+                d6Var.f28855i = jSONObject.getBoolean("wBlur");
+                d6Var.f28856j = jSONObject.getBoolean("wMotion");
+                d6Var.f28857k = (float) jSONObject.getDouble("pIntensity");
+                d6Var.f28862p = this;
+                d6Var.f28863q = j6Var;
                 if (j6Var != null) {
-                    j6Var.f29117y = d6Var;
+                    j6Var.f29083y = d6Var;
                 } else {
-                    this.f29246j0 = d6Var;
+                    this.f29212j0 = d6Var;
                 }
                 if (jSONObject.has("wallId") && jSONObject.getLong("wallId") == 1000001) {
-                    d6Var.f28885c = "d";
+                    d6Var.f28851c = "d";
                 }
             }
         } catch (Throwable th2) {
@@ -755,51 +755,51 @@ public final class l6 implements gs {
         this.Z = i7;
         j6 k10 = k(false);
         if (k10 != null) {
-            this.f29246j0 = k10.f29117y;
+            this.f29212j0 = k10.f29083y;
         }
     }
 
     public final void v(d6 d6Var) {
-        if (this.f29246j0 != d6Var) {
+        if (this.f29212j0 != d6Var) {
             j6 k10 = k(false);
-            d6 d6Var2 = this.f29246j0;
+            d6 d6Var2 = this.f29212j0;
             if (d6Var2 != null) {
                 d6.a(d6Var2);
             }
             if (d6Var != null) {
-                d6Var.f28897q = k10;
-                d6Var.f28896p = this;
+                d6Var.f28863q = k10;
+                d6Var.f28862p = this;
                 d6Var.c();
             }
-            this.f29246j0 = d6Var;
+            this.f29212j0 = d6Var;
             if (k10 != null) {
-                k10.f29117y = d6Var;
+                k10.f29083y = d6Var;
             }
         }
     }
 
     public l6(l6 l6Var) {
-        this.f29253y = 45;
+        this.f29219y = 45;
         this.H = true;
         this.V = true;
-        this.f29233a0 = -1;
-        this.f29240e0 = new LongSparseArray();
-        this.f29242f0 = 0;
-        this.f29243g0 = 100;
-        this.f29247k0 = -1;
-        this.f29232a = l6Var.f29232a;
-        this.f29234b = l6Var.f29234b;
-        this.f29236c = l6Var.f29236c;
+        this.f29199a0 = -1;
+        this.f29206e0 = new LongSparseArray();
+        this.f29208f0 = 0;
+        this.f29209g0 = 100;
+        this.f29213k0 = -1;
+        this.f29198a = l6Var.f29198a;
+        this.f29200b = l6Var.f29200b;
+        this.f29202c = l6Var.f29202c;
         this.d = l6Var.d;
-        this.f29239e = l6Var.f29239e;
-        this.f29241f = l6Var.f29241f;
+        this.f29205e = l6Var.f29205e;
+        this.f29207f = l6Var.f29207f;
         this.h = l6Var.h;
-        this.f29248n = l6Var.f29248n;
-        this.f29249r = l6Var.f29249r;
-        this.f29250s = l6Var.f29250s;
-        this.f29251w = l6Var.f29251w;
-        this.f29252x = l6Var.f29252x;
-        this.f29253y = l6Var.f29253y;
+        this.f29214n = l6Var.f29214n;
+        this.f29215r = l6Var.f29215r;
+        this.f29216s = l6Var.f29216s;
+        this.f29217w = l6Var.f29217w;
+        this.f29218x = l6Var.f29218x;
+        this.f29219y = l6Var.f29219y;
         this.E = l6Var.E;
         this.F = l6Var.F;
         this.G = l6Var.G;
@@ -822,13 +822,13 @@ public final class l6 implements gs {
         this.X = l6Var.X;
         this.Y = l6Var.Y;
         this.Z = l6Var.Z;
-        this.f29233a0 = l6Var.f29233a0;
-        this.f29235b0 = l6Var.f29235b0;
-        this.f29237c0 = l6Var.f29237c0;
-        this.f29238d0 = l6Var.f29238d0;
-        this.f29243g0 = l6Var.f29243g0;
-        this.f29244h0 = l6Var.f29244h0;
-        this.f29245i0 = l6Var.f29245i0;
-        this.f29246j0 = l6Var.f29246j0;
+        this.f29199a0 = l6Var.f29199a0;
+        this.f29201b0 = l6Var.f29201b0;
+        this.f29203c0 = l6Var.f29203c0;
+        this.f29204d0 = l6Var.f29204d0;
+        this.f29209g0 = l6Var.f29209g0;
+        this.f29210h0 = l6Var.f29210h0;
+        this.f29211i0 = l6Var.f29211i0;
+        this.f29212j0 = l6Var.f29212j0;
     }
 }

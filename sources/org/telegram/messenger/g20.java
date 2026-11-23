@@ -1,22 +1,22 @@
 package org.telegram.messenger;
 public final class g20 implements Runnable {
-    public final int f24072a;
-    public final VideoEncodingService f24073b;
+    public final int f24036a;
+    public final VideoEncodingService f24037b;
 
     public g20(VideoEncodingService videoEncodingService, int i7) {
-        this.f24072a = i7;
-        this.f24073b = videoEncodingService;
+        this.f24036a = i7;
+        this.f24037b = videoEncodingService;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f24072a;
-        VideoEncodingService videoEncodingService = this.f24073b;
+        int i7 = this.f24036a;
+        VideoEncodingService videoEncodingService = this.f24037b;
         switch (i7) {
             case 0:
-                VideoEncodingService videoEncodingService2 = VideoEncodingService.f22817e;
+                VideoEncodingService videoEncodingService2 = VideoEncodingService.f22781e;
                 videoEncodingService.getClass();
-                kf kfVar = MediaController.B().f22728b0;
+                kf kfVar = MediaController.B().f22692b0;
                 if (kfVar != null) {
                     videoEncodingService.a(kfVar);
                     return;
@@ -25,7 +25,7 @@ public final class g20 implements Runnable {
                     return;
                 }
             default:
-                VideoEncodingService videoEncodingService3 = VideoEncodingService.f22817e;
+                VideoEncodingService videoEncodingService3 = VideoEncodingService.f22781e;
                 videoEncodingService.b();
                 return;
         }

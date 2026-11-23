@@ -1,6 +1,7 @@
 package h6;
 
 import com.google.android.gms.common.api.internal.BasePendingResult;
+import hi.b0;
 import java.net.Socket;
 import java.util.ArrayDeque;
 import java.util.TimerTask;
@@ -10,23 +11,23 @@ import org.telegram.ui.ec0;
 import org.telegram.ui.hf0;
 import org.telegram.ui.lz;
 public final class r extends TimerTask {
-    public final int f13977a;
-    public final Object f13978b;
+    public final int f13940a;
+    public final Object f13941b;
 
     public r(Object obj, int i7) {
-        this.f13977a = i7;
-        this.f13978b = obj;
+        this.f13940a = i7;
+        this.f13941b = obj;
     }
 
     @Override
     public final void run() {
         BasePendingResult basePendingResult;
-        switch (this.f13977a) {
+        switch (this.f13940a) {
             case 0:
-                c cVar = (c) this.f13978b;
+                c cVar = (c) this.f13941b;
                 ArrayDeque arrayDeque = cVar.h;
-                if (!arrayDeque.isEmpty() && cVar.f13932k == null && cVar.f13925b != 0) {
-                    h hVar = cVar.f13926c;
+                if (!arrayDeque.isEmpty() && cVar.f13895k == null && cVar.f13888b != 0) {
+                    h hVar = cVar.f13889c;
                     int[] e10 = j6.a.e(arrayDeque);
                     hVar.getClass();
                     q6.m.e("Must be called from the main thread.");
@@ -37,20 +38,20 @@ public final class r extends TimerTask {
                         h.x(jVar);
                         basePendingResult = jVar;
                     }
-                    cVar.f13932k = basePendingResult;
+                    cVar.f13895k = basePendingResult;
                     basePendingResult.i(new q(cVar, 1));
                     arrayDeque.clear();
                     return;
                 }
                 return;
             case 1:
-                g0.g3(new hi.l(this, 8));
+                g0.g3(new b0(this, 7));
                 return;
             case 2:
                 g0.g3(new oo(this, 24));
                 return;
             case 3:
-                if (((ec0) this.f13978b).O != null) {
+                if (((ec0) this.f13941b).O != null) {
                     g0.g3(new lz(this, 25));
                     return;
                 }
@@ -60,7 +61,7 @@ public final class r extends TimerTask {
                 return;
             default:
                 try {
-                    Socket socket = ((rc.q) this.f13978b).f56615a.f56587a.f56581g;
+                    Socket socket = ((rc.q) this.f13941b).f56580a.f56552a.f56546g;
                     if (socket != null) {
                         socket.close();
                         return;

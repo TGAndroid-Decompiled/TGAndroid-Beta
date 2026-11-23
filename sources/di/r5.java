@@ -15,19 +15,19 @@ public final class r5 extends View {
     public final Camera G;
     public final h6.m H;
     public final RectF I;
-    public m5 f9672a;
-    public m5 f9673b;
-    public m5 f9674c;
+    public m5 f9636a;
+    public m5 f9637b;
+    public m5 f9638c;
     public float d;
-    public float f9675e;
-    public float f9676f;
+    public float f9639e;
+    public float f9640f;
     public boolean h;
-    public boolean f9677n;
-    public boolean f9678r;
-    public l5 f9679s;
-    public l5 f9680w;
-    public l5 f9681x;
-    public float f9682y;
+    public boolean f9641n;
+    public boolean f9642r;
+    public l5 f9643s;
+    public l5 f9644w;
+    public l5 f9645x;
+    public float f9646y;
 
     public r5(Context context) {
         super(context);
@@ -42,7 +42,7 @@ public final class r5 extends View {
         float f15;
         if (l5Var != null) {
             Matrix matrix = l5Var.d;
-            Paint paint = l5Var.f9285c;
+            Paint paint = l5Var.f9250c;
             if (paint != null) {
                 float f16 = (f10 - 0.5f) / 1.5f;
                 float l10 = Utilities.l(1.0f - Math.abs(f16));
@@ -54,7 +54,7 @@ public final class r5 extends View {
                 canvas.saveLayerAlpha(f17, 0.0f, f18, f12, 255, 31);
                 matrix.reset();
                 matrix.postTranslate(z10, min);
-                l5Var.f9286e.setLocalMatrix(matrix);
+                l5Var.f9251e.setLocalMatrix(matrix);
                 paint.setAlpha((int) (l10 * 255.0f));
                 canvas.drawRect(f17, 0.0f, f18, f12, paint);
                 canvas.save();
@@ -74,7 +74,7 @@ public final class r5 extends View {
                     } else {
                         f15 = 0.0f;
                     }
-                    iArr[i7] = org.telegram.ui.ActionBar.m6.w(iArr[i7], org.telegram.ui.ActionBar.m6.r1(l10 * f15, l5Var.f9288g));
+                    iArr[i7] = org.telegram.ui.ActionBar.m6.w(iArr[i7], org.telegram.ui.ActionBar.m6.r1(l10 * f15, l5Var.f9253g));
                 }
                 for (int i10 = 0; i10 < iArr2.length; i10++) {
                     float width2 = (getWidth() / (iArr2.length - 1)) * i10;
@@ -83,7 +83,7 @@ public final class r5 extends View {
                     } else {
                         f14 = 0.0f;
                     }
-                    iArr2[i10] = org.telegram.ui.ActionBar.m6.w(iArr2[i10], org.telegram.ui.ActionBar.m6.r1(l10 * f14, l5Var.f9287f));
+                    iArr2[i10] = org.telegram.ui.ActionBar.m6.w(iArr2[i10], org.telegram.ui.ActionBar.m6.r1(l10 * f14, l5Var.f9252f));
                 }
                 for (int i11 = 0; i11 < iArr3.length; i11++) {
                     float width3 = (getWidth() / (iArr2.length - 1)) * i11;
@@ -139,26 +139,26 @@ public final class r5 extends View {
 
     public final void c() {
         boolean z10;
-        if (this.f9672a == null && this.f9673b == null && this.f9674c == null && this.f9679s == null && this.f9680w == null && this.f9681x == null) {
+        if (this.f9636a == null && this.f9637b == null && this.f9638c == null && this.f9643s == null && this.f9644w == null && this.f9645x == null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f9674c = null;
-        this.f9673b = null;
-        this.f9672a = null;
-        this.f9676f = 0.0f;
-        this.f9675e = 0.0f;
+        this.f9638c = null;
+        this.f9637b = null;
+        this.f9636a = null;
+        this.f9640f = 0.0f;
+        this.f9639e = 0.0f;
         this.d = 0.0f;
-        this.f9678r = false;
-        this.f9677n = false;
+        this.f9642r = false;
+        this.f9641n = false;
         this.h = false;
-        this.f9681x = null;
-        this.f9680w = null;
-        this.f9679s = null;
+        this.f9645x = null;
+        this.f9644w = null;
+        this.f9643s = null;
         this.F = 0.0f;
         this.E = 0.0f;
-        this.f9682y = 0.0f;
+        this.f9646y = 0.0f;
         if (z10) {
             invalidate();
         }
@@ -166,8 +166,8 @@ public final class r5 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f9672a, this.d, this.h);
-        b(canvas, this.f9673b, this.f9675e, this.f9677n);
-        b(canvas, this.f9674c, this.f9676f, this.f9678r);
+        b(canvas, this.f9636a, this.d, this.h);
+        b(canvas, this.f9637b, this.f9639e, this.f9641n);
+        b(canvas, this.f9638c, this.f9640f, this.f9642r);
     }
 }

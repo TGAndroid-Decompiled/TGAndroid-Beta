@@ -1,13 +1,13 @@
 package h9;
 
-import a8.ka;
+import a8.la;
 import java.util.Map;
 public abstract class k implements Map.Entry {
     @Override
     public final boolean equals(Object obj) {
         if (obj instanceof Map.Entry) {
             Map.Entry entry = (Map.Entry) obj;
-            if (ka.a(getKey(), entry.getKey()) && ka.a(getValue(), entry.getValue())) {
+            if (la.a(getKey(), entry.getKey()) && la.a(getValue(), entry.getValue())) {
                 return true;
             }
         }

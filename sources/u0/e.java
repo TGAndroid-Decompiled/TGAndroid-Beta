@@ -27,19 +27,19 @@ public final class e extends r0.b {
     @Override
     public final void c(View view, s0.c cVar) {
         int scrollRange;
-        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56785a;
-        this.f56261a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56750a;
+        this.f56226a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
         NestedScrollView nestedScrollView = (NestedScrollView) view;
         cVar.i("android.widget.ScrollView");
         if (nestedScrollView.isEnabled() && (scrollRange = nestedScrollView.getScrollRange()) > 0) {
             accessibilityNodeInfo.setScrollable(true);
             if (nestedScrollView.getScrollY() > 0) {
-                cVar.b(s0.b.f56779e);
-                cVar.b(s0.b.f56780f);
+                cVar.b(s0.b.f56744e);
+                cVar.b(s0.b.f56745f);
             }
             if (nestedScrollView.getScrollY() < scrollRange) {
                 cVar.b(s0.b.d);
-                cVar.b(s0.b.f56781g);
+                cVar.b(s0.b.f56746g);
             }
         }
     }

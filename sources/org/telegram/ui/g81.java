@@ -11,7 +11,7 @@ public final class g81 extends org.telegram.ui.Cells.r1 {
     public final int Cd;
     public final int Dd;
     public final i81 Ed;
-    public final Path f48010zd;
+    public final Path f47957zd;
 
     public g81(i81 i81Var, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var, int i10, int i11, int i12) {
         super(context, i7, false, null, h6Var);
@@ -19,7 +19,7 @@ public final class g81 extends org.telegram.ui.Cells.r1 {
         this.Bd = i10;
         this.Cd = i11;
         this.Dd = i12;
-        this.f48010zd = new Path();
+        this.f47957zd = new Path();
         this.Ad = new Paint(1);
     }
 
@@ -38,12 +38,12 @@ public final class g81 extends org.telegram.ui.Cells.r1 {
         float U1 = U1(c22);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(getPollButtonsLeft(), V1, getPollButtonsRight(), U1);
-        Path path = this.f48010zd;
+        Path path = this.f47957zd;
         path.rewind();
         path.addRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), Path.Direction.CW);
         Paint paint = this.Ad;
         paint.setColor(0);
-        paint.setShadowLayer(org.telegram.messenger.g0.L(2.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.m6.r1(this.Ed.f48692y * 0.2f, -16777216));
+        paint.setShadowLayer(org.telegram.messenger.g0.L(2.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.m6.r1(this.Ed.f48664y * 0.2f, -16777216));
         canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
         canvas.clipPath(path);
         d1(canvas);

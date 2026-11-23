@@ -31,7 +31,7 @@ public final class je implements Runnable {
                 yk0Var.dismiss();
                 org.telegram.messenger.g0.g(str);
                 b02 = org.telegram.ui.Components.lc.b0(bnVar);
-                i7 = 2131742955;
+                i7 = 2131742957;
                 break;
             case 2:
                 yk0Var.dismiss();
@@ -43,7 +43,7 @@ public final class je implements Runnable {
                 yk0Var.dismiss();
                 org.telegram.messenger.g0.g("@" + str);
                 b02 = org.telegram.ui.Components.lc.b0(bnVar);
-                i7 = 2131743420;
+                i7 = 2131743422;
                 break;
         }
         org.telegram.messenger.o10.t(null, i7, b02);

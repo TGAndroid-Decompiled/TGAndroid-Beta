@@ -1,82 +1,20 @@
 package c8;
+
+import java.io.Serializable;
+import java.util.Arrays;
 public abstract class f1 {
-    public abstract void a(kf.b bVar);
-
-    public abstract void b(kf.c cVar);
-
-    public void c(kf.d dVar) {
-        v(dVar);
-    }
-
-    public void d(kf.e eVar) {
-        v(eVar);
-    }
-
-    public void e(kf.g gVar) {
-        v(gVar);
-    }
-
-    public void f(kf.h hVar) {
-        v(hVar);
-    }
-
-    public void g(kf.i iVar) {
-        v(iVar);
-    }
-
-    public void h(kf.j jVar) {
-        v(jVar);
-    }
-
-    public void i(kf.k kVar) {
-        v(kVar);
-    }
-
-    public void j(kf.l lVar) {
-        v(lVar);
-    }
-
-    public abstract void k(kf.n nVar);
-
-    public void l(kf.o oVar) {
-        v(oVar);
-    }
-
-    public abstract void m(kf.q qVar);
-
-    public abstract void n(kf.r rVar);
-
-    public void o(kf.s sVar) {
-        v(sVar);
-    }
-
-    public void p(kf.t tVar) {
-        v(tVar);
-    }
-
-    public void q(kf.d dVar) {
-        v(dVar);
-    }
-
-    public void r(kf.g gVar) {
-        v(gVar);
-    }
-
-    public void s(kf.k kVar) {
-        v(kVar);
-    }
-
-    public void t(kf.g gVar) {
-        v(gVar);
-    }
-
-    public void u(kf.g gVar) {
-        v(gVar);
-    }
-
-    public void v(kf.p pVar) {
-        for (kf.p pVar2 = (kf.p) pVar.f18267c; pVar2 != null; pVar2 = (kf.p) pVar2.f18269f) {
-            pVar2.a(this);
+    public static final Object a(q1.b bVar, q1.e key, Serializable serializable) {
+        kotlin.jvm.internal.j.e(bVar, "<this>");
+        kotlin.jvm.internal.j.e(key, "key");
+        Object obj = bVar.f55713a.get(key);
+        if (obj instanceof byte[]) {
+            byte[] bArr = (byte[]) obj;
+            obj = Arrays.copyOf(bArr, bArr.length);
+            kotlin.jvm.internal.j.d(obj, "copyOf(this, size)");
         }
+        if (obj == null) {
+            return serializable;
+        }
+        return obj;
     }
 }

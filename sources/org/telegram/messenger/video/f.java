@@ -29,36 +29,36 @@ import org.telegram.ui.q20;
 import org.telegram.ui.s20;
 import org.telegram.ui.z9;
 public final class f implements View.OnClickListener {
-    public final int f27399a;
-    public final Object f27400b;
-    public final Object f27401c;
+    public final int f27363a;
+    public final Object f27364b;
+    public final Object f27365c;
     public final Object d;
-    public final Object f27402e;
-    public final Object f27403f;
+    public final Object f27366e;
+    public final Object f27367f;
     public final Object h;
-    public final Object f27404n;
+    public final Object f27368n;
 
-    public f(hi.e eVar, r5 r5Var, t10 t10Var, String[] strArr, boolean[] zArr, e3[] e3VarArr, h6 h6Var) {
-        this.f27399a = 2;
-        this.f27400b = eVar;
-        this.f27401c = r5Var;
+    public f(hi.d dVar, r5 r5Var, t10 t10Var, String[] strArr, boolean[] zArr, e3[] e3VarArr, h6 h6Var) {
+        this.f27363a = 2;
+        this.f27364b = dVar;
+        this.f27365c = r5Var;
         this.d = t10Var;
-        this.f27402e = strArr;
+        this.f27366e = strArr;
         this.h = zArr;
-        this.f27404n = e3VarArr;
-        this.f27403f = h6Var;
+        this.f27368n = e3VarArr;
+        this.f27367f = h6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f27399a;
-        Object obj = this.f27403f;
-        Object obj2 = this.f27404n;
+        int i7 = this.f27363a;
+        Object obj = this.f27367f;
+        Object obj2 = this.f27368n;
         Object obj3 = this.h;
-        Object obj4 = this.f27402e;
+        Object obj4 = this.f27366e;
         Object obj5 = this.d;
-        Object obj6 = this.f27401c;
-        Object obj7 = this.f27400b;
+        Object obj6 = this.f27365c;
+        Object obj7 = this.f27364b;
         switch (i7) {
             case 0:
                 ((VideoAds) obj7).lambda$show$17((gc) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (h6) obj, (VideoAds.AdLayout) obj3, (e) obj2, view);
@@ -79,9 +79,9 @@ public final class f implements View.OnClickListener {
                 f40Var.S2.addListener(new s20(f40Var));
                 f40Var.S2.start();
                 if (v3.W(f40Var.U2)) {
-                    t10Var.b(hd.N0(2131743202, null), true);
+                    t10Var.b(hd.N0(2131743204, null), true);
                 } else {
-                    t10Var.b(hd.N0(2131743061, null), true);
+                    t10Var.b(hd.N0(2131743063, null), true);
                 }
                 Calendar calendar = Calendar.getInstance();
                 boolean g10 = c5.g(null, null, 0L, 604800L, 3, tb0Var, p20Var, q20Var);
@@ -91,30 +91,30 @@ public final class f implements View.OnClickListener {
                 if (g10) {
                     calendar.set(13, 0);
                 }
-                f40Var.f47507j4 = (int) (calendar.getTimeInMillis() / 1000);
+                f40Var.f47469j4 = (int) (calendar.getTimeInMillis() / 1000);
                 f40Var.U1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = np.n1(chat);
-                creategroupcall.random_id = Utilities.f22808b.nextInt();
-                creategroupcall.schedule_date = f40Var.f47507j4;
+                creategroupcall.random_id = Utilities.f22772b.nextInt();
+                creategroupcall.schedule_date = f40Var.f47469j4;
                 creategroupcall.flags |= 2;
-                ConnectionsManager.getInstance(cVar.f23202a).sendRequest(creategroupcall, new z9(f40Var, chat, inputPeer, 11), 2);
+                ConnectionsManager.getInstance(cVar.f23166a).sendRequest(creategroupcall, new z9(f40Var, chat, inputPeer, 11), 2);
                 return;
             default:
-                hi.e eVar = (hi.e) obj7;
+                hi.d dVar = (hi.d) obj7;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj6;
                 t10 t10Var2 = (t10) obj5;
                 String[] strArr = (String[]) obj4;
                 boolean[] zArr = (boolean[]) obj3;
                 e3[] e3VarArr = (e3[]) obj2;
                 h6 h6Var = (h6) obj;
-                if (!eVar.R) {
+                if (!dVar.R) {
                     if (editTextBoldCursor != null && editTextBoldCursor.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
                         g0.F3(editTextBoldCursor);
                         return;
                     }
-                    eVar.setLoading(true);
-                    t10Var2.a(strArr[0], Boolean.valueOf(zArr[0]), new org.telegram.ui.Wallet.o(eVar, e3VarArr, h6Var, 6));
+                    dVar.setLoading(true);
+                    t10Var2.a(strArr[0], Boolean.valueOf(zArr[0]), new org.telegram.ui.Wallet.o(dVar, e3VarArr, h6Var, 6));
                     return;
                 }
                 return;
@@ -122,13 +122,13 @@ public final class f implements View.OnClickListener {
     }
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i7) {
-        this.f27399a = i7;
-        this.f27400b = obj;
-        this.f27401c = obj2;
+        this.f27363a = i7;
+        this.f27364b = obj;
+        this.f27365c = obj2;
         this.d = obj3;
-        this.f27402e = obj4;
-        this.f27403f = obj5;
+        this.f27366e = obj4;
+        this.f27367f = obj5;
         this.h = obj6;
-        this.f27404n = obj7;
+        this.f27368n = obj7;
     }
 }

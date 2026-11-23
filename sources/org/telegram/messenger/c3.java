@@ -2,15 +2,15 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.ConnectionsManager;
 public final class c3 {
-    public final int f23222a;
-    public final int f23223b;
-    public final int f23224c;
+    public final int f23186a;
+    public final int f23187b;
+    public final int f23188c;
     public boolean d;
 
     public c3(int i7, int i10, int i11) {
-        this.f23222a = i7;
-        this.f23223b = i10;
-        this.f23224c = i11;
+        this.f23186a = i7;
+        this.f23187b = i10;
+        this.f23188c = i11;
     }
 
     public static void a(c3 c3Var, String str) {
@@ -18,6 +18,6 @@ public final class c3 {
             return;
         }
         c3Var.d = true;
-        ConnectionsManager.native_receivedCaptchaResult(c3Var.f23222a, c3Var.f23223b, c3Var.f23224c, str);
+        ConnectionsManager.native_receivedCaptchaResult(c3Var.f23186a, c3Var.f23187b, c3Var.f23188c, str);
     }
 }

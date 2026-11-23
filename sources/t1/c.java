@@ -7,20 +7,20 @@ import android.widget.TextView;
 import androidx.emoji2.text.l;
 import java.lang.ref.WeakReference;
 public final class c extends androidx.emoji2.text.i {
-    public final WeakReference f57569a;
-    public final WeakReference f57570b;
+    public final WeakReference f57534a;
+    public final WeakReference f57535b;
 
     public c(TextView textView, d dVar) {
-        this.f57569a = new WeakReference(textView);
-        this.f57570b = new WeakReference(dVar);
+        this.f57534a = new WeakReference(textView);
+        this.f57535b = new WeakReference(dVar);
     }
 
     @Override
     public final void a() {
         InputFilter[] filters;
         int length;
-        TextView textView = (TextView) this.f57569a.get();
-        InputFilter inputFilter = (InputFilter) this.f57570b.get();
+        TextView textView = (TextView) this.f57534a.get();
+        InputFilter inputFilter = (InputFilter) this.f57535b.get();
         if (inputFilter != null && textView != null && (filters = textView.getFilters()) != null) {
             for (InputFilter inputFilter2 : filters) {
                 if (inputFilter2 == inputFilter) {

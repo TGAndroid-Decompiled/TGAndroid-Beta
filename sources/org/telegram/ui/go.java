@@ -1,56 +1,87 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.ScrollView;
+import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class go implements org.telegram.ui.Components.qj0 {
-    public final io f48154a;
+public final class go extends org.telegram.ui.Components.dk0 {
+    public final ho f48090c;
 
-    public go(io ioVar) {
-        this.f48154a = ioVar;
+    public go(ho hoVar) {
+        this.f48090c = hoVar;
     }
 
     @Override
-    public final void c(int i7, View view) {
-        TLRPC.TL_username tL_username;
-        int i10;
-        int i11;
-        int i12;
-        io ioVar = this.f48154a;
-        jo joVar = ioVar.f48798i3;
-        if ((view instanceof ia) && (tL_username = ((ia) view).f48707w) != null) {
-            if (tL_username.editable) {
-                if (joVar.fragmentView instanceof ScrollView) {
-                    joVar.f49032a.smoothScrollTo(0, joVar.E.getTop() - org.telegram.messenger.g0.L(128.0f));
+    public final boolean D(v4.e1 e1Var) {
+        if (e1Var.f59115f == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int b() {
+        return this.f48090c.f48471i3.O.size() + 2;
+    }
+
+    @Override
+    public final int d(int i7) {
+        if (i7 == 0) {
+            return 0;
+        }
+        if (i7 <= this.f48090c.f48471i3.O.size()) {
+            return 1;
+        }
+        return 2;
+    }
+
+    @Override
+    public final void t(v4.e1 e1Var, int i7) {
+        ho hoVar = this.f48090c;
+        io ioVar = hoVar.f48471i3;
+        int i10 = e1Var.f59115f;
+        View view = e1Var.f59111a;
+        if (i10 != 0) {
+            boolean z10 = true;
+            if (i10 != 1) {
+                if (i10 == 2) {
+                    ((org.telegram.ui.Cells.a9) view).setText(org.telegram.messenger.hd.N0(2131743400, null));
+                    return;
                 }
-                joVar.f49034b.requestFocus();
-                org.telegram.messenger.g0.I3(joVar.f49034b);
                 return;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ioVar.getContext(), joVar.getResourceProvider());
-            if (tL_username.active) {
-                i10 = 2131743419;
-            } else {
-                i10 = 2131743426;
+            TLRPC.TL_username tL_username = (TLRPC.TL_username) ioVar.O.get(i7 - 1);
+            ia iaVar = (ia) view;
+            if (iaVar.I) {
+                ioVar.P = null;
             }
-            String N0 = org.telegram.messenger.hd.N0(i10, null);
-            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
-            t1Var.S = N0;
-            if (tL_username.active) {
-                i11 = 2131743418;
-            } else {
-                i11 = 2131743425;
+            if (i7 >= ioVar.O.size()) {
+                z10 = false;
             }
-            t1Var.U = org.telegram.messenger.hd.N0(i11, null);
-            if (tL_username.active) {
-                i12 = 2131749132;
-            } else {
-                i12 = 2131745157;
+            iaVar.a(tL_username, z10, false, 0L);
+            if (tL_username != null && tL_username.editable) {
+                ioVar.P = iaVar;
+                return;
             }
-            alertDialog$Builder.k(org.telegram.messenger.hd.N0(i12, null), new z6(this, tL_username, view, 8));
-            alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131752577, null), new org.telegram.messenger.fd(28));
-            alertDialog$Builder.p();
+            return;
         }
+        org.telegram.ui.Cells.o4 o4Var = (org.telegram.ui.Cells.o4) view;
+        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29347d6, o4Var, hoVar.f34859o2);
+        o4Var.setText(org.telegram.messenger.hd.N0(2131743401, null));
+    }
+
+    @Override
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+        ho hoVar = this.f48090c;
+        org.telegram.ui.ActionBar.h6 h6Var = hoVar.f34859o2;
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    return null;
+                }
+                return new v4.e1(new org.telegram.ui.Cells.a9(12, hoVar.getContext(), h6Var));
+            }
+            return new v4.e1(new da(this, hoVar.getContext(), h6Var));
+        }
+        return new v4.e1(new org.telegram.ui.Cells.o4(hoVar.getContext(), h6Var));
     }
 }

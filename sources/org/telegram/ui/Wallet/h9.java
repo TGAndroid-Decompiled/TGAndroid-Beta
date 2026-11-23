@@ -4,32 +4,32 @@ import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 public final class h9 implements TextView.OnEditorActionListener {
-    public final int f44360a;
-    public final Object f44361b;
+    public final int f44326a;
+    public final Object f44327b;
 
     public h9(Object obj, int i7) {
-        this.f44360a = i7;
-        this.f44361b = obj;
+        this.f44326a = i7;
+        this.f44327b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
         boolean z10;
-        switch (this.f44360a) {
+        switch (this.f44326a) {
             case 0:
-                j9 j9Var = (j9) this.f44361b;
+                j9 j9Var = (j9) this.f44327b;
                 if (i7 != 3) {
                     j9Var.getClass();
                     return false;
                 }
-                org.telegram.messenger.g0.v1(j9Var.f44460b);
+                org.telegram.messenger.g0.v1(j9Var.f44426b);
                 return true;
             case 1:
-                da daVar = (da) this.f44361b;
+                da daVar = (da) this.f44327b;
                 if (i7 == 6) {
-                    hi.e eVar = daVar.f44102e0;
-                    if (eVar.f14567e0) {
-                        eVar.performClick();
+                    hi.d dVar = daVar.f44068e0;
+                    if (dVar.f14303e0) {
+                        dVar.performClick();
                         return true;
                     }
                 } else {
@@ -37,8 +37,8 @@ public final class h9 implements TextView.OnEditorActionListener {
                 }
                 return false;
             default:
-                db dbVar = (db) this.f44361b;
-                EditText editText = dbVar.f44128a;
+                db dbVar = (db) this.f44327b;
+                EditText editText = dbVar.f44094a;
                 if (keyEvent != null && (keyEvent.getKeyCode() == 66 || keyEvent.getKeyCode() == 160)) {
                     z10 = true;
                 } else {
@@ -52,7 +52,7 @@ public final class h9 implements TextView.OnEditorActionListener {
                     if (!lowerCase.isEmpty() && dbVar.b()) {
                         dbVar.setError(false);
                         dbVar.a();
-                        Runnable runnable = dbVar.f44134r;
+                        Runnable runnable = dbVar.f44100r;
                         if (runnable != null) {
                             editText.post(runnable);
                         }
@@ -78,7 +78,7 @@ public final class h9 implements TextView.OnEditorActionListener {
                             editText.setSelection(str.length());
                             dbVar.setError(false);
                             dbVar.a();
-                            Runnable runnable2 = dbVar.f44134r;
+                            Runnable runnable2 = dbVar.f44100r;
                             if (runnable2 != null) {
                                 editText.post(runnable2);
                             }

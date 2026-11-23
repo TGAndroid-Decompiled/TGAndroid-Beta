@@ -1,6 +1,6 @@
 package h9;
 
-import a8.la;
+import a8.ma;
 import java.util.AbstractCollection;
 import java.util.AbstractList;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.RandomAccess;
 import java.util.Set;
 import java.util.SortedSet;
 public abstract class o {
-    public final int f14061a = 2;
+    public final int f14024a = 2;
 
     public static int d(int i7) {
         if (i7 < 3) {
@@ -101,16 +101,16 @@ public abstract class o {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof d2) {
                 d2 d2Var = (d2) sortedSet;
-                g9.l lVar2 = d2Var.f14021b;
+                g9.l lVar2 = d2Var.f13984b;
                 lVar2.getClass();
-                return new d2((SortedSet) d2Var.f14020a, new g9.m(Arrays.asList(lVar2, lVar)));
+                return new d2((SortedSet) d2Var.f13983a, new g9.m(Arrays.asList(lVar2, lVar)));
             }
             return new d2(sortedSet, lVar);
         } else if (set instanceof d2) {
             d2 d2Var2 = (d2) set;
-            g9.l lVar3 = d2Var2.f14021b;
+            g9.l lVar3 = d2Var2.f13984b;
             lVar3.getClass();
-            return new d2(d2Var2.f14020a, new g9.m(Arrays.asList(lVar3, lVar)));
+            return new d2(d2Var2.f13983a, new g9.m(Arrays.asList(lVar3, lVar)));
         } else {
             set.getClass();
             return new d2(set, lVar);
@@ -156,8 +156,8 @@ public abstract class o {
     }
 
     public static c2 p(Set set, t0 t0Var) {
-        la.k(set, "set1");
-        la.k(t0Var, "set2");
+        ma.k(set, "set1");
+        ma.k(t0Var, "set2");
         return new c2(set, t0Var);
     }
 
@@ -168,7 +168,7 @@ public abstract class o {
     public static ArrayList r(Object... objArr) {
         int length = objArr.length;
         g(length, "arraySize");
-        ArrayList arrayList = new ArrayList(c8.k1.e(length + 5 + (length / 10)));
+        ArrayList arrayList = new ArrayList(c8.l1.e(length + 5 + (length / 10)));
         Collections.addAll(arrayList, objArr);
         return arrayList;
     }
@@ -232,7 +232,7 @@ public abstract class o {
     public abstract Object i();
 
     public String toString() {
-        switch (this.f14061a) {
+        switch (this.f14024a) {
             case 2:
                 return i().toString();
             default:

@@ -10,11 +10,11 @@ import org.telegram.ui.Components.lb;
 import org.telegram.ui.Components.r51;
 import org.telegram.ui.PhotoViewer;
 public final class p8 extends org.telegram.ui.Components.q6 {
-    public final int f31289b;
+    public final int f31255b;
 
     public p8(String str, int i7) {
         super(str, 0);
-        this.f31289b = i7;
+        this.f31255b = i7;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class p8 extends org.telegram.ui.Components.q6 {
         double sqrt;
         boolean z10;
         float f11;
-        switch (this.f31289b) {
+        switch (this.f31255b) {
             case 0:
                 s8 s8Var = (s8) obj;
                 s8Var.setAnimationProgress(f10);
@@ -40,14 +40,14 @@ public final class p8 extends org.telegram.ui.Components.q6 {
                 return;
             case 3:
                 org.telegram.ui.Components.g6 g6Var = (org.telegram.ui.Components.g6) obj;
-                if (g6Var.f35431e != f10) {
-                    g6Var.f35431e = f10;
-                    g6Var.f35433g.invalidate();
+                if (g6Var.f35393e != f10) {
+                    g6Var.f35393e = f10;
+                    g6Var.f35395g.invalidate();
                     return;
                 }
                 return;
             case 4:
-                ((ImageReceiver) obj).f22672i1 = f10;
+                ((ImageReceiver) obj).f22636i1 = f10;
                 return;
             case 5:
                 ((ClippingImageView) obj).setAnimationProgress(f10);
@@ -70,28 +70,28 @@ public final class p8 extends org.telegram.ui.Components.q6 {
             case 11:
                 wh.h hVar = (wh.h) obj;
                 hVar.H = f10;
-                RectF rectF = hVar.f59970w;
-                RectF rectF2 = hVar.f59969s;
-                float interpolation = 1.0f - wh.f.f59948p.getInterpolation(f10);
-                float interpolation2 = (wh.f.h.getInterpolation(hVar.H) - wh.f.f59941i.getInterpolation(hVar.H)) * org.telegram.messenger.g0.L(13.0f);
-                RectF rectF3 = hVar.f59967n;
+                RectF rectF = hVar.f59935w;
+                RectF rectF2 = hVar.f59934s;
+                float interpolation = 1.0f - wh.f.f59913p.getInterpolation(f10);
+                float interpolation2 = (wh.f.h.getInterpolation(hVar.H) - wh.f.f59906i.getInterpolation(hVar.H)) * org.telegram.messenger.g0.L(13.0f);
+                RectF rectF3 = hVar.f59932n;
                 RectF rectF4 = hVar.h;
                 rectF3.set(rectF4);
                 rectF3.offset(0.0f, -interpolation2);
-                float g10 = wh.h.g(rectF3.height(), (org.telegram.messenger.g0.L(2.0f) * interpolation) + org.telegram.messenger.g0.L(wh.g.f59954b), wh.f.f59944l.getInterpolation(hVar.H)) / 2.0f;
-                wh.e eVar = wh.f.f59945m;
+                float g10 = wh.h.g(rectF3.height(), (org.telegram.messenger.g0.L(2.0f) * interpolation) + org.telegram.messenger.g0.L(wh.g.f59919b), wh.f.f59909l.getInterpolation(hVar.H)) / 2.0f;
+                wh.e eVar = wh.f.f59910m;
                 float g11 = wh.h.g(rectF3.width(), (org.telegram.messenger.g0.L(10.0f) * interpolation) + hVar.h(), eVar.getInterpolation(hVar.H));
                 float f12 = g10 * 2.0f;
                 float max = Math.max(g11, f12);
                 float interpolation3 = (eVar.getInterpolation(hVar.H) * Math.min(org.telegram.messenger.g0.L(-12.0f) + hVar.G, (max - Math.max(rectF3.width(), f12)) / 2.0f)) + rectF4.centerX() + g10;
-                float interpolation4 = ((rectF4.bottom - g10) - 1.0f) - (wh.f.f59946n.getInterpolation(hVar.H) * ((org.telegram.messenger.g0.L(6.0f) * interpolation) + org.telegram.messenger.g0.L(38.0f)));
-                RectF rectF5 = hVar.f59968r;
+                float interpolation4 = ((rectF4.bottom - g10) - 1.0f) - (wh.f.f59911n.getInterpolation(hVar.H) * ((org.telegram.messenger.g0.L(6.0f) * interpolation) + org.telegram.messenger.g0.L(38.0f)));
+                RectF rectF5 = hVar.f59933r;
                 rectF5.left = interpolation3 - max;
                 rectF5.top = interpolation4 - g10;
                 rectF5.right = interpolation3;
                 rectF5.bottom = interpolation4 + g10;
                 if (hVar.R && !hVar.N) {
-                    float g12 = wh.h.g(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(3.0f), wh.f.f59947o.getInterpolation(hVar.H));
+                    float g12 = wh.h.g(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(3.0f), wh.f.f59912o.getInterpolation(hVar.H));
                     float f13 = rectF5.bottom + g12;
                     double width = (rectF3.width() / 2.0f) + g12;
                     double abs = Math.abs(f13 - rectF3.centerY());
@@ -139,7 +139,7 @@ public final class p8 extends org.telegram.ui.Components.q6 {
                         hVar.R = false;
                     }
                     if (hVar.R) {
-                        Path path = hVar.f59965e;
+                        Path path = hVar.f59930e;
                         path.reset();
                         float b10 = wh.h.b(rectF3.centerX(), rectF3.centerY(), rectF.centerX(), rectF.centerY());
                         float b11 = wh.h.b(rectF3.centerX(), rectF3.centerY(), rectF2.centerX(), rectF2.centerY());
@@ -156,7 +156,7 @@ public final class p8 extends org.telegram.ui.Components.q6 {
                         if (!z10) {
                             path.lineTo((rectF5.height() / 2.0f) + rectF5.left, rectF5.bottom);
                         }
-                        RectF rectF6 = wh.h.f59955c0;
+                        RectF rectF6 = wh.h.f59920c0;
                         float f20 = rectF5.left;
                         rectF6.set(f20, rectF5.top, rectF5.height() + f20, rectF5.bottom);
                         hVar.a(path, rectF6, wh.h.j(f19), -90.0f, false, false);
@@ -185,17 +185,17 @@ public final class p8 extends org.telegram.ui.Components.q6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f31289b) {
+        switch (this.f31255b) {
             case 0:
-                return Float.valueOf(((s8) obj).f31818s);
+                return Float.valueOf(((s8) obj).f31784s);
             case 1:
                 return Float.valueOf(((t8) obj).h);
             case 2:
-                return Float.valueOf(((c9) obj).f30519f);
+                return Float.valueOf(((c9) obj).f30485f);
             case 3:
-                return Float.valueOf(((org.telegram.ui.Components.g6) obj).f35431e);
+                return Float.valueOf(((org.telegram.ui.Components.g6) obj).f35393e);
             case 4:
-                return Float.valueOf(((ImageReceiver) obj).f22672i1);
+                return Float.valueOf(((ImageReceiver) obj).f22636i1);
             case 5:
                 return Float.valueOf(((ClippingImageView) obj).getAnimationProgress());
             case 6:
@@ -207,7 +207,7 @@ public final class p8 extends org.telegram.ui.Components.q6 {
             case 9:
                 return Float.valueOf(((PollVotesAlert$UserCell) obj).getPlaceholderAlpha());
             case 10:
-                return Float.valueOf(((r51) obj).f39092z1);
+                return Float.valueOf(((r51) obj).f39047z1);
             case 11:
                 return Float.valueOf(((wh.h) obj).H);
             default:

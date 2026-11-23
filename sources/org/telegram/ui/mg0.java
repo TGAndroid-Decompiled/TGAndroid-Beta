@@ -5,26 +5,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 public final class mg0 extends org.telegram.ui.Components.dk0 {
-    public final Context f49881c;
+    public final Context f49851c;
     public final og0 d;
 
     public mg0(og0 og0Var, Context context) {
         this.d = og0Var;
-        this.f49881c = context;
+        this.f49851c = context;
     }
 
     @Override
-    public final void A(v4.f1 f1Var) {
-        View view = f1Var.f59165a;
+    public final void A(v4.e1 e1Var) {
+        View view = e1Var.f59111a;
         if (view instanceof org.telegram.ui.Cells.b5) {
             ((org.telegram.ui.Cells.b5) view).a();
         }
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59169f == 0) {
-            return ((org.telegram.ui.Cells.b5) f1Var.f59165a).getCurrentObject() instanceof TLObject;
+    public final boolean D(v4.e1 e1Var) {
+        if (e1Var.f59115f == 0) {
+            return ((org.telegram.ui.Cells.b5) e1Var.f59111a).getCurrentObject() instanceof TLObject;
         }
         return false;
     }
@@ -62,18 +62,18 @@ public final class mg0 extends org.telegram.ui.Components.dk0 {
     }
 
     @Override
-    public final void t(v4.f1 r17, int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mg0.t(v4.f1, int):void");
+    public final void t(v4.e1 r17, int r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mg0.t(v4.e1, int):void");
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         View view;
         org.telegram.ui.Cells.z6 z6Var;
         og0 og0Var = this.d;
         if (i7 != 0) {
             int i10 = 1;
-            Context context = this.f49881c;
+            Context context = this.f49851c;
             if (i7 != 1) {
                 if (i7 != 2) {
                     if (i7 != 4) {
@@ -84,21 +84,21 @@ public final class mg0 extends org.telegram.ui.Components.dk0 {
                                 }
                             } else {
                                 view = new org.telegram.ui.Cells.n3(context, 16);
-                                view.setLayoutParams(new v4.q0(-1, 16));
+                                view.setLayoutParams(new v4.p0(-1, 16));
                             }
                         } else {
                             view = new ng0(og0Var, context);
-                            view.setLayoutParams(new v4.q0(-1, -2));
+                            view.setLayoutParams(new v4.p0(-1, -2));
                         }
                     }
                     if (i7 != 4) {
                         i10 = 2;
                     }
                     lg.f fVar = new lg.f(og0Var.getResourceProvider());
-                    og0Var.f50588d0 = fVar;
-                    view = new lg0(this, this.f49881c, i10, fVar, og0Var.getResourceProvider());
+                    og0Var.f50571d0 = fVar;
+                    view = new lg0(this, this.f49851c, i10, fVar, og0Var.getResourceProvider());
                 } else {
-                    org.telegram.ui.Cells.o4 o4Var = new org.telegram.ui.Cells.o4(this.f49881c, org.telegram.ui.ActionBar.m6.G6, 16, 11, false, og0Var.getResourceProvider());
+                    org.telegram.ui.Cells.o4 o4Var = new org.telegram.ui.Cells.o4(this.f49851c, org.telegram.ui.ActionBar.m6.G6, 16, 11, false, og0Var.getResourceProvider());
                     o4Var.setHeight(43);
                     z6Var = o4Var;
                 }
@@ -108,10 +108,10 @@ public final class mg0 extends org.telegram.ui.Components.dk0 {
             }
             view = z6Var;
         } else {
-            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(this.f49881c, 6, 2, false, og0Var.getResourceProvider());
-            b5Var.setDividerColor(org.telegram.ui.ActionBar.m6.f29382d7);
+            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(this.f49851c, 6, 2, false, og0Var.getResourceProvider());
+            b5Var.setDividerColor(org.telegram.ui.ActionBar.m6.f29348d7);
             view = b5Var;
         }
-        return new v4.f1(view);
+        return new v4.e1(view);
     }
 }

@@ -4,21 +4,21 @@ import android.app.Activity;
 import android.net.Uri;
 import android.text.TextUtils;
 public final class ge implements Runnable {
-    public final int f48088a;
-    public final bn f48089b;
-    public final String f48090c;
+    public final int f48032a;
+    public final bn f48033b;
+    public final String f48034c;
 
     public ge(bn bnVar, String str, int i7) {
-        this.f48088a = i7;
-        this.f48089b = bnVar;
-        this.f48090c = str;
+        this.f48032a = i7;
+        this.f48033b = bnVar;
+        this.f48034c = str;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f48088a;
-        String str = this.f48090c;
-        bn bnVar = this.f48089b;
+        int i7 = this.f48032a;
+        String str = this.f48034c;
+        bn bnVar = this.f48033b;
         switch (i7) {
             case 0:
                 bn.t1(bnVar, str);
@@ -27,17 +27,17 @@ public final class ge implements Runnable {
                 bn.B1(bnVar, str);
                 return;
             case 2:
-                g4.d(str, bnVar.currentAccount, bnVar.f46111m1, null, bnVar.Ba);
+                g4.d(str, bnVar.currentAccount, bnVar.f46064m1, null, bnVar.Ba);
                 return;
             case 3:
                 if (str != null) {
                     bnVar.getClass();
                     if (str.length() != 0) {
-                        bnVar.getMessagesController().K4(str, bnVar.f46019f);
+                        bnVar.getMessagesController().K4(str, bnVar.f45972f);
                         return;
                     }
                 }
-                bnVar.getSendMessagesHelper().r0(org.telegram.messenger.yy.b("/start", bnVar.f46103l6, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                bnVar.getSendMessagesHelper().r0(org.telegram.messenger.yy.b("/start", bnVar.f46056l6, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 4:
                 bnVar.Oa(str);

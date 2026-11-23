@@ -1,10 +1,10 @@
 package ce;
 public final class n extends kd.c {
-    public o f5269a;
-    public Object f5270b;
-    public Object f5271c;
+    public o f5232a;
+    public Object f5233b;
+    public Object f5234c;
     public final o d;
-    public int f5272e;
+    public int f5235e;
 
     public n(o oVar, id.c cVar) {
         super(cVar);
@@ -13,8 +13,8 @@ public final class n extends kd.c {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f5271c = obj;
-        this.f5272e |= Integer.MIN_VALUE;
+        this.f5234c = obj;
+        this.f5235e |= Integer.MIN_VALUE;
         return this.d.a(null, this);
     }
 }

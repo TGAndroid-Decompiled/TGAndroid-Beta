@@ -12,15 +12,15 @@ public final class ev extends org.telegram.ui.Components.ts {
     @Override
     public final void y() {
         bx bxVar = this.F;
-        if (bxVar.f46327c.L0() == 0) {
-            View m10 = bxVar.f46327c.m(0);
+        if (bxVar.f46320c.L0() == 0) {
+            View m10 = bxVar.f46320c.m(0);
             if (m10 != null) {
                 m10.invalidate();
             }
-            if (bxVar.f46333w == 2) {
-                bxVar.f46333w = 1;
+            if (bxVar.f46326w == 2) {
+                bxVar.f46326w = 1;
             }
-            jv jvVar = bxVar.f46330n;
+            jv jvVar = bxVar.f46323n;
             if (jvVar != null) {
                 jvVar.b();
             }

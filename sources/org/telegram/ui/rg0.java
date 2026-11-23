@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class rg0 extends ah.e {
-    public final int f51579n;
+    public final int f51607n;
 
     public rg0(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, h6Var);
-        this.f51579n = i7;
+        this.f51607n = i7;
     }
 
     @Override
     public final int getHeaderHeight() {
-        switch (this.f51579n) {
+        switch (this.f51607n) {
             case 0:
                 if (getResources().getConfiguration().orientation == 2) {
                     return org.telegram.messenger.g0.L(48.0f);

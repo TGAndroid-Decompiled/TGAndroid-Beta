@@ -45,55 +45,55 @@ public final class fc {
     public String F;
     public int G;
     public File H;
-    public final jb f23886b;
-    public final jb f23887c;
+    public final jb f23850b;
+    public final jb f23851c;
     public final jb d;
-    public final jb f23888e;
-    public final com.google.android.gms.internal.cast.b0 f23898p;
-    public final q5 f23899q;
-    public final q5 f23900r;
-    public final q5 f23901s;
-    public final HashMap f23902t;
-    public final ConcurrentHashMap f23903u;
+    public final jb f23852e;
+    public final com.google.android.gms.internal.cast.b0 f23862p;
+    public final q5 f23863q;
+    public final q5 f23864r;
+    public final q5 f23865s;
+    public final HashMap f23866t;
+    public final ConcurrentHashMap f23867u;
     public final HashMap v;
-    public final HashMap f23904w;
-    public int f23905x;
-    public int f23906y;
-    public final boolean f23907z;
+    public final HashMap f23868w;
+    public int f23869x;
+    public int f23870y;
+    public final boolean f23871z;
     public static final ThreadLocal I = new ThreadLocal();
     public static final ThreadLocal J = new ThreadLocal();
     public static final byte[] K = new byte[12];
     public static final byte[] L = new byte[12];
     public static volatile fc N = null;
-    public final HashMap f23885a = new HashMap();
-    public final ArrayList f23889f = new ArrayList();
-    public final HashMap f23890g = new HashMap();
+    public final HashMap f23849a = new HashMap();
+    public final ArrayList f23853f = new ArrayList();
+    public final HashMap f23854g = new HashMap();
     public final HashMap h = new HashMap();
-    public final ConcurrentHashMap f23891i = new ConcurrentHashMap();
-    public final HashSet f23892j = new HashSet();
-    public final SparseArray f23893k = new SparseArray();
-    public final HashMap f23894l = new HashMap();
-    public final SparseArray f23895m = new SparseArray();
-    public final LinkedList f23896n = new LinkedList();
-    public final LinkedList f23897o = new LinkedList();
+    public final ConcurrentHashMap f23855i = new ConcurrentHashMap();
+    public final HashSet f23856j = new HashSet();
+    public final SparseArray f23857k = new SparseArray();
+    public final HashMap f23858l = new HashMap();
+    public final SparseArray f23859m = new SparseArray();
+    public final LinkedList f23860n = new LinkedList();
+    public final LinkedList f23861o = new LinkedList();
 
     public fc() {
         boolean z10;
         int i7;
         com.google.android.gms.internal.cast.b0 b0Var = new com.google.android.gms.internal.cast.b0(2);
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        b0Var.f6518b = new of.a(b0Var, new PriorityBlockingQueue(10, new c5.b(4)));
-        this.f23898p = b0Var;
-        this.f23899q = new q5("cacheThumbOutQueue");
+        b0Var.f6481b = new of.a(b0Var, new PriorityBlockingQueue(10, new c5.b(4)));
+        this.f23862p = b0Var;
+        this.f23863q = new q5("cacheThumbOutQueue");
         q5 q5Var = new q5("thumbGeneratingQueue");
-        this.f23900r = q5Var;
-        this.f23901s = new q5("imageLoadQueue");
-        this.f23902t = new HashMap();
-        this.f23903u = new ConcurrentHashMap();
+        this.f23864r = q5Var;
+        this.f23865s = new q5("imageLoadQueue");
+        this.f23866t = new HashMap();
+        this.f23867u = new ConcurrentHashMap();
         this.v = new HashMap();
-        this.f23904w = new HashMap();
-        this.f23905x = 0;
-        this.f23906y = 0;
+        this.f23868w = new HashMap();
+        this.f23869x = 0;
+        this.f23870y = 0;
         this.A = new ConcurrentHashMap();
         this.B = new LinkedList();
         this.C = new HashMap();
@@ -103,13 +103,13 @@ public final class fc {
         this.G = 0;
         this.H = null;
         q5Var.setPriority(1);
-        int memoryClass = ((ActivityManager) t0.f26931b.getSystemService("activity")).getMemoryClass();
+        int memoryClass = ((ActivityManager) t0.f26895b.getSystemService("activity")).getMemoryClass();
         if (memoryClass >= 192) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f23907z = z10;
+        this.f23871z = z10;
         if (z10) {
             i7 = 30;
         } else {
@@ -117,10 +117,10 @@ public final class fc {
         }
         int min = Math.min(i7, memoryClass / 7) * 1048576;
         float f10 = min;
-        this.f23887c = new jb(this, (int) (0.8f * f10), 0);
-        this.f23886b = new jb(this, (int) (f10 * 0.2f), 1);
+        this.f23851c = new jb(this, (int) (0.8f * f10), 0);
+        this.f23850b = new jb(this, (int) (f10 * 0.2f), 1);
         this.d = new jb(this, min / 4, 2);
-        this.f23888e = new jb(this);
+        this.f23852e = new jb(this);
         SparseArray sparseArray = new SparseArray();
         File E0 = g0.E0();
         if (!E0.isDirectory()) {
@@ -150,9 +150,9 @@ public final class fc {
         intentFilter.addDataScheme("file");
         try {
             if (Build.VERSION.SDK_INT >= 33) {
-                t0.f26931b.registerReceiver(fVar, intentFilter, 4);
+                t0.f26895b.registerReceiver(fVar, intentFilter, 4);
             } else {
-                t0.f26931b.registerReceiver(fVar, intentFilter);
+                t0.f26895b.registerReceiver(fVar, intentFilter);
             }
         } catch (Throwable unused) {
         }
@@ -204,12 +204,12 @@ public final class fc {
     }
 
     public static File E() {
-        File file = t0.f26931b.getExternalMediaDirs()[0];
-        if (!TextUtils.isEmpty(cz.f23410h0)) {
-            for (int i7 = 0; i7 < t0.f26931b.getExternalMediaDirs().length; i7++) {
-                File file2 = t0.f26931b.getExternalMediaDirs()[i7];
-                if (file2 != null && file2.getPath().startsWith(cz.f23410h0)) {
-                    file = t0.f26931b.getExternalMediaDirs()[i7];
+        File file = t0.f26895b.getExternalMediaDirs()[0];
+        if (!TextUtils.isEmpty(cz.f23374h0)) {
+            for (int i7 = 0; i7 < t0.f26895b.getExternalMediaDirs().length; i7++) {
+                File file2 = t0.f26895b.getExternalMediaDirs()[i7];
+                if (file2 != null && file2.getPath().startsWith(cz.f23374h0)) {
+                    file = t0.f26895b.getExternalMediaDirs()[i7];
                 }
             }
         }
@@ -332,10 +332,10 @@ public final class fc {
     public static int d(fc fcVar, BitmapDrawable bitmapDrawable) {
         if (bitmapDrawable instanceof org.telegram.ui.Components.c6) {
             org.telegram.ui.Components.c6 c6Var = (org.telegram.ui.Components.c6) bitmapDrawable;
-            return Math.max(c6Var.getIntrinsicHeight() * c6Var.getIntrinsicWidth(), c6Var.f34082k0 * c6Var.f34081j0) * 12;
+            return Math.max(c6Var.getIntrinsicHeight() * c6Var.getIntrinsicWidth(), c6Var.f34046k0 * c6Var.f34045j0) * 12;
         } else if (bitmapDrawable instanceof oh0) {
             oh0 oh0Var = (oh0) bitmapDrawable;
-            int i7 = oh0Var.f38205b * oh0Var.f38207c;
+            int i7 = oh0Var.f38174b * oh0Var.f38176c;
             if (oh0Var.H) {
                 return i7 * 2;
             }
@@ -363,7 +363,7 @@ public final class fc {
             BitmapFactory.decodeFile(str, options);
         } else if (uri != null) {
             try {
-                InputStream openInputStream = t0.f26931b.getContentResolver().openInputStream(uri);
+                InputStream openInputStream = t0.f26895b.getContentResolver().openInputStream(uri);
                 BitmapFactory.decodeStream(openInputStream, null, options);
                 openInputStream.close();
             } catch (Throwable th3) {
@@ -381,7 +381,7 @@ public final class fc {
 
     public static boolean e0(gc gcVar, String str) {
         if (!str.endsWith("_firstframe") && !str.endsWith("_lastframe")) {
-            if ((gcVar != null && (gj.K2(gcVar.f24118i, true) || gcVar.f24125p == 1 || gj.N4(gcVar.f24118i))) || I(str)) {
+            if ((gcVar != null && (gj.K2(gcVar.f24082i, true) || gcVar.f24089p == 1 || gj.N4(gcVar.f24082i))) || I(str)) {
                 return true;
             }
             return false;
@@ -466,7 +466,7 @@ public final class fc {
     public static BitmapDrawable m(ArrayList arrayList) {
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             if (arrayList.get(i7) instanceof TLRPC.TL_photoStrippedSize) {
-                return new BitmapDrawable(t0.f26931b.getResources(), F("b", ((TLRPC.TL_photoStrippedSize) arrayList.get(i7)).bytes));
+                return new BitmapDrawable(t0.f26895b.getResources(), F("b", ((TLRPC.TL_photoStrippedSize) arrayList.get(i7)).bytes));
             }
         }
         return null;
@@ -534,7 +534,7 @@ public final class fc {
             tL_fileLocationToBeDeprecated.file_reference = new byte[0];
             TLRPC.TL_photoSize_layer127 tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
             tL_photoSize_layer127.location = tL_fileLocationToBeDeprecated;
-            tL_photoSize_layer127.f28459w = i7;
+            tL_photoSize_layer127.f28423w = i7;
             tL_photoSize_layer127.h = i10;
             if (i7 <= 100 && i10 <= 100) {
                 tL_photoSize_layer127.type = "s";
@@ -570,7 +570,7 @@ public final class fc {
         if (photoSize != null) {
             byte[] bArr = photoSize.bytes;
             if (bArr == null || bArr.length == 0) {
-                w7.G(k10.f24968t0);
+                w7.G(k10.f24932t0);
                 try {
                     RandomAccessFile randomAccessFile = new RandomAccessFile(w7.J(photoSize, null, true, true), "r");
                     if (((int) randomAccessFile.length()) < 20000) {
@@ -593,8 +593,8 @@ public final class fc {
                 if (str.equals(imageReceiver.R)) {
                     return imageReceiver.T;
                 }
-                if (str.equals(imageReceiver.f22671i0)) {
-                    return imageReceiver.f22675k0;
+                if (str.equals(imageReceiver.f22635i0)) {
+                    return imageReceiver.f22639k0;
                 }
             }
             return null;
@@ -659,31 +659,31 @@ public final class fc {
         float f11;
         TLRPC.PhotoSize t6 = t(message);
         if (t6 != null && (bArr = t6.bytes) != null && bArr.length != 0) {
-            w7.G(k10.f24968t0);
+            w7.G(k10.f24932t0);
             File J2 = w7.J(t6, null, true, true);
             TLRPC.TL_photoSize_layer127 tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
-            tL_photoSize_layer127.f28459w = t6.f28459w;
+            tL_photoSize_layer127.f28423w = t6.f28423w;
             tL_photoSize_layer127.h = t6.h;
             tL_photoSize_layer127.location = t6.location;
             tL_photoSize_layer127.size = t6.size;
             tL_photoSize_layer127.type = t6.type;
             if (J2.exists() && message.grouped_id == 0) {
-                PointF Q1 = org.telegram.ui.Cells.r1.Q1(t6.f28459w, t6.h, 0, 0);
+                PointF Q1 = org.telegram.ui.Cells.r1.Q1(t6.f28423w, t6.h, 0, 0);
                 Locale locale = Locale.US;
                 TLRPC.FileLocation fileLocation = t6.location;
                 long j3 = fileLocation.volume_id;
                 int i11 = fileLocation.local_id;
                 float f12 = Q1.x;
-                String str = j3 + "_" + i11 + "@" + ((int) (f12 / f11)) + "_" + ((int) (Q1.y / g0.f24045p)) + "_b";
+                String str = j3 + "_" + i11 + "@" + ((int) (f12 / f11)) + "_" + ((int) (Q1.y / g0.f24009p)) + "_b";
                 if (!D().J(str, false)) {
                     String path = J2.getPath();
                     float f13 = Q1.x;
-                    float f14 = g0.f24045p;
+                    float f14 = g0.f24009p;
                     Bitmap K2 = K(path, null, (int) (f13 / f14), (int) (Q1.y / f14), false);
                     if (K2 != null) {
                         Utilities.blurBitmap(K2, 3);
                         float f15 = Q1.x;
-                        float f16 = g0.f24045p;
+                        float f16 = g0.f24009p;
                         Bitmap createScaledBitmap = Bitmap.createScaledBitmap(K2, (int) (f15 / f16), (int) (Q1.y / f16), true);
                         if (createScaledBitmap != K2) {
                             K2.recycle();
@@ -703,7 +703,7 @@ public final class fc {
                         TLRPC.PhotoSize w10 = w7.w(message.media.document.thumbs, 320, false, null, false);
                         if (w10 != null) {
                             i10 = w10.h;
-                            i7 = w10.f28459w;
+                            i7 = w10.f28423w;
                         } else {
                             int i13 = 0;
                             while (true) {
@@ -711,7 +711,7 @@ public final class fc {
                                     if (message.media.document.attributes.get(i13) instanceof TLRPC.TL_documentAttributeVideo) {
                                         TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) message.media.document.attributes.get(i13);
                                         i10 = tL_documentAttributeVideo.h;
-                                        i7 = tL_documentAttributeVideo.f28441w;
+                                        i7 = tL_documentAttributeVideo.f28405w;
                                         break;
                                     }
                                     i13++;
@@ -726,11 +726,11 @@ public final class fc {
                         Locale locale2 = Locale.US;
                         String s5 = gc.s(message, message, photoSize);
                         float f17 = Q12.x;
-                        String str2 = s5 + "_false@" + ((int) (f17 / f10)) + "_" + ((int) (Q12.y / g0.f24045p)) + "_b";
+                        String str2 = s5 + "_false@" + ((int) (f17 / f10)) + "_" + ((int) (Q12.y / g0.f24009p)) + "_b";
                         if (!D().J(str2, false) && (F = F(null, photoSize.bytes)) != null) {
                             Utilities.blurBitmap(F, 3);
                             float f18 = Q12.x;
-                            float f19 = g0.f24045p;
+                            float f19 = g0.f24009p;
                             Bitmap createScaledBitmap2 = Bitmap.createScaledBitmap(F, (int) (f18 / f19), (int) (Q12.y / f19), true);
                             if (createScaledBitmap2 != F) {
                                 F.recycle();
@@ -755,18 +755,18 @@ public final class fc {
             str = fileLocation.volume_id + "_" + fileLocation.local_id;
         } else if (tLObject instanceof TLRPC.Document) {
             TLRPC.Document document = (TLRPC.Document) tLObject;
-            str = document.dc_id + "_" + document.f28440id;
+            str = document.dc_id + "_" + document.f28404id;
         } else if (tLObject instanceof zv) {
-            TLRPC.TL_secureFile tL_secureFile = ((zv) tLObject).f28384b;
-            str = tL_secureFile.dc_id + "_" + tL_secureFile.f28571id;
+            TLRPC.TL_secureFile tL_secureFile = ((zv) tLObject).f28348b;
+            str = tL_secureFile.dc_id + "_" + tL_secureFile.f28535id;
         } else if (tLObject instanceof i20) {
-            str = Utilities.a(((i20) tLObject).f24578a);
+            str = Utilities.a(((i20) tLObject).f24542a);
         }
         return z(str + "@50_50");
     }
 
     public final void H(String str) {
-        HashMap hashMap = this.f23885a;
+        HashMap hashMap = this.f23849a;
         Integer num = (Integer) hashMap.get(str);
         if (num == null) {
             hashMap.put(str, 1);
@@ -809,13 +809,13 @@ public final class fc {
     }
 
     public final void N(String str, String str2) {
-        jb jbVar = this.f23887c;
+        jb jbVar = this.f23851c;
         BitmapDrawable bitmapDrawable = (BitmapDrawable) jbVar.f(str);
         if (bitmapDrawable == null) {
-            jbVar = this.f23886b;
+            jbVar = this.f23850b;
             bitmapDrawable = (BitmapDrawable) jbVar.f(str);
         }
-        this.f23902t.put(str, str2);
+        this.f23866t.put(str, str2);
         if (bitmapDrawable != null) {
             BitmapDrawable bitmapDrawable2 = (BitmapDrawable) jbVar.f(str2);
             if (bitmapDrawable2 != null && bitmapDrawable2.getBitmap() != null && bitmapDrawable.getBitmap() != null) {
@@ -830,7 +830,7 @@ public final class fc {
             jbVar.l(str2, bitmapDrawable);
             this.F = null;
         }
-        HashMap hashMap = this.f23885a;
+        HashMap hashMap = this.f23849a;
         Integer num = (Integer) hashMap.get(str);
         if (num != null) {
             hashMap.put(str2, num);
@@ -843,22 +843,22 @@ public final class fc {
             return;
         }
         if (z10) {
-            this.f23886b.l(str, bitmapDrawable);
+            this.f23850b.l(str, bitmapDrawable);
         } else {
-            this.f23887c.l(str, bitmapDrawable);
+            this.f23851c.l(str, bitmapDrawable);
         }
     }
 
     public final void P(ArrayList arrayList) {
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            O(((bc) arrayList.get(i7)).f23068a, ((bc) arrayList.get(i7)).f23069b, true);
+            O(((bc) arrayList.get(i7)).f23032a, ((bc) arrayList.get(i7)).f23033b, true);
         }
     }
 
     public final void Q(String str) {
-        this.f23885a.remove(str);
-        this.f23887c.n(str);
-        this.f23886b.n(str);
+        this.f23849a.remove(str);
+        this.f23851c.n(str);
+        this.f23850b.n(str);
     }
 
     public final void R(String str, String str2, gc gcVar, boolean z10) {
@@ -873,17 +873,17 @@ public final class fc {
         for (int i7 = 0; i7 < 2; i7++) {
             ArrayList arrayList = null;
             if (i7 == 0) {
-                ArrayList arrayList2 = (ArrayList) ((LinkedHashMap) this.f23887c.d).get(str);
+                ArrayList arrayList2 = (ArrayList) ((LinkedHashMap) this.f23851c.d).get(str);
                 if (arrayList2 != null) {
                     arrayList = new ArrayList(arrayList2);
                 }
             } else {
-                ArrayList arrayList3 = (ArrayList) ((LinkedHashMap) this.f23886b.d).get(str);
+                ArrayList arrayList3 = (ArrayList) ((LinkedHashMap) this.f23850b.d).get(str);
                 if (arrayList3 != null) {
                     arrayList = new ArrayList(arrayList3);
                 }
             }
-            int i10 = ls.f25363p4;
+            int i10 = ls.f25327p4;
             if (arrayList != null) {
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     String str3 = (String) arrayList.get(i11);
@@ -901,14 +901,14 @@ public final class fc {
 
     public final void T(boolean z10) {
         if (z10) {
-            this.f23906y--;
+            this.f23870y--;
         }
-        while (this.f23906y < 4) {
-            LinkedList linkedList = this.f23897o;
+        while (this.f23870y < 4) {
+            LinkedList linkedList = this.f23861o;
             if (!linkedList.isEmpty()) {
                 try {
                     ((sb) linkedList.poll()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-                    this.f23906y++;
+                    this.f23870y++;
                 } catch (Throwable unused) {
                     T(false);
                 }
@@ -924,15 +924,15 @@ public final class fc {
 
     public final void V(boolean z10) {
         if (z10) {
-            this.f23905x--;
+            this.f23869x--;
         }
-        while (this.f23905x < 4) {
-            LinkedList linkedList = this.f23896n;
+        while (this.f23869x < 4) {
+            LinkedList linkedList = this.f23860n;
             if (!linkedList.isEmpty()) {
                 ac acVar = (ac) linkedList.poll();
                 if (acVar != null) {
                     acVar.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-                    this.f23905x++;
+                    this.f23869x++;
                 }
             } else {
                 return;
@@ -962,8 +962,8 @@ public final class fc {
     }
 
     public final void h(ImageReceiver imageReceiver, boolean z10) {
-        ArrayList arrayList = imageReceiver.f22704x1;
-        HashMap hashMap = org.telegram.ui.web.v1.f53378f;
+        ArrayList arrayList = imageReceiver.f22668x1;
+        HashMap hashMap = org.telegram.ui.web.v1.f53342f;
         if (hashMap != null) {
             Iterator it = hashMap.entrySet().iterator();
             while (true) {
@@ -985,13 +985,13 @@ public final class fc {
                     }
                 }
                 if (arrayList2.isEmpty()) {
-                    org.telegram.ui.web.v1.f53378f.remove(str);
+                    org.telegram.ui.web.v1.f53342f.remove(str);
                     break;
                 }
             }
         }
         boolean isEmpty = arrayList.isEmpty();
-        q5 q5Var = this.f23901s;
+        q5 q5Var = this.f23865s;
         if (!isEmpty) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 q5Var.a((Runnable) arrayList.get(i10));
@@ -1003,13 +1003,13 @@ public final class fc {
     }
 
     public final void i(Runnable runnable) {
-        ((of.a) this.f23898p.f6518b).execute(new z4(15, this, runnable));
+        ((of.a) this.f23862p.f6481b).execute(new z4(15, this, runnable));
     }
 
     public final void j() {
-        this.f23886b.r(-1, null);
-        this.f23887c.r(-1, null);
-        this.f23888e.r(-1, null);
+        this.f23850b.r(-1, null);
+        this.f23851c.r(-1, null);
+        this.f23852e.r(-1, null);
     }
 
     public final void k(final ImageReceiver imageReceiver, final String str, final String str2, final String str3, final gc gcVar, final String str4, final long j3, final int i7, final int i10, final int i11, final int i12) {
@@ -1020,9 +1020,9 @@ public final class fc {
             if (G == 0) {
                 G = this.G;
                 if (i10 == 1) {
-                    imageReceiver.f22651a0 = G;
+                    imageReceiver.f22615a0 = G;
                 } else if (i10 == 3) {
-                    imageReceiver.f22673j0 = G;
+                    imageReceiver.f22637j0 = G;
                 } else {
                     imageReceiver.S = G;
                 }
@@ -1049,13 +1049,13 @@ public final class fc {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ib.run():void");
                 }
             };
-            if (imageReceiver.f22699w == 0) {
+            if (imageReceiver.f22663w == 0) {
                 j10 = 0;
             } else {
                 j10 = 1;
             }
-            this.f23901s.d(runnable, j10);
-            imageReceiver.f22704x1.add(runnable);
+            this.f23865s.d(runnable, j10);
+            imageReceiver.f22668x1.add(runnable);
         }
     }
 
@@ -1064,7 +1064,7 @@ public final class fc {
     }
 
     public final boolean p(String str) {
-        HashMap hashMap = this.f23885a;
+        HashMap hashMap = this.f23849a;
         Integer num = (Integer) hashMap.get(str);
         if (num == null) {
             return true;
@@ -1079,15 +1079,15 @@ public final class fc {
 
     public final void v(int i7, File file, dc dcVar) {
         if ((i7 == 0 || i7 == 2 || i7 == 3) && file != null) {
-            if (((ec) this.v.get(w7.r(null, dcVar.f23525a))) == null) {
-                this.f23900r.c(new ec(this, i7, file, dcVar));
+            if (((ec) this.v.get(w7.r(null, dcVar.f23489a))) == null) {
+                this.f23864r.c(new ec(this, i7, file, dcVar));
             }
         }
     }
 
     public final Float w(String str) {
         long[] jArr;
-        if (str == null || (jArr = (long[]) this.f23903u.get(str)) == null) {
+        if (str == null || (jArr = (long[]) this.f23867u.get(str)) == null) {
             return null;
         }
         long j3 = jArr[1];
@@ -1101,26 +1101,26 @@ public final class fc {
         if (str == null) {
             return null;
         }
-        return (long[]) this.f23903u.get(str);
+        return (long[]) this.f23867u.get(str);
     }
 
     public final BitmapDrawable y(String str) {
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) this.f23888e.f(str);
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) this.f23852e.f(str);
         if (bitmapDrawable instanceof org.telegram.ui.Components.c6) {
             org.telegram.ui.Components.c6 c6Var = (org.telegram.ui.Components.c6) bitmapDrawable;
-            if (!c6Var.f34073d0 && c6Var.H0 < 15) {
+            if (!c6Var.f34037d0 && c6Var.H0 < 15) {
                 return bitmapDrawable;
             }
-            this.f23888e.n(str);
+            this.f23852e.n(str);
             return null;
         }
         return bitmapDrawable;
     }
 
     public final BitmapDrawable z(String str) {
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) this.f23887c.f(str);
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) this.f23851c.f(str);
         if (bitmapDrawable == null) {
-            bitmapDrawable = (BitmapDrawable) this.f23886b.f(str);
+            bitmapDrawable = (BitmapDrawable) this.f23850b.f(str);
         }
         if (bitmapDrawable == null) {
             bitmapDrawable = (BitmapDrawable) this.d.f(str);

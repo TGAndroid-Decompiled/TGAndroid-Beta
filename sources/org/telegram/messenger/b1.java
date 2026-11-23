@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b1 implements Runnable {
-    public final int f23025a;
-    public final Object f23026b;
-    public final int f23027c;
+    public final int f22989a;
+    public final Object f22990b;
+    public final int f22991c;
     public final long d;
-    public final int f23028e;
-    public final Object f23029f;
+    public final int f22992e;
+    public final Object f22993f;
 
     public b1(int i7, int i10, long j3, ArrayList arrayList, ur urVar) {
-        this.f23025a = 4;
-        this.f23026b = urVar;
+        this.f22989a = 4;
+        this.f22990b = urVar;
         this.d = j3;
-        this.f23029f = arrayList;
-        this.f23027c = i7;
-        this.f23028e = i10;
+        this.f22993f = arrayList;
+        this.f22991c = i7;
+        this.f22992e = i10;
     }
 
     @Override
@@ -26,29 +26,29 @@ public final class b1 implements Runnable {
     }
 
     public b1(c cVar, TLObject tLObject, int i7, long j3, int i10, int i11) {
-        this.f23025a = i11;
-        this.f23026b = cVar;
-        this.f23029f = tLObject;
-        this.f23027c = i7;
+        this.f22989a = i11;
+        this.f22990b = cVar;
+        this.f22993f = tLObject;
+        this.f22991c = i7;
         this.d = j3;
-        this.f23028e = i10;
+        this.f22992e = i10;
     }
 
     public b1(si siVar, ArrayList arrayList, int i7, int i10, long j3) {
-        this.f23025a = 2;
-        this.f23026b = siVar;
-        this.f23029f = arrayList;
-        this.f23027c = i7;
-        this.f23028e = i10;
+        this.f22989a = 2;
+        this.f22990b = siVar;
+        this.f22993f = arrayList;
+        this.f22991c = i7;
+        this.f22992e = i10;
         this.d = j3;
     }
 
     public b1(ur urVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, long j3, int i10) {
-        this.f23025a = 3;
-        this.f23026b = urVar;
-        this.f23027c = i7;
-        this.f23029f = tL_forumTopic;
+        this.f22989a = 3;
+        this.f22990b = urVar;
+        this.f22991c = i7;
+        this.f22993f = tL_forumTopic;
         this.d = j3;
-        this.f23028e = i10;
+        this.f22992e = i10;
     }
 }

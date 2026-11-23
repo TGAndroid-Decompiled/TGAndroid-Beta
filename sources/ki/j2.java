@@ -3,13 +3,13 @@ package ki;
 import android.content.Context;
 import android.widget.FrameLayout;
 public final class j2 extends r3 {
-    public final int f18765d0;
-    public final Object f18766e0;
+    public final int f18731d0;
+    public final Object f18732e0;
 
     public j2(int i7, Context context, Object obj) {
         super(context);
-        this.f18765d0 = i7;
-        this.f18766e0 = obj;
+        this.f18731d0 = i7;
+        this.f18732e0 = obj;
     }
 
     @Override
@@ -19,9 +19,9 @@ public final class j2 extends r3 {
 
     @Override
     public void requestLayout() {
-        switch (this.f18765d0) {
+        switch (this.f18731d0) {
             case 0:
-                if (!((s2) this.f18766e0).H) {
+                if (!((s2) this.f18732e0).H) {
                     super.requestLayout();
                     return;
                 }
@@ -34,19 +34,19 @@ public final class j2 extends r3 {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f18765d0) {
+        switch (this.f18731d0) {
             case 0:
                 super.setTranslationY(f10);
-                s2 s2Var = (s2) this.f18766e0;
-                org.telegram.messenger.h2 h2Var = s2Var.f18950o0;
+                s2 s2Var = (s2) this.f18732e0;
+                org.telegram.messenger.h2 h2Var = s2Var.f18916o0;
                 if (h2Var != null) {
                     h2Var.setTranslationY(org.telegram.messenger.g0.L(24.0f) + f10);
                 }
-                FrameLayout frameLayout = s2Var.f18954r0;
+                FrameLayout frameLayout = s2Var.f18920r0;
                 if (frameLayout != null) {
                     int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - org.telegram.messenger.g0.L(24.0f);
-                    int L = org.telegram.messenger.g0.L(70.0f) + s2Var.f18948n.top;
-                    frameLayout.setTranslationY(s2Var.f18962x.getTranslationY() + org.telegram.messenger.g0.W1(s2Var.f18943h0, currentActionBarHeight, L));
+                    int L = org.telegram.messenger.g0.L(70.0f) + s2Var.f18914n.top;
+                    frameLayout.setTranslationY(s2Var.f18928x.getTranslationY() + org.telegram.messenger.g0.W1(s2Var.f18909h0, currentActionBarHeight, L));
                     return;
                 }
                 return;

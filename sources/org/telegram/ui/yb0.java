@@ -9,22 +9,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class yb0 implements RequestDelegate {
-    public final int f54157a;
-    public final ec0 f54158b;
-    public final TLRPC.TL_auth_signIn f54159c;
+    public final int f54133a;
+    public final ec0 f54134b;
+    public final TLRPC.TL_auth_signIn f54135c;
 
     public yb0(ec0 ec0Var, TLRPC.TL_auth_signIn tL_auth_signIn, int i7) {
-        this.f54157a = i7;
-        this.f54158b = ec0Var;
-        this.f54159c = tL_auth_signIn;
+        this.f54133a = i7;
+        this.f54134b = ec0Var;
+        this.f54135c = tL_auth_signIn;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f54157a) {
+        switch (this.f54133a) {
             case 0:
-                final ec0 ec0Var = this.f54158b;
-                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f54159c;
+                final ec0 ec0Var = this.f54134b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f54135c;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -36,9 +36,9 @@ public final class yb0 implements RequestDelegate {
                         ec0 ec0Var2 = ec0Var;
                         switch (i10) {
                             case 0:
-                                int i11 = ec0Var2.f47232a;
-                                ah.i iVar = ec0Var2.f47236c;
-                                de0 de0Var = ec0Var2.f47235b0;
+                                int i11 = ec0Var2.f47201a;
+                                ah.i iVar = ec0Var2.f47205c;
+                                de0 de0Var = ec0Var2.f47204b0;
                                 de0Var.C1(false, true);
                                 if (tL_error2 == null) {
                                     ec0Var2.S = false;
@@ -47,7 +47,7 @@ public final class yb0 implements RequestDelegate {
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            de0Var.f46951s0 = tL_help_termsOfService;
+                                            de0Var.f46911s0 = tL_help_termsOfService;
                                         }
                                         Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", ec0Var2.H);
@@ -100,12 +100,12 @@ public final class yb0 implements RequestDelegate {
                                 return;
                             default:
                                 ec0Var2.S = false;
-                                de0 de0Var2 = ec0Var2.f47235b0;
+                                de0 de0Var2 = ec0Var2.f47204b0;
                                 de0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;
                                     if (!TwoStepVerificationActivity.n0(password, true)) {
-                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.hd.N0(2131743575, "UpdateAppAlert"), true);
+                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.hd.N0(2131743577, "UpdateAppAlert"), true);
                                         return;
                                     }
                                     Bundle bundle2 = new Bundle();
@@ -125,8 +125,8 @@ public final class yb0 implements RequestDelegate {
                 });
                 return;
             default:
-                final ec0 ec0Var2 = this.f54158b;
-                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f54159c;
+                final ec0 ec0Var2 = this.f54134b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f54135c;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -138,9 +138,9 @@ public final class yb0 implements RequestDelegate {
                         ec0 ec0Var22 = ec0Var2;
                         switch (i10) {
                             case 0:
-                                int i11 = ec0Var22.f47232a;
-                                ah.i iVar = ec0Var22.f47236c;
-                                de0 de0Var = ec0Var22.f47235b0;
+                                int i11 = ec0Var22.f47201a;
+                                ah.i iVar = ec0Var22.f47205c;
+                                de0 de0Var = ec0Var22.f47204b0;
                                 de0Var.C1(false, true);
                                 if (tL_error2 == null) {
                                     ec0Var22.S = false;
@@ -149,7 +149,7 @@ public final class yb0 implements RequestDelegate {
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            de0Var.f46951s0 = tL_help_termsOfService;
+                                            de0Var.f46911s0 = tL_help_termsOfService;
                                         }
                                         Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", ec0Var22.H);
@@ -202,12 +202,12 @@ public final class yb0 implements RequestDelegate {
                                 return;
                             default:
                                 ec0Var22.S = false;
-                                de0 de0Var2 = ec0Var22.f47235b0;
+                                de0 de0Var2 = ec0Var22.f47204b0;
                                 de0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;
                                     if (!TwoStepVerificationActivity.n0(password, true)) {
-                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.hd.N0(2131743575, "UpdateAppAlert"), true);
+                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.hd.N0(2131743577, "UpdateAppAlert"), true);
                                         return;
                                     }
                                     Bundle bundle2 = new Bundle();

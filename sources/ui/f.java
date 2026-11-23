@@ -10,20 +10,20 @@ import android.os.Build;
 import android.support.v4.media.session.w;
 import dh.i;
 public final class f implements a, dh.b, si.a {
-    public final a f59046a;
-    public i f59048c;
+    public final a f59011a;
+    public i f59013c;
     public dh.g d;
-    public int f59049e;
-    public a f59050f;
+    public int f59014e;
+    public a f59015f;
     public ri.c h;
-    public boolean f59051n;
-    public boolean f59052r;
-    public RecordingCanvas f59053s;
-    public final xe.b f59054w = new xe.b();
-    public final RenderNode f59047b = w.c();
+    public boolean f59016n;
+    public boolean f59017r;
+    public RecordingCanvas f59018s;
+    public final xe.b f59019w = new xe.b();
+    public final RenderNode f59012b = w.c();
 
     public f(a aVar) {
-        this.f59046a = aVar;
+        this.f59011a = aVar;
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class f implements a, dh.b, si.a {
 
     @Override
     public final void c(fh.g gVar) {
-        this.f59054w.add(gVar);
+        this.f59019w.add(gVar);
     }
 
     @Override
@@ -59,14 +59,14 @@ public final class f implements a, dh.b, si.a {
             cVar = null;
         }
         ri.c cVar2 = cVar;
-        if (this.f59050f == null && cVar2 != null) {
+        if (this.f59015f == null && cVar2 != null) {
             canvas2 = canvas;
         } else {
             canvas.save();
             float f12 = 1.0f / i7;
             canvas.scale(f12, f12);
             canvas.translate(-f10, -f11);
-            a aVar = this.f59050f;
+            a aVar = this.f59015f;
             if (aVar != null) {
                 float f13 = i7 * 2;
                 aVar.o(rectF.left - f13, rectF.top - f13, rectF.right + f13, rectF.bottom + f13, canvas);
@@ -75,7 +75,7 @@ public final class f implements a, dh.b, si.a {
                 canvas2 = canvas;
             }
             if (cVar2 == null && Build.VERSION.SDK_INT >= 31 && (gVar = this.d) != null) {
-                gVar.c(canvas2, this.f59049e);
+                gVar.c(canvas2, this.f59014e);
             }
             canvas2.restore();
         }
@@ -96,13 +96,13 @@ public final class f implements a, dh.b, si.a {
             return cVar.e();
         }
         if (Build.VERSION.SDK_INT >= 31 && (gVar = this.d) != null) {
-            int i7 = this.f59049e;
-            if (gVar.f8435a && gVar.f8443k != 0) {
-                dh.f fVar = (dh.f) gVar.f8442j.get(0);
-                if ((i7 == -2 || i7 == -4) && (eVar = fVar.f8433c) != null) {
-                    return eVar.f8426e;
+            int i7 = this.f59014e;
+            if (gVar.f8398a && gVar.f8406k != 0) {
+                dh.f fVar = (dh.f) gVar.f8405j.get(0);
+                if ((i7 == -2 || i7 == -4) && (eVar = fVar.f8396c) != null) {
+                    return eVar.f8389e;
                 }
-                return fVar.f8432b.f8426e;
+                return fVar.f8395b.f8389e;
             }
             return 1;
         }
@@ -130,28 +130,28 @@ public final class f implements a, dh.b, si.a {
     }
 
     public final RecordingCanvas h(int i7, int i10) {
-        if (!this.f59052r) {
-            this.f59052r = true;
-            this.f59047b.setPosition(0, 0, i7, i10);
-            RecordingCanvas beginRecording = this.f59047b.beginRecording(i7, i10);
-            this.f59053s = beginRecording;
+        if (!this.f59017r) {
+            this.f59017r = true;
+            this.f59012b.setPosition(0, 0, i7, i10);
+            RecordingCanvas beginRecording = this.f59012b.beginRecording(i7, i10);
+            this.f59018s = beginRecording;
             return beginRecording;
         }
         throw new IllegalStateException();
     }
 
     public final void i() {
-        if (this.f59052r) {
-            this.f59047b.endRecording();
-            this.f59052r = false;
-            this.f59053s = null;
+        if (this.f59017r) {
+            this.f59012b.endRecording();
+            this.f59017r = false;
+            this.f59018s = null;
             return;
         }
         throw new IllegalStateException();
     }
 
     public final boolean j(int i7, int i10) {
-        if (this.f59047b.hasDisplayList() && this.f59047b.getWidth() == i7 && this.f59047b.getHeight() == i10) {
+        if (this.f59012b.hasDisplayList() && this.f59012b.getWidth() == i7 && this.f59012b.getHeight() == i10) {
             return false;
         }
         return true;
@@ -159,7 +159,7 @@ public final class f implements a, dh.b, si.a {
 
     public final void k(float f10) {
         RenderEffect renderEffect;
-        RenderNode renderNode = this.f59047b;
+        RenderNode renderNode = this.f59012b;
         if (f10 > 0.0f) {
             renderEffect = RenderEffect.createBlurEffect(f10, f10, Shader.TileMode.CLAMP);
         } else {
@@ -169,11 +169,11 @@ public final class f implements a, dh.b, si.a {
     }
 
     public final void l(float f10, RenderEffect renderEffect) {
-        this.f59047b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f10, f10, Shader.TileMode.CLAMP), renderEffect));
+        this.f59012b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f10, f10, Shader.TileMode.CLAMP), renderEffect));
     }
 
     public final void m(int i7, int i10) {
-        this.f59047b.setPosition(0, 0, i7, i10);
+        this.f59012b.setPosition(0, 0, i7, i10);
     }
 
     @Override
@@ -181,26 +181,26 @@ public final class f implements a, dh.b, si.a {
         dh.g gVar;
         ri.c cVar;
         if (!canvas.isHardwareAccelerated()) {
-            a aVar = this.f59046a;
+            a aVar = this.f59011a;
             if (aVar != null) {
                 aVar.o(f10, f11, f12, f13, canvas);
             }
-        } else if (!this.f59052r) {
-            a aVar2 = this.f59050f;
+        } else if (!this.f59017r) {
+            a aVar2 = this.f59015f;
             if (aVar2 != null) {
                 aVar2.o(f10, f11, f12, f13, canvas);
             }
             canvas.save();
-            if (!this.f59051n) {
+            if (!this.f59016n) {
                 canvas.clipRect(f10, f11, f12, f13);
             }
             int i7 = Build.VERSION.SDK_INT;
             if (i7 >= 31 && (cVar = this.h) != null) {
                 cVar.o(f10, f11, f12, f13, canvas);
             } else if (i7 >= 31 && (gVar = this.d) != null) {
-                gVar.c(canvas, this.f59049e);
+                gVar.c(canvas, this.f59014e);
             } else {
-                canvas.drawRenderNode(this.f59047b);
+                canvas.drawRenderNode(this.f59012b);
             }
             canvas.restore();
         } else {

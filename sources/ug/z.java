@@ -25,12 +25,12 @@ import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.ob;
 import org.telegram.ui.LaunchActivity;
 public final class z implements y10 {
-    public final int f59009a;
-    public final Object f59010b;
+    public final int f58974a;
+    public final Object f58975b;
 
     public z(Object obj, int i7) {
-        this.f59009a = i7;
-        this.f59010b = obj;
+        this.f58974a = i7;
+        this.f58975b = obj;
     }
 
     @Override
@@ -39,8 +39,8 @@ public final class z implements y10 {
         boolean z10;
         float f10;
         float f11;
-        int i7 = this.f59009a;
-        Object obj2 = this.f59010b;
+        int i7 = this.f58974a;
+        Object obj2 = this.f58975b;
         switch (i7) {
             case 0:
                 ((k0) obj2).z1((HashMap) obj);
@@ -49,8 +49,8 @@ public final class z implements y10 {
                 t1 t1Var = (t1) obj2;
                 Boolean bool = (Boolean) obj;
                 boolean e10 = qc.e(131072);
-                if (t1Var.f58961e != e10) {
-                    t1Var.f58961e = e10;
+                if (t1Var.f58926e != e10) {
+                    t1Var.f58926e = e10;
                     t1Var.invalidate();
                     return;
                 }
@@ -61,7 +61,7 @@ public final class z implements y10 {
             case 3:
                 gj gjVar = (gj) obj2;
                 TLRPC.payments_GiveawayInfo payments_giveawayinfo = (TLRPC.payments_GiveawayInfo) obj;
-                TLRPC.MessageMedia messageMedia = gjVar.f24213k.media;
+                TLRPC.MessageMedia messageMedia = gjVar.f24177k.media;
                 if (messageMedia instanceof TLRPC.TL_messageMediaGiveawayResults) {
                     TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = (TLRPC.TL_messageMediaGiveawayResults) messageMedia;
                     tL_messageMediaGiveaway = new TLRPC.TL_messageMediaGiveaway();
@@ -78,11 +78,11 @@ public final class z implements y10 {
                     tL_messageMediaGiveaway = (TLRPC.TL_messageMediaGiveaway) messageMedia;
                 }
                 TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway2 = tL_messageMediaGiveaway;
-                long j3 = 1000 * gjVar.f24213k.date;
+                long j3 = 1000 * gjVar.f24177k.date;
                 g2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     String b10 = wg.h.b(gjVar);
-                    TLRPC.Chat O0 = np.u1(k10.f24968t0).O0(Long.valueOf(-gjVar.Z0()));
+                    TLRPC.Chat O0 = np.u1(k10.f24932t0).O0(Long.valueOf(-gjVar.Z0()));
                     if (O0 != null && v3.V(O0)) {
                         z10 = true;
                     } else {
@@ -91,21 +91,21 @@ public final class z implements y10 {
                     ob obVar = new ob(Q.getParentActivity(), Q.getResourceProvider());
                     if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
                         obVar.c(2131623982, 30, 30, new String[0]);
-                        obVar.f38157b.setText(hd.N0(2131753368, null));
+                        obVar.f38124b.setText(hd.N0(2131753368, null));
                     } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo) {
                         if (((TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo).participating) {
                             obVar.c(2131624029, 30, 30, new String[0]);
-                            obVar.f38157b.setText(hd.N0(2131753366, null));
+                            obVar.f38124b.setText(hd.N0(2131753366, null));
                         } else {
                             obVar.c(2131623982, 30, 30, new String[0]);
-                            obVar.f38157b.setText(hd.N0(2131753367, null));
+                            obVar.f38124b.setText(hd.N0(2131753367, null));
                         }
                     }
-                    obVar.f38157b.setSingleLine(false);
-                    obVar.f38157b.setMaxLines(2);
+                    obVar.f38124b.setSingleLine(false);
+                    obVar.f38124b.setMaxLines(2);
                     ec ecVar = new ec(Q.getParentActivity(), Q.getResourceProvider(), true);
                     ecVar.e(hd.N0(2131748817, null));
-                    ecVar.f34725b = new ai.i(payments_giveawayinfo, z10, b10, j3, tL_messageMediaGiveaway2, Q);
+                    ecVar.f34715b = new ai.e(payments_giveawayinfo, z10, b10, j3, tL_messageMediaGiveaway2, Q);
                     obVar.setButton(ecVar);
                     gc.g(Q, obVar, 2750).j();
                     return;
@@ -150,7 +150,7 @@ public final class z implements y10 {
                 hVar.K.setLocalMatrix(matrix);
                 return;
             case 6:
-                HashMap hashMap = ((xg.b) obj2).f60524x;
+                HashMap hashMap = ((xg.b) obj2).f60489x;
                 hashMap.clear();
                 hashMap.putAll((HashMap) obj);
                 return;
@@ -158,7 +158,7 @@ public final class z implements y10 {
                 ((xg.e) obj2).F((TLObject) obj);
                 return;
             default:
-                HashMap hashMap2 = ((xg.h) obj2).f60550r;
+                HashMap hashMap2 = ((xg.h) obj2).f60515r;
                 hashMap2.clear();
                 hashMap2.putAll((HashMap) obj);
                 return;

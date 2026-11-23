@@ -7,7 +7,7 @@ import org.telegram.tgnet.tl.TL_account;
 public abstract class p10 {
     public static boolean A(TLRPC.User user) {
         if (user != null) {
-            long j3 = user.f28583id;
+            long j3 = user.f28547id;
             if (j3 == 708513 || j3 == 1271266957) {
                 return true;
             }
@@ -61,12 +61,12 @@ public abstract class p10 {
     }
 
     public static boolean b(long j3) {
-        return c(np.u1(k10.f24968t0).d2(j3));
+        return c(np.u1(k10.f24932t0).d2(j3));
     }
 
     public static boolean c(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        if ((userFull != null && userFull.f28584id == k10.i(k10.f24968t0).e()) || userFull == null || (disallowedGiftsSettings = userFull.disallowed_stargifts) == null || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_premium_gifts) {
+        if ((userFull != null && userFull.f28548id == k10.i(k10.f24932t0).e()) || userFull == null || (disallowedGiftsSettings = userFull.disallowed_stargifts) == null || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_premium_gifts) {
             return false;
         }
         return true;
@@ -124,7 +124,7 @@ public abstract class p10 {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (user.f28583id % 7);
+        return (int) (user.f28547id % 7);
     }
 
     public static long g(TLRPC.User user) {
@@ -297,7 +297,7 @@ public abstract class p10 {
     }
 
     public static boolean t(TLRPC.User user) {
-        if (user != null && user.f28583id == 2666000) {
+        if (user != null && user.f28547id == 2666000) {
             return true;
         }
         return false;

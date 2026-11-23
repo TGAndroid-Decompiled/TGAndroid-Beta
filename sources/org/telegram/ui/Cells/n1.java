@@ -10,30 +10,30 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.mc;
 import org.telegram.ui.Components.q80;
 public final class n1 {
-    public final boolean f31129a;
-    public final ImageReceiver f31130b;
-    public final org.telegram.ui.Components.b9 f31131c;
+    public final boolean f31095a;
+    public final ImageReceiver f31096b;
+    public final org.telegram.ui.Components.b9 f31097c;
     public final RectF d;
-    public final mc f31132e;
-    public StaticLayout f31133f;
-    public StaticLayout f31134g;
+    public final mc f31098e;
+    public StaticLayout f31099f;
+    public StaticLayout f31100g;
     public StaticLayout h;
-    public boolean f31135i;
-    public int f31136j;
-    public y f31137k;
-    public int f31138l;
-    public q80 f31139m;
-    public boolean f31140n;
-    public final float[] f31141o;
+    public boolean f31101i;
+    public int f31102j;
+    public y f31103k;
+    public int f31104l;
+    public q80 f31105m;
+    public boolean f31106n;
+    public final float[] f31107o;
 
     public n1(r1 r1Var, boolean z10) {
         ImageReceiver imageReceiver = new ImageReceiver(r1Var);
-        this.f31130b = imageReceiver;
-        this.f31131c = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
+        this.f31096b = imageReceiver;
+        this.f31097c = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
         this.d = new RectF();
-        this.f31132e = new mc(r1Var);
-        this.f31141o = new float[8];
-        this.f31129a = z10;
+        this.f31098e = new mc(r1Var);
+        this.f31107o = new float[8];
+        this.f31095a = z10;
         imageReceiver.J0(org.telegram.messenger.g0.L(16.0f) / 2);
         if (r1Var.O0) {
             imageReceiver.P();
@@ -49,13 +49,13 @@ public final class n1 {
         TLRPC.ChatPhoto chatPhoto;
         TLRPC.UserProfilePhoto userProfilePhoto;
         int L = i7 - org.telegram.messenger.g0.L(22.0f);
-        this.f31136j = org.telegram.messenger.g0.L(16.0f);
-        StaticLayout X2 = r1.X2(str, r1.f31353xd, L);
-        this.f31133f = X2;
+        this.f31102j = org.telegram.messenger.g0.L(16.0f);
+        StaticLayout X2 = r1.X2(str, r1.f31319xd, L);
+        this.f31099f = X2;
         if (X2 != null) {
             int L2 = org.telegram.messenger.g0.L(4.0f) + r1.L1(X2);
             L -= L2;
-            this.f31136j = org.telegram.messenger.f3.C(6.0f, L2, this.f31136j);
+            this.f31102j = org.telegram.messenger.f3.C(6.0f, L2, this.f31102j);
         }
         int i13 = 0;
         if (tLObject != null && (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || (chatPhoto = ((TLRPC.Chat) tLObject).photo) == null || chatPhoto.photo_small == null) : !((userProfilePhoto = ((TLRPC.User) tLObject).photo) == null || userProfilePhoto.photo_small == null))) {
@@ -63,21 +63,21 @@ public final class n1 {
         } else {
             z10 = false;
         }
-        this.f31135i = z10;
+        this.f31101i = z10;
         StaticLayout staticLayout = null;
-        ImageReceiver imageReceiver = this.f31130b;
+        ImageReceiver imageReceiver = this.f31096b;
         if (z10) {
-            org.telegram.ui.Components.b9 b9Var = this.f31131c;
+            org.telegram.ui.Components.b9 b9Var = this.f31097c;
             b9Var.p(tLObject);
             imageReceiver.i0(tLObject, b9Var, null);
             L -= org.telegram.messenger.g0.L(21.0f);
-            int i14 = this.f31136j;
-            if (this.f31133f == null) {
+            int i14 = this.f31102j;
+            if (this.f31099f == null) {
                 i12 = org.telegram.messenger.g0.L(6.0f);
             } else {
                 i12 = 0;
             }
-            this.f31136j = org.telegram.messenger.f3.C(21.0f, i12, i14);
+            this.f31102j = org.telegram.messenger.f3.C(21.0f, i12, i14);
         } else {
             imageReceiver.f();
         }
@@ -86,7 +86,7 @@ public final class n1 {
         if (N3 == null) {
             min = 0;
         } else {
-            min = Math.min(i15, (int) Math.ceil(r1.f31354yd.measureText(N3, 0, N3.length())));
+            min = Math.min(i15, (int) Math.ceil(r1.f31320yd.measureText(N3, 0, N3.length())));
         }
         if (N3 != null) {
             i10 = org.telegram.messenger.g0.L(4.0f) + min;
@@ -94,31 +94,31 @@ public final class n1 {
             i10 = 0;
         }
         StaticLayout X22 = r1.X2(charSequence, textPaint, L - i10);
-        this.f31134g = X22;
+        this.f31100g = X22;
         if (X22 != null) {
             int L3 = org.telegram.messenger.g0.L(4.0f) + r1.L1(X22);
             L -= L3;
-            int i16 = this.f31136j;
-            if (this.f31133f == null && !this.f31135i) {
+            int i16 = this.f31102j;
+            if (this.f31099f == null && !this.f31101i) {
                 i11 = org.telegram.messenger.g0.L(6.0f);
             } else {
                 i11 = 0;
             }
-            this.f31136j = i11 + L3 + i16;
+            this.f31102j = i11 + L3 + i16;
         }
         if (L > org.telegram.messenger.g0.L(24.0f)) {
-            staticLayout = r1.X2(N3, r1.f31354yd, Math.min(i15, L));
+            staticLayout = r1.X2(N3, r1.f31320yd, Math.min(i15, L));
         }
         this.h = staticLayout;
         if (staticLayout != null) {
-            int i17 = this.f31136j;
-            if (this.f31133f == null && !this.f31135i && this.f31134g == null) {
+            int i17 = this.f31102j;
+            if (this.f31099f == null && !this.f31101i && this.f31100g == null) {
                 i13 = org.telegram.messenger.g0.L(6.0f);
             }
-            this.f31136j = r1.L1(this.h) + i13 + i17;
-        } else if (this.f31134g == null && this.f31133f == null) {
+            this.f31102j = r1.L1(this.h) + i13 + i17;
+        } else if (this.f31100g == null && this.f31099f == null) {
         } else {
-            this.f31136j -= org.telegram.messenger.g0.L(4.0f);
+            this.f31102j -= org.telegram.messenger.g0.L(4.0f);
         }
     }
 }

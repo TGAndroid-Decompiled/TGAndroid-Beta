@@ -1,15 +1,15 @@
 package l2;
 
-import a8.la;
+import a8.ma;
 import android.os.Bundle;
 public final class l extends e2.v0 {
     public final int E;
     public final x2.g0 F;
     public final boolean G;
-    public final int f19456s;
-    public final String f19457w;
-    public final int f19458x;
-    public final e2.u f19459y;
+    public final int f19422s;
+    public final String f19423w;
+    public final int f19424x;
+    public final e2.u f19425y;
 
     public l(int i7, Exception exc, int i10) {
         this(i7, exc, i10, null, -1, null, 4, null, false);
@@ -17,20 +17,20 @@ public final class l extends e2.v0 {
 
     public final l a(x2.g0 g0Var) {
         String message = getMessage();
-        String str = h2.l0.f13815a;
-        return new l(message, getCause(), this.f10812a, this.f19456s, this.f19457w, this.f19458x, this.f19459y, this.E, g0Var, this.f10813b, this.G);
+        String str = h2.l0.f13778a;
+        return new l(message, getCause(), this.f10775a, this.f19422s, this.f19423w, this.f19424x, this.f19425y, this.E, g0Var, this.f10776b, this.G);
     }
 
     public l(String str, Throwable th2, int i7, int i10, String str2, int i11, e2.u uVar, int i12, x2.g0 g0Var, long j3, boolean z10) {
         super(str, th2, i7, j3);
         Bundle bundle = Bundle.EMPTY;
         boolean z11 = false;
-        la.f(!z10 || i10 == 1);
-        la.f((th2 != null || i10 == 3) ? true : z11);
-        this.f19456s = i10;
-        this.f19457w = str2;
-        this.f19458x = i11;
-        this.f19459y = uVar;
+        ma.f(!z10 || i10 == 1);
+        ma.f((th2 != null || i10 == 3) ? true : z11);
+        this.f19422s = i10;
+        this.f19423w = str2;
+        this.f19424x = i11;
+        this.f19425y = uVar;
         this.E = i12;
         this.F = g0Var;
         this.G = z10;

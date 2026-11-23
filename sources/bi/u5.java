@@ -1,60 +1,87 @@
 package bi;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.webkit.JsPromptResult;
-import android.widget.TextView;
-import org.telegram.messenger.y10;
-import org.telegram.ui.Components.ot;
-public final class u5 implements TextView.OnEditorActionListener {
-    public final int f4158a;
-    public final Object f4159b;
-    public final Object f4160c;
-    public final Object d;
-    public final Object f4161e;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import org.telegram.ui.Components.gq0;
+import org.telegram.ui.Components.iq0;
+public final class u5 extends Drawable {
+    public final int f4123a;
+    public final ShapeDrawable f4124b;
+    public final Rect f4125c;
 
-    public u5(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f4158a = i7;
-        this.f4159b = obj;
-        this.f4160c = obj2;
-        this.d = obj3;
-        this.f4161e = obj4;
+    public u5(gq0 gq0Var) {
+        this.f4123a = 0;
+        this.f4124b = org.telegram.ui.ActionBar.m6.e0(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), 0);
+        this.f4125c = new Rect();
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        switch (this.f4158a) {
+    public final void draw(Canvas canvas) {
+        switch (this.f4123a) {
             case 0:
-                t5 t5Var = (t5) this.f4159b;
-                if (i7 != 6) {
-                    return false;
-                }
-                String obj = t5Var.getText().toString();
-                if (obj.length() > 0 && obj.length() <= 12) {
-                    ((y10) this.f4160c).a(obj);
-                    org.telegram.ui.ActionBar.t1 t1Var = ((org.telegram.ui.ActionBar.t1[]) this.d)[0];
-                    if (t1Var != null) {
-                        t1Var.dismiss();
-                    }
-                    View view = (View) this.f4161e;
-                    if (view != null) {
-                        view.requestFocus();
-                    }
-                } else {
-                    org.telegram.messenger.g0.D3(t5Var);
-                }
-                return true;
+                Rect bounds = getBounds();
+                Rect rect = this.f4125c;
+                rect.set(bounds);
+                rect.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.0f));
+                ShapeDrawable shapeDrawable = this.f4124b;
+                shapeDrawable.setBounds(rect);
+                shapeDrawable.draw(canvas);
+                return;
             default:
-                if (i7 != 6) {
-                    return false;
-                }
-                boolean[] zArr = (boolean[]) this.f4159b;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    ((JsPromptResult) this.f4160c).confirm(((ot) this.d).getText().toString());
-                    ((org.telegram.ui.ActionBar.t1) this.f4161e).dismiss();
-                }
-                return true;
+                Rect bounds2 = getBounds();
+                Rect rect2 = this.f4125c;
+                rect2.set(bounds2);
+                rect2.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.0f));
+                ShapeDrawable shapeDrawable2 = this.f4124b;
+                shapeDrawable2.setBounds(rect2);
+                shapeDrawable2.draw(canvas);
+                return;
         }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f4123a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        switch (this.f4123a) {
+            case 0:
+                this.f4124b.setAlpha(i7);
+                return;
+            default:
+                this.f4124b.setAlpha(i7);
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i7 = this.f4123a;
+    }
+
+    public u5(iq0 iq0Var) {
+        this.f4123a = 1;
+        int L = org.telegram.messenger.g0.L(16.0f);
+        int L2 = org.telegram.messenger.g0.L(16.0f);
+        int i7 = org.telegram.ui.ActionBar.m6.f29347d6;
+        org.telegram.ui.ActionBar.h6 h6Var = iq0Var.f36260c;
+        this.f4124b = org.telegram.ui.ActionBar.m6.e0(L, L2, org.telegram.ui.ActionBar.m6.w(org.telegram.ui.ActionBar.m6.w0(i7, h6Var), org.telegram.ui.ActionBar.m6.r1(0.04f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, h6Var))));
+        this.f4125c = new Rect();
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
     }
 }

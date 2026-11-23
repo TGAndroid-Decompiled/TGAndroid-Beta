@@ -5,21 +5,21 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 public final class ea implements View.OnAttachStateChangeListener {
-    public final int f34711a;
-    public final Object f34712b;
-    public final Object f34713c;
+    public final int f34701a;
+    public final Object f34702b;
+    public final Object f34703c;
 
     public ea(int i7, Object obj, Object obj2) {
-        this.f34711a = i7;
-        this.f34713c = obj;
-        this.f34712b = obj2;
+        this.f34701a = i7;
+        this.f34703c = obj;
+        this.f34702b = obj2;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        int i7 = this.f34711a;
-        Object obj = this.f34712b;
-        Object obj2 = this.f34713c;
+        int i7 = this.f34701a;
+        Object obj = this.f34702b;
+        Object obj2 = this.f34703c;
         switch (i7) {
             case 0:
                 ca caVar = (ca) obj;
@@ -30,21 +30,21 @@ public final class ea implements View.OnAttachStateChangeListener {
                 return;
             case 1:
                 xy0 xy0Var = (xy0) obj2;
-                xy0Var.f42252k = y5.update(xy0Var.f42253l, (View) obj, xy0Var.f42252k, xy0Var.f42245b);
+                xy0Var.f42230k = y5.update(xy0Var.f42231l, (View) obj, xy0Var.f42230k, xy0Var.f42223b);
                 return;
             default:
                 org.telegram.ui.Wallet.m4 m4Var = (org.telegram.ui.Wallet.m4) obj2;
-                org.telegram.ui.Wallet.l4 l4Var = m4Var.f44581m;
+                org.telegram.ui.Wallet.l4 l4Var = m4Var.f44547m;
                 if (l4Var != null) {
-                    l4Var.setPaused(!m4Var.f44582n);
+                    l4Var.setPaused(!m4Var.f44548n);
                 }
-                m4Var.f44559a.isAttachedToWindow();
-                int i10 = m4Var.f44598v0;
+                m4Var.f44525a.isAttachedToWindow();
+                int i10 = m4Var.f44564v0;
                 if (-1 != i10) {
                     if (i10 >= 0) {
-                        org.telegram.messenger.ls.f(i10).n(m4Var.f44602x0, 67);
+                        org.telegram.messenger.ls.f(i10).n(m4Var.f44568x0, 67);
                     }
-                    m4Var.f44598v0 = -1;
+                    m4Var.f44564v0 = -1;
                     return;
                 }
                 return;
@@ -53,28 +53,28 @@ public final class ea implements View.OnAttachStateChangeListener {
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        switch (this.f34711a) {
+        switch (this.f34701a) {
             case 0:
-                ga gaVar = (ga) this.f34713c;
-                ca caVar = (ca) this.f34712b;
+                ga gaVar = (ga) this.f34703c;
+                ca caVar = (ca) this.f34702b;
                 if (caVar != null) {
                     ArrayList arrayList = caVar.d;
                     arrayList.remove(gaVar);
-                    if (caVar.f34128e.isEmpty() && arrayList.isEmpty()) {
-                        caVar.f34136n.o();
+                    if (caVar.f34092e.isEmpty() && arrayList.isEmpty()) {
+                        caVar.f34100n.o();
                     }
                 }
-                gaVar.f35498n = null;
+                gaVar.f35460n = null;
                 Paint paint = gaVar.h;
-                gaVar.f35499o = null;
+                gaVar.f35461o = null;
                 paint.setShader(null);
                 return;
             case 1:
-                y5.release((View) this.f34712b, ((xy0) this.f34713c).f42252k);
+                y5.release((View) this.f34702b, ((xy0) this.f34703c).f42230k);
                 return;
             default:
-                org.telegram.ui.Wallet.m4 m4Var = (org.telegram.ui.Wallet.m4) this.f34713c;
-                org.telegram.ui.Cells.v0 v0Var = m4Var.f44559a;
+                org.telegram.ui.Wallet.m4 m4Var = (org.telegram.ui.Wallet.m4) this.f34703c;
+                org.telegram.ui.Cells.v0 v0Var = m4Var.f44525a;
                 m4Var.f();
                 m4Var.M = false;
                 m4Var.N = 0L;
@@ -84,31 +84,31 @@ public final class ea implements View.OnAttachStateChangeListener {
                     gVar.d();
                     m4Var.Z = null;
                 }
-                m4Var.f44560a0 = 1.0f;
+                m4Var.f44526a0 = 1.0f;
                 v0Var.invalidate();
                 if (v0Var.getParent() instanceof View) {
                     ((View) v0Var.getParent()).invalidate();
                 }
                 m4Var.l();
-                org.telegram.ui.Wallet.y6 y6Var = m4Var.f44577k;
-                WeakHashMap weakHashMap = y6Var.f45359e;
-                weakHashMap.remove((org.telegram.ui.Cells.v0) this.f34712b);
+                org.telegram.ui.Wallet.y6 y6Var = m4Var.f44543k;
+                WeakHashMap weakHashMap = y6Var.f45325e;
+                weakHashMap.remove((org.telegram.ui.Cells.v0) this.f34702b);
                 if (weakHashMap.isEmpty()) {
                     y6Var.a();
                 }
                 v0Var.isAttachedToWindow();
-                int i7 = m4Var.f44598v0;
+                int i7 = m4Var.f44564v0;
                 if (-1 != i7) {
                     if (i7 >= 0) {
-                        org.telegram.messenger.ls.f(i7).n(m4Var.f44602x0, 67);
+                        org.telegram.messenger.ls.f(i7).n(m4Var.f44568x0, 67);
                     }
-                    m4Var.f44598v0 = -1;
+                    m4Var.f44564v0 = -1;
                 }
-                org.telegram.ui.Wallet.l4 l4Var = m4Var.f44581m;
+                org.telegram.ui.Wallet.l4 l4Var = m4Var.f44547m;
                 if (l4Var != null) {
                     l4Var.setPaused(true);
                 }
-                m4Var.f44579l.stop();
+                m4Var.f44545l.stop();
                 m4Var.H = false;
                 return;
         }

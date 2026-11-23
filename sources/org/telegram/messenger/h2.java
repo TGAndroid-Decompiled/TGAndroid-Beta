@@ -37,46 +37,46 @@ public final class h2 extends View {
     public xy0 U;
     public Drawable V;
     public Drawable W;
-    public final Paint f24364a;
-    public RenderNode f24365a0;
-    public final Paint f24366b;
-    public final a f24367b0;
-    public final Paint f24368c;
-    public Runnable f24369c0;
+    public final Paint f24328a;
+    public RenderNode f24329a0;
+    public final Paint f24330b;
+    public final a f24331b0;
+    public final Paint f24332c;
+    public Runnable f24333c0;
     public final Path d;
-    public Runnable f24370d0;
-    public final Paint f24371e;
-    public Runnable f24372e0;
-    public final Path f24373f;
-    public Object f24374f0;
-    public WebView f24375g0;
+    public Runnable f24334d0;
+    public final Paint f24335e;
+    public Runnable f24336e0;
+    public final Path f24337f;
+    public Object f24338f0;
+    public WebView f24339g0;
     public final RectF h;
-    public int f24376h0;
-    public final RectF f24377n;
-    public final org.telegram.ui.Components.mc f24378r;
-    public final RectF f24379s;
-    public final RectF f24380w;
-    public final org.telegram.ui.Components.mc f24381x;
-    public final RectF f24382y;
+    public int f24340h0;
+    public final RectF f24341n;
+    public final org.telegram.ui.Components.mc f24342r;
+    public final RectF f24343s;
+    public final RectF f24344w;
+    public final org.telegram.ui.Components.mc f24345x;
+    public final RectF f24346y;
 
     public h2(Context context) {
         super(context);
-        this.f24364a = new Paint(1);
-        this.f24366b = new Paint(1);
+        this.f24328a = new Paint(1);
+        this.f24330b = new Paint(1);
         Paint paint = new Paint(1);
-        this.f24368c = paint;
+        this.f24332c = paint;
         this.d = new Path();
         Paint paint2 = new Paint(1);
-        this.f24371e = paint2;
+        this.f24335e = paint2;
         Path path = new Path();
-        this.f24373f = path;
+        this.f24337f = path;
         this.h = new RectF();
-        this.f24377n = new RectF();
-        this.f24378r = new org.telegram.ui.Components.mc((View) null);
-        this.f24379s = new RectF();
-        this.f24380w = new RectF();
-        this.f24381x = new org.telegram.ui.Components.mc(this);
-        this.f24382y = new RectF();
+        this.f24341n = new RectF();
+        this.f24342r = new org.telegram.ui.Components.mc((View) null);
+        this.f24343s = new RectF();
+        this.f24344w = new RectF();
+        this.f24345x = new org.telegram.ui.Components.mc(this);
+        this.f24346y = new RectF();
         this.E = new RectF();
         this.F = new RectF();
         this.G = new org.telegram.ui.Components.mc(this);
@@ -90,7 +90,7 @@ public final class h2 extends View {
         this.P = false;
         this.Q = new org.telegram.ui.Components.d6(this, 0L, 420L, nrVar);
         this.T = new h6.m(29);
-        this.f24367b0 = new a(this, 2);
+        this.f24331b0 = new a(this, 2);
         this.K = System.currentTimeMillis();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -113,17 +113,17 @@ public final class h2 extends View {
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
-                    return this.f24378r;
+                    return this.f24342r;
                 }
                 return this.J;
             }
             return this.G;
         }
-        return this.f24381x;
+        return this.f24345x;
     }
 
     public final int b(MotionEvent motionEvent) {
-        if (this.f24380w.contains(motionEvent.getX(), motionEvent.getY())) {
+        if (this.f24344w.contains(motionEvent.getX(), motionEvent.getY())) {
             return 1;
         }
         if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
@@ -145,9 +145,9 @@ public final class h2 extends View {
         float f14;
         WebView webView;
         super.onDraw(canvas);
-        Paint paint = this.f24366b;
+        Paint paint = this.f24330b;
         paint.setColor(-1);
-        Paint paint2 = this.f24368c;
+        Paint paint2 = this.f24332c;
         paint2.setColor(-1);
         paint2.setStrokeWidth(g0.L(2.0f));
         Path path = this.d;
@@ -157,7 +157,7 @@ public final class h2 extends View {
         float L2 = rectF.top + g0.L(8.0f);
         float width2 = (getWidth() - rectF.right) - g0.L(8.0f);
         float L3 = rectF.top + g0.L(38.0f);
-        RectF rectF2 = this.f24382y;
+        RectF rectF2 = this.f24346y;
         rectF2.set(width, L2, width2, L3);
         float f15 = rectF2.left;
         float f16 = rectF2.top;
@@ -183,7 +183,7 @@ public final class h2 extends View {
             f10 = 18.0f;
             L = 0.0f;
         } else {
-            float f21 = xy0Var.f42246c;
+            float f21 = xy0Var.f42224c;
             f10 = 18.0f;
             if (this.V != null) {
                 f11 = 30.0f;
@@ -193,37 +193,37 @@ public final class h2 extends View {
             L = f21 + g0.L(f11);
         }
         float min = Math.min(L4, L);
-        float T1 = g0.T1(g0.T1(this.S.f42246c, this.R.f42246c, d) + g0.L(12.0f), min, d2);
-        RectF rectF5 = this.f24377n;
+        float T1 = g0.T1(g0.T1(this.S.f42224c, this.R.f42224c, d) + g0.L(12.0f), min, d2);
+        RectF rectF5 = this.f24341n;
         rectF5.set(rectF.left + g0.L(8.0f), rectF.top + g0.L(8.0f), rectF.left + g0.L(38.0f) + T1, rectF.top + g0.L(38.0f));
         float f22 = rectF5.left;
         float f23 = rectF5.bottom;
-        RectF rectF6 = this.f24379s;
+        RectF rectF6 = this.f24343s;
         rectF6.set(f22, rectF5.top, g0.L(30.0f) + f22, f23);
-        RectF rectF7 = this.f24380w;
+        RectF rectF7 = this.f24344w;
         rectF7.set(rectF6);
         rectF7.right = g0.T1(rectF5.right, rectF6.left + g0.L(30.0f), d2);
         rectF7.inset(-g0.L(8.0f), -g0.L(8.0f));
         path.addRoundRect(rectF5, g0.L(15.0f), g0.L(15.0f), direction);
-        Object obj = this.f24374f0;
-        Paint paint3 = this.f24364a;
-        if (obj != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && ((webView = this.f24375g0) == null || webView.getLayerType() == 2)) {
-            if (this.f24365a0 == null) {
+        Object obj = this.f24338f0;
+        Paint paint3 = this.f24328a;
+        if (obj != null && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && ((webView = this.f24339g0) == null || webView.getLayerType() == 2)) {
+            if (this.f24329a0 == null) {
                 RenderNode renderNode = new RenderNode("bot_fullscreen_blur");
-                this.f24365a0 = renderNode;
+                this.f24329a0 = renderNode;
                 renderNode.setRenderEffect(RenderEffect.createBlurEffect(g0.L(f10), g0.L(f10), Shader.TileMode.CLAMP));
             }
-            RenderNode d10 = n2.a0.d(this.f24374f0);
-            this.f24365a0.setPosition(0, 0, i5.c.d(16.0f, d10.getWidth(), 1), Math.max(1, (int) Math.min(rectF.top + g0.L(46.0f), d10.getHeight())));
-            RecordingCanvas beginRecording = this.f24365a0.beginRecording();
+            RenderNode d10 = n2.a0.d(this.f24338f0);
+            this.f24329a0.setPosition(0, 0, i5.c.d(16.0f, d10.getWidth(), 1), Math.max(1, (int) Math.min(rectF.top + g0.L(46.0f), d10.getHeight())));
+            RecordingCanvas beginRecording = this.f24329a0.beginRecording();
             beginRecording.translate(-g0.L(8.0f), 0.0f);
             beginRecording.drawRenderNode(d10);
-            this.f24365a0.endRecording();
+            this.f24329a0.endRecording();
             canvas.save();
             canvas.clipPath(path);
             canvas.save();
             canvas.translate(g0.L(8.0f), 0.0f);
-            canvas.drawRenderNode(this.f24365a0);
+            canvas.drawRenderNode(this.f24329a0);
             canvas.restore();
             paint3.setColor(org.telegram.ui.ActionBar.m6.r1(0.22f, -16777216));
             canvas.drawPaint(paint3);
@@ -234,7 +234,7 @@ public final class h2 extends View {
         }
         canvas.save();
         canvas.translate(rectF6.centerX(), rectF6.centerY());
-        org.telegram.ui.Components.mc mcVar = this.f24381x;
+        org.telegram.ui.Components.mc mcVar = this.f24345x;
         float a10 = mcVar.a(0.1f);
         canvas.scale(a10, a10);
         canvas.translate((-g0.L(6.5f)) * d, 0.0f);
@@ -259,7 +259,7 @@ public final class h2 extends View {
             } else {
                 f14 = 12.0f;
             }
-            xy0Var2.f42257p = ((f25 - g0.L(f14)) - (rectF5.left + g0.L(30.0f))) + 2.0f;
+            xy0Var2.f42235p = ((f25 - g0.L(f14)) - (rectF5.left + g0.L(30.0f))) + 2.0f;
             f13 = 1.0f;
             xy0Var2.c(0.0f, 0.0f, d2, -1, canvas);
             f12 = d2;
@@ -326,9 +326,9 @@ public final class h2 extends View {
             float f28 = (d11 * 0.5f) + 0.5f;
             canvas.scale(f28, f28);
             int r12 = org.telegram.ui.ActionBar.m6.r1(0.4f, -1);
-            Paint paint4 = this.f24371e;
+            Paint paint4 = this.f24335e;
             paint4.setColor(r12);
-            Path path2 = this.f24373f;
+            Path path2 = this.f24337f;
             canvas.drawPath(path2, paint4);
             float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.K) % 450)) / 450.0f;
             float f29 = 0.5f + currentTimeMillis;
@@ -355,31 +355,31 @@ public final class h2 extends View {
         Runnable runnable2;
         Runnable runnable3;
         if (motionEvent.getAction() == 0) {
-            a(this.f24376h0).c(false);
+            a(this.f24340h0).c(false);
             int b10 = b(motionEvent);
-            this.f24376h0 = b10;
+            this.f24340h0 = b10;
             a(b10).c(true);
         } else if (motionEvent.getAction() == 2) {
-            if (b(motionEvent) != this.f24376h0) {
-                this.f24376h0 = 0;
+            if (b(motionEvent) != this.f24340h0) {
+                this.f24340h0 = 0;
                 a(0).c(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            int i7 = this.f24376h0;
-            if (i7 == 1 && (runnable3 = this.f24369c0) != null) {
+            int i7 = this.f24340h0;
+            if (i7 == 1 && (runnable3 = this.f24333c0) != null) {
                 runnable3.run();
-            } else if (i7 == 2 && (runnable2 = this.f24370d0) != null) {
+            } else if (i7 == 2 && (runnable2 = this.f24334d0) != null) {
                 runnable2.run();
-            } else if (i7 == 3 && (runnable = this.f24372e0) != null) {
+            } else if (i7 == 3 && (runnable = this.f24336e0) != null) {
                 runnable.run();
             }
-            a(this.f24376h0).c(false);
-            this.f24376h0 = 0;
+            a(this.f24340h0).c(false);
+            this.f24340h0 = 0;
         } else if (motionEvent.getAction() == 3) {
-            a(this.f24376h0).c(false);
-            this.f24376h0 = 0;
+            a(this.f24340h0).c(false);
+            this.f24340h0 = 0;
         }
-        if (this.f24376h0 != 0) {
+        if (this.f24340h0 != 0) {
             return true;
         }
         return false;
@@ -403,23 +403,23 @@ public final class h2 extends View {
     }
 
     public void setOnCloseClickListener(Runnable runnable) {
-        this.f24369c0 = runnable;
+        this.f24333c0 = runnable;
     }
 
     public void setOnCollapseClickListener(Runnable runnable) {
-        this.f24370d0 = runnable;
+        this.f24334d0 = runnable;
     }
 
     public void setOnMenuClickListener(Runnable runnable) {
-        this.f24372e0 = runnable;
+        this.f24336e0 = runnable;
     }
 
     public void setParentRenderNode(Object obj) {
-        this.f24374f0 = obj;
+        this.f24338f0 = obj;
     }
 
     public void setWebView(WebView webView) {
-        this.f24375g0 = webView;
+        this.f24339g0 = webView;
     }
 
     public void setInsets(Rect rect) {

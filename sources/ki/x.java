@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import c8.ma;
+import c8.na;
 import di.xb;
 import java.util.ArrayList;
 import org.telegram.messenger.ls;
@@ -17,21 +17,21 @@ import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.dk0;
 import org.telegram.ui.Components.nq;
 public final class x extends dk0 {
-    public ArrayList f19066c;
+    public ArrayList f19032c;
     public ArrayList d;
-    public ArrayList f19067e;
+    public ArrayList f19033e;
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
+    public final boolean D(v4.e1 e1Var) {
         return true;
     }
 
     public final void E(a0.h hVar) {
-        ArrayList arrayList = this.f19066c;
+        ArrayList arrayList = this.f19032c;
         arrayList.clear();
         ArrayList arrayList2 = this.d;
         arrayList2.clear();
-        ArrayList arrayList3 = this.f19067e;
+        ArrayList arrayList3 = this.f19033e;
         arrayList3.clear();
         for (int i7 = 0; i7 < hVar.m(); i7++) {
             TL_bots.BotInfo botInfo = (TL_bots.BotInfo) hVar.n(i7);
@@ -49,36 +49,36 @@ public final class x extends dk0 {
 
     @Override
     public final int b() {
-        return this.f19066c.size();
+        return this.f19032c.size();
     }
 
     @Override
-    public final void t(v4.f1 f1Var, int i7) {
-        w wVar = (w) f1Var.f59165a;
-        String str = (String) this.f19066c.get(i7);
-        if (((Boolean) this.f19067e.get(i7)).booleanValue()) {
+    public final void t(v4.e1 e1Var, int i7) {
+        w wVar = (w) e1Var.f59111a;
+        String str = (String) this.f19032c.get(i7);
+        if (((Boolean) this.f19033e.get(i7)).booleanValue()) {
             nq nqVar = new nq(2131231943, 0);
             nqVar.a(m6.A6);
-            nqVar.f37949n = 1;
+            nqVar.f37906n = 1;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
             spannableStringBuilder.setSpan(nqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-            wVar.f19046a.setText(spannableStringBuilder);
+            wVar.f19012a.setText(spannableStringBuilder);
         } else {
-            wVar.f19046a.setText(str);
+            wVar.f19012a.setText(str);
         }
-        wVar.f19047b.setText((CharSequence) this.d.get(i7));
-        wVar.f19048c = str;
+        wVar.f19013b.setText((CharSequence) this.d.get(i7));
+        wVar.f19014c = str;
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+    public final v4.e1 x(ViewGroup viewGroup, int i7) {
         Context context = viewGroup.getContext();
         ?? linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f));
         xb xbVar = new xb(context, 4);
-        linearLayout.f19047b = xbVar;
+        linearLayout.f19013b = xbVar;
         ls.i(xbVar);
         xbVar.setTextSize(1, 16.0f);
         int i10 = m6.G6;
@@ -86,15 +86,15 @@ public final class x extends dk0 {
         xbVar.setTag(Integer.valueOf(i10));
         xbVar.setMaxLines(2);
         xbVar.setEllipsize(TextUtils.TruncateAt.END);
-        linearLayout.addView(xbVar, ma.q(-1, -2, 1.0f, 16, 0, 0, org.telegram.messenger.g0.L(8.0f), 0));
+        linearLayout.addView(xbVar, na.q(-1, -2, 1.0f, 16, 0, 0, org.telegram.messenger.g0.L(8.0f), 0));
         TextView textView = new TextView(context);
-        linearLayout.f19046a = textView;
+        linearLayout.f19012a = textView;
         textView.setTextSize(1, 14.0f);
-        int i11 = m6.f29773y6;
+        int i11 = m6.f29739y6;
         t6.U(textView, i11, null);
         textView.setTag(Integer.valueOf(i11));
-        linearLayout.addView(textView, ma.p(-2, -2, 0.0f, 16));
-        linearLayout.setLayoutParams(new v4.q0(-1, -2));
-        return new v4.f1(linearLayout);
+        linearLayout.addView(textView, na.p(-2, -2, 0.0f, 16));
+        linearLayout.setLayoutParams(new v4.p0(-1, -2));
+        return new v4.e1(linearLayout);
     }
 }

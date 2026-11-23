@@ -6,22 +6,22 @@ import h9.t1;
 import j$.util.Objects;
 import java.util.List;
 public final class b {
-    public static final t1 f21096e;
-    public static final b f21097f;
-    public static final t1 f21098g;
+    public static final t1 f21062e;
+    public static final b f21063f;
+    public static final t1 f21064g;
     public static final h9.l0 h;
-    public final SparseArray f21099a = new SparseArray();
-    public final int f21100b;
-    public final h9.i0 f21101c;
+    public final SparseArray f21065a = new SparseArray();
+    public final int f21066b;
+    public final h9.i0 f21067c;
     public final h9.i0 d;
 
     static {
         t1 u10 = h9.i0.u(12);
-        f21096e = u10;
-        f21097f = new b(h9.i0.u(a.d), u10, t1.f14103e);
+        f21062e = u10;
+        f21063f = new b(h9.i0.u(a.d), u10, t1.f14066e);
         Object[] objArr = {2, 5, 6};
         h9.o.e(3, objArr);
-        f21098g = h9.i0.o(3, objArr);
+        f21064g = h9.i0.o(3, objArr);
         xa xaVar = new xa(4, 10);
         xaVar.w(5, 6);
         xaVar.w(17, 6);
@@ -37,14 +37,14 @@ public final class b {
     public b(t1 t1Var, List list, List list2) {
         for (int i7 = 0; i7 < t1Var.d; i7++) {
             a aVar = (a) t1Var.get(i7);
-            this.f21099a.put(aVar.f21085a, aVar);
+            this.f21065a.put(aVar.f21051a, aVar);
         }
         int i10 = 0;
-        for (int i11 = 0; i11 < this.f21099a.size(); i11++) {
-            i10 = Math.max(i10, ((a) this.f21099a.valueAt(i11)).f21086b);
+        for (int i11 = 0; i11 < this.f21065a.size(); i11++) {
+            i10 = Math.max(i10, ((a) this.f21065a.valueAt(i11)).f21052b);
         }
-        this.f21100b = i10;
-        this.f21101c = h9.i0.q(list);
+        this.f21066b = i10;
+        this.f21067c = h9.i0.q(list);
         this.d = h9.i0.q(list2);
     }
 
@@ -71,7 +71,7 @@ public final class b {
         if (this != obj) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                if (h2.l0.m(this.f21099a, bVar.f21099a) && this.f21100b == bVar.f21100b && Objects.equals(this.f21101c, bVar.f21101c) && Objects.equals(this.d, bVar.d)) {
+                if (h2.l0.m(this.f21065a, bVar.f21065a) && this.f21066b == bVar.f21066b && Objects.equals(this.f21067c, bVar.f21067c) && Objects.equals(this.d, bVar.d)) {
                     return true;
                 }
                 return false;
@@ -82,12 +82,12 @@ public final class b {
     }
 
     public final int hashCode() {
-        int n10 = h2.l0.n(this.f21099a);
-        int hashCode = Objects.hashCode(this.f21101c);
-        return Objects.hashCode(this.d) + ((hashCode + ((n10 + (this.f21100b * 31)) * 31)) * 31);
+        int n10 = h2.l0.n(this.f21065a);
+        int hashCode = Objects.hashCode(this.f21067c);
+        return Objects.hashCode(this.d) + ((hashCode + ((n10 + (this.f21066b * 31)) * 31)) * 31);
     }
 
     public final String toString() {
-        return "AudioCapabilities[maxChannelCount=" + this.f21100b + ", audioProfiles=" + this.f21099a + ", speakerLayoutChannelMasks=" + this.f21101c + ", spatializerChannelMasks=" + this.d + "]";
+        return "AudioCapabilities[maxChannelCount=" + this.f21066b + ", audioProfiles=" + this.f21065a + ", speakerLayoutChannelMasks=" + this.f21067c + ", spatializerChannelMasks=" + this.d + "]";
     }
 }

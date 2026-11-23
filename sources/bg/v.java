@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
 public final class v extends u {
     public final void b(int i7, AbstractMap abstractMap, AbstractMap abstractMap2, int i10) {
-        ArrayList arrayList = this.f3359a;
+        ArrayList arrayList = this.f3310a;
         int size = arrayList.size();
         int i11 = 0;
         while (i11 < size) {
@@ -23,14 +23,14 @@ public final class v extends u {
                 b10.edit_date = i10;
                 b10.flags |= 32768;
             }
-            a0.h hVar = this.f3360b;
+            a0.h hVar = this.f3311b;
             TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) hVar.f(B0);
             if (tL_messages_messages == null) {
                 tL_messages_messages = new TLRPC.TL_messages_messages();
                 hVar.k(tL_messages_messages, B0);
             }
             tL_messages_messages.messages.add(b10);
-            a0.h hVar2 = this.f3361c;
+            a0.h hVar2 = this.f3312c;
             ArrayList arrayList2 = (ArrayList) hVar2.f(B0);
             if (arrayList2 == null) {
                 arrayList2 = new ArrayList();

@@ -1,7 +1,7 @@
 package wg;
 
 import android.view.ViewGroup;
-import c8.ma;
+import c8.na;
 import fi.g4;
 import java.util.ArrayList;
 import org.telegram.messenger.hd;
@@ -28,7 +28,7 @@ public final class q0 extends sa {
         super(g2Var, false);
         this.T1 = new ArrayList();
         this.U1 = new ArrayList();
-        this.f39538v1 = 0.3f;
+        this.f39494v1 = 0.3f;
         this.V1 = chat;
         ArrayList<TL_stories.TL_myBoost> arrayList = tL_premium_myBoosts.my_boosts;
         int size = arrayList.size();
@@ -38,32 +38,32 @@ public final class q0 extends sa {
             i7++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && n5.o(peer) != (-chat.f28434id)) {
+            if (peer != null && n5.o(peer) != (-chat.f28398id)) {
                 this.U1.add(tL_myBoost2);
             }
         }
-        ah.a aVar = new ah.a(getContext(), this.J0, this.f39531o1);
+        ah.a aVar = new ah.a(getContext(), this.J0, this.f39487o1);
         aVar.setClickable(true);
         aVar.setOrientation(1);
         aVar.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f));
-        t6.h(m6.f29454h5, aVar, this.J0);
+        t6.h(m6.f29420h5, aVar, this.J0);
         d0 d0Var = new d0(getContext(), this.J0);
         this.W1 = d0Var;
         d0Var.k();
         d0Var.setCounterColor(-6785796);
         d0Var.setOnClickListener(new jg0(29, this, chat));
-        aVar.addView(d0Var, ma.r(-1, 48, 87));
-        ViewGroup viewGroup = this.f30176b;
-        int i10 = this.f30211u0;
-        viewGroup.addView(aVar, ma.f(-2.0f, -1, 87, i10, 0, i10, 0));
-        ek0 ek0Var = this.f39531o1;
-        int i11 = this.f30211u0;
+        aVar.addView(d0Var, na.r(-1, 48, 87));
+        ViewGroup viewGroup = this.f30142b;
+        int i10 = this.f30177u0;
+        viewGroup.addView(aVar, na.f(-2.0f, -1, 87, i10, 0, i10, 0));
+        ek0 ek0Var = this.f39487o1;
+        int i11 = this.f30177u0;
         ek0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(64.0f));
-        this.f39531o1.setOnItemClickListener(new g4(24, this, chat));
+        this.f39487o1.setOnItemClickListener(new g4(24, this, chat));
         O();
         c1();
         e1(false);
-        gc.a(this.f30179c, new Object());
+        gc.a(this.f30145c, new Object());
     }
 
     @Override

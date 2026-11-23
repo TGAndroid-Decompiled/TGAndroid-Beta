@@ -3,13 +3,13 @@ package org.telegram.messenger;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class ty {
-    public String f27128a;
-    public String f27129b;
-    public boolean f27130c;
+    public String f27092a;
+    public String f27093b;
+    public boolean f27094c;
     public String d;
-    public boolean f27131e;
-    public TLRPC.TL_inputStickerSetItem f27132f;
-    public f20 f27133g;
+    public boolean f27095e;
+    public TLRPC.TL_inputStickerSetItem f27096f;
+    public f20 f27097g;
 
     public final void a(int i7, TLRPC.InputFile inputFile, Runnable runnable) {
         TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();

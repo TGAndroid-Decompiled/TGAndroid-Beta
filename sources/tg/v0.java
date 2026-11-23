@@ -7,13 +7,13 @@ import android.util.SparseIntArray;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import bi.w2;
-import c8.ma;
+import bi.y2;
+import c8.na;
 import di.n4;
-import hi.a5;
-import hi.c7;
-import hi.s6;
-import hi.u5;
+import hi.b5;
+import hi.d7;
+import hi.t6;
+import hi.v5;
 import java.util.ArrayList;
 import org.telegram.messenger.bj;
 import org.telegram.messenger.cz;
@@ -39,17 +39,17 @@ public abstract class v0 extends j {
     public u4 K0;
     public u4 L0;
     public u4 M0;
-    public final n4 f58200r0;
-    public final q0 f58201s0;
-    public final ArrayList f58202t0;
-    public final bj f58203u0;
-    public boolean f58204v0;
-    public boolean f58205w0;
-    public TextureView f58206x0;
-    public boolean f58207y0;
-    public int f58208z0;
+    public final n4 f58165r0;
+    public final q0 f58166s0;
+    public final ArrayList f58167t0;
+    public final bj f58168u0;
+    public boolean f58169v0;
+    public boolean f58170w0;
+    public TextureView f58171x0;
+    public boolean f58172y0;
+    public int f58173z0;
 
-    public v0(Context context, PointF pointF, ArrayList arrayList, ca caVar, boolean z10, u5 u5Var) {
+    public v0(Context context, PointF pointF, ArrayList arrayList, ca caVar, boolean z10, v5 v5Var) {
         super(context, pointF);
         org.telegram.ui.web.b bVar;
         TLRPC.Message message;
@@ -57,19 +57,19 @@ public abstract class v0 extends j {
         Boolean D;
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
-        this.f58202t0 = new ArrayList();
-        this.f58208z0 = 1;
+        this.f58167t0 = new ArrayList();
+        this.f58173z0 = 1;
         this.A0 = 1;
         this.B0 = true;
         this.C0 = m6.I.q();
         this.D0 = new SparseIntArray();
-        a5 a5Var = (a5) this;
-        this.E0 = new u0(a5Var);
+        b5 b5Var = (b5) this;
+        this.E0 = new u0(b5Var);
         setRotation(0.0f);
         setScale(1.0f);
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             gj gjVar = (gj) arrayList.get(i7);
-            TLRPC.Message message2 = gjVar.f24213k;
+            TLRPC.Message message2 = gjVar.f24177k;
             int i10 = message2.date;
             if (message2 instanceof TLRPC.TL_message) {
                 tL_messageService = new TLRPC.TL_message();
@@ -77,7 +77,7 @@ public abstract class v0 extends j {
                 tL_messageService = new TLRPC.TL_messageService();
             } else {
                 message = message2;
-                D = c7.D(gjVar);
+                D = d7.D(gjVar);
                 if (D != null && D.booleanValue() && (messageFwdHeader = message.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
                     message.from_id = peer;
                     message.peer_id = peer;
@@ -86,11 +86,11 @@ public abstract class v0 extends j {
                 }
                 message.voiceTranscriptionOpen = false;
                 int i11 = gjVar.K1;
-                gj gjVar2 = new gj(i11, message, gjVar.C, np.u1(i11).d, np.u1(gjVar.K1).f25802b, null, null, true, true, 0L, true, z10, false, 0);
+                gj gjVar2 = new gj(i11, message, gjVar.C, np.u1(i11).d, np.u1(gjVar.K1).f25766b, null, null, true, true, 0L, true, z10, false, 0);
                 gjVar2.L5();
-                this.f58202t0.add(gjVar2);
+                this.f58167t0.add(gjVar2);
             }
-            tL_messageService.f28455id = message2.f28455id;
+            tL_messageService.f28419id = message2.f28419id;
             tL_messageService.from_id = message2.from_id;
             tL_messageService.peer_id = message2.peer_id;
             tL_messageService.date = message2.date;
@@ -160,7 +160,7 @@ public abstract class v0 extends j {
             tL_messageService.translatedText = message2.translatedText;
             tL_messageService.replyStory = message2.replyStory;
             message = tL_messageService;
-            D = c7.D(gjVar);
+            D = d7.D(gjVar);
             if (D != null) {
                 message.from_id = peer;
                 message.peer_id = peer;
@@ -169,47 +169,47 @@ public abstract class v0 extends j {
             }
             message.voiceTranscriptionOpen = false;
             int i112 = gjVar.K1;
-            gj gjVar22 = new gj(i112, message, gjVar.C, np.u1(i112).d, np.u1(gjVar.K1).f25802b, null, null, true, true, 0L, true, z10, false, 0);
+            gj gjVar22 = new gj(i112, message, gjVar.C, np.u1(i112).d, np.u1(gjVar.K1).f25766b, null, null, true, true, 0L, true, z10, false, 0);
             gjVar22.L5();
-            this.f58202t0.add(gjVar22);
+            this.f58167t0.add(gjVar22);
         }
-        this.f58203u0 = null;
-        if (this.f58202t0.size() > 1) {
+        this.f58168u0 = null;
+        if (this.f58167t0.size() > 1) {
             bj bjVar = new bj();
-            this.f58203u0 = bjVar;
-            bjVar.d.addAll(this.f58202t0);
-            bjVar.f23110a = ((gj) this.f58202t0.get(0)).c1();
+            this.f58168u0 = bjVar;
+            bjVar.d.addAll(this.f58167t0);
+            bjVar.f23074a = ((gj) this.f58167t0.get(0)).c1();
             bjVar.a();
         }
-        n4 n4Var = new n4(a5Var, context);
-        this.f58200r0 = n4Var;
-        addView(n4Var, ma.c(-1.0f, -1));
-        q0 q0Var = new q0(a5Var, context, this.E0);
-        this.f58201s0 = q0Var;
-        q0Var.setAdapter(new t0(a5Var, context, caVar, u5Var, z10));
-        ia0 ia0Var = new ia0(a5Var, 2);
-        ia0Var.O = new w2(a5Var, 18);
+        n4 n4Var = new n4(b5Var, context);
+        this.f58165r0 = n4Var;
+        addView(n4Var, na.c(-1.0f, -1));
+        q0 q0Var = new q0(b5Var, context, this.E0);
+        this.f58166s0 = q0Var;
+        q0Var.setAdapter(new t0(b5Var, context, caVar, v5Var, z10));
+        ia0 ia0Var = new ia0(b5Var, 2);
+        ia0Var.O = new y2(b5Var, 18);
         q0Var.setLayoutManager(ia0Var);
         q0Var.i(new fi.k(16));
-        n4Var.addView(q0Var, ma.c(-1.0f, -1));
-        if (u5Var != null && u5Var.f15546g) {
-            s6 s6Var = new s6(a5Var, 28);
-            org.telegram.ui.web.b bVar2 = new org.telegram.ui.web.b(a5Var, 1);
-            u5Var.f15542b = s6Var;
-            u5Var.f15543c = bVar2;
-            TextureView textureView = u5Var.f15541a;
+        n4Var.addView(q0Var, na.c(-1.0f, -1));
+        if (v5Var != null && v5Var.f15531g) {
+            t6 t6Var = new t6(b5Var, 28);
+            org.telegram.ui.web.b bVar2 = new org.telegram.ui.web.b(b5Var, 1);
+            v5Var.f15527b = t6Var;
+            v5Var.f15528c = bVar2;
+            TextureView textureView = v5Var.f15526a;
             if (textureView != null) {
-                s6Var.a(textureView);
+                t6Var.a(textureView);
             }
-            if (u5Var.d && (bVar = u5Var.f15543c) != null) {
-                bVar.a(Integer.valueOf(u5Var.f15544e), Integer.valueOf(u5Var.f15545f));
+            if (v5Var.d && (bVar = v5Var.f15528c) != null) {
+                bVar.a(Integer.valueOf(v5Var.f15529e), Integer.valueOf(v5Var.f15530f));
             }
         }
         k();
     }
 
     public org.telegram.ui.Cells.r1 getCell() {
-        q0 q0Var = this.f58201s0;
+        q0 q0Var = this.f58166s0;
         if (q0Var != null) {
             for (int i7 = 0; i7 < q0Var.getChildCount(); i7++) {
                 if (q0Var.getChildAt(i7) instanceof org.telegram.ui.Cells.r1) {
@@ -246,7 +246,7 @@ public abstract class v0 extends j {
         setX(getPositionX() - (getMeasuredWidth() / 2.0f));
         setY(getPositionY() - (getMeasuredHeight() / 2.0f));
         m();
-        if (this.f58205w0) {
+        if (this.f58170w0) {
             s();
         }
     }
@@ -267,11 +267,11 @@ public abstract class v0 extends j {
         float f14 = 2.1474836E9f;
         float f15 = -2.1474836E9f;
         while (true) {
-            q0 q0Var = this.f58201s0;
+            q0 q0Var = this.f58166s0;
             if (i7 < q0Var.getChildCount()) {
                 View childAt = q0Var.getChildAt(i7);
                 boolean z10 = childAt instanceof org.telegram.ui.Cells.r1;
-                n4 n4Var = this.f58200r0;
+                n4 n4Var = this.f58165r0;
                 if (z10) {
                     org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) childAt;
                     if (r1Var.getMessageObject() != null && r1Var.getMessageObject().h4() && r1Var.getPhotoImage() != null) {
@@ -281,7 +281,7 @@ public abstract class v0 extends j {
                         y10 = r1Var.getPhotoImage().A() + r1Var.getY() + n4Var.getY();
                     } else {
                         float x10 = childAt.getX() + n4Var.getX() + r1Var.getBackgroundDrawableLeft() + org.telegram.messenger.g0.L(1.0f);
-                        if (this.f58203u0 == null) {
+                        if (this.f58168u0 == null) {
                             x10 += org.telegram.messenger.g0.L(8.0f);
                         }
                         float x11 = ((childAt.getX() + n4Var.getX()) + r1Var.getBackgroundDrawableRight()) - org.telegram.messenger.g0.L(1.66f);
@@ -317,14 +317,14 @@ public abstract class v0 extends j {
     }
 
     public final void s() {
-        q0 q0Var = this.f58201s0;
+        q0 q0Var = this.f58166s0;
         q0Var.invalidate();
         for (int i7 = 0; i7 < q0Var.getChildCount(); i7++) {
             q0Var.getChildAt(i7).invalidate();
         }
     }
 
-    public void setupTheme(hi.c7 r8) {
-        throw new UnsupportedOperationException("Method not decompiled: tg.v0.setupTheme(hi.c7):void");
+    public void setupTheme(hi.d7 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: tg.v0.setupTheme(hi.d7):void");
     }
 }

@@ -1,22 +1,40 @@
 package wg;
-public final class r implements Runnable {
-    public final int f59860a;
-    public final v f59861b;
 
-    public r(v vVar, int i7) {
-        this.f59860a = i7;
-        this.f59861b = vVar;
+import java.io.File;
+public final class r implements Runnable {
+    public final int f59824a;
+    public final Object f59825b;
+    public final Object f59826c;
+
+    public r(int i7, Object obj, Object obj2) {
+        this.f59824a = i7;
+        this.f59825b = obj;
+        this.f59826c = obj2;
+    }
+
+    private final void a() {
+        yi.j jVar = (yi.j) this.f59825b;
+        File file = (File) this.f59826c;
+        synchronized (jVar.f61337m) {
+            for (int i7 = 0; i7 < jVar.f61337m.size(); i7++) {
+                try {
+                    File file2 = (File) jVar.f61337m.get(i7);
+                    if (file != null && file.equals(file2)) {
+                    }
+                    if (file2.exists() && !file2.delete()) {
+                        yi.b bVar = jVar.h;
+                        bVar.b("temporary file deletion failed: " + file2.getName());
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            jVar.f61337m.clear();
+        }
     }
 
     @Override
     public final void run() {
-        switch (this.f59860a) {
-            case 0:
-                org.telegram.messenger.g0.g3(new r(this.f59861b, 1));
-                return;
-            default:
-                this.f59861b.a(null);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: wg.r.run():void");
     }
 }

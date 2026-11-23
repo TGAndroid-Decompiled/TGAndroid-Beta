@@ -13,9 +13,9 @@ import java.util.Map;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ec0;
 public final class k3 implements TextWatcher {
-    public final int f30946a = 2;
-    public boolean f30947b;
-    public int f30948c;
+    public final int f30912a = 2;
+    public boolean f30913b;
+    public int f30914c;
     public Object d;
 
     public k3() {
@@ -23,21 +23,21 @@ public final class k3 implements TextWatcher {
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        switch (this.f30946a) {
+        switch (this.f30912a) {
             case 0:
-                int i7 = this.f30948c;
+                int i7 = this.f30914c;
                 l3 l3Var = (l3) this.d;
                 j3 j3Var = l3Var.d;
-                if (!l3Var.f31002c) {
+                if (!l3Var.f30968c) {
                     if (i7 > 0 && editable != null && editable.length() > i7) {
-                        l3Var.f31002c = true;
+                        l3Var.f30968c = true;
                         j3Var.setText(editable.subSequence(0, i7));
                         j3Var.setSelection(j3Var.length());
-                        l3Var.f31002c = false;
+                        l3Var.f30968c = false;
                     }
                     l3Var.b(editable);
                 }
-                if (this.f30947b) {
+                if (this.f30913b) {
                     return;
                 }
                 while (true) {
@@ -50,18 +50,18 @@ public final class k3 implements TextWatcher {
                 }
             case 1:
                 org.telegram.ui.Components.b5 b5Var = (org.telegram.ui.Components.b5) this.d;
-                if (!this.f30947b) {
+                if (!this.f30913b) {
                     int length = editable.length();
-                    int i10 = this.f30948c;
+                    int i10 = this.f30914c;
                     if (length > i10) {
-                        this.f30947b = true;
+                        this.f30913b = true;
                         editable.delete(i10, editable.length());
                         org.telegram.messenger.g0.D3(b5Var);
                         try {
                             b5Var.performHapticFeedback(3, 2);
                         } catch (Exception unused) {
                         }
-                        this.f30947b = false;
+                        this.f30913b = false;
                         return;
                     }
                     return;
@@ -71,8 +71,8 @@ public final class k3 implements TextWatcher {
                 return;
             default:
                 ec0 ec0Var = (ec0) this.d;
-                ah.i iVar = ec0Var.f47236c;
-                if (!this.f30947b) {
+                ah.i iVar = ec0Var.f47205c;
+                if (!this.f30913b) {
                     boolean z10 = true;
                     ec0Var.p(true);
                     org.telegram.messenger.g0.r(ec0Var.W);
@@ -82,18 +82,18 @@ public final class k3 implements TextWatcher {
                     }
                     if (!ec0Var.o(editable.toString())) {
                         ec0Var.r(true);
-                        this.f30947b = true;
+                        this.f30913b = true;
                         if (iVar.getSelectionEnd() < iVar.getText().length()) {
                             z10 = false;
                         }
                         if (!ec0Var.E) {
                             String str = ec0Var.L;
-                            iVar.setText(str.substring(0, Utilities.j(this.f30948c, str.length(), 0)));
+                            iVar.setText(str.substring(0, Utilities.j(this.f30914c, str.length(), 0)));
                             if (z10) {
                                 iVar.setSelection(iVar.getText().length());
                             }
                         }
-                        this.f30947b = false;
+                        this.f30913b = false;
                         return;
                     }
                     return;
@@ -104,18 +104,18 @@ public final class k3 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f30946a) {
+        switch (this.f30912a) {
             case 0:
                 l3 l3Var = (l3) this.d;
-                if (!l3Var.f31002c) {
-                    l3Var.f31006r = false;
+                if (!l3Var.f30968c) {
+                    l3Var.f30972r = false;
                     return;
                 }
                 return;
             case 1:
                 return;
             case 2:
-                if (!this.f30947b) {
+                if (!this.f30913b) {
                     HashMap hashMap = new HashMap();
                     boolean z10 = charSequence instanceof Spannable;
                     int i12 = 0;
@@ -142,13 +142,13 @@ public final class k3 implements TextWatcher {
                     if (z10) {
                         i12 = ((SuggestionSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), SuggestionSpan.class)).length;
                     }
-                    this.f30948c = i12;
+                    this.f30914c = i12;
                     return;
                 }
                 return;
             default:
-                if (!this.f30947b && charSequence != null && ((ec0) this.d).L != null) {
-                    this.f30948c = ec0.s(charSequence.toString()).length();
+                if (!this.f30913b && charSequence != null && ((ec0) this.d).L != null) {
+                    this.f30914c = ec0.s(charSequence.toString()).length();
                     return;
                 }
                 return;
@@ -158,12 +158,12 @@ public final class k3 implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         int i12;
-        switch (this.f30946a) {
+        switch (this.f30912a) {
             case 0:
             case 1:
                 return;
             case 2:
-                if (!this.f30947b) {
+                if (!this.f30913b) {
                     boolean z10 = charSequence instanceof Spannable;
                     if (z10) {
                         i12 = ((SuggestionSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), SuggestionSpan.class)).length;
@@ -172,8 +172,8 @@ public final class k3 implements TextWatcher {
                     }
                     HashMap hashMap = (HashMap) this.d;
                     if (hashMap != null) {
-                        if ((i12 > 0 || this.f30948c > 0) && i7 == 0 && i10 == i11) {
-                            this.f30947b = true;
+                        if ((i12 > 0 || this.f30914c > 0) && i7 == 0 && i10 == i11) {
+                            this.f30913b = true;
                             if (z10) {
                                 Spannable spannable = (Spannable) charSequence;
                                 for (Map.Entry entry : hashMap.entrySet()) {
@@ -182,7 +182,7 @@ public final class k3 implements TextWatcher {
                                     }
                                 }
                             }
-                            this.f30947b = false;
+                            this.f30913b = false;
                             return;
                         }
                         return;
@@ -197,12 +197,12 @@ public final class k3 implements TextWatcher {
 
     public k3(l3 l3Var, int i7, boolean z10) {
         this.d = l3Var;
-        this.f30948c = i7;
-        this.f30947b = z10;
+        this.f30914c = i7;
+        this.f30913b = z10;
     }
 
     public k3(int i7, org.telegram.ui.Components.b5 b5Var) {
-        this.f30948c = i7;
+        this.f30914c = i7;
         this.d = b5Var;
     }
 

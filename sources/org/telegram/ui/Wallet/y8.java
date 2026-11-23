@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import org.telegram.messenger.r10;
 import org.telegram.ui.Components.lc;
 public final class y8 implements r10 {
-    public final int f45370a;
-    public final d9 f45371b;
-    public final vf.b f45372c;
+    public final int f45336a;
+    public final d9 f45337b;
+    public final vf.b f45338c;
     public final u0 d;
 
     public y8(d9 d9Var, vf.b bVar, u0 u0Var, int i7) {
-        this.f45370a = i7;
-        this.f45371b = d9Var;
-        this.f45372c = bVar;
+        this.f45336a = i7;
+        this.f45337b = d9Var;
+        this.f45338c = bVar;
         this.d = u0Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f45370a) {
+        switch (this.f45336a) {
             case 0:
                 r0 r0Var = (r0) obj;
                 String str = (String) obj2;
-                this.f45372c.c(false);
-                d9 d9Var = this.f45371b;
+                this.f45338c.c(false);
+                d9 d9Var = this.f45337b;
                 if (r0Var == null) {
                     lc b02 = lc.b0(d9Var);
                     if (str == null) {
@@ -34,20 +34,20 @@ public final class y8 implements r10 {
                 }
                 l9 l9Var = new l9();
                 l9Var.h = true;
-                ArrayList arrayList = l9Var.f44543a;
+                ArrayList arrayList = l9Var.f44509a;
                 arrayList.clear();
                 if (!r0Var.d()) {
                     arrayList.addAll(r0Var.f());
                 }
                 l9Var.a0();
-                l9Var.f44547f = new u4(12, d9Var, this.d);
+                l9Var.f44513f = new c5(10, d9Var, this.d);
                 d9Var.presentFragment(l9Var);
                 return;
             default:
                 o0 o0Var = (o0) obj;
                 String str2 = (String) obj2;
-                this.f45372c.c(false);
-                d9 d9Var2 = this.f45371b;
+                this.f45338c.c(false);
+                d9 d9Var2 = this.f45337b;
                 if (o0Var == null) {
                     lc b03 = lc.b0(d9Var2);
                     if (str2 == null) {
@@ -55,20 +55,20 @@ public final class y8 implements r10 {
                     }
                     b03.f0(str2, false);
                     return;
-                } else if (d9Var2.f44096f) {
+                } else if (d9Var2.f44062f) {
                     o0Var.close();
                     return;
                 } else {
-                    d9Var2.f44095e.add(o0Var);
+                    d9Var2.f44061e.add(o0Var);
                     l9 l9Var2 = new l9();
-                    r0 r0Var2 = o0Var.f44724b;
-                    ArrayList arrayList2 = l9Var2.f44543a;
+                    r0 r0Var2 = o0Var.f44690b;
+                    ArrayList arrayList2 = l9Var2.f44509a;
                     arrayList2.clear();
                     if (!r0Var2.d()) {
                         arrayList2.addAll(r0Var2.f());
                     }
                     l9Var2.a0();
-                    l9Var2.f44547f = new p(d9Var2, this.d, o0Var);
+                    l9Var2.f44513f = new p(d9Var2, this.d, o0Var);
                     d9Var2.presentFragment(l9Var2);
                     return;
                 }

@@ -5,35 +5,35 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.gc;
 public final class a0 implements Runnable {
-    public final int f11745a;
-    public final a2 f11746b;
+    public final int f11708a;
+    public final a2 f11709b;
 
     public a0(a2 a2Var, int i7) {
-        this.f11745a = i7;
-        this.f11746b = a2Var;
+        this.f11708a = i7;
+        this.f11709b = a2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f11745a) {
+        switch (this.f11708a) {
             case 0:
-                a2 a2Var = this.f11746b;
+                a2 a2Var = this.f11709b;
                 if (a2Var.P != null && !a2Var.V) {
                     org.telegram.messenger.g0.r(a2Var.W);
                     a2Var.V = true;
                     TL_phone.getGroupCallStars getgroupcallstars = new TL_phone.getGroupCallStars();
                     getgroupcallstars.call = a2Var.P;
-                    ConnectionsManager.getInstance(a2Var.O).sendRequestTyped(getgroupcallstars, new d3.b(1), new bi.o6(7, a2Var, getgroupcallstars));
+                    ConnectionsManager.getInstance(a2Var.O).sendRequestTyped(getgroupcallstars, new d3.b(1), new bi.r6(7, a2Var, getgroupcallstars));
                     return;
                 }
                 return;
             case 1:
-                a2 a2Var2 = this.f11746b;
-                org.telegram.messenger.g0.r(a2Var2.f12606e0);
-                gc gcVar = a2Var2.f12599a0;
+                a2 a2Var2 = this.f11709b;
+                org.telegram.messenger.g0.r(a2Var2.f12557e0);
+                gc gcVar = a2Var2.f12550a0;
                 if (gcVar != null) {
                     gcVar.b();
-                    a2Var2.f12599a0 = null;
+                    a2Var2.f12550a0 = null;
                 }
                 long j3 = a2Var2.S;
                 if (j3 > 0) {
@@ -45,9 +45,9 @@ public final class a0 implements Runnable {
                 a2Var2.j();
                 return;
             default:
-                a2 a2Var3 = this.f11746b;
-                a2Var3.f12605e.O(true);
-                a2Var3.f12611n.O(true);
+                a2 a2Var3 = this.f11709b;
+                a2Var3.f12556e.O(true);
+                a2Var3.f12562n.O(true);
                 return;
         }
     }

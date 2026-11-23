@@ -5,22 +5,22 @@ import android.content.Intent;
 import android.net.Uri;
 import org.telegram.messenger.a8;
 public final class m0 implements org.telegram.ui.ActionBar.q1 {
-    public final int f18805a;
-    public final Activity f18806b;
+    public final int f18771a;
+    public final Activity f18772b;
 
     public m0(Activity activity, int i7) {
-        this.f18805a = i7;
-        this.f18806b = activity;
+        this.f18771a = i7;
+        this.f18772b = activity;
     }
 
     @Override
     public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f18805a) {
+        switch (this.f18771a) {
             case 0:
-                Activity activity = this.f18806b;
+                Activity activity = this.f18772b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26931b.getPackageName()));
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26895b.getPackageName()));
                     activity.startActivity(intent);
                     return;
                 } catch (Exception e10) {
@@ -28,7 +28,7 @@ public final class m0 implements org.telegram.ui.ActionBar.q1 {
                     return;
                 }
             default:
-                Activity activity2 = this.f18806b;
+                Activity activity2 = this.f18772b;
                 Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                 intent2.setData(Uri.fromParts("package", activity2.getPackageName(), null));
                 activity2.startActivity(intent2);

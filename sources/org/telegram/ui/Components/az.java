@@ -2,25 +2,25 @@ package org.telegram.ui.Components;
 
 import android.graphics.Point;
 public final class az implements Runnable {
-    public final int f33677a;
-    public final ez f33678b;
-    public final int f33679c;
+    public final int f33654a;
+    public final ez f33655b;
+    public final int f33656c;
     public final int d;
 
     public az(ez ezVar, int i7, int i10, int i11) {
-        this.f33677a = i11;
-        this.f33678b = ezVar;
-        this.f33679c = i7;
+        this.f33654a = i11;
+        this.f33655b = ezVar;
+        this.f33656c = i7;
         this.d = i10;
     }
 
     @Override
     public final void run() {
         int i7;
-        switch (this.f33677a) {
+        switch (this.f33654a) {
             case 0:
-                ez ezVar = this.f33678b;
-                int i10 = this.f33679c;
+                ez ezVar = this.f33655b;
+                int i10 = this.f33656c;
                 int i11 = this.d;
                 if (ezVar.X != i10 || ezVar.Y != i11) {
                     ezVar.X = i10;
@@ -31,7 +31,7 @@ public final class az implements Runnable {
                         if (o4 != 2) {
                             i12 = 720;
                         } else {
-                            Point point = org.telegram.messenger.g0.f24046q;
+                            Point point = org.telegram.messenger.g0.f24010q;
                             i12 = Math.min(1920, Math.max(point.x, point.y));
                         }
                     }
@@ -50,26 +50,26 @@ public final class az implements Runnable {
                             ezVar.Y = i12;
                         }
                     }
-                    ezVar.f35019a0 = false;
+                    ezVar.f34994a0 = false;
                     ezVar.f();
-                    ezVar.f35026e0.run();
+                    ezVar.f35001e0.run();
                     return;
                 }
                 return;
             case 1:
-                ez ezVar2 = this.f33678b;
-                int i15 = this.f33679c;
+                ez ezVar2 = this.f33655b;
+                int i15 = this.f33656c;
                 int i16 = this.d;
-                ezVar2.f35028n = i15;
-                ezVar2.f35029r = i16;
+                ezVar2.f35003n = i15;
+                ezVar2.f35004r = i16;
                 return;
             default:
-                ez ezVar3 = this.f33678b;
-                int i17 = this.f33679c;
+                ez ezVar3 = this.f33655b;
+                int i17 = this.f33656c;
                 int i18 = this.d;
                 ha haVar = ezVar3.J;
-                haVar.f35848l = i17;
-                haVar.f35849m = i18;
+                haVar.f35801l = i17;
+                haVar.f35802m = i18;
                 return;
         }
     }

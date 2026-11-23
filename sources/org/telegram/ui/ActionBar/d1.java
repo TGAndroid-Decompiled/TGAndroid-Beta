@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 public final class d1 extends FrameLayout {
-    public final Drawable f28873a;
+    public final Drawable f28839a;
 
     public d1(Context context, h6 h6Var) {
         this(m6.H8, context, h6Var);
@@ -14,7 +14,7 @@ public final class d1 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Drawable drawable = this.f28873a;
+        Drawable drawable = this.f28839a;
         if (drawable != null) {
             drawable.setBounds(0, 0, getWidth(), getHeight());
             drawable.draw(canvas);
@@ -28,8 +28,8 @@ public final class d1 extends FrameLayout {
     public d1(int i7, Context context, h6 h6Var) {
         super(context);
         int w02 = m6.w0(i7, h6Var);
-        int w03 = m6.w0(m6.f29345b7, h6Var);
-        this.f28873a = m6.X0(getContext(), 2131231229, w03);
+        int w03 = m6.w0(m6.f29311b7, h6Var);
+        this.f28839a = m6.X0(getContext(), 2131231229, w03);
         setBackgroundColor(w02);
     }
 }

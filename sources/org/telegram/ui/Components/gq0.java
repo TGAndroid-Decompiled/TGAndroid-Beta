@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-public final class gq0 extends bi.s6 {
+public final class gq0 extends bi.v6 {
     public final jt0 W;
 
     public gq0(jt0 jt0Var, org.telegram.ui.ActionBar.g2 g2Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.h6 h6Var, dh.c cVar) {
@@ -16,7 +16,7 @@ public final class gq0 extends bi.s6 {
         float f10;
         float f11;
         jt0 jt0Var = this.W;
-        TextView textView = jt0Var.f36669t0;
+        TextView textView = jt0Var.f36624t0;
         textView.setVisibility(0);
         ViewPropertyAnimator animate = textView.animate();
         float f12 = 1.0f;

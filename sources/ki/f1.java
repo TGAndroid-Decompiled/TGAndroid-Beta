@@ -4,23 +4,23 @@ import org.telegram.messenger.gj;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class f1 extends gj {
-    public TL_iv.RichMessage f18704u3;
-    public final boolean f18705v3;
-    public final TLRPC.BotInlineResult f18706w3;
+    public TL_iv.RichMessage f18670u3;
+    public final boolean f18671v3;
+    public final TLRPC.BotInlineResult f18672w3;
 
     public f1(int i7, TLRPC.TL_message tL_message, boolean z10, TLRPC.BotInlineResult botInlineResult) {
         super(i7, tL_message, true, true);
-        this.f18705v3 = z10;
-        this.f18706w3 = botInlineResult;
+        this.f18671v3 = z10;
+        this.f18672w3 = botInlineResult;
     }
 
     @Override
     public final TL_iv.RichMessage E0() {
-        if (this.f18705v3) {
-            if (this.f18704u3 == null) {
-                this.f18704u3 = org.telegram.utils.twidget.n0.o(org.telegram.utils.twidget.n0.v(this.K1, this.f18706w3));
+        if (this.f18671v3) {
+            if (this.f18670u3 == null) {
+                this.f18670u3 = org.telegram.utils.twidget.n0.o(org.telegram.utils.twidget.n0.v(this.K1, this.f18672w3));
             }
-            return this.f18704u3;
+            return this.f18670u3;
         }
         return super.E0();
     }

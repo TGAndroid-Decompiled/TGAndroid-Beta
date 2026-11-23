@@ -30,12 +30,12 @@ public final class rm extends mi {
     public int S;
     public boolean T;
     public boolean U;
-    public org.telegram.ui.ActionBar.h6 f39279n;
-    public di.b1 f39280r;
-    public v4.c0 f39281s;
-    public qm f39282w;
-    public UndoView f39283x;
-    public TextView f39284y;
+    public org.telegram.ui.ActionBar.h6 f39234n;
+    public di.b1 f39235r;
+    public v4.b0 f39236s;
+    public qm f39237w;
+    public UndoView f39238x;
+    public TextView f39239y;
 
     @Override
     public final void B(int r5, int r6) {
@@ -44,7 +44,7 @@ public final class rm extends mi {
 
     @Override
     public final void E(int i7) {
-        ui uiVar = this.f37519b;
+        ui uiVar = this.f37477b;
         if (i7 > 1) {
             uiVar.Y2.T(0);
         } else {
@@ -54,19 +54,19 @@ public final class rm extends mi {
 
     @Override
     public final void I(mi miVar) {
-        qm qmVar = this.f39282w;
+        qm qmVar = this.f39237w;
         this.R = true;
         if (miVar instanceof ChatAttachAlertPhotoLayout) {
             this.Q = (ChatAttachAlertPhotoLayout) miVar;
-            qmVar.f38945c.clear();
+            qmVar.f38898c.clear();
             ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.Q;
             qmVar.h = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             qmVar.d = chatAttachAlertPhotoLayout.getSelectedPhotos();
             qmVar.c();
             qmVar.requestLayout();
-            this.f39281s.h1(0, 0);
-            this.f39280r.post(new mf(18, this, miVar));
-            postDelayed(new og(this, 28), 250L);
+            this.f39236s.h1(0, 0);
+            this.f39235r.post(new og(16, this, miVar));
+            postDelayed(new ng(this, 28), 250L);
             qmVar.i(this.Q, false);
         } else {
             K();
@@ -75,14 +75,14 @@ public final class rm extends mi {
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.f39284y.animate().alpha(1.0f).setDuration(150L).setInterpolator(nr.f37960f);
+        ViewPropertyAnimator interpolator = this.f39239y.animate().alpha(1.0f).setDuration(150L).setInterpolator(nr.f37917f);
         this.P = interpolator;
         interpolator.start();
     }
 
     @Override
     public final void K() {
-        this.f39280r.y0(0);
+        this.f39235r.y0(0);
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class rm extends mi {
     }
 
     public final void P() {
-        ArrayList arrayList = this.f39282w.f38944b;
+        ArrayList arrayList = this.f39237w.f38897b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -116,8 +116,8 @@ public final class rm extends mi {
                     omVar.v.recycle();
                 }
                 omVar.v = createBitmap;
-                omVar.f38304w = 0.0f;
-                omVar.O.f38636z.invalidate();
+                omVar.f38273w = 0.0f;
+                omVar.O.f38593z.invalidate();
             }
         }
     }
@@ -134,14 +134,14 @@ public final class rm extends mi {
     public final void dispatchDraw(Canvas canvas) {
         Drawable c10;
         int i7;
-        org.telegram.ui.zm zmVar = this.f37519b.f40427t1;
+        org.telegram.ui.zm zmVar = this.f37477b.f40412t1;
         boolean z10 = false;
         if (zmVar != null && (c10 = zmVar.c()) != null) {
             int currentItemTop = getCurrentItemTop();
             if (org.telegram.messenger.g0.Q1()) {
                 i7 = 16;
             } else {
-                Point point = org.telegram.messenger.g0.f24046q;
+                Point point = org.telegram.messenger.g0.f24010q;
                 if (point.x > point.y) {
                     i7 = 6;
                 } else {
@@ -154,7 +154,7 @@ public final class rm extends mi {
             int max = Math.max(0, currentItemTop);
             canvas.save();
             canvas.clipRect(0, max, getWidth(), getHeight());
-            c10.setBounds(0, max, getWidth(), org.telegram.messenger.g0.f24046q.y + max);
+            c10.setBounds(0, max, getWidth(), org.telegram.messenger.g0.f24010q.y + max);
             c10.draw(canvas);
             z10 = true;
         }
@@ -166,7 +166,7 @@ public final class rm extends mi {
 
     @Override
     public int getCurrentItemTop() {
-        di.b1 b1Var = this.f39280r;
+        di.b1 b1Var = this.f39235r;
         if (b1Var.getChildCount() <= 0) {
             b1Var.setTopGlowOffset(b1Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -189,11 +189,11 @@ public final class rm extends mi {
 
     @Override
     public int getListTopPadding() {
-        return this.f39280r.getPaddingTop();
+        return this.f39235r.getPaddingTop();
     }
 
     public float getPreviewScale() {
-        Point point = org.telegram.messenger.g0.f24046q;
+        Point point = org.telegram.messenger.g0.f24010q;
         if (point.y > point.x) {
             return 0.8f;
         }
@@ -204,12 +204,12 @@ public final class rm extends mi {
     public int getSelectedItemsCount() {
         lm lmVar;
         ArrayList arrayList;
-        ArrayList arrayList2 = this.f39282w.f38944b;
+        ArrayList arrayList2 = this.f39237w.f38897b;
         int size = arrayList2.size();
         int i7 = 0;
         for (int i10 = 0; i10 < size; i10++) {
             pm pmVar = (pm) arrayList2.get(i10);
-            if (pmVar != null && (lmVar = pmVar.f38622k) != null && (arrayList = (ArrayList) lmVar.f37241f) != null) {
+            if (pmVar != null && (lmVar = pmVar.f38579k) != null && (arrayList = (ArrayList) lmVar.f37197f) != null) {
                 i7 = arrayList.size() + i7;
             }
         }
@@ -223,16 +223,16 @@ public final class rm extends mi {
 
     @Override
     public final boolean k() {
-        this.f37519b.P1(false);
+        this.f37477b.P1(false);
         return true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         boolean z11;
-        qm qmVar = this.f39282w;
+        qm qmVar = this.f39237w;
         super.onLayout(z10, i7, i10, i11, i12);
-        Point point = org.telegram.messenger.g0.f24046q;
+        Point point = org.telegram.messenger.g0.f24010q;
         if (point.y > point.x) {
             z11 = true;
         } else {
@@ -240,11 +240,11 @@ public final class rm extends mi {
         }
         if (this.U != z11) {
             this.U = z11;
-            int size = qmVar.f38944b.size();
+            int size = qmVar.f38897b.size();
             for (int i13 = 0; i13 < size; i13++) {
-                pm pmVar = (pm) qmVar.f38944b.get(i13);
-                if (((ArrayList) pmVar.f38622k.f37241f).size() == 1) {
-                    pm.a(pmVar, pmVar.f38622k, true);
+                pm pmVar = (pm) qmVar.f38897b.get(i13);
+                if (((ArrayList) pmVar.f38579k.f37197f).size() == 1) {
+                    pm.a(pmVar, pmVar.f38579k, true);
                 }
             }
         }
@@ -262,11 +262,11 @@ public final class rm extends mi {
     public final void t() {
         org.telegram.messenger.ff ffVar;
         this.K = null;
-        UndoView undoView = this.f39283x;
+        UndoView undoView = this.f39238x;
         if (undoView != null) {
             undoView.d(0, false);
         }
-        ArrayList arrayList = this.f39282w.f38944b;
+        ArrayList arrayList = this.f39237w.f38897b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -279,7 +279,7 @@ public final class rm extends mi {
                 Object obj2 = arrayList2.get(i10);
                 i10++;
                 om omVar = (om) obj2;
-                if (omVar.f38288e && (ffVar = omVar.f38286b) != null) {
+                if (omVar.f38257e && (ffVar = omVar.f38255b) != null) {
                     ffVar.R = false;
                 }
             }
@@ -295,21 +295,21 @@ public final class rm extends mi {
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.f39284y.animate().alpha(0.0f).setDuration(150L).setInterpolator(nr.f37963j);
+        ViewPropertyAnimator interpolator = this.f39239y.animate().alpha(0.0f).setDuration(150L).setInterpolator(nr.f37920j);
         this.P = interpolator;
         interpolator.start();
-        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (uiVar = this.f37519b).f40378e2) != null) {
-            chatAttachAlertPhotoLayout.f32810d1.setIcon(2131232422);
-            uiVar.f40378e2.f32810d1.setText(org.telegram.messenger.hd.N0(2131753954, null));
-            uiVar.f40378e2.f32810d1.setRightIcon(2131232061);
+        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (uiVar = this.f37477b).f40363e2) != null) {
+            chatAttachAlertPhotoLayout.f32776d1.setIcon(2131232422);
+            uiVar.f40363e2.f32776d1.setText(org.telegram.messenger.hd.N0(2131753954, null));
+            uiVar.f40363e2.f32776d1.setRightIcon(2131232061);
         }
-        this.f39282w.i(this.Q, true);
+        this.f39237w.i(this.Q, true);
     }
 
     @Override
     public final void w(int i7) {
         try {
-            this.f37519b.f40378e2.w(i7);
+            this.f37477b.f40363e2.w(i7);
         } catch (Exception unused) {
         }
     }

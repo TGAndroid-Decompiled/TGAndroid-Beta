@@ -1,41 +1,19 @@
 package ai;
 
-import java.io.Serializable;
-import org.telegram.ui.n6;
-import org.telegram.ui.x6;
-public final class o2 implements Runnable {
-    public final int f1376a;
-    public final long f1377b;
-    public final boolean f1378c;
-    public final Object d;
-    public final Object f1379e;
+import android.view.View;
+public final class o2 implements View.OnClickListener {
+    public final int f1439a;
+    public final Object f1440b;
+    public final Object f1441c;
 
-    public o2(Object obj, long j3, Serializable serializable, boolean z10, int i7) {
-        this.f1376a = i7;
-        this.d = obj;
-        this.f1377b = j3;
-        this.f1379e = serializable;
-        this.f1378c = z10;
+    public o2(int i7, Object obj, Object obj2) {
+        this.f1439a = i7;
+        this.f1440b = obj;
+        this.f1441c = obj2;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.o2.run():void");
-    }
-
-    public o2(Object obj, long j3, boolean z10, Object obj2, int i7) {
-        this.f1376a = i7;
-        this.d = obj;
-        this.f1377b = j3;
-        this.f1378c = z10;
-        this.f1379e = obj2;
-    }
-
-    public o2(x6 x6Var, boolean z10, long j3, n6 n6Var) {
-        this.f1376a = 2;
-        this.d = x6Var;
-        this.f1378c = z10;
-        this.f1377b = j3;
-        this.f1379e = n6Var;
+    public final void onClick(android.view.View r15) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.o2.onClick(android.view.View):void");
     }
 }

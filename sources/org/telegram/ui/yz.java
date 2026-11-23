@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.text.SpannableStringBuilder;
 import org.telegram.tgnet.TLRPC;
 public final class yz implements org.telegram.ui.Cells.k7 {
-    public final zz f54345a;
+    public final zz f54310a;
 
     public yz(zz zzVar) {
-        this.f54345a = zzVar;
+        this.f54310a = zzVar;
     }
 
     @Override
     public final void a(String str, boolean z10) {
-        c00 c00Var = this.f54345a.f54671w;
+        c00 c00Var = this.f54310a.f54630w;
         if (z10) {
             org.telegram.ui.ActionBar.w2 j3 = org.telegram.messenger.o10.j(c00Var.L, false, 1, null);
             j3.P = str;
@@ -22,19 +22,19 @@ public final class yz implements org.telegram.ui.Cells.k7 {
             c00Var.M.showDialog(j3);
             return;
         }
-        SpannableStringBuilder[] spannableStringBuilderArr = c00.f46345t0;
+        SpannableStringBuilder[] spannableStringBuilderArr = c00.f46338t0;
         c00Var.g(str);
     }
 
     @Override
     public final boolean b() {
-        return !this.f54345a.f54671w.f46366p0.V1();
+        return !this.f54310a.f54630w.f46359p0.V1();
     }
 
     @Override
     public final void c(TLRPC.WebPage webPage, org.telegram.messenger.gj gjVar) {
-        c00 c00Var = this.f54345a.f54671w;
-        SpannableStringBuilder[] spannableStringBuilderArr = c00.f46345t0;
-        org.telegram.ui.Components.iu.O0(c00Var.M, gjVar, c00Var.f46358h0, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+        c00 c00Var = this.f54310a.f54630w;
+        SpannableStringBuilder[] spannableStringBuilderArr = c00.f46338t0;
+        org.telegram.ui.Components.iu.O0(c00Var.M, gjVar, c00Var.f46351h0, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
     }
 }

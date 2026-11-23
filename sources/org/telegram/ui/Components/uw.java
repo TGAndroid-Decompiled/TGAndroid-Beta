@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import androidx.recyclerview.widget.RecyclerView;
-public final class uw extends v4.t {
+public final class uw extends v4.s {
     public final ty Q;
 
     public uw(ty tyVar) {
@@ -10,11 +10,11 @@ public final class uw extends v4.t {
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
+    public final void v0(RecyclerView recyclerView, v4.b1 b1Var, int i7) {
         try {
-            hi.l1 l1Var = new hi.l1(2, recyclerView.getContext(), this);
-            l1Var.f59109a = i7;
-            w0(l1Var);
+            hi.k1 k1Var = new hi.k1(2, recyclerView.getContext(), this);
+            k1Var.f59055a = i7;
+            w0(k1Var);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }

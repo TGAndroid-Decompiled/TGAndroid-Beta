@@ -7,23 +7,23 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 public final class o implements rd.l {
-    public final int f13422a;
+    public final int f13385a;
 
     public o(int i7) {
-        this.f13422a = i7;
+        this.f13385a = i7;
     }
 
     @Override
     public final Object invoke(Object obj) {
-        switch (this.f13422a) {
+        switch (this.f13385a) {
             case 0:
                 m1.b ex = (m1.b) obj;
                 kotlin.jvm.internal.j.e(ex, "ex");
                 Log.w("FirebaseSessions", "CorruptionException in session configs DataStore", ex);
-                return jb.j.f17391b;
+                return jb.j.f17357b;
             case 1:
                 q1.b bVar = (q1.b) obj;
-                q1.e eVar = sa.h.f57182c;
+                q1.e eVar = sa.h.f57147c;
                 long j3 = 0;
                 for (Map.Entry entry : bVar.a().entrySet()) {
                     if (entry.getValue() instanceof Set) {
@@ -61,6 +61,6 @@ public final class o implements rd.l {
     }
 
     public o(sa.h hVar) {
-        this.f13422a = 1;
+        this.f13385a = 1;
     }
 }

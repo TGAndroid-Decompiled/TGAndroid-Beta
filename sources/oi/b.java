@@ -1,11 +1,11 @@
 package oi;
 public final class b implements Runnable {
-    public final int f21979a;
-    public final t3 f21980b;
+    public final int f21970a;
+    public final s3 f21971b;
 
-    public b(t3 t3Var, int i7) {
-        this.f21979a = i7;
-        this.f21980b = t3Var;
+    public b(s3 s3Var, int i7) {
+        this.f21970a = i7;
+        this.f21971b = s3Var;
     }
 
     @Override

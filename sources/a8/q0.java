@@ -136,9 +136,9 @@ public final class q0 implements na.e {
                 na.f fVar = (na.f) this.f590c.get(obj.getClass());
                 if (fVar != null) {
                     r0 r0Var = this.f591e;
-                    r0Var.f604b = false;
+                    r0Var.f603b = false;
                     r0Var.d = cVar;
-                    r0Var.f605c = z10;
+                    r0Var.f604c = z10;
                     fVar.a(obj, r0Var);
                 } else if (obj instanceof l0) {
                     h(cVar, ((l0) obj).zza(), true);

@@ -1,11 +1,11 @@
 package s4;
 public final class s0 implements Runnable {
-    public final int f57075a;
-    public final Object f57076b;
+    public final int f57040a;
+    public final Object f57041b;
 
     public s0(Object obj, int i7) {
-        this.f57075a = i7;
-        this.f57076b = obj;
+        this.f57040a = i7;
+        this.f57041b = obj;
     }
 
     private final void a() {

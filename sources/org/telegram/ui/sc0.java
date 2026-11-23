@@ -11,19 +11,19 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 public final class sc0 extends org.telegram.ui.Components.iu0 {
     public GoogleSignInAccount E;
     public final de0 F;
-    public final org.telegram.ui.Components.yb0 f52009a;
-    public final EditTextBoldCursor f52010b;
-    public final TextView f52011c;
+    public final org.telegram.ui.Components.yb0 f51978a;
+    public final EditTextBoldCursor f51979b;
+    public final TextView f51980c;
     public final org.telegram.ui.Components.m80 d;
-    public final TextView f52012e;
-    public final org.telegram.ui.Components.t80 f52013f;
+    public final TextView f51981e;
+    public final org.telegram.ui.Components.t80 f51982f;
     public final org.telegram.ui.Components.rh0 h;
-    public Bundle f52014n;
-    public boolean f52015r;
-    public String f52016s;
-    public String f52017w;
-    public String f52018x;
-    public String f52019y;
+    public Bundle f51983n;
+    public boolean f51984r;
+    public String f51985s;
+    public String f51986w;
+    public String f51987x;
+    public String f51988y;
 
     public sc0(org.telegram.ui.de0 r28, android.content.Context r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sc0.<init>(org.telegram.ui.de0, android.content.Context):void");
@@ -31,7 +31,7 @@ public final class sc0 extends org.telegram.ui.Components.iu0 {
 
     @Override
     public final boolean b() {
-        return !this.F.f46939i0;
+        return !this.F.f46899i0;
     }
 
     @Override
@@ -44,20 +44,20 @@ public final class sc0 extends org.telegram.ui.Components.iu0 {
         String obj;
         int i7;
         int i10;
-        if (this.f52015r) {
+        if (this.f51984r) {
             return;
         }
         GoogleSignInAccount googleSignInAccount = this.E;
         if (googleSignInAccount != null) {
-            obj = googleSignInAccount.f6151c;
+            obj = googleSignInAccount.f6114c;
         } else {
-            obj = this.f52010b.getText().toString();
+            obj = this.f51979b.getText().toString();
         }
         Bundle bundle = new Bundle();
-        bundle.putString("phone", this.f52016s);
-        bundle.putString("ephone", this.f52017w);
-        bundle.putString("phoneFormated", this.f52018x);
-        bundle.putString("phoneHash", this.f52019y);
+        bundle.putString("phone", this.f51985s);
+        bundle.putString("ephone", this.f51986w);
+        bundle.putString("phoneFormated", this.f51987x);
+        bundle.putString("phoneHash", this.f51988y);
         bundle.putString("email", obj);
         bundle.putBoolean("setup", true);
         GoogleSignInAccount googleSignInAccount2 = this.E;
@@ -68,12 +68,12 @@ public final class sc0 extends org.telegram.ui.Components.iu0 {
                 verifyemail.purpose = new TLRPC.TL_emailVerifyPurposeLoginChange();
             } else {
                 TLRPC.TL_emailVerifyPurposeLoginSetup tL_emailVerifyPurposeLoginSetup = new TLRPC.TL_emailVerifyPurposeLoginSetup();
-                tL_emailVerifyPurposeLoginSetup.phone_number = this.f52018x;
-                tL_emailVerifyPurposeLoginSetup.phone_code_hash = this.f52019y;
+                tL_emailVerifyPurposeLoginSetup.phone_number = this.f51987x;
+                tL_emailVerifyPurposeLoginSetup.phone_code_hash = this.f51988y;
                 verifyemail.purpose = tL_emailVerifyPurposeLoginSetup;
             }
             TLRPC.TL_emailVerificationGoogle tL_emailVerificationGoogle = new TLRPC.TL_emailVerificationGoogle();
-            tL_emailVerificationGoogle.token = this.E.f6150b;
+            tL_emailVerificationGoogle.token = this.E.f6113b;
             verifyemail.verification = tL_emailVerificationGoogle;
             this.E = null;
             i10 = ((org.telegram.ui.ActionBar.g2) de0Var).currentAccount;
@@ -81,15 +81,15 @@ public final class sc0 extends org.telegram.ui.Components.iu0 {
         } else if (TextUtils.isEmpty(obj)) {
             n();
         } else {
-            this.f52015r = true;
+            this.f51984r = true;
             de0Var.F1(0, true);
             TL_account.sendVerifyEmailCode sendverifyemailcode = new TL_account.sendVerifyEmailCode();
             if (de0Var.G == 3) {
                 sendverifyemailcode.purpose = new TLRPC.TL_emailVerifyPurposeLoginChange();
             } else {
                 TLRPC.TL_emailVerifyPurposeLoginSetup tL_emailVerifyPurposeLoginSetup2 = new TLRPC.TL_emailVerifyPurposeLoginSetup();
-                tL_emailVerifyPurposeLoginSetup2.phone_number = this.f52018x;
-                tL_emailVerifyPurposeLoginSetup2.phone_code_hash = this.f52019y;
+                tL_emailVerifyPurposeLoginSetup2.phone_number = this.f51987x;
+                tL_emailVerifyPurposeLoginSetup2.phone_code_hash = this.f51988y;
                 sendverifyemailcode.purpose = tL_emailVerifyPurposeLoginSetup2;
             }
             sendverifyemailcode.email = obj;
@@ -106,23 +106,23 @@ public final class sc0 extends org.telegram.ui.Components.iu0 {
     @Override
     public final void k(Bundle bundle) {
         Bundle bundle2 = bundle.getBundle("emailsetup_params");
-        this.f52014n = bundle2;
+        this.f51983n = bundle2;
         if (bundle2 != null) {
             m(bundle2, true);
         }
         String string = bundle.getString("emailsetup_email");
         if (string != null) {
-            this.f52010b.setText(string);
+            this.f51979b.setText(string);
         }
     }
 
     @Override
     public final void l(Bundle bundle) {
-        String obj = this.f52010b.getText().toString();
+        String obj = this.f51979b.getText().toString();
         if (obj != null && obj.length() != 0) {
             bundle.putString("emailsetup_email", obj);
         }
-        Bundle bundle2 = this.f52014n;
+        Bundle bundle2 = this.f51983n;
         if (bundle2 != null) {
             bundle.putBundle("emailsetup_params", bundle2);
         }
@@ -134,26 +134,26 @@ public final class sc0 extends org.telegram.ui.Components.iu0 {
         if (bundle == null) {
             return;
         }
-        EditTextBoldCursor editTextBoldCursor = this.f52010b;
+        EditTextBoldCursor editTextBoldCursor = this.f51979b;
         editTextBoldCursor.setText("");
-        this.f52014n = bundle;
-        this.f52016s = bundle.getString("phone");
-        this.f52017w = this.f52014n.getString("ephone");
-        this.f52018x = this.f52014n.getString("phoneFormated");
-        this.f52019y = this.f52014n.getString("phoneHash");
-        if (bundle.getBoolean("googleSignInAllowed") && org.telegram.messenger.ot.f26165b.hasServices()) {
+        this.f51983n = bundle;
+        this.f51985s = bundle.getString("phone");
+        this.f51986w = this.f51983n.getString("ephone");
+        this.f51987x = this.f51983n.getString("phoneFormated");
+        this.f51988y = this.f51983n.getString("phoneHash");
+        if (bundle.getBoolean("googleSignInAllowed") && org.telegram.messenger.ot.f26129b.hasServices()) {
             i7 = 0;
         } else {
             i7 = 8;
         }
-        this.f52013f.setVisibility(i7);
-        this.f52012e.setVisibility(i7);
+        this.f51982f.setVisibility(i7);
+        this.f51981e.setVisibility(i7);
         de0.b1(this.F, editTextBoldCursor);
         editTextBoldCursor.requestFocus();
     }
 
     public final void n() {
-        org.telegram.ui.Components.yb0 yb0Var = this.f52009a;
+        org.telegram.ui.Components.yb0 yb0Var = this.f51978a;
         de0 de0Var = this.F;
         if (de0Var.getParentActivity() == null) {
             return;
@@ -162,7 +162,7 @@ public final class sc0 extends org.telegram.ui.Components.iu0 {
             yb0Var.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        this.f52010b.requestFocus();
+        this.f51979b.requestFocus();
         de0.c1(de0Var, yb0Var, true);
         postDelayed(new rc0(this, 1), 300L);
     }
@@ -170,14 +170,14 @@ public final class sc0 extends org.telegram.ui.Components.iu0 {
     @Override
     public final void updateColors() {
         int i7 = org.telegram.ui.ActionBar.m6.G6;
-        this.f52011c.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
+        this.f51980c.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
         int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.D6, false);
         org.telegram.ui.Components.m80 m80Var = this.d;
         m80Var.setTextColor(x02);
         m80Var.setLinkTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Xc, false));
-        this.f52010b.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
-        this.f52012e.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29621q6, false));
-        this.f52013f.updateColors();
-        this.f52009a.invalidate();
+        this.f51979b.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
+        this.f51981e.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29587q6, false));
+        this.f51982f.updateColors();
+        this.f51978a.invalidate();
     }
 }

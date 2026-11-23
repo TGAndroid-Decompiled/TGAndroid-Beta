@@ -5,12 +5,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class rx extends org.telegram.ui.ActionBar.g2 {
-    public long f51779a;
-    public TLRPC.Chat f51780b;
-    public boolean f51781c;
+    public long f51813a;
+    public TLRPC.Chat f51814b;
+    public boolean f51815c;
     public boolean d;
-    public boolean f51782e;
-    public bi.i7 f51783f;
+    public boolean f51816e;
+    public bi.l7 f51817f;
     public fi.b0 h;
 
     @Override
@@ -18,20 +18,20 @@ public final class rx extends org.telegram.ui.ActionBar.g2 {
         setHasOwnBackground(true);
         this.simpleActionBar.setBackButtonImage(2131231240);
         this.simpleActionBar.setActionBarMenuOnItemClick(new dv(this, 2));
-        this.simpleActionBar.setTitle(org.telegram.messenger.hd.N0(2131743736, null));
+        this.simpleActionBar.setTitle(org.telegram.messenger.hd.N0(2131743738, null));
         FrameLayout frameLayout = new FrameLayout(context);
-        bi.i7 i7Var = new bi.i7(this, new a5(this, 13), new zr(this, 9), null, 7);
-        this.f51783f = i7Var;
-        i7Var.r1();
-        this.f51783f.setSectionsDrawBackground(true);
-        frameLayout.addView(this.f51783f, c8.ma.e(-1, -1, 119));
+        bi.l7 l7Var = new bi.l7(this, new a5(this, 13), new zr(this, 9), null, 7);
+        this.f51817f = l7Var;
+        l7Var.r1();
+        this.f51817f.setSectionsDrawBackground(true);
+        frameLayout.addView(this.f51817f, c8.na.e(-1, -1, 119));
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
     @Override
     public final org.telegram.ui.Components.ek0 getListViewForSimpleGlass() {
-        return this.f51783f;
+        return this.f51817f;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class rx extends org.telegram.ui.ActionBar.g2 {
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f51780b = getMessagesController().O0(Long.valueOf(-this.f51779a));
+        this.f51814b = getMessagesController().O0(Long.valueOf(-this.f51813a));
         return super.onFragmentCreate();
     }
 

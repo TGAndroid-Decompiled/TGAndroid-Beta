@@ -5,12 +5,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.messenger.pr {
-    public final int f41542a;
-    public final as f41543b;
+    public final int f41504a;
+    public final as f41505b;
 
     public vr(as asVar, int i7) {
-        this.f41542a = i7;
-        this.f41543b = asVar;
+        this.f41504a = i7;
+        this.f41505b = asVar;
     }
 
     @Override
@@ -27,22 +27,22 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
     public void f(float f10, float f11, int i7, View view) {
         boolean z10;
         boolean[] zArr;
-        as asVar = this.f41543b;
+        as asVar = this.f41505b;
         o41 G = asVar.T1.G(i7 - 1);
         if (G != null) {
-            zr zrVar = asVar.f33610g2;
-            zr zrVar2 = asVar.f33609f2;
-            zr zrVar3 = asVar.f33608e2;
-            zr zrVar4 = asVar.f33611h2;
-            TLRPC.TL_chatBannedRights tL_chatBannedRights = asVar.f33622s2;
+            zr zrVar = asVar.f33594g2;
+            zr zrVar2 = asVar.f33593f2;
+            zr zrVar3 = asVar.f33592e2;
+            zr zrVar4 = asVar.f33595h2;
+            TLRPC.TL_chatBannedRights tL_chatBannedRights = asVar.f33606s2;
             int i10 = G.d;
             if (i10 == 103) {
-                boolean z11 = !asVar.f33615l2;
-                asVar.f33615l2 = z11;
+                boolean z11 = !asVar.f33599l2;
+                asVar.f33599l2 = z11;
                 ((org.telegram.ui.Cells.r8) view).setChecked(z11);
                 return;
             }
-            int i11 = G.f56634a;
+            int i11 = G.f56599a;
             if (i11 == 37) {
                 int i12 = i10 >>> 24;
                 int i13 = 16777215 & i10;
@@ -59,12 +59,12 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
                 }
             } else if (i11 != 36 && i11 != 35) {
                 if (i11 == 39) {
-                    if (G.f38099u) {
+                    if (G.f38066u) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(asVar.getContext());
-                        String N0 = org.telegram.messenger.hd.N0(2131743474, null);
-                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                        String N0 = org.telegram.messenger.hd.N0(2131743476, null);
+                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                         t1Var.S = N0;
-                        t1Var.U = org.telegram.messenger.hd.N0(2131743473, null);
+                        t1Var.U = org.telegram.messenger.hd.N0(2131743475, null);
                         alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131747637, null), null);
                         t1Var.show();
                         return;
@@ -87,29 +87,29 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
                     }
                     asVar.T1.O(true);
                 } else if (i11 == 40) {
-                    asVar.f33624u2 = !asVar.f33624u2;
+                    asVar.f33608u2 = !asVar.f33608u2;
                     asVar.Y0();
                     asVar.T1.O(true);
                     asVar.J0();
                 } else if (i10 == 100) {
-                    asVar.f33627x2 = false;
-                    boolean z12 = !asVar.f33628y2;
-                    asVar.f33628y2 = z12;
-                    asVar.f33629z2 = z12;
+                    asVar.f33611x2 = false;
+                    boolean z12 = !asVar.f33612y2;
+                    asVar.f33612y2 = z12;
+                    asVar.f33613z2 = z12;
                     asVar.Y0();
                     asVar.T1.O(true);
                     asVar.J0();
                     asVar.h1();
                 } else if (i11 == 38) {
-                    boolean z13 = asVar.f33607c2;
-                    asVar.f33607c2 = !z13;
+                    boolean z13 = asVar.f33591c2;
+                    asVar.f33591c2 = !z13;
                     if (!z13) {
-                        zArr = asVar.f33613j2;
+                        zArr = asVar.f33597j2;
                     } else {
-                        zArr = asVar.f33612i2;
+                        zArr = asVar.f33596i2;
                     }
-                    if (zrVar4.f42970g != 0) {
-                        zrVar4.f42968e = zArr;
+                    if (zrVar4.f42927g != 0) {
+                        zrVar4.f42925e = zArr;
                         zrVar4.h();
                         zrVar4.i();
                     }
@@ -127,12 +127,12 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
             } else if (i10 == 2) {
                 zrVar4.f();
             } else if (i11 == 35) {
-                if (G.f38099u) {
+                if (G.f38066u) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(asVar.getContext());
-                    String N02 = org.telegram.messenger.hd.N0(2131743474, null);
-                    org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder2.f28777a;
+                    String N02 = org.telegram.messenger.hd.N0(2131743476, null);
+                    org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder2.f28743a;
                     t1Var2.S = N02;
-                    t1Var2.U = org.telegram.messenger.hd.N0(2131743473, null);
+                    t1Var2.U = org.telegram.messenger.hd.N0(2131743475, null);
                     alertDialog$Builder2.k(org.telegram.messenger.hd.N0(2131747637, null), null);
                     t1Var2.show();
                     return;
@@ -170,7 +170,7 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
                             tL_chatBannedRights.send_stickers = z14;
                             asVar.i1();
                         } else if (i10 == 14) {
-                            if (!tL_chatBannedRights.send_plain && !asVar.f33621r2.send_plain) {
+                            if (!tL_chatBannedRights.send_plain && !asVar.f33605r2.send_plain) {
                                 tL_chatBannedRights.embed_links = !tL_chatBannedRights.embed_links;
                                 asVar.i1();
                             } else {
@@ -180,10 +180,10 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
                                         break;
                                     }
                                     o41 G2 = asVar.T1.G(i14);
-                                    if (G2.f56634a == 39 && G2.d == 0) {
-                                        v4.f1 K = asVar.f39531o1.K(i14 + 1);
+                                    if (G2.f56599a == 39 && G2.d == 0) {
+                                        v4.e1 K = asVar.f39487o1.K(i14 + 1);
                                         if (K != null) {
-                                            View view2 = K.f59165a;
+                                            View view2 = K.f59111a;
                                             float f12 = -asVar.B2;
                                             asVar.B2 = f12;
                                             org.telegram.messenger.g0.E3(f12, view2, null);
@@ -202,10 +202,10 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
                         } else {
                             z10 = true;
                             if (i10 == 101) {
-                                asVar.f33628y2 = !asVar.f33628y2;
+                                asVar.f33612y2 = !asVar.f33612y2;
                                 asVar.h1();
                             } else if (i10 == 102) {
-                                asVar.f33629z2 = !asVar.f33629z2;
+                                asVar.f33613z2 = !asVar.f33613z2;
                                 asVar.d1();
                             }
                         }
@@ -219,9 +219,9 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
 
     @Override
     public void run(long j3) {
-        switch (this.f41542a) {
+        switch (this.f41504a) {
             case 5:
-                as asVar = this.f41543b;
+                as asVar = this.f41505b;
                 asVar.getClass();
                 org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
                 if (Q != null) {
@@ -230,7 +230,7 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
                 asVar.dismiss();
                 return;
             default:
-                as asVar2 = this.f41543b;
+                as asVar2 = this.f41505b;
                 asVar2.getClass();
                 org.telegram.ui.ActionBar.g2 Q2 = LaunchActivity.Q();
                 if (Q2 != null) {

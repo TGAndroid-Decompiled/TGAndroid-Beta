@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.Locale;
 import org.telegram.tgnet.TLRPC;
 public final class hj0 implements s9, org.telegram.ui.Components.si {
-    public final hk0 f48412a;
+    public final hk0 f48376a;
 
     public hj0(hk0 hk0Var) {
-        this.f48412a = hk0Var;
+        this.f48376a = hk0Var;
     }
 
     @Override
@@ -19,53 +19,53 @@ public final class hj0 implements s9, org.telegram.ui.Components.si {
 
     @Override
     public void K0() {
-        org.telegram.messenger.g0.v1(this.f48412a.fragmentView.findFocus());
+        org.telegram.messenger.g0.v1(this.f48376a.fragmentView.findFocus());
     }
 
     @Override
     public void S0(org.telegram.messenger.vr vrVar) {
-        boolean isEmpty = TextUtils.isEmpty(vrVar.f27576b);
-        hk0 hk0Var = this.f48412a;
+        boolean isEmpty = TextUtils.isEmpty(vrVar.f27540b);
+        hk0 hk0Var = this.f48376a;
         if (!isEmpty) {
-            hk0Var.Z[0].setText(vrVar.f27576b);
+            hk0Var.Z[0].setText(vrVar.f27540b);
         }
         if (!TextUtils.isEmpty(vrVar.d)) {
             hk0Var.Z[1].setText(vrVar.d);
         }
-        if (!TextUtils.isEmpty(vrVar.f27577c)) {
-            hk0Var.Z[2].setText(vrVar.f27577c);
+        if (!TextUtils.isEmpty(vrVar.f27541c)) {
+            hk0Var.Z[2].setText(vrVar.f27541c);
         }
-        int i7 = vrVar.f27586n;
+        int i7 = vrVar.f27550n;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 == 2) {
-                    hk0Var.f48468x = "female";
+                    hk0Var.f48432x = "female";
                     hk0Var.Z[4].setText(org.telegram.messenger.hd.N0(2131747375, null));
                 }
             } else {
-                hk0Var.f48468x = "male";
+                hk0Var.f48432x = "male";
                 hk0Var.Z[4].setText(org.telegram.messenger.hd.N0(2131747314, null));
             }
         }
-        if (!TextUtils.isEmpty(vrVar.f27585m)) {
-            String str = vrVar.f27585m;
-            hk0Var.f48456s = str;
+        if (!TextUtils.isEmpty(vrVar.f27549m)) {
+            String str = vrVar.f27549m;
+            hk0Var.f48420s = str;
             String str2 = (String) hk0Var.Z0.get(str);
             if (str2 != null) {
                 hk0Var.Z[5].setText(str2);
             }
         }
-        if (!TextUtils.isEmpty(vrVar.f27584l)) {
-            String str3 = vrVar.f27584l;
-            hk0Var.f48465w = str3;
+        if (!TextUtils.isEmpty(vrVar.f27548l)) {
+            String str3 = vrVar.f27548l;
+            hk0Var.f48429w = str3;
             String str4 = (String) hk0Var.Z0.get(str3);
             if (str4 != null) {
                 hk0Var.Z[6].setText(str4);
             }
         }
-        int i10 = vrVar.f27583k;
-        if (i10 > 0 && vrVar.f27582j > 0 && vrVar.f27581i > 0) {
-            hk0Var.Z[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i10), Integer.valueOf(vrVar.f27582j), Integer.valueOf(vrVar.f27581i)));
+        int i10 = vrVar.f27547k;
+        if (i10 > 0 && vrVar.f27546j > 0 && vrVar.f27545i > 0) {
+            hk0Var.Z[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i10), Integer.valueOf(vrVar.f27546j), Integer.valueOf(vrVar.f27545i)));
         }
     }
 
@@ -75,7 +75,7 @@ public final class hj0 implements s9, org.telegram.ui.Components.si {
     }
 
     @Override
-    public boolean c1(String str, k9 k9Var) {
+    public boolean c1(String str, j9 j9Var) {
         return false;
     }
 
@@ -92,7 +92,7 @@ public final class hj0 implements s9, org.telegram.ui.Components.si {
     @Override
     public void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
         org.telegram.ui.Components.ui uiVar;
-        hk0 hk0Var = this.f48412a;
+        hk0 hk0Var = this.f48376a;
         if (hk0Var.getParentActivity() != null && (uiVar = hk0Var.S0) != null) {
             if (i7 != 8 && i7 != 7) {
                 uiVar.M(i7);
@@ -102,8 +102,8 @@ public final class hj0 implements s9, org.telegram.ui.Components.si {
             if (i7 != 8) {
                 uiVar.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = hk0Var.S0.f40378e2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = hk0Var.S0.f40378e2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = hk0Var.S0.f40363e2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = hk0Var.S0.f40363e2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
                 for (int i12 = 0; i12 < selectedPhotosOrder.size(); i12++) {
@@ -111,9 +111,9 @@ public final class hj0 implements s9, org.telegram.ui.Components.si {
                     ?? obj = new Object();
                     String str = ffVar.h;
                     if (str != null) {
-                        obj.f28407c = str;
+                        obj.f28371c = str;
                     } else {
-                        obj.f28407c = ffVar.I;
+                        obj.f28371c = ffVar.I;
                     }
                     arrayList.add(obj);
                     ffVar.e();

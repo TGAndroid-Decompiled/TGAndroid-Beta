@@ -10,19 +10,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vb0 implements RequestDelegate {
-    public final int f52785a;
-    public final xb0 f52786b;
+    public final int f52764a;
+    public final xb0 f52765b;
 
     public vb0(xb0 xb0Var, int i7) {
-        this.f52785a = i7;
-        this.f52786b = xb0Var;
+        this.f52764a = i7;
+        this.f52765b = xb0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f52785a) {
+        switch (this.f52764a) {
             case 0:
-                final xb0 xb0Var = this.f52786b;
+                final xb0 xb0Var = this.f52765b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -37,7 +37,7 @@ public final class vb0 implements RequestDelegate {
                             case 0:
                                 xb0Var2.getClass();
                                 if (tL_error2 == null) {
-                                    xb0Var2.f53818n = (TL_account.Password) tLObject2;
+                                    xb0Var2.f53738n = (TL_account.Password) tLObject2;
                                     xb0Var2.h(null);
                                     return;
                                 }
@@ -55,14 +55,14 @@ public final class vb0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f35337a |= 256;
-                                            obj.f35338b = indexOf;
+                                            obj.f35299a |= 256;
+                                            obj.f35300b = indexOf;
                                             int i11 = lastIndexOf + 1;
-                                            obj.f35339c = i11;
+                                            obj.f35301c = i11;
                                             valueOf.setSpan(new org.telegram.ui.Components.gz0(obj, 0), indexOf, i11, 0);
                                         }
                                         SpannableStringBuilder m0 = org.telegram.messenger.g0.m0(org.telegram.messenger.hd.N0(2131745884, null), valueOf);
-                                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                                         t1Var.U = m0;
                                         t1Var.S = org.telegram.messenger.hd.N0(2131745882, "RestoreEmailSentTitle");
                                         alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131751759, null), new at(23, xb0Var2, tL_auth_passwordRecovery));
@@ -82,7 +82,7 @@ public final class vb0 implements RequestDelegate {
                                     } else {
                                         G = org.telegram.messenger.hd.G(intValue / 60, "Minutes", new Object[0]);
                                     }
-                                    de0Var.D1(org.telegram.messenger.hd.N0(2131742594, null), org.telegram.messenger.hd.a0("FloodWaitTime", null, 2131750669, G));
+                                    de0Var.D1(org.telegram.messenger.hd.N0(2131742596, null), org.telegram.messenger.hd.a0("FloodWaitTime", null, 2131750669, G));
                                     return;
                                 } else {
                                     de0Var.D1(org.telegram.messenger.hd.N0(2131745875, null), tL_error2.text);
@@ -98,14 +98,14 @@ public final class vb0 implements RequestDelegate {
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
                                     de0Var2.N1(false, true);
-                                    xb0Var2.postDelayed(new h60(18, xb0Var2, tLObject2), 150L);
+                                    xb0Var2.postDelayed(new o60(16, xb0Var2, tLObject2), 150L);
                                     return;
                                 } else {
                                     de0Var2.C1(false, true);
                                     if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
                                         if (de0Var2.getParentActivity() != null) {
-                                            xb0Var2.f53813a.setText("");
-                                            de0.c1(de0Var2, xb0Var2.f53823y, true);
+                                            xb0Var2.f53733a.setText("");
+                                            de0.c1(de0Var2, xb0Var2.f53743y, true);
                                             return;
                                         }
                                         return;
@@ -128,7 +128,7 @@ public final class vb0 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final xb0 xb0Var2 = this.f52786b;
+                final xb0 xb0Var2 = this.f52765b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -143,7 +143,7 @@ public final class vb0 implements RequestDelegate {
                             case 0:
                                 xb0Var22.getClass();
                                 if (tL_error2 == null) {
-                                    xb0Var22.f53818n = (TL_account.Password) tLObject2;
+                                    xb0Var22.f53738n = (TL_account.Password) tLObject2;
                                     xb0Var22.h(null);
                                     return;
                                 }
@@ -161,14 +161,14 @@ public final class vb0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f35337a |= 256;
-                                            obj.f35338b = indexOf;
+                                            obj.f35299a |= 256;
+                                            obj.f35300b = indexOf;
                                             int i11 = lastIndexOf + 1;
-                                            obj.f35339c = i11;
+                                            obj.f35301c = i11;
                                             valueOf.setSpan(new org.telegram.ui.Components.gz0(obj, 0), indexOf, i11, 0);
                                         }
                                         SpannableStringBuilder m0 = org.telegram.messenger.g0.m0(org.telegram.messenger.hd.N0(2131745884, null), valueOf);
-                                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                                         t1Var.U = m0;
                                         t1Var.S = org.telegram.messenger.hd.N0(2131745882, "RestoreEmailSentTitle");
                                         alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131751759, null), new at(23, xb0Var22, tL_auth_passwordRecovery));
@@ -188,7 +188,7 @@ public final class vb0 implements RequestDelegate {
                                     } else {
                                         G = org.telegram.messenger.hd.G(intValue / 60, "Minutes", new Object[0]);
                                     }
-                                    de0Var.D1(org.telegram.messenger.hd.N0(2131742594, null), org.telegram.messenger.hd.a0("FloodWaitTime", null, 2131750669, G));
+                                    de0Var.D1(org.telegram.messenger.hd.N0(2131742596, null), org.telegram.messenger.hd.a0("FloodWaitTime", null, 2131750669, G));
                                     return;
                                 } else {
                                     de0Var.D1(org.telegram.messenger.hd.N0(2131745875, null), tL_error2.text);
@@ -204,14 +204,14 @@ public final class vb0 implements RequestDelegate {
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
                                     de0Var2.N1(false, true);
-                                    xb0Var22.postDelayed(new h60(18, xb0Var22, tLObject2), 150L);
+                                    xb0Var22.postDelayed(new o60(16, xb0Var22, tLObject2), 150L);
                                     return;
                                 } else {
                                     de0Var2.C1(false, true);
                                     if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
                                         if (de0Var2.getParentActivity() != null) {
-                                            xb0Var22.f53813a.setText("");
-                                            de0.c1(de0Var2, xb0Var22.f53823y, true);
+                                            xb0Var22.f53733a.setText("");
+                                            de0.c1(de0Var2, xb0Var22.f53743y, true);
                                             return;
                                         }
                                         return;
@@ -234,7 +234,7 @@ public final class vb0 implements RequestDelegate {
                 });
                 return;
             default:
-                final xb0 xb0Var3 = this.f52786b;
+                final xb0 xb0Var3 = this.f52765b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -249,7 +249,7 @@ public final class vb0 implements RequestDelegate {
                             case 0:
                                 xb0Var22.getClass();
                                 if (tL_error2 == null) {
-                                    xb0Var22.f53818n = (TL_account.Password) tLObject2;
+                                    xb0Var22.f53738n = (TL_account.Password) tLObject2;
                                     xb0Var22.h(null);
                                     return;
                                 }
@@ -267,14 +267,14 @@ public final class vb0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f35337a |= 256;
-                                            obj.f35338b = indexOf;
+                                            obj.f35299a |= 256;
+                                            obj.f35300b = indexOf;
                                             int i11 = lastIndexOf + 1;
-                                            obj.f35339c = i11;
+                                            obj.f35301c = i11;
                                             valueOf.setSpan(new org.telegram.ui.Components.gz0(obj, 0), indexOf, i11, 0);
                                         }
                                         SpannableStringBuilder m0 = org.telegram.messenger.g0.m0(org.telegram.messenger.hd.N0(2131745884, null), valueOf);
-                                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                                         t1Var.U = m0;
                                         t1Var.S = org.telegram.messenger.hd.N0(2131745882, "RestoreEmailSentTitle");
                                         alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131751759, null), new at(23, xb0Var22, tL_auth_passwordRecovery));
@@ -294,7 +294,7 @@ public final class vb0 implements RequestDelegate {
                                     } else {
                                         G = org.telegram.messenger.hd.G(intValue / 60, "Minutes", new Object[0]);
                                     }
-                                    de0Var.D1(org.telegram.messenger.hd.N0(2131742594, null), org.telegram.messenger.hd.a0("FloodWaitTime", null, 2131750669, G));
+                                    de0Var.D1(org.telegram.messenger.hd.N0(2131742596, null), org.telegram.messenger.hd.a0("FloodWaitTime", null, 2131750669, G));
                                     return;
                                 } else {
                                     de0Var.D1(org.telegram.messenger.hd.N0(2131745875, null), tL_error2.text);
@@ -310,14 +310,14 @@ public final class vb0 implements RequestDelegate {
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
                                     de0Var2.N1(false, true);
-                                    xb0Var22.postDelayed(new h60(18, xb0Var22, tLObject2), 150L);
+                                    xb0Var22.postDelayed(new o60(16, xb0Var22, tLObject2), 150L);
                                     return;
                                 } else {
                                     de0Var2.C1(false, true);
                                     if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
                                         if (de0Var2.getParentActivity() != null) {
-                                            xb0Var22.f53813a.setText("");
-                                            de0.c1(de0Var2, xb0Var22.f53823y, true);
+                                            xb0Var22.f53733a.setText("");
+                                            de0.c1(de0Var2, xb0Var22.f53743y, true);
                                             return;
                                         }
                                         return;

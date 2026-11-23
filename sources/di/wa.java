@@ -12,7 +12,7 @@ import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.nr;
 import org.telegram.ui.Components.o41;
 public final class wa extends n41 {
-    public static final int f10014b = 0;
+    public static final int f9977b = 0;
 
     static {
         n41.h(new n41());
@@ -25,31 +25,31 @@ public final class wa extends n41 {
         int i10;
         int i11;
         xa xaVar = (xa) view;
-        org.telegram.ui.Components.o6 o6Var = xaVar.f10052a;
-        ImageView imageView = xaVar.f10053b;
-        int i12 = xaVar.f10054c;
+        org.telegram.ui.Components.o6 o6Var = xaVar.f10015a;
+        ImageView imageView = xaVar.f10016b;
+        int i12 = xaVar.f10017c;
         int i13 = o41Var.d;
         if (i12 == i13) {
             z11 = true;
         } else {
             z11 = false;
         }
-        xaVar.f10054c = i13;
-        o6Var.c(o41Var.f38091m, z11, true);
-        if (o41Var.f38096r) {
-            i7 = org.telegram.ui.ActionBar.m6.f29581o6;
+        xaVar.f10017c = i13;
+        o6Var.c(o41Var.f38058m, z11, true);
+        if (o41Var.f38063r) {
+            i7 = org.telegram.ui.ActionBar.m6.f29547o6;
         } else {
             i7 = org.telegram.ui.ActionBar.m6.G6;
         }
         org.telegram.ui.ActionBar.m6.v0(i7);
-        if (o41Var.f38096r) {
-            i10 = org.telegram.ui.ActionBar.m6.f29581o6;
+        if (o41Var.f38063r) {
+            i10 = org.telegram.ui.ActionBar.m6.f29547o6;
         } else {
             i10 = org.telegram.ui.ActionBar.m6.G6;
         }
         org.telegram.ui.ActionBar.t6.Y(o6Var, i10, null);
-        if (o41Var.f38096r) {
-            i11 = org.telegram.ui.ActionBar.m6.f29581o6;
+        if (o41Var.f38063r) {
+            i11 = org.telegram.ui.ActionBar.m6.f29547o6;
         } else {
             i11 = org.telegram.ui.ActionBar.m6.G6;
         }
@@ -57,12 +57,12 @@ public final class wa extends n41 {
         float f10 = 180.0f;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
-            if (o41Var.f38085f) {
+            if (o41Var.f38052f) {
                 f10 = 0.0f;
             }
             animate.rotation(f10).setDuration(340L).setInterpolator(nr.h);
         } else {
-            if (o41Var.f38085f) {
+            if (o41Var.f38052f) {
                 f10 = 0.0f;
             }
             imageView.setRotation(f10);

@@ -3,24 +3,24 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class kh implements Runnable {
-    public final int f25068a;
-    public final si f25069b;
-    public final ArrayList f25070c;
+    public final int f25032a;
+    public final si f25033b;
+    public final ArrayList f25034c;
 
     public kh(si siVar, ArrayList arrayList, int i7) {
-        this.f25068a = i7;
-        this.f25069b = siVar;
-        this.f25070c = arrayList;
+        this.f25032a = i7;
+        this.f25033b = siVar;
+        this.f25034c = arrayList;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25068a;
-        ArrayList arrayList = this.f25070c;
-        si siVar = this.f25069b;
+        int i7 = this.f25032a;
+        ArrayList arrayList = this.f25034c;
+        si siVar = this.f25033b;
         switch (i7) {
             case 0:
-                siVar.getNotificationCenter().k(56, Long.valueOf(gj.B0(((gj) arrayList.get(0)).f24213k)), null, Boolean.TRUE, arrayList, null, 0, -1, Boolean.FALSE);
+                siVar.getNotificationCenter().k(56, Long.valueOf(gj.B0(((gj) arrayList.get(0)).f24177k)), null, Boolean.TRUE, arrayList, null, 0, -1, Boolean.FALSE);
                 return;
             default:
                 try {

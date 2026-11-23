@@ -1,24 +1,24 @@
 package u7;
 
 import a8.i0;
-import c8.tc;
+import c8.uc;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 public final class p extends i0 implements ListIterator {
-    public final int f58504b;
-    public int f58505c;
+    public final int f58469b;
+    public int f58470c;
     public final r d;
 
     public p(r rVar, int i7) {
         super(6);
         int size = rVar.size();
         if (i7 >= 0 && i7 <= size) {
-            this.f58504b = size;
-            this.f58505c = i7;
+            this.f58469b = size;
+            this.f58470c = i7;
             this.d = rVar;
             return;
         }
-        throw new IndexOutOfBoundsException(tc.c(i7, size, "index"));
+        throw new IndexOutOfBoundsException(uc.c(i7, size, "index"));
     }
 
     public final Object a(int i7) {
@@ -32,7 +32,7 @@ public final class p extends i0 implements ListIterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f58505c < this.f58504b) {
+        if (this.f58470c < this.f58469b) {
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ public final class p extends i0 implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f58505c > 0) {
+        if (this.f58470c > 0) {
             return true;
         }
         return false;
@@ -49,8 +49,8 @@ public final class p extends i0 implements ListIterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            int i7 = this.f58505c;
-            this.f58505c = i7 + 1;
+            int i7 = this.f58470c;
+            this.f58470c = i7 + 1;
             return a(i7);
         }
         throw new NoSuchElementException();
@@ -58,14 +58,14 @@ public final class p extends i0 implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f58505c;
+        return this.f58470c;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i7 = this.f58505c - 1;
-            this.f58505c = i7;
+            int i7 = this.f58470c - 1;
+            this.f58470c = i7;
             return a(i7);
         }
         throw new NoSuchElementException();
@@ -73,7 +73,7 @@ public final class p extends i0 implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f58505c - 1;
+        return this.f58470c - 1;
     }
 
     @Override

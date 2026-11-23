@@ -15,20 +15,20 @@ public final class gu extends au {
     public final TL_iv.pageBlockDetails X;
     public final ev Y;
     public final ev[] Z;
-    public final AnimatedArrowDrawable f24308a0;
-    public final Paint f24309b0;
-    public org.telegram.ui.Components.mc f24310c0;
-    public boolean f24311d0;
-    public float f24312e0;
-    public float f24313f0;
+    public final AnimatedArrowDrawable f24272a0;
+    public final Paint f24273b0;
+    public org.telegram.ui.Components.mc f24274c0;
+    public boolean f24275d0;
+    public float f24276e0;
+    public float f24277f0;
 
     public gu(fv fvVar, Rect rect, int i7, TL_iv.pageBlockDetails pageblockdetails, SpannableStringBuilder spannableStringBuilder) {
         super(fvVar, rect, i7);
         int i10;
         float f10;
-        this.f24309b0 = new Paint(1);
+        this.f24273b0 = new Paint(1);
         this.X = pageblockdetails;
-        ev evVar = new ev(fvVar, spannableStringBuilder, i5.c.d(16.0f, this.f22970c - g0.L(53.0f), 0));
+        ev evVar = new ev(fvVar, spannableStringBuilder, i5.c.d(16.0f, this.f22934c - g0.L(53.0f), 0));
         this.Y = evVar;
         this.Z = new ev[]{evVar};
         if (fvVar.E()) {
@@ -37,7 +37,7 @@ public final class gu extends au {
             i10 = org.telegram.ui.ActionBar.m6.ul;
         }
         AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(org.telegram.ui.ActionBar.m6.w0(i10, fvVar.D));
-        this.f24308a0 = animatedArrowDrawable;
+        this.f24272a0 = animatedArrowDrawable;
         if (pageblockdetails.open) {
             f10 = 0.0f;
         } else {
@@ -48,10 +48,10 @@ public final class gu extends au {
 
     @Override
     public final void A(int i7, Rect rect) {
-        Rect rect2 = this.f22969b;
+        Rect rect2 = this.f22933b;
         int i10 = ((int) this.N) + rect2.top;
         int i11 = rect2.left;
-        fv fvVar = this.f22968a;
+        fv fvVar = this.f22932a;
         rect.set(i11 - fvVar.S, i10, (fvVar.C + fvVar.T) - rect2.right, i0() + i10);
     }
 
@@ -78,7 +78,7 @@ public final class gu extends au {
         CharSequence concat;
         StaticLayout staticLayout;
         ev evVar = this.Y;
-        if (evVar != null && (staticLayout = evVar.f23770b) != null) {
+        if (evVar != null && (staticLayout = evVar.f23734b) != null) {
             charSequence = au.h0(staticLayout.getText());
         } else {
             charSequence = null;
@@ -100,7 +100,7 @@ public final class gu extends au {
 
     @Override
     public final int I() {
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         return i0() + rect.top + rect.bottom;
     }
 
@@ -111,7 +111,7 @@ public final class gu extends au {
 
     @Override
     public final int K() {
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         return g0.L(16.0f) + this.Y.r() + g0.L(53.0f) + rect.left + rect.right;
     }
 
@@ -141,16 +141,16 @@ public final class gu extends au {
         float f10;
         int i7;
         int i10;
-        org.telegram.ui.Components.mc mcVar = this.f24310c0;
+        org.telegram.ui.Components.mc mcVar = this.f24274c0;
         if (mcVar != null) {
             f10 = mcVar.a(0.02f);
         } else {
             f10 = 1.0f;
         }
-        fv fvVar = this.f22968a;
+        fv fvVar = this.f22932a;
         float f11 = -fvVar.S;
         int i11 = fvVar.C + fvVar.T;
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         float f12 = (i11 - rect.left) - rect.right;
         int i12 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
         if (i12 != 0) {
@@ -163,8 +163,8 @@ public final class gu extends au {
             i7 = org.telegram.ui.ActionBar.m6.ul;
         }
         int w02 = org.telegram.ui.ActionBar.m6.w0(i7, fvVar.D);
-        AnimatedArrowDrawable animatedArrowDrawable = this.f24308a0;
-        animatedArrowDrawable.f32558a.setColor(w02);
+        AnimatedArrowDrawable animatedArrowDrawable = this.f24272a0;
+        animatedArrowDrawable.f32524a.setColor(w02);
         animatedArrowDrawable.invalidateSelf();
         canvas.save();
         canvas.translate(g0.N(22.6f) + f11, g0.N(21.66f));
@@ -178,14 +178,14 @@ public final class gu extends au {
         if (i12 != 0) {
             canvas.restore();
         }
-        if (!this.X.open && !fvVar.f23992s) {
+        if (!this.X.open && !fvVar.f23956s) {
             if (fvVar.E()) {
                 i10 = org.telegram.ui.ActionBar.m6.xl;
             } else {
                 i10 = org.telegram.ui.ActionBar.m6.wl;
             }
             int w03 = org.telegram.ui.ActionBar.m6.w0(i10, fvVar.D);
-            Paint paint = this.f24309b0;
+            Paint paint = this.f24273b0;
             paint.setColor(w03);
             canvas.drawRect(f11, i0() - 1.0f, f12, i0(), paint);
         }
@@ -195,23 +195,23 @@ public final class gu extends au {
     public final boolean Y(MotionEvent motionEvent) {
         View view;
         int actionMasked = motionEvent.getActionMasked();
-        fv fvVar = this.f22968a;
+        fv fvVar = this.f22932a;
         if (actionMasked == 0) {
-            this.f24311d0 = true;
-            if (this.f24310c0 == null && (view = fvVar.Q) != null) {
-                this.f24310c0 = new org.telegram.ui.Components.mc(view);
+            this.f24275d0 = true;
+            if (this.f24274c0 == null && (view = fvVar.Q) != null) {
+                this.f24274c0 = new org.telegram.ui.Components.mc(view);
             }
-            org.telegram.ui.Components.mc mcVar = this.f24310c0;
+            org.telegram.ui.Components.mc mcVar = this.f24274c0;
             if (mcVar != null) {
                 mcVar.c(true);
             }
             return true;
         } else if (actionMasked == 1) {
-            if (!this.f24311d0) {
+            if (!this.f24275d0) {
                 return false;
             }
-            this.f24311d0 = false;
-            org.telegram.ui.Components.mc mcVar2 = this.f24310c0;
+            this.f24275d0 = false;
+            org.telegram.ui.Components.mc mcVar2 = this.f24274c0;
             if (mcVar2 != null) {
                 mcVar2.c(false);
             }
@@ -223,13 +223,13 @@ public final class gu extends au {
             return true;
         } else {
             if (actionMasked == 3) {
-                this.f24311d0 = false;
-                org.telegram.ui.Components.mc mcVar3 = this.f24310c0;
+                this.f24275d0 = false;
+                org.telegram.ui.Components.mc mcVar3 = this.f24274c0;
                 if (mcVar3 != null) {
                     mcVar3.c(false);
                 }
             }
-            return this.f24311d0;
+            return this.f24275d0;
         }
     }
 
@@ -238,20 +238,20 @@ public final class gu extends au {
         this.T = i7;
         this.U = i10;
         this.V = i11;
-        int L = g0.L(53.0f) + (i7 - this.f22968a.S);
+        int L = g0.L(53.0f) + (i7 - this.f22932a.S);
         ev evVar = this.Y;
-        evVar.f23771c = L - evVar.f23773f;
+        evVar.f23735c = L - evVar.f23737f;
         evVar.d = g0.L(14.0f) + i10;
-        evVar.f23772e = i11;
+        evVar.f23736e = i11;
     }
 
     public final int i0() {
-        return f3.b(12.66f, this.Y.f23770b.getHeight() + g0.L(14.0f), g0.L(27.82f));
+        return f3.b(12.66f, this.Y.f23734b.getHeight() + g0.L(14.0f), g0.L(27.82f));
     }
 
     public final void j0() {
         float f10;
-        fv fvVar = this.f22968a;
+        fv fvVar = this.f22932a;
         fvVar.X();
         TL_iv.pageBlockDetails pageblockdetails = this.X;
         boolean z10 = pageblockdetails.open;
@@ -261,8 +261,8 @@ public final class gu extends au {
         } else {
             f10 = 1.0f;
         }
-        this.f24308a0.a(f10);
-        fvVar.f23992s = true;
+        this.f24272a0.a(f10);
+        fvVar.f23956s = true;
         fvVar.Q();
         View view = fvVar.Q;
         if (view != null) {
@@ -284,9 +284,9 @@ public final class gu extends au {
     public final boolean u(CharacterStyle characterStyle, int i7, rt rtVar) {
         ev evVar = this.Y;
         if (evVar.o(characterStyle, rtVar)) {
-            Rect rect = this.f22969b;
-            rtVar.f26661e = (g0.L(53.0f) + (rect.left - this.f22968a.S)) - evVar.f23773f;
-            rtVar.f26662f = g0.L(14.0f) + i7 + rect.top;
+            Rect rect = this.f22933b;
+            rtVar.f26625e = (g0.L(53.0f) + (rect.left - this.f22932a.S)) - evVar.f23737f;
+            rtVar.f26626f = g0.L(14.0f) + i7 + rect.top;
             return true;
         }
         return false;

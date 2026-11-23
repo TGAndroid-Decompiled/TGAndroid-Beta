@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class ud0 implements org.telegram.messenger.t10 {
-    public final int f52555a;
-    public final org.telegram.messenger.gs f52556b;
+    public final int f52543a;
+    public final org.telegram.messenger.gs f52544b;
 
     public ud0(org.telegram.messenger.gs gsVar, int i7) {
-        this.f52555a = i7;
-        this.f52556b = gsVar;
+        this.f52543a = i7;
+        this.f52544b = gsVar;
     }
 
     @Override

@@ -3,22 +3,22 @@ package g2;
 import h2.l0;
 public final class g {
     public static final String d;
-    public static final String f13162e;
-    public static final String f13163f;
-    public final int f13164a;
-    public final int f13165b;
-    public final int f13166c;
+    public static final String f13125e;
+    public static final String f13126f;
+    public final int f13127a;
+    public final int f13128b;
+    public final int f13129c;
 
     static {
-        String str = l0.f13815a;
+        String str = l0.f13778a;
         d = Integer.toString(0, 36);
-        f13162e = Integer.toString(1, 36);
-        f13163f = Integer.toString(2, 36);
+        f13125e = Integer.toString(1, 36);
+        f13126f = Integer.toString(2, 36);
     }
 
     public g(int i7, int i10, int i11) {
-        this.f13164a = i7;
-        this.f13165b = i10;
-        this.f13166c = i11;
+        this.f13127a = i7;
+        this.f13128b = i10;
+        this.f13129c = i11;
     }
 }

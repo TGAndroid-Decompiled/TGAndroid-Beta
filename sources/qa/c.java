@@ -1,12 +1,12 @@
 package qa;
 public final class c {
-    public static final c f56117a;
-    public static final c[] f56118b;
+    public static final c f56082a;
+    public static final c[] f56083b;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f56117a = r02;
-        f56118b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+        f56082a = r02;
+        f56083b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
     }
 
     public static c valueOf(String str) {
@@ -14,6 +14,6 @@ public final class c {
     }
 
     public static c[] values() {
-        return (c[]) f56118b.clone();
+        return (c[]) f56083b.clone();
     }
 }

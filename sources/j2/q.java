@@ -7,20 +7,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 public final class q extends h9.o implements Map {
-    public final Map f17234b;
+    public final Map f17200b;
 
     public q(Map map) {
-        this.f17234b = map;
+        this.f17200b = map;
     }
 
     @Override
     public final void clear() {
-        this.f17234b.clear();
+        this.f17200b.clear();
     }
 
     @Override
     public final boolean containsKey(Object obj) {
-        if (obj != null && this.f17234b.containsKey(obj)) {
+        if (obj != null && this.f17200b.containsKey(obj)) {
             return true;
         }
         return false;
@@ -48,7 +48,7 @@ public final class q extends h9.o implements Map {
 
     @Override
     public final Set entrySet() {
-        return h9.o.l(this.f17234b.entrySet(), new p(0));
+        return h9.o.l(this.f17200b.entrySet(), new p(0));
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class q extends h9.o implements Map {
         if (obj == null) {
             return null;
         }
-        return (List) this.f17234b.get(obj);
+        return (List) this.f17200b.get(obj);
     }
 
     @Override
@@ -74,12 +74,12 @@ public final class q extends h9.o implements Map {
 
     @Override
     public final Object i() {
-        return this.f17234b;
+        return this.f17200b;
     }
 
     @Override
     public final boolean isEmpty() {
-        Map map = this.f17234b;
+        Map map = this.f17200b;
         if (map.isEmpty() || (map.size() == 1 && map.containsKey(null))) {
             return true;
         }
@@ -88,32 +88,32 @@ public final class q extends h9.o implements Map {
 
     @Override
     public final Set keySet() {
-        return h9.o.l(this.f17234b.keySet(), new p(1));
+        return h9.o.l(this.f17200b.keySet(), new p(1));
     }
 
     @Override
     public final Object put(Object obj, Object obj2) {
-        return this.f17234b.put(obj, obj2);
+        return this.f17200b.put(obj, obj2);
     }
 
     @Override
     public final void putAll(Map map) {
-        this.f17234b.putAll(map);
+        this.f17200b.putAll(map);
     }
 
     @Override
     public final Object remove(Object obj) {
-        return this.f17234b.remove(obj);
+        return this.f17200b.remove(obj);
     }
 
     @Override
     public final int size() {
-        Map map = this.f17234b;
+        Map map = this.f17200b;
         return map.size() - (map.containsKey(null) ? 1 : 0);
     }
 
     @Override
     public final Collection values() {
-        return this.f17234b.values();
+        return this.f17200b.values();
     }
 }

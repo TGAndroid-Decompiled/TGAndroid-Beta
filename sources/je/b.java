@@ -1,6 +1,6 @@
 package je;
 
-import b7.h;
+import c8.z;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import kotlin.jvm.internal.j;
@@ -9,26 +9,26 @@ import v0.g;
 import w0.d;
 import zd.m;
 public final class b implements OnCompleteListener, g {
-    public final m f17418a;
+    public final m f17384a;
 
     public b(m mVar) {
-        this.f17418a = mVar;
+        this.f17384a = mVar;
     }
 
     @Override
     public void a(Object obj) {
         d e10 = (d) obj;
         j.e(e10, "e");
-        m mVar = this.f17418a;
+        m mVar = this.f17384a;
         if (mVar.w()) {
-            mVar.resumeWith(h.a(e10));
+            mVar.resumeWith(z.a(e10));
         }
     }
 
     @Override
     public void onComplete(Task task) {
         Exception exception = task.getException();
-        m mVar = this.f17418a;
+        m mVar = this.f17384a;
         if (exception == null) {
             if (task.isCanceled()) {
                 mVar.n(null);
@@ -38,14 +38,14 @@ public final class b implements OnCompleteListener, g {
                 return;
             }
         }
-        mVar.resumeWith(h.a(exception));
+        mVar.resumeWith(z.a(exception));
     }
 
     @Override
     public void onResult(Object obj) {
         c result = (c) obj;
         j.e(result, "result");
-        m mVar = this.f17418a;
+        m mVar = this.f17384a;
         if (mVar.w()) {
             mVar.resumeWith(result);
         }

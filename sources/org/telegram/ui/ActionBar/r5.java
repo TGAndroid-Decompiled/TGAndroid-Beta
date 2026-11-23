@@ -45,7 +45,7 @@ public final class r5 extends u4 {
     public void o(int i7, int i10, int i11) {
         switch (this.U) {
             case 2:
-                if (!((x71) this.V).f53736f2) {
+                if (!((x71) this.V).f53658f2) {
                     super.o(i7, i10, i11);
                     return;
                 }
@@ -60,7 +60,7 @@ public final class r5 extends u4 {
     public void p(int i7, int i10, int i11, int i12, int i13, int i14, boolean z10, boolean z11) {
         switch (this.U) {
             case 2:
-                if (!((x71) this.V).f53736f2) {
+                if (!((x71) this.V).f53658f2) {
                     super.p(i7, i10, i11, i12, i13, i14, z10, z11);
                     return;
                 }

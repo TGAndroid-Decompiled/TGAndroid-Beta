@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MediaController;
 public final class n7 implements Runnable {
-    public final int f37823a;
-    public final o7 f37824b;
+    public final int f37779a;
+    public final o7 f37780b;
 
     public n7(o7 o7Var, int i7) {
-        this.f37823a = i7;
-        this.f37824b = o7Var;
+        this.f37779a = i7;
+        this.f37780b = o7Var;
     }
 
     @Override
@@ -15,16 +15,16 @@ public final class n7 implements Runnable {
         long U;
         long j3;
         float f10;
-        switch (this.f37823a) {
+        switch (this.f37779a) {
             case 0:
-                o7 o7Var = this.f37824b;
-                int i7 = o7Var.f38143w + 1;
-                o7Var.f38143w = i7;
+                o7 o7Var = this.f37780b;
+                int i7 = o7Var.f38110w + 1;
+                o7Var.f38110w = i7;
                 if (i7 == 1) {
                     f8 f8Var = o7Var.I;
                     f8Var.B2 = -1;
-                    f8Var.C2 = MediaController.B().f22771v0.f24173b0;
-                    o7Var.f38144x = System.currentTimeMillis();
+                    f8Var.C2 = MediaController.B().f22735v0.f24137b0;
+                    o7Var.f38111x = System.currentTimeMillis();
                     org.telegram.messenger.g0.h3(this, 2000L);
                     org.telegram.messenger.g0.g3(o7Var.F);
                     return;
@@ -35,9 +35,9 @@ public final class n7 implements Runnable {
                     return;
                 }
             default:
-                o7 o7Var2 = this.f37824b;
+                o7 o7Var2 = this.f37780b;
                 f8 f8Var2 = o7Var2.I;
-                i61 i61Var = MediaController.B().f22747j0;
+                i61 i61Var = MediaController.B().f22711j0;
                 if (i61Var == null) {
                     U = 0;
                 } else {
@@ -46,10 +46,10 @@ public final class n7 implements Runnable {
                 if (U != 0 && U != -9223372036854775807L) {
                     float f11 = f8Var2.C2;
                     long currentTimeMillis = System.currentTimeMillis();
-                    long j10 = currentTimeMillis - o7Var2.f38144x;
-                    o7Var2.f38144x = currentTimeMillis;
-                    long j11 = currentTimeMillis - o7Var2.f38145y;
-                    int i10 = o7Var2.f38143w;
+                    long j10 = currentTimeMillis - o7Var2.f38111x;
+                    o7Var2.f38111x = currentTimeMillis;
+                    long j11 = currentTimeMillis - o7Var2.f38112y;
+                    int i10 = o7Var2.f38110w;
                     if (i10 == 1) {
                         j3 = 3;
                     } else if (i10 == 2) {
@@ -62,24 +62,24 @@ public final class n7 implements Runnable {
                         f12 = 0.0f;
                     }
                     f8Var2.C2 = f12;
-                    org.telegram.messenger.gj gjVar = MediaController.B().f22771v0;
+                    org.telegram.messenger.gj gjVar = MediaController.B().f22735v0;
                     if (gjVar != null && gjVar.I3()) {
                         f8Var2.c1(gjVar, false);
                     }
-                    if (f8Var2.B2 == -1 && o7Var2.f38143w > 0) {
+                    if (f8Var2.B2 == -1 && o7Var2.f38110w > 0) {
                         if (j11 > 200 || f8Var2.C2 == 0.0f) {
-                            o7Var2.f38145y = currentTimeMillis;
+                            o7Var2.f38112y = currentTimeMillis;
                             if (f8Var2.C2 == 0.0f) {
-                                MediaController.B().i0(MediaController.B().f22771v0, 0.0f);
-                                i61 i61Var2 = MediaController.B().f22747j0;
+                                MediaController.B().i0(MediaController.B().f22735v0, 0.0f);
+                                i61 i61Var2 = MediaController.B().f22711j0;
                                 if (i61Var2 != null) {
                                     i61Var2.g0();
                                 }
                             } else {
-                                MediaController.B().i0(MediaController.B().f22771v0, f12);
+                                MediaController.B().i0(MediaController.B().f22735v0, f12);
                             }
                         }
-                        if (o7Var2.f38143w > 0 && f8Var2.C2 > 0.0f) {
+                        if (o7Var2.f38110w > 0 && f8Var2.C2 > 0.0f) {
                             org.telegram.messenger.g0.h3(o7Var2.F, 16L);
                             return;
                         }
@@ -87,7 +87,7 @@ public final class n7 implements Runnable {
                     }
                     return;
                 }
-                o7Var2.f38144x = System.currentTimeMillis();
+                o7Var2.f38111x = System.currentTimeMillis();
                 return;
         }
     }

@@ -2,7 +2,7 @@ package ch;
 
 import android.text.SpannableStringBuilder;
 import org.telegram.messenger.hd;
-public final class t0 extends hi.e {
+public final class t0 extends hi.d {
     public SpannableStringBuilder m0;
 
     public void setLvlRequiredState(int i7) {

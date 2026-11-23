@@ -1,63 +1,32 @@
 package ai;
-public final class x1 {
-    public final int f1614a;
-    public final f2 f1615b;
 
-    public x1(f2 f2Var, int i7) {
-        this.f1614a = i7;
-        this.f1615b = f2Var;
+import android.graphics.Color;
+import android.os.SystemClock;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
+public final class x1 extends CharacterStyle implements UpdateAppearance {
+    public final long f1589a;
+    public long f1590b;
+    public final int f1591c;
+    public final int d;
+    public boolean f1592e;
+
+    public x1(long j3, int i7, int i10) {
+        this.f1589a = j3;
+        this.f1591c = i7;
+        this.d = i10;
     }
 
-    public final void a(final float f10) {
-        switch (this.f1614a) {
-            case 0:
-                final f2 f2Var = this.f1615b;
-                f2Var.f1186f.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                f2 f2Var2 = f2Var;
-                                if (!f2Var2.f1193j) {
-                                    f2Var2.d.h(f10);
-                                    return;
-                                }
-                                return;
-                            default:
-                                f2 f2Var3 = f2Var;
-                                if (!f2Var3.f1193j) {
-                                    f2Var3.d.h(f10);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final f2 f2Var2 = this.f1615b;
-                f2Var2.f1186f.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                f2 f2Var22 = f2Var2;
-                                if (!f2Var22.f1193j) {
-                                    f2Var22.d.h(f10);
-                                    return;
-                                }
-                                return;
-                            default:
-                                f2 f2Var3 = f2Var2;
-                                if (!f2Var3.f1193j) {
-                                    f2Var3.d.h(f10);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        int f10 = i0.a.f(a2.b(Math.max(0.0f, Math.min(1.0f, ((float) (uptimeMillis - this.f1589a)) / 750.0f))), this.f1591c, this.d);
+        textPaint.setColor(f10);
+        long j3 = this.f1590b;
+        if (j3 > 0) {
+            float max = 1.0f - Math.max(0.0f, Math.min(1.0f, ((float) (uptimeMillis - j3)) / 220.0f));
+            textPaint.setAlpha((int) (Color.alpha(f10) * org.telegram.ui.Cells.c0.z(max, max, max, 1.0f)));
         }
     }
 }

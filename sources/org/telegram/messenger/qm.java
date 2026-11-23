@@ -5,51 +5,51 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qm implements RequestDelegate {
-    public final int f26472a;
-    public final c1 f26473b;
-    public final long f26474c;
+    public final int f26436a;
+    public final c1 f26437b;
+    public final long f26438c;
     public final Object d;
-    public final Object f26475e;
+    public final Object f26439e;
 
     public qm(np npVar, long j3, Object obj, TLObject tLObject, int i7) {
-        this.f26472a = i7;
-        this.f26473b = npVar;
-        this.f26474c = j3;
+        this.f26436a = i7;
+        this.f26437b = npVar;
+        this.f26438c = j3;
         this.d = obj;
-        this.f26475e = tLObject;
+        this.f26439e = tLObject;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f26472a) {
+        switch (this.f26436a) {
             case 0:
-                g0.g3(new im((np) this.f26473b, tLObject, this.f26474c, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.f26475e, 2));
+                g0.g3(new im((np) this.f26437b, tLObject, this.f26438c, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.f26439e, 2));
                 return;
             case 1:
-                np npVar = (np) this.f26473b;
+                np npVar = (np) this.f26437b;
                 int[] iArr = (int[]) this.d;
-                TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) this.f26475e;
+                TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) this.f26439e;
                 if (tL_error == null) {
                     TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
                     int i7 = tL_messages_affectedHistory.offset;
-                    long j3 = this.f26474c;
+                    long j3 = this.f26438c;
                     if (i7 > 0) {
                         npVar.i0(j3, iArr[0], inputPeer);
                     }
                     npVar.T3(tL_messages_affectedHistory.pts, -1, tL_messages_affectedHistory.pts_count);
                     ur messagesStorage = npVar.getMessagesStorage();
-                    messagesStorage.f27250a.c(new qp(messagesStorage, j3, 5));
+                    messagesStorage.f27214a.c(new qp(messagesStorage, j3, 5));
                     return;
                 }
                 return;
             default:
-                f00 f00Var = (f00) this.f26473b;
+                f00 f00Var = (f00) this.f26437b;
                 org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.d;
-                ArrayList arrayList = (ArrayList) this.f26475e;
+                ArrayList arrayList = (ArrayList) this.f26439e;
                 f00Var.getClass();
                 if (tL_error != null) {
                     boolean equals = "PINNED_TOO_MUCH".equals(tL_error.text);
-                    long j10 = this.f26474c;
+                    long j10 = this.f26438c;
                     if (equals) {
                         if (g2Var != null) {
                             f00Var.a(j10, arrayList, true);
@@ -69,10 +69,10 @@ public final class qm implements RequestDelegate {
     }
 
     public qm(f00 f00Var, org.telegram.ui.ActionBar.g2 g2Var, long j3, ArrayList arrayList) {
-        this.f26472a = 2;
-        this.f26473b = f00Var;
+        this.f26436a = 2;
+        this.f26437b = f00Var;
         this.d = g2Var;
-        this.f26474c = j3;
-        this.f26475e = arrayList;
+        this.f26438c = j3;
+        this.f26439e = arrayList;
     }
 }

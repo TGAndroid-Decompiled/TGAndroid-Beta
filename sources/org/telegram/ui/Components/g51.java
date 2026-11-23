@@ -25,7 +25,7 @@ public final class g51 extends v4.k {
     }
 
     @Override
-    public final void P(v4.f1 f1Var) {
+    public final void P(v4.e1 e1Var) {
         h51 h51Var = this.F;
         h51Var.invalidate();
         h51Var.F1();

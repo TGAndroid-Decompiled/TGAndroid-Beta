@@ -9,25 +9,25 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 public abstract class zs0 extends cs0 {
-    public final HashSet f42978k3;
-    public final ArrayList f42979l3;
-    public final ArrayList f42980m3;
-    public final ArrayList f42981n3;
-    public TextPaint f42982o3;
-    public StaticLayout f42983p3;
-    public float f42984q3;
-    public float f42985r3;
-    public fi.n9 f42986s3;
-    public int f42987t3;
-    public final ArrayList f42988u3;
+    public final HashSet f42935k3;
+    public final ArrayList f42936l3;
+    public final ArrayList f42937m3;
+    public final ArrayList f42938n3;
+    public TextPaint f42939o3;
+    public StaticLayout f42940p3;
+    public float f42941q3;
+    public float f42942r3;
+    public fi.n9 f42943s3;
+    public int f42944t3;
+    public final ArrayList f42945u3;
 
     public zs0(Context context) {
         super(context, null);
-        this.f42978k3 = new HashSet();
-        this.f42979l3 = new ArrayList();
-        this.f42980m3 = new ArrayList();
-        this.f42981n3 = new ArrayList();
-        this.f42988u3 = new ArrayList();
+        this.f42935k3 = new HashSet();
+        this.f42936l3 = new ArrayList();
+        this.f42937m3 = new ArrayList();
+        this.f42938n3 = new ArrayList();
+        this.f42945u3 = new ArrayList();
     }
 
     public abstract boolean A1();
@@ -86,11 +86,11 @@ public abstract class zs0 extends cs0 {
 
     public zs0(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, h6Var);
-        this.f42978k3 = new HashSet();
-        this.f42979l3 = new ArrayList();
-        this.f42980m3 = new ArrayList();
-        this.f42981n3 = new ArrayList();
-        this.f42988u3 = new ArrayList();
+        this.f42935k3 = new HashSet();
+        this.f42936l3 = new ArrayList();
+        this.f42937m3 = new ArrayList();
+        this.f42938n3 = new ArrayList();
+        this.f42945u3 = new ArrayList();
     }
 
     public void z1(org.telegram.ui.Cells.p7 p7Var) {

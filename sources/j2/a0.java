@@ -14,16 +14,16 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.List;
 public final class a0 extends c {
-    public final Context f17170a;
-    public m f17171b;
-    public AssetFileDescriptor f17172c;
+    public final Context f17136a;
+    public m f17137b;
+    public AssetFileDescriptor f17138c;
     public FileInputStream d;
-    public long f17173e;
-    public boolean f17174f;
+    public long f17139e;
+    public boolean f17140f;
 
     public a0(Context context) {
         super(false);
-        this.f17170a = context.getApplicationContext();
+        this.f17136a = context.getApplicationContext();
     }
 
     @Deprecated
@@ -33,7 +33,7 @@ public final class a0 extends c {
 
     @Override
     public final void close() {
-        this.f17171b = null;
+        this.f17137b = null;
         try {
             try {
                 FileInputStream fileInputStream = this.d;
@@ -43,7 +43,7 @@ public final class a0 extends c {
                 this.d = null;
                 try {
                     try {
-                        AssetFileDescriptor assetFileDescriptor = this.f17172c;
+                        AssetFileDescriptor assetFileDescriptor = this.f17138c;
                         if (assetFileDescriptor != null) {
                             assetFileDescriptor.close();
                         }
@@ -51,9 +51,9 @@ public final class a0 extends c {
                         throw new j(null, e10, 2000);
                     }
                 } finally {
-                    this.f17172c = null;
-                    if (this.f17174f) {
-                        this.f17174f = false;
+                    this.f17138c = null;
+                    if (this.f17140f) {
+                        this.f17140f = false;
                         transferEnded();
                     }
                 }
@@ -64,13 +64,13 @@ public final class a0 extends c {
             this.d = null;
             try {
                 try {
-                    AssetFileDescriptor assetFileDescriptor2 = this.f17172c;
+                    AssetFileDescriptor assetFileDescriptor2 = this.f17138c;
                     if (assetFileDescriptor2 != null) {
                         assetFileDescriptor2.close();
                     }
-                    this.f17172c = null;
-                    if (this.f17174f) {
-                        this.f17174f = false;
+                    this.f17138c = null;
+                    if (this.f17140f) {
+                        this.f17140f = false;
                         transferEnded();
                     }
                     throw th2;
@@ -78,9 +78,9 @@ public final class a0 extends c {
                     throw new j(null, e12, 2000);
                 }
             } finally {
-                this.f17172c = null;
-                if (this.f17174f) {
-                    this.f17174f = false;
+                this.f17138c = null;
+                if (this.f17140f) {
+                    this.f17140f = false;
                     transferEnded();
                 }
             }
@@ -89,9 +89,9 @@ public final class a0 extends c {
 
     @Override
     public final Uri getUri() {
-        m mVar = this.f17171b;
+        m mVar = this.f17137b;
         if (mVar != null) {
-            return mVar.f17213a;
+            return mVar.f17179a;
         }
         return null;
     }
@@ -104,14 +104,14 @@ public final class a0 extends c {
         int i7;
         Resources resources;
         long min;
-        this.f17171b = mVar;
+        this.f17137b = mVar;
         transferInitializing(mVar);
-        Uri uri = mVar.f17213a;
-        long j3 = mVar.f17217f;
-        long j10 = mVar.f17216e;
+        Uri uri = mVar.f17179a;
+        long j3 = mVar.f17183f;
+        long j10 = mVar.f17182e;
         Uri normalizeScheme = uri.normalizeScheme();
         boolean equals = TextUtils.equals("rawresource", normalizeScheme.getScheme());
-        Context context = this.f17170a;
+        Context context = this.f17136a;
         if (equals) {
             resources = context.getResources();
             List<String> pathSegments = normalizeScheme.getPathSegments();
@@ -164,52 +164,52 @@ public final class a0 extends c {
         try {
             AssetFileDescriptor openRawResourceFd = resources.openRawResourceFd(i7);
             if (openRawResourceFd != null) {
-                this.f17172c = openRawResourceFd;
+                this.f17138c = openRawResourceFd;
                 long length = openRawResourceFd.getLength();
-                FileInputStream fileInputStream = new FileInputStream(this.f17172c.getFileDescriptor());
+                FileInputStream fileInputStream = new FileInputStream(this.f17138c.getFileDescriptor());
                 this.d = fileInputStream;
                 int i10 = (length > (-1L) ? 1 : (length == (-1L) ? 0 : -1));
                 try {
                     if (i10 != 0 && j10 > length) {
                         throw new j(null, null, 2008);
                     }
-                    long startOffset = this.f17172c.getStartOffset();
+                    long startOffset = this.f17138c.getStartOffset();
                     long skip = fileInputStream.skip(startOffset + j10) - startOffset;
                     if (skip == j10) {
                         if (i10 == 0) {
                             FileChannel channel = fileInputStream.getChannel();
                             if (channel.size() == 0) {
-                                this.f17173e = -1L;
+                                this.f17139e = -1L;
                             } else {
                                 long size = channel.size() - channel.position();
-                                this.f17173e = size;
+                                this.f17139e = size;
                                 if (size < 0) {
                                     throw new j(null, null, 2008);
                                 }
                             }
                         } else {
                             long j11 = length - skip;
-                            this.f17173e = j11;
+                            this.f17139e = j11;
                             if (j11 < 0) {
                                 throw new j(2008);
                             }
                         }
                         int i11 = (j3 > (-1L) ? 1 : (j3 == (-1L) ? 0 : -1));
                         if (i11 != 0) {
-                            long j12 = this.f17173e;
+                            long j12 = this.f17139e;
                             if (j12 == -1) {
                                 min = j3;
                             } else {
                                 min = Math.min(j12, j3);
                             }
-                            this.f17173e = min;
+                            this.f17139e = min;
                         }
-                        this.f17174f = true;
+                        this.f17140f = true;
                         transferStarted(mVar);
                         if (i11 != 0) {
                             return j3;
                         }
-                        return this.f17173e;
+                        return this.f17139e;
                     }
                     throw new j(null, null, 2008);
                 } catch (z e11) {
@@ -229,7 +229,7 @@ public final class a0 extends c {
         if (i10 == 0) {
             return 0;
         }
-        long j3 = this.f17173e;
+        long j3 = this.f17139e;
         if (j3 != 0) {
             if (j3 != -1) {
                 try {
@@ -239,16 +239,16 @@ public final class a0 extends c {
                 }
             }
             FileInputStream fileInputStream = this.d;
-            String str = l0.f13815a;
+            String str = l0.f13778a;
             int read = fileInputStream.read(bArr, i7, i10);
             if (read == -1) {
-                if (this.f17173e != -1) {
+                if (this.f17139e != -1) {
                     throw new j("End of stream reached having not read sufficient data.", new EOFException(), 2000);
                 }
             } else {
-                long j10 = this.f17173e;
+                long j10 = this.f17139e;
                 if (j10 != -1) {
-                    this.f17173e = j10 - read;
+                    this.f17139e = j10 - read;
                 }
                 bytesTransferred(read);
                 return read;

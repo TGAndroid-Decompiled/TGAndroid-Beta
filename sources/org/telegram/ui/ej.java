@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-public final class ej extends v4.u {
+public final class ej extends v4.t {
     public boolean S;
     public final bn T;
 
@@ -22,15 +22,15 @@ public final class ej extends v4.u {
         kl klVar = bnVar.D0;
         int i11 = klVar.K;
         if (i7 >= i11 && i7 < klVar.L && (i10 = i7 - i11) >= 0 && i10 < klVar.L().size() && (u92 = bnVar.u9((gjVar = (org.telegram.messenger.gj) bnVar.D0.L().get(i10)))) != null) {
-            ArrayList arrayList = u92.f23113e;
+            ArrayList arrayList = u92.f23077e;
             org.telegram.messenger.yi d = u92.d(gjVar);
-            if (d.f28092a != d.f28093b && (b10 = d.f28094c) == d.d && b10 != 0) {
+            if (d.f28056a != d.f28057b && (b10 = d.f28058c) == d.d && b10 != 0) {
                 int size = arrayList.size();
                 for (int i12 = 0; i12 < size; i12++) {
                     org.telegram.messenger.yi yiVar = (org.telegram.messenger.yi) arrayList.get(i12);
                     if (yiVar != d) {
-                        byte b11 = yiVar.f28094c;
-                        byte b12 = d.f28094c;
+                        byte b11 = yiVar.f28058c;
+                        byte b12 = d.f28058c;
                         if (b11 <= b12 && yiVar.d >= b12) {
                             return true;
                         }
@@ -68,7 +68,7 @@ public final class ej extends v4.u {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f59260n - this.T.P9) - C());
+            return (int) ((this.f59207n - this.T.P9) - C());
         }
         return super.K();
     }
@@ -79,10 +79,10 @@ public final class ej extends v4.u {
     }
 
     @Override
-    public final void b0(v4.x0 x0Var, v4.c1 c1Var) {
-        boolean z10 = org.telegram.messenger.s2.f26730a;
+    public final void b0(v4.w0 w0Var, v4.b1 b1Var) {
+        boolean z10 = org.telegram.messenger.s2.f26694a;
         try {
-            super.b0(x0Var, c1Var);
+            super.b0(w0Var, b1Var);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
             org.telegram.messenger.g0.g3(new bh(this, 4));
@@ -98,39 +98,39 @@ public final class ej extends v4.u {
     }
 
     @Override
-    public final int j(v4.c1 c1Var) {
+    public final int j(v4.b1 b1Var) {
         this.S = true;
-        int B0 = B0(c1Var);
+        int B0 = B0(b1Var);
         this.S = false;
         return B0;
     }
 
     @Override
-    public final int k(v4.c1 c1Var) {
+    public final int k(v4.b1 b1Var) {
         this.S = true;
-        int C0 = C0(c1Var);
+        int C0 = C0(b1Var);
         this.S = false;
         return C0;
     }
 
     @Override
-    public final int l(v4.c1 c1Var) {
+    public final int l(v4.b1 b1Var) {
         this.S = true;
-        int D0 = D0(c1Var);
+        int D0 = D0(b1Var);
         this.S = false;
         return D0;
     }
 
     @Override
-    public final int o0(int r11, v4.x0 r12, v4.c1 r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ej.o0(int, v4.x0, v4.c1):int");
+    public final int o0(int r11, v4.w0 r12, v4.b1 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ej.o0(int, v4.w0, v4.b1):int");
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
+    public final void v0(RecyclerView recyclerView, v4.b1 b1Var, int i7) {
         this.T.Pa = false;
         pi.l lVar = new pi.l(recyclerView.getContext(), 0);
-        lVar.f59109a = i7;
+        lVar.f59055a = i7;
         w0(lVar);
     }
 

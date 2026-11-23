@@ -49,7 +49,7 @@ public abstract class c0 {
     }
 
     public static boolean a(gj gjVar) {
-        if (gjVar != null && gj.B0(gjVar.f24213k) == 1271266957) {
+        if (gjVar != null && gj.B0(gjVar.f24177k) == 1271266957) {
             return true;
         }
         return false;
@@ -57,9 +57,9 @@ public abstract class c0 {
 
     public static void b(RecyclerView recyclerView) {
         recyclerView.C0();
-        v4.p0 layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager instanceof v4.c0) {
-            ((v4.c0) layoutManager).h1(0, 0);
+        v4.o0 layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof v4.b0) {
+            ((v4.b0) layoutManager).h1(0, 0);
         } else {
             recyclerView.v0(0);
         }
@@ -67,7 +67,7 @@ public abstract class c0 {
 
     public static float c(RecyclerView recyclerView) {
         int i7 = tt0.m0;
-        v4.p0 layoutManager = recyclerView.getLayoutManager();
+        v4.o0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
             return 0.0f;
         }
@@ -75,7 +75,7 @@ public abstract class c0 {
         if (m10 == null) {
             return Float.POSITIVE_INFINITY;
         }
-        return Math.max(0.0f, (recyclerView.getPaddingTop() - v4.p0.z(m10)) + ((ViewGroup.MarginLayoutParams) ((v4.q0) m10.getLayoutParams())).topMargin);
+        return Math.max(0.0f, (recyclerView.getPaddingTop() - v4.o0.z(m10)) + ((ViewGroup.MarginLayoutParams) ((v4.p0) m10.getLayoutParams())).topMargin);
     }
 
     public static void d(z60 z60Var, boolean z10) {

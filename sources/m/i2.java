@@ -11,16 +11,16 @@ public final class i2 extends r1 {
     public final int E;
     public e2 F;
     public l.m G;
-    public final int f20116y;
+    public final int f20082y;
 
     public i2(Context context, boolean z10) {
         super(context, z10);
         if (1 == h2.a(context.getResources().getConfiguration())) {
-            this.f20116y = 21;
+            this.f20082y = 21;
             this.E = 22;
             return;
         }
-        this.f20116y = 22;
+        this.f20082y = 22;
         this.E = 21;
     }
 
@@ -48,7 +48,7 @@ public final class i2 extends r1 {
             }
             l.m mVar2 = this.G;
             if (mVar2 != mVar) {
-                l.k kVar = hVar.f19202a;
+                l.k kVar = hVar.f19168a;
                 if (mVar2 != null) {
                     this.F.h(kVar, mVar2);
                 }
@@ -65,7 +65,7 @@ public final class i2 extends r1 {
     public final boolean onKeyDown(int i7, KeyEvent keyEvent) {
         l.h hVar;
         ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null && i7 == this.f20116y) {
+        if (listMenuItemView != null && i7 == this.f20082y) {
             if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
                 performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
             }
@@ -78,7 +78,7 @@ public final class i2 extends r1 {
             } else {
                 hVar = (l.h) adapter;
             }
-            hVar.f19202a.c(false);
+            hVar.f19168a.c(false);
             return true;
         } else {
             return super.onKeyDown(i7, keyEvent);

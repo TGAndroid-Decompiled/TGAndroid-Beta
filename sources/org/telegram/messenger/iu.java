@@ -14,7 +14,7 @@ public final class iu extends au {
 
     @Override
     public final int I() {
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         return g0.L(12.0f) + rect.top + rect.bottom;
     }
 
@@ -26,11 +26,11 @@ public final class iu extends au {
     @Override
     public final void W(Canvas canvas) {
         int i7;
-        fv fvVar = this.f22968a;
+        fv fvVar = this.f22932a;
         int i10 = fvVar.C;
         int i11 = fvVar.S;
         int i12 = i10 + i11 + fvVar.T;
-        Rect rect = this.f22969b;
+        Rect rect = this.f22933b;
         int i13 = rect.left;
         int i14 = (i12 - i13) - rect.right;
         int i15 = i14 / 2;

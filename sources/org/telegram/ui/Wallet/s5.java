@@ -3,24 +3,25 @@ package org.telegram.ui.Wallet;
 import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.messenger.de;
+import org.telegram.ui.b31;
 public final class s5 implements TextWatcher {
-    public final String[] f45034a;
-    public final u4 f45035b;
-    public final Runnable[] f45036c;
+    public final String[] f45000a;
+    public final b31 f45001b;
+    public final Runnable[] f45002c;
     public final de d;
 
-    public s5(String[] strArr, u4 u4Var, Runnable[] runnableArr, de deVar) {
-        this.f45034a = strArr;
-        this.f45035b = u4Var;
-        this.f45036c = runnableArr;
+    public s5(String[] strArr, b31 b31Var, Runnable[] runnableArr, de deVar) {
+        this.f45000a = strArr;
+        this.f45001b = b31Var;
+        this.f45002c = runnableArr;
         this.d = deVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f45034a[0] = editable.toString();
-        this.f45035b.run();
-        Runnable[] runnableArr = this.f45036c;
+        this.f45000a[0] = editable.toString();
+        this.f45001b.run();
+        Runnable[] runnableArr = this.f45002c;
         Runnable runnable = runnableArr[0];
         if (runnable != null) {
             runnable.run();

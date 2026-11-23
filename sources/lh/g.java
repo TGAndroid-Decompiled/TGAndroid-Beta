@@ -19,17 +19,17 @@ import org.telegram.ui.af;
 import org.telegram.ui.bn;
 import org.telegram.ui.d0;
 import org.telegram.ui.ee;
-import org.telegram.ui.mu0;
+import org.telegram.ui.nu0;
 import org.telegram.ui.pl;
 public final class g implements View.OnLongClickListener {
-    public final int f19907a;
-    public final int f19908b;
-    public final FrameLayout f19909c;
+    public final int f19873a;
+    public final int f19874b;
+    public final FrameLayout f19875c;
 
     public g(FrameLayout frameLayout, int i7, int i10) {
-        this.f19907a = i10;
-        this.f19909c = frameLayout;
-        this.f19908b = i7;
+        this.f19873a = i10;
+        this.f19875c = frameLayout;
+        this.f19874b = i7;
     }
 
     @Override
@@ -38,14 +38,14 @@ public final class g implements View.OnLongClickListener {
         boolean z10;
         String N0;
         jl0 jl0Var;
-        int i7 = this.f19907a;
-        int i10 = this.f19908b;
-        FrameLayout frameLayout = this.f19909c;
+        int i7 = this.f19873a;
+        int i10 = this.f19874b;
+        FrameLayout frameLayout = this.f19875c;
         switch (i7) {
             case 0:
-                b bVar = ((h) frameLayout).f19916n;
+                b bVar = ((h) frameLayout).f19882n;
                 if (bVar != null) {
-                    bn bnVar = ((ee) bVar).f47250b;
+                    bn bnVar = ((ee) bVar).f47219b;
                     if (i10 == 2) {
                         afVar = new af(bnVar, 10);
                         z10 = true;
@@ -58,7 +58,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     Activity parentActivity = bnVar.getParentActivity();
                     r4 parentLayout = bnVar.getParentLayout();
-                    pl plVar = bnVar.f46111m1;
+                    pl plVar = bnVar.f46064m1;
                     h6 resourceProvider = bnVar.getResourceProvider();
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(parentActivity, null);
                     actionBarPopupWindow$ActionBarPopupWindowLayout.setMinimumWidth(g0.L(200.0f));
@@ -72,11 +72,11 @@ public final class g implements View.OnLongClickListener {
                         N0 = hd.N0(2131746177, null);
                     }
                     y0Var.j(N0, 2131232358, null);
-                    y0Var.setOnClickListener(new mu0(1, afVar));
+                    y0Var.setOnClickListener(new nu0(1, afVar));
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(y0Var);
                     g1 g1Var = new g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                    g1Var.f28977e = true;
-                    g1Var.f28976c = 220;
+                    g1Var.f28943e = true;
+                    g1Var.f28942c = 220;
                     g1Var.setOutsideTouchable(true);
                     g1Var.setClippingEnabled(true);
                     g1Var.setAnimationStyle(2131755192);
@@ -95,9 +95,9 @@ public final class g implements View.OnLongClickListener {
                         measuredHeight += view2.getY() + view2.getPaddingTop();
                     }
                     g1Var.showAtLocation(plVar, 51, (int) width, (int) measuredHeight);
-                    bnVar.f46041g9 = g1Var;
-                    bnVar.w8(bnVar.f46264y1, false);
-                    bnVar.f46041g9.setOnDismissListener(new d0(bnVar, 1));
+                    bnVar.f45994g9 = g1Var;
+                    bnVar.w8(bnVar.f46217y1, false);
+                    bnVar.f45994g9.setOnDismissListener(new d0(bnVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
                     } catch (Exception unused) {
@@ -107,7 +107,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) frameLayout;
-                if (!scrollSlidingTextTabStrip.f33152o0 && (jl0Var = scrollSlidingTextTabStrip.f33135b) != null && jl0Var.h1(i10, view)) {
+                if (!scrollSlidingTextTabStrip.f33118o0 && (jl0Var = scrollSlidingTextTabStrip.f33101b) != null && jl0Var.h1(i10, view)) {
                     return true;
                 }
                 return false;

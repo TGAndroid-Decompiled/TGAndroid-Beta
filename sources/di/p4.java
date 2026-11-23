@@ -2,16 +2,16 @@ package di;
 
 import org.telegram.messenger.y10;
 public final class p4 implements y10 {
-    public final int f9526a;
-    public final long f9527b;
-    public final long f9528c;
+    public final int f9489a;
+    public final long f9490b;
+    public final long f9491c;
     public final Object d;
 
     public p4(Object obj, long j3, long j10, int i7) {
-        this.f9526a = i7;
+        this.f9489a = i7;
         this.d = obj;
-        this.f9527b = j3;
-        this.f9528c = j10;
+        this.f9490b = j3;
+        this.f9491c = j10;
     }
 
     @Override

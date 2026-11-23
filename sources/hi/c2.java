@@ -26,7 +26,7 @@ public final class c2 extends lv0 {
             while (true) {
                 if (i7 < hv0VarArr.length) {
                     hv0 hv0Var = hv0VarArr[i7];
-                    if (hv0Var != null && hv0Var.f35978b) {
+                    if (hv0Var != null && hv0Var.f35933b) {
                         break;
                     }
                     i7++;

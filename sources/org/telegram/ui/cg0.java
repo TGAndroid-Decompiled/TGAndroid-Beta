@@ -22,7 +22,7 @@ public final class cg0 extends pi.k {
             org.telegram.messenger.g0.r(runnable);
             this.W = null;
         }
-        if (org.telegram.messenger.s2.f26730a) {
+        if (org.telegram.messenger.s2.f26694a) {
             org.telegram.messenger.a8.b("chatItemAnimator disable notifications");
         }
     }

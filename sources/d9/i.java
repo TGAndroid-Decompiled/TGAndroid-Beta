@@ -1,6 +1,6 @@
 package d9;
 
-import a8.r9;
+import a8.s9;
 import j$.util.List;
 import java.util.Collection;
 import java.util.Comparator;
@@ -10,7 +10,7 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class i extends f implements List, RandomAccess, j$.util.List {
-    public static final g f7942b = new g(k.d, 0);
+    public static final g f7905b = new g(k.d, 0);
 
     @Override
     public final void add(int i7, Object obj) {
@@ -106,7 +106,7 @@ public abstract class i extends f implements List, RandomAccess, j$.util.List {
 
     @Override
     public i subList(int i7, int i10) {
-        r9.b(i7, i10, size());
+        s9.b(i7, i10, size());
         int i11 = i10 - i7;
         if (i11 == size()) {
             return this;
@@ -140,11 +140,11 @@ public abstract class i extends f implements List, RandomAccess, j$.util.List {
         int size = size();
         if (i7 >= 0 && i7 <= size) {
             if (isEmpty()) {
-                return f7942b;
+                return f7905b;
             }
             return new g(this, i7);
         }
-        throw new IndexOutOfBoundsException(r9.c(i7, size, "index"));
+        throw new IndexOutOfBoundsException(s9.c(i7, size, "index"));
     }
 
     @Override

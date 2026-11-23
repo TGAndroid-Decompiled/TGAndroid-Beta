@@ -3,20 +3,20 @@ package org.telegram.ui;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class j10 extends v4.o0 {
-    public final f40 f48867a;
+public final class j10 extends v4.n0 {
+    public final f40 f48877a;
 
     public j10(f40 f40Var) {
-        this.f48867a = f40Var;
+        this.f48877a = f40Var;
     }
 
     @Override
-    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.c1 c1Var) {
+    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.b1 b1Var) {
         int i7;
         int R = RecyclerView.R(view);
         if (R >= 0) {
             rect.setEmpty();
-            z30 z30Var = this.f48867a.K1;
+            z30 z30Var = this.f48877a.K1;
             int i10 = z30Var.H;
             if (R >= i10 && R < z30Var.I) {
                 int i11 = R - i10;

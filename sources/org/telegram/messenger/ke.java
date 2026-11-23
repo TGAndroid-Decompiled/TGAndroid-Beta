@@ -7,21 +7,21 @@ import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.i61;
 import org.telegram.ui.PhotoViewer;
 public final class ke implements g61 {
-    public final int f25059a;
-    public final int f25060b;
-    public final gj f25061c;
+    public final int f25023a;
+    public final int f25024b;
+    public final gj f25025c;
     public final MediaController d;
 
     public ke(MediaController mediaController, int i7, gj gjVar, int i10) {
-        this.f25059a = i10;
+        this.f25023a = i10;
         this.d = mediaController;
-        this.f25060b = i7;
-        this.f25061c = gjVar;
+        this.f25024b = i7;
+        this.f25025c = gjVar;
     }
 
     @Override
     public final void onError(i61 i61Var, Exception exc) {
-        switch (this.f25059a) {
+        switch (this.f25023a) {
             case 0:
                 return;
             default:
@@ -32,48 +32,48 @@ public final class ke implements g61 {
 
     @Override
     public final void onRenderedFirstFrame(m2.a aVar) {
-        int i7 = this.f25059a;
+        int i7 = this.f25023a;
     }
 
     @Override
     public final void onSeekFinished(m2.a aVar) {
-        int i7 = this.f25059a;
+        int i7 = this.f25023a;
     }
 
     @Override
     public final void onSeekStarted(m2.a aVar) {
-        int i7 = this.f25059a;
+        int i7 = this.f25023a;
     }
 
     @Override
     public final void onStateChanged(boolean z10, int i7) {
-        int i10 = this.f25059a;
-        int i11 = this.f25060b;
+        int i10 = this.f25023a;
+        int i11 = this.f25024b;
         switch (i10) {
             case 0:
                 MediaController mediaController = this.d;
                 ArrayList arrayList = mediaController.S0;
-                if (i11 == mediaController.f22754n0) {
-                    gj gjVar = this.f25061c;
-                    if (i7 != 4 && ((i7 != 1 && i7 != 2) || !z10 || gjVar.f24173b0 < 0.999f)) {
-                        i61 i61Var = mediaController.f22747j0;
-                        if (i61Var != null && mediaController.f22769u0 != 0.0f && (i7 == 3 || i7 == 1)) {
-                            mediaController.f22747j0.q0((int) (((float) i61Var.U()) * mediaController.f22769u0), false);
-                            mediaController.f22769u0 = 0.0f;
+                if (i11 == mediaController.f22718n0) {
+                    gj gjVar = this.f25025c;
+                    if (i7 != 4 && ((i7 != 1 && i7 != 2) || !z10 || gjVar.f24137b0 < 0.999f)) {
+                        i61 i61Var = mediaController.f22711j0;
+                        if (i61Var != null && mediaController.f22733u0 != 0.0f && (i7 == 3 || i7 == 1)) {
+                            mediaController.f22711j0.q0((int) (((float) i61Var.U()) * mediaController.f22733u0), false);
+                            mediaController.f22733u0 = 0.0f;
                         }
                     } else {
-                        gjVar.f24173b0 = 1.0f;
+                        gjVar.f24137b0 = 1.0f;
                         ls.f(gjVar.K1).k(148, Integer.valueOf(gjVar.e1()), 0);
                         if (!mediaController.a0()) {
-                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !gj.R4(gjVar.f24213k))) {
+                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !gj.R4(gjVar.f24177k))) {
                                 mediaController.U(true);
                             } else {
-                                mediaController.q(true, mediaController.F(), gj.R4(gjVar.f24213k), false);
+                                mediaController.q(true, mediaController.F(), gj.R4(gjVar.f24177k), false);
                             }
                         }
                     }
-                    if (mediaController.f22747j0 != null && d1.f.u()) {
-                        mediaController.f22747j0.t0(true);
+                    if (mediaController.f22711j0 != null && d1.f.u()) {
+                        mediaController.f22711j0.t0(true);
                         return;
                     }
                     return;
@@ -81,8 +81,8 @@ public final class ke implements g61 {
                 return;
             default:
                 MediaController mediaController2 = this.d;
-                if (i11 == mediaController2.f22754n0) {
-                    MediaController.f(mediaController2, this.f25061c, null, true, z10, i7);
+                if (i11 == mediaController2.f22718n0) {
+                    MediaController.f(mediaController2, this.f25025c, null, true, z10, i7);
                     return;
                 }
                 return;
@@ -91,7 +91,7 @@ public final class ke implements g61 {
 
     @Override
     public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        switch (this.f25059a) {
+        switch (this.f25023a) {
             case 0:
                 return false;
             default:
@@ -128,10 +128,10 @@ public final class ke implements g61 {
                         }
                         PipRoundVideoView pipRoundVideoView2 = mediaController.I0;
                         if (pipRoundVideoView2 != null) {
-                            if (pipRoundVideoView2.f33039c.getSurfaceTexture() != surfaceTexture) {
-                                mediaController.I0.f33039c.setSurfaceTexture(surfaceTexture);
+                            if (pipRoundVideoView2.f33005c.getSurfaceTexture() != surfaceTexture) {
+                                mediaController.I0.f33005c.setSurfaceTexture(surfaceTexture);
                             }
-                            mediaController.F0.A0(mediaController.I0.f33039c);
+                            mediaController.F0.A0(mediaController.I0.f33005c);
                         }
                     }
                     mediaController.J0 = 0;
@@ -146,13 +146,13 @@ public final class ke implements g61 {
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        int i7 = this.f25059a;
+        int i7 = this.f25023a;
     }
 
     @Override
     public final void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
         float f11;
-        switch (this.f25059a) {
+        switch (this.f25023a) {
             case 0:
                 return;
             default:
@@ -174,7 +174,7 @@ public final class ke implements g61 {
 
     @Override
     public final void onRenderedFirstFrame() {
-        switch (this.f25059a) {
+        switch (this.f25023a) {
             case 0:
                 return;
             default:

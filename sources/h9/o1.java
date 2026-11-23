@@ -2,27 +2,27 @@ package h9;
 
 import java.io.Serializable;
 public final class o1 extends r1 implements Serializable {
-    public static final o1 f14065b = new o1(0);
-    public static final o1 f14066c = new o1(1);
-    public final int f14067a;
+    public static final o1 f14028b = new o1(0);
+    public static final o1 f14029c = new o1(1);
+    public final int f14030a;
 
     public o1(int i7) {
-        this.f14067a = i7;
+        this.f14030a = i7;
     }
 
     @Override
     public final r1 a() {
-        switch (this.f14067a) {
+        switch (this.f14030a) {
             case 0:
-                return f14066c;
+                return f14029c;
             default:
-                return f14065b;
+                return f14028b;
         }
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        switch (this.f14067a) {
+        switch (this.f14030a) {
             case 0:
                 Comparable comparable = (Comparable) obj;
                 Comparable comparable2 = (Comparable) obj2;
@@ -41,7 +41,7 @@ public final class o1 extends r1 implements Serializable {
     }
 
     public final String toString() {
-        switch (this.f14067a) {
+        switch (this.f14030a) {
             case 0:
                 return "Ordering.natural()";
             default:

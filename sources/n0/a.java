@@ -4,21 +4,21 @@ import android.os.Build;
 import java.util.Locale;
 import kotlin.jvm.internal.j;
 public abstract class a {
-    public static final int f21076a = 0;
+    public static final int f21042a = 0;
 
     static {
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 30) {
-            g0.f.f(30);
+            g0.g.f(30);
         }
         if (i7 >= 30) {
-            g0.f.f(31);
+            g0.g.f(31);
         }
         if (i7 >= 30) {
-            g0.f.f(33);
+            g0.g.f(33);
         }
         if (i7 >= 30) {
-            g0.f.f(1000000);
+            g0.g.f(1000000);
         }
     }
 

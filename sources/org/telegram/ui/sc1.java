@@ -2,15 +2,15 @@ package org.telegram.ui;
 
 import java.io.File;
 public final class sc1 {
-    public String f52020a;
-    public int f52021b;
-    public int f52022c;
+    public String f51989a;
+    public int f51990b;
+    public int f51991c;
     public File d;
-    public final File f52023e;
+    public final File f51992e;
 
     public sc1(File file, File file2, String str) {
-        this.f52020a = str;
+        this.f51989a = str;
         this.d = file;
-        this.f52023e = file2;
+        this.f51992e = file2;
     }
 }

@@ -6,15 +6,15 @@ import org.telegram.messenger.k10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ng;
+import org.telegram.ui.Components.mg;
 import org.telegram.ui.rm;
-public final class g1 implements ng {
-    public final TL_stars.TL_starGiftUnique f3640a;
-    public final k1 f3641b;
+public final class g1 implements mg {
+    public final TL_stars.TL_starGiftUnique f3600a;
+    public final k1 f3601b;
 
     public g1(k1 k1Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f3641b = k1Var;
-        this.f3640a = tL_starGiftUnique;
+        this.f3601b = k1Var;
+        this.f3600a = tL_starGiftUnique;
     }
 
     @Override
@@ -30,12 +30,12 @@ public final class g1 implements ng {
     public final void a(CharSequence charSequence) {
         int i7;
         boolean z10;
-        k1 k1Var = this.f3641b;
-        org.telegram.ui.Components.o6 o6Var = k1Var.f3780w1;
-        k1Var.f3771m1.a(this.f3640a, k10.i(k1Var.f30173a).e(), k1Var.f3776s1.getTextWithEntities(), hd.N0(2131749727, null), true);
+        k1 k1Var = this.f3601b;
+        org.telegram.ui.Components.o6 o6Var = k1Var.f3744w1;
+        k1Var.f3735m1.a(this.f3600a, k10.i(k1Var.f30139a).e(), k1Var.f3740s1.getTextWithEntities(), hd.N0(2131749727, null), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         k1Var.A1 = codePointCount;
-        int i10 = k1Var.f3783z1;
+        int i10 = k1Var.f3747z1;
         if (i10 > 0 && (i7 = i10 - codePointCount) <= 15) {
             if (i7 < -9999) {
                 i7 = -9999;
@@ -56,14 +56,14 @@ public final class g1 implements ng {
             o6Var.animate().setListener(null).cancel();
             o6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i7 < 0) {
-                org.telegram.ui.ActionBar.t6.Y(o6Var, org.telegram.ui.ActionBar.m6.f29602p7, k1Var.J0);
+                org.telegram.ui.ActionBar.t6.Y(o6Var, org.telegram.ui.ActionBar.m6.f29568p7, k1Var.J0);
                 return;
             } else {
-                org.telegram.ui.ActionBar.t6.Y(o6Var, org.telegram.ui.ActionBar.m6.f29773y6, k1Var.J0);
+                org.telegram.ui.ActionBar.t6.Y(o6Var, org.telegram.ui.ActionBar.m6.f29739y6, k1Var.J0);
                 return;
             }
         }
-        o6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new ai.k0(this, 1));
+        o6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new ai.f0(this, 1));
     }
 
     @Override

@@ -26,7 +26,7 @@ public final class a extends q6.h implements com.google.android.gms.common.api.c
         this.F = true;
         this.G = o3Var;
         this.H = bundle;
-        this.I = (Integer) o3Var.f20194g;
+        this.I = (Integer) o3Var.f20160g;
     }
 
     public final void B(c cVar) {

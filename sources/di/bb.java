@@ -15,7 +15,7 @@ import org.telegram.ui.Components.nr;
 import org.telegram.ui.Components.o41;
 import org.telegram.ui.Components.r80;
 public final class bb extends n41 {
-    public static final int f8604b = 0;
+    public static final int f8567b = 0;
 
     static {
         n41.h(new n41());
@@ -28,13 +28,13 @@ public final class bb extends n41 {
         K.A = i10;
         long j3 = tL_starsTopupOption.stars;
         K.C = j3;
-        K.f38091m = hd.H(' ', "StarsCount", (int) j3);
+        K.f38058m = hd.H(' ', "StarsCount", (int) j3);
         if (tL_starsTopupOption.loadingStorePrice) {
             f10 = null;
         } else {
             f10 = org.telegram.messenger.r1.i().f(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
         }
-        K.f38092n = f10;
+        K.f38059n = f10;
         K.H = tL_starsTopupOption;
         return K;
     }
@@ -44,26 +44,26 @@ public final class bb extends n41 {
         float f10;
         cb cbVar = (cb) view;
         int i7 = o41Var.A;
-        CharSequence charSequence = o41Var.f38091m;
-        CharSequence charSequence2 = o41Var.f38092n;
-        org.telegram.ui.Components.o6 o6Var = cbVar.f8657e;
+        CharSequence charSequence = o41Var.f38058m;
+        CharSequence charSequence2 = o41Var.f38059n;
+        org.telegram.ui.Components.o6 o6Var = cbVar.f8620e;
         TextView textView = cbVar.d;
         boolean equals = TextUtils.equals(textView.getText(), charSequence);
-        cbVar.f8659n = i7;
+        cbVar.f8622n = i7;
         if (!equals) {
-            cbVar.f8660r.e(true, i7);
+            cbVar.f8623r.e(true, i7);
         }
         textView.setText(charSequence);
         if (charSequence2 == null) {
-            if (cbVar.f8658f == null) {
+            if (cbVar.f8621f == null) {
                 SpannableString spannableString = new SpannableString("x");
-                cbVar.f8658f = spannableString;
-                spannableString.setSpan(new r80(org.telegram.messenger.g0.L(55.0f), o6Var), 0, cbVar.f8658f.length(), 33);
+                cbVar.f8621f = spannableString;
+                spannableString.setSpan(new r80(org.telegram.messenger.g0.L(55.0f), o6Var), 0, cbVar.f8621f.length(), 33);
             }
-            charSequence2 = cbVar.f8658f;
+            charSequence2 = cbVar.f8621f;
         }
         o6Var.setText(charSequence2);
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             f10 = -1.0f;
         } else {
             f10 = 1.0f;
@@ -79,7 +79,7 @@ public final class bb extends n41 {
 
     @Override
     public final boolean c(o41 o41Var, o41 o41Var2) {
-        if (o41Var.A == o41Var2.A && o41Var.d == o41Var2.d && TextUtils.equals(o41Var.f38092n, o41Var2.f38092n)) {
+        if (o41Var.A == o41Var2.A && o41Var.d == o41Var2.d && TextUtils.equals(o41Var.f38059n, o41Var2.f38059n)) {
             return true;
         }
         return false;

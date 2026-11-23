@@ -10,7 +10,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.fr0;
+import org.telegram.ui.gr0;
 public interface m1 {
     void A0();
 
@@ -110,7 +110,7 @@ public interface m1 {
 
     jh.a c0();
 
-    fr0 c2();
+    gr0 c2();
 
     boolean d0(r1 r1Var);
 

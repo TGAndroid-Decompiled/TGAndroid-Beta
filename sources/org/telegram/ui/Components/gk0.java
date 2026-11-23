@@ -7,9 +7,9 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public class gk0 extends j71 {
     public final tt0 W;
-    public boolean f35600a0;
-    public View f35601b0;
-    public View f35602c0;
+    public boolean f35559a0;
+    public View f35560b0;
+    public View f35561c0;
 
     public gk0(Context context, org.telegram.ui.ActionBar.h6 h6Var, tt0 tt0Var) {
         super(context, h6Var);
@@ -28,14 +28,14 @@ public class gk0 extends j71 {
     }
 
     public final void H(View view) {
-        this.f35601b0 = null;
-        this.f35602c0 = null;
+        this.f35560b0 = null;
+        this.f35561c0 = null;
         tt0 tt0Var = this.W;
         tt0Var.f("PAGE_BOUND", view, 0, 0, true);
         if (tt0Var.P == null) {
             return;
         }
-        if (tt0Var.f40045e0) {
+        if (tt0Var.f40024e0) {
             tt0Var.i("page_bound");
         }
         RecyclerView n10 = tt0Var.P.n(view);
@@ -51,7 +51,7 @@ public class gk0 extends j71 {
             float y10 = motionEvent.getY();
             tt0 tt0Var = this.W;
             boolean j3 = tt0Var.j(x10, y10);
-            this.f35600a0 = j3;
+            this.f35559a0 = j3;
             if (j3) {
                 str = "PAGER_DOWN_COMMON";
             } else {
@@ -63,7 +63,7 @@ public class gk0 extends j71 {
 
     @Override
     public final boolean b(MotionEvent motionEvent) {
-        if (!this.f35600a0 && this.W.c()) {
+        if (!this.f35559a0 && this.W.c()) {
             return true;
         }
         return false;
@@ -88,7 +88,7 @@ public class gk0 extends j71 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         I(motionEvent);
-        if (!this.f35600a0 && super.onInterceptTouchEvent(motionEvent)) {
+        if (!this.f35559a0 && super.onInterceptTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -100,7 +100,7 @@ public class gk0 extends j71 {
         tt0 tt0Var = this.W;
         if (motionEvent == null) {
             tt0Var.g("PAGER_CANCEL_NULL");
-            this.f35600a0 = false;
+            this.f35559a0 = false;
             return x(null);
         }
         I(motionEvent);
@@ -112,7 +112,7 @@ public class gk0 extends j71 {
             }
             tt0Var.g(str);
         }
-        if (this.f35600a0 || !x(motionEvent)) {
+        if (this.f35559a0 || !x(motionEvent)) {
             return false;
         }
         return true;
@@ -127,8 +127,8 @@ public class gk0 extends j71 {
 
     @Override
     public final void r() {
-        this.f35601b0 = null;
-        this.f35602c0 = null;
+        this.f35560b0 = null;
+        this.f35561c0 = null;
     }
 
     @Override
@@ -152,8 +152,8 @@ public class gk0 extends j71 {
             View view = viewPages[0];
             View view2 = viewPages[1];
             if (view != null && view2 != null && view.getTranslationX() == 0.0f && view.getMeasuredWidth() > 0 && Math.abs(view2.getTranslationX()) >= view.getMeasuredWidth()) {
-                this.f35601b0 = view;
-                this.f35602c0 = view2;
+                this.f35560b0 = view;
+                this.f35561c0 = view2;
                 tt0 tt0Var = this.W;
                 tt0Var.g("PAGER_DRAG_ABORTED");
                 tt0Var.p();

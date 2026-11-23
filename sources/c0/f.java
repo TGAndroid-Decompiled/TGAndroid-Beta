@@ -1,13 +1,13 @@
 package c0;
 
-import a8.q7;
-public final class f extends q7 {
+import a8.t7;
+public final class f extends t7 {
     @Override
     public final boolean a(h hVar, d dVar, d dVar2) {
         synchronized (hVar) {
             try {
-                if (hVar.f4370b == dVar) {
-                    hVar.f4370b = dVar2;
+                if (hVar.f4333b == dVar) {
+                    hVar.f4333b = dVar2;
                     return true;
                 }
                 return false;
@@ -21,8 +21,8 @@ public final class f extends q7 {
     public final boolean b(h hVar, Object obj, Object obj2) {
         synchronized (hVar) {
             try {
-                if (hVar.f4369a == obj) {
-                    hVar.f4369a = obj2;
+                if (hVar.f4332a == obj) {
+                    hVar.f4332a = obj2;
                     return true;
                 }
                 return false;
@@ -36,8 +36,8 @@ public final class f extends q7 {
     public final boolean c(h hVar, g gVar, g gVar2) {
         synchronized (hVar) {
             try {
-                if (hVar.f4371c == gVar) {
-                    hVar.f4371c = gVar2;
+                if (hVar.f4334c == gVar) {
+                    hVar.f4334c = gVar2;
                     return true;
                 }
                 return false;
@@ -49,11 +49,11 @@ public final class f extends q7 {
 
     @Override
     public final void d(g gVar, g gVar2) {
-        gVar.f4366b = gVar2;
+        gVar.f4329b = gVar2;
     }
 
     @Override
     public final void e(g gVar, Thread thread) {
-        gVar.f4365a = thread;
+        gVar.f4328a = thread;
     }
 }

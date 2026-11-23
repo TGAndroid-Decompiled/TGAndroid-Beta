@@ -4,25 +4,25 @@ import android.view.View;
 import android.widget.Toast;
 import org.telegram.ui.PhotoViewer;
 public final class vn0 implements View.OnClickListener {
-    public final int f40875a;
-    public final ap0 f40876b;
+    public final int f40837a;
+    public final ap0 f40838b;
 
     public vn0(ap0 ap0Var, int i7) {
-        this.f40875a = i7;
-        this.f40876b = ap0Var;
+        this.f40837a = i7;
+        this.f40838b = ap0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f40875a;
-        ap0 ap0Var = this.f40876b;
+        int i7 = this.f40837a;
+        ap0 ap0Var = this.f40838b;
         switch (i7) {
             case 0:
                 ap0Var.W0(true);
                 return;
             case 1:
-                op opVar = ap0Var.f33562a2;
-                opVar.a(!opVar.f38320a.f32874q, true);
+                op opVar = ap0Var.f33546a2;
+                opVar.a(!opVar.f38291a.f32840q, true);
                 ap0Var.b1();
                 return;
             case 2:
@@ -40,13 +40,13 @@ public final class vn0 implements View.OnClickListener {
                 ap0Var.W0(true);
                 return;
             case 4:
-                String[] strArr = ap0Var.f33571k2;
+                String[] strArr = ap0Var.f33555k2;
                 if (ap0Var.Q1.m() == 0) {
-                    if (ap0Var.f33570j2 || strArr[0] != null) {
+                    if (ap0Var.f33554j2 || strArr[0] != null) {
                         ap0Var.dismiss();
                         PhotoViewer.p1().z0(true, false);
-                        if (strArr[0] == null && ap0Var.f33568h2) {
-                            ap0Var.f33569i2 = true;
+                        if (strArr[0] == null && ap0Var.f33552h2) {
+                            ap0Var.f33553i2 = true;
                             Toast.makeText(ap0Var.getContext(), org.telegram.messenger.hd.N0(2131748586, null), 0).show();
                             return;
                         }
@@ -58,12 +58,12 @@ public final class vn0 implements View.OnClickListener {
                 }
                 return;
             case 5:
-                String[] strArr2 = ap0Var.f33571k2;
+                String[] strArr2 = ap0Var.f33555k2;
                 if (ap0Var.Q1.m() == 0) {
-                    if (ap0Var.f33570j2 || strArr2[0] != null) {
+                    if (ap0Var.f33554j2 || strArr2[0] != null) {
                         ap0Var.dismiss();
-                        if (strArr2[0] == null && ap0Var.f33568h2) {
-                            ap0Var.f33569i2 = true;
+                        if (strArr2[0] == null && ap0Var.f33552h2) {
+                            ap0Var.f33553i2 = true;
                             Toast.makeText(ap0Var.getContext(), org.telegram.messenger.hd.N0(2131748586, null), 0).show();
                             return;
                         }
@@ -75,12 +75,12 @@ public final class vn0 implements View.OnClickListener {
                 }
                 return;
             default:
-                String[] strArr3 = ap0Var.f33571k2;
+                String[] strArr3 = ap0Var.f33555k2;
                 if (ap0Var.Q1.m() == 0) {
-                    if (ap0Var.f33570j2 || strArr3[0] != null) {
+                    if (ap0Var.f33554j2 || strArr3[0] != null) {
                         ap0Var.dismiss();
-                        if (strArr3[0] == null && ap0Var.f33568h2) {
-                            ap0Var.f33569i2 = true;
+                        if (strArr3[0] == null && ap0Var.f33552h2) {
+                            ap0Var.f33553i2 = true;
                             Toast.makeText(ap0Var.getContext(), org.telegram.messenger.hd.N0(2131748586, null), 0).show();
                             return;
                         }

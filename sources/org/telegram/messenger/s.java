@@ -4,21 +4,21 @@ import android.content.Intent;
 import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
 public final class s implements Runnable {
-    public final int f26723a;
-    public final Intent f26724b;
+    public final int f26687a;
+    public final Intent f26688b;
 
     public s(Intent intent, int i7) {
-        this.f26723a = i7;
-        this.f26724b = intent;
+        this.f26687a = i7;
+        this.f26688b = intent;
     }
 
     @Override
     public final void run() {
-        switch (this.f26723a) {
+        switch (this.f26687a) {
             case 0:
-                Intent intent = this.f26724b;
+                Intent intent = this.f26688b;
                 try {
-                    int i7 = k10.f24968t0;
+                    int i7 = k10.f24932t0;
                     t0.w();
                     if (!g0.p2(false) && !cz.C) {
                         String stringExtra = intent.getStringExtra("android.intent.extra.TEXT");
@@ -34,7 +34,7 @@ public final class s implements Runnable {
                                 if (stringExtra2 != null) {
                                     Utilities.h.c(new n4(stringExtra2, 0));
                                 }
-                                az.C(i7).r0(yy.b(stringExtra, c22.f28583id, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                                az.C(i7).r0(yy.b(stringExtra, c22.f28547id, null, null, null, true, null, null, null, true, 0, 0, null, false));
                                 return;
                             }
                             return;
@@ -47,23 +47,23 @@ public final class s implements Runnable {
                     return;
                 }
             case 1:
-                t0.f26931b.sendBroadcast(this.f26724b);
+                t0.f26895b.sendBroadcast(this.f26688b);
                 return;
             case 2:
-                t0.f26931b.sendBroadcast(this.f26724b);
+                t0.f26895b.sendBroadcast(this.f26688b);
                 return;
             case 3:
-                t0.f26931b.sendBroadcast(this.f26724b);
+                t0.f26895b.sendBroadcast(this.f26688b);
                 return;
             case 4:
                 try {
-                    t0.f26931b.sendBroadcast(this.f26724b);
+                    t0.f26895b.sendBroadcast(this.f26688b);
                     return;
                 } catch (Exception unused) {
                     return;
                 }
             default:
-                t0.f26931b.sendBroadcast(this.f26724b);
+                t0.f26895b.sendBroadcast(this.f26688b);
                 return;
         }
     }

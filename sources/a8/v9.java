@@ -13,16 +13,16 @@ public final class v9 {
     public final Integer f691k;
 
     public v9(u9 u9Var) {
-        this.f683a = u9Var.f657a;
-        this.f684b = u9Var.f658b;
-        this.f685c = u9Var.f659c;
+        this.f683a = u9Var.f656a;
+        this.f684b = u9Var.f657b;
+        this.f685c = u9Var.f658c;
         this.d = u9Var.d;
-        this.f686e = (a0) u9Var.f665k;
-        this.f687f = u9Var.f660e;
-        this.f688g = u9Var.f661f;
-        this.h = u9Var.f662g;
+        this.f686e = (a0) u9Var.f664k;
+        this.f687f = u9Var.f659e;
+        this.f688g = u9Var.f660f;
+        this.h = u9Var.f661g;
         this.f689i = u9Var.h;
-        this.f690j = u9Var.f663i;
-        this.f691k = u9Var.f664j;
+        this.f690j = u9Var.f662i;
+        this.f691k = u9Var.f663j;
     }
 }

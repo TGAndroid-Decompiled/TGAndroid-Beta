@@ -5,44 +5,44 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
 import java.lang.reflect.Method;
 public final class kz0 extends AnimatorListenerAdapter {
-    public final int f49437a;
-    public final org.telegram.ui.Components.cl0 f49438b;
+    public final int f49412a;
+    public final org.telegram.ui.Components.cl0 f49413b;
 
     public kz0(org.telegram.ui.Components.cl0 cl0Var, int i7) {
-        this.f49437a = i7;
-        this.f49438b = cl0Var;
+        this.f49412a = i7;
+        this.f49413b = cl0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f49437a) {
+        switch (this.f49412a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f49438b.f34216b;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f49413b.f34184b;
                 secretMediaViewer.Y.getNextView().setText((CharSequence) null);
-                wp0 wp0Var = secretMediaViewer.Z;
-                wp0Var.m0 = false;
-                if (wp0Var.f49080n0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) wp0Var.f49082p0.getLayoutParams()).topMargin = wp0Var.f49080n0;
-                    wp0Var.f49080n0 = -1;
-                    wp0Var.requestLayout();
+                xp0 xp0Var = secretMediaViewer.Z;
+                xp0Var.m0 = false;
+                if (xp0Var.f49341n0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) xp0Var.f49343p0.getLayoutParams()).topMargin = xp0Var.f49341n0;
+                    xp0Var.f49341n0 = -1;
+                    xp0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                ((SecretMediaViewer) this.f49438b.f34216b).Y.setTranslationY(0.0f);
+                ((SecretMediaViewer) this.f49413b.f34184b).Y.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f49437a) {
+        switch (this.f49412a) {
             case 0:
-                wp0 wp0Var = ((SecretMediaViewer) this.f49438b.f34216b).Z;
-                Method method = wp0Var.f49074g0;
+                xp0 xp0Var = ((SecretMediaViewer) this.f49413b.f34184b).Z;
+                Method method = xp0Var.f49335g0;
                 if (method != null) {
                     try {
-                        method.invoke(wp0Var, null);
+                        method.invoke(xp0Var, null);
                         return;
                     } catch (Exception e10) {
                         org.telegram.messenger.a8.g(e10, true);

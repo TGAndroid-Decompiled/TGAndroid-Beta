@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import android.webkit.JavascriptInterface;
 public final class ke0 {
-    public final org.telegram.ui.dq0 f36896a;
+    public final org.telegram.ui.eq0 f36862a;
 
-    public ke0(org.telegram.ui.dq0 dq0Var) {
-        this.f36896a = dq0Var;
+    public ke0(org.telegram.ui.eq0 eq0Var) {
+        this.f36862a = eq0Var;
     }
 
     @JavascriptInterface
     public void onPlayerError(String str) {
-        org.telegram.messenger.g0.g3(new org.telegram.ui.ii(this, Integer.parseInt(str), 14));
+        org.telegram.messenger.g0.g3(new org.telegram.ui.ii(this, Integer.parseInt(str), 16));
     }
 
     @JavascriptInterface
@@ -20,22 +20,22 @@ public final class ke0 {
 
     @JavascriptInterface
     public void onPlayerNotifyBufferedPosition(float f10) {
-        this.f36896a.K = f10;
+        this.f36862a.K = f10;
     }
 
     @JavascriptInterface
     public void onPlayerNotifyCurrentPosition(int i7) {
-        this.f36896a.J = i7 * 1000;
+        this.f36862a.J = i7 * 1000;
     }
 
     @JavascriptInterface
     public void onPlayerNotifyDuration(int i7) {
-        org.telegram.ui.dq0 dq0Var = this.f36896a;
-        dq0Var.I = i7 * 1000;
-        String str = dq0Var.f37174s;
+        org.telegram.ui.eq0 eq0Var = this.f36862a;
+        eq0Var.I = i7 * 1000;
+        String str = eq0Var.f37131s;
         if (str != null) {
-            le0.a(dq0Var, str);
-            dq0Var.f37174s = null;
+            le0.a(eq0Var, str);
+            eq0Var.f37131s = null;
         }
     }
 
@@ -43,8 +43,8 @@ public final class ke0 {
     public void onPlayerStateChange(String str) {
         boolean z10;
         int parseInt = Integer.parseInt(str);
-        org.telegram.ui.dq0 dq0Var = this.f36896a;
-        boolean z11 = dq0Var.H;
+        org.telegram.ui.eq0 eq0Var = this.f36862a;
+        boolean z11 = eq0Var.H;
         boolean z12 = false;
         int i7 = 1;
         if (parseInt != 1 && parseInt != 3) {
@@ -52,8 +52,8 @@ public final class ke0 {
         } else {
             z10 = true;
         }
-        dq0Var.H = z10;
-        dq0Var.b(z11);
+        eq0Var.H = z10;
+        eq0Var.b(z11);
         if (parseInt != 0) {
             if (parseInt != 1) {
                 if (parseInt != 2) {
@@ -69,7 +69,7 @@ public final class ke0 {
         } else {
             i7 = 4;
         }
-        if (i7 == 3 && dq0Var.h.getVisibility() != 4) {
+        if (i7 == 3 && eq0Var.h.getVisibility() != 4) {
             org.telegram.messenger.g0.h3(new ie0(this, 1), 300L);
         }
         org.telegram.messenger.g0.g3(new di.x7(this, z12, i7, 4));

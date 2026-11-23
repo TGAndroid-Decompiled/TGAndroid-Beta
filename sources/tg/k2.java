@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.WindowInsets;
 import org.telegram.ui.Components.x01;
 public final class k2 implements View.OnApplyWindowInsetsListener {
-    public final l2 f58036a;
+    public final l2 f58001a;
 
     public k2(l2 l2Var) {
-        this.f58036a = l2Var;
+        this.f58001a = l2Var;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class k2 implements View.OnApplyWindowInsetsListener {
         int i10;
         int i11;
         int i12;
-        l2 l2Var = this.f58036a;
-        x01 x01Var = l2Var.f58048b;
+        l2 l2Var = this.f58001a;
+        x01 x01Var = l2Var.f58013b;
         Rect rect = l2Var.h;
         int i13 = Build.VERSION.SDK_INT;
         if (i13 >= 30) {

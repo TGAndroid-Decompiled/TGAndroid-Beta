@@ -8,9 +8,9 @@ import android.view.animation.PathInterpolator;
 import java.util.Iterator;
 import java.util.List;
 public final class q0 extends u0 {
-    public static final PathInterpolator f56314e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
-    public static final x1.a f56315f = new x1.b(x1.a.f60066c);
-    public static final DecelerateInterpolator f56316g = new DecelerateInterpolator(1.5f);
+    public static final PathInterpolator f56279e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
+    public static final x1.a f56280f = new x1.b(x1.a.f60031c);
+    public static final DecelerateInterpolator f56281g = new DecelerateInterpolator(1.5f);
     public static final AccelerateInterpolator h = new AccelerateInterpolator(1.5f);
 
     public static void e(View view, v0 v0Var) {
@@ -28,7 +28,7 @@ public final class q0 extends u0 {
     public static void f(View view, l1 l1Var, boolean z10) {
         com.google.android.gms.common.api.q i7 = i(view);
         if (i7 != null) {
-            i7.f6427a = l1Var;
+            i7.f6390a = l1Var;
             if (!z10) {
                 z10 = true;
             }
@@ -57,13 +57,13 @@ public final class q0 extends u0 {
         com.google.android.gms.common.api.q i7 = i(view);
         if (i7 != null) {
             rh.d dVar = (rh.d) i7;
-            if (dVar.f56645c == 0) {
+            if (dVar.f56610c == 0) {
                 Iterator it = dVar.d.iterator();
                 while (it.hasNext()) {
                     ((rh.c) it.next()).w();
                 }
             }
-            dVar.f56645c++;
+            dVar.f56610c++;
         } else if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
@@ -75,7 +75,7 @@ public final class q0 extends u0 {
     public static com.google.android.gms.common.api.q i(View view) {
         Object tag = view.getTag(2131296700);
         if (tag instanceof p0) {
-            return ((p0) tag).f56312a;
+            return ((p0) tag).f56277a;
         }
         return null;
     }

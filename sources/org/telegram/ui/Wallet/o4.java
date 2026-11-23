@@ -8,23 +8,23 @@ import org.telegram.messenger.w10;
 import org.telegram.messenger.x10;
 import org.telegram.ui.Components.o41;
 public final class o4 implements org.telegram.ui.ActionBar.q1, w10, x10 {
-    public final n6 f44745a;
+    public final n6 f44711a;
 
     public o4(n6 n6Var) {
-        this.f44745a = n6Var;
+        this.f44711a = n6Var;
     }
 
     @Override
     public Boolean a(o41 o41Var, View view, Integer num, Float f10, Float f11) {
-        return Boolean.valueOf(this.f44745a.c0(o41Var, view));
+        return Boolean.valueOf(this.f44711a.c0(o41Var, view));
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        n6 n6Var = this.f44745a;
+        n6 n6Var = this.f44711a;
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26931b.getPackageName()));
+            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26895b.getPackageName()));
             n6Var.getParentActivity().startActivity(intent);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
@@ -36,6 +36,6 @@ public final class o4 implements org.telegram.ui.ActionBar.q1, w10, x10 {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        this.f44745a.b0((o41) obj, (View) obj2);
+        this.f44711a.b0((o41) obj, (View) obj2);
     }
 }

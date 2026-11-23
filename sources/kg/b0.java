@@ -19,30 +19,30 @@ import org.telegram.ui.Components.o41;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.UsersSelectActivity;
 public final class b0 {
-    public final Context f18278a;
-    public final int f18279b;
-    public final h6 f18280c;
+    public final Context f18245a;
+    public final int f18246b;
+    public final h6 f18247c;
     public final g2 d;
-    public final Runnable f18281e;
-    public int f18282f;
-    public int f18283g;
+    public final Runnable f18248e;
+    public int f18249f;
+    public int f18250g;
     public boolean h;
-    public boolean f18284i;
-    public final ArrayList f18285j;
-    public final ArrayList f18286k;
-    public TL_account.TL_businessBotRecipients f18287l;
-    public int f18288m;
-    public boolean f18289n;
+    public boolean f18251i;
+    public final ArrayList f18252j;
+    public final ArrayList f18253k;
+    public TL_account.TL_businessBotRecipients f18254l;
+    public int f18255m;
+    public boolean f18256n;
 
     public b0(g2 g2Var, Runnable runnable) {
-        this.f18285j = new ArrayList();
-        this.f18286k = new ArrayList();
-        this.f18288m = -4;
-        this.f18278a = g2Var.getContext();
-        this.f18279b = g2Var.getCurrentAccount();
+        this.f18252j = new ArrayList();
+        this.f18253k = new ArrayList();
+        this.f18255m = -4;
+        this.f18245a = g2Var.getContext();
+        this.f18246b = g2Var.getCurrentAccount();
         this.d = g2Var;
-        this.f18281e = runnable;
-        this.f18280c = g2Var.getResourceProvider();
+        this.f18248e = runnable;
+        this.f18247c = g2Var.getResourceProvider();
     }
 
     public final void a(ArrayList arrayList, c51 c51Var, boolean z10) {
@@ -80,7 +80,7 @@ public final class b0 {
                 }
                 str = i5.c.k(2131750706, null, e2.m(str));
             }
-            ArrayList arrayList2 = this.f18285j;
+            ArrayList arrayList2 = this.f18252j;
             if (!arrayList2.isEmpty()) {
                 if (!TextUtils.isEmpty(str)) {
                     StringBuilder n10 = p5.c.n(str, " + ");
@@ -96,10 +96,10 @@ public final class b0 {
                 str = hd.N0(2131752765, null);
             }
             o41 f10 = o41.f(hd.N0(2131752766, null), str, 101);
-            f10.f38086g = z10;
+            f10.f38053g = z10;
             arrayList.add(f10);
         }
-        boolean z11 = this.f18284i;
+        boolean z11 = this.f18251i;
         if (z11 || this.h) {
             if (!z11 || this.h) {
                 if ((d & 1) != 0) {
@@ -127,7 +127,7 @@ public final class b0 {
                     str3 = i5.c.k(2131750706, null, e2.m(str3));
                 }
             }
-            ArrayList arrayList3 = this.f18286k;
+            ArrayList arrayList3 = this.f18253k;
             if (!arrayList3.isEmpty()) {
                 if (!TextUtils.isEmpty(str3)) {
                     StringBuilder n11 = p5.c.n(str3, " + ");
@@ -143,7 +143,7 @@ public final class b0 {
                 str3 = hd.N0(2131752767, null);
             }
             o41 f11 = o41.f(hd.N0(2131752768, null), str3, 103);
-            f11.f38086g = z10;
+            f11.f38053g = z10;
             arrayList.add(f11);
         }
         c51Var.U();
@@ -182,14 +182,14 @@ public final class b0 {
         tL_inputBusinessBotRecipients.non_contacts = z13;
         boolean z14 = this.h;
         tL_inputBusinessBotRecipients.exclude_selected = z14;
-        ArrayList arrayList2 = this.f18286k;
+        ArrayList arrayList2 = this.f18253k;
         if (z14) {
             arrayList = arrayList2;
         } else {
-            arrayList = this.f18285j;
+            arrayList = this.f18252j;
         }
         if (!arrayList.isEmpty()) {
-            np u12 = np.u1(k10.f24968t0);
+            np u12 = np.u1(k10.f24932t0);
             tL_inputBusinessBotRecipients.flags |= 16;
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 Long l10 = (Long) arrayList.get(i7);
@@ -198,7 +198,7 @@ public final class b0 {
             }
         }
         if (!this.h) {
-            np u13 = np.u1(k10.f24968t0);
+            np u13 = np.u1(k10.f24932t0);
             tL_inputBusinessBotRecipients.flags |= 64;
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 Long l11 = (Long) arrayList2.get(i10);
@@ -242,14 +242,14 @@ public final class b0 {
         tL_businessBotRecipients.non_contacts = z13;
         boolean z14 = this.h;
         tL_businessBotRecipients.exclude_selected = z14;
-        ArrayList arrayList2 = this.f18286k;
+        ArrayList arrayList2 = this.f18253k;
         if (z14) {
             arrayList = arrayList2;
         } else {
-            arrayList = this.f18285j;
+            arrayList = this.f18252j;
         }
         if (!arrayList.isEmpty()) {
-            np u12 = np.u1(k10.f24968t0);
+            np u12 = np.u1(k10.f24932t0);
             tL_businessBotRecipients.flags |= 16;
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 Long l10 = (Long) arrayList.get(i7);
@@ -259,7 +259,7 @@ public final class b0 {
             }
         }
         if (!this.h) {
-            np u13 = np.u1(k10.f24968t0);
+            np u13 = np.u1(k10.f24932t0);
             tL_businessBotRecipients.flags |= 64;
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 Long l11 = (Long) arrayList2.get(i10);
@@ -273,9 +273,9 @@ public final class b0 {
 
     public final int d() {
         if (this.h) {
-            return this.f18283g;
+            return this.f18250g;
         }
-        return this.f18282f;
+        return this.f18249f;
     }
 
     public final TL_account.TL_inputBusinessRecipients e() {
@@ -312,12 +312,12 @@ public final class b0 {
         boolean z14 = this.h;
         tL_inputBusinessRecipients.exclude_selected = z14;
         if (z14) {
-            arrayList = this.f18286k;
+            arrayList = this.f18253k;
         } else {
-            arrayList = this.f18285j;
+            arrayList = this.f18252j;
         }
         if (!arrayList.isEmpty()) {
-            np u12 = np.u1(k10.f24968t0);
+            np u12 = np.u1(k10.f24932t0);
             tL_inputBusinessRecipients.flags |= 16;
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 Long l10 = (Long) arrayList.get(i7);
@@ -362,12 +362,12 @@ public final class b0 {
         boolean z14 = this.h;
         tL_businessRecipients.exclude_selected = z14;
         if (z14) {
-            arrayList = this.f18286k;
+            arrayList = this.f18253k;
         } else {
-            arrayList = this.f18285j;
+            arrayList = this.f18252j;
         }
         if (!arrayList.isEmpty()) {
-            np u12 = np.u1(k10.f24968t0);
+            np u12 = np.u1(k10.f24932t0);
             tL_businessRecipients.flags |= 16;
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 Long l10 = (Long) arrayList.get(i7);
@@ -381,25 +381,25 @@ public final class b0 {
 
     public final boolean g() {
         ArrayList arrayList;
-        TL_account.TL_businessBotRecipients tL_businessBotRecipients = this.f18287l;
+        TL_account.TL_businessBotRecipients tL_businessBotRecipients = this.f18254l;
         if (tL_businessBotRecipients != null && tL_businessBotRecipients.exclude_selected == this.h && (tL_businessBotRecipients.flags & (-49)) == d()) {
             boolean z10 = this.h;
-            ArrayList arrayList2 = this.f18286k;
+            ArrayList arrayList2 = this.f18253k;
             if (z10) {
                 arrayList = arrayList2;
             } else {
-                arrayList = this.f18285j;
+                arrayList = this.f18252j;
             }
-            if (arrayList.size() == this.f18287l.users.size()) {
+            if (arrayList.size() == this.f18254l.users.size()) {
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                    if (!this.f18287l.users.contains(arrayList.get(i7))) {
+                    if (!this.f18254l.users.contains(arrayList.get(i7))) {
                         return true;
                     }
                 }
-                if (this.f18284i && !this.h) {
-                    if (arrayList2.size() == this.f18287l.exclude_users.size()) {
+                if (this.f18251i && !this.h) {
+                    if (arrayList2.size() == this.f18254l.exclude_users.size()) {
                         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                            if (!this.f18287l.exclude_users.contains(arrayList2.get(i10))) {
+                            if (!this.f18254l.exclude_users.contains(arrayList2.get(i10))) {
                                 return true;
                             }
                         }
@@ -424,26 +424,26 @@ public final class b0 {
         g2 g2Var = this.d;
         boolean z12 = false;
         if (i11 != 101 && i11 != 103) {
-            Runnable runnable = this.f18281e;
+            Runnable runnable = this.f18248e;
             if (i11 == 102) {
                 runnable.run();
                 return true;
             } else if (i11 == 104) {
                 runnable.run();
                 return true;
-            } else if (o41Var.f56634a != 11) {
+            } else if (o41Var.f56599a != 11) {
                 return false;
             } else {
-                boolean z13 = o41Var.f38101x;
-                String D1 = np.u1(this.f18279b).D1(o41Var.f38102y, false);
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.f18278a, this.f18280c);
+                boolean z13 = o41Var.f38068x;
+                String D1 = np.u1(this.f18246b).D1(o41Var.f38069y, false);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.f18245a, this.f18247c);
                 if (!z13) {
                     i7 = 2131752674;
                 } else {
                     i7 = 2131752672;
                 }
                 String N0 = hd.N0(i7, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
                 t1Var.S = N0;
                 if (!z13) {
                     i10 = 2131752675;
@@ -467,14 +467,14 @@ public final class b0 {
             z10 = false;
         }
         if (z10) {
-            arrayList = this.f18285j;
+            arrayList = this.f18252j;
         } else {
-            arrayList = this.f18286k;
+            arrayList = this.f18253k;
         }
         UsersSelectActivity usersSelectActivity = new UsersSelectActivity(d(), arrayList, z10);
-        usersSelectActivity.f43949y = 2;
+        usersSelectActivity.f43914y = 2;
         usersSelectActivity.H = false;
-        boolean z14 = this.f18284i;
+        boolean z14 = this.f18251i;
         if (z14 && !this.h && !z10) {
             z11 = true;
         } else {
@@ -483,11 +483,11 @@ public final class b0 {
         usersSelectActivity.G = z11;
         usersSelectActivity.H = false;
         usersSelectActivity.I = z14;
-        if (!z10 && this.f18289n) {
+        if (!z10 && this.f18256n) {
             z12 = true;
         }
         usersSelectActivity.J = z12;
-        usersSelectActivity.f43944n = new ab.z(2, this, z10);
+        usersSelectActivity.f43909n = new ab.z(2, this, z10);
         if (g2Var != null) {
             g2Var.presentFragment(usersSelectActivity);
             return true;
@@ -497,20 +497,20 @@ public final class b0 {
             return true;
         }
         ?? obj = new Object();
-        obj.f28905a = true;
+        obj.f28871a = true;
         T.showAsSheet(usersSelectActivity, obj);
         return true;
     }
 
     public final void i(TL_account.TL_businessBotRecipients tL_businessBotRecipients) {
-        this.f18284i = true;
-        this.f18287l = tL_businessBotRecipients;
-        ArrayList arrayList = this.f18285j;
-        ArrayList arrayList2 = this.f18286k;
+        this.f18251i = true;
+        this.f18254l = tL_businessBotRecipients;
+        ArrayList arrayList = this.f18252j;
+        ArrayList arrayList2 = this.f18253k;
         if (tL_businessBotRecipients == null) {
             this.h = true;
-            this.f18283g = 0;
-            this.f18282f = 0;
+            this.f18250g = 0;
+            this.f18249f = 0;
             arrayList.clear();
             arrayList2.clear();
             return;
@@ -518,26 +518,26 @@ public final class b0 {
         boolean z10 = tL_businessBotRecipients.exclude_selected;
         this.h = z10;
         if (z10) {
-            this.f18282f = 0;
-            this.f18283g = tL_businessBotRecipients.flags & (-49);
+            this.f18249f = 0;
+            this.f18250g = tL_businessBotRecipients.flags & (-49);
             arrayList.clear();
             arrayList2.clear();
-            arrayList2.addAll(this.f18287l.users);
+            arrayList2.addAll(this.f18254l.users);
             return;
         }
-        this.f18282f = tL_businessBotRecipients.flags & (-49);
-        this.f18283g = 0;
+        this.f18249f = tL_businessBotRecipients.flags & (-49);
+        this.f18250g = 0;
         arrayList.clear();
         arrayList2.clear();
-        arrayList.addAll(this.f18287l.users);
-        arrayList2.addAll(this.f18287l.exclude_users);
+        arrayList.addAll(this.f18254l.users);
+        arrayList2.addAll(this.f18254l.exclude_users);
     }
 
     public final void j(TL_account.TL_businessRecipients tL_businessRecipients) {
-        this.f18284i = false;
+        this.f18251i = false;
         if (tL_businessRecipients != null) {
             TL_account.TL_businessBotRecipients tL_businessBotRecipients = new TL_account.TL_businessBotRecipients();
-            this.f18287l = tL_businessBotRecipients;
+            this.f18254l = tL_businessBotRecipients;
             tL_businessBotRecipients.flags = tL_businessRecipients.flags;
             tL_businessBotRecipients.existing_chats = tL_businessRecipients.existing_chats;
             tL_businessBotRecipients.new_chats = tL_businessRecipients.new_chats;
@@ -546,15 +546,15 @@ public final class b0 {
             tL_businessBotRecipients.exclude_selected = tL_businessRecipients.exclude_selected;
             tL_businessBotRecipients.users = tL_businessRecipients.users;
         } else {
-            this.f18287l = null;
+            this.f18254l = null;
         }
-        TL_account.TL_businessBotRecipients tL_businessBotRecipients2 = this.f18287l;
-        ArrayList arrayList = this.f18285j;
-        ArrayList arrayList2 = this.f18286k;
+        TL_account.TL_businessBotRecipients tL_businessBotRecipients2 = this.f18254l;
+        ArrayList arrayList = this.f18252j;
+        ArrayList arrayList2 = this.f18253k;
         if (tL_businessBotRecipients2 == null) {
             this.h = true;
-            this.f18283g = 0;
-            this.f18282f = 0;
+            this.f18250g = 0;
+            this.f18249f = 0;
             arrayList.clear();
             arrayList2.clear();
             return;
@@ -562,27 +562,27 @@ public final class b0 {
         boolean z10 = tL_businessBotRecipients2.exclude_selected;
         this.h = z10;
         if (z10) {
-            this.f18282f = 0;
-            this.f18283g = tL_businessBotRecipients2.flags & (-49);
+            this.f18249f = 0;
+            this.f18250g = tL_businessBotRecipients2.flags & (-49);
             arrayList.clear();
             arrayList2.clear();
-            arrayList2.addAll(this.f18287l.users);
+            arrayList2.addAll(this.f18254l.users);
             return;
         }
-        this.f18282f = tL_businessBotRecipients2.flags & (-49);
-        this.f18283g = 0;
+        this.f18249f = tL_businessBotRecipients2.flags & (-49);
+        this.f18250g = 0;
         arrayList.clear();
         arrayList2.clear();
-        arrayList.addAll(this.f18287l.users);
-        arrayList2.addAll(this.f18287l.exclude_users);
+        arrayList.addAll(this.f18254l.users);
+        arrayList2.addAll(this.f18254l.exclude_users);
     }
 
     public final boolean k(h51 h51Var) {
-        if (!this.h && this.f18285j.isEmpty() && this.f18282f == 0) {
+        if (!this.h && this.f18252j.isEmpty() && this.f18249f == 0) {
             q2.APP_ERROR.a();
             View B1 = h51Var.B1(101);
-            int i7 = -this.f18288m;
-            this.f18288m = i7;
+            int i7 = -this.f18255m;
+            this.f18255m = i7;
             org.telegram.messenger.g0.E3(i7, B1, null);
             h51Var.y0(h51Var.A1(101));
             return false;
@@ -590,14 +590,14 @@ public final class b0 {
         return true;
     }
 
-    public b0(Context context, int i7, i0 i0Var, h6 h6Var) {
-        this.f18285j = new ArrayList();
-        this.f18286k = new ArrayList();
-        this.f18288m = -4;
-        this.f18278a = context;
-        this.f18279b = i7;
+    public b0(Context context, int i7, hi.b0 b0Var, h6 h6Var) {
+        this.f18252j = new ArrayList();
+        this.f18253k = new ArrayList();
+        this.f18255m = -4;
+        this.f18245a = context;
+        this.f18246b = i7;
         this.d = null;
-        this.f18281e = i0Var;
-        this.f18280c = h6Var;
+        this.f18248e = b0Var;
+        this.f18247c = h6Var;
     }
 }

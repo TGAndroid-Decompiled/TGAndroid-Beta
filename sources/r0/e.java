@@ -6,24 +6,24 @@ import android.os.Bundle;
 import android.view.ContentInfo;
 import java.util.Locale;
 public final class e implements d, f {
-    public final int f56273a = 0;
-    public ClipData f56274b;
-    public int f56275c;
+    public final int f56238a = 0;
+    public ClipData f56239b;
+    public int f56240c;
     public int d;
-    public Uri f56276e;
-    public Bundle f56277f;
+    public Uri f56241e;
+    public Bundle f56242f;
 
     public e() {
     }
 
     @Override
     public ClipData a() {
-        return this.f56274b;
+        return this.f56239b;
     }
 
     @Override
     public void b(Uri uri) {
-        this.f56276e = uri;
+        this.f56241e = uri;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class e implements d, f {
 
     @Override
     public int e() {
-        return this.f56275c;
+        return this.f56240c;
     }
 
     @Override
@@ -53,20 +53,20 @@ public final class e implements d, f {
 
     @Override
     public void setExtras(Bundle bundle) {
-        this.f56277f = bundle;
+        this.f56242f = bundle;
     }
 
     public String toString() {
         String str;
         String valueOf;
         String str2;
-        switch (this.f56273a) {
+        switch (this.f56238a) {
             case 1:
-                Uri uri = this.f56276e;
+                Uri uri = this.f56241e;
                 StringBuilder sb2 = new StringBuilder("ContentInfoCompat{clip=");
-                sb2.append(this.f56274b.getDescription());
+                sb2.append(this.f56239b.getDescription());
                 sb2.append(", source=");
-                int i7 = this.f56275c;
+                int i7 = this.f56240c;
                 if (i7 != 0) {
                     if (i7 != 1) {
                         if (i7 != 2) {
@@ -108,7 +108,7 @@ public final class e implements d, f {
                     str2 = ", hasLinkUri(" + uri.toString().length() + ")";
                 }
                 sb2.append(str2);
-                if (this.f56277f != null) {
+                if (this.f56242f != null) {
                     str3 = ", hasExtras";
                 }
                 return a8.p0.s(sb2, str3, "}");
@@ -118,20 +118,20 @@ public final class e implements d, f {
     }
 
     public e(e eVar) {
-        ClipData clipData = eVar.f56274b;
+        ClipData clipData = eVar.f56239b;
         clipData.getClass();
-        this.f56274b = clipData;
-        int i7 = eVar.f56275c;
+        this.f56239b = clipData;
+        int i7 = eVar.f56240c;
         if (i7 < 0) {
             Locale locale = Locale.US;
             throw new IllegalArgumentException("source is out of range of [0, 5] (too low)");
         } else if (i7 <= 5) {
-            this.f56275c = i7;
+            this.f56240c = i7;
             int i10 = eVar.d;
             if ((i10 & 1) == i10) {
                 this.d = i10;
-                this.f56276e = eVar.f56276e;
-                this.f56277f = eVar.f56277f;
+                this.f56241e = eVar.f56241e;
+                this.f56242f = eVar.f56242f;
                 return;
             }
             throw new IllegalArgumentException("Requested flags 0x" + Integer.toHexString(i10) + ", but only 0x" + Integer.toHexString(1) + " are allowed");

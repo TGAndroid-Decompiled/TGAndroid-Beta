@@ -23,7 +23,7 @@ public final class c2 extends m80 {
     public int a() {
         switch (this.M) {
             case 4:
-                return ((UndoView) this.N).f33208a;
+                return ((UndoView) this.N).f33174a;
             default:
                 return super.a();
         }
@@ -79,11 +79,11 @@ public final class c2 extends m80 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new k00(org.telegram.ui.ActionBar.m6.f29602p7, ((org.telegram.ui.ka) this.N).f49265e.getResourceProvider()), 0, indexOf, 33);
+                        charSequence.setSpan(new k00(org.telegram.ui.ActionBar.m6.f29568p7, ((org.telegram.ui.ka) this.N).f49223e.getResourceProvider()), 0, indexOf, 33);
                     }
                     l41[] l41VarArr = (l41[]) charSequence.getSpans(0, charSequence.length(), l41.class);
                     for (int i7 = 0; i7 < l41VarArr.length; i7++) {
-                        charSequence.setSpan(new hi.ha(this, 2), charSequence.getSpanStart(l41VarArr[i7]), charSequence.getSpanEnd(l41VarArr[i7]), 33);
+                        charSequence.setSpan(new hi.ia(this, 2), charSequence.getSpanStart(l41VarArr[i7]), charSequence.getSpanEnd(l41VarArr[i7]), 33);
                         charSequence.removeSpan(l41VarArr[i7]);
                     }
                 }
@@ -96,12 +96,12 @@ public final class c2 extends m80 {
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new k00(org.telegram.ui.ActionBar.m6.f29602p7, adVar.getResourceProvider()), 0, indexOf2, 33);
+                        charSequence.setSpan(new k00(org.telegram.ui.ActionBar.m6.f29568p7, adVar.getResourceProvider()), 0, indexOf2, 33);
                     }
                     l41[] l41VarArr2 = (l41[]) charSequence.getSpans(0, charSequence.length(), l41.class);
-                    EditTextBoldCursor editTextBoldCursor = adVar.f45608y;
+                    EditTextBoldCursor editTextBoldCursor = adVar.f45575y;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = adVar.f45608y.getText().toString();
+                        str = adVar.f45575y.getText().toString();
                     } else {
                         str = "";
                     }

@@ -3,21 +3,21 @@ package t3;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class c extends i {
-    public final String f57600b;
-    public final int f57601c;
+    public final String f57565b;
+    public final int f57566c;
     public final int d;
-    public final long f57602e;
-    public final long f57603f;
-    public final i[] f57604g;
+    public final long f57567e;
+    public final long f57568f;
+    public final i[] f57569g;
 
     public c(String str, int i7, int i10, long j3, long j10, i[] iVarArr) {
         super("CHAP");
-        this.f57600b = str;
-        this.f57601c = i7;
+        this.f57565b = str;
+        this.f57566c = i7;
         this.d = i10;
-        this.f57602e = j3;
-        this.f57603f = j10;
-        this.f57604g = iVarArr;
+        this.f57567e = j3;
+        this.f57568f = j10;
+        this.f57569g = iVarArr;
     }
 
     public final boolean equals(Object obj) {
@@ -26,7 +26,7 @@ public final class c extends i {
         }
         if (obj != null && c.class == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f57601c == cVar.f57601c && this.d == cVar.d && this.f57602e == cVar.f57602e && this.f57603f == cVar.f57603f && Objects.equals(this.f57600b, cVar.f57600b) && Arrays.equals(this.f57604g, cVar.f57604g)) {
+            if (this.f57566c == cVar.f57566c && this.d == cVar.d && this.f57567e == cVar.f57567e && this.f57568f == cVar.f57568f && Objects.equals(this.f57565b, cVar.f57565b) && Arrays.equals(this.f57569g, cVar.f57569g)) {
                 return true;
             }
         }
@@ -35,8 +35,8 @@ public final class c extends i {
 
     public final int hashCode() {
         int i7;
-        int i10 = (((((((527 + this.f57601c) * 31) + this.d) * 31) + ((int) this.f57602e)) * 31) + ((int) this.f57603f)) * 31;
-        String str = this.f57600b;
+        int i10 = (((((((527 + this.f57566c) * 31) + this.d) * 31) + ((int) this.f57567e)) * 31) + ((int) this.f57568f)) * 31;
+        String str = this.f57565b;
         if (str != null) {
             i7 = str.hashCode();
         } else {

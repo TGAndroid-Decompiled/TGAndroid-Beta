@@ -7,8 +7,8 @@ public final class e1 {
     public final u8 f377c;
 
     public e1(android.support.v4.media.session.a0 a0Var) {
-        this.f375a = (z7) a0Var.f1724b;
-        this.f376b = (Boolean) a0Var.f1725c;
+        this.f375a = (z7) a0Var.f1675b;
+        this.f376b = (Boolean) a0Var.f1676c;
         this.f377c = (u8) a0Var.d;
     }
 

@@ -1,10 +1,10 @@
 package me;
 
-import c8.w9;
+import c8.x9;
 public final class b extends c {
-    public static final b f20996b = new w9();
-    public static final b f20997c = new w9();
-    public static final b d = new w9();
-    public static final b f20998e = new w9();
-    public static final b f20999f = new w9();
+    public static final b f20962b = new x9();
+    public static final b f20963c = new x9();
+    public static final b d = new x9();
+    public static final b f20964e = new x9();
+    public static final b f20965f = new x9();
 }

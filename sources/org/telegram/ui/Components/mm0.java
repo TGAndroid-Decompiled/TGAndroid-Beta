@@ -1,24 +1,31 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class mm0 extends v4.u0 {
-    public final int f37583a;
-    public final org.telegram.ui.kw f37584b;
+import android.content.Context;
+public final class mm0 extends jg.h0 {
+    public final org.telegram.ui.cx J0;
+    public final Context K0;
+    public final org.telegram.ui.kw L0;
 
-    public mm0(org.telegram.ui.kw kwVar, int i7) {
-        this.f37583a = i7;
-        this.f37584b = kwVar;
+    public mm0(org.telegram.ui.kw kwVar, Context context, org.telegram.ui.cx cxVar, int i7, int i10, v4.k kVar, boolean z10, org.telegram.ui.cx cxVar2, Context context2) {
+        super(context, cxVar, i7, i10, kVar, z10);
+        this.L0 = kwVar;
+        this.J0 = cxVar2;
+        this.K0 = context2;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        switch (this.f37583a) {
-            case 0:
-                this.f37584b.P();
-                return;
-            default:
-                this.f37584b.P();
-                return;
+    public final void f() {
+        di.b1 b1Var;
+        int i7 = this.C0;
+        super.f();
+        org.telegram.ui.kw kwVar = this.L0;
+        if (!kwVar.L0 && (b1Var = kwVar.f39902b0) != null) {
+            b1Var.v0(0);
+            kwVar.L0 = true;
         }
+        if (b() != 0 || i7 == 0 || this.E0 > 0) {
+            return;
+        }
+        kwVar.f39903c0.e(false, false);
     }
 }

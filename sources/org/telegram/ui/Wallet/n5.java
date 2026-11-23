@@ -20,26 +20,26 @@ import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.j71;
 public final class n5 extends j71 {
     public boolean W;
-    public final m5 f44659a0;
-    public final ArrayList f44660b0;
-    public final t0 f44661c0;
-    public final int f44662d0;
-    public final Rect f44663e0;
-    public final View[] f44664f0;
+    public final m5 f44625a0;
+    public final ArrayList f44626b0;
+    public final t0 f44627c0;
+    public final int f44628d0;
+    public final Rect f44629e0;
+    public final View[] f44630f0;
 
     public n5(Context context, org.telegram.ui.ActionBar.h6 h6Var, final ArrayList arrayList, final t0 t0Var, int i7, Rect rect, View[] viewArr) {
         super(context, h6Var);
-        this.f44660b0 = arrayList;
-        this.f44661c0 = t0Var;
-        this.f44662d0 = i7;
-        this.f44663e0 = rect;
-        this.f44664f0 = viewArr;
-        this.f44659a0 = new gs() {
+        this.f44626b0 = arrayList;
+        this.f44627c0 = t0Var;
+        this.f44628d0 = i7;
+        this.f44629e0 = rect;
+        this.f44630f0 = viewArr;
+        this.f44625a0 = new gs() {
             @Override
             public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
                 int i12;
                 ArrayList arrayList2 = arrayList;
-                ArrayList arrayList3 = t0Var.f45087c;
+                ArrayList arrayList3 = t0Var.f45053c;
                 u0[] u0VarArr = u0.R;
                 IdentityHashMap identityHashMap = new IdentityHashMap();
                 HashMap hashMap = new HashMap();
@@ -96,7 +96,7 @@ public final class n5 extends j71 {
         view.setTranslationX(f10);
         if (getMeasuredWidth() > 0) {
             float i7 = Utilities.i(f10 / getMeasuredWidth(), 1.0f, -1.0f);
-            view.setTranslationX(f10 - ((2.0f * i7) * this.f44663e0.left));
+            view.setTranslationX(f10 - ((2.0f * i7) * this.f44629e0.left));
             if (i7 > 0.0f) {
                 measuredWidth = 0.0f;
             } else {
@@ -128,26 +128,26 @@ public final class n5 extends j71 {
                     float L = (-(f12 - m7Var.R)) * org.telegram.messenger.g0.L(140.0f);
                     m7Var.R = f12;
                     if (m7Var.P == null) {
-                        r1.g gVar = new r1.g(m7Var, r1.g.f56351o);
+                        r1.g gVar = new r1.g(m7Var, r1.g.f56316o);
                         m7Var.P = gVar;
                         r1.h hVar = new r1.h(0.0f);
                         hVar.a(0.32f);
                         hVar.b(300.0f);
-                        gVar.f56368m = hVar;
+                        gVar.f56333m = hVar;
                         m7Var.P.b(new g7(m7Var, 1));
                     }
                     float A = o10.A(m7Var.Q, L, org.telegram.messenger.g0.L(1600.0f), -org.telegram.messenger.g0.L(1600.0f));
                     m7Var.Q = A;
                     r1.g gVar2 = m7Var.P;
-                    gVar2.f56358a = A;
+                    gVar2.f56323a = A;
                     gVar2.c(0.0f);
                 }
                 if (f11 != 0.0f) {
                     m7Var.V = Math.max(-720.0f, Math.min(720.0f, m7Var.V - (f11 * 300.0f)));
-                    if (!m7Var.f44613a0 && m7Var.f44629n) {
-                        m7Var.f44613a0 = true;
+                    if (!m7Var.f44579a0 && m7Var.f44595n) {
+                        m7Var.f44579a0 = true;
                         m7Var.W = 0L;
-                        Choreographer.getInstance().postFrameCallback(m7Var.f44615b0);
+                        Choreographer.getInstance().postFrameCallback(m7Var.f44581b0);
                     }
                 }
             }
@@ -155,9 +155,9 @@ public final class n5 extends j71 {
     }
 
     public final void H() {
-        if (this.f36432b >= this.f44660b0.size() - 2) {
-            t0 t0Var = this.f44661c0;
-            if (!t0Var.f45093k && !t0Var.h) {
+        if (this.f36391b >= this.f44626b0.size() - 2) {
+            t0 t0Var = this.f44627c0;
+            if (!t0Var.f45059k && !t0Var.h) {
                 t0Var.h();
             }
         }
@@ -166,7 +166,7 @@ public final class n5 extends j71 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        Rect rect = this.f44663e0;
+        Rect rect = this.f44629e0;
         canvas.clipRect(rect.left, -getHeight(), getWidth() - rect.right, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
@@ -186,21 +186,21 @@ public final class n5 extends j71 {
     @Override
     public final float getAvailableTranslationX() {
         int measuredWidth = getMeasuredWidth();
-        Rect rect = this.f44663e0;
+        Rect rect = this.f44629e0;
         return Math.max(1, (measuredWidth - rect.left) - rect.right);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ls.f(this.f44662d0).c(this.f44659a0, ls.f25302e4);
+        ls.f(this.f44628d0).c(this.f44625a0, ls.f25266e4);
         H();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ls.f(this.f44662d0).n(this.f44659a0, ls.f25302e4);
+        ls.f(this.f44628d0).n(this.f44625a0, ls.f25266e4);
     }
 
     @Override
@@ -227,7 +227,7 @@ public final class n5 extends j71 {
             ((Runnable) childAt.getTag()).run();
         }
         H();
-        gc gcVar = gc.f35519w;
+        gc gcVar = gc.f35481w;
         if (gcVar != null) {
             gcVar.c(0L, false);
         }
@@ -236,7 +236,7 @@ public final class n5 extends j71 {
     @Override
     public final void s(boolean z10) {
         requestLayout();
-        View view = this.f44664f0[0];
+        View view = this.f44630f0[0];
         if (view != null) {
             view.invalidate();
         }

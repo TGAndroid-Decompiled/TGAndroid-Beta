@@ -1,11 +1,11 @@
 package org.telegram.messenger;
 public final class wo {
-    public final int f27779a;
-    public final int f27780b;
+    public final int f27743a;
+    public final int f27744b;
 
     public wo(int i7, int i10) {
-        this.f27779a = i7;
-        this.f27780b = i10;
+        this.f27743a = i7;
+        this.f27744b = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -13,7 +13,7 @@ public final class wo {
             return false;
         }
         wo woVar = (wo) obj;
-        if (this.f27779a != woVar.f27779a || this.f27780b != woVar.f27780b) {
+        if (this.f27743a != woVar.f27743a || this.f27744b != woVar.f27744b) {
             return false;
         }
         return true;

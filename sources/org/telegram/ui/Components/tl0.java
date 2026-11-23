@@ -7,36 +7,36 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.util.HashSet;
 public abstract class tl0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final View f39938a;
-    public final ImageView f39939b;
-    public final hi.b2 f39940c;
+    public final View f39892a;
+    public final ImageView f39893b;
+    public final hi.b2 f39894c;
     public final ah.i d;
-    public final org.telegram.ui.ActionBar.h6 f39941e;
+    public final org.telegram.ui.ActionBar.h6 f39895e;
 
     public tl0(Context context, float f10, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.f39941e = h6Var;
+        this.f39895e = h6Var;
         View view = new View(context);
-        this.f39938a = view;
+        this.f39892a = view;
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.m6.d0(org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.O5, h6Var)));
-        addView(view, c8.ma.i(-1.0f, 36.0f, 8388659, f10, 11.0f, f10, 0.0f));
+        addView(view, c8.na.i(-1.0f, 36.0f, 8388659, f10, 11.0f, f10, 0.0f));
         ImageView imageView = new ImageView(context);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(2131232739);
         org.telegram.ui.ActionBar.t6.s(imageView, org.telegram.ui.ActionBar.m6.Q5, h6Var, PorterDuff.Mode.MULTIPLY);
-        addView(imageView, c8.ma.i(36.0f, 36.0f, 8388659, f10 + 2.0f, 11.0f, 0.0f, 0.0f));
+        addView(imageView, c8.na.i(36.0f, 36.0f, 8388659, f10 + 2.0f, 11.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f39939b = imageView2;
+        this.f39893b = imageView2;
         imageView2.setScaleType(scaleType);
         hi.b2 b2Var = new hi.b2(3, this);
-        this.f39940c = b2Var;
+        this.f39894c = b2Var;
         imageView2.setImageDrawable(b2Var);
-        b2Var.f35305f = org.telegram.messenger.g0.L(7.0f);
+        b2Var.f35261f = org.telegram.messenger.g0.L(7.0f);
         imageView2.setScaleX(0.1f);
         imageView2.setScaleY(0.1f);
         imageView2.setAlpha(0.0f);
-        addView(imageView2, c8.ma.i(36.0f, 36.0f, 8388661, f10, 11.0f, f10, 0.0f));
+        addView(imageView2, c8.na.i(36.0f, 36.0f, 8388661, f10, 11.0f, f10, 0.0f));
         imageView2.setOnClickListener(new j70(this, 11));
         ah.i iVar = new ah.i(8, context, this);
         this.d = iVar;
@@ -48,13 +48,13 @@ public abstract class tl0 extends FrameLayout implements org.telegram.ui.ActionB
         iVar.setMaxLines(1);
         iVar.setLines(1);
         iVar.setSingleLine(true);
-        iVar.setGravity(c8.ma.y() | 16);
+        iVar.setGravity(c8.na.y() | 16);
         iVar.setImeOptions(268435459);
         org.telegram.ui.ActionBar.t6.l(iVar, 30, org.telegram.ui.ActionBar.m6.Di, h6Var);
         iVar.setCursorSize(org.telegram.messenger.g0.L(20.0f));
         iVar.setCursorWidth(1.5f);
         float f11 = f10 + 2.0f;
-        addView(iVar, c8.ma.i(-1.0f, 40.0f, 8388659, f11 + 38.0f, 9.0f, f11 + 30.0f, 0.0f));
+        addView(iVar, c8.na.i(-1.0f, 40.0f, 8388659, f11 + 38.0f, 9.0f, f11 + 30.0f, 0.0f));
         iVar.addTextChangedListener(new ah.j(this, 25));
         iVar.setOnEditorActionListener(new h(this, 7));
     }
@@ -62,11 +62,11 @@ public abstract class tl0 extends FrameLayout implements org.telegram.ui.ActionB
     public abstract void a(String str);
 
     public fq getProgressDrawable() {
-        return this.f39940c;
+        return this.f39894c;
     }
 
     public View getSearchBackground() {
-        return this.f39938a;
+        return this.f39892a;
     }
 
     public EditTextBoldCursor getSearchEditText() {
@@ -79,10 +79,10 @@ public abstract class tl0 extends FrameLayout implements org.telegram.ui.ActionB
 
     @Override
     public final void updateColors() {
-        View view = this.f39938a;
+        View view = this.f39892a;
         if (view != null) {
             try {
-                org.telegram.ui.ActionBar.m6.C1(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.O5, this.f39941e), view.getBackground());
+                org.telegram.ui.ActionBar.m6.C1(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.O5, this.f39895e), view.getBackground());
                 view.invalidate();
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);

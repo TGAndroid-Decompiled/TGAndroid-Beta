@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class mw implements c5.h {
-    public final boolean f37650a;
-    public final ty f37651b;
+    public final boolean f37606a;
+    public final ty f37607b;
 
     public mw(ty tyVar, boolean z10) {
-        this.f37651b = tyVar;
-        this.f37650a = z10;
+        this.f37607b = tyVar;
+        this.f37606a = z10;
     }
 
     @Override
     public final void a(int i7) {
         boolean z10;
         int i10;
-        ty tyVar = this.f37651b;
+        ty tyVar = this.f37607b;
         jw jwVar = tyVar.h;
         boolean z11 = false;
         if (jwVar != null) {
@@ -35,20 +35,20 @@ public final class mw implements c5.h {
             z10 = false;
         }
         tyVar.M(z10, true);
-        if (i7 == 2 && (this.f37650a || tyVar.f40149w0)) {
+        if (i7 == 2 && (this.f37606a || tyVar.f40132w0)) {
             z11 = true;
         }
         tyVar.R(z11, true);
-        if (tyVar.f40143u1.z()) {
+        if (tyVar.f40126u1.z()) {
             if (i7 == 0) {
-                vv vvVar = tyVar.W;
-                if (vvVar != null) {
-                    vvVar.d.requestFocus();
+                uv uvVar = tyVar.W;
+                if (uvVar != null) {
+                    uvVar.d.requestFocus();
                 }
             } else if (i7 == 1) {
-                aw awVar = tyVar.f40125p0;
-                if (awVar != null) {
-                    awVar.d.requestFocus();
+                zv zvVar = tyVar.f40108p0;
+                if (zvVar != null) {
+                    zvVar.d.requestFocus();
                 }
             } else {
                 gw gwVar = tyVar.H0;
@@ -67,18 +67,18 @@ public final class mw implements c5.h {
         int i11;
         int i12;
         int i13;
-        ty tyVar = this.f37651b;
+        ty tyVar = this.f37607b;
         gy gyVar3 = tyVar.H0;
-        gy gyVar4 = tyVar.f40125p0;
+        gy gyVar4 = tyVar.f40108p0;
         gy gyVar5 = tyVar.W;
         iw iwVar = tyVar.D0;
-        dw dwVar = tyVar.E0;
-        bx bxVar = tyVar.f40128q0;
-        yv yvVar = tyVar.f40106i0;
+        cw cwVar = tyVar.E0;
+        bx bxVar = tyVar.f40111q0;
+        xv xvVar = tyVar.f40089i0;
         gx gxVar = tyVar.Q;
         int i14 = 2;
         boolean z10 = true;
-        if (tyVar.f40157y0 == null || tyVar.f40103h0 == null) {
+        if (tyVar.f40140y0 == null || tyVar.f40086h0 == null) {
             f11 = 0.0f;
         } else {
             int i15 = 8;
@@ -91,14 +91,14 @@ public final class mw implements c5.h {
                 } else {
                     i12 = 0;
                 }
-                yvVar.setVisibility(i12);
+                xvVar.setVisibility(i12);
                 if (i16 == 0) {
                     i13 = 8;
                 } else {
                     i13 = 0;
                 }
                 bxVar.setVisibility(i13);
-                dwVar.setVisibility(8);
+                cwVar.setVisibility(8);
                 if (iwVar != null) {
                     iwVar.setVisibility(8);
                 }
@@ -106,7 +106,7 @@ public final class mw implements c5.h {
                 f11 = 0.0f;
                 if (i7 == 1) {
                     gxVar.setVisibility(8);
-                    yvVar.setVisibility(0);
+                    xvVar.setVisibility(0);
                     bxVar.setVisibility(0);
                     int i17 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
                     if (i17 == 0) {
@@ -114,7 +114,7 @@ public final class mw implements c5.h {
                     } else {
                         i11 = 0;
                     }
-                    dwVar.setVisibility(i11);
+                    cwVar.setVisibility(i11);
                     if (iwVar != null) {
                         if (i17 != 0) {
                             i15 = 0;
@@ -123,9 +123,9 @@ public final class mw implements c5.h {
                     }
                 } else if (i7 == 2) {
                     gxVar.setVisibility(8);
-                    yvVar.setVisibility(8);
+                    xvVar.setVisibility(8);
                     bxVar.setVisibility(8);
-                    dwVar.setVisibility(0);
+                    cwVar.setVisibility(0);
                     if (iwVar != null) {
                         iwVar.setVisibility(0);
                     }
@@ -135,7 +135,7 @@ public final class mw implements c5.h {
         tyVar.getMeasuredWidth();
         tyVar.getPaddingLeft();
         tyVar.getPaddingRight();
-        tx txVar = tyVar.f40143u1;
+        tx txVar = tyVar.f40126u1;
         if (txVar != null) {
             if (i7 == 1) {
                 if (i10 == 0) {

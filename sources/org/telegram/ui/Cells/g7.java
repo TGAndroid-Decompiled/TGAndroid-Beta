@@ -11,7 +11,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 public final class g7 extends n41 {
-    public static final int f30710b = 0;
+    public static final int f30676b = 0;
 
     static {
         n41.h(new n41());
@@ -33,13 +33,13 @@ public final class g7 extends n41 {
         } else if (obj instanceof we) {
             we weVar = (we) obj;
             h7Var.setTag(weVar);
-            h7Var.f(weVar.f27727e, z10);
+            h7Var.f(weVar.f27691e, z10);
         }
         Object obj2 = o41Var.I;
         if (obj2 instanceof z10) {
             h7Var.setNeedPlayMessageListener((z10) obj2);
         }
-        h7Var.e(o41Var.f38084e, false);
+        h7Var.e(o41Var.f38051e, false);
     }
 
     @Override

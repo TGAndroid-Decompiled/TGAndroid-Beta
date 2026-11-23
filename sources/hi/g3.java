@@ -5,7 +5,7 @@ import android.view.MotionEvent;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ve;
 public final class g3 extends d3 {
-    public final int f14707l0 = 0;
+    public final int f14636l0 = 0;
     public final Object m0;
 
     public g3(int i7, Context context, fi.b bVar, float f10, String str) {
@@ -15,14 +15,14 @@ public final class g3 extends d3 {
 
     @Override
     public void a() {
-        switch (this.f14707l0) {
+        switch (this.f14636l0) {
             case 1:
-                sa saVar = (sa) this.m0;
-                saVar.N0.setTranslationY(saVar.f15425n.getMeasuredHeight() - saVar.N0.g());
-                b9 b9Var = saVar.f15440r2;
-                if (b9Var != null) {
-                    b9Var.run();
-                    saVar.f15440r2 = null;
+                ta taVar = (ta) this.m0;
+                taVar.N0.setTranslationY(taVar.f15428n.getMeasuredHeight() - taVar.N0.g());
+                c9 c9Var = taVar.f15443r2;
+                if (c9Var != null) {
+                    c9Var.run();
+                    taVar.f15443r2 = null;
                     return;
                 }
                 return;
@@ -33,10 +33,10 @@ public final class g3 extends d3 {
 
     @Override
     public void c(boolean z10) {
-        switch (this.f14707l0) {
+        switch (this.f14636l0) {
             case 1:
-                if (((sa) this.m0).f15406g0 == 0 && z10) {
-                    org.telegram.messenger.g0.g3(new l(this, 18));
+                if (((ta) this.m0).f15409g0 == 0 && z10) {
+                    org.telegram.messenger.g0.g3(new b0(this, 17));
                     return;
                 }
                 return;
@@ -47,12 +47,12 @@ public final class g3 extends d3 {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f14707l0) {
+        switch (this.f14636l0) {
             case 1:
                 if (motionEvent.getAction() == 0 && motionEvent.getY() < g()) {
-                    sa saVar = (sa) this.m0;
-                    saVar.M0 = true;
-                    saVar.e(false);
+                    ta taVar = (ta) this.m0;
+                    taVar.M0 = true;
+                    taVar.e(false);
                     return true;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -63,7 +63,7 @@ public final class g3 extends d3 {
 
     @Override
     public String getTitle() {
-        switch (this.f14707l0) {
+        switch (this.f14636l0) {
             case 0:
                 return (String) this.m0;
             default:
@@ -73,15 +73,15 @@ public final class g3 extends d3 {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f14707l0) {
+        switch (this.f14636l0) {
             case 1:
                 super.setTranslationY(f10);
-                sa saVar = (sa) this.m0;
-                if (saVar.f15422l2) {
-                    float i7 = Utilities.i(1.0f - (f10 / (saVar.f15425n.getMeasuredHeight() - saVar.N0.g())), 1.0f, 0.0f);
-                    saVar.f15437r.b(org.telegram.messenger.g0.L(-32.0f) * i7);
-                    saVar.f15437r.setAlpha(1.0f - (0.6f * i7));
-                    saVar.f15415j0.setAlpha(1.0f - i7);
+                ta taVar = (ta) this.m0;
+                if (taVar.f15425l2) {
+                    float i7 = Utilities.i(1.0f - (f10 / (taVar.f15428n.getMeasuredHeight() - taVar.N0.g())), 1.0f, 0.0f);
+                    taVar.f15440r.b(org.telegram.messenger.g0.L(-32.0f) * i7);
+                    taVar.f15440r.setAlpha(1.0f - (0.6f * i7));
+                    taVar.f15418j0.setAlpha(1.0f - i7);
                     return;
                 }
                 return;
@@ -91,8 +91,8 @@ public final class g3 extends d3 {
         }
     }
 
-    public g3(sa saVar, int i7, Context context, fi.b bVar, ve veVar, boolean z10, boolean z11, boolean z12) {
+    public g3(ta taVar, int i7, Context context, fi.b bVar, ve veVar, boolean z10, boolean z11, boolean z12) {
         super(i7, context, bVar, veVar, z10, 1.39f, z11, z12);
-        this.m0 = saVar;
+        this.m0 = taVar;
     }
 }

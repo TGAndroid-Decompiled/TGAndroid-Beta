@@ -4,19 +4,19 @@ import android.graphics.Bitmap;
 import java.util.ArrayList;
 import org.telegram.messenger.ls;
 public final class e implements Runnable {
-    public final int f3241a;
-    public final ArrayList f3242b;
+    public final int f3192a;
+    public final ArrayList f3193b;
 
     public e(int i7, ArrayList arrayList) {
-        this.f3241a = i7;
-        this.f3242b = arrayList;
+        this.f3192a = i7;
+        this.f3193b = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f3241a) {
+        switch (this.f3192a) {
             case 0:
-                ArrayList arrayList = this.f3242b;
+                ArrayList arrayList = this.f3193b;
                 int size = arrayList.size();
                 int i7 = 0;
                 while (i7 < size) {
@@ -26,8 +26,8 @@ public final class e implements Runnable {
                 }
                 return;
             default:
-                sg.a0.h = this.f3242b;
-                sg.a0.f57198i = false;
+                sg.a0.h = this.f3193b;
+                sg.a0.f57163i = false;
                 ls.e().k(334, new Object[0]);
                 return;
         }

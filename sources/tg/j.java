@@ -1,6 +1,6 @@
 package tg;
 
-import a8.w9;
+import a8.x9;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -18,9 +18,9 @@ import org.telegram.messenger.o10;
 import org.telegram.ui.Components.aj0;
 import org.telegram.ui.Components.mc;
 import org.telegram.ui.Components.nr;
-import org.telegram.ui.jw0;
+import org.telegram.ui.zn0;
 public abstract class j extends FrameLayout {
-    public static final List f57971q0 = Arrays.asList(-90, 0, 90, 180);
+    public static final List f57936q0 = Arrays.asList(-90, 0, 90, 180);
     public boolean E;
     public boolean F;
     public h G;
@@ -31,7 +31,7 @@ public abstract class j extends FrameLayout {
     public boolean L;
     public int M;
     public int N;
-    public jw0 O;
+    public zn0 O;
     public float P;
     public ValueAnimator Q;
     public ValueAnimator R;
@@ -40,59 +40,59 @@ public abstract class j extends FrameLayout {
     public final e U;
     public final e V;
     public int W;
-    public final mc f57972a;
-    public int f57973a0;
-    public float f57974b;
-    public ValueAnimator f57975b0;
-    public float f57976c;
-    public ValueAnimator f57977c0;
+    public final mc f57937a;
+    public int f57938a0;
+    public float f57939b;
+    public ValueAnimator f57940b0;
+    public float f57941c;
+    public ValueAnimator f57942c0;
     public float d;
-    public boolean f57978d0;
-    public float f57979e;
-    public boolean f57980e0;
-    public float f57981f;
-    public final float[] f57982f0;
-    public final float[] f57983g0;
+    public boolean f57943d0;
+    public float f57944e;
+    public boolean f57945e0;
+    public float f57946f;
+    public final float[] f57947f0;
+    public final float[] f57948g0;
     public float h;
-    public final float[] f57984h0;
-    public float f57985i0;
-    public float f57986j0;
-    public float f57987k0;
-    public ValueAnimator f57988l0;
+    public final float[] f57949h0;
+    public float f57950i0;
+    public float f57951j0;
+    public float f57952k0;
+    public ValueAnimator f57953l0;
     public boolean m0;
-    public boolean f57989n;
-    public ViewGroup f57990n0;
-    public float f57991o0;
-    public ValueAnimator f57992p0;
-    public boolean f57993r;
-    public boolean f57994s;
-    public boolean f57995w;
-    public boolean f57996x;
-    public boolean f57997y;
+    public boolean f57954n;
+    public ViewGroup f57955n0;
+    public float f57956o0;
+    public ValueAnimator f57957p0;
+    public boolean f57958r;
+    public boolean f57959s;
+    public boolean f57960w;
+    public boolean f57961x;
+    public boolean f57962y;
 
     public j(Context context, PointF pointF) {
         super(context);
-        this.f57972a = new mc(this);
-        this.f57989n = false;
-        this.f57993r = false;
-        this.f57994s = false;
-        this.f57995w = false;
-        this.f57996x = false;
-        this.f57997y = false;
+        this.f57937a = new mc(this);
+        this.f57954n = false;
+        this.f57958r = false;
+        this.f57959s = false;
+        this.f57960w = false;
+        this.f57961x = false;
+        this.f57962y = false;
         this.E = false;
         this.F = false;
         this.J = new Runnable(this) {
-            public final j f57836b;
+            public final j f57801b;
 
             {
-                this.f57836b = this;
+                this.f57801b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        j jVar = this.f57836b;
+                        j jVar = this.f57801b;
                         jVar.F = true;
                         if (jVar.G != null) {
                             try {
@@ -104,10 +104,10 @@ public abstract class j extends FrameLayout {
                         }
                         return;
                     case 1:
-                        this.f57836b.n();
+                        this.f57801b.n();
                         return;
                     default:
-                        this.f57836b.o();
+                        this.f57801b.o();
                         return;
                 }
             }
@@ -118,17 +118,17 @@ public abstract class j extends FrameLayout {
         this.S = 0;
         this.T = 0;
         this.U = new Runnable(this) {
-            public final j f57836b;
+            public final j f57801b;
 
             {
-                this.f57836b = this;
+                this.f57801b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        j jVar = this.f57836b;
+                        j jVar = this.f57801b;
                         jVar.F = true;
                         if (jVar.G != null) {
                             try {
@@ -140,26 +140,26 @@ public abstract class j extends FrameLayout {
                         }
                         return;
                     case 1:
-                        this.f57836b.n();
+                        this.f57801b.n();
                         return;
                     default:
-                        this.f57836b.o();
+                        this.f57801b.o();
                         return;
                 }
             }
         };
         this.V = new Runnable(this) {
-            public final j f57836b;
+            public final j f57801b;
 
             {
-                this.f57836b = this;
+                this.f57801b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        j jVar = this.f57836b;
+                        j jVar = this.f57801b;
                         jVar.F = true;
                         if (jVar.G != null) {
                             try {
@@ -171,20 +171,20 @@ public abstract class j extends FrameLayout {
                         }
                         return;
                     case 1:
-                        this.f57836b.n();
+                        this.f57801b.n();
                         return;
                     default:
-                        this.f57836b.o();
+                        this.f57801b.o();
                         return;
                 }
             }
         };
-        this.f57982f0 = new float[2];
-        this.f57983g0 = new float[2];
-        this.f57984h0 = new float[2];
-        this.f57985i0 = 1.0f;
+        this.f57947f0 = new float[2];
+        this.f57948g0 = new float[2];
+        this.f57949h0 = new float[2];
+        this.f57950i0 = 1.0f;
         this.m0 = false;
-        this.f57991o0 = 1.0f;
+        this.f57956o0 = 1.0f;
         this.K = UUID.randomUUID();
         this.H = pointF;
     }
@@ -219,10 +219,10 @@ public abstract class j extends FrameLayout {
             } else {
                 f15 = f11;
             }
-            float f18 = (f14 - this.f57981f) / scaleX;
+            float f18 = (f14 - this.f57946f) / scaleX;
             float f19 = (f15 - this.h) / scaleX;
             float hypot = (float) Math.hypot(f18, f19);
-            if (this.f57989n) {
+            if (this.f57954n) {
                 f16 = 6.0f;
             } else {
                 f16 = 16.0f;
@@ -231,40 +231,40 @@ public abstract class j extends FrameLayout {
                 org.telegram.messenger.g0.r(this.J);
                 e(f18, f19);
                 if (z10) {
-                    float a10 = w9.a(f10, f11, f12, f13);
-                    float a11 = w9.a(this.f57974b, this.f57976c, this.d, this.f57979e);
+                    float a10 = x9.a(f10, f11, f12, f13);
+                    float a11 = x9.a(this.f57939b, this.f57941c, this.d, this.f57944e);
                     if (a11 > 0.0f) {
                         j(a10 / a11);
                     }
-                    f(this.f57986j0 + ((float) Math.toDegrees(Math.atan2(f11 - f13, f10 - f12) - Math.atan2(this.f57976c - this.f57979e, this.f57974b - this.d))));
+                    f(this.f57951j0 + ((float) Math.toDegrees(Math.atan2(f11 - f13, f10 - f12) - Math.atan2(this.f57941c - this.f57944e, this.f57939b - this.d))));
                 }
-                this.f57974b = f10;
-                this.f57976c = f11;
-                this.f57981f = f14;
+                this.f57939b = f10;
+                this.f57941c = f11;
+                this.f57946f = f14;
                 this.h = f15;
                 if (z10) {
                     this.d = f12;
-                    this.f57979e = f13;
+                    this.f57944e = f13;
                 }
-                this.f57989n = true;
+                this.f57954n = true;
                 if ((getParent() instanceof d) && (this.S != 0 || this.T != 0)) {
                     ((d) getParent()).invalidate();
                 }
-                if (!this.f57995w && (hVar4 = this.G) != null) {
-                    this.f57995w = true;
+                if (!this.f57960w && (hVar4 = this.G) != null) {
+                    this.f57960w = true;
                     hVar4.C();
                 }
-                if (!this.f57996x && z10 && (hVar3 = this.G) != null) {
-                    this.f57996x = true;
+                if (!this.f57961x && z10 && (hVar3 = this.G) != null) {
+                    this.f57961x = true;
                     hVar3.h();
                 }
-                if (this.f57996x && !z10 && (hVar2 = this.G) != null) {
-                    this.f57996x = false;
+                if (this.f57961x && !z10 && (hVar2 = this.G) != null) {
+                    this.f57961x = false;
                     hVar2.g();
                 }
-                if (!this.m0 && !this.f57997y && (hVar = this.G) != null) {
+                if (!this.m0 && !this.f57962y && (hVar = this.G) != null) {
                     hVar.u(this);
-                    this.f57997y = true;
+                    this.f57962y = true;
                 }
                 h hVar5 = this.G;
                 if (hVar5 != null) {
@@ -283,36 +283,36 @@ public abstract class j extends FrameLayout {
                     hVar6.d(z13);
                 }
                 h hVar7 = this.G;
-                if ((hVar7 == null || hVar7.p()) && !z10 && w9.a(f14, f15, ((View) getParent()).getWidth() / 2.0f, ((View) getParent()).getHeight() - org.telegram.messenger.g0.L(76.0f)) < org.telegram.messenger.g0.L(32.0f)) {
+                if ((hVar7 == null || hVar7.p()) && !z10 && x9.a(f14, f15, ((View) getParent()).getWidth() / 2.0f, ((View) getParent()).getHeight() - org.telegram.messenger.g0.L(76.0f)) < org.telegram.messenger.g0.L(32.0f)) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 if (this.E != z11) {
-                    ValueAnimator valueAnimator = this.f57992p0;
+                    ValueAnimator valueAnimator = this.f57957p0;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
-                        this.f57992p0 = null;
+                        this.f57957p0 = null;
                     }
-                    float f20 = this.f57991o0;
+                    float f20 = this.f57956o0;
                     if (z11) {
                         f17 = 0.5f;
                     } else {
                         f17 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f20, f17);
-                    this.f57992p0 = ofFloat;
+                    this.f57957p0 = ofFloat;
                     ofFloat.addUpdateListener(new f(this, 1));
-                    this.f57992p0.setInterpolator(nr.h);
-                    this.f57992p0.setDuration(280L);
-                    this.f57992p0.start();
+                    this.f57957p0.setInterpolator(nr.h);
+                    this.f57957p0.setDuration(280L);
+                    this.f57957p0.start();
                     this.E = z11;
                     h hVar8 = this.G;
                     if (hVar8 != null) {
                         hVar8.j(z11);
                     }
                 }
-                this.f57972a.c(false);
+                this.f57937a.c(false);
                 return true;
             }
         }
@@ -322,33 +322,33 @@ public abstract class j extends FrameLayout {
     public final void d(boolean z10) {
         h hVar;
         h hVar2;
-        if (this.f57995w) {
+        if (this.f57960w) {
             this.G.e(this.E);
-            this.f57995w = false;
+            this.f57960w = false;
         }
-        this.f57996x = false;
-        if (!z10 && !this.F && !this.f57989n && !this.f57994s && !this.f57997y && (hVar2 = this.G) != null) {
+        this.f57961x = false;
+        if (!z10 && !this.F && !this.f57954n && !this.f57959s && !this.f57962y && (hVar2 = this.G) != null) {
             hVar2.u(this);
         }
-        if (this.f57989n && (hVar = this.G) != null) {
+        if (this.f57954n && (hVar = this.G) != null) {
             hVar.B(false);
             this.G.d(false);
         }
         org.telegram.messenger.g0.r(this.J);
         this.F = false;
-        this.f57989n = false;
-        this.f57994s = false;
-        this.f57993r = true;
-        this.f57997y = false;
+        this.f57954n = false;
+        this.f57959s = false;
+        this.f57958r = true;
+        this.f57962y = false;
         this.N = this.M;
-        jw0 jw0Var = this.O;
-        if (jw0Var != null) {
-            org.telegram.messenger.g0.r(jw0Var);
+        zn0 zn0Var = this.O;
+        if (zn0Var != null) {
+            org.telegram.messenger.g0.r(zn0Var);
             this.O = null;
         }
         this.W = this.S;
         org.telegram.messenger.g0.r(this.U);
-        this.f57973a0 = this.T;
+        this.f57938a0 = this.T;
         org.telegram.messenger.g0.r(this.V);
         if (getParent() instanceof d) {
             ((d) getParent()).invalidate();
@@ -357,18 +357,18 @@ public abstract class j extends FrameLayout {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        float a10 = this.f57972a.a(getBounceScale());
+        float a10 = this.f57937a.a(getBounceScale());
         canvas.save();
         canvas.scale(a10, a10, getWidth() / 2.0f, getHeight() / 2.0f);
         if (getParent() instanceof View) {
             View view = (View) getParent();
             if (this instanceof t1) {
-                float f10 = this.f57991o0;
+                float f10 = this.f57956o0;
                 canvas.scale(f10, f10, getWidth() / 2.0f, getHeight() / 2.0f);
             } else {
                 float width = (view.getWidth() / 2.0f) - getX();
                 float height = (view.getHeight() - org.telegram.messenger.g0.L(76.0f)) - getY();
-                float f11 = this.f57991o0;
+                float f11 = this.f57956o0;
                 canvas.scale(f11, f11, width, height);
             }
         }
@@ -386,13 +386,13 @@ public abstract class j extends FrameLayout {
             n();
         }
         if (this.T != 0) {
-            this.f57973a0 = 0;
+            this.f57938a0 = 0;
             o();
         }
-        this.f57986j0 = f10;
+        this.f57951j0 = f10;
         boolean z10 = this.L;
-        if (!z10 && !this.f57978d0) {
-            Iterator it = f57971q0.iterator();
+        if (!z10 && !this.f57943d0) {
+            Iterator it = f57936q0.iterator();
             while (true) {
                 if (!it.hasNext()) {
                     break;
@@ -401,18 +401,18 @@ public abstract class j extends FrameLayout {
                 if (Math.abs(intValue - f10) < 4.0f) {
                     if (this.N != intValue) {
                         this.N = intValue;
-                        jw0 jw0Var = this.O;
-                        if (jw0Var != null) {
-                            org.telegram.messenger.g0.r(jw0Var);
+                        zn0 zn0Var = this.O;
+                        if (zn0Var != null) {
+                            org.telegram.messenger.g0.r(zn0Var);
                         }
-                        jw0 jw0Var2 = new jw0(this, intValue, 12);
-                        this.O = jw0Var2;
-                        org.telegram.messenger.g0.h3(jw0Var2, 250L);
+                        zn0 zn0Var2 = new zn0(this, intValue, 14);
+                        this.O = zn0Var2;
+                        org.telegram.messenger.g0.h3(zn0Var2, 250L);
                     }
                 }
             }
         } else if (z10) {
-            if (Math.abs(this.M - f10) < 12.0f && !this.f57978d0) {
+            if (Math.abs(this.M - f10) < 12.0f && !this.f57943d0) {
                 if (this.Q != null) {
                     f10 = this.P;
                 } else {
@@ -420,9 +420,9 @@ public abstract class j extends FrameLayout {
                 }
             } else {
                 this.N = -1;
-                jw0 jw0Var3 = this.O;
-                if (jw0Var3 != null) {
-                    org.telegram.messenger.g0.r(jw0Var3);
+                zn0 zn0Var3 = this.O;
+                if (zn0Var3 != null) {
+                    org.telegram.messenger.g0.r(zn0Var3);
                     this.O = null;
                 }
                 ValueAnimator valueAnimator = this.Q;
@@ -435,7 +435,7 @@ public abstract class j extends FrameLayout {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 this.R = duration;
-                duration.setInterpolator(nr.f37960f);
+                duration.setInterpolator(nr.f37917f);
                 this.R.addUpdateListener(new f(this, 0));
                 this.R.addListener(new g(this, 3));
                 this.R.start();
@@ -488,7 +488,7 @@ public abstract class j extends FrameLayout {
             } else {
                 f10 = f11;
             }
-            ValueAnimator valueAnimator = this.f57975b0;
+            ValueAnimator valueAnimator = this.f57940b0;
             if (valueAnimator != null) {
                 return org.telegram.messenger.g0.T1(f11, f10, ((Float) valueAnimator.getAnimatedValue()).floatValue());
             }
@@ -514,7 +514,7 @@ public abstract class j extends FrameLayout {
             } else {
                 f10 = f11;
             }
-            ValueAnimator valueAnimator = this.f57977c0;
+            ValueAnimator valueAnimator = this.f57942c0;
             if (valueAnimator != null) {
                 return org.telegram.messenger.g0.T1(f11, f10, ((Float) valueAnimator.getAnimatedValue()).floatValue());
             }
@@ -562,29 +562,29 @@ public abstract class j extends FrameLayout {
     }
 
     public final void h(float... fArr) {
-        ValueAnimator valueAnimator = this.f57975b0;
+        ValueAnimator valueAnimator = this.f57940b0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
-        this.f57975b0 = duration;
-        duration.setInterpolator(nr.f37960f);
-        this.f57975b0.addUpdateListener(new f(this, 3));
-        this.f57975b0.addListener(new g(this, 0));
-        this.f57975b0.start();
+        this.f57940b0 = duration;
+        duration.setInterpolator(nr.f37917f);
+        this.f57940b0.addUpdateListener(new f(this, 3));
+        this.f57940b0.addListener(new g(this, 0));
+        this.f57940b0.start();
     }
 
     public final void i(float... fArr) {
-        ValueAnimator valueAnimator = this.f57977c0;
+        ValueAnimator valueAnimator = this.f57942c0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
-        this.f57977c0 = duration;
-        duration.setInterpolator(nr.f37960f);
-        this.f57977c0.addUpdateListener(new f(this, 4));
-        this.f57977c0.addListener(new g(this, 1));
-        this.f57977c0.start();
+        this.f57942c0 = duration;
+        duration.setInterpolator(nr.f37917f);
+        this.f57942c0.addUpdateListener(new f(this, 4));
+        this.f57942c0.addListener(new g(this, 1));
+        this.f57942c0.start();
     }
 
     @Override
@@ -594,9 +594,9 @@ public abstract class j extends FrameLayout {
 
     public final void j(float f10) {
         boolean z10;
-        float f11 = this.f57985i0;
+        float f11 = this.f57950i0;
         float f12 = f10 * f11;
-        this.f57985i0 = f12;
+        this.f57950i0 = f12;
         float i7 = Utilities.i(Math.max(f12, 0.1f), getMaxScale(), getMinScale());
         if (!(this instanceof s1)) {
             boolean z11 = false;
@@ -628,36 +628,36 @@ public abstract class j extends FrameLayout {
     public final void l(ViewGroup viewGroup, boolean z10) {
         if (this.m0 != z10) {
             this.m0 = z10;
-            ValueAnimator valueAnimator = this.f57988l0;
+            ValueAnimator valueAnimator = this.f57953l0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f57988l0 = null;
+                this.f57953l0 = null;
             }
             float f10 = 0.0f;
             if (this.I == null) {
                 if (z10 || viewGroup != null) {
                     i a10 = a();
                     this.I = a10;
-                    a10.f57953f = !this.f57978d0;
+                    a10.f57918f = !this.f57943d0;
                     a10.invalidate();
                     viewGroup.addView(this.I);
-                    this.f57987k0 = 0.0f;
+                    this.f57952k0 = 0.0f;
                 } else {
                     return;
                 }
             }
             this.I.b();
-            float f11 = this.f57987k0;
+            float f11 = this.f57952k0;
             if (z10) {
                 f10 = 1.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-            this.f57988l0 = ofFloat;
+            this.f57953l0 = ofFloat;
             ofFloat.addUpdateListener(new f(this, 2));
-            this.f57988l0.addListener(new g(this, 4));
-            this.f57988l0.setDuration(280L);
-            this.f57988l0.setInterpolator(nr.h);
-            this.f57988l0.start();
+            this.f57953l0.addListener(new g(this, 4));
+            this.f57953l0.setDuration(280L);
+            this.f57953l0.setInterpolator(nr.h);
+            this.f57953l0.start();
         }
     }
 
@@ -679,7 +679,7 @@ public abstract class j extends FrameLayout {
         if (getParent() instanceof d) {
             ((d) getParent()).invalidate();
         }
-        ValueAnimator valueAnimator = this.f57975b0;
+        ValueAnimator valueAnimator = this.f57940b0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -697,7 +697,7 @@ public abstract class j extends FrameLayout {
     public final void o() {
         org.telegram.messenger.g0.r(this.V);
         int i7 = this.T;
-        int i10 = this.f57973a0;
+        int i10 = this.f57938a0;
         if (i7 == i10) {
             return;
         }
@@ -705,11 +705,11 @@ public abstract class j extends FrameLayout {
         if (getParent() instanceof d) {
             ((d) getParent()).invalidate();
         }
-        ValueAnimator valueAnimator = this.f57977c0;
+        ValueAnimator valueAnimator = this.f57942c0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (this.f57973a0 == 0) {
+        if (this.f57938a0 == 0) {
             i(1.0f, 0.0f);
             return;
         }
@@ -744,7 +744,7 @@ public abstract class j extends FrameLayout {
     }
 
     public void setScale(float f10) {
-        this.f57985i0 = f10;
+        this.f57950i0 = f10;
         setScaleX(f10);
         setScaleY(f10);
     }
@@ -769,7 +769,7 @@ public abstract class j extends FrameLayout {
     }
 
     public void setStickyY(int i7) {
-        this.f57973a0 = i7;
+        this.f57938a0 = i7;
         this.T = i7;
     }
 

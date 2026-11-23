@@ -4,32 +4,32 @@ import android.os.SystemClock;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class od implements Runnable {
-    public final int f26108a;
-    public final long f26109b;
-    public final Object f26110c;
+    public final int f26072a;
+    public final long f26073b;
+    public final Object f26074c;
 
     public od(Object obj, long j3, int i7) {
-        this.f26108a = i7;
-        this.f26110c = obj;
-        this.f26109b = j3;
+        this.f26072a = i7;
+        this.f26074c = obj;
+        this.f26073b = j3;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26108a;
-        long j3 = this.f26109b;
-        Object obj = this.f26110c;
+        int i7 = this.f26072a;
+        long j3 = this.f26073b;
+        Object obj = this.f26074c;
         switch (i7) {
             case 0:
                 rd rdVar = (rd) obj;
-                ArrayList arrayList = rdVar.f26591b;
-                a0.h hVar = rdVar.f26590a;
+                ArrayList arrayList = rdVar.f26555b;
+                a0.h hVar = rdVar.f26554a;
                 qd qdVar = (qd) hVar.f(j3);
                 hVar.l(j3);
                 if (qdVar != null) {
                     TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-                    tL_messages_editMessage.peer = rdVar.getMessagesController().l1(qdVar.f26434a);
-                    tL_messages_editMessage.f28518id = qdVar.f26435b;
+                    tL_messages_editMessage.peer = rdVar.getMessagesController().l1(qdVar.f26398a);
+                    tL_messages_editMessage.f28482id = qdVar.f26399b;
                     tL_messages_editMessage.flags |= 16384;
                     TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
                     tL_messages_editMessage.media = tL_inputMediaGeoLive;
@@ -47,17 +47,17 @@ public final class od implements Runnable {
                 }
                 return;
             case 1:
-                ((bi.a5) obj).a(Long.valueOf(j3));
+                ((bi.d5) obj).a(Long.valueOf(j3));
                 return;
             default:
                 bz bzVar = (bz) obj;
-                bzVar.f23200e = SystemClock.elapsedRealtime();
-                bzVar.f23199c = false;
+                bzVar.f23164e = SystemClock.elapsedRealtime();
+                bzVar.f23163c = false;
                 if (j3 == -1) {
                     bzVar.d = false;
-                    bzVar.f23198b = 0L;
+                    bzVar.f23162b = 0L;
                 } else {
-                    bzVar.f23198b = j3;
+                    bzVar.f23162b = j3;
                     bzVar.d = true;
                 }
                 ls.e().k(281, bzVar);

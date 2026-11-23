@@ -4,10 +4,10 @@ import android.view.View;
 import java.io.Serializable;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class g30 implements org.telegram.messenger.w10, org.telegram.messenger.x10 {
-    public final h30 f35414a;
+    public final h30 f35376a;
 
     public g30(h30 h30Var) {
-        this.f35414a = h30Var;
+        this.f35376a = h30Var;
     }
 
     @Override
@@ -15,11 +15,11 @@ public final class g30 implements org.telegram.messenger.w10, org.telegram.messe
         int i7 = o41Var.d;
         boolean z10 = false;
         if (i7 != 0) {
-            h30 h30Var = this.f35414a;
-            String str = (String) h30Var.f35768c.get(i7 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, h30Var.getContext(), h30Var.f35767b);
+            h30 h30Var = this.f35376a;
+            String str = (String) h30Var.f35721c.get(i7 - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, h30Var.getContext(), h30Var.f35720b);
             String N0 = org.telegram.messenger.hd.N0(2131752042, null);
-            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28743a;
             t1Var.S = N0;
             t1Var.U = org.telegram.messenger.hd.a0(null, null, 2131752040, str);
             alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131752043, null), new h2(18, h30Var, str));
@@ -37,17 +37,17 @@ public final class g30 implements org.telegram.messenger.w10, org.telegram.messe
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
         int i7 = ((o41) obj).d;
-        h30 h30Var = this.f35414a;
+        h30 h30Var = this.f35376a;
         if (i7 == 0) {
-            org.telegram.messenger.na a10 = org.telegram.messenger.na.a(h30Var.f35766a);
-            a10.f25751f.clear();
+            org.telegram.messenger.na a10 = org.telegram.messenger.na.a(h30Var.f35719a);
+            a10.f25715f.clear();
             a10.d();
-            h30Var.f35770f.O(true);
+            h30Var.f35723f.O(true);
             return;
         }
         org.telegram.messenger.y10 y10Var = h30Var.h;
         if (y10Var != null) {
-            y10Var.a((String) h30Var.f35768c.get(i7 - 1));
+            y10Var.a((String) h30Var.f35721c.get(i7 - 1));
         }
     }
 }

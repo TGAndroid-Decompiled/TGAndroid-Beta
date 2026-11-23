@@ -1,6 +1,34 @@
 package a8;
 public abstract class j7 {
-    public static final java.lang.Object a(be.s r4, androidx.lifecycle.k0 r5, kd.c r6) {
-        throw new UnsupportedOperationException("Method not decompiled: a8.j7.a(be.s, androidx.lifecycle.k0, kd.c):java.lang.Object");
+    public static be.c a(int i7, be.a aVar, int i10) {
+        if ((i10 & 2) != 0) {
+            aVar = be.a.f3105a;
+        }
+        if (i7 != -2) {
+            if (i7 != -1) {
+                if (i7 != 0) {
+                    if (i7 != Integer.MAX_VALUE) {
+                        if (aVar == be.a.f3105a) {
+                            return new be.c(i7);
+                        }
+                        return new be.o(i7, aVar);
+                    }
+                    return new be.c(Integer.MAX_VALUE);
+                } else if (aVar == be.a.f3105a) {
+                    return new be.c(0);
+                } else {
+                    return new be.o(1, aVar);
+                }
+            } else if (aVar == be.a.f3105a) {
+                return new be.o(1, be.a.f3106b);
+            } else {
+                throw new IllegalArgumentException("CONFLATED capacity cannot be used with non-default onBufferOverflow");
+            }
+        } else if (aVar == be.a.f3105a) {
+            be.g.f3139g.getClass();
+            return new be.c(be.f.f3138b);
+        } else {
+            return new be.o(1, aVar);
+        }
     }
 }

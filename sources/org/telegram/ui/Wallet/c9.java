@@ -10,39 +10,39 @@ import android.widget.TextView;
 import java.util.HashSet;
 import org.telegram.messenger.o10;
 public final class c9 extends LinearLayout implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.ActionBar.h6 f44046a;
-    public final TextView f44047b;
-    public final TextView f44048c;
+    public final org.telegram.ui.ActionBar.h6 f44012a;
+    public final TextView f44013b;
+    public final TextView f44014c;
     public final ImageView d;
 
     public c9(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         setOrientation(0);
-        this.f44046a = h6Var;
+        this.f44012a = h6Var;
         setPadding(org.telegram.messenger.g0.L(20.0f), 0, org.telegram.messenger.g0.L(13.0f), 0);
         LinearLayout g10 = org.telegram.messenger.f3.g(context, 1);
         g10.setPadding(0, org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f));
-        addView(g10, c8.ma.q(0, -2, 1.0f, 19, 0, 0, 0, 0));
+        addView(g10, c8.na.q(0, -2, 1.0f, 19, 0, 0, 0, 0));
         TextView textView = new TextView(context);
-        this.f44047b = textView;
+        this.f44013b = textView;
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
-        TextView f10 = o10.f(g10, textView, c8.ma.t(-1, -2, 55, 0, 0, 0, 2), context);
-        this.f44048c = f10;
+        TextView f10 = o10.f(g10, textView, c8.na.t(-1, -2, 55, 0, 0, 0, 2), context);
+        this.f44014c = f10;
         f10.setTextSize(1, 14.0f);
-        g10.addView(f10, c8.ma.t(-1, -2, 55, 0, 0, 0, 0));
+        g10.addView(f10, c8.na.t(-1, -2, 55, 0, 0, 0, 0));
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(2131230875);
-        addView(imageView, c8.ma.t(21, 21, 21, 9, 0, 0, 0));
+        addView(imageView, c8.na.t(21, 21, 21, 9, 0, 0, 0));
         updateColors();
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.f29792z6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.f29758z6));
     }
 
     @Override
@@ -53,10 +53,10 @@ public final class c9 extends LinearLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void updateColors() {
         int i7 = org.telegram.ui.ActionBar.m6.G6;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f44046a;
-        this.f44047b.setTextColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
-        int i10 = org.telegram.ui.ActionBar.m6.f29792z6;
-        this.f44048c.setTextColor(org.telegram.ui.ActionBar.m6.w0(i10, h6Var));
+        org.telegram.ui.ActionBar.h6 h6Var = this.f44012a;
+        this.f44013b.setTextColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
+        int i10 = org.telegram.ui.ActionBar.m6.f29758z6;
+        this.f44014c.setTextColor(org.telegram.ui.ActionBar.m6.w0(i10, h6Var));
         this.d.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.m6.w0(i10, h6Var), PorterDuff.Mode.SRC_IN));
     }
 }

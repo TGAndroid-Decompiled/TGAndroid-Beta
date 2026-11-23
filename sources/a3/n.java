@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
-import c8.k1;
+import c8.l1;
 import e2.p1;
 import e2.q1;
 import h2.l0;
@@ -45,7 +45,7 @@ public final class n extends q1 {
     public final boolean f106z0;
 
     static {
-        String str = l0.f13815a;
+        String str = l0.f13778a;
         G0 = Integer.toString(1000, 36);
         H0 = Integer.toString(1001, 36);
         I0 = Integer.toString(1002, 36);
@@ -119,7 +119,7 @@ public final class n extends q1 {
                         throw new ClassCastException();
                     }
                 }
-                c10.putIntArray(Q0, k1.f(arrayList));
+                c10.putIntArray(Q0, l1.f(arrayList));
                 c10.putParcelableArrayList(R0, h2.e.h(arrayList2, new l(0)));
                 SparseArray<? extends Parcelable> sparseArray3 = new SparseArray<>(sparseArray.size());
                 if (sparseArray.size() <= 0) {

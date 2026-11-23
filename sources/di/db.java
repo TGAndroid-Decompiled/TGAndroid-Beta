@@ -9,33 +9,33 @@ import android.view.ViewGroup;
 import org.telegram.messenger.o10;
 import org.telegram.ui.az;
 public final class db extends org.telegram.ui.Components.o6 {
-    public final int f8704s = 0;
-    public final Object f8705w;
-    public final ViewGroup f8706x;
+    public final int f8667s = 0;
+    public final Object f8668w;
+    public final ViewGroup f8669x;
 
     public db(eb ebVar, Context context, Drawable drawable) {
         super(context, false, false, false);
-        this.f8706x = ebVar;
-        this.f8705w = drawable;
+        this.f8669x = ebVar;
+        this.f8668w = drawable;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f10;
-        switch (this.f8704s) {
+        switch (this.f8667s) {
             case 0:
-                ((eb) this.f8706x).getClass();
+                ((eb) this.f8669x).getClass();
                 int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().c()) - org.telegram.messenger.g0.L(20.0f));
-                Drawable drawable = (Drawable) this.f8705w;
+                Drawable drawable = (Drawable) this.f8668w;
                 drawable.setBounds(measuredWidth, o10.z(17.0f, getMeasuredHeight(), 2), org.telegram.messenger.g0.L(17.0f) + measuredWidth, (org.telegram.messenger.g0.L(17.0f) + getMeasuredHeight()) / 2);
                 drawable.draw(canvas);
                 super.dispatchDraw(canvas);
                 return;
             default:
-                az azVar = (az) this.f8706x;
-                int a10 = azVar.f45737x.a(azVar.f45736w, false);
+                az azVar = (az) this.f8669x;
+                int a10 = azVar.f45681x.a(azVar.f45680w, false);
                 setTextColor(a10);
-                Paint paint = (Paint) this.f8705w;
+                Paint paint = (Paint) this.f8668w;
                 if (org.telegram.ui.ActionBar.m6.I.q()) {
                     f10 = 0.2f;
                 } else {
@@ -52,7 +52,7 @@ public final class db extends org.telegram.ui.Components.o6 {
 
     public db(az azVar, Context context) {
         super(context, false, true, true);
-        this.f8706x = azVar;
-        this.f8705w = new Paint(1);
+        this.f8669x = azVar;
+        this.f8668w = new Paint(1);
     }
 }

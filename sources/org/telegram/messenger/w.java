@@ -4,50 +4,50 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class w extends ClickableSpan {
-    public final int f27666a;
-    public final Runnable f27667b;
+    public final int f27630a;
+    public final Runnable f27631b;
 
     public w(int i7, Runnable runnable) {
-        this.f27666a = i7;
-        this.f27667b = runnable;
+        this.f27630a = i7;
+        this.f27631b = runnable;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f27666a) {
+        switch (this.f27630a) {
             case 0:
-                Runnable runnable = this.f27667b;
+                Runnable runnable = this.f27631b;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 1:
-                Runnable runnable2 = this.f27667b;
+                Runnable runnable2 = this.f27631b;
                 if (runnable2 != null) {
                     runnable2.run();
                     return;
                 }
                 return;
             case 2:
-                this.f27667b.run();
+                this.f27631b.run();
                 return;
             case 3:
-                Runnable runnable3 = this.f27667b;
+                Runnable runnable3 = this.f27631b;
                 if (runnable3 != null) {
                     runnable3.run();
                     return;
                 }
                 return;
             case 4:
-                Runnable runnable4 = this.f27667b;
+                Runnable runnable4 = this.f27631b;
                 if (runnable4 != null) {
                     runnable4.run();
                     return;
                 }
                 return;
             default:
-                Runnable runnable5 = this.f27667b;
+                Runnable runnable5 = this.f27631b;
                 if (runnable5 != null) {
                     runnable5.run();
                     return;
@@ -58,7 +58,7 @@ public final class w extends ClickableSpan {
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f27666a) {
+        switch (this.f27630a) {
             case 0:
                 textPaint.setUnderlineText(false);
                 textPaint.setColor(textPaint.linkColor);

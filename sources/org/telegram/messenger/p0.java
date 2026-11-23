@@ -8,121 +8,121 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.cd0;
 public final class p0 {
-    public final hi.w4 A;
-    public final hi.w4 B;
-    public final hi.t5 C;
-    public final hi.t5 D;
-    public final hi.t5 E;
+    public final hi.x4 A;
+    public final hi.x4 B;
+    public final hi.u5 C;
+    public final hi.u5 D;
+    public final hi.u5 E;
     public final h9.g1 F;
     public final h9.g1 G;
     public final h9.g1 H;
-    public final hi.w4 I;
-    public final hi.w4 J;
-    public final hi.t5 K;
-    public final hi.t5 L;
-    public final hi.t5 M;
-    public final hi.t5 N;
-    public final hi.t5 O;
-    public final hi.w4 P;
-    public final hi.t5 Q;
-    public final hi.t5 R;
-    public final hi.t5 S;
-    public final hi.t5 T;
-    public final hi.t5 U;
-    public final hi.t5 V;
-    public final hi.t5 W;
-    public final hi.t5 X;
-    public final hi.t5 Y;
+    public final hi.x4 I;
+    public final hi.x4 J;
+    public final hi.u5 K;
+    public final hi.u5 L;
+    public final hi.u5 M;
+    public final hi.u5 N;
+    public final hi.u5 O;
+    public final hi.x4 P;
+    public final hi.u5 Q;
+    public final hi.u5 R;
+    public final hi.u5 S;
+    public final hi.u5 T;
+    public final hi.u5 U;
+    public final hi.u5 V;
+    public final hi.u5 W;
+    public final hi.u5 X;
+    public final hi.u5 Y;
     public final h9.g1 Z;
-    public final HashMap f26211a;
-    public final hi.t5 f26212a0;
-    public final hi.t5 f26213b;
-    public final hi.t5 f26214b0;
-    public final hi.t5 f26215c;
-    public final hi.t5 f26216c0;
-    public final hi.t5 d;
-    public final hi.t5 f26217d0;
-    public final hi.t5 f26218e;
-    public final hi.t5 f26219e0;
-    public final hi.t5 f26220f;
-    public final hi.t5 f26221f0;
-    public final h9.g1 f26222g;
-    public final hi.t5 f26223g0;
+    public final HashMap f26175a;
+    public final hi.u5 f26176a0;
+    public final hi.u5 f26177b;
+    public final hi.u5 f26178b0;
+    public final hi.u5 f26179c;
+    public final hi.u5 f26180c0;
+    public final hi.u5 d;
+    public final hi.u5 f26181d0;
+    public final hi.u5 f26182e;
+    public final hi.u5 f26183e0;
+    public final hi.u5 f26184f;
+    public final hi.u5 f26185f0;
+    public final h9.g1 f26186g;
+    public final hi.u5 f26187g0;
     public final h9.g1 h;
-    public final hi.t5 f26224h0;
-    public final hi.w4 f26225i;
-    public final hi.t5 f26226i0;
-    public final hi.w4 f26227j;
-    public final hi.t5 f26228j0;
-    public final hi.w4 f26229k;
-    public final hi.t5 f26230k0;
-    public final hi.w4 f26231l;
-    public final h9.g1 f26232l0;
-    public final h9.g1 f26233m;
+    public final hi.u5 f26188h0;
+    public final hi.x4 f26189i;
+    public final hi.u5 f26190i0;
+    public final hi.x4 f26191j;
+    public final hi.u5 f26192j0;
+    public final hi.x4 f26193k;
+    public final hi.u5 f26194k0;
+    public final hi.x4 f26195l;
+    public final h9.g1 f26196l0;
+    public final h9.g1 f26197m;
     public final h9.g1 m0;
-    public final hi.t5 f26234n;
-    public final h9.g1 f26235n0;
-    public final hi.t5 f26236o;
-    public final h9.g1 f26237o0;
-    public final hi.t5 f26238p;
-    public final h9.g1 f26239p0;
-    public final hi.t5 f26240q;
-    public final h9.g1 f26241q0;
-    public final h9.g1 f26242r;
-    public final h9.g1 f26243r0;
-    public final h9.g1 f26244s;
-    public final h9.g1 f26245s0;
-    public final h9.g1 f26246t;
-    public final hi.w4 f26247t0;
-    public final h9.g1 f26248u;
-    public final h9.g1 f26249u0;
-    public final hi.t5 v;
-    public final hi.t5 f26250v0;
-    public final hi.t5 f26251w;
-    public final h9.g1 f26252x;
-    public final hi.t5 f26253y;
-    public final hi.t5 f26254z;
+    public final hi.u5 f26198n;
+    public final h9.g1 f26199n0;
+    public final hi.u5 f26200o;
+    public final h9.g1 f26201o0;
+    public final hi.u5 f26202p;
+    public final h9.g1 f26203p0;
+    public final hi.u5 f26204q;
+    public final h9.g1 f26205q0;
+    public final h9.g1 f26206r;
+    public final h9.g1 f26207r0;
+    public final h9.g1 f26208s;
+    public final h9.g1 f26209s0;
+    public final h9.g1 f26210t;
+    public final hi.x4 f26211t0;
+    public final h9.g1 f26212u;
+    public final h9.g1 f26213u0;
+    public final hi.u5 v;
+    public final hi.u5 f26214v0;
+    public final hi.u5 f26215w;
+    public final h9.g1 f26216x;
+    public final hi.u5 f26217y;
+    public final hi.u5 f26218z;
 
     public p0() {
         HashMap hashMap = new HashMap();
-        this.f26211a = hashMap;
-        this.f26213b = e(10, "stars_paid_messages_channel_amount_default");
-        this.f26215c = e(850, "stars_suggested_post_commission_permille");
+        this.f26175a = hashMap;
+        this.f26177b = e(10, "stars_paid_messages_channel_amount_default");
+        this.f26179c = e(850, "stars_suggested_post_commission_permille");
         this.d = e(5, "stars_suggested_post_amount_min");
-        this.f26218e = e(100000, "stars_suggested_post_amount_max");
-        this.f26220f = e(850, "ton_suggested_post_commission_permille");
-        this.f26222g = f(10000000L, "ton_suggested_post_amount_min");
+        this.f26182e = e(100000, "stars_suggested_post_amount_max");
+        this.f26184f = e(850, "ton_suggested_post_commission_permille");
+        this.f26186g = f(10000000L, "ton_suggested_post_amount_min");
         this.h = f(10000000000000L, "ton_suggested_post_amount_max");
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        this.f26225i = h(86400L, "stars_suggested_post_age_min");
-        this.f26227j = h(300L, "stars_suggested_post_future_min");
-        this.f26229k = h(2678400L, "stars_suggested_post_future_max");
-        hi.w4 w4Var = new hi.w4(20);
-        hashMap.put("ton_usd_rate", (i0) w4Var.f15708b);
-        this.f26231l = w4Var;
+        this.f26189i = h(86400L, "stars_suggested_post_age_min");
+        this.f26191j = h(300L, "stars_suggested_post_future_min");
+        this.f26193k = h(2678400L, "stars_suggested_post_future_max");
+        hi.x4 x4Var = new hi.x4(20);
+        hashMap.put("ton_usd_rate", (i0) x4Var.f15680b);
+        this.f26195l = x4Var;
         g("stars_rating_learnmore_url", "https://telegram.org/blog/telegram-stars");
-        this.f26233m = d("need_age_video_verification", false);
-        this.f26234n = e(800, "stars_stargift_resale_commission_permille");
-        this.f26236o = e(800, "ton_stargift_resale_commission_permille");
-        this.f26238p = e(125, "stars_stargift_resale_amount_min");
-        this.f26240q = e(35000, "stars_stargift_resale_amount_max");
-        this.f26242r = f(10000000L, "ton_stargift_resale_amount_min");
-        this.f26244s = f(10000000000000L, "ton_stargift_resale_amount_max");
-        this.f26246t = d("stargifts_fragment_resale_enabled", false);
-        this.f26248u = d("stargifts_fixed_sale_enabled", false);
+        this.f26197m = d("need_age_video_verification", false);
+        this.f26198n = e(800, "stars_stargift_resale_commission_permille");
+        this.f26200o = e(800, "ton_stargift_resale_commission_permille");
+        this.f26202p = e(125, "stars_stargift_resale_amount_min");
+        this.f26204q = e(35000, "stars_stargift_resale_amount_max");
+        this.f26206r = f(10000000L, "ton_stargift_resale_amount_min");
+        this.f26208s = f(10000000000000L, "ton_stargift_resale_amount_max");
+        this.f26210t = d("stargifts_fragment_resale_enabled", false);
+        this.f26212u = d("stargifts_fixed_sale_enabled", false);
         this.v = g("stargifts_stars_resale", "default");
-        this.f26251w = g("stargifts_ton_resale", "default");
-        this.f26252x = d("stargifts_craft_minted_first_source", false);
-        this.f26253y = e(100, "stargifts_collections_limit");
+        this.f26215w = g("stargifts_ton_resale", "default");
+        this.f26216x = d("stargifts_craft_minted_first_source", false);
+        this.f26217y = e(100, "stargifts_collections_limit");
         e(100, "stargifts_collection_gifts_limit");
-        this.f26254z = e(100, "stories_albums_limit");
+        this.f26218z = e(100, "stories_albums_limit");
         e(100, "stories_album_stories_limit");
         this.A = h(30L, "message_typing_draft_ttl");
         this.B = h(10L, "group_call_message_ttl");
         this.C = e(128, "group_call_message_length_limit");
         this.D = e(128, "contact_note_length_limit");
         this.E = e(5, "passkeys_account_passkeys_max");
-        boolean z10 = s2.f26730a;
+        boolean z10 = s2.f26694a;
         this.F = d("settings_display_passkeys", true);
         this.G = d("android_disable_blur_in_light_theme", false);
         this.H = d("android_disable_blur_in_dark_theme", false);
@@ -146,41 +146,41 @@ public final class p0 {
         this.X = e(5, "aicompose_tone_saved_limit_default");
         this.Y = e(20, "aicompose_tone_saved_limit_premium");
         this.Z = d("message_primary_edited_date", false);
-        this.f26212a0 = e(32768, "rich_message_length_limit");
-        this.f26214b0 = e(500, "rich_message_max_blocks");
-        this.f26216c0 = e(16, "rich_message_max_depth");
-        this.f26217d0 = e(50, "rich_message_max_media");
-        this.f26219e0 = e(20, "rich_message_max_table_cols");
-        this.f26221f0 = g("rich_message_posting", "premium");
-        this.f26223g0 = g("speech_to_text", "enabled");
+        this.f26176a0 = e(32768, "rich_message_length_limit");
+        this.f26178b0 = e(500, "rich_message_max_blocks");
+        this.f26180c0 = e(16, "rich_message_max_depth");
+        this.f26181d0 = e(50, "rich_message_max_media");
+        this.f26183e0 = e(20, "rich_message_max_table_cols");
+        this.f26185f0 = g("rich_message_posting", "premium");
+        this.f26187g0 = g("speech_to_text", "enabled");
         e(100, "community_peers_limit");
         e(100, "community_bot_peers_limit");
-        this.f26224h0 = e(4096, "message_length_limit_default");
-        this.f26226i0 = e(8192, "message_length_limit_premium");
-        this.f26228j0 = e(20, "quick_reply_messages_limit");
-        this.f26230k0 = e(5, "ephemeral_welcome_messages_max");
-        this.f26232l0 = d("android_audio_recorder_v2_disabled", false);
+        this.f26188h0 = e(4096, "message_length_limit_default");
+        this.f26190i0 = e(8192, "message_length_limit_premium");
+        this.f26192j0 = e(20, "quick_reply_messages_limit");
+        this.f26194k0 = e(5, "ephemeral_welcome_messages_max");
+        this.f26196l0 = d("android_audio_recorder_v2_disabled", false);
         this.m0 = d("android_round_video_recorder_v2_disabled", false);
-        this.f26235n0 = d("stars_spend_topup_invoice_disabled", false);
+        this.f26199n0 = d("stars_spend_topup_invoice_disabled", false);
         h9.g1 g1Var = new h9.g1("bot_allowed_suffixes", Collections.singleton("bot"));
-        hashMap.put("bot_allowed_suffixes", (o0) g1Var.f14030b);
-        this.f26237o0 = g1Var;
-        this.f26239p0 = d("wallet_available", true);
-        this.f26241q0 = d("wallet_paid_message_recipient_message_amount_check", true);
-        this.f26243r0 = f(100000000L, "wallet_transfer_min_nanos");
+        hashMap.put("bot_allowed_suffixes", (o0) g1Var.f13993b);
+        this.f26201o0 = g1Var;
+        this.f26203p0 = d("wallet_available", true);
+        this.f26205q0 = d("wallet_paid_message_recipient_message_amount_check", true);
+        this.f26207r0 = f(100000000L, "wallet_transfer_min_nanos");
         f(100000000L, "wallet_gasless_min_nanos");
         h9.g1 g1Var2 = new h9.g1("wallet_card_bg_gifts", Collections.EMPTY_SET);
-        hashMap.put("wallet_card_bg_gifts", (o0) g1Var2.f14030b);
-        this.f26245s0 = g1Var2;
-        hi.w4 w4Var2 = new hi.w4(21);
-        hashMap.put("agent_bot_ids", (m0) w4Var2.f15708b);
-        this.f26247t0 = w4Var2;
-        this.f26249u0 = d("widgets_disabled", false);
-        this.f26250v0 = e(6, "widgets_processes");
+        hashMap.put("wallet_card_bg_gifts", (o0) g1Var2.f13993b);
+        this.f26209s0 = g1Var2;
+        hi.x4 x4Var2 = new hi.x4(21);
+        hashMap.put("agent_bot_ids", (m0) x4Var2.f15680b);
+        this.f26211t0 = x4Var2;
+        this.f26213u0 = d("widgets_disabled", false);
+        this.f26214v0 = e(6, "widgets_processes");
     }
 
-    public static String i(hi.t5 t5Var) {
-        String str = ((n0) t5Var.f15508b).f25711c;
+    public static String i(hi.u5 u5Var) {
+        String str = ((n0) u5Var.f15495b).f25675c;
         if (!"visible".equals(str) && !"hidden".equals(str)) {
             return "default";
         }
@@ -192,7 +192,7 @@ public final class p0 {
         boolean z10 = false;
         for (int i7 = 0; i7 < size; i7++) {
             TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i7);
-            k0 k0Var = (k0) this.f26211a.get(tL_jsonObjectValue.key);
+            k0 k0Var = (k0) this.f26175a.get(tL_jsonObjectValue.key);
             if (k0Var != null) {
                 z10 |= k0Var.a(editor, tL_jsonObjectValue.value);
             }
@@ -209,12 +209,12 @@ public final class p0 {
         TLRPC.TL_jsonBool tL_jsonBool2 = new TLRPC.TL_jsonBool();
         tL_jsonBool2.value = false;
         boolean b13 = b12 | b(editor, tL_jsonObject, "stargifts_fixed_sale_enabled", tL_jsonBool2);
-        boolean z11 = s2.f26730a;
+        boolean z11 = s2.f26694a;
         TLRPC.TL_jsonBool tL_jsonBool3 = new TLRPC.TL_jsonBool();
         tL_jsonBool3.value = true;
         boolean b14 = b(editor, tL_jsonObject, "wallet_available", tL_jsonBool3) | b13;
-        if (((h0) this.f26249u0.f14030b).f24341c) {
-            ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.n0.f54891a;
+        if (((h0) this.f26213u0.f13993b).f24305c) {
+            ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.n0.f54856a;
             g0.g3(new cd0(18));
         }
         return b14;
@@ -230,7 +230,7 @@ public final class p0 {
                 }
                 i7++;
             } else {
-                k0 k0Var = (k0) this.f26211a.get(str);
+                k0 k0Var = (k0) this.f26175a.get(str);
                 if (k0Var != null) {
                     return k0Var.a(editor, jSONValue);
                 }
@@ -240,7 +240,7 @@ public final class p0 {
     }
 
     public final void c(SharedPreferences sharedPreferences) {
-        for (k0 k0Var : this.f26211a.values()) {
+        for (k0 k0Var : this.f26175a.values()) {
             try {
                 k0Var.b(sharedPreferences);
             } catch (ClassCastException e10) {
@@ -251,32 +251,32 @@ public final class p0 {
 
     public final h9.g1 d(String str, boolean z10) {
         h9.g1 g1Var = new h9.g1(str, z10);
-        this.f26211a.put(str, (h0) g1Var.f14030b);
+        this.f26175a.put(str, (h0) g1Var.f13993b);
         return g1Var;
     }
 
-    public final hi.t5 e(int i7, String str) {
-        hi.t5 t5Var = new hi.t5(str, i7);
-        this.f26211a.put(str, (j0) t5Var.f15508b);
-        return t5Var;
+    public final hi.u5 e(int i7, String str) {
+        hi.u5 u5Var = new hi.u5(str, i7);
+        this.f26175a.put(str, (j0) u5Var.f15495b);
+        return u5Var;
     }
 
     public final h9.g1 f(long j3, String str) {
         h9.g1 g1Var = new h9.g1(str, j3);
-        this.f26211a.put(str, (l0) g1Var.f14030b);
+        this.f26175a.put(str, (l0) g1Var.f13993b);
         return g1Var;
     }
 
-    public final hi.t5 g(String str, String str2) {
-        hi.t5 t5Var = new hi.t5(str, str2);
-        this.f26211a.put(str, (n0) t5Var.f15508b);
-        return t5Var;
+    public final hi.u5 g(String str, String str2) {
+        hi.u5 u5Var = new hi.u5(str, str2);
+        this.f26175a.put(str, (n0) u5Var.f15495b);
+        return u5Var;
     }
 
-    public final hi.w4 h(long j3, String str) {
+    public final hi.x4 h(long j3, String str) {
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        hi.w4 w4Var = new hi.w4(str, j3);
-        this.f26211a.put(str, (l0) w4Var.f15708b);
-        return w4Var;
+        hi.x4 x4Var = new hi.x4(str, j3);
+        this.f26175a.put(str, (l0) x4Var.f15680b);
+        return x4Var;
     }
 }

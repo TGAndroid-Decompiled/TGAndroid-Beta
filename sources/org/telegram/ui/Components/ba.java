@@ -5,10 +5,10 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 public abstract class ba extends ek0 {
-    public int f33813f3;
-    public int f33814g3;
-    public boolean f33815h3;
-    public int f33816i3;
+    public int f33790f3;
+    public int f33791g3;
+    public boolean f33792h3;
+    public int f33793i3;
     public boolean j3;
 
     public final void A1() {
@@ -16,11 +16,11 @@ public abstract class ba extends ek0 {
             return;
         }
         if (org.telegram.messenger.cz.f()) {
-            this.f33813f3 = z1();
-            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.f33813f3;
+            this.f33790f3 = z1();
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.f33790f3;
             return;
         }
-        this.f33813f3 = 0;
+        this.f33790f3 = 0;
         ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
     }
 
@@ -33,8 +33,8 @@ public abstract class ba extends ek0 {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        if (this.f33813f3 != 0 && !Y0()) {
-            canvas.clipRect(0, this.f33813f3, getMeasuredWidth(), getMeasuredHeight() + this.f33816i3);
+        if (this.f33790f3 != 0 && !Y0()) {
+            canvas.clipRect(0, this.f33790f3, getMeasuredWidth(), getMeasuredHeight() + this.f33793i3);
             super.dispatchDraw(canvas);
             return;
         }
@@ -43,7 +43,7 @@ public abstract class ba extends ek0 {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view.getY() + view.getMeasuredHeight() < this.f33813f3 && !this.j3 && !Y0()) {
+        if (view.getY() + view.getMeasuredHeight() < this.f33790f3 && !this.j3 && !Y0()) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -57,16 +57,16 @@ public abstract class ba extends ek0 {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        this.f33815h3 = true;
+        this.f33792h3 = true;
         A1();
-        super.setPadding(getPaddingLeft(), this.f33814g3 + this.f33813f3, getPaddingRight(), getPaddingBottom());
-        this.f33815h3 = false;
+        super.setPadding(getPaddingLeft(), this.f33791g3 + this.f33790f3, getPaddingRight(), getPaddingBottom());
+        this.f33792h3 = false;
         super.onMeasure(i7, i10);
     }
 
     @Override
     public void requestLayout() {
-        if (this.f33815h3) {
+        if (this.f33792h3) {
             return;
         }
         super.requestLayout();
@@ -74,8 +74,8 @@ public abstract class ba extends ek0 {
 
     @Override
     public final void setPadding(int i7, int i10, int i11, int i12) {
-        this.f33814g3 = i10;
-        super.setPadding(i7, i10 + this.f33813f3, i11, i12);
+        this.f33791g3 = i10;
+        super.setPadding(i7, i10 + this.f33790f3, i11, i12);
     }
 
     public int z1() {

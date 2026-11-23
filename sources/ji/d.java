@@ -1,20 +1,20 @@
 package ji;
 public final class d {
-    public String f17838a;
-    public boolean f17839b;
-    public boolean f17840c;
+    public String f17804a;
+    public boolean f17805b;
+    public boolean f17806c;
     public float d;
-    public float f17841e;
-    public float f17842f;
-    public float f17843g;
+    public float f17807e;
+    public float f17808f;
+    public float f17809g;
     public float h;
-    public float f17844i;
-    public float f17845j;
-    public float f17846k;
-    public float f17847l;
-    public boolean f17848m;
-    public float f17849n;
-    public float f17850o;
-    public int f17851p;
-    public boolean f17852q;
+    public float f17810i;
+    public float f17811j;
+    public float f17812k;
+    public float f17813l;
+    public boolean f17814m;
+    public float f17815n;
+    public float f17816o;
+    public int f17817p;
+    public boolean f17818q;
 }

@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 public final class ba implements ta {
-    public final hi.w4 f23065a;
+    public final hi.x4 f23029a;
 
-    public ba(hi.w4 w4Var) {
-        this.f23065a = w4Var;
+    public ba(hi.x4 x4Var) {
+        this.f23029a = x4Var;
     }
 }

@@ -16,13 +16,13 @@ public final class k6 extends h6 {
 
     public final void F(ArrayList arrayList) {
         int i7;
-        ArrayList arrayList2 = this.f12089i;
+        ArrayList arrayList2 = this.f12040i;
         arrayList2.size();
         int i10 = 0;
         int i11 = 0;
         while (true) {
             int size = arrayList.size();
-            i7 = this.f12085c;
+            i7 = this.f12036c;
             if (i10 >= size) {
                 break;
             }
@@ -47,7 +47,7 @@ public final class k6 extends h6 {
     @Override
     public final gj f(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f12089i;
+            ArrayList arrayList = this.f12040i;
             if (i7 < arrayList.size()) {
                 return (gj) arrayList.get(i7);
             }
@@ -58,7 +58,7 @@ public final class k6 extends h6 {
 
     @Override
     public final int g() {
-        return this.f12089i.size();
+        return this.f12040i.size();
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class k6 extends h6 {
 
     @Override
     public final int i() {
-        return this.f12089i.size();
+        return this.f12040i.size();
     }
 
     @Override

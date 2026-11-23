@@ -6,21 +6,21 @@ import java.util.ArrayList;
 import java.util.Timer;
 import org.telegram.ui.Wallet.h1;
 public final class q extends z {
-    public boolean f56568b;
-    public x f56569c;
+    public boolean f56533b;
+    public x f56534c;
     public final ArrayList d;
-    public final o f56570e;
-    public final Object f56571f;
+    public final o f56535e;
+    public final Object f56536f;
     public Timer h;
-    public h6.r f56572n;
-    public long f56573r;
-    public boolean f56574s;
+    public h6.r f56537n;
+    public long f56538r;
+    public boolean f56539s;
 
     public q(u uVar) {
         super("ReadingThread", uVar, 1);
         this.d = new ArrayList();
-        this.f56571f = new Object();
-        this.f56570e = uVar.f56605u;
+        this.f56536f = new Object();
+        this.f56535e = uVar.f56570u;
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class q extends z {
             h();
         } catch (Throwable th2) {
             v vVar = new v(38, "An uncaught throwable was detected in the reading thread: " + th2.getMessage(), th2);
-            ab.q qVar = this.f56615a.d;
+            ab.q qVar = this.f56580a.d;
             qVar.d(vVar);
             ArrayList arrayList = (ArrayList) qVar.p();
             int size = arrayList.size();
@@ -48,13 +48,13 @@ public final class q extends z {
                 }
             }
         }
-        u uVar = this.f56615a;
-        x xVar = this.f56569c;
-        synchronized (uVar.f56592g) {
+        u uVar = this.f56580a;
+        x xVar = this.f56534c;
+        synchronized (uVar.f56557g) {
             try {
-                uVar.f56601q = true;
-                uVar.f56603s = xVar;
-                if (uVar.f56602r) {
+                uVar.f56566q = true;
+                uVar.f56568s = xVar;
+                if (uVar.f56567r) {
                     uVar.d();
                 }
             } finally {
@@ -63,7 +63,7 @@ public final class q extends z {
     }
 
     public final void b() {
-        ArrayList arrayList = (ArrayList) this.f56615a.d.p();
+        ArrayList arrayList = (ArrayList) this.f56580a.d.p();
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -82,12 +82,12 @@ public final class q extends z {
     }
 
     public final void c(byte[] bArr) {
-        u uVar = this.f56615a;
+        u uVar = this.f56580a;
         uVar.getClass();
         ab.q qVar = uVar.d;
         int i7 = 0;
         try {
-            SecureRandom secureRandom = k.f56562a;
+            SecureRandom secureRandom = k.f56527a;
             String str = null;
             if (bArr != null) {
                 try {
@@ -132,25 +132,25 @@ public final class q extends z {
     }
 
     public final void d() {
-        synchronized (this.f56571f) {
+        synchronized (this.f56536f) {
             Timer timer = this.h;
             if (timer != null) {
                 timer.cancel();
                 this.h = null;
             }
-            h6.r rVar = this.f56572n;
+            h6.r rVar = this.f56537n;
             if (rVar != null) {
                 rVar.cancel();
-                this.f56572n = null;
+                this.f56537n = null;
             }
         }
     }
 
     public final byte[] f(byte[] bArr) {
         try {
-            return this.f56570e.c(bArr);
+            return this.f56535e.c(bArr);
         } catch (v e10) {
-            u uVar = this.f56615a;
+            u uVar = this.f56580a;
             uVar.d.d(e10);
             ArrayList arrayList = (ArrayList) uVar.d.p();
             int size = arrayList.size();
@@ -184,12 +184,12 @@ public final class q extends z {
     public final void i() {
         synchronized (this) {
             try {
-                if (this.f56568b) {
+                if (this.f56533b) {
                     return;
                 }
-                this.f56568b = true;
+                this.f56533b = true;
                 interrupt();
-                this.f56573r = 10000L;
+                this.f56538r = 10000L;
                 j();
             } catch (Throwable th2) {
                 throw th2;
@@ -198,33 +198,33 @@ public final class q extends z {
     }
 
     public final void j() {
-        synchronized (this.f56571f) {
+        synchronized (this.f56536f) {
             Timer timer = this.h;
             if (timer != null) {
                 timer.cancel();
                 this.h = null;
             }
-            h6.r rVar = this.f56572n;
+            h6.r rVar = this.f56537n;
             if (rVar != null) {
                 rVar.cancel();
-                this.f56572n = null;
+                this.f56537n = null;
             }
-            this.f56572n = new h6.r(this, 5);
+            this.f56537n = new h6.r(this, 5);
             Timer timer2 = new Timer("ReadingThreadCloseTimer");
             this.h = timer2;
-            timer2.schedule(this.f56572n, this.f56573r);
+            timer2.schedule(this.f56537n, this.f56538r);
         }
     }
 
     public final void k(x xVar) {
         byte[] bArr;
         int i7;
-        this.f56615a.getClass();
+        this.f56580a.getClass();
         boolean z10 = true;
-        if ((this.f56570e != null && ((i7 = xVar.f56612e) == 1 || i7 == 2)) || !xVar.f56610b) {
-            if (!xVar.f56611c) {
+        if ((this.f56535e != null && ((i7 = xVar.f56577e) == 1 || i7 == 2)) || !xVar.f56575b) {
+            if (!xVar.f56576c) {
                 if (!xVar.d) {
-                    int i10 = xVar.f56612e;
+                    int i10 = xVar.f56577e;
                     if (i10 != 0 && i10 != 1 && i10 != 2) {
                         switch (i10) {
                             case 8:
@@ -232,19 +232,19 @@ public final class q extends z {
                             case 10:
                                 break;
                             default:
-                                throw new v(31, "A frame has an unknown opcode: 0x" + Integer.toHexString(xVar.f56612e));
+                                throw new v(31, "A frame has an unknown opcode: 0x" + Integer.toHexString(xVar.f56577e));
                         }
                     }
-                    if (!xVar.f56613f) {
+                    if (!xVar.f56578f) {
                         if (8 <= i10 && i10 <= 15) {
-                            if (!xVar.f56609a) {
+                            if (!xVar.f56574a) {
                                 throw new v(32, "A control frame is fragmented.");
                             }
                         } else {
                             if (this.d.size() == 0) {
                                 z10 = false;
                             }
-                            if (xVar.f56612e == 0) {
+                            if (xVar.f56577e == 0) {
                                 if (!z10) {
                                     throw new v(33, "A continuation frame was detected although a continuation had not started.");
                                 }
@@ -252,8 +252,8 @@ public final class q extends z {
                                 throw new v(34, "A non-control frame was detected although the existing continuation had not been closed.");
                             }
                         }
-                        int i11 = xVar.f56612e;
-                        if (8 > i11 || i11 > 15 || (bArr = xVar.f56614g) == null || 125 >= bArr.length) {
+                        int i11 = xVar.f56577e;
+                        if (8 > i11 || i11 > 15 || (bArr = xVar.f56579g) == null || 125 >= bArr.length) {
                             return;
                         }
                         throw new v(35, "The payload size of a control frame exceeds the maximum size (125 bytes): " + bArr.length);

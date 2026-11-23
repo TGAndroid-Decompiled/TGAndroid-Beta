@@ -1,99 +1,124 @@
 package ai;
 
 import android.content.Context;
-import android.icu.util.ULocale;
-import android.os.Build;
-import android.provider.Settings;
-import android.text.TextUtils;
-import android.view.inputmethod.InputMethodInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.view.inputmethod.InputMethodSubtype;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Locale;
-import org.telegram.messenger.a8;
-public abstract class w0 {
-    public static final HashMap f1600a = new HashMap();
+import org.telegram.messenger.gj;
+import org.telegram.messenger.np;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.bm0;
+import org.telegram.ui.Components.em0;
+import org.telegram.ui.Components.i30;
+import org.telegram.ui.Components.km0;
+import org.telegram.ui.Components.u20;
+public final class w0 implements Runnable {
+    public final int f1577a;
+    public final Object f1578b;
+    public final int f1579c;
+    public final Object d;
+    public final Object f1580e;
 
-    static {
-        new HashSet();
+    public w0(int i7, Object obj, Object obj2, Object obj3, int i10) {
+        this.f1577a = i10;
+        this.f1579c = i7;
+        this.d = obj;
+        this.f1580e = obj2;
+        this.f1578b = obj3;
     }
 
-    public static void a(LinkedHashMap linkedHashMap, Locale locale) {
-        if (locale != null) {
-            String language = locale.getLanguage();
-            if (!TextUtils.isEmpty(language) && !"und".equals(language) && !linkedHashMap.containsKey(language)) {
-                String country = locale.getCountry();
-                if (TextUtils.isEmpty(country) && Build.VERSION.SDK_INT >= 24) {
-                    country = ULocale.addLikelySubtags(new ULocale(language)).getCountry();
+    private final void a() {
+        boolean z10;
+        i30 i30Var = (i30) this.d;
+        TLObject tLObject = (TLObject) this.f1580e;
+        String str = (String) this.f1578b;
+        int i7 = i30Var.Q;
+        ArrayList arrayList = i30Var.R;
+        if (this.f1579c == i30Var.W) {
+            boolean isEmpty = arrayList.isEmpty();
+            i30Var.V = false;
+            if (tLObject instanceof TLRPC.messages_Messages) {
+                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                if (messages_messages instanceof TLRPC.TL_messages_messages) {
+                    i30Var.Z = ((TLRPC.TL_messages_messages) messages_messages).messages.size();
+                } else if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
+                    i30Var.Z = ((TLRPC.TL_messages_messagesSlice) messages_messages).count;
                 }
-                if (country == null) {
-                    country = "";
+                i30Var.f36090c0 = messages_messages.next_rate;
+                np.u1(i7).f4(messages_messages.users, false);
+                np.u1(i7).Z3(messages_messages.chats, false);
+                for (int i10 = 0; i10 < messages_messages.messages.size(); i10++) {
+                    gj gjVar = new gj(i7, messages_messages.messages.get(i10), false, true);
+                    gjVar.K5(str, true);
+                    arrayList.add(gjVar);
                 }
-                linkedHashMap.put(language, new Locale(language, country).toLanguageTag());
-            }
-        }
-    }
-
-    public static void b(LinkedHashMap linkedHashMap, Context context) {
-        try {
-            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService("input_method");
-            if (inputMethodManager != null) {
-                a(linkedHashMap, e(inputMethodManager.getCurrentInputMethodSubtype()));
-                String string = Settings.Secure.getString(context.getContentResolver(), "default_input_method");
-                for (InputMethodInfo inputMethodInfo : inputMethodManager.getEnabledInputMethodList()) {
-                    if (TextUtils.equals(inputMethodInfo.getId(), string)) {
-                        for (InputMethodSubtype inputMethodSubtype : inputMethodManager.getEnabledInputMethodSubtypeList(inputMethodInfo, true)) {
-                            a(linkedHashMap, e(inputMethodSubtype));
-                        }
-                    }
+                if (arrayList.size() >= i30Var.Z) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-            }
-        } catch (Exception e10) {
-            a8.g(e10, true);
-        }
-    }
-
-    public static ArrayList c(Context context, long j3) {
-        ArrayList arrayList = (ArrayList) f1600a.get(Long.valueOf(j3));
-        if (arrayList != null && !arrayList.isEmpty()) {
-            return new ArrayList(arrayList);
-        }
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        b(linkedHashMap, context);
-        return new ArrayList(linkedHashMap.values());
-    }
-
-    public static boolean d(String str, String str2) {
-        if (str != null && str2 != null) {
-            return Locale.forLanguageTag(str.replace('_', '-')).getLanguage().equals(Locale.forLanguageTag(str2.replace('_', '-')).getLanguage());
-        }
-        return false;
-    }
-
-    public static Locale e(InputMethodSubtype inputMethodSubtype) {
-        String str;
-        if (inputMethodSubtype == null || !"keyboard".equals(inputMethodSubtype.getMode())) {
-            return null;
-        }
-        if (Build.VERSION.SDK_INT >= 24) {
-            str = inputMethodSubtype.getLanguageTag();
-        } else {
-            str = null;
-        }
-        if (TextUtils.isEmpty(str)) {
-            String locale = inputMethodSubtype.getLocale();
-            if (locale == null) {
-                str = null;
+                i30Var.Y = z10;
+                i30Var.X();
             } else {
-                str = locale.replace('_', '-');
+                i30Var.Y = true;
+                i30Var.Z = arrayList.size();
+            }
+            i30Var.O(true);
+            if (isEmpty) {
+                ((km0) i30Var).f36901f0.f39922w0.h1(0, 0);
             }
         }
-        if (TextUtils.isEmpty(str)) {
-            return null;
-        }
-        return Locale.forLanguageTag(str);
+    }
+
+    private final void b() {
+        Context context = ((em0) this.d).getContext();
+        TLRPC.Reaction g10 = ((bm0) this.f1580e).f33834a.g();
+        em0.c(context, this.f1579c, g10, (h6) this.f1578b);
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: ai.w0.run():void");
+    }
+
+    public w0(Object obj, int i7, Object obj2, Object obj3, int i10) {
+        this.f1577a = i10;
+        this.d = obj;
+        this.f1579c = i7;
+        this.f1580e = obj2;
+        this.f1578b = obj3;
+    }
+
+    public w0(Object obj, int i7, String str, Serializable serializable, int i10) {
+        this.f1577a = i10;
+        this.d = obj;
+        this.f1579c = i7;
+        this.f1578b = str;
+        this.f1580e = serializable;
+    }
+
+    public w0(Object obj, Object obj2, int i7, Object obj3, int i10) {
+        this.f1577a = i10;
+        this.d = obj;
+        this.f1580e = obj2;
+        this.f1579c = i7;
+        this.f1578b = obj3;
+    }
+
+    public w0(Object obj, Object obj2, Object obj3, int i7, int i10) {
+        this.f1577a = i10;
+        this.d = obj;
+        this.f1580e = obj2;
+        this.f1578b = obj3;
+        this.f1579c = i7;
+    }
+
+    public w0(u20 u20Var, String str, int i7, ArrayList arrayList) {
+        this.f1577a = 26;
+        this.d = u20Var;
+        this.f1578b = str;
+        this.f1579c = i7;
+        this.f1580e = arrayList;
     }
 }

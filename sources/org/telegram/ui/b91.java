@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class b91 extends v4.c0 {
+public final class b91 extends v4.b0 {
     public boolean I;
     public final y91 J;
 
@@ -11,13 +11,13 @@ public final class b91 extends v4.c0 {
     }
 
     @Override
-    public final void b0(v4.x0 x0Var, v4.c1 c1Var) {
-        boolean z10 = org.telegram.messenger.s2.f26730a;
+    public final void b0(v4.w0 w0Var, v4.b1 b1Var) {
+        boolean z10 = org.telegram.messenger.s2.f26694a;
         try {
-            super.b0(x0Var, c1Var);
+            super.b0(w0Var, b1Var);
         } catch (IndexOutOfBoundsException e10) {
             org.telegram.messenger.a8.g(e10, true);
-            org.telegram.messenger.g0.g3(new ru0(this, 21));
+            org.telegram.messenger.g0.g3(new su0(this, 21));
         }
     }
 
@@ -37,18 +37,18 @@ public final class b91 extends v4.c0 {
     }
 
     @Override
-    public final int o0(int r19, v4.x0 r20, v4.c1 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b91.o0(int, v4.x0, v4.c1):int");
+    public final int o0(int r19, v4.w0 r20, v4.b1 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b91.o0(int, v4.w0, v4.b1):int");
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
-        if (this.J.f54148y > 0 && i7 == 1) {
-            super.v0(recyclerView, c1Var, i7);
+    public final void v0(RecyclerView recyclerView, v4.b1 b1Var, int i7) {
+        if (this.J.f54124y > 0 && i7 == 1) {
+            super.v0(recyclerView, b1Var, i7);
             return;
         }
         pi.l lVar = new pi.l(recyclerView.getContext(), 0);
-        lVar.f59109a = i7;
+        lVar.f59055a = i7;
         w0(lVar);
     }
 }

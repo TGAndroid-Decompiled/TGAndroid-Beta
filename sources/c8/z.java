@@ -1,13 +1,14 @@
 package c8;
-
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 public abstract class z {
-    public static android.content.res.ColorStateList a(android.content.Context r8, int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.z.a(android.content.Context, int):android.content.res.ColorStateList");
+    public static final gd.f a(Throwable exception) {
+        kotlin.jvm.internal.j.e(exception, "exception");
+        return new gd.f(exception);
     }
 
-    public static Drawable b(Context context, int i7) {
-        return m.m2.d().g(context, i7);
+    public static final void b(Object obj) {
+        if (!(obj instanceof gd.f)) {
+            return;
+        }
+        throw ((gd.f) obj).f13471a;
     }
 }

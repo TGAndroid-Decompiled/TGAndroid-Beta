@@ -1,13 +1,51 @@
 package org.telegram.ui.Components;
-public final class gm0 extends v4.k {
-    public final org.telegram.ui.kw F;
 
-    public gm0(org.telegram.ui.kw kwVar) {
-        this.F = kwVar;
+import android.content.Context;
+public final class gm0 extends nv0 {
+    public final int L;
+    public final org.telegram.ui.kw M;
+
+    public gm0(org.telegram.ui.kw kwVar, Context context, yz yzVar, int i7) {
+        super(context, yzVar, 1, null);
+        this.L = i7;
+        this.M = kwVar;
     }
 
     @Override
-    public final void P(v4.f1 f1Var) {
-        this.F.invalidate();
+    public final void setVisibility(int i7) {
+        switch (this.L) {
+            case 0:
+                if (this.M.P0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i7);
+                    return;
+                }
+            case 1:
+                if (this.M.P0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i7);
+                    return;
+                }
+            case 2:
+                if (this.M.P0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i7);
+                    return;
+                }
+            default:
+                if (this.M.P0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i7);
+                    return;
+                }
+        }
     }
 }

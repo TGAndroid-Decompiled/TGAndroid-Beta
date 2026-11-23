@@ -1,6 +1,6 @@
 package ii;
 
-import ai.g1;
+import ai.a1;
 import android.text.SpannableStringBuilder;
 import di.p9;
 import java.util.Collections;
@@ -23,9 +23,9 @@ import org.telegram.ui.Components.nq;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.Wallet.u0;
 public abstract class n {
-    public static final boolean[] f16350a = new boolean[4];
-    public static final m[] f16351b = new m[4];
-    public static final HashSet[] f16352c = new HashSet[4];
+    public static final boolean[] f16316a = new boolean[4];
+    public static final m[] f16317b = new m[4];
+    public static final HashSet[] f16318c = new HashSet[4];
 
     public static void a(int i7, long j3, long j10, int i10, p9 p9Var) {
         u0 D = u0.D(i7);
@@ -57,14 +57,14 @@ public abstract class n {
     }
 
     public static boolean c(int i7) {
-        return ((h0) np.u1(i7).A7.f26239p0.f14030b).f24341c;
+        return ((h0) np.u1(i7).A7.f26203p0.f13993b).f24305c;
     }
 
     public static void d(m mVar) {
-        int i7 = mVar.f16344a;
-        m[] mVarArr = f16351b;
+        int i7 = mVar.f16310a;
+        m[] mVarArr = f16317b;
         if (mVarArr[i7] == mVar && !mVar.h) {
-            if (System.currentTimeMillis() - mVar.f16347e > 600000) {
+            if (System.currentTimeMillis() - mVar.f16313e > 600000) {
                 mVarArr[i7] = null;
                 ls.f(i7).k(ls.B3, new Object[0]);
                 return;
@@ -74,12 +74,12 @@ public abstract class n {
             tL_payments_getStarsTransactions.peer = new TLRPC.TL_inputPeerSelf();
             tL_payments_getStarsTransactions.offset = "";
             tL_payments_getStarsTransactions.limit = 10;
-            ConnectionsManager.getInstance(i7).sendRequest(tL_payments_getStarsTransactions, new g1(mVar, 14));
+            ConnectionsManager.getInstance(i7).sendRequest(tL_payments_getStarsTransactions, new a1(mVar, 14));
         }
     }
 
     public static HashSet e(int i7) {
-        HashSet[] hashSetArr = f16352c;
+        HashSet[] hashSetArr = f16318c;
         if (hashSetArr[i7] == null) {
             hashSetArr[i7] = new HashSet(np.u1(i7).h7.getStringSet("gram_earnings_wallet_withdraws", Collections.EMPTY_SET));
         }
@@ -109,11 +109,11 @@ public abstract class n {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g2Var.getContext(), g2Var.getResourceProvider());
         String a02 = hd.a0(null, null, 2131749321, u0.x(j3, false));
-        t1 t1Var = alertDialog$Builder.f28777a;
+        t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.S = a02;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(hd.N0(2131749322, null));
         f(spannableStringBuilder, "⚙", 2131232362, -1);
-        f(spannableStringBuilder, "💎", 2131231956, m6.f29716v6);
+        f(spannableStringBuilder, "💎", 2131231956, m6.f29682v6);
         t1Var.U = spannableStringBuilder;
         alertDialog$Builder.h(hd.N0(2131752577, null), null);
         alertDialog$Builder.k(hd.N0(2131749329, null), new di.h(g2Var, j3, iVar, 3));
@@ -129,13 +129,13 @@ public abstract class n {
             return true;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) hd.N0(2131742598, null));
+        spannableStringBuilder.append((CharSequence) hd.N0(2131742600, null));
         spannableStringBuilder.append((CharSequence) "\n\n• ").append((CharSequence) g0.W2(hd.N0(2131751288, null)));
         spannableStringBuilder.append((CharSequence) "\n• ").append((CharSequence) g0.W2(hd.N0(2131751287, null)));
         spannableStringBuilder.append((CharSequence) "\n\n").append((CharSequence) hd.N0(2131751286, null));
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, twoStepVerificationActivity.getParentActivity(), twoStepVerificationActivity.getResourceProvider());
         String N0 = hd.N0(2131751285, null);
-        t1 t1Var = alertDialog$Builder.f28777a;
+        t1 t1Var = alertDialog$Builder.f28743a;
         t1Var.S = N0;
         t1Var.U = spannableStringBuilder;
         alertDialog$Builder.k(hd.N0(2131747637, null), null);

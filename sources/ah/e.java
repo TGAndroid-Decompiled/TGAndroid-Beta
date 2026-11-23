@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import c8.ma;
+import c8.na;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
@@ -37,15 +37,15 @@ public class e extends FrameLayout implements b6 {
         TextView textView = new TextView(context);
         this.d = textView;
         o10.p(textView, 1, 20.0f);
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7);
-        int i10 = m6.f29489j5;
+        int i10 = m6.f29455j5;
         t6.U(textView, i10, h6Var);
-        boolean z10 = hd.f24444a0;
+        boolean z10 = hd.f24408a0;
         if (z10) {
             f10 = 16.0f;
         } else {
@@ -56,7 +56,7 @@ public class e extends FrameLayout implements b6 {
         } else {
             f11 = 16.0f;
         }
-        addView(textView, ma.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
+        addView(textView, na.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
         ImageView imageView = new ImageView(context);
         this.f1066c = imageView;
         x1 x1Var = new x1(false);
@@ -66,15 +66,15 @@ public class e extends FrameLayout implements b6 {
         this.f1064a = w02;
         x1Var.a(w02);
         x1Var.b(m6.w0(i10, h6Var));
-        x1Var.f30255k = 220.0f;
-        addView(imageView, ma.d(24, 24.0f, (hd.f24444a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        x1Var.f30221k = 220.0f;
+        addView(imageView, na.d(24, 24.0f, (hd.f24408a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new d(this, 0));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        int w02 = m6.w0(m6.f29382d7, this.f1065b);
+        int w02 = m6.w0(m6.f29348d7, this.f1065b);
         Paint paint = this.h;
         paint.setColor(w02);
         canvas.drawRect(0.0f, getHeight() - g0.f1(), getWidth(), getHeight(), paint);
@@ -103,7 +103,7 @@ public class e extends FrameLayout implements b6 {
             i7 = 8;
         }
         this.f1066c.setVisibility(i7);
-        boolean z11 = hd.f24444a0;
+        boolean z11 = hd.f24408a0;
         if (!z11 && z10) {
             f10 = 53.0f;
         } else {
@@ -114,7 +114,7 @@ public class e extends FrameLayout implements b6 {
         } else {
             f11 = 22.0f;
         }
-        this.d.setLayoutParams(ma.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
+        this.d.setLayoutParams(na.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
     }
 
     public void setOnCloseClickListener(Runnable runnable) {
@@ -130,7 +130,7 @@ public class e extends FrameLayout implements b6 {
         x1 x1Var = this.f1068f;
         if (x1Var != null) {
             try {
-                int w02 = m6.w0(m6.f29489j5, this.f1065b);
+                int w02 = m6.w0(m6.f29455j5, this.f1065b);
                 if (w02 != this.f1064a) {
                     this.f1064a = w02;
                     x1Var.a(w02);

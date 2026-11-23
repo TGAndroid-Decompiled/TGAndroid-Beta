@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class t80 implements View.OnLayoutChangeListener {
-    public boolean f52264a;
+    public boolean f52210a;
 
     @Override
     public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
@@ -12,9 +12,9 @@ public final class t80 implements View.OnLayoutChangeListener {
         } else {
             z10 = false;
         }
-        if (z10 != this.f52264a) {
+        if (z10 != this.f52210a) {
             org.telegram.messenger.g0.g3(new org.telegram.ui.Components.me(this, 28));
-            this.f52264a = z10;
+            this.f52210a = z10;
         }
     }
 }

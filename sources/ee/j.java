@@ -3,9 +3,9 @@ package ee;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import zd.b0;
 public class j {
-    public static final AtomicReferenceFieldUpdater f10964a = AtomicReferenceFieldUpdater.newUpdater(j.class, Object.class, "_next$volatile");
-    public static final AtomicReferenceFieldUpdater f10965b = AtomicReferenceFieldUpdater.newUpdater(j.class, Object.class, "_prev$volatile");
-    public static final AtomicReferenceFieldUpdater f10966c = AtomicReferenceFieldUpdater.newUpdater(j.class, Object.class, "_removedRef$volatile");
+    public static final AtomicReferenceFieldUpdater f10927a = AtomicReferenceFieldUpdater.newUpdater(j.class, Object.class, "_next$volatile");
+    public static final AtomicReferenceFieldUpdater f10928b = AtomicReferenceFieldUpdater.newUpdater(j.class, Object.class, "_prev$volatile");
+    public static final AtomicReferenceFieldUpdater f10929c = AtomicReferenceFieldUpdater.newUpdater(j.class, Object.class, "_removedRef$volatile");
     private volatile Object _next$volatile = this;
     private volatile Object _prev$volatile = this;
     private volatile Object _removedRef$volatile;
@@ -13,7 +13,7 @@ public class j {
     public final boolean c(j jVar, int i7) {
         while (true) {
             j d = d();
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f10965b;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f10928b;
             if (d == null) {
                 Object obj = atomicReferenceFieldUpdater.get(this);
                 while (true) {
@@ -31,7 +31,7 @@ public class j {
                 return false;
             }
             atomicReferenceFieldUpdater.set(jVar, d);
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = f10964a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = f10927a;
             atomicReferenceFieldUpdater2.set(jVar, this);
             while (!atomicReferenceFieldUpdater2.compareAndSet(d, this, jVar)) {
                 if (atomicReferenceFieldUpdater2.get(d) != this) {
@@ -49,9 +49,9 @@ public class j {
 
     public final void e(j jVar) {
         while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f10965b;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f10928b;
             j jVar2 = (j) atomicReferenceFieldUpdater.get(jVar);
-            if (f10964a.get(this) == jVar) {
+            if (f10927a.get(this) == jVar) {
                 while (!atomicReferenceFieldUpdater.compareAndSet(jVar, jVar2, this)) {
                     if (atomicReferenceFieldUpdater.get(jVar) != jVar2) {
                         break;
@@ -70,13 +70,13 @@ public class j {
     public final j f() {
         o oVar;
         j jVar;
-        Object obj = f10964a.get(this);
+        Object obj = f10927a.get(this);
         if (obj instanceof o) {
             oVar = (o) obj;
         } else {
             oVar = null;
         }
-        if (oVar != null && (jVar = oVar.f10976a) != null) {
+        if (oVar != null && (jVar = oVar.f10939a) != null) {
             return jVar;
         }
         kotlin.jvm.internal.j.c(obj, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode");
@@ -84,7 +84,7 @@ public class j {
     }
 
     public boolean g() {
-        return f10964a.get(this) instanceof o;
+        return f10927a.get(this) instanceof o;
     }
 
     public String toString() {

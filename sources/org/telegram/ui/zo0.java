@@ -1,15 +1,8 @@
 package org.telegram.ui;
-public final class zo0 implements Runnable {
-    public final int f54614a;
-    public final PhotoViewer f54615b;
 
-    public zo0(PhotoViewer photoViewer, int i7) {
-        this.f54614a = i7;
-        this.f54615b = photoViewer;
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zo0.run():void");
+import android.content.Context;
+public final class zo0 extends org.telegram.ui.Components.et {
+    public zo0(Context context, String str) {
+        super(context, str);
     }
 }

@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class l4 extends tb0 {
-    public final int[] f37098z0;
+    public final int[] f37055z0;
 
     public l4(Context context, org.telegram.ui.ActionBar.h6 h6Var, int[] iArr) {
         super(context, h6Var);
-        this.f37098z0 = iArr;
+        this.f37055z0 = iArr;
     }
 
     @Override
     public final CharSequence d(int i7) {
-        int i10 = this.f37098z0[i7];
+        int i10 = this.f37055z0[i7];
         if (i10 == 0) {
             return org.telegram.messenger.hd.N0(2131753846, null);
         }

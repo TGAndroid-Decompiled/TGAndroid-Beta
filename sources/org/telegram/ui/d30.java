@@ -18,7 +18,7 @@ public final class d30 extends org.telegram.ui.ActionBar.k {
             canvas.save();
             canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - org.telegram.messenger.g0.L(1.0f));
             org.telegram.ui.Components.sp spVar = this.G1;
-            spVar.f39645f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            spVar.f39601f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
             spVar.draw(canvas);
             canvas.restore();
             invalidate();
@@ -29,7 +29,7 @@ public final class d30 extends org.telegram.ui.ActionBar.k {
     public final void setAlpha(float f10) {
         if (getAlpha() != f10) {
             super.setAlpha(f10);
-            this.H1.f30176b.invalidate();
+            this.H1.f30142b.invalidate();
         }
     }
 }

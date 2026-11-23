@@ -4,73 +4,37 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 public final class z0 implements ActionMode.Callback {
-    public final int f22584a;
+    public final e1 f22536a;
+
+    public z0(e1 e1Var) {
+        this.f22536a = e1Var;
+    }
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        switch (this.f22584a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return false;
-            default:
-                return false;
-        }
+        return false;
     }
 
     @Override
     public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f22584a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        int i7 = this.f22584a;
+        return true;
     }
 
     @Override
     public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f22584a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return false;
-            default:
-                return false;
+        if (this.f22536a.length() != 0) {
+            return false;
         }
+        for (int size = menu.size() - 1; size >= 0; size--) {
+            int itemId = menu.getItem(size).getItemId();
+            if (itemId != 16908322 && itemId != 16908337) {
+                menu.removeItem(itemId);
+            }
+        }
+        return true;
     }
 
-    private final void a(ActionMode actionMode) {
-    }
-
-    private final void b(ActionMode actionMode) {
-    }
-
-    private final void c(ActionMode actionMode) {
-    }
-
-    private final void d(ActionMode actionMode) {
-    }
-
-    private final void e(ActionMode actionMode) {
+    @Override
+    public final void onDestroyActionMode(ActionMode actionMode) {
     }
 }

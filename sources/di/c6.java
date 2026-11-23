@@ -9,28 +9,28 @@ import java.util.HashSet;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 public final class c6 extends View implements org.telegram.ui.ActionBar.b6 {
-    public final ImageReceiver f8633a;
-    public final ImageReceiver f8634b;
-    public final Path f8635c;
+    public final ImageReceiver f8596a;
+    public final ImageReceiver f8597b;
+    public final Path f8598c;
     public final Paint d;
 
     public c6(Context context, TLObject tLObject, TLObject tLObject2) {
         super(context);
         Path path = new Path();
-        this.f8635c = path;
+        this.f8598c = path;
         Paint paint = new Paint(1);
         this.d = paint;
-        org.telegram.ui.ActionBar.s6 s6Var = org.telegram.ui.ActionBar.t6.f30068a;
+        org.telegram.ui.ActionBar.s6 s6Var = org.telegram.ui.ActionBar.t6.f30034a;
         org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
         b9Var.l(tLObject);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f8633a = imageReceiver;
+        this.f8596a = imageReceiver;
         imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
         imageReceiver.i0(tLObject, b9Var, null);
         org.telegram.ui.Components.b9 b9Var2 = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
         b9Var2.l(tLObject2);
         ImageReceiver imageReceiver2 = new ImageReceiver(this);
-        this.f8634b = imageReceiver2;
+        this.f8597b = imageReceiver2;
         imageReceiver2.J0(org.telegram.messenger.g0.L(30.0f));
         imageReceiver2.i0(tLObject2, b9Var2, null);
         paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.E6, false));
@@ -47,29 +47,29 @@ public final class c6 extends View implements org.telegram.ui.ActionBar.b6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f8633a.P();
-        this.f8634b.P();
+        this.f8596a.P();
+        this.f8597b.P();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f8633a.R();
-        this.f8634b.R();
+        this.f8596a.R();
+        this.f8597b.R();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int width = (getWidth() / 2) - (org.telegram.messenger.g0.L(156.0f) / 2);
         float height = (getHeight() / 2) - org.telegram.messenger.g0.L(30.0f);
-        ImageReceiver imageReceiver = this.f8633a;
+        ImageReceiver imageReceiver = this.f8596a;
         imageReceiver.y0(width, height, org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
         imageReceiver.h(canvas, null);
         canvas.save();
         canvas.translate((getWidth() / 2.0f) - (org.telegram.messenger.g0.L(6.166f) / 2.0f), getHeight() / 2.0f);
-        canvas.drawPath(this.f8635c, this.d);
+        canvas.drawPath(this.f8598c, this.d);
         canvas.restore();
-        ImageReceiver imageReceiver2 = this.f8634b;
+        ImageReceiver imageReceiver2 = this.f8597b;
         imageReceiver2.y0(org.telegram.messenger.g0.L(96.0f) + width, height, org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
         imageReceiver2.h(canvas, null);
     }

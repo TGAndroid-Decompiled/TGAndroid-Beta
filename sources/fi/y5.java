@@ -1,22 +1,24 @@
 package fi;
 
-import org.telegram.messenger.y10;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class y5 implements RequestDelegate {
-    public final long f12822a;
-    public final y10 f12823b;
-    public final p6 f12824c;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_stories;
+public final class y5 extends TL_stories.StoryItem {
+    public final z5 f12775a;
 
-    public y5(p6 p6Var, long j3, y10 y10Var) {
-        this.f12824c = p6Var;
-        this.f12822a = j3;
-        this.f12823b = y10Var;
-    }
-
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        org.telegram.messenger.g0.g3(new di.j2(this, tLObject, this.f12822a, this.f12823b, 9));
+    public y5(z5 z5Var, long j3, TL_bots.botPreviewMedia botpreviewmedia) {
+        this.f12775a = z5Var;
+        this.dialogId = j3;
+        TLRPC.MessageMedia messageMedia = botpreviewmedia.media;
+        this.media = messageMedia;
+        TLRPC.Document document = messageMedia.document;
+        if (document != null) {
+            document.date = botpreviewmedia.date;
+            return;
+        }
+        TLRPC.Photo photo = messageMedia.photo;
+        if (photo != null) {
+            photo.date = botpreviewmedia.date;
+        }
     }
 }

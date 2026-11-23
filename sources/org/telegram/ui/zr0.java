@@ -2,54 +2,78 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 public final class zr0 extends org.telegram.ui.Cells.r1 {
-    public final int Ad;
-    public final int Bd;
-    public final int f54631zd;
+    public final Paint Ad;
+    public final byte[] Bd;
+    public final int Cd;
+    public final int Dd;
+    public final bs0 Ed;
+    public final Path f54589zd;
 
-    public zr0(Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var, int i10, int i11, int i12) {
+    public zr0(bs0 bs0Var, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var, byte[] bArr, int i10, int i11) {
         super(context, i7, false, null, h6Var);
-        this.f54631zd = i12;
-        this.Ad = i10;
-        this.Bd = i11;
+        this.Ed = bs0Var;
+        this.Bd = bArr;
+        this.Cd = i10;
+        this.Dd = i11;
+        this.f54589zd = new Path();
+        this.Ad = new Paint(1);
     }
 
     @Override
     public final void j1(Canvas canvas) {
-        switch (this.f54631zd) {
-            case 0:
-                this.S4 = 0;
-                this.T4 = this.Q4.size() - 1;
-                super.j1(canvas);
-                return;
-            default:
-                this.S4 = 0;
-                this.T4 = this.Q4.size() - 1;
-                super.j1(canvas);
-                return;
+        this.S4 = 0;
+        this.T4 = this.Q4.size() - 1;
+        this.U4 = (-org.telegram.messenger.g0.L(7.0f)) * this.Ed.E;
+        super.j1(canvas);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f10;
+        canvas.save();
+        int W1 = W1(this.Bd);
+        float V1 = V1(W1);
+        float U1 = U1(W1);
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(getPollButtonsLeft(), V1, getPollButtonsRight(), U1);
+        float f11 = rectF.top;
+        float L = org.telegram.messenger.g0.L(3.0f);
+        bs0 bs0Var = this.Ed;
+        if (bs0Var.W) {
+            f10 = -org.telegram.messenger.g0.L(3.0f);
+        } else {
+            f10 = 0.0f;
         }
+        rectF.top = org.telegram.messenger.g0.T1(L, f10, bs0Var.E) + f11;
+        float f12 = rectF.bottom;
+        boolean z10 = bs0Var.W;
+        float L2 = org.telegram.messenger.g0.L(3.0f);
+        if (!z10) {
+            L2 = org.telegram.messenger.g0.T1(L2, 0.0f, bs0Var.E);
+        }
+        rectF.bottom = f12 + L2;
+        Path path = this.f54589zd;
+        path.rewind();
+        path.addRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), Path.Direction.CW);
+        Paint paint = this.Ad;
+        paint.setColor(0);
+        paint.setShadowLayer(org.telegram.messenger.g0.L(2.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.m6.r1(bs0Var.E * 0.2f, -16777216));
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
+        canvas.clipPath(path);
+        d1(canvas);
+        canvas.restore();
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        switch (this.f54631zd) {
-            case 0:
-                setMeasuredDimension(this.Ad, this.Bd);
-                return;
-            default:
-                setMeasuredDimension(this.Ad, this.Bd);
-                return;
-        }
+        setMeasuredDimension(this.Cd, this.Dd);
     }
 
     @Override
     public final void setPressed(boolean z10) {
-        int i7 = this.f54631zd;
-    }
-
-    private final void f4(boolean z10) {
-    }
-
-    private final void g4(boolean z10) {
     }
 }

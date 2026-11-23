@@ -7,27 +7,27 @@ import rd.p;
 import rd.q;
 import zd.b0;
 public final class h extends kd.c implements ce.d {
-    public final ce.d f8381a;
-    public final id.h f8382b;
-    public final int f8383c;
+    public final ce.d f8344a;
+    public final id.h f8345b;
+    public final int f8346c;
     public id.h d;
-    public id.c f8384e;
+    public id.c f8347e;
 
     public h(ce.d dVar, id.h hVar) {
-        super(f.f8379a, id.i.f16254a);
-        this.f8381a = dVar;
-        this.f8382b = hVar;
-        this.f8383c = ((Number) hVar.fold(0, new b1.e(3))).intValue();
+        super(f.f8342a, id.i.f16220a);
+        this.f8344a = dVar;
+        this.f8345b = hVar;
+        this.f8346c = ((Number) hVar.fold(0, new b1.e(3))).intValue();
     }
 
     @Override
     public final Object a(Object obj, id.c cVar) {
         try {
             Object c10 = c(cVar, obj);
-            if (c10 == jd.a.f17409a) {
+            if (c10 == jd.a.f17375a) {
                 return c10;
             }
-            return gd.k.f13517a;
+            return gd.k.f13480a;
         } catch (Throwable th2) {
             this.d = new d(cVar.getContext(), th2);
             throw th2;
@@ -48,13 +48,13 @@ public final class h extends kd.c implements ce.d {
                     public final java.lang.Object invoke(java.lang.Object r4, java.lang.Object r5) {
                         throw new UnsupportedOperationException("Method not decompiled: de.k.invoke(java.lang.Object, java.lang.Object):java.lang.Object");
                     }
-                })).intValue() == this.f8383c) {
+                })).intValue() == this.f8346c) {
                     this.d = context;
                 } else {
-                    throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f8382b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
+                    throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f8345b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
                 }
             } else {
-                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((d) hVar).f8378b + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
+                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((d) hVar).f8341b + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
                 kotlin.jvm.internal.j.e(str2, "<this>");
                 List a10 = wd.d.a(new wd.e(str2, 2));
                 List list = a10;
@@ -145,20 +145,20 @@ public final class h extends kd.c implements ce.d {
                 throw new IllegalStateException(sb2.toString().toString());
             }
         }
-        this.f8384e = cVar;
-        q qVar = j.f8386a;
-        ce.d dVar = this.f8381a;
+        this.f8347e = cVar;
+        q qVar = j.f8349a;
+        ce.d dVar = this.f8344a;
         kotlin.jvm.internal.j.c(dVar, "null cannot be cast to non-null type kotlinx.coroutines.flow.FlowCollector<kotlin.Any?>");
         Object b11 = qVar.b(dVar, obj, this);
-        if (!kotlin.jvm.internal.j.a(b11, jd.a.f17409a)) {
-            this.f8384e = null;
+        if (!kotlin.jvm.internal.j.a(b11, jd.a.f17375a)) {
+            this.f8347e = null;
         }
         return b11;
     }
 
     @Override
     public final kd.d getCallerFrame() {
-        id.c cVar = this.f8384e;
+        id.c cVar = this.f8347e;
         if (cVar instanceof kd.d) {
             return (kd.d) cVar;
         }
@@ -169,7 +169,7 @@ public final class h extends kd.c implements ce.d {
     public final id.h getContext() {
         id.h hVar = this.d;
         if (hVar == null) {
-            return id.i.f16254a;
+            return id.i.f16220a;
         }
         return hVar;
     }
@@ -185,10 +185,10 @@ public final class h extends kd.c implements ce.d {
         if (a10 != null) {
             this.d = new d(getContext(), a10);
         }
-        id.c cVar = this.f8384e;
+        id.c cVar = this.f8347e;
         if (cVar != null) {
             cVar.resumeWith(obj);
         }
-        return jd.a.f17409a;
+        return jd.a.f17375a;
     }
 }

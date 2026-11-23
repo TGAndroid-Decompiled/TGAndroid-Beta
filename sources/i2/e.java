@@ -1,11 +1,11 @@
 package i2;
 
-import a8.la;
+import a8.ma;
 import e2.n0;
 import e2.p0;
 public final class e implements p0 {
-    public final float f15951a;
-    public final float f15952b;
+    public final float f15917a;
+    public final float f15918b;
 
     public e(float f10, float f11) {
         boolean z10;
@@ -14,9 +14,9 @@ public final class e implements p0 {
         } else {
             z10 = false;
         }
-        la.e("Invalid latitude or longitude", z10);
-        this.f15951a = f10;
-        this.f15952b = f11;
+        ma.e("Invalid latitude or longitude", z10);
+        this.f15917a = f10;
+        this.f15918b = f11;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class e implements p0 {
         }
         if (obj != null && e.class == obj.getClass()) {
             e eVar = (e) obj;
-            if (this.f15951a == eVar.f15951a && this.f15952b == eVar.f15952b) {
+            if (this.f15917a == eVar.f15917a && this.f15918b == eVar.f15918b) {
                 return true;
             }
         }
@@ -43,11 +43,11 @@ public final class e implements p0 {
     }
 
     public final int hashCode() {
-        return Float.valueOf(this.f15952b).hashCode() + ((Float.valueOf(this.f15951a).hashCode() + 527) * 31);
+        return Float.valueOf(this.f15918b).hashCode() + ((Float.valueOf(this.f15917a).hashCode() + 527) * 31);
     }
 
     public final String toString() {
-        return "xyz: latitude=" + this.f15951a + ", longitude=" + this.f15952b;
+        return "xyz: latitude=" + this.f15917a + ", longitude=" + this.f15918b;
     }
 
     @Override

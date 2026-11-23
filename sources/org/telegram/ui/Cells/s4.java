@@ -10,12 +10,12 @@ import org.telegram.messenger.dd;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Components.RadioButton;
 public final class s4 extends FrameLayout {
-    public final RadioButton f31778a;
-    public final TextView f31779b;
-    public final TextView f31780c;
+    public final RadioButton f31744a;
+    public final TextView f31745b;
+    public final TextView f31746c;
     public boolean d;
-    public dd f31781e;
-    public final int f31782f;
+    public dd f31747e;
+    public final int f31748f;
 
     public s4(Context context) {
         super(context);
@@ -28,16 +28,16 @@ public final class s4 extends FrameLayout {
         int i13;
         float f12;
         float f13;
-        this.f31782f = 62;
-        if (org.telegram.ui.ActionBar.m6.f29504k0 == null) {
+        this.f31748f = 62;
+        if (org.telegram.ui.ActionBar.m6.f29470k0 == null) {
             org.telegram.ui.ActionBar.m6.R(context);
         }
         setWillNotDraw(false);
         RadioButton radioButton = new RadioButton(context);
-        this.f31778a = radioButton;
+        this.f31744a = radioButton;
         radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
         org.telegram.ui.ActionBar.t6.O(radioButton, org.telegram.ui.ActionBar.m6.D5, org.telegram.ui.ActionBar.m6.E5, null);
-        boolean z10 = hd.f24444a0;
+        boolean z10 = hd.f24408a0;
         if (z10) {
             i7 = 5;
         } else {
@@ -49,21 +49,21 @@ public final class s4 extends FrameLayout {
         } else {
             i10 = 20;
         }
-        addView(radioButton, c8.ma.d(22, 22.0f, i14, i10, 0.0f, z10 ? 20 : 0, 0.0f));
+        addView(radioButton, c8.na.d(22, 22.0f, i14, i10, 0.0f, z10 ? 20 : 0, 0.0f));
         TextView textView = new TextView(context);
-        this.f31779b = textView;
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29489j5, null);
+        this.f31745b = textView;
+        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29455j5, null);
         textView.setTextSize(1, 16.0f);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         textView.setGravity(i11 | 16);
-        boolean z11 = hd.f24444a0;
+        boolean z11 = hd.f24408a0;
         if (z11) {
             i12 = 5;
         } else {
@@ -81,20 +81,20 @@ public final class s4 extends FrameLayout {
         } else {
             f11 = 23;
         }
-        addView(textView, c8.ma.d(-1, -1.0f, i15, f14, 0.0f, f11, 17.0f));
+        addView(textView, c8.na.d(-1, -1.0f, i15, f14, 0.0f, f11, 17.0f));
         TextView textView2 = new TextView(context);
-        this.f31780c = textView2;
-        org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29639r5, null);
+        this.f31746c = textView2;
+        org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29605r5, null);
         textView2.setTextSize(1, 13.0f);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
-        if (hd.f24444a0) {
+        if (hd.f24408a0) {
             i13 = 5;
         } else {
             i13 = 3;
         }
         textView2.setGravity(i13 | 16);
-        boolean z12 = hd.f24444a0;
+        boolean z12 = hd.f24408a0;
         int i16 = (z12 ? 5 : 3) | 48;
         if (z12) {
             f12 = 23;
@@ -107,11 +107,11 @@ public final class s4 extends FrameLayout {
         } else {
             f13 = 23;
         }
-        addView(textView2, c8.ma.d(-1, -1.0f, i16, f15, 20.0f, f13, 0.0f));
+        addView(textView2, c8.na.d(-1, -1.0f, i16, f15, 20.0f, f13, 0.0f));
     }
 
     public dd getCurrentLocale() {
-        return this.f31781e;
+        return this.f31747e;
     }
 
     @Override
@@ -119,8 +119,8 @@ public final class s4 extends FrameLayout {
         float L;
         int i7;
         if (this.d) {
-            boolean z10 = hd.f24444a0;
-            int i10 = this.f31782f;
+            boolean z10 = hd.f24408a0;
+            int i10 = this.f31748f;
             if (z10) {
                 L = 0.0f;
             } else {
@@ -129,12 +129,12 @@ public final class s4 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f24444a0) {
+            if (hd.f24408a0) {
                 i7 = org.telegram.messenger.g0.L(i10 - 3);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29504k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29470k0);
         }
     }
 

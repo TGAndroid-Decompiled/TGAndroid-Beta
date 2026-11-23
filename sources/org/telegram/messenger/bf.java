@@ -16,17 +16,17 @@ import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
 public final class bf implements gs {
-    public c f23078a;
-    public org.telegram.ui.ActionBar.t1 f23079b;
-    public ArrayList f23080c;
+    public c f23042a;
+    public org.telegram.ui.ActionBar.t1 f23043b;
+    public ArrayList f23044c;
     public HashMap d;
-    public float f23081e;
-    public boolean f23082f;
+    public float f23045e;
+    public boolean f23046f;
     public boolean h;
-    public int f23083n;
-    public CountDownLatch f23084r;
-    public or f23085s;
-    public boolean f23086w;
+    public int f23047n;
+    public CountDownLatch f23048r;
+    public or f23049s;
+    public boolean f23050w;
 
     public final void a(java.io.File r28, java.io.File r29, java.lang.String r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.bf.a(java.io.File, java.io.File, java.lang.String):void");
@@ -39,10 +39,10 @@ public final class bf implements gs {
         ?? r22;
         ?? r62;
         boolean z10 = false;
-        if (!gjVar.D3() || (n1 = gj.n1(gjVar.f24213k)) == null || (photo = n1.photo) == null || n1.document == null || (w10 = w7.w(photo.sizes, g0.Z0(true), false, null, true)) == null) {
+        if (!gjVar.D3() || (n1 = gj.n1(gjVar.f24177k)) == null || (photo = n1.photo) == null || n1.document == null || (w10 = w7.w(photo.sizes, g0.Z0(true), false, null, true)) == null) {
             return false;
         }
-        w7.G(this.f23078a.f23202a);
+        w7.G(this.f23042a.f23166a);
         File J = w7.J(w10, null, false, true);
         File J2 = w7.J(n1.document, null, false, true);
         if (J != null && J.exists()) {
@@ -57,11 +57,11 @@ public final class bf implements gs {
         }
         int i7 = r22 + r62;
         if (i7 > 0) {
-            this.f23084r = new CountDownLatch(i7);
+            this.f23048r = new CountDownLatch(i7);
             g0.g3(new lh(this, (boolean) r22, w10, gjVar, n1.photo, (boolean) r62, n1.document));
-            this.f23084r.await();
+            this.f23048r.await();
         }
-        if (!this.f23082f) {
+        if (!this.f23046f) {
             if (J == null || !J.exists()) {
                 J = w7.J(w10, null, true, true);
             }
@@ -84,13 +84,13 @@ public final class bf implements gs {
                     contentValues.put("relative_path", new File(Environment.DIRECTORY_DOWNLOADS, "Telegram") + File.separator);
                     contentValues.put("_display_name", p02);
                     contentValues.put("mime_type", mimeTypeFromExtension);
-                    Uri insert = t0.f26931b.getContentResolver().insert(contentUri, contentValues);
+                    Uri insert = t0.f26895b.getContentResolver().insert(contentUri, contentValues);
                     if (insert != null) {
-                        OutputStream openOutputStream = t0.f26931b.getContentResolver().openOutputStream(insert);
+                        OutputStream openOutputStream = t0.f26895b.getContentResolver().openOutputStream(insert);
                         if (openOutputStream != null) {
                             try {
                                 MediaController.H0(J, J2, openOutputStream, null);
-                                z10 = !this.f23082f;
+                                z10 = !this.f23046f;
                             } catch (Throwable th2) {
                                 try {
                                     openOutputStream.close();
@@ -104,10 +104,10 @@ public final class bf implements gs {
                             openOutputStream.close();
                         }
                         if (z10) {
-                            this.f23083n++;
+                            this.f23047n++;
                         } else {
                             try {
-                                t0.f26931b.getContentResolver().delete(insert, null, null);
+                                t0.f26895b.getContentResolver().delete(insert, null, null);
                             } catch (Exception unused) {
                             }
                         }
@@ -123,11 +123,11 @@ public final class bf implements gs {
                     try {
                         MediaController.H0(J, J2, fileOutputStream, null);
                         fileOutputStream.close();
-                        if (this.f23082f) {
+                        if (this.f23046f) {
                             file2.delete();
                         } else {
-                            ((DownloadManager) t0.f26931b.getSystemService("download")).addCompletedDownload(file2.getName(), file2.getName(), false, mimeTypeFromExtension, file2.getAbsolutePath(), file2.length(), true);
-                            this.f23083n++;
+                            ((DownloadManager) t0.f26895b.getSystemService("download")).addCompletedDownload(file2.getName(), file2.getName(), false, mimeTypeFromExtension, file2.getAbsolutePath(), file2.length(), true);
+                            this.f23047n++;
                         }
                     } catch (Throwable th4) {
                         try {
@@ -138,8 +138,8 @@ public final class bf implements gs {
                         throw th4;
                     }
                 }
-                float size = (100.0f / this.f23080c.size()) + this.f23081e;
-                this.f23081e = size;
+                float size = (100.0f / this.f23044c.size()) + this.f23045e;
+                this.f23045e = size;
                 g0.g3(new ze(this, (int) size, 3));
                 return true;
             }
@@ -152,10 +152,10 @@ public final class bf implements gs {
         HashMap hashMap = this.d;
         if (i7 != ls.Y1 && i7 != ls.Z1) {
             if (i7 == ls.X1 && hashMap.containsKey((String) objArr[0])) {
-                g0.g3(new ze(this, (int) com.google.android.gms.internal.vision.e2.c(((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()), this.f23080c.size(), 100.0f, this.f23081e), 0));
+                g0.g3(new ze(this, (int) com.google.android.gms.internal.vision.e2.c(((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()), this.f23044c.size(), 100.0f, this.f23045e), 0));
             }
         } else if (hashMap.remove((String) objArr[0]) != null) {
-            this.f23084r.countDown();
+            this.f23048r.countDown();
         }
     }
 }

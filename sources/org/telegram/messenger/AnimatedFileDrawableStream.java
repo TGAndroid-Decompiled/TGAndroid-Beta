@@ -8,41 +8,41 @@ public class AnimatedFileDrawableStream implements j7 {
     public final int E;
     public int F;
     public boolean G;
-    public i7 f22627a;
-    public CountDownLatch f22628b;
-    public final TLRPC.Document f22629c;
+    public i7 f22591a;
+    public CountDownLatch f22592b;
+    public final TLRPC.Document f22593c;
     public final gc d;
-    public final Object f22630e;
-    public final int f22631f;
+    public final Object f22594e;
+    public final int f22595f;
     public volatile boolean h;
-    public final Object f22632n = new Object();
-    public long f22633r;
-    public boolean f22634s;
-    public final boolean f22635w;
-    public boolean f22636x;
-    public String f22637y;
+    public final Object f22596n = new Object();
+    public long f22597r;
+    public boolean f22598s;
+    public final boolean f22599w;
+    public boolean f22600x;
+    public String f22601y;
 
     public AnimatedFileDrawableStream(TLRPC.Document document, gc gcVar, Object obj, int i7, boolean z10, int i10, int i11) {
-        this.f22629c = document;
+        this.f22593c = document;
         this.d = gcVar;
-        this.f22630e = obj;
-        this.f22631f = i7;
-        this.f22635w = z10;
+        this.f22594e = obj;
+        this.f22595f = i7;
+        this.f22599w = z10;
         this.E = i10;
         w7 G = w7.G(i7);
         CountDownLatch countDownLatch = new CountDownLatch(1);
         i7[] i7VarArr = new i7[1];
         w7.K.c(new k7(G, i7VarArr, document, gcVar, obj, i10, this, 0L, z10, i11, countDownLatch));
         w7.a(countDownLatch, true);
-        this.f22627a = i7VarArr[0];
+        this.f22591a = i7VarArr[0];
     }
 
     @Override
     public final void a() {
-        CountDownLatch countDownLatch = this.f22628b;
+        CountDownLatch countDownLatch = this.f22592b;
         if (countDownLatch != null) {
             countDownLatch.countDown();
-            this.f22628b = null;
+            this.f22592b = null;
         }
     }
 
@@ -51,17 +51,17 @@ public class AnimatedFileDrawableStream implements j7 {
         if (this.h) {
             return;
         }
-        synchronized (this.f22632n) {
+        synchronized (this.f22596n) {
             try {
-                CountDownLatch countDownLatch = this.f22628b;
+                CountDownLatch countDownLatch = this.f22592b;
                 if (countDownLatch != null) {
                     countDownLatch.countDown();
-                    this.f22628b = null;
-                    if (z10 && !this.h && !this.f22635w) {
-                        w7.G(this.f22631f).Z(this.f22629c, false, true);
+                    this.f22592b = null;
+                    if (z10 && !this.h && !this.f22599w) {
+                        w7.G(this.f22595f).Z(this.f22593c, false, true);
                     }
                 }
-                Object obj = this.f22630e;
+                Object obj = this.f22594e;
                 if (obj instanceof gj) {
                     gj gjVar = (gj) obj;
                     a6 q10 = a6.q(gjVar.K1);
@@ -70,7 +70,7 @@ public class AnimatedFileDrawableStream implements j7 {
                     int i7 = 0;
                     while (true) {
                         if (i7 < arrayList.size()) {
-                            if (((gj) arrayList.get(i7)).f24213k.f28455id == e12) {
+                            if (((gj) arrayList.get(i7)).f24177k.f28419id == e12) {
                                 z11 = true;
                                 break;
                             }
@@ -95,11 +95,11 @@ public class AnimatedFileDrawableStream implements j7 {
     }
 
     public final void c() {
-        int i7 = this.f22631f;
-        w7.G(i7).f(this.f22629c);
+        int i7 = this.f22595f;
+        w7.G(i7).f(this.f22593c);
         gc gcVar = this.d;
         if (gcVar != null) {
-            w7.G(i7).e(null, null, null, gcVar.f24116f, "mp4", null);
+            w7.G(i7).e(null, null, null, gcVar.f24080f, "mp4", null);
         }
     }
 
@@ -108,13 +108,13 @@ public class AnimatedFileDrawableStream implements j7 {
     }
 
     public final void d() {
-        synchronized (this.f22632n) {
+        synchronized (this.f22596n) {
             this.h = false;
         }
     }
 
     public String getFinishedFilePath() {
-        return this.f22637y;
+        return this.f22601y;
     }
 
     public boolean isCanceled() {
@@ -122,7 +122,7 @@ public class AnimatedFileDrawableStream implements j7 {
     }
 
     public boolean isFinishedLoadingFile() {
-        return this.f22636x;
+        return this.f22600x;
     }
 
     public int read(int i7, int i10) {
@@ -131,7 +131,7 @@ public class AnimatedFileDrawableStream implements j7 {
         int i11;
         int i12;
         int i13 = i10;
-        synchronized (this.f22632n) {
+        synchronized (this.f22596n) {
             try {
                 int i14 = 0;
                 ?? r22 = 1;
@@ -149,7 +149,7 @@ public class AnimatedFileDrawableStream implements j7 {
                     long j3 = 0;
                     while (j3 == 0) {
                         try {
-                            i7 i7Var = this.f22627a;
+                            i7 i7Var = this.f22591a;
                             long j10 = i7;
                             i7Var.getClass();
                             CountDownLatch countDownLatch = new CountDownLatch(r22);
@@ -161,11 +161,11 @@ public class AnimatedFileDrawableStream implements j7 {
                             }
                             long j11 = r10[i14];
                             try {
-                                if (!this.f22636x) {
+                                if (!this.f22600x) {
                                     try {
                                         if (r10[r22] != 0) {
-                                            this.f22636x = r22;
-                                            this.f22637y = this.f22627a.L0.getAbsolutePath();
+                                            this.f22600x = r22;
+                                            this.f22601y = this.f22591a.L0.getAbsolutePath();
                                         }
                                     } catch (Exception e10) {
                                         e = e10;
@@ -176,21 +176,21 @@ public class AnimatedFileDrawableStream implements j7 {
                                     }
                                 }
                                 if (j11 == 0) {
-                                    synchronized (this.f22632n) {
+                                    synchronized (this.f22596n) {
                                         if (this.h) {
                                             c();
                                             return i14;
                                         }
-                                        this.f22628b = new CountDownLatch(r22);
-                                        if (!this.f22627a.Z && this.f22633r == j10 && !this.f22635w) {
+                                        this.f22592b = new CountDownLatch(r22);
+                                        if (!this.f22591a.Z && this.f22597r == j10 && !this.f22599w) {
                                             z11 = r22;
                                             i12 = i14;
                                         } else {
-                                            w7 G = w7.G(this.f22631f);
-                                            TLRPC.Document document = this.f22629c;
+                                            w7 G = w7.G(this.f22595f);
+                                            TLRPC.Document document = this.f22593c;
                                             gc gcVar = this.d;
-                                            Object obj = this.f22630e;
-                                            boolean z12 = this.f22635w;
+                                            Object obj = this.f22594e;
+                                            boolean z12 = this.f22599w;
                                             int i16 = this.E;
                                             if (document == null) {
                                                 i11 = r22;
@@ -205,12 +205,12 @@ public class AnimatedFileDrawableStream implements j7 {
                                             w7.K.c(new k7(G, i7VarArr, document, gcVar, obj, i16, this, j10, z12, i11, countDownLatch2));
                                             w7.a(countDownLatch2, z13);
                                             i7 i7Var2 = i7VarArr[i12];
-                                            i7 i7Var3 = this.f22627a;
+                                            i7 i7Var3 = this.f22591a;
                                             if (i7Var3 != i7Var2) {
                                                 try {
                                                     i7Var3.getClass();
                                                     Utilities.d.c(new e7(i7Var3, this, 0));
-                                                    this.f22627a = i7Var2;
+                                                    this.f22591a = i7Var2;
                                                 } catch (Exception e11) {
                                                     e = e11;
                                                     j3 = j11;
@@ -219,24 +219,24 @@ public class AnimatedFileDrawableStream implements j7 {
                                                     return (int) j3;
                                                 }
                                             }
-                                            this.f22633r = j10 + j11;
+                                            this.f22597r = j10 + j11;
                                             z11 = z13;
                                         }
-                                        synchronized (this.f22632n) {
+                                        synchronized (this.f22596n) {
                                             if (this.h) {
-                                                this.f22628b = null;
+                                                this.f22592b = null;
                                                 c();
                                                 return i12;
                                             }
                                         }
-                                        if (!this.f22635w) {
-                                            w7.G(this.f22631f).b0(this.f22629c, i12, z11);
+                                        if (!this.f22599w) {
+                                            w7.G(this.f22595f).b0(this.f22593c, i12, z11);
                                         }
-                                        CountDownLatch countDownLatch3 = this.f22628b;
+                                        CountDownLatch countDownLatch3 = this.f22592b;
                                         if (countDownLatch3 != null) {
-                                            this.f22634s = z11;
+                                            this.f22598s = z11;
                                             countDownLatch3.await();
-                                            this.f22634s = false;
+                                            this.f22598s = false;
                                         }
                                     }
                                 } else {
@@ -257,7 +257,7 @@ public class AnimatedFileDrawableStream implements j7 {
                             e = e13;
                         }
                     }
-                    this.f22633r = i7 + j3;
+                    this.f22597r = i7 + j3;
                     return (int) j3;
                 }
             } finally {

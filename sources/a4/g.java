@@ -1,6 +1,6 @@
 package a4;
 
-import a8.la;
+import a8.ma;
 import e2.t0;
 import f3.p;
 import h2.x;
@@ -25,7 +25,7 @@ public final class g {
         x xVar = this.f175g;
         xVar.K(27);
         try {
-            z11 = pVar.g(xVar.f13865a, 0, 27, z10);
+            z11 = pVar.g(xVar.f13828a, 0, 27, z10);
         } catch (EOFException e10) {
             if (z10) {
                 z11 = false;
@@ -49,7 +49,7 @@ public final class g {
                 this.d = A + 27;
                 xVar.K(A);
                 try {
-                    z12 = pVar.g(xVar.f13865a, 0, this.f172c, z10);
+                    z12 = pVar.g(xVar.f13828a, 0, this.f172c, z10);
                 } catch (EOFException e11) {
                     if (z10) {
                         z12 = false;
@@ -79,7 +79,7 @@ public final class g {
         } else {
             z10 = false;
         }
-        la.f(z10);
+        ma.f(z10);
         x xVar = this.f175g;
         xVar.K(4);
         while (true) {
@@ -88,7 +88,7 @@ public final class g {
                 break;
             }
             try {
-                z11 = pVar.g(xVar.f13865a, 0, 4, true);
+                z11 = pVar.g(xVar.f13828a, 0, 4, true);
             } catch (EOFException unused) {
                 z11 = false;
             }
