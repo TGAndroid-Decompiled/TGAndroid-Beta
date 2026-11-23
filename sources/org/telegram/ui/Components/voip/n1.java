@@ -3,32 +3,32 @@ package org.telegram.ui.Components.voip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class n1 extends AnimatorListenerAdapter {
-    public final int f41206a;
-    public final float f41207b;
-    public final float f41208c;
+    public final int f41208a;
+    public final float f41209b;
+    public final float f41210c;
     public final Object d;
 
     public n1(Object obj, float f10, float f11, int i7) {
-        this.f41206a = i7;
+        this.f41208a = i7;
         this.d = obj;
-        this.f41207b = f10;
-        this.f41208c = f11;
+        this.f41209b = f10;
+        this.f41210c = f11;
     }
 
     public void a() {
         te.c cVar = (te.c) this.d;
         if (cVar.h) {
-            cVar.d(this.f41207b + this.f41208c, 1.0f);
+            cVar.d(this.f41209b + this.f41210c, 1.0f);
             if (cVar.h) {
                 cVar.h = false;
             }
-            cVar.f57699b.D(cVar.f57702f, cVar.f57698a);
+            cVar.f57703b.D(cVar.f57706f, cVar.f57702a);
         }
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f41206a) {
+        switch (this.f41208a) {
             case 1:
                 a();
                 return;
@@ -40,13 +40,13 @@ public final class n1 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f41206a) {
+        switch (this.f41208a) {
             case 0:
                 q1 q1Var = (q1) this.d;
                 q1Var.P = false;
                 q1Var.N = true;
-                q1Var.f41275a0 = this.f41207b;
-                q1Var.f41277b0 = this.f41208c;
+                q1Var.f41277a0 = this.f41209b;
+                q1Var.f41279b0 = this.f41210c;
                 q1Var.requestLayout();
                 return;
             default:
@@ -57,7 +57,7 @@ public final class n1 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f41206a) {
+        switch (this.f41208a) {
             case 1:
                 ((te.c) this.d).getClass();
                 return;

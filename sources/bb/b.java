@@ -5,14 +5,14 @@ public enum b implements qa.b {
     TOPIC(2),
     DISPLAY_NOTIFICATION(3);
     
-    public final int f3108a;
+    public final int f3115a;
 
     b(int i7) {
-        this.f3108a = i7;
+        this.f3115a = i7;
     }
 
     @Override
     public final int a() {
-        return this.f3108a;
+        return this.f3115a;
     }
 }

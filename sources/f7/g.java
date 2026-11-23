@@ -8,34 +8,34 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class g extends r6.a {
     public static final Parcelable.Creator<g> CREATOR = new db.k(29);
-    public final k0 f11539a;
-    public final u0 f11540b;
-    public final h f11541c;
+    public final k0 f11542a;
+    public final u0 f11543b;
+    public final h f11544c;
     public final v0 d;
-    public final String f11542e;
+    public final String f11545e;
 
     public g(k0 k0Var, u0 u0Var, h hVar, v0 v0Var, String str) {
-        this.f11539a = k0Var;
-        this.f11540b = u0Var;
-        this.f11541c = hVar;
+        this.f11542a = k0Var;
+        this.f11543b = u0Var;
+        this.f11544c = hVar;
         this.d = v0Var;
-        this.f11542e = str;
+        this.f11545e = str;
     }
 
     public final JSONObject b() {
         try {
             JSONObject jSONObject = new JSONObject();
-            h hVar = this.f11541c;
+            h hVar = this.f11544c;
             if (hVar != null) {
                 try {
                     JSONObject jSONObject2 = new JSONObject();
-                    jSONObject2.put("rk", hVar.f11543a);
+                    jSONObject2.put("rk", hVar.f11546a);
                     jSONObject.put("credProps", jSONObject2);
                 } catch (JSONException e10) {
                     throw new RuntimeException("Error encoding AuthenticationExtensionsCredPropsOutputs to JSON object", e10);
                 }
             }
-            k0 k0Var = this.f11539a;
+            k0 k0Var = this.f11542a;
             if (k0Var != null) {
                 jSONObject.put("uvm", k0Var.b());
             }
@@ -43,7 +43,7 @@ public final class g extends r6.a {
             if (v0Var != null) {
                 jSONObject.put("prf", v0Var.b());
             }
-            String str = this.f11542e;
+            String str = this.f11545e;
             if (str != null) {
                 jSONObject.put("txAuthSimple", str);
             }
@@ -58,14 +58,14 @@ public final class g extends r6.a {
             return false;
         }
         g gVar = (g) obj;
-        if (!q6.m.l(this.f11539a, gVar.f11539a) || !q6.m.l(this.f11540b, gVar.f11540b) || !q6.m.l(this.f11541c, gVar.f11541c) || !q6.m.l(this.d, gVar.d) || !q6.m.l(this.f11542e, gVar.f11542e)) {
+        if (!q6.m.l(this.f11542a, gVar.f11542a) || !q6.m.l(this.f11543b, gVar.f11543b) || !q6.m.l(this.f11544c, gVar.f11544c) || !q6.m.l(this.d, gVar.d) || !q6.m.l(this.f11545e, gVar.f11545e)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11539a, this.f11540b, this.f11541c, this.d, this.f11542e});
+        return Arrays.hashCode(new Object[]{this.f11542a, this.f11543b, this.f11544c, this.d, this.f11545e});
     }
 
     public final String toString() {
@@ -75,11 +75,11 @@ public final class g extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
-        bc.k(parcel, 1, this.f11539a, i7);
-        bc.k(parcel, 2, this.f11540b, i7);
-        bc.k(parcel, 3, this.f11541c, i7);
+        bc.k(parcel, 1, this.f11542a, i7);
+        bc.k(parcel, 2, this.f11543b, i7);
+        bc.k(parcel, 3, this.f11544c, i7);
         bc.k(parcel, 4, this.d, i7);
-        bc.l(parcel, 5, this.f11542e);
+        bc.l(parcel, 5, this.f11545e);
         bc.s(parcel, r10);
     }
 }

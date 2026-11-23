@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class zf implements Runnable {
-    public final int f54537a;
-    public final org.telegram.ui.ActionBar.t1[] f54538b;
+    public final int f54541a;
+    public final org.telegram.ui.ActionBar.t1[] f54542b;
 
     public zf(org.telegram.ui.ActionBar.t1[] t1VarArr, int i7) {
-        this.f54537a = i7;
-        this.f54538b = t1VarArr;
+        this.f54541a = i7;
+        this.f54542b = t1VarArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f54537a) {
+        switch (this.f54541a) {
             case 0:
-                org.telegram.ui.ActionBar.t1[] t1VarArr = this.f54538b;
+                org.telegram.ui.ActionBar.t1[] t1VarArr = this.f54542b;
                 try {
                     t1VarArr[0].dismiss();
                 } catch (Throwable unused) {
@@ -20,7 +20,7 @@ public final class zf implements Runnable {
                 t1VarArr[0] = null;
                 return;
             case 1:
-                org.telegram.ui.ActionBar.t1[] t1VarArr2 = this.f54538b;
+                org.telegram.ui.ActionBar.t1[] t1VarArr2 = this.f54542b;
                 try {
                     t1VarArr2[0].dismiss();
                 } catch (Throwable unused2) {
@@ -28,16 +28,16 @@ public final class zf implements Runnable {
                 t1VarArr2[0] = null;
                 return;
             case 2:
-                org.telegram.messenger.g0.g3(new zf(this.f54538b, 4));
+                org.telegram.messenger.g0.g3(new zf(this.f54542b, 4));
                 return;
             case 3:
-                org.telegram.messenger.g0.g3(new zf(this.f54538b, 5));
+                org.telegram.messenger.g0.g3(new zf(this.f54542b, 5));
                 return;
             case 4:
-                this.f54538b[0].dismiss();
+                this.f54542b[0].dismiss();
                 return;
             default:
-                this.f54538b[0].dismiss();
+                this.f54542b[0].dismiss();
                 return;
         }
     }

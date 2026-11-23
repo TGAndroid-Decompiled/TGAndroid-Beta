@@ -4,49 +4,49 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.jc;
-import org.telegram.messenger.r10;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.kc;
+import org.telegram.messenger.s10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.oh0;
 import org.telegram.ui.Components.pp;
 import org.telegram.ui.Components.sj0;
 import org.telegram.ui.LaunchActivity;
-public final class ea implements sj0, bg.q, jc, org.telegram.messenger.h9, pp, r10 {
-    public final int f30618a;
-    public final Object f30619b;
+public final class ea implements sj0, bg.q, kc, org.telegram.messenger.i9, pp, s10 {
+    public final int f30621a;
+    public final Object f30622b;
 
     public ea(Object obj, int i7) {
-        this.f30618a = i7;
-        this.f30619b = obj;
+        this.f30621a = i7;
+        this.f30622b = obj;
     }
 
     @Override
     public void G0(int i7, Drawable drawable) {
-        int i10 = this.f30618a;
+        int i10 = this.f30621a;
     }
 
     @Override
     public void V(ImageReceiver imageReceiver) {
-        int i7 = this.f30618a;
+        int i7 = this.f30621a;
     }
 
     @Override
     public void a() {
-        switch (this.f30618a) {
+        switch (this.f30621a) {
             case 4:
-                p4 p4Var = (p4) this.f30619b;
-                float progress = 1.0f - (p4Var.f31242w.getProgress() * 0.143f);
-                org.telegram.ui.Components.q9 q9Var = p4Var.f31234a;
+                p4 p4Var = (p4) this.f30622b;
+                float progress = 1.0f - (p4Var.f31245w.getProgress() * 0.143f);
+                org.telegram.ui.Components.q9 q9Var = p4Var.f31237a;
                 q9Var.setScaleX(progress);
                 q9Var.setScaleY(progress);
                 p4Var.invalidate();
                 return;
             default:
-                e7 e7Var = (e7) this.f30619b;
+                e7 e7Var = (e7) this.f30622b;
                 float progress2 = 1.0f - (e7Var.d.getProgress() * 0.143f);
-                org.telegram.ui.Components.q9 q9Var2 = e7Var.f30602a;
+                org.telegram.ui.Components.q9 q9Var2 = e7Var.f30605a;
                 q9Var2.setScaleX(progress2);
                 q9Var2.setScaleY(progress2);
                 e7Var.invalidate();
@@ -56,21 +56,21 @@ public final class ea implements sj0, bg.q, jc, org.telegram.messenger.h9, pp, r
 
     @Override
     public boolean c(int i7, View view) {
-        ia iaVar = (ia) this.f30619b;
+        ia iaVar = (ia) this.f30622b;
         iaVar.getClass();
-        iaVar.C1(((ThemesHorizontalListCell$InnerThemeView) view).f30371b);
+        iaVar.C1(((ThemesHorizontalListCell$InnerThemeView) view).f30374b);
         return true;
     }
 
     @Override
     public Object g(Number number, Object obj) {
         Integer num = (Integer) number;
-        return (CharSequence) ((ci.y) this.f30619b).a((Integer) obj);
+        return (CharSequence) ((ci.y) this.f30622b).a((Integer) obj);
     }
 
     @Override
     public void i(long j3) {
-        ((l) this.f30619b).b(j3);
+        ((l) this.f30622b).b(j3);
     }
 
     @Override
@@ -78,37 +78,37 @@ public final class ea implements sj0, bg.q, jc, org.telegram.messenger.h9, pp, r
         oh0 B;
         s0 s0Var;
         int w10;
-        fj fjVar;
-        switch (this.f30618a) {
+        gj gjVar;
+        switch (this.f30621a) {
             case 2:
-                v0 v0Var = (v0) this.f30619b;
+                v0 v0Var = (v0) this.f30622b;
                 if (z10 && (B = v0Var.J.B()) != null) {
-                    fj fjVar2 = v0Var.Q0;
-                    if (fjVar2 != null && !fjVar2.f24010o1) {
-                        fjVar2.f24010o1 = true;
+                    gj gjVar2 = v0Var.Q0;
+                    if (gjVar2 != null && !gjVar2.f24230o1) {
+                        gjVar2.f24230o1 = true;
                         B.N(0, false, false);
                         org.telegram.messenger.g0.g3(new p0(B, 0));
-                        if (fjVar2.n1 || v0Var.M1) {
-                            fjVar2.n1 = false;
+                        if (gjVar2.n1 || v0Var.M1) {
+                            gjVar2.n1 = false;
                             v0Var.M1 = false;
                             try {
                                 v0Var.performHapticFeedback(3, 2);
                             } catch (Exception unused) {
                             }
                             if (v0Var.getContext() instanceof LaunchActivity) {
-                                ((LaunchActivity) v0Var.getContext()).f43149w0.c(false);
+                                ((LaunchActivity) v0Var.getContext()).f43153w0.c(false);
                             }
                             TLRPC.VideoSize videoSize = v0Var.J1;
-                            if (videoSize != null && (s0Var = v0Var.f32111g1) != null) {
+                            if (videoSize != null && (s0Var = v0Var.f32114g1) != null) {
                                 s0Var.Q(v0Var, v0Var.I1, videoSize);
                                 return;
                             }
                             return;
                         }
                         return;
-                    } else if (B.f38213b0 < 1) {
+                    } else if (B.f38207b0 < 1) {
                         B.stop();
-                        B.N(B.f38217e[0] - 1, false, false);
+                        B.N(B.f38211e[0] - 1, false, false);
                         return;
                     } else {
                         return;
@@ -116,21 +116,21 @@ public final class ea implements sj0, bg.q, jc, org.telegram.messenger.h9, pp, r
                 }
                 return;
             default:
-                p7 p7Var = (p7) this.f30619b;
+                p7 p7Var = (p7) this.f30622b;
                 ImageReceiver imageReceiver2 = p7Var.d;
-                ImageReceiver imageReceiver3 = p7Var.f31254c;
-                if (z10 && !z11 && (fjVar = p7Var.f31267n) != null && fjVar.t2() && imageReceiver3.n() != null) {
+                ImageReceiver imageReceiver3 = p7Var.f31257c;
+                if (z10 && !z11 && (gjVar = p7Var.f31270n) != null && gjVar.t2() && imageReceiver3.n() != null) {
                     if (imageReceiver2.n() != null) {
                         imageReceiver2.n().recycle();
                     }
                     imageReceiver2.v0(Utilities.D(imageReceiver3.n(), false));
                 }
-                if (z10 && !z11 && p7Var.f31282x0 && imageReceiver3.n() != null) {
+                if (z10 && !z11 && p7Var.f31285x0 && imageReceiver3.n() != null) {
                     int J0 = org.telegram.messenger.g0.J0(imageReceiver3.n());
-                    p7Var.f31250a = J0;
+                    p7Var.f31253a = J0;
                     CheckBoxBase checkBoxBase = p7Var.Q;
-                    if (checkBoxBase != null && checkBoxBase.f32877x != (w10 = org.telegram.ui.ActionBar.m6.w(J0, org.telegram.ui.ActionBar.m6.r1(0.25f, -1)))) {
-                        checkBoxBase.f32877x = w10;
+                    if (checkBoxBase != null && checkBoxBase.f32880x != (w10 = org.telegram.ui.ActionBar.m6.w(J0, org.telegram.ui.ActionBar.m6.r1(0.25f, -1)))) {
+                        checkBoxBase.f32880x = w10;
                         checkBoxBase.b();
                         return;
                     }
@@ -144,11 +144,11 @@ public final class ea implements sj0, bg.q, jc, org.telegram.messenger.h9, pp, r
     public boolean run() {
         TLRPC.Message message;
         m4 m4Var;
-        r1 r1Var = (r1) this.f30619b;
-        fj fjVar = r1Var.Q5;
-        if (fjVar != null && (message = fjVar.f23993k) != null) {
-            if (fjVar.D != 29 || ((m4Var = r1Var.X5) != null && m4Var.f31087i)) {
-                if ((message.noforwards && !fj.c3(message)) || r1Var.Q5.S4() || r1Var.Q5.y2()) {
+        r1 r1Var = (r1) this.f30622b;
+        gj gjVar = r1Var.Q5;
+        if (gjVar != null && (message = gjVar.f24213k) != null) {
+            if (gjVar.D != 29 || ((m4Var = r1Var.X5) != null && m4Var.f31090i)) {
+                if ((message.noforwards && !gj.c3(message)) || r1Var.Q5.S4() || r1Var.Q5.y2()) {
                     return true;
                 }
                 return false;

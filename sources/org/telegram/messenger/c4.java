@@ -9,20 +9,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.b31;
 public final class c4 implements Runnable {
-    public final int f23283a = 2;
-    public final long f23284b;
-    public final boolean f23285c;
+    public final int f23225a = 3;
+    public final long f23226b;
+    public final boolean f23227c;
     public final c1 d;
-    public final Object f23286e;
-    public final Object f23287f;
+    public final Object f23228e;
+    public final Object f23229f;
     public final Object h;
 
     public c4(f4 f4Var, TLObject tLObject, long j3, boolean z10, String str, Runnable runnable) {
         this.d = f4Var;
-        this.f23286e = tLObject;
-        this.f23284b = j3;
-        this.f23285c = z10;
-        this.f23287f = str;
+        this.f23228e = tLObject;
+        this.f23226b = j3;
+        this.f23227c = z10;
+        this.f23229f = str;
         this.h = runnable;
     }
 
@@ -35,21 +35,21 @@ public final class c4 implements Runnable {
         TLRPC.WallPaper wallPaper = null;
         int i7 = 0;
         char c11 = 1;
-        switch (this.f23283a) {
+        switch (this.f23225a) {
             case 0:
                 f4 f4Var = (f4) this.d;
-                TLObject tLObject = (TLObject) this.f23286e;
-                long j3 = this.f23284b;
-                boolean z10 = this.f23285c;
-                String str2 = (String) this.f23287f;
+                TLObject tLObject = (TLObject) this.f23228e;
+                long j3 = this.f23226b;
+                boolean z10 = this.f23227c;
+                String str2 = (String) this.f23229f;
                 Runnable runnable = (Runnable) this.h;
                 if (tLObject instanceof TLRPC.Updates) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                     if (j3 >= 0) {
-                        userFull = mp.u1(f4Var.currentAccount).d2(j3);
+                        userFull = np.u1(f4Var.currentAccount).d2(j3);
                         P0 = null;
                     } else {
-                        P0 = mp.u1(f4Var.currentAccount).P0(-j3);
+                        P0 = np.u1(f4Var.currentAccount).P0(-j3);
                         userFull = null;
                     }
                     if (userFull != null) {
@@ -76,7 +76,7 @@ public final class c4 implements Runnable {
                                             userFull.flags |= 16777216;
                                             f4Var.r(j3, wallPaper2);
                                             f4Var.getMessagesStorage().j2(userFull, false);
-                                            ks f10 = ks.f(f4Var.currentAccount);
+                                            ls f10 = ls.f(f4Var.currentAccount);
                                             Object[] objArr = new Object[2];
                                             objArr[0] = Long.valueOf(j3);
                                             objArr[c10] = userFull;
@@ -87,7 +87,7 @@ public final class c4 implements Runnable {
                                             P0.flags2 |= 128;
                                             f4Var.r(j3, wallPaper3);
                                             f4Var.getMessagesStorage().N1(P0, false);
-                                            ks f11 = ks.f(f4Var.currentAccount);
+                                            ls f11 = ls.f(f4Var.currentAccount);
                                             Object[] objArr2 = new Object[4];
                                             objArr2[0] = P0;
                                             objArr2[c10] = 0;
@@ -105,70 +105,70 @@ public final class c4 implements Runnable {
                             c11 = c10;
                         }
                     }
-                    mp.u1(f4Var.currentAccount).U3(updates.updates, updates.users, updates.chats, false, updates.date);
+                    np.u1(f4Var.currentAccount).U3(updates.updates, updates.users, updates.chats, false, updates.date);
                     if (runnable != null) {
                         runnable.run();
                     }
-                    ks.f(f4Var.currentAccount).k(326, new Object[0]);
+                    ls.f(f4Var.currentAccount).k(326, new Object[0]);
                     return;
                 }
                 return;
             case 1:
-                mp mpVar = (mp) this.d;
-                TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers = (TLRPC.TL_channels_sendAsPeers) this.f23286e;
-                a0.h hVar = (a0.h) this.f23287f;
-                long j10 = this.f23284b;
-                hp hpVar = (hp) this.h;
-                boolean z11 = this.f23285c;
+                np npVar = (np) this.d;
+                TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers = (TLRPC.TL_channels_sendAsPeers) this.f23228e;
+                a0.h hVar = (a0.h) this.f23229f;
+                long j10 = this.f23226b;
+                ip ipVar = (ip) this.h;
+                boolean z11 = this.f23227c;
                 if (tL_channels_sendAsPeers == null) {
                     hVar.l(j10);
                     return;
                 }
                 SystemClock.elapsedRealtime();
-                hpVar.f24517a = tL_channels_sendAsPeers;
-                mpVar.getNotificationCenter().k(16, Long.valueOf(j10), tL_channels_sendAsPeers, Boolean.valueOf(z11));
+                ipVar.f24770a = tL_channels_sendAsPeers;
+                npVar.getNotificationCenter().k(16, Long.valueOf(j10), tL_channels_sendAsPeers, Boolean.valueOf(z11));
                 return;
             case 2:
-                e00 e00Var = (e00) this.d;
-                TLObject tLObject2 = (TLObject) this.f23286e;
-                boolean z12 = this.f23285c;
-                long j11 = this.f23284b;
-                HashSet hashSet = (HashSet) this.f23287f;
+                f00 f00Var = (f00) this.d;
+                TLObject tLObject2 = (TLObject) this.f23228e;
+                boolean z12 = this.f23227c;
+                long j11 = this.f23226b;
+                HashSet hashSet = (HashSet) this.f23229f;
                 Runnable runnable2 = (Runnable) this.h;
                 if (tLObject2 != null && z12) {
                     a0.h hVar2 = new a0.h();
                     TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs = (TLRPC.TL_messages_savedDialogs) tLObject2;
                     ArrayList m10 = qg.c.m(tL_messages_savedDialogs.dialogs);
                     while (i7 < tL_messages_savedDialogs.messages.size()) {
-                        hVar2.k(tL_messages_savedDialogs.messages.get(i7), tL_messages_savedDialogs.messages.get(i7).f28452id);
+                        hVar2.k(tL_messages_savedDialogs.messages.get(i7), tL_messages_savedDialogs.messages.get(i7).f28455id);
                         i7++;
                     }
-                    g0.g3(new ei(e00Var, tL_messages_savedDialogs, j11, m10, hVar2, hashSet, runnable2));
+                    g0.g3(new fi(f00Var, tL_messages_savedDialogs, j11, m10, hVar2, hashSet, runnable2));
                     return;
                 } else if (tLObject2 != null) {
                     a0.h hVar3 = new a0.h();
                     TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject2;
                     while (i7 < tL_messages_forumTopics.messages.size()) {
-                        hVar3.k(tL_messages_forumTopics.messages.get(i7), tL_messages_forumTopics.messages.get(i7).f28452id);
+                        hVar3.k(tL_messages_forumTopics.messages.get(i7), tL_messages_forumTopics.messages.get(i7).f28455id);
                         i7++;
                     }
-                    g0.g3(new di.a3(e00Var, tLObject2, j11, tL_messages_forumTopics, hVar3, runnable2, 3));
+                    g0.g3(new di.a3(f00Var, tLObject2, j11, tL_messages_forumTopics, hVar3, runnable2, 3));
                     return;
                 } else {
                     return;
                 }
             default:
-                z00 z00Var = (z00) this.d;
-                HashMap hashMap = (HashMap) this.f23286e;
-                long j12 = this.f23284b;
-                v00 v00Var = (v00) this.f23287f;
-                boolean z13 = this.f23285c;
+                a10 a10Var = (a10) this.d;
+                HashMap hashMap = (HashMap) this.f23228e;
+                long j12 = this.f23226b;
+                w00 w00Var = (w00) this.f23229f;
+                boolean z13 = this.f23227c;
                 HashSet hashSet2 = (HashSet) this.h;
-                synchronized (z00Var) {
+                synchronized (a10Var) {
                     try {
                         ArrayList arrayList = (ArrayList) hashMap.get(Long.valueOf(j12));
                         if (arrayList != null) {
-                            arrayList.remove(v00Var);
+                            arrayList.remove(w00Var);
                             if (arrayList.isEmpty()) {
                                 hashMap.remove(Long.valueOf(j12));
                             }
@@ -176,28 +176,28 @@ public final class c4 implements Runnable {
                     } finally {
                     }
                 }
-                String str3 = z00Var.getMessagesController().Y6;
+                String str3 = a10Var.getMessagesController().Y6;
                 if (!"alternative".equals(str3) && !"system".equals(str3)) {
                     TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
                     if (z13) {
                         tL_messages_translateText.flags |= 2;
-                        tL_messages_translateText.text.addAll(v00Var.f27335c);
+                        tL_messages_translateText.text.addAll(w00Var.f27670c);
                     } else {
                         tL_messages_translateText.flags |= 1;
-                        tL_messages_translateText.peer = z00Var.getMessagesController().l1(j12);
-                        tL_messages_translateText.f28555id = v00Var.f27334b;
+                        tL_messages_translateText.peer = a10Var.getMessagesController().l1(j12);
+                        tL_messages_translateText.f28558id = w00Var.f27669b;
                     }
-                    tL_messages_translateText.to_lang = z00.D(v00Var.f27336e);
-                    int sendRequest = z00Var.getConnectionsManager().sendRequest(tL_messages_translateText, new b4(z00Var, v00Var, z13, j12, hashSet2, 4));
-                    synchronized (z00Var) {
-                        v00Var.h = sendRequest;
+                    tL_messages_translateText.to_lang = a10.D(w00Var.f27671e);
+                    int sendRequest = a10Var.getConnectionsManager().sendRequest(tL_messages_translateText, new b4(a10Var, w00Var, z13, j12, hashSet2, 4));
+                    synchronized (a10Var) {
+                        w00Var.h = sendRequest;
                     }
                     return;
                 }
-                String str4 = v00Var.f27336e;
-                while (i7 < v00Var.f27334b.size()) {
+                String str4 = w00Var.f27671e;
+                while (i7 < w00Var.f27669b.size()) {
                     String str5 = str4;
-                    b31.K0(((TLRPC.TL_textWithEntities) v00Var.f27335c.get(i7)).text, null, str5, new l00(z00Var, (u10) v00Var.d.get(i7), z13, ((Integer) v00Var.f27334b.get(i7)).intValue(), str4, j12, 0));
+                    b31.K0(((TLRPC.TL_textWithEntities) w00Var.f27670c.get(i7)).text, null, str5, new m00(a10Var, (v10) w00Var.d.get(i7), z13, ((Integer) w00Var.f27669b.get(i7)).intValue(), str4, j12, 0));
                     i7++;
                     str4 = str5;
                 }
@@ -205,30 +205,30 @@ public final class c4 implements Runnable {
         }
     }
 
-    public c4(mp mpVar, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, a0.h hVar, long j3, hp hpVar, boolean z10) {
-        this.d = mpVar;
-        this.f23286e = tL_channels_sendAsPeers;
-        this.f23287f = hVar;
-        this.f23284b = j3;
-        this.h = hpVar;
-        this.f23285c = z10;
+    public c4(np npVar, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, a0.h hVar, long j3, ip ipVar, boolean z10) {
+        this.d = npVar;
+        this.f23228e = tL_channels_sendAsPeers;
+        this.f23229f = hVar;
+        this.f23226b = j3;
+        this.h = ipVar;
+        this.f23227c = z10;
     }
 
-    public c4(e00 e00Var, TLObject tLObject, boolean z10, long j3, HashSet hashSet, Runnable runnable) {
-        this.d = e00Var;
-        this.f23286e = tLObject;
-        this.f23285c = z10;
-        this.f23284b = j3;
-        this.f23287f = hashSet;
+    public c4(f00 f00Var, TLObject tLObject, boolean z10, long j3, HashSet hashSet, Runnable runnable) {
+        this.d = f00Var;
+        this.f23228e = tLObject;
+        this.f23227c = z10;
+        this.f23226b = j3;
+        this.f23229f = hashSet;
         this.h = runnable;
     }
 
-    public c4(z00 z00Var, HashMap hashMap, long j3, v00 v00Var, boolean z10, HashSet hashSet) {
-        this.d = z00Var;
-        this.f23286e = hashMap;
-        this.f23284b = j3;
-        this.f23287f = v00Var;
-        this.f23285c = z10;
+    public c4(a10 a10Var, HashMap hashMap, long j3, w00 w00Var, boolean z10, HashSet hashSet) {
+        this.d = a10Var;
+        this.f23228e = hashMap;
+        this.f23226b = j3;
+        this.f23229f = w00Var;
+        this.f23227c = z10;
         this.h = hashSet;
     }
 }

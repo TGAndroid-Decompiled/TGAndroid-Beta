@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import org.telegram.messenger.ImageReceiver;
 public abstract class t {
-    public static final Rect f3347a = new Rect();
+    public static final Rect f3354a = new Rect();
 
     static {
         new Rect();
@@ -71,7 +71,7 @@ public abstract class t {
 
     public static void e(Drawable drawable, float f10, float f11, int i7, int i10, int i11) {
         if (drawable != null) {
-            Rect rect = f3347a;
+            Rect rect = f3354a;
             c(rect, f10, f11, i7, i10, i11);
             drawable.setBounds(rect);
         }
@@ -79,14 +79,14 @@ public abstract class t {
 
     public static void f(ImageReceiver imageReceiver, float f10, float f11, int i7, int i10) {
         if (imageReceiver != null) {
-            Rect rect = f3347a;
+            Rect rect = f3354a;
             c(rect, f10, f11, i7, i10, 17);
             imageReceiver.z0(rect);
         }
     }
 
     public static void g(Drawable drawable, int i7, int i10, int i11, int i12) {
-        Rect rect = f3347a;
+        Rect rect = f3354a;
         if (drawable.getPadding(rect)) {
             drawable.setBounds(i7 - rect.left, i10 - rect.top, i11 + rect.right, i12 + rect.bottom);
         } else {
@@ -95,7 +95,7 @@ public abstract class t {
     }
 
     public static void h(NinePatchDrawable ninePatchDrawable, Rect rect) {
-        Rect rect2 = f3347a;
+        Rect rect2 = f3354a;
         if (ninePatchDrawable.getPadding(rect2)) {
             ninePatchDrawable.setBounds(rect.left - rect2.left, rect.top - rect2.top, rect.right + rect2.right, rect.bottom + rect2.bottom);
         } else {

@@ -5,15 +5,15 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.ui.ThemeActivity;
 public final class a61 implements org.telegram.ui.Components.qj0 {
-    public final int f45518a;
-    public final Object f45519b;
-    public final Object f45520c;
+    public final int f45522a;
+    public final Object f45523b;
+    public final Object f45524c;
     public final Object d;
 
     public a61(Object obj, Object obj2, Object obj3, int i7) {
-        this.f45518a = i7;
-        this.f45519b = obj;
-        this.f45520c = obj2;
+        this.f45522a = i7;
+        this.f45523b = obj;
+        this.f45524c = obj2;
         this.d = obj3;
     }
 
@@ -24,12 +24,12 @@ public final class a61 implements org.telegram.ui.Components.qj0 {
         boolean z11;
         boolean z12;
         boolean z13;
-        switch (this.f45518a) {
+        switch (this.f45522a) {
             case 0:
-                i61 i61Var = (i61) this.f45520c;
+                i61 i61Var = (i61) this.f45524c;
                 f61 f61Var = (f61) this.d;
-                ThemeActivity themeActivity = ((g61) this.f45519b).f47982e;
-                int i10 = themeActivity.f43880f;
+                ThemeActivity themeActivity = ((g61) this.f45523b).f47986e;
+                int i10 = themeActivity.f43884f;
                 if (i10 == 1) {
                     D0 = org.telegram.ui.ActionBar.m6.J;
                 } else {
@@ -44,12 +44,12 @@ public final class a61 implements org.telegram.ui.Components.qj0 {
                     }
                     themeActivity.presentFragment(new x71(l6Var, false, 1, false, z13));
                 } else {
-                    org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) i61Var.f48585e.get(i7);
-                    if (!TextUtils.isEmpty(j6Var.f29105o) && j6Var.f29093a != org.telegram.ui.ActionBar.m6.f29554n) {
+                    org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) i61Var.f48589e.get(i7);
+                    if (!TextUtils.isEmpty(j6Var.f29108o) && j6Var.f29096a != org.telegram.ui.ActionBar.m6.f29557n) {
                         org.telegram.ui.ActionBar.g6.a(false);
                     }
                     int i11 = l6Var.Z;
-                    int i12 = j6Var.f29093a;
+                    int i12 = j6Var.f29096a;
                     if (i11 != i12) {
                         if (i10 == 1) {
                             z12 = true;
@@ -57,7 +57,7 @@ public final class a61 implements org.telegram.ui.Components.qj0 {
                             z12 = false;
                         }
                         org.telegram.ui.ActionBar.m6.K1(l6Var, z12, i12, view);
-                        org.telegram.ui.ActionBar.s3.q(l6Var, j6Var.f29093a);
+                        org.telegram.ui.ActionBar.s3.q(l6Var, j6Var.f29096a);
                         org.telegram.ui.ActionBar.m6.M1(themeActivity);
                     } else {
                         if (i12 >= 100) {
@@ -94,7 +94,7 @@ public final class a61 implements org.telegram.ui.Components.qj0 {
                 }
                 return;
             default:
-                jx0.a0((jx0) this.f45519b, (Context) this.f45520c, (String) this.d, view, i7);
+                jx0.a0((jx0) this.f45523b, (Context) this.f45524c, (String) this.d, view, i7);
                 return;
         }
     }

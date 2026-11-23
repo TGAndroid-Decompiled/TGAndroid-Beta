@@ -3,9 +3,9 @@ package hi;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
 import org.telegram.ui.Components.lc;
 public final class y4 extends i2 {
     public final int D1;
@@ -27,22 +27,22 @@ public final class y4 extends i2 {
                     i7++;
                 }
             }
-            int i11 = mp.u1(this.f30170a).f25778r5;
-            org.telegram.ui.ActionBar.m2 m2Var = this.f30176c;
-            if (i7 >= i11 && !j10.i(this.f30170a).q()) {
-                String G = gd.G(mp.u1(this.f30170a).s5, "StoryPremiumWidgets2", new Object[0]);
+            int i11 = np.u1(this.f30173a).f25949r5;
+            org.telegram.ui.ActionBar.m2 m2Var = this.f30179c;
+            if (i7 >= i11 && !k10.i(this.f30173a).q()) {
+                String G = hd.G(np.u1(this.f30173a).s5, "StoryPremiumWidgets2", new Object[0]);
                 try {
                     m2Var.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
-                new lc(m2Var, this.J0).I(2131624217, gd.N0(2131749006, null), org.telegram.messenger.g0.R2(G, org.telegram.ui.ActionBar.m6.Xc, 0, new l(this, 4), this.J0)).k(true);
+                new lc(m2Var, this.J0).I(2131624217, hd.N0(2131749006, null), org.telegram.messenger.g0.R2(G, org.telegram.ui.ActionBar.m6.Xc, 0, new l(this, 4), this.J0)).k(true);
                 return false;
-            } else if (i7 >= mp.u1(this.f30170a).s5) {
+            } else if (i7 >= np.u1(this.f30173a).s5) {
                 try {
                     m2Var.performHapticFeedback(3);
                 } catch (Exception unused2) {
                 }
-                new lc(m2Var, this.J0).I(2131623982, gd.N0(2131748785, "LimitReached"), gd.G(mp.u1(this.f30170a).s5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
+                new lc(m2Var, this.J0).I(2131623982, hd.N0(2131748785, "LimitReached"), hd.G(np.u1(this.f30173a).s5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
                 return false;
             }
         }
@@ -77,19 +77,19 @@ public final class y4 extends i2 {
 
     @Override
     public final boolean L0(Runnable runnable) {
-        sa saVar = ((u9) this.E1).f15581k2;
-        Activity activity = saVar.f15385b;
+        sa saVar = ((u9) this.E1).f15584k2;
+        Activity activity = saVar.f15388b;
         if (activity != null) {
             if (Build.VERSION.SDK_INT >= 33) {
                 if (activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
                     activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
-                    saVar.f15465z2 = (ai.y0) runnable;
+                    saVar.f15468z2 = (ai.c1) runnable;
                     return false;
                 }
                 return true;
             } else if (activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
-                saVar.f15465z2 = (ai.y0) runnable;
+                saVar.f15468z2 = (ai.c1) runnable;
                 return false;
             } else {
                 return true;

@@ -16,7 +16,7 @@ import m.o3;
 public final class w extends q6.h {
     public static final b Y = new b("CastClientImpl", null);
     public static final Object Z = new Object();
-    public static final Object f17313a0 = new Object();
+    public static final Object f17316a0 = new Object();
     public f6.d F;
     public final CastDevice G;
     public final d0 H;
@@ -78,7 +78,7 @@ public final class w extends q6.h {
         CastDevice castDevice = this.G;
         q6.m.i(castDevice, "device should not be null");
         if (!castDevice.c(2048) && castDevice.c(4) && !castDevice.c(1)) {
-            "Chromecast Audio".equals(castDevice.f6175e);
+            "Chromecast Audio".equals(castDevice.f6178e);
         }
     }
 
@@ -91,7 +91,7 @@ public final class w extends q6.h {
         w wVar = null;
         this.L = null;
         if (vVar != null) {
-            w wVar2 = (w) vVar.f17311b.getAndSet(null);
+            w wVar2 = (w) vVar.f17314b.getAndSet(null);
             if (wVar2 != null) {
                 wVar2.S = -1;
                 wVar2.T = -1;

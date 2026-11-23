@@ -3,28 +3,28 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class be extends AnimatorListenerAdapter {
-    public final int f33839a;
-    public final int f33840b;
-    public final ChatActivityEnterView f33841c;
+    public final int f33832a;
+    public final int f33833b;
+    public final ChatActivityEnterView f33834c;
 
     public be(ChatActivityEnterView chatActivityEnterView, int i7, int i10) {
-        this.f33839a = i10;
-        this.f33841c = chatActivityEnterView;
-        this.f33840b = i7;
+        this.f33832a = i10;
+        this.f33834c = chatActivityEnterView;
+        this.f33833b = i7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f33839a) {
+        switch (this.f33832a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f33841c;
-                du0 du0Var = chatActivityEnterView.f32588c2;
-                chatActivityEnterView.f32697q4 = false;
-                chatActivityEnterView.f32706r4 = null;
+                ChatActivityEnterView chatActivityEnterView = this.f33834c;
+                du0 du0Var = chatActivityEnterView.f32591c2;
+                chatActivityEnterView.f32700q4 = false;
+                chatActivityEnterView.f32709r4 = null;
                 fg fgVar = chatActivityEnterView.V0;
                 if (fgVar != null) {
-                    if (chatActivityEnterView.f32609e7 == null) {
-                        fgVar.getLayoutParams().height = this.f33840b;
+                    if (chatActivityEnterView.f32612e7 == null) {
+                        fgVar.getLayoutParams().height = this.f33833b;
                     }
                     chatActivityEnterView.V0.setLayerType(0, null);
                 }
@@ -33,25 +33,25 @@ public final class be extends AnimatorListenerAdapter {
                     du0Var.setForeground(null);
                     du0Var.setWillNotDraw(false);
                 }
-                if (chatActivityEnterView.f32688p3 && chatActivityEnterView.S0()) {
+                if (chatActivityEnterView.f32691p3 && chatActivityEnterView.S0()) {
                     chatActivityEnterView.X1(0, chatActivityEnterView.V2, true, true);
                 }
-                dd ddVar = chatActivityEnterView.f32711s0;
+                dd ddVar = chatActivityEnterView.f32714s0;
                 if (ddVar != null) {
                     ddVar.run();
-                    chatActivityEnterView.f32711s0 = null;
+                    chatActivityEnterView.f32714s0 = null;
                 }
                 chatActivityEnterView.B4.e();
                 return;
             default:
-                int i7 = this.f33840b;
-                ChatActivityEnterView chatActivityEnterView2 = this.f33841c;
+                int i7 = this.f33833b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f33834c;
                 if (i7 == 0) {
-                    chatActivityEnterView2.f32696q3 = 0;
+                    chatActivityEnterView2.f32699q3 = 0;
                 }
                 chatActivityEnterView2.W0 = null;
-                chatActivityEnterView2.f32748x2.setTranslationY(0.0f);
-                chatActivityEnterView2.f32748x2.setVisibility(8);
+                chatActivityEnterView2.f32751x2.setTranslationY(0.0f);
+                chatActivityEnterView2.f32751x2.setVisibility(8);
                 chatActivityEnterView2.B4.e();
                 ng ngVar = chatActivityEnterView2.P3;
                 if (ngVar != null) {

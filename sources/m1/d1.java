@@ -3,9 +3,9 @@ package m1;
 import hi.w4;
 import java.util.concurrent.atomic.AtomicInteger;
 public final class d1 implements m0 {
-    public final ie.d f20346a = new ie.d();
-    public final w4 f20347b = new w4(12);
-    public final ob.c f20348c = new ob.c((rd.p) new kd.j(2, null));
+    public final ie.d f20349a = new ie.d();
+    public final w4 f20350b = new w4(12);
+    public final ob.c f20351c = new ob.c((rd.p) new kd.j(2, null));
 
     public d1(String str) {
     }
@@ -17,7 +17,7 @@ public final class d1 implements m0 {
 
     @Override
     public final Object b(kd.c cVar) {
-        return new Integer(((AtomicInteger) this.f20347b.f15705b).get());
+        return new Integer(((AtomicInteger) this.f20350b.f15708b).get());
     }
 
     @Override
@@ -27,11 +27,11 @@ public final class d1 implements m0 {
 
     @Override
     public final ce.c d() {
-        return this.f20348c;
+        return this.f20351c;
     }
 
     @Override
     public final Object e(a0 a0Var) {
-        return new Integer(((AtomicInteger) this.f20347b.f15705b).incrementAndGet());
+        return new Integer(((AtomicInteger) this.f20350b.f15708b).incrementAndGet());
     }
 }

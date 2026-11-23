@@ -8,9 +8,9 @@ import android.graphics.drawable.Drawable;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Components.nr;
 public final class y1 extends Drawable {
-    public boolean f22537c;
-    public final Paint f22535a = new Paint(1);
-    public final org.telegram.ui.Components.d6 f22536b = new org.telegram.ui.Components.d6(new kg.i0(this, 29), 420, nr.h, 0);
+    public boolean f22540c;
+    public final Paint f22538a = new Paint(1);
+    public final org.telegram.ui.Components.d6 f22539b = new org.telegram.ui.Components.d6(new kg.i0(this, 29), 420, nr.h, 0);
     public int d = 255;
 
     public y1(int i7) {
@@ -18,16 +18,16 @@ public final class y1 extends Drawable {
     }
 
     public final void a(int i7) {
-        this.f22535a.setColor(i7);
+        this.f22538a.setColor(i7);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        float d = this.f22536b.d(this.f22537c);
+        float d = this.f22539b.d(this.f22540c);
         if (d <= 0.0f) {
             return;
         }
-        Paint paint = this.f22535a;
+        Paint paint = this.f22538a;
         paint.setAlpha((int) (this.d * d));
         paint.setShadowLayer(org.telegram.messenger.g0.L(12.0f) * d, 0.0f, org.telegram.messenger.g0.L(3.0f), m6.r1(d, 805306368));
         Rect bounds = getBounds();
@@ -49,6 +49,6 @@ public final class y1 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f22535a.setColorFilter(colorFilter);
+        this.f22538a.setColorFilter(colorFilter);
     }
 }

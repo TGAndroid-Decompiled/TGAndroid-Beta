@@ -7,16 +7,16 @@ import org.telegram.ui.Components.cs0;
 import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.zs0;
 public final class e extends zs0 {
-    public final m f13663v3;
+    public final m f13666v3;
 
     public e(m mVar, Context context) {
         super(context);
-        this.f13663v3 = mVar;
+        this.f13666v3 = mVar;
     }
 
     @Override
     public final boolean A1() {
-        return this.f13663v3.f13679b;
+        return this.f13666v3.f13682b;
     }
 
     @Override
@@ -36,10 +36,10 @@ public final class e extends zs0 {
             }
         }
         float f10 = i10;
-        m mVar = this.f13663v3;
+        m mVar = this.f13666v3;
         ah.a aVar = mVar.K;
-        if (mVar.f13679b) {
-            cs0 cs0Var = mVar.f13684r;
+        if (mVar.f13682b) {
+            cs0 cs0Var = mVar.f13687r;
             int i12 = 0;
             for (int i13 = 0; i13 < cs0Var.getChildCount(); i13++) {
                 int bottom2 = cs0Var.getChildAt(i13).getBottom() - cs0Var.getPaddingTop();
@@ -47,9 +47,9 @@ public final class e extends zs0 {
                     i12 = bottom2;
                 }
             }
-            f10 = g0.T1(f10, i12, mVar.f13680c);
+            f10 = g0.T1(f10, i12, mVar.f13683c);
         }
-        if (mVar.f13686w.b() <= 0) {
+        if (mVar.f13689w.b() <= 0) {
             i7 = 8;
         }
         aVar.setVisibility(i7);
@@ -58,35 +58,35 @@ public final class e extends zs0 {
 
     @Override
     public final int getAnimateToColumnsCount() {
-        return this.f13663v3.f13681e;
+        return this.f13666v3.f13684e;
     }
 
     @Override
     public final float getChangeColumnsProgress() {
-        return this.f13663v3.f13680c;
+        return this.f13666v3.f13683c;
     }
 
     @Override
     public final int getColumnsCount() {
-        return this.f13663v3.d;
+        return this.f13666v3.d;
     }
 
     @Override
     public final kj0 getMovingAdapter() {
-        m mVar = this.f13663v3;
-        if (mVar.H.E == 0 && !mVar.f13678a0.H.F1) {
-            return mVar.f13686w;
+        m mVar = this.f13666v3;
+        if (mVar.H.E == 0 && !mVar.f13681a0.H.F1) {
+            return mVar.f13689w;
         }
         return null;
     }
 
     @Override
     public final kj0 getSupportingAdapter() {
-        return this.f13663v3.f13687x;
+        return this.f13666v3.f13690x;
     }
 
     @Override
     public final cs0 getSupportingListView() {
-        return this.f13663v3.f13684r;
+        return this.f13666v3.f13687r;
     }
 }

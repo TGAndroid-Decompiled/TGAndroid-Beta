@@ -1,37 +1,37 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.q10;
+import org.telegram.messenger.r10;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class i0 implements Runnable {
-    public volatile boolean f44362a;
-    public Runnable f44363b;
-    public final String f44364c;
+    public volatile boolean f44366a;
+    public Runnable f44367b;
+    public final String f44368c;
     public final TL_wallet.nftItem d;
-    public final String f44365e;
-    public final q10 f44366f;
+    public final String f44369e;
+    public final r10 f44370f;
     public final u0 h;
 
-    public i0(u0 u0Var, String str, TL_wallet.nftItem nftitem, String str2, q10 q10Var) {
+    public i0(u0 u0Var, String str, TL_wallet.nftItem nftitem, String str2, r10 r10Var) {
         this.h = u0Var;
-        this.f44364c = str;
+        this.f44368c = str;
         this.d = nftitem;
-        this.f44365e = str2;
-        this.f44366f = q10Var;
+        this.f44369e = str2;
+        this.f44370f = r10Var;
     }
 
     @Override
     public final synchronized void run() {
         try {
             try {
-                if (this.f44362a) {
+                if (this.f44366a) {
                     return;
                 }
-                WalletEngine2 walletEngine2 = this.h.f45124b;
-                String str = this.f44364c;
+                WalletEngine2 walletEngine2 = this.h.f45128b;
+                String str = this.f44368c;
                 TL_wallet.nftItem nftitem = this.d;
                 String str2 = nftitem.address;
-                String str3 = this.f44365e;
-                this.f44363b = walletEngine2.emulateSendNFT(str, str2, str3, new s(this, nftitem, str3, this.f44366f, 4));
+                String str3 = this.f44369e;
+                this.f44367b = walletEngine2.emulateSendNFT(str, str2, str3, new s(this, nftitem, str3, this.f44370f, 4));
             } catch (Throwable th2) {
                 th = th2;
                 throw th;

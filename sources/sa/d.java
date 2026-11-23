@@ -23,9 +23,9 @@ import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import m2.i;
-import org.telegram.messenger.cj;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.i10;
+import org.telegram.messenger.dj;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.j10;
 import org.telegram.messenger.p2;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -52,11 +52,11 @@ import q2.l;
 import q2.m;
 import u2.u;
 public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, Continuation, u9.d, si, ng, gh.a, m1, m, u, y2.m, yi.f {
-    public static final d f57174b = new d(13);
-    public final int f57175a;
+    public static final d f57178b = new d(13);
+    public final int f57179a;
 
     public d(int i7) {
-        this.f57175a = i7;
+        this.f57179a = i7;
     }
 
     public static void D2(d1 d1Var, boolean z10) {
@@ -64,7 +64,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
         rk0 rk0Var;
         k0 h = n0.h(d1Var);
         StringBuilder sb2 = new StringBuilder("widget ");
-        sb2.append(d1Var.f54732a);
+        sb2.append(d1Var.f54736a);
         sb2.append(": engine process died");
         if (z10) {
             str = ", restarting";
@@ -72,7 +72,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
             str = "";
         }
         p5.c.s(str, sb2);
-        if (z10 && h != null && (rk0Var = h.f54860w) != null && rk0Var.f39253f0 && rk0Var.Y != null) {
+        if (z10 && h != null && (rk0Var = h.f54864w) != null && rk0Var.f39263f0 && rk0Var.Y != null) {
             rk0Var.s0();
             rk0Var.r0();
         }
@@ -127,7 +127,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
 
     @Override
     public int E1(e2.u uVar) {
-        if (uVar.f10798w != null) {
+        if (uVar.f10801w != null) {
             return 1;
         }
         return 0;
@@ -155,7 +155,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
 
     @Override
     public l M(j jVar, e2.u uVar) {
-        return l.f55803z;
+        return l.f55807z;
     }
 
     @Override
@@ -209,7 +209,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public boolean T1(r1 r1Var, fj fjVar) {
+    public boolean T1(r1 r1Var, gj gjVar) {
         return false;
     }
 
@@ -305,7 +305,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
 
     @Override
     public Object e(r7 r7Var) {
-        switch (this.f57175a) {
+        switch (this.f57179a) {
             case 14:
                 return new pb.h();
             default:
@@ -350,8 +350,8 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public boolean f1(fj fjVar) {
-        return c0.a(fjVar);
+    public boolean f1(gj gjVar) {
+        return c0.a(gjVar);
     }
 
     @Override
@@ -441,7 +441,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
 
     @Override
     public q2.g r(j jVar, e2.u uVar) {
-        if (uVar.f10798w == null) {
+        if (uVar.f10801w == null) {
             return null;
         }
         return new q2.n(new q2.f(6001, new Exception()));
@@ -452,7 +452,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
         if (i7 < i10) {
             fg.a.v.r0(shortBuffer, i7, shortBuffer2, i10, i11);
         } else if (i7 > i10) {
-            fg.a.f11639u.r0(shortBuffer, i7, shortBuffer2, i10, i11);
+            fg.a.f11642u.r0(shortBuffer, i7, shortBuffer2, i10, i11);
         } else if (i7 == i10) {
             shortBuffer2.put(shortBuffer);
         } else {
@@ -508,7 +508,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public boolean y0(fj fjVar) {
+    public boolean y0(gj gjVar) {
         return true;
     }
 
@@ -528,7 +528,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
     }
 
     public d(Context context) {
-        this.f57175a = 10;
+        this.f57179a = 10;
     }
 
     @Override
@@ -710,7 +710,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void L(cj cjVar) {
+    public void L(dj djVar) {
     }
 
     @Override
@@ -722,7 +722,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void O1(fj fjVar) {
+    public void O1(gj gjVar) {
     }
 
     @Override
@@ -730,7 +730,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void R(fj fjVar) {
+    public void R(gj gjVar) {
     }
 
     @Override
@@ -854,7 +854,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void a2(r1 r1Var, i10 i10Var) {
+    public void a2(r1 r1Var, j10 j10Var) {
     }
 
     @Override
@@ -975,7 +975,7 @@ public class d implements SuccessContinuation, b7.c, r11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void S1(fj fjVar, String str, String str2, String str3, String str4, int i7, int i10) {
+    public void S1(gj gjVar, String str, String str2, String str3, String str4, int i7, int i10) {
     }
 
     @Override

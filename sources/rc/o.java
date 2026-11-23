@@ -5,8 +5,8 @@ import java.nio.ByteBuffer;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 public final class o extends w {
-    public static final byte[] f56562e = {0, 0, -1, -1};
-    public int f56563c;
+    public static final byte[] f56566e = {0, 0, -1, -1};
+    public int f56567c;
     public b3.j d;
 
     public static byte[] a(byte[] r13) {
@@ -14,7 +14,7 @@ public final class o extends w {
     }
 
     public final byte[] b(byte[] bArr) {
-        int i7 = this.f56563c;
+        int i7 = this.f56567c;
         if (i7 == 32768 || bArr.length < i7) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -34,24 +34,24 @@ public final class o extends w {
     public final byte[] c(byte[] bArr) {
         b3.j jVar = new b3.j(bArr.length + 4, 13);
         jVar.q(bArr);
-        jVar.q(f56562e);
+        jVar.q(f56566e);
         if (this.d == null) {
             this.d = new b3.j(0, 13);
         }
         b3.j jVar2 = this.d;
-        int i7 = jVar2.f2914b;
+        int i7 = jVar2.f2921b;
         try {
             c.a(jVar, jVar2);
             b3.j jVar3 = this.d;
-            byte[] u10 = jVar3.u(i7, jVar3.f2914b);
+            byte[] u10 = jVar3.u(i7, jVar3.f2921b);
             b3.j jVar4 = this.d;
-            if (((ByteBuffer) jVar4.f2915c).capacity() > 0) {
-                int i10 = jVar4.f2914b;
+            if (((ByteBuffer) jVar4.f2922c).capacity() > 0) {
+                int i10 = jVar4.f2921b;
                 byte[] u11 = jVar4.u(i10, i10);
                 ByteBuffer wrap = ByteBuffer.wrap(u11);
-                jVar4.f2915c = wrap;
+                jVar4.f2922c = wrap;
                 wrap.position(u11.length);
-                jVar4.f2914b = u11.length;
+                jVar4.f2921b = u11.length;
             }
             return u10;
         } catch (Exception e10) {

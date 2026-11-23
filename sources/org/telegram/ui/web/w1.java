@@ -9,28 +9,28 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.w7;
 import org.telegram.tgnet.SerializedData;
 public final class w1 implements Runnable {
-    public final int f53384a;
-    public final a2 f53385b;
+    public final int f53388a;
+    public final a2 f53389b;
 
     public w1(a2 a2Var, int i7) {
-        this.f53384a = i7;
-        this.f53385b = a2Var;
+        this.f53388a = i7;
+        this.f53389b = a2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f53384a) {
+        switch (this.f53388a) {
             case 0:
-                final a2 a2Var = this.f53385b;
+                final a2 a2Var = this.f53389b;
                 if (!a2Var.d) {
                     a2Var.d = true;
                     long currentTimeMillis = System.currentTimeMillis();
                     final ArrayList arrayList = new ArrayList();
-                    for (z1 z1Var : a2Var.f53099a.values()) {
-                        if (!TextUtils.isEmpty(z1Var.f53416b) && currentTimeMillis - z1Var.f53415a <= 604800000) {
+                    for (z1 z1Var : a2Var.f53103a.values()) {
+                        if (!TextUtils.isEmpty(z1Var.f53420b) && currentTimeMillis - z1Var.f53419a <= 604800000) {
                             arrayList.add(0, z1Var);
                             if (arrayList.size() >= 100) {
-                                Utilities.f22807e.c(new Runnable() {
+                                Utilities.f22810e.c(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
@@ -42,11 +42,11 @@ public final class w1 implements Runnable {
                                                     ArrayList arrayList2 = arrayList;
                                                     if (i7 < arrayList2.size()) {
                                                         z1 z1Var2 = (z1) arrayList2.get(i7);
-                                                        a2Var2.f53099a.put(z1Var2.f53416b, z1Var2);
+                                                        a2Var2.f53103a.put(z1Var2.f53420b, z1Var2);
                                                         i7++;
                                                     } else {
-                                                        a2Var2.f53100b = true;
-                                                        a2Var2.f53101c = false;
+                                                        a2Var2.f53104b = true;
+                                                        a2Var2.f53105c = false;
                                                         return;
                                                     }
                                                 }
@@ -64,7 +64,7 @@ public final class w1 implements Runnable {
                                                     }
                                                 }
                                                 y1 y1Var = new y1();
-                                                y1Var.f53409a.addAll(arrayList);
+                                                y1Var.f53413a.addAll(arrayList);
                                                 SerializedData serializedData = new SerializedData(y1Var.getObjectSize());
                                                 y1Var.serializeToStream(serializedData);
                                                 try {
@@ -83,7 +83,7 @@ public final class w1 implements Runnable {
                             }
                         }
                     }
-                    Utilities.f22807e.c(new Runnable() {
+                    Utilities.f22810e.c(new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
@@ -95,11 +95,11 @@ public final class w1 implements Runnable {
                                         ArrayList arrayList2 = arrayList;
                                         if (i7 < arrayList2.size()) {
                                             z1 z1Var2 = (z1) arrayList2.get(i7);
-                                            a2Var2.f53099a.put(z1Var2.f53416b, z1Var2);
+                                            a2Var2.f53103a.put(z1Var2.f53420b, z1Var2);
                                             i7++;
                                         } else {
-                                            a2Var2.f53100b = true;
-                                            a2Var2.f53101c = false;
+                                            a2Var2.f53104b = true;
+                                            a2Var2.f53105c = false;
                                             return;
                                         }
                                     }
@@ -117,7 +117,7 @@ public final class w1 implements Runnable {
                                         }
                                     }
                                     y1 y1Var = new y1();
-                                    y1Var.f53409a.addAll(arrayList);
+                                    y1Var.f53413a.addAll(arrayList);
                                     SerializedData serializedData = new SerializedData(y1Var.getObjectSize());
                                     y1Var.serializeToStream(serializedData);
                                     try {
@@ -136,10 +136,10 @@ public final class w1 implements Runnable {
                 }
                 return;
             case 1:
-                final a2 a2Var2 = this.f53385b;
+                final a2 a2Var2 = this.f53389b;
                 File file = new File(w7.z(4), "webmetacache.dat");
                 if (!file.exists()) {
-                    a2Var2.f53100b = true;
+                    a2Var2.f53104b = true;
                     return;
                 }
                 final ArrayList arrayList2 = new ArrayList();
@@ -147,7 +147,7 @@ public final class w1 implements Runnable {
                     SerializedData serializedData = new SerializedData(file);
                     y1 y1Var = new y1();
                     y1Var.readParams(serializedData, true);
-                    arrayList2.addAll(y1Var.f53409a);
+                    arrayList2.addAll(y1Var.f53413a);
                 } catch (Exception e10) {
                     a8.g(e10, true);
                 }
@@ -163,11 +163,11 @@ public final class w1 implements Runnable {
                                     ArrayList arrayList22 = arrayList2;
                                     if (i7 < arrayList22.size()) {
                                         z1 z1Var2 = (z1) arrayList22.get(i7);
-                                        a2Var22.f53099a.put(z1Var2.f53416b, z1Var2);
+                                        a2Var22.f53103a.put(z1Var2.f53420b, z1Var2);
                                         i7++;
                                     } else {
-                                        a2Var22.f53100b = true;
-                                        a2Var22.f53101c = false;
+                                        a2Var22.f53104b = true;
+                                        a2Var22.f53105c = false;
                                         return;
                                     }
                                 }
@@ -185,7 +185,7 @@ public final class w1 implements Runnable {
                                     }
                                 }
                                 y1 y1Var2 = new y1();
-                                y1Var2.f53409a.addAll(arrayList2);
+                                y1Var2.f53413a.addAll(arrayList2);
                                 SerializedData serializedData2 = new SerializedData(y1Var2.getObjectSize());
                                 y1Var2.serializeToStream(serializedData2);
                                 try {
@@ -202,7 +202,7 @@ public final class w1 implements Runnable {
                 });
                 return;
             default:
-                this.f53385b.d = false;
+                this.f53389b.d = false;
                 return;
         }
     }

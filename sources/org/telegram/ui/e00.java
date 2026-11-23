@@ -13,21 +13,21 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 public final class e00 implements RequestDelegate {
-    public final int f47087a;
-    public final Object f47088b;
-    public final Object f47089c;
+    public final int f47091a;
+    public final Object f47092b;
+    public final Object f47093c;
 
     public e00(int i7, Object obj, Object obj2) {
-        this.f47087a = i7;
-        this.f47088b = obj;
-        this.f47089c = obj2;
+        this.f47091a = i7;
+        this.f47092b = obj;
+        this.f47093c = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f47087a;
-        Object obj = this.f47089c;
-        Object obj2 = this.f47088b;
+        int i7 = this.f47091a;
+        Object obj = this.f47093c;
+        Object obj2 = this.f47092b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.g0.g3(new ss(19, (FiltersSetupActivity) obj2, (TLRPC.TL_messages_toggleDialogFilterTags) obj));
@@ -37,7 +37,7 @@ public final class e00 implements RequestDelegate {
                 return;
             case 2:
                 j50 j50Var = (j50) obj2;
-                if (Objects.equals(j50Var.f48896a.f49201e, (String) obj)) {
+                if (Objects.equals(j50Var.f48900a.f49205e, (String) obj)) {
                     org.telegram.messenger.g0.g3(new ss(27, j50Var, tLObject));
                     return;
                 }
@@ -123,9 +123,9 @@ public final class e00 implements RequestDelegate {
                 TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm = (TLRPC.TL_payments_sendPaymentForm) obj;
                 if (tLObject != null) {
                     if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
-                        org.telegram.messenger.x10 x10Var = ml0Var2.f49904d1;
-                        if (x10Var != null) {
-                            x10Var.a((TLRPC.TL_payments_paymentResult) tLObject);
+                        org.telegram.messenger.y10 y10Var = ml0Var2.f49908d1;
+                        if (y10Var != null) {
+                            y10Var.a((TLRPC.TL_payments_paymentResult) tLObject);
                             return;
                         }
                         TLRPC.Updates updates = ((TLRPC.TL_payments_paymentResult) tLObject).updates;
@@ -154,7 +154,7 @@ public final class e00 implements RequestDelegate {
                         return;
                     }
                 }
-                o00 o00Var = ml0Var2.f49910f1;
+                o00 o00Var = ml0Var2.f49914f1;
                 if (o00Var == null || !((Boolean) o00Var.a(tL_error)).booleanValue()) {
                     org.telegram.messenger.g0.g3(new mc0(ml0Var2, tL_error, tL_payments_sendPaymentForm, 17));
                     return;
@@ -174,7 +174,7 @@ public final class e00 implements RequestDelegate {
                 return;
             case 23:
                 RectF rectF = ProfileActivity.Z6;
-                org.telegram.messenger.g0.g3(new kg0((org.telegram.messenger.fs) ((ProfileActivity) obj2), (Object) tL_error, (Object) tLObject, (String) obj, 13));
+                org.telegram.messenger.g0.g3(new kg0((org.telegram.messenger.gs) ((ProfileActivity) obj2), (Object) tL_error, (Object) tLObject, (String) obj, 13));
                 return;
             case 24:
                 RectF rectF2 = ProfileActivity.Z6;

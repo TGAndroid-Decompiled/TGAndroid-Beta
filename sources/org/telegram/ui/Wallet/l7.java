@@ -12,7 +12,7 @@ public final class l7 extends vg.e {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.M.f44630y && super.onTouchEvent(motionEvent)) {
+        if (!this.M.f44634y && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

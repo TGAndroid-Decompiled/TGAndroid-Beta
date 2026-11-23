@@ -5,21 +5,21 @@ import android.graphics.Paint;
 import android.text.Editable;
 import android.text.style.ReplacementSpan;
 import android.view.View;
-import org.telegram.messenger.cu;
-import org.telegram.messenger.ev;
-import org.telegram.messenger.j10;
+import org.telegram.messenger.du;
+import org.telegram.messenger.fv;
+import org.telegram.messenger.k10;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.h6;
 public final class i4 extends ReplacementSpan {
-    public final TL_iv.textButton f22179a;
-    public cu f22180b;
-    public View f22181c;
-    public int d = j10.f24798t0;
-    public h6 f22182e;
+    public final TL_iv.textButton f22182a;
+    public du f22183b;
+    public View f22184c;
+    public int d = k10.f24968t0;
+    public h6 f22185e;
 
     public i4(TL_iv.textButton textbutton) {
-        this.f22179a = textbutton;
+        this.f22182a = textbutton;
     }
 
     public static boolean c(TL_keyboard.InlineButtonType inlineButtonType) {
@@ -31,29 +31,29 @@ public final class i4 extends ReplacementSpan {
 
     public final void a(int i7, View view, h6 h6Var) {
         View view2;
-        cu cuVar = this.f22180b;
-        if (cuVar != null && (view2 = this.f22181c) != null) {
-            cuVar.b(view2);
+        du duVar = this.f22183b;
+        if (duVar != null && (view2 = this.f22184c) != null) {
+            duVar.b(view2);
         }
-        this.f22181c = view;
+        this.f22184c = view;
         this.d = i7;
-        this.f22182e = h6Var;
-        this.f22180b = null;
+        this.f22185e = h6Var;
+        this.f22183b = null;
         b();
     }
 
-    public final cu b() {
-        if (this.f22180b == null) {
+    public final du b() {
+        if (this.f22183b == null) {
             int i7 = this.d;
             int L = org.telegram.messenger.g0.L(240.0f);
-            cu cuVar = new cu(new ev(i7, L, this.f22182e), L, this.f22179a, Boolean.FALSE);
-            this.f22180b = cuVar;
-            View view = this.f22181c;
+            du duVar = new du(new fv(i7, L, this.f22185e), L, this.f22182a, Boolean.FALSE);
+            this.f22183b = duVar;
+            View view = this.f22184c;
             if (view != null) {
-                cuVar.a(view);
+                duVar.a(view);
             }
         }
-        return this.f22180b;
+        return this.f22183b;
     }
 
     public final void d(Editable editable) {

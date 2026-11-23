@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 public abstract class a {
-    public static Context f61524a;
-    public static Boolean f61525b;
+    public static Context f61528a;
+    public static Boolean f61529b;
 
     public static Notification.Builder a(Context context, String str) {
         return new Notification.Builder(context, str);
@@ -33,23 +33,23 @@ public abstract class a {
         Boolean bool;
         synchronized (a.class) {
             Context applicationContext = context.getApplicationContext();
-            Context context2 = f61524a;
-            if (context2 != null && (bool = f61525b) != null && context2 == applicationContext) {
+            Context context2 = f61528a;
+            if (context2 != null && (bool = f61529b) != null && context2 == applicationContext) {
                 return bool.booleanValue();
             }
-            f61525b = null;
+            f61529b = null;
             if (x6.b.d()) {
-                f61525b = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
+                f61529b = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
             } else {
                 try {
                     context.getClassLoader().loadClass("com.google.android.instantapps.supervisor.InstantAppsRuntime");
-                    f61525b = Boolean.TRUE;
+                    f61529b = Boolean.TRUE;
                 } catch (ClassNotFoundException unused) {
-                    f61525b = Boolean.FALSE;
+                    f61529b = Boolean.FALSE;
                 }
             }
-            f61524a = applicationContext;
-            return f61525b.booleanValue();
+            f61528a = applicationContext;
+            return f61529b.booleanValue();
         }
     }
 

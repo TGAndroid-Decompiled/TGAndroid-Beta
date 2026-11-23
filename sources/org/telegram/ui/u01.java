@@ -17,7 +17,7 @@ public final class u01 extends org.telegram.ui.Components.xs {
     public ArrayList P;
     public final ArrayList Q = new ArrayList();
     public float R = 1.0f;
-    public final boolean S = org.telegram.messenger.pc.e(8200);
+    public final boolean S = org.telegram.messenger.qc.e(8200);
     public final OvershootInterpolator T = new OvershootInterpolator(3.0f);
     public final v01 U;
 
@@ -42,14 +42,14 @@ public final class u01 extends org.telegram.ui.Components.xs {
             ArrayList arrayList = this.Q;
             if (i7 < arrayList.size()) {
                 c11 c11Var = (c11) arrayList.get(i7);
-                if (!c11Var.f46379b) {
-                    if (c11Var.f46378a) {
+                if (!c11Var.f46382b) {
+                    if (c11Var.f46381a) {
                         c11Var.F.setBounds(c11Var.G);
                         c11Var.F.draw(canvas);
                     } else {
-                        ImageReceiver imageReceiver = c11Var.f46384r;
+                        ImageReceiver imageReceiver = c11Var.f46387r;
                         if (imageReceiver != null) {
-                            imageReceiver.h(canvas, c11Var.f46382f[this.L]);
+                            imageReceiver.h(canvas, c11Var.f46385f[this.L]);
                         }
                     }
                 }
@@ -66,7 +66,7 @@ public final class u01 extends org.telegram.ui.Components.xs {
         int i7;
         Drawable drawable;
         int i10;
-        s11 s11Var = this.U.f52683m3;
+        s11 s11Var = this.U.f52687m3;
         if (this.P != null) {
             canvas.save();
             canvas.translate(-this.O, 0.0f);
@@ -75,9 +75,9 @@ public final class u01 extends org.telegram.ui.Components.xs {
             int i12 = 0;
             while (i12 < this.P.size()) {
                 c11 c11Var = (c11) this.P.get(i12);
-                if (!c11Var.f46379b) {
+                if (!c11Var.f46382b) {
                     float scaleX = c11Var.getScaleX();
-                    int i13 = s11Var.f51819a0;
+                    int i13 = s11Var.f51823a0;
                     if (i13 == 13) {
                         scaleX *= 0.87f;
                     }
@@ -114,19 +114,19 @@ public final class u01 extends org.telegram.ui.Components.xs {
                     }
                     Rect rect = org.telegram.messenger.g0.Q;
                     rect.set(c11Var.getPaddingLeft() + ((int) c11Var.getX()), c11Var.getPaddingTop(), (c11Var.getWidth() + ((int) c11Var.getX())) - c11Var.getPaddingRight(), c11Var.getHeight() - c11Var.getPaddingBottom());
-                    if (!s11Var.f51876y1 && i7 == 0) {
+                    if (!s11Var.f51880y1 && i7 == 0) {
                         rect.offset(i11, (int) c11Var.getTranslationY());
                     }
-                    if (c11Var.f46378a) {
+                    if (c11Var.f46381a) {
                         drawable = s11Var.getPremiumStar();
-                        int i17 = s11Var.f51819a0;
+                        int i17 = s11Var.f51823a0;
                         if (i17 == 5 || i17 == 10 || i17 == 9 || i17 == 7) {
                             rect.inset((int) ((-rect.width()) * 0.15f), (int) ((-rect.height()) * 0.15f));
                         }
                         drawable.setBounds(rect);
                         drawable.setAlpha(255);
-                    } else if (!c11Var.f46385s && !c11Var.R) {
-                        if ((c11Var.f46381e != null || s11Var.f51819a0 == 13) && !c11Var.f46379b && (drawable = c11Var.F) != null) {
+                    } else if (!c11Var.f46388s && !c11Var.R) {
+                        if ((c11Var.f46384e != null || s11Var.f51823a0 == 13) && !c11Var.f46382b && (drawable = c11Var.F) != null) {
                             drawable.setAlpha(255);
                             drawable.setBounds(rect);
                         }
@@ -152,11 +152,11 @@ public final class u01 extends org.telegram.ui.Components.xs {
                     } else {
                         canvas.save();
                         float f18 = c11Var.T;
-                        if (f18 > 1.0f && (i10 = s11Var.f51819a0) != 3 && i10 != 4 && i10 != 6) {
+                        if (f18 > 1.0f && (i10 = s11Var.f51823a0) != 3 && i10 != 4 && i10 != 6) {
                             float T1 = org.telegram.messenger.g0.T1(1.0f, 0.85f, f18);
                             canvas.scale(T1, T1, rect.centerX(), rect.centerY());
                         }
-                        int i18 = s11Var.f51819a0;
+                        int i18 = s11Var.f51823a0;
                         if (i18 != 6 && i18 != 13 && i18 != 14) {
                             c11Var.getHeight();
                             float f19 = this.R;
@@ -184,13 +184,13 @@ public final class u01 extends org.telegram.ui.Components.xs {
         while (true) {
             ArrayList arrayList = this.Q;
             if (i7 < arrayList.size()) {
-                org.telegram.messenger.gc gcVar = ((c11) arrayList.get(i7)).f46382f[this.L];
-                if (gcVar != null) {
-                    gcVar.a();
+                org.telegram.messenger.hc hcVar = ((c11) arrayList.get(i7)).f46385f[this.L];
+                if (hcVar != null) {
+                    hcVar.a();
                 }
                 i7++;
             } else {
-                this.U.f52683m3.f51840i0.invalidate();
+                this.U.f52687m3.f51844i0.invalidate();
                 return;
             }
         }
@@ -205,8 +205,8 @@ public final class u01 extends org.telegram.ui.Components.xs {
         if (drawable != null) {
             drawable.setAlpha((int) (f10 * 255.0f));
             drawable.draw(canvas);
-            drawable.setColorFilter(this.U.f52683m3.l1);
-        } else if ((c11Var.f46385s || c11Var.R) && c11Var.h != null) {
+            drawable.setColorFilter(this.U.f52687m3.l1);
+        } else if ((c11Var.f46388s || c11Var.R) && c11Var.h != null) {
             canvas.save();
             ImageReceiver imageReceiver = c11Var.h;
             canvas.clipRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), c11Var.h.A());

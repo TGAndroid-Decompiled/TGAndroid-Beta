@@ -2,15 +2,15 @@ package d3;
 
 import java.util.concurrent.Executor;
 public final class b implements Executor {
-    public final int f7661a;
+    public final int f7664a;
 
     public b(int i7) {
-        this.f7661a = i7;
+        this.f7664a = i7;
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        switch (this.f7661a) {
+        switch (this.f7664a) {
             case 0:
                 return;
             case 1:

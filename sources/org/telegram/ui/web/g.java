@@ -8,7 +8,7 @@ import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 public final class g extends n41 {
-    public static final int f53134b = 0;
+    public static final int f53138b = 0;
 
     static {
         n41.h(new n41());
@@ -21,7 +21,7 @@ public final class g extends n41 {
 
     @Override
     public final boolean c(o41 o41Var, o41 o41Var2) {
-        if (o41Var.I == o41Var2.I && TextUtils.equals(o41Var.f38099n, o41Var2.f38099n)) {
+        if (o41Var.I == o41Var2.I && TextUtils.equals(o41Var.f38093n, o41Var2.f38093n)) {
             return true;
         }
         return false;
@@ -34,7 +34,7 @@ public final class g extends n41 {
 
     @Override
     public final boolean e(o41 o41Var, o41 o41Var2) {
-        if (o41Var.I == o41Var2.I && TextUtils.isEmpty(o41Var.f38099n) == TextUtils.isEmpty(o41Var2.f38099n)) {
+        if (o41Var.I == o41Var2.I && TextUtils.isEmpty(o41Var.f38093n) == TextUtils.isEmpty(o41Var2.f38093n)) {
             return true;
         }
         return false;

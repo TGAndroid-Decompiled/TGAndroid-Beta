@@ -25,9 +25,9 @@ import c8.nc;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.telegram.messenger.od;
-import org.telegram.messenger.vy;
-import org.telegram.messenger.xr;
+import org.telegram.messenger.pd;
+import org.telegram.messenger.wy;
+import org.telegram.messenger.yr;
 import org.telegram.ui.Components.jw0;
 public class b8 {
     public Object f341a;
@@ -63,7 +63,7 @@ public class b8 {
 
     public static ColorStateList e(Context context, int i7) {
         int c10 = m.z2.c(context, 2130968728);
-        return new ColorStateList(new int[][]{m.z2.f20306b, m.z2.d, m.z2.f20307c, m.z2.f20309f}, new int[]{m.z2.b(context, 2130968726), i0.a.k(c10, i7), i0.a.k(c10, i7), i7});
+        return new ColorStateList(new int[][]{m.z2.f20309b, m.z2.d, m.z2.f20310c, m.z2.f20312f}, new int[]{m.z2.b(context, 2130968726), i0.a.k(c10, i7), i0.a.k(c10, i7), i7});
     }
 
     public static x2.g0 f(e2.c1 c1Var, h9.i0 i0Var, x2.g0 g0Var, e2.i1 i1Var) {
@@ -77,7 +77,7 @@ public class b8 {
             l10 = y02.l(B);
         }
         if (!c1Var.p() && !y02.p()) {
-            i7 = y02.f(B, i1Var, false).b(h2.l0.S(c1Var.l()) - i1Var.f10463e);
+            i7 = y02.f(B, i1Var, false).b(h2.l0.S(c1Var.l()) - i1Var.f10466e);
         } else {
             i7 = -1;
         }
@@ -130,13 +130,13 @@ public class b8 {
     }
 
     public static boolean i(x2.g0 g0Var, Object obj, boolean z10, int i7, int i10, int i11) {
-        Object obj2 = g0Var.f60129a;
-        int i12 = g0Var.f60130b;
+        Object obj2 = g0Var.f60133a;
+        int i12 = g0Var.f60134b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z10 || i12 != i7 || g0Var.f60131c != i10) {
-            if (z10 || i12 != -1 || g0Var.f60132e != i11) {
+        if (!z10 || i12 != i7 || g0Var.f60135c != i10) {
+            if (z10 || i12 != -1 || g0Var.f60136e != i11) {
                 return false;
             }
             return true;
@@ -146,12 +146,12 @@ public class b8 {
 
     public static void n(Drawable drawable, int i7, PorterDuff.Mode mode) {
         PorterDuffColorFilter h;
-        int[] iArr = m.l1.f20144a;
+        int[] iArr = m.l1.f20147a;
         Drawable mutate = drawable.mutate();
         if (mode == null) {
-            mode = m.q.f20207b;
+            mode = m.q.f20210b;
         }
-        PorterDuff.Mode mode2 = m.q.f20207b;
+        PorterDuff.Mode mode2 = m.q.f20210b;
         synchronized (m.q.class) {
             h = m.m2.h(i7, mode);
         }
@@ -160,7 +160,7 @@ public class b8 {
 
     public void a(xa xaVar, x2.g0 g0Var, e2.l1 l1Var) {
         if (g0Var != null) {
-            if (l1Var.b(g0Var.f60129a) != -1) {
+            if (l1Var.b(g0Var.f60133a) != -1) {
                 xaVar.w(g0Var, l1Var);
                 return;
             }
@@ -209,8 +209,8 @@ public class b8 {
     }
 
     public void d() {
-        ((LocationManager) this.f342b).removeUpdates((od) this.f343c);
-        ((LocationManager) this.f342b).removeUpdates((od) this.d);
+        ((LocationManager) this.f342b).removeUpdates((pd) this.f343c);
+        ((LocationManager) this.f342b).removeUpdates((pd) this.d);
         this.f345f = null;
         this.f344e = null;
     }
@@ -227,19 +227,19 @@ public class b8 {
             int[] iArr2 = new int[3];
             ColorStateList d = m.z2.d(context, 2130968734);
             if (d != null && d.isStateful()) {
-                int[] iArr3 = m.z2.f20306b;
+                int[] iArr3 = m.z2.f20309b;
                 iArr[0] = iArr3;
                 iArr2[0] = d.getColorForState(iArr3, 0);
-                iArr[1] = m.z2.f20308e;
+                iArr[1] = m.z2.f20311e;
                 iArr2[1] = m.z2.c(context, 2130968727);
-                iArr[2] = m.z2.f20309f;
+                iArr[2] = m.z2.f20312f;
                 iArr2[2] = d.getDefaultColor();
             } else {
-                iArr[0] = m.z2.f20306b;
+                iArr[0] = m.z2.f20309b;
                 iArr2[0] = m.z2.b(context, 2130968734);
-                iArr[1] = m.z2.f20308e;
+                iArr[1] = m.z2.f20311e;
                 iArr2[1] = m.z2.c(context, 2130968727);
-                iArr[2] = m.z2.f20309f;
+                iArr[2] = m.z2.f20312f;
                 iArr2[2] = m.z2.c(context, 2130968734);
             }
             return new ColorStateList(iArr, iArr2);
@@ -346,15 +346,15 @@ public class b8 {
 
     public void o() {
         if (((LocationManager) this.f342b) == null) {
-            this.f342b = (LocationManager) org.telegram.messenger.t0.f26941b.getSystemService("location");
+            this.f342b = (LocationManager) org.telegram.messenger.t0.f26931b.getSystemService("location");
         }
         try {
-            ((LocationManager) this.f342b).requestLocationUpdates("gps", 1L, 0.0f, (od) this.f343c);
+            ((LocationManager) this.f342b).requestLocationUpdates("gps", 1L, 0.0f, (pd) this.f343c);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
         try {
-            ((LocationManager) this.f342b).requestLocationUpdates("network", 1L, 0.0f, (od) this.d);
+            ((LocationManager) this.f342b).requestLocationUpdates("network", 1L, 0.0f, (pd) this.d);
         } catch (Exception e11) {
             org.telegram.messenger.a8.g(e11, true);
         }
@@ -367,22 +367,22 @@ public class b8 {
         } catch (Exception e12) {
             org.telegram.messenger.a8.g(e12, true);
         }
-        xr xrVar = (xr) this.f344e;
-        if (xrVar != null) {
-            org.telegram.messenger.g0.r(xrVar);
+        yr yrVar = (yr) this.f344e;
+        if (yrVar != null) {
+            org.telegram.messenger.g0.r(yrVar);
         }
-        xr xrVar2 = new xr(this, 14);
-        this.f344e = xrVar2;
-        org.telegram.messenger.g0.h3(xrVar2, 5000L);
+        yr yrVar2 = new yr(this, 14);
+        this.f344e = yrVar2;
+        org.telegram.messenger.g0.h3(yrVar2, 5000L);
     }
 
     public void p() {
         if (((LocationManager) this.f342b) == null) {
             return;
         }
-        xr xrVar = (xr) this.f344e;
-        if (xrVar != null) {
-            org.telegram.messenger.g0.r(xrVar);
+        yr yrVar = (yr) this.f344e;
+        if (yrVar != null) {
+            org.telegram.messenger.g0.r(yrVar);
         }
         d();
     }
@@ -508,9 +508,9 @@ public class b8 {
         this.f345f = jVar;
     }
 
-    public b8(vy vyVar) {
-        this.f343c = new od(this, 1);
-        this.d = new od(this, 1);
-        this.f341a = vyVar;
+    public b8(wy wyVar) {
+        this.f343c = new pd(this, 1);
+        this.d = new pd(this, 1);
+        this.f341a = wyVar;
     }
 }

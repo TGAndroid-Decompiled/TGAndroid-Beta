@@ -4,20 +4,20 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.w4;
 import org.telegram.ui.Cells.y3;
 import org.telegram.ui.Components.yz;
 public abstract class s0 extends c {
-    public final Context f17673x;
-    public final h6 f17674y;
+    public final Context f17676x;
+    public final h6 f17677y;
 
     public s0(Context context, h6 h6Var, boolean z10, boolean z11) {
         super(z10, z11);
-        this.f17673x = context;
-        this.f17674y = h6Var;
+        this.f17676x = context;
+        this.f17677y = h6Var;
         new yz(context, null).setIsSingleCell(true);
     }
 
@@ -28,7 +28,7 @@ public abstract class s0 extends c {
 
     public final TLRPC.TL_messageMediaVenue H(int i7) {
         int i10;
-        ArrayList arrayList = this.f17431f;
+        ArrayList arrayList = this.f17434f;
         if (arrayList.isEmpty() || i7 - 1 < 0 || i10 >= arrayList.size()) {
             return null;
         }
@@ -37,9 +37,9 @@ public abstract class s0 extends c {
 
     @Override
     public final int b() {
-        ArrayList arrayList = this.f17431f;
+        ArrayList arrayList = this.f17434f;
         if (arrayList.isEmpty()) {
-            if (this.f17435w) {
+            if (this.f17438w) {
                 return 3;
             }
             return 0;
@@ -49,7 +49,7 @@ public abstract class s0 extends c {
 
     @Override
     public final int d(int i7) {
-        if (i7 == 0 && !this.f17431f.isEmpty()) {
+        if (i7 == 0 && !this.f17434f.isEmpty()) {
             return 1;
         }
         return 0;
@@ -58,8 +58,8 @@ public abstract class s0 extends c {
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         int i10;
-        int i11 = f1Var.f59165f;
-        View view = f1Var.f59161a;
+        int i11 = f1Var.f59169f;
+        View view = f1Var.f59165a;
         boolean z10 = true;
         if (i11 == 0) {
             TLRPC.TL_messageMediaVenue H = H(i7);
@@ -74,15 +74,15 @@ public abstract class s0 extends c {
             }
             w4Var.a(H, i10, z10, false);
         } else if (i11 == 1) {
-            ((y3) view).setText(gd.N0(2131748559, null));
+            ((y3) view).setText(hd.N0(2131748559, null));
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View y3Var;
-        h6 h6Var = this.f17674y;
-        Context context = this.f17673x;
+        h6 h6Var = this.f17677y;
+        Context context = this.f17676x;
         if (i7 == 0) {
             y3Var = new w4(context, h6Var);
         } else {

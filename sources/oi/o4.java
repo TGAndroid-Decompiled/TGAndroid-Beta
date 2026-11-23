@@ -16,7 +16,7 @@ import c8.fa;
 import c8.ma;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.bz;
+import org.telegram.messenger.cz;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
@@ -26,27 +26,27 @@ public final class o4 extends y implements org.telegram.ui.ActionBar.b6, i9 {
     public z2 E;
     public boolean F;
     public final int[] G;
-    public final h6 f22282n;
-    public final Paint f22283r;
-    public final HorizontalScrollView f22284s;
-    public final ImageView f22285w;
-    public Bitmap f22286x;
-    public int f22287y;
+    public final h6 f22285n;
+    public final Paint f22286r;
+    public final HorizontalScrollView f22287s;
+    public final ImageView f22288w;
+    public Bitmap f22289x;
+    public int f22290y;
 
     public o4(Context context, h6 h6Var) {
         super(context);
-        this.f22283r = new Paint(1);
-        this.f22287y = 0;
+        this.f22286r = new Paint(1);
+        this.f22290y = 0;
         this.G = new int[4];
-        this.f22282n = h6Var;
+        this.f22285n = h6Var;
         setWillNotDraw(false);
         f(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(6.0f));
         ImageView imageView = new ImageView(context);
-        this.f22285w = imageView;
+        this.f22288w = imageView;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.addView(imageView, new FrameLayout.LayoutParams(-2, -2, 17));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f22284s = horizontalScrollView;
+        this.f22287s = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         horizontalScrollView.setClipToPadding(false);
         horizontalScrollView.setPadding(0, 0, 0, 0);
@@ -57,9 +57,9 @@ public final class o4 extends y implements org.telegram.ui.ActionBar.b6, i9 {
     }
 
     private String getSource() {
-        a aVar = this.f22528a;
+        a aVar = this.f22531a;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f21932b;
+            TL_iv.PageBlock pageBlock = aVar.f21935b;
             if (pageBlock instanceof TL_iv.pageBlockMath) {
                 return ((TL_iv.pageBlockMath) pageBlock).source;
             }
@@ -70,41 +70,41 @@ public final class o4 extends y implements org.telegram.ui.ActionBar.b6, i9 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(m6.f29534lg));
+        hashSet.add(Integer.valueOf(m6.f29537lg));
         hashSet.add(Integer.valueOf(m6.G6));
     }
 
     public final void g(a aVar, z2 z2Var) {
         p a10;
-        this.f22528a = aVar;
+        this.f22531a = aVar;
         this.E = z2Var;
         c(aVar);
-        this.f22286x = null;
-        this.f22284s.scrollTo(0, 0);
+        this.f22289x = null;
+        this.f22287s.scrollTo(0, 0);
         String source = getSource();
-        if (!TextUtils.isEmpty(source) && (a10 = p.a(source, org.telegram.messenger.g0.L(bz.W0 + 4), false)) != null) {
-            this.f22286x = a10.f22300a;
+        if (!TextUtils.isEmpty(source) && (a10 = p.a(source, org.telegram.messenger.g0.L(cz.W0 + 4), false)) != null) {
+            this.f22289x = a10.f22303a;
         }
-        this.f22285w.setImageBitmap(this.f22286x);
+        this.f22288w.setImageBitmap(this.f22289x);
         invalidate();
     }
 
     public a getRow() {
-        return this.f22528a;
+        return this.f22531a;
     }
 
     public final void h(int[] iArr) {
         int max;
         int paddingTop = getPaddingTop();
         int height = getHeight() - getPaddingBottom();
-        if (this.f22286x != null && this.f22285w.getWidth() > this.f22284s.getWidth()) {
+        if (this.f22289x != null && this.f22288w.getWidth() > this.f22287s.getWidth()) {
             iArr[0] = getPaddingLeft();
             iArr[1] = paddingTop;
             iArr[2] = getWidth() - getPaddingRight();
             iArr[3] = height;
             return;
         }
-        Bitmap bitmap = this.f22286x;
+        Bitmap bitmap = this.f22289x;
         if (bitmap != null) {
             max = bitmap.getWidth();
         } else {
@@ -128,16 +128,16 @@ public final class o4 extends y implements org.telegram.ui.ActionBar.b6, i9 {
     public final void onDraw(Canvas canvas) {
         z2 z2Var;
         j9 textSelectionHelper;
-        if (this.f22287y != m6.w0(m6.G6, this.f22282n)) {
+        if (this.f22290y != m6.w0(m6.G6, this.f22285n)) {
             updateColors();
         }
-        if (this.f22286x != null && (z2Var = this.E) != null && (textSelectionHelper = z2Var.f22588a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
+        if (this.f22289x != null && (z2Var = this.E) != null && (textSelectionHelper = z2Var.f22591a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f30920p0 && R <= textSelectionHelper.f30923s0) {
+            if (R >= 0 && R >= textSelectionHelper.f30923p0 && R <= textSelectionHelper.f30926s0) {
                 int[] iArr = this.G;
                 h(iArr);
-                canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), this.f22283r);
+                canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), this.f22286r);
             }
         }
     }
@@ -149,14 +149,14 @@ public final class o4 extends y implements org.telegram.ui.ActionBar.b6, i9 {
 
     @Override
     public final void updateColors() {
-        int i7 = m6.f29534lg;
-        h6 h6Var = this.f22282n;
-        this.f22283r.setColor(m6.w0(i7, h6Var));
+        int i7 = m6.f29537lg;
+        h6 h6Var = this.f22285n;
+        this.f22286r.setColor(m6.w0(i7, h6Var));
         int w02 = m6.w0(m6.G6, h6Var);
-        if (!this.F || w02 != this.f22287y) {
+        if (!this.F || w02 != this.f22290y) {
             this.F = true;
-            this.f22287y = w02;
-            this.f22285w.setColorFilter(new PorterDuffColorFilter(this.f22287y, PorterDuff.Mode.SRC_IN));
+            this.f22290y = w02;
+            this.f22288w.setColorFilter(new PorterDuffColorFilter(this.f22290y, PorterDuff.Mode.SRC_IN));
         }
         invalidate();
     }

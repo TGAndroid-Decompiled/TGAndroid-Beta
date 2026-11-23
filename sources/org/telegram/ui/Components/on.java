@@ -16,33 +16,33 @@ public final class on extends org.telegram.ui.Cells.b6 {
 
     @Override
     public final void h(bi.u uVar, ActionMode actionMode) {
-        tn tnVar = (tn) this.H.f49470e;
-        if (!tnVar.f39980n && this.G == 11 && uVar.isFocused() && uVar.hasSelection()) {
+        tn tnVar = (tn) this.H.f49474e;
+        if (!tnVar.f39973n && this.G == 11 && uVar.isFocused() && uVar.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) tnVar.f37521b.f40375a2).h, false, true, true, true);
+                org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) tnVar.f37520b.f40368a2).h, false, true, true, true);
             }
         }
     }
 
     @Override
     public final void j(boolean z10) {
-        tn.R((tn) this.H.f49470e, this, z10);
+        tn.R((tn) this.H.f49474e, this, z10);
     }
 
     @Override
     public final void k(org.telegram.ui.Cells.b6 b6Var) {
-        tn.S((tn) this.H.f49470e, b6Var);
+        tn.S((tn) this.H.f49474e, b6Var);
     }
 
     @Override
     public final void l(bi.u uVar) {
-        ((tn) this.H.f49470e).f37521b.i1(uVar, true);
+        ((tn) this.H.f49474e).f37520b.i1(uVar, true);
     }
 
     @Override
     public final boolean m(ArrayList arrayList) {
-        tn tnVar = (tn) this.H.f49470e;
+        tn tnVar = (tn) this.H.f49474e;
         if (arrayList.isEmpty()) {
             return false;
         }
@@ -59,9 +59,9 @@ public final class on extends org.telegram.ui.Cells.b6 {
             i7++;
         }
         tnVar.n0();
-        tnVar.f39978l0 = (tnVar.f39994u0 + i7) - 1;
-        tnVar.f39991s.setItemAnimator(tnVar.f39996w);
-        tnVar.f39988r.f();
+        tnVar.f39971l0 = (tnVar.f39987u0 + i7) - 1;
+        tnVar.f39984s.setItemAnimator(tnVar.f39989w);
+        tnVar.f39981r.f();
         return true;
     }
 }

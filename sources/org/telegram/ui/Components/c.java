@@ -15,12 +15,12 @@ import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class c implements View.OnClickListener {
-    public final int f33955a;
-    public final n0 f33956b;
+    public final int f33948a;
+    public final n0 f33949b;
 
     public c(n0 n0Var, int i7) {
-        this.f33955a = i7;
-        this.f33956b = n0Var;
+        this.f33948a = i7;
+        this.f33949b = n0Var;
     }
 
     @Override
@@ -28,14 +28,14 @@ public final class c implements View.OnClickListener {
         int i7;
         int i10;
         LinearLayout linearLayout;
-        int i11 = this.f33955a;
-        n0 n0Var = this.f33956b;
+        int i11 = this.f33948a;
+        n0 n0Var = this.f33949b;
         switch (i11) {
             case 0:
                 n0Var.dismiss();
                 return;
             case 1:
-                org.telegram.ui.Cells.l3 l3Var = n0Var.f37707y2;
+                org.telegram.ui.Cells.l3 l3Var = n0Var.f37705y2;
                 org.telegram.messenger.g0.v1(l3Var.d);
                 n0Var.G2 = l3Var.getText().toString();
                 n0Var.C1();
@@ -43,13 +43,13 @@ public final class c implements View.OnClickListener {
                 n0Var.t1();
                 return;
             case 2:
-                if (n0Var.f37689g2 != null) {
+                if (n0Var.f37687g2 != null) {
                     TL_iv.RichMessage o12 = n0Var.o1();
                     if (o12 != null) {
-                        n0Var.f37689g2.a(o12);
+                        n0Var.f37687g2.a(o12);
                     }
-                } else if (n0Var.f37688f2 != null && n0Var.p1() != null) {
-                    n0Var.f37688f2.a(n0Var.p1());
+                } else if (n0Var.f37686f2 != null && n0Var.p1() != null) {
+                    n0Var.f37686f2.a(n0Var.p1());
                 }
                 n0Var.dismiss();
                 return;
@@ -57,15 +57,15 @@ public final class c implements View.OnClickListener {
                 n0Var.dismiss();
                 return;
             case 4:
-                if (s0.b(n0Var.f30170a, n0Var.f37690h2) != null) {
-                    s0.e(n0Var.f30170a, n0Var.f37690h2, null);
+                if (s0.b(n0Var.f30173a, n0Var.f37688h2) != null) {
+                    s0.e(n0Var.f30173a, n0Var.f37688h2, null);
                 } else {
                     r0 k12 = n0Var.k1();
                     if (k12 == null) {
                         org.telegram.messenger.g0.E3(4.0f, n0Var.R2, null);
                         return;
                     }
-                    s0.e(n0Var.f30170a, n0Var.f37690h2, k12);
+                    s0.e(n0Var.f30173a, n0Var.f37688h2, k12);
                 }
                 n0Var.A1();
                 dd ddVar = n0Var.S2;
@@ -81,20 +81,20 @@ public final class c implements View.OnClickListener {
                 n0Var.J0();
                 return;
             case 6:
-                final n0 n0Var2 = this.f33956b;
-                a70 G = a70.G(n0Var2.f30176c, n0Var2.J0, view);
-                G.f33352a0 = org.telegram.messenger.g0.L(450.0f);
-                G.f33386t = false;
-                G.f33354b0 = true;
-                G.f33384s = 51;
-                G.f33388u = false;
+                final n0 n0Var2 = this.f33949b;
+                a70 G = a70.G(n0Var2.f30179c, n0Var2.J0, view);
+                G.f33365a0 = org.telegram.messenger.g0.L(450.0f);
+                G.f33399t = false;
+                G.f33367b0 = true;
+                G.f33397s = 51;
+                G.f33401u = false;
                 G.v = true;
                 ScrollView scrollView = new ScrollView(n0Var2.getContext());
                 scrollView.setVerticalScrollBarEnabled(false);
                 LinearLayout linearLayout2 = new LinearLayout(n0Var2.getContext());
                 linearLayout2.setOrientation(1);
                 scrollView.addView(linearLayout2);
-                int min = Math.min(org.telegram.messenger.g0.L(468.0f), org.telegram.messenger.g0.L(48.0f) + (org.telegram.messenger.g0.f24146q.y / 2));
+                int min = Math.min(org.telegram.messenger.g0.L(468.0f), org.telegram.messenger.g0.L(48.0f) + (org.telegram.messenger.g0.f24046q.y / 2));
                 G.U = true;
                 int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.E8, n0Var2.J0);
                 int w03 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.F8, n0Var2.J0);
@@ -111,7 +111,7 @@ public final class c implements View.OnClickListener {
                 EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(n0Var2.getContext());
                 editTextBoldCursor.setTextSize(1, 16.0f);
                 editTextBoldCursor.setTextColor(w02);
-                editTextBoldCursor.setHintText(org.telegram.messenger.gd.N0(2131745640, null));
+                editTextBoldCursor.setHintText(org.telegram.messenger.hd.N0(2131745640, null));
                 editTextBoldCursor.setHintColor(org.telegram.ui.ActionBar.m6.r1(0.45f, w02));
                 editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, n0Var2.J0));
                 editTextBoldCursor.setCursorSize(org.telegram.messenger.g0.L(18.0f));
@@ -130,7 +130,7 @@ public final class c implements View.OnClickListener {
                 imageView2.setImageResource(2131231269);
                 imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.m6.r1(0.75f, w03), mode));
                 imageView2.setBackground(org.telegram.ui.ActionBar.m6.h0(org.telegram.ui.ActionBar.m6.r1(0.12f, w02), 1, -1));
-                imageView2.setContentDescription(org.telegram.messenger.gd.N0(2131752087, null));
+                imageView2.setContentDescription(org.telegram.messenger.hd.N0(2131752087, null));
                 imageView2.setVisibility(8);
                 imageView2.setOnClickListener(new i(editTextBoldCursor, 0));
                 frameLayout.addView(imageView2, c8.ma.d(36, 36.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
@@ -143,21 +143,21 @@ public final class c implements View.OnClickListener {
                 textView.setTextSize(1, 15.0f);
                 textView.setTextColor(org.telegram.ui.ActionBar.m6.r1(0.5f, w02));
                 textView.setGravity(17);
-                textView.setText(org.telegram.messenger.gd.N0(2131747974, null));
+                textView.setText(org.telegram.messenger.hd.N0(2131747974, null));
                 textView.setVisibility(8);
                 linearLayout2.addView(textView, c8.ma.o(-1, 96));
                 G.r(linearLayout3, new LinearLayout.LayoutParams(org.telegram.messenger.g0.L(196.0f), min));
-                G.f33378p = new j(editTextBoldCursor, 0);
+                G.f33391p = new j(editTextBoldCursor, 0);
                 G.o(false);
-                m0 m0Var = new m0(n0Var2.getContext(), n0Var2.f30170a, 1, true, n0Var2.J0);
+                m0 m0Var = new m0(n0Var2.getContext(), n0Var2.f30173a, 1, true, n0Var2.J0);
                 m0Var.setPadding(org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f));
                 m0Var.setRoundRadius(12);
-                String N0 = org.telegram.messenger.gd.N0(2131754955, null);
+                String N0 = org.telegram.messenger.hd.N0(2131754955, null);
                 k kVar = new k(n0Var2, m0Var, 0);
-                k0 k0Var = m0Var.f37353c;
+                k0 k0Var = m0Var.f37360c;
                 int childCount = k0Var.getChildCount();
-                l0 l0Var = new l0(m0Var.f37351a, m0Var.getContext(), m0Var.f37352b);
-                l0Var.f37047c = m0Var.f37354e;
+                l0 l0Var = new l0(m0Var.f37358a, m0Var.getContext(), m0Var.f37359b);
+                l0Var.f37050c = m0Var.f37361e;
                 l0Var.updateColors();
                 l0Var.a("❌", N0, null);
                 l0Var.setOnClickListener(new ci.q(kVar, childCount, 10));
@@ -172,7 +172,7 @@ public final class c implements View.OnClickListener {
                     i10 = -1;
                 }
                 k0Var.addView(l0Var, c8.ma.p(i7, i10, 1.0f, 119));
-                ArrayList arrayList = n0Var2.f37701s2.f23639b;
+                ArrayList arrayList = n0Var2.f37699s2.f23645b;
                 int size = arrayList.size();
                 int i12 = 0;
                 while (i12 < size) {
@@ -180,7 +180,7 @@ public final class c implements View.OnClickListener {
                     i12++;
                     m0Var.b((TL_aicompose.AiComposeTone) obj, new k(n0Var2, m0Var, 1));
                 }
-                TL_aicompose.AiComposeTone aiComposeTone = n0Var2.f37699q2;
+                TL_aicompose.AiComposeTone aiComposeTone = n0Var2.f37697q2;
                 if (aiComposeTone != null) {
                     m0Var.d(aiComposeTone, false);
                 } else {
@@ -203,12 +203,12 @@ public final class c implements View.OnClickListener {
                     layoutParams.leftMargin = (org.telegram.messenger.g0.L(8.0f) - actionBarPopupWindow$ActionBarPopupWindowLayout.getPadding().right) - actionBarPopupWindow$ActionBarPopupWindowLayout2.getPadding().left;
                     actionBarPopupWindow$ActionBarPopupWindowLayout2.setLayoutParams(layoutParams);
                 }
-                ArrayList o4 = org.telegram.messenger.z00.o(null);
-                ArrayList n10 = org.telegram.messenger.z00.n();
+                ArrayList o4 = org.telegram.messenger.a10.o(null);
+                ArrayList n10 = org.telegram.messenger.a10.n();
                 int childCount2 = linearLayout2.getChildCount();
-                if (!TextUtils.isEmpty(n0Var2.f37697o2)) {
+                if (!TextUtils.isEmpty(n0Var2.f37695o2)) {
                     linearLayout = linearLayout2;
-                    n0Var2.h1(G, linearLayout, true, b31.L0(b31.P0(n0Var2.f37697o2, null, null)), null);
+                    n0Var2.h1(G, linearLayout, true, b31.L0(b31.P0(n0Var2.f37695o2, null, null)), null);
                 } else {
                     linearLayout = linearLayout2;
                 }
@@ -217,22 +217,22 @@ public final class c implements View.OnClickListener {
                 while (i13 < size2) {
                     Object obj2 = o4.get(i13);
                     i13++;
-                    final org.telegram.messenger.s00 s00Var = (org.telegram.messenger.s00) obj2;
-                    if (!TextUtils.equals(s00Var.f26744a, n0Var2.f37697o2)) {
-                        n0Var2.h1(G, linearLayout, false, s00Var.f26745b, new Runnable() {
+                    final org.telegram.messenger.t00 t00Var = (org.telegram.messenger.t00) obj2;
+                    if (!TextUtils.equals(t00Var.f26941a, n0Var2.f37695o2)) {
+                        n0Var2.h1(G, linearLayout, false, t00Var.f26942b, new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r3) {
                                     case 0:
                                         n0 n0Var3 = n0Var2;
                                         n0Var3.j1();
-                                        n0Var3.f37697o2 = s00Var.f26744a;
+                                        n0Var3.f37695o2 = t00Var.f26941a;
                                         n0Var3.t1();
                                         return;
                                     default:
                                         n0 n0Var4 = n0Var2;
                                         n0Var4.j1();
-                                        n0Var4.f37697o2 = s00Var.f26744a;
+                                        n0Var4.f37695o2 = t00Var.f26941a;
                                         n0Var4.t1();
                                         return;
                                 }
@@ -248,9 +248,9 @@ public final class c implements View.OnClickListener {
                 int i14 = 0;
                 while (i14 < size3) {
                     int i15 = i14 + 1;
-                    final org.telegram.messenger.s00 s00Var2 = (org.telegram.messenger.s00) n10.get(i14);
-                    boolean equals = TextUtils.equals(s00Var2.f26744a, n0Var2.f37697o2);
-                    String str = s00Var2.f26745b;
+                    final org.telegram.messenger.t00 t00Var2 = (org.telegram.messenger.t00) n10.get(i14);
+                    boolean equals = TextUtils.equals(t00Var2.f26941a, n0Var2.f37695o2);
+                    String str = t00Var2.f26942b;
                     Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
@@ -258,13 +258,13 @@ public final class c implements View.OnClickListener {
                                 case 0:
                                     n0 n0Var3 = n0Var2;
                                     n0Var3.j1();
-                                    n0Var3.f37697o2 = s00Var2.f26744a;
+                                    n0Var3.f37695o2 = t00Var2.f26941a;
                                     n0Var3.t1();
                                     return;
                                 default:
                                     n0 n0Var4 = n0Var2;
                                     n0Var4.j1();
-                                    n0Var4.f37697o2 = s00Var2.f26744a;
+                                    n0Var4.f37695o2 = t00Var2.f26941a;
                                     n0Var4.t1();
                                     return;
                             }

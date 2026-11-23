@@ -23,7 +23,7 @@ public final class c2 extends m80 {
     public int a() {
         switch (this.M) {
             case 4:
-                return ((UndoView) this.N).f33205a;
+                return ((UndoView) this.N).f33208a;
             default:
                 return super.a();
         }
@@ -79,7 +79,7 @@ public final class c2 extends m80 {
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new k00(org.telegram.ui.ActionBar.m6.f29599p7, ((org.telegram.ui.ka) this.N).f49261e.getResourceProvider()), 0, indexOf, 33);
+                        charSequence.setSpan(new k00(org.telegram.ui.ActionBar.m6.f29602p7, ((org.telegram.ui.ka) this.N).f49265e.getResourceProvider()), 0, indexOf, 33);
                     }
                     l41[] l41VarArr = (l41[]) charSequence.getSpans(0, charSequence.length(), l41.class);
                     for (int i7 = 0; i7 < l41VarArr.length; i7++) {
@@ -96,12 +96,12 @@ public final class c2 extends m80 {
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new k00(org.telegram.ui.ActionBar.m6.f29599p7, adVar.getResourceProvider()), 0, indexOf2, 33);
+                        charSequence.setSpan(new k00(org.telegram.ui.ActionBar.m6.f29602p7, adVar.getResourceProvider()), 0, indexOf2, 33);
                     }
                     l41[] l41VarArr2 = (l41[]) charSequence.getSpans(0, charSequence.length(), l41.class);
-                    EditTextBoldCursor editTextBoldCursor = adVar.f45604y;
+                    EditTextBoldCursor editTextBoldCursor = adVar.f45608y;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = adVar.f45604y.getText().toString();
+                        str = adVar.f45608y.getText().toString();
                     } else {
                         str = "";
                     }

@@ -5,39 +5,39 @@ import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class zd implements Runnable {
-    public final int f54526a;
-    public final bn f54527b;
+    public final int f54530a;
+    public final bn f54531b;
 
     public zd(bn bnVar, int i7) {
-        this.f54526a = i7;
-        this.f54527b = bnVar;
+        this.f54530a = i7;
+        this.f54531b = bnVar;
     }
 
     @Override
     public final void run() {
         rj rjVar;
         org.telegram.ui.Cells.r1 r1Var;
-        org.telegram.messenger.fj messageObject;
+        org.telegram.messenger.gj messageObject;
         org.telegram.ui.Components.oh0[] oh0VarArr;
-        int i7 = this.f54526a;
+        int i7 = this.f54530a;
         TLRPC.ChatTheme chatTheme = null;
-        bn bnVar = this.f54527b;
+        bn bnVar = this.f54531b;
         switch (i7) {
             case 0:
-                bnVar.f45994d6 = null;
+                bnVar.f45998d6 = null;
                 if (bnVar.getParentActivity() != null) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, bnVar.getParentActivity(), bnVar.Ba);
-                    boolean T = org.telegram.messenger.v3.T(bnVar.f46001e);
-                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
-                    if (T && !bnVar.f46001e.megagroup) {
-                        t1Var.U = org.telegram.messenger.gd.N0(2131748892, null);
-                        t1Var.S = org.telegram.messenger.gd.N0(2131748891, null);
+                    boolean T = org.telegram.messenger.v3.T(bnVar.f46005e);
+                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+                    if (T && !bnVar.f46005e.megagroup) {
+                        t1Var.U = org.telegram.messenger.hd.N0(2131748892, null);
+                        t1Var.S = org.telegram.messenger.hd.N0(2131748891, null);
                     } else {
-                        t1Var.U = org.telegram.messenger.gd.N0(2131748890, null);
-                        t1Var.S = org.telegram.messenger.gd.N0(2131748889, null);
+                        t1Var.U = org.telegram.messenger.hd.N0(2131748890, null);
+                        t1Var.S = org.telegram.messenger.hd.N0(2131748889, null);
                     }
-                    alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131748888, null), new ee(bnVar, 2));
-                    alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131752577, null), new ee(bnVar, 3));
+                    alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131748888, null), new ee(bnVar, 2));
+                    alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131752577, null), new ee(bnVar, 3));
                     bnVar.showDialog(t1Var);
                     return;
                 }
@@ -53,16 +53,16 @@ public final class zd implements Runnable {
                 return;
             case 4:
                 FrameLayout.LayoutParams e10 = c8.ma.e(-1, -2, 87);
-                e10.bottomMargin = bnVar.f45946a0.getMeasuredHeight();
-                bnVar.f46107m1.addView(bnVar.N1, e10);
-                bnVar.N1.setTranslationY(-org.telegram.messenger.g0.f24141n);
-                bnVar.N1.p(0.0f, bnVar.f45946a0.getEmojiButton().getX() + org.telegram.messenger.g0.L(22.0f));
+                e10.bottomMargin = bnVar.f45950a0.getMeasuredHeight();
+                bnVar.f46111m1.addView(bnVar.N1, e10);
+                bnVar.N1.setTranslationY(-org.telegram.messenger.g0.f24041n);
+                bnVar.N1.p(0.0f, bnVar.f45950a0.getEmojiButton().getX() + org.telegram.messenger.g0.L(22.0f));
                 bnVar.N1.x();
                 return;
             case 5:
-                if (!org.telegram.ui.ActionBar.g2.hasSheets(bnVar) && (rjVar = bnVar.f45946a0) != null) {
+                if (!org.telegram.ui.ActionBar.g2.hasSheets(bnVar) && (rjVar = bnVar.f45950a0) != null) {
                     rjVar.setFieldFocused(true);
-                    bnVar.f45946a0.i1();
+                    bnVar.f45950a0.i1();
                     return;
                 }
                 return;
@@ -71,15 +71,15 @@ public final class zd implements Runnable {
                 bnVar.M9();
                 org.telegram.messenger.g0.d0(bnVar.A0, new me(bnVar, 5));
                 bnVar.J7();
-                jj jjVar = bnVar.f46109m3;
+                jj jjVar = bnVar.f46113m3;
                 if (jjVar != null) {
                     jjVar.setTranslationX(bnVar.n9() / 2.0f);
                 }
-                hj hjVar = bnVar.f46120n3;
+                hj hjVar = bnVar.f46124n3;
                 if (hjVar != null) {
                     hjVar.setTranslationX(bnVar.n9() / 2.0f);
                 }
-                FrameLayout frameLayout = bnVar.f46017f1;
+                FrameLayout frameLayout = bnVar.f46021f1;
                 if (frameLayout != null) {
                     frameLayout.setTranslationX(bnVar.n9() / 2.0f);
                 }
@@ -87,7 +87,7 @@ public final class zd implements Runnable {
                 bnVar.I7();
                 return;
             case 7:
-                w81 f02 = w81.f0(-bnVar.f46099l6, 0L);
+                w81 f02 = w81.f0(-bnVar.f46103l6, 0L);
                 f02.E = bnVar;
                 bnVar.presentFragment(f02);
                 return;
@@ -95,7 +95,7 @@ public final class zd implements Runnable {
                 bnVar.Ic(true);
                 return;
             case 9:
-                bnVar.f46260y1.d(true);
+                bnVar.f46264y1.d(true);
                 return;
             case 10:
                 bnVar.Ra(null, bnVar.I8);
@@ -103,7 +103,7 @@ public final class zd implements Runnable {
                 return;
             case 11:
                 bnVar.resumeDelayedFragmentAnimation();
-                yj yjVar = bnVar.f46203ta;
+                yj yjVar = bnVar.f46207ta;
                 org.telegram.messenger.g0.r(yjVar);
                 yjVar.run();
                 bnVar.getNotificationCenter().o();
@@ -132,7 +132,7 @@ public final class zd implements Runnable {
                 }
                 return;
             case 15:
-                TLRPC.UserFull userFull = bnVar.f46190s8;
+                TLRPC.UserFull userFull = bnVar.f46194s8;
                 if (userFull != null) {
                     chatTheme = userFull.theme;
                 }
@@ -142,19 +142,19 @@ public final class zd implements Runnable {
                 bn.r0(bnVar);
                 return;
             case 17:
-                bnVar.f45996d8 = Integer.MAX_VALUE;
-                bnVar.f46024f8 = false;
-                bnVar.f46036g8 = 0L;
-                bnVar.f46049h8 = null;
-                bnVar.f46062i8 = null;
-                bnVar.f46075j8 = null;
-                bnVar.f46089k8 = -1;
-                bnVar.f46010e8 = false;
+                bnVar.f46000d8 = Integer.MAX_VALUE;
+                bnVar.f46028f8 = false;
+                bnVar.f46040g8 = 0L;
+                bnVar.f46053h8 = null;
+                bnVar.f46066i8 = null;
+                bnVar.f46079j8 = null;
+                bnVar.f46093k8 = -1;
+                bnVar.f46014e8 = false;
                 bnVar.Gd(false);
-                bnVar.f46114m8 = null;
+                bnVar.f46118m8 = null;
                 return;
             case 18:
-                bnVar.getNotificationCenter().j(bnVar.f45985ca);
+                bnVar.getNotificationCenter().j(bnVar.f45989ca);
                 return;
             case 19:
                 bnVar.cc(false, true);
@@ -176,13 +176,13 @@ public final class zd implements Runnable {
                 bnVar.o7();
                 return;
             case 23:
-                bnVar.f45946a0.i1();
+                bnVar.f45950a0.i1();
                 return;
             case 24:
                 bn.e0(bnVar);
                 return;
             case 25:
-                bn bnVar2 = this.f54527b;
+                bn bnVar2 = this.f54531b;
                 int i11 = bnVar2.Ub;
                 if (i11 != 0) {
                     bnVar2.l(i11, bnVar2.Vb, bnVar2.Wb, bnVar2.Xb, bnVar2.Yb, bnVar2.Zb);
@@ -195,7 +195,7 @@ public final class zd implements Runnable {
                     org.telegram.ui.Components.rp rpVar = bnVar.K2;
                     if (rpVar == null || !rpVar.W) {
                         if (rpVar == null) {
-                            pl plVar = bnVar.f46107m1;
+                            pl plVar = bnVar.f46111m1;
                             int indexOfChild = plVar.indexOfChild(bnVar.U);
                             if (indexOfChild != -1) {
                                 org.telegram.ui.Components.rp rpVar2 = new org.telegram.ui.Components.rp(bnVar.getParentActivity());
@@ -242,16 +242,16 @@ public final class zd implements Runnable {
                 bn.G0(bnVar);
                 return;
             case 28:
-                rj rjVar2 = bnVar.f45946a0;
+                rj rjVar2 = bnVar.f45950a0;
                 if (rjVar2 != null && bnVar.Sb != 5) {
                     rjVar2.i1();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Components.so soVar = ((org.telegram.ui.Components.so[]) bnVar.f45975c0.f3577b)[0];
+                org.telegram.ui.Components.so soVar = ((org.telegram.ui.Components.so[]) bnVar.f45979c0.f3595b)[0];
                 org.telegram.ui.ActionBar.m5 m5Var = soVar.d;
-                org.telegram.ui.ActionBar.m5 m5Var2 = soVar.f39646e;
+                org.telegram.ui.ActionBar.m5 m5Var2 = soVar.f39639e;
                 bnVar.U1 = !bnVar.U1;
                 m5Var.setPivotX(0.0f);
                 m5Var2.setPivotX(0.0f);

@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class kh extends AnimatorListenerAdapter {
-    public final an f49313a;
-    public final boolean f49314b;
-    public final org.telegram.ui.ActionBar.m5 f49315c;
+    public final an f49317a;
+    public final boolean f49318b;
+    public final org.telegram.ui.ActionBar.m5 f49319c;
     public final boolean d;
-    public final qm f49316e;
-    public final boolean f49317f;
+    public final qm f49320e;
+    public final boolean f49321f;
     public final bn h;
 
     public kh(bn bnVar, an anVar, boolean z10, org.telegram.ui.ActionBar.m5 m5Var, boolean z11, qm qmVar, boolean z12) {
         this.h = bnVar;
-        this.f49313a = anVar;
-        this.f49314b = z10;
-        this.f49315c = m5Var;
+        this.f49317a = anVar;
+        this.f49318b = z10;
+        this.f49319c = m5Var;
         this.d = z11;
-        this.f49316e = qmVar;
-        this.f49317f = z12;
+        this.f49320e = qmVar;
+        this.f49321f = z12;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class kh extends AnimatorListenerAdapter {
         if (bnVar.U2.getTag() != null) {
             bnVar.U2.setVisibility(4);
             int c92 = bnVar.c9();
-            bnVar.U2.a(Math.min(c92 - 1, Math.max(1, c92 - bnVar.f45951a5[0])), false);
+            bnVar.U2.a(Math.min(c92 - 1, Math.max(1, c92 - bnVar.f45955a5[0])), false);
         } else {
             bnVar.U2.setAlpha(1.0f);
         }
@@ -35,18 +35,18 @@ public final class kh extends AnimatorListenerAdapter {
         bnVar.S2[0].setTranslationX(0.0f);
         bnVar.S2[1].setTranslationX(0.0f);
         bnVar.U2.setTranslationX(bnVar.V2 + 0.0f);
-        an anVar = this.f49313a;
+        an anVar = this.f49317a;
         anVar.setTranslationY(0.0f);
-        boolean z10 = this.f49314b;
+        boolean z10 = this.f49318b;
         if (!z10) {
             anVar.setTranslationY(0.0f);
         }
-        org.telegram.ui.ActionBar.m5 m5Var = this.f49315c;
+        org.telegram.ui.ActionBar.m5 m5Var = this.f49319c;
         if (!z10) {
             m5Var.setTranslationY(0.0f);
         }
         boolean z11 = this.d;
-        qm qmVar = this.f49316e;
+        qm qmVar = this.f49320e;
         if (!z11) {
             qmVar.setTranslationY(0.0f);
         }
@@ -75,7 +75,7 @@ public final class kh extends AnimatorListenerAdapter {
             anVarArr[0] = anVar;
             anVar2.setVisibility(4);
         }
-        if (this.f49317f) {
+        if (this.f49321f) {
             bnVar.Q2[1].setImageBitmap(null);
             bnVar.Q2[1].setVisibility(4);
         }

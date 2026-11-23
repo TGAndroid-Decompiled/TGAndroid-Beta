@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import c8.ma;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
@@ -18,18 +18,18 @@ public final class f extends FrameLayout {
         super(context);
         int i7;
         this.f1069a = h6Var;
-        t6.h(m6.f29398e7, this, h6Var);
+        t6.h(m6.f29401e7, this, h6Var);
         TextView textView = new TextView(getContext());
         this.f1070b = textView;
         i5.c.x(textView, 1, 14.0f);
-        t6.U(textView, m6.f29417f7, h6Var);
-        if (gd.f24241a0) {
+        t6.U(textView, m6.f29420f7, h6Var);
+        if (hd.f24444a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
-        addView(textView, ma.d(-1, -1.0f, (gd.f24241a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+        addView(textView, ma.d(-1, -1.0f, (hd.f24444a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override

@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class z61 extends i71 {
-    public final j71 f42687u0;
+    public final j71 f42691u0;
 
     public z61(j71 j71Var, Context context, boolean z10, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
         super(i7, context, h6Var, z10);
-        this.f42687u0 = j71Var;
+        this.f42691u0 = j71Var;
     }
 
     @Override
@@ -24,6 +24,6 @@ public final class z61 extends i71 {
         } else {
             z10 = false;
         }
-        this.f42687u0.v(i11, z10);
+        this.f42691u0.v(i11, z10);
     }
 }

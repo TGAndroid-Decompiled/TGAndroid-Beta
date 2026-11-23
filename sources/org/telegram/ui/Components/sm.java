@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
-public final class sm implements org.telegram.messenger.x10 {
-    public final int f39634a;
-    public final tn f39635b;
-    public final int f39636c;
+public final class sm implements org.telegram.messenger.y10 {
+    public final int f39627a;
+    public final tn f39628b;
+    public final int f39629c;
 
     public sm(tn tnVar, int i7, int i10) {
-        this.f39634a = i10;
-        this.f39635b = tnVar;
-        this.f39636c = i7;
+        this.f39627a = i10;
+        this.f39628b = tnVar;
+        this.f39629c = i7;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f39634a) {
+        switch (this.f39627a) {
             case 0:
-                this.f39635b.j0(this.f39636c, (sh.c) obj);
+                this.f39628b.j0(this.f39629c, (sh.c) obj);
                 return;
             default:
-                tn tnVar = this.f39635b;
+                tn tnVar = this.f39628b;
                 tnVar.getClass();
-                tnVar.j0(this.f39636c, new th.e((String) obj));
+                tnVar.j0(this.f39629c, new th.e((String) obj));
                 return;
         }
     }

@@ -3,26 +3,26 @@ package org.telegram.ui;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class j50 implements TextWatcher {
-    public final k50 f48896a;
+    public final k50 f48900a;
 
     public j50(k50 k50Var) {
-        this.f48896a = k50Var;
+        this.f48900a = k50Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String trim = editable.toString().trim();
-        k50 k50Var = this.f48896a;
+        k50 k50Var = this.f48900a;
         n50 n50Var = k50Var.h;
-        if (k50Var.f49200c != 0) {
-            n50Var.getConnectionsManager().cancelRequest(k50Var.f49200c, true);
-            k50Var.f49200c = 0;
+        if (k50Var.f49204c != 0) {
+            n50Var.getConnectionsManager().cancelRequest(k50Var.f49204c, true);
+            k50Var.f49204c = 0;
         }
         ss ssVar = k50Var.d;
         if (ssVar != null) {
             org.telegram.messenger.g0.r(ssVar);
         }
-        k50Var.f49201e = null;
+        k50Var.f49205e = null;
         if (trim.isEmpty()) {
             n50.f0(n50Var, null);
             return;

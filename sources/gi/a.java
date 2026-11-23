@@ -13,7 +13,7 @@ import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.ap0;
 import org.telegram.ui.Components.c5;
 import org.telegram.ui.Components.f8;
-import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.g11;
 import org.telegram.ui.Components.iu;
 import org.telegram.ui.Components.jt0;
 import org.telegram.ui.Components.kw0;
@@ -31,17 +31,17 @@ import org.telegram.ui.g4;
 import org.telegram.ui.la;
 import org.telegram.ui.lb;
 public final class a implements View.OnTouchListener {
-    public final int f13658a;
+    public final int f13661a;
 
     public a(int i7) {
-        this.f13658a = i7;
+        this.f13661a = i7;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f13658a) {
+        switch (this.f13661a) {
             case 0:
-                int i7 = m.f13676b0;
+                int i7 = m.f13679b0;
                 return true;
             case 1:
                 int i10 = w2.l1;
@@ -49,13 +49,13 @@ public final class a implements View.OnTouchListener {
             case 2:
                 return true;
             case 3:
-                HashSet hashSet = g4.f47925d1;
+                HashSet hashSet = g4.f47929d1;
                 return true;
             case 4:
-                int i11 = n4.f9390f;
+                int i11 = n4.f9393f;
                 return true;
             case 5:
-                int i12 = a3.f30394x;
+                int i12 = a3.f30397x;
                 return true;
             case 6:
                 Paint paint = la.I;
@@ -64,18 +64,18 @@ public final class a implements View.OnTouchListener {
                 int i13 = lb.R0;
                 return true;
             case 8:
-                int i14 = bn.f45936md;
+                int i14 = bn.f45940md;
                 return true;
             case 9:
                 return true;
             case 10:
-                Pattern pattern = c5.f34019a;
+                Pattern pattern = c5.f34013a;
                 return true;
             case 11:
                 f8 f8Var = f8.T2;
                 return true;
             case 12:
-                int i15 = ChatActivityEnterView.f32566s7;
+                int i15 = ChatActivityEnterView.f32569s7;
                 return true;
             case 13:
                 if (motionEvent.getActionMasked() == 0 && view.getParent() != null) {
@@ -87,13 +87,13 @@ public final class a implements View.OnTouchListener {
                 int i16 = ui.I4;
                 return true;
             case 15:
-                int i17 = mk.f37527h0;
+                int i17 = mk.f37526h0;
                 return true;
             case 16:
                 int i18 = ml.G0;
                 return true;
             case 17:
-                int i19 = np.f37916g2;
+                int i19 = np.f37921g2;
                 return true;
             case 18:
                 iu iuVar = iu.S1;
@@ -102,31 +102,31 @@ public final class a implements View.OnTouchListener {
                 int i20 = vy.h;
                 return true;
             case 20:
-                int[] iArr = qc0.f38877j0;
+                int[] iArr = qc0.f38871j0;
                 return true;
             case 21:
                 int i21 = wg0.S;
                 return true;
             case 22:
-                int i22 = um0.f40504b1;
+                int i22 = um0.f40497b1;
                 return true;
             case 23:
                 int i23 = ap0.U2;
                 return true;
             case 24:
-                int[] iArr2 = jt0.f36610t2;
+                int[] iArr2 = jt0.f36605t2;
                 return true;
             case 25:
-                int i24 = kw0.f37001r2;
+                int i24 = kw0.f37004r2;
                 return true;
             case 26:
-                int i25 = h11.f35725r0;
+                int i25 = g11.f35364r0;
                 return true;
             case 27:
-                int i26 = UndoView.f33204j0;
+                int i26 = UndoView.f33207j0;
                 return true;
             case 28:
-                int i27 = UndoView.f33204j0;
+                int i27 = UndoView.f33207j0;
                 return true;
             default:
                 int i28 = fh0.Z1;

@@ -14,32 +14,32 @@ public final class pe0 implements org.telegram.ui.ActionBar.t4 {
     public Runnable I;
     public Runnable J;
     public z2 K;
-    public final Context f38576a;
-    public final View f38577b;
-    public final oe0 f38578c;
+    public final Context f38575a;
+    public final View f38576b;
+    public final oe0 f38577c;
     public final org.telegram.ui.ActionBar.j5 d;
-    public final dh.c f38579e;
-    public final ui.d f38580f;
+    public final dh.c f38578e;
+    public final ui.d f38579f;
     public final gh.a h;
-    public final gh.a f38581n;
-    public final org.telegram.ui.ActionBar.h6 f38582r;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f38583s;
-    public boolean f38584w;
-    public boolean f38586y;
-    public boolean f38585x = true;
+    public final gh.a f38580n;
+    public final org.telegram.ui.ActionBar.h6 f38581r;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f38582s;
+    public boolean f38583w;
+    public boolean f38585y;
+    public boolean f38584x = true;
     public int F = -1;
 
     public pe0(Activity activity, View view, oe0 oe0Var, org.telegram.ui.ActionBar.j5 j5Var, dh.c cVar, ui.d dVar, gh.a aVar, org.telegram.ui.pi piVar, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f38576a = activity;
-        this.f38577b = view;
-        this.f38578c = oe0Var;
+        this.f38575a = activity;
+        this.f38576b = view;
+        this.f38577c = oe0Var;
         this.d = j5Var;
-        this.f38579e = cVar;
-        this.f38580f = dVar;
+        this.f38578e = cVar;
+        this.f38579f = dVar;
         this.h = aVar;
-        this.f38581n = piVar;
-        this.f38582r = h6Var;
-        this.f38583s = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232567, 1, activity, h6Var);
+        this.f38580n = piVar;
+        this.f38581r = h6Var;
+        this.f38582s = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232567, 1, activity, h6Var);
     }
 
     @Override
@@ -49,8 +49,8 @@ public final class pe0 implements org.telegram.ui.ActionBar.t4 {
 
     @Override
     public final boolean b(org.telegram.ui.ActionBar.q0 q0Var, RectF rectF) {
-        this.f38578c.W(rectF);
-        if (this.f38585x) {
+        this.f38577c.W(rectF);
+        if (this.f38584x) {
             rectF.bottom += org.telegram.messenger.g0.L(6.0f);
             return true;
         }
@@ -59,10 +59,10 @@ public final class pe0 implements org.telegram.ui.ActionBar.t4 {
     }
 
     public final void c(FrameLayout frameLayout, int i7, Runnable runnable) {
-        frameLayout.setBackground(org.telegram.ui.ActionBar.m6.h0(org.telegram.ui.ActionBar.m6.r1(0.12f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.E8, this.f38582r)), 2, -1));
+        frameLayout.setBackground(org.telegram.ui.ActionBar.m6.h0(org.telegram.ui.ActionBar.m6.r1(0.12f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.E8, this.f38581r)), 2, -1));
         frameLayout.setMinimumWidth(org.telegram.messenger.g0.L(220.0f));
         frameLayout.setOnClickListener(new ne0(this, runnable, 0));
-        this.f38583s.a(frameLayout, c8.ma.o(-1, i7));
+        this.f38582s.a(frameLayout, c8.ma.o(-1, i7));
         this.G = org.telegram.messenger.g0.L(i7) + this.G;
     }
 
@@ -78,25 +78,25 @@ public final class pe0 implements org.telegram.ui.ActionBar.t4 {
 
     @Override
     public final boolean f() {
-        return this.f38585x;
+        return this.f38584x;
     }
 
     @Override
     public final fh.g g(org.telegram.ui.ActionBar.j5 j5Var) {
-        fh.g c10 = this.f38579e.c(j5Var, null, false);
+        fh.g c10 = this.f38578e.c(j5Var, null, false);
         c10.p(this.h);
-        org.telegram.messenger.n10.s(c10, org.telegram.messenger.g0.L(22.0f), 6.0f);
+        org.telegram.messenger.o10.s(c10, org.telegram.messenger.g0.L(22.0f), 6.0f);
         return c10;
     }
 
     @Override
     public final int getButtonsGlassBackgroundColor() {
-        return this.f38581n.A2();
+        return this.f38580n.A2();
     }
 
     @Override
     public final gh.a getButtonsGlassColorProvider() {
-        return this.f38581n;
+        return this.f38580n;
     }
 
     @Override
@@ -121,7 +121,7 @@ public final class pe0 implements org.telegram.ui.ActionBar.t4 {
 
     @Override
     public final View getMenuHostView() {
-        return this.f38578c.k0();
+        return this.f38577c.k0();
     }
 
     @Override
@@ -131,7 +131,7 @@ public final class pe0 implements org.telegram.ui.ActionBar.t4 {
 
     @Override
     public final org.telegram.ui.ActionBar.h6 getMenuResourcesProvider() {
-        return this.f38582r;
+        return this.f38581r;
     }
 
     @Override
@@ -141,12 +141,12 @@ public final class pe0 implements org.telegram.ui.ActionBar.t4 {
 
     @Override
     public final View getMenuView() {
-        return this.f38577b;
+        return this.f38576b;
     }
 
     @Override
     public final org.telegram.ui.ActionBar.j5 getOpenMenuOverlay() {
-        if (this.f38584w) {
+        if (this.f38583w) {
             return this.d;
         }
         return null;
@@ -160,18 +160,18 @@ public final class pe0 implements org.telegram.ui.ActionBar.t4 {
         } else {
             z10 = false;
         }
-        this.f38584w = z10;
-        this.f38578c.T(z10);
+        this.f38583w = z10;
+        this.f38577c.T(z10);
     }
 
     public final void i() {
         int i7;
         org.telegram.ui.ActionBar.j5 j5Var = this.d;
-        if (j5Var.d == this && j5Var.f29077e == null && (j5Var.I || j5Var.S)) {
+        if (j5Var.d == this && j5Var.f29080e == null && (j5Var.I || j5Var.S)) {
             return;
         }
         RectF rectF = new RectF();
-        oe0 oe0Var = this.f38578c;
+        oe0 oe0Var = this.f38577c;
         oe0Var.W(rectF);
         ji.r k02 = oe0Var.k0();
         int[] iArr = new int[2];
@@ -197,19 +197,19 @@ public final class pe0 implements org.telegram.ui.ActionBar.t4 {
         if (f11 >= L || f11 > f12) {
             z10 = false;
         }
-        this.f38585x = z10;
+        this.f38584x = z10;
         if (z10 && f12 < L) {
             i12 = (int) Math.max(0.0f, Math.min(f11 - org.telegram.messenger.g0.L(8.0f), L - f12));
         }
         this.E = i12;
         this.I = null;
         j5Var.setOnClosed(new me0(this, 1));
-        j5Var.d(this, null, this.f38583s);
+        j5Var.d(this, null, this.f38582s);
     }
 
     @Override
     public final void setMenuGlassFrostedProgress(float f10) {
-        ui.d dVar = this.f38580f;
+        ui.d dVar = this.f38579f;
         if (dVar != null) {
             dVar.j(f10);
         }
@@ -218,12 +218,12 @@ public final class pe0 implements org.telegram.ui.ActionBar.t4 {
             z2Var.a(Float.valueOf(f10));
         }
         if (f10 > 0.9f) {
-            this.f38586y = true;
+            this.f38585y = true;
         }
-        if (this.f38586y && f10 < 0.06f) {
+        if (this.f38585y && f10 < 0.06f) {
             org.telegram.ui.ActionBar.j5 j5Var = this.d;
-            if (!j5Var.I && this.f38584w) {
-                this.f38586y = false;
+            if (!j5Var.I && this.f38583w) {
+                this.f38585y = false;
                 j5Var.post(new me0(this, 0));
             }
         }

@@ -2,7 +2,7 @@ package a3;
 
 import aa.c0;
 import aa.f0;
-import ai.m1;
+import ai.n1;
 import ai.p0;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import com.google.android.gms.tasks.TaskCompletionSource;
+import e2.m1;
 import fi.l4;
 import h9.i0;
 import h9.t1;
@@ -20,12 +21,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import oi.q3;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.or;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.pr;
 import org.telegram.messenger.q2;
+import org.telegram.messenger.r10;
 import org.telegram.messenger.t0;
-import org.telegram.messenger.xo;
+import org.telegram.messenger.yo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
@@ -35,7 +36,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.nw0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bn;
-public final class g implements p, ai.f, l5.g, or, q1, xo {
+public final class g implements p, ai.f, l5.g, pr, q1, yo {
     public final int f83a;
     public final boolean f84b;
     public final Object f85c;
@@ -103,25 +104,25 @@ public final class g implements p, ai.f, l5.g, or, q1, xo {
         p0 p0Var = (p0) this.f85c;
         ai.g gVar = (ai.g) this.d;
         ai.g gVar2 = (ai.g) this.f86e;
-        if (p0Var.f1399r != 4) {
+        if (p0Var.f1405r != 4) {
             return;
         }
         if (str == null) {
-            p0Var.f1399r = 3;
+            p0Var.f1405r = 3;
             p0Var.K = gVar;
             p0Var.F.f(false);
             p0Var.f(0L, 240L);
             if (!this.f84b) {
                 p0Var.J = null;
             }
-            p0Var.f1406w.d(gVar.a(), false);
-            m1 m1Var = p0Var.f1406w;
+            p0Var.f1412w.d(gVar.a(), false);
+            n1 n1Var = p0Var.f1412w;
             if (p0Var.J != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            m1Var.setRevert(z10);
+            n1Var.setRevert(z10);
             p0Var.D(false);
             p0.G(tL_error);
             return;
@@ -135,14 +136,14 @@ public final class g implements p, ai.f, l5.g, or, q1, xo {
     }
 
     @Override
-    public t1 f(int i7, e2.m1 m1Var, int[] iArr) {
+    public t1 f(int i7, m1 m1Var, int[] iArr) {
         s sVar = (s) this.f85c;
         n nVar = (n) this.d;
         sVar.getClass();
         e eVar = new e(sVar, nVar);
         int i10 = ((int[]) this.f86e)[i7];
         h9.f0 p10 = i0.p();
-        for (int i11 = 0; i11 < m1Var.f10553a; i11++) {
+        for (int i11 = 0; i11 < m1Var.f10556a; i11++) {
             p10.c(new i(i7, m1Var, i11, nVar, iArr[i11], this.f84b, eVar, i10));
         }
         return p10.f();
@@ -160,7 +161,7 @@ public final class g implements p, ai.f, l5.g, or, q1, xo {
                 c0 c0Var = (c0) this.f85c;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
                 q3 q3Var = (q3) this.f86e;
-                int i10 = q3Var.f22333b;
+                int i10 = q3Var.f22336b;
                 if (!z10) {
                     c0Var.run();
                     return;
@@ -209,8 +210,8 @@ public final class g implements p, ai.f, l5.g, or, q1, xo {
             case 5:
                 bn bnVar = (bn) this.f85c;
                 boolean z11 = this.f84b;
-                ((mp) this.d).J2 = 1;
-                mp.g1().edit().putInt("secretWebpage2", bnVar.getMessagesController().J2).commit();
+                ((np) this.d).J2 = 1;
+                np.g1().edit().putInt("secretWebpage2", bnVar.getMessagesController().J2).commit();
                 bnVar.Z5 = null;
                 bnVar.Cb((CharSequence) this.f86e, z11);
                 return;
@@ -222,7 +223,7 @@ public final class g implements p, ai.f, l5.g, or, q1, xo {
                 if (z12) {
                     try {
                         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.parse("package:" + t0.f26941b.getPackageName()));
+                        intent.setData(Uri.parse("package:" + t0.f26931b.getPackageName()));
                         context.startActivity(intent);
                         return;
                     } catch (Exception e10) {
@@ -235,7 +236,7 @@ public final class g implements p, ai.f, l5.g, or, q1, xo {
                 return;
             default:
                 nw0 nw0Var = (nw0) this.f85c;
-                q10 q10Var = (q10) this.d;
+                r10 r10Var = (r10) this.d;
                 Context context2 = (Context) this.f86e;
                 boolean z13 = this.f84b;
                 String trim2 = nw0Var.getText().toString().trim();
@@ -247,7 +248,7 @@ public final class g implements p, ai.f, l5.g, or, q1, xo {
                     }
                     org.telegram.ui.ActionBar.t1 t1Var2 = new org.telegram.ui.ActionBar.t1(3, context2, bVar);
                     t1Var2.r(250L);
-                    q10Var.a(trim2, new bi.j(t1Var2, t1Var, nw0Var, 14));
+                    r10Var.a(trim2, new bi.j(t1Var2, t1Var, nw0Var, 14));
                     return;
                 }
                 nw0Var.setErrorText(".");
@@ -267,8 +268,8 @@ public final class g implements p, ai.f, l5.g, or, q1, xo {
         if (j3 == 0) {
             return;
         }
-        gVar.f19957b = -j3;
-        gVar.f19958c = gVar.getMessagesController().O0(Long.valueOf(j3));
+        gVar.f19960b = -j3;
+        gVar.f19961c = gVar.getMessagesController().O0(Long.valueOf(j3));
         gVar.a0(str, this.f84b);
     }
 

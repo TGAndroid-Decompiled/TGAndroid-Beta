@@ -17,9 +17,9 @@ public final class d extends y {
         Canvas canvas2;
         k kVar = this.h;
         Paint paint = kVar.N0;
-        if (kVar.M0 && this.f30279a && kVar.f29168x != 0) {
+        if (kVar.M0 && this.f30282a && kVar.f29171x != 0) {
             kVar.O0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            paint.setColor(kVar.f29168x);
+            paint.setColor(kVar.f29171x);
             canvas2 = canvas;
             kVar.L0.H(canvas2, 0.0f, kVar.O0, paint, true);
         } else {
@@ -51,7 +51,7 @@ public final class d extends y {
         super.setAlpha(f10);
         k kVar = this.h;
         kVar.invalidate();
-        Runnable runnable = kVar.f29129e1;
+        Runnable runnable = kVar.f29132e1;
         if (runnable != null) {
             runnable.run();
         }
@@ -60,7 +60,7 @@ public final class d extends y {
     @Override
     public final void setBackgroundColor(int i7) {
         k kVar = this.h;
-        kVar.f29168x = i7;
+        kVar.f29171x = i7;
         if (!kVar.M0) {
             super.setBackgroundColor(i7);
         }

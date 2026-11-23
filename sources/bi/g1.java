@@ -1,20 +1,20 @@
 package bi;
 
 import android.view.View;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ng;
 import org.telegram.ui.rm;
 public final class g1 implements ng {
-    public final TL_stars.TL_starGiftUnique f3632a;
-    public final k1 f3633b;
+    public final TL_stars.TL_starGiftUnique f3640a;
+    public final k1 f3641b;
 
     public g1(k1 k1Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f3633b = k1Var;
-        this.f3632a = tL_starGiftUnique;
+        this.f3641b = k1Var;
+        this.f3640a = tL_starGiftUnique;
     }
 
     @Override
@@ -30,17 +30,17 @@ public final class g1 implements ng {
     public final void a(CharSequence charSequence) {
         int i7;
         boolean z10;
-        k1 k1Var = this.f3633b;
-        org.telegram.ui.Components.o6 o6Var = k1Var.f3771w1;
-        k1Var.f3762m1.a(this.f3632a, j10.i(k1Var.f30170a).e(), k1Var.f3767s1.getTextWithEntities(), gd.N0(2131749727, null), true);
+        k1 k1Var = this.f3641b;
+        org.telegram.ui.Components.o6 o6Var = k1Var.f3780w1;
+        k1Var.f3771m1.a(this.f3640a, k10.i(k1Var.f30173a).e(), k1Var.f3776s1.getTextWithEntities(), hd.N0(2131749727, null), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         k1Var.A1 = codePointCount;
-        int i10 = k1Var.f3774z1;
+        int i10 = k1Var.f3783z1;
         if (i10 > 0 && (i7 = i10 - codePointCount) <= 15) {
             if (i7 < -9999) {
                 i7 = -9999;
             }
-            String E = gd.E(i7, ',');
+            String E = hd.E(i7, ',');
             if (o6Var.getVisibility() == 0) {
                 z10 = true;
             } else {
@@ -56,10 +56,10 @@ public final class g1 implements ng {
             o6Var.animate().setListener(null).cancel();
             o6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i7 < 0) {
-                org.telegram.ui.ActionBar.t6.Y(o6Var, org.telegram.ui.ActionBar.m6.f29599p7, k1Var.J0);
+                org.telegram.ui.ActionBar.t6.Y(o6Var, org.telegram.ui.ActionBar.m6.f29602p7, k1Var.J0);
                 return;
             } else {
-                org.telegram.ui.ActionBar.t6.Y(o6Var, org.telegram.ui.ActionBar.m6.f29770y6, k1Var.J0);
+                org.telegram.ui.ActionBar.t6.Y(o6Var, org.telegram.ui.ActionBar.m6.f29773y6, k1Var.J0);
                 return;
             }
         }

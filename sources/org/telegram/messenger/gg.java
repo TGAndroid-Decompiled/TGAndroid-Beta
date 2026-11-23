@@ -1,35 +1,72 @@
 package org.telegram.messenger;
 public final class gg implements Runnable {
-    public final int f24279a;
-    public final ri f24280b;
-    public final long f24281c;
-    public final long d;
-    public final int[] f24282e;
+    public final int f24152a;
+    public final y10 f24153b;
 
-    public gg(ri riVar, long j3, long j10, int[] iArr, int i7) {
-        this.f24279a = i7;
-        this.f24280b = riVar;
-        this.f24281c = j3;
-        this.d = j10;
-        this.f24282e = iArr;
+    public gg(y10 y10Var, int i7) {
+        this.f24152a = i7;
+        this.f24153b = y10Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f24279a;
-        int[] iArr = this.f24282e;
-        long j3 = this.d;
-        long j10 = this.f24281c;
-        ri riVar = this.f24280b;
+        int i7 = this.f24152a;
+        y10 y10Var = this.f24153b;
         switch (i7) {
             case 0:
-                riVar.getNotificationCenter().k(34, Long.valueOf(j10), Long.valueOf(j3), iArr);
+                if (y10Var != null) {
+                    y10Var.a(null);
+                    return;
+                }
                 return;
             case 1:
-                riVar.getNotificationCenter().k(34, Long.valueOf(j10), Long.valueOf(j3), iArr);
+                if (y10Var != null) {
+                    y10Var.a(null);
+                    return;
+                }
+                return;
+            case 2:
+                if (y10Var != null) {
+                    y10Var.a(null);
+                    return;
+                }
+                return;
+            case 3:
+                if (y10Var != null) {
+                    y10Var.a(null);
+                    return;
+                }
+                return;
+            case 4:
+                if (y10Var != null) {
+                    y10Var.a(null);
+                    return;
+                }
+                return;
+            case 5:
+                if (y10Var != null) {
+                    y10Var.a(null);
+                    return;
+                }
+                return;
+            case 6:
+                y10Var.a(null);
+                return;
+            case 7:
+                if (y10Var != null) {
+                    y10Var.a(null);
+                    return;
+                }
+                return;
+            case 8:
+                if (y10Var != null) {
+                    y10Var.a(null);
+                    return;
+                }
                 return;
             default:
-                riVar.getNotificationCenter().k(34, Long.valueOf(j10), Long.valueOf(j3), iArr);
+                int i10 = ShortcutResultReceiver.f22805a;
+                y10Var.a(Boolean.TRUE);
                 return;
         }
     }

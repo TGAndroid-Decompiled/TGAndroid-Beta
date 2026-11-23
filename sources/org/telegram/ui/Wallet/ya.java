@@ -12,31 +12,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.fc;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.h20;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.n10;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.gc;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.i20;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.c51;
 import org.telegram.ui.Components.e51;
 import org.telegram.ui.Components.o41;
 import org.telegram.ui.p51;
-public final class ya extends e51 implements fs {
-    public static void d0(ya yaVar, TL_wallet.tonConnectSession tonconnectsession, x10 x10Var) {
-        l2 l2Var = u0.D(yaVar.currentAccount).f45128g;
+public final class ya extends e51 implements gs {
+    public static void d0(ya yaVar, TL_wallet.tonConnectSession tonconnectsession, y10 y10Var) {
+        l2 l2Var = u0.D(yaVar.currentAccount).f45132g;
         l2Var.getClass();
-        org.telegram.messenger.g0.g3(new p(l2Var, tonconnectsession, x10Var, 5));
+        org.telegram.messenger.g0.g3(new p(l2Var, tonconnectsession, y10Var, 5));
     }
 
     @Override
     public final void Z(ArrayList arrayList, c51 c51Var) {
-        l2 l2Var = u0.D(this.currentAccount).f45128g;
+        l2 l2Var = u0.D(this.currentAccount).f45132g;
         if (!l2Var.d.isEmpty()) {
-            i5.c.s(2131742962, null, arrayList);
+            i5.c.s(2131742960, null, arrayList);
         }
         ArrayList arrayList2 = l2Var.d;
         int size = arrayList2.size();
@@ -44,18 +44,18 @@ public final class ya extends e51 implements fs {
         while (i7 < size) {
             Object obj = arrayList2.get(i7);
             i7++;
-            int i10 = wa.f45267b;
+            int i10 = wa.f45271b;
             o41 K = o41.K(wa.class);
             K.H = (TL_wallet.tonConnectSession) obj;
             arrayList.add(K);
         }
         l2Var.getClass();
-        arrayList.add(o41.C(gd.N0(2131742911, null)));
+        arrayList.add(o41.C(hd.N0(2131742909, null)));
     }
 
     @Override
     public final CharSequence a0() {
-        return gd.N0(2131742912, null);
+        return hd.N0(2131742910, null);
     }
 
     @Override
@@ -74,7 +74,7 @@ public final class ya extends e51 implements fs {
             ImageView imageView = new ImageView(parentActivity);
             imageView.setImageResource(2131231241);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i7 = org.telegram.ui.ActionBar.m6.f29470i6;
+            int i7 = org.telegram.ui.ActionBar.m6.f29473i6;
             org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.m6.h0(org.telegram.ui.ActionBar.m6.w0(i7, resourceProvider), 1, -1);
             org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i7);
             imageView.setBackground(h02);
@@ -87,7 +87,7 @@ public final class ya extends e51 implements fs {
             q9Var.setRoundRadius(org.telegram.messenger.g0.L(38.0f));
             TL_wallet.tonConnectManifest tonconnectmanifest = tonconnectsession.manifest;
             if (tonconnectmanifest != null && (webDocument = tonconnectmanifest.icon) != null) {
-                q9Var.p(fc.p(h20.c(webDocument)), "76_76", null, tonconnectsession.manifest);
+                q9Var.p(gc.p(i20.c(webDocument)), "76_76", null, tonconnectsession.manifest);
             }
             frameLayout.addView(q9Var, c8.ma.d(76, 76.0f, 49, 0.0f, 32.0f, 0.0f, 0.0f));
             f10.addView(frameLayout, c8.ma.o(-1, -2));
@@ -99,7 +99,7 @@ public final class ya extends e51 implements fs {
             if (tonconnectmanifest2 != null) {
                 N0 = tonconnectmanifest2.name;
             } else {
-                N0 = gd.N0(2131742914, null);
+                N0 = hd.N0(2131742912, null);
             }
             textView.setText(N0);
             org.telegram.ui.ActionBar.t6.U(textView, i10, resourceProvider);
@@ -113,7 +113,7 @@ public final class ya extends e51 implements fs {
             String K0 = org.telegram.messenger.g0.K0(str, false);
             if (!TextUtils.isEmpty(K0)) {
                 TextView textView2 = new TextView(parentActivity);
-                n10.p(textView2, 1, 14.0f);
+                o10.p(textView2, 1, 14.0f);
                 org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.Fi, resourceProvider);
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 spannableStringBuilder.append((CharSequence) K0);
@@ -123,13 +123,13 @@ public final class ya extends e51 implements fs {
             TextView textView3 = new TextView(parentActivity);
             textView3.setTextSize(1, 14.0f);
             textView3.setGravity(17);
-            textView3.setText(gd.N0(2131742913, null));
+            textView3.setText(hd.N0(2131742911, null));
             org.telegram.ui.ActionBar.t6.U(textView3, i10, resourceProvider);
             f10.addView(textView3, c8.ma.t(-2, -2, 49, 36, 16, 36, 28));
             hi.e eVar = new hi.e(parentActivity, resourceProvider, true);
             eVar.setRoundRadius(24);
-            eVar.setText(gd.N0(2131742886, null));
-            int i11 = org.telegram.ui.ActionBar.m6.f29619q7;
+            eVar.setText(hd.N0(2131742884, null));
+            int i11 = org.telegram.ui.ActionBar.m6.f29622q7;
             eVar.setColor(org.telegram.ui.ActionBar.m6.w0(i11, resourceProvider));
             if (eVar.getBackground() != null) {
                 Drawable background = eVar.getBackground();
@@ -153,17 +153,17 @@ public final class ya extends e51 implements fs {
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f34683a);
-        this.f34683a.r1();
-        this.f34683a.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.f34681a);
+        this.f34681a.r1();
+        this.f34681a.setClipToPadding(false);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        bi.g6 g6Var;
-        if (i7 == ks.f25130d4 && (g6Var = this.f34683a) != null) {
-            g6Var.f35796g3.O(true);
+        bi.f6 f6Var;
+        if (i7 == ls.f25296d4 && (f6Var = this.f34681a) != null) {
+            f6Var.f35790g3.O(true);
         }
     }
 
@@ -174,19 +174,19 @@ public final class ya extends e51 implements fs {
 
     @Override
     public final boolean onFragmentCreate() {
-        getNotificationCenter().c(this, ks.f25130d4);
+        getNotificationCenter().c(this, ls.f25296d4);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
-        getNotificationCenter().n(this, ks.f25130d4);
+        getNotificationCenter().n(this, ls.f25296d4);
         super.onFragmentDestroy();
     }
 
     @Override
     public final void onInsets(int i7, int i10, int i11, int i12) {
-        this.f34683a.setPadding(0, 0, 0, i12);
-        this.f34683a.setClipToPadding(false);
+        this.f34681a.setPadding(0, 0, 0, i12);
+        this.f34681a.setClipToPadding(false);
     }
 }

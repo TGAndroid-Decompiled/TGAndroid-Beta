@@ -1,5 +1,5 @@
 package q7;
 public final class i1 {
-    public static final i1 f56050b = new i1();
-    public final f f56051a = new f(new Object());
+    public static final i1 f56054b = new i1();
+    public final f f56055a = new f(new Object());
 }

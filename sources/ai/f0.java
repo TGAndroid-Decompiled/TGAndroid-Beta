@@ -5,27 +5,27 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 public final class f0 implements View.OnKeyListener {
-    public final int f1194a;
-    public final FrameLayout f1195b;
+    public final int f1170a;
+    public final FrameLayout f1171b;
 
     public f0(int i7, FrameLayout frameLayout) {
-        this.f1194a = i7;
-        this.f1195b = frameLayout;
+        this.f1170a = i7;
+        this.f1171b = frameLayout;
     }
 
     @Override
     public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
         org.telegram.ui.ActionBar.g1 g1Var;
-        switch (this.f1194a) {
+        switch (this.f1170a) {
             case 0:
-                bi.b1 b1Var = (bi.b1) this.f1195b;
+                bi.b1 b1Var = (bi.b1) this.f1171b;
                 if (i7 != 4) {
                     return false;
                 }
                 if (keyEvent.getAction() == 1) {
-                    LinearLayout linearLayout = b1Var.f3422e;
+                    LinearLayout linearLayout = b1Var.f3429e;
                     if (linearLayout != null && !b1Var.O) {
-                        b1Var.f3422e = null;
+                        b1Var.f3429e = null;
                         b1Var.h(linearLayout, false);
                     } else {
                         b1Var.c(null);
@@ -33,7 +33,7 @@ public final class f0 implements View.OnKeyListener {
                 }
                 return true;
             case 1:
-                bi.b1 b1Var2 = (bi.b1) this.f1195b;
+                bi.b1 b1Var2 = (bi.b1) this.f1171b;
                 if (i7 != 4) {
                     return false;
                 }
@@ -42,7 +42,7 @@ public final class f0 implements View.OnKeyListener {
                 }
                 return true;
             case 2:
-                bi.b1 b1Var3 = (bi.b1) this.f1195b;
+                bi.b1 b1Var3 = (bi.b1) this.f1171b;
                 if (i7 != 4) {
                     return false;
                 }
@@ -51,7 +51,7 @@ public final class f0 implements View.OnKeyListener {
                 }
                 return true;
             case 3:
-                bi.b1 b1Var4 = (bi.b1) this.f1195b;
+                bi.b1 b1Var4 = (bi.b1) this.f1171b;
                 if (i7 != 4) {
                     return false;
                 }
@@ -60,7 +60,7 @@ public final class f0 implements View.OnKeyListener {
                 }
                 return true;
             default:
-                org.telegram.ui.ActionBar.q0 q0Var = (org.telegram.ui.ActionBar.q0) this.f1195b;
+                org.telegram.ui.ActionBar.q0 q0Var = (org.telegram.ui.ActionBar.q0) this.f1171b;
                 q0Var.getClass();
                 if (i7 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && (g1Var = q0Var.d) != null && g1Var.isShowing()) {
                     q0Var.d.d(true);

@@ -5,16 +5,16 @@ import f3.i0;
 import h2.x;
 import i2.o;
 public final class e extends q {
-    public final x f19648b;
-    public final x f19649c;
+    public final x f19651b;
+    public final x f19652c;
     public int d;
-    public boolean f19650e;
-    public boolean f19651f;
-    public int f19652g;
+    public boolean f19653e;
+    public boolean f19654f;
+    public int f19655g;
 
     public e(i0 i0Var) {
         super(i0Var);
-        this.f19648b = new x(o.f15999a);
-        this.f19649c = new x(4);
+        this.f19651b = new x(o.f16002a);
+        this.f19652c = new x(4);
     }
 }

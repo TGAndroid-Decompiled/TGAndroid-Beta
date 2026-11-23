@@ -4,26 +4,26 @@ import android.animation.TimeInterpolator;
 import android.os.SystemClock;
 import android.view.View;
 public final class d6 {
-    public View f34389a;
-    public final Runnable f34390b;
-    public float f34391c;
+    public View f34384a;
+    public final Runnable f34385b;
+    public float f34386c;
     public float d;
-    public boolean f34392e;
-    public long f34393f;
-    public long f34394g;
+    public boolean f34387e;
+    public long f34388f;
+    public long f34389g;
     public TimeInterpolator h;
-    public boolean f34395i;
-    public long f34396j;
-    public float f34397k;
+    public boolean f34390i;
+    public long f34391j;
+    public float f34392k;
 
     public d6(long j3, TimeInterpolator timeInterpolator) {
-        this.f34393f = 0L;
-        this.f34394g = 200L;
-        nr nrVar = nr.f37956f;
-        this.f34389a = null;
-        this.f34394g = j3;
+        this.f34388f = 0L;
+        this.f34389g = 200L;
+        nr nrVar = nr.f37961f;
+        this.f34384a = null;
+        this.f34389g = j3;
         this.h = timeInterpolator;
-        this.f34392e = true;
+        this.f34387e = true;
     }
 
     public final void a(boolean z10) {
@@ -37,38 +37,38 @@ public final class d6 {
     }
 
     public final float b() {
-        if (!this.f34395i) {
+        if (!this.f34390i) {
             return 0.0f;
         }
-        return c8.l9.a(((float) ((SystemClock.elapsedRealtime() - this.f34396j) - this.f34393f)) / ((float) this.f34394g), 0.0f, 1.0f);
+        return c8.l9.a(((float) ((SystemClock.elapsedRealtime() - this.f34391j) - this.f34388f)) / ((float) this.f34389g), 0.0f, 1.0f);
     }
 
     public final float c() {
-        if (this.f34395i) {
+        if (this.f34390i) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            float a10 = c8.l9.a(((float) ((elapsedRealtime - this.f34396j) - this.f34393f)) / ((float) this.f34394g), 0.0f, 1.0f);
-            if (elapsedRealtime - this.f34396j >= this.f34393f) {
+            float a10 = c8.l9.a(((float) ((elapsedRealtime - this.f34391j) - this.f34388f)) / ((float) this.f34389g), 0.0f, 1.0f);
+            if (elapsedRealtime - this.f34391j >= this.f34388f) {
                 TimeInterpolator timeInterpolator = this.h;
                 if (timeInterpolator == null) {
-                    this.f34391c = org.telegram.messenger.g0.T1(this.f34397k, this.d, a10);
+                    this.f34386c = org.telegram.messenger.g0.T1(this.f34392k, this.d, a10);
                 } else {
-                    this.f34391c = org.telegram.messenger.g0.T1(this.f34397k, this.d, timeInterpolator.getInterpolation(a10));
+                    this.f34386c = org.telegram.messenger.g0.T1(this.f34392k, this.d, timeInterpolator.getInterpolation(a10));
                 }
             }
             if (a10 >= 1.0f) {
-                this.f34395i = false;
+                this.f34390i = false;
             } else {
-                View view = this.f34389a;
+                View view = this.f34384a;
                 if (view != null) {
                     view.invalidate();
                 }
-                Runnable runnable = this.f34390b;
+                Runnable runnable = this.f34385b;
                 if (runnable != null) {
                     runnable.run();
                 }
             }
         }
-        return this.f34391c;
+        return this.f34386c;
     }
 
     public final float d(boolean z10) {
@@ -82,18 +82,18 @@ public final class d6 {
     }
 
     public final float e(boolean z10, float f10) {
-        if (!z10 && this.f34394g > 0 && !this.f34392e) {
+        if (!z10 && this.f34389g > 0 && !this.f34387e) {
             if (Math.abs(this.d - f10) > 1.0E-4f) {
-                this.f34395i = true;
+                this.f34390i = true;
                 this.d = f10;
-                this.f34397k = this.f34391c;
-                this.f34396j = SystemClock.elapsedRealtime();
+                this.f34392k = this.f34386c;
+                this.f34391j = SystemClock.elapsedRealtime();
             }
         } else {
             this.d = f10;
-            this.f34391c = f10;
-            this.f34395i = false;
-            this.f34392e = false;
+            this.f34386c = f10;
+            this.f34390i = false;
+            this.f34387e = false;
         }
         return c();
     }
@@ -109,97 +109,97 @@ public final class d6 {
     }
 
     public d6(long j3, long j10, TimeInterpolator timeInterpolator) {
-        this.f34393f = 0L;
-        this.f34394g = 200L;
-        nr nrVar = nr.f37956f;
-        this.f34389a = null;
-        this.f34393f = j3;
-        this.f34394g = j10;
+        this.f34388f = 0L;
+        this.f34389g = 200L;
+        nr nrVar = nr.f37961f;
+        this.f34384a = null;
+        this.f34388f = j3;
+        this.f34389g = j10;
         this.h = timeInterpolator;
-        this.f34392e = true;
+        this.f34387e = true;
     }
 
     public d6(View view) {
-        this.f34393f = 0L;
-        this.f34394g = 200L;
-        this.h = nr.f37956f;
-        this.f34389a = view;
-        this.f34392e = true;
+        this.f34388f = 0L;
+        this.f34389g = 200L;
+        this.h = nr.f37961f;
+        this.f34384a = view;
+        this.f34387e = true;
     }
 
     public d6(View view, long j3, TimeInterpolator timeInterpolator) {
-        this.f34393f = 0L;
-        this.f34394g = 200L;
-        nr nrVar = nr.f37956f;
-        this.f34389a = view;
-        this.f34394g = j3;
+        this.f34388f = 0L;
+        this.f34389g = 200L;
+        nr nrVar = nr.f37961f;
+        this.f34384a = view;
+        this.f34389g = j3;
         this.h = timeInterpolator;
-        this.f34392e = true;
+        this.f34387e = true;
     }
 
     public d6(View view, long j3, long j10, TimeInterpolator timeInterpolator) {
-        this.f34393f = 0L;
-        this.f34394g = 200L;
-        nr nrVar = nr.f37956f;
-        this.f34389a = view;
-        this.f34393f = j3;
-        this.f34394g = j10;
+        this.f34388f = 0L;
+        this.f34389g = 200L;
+        nr nrVar = nr.f37961f;
+        this.f34384a = view;
+        this.f34388f = j3;
+        this.f34389g = j10;
         this.h = timeInterpolator;
-        this.f34392e = true;
+        this.f34387e = true;
     }
 
     public d6(Runnable runnable) {
-        this.f34393f = 0L;
-        this.f34394g = 200L;
-        this.h = nr.f37956f;
-        this.f34390b = runnable;
-        this.f34392e = true;
+        this.f34388f = 0L;
+        this.f34389g = 200L;
+        this.h = nr.f37961f;
+        this.f34385b = runnable;
+        this.f34387e = true;
     }
 
     public d6(Runnable runnable, long j3, TimeInterpolator timeInterpolator) {
-        this.f34393f = 0L;
-        this.f34394g = 200L;
-        nr nrVar = nr.f37956f;
-        this.f34390b = runnable;
-        this.f34394g = j3;
+        this.f34388f = 0L;
+        this.f34389g = 200L;
+        nr nrVar = nr.f37961f;
+        this.f34385b = runnable;
+        this.f34389g = j3;
         this.h = timeInterpolator;
-        this.f34392e = true;
+        this.f34387e = true;
     }
 
     public d6(Runnable runnable, long j3, TimeInterpolator timeInterpolator, int i7) {
-        this.f34393f = 0L;
-        this.f34394g = 200L;
-        nr nrVar = nr.f37956f;
-        this.f34390b = runnable;
-        this.f34393f = 0L;
-        this.f34394g = j3;
+        this.f34388f = 0L;
+        this.f34389g = 200L;
+        nr nrVar = nr.f37961f;
+        this.f34385b = runnable;
+        this.f34388f = 0L;
+        this.f34389g = j3;
         this.h = timeInterpolator;
-        this.f34392e = true;
+        this.f34387e = true;
     }
 
     public d6(float f10, View view, long j3, long j10, TimeInterpolator timeInterpolator) {
-        this.f34393f = 0L;
-        this.f34394g = 200L;
-        nr nrVar = nr.f37956f;
-        this.f34389a = view;
+        this.f34388f = 0L;
+        this.f34389g = 200L;
+        nr nrVar = nr.f37961f;
+        this.f34384a = view;
         this.d = f10;
-        this.f34391c = f10;
-        this.f34393f = j3;
-        this.f34394g = j10;
+        this.f34386c = f10;
+        this.f34388f = j3;
+        this.f34389g = j10;
         this.h = timeInterpolator;
-        this.f34392e = false;
+        this.f34387e = false;
     }
 
     public d6(float f10, Runnable runnable, long j3, long j10, TimeInterpolator timeInterpolator) {
-        this.f34393f = 0L;
-        this.f34394g = 200L;
-        nr nrVar = nr.f37956f;
-        this.f34390b = runnable;
+        this.f34388f = 0L;
+        this.f34389g = 200L;
+        nr nrVar = nr.f37961f;
+        this.f34385b = runnable;
         this.d = f10;
-        this.f34391c = f10;
-        this.f34393f = j3;
-        this.f34394g = j10;
+        this.f34386c = f10;
+        this.f34388f = j3;
+        this.f34389g = j10;
         this.h = timeInterpolator;
-        this.f34392e = false;
+        this.f34387e = false;
     }
 }

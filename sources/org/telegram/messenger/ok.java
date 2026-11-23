@@ -1,35 +1,34 @@
 package org.telegram.messenger;
+public final class ok implements Runnable {
+    public final int f26134a;
+    public final boolean[] f26135b;
+    public final Runnable[] f26136c;
 
-import java.util.function.ToLongFunction;
-import org.telegram.ui.z41;
-public final class ok implements ToLongFunction {
-    public final int f26093a;
-
-    public ok(int i7) {
-        this.f26093a = i7;
+    public ok(boolean[] zArr, Runnable[] runnableArr, int i7) {
+        this.f26134a = i7;
+        this.f26135b = zArr;
+        this.f26136c = runnableArr;
     }
 
     @Override
-    public final long applyAsLong(Object obj) {
-        switch (this.f26093a) {
+    public final void run() {
+        switch (this.f26134a) {
             case 0:
-                return Long.parseLong((String) obj);
-            case 1:
-                return ((ws) obj).f27787e;
-            case 2:
-                return ((ws) obj).f27787e;
-            case 3:
-                return ((fj) obj).Z0();
-            case 4:
-                fj fjVar = ((z41) obj).f54433b;
-                if (fjVar == null) {
-                    return 0L;
+                this.f26135b[0] = true;
+                Runnable runnable = this.f26136c[0];
+                if (runnable != null) {
+                    runnable.run();
+                    return;
                 }
-                return fjVar.f23993k.date;
-            case 5:
-                return ((org.telegram.ui.Wallet.q8) obj).I;
+                return;
             default:
-                return ((org.telegram.ui.Wallet.q8) obj).J;
+                this.f26135b[0] = true;
+                Runnable runnable2 = this.f26136c[0];
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
+                return;
         }
     }
 }

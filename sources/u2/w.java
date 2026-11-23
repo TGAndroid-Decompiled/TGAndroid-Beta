@@ -14,16 +14,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 public abstract class w {
-    public static final HashMap f58426a = new HashMap();
+    public static final HashMap f58430a = new HashMap();
 
     public static void a(String str, ArrayList arrayList) {
         if ("audio/raw".equals(str)) {
-            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f58379a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+            if (Build.VERSION.SDK_INT < 26 && Build.DEVICE.equals("R9") && arrayList.size() == 1 && ((o) arrayList.get(0)).f58383a.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
                 arrayList.add(o.i("OMX.google.raw.decoder", "audio/raw", "audio/raw", null, false, true, false, false));
             }
             Collections.sort(arrayList, new s4(new Object(), 4));
         }
-        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f58379a)) {
+        if (Build.VERSION.SDK_INT < 32 && arrayList.size() > 1 && "OMX.qti.audio.decoder.flac".equals(((o) arrayList.get(0)).f58383a)) {
             arrayList.add((o) arrayList.remove(0));
         }
     }
@@ -37,8 +37,8 @@ public abstract class w {
 
     public static String c(e2.u uVar) {
         Pair b10;
-        String str = uVar.f10795s;
-        String str2 = uVar.f10795s;
+        String str = uVar.f10798s;
+        String str2 = uVar.f10798s;
         if ("audio/eac3-joc".equals(str)) {
             return "audio/eac3";
         }
@@ -52,7 +52,7 @@ public abstract class w {
             }
             if (intValue == 1024) {
                 e2.m mVar = uVar.I;
-                if (mVar != null && mVar.f10545c == 6 && mVar.f10544b == 1) {
+                if (mVar != null && mVar.f10548c == 6 && mVar.f10547b == 1) {
                     return null;
                 }
                 return "video/av01";
@@ -101,7 +101,7 @@ public abstract class w {
         synchronized (w.class) {
             try {
                 s sVar = new s(str, z10, z11);
-                HashMap hashMap = f58426a;
+                HashMap hashMap = f58430a;
                 List list = (List) hashMap.get(sVar);
                 if (list != null) {
                     return list;
@@ -110,7 +110,7 @@ public abstract class w {
                 if (z10 && f10.isEmpty() && Build.VERSION.SDK_INT == 23) {
                     f10 = f(sVar, new sa.d(25));
                     if (!f10.isEmpty()) {
-                        h2.a.l("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) f10.get(0)).f58379a);
+                        h2.a.l("MediaCodecUtil", "MediaCodecList API didn't list secure decoder for: " + str + ". Assuming: " + ((o) f10.get(0)).f58383a);
                     }
                 }
                 a(str, f10);
@@ -129,10 +129,10 @@ public abstract class w {
 
     public static t1 g(i iVar, e2.u uVar, boolean z10, boolean z11) {
         List a10;
-        List a11 = iVar.a(uVar.f10795s, z10, z11);
+        List a11 = iVar.a(uVar.f10798s, z10, z11);
         String c10 = c(uVar);
         if (c10 == null) {
-            a10 = t1.f14100e;
+            a10 = t1.f14103e;
         } else {
             a10 = iVar.a(c10, z10, z11);
         }

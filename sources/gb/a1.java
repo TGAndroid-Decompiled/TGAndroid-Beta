@@ -2,17 +2,17 @@ package gb;
 
 import c8.n1;
 public final class a1 {
-    public static final a1 f13315a;
-    public static final a1 f13316b;
-    public static final a1[] f13317c;
+    public static final a1 f13318a;
+    public static final a1 f13319b;
+    public static final a1[] f13320c;
 
     static {
         ?? r02 = new Enum("GENERAL", 0);
-        f13315a = r02;
+        f13318a = r02;
         ?? r12 = new Enum("FALLBACK", 1);
-        f13316b = r12;
+        f13319b = r12;
         a1[] a1VarArr = {r02, r12};
-        f13317c = a1VarArr;
+        f13320c = a1VarArr;
         n1.a(a1VarArr);
     }
 
@@ -21,6 +21,6 @@ public final class a1 {
     }
 
     public static a1[] values() {
-        return (a1[]) f13317c.clone();
+        return (a1[]) f13320c.clone();
     }
 }

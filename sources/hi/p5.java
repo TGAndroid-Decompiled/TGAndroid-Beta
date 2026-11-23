@@ -10,36 +10,36 @@ import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
 public final class p5 extends FrameLayout {
-    public final int f15256a;
-    public int f15257b;
-    public final di.d1 f15258c;
+    public final int f15259a;
+    public int f15260b;
+    public final di.d1 f15261c;
     public final FrameLayout d;
-    public final fi.x7 f15259e;
-    public boolean f15260f;
+    public final fi.x7 f15262e;
+    public boolean f15263f;
     public boolean h;
 
     public p5(Activity activity, int i7, fi.b bVar) {
         super(activity);
-        this.f15257b = 1;
-        this.f15260f = false;
+        this.f15260b = 1;
+        this.f15263f = false;
         this.h = false;
-        this.f15256a = i7;
-        TLRPC.User f10 = j10.i(i7).f();
+        this.f15259a = i7;
+        TLRPC.User f10 = k10.i(i7).f();
         di.d1 d1Var = new di.d1(this, getContext());
-        this.f15258c = d1Var;
+        this.f15261c = d1Var;
         fi.v3 v3Var = new fi.v3(getContext(), null);
-        fi.t3 t3Var = v3Var.f12681a;
+        fi.t3 t3Var = v3Var.f12684a;
         t3Var.getAvatarDrawable().r(f10);
         t3Var.f(f10, t3Var.getAvatarDrawable());
-        String q10 = o10.q(f10);
-        fi.u3 u3Var = v3Var.f12682b;
+        String q10 = p10.q(f10);
+        fi.u3 u3Var = v3Var.f12685b;
         u3Var.l(org.telegram.messenger.j6.m(q10, u3Var.getPaint().getFontMetricsInt(), false, null, 0), false);
-        v3Var.c(gd.N0(2131745802, null), false);
+        v3Var.c(hd.N0(2131745802, null), false);
         d1Var.addView(v3Var, c8.ma.d(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
         imageView.setImageDrawable(getContext().getResources().getDrawable(2131231269).mutate());
@@ -49,8 +49,8 @@ public final class p5 extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.d = frameLayout;
         fi.x7 x7Var = new fi.x7(getContext(), bVar);
-        this.f15259e = x7Var;
-        x7Var.f12793t0 = true;
+        this.f15262e = x7Var;
+        x7Var.f12796t0 = true;
         x7Var.setTranslationY(org.telegram.messenger.g0.L(8.0f));
         frameLayout.addView(x7Var, c8.ma.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
         ImageView imageView2 = new ImageView(activity);
@@ -63,7 +63,7 @@ public final class p5 extends FrameLayout {
         TextView textView = new TextView(activity);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(1694498815);
-        textView.setText(gd.N0(2131746059, null));
+        textView.setText(hd.N0(2131746059, null));
         frameLayout2.addView(textView, c8.ma.d(-2, -2.0f, 19, 24.0f, 0.0f, 24.0f, 0.0f));
         ImageView imageView3 = new ImageView(activity);
         imageView3.setImageResource(2131231495);
@@ -80,8 +80,8 @@ public final class p5 extends FrameLayout {
         View view;
         float f10;
         if (z10) {
-            if (this.f15260f != z11) {
-                this.f15260f = z11;
+            if (this.f15263f != z11) {
+                this.f15263f = z11;
             } else {
                 return;
             }
@@ -91,7 +91,7 @@ public final class p5 extends FrameLayout {
             return;
         }
         if (z10) {
-            view = this.f15258c;
+            view = this.f15261c;
         } else {
             view = this.d;
         }
@@ -119,7 +119,7 @@ public final class p5 extends FrameLayout {
     }
 
     public final void b(CharSequence charSequence) {
-        this.f15259e.f12777c0.b(org.telegram.ui.Components.y5.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
+        this.f15262e.f12780c0.b(org.telegram.ui.Components.y5.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
     }
 
     @Override

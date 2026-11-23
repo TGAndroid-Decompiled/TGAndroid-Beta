@@ -7,33 +7,33 @@ import android.widget.FrameLayout;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.qd;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.rd;
 import org.telegram.ui.Components.ml;
 public final class r7 implements Runnable {
-    public final int f31740a;
-    public final FrameLayout f31741b;
-    public final double f31742c;
+    public final int f31743a;
+    public final FrameLayout f31744b;
+    public final double f31745c;
     public final double d;
 
     public r7(FrameLayout frameLayout, double d, double d2, int i7) {
-        this.f31740a = i7;
-        this.f31741b = frameLayout;
-        this.f31742c = d;
+        this.f31743a = i7;
+        this.f31744b = frameLayout;
+        this.f31745c = d;
         this.d = d2;
     }
 
     @Override
     public final void run() {
-        switch (this.f31740a) {
+        switch (this.f31743a) {
             case 0:
-                s7 s7Var = (s7) this.f31741b;
-                double d = this.f31742c;
+                s7 s7Var = (s7) this.f31744b;
+                double d = this.f31745c;
                 double d2 = this.d;
                 try {
-                    List<Address> fromLocation = new Geocoder(org.telegram.messenger.t0.f26941b, gd.E0().f24269y).getFromLocation(d, d2, 1);
+                    List<Address> fromLocation = new Geocoder(org.telegram.messenger.t0.f26931b, hd.E0().f24472y).getFromLocation(d, d2, 1);
                     if (fromLocation.isEmpty()) {
-                        String c10 = qd.c(d2, d);
+                        String c10 = rd.c(d2, d);
                         s7Var.L = c10;
                         if (c10 == null) {
                             s7Var.L = "";
@@ -59,7 +59,7 @@ public final class r7 implements Runnable {
                             }
                         }
                         s7Var.L = sb2.toString();
-                        String b10 = qd.b(address.getCountryCode());
+                        String b10 = rd.b(address.getCountryCode());
                         if (b10 != null && org.telegram.messenger.j6.g(b10) != null) {
                             s7Var.L = b10 + " " + ((Object) s7Var.L);
                         }
@@ -69,8 +69,8 @@ public final class r7 implements Runnable {
                 org.telegram.messenger.g0.g3(new r7(s7Var, d, d2, 1));
                 return;
             case 1:
-                s7 s7Var2 = (s7) this.f31741b;
-                double d10 = this.f31742c;
+                s7 s7Var2 = (s7) this.f31744b;
+                double d10 = this.f31745c;
                 double d11 = this.d;
                 s7Var2.I = d10;
                 s7Var2.J = d11;
@@ -82,7 +82,7 @@ public final class r7 implements Runnable {
                 m5Var.l(m10, false);
                 return;
             default:
-                ((ml) this.f31741b).h0(this.f31742c, this.d);
+                ((ml) this.f31744b).h0(this.f31745c, this.d);
                 return;
         }
     }

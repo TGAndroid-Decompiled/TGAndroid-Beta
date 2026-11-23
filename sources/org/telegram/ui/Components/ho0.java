@@ -4,37 +4,37 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class ho0 implements TextWatcher {
-    public final int f35950a;
-    public final ap0 f35951b;
+    public final int f35944a;
+    public final ap0 f35945b;
 
     public ho0(ap0 ap0Var, int i7) {
-        this.f35950a = i7;
-        this.f35951b = ap0Var;
+        this.f35944a = i7;
+        this.f35945b = ap0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        switch (this.f35950a) {
+        switch (this.f35944a) {
             case 0:
                 org.telegram.messenger.g0.g3(new hb0(this, 28));
                 return;
             default:
-                ap0 ap0Var = this.f35951b;
+                ap0 ap0Var = this.f35945b;
                 to0 to0Var = ap0Var.G1;
                 nv0 nv0Var = ap0Var.M1;
-                e10 e10Var = ap0Var.f33576u2;
-                if (!TextUtils.isEmpty(e10Var.f34647r.getText())) {
+                e10 e10Var = ap0Var.f33589u2;
+                if (!TextUtils.isEmpty(e10Var.f34642r.getText())) {
                     ap0Var.L0(false);
                 }
-                if (ap0Var.f33580w2) {
-                    String obj = e10Var.f34647r.getText().toString();
+                if (ap0Var.f33593w2) {
+                    String obj = e10Var.f34642r.getText().toString();
                     if (obj.length() != 0) {
                         if (nv0Var != null) {
-                            nv0Var.d.setText(org.telegram.messenger.gd.N0(2131747974, null));
+                            nv0Var.d.setText(org.telegram.messenger.hd.N0(2131747974, null));
                         }
                     } else if (ap0Var.B1.getAdapter() != to0Var) {
                         int K0 = ap0.K0(ap0Var);
-                        nv0Var.d.setText(org.telegram.messenger.gd.N0(2131747974, null));
+                        nv0Var.d.setText(org.telegram.messenger.hd.N0(2131747974, null));
                         nv0Var.e(false, true);
                         ap0Var.L0(false);
                         to0Var.f();
@@ -55,12 +55,12 @@ public final class ho0 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f35950a;
+        int i12 = this.f35944a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f35950a;
+        int i12 = this.f35944a;
     }
 
     private final void a(int i7, int i10, int i11, CharSequence charSequence) {

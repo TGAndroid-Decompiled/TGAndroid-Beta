@@ -1,35 +1,34 @@
 package org.telegram.messenger;
-
-import j$.util.concurrent.ConcurrentHashMap;
 public final class yb implements Runnable {
-    public final int f28136a;
-    public final zb f28137b;
-    public final long f28138c;
-    public final long d;
+    public final int f28043a;
+    public final ac f28044b;
+    public final Boolean f28045c;
 
-    public yb(zb zbVar, long j3, long j10, int i7) {
-        this.f28136a = i7;
-        this.f28137b = zbVar;
-        this.f28138c = j3;
-        this.d = j10;
+    public yb(ac acVar, Boolean bool, int i7) {
+        this.f28043a = i7;
+        this.f28044b = acVar;
+        this.f28045c = bool;
     }
 
     @Override
     public final void run() {
-        switch (this.f28136a) {
+        int i7 = this.f28043a;
+        Boolean bool = this.f28045c;
+        ac acVar = this.f28044b;
+        switch (i7) {
             case 0:
-                zb zbVar = this.f28137b;
-                ConcurrentHashMap concurrentHashMap = zbVar.h.f23722u;
-                String str = zbVar.f28304a.f26793e;
-                long j3 = this.f28138c;
-                long j10 = this.d;
-                concurrentHashMap.put(str, new long[]{j3, j10});
-                g0.g3(new yb(zbVar, j3, j10, 1));
+                acVar.h.f23903u.remove(acVar.f22895a.f26993e);
+                g0.g3(new yb(acVar, bool, 1));
                 return;
             default:
-                sb sbVar = this.f28137b.f28304a;
-                ks.f(sbVar.f26802o).k(141, sbVar.f26793e, Long.valueOf(this.f28138c), Long.valueOf(this.d));
-                return;
+                tb tbVar = acVar.f22895a;
+                if (bool.booleanValue()) {
+                    ls.f(tbVar.f27002o).k(142, tbVar.f26993e, tbVar.f27003p);
+                    return;
+                } else {
+                    ls.f(tbVar.f27002o).k(143, tbVar.f26993e, 2);
+                    return;
+                }
         }
     }
 }

@@ -15,7 +15,7 @@ public class oq0 implements uq0 {
     }
 
     @Override
-    public wq0 E(org.telegram.messenger.fj fjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
+    public wq0 E(org.telegram.messenger.gj gjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
         return null;
     }
 
@@ -80,7 +80,7 @@ public class oq0 implements uq0 {
     }
 
     @Override
-    public org.telegram.messenger.fj V() {
+    public org.telegram.messenger.gj V() {
         return null;
     }
 
@@ -125,12 +125,12 @@ public class oq0 implements uq0 {
     }
 
     @Override
-    public org.telegram.messenger.hc j(int i7) {
+    public org.telegram.messenger.ic j(int i7) {
         return null;
     }
 
     @Override
-    public int k(int i7, org.telegram.messenger.e20 e20Var) {
+    public int k(int i7, org.telegram.messenger.f20 f20Var) {
         return -1;
     }
 
@@ -198,7 +198,7 @@ public class oq0 implements uq0 {
     }
 
     @Override
-    public void M(org.telegram.messenger.e20 e20Var) {
+    public void M(org.telegram.messenger.f20 f20Var) {
     }
 
     @Override
@@ -258,6 +258,6 @@ public class oq0 implements uq0 {
     }
 
     @Override
-    public void o(int i7, org.telegram.messenger.e20 e20Var, boolean z10, int i10, int i11, boolean z11) {
+    public void o(int i7, org.telegram.messenger.f20 f20Var, boolean z10, int i10, int i11, boolean z11) {
     }
 }

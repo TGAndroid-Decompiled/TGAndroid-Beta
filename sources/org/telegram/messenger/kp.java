@@ -1,5 +1,8 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
-public final class kp extends TLRPC.Updates {
+public final class kp {
+    public int f25117a;
+    public int f25118b;
+    public int f25119c;
+    public int d;
+    public boolean f25120e;
 }

@@ -2,5 +2,5 @@ package zf;
 
 import android.os.Binder;
 public abstract class d extends Binder implements e {
-    public static final int f61966a = 0;
+    public static final int f61970a = 0;
 }

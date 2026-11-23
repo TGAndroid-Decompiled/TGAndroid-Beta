@@ -3,42 +3,42 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class n11 extends AnimatorListenerAdapter {
-    public final boolean f50063a;
-    public final Runnable f50064b;
-    public final boolean[] f50065c;
+    public final boolean f50067a;
+    public final Runnable f50068b;
+    public final boolean[] f50069c;
     public final boolean d;
-    public final Runnable f50066e;
-    public final o11 f50067f;
+    public final Runnable f50070e;
+    public final o11 f50071f;
 
     public n11(o11 o11Var, boolean z10, Runnable runnable, boolean[] zArr, boolean z11, Runnable runnable2) {
-        this.f50067f = o11Var;
-        this.f50063a = z10;
-        this.f50064b = runnable;
-        this.f50065c = zArr;
+        this.f50071f = o11Var;
+        this.f50067a = z10;
+        this.f50068b = runnable;
+        this.f50069c = zArr;
         this.d = z11;
-        this.f50066e = runnable2;
+        this.f50070e = runnable2;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f10;
         Runnable runnable;
-        o11 o11Var = this.f50067f;
-        k0 k0Var = o11Var.f50401s;
-        boolean z10 = this.f50063a;
+        o11 o11Var = this.f50071f;
+        k0 k0Var = o11Var.f50405s;
+        boolean z10 = this.f50067a;
         if (z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
         o11Var.J = f10;
-        org.telegram.messenger.g0.X1(o11Var.f50396c, o11Var.d, f10, o11Var.f50397e);
+        org.telegram.messenger.g0.X1(o11Var.f50400c, o11Var.d, f10, o11Var.f50401e);
         k0Var.invalidate();
         if (!z10) {
-            o11Var.f50402w.setAlpha(o11Var.J);
+            o11Var.f50406w.setAlpha(o11Var.J);
         }
-        if (o11Var.J < 0.5f && !z10 && (runnable = this.f50064b) != null) {
-            boolean[] zArr = this.f50065c;
+        if (o11Var.J < 0.5f && !z10 && (runnable = this.f50068b) != null) {
+            boolean[] zArr = this.f50069c;
             if (!zArr[0]) {
                 zArr[0] = true;
                 runnable.run();
@@ -46,14 +46,14 @@ public final class n11 extends AnimatorListenerAdapter {
         }
         if (!z10) {
             if (this.d) {
-                o11Var.f50394a.f46379b = false;
-                o11Var.Q.f51840i0.invalidate();
+                o11Var.f50398a.f46382b = false;
+                o11Var.Q.f51844i0.invalidate();
             }
-            org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25168k1, 4);
+            org.telegram.messenger.ls.e().k(org.telegram.messenger.ls.f25334k1, 4);
         }
         o11Var.L = null;
         k0Var.invalidate();
-        Runnable runnable2 = this.f50066e;
+        Runnable runnable2 = this.f50070e;
         if (runnable2 != null) {
             runnable2.run();
         }

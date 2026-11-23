@@ -2,14 +2,14 @@ package kg;
 
 import java.util.Calendar;
 import java.util.Locale;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 public final class d1 {
-    public int f18314a;
-    public int f18315b;
+    public int f18317a;
+    public int f18318b;
 
     public d1(int i7, int i10) {
-        this.f18314a = i7;
-        this.f18315b = i10;
+        this.f18317a = i7;
+        this.f18318b = i10;
     }
 
     public static String a(int i7) {
@@ -18,12 +18,12 @@ public final class d1 {
         int i10 = i7 % 60;
         Calendar calendar = Calendar.getInstance();
         calendar.set(0, 0, 0, ((i7 - i10) / 60) % 24, i10);
-        gd E0 = gd.E0();
-        if (E0.f24250c == null) {
+        hd E0 = hd.E0();
+        if (E0.f24453c == null) {
             synchronized (E0) {
                 try {
-                    if (E0.f24250c == null) {
-                        Locale locale = E0.f24269y;
+                    if (E0.f24453c == null) {
+                        Locale locale = E0.f24472y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
@@ -35,7 +35,7 @@ public final class d1 {
                         if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
                             locale = Locale.US;
                         }
-                        boolean z10 = gd.f24243c0;
+                        boolean z10 = hd.f24446c0;
                         if (z10) {
                             str = "HH:mm";
                         } else {
@@ -46,20 +46,20 @@ public final class d1 {
                         } else {
                             str2 = "h:mm a";
                         }
-                        E0.f24250c = gd.k(locale, str, str2);
+                        E0.f24453c = hd.k(locale, str, str2);
                     }
                 } finally {
                 }
             }
         }
-        String format = E0.f24250c.format(calendar.getTime());
+        String format = E0.f24453c.format(calendar.getTime());
         if (i7 > 1440) {
-            return gd.a0(null, null, 2131752736, format);
+            return hd.a0(null, null, 2131752736, format);
         }
         return format;
     }
 
     public final String toString() {
-        return a(this.f18314a) + " - " + a(this.f18315b);
+        return a(this.f18317a) + " - " + a(this.f18318b);
     }
 }

@@ -2,19 +2,19 @@ package hi;
 
 import android.app.Activity;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.r10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.bn;
 public final class z4 extends bn {
-    public final q10 f15851vd;
-    public final k5 f15852wd;
+    public final r10 f15854vd;
+    public final k5 f15855wd;
 
-    public z4(k5 k5Var, q10 q10Var) {
+    public z4(k5 k5Var, r10 r10Var) {
         super(null);
-        this.f15852wd = k5Var;
-        this.f15851vd = q10Var;
+        this.f15855wd = k5Var;
+        this.f15854vd = r10Var;
     }
 
     @Override
@@ -50,24 +50,24 @@ public final class z4 extends bn {
                 if (tL_geoPointAddress != null) {
                     tL_mediaAreaGeoPoint3.flags |= 1;
                 }
-                Utilities.f22807e.c(new c(5, messageMedia, tL_mediaAreaGeoPoint3));
+                Utilities.f22810e.c(new c(5, messageMedia, tL_mediaAreaGeoPoint3));
                 tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
             }
             tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
         } else {
             return;
         }
-        this.f15851vd.a(messageMedia, tL_mediaAreaGeoPoint2);
+        this.f15854vd.a(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
     public final Activity getParentActivity() {
-        return org.telegram.messenger.g0.W(this.f15852wd.getContext());
+        return org.telegram.messenger.g0.W(this.f15855wd.getContext());
     }
 
     @Override
     public final org.telegram.ui.ActionBar.h6 getResourceProvider() {
-        return this.f15852wd.f14896q1;
+        return this.f15855wd.f14899q1;
     }
 
     @Override
@@ -77,6 +77,6 @@ public final class z4 extends bn {
 
     @Override
     public final TLRPC.User j() {
-        return j10.i(this.currentAccount).f();
+        return k10.i(this.currentAccount).f();
     }
 }

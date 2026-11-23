@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class sg implements Runnable {
-    public final int f52034a;
-    public final View f52035b;
+    public final int f52038a;
+    public final View f52039b;
 
     public sg(int i7, View view) {
-        this.f52034a = i7;
-        this.f52035b = view;
+        this.f52038a = i7;
+        this.f52039b = view;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f52034a;
-        View view = this.f52035b;
+        int i7 = this.f52038a;
+        View view = this.f52039b;
         switch (i7) {
             case 0:
                 try {
@@ -35,16 +35,16 @@ public final class sg implements Runnable {
                 view.setVisibility(8);
                 return;
             case 4:
-                org.telegram.messenger.bz.I(0);
-                ((org.telegram.ui.Cells.x9) view).f32359c.c(org.telegram.messenger.gd.N0(2131744160, null), true, true);
+                org.telegram.messenger.cz.I(0);
+                ((org.telegram.ui.Cells.x9) view).f32362c.c(org.telegram.messenger.hd.N0(2131744158, null), true, true);
                 return;
             case 5:
-                org.telegram.messenger.bz.I(1);
-                ((org.telegram.ui.Cells.x9) view).f32359c.c(org.telegram.messenger.gd.N0(2131744159, null), true, true);
+                org.telegram.messenger.cz.I(1);
+                ((org.telegram.ui.Cells.x9) view).f32362c.c(org.telegram.messenger.hd.N0(2131744157, null), true, true);
                 return;
             default:
-                org.telegram.messenger.bz.I(2);
-                ((org.telegram.ui.Cells.x9) view).f32359c.c(org.telegram.messenger.gd.N0(2131744158, null), true, true);
+                org.telegram.messenger.cz.I(2);
+                ((org.telegram.ui.Cells.x9) view).f32362c.c(org.telegram.messenger.hd.N0(2131744156, null), true, true);
                 return;
         }
     }

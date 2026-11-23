@@ -2,30 +2,30 @@ package org.telegram.ui;
 
 import android.app.Activity;
 public final class fy0 implements Runnable {
-    public final int f47874a;
-    public final bn f47875b;
-    public final Activity f47876c;
+    public final int f47878a;
+    public final bn f47879b;
+    public final Activity f47880c;
     public final org.telegram.ui.ActionBar.h6 d;
-    public final org.telegram.messenger.fj f47877e;
+    public final org.telegram.messenger.gj f47881e;
 
-    public fy0(bn bnVar, Activity activity, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.messenger.fj fjVar, int i7) {
-        this.f47874a = i7;
-        this.f47875b = bnVar;
-        this.f47876c = activity;
+    public fy0(bn bnVar, Activity activity, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.messenger.gj gjVar, int i7) {
+        this.f47878a = i7;
+        this.f47879b = bnVar;
+        this.f47880c = activity;
         this.d = h6Var;
-        this.f47877e = fjVar;
+        this.f47881e = gjVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f47874a;
-        org.telegram.messenger.fj fjVar = this.f47877e;
+        int i7 = this.f47878a;
+        org.telegram.messenger.gj gjVar = this.f47881e;
         org.telegram.ui.ActionBar.h6 h6Var = this.d;
-        final Activity activity = this.f47876c;
-        bn bnVar = this.f47875b;
+        final Activity activity = this.f47880c;
+        bn bnVar = this.f47879b;
         switch (i7) {
             case 0:
-                org.telegram.ui.Components.lc.b0(bnVar).c(org.telegram.messenger.g0.R2(org.telegram.messenger.gd.N0(2131754484, null), -1, 2, new Runnable() {
+                org.telegram.ui.Components.lc.b0(bnVar).c(org.telegram.messenger.g0.R2(org.telegram.messenger.hd.N0(2131754484, null), -1, 2, new Runnable() {
                     @Override
                     public final void run() {
                         switch (r2) {
@@ -41,11 +41,11 @@ public final class fy0 implements Runnable {
                         }
                     }
                 }, h6Var)).j();
-                bnVar.ib(fjVar);
-                bnVar.kb(fjVar);
+                bnVar.ib(gjVar);
+                bnVar.kb(gjVar);
                 return;
             case 1:
-                org.telegram.ui.Components.lc.b0(bnVar).c(org.telegram.messenger.g0.R2(org.telegram.messenger.gd.N0(2131754484, null), -1, 2, new Runnable() {
+                org.telegram.ui.Components.lc.b0(bnVar).c(org.telegram.messenger.g0.R2(org.telegram.messenger.hd.N0(2131754484, null), -1, 2, new Runnable() {
                     @Override
                     public final void run() {
                         switch (r2) {
@@ -61,11 +61,11 @@ public final class fy0 implements Runnable {
                         }
                     }
                 }, h6Var)).j();
-                bnVar.ib(fjVar);
-                bnVar.kb(fjVar);
+                bnVar.ib(gjVar);
+                bnVar.kb(gjVar);
                 return;
             default:
-                org.telegram.ui.Components.lc.b0(bnVar).c(org.telegram.messenger.g0.R2(org.telegram.messenger.gd.N0(2131754484, null), -1, 2, new Runnable() {
+                org.telegram.ui.Components.lc.b0(bnVar).c(org.telegram.messenger.g0.R2(org.telegram.messenger.hd.N0(2131754484, null), -1, 2, new Runnable() {
                     @Override
                     public final void run() {
                         switch (r2) {
@@ -81,8 +81,8 @@ public final class fy0 implements Runnable {
                         }
                     }
                 }, h6Var)).j();
-                bnVar.ib(fjVar);
-                bnVar.kb(fjVar);
+                bnVar.ib(gjVar);
+                bnVar.kb(gjVar);
                 return;
         }
     }

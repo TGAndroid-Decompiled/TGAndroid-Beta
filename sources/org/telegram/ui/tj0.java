@@ -7,22 +7,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class tj0 implements RequestDelegate {
-    public final int f52340a;
-    public final vj0 f52341b;
+    public final int f52344a;
+    public final vj0 f52345b;
 
     public tj0(vj0 vj0Var, int i7) {
-        this.f52340a = i7;
-        this.f52341b = vj0Var;
+        this.f52344a = i7;
+        this.f52345b = vj0Var;
     }
 
     @Override
     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f52340a) {
+        switch (this.f52344a) {
             case 0:
-                org.telegram.messenger.g0.g3(new uj0(this.f52341b, tLObject, tL_error));
+                org.telegram.messenger.g0.g3(new uj0(this.f52345b, tLObject, tL_error));
                 return;
             case 1:
-                final vj0 vj0Var = this.f52341b;
+                final vj0 vj0Var = this.f52345b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -32,7 +32,7 @@ public final class tj0 implements RequestDelegate {
                             case 0:
                                 vj0 vj0Var2 = vj0Var;
                                 TLRPC.TL_error tL_error2 = tL_error;
-                                hk0 hk0Var = vj0Var2.f52837e;
+                                hk0 hk0Var = vj0Var2.f52841e;
                                 if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
                                     TL_account.getPassword getpassword = new TL_account.getPassword();
                                     i7 = ((org.telegram.ui.ActionBar.g2) hk0Var).currentAccount;
@@ -49,18 +49,18 @@ public final class tj0 implements RequestDelegate {
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
                                     TL_account.getPassword getpassword2 = new TL_account.getPassword();
-                                    i10 = ((org.telegram.ui.ActionBar.g2) vj0Var3.f52837e).currentAccount;
+                                    i10 = ((org.telegram.ui.ActionBar.g2) vj0Var3.f52841e).currentAccount;
                                     ConnectionsManager.getInstance(i10).sendRequest(getpassword2, new tj0(vj0Var3, 3), 8);
                                     return;
                                 }
-                                Utilities.f22807e.c(new mc0(vj0Var3, vj0Var3.f52835b, vj0Var3.d, 14));
+                                Utilities.f22810e.c(new mc0(vj0Var3, vj0Var3.f52839b, vj0Var3.d, 14));
                                 return;
                         }
                     }
                 });
                 return;
             case 2:
-                final vj0 vj0Var2 = this.f52341b;
+                final vj0 vj0Var2 = this.f52345b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -70,7 +70,7 @@ public final class tj0 implements RequestDelegate {
                             case 0:
                                 vj0 vj0Var22 = vj0Var2;
                                 TLRPC.TL_error tL_error2 = tL_error;
-                                hk0 hk0Var = vj0Var22.f52837e;
+                                hk0 hk0Var = vj0Var22.f52841e;
                                 if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
                                     TL_account.getPassword getpassword = new TL_account.getPassword();
                                     i7 = ((org.telegram.ui.ActionBar.g2) hk0Var).currentAccount;
@@ -87,21 +87,21 @@ public final class tj0 implements RequestDelegate {
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
                                     TL_account.getPassword getpassword2 = new TL_account.getPassword();
-                                    i10 = ((org.telegram.ui.ActionBar.g2) vj0Var3.f52837e).currentAccount;
+                                    i10 = ((org.telegram.ui.ActionBar.g2) vj0Var3.f52841e).currentAccount;
                                     ConnectionsManager.getInstance(i10).sendRequest(getpassword2, new tj0(vj0Var3, 3), 8);
                                     return;
                                 }
-                                Utilities.f22807e.c(new mc0(vj0Var3, vj0Var3.f52835b, vj0Var3.d, 14));
+                                Utilities.f22810e.c(new mc0(vj0Var3, vj0Var3.f52839b, vj0Var3.d, 14));
                                 return;
                         }
                     }
                 });
                 return;
             case 3:
-                org.telegram.messenger.g0.g3(new uj0(this.f52341b, tL_error, tLObject, 1));
+                org.telegram.messenger.g0.g3(new uj0(this.f52345b, tL_error, tLObject, 1));
                 return;
             default:
-                org.telegram.messenger.g0.g3(new uj0(this.f52341b, tL_error, tLObject, 2));
+                org.telegram.messenger.g0.g3(new uj0(this.f52345b, tL_error, tLObject, 2));
                 return;
         }
     }

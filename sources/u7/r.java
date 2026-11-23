@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class r extends o implements List, RandomAccess {
-    public static final p f58504b = new p(s.f58505e, 0);
+    public static final p f58508b = new p(s.f58509e, 0);
 
     @Override
     public final void add(int i7, Object obj) {
@@ -128,7 +128,7 @@ public abstract class r extends o implements List, RandomAccess {
             return this;
         }
         if (i11 == 0) {
-            return s.f58505e;
+            return s.f58509e;
         }
         return new q(this, i7, i11);
     }
@@ -138,7 +138,7 @@ public abstract class r extends o implements List, RandomAccess {
         int size = size();
         if (i7 >= 0 && i7 <= size) {
             if (isEmpty()) {
-                return f58504b;
+                return f58508b;
             }
             return new p(this, i7);
         }

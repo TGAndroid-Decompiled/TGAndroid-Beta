@@ -13,9 +13,9 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.zo;
+import org.telegram.messenger.ap;
+import org.telegram.messenger.np;
+import org.telegram.messenger.r10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
@@ -30,30 +30,30 @@ import org.telegram.ui.cx;
 import org.telegram.ui.f40;
 import org.telegram.ui.oa1;
 import org.telegram.ui.rv0;
-public final class h implements oa1, org.telegram.ui.ActionBar.q1, org.telegram.messenger.jc, rj0, zo, w5.b, v5.e, ua.a {
-    public final int f8916a;
-    public final long f8917b;
-    public final Object f8918c;
+public final class h implements oa1, org.telegram.ui.ActionBar.q1, org.telegram.messenger.kc, rj0, ap, w5.b, v5.e, ua.a {
+    public final int f8919a;
+    public final long f8920b;
+    public final Object f8921c;
     public final Object d;
 
     public h(Object obj, long j3, Object obj2, int i7) {
-        this.f8916a = i7;
-        this.f8918c = obj;
-        this.f8917b = j3;
+        this.f8919a = i7;
+        this.f8921c = obj;
+        this.f8920b = j3;
         this.d = obj2;
     }
 
     @Override
     public void a(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        org.telegram.messenger.g0.g3(new m((rv0) this.f8918c, this.f8917b, tL_chatAdminRights, str, z10, (cx) this.d));
+        org.telegram.messenger.g0.g3(new m((rv0) this.f8921c, this.f8920b, tL_chatAdminRights, str, z10, (cx) this.d));
     }
 
     @Override
     public Object apply(Object obj) {
         boolean z10;
-        String str = (String) this.f8918c;
+        String str = (String) this.f8921c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i7 = ((r5.c) this.d).f56511a;
+        int i7 = ((r5.c) this.d).f56515a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i7)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -62,7 +62,7 @@ public final class h implements oa1, org.telegram.ui.ActionBar.q1, org.telegram.
                 z10 = false;
             }
             rawQuery.close();
-            long j3 = this.f8917b;
+            long j3 = this.f8920b;
             if (!z10) {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("log_source", str);
@@ -81,7 +81,7 @@ public final class h implements oa1, org.telegram.ui.ActionBar.q1, org.telegram.
 
     @Override
     public void b(ua.b bVar) {
-        ((x9.a) bVar.get()).d((String) this.f8918c, this.f8917b, (da.p1) this.d);
+        ((x9.a) bVar.get()).d((String) this.f8921c, this.f8920b, (da.p1) this.d);
     }
 
     @Override
@@ -91,14 +91,14 @@ public final class h implements oa1, org.telegram.ui.ActionBar.q1, org.telegram.
 
     @Override
     public void f(float f10, float f11, int i7, View view) {
-        ProfileActivity.h0((ProfileActivity) this.f8918c, (Context) this.d, this.f8917b, view, i7, f10, f11);
+        ProfileActivity.h0((ProfileActivity) this.f8921c, (Context) this.d, this.f8920b, view, i7, f10, f11);
     }
 
     @Override
     public Object g() {
-        ia.c cVar = (ia.c) this.f8918c;
-        long r10 = ((x5.a) cVar.f16218g).r() + this.f8917b;
-        v5.g gVar = (v5.g) ((v5.d) cVar.f16215c);
+        ia.c cVar = (ia.c) this.f8921c;
+        long r10 = ((x5.a) cVar.f16221g).r() + this.f8920b;
+        v5.g gVar = (v5.g) ((v5.d) cVar.f16218c);
         gVar.getClass();
         gVar.c(new ai.d0(r10, (o5.i) this.d));
         return null;
@@ -106,55 +106,55 @@ public final class h implements oa1, org.telegram.ui.ActionBar.q1, org.telegram.
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f8916a) {
+        switch (this.f8919a) {
             case 1:
-                f6 f6Var = (f6) this.f8918c;
+                f6 f6Var = (f6) this.f8921c;
                 vf.b h = t1Var.h(-1, true, true);
                 h.d();
                 TL_stars.deleteStarGift deletestargift = new TL_stars.deleteStarGift();
                 deletestargift.stargift = (TL_stars.InputSavedStarGift) this.d;
-                ConnectionsManager.getInstance(f6Var.f30170a).sendRequest(deletestargift, new q2(f6Var, h, this.f8917b, 0));
+                ConnectionsManager.getInstance(f6Var.f30173a).sendRequest(deletestargift, new q2(f6Var, h, this.f8920b, 0));
                 return;
             case 2:
-                hi.k8 k8Var = (hi.k8) this.f8918c;
+                hi.k8 k8Var = (hi.k8) this.f8921c;
                 ArrayList arrayList = (ArrayList) this.d;
-                k8Var.d.put(Long.valueOf(this.f8917b), arrayList);
+                k8Var.d.put(Long.valueOf(this.f8920b), arrayList);
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    k8Var.f14928b.k(Boolean.TRUE, ((Long) obj).longValue());
+                    k8Var.f14931b.k(Boolean.TRUE, ((Long) obj).longValue());
                 }
                 k8Var.j(true);
                 k8Var.f(true);
                 k8Var.g(true);
                 t1Var.dismiss();
-                k8Var.f14937y.M = true;
+                k8Var.f14940y.M = true;
                 return;
             case 3:
-                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f8918c;
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f8921c;
                 TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                bg.f0 f0Var = new bg.f0(g2Var, this.f8917b, twoStepVerificationActivity, (q10) this.d, 3);
-                twoStepVerificationActivity.f43913a0 = 1;
-                twoStepVerificationActivity.f43917c0 = f0Var;
+                bg.f0 f0Var = new bg.f0(g2Var, this.f8920b, twoStepVerificationActivity, (r10) this.d, 3);
+                twoStepVerificationActivity.f43917a0 = 1;
+                twoStepVerificationActivity.f43921c0 = f0Var;
                 twoStepVerificationActivity.x0(new ii.b(g2Var, twoStepVerificationActivity, 0));
                 return;
             case 4:
             case 5:
             default:
-                f40 f40Var = (f40) this.f8918c;
-                mp.u1(f40Var.f47522o1.f23246a).n(f40Var.m1(), (TLRPC.User) this.d, null, (org.telegram.ui.ActionBar.g2) f40Var.d2.M().getFragmentStack().get(f40Var.d2.M().getFragmentStack().size() - 1), new bi.c4(f40Var, this.f8917b, 27));
+                f40 f40Var = (f40) this.f8921c;
+                np.u1(f40Var.f47526o1.f23202a).n(f40Var.m1(), (TLRPC.User) this.d, null, (org.telegram.ui.ActionBar.g2) f40Var.d2.M().getFragmentStack().get(f40Var.d2.M().getFragmentStack().size() - 1), new bi.c4(f40Var, this.f8920b, 27));
                 return;
             case 6:
-                jr jrVar = (jr) this.f8918c;
+                jr jrVar = (jr) this.f8921c;
                 hi.e eVar = (hi.e) this.d;
                 if (!eVar.R) {
                     eVar.setLoading(true);
                     TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
-                    getgroupcallstreamrtmpurl.peer = mp.u1(jrVar.f30170a).l1(this.f8917b);
+                    getgroupcallstreamrtmpurl.peer = np.u1(jrVar.f30173a).l1(this.f8920b);
                     getgroupcallstreamrtmpurl.revoke = true;
-                    ConnectionsManager.getInstance(jrVar.f30170a).sendRequest(getgroupcallstreamrtmpurl, new fr(jrVar, eVar, 0));
+                    ConnectionsManager.getInstance(jrVar.f30173a).sendRequest(getgroupcallstreamrtmpurl, new fr(jrVar, eVar, 0));
                     return;
                 }
                 return;
@@ -163,17 +163,17 @@ public final class h implements oa1, org.telegram.ui.ActionBar.q1, org.telegram.
 
     @Override
     public void k(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((t) this.f8918c).v0(true, this.f8917b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
+        ((t) this.f8921c).v0(true, this.f8920b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
     }
 
     @Override
     public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        ResultCallback resultCallback = (ResultCallback) this.f8918c;
-        long j3 = this.f8917b;
+        ResultCallback resultCallback = (ResultCallback) this.f8921c;
+        long j3 = this.f8920b;
         File file = (File) this.d;
-        org.telegram.messenger.hc p10 = imageReceiver.p();
-        if (z10 && p10 != null && !p10.f24451c.isRecycled()) {
-            Bitmap bitmap = p10.f24451c;
+        org.telegram.messenger.ic p10 = imageReceiver.p();
+        if (z10 && p10 != null && !p10.f24704c.isRecycled()) {
+            Bitmap bitmap = p10.f24704c;
             if (bitmap == null) {
                 Drawable drawable = p10.d;
                 if (drawable instanceof BitmapDrawable) {
@@ -184,7 +184,7 @@ public final class h implements oa1, org.telegram.ui.ActionBar.q1, org.telegram.
                 if (resultCallback != null) {
                     resultCallback.onComplete(new Pair(Long.valueOf(j3), bitmap));
                 }
-                Utilities.f22807e.c(new org.telegram.ui.ActionBar.z1(5, file, bitmap));
+                Utilities.f22810e.c(new org.telegram.ui.ActionBar.z1(5, file, bitmap));
             } else if (resultCallback != null) {
                 resultCallback.onComplete(null);
             }
@@ -192,10 +192,10 @@ public final class h implements oa1, org.telegram.ui.ActionBar.q1, org.telegram.
     }
 
     public h(Object obj, Object obj2, long j3, int i7) {
-        this.f8916a = i7;
-        this.f8918c = obj;
+        this.f8919a = i7;
+        this.f8921c = obj;
         this.d = obj2;
-        this.f8917b = j3;
+        this.f8920b = j3;
     }
 
     @Override

@@ -2,26 +2,26 @@ package fi;
 
 import java.util.HashMap;
 import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.tl.TL_stories;
-public final class p5 implements x10 {
-    public final int f12420a;
-    public final p6 f12421b;
+public final class p5 implements y10 {
+    public final int f12423a;
+    public final p6 f12424b;
 
     public p5(p6 p6Var, int i7) {
-        this.f12420a = i7;
-        this.f12421b = p6Var;
+        this.f12423a = i7;
+        this.f12424b = p6Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f12420a) {
+        switch (this.f12423a) {
             case 0:
                 h6 h6Var = (h6) obj;
-                p6 p6Var = this.f12421b;
+                p6 p6Var = this.f12424b;
                 HashMap hashMap = p6Var.H;
-                int i7 = h6Var.f12083e;
-                int i10 = h6Var.f12084f;
+                int i7 = h6Var.f12086e;
+                int i10 = h6Var.f12087f;
                 long j3 = h6Var.d;
                 if (i7 == 0 && i10 > 0) {
                     HashMap hashMap2 = (HashMap) hashMap.get(Long.valueOf(j3));
@@ -42,12 +42,12 @@ public final class p5 implements x10 {
                 }
                 return;
             case 1:
-                this.f12421b.f12426f = (LongSparseIntArray) obj;
+                this.f12424b.f12429f = (LongSparseIntArray) obj;
                 return;
             default:
                 TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) obj;
-                p6 p6Var2 = this.f12421b;
-                p6Var2.f12433n = false;
+                p6 p6Var2 = this.f12424b;
+                p6Var2.f12436n = false;
                 if (tL_stories_allStories != null) {
                     p6Var2.b0(tL_stories_allStories, false, true, false);
                     p6Var2.T(false);

@@ -4,7 +4,7 @@ import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.o10;
 import org.telegram.ui.Components.nr;
 import org.telegram.ui.Components.og;
 import org.telegram.ui.PhotoViewer;
@@ -32,9 +32,9 @@ public final class s2 extends ImageReceiver {
                 int L = org.telegram.messenger.g0.L(6.0f);
                 iArr2[3] = L;
                 iArr2[2] = L;
-                org.telegram.ui.Cells.x1 x1Var = r1Var.f31661x2;
-                if (x1Var != null && (eVar = x1Var.f32322m) != null) {
-                    eVar.f57476b.L0(iArr2);
+                org.telegram.ui.Cells.x1 x1Var = r1Var.f31664x2;
+                if (x1Var != null && (eVar = x1Var.f32325m) != null) {
+                    eVar.f57480b.L0(iArr2);
                     return;
                 }
                 return;
@@ -50,7 +50,7 @@ public final class s2 extends ImageReceiver {
         Object obj = this.L1;
         switch (i7) {
             case 3:
-                View view = ((en) obj).f47329b;
+                View view = ((en) obj).f47333b;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -66,7 +66,7 @@ public final class s2 extends ImageReceiver {
                 return;
             case 6:
                 super.invalidate();
-                org.telegram.ui.Wallet.r8 r8Var = ((org.telegram.ui.Wallet.q8) obj).f44872d0;
+                org.telegram.ui.Wallet.r8 r8Var = ((org.telegram.ui.Wallet.q8) obj).f44876d0;
                 int i10 = org.telegram.ui.Wallet.r8.J1;
                 r8Var.f0();
                 return;
@@ -89,7 +89,7 @@ public final class s2 extends ImageReceiver {
                 return x02;
             case 1:
                 if (drawable != null && i7 != 1) {
-                    n10.o(((kg.c1) ((t3) obj).I).h.animate().alpha(1.0f).translationY(0.0f), nr.f37960k, 250L);
+                    o10.o(((kg.c1) ((t3) obj).I).h.animate().alpha(1.0f).translationY(0.0f), nr.f37965k, 250L);
                 }
                 return super.x0(drawable, str, i7, z10, i10);
             case 2:
@@ -101,8 +101,8 @@ public final class s2 extends ImageReceiver {
                 org.telegram.ui.Components.p5 p5Var = (org.telegram.ui.Components.p5) obj;
                 p5Var.j();
                 boolean x03 = super.x0(drawable, str, i7, z10, i10);
-                if (p5Var.f38503m && J()) {
-                    p5Var.f38503m = false;
+                if (p5Var.f38502m && J()) {
+                    p5Var.f38502m = false;
                     org.telegram.messenger.g0.g3(new og(p5Var, 4));
                 }
                 return x03;

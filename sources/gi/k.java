@@ -1,9 +1,9 @@
 package gi;
 
-import org.telegram.messenger.fj;
-public final class k extends fj {
+import org.telegram.messenger.gj;
+public final class k extends gj {
     @Override
     public final float G1() {
-        return this.f24002m.h;
+        return this.f24222m.h;
     }
 }

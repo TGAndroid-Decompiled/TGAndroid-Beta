@@ -3,26 +3,26 @@ package org.telegram.ui.Components.voip;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.o10;
 import org.telegram.messenger.u3;
 import org.telegram.ui.f40;
 import org.telegram.ui.i40;
 public abstract class r extends FrameLayout {
-    public int f41308a;
-    public i40 f41309b;
-    public y f41310c;
+    public int f41310a;
+    public i40 f41311b;
+    public y f41312c;
     public u3 d;
-    public boolean f41311e;
-    public final boolean f41312f;
+    public boolean f41313e;
+    public final boolean f41314f;
 
     public r(Context context, boolean z10) {
         super(context);
-        this.f41312f = z10;
+        this.f41314f = z10;
     }
 
     public float getItemHeight() {
         int measuredHeight;
-        i40 i40Var = this.f41309b;
+        i40 i40Var = this.f41311b;
         if (i40Var != null) {
             measuredHeight = i40Var.F();
         } else {
@@ -36,19 +36,19 @@ public abstract class r extends FrameLayout {
     }
 
     public y getRenderer() {
-        return this.f41310c;
+        return this.f41312c;
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f41311e = true;
+        this.f41313e = true;
     }
 
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f41311e = false;
+        this.f41313e = false;
     }
 
     @Override
@@ -56,9 +56,9 @@ public abstract class r extends FrameLayout {
         float f10;
         int i11;
         float f11;
-        if (this.f41312f) {
+        if (this.f41314f) {
             ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(this.f41309b.F(), 1073741824));
+            super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(this.f41311b.F(), 1073741824));
             return;
         }
         if (f40.E5) {
@@ -66,7 +66,7 @@ public abstract class r extends FrameLayout {
         } else {
             f10 = 2.0f;
         }
-        int B = n10.B(14.0f, 2, org.telegram.messenger.g0.f24146q.x);
+        int B = o10.B(14.0f, 2, org.telegram.messenger.g0.f24046q.x);
         if (f40.E5) {
             i11 = -org.telegram.messenger.g0.L(90.0f);
         } else {
@@ -82,6 +82,6 @@ public abstract class r extends FrameLayout {
     }
 
     public void setRenderer(y yVar) {
-        this.f41310c = yVar;
+        this.f41312c = yVar;
     }
 }

@@ -10,9 +10,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 public final class b extends x9 {
-    public final Object f21070a = new Object();
-    public final ExecutorService f21071b = Executors.newFixedThreadPool(4, new y());
-    public volatile Handler f21072c;
+    public final Object f21073a = new Object();
+    public final ExecutorService f21074b = Executors.newFixedThreadPool(4, new y());
+    public volatile Handler f21075c;
 
     public static Handler a(Looper looper) {
         if (Build.VERSION.SDK_INT >= 28) {

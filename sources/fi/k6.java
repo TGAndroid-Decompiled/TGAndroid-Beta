@@ -2,8 +2,8 @@ package fi;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.ks;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.ls;
 import org.telegram.tgnet.tl.TL_stories;
 public final class k6 extends h6 {
     public final ArrayList C;
@@ -16,40 +16,40 @@ public final class k6 extends h6 {
 
     public final void F(ArrayList arrayList) {
         int i7;
-        ArrayList arrayList2 = this.f12086i;
+        ArrayList arrayList2 = this.f12089i;
         arrayList2.size();
         int i10 = 0;
         int i11 = 0;
         while (true) {
             int size = arrayList.size();
-            i7 = this.f12082c;
+            i7 = this.f12085c;
             if (i10 >= size) {
                 break;
             }
             TL_stories.StoryItem storyItem = (TL_stories.StoryItem) arrayList.get(i10);
             if (storyItem != null) {
                 storyItem.messageId = arrayList2.size();
-                fj fjVar = new fj(i7, storyItem);
-                fjVar.r0(false);
+                gj gjVar = new gj(i7, storyItem);
+                gjVar.r0(false);
                 ArrayList arrayList3 = new ArrayList();
                 arrayList3.add(Integer.valueOf(arrayList2.size()));
                 this.C.add(arrayList3);
-                arrayList2.add(fjVar);
+                arrayList2.add(gjVar);
                 i11++;
             }
             i10++;
         }
         if (i11 > 0) {
-            ks.f(i7).k(ks.A5, this);
+            ls.f(i7).k(ls.A5, this);
         }
     }
 
     @Override
-    public final fj f(int i7) {
+    public final gj f(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f12086i;
+            ArrayList arrayList = this.f12089i;
             if (i7 < arrayList.size()) {
-                return (fj) arrayList.get(i7);
+                return (gj) arrayList.get(i7);
             }
             return null;
         }
@@ -58,7 +58,7 @@ public final class k6 extends h6 {
 
     @Override
     public final int g() {
-        return this.f12086i.size();
+        return this.f12089i.size();
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class k6 extends h6 {
 
     @Override
     public final int i() {
-        return this.f12086i.size();
+        return this.f12089i.size();
     }
 
     @Override

@@ -6,22 +6,22 @@ import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.ui.Components.RadialProgressView;
 public final class y0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final ai.l0 f32368a;
-    public final RadialProgressView f32369b;
-    public final org.telegram.ui.ActionBar.h6 f32370c;
+    public final ai.l0 f32371a;
+    public final RadialProgressView f32372b;
+    public final org.telegram.ui.ActionBar.h6 f32373c;
     public float d;
-    public int f32371e;
+    public int f32374e;
 
     public y0(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         int i7;
-        this.f32370c = h6Var;
+        this.f32373c = h6Var;
         ai.l0 l0Var = new ai.l0(this, context);
-        this.f32368a = l0Var;
+        this.f32371a = l0Var;
         l0Var.setWillNotDraw(false);
         addView(l0Var, c8.ma.e(36, 36, 17));
         RadialProgressView radialProgressView = new RadialProgressView(context, h6Var);
-        this.f32369b = radialProgressView;
+        this.f32372b = radialProgressView;
         radialProgressView.setSize(org.telegram.messenger.g0.L(28.0f));
         if (org.telegram.ui.ActionBar.m6.i1(h6Var)) {
             i7 = org.telegram.ui.ActionBar.m6.Ka;
@@ -37,7 +37,7 @@ public final class y0 extends FrameLayout implements org.telegram.ui.ActionBar.b
             invalidate();
         }
         this.d = f10;
-        this.f32371e = i7;
+        this.f32374e = i7;
     }
 
     @Override
@@ -52,15 +52,15 @@ public final class y0 extends FrameLayout implements org.telegram.ui.ActionBar.b
         } else {
             i7 = 4;
         }
-        this.f32368a.setVisibility(i7);
+        this.f32371a.setVisibility(i7);
     }
 
     @Override
     public final void updateColors() {
         int i7;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f32370c;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f32373c;
         try {
-            RadialProgressView radialProgressView = this.f32369b;
+            RadialProgressView radialProgressView = this.f32372b;
             if (org.telegram.ui.ActionBar.m6.i1(h6Var)) {
                 i7 = org.telegram.ui.ActionBar.m6.Ka;
             } else {

@@ -2,9 +2,9 @@ package di;
 
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.ks;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ls;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.c51;
 import org.telegram.ui.Components.dk0;
@@ -13,7 +13,7 @@ import org.telegram.ui.Components.wz;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
 import org.telegram.ui.rj;
-public final class fb extends org.telegram.ui.Components.sa implements fs {
+public final class fb extends org.telegram.ui.Components.sa implements gs {
     public final long T1;
     public final ah.a U1;
     public final FrameLayout V1;
@@ -21,8 +21,8 @@ public final class fb extends org.telegram.ui.Components.sa implements fs {
     public Runnable X1;
     public final TLRPC.InputPeer Y1;
     public final boolean Z1;
-    public c51 f8870a2;
-    public boolean f8871b2;
+    public c51 f8873a2;
+    public boolean f8874b2;
 
     public fb(android.content.Context r17, org.telegram.ui.ActionBar.h6 r18, long r19, int r21, java.lang.String r22, java.lang.Runnable r23, long r24) {
         throw new UnsupportedOperationException("Method not decompiled: di.fb.<init>(android.content.Context, org.telegram.ui.ActionBar.h6, long, int, java.lang.String, java.lang.Runnable, long):void");
@@ -31,14 +31,14 @@ public final class fb extends org.telegram.ui.Components.sa implements fs {
     @Override
     public final void L() {
         super.L();
-        ks.f(this.f30170a).n(this, ks.f25249x3);
-        ks.f(this.f30170a).n(this, ks.A3);
+        ls.f(this.f30173a).n(this, ls.f25415x3);
+        ls.f(this.f30173a).n(this, ls.A3);
     }
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39539o1, getContext(), this.f30170a, 0, true, new bi.b(this, 20), this.J0);
-        this.f8870a2 = c51Var;
+        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new bi.b(this, 20), this.J0);
+        this.f8873a2 = c51Var;
         return c51Var;
     }
 
@@ -54,15 +54,15 @@ public final class fb extends org.telegram.ui.Components.sa implements fs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         Runnable runnable;
-        if (i7 == ks.f25249x3 || i7 == ks.A3) {
-            c51 c51Var = this.f8870a2;
+        if (i7 == ls.f25415x3 || i7 == ls.A3) {
+            c51 c51Var = this.f8873a2;
             if (c51Var != null) {
                 c51Var.O(true);
             }
-            long j3 = y8.y(this.f30170a, false).p().amount;
+            long j3 = y8.y(this.f30173a, false).p().amount;
             long j10 = this.T1;
-            ((TextView) this.U1.d).setText(gd.H(',', "StarsNeededTitle", (int) (j10 - j3)));
-            org.telegram.ui.Components.na naVar = this.f39540p1;
+            ((TextView) this.U1.d).setText(hd.H(',', "StarsNeededTitle", (int) (j10 - j3)));
+            org.telegram.ui.Components.na naVar = this.f39533p1;
             if (naVar != null) {
                 naVar.setTitle(P0());
             }
@@ -88,7 +88,7 @@ public final class fb extends org.telegram.ui.Components.sa implements fs {
         rj rjVar;
         if (!this.Z1) {
             org.telegram.messenger.f3.n(null, 2131747203, new org.telegram.ui.Components.lc(org.telegram.ui.Components.cb.a(getContext()), this.J0), 2131624227, 36);
-        } else if (y8.y(this.f30170a, false).p().amount >= this.T1) {
+        } else if (y8.y(this.f30173a, false).p().amount >= this.T1) {
             Runnable runnable = this.X1;
             if (runnable != null) {
                 runnable.run();
@@ -98,13 +98,13 @@ public final class fb extends org.telegram.ui.Components.sa implements fs {
             org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
             if (Q instanceof bn) {
                 bn bnVar = (bn) Q;
-                if (bnVar.V9() && (rjVar = bnVar.f45946a0) != null) {
+                if (bnVar.V9() && (rjVar = bnVar.f45950a0) != null) {
                     rjVar.U();
                 }
             }
             super.show();
-            ks.f(this.f30170a).c(this, ks.f25249x3);
-            ks.f(this.f30170a).c(this, ks.A3);
+            ls.f(this.f30173a).c(this, ls.f25415x3);
+            ls.f(this.f30173a).c(this, ls.A3);
         }
     }
 }

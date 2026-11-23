@@ -5,7 +5,7 @@ public final class ht0 extends gt0 {
     public final it0 H;
 
     public ht0(it0 it0Var, Context context, int i7) {
-        super(it0Var.f36317e, context, i7, false);
+        super(it0Var.f36311e, context, i7, false);
         this.H = it0Var;
     }
 
@@ -14,17 +14,17 @@ public final class ht0 extends gt0 {
         boolean z10;
         super.f();
         it0 it0Var = this.H;
-        jt0 jt0Var = it0Var.f36317e;
-        int i7 = it0Var.f36314a;
-        int[] iArr = jt0.f36610t2;
+        jt0 jt0Var = it0Var.f36311e;
+        int i7 = it0Var.f36308a;
+        int[] iArr = jt0.f36605t2;
         ds0 g02 = jt0Var.g0(i7);
-        if (g02 != null && g02.f34566n.getVisibility() == 0) {
+        if (g02 != null && g02.f34561n.getVisibility() == 0) {
             it0Var.d.f();
         }
         if (g02 != null) {
-            zq0 zq0Var = g02.f34569w;
-            fi.h6 h6Var = this.f35651s;
-            if (h6Var != null && (h6Var.k() || (jt0Var.t0() && this.f35651s.g() > 0))) {
+            zq0 zq0Var = g02.f34564w;
+            fi.h6 h6Var = this.f35670s;
+            if (h6Var != null && (h6Var.k() || (jt0Var.t0() && this.f35670s.g() > 0))) {
                 z10 = true;
             } else {
                 z10 = false;

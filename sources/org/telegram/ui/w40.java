@@ -5,14 +5,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class w40 implements Runnable {
-    public final int f52968a;
-    public final x40 f52969b;
-    public final String f52970c;
+    public final int f52972a;
+    public final x40 f52973b;
+    public final String f52974c;
 
     public w40(x40 x40Var, String str, int i7) {
-        this.f52968a = i7;
-        this.f52969b = x40Var;
-        this.f52970c = str;
+        this.f52972a = i7;
+        this.f52973b = x40Var;
+        this.f52974c = str;
     }
 
     @Override
@@ -25,17 +25,17 @@ public final class w40 implements Runnable {
         boolean z11;
         char c10;
         Object obj;
-        switch (this.f52968a) {
+        switch (this.f52972a) {
             case 0:
-                x40 x40Var = this.f52969b;
-                String str2 = this.f52970c;
+                x40 x40Var = this.f52973b;
+                String str2 = this.f52974c;
                 x40Var.getClass();
                 org.telegram.messenger.g0.g3(new w40(x40Var, str2, 1));
                 return;
             case 1:
-                x40 x40Var2 = this.f52969b;
-                String str3 = this.f52970c;
-                jg.z1 z1Var = x40Var2.f53598f;
+                x40 x40Var2 = this.f52973b;
+                String str3 = this.f52974c;
+                jg.z1 z1Var = x40Var2.f53602f;
                 z40 z40Var = x40Var2.J;
                 if (!z40Var.P && !z40Var.Q) {
                     z10 = false;
@@ -43,15 +43,15 @@ public final class w40 implements Runnable {
                     z10 = true;
                 }
                 z1Var.g(str3, true, z10, true, false, 0L, false, 0, 0);
-                org.telegram.messenger.q5 q5Var = Utilities.f22809g;
+                org.telegram.messenger.q5 q5Var = Utilities.f22812g;
                 w40 w40Var = new w40(x40Var2, str3, 2);
                 x40Var2.h = w40Var;
                 q5Var.c(w40Var);
                 return;
             default:
-                x40 x40Var3 = this.f52969b;
-                String str4 = this.f52970c;
-                ArrayList arrayList2 = x40Var3.f53600r;
+                x40 x40Var3 = this.f52973b;
+                String str4 = this.f52974c;
+                ArrayList arrayList2 = x40Var3.f53604r;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     org.telegram.messenger.g0.g3(new up(x40Var3, new ArrayList(), new ArrayList(), 10));
@@ -59,7 +59,7 @@ public final class w40 implements Runnable {
                 }
                 boolean z12 = true;
                 ?? r62 = 0;
-                String T0 = org.telegram.messenger.gd.E0().T0(lowerCase, true, false);
+                String T0 = org.telegram.messenger.hd.E0().T0(lowerCase, true, false);
                 T0 = (lowerCase.equals(T0) || T0.isEmpty()) ? null : null;
                 if (T0 != null) {
                     i7 = 1;
@@ -81,7 +81,7 @@ public final class w40 implements Runnable {
                     if (z13) {
                         TLRPC.User user = (TLRPC.User) tLObject;
                         str = org.telegram.messenger.i5.m(r62, user.first_name, user.last_name).toLowerCase();
-                        K = org.telegram.messenger.o10.o(user);
+                        K = org.telegram.messenger.p10.o(user);
                     } else {
                         if (tLObject instanceof TLRPC.Chat) {
                             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
@@ -95,7 +95,7 @@ public final class w40 implements Runnable {
                         arrayList2 = arrayList;
                         r62 = 0;
                     }
-                    String T02 = org.telegram.messenger.gd.E0().T0(str, z12, r62);
+                    String T02 = org.telegram.messenger.hd.E0().T0(str, z12, r62);
                     if (str.equals(T02)) {
                         T02 = null;
                     }

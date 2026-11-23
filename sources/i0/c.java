@@ -1,6 +1,6 @@
 package i0;
 public abstract class c {
-    public static final int f15917a = 0;
+    public static final int f15920a = 0;
 
     static {
         new ThreadLocal();

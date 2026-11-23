@@ -15,7 +15,7 @@ public final class fg extends ty {
     public final void setTranslationY(float f10) {
         super.setTranslationY(f10);
         ChatActivityEnterView chatActivityEnterView = this.W2;
-        if (chatActivityEnterView.W0 != null && chatActivityEnterView.f32606e4 == 0) {
+        if (chatActivityEnterView.W0 != null && chatActivityEnterView.f32609e4 == 0) {
             chatActivityEnterView.P3.x(f10);
         }
     }

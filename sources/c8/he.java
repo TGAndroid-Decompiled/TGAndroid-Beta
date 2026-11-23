@@ -3,21 +3,21 @@ public abstract class he {
     public static final long a(long j3) {
         long j10 = (j3 << 1) + 1;
         int i7 = yd.a.d;
-        int i10 = yd.b.f61216a;
+        int i10 = yd.b.f61220a;
         return j10;
     }
 
     public static final long b(long j3) {
         long j10 = j3 << 1;
         int i7 = yd.a.d;
-        int i10 = yd.b.f61216a;
+        int i10 = yd.b.f61220a;
         return j10;
     }
 
     public static final long c(int i7, yd.c unit) {
         kotlin.jvm.internal.j.e(unit, "unit");
         if (unit.compareTo(yd.c.d) <= 0) {
-            return b(ie.a(i7, unit, yd.c.f61217b));
+            return b(ie.a(i7, unit, yd.c.f61221b));
         }
         return d(i7, unit);
     }

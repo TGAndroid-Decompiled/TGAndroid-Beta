@@ -1,21 +1,21 @@
 package rh;
 public final class b {
-    public static final b f56634a;
-    public static final b f56635b;
-    public static final b f56636c;
+    public static final b f56638a;
+    public static final b f56639b;
+    public static final b f56640c;
     public static final b d;
-    public static final b[] f56637e;
+    public static final b[] f56641e;
 
     static {
         ?? r02 = new Enum("STATE_FULLY_HIDDEN", 0);
-        f56634a = r02;
+        f56638a = r02;
         ?? r12 = new Enum("STATE_ANIMATING_TO_FULLY_HIDDEN", 1);
-        f56635b = r12;
+        f56639b = r12;
         ?? r32 = new Enum("STATE_ANIMATING_TO_FULLY_VISIBLE", 2);
-        f56636c = r32;
+        f56640c = r32;
         ?? r52 = new Enum("STATE_FULLY_VISIBLE", 3);
         d = r52;
-        f56637e = new b[]{r02, r12, r32, r52};
+        f56641e = new b[]{r02, r12, r32, r52};
     }
 
     public static b valueOf(String str) {
@@ -23,6 +23,6 @@ public final class b {
     }
 
     public static b[] values() {
-        return (b[]) f56637e.clone();
+        return (b[]) f56641e.clone();
     }
 }

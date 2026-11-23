@@ -10,8 +10,8 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.o10;
 import org.telegram.ui.Components.mc;
 import org.telegram.ui.Components.nr;
 import org.telegram.ui.Components.oh0;
@@ -30,34 +30,34 @@ public final class u0 extends View {
     public boolean P;
     public t0 Q;
     public Runnable R;
-    public final Paint f15522a;
-    public final TextPaint f15523b;
-    public final TextPaint f15524c;
+    public final Paint f15525a;
+    public final TextPaint f15526b;
+    public final TextPaint f15527c;
     public final Paint d;
-    public final Paint f15525e;
-    public final Paint f15526f;
+    public final Paint f15528e;
+    public final Paint f15529f;
     public final mc h;
-    public oh0 f15527n;
-    public final StaticLayout f15528r;
-    public final float f15529s;
-    public final float f15530w;
-    public StaticLayout f15531x;
-    public float f15532y;
+    public oh0 f15530n;
+    public final StaticLayout f15531r;
+    public final float f15532s;
+    public final float f15533w;
+    public StaticLayout f15534x;
+    public float f15535y;
 
     public u0(Context context, String str) {
         super(context);
         Paint paint = new Paint(1);
-        this.f15522a = paint;
+        this.f15525a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f15523b = textPaint;
+        this.f15526b = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f15524c = textPaint2;
+        this.f15527c = textPaint2;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
-        this.f15525e = paint3;
+        this.f15528e = paint3;
         Paint paint4 = new Paint(1);
-        this.f15526f = paint4;
+        this.f15529f = paint4;
         this.h = new mc(this);
         this.F = false;
         this.G = new org.telegram.ui.Components.d6(0.0f, this, 0L, 350L, nr.h);
@@ -85,10 +85,10 @@ public final class u0 extends View {
         paint4.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));
         textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
         textPaint2.setTextSize(org.telegram.messenger.g0.N(14.66f));
-        StaticLayout staticLayout = new StaticLayout(str, textPaint, org.telegram.messenger.g0.f24146q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f15528r = staticLayout;
-        this.f15529s = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
-        this.f15530w = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
+        StaticLayout staticLayout = new StaticLayout(str, textPaint, org.telegram.messenger.g0.f24046q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f15531r = staticLayout;
+        this.f15532s = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
+        this.f15533w = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
         this.F = true;
         invalidate();
     }
@@ -105,26 +105,26 @@ public final class u0 extends View {
 
     public final void b(int i7, int i10, CharSequence charSequence) {
         float f10;
-        oh0 oh0Var = this.f15527n;
+        oh0 oh0Var = this.f15530n;
         if (oh0Var != null) {
             oh0Var.setCallback(null);
-            this.f15527n.C(true);
+            this.f15530n.C(true);
         }
         oh0 oh0Var2 = new oh0(i7, org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(36.0f));
-        this.f15527n = oh0Var2;
+        this.f15530n = oh0Var2;
         oh0Var2.setCallback(this);
-        this.f15527n.start();
-        StaticLayout staticLayout = new StaticLayout(charSequence, this.f15524c, org.telegram.messenger.g0.f24146q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f15531x = staticLayout;
+        this.f15530n.start();
+        StaticLayout staticLayout = new StaticLayout(charSequence, this.f15527c, org.telegram.messenger.g0.f24046q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f15534x = staticLayout;
         float f11 = 0.0f;
         if (staticLayout.getLineCount() > 0) {
-            f10 = this.f15531x.getLineWidth(0);
+            f10 = this.f15534x.getLineWidth(0);
         } else {
             f10 = 0.0f;
         }
-        this.f15532y = f10;
-        if (this.f15531x.getLineCount() > 0) {
-            f11 = this.f15531x.getLineLeft(0);
+        this.f15535y = f10;
+        if (this.f15534x.getLineCount() > 0) {
+            f11 = this.f15534x.getLineLeft(0);
         }
         this.E = f11;
         this.H = false;
@@ -161,17 +161,17 @@ public final class u0 extends View {
         }
         float e11 = this.J.e(false, f11);
         float f16 = 1.0f - e11;
-        Paint paint = this.f15522a;
+        Paint paint = this.f15525a;
         paint.setAlpha((int) (90.0f * f16 * e10));
         Canvas canvas2 = canvas;
         canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
-        float max = Math.max(this.f15529s, org.telegram.messenger.g0.L(54.0f)) + org.telegram.messenger.g0.L(42.0f);
+        float max = Math.max(this.f15532s, org.telegram.messenger.g0.L(54.0f)) + org.telegram.messenger.g0.L(42.0f);
         int L = org.telegram.messenger.g0.L(111.0f);
-        StaticLayout staticLayout = this.f15528r;
+        StaticLayout staticLayout = this.f15531r;
         float height = staticLayout.getHeight() + L;
         RectF rectF2 = this.L;
         rectF2.set((getWidth() - max) / 2.0f, (getHeight() - height) / 2.0f, (getWidth() + max) / 2.0f, (getHeight() + height) / 2.0f);
-        float L2 = org.telegram.messenger.g0.L(74.0f) + this.f15532y;
+        float L2 = org.telegram.messenger.g0.L(74.0f) + this.f15535y;
         float L3 = org.telegram.messenger.g0.L(48.0f);
         RectF rectF3 = this.M;
         rectF3.set((getWidth() - L2) / 2.0f, (getHeight() - L3) / 2.0f, (getWidth() + L2) / 2.0f, (getHeight() + L3) / 2.0f);
@@ -200,14 +200,14 @@ public final class u0 extends View {
             float centerX = rectF2.centerX();
             float L4 = rectF2.top + org.telegram.messenger.g0.L(48.0f);
             float L5 = org.telegram.messenger.g0.L(25.0f);
-            Paint paint3 = this.f15526f;
+            Paint paint3 = this.f15529f;
             paint3.setAlpha((int) (51.0f * f17));
             canvas2.drawCircle(centerX, L4, L5, paint3);
             RectF rectF6 = org.telegram.messenger.g0.P;
             f15 = 255.0f;
             rectF6.set(centerX - L5, L4 - L5, centerX + L5, L5 + L4);
             int i10 = (int) (f17 * 255.0f);
-            Paint paint4 = this.f15525e;
+            Paint paint4 = this.f15528e;
             paint4.setAlpha(i10);
             paint4.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));
             f13 = e10;
@@ -223,8 +223,8 @@ public final class u0 extends View {
             canvas2.drawLine(centerX - org.telegram.messenger.g0.L(7.0f), L4 + org.telegram.messenger.g0.L(7.0f), centerX + org.telegram.messenger.g0.L(7.0f), L4 - org.telegram.messenger.g0.L(7.0f), paint4);
             canvas2.restore();
             canvas2.save();
-            canvas2.translate((rectF2.left + org.telegram.messenger.g0.L(21.0f)) - this.f15530w, (rectF2.bottom - org.telegram.messenger.g0.L(18.0f)) - staticLayout.getHeight());
-            this.f15523b.setAlpha(i10);
+            canvas2.translate((rectF2.left + org.telegram.messenger.g0.L(21.0f)) - this.f15533w, (rectF2.bottom - org.telegram.messenger.g0.L(18.0f)) - staticLayout.getHeight());
+            this.f15526b.setAlpha(i10);
             staticLayout.draw(canvas2);
             canvas2.restore();
         } else {
@@ -235,17 +235,17 @@ public final class u0 extends View {
         }
         if (e11 > 0.0f) {
             float f18 = f13 * e11;
-            oh0 oh0Var = this.f15527n;
+            oh0 oh0Var = this.f15530n;
             if (oh0Var != null) {
                 oh0Var.setAlpha((int) (f18 * f15));
-                this.f15527n.setBounds((int) (rectF.left + org.telegram.messenger.g0.L(9.0f)), (int) (rectF.top + org.telegram.messenger.g0.L(6.0f)), (int) (rectF.left + org.telegram.messenger.g0.L(45.0f)), (int) (rectF.top + org.telegram.messenger.g0.L(f12)));
-                this.f15527n.draw(canvas2);
+                this.f15530n.setBounds((int) (rectF.left + org.telegram.messenger.g0.L(9.0f)), (int) (rectF.top + org.telegram.messenger.g0.L(6.0f)), (int) (rectF.left + org.telegram.messenger.g0.L(45.0f)), (int) (rectF.top + org.telegram.messenger.g0.L(f12)));
+                this.f15530n.draw(canvas2);
             }
-            if (this.f15531x != null) {
+            if (this.f15534x != null) {
                 canvas2.save();
-                n10.k(this.f15531x.getHeight(), f14, rectF.centerY(), (rectF.left + org.telegram.messenger.g0.L(52.0f)) - this.E, canvas2);
-                this.f15524c.setAlpha((int) (f18 * f15));
-                this.f15531x.draw(canvas2);
+                o10.k(this.f15534x.getHeight(), f14, rectF.centerY(), (rectF.left + org.telegram.messenger.g0.L(52.0f)) - this.E, canvas2);
+                this.f15527c.setAlpha((int) (f18 * f15));
+                this.f15534x.draw(canvas2);
                 canvas2.restore();
             }
         }
@@ -266,7 +266,7 @@ public final class u0 extends View {
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (mcVar.f37479i) {
+            if (mcVar.f37478i) {
                 if (contains) {
                     if (this.H) {
                         Runnable runnable = this.R;
@@ -298,13 +298,13 @@ public final class u0 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f15527n && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f15530n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;
     }
 
     public u0(Context context) {
-        this(context, gd.N0(2131746724, null));
+        this(context, hd.N0(2131746724, null));
     }
 }

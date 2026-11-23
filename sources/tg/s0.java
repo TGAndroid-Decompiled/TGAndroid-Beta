@@ -22,12 +22,12 @@ public final class s0 extends org.telegram.ui.Cells.r1 {
     public final Rect Dd;
     public final RectF Ed;
     public final t0 Fd;
-    public final ga f58156zd;
+    public final ga f58160zd;
 
     public s0(t0 t0Var, Context context, int i7, u0 u0Var) {
         super(context, i7, false, null, u0Var);
         this.Fd = t0Var;
-        this.f58156zd = new ga(t0Var.d, this, 10, false);
+        this.f58160zd = new ga(t0Var.d, this, 10, false);
         this.Ad = new float[8];
         this.Bd = new Path();
         Paint paint = new Paint();
@@ -40,8 +40,8 @@ public final class s0 extends org.telegram.ui.Cells.r1 {
     @Override
     public final Paint a2(String str) {
         if ("paintChatActionBackground".equals(str)) {
-            this.Fd.h.f58201w0 = true;
-            Paint c10 = this.f58156zd.c(1.0f);
+            this.Fd.h.f58205w0 = true;
+            Paint c10 = this.f58160zd.c(1.0f);
             if (c10 != null) {
                 return c10;
             }
@@ -56,7 +56,7 @@ public final class s0 extends org.telegram.ui.Cells.r1 {
         ImageReceiver photoImage = getPhotoImage();
         t0 t0Var = this.Fd;
         a5 a5Var = t0Var.h;
-        if (t0Var.f58172f && photoImage != null && (((u5Var = t0Var.f58171e) != null && u5Var.f15543g && u5Var.d && a5Var.f58203y0) || a5Var.f58200v0 || (a5Var.f58202x0 != null && a5Var.N0.f14899s0))) {
+        if (t0Var.f58176f && photoImage != null && (((u5Var = t0Var.f58175e) != null && u5Var.f15546g && u5Var.d && a5Var.f58207y0) || a5Var.f58204v0 || (a5Var.f58206x0 != null && a5Var.N0.f14902s0))) {
             int i7 = 0;
             while (true) {
                 int[] iArr = photoImage.X0;
@@ -76,22 +76,22 @@ public final class s0 extends org.telegram.ui.Cells.r1 {
             Path path = this.Bd;
             path.rewind();
             path.addRoundRect(rectF, fArr, Path.Direction.CW);
-            TextureView textureView = a5Var.f58202x0;
-            if (textureView != null && a5Var.N0.f14899s0) {
+            TextureView textureView = a5Var.f58206x0;
+            if (textureView != null && a5Var.N0.f14902s0) {
                 Bitmap bitmap = textureView.getBitmap();
                 if (bitmap != null) {
                     canvas.save();
                     canvas.clipPath(path);
                     canvas.translate(-getX(), -getY());
-                    float max = Math.max(photoImage.N0 / a5Var.f58204z0, photoImage.O0 / a5Var.A0);
-                    canvas.translate(photoImage.r() - ((a5Var.f58204z0 * max) / 2.0f), photoImage.s() - ((a5Var.A0 * max) / 2.0f));
-                    canvas.scale((a5Var.f58204z0 / a5Var.f58202x0.getWidth()) * max, (a5Var.A0 / a5Var.f58202x0.getHeight()) * max);
+                    float max = Math.max(photoImage.N0 / a5Var.f58208z0, photoImage.O0 / a5Var.A0);
+                    canvas.translate(photoImage.r() - ((a5Var.f58208z0 * max) / 2.0f), photoImage.s() - ((a5Var.A0 * max) / 2.0f));
+                    canvas.scale((a5Var.f58208z0 / a5Var.f58206x0.getWidth()) * max, (a5Var.A0 / a5Var.f58206x0.getHeight()) * max);
                     int width = bitmap.getWidth();
                     int height = bitmap.getHeight();
                     Rect rect = this.Dd;
                     rect.set(0, 0, width, height);
                     RectF rectF2 = this.Ed;
-                    rectF2.set(0.0f, 0.0f, a5Var.f58202x0.getWidth(), a5Var.f58202x0.getHeight());
+                    rectF2.set(0.0f, 0.0f, a5Var.f58206x0.getWidth(), a5Var.f58206x0.getHeight());
                     canvas.drawBitmap(bitmap, rect, rectF2, (Paint) null);
                     canvas.restore();
                     return true;
@@ -108,8 +108,8 @@ public final class s0 extends org.telegram.ui.Cells.r1 {
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
         t0 t0Var = this.Fd;
-        u5 u5Var = t0Var.f58171e;
-        if ((u5Var != null && u5Var.f15543g && u5Var.d) || t0Var.h.f58200v0) {
+        u5 u5Var = t0Var.f58175e;
+        if ((u5Var != null && u5Var.f15546g && u5Var.d) || t0Var.h.f58204v0) {
             canvas2 = canvas;
             canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         } else {

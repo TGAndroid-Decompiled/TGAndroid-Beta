@@ -5,16 +5,16 @@ import java.util.concurrent.atomic.AtomicMarkableReference;
 import java.util.concurrent.atomic.AtomicReference;
 import m.o3;
 public final class r implements Runnable {
-    public final int f5172a;
-    public final Object f5173b;
+    public final int f5175a;
+    public final Object f5176b;
 
     public r(Object obj, int i7) {
-        this.f5172a = i7;
-        this.f5173b = obj;
+        this.f5175a = i7;
+        this.f5176b = obj;
     }
 
     private final void a() {
-        ab.q qVar = (ab.q) this.f5173b;
+        ab.q qVar = (ab.q) this.f5176b;
         Map map = null;
         ((AtomicReference) qVar.f989c).set(null);
         synchronized (qVar) {
@@ -30,7 +30,7 @@ public final class r implements Runnable {
         }
         if (map != null) {
             o3 o3Var = (o3) qVar.d;
-            ((h) o3Var.f20186a).h((String) o3Var.f20188c, map, qVar.f987a);
+            ((h) o3Var.f20189a).h((String) o3Var.f20191c, map, qVar.f987a);
         }
     }
 

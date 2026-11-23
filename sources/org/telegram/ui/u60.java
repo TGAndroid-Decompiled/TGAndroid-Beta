@@ -5,37 +5,37 @@ import java.util.Arrays;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class u60 implements org.telegram.messenger.x10 {
-    public final int f52456a;
-    public final Object f52457b;
-    public final Object f52458c;
+public final class u60 implements org.telegram.messenger.y10 {
+    public final int f52460a;
+    public final Object f52461b;
+    public final Object f52462c;
     public final Object d;
-    public final Object f52459e;
-    public final Object f52460f;
-    public final Object f52461g;
+    public final Object f52463e;
+    public final Object f52464f;
+    public final Object f52465g;
 
     public u60(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
-        this.f52456a = i7;
-        this.f52457b = obj;
-        this.f52458c = obj2;
-        this.f52459e = obj3;
-        this.f52461g = obj4;
-        this.f52460f = obj5;
+        this.f52460a = i7;
+        this.f52461b = obj;
+        this.f52462c = obj2;
+        this.f52463e = obj3;
+        this.f52465g = obj4;
+        this.f52464f = obj5;
         this.d = obj6;
     }
 
     @Override
     public final void a(Object obj) {
         xv xvVar;
-        int i7 = this.f52456a;
+        int i7 = this.f52460a;
         boolean z10 = true;
         boolean z11 = false;
         Object obj2 = this.d;
-        Object obj3 = this.f52460f;
-        Object obj4 = this.f52461g;
-        Object obj5 = this.f52459e;
-        Object obj6 = this.f52458c;
-        Object obj7 = this.f52457b;
+        Object obj3 = this.f52464f;
+        Object obj4 = this.f52465g;
+        Object obj5 = this.f52463e;
+        Object obj6 = this.f52462c;
+        Object obj7 = this.f52461b;
         switch (i7) {
             case 0:
                 LaunchActivity launchActivity = (LaunchActivity) obj7;
@@ -66,7 +66,7 @@ public final class u60 implements org.telegram.messenger.x10 {
                     }
                     k0Var.A1(tL_premium_boostsStatus, z11);
                     k0Var.C1(l10.longValue());
-                    k0Var.f58766c2 = r1Var;
+                    k0Var.f58770c2 = r1Var;
                     g2Var.showDialog(k0Var);
                     if (runnable != null) {
                         try {
@@ -108,7 +108,7 @@ public final class u60 implements org.telegram.messenger.x10 {
                 bg.m0 m0Var = (bg.m0) obj2;
                 TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = (TL_wallet.inputTonConnectOauthSession) obj;
                 ((org.telegram.ui.ActionBar.w2[]) obj7)[0] = null;
-                gi0.f48120a = null;
+                gi0.f48124a = null;
                 if (((boolean[]) obj6)[0]) {
                     Arrays.fill(inputtonconnectoauthsession.challenge_answer, (byte) 0);
                     return;
@@ -118,7 +118,7 @@ public final class u60 implements org.telegram.messenger.x10 {
                     m0Var.run();
                     return;
                 }
-                gi0.f48120a = w2Var;
+                gi0.f48124a = w2Var;
                 w2Var.show();
                 return;
             case 3:
@@ -136,7 +136,7 @@ public final class u60 implements org.telegram.messenger.x10 {
                 }
                 org.telegram.ui.Components.lc.d0(str3, d3Var.F, h6Var);
                 pVar.run();
-                if (h2Var.f44340n || h2Var.f44341o) {
+                if (h2Var.f44344n || h2Var.f44345o) {
                     z10 = false;
                 }
                 eVar.setEnabled(z10);
@@ -160,12 +160,12 @@ public final class u60 implements org.telegram.messenger.x10 {
     }
 
     public u60(LaunchActivity launchActivity, vf.b bVar, Runnable runnable, org.telegram.messenger.h3 h3Var, Long l10, org.telegram.ui.Cells.r1 r1Var) {
-        this.f52456a = 1;
-        this.f52457b = launchActivity;
-        this.f52458c = bVar;
+        this.f52460a = 1;
+        this.f52461b = launchActivity;
+        this.f52462c = bVar;
         this.d = runnable;
-        this.f52461g = h3Var;
-        this.f52459e = l10;
-        this.f52460f = r1Var;
+        this.f52465g = h3Var;
+        this.f52463e = l10;
+        this.f52464f = r1Var;
     }
 }

@@ -2,13 +2,13 @@ package f3;
 
 import java.io.Serializable;
 public final class z {
-    public int f11259a;
-    public int f11260b;
-    public int f11261c;
+    public int f11262a;
+    public int f11263b;
+    public int f11264c;
     public int d;
-    public int f11262e;
-    public int f11263f;
-    public Serializable f11264g;
+    public int f11265e;
+    public int f11266f;
+    public Serializable f11267g;
 
     public boolean a(int i7) {
         int i10;
@@ -20,15 +20,15 @@ public final class z {
         if ((i7 & (-2097152)) != -2097152 || (i10 = (i7 >>> 19) & 3) == 1 || (i11 = (i7 >>> 17) & 3) == 0 || (i12 = (i7 >>> 12) & 15) == 0 || i12 == 15 || (i13 = (i7 >>> 10) & 3) == 3) {
             return false;
         }
-        this.f11259a = i10;
-        this.f11264g = b.f11143s[3 - i11];
-        int i16 = b.f11144t[i13];
-        this.f11261c = i16;
+        this.f11262a = i10;
+        this.f11267g = b.f11146s[3 - i11];
+        int i16 = b.f11147t[i13];
+        this.f11264c = i16;
         int i17 = 2;
         if (i10 == 2) {
-            this.f11261c = i16 / 2;
+            this.f11264c = i16 / 2;
         } else if (i10 == 0) {
-            this.f11261c = i16 / 4;
+            this.f11264c = i16 / 4;
         }
         int i18 = (i7 >>> 9) & 1;
         int i19 = 1152;
@@ -43,32 +43,32 @@ public final class z {
         } else if (i10 != 3) {
             i19 = 576;
         }
-        this.f11263f = i19;
+        this.f11266f = i19;
         if (i11 == 3) {
             if (i10 == 3) {
-                i15 = b.f11145u[i12 - 1];
+                i15 = b.f11148u[i12 - 1];
             } else {
                 i15 = b.v[i12 - 1];
             }
-            this.f11262e = i15;
-            this.f11260b = (((i15 * 12) / this.f11261c) + i18) * 4;
+            this.f11265e = i15;
+            this.f11263b = (((i15 * 12) / this.f11264c) + i18) * 4;
         } else {
             int i20 = 144;
             if (i10 == 3) {
                 if (i11 == 2) {
-                    i14 = b.f11146w[i12 - 1];
+                    i14 = b.f11149w[i12 - 1];
                 } else {
-                    i14 = b.f11147x[i12 - 1];
+                    i14 = b.f11150x[i12 - 1];
                 }
-                this.f11262e = i14;
-                this.f11260b = ((i14 * 144) / this.f11261c) + i18;
+                this.f11265e = i14;
+                this.f11263b = ((i14 * 144) / this.f11264c) + i18;
             } else {
-                int i21 = b.f11148y[i12 - 1];
-                this.f11262e = i21;
+                int i21 = b.f11151y[i12 - 1];
+                this.f11265e = i21;
                 if (i11 == 1) {
                     i20 = 72;
                 }
-                this.f11260b = ((i20 * i21) / this.f11261c) + i18;
+                this.f11263b = ((i20 * i21) / this.f11264c) + i18;
             }
         }
         if (((i7 >> 6) & 3) == 3) {

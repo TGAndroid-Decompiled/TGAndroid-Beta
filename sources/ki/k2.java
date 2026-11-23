@@ -3,8 +3,8 @@ package ki;
 import android.content.Context;
 import android.graphics.Paint;
 import android.view.MotionEvent;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.p10;
 import org.telegram.ui.ActionBar.h6;
 public final class k2 extends org.telegram.ui.web.v0 {
     public final int U0;
@@ -28,9 +28,9 @@ public final class k2 extends org.telegram.ui.web.v0 {
                     s2Var.m();
                     org.telegram.ui.b3 b3Var = s2Var.Z0;
                     if (s2Var.q()) {
-                        q10 = s2Var.f18960x0.f18676e;
+                        q10 = s2Var.f18963x0.f18679e;
                     } else {
-                        q10 = o10.q(mp.u1(s2Var.I).c2(Long.valueOf(s2Var.J)));
+                        q10 = p10.q(np.u1(s2Var.I).c2(Long.valueOf(s2Var.J)));
                     }
                     b3Var.a(q10, str);
                     org.telegram.ui.b3 b3Var2 = s2Var.Z0;
@@ -58,12 +58,12 @@ public final class k2 extends org.telegram.ui.web.v0 {
         switch (this.U0) {
             case 0:
                 s2 s2Var = (s2) this.V0;
-                s2Var.f18959x.setWebView(s0Var);
+                s2Var.f18962x.setWebView(s0Var);
                 v0 v0Var = s2Var.D0;
                 if (v0Var != null) {
-                    v0Var.f19021k = s0Var;
+                    v0Var.f19024k = s0Var;
                 }
-                s2Var.f18947o0.setWebView(s0Var);
+                s2Var.f18950o0.setWebView(s0Var);
                 s2Var.K();
                 return;
             default:
@@ -78,11 +78,11 @@ public final class k2 extends org.telegram.ui.web.v0 {
             case 0:
                 s2 s2Var = (s2) this.V0;
                 v0 v0Var = s2Var.D0;
-                if (v0Var != null && v0Var.f19021k == s0Var) {
-                    v0Var.f19021k = null;
+                if (v0Var != null && v0Var.f19024k == s0Var) {
+                    v0Var.f19024k = null;
                     v0Var.b();
                 }
-                s2Var.f18947o0.setWebView(null);
+                s2Var.f18950o0.setWebView(null);
                 return;
             default:
                 return;
@@ -97,7 +97,7 @@ public final class k2 extends org.telegram.ui.web.v0 {
                     s3 s3Var = (s3) this.V0;
                     if (!s3Var.Q) {
                         s3Var.Q = true;
-                        s3Var.f18965n.R();
+                        s3Var.f18968n.R();
                     }
                 }
                 return super.dispatchTouchEvent(motionEvent);

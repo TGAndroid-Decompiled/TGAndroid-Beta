@@ -4,9 +4,9 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.widget.LinearLayout;
 public final class bc extends eb {
-    public final q9 f33829a;
-    public final m80 f33830b;
-    public final m80 f33831c;
+    public final q9 f33822a;
+    public final m80 f33823b;
+    public final m80 f33824c;
 
     public bc(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, h6Var);
@@ -14,7 +14,7 @@ public final class bc extends eb {
         getThemedColor(i7);
         setBackground(getThemedColor(org.telegram.ui.ActionBar.m6.wj));
         q9 q9Var = new q9(context);
-        this.f33829a = q9Var;
+        this.f33822a = q9Var;
         addView(q9Var, c8.ma.i(32.0f, 32.0f, 8388627, 12.0f, 0.0f, 12.0f, 0.0f));
         getThemedColor(i7);
         int i10 = org.telegram.ui.ActionBar.m6.xj;
@@ -23,14 +23,14 @@ public final class bc extends eb {
         linearLayout.setOrientation(1);
         addView(linearLayout, c8.ma.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
         m80 m80Var = new m80(context, null);
-        this.f33830b = m80Var;
+        this.f33823b = m80Var;
         m80Var.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
         org.telegram.ui.ActionBar.t6.U(m80Var, i7, h6Var);
         m80Var.setTextSize(1, 14.0f);
         m80Var.setTypeface(org.telegram.messenger.g0.o());
         linearLayout.addView(m80Var);
         m80 m80Var2 = new m80(context, null);
-        this.f33831c = m80Var2;
+        this.f33824c = m80Var2;
         m80Var2.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
         org.telegram.ui.ActionBar.t6.U(m80Var2, i7, h6Var);
         org.telegram.ui.ActionBar.t6.G(m80Var2, i10, h6Var);
@@ -41,6 +41,6 @@ public final class bc extends eb {
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f33830b.getText()) + ".\n" + ((Object) this.f33831c.getText());
+        return ((Object) this.f33823b.getText()) + ".\n" + ((Object) this.f33824c.getText());
     }
 }

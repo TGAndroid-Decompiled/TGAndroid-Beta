@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class mw implements c5.h {
-    public final boolean f37653a;
-    public final ty f37654b;
+    public final boolean f37651a;
+    public final ty f37652b;
 
     public mw(ty tyVar, boolean z10) {
-        this.f37654b = tyVar;
-        this.f37653a = z10;
+        this.f37652b = tyVar;
+        this.f37651a = z10;
     }
 
     @Override
     public final void a(int i7) {
         boolean z10;
         int i10;
-        ty tyVar = this.f37654b;
+        ty tyVar = this.f37652b;
         jw jwVar = tyVar.h;
         boolean z11 = false;
         if (jwVar != null) {
@@ -26,7 +26,7 @@ public final class mw implements c5.h {
             }
             if (tyVar.B1 != i10) {
                 tyVar.B1 = i10;
-                org.telegram.messenger.mp.f1().edit().putInt("selected_page", i10).commit();
+                org.telegram.messenger.np.f1().edit().putInt("selected_page", i10).commit();
             }
         }
         if (i7 == 0) {
@@ -35,18 +35,18 @@ public final class mw implements c5.h {
             z10 = false;
         }
         tyVar.M(z10, true);
-        if (i7 == 2 && (this.f37653a || tyVar.f40157w0)) {
+        if (i7 == 2 && (this.f37651a || tyVar.f40150w0)) {
             z11 = true;
         }
         tyVar.R(z11, true);
-        if (tyVar.f40151u1.z()) {
+        if (tyVar.f40144u1.z()) {
             if (i7 == 0) {
                 vv vvVar = tyVar.W;
                 if (vvVar != null) {
                     vvVar.d.requestFocus();
                 }
             } else if (i7 == 1) {
-                aw awVar = tyVar.f40133p0;
+                aw awVar = tyVar.f40126p0;
                 if (awVar != null) {
                     awVar.d.requestFocus();
                 }
@@ -67,18 +67,18 @@ public final class mw implements c5.h {
         int i11;
         int i12;
         int i13;
-        ty tyVar = this.f37654b;
+        ty tyVar = this.f37652b;
         gy gyVar3 = tyVar.H0;
-        gy gyVar4 = tyVar.f40133p0;
+        gy gyVar4 = tyVar.f40126p0;
         gy gyVar5 = tyVar.W;
         iw iwVar = tyVar.D0;
         dw dwVar = tyVar.E0;
-        bx bxVar = tyVar.f40136q0;
-        yv yvVar = tyVar.f40114i0;
+        bx bxVar = tyVar.f40129q0;
+        yv yvVar = tyVar.f40107i0;
         gx gxVar = tyVar.Q;
         int i14 = 2;
         boolean z10 = true;
-        if (tyVar.f40165y0 == null || tyVar.f40111h0 == null) {
+        if (tyVar.f40158y0 == null || tyVar.f40104h0 == null) {
             f11 = 0.0f;
         } else {
             int i15 = 8;
@@ -135,7 +135,7 @@ public final class mw implements c5.h {
         tyVar.getMeasuredWidth();
         tyVar.getPaddingLeft();
         tyVar.getPaddingRight();
-        tx txVar = tyVar.f40151u1;
+        tx txVar = tyVar.f40144u1;
         if (txVar != null) {
             if (i7 == 1) {
                 if (i10 == 0) {

@@ -21,7 +21,7 @@ import org.telegram.messenger.AnimatedFileDrawableStream;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public abstract class o61 extends View implements org.telegram.messenger.fs {
+public abstract class o61 extends View implements org.telegram.messenger.gs {
     public String E;
     public int F;
     public final TextPaint G;
@@ -41,31 +41,31 @@ public abstract class o61 extends View implements org.telegram.messenger.fs {
     public int U;
     public int V;
     public final Path W;
-    public boolean f38129a;
-    public long f38130a0;
-    public c6 f38131b;
-    public long f38132b0;
-    public long f38133c;
-    public int f38134c0;
+    public boolean f38123a;
+    public long f38124a0;
+    public c6 f38125b;
+    public long f38126b0;
+    public long f38127c;
+    public int f38128c0;
     public Uri d;
-    public int f38135d0;
-    public Runnable f38136e;
-    public ArrayList f38137e0;
-    public m61 f38138f;
-    public TLRPC.Document f38139f0;
-    public String f38140g0;
+    public int f38129d0;
+    public Runnable f38130e;
+    public ArrayList f38131e0;
+    public m61 f38132f;
+    public TLRPC.Document f38133f0;
+    public String f38134g0;
     public float h;
-    public int f38141h0;
-    public int f38142n;
-    public int f38143r;
-    public boolean f38144s;
-    public Bitmap f38145w;
-    public Bitmap f38146x;
-    public final Drawable f38147y;
+    public int f38135h0;
+    public int f38136n;
+    public int f38137r;
+    public boolean f38138s;
+    public Bitmap f38139w;
+    public Bitmap f38140x;
+    public final Drawable f38141y;
 
     public o61(Context context, org.telegram.ui.qn0 qn0Var) {
         super(context);
-        this.f38142n = -1;
+        this.f38136n = -1;
         TextPaint textPaint = new TextPaint(1);
         this.G = textPaint;
         this.I = new RectF();
@@ -74,74 +74,74 @@ public abstract class o61 extends View implements org.telegram.messenger.fs {
         this.L = new RectF();
         this.M = new Matrix();
         this.W = new Path();
-        this.f38141h0 = -1;
+        this.f38135h0 = -1;
         setVisibility(4);
-        this.f38147y = context.getResources().getDrawable(2131232800);
+        this.f38141y = context.getResources().getDrawable(2131232800);
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
         textPaint.setColor(-1);
         this.N = qn0Var;
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.R = imageReceiver;
         imageReceiver.H0(this);
-        imageReceiver.f22667h1 = new ky(this, 26);
+        imageReceiver.f22670h1 = new ky(this, 26);
     }
 
     public final void a() {
-        if (this.f38136e != null) {
-            Utilities.f22807e.a(this.f38136e);
-            this.f38136e = null;
+        if (this.f38130e != null) {
+            Utilities.f22810e.a(this.f38130e);
+            this.f38130e = null;
         }
-        if (this.f38138f != null) {
-            Utilities.f22807e.a(this.f38138f);
-            this.f38138f = null;
+        if (this.f38132f != null) {
+            Utilities.f22810e.a(this.f38132f);
+            this.f38132f = null;
         }
-        c6 c6Var = this.f38131b;
+        c6 c6Var = this.f38125b;
         if (c6Var != null) {
-            AnimatedFileDrawableStream animatedFileDrawableStream = c6Var.f34101v0;
+            AnimatedFileDrawableStream animatedFileDrawableStream = c6Var.f34095v0;
             if (animatedFileDrawableStream != null) {
                 animatedFileDrawableStream.b(true);
             }
-            if (c6Var.f34081e0 != null) {
-                c6Var.f34081e0.h();
+            if (c6Var.f34075e0 != null) {
+                c6Var.f34075e0.h();
             }
         }
-        Utilities.f22807e.c(new l61(this, 0));
+        Utilities.f22810e.c(new l61(this, 0));
         setVisibility(4);
-        this.f38146x = null;
+        this.f38140x = null;
         this.H = null;
         invalidate();
-        this.f38142n = -1;
+        this.f38136n = -1;
         this.d = null;
-        this.f38144s = false;
-        this.f38129a = false;
-        if (this.f38130a0 != 0) {
-            this.f38130a0 = 0L;
-            this.f38140g0 = null;
-            this.f38139f0 = null;
-            this.f38137e0 = null;
+        this.f38138s = false;
+        this.f38123a = false;
+        if (this.f38124a0 != 0) {
+            this.f38124a0 = 0L;
+            this.f38134g0 = null;
+            this.f38133f0 = null;
+            this.f38131e0 = null;
             b(-1);
         }
     }
 
     public final void b(int i7) {
-        int i10 = this.f38141h0;
+        int i10 = this.f38135h0;
         if (i10 == i7) {
             return;
         }
-        int i11 = org.telegram.messenger.ks.Z1;
-        int i12 = org.telegram.messenger.ks.Y1;
+        int i11 = org.telegram.messenger.ls.Z1;
+        int i12 = org.telegram.messenger.ls.Y1;
         if (i7 == -1) {
-            org.telegram.messenger.ks.f(i10).n(this, i12);
-            org.telegram.messenger.ks.f(this.f38141h0).n(this, i11);
+            org.telegram.messenger.ls.f(i10).n(this, i12);
+            org.telegram.messenger.ls.f(this.f38135h0).n(this, i11);
         } else {
-            org.telegram.messenger.ks.f(i7).c(this, i12);
-            org.telegram.messenger.ks.f(i7).c(this, i11);
+            org.telegram.messenger.ls.f(i7).c(this, i12);
+            org.telegram.messenger.ls.f(i7).c(this, i11);
         }
-        this.f38141h0 = i7;
+        this.f38135h0 = i7;
     }
 
-    public final void c(org.telegram.messenger.fj r12, org.telegram.ui.Components.i61 r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o61.c(org.telegram.messenger.fj, org.telegram.ui.Components.i61):void");
+    public final void c(org.telegram.messenger.gj r12, org.telegram.ui.Components.i61 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o61.c(org.telegram.messenger.gj, org.telegram.ui.Components.i61):void");
     }
 
     public final void d(File file) {
@@ -168,41 +168,41 @@ public abstract class o61 extends View implements org.telegram.messenger.fs {
                     }
                 } else {
                     Collections.sort(arrayList, Comparator$CC.comparingDouble(new di.w0(3)));
-                    this.f38132b0 = j3;
-                    this.f38134c0 = i7;
-                    this.f38135d0 = i10;
-                    this.f38137e0 = arrayList;
+                    this.f38126b0 = j3;
+                    this.f38128c0 = i7;
+                    this.f38129d0 = i10;
+                    this.f38131e0 = arrayList;
                     return;
                 }
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
-            this.f38137e0 = null;
+            this.f38131e0 = null;
         }
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.Y1) {
-            if (((String) objArr[0]).equals(this.f38140g0)) {
+        if (i7 == org.telegram.messenger.ls.Y1) {
+            if (((String) objArr[0]).equals(this.f38134g0)) {
                 org.telegram.messenger.w7.G(i10);
-                File I = org.telegram.messenger.w7.I(this.f38139f0);
+                File I = org.telegram.messenger.w7.I(this.f38133f0);
                 if (I != null && I.exists()) {
                     d(I);
                 }
-                this.f38140g0 = null;
-                this.f38139f0 = null;
+                this.f38134g0 = null;
+                this.f38133f0 = null;
                 b(-1);
             }
-        } else if (i7 == org.telegram.messenger.ks.Z1 && ((String) objArr[0]).equals(this.f38140g0)) {
-            this.f38140g0 = null;
-            this.f38139f0 = null;
+        } else if (i7 == org.telegram.messenger.ls.Z1 && ((String) objArr[0]).equals(this.f38134g0)) {
+            this.f38134g0 = null;
+            this.f38133f0 = null;
             b(-1);
         }
     }
 
-    public final void e(org.telegram.messenger.fj r18, final float r19, int r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o61.e(org.telegram.messenger.fj, float, int):void");
+    public final void e(org.telegram.messenger.gj r18, final float r19, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o61.e(org.telegram.messenger.gj, float, int):void");
     }
 
     @Override
@@ -219,14 +219,14 @@ public abstract class o61 extends View implements org.telegram.messenger.fs {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        Bitmap bitmap = this.f38145w;
+        Bitmap bitmap = this.f38139w;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f38145w = null;
+            this.f38139w = null;
         }
         boolean z10 = this.Q;
         TextPaint textPaint = this.G;
-        Drawable drawable = this.f38147y;
+        Drawable drawable = this.f38141y;
         if (z10) {
             canvas.save();
             Path path = this.W;
@@ -244,10 +244,10 @@ public abstract class o61 extends View implements org.telegram.messenger.fs {
             drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             drawable.draw(canvas);
             canvas.drawText(this.E, (getMeasuredWidth() - this.F) / 2.0f, getMeasuredHeight() - org.telegram.messenger.g0.L(9.0f), textPaint);
-        } else if (this.f38146x != null && this.H != null) {
+        } else if (this.f38140x != null && this.H != null) {
             Matrix matrix = this.M;
             matrix.reset();
-            float measuredWidth = getMeasuredWidth() / this.f38146x.getWidth();
+            float measuredWidth = getMeasuredWidth() / this.f38140x.getWidth();
             matrix.preScale(measuredWidth, measuredWidth);
             RectF rectF2 = this.L;
             rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());

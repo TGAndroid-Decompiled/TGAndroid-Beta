@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class pj extends zj0 {
-    public final int f38606r = org.telegram.messenger.j10.f24798t0;
-    public final Context f38607s;
-    public final vj f38608w;
+    public final int f38605r = org.telegram.messenger.k10.f24968t0;
+    public final Context f38606s;
+    public final vj f38607w;
 
     public pj(vj vjVar, Context context) {
-        this.f38608w = vjVar;
-        this.f38607s = context;
+        this.f38607w = vjVar;
+        this.f38606s = context;
     }
 
     @Override
@@ -33,9 +33,9 @@ public final class pj extends zj0 {
             return 1;
         }
         int i10 = i7 - 1;
-        int i11 = this.f38606r;
-        HashMap hashMap = org.telegram.messenger.i5.r(i11).f24590c0;
-        ArrayList arrayList = org.telegram.messenger.i5.r(i11).f24591d0;
+        int i11 = this.f38605r;
+        HashMap hashMap = org.telegram.messenger.i5.r(i11).f24600c0;
+        ArrayList arrayList = org.telegram.messenger.i5.r(i11).f24601d0;
         if (i10 < arrayList.size()) {
             return ((ArrayList) hashMap.get(arrayList.get(i10))).size();
         }
@@ -48,9 +48,9 @@ public final class pj extends zj0 {
             return null;
         }
         int i11 = i7 - 1;
-        int i12 = this.f38606r;
-        HashMap hashMap = org.telegram.messenger.i5.r(i12).f24590c0;
-        ArrayList arrayList = org.telegram.messenger.i5.r(i12).f24591d0;
+        int i12 = this.f38605r;
+        HashMap hashMap = org.telegram.messenger.i5.r(i12).f24600c0;
+        ArrayList arrayList = org.telegram.messenger.i5.r(i12).f24601d0;
         if (i11 < arrayList.size()) {
             ArrayList arrayList2 = (ArrayList) hashMap.get(arrayList.get(i11));
             if (i10 < arrayList2.size()) {
@@ -73,7 +73,7 @@ public final class pj extends zj0 {
 
     @Override
     public final int R() {
-        return org.telegram.messenger.i5.r(this.f38606r).f24591d0.size() + 2;
+        return org.telegram.messenger.i5.r(this.f38605r).f24601d0.size() + 2;
     }
 
     @Override
@@ -84,8 +84,8 @@ public final class pj extends zj0 {
     @Override
     public final boolean V(int i7, int i10, v4.f1 f1Var) {
         if (i7 != 0 && i7 != R() - 1) {
-            int i11 = this.f38606r;
-            if (i10 < ((ArrayList) org.telegram.messenger.i5.r(i11).f24590c0.get(org.telegram.messenger.i5.r(i11).f24591d0.get(i7 - 1))).size()) {
+            int i11 = this.f38605r;
+            if (i10 < ((ArrayList) org.telegram.messenger.i5.r(i11).f24600c0.get(org.telegram.messenger.i5.r(i11).f24601d0.get(i7 - 1))).size()) {
                 return true;
             }
             return false;
@@ -96,8 +96,8 @@ public final class pj extends zj0 {
     @Override
     public final void W(int i7, int i10, v4.f1 f1Var) {
         TLRPC.User user;
-        if (f1Var.f59165f == 0) {
-            uj ujVar = (uj) f1Var.f59161a;
+        if (f1Var.f59169f == 0) {
+            uj ujVar = (uj) f1Var.f59165a;
             Object O = O(i7, i10);
             boolean z10 = true;
             if (i7 == R() - 2 && i10 == M(i7) - 1) {
@@ -105,10 +105,10 @@ public final class pj extends zj0 {
             }
             if (O instanceof org.telegram.messenger.f5) {
                 org.telegram.messenger.f5 f5Var = (org.telegram.messenger.f5) O;
-                user = f5Var.f23875m;
+                user = f5Var.f23870m;
                 if (user == null) {
-                    ujVar.setCurrentId(f5Var.f23865a);
-                    ujVar.a(null, org.telegram.messenger.i5.m(0, f5Var.f23871i, f5Var.f23872j), new nj(f5Var, 0), z10);
+                    ujVar.setCurrentId(f5Var.f23860a);
+                    ujVar.a(null, org.telegram.messenger.i5.m(0, f5Var.f23866i, f5Var.f23867j), new nj(f5Var, 0), z10);
                     user = null;
                 }
             } else {
@@ -117,7 +117,7 @@ public final class pj extends zj0 {
             if (user != null) {
                 ujVar.a(user, null, new oj(0, user), z10);
             }
-            boolean containsKey = this.f38608w.f40850x.containsKey(lj.a(O));
+            boolean containsKey = this.f38607w.f40852x.containsKey(lj.a(O));
             op opVar = ujVar.d;
             if (opVar.getVisibility() != 0) {
                 opVar.setVisibility(0);
@@ -129,13 +129,13 @@ public final class pj extends zj0 {
     @Override
     public final void f() {
         X(false);
-        this.f38608w.S();
+        this.f38607w.S();
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View ujVar;
-        Context context = this.f38607s;
+        Context context = this.f38606s;
         if (i7 != 0) {
             if (i7 != 1) {
                 ujVar = new View(context);
@@ -146,7 +146,7 @@ public final class pj extends zj0 {
                 ujVar.setTag(-33024);
             }
         } else {
-            ujVar = new uj(context, this.f38608w.f37520a);
+            ujVar = new uj(context, this.f38607w.f37519a);
         }
         return new v4.f1(ujVar);
     }

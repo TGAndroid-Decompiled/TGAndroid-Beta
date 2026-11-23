@@ -16,8 +16,8 @@ import f5.x;
 import j$.util.Objects;
 import java.lang.ref.WeakReference;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
 import tg.y;
 import vf.c;
 import wf.b;
@@ -38,23 +38,23 @@ public final class a implements ServiceConnection {
         g gVar = null;
         switch (this.f1051a) {
             case 0:
-                int i7 = d.f61966a;
+                int i7 = d.f61970a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface != null && (queryLocalInterface instanceof e)) {
                         eVar = (e) queryLocalInterface;
                     } else {
                         ?? obj = new Object();
-                        obj.f61965a = iBinder;
+                        obj.f61969a = iBinder;
                         eVar = obj;
                     }
                 }
                 y yVar2 = new y(10, eVar, componentName);
                 if (((vf.a) ((WeakReference) this.f1052b).get()) != null) {
-                    c.f59416b = yVar2;
-                    if (mp.u1(j10.f24798t0).U2() && (yVar = c.f59416b) != null) {
+                    c.f59420b = yVar2;
+                    if (np.u1(k10.f24968t0).U2() && (yVar = c.f59420b) != null) {
                         try {
-                            ((zf.c) ((e) yVar.f58220b)).i1();
+                            ((zf.c) ((e) yVar.f58224b)).i1();
                             return;
                         } catch (RemoteException unused) {
                             return;
@@ -68,13 +68,13 @@ public final class a implements ServiceConnection {
                 return;
             case 1:
                 d9.c cVar = (d9.c) this.f1052b;
-                cVar.f7920b.b("ServiceConnectionImpl.onServiceConnected(%s)", componentName);
+                cVar.f7923b.b("ServiceConnectionImpl.onServiceConnected(%s)", componentName);
                 cVar.a().post(new d9.a(this, iBinder));
                 return;
             default:
                 u.g("BillingClientTesting", "Billing Override Service connected.");
                 w wVar = (w) this.f1052b;
-                int i10 = f.f7038b;
+                int i10 = f.f7041b;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("com.google.android.apps.play.billingtestcompanion.aidl.IBillingOverrideService");
                     if (queryLocalInterface2 instanceof g) {
@@ -85,13 +85,13 @@ public final class a implements ServiceConnection {
                 }
                 wVar.E = gVar;
                 wVar.D = 2;
-                int i11 = x.f11353a;
+                int i11 = x.f11356a;
                 i3 c10 = x.c(26, m3.BROADCAST_ACTION_UNSPECIFIED);
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
                 b bVar = wVar.h;
                 bVar.getClass();
                 try {
-                    bVar.e0(c10, (p3) bVar.f59711b);
+                    bVar.e0(c10, (p3) bVar.f59715b);
                     return;
                 } catch (Throwable th2) {
                     u.i("BillingLogger", "Unable to log.", th2);
@@ -105,13 +105,13 @@ public final class a implements ServiceConnection {
         switch (this.f1051a) {
             case 0:
                 if (((vf.a) ((WeakReference) this.f1052b).get()) != null) {
-                    c.f59416b = null;
+                    c.f59420b = null;
                     return;
                 }
                 return;
             case 1:
                 d9.c cVar = (d9.c) this.f1052b;
-                cVar.f7920b.b("ServiceConnectionImpl.onServiceDisconnected(%s)", componentName);
+                cVar.f7923b.b("ServiceConnectionImpl.onServiceDisconnected(%s)", componentName);
                 cVar.a().post(new d9.b(this, 0));
                 return;
             default:

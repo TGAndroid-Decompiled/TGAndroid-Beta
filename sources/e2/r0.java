@@ -1,15 +1,15 @@
 package e2;
 public class r0 {
-    public int f10713a;
-    public int f10714b;
+    public int f10716a;
+    public int f10717b;
 
     public r0(int i7, int i10) {
-        this.f10713a = i7;
-        this.f10714b = i10;
+        this.f10716a = i7;
+        this.f10717b = i10;
     }
 
     public int a() {
-        int i7 = this.f10714b;
+        int i7 = this.f10717b;
         if (i7 != 2) {
             if (i7 != 5) {
                 if (i7 != 29) {
@@ -32,6 +32,6 @@ public class r0 {
     }
 
     public int b() {
-        return this.f10713a | this.f10714b;
+        return this.f10716a | this.f10717b;
     }
 }

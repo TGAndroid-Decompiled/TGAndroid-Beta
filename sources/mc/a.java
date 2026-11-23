@@ -5,13 +5,13 @@ import java.util.Arrays;
 import kotlin.jvm.internal.j;
 import qe.b;
 public final class a {
-    public final int f20989a;
-    public char[] f20990b;
-    public int f20991c;
+    public final int f20992a;
+    public char[] f20993b;
+    public int f20994c;
 
     public void a(int i7, int i10) {
         int i11 = i10 + i7;
-        char[] cArr = this.f20990b;
+        char[] cArr = this.f20993b;
         if (cArr.length <= i11) {
             int i12 = i7 * 2;
             if (i11 < i12) {
@@ -19,20 +19,20 @@ public final class a {
             }
             char[] copyOf = Arrays.copyOf(cArr, i11);
             j.d(copyOf, "copyOf(...)");
-            this.f20990b = copyOf;
+            this.f20993b = copyOf;
         }
     }
 
     public void b() {
-        b bVar = b.f56151c;
-        char[] array = this.f20990b;
+        b bVar = b.f56155c;
+        char[] array = this.f20993b;
         bVar.getClass();
         j.e(array, "array");
         synchronized (bVar) {
-            int i7 = bVar.f2164a;
-            if (array.length + i7 < qe.a.f56150a) {
-                bVar.f2164a = i7 + array.length;
-                ((d) bVar.f2165b).addLast(array);
+            int i7 = bVar.f2171a;
+            if (array.length + i7 < qe.a.f56154a) {
+                bVar.f2171a = i7 + array.length;
+                ((d) bVar.f2172b).addLast(array);
             }
         }
     }
@@ -43,17 +43,17 @@ public final class a {
         if (length == 0) {
             return;
         }
-        a(this.f20991c, length);
-        text.getChars(0, text.length(), this.f20990b, this.f20991c);
-        this.f20991c += length;
+        a(this.f20994c, length);
+        text.getChars(0, text.length(), this.f20993b, this.f20994c);
+        this.f20994c += length;
     }
 
     public final String toString() {
-        switch (this.f20989a) {
+        switch (this.f20992a) {
             case 0:
-                return new String(this.f20990b, 0, this.f20991c);
+                return new String(this.f20993b, 0, this.f20994c);
             default:
-                return new String(this.f20990b, 0, this.f20991c);
+                return new String(this.f20993b, 0, this.f20994c);
         }
     }
 }

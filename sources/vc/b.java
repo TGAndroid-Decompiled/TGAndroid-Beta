@@ -15,7 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import tc.g;
 public abstract class b {
-    public static final c f59407a = new c();
+    public static final c f59411a = new c();
 
     public static HttpURLConnection a(String str, t tVar) {
         Throwable th2;
@@ -28,7 +28,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = tVar.f10977b;
+        String str2 = tVar.f10980b;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -44,7 +44,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f59407a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f59411a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -76,8 +76,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f59405a;
-            String str2 = aVar.f59406b;
+            String str = aVar.f59409a;
+            String str2 = aVar.f59410b;
             if (str == null) {
                 encode = null;
             } else {

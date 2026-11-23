@@ -1,14 +1,14 @@
 package da;
 public final class e1 extends j2 {
-    public final String f8035a;
-    public final int f8036b;
-    public final int f8037c;
+    public final String f8038a;
+    public final int f8039b;
+    public final int f8040c;
     public final boolean d;
 
     public e1(int i7, int i10, String str, boolean z10) {
-        this.f8035a = str;
-        this.f8036b = i7;
-        this.f8037c = i10;
+        this.f8038a = str;
+        this.f8039b = i7;
+        this.f8040c = i10;
         this.d = z10;
     }
 
@@ -18,7 +18,7 @@ public final class e1 extends j2 {
         }
         if (obj instanceof j2) {
             e1 e1Var = (e1) ((j2) obj);
-            if (this.f8035a.equals(e1Var.f8035a) && this.f8036b == e1Var.f8036b && this.f8037c == e1Var.f8037c && this.d == e1Var.d) {
+            if (this.f8038a.equals(e1Var.f8038a) && this.f8039b == e1Var.f8039b && this.f8040c == e1Var.f8040c && this.d == e1Var.d) {
                 return true;
             }
         }
@@ -27,7 +27,7 @@ public final class e1 extends j2 {
 
     public final int hashCode() {
         int i7;
-        int hashCode = (((((this.f8035a.hashCode() ^ 1000003) * 1000003) ^ this.f8036b) * 1000003) ^ this.f8037c) * 1000003;
+        int hashCode = (((((this.f8038a.hashCode() ^ 1000003) * 1000003) ^ this.f8039b) * 1000003) ^ this.f8040c) * 1000003;
         if (this.d) {
             i7 = 1231;
         } else {
@@ -37,6 +37,6 @@ public final class e1 extends j2 {
     }
 
     public final String toString() {
-        return "ProcessDetails{processName=" + this.f8035a + ", pid=" + this.f8036b + ", importance=" + this.f8037c + ", defaultProcess=" + this.d + "}";
+        return "ProcessDetails{processName=" + this.f8038a + ", pid=" + this.f8039b + ", importance=" + this.f8040c + ", defaultProcess=" + this.d + "}";
     }
 }

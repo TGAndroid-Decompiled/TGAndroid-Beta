@@ -6,21 +6,21 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class rj extends dk0 {
-    public final Context f39240c;
+    public final Context f39250c;
     public ArrayList d = new ArrayList();
-    public ArrayList f39241e = new ArrayList();
-    public qj f39242f;
+    public ArrayList f39251e = new ArrayList();
+    public qj f39252f;
     public int h;
-    public final vj f39243n;
+    public final vj f39253n;
 
     public rj(vj vjVar, Context context) {
-        this.f39243n = vjVar;
-        this.f39240c = context;
+        this.f39253n = vjVar;
+        this.f39250c = context;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59165f == 0) {
+        if (f1Var.f59169f == 0) {
             return true;
         }
         return false;
@@ -53,15 +53,15 @@ public final class rj extends dk0 {
     @Override
     public final void f() {
         super.f();
-        this.f39243n.S();
+        this.f39253n.S();
     }
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         boolean z10;
         TLRPC.User user;
-        if (f1Var.f59165f == 0) {
-            uj ujVar = (uj) f1Var.f59161a;
+        if (f1Var.f59169f == 0) {
+            uj ujVar = (uj) f1Var.f59165a;
             if (i7 != b() - 2) {
                 z10 = true;
             } else {
@@ -70,19 +70,19 @@ public final class rj extends dk0 {
             Object E = E(i7);
             if (E instanceof org.telegram.messenger.f5) {
                 org.telegram.messenger.f5 f5Var = (org.telegram.messenger.f5) E;
-                user = f5Var.f23875m;
+                user = f5Var.f23870m;
                 if (user == null) {
-                    ujVar.setCurrentId(f5Var.f23865a);
-                    ujVar.a(null, (CharSequence) this.f39241e.get(i7 - 1), new nj(f5Var, 1), z10);
+                    ujVar.setCurrentId(f5Var.f23860a);
+                    ujVar.a(null, (CharSequence) this.f39251e.get(i7 - 1), new nj(f5Var, 1), z10);
                     user = null;
                 }
             } else {
                 user = (TLRPC.User) E;
             }
             if (user != null) {
-                ujVar.a(user, (CharSequence) this.f39241e.get(i7 - 1), new oj(1, user), z10);
+                ujVar.a(user, (CharSequence) this.f39251e.get(i7 - 1), new oj(1, user), z10);
             }
-            boolean containsKey = this.f39243n.f40850x.containsKey(lj.a(E));
+            boolean containsKey = this.f39253n.f40852x.containsKey(lj.a(E));
             op opVar = ujVar.d;
             if (opVar.getVisibility() != 0) {
                 opVar.setVisibility(0);
@@ -94,7 +94,7 @@ public final class rj extends dk0 {
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View ujVar;
-        Context context = this.f39240c;
+        Context context = this.f39250c;
         if (i7 != 0) {
             if (i7 != 1) {
                 ujVar = new View(context);
@@ -105,7 +105,7 @@ public final class rj extends dk0 {
                 ujVar.setTag(-33024);
             }
         } else {
-            ujVar = new uj(context, this.f39243n.f37520a);
+            ujVar = new uj(context, this.f39253n.f37519a);
         }
         return new v4.f1(ujVar);
     }

@@ -11,38 +11,38 @@ import c8.ma;
 import org.telegram.ui.Components.fm0;
 import org.telegram.ui.Components.nr;
 public final class q extends FrameLayout {
-    public final p f41265a;
-    public final TransitionSet f41266b;
-    public boolean f41267c;
+    public final p f41267a;
+    public final TransitionSet f41268b;
+    public boolean f41269c;
 
     public q(Activity activity) {
         super(activity);
-        this.f41267c = false;
+        this.f41269c = false;
         setWillNotDraw(false);
         p pVar = new p(activity);
-        this.f41265a = pVar;
+        this.f41267a = pVar;
         addView(pVar, ma.e(52, 52, 5));
         TransitionSet transitionSet = new TransitionSet();
-        this.f41266b = transitionSet;
+        this.f41268b = transitionSet;
         transitionSet.setOrdering(0);
         transitionSet.addTransition(new org.telegram.ui.ActionBar.i(1));
         transitionSet.setDuration(500L);
-        transitionSet.setInterpolator((TimeInterpolator) nr.f37956f);
+        transitionSet.setInterpolator((TimeInterpolator) nr.f37961f);
     }
 
     public final void a(View.OnClickListener onClickListener, boolean z10) {
-        if (this.f41267c) {
+        if (this.f41269c) {
             return;
         }
-        this.f41267c = true;
+        this.f41269c = true;
         if (z10) {
-            TransitionManager.beginDelayedTransition(this, this.f41266b);
+            TransitionManager.beginDelayedTransition(this, this.f41268b);
         }
-        p pVar = this.f41265a;
-        pVar.f41257w = 255;
-        pVar.f41254n = -1;
-        pVar.f41256s = 0;
-        pVar.f41255r = org.telegram.messenger.g0.L(8.0f);
+        p pVar = this.f41267a;
+        pVar.f41259w = 255;
+        pVar.f41256n = -1;
+        pVar.f41258s = 0;
+        pVar.f41257r = org.telegram.messenger.g0.L(8.0f);
         ViewGroup.LayoutParams layoutParams = pVar.getLayoutParams();
         layoutParams.width = -1;
         pVar.setLayoutParams(layoutParams);
@@ -50,6 +50,6 @@ public final class q extends FrameLayout {
     }
 
     public p getEndCloseView() {
-        return this.f41265a;
+        return this.f41267a;
     }
 }

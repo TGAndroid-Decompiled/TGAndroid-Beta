@@ -7,41 +7,41 @@ public final class kc {
     public static final kc I;
     public static final kc J;
     public static final kc[] K;
-    public static final kc f36872e;
-    public static final kc f36873f;
+    public static final kc f36875e;
+    public static final kc f36876f;
     public static final kc h;
-    public static final kc f36874n;
-    public static final kc f36875r;
-    public static final kc f36876s;
-    public static final kc f36877w;
-    public static final kc f36878x;
-    public static final kc f36879y;
-    public final String f36880a;
-    public final int f36881b;
-    public final boolean f36882c;
+    public static final kc f36877n;
+    public static final kc f36878r;
+    public static final kc f36879s;
+    public static final kc f36880w;
+    public static final kc f36881x;
+    public static final kc f36882y;
+    public final String f36883a;
+    public final int f36884b;
+    public final boolean f36885c;
     public final jc d;
 
     static {
         jc jcVar = jc.SAVED_TO_GALLERY;
         kc kcVar = new kc("PHOTO", 0, "PhotoSavedHint", 2131747070, jcVar);
-        f36872e = kcVar;
+        f36875e = kcVar;
         kc kcVar2 = new kc("PHOTOS", 1, "PhotosSavedHint", jcVar);
-        f36873f = kcVar2;
-        kc kcVar3 = new kc("VIDEO", 2, "VideoSavedHint", 2131743342, jcVar);
+        f36876f = kcVar2;
+        kc kcVar3 = new kc("VIDEO", 2, "VideoSavedHint", 2131743340, jcVar);
         h = kcVar3;
         kc kcVar4 = new kc("VIDEOS", 3, "VideosSavedHint", jcVar);
-        f36874n = kcVar4;
+        f36877n = kcVar4;
         kc kcVar5 = new kc("LIVEPHOTO", 4, "LivePhotoSavedHint", 2131748641, jcVar);
-        f36875r = kcVar5;
+        f36878r = kcVar5;
         kc kcVar6 = new kc("LIVEPHOTOS", 5, "LivePhotosSavedHint", jcVar);
-        f36876s = kcVar6;
+        f36879s = kcVar6;
         kc kcVar7 = new kc("MEDIA", 6, "MediaSavedHint", jcVar);
-        f36877w = kcVar7;
+        f36880w = kcVar7;
         jc jcVar2 = jc.SAVED_TO_DOWNLOADS;
         kc kcVar8 = new kc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", 2131747069, jcVar2);
-        f36878x = kcVar8;
-        kc kcVar9 = new kc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", 2131743341, jcVar2);
-        f36879y = kcVar9;
+        f36881x = kcVar8;
+        kc kcVar9 = new kc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", 2131743339, jcVar2);
+        f36882y = kcVar9;
         kc kcVar10 = new kc("GIF", 9, "GifSavedHint", 2131750453, jc.SAVED_TO_GIFS);
         E = kcVar10;
         kc kcVar11 = new kc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", 2131750452, jcVar2);
@@ -59,10 +59,10 @@ public final class kc {
     }
 
     public kc(String str, int i7, String str2, int i10, jc jcVar) {
-        this.f36880a = str2;
-        this.f36881b = i10;
+        this.f36883a = str2;
+        this.f36884b = i10;
         this.d = jcVar;
-        this.f36882c = false;
+        this.f36885c = false;
     }
 
     public static kc valueOf(String str) {
@@ -74,9 +74,9 @@ public final class kc {
     }
 
     public kc(String str, int i7, String str2, jc jcVar) {
-        this.f36880a = str2;
+        this.f36883a = str2;
         this.d = jcVar;
-        this.f36881b = 0;
-        this.f36882c = true;
+        this.f36884b = 0;
+        this.f36885c = true;
     }
 }

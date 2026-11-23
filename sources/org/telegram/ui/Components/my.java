@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
-public final class my implements org.telegram.messenger.x10 {
-    public final int f37664a;
-    public final ny f37665b;
+public final class my implements org.telegram.messenger.y10 {
+    public final int f37662a;
+    public final ny f37663b;
 
     public my(ny nyVar, int i7) {
-        this.f37664a = i7;
-        this.f37665b = nyVar;
+        this.f37662a = i7;
+        this.f37663b = nyVar;
     }
 
     @Override

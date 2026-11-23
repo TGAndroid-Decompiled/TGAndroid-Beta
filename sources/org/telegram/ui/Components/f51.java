@@ -27,8 +27,8 @@ public final class f51 extends wy {
         switch (this.X) {
             case 2:
                 yt0 yt0Var = (yt0) this.Y;
-                yt0Var.f42554b = 100.0f;
-                yt0Var.f42553a = 100.0f;
+                yt0Var.f42547b = 100.0f;
+                yt0Var.f42546a = 100.0f;
                 return yt0Var;
             default:
                 return super.D1(i7);
@@ -41,7 +41,7 @@ public final class f51 extends wy {
         switch (this.X) {
             case 2:
                 super.U(x0Var, c1Var, view, cVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56781a;
+                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56785a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     qfVar = new qf(collectionItemInfo, 15);
@@ -49,7 +49,7 @@ public final class f51 extends wy {
                     qfVar = null;
                 }
                 if (qfVar != null) {
-                    Object obj = qfVar.f38902b;
+                    Object obj = qfVar.f38896b;
                     if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
                         accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
                         return;
@@ -67,13 +67,13 @@ public final class f51 extends wy {
     public int W0(v4.c1 c1Var) {
         switch (this.X) {
             case 0:
-                if (((h51) this.Y).f35798i3) {
-                    return org.telegram.messenger.g0.f24146q.y;
+                if (((h51) this.Y).f35792i3) {
+                    return org.telegram.messenger.g0.f24046q.y;
                 }
                 return super.W0(c1Var);
             case 1:
-                if (((h51) this.Y).f35798i3) {
-                    return org.telegram.messenger.g0.f24146q.y;
+                if (((h51) this.Y).f35792i3) {
+                    return org.telegram.messenger.g0.f24046q.y;
                 }
                 return super.W0(c1Var);
             default:

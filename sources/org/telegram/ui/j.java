@@ -13,7 +13,7 @@ public final class j extends rg.b {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59165f;
+        int i7 = f1Var.f59169f;
         if (i7 != 2 && i7 != 0) {
             return true;
         }
@@ -30,7 +30,7 @@ public final class j extends rg.b {
         if (i7 >= 0) {
             k kVar = this.d;
             if (i7 < kVar.h.size()) {
-                return ((i) kVar.h.get(i7)).f56630a;
+                return ((i) kVar.h.get(i7)).f56634a;
             }
             return 0;
         }
@@ -47,24 +47,24 @@ public final class j extends rg.b {
             i iVar = (i) arrayList.get(i7);
             int i10 = i7 + 1;
             int i11 = 0;
-            if (i10 < arrayList.size() && ((i) arrayList.get(i10)).f56630a == iVar.f56630a) {
+            if (i10 < arrayList.size() && ((i) arrayList.get(i10)).f56634a == iVar.f56634a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int i12 = f1Var.f59165f;
-            View view = f1Var.f59161a;
+            int i12 = f1Var.f59169f;
+            View view = f1Var.f59165a;
             if (i12 == 0) {
-                ((org.telegram.ui.Cells.o4) view).setText(iVar.f48550c);
+                ((org.telegram.ui.Cells.o4) view).setText(iVar.f48554c);
             } else if (i12 == 2) {
                 org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
-                if (TextUtils.isEmpty(iVar.f48550c)) {
+                if (TextUtils.isEmpty(iVar.f48554c)) {
                     a9Var.setFixedSize(12);
                     a9Var.setText(null);
                     return;
                 }
                 a9Var.setFixedSize(0);
-                a9Var.setText(iVar.f48550c);
+                a9Var.setText(iVar.f48554c);
             } else if (i12 == 1) {
                 org.telegram.ui.Cells.s8 s8Var = (org.telegram.ui.Cells.s8) view;
                 int i13 = iVar.d;
@@ -76,7 +76,7 @@ public final class j extends rg.b {
                     s8Var.setCheckBoxIcon(0);
                 } else if (i13 == 7) {
                     boolean z12 = kVar.d.archive_and_mute_new_noncontact_peers;
-                    if (!kVar.getUserConfig().q() && !kVar.getMessagesController().f25636b4) {
+                    if (!kVar.getUserConfig().q() && !kVar.getMessagesController().f25807b4) {
                         i11 = 2131232515;
                     }
                     s8Var.setCheckBoxIcon(i11);
@@ -84,7 +84,7 @@ public final class j extends rg.b {
                 } else {
                     return;
                 }
-                s8Var.f(iVar.f48550c, z11, z10);
+                s8Var.f(iVar.f48554c, z11, z10);
             }
         }
     }

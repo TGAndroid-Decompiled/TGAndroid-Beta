@@ -1,242 +1,74 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.TLParseException;
 import org.telegram.tgnet.tl.TL_update;
-public final class g10 {
-    public final int f24163a;
-    public boolean f24165c;
-    public boolean d;
-    public boolean f24166e;
-    public boolean f24168g;
-    public final ArrayList f24164b = new ArrayList();
-    public final a10 f24167f = new a10(this, 0);
+public final class g10 extends TLObject {
+    public final boolean f24061a;
+    public final long f24062b;
+    public final long f24063c;
+    public final int d;
+    public final String f24064e;
+    public final String f24065f;
+    public final h10 f24066i;
 
-    public g10(int i7) {
-        this.f24163a = i7;
-        if (!this.f24165c && !this.d) {
-            this.d = true;
-            tr.a0(i7).f27080a.c(new a10(this, 1));
+    public g10(h10 h10Var, NativeByteBuffer nativeByteBuffer) {
+        this.f24066i = h10Var;
+        int readInt32 = nativeByteBuffer.readInt32(true);
+        if (readInt32 == 2058772876) {
+            this.f24062b = nativeByteBuffer.readInt64(true);
+            this.d = nativeByteBuffer.readInt32(true);
+            this.f24064e = nativeByteBuffer.readString(true);
+            this.f24065f = nativeByteBuffer.readString(true);
+        } else if (readInt32 == 2058772877) {
+            this.f24063c = nativeByteBuffer.readInt64(true);
+            this.d = nativeByteBuffer.readInt32(true);
+            this.f24064e = nativeByteBuffer.readString(true);
+            this.f24065f = nativeByteBuffer.readString(true);
+        } else {
+            TLParseException.doThrowOrLog(nativeByteBuffer, "UnconfirmedAuth", readInt32, true);
         }
     }
 
-    public final void a() {
-        this.f24164b.clear();
-        d();
-        ks.f(this.f24163a).k(ks.f25141f3, new Object[0]);
-        e();
-    }
-
-    public final void b(TL_update.TL_updateNewAuthorization tL_updateNewAuthorization) {
-        ArrayList arrayList;
-        int i7 = 0;
-        while (true) {
-            arrayList = this.f24164b;
-            if (i7 >= arrayList.size()) {
-                break;
-            }
-            f10 f10Var = (f10) arrayList.get(i7);
-            if (f10Var != null && !f10Var.f23843a && f10Var.f23844b == tL_updateNewAuthorization.hash) {
-                arrayList.remove(i7);
-                i7--;
-            }
-            i7++;
-        }
-        if (tL_updateNewAuthorization.unconfirmed) {
-            arrayList.add(new f10(this, tL_updateNewAuthorization));
-        }
-        ks.f(this.f24163a).k(ks.f25141f3, new Object[0]);
-        e();
-        d();
-    }
-
-    public final void c(TL_update.TL_updateNewBotConnection tL_updateNewBotConnection) {
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList = this.f24164b;
-            if (i7 < arrayList.size()) {
-                f10 f10Var = (f10) arrayList.get(i7);
-                if (f10Var != null && f10Var.f23843a && f10Var.f23845c == tL_updateNewBotConnection.bot_id) {
-                    arrayList.remove(i7);
-                    i7--;
-                }
-                i7++;
-            } else {
-                arrayList.add(new f10(this, tL_updateNewBotConnection));
-                ks.f(this.f24163a).k(ks.f25141f3, new Object[0]);
-                e();
-                d();
-                return;
-            }
-        }
-    }
-
-    public final void d() {
-        if (this.f24168g) {
-            return;
-        }
-        if (this.d) {
-            this.f24166e = true;
-            return;
-        }
-        this.f24168g = true;
-        tr.a0(this.f24163a).f27080a.c(new a10(this, 2));
-    }
-
-    public final void e() {
-        f10 f10Var;
-        a10 a10Var = this.f24167f;
-        g0.r(a10Var);
-        ArrayList arrayList = this.f24164b;
-        if (!arrayList.isEmpty()) {
-            int size = arrayList.size();
-            int i7 = 0;
-            long j3 = Long.MAX_VALUE;
-            while (i7 < size) {
-                Object obj = arrayList.get(i7);
-                i7++;
-                g10 g10Var = ((f10) obj).f23848i;
-                j3 = Math.min(j3, (ConnectionsManager.getInstance(g10Var.f24163a).getCurrentTime() + mp.u1(g10Var.f24163a).f25767q4) - f10Var.d);
-            }
-            if (j3 == Long.MAX_VALUE) {
-                return;
-            }
-            g0.h3(a10Var, Math.max(0L, j3 * 1000));
-        }
-    }
-
-    public final void f(final boolean z10, ArrayList arrayList, x10 x10Var) {
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        final boolean[] zArr = new boolean[arrayList2.size()];
-        x10[] x10VarArr = new x10[arrayList2.size()];
-        for (final int i7 = 0; i7 < arrayList2.size(); i7++) {
-            final f10 f10Var = (f10) arrayList2.get(i7);
-            x10VarArr[i7] = new x10() {
-                @Override
-                public final void a(Object obj) {
-                    final c10 c10Var = new c10(i7, (Runnable) obj, zArr);
-                    boolean z11 = z10;
-                    final f10 f10Var2 = f10Var;
-                    if (z11) {
-                        g10 g10Var = f10Var2.f23848i;
-                        if (f10Var2.f23843a) {
-                            TL_account.confirmBotConnection confirmbotconnection = new TL_account.confirmBotConnection();
-                            confirmbotconnection.bot_id = mp.u1(g10Var.f24163a).q1(f10Var2.f23845c);
-                            ConnectionsManager.getInstance(g10Var.f24163a).sendRequestTyped(confirmbotconnection, new z3(7, f10Var2, c10Var));
-                            return;
-                        }
-                        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-                        changeauthorizationsettings.hash = f10Var2.f23844b;
-                        changeauthorizationsettings.confirmed = true;
-                        ConnectionsManager.getInstance(g10Var.f24163a).sendRequest(changeauthorizationsettings, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                switch (r3) {
-                                    case 0:
-                                        f10 f10Var3 = f10Var2;
-                                        f10Var3.getClass();
-                                        g0.g3(new e10(f10Var3, tLObject, c10Var, tL_error));
-                                        return;
-                                    case 1:
-                                        f10 f10Var4 = f10Var2;
-                                        f10Var4.getClass();
-                                        g0.g3(new e10(f10Var4, c10Var, tLObject, tL_error, 2));
-                                        return;
-                                    default:
-                                        f10 f10Var5 = f10Var2;
-                                        f10Var5.getClass();
-                                        g0.g3(new e10(f10Var5, c10Var, tLObject, tL_error, 0));
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    }
-                    g10 g10Var2 = f10Var2.f23848i;
-                    if (f10Var2.f23843a) {
-                        TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
-                        updateconnectedbot.deleted = true;
-                        updateconnectedbot.bot = mp.u1(g10Var2.f24163a).q1(f10Var2.f23845c);
-                        updateconnectedbot.recipients = new TL_account.TL_inputBusinessBotRecipients();
-                        ConnectionsManager.getInstance(g10Var2.f24163a).sendRequest(updateconnectedbot, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                switch (r3) {
-                                    case 0:
-                                        f10 f10Var3 = f10Var2;
-                                        f10Var3.getClass();
-                                        g0.g3(new e10(f10Var3, tLObject, c10Var, tL_error));
-                                        return;
-                                    case 1:
-                                        f10 f10Var4 = f10Var2;
-                                        f10Var4.getClass();
-                                        g0.g3(new e10(f10Var4, c10Var, tLObject, tL_error, 2));
-                                        return;
-                                    default:
-                                        f10 f10Var5 = f10Var2;
-                                        f10Var5.getClass();
-                                        g0.g3(new e10(f10Var5, c10Var, tLObject, tL_error, 0));
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    }
-                    TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
-                    resetauthorization.hash = f10Var2.f23844b;
-                    ConnectionsManager.getInstance(g10Var2.f24163a).sendRequest(resetauthorization, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            switch (r3) {
-                                case 0:
-                                    f10 f10Var3 = f10Var2;
-                                    f10Var3.getClass();
-                                    g0.g3(new e10(f10Var3, tLObject, c10Var, tL_error));
-                                    return;
-                                case 1:
-                                    f10 f10Var4 = f10Var2;
-                                    f10Var4.getClass();
-                                    g0.g3(new e10(f10Var4, c10Var, tLObject, tL_error, 2));
-                                    return;
-                                default:
-                                    f10 f10Var5 = f10Var2;
-                                    f10Var5.getClass();
-                                    g0.g3(new e10(f10Var5, c10Var, tLObject, tL_error, 0));
-                                    return;
-                            }
-                        }
-                    });
-                }
-            };
-        }
-        Utilities.B(new in(this, zArr, arrayList2, x10Var, z10, 6), x10VarArr);
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        boolean z10 = this.f24061a;
+        String str = this.f24065f;
+        String str2 = this.f24064e;
+        int i7 = this.d;
         if (z10) {
-            HashSet hashSet = new HashSet();
-            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                hashSet.add(Long.valueOf(((f10) arrayList2.get(i10)).f23844b));
-            }
-            int i11 = 0;
-            while (true) {
-                ArrayList arrayList3 = this.f24164b;
-                if (i11 >= arrayList3.size()) {
-                    break;
-                }
-                if (hashSet.contains(Long.valueOf(((f10) arrayList3.get(i11)).f23844b))) {
-                    arrayList3.remove(i11);
-                    i11--;
-                }
-                i11++;
-            }
-            if (!hashSet.isEmpty()) {
-                d();
-                ks.f(this.f24163a).k(ks.f25141f3, new Object[0]);
-                e();
-            }
+            outputSerializedData.writeInt32(2058772877);
+            outputSerializedData.writeInt64(this.f24063c);
+            outputSerializedData.writeInt32(i7);
+            outputSerializedData.writeString(str2);
+            outputSerializedData.writeString(str);
+            return;
         }
+        outputSerializedData.writeInt32(2058772876);
+        outputSerializedData.writeInt64(this.f24062b);
+        outputSerializedData.writeInt32(i7);
+        outputSerializedData.writeString(str2);
+        outputSerializedData.writeString(str);
+    }
+
+    public g10(h10 h10Var, TL_update.TL_updateNewAuthorization tL_updateNewAuthorization) {
+        this.f24066i = h10Var;
+        this.f24062b = tL_updateNewAuthorization.hash;
+        this.d = tL_updateNewAuthorization.date;
+        this.f24064e = tL_updateNewAuthorization.device;
+        this.f24065f = tL_updateNewAuthorization.location;
+    }
+
+    public g10(h10 h10Var, TL_update.TL_updateNewBotConnection tL_updateNewBotConnection) {
+        this.f24066i = h10Var;
+        this.f24061a = true;
+        long j3 = tL_updateNewBotConnection.bot_id;
+        this.f24063c = j3;
+        this.f24062b = j3;
+        this.d = tL_updateNewBotConnection.date;
+        this.f24064e = tL_updateNewBotConnection.device;
+        this.f24065f = tL_updateNewBotConnection.location;
     }
 }

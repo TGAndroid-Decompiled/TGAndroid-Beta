@@ -14,31 +14,31 @@ public abstract class x8 extends FrameLayout {
     public float E;
     public float F;
     public final y8 G;
-    public long f42007a;
-    public TLRPC.Document f42008b;
-    public final fi.t3 f42009c;
+    public long f42000a;
+    public TLRPC.Document f42001b;
+    public final fi.t3 f42002c;
     public final s10 d;
-    public final s10 f42010e;
-    public float f42011f;
+    public final s10 f42003e;
+    public float f42004f;
     public u8 h;
-    public boolean f42012n;
-    public final PorterDuffColorFilter f42013r;
-    public final d6 f42014s;
-    public boolean f42015w;
-    public float f42016x;
-    public float f42017y;
+    public boolean f42005n;
+    public final PorterDuffColorFilter f42006r;
+    public final d6 f42007s;
+    public boolean f42008w;
+    public float f42009x;
+    public float f42010y;
 
     public x8(y8 y8Var, Context context) {
         super(context);
         this.G = y8Var;
         this.d = new s10();
-        this.f42010e = new s10();
-        this.f42011f = 1.0f;
-        this.f42013r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
-        this.f42014s = new d6(this, 200L, nr.f37957g);
-        this.f42016x = -1.0f;
+        this.f42003e = new s10();
+        this.f42004f = 1.0f;
+        this.f42006r = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f42007s = new d6(this, 200L, nr.f37962g);
+        this.f42009x = -1.0f;
         fi.t3 t3Var = new fi.t3(7, context, this);
-        this.f42009c = t3Var;
+        this.f42002c = t3Var;
         t3Var.getImageReceiver().X(1);
         t3Var.getImageReceiver().S0 = true;
         setClipChildren(false);
@@ -46,7 +46,7 @@ public abstract class x8 extends FrameLayout {
     }
 
     public final void a(Canvas canvas, float f10, float f11, float f12, float f13, Paint paint) {
-        float f14 = this.f42014s.f34391c;
+        float f14 = this.f42007s.f34386c;
         if (f14 == 0.0f) {
             canvas.drawCircle(f10, f11, f13, paint);
             return;
@@ -60,13 +60,13 @@ public abstract class x8 extends FrameLayout {
     public final void b(u8 u8Var, boolean z10) {
         u8 u8Var2 = this.h;
         if (u8Var2 != null) {
-            this.f42010e.d(u8Var2.f40299c, u8Var2.d, u8Var2.f40300e, u8Var2.f40301f);
-            this.f42011f = 0.0f;
-            this.G.f42358n = true;
+            this.f42003e.d(u8Var2.f40292c, u8Var2.d, u8Var2.f40293e, u8Var2.f40294f);
+            this.f42004f = 0.0f;
+            this.G.f42351n = true;
         }
         this.h = u8Var;
-        this.f42012n = z10;
-        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25230u4, new Object[0]);
+        this.f42005n = z10;
+        org.telegram.messenger.ls.e().k(org.telegram.messenger.ls.f25396u4, new Object[0]);
         invalidate();
     }
 
@@ -76,11 +76,11 @@ public abstract class x8 extends FrameLayout {
     }
 
     public long getDuration() {
-        fi.t3 t3Var = this.f42009c;
+        fi.t3 t3Var = this.f42002c;
         ImageReceiver imageReceiver = t3Var.getImageReceiver();
-        p5 p5Var = t3Var.f38845e;
+        p5 p5Var = t3Var.f38839e;
         if (p5Var != null) {
-            imageReceiver = p5Var.f38501k;
+            imageReceiver = p5Var.f38500k;
         }
         if (imageReceiver != null && imageReceiver.B() != null) {
             return imageReceiver.B().r();
@@ -89,12 +89,12 @@ public abstract class x8 extends FrameLayout {
     }
 
     public ImageReceiver getImageReceiver() {
-        fi.t3 t3Var = this.f42009c;
+        fi.t3 t3Var = this.f42002c;
         ImageReceiver imageReceiver = t3Var.getImageReceiver();
-        p5 p5Var = t3Var.f38845e;
+        p5 p5Var = t3Var.f38839e;
         if (p5Var != null) {
-            fi.s2 s2Var = p5Var.f38501k;
-            p5Var.setColorFilter(this.f42013r);
+            fi.s2 s2Var = p5Var.f38500k;
+            p5Var.setColorFilter(this.f42006r);
             return s2Var;
         }
         return imageReceiver;
@@ -117,19 +117,19 @@ public abstract class x8 extends FrameLayout {
 
     public void setExpanded(boolean z10) {
         fi.s2 s2Var;
-        if (this.f42015w == z10) {
+        if (this.f42008w == z10) {
             return;
         }
-        this.f42015w = z10;
+        this.f42008w = z10;
         if (z10) {
-            fi.t3 t3Var = this.f42009c;
-            p5 p5Var = t3Var.f38845e;
-            if (p5Var != null && (s2Var = p5Var.f38501k) != null) {
+            fi.t3 t3Var = this.f42002c;
+            p5 p5Var = t3Var.f38839e;
+            if (p5Var != null && (s2Var = p5Var.f38500k) != null) {
                 s2Var.P0(false);
             }
-            t3Var.f38842a.P0(false);
+            t3Var.f38836a.P0(false);
         }
-        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25230u4, new Object[0]);
+        org.telegram.messenger.ls.e().k(org.telegram.messenger.ls.f25396u4, new Object[0]);
         invalidate();
     }
 }

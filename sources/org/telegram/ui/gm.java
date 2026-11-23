@@ -5,25 +5,25 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class gm extends org.telegram.ui.Components.ap0 {
-    public final org.telegram.messenger.fj V2;
+    public final org.telegram.messenger.gj V2;
     public final mm W2;
 
-    public gm(mm mmVar, Activity activity, bn bnVar, ArrayList arrayList, boolean z10, boolean z11, org.telegram.ui.ActionBar.h6 h6Var, boolean z12, org.telegram.messenger.fj fjVar) {
+    public gm(mm mmVar, Activity activity, bn bnVar, ArrayList arrayList, boolean z10, boolean z11, org.telegram.ui.ActionBar.h6 h6Var, boolean z12, org.telegram.messenger.gj gjVar) {
         super(activity, bnVar, arrayList, null, null, z10, null, null, false, false, z11, null, h6Var);
         this.W2 = mmVar;
-        this.V2 = fjVar;
+        this.V2 = gjVar;
         this.W1 = z12;
     }
 
     @Override
     public final void L() {
         int i7;
-        bn bnVar = this.W2.f49937a;
+        bn bnVar = this.W2.f49941a;
         Activity parentActivity = bnVar.getParentActivity();
         i7 = ((org.telegram.ui.ActionBar.g2) bnVar).classGuid;
         org.telegram.messenger.g0.Z2(parentActivity, i7);
         super.L();
-        if (bnVar.f45946a0.getVisibility() == 0) {
+        if (bnVar.f45950a0.getVisibility() == 0) {
             bnVar.fragmentView.requestLayout();
         }
     }
@@ -31,43 +31,43 @@ public final class gm extends org.telegram.ui.Components.ap0 {
     @Override
     public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         mm mmVar = this.W2;
-        bn bnVar = mmVar.f49937a;
-        int i10 = bn.f45936md;
+        bn bnVar = mmVar.f49941a;
+        int i10 = bn.f45940md;
         bnVar.h8();
-        if (mmVar.f49937a.N3 != null && z10) {
+        if (mmVar.f49941a.N3 != null && z10) {
             if (hVar.m() == 1) {
-                if (((TLRPC.Dialog) hVar.n(0)).f28435id != mmVar.f49937a.getUserConfig().e() || !org.telegram.ui.Components.lc.b0(mmVar.f49937a).h0(i7, ((TLRPC.Dialog) hVar.n(0)).f28435id)) {
-                    mmVar.f49937a.N3.k(((TLRPC.Dialog) hVar.n(0)).f28435id, 53, Integer.valueOf(i7), tL_forumTopic, null, null);
+                if (((TLRPC.Dialog) hVar.n(0)).f28438id != mmVar.f49941a.getUserConfig().e() || !org.telegram.ui.Components.lc.b0(mmVar.f49941a).h0(i7, ((TLRPC.Dialog) hVar.n(0)).f28438id)) {
+                    mmVar.f49941a.N3.k(((TLRPC.Dialog) hVar.n(0)).f28438id, 53, Integer.valueOf(i7), tL_forumTopic, null, null);
                     return;
                 }
                 return;
             }
-            mmVar.f49937a.N3.k(0L, 53, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
+            mmVar.f49941a.N3.k(0L, 53, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
         }
     }
 
     @Override
     public final void T0(final View view) {
         hi.la laVar;
-        bn bnVar = this.W2.f49937a;
-        org.telegram.messenger.aj ajVar = null;
+        bn bnVar = this.W2.f49941a;
+        org.telegram.messenger.bj bjVar = null;
         if (view instanceof org.telegram.ui.Cells.e7) {
             laVar = hi.na.b((org.telegram.ui.Cells.e7) view);
         } else {
             laVar = null;
         }
         ArrayList arrayList = new ArrayList();
-        org.telegram.messenger.fj fjVar = this.V2;
-        if (fjVar.c1() != 0) {
-            ajVar = (org.telegram.messenger.aj) bnVar.P6.f(fjVar.c1());
+        org.telegram.messenger.gj gjVar = this.V2;
+        if (gjVar.c1() != 0) {
+            bjVar = (org.telegram.messenger.bj) bnVar.P6.f(gjVar.c1());
         }
-        if (ajVar != null) {
-            arrayList.addAll(ajVar.d);
+        if (bjVar != null) {
+            arrayList.addAll(bjVar.d);
         } else {
-            arrayList.add(fjVar);
+            arrayList.add(gjVar);
         }
-        final hi.sa D = hi.sa.D(bnVar.getParentActivity(), this.f30170a);
-        D.S = new org.telegram.messenger.u10() {
+        final hi.sa D = hi.sa.D(bnVar.getParentActivity(), this.f30173a);
+        D.S = new org.telegram.messenger.v10() {
             @Override
             public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
                 Long l10 = (Long) obj;

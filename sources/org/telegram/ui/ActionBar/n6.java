@@ -3,24 +3,24 @@ package org.telegram.ui.ActionBar;
 import android.graphics.PorterDuff;
 import java.lang.ref.WeakReference;
 public final class n6 {
-    public int f29813a;
-    public int f29814b = -1;
-    public int f29815c;
+    public int f29816a;
+    public int f29817b = -1;
+    public int f29818c;
     public float d;
-    public WeakReference f29816e;
-    public h6 f29817f;
-    public int f29818g;
+    public WeakReference f29819e;
+    public h6 f29820f;
+    public int f29821g;
     public PorterDuff.Mode h;
-    public Object f29819i;
-    public WeakReference f29820j;
-    public boolean f29821k;
-    public int f29822l;
-    public boolean f29823m;
-    public q6 f29824n;
-    public r6 f29825o;
+    public Object f29822i;
+    public WeakReference f29823j;
+    public boolean f29824k;
+    public int f29825l;
+    public boolean f29826m;
+    public q6 f29827n;
+    public r6 f29828o;
 
     public final boolean a() {
-        WeakReference weakReference = this.f29816e;
+        WeakReference weakReference = this.f29819e;
         if (weakReference != null && weakReference.get() == null) {
             return true;
         }
@@ -28,13 +28,13 @@ public final class n6 {
     }
 
     public final int b() {
-        int i7 = this.f29813a;
-        int i10 = this.f29814b;
-        int i11 = this.f29815c;
+        int i7 = this.f29816a;
+        int i10 = this.f29817b;
+        int i11 = this.f29818c;
         float f10 = this.d;
-        h6 h6Var = this.f29817f;
+        h6 h6Var = this.f29820f;
         if (h6Var == null) {
-            WeakReference weakReference = this.f29816e;
+            WeakReference weakReference = this.f29819e;
             if (weakReference != null) {
                 h6Var = (h6) weakReference.get();
             } else {
@@ -45,22 +45,22 @@ public final class n6 {
     }
 
     public final void c(int i7, int i10, int i11, float f10, h6 h6Var) {
-        this.f29813a = i7;
-        this.f29814b = i10;
-        this.f29815c = i11;
+        this.f29816a = i7;
+        this.f29817b = i10;
+        this.f29818c = i11;
         this.d = f10;
         if (h6Var == null) {
-            this.f29816e = null;
-            this.f29817f = null;
+            this.f29819e = null;
+            this.f29820f = null;
             return;
         }
         Class<?> cls = h6Var.getClass();
         if (!cls.isSynthetic() && !cls.getName().contains("$$Lambda") && !cls.getName().contains("$$ExternalSynthetic")) {
-            this.f29816e = new WeakReference(h6Var);
-            this.f29817f = null;
+            this.f29819e = new WeakReference(h6Var);
+            this.f29820f = null;
             return;
         }
-        this.f29816e = null;
-        this.f29817f = h6Var;
+        this.f29819e = null;
+        this.f29820f = h6Var;
     }
 }

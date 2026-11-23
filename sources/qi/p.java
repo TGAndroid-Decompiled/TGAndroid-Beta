@@ -1,6 +1,6 @@
 package qi;
 
-import ai.a1;
+import ai.z0;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -12,23 +12,23 @@ import java.util.concurrent.Executors;
 import p4.r0;
 import p4.z;
 public final class p implements AutoCloseable {
-    public final r0 f56241b;
-    public final r0 f56242c;
-    public long f56246r;
-    public boolean f56247s;
-    public a f56248w;
-    public Throwable f56249x;
-    public volatile Set f56250y;
-    public final Object f56240a = new Object();
+    public final r0 f56245b;
+    public final r0 f56246c;
+    public long f56250r;
+    public boolean f56251s;
+    public a f56252w;
+    public Throwable f56253x;
+    public volatile Set f56254y;
+    public final Object f56244a = new Object();
     public final LinkedHashMap h = new LinkedHashMap(16, 0.75f, true);
-    public final HashMap f56245n = new HashMap();
-    public final int f56243e = 256;
-    public final long f56244f = 8388608;
-    public final ExecutorService d = Executors.newSingleThreadExecutor(new a1(8));
+    public final HashMap f56249n = new HashMap();
+    public final int f56247e = 256;
+    public final long f56248f = 8388608;
+    public final ExecutorService d = Executors.newSingleThreadExecutor(new z0(8));
 
     public p(r0 r0Var, r0 r0Var2) {
-        this.f56241b = r0Var;
-        this.f56242c = r0Var2;
+        this.f56245b = r0Var;
+        this.f56246c = r0Var2;
     }
 
     public static String b(String str) {
@@ -92,18 +92,18 @@ public final class p implements AutoCloseable {
 
     public final void c(n nVar, ji.l lVar) {
         l lVar2 = new l(nVar, lVar);
-        int i7 = this.f56243e;
+        int i7 = this.f56247e;
         if (i7 != 0) {
-            long j3 = lVar2.f56235b;
-            long j10 = this.f56244f;
+            long j3 = lVar2.f56239b;
+            long j10 = this.f56248f;
             if (j3 <= j10) {
                 LinkedHashMap linkedHashMap = this.h;
                 linkedHashMap.put(nVar, lVar2);
-                this.f56246r += j3;
+                this.f56250r += j3;
                 while (true) {
-                    if (linkedHashMap.size() > i7 || this.f56246r > j10) {
+                    if (linkedHashMap.size() > i7 || this.f56250r > j10) {
                         Map.Entry entry = (Map.Entry) linkedHashMap.entrySet().iterator().next();
-                        this.f56246r -= ((l) entry.getValue()).f56235b;
+                        this.f56250r -= ((l) entry.getValue()).f56239b;
                         linkedHashMap.remove(entry.getKey());
                     } else {
                         return;
@@ -115,24 +115,24 @@ public final class p implements AutoCloseable {
 
     @Override
     public final void close() {
-        synchronized (this.f56240a) {
+        synchronized (this.f56244a) {
             try {
-                if (this.f56247s) {
+                if (this.f56251s) {
                     return;
                 }
-                this.f56247s = true;
-                for (ArrayList arrayList : this.f56245n.values()) {
+                this.f56251s = true;
+                for (ArrayList arrayList : this.f56249n.values()) {
                     int size = arrayList.size();
                     int i7 = 0;
                     while (i7 < size) {
                         Object obj = arrayList.get(i7);
                         i7++;
-                        ((o) obj).f56239a = null;
+                        ((o) obj).f56243a = null;
                     }
                 }
-                this.f56245n.clear();
+                this.f56249n.clear();
                 this.h.clear();
-                this.f56246r = 0L;
+                this.f56250r = 0L;
                 this.d.execute(new k(this, 0));
                 this.d.shutdown();
             } catch (Throwable th2) {
@@ -145,18 +145,18 @@ public final class p implements AutoCloseable {
         if (str != null) {
             n nVar = new n(str, b(str2));
             ?? obj = new Object();
-            obj.f56239a = mVar;
-            synchronized (this.f56240a) {
+            obj.f56243a = mVar;
+            synchronized (this.f56244a) {
                 try {
-                    if (!this.f56247s) {
-                        ArrayList arrayList = (ArrayList) this.f56245n.get(nVar);
+                    if (!this.f56251s) {
+                        ArrayList arrayList = (ArrayList) this.f56249n.get(nVar);
                         if (arrayList != null) {
                             arrayList.add(obj);
                             return obj;
                         }
                         ArrayList arrayList2 = new ArrayList();
                         arrayList2.add(obj);
-                        this.f56245n.put(nVar, arrayList2);
+                        this.f56249n.put(nVar, arrayList2);
                         this.d.execute(new z(6, this, nVar));
                         return obj;
                     }

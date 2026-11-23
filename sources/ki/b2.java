@@ -1,6 +1,6 @@
 package ki;
 
-import org.telegram.messenger.mp;
+import org.telegram.messenger.np;
 import org.telegram.messenger.voip.VoIPGroupNotification;
 import org.telegram.messenger.voip.VoIPPreNotificationService;
 import org.telegram.tgnet.RequestDelegate;
@@ -9,18 +9,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.o5;
 import org.telegram.ui.LaunchActivity;
 public final class b2 implements RequestDelegate {
-    public final int f18609a;
-    public final int f18610b;
+    public final int f18612a;
+    public final int f18613b;
 
     public b2(int i7, int i10) {
-        this.f18609a = i10;
-        this.f18610b = i7;
+        this.f18612a = i10;
+        this.f18613b = i7;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f18609a;
-        int i10 = this.f18610b;
+        int i7 = this.f18612a;
+        int i10 = this.f18613b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.g0.g3(new jg.x(i10, 1));
@@ -36,7 +36,7 @@ public final class b2 implements RequestDelegate {
                 return;
             case 4:
                 if (tLObject instanceof TLRPC.TL_updates) {
-                    mp.u1(i10).V3((TLRPC.TL_updates) tLObject, false);
+                    np.u1(i10).V3((TLRPC.TL_updates) tLObject, false);
                     return;
                 }
                 return;

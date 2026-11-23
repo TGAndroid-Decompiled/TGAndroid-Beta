@@ -14,9 +14,9 @@ public final class er extends sa {
     public final boolean X1;
     public boolean Y1;
     public TLRPC.Peer Z1;
-    public TLRPC.InputPeer f34967a2;
-    public final org.telegram.ui.ActionBar.g2 f34968b2;
-    public final long f34969c2;
+    public TLRPC.InputPeer f34965a2;
+    public final org.telegram.ui.ActionBar.g2 f34966b2;
+    public final long f34967c2;
 
     public er(org.telegram.ui.ActionBar.g2 g2Var, ArrayList arrayList, long j3, g70 g70Var) {
         super(g2Var, false);
@@ -24,10 +24,10 @@ public final class er extends sa {
         String a02;
         boolean z11;
         String a03;
-        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(this.f30170a).O0(Long.valueOf(-j3));
-        this.f34968b2 = g2Var;
-        this.f34969c2 = j3;
-        this.f39546v1 = 0.26f;
+        TLRPC.Chat O0 = org.telegram.messenger.np.u1(this.f30173a).O0(Long.valueOf(-j3));
+        this.f34966b2 = g2Var;
+        this.f34967c2 = j3;
+        this.f39539v1 = 0.26f;
         ArrayList arrayList2 = new ArrayList(arrayList);
         this.U1 = arrayList2;
         this.T1 = g70Var;
@@ -41,8 +41,8 @@ public final class er extends sa {
         }
         this.V1 = z10;
         this.W1 = org.telegram.messenger.v3.w(14, O0);
-        Context context = this.f30173b.getContext();
-        this.f30173b.addView(new bi.m3(18, context, this), c8.ma.d(-1, 120.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+        Context context = this.f30176b.getContext();
+        this.f30176b.addView(new bi.m3(18, context, this), c8.ma.d(-1, 120.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         textView.setGravity(17);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -51,23 +51,23 @@ public final class er extends sa {
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         if (W) {
-            a02 = org.telegram.messenger.gd.a0(null, null, 2131743212, new Object[0]);
+            a02 = org.telegram.messenger.hd.a0(null, null, 2131743210, new Object[0]);
         } else {
-            a02 = org.telegram.messenger.gd.a0(null, null, 2131743081, new Object[0]);
+            a02 = org.telegram.messenger.hd.a0(null, null, 2131743079, new Object[0]);
         }
         textView.setText(a02);
         org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.Ji, null);
         int L = org.telegram.messenger.g0.L(8.0f);
         int i7 = org.telegram.ui.ActionBar.m6.Fi;
         int x02 = org.telegram.ui.ActionBar.m6.x0(null, i7, false);
-        int i10 = org.telegram.ui.ActionBar.m6.f29378d6;
+        int i10 = org.telegram.ui.ActionBar.m6.f29381d6;
         int o4 = i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, i10, false), 120);
         org.telegram.ui.Cells.y k02 = org.telegram.ui.ActionBar.m6.k0(L, L, L, L, x02, o4, o4);
         org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i7);
         org.telegram.ui.ActionBar.p6 g10 = org.telegram.ui.ActionBar.t6.g(i10, 120);
         textView.setBackground(k02);
         org.telegram.ui.ActionBar.t6.j(textView, k02, M, g10, null);
-        this.f30173b.addView(textView, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 60.0f));
+        this.f30176b.addView(textView, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 60.0f));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
         textView2.setEllipsize(truncateAt);
@@ -76,10 +76,10 @@ public final class er extends sa {
         textView2.setTypeface(org.telegram.messenger.g0.o());
         if (W) {
             z11 = false;
-            a03 = org.telegram.messenger.gd.a0(null, null, 2131743219, new Object[0]);
+            a03 = org.telegram.messenger.hd.a0(null, null, 2131743217, new Object[0]);
         } else {
             z11 = false;
-            a03 = org.telegram.messenger.gd.a0(null, null, 2131743098, new Object[0]);
+            a03 = org.telegram.messenger.hd.a0(null, null, 2131743096, new Object[0]);
         }
         textView2.setText(a03);
         textView2.setLetterSpacing(0.025f);
@@ -90,25 +90,25 @@ public final class er extends sa {
         org.telegram.ui.ActionBar.p6 g11 = org.telegram.ui.ActionBar.t6.g(i7, 120);
         textView2.setBackground(k03);
         org.telegram.ui.ActionBar.t6.j(textView2, k03, null, g11, null);
-        this.f30173b.addView(textView2, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 6.0f));
+        this.f30176b.addView(textView2, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 6.0f));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final er f34293b;
+            public final er f34287b;
 
             {
-                this.f34293b = this;
+                this.f34287b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        er erVar = this.f34293b;
-                        erVar.f34967a2 = org.telegram.messenger.mp.u1(erVar.f30170a).l1(org.telegram.messenger.fj.B1(erVar.Z1));
+                        er erVar = this.f34287b;
+                        erVar.f34965a2 = org.telegram.messenger.np.u1(erVar.f30173a).l1(org.telegram.messenger.gj.B1(erVar.Z1));
                         erVar.dismiss();
                         return;
                     default:
-                        er erVar2 = this.f34293b;
-                        erVar2.f34967a2 = org.telegram.messenger.mp.u1(erVar2.f30170a).l1(org.telegram.messenger.fj.B1(erVar2.Z1));
+                        er erVar2 = this.f34287b;
+                        erVar2.f34965a2 = org.telegram.messenger.np.u1(erVar2.f30173a).l1(org.telegram.messenger.gj.B1(erVar2.Z1));
                         erVar2.Y1 = true;
                         erVar2.dismiss();
                         return;
@@ -116,33 +116,33 @@ public final class er extends sa {
             }
         });
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final er f34293b;
+            public final er f34287b;
 
             {
-                this.f34293b = this;
+                this.f34287b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        er erVar = this.f34293b;
-                        erVar.f34967a2 = org.telegram.messenger.mp.u1(erVar.f30170a).l1(org.telegram.messenger.fj.B1(erVar.Z1));
+                        er erVar = this.f34287b;
+                        erVar.f34965a2 = org.telegram.messenger.np.u1(erVar.f30173a).l1(org.telegram.messenger.gj.B1(erVar.Z1));
                         erVar.dismiss();
                         return;
                     default:
-                        er erVar2 = this.f34293b;
-                        erVar2.f34967a2 = org.telegram.messenger.mp.u1(erVar2.f30170a).l1(org.telegram.messenger.fj.B1(erVar2.Z1));
+                        er erVar2 = this.f34287b;
+                        erVar2.f34965a2 = org.telegram.messenger.np.u1(erVar2.f30173a).l1(org.telegram.messenger.gj.B1(erVar2.Z1));
                         erVar2.Y1 = true;
                         erVar2.dismiss();
                         return;
                 }
             }
         });
-        ek0 ek0Var = this.f39539o1;
-        int i11 = this.f30208u0;
+        ek0 ek0Var = this.f39532o1;
+        int i11 = this.f30211u0;
         ek0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(120.0f));
-        this.f39539o1.setOnItemClickListener(new o(this, 4));
+        this.f39532o1.setOnItemClickListener(new o(this, 4));
         O();
         c1();
     }
@@ -150,7 +150,7 @@ public final class er extends sa {
     @Override
     public final void L() {
         super.L();
-        TLRPC.InputPeer inputPeer = this.f34967a2;
+        TLRPC.InputPeer inputPeer = this.f34965a2;
         if (inputPeer != null) {
             boolean z10 = true;
             if (this.U1.size() <= 1) {
@@ -168,8 +168,8 @@ public final class er extends sa {
     @Override
     public final CharSequence P0() {
         if (this.X1) {
-            return org.telegram.messenger.gd.N0(2131744662, null);
+            return org.telegram.messenger.hd.N0(2131744660, null);
         }
-        return org.telegram.messenger.gd.N0(2131744659, null);
+        return org.telegram.messenger.hd.N0(2131744657, null);
     }
 }

@@ -24,26 +24,26 @@ public final class ex extends xs {
         boolean z11;
         int i11;
         gx gxVar = this.S;
-        ty tyVar = gxVar.f35681n3;
+        ty tyVar = gxVar.f35700n3;
         ArrayList arrayList = this.P;
         if (arrayList == null) {
             return;
         }
         boolean z12 = true;
-        if (arrayList.size() > 4 && org.telegram.messenger.bz.o() != 0 && org.telegram.messenger.pc.e(16388)) {
+        if (arrayList.size() > 4 && org.telegram.messenger.cz.o() != 0 && org.telegram.messenger.qc.e(16388)) {
             z10 = false;
         } else {
             z10 = true;
         }
         if (!z10) {
-            if (tyVar.f40159w2 > 0 && SystemClock.elapsedRealtime() - tyVar.f40159w2 < gxVar.z1()) {
+            if (tyVar.f40152w2 > 0 && SystemClock.elapsedRealtime() - tyVar.f40152w2 < gxVar.z1()) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             for (int i12 = 0; i12 < this.P.size(); i12++) {
                 cy cyVar = (cy) this.P.get(i12);
-                if (cyVar.h != 0.0f || cyVar.f34335n != null || ((i11 = cyVar.f34330a) > tyVar.f40152u2 && i11 < tyVar.f40155v2 && z11)) {
+                if (cyVar.h != 0.0f || cyVar.f34329n != null || ((i11 = cyVar.f34324a) > tyVar.f40145u2 && i11 < tyVar.f40148v2 && z11)) {
                     break;
                 }
             }
@@ -65,13 +65,13 @@ public final class ex extends xs {
             ArrayList arrayList = this.Q;
             if (i7 < arrayList.size()) {
                 cy cyVar = (cy) arrayList.get(i7);
-                p5 p5Var = cyVar.f34331b;
+                p5 p5Var = cyVar.f34325b;
                 if (p5Var != null) {
-                    org.telegram.messenger.gc gcVar = cyVar.f34334f[this.L];
-                    fi.s2 s2Var = p5Var.f38501k;
+                    org.telegram.messenger.hc hcVar = cyVar.f34328f[this.L];
+                    fi.s2 s2Var = p5Var.f38500k;
                     if (s2Var != null) {
-                        s2Var.setAlpha(p5Var.f38502l);
-                        p5Var.f38501k.h(canvas, gcVar);
+                        s2Var.setAlpha(p5Var.f38501l);
+                        p5Var.f38500k.h(canvas, hcVar);
                     }
                 }
                 i7++;
@@ -92,13 +92,13 @@ public final class ex extends xs {
         while (true) {
             ArrayList arrayList = this.Q;
             if (i7 < arrayList.size()) {
-                org.telegram.messenger.gc[] gcVarArr = ((cy) arrayList.get(i7)).f34334f;
-                if (gcVarArr != null) {
-                    gcVarArr[this.L].a();
+                org.telegram.messenger.hc[] hcVarArr = ((cy) arrayList.get(i7)).f34328f;
+                if (hcVarArr != null) {
+                    hcVarArr[this.L].a();
                 }
                 i7++;
             } else {
-                this.S.f35681n3.Q.invalidate();
+                this.S.f35700n3.Q.invalidate();
                 return;
             }
         }
@@ -108,34 +108,34 @@ public final class ex extends xs {
     public final void i(long j3) {
         p5 p5Var;
         PorterDuffColorFilter porterDuffColorFilter;
-        ty tyVar = this.S.f35681n3;
+        ty tyVar = this.S.f35700n3;
         ArrayList arrayList = this.Q;
         arrayList.clear();
         for (int i7 = 0; i7 < this.P.size(); i7++) {
             cy cyVar = (cy) this.P.get(i7);
             y5 span = cyVar.getSpan();
-            org.telegram.messenger.gc[] gcVarArr = cyVar.f34334f;
-            if (span != null && (p5Var = (p5) tyVar.f40103e2.get(cyVar.d.getDocumentId())) != null && p5Var.f38501k != null) {
+            org.telegram.messenger.hc[] hcVarArr = cyVar.f34328f;
+            if (span != null && (p5Var = (p5) tyVar.f40096e2.get(cyVar.d.getDocumentId())) != null && p5Var.f38500k != null) {
                 p5Var.s(j3);
-                fi.s2 s2Var = p5Var.f38501k;
+                fi.s2 s2Var = p5Var.f38500k;
                 int i10 = this.L;
-                org.telegram.messenger.gc e02 = s2Var.e0(gcVarArr[i10], i10);
-                gcVarArr[i10] = e02;
-                e02.f24220c = j3;
-                e02.f24219b = 1.0f;
+                org.telegram.messenger.hc e02 = s2Var.e0(hcVarArr[i10], i10);
+                hcVarArr[i10] = e02;
+                e02.f24423c = j3;
+                e02.f24422b = 1.0f;
                 p5Var.setAlpha(255);
                 int height = (int) (cyVar.getHeight() * 0.03f);
                 Rect rect = org.telegram.messenger.g0.Q;
                 rect.set((cyVar.getPaddingLeft() + cyVar.getLeft()) - this.O, height, (cyVar.getRight() - cyVar.getPaddingRight()) - this.O, ((cyVar.getMeasuredHeight() + height) - cyVar.getPaddingTop()) - cyVar.getPaddingBottom());
-                gcVarArr[i10].b(rect);
-                cyVar.f34331b = p5Var;
-                org.telegram.messenger.gc gcVar = gcVarArr[i10];
+                hcVarArr[i10].b(rect);
+                cyVar.f34325b = p5Var;
+                org.telegram.messenger.hc hcVar = hcVarArr[i10];
                 if (p5Var.c()) {
-                    porterDuffColorFilter = tyVar.f40107f2;
+                    porterDuffColorFilter = tyVar.f40100f2;
                 } else {
                     porterDuffColorFilter = null;
                 }
-                gcVar.f24240z = porterDuffColorFilter;
+                hcVar.f24443z = porterDuffColorFilter;
                 arrayList.add(cyVar);
             }
         }

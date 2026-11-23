@@ -1,72 +1,48 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-public final class b11 extends v4.o {
-    public final int f33692b = 1;
-    public ArrayList f33693c;
-    public ArrayList d;
+public final class b11 extends dk0 {
+    public final ArrayList f33705c = new ArrayList();
+    public String d;
+    public final g11 f33706e;
 
-    public b11() {
+    public b11(g11 g11Var) {
+        this.f33706e = g11Var;
     }
 
     @Override
-    public final boolean a(int i7, int i10) {
-        switch (this.f33692b) {
-            case 0:
-                return true;
-            default:
-                rg.a aVar = (rg.a) this.f33693c.get(i7);
-                rg.a aVar2 = (rg.a) this.d.get(i10);
-                if (aVar.f56630a != aVar2.f56630a) {
-                    return false;
-                }
-                return aVar.a(aVar2);
+    public final boolean D(v4.f1 f1Var) {
+        return true;
+    }
+
+    public final void E(ArrayList arrayList, boolean z10) {
+        ek0 ek0Var = this.f33706e.f35387r;
+        if (!z10) {
+            f();
+            return;
+        }
+        boolean canScrollVertically = ek0Var.canScrollVertically(-1);
+        v4.o.c(new jg.g(this, arrayList, 3), true).c(this);
+        if (!canScrollVertically) {
+            ek0Var.v0(0);
         }
     }
 
     @Override
-    public final boolean b(int i7, int i10) {
-        switch (this.f33692b) {
-            case 0:
-                e11 e11Var = (e11) this.f33693c.get(i7);
-                e11 e11Var2 = (e11) this.d.get(i10);
-                if (e11Var.f34652a == e11Var2.f34652a && Objects.equals(e11Var.f34653b, e11Var2.f34653b)) {
-                    return true;
-                }
-                return false;
-            default:
-                rg.a aVar = (rg.a) this.f33693c.get(i7);
-                rg.a aVar2 = (rg.a) this.d.get(i10);
-                if (aVar.f56630a != aVar2.f56630a) {
-                    return false;
-                }
-                return aVar.equals(aVar2);
-        }
+    public final int b() {
+        return this.f33705c.size();
     }
 
     @Override
-    public final int d() {
-        switch (this.f33692b) {
-            case 0:
-                return this.d.size();
-            default:
-                return this.d.size();
-        }
+    public final void t(v4.f1 r35, int r36) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.b11.t(v4.f1, int):void");
     }
 
     @Override
-    public final int e() {
-        switch (this.f33692b) {
-            case 0:
-                return this.f33693c.size();
-            default:
-                return this.f33693c.size();
-        }
-    }
-
-    public b11(ArrayList arrayList, ArrayList arrayList2) {
-        this.f33693c = arrayList;
-        this.d = arrayList2;
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        f11 f11Var = new f11(this.f33706e, viewGroup.getContext());
+        f11Var.setLayoutParams(new v4.q0(-1, -2));
+        return new v4.f1(f11Var);
     }
 }

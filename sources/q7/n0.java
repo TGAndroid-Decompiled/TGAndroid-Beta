@@ -2,41 +2,41 @@ package q7;
 
 import java.math.RoundingMode;
 public abstract class n0 {
-    public static final int[] f56072a;
+    public static final int[] f56076a;
 
     static {
         int[] iArr = new int[RoundingMode.values().length];
-        f56072a = iArr;
+        f56076a = iArr;
         try {
             iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            f56072a[RoundingMode.DOWN.ordinal()] = 2;
+            f56076a[RoundingMode.DOWN.ordinal()] = 2;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            f56072a[RoundingMode.FLOOR.ordinal()] = 3;
+            f56076a[RoundingMode.FLOOR.ordinal()] = 3;
         } catch (NoSuchFieldError unused3) {
         }
         try {
-            f56072a[RoundingMode.UP.ordinal()] = 4;
+            f56076a[RoundingMode.UP.ordinal()] = 4;
         } catch (NoSuchFieldError unused4) {
         }
         try {
-            f56072a[RoundingMode.CEILING.ordinal()] = 5;
+            f56076a[RoundingMode.CEILING.ordinal()] = 5;
         } catch (NoSuchFieldError unused5) {
         }
         try {
-            f56072a[RoundingMode.HALF_DOWN.ordinal()] = 6;
+            f56076a[RoundingMode.HALF_DOWN.ordinal()] = 6;
         } catch (NoSuchFieldError unused6) {
         }
         try {
-            f56072a[RoundingMode.HALF_UP.ordinal()] = 7;
+            f56076a[RoundingMode.HALF_UP.ordinal()] = 7;
         } catch (NoSuchFieldError unused7) {
         }
         try {
-            f56072a[RoundingMode.HALF_EVEN.ordinal()] = 8;
+            f56076a[RoundingMode.HALF_EVEN.ordinal()] = 8;
         } catch (NoSuchFieldError unused8) {
         }
     }

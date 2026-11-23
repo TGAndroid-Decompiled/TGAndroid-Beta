@@ -28,7 +28,7 @@ public final class z2 extends di.f6 {
         switch (this.A3) {
             case 0:
                 n3 n3Var = (n3) this.B3;
-                return new lc(n3Var.f30176c, n3Var.J0);
+                return new lc(n3Var.f30179c, n3Var.J0);
             default:
                 return super.k();
         }

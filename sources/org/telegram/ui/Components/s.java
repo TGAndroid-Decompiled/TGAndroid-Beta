@@ -9,21 +9,21 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class s implements TextWatcher {
-    public final ImageView f39419a;
-    public final int f39420b;
-    public final int f39421c;
+    public final ImageView f39429a;
+    public final int f39430b;
+    public final int f39431c;
     public final LinearLayout d;
-    public final ArrayList f39422e;
-    public final TextView f39423f;
+    public final ArrayList f39432e;
+    public final TextView f39433f;
     public final ScrollView h;
 
     public s(ImageView imageView, int i7, int i10, LinearLayout linearLayout, ArrayList arrayList, TextView textView, ScrollView scrollView) {
-        this.f39419a = imageView;
-        this.f39420b = i7;
-        this.f39421c = i10;
+        this.f39429a = imageView;
+        this.f39430b = i7;
+        this.f39431c = i10;
         this.d = linearLayout;
-        this.f39422e = arrayList;
-        this.f39423f = textView;
+        this.f39432e = arrayList;
+        this.f39433f = textView;
         this.h = scrollView;
     }
 
@@ -44,11 +44,11 @@ public final class s implements TextWatcher {
         } else {
             i7 = 8;
         }
-        this.f39419a.setVisibility(i7);
-        int i14 = this.f39420b;
+        this.f39429a.setVisibility(i7);
+        int i14 = this.f39430b;
         while (true) {
             linearLayout = this.d;
-            i10 = this.f39421c;
+            i10 = this.f39431c;
             if (i14 >= i10) {
                 break;
             }
@@ -64,16 +64,16 @@ public final class s implements TextWatcher {
         int i15 = 0;
         int i16 = 0;
         while (true) {
-            ArrayList arrayList = this.f39422e;
+            ArrayList arrayList = this.f39432e;
             if (i15 >= arrayList.size() || i10 + i15 >= linearLayout.getChildCount()) {
                 break;
             }
-            org.telegram.messenger.s00 s00Var = (org.telegram.messenger.s00) arrayList.get(i15);
-            String str2 = s00Var.d;
+            org.telegram.messenger.t00 t00Var = (org.telegram.messenger.t00) arrayList.get(i15);
+            String str2 = t00Var.d;
             if (str2 == null) {
-                str2 = (s00Var.f26745b + " " + s00Var.f26746c).toLowerCase();
+                str2 = (t00Var.f26942b + " " + t00Var.f26943c).toLowerCase();
             }
-            if (!isEmpty && !str2.contains(lowerCase) && ((str = s00Var.f26744a) == null || !str.toLowerCase().startsWith(lowerCase))) {
+            if (!isEmpty && !str2.contains(lowerCase) && ((str = t00Var.f26941a) == null || !str.toLowerCase().startsWith(lowerCase))) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -93,7 +93,7 @@ public final class s implements TextWatcher {
         if (!isEmpty && i16 == 0) {
             i13 = 0;
         }
-        this.f39423f.setVisibility(i13);
+        this.f39433f.setVisibility(i13);
         this.h.scrollTo(0, 0);
     }
 

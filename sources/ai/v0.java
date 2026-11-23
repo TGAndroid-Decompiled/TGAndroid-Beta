@@ -3,15 +3,15 @@ package ai;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import java.util.ArrayList;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.np;
 public abstract class v0 {
     public static boolean d;
-    public static int f1568e;
-    public static final String[] f1565a = {"hue", "chroma", "light", "haloW", "haloS", "lift", "rimW", "rimB", "speed", "spread", "buttonLean", "iconTint"};
-    public static final float[] f1566b = {150.0f, 0.26f, 0.82f, 1.0f, 1.1f, 0.6f, 1.0f, 1.15f, 1.0f, 40.0f, 0.0f, 0.25f};
-    public static int f1567c = 1;
-    public static final float[] f1569f = new float[12];
-    public static final ArrayList f1570g = new ArrayList();
+    public static int f1570e;
+    public static final String[] f1567a = {"hue", "chroma", "light", "haloW", "haloS", "lift", "rimW", "rimB", "speed", "spread", "buttonLean", "iconTint"};
+    public static final float[] f1568b = {150.0f, 0.26f, 0.82f, 1.0f, 1.1f, 0.6f, 1.0f, 1.15f, 1.0f, 40.0f, 0.0f, 0.25f};
+    public static int f1569c = 1;
+    public static final float[] f1571f = new float[12];
+    public static final ArrayList f1572g = new ArrayList();
 
     public static int a(float f10, float f11, float f12) {
         float f13;
@@ -46,7 +46,7 @@ public abstract class v0 {
 
     public static float c(int i7) {
         f();
-        return f1569f[i7];
+        return f1571f[i7];
     }
 
     public static float d(float f10) {
@@ -76,12 +76,12 @@ public abstract class v0 {
     public static void f() {
         if (!d) {
             d = true;
-            SharedPreferences g12 = mp.g1();
-            f1568e = g12.getInt("dict_glow_day2_preset", 0);
+            SharedPreferences g12 = np.g1();
+            f1570e = g12.getInt("dict_glow_day2_preset", 0);
             g12.getBoolean("dict_glow_day2_contrast", true);
-            f1567c = g12.getInt("dict_glow_day2_rimMode", 1);
+            f1569c = g12.getInt("dict_glow_day2_rimMode", 1);
             for (int i7 = 0; i7 < 12; i7++) {
-                f1569f[i7] = g12.getFloat("dict_glow_day2_" + f1565a[i7], f1566b[i7]);
+                f1571f[i7] = g12.getFloat("dict_glow_day2_" + f1567a[i7], f1568b[i7]);
             }
         }
     }

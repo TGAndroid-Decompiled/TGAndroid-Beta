@@ -5,12 +5,12 @@ import android.os.Parcelable;
 import c8.bc;
 public final class e extends r6.a {
     public static final Parcelable.Creator<e> CREATOR = new q4.x(1);
-    public final int f55926a;
-    public final String f55927b;
+    public final int f55930a;
+    public final String f55931b;
 
     public e(int i7, String str) {
-        this.f55926a = i7;
-        this.f55927b = str;
+        this.f55930a = i7;
+        this.f55931b = str;
     }
 
     public final boolean equals(Object obj) {
@@ -21,20 +21,20 @@ public final class e extends r6.a {
             return false;
         }
         e eVar = (e) obj;
-        if (eVar.f55926a == this.f55926a && m.l(eVar.f55927b, this.f55927b)) {
+        if (eVar.f55930a == this.f55930a && m.l(eVar.f55931b, this.f55931b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f55926a;
+        return this.f55930a;
     }
 
     public final String toString() {
-        int i7 = this.f55926a;
+        int i7 = this.f55930a;
         int length = String.valueOf(i7).length();
-        String str = this.f55927b;
+        String str = this.f55931b;
         StringBuilder sb2 = new StringBuilder(length + 1 + String.valueOf(str).length());
         sb2.append(i7);
         sb2.append(":");
@@ -46,8 +46,8 @@ public final class e extends r6.a {
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
         bc.q(parcel, 1, 4);
-        parcel.writeInt(this.f55926a);
-        bc.l(parcel, 2, this.f55927b);
+        parcel.writeInt(this.f55930a);
+        bc.l(parcel, 2, this.f55931b);
         bc.s(parcel, r10);
     }
 }

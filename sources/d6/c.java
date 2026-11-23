@@ -9,36 +9,36 @@ import java.net.URL;
 import org.telegram.messenger.d1;
 import q6.m;
 public final class c implements Runnable {
-    public static final d1 f7890c = new d1("RevokeAccessOperation", new String[0]);
-    public final String f7891a;
-    public final s f7892b;
+    public static final d1 f7893c = new d1("RevokeAccessOperation", new String[0]);
+    public final String f7894a;
+    public final s f7895b;
 
     public c(String str) {
         m.f(str);
-        this.f7891a = str;
-        this.f7892b = new s(null, 0);
+        this.f7894a = str;
+        this.f7895b = new s(null, 0);
     }
 
     @Override
     public final void run() {
-        d1 d1Var = f7890c;
+        d1 d1Var = f7893c;
         Status status = Status.h;
         try {
-            String str = this.f7891a;
+            String str = this.f7894a;
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://accounts.google.com/o/oauth2/revoke?token=" + str).openConnection();
             httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == 200) {
-                status = Status.f6219e;
+                status = Status.f6222e;
             } else {
-                Log.e(d1Var.f23486b, d1Var.b("Unable to revoke access!", new Object[0]));
+                Log.e(d1Var.f23471b, d1Var.b("Unable to revoke access!", new Object[0]));
             }
             d1Var.a("Response Code: " + responseCode, new Object[0]);
         } catch (IOException e10) {
-            Log.e(d1Var.f23486b, d1Var.b("IOException when revoking access: ".concat(String.valueOf(e10.toString())), new Object[0]));
+            Log.e(d1Var.f23471b, d1Var.b("IOException when revoking access: ".concat(String.valueOf(e10.toString())), new Object[0]));
         } catch (Exception e11) {
-            Log.e(d1Var.f23486b, d1Var.b("Exception when revoking access: ".concat(String.valueOf(e11.toString())), new Object[0]));
+            Log.e(d1Var.f23471b, d1Var.b("Exception when revoking access: ".concat(String.valueOf(e11.toString())), new Object[0]));
         }
-        this.f7892b.a(status);
+        this.f7895b.a(status);
     }
 }

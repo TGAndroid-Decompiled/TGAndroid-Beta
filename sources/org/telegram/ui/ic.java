@@ -16,7 +16,7 @@ public final class ic extends jm0 {
         jc jcVar = this.H;
         TextView textView = jcVar.d;
         if (textView != null) {
-            textView.setTextColor(jcVar.f48959b.h.getTextColor());
+            textView.setTextColor(jcVar.f48963b.h.getTextColor());
         }
     }
 }

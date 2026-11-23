@@ -2,10 +2,10 @@ package org.telegram.ui.ActionBar;
 
 import android.view.animation.Interpolator;
 public final class h4 implements Interpolator {
-    public final float f28998a = 1.0f / ((float) (1.0d - Math.pow(100, -1.0f)));
+    public final float f29001a = 1.0f / ((float) (1.0d - Math.pow(100, -1.0f)));
 
     @Override
     public final float getInterpolation(float f10) {
-        return 1.0f - (((float) (1.0d - Math.pow(100, -(1.0f - f10)))) * this.f28998a);
+        return 1.0f - (((float) (1.0d - Math.pow(100, -(1.0f - f10)))) * this.f29001a);
     }
 }

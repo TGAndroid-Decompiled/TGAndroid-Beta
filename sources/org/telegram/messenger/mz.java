@@ -1,383 +1,350 @@
 package org.telegram.messenger;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ComposeShader;
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FilterInputStream;
-import java.io.InputStream;
-import java.io.StringReader;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.util.SparseArray;
+import android.view.View;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.regex.Pattern;
-import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-public abstract class mz {
-    public static final double[] f25893a = new double[128];
-    public static final Pattern f25894b;
+import java.util.HashMap;
+public final class mz extends Drawable {
+    public static float v;
+    public static float f25685w;
+    public static long f25686x;
+    public static j2 f25687y;
+    public static WeakReference f25688z;
+    public Paint f25691c;
+    public Paint d;
+    public int f25692e;
+    public int f25693f;
+    public ImageReceiver f25697k;
+    public int f25699m;
+    public Integer f25700n;
+    public org.telegram.ui.ActionBar.h6 f25701o;
+    public float f25702p;
+    public static final int[] f25684u = new int[2];
+    public static boolean A = qc.e(32);
+    public final ArrayList f25689a = new ArrayList();
+    public final HashMap f25690b = new HashMap();
+    public final Bitmap[] f25694g = new Bitmap[3];
+    public final Canvas[] h = new Canvas[3];
+    public final LinearGradient[] f25695i = new LinearGradient[3];
+    public final Matrix[] f25696j = new Matrix[3];
+    public final int[] f25698l = new int[2];
+    public float f25703q = 1.0f;
+    public final SparseArray f25704r = new SparseArray();
+    public boolean f25705s = true;
+    public boolean f25706t = false;
 
-    static {
+    public static void a(mz mzVar, Object obj, Paint paint) {
+        mzVar.f25689a.add(obj);
+        mzVar.f25690b.put(obj, new Paint(paint));
+    }
+
+    public final mz clone() {
+        mz mzVar = new mz();
         int i7 = 0;
         while (true) {
-            double[] dArr = f25893a;
-            if (i7 < dArr.length) {
-                dArr[i7] = Math.pow(10.0d, i7);
+            ArrayList arrayList = this.f25689a;
+            if (i7 < arrayList.size()) {
+                mzVar.f25689a.add(arrayList.get(i7));
+                Paint paint = (Paint) this.f25690b.get(arrayList.get(i7));
+                if (paint != null) {
+                    Paint paint2 = new Paint();
+                    paint2.setColor(paint.getColor());
+                    paint2.setStrokeCap(paint.getStrokeCap());
+                    paint2.setStrokeJoin(paint.getStrokeJoin());
+                    paint2.setStrokeWidth(paint.getStrokeWidth());
+                    paint2.setStyle(paint.getStyle());
+                    mzVar.f25690b.put(arrayList.get(i7), paint2);
+                }
                 i7++;
             } else {
-                f25894b = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
+                mzVar.f25692e = this.f25692e;
+                mzVar.f25693f = this.f25693f;
+                return mzVar;
+            }
+        }
+    }
+
+    public final void c(Canvas canvas, boolean z10, int i7, long j3, float f10, float f11, float f12, float f13) {
+        float min;
+        long j10;
+        int i10;
+        int i11;
+        long j11;
+        int i12 = this.f25699m;
+        if (i12 >= 0) {
+            f(i12, this.f25701o, this.f25702p, z10);
+        }
+        float f14 = ((int) f12) / this.f25692e;
+        float f15 = ((int) f13) / this.f25693f;
+        if (this.f25705s) {
+            min = Math.max(f14, f15);
+        } else {
+            min = Math.min(f14, f15);
+        }
+        LinearGradient[] linearGradientArr = this.f25695i;
+        if (linearGradientArr[i7] != null) {
+            float f16 = f25685w;
+            if (f16 > 0.0f && A) {
+                long j12 = 64;
+                if (z10) {
+                    long j13 = j3 - f25686x;
+                    if (j13 > 64) {
+                        j11 = 64;
+                    } else {
+                        j11 = j13;
+                    }
+                    if (j11 > 0) {
+                        f25686x = j3;
+                        v = a8.p0.f((float) j11, f16, 1800.0f, v);
+                        while (true) {
+                            float f17 = v;
+                            float f18 = f25685w * 2.0f;
+                            if (f17 < f18) {
+                                break;
+                            }
+                            v = f17 - f18;
+                        }
+                    }
+                } else if (f25687y == null || f25688z.get() == this) {
+                    long j14 = j3 - f25686x;
+                    if (j14 <= 64) {
+                        j12 = j14;
+                    }
+                    if (j12 < 0) {
+                        j10 = 0;
+                    } else {
+                        j10 = j12;
+                    }
+                    f25686x = j3;
+                    v = a8.p0.f((float) j10, f25685w, 1800.0f, v);
+                    while (true) {
+                        float f19 = v;
+                        float f20 = f25685w;
+                        if (f19 < f20 / 2.0f) {
+                            break;
+                        }
+                        v = f19 - f20;
+                    }
+                    f25688z = new WeakReference(this);
+                    j2 j2Var = f25687y;
+                    if (j2Var != null) {
+                        g0.r(j2Var);
+                    }
+                    j2 j2Var2 = new j2(18);
+                    f25687y = j2Var2;
+                    g0.h3(j2Var2, ((int) (1000.0f / g0.f24047r)) - 1);
+                }
+                ImageReceiver imageReceiver = this.f25697k;
+                if (imageReceiver != null && !z10) {
+                    View view = imageReceiver.f22661e;
+                    int[] iArr = f25684u;
+                    if (view != null) {
+                        view.getLocationInWindow(iArr);
+                    }
+                    i10 = iArr[0];
+                } else {
+                    i10 = 0;
+                }
+                if (z10) {
+                    i11 = i7 + 1;
+                } else {
+                    i11 = 0;
+                }
+                Matrix[] matrixArr = this.f25696j;
+                Matrix matrix = matrixArr[i11];
+                if (matrix != null) {
+                    matrix.reset();
+                    if (z10) {
+                        matrixArr[i11].postTranslate(((-i10) + v) - f10, 0.0f);
+                    } else {
+                        matrixArr[i11].postTranslate(((-i10) + v) - f10, 0.0f);
+                    }
+                    float f21 = 1.0f / min;
+                    matrixArr[i11].postScale(f21, f21);
+                    linearGradientArr[i11].setLocalMatrix(matrixArr[i11]);
+                    ImageReceiver imageReceiver2 = this.f25697k;
+                    if (imageReceiver2 != null && !z10) {
+                        imageReceiver2.invalidate();
+                    }
+                }
+            }
+        }
+        canvas.save();
+        canvas.translate(f10, f11);
+        if (!this.f25705s || this.f25706t) {
+            canvas.translate(com.google.android.gms.internal.vision.e2.w(this.f25692e, min, f12, 2.0f), com.google.android.gms.internal.vision.e2.w(this.f25693f, min, f13, 2.0f));
+        }
+        canvas.scale(min, min);
+        ArrayList arrayList = this.f25689a;
+        int size = arrayList.size();
+        for (int i13 = 0; i13 < size; i13++) {
+            Object obj = arrayList.get(i13);
+            if (obj instanceof Matrix) {
+                canvas.save();
+                canvas.concat((Matrix) obj);
+            } else if (obj == null) {
+                canvas.restore();
+            } else {
+                Paint paint = (Paint) this.f25704r.get(i13);
+                if (paint == null) {
+                    paint = this.f25691c;
+                }
+                if (z10) {
+                    paint = this.d;
+                } else if (paint == null) {
+                    paint = (Paint) this.f25690b.get(obj);
+                }
+                int alpha = paint.getAlpha();
+                paint.setAlpha((int) (this.f25703q * alpha));
+                if (obj instanceof Path) {
+                    canvas.drawPath((Path) obj, paint);
+                } else if (obj instanceof Rect) {
+                    canvas.drawRect((Rect) obj, paint);
+                } else if (obj instanceof RectF) {
+                    canvas.drawRect((RectF) obj, paint);
+                } else if (obj instanceof fz) {
+                    fz fzVar = (fz) obj;
+                    canvas.drawLine(fzVar.f24013a, fzVar.f24014b, fzVar.f24015c, fzVar.d, paint);
+                } else if (obj instanceof ez) {
+                    ez ezVar = (ez) obj;
+                    canvas.drawCircle(ezVar.f23800a, ezVar.f23801b, ezVar.f23802c, paint);
+                } else if (obj instanceof hz) {
+                    canvas.drawOval(((hz) obj).f24561a, paint);
+                } else if (obj instanceof jz) {
+                    jz jzVar = (jz) obj;
+                    RectF rectF = jzVar.f24959a;
+                    float f22 = jzVar.f24960b;
+                    canvas.drawRoundRect(rectF, f22, f22, paint);
+                }
+                paint.setAlpha(alpha);
+            }
+        }
+        canvas.restore();
+    }
+
+    public final void d() {
+        this.f25706t = true;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        c(canvas, false, 0, System.currentTimeMillis(), getBounds().left, getBounds().top, getBounds().width(), getBounds().height());
+    }
+
+    public final void e(int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f25699m = i7;
+        this.f25701o = h6Var;
+    }
+
+    public final void f(int i7, org.telegram.ui.ActionBar.h6 h6Var, float f10, boolean z10) {
+        int intValue;
+        BitmapShader bitmapShader;
+        Integer num = this.f25700n;
+        if (num == null) {
+            intValue = org.telegram.ui.ActionBar.m6.w0(i7, h6Var);
+        } else {
+            intValue = num.intValue();
+        }
+        this.f25701o = h6Var;
+        int[] iArr = this.f25698l;
+        if (iArr[z10 ? 1 : 0] != intValue) {
+            this.f25702p = f10;
+            this.f25699m = i7;
+            iArr[z10 ? 1 : 0] = intValue;
+            f25685w = g0.f24046q.x * 2;
+            boolean z11 = A;
+            HashMap hashMap = this.f25690b;
+            if (!z11) {
+                int o4 = i0.a.o(intValue, 70);
+                if (z10) {
+                    if (this.d == null) {
+                        this.d = new Paint(1);
+                    }
+                    this.d.setShader(null);
+                    this.d.setColor(o4);
+                    return;
+                }
+                for (Paint paint : hashMap.values()) {
+                    paint.setShader(null);
+                    paint.setColor(o4);
+                }
                 return;
             }
-        }
-    }
-
-    public static String a(byte[] bArr) {
-        try {
-            StringBuilder sb2 = new StringBuilder(bArr.length * 2);
-            sb2.append('M');
-            for (byte b10 : bArr) {
-                int i7 = b10 & 255;
-                if (i7 >= 192) {
-                    sb2.append("AACAAAAHAAALMAAAQASTAVAAAZaacaaaahaaalmaaaqastava.az0123456789-,".charAt(i7 - 192));
-                } else {
-                    if (i7 >= 128) {
-                        sb2.append(',');
-                    } else if (i7 >= 64) {
-                        sb2.append('-');
-                    }
-                    sb2.append(b10 & 63);
+            float L = g0.L(180.0f) / f25685w;
+            int argb = Color.argb((int) ((Color.alpha(intValue) / 2) * this.f25702p), Color.red(intValue), Color.green(intValue), Color.blue(intValue));
+            float f11 = (1.0f - L) / 2.0f;
+            float f12 = L / 2.0f;
+            Shader.TileMode tileMode = Shader.TileMode.REPEAT;
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, f25685w, 0.0f, new int[]{0, 0, argb, 0, 0}, new float[]{0.0f, f11 - f12, f11, f12 + f11, 1.0f}, tileMode);
+            LinearGradient[] linearGradientArr = this.f25695i;
+            linearGradientArr[z10 ? 1 : 0] = linearGradient;
+            if (Build.VERSION.SDK_INT >= 28) {
+                bitmapShader = new LinearGradient(0.0f, 0.0f, f25685w, 0.0f, new int[]{argb, argb}, (float[]) null, tileMode);
+            } else {
+                Bitmap[] bitmapArr = this.f25694g;
+                Bitmap bitmap = bitmapArr[z10 ? 1 : 0];
+                Canvas[] canvasArr = this.h;
+                if (bitmap == null) {
+                    bitmapArr[z10 ? 1 : 0] = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+                    canvasArr[z10 ? 1 : 0] = new Canvas(bitmapArr[z10 ? 1 : 0]);
                 }
+                canvasArr[z10 ? 1 : 0].drawColor(argb);
+                bitmapShader = new BitmapShader(bitmapArr[z10 ? 1 : 0], tileMode, tileMode);
             }
-            sb2.append('z');
-            return sb2.toString();
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return "";
-        }
-    }
-
-    public static android.graphics.Path b(java.lang.String r50) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.mz.b(java.lang.String):android.graphics.Path");
-    }
-
-    public static Bitmap c(float f10, int i7, int i10, int i11, int i12, int i13) {
-        try {
-            InputStream openRawResource = t0.f26941b.getResources().openRawResource(i7);
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            jz jzVar = new jz(i10, i11, Integer.valueOf(i12), false, f10, i13);
-            xMLReader.setContentHandler(jzVar);
-            xMLReader.parse(new InputSource(openRawResource));
-            Bitmap bitmap = jzVar.f24974b;
-            if (openRawResource != null) {
-                openRawResource.close();
-            }
-            return bitmap;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static Bitmap d(int i7, int i10, int i11, int i12) {
-        return c(1.0f, i7, i10, i11, i12, 1);
-    }
-
-    public static Bitmap e(int i7, int i10, String str) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            jz jzVar = new jz(i7, i10, null, false);
-            xMLReader.setContentHandler(jzVar);
-            xMLReader.parse(new InputSource(new StringReader(str)));
-            return jzVar.f24974b;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static Bitmap f(File file, int i7, int i10, int i11) {
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            jz jzVar = new jz(i7, i10, null, false, 1.0f, i11);
-            jzVar.F = true;
-            xMLReader.setContentHandler(jzVar);
-            xMLReader.parse(new InputSource(fileInputStream));
-            Bitmap bitmap = jzVar.f24974b;
-            fileInputStream.close();
-            return bitmap;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static Bitmap g(FilterInputStream filterInputStream, int i7, int i10) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            jz jzVar = new jz(i7, i10, null, false);
-            xMLReader.setContentHandler(jzVar);
-            xMLReader.parse(new InputSource(filterInputStream));
-            return jzVar.f24974b;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static lz h(int i7, Integer num) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            jz jzVar = new jz(0, 0, num, true);
-            xMLReader.setContentHandler(jzVar);
-            xMLReader.parse(new InputSource(t0.f26941b.getResources().openRawResource(i7)));
-            return jzVar.f24975c;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static lz i(String str) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            jz jzVar = new jz(0, 0, null, true);
-            xMLReader.setContentHandler(jzVar);
-            xMLReader.parse(new InputSource(new StringReader(str)));
-            return jzVar.f24975c;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static lz j(int i7, int i10, Path path) {
-        try {
-            lz lzVar = new lz();
-            lzVar.f25511a.add(path);
-            lzVar.f25512b.put(path, new Paint(1));
-            lzVar.f25514e = i7;
-            lzVar.f25515f = i10;
-            return lzVar;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
-        }
-    }
-
-    public static Float k(String str, Attributes attributes) {
-        String l10 = l(str, attributes);
-        if (l10 == null) {
-            return null;
-        }
-        if (l10.endsWith("px")) {
-            l10 = com.google.android.gms.internal.vision.e2.k(l10, 2, 0);
-        } else if (l10.endsWith("mm")) {
-            return null;
-        }
-        return Float.valueOf(Float.parseFloat(l10));
-    }
-
-    public static String l(String str, Attributes attributes) {
-        int length = attributes.getLength();
-        for (int i7 = 0; i7 < length; i7++) {
-            if (attributes.getLocalName(i7).equals(str)) {
-                return attributes.getValue(i7);
-            }
-        }
-        return null;
-    }
-
-    public static jz m(File file, int i7, int i10, boolean z10) {
-        Integer num;
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            Matrix matrix = new Matrix();
+            this.f25696j[z10 ? 1 : 0] = matrix;
+            linearGradientArr[z10 ? 1 : 0].setLocalMatrix(matrix);
             if (z10) {
-                num = -1;
-            } else {
-                num = null;
+                if (this.d == null) {
+                    this.d = new Paint(1);
+                }
+                this.d.setShader(new ComposeShader(linearGradientArr[z10 ? 1 : 0], bitmapShader, PorterDuff.Mode.ADD));
+                return;
             }
-            jz jzVar = new jz(i7, i10, num, false);
-            if (!z10) {
-                jzVar.F = true;
+            for (Paint paint2 : hashMap.values()) {
+                paint2.setShader(new ComposeShader(linearGradientArr[z10 ? 1 : 0], bitmapShader, PorterDuff.Mode.ADD));
             }
-            xMLReader.setContentHandler(jzVar);
-            xMLReader.parse(new InputSource(fileInputStream));
-            fileInputStream.close();
-            return jzVar;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return null;
         }
     }
 
-    public static fz n(String str) {
-        int length = str.length();
-        ArrayList arrayList = new ArrayList();
-        int i7 = 0;
-        boolean z10 = false;
-        for (int i10 = 1; i10 < length; i10++) {
-            if (z10) {
-                z10 = false;
-            } else {
-                char charAt = str.charAt(i10);
-                switch (charAt) {
-                    case '\t':
-                    case '\n':
-                    case ' ':
-                    case ',':
-                    case '-':
-                        if (charAt == '-' && str.charAt(i10 - 1) == 'e') {
-                            break;
-                        } else {
-                            String substring = str.substring(i7, i10);
-                            if (substring.trim().length() > 0) {
-                                arrayList.add(Float.valueOf(Float.parseFloat(substring)));
-                                if (charAt == '-') {
-                                    i7 = i10;
-                                    break;
-                                } else {
-                                    i7 = i10 + 1;
-                                    z10 = true;
-                                    break;
-                                }
-                            } else {
-                                i7++;
-                                continue;
-                            }
-                        }
-                    case ')':
-                    case 'A':
-                    case 'C':
-                    case 'H':
-                    case 'L':
-                    case 'M':
-                    case 'Q':
-                    case 'S':
-                    case 'T':
-                    case 'V':
-                    case 'Z':
-                    case 'a':
-                    case 'c':
-                    case 'h':
-                    case 'l':
-                    case 'm':
-                    case 'q':
-                    case 's':
-                    case 't':
-                    case 'v':
-                    case 'z':
-                        String substring2 = str.substring(i7, i10);
-                        if (substring2.trim().length() > 0) {
-                            arrayList.add(Float.valueOf(Float.parseFloat(substring2)));
-                        }
-                        return new fz(arrayList);
-                }
-            }
-        }
-        String substring3 = str.substring(i7);
-        if (substring3.length() > 0) {
-            try {
-                arrayList.add(Float.valueOf(Float.parseFloat(substring3)));
-            } catch (NumberFormatException unused) {
-            }
-        }
-        return new fz(arrayList);
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f25692e;
     }
 
-    public static Matrix o(String str) {
-        List<String> list;
-        Matrix matrix;
-        Matrix matrix2;
-        Matrix matrix3 = new Matrix();
-        if (str == null) {
-            list = Collections.EMPTY_LIST;
-        } else {
-            String trim = str.trim();
-            if (trim.isEmpty()) {
-                list = Collections.EMPTY_LIST;
-            } else {
-                String[] split = f25894b.split(trim);
-                ArrayList arrayList = new ArrayList(split.length);
-                for (String str2 : split) {
-                    String trim2 = str2.trim();
-                    if (!trim2.isEmpty()) {
-                        arrayList.add(trim2);
-                    }
-                }
-                list = arrayList;
-            }
-        }
-        for (String str3 : list) {
-            float f10 = 0.0f;
-            if (str3.startsWith("matrix(")) {
-                ArrayList arrayList2 = n(str3.substring(7)).f24115a;
-                if (arrayList2.size() == 6) {
-                    matrix = new Matrix();
-                    matrix.setValues(new float[]{((Float) arrayList2.get(0)).floatValue(), ((Float) arrayList2.get(2)).floatValue(), ((Float) arrayList2.get(4)).floatValue(), ((Float) arrayList2.get(1)).floatValue(), ((Float) arrayList2.get(3)).floatValue(), ((Float) arrayList2.get(5)).floatValue(), 0.0f, 0.0f, 1.0f});
-                }
-                matrix = null;
-            } else if (str3.startsWith("translate(")) {
-                ArrayList arrayList3 = n(str3.substring(10)).f24115a;
-                if (arrayList3.size() > 0) {
-                    float floatValue = ((Float) arrayList3.get(0)).floatValue();
-                    if (arrayList3.size() > 1) {
-                        f10 = ((Float) arrayList3.get(1)).floatValue();
-                    }
-                    matrix2 = new Matrix();
-                    matrix2.postTranslate(floatValue, f10);
-                    matrix = matrix2;
-                }
-                matrix = null;
-            } else {
-                if (str3.startsWith("scale(")) {
-                    ArrayList arrayList4 = n(str3.substring(6)).f24115a;
-                    if (arrayList4.size() > 0) {
-                        float floatValue2 = ((Float) arrayList4.get(0)).floatValue();
-                        if (arrayList4.size() > 1) {
-                            f10 = ((Float) arrayList4.get(1)).floatValue();
-                        }
-                        matrix2 = new Matrix();
-                        matrix2.postScale(floatValue2, f10);
-                        matrix = matrix2;
-                    }
-                } else if (str3.startsWith("skewX(")) {
-                    ArrayList arrayList5 = n(str3.substring(6)).f24115a;
-                    if (arrayList5.size() > 0) {
-                        float floatValue3 = ((Float) arrayList5.get(0)).floatValue();
-                        matrix = new Matrix();
-                        matrix.postSkew((float) Math.tan(floatValue3), 0.0f);
-                    }
-                } else if (str3.startsWith("skewY(")) {
-                    ArrayList arrayList6 = n(str3.substring(6)).f24115a;
-                    if (arrayList6.size() > 0) {
-                        float floatValue4 = ((Float) arrayList6.get(0)).floatValue();
-                        matrix = new Matrix();
-                        matrix.postSkew(0.0f, (float) Math.tan(floatValue4));
-                    }
-                } else if (str3.startsWith("rotate(")) {
-                    ArrayList arrayList7 = n(str3.substring(7)).f24115a;
-                    if (arrayList7.size() > 0) {
-                        matrix = new Matrix();
-                        float floatValue5 = ((Float) arrayList7.get(0)).floatValue();
-                        if (arrayList7.size() > 2) {
-                            matrix.postRotate(floatValue5, ((Float) arrayList7.get(1)).floatValue(), ((Float) arrayList7.get(2)).floatValue());
-                        } else {
-                            matrix.postRotate(floatValue5);
-                        }
-                    }
-                }
-                matrix = null;
-            }
-            if (matrix != null) {
-                matrix3.preConcat(matrix);
-            }
-        }
-        return matrix3;
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f25693f;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f25703q = i7 / 255.0f;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

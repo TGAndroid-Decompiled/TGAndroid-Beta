@@ -3,10 +3,10 @@ package bi;
 import android.util.LongSparseArray;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.tr;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ur;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -21,7 +21,6 @@ import org.telegram.ui.gb;
 import org.telegram.ui.hf0;
 import org.telegram.ui.hk0;
 import org.telegram.ui.lb;
-import org.telegram.ui.np;
 import org.telegram.ui.qj0;
 import org.telegram.ui.qo0;
 import org.telegram.ui.qy0;
@@ -29,31 +28,31 @@ import org.telegram.ui.vo;
 import org.telegram.ui.wn;
 import org.telegram.ui.yj0;
 public final class k2 implements RequestDelegate {
-    public final int f3775a;
-    public final Object f3776b;
-    public final Object f3777c;
+    public final int f3784a;
+    public final Object f3785b;
+    public final Object f3786c;
     public final Object d;
-    public final Object f3778e;
+    public final Object f3787e;
 
     public k2(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f3775a = i7;
-        this.f3776b = obj;
-        this.f3777c = obj2;
+        this.f3784a = i7;
+        this.f3785b = obj;
+        this.f3786c = obj2;
         this.d = obj3;
-        this.f3778e = obj4;
+        this.f3787e = obj4;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite;
-        int i7 = this.f3775a;
-        Object obj = this.f3778e;
+        int i7 = this.f3784a;
+        Object obj = this.f3787e;
         Object obj2 = this.d;
-        Object obj3 = this.f3777c;
-        Object obj4 = this.f3776b;
+        Object obj3 = this.f3786c;
+        Object obj4 = this.f3785b;
         switch (i7) {
             case 0:
-                org.telegram.messenger.g0.g3(new l2((n3) obj4, (org.telegram.ui.ActionBar.t1) obj3, tLObject, (ai.i1) obj2, (x10) obj, tL_error, 0));
+                org.telegram.messenger.g0.g3(new l2((n3) obj4, (org.telegram.ui.ActionBar.t1) obj3, tLObject, (ai.i1) obj2, (y10) obj, tL_error, 0));
                 return;
             case 1:
                 org.telegram.messenger.g0.g3(new l2((di.f6) obj4, tLObject, (e2[]) obj3, (Long) obj2, (aa.r) obj, tL_error, 2, false));
@@ -62,15 +61,15 @@ public final class k2 implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new l2((di.f6) obj4, tLObject, (CharSequence) obj3, (TL_stars.TL_starGiftUnique) obj2, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) obj, tL_error, 1, false));
                 return;
             case 3:
-                org.telegram.messenger.g0.g3(new l2((di.y8) obj4, tLObject, (fj) obj3, (TLRPC.TL_inputInvoiceMessage) obj2, (bh) obj, tL_error, 5, false));
+                org.telegram.messenger.g0.g3(new l2((di.y8) obj4, tLObject, (gj) obj3, (TLRPC.TL_inputInvoiceMessage) obj2, (bh) obj, tL_error, 5, false));
                 return;
             case 4:
-                org.telegram.messenger.g0.g3(new ai.b((di.y8) obj4, (org.telegram.ui.ActionBar.t1) obj3, tLObject, (TL_stars.InputSavedStarGift) obj2, (x10) obj, 9));
+                org.telegram.messenger.g0.g3(new ai.b((di.y8) obj4, (org.telegram.ui.ActionBar.t1) obj3, tLObject, (TL_stars.InputSavedStarGift) obj2, (y10) obj, 9));
                 return;
             case 5:
                 di.n8 n8Var = (di.n8) obj4;
                 n8Var.getClass();
-                org.telegram.messenger.g0.g3(new l2(n8Var, tLObject, (TL_stars.TL_starGiftCollection) obj3, (di.p8) obj2, (x10) obj, tL_error, 7, false));
+                org.telegram.messenger.g0.g3(new l2(n8Var, tLObject, (TL_stars.TL_starGiftCollection) obj3, (di.p8) obj2, (y10) obj, tL_error, 7, false));
                 return;
             case 6:
                 org.telegram.messenger.g0.g3(new ai.b((fi.z3) obj4, (Runnable) obj3, tL_error, (TL_stories.StoryItem) obj2, (hi.n8) obj, 12));
@@ -81,14 +80,14 @@ public final class k2 implements RequestDelegate {
                 TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = (TLRPC.TL_messages_getAttachedStickers) obj2;
                 ai.g1 g1Var = (ai.g1) obj;
                 if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && storyItem != null) {
-                    org.telegram.messenger.r8.n(c7Var.f14335a).u(new Object[]{tL_messages_getAttachedStickers, g1Var}, storyItem);
+                    org.telegram.messenger.r8.n(c7Var.f14338a).u(new Object[]{tL_messages_getAttachedStickers, g1Var}, storyItem);
                     return;
                 } else {
                     g1Var.run(tLObject, tL_error);
                     return;
                 }
             case 8:
-                org.telegram.messenger.g0.g3(new l2((jg.z0) obj4, (String) obj3, tL_error, tLObject, (mp) obj2, (tr) obj));
+                org.telegram.messenger.g0.g3(new l2((jg.z0) obj4, (String) obj3, tL_error, tLObject, (np) obj2, (ur) obj));
                 return;
             case 9:
                 org.telegram.messenger.g0.g3(new ai.b((jg.a2) obj4, (TLRPC.TL_messages_getStickers) obj3, tLObject, (ArrayList) obj2, (LongSparseArray) obj, 17));
@@ -98,7 +97,7 @@ public final class k2 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj2;
                 boolean[] zArr = (boolean[]) obj;
                 org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) obj3;
-                lb lbVar = gbVar.f48023a.f48714n;
+                lb lbVar = gbVar.f48027a.f48718n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i10 = 0; i10 < tL_messages_exportedChatInvite.users.size(); i10++) {
@@ -106,7 +105,7 @@ public final class k2 implements RequestDelegate {
                         if (lbVar.A0 == null) {
                             lbVar.A0 = new HashMap();
                         }
-                        lbVar.A0.put(Long.valueOf(user.f28580id), user);
+                        lbVar.A0.put(Long.valueOf(user.f28583id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -117,14 +116,14 @@ public final class k2 implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new org.telegram.messenger.camera.i((vo) obj4, (org.telegram.ui.ActionBar.t1[]) obj3, (TLRPC.Chat) obj2, (org.telegram.ui.ActionBar.g2) obj, 15));
                 return;
             case 12:
-                org.telegram.messenger.g0.g3(new wn((Object) ((np) obj4), tL_error, (Object) ((TLRPC.InputCheckPasswordSRP) obj3), (Object) ((TwoStepVerificationActivity) obj2), (Object) ((TLRPC.TL_channels_editCreator) obj), 1));
+                org.telegram.messenger.g0.g3(new wn((Object) ((org.telegram.ui.np) obj4), tL_error, (Object) ((TLRPC.InputCheckPasswordSRP) obj3), (Object) ((TwoStepVerificationActivity) obj2), (Object) ((TLRPC.TL_channels_editCreator) obj), 1));
                 return;
             case 13:
                 qo0 qo0Var = (qo0) obj4;
                 TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers2 = (TLRPC.TL_messages_getAttachedStickers) obj2;
                 org.telegram.ui.u7 u7Var = (org.telegram.ui.u7) obj;
                 if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && obj3 != null) {
-                    org.telegram.messenger.r8.n(qo0Var.f30170a).u(new Object[]{tL_messages_getAttachedStickers2, u7Var}, obj3);
+                    org.telegram.messenger.r8.n(qo0Var.f30173a).u(new Object[]{tL_messages_getAttachedStickers2, u7Var}, obj3);
                     return;
                 } else {
                     u7Var.run(tLObject, tL_error);
@@ -159,10 +158,10 @@ public final class k2 implements RequestDelegate {
     }
 
     public k2(gb gbVar, TLRPC.TL_chatInviteExported tL_chatInviteExported, boolean[] zArr, org.telegram.ui.ActionBar.t1 t1Var) {
-        this.f3775a = 10;
-        this.f3776b = gbVar;
+        this.f3784a = 10;
+        this.f3785b = gbVar;
         this.d = tL_chatInviteExported;
-        this.f3778e = zArr;
-        this.f3777c = t1Var;
+        this.f3787e = zArr;
+        this.f3786c = t1Var;
     }
 }

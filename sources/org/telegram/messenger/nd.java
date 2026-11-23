@@ -1,66 +1,42 @@
 package org.telegram.messenger;
 
-import android.os.SystemClock;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class nd implements Runnable {
-    public final int f25937a;
-    public final long f25938b;
-    public final Object f25939c;
+    public final int f25755a;
+    public final rd f25756b;
+    public final ArrayList f25757c;
 
-    public nd(Object obj, long j3, int i7) {
-        this.f25937a = i7;
-        this.f25939c = obj;
-        this.f25938b = j3;
+    public nd(rd rdVar, ArrayList arrayList, int i7) {
+        this.f25755a = i7;
+        this.f25756b = rdVar;
+        this.f25757c = arrayList;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25937a;
-        long j3 = this.f25938b;
-        Object obj = this.f25939c;
-        switch (i7) {
+        switch (this.f25755a) {
             case 0:
-                qd qdVar = (qd) obj;
-                ArrayList arrayList = qdVar.f26408b;
-                a0.h hVar = qdVar.f26407a;
-                pd pdVar = (pd) hVar.f(j3);
-                hVar.l(j3);
-                if (pdVar != null) {
-                    TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-                    tL_messages_editMessage.peer = qdVar.getMessagesController().l1(pdVar.f26253a);
-                    tL_messages_editMessage.f28515id = pdVar.f26254b;
-                    tL_messages_editMessage.flags |= 16384;
-                    TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
-                    tL_messages_editMessage.media = tL_inputMediaGeoLive;
-                    tL_inputMediaGeoLive.stopped = true;
-                    tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
-                    qdVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new id(qdVar, 0));
-                    arrayList.remove(pdVar);
-                    qdVar.l(pdVar, 1);
-                    g0.g3(new jd(qdVar, pdVar, 0));
-                    if (arrayList.isEmpty()) {
-                        qdVar.r(true);
-                        return;
-                    }
-                    return;
+                rd rdVar = this.f25756b;
+                ArrayList arrayList = rdVar.f26591b;
+                ArrayList arrayList2 = this.f25757c;
+                arrayList.addAll(arrayList2);
+                for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                    qd qdVar = (qd) arrayList.get(i7);
+                    rdVar.f26590a.k(qdVar, qdVar.f26434a);
                 }
-                return;
-            case 1:
-                ((bi.b5) obj).a(Long.valueOf(j3));
+                g0.g3(new nd(rdVar, arrayList2, 1));
                 return;
             default:
-                az azVar = (az) obj;
-                azVar.f23016e = SystemClock.elapsedRealtime();
-                azVar.f23015c = false;
-                if (j3 == -1) {
-                    azVar.d = false;
-                    azVar.f23014b = 0L;
-                } else {
-                    azVar.f23014b = j3;
-                    azVar.d = true;
+                rd rdVar2 = this.f25756b;
+                ArrayList arrayList3 = rdVar2.J;
+                ArrayList arrayList4 = this.f25757c;
+                arrayList3.addAll(arrayList4);
+                for (int i10 = 0; i10 < arrayList4.size(); i10++) {
+                    qd qdVar2 = (qd) arrayList4.get(i10);
+                    rdVar2.K.k(qdVar2, qdVar2.f26434a);
                 }
-                ks.e().k(281, azVar);
+                rd.q();
+                ls.e().k(283, new Object[0]);
                 return;
         }
     }

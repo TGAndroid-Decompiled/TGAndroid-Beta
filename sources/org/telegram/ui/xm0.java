@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class xm0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.Components.hk0 {
-    public final cn0 f53900a;
+    public final cn0 f53904a;
 
     public xm0(cn0 cn0Var) {
-        this.f53900a = cn0Var;
+        this.f53904a = cn0Var;
     }
 
     @Override
     public void e(boolean z10) {
         org.telegram.ui.ActionBar.r4 r4Var;
-        cn0 cn0Var = this.f53900a;
+        cn0 cn0Var = this.f53904a;
         cn0Var.X = z10 ? 1 : 0;
         if (z10) {
             r4Var = ((org.telegram.ui.ActionBar.g2) cn0Var).parentLayout;
@@ -22,7 +22,7 @@ public final class xm0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.
 
     @Override
     public boolean f(int i7) {
-        if (this.f53900a.M.d(i7) == 0) {
+        if (this.f53904a.M.d(i7) == 0) {
             return true;
         }
         return false;
@@ -32,14 +32,14 @@ public final class xm0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.
     public void k() {
         int i7;
         int i10;
-        cn0 cn0Var = this.f53900a;
+        cn0 cn0Var = this.f53904a;
         org.telegram.ui.ActionBar.y0 y0Var = cn0Var.R;
         if (cn0Var.Z) {
             i7 = 2131745150;
         } else {
             i7 = 2131745149;
         }
-        y0Var.setText(org.telegram.messenger.gd.N0(i7, null));
+        y0Var.setText(org.telegram.messenger.hd.N0(i7, null));
         org.telegram.ui.ActionBar.y0 y0Var2 = cn0Var.R;
         if (cn0Var.Z) {
             i10 = 2131232221;
@@ -51,23 +51,23 @@ public final class xm0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.
 
     @Override
     public void l(View view, boolean z10) {
-        if (z10 == this.f53900a.Y && (view instanceof org.telegram.ui.Cells.s5)) {
+        if (z10 == this.f53904a.Y && (view instanceof org.telegram.ui.Cells.s5)) {
             org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-            s5Var.f31793y.e(s5Var);
+            s5Var.f31796y.e(s5Var);
         }
     }
 
     @Override
     public boolean m(int i7) {
         Object obj;
-        cn0 cn0Var = this.f53900a;
-        org.telegram.messenger.ue ueVar = cn0Var.K;
-        if (ueVar != null) {
-            obj = Integer.valueOf(((org.telegram.messenger.ef) ueVar.f27186e.get(i7)).C);
+        cn0 cn0Var = this.f53904a;
+        org.telegram.messenger.ve veVar = cn0Var.K;
+        if (veVar != null) {
+            obj = Integer.valueOf(((org.telegram.messenger.ff) veVar.f27357e.get(i7)).C);
         } else {
-            obj = ((org.telegram.messenger.hf) cn0Var.f46602f.get(i7)).B;
+            obj = ((org.telegram.messenger.jf) cn0Var.f46605f.get(i7)).B;
         }
-        return cn0Var.f46595b.containsKey(obj);
+        return cn0Var.f46598b.containsKey(obj);
     }
 
     @Override

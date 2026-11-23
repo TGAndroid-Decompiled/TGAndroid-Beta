@@ -27,6 +27,6 @@ public abstract class ka extends sa {
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f39540p1.setTitle(charSequence);
+        this.f39533p1.setTitle(charSequence);
     }
 }

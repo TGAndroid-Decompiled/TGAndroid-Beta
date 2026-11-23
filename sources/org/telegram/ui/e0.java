@@ -1,61 +1,36 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.PopupWindow;
-public final class e0 implements PopupWindow.OnDismissListener {
-    public final int f47085a;
-    public final Object f47086b;
+import android.net.Uri;
+public final class e0 implements org.telegram.messenger.q10 {
+    public final g4 f47088a;
+    public final String f47089b;
+    public final boolean[] f47090c;
+    public final vf.b d;
 
-    public e0(Object obj, int i7) {
-        this.f47085a = i7;
-        this.f47086b = obj;
+    public e0(g4 g4Var, String str, boolean[] zArr, vf.b bVar) {
+        this.f47088a = g4Var;
+        this.f47089b = str;
+        this.f47090c = zArr;
+        this.d = bVar;
     }
 
     @Override
-    public final void onDismiss() {
-        switch (this.f47085a) {
-            case 0:
-                g4 g4Var = (g4) this.f47086b;
-                View view = g4Var.f50751f;
-                if (view != null) {
-                    g4Var.d = null;
-                    view.invalidate();
-                    g4Var.f50751f = null;
-                    return;
-                }
-                return;
-            case 1:
-                bn bnVar = (bn) this.f47086b;
-                bnVar.f46037g9 = null;
-                bnVar.f46102l9 = null;
-                bnVar.f46090k9 = null;
-                bnVar.C0.R = true;
-                bnVar.x8(false, true, 0.0f);
-                rj rjVar = bnVar.f45946a0;
-                if (rjVar != null && rjVar.getEditField() != null) {
-                    bnVar.f45946a0.getEditField().setAllowDrawCursor(true);
-                    return;
-                }
-                return;
-            default:
-                ui uiVar = (ui) this.f47086b;
-                uiVar.f52574b = null;
-                bn bnVar2 = uiVar.f52582x;
-                bnVar2.f46037g9 = null;
-                bnVar2.f46102l9 = null;
-                bnVar2.f46090k9 = null;
-                bnVar2.C0.R = true;
-                if (bnVar2.f46050h9) {
-                    bnVar2.x8(false, true, 0.0f);
-                } else {
-                    bnVar2.f46050h9 = true;
-                }
-                rj rjVar2 = bnVar2.f45946a0;
-                if (rjVar2 != null && rjVar2.getEditField() != null) {
-                    bnVar2.f45946a0.getEditField().setAllowDrawCursor(true);
-                    return;
-                }
-                return;
+    public final Object run() {
+        String str = this.f47089b;
+        if (!vf.c.g(Uri.parse(str), false, this.f47090c)) {
+            return Boolean.FALSE;
         }
+        g4 g4Var = this.f47088a;
+        vf.b bVar = this.d;
+        if (bVar != null) {
+            bVar.f59418c = new oi.t(23, g4Var, bVar);
+        } else {
+            t3 t3Var = g4Var.L;
+            if (t3Var != null) {
+                t3Var.a(true);
+            }
+        }
+        vf.c.s(g4Var.M, Uri.parse(str), true, true, false, bVar, null, true, true, false, false);
+        return Boolean.TRUE;
     }
 }

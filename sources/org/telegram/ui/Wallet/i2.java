@@ -4,20 +4,20 @@ import android.util.Base64;
 import org.json.JSONObject;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class i2 {
-    public final String f44381a;
-    public final byte[] f44382b;
-    public final byte[] f44383c;
+    public final String f44385a;
+    public final byte[] f44386b;
+    public final byte[] f44387c;
     public TL_wallet.walletOwnershipProof d;
 
     public i2(JSONObject jSONObject) {
         byte[] bArr;
-        this.f44381a = jSONObject.getString("clientId");
+        this.f44385a = jSONObject.getString("clientId");
         if (jSONObject.has("challengeAnswer")) {
             bArr = Base64.decode(jSONObject.getString("challengeAnswer"), 2);
         } else {
             bArr = null;
         }
-        this.f44382b = bArr;
-        this.f44383c = jSONObject.has("body") ? Base64.decode(jSONObject.getString("body"), 2) : null;
+        this.f44386b = bArr;
+        this.f44387c = jSONObject.has("body") ? Base64.decode(jSONObject.getString("body"), 2) : null;
     }
 }

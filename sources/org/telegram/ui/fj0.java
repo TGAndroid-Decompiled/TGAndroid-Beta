@@ -4,24 +4,24 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class fj0 implements TextWatcher {
-    public boolean f47744a;
-    public final EditTextBoldCursor f47745b;
-    public final String f47746c;
+    public boolean f47748a;
+    public final EditTextBoldCursor f47749b;
+    public final String f47750c;
     public final hk0 d;
 
     public fj0(hk0 hk0Var, EditTextBoldCursor editTextBoldCursor, String str) {
         this.d = hk0Var;
-        this.f47745b = editTextBoldCursor;
-        this.f47746c = str;
+        this.f47749b = editTextBoldCursor;
+        this.f47750c = str;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        if (this.f47744a) {
+        if (this.f47748a) {
             return;
         }
         boolean z10 = true;
-        this.f47744a = true;
+        this.f47748a = true;
         int i7 = 0;
         while (true) {
             if (i7 < editable.length()) {
@@ -35,12 +35,12 @@ public final class fj0 implements TextWatcher {
                 break;
             }
         }
-        this.f47744a = false;
-        EditTextBoldCursor editTextBoldCursor = this.f47745b;
+        this.f47748a = false;
+        EditTextBoldCursor editTextBoldCursor = this.f47749b;
         if (z10) {
-            editTextBoldCursor.setErrorText(org.telegram.messenger.gd.N0(2131747255, null));
+            editTextBoldCursor.setErrorText(org.telegram.messenger.hd.N0(2131747255, null));
         } else {
-            hk0.N0(this.d, editTextBoldCursor, this.f47746c, editable, false);
+            hk0.N0(this.d, editTextBoldCursor, this.f47750c, editable, false);
         }
     }
 

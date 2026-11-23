@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import y8.v;
 public final class b extends r6.a {
     public static final Parcelable.Creator<b> CREATOR = new v(9);
-    public String f61815a;
-    public String f61816b;
-    public ArrayList f61817c;
+    public String f61819a;
+    public String f61820b;
+    public ArrayList f61821c;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
-        bc.l(parcel, 2, this.f61815a);
-        bc.l(parcel, 3, this.f61816b);
-        bc.p(parcel, 4, this.f61817c);
+        bc.l(parcel, 2, this.f61819a);
+        bc.l(parcel, 3, this.f61820b);
+        bc.p(parcel, 4, this.f61821c);
         bc.s(parcel, r10);
     }
 }

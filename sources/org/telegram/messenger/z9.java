@@ -1,27 +1,26 @@
 package org.telegram.messenger;
 
-import com.google.android.gms.location.LocationRequest;
-public final class z9 implements qa {
-    public LocationRequest f28302a;
+import android.os.Bundle;
+public final class z9 implements com.google.android.gms.common.api.k {
+    public final oa f28303a;
 
-    public final void a() {
-        this.f28302a.f7381c = 1000L;
+    public z9(oa oaVar) {
+        this.f28303a = oaVar;
     }
 
-    public final void b() {
-        LocationRequest locationRequest = this.f28302a;
-        long j3 = locationRequest.f7381c;
-        long j10 = locationRequest.f7380b;
-        if (j3 == j10 / 6) {
-            locationRequest.f7381c = 166L;
+    @Override
+    public final void onConnected(Bundle bundle) {
+        rd rdVar = (rd) this.f28303a;
+        rdVar.M = true;
+        try {
+            ((h6.m) t0.j()).checkLocationSettings(rdVar.O, new ld(rdVar, 1));
+        } catch (Throwable th2) {
+            a8.g(th2, true);
         }
-        if (locationRequest.f7385r == j10) {
-            locationRequest.f7385r = 1000L;
-        }
-        locationRequest.f7380b = 1000L;
     }
 
-    public final void c() {
-        this.f28302a.f7379a = 100;
+    @Override
+    public final void onConnectionSuspended(int i7) {
+        this.f28303a.getClass();
     }
 }

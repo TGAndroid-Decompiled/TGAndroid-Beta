@@ -14,7 +14,7 @@ public final class c5 extends f4 {
         super(context);
         this.P = j5Var;
         this.O = f9Var;
-        this.f11980x = -1;
+        this.f11983x = -1;
         this.F = new ArrayList();
         this.G = new ArrayList();
         this.H = new ArrayList();
@@ -28,7 +28,7 @@ public final class c5 extends f4 {
         b9 b9Var;
         j5 j5Var = this.P;
         d5 d5Var = j5Var.F;
-        if (!j5Var.f12193x) {
+        if (!j5Var.f12196x) {
             if (d5Var.getCurrentItem() != i7) {
                 try {
                     d5Var.x(i7, false);
@@ -39,11 +39,11 @@ public final class c5 extends f4 {
                 }
             }
             f9 f9Var = this.O;
-            if (f9Var.O0 != null && (b9Var = f9Var.f12038u0) != null) {
+            if (f9Var.O0 != null && (b9Var = f9Var.f12041u0) != null) {
                 if (i7 < 10) {
                     b9Var.b(false);
                 } else if (i7 >= this.F.size() - 10) {
-                    f9Var.f12038u0.b(true);
+                    f9Var.f12041u0.b(true);
                 }
             }
         }

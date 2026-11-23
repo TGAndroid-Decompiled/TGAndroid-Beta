@@ -2,27 +2,27 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class fw extends g.p {
-    public final ty f35321c;
+    public final ty f35323c;
 
     public fw(ty tyVar) {
-        this.f35321c = tyVar;
+        this.f35323c = tyVar;
     }
 
     @Override
     public final int i(int i7) {
-        ty tyVar = this.f35321c;
+        ty tyVar = this.f35323c;
         oy oyVar = tyVar.A0;
         v4.i0 adapter = tyVar.E0.getAdapter();
-        ly lyVar = tyVar.f40168z0;
+        ly lyVar = tyVar.f40161z0;
         if (adapter == lyVar) {
             if (i7 == 0) {
                 return lyVar.d;
             }
-            if (i7 == lyVar.f37322s || (lyVar.h.get(i7) != null && !(lyVar.h.get(i7) instanceof TLRPC.Document))) {
+            if (i7 == lyVar.f37329s || (lyVar.h.get(i7) != null && !(lyVar.h.get(i7) instanceof TLRPC.Document))) {
                 return lyVar.d;
             }
             return 1;
-        } else if (i7 != oyVar.f38418y && (oyVar.f38414r.get(i7) == null || (oyVar.f38414r.get(i7) instanceof TLRPC.Document))) {
+        } else if (i7 != oyVar.f38412y && (oyVar.f38408r.get(i7) == null || (oyVar.f38408r.get(i7) instanceof TLRPC.Document))) {
             return 1;
         } else {
             return lyVar.d;

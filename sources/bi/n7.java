@@ -2,29 +2,38 @@ package bi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.c51;
-import org.telegram.ui.Components.ek0;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.n41;
-import org.telegram.ui.Components.o41;
-public final class n7 extends n41 {
-    static {
-        n41.h(new n41());
-    }
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import c8.ma;
+import org.telegram.ui.Components.oh0;
+import org.telegram.ui.Components.q9;
+public final class n7 extends LinearLayout {
+    public final TextView f3957a;
 
-    public static o41 i(String str) {
-        o41 K = o41.K(n7.class);
-        K.f38098m = str;
-        return K;
+    public n7(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context);
+        setOrientation(1);
+        q9 q9Var = new q9(context);
+        q9Var.setImageDrawable(new oh0(2131624320, org.telegram.messenger.g0.L(130.0f), org.telegram.messenger.g0.L(130.0f)));
+        addView(q9Var, ma.t(64, 64, 17, 0, 32, 0, 0));
+        TextView textView = new TextView(context);
+        this.f3957a = textView;
+        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.A6, h6Var);
+        textView.setTextSize(1, 14.0f);
+        textView.setGravity(17);
+        addView(textView, ma.t(-1, -2, 7, 12, 12, 12, 24));
     }
 
     @Override
-    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
-        ((o7) view).set(o41Var.f38098m);
+    public final void onMeasure(int i7, int i10) {
+        int size = View.MeasureSpec.getSize(i7);
+        if (View.MeasureSpec.getMode(i7) == Integer.MIN_VALUE) {
+            size = org.telegram.messenger.g0.L(250.0f);
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i10);
     }
 
-    @Override
-    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        return new o7(context, h6Var);
+    public void set(CharSequence charSequence) {
+        this.f3957a.setText(charSequence);
     }
 }

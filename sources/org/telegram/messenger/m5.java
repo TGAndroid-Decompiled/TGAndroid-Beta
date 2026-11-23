@@ -30,7 +30,7 @@ public abstract class m5 {
         return true;
     }
 
-    public static int c(tr trVar, SQLiteDatabase sQLiteDatabase, int i7) {
+    public static int c(ur urVar, SQLiteDatabase sQLiteDatabase, int i7) {
         char c10;
         SQLiteCursor sQLiteCursor;
         SQLiteCursor sQLiteCursor2;
@@ -45,7 +45,7 @@ public abstract class m5 {
         SQLiteCursor sQLiteCursor7;
         SQLiteCursor sQLiteCursor8;
         SQLiteDatabase sQLiteDatabase2 = sQLiteDatabase;
-        q5 q5Var = trVar.f27080a;
+        q5 q5Var = urVar.f27250a;
         int i11 = 4;
         int i12 = i7;
         if (i12 < 4) {
@@ -54,7 +54,7 @@ public abstract class m5 {
             f3.v(sQLiteDatabase2, "CREATE TABLE IF NOT EXISTS user_phones_v6(uid INTEGER, phone TEXT, sphone TEXT, deleted INTEGER, PRIMARY KEY (uid, phone))", "CREATE INDEX IF NOT EXISTS sphone_deleted_idx_user_phones ON user_phones_v6(sphone, deleted);", "CREATE INDEX IF NOT EXISTS mid_idx_randoms ON randoms(mid);", "CREATE TABLE IF NOT EXISTS sent_files_v2(uid TEXT, type INTEGER, data BLOB, PRIMARY KEY (uid, type))");
             f3.v(sQLiteDatabase2, "CREATE TABLE IF NOT EXISTS download_queue(uid INTEGER, type INTEGER, date INTEGER, data BLOB, PRIMARY KEY (uid, type));", "CREATE INDEX IF NOT EXISTS type_date_idx_download_queue ON download_queue(type, date);", "CREATE TABLE IF NOT EXISTS dialog_settings(did INTEGER PRIMARY KEY, flags INTEGER);", "CREATE INDEX IF NOT EXISTS unread_count_idx_dialogs ON dialogs(unread_count);");
             sQLiteDatabase2.executeFast("UPDATE messages SET send_state = 2 WHERE mid < 0 AND send_state = 1").stepThis().dispose();
-            q5Var.c(new pq(trVar, 0));
+            q5Var.c(new qq(urVar, 0));
             sQLiteDatabase2.executeFast("PRAGMA user_version = 4").stepThis().dispose();
             i12 = 4;
         }
@@ -153,7 +153,7 @@ public abstract class m5 {
                     byteBufferValue2.reuse();
                     if (TLdeserialize != null) {
                         TLRPC.TL_chatFull tL_chatFull = new TLRPC.TL_chatFull();
-                        tL_chatFull.f28432id = intValue2;
+                        tL_chatFull.f28435id = intValue2;
                         tL_chatFull.chat_photo = new TLRPC.TL_photoEmpty();
                         tL_chatFull.notify_settings = new TLRPC.TL_peerNotifySettingsEmpty_layer77();
                         tL_chatFull.exported_invite = null;
@@ -239,7 +239,7 @@ public abstract class m5 {
             i12 = 40;
         }
         if (i12 == 40) {
-            q5Var.c(new pq(trVar, 0));
+            q5Var.c(new qq(urVar, 0));
             sQLiteDatabase2.executeFast("PRAGMA user_version = 41").stepThis().dispose();
             i12 = 41;
         }
@@ -679,7 +679,7 @@ public abstract class m5 {
                             TLRPC.Message TLdeserialize2 = TLRPC.Message.TLdeserialize(byteBufferValue6, byteBufferValue6.readInt32(false), false);
                             if (TLdeserialize2 != null) {
                                 i10 = intValue28;
-                                TLdeserialize2.readAttachPath(byteBufferValue6, trVar.getUserConfig().f24817n);
+                                TLdeserialize2.readAttachPath(byteBufferValue6, urVar.getUserConfig().f24987n);
                                 if (TLdeserialize2.params == null) {
                                     HashMap<String, String> hashMap = new HashMap<>();
                                     TLdeserialize2.params = hashMap;
@@ -988,7 +988,7 @@ public abstract class m5 {
             i12 = 113;
         }
         if (i12 == 113) {
-            trVar.s1();
+            urVar.s1();
             sQLiteDatabase2.executeFast("PRAGMA user_version = 114").stepThis().dispose();
             i12 = 114;
         }
@@ -1003,7 +1003,7 @@ public abstract class m5 {
         if (i12 == 116 || i12 == 117 || i12 == 118) {
             f3.v(sQLiteDatabase2, "DROP TABLE IF EXISTS stories", "DROP TABLE IF EXISTS stories_counter", "CREATE TABLE stories (dialog_id INTEGER, story_id INTEGER, data BLOB, local_path TEXT, local_thumb_path TEXT, PRIMARY KEY (dialog_id, story_id));", "CREATE TABLE stories_counter (dialog_id INTEGER PRIMARY KEY, count INTEGER, max_read INTEGER);");
             sQLiteDatabase2.executeFast("PRAGMA user_version = 119").stepThis().dispose();
-            trVar.getMessagesController().R1().q();
+            urVar.getMessagesController().R1().q();
             i12 = 119;
         }
         if (i12 == 119) {

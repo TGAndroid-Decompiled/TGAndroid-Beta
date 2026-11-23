@@ -10,30 +10,30 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public final class t51 extends Drawable implements v5, w6, org.telegram.messenger.fs {
-    public final s10 f39782a;
-    public final int f39783b;
-    public float f39784c;
+public final class t51 extends Drawable implements v5, w6, org.telegram.messenger.gs {
+    public final s10 f39775a;
+    public final int f39776b;
+    public float f39777c;
     public final boolean d;
-    public ImageReceiver f39785e;
-    public final HashSet f39786f;
+    public ImageReceiver f39778e;
+    public final HashSet f39779f;
     public final p5 h;
-    public final s51 f39787n;
-    public final ImageReceiver f39788r;
-    public final int f39789s;
-    public boolean f39790w;
-    public final TLRPC.TL_videoSizeStickerMarkup f39791x;
+    public final s51 f39780n;
+    public final ImageReceiver f39781r;
+    public final int f39782s;
+    public boolean f39783w;
+    public final TLRPC.TL_videoSizeStickerMarkup f39784x;
 
     public t51(TLRPC.VideoSize videoSize, boolean z10, int i7) {
         int i10;
         int i11;
         int i12;
         s10 s10Var = new s10();
-        this.f39782a = s10Var;
-        this.f39786f = new HashSet();
-        this.f39788r = new ImageReceiver(null);
-        this.f39789s = org.telegram.messenger.j10.f24798t0;
-        this.f39783b = i7;
+        this.f39775a = s10Var;
+        this.f39779f = new HashSet();
+        this.f39781r = new ImageReceiver(null);
+        this.f39782s = org.telegram.messenger.k10.f24968t0;
+        this.f39776b = i7;
         this.d = z10;
         int o4 = i0.a.o(videoSize.background_colors.get(0).intValue(), 255);
         if (videoSize.background_colors.size() > 1) {
@@ -56,13 +56,13 @@ public final class t51 extends Drawable implements v5, w6, org.telegram.messenge
             } else {
                 i12 = 8;
             }
-            p5 p5Var = new p5(i12, org.telegram.messenger.j10.f24798t0, tL_videoSizeEmojiMarkup.emoji_id);
+            p5 p5Var = new p5(i12, org.telegram.messenger.k10.f24968t0, tL_videoSizeEmojiMarkup.emoji_id);
             this.h = p5Var;
             p5Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         } else if (videoSize instanceof TLRPC.TL_videoSizeStickerMarkup) {
-            this.f39791x = (TLRPC.TL_videoSizeStickerMarkup) videoSize;
+            this.f39784x = (TLRPC.TL_videoSizeStickerMarkup) videoSize;
             s51 s51Var = new s51(this);
-            this.f39787n = s51Var;
+            this.f39780n = s51Var;
             s51Var.K0 = true;
             if (i7 == 1) {
                 s51Var.X(2);
@@ -73,49 +73,49 @@ public final class t51 extends Drawable implements v5, w6, org.telegram.messenge
 
     @Override
     public final void b(ImageReceiver imageReceiver) {
-        HashSet hashSet = this.f39786f;
+        HashSet hashSet = this.f39779f;
         hashSet.remove(imageReceiver);
         if (hashSet.isEmpty()) {
             p5 p5Var = this.h;
             if (p5Var != null) {
                 p5Var.o(this);
             }
-            s51 s51Var = this.f39787n;
+            s51 s51Var = this.f39780n;
             if (s51Var != null) {
                 s51Var.R();
             }
-            ImageReceiver imageReceiver2 = this.f39788r;
+            ImageReceiver imageReceiver2 = this.f39781r;
             if (imageReceiver2 != null) {
                 imageReceiver2.R();
             }
         }
-        if (this.f39791x != null) {
-            org.telegram.messenger.ks.f(this.f39789s).n(this, org.telegram.messenger.ks.B0);
+        if (this.f39784x != null) {
+            org.telegram.messenger.ls.f(this.f39782s).n(this, org.telegram.messenger.ls.B0);
         }
     }
 
     @Override
     public final void c(ImageReceiver imageReceiver) {
         if (imageReceiver != null) {
-            this.f39784c = imageReceiver.X0[0];
-            HashSet hashSet = this.f39786f;
+            this.f39777c = imageReceiver.X0[0];
+            HashSet hashSet = this.f39779f;
             if (hashSet.isEmpty()) {
                 p5 p5Var = this.h;
                 if (p5Var != null) {
                     p5Var.b(this);
                 }
-                s51 s51Var = this.f39787n;
+                s51 s51Var = this.f39780n;
                 if (s51Var != null) {
                     s51Var.P();
                 }
-                ImageReceiver imageReceiver2 = this.f39788r;
+                ImageReceiver imageReceiver2 = this.f39781r;
                 if (imageReceiver2 != null) {
                     imageReceiver2.P();
                 }
             }
             hashSet.add(imageReceiver);
-            if (this.f39791x != null) {
-                org.telegram.messenger.ks.f(this.f39789s).c(this, org.telegram.messenger.ks.B0);
+            if (this.f39784x != null) {
+                org.telegram.messenger.ls.f(this.f39782s).c(this, org.telegram.messenger.ls.B0);
             }
         }
     }
@@ -126,7 +126,7 @@ public final class t51 extends Drawable implements v5, w6, org.telegram.messenge
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.B0 && !this.f39790w) {
+        if (i7 == org.telegram.messenger.ls.B0 && !this.f39783w) {
             d();
         }
     }
@@ -134,13 +134,13 @@ public final class t51 extends Drawable implements v5, w6, org.telegram.messenge
     @Override
     public final void draw(Canvas canvas) {
         ImageReceiver imageReceiver;
-        s10 s10Var = this.f39782a;
+        s10 s10Var = this.f39775a;
         s10Var.b(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom);
-        Paint paint = s10Var.f39454c;
-        if (this.f39785e != null) {
-            this.f39784c = imageReceiver.X0[0];
+        Paint paint = s10Var.f39448c;
+        if (this.f39778e != null) {
+            this.f39777c = imageReceiver.X0[0];
         }
-        float f10 = this.f39784c;
+        float f10 = this.f39777c;
         if (f10 == 0.0f) {
             canvas.drawRect(getBounds(), paint);
         } else {
@@ -151,14 +151,14 @@ public final class t51 extends Drawable implements v5, w6, org.telegram.messenge
         int width = ((int) (getBounds().width() * 0.7f)) >> 1;
         p5 p5Var = this.h;
         if (p5Var != null) {
-            fi.s2 s2Var = p5Var.f38501k;
+            fi.s2 s2Var = p5Var.f38500k;
             if (s2Var != null) {
                 s2Var.J0((int) (width * 2 * 0.13f));
             }
             p5Var.setBounds(centerX - width, centerY - width, centerX + width, centerY + width);
             p5Var.draw(canvas);
         }
-        s51 s51Var = this.f39787n;
+        s51 s51Var = this.f39780n;
         if (s51Var != null) {
             float f11 = width * 2;
             s51Var.J0((int) (0.13f * f11));
@@ -173,11 +173,11 @@ public final class t51 extends Drawable implements v5, w6, org.telegram.messenge
             if (obj != null && t51.class == obj.getClass()) {
                 t51 t51Var = (t51) obj;
                 p5 p5Var = t51Var.h;
-                if (this.f39783b == t51Var.f39783b) {
-                    s10 s10Var = this.f39782a;
+                if (this.f39776b == t51Var.f39776b) {
+                    s10 s10Var = this.f39775a;
                     int i7 = s10Var.d;
-                    s10 s10Var2 = t51Var.f39782a;
-                    if (i7 == s10Var2.d && s10Var.f39455e == s10Var2.f39455e && s10Var.f39456f == s10Var2.f39456f && s10Var.f39457g == s10Var2.f39457g) {
+                    s10 s10Var2 = t51Var.f39775a;
+                    if (i7 == s10Var2.d && s10Var.f39449e == s10Var2.f39449e && s10Var.f39450f == s10Var2.f39450f && s10Var.f39451g == s10Var2.f39451g) {
                         p5 p5Var2 = this.h;
                         if (p5Var2 != null && p5Var != null) {
                             if (p5Var2.h() == p5Var.h()) {
@@ -185,8 +185,8 @@ public final class t51 extends Drawable implements v5, w6, org.telegram.messenge
                             }
                             return false;
                         }
-                        TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup2 = this.f39791x;
-                        if (tL_videoSizeStickerMarkup2 != null && (tL_videoSizeStickerMarkup = t51Var.f39791x) != null && tL_videoSizeStickerMarkup2.stickerset.f28451id == tL_videoSizeStickerMarkup.stickerset.f28451id && tL_videoSizeStickerMarkup2.sticker_id == tL_videoSizeStickerMarkup.sticker_id) {
+                        TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup2 = this.f39784x;
+                        if (tL_videoSizeStickerMarkup2 != null && (tL_videoSizeStickerMarkup = t51Var.f39784x) != null && tL_videoSizeStickerMarkup2.stickerset.f28454id == tL_videoSizeStickerMarkup.stickerset.f28454id && tL_videoSizeStickerMarkup2.sticker_id == tL_videoSizeStickerMarkup.sticker_id) {
                             return true;
                         }
                         return false;
@@ -207,7 +207,7 @@ public final class t51 extends Drawable implements v5, w6, org.telegram.messenge
 
     @Override
     public final void invalidate() {
-        Iterator it = this.f39786f.iterator();
+        Iterator it = this.f39779f.iterator();
         while (it.hasNext()) {
             ((ImageReceiver) it.next()).invalidate();
         }
@@ -215,7 +215,7 @@ public final class t51 extends Drawable implements v5, w6, org.telegram.messenge
 
     @Override
     public final void setAlpha(int i7) {
-        this.f39782a.f39454c.setAlpha(i7);
+        this.f39775a.f39448c.setAlpha(i7);
         p5 p5Var = this.h;
         if (p5Var != null) {
             p5Var.setAlpha(i7);

@@ -5,9 +5,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class y30 extends FrameLayout {
-    public View f42318a;
-    public TextView f42319b;
-    public rh0 f42320c;
+    public View f42311a;
+    public TextView f42312b;
+    public rh0 f42313c;
     public LinearLayout d;
 
     @Override
@@ -16,15 +16,15 @@ public final class y30 extends FrameLayout {
     }
 
     public void setGravity(int i7) {
-        this.f42319b.setGravity(i7);
+        this.f42312b.setGravity(i7);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f42319b.setText(charSequence);
+        this.f42312b.setText(charSequence);
     }
 
     public void setTextColor(int i7) {
-        TextView textView = this.f42319b;
+        TextView textView = this.f42312b;
         org.telegram.ui.ActionBar.t6.q(textView);
         textView.setTextColor(i7);
     }

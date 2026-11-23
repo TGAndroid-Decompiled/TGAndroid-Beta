@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 public final class ci0 extends LinearLayout {
-    public boolean f34211a;
+    public boolean f34205a;
 
     public ci0(Context context) {
         super(context);
@@ -14,11 +14,11 @@ public final class ci0 extends LinearLayout {
     public final void onMeasure(int i7, int i10) {
         int i11;
         yh0 yh0Var = null;
-        if (!this.f34211a) {
+        if (!this.f34205a) {
             i11 = 0;
             for (int i12 = 0; i12 < getChildCount(); i12++) {
                 if (getChildAt(i12) instanceof gi0) {
-                    yh0Var = ((gi0) getChildAt(i12)).f35564e;
+                    yh0Var = ((gi0) getChildAt(i12)).f35583e;
                     if (yh0Var.getAdapter().b() == yh0Var.getChildCount()) {
                         int childCount = yh0Var.getChildCount();
                         for (int i13 = 0; i13 < childCount; i13++) {

@@ -9,12 +9,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class tm0 extends org.telegram.ui.ActionBar.g2 {
-    public Bitmap f52347a;
-    public BitmapDrawable f52348b;
-    public sm0 f52349c;
+    public Bitmap f52351a;
+    public BitmapDrawable f52352b;
+    public sm0 f52353c;
     public rm0 d;
-    public boolean f52350e;
-    public boolean f52351f;
+    public boolean f52354e;
+    public boolean f52355f;
 
     @Override
     public final View createView(Context context) {
@@ -24,9 +24,9 @@ public final class tm0 extends org.telegram.ui.ActionBar.g2 {
         this.actionBar.G(-1, false);
         this.actionBar.setBackButtonImage(2131231240);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(org.telegram.messenger.gd.N0(2131751686, null));
+        this.actionBar.setTitle(org.telegram.messenger.hd.N0(2131751686, null));
         this.actionBar.setActionBarMenuOnItemClick(new dv(this, 26));
-        this.actionBar.s().h(1, 2131231242, org.telegram.messenger.g0.L(56.0f), org.telegram.messenger.gd.N0(2131751342, null));
+        this.actionBar.s().h(1, 2131231242, org.telegram.messenger.g0.L(56.0f), org.telegram.messenger.hd.N0(2131751342, null));
         rm0 rm0Var = new rm0(this, context);
         this.d = rm0Var;
         this.fragmentView = rm0Var;
@@ -43,7 +43,7 @@ public final class tm0 extends org.telegram.ui.ActionBar.g2 {
     @Override
     public final boolean onFragmentCreate() {
         int max;
-        if (this.f52347a == null) {
+        if (this.f52351a == null) {
             String string = getArguments().getString("photoPath");
             Uri uri = (Uri) getArguments().getParcelable("photoUri");
             if (string == null && uri == null) {
@@ -55,17 +55,17 @@ public final class tm0 extends org.telegram.ui.ActionBar.g2 {
             if (org.telegram.messenger.g0.Q1()) {
                 max = org.telegram.messenger.g0.L(520.0f);
             } else {
-                Point point = org.telegram.messenger.g0.f24146q;
+                Point point = org.telegram.messenger.g0.f24046q;
                 max = Math.max(point.x, point.y);
             }
             float f10 = max;
-            Bitmap K = org.telegram.messenger.ec.K(string, uri, f10, f10, true);
-            this.f52347a = K;
+            Bitmap K = org.telegram.messenger.fc.K(string, uri, f10, f10, true);
+            this.f52351a = K;
             if (K == null) {
                 return false;
             }
         }
-        this.f52348b = new BitmapDrawable(this.f52347a);
+        this.f52352b = new BitmapDrawable(this.f52351a);
         super.onFragmentCreate();
         return true;
     }
@@ -73,11 +73,11 @@ public final class tm0 extends org.telegram.ui.ActionBar.g2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        Bitmap bitmap = this.f52347a;
-        if (bitmap != null && !this.f52350e) {
+        Bitmap bitmap = this.f52351a;
+        if (bitmap != null && !this.f52354e) {
             bitmap.recycle();
-            this.f52347a = null;
+            this.f52351a = null;
         }
-        this.f52348b = null;
+        this.f52352b = null;
     }
 }

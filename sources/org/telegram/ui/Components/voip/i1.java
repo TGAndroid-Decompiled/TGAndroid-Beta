@@ -6,35 +6,35 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import c8.ma;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.o10;
 import org.telegram.messenger.t3;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.ik;
 import org.webrtc.RendererCommon;
 public final class i1 extends FrameLayout {
-    public final n2 f41054a;
-    public boolean f41055b;
-    public boolean f41056c;
+    public final n2 f41056a;
+    public boolean f41057b;
+    public boolean f41058c;
     public final long d;
-    public final ik f41057e;
-    public final j1 f41058f;
+    public final ik f41059e;
+    public final j1 f41060f;
 
     public i1(j1 j1Var, Context context) {
         super(context);
-        this.f41058f = j1Var;
-        this.f41056c = true;
+        this.f41060f = j1Var;
+        this.f41058c = true;
         this.d = SystemClock.elapsedRealtime();
-        this.f41057e = new ik(this, 24);
+        this.f41059e = new ik(this, 24);
         setBackgroundColor(-16777216);
         h hVar = new h(context);
         addView(hVar, ma.c(-1.0f, -1));
         n2 n2Var = new n2(context, false, false, false, false);
-        this.f41054a = n2Var;
+        this.f41056a = n2Var;
         RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FILL;
         m2 m2Var = n2Var.d;
         m2Var.setScalingType(scalingType);
-        n2Var.f41212b0 = 0;
+        n2Var.f41214b0 = 0;
         m2Var.setRotateTextureWithScreen(true);
         m2Var.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
         View view = n2Var.h;
@@ -52,12 +52,12 @@ public final class i1 extends FrameLayout {
 
     public final void a() {
         float f10;
-        boolean a10 = this.f41058f.f41086b.a(this.d);
-        if (this.f41056c == a10) {
+        boolean a10 = this.f41060f.f41088b.a(this.d);
+        if (this.f41058c == a10) {
             return;
         }
-        this.f41056c = a10;
-        n2 n2Var = this.f41054a;
+        this.f41058c = a10;
+        n2 n2Var = this.f41056a;
         n2Var.animate().cancel();
         ViewPropertyAnimator animate = n2Var.animate();
         if (a10) {
@@ -65,6 +65,6 @@ public final class i1 extends FrameLayout {
         } else {
             f10 = 0.0f;
         }
-        n10.n(animate, f10, 200L);
+        o10.n(animate, f10, 200L);
     }
 }

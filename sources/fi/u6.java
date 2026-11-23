@@ -3,41 +3,41 @@ package fi;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.fc;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.ri;
+import org.telegram.messenger.gc;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.si;
 import org.telegram.tgnet.TLRPC;
 public final class u6 extends View {
-    public final w3 f12659a;
-    public boolean f12660b;
-    public final org.telegram.ui.Components.d6 f12661c;
+    public final w3 f12662a;
+    public boolean f12663b;
+    public final org.telegram.ui.Components.d6 f12664c;
     public final ImageReceiver d;
-    public final ImageReceiver f12662e;
-    public org.telegram.ui.Components.p5 f12663f;
+    public final ImageReceiver f12665e;
+    public org.telegram.ui.Components.p5 f12666f;
     public boolean h;
-    public boolean f12664n;
-    public boolean f12665r;
-    public boolean f12666s;
+    public boolean f12667n;
+    public boolean f12668r;
+    public boolean f12669s;
 
     public u6(Context context, w3 w3Var) {
         super(context);
-        this.f12661c = new org.telegram.ui.Components.d6(this);
+        this.f12664c = new org.telegram.ui.Components.d6(this);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
-        this.f12662e = new ImageReceiver(this);
+        this.f12665e = new ImageReceiver(this);
         this.h = true;
-        this.f12659a = w3Var;
+        this.f12662a = w3Var;
         imageReceiver.A1 = true;
-        imageReceiver.f22702y = true;
+        imageReceiver.f22705y = true;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.d.P();
-        this.f12662e.P();
-        this.f12666s = true;
-        org.telegram.ui.Components.p5 p5Var = this.f12663f;
+        this.f12665e.P();
+        this.f12669s = true;
+        org.telegram.ui.Components.p5 p5Var = this.f12666f;
         if (p5Var != null) {
             p5Var.a(this);
         }
@@ -47,9 +47,9 @@ public final class u6 extends View {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.d.R();
-        this.f12662e.R();
-        this.f12666s = false;
-        org.telegram.ui.Components.p5 p5Var = this.f12663f;
+        this.f12665e.R();
+        this.f12669s = false;
+        org.telegram.ui.Components.p5 p5Var = this.f12666f;
         if (p5Var != null) {
             p5Var.n(this);
         }
@@ -72,33 +72,33 @@ public final class u6 extends View {
         boolean z10;
         String str;
         String str2;
-        if (p0Var != null && ((str2 = p0Var.f5504f) == null || !str2.equals("❤"))) {
+        if (p0Var != null && ((str2 = p0Var.f5507f) == null || !str2.equals("❤"))) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f12664n = z10;
-        if (p0Var != null && (str = p0Var.f5504f) != null && str.equals("❤")) {
-            this.f12660b = true;
+        this.f12667n = z10;
+        if (p0Var != null && (str = p0Var.f5507f) != null && str.equals("❤")) {
+            this.f12663b = true;
         } else {
-            this.f12660b = false;
+            this.f12663b = false;
         }
-        org.telegram.ui.Components.p5 p5Var = this.f12663f;
+        org.telegram.ui.Components.p5 p5Var = this.f12666f;
         if (p5Var != null) {
             p5Var.n(this);
         }
-        this.f12663f = null;
+        this.f12666f = null;
         if (p0Var != null) {
-            if (p0Var.f5505g != 0) {
-                org.telegram.ui.Components.p5 p5Var2 = new org.telegram.ui.Components.p5(3, j10.f24798t0, p0Var.f5505g);
-                this.f12663f = p5Var2;
-                if (this.f12666s) {
+            if (p0Var.f5508g != 0) {
+                org.telegram.ui.Components.p5 p5Var2 = new org.telegram.ui.Components.p5(3, k10.f24968t0, p0Var.f5508g);
+                this.f12666f = p5Var2;
+                if (this.f12669s) {
                     p5Var2.a(this);
                 }
             } else {
-                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ri.d0(j10.f24798t0).f26661r.get(p0Var.f5504f);
+                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) si.d0(k10.f24968t0).f26847r.get(p0Var.f5507f);
                 if (tL_availableReaction != null) {
-                    this.d.q0(fc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", org.telegram.messenger.u5.f(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.m6.f29321a7, 1.0f, null), "webp", tL_availableReaction, 1);
+                    this.d.q0(gc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", org.telegram.messenger.u5.f(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.m6.f29324a7, 1.0f, null), "webp", tL_availableReaction, 1);
                 }
             }
         }

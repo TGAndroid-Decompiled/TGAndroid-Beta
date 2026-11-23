@@ -18,22 +18,22 @@ import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class s90 {
-    public static final Pattern f51973k = Pattern.compile("^[a-z0-9_]{1,32}$");
-    public final LaunchActivity f51974a;
-    public final int f51975b;
-    public final vf.b f51976c;
+    public static final Pattern f51977k = Pattern.compile("^[a-z0-9_]{1,32}$");
+    public final LaunchActivity f51978a;
+    public final int f51979b;
+    public final vf.b f51980c;
     public final boolean d;
-    public org.telegram.ui.ActionBar.t1 f51977e;
-    public boolean f51978f;
-    public boolean f51979g;
+    public org.telegram.ui.ActionBar.t1 f51981e;
+    public boolean f51982f;
+    public boolean f51983g;
     public int h = -1;
-    public ai.i1 f51980i;
-    public boolean f51981j;
+    public ai.i1 f51984i;
+    public boolean f51985j;
 
     public s90(LaunchActivity launchActivity, int i7, vf.b bVar, boolean z10) {
-        this.f51974a = launchActivity;
-        this.f51975b = i7;
-        this.f51976c = bVar;
+        this.f51978a = launchActivity;
+        this.f51979b = i7;
+        this.f51980c = bVar;
         this.d = z10;
     }
 
@@ -81,9 +81,9 @@ public final class s90 {
     }
 
     public final boolean a() {
-        if (!this.f51981j) {
-            LaunchActivity launchActivity = this.f51974a;
-            if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && LaunchActivity.G1 && !org.telegram.messenger.bz.f23236x && !org.telegram.messenger.bz.C && org.telegram.messenger.j10.f24798t0 == this.f51975b) {
+        if (!this.f51985j) {
+            LaunchActivity launchActivity = this.f51978a;
+            if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && LaunchActivity.G1 && !org.telegram.messenger.cz.f23453x && !org.telegram.messenger.cz.C && org.telegram.messenger.k10.f24968t0 == this.f51979b) {
                 return true;
             }
             return false;
@@ -92,38 +92,38 @@ public final class s90 {
     }
 
     public final void b() {
-        this.f51981j = true;
-        ai.i1 i1Var = this.f51980i;
+        this.f51985j = true;
+        ai.i1 i1Var = this.f51984i;
         if (i1Var != null) {
             org.telegram.messenger.g0.r(i1Var);
         }
         if (this.h >= 0) {
-            ConnectionsManager.getInstance(this.f51975b).cancelRequest(this.h, true);
+            ConnectionsManager.getInstance(this.f51979b).cancelRequest(this.h, true);
             this.h = -1;
         }
     }
 
     public final void c() {
-        if (this.f51979g) {
+        if (this.f51983g) {
             return;
         }
-        org.telegram.ui.ActionBar.t1 t1Var = this.f51977e;
+        org.telegram.ui.ActionBar.t1 t1Var = this.f51981e;
         if (t1Var != null) {
             t1Var.dismiss();
         }
-        vf.b bVar = this.f51976c;
+        vf.b bVar = this.f51980c;
         if (bVar != null) {
             bVar.b();
         }
-        this.f51979g = true;
+        this.f51983g = true;
     }
 
     public final org.telegram.ui.ActionBar.r4 e() {
-        return this.f51974a.M();
+        return this.f51978a.M();
     }
 
-    public final org.telegram.messenger.j10 f() {
-        return org.telegram.messenger.j10.i(this.f51975b);
+    public final org.telegram.messenger.k10 f() {
+        return org.telegram.messenger.k10.i(this.f51979b);
     }
 
     public final boolean g(Uri uri) {
@@ -144,13 +144,13 @@ public final class s90 {
             org.telegram.messenger.a8.b("link manager handle " + uri2);
             String scheme = uri2.getScheme();
             boolean equalsIgnoreCase = "tonsite".equalsIgnoreCase(scheme);
-            LaunchActivity launchActivity = this.f51974a;
+            LaunchActivity launchActivity = this.f51978a;
             if (equalsIgnoreCase) {
                 vf.c.q(launchActivity, uri2, true, true);
                 return true;
             }
             boolean equalsIgnoreCase2 = "http".equalsIgnoreCase(scheme);
-            int i10 = this.f51975b;
+            int i10 = this.f51979b;
             if (!equalsIgnoreCase2 && !"https".equalsIgnoreCase(scheme)) {
                 if ("tg".equalsIgnoreCase(scheme)) {
                     Uri s9 = s(Uri.parse(uri2.toString().replaceFirst("(?i)^tg:(//)?sendgrams&", "tg://sendgrams?")));
@@ -179,7 +179,7 @@ public final class s90 {
                                 String queryParameter = s9.getQueryParameter("username");
                                 if (!TextUtils.isEmpty(queryParameter)) {
                                     o();
-                                    org.telegram.messenger.mp.u1(i10).f2().a(queryParameter, null, new r3(this, 10));
+                                    org.telegram.messenger.np.u1(i10).f2().a(queryParameter, null, new r3(this, 10));
                                     return true;
                                 }
                             } else {
@@ -229,8 +229,8 @@ public final class s90 {
                                             new fh0(launchActivity, LaunchActivity.T()).show();
                                             return true;
                                         } else if ("channel".equalsIgnoreCase(str5)) {
-                                            SharedPreferences g12 = org.telegram.messenger.mp.g1();
-                                            boolean z12 = org.telegram.messenger.s2.f26749a;
+                                            SharedPreferences g12 = org.telegram.messenger.np.g1();
+                                            boolean z12 = org.telegram.messenger.s2.f26730a;
                                             u(new g(0), false);
                                             g12.edit().putBoolean("channel_intro", true).commit();
                                             return true;
@@ -293,7 +293,7 @@ public final class s90 {
                     }
                 } else {
                     if ("ton".equalsIgnoreCase(scheme)) {
-                        if (((org.telegram.messenger.h0) org.telegram.messenger.mp.u1(i10).A7.f26187p0.f14027b).f24364c && (pathSegments = (s5 = s(uri2)).getPathSegments()) != null) {
+                        if (((org.telegram.messenger.h0) org.telegram.messenger.np.u1(i10).A7.f26239p0.f14030b).f24341c && (pathSegments = (s5 = s(uri2)).getPathSegments()) != null) {
                             ArrayList arrayList3 = new ArrayList(pathSegments);
                             String authority3 = s5.getAuthority();
                             if (!TextUtils.isEmpty(authority3)) {
@@ -325,13 +325,13 @@ public final class s90 {
                                         try {
                                             org.telegram.ui.Wallet.da daVar = new org.telegram.ui.Wallet.da(str4);
                                             if (l10 != null && l10.longValue() > 0) {
-                                                daVar.f44114s = l10.longValue();
+                                                daVar.f44118s = l10.longValue();
                                             }
                                             if (!TextUtils.isEmpty(r10)) {
-                                                daVar.f44102h0 = r10;
-                                                daVar.f44103i0 = booleanQueryParameter;
+                                                daVar.f44106h0 = r10;
+                                                daVar.f44107i0 = booleanQueryParameter;
                                             }
-                                            daVar.f44101g0 = true;
+                                            daVar.f44105g0 = true;
                                             u(daVar, false);
                                             return true;
                                         } catch (Throwable th2) {
@@ -389,7 +389,7 @@ public final class s90 {
                                     String queryParameter5 = uri2.getQueryParameter("ref");
                                     if (queryParameter5 != null) {
                                         String lowerCase = queryParameter5.toLowerCase(Locale.ROOT);
-                                        if (f51973k.matcher(lowerCase).matches()) {
+                                        if (f51977k.matcher(lowerCase).matches()) {
                                             str3 = p5.c.k("tme_getpremium_", lowerCase);
                                             u(new PremiumPreviewFragment(0, str3), false);
                                             return true;
@@ -426,7 +426,7 @@ public final class s90 {
                                             return true;
                                         }
                                         o();
-                                        org.telegram.messenger.mp.u1(i10).f2().a(str, null, new r3(this, 10));
+                                        org.telegram.messenger.np.u1(i10).f2().a(str, null, new r3(this, 10));
                                         return true;
                                     }
                                 }
@@ -449,7 +449,7 @@ public final class s90 {
         inputaicomposetoneslug.slug = str;
         gettone.tone = inputaicomposetoneslug;
         o();
-        ConnectionsManager.getInstance(this.f51975b).sendRequestTyped(gettone, new d3.b(1), new a5(this, 14));
+        ConnectionsManager.getInstance(this.f51979b).sendRequestTyped(gettone, new d3.b(1), new a5(this, 14));
         return true;
     }
 
@@ -462,7 +462,7 @@ public final class s90 {
         TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = new TLRPC.TL_inputInvoiceSlug();
         tL_inputInvoiceSlug.slug = str;
         tL_payments_getPaymentForm.invoice = tL_inputInvoiceSlug;
-        this.h = ConnectionsManager.getInstance(this.f51975b).sendRequest(tL_payments_getPaymentForm, new z9((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
+        this.h = ConnectionsManager.getInstance(this.f51979b).sendRequest(tL_payments_getPaymentForm, new z9((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
         return true;
     }
 
@@ -481,7 +481,7 @@ public final class s90 {
         if (T != null && T.getContext() != null) {
             o();
             TLRPC.User[] userArr = {null};
-            org.telegram.messenger.mp.u1(this.f51975b).f2().a(str, null, new x(this, userArr, new org.telegram.ui.Components.q20(this, T, userArr, tL_requestPeerTypeCreateBot, 21), 10));
+            org.telegram.messenger.np.u1(this.f51979b).f2().a(str, null, new x(this, userArr, new org.telegram.ui.Components.q20(this, T, userArr, tL_requestPeerTypeCreateBot, 21), 10));
         }
     }
 
@@ -496,15 +496,15 @@ public final class s90 {
         TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
         tL_messages_requestUrlAuth.flags |= 4;
         tL_messages_requestUrlAuth.url = uri.toString();
-        ConnectionsManager.getInstance(this.f51975b).sendRequestTyped(tL_messages_requestUrlAuth, new d3.b(1), new bi.p6(23, this, tL_messages_requestUrlAuth));
+        ConnectionsManager.getInstance(this.f51979b).sendRequestTyped(tL_messages_requestUrlAuth, new d3.b(1), new bi.o6(23, this, tL_messages_requestUrlAuth));
         return true;
     }
 
     public final boolean l(Uri uri) {
         Uri uri2;
         long j3;
-        int i7 = this.f51975b;
-        if (!((org.telegram.messenger.h0) org.telegram.messenger.mp.u1(i7).A7.f26187p0.f14027b).f24364c) {
+        int i7 = this.f51979b;
+        if (!((org.telegram.messenger.h0) org.telegram.messenger.np.u1(i7).A7.f26239p0.f14030b).f24341c) {
             return false;
         }
         String queryParameter = uri.getQueryParameter("startapp");
@@ -544,10 +544,10 @@ public final class s90 {
         if (!queryParameter2.startsWith("@") && !queryParameter2.matches("[a-zA-Z0-9_]{1,32}")) {
             if (WalletEngine2.isValidRecipientAddress(queryParameter2)) {
                 org.telegram.ui.Wallet.da daVar = new org.telegram.ui.Wallet.da(queryParameter2);
-                daVar.f44114s = j10;
-                daVar.f44102h0 = r10;
-                daVar.f44103i0 = booleanQueryParameter;
-                daVar.f44101g0 = true;
+                daVar.f44118s = j10;
+                daVar.f44106h0 = r10;
+                daVar.f44107i0 = booleanQueryParameter;
+                daVar.f44105g0 = true;
                 u(daVar, false);
                 return true;
             }
@@ -575,19 +575,19 @@ public final class s90 {
     }
 
     public final void o() {
-        if (!this.f51978f && !this.f51979g) {
-            vf.b bVar = this.f51976c;
+        if (!this.f51982f && !this.f51983g) {
+            vf.b bVar = this.f51980c;
             if (bVar == null) {
-                if (this.f51977e == null) {
-                    this.f51977e = new org.telegram.ui.ActionBar.t1(3, this.f51974a, null);
+                if (this.f51981e == null) {
+                    this.f51981e = new org.telegram.ui.ActionBar.t1(3, this.f51978a, null);
                 }
-                this.f51977e.setOnCancelListener(new wf(this, 3));
-                this.f51977e.r(300L);
+                this.f51981e.setOnCancelListener(new wf(this, 3));
+                this.f51981e.r(300L);
             } else {
-                bVar.f59413b = new o90(this, 0);
+                bVar.f59417b = new o90(this, 0);
                 bVar.d();
             }
-            this.f51978f = true;
+            this.f51982f = true;
         }
     }
 
@@ -596,21 +596,21 @@ public final class s90 {
     }
 
     public final void u(org.telegram.ui.ActionBar.g2 g2Var, boolean z10) {
-        LaunchActivity launchActivity = this.f51974a;
+        LaunchActivity launchActivity = this.f51978a;
         launchActivity.u0(g2Var, z10, false);
         if (org.telegram.messenger.g0.Q1()) {
-            launchActivity.f43135p0.X(true, true);
-            launchActivity.f43139r0.X(true, true);
+            launchActivity.f43139p0.X(true, true);
+            launchActivity.f43143r0.X(true, true);
         }
     }
 
     public final void v(String str, int i7, String str2, String str3) {
-        if (!this.f51981j) {
-            LaunchActivity launchActivity = this.f51974a;
+        if (!this.f51985j) {
+            LaunchActivity launchActivity = this.f51978a;
             if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
                 tonconnectgetpending.dapp_client_id = str;
-                this.h = ConnectionsManager.getInstance(this.f51975b).sendRequestTyped(tonconnectgetpending, new d3.b(1), new n60(this, str, str2, str3, i7));
+                this.h = ConnectionsManager.getInstance(this.f51979b).sendRequestTyped(tonconnectgetpending, new d3.b(1), new n60(this, str, str2, str3, i7));
                 return;
             }
         }
@@ -618,7 +618,7 @@ public final class s90 {
     }
 
     public final void w(String str) {
-        LaunchActivity launchActivity = this.f51974a;
+        LaunchActivity launchActivity = this.f51978a;
         if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && !"none".equals(str)) {
             if ("back".equals(str)) {
                 if (this.d) {
@@ -632,6 +632,6 @@ public final class s90 {
     }
 
     public final void x(String str) {
-        org.telegram.messenger.g0.j3(this.f51974a.M(), str);
+        org.telegram.messenger.g0.j3(this.f51978a.M(), str);
     }
 }

@@ -34,7 +34,7 @@ public final class pk extends org.telegram.ui.ActionBar.m5 {
         switch (this.N0) {
             case 2:
                 super.onAttachedToWindow();
-                ((jm0) this.O0).f49020s.a();
+                ((jm0) this.O0).f49024s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class pk extends org.telegram.ui.ActionBar.m5 {
         switch (this.N0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((jm0) this.O0).f49020s.b();
+                ((jm0) this.O0).f49024s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -79,13 +79,13 @@ public final class pk extends org.telegram.ui.ActionBar.m5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.O0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f43641n != null) {
+                    if (profileActivity.h != null || profileActivity.f43645n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f43641n != null) {
+                        if (profileActivity.f43645n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f43641n);
+                            sb2.append(profileActivity.f43645n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -127,7 +127,7 @@ public final class pk extends org.telegram.ui.ActionBar.m5 {
                 super.setTranslationY(f10);
                 bn bnVar = (bn) this.O0;
                 if (this == bnVar.S2[0] && bnVar.W2[1] != null) {
-                    if (bnVar.f45980c5 && f10 < 0.0f) {
+                    if (bnVar.f45984c5 && f10 < 0.0f) {
                         bnVar.O2.setTranslationY(f10 / 2.0f);
                         return;
                     } else {

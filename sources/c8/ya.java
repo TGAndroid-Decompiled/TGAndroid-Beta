@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import org.telegram.ui.z80;
 public abstract class ya {
     public static boolean a(z80 z80Var) {
-        Context context = org.telegram.messenger.t0.f26941b;
+        Context context = org.telegram.messenger.t0.f26931b;
         int componentEnabledSetting = context.getPackageManager().getComponentEnabledSetting(z80Var.a(context));
         if (componentEnabledSetting == 1 || (componentEnabledSetting == 0 && z80Var == z80.DEFAULT)) {
             return true;
@@ -17,7 +17,7 @@ public abstract class ya {
     public static void b(z80 z80Var) {
         z80[] values;
         int i7;
-        Context context = org.telegram.messenger.t0.f26941b;
+        Context context = org.telegram.messenger.t0.f26931b;
         PackageManager packageManager = context.getPackageManager();
         for (z80 z80Var2 : z80.values()) {
             ComponentName a10 = z80Var2.a(context);

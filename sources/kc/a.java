@@ -7,9 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import lc.k;
 public abstract class a extends c {
-    public static final Logger f18236f;
+    public static final Logger f18239f;
     public static final ze.b h;
-    public ByteBuffer f18237e;
+    public ByteBuffer f18240e;
 
     static {
         ze.a aVar = new ze.a(a.class, "AbstractDescriptorBox.java");
@@ -18,18 +18,18 @@ public abstract class a extends c {
         aVar.e(aVar.d("getDescriptorAsString", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("setDescriptor", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.BaseDescriptor", "descriptor", "void"));
         h = aVar.e(aVar.d("setData", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "java.nio.ByteBuffer", "data", "void"));
-        f18236f = Logger.getLogger(a.class.getName());
+        f18239f = Logger.getLogger(a.class.getName());
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
-        Logger logger = f18236f;
+        Logger logger = f18239f;
         f(byteBuffer);
-        this.f18237e = byteBuffer.slice();
+        this.f18240e = byteBuffer.slice();
         byteBuffer.position(byteBuffer.remaining() + byteBuffer.position());
         try {
-            this.f18237e.rewind();
-            k.a(-1, this.f18237e);
+            this.f18240e.rewind();
+            k.a(-1, this.f18240e);
         } catch (IOException e10) {
             logger.log(Level.WARNING, "Error parsing ObjectDescriptor", (Throwable) e10);
         } catch (IndexOutOfBoundsException e11) {
@@ -40,12 +40,12 @@ public abstract class a extends c {
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        this.f18237e.rewind();
-        byteBuffer.put(this.f18237e);
+        this.f18240e.rewind();
+        byteBuffer.put(this.f18240e);
     }
 
     @Override
     public final long getContentSize() {
-        return this.f18237e.limit() + 4;
+        return this.f18240e.limit() + 4;
     }
 }

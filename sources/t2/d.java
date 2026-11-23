@@ -1,4 +1,4 @@
 package t2;
 public final class d {
-    public static final d f57584a = new Object();
+    public static final d f57588a = new Object();
 }

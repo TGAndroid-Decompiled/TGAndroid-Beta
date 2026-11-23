@@ -6,33 +6,33 @@ public enum y0 extends b2 {
 
     @Override
     public final void d(l lVar, a aVar) {
-        e eVar = lVar.f8362n;
+        e eVar = lVar.f8365n;
         char d = aVar.d();
-        a1 a1Var = b2.f8315k0;
+        a1 a1Var = b2.f8318k0;
         if (d != 0) {
             if (d != '-') {
-                w wVar = b2.f8300a;
+                w wVar = b2.f8303a;
                 if (d != '>') {
                     if (d != 65535) {
-                        eVar.f8337c.append(d);
-                        lVar.f8353c = a1Var;
+                        eVar.f8340c.append(d);
+                        lVar.f8356c = a1Var;
                         return;
                     }
                     lVar.l(this);
                     lVar.i();
-                    lVar.f8353c = wVar;
+                    lVar.f8356c = wVar;
                     return;
                 }
                 lVar.m(this);
                 lVar.i();
-                lVar.f8353c = wVar;
+                lVar.f8356c = wVar;
                 return;
             }
-            lVar.f8353c = b2.f8314j0;
+            lVar.f8356c = b2.f8317j0;
             return;
         }
         lVar.m(this);
-        eVar.f8337c.append((char) 65533);
-        lVar.f8353c = a1Var;
+        eVar.f8340c.append((char) 65533);
+        lVar.f8356c = a1Var;
     }
 }

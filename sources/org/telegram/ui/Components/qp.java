@@ -5,21 +5,21 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.style.ReplacementSpan;
 public final class qp extends ReplacementSpan {
-    public final int f38972a;
-    public final Object f38973b;
+    public final int f38966a;
+    public final Object f38967b;
 
     public qp(Object obj, int i7) {
-        this.f38972a = i7;
-        this.f38973b = obj;
+        this.f38966a = i7;
+        this.f38967b = obj;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        switch (this.f38972a) {
+        switch (this.f38966a) {
             case 0:
                 Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
                 int i14 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2) + i12;
-                Drawable drawable = (Drawable) this.f38973b;
+                Drawable drawable = (Drawable) this.f38967b;
                 int i15 = (int) f10;
                 drawable.setBounds(i15, i14 - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(24.0f) + i15, org.telegram.messenger.g0.L(12.0f) + i14);
                 drawable.setAlpha(paint.getAlpha());
@@ -35,13 +35,13 @@ public final class qp extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f38972a) {
+        switch (this.f38966a) {
             case 0:
                 if (fontMetricsInt != null) {
                     Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
                     int i11 = fontMetricsInt2.ascent;
                     int i12 = (fontMetricsInt2.descent + i11) / 2;
-                    int D = org.telegram.messenger.n10.D(12.0f, i12, i11);
+                    int D = org.telegram.messenger.o10.D(12.0f, i12, i11);
                     fontMetricsInt.top = D;
                     fontMetricsInt.ascent = D;
                     int b10 = org.telegram.messenger.f3.b(12.0f, i12, fontMetricsInt2.descent);
@@ -50,19 +50,19 @@ public final class qp extends ReplacementSpan {
                 }
                 return org.telegram.messenger.g0.L(32.0f);
             case 1:
-                return ((aa0) this.f38973b).f33463y;
+                return ((aa0) this.f38967b).f33476y;
             case 2:
-                return (int) ((org.telegram.ui.vg0) this.f38973b).f52821j2;
+                return (int) ((org.telegram.ui.vg0) this.f38967b).f52825j2;
             case 3:
-                return (int) ((wg.e1) this.f38973b).f59797o2;
+                return (int) ((wg.e1) this.f38967b).f59801o2;
             default:
-                return ((org.telegram.messenger.g6) this.f38973b).getSize(paint, charSequence, i7, i10, fontMetricsInt);
+                return ((org.telegram.messenger.g6) this.f38967b).getSize(paint, charSequence, i7, i10, fontMetricsInt);
         }
     }
 
     public qp(oh0 oh0Var) {
-        this.f38972a = 0;
-        this.f38973b = oh0Var;
+        this.f38966a = 0;
+        this.f38967b = oh0Var;
     }
 
     private final void a(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {

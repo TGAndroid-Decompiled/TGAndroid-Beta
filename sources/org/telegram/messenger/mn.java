@@ -1,57 +1,36 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.ThemeActivity;
 public final class mn implements Runnable {
-    public final int f25617a;
-    public final mp f25618b;
-    public final TLRPC.Dialog f25619c;
+    public final int f25618a;
+    public final org.telegram.ui.ActionBar.g2 f25619b;
 
-    public mn(mp mpVar, TLRPC.Dialog dialog, int i7) {
-        this.f25617a = i7;
-        this.f25618b = mpVar;
-        this.f25619c = dialog;
+    public mn(int i7, org.telegram.ui.ActionBar.g2 g2Var) {
+        this.f25618a = i7;
+        this.f25619b = g2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f25617a) {
+        switch (this.f25618a) {
             case 0:
-                boolean z10 = s2.f26749a;
-                TLRPC.Dialog dialog = this.f25619c;
-                if (z10) {
-                    a8.b("checkLastDialogMessage for " + dialog.f28435id + " has not message");
-                }
-                mp mpVar = this.f25618b;
-                if (mpVar.getMediaDataController().T(dialog.f28435id, 0L) == null) {
-                    TLRPC.Dialog dialog2 = (TLRPC.Dialog) mpVar.R.f(dialog.f28435id);
-                    if (dialog2 == null) {
-                        if (s2.f26749a) {
-                            a8.b("checkLastDialogMessage for " + dialog.f28435id + " current dialog not found");
-                        }
-                        tr messagesStorage = mpVar.getMessagesStorage();
-                        messagesStorage.f27080a.c(new br(messagesStorage, dialog.f28435id, new mn(mpVar, dialog, 2), 1));
-                        return;
-                    }
-                    if (s2.f26749a) {
-                        StringBuilder sb2 = new StringBuilder("checkLastDialogMessage for ");
-                        sb2.append(dialog.f28435id);
-                        sb2.append(" current dialog top message ");
-                        i5.c.t(dialog2.top_message, sb2);
-                    }
-                    if (dialog2.top_message == 0) {
-                        mpVar.X(3, dialog.f28435id, false);
-                        return;
-                    }
+                org.telegram.ui.ActionBar.g2 g2Var = this.f25619b;
+                if (g2Var != null) {
+                    ThemeActivity themeActivity = new ThemeActivity(0);
+                    themeActivity.V0 = true;
+                    g2Var.presentFragment(themeActivity);
                     return;
                 }
                 return;
             case 1:
-                this.f25618b.f25661e1.e(this.f25619c.f28435id);
+                org.telegram.ui.Components.c5.q0(7, this.f25619b, null);
+                return;
+            case 2:
+                org.telegram.ui.Components.c5.q0(8, this.f25619b, null);
                 return;
             default:
-                mp mpVar2 = this.f25618b;
-                mpVar2.getClass();
-                mpVar2.X(3, this.f25619c.f28435id, false);
+                this.f25619b.presentFragment(new PremiumPreviewFragment(0, "summarize_limit"));
                 return;
         }
     }

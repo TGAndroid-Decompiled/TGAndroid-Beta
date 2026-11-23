@@ -4,13 +4,13 @@ import a8.la;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class y0 implements Iterator {
-    public static final y0 f14119a;
-    public static final y0[] f14120b;
+    public static final y0 f14122a;
+    public static final y0[] f14123b;
 
     static {
         ?? r02 = new Enum("INSTANCE", 0);
-        f14119a = r02;
-        f14120b = new y0[]{r02};
+        f14122a = r02;
+        f14123b = new y0[]{r02};
     }
 
     public static y0 valueOf(String str) {
@@ -18,7 +18,7 @@ public final class y0 implements Iterator {
     }
 
     public static y0[] values() {
-        return (y0[]) f14120b.clone();
+        return (y0[]) f14123b.clone();
     }
 
     @Override

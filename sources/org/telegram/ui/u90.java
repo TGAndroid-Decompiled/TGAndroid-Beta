@@ -2,17 +2,17 @@ package org.telegram.ui;
 
 import android.text.TextUtils;
 public final class u90 extends rg.a {
-    public final CharSequence f52479c;
+    public final CharSequence f52483c;
     public final int d;
-    public final int f52480e;
-    public final int f52481f;
+    public final int f52484e;
+    public final int f52485f;
 
     public u90(int i7, int i10, CharSequence charSequence, int i11, int i12) {
         super(i7, false);
-        this.f52479c = charSequence;
+        this.f52483c = charSequence;
         this.d = i10;
-        this.f52480e = i11;
-        this.f52481f = i12;
+        this.f52484e = i11;
+        this.f52485f = i12;
     }
 
     public static u90 b(int i7, String str) {
@@ -27,13 +27,13 @@ public final class u90 extends rg.a {
         if (this != obj) {
             if (obj instanceof u90) {
                 u90 u90Var = (u90) obj;
-                int i7 = u90Var.f56630a;
-                int i10 = this.f56630a;
+                int i7 = u90Var.f56634a;
+                int i10 = this.f56634a;
                 if (i7 == i10) {
                     if (i10 != 3 || u90Var.d == this.d) {
-                        if (i10 != 5 || u90Var.f52481f == this.f52481f) {
-                            if ((i10 != 3 && i10 != 4) || u90Var.f52480e == this.f52480e) {
-                                if ((i10 == 0 || i10 == 2 || i10 == 3 || i10 == 4 || i10 == 5) && !TextUtils.equals(u90Var.f52479c, this.f52479c)) {
+                        if (i10 != 5 || u90Var.f52485f == this.f52485f) {
+                            if ((i10 != 3 && i10 != 4) || u90Var.f52484e == this.f52484e) {
+                                if ((i10 == 0 || i10 == 2 || i10 == 3 || i10 == 4 || i10 == 5) && !TextUtils.equals(u90Var.f52483c, this.f52483c)) {
                                     return false;
                                 }
                                 return true;

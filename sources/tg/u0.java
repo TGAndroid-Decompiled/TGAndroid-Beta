@@ -5,32 +5,32 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import hi.a5;
-import org.telegram.messenger.bz;
+import org.telegram.messenger.cz;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.u4;
 public final class u0 implements h6 {
-    public final TextPaint f58184a;
-    public final TextPaint f58185b;
-    public final TextPaint f58186c;
+    public final TextPaint f58188a;
+    public final TextPaint f58189b;
+    public final TextPaint f58190c;
     public final Paint d;
-    public final Paint f58187e;
-    public final a5 f58188f;
+    public final Paint f58191e;
+    public final a5 f58192f;
 
     public u0(a5 a5Var) {
-        this.f58188f = a5Var;
+        this.f58192f = a5Var;
         TextPaint textPaint = new TextPaint();
-        this.f58184a = textPaint;
+        this.f58188a = textPaint;
         TextPaint textPaint2 = new TextPaint();
-        this.f58185b = textPaint2;
+        this.f58189b = textPaint2;
         TextPaint textPaint3 = new TextPaint();
-        this.f58186c = textPaint3;
+        this.f58190c = textPaint3;
         new Paint(3);
         this.d = new Paint(3);
         Paint paint = new Paint(3);
-        this.f58187e = paint;
-        textPaint.setTextSize(org.telegram.messenger.g0.L(Math.max(16, bz.W0) - 2));
-        textPaint2.setTextSize(org.telegram.messenger.g0.L(Math.max(16, bz.W0) - 2));
+        this.f58191e = paint;
+        textPaint.setTextSize(org.telegram.messenger.g0.L(Math.max(16, cz.W0) - 2));
+        textPaint2.setTextSize(org.telegram.messenger.g0.L(Math.max(16, cz.W0) - 2));
         textPaint3.setTextSize(org.telegram.messenger.g0.L(15.0f));
         textPaint3.setTypeface(org.telegram.messenger.g0.o());
         paint.setColor(352321536);
@@ -38,7 +38,7 @@ public final class u0 implements h6 {
 
     @Override
     public final boolean d() {
-        return this.f58188f.C0;
+        return this.f58192f.C0;
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class u0 implements h6 {
 
     @Override
     public final ColorFilter f() {
-        return m6.f29710v3;
+        return m6.f29713v3;
     }
 
     @Override
@@ -89,15 +89,15 @@ public final class u0 implements h6 {
         }
         switch (c10) {
             case 0:
-                return this.f58185b;
+                return this.f58189b;
             case 1:
-                return this.f58186c;
+                return this.f58190c;
             case 2:
-                return this.f58187e;
+                return this.f58191e;
             case 3:
                 return this.d;
             case 4:
-                return this.f58184a;
+                return this.f58188a;
             default:
                 return m6.V0(str);
         }
@@ -105,7 +105,7 @@ public final class u0 implements h6 {
 
     @Override
     public final Drawable getDrawable(String str) {
-        a5 a5Var = this.f58188f;
+        a5 a5Var = this.f58192f;
         u0 u0Var = a5Var.E0;
         if (str.equals("drawableMsgIn")) {
             if (a5Var.F0 == null) {
@@ -155,7 +155,7 @@ public final class u0 implements h6 {
 
     @Override
     public final boolean h() {
-        return bz.H0;
+        return cz.H0;
     }
 
     @Override
@@ -170,7 +170,7 @@ public final class u0 implements h6 {
 
     @Override
     public final int k(int i7) {
-        return this.f58188f.D0.get(i7, m6.x0(null, i7, false));
+        return this.f58192f.D0.get(i7, m6.x0(null, i7, false));
     }
 
     @Override

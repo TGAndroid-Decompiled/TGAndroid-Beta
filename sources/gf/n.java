@@ -1,11 +1,11 @@
 package gf;
 public final class n extends mf.a {
-    public final kf.n f13625a;
-    public boolean f13626b;
-    public int f13627c;
+    public final kf.n f13628a;
+    public boolean f13629b;
+    public int f13630c;
 
     public n(kf.n nVar) {
-        this.f13625a = nVar;
+        this.f13628a = nVar;
     }
 
     @Override
@@ -13,15 +13,15 @@ public final class n extends mf.a {
         if (!(aVar instanceof kf.o)) {
             return false;
         }
-        if (this.f13626b && this.f13627c == 1) {
-            this.f13626b = false;
+        if (this.f13629b && this.f13630c == 1) {
+            this.f13629b = false;
         }
         return true;
     }
 
     @Override
     public final kf.a e() {
-        return this.f13625a;
+        return this.f13628a;
     }
 
     @Override
@@ -32,11 +32,11 @@ public final class n extends mf.a {
     @Override
     public final a h(g gVar) {
         if (gVar.h) {
-            this.f13626b = true;
-            this.f13627c = 0;
-        } else if (this.f13626b) {
-            this.f13627c++;
+            this.f13629b = true;
+            this.f13630c = 0;
+        } else if (this.f13629b) {
+            this.f13630c++;
         }
-        return a.a(gVar.f13576b);
+        return a.a(gVar.f13579b);
     }
 }

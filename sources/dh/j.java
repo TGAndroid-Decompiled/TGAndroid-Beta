@@ -13,34 +13,34 @@ import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
 public final class j extends Drawable {
-    public gh.a f8471a;
-    public int f8472b;
-    public int f8473c;
-    public int f8475f;
-    public fh.h f8478j;
-    public boolean f8480l;
-    public float f8481m;
+    public gh.a f8474a;
+    public int f8475b;
+    public int f8476c;
+    public int f8478f;
+    public fh.h f8481j;
+    public boolean f8483l;
+    public float f8484m;
     public float d = 1.0f;
-    public final RectF f8474e = new RectF();
-    public final Paint f8476g = new Paint(1);
+    public final RectF f8477e = new RectF();
+    public final Paint f8479g = new Paint(1);
     public final l h = new l();
-    public final float[] f8477i = new float[8];
-    public int f8479k = t6.f30066b;
+    public final float[] f8480i = new float[8];
+    public int f8482k = t6.f30069b;
 
     public final void a() {
-        this.f8479k = t6.f30066b;
-        gh.a aVar = this.f8471a;
+        this.f8482k = t6.f30069b;
+        gh.a aVar = this.f8474a;
         if (aVar == null) {
             return;
         }
-        this.f8472b = m6.r1(this.d, aVar.t0());
-        this.f8473c = m6.r1(this.d, this.f8471a.U0());
-        this.f8478j = new fh.h(g0.N(1.0f), this.f8472b, g0.N(0.6666667f), this.f8473c, 0.0f, 0, 0.0f, 0);
+        this.f8475b = m6.r1(this.d, aVar.t0());
+        this.f8476c = m6.r1(this.d, this.f8474a.U0());
+        this.f8481j = new fh.h(g0.N(1.0f), this.f8475b, g0.N(0.6666667f), this.f8476c, 0.0f, 0, 0.0f, 0);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f8479k != t6.f30066b) {
+        if (this.f8482k != t6.f30069b) {
             try {
                 a();
             } catch (Exception e10) {
@@ -49,20 +49,20 @@ public final class j extends Drawable {
         }
         float centerX = getBounds().centerX();
         float centerY = getBounds().centerY();
-        float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.f8475f;
-        RectF rectF = this.f8474e;
+        float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.f8478f;
+        RectF rectF = this.f8477e;
         rectF.set(centerX - min, centerY - min, centerX + min, centerY + min);
-        if (this.f8480l) {
+        if (this.f8483l) {
             rectF.set(getBounds());
-            min = this.f8481m;
+            min = this.f8484m;
         }
-        Paint paint = this.f8476g;
+        Paint paint = this.f8479g;
         if (Color.alpha(paint.getColor()) > 0) {
             canvas.drawCircle(centerX, centerY, min, paint);
         }
-        if (this.f8478j != null) {
-            Arrays.fill(this.f8477i, min);
-            this.h.a(canvas, rectF.left, rectF.top, rectF.right, rectF.bottom, this.f8477i, this.f8478j, 1.0f);
+        if (this.f8481j != null) {
+            Arrays.fill(this.f8480i, min);
+            this.h.a(canvas, rectF.left, rectF.top, rectF.right, rectF.bottom, this.f8480i, this.f8481j, 1.0f);
         }
     }
 

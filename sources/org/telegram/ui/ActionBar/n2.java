@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import j$.util.Objects;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.ks;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ls;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.v00;
 import org.telegram.ui.Components.z21;
@@ -23,17 +23,17 @@ import org.telegram.ui.b31;
 import org.telegram.ui.hc1;
 import org.telegram.ui.os;
 public final class n2 extends TextView {
-    public final int f29805a;
-    public Object f29806b;
+    public final int f29808a;
+    public Object f29809b;
 
     public n2(int i7, Context context, Object obj) {
         super(context);
-        this.f29805a = i7;
-        this.f29806b = obj;
+        this.f29808a = i7;
+        this.f29809b = obj;
     }
 
     public void b(int i7) {
-        FragmentContextView fragmentContextView = (FragmentContextView) this.f29806b;
+        FragmentContextView fragmentContextView = (FragmentContextView) this.f29809b;
         if (fragmentContextView.O != i7) {
             v00 v00Var = fragmentContextView.d;
             v00Var.setPadding(v00Var.getPaddingLeft(), fragmentContextView.d.getPaddingTop(), (fragmentContextView.d.getPaddingRight() - fragmentContextView.O) + i7, fragmentContextView.d.getPaddingBottom());
@@ -43,25 +43,25 @@ public final class n2 extends TextView {
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f29805a) {
+        switch (this.f29808a) {
             case 2:
                 super.draw(canvas);
                 int L = org.telegram.messenger.g0.L(1.0f);
                 RectF rectF = org.telegram.messenger.g0.P;
                 float f10 = L;
                 rectF.set(f10, f10, getWidth() - L, getHeight() - L);
-                ((FragmentContextView) this.f29806b).P.a(org.telegram.messenger.g0.L(16.0f), canvas, rectF, this);
+                ((FragmentContextView) this.f29809b).P.a(org.telegram.messenger.g0.L(16.0f), canvas, rectF, this);
                 return;
             case 6:
                 super.draw(canvas);
-                b31 b31Var = (b31) this.f29806b;
-                org.telegram.ui.Components.voip.n nVar = b31Var.f45764c;
-                if (nVar.f41186g <= 1.0f) {
-                    SessionsActivity sessionsActivity = b31Var.f45766f;
+                b31 b31Var = (b31) this.f29809b;
+                org.telegram.ui.Components.voip.n nVar = b31Var.f45768c;
+                if (nVar.f41188g <= 1.0f) {
+                    SessionsActivity sessionsActivity = b31Var.f45770f;
                     if (sessionsActivity.W && sessionsActivity.X) {
                         RectF rectF2 = org.telegram.messenger.g0.P;
                         rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                        nVar.f41185f = getMeasuredWidth();
+                        nVar.f41187f = getMeasuredWidth();
                         nVar.a(org.telegram.messenger.g0.L(8.0f), canvas, rectF2, null);
                         invalidate();
                         return;
@@ -77,10 +77,10 @@ public final class n2 extends TextView {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f29805a) {
+        switch (this.f29808a) {
             case 5:
                 super.onAttachedToWindow();
-                ks.e().c((os) this.f29806b, 262);
+                ls.e().c((os) this.f29809b, 262);
                 return;
             default:
                 super.onAttachedToWindow();
@@ -90,10 +90,10 @@ public final class n2 extends TextView {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f29805a) {
+        switch (this.f29808a) {
             case 5:
                 super.onDetachedFromWindow();
-                ks.e().n((os) this.f29806b, 262);
+                ls.e().n((os) this.f29809b, 262);
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -103,32 +103,32 @@ public final class n2 extends TextView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f29805a) {
+        switch (this.f29808a) {
             case 1:
                 super.onDraw(canvas);
-                if (((org.telegram.ui.Components.voip.n) this.f29806b) == null) {
+                if (((org.telegram.ui.Components.voip.n) this.f29809b) == null) {
                     org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
-                    this.f29806b = nVar;
-                    nVar.f41189k = false;
-                    nVar.f41191m = 2.0f;
+                    this.f29809b = nVar;
+                    nVar.f41191k = false;
+                    nVar.f41193m = 2.0f;
                 }
-                ((org.telegram.ui.Components.voip.n) this.f29806b).f41185f = getMeasuredWidth();
+                ((org.telegram.ui.Components.voip.n) this.f29809b).f41187f = getMeasuredWidth();
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ((org.telegram.ui.Components.voip.n) this.f29806b).a(org.telegram.messenger.g0.L(22.0f), canvas, rectF, null);
+                ((org.telegram.ui.Components.voip.n) this.f29809b).a(org.telegram.messenger.g0.L(22.0f), canvas, rectF, null);
                 invalidate();
                 return;
             case 7:
                 super.onDraw(canvas);
-                Paint paint = (Paint) this.f29806b;
+                Paint paint = (Paint) this.f29809b;
                 paint.setColor(getCurrentTextColor());
                 RectF rectF2 = org.telegram.messenger.g0.P;
                 rectF2.set(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), getMeasuredWidth() - org.telegram.messenger.g0.L(1.0f), getMeasuredHeight() - org.telegram.messenger.g0.L(1.0f));
                 canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint);
                 return;
             case 9:
-                x6 x6Var = (x6) this.f29806b;
-                float e10 = x6Var.f45308h0.e(false, x6Var.f45306f0);
+                x6 x6Var = (x6) this.f29809b;
+                float e10 = x6Var.f45312h0.e(false, x6Var.f45310f0);
                 TextPaint paint2 = getPaint();
                 Objects.requireNonNull(paint2);
                 x6Var.c(e10, new org.telegram.ui.Wallet.h3(paint2, 3), new org.telegram.ui.Wallet.u4(4, this, canvas));
@@ -141,11 +141,11 @@ public final class n2 extends TextView {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f29805a) {
+        switch (this.f29808a) {
             case 8:
                 super.onLayout(z10, i7, i10, i11, i12);
                 if (z10) {
-                    ((hc1) this.f29806b).y();
+                    ((hc1) this.f29809b).y();
                     return;
                 }
                 return;
@@ -157,19 +157,19 @@ public final class n2 extends TextView {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f29805a) {
+        switch (this.f29808a) {
             case 0:
                 super.onMeasure(i7, i10);
-                w2 w2Var = (w2) this.f29806b;
+                w2 w2Var = (w2) this.f29809b;
                 if (w2Var.R) {
                     int measuredHeight = getMeasuredHeight();
                     ViewGroup viewGroup = w2Var.O;
                     if (viewGroup != null) {
                         ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).topMargin = measuredHeight;
                         return;
-                    } else if (w2Var.f30173b != null) {
-                        for (int i11 = 1; i11 < w2Var.f30173b.getChildCount(); i11++) {
-                            View childAt = w2Var.f30173b.getChildAt(i11);
+                    } else if (w2Var.f30176b != null) {
+                        for (int i11 = 1; i11 < w2Var.f30176b.getChildCount(); i11++) {
+                            View childAt = w2Var.f30176b.getChildAt(i11);
                             if (childAt instanceof p2) {
                                 ((ViewGroup.MarginLayoutParams) childAt.getLayoutParams()).topMargin = measuredHeight;
                                 measuredHeight = org.telegram.messenger.g0.L(48.0f) + measuredHeight;
@@ -187,18 +187,18 @@ public final class n2 extends TextView {
                 return;
             case 3:
                 super.onMeasure(i7, i10);
-                if (gd.f24241a0) {
-                    ((z21) this.f29806b).f42652b.setPivotX(getMeasuredWidth());
+                if (hd.f24444a0) {
+                    ((z21) this.f29809b).f42656b.setPivotX(getMeasuredWidth());
                     return;
                 }
                 return;
             case 10:
                 super.onMeasure(i7, i10);
-                setMeasuredDimension(getMeasuredWidth(), Math.round(getMeasuredHeight() * ((da) this.f29806b).Y));
+                setMeasuredDimension(getMeasuredWidth(), Math.round(getMeasuredHeight() * ((da) this.f29809b).Y));
                 return;
             case 11:
                 super.onMeasure(i7, i10);
-                ((org.telegram.ui.web.m1) this.f29806b).f53241c.setPivotY(getMeasuredHeight() / 2.0f);
+                ((org.telegram.ui.web.m1) this.f29809b).f53245c.setPivotY(getMeasuredHeight() / 2.0f);
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -208,10 +208,10 @@ public final class n2 extends TextView {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f29805a) {
+        switch (this.f29808a) {
             case 2:
                 super.onSizeChanged(i7, i10, i11, i12);
-                ((FragmentContextView) this.f29806b).P.f41185f = getWidth();
+                ((FragmentContextView) this.f29809b).P.f41187f = getWidth();
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);
@@ -221,9 +221,9 @@ public final class n2 extends TextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29805a) {
+        switch (this.f29808a) {
             case 4:
-                if (Math.abs(((org.telegram.ui.Components.voip.y) this.f29806b).O.getAlpha() - 1.0f) > 0.001f) {
+                if (Math.abs(((org.telegram.ui.Components.voip.y) this.f29809b).O.getAlpha() - 1.0f) > 0.001f) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
@@ -234,12 +234,12 @@ public final class n2 extends TextView {
 
     @Override
     public void setVisibility(int i7) {
-        switch (this.f29805a) {
+        switch (this.f29808a) {
             case 2:
                 super.setVisibility(i7);
                 if (i7 != 0) {
                     b(0);
-                    ((FragmentContextView) this.f29806b).O = 0;
+                    ((FragmentContextView) this.f29809b).O = 0;
                     return;
                 }
                 return;
@@ -251,17 +251,17 @@ public final class n2 extends TextView {
 
     public n2(Activity activity, Paint paint) {
         super(activity);
-        this.f29805a = 7;
-        this.f29806b = paint;
+        this.f29808a = 7;
+        this.f29809b = paint;
     }
 
     public n2(Context context, int i7) {
         super(context);
-        this.f29805a = i7;
+        this.f29808a = i7;
         switch (i7) {
             case 5:
                 super(context);
-                this.f29806b = new os(1, this);
+                this.f29809b = new os(1, this);
                 return;
             default:
                 return;

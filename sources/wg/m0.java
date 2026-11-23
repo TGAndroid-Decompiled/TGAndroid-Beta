@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.h2;
@@ -22,15 +22,15 @@ import org.telegram.ui.Components.m80;
 import org.telegram.ui.jw0;
 import v4.f1;
 public final class m0 extends dk0 {
-    public final q0 f59834c;
+    public final q0 f59838c;
 
     public m0(q0 q0Var) {
-        this.f59834c = q0Var;
+        this.f59838c = q0Var;
     }
 
     @Override
     public final boolean D(f1 f1Var) {
-        if (f1Var.f59165f == 3) {
+        if (f1Var.f59169f == 3) {
             return true;
         }
         return false;
@@ -38,7 +38,7 @@ public final class m0 extends dk0 {
 
     @Override
     public final int b() {
-        return this.f59834c.U1.size() + 3;
+        return this.f59838c.U1.size() + 3;
     }
 
     @Override
@@ -59,9 +59,9 @@ public final class m0 extends dk0 {
     @Override
     public final void t(f1 f1Var, int i7) {
         String str;
-        int i10 = f1Var.f59165f;
-        View view = f1Var.f59161a;
-        q0 q0Var = this.f59834c;
+        int i10 = f1Var.f59169f;
+        View view = f1Var.f59165a;
+        q0 q0Var = this.f59838c;
         if (i10 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) q0Var.U1.get(i7 - 3);
             ah.r rVar = (ah.r) view;
@@ -71,21 +71,21 @@ public final class m0 extends dk0 {
             o4 o4Var = (o4) view;
             o4Var.setTextSize(15.0f);
             o4Var.setPadding(0, 0, 0, org.telegram.messenger.g0.L(2.0f));
-            o4Var.setText(gd.N0(2131753292, null));
+            o4Var.setText(hd.N0(2131753292, null));
         } else if (i10 == 0) {
             p0 p0Var = (p0) view;
             q0Var.X1 = p0Var;
             TLRPC.Chat chat = q0Var.V1;
-            m80 m80Var = p0Var.f59852e;
+            m80 m80Var = p0Var.f59856e;
             try {
-                int i11 = (int) mp.u1(j10.f24798t0).f25783s0;
+                int i11 = (int) np.u1(k10.f24968t0).f25954s0;
                 if (chat == null) {
                     str = "";
                 } else {
                     str = chat.title;
                 }
-                SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(gd.G(i11, "BoostingReassignBoostTextPluralWithLink", str, "%3$s"));
-                SpannableStringBuilder R2 = org.telegram.messenger.g0.R2(gd.N0(2131753317, "BoostingReassignBoostTextLink"), m6.Xc, 2, new h2(q0Var, 3), null);
+                SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(hd.G(i11, "BoostingReassignBoostTextPluralWithLink", str, "%3$s"));
+                SpannableStringBuilder R2 = org.telegram.messenger.g0.R2(hd.N0(2131753317, "BoostingReassignBoostTextLink"), m6.Xc, 2, new h2(q0Var, 3), null);
                 int indexOf = TextUtils.indexOf(W2, "%3$s");
                 W2.replace(indexOf, indexOf + 4, (CharSequence) R2);
                 m80Var.setText(W2, TextView.BufferType.EDITABLE);
@@ -100,7 +100,7 @@ public final class m0 extends dk0 {
     public final f1 x(ViewGroup viewGroup, int i7) {
         View view;
         Context context = viewGroup.getContext();
-        q0 q0Var = this.f59834c;
+        q0 q0Var = this.f59838c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -113,7 +113,7 @@ public final class m0 extends dk0 {
                     view = new o4(context, 22);
                 }
             } else {
-                int i10 = m6.f29321a7;
+                int i10 = m6.f29324a7;
                 view = new z6(context, m6.x0(null, i10, false), 0);
                 t6.h(i10, view, null);
             }

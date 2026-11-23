@@ -7,30 +7,30 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.messenger.voip.VoIPServiceState;
 public final class dc1 extends LinearLayout {
-    public final hc1 f46915a;
+    public final hc1 f46918a;
 
     public dc1(hc1 hc1Var, Activity activity) {
         super(activity);
-        this.f46915a = hc1Var;
+        this.f46918a = hc1Var;
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         VoIPServiceState sharedState = VoIPService.getSharedState();
-        CharSequence text = this.f46915a.F.getText();
+        CharSequence text = this.f46918a.F.getText();
         if (sharedState != null && !TextUtils.isEmpty(text)) {
             StringBuilder sb2 = new StringBuilder(text);
             sb2.append(", ");
             if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
-                sb2.append(org.telegram.messenger.gd.N0(2131743054, null));
+                sb2.append(org.telegram.messenger.hd.N0(2131743052, null));
             } else {
-                sb2.append(org.telegram.messenger.gd.N0(2131743057, null));
+                sb2.append(org.telegram.messenger.hd.N0(2131743055, null));
             }
             long callDuration = sharedState.getCallDuration();
             if (callDuration > 0) {
                 sb2.append(", ");
-                sb2.append(org.telegram.messenger.gd.z((int) (callDuration / 1000)));
+                sb2.append(org.telegram.messenger.hd.z((int) (callDuration / 1000)));
             }
             accessibilityNodeInfo.setText(sb2);
         }

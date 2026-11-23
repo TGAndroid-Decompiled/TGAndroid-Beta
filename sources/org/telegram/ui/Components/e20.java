@@ -5,24 +5,24 @@ import android.content.Context;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class e20 implements Runnable {
-    public final int f34663a;
-    public final Context f34664b;
+    public final int f34664a;
+    public final Context f34665b;
 
     public e20(Context context, int i7) {
-        this.f34663a = i7;
-        this.f34664b = context;
+        this.f34664a = i7;
+        this.f34665b = context;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f34663a;
-        Context context = this.f34664b;
+        int i7 = this.f34664a;
+        Context context = this.f34665b;
         switch (i7) {
             case 0:
                 c20.k(context);
                 return;
             case 1:
-                vf.c.t(context, org.telegram.messenger.gd.N0(2131744725, null));
+                vf.c.t(context, org.telegram.messenger.hd.N0(2131744723, null));
                 return;
             case 2:
                 Activity W = org.telegram.messenger.g0.W(context);

@@ -32,13 +32,13 @@ import org.telegram.ui.ac1;
 import org.telegram.ui.tb1;
 import org.telegram.ui.wn0;
 public abstract class d {
-    public static boolean f1138a;
-    public static long f1139b;
-    public static int f1140c;
+    public static boolean f1146a;
+    public static long f1147b;
+    public static int f1148c;
     public static boolean d;
 
     public static void a(Context context) {
-        if (f1140c == 0 && !d) {
+        if (f1148c == 0 && !d) {
             ArrayList arrayList = new ArrayList();
             try {
                 if (SpeechRecognizer.isRecognitionAvailable(context)) {
@@ -47,7 +47,7 @@ public abstract class d {
             } catch (Throwable unused) {
             }
             if (arrayList.isEmpty()) {
-                f1140c = -1;
+                f1148c = -1;
                 Log.d("Dictation", "support probe: no recognition service");
                 return;
             }
@@ -77,7 +77,7 @@ public abstract class d {
     public static boolean b(Context context) {
         if (context != null && DictationAsr.C()) {
             ArrayList arrayList = new ArrayList();
-            HashMap hashMap = w0.f1589a;
+            HashMap hashMap = w0.f1600a;
             LinkedHashMap linkedHashMap = new LinkedHashMap();
             w0.b(linkedHashMap, context);
             ArrayList arrayList2 = new ArrayList(linkedHashMap.values());
@@ -169,17 +169,17 @@ public abstract class d {
     public static boolean i() {
         boolean z10;
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j3 = f1139b;
+        long j3 = f1147b;
         if (j3 == 0 || elapsedRealtime - j3 > 60000) {
-            f1139b = elapsedRealtime;
+            f1147b = elapsedRealtime;
             try {
-                z10 = SpeechRecognizer.isRecognitionAvailable(org.telegram.messenger.t0.f26941b);
+                z10 = SpeechRecognizer.isRecognitionAvailable(org.telegram.messenger.t0.f26931b);
             } catch (Throwable unused) {
                 z10 = false;
             }
-            f1138a = z10;
+            f1146a = z10;
         }
-        if (!f1138a || f1140c < 0) {
+        if (!f1146a || f1148c < 0) {
             return false;
         }
         return true;

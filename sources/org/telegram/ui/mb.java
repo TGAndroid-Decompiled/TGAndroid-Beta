@@ -3,19 +3,19 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.KeyEvent;
 public final class mb implements org.telegram.ui.Components.qj0 {
-    public final int f49832a = 1;
-    public final long f49833b;
-    public final Context f49834c;
+    public final int f49836a = 1;
+    public final long f49837b;
+    public final Context f49838c;
     public final KeyEvent.Callback d;
-    public final Object f49835e;
-    public final Object f49836f;
+    public final Object f49839e;
+    public final Object f49840f;
 
     public mb(sb sbVar, Context context, long j3, org.telegram.ui.ActionBar.h6 h6Var, c51 c51Var) {
         this.d = sbVar;
-        this.f49834c = context;
-        this.f49833b = j3;
-        this.f49835e = h6Var;
-        this.f49836f = c51Var;
+        this.f49838c = context;
+        this.f49837b = j3;
+        this.f49839e = h6Var;
+        this.f49840f = c51Var;
     }
 
     @Override
@@ -25,9 +25,9 @@ public final class mb implements org.telegram.ui.Components.qj0 {
 
     public mb(org.telegram.ui.Components.l60 l60Var, long j3, org.telegram.ui.ActionBar.g2 g2Var, a0.h hVar, Context context) {
         this.d = l60Var;
-        this.f49833b = j3;
-        this.f49835e = g2Var;
-        this.f49836f = hVar;
-        this.f49834c = context;
+        this.f49837b = j3;
+        this.f49839e = g2Var;
+        this.f49840f = hVar;
+        this.f49838c = context;
     }
 }

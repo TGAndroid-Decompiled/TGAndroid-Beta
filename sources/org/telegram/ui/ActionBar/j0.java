@@ -4,56 +4,56 @@ import android.transition.Transition;
 import android.widget.FrameLayout;
 import org.telegram.ui.Components.e10;
 public final class j0 implements Transition.TransitionListener {
-    public final int f29040a;
-    public final FrameLayout f29041b;
+    public final int f29043a;
+    public final FrameLayout f29044b;
 
     public j0(int i7, FrameLayout frameLayout) {
-        this.f29040a = i7;
-        this.f29041b = frameLayout;
+        this.f29043a = i7;
+        this.f29044b = frameLayout;
     }
 
     @Override
     public final void onTransitionCancel(Transition transition) {
-        switch (this.f29040a) {
+        switch (this.f29043a) {
             case 0:
-                ((q0) this.f29041b).f29911j0.e();
+                ((q0) this.f29044b).f29914j0.e();
                 return;
             default:
-                ((e10) this.f29041b).F.e();
+                ((e10) this.f29044b).F.e();
                 return;
         }
     }
 
     @Override
     public final void onTransitionEnd(Transition transition) {
-        switch (this.f29040a) {
+        switch (this.f29043a) {
             case 0:
-                ((q0) this.f29041b).f29911j0.e();
+                ((q0) this.f29044b).f29914j0.e();
                 return;
             default:
-                ((e10) this.f29041b).F.e();
+                ((e10) this.f29044b).F.e();
                 return;
         }
     }
 
     @Override
     public final void onTransitionPause(Transition transition) {
-        int i7 = this.f29040a;
+        int i7 = this.f29043a;
     }
 
     @Override
     public final void onTransitionResume(Transition transition) {
-        int i7 = this.f29040a;
+        int i7 = this.f29043a;
     }
 
     @Override
     public final void onTransitionStart(Transition transition) {
-        switch (this.f29040a) {
+        switch (this.f29043a) {
             case 0:
-                ((q0) this.f29041b).f29911j0.d();
+                ((q0) this.f29044b).f29914j0.d();
                 return;
             default:
-                ((e10) this.f29041b).F.d();
+                ((e10) this.f29044b).F.d();
                 return;
         }
     }

@@ -5,10 +5,10 @@ import android.text.SpannableStringBuilder;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ww0 implements org.telegram.ui.ls {
-    public final ax0 f41912a;
+    public final ax0 f41906a;
 
     public ww0(ax0 ax0Var) {
-        this.f41912a = ax0Var;
+        this.f41906a = ax0Var;
     }
 
     @Override
@@ -18,13 +18,13 @@ public final class ww0 implements org.telegram.ui.ls {
 
     @Override
     public final void B(TLRPC.Document document) {
-        ax0 ax0Var = this.f41912a;
-        yw0 yw0Var = ax0Var.f33643c;
+        ax0 ax0Var = this.f41906a;
+        yw0 yw0Var = ax0Var.f33656c;
         if (yw0Var != null) {
             org.telegram.ui.ActionBar.g2 parentFragment = yw0Var.getParentFragment();
             if (parentFragment instanceof org.telegram.ui.bn) {
                 ((org.telegram.ui.bn) parentFragment).Gb(document);
-                ax0Var.f33643c.setFieldText("");
+                ax0Var.f33656c.setFieldText("");
             }
         }
     }
@@ -36,10 +36,10 @@ public final class ww0 implements org.telegram.ui.ls {
 
     @Override
     public final boolean D(TLRPC.Document document) {
-        if (this.f41912a.E) {
+        if (this.f41906a.E) {
             return false;
         }
-        return org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24798t0).q();
+        return org.telegram.messenger.k10.i(org.telegram.messenger.k10.f24968t0).q();
     }
 
     @Override
@@ -55,10 +55,10 @@ public final class ww0 implements org.telegram.ui.ls {
     @Override
     public final void H(TLRPC.Document document) {
         yw0 yw0Var;
-        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(org.telegram.messenger.fj.U(document));
+        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(org.telegram.messenger.gj.U(document));
         valueOf.setSpan(new y5(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
-        if (org.telegram.messenger.g0.g(valueOf) && (yw0Var = this.f41912a.f33643c) != null) {
-            org.telegram.messenger.n10.t(null, 2131751172, lc.b0(yw0Var.getParentFragment()));
+        if (org.telegram.messenger.g0.g(valueOf) && (yw0Var = this.f41906a.f33656c) != null) {
+            org.telegram.messenger.o10.t(null, 2131751172, lc.b0(yw0Var.getParentFragment()));
         }
     }
 
@@ -81,11 +81,11 @@ public final class ww0 implements org.telegram.ui.ls {
     public final Boolean P(TLRPC.Document document) {
         TLRPC.User f10;
         boolean z10;
-        if (this.f41912a.F || !org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24798t0).q() || (f10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24798t0).f()) == null) {
+        if (this.f41906a.F || !org.telegram.messenger.k10.i(org.telegram.messenger.k10.f24968t0).q() || (f10 = org.telegram.messenger.k10.i(org.telegram.messenger.k10.f24968t0).f()) == null) {
             return null;
         }
-        Long i7 = org.telegram.messenger.o10.i(f10);
-        if (document != null && (i7 == null || i7.longValue() != document.f28437id)) {
+        Long i7 = org.telegram.messenger.p10.i(f10);
+        if (document != null && (i7 == null || i7.longValue() != document.f28440id)) {
             z10 = true;
         } else {
             z10 = false;
@@ -110,7 +110,7 @@ public final class ww0 implements org.telegram.ui.ls {
 
     @Override
     public final boolean c() {
-        yw0 yw0Var = this.f41912a.f33643c;
+        yw0 yw0Var = this.f41906a.f33656c;
         if (yw0Var == null) {
             return false;
         }
@@ -153,7 +153,7 @@ public final class ww0 implements org.telegram.ui.ls {
 
     @Override
     public final boolean k(int i7) {
-        yw0 yw0Var = this.f41912a.f33643c;
+        yw0 yw0Var = this.f41906a.f33656c;
         if (yw0Var == null) {
             return false;
         }
@@ -161,8 +161,8 @@ public final class ww0 implements org.telegram.ui.ls {
         if (parentFragment instanceof org.telegram.ui.bn) {
             org.telegram.ui.bn bnVar = (org.telegram.ui.bn) parentFragment;
             if (bnVar.T6()) {
-                if (!org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24798t0).q()) {
-                    if (bnVar.j() != null && org.telegram.messenger.o10.C(bnVar.j())) {
+                if (!org.telegram.messenger.k10.i(org.telegram.messenger.k10.f24968t0).q()) {
+                    if (bnVar.j() != null && org.telegram.messenger.p10.C(bnVar.j())) {
                         return true;
                     }
                 } else {
@@ -183,24 +183,24 @@ public final class ww0 implements org.telegram.ui.ls {
         TLRPC.EmojiStatus emojiStatus;
         Object obj;
         org.telegram.ui.ActionBar.g2 parentFragment;
-        ax0 ax0Var = this.f41912a;
-        org.telegram.ui.ActionBar.h6 h6Var = ax0Var.f33641b;
+        ax0 ax0Var = this.f41906a;
+        org.telegram.ui.ActionBar.h6 h6Var = ax0Var.f33654b;
         if (document == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f28437id;
+            tL_emojiStatus.document_id = document.f28440id;
             emojiStatus = tL_emojiStatus;
         }
-        TLRPC.User f10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24798t0).f();
+        TLRPC.User f10 = org.telegram.messenger.k10.i(org.telegram.messenger.k10.f24968t0).f();
         if (f10 == null) {
             obj = new TLRPC.TL_emojiStatusEmpty();
         } else {
             obj = f10.emoji_status;
         }
-        org.telegram.messenger.mp.u1(ax0Var.f33639a).t5(emojiStatus, null);
+        org.telegram.messenger.np.u1(ax0Var.f33652a).t5(emojiStatus, null);
         fm0 fm0Var = new fm0(12, this, obj);
-        yw0 yw0Var = ax0Var.f33643c;
+        yw0 yw0Var = ax0Var.f33656c;
         if (yw0Var == null) {
             parentFragment = null;
         } else {
@@ -209,15 +209,15 @@ public final class ww0 implements org.telegram.ui.ls {
         if (parentFragment != null) {
             if (document == null) {
                 yb ybVar = new yb(ax0Var.getContext(), h6Var);
-                ybVar.f42382b.setText(org.telegram.messenger.gd.N0(2131746091, null));
-                ybVar.f42381a.setImageResource(2131232364);
+                ybVar.f42375b.setText(org.telegram.messenger.hd.N0(2131746091, null));
+                ybVar.f42374a.setImageResource(2131232364);
                 ec ecVar = new ec(ax0Var.getContext(), h6Var, true);
-                ecVar.f34727b = fm0Var;
+                ecVar.f34725b = fm0Var;
                 ybVar.setButton(ecVar);
                 gc.g(parentFragment, ybVar, 1500).j();
                 return;
             }
-            lc.b0(parentFragment).r(document, org.telegram.messenger.gd.N0(2131745349, null), org.telegram.messenger.gd.N0(2131743642, null), fm0Var).j();
+            lc.b0(parentFragment).r(document, org.telegram.messenger.hd.N0(2131745349, null), org.telegram.messenger.hd.N0(2131743640, null), fm0Var).j();
         }
     }
 
@@ -227,7 +227,7 @@ public final class ww0 implements org.telegram.ui.ls {
     }
 
     @Override
-    public final org.telegram.messenger.fj z() {
+    public final org.telegram.messenger.gj z() {
         return null;
     }
 
@@ -240,7 +240,7 @@ public final class ww0 implements org.telegram.ui.ls {
     }
 
     @Override
-    public final void i(org.telegram.messenger.sy syVar) {
+    public final void i(org.telegram.messenger.ty tyVar) {
     }
 
     @Override

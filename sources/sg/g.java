@@ -2,17 +2,17 @@ package sg;
 
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 public final class g extends h {
-    public static final List f57237c = Arrays.asList(new g(2), new g(3), new g(4), new g(1), new g(0));
-    public final int f57238b;
+    public static final List f57241c = Arrays.asList(new g(2), new g(3), new g(4), new g(1), new g(0));
+    public final int f57242b;
 
     public g(int i7) {
-        this.f57238b = i7;
+        this.f57242b = i7;
     }
 
     public static g p(int i7) {
-        List list = f57237c;
+        List list = f57241c;
         if (i7 >= 0 && i7 <= list.size()) {
             return (g) list.get(i7);
         }
@@ -30,7 +30,7 @@ public final class g extends h {
 
     @Override
     public final int e() {
-        switch (this.f57238b) {
+        switch (this.f57242b) {
             case 0:
                 return 2131232521;
             case 1:
@@ -56,7 +56,7 @@ public final class g extends h {
     }
 
     public final int m() {
-        switch (this.f57238b) {
+        switch (this.f57242b) {
             case 0:
                 return 2131232521;
             case 1:
@@ -71,22 +71,22 @@ public final class g extends h {
     }
 
     public final String n() {
-        switch (this.f57238b) {
+        switch (this.f57242b) {
             case 0:
-                return gd.N0(2131747482, null);
+                return hd.N0(2131747482, null);
             case 1:
-                return gd.N0(2131747480, null);
+                return hd.N0(2131747480, null);
             case 2:
-                return gd.N0(2131747479, null);
+                return hd.N0(2131747479, null);
             case 3:
-                return gd.N0(2131747468, null);
+                return hd.N0(2131747468, null);
             default:
-                return gd.N0(2131747467, null);
+                return hd.N0(2131747467, null);
         }
     }
 
     public final int o() {
-        switch (this.f57238b) {
+        switch (this.f57242b) {
             case 0:
                 return 4;
             case 1:

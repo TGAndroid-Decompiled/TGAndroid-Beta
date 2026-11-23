@@ -10,7 +10,7 @@ import android.view.TextureView;
 import android.view.View;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.pc;
+import org.telegram.messenger.qc;
 import org.telegram.messenger.voip.VoIPService;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
@@ -345,7 +345,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     public void setBackgroundRenderer(TextureView textureView) {
-        if (!pc.e(512)) {
+        if (!qc.e(512)) {
             return;
         }
         this.backgroundRenderer = textureView;

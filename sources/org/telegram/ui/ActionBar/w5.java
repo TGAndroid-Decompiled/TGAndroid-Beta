@@ -7,14 +7,14 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class w5 extends Drawable {
-    public final int f30225a = 1;
-    public final int f30226b;
-    public final int f30227c;
+    public final int f30228a = 1;
+    public final int f30229b;
+    public final int f30230c;
     public Object d;
 
     public w5(int i7, int i10, int i11) {
-        this.f30226b = i7;
-        this.f30227c = i11;
+        this.f30229b = i7;
+        this.f30230c = i11;
         Paint paint = new Paint(1);
         this.d = paint;
         paint.setStyle(Paint.Style.STROKE);
@@ -26,15 +26,15 @@ public final class w5 extends Drawable {
     public final void draw(Canvas canvas) {
         int i7;
         float f10;
-        switch (this.f30225a) {
+        switch (this.f30228a) {
             case 0:
                 Rect bounds = getBounds();
-                canvas.drawCircle(bounds.centerX(), bounds.centerY(), this.f30227c / 2.0f, (Paint) this.d);
+                canvas.drawCircle(bounds.centerX(), bounds.centerY(), this.f30230c / 2.0f, (Paint) this.d);
                 return;
             default:
                 Rect bounds2 = getBounds();
-                int i10 = this.f30227c;
-                int i11 = this.f30226b;
+                int i10 = this.f30230c;
+                int i11 = this.f30229b;
                 if (i11 == 7) {
                     if (((RectF) this.d) == null) {
                         this.d = new RectF();
@@ -45,7 +45,7 @@ public final class w5 extends Drawable {
                     } else {
                         f10 = i10;
                     }
-                    canvas.drawRoundRect((RectF) this.d, f10, f10, m6.f29782z);
+                    canvas.drawRoundRect((RectF) this.d, f10, f10, m6.f29785z);
                     return;
                 }
                 if (i11 != 1 && i11 != 6) {
@@ -60,16 +60,16 @@ public final class w5 extends Drawable {
                     }
                     i7 = i10;
                 }
-                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i7, m6.f29782z);
+                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i7, m6.f29785z);
                 return;
         }
     }
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f30225a) {
+        switch (this.f30228a) {
             case 0:
-                return this.f30227c + this.f30226b;
+                return this.f30230c + this.f30229b;
             default:
                 return super.getIntrinsicHeight();
         }
@@ -77,9 +77,9 @@ public final class w5 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f30225a) {
+        switch (this.f30228a) {
             case 0:
-                return this.f30227c + this.f30226b;
+                return this.f30230c + this.f30229b;
             default:
                 return super.getIntrinsicWidth();
         }
@@ -87,7 +87,7 @@ public final class w5 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f30225a) {
+        switch (this.f30228a) {
             case 0:
                 return -2;
             default:
@@ -97,7 +97,7 @@ public final class w5 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f30225a) {
+        switch (this.f30228a) {
             case 0:
                 ((Paint) this.d).setAlpha(i7);
                 return;
@@ -108,7 +108,7 @@ public final class w5 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f30225a) {
+        switch (this.f30228a) {
             case 0:
                 ((Paint) this.d).setColorFilter(colorFilter);
                 return;
@@ -118,8 +118,8 @@ public final class w5 extends Drawable {
     }
 
     public w5(int i7, int i10) {
-        this.f30226b = i7;
-        this.f30227c = i10;
+        this.f30229b = i7;
+        this.f30230c = i10;
     }
 
     private final void a(int i7) {

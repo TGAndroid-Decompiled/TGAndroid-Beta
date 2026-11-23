@@ -4,19 +4,19 @@ import a8.ka;
 import a8.la;
 import java.util.Arrays;
 public final class q1 {
-    public transient Object[] f14074a;
-    public transient int[] f14075b;
-    public transient int f14076c;
+    public transient Object[] f14077a;
+    public transient int[] f14078b;
+    public transient int f14079c;
     public transient int[] d;
-    public transient long[] f14077e;
-    public transient float f14078f;
-    public transient int f14079g;
+    public transient long[] f14080e;
+    public transient float f14081f;
+    public transient int f14082g;
 
     public final void a(int i7) {
-        if (i7 > this.f14077e.length) {
+        if (i7 > this.f14080e.length) {
             f(i7);
         }
-        if (i7 >= this.f14079g) {
+        if (i7 >= this.f14082g) {
             g(Math.max(2, Integer.highestOneBit(i7 - 1) << 1));
         }
     }
@@ -26,7 +26,7 @@ public final class q1 {
         if (c10 == -1) {
             return 0;
         }
-        return this.f14075b[c10];
+        return this.f14078b[c10];
     }
 
     public final int c(Object obj) {
@@ -34,8 +34,8 @@ public final class q1 {
         int[] iArr = this.d;
         int i7 = iArr[(iArr.length - 1) & v];
         while (i7 != -1) {
-            long j3 = this.f14077e[i7];
-            if (((int) (j3 >>> 32)) == v && ka.a(obj, this.f14074a[i7])) {
+            long j3 = this.f14080e[i7];
+            if (((int) (j3 >>> 32)) == v && ka.a(obj, this.f14077a[i7])) {
                 return i7;
             }
             i7 = (int) j3;
@@ -59,25 +59,25 @@ public final class q1 {
         int[] iArr = new int[highestOneBit];
         Arrays.fill(iArr, -1);
         this.d = iArr;
-        this.f14078f = 1.0f;
-        this.f14074a = new Object[i7];
-        this.f14075b = new int[i7];
+        this.f14081f = 1.0f;
+        this.f14077a = new Object[i7];
+        this.f14078b = new int[i7];
         long[] jArr = new long[i7];
         Arrays.fill(jArr, -1L);
-        this.f14077e = jArr;
-        this.f14079g = Math.max(1, (int) (highestOneBit * 1.0f));
+        this.f14080e = jArr;
+        this.f14082g = Math.max(1, (int) (highestOneBit * 1.0f));
     }
 
     public final void e(int i7, Object obj) {
         long j3;
         if (i7 > 0) {
-            long[] jArr = this.f14077e;
-            Object[] objArr = this.f14074a;
-            int[] iArr = this.f14075b;
+            long[] jArr = this.f14080e;
+            Object[] objArr = this.f14077a;
+            int[] iArr = this.f14078b;
             int v = o.v(obj);
             int[] iArr2 = this.d;
             int length = (iArr2.length - 1) & v;
-            int i10 = this.f14076c;
+            int i10 = this.f14079c;
             int i11 = iArr2[length];
             if (i11 == -1) {
                 iArr2[length] = i10;
@@ -102,7 +102,7 @@ public final class q1 {
             int i14 = Integer.MAX_VALUE;
             if (i10 != Integer.MAX_VALUE) {
                 int i15 = i10 + 1;
-                int length2 = this.f14077e.length;
+                int length2 = this.f14080e.length;
                 if (i15 > length2) {
                     int max = Math.max(1, length2 >>> 1) + length2;
                     if (max >= 0) {
@@ -112,11 +112,11 @@ public final class q1 {
                         f(i14);
                     }
                 }
-                this.f14077e[i10] = (v << 32) | j3;
-                this.f14074a[i10] = obj;
-                this.f14075b[i10] = i7;
-                this.f14076c = i15;
-                if (i10 >= this.f14079g) {
+                this.f14080e[i10] = (v << 32) | j3;
+                this.f14077a[i10] = obj;
+                this.f14078b[i10] = i7;
+                this.f14079c = i15;
+                if (i10 >= this.f14082g) {
                     g(this.d.length * 2);
                     return;
                 }
@@ -128,35 +128,35 @@ public final class q1 {
     }
 
     public final void f(int i7) {
-        this.f14074a = Arrays.copyOf(this.f14074a, i7);
-        this.f14075b = Arrays.copyOf(this.f14075b, i7);
-        long[] jArr = this.f14077e;
+        this.f14077a = Arrays.copyOf(this.f14077a, i7);
+        this.f14078b = Arrays.copyOf(this.f14078b, i7);
+        long[] jArr = this.f14080e;
         int length = jArr.length;
         long[] copyOf = Arrays.copyOf(jArr, i7);
         if (i7 > length) {
             Arrays.fill(copyOf, length, i7, -1L);
         }
-        this.f14077e = copyOf;
+        this.f14080e = copyOf;
     }
 
     public final void g(int i7) {
         if (this.d.length >= 1073741824) {
-            this.f14079g = Integer.MAX_VALUE;
+            this.f14082g = Integer.MAX_VALUE;
             return;
         }
-        int i10 = ((int) (i7 * this.f14078f)) + 1;
+        int i10 = ((int) (i7 * this.f14081f)) + 1;
         int[] iArr = new int[i7];
         Arrays.fill(iArr, -1);
-        long[] jArr = this.f14077e;
+        long[] jArr = this.f14080e;
         int i11 = i7 - 1;
-        for (int i12 = 0; i12 < this.f14076c; i12++) {
+        for (int i12 = 0; i12 < this.f14079c; i12++) {
             int i13 = (int) (jArr[i12] >>> 32);
             int i14 = i13 & i11;
             int i15 = iArr[i14];
             iArr[i14] = i12;
             jArr[i12] = (i13 << 32) | (i15 & 4294967295L);
         }
-        this.f14079g = i10;
+        this.f14082g = i10;
         this.d = iArr;
     }
 }

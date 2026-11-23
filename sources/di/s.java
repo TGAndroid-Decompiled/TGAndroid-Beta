@@ -3,31 +3,31 @@ package di;
 import android.content.Context;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.h51;
 public final class s extends FrameLayout {
-    public final int f9710a;
-    public final ArrayList f9711b;
-    public final h51 f9712c;
+    public final int f9713a;
+    public final ArrayList f9714b;
+    public final h51 f9715c;
     public String d;
-    public boolean f9713e;
-    public boolean f9714f;
+    public boolean f9716e;
+    public boolean f9717f;
     public boolean h;
-    public final ca.r f9715n;
-    public final t f9716r;
+    public final ca.r f9718n;
+    public final t f9719r;
 
     public s(t tVar, Context context, int i7) {
         super(context);
         int i10;
         org.telegram.ui.ActionBar.h6 h6Var;
         ri.q qVar;
-        this.f9716r = tVar;
-        this.f9711b = new ArrayList();
+        this.f9719r = tVar;
+        this.f9714b = new ArrayList();
         this.d = "";
-        this.f9715n = new ca.r(this, 10);
-        this.f9710a = i7;
+        this.f9718n = new ca.r(this, 10);
+        this.f9713a = i7;
         setClipChildren(false);
         setClipToPadding(false);
         i10 = ((org.telegram.ui.ActionBar.g2) tVar).currentAccount;
@@ -36,9 +36,9 @@ public final class s extends FrameLayout {
         a1.c cVar = new a1.c(this, 23);
         h6Var = ((org.telegram.ui.ActionBar.g2) tVar).resourceProvider;
         h51 h51Var = new h51(context, i10, classGuid, true, bVar, cVar, null, h6Var);
-        this.f9712c = h51Var;
+        this.f9715c = h51Var;
         h51Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
-        h51Var.f35796g3.f34068r = false;
+        h51Var.f35790g3.f34062r = false;
         h51Var.setCaptureSectionsDecoratorAllowed(true);
         h51Var.setClipToPadding(false);
         h51Var.setOverScrollMode(0);
@@ -53,13 +53,13 @@ public final class s extends FrameLayout {
         int i7;
         int i10;
         int i11;
-        t tVar = this.f9716r;
-        if (!tVar.P && !this.f9713e && !this.f9714f && !this.h) {
+        t tVar = this.f9719r;
+        if (!tVar.P && !this.f9716e && !this.f9717f && !this.h) {
             boolean z11 = true;
-            this.f9713e = true;
+            this.f9716e = true;
             TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
             tL_payments_getStarsTransactions.ton = true;
-            int i12 = this.f9710a;
+            int i12 = this.f9713a;
             if (i12 == 1) {
                 z10 = true;
             } else {
@@ -71,11 +71,11 @@ public final class s extends FrameLayout {
             }
             tL_payments_getStarsTransactions.outbound = z11;
             i7 = ((org.telegram.ui.ActionBar.g2) tVar).currentAccount;
-            tL_payments_getStarsTransactions.peer = mp.u1(i7).l1(tVar.f9768b);
+            tL_payments_getStarsTransactions.peer = np.u1(i7).l1(tVar.f9771b);
             String str = this.d;
             tL_payments_getStarsTransactions.offset = str;
             tL_payments_getStarsTransactions.limit = 20;
-            this.f9712c.f35796g3.O(false);
+            this.f9715c.f35790g3.O(false);
             i10 = ((org.telegram.ui.ActionBar.g2) tVar).currentAccount;
             int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_payments_getStarsTransactions, new bi.o1(4, this, str));
             i11 = ((org.telegram.ui.ActionBar.g2) tVar).currentAccount;
@@ -86,12 +86,12 @@ public final class s extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        post(this.f9715n);
+        post(this.f9718n);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        removeCallbacks(this.f9715n);
+        removeCallbacks(this.f9718n);
         super.onDetachedFromWindow();
     }
 }

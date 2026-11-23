@@ -14,47 +14,47 @@ import java.util.ArrayList;
 import org.telegram.ui.ActionBar.m6;
 public final class d {
     public static final ColorMatrixColorFilter v = new ColorMatrixColorFilter(new ColorMatrix());
-    public int f56692b;
-    public eh.a f56693c;
+    public int f56696b;
+    public eh.a f56697c;
     public FrameLayout d;
-    public boolean f56698j;
-    public ColorMatrixColorFilter f56699k;
-    public boolean f56700l;
-    public int f56704p;
-    public int f56705q;
-    public int f56706r;
-    public int f56707s;
-    public int f56708t;
-    public int f56709u;
-    public final ArrayList f56691a = new ArrayList();
-    public final RenderNode f56694e = w.m();
-    public final c f56695f = new c(this, 1);
-    public final c f56696g = new c(this, 2);
+    public boolean f56702j;
+    public ColorMatrixColorFilter f56703k;
+    public boolean f56704l;
+    public int f56708p;
+    public int f56709q;
+    public int f56710r;
+    public int f56711s;
+    public int f56712t;
+    public int f56713u;
+    public final ArrayList f56695a = new ArrayList();
+    public final RenderNode f56698e = w.m();
+    public final c f56699f = new c(this, 1);
+    public final c f56700g = new c(this, 2);
     public final c h = new c(this, 3);
-    public final c f56697i = new c(this, 4);
-    public int f56701m = 1;
-    public int f56702n = 1;
-    public int f56703o = 1;
+    public final c f56701i = new c(this, 4);
+    public int f56705m = 1;
+    public int f56706n = 1;
+    public int f56707o = 1;
 
     public static void a(d dVar, Canvas canvas, int i7, float f10, float f11, float f12, float f13) {
         RectF rectF;
         int i10;
-        for (int i11 = 0; i11 < dVar.f56692b; i11++) {
-            b bVar = (b) dVar.f56691a.get(i11);
-            if (bVar.f56668a.intersects(f10, f11, f12, f13)) {
+        for (int i11 = 0; i11 < dVar.f56696b; i11++) {
+            b bVar = (b) dVar.f56695a.get(i11);
+            if (bVar.f56672a.intersects(f10, f11, f12, f13)) {
                 if (p5.c.a(i7)) {
                     rectF = bVar.d;
                 } else {
-                    rectF = bVar.f56670c;
+                    rectF = bVar.f56674c;
                 }
                 if (p5.c.a(i7)) {
-                    i10 = bVar.f56681p;
+                    i10 = bVar.f56685p;
                 } else {
-                    i10 = bVar.f56680o;
+                    i10 = bVar.f56684o;
                 }
                 RenderNode a10 = bVar.a(i7);
                 canvas.save();
-                canvas.clipRect(bVar.f56668a);
+                canvas.clipRect(bVar.f56672a);
                 canvas.translate(rectF.left, rectF.top);
                 float f14 = i10;
                 canvas.scale(f14, f14);
@@ -67,22 +67,22 @@ public final class d {
     public static void b(d dVar, int i7, Canvas canvas, RectF rectF, int i10, float f10, float f11) {
         RectF rectF2;
         int i11;
-        for (int i12 = 0; i12 < dVar.f56692b; i12++) {
-            b bVar = (b) dVar.f56691a.get(i12);
-            if (RectF.intersects(bVar.f56668a, rectF)) {
+        for (int i12 = 0; i12 < dVar.f56696b; i12++) {
+            b bVar = (b) dVar.f56695a.get(i12);
+            if (RectF.intersects(bVar.f56672a, rectF)) {
                 if (p5.c.a(i7)) {
                     rectF2 = bVar.d;
                 } else {
-                    rectF2 = bVar.f56670c;
+                    rectF2 = bVar.f56674c;
                 }
                 if (p5.c.a(i7)) {
-                    i11 = bVar.f56681p;
+                    i11 = bVar.f56685p;
                 } else {
-                    i11 = bVar.f56680o;
+                    i11 = bVar.f56684o;
                 }
                 canvas.save();
                 float f12 = i10 * 2;
-                RectF rectF3 = bVar.f56668a;
+                RectF rectF3 = bVar.f56672a;
                 float f13 = i10;
                 canvas.clipRect(((rectF3.left - f12) - f10) / f13, ((rectF3.top - f12) - f11) / f13, ((rectF3.right + f12) - f10) / f13, ((rectF3.bottom + f12) - f11) / f13);
                 canvas.translate((rectF2.left - f10) / f13, (rectF2.top - f11) / f13);
@@ -113,16 +113,16 @@ public final class d {
             if (c10 != 1) {
                 if (c10 != 2) {
                     if (c10 == 3) {
-                        this.f56698j = true;
-                        return this.f56697i;
+                        this.f56702j = true;
+                        return this.f56701i;
                     }
                     throw new IllegalArgumentException("Unknown source index: ".concat(p5.c.x(i7)));
                 }
                 return this.h;
             }
-            return this.f56696g;
+            return this.f56700g;
         }
-        return this.f56695f;
+        return this.f56699f;
     }
 
     public final void e() {
@@ -138,18 +138,18 @@ public final class d {
         float f15;
         int i10 = 0;
         while (true) {
-            int i11 = this.f56692b;
-            ArrayList arrayList = this.f56691a;
+            int i11 = this.f56696b;
+            ArrayList arrayList = this.f56695a;
             if (i10 < i11) {
                 b bVar2 = (b) arrayList.get(i10);
-                eh.a aVar = this.f56693c;
-                boolean z10 = this.f56698j;
+                eh.a aVar = this.f56697c;
+                boolean z10 = this.f56702j;
                 int width = this.d.getWidth();
                 int height = this.d.getHeight();
-                RectF rectF = bVar2.f56670c;
+                RectF rectF = bVar2.f56674c;
                 RectF rectF2 = bVar2.d;
-                float f16 = bVar2.f56684s;
-                int i12 = bVar2.f56680o;
+                float f16 = bVar2.f56688s;
+                int i12 = bVar2.f56684o;
                 if (f16 <= 0.0f) {
                     i7 = i10;
                     ceil = 0;
@@ -157,19 +157,19 @@ public final class d {
                     i7 = i10;
                     ceil = ((int) Math.ceil(e2.B(f16, 0.57735f, 0.5f, 3.0f))) * i12;
                 }
-                float f17 = bVar2.f56685t;
-                int i13 = bVar2.f56681p;
+                float f17 = bVar2.f56689t;
+                int i13 = bVar2.f56685p;
                 if (f17 <= 0.0f) {
                     ceil2 = 0;
                 } else {
                     ceil2 = ((int) Math.ceil(e2.B(f17, 0.57735f, 0.5f, 3.0f))) * i13;
                 }
-                RectF rectF3 = bVar2.f56683r;
-                rectF3.set(bVar2.f56668a);
-                float f18 = -((bVar2.f56682q / 2) + ceil2 + ceil + 1);
+                RectF rectF3 = bVar2.f56687r;
+                rectF3.set(bVar2.f56672a);
+                float f18 = -((bVar2.f56686q / 2) + ceil2 + ceil + 1);
                 rectF3.inset(f18, f18);
-                Rect rect = bVar2.f56669b;
-                int i14 = bVar2.f56682q;
+                Rect rect = bVar2.f56673b;
+                int i14 = bVar2.f56686q;
                 if (i14 > 0) {
                     float f19 = i14;
                     rect.left = ((int) Math.floor(rectF3.left / f19)) * i14;
@@ -177,10 +177,10 @@ public final class d {
                     rect.right = ((int) Math.ceil(rectF3.right / f19)) * i14;
                     rect.bottom = ((int) Math.ceil(rectF3.bottom / f19)) * i14;
                     rectF.set(rect);
-                    rectF.offset(bVar2.f56686u, bVar2.v);
+                    rectF.offset(bVar2.f56690u, bVar2.v);
                     rectF2.set(rect);
-                    rectF2.offset(bVar2.f56687w, bVar2.f56688x);
-                    int i15 = bVar2.f56681p;
+                    rectF2.offset(bVar2.f56691w, bVar2.f56692x);
+                    int i15 = bVar2.f56685p;
                     float f20 = rectF2.left;
                     if (f20 < 0.0f) {
                         bVar = bVar2;
@@ -204,95 +204,95 @@ public final class d {
                             rectF2.bottom = f23 - (((float) Math.ceil((f23 - f10) / f11)) * i15);
                         }
                     }
-                    bVar.f56676k = rect.width() / bVar.f56680o;
-                    bVar.f56677l = rect.height() / bVar.f56680o;
-                    bVar.f56678m = Math.max(1, Math.round(rectF2.width() / bVar.f56681p));
-                    bVar.f56679n = Math.max(1, Math.round(rectF2.height() / bVar.f56681p));
-                    bVar.f56671e.setPosition(0, 0, bVar.f56676k, bVar.f56677l);
-                    RecordingCanvas beginRecording = bVar.f56671e.beginRecording();
+                    bVar.f56680k = rect.width() / bVar.f56684o;
+                    bVar.f56681l = rect.height() / bVar.f56684o;
+                    bVar.f56682m = Math.max(1, Math.round(rectF2.width() / bVar.f56685p));
+                    bVar.f56683n = Math.max(1, Math.round(rectF2.height() / bVar.f56685p));
+                    bVar.f56675e.setPosition(0, 0, bVar.f56680k, bVar.f56681l);
+                    RecordingCanvas beginRecording = bVar.f56675e.beginRecording();
                     beginRecording.save();
-                    float f24 = 1.0f / bVar.f56680o;
+                    float f24 = 1.0f / bVar.f56684o;
                     beginRecording.scale(f24, f24, 0.0f, 0.0f);
                     beginRecording.translate(-rectF.left, -rectF.top);
                     aVar.d(beginRecording, rectF);
                     beginRecording.restore();
-                    bVar.f56671e.endRecording();
-                    bVar.f56672f.setPosition(0, 0, bVar.f56676k, bVar.f56677l);
-                    bVar.f56672f.beginRecording().drawRenderNode(bVar.f56671e);
-                    bVar.f56672f.endRecording();
-                    bVar.f56673g.setPosition(0, 0, bVar.f56678m, bVar.f56679n);
-                    RecordingCanvas beginRecording2 = bVar.f56673g.beginRecording();
+                    bVar.f56675e.endRecording();
+                    bVar.f56676f.setPosition(0, 0, bVar.f56680k, bVar.f56681l);
+                    bVar.f56676f.beginRecording().drawRenderNode(bVar.f56675e);
+                    bVar.f56676f.endRecording();
+                    bVar.f56677g.setPosition(0, 0, bVar.f56682m, bVar.f56683n);
+                    RecordingCanvas beginRecording2 = bVar.f56677g.beginRecording();
                     float f25 = rectF.left - rectF2.left;
-                    float f26 = bVar.f56681p;
+                    float f26 = bVar.f56685p;
                     beginRecording2.translate(f25 / f26, (rectF.top - rectF2.top) / f26);
-                    int i16 = bVar.f56680o;
-                    int i17 = bVar.f56681p;
+                    int i16 = bVar.f56684o;
+                    int i17 = bVar.f56685p;
                     if (i16 != i17) {
                         float f27 = i16 / i17;
                         beginRecording2.scale(f27, f27);
                     }
-                    beginRecording2.drawRenderNode(bVar.f56672f);
-                    bVar.f56673g.endRecording();
+                    beginRecording2.drawRenderNode(bVar.f56676f);
+                    bVar.f56677g.endRecording();
                     if (z10) {
-                        bVar.h.setPosition(0, 0, bVar.f56676k, bVar.f56677l);
-                        bVar.h.beginRecording().drawRenderNode(bVar.f56671e);
+                        bVar.h.setPosition(0, 0, bVar.f56680k, bVar.f56681l);
+                        bVar.h.beginRecording().drawRenderNode(bVar.f56675e);
                         bVar.h.endRecording();
-                        bVar.f56674i.setPosition(0, 0, bVar.f56678m, bVar.f56679n);
-                        RecordingCanvas beginRecording3 = bVar.f56674i.beginRecording();
+                        bVar.f56678i.setPosition(0, 0, bVar.f56682m, bVar.f56683n);
+                        RecordingCanvas beginRecording3 = bVar.f56678i.beginRecording();
                         float f28 = rectF.left - rectF2.left;
-                        float f29 = bVar.f56681p;
+                        float f29 = bVar.f56685p;
                         beginRecording3.translate(f28 / f29, (rectF.top - rectF2.top) / f29);
-                        int i18 = bVar.f56680o;
-                        int i19 = bVar.f56681p;
+                        int i18 = bVar.f56684o;
+                        int i19 = bVar.f56685p;
                         if (i18 != i19) {
                             float f30 = i18 / i19;
                             beginRecording3.scale(f30, f30);
                         }
                         beginRecording3.drawRenderNode(bVar.h);
-                        bVar.f56674i.endRecording();
+                        bVar.f56678i.endRecording();
                     }
                     i10 = i7 + 1;
                 } else {
                     throw new IllegalArgumentException("n must be positive");
                 }
             } else {
-                this.f56694e.setPosition(0, 0, this.d.getWidth(), this.d.getHeight());
-                RecordingCanvas beginRecording4 = this.f56694e.beginRecording();
-                for (int i20 = 0; i20 < this.f56692b; i20++) {
+                this.f56698e.setPosition(0, 0, this.d.getWidth(), this.d.getHeight());
+                RecordingCanvas beginRecording4 = this.f56698e.beginRecording();
+                for (int i20 = 0; i20 < this.f56696b; i20++) {
                     b bVar3 = (b) arrayList.get(i20);
                     beginRecording4.save();
-                    RectF rectF4 = bVar3.f56668a;
-                    RectF rectF5 = bVar3.f56670c;
+                    RectF rectF4 = bVar3.f56672a;
+                    RectF rectF5 = bVar3.f56674c;
                     beginRecording4.clipRect(rectF4);
                     beginRecording4.translate(rectF5.left, rectF5.top);
-                    float f31 = bVar3.f56680o;
+                    float f31 = bVar3.f56684o;
                     beginRecording4.scale(f31, f31);
-                    beginRecording4.drawRenderNode(bVar3.f56671e);
+                    beginRecording4.drawRenderNode(bVar3.f56675e);
                     beginRecording4.restore();
-                    beginRecording4.drawRect(bVar3.f56668a, m6.Jm);
+                    beginRecording4.drawRect(bVar3.f56672a, m6.Jm);
                     beginRecording4.drawRect(rectF5, m6.Im);
                 }
-                this.f56694e.endRecording();
+                this.f56698e.endRecording();
                 return;
             }
         }
     }
 
     public final void f() {
-        this.f56704p = -c(this.f56708t, this.f56701m);
-        this.f56705q = -c(this.f56709u, this.f56701m);
-        this.f56706r = -c(this.f56708t, this.f56702n);
-        this.f56707s = -c(this.f56709u, this.f56702n);
-        for (int i7 = 0; i7 < this.f56692b; i7++) {
-            b bVar = (b) this.f56691a.get(i7);
-            int i10 = this.f56704p;
-            int i11 = this.f56705q;
-            int i12 = this.f56706r;
-            int i13 = this.f56707s;
-            bVar.f56686u = i10;
+        this.f56708p = -c(this.f56712t, this.f56705m);
+        this.f56709q = -c(this.f56713u, this.f56705m);
+        this.f56710r = -c(this.f56712t, this.f56706n);
+        this.f56711s = -c(this.f56713u, this.f56706n);
+        for (int i7 = 0; i7 < this.f56696b; i7++) {
+            b bVar = (b) this.f56695a.get(i7);
+            int i10 = this.f56708p;
+            int i11 = this.f56709q;
+            int i12 = this.f56710r;
+            int i13 = this.f56711s;
+            bVar.f56690u = i10;
             bVar.v = i11;
-            bVar.f56687w = i12;
-            bVar.f56688x = i13;
+            bVar.f56691w = i12;
+            bVar.f56692x = i13;
         }
     }
 }

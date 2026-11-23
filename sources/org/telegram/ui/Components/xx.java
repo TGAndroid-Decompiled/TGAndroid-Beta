@@ -17,17 +17,17 @@ public final class xx extends dk0 {
     public int I;
     public boolean L;
     public final ty M;
-    public final Context f42243c;
+    public final Context f42236c;
     public final boolean d;
-    public final zx f42244e;
-    public final int f42245f;
+    public final zx f42237e;
+    public final int f42238f;
     public int h;
-    public TLRPC.User f42246n;
-    public String f42247r;
-    public boolean f42248s;
-    public boolean f42249w;
-    public String f42250x;
-    public final ArrayList f42251y = new ArrayList();
+    public TLRPC.User f42239n;
+    public String f42240r;
+    public boolean f42241s;
+    public boolean f42242w;
+    public String f42243x;
+    public final ArrayList f42244y = new ArrayList();
     public final HashMap E = new HashMap();
     public int J = -1;
     public int K = -1;
@@ -35,20 +35,20 @@ public final class xx extends dk0 {
     public xx(ty tyVar, Context context, boolean z10, int i7) {
         zx zxVar;
         this.M = tyVar;
-        this.f42243c = context;
+        this.f42236c = context;
         this.d = z10;
-        this.f42245f = i7;
+        this.f42238f = i7;
         if (z10) {
             zxVar = null;
         } else {
             zxVar = new zx(tyVar, context);
         }
-        this.f42244e = zxVar;
+        this.f42237e = zxVar;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59165f == 0) {
+        if (f1Var.f59169f == 0) {
             return true;
         }
         return false;
@@ -56,7 +56,7 @@ public final class xx extends dk0 {
 
     public final void E(String str, String str2, boolean z10, boolean z11, boolean z12, String str3, TLObject tLObject) {
         boolean z13;
-        if (str != null && str.equals(this.f42250x)) {
+        if (str != null && str.equals(this.f42243x)) {
             this.h = 0;
             if (z12 && (!(tLObject instanceof TLRPC.messages_BotResults) || ((TLRPC.messages_BotResults) tLObject).results.isEmpty())) {
                 F(str, str2, z10, z11, false);
@@ -64,41 +64,41 @@ public final class xx extends dk0 {
             }
             HashMap hashMap = this.E;
             boolean z14 = this.d;
-            ArrayList arrayList = this.f42251y;
+            ArrayList arrayList = this.f42244y;
             ty tyVar = this.M;
             if (!z14 && TextUtils.isEmpty(str2)) {
                 arrayList.clear();
                 hashMap.clear();
-                tyVar.f40133p0.e(false);
+                tyVar.f40126p0.e(false);
             }
             if (tLObject instanceof TLRPC.messages_BotResults) {
                 int size = arrayList.size();
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;
                 HashMap hashMap2 = tyVar.m0;
-                xx xxVar = tyVar.f40130o0;
+                xx xxVar = tyVar.f40123o0;
                 if (!hashMap2.containsKey(str3)) {
                     tyVar.m0.put(str3, messages_botresults);
                 }
                 if (!z12 && messages_botresults.cache_time != 0) {
-                    org.telegram.messenger.tr.a0(tyVar.f40099d1).v1(str3, messages_botresults);
+                    org.telegram.messenger.ur.a0(tyVar.f40092d1).v1(str3, messages_botresults);
                 }
-                this.f42247r = messages_botresults.next_offset;
+                this.f42240r = messages_botresults.next_offset;
                 int i7 = 0;
                 for (int i10 = 0; i10 < messages_botresults.results.size(); i10++) {
                     TLRPC.BotInlineResult botInlineResult = messages_botresults.results.get(i10);
-                    if (!hashMap.containsKey(botInlineResult.f28429id)) {
+                    if (!hashMap.containsKey(botInlineResult.f28432id)) {
                         botInlineResult.query_id = messages_botresults.query_id;
                         arrayList.add(botInlineResult);
-                        hashMap.put(botInlineResult.f28429id, botInlineResult);
+                        hashMap.put(botInlineResult.f28432id, botInlineResult);
                         i7++;
                     }
                 }
-                if (size != arrayList.size() && !TextUtils.isEmpty(this.f42247r)) {
+                if (size != arrayList.size() && !TextUtils.isEmpty(this.f42240r)) {
                     z13 = false;
                 } else {
                     z13 = true;
                 }
-                this.f42248s = z13;
+                this.f42241s = z13;
                 if (i7 != 0) {
                     if (z11 && size == 0) {
                         f();
@@ -132,11 +132,11 @@ public final class xx extends dk0 {
                 f();
             }
             if (!z14) {
-                if (tyVar.f40114i0.getAdapter() != this) {
-                    tyVar.f40114i0.setAdapter(this);
+                if (tyVar.f40107i0.getAdapter() != this) {
+                    tyVar.f40107i0.setAdapter(this);
                 }
                 if (z11 && !TextUtils.isEmpty(str) && TextUtils.isEmpty(str2)) {
-                    tyVar.f40117j0.h1(0, 0);
+                    tyVar.f40110j0.h1(0, 0);
                     tyVar.F(2);
                 }
             }
@@ -148,22 +148,22 @@ public final class xx extends dk0 {
         ty tyVar = this.M;
         if (i7 != 0) {
             if (i7 >= 0) {
-                ConnectionsManager.getInstance(tyVar.f40099d1).cancelRequest(this.h, true);
+                ConnectionsManager.getInstance(tyVar.f40092d1).cancelRequest(this.h, true);
             }
             this.h = 0;
         }
-        this.f42250x = str;
-        this.f42249w = z11;
-        zx zxVar = this.f42244e;
+        this.f42243x = str;
+        this.f42242w = z11;
+        zx zxVar = this.f42237e;
         if (zxVar != null) {
             zxVar.a(z11);
         }
-        int i10 = tyVar.f40099d1;
+        int i10 = tyVar.f40092d1;
         HashMap hashMap = tyVar.m0;
-        yv yvVar = tyVar.f40114i0;
-        aw awVar = tyVar.f40133p0;
-        int i11 = tyVar.f40099d1;
-        TLObject h22 = org.telegram.messenger.mp.u1(i10).h2(org.telegram.messenger.mp.u1(i11).N3);
+        yv yvVar = tyVar.f40107i0;
+        aw awVar = tyVar.f40126p0;
+        int i11 = tyVar.f40092d1;
+        TLObject h22 = org.telegram.messenger.np.u1(i10).h2(org.telegram.messenger.np.u1(i11).N3);
         boolean z13 = h22 instanceof TLRPC.User;
         boolean z14 = this.d;
         if (!z13) {
@@ -171,7 +171,7 @@ public final class xx extends dk0 {
                 if (!this.G) {
                     this.G = true;
                     TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                    tL_contacts_resolveUsername.username = org.telegram.messenger.mp.u1(i11).N3;
+                    tL_contacts_resolveUsername.username = org.telegram.messenger.np.u1(i11).N3;
                     ConnectionsManager.getInstance(i11).sendRequest(tL_contacts_resolveUsername, new f2(this, 4));
                 }
                 if (!z14) {
@@ -185,7 +185,7 @@ public final class xx extends dk0 {
         if (!z14 && TextUtils.isEmpty(str2)) {
             awVar.e(true);
         }
-        this.f42246n = (TLRPC.User) h22;
+        this.f42239n = (TLRPC.User) h22;
         final String l10 = com.google.android.gms.internal.vision.e2.l("gif_search_", str, "_", str2);
         RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
@@ -206,22 +206,22 @@ public final class xx extends dk0 {
             }
         };
         if (!z12 && !z14 && z11 && TextUtils.isEmpty(str2)) {
-            this.f42251y.clear();
+            this.f42244y.clear();
             this.E.clear();
             if (yvVar.getAdapter() != this) {
                 yvVar.setAdapter(this);
             }
             f();
-            tyVar.f40117j0.h1(0, 0);
+            tyVar.f40110j0.h1(0, 0);
             tyVar.F(2);
         }
         if (z12 && hashMap.containsKey(l10)) {
             E(str, str2, z10, z11, true, l10, (TLObject) hashMap.get(l10));
-        } else if (tyVar.f40123l0.f33657a.contains(l10)) {
+        } else if (tyVar.f40116l0.f33670a.contains(l10)) {
         } else {
             if (z12) {
                 this.h = -1;
-                org.telegram.messenger.tr.a0(i11).M(l10, requestDelegate);
+                org.telegram.messenger.ur.a0(i11).M(l10, requestDelegate);
                 return;
             }
             TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
@@ -229,7 +229,7 @@ public final class xx extends dk0 {
                 str = "";
             }
             tL_messages_getInlineBotResults.query = str;
-            tL_messages_getInlineBotResults.bot = org.telegram.messenger.mp.u1(i11).s1(this.f42246n);
+            tL_messages_getInlineBotResults.bot = org.telegram.messenger.np.u1(i11).s1(this.f42239n);
             tL_messages_getInlineBotResults.offset = str2;
             tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
             this.h = ConnectionsManager.getInstance(i11).sendRequest(tL_messages_getInlineBotResults, requestDelegate);
@@ -243,12 +243,12 @@ public final class xx extends dk0 {
             ty tyVar = this.M;
             if (i7 != 0) {
                 if (i7 >= 0) {
-                    ConnectionsManager.getInstance(tyVar.f40099d1).cancelRequest(this.h, true);
+                    ConnectionsManager.getInstance(tyVar.f40092d1).cancelRequest(this.h, true);
                 }
                 this.h = 0;
             }
-            this.f42249w = false;
-            zx zxVar = this.f42244e;
+            this.f42242w = false;
+            zx zxVar = this.f42237e;
             if (zxVar != null) {
                 zxVar.a(false);
             }
@@ -257,20 +257,20 @@ public final class xx extends dk0 {
                 org.telegram.messenger.g0.r(ouVar);
             }
             if (TextUtils.isEmpty(str)) {
-                this.f42250x = null;
+                this.f42243x = null;
                 if (this.L) {
                     F("", "", true, true, true);
                     return;
                 }
-                bx bxVar = tyVar.f40136q0;
-                yv yvVar = tyVar.f40114i0;
+                bx bxVar = tyVar.f40129q0;
+                yv yvVar = tyVar.f40107i0;
                 int currentPosition = bxVar.getCurrentPosition();
-                if (currentPosition != tyVar.f40144s0 && currentPosition != tyVar.f40147t0) {
-                    H((String) org.telegram.messenger.mp.u1(tyVar.f40099d1).f25664e4.get(currentPosition - tyVar.f40150u0));
+                if (currentPosition != tyVar.f40137s0 && currentPosition != tyVar.f40140t0) {
+                    H((String) org.telegram.messenger.np.u1(tyVar.f40092d1).f25835e4.get(currentPosition - tyVar.f40143u0));
                     return;
                 }
                 v4.i0 adapter = yvVar.getAdapter();
-                xx xxVar = tyVar.f40130o0;
+                xx xxVar = tyVar.f40123o0;
                 if (adapter != xxVar) {
                     yvVar.setAdapter(xxVar);
                     return;
@@ -278,7 +278,7 @@ public final class xx extends dk0 {
                 return;
             }
             String lowerCase = str.toLowerCase();
-            this.f42250x = lowerCase;
+            this.f42243x = lowerCase;
             if (!TextUtils.isEmpty(lowerCase)) {
                 ou ouVar2 = new ou(6, this, str);
                 this.F = ouVar2;
@@ -293,8 +293,8 @@ public final class xx extends dk0 {
     }
 
     public final void H(String str) {
-        if (this.f42249w && TextUtils.equals(this.f42250x, str)) {
-            this.M.f40117j0.h1(0, 0);
+        if (this.f42242w && TextUtils.equals(this.f42243x, str)) {
+            this.M.f40110j0.h1(0, 0);
         } else {
             F(str, "", true, true, true);
         }
@@ -308,7 +308,7 @@ public final class xx extends dk0 {
         if (z10) {
             this.H = this.I;
         }
-        ArrayList arrayList = this.f42251y;
+        ArrayList arrayList = this.f42244y;
         if (!arrayList.isEmpty()) {
             if (z10 && this.I > 0) {
                 int i7 = this.H;
@@ -334,7 +334,7 @@ public final class xx extends dk0 {
         if (z10 && i7 == this.J) {
             return 2;
         }
-        if (!z10 && this.f42251y.isEmpty()) {
+        if (!z10 && this.f42244y.isEmpty()) {
             return 3;
         }
         return 0;
@@ -343,26 +343,26 @@ public final class xx extends dk0 {
     @Override
     public final void f() {
         int i7;
-        if (this.d && (i7 = this.f42245f) != 0) {
+        if (this.d && (i7 = this.f42238f) != 0) {
             ty tyVar = this.M;
             if (i7 == Integer.MAX_VALUE) {
-                this.I = tyVar.f40118j1.size();
+                this.I = tyVar.f40111j1.size();
             } else {
-                yv yvVar = tyVar.f40114i0;
-                yx yxVar = tyVar.f40117j0;
+                yv yvVar = tyVar.f40107i0;
+                yx yxVar = tyVar.f40110j0;
                 if (yvVar.getMeasuredWidth() != 0) {
-                    int measuredWidth = tyVar.f40114i0.getMeasuredWidth();
+                    int measuredWidth = tyVar.f40107i0.getMeasuredWidth();
                     int i10 = yxVar.J;
                     int L = org.telegram.messenger.g0.L(100.0f);
                     this.I = 0;
-                    int size = tyVar.f40118j1.size();
+                    int size = tyVar.f40111j1.size();
                     int i11 = i10;
                     int i12 = 0;
                     int i13 = 0;
                     for (int i14 = 0; i14 < size; i14++) {
-                        TLRPC.Document document = (TLRPC.Document) tyVar.f40118j1.get(i14);
+                        TLRPC.Document document = (TLRPC.Document) tyVar.f40111j1.get(i14);
                         yt0 C1 = wy.C1(yxVar.F1(document, document.attributes));
-                        int min = Math.min(i10, (int) Math.floor((((C1.f42553a / C1.f42554b) * L) / measuredWidth) * i10));
+                        int min = Math.min(i10, (int) Math.floor((((C1.f42546a / C1.f42547b) * L) / measuredWidth) * i10));
                         if (i11 < min) {
                             this.I += i12;
                             i13++;
@@ -387,16 +387,16 @@ public final class xx extends dk0 {
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        if (f1Var.f59165f != 0) {
+        if (f1Var.f59169f != 0) {
             return;
         }
-        org.telegram.ui.Cells.i2 i2Var = (org.telegram.ui.Cells.i2) f1Var.f59161a;
+        org.telegram.ui.Cells.i2 i2Var = (org.telegram.ui.Cells.i2) f1Var.f59165a;
         int i10 = this.K;
         if (i10 >= 0 && i7 >= i10) {
-            i2Var.e((TLRPC.BotInlineResult) this.f42251y.get(i7 - i10), this.f42246n, true, false, false, true);
+            i2Var.e((TLRPC.BotInlineResult) this.f42244y.get(i7 - i10), this.f42239n, true, false, false, true);
             return;
         }
-        TLRPC.Document document = (TLRPC.Document) this.M.f40118j1.get(i7);
+        TLRPC.Document document = (TLRPC.Document) this.M.f40111j1.get(i7);
         i2Var.getClass();
         i2Var.d(0, "gif" + document, document);
     }
@@ -409,12 +409,12 @@ public final class xx extends dk0 {
             if (i7 != 1) {
                 if (i7 != 2) {
                     ViewGroup.LayoutParams q0Var = new v4.q0(-1, -2);
-                    View view = this.f42244e;
+                    View view = this.f42237e;
                     view.setLayoutParams(q0Var);
                     k8Var = view;
                 } else {
-                    org.telegram.ui.Cells.k8 k8Var2 = new org.telegram.ui.Cells.k8(this.f42243c, false, false, tyVar.f40089a2, tyVar.f40119j2);
-                    k8Var2.a(0, org.telegram.messenger.gd.N0(2131750822, null));
+                    org.telegram.ui.Cells.k8 k8Var2 = new org.telegram.ui.Cells.k8(this.f42236c, false, false, tyVar.f40082a2, tyVar.f40112j2);
+                    k8Var2.a(0, org.telegram.messenger.hd.N0(2131750822, null));
                     v4.q0 q0Var2 = new v4.q0(-1, -2);
                     ((ViewGroup.MarginLayoutParams) q0Var2).topMargin = org.telegram.messenger.g0.L(2.5f);
                     ((ViewGroup.MarginLayoutParams) q0Var2).bottomMargin = org.telegram.messenger.g0.L(5.5f);
@@ -423,11 +423,11 @@ public final class xx extends dk0 {
                 }
             } else {
                 View view2 = new View(tyVar.getContext());
-                view2.setLayoutParams(new v4.q0(-1, tyVar.f40096c1));
+                view2.setLayoutParams(new v4.q0(-1, tyVar.f40089c1));
                 k8Var = view2;
             }
         } else {
-            org.telegram.ui.Cells.i2 i2Var = new org.telegram.ui.Cells.i2(this.f42243c);
+            org.telegram.ui.Cells.i2 i2Var = new org.telegram.ui.Cells.i2(this.f42236c);
             i2Var.setIsKeyboard(true);
             i2Var.setCanPreviewGif(true);
             k8Var = i2Var;

@@ -6,26 +6,26 @@ import android.view.View;
 import android.widget.LinearLayout;
 import c8.ma;
 import di.pb;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.nq;
 import org.telegram.ui.Components.q9;
-public final class w extends LinearLayout implements fs {
-    public final q9 f4193a;
-    public final org.telegram.ui.Components.o6 f4194b;
-    public final org.telegram.ui.Components.o6 f4195c;
+public final class w extends LinearLayout implements gs {
+    public final q9 f4198a;
+    public final org.telegram.ui.Components.o6 f4199b;
+    public final org.telegram.ui.Components.o6 f4200c;
     public final org.telegram.ui.Components.o6 d;
-    public final nq[] f4196e;
-    public boolean f4197f;
+    public final nq[] f4201e;
+    public boolean f4202f;
 
     public w(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.f4196e = new nq[1];
+        this.f4201e = new nq[1];
         setOrientation(0);
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, false, false, false);
-        this.f4195c = o6Var;
+        this.f4200c = o6Var;
         int i7 = org.telegram.ui.ActionBar.m6.G6;
         org.telegram.ui.ActionBar.t6.Y(o6Var, i7, h6Var);
         o6Var.setTextSize(org.telegram.messenger.g0.L(15.0f));
@@ -33,12 +33,12 @@ public final class w extends LinearLayout implements fs {
         o6Var.setEllipsizeByGradient(true);
         org.telegram.ui.Components.o6 o6Var2 = new org.telegram.ui.Components.o6(context, false, false, false);
         this.d = o6Var2;
-        org.telegram.ui.ActionBar.t6.Y(o6Var2, org.telegram.ui.ActionBar.m6.f29770y6, h6Var);
+        org.telegram.ui.ActionBar.t6.Y(o6Var2, org.telegram.ui.ActionBar.m6.f29773y6, h6Var);
         o6Var2.setTextSize(org.telegram.messenger.g0.L(15.0f));
         q9 q9Var = new q9(context);
-        this.f4193a = q9Var;
+        this.f4198a = q9Var;
         org.telegram.ui.Components.o6 o6Var3 = new org.telegram.ui.Components.o6(context, false, false, false);
-        this.f4194b = o6Var3;
+        this.f4199b = o6Var3;
         o6Var3.setTextSize(org.telegram.messenger.g0.L(15.0f));
         o6Var3.setPadding(org.telegram.messenger.g0.L(20.0f), 0, 0, 0);
         org.telegram.ui.ActionBar.t6.Y(o6Var3, i7, h6Var);
@@ -51,11 +51,11 @@ public final class w extends LinearLayout implements fs {
     }
 
     public final void a(long j3, boolean z10) {
-        this.d.c(pb.b1(false, i5.c.l((int) j3, ',', new StringBuilder("⭐️")), 0.78f, this.f4196e), z10, true);
+        this.d.c(pb.b1(false, i5.c.l((int) j3, ',', new StringBuilder("⭐️")), 0.78f, this.f4201e), z10, true);
     }
 
     public final void b(int i7, boolean z10, boolean z11) {
-        org.telegram.ui.Components.o6 o6Var = this.f4194b;
+        org.telegram.ui.Components.o6 o6Var = this.f4199b;
         if (z10 && i7 <= 3) {
             if (i7 == 1) {
                 o6Var.c(org.telegram.messenger.j6.o("🥇", o6Var.getPaint().getFontMetricsInt(), 20, null), z11, true);
@@ -83,35 +83,35 @@ public final class w extends LinearLayout implements fs {
     public final void c(TLRPC.User user) {
         org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
         b9Var.r(user);
-        q9 q9Var = this.f4193a;
+        q9 q9Var = this.f4198a;
         q9Var.f(user, b9Var);
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(16.0f));
-        this.f4195c.setText(o10.q(user));
+        this.f4200c.setText(p10.q(user));
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        this.f4194b.invalidate();
+        this.f4199b.invalidate();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f4197f) {
-            canvas.drawLine(org.telegram.messenger.g0.L(112.0f), getMeasuredHeight() - 1, getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f), getMeasuredHeight(), org.telegram.ui.ActionBar.m6.f29501k0);
+        if (this.f4202f) {
+            canvas.drawLine(org.telegram.messenger.g0.L(112.0f), getMeasuredHeight() - 1, getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f), getMeasuredHeight(), org.telegram.ui.ActionBar.m6.f29504k0);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ks.e().c(this, ks.f25176l4);
+        ls.e().c(this, ls.f25342l4);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ks.e().n(this, ks.f25176l4);
+        ls.e().n(this, ls.f25342l4);
     }
 
     @Override

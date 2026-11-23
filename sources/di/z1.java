@@ -2,8 +2,8 @@ package di;
 
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
@@ -11,23 +11,23 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bn;
 public final class z1 implements Runnable {
-    public final int f10123a = 0;
-    public final boolean f10124b;
-    public final boolean f10125c;
+    public final int f10126a = 0;
+    public final boolean f10127b;
+    public final boolean f10128c;
     public final Object d;
-    public final Object f10126e;
-    public final Object f10127f;
+    public final Object f10129e;
+    public final Object f10130f;
     public final Object h;
-    public final Object f10128n;
+    public final Object f10131n;
 
     public z1(f6 f6Var, TLObject tLObject, boolean z10, TLRPC.Document document, boolean z11, TLRPC.TL_error tL_error, TL_stars.saveStarGift savestargift) {
         this.d = f6Var;
-        this.f10126e = tLObject;
-        this.f10124b = z10;
-        this.f10127f = document;
-        this.f10125c = z11;
+        this.f10129e = tLObject;
+        this.f10127b = z10;
+        this.f10130f = document;
+        this.f10128c = z11;
         this.h = tL_error;
-        this.f10128n = savestargift;
+        this.f10131n = savestargift;
     }
 
     @Override
@@ -37,13 +37,13 @@ public final class z1 implements Runnable {
         int i10;
         int i11;
         int i12;
-        int i13 = this.f10123a;
-        boolean z10 = this.f10125c;
-        Object obj = this.f10126e;
+        int i13 = this.f10126a;
+        boolean z10 = this.f10128c;
+        Object obj = this.f10129e;
         Object obj2 = this.h;
-        Object obj3 = this.f10128n;
-        Object obj4 = this.f10127f;
-        boolean z11 = this.f10124b;
+        Object obj3 = this.f10131n;
+        Object obj4 = this.f10130f;
+        boolean z11 = this.f10127b;
         Object obj5 = this.d;
         switch (i13) {
             case 0:
@@ -59,7 +59,7 @@ public final class z1 implements Runnable {
                         f6Var.dismiss();
                         long C1 = f6Var.C1();
                         if (!z11) {
-                            y8.y(f6Var.f30170a, false).O(C1);
+                            y8.y(f6Var.f30173a, false).O(C1);
                         }
                         if (C1 >= 0) {
                             org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(T);
@@ -68,13 +68,13 @@ public final class z1 implements Runnable {
                             } else {
                                 i11 = 2131750104;
                             }
-                            String N0 = gd.N0(i11, null);
+                            String N0 = hd.N0(i11, null);
                             if (z10) {
                                 i12 = 2131750107;
                             } else {
                                 i12 = 2131750105;
                             }
-                            String N02 = gd.N0(i12, null);
+                            String N02 = hd.N0(i12, null);
                             if (!(T instanceof ProfileActivity)) {
                                 r0Var = new ch.r0(C1, T);
                             }
@@ -87,16 +87,16 @@ public final class z1 implements Runnable {
                         } else {
                             i7 = 2131750241;
                         }
-                        String N03 = gd.N0(i7, null);
+                        String N03 = hd.N0(i7, null);
                         if (z10) {
                             i10 = 2131750244;
                         } else {
                             i10 = 2131750242;
                         }
-                        b03.s(document, N03, gd.N0(i10, null)).j();
+                        b03.s(document, N03, hd.N0(i10, null)).j();
                         return;
                     } else if (tL_error != null) {
-                        if (z11 && f6Var.B2 != null && (F = y8.y(f6Var.f30170a, false).F(f6Var.T1, false)) != null) {
+                        if (z11 && f6Var.B2 != null && (F = y8.y(f6Var.f30173a, false).F(f6Var.T1, false)) != null) {
                             F.m(f6Var.B2, true ^ savestargift.unsave);
                         }
                         f6Var.k().t(org.telegram.ui.Components.lc.W(tL_error.text), null).k(false);
@@ -110,18 +110,18 @@ public final class z1 implements Runnable {
                 bn bnVar = (bn) obj5;
                 String str = (String) obj;
                 CharacterStyle characterStyle = (CharacterStyle) obj4;
-                fj fjVar = (fj) obj2;
+                gj gjVar = (gj) obj2;
                 org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) obj3;
                 if (str.startsWith("video?")) {
-                    bnVar.l8(characterStyle, false, fjVar, r1Var);
+                    bnVar.l8(characterStyle, false, gjVar, r1Var);
                     return;
                 } else if (z11 && !z10) {
                     bnVar.getParentActivity();
                     vf.c.o(str);
                     return;
                 } else {
-                    bnVar.ma(fjVar, false, false);
-                    bnVar.Ca(characterStyle, str, false, r1Var, fjVar);
+                    bnVar.ma(gjVar, false, false);
+                    bnVar.Ca(characterStyle, str, false, r1Var, gjVar);
                     return;
                 }
             default:
@@ -130,14 +130,14 @@ public final class z1 implements Runnable {
                 String str2 = (String) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                lVar.f62069w = false;
-                lVar.f62072z = true;
+                lVar.f62073w = false;
+                lVar.f62076z = true;
                 if (z11) {
                     org.telegram.messenger.g0.r(runnable);
                 }
-                zh.l.k(lVar.f62064q, false, false);
-                if (TextUtils.equals(str2, lVar.f62067t) && tL_error2 == null) {
-                    lVar.f62072z = true;
+                zh.l.k(lVar.f62068q, false, false);
+                if (TextUtils.equals(str2, lVar.f62071t) && tL_error2 == null) {
+                    lVar.f62076z = true;
                     lVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject2, str2, z10, false);
                     return;
                 }
@@ -145,23 +145,23 @@ public final class z1 implements Runnable {
         }
     }
 
-    public z1(bn bnVar, String str, CharacterStyle characterStyle, fj fjVar, org.telegram.ui.Cells.r1 r1Var, boolean z10, boolean z11) {
+    public z1(bn bnVar, String str, CharacterStyle characterStyle, gj gjVar, org.telegram.ui.Cells.r1 r1Var, boolean z10, boolean z11) {
         this.d = bnVar;
-        this.f10126e = str;
-        this.f10127f = characterStyle;
-        this.h = fjVar;
-        this.f10128n = r1Var;
-        this.f10124b = z10;
-        this.f10125c = z11;
+        this.f10129e = str;
+        this.f10130f = characterStyle;
+        this.h = gjVar;
+        this.f10131n = r1Var;
+        this.f10127b = z10;
+        this.f10128c = z11;
     }
 
     public z1(zh.l lVar, boolean z10, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z11) {
         this.d = lVar;
-        this.f10124b = z10;
-        this.f10127f = runnable;
-        this.f10128n = str;
+        this.f10127b = z10;
+        this.f10130f = runnable;
+        this.f10131n = str;
         this.h = tL_error;
-        this.f10126e = tLObject;
-        this.f10125c = z11;
+        this.f10129e = tLObject;
+        this.f10128c = z11;
     }
 }

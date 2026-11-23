@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class t30 implements si {
-    public final x30 f39765a;
+    public final x30 f39758a;
 
     public t30(x30 x30Var) {
-        this.f39765a = x30Var;
+        this.f39758a = x30Var;
     }
 
     @Override
     public final void K0() {
-        org.telegram.messenger.g0.v1(this.f39765a.f41966a.getFragmentView().findFocus());
+        org.telegram.messenger.g0.v1(this.f39758a.f41959a.getFragmentView().findFocus());
     }
 
     @Override
@@ -32,15 +32,15 @@ public final class t30 implements si {
 
     @Override
     public final void v0() {
-        this.f39765a.q();
+        this.f39758a.q();
     }
 
     @Override
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
         ui uiVar;
-        x30 x30Var = this.f39765a;
-        org.telegram.ui.ActionBar.g2 g2Var = x30Var.f41966a;
-        if (g2Var != null && g2Var.getParentActivity() != null && (uiVar = x30Var.f41968c) != null) {
+        x30 x30Var = this.f39758a;
+        org.telegram.ui.ActionBar.g2 g2Var = x30Var.f41959a;
+        if (g2Var != null && g2Var.getParentActivity() != null && (uiVar = x30Var.f41961c) != null) {
             if (i7 != 8 && i7 != 7) {
                 uiVar.M(i7);
                 if (i7 == 0) {
@@ -49,8 +49,8 @@ public final class t30 implements si {
                 }
                 return;
             }
-            HashMap<Object, Object> selectedPhotos = uiVar.f40386e2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = x30Var.f41968c.f40386e2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = uiVar.f40379e2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = x30Var.f41961c.f40379e2.getSelectedPhotosOrder();
             ArrayList arrayList = new ArrayList();
             boolean z14 = false;
             for (int i12 = 0; i12 < selectedPhotosOrder.size(); i12++) {
@@ -58,62 +58,62 @@ public final class t30 implements si {
                 ?? obj2 = new Object();
                 arrayList.add(obj2);
                 String str = null;
-                if (obj instanceof org.telegram.messenger.ef) {
-                    org.telegram.messenger.ef efVar = (org.telegram.messenger.ef) obj;
-                    String str2 = efVar.h;
+                if (obj instanceof org.telegram.messenger.ff) {
+                    org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) obj;
+                    String str2 = ffVar.h;
                     if (str2 != null) {
-                        obj2.f28239c = str2;
+                        obj2.f28407c = str2;
                     } else {
-                        obj2.f28239c = efVar.I;
+                        obj2.f28407c = ffVar.I;
                     }
-                    obj2.f28240e = efVar.f27876c;
-                    obj2.f28241f = efVar.f27879g;
-                    obj2.f28245k = efVar.f27890s;
-                    obj2.f28250p = efVar.d();
-                    obj2.f28249o = efVar.f27875b;
-                    obj2.f28259z = efVar.f27884m;
-                    obj2.f28251q = true;
-                    CharSequence charSequence = efVar.f27874a;
+                    obj2.f28408e = ffVar.f28060c;
+                    obj2.f28409f = ffVar.f28063g;
+                    obj2.f28413k = ffVar.f28074s;
+                    obj2.f28418p = ffVar.d();
+                    obj2.f28417o = ffVar.f28059b;
+                    obj2.f28427z = ffVar.f28068m;
+                    obj2.f28419q = true;
+                    CharSequence charSequence = ffVar.f28058a;
                     if (charSequence != null) {
                         str = charSequence.toString();
                     }
                     obj2.d = str;
-                    obj2.f28243i = efVar.f27885n;
-                    obj2.f28244j = efVar.f27889r;
-                    obj2.h = efVar.f27894x;
-                    TLRPC.VideoSize videoSize = efVar.S;
+                    obj2.f28411i = ffVar.f28069n;
+                    obj2.f28412j = ffVar.f28073r;
+                    obj2.h = ffVar.f28078x;
+                    TLRPC.VideoSize videoSize = ffVar.S;
                     obj2.v = videoSize;
                     z14 = videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup;
-                } else if (obj instanceof org.telegram.messenger.hf) {
-                    org.telegram.messenger.hf hfVar = (org.telegram.messenger.hf) obj;
-                    String str3 = hfVar.h;
+                } else if (obj instanceof org.telegram.messenger.jf) {
+                    org.telegram.messenger.jf jfVar = (org.telegram.messenger.jf) obj;
+                    String str3 = jfVar.h;
                     if (str3 != null) {
-                        obj2.f28239c = str3;
+                        obj2.f28407c = str3;
                     } else {
-                        obj2.f28246l = hfVar;
+                        obj2.f28414l = jfVar;
                     }
-                    obj2.f28240e = hfVar.f27876c;
-                    obj2.f28241f = hfVar.f27879g;
-                    obj2.f28245k = hfVar.f27890s;
-                    CharSequence charSequence2 = hfVar.I;
+                    obj2.f28408e = jfVar.f28060c;
+                    obj2.f28409f = jfVar.f28063g;
+                    obj2.f28413k = jfVar.f28074s;
+                    CharSequence charSequence2 = jfVar.I;
                     if (charSequence2 != null) {
                         str = charSequence2.toString();
                     }
                     obj2.d = str;
-                    obj2.f28243i = hfVar.f27885n;
-                    obj2.f28244j = hfVar.f27889r;
-                    obj2.h = hfVar.f27894x;
-                    TLRPC.BotInlineResult botInlineResult = hfVar.N;
-                    if (botInlineResult != null && hfVar.H == 1) {
-                        obj2.f28247m = botInlineResult;
-                        obj2.f28248n = hfVar.O;
+                    obj2.f28411i = jfVar.f28069n;
+                    obj2.f28412j = jfVar.f28073r;
+                    obj2.h = jfVar.f28078x;
+                    TLRPC.BotInlineResult botInlineResult = jfVar.N;
+                    if (botInlineResult != null && jfVar.H == 1) {
+                        obj2.f28415m = botInlineResult;
+                        obj2.f28416n = jfVar.O;
                     }
                     System.currentTimeMillis();
                 }
             }
             x30.a(x30Var, z14, arrayList);
             if (i7 != 8) {
-                x30Var.f41968c.a(true);
+                x30Var.f41961c.a(true);
             }
         }
     }

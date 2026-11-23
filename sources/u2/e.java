@@ -10,19 +10,19 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 public final class e implements m {
     public static final ArrayDeque h = new ArrayDeque();
-    public static final Object f58350n = new Object();
-    public final MediaCodec f58351a;
-    public final HandlerThread f58352b;
-    public android.support.v4.media.session.q f58353c;
+    public static final Object f58354n = new Object();
+    public final MediaCodec f58355a;
+    public final HandlerThread f58356b;
+    public android.support.v4.media.session.q f58357c;
     public final AtomicReference d;
-    public final h2.i f58354e;
-    public boolean f58355f;
+    public final h2.i f58358e;
+    public boolean f58359f;
 
     public e(MediaCodec mediaCodec, HandlerThread handlerThread) {
         h2.i iVar = new h2.i();
-        this.f58351a = mediaCodec;
-        this.f58352b = handlerThread;
-        this.f58354e = iVar;
+        this.f58355a = mediaCodec;
+        this.f58356b = handlerThread;
+        this.f58358e = iVar;
         this.d = new AtomicReference();
     }
 
@@ -51,12 +51,12 @@ public final class e implements m {
     public final void b(int i7, int i10, int i11, long j3) {
         j();
         d a10 = a();
-        a10.f58346a = i7;
-        a10.f58347b = i10;
+        a10.f58350a = i7;
+        a10.f58351b = i10;
         a10.d = j3;
-        a10.f58349e = i11;
-        android.support.v4.media.session.q qVar = this.f58353c;
-        String str = l0.f13812a;
+        a10.f58353e = i11;
+        android.support.v4.media.session.q qVar = this.f58357c;
+        String str = l0.f13815a;
         qVar.obtainMessage(1, a10).sendToTarget();
     }
 
@@ -64,12 +64,12 @@ public final class e implements m {
     public final void c(int i7, k2.d dVar, long j3, int i10) {
         j();
         d a10 = a();
-        a10.f58346a = i7;
-        a10.f58347b = 0;
+        a10.f58350a = i7;
+        a10.f58351b = 0;
         a10.d = j3;
-        a10.f58349e = i10;
-        MediaCodec.CryptoInfo cryptoInfo = a10.f58348c;
-        cryptoInfo.numSubSamples = dVar.f18149f;
+        a10.f58353e = i10;
+        MediaCodec.CryptoInfo cryptoInfo = a10.f58352c;
+        cryptoInfo.numSubSamples = dVar.f18152f;
         int[] iArr = dVar.d;
         int[] iArr2 = cryptoInfo.numBytesOfClearData;
         if (iArr != null) {
@@ -80,7 +80,7 @@ public final class e implements m {
             }
         }
         cryptoInfo.numBytesOfClearData = iArr2;
-        int[] iArr3 = dVar.f18148e;
+        int[] iArr3 = dVar.f18151e;
         int[] iArr4 = cryptoInfo.numBytesOfEncryptedData;
         if (iArr3 != null) {
             if (iArr4 != null && iArr4.length >= iArr3.length) {
@@ -90,7 +90,7 @@ public final class e implements m {
             }
         }
         cryptoInfo.numBytesOfEncryptedData = iArr4;
-        byte[] bArr = dVar.f18146b;
+        byte[] bArr = dVar.f18149b;
         byte[] bArr2 = cryptoInfo.key;
         if (bArr != null) {
             if (bArr2 != null && bArr2.length >= bArr.length) {
@@ -101,7 +101,7 @@ public final class e implements m {
         }
         bArr2.getClass();
         cryptoInfo.key = bArr2;
-        byte[] bArr3 = dVar.f18145a;
+        byte[] bArr3 = dVar.f18148a;
         byte[] bArr4 = cryptoInfo.iv;
         if (bArr3 != null) {
             if (bArr4 != null && bArr4.length >= bArr3.length) {
@@ -112,27 +112,27 @@ public final class e implements m {
         }
         bArr4.getClass();
         cryptoInfo.iv = bArr4;
-        cryptoInfo.mode = dVar.f18147c;
+        cryptoInfo.mode = dVar.f18150c;
         if (Build.VERSION.SDK_INT >= 24) {
-            cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f18150g, dVar.h));
+            cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f18153g, dVar.h));
         }
-        android.support.v4.media.session.q qVar = this.f58353c;
-        String str = l0.f13812a;
+        android.support.v4.media.session.q qVar = this.f58357c;
+        String str = l0.f13815a;
         qVar.obtainMessage(2, a10).sendToTarget();
     }
 
     @Override
     public final void flush() {
-        if (this.f58355f) {
+        if (this.f58359f) {
             try {
-                android.support.v4.media.session.q qVar = this.f58353c;
+                android.support.v4.media.session.q qVar = this.f58357c;
                 qVar.getClass();
                 qVar.removeCallbacksAndMessages(null);
-                h2.i iVar = this.f58354e;
+                h2.i iVar = this.f58358e;
                 synchronized (iVar) {
-                    iVar.f13795b = false;
+                    iVar.f13798b = false;
                 }
-                android.support.v4.media.session.q qVar2 = this.f58353c;
+                android.support.v4.media.session.q qVar2 = this.f58357c;
                 qVar2.getClass();
                 qVar2.obtainMessage(3).sendToTarget();
                 iVar.a();
@@ -155,27 +155,27 @@ public final class e implements m {
     @Override
     public final void setParameters(Bundle bundle) {
         j();
-        android.support.v4.media.session.q qVar = this.f58353c;
-        String str = l0.f13812a;
+        android.support.v4.media.session.q qVar = this.f58357c;
+        String str = l0.f13815a;
         qVar.obtainMessage(4, bundle).sendToTarget();
     }
 
     @Override
     public final void shutdown() {
-        if (this.f58355f) {
+        if (this.f58359f) {
             flush();
-            this.f58352b.quit();
+            this.f58356b.quit();
         }
-        this.f58355f = false;
+        this.f58359f = false;
     }
 
     @Override
     public final void start() {
-        if (!this.f58355f) {
-            HandlerThread handlerThread = this.f58352b;
+        if (!this.f58359f) {
+            HandlerThread handlerThread = this.f58356b;
             handlerThread.start();
-            this.f58353c = new android.support.v4.media.session.q(this, handlerThread.getLooper(), 13);
-            this.f58355f = true;
+            this.f58357c = new android.support.v4.media.session.q(this, handlerThread.getLooper(), 13);
+            this.f58359f = true;
         }
     }
 }

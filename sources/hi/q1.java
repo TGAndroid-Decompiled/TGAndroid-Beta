@@ -1,7 +1,7 @@
 package hi;
 
-import org.telegram.messenger.fj;
-import org.telegram.messenger.sy;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.ty;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.a70;
@@ -119,7 +119,7 @@ public final class q1 implements ls {
     }
 
     @Override
-    public final fj z() {
+    public final gj z() {
         return null;
     }
 
@@ -156,7 +156,7 @@ public final class q1 implements ls {
     }
 
     @Override
-    public final void i(sy syVar) {
+    public final void i(ty tyVar) {
     }
 
     @Override

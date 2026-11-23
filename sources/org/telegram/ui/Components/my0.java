@@ -8,12 +8,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class my0 implements org.telegram.ui.Cells.m1 {
-    public final boolean f37666a;
-    public final boolean f37667b;
+    public final boolean f37664a;
+    public final boolean f37665b;
 
     public my0(boolean z10, boolean z11) {
-        this.f37666a = z10;
-        this.f37667b = z11;
+        this.f37664a = z10;
+        this.f37665b = z11;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class my0 implements org.telegram.ui.Cells.m1 {
 
     @Override
     public final boolean L0(long j3) {
-        if (this.f37666a && this.f37667b) {
+        if (this.f37664a && this.f37665b) {
             return true;
         }
         return false;
@@ -55,7 +55,7 @@ public final class my0 implements org.telegram.ui.Cells.m1 {
     }
 
     @Override
-    public final boolean T1(org.telegram.ui.Cells.r1 r1Var, org.telegram.messenger.fj fjVar) {
+    public final boolean T1(org.telegram.ui.Cells.r1 r1Var, org.telegram.messenger.gj gjVar) {
         return false;
     }
 
@@ -110,13 +110,13 @@ public final class my0 implements org.telegram.ui.Cells.m1 {
     }
 
     @Override
-    public final boolean f1(org.telegram.messenger.fj fjVar) {
-        return org.telegram.ui.Cells.c0.a(fjVar);
+    public final boolean f1(org.telegram.messenger.gj gjVar) {
+        return org.telegram.ui.Cells.c0.a(gjVar);
     }
 
     @Override
     public final boolean f2(long j3) {
-        return this.f37666a;
+        return this.f37664a;
     }
 
     @Override
@@ -170,23 +170,23 @@ public final class my0 implements org.telegram.ui.Cells.m1 {
     }
 
     @Override
-    public final boolean y0(org.telegram.messenger.fj fjVar) {
+    public final boolean y0(org.telegram.messenger.gj gjVar) {
         return true;
     }
 
     @Override
     public final String z(long j3) {
         int i7;
-        if (this.f37666a) {
-            if (this.f37667b) {
-                i7 = 2131744036;
+        if (this.f37664a) {
+            if (this.f37665b) {
+                i7 = 2131744034;
             } else {
-                i7 = 2131744044;
+                i7 = 2131744042;
             }
         } else {
-            i7 = 2131744038;
+            i7 = 2131744036;
         }
-        return org.telegram.messenger.gd.N0(i7, null);
+        return org.telegram.messenger.hd.N0(i7, null);
     }
 
     @Override
@@ -224,7 +224,7 @@ public final class my0 implements org.telegram.ui.Cells.m1 {
     }
 
     @Override
-    public final void L(org.telegram.messenger.cj cjVar) {
+    public final void L(org.telegram.messenger.dj djVar) {
     }
 
     @Override
@@ -236,7 +236,7 @@ public final class my0 implements org.telegram.ui.Cells.m1 {
     }
 
     @Override
-    public final void O1(org.telegram.messenger.fj fjVar) {
+    public final void O1(org.telegram.messenger.gj gjVar) {
     }
 
     @Override
@@ -244,7 +244,7 @@ public final class my0 implements org.telegram.ui.Cells.m1 {
     }
 
     @Override
-    public final void R(org.telegram.messenger.fj fjVar) {
+    public final void R(org.telegram.messenger.gj gjVar) {
     }
 
     @Override
@@ -356,7 +356,7 @@ public final class my0 implements org.telegram.ui.Cells.m1 {
     }
 
     @Override
-    public final void a2(org.telegram.ui.Cells.r1 r1Var, org.telegram.messenger.i10 i10Var) {
+    public final void a2(org.telegram.ui.Cells.r1 r1Var, org.telegram.messenger.j10 j10Var) {
     }
 
     @Override
@@ -448,6 +448,6 @@ public final class my0 implements org.telegram.ui.Cells.m1 {
     }
 
     @Override
-    public final void S1(org.telegram.messenger.fj fjVar, String str, String str2, String str3, String str4, int i7, int i10) {
+    public final void S1(org.telegram.messenger.gj gjVar, String str, String str2, String str3, String str4, int i7, int i10) {
     }
 }

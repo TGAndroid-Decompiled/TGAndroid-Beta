@@ -4,17 +4,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
 public final class q70 extends org.telegram.ui.bn {
-    public boolean f38807vd;
-    public final boolean f38808wd;
-    public final long f38809xd;
-    public final r70 f38810yd;
+    public boolean f38801vd;
+    public final boolean f38802wd;
+    public final long f38803xd;
+    public final r70 f38804yd;
 
     public q70(r70 r70Var, Bundle bundle, boolean z10, long j3) {
         super(bundle);
-        this.f38810yd = r70Var;
-        this.f38808wd = z10;
-        this.f38809xd = j3;
-        this.f38807vd = false;
+        this.f38804yd = r70Var;
+        this.f38802wd = z10;
+        this.f38803xd = j3;
+        this.f38801vd = false;
     }
 
     public static void Hd(q70 q70Var, long j3, TLRPC.Chat chat) {
@@ -31,25 +31,25 @@ public final class q70 extends org.telegram.ui.bn {
         } else {
             z10 = false;
         }
-        py0.c(parentActivity, i7, j10, f10, null, z10, chat.creator, q70Var.f38810yd.J0);
+        py0.c(parentActivity, i7, j10, f10, null, z10, chat.creator, q70Var.f38804yd.J0);
     }
 
     @Override
     public final void onBecomeFullyVisible() {
         super.onBecomeFullyVisible();
-        if (!this.f38807vd && this.f38808wd) {
-            this.f38807vd = true;
-            org.telegram.messenger.mp messagesController = getMessagesController();
-            long j3 = this.f38809xd;
+        if (!this.f38801vd && this.f38802wd) {
+            this.f38801vd = true;
+            org.telegram.messenger.np messagesController = getMessagesController();
+            long j3 = this.f38803xd;
             TLRPC.Chat O0 = messagesController.O0(Long.valueOf(j3));
             if (org.telegram.messenger.v3.h(O0)) {
-                gc K = lc.b0(this).K(2131623990, org.telegram.messenger.gd.N0(2131748878, null), org.telegram.messenger.gd.N0(2131748877, null), new bi.q2(this, j3, O0, 24));
-                K.f35516r = false;
+                gc K = lc.b0(this).K(2131623990, org.telegram.messenger.hd.N0(2131748878, null), org.telegram.messenger.hd.N0(2131748877, null), new bi.q2(this, j3, O0, 24));
+                K.f35535r = false;
                 K.k(true);
                 return;
             }
-            gc Q = lc.b0(this).Q(2131623990, 36, org.telegram.messenger.gd.N0(2131748878, null));
-            Q.f35516r = false;
+            gc Q = lc.b0(this).Q(2131623990, 36, org.telegram.messenger.hd.N0(2131748878, null));
+            Q.f35535r = false;
             Q.k(true);
         }
     }

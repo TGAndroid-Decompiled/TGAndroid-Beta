@@ -1,16 +1,16 @@
 package e2;
 public final class o {
-    public static final o f10583c = new o(new Object());
+    public static final o f10586c = new o(new Object());
     public static final String d;
-    public static final String f10584e;
-    public final int f10585a = 0;
-    public final int f10586b = 0;
+    public static final String f10587e;
+    public final int f10588a = 0;
+    public final int f10589b = 0;
 
     static {
-        String str = h2.l0.f13812a;
+        String str = h2.l0.f13815a;
         Integer.toString(0, 36);
         d = Integer.toString(1, 36);
-        f10584e = Integer.toString(2, 36);
+        f10587e = Integer.toString(2, 36);
         Integer.toString(3, 36);
     }
 
@@ -21,7 +21,7 @@ public final class o {
         if (this != obj) {
             if (obj instanceof o) {
                 o oVar = (o) obj;
-                if (this.f10585a == oVar.f10585a && this.f10586b == oVar.f10586b) {
+                if (this.f10588a == oVar.f10588a && this.f10589b == oVar.f10589b) {
                     return true;
                 }
                 return false;
@@ -32,6 +32,6 @@ public final class o {
     }
 
     public final int hashCode() {
-        return (((16337 + this.f10585a) * 31) + this.f10586b) * 31;
+        return (((16337 + this.f10588a) * 31) + this.f10589b) * 31;
     }
 }

@@ -4,18 +4,18 @@ import java.net.Socket;
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocketFactory;
 public final class s {
-    public final SocketFactory f56572a;
-    public final a f56573b;
-    public final int f56574c;
+    public final SocketFactory f56576a;
+    public final a f56577b;
+    public final int f56578c;
     public int d = 1;
-    public int f56575e = 250;
-    public boolean f56576f;
-    public Socket f56577g;
+    public int f56579e = 250;
+    public boolean f56580f;
+    public Socket f56581g;
 
     public s(SocketFactory socketFactory, a aVar, int i7, c cVar, SSLSocketFactory sSLSocketFactory) {
-        this.f56572a = socketFactory;
-        this.f56573b = aVar;
-        this.f56574c = i7;
+        this.f56576a = socketFactory;
+        this.f56577b = aVar;
+        this.f56578c = i7;
     }
 
     public final void a() {

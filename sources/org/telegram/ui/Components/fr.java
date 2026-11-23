@@ -6,22 +6,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class fr implements RequestDelegate {
-    public final int f35305a;
-    public final jr f35306b;
-    public final hi.e f35307c;
+    public final int f35307a;
+    public final jr f35308b;
+    public final hi.e f35309c;
 
     public fr(jr jrVar, hi.e eVar, int i7) {
-        this.f35305a = i7;
-        this.f35306b = jrVar;
-        this.f35307c = eVar;
+        this.f35307a = i7;
+        this.f35308b = jrVar;
+        this.f35309c = eVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f35305a) {
+        switch (this.f35307a) {
             case 0:
-                final jr jrVar = this.f35306b;
-                final hi.e eVar = this.f35307c;
+                final jr jrVar = this.f35308b;
+                final hi.e eVar = this.f35309c;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -36,7 +36,7 @@ public final class fr implements RequestDelegate {
                                     jrVar2.X1 = groupcallstreamrtmpurl.url;
                                     jrVar2.Y1 = groupcallstreamrtmpurl.key;
                                     jrVar2.Z1 = new SpannableStringBuilder(jrVar2.Y1);
-                                    jrVar2.f36592a2.O(true);
+                                    jrVar2.f36587a2.O(true);
                                     return;
                                 }
                                 return;
@@ -50,7 +50,7 @@ public final class fr implements RequestDelegate {
                                     jrVar3.X1 = groupcallstreamrtmpurl2.url;
                                     jrVar3.Y1 = groupcallstreamrtmpurl2.key;
                                     jrVar3.Z1 = new SpannableStringBuilder(jrVar3.Y1);
-                                    jrVar3.f36592a2.O(true);
+                                    jrVar3.f36587a2.O(true);
                                     return;
                                 }
                                 return;
@@ -59,8 +59,8 @@ public final class fr implements RequestDelegate {
                 });
                 return;
             default:
-                final jr jrVar2 = this.f35306b;
-                final hi.e eVar2 = this.f35307c;
+                final jr jrVar2 = this.f35308b;
+                final hi.e eVar2 = this.f35309c;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -75,7 +75,7 @@ public final class fr implements RequestDelegate {
                                     jrVar22.X1 = groupcallstreamrtmpurl.url;
                                     jrVar22.Y1 = groupcallstreamrtmpurl.key;
                                     jrVar22.Z1 = new SpannableStringBuilder(jrVar22.Y1);
-                                    jrVar22.f36592a2.O(true);
+                                    jrVar22.f36587a2.O(true);
                                     return;
                                 }
                                 return;
@@ -89,7 +89,7 @@ public final class fr implements RequestDelegate {
                                     jrVar3.X1 = groupcallstreamrtmpurl2.url;
                                     jrVar3.Y1 = groupcallstreamrtmpurl2.key;
                                     jrVar3.Z1 = new SpannableStringBuilder(jrVar3.Y1);
-                                    jrVar3.f36592a2.O(true);
+                                    jrVar3.f36587a2.O(true);
                                     return;
                                 }
                                 return;

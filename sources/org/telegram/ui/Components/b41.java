@@ -13,7 +13,7 @@ public final class b41 extends xy {
     @Override
     public final boolean D1() {
         k41 k41Var = this.Y;
-        if (k41Var.f36770n.getAdapter() == k41Var.f36773w) {
+        if (k41Var.f36773n.getAdapter() == k41Var.f36776w) {
             return true;
         }
         return false;
@@ -21,7 +21,7 @@ public final class b41 extends xy {
 
     @Override
     public final boolean Y0() {
-        return org.telegram.messenger.gd.f24241a0;
+        return org.telegram.messenger.hd.f24444a0;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class b41 extends xy {
                 if (i11 >= r()) {
                     break;
                 }
-                a41 a41Var = k41Var.f36770n;
+                a41 a41Var = k41Var.f36773n;
                 View q10 = q(i11);
                 a41Var.getClass();
                 int R = RecyclerView.R(q10);
@@ -52,7 +52,7 @@ public final class b41 extends xy {
                 }
                 i11++;
             }
-            if (i10 == 0 && (m10 = k41Var.f36771r.m(i10)) != null && m10.getTop() - i7 > org.telegram.messenger.g0.L(58.0f)) {
+            if (i10 == 0 && (m10 = k41Var.f36774r.m(i10)) != null && m10.getTop() - i7 > org.telegram.messenger.g0.L(58.0f)) {
                 i7 = m10.getTop() - org.telegram.messenger.g0.L(58.0f);
             }
         }

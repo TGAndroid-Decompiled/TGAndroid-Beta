@@ -9,16 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.bz;
-import org.telegram.messenger.ec;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.gb;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.ob;
-import org.telegram.messenger.ri;
-import org.telegram.messenger.tr;
-import org.telegram.messenger.uo;
+import org.telegram.messenger.cz;
+import org.telegram.messenger.fc;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hb;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
+import org.telegram.messenger.pb;
+import org.telegram.messenger.si;
+import org.telegram.messenger.ur;
+import org.telegram.messenger.vo;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
@@ -27,7 +27,7 @@ import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Cells.r1;
 import org.telegram.ui.Cells.u2;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.j01;
+import org.telegram.ui.Components.f21;
 import org.telegram.ui.ax;
 import org.telegram.ui.bn;
 import org.telegram.ui.bx;
@@ -37,18 +37,18 @@ import org.telegram.ui.kl;
 import org.telegram.ui.mm;
 import org.telegram.ui.yw;
 public final class x implements Runnable {
-    public final int f19618a;
-    public final int f19619b;
-    public final int f19620c;
+    public final int f19621a;
+    public final int f19622b;
+    public final int f19623c;
     public final Object d;
-    public final Object f19621e;
+    public final Object f19624e;
 
     public x(int i7, int i10, String str, String str2) {
-        this.f19618a = 9;
-        this.f19619b = i7;
+        this.f19621a = 9;
+        this.f19622b = i7;
         this.d = str;
-        this.f19621e = str2;
-        this.f19620c = i10;
+        this.f19624e = str2;
+        this.f19623c = i10;
     }
 
     @Override
@@ -61,15 +61,15 @@ public final class x implements Runnable {
         int i12;
         float f10;
         int i13;
-        int i14 = this.f19618a;
+        int i14 = this.f19621a;
         int i15 = 0;
-        int i16 = this.f19619b;
-        int i17 = this.f19620c;
-        Object obj = this.f19621e;
+        int i16 = this.f19622b;
+        int i17 = this.f19623c;
+        Object obj = this.f19624e;
         Object obj2 = this.d;
         switch (i14) {
             case 0:
-                f0 f0Var = ((z) obj2).f19625a;
+                f0 f0Var = ((z) obj2).f19628a;
                 Surface surface = new Surface((SurfaceTexture) obj);
                 f0Var.x1(surface);
                 f0Var.U = surface;
@@ -77,22 +77,22 @@ public final class x implements Runnable {
                 return;
             case 1:
                 String str = (String) obj;
-                ec ecVar = ((ob) obj2).f26077b;
+                fc fcVar = ((pb) obj2).f26295b;
                 if (i16 != 1) {
-                    ecVar.f23720s.c(new gb(ecVar, str, 1));
+                    fcVar.f23901s.c(new hb(fcVar, str, 1));
                 }
-                ks.f(i17).k(143, str, Integer.valueOf(i16));
+                ls.f(i17).k(143, str, Integer.valueOf(i16));
                 return;
             case 2:
-                ((ri) obj2).A1((List) obj, i16, i17, true);
+                ((si) obj2).A1((List) obj, i16, i17, true);
                 return;
             case 3:
-                ri riVar = (ri) obj2;
+                si siVar = (si) obj2;
                 ArrayList arrayList = (ArrayList) obj;
                 try {
                     if (arrayList != null) {
-                        riVar.getMessagesStorage().f27082b.executeFast("DELETE FROM reactions").stepThis().dispose();
-                        SQLitePreparedStatement executeFast = riVar.getMessagesStorage().f27082b.executeFast("REPLACE INTO reactions VALUES(?, ?, ?)");
+                        siVar.getMessagesStorage().f27252b.executeFast("DELETE FROM reactions").stepThis().dispose();
+                        SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27252b.executeFast("REPLACE INTO reactions VALUES(?, ?, ?)");
                         executeFast.requery();
                         int i18 = 4;
                         for (int i19 = 0; i19 < arrayList.size(); i19++) {
@@ -112,7 +112,7 @@ public final class x implements Runnable {
                         executeFast.dispose();
                         return;
                     }
-                    SQLitePreparedStatement executeFast2 = riVar.getMessagesStorage().f27082b.executeFast("UPDATE reactions SET date = ?");
+                    SQLitePreparedStatement executeFast2 = siVar.getMessagesStorage().f27252b.executeFast("UPDATE reactions SET date = ?");
                     executeFast2.requery();
                     executeFast2.bindLong(1, i17);
                     executeFast2.step();
@@ -123,26 +123,26 @@ public final class x implements Runnable {
                     return;
                 }
             case 4:
-                mp mpVar = (mp) obj2;
-                mpVar.f25784s1.clear();
-                mpVar.f25848z1.clear();
-                tr messagesStorage = mpVar.getMessagesStorage();
+                np npVar = (np) obj2;
+                npVar.f25955s1.clear();
+                npVar.f26019z1.clear();
+                ur messagesStorage = npVar.getMessagesStorage();
                 messagesStorage.H();
-                mpVar.y4(true, messagesStorage.f27093w, ((TLRPC.updates_Difference) obj).pts, this.f19619b, this.f19620c);
-                mpVar.R1().q();
+                npVar.y4(true, messagesStorage.f27263w, ((TLRPC.updates_Difference) obj).pts, this.f19622b, this.f19623c);
+                npVar.R1().q();
                 return;
             case 5:
-                uo uoVar = (uo) obj2;
+                vo voVar = (vo) obj2;
                 TLRPC.photos_Photos photos_photos = (TLRPC.photos_Photos) obj;
-                uoVar.h.f4(photos_photos.users, false);
-                uoVar.d(i16, i17, photos_photos);
+                voVar.h.f4(photos_photos.users, false);
+                voVar.d(i16, i17, photos_photos);
                 return;
             case 6:
-                uo uoVar2 = (uo) obj2;
+                vo voVar2 = (vo) obj2;
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
-                mp mpVar2 = uoVar2.h;
-                mpVar2.f4(messages_messages.users, false);
-                mpVar2.Z3(messages_messages.chats, false);
+                np npVar2 = voVar2.h;
+                npVar2.f4(messages_messages.users, false);
+                npVar2.Z3(messages_messages.chats, false);
                 TLRPC.TL_photos_photos tL_photos_photos = new TLRPC.TL_photos_photos();
                 tL_photos_photos.count = messages_messages.count;
                 int i20 = 0;
@@ -161,14 +161,14 @@ public final class x implements Runnable {
                 if (i16 == 0 && messages_messages.messages.size() >= messages_messages.count) {
                     tL_photos_photos.count -= i20;
                 }
-                uoVar2.d(i16, i17, tL_photos_photos);
+                voVar2.d(i16, i17, tL_photos_photos);
                 return;
             case 7:
-                tr trVar = (tr) obj2;
+                ur urVar = (ur) obj2;
                 byte[] bArr = (byte[]) obj;
-                trVar.getClass();
+                urVar.getClass();
                 try {
-                    SQLitePreparedStatement executeFast3 = trVar.f27082b.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
+                    SQLitePreparedStatement executeFast3 = urVar.f27252b.executeFast("UPDATE params SET lsv = ?, sg = ?, pbytes = ? WHERE id = 1");
                     executeFast3.bindInteger(1, i16);
                     executeFast3.bindInteger(2, i17);
                     if (bArr != null) {
@@ -186,13 +186,13 @@ public final class x implements Runnable {
                     nativeByteBuffer2.reuse();
                     return;
                 } catch (Exception e11) {
-                    trVar.o(e11, true);
+                    urVar.o(e11, true);
                     return;
                 }
             case 8:
-                ks ksVar = (ks) obj2;
-                ksVar.l((Object[]) obj, i16, false);
-                ksVar.f25280q.remove(i17);
+                ls lsVar = (ls) obj2;
+                lsVar.l((Object[]) obj, i16, false);
+                lsVar.f25446q.remove(i17);
                 return;
             case 9:
                 ConnectionsManager.lambda$onIntegrityCheckClassic$27(i16, (String) obj2, (String) obj, i17);
@@ -203,20 +203,20 @@ public final class x implements Runnable {
             case 11:
                 fl flVar = (fl) obj2;
                 flVar.getClass();
-                fj messageObject = ((org.telegram.ui.Cells.v0) obj).getMessageObject();
-                kl klVar = flVar.f47754a;
+                gj messageObject = ((org.telegram.ui.Cells.v0) obj).getMessageObject();
+                kl klVar = flVar.f47758a;
                 bn bnVar = klVar.R;
                 int e12 = messageObject.e1();
-                if (fj.B0(messageObject.f23993k) == klVar.R.f45995d7) {
+                if (gj.B0(messageObject.f24213k) == klVar.R.f45999d7) {
                     i10 = 1;
                 } else {
                     i10 = 0;
                 }
-                bnVar.Bb(this.f19619b, e12, true, i10, true, 0, Integer.valueOf(i17), null, null);
+                bnVar.Bb(this.f19622b, e12, true, i10, true, 0, Integer.valueOf(i17), null, null);
                 return;
             case 12:
                 r1 r1Var = (r1) obj;
-                bn bnVar2 = ((mm) obj2).f49937a;
+                bn bnVar2 = ((mm) obj2).f49941a;
                 if (bnVar2.P1 != null) {
                     r1Var.getLocationInWindow(new int[2]);
                     bnVar2.P1.setTranslationY(org.telegram.ui.Cells.c0.i(520.0f, iArr[1] - l3Var.getTop(), i16));
@@ -228,26 +228,26 @@ public final class x implements Runnable {
             default:
                 final ax axVar = (ax) obj2;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) obj;
-                bx bxVar = axVar.f45718g;
+                bx bxVar = axVar.f45722g;
                 cx cxVar = axVar.h;
                 ArrayList arrayList2 = cxVar.T1;
                 if (arrayList2 != null) {
                     arrayList2.remove(dialog);
                     int i21 = dialog.pinnedNum;
                     cxVar.Y0 = null;
-                    bxVar.f46321a.invalidate();
-                    int N0 = bxVar.f46323c.N0();
+                    bxVar.f46325a.invalidate();
+                    int N0 = bxVar.f46327c.N0();
                     if (N0 == i16 - 1) {
-                        bxVar.f46323c.m(N0).requestLayout();
+                        bxVar.f46327c.m(N0).requestLayout();
                     }
-                    if (cxVar.getMessagesController().I2(dialog.f28435id, false)) {
+                    if (cxVar.getMessagesController().I2(dialog.f28438id, false)) {
                         cxVar.getMessagesController().l2();
-                        bxVar.f46331y.D();
+                        bxVar.f46335y.D();
                         bxVar.q(true);
                         return;
                     }
-                    mp messagesController = cxVar.getMessagesController();
-                    long j3 = dialog.f28435id;
+                    np messagesController = cxVar.getMessagesController();
+                    long j3 = dialog.f28438id;
                     if (cxVar.Y2 == 0) {
                         i11 = 1;
                     } else {
@@ -255,29 +255,29 @@ public final class x implements Runnable {
                     }
                     int d = messagesController.d(i11, -1, j3);
                     if (d != 2 || i17 != 0) {
-                        bxVar.f46331y.D();
+                        bxVar.f46335y.D();
                         bxVar.q(true);
                     }
                     if (cxVar.Y2 == 0) {
                         if (d == 2) {
-                            boolean z10 = bz.f23218q1;
+                            boolean z10 = cz.f23435q1;
                             if (z10) {
-                                bz.f23218q1 = !z10;
-                                SharedPreferences.Editor edit = mp.g1().edit();
-                                edit.putBoolean("archiveHidden", bz.f23218q1);
+                                cz.f23435q1 = !z10;
+                                SharedPreferences.Editor edit = np.g1().edit();
+                                edit.putBoolean("archiveHidden", cz.f23435q1);
                                 edit.apply();
                             }
-                            bxVar.f46331y.D();
+                            bxVar.f46335y.D();
                             if (i17 == 0) {
                                 cxVar.U4(true, true);
                                 bxVar.q(true);
                                 cxVar.z3();
                             } else {
                                 bxVar.q(true);
-                                if (!bz.f23218q1 && bxVar.f46323c.L0() == 0) {
-                                    cxVar.f46726g2 = true;
-                                    yw ywVar = bxVar.f46321a;
-                                    if (bz.f23215p1) {
+                                if (!cz.f23435q1 && bxVar.f46327c.L0() == 0) {
+                                    cxVar.f46729g2 = true;
+                                    yw ywVar = bxVar.f46325a;
+                                    if (cz.f23432p1) {
                                         f10 = 76.0f;
                                     } else {
                                         f10 = 70.0f;
@@ -286,7 +286,7 @@ public final class x implements Runnable {
                                 }
                             }
                             i13 = ((g2) cxVar).currentAccount;
-                            cxVar.T1.add(0, (TLRPC.Dialog) cxVar.d4(i13, bxVar.f46328s, cxVar.Y2, false).get(0));
+                            cxVar.T1.add(0, (TLRPC.Dialog) cxVar.d4(i13, bxVar.f46332s, cxVar.Y2, false).get(0));
                             bxVar.q(true);
                             org.telegram.messenger.g0.h3(new Runnable() {
                                 @Override
@@ -302,16 +302,16 @@ public final class x implements Runnable {
                                 }
                             }, 300L);
                         } else if (d == 1) {
-                            v4.f1 K = bxVar.f46321a.K(0);
+                            v4.f1 K = bxVar.f46325a.K(0);
                             if (K != null) {
-                                View view = K.f59161a;
+                                View view = K.f59165a;
                                 if (view instanceof u2) {
                                     u2 u2Var = (u2) view;
-                                    if (u2Var.f31927b2.f33807n == 2) {
-                                        u2Var.f31932c2 = true;
+                                    if (u2Var.f31930b2.f33800n == 2) {
+                                        u2Var.f31935c2 = true;
                                         u2Var.d2 = 0.0f;
-                                        m6.f29689u1.T(true, 0.0f);
-                                        m6.f29689u1.start();
+                                        m6.f29692u1.T(true, 0.0f);
+                                        m6.f29692u1.start();
                                         u2Var.invalidate();
                                     }
                                 }
@@ -330,25 +330,25 @@ public final class x implements Runnable {
                                 }
                             }, 300L);
                         }
-                        SharedPreferences g12 = mp.g1();
-                        i15 = (g12.getBoolean("archivehint_l", false) || bz.f23218q1) ? 1 : 1;
+                        SharedPreferences g12 = np.g1();
+                        i15 = (g12.getBoolean("archivehint_l", false) || cz.f23435q1) ? 1 : 1;
                         if (i15 == 0) {
                             g12.edit().putBoolean("archivehint_l", true).commit();
                         }
                         UndoView l42 = cxVar.l4();
                         if (l42 != null) {
-                            long j10 = dialog.f28435id;
+                            long j10 = dialog.f28438id;
                             if (i15 != 0) {
                                 i12 = 2;
                             } else {
                                 i12 = 3;
                             }
-                            l42.l(j10, i12, null, new j01(axVar, dialog, i21, 3));
+                            l42.l(j10, i12, null, new f21(axVar, dialog, i21, 2));
                         }
                     }
                     if (cxVar.Y2 != 0 && cxVar.T1.isEmpty()) {
-                        bxVar.f46321a.setEmptyView(null);
-                        bxVar.f46330x.setVisibility(4);
+                        bxVar.f46325a.setEmptyView(null);
+                        bxVar.f46334x.setVisibility(4);
                         return;
                     }
                     return;
@@ -358,26 +358,26 @@ public final class x implements Runnable {
     }
 
     public x(Object obj, int i7, int i10, Object obj2, int i11) {
-        this.f19618a = i11;
+        this.f19621a = i11;
         this.d = obj;
-        this.f19619b = i7;
-        this.f19620c = i10;
-        this.f19621e = obj2;
+        this.f19622b = i7;
+        this.f19623c = i10;
+        this.f19624e = obj2;
     }
 
     public x(Object obj, Object obj2, int i7, int i10, int i11) {
-        this.f19618a = i11;
+        this.f19621a = i11;
         this.d = obj;
-        this.f19621e = obj2;
-        this.f19619b = i7;
-        this.f19620c = i10;
+        this.f19624e = obj2;
+        this.f19622b = i7;
+        this.f19623c = i10;
     }
 
-    public x(ks ksVar, int i7, Object[] objArr, int i10) {
-        this.f19618a = 8;
-        this.d = ksVar;
-        this.f19619b = i7;
-        this.f19621e = objArr;
-        this.f19620c = i10;
+    public x(ls lsVar, int i7, Object[] objArr, int i10) {
+        this.f19621a = 8;
+        this.d = lsVar;
+        this.f19622b = i7;
+        this.f19624e = objArr;
+        this.f19623c = i10;
     }
 }

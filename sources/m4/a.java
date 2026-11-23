@@ -4,9 +4,9 @@ import h9.i0;
 import h9.t1;
 import java.util.List;
 public final class a implements f3.o {
-    public final b f20559a = new b("audio/ac3");
-    public final h2.x f20560b = new h2.x(2786);
-    public boolean f20561c;
+    public final b f20562a = new b("audio/ac3");
+    public final h2.x f20563b = new h2.x(2786);
+    public boolean f20564c;
 
     @Override
     public final boolean b(f3.p pVar) {
@@ -16,7 +16,7 @@ public final class a implements f3.o {
         int i7 = 0;
         while (true) {
             lVar = (f3.l) pVar;
-            lVar.g(xVar.f13862a, 0, 10, false);
+            lVar.g(xVar.f13865a, 0, 10, false);
             xVar.N(0);
             if (xVar.D() != 4801587) {
                 break;
@@ -26,15 +26,15 @@ public final class a implements f3.o {
             i7 += z10 + 10;
             lVar.x(z10, false);
         }
-        lVar.f11215f = 0;
+        lVar.f11218f = 0;
         lVar.x(i7, false);
         int i10 = 0;
         int i11 = i7;
         while (true) {
-            lVar.g(xVar.f13862a, 0, 6, false);
+            lVar.g(xVar.f13865a, 0, 6, false);
             xVar.N(0);
             if (xVar.H() != 2935) {
-                lVar.f11215f = 0;
+                lVar.f11218f = 0;
                 i11++;
                 if (i11 - i7 >= 8192) {
                     break;
@@ -46,7 +46,7 @@ public final class a implements f3.o {
                 if (i10 >= 4) {
                     return true;
                 }
-                byte[] bArr = xVar.f13862a;
+                byte[] bArr = xVar.f13865a;
                 if (bArr.length < 6) {
                     e10 = -1;
                 } else if (((bArr[5] & 248) >> 3) > 10) {
@@ -66,37 +66,37 @@ public final class a implements f3.o {
 
     @Override
     public final void c(f3.q qVar) {
-        this.f20559a.g(qVar, new f0(0, 1));
+        this.f20562a.g(qVar, new f0(0, 1));
         qVar.d1();
         qVar.j(new f3.t(-9223372036854775807L));
     }
 
     @Override
     public final void d(long j3, long j10) {
-        this.f20561c = false;
-        this.f20559a.d();
+        this.f20564c = false;
+        this.f20562a.d();
     }
 
     @Override
     public final List e() {
-        h9.g0 g0Var = i0.f14032b;
-        return t1.f14100e;
+        h9.g0 g0Var = i0.f14035b;
+        return t1.f14103e;
     }
 
     @Override
     public final int f(f3.p pVar, f3.s sVar) {
-        h2.x xVar = this.f20560b;
-        int read = pVar.read(xVar.f13862a, 0, 2786);
+        h2.x xVar = this.f20563b;
+        int read = pVar.read(xVar.f13865a, 0, 2786);
         if (read == -1) {
             return -1;
         }
         xVar.N(0);
         xVar.M(read);
-        boolean z10 = this.f20561c;
-        b bVar = this.f20559a;
+        boolean z10 = this.f20564c;
+        b bVar = this.f20562a;
         if (!z10) {
-            bVar.f20574o = 0L;
-            this.f20561c = true;
+            bVar.f20577o = 0L;
+            this.f20564c = true;
         }
         bVar.c(xVar);
         return 0;

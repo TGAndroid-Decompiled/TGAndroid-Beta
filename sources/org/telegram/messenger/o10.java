@@ -1,347 +1,159 @@
 package org.telegram.messenger;
 
-import android.text.TextUtils;
-import java.util.Locale;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.opengl.GLUtils;
+import android.text.TextPaint;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import javax.microedition.khronos.egl.EGL10;
+import org.telegram.ui.ThemeActivity;
 public abstract class o10 {
-    public static boolean A(TLRPC.User user) {
-        if (user != null) {
-            long j3 = user.f28580id;
-            if (j3 == 708513 || j3 == 1271266957) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+    public static float A(float f10, float f11, float f12, float f13) {
+        return Math.max(f13, Math.min(f12, f10 + f11));
     }
 
-    public static boolean B(long j3) {
-        if (j3 != 333000 && j3 != 777000 && j3 != 42777) {
-            return false;
-        }
-        return true;
+    public static int B(float f10, int i7, int i10) {
+        return i10 - (g0.L(f10) * i7);
     }
 
-    public static boolean C(TLRPC.User user) {
-        if (user != null) {
-            if ((user instanceof TLRPC.TL_userSelf_old3) || user.self) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+    public static int C(float f10, int i7, int i10) {
+        return View.MeasureSpec.makeMeasureSpec(g0.L(f10) + i7, i10);
     }
 
-    public static boolean a(TLRPC.UserFull userFull, TL_account.RequirementToContact requirementToContact) {
-        if (requirementToContact instanceof TL_account.requirementToContactEmpty) {
-            if (userFull.contact_require_premium || userFull.send_paid_messages_stars != 0) {
-                userFull.contact_require_premium = false;
-                userFull.flags2 &= -16385;
-                userFull.send_paid_messages_stars = 0L;
-                return true;
-            }
-        } else if (requirementToContact instanceof TL_account.requirementToContactPremium) {
-            if (!userFull.contact_require_premium || userFull.send_paid_messages_stars != 0) {
-                userFull.contact_require_premium = true;
-                userFull.flags2 &= -16385;
-                userFull.send_paid_messages_stars = 0L;
-                return true;
-            }
-        } else if (requirementToContact instanceof TL_account.requirementToContactPaidMessages) {
-            long j3 = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
-            if (userFull.contact_require_premium || userFull.send_paid_messages_stars != j3) {
-                userFull.contact_require_premium = false;
-                userFull.flags2 |= 16384;
-                userFull.send_paid_messages_stars = j3;
-                return true;
-            }
-        }
-        return false;
+    public static int D(float f10, int i7, int i10) {
+        return Math.min(i10, i7 - g0.L(f10));
     }
 
-    public static boolean b(long j3) {
-        return c(mp.u1(j10.f24798t0).d2(j3));
-    }
-
-    public static boolean c(TLRPC.UserFull userFull) {
-        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        if ((userFull != null && userFull.f28581id == j10.i(j10.f24798t0).e()) || userFull == null || (disallowedGiftsSettings = userFull.disallowed_stargifts) == null || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_premium_gifts) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean d(TL_account.RequirementToContact requirementToContact, TL_account.RequirementToContact requirementToContact2) {
-        if (requirementToContact instanceof TL_account.requirementToContactEmpty) {
-            requirementToContact = null;
-        }
-        if (requirementToContact2 instanceof TL_account.requirementToContactEmpty) {
-            requirementToContact2 = null;
-        }
-        if (requirementToContact == null && requirementToContact2 == null) {
-            return true;
-        }
-        if (requirementToContact != null && requirementToContact2 != null) {
-            if ((requirementToContact instanceof TL_account.requirementToContactPremium) && (requirementToContact2 instanceof TL_account.requirementToContactPremium)) {
-                return true;
-            }
-            if ((requirementToContact instanceof TL_account.requirementToContactPaidMessages) && (requirementToContact2 instanceof TL_account.requirementToContactPaidMessages) && ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount == ((TL_account.requirementToContactPaidMessages) requirementToContact2).stars_amount) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static String e(TLRPC.User user) {
-        String o4 = o(user);
-        if (o4 != null) {
-            String lowerCase = o4.toLowerCase(Locale.ROOT);
-            if (lowerCase.endsWith("agent")) {
-                return gd.N0(2131752932, null);
-            }
-            if (lowerCase.endsWith("game")) {
-                return gd.N0(2131752930, null);
-            }
-            if (lowerCase.endsWith("app")) {
-                return gd.N0(2131752931, null);
-            }
-            if (lowerCase.endsWith("ai")) {
-                return gd.N0(2131752933, null);
-            }
-            if (lowerCase.endsWith("gay")) {
-                return gd.N0(2131752929, null);
-            }
-        }
-        return gd.N0(2131753153, null);
-    }
-
-    public static int f(TLRPC.User user) {
-        if (user == null) {
-            return 0;
-        }
-        TLRPC.PeerColor peerColor = user.color;
-        if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
-            return peerColor.color;
-        }
-        return (int) (user.f28580id % 7);
-    }
-
-    public static long g(TLRPC.User user) {
-        if (user != null) {
-            TLRPC.PeerColor peerColor = user.color;
-            if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 2) != 0) {
-                return peerColor.background_emoji_id;
-            }
-            return 0L;
-        }
-        return 0L;
-    }
-
-    public static Long h(TLRPC.EmojiStatus emojiStatus) {
-        if (emojiStatus == null) {
-            return null;
-        }
-        if (emojiStatus instanceof TLRPC.TL_emojiStatus) {
-            TLRPC.TL_emojiStatus tL_emojiStatus = (TLRPC.TL_emojiStatus) emojiStatus;
-            if ((tL_emojiStatus.flags & 1) != 0 && tL_emojiStatus.until <= ((int) (System.currentTimeMillis() / 1000))) {
-                return null;
-            }
-            return Long.valueOf(tL_emojiStatus.document_id);
-        } else if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
-            return null;
-        } else {
-            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-            if ((tL_emojiStatusCollectible.flags & 1) != 0 && tL_emojiStatusCollectible.until <= ((int) (System.currentTimeMillis() / 1000))) {
-                return null;
-            }
-            return Long.valueOf(tL_emojiStatusCollectible.document_id);
-        }
-    }
-
-    public static Long i(TLRPC.User user) {
-        if (user == null) {
-            return null;
-        }
-        return h(user.emoji_status);
-    }
-
-    public static String j(TLRPC.User user) {
-        return k(user, true);
-    }
-
-    public static String k(TLRPC.User user, boolean z10) {
-        if (user != null && !y(user)) {
-            String str = user.first_name;
-            if (TextUtils.isEmpty(str)) {
-                str = user.last_name;
-            } else if (!z10 && str.length() <= 2) {
-                return i5.m(0, user.first_name, user.last_name);
-            }
-            if (!TextUtils.isEmpty(str)) {
-                return str;
-            }
-            return gd.N0(2131749135, null);
-        }
-        return "DELETED";
-    }
-
-    public static String l(TLRPC.User user) {
-        if (user != null && !y(user)) {
-            String str = user.first_name;
-            if (TextUtils.isEmpty(str)) {
-                str = user.last_name;
-            }
-            if (str == null) {
-                return gd.N0(2131749135, null);
-            }
-            int indexOf = str.indexOf(" ", 2);
-            if (indexOf >= 0) {
-                return str.substring(0, indexOf);
-            }
-            return str;
-        }
-        return gd.N0(2131749135, null);
-    }
-
-    public static int m(TLRPC.User user) {
-        if (user == null) {
-            return 0;
-        }
-        TLRPC.PeerColor peerColor = user.profile_color;
-        if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
-            return peerColor.color;
+    public static int a(org.telegram.ui.c3 c3Var) {
+        int boundLeft = c3Var.getBoundLeft();
+        int boundRight = c3Var.getBoundRight();
+        if (boundLeft >= 0 && boundRight >= 0 && boundRight >= boundLeft) {
+            return boundRight - boundLeft;
         }
         return -1;
     }
 
-    public static long n(TLRPC.User user) {
-        TLRPC.PeerColor peerColor;
-        if (user != null) {
-            TLRPC.EmojiStatus emojiStatus = user.emoji_status;
-            if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
-                return ((TLRPC.TL_emojiStatusCollectible) emojiStatus).pattern_document_id;
-            }
-        }
-        if (user != null && (peerColor = user.profile_color) != null && (peerColor.flags & 2) != 0) {
-            return peerColor.background_emoji_id;
-        }
-        return 0L;
+    public static float b(float f10, float f11, float f12, float f13) {
+        return ((f10 + f11) * f12) + f13;
     }
 
-    public static String o(TLRPC.User user) {
-        if (user != null) {
-            if (!TextUtils.isEmpty(user.username)) {
-                return user.username;
-            }
-            if (user.usernames != null) {
-                for (int i7 = 0; i7 < user.usernames.size(); i7++) {
-                    TLRPC.TL_username tL_username = user.usernames.get(i7);
-                    if (tL_username != null && ((tL_username.active || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
-                        return tL_username.username;
-                    }
-                }
-                return null;
-            }
-            return null;
-        }
-        return null;
+    public static int c(float f10, int i7, int i10) {
+        return View.MeasureSpec.makeMeasureSpec(i7 - g0.L(f10), i10);
     }
 
-    public static TL_account.RequirementToContact p(TLRPC.UserFull userFull) {
-        if (userFull.send_paid_messages_stars != 0) {
-            TL_account.requirementToContactPaidMessages requirementtocontactpaidmessages = new TL_account.requirementToContactPaidMessages();
-            requirementtocontactpaidmessages.stars_amount = userFull.send_paid_messages_stars;
-            return requirementtocontactpaidmessages;
-        } else if (userFull.contact_require_premium) {
-            return new TL_account.requirementToContactPremium();
-        } else {
-            return null;
-        }
+    public static TextPaint d(TextPaint textPaint, int i7) {
+        textPaint.setTypeface(g0.o());
+        return new TextPaint(i7);
     }
 
-    public static String q(TLRPC.User user) {
-        if (user != null && !y(user)) {
-            String F2 = g0.F2(g0.D2(i5.m(0, user.first_name, user.last_name)));
-            if (F2.length() == 0 && !TextUtils.isEmpty(user.phone)) {
-                return n10.h(new StringBuilder("+"), user.phone, pf.b.c());
-            }
-            return F2;
-        }
-        return gd.N0(2131749135, null);
+    public static ImageView e(Context context, int i7) {
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(i7);
+        return imageView;
     }
 
-    public static boolean r(TLRPC.UserFull userFull) {
-        TLRPC.Photo photo;
-        if (userFull != null && (photo = userFull.fallback_photo) != null && !(photo instanceof TLRPC.TL_photoEmpty)) {
-            return true;
-        }
-        return false;
+    public static TextView f(LinearLayout linearLayout, TextView textView, LinearLayout.LayoutParams layoutParams, Context context) {
+        linearLayout.addView(textView, layoutParams);
+        return new TextView(context);
     }
 
-    public static boolean s(String str, TLRPC.User user) {
-        if (user != null && str != null) {
-            if (str.equalsIgnoreCase(user.username)) {
-                return true;
-            }
-            if (user.usernames != null) {
-                for (int i7 = 0; i7 < user.usernames.size(); i7++) {
-                    TLRPC.TL_username tL_username = user.usernames.get(i7);
-                    if (tL_username != null && tL_username.active && str.equalsIgnoreCase(tL_username.username)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+    public static hi.e g(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
+        hi.e eVar = new hi.e(context, h6Var, z10);
+        eVar.setRoundRadius(i7);
+        return eVar;
     }
 
-    public static boolean t(TLRPC.User user) {
-        if (user != null && user.f28580id == 2666000) {
-            return true;
-        }
-        return false;
+    public static String h(StringBuilder sb2, String str, pf.b bVar) {
+        sb2.append(str);
+        return bVar.b(sb2.toString());
     }
 
-    public static boolean u(TLRPC.User user) {
-        if (user != null && user.bot) {
-            return true;
-        }
-        return false;
+    public static FloatBuffer i(ByteBuffer byteBuffer) {
+        return byteBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer();
     }
 
-    public static boolean v(TLRPC.User user) {
-        if (user != null && user.bot_forum_view) {
-            return true;
-        }
-        return false;
+    public static org.telegram.ui.ActionBar.w2 j(Activity activity, boolean z10, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        org.telegram.ui.ActionBar.w2 w2Var = new org.telegram.ui.ActionBar.w2(i7, activity, h6Var, z10);
+        w2Var.O();
+        return w2Var;
     }
 
-    public static boolean w(TLRPC.User user) {
-        if (user != null && user.bot_forum_view && user.bot_forum_can_manage_topics) {
-            return true;
-        }
-        return false;
+    public static void k(float f10, float f11, float f12, float f13, Canvas canvas) {
+        canvas.translate(f13, f12 - (f10 / f11));
     }
 
-    public static boolean x(TLRPC.User user) {
-        if (!(user instanceof TLRPC.TL_userContact_old2) && !user.contact && !user.mutual_contact) {
-            return false;
-        }
-        return true;
+    public static void l(float f10, int i7, int i10, TextView textView, String str) {
+        textView.setText(hd.N0(i7, str));
+        textView.setTextSize(i10, f10);
     }
 
-    public static boolean y(TLRPC.User user) {
-        if (user != null && !(user instanceof TLRPC.TL_userDeleted_old2) && !(user instanceof TLRPC.TL_userEmpty) && !user.deleted) {
-            return false;
-        }
-        return true;
+    public static void m(int i7, org.telegram.ui.ActionBar.g2 g2Var) {
+        g2Var.presentFragment(new ThemeActivity(i7));
     }
 
-    public static boolean z(long j3) {
-        if (j3 != 708513 && j3 != 1271266957) {
-            return false;
-        }
-        return true;
+    public static void n(ViewPropertyAnimator viewPropertyAnimator, float f10, long j3) {
+        viewPropertyAnimator.alpha(f10).setDuration(j3).start();
+    }
+
+    public static void o(ViewPropertyAnimator viewPropertyAnimator, org.telegram.ui.Components.nr nrVar, long j3) {
+        viewPropertyAnimator.setInterpolator(nrVar).setDuration(j3).start();
+    }
+
+    public static void p(TextView textView, int i7, float f10) {
+        textView.setTypeface(g0.o());
+        textView.setTextSize(i7, f10);
+    }
+
+    public static void q(TextView textView, int i7, float f10, int i10, int i11) {
+        textView.setTextSize(i7, f10);
+        textView.setLines(i10);
+        textView.setMaxLines(i11);
+    }
+
+    public static void r(TextView textView, int i7, org.telegram.ui.ActionBar.h6 h6Var, String str, int i10) {
+        org.telegram.ui.ActionBar.t6.U(textView, i7, h6Var);
+        textView.setText(hd.N0(i10, str));
+    }
+
+    public static void s(fh.g gVar, float f10, float f11) {
+        gVar.r(f10);
+        gVar.q(g0.L(f11));
+    }
+
+    public static void t(String str, int i7, org.telegram.ui.Components.lc lcVar) {
+        lcVar.i(hd.N0(i7, str)).j();
+    }
+
+    public static void u(String str, org.telegram.ui.Components.lc lcVar, int i7, int i10) {
+        lcVar.Q(i7, i10, g0.W2(str)).j();
+    }
+
+    public static void v(EGL10 egl10, StringBuilder sb2) {
+        sb2.append(GLUtils.getEGLErrorString(egl10.eglGetError()));
+        a8.d(sb2.toString());
+    }
+
+    public static float w(float f10, float f11, float f12, float f13) {
+        return f13 - ((f10 / f11) * f12);
+    }
+
+    public static int x(float f10, int i7, int i10) {
+        return i10 - (g0.L(f10) + i7);
+    }
+
+    public static float y(float f10, float f11, float f12, float f13) {
+        return (f12 - (f10 / f11)) * f13;
+    }
+
+    public static int z(float f10, int i7, int i10) {
+        return (i7 - g0.L(f10)) / i10;
     }
 }

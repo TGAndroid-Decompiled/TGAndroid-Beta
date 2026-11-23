@@ -3,10 +3,10 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class lj implements ls {
-    public final bn f49622a;
+    public final bn f49626a;
 
     public lj(bn bnVar) {
-        this.f49622a = bnVar;
+        this.f49626a = bnVar;
     }
 
     @Override
@@ -47,15 +47,15 @@ public final class lj implements ls {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            bn bnVar = this.f49622a;
+            bn bnVar = this.f49626a;
             if (bnVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f28451id = inputStickerSet.f28451id;
-                org.telegram.ui.Components.kw0 kw0Var = new org.telegram.ui.Components.kw0(bnVar.getParentActivity(), bnVar, tL_inputStickerSetID, null, bnVar.f45946a0, bnVar.Ba);
+                tL_inputStickerSetID.f28454id = inputStickerSet.f28454id;
+                org.telegram.ui.Components.kw0 kw0Var = new org.telegram.ui.Components.kw0(bnVar.getParentActivity(), bnVar, tL_inputStickerSetID, null, bnVar.f45950a0, bnVar.Ba);
                 boolean V9 = bnVar.V9();
-                kw0Var.f30191i0 = V9;
-                kw0Var.f30198n = V9;
+                kw0Var.f30194i0 = V9;
+                kw0Var.f30201n = V9;
                 kw0Var.d2 = z10;
                 bnVar.showDialog(kw0Var);
             }
@@ -79,17 +79,17 @@ public final class lj implements ls {
 
     @Override
     public final long a() {
-        return this.f49622a.f46099l6;
+        return this.f49626a.f46103l6;
     }
 
     @Override
     public final boolean b() {
-        return this.f49622a.S6();
+        return this.f49626a.S6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f49622a.f46032g4 == 1) {
+        if (this.f49626a.f46036g4 == 1) {
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public final class lj implements ls {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i7, int i10) {
-        this.f49622a.f45946a0.d(document, str, obj, null, true, z10, i7, i10);
+        this.f49626a.f45950a0.d(document, str, obj, null, true, z10, i7, i10);
     }
 
     @Override
@@ -146,7 +146,7 @@ public final class lj implements ls {
     }
 
     @Override
-    public final org.telegram.messenger.fj z() {
+    public final org.telegram.messenger.gj z() {
         return null;
     }
 
@@ -167,7 +167,7 @@ public final class lj implements ls {
     }
 
     @Override
-    public final void i(org.telegram.messenger.sy syVar) {
+    public final void i(org.telegram.messenger.ty tyVar) {
     }
 
     @Override

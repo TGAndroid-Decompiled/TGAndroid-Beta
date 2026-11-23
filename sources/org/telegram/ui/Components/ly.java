@@ -15,28 +15,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class ly extends dk0 {
-    public final Context f37317c;
+    public final Context f37324c;
     public int d;
-    public final SparseArray f37318e = new SparseArray();
-    public final HashMap f37319f = new HashMap();
+    public final SparseArray f37325e = new SparseArray();
+    public final HashMap f37326f = new HashMap();
     public final SparseArray h = new SparseArray();
-    public final SparseArray f37320n = new SparseArray();
-    public final SparseIntArray f37321r = new SparseIntArray();
-    public int f37322s;
-    public final ty f37323w;
+    public final SparseArray f37327n = new SparseArray();
+    public final SparseIntArray f37328r = new SparseIntArray();
+    public int f37329s;
+    public final ty f37330w;
 
     public ly(ty tyVar, Context context) {
-        this.f37323w = tyVar;
-        this.f37317c = context;
+        this.f37330w = tyVar;
+        this.f37324c = context;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        return f1Var.f59161a instanceof ek0;
+        return f1Var.f59165a instanceof ek0;
     }
 
     public final int E(Object obj) {
-        Integer num = (Integer) this.f37319f.get(obj);
+        Integer num = (Integer) this.f37326f.get(obj);
         if (num == null) {
             return -1;
         }
@@ -46,8 +46,8 @@ public final class ly extends dk0 {
     public final int F(int i7) {
         int indexOf;
         int i10;
-        ty tyVar = this.f37323w;
-        ArrayList arrayList = tyVar.f40102e1;
+        ty tyVar = this.f37330w;
+        ArrayList arrayList = tyVar.f40095e1;
         Object obj = this.h.get(i7);
         if (!"search".equals(obj) && !"trend1".equals(obj) && !"trend2".equals(obj)) {
             if (i7 == 0) {
@@ -56,16 +56,16 @@ public final class ly extends dk0 {
             if (this.d == 0) {
                 int measuredWidth = tyVar.getMeasuredWidth();
                 if (measuredWidth == 0) {
-                    measuredWidth = org.telegram.messenger.g0.f24146q.x;
+                    measuredWidth = org.telegram.messenger.g0.f24046q.x;
                 }
                 this.d = measuredWidth / org.telegram.messenger.g0.L(72.0f);
             }
-            int i11 = this.f37321r.get(i7, Integer.MIN_VALUE);
+            int i11 = this.f37328r.get(i7, Integer.MIN_VALUE);
             if (i11 == Integer.MIN_VALUE) {
                 indexOf = arrayList.size() - 1;
                 i10 = tyVar.F1;
             } else {
-                Object obj2 = this.f37318e.get(i11);
+                Object obj2 = this.f37325e.get(i11);
                 if (obj2 instanceof String) {
                     if ("premium".equals(obj2)) {
                         return tyVar.J1;
@@ -97,7 +97,7 @@ public final class ly extends dk0 {
 
     @Override
     public final int b() {
-        int i7 = this.f37322s;
+        int i7 = this.f37329s;
         if (i7 != 0) {
             return i7 + 1;
         }
@@ -149,10 +149,10 @@ public final class ly extends dk0 {
         TLRPC.Chat chat;
         String str;
         int i11;
-        ty tyVar = this.f37323w;
-        int i12 = tyVar.f40099d1;
-        int i13 = f1Var.f59165f;
-        View view = f1Var.f59161a;
+        ty tyVar = this.f37330w;
+        int i12 = tyVar.f40092d1;
+        int i13 = f1Var.f59169f;
+        View view = f1Var.f59165a;
         SparseArray sparseArray = this.h;
         if (i13 != 0) {
             int i14 = 1;
@@ -163,18 +163,18 @@ public final class ly extends dk0 {
                     if (i13 != 3) {
                         if (i13 == 5) {
                             org.telegram.ui.Cells.k8 k8Var = (org.telegram.ui.Cells.k8) view;
-                            if (org.telegram.messenger.ri.d0(i12).f26665s0) {
+                            if (org.telegram.messenger.si.d0(i12).f26851s0) {
                                 i11 = 2131750820;
                             } else {
                                 i11 = 2131750821;
                             }
-                            k8Var.b(org.telegram.messenger.gd.N0(i11, null), 2131232098, org.telegram.messenger.gd.N0(2131754898, null), 0, 0);
+                            k8Var.b(org.telegram.messenger.hd.N0(i11, null), 2131232098, org.telegram.messenger.hd.N0(2131754898, null), 0, 0);
                             return;
                         }
                         return;
                     }
                     org.telegram.ui.Cells.i8 i8Var = (org.telegram.ui.Cells.i8) view;
-                    if (i7 != this.f37322s - 1) {
+                    if (i7 != this.f37329s - 1) {
                         z10 = false;
                     }
                     i8Var.setIsLast(z10);
@@ -182,16 +182,16 @@ public final class ly extends dk0 {
                 }
                 org.telegram.ui.Cells.k8 k8Var2 = (org.telegram.ui.Cells.k8) view;
                 k8Var2.setHeaderOnClick(null);
-                if (i7 == tyVar.f40109g1) {
-                    if (tyVar.f40112h1 && tyVar.f40115i1 == null) {
+                if (i7 == tyVar.f40102g1) {
+                    if (tyVar.f40105h1 && tyVar.f40108i1 == null) {
                         i10 = 0;
-                    } else if (tyVar.f40115i1 != null) {
+                    } else if (tyVar.f40108i1 != null) {
                         i10 = 2131232239;
                     } else {
                         i10 = 2131232098;
                     }
                     if (tyVar.K1 != null) {
-                        chat = org.telegram.messenger.mp.u1(i12).O0(Long.valueOf(tyVar.K1.f28432id));
+                        chat = org.telegram.messenger.np.u1(i12).O0(Long.valueOf(tyVar.K1.f28435id));
                     } else {
                         chat = null;
                     }
@@ -200,7 +200,7 @@ public final class ly extends dk0 {
                     } else {
                         str = "Group Stickers";
                     }
-                    k8Var2.a(i10, org.telegram.messenger.gd.a0("CurrentGroupStickers", null, 2131751682, str));
+                    k8Var2.a(i10, org.telegram.messenger.hd.a0("CurrentGroupStickers", null, 2131751682, str));
                     return;
                 }
                 Object obj = sparseArray.get(i7);
@@ -211,40 +211,40 @@ public final class ly extends dk0 {
                         k8Var2.a(0, stickerSet.title);
                         if (tL_messages_stickerSet.set.creator && !tyVar.T2) {
                             k8Var2.setEdit(new View.OnClickListener(this) {
-                                public final ly f36717b;
+                                public final ly f36712b;
 
                                 {
-                                    this.f36717b = this;
+                                    this.f36712b = this;
                                 }
 
                                 @Override
                                 public final void onClick(View view2) {
                                     switch (r3) {
                                         case 0:
-                                            this.f36717b.f37323w.f40151u1.d(tL_messages_stickerSet.set, null, true);
+                                            this.f36712b.f37330w.f40144u1.d(tL_messages_stickerSet.set, null, true);
                                             return;
                                         default:
-                                            this.f36717b.f37323w.f40151u1.d(tL_messages_stickerSet.set, null, false);
+                                            this.f36712b.f37330w.f40144u1.d(tL_messages_stickerSet.set, null, false);
                                             return;
                                     }
                                 }
                             });
                         }
                         k8Var2.setHeaderOnClick(new View.OnClickListener(this) {
-                            public final ly f36717b;
+                            public final ly f36712b;
 
                             {
-                                this.f36717b = this;
+                                this.f36712b = this;
                             }
 
                             @Override
                             public final void onClick(View view2) {
                                 switch (r3) {
                                     case 0:
-                                        this.f36717b.f37323w.f40151u1.d(tL_messages_stickerSet.set, null, true);
+                                        this.f36712b.f37330w.f40144u1.d(tL_messages_stickerSet.set, null, true);
                                         return;
                                     default:
-                                        this.f36717b.f37323w.f40151u1.d(tL_messages_stickerSet.set, null, false);
+                                        this.f36712b.f37330w.f40144u1.d(tL_messages_stickerSet.set, null, false);
                                         return;
                                 }
                             }
@@ -252,32 +252,32 @@ public final class ly extends dk0 {
                         return;
                     }
                     return;
-                } else if (obj == tyVar.f40121k1) {
-                    k8Var2.b(org.telegram.messenger.gd.N0(2131746168, null), 2131232098, org.telegram.messenger.gd.N0(2131752051, null), 0, 0);
+                } else if (obj == tyVar.f40114k1) {
+                    k8Var2.b(org.telegram.messenger.hd.N0(2131746168, null), 2131232098, org.telegram.messenger.hd.N0(2131752051, null), 0, 0);
                     return;
                 } else if (obj == tyVar.l1) {
-                    k8Var2.a(0, org.telegram.messenger.gd.N0(2131750829, null));
+                    k8Var2.a(0, org.telegram.messenger.hd.N0(2131750829, null));
                     return;
-                } else if (obj == tyVar.f40125m1) {
-                    k8Var2.a(0, org.telegram.messenger.gd.N0(2131746753, null));
+                } else if (obj == tyVar.f40118m1) {
+                    k8Var2.a(0, org.telegram.messenger.hd.N0(2131746753, null));
                     return;
                 } else {
                     return;
                 }
             }
             org.telegram.ui.Cells.n3 n3Var = (org.telegram.ui.Cells.n3) view;
-            if (i7 == this.f37322s) {
-                int i15 = this.f37321r.get(i7 - 1, Integer.MIN_VALUE);
+            if (i7 == this.f37329s) {
+                int i15 = this.f37328r.get(i7 - 1, Integer.MIN_VALUE);
                 if (i15 == Integer.MIN_VALUE) {
                     n3Var.setHeight(1);
                     return;
                 }
-                Object obj2 = this.f37318e.get(i15);
+                Object obj2 = this.f37325e.get(i15);
                 if (obj2 instanceof TLRPC.TL_messages_stickerSet) {
                     arrayList = ((TLRPC.TL_messages_stickerSet) obj2).documents;
                 } else if (obj2 instanceof String) {
                     if ("recent".equals(obj2)) {
-                        arrayList = tyVar.f40121k1;
+                        arrayList = tyVar.f40114k1;
                     } else {
                         arrayList = tyVar.l1;
                     }
@@ -289,7 +289,7 @@ public final class ly extends dk0 {
                     n3Var.setHeight(org.telegram.messenger.g0.L(8.0f));
                     return;
                 } else {
-                    int B = org.telegram.messenger.n10.B(82.0f, (int) Math.ceil(arrayList.size() / this.d), tyVar.h.getHeight());
+                    int B = org.telegram.messenger.o10.B(82.0f, (int) Math.ceil(arrayList.size() / this.d), tyVar.h.getHeight());
                     if (B > 0) {
                         i14 = B;
                     }
@@ -302,15 +302,15 @@ public final class ly extends dk0 {
         }
         TLRPC.Document document = (TLRPC.Document) sparseArray.get(i7);
         org.telegram.ui.Cells.a8 a8Var = (org.telegram.ui.Cells.a8) view;
-        a8Var.d(document, null, this.f37320n.get(i7), null, false, false);
-        a8Var.setRecent(tyVar.f40121k1.contains(document));
+        a8Var.d(document, null, this.f37327n.get(i7), null, false, false);
+        a8Var.setRecent(tyVar.f40114k1.contains(document));
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        ty tyVar = this.f37323w;
-        org.telegram.ui.ActionBar.h6 h6Var = tyVar.f40089a2;
-        Context context = this.f37317c;
+        ty tyVar = this.f37330w;
+        org.telegram.ui.ActionBar.h6 h6Var = tyVar.f40082a2;
+        Context context = this.f37324c;
         FrameLayout frameLayout = null;
         switch (i7) {
             case 0:
@@ -320,7 +320,7 @@ public final class ly extends dk0 {
                 frameLayout = new org.telegram.ui.Cells.n3(context);
                 break;
             case 2:
-                org.telegram.ui.Cells.k8 k8Var = new org.telegram.ui.Cells.k8(this.f37317c, false, false, tyVar.f40089a2, tyVar.f40119j2);
+                org.telegram.ui.Cells.k8 k8Var = new org.telegram.ui.Cells.k8(this.f37324c, false, false, tyVar.f40082a2, tyVar.f40112j2);
                 k8Var.setOnIconClickListener(new m8(12, this, k8Var));
                 frameLayout = k8Var;
                 break;
@@ -332,37 +332,37 @@ public final class ly extends dk0 {
                 i5.c.r(14.0f, 1, 2131749203, textView, null);
                 linearLayout.addView(textView, c8.ma.t(-1, -2, 51, 17, 4, 17, 0));
                 TextView textView2 = new TextView(context);
-                linearLayout.f30864a = textView2;
+                linearLayout.f30867a = textView2;
                 textView2.setPadding(org.telegram.messenger.g0.L(17.0f), 0, org.telegram.messenger.g0.L(17.0f), 0);
                 textView2.setGravity(17);
                 org.telegram.messenger.f3.l(textView2, org.telegram.ui.ActionBar.m6.Ji, null, 1, 14.0f);
                 textView2.setBackground(org.telegram.ui.ActionBar.a6.f(org.telegram.ui.ActionBar.m6.Fi, 4.0f));
-                textView2.setText(org.telegram.messenger.gd.N0(2131752104, null).toUpperCase());
+                textView2.setText(org.telegram.messenger.hd.N0(2131752104, null).toUpperCase());
                 linearLayout.addView(textView2, c8.ma.t(-2, 28, 51, 17, 10, 14, 8));
                 linearLayout.setAddOnClickListener(new View.OnClickListener(this) {
-                    public final ly f36339b;
+                    public final ly f36333b;
 
                     {
-                        this.f36339b = this;
+                        this.f36333b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                ty tyVar2 = this.f36339b.f37323w;
-                                tx txVar = tyVar2.f40151u1;
+                                ty tyVar2 = this.f36333b.f37330w;
+                                tx txVar = tyVar2.f40144u1;
                                 if (txVar != null) {
-                                    txVar.y(tyVar2.K1.f28432id);
+                                    txVar.y(tyVar2.K1.f28435id);
                                     return;
                                 }
                                 return;
                             case 1:
-                                ty tyVar3 = this.f36339b.f37323w;
-                                ArrayList arrayList = org.telegram.messenger.ri.d0(tyVar3.f40099d1).f26667t0[0];
+                                ty tyVar3 = this.f36333b.f37330w;
+                                ArrayList arrayList = org.telegram.messenger.si.d0(tyVar3.f40092d1).f26853t0[0];
                                 if (!arrayList.isEmpty()) {
-                                    org.telegram.messenger.mp.u1(tyVar3.f40099d1).i7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28458id).commit();
-                                    ly lyVar = tyVar3.f40168z0;
+                                    org.telegram.messenger.np.u1(tyVar3.f40092d1).i7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28461id).commit();
+                                    ly lyVar = tyVar3.f40161z0;
                                     if (lyVar != null) {
                                         lyVar.p(1, 2);
                                     }
@@ -371,7 +371,7 @@ public final class ly extends dk0 {
                                 }
                                 return;
                             default:
-                                org.telegram.ui.ActionBar.g2 g2Var = this.f36339b.f37323w.Z1;
+                                org.telegram.ui.ActionBar.g2 g2Var = this.f36333b.f37330w.Z1;
                                 if (g2Var instanceof org.telegram.ui.bn) {
                                     ((org.telegram.ui.bn) g2Var).Ba();
                                     return;
@@ -385,35 +385,35 @@ public final class ly extends dk0 {
                 break;
             case 4:
                 View view = new View(context);
-                view.setLayoutParams(new v4.q0(-1, tyVar.f40096c1));
+                view.setLayoutParams(new v4.q0(-1, tyVar.f40089c1));
                 frameLayout = view;
                 break;
             case 5:
-                org.telegram.ui.Cells.k8 k8Var2 = new org.telegram.ui.Cells.k8(this.f37317c, false, false, tyVar.f40089a2, tyVar.f40119j2);
+                org.telegram.ui.Cells.k8 k8Var2 = new org.telegram.ui.Cells.k8(this.f37324c, false, false, tyVar.f40082a2, tyVar.f40112j2);
                 k8Var2.setOnIconClickListener(new View.OnClickListener(this) {
-                    public final ly f36339b;
+                    public final ly f36333b;
 
                     {
-                        this.f36339b = this;
+                        this.f36333b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                ty tyVar2 = this.f36339b.f37323w;
-                                tx txVar = tyVar2.f40151u1;
+                                ty tyVar2 = this.f36333b.f37330w;
+                                tx txVar = tyVar2.f40144u1;
                                 if (txVar != null) {
-                                    txVar.y(tyVar2.K1.f28432id);
+                                    txVar.y(tyVar2.K1.f28435id);
                                     return;
                                 }
                                 return;
                             case 1:
-                                ty tyVar3 = this.f36339b.f37323w;
-                                ArrayList arrayList = org.telegram.messenger.ri.d0(tyVar3.f40099d1).f26667t0[0];
+                                ty tyVar3 = this.f36333b.f37330w;
+                                ArrayList arrayList = org.telegram.messenger.si.d0(tyVar3.f40092d1).f26853t0[0];
                                 if (!arrayList.isEmpty()) {
-                                    org.telegram.messenger.mp.u1(tyVar3.f40099d1).i7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28458id).commit();
-                                    ly lyVar = tyVar3.f40168z0;
+                                    org.telegram.messenger.np.u1(tyVar3.f40092d1).i7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28461id).commit();
+                                    ly lyVar = tyVar3.f40161z0;
                                     if (lyVar != null) {
                                         lyVar.p(1, 2);
                                     }
@@ -422,7 +422,7 @@ public final class ly extends dk0 {
                                 }
                                 return;
                             default:
-                                org.telegram.ui.ActionBar.g2 g2Var = this.f36339b.f37323w.Z1;
+                                org.telegram.ui.ActionBar.g2 g2Var = this.f36333b.f37330w.Z1;
                                 if (g2Var instanceof org.telegram.ui.bn) {
                                     ((org.telegram.ui.bn) g2Var).Ba();
                                     return;
@@ -457,29 +457,29 @@ public final class ly extends dk0 {
                 org.telegram.ui.ActionBar.t6.j(linearLayout2, d02, K, null, h6Var);
                 c8.ra.b(linearLayout2, 0.1f, 1.5f);
                 linearLayout2.setOnClickListener(new View.OnClickListener(this) {
-                    public final ly f36339b;
+                    public final ly f36333b;
 
                     {
-                        this.f36339b = this;
+                        this.f36333b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                ty tyVar2 = this.f36339b.f37323w;
-                                tx txVar = tyVar2.f40151u1;
+                                ty tyVar2 = this.f36333b.f37330w;
+                                tx txVar = tyVar2.f40144u1;
                                 if (txVar != null) {
-                                    txVar.y(tyVar2.K1.f28432id);
+                                    txVar.y(tyVar2.K1.f28435id);
                                     return;
                                 }
                                 return;
                             case 1:
-                                ty tyVar3 = this.f36339b.f37323w;
-                                ArrayList arrayList = org.telegram.messenger.ri.d0(tyVar3.f40099d1).f26667t0[0];
+                                ty tyVar3 = this.f36333b.f37330w;
+                                ArrayList arrayList = org.telegram.messenger.si.d0(tyVar3.f40092d1).f26853t0[0];
                                 if (!arrayList.isEmpty()) {
-                                    org.telegram.messenger.mp.u1(tyVar3.f40099d1).i7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28458id).commit();
-                                    ly lyVar = tyVar3.f40168z0;
+                                    org.telegram.messenger.np.u1(tyVar3.f40092d1).i7.edit().putLong("featured_hidden", ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f28461id).commit();
+                                    ly lyVar = tyVar3.f40161z0;
                                     if (lyVar != null) {
                                         lyVar.p(1, 2);
                                     }
@@ -488,7 +488,7 @@ public final class ly extends dk0 {
                                 }
                                 return;
                             default:
-                                org.telegram.ui.ActionBar.g2 g2Var = this.f36339b.f37323w.Z1;
+                                org.telegram.ui.ActionBar.g2 g2Var = this.f36333b.f37330w.Z1;
                                 if (g2Var instanceof org.telegram.ui.bn) {
                                     ((org.telegram.ui.bn) g2Var).Ba();
                                     return;
@@ -504,7 +504,7 @@ public final class ly extends dk0 {
                 TextView textView3 = new TextView(context);
                 textView3.setGravity(17);
                 org.telegram.messenger.f3.l(textView3, i10, h6Var, 1, 11.0f);
-                textView3.setText(org.telegram.messenger.gd.N0(2131751741, null));
+                textView3.setText(org.telegram.messenger.hd.N0(2131751741, null));
                 linearLayout2.addView(textView3, c8.ma.t(-1, -2, 17, 0, 3, 0, 0));
                 frameLayout2.addView(linearLayout2, c8.ma.d(-1, -1.0f, 119, 8.0f, 8.0f, 8.0f, 8.0f));
                 frameLayout = frameLayout2;

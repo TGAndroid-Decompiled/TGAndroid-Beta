@@ -7,13 +7,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class dj extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.ActionBar.h6 f34514a;
-    public final TextView f34515b;
-    public final TextView f34516c;
+    public final org.telegram.ui.ActionBar.h6 f34509a;
+    public final TextView f34510b;
+    public final TextView f34511c;
 
     public dj(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.f34514a = h6Var;
+        this.f34509a = h6Var;
         setPadding(0, org.telegram.messenger.g0.L(42.0f), 0, org.telegram.messenger.g0.L(42.0f));
         setTag(-33024);
         LinearLayout linearLayout = new LinearLayout(context);
@@ -23,12 +23,12 @@ public final class dj extends FrameLayout implements org.telegram.ui.ActionBar.b
         q9Var.setImageDrawable(new oh0(2131624320, org.telegram.messenger.g0.L(120.0f), org.telegram.messenger.g0.L(120.0f)));
         linearLayout.addView(q9Var, c8.ma.t(120, 120, 17, 0, 0, 0, 0));
         TextView textView = new TextView(context);
-        this.f34515b = textView;
+        this.f34510b = textView;
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setGravity(17);
-        TextView f10 = org.telegram.messenger.n10.f(linearLayout, textView, c8.ma.t(-1, -2, 17, 32, 12, 32, 8), context);
-        this.f34516c = f10;
+        TextView f10 = org.telegram.messenger.o10.f(linearLayout, textView, c8.ma.t(-1, -2, 17, 32, 12, 32, 8), context);
+        this.f34511c = f10;
         f10.setTextSize(1, 14.0f);
         f10.setGravity(17);
         linearLayout.addView(f10, c8.ma.t(-1, -2, 17, 32, 0, 32, 0));
@@ -38,7 +38,7 @@ public final class dj extends FrameLayout implements org.telegram.ui.ActionBar.b
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.f29770y6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.m6.f29773y6));
     }
 
     @Override
@@ -49,8 +49,8 @@ public final class dj extends FrameLayout implements org.telegram.ui.ActionBar.b
     @Override
     public final void updateColors() {
         int i7 = org.telegram.ui.ActionBar.m6.G6;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f34514a;
-        this.f34515b.setTextColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
-        this.f34516c.setTextColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29770y6, h6Var));
+        org.telegram.ui.ActionBar.h6 h6Var = this.f34509a;
+        this.f34510b.setTextColor(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
+        this.f34511c.setTextColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29773y6, h6Var));
     }
 }

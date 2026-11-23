@@ -5,14 +5,14 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 public final class bi implements TextWatcher {
-    public boolean f33854a;
-    public boolean f33855b;
-    public final org.telegram.ui.ActionBar.g2 f33856c;
+    public boolean f33847a;
+    public boolean f33848b;
+    public final org.telegram.ui.ActionBar.g2 f33849c;
     public final ui d;
 
     public bi(ui uiVar, org.telegram.ui.ActionBar.g2 g2Var) {
         this.d = uiVar;
-        this.f33856c = g2Var;
+        this.f33849c = g2Var;
     }
 
     @Override
@@ -22,28 +22,28 @@ public final class bi implements TextWatcher {
         int i7;
         boolean z12;
         ui uiVar = this.d;
-        o6 o6Var = uiVar.f40439u1;
+        o6 o6Var = uiVar.f40432u1;
         zh zhVar = uiVar.N2;
         int i10 = uiVar.H3;
-        o6 o6Var2 = uiVar.f40443v1;
-        if (this.f33855b != TextUtils.isEmpty(editable)) {
-            mi miVar = uiVar.f40448w2;
+        o6 o6Var2 = uiVar.f40436v1;
+        if (this.f33848b != TextUtils.isEmpty(editable)) {
+            mi miVar = uiVar.f40441w2;
             if (miVar != null) {
                 miVar.E(miVar.getSelectedItemsCount());
             }
-            this.f33855b = !this.f33855b;
+            this.f33848b = !this.f33848b;
         }
         boolean z13 = false;
-        if (this.f33854a) {
+        if (this.f33847a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             org.telegram.messenger.j6.l(editable, zhVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f33854a = false;
+            this.f33847a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         uiVar.G1 = codePointCount;
-        te.a aVar = uiVar.f40419p1;
+        te.a aVar = uiVar.f40412p1;
         if (codePointCount > 0) {
             z10 = true;
         } else {
@@ -56,7 +56,7 @@ public final class bi implements TextWatcher {
                 i7 = -9999;
             }
             long j3 = i7;
-            String E = org.telegram.messenger.gd.E(j3, ',');
+            String E = org.telegram.messenger.hd.E(j3, ',');
             if (o6Var2.getVisibility() == 0) {
                 z12 = true;
             } else {
@@ -72,13 +72,13 @@ public final class bi implements TextWatcher {
             o6Var2.animate().setListener(null).cancel();
             o6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i7 < 0) {
-                org.telegram.ui.ActionBar.t6.Y(o6Var2, org.telegram.ui.ActionBar.m6.f29599p7, uiVar.J0);
+                org.telegram.ui.ActionBar.t6.Y(o6Var2, org.telegram.ui.ActionBar.m6.f29602p7, uiVar.J0);
                 z11 = false;
             } else {
-                org.telegram.ui.ActionBar.t6.Y(o6Var2, org.telegram.ui.ActionBar.m6.f29770y6, uiVar.J0);
+                org.telegram.ui.ActionBar.t6.Y(o6Var2, org.telegram.ui.ActionBar.m6.f29773y6, uiVar.J0);
                 z11 = true;
             }
-            o6Var.c(org.telegram.messenger.gd.E(j3, ','), false, true);
+            o6Var.c(org.telegram.messenger.hd.E(j3, ','), false, true);
             o6Var.setAlpha(1.0f);
         } else {
             o6Var2.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new y(this, 10));
@@ -89,9 +89,9 @@ public final class bi implements TextWatcher {
             uiVar.S2 = z11;
             uiVar.G2.invalidate();
         }
-        if (!uiVar.f40394g4 && !org.telegram.messenger.mp.u1(i10).K3() && !org.telegram.messenger.j10.i(i10).q() && uiVar.G1 > org.telegram.messenger.mp.u1(i10).W4 && uiVar.G1 < org.telegram.messenger.mp.u1(i10).X4) {
-            uiVar.f40394g4 = true;
-            uiVar.E1(this.f33856c);
+        if (!uiVar.f40387g4 && !org.telegram.messenger.np.u1(i10).K3() && !org.telegram.messenger.k10.i(i10).q() && uiVar.G1 > org.telegram.messenger.np.u1(i10).W4 && uiVar.G1 < org.telegram.messenger.np.u1(i10).X4) {
+            uiVar.f40387g4 = true;
+            uiVar.E1(this.f33849c);
         }
         if (uiVar.X1) {
             if (zhVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(zhVar.getText().toString().trim())) {
@@ -105,7 +105,7 @@ public final class bi implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         if (i11 - i10 >= 1) {
-            this.f33854a = true;
+            this.f33847a = true;
         }
         ui uiVar = this.d;
         if (uiVar.C4 == null) {

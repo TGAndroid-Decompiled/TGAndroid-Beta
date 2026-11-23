@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class mp0 implements Runnable {
-    public final int f49953a;
-    public final ca.i f49954b;
+    public final int f49957a;
+    public final ca.i f49958b;
 
     public mp0(ca.i iVar, int i7) {
-        this.f49953a = i7;
-        this.f49954b = iVar;
+        this.f49957a = i7;
+        this.f49958b = iVar;
     }
 
     @Override

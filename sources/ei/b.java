@@ -1,18 +1,18 @@
 package ei;
 
 import java.io.File;
-import org.telegram.messenger.fj;
+import org.telegram.messenger.gj;
 public final class b {
-    public final File f10992a;
-    public long f10993b;
-    public long f10994c;
+    public final File f10995a;
+    public long f10996b;
+    public long f10997c;
     public int d;
-    public a f10995e;
-    public fj f10996f;
-    public int f10997g;
+    public a f10998e;
+    public gj f10999f;
+    public int f11000g;
     public int h;
 
     public b(File file) {
-        this.f10992a = file;
+        this.f10995a = file;
     }
 }

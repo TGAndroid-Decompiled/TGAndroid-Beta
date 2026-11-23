@@ -3,40 +3,40 @@ package b3;
 import android.opengl.GLES20;
 import zi.d0;
 public class h {
-    public final int f2908a;
-    public final int f2909b;
-    public final int f2910c;
+    public final int f2915a;
+    public final int f2916b;
+    public final int f2917c;
     public final int d;
 
     public h(int i7, int i10, int i11, int i12) {
-        this.f2908a = i7;
-        this.f2909b = i10;
-        this.f2910c = i11;
+        this.f2915a = i7;
+        this.f2916b = i10;
+        this.f2917c = i11;
         this.d = i12;
     }
 
     public boolean a(int i7) {
         if (i7 == 1) {
-            if (this.f2908a - this.f2909b <= 1) {
+            if (this.f2915a - this.f2916b <= 1) {
                 return false;
             }
-        } else if (this.f2910c - this.d <= 1) {
+        } else if (this.f2917c - this.d <= 1) {
             return false;
         }
         return true;
     }
 
     public void b() {
-        GLES20.glDeleteProgram(this.f2908a);
-        GLES20.glDeleteShader(this.f2909b);
-        GLES20.glDeleteShader(this.f2910c);
+        GLES20.glDeleteProgram(this.f2915a);
+        GLES20.glDeleteShader(this.f2916b);
+        GLES20.glDeleteShader(this.f2917c);
     }
 
     public h(String str, String str2) {
         int a10 = d0.a(35633, str);
-        this.f2909b = a10;
+        this.f2916b = a10;
         int a11 = d0.a(35632, str2);
-        this.f2910c = a11;
+        this.f2917c = a11;
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, a10);
         GLES20.glAttachShader(glCreateProgram, a11);
@@ -46,7 +46,7 @@ public class h {
         int[] iArr = new int[1];
         GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
         if (iArr[0] != 0) {
-            this.f2908a = glCreateProgram;
+            this.f2915a = glCreateProgram;
             this.d = 1;
             int glGetUniformLocation = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
             GLES20.glUseProgram(glCreateProgram);

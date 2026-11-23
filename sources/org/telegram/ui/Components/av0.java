@@ -6,8 +6,8 @@ import android.widget.FrameLayout;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class av0 {
-    public final n5 f33637a;
-    public Drawable f33638b;
+    public final n5 f33650a;
+    public Drawable f33651b;
 
     public av0(FrameLayout frameLayout) {
         this(18, frameLayout);
@@ -24,13 +24,13 @@ public final class av0 {
     }
 
     public final n5 b(TLRPC.User user, TLRPC.Chat chat, int i7, boolean z10) {
-        n5 n5Var = this.f33637a;
+        n5 n5Var = this.f33650a;
         if (chat != null && chat.verified) {
-            Drawable drawable = this.f33638b;
+            Drawable drawable = this.f33651b;
             if (drawable == null) {
-                drawable = new oq(org.telegram.ui.ActionBar.m6.f29411f1, org.telegram.ui.ActionBar.m6.f29465i1);
+                drawable = new oq(org.telegram.ui.ActionBar.m6.f29414f1, org.telegram.ui.ActionBar.m6.f29468i1);
             }
-            this.f33638b = drawable;
+            this.f33651b = drawable;
             n5Var.g(drawable, z10);
             n5Var.k(null);
             return n5Var;
@@ -39,11 +39,11 @@ public final class av0 {
             n5Var.k(Integer.valueOf(i7));
             return n5Var;
         } else if (user != null && user.verified) {
-            Drawable drawable2 = this.f33638b;
+            Drawable drawable2 = this.f33651b;
             if (drawable2 == null) {
-                drawable2 = new oq(org.telegram.ui.ActionBar.m6.f29411f1, org.telegram.ui.ActionBar.m6.f29465i1);
+                drawable2 = new oq(org.telegram.ui.ActionBar.m6.f29414f1, org.telegram.ui.ActionBar.m6.f29468i1);
             }
-            this.f33638b = drawable2;
+            this.f33651b = drawable2;
             n5Var.g(drawable2, z10);
             n5Var.k(null);
             return n5Var;
@@ -52,7 +52,7 @@ public final class av0 {
             n5Var.k(Integer.valueOf(i7));
             return n5Var;
         } else if (user != null && user.premium) {
-            n5Var.g((Drawable) ia.e.d().f16225f, z10);
+            n5Var.g((Drawable) ia.e.d().f16228f, z10);
             n5Var.k(Integer.valueOf(i7));
             return n5Var;
         } else {
@@ -63,6 +63,6 @@ public final class av0 {
     }
 
     public av0(int i7, View view) {
-        this.f33637a = new n5(org.telegram.messenger.g0.L(i7), view);
+        this.f33650a = new n5(org.telegram.messenger.g0.L(i7), view);
     }
 }

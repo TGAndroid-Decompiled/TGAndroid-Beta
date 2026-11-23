@@ -5,16 +5,16 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class tw extends FrameLayout {
-    public final ty f40072a;
+    public final ty f40065a;
 
     public tw(ty tyVar, Context context) {
         super(context);
-        this.f40072a = tyVar;
+        this.f40065a = tyVar;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        ty tyVar = this.f40072a;
+        ty tyVar = this.f40065a;
         yw ywVar = tyVar.J;
         vv vvVar = tyVar.W;
         gx gxVar = tyVar.Q;
@@ -26,7 +26,7 @@ public final class tw extends FrameLayout {
         if (view == gxVar && vvVar != null) {
             y10 = Math.max(y10, vvVar.getY() + vvVar.getMeasuredHeight() + 1.0f);
         }
-        canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * tyVar.f40090b.f57696e), getMeasuredWidth(), getMeasuredHeight());
+        canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * tyVar.f40083b.f57700e), getMeasuredWidth(), getMeasuredHeight());
         boolean drawChild = super.drawChild(canvas, view, j3);
         canvas.restore();
         return drawChild;

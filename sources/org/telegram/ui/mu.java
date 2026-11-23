@@ -4,32 +4,32 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.ArrayList;
 public final class mu implements org.telegram.ui.Components.qj0 {
-    public final int f49987a;
-    public final cx f49988b;
+    public final int f49991a;
+    public final cx f49992b;
 
     public mu(cx cxVar, int i7) {
-        this.f49987a = i7;
-        this.f49988b = cxVar;
+        this.f49991a = i7;
+        this.f49992b = cxVar;
     }
 
     @Override
     public final void c(int i7, View view) {
         jg.o0 o0Var;
-        switch (this.f49987a) {
+        switch (this.f49991a) {
             case 0:
-                cx cxVar = this.f49988b;
-                Object obj = cxVar.D0.f40529y0.G(i7).H;
-                if (obj instanceof org.telegram.messenger.fj) {
-                    org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) obj;
+                cx cxVar = this.f49992b;
+                Object obj = cxVar.D0.f40522y0.G(i7).H;
+                if (obj instanceof org.telegram.messenger.gj) {
+                    org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) obj;
                     Bundle bundle = new Bundle();
-                    if (org.telegram.messenger.fj.B0(fjVar.f23993k) >= 0) {
-                        bundle.putLong("user_id", org.telegram.messenger.fj.B0(fjVar.f23993k));
+                    if (org.telegram.messenger.gj.B0(gjVar.f24213k) >= 0) {
+                        bundle.putLong("user_id", org.telegram.messenger.gj.B0(gjVar.f24213k));
                     } else {
-                        bundle.putLong("chat_id", -org.telegram.messenger.fj.B0(fjVar.f23993k));
+                        bundle.putLong("chat_id", -org.telegram.messenger.gj.B0(gjVar.f24213k));
                     }
-                    bundle.putInt("message_id", fjVar.e1());
+                    bundle.putInt("message_id", gjVar.e1());
                     bn bnVar = new bn(bundle);
-                    cx.r4(bnVar, fjVar);
+                    cx.r4(bnVar, gjVar);
                     cxVar.presentFragment(bnVar);
                     return;
                 } else if (obj instanceof fi.b6) {
@@ -43,11 +43,11 @@ public final class mu implements org.telegram.ui.Components.qj0 {
                     return;
                 }
             default:
-                cx cxVar2 = this.f49988b;
-                cxVar2.f46703c0.I0(true);
-                ArrayList arrayList = cxVar2.f46703c0.f17652f3;
+                cx cxVar2 = this.f49992b;
+                cxVar2.f46706c0.I0(true);
+                ArrayList arrayList = cxVar2.f46706c0.f17655f3;
                 if (arrayList.isEmpty()) {
-                    o0Var = jg.q0.f17645k3[i7];
+                    o0Var = jg.q0.f17648k3[i7];
                 } else {
                     o0Var = (jg.o0) arrayList.get(i7);
                 }

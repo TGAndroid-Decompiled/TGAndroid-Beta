@@ -4,22 +4,22 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class lm {
-    public float f37232a;
-    public int f37233b;
-    public int f37234c;
+    public float f37238a;
+    public int f37239b;
+    public int f37240c;
     public int d;
-    public final Object f37235e;
-    public final Object f37236f;
-    public Object f37237g;
+    public final Object f37241e;
+    public final Object f37242f;
+    public Object f37243g;
     public final Object h;
 
     public lm(Context context, jn jnVar) {
-        this.f37233b = -1;
-        this.f37234c = -1;
+        this.f37239b = -1;
+        this.f37240c = -1;
         this.d = -1;
         this.h = new int[]{Integer.MAX_VALUE, 0};
-        this.f37235e = context;
-        this.f37236f = jnVar;
+        this.f37241e = context;
+        this.f37242f = jnVar;
     }
 
     public static float b(int i7, int i10, float[] fArr) {
@@ -37,9 +37,9 @@ public final class lm {
 
     public lm(rm rmVar, ArrayList arrayList) {
         this.h = rmVar;
-        this.f37235e = new ArrayList();
-        this.f37237g = new HashMap();
-        this.f37236f = arrayList;
+        this.f37241e = new ArrayList();
+        this.f37243g = new HashMap();
+        this.f37242f = arrayList;
         a();
     }
 }

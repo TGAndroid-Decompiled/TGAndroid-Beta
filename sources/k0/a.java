@@ -7,26 +7,26 @@ import androidx.biometric.x;
 import androidx.biometric.z;
 import java.lang.ref.WeakReference;
 import ob.c;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.Wallet.e1;
 public final class a extends FingerprintManager.AuthenticationCallback {
-    public final int f18131a;
-    public final Object f18132b;
+    public final int f18134a;
+    public final Object f18135b;
 
     public a(Object obj, int i7) {
-        this.f18131a = i7;
-        this.f18132b = obj;
+        this.f18134a = i7;
+        this.f18135b = obj;
     }
 
     @Override
     public final void onAuthenticationError(int i7, CharSequence charSequence) {
-        switch (this.f18131a) {
+        switch (this.f18134a) {
             case 0:
-                ((x) ((a0) ((c) this.f18132b).f21805b).d).a(i7, charSequence);
+                ((x) ((a0) ((c) this.f18135b).f21808b).d).a(i7, charSequence);
                 return;
             default:
-                e1 e1Var = (e1) this.f18132b;
-                if (e1Var.f() && !e1Var.f44144f) {
+                e1 e1Var = (e1) this.f18135b;
+                if (e1Var.f() && !e1Var.f44148f) {
                     if (i7 == 5) {
                         e1Var.c("AUTH_CANCELED");
                         return;
@@ -42,24 +42,24 @@ public final class a extends FingerprintManager.AuthenticationCallback {
     @Override
     public final void onAuthenticationFailed() {
         AlertDialog alertDialog;
-        int i7 = this.f18131a;
-        Object obj = this.f18132b;
+        int i7 = this.f18134a;
+        Object obj = this.f18135b;
         switch (i7) {
             case 0:
-                WeakReference weakReference = ((x) ((a0) ((c) obj).f21805b).d).f1981a;
-                if (weakReference.get() != null && ((z) weakReference.get()).f1992n) {
+                WeakReference weakReference = ((x) ((a0) ((c) obj).f21808b).d).f1988a;
+                if (weakReference.get() != null && ((z) weakReference.get()).f1999n) {
                     z zVar = (z) weakReference.get();
-                    if (zVar.f1999u == null) {
-                        zVar.f1999u = new androidx.lifecycle.z();
+                    if (zVar.f2006u == null) {
+                        zVar.f2006u = new androidx.lifecycle.z();
                     }
-                    z.h(zVar.f1999u, Boolean.TRUE);
+                    z.h(zVar.f2006u, Boolean.TRUE);
                     return;
                 }
                 return;
             default:
                 e1 e1Var = (e1) obj;
-                if (e1Var.f() && (alertDialog = e1Var.f44146i) != null) {
-                    alertDialog.setMessage(gd.N0(2131742872, null));
+                if (e1Var.f() && (alertDialog = e1Var.f44150i) != null) {
+                    alertDialog.setMessage(hd.N0(2131742870, null));
                     return;
                 }
                 return;
@@ -69,21 +69,21 @@ public final class a extends FingerprintManager.AuthenticationCallback {
     @Override
     public final void onAuthenticationHelp(int i7, CharSequence charSequence) {
         AlertDialog alertDialog;
-        switch (this.f18131a) {
+        switch (this.f18134a) {
             case 0:
-                WeakReference weakReference = ((x) ((a0) ((c) this.f18132b).f21805b).d).f1981a;
+                WeakReference weakReference = ((x) ((a0) ((c) this.f18135b).f21808b).d).f1988a;
                 if (weakReference.get() != null) {
                     z zVar = (z) weakReference.get();
-                    if (zVar.f1998t == null) {
-                        zVar.f1998t = new androidx.lifecycle.z();
+                    if (zVar.f2005t == null) {
+                        zVar.f2005t = new androidx.lifecycle.z();
                     }
-                    z.h(zVar.f1998t, charSequence);
+                    z.h(zVar.f2005t, charSequence);
                     return;
                 }
                 return;
             default:
-                e1 e1Var = (e1) this.f18132b;
-                if (e1Var.f() && (alertDialog = e1Var.f44146i) != null) {
+                e1 e1Var = (e1) this.f18135b;
+                if (e1Var.f() && (alertDialog = e1Var.f44150i) != null) {
                     alertDialog.setMessage(charSequence);
                     return;
                 }

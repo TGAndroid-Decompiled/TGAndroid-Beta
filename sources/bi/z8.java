@@ -1,24 +1,21 @@
 package bi;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class z8 extends View {
-    public final TL_stars.StarGift f4343a;
-    public final float f4344b;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+public final class z8 extends FrameLayout {
+    public final float f4347a;
 
-    public z8(Context context, TL_stars.StarGift starGift, float f10) {
+    public z8(Context context, float f10) {
         super(context);
-        this.f4343a = starGift;
-        this.f4344b = f10;
+        this.f4347a = f10;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        if (this.f4343a == null) {
-            super.onMeasure(i7, i10);
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i7) * this.f4344b), 1073741824), i10);
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(0.0f, 0.0f, getWidth() * this.f4347a, getHeight());
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 }

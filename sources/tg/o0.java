@@ -4,25 +4,25 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.view.ViewGroup;
 import c8.ma;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.o10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.aj0;
 public final class o0 extends j {
-    public final n0 f58094r0;
-    public boolean f58095s0;
-    public int f58096t0;
-    public int f58097u0;
-    public TLRPC.MessageMedia f58098v0;
-    public TL_stories.MediaArea f58099w0;
+    public final n0 f58098r0;
+    public boolean f58099s0;
+    public int f58100t0;
+    public int f58101u0;
+    public TLRPC.MessageMedia f58102v0;
+    public TL_stories.MediaArea f58103w0;
 
     public o0(Context context, PointF pointF, int i7, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f10, int i10) {
         super(context, pointF);
         n0 n0Var = new n0(context, f10);
-        this.f58094r0 = n0Var;
+        this.f58098r0 = n0Var;
         n0Var.setMaxWidth(i10);
         r(i7, messageMedia, mediaArea);
-        n0Var.e(0, this.f58096t0);
+        n0Var.e(0, this.f58100t0);
         addView(n0Var, ma.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
@@ -73,7 +73,7 @@ public final class o0 extends j {
     }
 
     public int getColor() {
-        return this.f58096t0;
+        return this.f58100t0;
     }
 
     @Override
@@ -92,36 +92,36 @@ public final class o0 extends j {
         float L = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale * getMeasuredWidth());
         float scale2 = getScale();
         float L2 = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float y10 = n10.y(L, 2.0f, getPositionX(), scaleX);
-        return new aj0(y10, n10.y(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + y10) - y10, L2 * scaleX);
+        float y10 = o10.y(L, 2.0f, getPositionX(), scaleX);
+        return new aj0(y10, o10.y(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + y10) - y10, L2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f58094r0.K;
+        return this.f58098r0.K;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f58094r0.J;
+        return this.f58098r0.J;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f58094r0.J;
+        return this.f58098r0.J;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f58094r0.K;
+        return this.f58098r0.K;
     }
 
     public int getType() {
-        return this.f58097u0;
+        return this.f58101u0;
     }
 
     public int getTypesCount() {
-        return this.f58094r0.getTypesCount() - (!this.f58095s0 ? 1 : 0);
+        return this.f58098r0.getTypesCount() - (!this.f58099s0 ? 1 : 0);
     }
 
     @Override
@@ -140,8 +140,8 @@ public final class o0 extends j {
         String str;
         String str2;
         String str3;
-        this.f58098v0 = messageMedia;
-        this.f58099w0 = mediaArea;
+        this.f58102v0 = messageMedia;
+        this.f58103w0 = mediaArea;
         String str4 = null;
         if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
@@ -171,23 +171,23 @@ public final class o0 extends j {
         } else {
             str = "";
         }
-        n0 n0Var = this.f58094r0;
+        n0 n0Var = this.f58098r0;
         n0Var.d(i7, str4);
         n0Var.setText(str);
         m();
     }
 
     public void setColor(int i7) {
-        this.f58095s0 = true;
-        this.f58096t0 = i7;
+        this.f58099s0 = true;
+        this.f58100t0 = i7;
     }
 
     public void setMaxWidth(int i7) {
-        this.f58094r0.setMaxWidth(i7);
+        this.f58098r0.setMaxWidth(i7);
     }
 
     public void setType(int i7) {
-        this.f58097u0 = i7;
-        this.f58094r0.e(i7, this.f58096t0);
+        this.f58101u0 = i7;
+        this.f58098r0.e(i7, this.f58100t0);
     }
 }

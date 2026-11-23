@@ -17,7 +17,7 @@ import android.view.RoundedCorner;
 import android.view.View;
 import android.view.WindowInsets;
 public abstract class w {
-    public static float f5836a = -1.0f;
+    public static float f5839a = -1.0f;
 
     public static Canvas a(int i7, int i10, Object obj) {
         RenderNode d = n2.a0.d(obj);
@@ -80,7 +80,7 @@ public abstract class w {
                 return f11;
             }
         }
-        if (f5836a < 0.0f) {
+        if (f5839a < 0.0f) {
             try {
                 Resources system = Resources.getSystem();
                 int identifier2 = system.getIdentifier("rounded_corner_radius_top", "dimen", "android");
@@ -95,9 +95,9 @@ public abstract class w {
             } catch (Exception unused) {
                 f10 = 0.0f;
             }
-            f5836a = Math.max(0.0f, f10);
+            f5839a = Math.max(0.0f, f10);
         }
-        return f5836a;
+        return f5839a;
     }
 
     public static void h(Object obj, float f10) {

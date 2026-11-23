@@ -1,36 +1,36 @@
 package q5;
 public final class a implements fd.a {
-    public static final Object f55893c = new Object();
-    public volatile b f55894a;
-    public volatile Object f55895b;
+    public static final Object f55897c = new Object();
+    public volatile b f55898a;
+    public volatile Object f55899b;
 
     public static fd.a a(b bVar) {
         if (bVar instanceof a) {
             return bVar;
         }
         ?? obj = new Object();
-        obj.f55895b = f55893c;
-        obj.f55894a = bVar;
+        obj.f55899b = f55897c;
+        obj.f55898a = bVar;
         return obj;
     }
 
     @Override
     public final Object mo24get() {
         Object obj;
-        Object obj2 = this.f55895b;
-        Object obj3 = f55893c;
+        Object obj2 = this.f55899b;
+        Object obj3 = f55897c;
         if (obj2 == obj3) {
             synchronized (this) {
                 try {
-                    obj = this.f55895b;
+                    obj = this.f55899b;
                     if (obj == obj3) {
-                        obj = this.f55894a.mo24get();
-                        Object obj4 = this.f55895b;
+                        obj = this.f55898a.mo24get();
+                        Object obj4 = this.f55899b;
                         if (obj4 != obj3 && obj4 != obj) {
                             throw new IllegalStateException("Scoped provider was invoked recursively returning different results: " + obj4 + " & " + obj + ". This is likely due to a circular dependency.");
                         }
-                        this.f55895b = obj;
-                        this.f55894a = null;
+                        this.f55899b = obj;
+                        this.f55898a = null;
                     }
                 } catch (Throwable th2) {
                     throw th2;

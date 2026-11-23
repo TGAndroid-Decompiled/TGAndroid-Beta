@@ -30,15 +30,15 @@ public final class ut extends ty {
         yt ytVar = this.Z2;
         if (ytVar.b()) {
             int i14 = i12 - i10;
-            if (!this.X2 && ytVar.f42552y) {
+            if (!this.X2 && ytVar.f42545y) {
                 this.Y2 = true;
             }
             if (this.Y2 && (i13 = this.W2) > 0 && i14 > 0 && i14 != i13) {
                 setTranslationY(i14 - i13);
-                org.telegram.messenger.n10.o(animate().translationY(0.0f), org.telegram.ui.ActionBar.i1.f29002w, 250L);
+                org.telegram.messenger.o10.o(animate().translationY(0.0f), org.telegram.ui.ActionBar.i1.f29005w, 250L);
                 this.Y2 = false;
             }
-            this.X2 = ytVar.f42552y;
+            this.X2 = ytVar.f42545y;
             this.W2 = i14;
         }
     }

@@ -4,22 +4,22 @@ import a8.r9;
 import j$.util.Objects;
 public final class k extends i {
     public static final k d = new k(new Object[0]);
-    public final transient Object[] f7945c;
+    public final transient Object[] f7948c;
 
     public k(Object[] objArr) {
-        this.f7945c = objArr;
+        this.f7948c = objArr;
     }
 
     @Override
     public final int f(Object[] objArr) {
-        System.arraycopy(this.f7945c, 0, objArr, 0, 0);
+        System.arraycopy(this.f7948c, 0, objArr, 0, 0);
         return 0;
     }
 
     @Override
     public final Object get(int i7) {
         r9.a(i7, 0);
-        Object obj = this.f7945c[i7];
+        Object obj = this.f7948c[i7];
         Objects.requireNonNull(obj);
         return obj;
     }
@@ -36,7 +36,7 @@ public final class k extends i {
 
     @Override
     public final Object[] k() {
-        return this.f7945c;
+        return this.f7948c;
     }
 
     @Override

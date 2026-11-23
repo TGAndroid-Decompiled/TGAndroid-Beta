@@ -32,12 +32,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x2.e1, com.google.android.gms.common.api.internal.q, tg.m1, sg.t0, u4.c, com.google.android.gms.common.api.internal.n, v4.e0, v4.k1 {
-    public final int f38901a;
-    public final Object f38902b;
+    public final int f38895a;
+    public final Object f38896b;
 
     public qf(Object obj, int i7) {
-        this.f38901a = i7;
-        this.f38902b = obj;
+        this.f38895a = i7;
+        this.f38896b = obj;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public void A0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f38902b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f38896b;
         if (arrayDeque.isEmpty()) {
             return;
         }
@@ -115,11 +115,11 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
         } else {
             Log.e("ProfileInstaller", str, (Throwable) obj);
         }
-        ((ProfileInstallReceiver) this.f38902b).setResultCode(i7);
+        ((ProfileInstallReceiver) this.f38896b).setResultCode(i7);
     }
 
     public long C0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f38902b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f38896b;
         if (arrayDeque.isEmpty()) {
             return 0L;
         }
@@ -128,17 +128,17 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public View E() {
-        return ((iu) this.f38902b).O1;
+        return ((iu) this.f38896b).O1;
     }
 
     @Override
     public void E0() {
-        ((k51) this.f38902b).h.c(false);
+        ((k51) this.f38896b).h.c(false);
     }
 
     @Override
     public void F(int i7, int i10) {
-        ((v4.i0) this.f38902b).j(i7, i10);
+        ((v4.i0) this.f38896b).j(i7, i10);
     }
 
     @Override
@@ -148,18 +148,18 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void I() {
-        ((jt0) this.f38902b).J.a(-1);
+        ((jt0) this.f38896b).J.a(-1);
     }
 
     @Override
     public int J() {
-        return ((iu) this.f38902b).P1;
+        return ((iu) this.f38896b).P1;
     }
 
     @Override
     public org.telegram.ui.ActionBar.y0 K(String str) {
-        org.telegram.ui.ActionBar.g5 g5Var = ((jt0) this.f38902b).J;
-        return g5Var.d(0, 0, null, str, true, true, g5Var.f29915n0);
+        org.telegram.ui.ActionBar.g5 g5Var = ((jt0) this.f38896b).J;
+        return g5Var.d(0, 0, null, str, true, true, g5Var.f29918n0);
     }
 
     @Override
@@ -169,7 +169,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void M(float f10, float f11) {
-        Runnable runnable = ((k51) this.f38902b).f36791j;
+        Runnable runnable = ((k51) this.f38896b).f36794j;
         if (runnable != null) {
             runnable.run();
         }
@@ -177,7 +177,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void M0(int i7, int i10) {
-        ((v4.i0) this.f38902b).p(i7, i10);
+        ((v4.i0) this.f38896b).p(i7, i10);
     }
 
     @Override
@@ -192,16 +192,16 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public Paint.FontMetricsInt P() {
-        return ((ui) this.f38902b).C2.getEditText().getPaint().getFontMetricsInt();
+        return ((ui) this.f38896b).C2.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public r0.l1 P0(View view, r0.l1 l1Var) {
         i0.b I0 = org.telegram.messenger.g0.I0(l1Var, false);
-        yk0 yk0Var = (yk0) this.f38902b;
-        yk0Var.f42458w.setPadding(I0.f15914a, I0.f15915b, I0.f15916c, I0.d);
-        yk0Var.f42457s.requestLayout();
-        return r0.l1.f56298b;
+        yk0 yk0Var = (yk0) this.f38896b;
+        yk0Var.f42451w.setPadding(I0.f15917a, I0.f15918b, I0.f15919c, I0.d);
+        yk0Var.f42450s.requestLayout();
+        return r0.l1.f56302b;
     }
 
     @Override
@@ -212,7 +212,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     @Override
     public boolean Q0(float f10, float f11) {
         int L = org.telegram.messenger.g0.L(9.0f);
-        RectF rectF = ((k51) this.f38902b).f36789g;
+        RectF rectF = ((k51) this.f38896b).f36792g;
         float f12 = -L;
         rectF.inset(f12, f12);
         boolean contains = rectF.contains(f10, f11);
@@ -223,8 +223,8 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public int R() {
-        v4.p0 p0Var = (v4.p0) this.f38902b;
-        return p0Var.f59255m - p0Var.E();
+        v4.p0 p0Var = (v4.p0) this.f38896b;
+        return p0Var.f59259m - p0Var.E();
     }
 
     @Override
@@ -234,12 +234,12 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void T(boolean z10) {
-        ((ji.r) this.f38902b).setEditPillHidden(z10);
+        ((ji.r) this.f38896b).setEditPillHidden(z10);
     }
 
     @Override
     public void U() {
-        iu iuVar = (iu) this.f38902b;
+        iu iuVar = (iu) this.f38896b;
         iuVar.N1 = null;
         iuVar.L0();
     }
@@ -251,12 +251,12 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void W(RectF rectF) {
-        ((ji.r) this.f38902b).l(rectF);
+        ((ji.r) this.f38896b).l(rectF);
     }
 
     @Override
     public void Z() {
-        ((iu) this.f38902b).M0();
+        ((iu) this.f38896b).M0();
     }
 
     @Override
@@ -271,13 +271,13 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public int a0() {
-        return ((iu) this.f38902b).Q1;
+        return ((iu) this.f38896b).Q1;
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        int i7 = this.f38901a;
-        Object obj3 = this.f38902b;
+        int i7 = this.f38895a;
+        Object obj3 = this.f38896b;
         switch (i7) {
             case 17:
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
@@ -303,19 +303,19 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                     Bundle B = bVar.B();
                     Parcel obtain = Parcel.obtain();
                     obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-                    int i10 = h8.c.f13979a;
+                    int i10 = h8.c.f13982a;
                     obtain.writeInt(1);
                     eVar.writeToParcel(obtain, 0);
                     obtain.writeInt(1);
                     B.writeToParcel(obtain, 0);
                     obtain.writeStrongBinder(aVar);
-                    iVar.f13987a.transact(14, obtain, null, 1);
+                    iVar.f13990a.transact(14, obtain, null, 1);
                     obtain.recycle();
                     return;
                 } catch (RemoteException e10) {
                     Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e10);
                     Bundle bundle = Bundle.EMPTY;
-                    a8.l8.a(Status.h, Boolean.FALSE, aVar.f13978b);
+                    a8.l8.a(Status.h, Boolean.FALSE, aVar.f13981b);
                     return;
                 }
         }
@@ -323,11 +323,11 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void b() {
-        z71 z71Var = ((iu) this.f38902b).n1;
-        if (z71Var != null && z71Var.f42727x) {
-            z71Var.f42706a.g0();
+        z71 z71Var = ((iu) this.f38896b).n1;
+        if (z71Var != null && z71Var.f42731x) {
+            z71Var.f42710a.g0();
             z71Var.n();
-            z71Var.f42717g0.d(true, true);
+            z71Var.f42721g0.d(true, true);
         }
     }
 
@@ -339,13 +339,13 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     @Override
     public void c0(x2.f1 f1Var) {
         r2.p pVar = (r2.p) f1Var;
-        r2.j jVar = (r2.j) this.f38902b;
+        r2.j jVar = (r2.j) this.f38896b;
         jVar.H.c0(jVar);
     }
 
     @Override
     public View d0(int i7) {
-        return ((v4.p0) this.f38902b).q(i7);
+        return ((v4.p0) this.f38896b).q(i7);
     }
 
     @Override
@@ -360,9 +360,9 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void e0() {
-        tg.p0 p0Var = (tg.p0) this.f38902b;
-        p0Var.f58111b.f57312a.u();
-        p0Var.f58119x.setViewHidden(false);
+        tg.p0 p0Var = (tg.p0) this.f38896b;
+        p0Var.f58115b.f57316a.u();
+        p0Var.f58123x.setViewHidden(false);
         PhotoViewer photoViewer = ((org.telegram.ui.up0) p0Var).L;
         Drawable[] drawableArr = PhotoViewer.Z8;
         photoViewer.V2(true, true);
@@ -375,21 +375,21 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void g0(int i7, int i10) {
-        ((v4.i0) this.f38902b).o(i7, i10);
+        ((v4.i0) this.f38896b).o(i7, i10);
     }
 
     @Override
     public void g1(int i7, int i10) {
-        ((v4.i0) this.f38902b).n(i7, i10, null);
+        ((v4.i0) this.f38896b).n(i7, i10, null);
     }
 
     @Override
     public Object mo24get() {
-        switch (this.f38901a) {
+        switch (this.f38895a) {
             case 9:
-                return new org.telegram.ui.md0((Context) ((e.a) this.f38902b).f10206a, new qb.a(28), new pb.b(28), 5);
+                return new org.telegram.ui.md0((Context) ((e.a) this.f38896b).f10209a, new qb.a(28), new pb.b(28), 5);
             default:
-                return new v5.i(Integer.valueOf(v5.i.d).intValue(), (Context) ((fd.a) this.f38902b).mo24get(), "com.google.android.datatransport.events");
+                return new v5.i(Integer.valueOf(v5.i.d).intValue(), (Context) ((fd.a) this.f38896b).mo24get(), "com.google.android.datatransport.events");
         }
     }
 
@@ -410,10 +410,10 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public org.telegram.ui.ActionBar.y0 i0(int i7, Runnable runnable, String str, boolean z10, boolean z11) {
-        jt0 jt0Var = (jt0) this.f38902b;
+        jt0 jt0Var = (jt0) this.f38896b;
         org.telegram.ui.ActionBar.y0 e10 = jt0Var.J.e(0, i7, str);
         if (z10) {
-            int i10 = org.telegram.ui.ActionBar.m6.f29599p7;
+            int i10 = org.telegram.ui.ActionBar.m6.f29602p7;
             e10.d(jt0Var.s0(i10), jt0Var.s0(i10));
         }
         e10.setOnClickListener(new xa0(this, z11, runnable));
@@ -422,13 +422,13 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void j() {
-        tg.p0 p0Var = (tg.p0) this.f38902b;
-        p0Var.f58113e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new hi.j3(p0Var, 26)).setInterpolator(nr.h);
+        tg.p0 p0Var = (tg.p0) this.f38896b;
+        p0Var.f58117e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new hi.j3(p0Var, 26)).setInterpolator(nr.h);
     }
 
     @Override
     public ji.r k0() {
-        return (ji.r) this.f38902b;
+        return (ji.r) this.f38896b;
     }
 
     @Override
@@ -438,7 +438,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void l0(int i7, int i10, CharSequence charSequence, boolean z10) {
-        ui uiVar = (ui) this.f38902b;
+        ui uiVar = (ui) this.f38896b;
         if (uiVar.b1() == null) {
             return;
         }
@@ -467,7 +467,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void n0() {
-        ((tg.p0) this.f38902b).f58119x.setViewHidden(true);
+        ((tg.p0) this.f38896b).f58123x.setViewHidden(true);
     }
 
     @Override
@@ -477,8 +477,8 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public boolean p() {
-        iu iuVar = (iu) this.f38902b;
-        if (iuVar.O1 == iuVar.f36318m1 && iuVar.f36329y1 && "inapp".equals(org.telegram.messenger.mp.u1(iuVar.f30170a).D3)) {
+        iu iuVar = (iu) this.f38896b;
+        if (iuVar.O1 == iuVar.f36312m1 && iuVar.f36323y1 && "inapp".equals(org.telegram.messenger.np.u1(iuVar.f30173a).D3)) {
             return false;
         }
         return true;
@@ -487,11 +487,11 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     @Override
     public void q(Object obj) {
         com.google.android.gms.common.api.internal.m mVar;
-        org.telegram.messenger.x9 x9Var = (org.telegram.messenger.x9) obj;
-        androidx.activity.n nVar = ((u7.i) this.f38902b).f58489b;
+        org.telegram.messenger.y9 y9Var = (org.telegram.messenger.y9) obj;
+        androidx.activity.n nVar = ((u7.i) this.f38896b).f58493b;
         synchronized (nVar) {
-            nVar.f1800b = false;
-            mVar = ((com.google.android.gms.common.api.internal.o) nVar.f1801c).f6364b;
+            nVar.f1807b = false;
+            mVar = ((com.google.android.gms.common.api.internal.o) nVar.f1808c).f6367b;
         }
         if (mVar != null) {
             ((u7.c) nVar.d).c(mVar, 2441);
@@ -500,8 +500,8 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void r(int i7) {
-        org.telegram.ui.Wallet.na naVar = (org.telegram.ui.Wallet.na) this.f38902b;
-        if (!naVar.f44711r && i7 == naVar.K) {
+        org.telegram.ui.Wallet.na naVar = (org.telegram.ui.Wallet.na) this.f38896b;
+        if (!naVar.f44715r && i7 == naVar.K) {
             naVar.j0(naVar.O.getText().toString().trim());
         }
     }
@@ -519,11 +519,11 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
         int i19;
         byte[] bArr;
         int i20;
-        x3.f fVar = (x3.f) this.f38902b;
-        x3.g gVar = fVar.f60388b;
-        SparseArray sparseArray = fVar.f60390c;
-        h2.x xVar = fVar.f60404k;
-        h2.x xVar2 = fVar.f60400i;
+        x3.f fVar = (x3.f) this.f38896b;
+        x3.g gVar = fVar.f60392b;
+        SparseArray sparseArray = fVar.f60394c;
+        h2.x xVar = fVar.f60408k;
+        h2.x xVar2 = fVar.f60404i;
         int i21 = 2;
         int i22 = 0;
         int i23 = 1;
@@ -537,7 +537,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                     if (i7 == 30322) {
                                         fVar.h(i7);
                                         byte[] bArr2 = new byte[i10];
-                                        fVar.f60417y.f60378x = bArr2;
+                                        fVar.f60421y.f60382x = bArr2;
                                         pVar.readFully(bArr2, 0, i10);
                                         return;
                                     }
@@ -545,12 +545,12 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                 }
                                 fVar.h(i7);
                                 byte[] bArr3 = new byte[i10];
-                                fVar.f60417y.f60367l = bArr3;
+                                fVar.f60421y.f60371l = bArr3;
                                 pVar.readFully(bArr3, 0, i10);
                                 return;
                             }
-                            Arrays.fill(xVar.f13862a, (byte) 0);
-                            pVar.readFully(xVar.f13862a, 4 - i10, i10);
+                            Arrays.fill(xVar.f13865a, (byte) 0);
+                            pVar.readFully(xVar.f13865a, 4 - i10, i10);
                             xVar.N(0);
                             fVar.A = (int) xVar.C();
                             return;
@@ -558,17 +558,17 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                         byte[] bArr4 = new byte[i10];
                         pVar.readFully(bArr4, 0, i10);
                         fVar.h(i7);
-                        fVar.f60417y.f60366k = new f3.h0(1, 0, 0, bArr4);
+                        fVar.f60421y.f60370k = new f3.h0(1, 0, 0, bArr4);
                         return;
                     }
                     fVar.h(i7);
                     byte[] bArr5 = new byte[i10];
-                    fVar.f60417y.f60365j = bArr5;
+                    fVar.f60421y.f60369j = bArr5;
                     pVar.readFully(bArr5, 0, i10);
                     return;
                 }
                 fVar.h(i7);
-                x3.e eVar = fVar.f60417y;
+                x3.e eVar = fVar.f60421y;
                 int i24 = eVar.h;
                 if (i24 != 1685485123 && i24 != 1685480259) {
                     pVar.r(i10);
@@ -581,10 +581,10 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
             } else if (fVar.O == 2) {
                 x3.e eVar2 = (x3.e) sparseArray.get(fVar.U);
                 int i25 = fVar.X;
-                h2.x xVar3 = fVar.f60409p;
-                if (i25 == 4 && "V_VP9".equals(eVar2.f60359c)) {
+                h2.x xVar3 = fVar.f60413p;
+                if (i25 == 4 && "V_VP9".equals(eVar2.f60363c)) {
                     xVar3.K(i10);
-                    pVar.readFully(xVar3.f13862a, 0, i10);
+                    pVar.readFully(xVar3.f13865a, 0, i10);
                     return;
                 }
                 pVar.r(i10);
@@ -595,7 +595,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
         }
         if (fVar.O == 0) {
             fVar.U = (int) gVar.b(pVar, false, true, 8);
-            fVar.V = gVar.f60421c;
+            fVar.V = gVar.f60425c;
             fVar.Q = -9223372036854775807L;
             fVar.O = 1;
             xVar2.K(0);
@@ -606,10 +606,10 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
             fVar.O = 0;
             return;
         }
-        eVar3.f60356a0.getClass();
+        eVar3.f60360a0.getClass();
         if (fVar.O == 1) {
             fVar.l(pVar, 3);
-            int i26 = (xVar2.f13862a[2] & 6) >> 1;
+            int i26 = (xVar2.f13865a[2] & 6) >> 1;
             byte b10 = 255;
             if (i26 == 0) {
                 fVar.S = 1;
@@ -623,7 +623,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                 iArr[0] = (i10 - fVar.V) - 3;
             } else {
                 fVar.l(pVar, 4);
-                int i27 = (xVar2.f13862a[3] & 255) + 1;
+                int i27 = (xVar2.f13865a[3] & 255) + 1;
                 fVar.S = i27;
                 int[] iArr2 = fVar.T;
                 if (iArr2 == null) {
@@ -648,7 +648,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                         while (true) {
                             i18 = i31 + 1;
                             fVar.l(pVar, i18);
-                            int i32 = xVar2.f13862a[i31] & 255;
+                            int i32 = xVar2.f13865a[i31] & 255;
                             int[] iArr3 = fVar.T;
                             i19 = iArr3[i29] + i32;
                             iArr3[i29] = i19;
@@ -672,19 +672,19 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                             fVar.T[i33] = i22;
                             int i37 = i35 + 1;
                             fVar.l(pVar, i37);
-                            if (xVar2.f13862a[i35] != 0) {
+                            if (xVar2.f13865a[i35] != 0) {
                                 int i38 = i22;
                                 while (true) {
                                     if (i38 < 8) {
                                         int i39 = i23 << (7 - i38);
                                         i14 = i21;
-                                        if ((xVar2.f13862a[i35] & i39) != 0) {
+                                        if ((xVar2.f13865a[i35] & i39) != 0) {
                                             int i40 = i37 + i38;
                                             fVar.l(pVar, i40);
                                             i15 = i23;
-                                            j3 = xVar2.f13862a[i35] & b10 & (~i39);
+                                            j3 = xVar2.f13865a[i35] & b10 & (~i39);
                                             while (i37 < i40) {
-                                                j3 = (j3 << 8) | (xVar2.f13862a[i37] & b10);
+                                                j3 = (j3 << 8) | (xVar2.f13865a[i37] & b10);
                                                 i37++;
                                                 i40 = i40;
                                                 b10 = 255;
@@ -741,9 +741,9 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
             i11 = 2;
             i12 = 0;
             i13 = 1;
-            int i42 = xVar2.f13862a[i13] & 255;
+            int i42 = xVar2.f13865a[i13] & 255;
             fVar.P = fVar.n(i42 | (bArr[i12] << 8)) + fVar.M;
-            if (eVar3.f60361e != i13 && (i7 != 163 || (xVar2.f13862a[i11] & 128) != 128)) {
+            if (eVar3.f60365e != i13 && (i7 != 163 || (xVar2.f13865a[i11] & 128) != 128)) {
                 i20 = i12;
             } else {
                 i20 = 1;
@@ -756,7 +756,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
             while (true) {
                 int i43 = fVar.R;
                 if (i43 < fVar.S) {
-                    fVar.i(eVar3, ((fVar.R * eVar3.f60362f) / 1000) + fVar.P, fVar.W, fVar.o(pVar, eVar3, fVar.T[i43], false), 0);
+                    fVar.i(eVar3, ((fVar.R * eVar3.f60366f) / 1000) + fVar.P, fVar.W, fVar.o(pVar, eVar3, fVar.T[i43], false), 0);
                     fVar.R++;
                 } else {
                     fVar.O = 0;
@@ -783,12 +783,12 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public ClipDescription s0() {
-        return ((t0.h) this.f38902b).getDescription();
+        return ((t0.h) this.f38896b).getDescription();
     }
 
     @Override
     public void t0() {
-        ((k51) this.f38902b).h.c(true);
+        ((k51) this.f38896b).h.c(true);
     }
 
     @Override
@@ -797,7 +797,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public void u0(int i7, long j3) {
-        x3.f fVar = (x3.f) this.f38902b;
+        x3.f fVar = (x3.f) this.f38896b;
         if (i7 != 240) {
             if (i7 != 241) {
                 if (i7 != 20529) {
@@ -811,27 +811,27 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                         if (i10 != 17) {
                                             if (i10 != 33) {
                                                 fVar.h(i7);
-                                                fVar.f60417y.f60361e = -1;
+                                                fVar.f60421y.f60365e = -1;
                                                 return;
                                             }
                                             fVar.h(i7);
-                                            fVar.f60417y.f60361e = 5;
+                                            fVar.f60421y.f60365e = 5;
                                             return;
                                         }
                                         fVar.h(i7);
-                                        fVar.f60417y.f60361e = 3;
+                                        fVar.f60421y.f60365e = 3;
                                         return;
                                     }
                                     fVar.h(i7);
-                                    fVar.f60417y.f60361e = 1;
+                                    fVar.f60421y.f60365e = 1;
                                     return;
                                 }
                                 fVar.h(i7);
-                                fVar.f60417y.f60361e = 2;
+                                fVar.f60421y.f60365e = 2;
                                 return;
                             case 136:
                                 fVar.h(i7);
-                                x3.e eVar = fVar.f60417y;
+                                x3.e eVar = fVar.f60421y;
                                 if (j3 == 1) {
                                     z10 = true;
                                 }
@@ -842,14 +842,14 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                 return;
                             case 159:
                                 fVar.h(i7);
-                                fVar.f60417y.Q = (int) j3;
+                                fVar.f60421y.Q = (int) j3;
                                 return;
                             case 176:
                                 fVar.h(i7);
-                                fVar.f60417y.f60369n = (int) j3;
+                                fVar.f60421y.f60373n = (int) j3;
                                 return;
                             case 179:
-                                if (!fVar.f60418z) {
+                                if (!fVar.f60422z) {
                                     fVar.g(i7);
                                     fVar.E = fVar.n(j3);
                                     return;
@@ -857,11 +857,11 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                 return;
                             case 186:
                                 fVar.h(i7);
-                                fVar.f60417y.f60370o = (int) j3;
+                                fVar.f60421y.f60374o = (int) j3;
                                 return;
                             case 215:
                                 fVar.h(i7);
-                                fVar.f60417y.d = (int) j3;
+                                fVar.f60421y.d = (int) j3;
                                 return;
                             case 231:
                                 fVar.M = fVar.n(j3);
@@ -870,7 +870,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                 fVar.X = (int) j3;
                                 return;
                             case 247:
-                                if (!fVar.f60418z) {
+                                if (!fVar.f60422z) {
                                     fVar.g(i7);
                                     fVar.F = (int) j3;
                                     return;
@@ -881,7 +881,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                 return;
                             case 16871:
                                 fVar.h(i7);
-                                fVar.f60417y.h = (int) j3;
+                                fVar.f60421y.h = (int) j3;
                                 return;
                             case 16980:
                                 if (j3 != 3) {
@@ -909,7 +909,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                 }
                                 return;
                             case 21420:
-                                fVar.B = j3 + fVar.f60412s;
+                                fVar.B = j3 + fVar.f60416s;
                                 return;
                             case 21432:
                                 int i11 = (int) j3;
@@ -918,34 +918,34 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                     if (i11 != 1) {
                                         if (i11 != 3) {
                                             if (i11 == 15) {
-                                                fVar.f60417y.f60379y = 3;
+                                                fVar.f60421y.f60383y = 3;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f60417y.f60379y = 1;
+                                        fVar.f60421y.f60383y = 1;
                                         return;
                                     }
-                                    fVar.f60417y.f60379y = 2;
+                                    fVar.f60421y.f60383y = 2;
                                     return;
                                 }
-                                fVar.f60417y.f60379y = 0;
+                                fVar.f60421y.f60383y = 0;
                                 return;
                             case 21680:
                                 fVar.h(i7);
-                                fVar.f60417y.f60372q = (int) j3;
+                                fVar.f60421y.f60376q = (int) j3;
                                 return;
                             case 21682:
                                 fVar.h(i7);
-                                fVar.f60417y.f60374s = (int) j3;
+                                fVar.f60421y.f60378s = (int) j3;
                                 return;
                             case 21690:
                                 fVar.h(i7);
-                                fVar.f60417y.f60373r = (int) j3;
+                                fVar.f60421y.f60377r = (int) j3;
                                 return;
                             case 21930:
                                 fVar.h(i7);
-                                x3.e eVar2 = fVar.f60417y;
+                                x3.e eVar2 = fVar.f60421y;
                                 if (j3 == 1) {
                                     z10 = true;
                                 }
@@ -953,25 +953,25 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                 return;
                             case 21938:
                                 fVar.h(i7);
-                                x3.e eVar3 = fVar.f60417y;
-                                eVar3.f60380z = true;
-                                eVar3.f60371p = (int) j3;
+                                x3.e eVar3 = fVar.f60421y;
+                                eVar3.f60384z = true;
+                                eVar3.f60375p = (int) j3;
                                 return;
                             case 21998:
                                 fVar.h(i7);
-                                fVar.f60417y.f60363g = (int) j3;
+                                fVar.f60421y.f60367g = (int) j3;
                                 return;
                             case 22186:
                                 fVar.h(i7);
-                                fVar.f60417y.T = j3;
+                                fVar.f60421y.T = j3;
                                 return;
                             case 22203:
                                 fVar.h(i7);
-                                fVar.f60417y.U = j3;
+                                fVar.f60421y.U = j3;
                                 return;
                             case 25188:
                                 fVar.h(i7);
-                                fVar.f60417y.R = (int) j3;
+                                fVar.f60421y.R = (int) j3;
                                 return;
                             case 30114:
                                 fVar.Z = j3;
@@ -983,25 +983,25 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                     if (i12 != 1) {
                                         if (i12 != 2) {
                                             if (i12 == 3) {
-                                                fVar.f60417y.f60375t = 3;
+                                                fVar.f60421y.f60379t = 3;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f60417y.f60375t = 2;
+                                        fVar.f60421y.f60379t = 2;
                                         return;
                                     }
-                                    fVar.f60417y.f60375t = 1;
+                                    fVar.f60421y.f60379t = 1;
                                     return;
                                 }
-                                fVar.f60417y.f60375t = 0;
+                                fVar.f60421y.f60379t = 0;
                                 return;
                             case 2352003:
                                 fVar.h(i7);
-                                fVar.f60417y.f60362f = (int) j3;
+                                fVar.f60421y.f60366f = (int) j3;
                                 return;
                             case 2807729:
-                                fVar.f60413t = j3;
+                                fVar.f60417t = j3;
                                 return;
                             default:
                                 switch (i7) {
@@ -1010,37 +1010,37 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                         int i13 = (int) j3;
                                         if (i13 != 1) {
                                             if (i13 == 2) {
-                                                fVar.f60417y.C = 1;
+                                                fVar.f60421y.C = 1;
                                                 return;
                                             }
                                             return;
                                         }
-                                        fVar.f60417y.C = 2;
+                                        fVar.f60421y.C = 2;
                                         return;
                                     case 21946:
                                         fVar.h(i7);
                                         int g10 = e2.m.g((int) j3);
                                         if (g10 != -1) {
-                                            fVar.f60417y.B = g10;
+                                            fVar.f60421y.B = g10;
                                             return;
                                         }
                                         return;
                                     case 21947:
                                         fVar.h(i7);
-                                        fVar.f60417y.f60380z = true;
+                                        fVar.f60421y.f60384z = true;
                                         int f10 = e2.m.f((int) j3);
                                         if (f10 != -1) {
-                                            fVar.f60417y.A = f10;
+                                            fVar.f60421y.A = f10;
                                             return;
                                         }
                                         return;
                                     case 21948:
                                         fVar.h(i7);
-                                        fVar.f60417y.D = (int) j3;
+                                        fVar.f60421y.D = (int) j3;
                                         return;
                                     case 21949:
                                         fVar.h(i7);
-                                        fVar.f60417y.E = (int) j3;
+                                        fVar.f60421y.E = (int) j3;
                                         return;
                                     default:
                                         return;
@@ -1052,13 +1052,13 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                 } else if (j3 != 0) {
                     throw e2.t0.a(null, "ContentEncodingOrder " + j3 + " not supported");
                 }
-            } else if (!fVar.f60418z) {
+            } else if (!fVar.f60422z) {
                 fVar.g(i7);
                 if (fVar.G == -1) {
                     fVar.G = j3;
                 }
             }
-        } else if (!fVar.f60418z) {
+        } else if (!fVar.f60422z) {
             fVar.g(i7);
             if (fVar.H == -1) {
                 fVar.H = j3;
@@ -1074,7 +1074,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     public void v0() {
         r2.p[] pVarArr;
         r2.p[] pVarArr2;
-        r2.j jVar = (r2.j) this.f38902b;
+        r2.j jVar = (r2.j) this.f38896b;
         int i7 = jVar.I - 1;
         jVar.I = i7;
         if (i7 > 0) {
@@ -1083,13 +1083,13 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
         int i10 = 0;
         for (r2.p pVar : jVar.K) {
             pVar.h();
-            i10 += pVar.Z.f60254a;
+            i10 += pVar.Z.f60258a;
         }
         e2.m1[] m1VarArr = new e2.m1[i10];
         int i11 = 0;
         for (r2.p pVar2 : jVar.K) {
             pVar2.h();
-            int i12 = pVar2.Z.f60254a;
+            int i12 = pVar2.Z.f60258a;
             int i13 = 0;
             while (i13 < i12) {
                 pVar2.h();
@@ -1112,7 +1112,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public void x0(int i7) {
-        RecyclerView recyclerView = (RecyclerView) this.f38902b;
+        RecyclerView recyclerView = (RecyclerView) this.f38896b;
         View childAt = recyclerView.getChildAt(i7);
         if (childAt != null) {
             recyclerView.r(childAt);
@@ -1127,8 +1127,8 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public void y0(long j3, int i7, long j10) {
-        x3.f fVar = (x3.f) this.f38902b;
-        fVar.f60403j0.getClass();
+        x3.f fVar = (x3.f) this.f38896b;
+        fVar.f60407j0.getClass();
         if (i7 != 160) {
             if (i7 != 174) {
                 if (i7 != 183) {
@@ -1138,50 +1138,50 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                                 if (i7 != 21968) {
                                     if (i7 != 408125543) {
                                         if (i7 != 475249515) {
-                                            if (i7 == 524531317 && !fVar.f60418z) {
+                                            if (i7 == 524531317 && !fVar.f60422z) {
                                                 if (fVar.d && fVar.K != -1) {
                                                     fVar.J = true;
                                                     return;
                                                 }
-                                                fVar.f60403j0.j(new f3.t(fVar.v));
-                                                fVar.f60418z = true;
+                                                fVar.f60407j0.j(new f3.t(fVar.v));
+                                                fVar.f60422z = true;
                                                 return;
                                             }
                                             return;
-                                        } else if (!fVar.f60418z) {
+                                        } else if (!fVar.f60422z) {
                                             fVar.D = true;
                                             return;
                                         } else {
                                             return;
                                         }
                                     }
-                                    long j11 = fVar.f60412s;
+                                    long j11 = fVar.f60416s;
                                     if (j11 != -1 && j11 != j3) {
                                         throw e2.t0.a(null, "Multiple Segment elements not supported");
                                     }
-                                    fVar.f60412s = j3;
-                                    fVar.f60411r = j10;
+                                    fVar.f60416s = j3;
+                                    fVar.f60415r = j10;
                                     return;
                                 }
                                 fVar.h(i7);
-                                fVar.f60417y.f60380z = true;
+                                fVar.f60421y.f60384z = true;
                                 return;
                             }
                             fVar.h(i7);
-                            fVar.f60417y.f60364i = true;
+                            fVar.f60421y.f60368i = true;
                             return;
                         }
                         fVar.A = -1;
                         fVar.B = -1L;
                         return;
-                    } else if (!fVar.f60418z) {
+                    } else if (!fVar.f60422z) {
                         fVar.g(i7);
                         fVar.E = -9223372036854775807L;
                         return;
                     } else {
                         return;
                     }
-                } else if (!fVar.f60418z) {
+                } else if (!fVar.f60422z) {
                     fVar.g(i7);
                     fVar.F = -1;
                     fVar.G = -1L;
@@ -1192,19 +1192,19 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                 }
             }
             ?? obj = new Object();
-            obj.f60369n = -1;
-            obj.f60370o = -1;
-            obj.f60371p = -1;
-            obj.f60372q = -1;
-            obj.f60373r = -1;
-            obj.f60374s = 0;
-            obj.f60375t = -1;
-            obj.f60376u = 0.0f;
+            obj.f60373n = -1;
+            obj.f60374o = -1;
+            obj.f60375p = -1;
+            obj.f60376q = -1;
+            obj.f60377r = -1;
+            obj.f60378s = 0;
+            obj.f60379t = -1;
+            obj.f60380u = 0.0f;
             obj.v = 0.0f;
-            obj.f60377w = 0.0f;
-            obj.f60378x = null;
-            obj.f60379y = -1;
-            obj.f60380z = false;
+            obj.f60381w = 0.0f;
+            obj.f60382x = null;
+            obj.f60383y = -1;
+            obj.f60384z = false;
             obj.A = -1;
             obj.B = -1;
             obj.C = -1;
@@ -1228,8 +1228,8 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
             obj.W = false;
             obj.Y = true;
             obj.Z = "eng";
-            fVar.f60417y = obj;
-            obj.f60355a = fVar.f60415w;
+            fVar.f60421y = obj;
+            obj.f60359a = fVar.f60419w;
             return;
         }
         fVar.Y = false;
@@ -1238,20 +1238,20 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void y1(float f10) {
-        org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f38902b;
-        sg.k0.e(vp0Var.f57942z1).k(String.valueOf(sg.h.f57255a.indexOf(vp0Var.G0.getCurrentBrush())), f10);
-        sg.h1 h1Var = vp0Var.f57932u1;
-        h1Var.f57261c = f10;
+        org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f38896b;
+        sg.k0.e(vp0Var.f57946z1).k(String.valueOf(sg.h.f57259a.indexOf(vp0Var.G0.getCurrentBrush())), f10);
+        sg.h1 h1Var = vp0Var.f57936u1;
+        h1Var.f57265c = f10;
         vp0Var.s0(h1Var, null);
     }
 
     @Override
     public int z() {
-        return ((v4.p0) this.f38902b).D();
+        return ((v4.p0) this.f38896b).D();
     }
 
     public void z0(int i7, String str) {
-        x3.f fVar = (x3.f) this.f38902b;
+        x3.f fVar = (x3.f) this.f38896b;
         if (i7 != 134) {
             if (i7 != 17026) {
                 if (i7 != 21358) {
@@ -1259,63 +1259,63 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
                         return;
                     }
                     fVar.h(i7);
-                    fVar.f60417y.Z = str;
+                    fVar.f60421y.Z = str;
                     return;
                 }
                 fVar.h(i7);
-                fVar.f60417y.f60357b = str;
+                fVar.f60421y.f60361b = str;
                 return;
             } else if (!"webm".equals(str) && !"matroska".equals(str)) {
                 throw e2.t0.a(null, "DocType " + str + " not supported");
             } else {
-                fVar.f60415w = str.equals("webm");
+                fVar.f60419w = str.equals("webm");
                 return;
             }
         }
         fVar.h(i7);
-        fVar.f60417y.f60359c = str;
+        fVar.f60421y.f60363c = str;
     }
 
     public qf(boolean z10) {
-        this.f38901a = 10;
-        this.f38902b = new AtomicBoolean(z10);
+        this.f38895a = 10;
+        this.f38896b = new AtomicBoolean(z10);
     }
 
     public qf(int i7) {
-        this.f38901a = i7;
+        this.f38895a = i7;
         switch (i7) {
             case 12:
-                this.f38902b = new ArrayDeque(16);
+                this.f38896b = new ArrayDeque(16);
                 return;
             default:
-                this.f38902b = h9.i0.p();
+                this.f38896b = h9.i0.p();
                 return;
         }
     }
 
     public qf(Uri uri, ClipDescription clipDescription, Uri uri2) {
-        this.f38901a = 18;
+        this.f38895a = 18;
         if (Build.VERSION.SDK_INT >= 25) {
-            this.f38902b = new t0.g(uri, clipDescription, uri2);
+            this.f38896b = new t0.g(uri, clipDescription, uri2);
         } else {
-            this.f38902b = new org.telegram.ui.md0(uri, clipDescription, uri2, 16);
+            this.f38896b = new org.telegram.ui.md0(uri, clipDescription, uri2, 16);
         }
     }
 
     public qf(Context context, p10 p10Var) {
-        this.f38901a = 3;
-        this.f38902b = new o10(context, p10Var);
+        this.f38895a = 3;
+        this.f38896b = new o10(context, p10Var);
     }
 
     @Override
     public float get() {
-        org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f38902b;
-        int i7 = vp0Var.f57942z1;
+        org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f38896b;
+        int i7 = vp0Var.f57946z1;
         sg.h currentBrush = vp0Var.G0.getCurrentBrush();
         if (currentBrush == null) {
-            return sg.k0.e(i7).f57308i;
+            return sg.k0.e(i7).f57312i;
         }
-        return sg.k0.e(i7).f(String.valueOf(sg.h.f57255a.indexOf(currentBrush)), currentBrush.d());
+        return sg.k0.e(i7).f(String.valueOf(sg.h.f57259a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override

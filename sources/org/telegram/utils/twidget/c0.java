@@ -3,23 +3,23 @@ package org.telegram.utils.twidget;
 import android.graphics.Canvas;
 import android.graphics.Picture;
 public final class c0 extends d0 {
-    public final Picture f54725e;
-    public boolean f54726f;
+    public final Picture f54729e;
+    public boolean f54730f;
 
     public c0(int i7, int i10, int i11, int i12) {
         super(i7, i10, i11, i12);
-        this.f54725e = new Picture();
+        this.f54729e = new Picture();
     }
 
     @Override
     public final Canvas a() {
-        this.f54726f = true;
-        return this.f54725e.beginRecording(Math.max(1, this.f54731c - this.f54729a), Math.max(1, this.d - this.f54730b));
+        this.f54730f = true;
+        return this.f54729e.beginRecording(Math.max(1, this.f54735c - this.f54733a), Math.max(1, this.d - this.f54734b));
     }
 
     @Override
     public final void b() {
-        if (this.f54726f) {
+        if (this.f54730f) {
             d();
         }
     }
@@ -28,27 +28,27 @@ public final class c0 extends d0 {
     public final void c(Canvas canvas, float f10) {
         Canvas canvas2;
         int save;
-        if (!this.f54726f && f10 > 0.0f) {
+        if (!this.f54730f && f10 > 0.0f) {
             int i7 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-            int i10 = this.f54730b;
-            int i11 = this.f54729a;
+            int i10 = this.f54734b;
+            int i11 = this.f54733a;
             if (i7 < 0) {
                 canvas2 = canvas;
-                save = canvas2.saveLayerAlpha(i11, i10, this.f54731c, this.d, Math.round(f10 * 255.0f));
+                save = canvas2.saveLayerAlpha(i11, i10, this.f54735c, this.d, Math.round(f10 * 255.0f));
             } else {
                 canvas2 = canvas;
                 save = canvas2.save();
             }
             canvas2.translate(i11, i10);
-            canvas2.drawPicture(this.f54725e);
+            canvas2.drawPicture(this.f54729e);
             canvas2.restoreToCount(save);
         }
     }
 
     @Override
     public final void d() {
-        this.f54725e.endRecording();
-        this.f54726f = false;
+        this.f54729e.endRecording();
+        this.f54730f = false;
     }
 
     @Override

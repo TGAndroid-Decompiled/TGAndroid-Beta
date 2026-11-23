@@ -4,14 +4,14 @@ import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
 public abstract class e51 extends org.telegram.ui.ActionBar.g2 {
-    public bi.g6 f34683a;
-    public kg.n1 f34684b;
-    public int f34685c;
+    public bi.f6 f34681a;
+    public kg.n1 f34682b;
+    public int f34683c;
     public int d;
 
     public e51() {
         super(null);
-        this.f34685c = -1;
+        this.f34683c = -1;
     }
 
     public abstract void Z(ArrayList arrayList, c51 c51Var);
@@ -36,14 +36,14 @@ public abstract class e51 extends org.telegram.ui.ActionBar.g2 {
             this.actionBar.setTitle(a0());
             this.actionBar.setActionBarMenuOnItemClick(x7Var);
         }
-        this.f34684b = new kg.n1(context, null, 1);
+        this.f34682b = new kg.n1(context, null, 1);
         if (!useSimpleActionBar()) {
-            org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29321a7, this.f34684b, null);
+            org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29324a7, this.f34682b, null);
         }
-        bi.g6 g6Var = new bi.g6(this, this, new d(this, 23), new d51(this), new d51(this));
-        this.f34683a = g6Var;
-        this.f34684b.addView(g6Var, c8.ma.c(-1.0f, -1));
-        kg.n1 n1Var = this.f34684b;
+        bi.f6 f6Var = new bi.f6(this, this, new d(this, 23), new d51(this), new d51(this));
+        this.f34681a = f6Var;
+        this.f34682b.addView(f6Var, c8.ma.c(-1.0f, -1));
+        kg.n1 n1Var = this.f34682b;
         this.fragmentView = n1Var;
         return n1Var;
     }

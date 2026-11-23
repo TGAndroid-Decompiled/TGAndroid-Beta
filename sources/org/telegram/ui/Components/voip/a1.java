@@ -10,47 +10,47 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.Components.cb0;
 import org.telegram.ui.bc1;
 public final class a1 extends TextView {
-    public final int f40896a = 1;
-    public final Object f40897b;
-    public final Object f40898c;
+    public final int f40898a = 1;
+    public final Object f40899b;
+    public final Object f40900c;
     public final FrameLayout d;
 
     public a1(k2 k2Var, Activity activity, l1 l1Var) {
         super(activity);
         this.d = k2Var;
-        this.f40898c = l1Var;
-        this.f40897b = new RectF();
+        this.f40900c = l1Var;
+        this.f40899b = new RectF();
         l1Var.a(this);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i7;
-        int i10 = this.f40896a;
-        Object obj = this.f40898c;
+        int i10 = this.f40898a;
+        Object obj = this.f40900c;
         FrameLayout frameLayout = this.d;
-        Object obj2 = this.f40897b;
+        Object obj2 = this.f40899b;
         switch (i10) {
             case 0:
                 Paint paint = (Paint) obj2;
                 bc1 bc1Var = (bc1) frameLayout;
-                a1 a1Var = bc1Var.f40925c;
+                a1 a1Var = bc1Var.f40927c;
                 bc1Var.Q.k(-getX(), -getY(), bc1Var.getWidth() - getX(), bc1Var.getHeight() - getY());
                 bc1Var.R.k(-getX(), -getY(), bc1Var.getWidth() - getX(), bc1Var.getHeight() - getY());
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 Paint[] paintArr = (Paint[]) obj;
-                paintArr[bc1Var.f40931w].setAlpha(255);
+                paintArr[bc1Var.f40933w].setAlpha(255);
                 float L = org.telegram.messenger.g0.L(8.0f) + ((int) ((1.0f - bc1Var.E) * (org.telegram.messenger.g0.L(26.0f) - org.telegram.messenger.g0.L(8.0f))));
-                canvas.drawRoundRect(rectF, L, L, paintArr[bc1Var.f40931w]);
-                float f10 = bc1Var.f40930s;
-                if (f10 > 0.0f && (i7 = bc1Var.f40931w + 1) < paintArr.length) {
+                canvas.drawRoundRect(rectF, L, L, paintArr[bc1Var.f40933w]);
+                float f10 = bc1Var.f40932s;
+                if (f10 > 0.0f && (i7 = bc1Var.f40933w + 1) < paintArr.length) {
                     paintArr[i7].setAlpha((int) (f10 * 255.0f));
-                    canvas.drawRoundRect(rectF, L, L, paintArr[bc1Var.f40931w + 1]);
+                    canvas.drawRoundRect(rectF, L, L, paintArr[bc1Var.f40933w + 1]);
                 }
                 float f11 = bc1Var.E;
                 if (f11 < 1.0f) {
@@ -59,7 +59,7 @@ public final class a1 extends TextView {
                 }
                 super.onDraw(canvas);
                 if (bc1Var.P) {
-                    canvas.drawText(gd.N0(2131742997, null), getWidth() / 2, (int) ((getHeight() / 2) - ((a1Var.getPaint().ascent() + a1Var.getPaint().descent()) / 2.0f)), a1Var.getPaint());
+                    canvas.drawText(hd.N0(2131742995, null), getWidth() / 2, (int) ((getHeight() / 2) - ((a1Var.getPaint().ascent() + a1Var.getPaint().descent()) / 2.0f)), a1Var.getPaint());
                     return;
                 }
                 return;
@@ -77,14 +77,14 @@ public final class a1 extends TextView {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f40896a) {
+        switch (this.f40898a) {
             case 0:
                 bc1 bc1Var = (bc1) this.d;
                 b8 b8Var = bc1Var.Q;
                 super.onSizeChanged(i7, i10, i11, i12);
                 int i13 = 0;
                 while (true) {
-                    Paint[] paintArr = (Paint[]) this.f40898c;
+                    Paint[] paintArr = (Paint[]) this.f40900c;
                     if (i13 < paintArr.length) {
                         if (i13 == 0) {
                             paintArr[i13] = (Paint) b8Var.f341a;
@@ -108,8 +108,8 @@ public final class a1 extends TextView {
         super(context);
         this.d = bc1Var;
         Paint paint = new Paint();
-        this.f40897b = paint;
-        this.f40898c = new Paint[bc1Var.f40926e.length];
+        this.f40899b = paint;
+        this.f40900c = new Paint[bc1Var.f40928e.length];
         cb0 cb0Var = bc1Var.S;
         cb0Var.setBounds(0, 0, 80, 80);
         cb0 cb0Var2 = bc1Var.T;

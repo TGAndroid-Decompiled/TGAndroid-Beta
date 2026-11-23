@@ -7,33 +7,33 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
 public final class y2 extends View implements b6 {
-    public final a3 f30298a;
+    public final a3 f30301a;
 
     public y2(a3 a3Var, Context context) {
         super(context);
-        this.f30298a = a3Var;
+        this.f30301a = a3Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f30298a.d);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f30301a.d);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.f24141n);
-        setTranslationY(org.telegram.messenger.g0.f24141n);
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.f24041n);
+        setTranslationY(org.telegram.messenger.g0.f24041n);
     }
 
     @Override
     public final void updateColors() {
-        a3 a3Var = this.f30298a;
+        a3 a3Var = this.f30301a;
         Paint paint = a3Var.d;
         try {
-            j3 j3Var = a3Var.f28784a;
+            j3 j3Var = a3Var.f28787a;
             if (j3Var != null) {
                 boolean z10 = false;
-                int e10 = j3Var.e(m6.x0(null, m6.f29321a7, false));
+                int e10 = j3Var.e(m6.x0(null, m6.f29324a7, false));
                 if (paint.getColor() != e10) {
                     paint.setColor(e10);
                     invalidate();

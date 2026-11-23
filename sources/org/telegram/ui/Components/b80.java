@@ -17,14 +17,14 @@ public final class b80 extends ap0 {
             return;
         }
         if (hVar != null && hVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) hVar.n(0)).f28435id;
-            if (j3 != 0 && j3 != org.telegram.messenger.j10.i(this.f30170a).e()) {
-                a02 = org.telegram.messenger.gd.a0(null, null, 2131748991, org.telegram.messenger.mp.u1(this.f30170a).D1(j3, true));
+            long j3 = ((TLRPC.Dialog) hVar.n(0)).f28438id;
+            if (j3 != 0 && j3 != org.telegram.messenger.k10.i(this.f30173a).e()) {
+                a02 = org.telegram.messenger.hd.a0(null, null, 2131748991, org.telegram.messenger.np.u1(this.f30173a).D1(j3, true));
             } else {
-                a02 = org.telegram.messenger.gd.N0(2131748992, null);
+                a02 = org.telegram.messenger.hd.N0(2131748992, null);
             }
         } else {
-            a02 = org.telegram.messenger.gd.a0(null, null, 2131748994, org.telegram.messenger.gd.G(i7, "Chats", new Object[0]));
+            a02 = org.telegram.messenger.hd.a0(null, null, 2131748994, org.telegram.messenger.hd.G(i7, "Chats", new Object[0]));
         }
         this.V2.e(org.telegram.messenger.g0.W2(a02));
     }

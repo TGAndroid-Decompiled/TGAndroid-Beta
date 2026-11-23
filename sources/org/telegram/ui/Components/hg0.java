@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public class hg0 extends xp implements org.telegram.messenger.fs {
+public class hg0 extends xp implements org.telegram.messenger.gs {
     public final org.telegram.ui.ActionBar.k A0;
     public boolean B0;
     public boolean C0;
@@ -26,49 +26,49 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
     public boolean I0;
     public boolean J0;
     public final boolean K0;
-    public org.telegram.messenger.fc L0;
+    public org.telegram.messenger.gc L0;
     public final int M0;
     public final Path N0;
     public final RectF O0;
     public final float[] P0;
-    public org.telegram.messenger.fc Q0;
-    public org.telegram.messenger.fc R0;
+    public org.telegram.messenger.gc Q0;
+    public org.telegram.messenger.gc R0;
     public t51 S0;
-    public org.telegram.messenger.uo T0;
+    public org.telegram.messenger.vo T0;
     public final ArrayList U0;
     public final ArrayList V0;
     public final ArrayList W0;
     public final ArrayList X0;
     public final ArrayList Y0;
     public final ArrayList Z0;
-    public final ArrayList f35885a1;
-    public final ArrayList f35886b1;
-    public final ArrayList f35887c1;
-    public int f35888d1;
-    public final SparseArray f35889e1;
-    public boolean f35890f1;
-    public boolean f35891g1;
-    public boolean f35892h1;
-    public org.telegram.ui.fr0 f35893i1;
-    public boolean f35894j1;
-    public int f35895k1;
+    public final ArrayList f35879a1;
+    public final ArrayList f35880b1;
+    public final ArrayList f35881c1;
+    public int f35882d1;
+    public final SparseArray f35883e1;
+    public boolean f35884f1;
+    public boolean f35885g1;
+    public boolean f35886h1;
+    public org.telegram.ui.fr0 f35887i1;
+    public boolean f35888j1;
+    public int f35889k1;
     public int l1;
-    public int f35896m1;
+    public int f35890m1;
     public int n1;
-    public int f35897o1;
-    public int f35898p1;
-    public zf0 f35899q1;
-    public org.telegram.messenger.fc f35900r1;
-    public org.telegram.messenger.fc f35901s1;
-    public final PointF f35902y0;
-    public final int f35903z0;
+    public int f35891o1;
+    public int f35892p1;
+    public zf0 f35893q1;
+    public org.telegram.messenger.gc f35894r1;
+    public org.telegram.messenger.gc f35895s1;
+    public final PointF f35896y0;
+    public final int f35897z0;
 
     public hg0(Context context, org.telegram.ui.ActionBar.k kVar, ek0 ek0Var, org.telegram.ui.q4 q4Var) {
         super(context);
-        this.f35902y0 = new PointF();
+        this.f35896y0 = new PointF();
         this.B0 = true;
         this.C0 = true;
-        int i7 = org.telegram.messenger.j10.f24798t0;
+        int i7 = org.telegram.messenger.k10.f24968t0;
         this.M0 = i7;
         this.N0 = new Path();
         this.O0 = new RectF();
@@ -79,60 +79,60 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
         this.X0 = new ArrayList();
         this.Y0 = new ArrayList();
         this.Z0 = new ArrayList();
-        this.f35885a1 = new ArrayList();
-        this.f35886b1 = new ArrayList();
-        this.f35887c1 = new ArrayList();
-        this.f35889e1 = new SparseArray();
-        this.f35890f1 = true;
-        this.f35895k1 = -1;
+        this.f35879a1 = new ArrayList();
+        this.f35880b1 = new ArrayList();
+        this.f35881c1 = new ArrayList();
+        this.f35883e1 = new SparseArray();
+        this.f35884f1 = true;
+        this.f35889k1 = -1;
         this.l1 = -1;
         setOffscreenPageLimit(2);
-        this.f35899q1 = null;
+        this.f35893q1 = null;
         this.K0 = false;
         this.D0 = ek0Var;
         ConnectionsManager.generateClassGuid();
         this.A0 = kVar;
-        this.f35903z0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f35897z0 = ViewConfiguration.get(context).getScaledTouchSlop();
         this.H0 = q4Var;
         b(new ag0(this));
         gg0 gg0Var = new gg0(this, getContext(), null);
         this.E0 = gg0Var;
         setAdapter((wp) gg0Var);
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.f25115b0);
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.Y1);
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.X1);
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.f25121c0);
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.f25147g3);
+        org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.f25281b0);
+        org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.Y1);
+        org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.X1);
+        org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.f25287c0);
+        org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.f25313g3);
         this.T0 = null;
     }
 
-    public final void A(org.telegram.messenger.fc fcVar, org.telegram.messenger.fc fcVar2) {
-        this.Q0 = fcVar;
+    public final void A(org.telegram.messenger.gc gcVar, org.telegram.messenger.gc gcVar2) {
+        this.Q0 = gcVar;
         this.V0.add(0, null);
         this.U0.add(0, null);
-        this.Y0.add(0, fcVar);
-        this.Z0.add(0, fcVar2);
-        this.f35885a1.add(0, null);
+        this.Y0.add(0, gcVar);
+        this.Z0.add(0, gcVar2);
+        this.f35879a1.add(0, null);
         this.X0.add(0, null);
         this.W0.add(0, null);
-        this.f35886b1.add(0, -1);
-        this.f35887c1.add(0, Float.valueOf(0.0f));
+        this.f35880b1.add(0, -1);
+        this.f35881c1.add(0, Float.valueOf(0.0f));
         this.E0.g();
         L();
-        this.f35900r1 = fcVar;
-        this.f35901s1 = fcVar2;
+        this.f35894r1 = gcVar;
+        this.f35895s1 = gcVar2;
     }
 
     public final void B(float f10, int i7) {
         float f11;
-        int i10 = this.f35895k1;
+        int i10 = this.f35889k1;
         float f12 = 0.0f;
         if (i10 >= 0 || this.l1 >= 0) {
             if (i10 < 0) {
                 i10 = this.l1;
             }
             int k10 = this.E0.k(i7);
-            if (this.f35894j1) {
+            if (this.f35888j1) {
                 k10--;
             }
             if (k10 == i10) {
@@ -152,10 +152,10 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
         setCustomAvatarProgress(f12);
     }
 
-    public final org.telegram.messenger.fc C(org.telegram.messenger.fc fcVar, org.telegram.messenger.fc fcVar2) {
+    public final org.telegram.messenger.gc C(org.telegram.messenger.gc gcVar, org.telegram.messenger.gc gcVar2) {
         ArrayList arrayList;
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
-        if (fcVar == null) {
+        if (gcVar == null) {
             return null;
         }
         for (int i7 = 0; i7 < 2; i7++) {
@@ -166,21 +166,21 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
             }
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
-                org.telegram.messenger.fc fcVar3 = (org.telegram.messenger.fc) arrayList.get(i10);
-                if (fcVar3 != null && (tL_fileLocationToBeDeprecated = fcVar3.f23896f) != null) {
-                    int i11 = fcVar3.f23892a;
-                    if (i11 == fcVar.f23892a) {
+                org.telegram.messenger.gc gcVar3 = (org.telegram.messenger.gc) arrayList.get(i10);
+                if (gcVar3 != null && (tL_fileLocationToBeDeprecated = gcVar3.f24116f) != null) {
+                    int i11 = gcVar3.f24112a;
+                    if (i11 == gcVar.f24112a) {
                         int i12 = tL_fileLocationToBeDeprecated.local_id;
-                        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = fcVar.f23896f;
+                        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = gcVar.f24116f;
                         if (i12 == tL_fileLocationToBeDeprecated2.local_id && tL_fileLocationToBeDeprecated.volume_id == tL_fileLocationToBeDeprecated2.volume_id) {
-                            return (org.telegram.messenger.fc) this.X0.get(i10);
+                            return (org.telegram.messenger.gc) this.X0.get(i10);
                         }
                     }
-                    if (i11 == fcVar2.f23892a) {
+                    if (i11 == gcVar2.f24112a) {
                         int i13 = tL_fileLocationToBeDeprecated.local_id;
-                        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated3 = fcVar2.f23896f;
+                        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated3 = gcVar2.f24116f;
                         if (i13 == tL_fileLocationToBeDeprecated3.local_id && tL_fileLocationToBeDeprecated.volume_id == tL_fileLocationToBeDeprecated3.volume_id) {
-                            return (org.telegram.messenger.fc) this.X0.get(i10);
+                            return (org.telegram.messenger.gc) this.X0.get(i10);
                         }
                     } else {
                         continue;
@@ -191,15 +191,15 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
         return null;
     }
 
-    public final org.telegram.messenger.fc D(int i7) {
+    public final org.telegram.messenger.gc D(int i7) {
         if (i7 >= 0) {
             ArrayList arrayList = this.Y0;
             if (i7 < arrayList.size()) {
-                org.telegram.messenger.fc fcVar = (org.telegram.messenger.fc) this.X0.get(i7);
-                if (fcVar != null) {
-                    return fcVar;
+                org.telegram.messenger.gc gcVar = (org.telegram.messenger.gc) this.X0.get(i7);
+                if (gcVar != null) {
+                    return gcVar;
                 }
-                return (org.telegram.messenger.fc) arrayList.get(i7);
+                return (org.telegram.messenger.gc) arrayList.get(i7);
             }
             return null;
         }
@@ -209,12 +209,12 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
     public final View E(int i7) {
         gg0 gg0Var = this.E0;
         if (gg0Var != null) {
-            ArrayList arrayList = gg0Var.f35549c;
+            ArrayList arrayList = gg0Var.f35568c;
             if (arrayList.size() > i7 && i7 >= 0) {
                 eg0 eg0Var = (eg0) arrayList.get(i7);
-                fg0 fg0Var = eg0Var.f34793b;
+                fg0 fg0Var = eg0Var.f34791b;
                 if (fg0Var == null) {
-                    return eg0Var.f34794c;
+                    return eg0Var.f34792c;
                 }
                 return fg0Var;
             }
@@ -234,65 +234,65 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
         return null;
     }
 
-    public final org.telegram.messenger.fc G(int i7) {
+    public final org.telegram.messenger.gc G(int i7) {
         if (i7 >= 0) {
             ArrayList arrayList = this.Y0;
             if (i7 < arrayList.size()) {
-                return (org.telegram.messenger.fc) arrayList.get(i7);
+                return (org.telegram.messenger.gc) arrayList.get(i7);
             }
             return null;
         }
         return null;
     }
 
-    public final boolean H(t51 t51Var, org.telegram.messenger.fc fcVar, org.telegram.messenger.fc fcVar2, boolean z10) {
-        org.telegram.messenger.uo uoVar;
+    public final boolean H(t51 t51Var, org.telegram.messenger.gc gcVar, org.telegram.messenger.gc gcVar2, boolean z10) {
+        org.telegram.messenger.vo voVar;
         int i7;
-        org.telegram.messenger.uo uoVar2;
+        org.telegram.messenger.vo voVar2;
         int i10 = 0;
-        if (fcVar != null && fcVar2 != null && this.f35888d1 == 0) {
-            org.telegram.messenger.fc fcVar3 = this.Q0;
+        if (gcVar != null && gcVar2 != null && this.f35882d1 == 0) {
+            org.telegram.messenger.gc gcVar3 = this.Q0;
             ArrayList arrayList = this.Y0;
-            if (fcVar3 == null || fcVar3.f23896f.local_id != fcVar.f23896f.local_id) {
+            if (gcVar3 == null || gcVar3.f24116f.local_id != gcVar.f24116f.local_id) {
                 boolean isEmpty = arrayList.isEmpty();
                 gg0 gg0Var = this.E0;
                 if (!isEmpty) {
-                    this.Q0 = fcVar;
-                    if (z10 && (uoVar2 = this.T0) != null) {
-                        uoVar2.f();
-                        org.telegram.messenger.uo uoVar3 = this.T0;
+                    this.Q0 = gcVar;
+                    if (z10 && (voVar2 = this.T0) != null) {
+                        voVar2.f();
+                        org.telegram.messenger.vo voVar3 = this.T0;
                         int currentItem = getCurrentItem();
                         if (gg0Var != null) {
                             i10 = gg0Var.j();
                         }
-                        uoVar3.b(currentItem - i10, true);
+                        voVar3.b(currentItem - i10, true);
                     }
                     return true;
-                } else if (z10 && (uoVar = this.T0) != null) {
-                    uoVar.f();
-                    org.telegram.messenger.uo uoVar4 = this.T0;
+                } else if (z10 && (voVar = this.T0) != null) {
+                    voVar.f();
+                    org.telegram.messenger.vo voVar4 = this.T0;
                     int currentItem2 = getCurrentItem();
                     if (gg0Var != null) {
                         i7 = gg0Var.j();
                     } else {
                         i7 = 0;
                     }
-                    uoVar4.b(currentItem2 - i7, true);
+                    voVar4.b(currentItem2 - i7, true);
                 }
             }
             if (arrayList.isEmpty()) {
-                this.Q0 = fcVar;
-                this.R0 = fcVar2;
+                this.Q0 = gcVar;
+                this.R0 = gcVar2;
                 this.S0 = t51Var;
                 this.V0.add(null);
                 this.U0.add(null);
-                arrayList.add(fcVar);
-                this.Z0.add(fcVar2);
-                this.f35885a1.add(t51Var);
+                arrayList.add(gcVar);
+                this.Z0.add(gcVar2);
+                this.f35879a1.add(t51Var);
                 this.X0.add(null);
                 this.W0.add(null);
-                this.f35886b1.add(-1);
-                this.f35887c1.add(null);
+                this.f35880b1.add(-1);
+                this.f35881c1.add(null);
                 getAdapter().g();
                 L();
                 return true;
@@ -303,7 +303,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
 
     public final boolean I() {
         int realPosition = getRealPosition();
-        if (this.f35894j1) {
+        if (this.f35888j1) {
             if (realPosition != 0) {
                 realPosition--;
             } else {
@@ -323,7 +323,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
     public final boolean J() {
         int realPosition;
         q9 currentItemView;
-        if (this.f35894j1) {
+        if (this.f35888j1) {
             realPosition = getRealPosition() - 1;
         } else {
             realPosition = getRealPosition();
@@ -339,22 +339,22 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
     }
 
     public final void K() {
-        this.f35899q1 = null;
+        this.f35893q1 = null;
         int i7 = this.M0;
-        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.f25115b0);
-        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.Y1);
-        org.telegram.messenger.ks f10 = org.telegram.messenger.ks.f(i7);
-        int i10 = org.telegram.messenger.ks.X1;
+        org.telegram.messenger.ls.f(i7).n(this, org.telegram.messenger.ls.f25281b0);
+        org.telegram.messenger.ls.f(i7).n(this, org.telegram.messenger.ls.Y1);
+        org.telegram.messenger.ls f10 = org.telegram.messenger.ls.f(i7);
+        int i10 = org.telegram.messenger.ls.X1;
         f10.n(this, i10);
-        org.telegram.messenger.ks.f(i7).n(this, i10);
-        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.f25121c0);
-        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.f25147g3);
+        org.telegram.messenger.ls.f(i7).n(this, i10);
+        org.telegram.messenger.ls.f(i7).n(this, org.telegram.messenger.ls.f25287c0);
+        org.telegram.messenger.ls.f(i7).n(this, org.telegram.messenger.ls.f25313g3);
         int childCount = getChildCount();
         for (int i11 = 0; i11 < childCount; i11++) {
             View childAt = getChildAt(i11);
             if (childAt instanceof q9) {
                 q9 q9Var = (q9) childAt;
-                if (q9Var.getImageReceiver().f22677n0 != null) {
+                if (q9Var.getImageReceiver().f22680n0 != null) {
                     Drawable t6 = q9Var.getImageReceiver().t();
                     if (t6 instanceof c6) {
                         ((c6) t6).w(q9Var);
@@ -373,52 +373,52 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
             L();
             return;
         }
-        this.f35891g1 = true;
+        this.f35885g1 = true;
         this.U0.clear();
         this.V0.clear();
         this.W0.clear();
         this.X0.clear();
         this.Y0.clear();
         this.Z0.clear();
-        this.f35886b1.clear();
-        this.f35887c1.clear();
+        this.f35880b1.clear();
+        this.f35881c1.clear();
         this.E0.g();
         x(0, false);
-        this.f35898p1 = 0;
+        this.f35892p1 = 0;
         this.L0 = null;
         this.Q0 = null;
         this.F0 = j3;
-        org.telegram.messenger.uo W0 = org.telegram.messenger.mp.u1(this.M0).W0(j3);
+        org.telegram.messenger.vo W0 = org.telegram.messenger.np.u1(this.M0).W0(j3);
         this.T0 = W0;
-        W0.h.getMessagesStorage().f27080a.c(new org.telegram.messenger.so(W0, 0));
+        W0.h.getMessagesStorage().f27250a.c(new org.telegram.messenger.to(W0, 0));
     }
 
     public final void N(int i7, int i10) {
         this.n1 = i7;
-        this.f35897o1 = i10;
+        this.f35891o1 = i10;
         gg0 gg0Var = this.E0;
         if (gg0Var != null) {
-            for (int i11 = 0; i11 < gg0Var.f35549c.size(); i11++) {
-                if (((eg0) gg0Var.f35549c.get(i11)).f34794c != null) {
-                    cg0 cg0Var = ((eg0) gg0Var.f35549c.get(i11)).f34794c;
+            for (int i11 = 0; i11 < gg0Var.f35568c.size(); i11++) {
+                if (((eg0) gg0Var.f35568c.get(i11)).f34792c != null) {
+                    cg0 cg0Var = ((eg0) gg0Var.f35568c.get(i11)).f34792c;
                     int i12 = this.n1;
-                    int i13 = this.f35897o1;
+                    int i13 = this.f35891o1;
                     cg0Var.t(i12, i12, i13, i13);
                 }
             }
         }
     }
 
-    public final void O(org.telegram.messenger.fc fcVar, float f10) {
-        if (fcVar != null) {
+    public final void O(org.telegram.messenger.gc gcVar, float f10) {
+        if (gcVar != null) {
             int i7 = 0;
             while (true) {
                 ArrayList arrayList = this.Y0;
                 if (i7 >= arrayList.size()) {
                     break;
-                } else if (arrayList.get(i7) == fcVar) {
-                    this.f35887c1.set(i7, Float.valueOf(f10));
-                    SparseArray sparseArray = this.f35889e1;
+                } else if (arrayList.get(i7) == gcVar) {
+                    this.f35881c1.set(i7, Float.valueOf(f10));
+                    SparseArray sparseArray = this.f35883e1;
                     if (sparseArray.get(i7) != null) {
                         ((RadialProgress2) sparseArray.get(i7)).p(true, f10);
                     }
@@ -434,11 +434,11 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        org.telegram.messenger.uo uoVar;
+        org.telegram.messenger.vo voVar;
         int i11;
         TLRPC.User user;
         ArrayList arrayList;
-        org.telegram.messenger.fc fcVar;
+        org.telegram.messenger.gc gcVar;
         int i12;
         boolean z10;
         boolean z11;
@@ -446,7 +446,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
         int i14;
         ArrayList arrayList2;
         ArrayList arrayList3;
-        org.telegram.messenger.fc fcVar2;
+        org.telegram.messenger.gc gcVar2;
         Integer num;
         ArrayList<TLRPC.PhotoSize> arrayList4;
         TLRPC.PhotoSize photoSize;
@@ -459,24 +459,24 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
         boolean z16;
         TLRPC.Photo photo;
         Integer num2 = -1;
-        int i16 = org.telegram.messenger.ks.f25147g3;
+        int i16 = org.telegram.messenger.ls.f25313g3;
         ArrayList arrayList5 = this.V0;
         ArrayList arrayList6 = this.U0;
         if (i7 == i16) {
-            org.telegram.messenger.uo uoVar2 = (org.telegram.messenger.uo) objArr[0];
-            if (this.T0 == uoVar2) {
-                ArrayList arrayList7 = new ArrayList(uoVar2.f27227b);
-                if (!arrayList7.isEmpty() || !uoVar2.f27228c) {
-                    this.f35895k1 = -1;
+            org.telegram.messenger.vo voVar2 = (org.telegram.messenger.vo) objArr[0];
+            if (this.T0 == voVar2) {
+                ArrayList arrayList7 = new ArrayList(voVar2.f27447b);
+                if (!arrayList7.isEmpty() || !voVar2.f27448c) {
+                    this.f35889k1 = -1;
                     this.l1 = -1;
                     int i17 = this.M0;
-                    TLRPC.User c22 = org.telegram.messenger.mp.u1(i17).c2(Long.valueOf(this.F0));
-                    TLRPC.UserFull d2 = org.telegram.messenger.mp.u1(i17).d2(this.F0);
+                    TLRPC.User c22 = org.telegram.messenger.np.u1(i17).c2(Long.valueOf(this.F0));
+                    TLRPC.UserFull d2 = org.telegram.messenger.np.u1(i17).d2(this.F0);
                     if (d2 != null && (photo = d2.personal_photo) != null) {
                         arrayList7.add(0, photo);
-                        this.f35895k1 = 0;
+                        this.f35889k1 = 0;
                     }
-                    if (c22 != null && c22.self && org.telegram.messenger.o10.r(d2)) {
+                    if (c22 != null && c22.self && org.telegram.messenger.p10.r(d2)) {
                         arrayList7.add(d2.fallback_photo);
                         this.l1 = arrayList7.size() - 1;
                     }
@@ -488,30 +488,30 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                     arrayList9.clear();
                     ArrayList arrayList10 = this.Z0;
                     arrayList10.clear();
-                    ArrayList arrayList11 = this.f35885a1;
+                    ArrayList arrayList11 = this.f35879a1;
                     arrayList11.clear();
                     ArrayList arrayList12 = this.W0;
                     arrayList12.clear();
-                    ArrayList arrayList13 = this.f35886b1;
+                    ArrayList arrayList13 = this.f35880b1;
                     arrayList13.clear();
-                    ArrayList arrayList14 = this.f35887c1;
+                    ArrayList arrayList14 = this.f35881c1;
                     arrayList14.clear();
                     if (org.telegram.messenger.n5.z(this.F0)) {
-                        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i17).O0(Long.valueOf(-this.F0));
-                        fcVar = org.telegram.messenger.fc.m(i17, 0, O0);
+                        TLRPC.Chat O0 = org.telegram.messenger.np.u1(i17).O0(Long.valueOf(-this.F0));
+                        gcVar = org.telegram.messenger.gc.m(i17, 0, O0);
                         arrayList = arrayList8;
-                        if (fcVar != null) {
-                            arrayList.add(fcVar);
+                        if (gcVar != null) {
+                            arrayList.add(gcVar);
                             user = c22;
-                            arrayList10.add(org.telegram.messenger.fc.m(i17, 1, O0));
+                            arrayList10.add(org.telegram.messenger.gc.m(i17, 1, O0));
                             arrayList11.add(null);
                             arrayList5.add(null);
                             TLRPC.ChatFull chatFull = this.G0;
-                            if (chatFull != null && org.telegram.messenger.w7.U(fcVar.f23896f, chatFull.chat_photo)) {
+                            if (chatFull != null && org.telegram.messenger.w7.U(gcVar.f24116f, chatFull.chat_photo)) {
                                 arrayList12.add(this.G0.chat_photo);
                                 if (!this.G0.chat_photo.video_sizes.isEmpty()) {
                                     TLRPC.VideoSize x10 = org.telegram.messenger.w7.x(1000, this.G0.chat_photo.video_sizes);
-                                    arrayList9.add(org.telegram.messenger.fc.j(x10, this.G0.chat_photo));
+                                    arrayList9.add(org.telegram.messenger.gc.j(x10, this.G0.chat_photo));
                                     z16 = false;
                                     arrayList6.add(org.telegram.messenger.w7.r(null, x10));
                                 } else {
@@ -533,7 +533,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                     } else {
                         user = c22;
                         arrayList = arrayList8;
-                        fcVar = null;
+                        gcVar = null;
                     }
                     int i18 = 0;
                     while (true) {
@@ -548,7 +548,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                             i14 = i18;
                             arrayList2 = arrayList7;
                             arrayList3 = arrayList14;
-                            fcVar2 = fcVar;
+                            gcVar2 = gcVar;
                             num = num2;
                             arrayList12.add(null);
                             arrayList.add(null);
@@ -580,7 +580,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                                     w10 = photoSize3;
                                 }
                             }
-                            if (fcVar != null) {
+                            if (gcVar != null) {
                                 int size3 = photo2.sizes.size();
                                 int i20 = 0;
                                 while (i20 < size3) {
@@ -589,35 +589,35 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                                     if (fileLocation != null) {
                                         int i22 = fileLocation.local_id;
                                         i15 = i20;
-                                        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = fcVar.f23896f;
-                                        fcVar2 = fcVar;
+                                        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = gcVar.f24116f;
+                                        gcVar2 = gcVar;
                                         if (i22 == tL_fileLocationToBeDeprecated.local_id) {
                                             num = num2;
                                             if (fileLocation.volume_id == tL_fileLocationToBeDeprecated.volume_id) {
                                                 arrayList12.set(0, photo2);
                                                 if (!photo2.video_sizes.isEmpty()) {
-                                                    arrayList9.set(0, org.telegram.messenger.fc.j(org.telegram.messenger.w7.x(1000, photo2.video_sizes), photo2));
+                                                    arrayList9.set(0, org.telegram.messenger.gc.j(org.telegram.messenger.w7.x(1000, photo2.video_sizes), photo2));
                                                 }
                                                 arrayList3 = arrayList15;
                                             } else {
                                                 i20 = i15 + 1;
                                                 num2 = num;
                                                 size3 = i21;
-                                                fcVar = fcVar2;
+                                                gcVar = gcVar2;
                                             }
                                         }
                                     } else {
                                         i15 = i20;
-                                        fcVar2 = fcVar;
+                                        gcVar2 = gcVar;
                                     }
                                     num = num2;
                                     i20 = i15 + 1;
                                     num2 = num;
                                     size3 = i21;
-                                    fcVar = fcVar2;
+                                    gcVar = gcVar2;
                                 }
                             }
-                            fcVar2 = fcVar;
+                            gcVar2 = gcVar;
                             num = num2;
                             TLRPC.PhotoSize w11 = org.telegram.messenger.w7.w(photo2.sizes, 640, false, null, false);
                             if (w11 != null) {
@@ -627,17 +627,17 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                                     fileLocation2.dc_id = i23;
                                     fileLocation2.file_reference = photo2.file_reference;
                                 }
-                                org.telegram.messenger.fc i24 = org.telegram.messenger.fc.i(w11, photo2);
+                                org.telegram.messenger.gc i24 = org.telegram.messenger.gc.i(w11, photo2);
                                 if (i24 != null) {
-                                    org.telegram.messenger.fc fcVar3 = this.Q0;
-                                    if (fcVar3 != null && fcVar3.f23908s == i24.f23908s && !z10 && this.F0 != org.telegram.messenger.j10.i(i12).e()) {
+                                    org.telegram.messenger.gc gcVar3 = this.Q0;
+                                    if (gcVar3 != null && gcVar3.f24128s == i24.f24128s && !z10 && this.F0 != org.telegram.messenger.k10.i(i12).e()) {
                                         arrayList5.add(null);
                                         arrayList.add(this.Q0);
-                                        org.telegram.messenger.fc fcVar4 = this.R0;
-                                        if (fcVar4 == null) {
-                                            fcVar4 = org.telegram.messenger.fc.i(w10, photo2);
+                                        org.telegram.messenger.gc gcVar4 = this.R0;
+                                        if (gcVar4 == null) {
+                                            gcVar4 = org.telegram.messenger.gc.i(w10, photo2);
                                         }
-                                        arrayList10.add(fcVar4);
+                                        arrayList10.add(gcVar4);
                                         if (!photo2.video_sizes.isEmpty()) {
                                             TLRPC.VideoSize x11 = org.telegram.messenger.w7.x(1000, photo2.video_sizes);
                                             TLRPC.VideoSize R = org.telegram.messenger.w7.R(photo2);
@@ -656,7 +656,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                                                 user2 = user;
                                                 z14 = false;
                                                 arrayList11.add(null);
-                                                arrayList9.add(org.telegram.messenger.fc.j(x11, photo2));
+                                                arrayList9.add(org.telegram.messenger.gc.j(x11, photo2));
                                                 arrayList6.add(org.telegram.messenger.w7.r(null, x11));
                                             }
                                         } else {
@@ -680,7 +680,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                                             photoSize = w10;
                                         }
                                         arrayList5.add(org.telegram.messenger.w7.r(null, photoSize));
-                                        arrayList10.add(org.telegram.messenger.fc.i(w10, photo2));
+                                        arrayList10.add(org.telegram.messenger.gc.i(w10, photo2));
                                         if (!photo2.video_sizes.isEmpty()) {
                                             TLRPC.VideoSize x12 = org.telegram.messenger.w7.x(1000, photo2.video_sizes);
                                             TLRPC.VideoSize R2 = org.telegram.messenger.w7.R(photo2);
@@ -699,7 +699,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                                                 user = user3;
                                                 z12 = false;
                                                 arrayList11.add(null);
-                                                arrayList9.add(org.telegram.messenger.fc.j(x12, photo2));
+                                                arrayList9.add(org.telegram.messenger.gc.j(x12, photo2));
                                                 arrayList6.add(org.telegram.messenger.w7.r(null, x12));
                                             }
                                         } else {
@@ -723,7 +723,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                         num2 = num;
                         i17 = i12;
                         arrayList7 = arrayList2;
-                        fcVar = fcVar2;
+                        gcVar = gcVar2;
                     }
                     int size4 = arrayList10.size();
                     if (size4 > 1) {
@@ -737,34 +737,34 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                             if (i25 >= i13) {
                                 break;
                             }
-                            org.telegram.messenger.w7.G(i12).V((org.telegram.messenger.fc) arrayList10.get(i25 == 0 ? 1 : size4 - 1), null, null, 0, 1);
+                            org.telegram.messenger.w7.G(i12).V((org.telegram.messenger.gc) arrayList10.get(i25 == 0 ? 1 : size4 - 1), null, null, 0, 1);
                             i25++;
                         }
                     }
                     getAdapter().g();
                     if (z10) {
-                        if (!this.I0 || this.f35891g1) {
+                        if (!this.I0 || this.f35885g1) {
                             L();
                         }
-                    } else if (!this.I0 || this.f35891g1) {
+                    } else if (!this.I0 || this.f35885g1) {
                         L();
                         getAdapter().g();
                         B(0.0f, getRealPosition());
                     }
-                    if (this.l1 < 0 && this.f35895k1 < 0) {
+                    if (this.l1 < 0 && this.f35889k1 < 0) {
                         z11 = false;
                         B(0.0f, 0);
                     } else {
                         z11 = false;
                     }
-                    this.f35891g1 = z11;
+                    this.f35885g1 = z11;
                     dg0 dg0Var = this.H0;
                     if (dg0Var != null) {
                         dg0Var.c();
                     }
-                    org.telegram.messenger.fc fcVar5 = this.f35900r1;
-                    if (fcVar5 != null) {
-                        A(fcVar5, this.f35901s1);
+                    org.telegram.messenger.gc gcVar5 = this.f35894r1;
+                    if (gcVar5 != null) {
+                        A(gcVar5, this.f35895s1);
                         return;
                     }
                     return;
@@ -773,8 +773,8 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
             }
             return;
         }
-        int i26 = org.telegram.messenger.ks.Y1;
-        SparseArray sparseArray = this.f35889e1;
+        int i26 = org.telegram.messenger.ls.Y1;
+        SparseArray sparseArray = this.f35883e1;
         if (i7 == i26) {
             String str = (String) objArr[0];
             for (int i27 = 0; i27 < arrayList5.size(); i27++) {
@@ -790,7 +790,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                     invalidate();
                 }
             }
-        } else if (i7 == org.telegram.messenger.ks.X1) {
+        } else if (i7 == org.telegram.messenger.ls.X1) {
             String str3 = (String) objArr[0];
             for (int i28 = 0; i28 < arrayList5.size(); i28++) {
                 String str4 = (String) arrayList6.get(i28);
@@ -805,9 +805,9 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                     invalidate();
                 }
             }
-        } else if (i7 == org.telegram.messenger.ks.f25121c0 && this.f35888d1 == 0 && (uoVar = this.T0) != null) {
-            uoVar.f();
-            org.telegram.messenger.uo uoVar3 = this.T0;
+        } else if (i7 == org.telegram.messenger.ls.f25287c0 && this.f35882d1 == 0 && (voVar = this.T0) != null) {
+            voVar.f();
+            org.telegram.messenger.vo voVar3 = this.T0;
             int currentItem = getCurrentItem();
             gg0 gg0Var = this.E0;
             if (gg0Var != null) {
@@ -815,12 +815,12 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
             } else {
                 i11 = 0;
             }
-            uoVar3.b(currentItem - i11, true);
+            voVar3.b(currentItem - i11, true);
         }
     }
 
     public zf0 getBlurDrawer() {
-        return this.f35899q1;
+        return this.f35893q1;
     }
 
     public float getCurrentItemProgress() {
@@ -834,8 +834,8 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
 
     public q9 getCurrentItemView() {
         gg0 gg0Var = this.E0;
-        if (gg0Var != null && !gg0Var.f35549c.isEmpty()) {
-            return ((eg0) gg0Var.f35549c.get(getCurrentItem())).f34794c;
+        if (gg0Var != null && !gg0Var.f35568c.isEmpty()) {
+            return ((eg0) gg0Var.f35568c.get(getCurrentItem())).f34792c;
         }
         return null;
     }
@@ -846,7 +846,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
 
     public int getRealCount() {
         int size = this.W0.size();
-        if (this.f35894j1) {
+        if (this.f35888j1) {
             return size + 1;
         }
         return size;
@@ -870,16 +870,16 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        zf0 zf0Var = this.f35899q1;
+        zf0 zf0Var = this.f35893q1;
         if (zf0Var != null) {
-            zf0Var.setTranslationY(getHeight() - this.f35899q1.getMeasuredHeight());
+            zf0Var.setTranslationY(getHeight() - this.f35893q1.getMeasuredHeight());
         }
     }
 
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
-        zf0 zf0Var = this.f35899q1;
+        zf0 zf0Var = this.f35893q1;
         if (zf0Var != null) {
             zf0Var.H = true;
             zf0Var.postInvalidateOnAnimation();
@@ -894,7 +894,7 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
     @Override
     public void setAlpha(float f10) {
         super.setAlpha(f10);
-        zf0 zf0Var = this.f35899q1;
+        zf0 zf0Var = this.f35893q1;
         if (zf0Var != null) {
             zf0Var.setAlpha(f10);
         }
@@ -927,14 +927,14 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
         ArrayList arrayList = this.W0;
         if (!arrayList.isEmpty() && arrayList.get(0) == null && this.G0 != null) {
             ArrayList arrayList2 = this.Y0;
-            if (arrayList2.get(0) != null && org.telegram.messenger.w7.U(((org.telegram.messenger.fc) arrayList2.get(0)).f23896f, this.G0.chat_photo)) {
+            if (arrayList2.get(0) != null && org.telegram.messenger.w7.U(((org.telegram.messenger.gc) arrayList2.get(0)).f24116f, this.G0.chat_photo)) {
                 arrayList.set(0, this.G0.chat_photo);
                 boolean isEmpty = this.G0.chat_photo.video_sizes.isEmpty();
                 ArrayList arrayList3 = this.U0;
                 ArrayList arrayList4 = this.X0;
                 if (!isEmpty) {
                     TLRPC.VideoSize x10 = org.telegram.messenger.w7.x(1000, this.G0.chat_photo.video_sizes);
-                    arrayList4.set(0, org.telegram.messenger.fc.j(x10, this.G0.chat_photo));
+                    arrayList4.set(0, org.telegram.messenger.gc.j(x10, this.G0.chat_photo));
                     arrayList3.set(0, org.telegram.messenger.w7.r(null, x10));
                     dg0 dg0Var = this.H0;
                     if (dg0Var != null) {
@@ -944,14 +944,14 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
                     arrayList4.set(0, null);
                     arrayList3.add(0, null);
                 }
-                this.f35887c1.set(0, null);
+                this.f35881c1.set(0, null);
                 this.E0.g();
             }
         }
     }
 
     public void setCreateThumbFromParent(boolean z10) {
-        this.f35890f1 = z10;
+        this.f35884f1 = z10;
     }
 
     public void setData(long j3) {
@@ -959,32 +959,32 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
     }
 
     public void setHasActiveVideo(boolean z10) {
-        this.f35894j1 = z10;
+        this.f35888j1 = z10;
     }
 
     public void setImagesLayerNum(int i7) {
-        this.f35896m1 = i7;
+        this.f35890m1 = i7;
     }
 
     public void setInvalidateWithParent(boolean z10) {
-        this.f35892h1 = z10;
+        this.f35886h1 = z10;
     }
 
     public void setParentAvatarImage(q9 q9Var) {
         gg0 gg0Var = this.E0;
         if (gg0Var != null) {
-            gg0Var.f35552g = q9Var;
+            gg0Var.f35571g = q9Var;
         }
     }
 
     public void setPinchToZoomHelper(org.telegram.ui.fr0 fr0Var) {
-        this.f35893i1 = fr0Var;
+        this.f35887i1 = fr0Var;
     }
 
     @Override
     public void setVisibility(int i7) {
         super.setVisibility(i7);
-        zf0 zf0Var = this.f35899q1;
+        zf0 zf0Var = this.f35893q1;
         if (zf0Var != null) {
             zf0Var.setVisibility(i7);
         }
@@ -995,10 +995,10 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
 
     public hg0(Context context, long j3, org.telegram.ui.ActionBar.k kVar, ek0 ek0Var, org.telegram.ui.wv0 wv0Var, dg0 dg0Var, zf0 zf0Var) {
         super(context);
-        this.f35902y0 = new PointF();
+        this.f35896y0 = new PointF();
         this.B0 = true;
         this.C0 = true;
-        int i7 = org.telegram.messenger.j10.f24798t0;
+        int i7 = org.telegram.messenger.k10.f24968t0;
         this.M0 = i7;
         this.N0 = new Path();
         this.O0 = new RectF();
@@ -1009,15 +1009,15 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
         this.X0 = new ArrayList();
         this.Y0 = new ArrayList();
         this.Z0 = new ArrayList();
-        this.f35885a1 = new ArrayList();
-        this.f35886b1 = new ArrayList();
-        this.f35887c1 = new ArrayList();
-        this.f35889e1 = new SparseArray();
-        this.f35890f1 = true;
-        this.f35895k1 = -1;
+        this.f35879a1 = new ArrayList();
+        this.f35880b1 = new ArrayList();
+        this.f35881c1 = new ArrayList();
+        this.f35883e1 = new SparseArray();
+        this.f35884f1 = true;
+        this.f35889k1 = -1;
         this.l1 = -1;
-        this.f35899q1 = zf0Var;
-        setPadding(0, 0, 0, zf0Var == null ? 0 : zf0Var.f42797n);
+        this.f35893q1 = zf0Var;
+        setPadding(0, 0, 0, zf0Var == null ? 0 : zf0Var.f42801n);
         if (zf0Var != null) {
             zf0Var.setView(this);
         }
@@ -1031,16 +1031,16 @@ public class hg0 extends xp implements org.telegram.messenger.fs {
         gg0 gg0Var = new gg0(this, getContext(), wv0Var);
         this.E0 = gg0Var;
         setAdapter((wp) gg0Var);
-        this.f35903z0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f35897z0 = ViewConfiguration.get(context).getScaledTouchSlop();
         this.H0 = dg0Var;
         b(new bg0((org.telegram.ui.av0) this));
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.f25115b0);
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.Y1);
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.X1);
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.f25121c0);
-        org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.f25147g3);
-        org.telegram.messenger.uo W0 = org.telegram.messenger.mp.u1(i7).W0(j3);
+        org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.f25281b0);
+        org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.Y1);
+        org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.X1);
+        org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.f25287c0);
+        org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.f25313g3);
+        org.telegram.messenger.vo W0 = org.telegram.messenger.np.u1(i7).W0(j3);
         this.T0 = W0;
-        W0.h.getMessagesStorage().f27080a.c(new org.telegram.messenger.so(W0, 0));
+        W0.h.getMessagesStorage().f27250a.c(new org.telegram.messenger.to(W0, 0));
     }
 }

@@ -4,25 +4,25 @@ import android.util.SparseArray;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.TLRPC;
 public final class z4 implements Runnable {
-    public final int f28288a;
-    public final Object f28289b;
-    public final Object f28290c;
+    public final int f28291a;
+    public final Object f28292b;
+    public final Object f28293c;
 
     public z4(int i7, Object obj, Object obj2) {
-        this.f28288a = i7;
-        this.f28289b = obj;
-        this.f28290c = obj2;
+        this.f28291a = i7;
+        this.f28292b = obj;
+        this.f28293c = obj2;
     }
 
     private final void a() {
         int i7;
-        ri riVar = (ri) this.f28289b;
-        TLRPC.TL_contacts_topPeers tL_contacts_topPeers = (TLRPC.TL_contacts_topPeers) this.f28290c;
+        si siVar = (si) this.f28292b;
+        TLRPC.TL_contacts_topPeers tL_contacts_topPeers = (TLRPC.TL_contacts_topPeers) this.f28293c;
         try {
-            riVar.getMessagesStorage().f27082b.executeFast("DELETE FROM chat_hints WHERE 1").stepThis().dispose();
-            riVar.getMessagesStorage().f27082b.beginTransaction();
-            riVar.getMessagesStorage().m1(tL_contacts_topPeers.users, tL_contacts_topPeers.chats, false, false);
-            SQLitePreparedStatement executeFast = riVar.getMessagesStorage().f27082b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
+            siVar.getMessagesStorage().f27252b.executeFast("DELETE FROM chat_hints WHERE 1").stepThis().dispose();
+            siVar.getMessagesStorage().f27252b.beginTransaction();
+            siVar.getMessagesStorage().m1(tL_contacts_topPeers.users, tL_contacts_topPeers.chats, false, false);
+            SQLitePreparedStatement executeFast = siVar.getMessagesStorage().f27252b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
             for (int i10 = 0; i10 < tL_contacts_topPeers.categories.size(); i10++) {
                 TLRPC.TL_topPeerCategoryPeers tL_topPeerCategoryPeers = tL_contacts_topPeers.categories.get(i10);
                 TLRPC.TopPeerCategory topPeerCategory = tL_topPeerCategoryPeers.category;
@@ -38,7 +38,7 @@ public final class z4 implements Runnable {
                 for (int i11 = 0; i11 < tL_topPeerCategoryPeers.peers.size(); i11++) {
                     TLRPC.TL_topPeer tL_topPeer = tL_topPeerCategoryPeers.peers.get(i11);
                     executeFast.requery();
-                    executeFast.bindLong(1, fj.B1(tL_topPeer.peer));
+                    executeFast.bindLong(1, gj.B1(tL_topPeer.peer));
                     executeFast.bindInteger(2, i7);
                     executeFast.bindDouble(3, tL_topPeer.rating);
                     executeFast.bindInteger(4, 0);
@@ -46,8 +46,8 @@ public final class z4 implements Runnable {
                 }
             }
             executeFast.dispose();
-            riVar.getMessagesStorage().f27082b.commitTransaction();
-            g0.g3(new eg(riVar, 7));
+            siVar.getMessagesStorage().f27252b.commitTransaction();
+            g0.g3(new fg(siVar, 7));
         } catch (Exception e10) {
             a8.g(e10, true);
         }
@@ -59,8 +59,8 @@ public final class z4 implements Runnable {
     }
 
     public z4(SparseArray sparseArray, Runnable runnable) {
-        this.f28288a = 17;
-        this.f28290c = sparseArray;
-        this.f28289b = runnable;
+        this.f28291a = 17;
+        this.f28293c = sparseArray;
+        this.f28292b = runnable;
     }
 }

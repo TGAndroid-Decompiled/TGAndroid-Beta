@@ -6,19 +6,19 @@ import java.io.IOException;
 import m1.g1;
 import m1.y0;
 public final class j implements y0 {
-    public static final j f17387a = new Object();
-    public static final i f17388b = new i(null, null, null, null, null);
+    public static final j f17390a = new Object();
+    public static final i f17391b = new i(null, null, null, null, null);
 
     @Override
     public final Object a() {
-        return f17388b;
+        return f17391b;
     }
 
     @Override
     public final Object b(FileInputStream fileInputStream) {
         try {
             pe.b bVar = pe.b.d;
-            String str = new String(qb.b(fileInputStream), xd.a.f60486a);
+            String str = new String(qb.b(fileInputStream), xd.a.f60490a);
             bVar.getClass();
             return (i) bVar.a(i.Companion.serializer(), str);
         } catch (Exception e10) {
@@ -28,7 +28,7 @@ public final class j implements y0 {
 
     @Override
     public final void c(Object obj, g1 g1Var) {
-        byte[] bytes = pe.b.d.b(i.Companion.serializer(), (i) obj).getBytes(xd.a.f60486a);
+        byte[] bytes = pe.b.d.b(i.Companion.serializer(), (i) obj).getBytes(xd.a.f60490a);
         kotlin.jvm.internal.j.d(bytes, "getBytes(...)");
         g1Var.write(bytes);
     }

@@ -1,25 +1,28 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class wz implements Runnable {
-    public final int f27822a;
-    public final e00 f27823b;
-    public final long f27824c;
-    public final ArrayList d;
-    public final boolean f27825e;
-    public final long f27826f;
+    public final int f27824a;
+    public final f00 f27825b;
+    public final long f27826c;
 
-    public wz(e00 e00Var, long j3, ArrayList arrayList, boolean z10, long j10, int i7) {
-        this.f27822a = i7;
-        this.f27823b = e00Var;
-        this.f27824c = j3;
-        this.d = arrayList;
-        this.f27825e = z10;
-        this.f27826f = j10;
+    public wz(f00 f00Var, long j3, int i7) {
+        this.f27824a = i7;
+        this.f27825b = f00Var;
+        this.f27826c = j3;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wz.run():void");
+        int i7 = this.f27824a;
+        long j3 = this.f27826c;
+        f00 f00Var = this.f27825b;
+        switch (i7) {
+            case 0:
+                f00Var.f23809c.put(j3, 0);
+                f00Var.getNotificationCenter().k(322, Long.valueOf(j3), Boolean.FALSE);
+                return;
+            default:
+                f00Var.n(0, j3, false);
+                return;
+        }
     }
 }

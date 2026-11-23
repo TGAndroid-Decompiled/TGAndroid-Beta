@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.net.Uri;
 import bi.q1;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g2;
@@ -34,18 +34,18 @@ public final class c0 extends sa {
         this.U1 = z10;
         this.T1 = tL_payments_checkedGiftCode;
         this.W1 = str;
-        this.f30209v0 = false;
-        this.f30211w0 = false;
+        this.f30212v0 = false;
+        this.f30214w0 = false;
         O();
         c1();
         b0 b0Var = this.V1;
-        m2 m2Var = this.f30176c;
+        m2 m2Var = this.f30179c;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.f60527e = g2Var;
-        b0Var.f60528f = tL_payments_checkedGiftCode;
+        b0Var.f60531e = g2Var;
+        b0Var.f60532f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f60529n = m2Var;
+        b0Var.f60533n = m2Var;
     }
 
     public static boolean e1(Intent intent, vf.b bVar) {
@@ -86,12 +86,12 @@ public final class c0 extends sa {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (bVar != null) {
             bVar.d();
-            bVar.f59413b = new c(atomicBoolean, 1);
+            bVar.f59417b = new c(atomicBoolean, 1);
         }
         bi.m2 m2Var = new bi.m2(atomicBoolean, g2Var, str, bVar);
         e eVar = new e(atomicBoolean, bVar, 1);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(j10.f24798t0);
-        mp u12 = mp.u1(j10.f24798t0);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(k10.f24968t0);
+        np u12 = np.u1(k10.f24968t0);
         TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
         tL_payments_checkGiftCode.slug = str;
         connectionsManager.sendRequest(tL_payments_checkGiftCode, new q1(u12, m2Var, eVar, 25));
@@ -107,13 +107,13 @@ public final class c0 extends sa {
     @Override
     public final CharSequence P0() {
         if (this.U1) {
-            return gd.N0(2131753497, null);
+            return hd.N0(2131753497, null);
         }
-        return gd.N0(2131753170, null);
+        return hd.N0(2131753170, null);
     }
 
     @Override
     public final void V0(du0 du0Var) {
-        gc.a(this.f30176c, new bi.t(15));
+        gc.a(this.f30179c, new bi.t(15));
     }
 }

@@ -1,14 +1,14 @@
 package bi;
 public final class q2 implements Runnable {
-    public final int f4019a;
-    public final long f4020b;
-    public final Object f4021c;
+    public final int f4027a;
+    public final long f4028b;
+    public final Object f4029c;
     public final Object d;
 
     public q2(Object obj, long j3, Object obj2, int i7) {
-        this.f4019a = i7;
-        this.f4021c = obj;
-        this.f4020b = j3;
+        this.f4027a = i7;
+        this.f4029c = obj;
+        this.f4028b = j3;
         this.d = obj2;
     }
 
@@ -18,9 +18,9 @@ public final class q2 implements Runnable {
     }
 
     public q2(Object obj, Object obj2, long j3, int i7) {
-        this.f4019a = i7;
-        this.f4021c = obj;
+        this.f4027a = i7;
+        this.f4029c = obj;
         this.d = obj2;
-        this.f4020b = j3;
+        this.f4028b = j3;
     }
 }

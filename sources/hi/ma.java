@@ -3,32 +3,32 @@ package hi;
 import android.graphics.Canvas;
 import org.telegram.ui.LaunchActivity;
 public final class ma extends na {
-    public final fi.p f15038g;
+    public final fi.p f15041g;
     public final float h;
 
     public ma(fi.p pVar, float f10) {
-        this.f15038g = pVar;
+        this.f15041g = pVar;
         this.h = f10;
     }
 
     @Override
     public final void a(Canvas canvas, float f10) {
         float pow = (float) Math.pow(f10, 16.0d);
-        fi.p pVar = this.f15038g;
+        fi.p pVar = this.f15041g;
         float f11 = this.h;
         pVar.c(canvas, f11, f11, pow);
     }
 
     @Override
     public final void e() {
-        fi.p pVar = this.f15038g;
+        fi.p pVar = this.f15041g;
         pVar.post(new fi.o(pVar, 1));
     }
 
     @Override
     public final void f(boolean z10) {
-        fi.p pVar = this.f15038g;
-        pVar.f12406x = true;
+        fi.p pVar = this.f15041g;
+        pVar.f12409x = true;
         pVar.invalidate();
         if (z10) {
             int[] iArr = new int[2];

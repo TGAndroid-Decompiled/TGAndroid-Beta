@@ -1,25 +1,31 @@
 package bi;
-public final class o5 implements Runnable {
-    public final int f3974a;
-    public final n6 f3975b;
-    public final int f3976c;
 
-    public o5(n6 n6Var, int i7, int i10) {
-        this.f3974a = i10;
-        this.f3975b = n6Var;
-        this.f3976c = i7;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.vv0;
+public final class o5 implements Runnable {
+    public final int f3979a;
+    public final ProfileActivity f3980b;
+
+    public o5(ProfileActivity profileActivity, int i7) {
+        this.f3979a = i7;
+        this.f3980b = profileActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f3974a) {
+        switch (this.f3979a) {
             case 0:
-                this.f3975b.f3948f.scrollBy(0, this.f3976c);
+                this.f3980b.X4(true);
+                return;
+            case 1:
+                this.f3980b.X4(true);
                 return;
             default:
-                g6 g6Var = this.f3975b.f3948f;
-                if (g6Var != null) {
-                    g6Var.setSpanCount(this.f3976c);
+                ProfileActivity profileActivity = this.f3980b;
+                vv0 vv0Var = profileActivity.O;
+                if (vv0Var != null) {
+                    vv0Var.k1(14);
+                    profileActivity.X4(false);
                     return;
                 }
                 return;

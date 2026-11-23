@@ -8,33 +8,33 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.LaunchActivity;
 public final class b2 extends w2 {
-    public final e2 f28801m1;
+    public final e2 f28804m1;
     public final r4[] n1;
-    public final g2 f28802o1;
-    public final w2[] f28803p1;
+    public final g2 f28805o1;
+    public final w2[] f28806p1;
 
     public b2(Activity activity, h6 h6Var, e2 e2Var, r4[] r4VarArr, g2 g2Var, w2[] w2VarArr) {
         super(1, (Context) activity, h6Var, true);
         boolean z10;
-        this.f28801m1 = e2Var;
+        this.f28804m1 = e2Var;
         this.n1 = r4VarArr;
-        this.f28802o1 = g2Var;
-        this.f28803p1 = w2VarArr;
-        if (e2Var != null && e2Var.f28905e) {
+        this.f28805o1 = g2Var;
+        this.f28806p1 = w2VarArr;
+        if (e2Var != null && e2Var.f28908e) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f30212x = z10;
-        this.f30198n = !z10;
+        this.f30215x = z10;
+        this.f30201n = !z10;
         r4VarArr[0].setFragmentStack(new ArrayList());
         ((ActionBarLayout) r4VarArr[0]).c(-1, g2Var);
         ((ActionBarLayout) r4VarArr[0]).f0();
         ViewGroup view = r4VarArr[0].getView();
-        int i7 = this.f30208u0;
+        int i7 = this.f30211u0;
         view.setPadding(i7, 0, i7, 0);
-        this.f30173b = r4VarArr[0].getView();
-        this.f30211w0 = false;
+        this.f30176b = r4VarArr[0].getView();
+        this.f30214w0 = false;
         setOnDismissListener(new y1(1, g2Var, e2Var));
     }
 
@@ -47,8 +47,8 @@ public final class b2 extends w2 {
     public final boolean J(MotionEvent motionEvent) {
         r4[] r4VarArr;
         r4 r4Var;
-        e2 e2Var = this.f28801m1;
-        if (e2Var == null || !e2Var.f28902a || (r4Var = (r4VarArr = this.n1)[0]) == null || r4Var.getFragmentStack().size() > 1 || (r4VarArr[0].getFragmentStack().size() == 1 && !((g2) r4VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
+        e2 e2Var = this.f28804m1;
+        if (e2Var == null || !e2Var.f28905a || (r4Var = (r4VarArr = this.n1)[0]) == null || r4Var.getFragmentStack().size() > 1 || (r4VarArr[0].getFragmentStack().size() == 1 && !((g2) r4VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
             return false;
         }
         return true;
@@ -58,7 +58,7 @@ public final class b2 extends w2 {
     public final void dismiss() {
         e2 e2Var;
         Runnable runnable;
-        if (!this.J && (e2Var = this.f28801m1) != null && (runnable = e2Var.d) != null) {
+        if (!this.J && (e2Var = this.f28804m1) != null && (runnable = e2Var.d) != null) {
             runnable.run();
         }
         super.dismiss();
@@ -87,15 +87,15 @@ public final class b2 extends w2 {
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         r4 r4Var = this.n1[0];
-        w2[] w2VarArr = this.f28803p1;
+        w2[] w2VarArr = this.f28806p1;
         r4Var.setWindow(w2VarArr[0].getWindow());
-        e2 e2Var = this.f28801m1;
-        if (e2Var != null && e2Var.f28905e) {
+        e2 e2Var = this.f28804m1;
+        if (e2Var != null && e2Var.f28908e) {
             org.telegram.messenger.g0.m3(w2VarArr[0], true);
         } else {
-            Q(m6.f29469i5);
+            Q(m6.f29472i5);
         }
-        g2 g2Var = this.f28802o1;
+        g2 g2Var = this.f28805o1;
         org.telegram.messenger.g0.p3(this, g2Var.isLightStatusBar());
         g2Var.onBottomSheetCreated();
     }
@@ -115,9 +115,9 @@ public final class b2 extends w2 {
     @Override
     public final void v() {
         Runnable runnable;
-        this.f28802o1.onTransitionAnimationEnd(true, false);
-        e2 e2Var = this.f28801m1;
-        if (e2Var != null && (runnable = e2Var.f28904c) != null) {
+        this.f28805o1.onTransitionAnimationEnd(true, false);
+        e2 e2Var = this.f28804m1;
+        if (e2Var != null && (runnable = e2Var.f28907c) != null) {
             runnable.run();
         }
     }

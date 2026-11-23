@@ -1,68 +1,56 @@
 package org.telegram.messenger;
 
+import android.util.LongSparseArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ud0;
-public final class o9 implements q10 {
-    public final int f26073a;
-    public final long f26074b;
-    public final Object f26075c;
-    public final Object d;
+public final class o9 implements r10 {
+    public final int f26099a = 1;
+    public final long f26100b;
+    public final c1 f26101c;
 
-    public o9(Object obj, Object obj2, long j3, int i7) {
-        this.f26073a = i7;
-        this.f26075c = obj;
-        this.d = obj2;
-        this.f26074b = j3;
+    public o9(v9 v9Var, long j3) {
+        this.f26101c = v9Var;
+        this.f26100b = j3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f26073a) {
+        int i7 = this.f26099a;
+        long j3 = this.f26100b;
+        c1 c1Var = this.f26101c;
+        switch (i7) {
             case 0:
+                v9 v9Var = (v9) c1Var;
                 TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState = (TL_payments.TL_StarGiftAuctionState) obj;
-                ((bi.z) this.d).a(((u9) this.f26075c).b(this.f26074b), (TLRPC.TL_error) obj2);
-                return;
-            case 1:
-                mp mpVar = (mp) this.f26075c;
-                li.i0 i0Var = (li.i0) this.d;
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (bool != null) {
-                    mpVar.b3(0, this.f26074b, true);
+                LongSparseArray longSparseArray = v9Var.f27337e;
+                if (tL_StarGiftAuctionState != null) {
+                    v9Var.getMessagesController().f4(tL_StarGiftAuctionState.users, false);
+                    v9Var.getMessagesController().Z3(tL_StarGiftAuctionState.chats, false);
                 }
-                i0Var.a(bool, tL_error);
-                return;
-            case 2:
-                mp mpVar2 = (mp) this.f26075c;
-                li.i0 i0Var2 = (li.i0) this.d;
-                TLRPC.Bool bool2 = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                if (bool2 != null) {
-                    mpVar2.b3(0, this.f26074b, true);
-                }
-                i0Var2.a(bool2, tL_error2);
-                return;
-            default:
-                ud0 ud0Var = (ud0) this.d;
-                TLRPC.auth_Authorization auth_authorization = (TLRPC.auth_Authorization) obj;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                ((org.telegram.ui.ActionBar.t1) this.f26075c).dismiss();
-                long j3 = this.f26074b;
-                if (tL_error3 != null) {
-                    ud0Var.a(Long.valueOf(j3), null, tL_error3.text);
+                if (tL_StarGiftAuctionState != null && !((Boolean) longSparseArray.get(j3, Boolean.FALSE)).booleanValue()) {
+                    longSparseArray.put(j3, Boolean.TRUE);
+                    v9Var.j(j3, new o00(v9Var, j3, tL_StarGiftAuctionState));
+                    return;
+                } else if (tL_StarGiftAuctionState != null) {
+                    v9Var.f(j3, tL_StarGiftAuctionState);
                     return;
                 } else {
-                    ud0Var.a(Long.valueOf(j3), auth_authorization, null);
                     return;
                 }
+            default:
+                np npVar = (np) c1Var;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                if (((TLRPC.Bool) obj) != null) {
+                    npVar.b3(0, j3, true);
+                }
+                int i10 = org.telegram.ui.Components.as.D2;
+                return;
         }
     }
 
-    public o9(mp mpVar, long j3, q10 q10Var, int i7) {
-        this.f26073a = i7;
-        this.f26075c = mpVar;
-        this.f26074b = j3;
-        this.d = q10Var;
+    public o9(np npVar, long j3, jh.b bVar) {
+        this.f26101c = npVar;
+        this.f26100b = j3;
     }
 }

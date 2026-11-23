@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class bp extends v4.i0 {
-    public final Context f46286c;
+    public final Context f46290c;
     public final cp d;
 
     public bp(cp cpVar, Context context) {
         this.d = cpVar;
-        this.f46286c = context;
+        this.f46290c = context;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class bp extends v4.i0 {
         int i7;
         cp cpVar = this.d;
         if (!cpVar.d.isEmpty()) {
-            i7 = cpVar.f46638n.size() + 1;
+            i7 = cpVar.f46641n.size() + 1;
         } else {
             i7 = 0;
         }
@@ -43,13 +43,13 @@ public final class bp extends v4.i0 {
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         int i10;
-        View view = f1Var.f59161a;
+        View view = f1Var.f59165a;
         int d = d(i7);
         cp cpVar = this.d;
         if (d != 0) {
             if (d != 1) {
                 if (d == 2) {
-                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) cpVar.f46638n.get(i7 - 3);
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) cpVar.f46641n.get(i7 - 3);
                     boolean contains = cpVar.d.contains(tL_availableReaction.reaction);
                     i10 = ((org.telegram.ui.ActionBar.g2) cpVar).currentAccount;
                     ((org.telegram.ui.Cells.x) view).a(tL_availableReaction, contains, i10);
@@ -57,24 +57,24 @@ public final class bp extends v4.i0 {
                 }
                 return;
             }
-            ((org.telegram.ui.Cells.o4) view).setText(org.telegram.messenger.gd.N0(2131747628, null));
+            ((org.telegram.ui.Cells.o4) view).setText(org.telegram.messenger.hd.N0(2131747628, null));
             return;
         }
         org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
         org.telegram.ui.ActionBar.t6.U(a9Var.getTextView(), org.telegram.ui.ActionBar.m6.B6, null);
-        int i11 = cpVar.f46640s;
+        int i11 = cpVar.f46643s;
         if (i11 == 1) {
-            a9Var.setText(org.telegram.messenger.gd.N0(2131751135, null));
+            a9Var.setText(org.telegram.messenger.hd.N0(2131751135, null));
         } else if (i11 == 0) {
-            a9Var.setText(org.telegram.messenger.gd.N0(2131751147, null));
+            a9Var.setText(org.telegram.messenger.hd.N0(2131751147, null));
         } else if (i11 == 2) {
-            a9Var.setText(org.telegram.messenger.gd.N0(2131751417, null));
+            a9Var.setText(org.telegram.messenger.hd.N0(2131751417, null));
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        Context context = this.f46286c;
+        Context context = this.f46290c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 3) {
@@ -82,8 +82,8 @@ public final class bp extends v4.i0 {
                 }
                 FrameLayout frameLayout = new FrameLayout(context);
                 cp cpVar = this.d;
-                org.telegram.messenger.g0.E2(cpVar.f46639r);
-                frameLayout.addView(cpVar.f46639r);
+                org.telegram.messenger.g0.E2(cpVar.f46642r);
+                frameLayout.addView(cpVar.f46642r);
                 frameLayout.setLayoutParams(new v4.q0(-1, -2));
                 return new v4.f1(frameLayout);
             }

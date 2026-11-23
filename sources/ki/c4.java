@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.SpannableStringBuilder;
-import bi.h5;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.o10;
-import org.telegram.messenger.x10;
+import bi.g5;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
@@ -20,10 +20,10 @@ import org.telegram.ui.Components.p5;
 import org.telegram.ui.LaunchActivity;
 public abstract class c4 {
     public static void a(int i7, long j3, org.telegram.ui.web.o oVar) {
-        TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(j3));
-        TLRPC.UserFull d2 = mp.u1(i7).d2(j3);
+        TLRPC.User c22 = np.u1(i7).c2(Long.valueOf(j3));
+        TLRPC.UserFull d2 = np.u1(i7).d2(j3);
         if (d2 == null) {
-            mp.u1(i7).c3(c22, 0, true, new h5(oVar, i7, c22, 1));
+            np.u1(i7).c3(c22, 0, true, new g5(oVar, i7, c22, 1));
         } else {
             b(i7, c22, d2, oVar);
         }
@@ -36,27 +36,27 @@ public abstract class c4 {
         }
         Context W = org.telegram.messenger.g0.W(LaunchActivity.H1);
         if (W == null) {
-            W = org.telegram.messenger.t0.f26941b;
+            W = org.telegram.messenger.t0.f26931b;
         }
         final Context context = W;
-        TLRPC.User f10 = j10.i(i7).f();
+        TLRPC.User f10 = k10.i(i7).f();
         final boolean[] zArr = new boolean[1];
         final boolean[] zArr2 = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, null);
         b4 b4Var = new b4(f10);
         int i10 = m6.L5;
         int x02 = m6.x0(null, i10, false);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
-        t1Var.f30014c0 = b4Var;
-        t1Var.f30016d0 = x02;
-        t1Var.f30019e0 = -1;
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+        t1Var.f30017c0 = b4Var;
+        t1Var.f30019d0 = x02;
+        t1Var.f30022e0 = -1;
         alertDialog$Builder.n(i10, null);
-        alertDialog$Builder.f28774a.U = org.telegram.messenger.g0.W2(gd.a0(null, null, 2131753085, o10.q(user), o10.q(user)));
-        alertDialog$Builder.k(gd.N0(2131753087, null), new org.telegram.ui.ActionBar.q1() {
+        alertDialog$Builder.f28777a.U = org.telegram.messenger.g0.W2(hd.a0(null, null, 2131753085, p10.q(user), p10.q(user)));
+        alertDialog$Builder.k(hd.N0(2131753087, null), new org.telegram.ui.ActionBar.q1() {
             @Override
             public final void h(org.telegram.ui.ActionBar.t1 t1Var2, int i11) {
                 int i12 = i7;
-                boolean q10 = j10.i(i12).q();
+                boolean q10 = k10.i(i12).q();
                 boolean[] zArr3 = zArr2;
                 boolean[] zArr4 = zArr;
                 org.telegram.ui.web.o oVar2 = oVar;
@@ -71,21 +71,21 @@ public abstract class c4 {
                 }
                 zArr3[0] = true;
                 TLRPC.User user2 = user;
-                c4.e(context, i12, user2.f28580id);
+                c4.e(context, i12, user2.f28583id);
                 TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
-                toggleuseremojistatuspermission.bot = mp.u1(i12).s1(user2);
+                toggleuseremojistatuspermission.bot = np.u1(i12).s1(user2);
                 toggleuseremojistatuspermission.enabled = true;
                 ConnectionsManager.getInstance(i12).sendRequest(toggleuseremojistatuspermission, new bi.q1(zArr4, oVar2, userFull));
             }
         });
-        alertDialog$Builder.h(gd.N0(2131753086, null), null);
-        org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28774a;
+        alertDialog$Builder.h(hd.N0(2131753086, null), null);
+        org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28777a;
         t1Var2.show();
         t1Var2.setOnDismissListener(new x3(zArr2, zArr, context, i7, user, oVar));
     }
 
     public static void c() {
-        Context context = org.telegram.messenger.t0.f26941b;
+        Context context = org.telegram.messenger.t0.f26931b;
         if (context != null) {
             for (int i7 = 0; i7 < 4; i7++) {
                 context.getSharedPreferences("botemojistatus_" + i7, 0).edit().clear().apply();
@@ -122,18 +122,18 @@ public abstract class c4 {
         }
     }
 
-    public static void g(int i7, TLRPC.User user, TLRPC.Document document, int i10, x10 x10Var) {
+    public static void g(int i7, TLRPC.User user, TLRPC.Document document, int i10, y10 y10Var) {
         SpannableStringBuilder W2;
         if (document instanceof TLRPC.TL_documentEmpty) {
-            x10Var.a("SUGGESTED_EMOJI_INVALID");
+            y10Var.a("SUGGESTED_EMOJI_INVALID");
             return;
         }
         Context W = org.telegram.messenger.g0.W(LaunchActivity.H1);
         if (W == null) {
-            W = org.telegram.messenger.t0.f26941b;
+            W = org.telegram.messenger.t0.f26931b;
         }
         ConnectionsManager.getInstance(i7).getCurrentTime();
-        TLRPC.User f10 = j10.i(i7).f();
+        TLRPC.User f10 = k10.i(i7).f();
         boolean[] zArr = new boolean[1];
         boolean[] zArr2 = new boolean[1];
         if (i10 > 0) {
@@ -146,38 +146,38 @@ public abstract class c4 {
                 if (sb2.length() > 0) {
                     sb2.append(" ");
                 }
-                sb2.append(gd.G(i11, "BotEmojiStatusSetRequestForDay", new Object[0]));
+                sb2.append(hd.G(i11, "BotEmojiStatusSetRequestForDay", new Object[0]));
             }
             if (i13 > 0) {
                 if (sb2.length() > 0) {
                     sb2.append(" ");
                 }
-                sb2.append(gd.G(i13, "BotEmojiStatusSetRequestForHour", new Object[0]));
+                sb2.append(hd.G(i13, "BotEmojiStatusSetRequestForHour", new Object[0]));
             }
             if (round > 0) {
                 if (sb2.length() > 0) {
                     sb2.append(" ");
                 }
-                sb2.append(gd.G(round, "BotEmojiStatusSetRequestForMinute", new Object[0]));
+                sb2.append(hd.G(round, "BotEmojiStatusSetRequestForMinute", new Object[0]));
             }
-            W2 = org.telegram.messenger.g0.W2(gd.a0(null, null, 2131753082, o10.q(user), sb2));
+            W2 = org.telegram.messenger.g0.W2(hd.a0(null, null, 2131753082, p10.q(user), sb2));
         } else {
-            W2 = org.telegram.messenger.g0.W2(gd.a0(null, null, 2131753083, o10.q(user)));
+            W2 = org.telegram.messenger.g0.W2(hd.a0(null, null, 2131753083, p10.q(user)));
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, W, null);
         b4 b4Var = new b4(f10, document);
         int i14 = m6.L5;
         int x02 = m6.x0(null, i14, false);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
-        t1Var.f30014c0 = b4Var;
-        t1Var.f30016d0 = x02;
-        t1Var.f30019e0 = -1;
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
+        t1Var.f30017c0 = b4Var;
+        t1Var.f30019d0 = x02;
+        t1Var.f30022e0 = -1;
         alertDialog$Builder.n(i14, null);
-        alertDialog$Builder.f28774a.U = W2;
-        alertDialog$Builder.k(gd.N0(2131753088, null), new v3(i7, zArr2, document, i10, zArr, x10Var));
-        alertDialog$Builder.h(gd.N0(2131752577, null), null);
-        org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28774a;
+        alertDialog$Builder.f28777a.U = W2;
+        alertDialog$Builder.k(hd.N0(2131753088, null), new v3(i7, zArr2, document, i10, zArr, y10Var));
+        alertDialog$Builder.h(hd.N0(2131752577, null), null);
+        org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28777a;
         t1Var2.show();
-        t1Var2.setOnDismissListener(new bi.k(zArr2, zArr, x10Var, 3));
+        t1Var2.setOnDismissListener(new bi.k(zArr2, zArr, y10Var, 3));
     }
 }

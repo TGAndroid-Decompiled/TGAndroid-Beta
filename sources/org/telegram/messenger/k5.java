@@ -8,13 +8,13 @@ import android.widget.RemoteViewsService;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 public final class k5 implements RemoteViewsService.RemoteViewsFactory {
-    public ArrayList f25009a;
-    public Context f25010b;
-    public int f25011c;
+    public ArrayList f25011a;
+    public Context f25012b;
+    public int f25013c;
     public c d;
-    public Paint f25012e;
-    public RectF f25013f;
-    public a0.h f25014g;
+    public Paint f25014e;
+    public RectF f25015f;
+    public a0.h f25016g;
     public boolean h;
 
     @Override
@@ -22,7 +22,7 @@ public final class k5 implements RemoteViewsService.RemoteViewsFactory {
         if (this.h) {
             return 1;
         }
-        return ((int) Math.ceil(this.f25009a.size() / 2.0f)) + 1;
+        return ((int) Math.ceil(this.f25011a.size() / 2.0f)) + 1;
     }
 
     @Override
@@ -57,27 +57,27 @@ public final class k5 implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public final void onDataSetChanged() {
-        ArrayList arrayList = this.f25009a;
+        ArrayList arrayList = this.f25011a;
         arrayList.clear();
         c cVar = this.d;
         if (cVar != null) {
-            int i7 = cVar.f23246a;
-            if (j10.i(i7).p()) {
+            int i7 = cVar.f23202a;
+            if (k10.i(i7).p()) {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
                 a0.h hVar = new a0.h();
-                tr a02 = tr.a0(i7);
-                int i10 = this.f25011c;
-                a0.h hVar2 = this.f25014g;
+                ur a02 = ur.a0(i7);
+                int i10 = this.f25013c;
+                a0.h hVar2 = this.f25016g;
                 CountDownLatch countDownLatch = new CountDownLatch(1);
-                a02.f27080a.c(new bg.c(a02, i10, arrayList, 1, hVar2, hVar, arrayList3, arrayList2, countDownLatch));
+                a02.f27250a.c(new bg.c(a02, i10, arrayList, 1, hVar2, hVar, arrayList3, arrayList2, countDownLatch));
                 try {
                     countDownLatch.await();
                 } catch (Exception e10) {
                     a02.o(e10, true);
                 }
-                mp.u1(i7).f4(arrayList2, true);
-                mp.u1(i7).Z3(arrayList3, true);
+                np.u1(i7).f4(arrayList2, true);
+                np.u1(i7).Z3(arrayList3, true);
             }
         }
     }

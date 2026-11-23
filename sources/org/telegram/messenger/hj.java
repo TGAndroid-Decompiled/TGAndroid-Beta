@@ -1,69 +1,29 @@
 package org.telegram.messenger;
 
-import android.util.LongSparseArray;
-import android.util.SparseBooleanArray;
-import java.util.ArrayList;
-public final class hj {
-    public final Boolean f24480a;
-    public final int f24481b;
-    public final long f24482c;
-    public final ArrayList f24483e;
-    public final SparseBooleanArray f24485g;
-    public final boolean f24486i;
-    public final boolean f24487j;
-    public final jj f24488k;
-    public final LongSparseArray d = new LongSparseArray();
-    public final ArrayList f24484f = new ArrayList();
-    public final ArrayList h = new ArrayList();
+import org.telegram.tgnet.TLRPC;
+public final class hj extends gj {
+    public final int f24495u3;
+    public final kj f24496v3;
 
-    public hj(org.telegram.messenger.jj r21, java.lang.Boolean r22, int r23, java.util.ArrayList r24, long r25, android.util.SparseBooleanArray r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.hj.<init>(org.telegram.messenger.jj, java.lang.Boolean, int, java.util.ArrayList, long, android.util.SparseBooleanArray):void");
+    public hj(kj kjVar, int i7, TLRPC.TL_message tL_message, int i10) {
+        super(i7, tL_message, true, false);
+        this.f24496v3 = kjVar;
+        this.f24495u3 = i10;
     }
 
-    public final hj a(ArrayList arrayList) {
-        ArrayList arrayList2 = this.f24483e;
-        if (arrayList2 != null && arrayList2.size() <= 1 && arrayList != null) {
-            boolean z10 = false;
-            for (int i7 = 0; i7 < arrayList2.size(); i7++) {
-                fj fjVar = (fj) arrayList2.get(i7);
-                if (fjVar != null) {
-                    int i10 = 0;
-                    while (true) {
-                        if (i10 >= arrayList.size()) {
-                            break;
-                        }
-                        fj fjVar2 = (fj) arrayList.get(i10);
-                        if (fjVar2 != null && fjVar.e1() == fjVar2.e1() && fj.B0(fjVar.f23993k) == fj.B0(fjVar2.f23993k)) {
-                            arrayList2.set(i7, fjVar2);
-                            z10 = true;
-                            break;
-                        }
-                        i10++;
-                    }
-                }
-            }
-            if (z10) {
-                return new hj(this.f24488k, this.f24480a, this.f24481b, this.f24483e, this.f24482c, null);
-            }
-            return null;
+    @Override
+    public final void n0(TLRPC.User user) {
+        super.n0(user);
+        if (this.f24495u3 == 2) {
+            this.f24496v3.b(this);
         }
-        return null;
     }
 
-    public final void b(ArrayList arrayList) {
-        arrayList.clear();
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f24483e;
-            if (i7 < arrayList2.size()) {
-                fj fjVar = (fj) arrayList2.get(i7);
-                if (this.f24485g.get(fjVar.e1(), false)) {
-                    arrayList.add(fjVar);
-                }
-                i7++;
-            } else {
-                return;
-            }
+    @Override
+    public final boolean n5() {
+        if (this.f24496v3.f25087k) {
+            return false;
         }
+        return super.n5();
     }
 }

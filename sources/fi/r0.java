@@ -2,12 +2,12 @@ package fi;
 
 import org.telegram.tgnet.TLRPC;
 public final class r0 {
-    public int f12514a;
-    public boolean f12515b;
-    public long f12516c;
+    public int f12517a;
+    public boolean f12518b;
+    public long f12519c;
     public int d;
-    public boolean f12517e;
-    public TLRPC.TL_textWithEntities f12518f;
-    public long f12519g;
+    public boolean f12520e;
+    public TLRPC.TL_textWithEntities f12521f;
+    public long f12522g;
     public int h;
 }

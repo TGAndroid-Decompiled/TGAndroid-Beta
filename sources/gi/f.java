@@ -7,12 +7,12 @@ import org.telegram.ui.Cells.p7;
 import v4.c1;
 import v4.o0;
 public final class f extends o0 {
-    public final int f13664a;
-    public final m f13665b;
+    public final int f13667a;
+    public final m f13668b;
 
     public f(m mVar, int i7) {
-        this.f13664a = i7;
-        this.f13665b = mVar;
+        this.f13667a = i7;
+        this.f13668b = mVar;
     }
 
     @Override
@@ -21,12 +21,12 @@ public final class f extends o0 {
         boolean z11;
         boolean z12;
         boolean z13;
-        switch (this.f13664a) {
+        switch (this.f13667a) {
             case 0:
                 if (view instanceof p7) {
                     p7 p7Var = (p7) view;
-                    m mVar = this.f13665b;
-                    mVar.f13682f.getClass();
+                    m mVar = this.f13668b;
+                    mVar.f13685f.getClass();
                     int R = RecyclerView.R(p7Var);
                     int i7 = mVar.h.J;
                     boolean z14 = true;
@@ -35,7 +35,7 @@ public final class f extends o0 {
                     } else {
                         z10 = false;
                     }
-                    p7Var.f31253b0 = z10;
+                    p7Var.f31256b0 = z10;
                     int i10 = R % i7;
                     if (i10 == 0) {
                         z11 = true;
@@ -46,7 +46,7 @@ public final class f extends o0 {
                     if (i10 != i7 - 1) {
                         z14 = false;
                     }
-                    p7Var.f31251a0 = z14;
+                    p7Var.f31254a0 = z14;
                     rect.left = 0;
                     rect.top = 0;
                     rect.bottom = 0;
@@ -61,17 +61,17 @@ public final class f extends o0 {
             default:
                 if (view instanceof p7) {
                     p7 p7Var2 = (p7) view;
-                    m mVar2 = this.f13665b;
-                    mVar2.f13684r.getClass();
+                    m mVar2 = this.f13668b;
+                    mVar2.f13687r.getClass();
                     int R2 = RecyclerView.R(p7Var2);
-                    int i11 = mVar2.f13685s.J;
+                    int i11 = mVar2.f13688s.J;
                     boolean z15 = true;
                     if (R2 < i11) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    p7Var2.f31253b0 = z12;
+                    p7Var2.f31256b0 = z12;
                     int i12 = R2 % i11;
                     if (i12 == 0) {
                         z13 = true;
@@ -82,7 +82,7 @@ public final class f extends o0 {
                     if (i12 != i11 - 1) {
                         z15 = false;
                     }
-                    p7Var2.f31251a0 = z15;
+                    p7Var2.f31254a0 = z15;
                     rect.left = 0;
                     rect.top = 0;
                     rect.bottom = 0;

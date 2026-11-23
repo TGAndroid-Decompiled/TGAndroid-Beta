@@ -16,14 +16,14 @@ public final class tf0 extends nx {
         eg0 eg0Var = this.P;
         ag0 ag0Var = eg0Var.K;
         if (mxVar != null) {
-            if (eg0Var.f47275l0 != null) {
-                mxVar.f50008c = true;
-                float f10 = (nx.f() * org.telegram.messenger.g0.f24145p) / 1.3f;
+            if (eg0Var.f47279l0 != null) {
+                mxVar.f50012c = true;
+                float f10 = (nx.f() * org.telegram.messenger.g0.f24045p) / 1.3f;
                 float f11 = f10 / 3.0f;
                 mxVar.d = f11;
-                mxVar.f50009e = f11;
-                mxVar.f50006a = Utilities.i(eg0Var.f47275l0.right - (0.75f * f10), org.telegram.messenger.g0.f24146q.x - f10, 0.0f);
-                mxVar.f50007b = eg0Var.f47275l0.bottom - (f10 / 2.0f);
+                mxVar.f50013e = f11;
+                mxVar.f50010a = Utilities.i(eg0Var.f47279l0.right - (0.75f * f10), org.telegram.messenger.g0.f24046q.x - f10, 0.0f);
+                mxVar.f50011b = eg0Var.f47279l0.bottom - (f10 / 2.0f);
                 return;
             }
             org.telegram.ui.Cells.r1 r1Var = eg0Var.Q;
@@ -31,14 +31,14 @@ public final class tf0 extends nx {
                 org.telegram.ui.Cells.r1 r1Var2 = eg0Var.Q;
                 int[] iArr = this.O;
                 r1Var2.getLocationOnScreen(iArr);
-                mxVar.f50008c = true;
-                float f12 = (nx.f() * org.telegram.messenger.g0.f24145p) / 1.3f;
+                mxVar.f50012c = true;
+                float f12 = (nx.f() * org.telegram.messenger.g0.f24045p) / 1.3f;
                 float f13 = f12 / 3.0f;
                 mxVar.d = f13;
-                mxVar.f50009e = f13;
+                mxVar.f50013e = f13;
                 float f14 = f12 / 2.0f;
-                mxVar.f50006a = Utilities.i(((ag0Var.getScaleX() * eg0Var.Q.getTimeX()) + iArr[0]) - f14, org.telegram.messenger.g0.f24146q.x - f12, 0.0f);
-                mxVar.f50007b = ((ag0Var.getScaleY() * eg0Var.Q.getTimeY()) + iArr[1]) - f14;
+                mxVar.f50010a = Utilities.i(((ag0Var.getScaleX() * eg0Var.Q.getTimeX()) + iArr[0]) - f14, org.telegram.messenger.g0.f24046q.x - f12, 0.0f);
+                mxVar.f50011b = ((ag0Var.getScaleY() * eg0Var.Q.getTimeY()) + iArr[1]) - f14;
             }
         }
     }

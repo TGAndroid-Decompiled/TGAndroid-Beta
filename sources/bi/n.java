@@ -3,39 +3,39 @@ package bi;
 import android.text.TextUtils;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.r10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.LaunchActivity;
-public final class n implements q10 {
-    public final int f3899a;
-    public final long f3900b;
-    public final Object f3901c;
+public final class n implements r10 {
+    public final int f3911a;
+    public final long f3912b;
+    public final Object f3913c;
 
     public n(Object obj, long j3, int i7) {
-        this.f3899a = i7;
-        this.f3901c = obj;
-        this.f3900b = j3;
+        this.f3911a = i7;
+        this.f3913c = obj;
+        this.f3912b = j3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         boolean z10;
         int i7;
-        int i10 = this.f3899a;
-        long j3 = this.f3900b;
-        Object obj3 = this.f3901c;
+        int i10 = this.f3911a;
+        long j3 = this.f3912b;
+        Object obj3 = this.f3913c;
         switch (i10) {
             case 0:
                 y yVar = (y) obj3;
                 Boolean bool = (Boolean) obj;
                 String str = (String) obj2;
-                FrameLayout frameLayout = yVar.f4262g2;
+                FrameLayout frameLayout = yVar.f4283g2;
                 yVar.W1.setLoading(false);
-                yVar.f4277v2 = false;
+                yVar.f4298v2 = false;
                 if (bool != null) {
                     if (j3 > 0) {
                         z10 = true;
@@ -43,31 +43,31 @@ public final class n implements q10 {
                         z10 = false;
                     }
                     cc ccVar = new cc(yVar.getContext(), yVar.J0);
-                    ccVar.f34176a.setImageResource(2131231117);
+                    ccVar.f34170a.setImageResource(2131231117);
                     if (z10) {
                         i7 = 2131750290;
                     } else {
                         i7 = 2131750289;
                     }
-                    String N0 = gd.N0(i7, null);
-                    TextView textView = ccVar.f34177b;
+                    String N0 = hd.N0(i7, null);
+                    TextView textView = ccVar.f34171b;
                     textView.setText(N0);
                     textView.setSingleLine(true);
                     textView.setTextSize(1, 15.0f);
                     textView.setMaxLines(1);
                     textView.setTypeface(org.telegram.messenger.g0.o());
-                    String a02 = gd.a0(null, null, 2131750325, Integer.valueOf(yVar.f4263h2.d.gifts_per_round));
-                    TextView textView2 = ccVar.f34178c;
+                    String a02 = hd.a0(null, null, 2131750325, Integer.valueOf(yVar.f4284h2.d.gifts_per_round));
+                    TextView textView2 = ccVar.f34172c;
                     textView2.setText(a02);
                     textView2.setSingleLine(false);
                     textView2.setMaxLines(5);
                     yVar.i1();
                     gc.f(frameLayout, ccVar, 2750).j();
-                    di.y8.y(yVar.f30170a, false).q(null, false, true);
+                    di.y8.y(yVar.f30173a, false).q(null, false, true);
                 }
                 if (str != null) {
                     yVar.i1();
-                    new lc(frameLayout, yVar.J0).Q(2131624012, 36, gd.a0(null, null, 2131743635, str)).j();
+                    new lc(frameLayout, yVar.J0).Q(2131624012, 36, hd.a0(null, null, 2131743633, str)).j();
                     return;
                 }
                 return;
@@ -91,7 +91,7 @@ public final class n implements q10 {
                 Long l10 = (Long) obj2;
                 String str2 = LaunchActivity.C1;
                 if ("paid".equals((String) obj) && l10.longValue() != 0) {
-                    org.telegram.messenger.g0.g3(new q2(launchActivity, l10, this.f3900b, 29));
+                    org.telegram.messenger.g0.g3(new q2(launchActivity, l10, this.f3912b, 29));
                     return;
                 }
                 return;

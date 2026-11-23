@@ -10,20 +10,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.s90;
 import ug.m0;
 public final class b implements s90 {
-    public final int f61955a = 0;
-    public Object f61956b;
+    public final int f61959a = 0;
+    public Object f61960b;
 
     public b() {
     }
 
     @Override
     public Paint.FontMetricsInt P() {
-        return ((o) this.f61956b).f15148f.getEditText().getPaint().getFontMetricsInt();
+        return ((o) this.f61960b).f15151f.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public void l0(int i7, int i10, CharSequence charSequence, boolean z10) {
-        h hVar = ((o) this.f61956b).f15148f;
+        h hVar = ((o) this.f61960b).f15151f;
         if (hVar == null) {
             return;
         }
@@ -41,13 +41,13 @@ public final class b implements s90 {
     }
 
     public String toString() {
-        switch (this.f61955a) {
+        switch (this.f61959a) {
             case 0:
-                c cVar = c.f61957e;
+                c cVar = c.f61961e;
                 StringBuffer stringBuffer = new StringBuffer();
                 stringBuffer.append("method-execution".substring(7));
                 stringBuffer.append("(");
-                stringBuffer.append(((m0) this.f61956b).m());
+                stringBuffer.append(((m0) this.f61960b).m());
                 stringBuffer.append(")");
                 return stringBuffer.toString();
             default:
@@ -56,7 +56,7 @@ public final class b implements s90 {
     }
 
     public b(o oVar) {
-        this.f61956b = oVar;
+        this.f61960b = oVar;
     }
 
     @Override

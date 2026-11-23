@@ -5,7 +5,7 @@ import android.graphics.RectF;
 import android.view.View;
 import c8.xd;
 import java.util.ArrayList;
-import org.telegram.messenger.pc;
+import org.telegram.messenger.qc;
 import org.telegram.ui.Components.bt;
 import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.j71;
@@ -14,42 +14,42 @@ public final class q {
     public static r F;
     public static int G;
     public int A;
-    public m f56735a;
-    public boolean f56739f;
-    public long f56740g;
+    public m f56739a;
+    public boolean f56743f;
+    public long f56744g;
     public long h;
-    public long f56741i;
-    public int f56742j;
-    public int f56743k;
-    public int f56744l;
-    public View f56745m;
-    public long f56748p;
-    public long f56749q;
-    public long f56750r;
-    public long f56751s;
-    public long f56752t;
-    public int f56753u;
-    public boolean f56756y;
-    public int f56757z;
-    public final h f56736b = new h(this);
-    public final ArrayList f56737c = new ArrayList();
-    public ti.b d = ti.b.f58272c;
-    public final RectF f56738e = new RectF();
-    public final xe.b f56746n = new xe.b();
-    public final ArrayList f56747o = new ArrayList();
+    public long f56745i;
+    public int f56746j;
+    public int f56747k;
+    public int f56748l;
+    public View f56749m;
+    public long f56752p;
+    public long f56753q;
+    public long f56754r;
+    public long f56755s;
+    public long f56756t;
+    public int f56757u;
+    public boolean f56760y;
+    public int f56761z;
+    public final h f56740b = new h(this);
+    public final ArrayList f56741c = new ArrayList();
+    public ti.b d = ti.b.f58276c;
+    public final RectF f56742e = new RectF();
+    public final xe.b f56750n = new xe.b();
+    public final ArrayList f56751o = new ArrayList();
     public final RectF v = new RectF();
-    public final Rect f56754w = new Rect();
-    public final Rect f56755x = new Rect();
+    public final Rect f56758w = new Rect();
+    public final Rect f56759x = new Rect();
     public final ti.a B = new ti.a();
     public final ti.a C = new ti.a();
     public final ti.a D = new ti.a();
     public final ArrayList E = new ArrayList();
 
     public static r f() {
-        boolean e10 = pc.e(256);
-        boolean e11 = pc.e(262144);
+        boolean e10 = qc.e(256);
+        boolean e11 = qc.e(262144);
         r rVar = F;
-        if (rVar == null || rVar.f56758a != e10 || rVar.f56759b != e11) {
+        if (rVar == null || rVar.f56762a != e10 || rVar.f56763b != e11) {
             F = new r(e10, e11);
             G++;
         }
@@ -57,27 +57,27 @@ public final class q {
     }
 
     public final void a(dh.g gVar) {
-        this.f56747o.add(gVar);
+        this.f56751o.add(gVar);
     }
 
     public final void b(ek0 ek0Var) {
         if (ek0Var == null) {
             return;
         }
-        this.f56746n.add(ek0Var);
-        ek0Var.E2.f34573b.add(new bt() {
+        this.f56750n.add(ek0Var);
+        ek0Var.E2.f34568b.add(new bt() {
             @Override
             public final void a(int i7, boolean z10) {
                 int i10;
                 q qVar = q.this;
                 qVar.h++;
-                int i11 = qVar.f56742j;
+                int i11 = qVar.f56746j;
                 if (z10) {
                     i10 = 1;
                 } else {
                     i10 = -1;
                 }
-                qVar.f56742j = i11 + i10;
+                qVar.f56746j = i11 + i10;
             }
         });
         j jVar = new j(this);
@@ -112,44 +112,44 @@ public final class q {
             aVar.getClass();
             return aVar;
         }
-        aVar.f58271b = 0;
-        int i7 = aVar2.f58271b;
+        aVar.f58275b = 0;
+        int i7 = aVar2.f58275b;
         for (int i10 = 0; i10 < i7; i10++) {
-            RectF rectF = (RectF) aVar2.f58270a.get(i10);
+            RectF rectF = (RectF) aVar2.f58274a.get(i10);
             aVar.a(rectF.left, rectF.top, rectF.right, rectF.bottom);
         }
         return aVar;
     }
 
     public final void g() {
-        this.f56741i++;
+        this.f56745i++;
     }
 
     public final void h(int i7, int i10) {
         if (i7 == 0 && i10 == 0) {
             return;
         }
-        this.f56740g++;
-        this.f56743k += i7;
-        this.f56744l += i10;
+        this.f56744g++;
+        this.f56747k += i7;
+        this.f56748l += i10;
     }
 
     public final void i(View view) {
         xf.a a10;
         xf.c cVar;
-        View view2 = this.f56745m;
+        View view2 = this.f56749m;
         if (view2 != view) {
-            h hVar = this.f56736b;
+            h hVar = this.f56740b;
             if (view2 != null && (cVar = (xf.c) view2.getTag(2131296699)) != null) {
-                ArrayList arrayList = cVar.f60502a;
+                ArrayList arrayList = cVar.f60506a;
                 if (arrayList.remove(hVar)) {
-                    xf.a aVar = cVar.f60503b;
+                    xf.a aVar = cVar.f60507b;
                     if (aVar != null) {
-                        ((xe.b) aVar.f60501a.f12650b).remove(hVar);
+                        ((xe.b) aVar.f60505a.f12653b).remove(hVar);
                     }
                     if (arrayList.isEmpty()) {
-                        cVar.f60503b = null;
-                        view2.removeOnAttachStateChangeListener(cVar.f60504c);
+                        cVar.f60507b = null;
+                        view2.removeOnAttachStateChangeListener(cVar.f60508c);
                         view2.setTag(2131296699, null);
                     }
                 }
@@ -162,17 +162,17 @@ public final class q {
                 if (cVar2 == null) {
                     cVar2 = new xf.c();
                     view.setTag(2131296699, cVar2);
-                    view.addOnAttachStateChangeListener(cVar2.f60504c);
+                    view.addOnAttachStateChangeListener(cVar2.f60508c);
                 }
-                ArrayList arrayList2 = cVar2.f60502a;
+                ArrayList arrayList2 = cVar2.f60506a;
                 if (!arrayList2.contains(hVar)) {
                     arrayList2.add(hVar);
                     if (view.isAttachedToWindow() && (a10 = xd.a(view, cVar2)) != null) {
-                        ((xe.b) a10.f60501a.f12650b).add(hVar);
+                        ((xe.b) a10.f60505a.f12653b).add(hVar);
                     }
                 }
             }
-            this.f56745m = view;
+            this.f56749m = view;
         }
     }
 }

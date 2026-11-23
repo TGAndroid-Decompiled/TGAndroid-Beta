@@ -1,27 +1,27 @@
 package org.telegram.ui.Wallet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.y10;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.lc;
-public final class z8 implements x10 {
-    public final int f45399a;
-    public final d9 f45400b;
-    public final vf.b f45401c;
+public final class z8 implements y10 {
+    public final int f45403a;
+    public final d9 f45404b;
+    public final vf.b f45405c;
 
     public z8(d9 d9Var, vf.b bVar, int i7) {
-        this.f45399a = i7;
-        this.f45400b = d9Var;
-        this.f45401c = bVar;
+        this.f45403a = i7;
+        this.f45404b = d9Var;
+        this.f45405c = bVar;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f45399a;
-        vf.b bVar = this.f45401c;
-        d9 d9Var = this.f45400b;
+        int i7 = this.f45403a;
+        vf.b bVar = this.f45405c;
+        d9 d9Var = this.f45404b;
         String str = (String) obj;
         switch (i7) {
             case 0:
@@ -69,8 +69,8 @@ public final class z8 implements x10 {
                     lc.b0(d9Var).f0(str, false);
                     return;
                 }
-                gc I = lc.b0(d9Var).I(2131623990, gd.N0(2131742947, null), gd.N0(2131742945, null));
-                I.f35508j = 5000;
+                gc I = lc.b0(d9Var).I(2131623990, hd.N0(2131742945, null), hd.N0(2131742943, null));
+                I.f35527j = 5000;
                 I.j();
                 return;
         }

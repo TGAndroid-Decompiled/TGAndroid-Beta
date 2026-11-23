@@ -1,50 +1,24 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class n00 implements x10 {
-    public final int f25900a = 1;
-    public final long f25901b;
-    public final c1 f25902c;
-    public final Object d;
+import org.telegram.tgnet.tl.TL_stories;
+public final class n00 implements oc, nc {
+    public final a10 f25712a;
+    public final TL_stories.StoryItem f25713b;
+    public final y00 f25714c;
 
-    public n00(u9 u9Var, long j3, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
-        this.f25902c = u9Var;
-        this.f25901b = j3;
-        this.d = tL_StarGiftAuctionState;
+    public n00(a10 a10Var, TL_stories.StoryItem storyItem, y00 y00Var) {
+        this.f25712a = a10Var;
+        this.f25713b = storyItem;
+        this.f25714c = y00Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f25900a;
-        Object obj2 = this.d;
-        long j3 = this.f25901b;
-        c1 c1Var = this.f25902c;
-        switch (i7) {
-            case 0:
-                z00 z00Var = (z00) c1Var;
-                fj fjVar = (fj) obj2;
-                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) obj;
-                TLRPC.Message message = fjVar.f23993k;
-                message.summaryText = tL_textWithEntities;
-                if (tL_textWithEntities == null) {
-                    message.summarizedOpen = false;
-                }
-                z00Var.getMessagesStorage().X1(j3, fjVar.f23993k);
-                ks.f(z00Var.currentAccount).k(128, fjVar, Boolean.TRUE);
-                return;
-            default:
-                u9 u9Var = (u9) c1Var;
-                u9Var.d(j3).f26587c = (ArrayList) obj;
-                u9Var.f(j3, (TL_payments.TL_StarGiftAuctionState) obj2);
-                return;
-        }
+    public void a(String str) {
+        g0.g3(new ul(this.f25712a, this.f25713b, str, this.f25714c, 28));
     }
 
-    public n00(z00 z00Var, fj fjVar, long j3) {
-        this.f25902c = z00Var;
-        this.d = fjVar;
-        this.f25901b = j3;
+    @Override
+    public void q(Exception exc) {
+        g0.g3(new pz(this.f25712a, this.f25713b, this.f25714c, 1));
     }
 }

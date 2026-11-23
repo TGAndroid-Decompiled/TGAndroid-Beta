@@ -19,8 +19,8 @@ import li.j0;
 import li.k0;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.o10;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
@@ -34,46 +34,46 @@ public final class h extends FrameLayout implements b6 {
     public e F;
     public long G;
     public long H;
-    public final h6 f21050a;
-    public final int f21051b;
-    public final q9 f21052c;
+    public final h6 f21053a;
+    public final int f21054b;
+    public final q9 f21055c;
     public final TextView d;
-    public final q9 f21053e;
-    public final TextView f21054f;
+    public final q9 f21056e;
+    public final TextView f21057f;
     public final TextView h;
-    public final TextView f21055n;
-    public final hi.e f21056r;
-    public final nq f21057s;
-    public final ui.f f21058w;
-    public final fh.g f21059x;
-    public boolean f21060y;
+    public final TextView f21058n;
+    public final hi.e f21059r;
+    public final nq f21060s;
+    public final ui.f f21061w;
+    public final fh.g f21062x;
+    public boolean f21063y;
 
     public h(int i7, Context context, h6 h6Var) {
         super(context);
         dh.c cVar;
-        this.E = t6.f30066b;
-        this.f21050a = h6Var;
-        this.f21051b = i7;
+        this.E = t6.f30069b;
+        this.f21053a = h6Var;
+        this.f21054b = i7;
         if (Build.VERSION.SDK_INT >= 31) {
             ui.f fVar = new ui.f(null);
-            this.f21058w = fVar;
+            this.f21061w = fVar;
             fVar.l(g0.L(7.0f), o0.a());
-            fVar.f59047n = true;
+            fVar.f59051n = true;
             cVar = new dh.c(fVar, fVar, fVar);
         } else {
-            this.f21058w = null;
+            this.f21061w = null;
             ui.c cVar2 = new ui.c();
             cVar2.a(-16777216);
             cVar = new dh.c(cVar2, cVar2, cVar2);
         }
         FrameLayout frameLayout = new FrameLayout(context);
         q9 q9Var = new q9(context);
-        this.f21052c = q9Var;
+        this.f21055c = q9Var;
         q9Var.setRoundRadius(g0.L(52.0f) / 2);
         addView(q9Var, ma.d(52, 52.0f, 51, 11.0f, 9.0f, 0.0f, 0.0f));
         nq nqVar = new nq(2131231979, 0);
-        this.f21057s = nqVar;
-        nqVar.f37946r = g0.L(2.0f);
+        this.f21060s = nqVar;
+        nqVar.f37951r = g0.L(2.0f);
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTypeface(g0.o());
@@ -86,25 +86,25 @@ public final class h extends FrameLayout implements b6 {
         addView(frameLayout, ma.n(14.33f, 52, 48, 11, 48, 0, 0));
         fh.g c10 = cVar.c(textView, null, false);
         gh.e eVar = new gh.e(h6Var);
-        eVar.f13654e = new g0.e(18);
+        eVar.f13657e = new g0.e(18);
         eVar.f(1627389951, 1358954495);
         eVar.e(603979776, 603979776);
         eVar.d(0, 0);
-        eVar.f13656n = 0.0f;
-        eVar.f13657r = 0.0f;
+        eVar.f13659n = 0.0f;
+        eVar.f13660r = 0.0f;
         float N = g0.N(0.43f);
         float N2 = g0.N(0.43f);
-        eVar.f13655f = N;
+        eVar.f13658f = N;
         eVar.h = N2;
         c10.p(eVar);
         c10.r(g0.L(7.0f));
-        this.f21059x = c10;
+        this.f21062x = c10;
         textView.setBackground(c10);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setClipChildren(false);
         TextView textView2 = new TextView(context);
-        this.f21054f = textView2;
+        this.f21057f = textView2;
         textView2.setTypeface(g0.o());
         textView2.setTextSize(1, 16.0f);
         textView2.setSingleLine(true);
@@ -112,20 +112,20 @@ public final class h extends FrameLayout implements b6 {
         textView2.setEllipsize(truncateAt);
         linearLayout.addView(textView2, ma.k(0.0f, 10.0f, 0.0f, 1.33f, -1, -2));
         q9 q9Var2 = new q9(context);
-        this.f21053e = q9Var2;
+        this.f21056e = q9Var2;
         q9Var2.setRoundRadius(g0.L(8.0f));
         q9Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final h f21045b;
+            public final h f21048b;
 
             {
-                this.f21045b = this;
+                this.f21048b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        h hVar = this.f21045b;
+                        h hVar = this.f21048b;
                         e eVar2 = hVar.F;
                         if (eVar2 != null) {
                             long j3 = hVar.H;
@@ -138,7 +138,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     case 1:
-                        h hVar2 = this.f21045b;
+                        h hVar2 = this.f21048b;
                         e eVar3 = hVar2.F;
                         if (eVar3 != null) {
                             long j10 = hVar2.H;
@@ -151,7 +151,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     case 2:
-                        h hVar3 = this.f21045b;
+                        h hVar3 = this.f21048b;
                         e eVar4 = hVar3.F;
                         if (eVar4 != null) {
                             ((k0) eVar4).g(hVar3.G, false);
@@ -159,7 +159,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     default:
-                        h hVar4 = this.f21045b;
+                        h hVar4 = this.f21048b;
                         e eVar5 = hVar4.F;
                         if (eVar5 != null) {
                             ((k0) eVar5).g(hVar4.G, true);
@@ -176,17 +176,17 @@ public final class h extends FrameLayout implements b6 {
         textView3.setSingleLine(true);
         textView3.setEllipsize(truncateAt);
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final h f21045b;
+            public final h f21048b;
 
             {
-                this.f21045b = this;
+                this.f21048b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        h hVar = this.f21045b;
+                        h hVar = this.f21048b;
                         e eVar2 = hVar.F;
                         if (eVar2 != null) {
                             long j3 = hVar.H;
@@ -199,7 +199,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     case 1:
-                        h hVar2 = this.f21045b;
+                        h hVar2 = this.f21048b;
                         e eVar3 = hVar2.F;
                         if (eVar3 != null) {
                             long j10 = hVar2.H;
@@ -212,7 +212,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     case 2:
-                        h hVar3 = this.f21045b;
+                        h hVar3 = this.f21048b;
                         e eVar4 = hVar3.F;
                         if (eVar4 != null) {
                             ((k0) eVar4).g(hVar3.G, false);
@@ -220,7 +220,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     default:
-                        h hVar4 = this.f21045b;
+                        h hVar4 = this.f21048b;
                         e eVar5 = hVar4.F;
                         if (eVar5 != null) {
                             ((k0) eVar5).g(hVar4.G, true);
@@ -230,8 +230,8 @@ public final class h extends FrameLayout implements b6 {
                 }
             }
         });
-        TextView f10 = n10.f(linearLayout, textView3, ma.k(20.0f, 0.0f, 0.0f, 1.33f, -1, -2), context);
-        this.f21055n = f10;
+        TextView f10 = o10.f(linearLayout, textView3, ma.k(20.0f, 0.0f, 0.0f, 1.33f, -1, -2), context);
+        this.f21058n = f10;
         f10.setTextSize(1, 13.0f);
         int L = g0.L(12.0f);
         int i10 = m6.D6;
@@ -244,7 +244,7 @@ public final class h extends FrameLayout implements b6 {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
         spannableStringBuilder.setSpan(new nq(2131231943, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) gd.N0(2131751887, null));
+        spannableStringBuilder.append((CharSequence) hd.N0(2131751887, null));
         f10.setText(spannableStringBuilder);
         f10.setVisibility(8);
         linearLayout.addView(f10, ma.k(0.0f, 7.0f, 0.0f, 1.33f, -2, -2));
@@ -252,12 +252,12 @@ public final class h extends FrameLayout implements b6 {
         linearLayout2.setOrientation(0);
         linearLayout2.setClipChildren(false);
         hi.e eVar2 = new hi.e(context, h6Var, true);
-        this.f21056r = eVar2;
+        this.f21059r = eVar2;
         eVar2.setUseWrapContent(true);
         eVar2.setPadding(g0.L(15.0f), 0, g0.L(15.0f), 0);
         eVar2.f();
         eVar2.e();
-        int i11 = m6.f29789z6;
+        int i11 = m6.f29792z6;
         eVar2.setColor(m6.r1(0.14f, m6.w0(i11, h6Var)));
         eVar2.setTextColor(m6.x0(null, m6.G6, false));
         if (eVar2.getBackground() != null) {
@@ -266,19 +266,19 @@ public final class h extends FrameLayout implements b6 {
             eVar2.setBackground(background);
             t6.j(eVar2, background, K2, null, h6Var);
         }
-        eVar2.i(gd.N0(2131751592, null), false, true);
+        eVar2.i(hd.N0(2131751592, null), false, true);
         eVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final h f21045b;
+            public final h f21048b;
 
             {
-                this.f21045b = this;
+                this.f21048b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        h hVar = this.f21045b;
+                        h hVar = this.f21048b;
                         e eVar22 = hVar.F;
                         if (eVar22 != null) {
                             long j3 = hVar.H;
@@ -291,7 +291,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     case 1:
-                        h hVar2 = this.f21045b;
+                        h hVar2 = this.f21048b;
                         e eVar3 = hVar2.F;
                         if (eVar3 != null) {
                             long j10 = hVar2.H;
@@ -304,7 +304,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     case 2:
-                        h hVar3 = this.f21045b;
+                        h hVar3 = this.f21048b;
                         e eVar4 = hVar3.F;
                         if (eVar4 != null) {
                             ((k0) eVar4).g(hVar3.G, false);
@@ -312,7 +312,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     default:
-                        h hVar4 = this.f21045b;
+                        h hVar4 = this.f21048b;
                         e eVar5 = hVar4.F;
                         if (eVar5 != null) {
                             ((k0) eVar5).g(hVar4.G, true);
@@ -327,19 +327,19 @@ public final class h extends FrameLayout implements b6 {
         eVar3.setUseWrapContent(true);
         eVar3.setPadding(g0.L(15.0f), 0, g0.L(15.0f), 0);
         eVar3.f();
-        eVar3.i(gd.N0(2131754483, null), false, true);
+        eVar3.i(hd.N0(2131754483, null), false, true);
         eVar3.setOnClickListener(new View.OnClickListener(this) {
-            public final h f21045b;
+            public final h f21048b;
 
             {
-                this.f21045b = this;
+                this.f21048b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        h hVar = this.f21045b;
+                        h hVar = this.f21048b;
                         e eVar22 = hVar.F;
                         if (eVar22 != null) {
                             long j3 = hVar.H;
@@ -352,7 +352,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     case 1:
-                        h hVar2 = this.f21045b;
+                        h hVar2 = this.f21048b;
                         e eVar32 = hVar2.F;
                         if (eVar32 != null) {
                             long j10 = hVar2.H;
@@ -365,7 +365,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     case 2:
-                        h hVar3 = this.f21045b;
+                        h hVar3 = this.f21048b;
                         e eVar4 = hVar3.F;
                         if (eVar4 != null) {
                             ((k0) eVar4).g(hVar3.G, false);
@@ -373,7 +373,7 @@ public final class h extends FrameLayout implements b6 {
                         }
                         return;
                     default:
-                        h hVar4 = this.f21045b;
+                        h hVar4 = this.f21048b;
                         e eVar5 = hVar4.F;
                         if (eVar5 != null) {
                             ((k0) eVar5).g(hVar4.G, true);
@@ -398,11 +398,11 @@ public final class h extends FrameLayout implements b6 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int i7 = this.E;
-        int i10 = t6.f30066b;
+        int i10 = t6.f30069b;
         if (i7 != i10) {
             this.E = i10;
             try {
-                hi.e eVar = this.f21056r;
+                hi.e eVar = this.f21059r;
                 if (eVar != null) {
                     eVar.setTextColor(m6.x0(null, m6.G6, false));
                 }
@@ -410,9 +410,9 @@ public final class h extends FrameLayout implements b6 {
                 a8.g(e10, true);
             }
         }
-        if (this.f21060y) {
+        if (this.f21063y) {
             canvas2 = canvas;
-            canvas2.drawLine(g0.L(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, m6.f29501k0);
+            canvas2.drawLine(g0.L(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, m6.f29504k0);
         } else {
             canvas2 = canvas;
         }
@@ -423,14 +423,14 @@ public final class h extends FrameLayout implements b6 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         ui.f fVar;
         q9 q9Var;
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = this.f21058w) != null && view == (q9Var = this.f21052c)) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = this.f21061w) != null && view == (q9Var = this.f21055c)) {
             int L = g0.L(9.0f);
             int left = q9Var.getLeft() - L;
             int top = q9Var.getTop() - L;
             int L2 = (L * 2) + g0.L(52.0f);
             RecordingCanvas h = fVar.h(L2, L2);
             h.translate(-left, -top);
-            h.drawColor(m6.w0(m6.f29378d6, this.f21050a));
+            h.drawColor(m6.w0(m6.f29381d6, this.f21053a));
             h.save();
             float f10 = L2 / 2.0f;
             h.scale(1.125f, 1.125f, f10, f10);
@@ -446,16 +446,16 @@ public final class h extends FrameLayout implements b6 {
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
         int left = this.d.getLeft();
-        this.f21059x.i(g0.L(9.0f) + left, g0.L(48.0f));
+        this.f21062x.i(g0.L(9.0f) + left, g0.L(48.0f));
     }
 
     @Override
     public final void updateColors() {
         int i7 = m6.G6;
-        h6 h6Var = this.f21050a;
-        this.f21054f.setTextColor(m6.w0(i7, h6Var));
-        int i10 = m6.f29789z6;
+        h6 h6Var = this.f21053a;
+        this.f21057f.setTextColor(m6.w0(i7, h6Var));
+        int i10 = m6.f29792z6;
         this.h.setTextColor(m6.w0(i10, h6Var));
-        this.f21055n.setTextColor(m6.w0(i10, h6Var));
+        this.f21058n.setTextColor(m6.w0(i10, h6Var));
     }
 }

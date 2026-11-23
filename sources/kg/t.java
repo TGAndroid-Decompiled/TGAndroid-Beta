@@ -12,8 +12,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import c8.ma;
 import hi.o4;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.ks;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ls;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m5;
@@ -21,12 +21,12 @@ import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 public final class t extends FrameLayout {
-    public final m5 f18510a;
-    public final xh.l f18511b;
-    public final m5 f18512c;
+    public final m5 f18513a;
+    public final xh.l f18514b;
+    public final m5 f18515c;
     public final h6 d;
-    public boolean f18513e;
-    public TL_account.TL_businessChatLink f18514f;
+    public boolean f18516e;
+    public TL_account.TL_businessChatLink f18517f;
 
     public t(Context context, h6 h6Var) {
         super(context);
@@ -48,10 +48,10 @@ public final class t extends FrameLayout {
         imageView.setOnClickListener(new o4(this, 8));
         addView(imageView, ma.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
         m5 m5Var = new m5(context);
-        this.f18510a = m5Var;
+        this.f18513a = m5Var;
         m5Var.setTextSize(15);
         t6.X(m5Var, m6.G6, null);
-        if (gd.f24241a0) {
+        if (hd.f24444a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -59,11 +59,11 @@ public final class t extends FrameLayout {
         m5Var.setGravity(i7);
         addView(m5Var, ma.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
         m5 m5Var2 = new m5(context);
-        this.f18512c = m5Var2;
+        this.f18515c = m5Var2;
         m5Var2.setTextSize(14);
-        int i12 = m6.f29789z6;
+        int i12 = m6.f29792z6;
         t6.X(m5Var2, i12, null);
-        if (gd.f24241a0) {
+        if (hd.f24444a0) {
             i10 = 3;
         } else {
             i10 = 5;
@@ -71,15 +71,15 @@ public final class t extends FrameLayout {
         m5Var2.setGravity(i10);
         addView(m5Var2, ma.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
         xh.l lVar = new xh.l(context);
-        this.f18511b = lVar;
+        this.f18514b = lVar;
         lVar.setTextSize(1, 13.0f);
         lVar.setMaxLines(1);
         lVar.setEllipsize(TextUtils.TruncateAt.END);
         t6.U(lVar, i12, h6Var);
-        lVar.setGravity(gd.f24241a0 ? 5 : 3);
-        lVar.f60641r = false;
+        lVar.setGravity(hd.f24444a0 ? 5 : 3);
+        lVar.f60645r = false;
         lVar.setUseAlphaForEmoji(false);
-        ks.i(lVar);
+        ls.i(lVar);
         addView(lVar, ma.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
     }
 
@@ -87,14 +87,14 @@ public final class t extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         float f10;
         super.onDraw(canvas);
-        if (this.f18513e) {
+        if (this.f18516e) {
             Paint W0 = m6.W0("paintDivider", this.d);
             if (W0 == null) {
-                W0 = m6.f29501k0;
+                W0 = m6.f29504k0;
             }
             Paint paint = W0;
             float f11 = 64.0f;
-            if (gd.f24241a0) {
+            if (hd.f24444a0) {
                 f10 = 0.0f;
             } else {
                 f10 = 64.0f;
@@ -102,7 +102,7 @@ public final class t extends FrameLayout {
             float L = org.telegram.messenger.g0.L(f10);
             float measuredHeight = getMeasuredHeight() - 1;
             int width = getWidth();
-            if (!gd.f24241a0) {
+            if (!hd.f24444a0) {
                 f11 = 0.0f;
             }
             canvas.drawRect(L, measuredHeight, width - org.telegram.messenger.g0.L(f11), getMeasuredHeight(), paint);
@@ -112,9 +112,9 @@ public final class t extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        boolean z11 = gd.f24241a0;
-        m5 m5Var = this.f18512c;
-        m5 m5Var2 = this.f18510a;
+        boolean z11 = hd.f24444a0;
+        m5 m5Var = this.f18515c;
+        m5 m5Var2 = this.f18513a;
         if (z11) {
             m5Var2.setPadding(m5Var.getTextWidth(), 0, 0, 0);
         } else {
@@ -124,6 +124,6 @@ public final class t extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(56.0f) + (this.f18513e ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(56.0f) + (this.f18516e ? 1 : 0), 1073741824));
     }
 }

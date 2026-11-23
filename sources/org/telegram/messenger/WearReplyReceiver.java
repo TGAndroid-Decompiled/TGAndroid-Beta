@@ -9,33 +9,33 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public class WearReplyReceiver extends BroadcastReceiver {
-    public static final int f22825a = 0;
+    public static final int f22828a = 0;
 
     public static void a(c cVar, CharSequence charSequence, long j3, long j10, int i7, int[] iArr) {
-        fj fjVar;
-        int i10 = cVar.f23246a;
-        fj fjVar2 = null;
+        gj gjVar;
+        int i10 = cVar.f23202a;
+        gj gjVar2 = null;
         if (i7 != 0) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.message = "";
-            tL_message.f28452id = i7;
-            tL_message.peer_id = mp.u1(i10).B1(j3);
-            fjVar = new fj(i10, tL_message, false, false);
+            tL_message.f28455id = i7;
+            tL_message.peer_id = np.u1(i10).B1(j3);
+            gjVar = new gj(i10, tL_message, false, false);
         } else {
-            fjVar = null;
+            gjVar = null;
         }
         int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
         if (i11 != 0) {
             TLRPC.TL_message tL_message2 = new TLRPC.TL_message();
             tL_message2.message = "";
-            tL_message2.f28452id = (int) j10;
-            tL_message2.peer_id = mp.u1(i10).B1(j3);
+            tL_message2.f28455id = (int) j10;
+            tL_message2.peer_id = np.u1(i10).B1(j3);
             TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = new TLRPC.TL_messageActionTopicCreate();
             tL_message2.action = tL_messageActionTopicCreate;
             tL_messageActionTopicCreate.title = "";
-            fjVar2 = new fj(i10, tL_message2, false, false);
+            gjVar2 = new gj(i10, tL_message2, false, false);
         }
-        zy.C(i10).r0(xy.b(charSequence.toString(), j3, fjVar, fjVar2, null, true, null, null, null, true, 0, 0, null, false));
+        az.C(i10).r0(yy.b(charSequence.toString(), j3, gjVar, gjVar2, null, true, null, null, null, true, 0, 0, null, false));
         if (iArr != null && iArr.length > 0) {
             ArrayList arrayList = new ArrayList(iArr.length);
             int length = iArr.length;
@@ -43,13 +43,13 @@ public class WearReplyReceiver extends BroadcastReceiver {
             while (i12 < length) {
                 i12 = com.google.android.gms.internal.vision.e2.f(iArr[i12], i12, 1, arrayList);
             }
-            tr a02 = tr.a0(i10);
+            ur a02 = ur.a0(i10);
             if (!arrayList.isEmpty()) {
-                a02.f27080a.c(new gr(a02, arrayList, j3, 0));
+                a02.f27250a.c(new hr(a02, arrayList, j3, 0));
             }
         }
         if (i11 == 0) {
-            mp.u1(i10).q3(j3, i7, i7, 0, false, j10, 0, true, 0);
+            np.u1(i10).q3(j3, i7, i7, 0, false, j10, 0, true, 0);
         }
     }
 
@@ -65,63 +65,63 @@ public class WearReplyReceiver extends BroadcastReceiver {
                 final long longExtra2 = intent.getLongExtra("topic_id", 0L);
                 int intExtra2 = intent.getIntExtra("currentAccount", 0);
                 final int[] intArrayExtra = intent.getIntArrayExtra("voice_msg_ids");
-                if (longExtra != 0 && intExtra != 0 && j10.r(intExtra2)) {
+                if (longExtra != 0 && intExtra != 0 && k10.r(intExtra2)) {
                     final c a10 = c.a(intExtra2);
                     if (n5.E(longExtra)) {
-                        if (mp.u1(a10.f23246a).c2(Long.valueOf(longExtra)) == null) {
-                            Utilities.f22807e.c(new Runnable(this) {
-                                public final WearReplyReceiver f24175b;
+                        if (np.u1(a10.f23202a).c2(Long.valueOf(longExtra)) == null) {
+                            Utilities.f22810e.c(new Runnable(this) {
+                                public final WearReplyReceiver f24384b;
 
                                 {
-                                    this.f24175b = this;
+                                    this.f24384b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r10) {
                                         case 0:
-                                            int i7 = WearReplyReceiver.f22825a;
+                                            int i7 = WearReplyReceiver.f22828a;
                                             c cVar = a10;
-                                            tr a02 = tr.a0(cVar.f23246a);
+                                            ur a02 = ur.a0(cVar.f23202a);
                                             long j3 = longExtra;
-                                            g0.g3(new jm(this.f24175b, cVar, a02.k0(j3), charSequence, j3, longExtra2, intExtra, intArrayExtra));
+                                            g0.g3(new km(this.f24384b, cVar, a02.k0(j3), charSequence, j3, longExtra2, intExtra, intArrayExtra));
                                             return;
                                         default:
-                                            int i10 = WearReplyReceiver.f22825a;
+                                            int i10 = WearReplyReceiver.f22828a;
                                             c cVar2 = a10;
-                                            tr a03 = tr.a0(cVar2.f23246a);
+                                            ur a03 = ur.a0(cVar2.f23202a);
                                             long j10 = longExtra;
-                                            g0.g3(new jm(this.f24175b, cVar2, a03.P(-j10), charSequence, j10, longExtra2, intExtra, intArrayExtra));
+                                            g0.g3(new km(this.f24384b, cVar2, a03.P(-j10), charSequence, j10, longExtra2, intExtra, intArrayExtra));
                                             return;
                                     }
                                 }
                             });
                             return;
                         }
-                    } else if (n5.z(longExtra) && mp.u1(a10.f23246a).O0(Long.valueOf(-longExtra)) == null) {
-                        Utilities.f22807e.c(new Runnable(this) {
-                            public final WearReplyReceiver f24175b;
+                    } else if (n5.z(longExtra) && np.u1(a10.f23202a).O0(Long.valueOf(-longExtra)) == null) {
+                        Utilities.f22810e.c(new Runnable(this) {
+                            public final WearReplyReceiver f24384b;
 
                             {
-                                this.f24175b = this;
+                                this.f24384b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r10) {
                                     case 0:
-                                        int i7 = WearReplyReceiver.f22825a;
+                                        int i7 = WearReplyReceiver.f22828a;
                                         c cVar = a10;
-                                        tr a02 = tr.a0(cVar.f23246a);
+                                        ur a02 = ur.a0(cVar.f23202a);
                                         long j3 = longExtra;
-                                        g0.g3(new jm(this.f24175b, cVar, a02.k0(j3), charSequence, j3, longExtra2, intExtra, intArrayExtra));
+                                        g0.g3(new km(this.f24384b, cVar, a02.k0(j3), charSequence, j3, longExtra2, intExtra, intArrayExtra));
                                         return;
                                     default:
-                                        int i10 = WearReplyReceiver.f22825a;
+                                        int i10 = WearReplyReceiver.f22828a;
                                         c cVar2 = a10;
-                                        tr a03 = tr.a0(cVar2.f23246a);
+                                        ur a03 = ur.a0(cVar2.f23202a);
                                         long j10 = longExtra;
-                                        g0.g3(new jm(this.f24175b, cVar2, a03.P(-j10), charSequence, j10, longExtra2, intExtra, intArrayExtra));
+                                        g0.g3(new km(this.f24384b, cVar2, a03.P(-j10), charSequence, j10, longExtra2, intExtra, intArrayExtra));
                                         return;
                                 }
                             }

@@ -18,12 +18,12 @@ public final class f implements TypeEvaluator {
                 i0.d dVar2 = dVarArr[i7];
                 i0.d dVar3 = dVarArr2[i7];
                 dVar.getClass();
-                dVar.f15918a = dVar2.f15918a;
+                dVar.f15921a = dVar2.f15921a;
                 int i10 = 0;
                 while (true) {
-                    float[] fArr = dVar2.f15919b;
+                    float[] fArr = dVar2.f15922b;
                     if (i10 < fArr.length) {
-                        dVar.f15919b[i10] = (dVar3.f15919b[i10] * f10) + ((1.0f - f10) * fArr[i10]);
+                        dVar.f15922b[i10] = (dVar3.f15922b[i10] * f10) + ((1.0f - f10) * fArr[i10]);
                         i10++;
                     }
                 }

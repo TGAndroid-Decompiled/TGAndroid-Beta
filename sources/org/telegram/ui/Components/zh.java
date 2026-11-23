@@ -18,16 +18,16 @@ public final class zh extends yt {
         super.f();
         ty emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f40161x0 = false;
-            emojiView.f40167y2 = false;
+            emojiView.f40154x0 = false;
+            emojiView.f40160y2 = false;
             emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(org.telegram.messenger.g0.f24141n);
+            emojiView.setBottomInset(org.telegram.messenger.g0.f24041n);
         }
     }
 
     @Override
     public final void i(ActionMode actionMode, Menu menu) {
-        org.telegram.ui.ActionBar.g2 g2Var = this.W.f40375a2;
+        org.telegram.ui.ActionBar.g2 g2Var = this.W.f40368a2;
         if (g2Var instanceof org.telegram.ui.bn) {
             org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) g2Var).h, true, true, true, true);
         }
@@ -37,7 +37,7 @@ public final class zh extends yt {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         ui uiVar = this.W;
         zh zhVar = uiVar.N2;
-        if (!uiVar.f40433s3) {
+        if (!uiVar.f40426s3) {
             if (motionEvent.getX() > zhVar.getEditText().getLeft() && motionEvent.getX() < zhVar.getEditText().getRight() && motionEvent.getY() > zhVar.getEditText().getTop() && motionEvent.getY() < zhVar.getEditText().getBottom()) {
                 uiVar.i1(zhVar.getEditText(), true);
             } else {

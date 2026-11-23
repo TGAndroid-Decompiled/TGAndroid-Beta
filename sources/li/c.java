@@ -1,14 +1,14 @@
 package li;
 
 import android.view.View;
-import org.telegram.messenger.w10;
+import org.telegram.messenger.x10;
 import org.telegram.ui.Components.o41;
-public final class c implements w10, h2.o {
-    public final int f19923a;
+public final class c implements x10, h2.o {
+    public final int f19926a;
 
     @Override
     public Boolean a(o41 o41Var, View view, Integer num, Float f10, Float f11) {
-        switch (this.f19923a) {
+        switch (this.f19926a) {
             case 0:
                 return Boolean.FALSE;
             default:
@@ -19,7 +19,7 @@ public final class c implements w10, h2.o {
     @Override
     public void invoke(Object obj) {
         m2.b bVar = (m2.b) obj;
-        switch (this.f19923a) {
+        switch (this.f19926a) {
             case 2:
                 bVar.getClass();
                 return;
@@ -108,10 +108,10 @@ public final class c implements w10, h2.o {
     }
 
     public c(m2.a aVar, int i7, int i10, char c10) {
-        this.f19923a = i10;
+        this.f19926a = i10;
     }
 
     public c(m2.a aVar, String str, long j3, long j10, int i7) {
-        this.f19923a = i7;
+        this.f19926a = i7;
     }
 }

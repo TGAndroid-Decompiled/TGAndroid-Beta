@@ -1,56 +1,39 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.support.LongSparseIntArray;
 public final class og implements Runnable {
-    public final int f26084a = 1;
-    public final ri f26085b;
-    public final sr f26086c;
-    public final TLRPC.Message d;
+    public final int f26115a = 0;
+    public final ArrayList f26116b;
+    public final long f26117c;
+    public final int d;
+    public final int f26118e;
+    public final boolean f26119f;
+    public final c1 h;
+    public final Object f26120n;
 
-    public og(ri riVar, sr srVar, TLRPC.Message message) {
-        this.f26085b = riVar;
-        this.f26086c = srVar;
-        this.d = message;
+    public og(si siVar, boolean z10, ArrayList arrayList, int i7, long j3, int i10, Runnable runnable) {
+        this.h = siVar;
+        this.f26119f = z10;
+        this.f26116b = arrayList;
+        this.d = i7;
+        this.f26117c = j3;
+        this.f26118e = i10;
+        this.f26120n = runnable;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26084a;
-        TLRPC.Message message = this.d;
-        sr srVar = this.f26086c;
-        ri riVar = this.f26085b;
-        switch (i7) {
-            case 0:
-                riVar.getNotificationCenter().k(69, message, srVar);
-                return;
-            default:
-                a0.h hVar = riVar.B1;
-                HashMap hashMap = riVar.A1;
-                TLRPC.Message message2 = (TLRPC.Message) hashMap.get(srVar);
-                hashMap.put(srVar, message);
-                a0.h hVar2 = riVar.f26683z1;
-                ArrayList arrayList = (ArrayList) hVar2.f(srVar.f26873a);
-                if (arrayList == null) {
-                    arrayList = new ArrayList();
-                }
-                arrayList.add(message);
-                hVar2.k(arrayList, srVar.f26873a);
-                if (fj.v0(message) == 0) {
-                    if (message2 != null) {
-                        hVar.e(message2.f28452id);
-                    }
-                    hVar.k(srVar, message.f28452id);
-                }
-                riVar.getNotificationCenter().k(69, message, srVar);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.og.run():void");
     }
 
-    public og(ri riVar, TLRPC.Message message, sr srVar) {
-        this.f26085b = riVar;
-        this.d = message;
-        this.f26086c = srVar;
+    public og(ys ysVar, LongSparseIntArray longSparseIntArray, ArrayList arrayList, long j3, int i7, int i10, boolean z10) {
+        this.h = ysVar;
+        this.f26120n = longSparseIntArray;
+        this.f26116b = arrayList;
+        this.f26117c = j3;
+        this.d = i7;
+        this.f26118e = i10;
+        this.f26119f = z10;
     }
 }

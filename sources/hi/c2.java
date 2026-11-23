@@ -1,7 +1,7 @@
 package hi;
 
 import android.content.Context;
-import org.telegram.messenger.pc;
+import org.telegram.messenger.qc;
 import org.telegram.ui.Components.hv0;
 import org.telegram.ui.Components.lv0;
 public final class c2 extends lv0 {
@@ -16,7 +16,7 @@ public final class c2 extends lv0 {
 
     @Override
     public final boolean D1() {
-        return pc.e(8200);
+        return qc.e(8200);
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class c2 extends lv0 {
             while (true) {
                 if (i7 < hv0VarArr.length) {
                     hv0 hv0Var = hv0VarArr[i7];
-                    if (hv0Var != null && hv0Var.f35985b) {
+                    if (hv0Var != null && hv0Var.f35979b) {
                         break;
                     }
                     i7++;

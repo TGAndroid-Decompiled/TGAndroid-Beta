@@ -2,21 +2,21 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class mr0 implements org.telegram.ui.Cells.k7 {
-    public final jt0 f37623a;
+    public final jt0 f37621a;
 
     public mr0(jt0 jt0Var) {
-        this.f37623a = jt0Var;
+        this.f37621a = jt0Var;
     }
 
     @Override
     public final void a(String str, boolean z10) {
-        jt0 jt0Var = this.f37623a;
-        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36689y1;
+        jt0 jt0Var = this.f37621a;
+        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36684y1;
         if (z10) {
-            org.telegram.ui.ActionBar.w2 j3 = org.telegram.messenger.n10.j(g2Var.getParentActivity(), false, 1, null);
+            org.telegram.ui.ActionBar.w2 j3 = org.telegram.messenger.o10.j(g2Var.getParentActivity(), false, 1, null);
             j3.P = str;
             j3.Q = false;
-            CharSequence[] charSequenceArr = {org.telegram.messenger.gd.N0(2131747623, "Open"), org.telegram.messenger.gd.N0(2131751755, "Copy")};
+            CharSequence[] charSequenceArr = {org.telegram.messenger.hd.N0(2131747623, "Open"), org.telegram.messenger.hd.N0(2131751755, "Copy")};
             og.j jVar = new og.j(6, this, str);
             j3.M = charSequenceArr;
             j3.L = jVar;
@@ -28,12 +28,12 @@ public final class mr0 implements org.telegram.ui.Cells.k7 {
 
     @Override
     public final boolean b() {
-        return !this.f37623a.F1;
+        return !this.f37621a.F1;
     }
 
     @Override
-    public final void c(TLRPC.WebPage webPage, org.telegram.messenger.fj fjVar) {
-        jt0 jt0Var = this.f37623a;
-        iu.O0(jt0Var.f36689y1, fjVar, jt0Var.f36678u1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+    public final void c(TLRPC.WebPage webPage, org.telegram.messenger.gj gjVar) {
+        jt0 jt0Var = this.f37621a;
+        iu.O0(jt0Var.f36684y1, gjVar, jt0Var.f36673u1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
     }
 }

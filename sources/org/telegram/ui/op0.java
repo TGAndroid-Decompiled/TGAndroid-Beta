@@ -7,35 +7,35 @@ import android.animation.ObjectAnimator;
 import android.util.Property;
 import android.view.View;
 public final class op0 extends AnimatorListenerAdapter {
-    public final int f50638a;
-    public final boolean f50639b;
-    public final PhotoViewer f50640c;
+    public final int f50642a;
+    public final boolean f50643b;
+    public final PhotoViewer f50644c;
 
     public op0(PhotoViewer photoViewer, boolean z10, int i7) {
-        this.f50638a = i7;
-        this.f50640c = photoViewer;
-        this.f50639b = z10;
+        this.f50642a = i7;
+        this.f50644c = photoViewer;
+        this.f50643b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f50638a) {
+        switch (this.f50642a) {
             case 1:
-                PhotoViewer photoViewer = this.f50640c;
-                if (animator.equals(photoViewer.f43406x)) {
-                    photoViewer.f43406x = null;
+                PhotoViewer photoViewer = this.f50644c;
+                if (animator.equals(photoViewer.f43410x)) {
+                    photoViewer.f43410x = null;
                     return;
                 }
                 return;
             case 2:
-                PhotoViewer photoViewer2 = this.f50640c;
+                PhotoViewer photoViewer2 = this.f50644c;
                 if (animator.equals(photoViewer2.M)) {
                     photoViewer2.M = null;
                     return;
                 }
                 return;
             case 3:
-                this.f50640c.U7 = null;
+                this.f50644c.U7 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -46,22 +46,22 @@ public final class op0 extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i7;
-        int i10 = this.f50638a;
-        boolean z10 = this.f50639b;
-        PhotoViewer photoViewer = this.f50640c;
+        int i10 = this.f50642a;
+        boolean z10 = this.f50643b;
+        PhotoViewer photoViewer = this.f50644c;
         switch (i10) {
             case 0:
                 if (!z10) {
-                    photoViewer.f43278i3.setVisibility(8);
+                    photoViewer.f43282i3.setVisibility(8);
                     return;
                 }
                 return;
             case 1:
-                if (animator.equals(photoViewer.f43406x)) {
+                if (animator.equals(photoViewer.f43410x)) {
                     if (!z10) {
                         photoViewer.Y0.setVisibility(4);
                     }
-                    photoViewer.f43406x = null;
+                    photoViewer.f43410x = null;
                     return;
                 }
                 return;
@@ -69,8 +69,8 @@ public final class op0 extends AnimatorListenerAdapter {
                 if (animator.equals(photoViewer.M)) {
                     if (!z10) {
                         photoViewer.G.setVisibility(4);
-                        if (photoViewer.f43283j0.getTag() != null) {
-                            photoViewer.f43283j0.setVisibility(4);
+                        if (photoViewer.f43287j0.getTag() != null) {
+                            photoViewer.f43287j0.setVisibility(4);
                         }
                         if (photoViewer.R1.getTag() != null) {
                             photoViewer.R1.setVisibility(4);
@@ -92,9 +92,9 @@ public final class op0 extends AnimatorListenerAdapter {
                         animatorSet.playTogether(ObjectAnimator.ofFloat(xq0Var, property, 0.0f), ObjectAnimator.ofFloat(photoViewer.P7, property, 0.0f));
                     } else {
                         if (photoViewer.S4) {
-                            photoViewer.f43291k0.setVisibility(8);
-                            photoViewer.f43291k0.setAlpha(0.0f);
-                            View view = photoViewer.f43291k0;
+                            photoViewer.f43295k0.setVisibility(8);
+                            photoViewer.f43295k0.setAlpha(0.0f);
+                            View view = photoViewer.f43295k0;
                             if (photoViewer.d2 == 11) {
                                 i7 = -16777216;
                             } else {

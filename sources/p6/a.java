@@ -11,15 +11,15 @@ import m6.e;
 import q6.m;
 public final class a extends r6.a {
     public static final Parcelable.Creator<a> CREATOR = new e(17);
-    public final int f55514a;
-    public final Uri f55515b;
-    public final int f55516c;
+    public final int f55518a;
+    public final Uri f55519b;
+    public final int f55520c;
     public final int d;
 
     public a(int i7, Uri uri, int i10, int i11) {
-        this.f55514a = i7;
-        this.f55515b = uri;
-        this.f55516c = i10;
+        this.f55518a = i7;
+        this.f55519b = uri;
+        this.f55520c = i10;
         this.d = i11;
     }
 
@@ -29,7 +29,7 @@ public final class a extends r6.a {
         }
         if (obj != null && (obj instanceof a)) {
             a aVar = (a) obj;
-            if (m.l(this.f55515b, aVar.f55515b) && this.f55516c == aVar.f55516c && this.d == aVar.d) {
+            if (m.l(this.f55519b, aVar.f55519b) && this.f55520c == aVar.f55520c && this.d == aVar.d) {
                 return true;
             }
         }
@@ -37,13 +37,13 @@ public final class a extends r6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f55515b, Integer.valueOf(this.f55516c), Integer.valueOf(this.d)});
+        return Arrays.hashCode(new Object[]{this.f55519b, Integer.valueOf(this.f55520c), Integer.valueOf(this.d)});
     }
 
     public final String toString() {
         Locale locale = Locale.US;
-        String uri = this.f55515b.toString();
-        StringBuilder n10 = c.n("Image ", this.f55516c, "x", this.d, " ");
+        String uri = this.f55519b.toString();
+        StringBuilder n10 = c.n("Image ", this.f55520c, "x", this.d, " ");
         n10.append(uri);
         return n10.toString();
     }
@@ -52,10 +52,10 @@ public final class a extends r6.a {
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
         bc.q(parcel, 1, 4);
-        parcel.writeInt(this.f55514a);
-        bc.k(parcel, 2, this.f55515b, i7);
+        parcel.writeInt(this.f55518a);
+        bc.k(parcel, 2, this.f55519b, i7);
         bc.q(parcel, 3, 4);
-        parcel.writeInt(this.f55516c);
+        parcel.writeInt(this.f55520c);
         bc.q(parcel, 4, 4);
         parcel.writeInt(this.d);
         bc.s(parcel, r10);

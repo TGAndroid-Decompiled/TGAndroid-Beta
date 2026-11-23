@@ -5,7 +5,7 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.Components.c51;
 import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.h51;
@@ -13,7 +13,7 @@ import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 import org.telegram.ui.Components.r80;
 public final class b9 extends n41 {
-    public static final int f43999b = 0;
+    public static final int f44003b = 0;
 
     static {
         n41.h(new n41());
@@ -24,22 +24,22 @@ public final class b9 extends n41 {
         float f10;
         float f11;
         c9 c9Var = (c9) view;
-        String charSequence = o41Var.f38098m.toString();
+        String charSequence = o41Var.f38092m.toString();
         long j3 = o41Var.C;
         int i7 = o41Var.A;
-        boolean z11 = o41Var.f38103r;
-        TextView textView = c9Var.f44044c;
-        TextView textView2 = c9Var.f44043b;
+        boolean z11 = o41Var.f38097r;
+        TextView textView = c9Var.f44048c;
+        TextView textView2 = c9Var.f44047b;
         textView2.setText(u8.c0(charSequence));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (j3 < 0) {
-            spannableStringBuilder.append((CharSequence) gd.N0(2131748586, null));
+            spannableStringBuilder.append((CharSequence) hd.N0(2131748586, null));
             spannableStringBuilder.setSpan(new r80(org.telegram.messenger.g0.L(35.0f), textView), 0, spannableStringBuilder.length(), 33);
         } else {
             spannableStringBuilder.append((CharSequence) u0.x(j3, false));
         }
         if (i7 > 0) {
-            spannableStringBuilder = new SpannableStringBuilder(gd.V(null, null, 2131742786, spannableStringBuilder, gd.Q(i7)));
+            spannableStringBuilder = new SpannableStringBuilder(hd.V(null, null, 2131742784, spannableStringBuilder, hd.Q(i7)));
         }
         textView.setText(spannableStringBuilder);
         float f12 = 1.0f;

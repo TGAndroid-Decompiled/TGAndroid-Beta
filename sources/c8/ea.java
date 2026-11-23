@@ -18,7 +18,7 @@ public abstract class ea {
             return 0;
         }
         int c10 = c(aVar);
-        int max = Math.max(0, aVar.f21933c);
+        int max = Math.max(0, aVar.f21936c);
         if (max > 0) {
             i7 = org.telegram.messenger.g0.L(com.google.android.gms.internal.vision.e2.v(max, 1, 24, 28));
         }
@@ -30,7 +30,7 @@ public abstract class ea {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f21939k.size();
+            size = aVar.f21942k.size();
         }
         if (size <= 0) {
             return 0;
@@ -43,7 +43,7 @@ public abstract class ea {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f21939k.size();
+            size = aVar.f21942k.size();
         }
         if (size <= 0) {
             return 0;

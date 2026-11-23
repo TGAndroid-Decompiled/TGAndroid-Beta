@@ -16,8 +16,8 @@ public final class uf0 extends og0 {
     public xy0 U;
     public final Paint V;
     public final Path W;
-    public float f40332a0;
-    public final DecimalFormat f40333b0;
+    public float f40325a0;
+    public final DecimalFormat f40326b0;
 
     public uf0(Context context) {
         super(context);
@@ -25,10 +25,10 @@ public final class uf0 extends og0 {
         this.V = paint;
         Path path = new Path();
         this.W = path;
-        this.f40333b0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
+        this.f40326b0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
         this.R = i5.c.g(context, 2131232582);
         this.S = i5.c.g(context, 2131232583);
-        this.T = new xy0(org.telegram.messenger.gd.N0(2131744914, null) + ":", 11.0f, null);
+        this.T = new xy0(org.telegram.messenger.hd.N0(2131744912, null) + ":", 11.0f, null);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -43,7 +43,7 @@ public final class uf0 extends og0 {
     public final void b(Canvas canvas, float f10) {
         Drawable drawable;
         float height = getHeight() / 2.0f;
-        canvas.translate(0.0f, (-org.telegram.messenger.g0.L(20.0f)) * this.f40332a0);
+        canvas.translate(0.0f, (-org.telegram.messenger.g0.L(20.0f)) * this.f40325a0);
         float f11 = f10 * 0.85f;
         this.T.c(0.0f, height, f11, this.F, canvas);
         canvas.translate(this.T.k() + org.telegram.messenger.g0.L(4.0f), 0.0f);
@@ -69,26 +69,26 @@ public final class uf0 extends og0 {
     @Override
     public final float c(float f10) {
         xy0 xy0Var = this.T;
-        xy0Var.f42265p = -1.0f;
-        this.U.f42265p = -1.0f;
+        xy0Var.f42258p = -1.0f;
+        this.U.f42258p = -1.0f;
         float max = Math.max(0.0f, f10 - org.telegram.messenger.g0.L(43.0f));
-        xy0Var.f42265p = Math.max(0.0f, max - this.U.k());
-        this.U.f42265p = Math.max(0.0f, max - xy0Var.k());
+        xy0Var.f42258p = Math.max(0.0f, max - this.U.k());
+        this.U.f42258p = Math.max(0.0f, max - xy0Var.k());
         return this.U.k() + xy0Var.k() + org.telegram.messenger.g0.L(27.0f);
     }
 
     public void setBalance(long j3) {
-        String format = this.f40333b0.format(new BigDecimal(org.telegram.ui.Wallet.u0.u(j3, false)));
+        String format = this.f40326b0.format(new BigDecimal(org.telegram.ui.Wallet.u0.u(j3, false)));
         this.U = new xy0(format, 11.0f, org.telegram.messenger.g0.o());
-        setContentDescription(org.telegram.messenger.gd.N0(2131744914, null) + ": " + format);
+        setContentDescription(org.telegram.messenger.hd.N0(2131744912, null) + ": " + format);
         invalidate();
     }
 
     public void setEjectProgress(float f10) {
-        if (this.f40332a0 == f10) {
+        if (this.f40325a0 == f10) {
             return;
         }
-        this.f40332a0 = f10;
+        this.f40325a0 = f10;
         invalidate();
     }
 }

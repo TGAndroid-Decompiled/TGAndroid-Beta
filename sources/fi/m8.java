@@ -6,10 +6,10 @@ import android.graphics.Rect;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.fc;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.ri;
+import org.telegram.messenger.gc;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.si;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.nx;
@@ -41,22 +41,22 @@ public final class m8 extends h8 {
         l8Var.c(getScaleX());
         g0Var.e(d);
         nxVar.getClass();
-        String str = d.f5504f;
-        str = str == null ? fj.U(org.telegram.ui.Components.p5.e(nxVar.f50333b, d.f5505g)) : str;
-        if (str != null && (arrayList = (ArrayList) nxVar.f50335e.get(str)) != null && !arrayList.isEmpty()) {
+        String str = d.f5507f;
+        str = str == null ? gj.U(org.telegram.ui.Components.p5.e(nxVar.f50337b, d.f5508g)) : str;
+        if (str != null && (arrayList = (ArrayList) nxVar.f50339e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i7 = 0; i7 < min; i7++) {
                 nxVar.l((TLRPC.Document) arrayList.get(i7));
             }
         }
-        if (this.J.f5504f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ri.d0(j10.f24798t0).f26661r.get(this.J.f5504f)) != null) {
-            this.M.q0(fc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
+        if (this.J.f5507f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) si.d0(k10.f24968t0).f26847r.get(this.J.f5507f)) != null) {
+            this.M.q0(gc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.n6 n6Var = this.O;
-        n6Var.f37791b = 17;
+        n6Var.f37796b = 17;
         n6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
         this.O.w(org.telegram.messenger.g0.L(18.0f));
-        this.O.N = org.telegram.messenger.g0.f24146q.x;
+        this.O.N = org.telegram.messenger.g0.f24046q.x;
         if (tL_mediaAreaSuggestedReaction.dark) {
             this.K.a();
             this.O.u(-1);
@@ -88,7 +88,7 @@ public final class m8 extends h8 {
         float e10 = this.N.e(false, f10);
         Rect rect = org.telegram.messenger.g0.Q;
         rect.set((int) centerX, (int) org.telegram.messenger.g0.T1(centerY, f11, e10), (int) centerX2, (int) org.telegram.messenger.g0.T1(centerY2, f12, e10));
-        if (l8Var.f12268a == 1) {
+        if (l8Var.f12271a == 1) {
             i7 = -1;
         } else {
             i7 = -16777216;
@@ -148,7 +148,7 @@ public final class m8 extends h8 {
     }
 
     public org.telegram.ui.Components.p5 getAnimatedEmojiDrawable() {
-        return this.L.f5388b;
+        return this.L.f5391b;
     }
 
     @Override

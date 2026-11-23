@@ -12,30 +12,30 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.ui.Components.r80;
 public final class j7 extends FrameLayout {
-    public final Paint f14830a;
-    public final ImageView f14831b;
-    public final ImageView f14832c;
+    public final Paint f14833a;
+    public final ImageView f14834b;
+    public final ImageView f14835c;
     public final org.telegram.ui.Components.o6 d;
-    public final org.telegram.ui.Components.o6 f14833e;
-    public final ImageView f14834f;
+    public final org.telegram.ui.Components.o6 f14836e;
+    public final ImageView f14837f;
     public final SpannableString h;
-    public final SpannableString f14835n;
+    public final SpannableString f14838n;
 
     public j7(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f14830a = paint;
+        this.f14833a = paint;
         setWillNotDraw(false);
         paint.setColor(-16777216);
         ImageView imageView = new ImageView(context);
-        this.f14831b = imageView;
+        this.f14834b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(2131231128);
         imageView.setColorFilter(new PorterDuffColorFilter(-15033089, PorterDuff.Mode.SRC_IN));
         addView(imageView, c8.ma.d(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f14832c = imageView2;
+        this.f14835c = imageView2;
         imageView2.setBackground(new h7(org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(2.4f), -15033089));
         addView(imageView2, c8.ma.d(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, false, false, false);
@@ -45,11 +45,11 @@ public final class j7 extends FrameLayout {
         o6Var.setTypeface(org.telegram.messenger.g0.o());
         o6Var.setEllipsizeByGradient(true);
         org.telegram.ui.Components.n6 drawable = o6Var.getDrawable();
-        Point point = org.telegram.messenger.g0.f24146q;
+        Point point = org.telegram.messenger.g0.f24046q;
         drawable.N = point.x;
         addView(o6Var, c8.ma.d(-1, 24.0f, 55, 57.0f, 2.33f, 48.0f, 0.0f));
         org.telegram.ui.Components.o6 o6Var2 = new org.telegram.ui.Components.o6(context, false, false, false);
-        this.f14833e = o6Var2;
+        this.f14836e = o6Var2;
         o6Var2.setTextColor(-8355712);
         o6Var2.setTextSize(org.telegram.messenger.g0.L(14.21f));
         o6Var2.setEllipsizeByGradient(true);
@@ -59,18 +59,18 @@ public final class j7 extends FrameLayout {
         SpannableString spannableString = new SpannableString("x");
         this.h = spannableString;
         r80 r80Var = new r80(org.telegram.messenger.g0.L(200.0f), o6Var);
-        r80Var.f39108e = 0.8f;
+        r80Var.f39118e = 0.8f;
         r80Var.a(org.telegram.ui.ActionBar.m6.r1(0.4f, textColor), org.telegram.ui.ActionBar.m6.r1(0.08f, textColor));
         spannableString.setSpan(r80Var, 0, spannableString.length(), 33);
         int textColor2 = o6Var2.getTextColor();
         SpannableString spannableString2 = new SpannableString("x");
-        this.f14835n = spannableString2;
+        this.f14838n = spannableString2;
         r80 r80Var2 = new r80(org.telegram.messenger.g0.L(140.0f), o6Var2);
-        r80Var2.f39108e = 0.8f;
+        r80Var2.f39118e = 0.8f;
         r80Var2.a(org.telegram.ui.ActionBar.m6.r1(0.4f, textColor2), org.telegram.ui.ActionBar.m6.r1(0.08f, textColor2));
         spannableString2.setSpan(r80Var2, 0, spannableString2.length(), 33);
         ImageView imageView3 = new ImageView(context);
-        this.f14834f = imageView3;
+        this.f14837f = imageView3;
         imageView3.setColorFilter(new PorterDuffColorFilter(1694498815, PorterDuff.Mode.MULTIPLY));
         imageView3.setImageResource(2131231500);
         imageView3.setScaleType(scaleType);
@@ -81,7 +81,7 @@ public final class j7 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Paint paint = this.f14830a;
+        Paint paint = this.f14833a;
         canvas.drawRect(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.f1(), paint);
         canvas.drawRect(0.0f, getHeight() - org.telegram.messenger.g0.f1(), getWidth(), getHeight(), paint);
     }

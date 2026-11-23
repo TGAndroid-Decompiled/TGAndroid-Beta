@@ -6,33 +6,33 @@ import android.graphics.Paint;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.o10;
 import org.telegram.ui.Components.op;
 public final class q7 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public n7[] f31319a;
-    public fj[] f31320b;
-    public int[] f31321c;
+    public n7[] f31322a;
+    public gj[] f31323b;
+    public int[] f31324c;
     public o7 d;
-    public int f31322e;
-    public boolean f31323f;
+    public int f31325e;
+    public boolean f31326f;
     public boolean h;
-    public Paint f31324n;
-    public int f31325r;
-    public int f31326s;
+    public Paint f31327n;
+    public int f31328r;
+    public int f31329s;
 
     public static int a(int i7) {
         if (org.telegram.messenger.g0.Q1()) {
             return (org.telegram.messenger.g0.L(490.0f) - (org.telegram.messenger.g0.L(2.0f) * (i7 - 1))) / i7;
         }
-        return (org.telegram.messenger.g0.f24146q.x - (org.telegram.messenger.g0.L(2.0f) * (i7 - 1))) / i7;
+        return (org.telegram.messenger.g0.f24046q.x - (org.telegram.messenger.g0.L(2.0f) * (i7 - 1))) / i7;
     }
 
     public final void b(int i7, boolean z10, boolean z11) {
         float f10;
-        n7 n7Var = this.f31319a[i7];
-        FrameLayout frameLayout = n7Var.f31159f;
-        op opVar = n7Var.f31158e;
+        n7 n7Var = this.f31322a[i7];
+        FrameLayout frameLayout = n7Var.f31162f;
+        op opVar = n7Var.f31161e;
         if (opVar.getVisibility() != 0) {
             opVar.setVisibility(0);
         }
@@ -60,19 +60,19 @@ public final class q7 extends FrameLayout implements org.telegram.ui.ActionBar.b
         n7Var.h.start();
     }
 
-    public final void c(int i7, int i10, fj fjVar) {
-        n7[] n7VarArr = this.f31319a;
-        fj[] fjVarArr = this.f31320b;
-        fjVarArr[i7] = fjVar;
-        this.f31321c[i7] = i10;
-        if (fjVar != null) {
+    public final void c(int i7, int i10, gj gjVar) {
+        n7[] n7VarArr = this.f31322a;
+        gj[] gjVarArr = this.f31323b;
+        gjVarArr[i7] = gjVar;
+        this.f31324c[i7] = i10;
+        if (gjVar != null) {
             n7VarArr[i7].setVisibility(0);
-            n7VarArr[i7].setMessageObject(fjVar);
+            n7VarArr[i7].setMessageObject(gjVar);
             return;
         }
         n7VarArr[i7].clearAnimation();
         n7VarArr[i7].setVisibility(4);
-        fjVarArr[i7] = null;
+        gjVarArr[i7] = null;
     }
 
     public o7 getDelegate() {
@@ -82,7 +82,7 @@ public final class q7 extends FrameLayout implements org.telegram.ui.ActionBar.b
     @Override
     public final void invalidate() {
         for (int i7 = 0; i7 < 6; i7++) {
-            this.f31319a[i7].invalidate();
+            this.f31322a[i7].invalidate();
         }
         super.invalidate();
     }
@@ -101,28 +101,28 @@ public final class q7 extends FrameLayout implements org.telegram.ui.ActionBar.b
     public final void onMeasure(int i7, int i10) {
         int a10;
         int L;
-        View[] viewArr = this.f31319a;
-        if (this.f31325r == 1) {
-            a10 = n10.B(2.0f, this.f31322e - 1, View.MeasureSpec.getSize(i7)) / this.f31322e;
+        View[] viewArr = this.f31322a;
+        if (this.f31328r == 1) {
+            a10 = o10.B(2.0f, this.f31325e - 1, View.MeasureSpec.getSize(i7)) / this.f31325e;
         } else {
-            a10 = a(this.f31322e);
+            a10 = a(this.f31325e);
         }
         this.h = true;
         int i11 = 0;
-        for (int i12 = 0; i12 < this.f31322e; i12++) {
+        for (int i12 = 0; i12 < this.f31325e; i12++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i12].getLayoutParams();
-            if (this.f31323f) {
+            if (this.f31326f) {
                 L = 0;
             } else {
                 L = org.telegram.messenger.g0.L(2.0f);
             }
             layoutParams.topMargin = L;
             layoutParams.leftMargin = (org.telegram.messenger.g0.L(2.0f) + a10) * i12;
-            if (i12 == this.f31322e - 1) {
+            if (i12 == this.f31325e - 1) {
                 if (org.telegram.messenger.g0.Q1()) {
-                    layoutParams.width = org.telegram.messenger.g0.L(490.0f) - ((org.telegram.messenger.g0.L(2.0f) + a10) * (this.f31322e - 1));
+                    layoutParams.width = org.telegram.messenger.g0.L(490.0f) - ((org.telegram.messenger.g0.L(2.0f) + a10) * (this.f31325e - 1));
                 } else {
-                    layoutParams.width = org.telegram.messenger.g0.f24146q.x - ((org.telegram.messenger.g0.L(2.0f) + a10) * (this.f31322e - 1));
+                    layoutParams.width = org.telegram.messenger.g0.f24046q.x - ((org.telegram.messenger.g0.L(2.0f) + a10) * (this.f31325e - 1));
                 }
             } else {
                 layoutParams.width = a10;
@@ -132,7 +132,7 @@ public final class q7 extends FrameLayout implements org.telegram.ui.ActionBar.b
             viewArr[i12].setLayoutParams(layoutParams);
         }
         this.h = false;
-        if (!this.f31323f) {
+        if (!this.f31326f) {
             i11 = org.telegram.messenger.g0.L(2.0f);
         }
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(i11 + a10, 1073741824));
@@ -151,12 +151,12 @@ public final class q7 extends FrameLayout implements org.telegram.ui.ActionBar.b
     }
 
     public void setIsFirst(boolean z10) {
-        this.f31323f = z10;
+        this.f31326f = z10;
     }
 
     public void setItemsCount(int i7) {
         int i10;
-        n7[] n7VarArr = this.f31319a;
+        n7[] n7VarArr = this.f31322a;
         for (int i11 = 0; i11 < n7VarArr.length; i11++) {
             n7VarArr[i11].clearAnimation();
             n7 n7Var = n7VarArr[i11];
@@ -167,13 +167,13 @@ public final class q7 extends FrameLayout implements org.telegram.ui.ActionBar.b
             }
             n7Var.setVisibility(i10);
         }
-        this.f31322e = i7;
+        this.f31325e = i7;
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.f31324n.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Ci, false));
+            this.f31327n.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Ci, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

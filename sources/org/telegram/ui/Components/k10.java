@@ -9,9 +9,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class k10 extends LinearLayout {
-    public final hi.e f36742a;
-    public final hi.e f36743b;
-    public final hi.e f36744c;
+    public final hi.e f36744a;
+    public final hi.e f36745b;
+    public final hi.e f36746c;
     public final long d;
 
     public k10(Context context, int i7) {
@@ -28,37 +28,37 @@ public final class k10 extends LinearLayout {
         textView.setTextSize(1, 20.0f);
         org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.G6, null);
         textView.setGravity(1);
-        textView.setText(org.telegram.messenger.gd.N0(2131750466, null));
+        textView.setText(org.telegram.messenger.hd.N0(2131750466, null));
         textView.setTypeface(org.telegram.messenger.g0.o());
         addView(textView, c8.ma.t(-2, -2, 49, 0, 15, 0, 7));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29361c7, null);
+        org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29364c7, null);
         textView2.setGravity(1);
-        if (org.telegram.messenger.j10.i(i7).q()) {
+        if (org.telegram.messenger.k10.i(i7).q()) {
             i10 = 2131750461;
         } else {
             i10 = 2131750462;
         }
-        textView2.setText(org.telegram.messenger.gd.N0(i10, null));
+        textView2.setText(org.telegram.messenger.hd.N0(i10, null));
         textView2.setMaxWidth(org.telegram.messenger.g0.L(260.0f));
         textView2.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
         addView(textView2, c8.ma.t(-2, -2, 49, 0, 0, 0, 14));
         hi.e eVar = new hi.e(context, null, true);
-        this.f36742a = eVar;
+        this.f36744a = eVar;
         eVar.f();
-        eVar.i(org.telegram.messenger.gd.N0(2131750465, null), false, true);
+        eVar.i(org.telegram.messenger.hd.N0(2131750465, null), false, true);
         addView(eVar, c8.ma.r(-2, 44, 49));
         hi.e eVar2 = new hi.e(context, null, false);
-        this.f36743b = eVar2;
+        this.f36745b = eVar2;
         eVar2.f();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
         spannableStringBuilder.setSpan(new nq(2131232479, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) org.telegram.messenger.gd.N0(2131750463, null));
+        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) org.telegram.messenger.hd.N0(2131750463, null));
         eVar2.i(spannableStringBuilder, false, true);
         addView(eVar2, c8.ma.t(-2, 44, 49, 0, 8, 0, 0));
         hi.e eVar3 = new hi.e(context, null, false);
-        this.f36744c = eVar3;
+        this.f36746c = eVar3;
         eVar3.f();
         eVar3.setVisibility(8);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
@@ -71,7 +71,7 @@ public final class k10 extends LinearLayout {
         } else {
             this.d = 0L;
         }
-        spannableStringBuilder2.append((CharSequence) org.telegram.messenger.gd.N0(2131743554, null));
+        spannableStringBuilder2.append((CharSequence) org.telegram.messenger.hd.N0(2131743552, null));
         eVar3.i(spannableStringBuilder2, false, true);
         addView(eVar3, c8.ma.t(-2, 44, 49, 0, 1, 0, 0));
     }
@@ -80,11 +80,11 @@ public final class k10 extends LinearLayout {
     public final void onMeasure(int i7, int i10) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(44.0f), 1073741824);
-        hi.e eVar = this.f36742a;
+        hi.e eVar = this.f36744a;
         eVar.setUseWrapContent(true);
-        hi.e eVar2 = this.f36743b;
+        hi.e eVar2 = this.f36745b;
         eVar2.setUseWrapContent(true);
-        hi.e eVar3 = this.f36744c;
+        hi.e eVar3 = this.f36746c;
         eVar3.setUseWrapContent(true);
         eVar.measure(makeMeasureSpec, makeMeasureSpec2);
         eVar2.measure(makeMeasureSpec, makeMeasureSpec2);
@@ -106,6 +106,6 @@ public final class k10 extends LinearLayout {
         } else {
             i7 = 8;
         }
-        this.f36744c.setVisibility(i7);
+        this.f36746c.setVisibility(i7);
     }
 }

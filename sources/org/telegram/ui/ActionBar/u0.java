@@ -5,24 +5,24 @@ import android.os.Bundle;
 import android.view.accessibility.AccessibilityNodeInfo;
 import c8.l9;
 public final class u0 extends v0 {
-    public final t0 f30072h0;
-    public String f30073i0;
+    public final t0 f30075h0;
+    public String f30076i0;
 
     public u0(Context context, h6 h6Var) {
         super(context, h6Var);
-        this.f30073i0 = null;
+        this.f30076i0 = null;
         setFocusable(true);
         setFocusableInTouchMode(true);
         setImportantForAccessibility(1);
         t0 t0Var = new t0(this, 0);
-        this.f30072h0 = t0Var;
+        this.f30075h0 = t0Var;
         setAccessibilityDelegate(t0Var);
     }
 
     @Override
     public final int c(float f10) {
         int i7 = m6.jk;
-        h6 h6Var = this.f30123y;
+        h6 h6Var = this.f30126y;
         return i0.a.f(l9.a((((f10 * 2.8f) + 0.2f) - 1.0f) / 1.0f, 0.0f, 1.0f), m6.w0(i7, h6Var), m6.w0(m6.kk, h6Var));
     }
 
@@ -37,19 +37,19 @@ public final class u0 extends v0 {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f30072h0.e(this, accessibilityNodeInfo);
+        this.f30075h0.e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final boolean performAccessibilityAction(int i7, Bundle bundle) {
-        if (!super.performAccessibilityAction(i7, bundle) && !this.f30072h0.g(this, i7, bundle)) {
+        if (!super.performAccessibilityAction(i7, bundle) && !this.f30075h0.g(this, i7, bundle)) {
             return false;
         }
         return true;
     }
 
     public void setLabel(String str) {
-        this.f30073i0 = str;
+        this.f30076i0 = str;
     }
 
     @Override

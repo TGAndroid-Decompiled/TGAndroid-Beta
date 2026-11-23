@@ -1,82 +1,30 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class sf implements Runnable {
-    public final int f26821a;
-    public final ri f26822b;
-    public final boolean f26823c;
-    public final int d;
+public final class sf implements RequestDelegate {
+    public final int f26789a;
+    public final boolean f26790b;
+    public final long f26791c;
+    public final c1 d;
 
-    public sf(ri riVar, boolean z10, int i7, int i10) {
-        this.f26821a = i10;
-        this.f26822b = riVar;
-        this.f26823c = z10;
-        this.d = i7;
+    public sf(c1 c1Var, boolean z10, long j3, int i7) {
+        this.f26789a = i7;
+        this.d = c1Var;
+        this.f26790b = z10;
+        this.f26791c = j3;
     }
 
     @Override
-    public final void run() {
-        int i7;
-        NativeByteBuffer byteBufferValue;
-        switch (this.f26821a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f26789a) {
             case 0:
-                ri riVar = this.f26822b;
-                boolean[] zArr = riVar.f26677x0;
-                boolean z10 = this.f26823c;
-                zArr[z10 ? 1 : 0] = false;
-                riVar.f26680y0[z10 ? 1 : 0] = true;
-                riVar.f26662r0[z10 ? 1 : 0] = this.d;
-                return;
-            case 1:
-                this.f26822b.f26662r0[this.f26823c ? 1 : 0] = this.d;
+                g0.g3(new qg((si) this.d, tLObject, this.f26790b, this.f26791c, 1));
                 return;
             default:
-                ri riVar2 = this.f26822b;
-                boolean z11 = this.f26823c;
-                int i10 = this.d;
-                if (z11) {
-                    i7 = 2;
-                } else {
-                    i7 = 3;
-                    if (i10 != 0) {
-                        if (i10 == 1) {
-                            i7 = 4;
-                        } else if (i10 == 3) {
-                            i7 = 6;
-                        } else {
-                            i7 = 7;
-                            if (i10 != 5) {
-                                if (i10 == 7) {
-                                    i7 = 8;
-                                } else {
-                                    i7 = 5;
-                                }
-                            }
-                        }
-                    }
-                }
-                try {
-                    SQLiteCursor queryFinalized = riVar2.getMessagesStorage().f27082b.queryFinalized("SELECT document FROM web_recent_v3 WHERE type = " + i7 + " ORDER BY date DESC", new Object[0]);
-                    ArrayList arrayList = new ArrayList();
-                    while (queryFinalized.next()) {
-                        if (!queryFinalized.isNull(0) && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
-                            TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                            if (TLdeserialize != null) {
-                                arrayList.add(TLdeserialize);
-                            }
-                            byteBufferValue.reuse();
-                        }
-                    }
-                    queryFinalized.dispose();
-                    g0.g3(new vf(riVar2, z11, arrayList, i10));
-                    return;
-                } catch (Throwable th2) {
-                    riVar2.getMessagesStorage().o(th2, true);
-                    return;
-                }
+                g0.g3(new qg((np) this.d, tLObject, this.f26790b, this.f26791c, 3));
+                return;
         }
     }
 }

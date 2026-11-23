@@ -5,11 +5,11 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 public final class pb extends xi0 {
     public final int n1 = 0;
-    public final Object f38545o1;
+    public final Object f38544o1;
 
     public pb(org.telegram.ui.ns nsVar, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
         super(4, i7, context, null, h6Var);
-        this.f38545o1 = nsVar;
+        this.f38544o1 = nsVar;
     }
 
     @Override
@@ -17,13 +17,13 @@ public final class pb extends xi0 {
         gc gcVar;
         switch (this.n1) {
             case 0:
-                rb rbVar = (rb) this.f38545o1;
+                rb rbVar = (rb) this.f38544o1;
                 if (motionEvent.getAction() == 0) {
-                    gc gcVar2 = rbVar.f39133n;
+                    gc gcVar2 = rbVar.f39143n;
                     if (gcVar2 != null) {
                         gcVar2.i(false);
                     }
-                } else if (motionEvent.getAction() == 1 && (gcVar = rbVar.f39133n) != null) {
+                } else if (motionEvent.getAction() == 1 && (gcVar = rbVar.f39143n) != null) {
                     gcVar.i(true);
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -37,16 +37,16 @@ public final class pb extends xi0 {
         switch (this.n1) {
             case 1:
                 super.j();
-                org.telegram.ui.ns nsVar = (org.telegram.ui.ns) this.f38545o1;
+                org.telegram.ui.ns nsVar = (org.telegram.ui.ns) this.f38544o1;
                 if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = nsVar.f50305x;
+                    WindowManager.LayoutParams layoutParams = nsVar.f50309x;
                     layoutParams.flags &= -131073;
                     layoutParams.softInputMode = 16;
                 } else {
-                    nsVar.f50305x.flags |= 131072;
+                    nsVar.f50309x.flags |= 131072;
                 }
                 try {
-                    ((WindowManager) nsVar.f50304w.getSystemService("window")).updateViewLayout(nsVar.f50306y, nsVar.f50305x);
+                    ((WindowManager) nsVar.f50308w.getSystemService("window")).updateViewLayout(nsVar.f50310y, nsVar.f50309x);
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -62,11 +62,11 @@ public final class pb extends xi0 {
     public void m() {
         switch (this.n1) {
             case 0:
-                gc gcVar = gc.f35500w;
+                gc gcVar = gc.f35519w;
                 if (gcVar != null) {
                     gcVar.i(false);
                 }
-                ((rb) this.f38545o1).d.getReactionsWindow().f5325c.setOnClickListener(new o0(this, 3));
+                ((rb) this.f38544o1).d.getReactionsWindow().f5328c.setOnClickListener(new o0(this, 3));
                 return;
             default:
                 return;
@@ -75,6 +75,6 @@ public final class pb extends xi0 {
 
     public pb(rb rbVar, org.telegram.ui.ActionBar.g2 g2Var, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
         super(3, i7, context, g2Var, h6Var);
-        this.f38545o1 = rbVar;
+        this.f38544o1 = rbVar;
     }
 }

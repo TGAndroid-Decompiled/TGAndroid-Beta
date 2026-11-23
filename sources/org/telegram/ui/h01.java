@@ -17,7 +17,7 @@ public final class h01 extends v4.t {
             case 0:
                 try {
                     hi.l1 l1Var = new hi.l1(3, recyclerView.getContext(), this);
-                    l1Var.f59105a = i7;
+                    l1Var.f59109a = i7;
                     w0(l1Var);
                     return;
                 } catch (Exception e10) {
@@ -27,7 +27,7 @@ public final class h01 extends v4.t {
             default:
                 try {
                     hi.l1 l1Var2 = new hi.l1(5, recyclerView.getContext(), this);
-                    l1Var2.f59105a = i7;
+                    l1Var2.f59109a = i7;
                     w0(l1Var2);
                     return;
                 } catch (Exception e11) {

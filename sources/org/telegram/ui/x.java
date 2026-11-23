@@ -1,14 +1,14 @@
 package org.telegram.ui;
-public final class x implements org.telegram.messenger.x10 {
-    public final int f53560a;
-    public final Object f53561b;
-    public final Object f53562c;
+public final class x implements org.telegram.messenger.y10 {
+    public final int f53564a;
+    public final Object f53565b;
+    public final Object f53566c;
     public final Object d;
 
     public x(Object obj, Object obj2, Object obj3, int i7) {
-        this.f53560a = i7;
-        this.f53561b = obj;
-        this.f53562c = obj2;
+        this.f53564a = i7;
+        this.f53565b = obj;
+        this.f53566c = obj2;
         this.d = obj3;
     }
 

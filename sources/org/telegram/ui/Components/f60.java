@@ -5,14 +5,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class f60 implements Runnable {
-    public final int f35096a;
-    public final g60 f35097b;
-    public final String f35098c;
+    public final int f35098a;
+    public final g60 f35099b;
+    public final String f35100c;
 
     public f60(g60 g60Var, String str, int i7) {
-        this.f35096a = i7;
-        this.f35097b = g60Var;
-        this.f35098c = str;
+        this.f35098a = i7;
+        this.f35099b = g60Var;
+        this.f35100c = str;
     }
 
     @Override
@@ -24,18 +24,18 @@ public final class f60 implements Runnable {
         boolean z10;
         char c10;
         Object obj;
-        switch (this.f35096a) {
+        switch (this.f35098a) {
             case 0:
-                g60 g60Var = this.f35097b;
-                String str2 = this.f35098c;
+                g60 g60Var = this.f35099b;
+                String str2 = this.f35100c;
                 g60Var.getClass();
                 org.telegram.messenger.g0.g3(new f60(g60Var, str2, 1));
                 return;
             case 1:
-                g60 g60Var2 = this.f35097b;
-                String str3 = this.f35098c;
-                jg.z1 z1Var = g60Var2.f35416e;
-                org.telegram.ui.zr zrVar = g60Var2.f35418n.f37120h2;
+                g60 g60Var2 = this.f35099b;
+                String str3 = this.f35100c;
+                jg.z1 z1Var = g60Var2.f35435e;
+                org.telegram.ui.zr zrVar = g60Var2.f35437n.f37126h2;
                 boolean z11 = false;
                 boolean z12 = false;
                 if (zrVar != null) {
@@ -45,15 +45,15 @@ public final class f60 implements Runnable {
                     z12 = true;
                 }
                 z1Var.g(str3, true, z11, true, z12, 0L, false, 0, 0);
-                org.telegram.messenger.q5 q5Var = Utilities.f22809g;
+                org.telegram.messenger.q5 q5Var = Utilities.f22812g;
                 f60 f60Var = new f60(g60Var2, str3, 2);
                 g60Var2.h = f60Var;
                 q5Var.c(f60Var);
                 return;
             default:
-                g60 g60Var3 = this.f35097b;
-                String str4 = this.f35098c;
-                ArrayList arrayList2 = g60Var3.f35418n.Z1;
+                g60 g60Var3 = this.f35099b;
+                String str4 = this.f35100c;
+                ArrayList arrayList2 = g60Var3.f35437n.Z1;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.length() == 0) {
                     org.telegram.messenger.g0.g3(new g(g60Var3, new ArrayList(), new ArrayList(), 17));
@@ -61,7 +61,7 @@ public final class f60 implements Runnable {
                 }
                 boolean z13 = true;
                 ?? r62 = 0;
-                String T0 = org.telegram.messenger.gd.E0().T0(lowerCase, true, false);
+                String T0 = org.telegram.messenger.hd.E0().T0(lowerCase, true, false);
                 T0 = (lowerCase.equals(T0) || T0.length() == 0) ? null : null;
                 if (T0 != null) {
                     i7 = 1;
@@ -83,13 +83,13 @@ public final class f60 implements Runnable {
                     if (z14) {
                         TLRPC.User user = (TLRPC.User) tLObject;
                         str = org.telegram.messenger.i5.m(r62, user.first_name, user.last_name).toLowerCase();
-                        K = org.telegram.messenger.o10.o(user);
+                        K = org.telegram.messenger.p10.o(user);
                     } else {
                         TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                         str = chat.title;
                         K = org.telegram.messenger.v3.K(chat, r62);
                     }
-                    String T02 = org.telegram.messenger.gd.E0().T0(str, z13, r62);
+                    String T02 = org.telegram.messenger.hd.E0().T0(str, z13, r62);
                     if (str.equals(T02)) {
                         T02 = null;
                     }

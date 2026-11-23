@@ -9,59 +9,59 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class t1 extends View implements org.telegram.ui.Cells.i9, c3 {
-    public final p50 f52171a;
-    public final e4 f52172b;
-    public z2 f52173c;
+    public final p50 f52175a;
+    public final e4 f52176b;
+    public z2 f52177c;
     public int d;
-    public int f52174e;
-    public TL_iv.PageBlock f52175f;
+    public int f52178e;
+    public TL_iv.PageBlock f52179f;
 
     public t1(Context context, p50 p50Var, e4 e4Var) {
         super(context);
-        this.f52171a = p50Var;
-        this.f52172b = e4Var;
+        this.f52175a = p50Var;
+        this.f52176b = e4Var;
     }
 
     @Override
     public int getBoundLeft() {
-        z2 z2Var = this.f52173c;
+        z2 z2Var = this.f52177c;
         if (z2Var == null) {
             return -1;
         }
         int k10 = z2Var.k() + this.d;
-        this.f52171a.getClass();
+        this.f52175a.getClass();
         return k10 - org.telegram.messenger.g0.L(18);
     }
 
     @Override
     public int getBoundRight() {
-        z2 z2Var = this.f52173c;
+        z2 z2Var = this.f52177c;
         if (z2Var == null) {
             return -1;
         }
         int l10 = z2Var.l() + this.d;
-        this.f52171a.getClass();
+        this.f52175a.getClass();
         return org.telegram.messenger.g0.L(18) + l10;
     }
 
     @Override
     public int getLastLineBoundRight() {
-        z2 z2Var = this.f52173c;
+        z2 z2Var = this.f52177c;
         if (z2Var == null) {
             return -1;
         }
         int m10 = z2Var.m() + this.d;
-        this.f52171a.getClass();
+        this.f52175a.getClass();
         return org.telegram.messenger.g0.L(18) + m10;
     }
 
     public int getMinWidth() {
-        return org.telegram.messenger.n10.a(this);
+        return org.telegram.messenger.o10.a(this);
     }
 
     @Override
     public final void k(ArrayList arrayList) {
-        z2 z2Var = this.f52173c;
+        z2 z2Var = this.f52177c;
         if (z2Var != null) {
             arrayList.add(z2Var);
         }
@@ -70,7 +70,7 @@ public final class t1 extends View implements org.telegram.ui.Cells.i9, c3 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        z2 z2Var = this.f52173c;
+        z2 z2Var = this.f52177c;
         if (z2Var != null) {
             z2Var.i(this);
         }
@@ -79,7 +79,7 @@ public final class t1 extends View implements org.telegram.ui.Cells.i9, c3 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        z2 z2Var = this.f52173c;
+        z2 z2Var = this.f52177c;
         if (z2Var != null) {
             z2Var.f(this);
         }
@@ -87,11 +87,11 @@ public final class t1 extends View implements org.telegram.ui.Cells.i9, c3 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f52175f != null && this.f52173c != null) {
+        if (this.f52179f != null && this.f52177c != null) {
             canvas.save();
-            canvas.translate(this.d, this.f52174e);
-            g4.t(this.f52171a, canvas, this, 0);
-            this.f52173c.d(canvas, this);
+            canvas.translate(this.d, this.f52178e);
+            g4.t(this.f52175a, canvas, this, 0);
+            this.f52177c.d(canvas, this);
             canvas.restore();
         }
     }
@@ -100,11 +100,11 @@ public final class t1 extends View implements org.telegram.ui.Cells.i9, c3 {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        z2 z2Var = this.f52173c;
+        z2 z2Var = this.f52177c;
         if (z2Var == null) {
             return;
         }
-        accessibilityNodeInfo.setText(g4.g(2131754862, g4.h(this.f52171a, this.f52172b, z2Var)));
+        accessibilityNodeInfo.setText(g4.g(2131754862, g4.h(this.f52175a, this.f52176b, z2Var)));
     }
 
     @Override
@@ -112,32 +112,32 @@ public final class t1 extends View implements org.telegram.ui.Cells.i9, c3 {
         int i11;
         Layout.Alignment alignment;
         int size = View.MeasureSpec.getSize(i7);
-        p50 p50Var = this.f52171a;
+        p50 p50Var = this.f52175a;
         p50Var.getClass();
         this.d = org.telegram.messenger.g0.L(18);
         p50Var.getClass();
-        this.f52174e = org.telegram.messenger.g0.L(8);
-        TL_iv.PageBlock pageBlock = this.f52175f;
+        this.f52178e = org.telegram.messenger.g0.L(8);
+        TL_iv.PageBlock pageBlock = this.f52179f;
         if (pageBlock != null) {
             TL_iv.RichText richText = pageBlock.text;
-            p50 p50Var2 = this.f52171a;
+            p50 p50Var2 = this.f52175a;
             p50Var2.getClass();
             int L = size - org.telegram.messenger.g0.L(36);
-            TL_iv.PageBlock pageBlock2 = this.f52175f;
-            e4 e4Var = this.f52172b;
+            TL_iv.PageBlock pageBlock2 = this.f52179f;
+            e4 e4Var = this.f52176b;
             if (e4Var != null && e4Var.H) {
                 alignment = org.telegram.ui.Components.zu0.a();
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
-            z2 n10 = g4.n(p50Var2, this, null, richText, L, 0, pageBlock2, alignment, 0, this.f52172b);
-            this.f52173c = n10;
+            z2 n10 = g4.n(p50Var2, this, null, richText, L, 0, pageBlock2, alignment, 0, this.f52176b);
+            this.f52177c = n10;
             if (n10 != null) {
                 p50Var.getClass();
-                i11 = this.f52173c.d.getHeight() + org.telegram.messenger.g0.L(16);
-                z2 z2Var = this.f52173c;
-                z2Var.f54374s = this.d;
-                z2Var.f54375w = this.f52174e;
+                i11 = this.f52177c.d.getHeight() + org.telegram.messenger.g0.L(16);
+                z2 z2Var = this.f52177c;
+                z2Var.f54378s = this.d;
+                z2Var.f54379w = this.f52178e;
             } else {
                 i11 = 0;
             }
@@ -149,14 +149,14 @@ public final class t1 extends View implements org.telegram.ui.Cells.i9, c3 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!g4.j(this.f52171a, this.f52172b, motionEvent, this, this.f52173c, this.d, this.f52174e) && !super.onTouchEvent(motionEvent)) {
+        if (!g4.j(this.f52175a, this.f52176b, motionEvent, this, this.f52177c, this.d, this.f52178e) && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
     }
 
     public void setBlock(TL_iv.PageBlock pageBlock) {
-        this.f52175f = pageBlock;
+        this.f52179f = pageBlock;
         requestLayout();
     }
 }

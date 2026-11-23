@@ -4,29 +4,29 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
 public final class ul implements Comparator {
-    public final int f40483a;
-    public final Object f40484b;
+    public final int f40476a;
+    public final Object f40477b;
 
     public ul(Object obj, int i7) {
-        this.f40483a = i7;
-        this.f40484b = obj;
+        this.f40476a = i7;
+        this.f40477b = obj;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int indexOf;
         int indexOf2;
-        int i7 = this.f40483a;
-        Object obj3 = this.f40484b;
+        int i7 = this.f40476a;
+        Object obj3 = this.f40477b;
         switch (i7) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj3;
-                org.telegram.messenger.ue ueVar = (org.telegram.messenger.ue) obj;
-                org.telegram.messenger.ue ueVar2 = (org.telegram.messenger.ue) obj2;
-                boolean z10 = ChatAttachAlertPhotoLayout.f32795r1;
-                int i10 = ueVar.f27183a;
-                if (i10 != 0 || ueVar2.f27183a == 0) {
-                    if ((i10 != 0 && ueVar2.f27183a == 0) || (indexOf = arrayList.indexOf(ueVar)) > (indexOf2 = arrayList.indexOf(ueVar2))) {
+                org.telegram.messenger.ve veVar = (org.telegram.messenger.ve) obj;
+                org.telegram.messenger.ve veVar2 = (org.telegram.messenger.ve) obj2;
+                boolean z10 = ChatAttachAlertPhotoLayout.f32798r1;
+                int i10 = veVar.f27354a;
+                if (i10 != 0 || veVar2.f27354a == 0) {
+                    if ((i10 != 0 && veVar2.f27354a == 0) || (indexOf = arrayList.indexOf(veVar)) > (indexOf2 = arrayList.indexOf(veVar2))) {
                         return 1;
                     }
                     if (indexOf >= indexOf2) {
@@ -36,8 +36,8 @@ public final class ul implements Comparator {
                 return -1;
             default:
                 ty tyVar = ((hw) obj3).H0;
-                int indexOf3 = tyVar.f40102e1.indexOf((TLRPC.TL_messages_stickerSet) obj);
-                int indexOf4 = tyVar.f40102e1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                int indexOf3 = tyVar.f40095e1.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf4 = tyVar.f40095e1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
                 if (indexOf3 < 0 || indexOf4 < 0) {
                     return 0;
                 }

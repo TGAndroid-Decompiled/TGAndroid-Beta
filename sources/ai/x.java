@@ -1,44 +1,44 @@
 package ai;
 
 import android.content.Context;
-import org.telegram.messenger.bz;
+import org.telegram.messenger.cz;
 import org.telegram.ui.Dictation.DictationAsr;
 public final class x {
-    public boolean f1595a;
-    public boolean f1596b;
-    public long f1597c;
+    public boolean f1606a;
+    public boolean f1607b;
+    public long f1608c;
     public final Object d;
-    public final Object f1598e;
-    public Object f1599f;
-    public Object f1600g;
+    public final Object f1609e;
+    public Object f1610f;
+    public Object f1611g;
     public Object h;
 
     public x(Context context, d3.x xVar) {
         this.d = context.getApplicationContext();
-        this.f1598e = xVar;
-        this.f1597c = 15000L;
+        this.f1609e = xVar;
+        this.f1608c = 15000L;
         this.h = new d3.y();
-        this.f1600g = h2.g0.f13789a;
+        this.f1611g = h2.g0.f13792a;
     }
 
-    public static x c(android.support.v4.media.session.a0 a0Var, q2 q2Var) {
+    public static x c(android.support.v4.media.session.a0 a0Var, r2 r2Var) {
         int i7;
         long nativeSessionNew;
-        t tVar = (t) a0Var.f1717b;
+        t tVar = (t) a0Var.f1724b;
         long k10 = DictationAsr.k(tVar);
         if (k10 == 0) {
             return null;
         }
-        x xVar = new x(a0Var, q2Var);
-        String a10 = tVar.a((String) a0Var.f1718c);
+        x xVar = new x(a0Var, r2Var);
+        String a10 = tVar.a((String) a0Var.f1725c);
         String str = a10.split(",")[0];
-        if (bz.o() == 0) {
+        if (cz.o() == 0) {
             i7 = 2;
         } else {
             i7 = 4;
         }
         nativeSessionNew = DictationAsr.nativeSessionNew(k10, a10, str, i7);
-        xVar.f1597c = nativeSessionNew;
+        xVar.f1608c = nativeSessionNew;
         if (nativeSessionNew == 0) {
             DictationAsr.Q(tVar);
             return null;
@@ -48,13 +48,13 @@ public final class x {
 
     public void a() {
         String nativeSessionFinish;
-        long j3 = this.f1597c;
+        long j3 = this.f1608c;
         if (j3 != 0) {
             nativeSessionFinish = DictationAsr.nativeSessionFinish(j3);
             b(nativeSessionFinish);
-            DictationAsr.nativeSessionFree(this.f1597c);
-            this.f1597c = 0L;
-            DictationAsr.Q((t) this.f1598e);
+            DictationAsr.nativeSessionFree(this.f1608c);
+            this.f1608c = 0L;
+            DictationAsr.Q((t) this.f1609e);
         }
     }
 
@@ -62,11 +62,11 @@ public final class x {
         throw new UnsupportedOperationException("Method not decompiled: ai.x.b(java.lang.String):void");
     }
 
-    public x(android.support.v4.media.session.a0 a0Var, q2 q2Var) {
-        this.f1600g = new StringBuilder();
+    public x(android.support.v4.media.session.a0 a0Var, r2 r2Var) {
+        this.f1611g = new StringBuilder();
         this.h = "";
         this.d = a0Var;
-        this.f1598e = (t) a0Var.f1717b;
-        this.f1599f = q2Var;
+        this.f1609e = (t) a0Var.f1724b;
+        this.f1610f = r2Var;
     }
 }

@@ -7,22 +7,22 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 public abstract class kl0 extends HorizontalScrollView {
-    public boolean f36925a;
-    public LinearLayout f36926b;
-    public ValueAnimator f36927c;
+    public boolean f36928a;
+    public LinearLayout f36929b;
+    public ValueAnimator f36930c;
     public boolean d;
-    public int f36928e;
-    public ValueAnimator f36929f;
+    public int f36931e;
+    public ValueAnimator f36932f;
 
     public kl0(Context context) {
         super(context);
-        this.f36928e = -1;
+        this.f36931e = -1;
     }
 
     public final void a(int i7) {
-        if (this.f36928e != i7) {
-            this.f36928e = i7;
-            ValueAnimator valueAnimator = this.f36929f;
+        if (this.f36931e != i7) {
+            this.f36931e = i7;
+            ValueAnimator valueAnimator = this.f36932f;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
@@ -30,12 +30,12 @@ public abstract class kl0 extends HorizontalScrollView {
                 return;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(getScrollX(), i7);
-            this.f36929f = ofFloat;
+            this.f36932f = ofFloat;
             ofFloat.addUpdateListener(new h60(this, 15));
-            this.f36929f.setInterpolator(nr.h);
-            this.f36929f.setDuration(250L);
-            this.f36929f.addListener(new s60(this, 16));
-            this.f36929f.start();
+            this.f36932f.setInterpolator(nr.h);
+            this.f36932f.setDuration(250L);
+            this.f36932f.addListener(new s60(this, 16));
+            this.f36932f.start();
         }
     }
 
@@ -63,9 +63,9 @@ public abstract class kl0 extends HorizontalScrollView {
         fi.s2 s2Var;
         oh0 oh0Var;
         ValueAnimator valueAnimator;
-        int childCount = this.f36926b.getChildCount();
+        int childCount = this.f36929b.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
-            View childAt = this.f36926b.getChildAt(i7);
+            View childAt = this.f36929b.getChildAt(i7);
             if (childAt instanceof kv) {
                 kv kvVar = (kv) childAt;
                 if (childAt.getRight() - getScrollX() > 0 && childAt.getLeft() - getScrollX() < getMeasuredWidth()) {
@@ -73,25 +73,25 @@ public abstract class kl0 extends HorizontalScrollView {
                 } else {
                     z10 = false;
                 }
-                if (this.d && ((valueAnimator = this.f36927c) == null || !valueAnimator.isRunning())) {
+                if (this.d && ((valueAnimator = this.f36930c) == null || !valueAnimator.isRunning())) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (!kvVar.E && z10 && (oh0Var = kvVar.f36992e) != null && !oh0Var.f38226l0 && !z11) {
-                    kvVar.f36992e.T(true, 0.0f);
-                    kvVar.f36992e.start();
+                if (!kvVar.E && z10 && (oh0Var = kvVar.f36995e) != null && !oh0Var.f38220l0 && !z11) {
+                    kvVar.f36995e.T(true, 0.0f);
+                    kvVar.f36995e.start();
                 }
                 if (kvVar.E != z10) {
                     kvVar.E = z10;
                     if (z10) {
                         kvVar.invalidate();
-                        ug.b1 b1Var = kvVar.f36993f;
+                        ug.b1 b1Var = kvVar.f36996f;
                         if (b1Var != null) {
                             b1Var.invalidate();
                         }
-                        ug.b1 b1Var2 = kvVar.f36993f;
-                        if (b1Var2 != null && (p5Var = kvVar.f36998x) != null && (s2Var = p5Var.f38501k) != null) {
+                        ug.b1 b1Var2 = kvVar.f36996f;
+                        if (b1Var2 != null && (p5Var = kvVar.f37001x) != null && (s2Var = p5Var.f38500k) != null) {
                             b1Var2.setImageReceiver(s2Var);
                         }
                         q9 q9Var = kvVar.d;
@@ -116,7 +116,7 @@ public abstract class kl0 extends HorizontalScrollView {
     @Override
     public final void onScrollChanged(int i7, int i10, int i11, int i12) {
         super.onScrollChanged(i7, i10, i11, i12);
-        if ((Math.abs(i10 - i12) < 2 || i10 >= getMeasuredHeight() || i10 == 0) && !this.f36925a) {
+        if ((Math.abs(i10 - i12) < 2 || i10 >= getMeasuredHeight() || i10 == 0) && !this.f36928a) {
             requestDisallowInterceptTouchEvent(false);
         }
         c();

@@ -7,46 +7,46 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class r4 implements RequestDelegate {
-    public final int f26566a = 2;
-    public final Object f26567b;
-    public final boolean f26568c;
+    public final int f26560a = 1;
+    public final Object f26561b;
+    public final boolean f26562c;
     public final c1 d;
-    public final Object f26569e;
-    public final Object f26570f;
+    public final Object f26563e;
+    public final Object f26564f;
 
     public r4(i5 i5Var, ArrayList arrayList, ArrayList arrayList2, boolean z10, String str) {
         this.d = i5Var;
-        this.f26569e = arrayList;
-        this.f26570f = arrayList2;
-        this.f26568c = z10;
-        this.f26567b = str;
+        this.f26563e = arrayList;
+        this.f26564f = arrayList2;
+        this.f26562c = z10;
+        this.f26561b = str;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         int indexOf;
         TL_iv.TL_inputRichMessage tL_inputRichMessage;
-        switch (this.f26566a) {
+        switch (this.f26560a) {
             case 0:
                 i5 i5Var = (i5) this.d;
-                ArrayList arrayList = (ArrayList) this.f26569e;
-                ArrayList arrayList2 = (ArrayList) this.f26570f;
-                boolean z10 = this.f26568c;
-                String str = (String) this.f26567b;
+                ArrayList arrayList = (ArrayList) this.f26563e;
+                ArrayList arrayList2 = (ArrayList) this.f26564f;
+                boolean z10 = this.f26562c;
+                String str = (String) this.f26561b;
                 if (tL_error == null) {
                     i5Var.getMessagesController().V3((TLRPC.Updates) tLObject, false);
-                    tr messagesStorage = i5Var.getMessagesStorage();
+                    ur messagesStorage = i5Var.getMessagesStorage();
                     messagesStorage.getClass();
                     if (!arrayList.isEmpty()) {
-                        messagesStorage.f27080a.c(new qp(messagesStorage, arrayList, 21));
+                        messagesStorage.f27250a.c(new rp(messagesStorage, arrayList, 21));
                     }
                     Utilities.h.c(new y4(i5Var, arrayList2, 2));
                     for (int i7 = 0; i7 < arrayList2.size(); i7++) {
                         TLRPC.User user = (TLRPC.User) arrayList2.get(i7);
                         if (!TextUtils.isEmpty(user.phone)) {
                             i5Var.getMessagesStorage().f(user.phone, "");
-                            f5 f5Var = (f5) i5Var.f24586a0.get(user.phone);
-                            if (f5Var != null && (indexOf = f5Var.f23870g.indexOf(user.phone)) != -1) {
+                            f5 f5Var = (f5) i5Var.f24596a0.get(user.phone);
+                            if (f5Var != null && (indexOf = f5Var.f23865g.indexOf(user.phone)) != -1) {
                                 f5Var.h.set(indexOf, 1);
                             }
                         }
@@ -56,59 +56,59 @@ public final class r4 implements RequestDelegate {
                 }
                 return;
             case 1:
-                g0.g3(new yx(0, (zy) this.d, tLObject, (TLRPC.TL_messages_requestUrlAuth) this.f26569e, (org.telegram.ui.bn) this.f26570f, (String) this.f26567b, this.f26568c));
+                g0.g3(new zx(0, (az) this.d, tLObject, (TLRPC.TL_messages_requestUrlAuth) this.f26563e, (org.telegram.ui.bn) this.f26564f, (String) this.f26561b, this.f26562c));
                 return;
             default:
-                zy zyVar = (zy) this.d;
-                boolean z11 = this.f26568c;
-                fj fjVar = (fj) this.f26569e;
-                TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) this.f26570f;
-                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f26567b;
+                az azVar = (az) this.d;
+                boolean z11 = this.f26562c;
+                gj gjVar = (gj) this.f26563e;
+                TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) this.f26564f;
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f26561b;
                 if (tL_error == null) {
-                    if (z11 && fjVar != null) {
-                        fjVar.A2 = true;
+                    if (z11 && gjVar != null) {
+                        gjVar.A2 = true;
                     }
-                    zyVar.getMessagesController().V3((TLRPC.Updates) tLObject, false);
-                    g0.g3(new xr(zyVar, fjVar));
+                    azVar.getMessagesController().V3((TLRPC.Updates) tLObject, false);
+                    g0.g3(new yr(azVar, gjVar));
                     return;
                 }
                 if (r8.r(tL_error.text)) {
                     String str2 = tL_error.text;
-                    in inVar = new in(fjVar, zyVar, tL_messages_editMessage, g2Var, z11);
-                    zyVar = zyVar;
-                    if (fjVar != null && (tL_inputRichMessage = tL_messages_editMessage.rich_message) != null) {
+                    jn jnVar = new jn(gjVar, azVar, tL_messages_editMessage, g2Var, z11);
+                    azVar = azVar;
+                    if (gjVar != null && (tL_inputRichMessage = tL_messages_editMessage.rich_message) != null) {
                         ArrayList arrayList3 = new ArrayList(tL_inputRichMessage.documents.size() + tL_inputRichMessage.photos.size());
                         arrayList3.addAll(tL_inputRichMessage.photos);
                         arrayList3.addAll(tL_inputRichMessage.documents);
                         if (!arrayList3.isEmpty()) {
                             int c10 = r8.c(str2);
-                            zyVar.getFileRefController().u(new Object[]{arrayList3.get((c10 < 0 || c10 >= arrayList3.size()) ? 0 : 0), inVar}, fjVar);
+                            azVar.getFileRefController().u(new Object[]{arrayList3.get((c10 < 0 || c10 >= arrayList3.size()) ? 0 : 0), jnVar}, gjVar);
                             return;
                         }
                     }
                 }
-                g0.g3(new rq(20, zyVar, fjVar));
+                g0.g3(new sq(20, azVar, gjVar));
                 if (g2Var != null) {
-                    g0.g3(new mw(zyVar, tL_error, g2Var, tL_messages_editMessage, 1));
+                    g0.g3(new nw(azVar, tL_error, g2Var, tL_messages_editMessage, 1));
                     return;
                 }
                 return;
         }
     }
 
-    public r4(fj fjVar, zy zyVar, TLRPC.TL_messages_editMessage tL_messages_editMessage, org.telegram.ui.ActionBar.g2 g2Var, boolean z10) {
-        this.d = zyVar;
-        this.f26568c = z10;
-        this.f26569e = fjVar;
-        this.f26570f = tL_messages_editMessage;
-        this.f26567b = g2Var;
+    public r4(gj gjVar, az azVar, TLRPC.TL_messages_editMessage tL_messages_editMessage, org.telegram.ui.ActionBar.g2 g2Var, boolean z10) {
+        this.d = azVar;
+        this.f26562c = z10;
+        this.f26563e = gjVar;
+        this.f26564f = tL_messages_editMessage;
+        this.f26561b = g2Var;
     }
 
-    public r4(zy zyVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.bn bnVar, String str, boolean z10) {
-        this.d = zyVar;
-        this.f26569e = tL_messages_requestUrlAuth;
-        this.f26570f = bnVar;
-        this.f26567b = str;
-        this.f26568c = z10;
+    public r4(az azVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.bn bnVar, String str, boolean z10) {
+        this.d = azVar;
+        this.f26563e = tL_messages_requestUrlAuth;
+        this.f26564f = bnVar;
+        this.f26561b = str;
+        this.f26562c = z10;
     }
 }

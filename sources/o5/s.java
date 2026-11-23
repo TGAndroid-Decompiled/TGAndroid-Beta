@@ -10,37 +10,37 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 import org.telegram.ui.web.z0;
 public final class s {
-    public static volatile j f21759e;
-    public final x5.a f21760a;
-    public final x5.a f21761b;
-    public final t5.b f21762c;
+    public static volatile j f21762e;
+    public final x5.a f21763a;
+    public final x5.a f21764b;
+    public final t5.b f21765c;
     public final ia.c d;
 
     public s(x5.a aVar, x5.a aVar2, t5.b bVar, ia.c cVar, c0 c0Var) {
-        this.f21760a = aVar;
-        this.f21761b = aVar2;
-        this.f21762c = bVar;
+        this.f21763a = aVar;
+        this.f21764b = aVar2;
+        this.f21765c = bVar;
         this.d = cVar;
         ((Executor) c0Var.f908b).execute(new z0(c0Var, 23));
     }
 
     public static s a() {
-        j jVar = f21759e;
+        j jVar = f21762e;
         if (jVar != null) {
-            return (s) jVar.f21743f.mo24get();
+            return (s) jVar.f21746f.mo24get();
         }
         throw new IllegalStateException("Not initialized!");
     }
 
     public static void b(Context context) {
-        if (f21759e == null) {
+        if (f21762e == null) {
             synchronized (s.class) {
                 try {
-                    if (f21759e == null) {
+                    if (f21762e == null) {
                         ?? obj = new Object();
                         context.getClass();
-                        obj.f1975a = context;
-                        f21759e = obj.a();
+                        obj.f1982a = context;
+                        f21762e = obj.a();
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -59,10 +59,10 @@ public final class s {
         }
         h6.m a10 = i.a();
         kVar.getClass();
-        a10.f13965b = "cct";
+        a10.f13968b = "cct";
         m5.a aVar = (m5.a) kVar;
-        String str = aVar.f20857a;
-        String str2 = aVar.f20858b;
+        String str = aVar.f20860a;
+        String str2 = aVar.f20861b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {
@@ -71,7 +71,7 @@ public final class s {
             }
             bytes = e2.l("1$", str, "\\", str2).getBytes(Charset.forName("UTF-8"));
         }
-        a10.f13966c = bytes;
+        a10.f13969c = bytes;
         return new q(singleton, a10.j(), this);
     }
 }

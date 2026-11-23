@@ -18,7 +18,7 @@ public final class b30 extends org.telegram.ui.Components.ap0 {
         int m10 = hVar.m();
         f40 f40Var = this.V2;
         if (m10 == 1) {
-            f40Var.o1().m(((TLRPC.Dialog) hVar.n(0)).f28435id, Integer.valueOf(i7), 41);
+            f40Var.o1().m(((TLRPC.Dialog) hVar.n(0)).f28438id, Integer.valueOf(i7), 41);
         } else {
             f40Var.o1().k(0L, 41, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
         }

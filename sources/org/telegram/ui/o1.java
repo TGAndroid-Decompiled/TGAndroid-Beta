@@ -1,15 +1,15 @@
 package org.telegram.ui;
 public final class o1 implements Runnable {
-    public final int f50389a;
-    public final Object f50390b;
-    public final Object f50391c;
+    public final int f50393a;
+    public final Object f50394b;
+    public final Object f50395c;
     public final Object d;
 
     public o1(Object obj, Object obj2, Object obj3, int i7) {
-        this.f50389a = i7;
+        this.f50393a = i7;
         this.d = obj;
-        this.f50390b = obj2;
-        this.f50391c = obj3;
+        this.f50394b = obj2;
+        this.f50395c = obj3;
     }
 
     @Override
@@ -18,9 +18,9 @@ public final class o1 implements Runnable {
     }
 
     public o1(bn bnVar, org.telegram.ui.Components.a70 a70Var, String str) {
-        this.f50389a = 19;
+        this.f50393a = 19;
         this.d = bnVar;
-        this.f50391c = a70Var;
-        this.f50390b = str;
+        this.f50395c = a70Var;
+        this.f50394b = str;
     }
 }

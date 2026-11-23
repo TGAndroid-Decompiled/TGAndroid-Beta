@@ -8,47 +8,47 @@ import android.os.Build;
 import android.text.Editable;
 import android.view.View;
 import android.view.ViewGroup;
-import bi.w5;
+import bi.v5;
 import c8.ma;
 import java.util.Iterator;
 import org.telegram.messenger.g6;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.o10;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Components.aj0;
 import org.telegram.ui.Components.y5;
 public final class n2 extends j {
     public boolean A0;
     public String B0;
-    public final m2 f58083r0;
-    public sg.h1 f58084s0;
-    public int f58085t0;
-    public int f58086u0;
-    public int f58087v0;
-    public sg.a0 f58088w0;
-    public int f58089x0;
-    public int f58090y0;
-    public Runnable f58091z0;
+    public final m2 f58087r0;
+    public sg.h1 f58088s0;
+    public int f58089t0;
+    public int f58090u0;
+    public int f58091v0;
+    public sg.a0 f58092w0;
+    public int f58093x0;
+    public int f58094y0;
+    public Runnable f58095z0;
 
     public n2(Context context, PointF pointF, int i7, CharSequence charSequence, sg.h1 h1Var, int i10) {
         super(context, pointF);
-        this.f58088w0 = sg.a0.f57191e;
-        this.f58086u0 = i7;
+        this.f58092w0 = sg.a0.f57195e;
+        this.f58090u0 = i7;
         m2 m2Var = new m2(this, context);
-        this.f58083r0 = m2Var;
-        ks.i(m2Var);
+        this.f58087r0 = m2Var;
+        ls.i(m2Var);
         m2Var.setGravity(19);
         m2Var.setBackgroundColor(0);
         m2Var.setPadding(org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(7.0f));
         m2Var.setClickable(false);
         m2Var.setEnabled(false);
         m2Var.setCursorColor(-1);
-        m2Var.setTextSize(0, this.f58086u0);
-        m2Var.setCursorSize(org.telegram.messenger.g0.L(this.f58086u0 * 0.4f));
+        m2Var.setTextSize(0, this.f58090u0);
+        m2Var.setCursorSize(org.telegram.messenger.g0.L(this.f58090u0 * 0.4f));
         m2Var.setText(charSequence);
         s();
-        m2Var.setTextColor(h1Var.f57259a);
+        m2Var.setTextColor(h1Var.f57263a);
         m2Var.setTypeface(null, 1);
         m2Var.setHorizontallyScrolling(false);
         int i11 = Build.VERSION.SDK_INT;
@@ -69,7 +69,7 @@ public final class n2 extends j {
         setSwatch(h1Var);
         setType(i10);
         k();
-        m2Var.addTextChangedListener(new w5(3, this));
+        m2Var.addTextChangedListener(new v5(3, this));
     }
 
     @Override
@@ -78,27 +78,27 @@ public final class n2 extends j {
     }
 
     public int getAlign() {
-        return this.f58087v0;
+        return this.f58091v0;
     }
 
     public int getBaseFontSize() {
-        return this.f58086u0;
+        return this.f58090u0;
     }
 
     public b getEditText() {
-        return this.f58083r0;
+        return this.f58087r0;
     }
 
     public View getFocusedView() {
-        return this.f58083r0;
+        return this.f58087r0;
     }
 
     public Paint.FontMetricsInt getFontMetricsInt() {
-        return this.f58083r0.getPaint().getFontMetricsInt();
+        return this.f58087r0.getPaint().getFontMetricsInt();
     }
 
     public float getFontSize() {
-        return this.f58083r0.getTextSize();
+        return this.f58087r0.getTextSize();
     }
 
     @Override
@@ -110,15 +110,15 @@ public final class n2 extends j {
         float scaleX = viewGroup.getScaleX();
         float L = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (getScale() * getMeasuredWidth());
         float L2 = (org.telegram.messenger.g0.L(52.0f) / scaleX) + (getScale() * getMeasuredHeight());
-        float y10 = n10.y(L, 2.0f, getPositionX(), scaleX);
+        float y10 = o10.y(L, 2.0f, getPositionX(), scaleX);
         float positionY = getPositionY();
-        m2 m2Var = this.f58083r0;
+        m2 m2Var = this.f58087r0;
         return new aj0(y10, (positionY - (((L2 - m2Var.getExtendedPaddingTop()) - org.telegram.messenger.g0.N(4.0f)) / 2.0f)) * scaleX, ((L * scaleX) + y10) - y10, (L2 - m2Var.getExtendedPaddingBottom()) * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        RectF rectF = this.f58083r0.W1;
+        RectF rectF = this.f58087r0.W1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -127,7 +127,7 @@ public final class n2 extends j {
 
     @Override
     public float getStickyPaddingLeft() {
-        RectF rectF = this.f58083r0.W1;
+        RectF rectF = this.f58087r0.W1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -136,7 +136,7 @@ public final class n2 extends j {
 
     @Override
     public float getStickyPaddingRight() {
-        RectF rectF = this.f58083r0.W1;
+        RectF rectF = this.f58087r0.W1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -145,7 +145,7 @@ public final class n2 extends j {
 
     @Override
     public float getStickyPaddingTop() {
-        RectF rectF = this.f58083r0.W1;
+        RectF rectF = this.f58087r0.W1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -153,23 +153,23 @@ public final class n2 extends j {
     }
 
     public sg.h1 getSwatch() {
-        return this.f58084s0;
+        return this.f58088s0;
     }
 
     public CharSequence getText() {
-        return this.f58083r0.getText();
+        return this.f58087r0.getText();
     }
 
     public int getTextSize() {
-        return (int) this.f58083r0.getTextSize();
+        return (int) this.f58087r0.getTextSize();
     }
 
     public int getType() {
-        return this.f58085t0;
+        return this.f58089t0;
     }
 
     public sg.a0 getTypeface() {
-        return this.f58088w0;
+        return this.f58092w0;
     }
 
     @Override
@@ -185,7 +185,7 @@ public final class n2 extends j {
     }
 
     public final void q() {
-        m2 m2Var = this.f58083r0;
+        m2 m2Var = this.f58087r0;
         m2Var.setEnabled(true);
         m2Var.setClickable(true);
         m2Var.requestFocus();
@@ -195,14 +195,14 @@ public final class n2 extends j {
 
     public final void r() {
         int i7;
-        m2 m2Var = this.f58083r0;
+        m2 m2Var = this.f58087r0;
         m2Var.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-        int i10 = this.f58084s0.f57259a;
-        int i11 = this.f58085t0;
+        int i10 = this.f58088s0.f57263a;
+        int i11 = this.f58089t0;
         int i12 = -1;
         if (i11 == 0) {
             m2Var.setFrameColor(i10);
-            i10 = org.telegram.messenger.g0.B(this.f58084s0.f57259a) >= 0.721f ? -16777216 : -1;
+            i10 = org.telegram.messenger.g0.B(this.f58088s0.f57263a) >= 0.721f ? -16777216 : -1;
         } else if (i11 == 1) {
             if (org.telegram.messenger.g0.B(i10) >= 0.25f) {
                 i7 = -1728053248;
@@ -225,9 +225,9 @@ public final class n2 extends j {
     }
 
     public final void s() {
-        m2 m2Var = this.f58083r0;
+        m2 m2Var = this.f58087r0;
         if (m2Var.getText().length() <= 0) {
-            m2Var.setHint(gd.N0(2131743952, null));
+            m2Var.setHint(hd.N0(2131743950, null));
             m2Var.setHintTextColor(1627389951);
             return;
         }
@@ -235,13 +235,13 @@ public final class n2 extends j {
     }
 
     public void setAlign(int i7) {
-        this.f58087v0 = i7;
+        this.f58091v0 = i7;
     }
 
     public void setBaseFontSize(int i7) {
-        this.f58086u0 = i7;
+        this.f58090u0 = i7;
         float f10 = i7;
-        m2 m2Var = this.f58083r0;
+        m2 m2Var = this.f58087r0;
         m2Var.setTextSize(0, f10);
         m2Var.setCursorSize(org.telegram.messenger.g0.L(f10 * 0.4f));
         if (m2Var.getText() != null) {
@@ -250,15 +250,15 @@ public final class n2 extends j {
             for (int i10 = 0; i10 < g6VarArr.length; i10++) {
                 g6 g6Var = g6VarArr[i10];
                 Paint.FontMetricsInt fontMetricsInt = getFontMetricsInt();
-                g6Var.f24200a = fontMetricsInt;
+                g6Var.f24094a = fontMetricsInt;
                 if (fontMetricsInt != null) {
-                    int abs = Math.abs(g6Var.f24200a.ascent) + Math.abs(fontMetricsInt.descent);
-                    g6Var.f24202c = abs;
+                    int abs = Math.abs(g6Var.f24094a.ascent) + Math.abs(fontMetricsInt.descent);
+                    g6Var.f24096c = abs;
                     if (abs == 0) {
-                        g6Var.f24202c = org.telegram.messenger.g0.L(20.0f);
+                        g6Var.f24096c = org.telegram.messenger.g0.L(20.0f);
                     }
                 }
-                g6VarArr[i10].f24201b = 0.85f;
+                g6VarArr[i10].f24095b = 0.85f;
             }
             for (y5 y5Var : (y5[]) text.getSpans(0, text.length(), y5.class)) {
                 y5Var.replaceFontMetrics(getFontMetricsInt());
@@ -268,28 +268,28 @@ public final class n2 extends j {
     }
 
     public void setMaxWidth(int i7) {
-        this.f58083r0.setMaxWidth(i7);
+        this.f58087r0.setMaxWidth(i7);
     }
 
     public void setSwatch(sg.h1 h1Var) {
-        this.f58084s0 = new sg.h1(h1Var.f57260b, h1Var.f57261c, h1Var.f57259a);
+        this.f58088s0 = new sg.h1(h1Var.f57264b, h1Var.f57265c, h1Var.f57263a);
         r();
     }
 
     public void setText(CharSequence charSequence) {
-        this.f58083r0.setText(charSequence);
+        this.f58087r0.setText(charSequence);
         s();
     }
 
     public void setType(int i7) {
-        this.f58085t0 = i7;
+        this.f58089t0 = i7;
         r();
     }
 
     public void setTypeface(sg.a0 a0Var) {
-        this.f58088w0 = a0Var;
+        this.f58092w0 = a0Var;
         if (a0Var != null) {
-            this.f58083r0.setTypeface(a0Var.d());
+            this.f58087r0.setTypeface(a0Var.d());
         }
         m();
     }
@@ -301,7 +301,7 @@ public final class n2 extends j {
                 break;
             }
             sg.a0 a0Var = (sg.a0) it.next();
-            if (a0Var.f57195a.equals(str)) {
+            if (a0Var.f57199a.equals(str)) {
                 setTypeface(a0Var);
                 str = null;
                 break;
@@ -312,20 +312,20 @@ public final class n2 extends j {
     }
 
     public n2(Context context, n2 n2Var, PointF pointF) {
-        this(context, pointF, n2Var.f58086u0, n2Var.getText(), n2Var.getSwatch(), n2Var.f58085t0);
+        this(context, pointF, n2Var.f58090u0, n2Var.getText(), n2Var.getSwatch(), n2Var.f58089t0);
         setRotation(n2Var.getRotation());
         setScale(n2Var.getScale());
         setTypeface(n2Var.getTypeface());
         setAlign(n2Var.getAlign());
         int align = getAlign();
         int i7 = 2;
-        this.f58083r0.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
+        this.f58087r0.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
         int align2 = getAlign();
         if (align2 == 1) {
             i7 = 4;
-        } else if (align2 == 2 ? !gd.f24241a0 : gd.f24241a0) {
+        } else if (align2 == 2 ? !hd.f24444a0 : hd.f24444a0) {
             i7 = 3;
         }
-        this.f58083r0.setTextAlignment(i7);
+        this.f58087r0.setTextAlignment(i7);
     }
 }

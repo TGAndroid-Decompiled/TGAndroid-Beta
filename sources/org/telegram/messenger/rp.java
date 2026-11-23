@@ -1,238 +1,375 @@
 package org.telegram.messenger;
 
 import android.text.TextUtils;
+import android.util.Pair;
+import android.util.SparseArray;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class rp implements Runnable {
-    public final int f26714a;
-    public final tr f26715b;
-    public final int f26716c;
+    public final int f26643a;
+    public final ur f26644b;
+    public final ArrayList f26645c;
 
-    public rp(tr trVar, int i7, int i10) {
-        this.f26714a = i10;
-        this.f26715b = trVar;
-        this.f26716c = i7;
+    public rp(ur urVar, ArrayList arrayList, int i7) {
+        this.f26643a = i7;
+        this.f26644b = urVar;
+        this.f26645c = arrayList;
     }
 
     @Override
     public final void run() {
         SQLiteCursor queryFinalized;
+        TLRPC.PhotoSize w10;
+        gj gjVar;
         boolean z10;
-        boolean z11;
-        boolean z12;
-        int i7 = this.f26714a;
+        SQLiteDatabase sQLiteDatabase;
+        SQLiteDatabase sQLiteDatabase2;
+        SQLitePreparedStatement executeFast;
+        int i7;
+        int i10 = this.f26643a;
         SQLiteCursor sQLiteCursor = null;
-        int i10 = this.f26716c;
-        tr trVar = this.f26715b;
-        switch (i7) {
+        r6 = null;
+        r6 = null;
+        r6 = null;
+        SQLitePreparedStatement sQLitePreparedStatement = null;
+        sQLiteCursor = null;
+        sQLiteCursor = null;
+        int i11 = 0;
+        ur urVar = this.f26644b;
+        ArrayList arrayList = this.f26645c;
+        switch (i10) {
             case 0:
-                trVar.getDownloadController().t(i10);
+                ur.a(urVar, arrayList);
                 return;
             case 1:
-                trVar.getClass();
-                try {
-                    trVar.f27082b.executeFast("DELETE FROM shortcut_widget WHERE id = " + i10).stepThis().dispose();
-                    return;
-                } catch (Exception e10) {
-                    trVar.o(e10, true);
+                if (urVar.getMessagesController().I1().q(arrayList)) {
+                    urVar.getMessagesController().I1().l();
                     return;
                 }
+                return;
             case 2:
-                tr trVar2 = this.f26715b;
+                urVar.getClass();
+                int size = arrayList.size();
+                while (i11 < size) {
+                    Object obj = arrayList.get(i11);
+                    i11++;
+                    urVar.getMessagesController().y3((gj) obj);
+                }
+                return;
+            case 3:
+                ur urVar2 = this.f26644b;
                 try {
                     try {
-                        ArrayList arrayList = new ArrayList();
-                        ArrayList arrayList2 = new ArrayList();
-                        ArrayList arrayList3 = new ArrayList();
-                        a0.h hVar = new a0.h();
-                        if (i10 >= 0) {
-                            queryFinalized = trVar2.f27082b.queryFinalized(String.format(Locale.US, "SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0 AND folder_id = %1$d", Integer.valueOf(i10)), new Object[0]);
-                        } else {
-                            queryFinalized = trVar2.f27082b.queryFinalized("SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0", new Object[0]);
+                        String join = TextUtils.join(",", arrayList);
+                        SQLiteDatabase sQLiteDatabase3 = urVar2.f27252b;
+                        Locale locale = Locale.US;
+                        queryFinalized = sQLiteDatabase3.queryFinalized("SELECT mid, uid FROM randoms_v2 WHERE random_id IN(" + join + ")", new Object[0]);
+                    } catch (Exception e10) {
+                        e = e10;
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                }
+                try {
+                    a0.h hVar = new a0.h();
+                    while (queryFinalized.next()) {
+                        long longValue = queryFinalized.longValue(1);
+                        ArrayList arrayList2 = (ArrayList) hVar.f(longValue);
+                        if (arrayList2 == null) {
+                            arrayList2 = new ArrayList();
+                            hVar.k(arrayList2, longValue);
                         }
-                        while (queryFinalized.next()) {
+                        arrayList2.add(Integer.valueOf(queryFinalized.intValue(0)));
+                    }
+                    queryFinalized.dispose();
+                    if (!hVar.i()) {
+                        int m10 = hVar.m();
+                        while (i11 < m10) {
+                            long j3 = hVar.j(i11);
+                            ArrayList arrayList3 = (ArrayList) hVar.n(i11);
+                            g0.g3(new rp(urVar2, arrayList3, 10));
+                            urVar2.U1(arrayList3, null, null, null, null);
+                            ur urVar3 = urVar2;
                             try {
-                                long longValue = queryFinalized.longValue(0);
-                                if (!n5.D(longValue)) {
-                                    ?? obj = new Object();
-                                    obj.f26317a = queryFinalized.intValue(1);
-                                    obj.f26319c = queryFinalized.intValue(2);
-                                    obj.f26318b = queryFinalized.intValue(3);
-                                    hVar.k(obj, longValue);
-                                    if (!n5.C(longValue)) {
-                                        if (n5.z(longValue)) {
-                                            long j3 = -longValue;
-                                            if (!arrayList2.contains(Long.valueOf(j3))) {
-                                                arrayList2.add(Long.valueOf(j3));
-                                            }
-                                        } else if (!arrayList.contains(Long.valueOf(longValue))) {
-                                            arrayList.add(Long.valueOf(longValue));
-                                        }
-                                    } else {
-                                        int i11 = (int) (longValue & 4294967295L);
-                                        if (!arrayList3.contains(Integer.valueOf(i11))) {
-                                            arrayList3.add(Integer.valueOf(i11));
-                                        }
-                                    }
-                                }
+                                urVar3.Q0(0, 0, j3, arrayList3, true);
+                                urVar3.S1(j3, 0L, arrayList3, null);
+                                urVar2 = urVar3;
+                                i11++;
                             } catch (Exception e11) {
                                 e = e11;
-                                sQLiteCursor = queryFinalized;
-                                trVar2.o(e, true);
+                                urVar2 = urVar3;
+                                urVar2.o(e, true);
                                 if (sQLiteCursor != null) {
                                     sQLiteCursor.dispose();
                                     return;
                                 }
                                 return;
-                            } catch (Throwable th2) {
-                                th = th2;
-                                sQLiteCursor = queryFinalized;
-                                if (sQLiteCursor != null) {
-                                    sQLiteCursor.dispose();
-                                }
-                                throw th;
                             }
                         }
-                        queryFinalized.dispose();
-                        ArrayList arrayList4 = new ArrayList();
-                        ArrayList arrayList5 = new ArrayList();
-                        ArrayList arrayList6 = new ArrayList();
-                        if (!arrayList3.isEmpty()) {
-                            trVar2.V(TextUtils.join(",", arrayList3), arrayList6, arrayList);
-                        }
-                        if (!arrayList.isEmpty()) {
-                            trVar2.n0(arrayList, arrayList4, false);
-                        }
-                        if (!arrayList2.isEmpty()) {
-                            trVar2.Q(TextUtils.join(",", arrayList2), arrayList5);
-                        }
-                        g0.g3(new fn(trVar2, arrayList4, arrayList5, arrayList6, hVar, 13));
                         return;
-                    } catch (Throwable th3) {
-                        th = th3;
                     }
+                    return;
                 } catch (Exception e12) {
                     e = e12;
-                }
-            case 3:
-                trVar.l(i10);
-                return;
-            case 4:
-                try {
-                    if (i10 == 0) {
-                        trVar.f27082b.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
-                    } else {
-                        SQLiteDatabase sQLiteDatabase = trVar.f27082b;
-                        Locale locale = Locale.US;
-                        sQLiteDatabase.executeFast("DELETE FROM download_queue WHERE type = " + i10).stepThis().dispose();
+                    sQLiteCursor = queryFinalized;
+                } catch (Throwable th3) {
+                    th = th3;
+                    sQLiteCursor = queryFinalized;
+                    if (sQLiteCursor != null) {
+                        sQLiteCursor.dispose();
                     }
-                    return;
-                } catch (Exception e13) {
-                    trVar.o(e13, true);
+                    throw th;
+                }
+            case 4:
+                urVar.getFileLoader().g(arrayList);
+                return;
+            case 5:
+                if (urVar.getMessagesController().I1().q(arrayList)) {
+                    urVar.getMessagesController().I1().l();
                     return;
                 }
-            case 5:
+                return;
+            case 6:
+                urVar.getFileLoader().g(arrayList);
+                return;
+            case 7:
+                HashSet hashSet = new HashSet();
+                a0.h hVar2 = new a0.h();
+                a0.h hVar3 = new a0.h();
+                int i12 = 0;
+                boolean z11 = false;
+                while (i12 < arrayList.size()) {
+                    rr rrVar = (rr) arrayList.get(i12);
+                    TLRPC.TL_messageReactions tL_messageReactions = rrVar.f26653b;
+                    long j10 = rrVar.f26652a;
+                    TLRPC.TL_messageReactions tL_messageReactions2 = rrVar.f26654c;
+                    hVar2.b();
+                    hVar3.b();
+                    if (tL_messageReactions != null && tL_messageReactions.results != null && tL_messageReactions.reactions_as_tags) {
+                        int i13 = 0;
+                        while (i13 < tL_messageReactions.results.size()) {
+                            ch.p0 d = ch.p0.d(tL_messageReactions.results.get(i13).reaction);
+                            hVar2.k(d, d.h);
+                            i13++;
+                            urVar = urVar;
+                        }
+                    }
+                    ur urVar4 = urVar;
+                    if (tL_messageReactions2 != null && tL_messageReactions2.results != null && tL_messageReactions2.reactions_as_tags) {
+                        for (int i14 = 0; i14 < tL_messageReactions2.results.size(); i14++) {
+                            ch.p0 d2 = ch.p0.d(tL_messageReactions2.results.get(i14).reaction);
+                            hVar3.k(d2, d2.h);
+                        }
+                    }
+                    for (int i15 = 0; i15 < hVar2.m(); i15++) {
+                        long j11 = hVar2.j(i15);
+                        ch.p0 p0Var = (ch.p0) hVar2.n(i15);
+                        if (!hVar3.d(j11) && urVar4.getMessagesController().E5(j10, p0Var, false)) {
+                            hashSet.add(Long.valueOf(j10));
+                            z11 = true;
+                        }
+                    }
+                    for (int i16 = 0; i16 < hVar3.m(); i16++) {
+                        long j12 = hVar3.j(i16);
+                        ch.p0 p0Var2 = (ch.p0) hVar3.n(i16);
+                        if (!hVar2.d(j12) && urVar4.getMessagesController().E5(j10, p0Var2, true)) {
+                            hashSet.add(Long.valueOf(j10));
+                            z11 = true;
+                        }
+                    }
+                    i12++;
+                    urVar = urVar4;
+                }
+                ur urVar5 = urVar;
+                if (z11 && !hashSet.isEmpty()) {
+                    urVar5.getMessagesController().D5(hashSet);
+                    return;
+                }
+                return;
+            case 8:
+                ArrayList arrayList4 = urVar.I;
+                arrayList4.clear();
+                SparseArray sparseArray = urVar.J;
+                sparseArray.clear();
+                arrayList4.addAll(arrayList);
+                while (i11 < arrayList.size()) {
+                    ((so) arrayList.get(i11)).f26890f = i11;
+                    sparseArray.put(((so) arrayList.get(i11)).f26886a, (so) arrayList.get(i11));
+                    i11++;
+                }
+                urVar.z1();
+                return;
+            case 9:
+                urVar.getFileLoader().g(arrayList);
+                return;
+            case 10:
+                urVar.getNotificationCenter().k(7, arrayList, 0L, Boolean.FALSE);
+                return;
+            case 11:
+                urVar.getNotificationCenter().k(58, arrayList);
+                return;
+            case 12:
+                a6 downloadController = urVar.getDownloadController();
+                downloadController.getClass();
+                int size2 = arrayList.size();
+                for (int i17 = 0; i17 < size2; i17++) {
+                    b6 b6Var = (b6) downloadController.h.get((Pair) arrayList.get(i17));
+                    if (b6Var != null) {
+                        TLObject tLObject = b6Var.f23051a;
+                        if (tLObject instanceof TLRPC.Document) {
+                            downloadController.getFileLoader().f((TLRPC.Document) tLObject);
+                        } else if ((tLObject instanceof TLRPC.Photo) && (w10 = w7.w(((TLRPC.Photo) tLObject).sizes, g0.Z0(false), false, null, false)) != null) {
+                            w7 fileLoader = downloadController.getFileLoader();
+                            fileLoader.getClass();
+                            fileLoader.e(null, null, null, w10.location, null, null);
+                        }
+                    }
+                }
+                return;
+            case 13:
+                urVar.getFileLoader().g(arrayList);
+                return;
+            case 14:
+                urVar.getClass();
+                HashSet hashSet2 = new HashSet();
+                long[] jArr = new long[1];
+                int i18 = 0;
+                boolean z12 = false;
+                while (i18 < arrayList.size()) {
+                    si mediaDataController = urVar.getMediaDataController();
+                    int intValue = ((Integer) arrayList.get(i18)).intValue();
+                    ArrayList arrayList5 = mediaDataController.f26820d1;
+                    int i19 = 0;
+                    while (true) {
+                        if (i19 < arrayList5.size()) {
+                            if (((gj) arrayList5.get(i19)).e1() == intValue) {
+                                gjVar = (gj) arrayList5.get(i19);
+                            } else {
+                                i19++;
+                            }
+                        } else {
+                            gjVar = null;
+                        }
+                    }
+                    if (gjVar != null && gj.B0(gjVar.f24213k) == mediaDataController.getUserConfig().e()) {
+                        z10 = mediaDataController.getMessagesController().N3(gjVar.f24213k);
+                        jArr[0] = gj.Q1(mediaDataController.getUserConfig().e(), gjVar.f24213k);
+                    } else {
+                        z10 = false;
+                    }
+                    arrayList5.remove(gjVar);
+                    if (z10) {
+                        hashSet2.add(Long.valueOf(jArr[0]));
+                        z12 = true;
+                    }
+                    i18++;
+                    z12 = z12;
+                }
+                if (z12) {
+                    urVar.getMessagesController().D5(hashSet2);
+                    return;
+                }
+                return;
+            case 15:
+                if (urVar.getMessagesController().I1().q(arrayList)) {
+                    urVar.getMessagesController().I1().l();
+                    return;
+                }
+                return;
+            case 16:
+                for (int i20 = 0; i20 < arrayList.size(); i20++) {
+                    urVar.getNotificationCenter().k(48, arrayList.get(i20));
+                }
+                return;
+            case 17:
+                urVar.getFileLoader().g(arrayList);
+                return;
+            case 18:
+                urVar.getClass();
                 try {
                     try {
-                        ArrayList arrayList7 = new ArrayList();
-                        SQLiteDatabase sQLiteDatabase2 = trVar.f27082b;
-                        Locale locale2 = Locale.US;
-                        SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized("SELECT uid, type, data, parent FROM download_queue WHERE type = " + i10 + " ORDER BY date DESC LIMIT 3", new Object[0]);
-                        while (queryFinalized2.next()) {
-                            try {
-                                ?? obj2 = new Object();
-                                obj2.f23067b = queryFinalized2.intValue(1);
-                                obj2.f23068c = queryFinalized2.longValue(0);
-                                obj2.f23070f = queryFinalized2.stringValue(3);
-                                NativeByteBuffer byteBufferValue = queryFinalized2.byteBufferValue(2);
-                                if (byteBufferValue != null) {
-                                    TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                    byteBufferValue.reuse();
-                                    TLRPC.Document document = TLdeserialize.document;
-                                    if (document != null) {
-                                        obj2.f23066a = document;
-                                        if (!fj.K4(document)) {
-                                            if (!fj.Q4(TLdeserialize.document)) {
-                                                if (fj.i4(TLdeserialize.document)) {
-                                                }
-                                                z12 = false;
-                                                obj2.d = z12;
-                                            }
-                                        }
-                                        int i12 = TLdeserialize.ttl_seconds;
-                                        if ((i12 > 0 && i12 <= 60) || i12 == Integer.MAX_VALUE) {
-                                            z12 = true;
-                                            obj2.d = z12;
-                                        }
-                                        z12 = false;
-                                        obj2.d = z12;
-                                    } else {
-                                        TLRPC.Photo photo = TLdeserialize.photo;
-                                        if (photo != null) {
-                                            obj2.f23066a = photo;
-                                            int i13 = TLdeserialize.ttl_seconds;
-                                            if ((i13 > 0 && i13 <= 60) || i13 == Integer.MAX_VALUE) {
-                                                z10 = true;
-                                            } else {
-                                                z10 = false;
-                                            }
-                                            obj2.d = z10;
-                                        }
-                                    }
-                                    if ((TLdeserialize.flags & Integer.MIN_VALUE) != 0) {
-                                        z11 = true;
-                                    } else {
-                                        z11 = false;
-                                    }
-                                    obj2.f23069e = z11;
-                                }
-                                arrayList7.add(obj2);
-                            } catch (Exception e14) {
-                                e = e14;
-                                sQLiteCursor = queryFinalized2;
-                                trVar.o(e, true);
-                                if (sQLiteCursor != null) {
-                                    sQLiteCursor.dispose();
-                                    return;
-                                }
-                                return;
-                            } catch (Throwable th4) {
-                                th = th4;
-                                sQLiteCursor = queryFinalized2;
-                                if (sQLiteCursor != null) {
-                                    sQLiteCursor.dispose();
-                                }
-                                throw th;
-                            }
+                        urVar.f27252b.beginTransaction();
+                        try {
+                            executeFast = urVar.f27252b.executeFast("UPDATE messages_v2 SET imp = ? WHERE mid = ? AND uid = ?");
+                        } catch (Exception e13) {
+                            e = e13;
+                        } catch (Throwable th4) {
+                            th = th4;
                         }
-                        queryFinalized2.dispose();
-                        g0.g3(new tp(trVar, i10, arrayList7, 2));
-                        return;
                     } catch (Throwable th5) {
                         th = th5;
                     }
+                } catch (Exception e14) {
+                    e = e14;
+                }
+                try {
+                    int size3 = arrayList.size();
+                    for (int i21 = 0; i21 < size3; i21++) {
+                        TLRPC.Message message = (TLRPC.Message) arrayList.get(i21);
+                        executeFast.requery();
+                        int i22 = message.stickerVerified;
+                        if (i22 == 0) {
+                            i7 = 1;
+                        } else if (i22 == 2) {
+                            i7 = 2;
+                        } else {
+                            i7 = 0;
+                        }
+                        executeFast.bindInteger(1, i7);
+                        executeFast.bindInteger(2, message.f28455id);
+                        executeFast.bindLong(3, gj.B0(message));
+                        executeFast.step();
+                    }
+                    executeFast.dispose();
+                    urVar.f27252b.commitTransaction();
+                    return;
                 } catch (Exception e15) {
                     e = e15;
-                }
-            default:
-                mp messagesController = trVar.getMessagesController();
-                j10 userConfig = messagesController.getUserConfig();
-                int i14 = this.f26716c;
-                if (userConfig.g(i14)[0] == 2147483647L) {
-                    if (i14 == 1) {
-                        messagesController.f25721l0 = false;
-                        messagesController.D();
+                    sQLitePreparedStatement = executeFast;
+                    i11 = 1;
+                    urVar.o(e, true);
+                    if (i11 != 0 && (sQLiteDatabase2 = urVar.f27252b) != null) {
+                        sQLiteDatabase2.commitTransaction();
+                    }
+                    if (sQLitePreparedStatement != null) {
+                        sQLitePreparedStatement.dispose();
                         return;
                     }
-                    messagesController.q4(i14);
+                    return;
+                } catch (Throwable th6) {
+                    th = th6;
+                    sQLitePreparedStatement = executeFast;
+                    i11 = 1;
+                    if (i11 != 0 && (sQLiteDatabase = urVar.f27252b) != null) {
+                        sQLiteDatabase.commitTransaction();
+                    }
+                    if (sQLitePreparedStatement != null) {
+                        sQLitePreparedStatement.dispose();
+                    }
+                    throw th;
+                }
+            case 19:
+                urVar.getMessagesController().Z3(arrayList, true);
+                return;
+            case 20:
+                urVar.getMessagesController().f4(arrayList, true);
+                return;
+            default:
+                urVar.getClass();
+                try {
+                    String join2 = TextUtils.join(",", arrayList);
+                    urVar.f27252b.executeFast("DELETE FROM contacts WHERE uid IN(" + join2 + ")").stepThis().dispose();
+                    return;
+                } catch (Exception e16) {
+                    urVar.o(e16, true);
                     return;
                 }
-                messagesController.a3(i14, 0, 10, false, new pk(messagesController, i14, 2));
-                return;
         }
     }
 }

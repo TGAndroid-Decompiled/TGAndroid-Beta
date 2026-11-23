@@ -74,7 +74,7 @@ public abstract class h1 {
             }
         }
         try {
-            if ("com.sec.android.app.sbrowser".equalsIgnoreCase(f465a) && (applicationInfo = (packageManager = org.telegram.messenger.t0.f26941b.getPackageManager()).getApplicationInfo("com.android.chrome", 0)) != null && applicationInfo.enabled) {
+            if ("com.sec.android.app.sbrowser".equalsIgnoreCase(f465a) && (applicationInfo = (packageManager = org.telegram.messenger.t0.f26931b.getPackageManager()).getApplicationInfo("com.android.chrome", 0)) != null && applicationInfo.enabled) {
                 packageManager.getPackageInfo("com.android.chrome", 1);
                 f465a = "com.android.chrome";
             }

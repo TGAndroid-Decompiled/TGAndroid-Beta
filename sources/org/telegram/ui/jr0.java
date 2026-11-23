@@ -9,10 +9,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class jr0 implements org.telegram.ui.Components.tx {
-    public final pr0 f49082a;
+    public final pr0 f49086a;
 
     public jr0(pr0 pr0Var) {
-        this.f49082a = pr0Var;
+        this.f49086a = pr0Var;
     }
 
     @Override
@@ -53,9 +53,9 @@ public final class jr0 implements org.telegram.ui.Components.tx {
         } else {
             z10 = false;
         }
-        pr0 pr0Var = this.f49082a;
+        pr0 pr0Var = this.f49086a;
         pr0Var.C0 = z10;
-        pr0Var.f50936e.requestLayout();
+        pr0Var.f50940e.requestLayout();
     }
 
     @Override
@@ -65,7 +65,7 @@ public final class jr0 implements org.telegram.ui.Components.tx {
 
     @Override
     public final boolean k() {
-        EditTextBoldCursor editField = this.f49082a.f50934c0.getEditField();
+        EditTextBoldCursor editField = this.f49086a.f50938c0.getEditField();
         if (editField == null) {
             return false;
         }
@@ -75,7 +75,7 @@ public final class jr0 implements org.telegram.ui.Components.tx {
 
     @Override
     public final void l(String str) {
-        EditTextBoldCursor editField = this.f49082a.f50934c0.getEditField();
+        EditTextBoldCursor editField = this.f49086a.f50938c0.getEditField();
         if (editField == null) {
             return;
         }
@@ -96,16 +96,16 @@ public final class jr0 implements org.telegram.ui.Components.tx {
     @Override
     public final void n() {
         org.telegram.ui.ActionBar.h6 h6Var;
-        pr0 pr0Var = this.f49082a;
+        pr0 pr0Var = this.f49086a;
         Activity parentActivity = pr0Var.getParentActivity();
         h6Var = ((org.telegram.ui.ActionBar.g2) pr0Var).resourceProvider;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, parentActivity, h6Var);
-        String N0 = org.telegram.messenger.gd.N0(2131752056, null);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+        String N0 = org.telegram.messenger.hd.N0(2131752056, null);
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
         t1Var.S = N0;
-        t1Var.U = org.telegram.messenger.gd.N0(2131752057, null);
-        alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131752087, null), new qi0(this, 4));
-        alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131752577, null), null);
+        t1Var.U = org.telegram.messenger.hd.N0(2131752057, null);
+        alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131752087, null), new qi0(this, 4));
+        alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131752577, null), null);
         alertDialog$Builder.p();
     }
 
@@ -117,8 +117,8 @@ public final class jr0 implements org.telegram.ui.Components.tx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.y5 y5Var;
-        pr0 pr0Var = this.f49082a;
-        EditTextBoldCursor editField = pr0Var.f50934c0.getEditField();
+        pr0 pr0Var = this.f49086a;
+        EditTextBoldCursor editField = pr0Var.f50938c0.getEditField();
         if (editField == null) {
             return;
         }
@@ -133,7 +133,7 @@ public final class jr0 implements org.telegram.ui.Components.tx {
             } else {
                 y5Var = new org.telegram.ui.Components.y5(j3, editField.getPaint().getFontMetricsInt());
             }
-            y5Var.cacheType = pr0Var.S.f40094c;
+            y5Var.cacheType = pr0Var.S.f40087c;
             spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
             editField.setText(editField.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -145,7 +145,7 @@ public final class jr0 implements org.telegram.ui.Components.tx {
 
     @Override
     public final boolean z() {
-        return this.f49082a.C0;
+        return this.f49086a.C0;
     }
 
     @Override
@@ -193,7 +193,7 @@ public final class jr0 implements org.telegram.ui.Components.tx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.bj bjVar, boolean z10, int i7) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.cj cjVar, boolean z10, int i7) {
     }
 
     @Override

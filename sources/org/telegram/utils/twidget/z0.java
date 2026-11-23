@@ -20,54 +20,54 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicLong;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
 import org.telegram.messenger.s2;
 import org.telegram.ui.Components.es0;
 import org.telegram.utils.twidget.WidgetEngineService;
 public final class z0 extends l {
-    public int f55042i;
-    public long f55043j;
-    public Context f55047n;
-    public boolean f55048o;
-    public int f55050q;
-    public int f55051r;
-    public long f55052s;
-    public long f55053t;
-    public boolean f55054u;
+    public int f55046i;
+    public long f55047j;
+    public Context f55051n;
+    public boolean f55052o;
+    public int f55054q;
+    public int f55055r;
+    public long f55056s;
+    public long f55057t;
+    public boolean f55058u;
     public Boolean v;
-    public volatile boolean f55055w;
-    public final o0 f55056x;
-    public final o0 f55057y;
-    public static final z0 f55038z = new z0();
+    public volatile boolean f55059w;
+    public final o0 f55060x;
+    public final o0 f55061y;
+    public static final z0 f55042z = new z0();
     public static final d3.b A = new d3.b(3);
     public static volatile int B = -1;
     public static volatile boolean C = true;
-    public final Object f55039e = new Object();
-    public final Handler f55040f = new Handler(Looper.getMainLooper());
-    public final ArrayList f55041g = new ArrayList();
+    public final Object f55043e = new Object();
+    public final Handler f55044f = new Handler(Looper.getMainLooper());
+    public final ArrayList f55045g = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final ConcurrentHashMap f55044k = new ConcurrentHashMap();
-    public final AtomicLong f55045l = new AtomicLong();
-    public final Semaphore f55046m = new Semaphore(12);
-    public boolean f55049p = true;
+    public final ConcurrentHashMap f55048k = new ConcurrentHashMap();
+    public final AtomicLong f55049l = new AtomicLong();
+    public final Semaphore f55050m = new Semaphore(12);
+    public boolean f55053p = true;
 
     public z0() {
-        this.f55054u = Build.VERSION.SDK_INT >= 29;
-        this.f55056x = new Runnable(this) {
-            public final z0 f54911b;
+        this.f55058u = Build.VERSION.SDK_INT >= 29;
+        this.f55060x = new Runnable(this) {
+            public final z0 f54915b;
 
             {
-                this.f54911b = this;
+                this.f54915b = this;
             }
 
             private final void a() {
                 int i7;
-                z0 z0Var = this.f54911b;
-                synchronized (z0Var.f55039e) {
+                z0 z0Var = this.f54915b;
+                synchronized (z0Var.f55043e) {
                     try {
-                        if (SystemClock.elapsedRealtime() < z0Var.f55043j) {
-                            i7 = z0Var.f55042i;
+                        if (SystemClock.elapsedRealtime() < z0Var.f55047j) {
+                            i7 = z0Var.f55046i;
                         } else {
                             i7 = 1;
                         }
@@ -89,11 +89,11 @@ public final class z0 extends l {
                         a();
                         return;
                     default:
-                        z0 z0Var = this.f54911b;
-                        synchronized (z0Var.f55039e) {
+                        z0 z0Var = this.f54915b;
+                        synchronized (z0Var.f55043e) {
                             try {
-                                if (!z0Var.f55049p) {
-                                    ArrayList arrayList = new ArrayList(z0Var.f55041g);
+                                if (!z0Var.f55053p) {
+                                    ArrayList arrayList = new ArrayList(z0Var.f55045g);
                                     int size = arrayList.size();
                                     int i7 = 0;
                                     while (i7 < size) {
@@ -113,20 +113,20 @@ public final class z0 extends l {
                 }
             }
         };
-        this.f55057y = new Runnable(this) {
-            public final z0 f54911b;
+        this.f55061y = new Runnable(this) {
+            public final z0 f54915b;
 
             {
-                this.f54911b = this;
+                this.f54915b = this;
             }
 
             private final void a() {
                 int i7;
-                z0 z0Var = this.f54911b;
-                synchronized (z0Var.f55039e) {
+                z0 z0Var = this.f54915b;
+                synchronized (z0Var.f55043e) {
                     try {
-                        if (SystemClock.elapsedRealtime() < z0Var.f55043j) {
-                            i7 = z0Var.f55042i;
+                        if (SystemClock.elapsedRealtime() < z0Var.f55047j) {
+                            i7 = z0Var.f55046i;
                         } else {
                             i7 = 1;
                         }
@@ -148,11 +148,11 @@ public final class z0 extends l {
                         a();
                         return;
                     default:
-                        z0 z0Var = this.f54911b;
-                        synchronized (z0Var.f55039e) {
+                        z0 z0Var = this.f54915b;
+                        synchronized (z0Var.f55043e) {
                             try {
-                                if (!z0Var.f55049p) {
-                                    ArrayList arrayList = new ArrayList(z0Var.f55041g);
+                                if (!z0Var.f55053p) {
+                                    ArrayList arrayList = new ArrayList(z0Var.f55045g);
                                     int size = arrayList.size();
                                     int i7 = 0;
                                     while (i7 < size) {
@@ -177,14 +177,14 @@ public final class z0 extends l {
     public static void r(z0 z0Var, y0 y0Var, String str) {
         String str2 = "";
         try {
-            List<ApplicationExitInfo> historicalProcessExitReasons = ((ActivityManager) z0Var.f55047n.getSystemService("activity")).getHistoricalProcessExitReasons(z0Var.f55047n.getPackageName(), y0Var.f55033s, 1);
+            List<ApplicationExitInfo> historicalProcessExitReasons = ((ActivityManager) z0Var.f55051n.getSystemService("activity")).getHistoricalProcessExitReasons(z0Var.f55051n.getPackageName(), y0Var.f55037s, 1);
             if (!historicalProcessExitReasons.isEmpty()) {
                 ApplicationExitInfo applicationExitInfo = historicalProcessExitReasons.get(0);
                 str2 = ": exit reason " + applicationExitInfo.getReason() + ", status " + applicationExitInfo.getStatus() + ", " + applicationExitInfo.getDescription() + ", rss " + (applicationExitInfo.getRss() >> 10) + " MB";
             }
         } catch (Exception unused) {
         }
-        Log.w("WidgetEngine", "process " + y0Var.f55026a + str2);
+        Log.w("WidgetEngine", "process " + y0Var.f55030a + str2);
         StringBuilder sb2 = new StringBuilder();
         sb2.append(str);
         p5.c.s(str2, sb2);
@@ -193,16 +193,16 @@ public final class z0 extends l {
     @Override
     public final void a(long j3, long j10, int i7, byte[] bArr) {
         b bVar;
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var == null) {
             bVar = null;
         } else {
-            bVar = x0Var.f55019a.f55028c;
+            bVar = x0Var.f55023a.f55032c;
         }
         b bVar2 = bVar;
         if (bVar2 != null) {
             try {
-                bVar2.u(x0Var.f55021c, j10, i7, bArr);
+                bVar2.u(x0Var.f55025c, j10, i7, bArr);
             } catch (RemoteException unused) {
             }
         }
@@ -216,15 +216,15 @@ public final class z0 extends l {
     @Override
     public final void d(long j3, byte[] bArr) {
         b bVar;
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var == null) {
             bVar = null;
         } else {
-            bVar = x0Var.f55019a.f55028c;
+            bVar = x0Var.f55023a.f55032c;
         }
         if (bVar != null) {
             try {
-                bVar.R(x0Var.f55021c, bArr);
+                bVar.R(x0Var.f55025c, bArr);
             } catch (RemoteException unused) {
             }
         }
@@ -232,17 +232,17 @@ public final class z0 extends l {
 
     @Override
     public final void e(long j3) {
-        x0 x0Var = (x0) this.f55044k.remove(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.remove(Long.valueOf(j3));
         if (x0Var != null) {
-            b bVar = x0Var.f55019a.f55028c;
+            b bVar = x0Var.f55023a.f55032c;
             if (bVar != null) {
                 try {
-                    bVar.J(x0Var.f55021c);
+                    bVar.J(x0Var.f55025c);
                 } catch (RemoteException unused) {
                 }
             }
-            synchronized (this.f55039e) {
-                w(x0Var.f55019a);
+            synchronized (this.f55043e) {
+                w(x0Var.f55023a);
             }
         }
     }
@@ -250,16 +250,16 @@ public final class z0 extends l {
     @Override
     public final void f(long j3, int i7, float f10, float f11, int i10) {
         b bVar;
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var == null) {
             bVar = null;
         } else {
-            bVar = x0Var.f55019a.f55028c;
+            bVar = x0Var.f55023a.f55032c;
         }
         b bVar2 = bVar;
         if (bVar2 != null) {
             try {
-                bVar2.Z0(x0Var.f55021c, i7, f10, f11, i10);
+                bVar2.Z0(x0Var.f55025c, i7, f10, f11, i10);
             } catch (RemoteException unused) {
             }
         }
@@ -267,24 +267,24 @@ public final class z0 extends l {
 
     @Override
     public final void g(long j3) {
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var != null) {
-            u(x0Var.f55019a, "did not answer a tick");
+            u(x0Var.f55023a, "did not answer a tick");
         }
     }
 
     @Override
     public final void i(long j3) {
         b bVar;
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var == null) {
             bVar = null;
         } else {
-            bVar = x0Var.f55019a.f55028c;
+            bVar = x0Var.f55023a.f55032c;
         }
         if (bVar != null) {
             try {
-                bVar.M0(x0Var.f55021c);
+                bVar.M0(x0Var.f55025c);
             } catch (RemoteException unused) {
             }
         }
@@ -293,15 +293,15 @@ public final class z0 extends l {
     @Override
     public final void j(long j3, byte[] bArr) {
         b bVar;
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var == null) {
             bVar = null;
         } else {
-            bVar = x0Var.f55019a.f55028c;
+            bVar = x0Var.f55023a.f55032c;
         }
         if (bVar != null) {
             try {
-                bVar.d1(x0Var.f55021c, bArr);
+                bVar.d1(x0Var.f55025c, bArr);
             } catch (RemoteException unused) {
             }
         }
@@ -310,15 +310,15 @@ public final class z0 extends l {
     @Override
     public final void k(long j3, byte[] bArr) {
         b bVar;
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var == null) {
             bVar = null;
         } else {
-            bVar = x0Var.f55019a.f55028c;
+            bVar = x0Var.f55023a.f55032c;
         }
         if (bVar != null) {
             try {
-                bVar.e0(x0Var.f55021c, bArr);
+                bVar.e0(x0Var.f55025c, bArr);
             } catch (RemoteException unused) {
             }
         }
@@ -327,16 +327,16 @@ public final class z0 extends l {
     @Override
     public final void l(long j3, float f10, boolean z10, boolean z11, boolean z12) {
         b bVar;
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var == null) {
             bVar = null;
         } else {
-            bVar = x0Var.f55019a.f55028c;
+            bVar = x0Var.f55023a.f55032c;
         }
         b bVar2 = bVar;
         if (bVar2 != null) {
             try {
-                bVar2.s(x0Var.f55021c, f10, z10, z11, z12);
+                bVar2.s(x0Var.f55025c, f10, z10, z11, z12);
             } catch (RemoteException unused) {
             }
         }
@@ -345,16 +345,16 @@ public final class z0 extends l {
     @Override
     public final void m(long j3, int i7, float f10, float f11, int i10, boolean z10, boolean z11, int i11, int i12) {
         b bVar;
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var == null) {
             bVar = null;
         } else {
-            bVar = x0Var.f55019a.f55028c;
+            bVar = x0Var.f55023a.f55032c;
         }
         b bVar2 = bVar;
         if (bVar2 != null) {
             try {
-                bVar2.j0(x0Var.f55021c, i7, f10, f11, i10, z10, z11, i11, i12);
+                bVar2.j0(x0Var.f55025c, i7, f10, f11, i10, z10, z11, i11, i12);
             } catch (RemoteException unused) {
             }
         }
@@ -363,15 +363,15 @@ public final class z0 extends l {
     @Override
     public final void o(long j3, boolean z10) {
         b bVar;
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var == null) {
             bVar = null;
         } else {
-            bVar = x0Var.f55019a.f55028c;
+            bVar = x0Var.f55023a.f55032c;
         }
         if (bVar != null) {
             try {
-                bVar.u0(x0Var.f55021c, z10);
+                bVar.u0(x0Var.f55025c, z10);
             } catch (RemoteException unused) {
             }
         }
@@ -380,15 +380,15 @@ public final class z0 extends l {
     @Override
     public final void p(long j3, float f10) {
         b bVar;
-        x0 x0Var = (x0) this.f55044k.get(Long.valueOf(j3));
+        x0 x0Var = (x0) this.f55048k.get(Long.valueOf(j3));
         if (x0Var == null) {
             bVar = null;
         } else {
-            bVar = x0Var.f55019a.f55028c;
+            bVar = x0Var.f55023a.f55032c;
         }
         if (bVar != null) {
             try {
-                bVar.G0(x0Var.f55021c, f10);
+                bVar.G0(x0Var.f55025c, f10);
             } catch (RemoteException unused) {
             }
         }
@@ -408,14 +408,14 @@ public final class z0 extends l {
         if (v > 1) {
             int i13 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
             if (i13 != 0) {
-                ArrayList arrayList2 = this.f55041g;
+                ArrayList arrayList2 = this.f55045g;
                 int size = arrayList2.size();
                 int i14 = 0;
                 while (i14 < size) {
                     Object obj = arrayList2.get(i14);
                     i14++;
                     y0Var2 = (y0) obj;
-                    if (y0Var2.d == 0 && y0Var2.f55030f && y0Var2.f55032r == j3 && y0Var2.f55028c != null) {
+                    if (y0Var2.d == 0 && y0Var2.f55034f && y0Var2.f55036r == j3 && y0Var2.f55032c != null) {
                         break;
                     }
                 }
@@ -431,7 +431,7 @@ public final class z0 extends l {
                         Object obj2 = arrayList3.get(i15);
                         i15++;
                         y0 y0Var4 = (y0) obj2;
-                        if (y0Var4.f55028c != null) {
+                        if (y0Var4.f55032c != null) {
                             y0Var2 = y0Var4;
                             break;
                         }
@@ -443,8 +443,8 @@ public final class z0 extends l {
                 this.h.remove(y0Var2);
             }
             if (y0Var2 == null) {
-                if (this.f55041g.size() >= v) {
-                    ArrayList arrayList4 = this.f55041g;
+                if (this.f55045g.size() >= v) {
+                    ArrayList arrayList4 = this.f55045g;
                     int size3 = arrayList4.size();
                     int i16 = 0;
                     while (true) {
@@ -454,31 +454,31 @@ public final class z0 extends l {
                         Object obj3 = arrayList4.get(i16);
                         i16++;
                         y0 y0Var5 = (y0) obj3;
-                        if (y0Var5.d == 0 && y0Var5.f55030f) {
+                        if (y0Var5.d == 0 && y0Var5.f55034f) {
                             t(y0Var5);
                             break;
                         }
                     }
                 }
-                if (this.f55041g.size() < v) {
+                if (this.f55045g.size() < v) {
                     y0Var2 = x(false);
                 }
             }
             if (y0Var2 == null && i13 != 0) {
-                ArrayList arrayList5 = this.f55041g;
+                ArrayList arrayList5 = this.f55045g;
                 int size4 = arrayList5.size();
                 int i17 = 0;
                 while (i17 < size4) {
                     Object obj4 = arrayList5.get(i17);
                     i17++;
                     y0 y0Var6 = (y0) obj4;
-                    if (y0Var6.f55030f && y0Var6.f55032r == j3 && (y0Var2 == null || y0Var6.d < y0Var2.d)) {
+                    if (y0Var6.f55034f && y0Var6.f55036r == j3 && (y0Var2 == null || y0Var6.d < y0Var2.d)) {
                         y0Var2 = y0Var6;
                     }
                 }
             }
             if (y0Var2 == null) {
-                ArrayList arrayList6 = this.f55041g;
+                ArrayList arrayList6 = this.f55045g;
                 int size5 = arrayList6.size();
                 int i18 = 0;
                 y0 y0Var7 = null;
@@ -487,22 +487,22 @@ public final class z0 extends l {
                     Object obj5 = arrayList6.get(i18);
                     i18++;
                     y0 y0Var9 = (y0) obj5;
-                    if (!y0Var9.f55030f || y0Var9.d == 0 || y0Var9.f55029e > 0) {
+                    if (!y0Var9.f55034f || y0Var9.d == 0 || y0Var9.f55033e > 0) {
                         j11 = j12;
                         i7 = size5;
                     } else {
-                        Iterator it = this.f55044k.values().iterator();
+                        Iterator it = this.f55048k.values().iterator();
                         while (true) {
                             if (it.hasNext()) {
                                 x0 x0Var = (x0) it.next();
-                                if (x0Var.f55019a == y0Var9) {
-                                    p1 session = x0Var.f55020b.session();
+                                if (x0Var.f55023a == y0Var9) {
+                                    p1 session = x0Var.f55024b.session();
                                     if (session.L && !session.A) {
-                                        if (y0Var9.f55032r == j12) {
+                                        if (y0Var9.f55036r == j12) {
                                             j11 = j12;
                                             i7 = size5;
                                         } else {
-                                            ArrayList arrayList7 = this.f55041g;
+                                            ArrayList arrayList7 = this.f55045g;
                                             int size6 = arrayList7.size();
                                             j11 = j12;
                                             int i19 = i11;
@@ -511,9 +511,9 @@ public final class z0 extends l {
                                                 Object obj6 = arrayList7.get(i19);
                                                 i19++;
                                                 y0 y0Var10 = (y0) obj6;
-                                                if (y0Var10.f55030f) {
+                                                if (y0Var10.f55034f) {
                                                     i10 = size5;
-                                                    if (y0Var10.f55032r == y0Var9.f55032r) {
+                                                    if (y0Var10.f55036r == y0Var9.f55036r) {
                                                         i20++;
                                                     }
                                                 } else {
@@ -554,16 +554,16 @@ public final class z0 extends l {
                 if (y0Var7 == null) {
                     return null;
                 }
-                Iterator it2 = this.f55044k.entrySet().iterator();
+                Iterator it2 = this.f55048k.entrySet().iterator();
                 while (it2.hasNext()) {
                     x0 x0Var2 = (x0) ((Map.Entry) it2.next()).getValue();
-                    if (x0Var2.f55019a == y0Var7) {
+                    if (x0Var2.f55023a == y0Var7) {
                         arrayList.add(x0Var2);
                         it2.remove();
                     }
                 }
-                if (s2.f26749a) {
-                    Log.d("WidgetEngine", "process " + y0Var7.f55026a + " with " + y0Var7.d + " sessions makes room for another bot");
+                if (s2.f26730a) {
+                    Log.d("WidgetEngine", "process " + y0Var7.f55030a + " with " + y0Var7.d + " sessions makes room for another bot");
                 }
                 t(y0Var7);
                 y0Var2 = x(false);
@@ -572,20 +572,20 @@ public final class z0 extends l {
             }
         } else {
             j10 = 0;
-            if (!this.f55041g.isEmpty()) {
-                y0Var = (y0) this.f55041g.get(0);
+            if (!this.f55045g.isEmpty()) {
+                y0Var = (y0) this.f55045g.get(0);
             } else {
                 y0Var = null;
             }
             if (y0Var == null) {
                 while (Build.VERSION.SDK_INT < 29) {
-                    long elapsedRealtime = this.f55053t - SystemClock.elapsedRealtime();
+                    long elapsedRealtime = this.f55057t - SystemClock.elapsedRealtime();
                     if (elapsedRealtime <= 0) {
                         break;
                     }
                     try {
-                        this.f55039e.wait(elapsedRealtime);
-                        if (!this.f55041g.isEmpty()) {
+                        this.f55043e.wait(elapsedRealtime);
+                        if (!this.f55045g.isEmpty()) {
                             return s(arrayList, j3);
                         }
                     } catch (InterruptedException unused) {
@@ -597,15 +597,15 @@ public final class z0 extends l {
                 y0Var2 = y0Var;
             }
         }
-        this.f55040f.removeCallbacks(y0Var2.f55035x);
-        if (!y0Var2.f55030f) {
-            y0Var2.f55032r = j3;
-        } else if (y0Var2.f55032r != j3) {
-            y0Var2.f55032r = j10;
+        this.f55044f.removeCallbacks(y0Var2.f55039x);
+        if (!y0Var2.f55034f) {
+            y0Var2.f55036r = j3;
+        } else if (y0Var2.f55036r != j3) {
+            y0Var2.f55036r = j10;
         }
-        y0Var2.f55030f = true;
+        y0Var2.f55034f = true;
         y0Var2.d++;
-        y0Var2.f55029e++;
+        y0Var2.f55033e++;
         return y0Var2;
     }
 
@@ -614,54 +614,54 @@ public final class z0 extends l {
             return;
         }
         y0Var.h = true;
-        if (y0Var.f55028c != null && y0Var.f55028c.asBinder().isBinderAlive()) {
-            this.f55053t = SystemClock.elapsedRealtime() + 1000;
+        if (y0Var.f55032c != null && y0Var.f55032c.asBinder().isBinderAlive()) {
+            this.f55057t = SystemClock.elapsedRealtime() + 1000;
         }
-        y0Var.f55028c = null;
-        this.f55041g.remove(y0Var);
+        y0Var.f55032c = null;
+        this.f55045g.remove(y0Var);
         this.h.remove(y0Var);
-        this.f55040f.removeCallbacks(y0Var.f55035x);
+        this.f55044f.removeCallbacks(y0Var.f55039x);
         try {
-            this.f55047n.unbindService(y0Var);
+            this.f55051n.unbindService(y0Var);
         } catch (RuntimeException unused) {
         }
-        this.f55039e.notifyAll();
+        this.f55043e.notifyAll();
     }
 
     public final void u(y0 y0Var, String str) {
         ArrayList arrayList = new ArrayList();
-        synchronized (this.f55039e) {
+        synchronized (this.f55043e) {
             try {
                 if (y0Var.h) {
                     return;
                 }
-                Iterator it = this.f55044k.entrySet().iterator();
+                Iterator it = this.f55048k.entrySet().iterator();
                 while (it.hasNext()) {
                     x0 x0Var = (x0) ((Map.Entry) it.next()).getValue();
-                    if (x0Var.f55019a == y0Var) {
+                    if (x0Var.f55023a == y0Var) {
                         arrayList.add(x0Var);
                         it.remove();
                     }
                 }
                 if (str != null) {
-                    if (y0Var.f55028c == null && y0Var.f55027b) {
-                        this.f55054u = false;
+                    if (y0Var.f55032c == null && y0Var.f55031b) {
+                        this.f55058u = false;
                     }
-                    if (!y0Var.f55030f) {
-                        int i7 = this.f55051r + 1;
-                        this.f55051r = i7;
+                    if (!y0Var.f55034f) {
+                        int i7 = this.f55055r + 1;
+                        this.f55055r = i7;
                         if (i7 >= 3) {
-                            this.f55052s = SystemClock.elapsedRealtime() + 60000;
+                            this.f55056s = SystemClock.elapsedRealtime() + 60000;
                         }
                     }
                 }
                 t(y0Var);
                 y();
                 if (str != null) {
-                    String str2 = "widget engine process " + y0Var.f55026a + " " + str + " with " + arrayList.size() + " sessions";
+                    String str2 = "widget engine process " + y0Var.f55030a + " " + str + " with " + arrayList.size() + " sessions";
                     Log.w("WidgetEngine", str2);
-                    if (Build.VERSION.SDK_INT >= 30 && y0Var.f55033s != 0 && this.f55047n != null) {
-                        Utilities.f22807e.d(new es0((Object) this, (Object) y0Var, (Serializable) str2, 16), 700L);
+                    if (Build.VERSION.SDK_INT >= 30 && y0Var.f55037s != 0 && this.f55051n != null) {
+                        Utilities.f22810e.d(new es0((Object) this, (Object) y0Var, (Serializable) str2, 16), 700L);
                     } else {
                         a8.b(str2);
                     }
@@ -671,7 +671,7 @@ public final class z0 extends l {
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    ((x0) obj).f55020b.session().b(false);
+                    ((x0) obj).f55024b.session().b(false);
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -690,7 +690,7 @@ public final class z0 extends l {
         if (i10 >= 0) {
             return Math.max(1, Math.min(8, i10));
         }
-        if (this.v == null && (context = this.f55047n) != null) {
+        if (this.v == null && (context = this.f55051n) != null) {
             ActivityManager activityManager = (ActivityManager) context.getSystemService("activity");
             if (activityManager != null && activityManager.isLowRamDevice()) {
                 z10 = true;
@@ -704,7 +704,7 @@ public final class z0 extends l {
             return 1;
         }
         try {
-            i7 = ((org.telegram.messenger.j0) mp.u1(j10.f24798t0).A7.f26198v0.f15505b).f24792c;
+            i7 = ((org.telegram.messenger.j0) np.u1(k10.f24968t0).A7.f26250v0.f15508b).f24812c;
         } catch (Exception unused) {
             i7 = 6;
         }
@@ -713,19 +713,19 @@ public final class z0 extends l {
 
     public final void w(y0 y0Var) {
         boolean z10 = y0Var.h;
-        j0 j0Var = y0Var.f55035x;
+        j0 j0Var = y0Var.f55039x;
         if (!z10) {
             int i7 = y0Var.d - 1;
             y0Var.d = i7;
             if (i7 <= 0) {
-                this.f55039e.notifyAll();
-                Handler handler = this.f55040f;
+                this.f55043e.notifyAll();
+                Handler handler = this.f55044f;
                 handler.removeCallbacks(j0Var);
                 if (v() <= 1) {
-                    if (!this.f55048o || !this.f55049p) {
+                    if (!this.f55052o || !this.f55053p) {
                         handler.postDelayed(j0Var, 30000L);
                     }
-                } else if (y0Var.f55032r != 0) {
+                } else if (y0Var.f55036r != 0) {
                     handler.postDelayed(j0Var, 5000L);
                 } else {
                     t(y0Var);
@@ -739,28 +739,28 @@ public final class z0 extends l {
         boolean z11;
         Class cls;
         boolean z12;
-        if (this.f55054u && C) {
+        if (this.f55058u && C) {
             z11 = true;
         } else {
             z11 = false;
         }
-        int i7 = this.f55050q + 1;
-        this.f55050q = i7;
+        int i7 = this.f55054q + 1;
+        this.f55054q = i7;
         y0 y0Var = new y0(this, i7, z11);
-        y0Var.f55031n = z10;
-        Context context = this.f55047n;
+        y0Var.f55035n = z10;
+        Context context = this.f55051n;
         if (z11) {
             cls = WidgetEngineService.Forked.class;
         } else {
             cls = WidgetEngineService.class;
         }
         Intent intent = new Intent(context, cls);
-        boolean z13 = s2.f26749a;
+        boolean z13 = s2.f26730a;
         try {
             if (Build.VERSION.SDK_INT >= 29) {
-                z12 = this.f55047n.bindIsolatedService(intent, 65, "w" + y0Var.f55026a, A, y0Var);
+                z12 = this.f55051n.bindIsolatedService(intent, 65, "w" + y0Var.f55030a, A, y0Var);
             } else {
-                z12 = this.f55047n.bindService(intent, y0Var, 65);
+                z12 = this.f55051n.bindService(intent, y0Var, 65);
             }
         } catch (RuntimeException e10) {
             a8.g(e10, true);
@@ -768,40 +768,40 @@ public final class z0 extends l {
         }
         if (!z12) {
             try {
-                this.f55047n.unbindService(y0Var);
+                this.f55051n.unbindService(y0Var);
             } catch (RuntimeException unused) {
             }
             if (z11) {
-                this.f55054u = false;
+                this.f55058u = false;
                 return x(z10);
             }
             throw new IllegalStateException("Widget engine service is unavailable");
         }
-        this.f55041g.add(y0Var);
+        this.f55045g.add(y0Var);
         return y0Var;
     }
 
     public final void y() {
         int i7;
-        if (this.f55047n != null && this.f55048o && this.f55049p && !this.f55055w) {
+        if (this.f55051n != null && this.f55052o && this.f55053p && !this.f55059w) {
             int v = v();
             try {
                 long elapsedRealtime = SystemClock.elapsedRealtime();
-                if (Build.VERSION.SDK_INT < 29 && elapsedRealtime < this.f55053t) {
-                    this.f55040f.removeCallbacks(this.f55056x);
-                    this.f55040f.postDelayed(this.f55056x, (this.f55053t - elapsedRealtime) + 20);
+                if (Build.VERSION.SDK_INT < 29 && elapsedRealtime < this.f55057t) {
+                    this.f55044f.removeCallbacks(this.f55060x);
+                    this.f55044f.postDelayed(this.f55060x, (this.f55057t - elapsedRealtime) + 20);
                 } else if (v <= 1) {
-                    if (this.f55041g.isEmpty()) {
+                    if (this.f55045g.isEmpty()) {
                         x(true);
                     }
                 } else {
-                    if (elapsedRealtime < this.f55043j) {
-                        i7 = this.f55042i;
+                    if (elapsedRealtime < this.f55047j) {
+                        i7 = this.f55046i;
                     } else {
                         i7 = 1;
                     }
-                    while (this.h.size() < i7 && this.f55041g.size() < v) {
-                        if (this.f55051r < 3 || elapsedRealtime >= this.f55052s) {
+                    while (this.h.size() < i7 && this.f55045g.size() < v) {
+                        if (this.f55055r < 3 || elapsedRealtime >= this.f55056s) {
                             this.h.add(x(true));
                         } else {
                             return;

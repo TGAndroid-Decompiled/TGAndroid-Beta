@@ -4,14 +4,14 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import java.util.Iterator;
 public final class d implements a, dh.b, si.a {
-    public final a f59038a;
-    public final a f59039b;
-    public final xe.b f59040c = new xe.b();
+    public final a f59042a;
+    public final a f59043b;
+    public final xe.b f59044c = new xe.b();
     public float d;
 
     public d(a aVar, a aVar2) {
-        this.f59038a = aVar;
-        this.f59039b = aVar2;
+        this.f59042a = aVar;
+        this.f59043b = aVar2;
     }
 
     public static si.a h(a aVar) {
@@ -38,7 +38,7 @@ public final class d implements a, dh.b, si.a {
 
     @Override
     public final void c(fh.g gVar) {
-        this.f59040c.add(gVar);
+        this.f59044c.add(gVar);
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class d implements a, dh.b, si.a {
             i10 = i7;
             canvas2 = canvas;
             rectF2 = rectF;
-            h(this.f59038a).d(f12, f13, i10, canvas2, rectF2);
+            h(this.f59042a).d(f12, f13, i10, canvas2, rectF2);
         } else {
             f12 = f10;
             f13 = f11;
@@ -70,7 +70,7 @@ public final class d implements a, dh.b, si.a {
             RectF rectF3 = rectF2;
             Canvas canvas3 = canvas2;
             int i11 = i10;
-            h(this.f59039b).d(f12, f13, i11, canvas3, rectF3);
+            h(this.f59043b).d(f12, f13, i11, canvas3, rectF3);
             if (this.d < 1.0f) {
                 canvas3.restore();
             }
@@ -89,15 +89,15 @@ public final class d implements a, dh.b, si.a {
 
     @Override
     public final boolean g() {
-        if (h(this.f59038a) != null && h(this.f59039b) != null) {
+        if (h(this.f59042a) != null && h(this.f59043b) != null) {
             return true;
         }
         return false;
     }
 
     public final si.a i() {
-        si.a h = h(this.f59038a);
-        si.a h7 = h(this.f59039b);
+        si.a h = h(this.f59042a);
+        si.a h7 = h(this.f59043b);
         if (h.e() <= h7.e()) {
             return h;
         }
@@ -107,7 +107,7 @@ public final class d implements a, dh.b, si.a {
     public final void j(float f10) {
         if (this.d != f10) {
             this.d = f10;
-            Iterator it = this.f59040c.iterator();
+            Iterator it = this.f59044c.iterator();
             while (it.hasNext()) {
                 fh.g gVar = (fh.g) it.next();
                 gVar.updateColors();
@@ -124,7 +124,7 @@ public final class d implements a, dh.b, si.a {
         float f17;
         Canvas canvas2;
         if (this.d < 1.0f) {
-            this.f59038a.o(f10, f11, f12, f13, canvas);
+            this.f59042a.o(f10, f11, f12, f13, canvas);
             f14 = f10;
             canvas2 = canvas;
             f17 = f13;
@@ -143,7 +143,7 @@ public final class d implements a, dh.b, si.a {
                 canvas2.saveLayerAlpha(f14, f15, f16, f17, (int) (f18 * 255.0f));
             }
             Canvas canvas3 = canvas2;
-            this.f59039b.o(f14, f15, f16, f17, canvas3);
+            this.f59043b.o(f14, f15, f16, f17, canvas3);
             if (this.d < 1.0f) {
                 canvas3.restore();
             }

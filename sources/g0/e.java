@@ -16,18 +16,18 @@ import gb.r;
 import hi.d3;
 import java.nio.charset.Charset;
 import kotlin.jvm.internal.j;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.i9;
-import org.telegram.messenger.pc;
-import org.telegram.messenger.r10;
-import org.telegram.messenger.ue;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.j9;
+import org.telegram.messenger.qc;
+import org.telegram.messenger.s10;
+import org.telegram.messenger.ve;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
-public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
-    public final int f13102a;
+public final class e implements k, l5.e, u9.d, gh.d, j9, s10 {
+    public final int f13105a;
 
     public e(int i7) {
-        this.f13102a = i7;
+        this.f13105a = i7;
     }
 
     public static ShortcutManager a(Object obj) {
@@ -40,22 +40,22 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
 
     @Override
     public Object apply(Object obj) {
-        switch (this.f13102a) {
+        switch (this.f13105a) {
             case 3:
-                return Integer.valueOf(((g2.b) obj).f13146r);
+                return Integer.valueOf(((g2.b) obj).f13149r);
             case 4:
                 o0 o0Var = (o0) obj;
-                String v = p0.f13425b.v(o0Var);
+                String v = p0.f13428b.v(o0Var);
                 j.d(v, "encode(...)");
                 o0Var.getClass();
-                m mVar = m.f13411b;
+                m mVar = m.f13414b;
                 Log.d("FirebaseSessions", "Session Event Type: SESSION_START");
-                byte[] bytes = v.getBytes(xd.a.f60486a);
+                byte[] bytes = v.getBytes(xd.a.f60490a);
                 j.d(bytes, "getBytes(...)");
                 return bytes;
             default:
-                ha.a.f14128b.getClass();
-                return ea.a.f10906a.v((u2) obj).getBytes(Charset.forName("UTF-8"));
+                ha.a.f14131b.getClass();
+                return ea.a.f10909a.v((u2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
 
@@ -63,7 +63,7 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
     public Object e(r7 r7Var) {
         n components$lambda$0;
         r components$lambda$1;
-        switch (this.f13102a) {
+        switch (this.f13105a) {
             case 6:
                 components$lambda$0 = FirebaseSessionsRegistrar.getComponents$lambda$0(r7Var);
                 return components$lambda$0;
@@ -78,9 +78,9 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
         Integer num = (Integer) obj;
         if (((Integer) number).intValue() == 0) {
             if (num.intValue() == 0) {
-                return gd.N0(2131748612, null);
+                return hd.N0(2131748612, null);
             }
-            return gd.H(',', "Stars", num.intValue());
+            return hd.H(',', "Stars", num.intValue());
         }
         return "" + num;
     }
@@ -98,27 +98,27 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
         float f18;
         float f19;
         float f20;
-        switch (this.f13102a) {
+        switch (this.f13105a) {
             case 9:
-                if (pc.e(262144)) {
+                if (qc.e(262144)) {
                     f10 = 0.82f;
                 } else {
                     f10 = 0.76f;
                 }
-                int w02 = m6.w0(m6.f29378d6, h6Var);
+                int w02 = m6.w0(m6.f29381d6, h6Var);
                 if (z10) {
                     return m6.r1(0.9f, -15658735);
                 }
                 return i0.n(f10, w02, -14145496);
             case 10:
-                if (pc.e(262144)) {
+                if (qc.e(262144)) {
                     f11 = 0.85f;
                 } else {
                     f11 = 0.76f;
                 }
-                return m6.r1(f11, m6.w0(m6.f29378d6, h6Var));
+                return m6.r1(f11, m6.w0(m6.f29381d6, h6Var));
             case 11:
-                if (!pc.e(256)) {
+                if (!qc.e(256)) {
                     return m6.x0(null, m6.G8, false);
                 }
                 int x02 = m6.x0(null, m6.G8, false);
@@ -129,32 +129,32 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
                 }
                 return m6.r1(f12, x02);
             case 12:
-                if (pc.e(262144)) {
+                if (qc.e(262144)) {
                     f13 = 0.85f;
                 } else {
                     f13 = 0.76f;
                 }
-                return i0.n(f13, m6.w0(m6.f29378d6, h6Var), m6.w0(m6.Ql, h6Var));
+                return i0.n(f13, m6.w0(m6.f29381d6, h6Var), m6.w0(m6.Ql, h6Var));
             case 13:
-                if (pc.e(262144)) {
+                if (qc.e(262144)) {
                     f14 = 0.85f;
                 } else {
                     f14 = 0.76f;
                 }
-                return i0.n(f14, m6.w0(m6.f29378d6, h6Var), m6.w0(m6.Je, h6Var));
+                return i0.n(f14, m6.w0(m6.f29381d6, h6Var), m6.w0(m6.Je, h6Var));
             case 14:
-                if (pc.e(262144)) {
+                if (qc.e(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.8f;
                 }
-                return i0.n(f15, m6.w0(m6.f29321a7, h6Var), m6.w0(m6.f29378d6, h6Var));
+                return i0.n(f15, m6.w0(m6.f29324a7, h6Var), m6.w0(m6.f29381d6, h6Var));
             case 15:
                 return 855638016;
             case 16:
                 return 1073741824;
             case 17:
-                int w03 = m6.w0(m6.f29451h5, h6Var);
+                int w03 = m6.w0(m6.f29454h5, h6Var);
                 if (z10) {
                     f16 = 0.82f;
                 } else {
@@ -164,14 +164,14 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
             case 18:
                 return m6.r1(0.075f, -16777216);
             case 19:
-                if (pc.e(262144)) {
+                if (qc.e(262144)) {
                     f17 = 0.85f;
                 } else {
                     f17 = 0.76f;
                 }
                 return m6.r1(f17, m6.w0(m6.wj, h6Var));
             case 20:
-                return m6.r1(0.88f, m6.w0(m6.f29378d6, h6Var));
+                return m6.r1(0.88f, m6.w0(m6.f29381d6, h6Var));
             case 21:
                 int w04 = m6.w0(m6.G8, h6Var);
                 if (z10) {
@@ -181,25 +181,25 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
                 }
                 return m6.r1(f18, w04);
             case 22:
-                if (pc.e(262144)) {
+                if (qc.e(262144)) {
                     f19 = 0.85f;
                 } else {
                     f19 = 0.76f;
                 }
-                return i0.n(f19, m6.w0(m6.f29378d6, h6Var), m6.w0(m6.Pl, h6Var));
+                return i0.n(f19, m6.w0(m6.f29381d6, h6Var), m6.w0(m6.Pl, h6Var));
             case 23:
-                if (pc.e(262144)) {
+                if (qc.e(262144)) {
                     f20 = 0.85f;
                 } else {
                     f20 = 0.76f;
                 }
-                return m6.r1(f20, m6.w0(m6.f29378d6, h6Var));
+                return m6.r1(f20, m6.w0(m6.f29381d6, h6Var));
             case 24:
-                return m6.r1(0.78f, m6.w0(m6.f29451h5, h6Var));
+                return m6.r1(0.78f, m6.w0(m6.f29454h5, h6Var));
             case 25:
-                return m6.r1(0.7f, m6.w0(m6.f29378d6, h6Var));
+                return m6.r1(0.7f, m6.w0(m6.f29381d6, h6Var));
             default:
-                pc.e(262144);
+                qc.e(262144);
                 return 0;
         }
     }
@@ -207,11 +207,11 @@ public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
     @Override
     public Object m(Object obj) {
         Integer num = (Integer) obj;
-        ue ueVar = d3.f14483k0;
+        ve veVar = d3.f14486k0;
         return 0;
     }
 
     public e(l lVar) {
-        this.f13102a = 4;
+        this.f13105a = 4;
     }
 }

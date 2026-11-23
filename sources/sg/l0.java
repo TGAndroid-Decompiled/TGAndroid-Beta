@@ -4,13 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.PointF;
 import org.telegram.ui.Components.yt0;
 public final class l0 {
-    public final float f57315a;
-    public final float f57316b;
-    public final PointF f57317c;
+    public final float f57319a;
+    public final float f57320b;
+    public final PointF f57321c;
     public final PointF d;
-    public final float f57318e;
-    public final PointF f57319f;
-    public final PointF f57320g;
+    public final float f57322e;
+    public final PointF f57323f;
+    public final PointF f57324g;
 
     public l0(w8.a aVar, Bitmap bitmap, yt0 yt0Var, boolean z10) {
         float degrees;
@@ -18,9 +18,9 @@ public final class l0 {
         PointF pointF2 = null;
         PointF pointF3 = null;
         PointF pointF4 = null;
-        for (w8.c cVar : aVar.f59669b) {
-            PointF pointF5 = cVar.f59674a;
-            int i7 = cVar.f59675b;
+        for (w8.c cVar : aVar.f59673b) {
+            PointF pointF5 = cVar.f59678a;
+            int i7 = cVar.f59679b;
             if (i7 != 4) {
                 if (i7 != 5) {
                     if (i7 != 10) {
@@ -46,13 +46,13 @@ public final class l0 {
             PointF pointF7 = new PointF((pointF2.x * 0.5f) + (pointF.x * 0.5f), (pointF2.y * 0.5f) + (pointF.y * 0.5f));
             this.d = pointF7;
             float hypot = (float) Math.hypot(pointF2.x - pointF.x, pointF2.y - pointF.y);
-            this.f57318e = hypot;
-            this.f57316b = (float) Math.toDegrees(Math.atan2(pointF2.y - pointF.y, pointF2.x - pointF.x) + 3.141592653589793d);
-            this.f57315a = 2.35f * hypot;
+            this.f57322e = hypot;
+            this.f57320b = (float) Math.toDegrees(Math.atan2(pointF2.y - pointF.y, pointF2.x - pointF.x) + 3.141592653589793d);
+            this.f57319a = 2.35f * hypot;
             float f10 = hypot * 0.8f;
             float f11 = pointF7.x;
             double radians = (float) Math.toRadians(degrees - 90.0f);
-            this.f57317c = new PointF((((float) Math.cos(radians)) * f10) + f11, (f10 * ((float) Math.sin(radians))) + pointF7.y);
+            this.f57321c = new PointF((((float) Math.cos(radians)) * f10) + f11, (f10 * ((float) Math.sin(radians))) + pointF7.y);
         }
         if (pointF3 != null && pointF4 != null) {
             if (pointF3.x < pointF4.x) {
@@ -61,11 +61,11 @@ public final class l0 {
                 pointF3 = pointF8;
             }
             PointF pointF9 = new PointF((pointF4.x * 0.5f) + (pointF3.x * 0.5f), (pointF4.y * 0.5f) + (pointF3.y * 0.5f));
-            this.f57319f = pointF9;
-            float f12 = this.f57318e * 0.7f;
+            this.f57323f = pointF9;
+            float f12 = this.f57322e * 0.7f;
             float f13 = pointF9.x;
-            double radians2 = (float) Math.toRadians(this.f57316b + 90.0f);
-            this.f57320g = new PointF((((float) Math.cos(radians2)) * f12) + f13, (f12 * ((float) Math.sin(radians2))) + pointF9.y);
+            double radians2 = (float) Math.toRadians(this.f57320b + 90.0f);
+            this.f57324g = new PointF((((float) Math.cos(radians2)) * f12) + f13, (f12 * ((float) Math.sin(radians2))) + pointF9.y);
         }
     }
 
@@ -83,7 +83,7 @@ public final class l0 {
         } else {
             height = bitmap.getHeight();
         }
-        return new PointF((yt0Var.f42553a * pointF.x) / f10, (yt0Var.f42554b * pointF.y) / height);
+        return new PointF((yt0Var.f42546a * pointF.x) / f10, (yt0Var.f42547b * pointF.y) / height);
     }
 
     public final PointF a(int i7) {
@@ -93,12 +93,12 @@ public final class l0 {
                     if (i7 != 3) {
                         return null;
                     }
-                    return this.f57320g;
+                    return this.f57324g;
                 }
-                return this.f57319f;
+                return this.f57323f;
             }
             return this.d;
         }
-        return this.f57317c;
+        return this.f57321c;
     }
 }

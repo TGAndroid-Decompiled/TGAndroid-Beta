@@ -1,25 +1,40 @@
 package org.telegram.messenger;
 
-import j$.util.function.Consumer$CC;
-import java.util.ArrayList;
-import java.util.function.Consumer;
-public final class kl implements Consumer {
-    public final mp f25074a;
-    public final long f25075b;
+import org.telegram.tgnet.tl.TL_account;
+public final class kl implements Runnable {
+    public final int f25101a;
+    public final np f25102b;
+    public final TL_account.TL_webBrowserSettings f25103c;
 
-    public kl(mp mpVar, long j3) {
-        this.f25074a = mpVar;
-        this.f25075b = j3;
+    public kl(np npVar, TL_account.TL_webBrowserSettings tL_webBrowserSettings, int i7) {
+        this.f25101a = i7;
+        this.f25102b = npVar;
+        this.f25103c = tL_webBrowserSettings;
     }
 
     @Override
-    public final void accept(Object obj) {
-        mp mpVar = this.f25074a;
-        mpVar.getClass();
-        g0.g3(new ck(mpVar, (ArrayList) obj, this.f25075b, 2));
-    }
-
-    public Consumer andThen(Consumer consumer) {
-        return Consumer$CC.$default$andThen(this, consumer);
+    public final void run() {
+        switch (this.f25101a) {
+            case 0:
+                TL_account.TL_webBrowserSettings tL_webBrowserSettings = this.f25103c;
+                if (tL_webBrowserSettings != null) {
+                    np npVar = this.f25102b;
+                    npVar.E8 = tL_webBrowserSettings;
+                    npVar.getNotificationCenter().k(349, new Object[0]);
+                    return;
+                }
+                return;
+            default:
+                np npVar2 = this.f25102b;
+                sj sjVar = npVar2.D8;
+                TL_account.TL_webBrowserSettings tL_webBrowserSettings2 = this.f25103c;
+                if (tL_webBrowserSettings2 != null) {
+                    npVar2.E8 = tL_webBrowserSettings2;
+                    npVar2.getNotificationCenter().k(349, new Object[0]);
+                }
+                g0.r(sjVar);
+                g0.h3(sjVar, 3600010L);
+                return;
+        }
     }
 }

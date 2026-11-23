@@ -8,35 +8,35 @@ import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.ek0;
 public final class h {
-    public final q f56716a;
+    public final q f56720a;
 
     public h(q qVar) {
-        this.f56716a = qVar;
+        this.f56720a = qVar;
     }
 
     public final void a() {
         int i7;
-        q qVar = this.f56716a;
-        ArrayList arrayList = qVar.f56737c;
+        q qVar = this.f56720a;
+        ArrayList arrayList = qVar.f56741c;
         ArrayList arrayList2 = qVar.E;
-        long j3 = qVar.f56752t;
+        long j3 = qVar.f56756t;
         long j10 = q.G;
         if (j3 != j10) {
-            qVar.f56752t = j10;
-            qVar.f56739f = true;
+            qVar.f56756t = j10;
+            qVar.f56743f = true;
             i7 = 32;
         } else {
             i7 = 0;
         }
-        long j11 = m6.Dm + t6.f30066b;
-        if (qVar.f56751s != j11) {
-            qVar.f56751s = j11;
+        long j11 = m6.Dm + t6.f30069b;
+        if (qVar.f56755s != j11) {
+            qVar.f56755s = j11;
             i7 |= 16;
         }
-        Iterator it = qVar.f56746n.iterator();
+        Iterator it = qVar.f56750n.iterator();
         while (it.hasNext()) {
             if (((ek0) it.next()).b0()) {
-                qVar.f56741i++;
+                qVar.f56745i++;
             }
         }
         if (i7 == 0) {
@@ -46,28 +46,28 @@ public final class h {
             int size = arrayList2.size();
             for (int i10 = 0; i10 < size; i10++) {
                 o oVar = (o) arrayList2.get(i10);
-                oVar.f56726a.a(oVar.f56727b.e());
+                oVar.f56730a.a(oVar.f56731b.e());
             }
         }
         int size2 = arrayList.size();
         for (int i11 = 0; i11 < size2; i11++) {
             p pVar = (p) arrayList.get(i11);
             if (dd.a(i7, 32)) {
-                e eVar = pVar.f56729b;
+                e eVar = pVar.f56733b;
                 r rVar = q.F;
-                if (!Objects.equals(eVar.f56711b, rVar)) {
-                    eVar.f56711b = rVar;
+                if (!Objects.equals(eVar.f56715b, rVar)) {
+                    eVar.f56715b = rVar;
                     eVar.g(rVar);
                 }
             }
             if (dd.a(i7, 16)) {
-                pVar.f56729b.updateColors();
+                pVar.f56733b.updateColors();
             }
-            pVar.f56729b.invalidateSelf();
-            pVar.f56728a.invalidate();
+            pVar.f56733b.invalidateSelf();
+            pVar.f56732a.invalidate();
             pVar.h = true;
         }
-        qVar.f56753u |= i7;
+        qVar.f56757u |= i7;
     }
 
     public final void b() {

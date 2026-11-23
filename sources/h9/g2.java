@@ -2,27 +2,27 @@ package h9;
 
 import java.util.Iterator;
 public abstract class g2 implements Iterator {
-    public final Iterator f14028a;
+    public final Iterator f14031a;
 
     public g2(Iterator it) {
         it.getClass();
-        this.f14028a = it;
+        this.f14031a = it;
     }
 
     public abstract Object a(Object obj);
 
     @Override
     public final boolean hasNext() {
-        return this.f14028a.hasNext();
+        return this.f14031a.hasNext();
     }
 
     @Override
     public final Object next() {
-        return a(this.f14028a.next());
+        return a(this.f14031a.next());
     }
 
     @Override
     public final void remove() {
-        this.f14028a.remove();
+        this.f14031a.remove();
     }
 }

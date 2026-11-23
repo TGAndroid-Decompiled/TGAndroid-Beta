@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import oi.c2;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.ks;
+import org.telegram.messenger.ls;
 public class TLParseException extends RuntimeException {
     private TLParseException(String str) {
         super(str);
@@ -32,6 +32,6 @@ public class TLParseException extends RuntimeException {
     }
 
     public static void lambda$doThrowOrLog$0(TLParseException tLParseException) {
-        ks.e().k(ks.P5, tLParseException);
+        ls.e().k(ls.P5, tLParseException);
     }
 }

@@ -12,19 +12,19 @@ public interface IMapsProvider {
 
     void initializeMaps(Context context);
 
-    wa loadRawResourceStyle(Context context, int i7);
+    xa loadRawResourceStyle(Context context, int i7);
 
-    sa newCameraUpdateLatLng(ab abVar);
+    ta newCameraUpdateLatLng(bb bbVar);
 
-    sa newCameraUpdateLatLngBounds(ua uaVar, int i7);
+    ta newCameraUpdateLatLngBounds(va vaVar, int i7);
 
-    sa newCameraUpdateLatLngZoom(ab abVar, float f10);
+    ta newCameraUpdateLatLngZoom(bb bbVar, float f10);
 
-    ta onCreateCircleOptions();
+    ua onCreateCircleOptions();
 
-    va onCreateLatLngBoundsBuilder();
+    wa onCreateLatLngBoundsBuilder();
 
-    xa onCreateMapView(Context context);
+    ya onCreateMapView(Context context);
 
-    ya onCreateMarkerOptions();
+    za onCreateMarkerOptions();
 }

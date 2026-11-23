@@ -1,39 +1,93 @@
 package org.telegram.messenger;
 
-import org.telegram.ui.Components.a70;
-public final class ee implements Runnable {
-    public final int f23728a;
-    public final float f23729b;
-    public final fs f23730c;
-    public final Object d;
+import java.util.ArrayList;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.Components.jt0;
+import org.telegram.ui.Components.np0;
+public final class ee implements RequestDelegate {
+    public final int f23698a;
+    public final int f23699b;
+    public final int f23700c;
+    public final gs d;
 
-    public ee(fs fsVar, Object obj, float f10, int i7) {
-        this.f23728a = i7;
-        this.f23730c = fsVar;
-        this.d = obj;
-        this.f23729b = f10;
+    public ee(gs gsVar, int i7, int i10, int i11) {
+        this.f23698a = i11;
+        this.d = gsVar;
+        this.f23699b = i7;
+        this.f23700c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f23728a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i7 = this.f23698a;
+        gs gsVar = this.d;
+        switch (i7) {
             case 0:
-                MediaController mediaController = (MediaController) this.f23730c;
-                fj fjVar = (fj) this.d;
-                if (mediaController.f22744j0 != null && mediaController.f22768v0 != null && !mediaController.f22740h0) {
-                    if (mediaController.L(fjVar)) {
-                        mediaController.i0(mediaController.f22768v0, this.f23729b);
+                String[] strArr = MediaController.W1;
+                g0.g3(new jg.o1(this.f23699b, this.f23700c, 7, (MediaController) gsVar, tLObject, tL_error));
+                return;
+            case 1:
+                np npVar = (np) gsVar;
+                LongSparseIntArray longSparseIntArray = npVar.Z0;
+                int i10 = 0;
+                if (tL_error == null) {
+                    TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) tLObject;
+                    if (updates_difference instanceof TLRPC.TL_updates_differenceTooLong) {
+                        g0.g3(new l2.x(npVar, updates_difference, this.f23699b, this.f23700c, 4));
+                        return;
                     }
-                    mediaController.f22744j0.h0();
+                    if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
+                        TLRPC.TL_updates_state tL_updates_state = updates_difference.intermediate_state;
+                        npVar.a1(tL_updates_state.pts, tL_updates_state.date, tL_updates_state.qts, true);
+                    }
+                    a0.h hVar = new a0.h();
+                    a0.h hVar2 = new a0.h();
+                    for (int i11 = 0; i11 < updates_difference.users.size(); i11++) {
+                        TLRPC.User user = updates_difference.users.get(i11);
+                        hVar.k(user, user.f28583id);
+                    }
+                    for (int i12 = 0; i12 < updates_difference.chats.size(); i12++) {
+                        TLRPC.Chat chat = updates_difference.chats.get(i12);
+                        hVar2.k(chat, chat.f28434id);
+                    }
+                    ArrayList arrayList = new ArrayList();
+                    if (!updates_difference.other_updates.isEmpty()) {
+                        while (i10 < updates_difference.other_updates.size()) {
+                            TLRPC.Update update = updates_difference.other_updates.get(i10);
+                            if (update instanceof TL_update.TL_updateMessageID) {
+                                arrayList.add((TL_update.TL_updateMessageID) update);
+                                updates_difference.other_updates.remove(i10);
+                            } else {
+                                if (np.a2(update) == 2) {
+                                    long X1 = np.X1(update);
+                                    int i13 = longSparseIntArray.get(X1);
+                                    if (i13 == 0 && (i13 = npVar.getMessagesStorage().N(X1)) != 0) {
+                                        longSparseIntArray.put(X1, i13);
+                                    }
+                                    if (i13 != 0 && np.Y1(update) <= i13) {
+                                        updates_difference.other_updates.remove(i10);
+                                    }
+                                }
+                                i10++;
+                            }
+                            i10--;
+                            i10++;
+                        }
+                    }
+                    g0.g3(new gi(11, npVar, updates_difference));
+                    npVar.getMessagesStorage().f27250a.c(new gn(npVar, updates_difference, arrayList, hVar, hVar2, 8));
                     return;
                 }
+                npVar.f25869i2 = false;
+                npVar.getConnectionsManager().setIsUpdating(false);
+                a8.b("received: isUpdating = false");
                 return;
             default:
-                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f23730c;
-                a70 a70Var = (a70) this.d;
-                g4Var.f47957i0.N.c(true, 0.0f);
-                a70Var.f33378p = new org.telegram.ui.a0(g4Var, this.f23729b, 0);
-                a70Var.a0();
+                g0.g3(new np0((jt0) gsVar, tL_error, this.f23699b, this.f23700c, tLObject, 0));
                 return;
         }
     }

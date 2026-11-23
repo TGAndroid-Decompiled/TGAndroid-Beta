@@ -7,22 +7,22 @@ import android.view.View;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.u80;
 public final class cc extends AnimatorListenerAdapter {
-    public final ch.n0 f8658a;
-    public final View f8659b;
-    public final fi.m0[] f8660c;
+    public final ch.n0 f8661a;
+    public final View f8662b;
+    public final fi.m0[] f8663c;
     public final boolean[] d;
-    public final RectF f8661e;
-    public final Runnable f8662f;
+    public final RectF f8664e;
+    public final Runnable f8665f;
     public final mc h;
 
     public cc(mc mcVar, ch.n0 n0Var, View view, fi.m0[] m0VarArr, boolean[] zArr, RectF rectF, Runnable runnable) {
         this.h = mcVar;
-        this.f8658a = n0Var;
-        this.f8659b = view;
-        this.f8660c = m0VarArr;
+        this.f8661a = n0Var;
+        this.f8662b = view;
+        this.f8663c = m0VarArr;
         this.d = zArr;
-        this.f8661e = rectF;
-        this.f8662f = runnable;
+        this.f8664e = rectF;
+        this.f8665f = runnable;
     }
 
     @Override
@@ -32,15 +32,15 @@ public final class cc extends AnimatorListenerAdapter {
         bc bcVar = mcVar.F1;
         bcVar.setVisibility(4);
         bcVar.setPaused(true);
-        ch.n0 n0Var = this.f8658a;
+        ch.n0 n0Var = this.f8661a;
         if (n0Var != null) {
-            n0Var.f5470k = true;
+            n0Var.f5473k = true;
         }
-        View view = this.f8659b;
+        View view = this.f8662b;
         if (view != null) {
             view.invalidate();
         }
-        fi.m0 m0Var = this.f8660c[0];
+        fi.m0 m0Var = this.f8663c[0];
         if (m0Var != null) {
             m0Var.setDrawStar(true);
         }
@@ -48,19 +48,19 @@ public final class cc extends AnimatorListenerAdapter {
         boolean[] zArr = this.d;
         if (!zArr[0]) {
             zArr[0] = true;
-            RectF rectF = this.f8661e;
+            RectF rectF = this.f8664e;
             LaunchActivity.b0(rectF.centerX(), rectF.centerY(), 1.5f);
             try {
-                mcVar.f30176c.performHapticFeedback(0, 1);
+                mcVar.f30179c.performHapticFeedback(0, 1);
             } catch (Exception unused) {
             }
-            Runnable runnable = this.f8662f;
+            Runnable runnable = this.f8665f;
             if (runnable != null) {
                 runnable.run();
             }
         }
         LaunchActivity launchActivity = LaunchActivity.H1;
-        if (launchActivity != null && (u80Var = launchActivity.f43149w0) != null) {
+        if (launchActivity != null && (u80Var = launchActivity.f43153w0) != null) {
             u80Var.c(true);
         }
     }

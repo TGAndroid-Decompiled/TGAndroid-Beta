@@ -2,36 +2,36 @@ package org.telegram.ui.Wallet;
 
 import android.content.SharedPreferences;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.r10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.p51;
-public final class c0 implements q10 {
-    public final int f44015a;
-    public final boolean f44016b;
-    public final Object f44017c;
+public final class c0 implements r10 {
+    public final int f44019a;
+    public final boolean f44020b;
+    public final Object f44021c;
     public final Object d;
-    public final Object f44018e;
+    public final Object f44022e;
 
     public c0(Object obj, Object obj2, Object obj3, boolean z10, int i7) {
-        this.f44015a = i7;
-        this.f44017c = obj;
+        this.f44019a = i7;
+        this.f44021c = obj;
         this.d = obj2;
-        this.f44018e = obj3;
-        this.f44016b = z10;
+        this.f44022e = obj3;
+        this.f44020b = z10;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         String str;
-        switch (this.f44015a) {
+        switch (this.f44019a) {
             case 0:
-                u0 u0Var = (u0) this.f44017c;
+                u0 u0Var = (u0) this.f44021c;
                 r0 r0Var = (r0) this.d;
-                q10 q10Var = (q10) this.f44018e;
-                boolean z10 = this.f44016b;
+                r10 r10Var = (r10) this.f44022e;
+                boolean z10 = this.f44020b;
                 TL_wallet.proofChallenge proofchallenge = (TL_wallet.proofChallenge) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (proofchallenge == null) {
@@ -41,32 +41,32 @@ public final class c0 implements q10 {
                     } else {
                         str = tL_error.text;
                     }
-                    q10Var.a(null, str);
+                    r10Var.a(null, str);
                     return;
                 }
-                int currentTime = ConnectionsManager.getInstance(u0Var.f45123a).getCurrentTime();
+                int currentTime = ConnectionsManager.getInstance(u0Var.f45127a).getCurrentTime();
                 StringBuilder sb2 = new StringBuilder("received proof challenge, expires at ");
                 i5.c.z(sb2, proofchallenge.expires, ", now = ", currentTime, ", expires in ");
                 sb2.append(proofchallenge.expires - currentTime);
                 sb2.append("s");
                 u0.P(sb2.toString());
-                Utilities.d.c(new oi.q2(u0Var, z10, r0Var, proofchallenge, currentTime, q10Var));
+                Utilities.d.c(new oi.q2(u0Var, z10, r0Var, proofchallenge, currentTime, r10Var));
                 return;
             default:
-                l2 l2Var = (l2) this.f44017c;
+                l2 l2Var = (l2) this.f44021c;
                 o oVar = (o) this.d;
-                h2 h2Var = (h2) this.f44018e;
-                boolean z11 = this.f44016b;
+                h2 h2Var = (h2) this.f44022e;
+                boolean z11 = this.f44020b;
                 r0 r0Var2 = (r0) obj;
                 String str2 = (String) obj2;
                 if (r0Var2 != null && str2 == null) {
                     r0 b10 = r0Var2.b();
                     p51 p51Var = new p51(9, b10, oVar);
-                    String str3 = h2Var.f44332e;
-                    TL_wallet.tonConnectSession tonconnectsession = h2Var.f44329a;
+                    String str3 = h2Var.f44336e;
+                    TL_wallet.tonConnectSession tonconnectsession = h2Var.f44333a;
                     if ("sendTransaction".equals(str3)) {
-                        SharedPreferences sharedPreferences = mp.u1(l2Var.f44519a).h7;
-                        if (sharedPreferences.contains(l2.l(tonconnectsession.f28693id, h2Var.f44330b) + ".transfer")) {
+                        SharedPreferences sharedPreferences = np.u1(l2Var.f44523a).h7;
+                        if (sharedPreferences.contains(l2.l(tonconnectsession.f28696id, h2Var.f44334b) + ".transfer")) {
                             l2Var.B(h2Var, b10, p51Var);
                             return;
                         }
@@ -77,9 +77,9 @@ public final class c0 implements q10 {
                         return;
                     }
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
-                    tonconnectregisterkey.session_id = tonconnectsession.f28693id;
+                    tonconnectregisterkey.session_id = tonconnectsession.f28696id;
                     tonconnectregisterkey.client_id = tonconnectsession.client_id;
-                    l2Var.f44523f.sendRequestTyped(tonconnectregisterkey, new d3.b(1), new s(p51Var, b10, h2Var, x2Var, 6));
+                    l2Var.f44527f.sendRequestTyped(tonconnectregisterkey, new d3.b(1), new s(p51Var, b10, h2Var, x2Var, 6));
                     return;
                 }
                 if (str2 == null) {

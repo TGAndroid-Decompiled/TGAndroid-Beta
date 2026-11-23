@@ -1,86 +1,59 @@
 package bi;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.v10;
-import org.telegram.messenger.w10;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
-public final class j7 extends h51 {
-    public final int f3752n3;
+public final class j7 extends n41 {
+    public static final int f3756b = 0;
 
-    public j7(Context context, int i7, int i10, boolean z10, q10 q10Var, v10 v10Var, w10 w10Var, org.telegram.ui.ActionBar.h6 h6Var, int i11) {
-        super(context, i7, i10, z10, q10Var, v10Var, w10Var, h6Var);
-        this.f3752n3 = i11;
+    static {
+        n41.h(new n41());
     }
 
     @Override
-    public Integer V0(int i7) {
-        switch (this.f3752n3) {
-            case 0:
-                return 0;
-            case 7:
-                o41 G = this.f35796g3.G(i7);
-                if (G != null && G.d == 2) {
-                    return 0;
-                }
-                return super.V0(i7);
-            default:
-                return super.V0(i7);
+    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
+        k7 k7Var = (k7) view;
+        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) o41Var.H;
+        int i7 = o41Var.A;
+        String str = (String) o41Var.f38092m;
+        boolean z11 = o41Var.f38085e;
+        k7Var.getClass();
+        ShapeDrawable L = org.telegram.ui.ActionBar.m6.L(org.telegram.messenger.g0.L(20.0f), stargiftattributebackdrop.center_color | (-16777216));
+        SpannableStringBuilder spannableStringBuilder = stargiftattributebackdrop.name;
+        if (!TextUtils.isEmpty(str)) {
+            spannableStringBuilder = org.telegram.messenger.g0.w1(spannableStringBuilder, str, k7Var.P);
         }
+        if (i7 > 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
+            spannableStringBuilder2.append((CharSequence) "  ");
+            int length = spannableStringBuilder2.length();
+            spannableStringBuilder2.append((CharSequence) Integer.toString(i7));
+            spannableStringBuilder2.setSpan(new l41(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder = spannableStringBuilder2;
+        }
+        k7Var.j(spannableStringBuilder, 0, L);
+        k7Var.setChecked(z11);
     }
 
     @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f3752n3) {
-            case 1:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
-                return;
-            case 2:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
-                return;
-            case 3:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
-                return;
-            case 4:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
-                return;
-            case 5:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
-                return;
-            case 6:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
-                return;
-            default:
-                super.onMeasure(i7, i10);
-                return;
-        }
-    }
-
-    @Override
-    public boolean u1(View view) {
-        switch (this.f3752n3) {
-            case 8:
-                if (view instanceof org.telegram.ui.Wallet.f4) {
-                    org.telegram.ui.Wallet.f4 f4Var = (org.telegram.ui.Wallet.f4) view;
-                    if (f4Var.G > 0.0f || f4Var.J.d()) {
-                        return false;
-                    }
-                }
-                return true;
-            default:
-                return super.u1(view);
-        }
-    }
-
-    public j7(Context context, int i7, int i10, boolean z10, q10 q10Var, v10 v10Var, w10 w10Var, org.telegram.ui.ActionBar.h6 h6Var, int i11, int i12) {
-        super(context, i7, i10, z10, q10Var, v10Var, w10Var, h6Var, i11, i12);
-        this.f3752n3 = 8;
-    }
-
-    public j7(org.telegram.ui.ActionBar.g2 g2Var, q10 q10Var, v10 v10Var, w10 w10Var, int i7) {
-        super(g2Var, q10Var, v10Var, w10Var);
-        this.f3752n3 = i7;
+    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        org.telegram.ui.ActionBar.y0 y0Var = new org.telegram.ui.ActionBar.y0(0, context, h6Var, false, false);
+        y0Var.setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
+        y0Var.c(org.telegram.ui.ActionBar.m6.E8, org.telegram.ui.ActionBar.m6.F8);
+        y0Var.g(-1, PorterDuff.Mode.MULTIPLY);
+        y0Var.f30289c.setTranslationX(org.telegram.messenger.g0.L(2.0f));
+        y0Var.a(2);
+        y0Var.setBackground(null);
+        return y0Var;
     }
 }

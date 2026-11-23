@@ -13,7 +13,7 @@ public interface p40 {
 
     Activity getParentActivity();
 
-    void u(org.telegram.messenger.ef efVar, org.telegram.messenger.e20 e20Var, boolean z10, int i7, int i10, boolean z11, long j3);
+    void u(org.telegram.messenger.ff ffVar, org.telegram.messenger.f20 f20Var, boolean z10, int i7, int i10, boolean z11, long j3);
 
     boolean z();
 }

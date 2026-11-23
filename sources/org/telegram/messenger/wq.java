@@ -1,35 +1,33 @@
 package org.telegram.messenger;
-public final class wq implements Runnable {
-    public final int f27779a;
-    public final tr f27780b;
-    public final long f27781c;
-    public final int d;
-    public final int f27782e;
-    public final int f27783f;
-    public final int h;
 
-    public wq(tr trVar, int i7, int i10, int i11, int i12, long j3) {
-        this.f27779a = 0;
-        this.f27780b = trVar;
-        this.d = i7;
-        this.f27782e = i10;
-        this.f27783f = i11;
-        this.h = i12;
-        this.f27781c = j3;
+import org.telegram.tgnet.TLRPC;
+public final class wq implements Runnable {
+    public final int f27784a;
+    public final ur f27785b;
+    public final TLRPC.TL_chatFull f27786c;
+
+    public wq(ur urVar, TLRPC.TL_chatFull tL_chatFull, int i7) {
+        this.f27784a = i7;
+        this.f27785b = urVar;
+        this.f27786c = tL_chatFull;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wq.run():void");
-    }
-
-    public wq(tr trVar, long j3, int i7, int i10, int i11, int i12, int i13) {
-        this.f27779a = i13;
-        this.f27780b = trVar;
-        this.f27781c = j3;
-        this.d = i7;
-        this.f27782e = i10;
-        this.f27783f = i11;
-        this.h = i12;
+        int i7 = this.f27784a;
+        TLRPC.TL_chatFull tL_chatFull = this.f27786c;
+        ur urVar = this.f27785b;
+        switch (i7) {
+            case 0:
+                ls notificationCenter = urVar.getNotificationCenter();
+                Boolean bool = Boolean.FALSE;
+                notificationCenter.k(30, tL_chatFull, 0, bool, bool);
+                return;
+            default:
+                ls notificationCenter2 = urVar.getNotificationCenter();
+                Boolean bool2 = Boolean.FALSE;
+                notificationCenter2.k(30, tL_chatFull, 0, bool2, bool2);
+                return;
+        }
     }
 }

@@ -12,7 +12,7 @@ public final class e5 extends sg.u0 {
 
     @Override
     public final void g(sg.h hVar) {
-        int indexOf = sg.h.f57255a.indexOf(hVar);
+        int indexOf = sg.h.f57259a.indexOf(hVar);
         int i7 = indexOf + 1;
         if (i7 <= 1) {
             indexOf = i7;

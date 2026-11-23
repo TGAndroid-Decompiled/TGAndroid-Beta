@@ -10,23 +10,23 @@ import org.telegram.ui.ec0;
 import org.telegram.ui.hf0;
 import org.telegram.ui.lz;
 public final class r extends TimerTask {
-    public final int f13974a;
-    public final Object f13975b;
+    public final int f13977a;
+    public final Object f13978b;
 
     public r(Object obj, int i7) {
-        this.f13974a = i7;
-        this.f13975b = obj;
+        this.f13977a = i7;
+        this.f13978b = obj;
     }
 
     @Override
     public final void run() {
         BasePendingResult basePendingResult;
-        switch (this.f13974a) {
+        switch (this.f13977a) {
             case 0:
-                c cVar = (c) this.f13975b;
+                c cVar = (c) this.f13978b;
                 ArrayDeque arrayDeque = cVar.h;
-                if (!arrayDeque.isEmpty() && cVar.f13929k == null && cVar.f13922b != 0) {
-                    h hVar = cVar.f13923c;
+                if (!arrayDeque.isEmpty() && cVar.f13932k == null && cVar.f13925b != 0) {
+                    h hVar = cVar.f13926c;
                     int[] e10 = j6.a.e(arrayDeque);
                     hVar.getClass();
                     q6.m.e("Must be called from the main thread.");
@@ -37,7 +37,7 @@ public final class r extends TimerTask {
                         h.x(jVar);
                         basePendingResult = jVar;
                     }
-                    cVar.f13929k = basePendingResult;
+                    cVar.f13932k = basePendingResult;
                     basePendingResult.i(new q(cVar, 1));
                     arrayDeque.clear();
                     return;
@@ -50,7 +50,7 @@ public final class r extends TimerTask {
                 g0.g3(new oo(this, 24));
                 return;
             case 3:
-                if (((ec0) this.f13975b).O != null) {
+                if (((ec0) this.f13978b).O != null) {
                     g0.g3(new lz(this, 25));
                     return;
                 }
@@ -60,7 +60,7 @@ public final class r extends TimerTask {
                 return;
             default:
                 try {
-                    Socket socket = ((rc.q) this.f13975b).f56611a.f56583a.f56577g;
+                    Socket socket = ((rc.q) this.f13978b).f56615a.f56587a.f56581g;
                     if (socket != null) {
                         socket.close();
                         return;

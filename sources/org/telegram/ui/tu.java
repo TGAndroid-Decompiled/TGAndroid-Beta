@@ -4,15 +4,15 @@ import android.text.SpannableStringBuilder;
 import java.util.Collections;
 import org.telegram.tgnet.TLRPC;
 public final class tu implements Runnable {
-    public final int f52390a;
-    public final cx f52391b;
-    public final long f52392c;
+    public final int f52394a;
+    public final cx f52395b;
+    public final long f52396c;
     public final boolean d;
 
     public tu(cx cxVar, long j3, boolean z10, int i7) {
-        this.f52390a = i7;
-        this.f52391b = cxVar;
-        this.f52392c = j3;
+        this.f52394a = i7;
+        this.f52395b = cxVar;
+        this.f52396c = j3;
         this.d = z10;
     }
 
@@ -21,20 +21,20 @@ public final class tu implements Runnable {
         String str;
         TLRPC.Chat chat;
         SpannableStringBuilder W2;
-        int i7 = this.f52390a;
+        int i7 = this.f52394a;
         boolean z10 = this.d;
-        long j3 = this.f52392c;
-        cx cxVar = this.f52391b;
+        long j3 = this.f52396c;
+        cx cxVar = this.f52395b;
         switch (i7) {
             case 0:
-                cx cxVar2 = this.f52391b;
+                cx cxVar2 = this.f52395b;
                 fi.p6 R1 = cxVar2.getMessagesController().R1();
-                long j10 = this.f52392c;
+                long j10 = this.f52396c;
                 boolean z11 = this.d;
                 R1.l0(j10, z11, false);
                 k8.a aVar = new k8.a(15, false);
-                aVar.f18211b = new tu(cxVar2, j10, z11, 1);
-                aVar.f18212c = new tu(cxVar2, j10, z11, 2);
+                aVar.f18214b = new tu(cxVar2, j10, z11, 1);
+                aVar.f18215c = new tu(cxVar2, j10, z11, 2);
                 if (j10 >= 0) {
                     TLRPC.User c22 = cxVar2.getMessagesController().c2(Long.valueOf(j10));
                     str = org.telegram.messenger.i5.m(15, c22.first_name, null);
@@ -45,9 +45,9 @@ public final class tu implements Runnable {
                     chat = O0;
                 }
                 if (cxVar2.t4()) {
-                    W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.a0("StoriesMovedToDialogs", null, 2131744517, str));
+                    W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0("StoriesMovedToDialogs", null, 2131744515, str));
                 } else {
-                    W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.a0("StoriesMovedToContacts", null, 2131744518, org.telegram.messenger.i5.m(15, str, null)));
+                    W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0("StoriesMovedToContacts", null, 2131744516, org.telegram.messenger.i5.m(15, str, null)));
                 }
                 cxVar2.T = org.telegram.ui.Components.lc.Y().V(Collections.singletonList(chat), W2, null, aVar).j();
                 return;

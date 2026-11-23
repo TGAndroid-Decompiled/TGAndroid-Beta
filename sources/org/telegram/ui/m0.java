@@ -4,12 +4,12 @@ import android.animation.ValueAnimator;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class m0 implements TextWatcher {
-    public final int f49730a;
-    public final Object f49731b;
+    public final int f49734a;
+    public final Object f49735b;
 
     public m0(Object obj, int i7) {
-        this.f49730a = i7;
-        this.f49731b = obj;
+        this.f49734a = i7;
+        this.f49735b = obj;
     }
 
     @Override
@@ -21,25 +21,25 @@ public final class m0 implements TextWatcher {
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         String charSequence2;
         boolean z10;
-        int i12 = this.f49730a;
-        Object obj = this.f49731b;
+        int i12 = this.f49734a;
+        Object obj = this.f49735b;
         switch (i12) {
             case 0:
                 return;
             case 1:
                 ga gaVar = (ga) obj;
-                la laVar = gaVar.f48018c;
-                String str = laVar.f49533r;
+                la laVar = gaVar.f48022c;
+                String str = laVar.f49537r;
                 if (charSequence == null) {
                     charSequence2 = "";
                 } else {
                     charSequence2 = charSequence.toString();
                 }
-                laVar.f49533r = charSequence2;
-                la laVar2 = gaVar.f48018c;
+                laVar.f49537r = charSequence2;
+                la laVar2 = gaVar.f48022c;
                 ia iaVar = laVar2.F;
                 if (iaVar != null && str != null) {
-                    iaVar.b(laVar2.f49533r);
+                    iaVar.b(laVar2.f49537r);
                     return;
                 }
                 return;
@@ -58,15 +58,15 @@ public final class m0 implements TextWatcher {
                 zqVar.X1 = z10;
                 zqVar.V1 = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                zqVar.f47369a2 = ofFloat;
+                zqVar.f47373a2 = ofFloat;
                 ofFloat.addUpdateListener(new a3(zqVar, 8));
                 if (!zqVar.X1) {
-                    org.telegram.ui.Cells.c0.q(1.5f, zqVar.f47369a2);
-                    zqVar.f47369a2.setDuration(350L);
+                    org.telegram.ui.Cells.c0.q(1.5f, zqVar.f47373a2);
+                    zqVar.f47373a2.setDuration(350L);
                 } else {
-                    zqVar.f47369a2.setDuration(220L);
+                    zqVar.f47373a2.setDuration(220L);
                 }
-                zqVar.f47369a2.start();
+                zqVar.f47373a2.start();
                 zqVar.m();
                 return;
             case 7:
@@ -83,8 +83,8 @@ public final class m0 implements TextWatcher {
                 return;
             case 10:
                 hc0 hc0Var = (hc0) obj;
-                fc0 fc0Var = hc0Var.f48324y;
-                if (hc0Var.f48323x) {
+                fc0 fc0Var = hc0Var.f48328y;
+                if (hc0Var.f48327x) {
                     hc0Var.removeCallbacks(fc0Var);
                     fc0Var.run();
                     return;
@@ -92,8 +92,8 @@ public final class m0 implements TextWatcher {
                 return;
             case 11:
                 gd0 gd0Var = (gd0) obj;
-                tc0 tc0Var = gd0Var.f48079u0;
-                if (gd0Var.f48078t0) {
+                tc0 tc0Var = gd0Var.f48083u0;
+                if (gd0Var.f48082t0) {
                     gd0Var.removeCallbacks(tc0Var);
                     tc0Var.run();
                     return;
@@ -114,39 +114,39 @@ public final class m0 implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         String charSequence2;
-        switch (this.f49730a) {
+        switch (this.f49734a) {
             case 0:
                 return;
             case 1:
-                ga gaVar = (ga) this.f49731b;
-                la laVar = gaVar.f48018c;
-                String str = laVar.f49533r;
+                ga gaVar = (ga) this.f49735b;
+                la laVar = gaVar.f48022c;
+                String str = laVar.f49537r;
                 if (charSequence == null) {
                     charSequence2 = "";
                 } else {
                     charSequence2 = charSequence.toString();
                 }
-                laVar.f49533r = charSequence2;
-                la laVar2 = gaVar.f48018c;
+                laVar.f49537r = charSequence2;
+                la laVar2 = gaVar.f48022c;
                 ia iaVar = laVar2.F;
                 if (iaVar != null && str != null) {
-                    iaVar.b(laVar2.f49533r);
+                    iaVar.b(laVar2.f49537r);
                 }
-                if (!laVar.f49532n) {
-                    laVar.i0(laVar.f49533r);
+                if (!laVar.f49536n) {
+                    laVar.i0(laVar.f49537r);
                     return;
                 }
                 return;
             case 2:
-                ad adVar = (ad) this.f49731b;
-                adVar.j0(adVar.f45604y.getText().toString());
+                ad adVar = (ad) this.f49735b;
+                adVar.j0(adVar.f45608y.getText().toString());
                 return;
             case 3:
                 return;
             case 4:
-                jo joVar = (jo) this.f49731b;
-                if (!joVar.f49046n0) {
-                    String obj = joVar.f49030b.getText().toString();
+                jo joVar = (jo) this.f49735b;
+                if (!joVar.f49050n0) {
+                    String obj = joVar.f49034b.getText().toString();
                     ia iaVar2 = joVar.P;
                     if (iaVar2 != null) {
                         iaVar2.b(obj);
@@ -168,9 +168,9 @@ public final class m0 implements TextWatcher {
             case 15:
                 return;
             case 16:
-                a81 a81Var = (a81) this.f49731b;
+                a81 a81Var = (a81) this.f49735b;
                 if (!a81Var.G) {
-                    a81Var.e0(a81Var.f45531a.getText().toString(), false);
+                    a81Var.e0(a81Var.f45535a.getText().toString(), false);
                     return;
                 }
                 return;

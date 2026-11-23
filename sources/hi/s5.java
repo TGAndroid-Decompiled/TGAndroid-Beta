@@ -5,31 +5,31 @@ import org.telegram.ui.Components.ez;
 import org.telegram.ui.Components.i61;
 import org.telegram.ui.Components.y51;
 public final class s5 implements Runnable {
-    public final int f15372a;
-    public final v5 f15373b;
+    public final int f15375a;
+    public final v5 f15376b;
 
     public s5(v5 v5Var, int i7) {
-        this.f15372a = i7;
-        this.f15373b = v5Var;
+        this.f15375a = i7;
+        this.f15376b = v5Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f15372a) {
+        switch (this.f15375a) {
             case 0:
-                this.f15373b.r();
+                this.f15376b.r();
                 return;
             case 1:
-                this.f15373b.r();
+                this.f15376b.r();
                 return;
             case 2:
-                this.f15373b.m(0L);
+                this.f15376b.m(0L);
                 return;
             case 3:
-                v5 v5Var = this.f15373b;
+                v5 v5Var = this.f15376b;
                 s5 s5Var = v5Var.L;
-                i61 i61Var = v5Var.f15623e;
+                i61 i61Var = v5Var.f15626e;
                 if (i61Var != null && v5Var.G != null) {
                     long S = i61Var.S();
                     if (v5Var.getDuration() > 1) {
@@ -37,15 +37,15 @@ public final class s5 implements Runnable {
                         boolean z11 = false;
                         if (!v5Var.G.n1) {
                             c7 c7Var = v5Var.d;
-                            if ((duration < c7Var.Z || duration > c7Var.f14336a0) && System.currentTimeMillis() - v5Var.K > 500) {
+                            if ((duration < c7Var.Z || duration > c7Var.f14339a0) && System.currentTimeMillis() - v5Var.K > 500) {
                                 v5Var.K = System.currentTimeMillis();
-                                i61 i61Var2 = v5Var.f15623e;
+                                i61 i61Var2 = v5Var.f15626e;
                                 long duration2 = v5Var.d.Z * ((float) v5Var.getDuration());
                                 i61Var2.q0(duration2, false);
                                 v5Var.w(true);
                                 v5Var.y(true);
                                 S = duration2;
-                                v5Var.G.setProgress(v5Var.f15623e.S());
+                                v5Var.G.setProgress(v5Var.f15626e.S());
                             }
                         }
                         if (S < v5Var.J) {
@@ -58,22 +58,22 @@ public final class s5 implements Runnable {
                             z11 = true;
                         }
                         v5Var.y(z11);
-                        v5Var.G.setProgress(v5Var.f15623e.S());
+                        v5Var.G.setProgress(v5Var.f15626e.S());
                     } else {
-                        v5Var.G.setProgress(v5Var.f15623e.S());
+                        v5Var.G.setProgress(v5Var.f15626e.S());
                     }
-                    if (v5Var.f15623e.d0()) {
+                    if (v5Var.f15626e.d0()) {
                         org.telegram.messenger.g0.r(s5Var);
-                        org.telegram.messenger.g0.h3(s5Var, 1000.0f / org.telegram.messenger.g0.f24147r);
+                        org.telegram.messenger.g0.h3(s5Var, 1000.0f / org.telegram.messenger.g0.f24047r);
                     }
                     v5Var.J = S;
                     return;
                 }
                 return;
             case 4:
-                v5 v5Var2 = this.f15373b;
+                v5 v5Var2 = this.f15376b;
                 s5 s5Var2 = v5Var2.M;
-                if (v5Var2.E != null && v5Var2.f15623e == null && v5Var2.f15649y == null && v5Var2.G != null && !v5Var2.j()) {
+                if (v5Var2.E != null && v5Var2.f15626e == null && v5Var2.f15652y == null && v5Var2.G != null && !v5Var2.j()) {
                     long S2 = v5Var2.E.S();
                     c7 c7Var2 = v5Var2.d;
                     if (c7Var2 != null) {
@@ -92,52 +92,52 @@ public final class s5 implements Runnable {
                     v5Var2.G.setProgress(S2);
                     if (v5Var2.E.d0()) {
                         org.telegram.messenger.g0.r(s5Var2);
-                        org.telegram.messenger.g0.h3(s5Var2, 1000.0f / org.telegram.messenger.g0.f24147r);
+                        org.telegram.messenger.g0.h3(s5Var2, 1000.0f / org.telegram.messenger.g0.f24047r);
                         return;
                     }
                     return;
                 }
                 return;
             case 5:
-                v5 v5Var3 = this.f15373b;
+                v5 v5Var3 = this.f15376b;
                 s5 s5Var3 = v5Var3.N;
-                if (v5Var3.f15649y != null && v5Var3.f15623e == null && !v5Var3.j() && v5Var3.G != null) {
-                    long S3 = v5Var3.f15649y.S();
+                if (v5Var3.f15652y != null && v5Var3.f15626e == null && !v5Var3.j() && v5Var3.G != null) {
+                    long S3 = v5Var3.f15652y.S();
                     c7 c7Var4 = v5Var3.d;
                     if (c7Var4 != null) {
                         float f13 = (float) S3;
-                        float f14 = c7Var4.f14374s0;
-                        float f15 = (float) c7Var4.f14370q0;
-                        if ((f13 < f14 * f15 || f13 > c7Var4.f14376t0 * f15) && System.currentTimeMillis() - v5Var3.K > 500) {
+                        float f14 = c7Var4.f14377s0;
+                        float f15 = (float) c7Var4.f14373q0;
+                        if ((f13 < f14 * f15 || f13 > c7Var4.f14379t0 * f15) && System.currentTimeMillis() - v5Var3.K > 500) {
                             v5Var3.K = System.currentTimeMillis();
-                            i61 i61Var4 = v5Var3.f15649y;
+                            i61 i61Var4 = v5Var3.f15652y;
                             c7 c7Var5 = v5Var3.d;
-                            long j10 = c7Var5.f14374s0 * ((float) c7Var5.f14370q0);
+                            long j10 = c7Var5.f14377s0 * ((float) c7Var5.f14373q0);
                             i61Var4.q0(j10, false);
                             v5Var3.w(true);
                             S3 = j10;
                         }
                     }
                     v5Var3.G.setProgress(S3);
-                    if (v5Var3.f15649y.d0()) {
+                    if (v5Var3.f15652y.d0()) {
                         org.telegram.messenger.g0.r(s5Var3);
-                        org.telegram.messenger.g0.h3(s5Var3, 1000.0f / org.telegram.messenger.g0.f24147r);
+                        org.telegram.messenger.g0.h3(s5Var3, 1000.0f / org.telegram.messenger.g0.f24047r);
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                v5 v5Var4 = this.f15373b;
-                y51 y51Var = v5Var4.f15633n;
+                v5 v5Var4 = this.f15376b;
+                y51 y51Var = v5Var4.f15636n;
                 if (y51Var != null) {
-                    ez ezVar = y51Var.f42330b;
+                    ez ezVar = y51Var.f42323b;
                     if (ezVar != null) {
                         ezVar.postRunnable(new bz(ezVar, 0));
                     }
-                    y51Var.f42329a = null;
-                    v5Var4.removeView(v5Var4.f15633n);
-                    v5Var4.f15633n = null;
+                    y51Var.f42322a = null;
+                    v5Var4.removeView(v5Var4.f15636n);
+                    v5Var4.f15636n = null;
                     return;
                 }
                 return;

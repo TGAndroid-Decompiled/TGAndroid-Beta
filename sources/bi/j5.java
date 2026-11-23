@@ -1,35 +1,32 @@
 package bi;
 
-import android.view.View;
-import org.telegram.ui.Cells.ua;
-import org.telegram.ui.Cells.va;
-public final class j5 implements View.OnLongClickListener {
-    public final int f3748a = 0;
-    public final int f3749b;
-    public final Object f3750c;
-    public final Object d;
+import org.telegram.messenger.s10;
+import org.telegram.ui.Components.gq0;
+public final class j5 implements te.b, s10 {
+    public final gq0 f3754a;
 
-    public j5(di.p8 p8Var, int i7, Runnable runnable) {
-        this.f3750c = p8Var;
-        this.f3749b = i7;
-        this.d = runnable;
+    public j5(gq0 gq0Var) {
+        this.f3754a = gq0Var;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        switch (this.f3748a) {
-            case 0:
-                ((di.p8) this.f3750c).g(this.f3749b, true);
-                ((Runnable) this.d).run();
-                return true;
-            default:
-                return ((va) this.f3750c).b(((ua) this.d).h, this.f3749b);
-        }
+    public void H(int i7, float f10, float f11, te.c cVar) {
+        this.f3754a.l();
     }
 
-    public j5(va vaVar, ua uaVar, int i7) {
-        this.f3750c = vaVar;
-        this.d = uaVar;
-        this.f3749b = i7;
+    @Override
+    public Object g(Number number, Object obj) {
+        Integer num = (Integer) obj;
+        gq0 gq0Var = this.f3754a;
+        gq0Var.i();
+        if (((Integer) number).intValue() == -1) {
+            gq0Var.h(null, new k5(gq0Var, 1));
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public void D(float f10, int i7) {
     }
 }

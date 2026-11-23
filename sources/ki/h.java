@@ -15,15 +15,15 @@ public final class h extends n41 {
 
     public static o41 i(int i7, String str, String str2) {
         o41 K = o41.K(h.class);
-        K.f38096k = i7;
-        K.f38098m = str;
-        K.f38099n = str2;
+        K.f38090k = i7;
+        K.f38092m = str;
+        K.f38093n = str2;
         return K;
     }
 
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
-        ((i) view).a(o41Var.f38096k, o41Var.f38098m, o41Var.f38099n);
+        ((i) view).a(o41Var.f38090k, o41Var.f38092m, o41Var.f38093n);
     }
 
     @Override

@@ -4,10 +4,10 @@ import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.List;
 public final class q {
-    public ArrayList f5170a;
-    public int f5171b;
+    public ArrayList f5173a;
+    public int f5174b;
 
     public synchronized List a() {
-        return DesugarCollections.unmodifiableList(new ArrayList(this.f5170a));
+        return DesugarCollections.unmodifiableList(new ArrayList(this.f5173a));
     }
 }

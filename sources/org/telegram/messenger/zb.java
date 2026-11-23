@@ -1,70 +1,35 @@
 package org.telegram.messenger;
 
-import android.os.AsyncTask;
-import android.os.SystemClock;
-import java.io.RandomAccessFile;
-import java.net.HttpURLConnection;
-public final class zb extends AsyncTask {
-    public static final int f28303i = 0;
-    public final sb f28304a;
-    public RandomAccessFile f28305b;
-    public long f28306c;
-    public long d;
-    public boolean f28307e;
-    public final String f28308f;
-    public HttpURLConnection f28309g;
-    public final ec h;
+import j$.util.concurrent.ConcurrentHashMap;
+public final class zb implements Runnable {
+    public final int f28304a;
+    public final ac f28305b;
+    public final long f28306c;
+    public final long d;
 
-    public zb(ec ecVar, sb sbVar, long j3) {
-        this.h = ecVar;
-        this.f28307e = true;
-        this.f28304a = sbVar;
+    public zb(ac acVar, long j3, long j10, int i7) {
+        this.f28304a = i7;
+        this.f28305b = acVar;
         this.f28306c = j3;
+        this.d = j10;
     }
 
-    public final void a(long j3, long j10) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (j3 != j10) {
-            long j11 = this.d;
-            if (j11 != 0 && j11 >= elapsedRealtime - 100) {
+    @Override
+    public final void run() {
+        switch (this.f28304a) {
+            case 0:
+                ac acVar = this.f28305b;
+                ConcurrentHashMap concurrentHashMap = acVar.h.f23903u;
+                String str = acVar.f22895a.f26993e;
+                long j3 = this.f28306c;
+                long j10 = this.d;
+                concurrentHashMap.put(str, new long[]{j3, j10});
+                g0.g3(new zb(acVar, j3, j10, 1));
                 return;
-            }
+            default:
+                tb tbVar = this.f28305b.f22895a;
+                ls.f(tbVar.f27002o).k(141, tbVar.f26993e, Long.valueOf(this.f28306c), Long.valueOf(this.d));
+                return;
         }
-        this.d = elapsedRealtime;
-        Utilities.d.c(new yb(this, j3, j10, 0));
-    }
-
-    @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.zb.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
-
-    @Override
-    public final void onCancelled() {
-        this.h.f23720s.d(new wb(this, 0), this.f28304a.f26790a);
-        Utilities.d.c(new wb(this, 1));
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        Boolean bool = (Boolean) obj;
-        if (!bool.booleanValue() && this.f28307e) {
-            ec ecVar = this.h;
-            ecVar.f23720s.c(new gb(ecVar, this.f28304a.f26793e, 4));
-        } else {
-            ec ecVar2 = this.h;
-            sb sbVar = this.f28304a;
-            ecVar2.f23720s.c(new dg(ecVar2, sbVar.f26793e, 0, sbVar.f26803p, 5));
-        }
-        Utilities.d.c(new xb(this, bool, 0));
-        this.h.f23720s.d(new wb(this, 2), this.f28304a.f26790a);
-    }
-
-    public zb(ec ecVar, sb sbVar, String str) {
-        this.h = ecVar;
-        this.f28307e = true;
-        this.f28304a = sbVar;
-        this.f28306c = 0;
-        this.f28308f = str;
     }
 }

@@ -1,48 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.widget.EditText;
-import androidx.recyclerview.widget.RecyclerView;
-public final class a11 extends v4.u0 {
-    public final int f33267a;
-    public final long f33268b;
-    public final h11 f33269c;
+import j$.util.Objects;
+import java.util.ArrayList;
+public final class a11 extends v4.o {
+    public final int f33270b = 1;
+    public ArrayList f33271c;
+    public ArrayList d;
 
-    public a11(h11 h11Var, int i7, long j3) {
-        this.f33269c = h11Var;
-        this.f33267a = i7;
-        this.f33268b = j3;
+    public a11() {
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        EditText editText = this.f33269c.f35750w;
-        if (i7 == 1 && editText.hasFocus()) {
-            org.telegram.messenger.g0.v1(editText);
-            editText.clearFocus();
+    public final boolean a(int i7, int i10) {
+        switch (this.f33270b) {
+            case 0:
+                return true;
+            default:
+                rg.a aVar = (rg.a) this.f33271c.get(i7);
+                rg.a aVar2 = (rg.a) this.d.get(i10);
+                if (aVar.f56634a != aVar2.f56634a) {
+                    return false;
+                }
+                return aVar.a(aVar2);
         }
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        h11 h11Var = this.f33269c;
-        h11Var.o();
-        v4.c0 c0Var = (v4.c0) recyclerView.getLayoutManager();
-        if (c0Var != null && c0Var.N0() >= h11Var.f35749s.f33982c.size() - 3) {
-            if (h11Var.j()) {
-                h11Var.k();
-                return;
-            }
-            boolean z10 = h11Var.d;
-            int i11 = this.f33267a;
-            if (z10) {
-                org.telegram.messenger.mp.u1(i11).I1().g(false);
-                return;
-            }
-            org.telegram.messenger.e00 e00Var = org.telegram.messenger.mp.u1(i11).f25797t7;
-            long j3 = -this.f33268b;
-            if (!e00Var.e(j3)) {
-                e00Var.o(j3);
-            }
+    public final boolean b(int i7, int i10) {
+        switch (this.f33270b) {
+            case 0:
+                d11 d11Var = (d11) this.f33271c.get(i7);
+                d11 d11Var2 = (d11) this.d.get(i10);
+                if (d11Var.f34344a == d11Var2.f34344a && Objects.equals(d11Var.f34345b, d11Var2.f34345b)) {
+                    return true;
+                }
+                return false;
+            default:
+                rg.a aVar = (rg.a) this.f33271c.get(i7);
+                rg.a aVar2 = (rg.a) this.d.get(i10);
+                if (aVar.f56634a != aVar2.f56634a) {
+                    return false;
+                }
+                return aVar.equals(aVar2);
         }
+    }
+
+    @Override
+    public final int d() {
+        switch (this.f33270b) {
+            case 0:
+                return this.d.size();
+            default:
+                return this.d.size();
+        }
+    }
+
+    @Override
+    public final int e() {
+        switch (this.f33270b) {
+            case 0:
+                return this.f33271c.size();
+            default:
+                return this.f33271c.size();
+        }
+    }
+
+    public a11(ArrayList arrayList, ArrayList arrayList2) {
+        this.f33271c = arrayList;
+        this.d = arrayList2;
     }
 }

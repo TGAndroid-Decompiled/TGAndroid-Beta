@@ -25,7 +25,7 @@ public final class k0 implements fb {
 
     @Override
     public final int h(int i7) {
-        return org.telegram.messenger.g0.f24140m;
+        return org.telegram.messenger.g0.f24040m;
     }
 
     @Override

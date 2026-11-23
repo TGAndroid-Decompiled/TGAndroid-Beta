@@ -2,8 +2,8 @@ package org.telegram.tgnet;
 
 import j$.util.Objects;
 import java.util.ArrayList;
-import org.telegram.messenger.x10;
 import org.telegram.messenger.y10;
+import org.telegram.messenger.z10;
 import org.telegram.tgnet.TLObject;
 public class Vector<T extends TLObject> extends TLObject {
     public static final int constructor = 481674261;
@@ -120,7 +120,7 @@ public class Vector<T extends TLObject> extends TLObject {
         return strings;
     }
 
-    private static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, y10 y10Var, boolean z10) {
+    private static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, z10 z10Var, boolean z10) {
         int readInt32 = inputSerializedData.readInt32(z10);
         if (readInt32 != 481674261) {
             TLParseException.doThrowOrLog(inputSerializedData, "Vector", readInt32, z10);
@@ -133,7 +133,7 @@ public class Vector<T extends TLObject> extends TLObject {
         }
         ArrayList<T> arrayList = (ArrayList<T>) new ArrayList(readInt322);
         for (int i7 = 0; i7 < readInt322; i7++) {
-            arrayList.add(y10Var.a(Boolean.valueOf(z10)));
+            arrayList.add(z10Var.a(Boolean.valueOf(z10)));
         }
         return arrayList;
     }
@@ -222,11 +222,11 @@ public class Vector<T extends TLObject> extends TLObject {
         return arrayList;
     }
 
-    public static <T> void serialize(OutputSerializedData outputSerializedData, x10 x10Var, ArrayList<T> arrayList) {
+    public static <T> void serialize(OutputSerializedData outputSerializedData, y10 y10Var, ArrayList<T> arrayList) {
         outputSerializedData.writeInt32(481674261);
         outputSerializedData.writeInt32(arrayList.size());
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            x10Var.a(arrayList.get(i7));
+            y10Var.a(arrayList.get(i7));
         }
     }
 

@@ -6,7 +6,7 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import java.util.ArrayList;
-import org.telegram.messenger.bz;
+import org.telegram.messenger.cz;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.m6;
@@ -15,7 +15,7 @@ import org.telegram.ui.Components.m00;
 import org.telegram.ui.Components.qu0;
 import org.telegram.ui.Components.u41;
 public abstract class c6 {
-    public static final int[] f22045a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
+    public static final int[] f22048a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
 
     public static void a(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i7, TL_iv.PageBlock pageBlock, boolean z10) {
         String str;
@@ -41,7 +41,7 @@ public abstract class c6 {
                 a(spannableStringBuilder, textdiff.old_text, i7, pageBlock, z10);
                 if (spannableStringBuilder.length() > length) {
                     ?? obj = new Object();
-                    obj.f35335a = 8192;
+                    obj.f35337a = 8192;
                     spannableStringBuilder.setSpan(new gz0(obj, 0), length, spannableStringBuilder.length(), 33);
                     return;
                 }
@@ -51,7 +51,7 @@ public abstract class c6 {
             if (j10) {
                 if (spannableStringBuilder.length() > length) {
                     ?? obj2 = new Object();
-                    obj2.f35335a = 4096;
+                    obj2.f35337a = 4096;
                     spannableStringBuilder.setSpan(new gz0(obj2, 0), length, spannableStringBuilder.length(), 33);
                 }
             } else if (spannableStringBuilder.length() > length) {
@@ -93,14 +93,14 @@ public abstract class c6 {
                 tL_messageEntityFormattedDate.date = textdate.date;
                 tL_messageEntityFormattedDate.applyFlags();
                 ?? obj3 = new Object();
-                obj3.f35335a |= 128;
+                obj3.f35337a |= 128;
                 spannableStringBuilder.setSpan(new m00(charSequence2, obj3, tL_messageEntityFormattedDate), length4, spannableStringBuilder.length(), 33);
             }
         } else if (richText instanceof TL_iv.textMath) {
             TL_iv.textMath textmath = (TL_iv.textMath) richText;
             int length5 = spannableStringBuilder.length();
             spannableStringBuilder.append(" ");
-            Object a10 = q.a(textmath.source, m6.x0(null, m6.G6, false), org.telegram.messenger.g0.L(bz.W0 + 4));
+            Object a10 = q.a(textmath.source, m6.x0(null, m6.G6, false), org.telegram.messenger.g0.L(cz.W0 + 4));
             if (a10 != null) {
                 spannableStringBuilder.setSpan(a10, length5, spannableStringBuilder.length(), 33);
             } else {
@@ -173,7 +173,7 @@ public abstract class c6 {
         gz0[] gz0VarArr = (gz0[]) spanned.getSpans(i7, i10, gz0.class);
         int i11 = 0;
         for (gz0 gz0Var : gz0VarArr) {
-            int i12 = gz0Var.f35711b.f35335a;
+            int i12 = gz0Var.f35730b.f35337a;
             if ((i12 & 512) != 0) {
                 i12 |= 256;
             }
@@ -296,7 +296,7 @@ public abstract class c6 {
 
     public static u41 k(String str) {
         ?? obj = new Object();
-        obj.f35335a = 1024;
+        obj.f35337a = 1024;
         return new u41(str, obj);
     }
 
@@ -384,7 +384,7 @@ public abstract class c6 {
             for (gz0 gz0Var : (gz0[]) spannable.getSpans(max, max2, gz0.class)) {
                 int spanStart = spannable.getSpanStart(gz0Var);
                 int spanEnd = spannable.getSpanEnd(gz0Var);
-                int i13 = gz0Var.f35711b.f35335a;
+                int i13 = gz0Var.f35730b.f35337a;
                 spannable.removeSpan(gz0Var);
                 c(spannable, spanStart, max, i13, pageBlock);
                 c(spannable, max2, spanEnd, i13, pageBlock);
@@ -412,20 +412,20 @@ public abstract class c6 {
     public static gz0 p(int i7, TL_iv.PageBlock pageBlock) {
         boolean z10;
         ?? obj = new Object();
-        obj.f35335a = i7;
+        obj.f35337a = i7;
         if (!(pageBlock instanceof TL_iv.pageBlockTitle) && !(pageBlock instanceof TL_iv.pageBlockSubheader) && !(pageBlock instanceof TL_iv.pageBlockHeader) && !(pageBlock instanceof TL_iv.pageBlockHeading1) && !(pageBlock instanceof TL_iv.pageBlockHeading2) && !(pageBlock instanceof TL_iv.pageBlockHeading3) && !(pageBlock instanceof TL_iv.pageBlockHeading4) && !(pageBlock instanceof TL_iv.pageBlockHeading5) && !(pageBlock instanceof TL_iv.pageBlockHeading6)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        obj.f35338e = z10;
+        obj.f35340e = z10;
         return new gz0(obj, 0);
     }
 
     public static int q(int i7, int i10, CharSequence charSequence) {
         int i11 = 0;
         for (int i12 = 0; i12 < 9; i12++) {
-            int i13 = f22045a[i12];
+            int i13 = f22048a[i12];
             if (i(i7, i10, i13, charSequence)) {
                 i11 |= i13;
             }
@@ -441,16 +441,16 @@ public abstract class c6 {
 
     public static TL_iv.RichText s(String str, b6 b6Var) {
         TL_iv.textCustomEmoji textcustomemoji;
-        i4 i4Var = (i4) b6Var.f22029f;
+        i4 i4Var = (i4) b6Var.f22032f;
         if (i4Var != null) {
-            return i4Var.f22179a;
+            return i4Var.f22182a;
         }
         if (((String) b6Var.d) != null) {
             TL_iv.textMath textmath = new TL_iv.textMath();
             textmath.source = (String) b6Var.d;
             return textmath;
         }
-        long j3 = b6Var.f22026b;
+        long j3 = b6Var.f22029b;
         if (j3 != 0) {
             TL_iv.textCustomEmoji textcustomemoji2 = new TL_iv.textCustomEmoji();
             textcustomemoji2.document_id = j3;
@@ -464,7 +464,7 @@ public abstract class c6 {
             textplain.text = str;
             textcustomemoji = textplain;
         }
-        int i7 = b6Var.f22025a;
+        int i7 = b6Var.f22028a;
         TL_iv.RichText richText = textcustomemoji;
         if ((i7 & 1) != 0) {
             TL_iv.RichText textbold = new TL_iv.textBold();
@@ -520,15 +520,15 @@ public abstract class c6 {
             richText9 = textmarked;
         }
         TL_iv.RichText richText10 = richText9;
-        if (((String) b6Var.f22027c) != null) {
+        if (((String) b6Var.f22030c) != null) {
             TL_iv.RichText texturl = new TL_iv.textUrl();
             texturl.text = richText9;
-            texturl.url = (String) b6Var.f22027c;
+            texturl.url = (String) b6Var.f22030c;
             richText10 = texturl;
         }
-        m00 m00Var = (m00) b6Var.f22028e;
+        m00 m00Var = (m00) b6Var.f22031e;
         if (m00Var != null) {
-            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = m00Var.f37362b;
+            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = m00Var.f37369b;
             TL_iv.textDate textdate = new TL_iv.textDate();
             textdate.text = richText10;
             textdate.flags = tL_messageEntityFormattedDate.flags;

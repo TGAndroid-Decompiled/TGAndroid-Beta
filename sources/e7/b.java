@@ -8,18 +8,18 @@ import j$.util.Objects;
 import o7.d;
 import t9.c;
 public final class b extends Binder implements IInterface {
-    public final int f10897a;
-    public final Object f10898b;
+    public final int f10900a;
+    public final Object f10901b;
 
     public b(int i7, TaskCompletionSource taskCompletionSource) {
-        this.f10897a = i7;
+        this.f10900a = i7;
         switch (i7) {
             case 1:
-                this.f10898b = taskCompletionSource;
+                this.f10901b = taskCompletionSource;
                 attachInterface(this, "com.google.android.gms.auth.api.phone.internal.ISmsRetrieverResultCallback");
                 return;
             default:
-                this.f10898b = taskCompletionSource;
+                this.f10901b = taskCompletionSource;
                 attachInterface(this, "com.google.android.gms.fido.fido2.internal.regular.IFido2AppCallbacks");
                 return;
         }
@@ -27,7 +27,7 @@ public final class b extends Binder implements IInterface {
 
     @Override
     public final IBinder asBinder() {
-        int i7 = this.f10897a;
+        int i7 = this.f10900a;
         return this;
     }
 
@@ -37,15 +37,15 @@ public final class b extends Binder implements IInterface {
     }
 
     public b(d dVar, TaskCompletionSource taskCompletionSource) {
-        this.f10897a = 2;
-        this.f10898b = taskCompletionSource;
+        this.f10900a = 2;
+        this.f10901b = taskCompletionSource;
         Objects.requireNonNull(dVar);
         attachInterface(this, "com.google.android.gms.cloudmessaging.internal.IRegisterCallback");
     }
 
     public b(c cVar) {
-        this.f10897a = 3;
+        this.f10900a = 3;
         attachInterface(this, "com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearchCallbacks");
-        this.f10898b = cVar;
+        this.f10901b = cVar;
     }
 }

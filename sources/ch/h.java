@@ -1,20 +1,20 @@
 package ch;
 
-import org.telegram.messenger.gd;
-import org.telegram.messenger.ks;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ls;
 public final class h implements Runnable {
-    public final int f5396a;
-    public final p f5397b;
+    public final int f5399a;
+    public final p f5400b;
 
     public h(p pVar, int i7) {
-        this.f5396a = i7;
-        this.f5397b = pVar;
+        this.f5399a = i7;
+        this.f5400b = pVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f5396a;
-        p pVar = this.f5397b;
+        int i7 = this.f5399a;
+        p pVar = this.f5400b;
         switch (i7) {
             case 0:
                 pVar.h.requestFocus();
@@ -28,10 +28,10 @@ public final class h implements Runnable {
             case 3:
                 if (pVar.Q && !pVar.P) {
                     pVar.P = true;
-                    ks.e().k(98, 512);
-                    pVar.f5491c.setVisibility(0);
-                    pVar.f5491c.setLayerType(2, null);
-                    pVar.j0(pVar.R.f57696e);
+                    ls.e().k(98, 512);
+                    pVar.f5494c.setVisibility(0);
+                    pVar.f5494c.setLayerType(2, null);
+                    pVar.j0(pVar.R.f57700e);
                     pVar.R.a(true, true);
                     return;
                 }
@@ -40,7 +40,7 @@ public final class h implements Runnable {
                 vf.c.t(pVar.getParentActivity(), "https://t.me/stickers");
                 return;
             case 5:
-                vf.c.t(pVar.getParentActivity(), gd.N0(2131752397, null));
+                vf.c.t(pVar.getParentActivity(), hd.N0(2131752397, null));
                 return;
             default:
                 pVar.e0(false);

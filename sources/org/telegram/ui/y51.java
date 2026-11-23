@@ -5,20 +5,20 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 public final class y51 implements LocationListener {
-    public final ThemeActivity f54060a;
+    public final ThemeActivity f54064a;
 
     public y51(ThemeActivity themeActivity) {
-        this.f54060a = themeActivity;
+        this.f54064a = themeActivity;
     }
 
     @Override
     public final void onLocationChanged(Location location) {
-        ThemeActivity themeActivity = this.f54060a;
+        ThemeActivity themeActivity = this.f54064a;
         if (location == null) {
             return;
         }
         themeActivity.M0 = false;
-        LocationManager locationManager = (LocationManager) org.telegram.messenger.t0.f26941b.getSystemService("location");
+        LocationManager locationManager = (LocationManager) org.telegram.messenger.t0.f26931b.getSystemService("location");
         locationManager.removeUpdates(themeActivity.S0);
         locationManager.removeUpdates(themeActivity.T0);
         themeActivity.G0(location, false);

@@ -1,7 +1,12 @@
 package org.telegram.messenger;
 public final class ez {
-    public float f23832a;
-    public float f23833b;
-    public float f23834c;
-    public float d;
+    public final float f23800a;
+    public final float f23801b;
+    public final float f23802c;
+
+    public ez(float f10, float f11, float f12) {
+        this.f23800a = f10;
+        this.f23801b = f11;
+        this.f23802c = f12;
+    }
 }

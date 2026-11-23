@@ -7,16 +7,16 @@ import org.telegram.ui.Components.q80;
 import org.telegram.ui.ProfileActivity;
 public final class g extends vf.b {
     public q80 d;
-    public final Layout f30657e;
-    public final ClickableSpan f30658f;
-    public final float f30659g;
+    public final Layout f30660e;
+    public final ClickableSpan f30661f;
+    public final float f30662g;
     public final j h;
 
     public g(j jVar, Layout layout, ClickableSpan clickableSpan, float f10) {
         this.h = jVar;
-        this.f30657e = layout;
-        this.f30658f = clickableSpan;
-        this.f30659g = f10;
+        this.f30660e = layout;
+        this.f30661f = clickableSpan;
+        this.f30662g = f10;
     }
 
     @Override
@@ -39,13 +39,13 @@ public final class g extends vf.b {
         if (q80Var != null) {
             o0Var.n(q80Var, true);
         }
-        q80 k10 = n2.o0.k(this.f30657e, this.f30658f, this.f30659g);
+        q80 k10 = n2.o0.k(this.f30660e, this.f30661f, this.f30662g);
         this.d = k10;
         jVar.H = k10;
         int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Ce, jVar.J);
         RectF rectF = ProfileActivity.Z6;
         this.d.g(org.telegram.ui.ActionBar.m6.r1(0.8f, w02), org.telegram.ui.ActionBar.m6.r1(1.3f, w02), org.telegram.ui.ActionBar.m6.r1(1.0f, w02), org.telegram.ui.ActionBar.m6.r1(4.0f, w02));
-        this.d.f38839x.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
+        this.d.f38833x.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
         o0Var.c(this.d, null);
     }
 }

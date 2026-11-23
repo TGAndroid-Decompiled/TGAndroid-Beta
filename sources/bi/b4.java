@@ -1,9 +1,9 @@
 package bi;
 
 import android.content.Context;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.np;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
@@ -14,16 +14,16 @@ import org.telegram.ui.bt;
 import org.telegram.ui.cw;
 import org.telegram.ui.cx;
 import org.telegram.ui.ve;
-public final class b4 implements x10 {
-    public final int f3431a;
-    public final long f3432b;
-    public final Object f3433c;
+public final class b4 implements y10 {
+    public final int f3438a;
+    public final long f3439b;
+    public final Object f3440c;
     public final Object d;
 
     public b4(aa.r rVar, long j3, TLRPC.TL_messageActionStarGiftOnchainOffer tL_messageActionStarGiftOnchainOffer) {
-        this.f3431a = 0;
-        this.f3433c = rVar;
-        this.f3432b = j3;
+        this.f3438a = 0;
+        this.f3440c = rVar;
+        this.f3439b = j3;
         this.d = tL_messageActionStarGiftOnchainOffer;
     }
 
@@ -31,11 +31,11 @@ public final class b4 implements x10 {
     public final void a(Object obj) {
         String a02;
         int i7;
-        int i10 = this.f3431a;
+        int i10 = this.f3438a;
         boolean z10 = true;
-        long j3 = this.f3432b;
+        long j3 = this.f3439b;
         Object obj2 = this.d;
-        Object obj3 = this.f3433c;
+        Object obj3 = this.f3440c;
         switch (i10) {
             case 0:
                 TLRPC.TL_messageActionStarGiftOnchainOffer tL_messageActionStarGiftOnchainOffer = (TLRPC.TL_messageActionStarGiftOnchainOffer) obj2;
@@ -50,23 +50,23 @@ public final class b4 implements x10 {
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj3;
                 String str = (String) obj2;
                 if (((Boolean) obj).booleanValue()) {
-                    a02 = gd.a0(null, null, 2131749542, str, y4.k(j3));
+                    a02 = hd.a0(null, null, 2131749542, str, x4.k(j3));
                 } else {
-                    a02 = gd.a0(null, null, 2131749619, str);
+                    a02 = hd.a0(null, null, 2131749619, str);
                 }
-                y4.s(tL_starGiftUnique, a02);
+                x4.s(tL_starGiftUnique, a02);
                 return;
             case 2:
                 di.f6 f6Var = (di.f6) obj3;
-                mp mpVar = (mp) obj2;
+                np npVar = (np) obj2;
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < mpVar.f25813v5) {
-                    org.telegram.messenger.h3 I0 = mpVar.I0();
-                    long j10 = this.f3432b;
-                    I0.b(j10, tL_premium_boostsStatus, new i2(f6Var, tL_premium_boostsStatus, j10, mpVar, 1));
+                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < npVar.f25984v5) {
+                    org.telegram.messenger.h3 I0 = npVar.I0();
+                    long j10 = this.f3439b;
+                    I0.b(j10, tL_premium_boostsStatus, new i2(f6Var, tL_premium_boostsStatus, j10, npVar, 1));
                     return;
                 }
-                f6Var.f8803g2.setLoading(false);
+                f6Var.f8806g2.setLoading(false);
                 f6Var.I2(true);
                 return;
             case 3:
@@ -79,7 +79,7 @@ public final class b4 implements x10 {
                 dataSettingsActivity.W = z10;
                 dataSettingsActivity.Y = l10.longValue();
                 dataSettingsActivity.X = false;
-                if (dataSettingsActivity.f43053a != null && (i7 = dataSettingsActivity.f43060s) >= 0) {
+                if (dataSettingsActivity.f43057a != null && (i7 = dataSettingsActivity.f43064s) >= 0) {
                     dataSettingsActivity.s0(i7);
                     return;
                 }
@@ -87,10 +87,10 @@ public final class b4 implements x10 {
             case 4:
                 Runnable runnable = (Runnable) obj;
                 ((org.telegram.ui.ActionBar.t1) obj2).r(150L);
-                cx cxVar = ((cw) obj3).f46687b;
+                cx cxVar = ((cw) obj3).f46690b;
                 Boolean bool = cxVar.H.bot_participant;
                 if (bool != null && bool.booleanValue()) {
-                    cxVar.getMessagesController().m(this.f3432b, cxVar.getMessagesController().c2(Long.valueOf(cxVar.I)), 0, null, cxVar, false, runnable, new ve(6, runnable), null);
+                    cxVar.getMessagesController().m(this.f3439b, cxVar.getMessagesController().c2(Long.valueOf(cxVar.I)), 0, null, cxVar, false, runnable, new ve(6, runnable), null);
                     return;
                 } else {
                     runnable.run();
@@ -103,9 +103,9 @@ public final class b4 implements x10 {
     }
 
     public b4(Object obj, Object obj2, long j3, int i7) {
-        this.f3431a = i7;
-        this.f3433c = obj;
+        this.f3438a = i7;
+        this.f3440c = obj;
         this.d = obj2;
-        this.f3432b = j3;
+        this.f3439b = j3;
     }
 }

@@ -5,46 +5,46 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.style.ReplacementSpan;
 public final class oy0 extends ReplacementSpan {
-    public final int f38419a;
-    public int f38420b;
-    public final Object f38421c;
+    public final int f38413a;
+    public int f38414b;
+    public final Object f38415c;
 
     public oy0(int i7) {
-        this.f38419a = 0;
+        this.f38413a = 0;
         Paint paint = new Paint(1);
-        this.f38421c = paint;
-        this.f38420b = i7;
-        paint.setColor(org.telegram.ui.ActionBar.m6.r1(0.3f, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29404ee, false)));
+        this.f38415c = paint;
+        this.f38414b = i7;
+        paint.setColor(org.telegram.ui.ActionBar.m6.r1(0.3f, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29407ee, false)));
     }
 
     public void a(int i7) {
-        org.telegram.ui.gm0 gm0Var = (org.telegram.ui.gm0) this.f38421c;
+        org.telegram.ui.gm0 gm0Var = (org.telegram.ui.gm0) this.f38415c;
         if (gm0Var != null) {
-            gm0Var.f48138a = i7 / 2.0f;
+            gm0Var.f48142a = i7 / 2.0f;
             gm0Var.d();
-            this.f38420b = i7;
+            this.f38414b = i7;
         }
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        switch (this.f38419a) {
+        switch (this.f38413a) {
             case 0:
                 float L = ((i11 + i13) / 2.0f) + org.telegram.messenger.g0.L(1.33f);
                 RectF rectF = org.telegram.messenger.g0.P;
                 float L2 = org.telegram.messenger.g0.L(6.66f) / 2.0f;
-                rectF.set(f10, L - L2, this.f38420b + f10, L + L2);
-                Paint paint2 = (Paint) this.f38421c;
-                paint2.setColor(org.telegram.ui.ActionBar.m6.r1(0.3f, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29404ee, false)));
+                rectF.set(f10, L - L2, this.f38414b + f10, L + L2);
+                Paint paint2 = (Paint) this.f38415c;
+                paint2.setColor(org.telegram.ui.ActionBar.m6.r1(0.3f, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29407ee, false)));
                 canvas.drawRoundRect(rectF, L2, L2, paint2);
                 return;
             default:
-                org.telegram.ui.gm0 gm0Var = (org.telegram.ui.gm0) this.f38421c;
+                org.telegram.ui.gm0 gm0Var = (org.telegram.ui.gm0) this.f38415c;
                 if (gm0Var != null) {
                     int i14 = (i11 + i13) / 2;
                     float L3 = f10 + org.telegram.messenger.g0.L(5.0f);
-                    int i15 = this.f38420b;
-                    gm0Var.setBounds((int) (org.telegram.messenger.g0.L(3.0f) + f10), i14 - this.f38420b, (int) (L3 + i15), i14 + i15);
+                    int i15 = this.f38414b;
+                    gm0Var.setBounds((int) (org.telegram.messenger.g0.L(3.0f) + f10), i14 - this.f38414b, (int) (L3 + i15), i14 + i15);
                     gm0Var.draw(canvas);
                     return;
                 }
@@ -54,17 +54,17 @@ public final class oy0 extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f38419a) {
+        switch (this.f38413a) {
             case 0:
-                return this.f38420b;
+                return this.f38414b;
             default:
-                return org.telegram.messenger.g0.L(3.0f) + org.telegram.messenger.g0.L(3.0f) + this.f38420b;
+                return org.telegram.messenger.g0.L(3.0f) + org.telegram.messenger.g0.L(3.0f) + this.f38414b;
         }
     }
 
     public oy0(boolean z10, int i7, int i10) {
-        this.f38419a = 1;
-        this.f38420b = org.telegram.messenger.g0.L(21.0f);
-        this.f38421c = z10 ? org.telegram.ui.gm0.c(i7, i10) : org.telegram.ui.gm0.a(i7, i10);
+        this.f38413a = 1;
+        this.f38414b = org.telegram.messenger.g0.L(21.0f);
+        this.f38415c = z10 ? org.telegram.ui.gm0.c(i7, i10) : org.telegram.ui.gm0.a(i7, i10);
     }
 }

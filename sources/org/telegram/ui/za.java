@@ -4,43 +4,43 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class za extends oq0 {
-    public final lb f54508a;
+    public final lb f54512a;
 
     public za(lb lbVar) {
-        this.f54508a = lbVar;
+        this.f54512a = lbVar;
     }
 
     @Override
-    public final wq0 E(org.telegram.messenger.fj fjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
+    public final wq0 E(org.telegram.messenger.gj gjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
         org.telegram.ui.Cells.v0 v0Var;
-        org.telegram.messenger.fj messageObject;
+        org.telegram.messenger.gj messageObject;
         org.telegram.ui.Cells.r1 r1Var;
-        org.telegram.messenger.fj messageObject2;
-        lb lbVar = this.f54508a;
-        int childCount = lbVar.f49568w.getChildCount();
+        org.telegram.messenger.gj messageObject2;
+        lb lbVar = this.f54512a;
+        int childCount = lbVar.f49572w.getChildCount();
         int i10 = 0;
         while (true) {
             ImageReceiver imageReceiver = null;
             if (i10 >= childCount) {
                 return null;
             }
-            View childAt = lbVar.f49568w.getChildAt(i10);
+            View childAt = lbVar.f49572w.getChildAt(i10);
             if (childAt instanceof org.telegram.ui.Cells.r1) {
-                if (fjVar != null && (messageObject2 = (r1Var = (org.telegram.ui.Cells.r1) childAt).getMessageObject()) != null && messageObject2.e1() == fjVar.e1()) {
+                if (gjVar != null && (messageObject2 = (r1Var = (org.telegram.ui.Cells.r1) childAt).getMessageObject()) != null && messageObject2.e1() == gjVar.e1()) {
                     imageReceiver = r1Var.getPhotoImage();
                 }
             } else if ((childAt instanceof org.telegram.ui.Cells.v0) && (messageObject = (v0Var = (org.telegram.ui.Cells.v0) childAt).getMessageObject()) != null) {
-                if (fjVar != null) {
-                    if (messageObject.e1() == fjVar.e1()) {
+                if (gjVar != null) {
+                    if (messageObject.e1() == gjVar.e1()) {
                         imageReceiver = v0Var.getPhotoImage();
                     }
-                } else if (fileLocation != null && messageObject.f24013p0 != null) {
+                } else if (fileLocation != null && messageObject.f24233p0 != null) {
                     int i11 = 0;
                     while (true) {
-                        if (i11 >= messageObject.f24013p0.size()) {
+                        if (i11 >= messageObject.f24233p0.size()) {
                             break;
                         }
-                        TLRPC.FileLocation fileLocation2 = ((TLRPC.PhotoSize) messageObject.f24013p0.get(i11)).location;
+                        TLRPC.FileLocation fileLocation2 = ((TLRPC.PhotoSize) messageObject.f24233p0.get(i11)).location;
                         if (fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.local_id == fileLocation.local_id) {
                             imageReceiver = v0Var.getPhotoImage();
                             break;
@@ -53,13 +53,13 @@ public final class za extends oq0 {
                 int[] iArr = new int[2];
                 childAt.getLocationInWindow(iArr);
                 wq0 wq0Var = new wq0();
-                wq0Var.f53494b = iArr[0];
-                wq0Var.f53495c = iArr[1];
-                wq0Var.d = lbVar.f49568w;
-                wq0Var.f53493a = imageReceiver;
-                wq0Var.f53496e = imageReceiver.p();
+                wq0Var.f53498b = iArr[0];
+                wq0Var.f53499c = iArr[1];
+                wq0Var.d = lbVar.f49572w;
+                wq0Var.f53497a = imageReceiver;
+                wq0Var.f53500e = imageReceiver.p();
                 wq0Var.h = imageReceiver.E();
-                wq0Var.f53502l = true;
+                wq0Var.f53506l = true;
                 return wq0Var;
             }
             i10++;

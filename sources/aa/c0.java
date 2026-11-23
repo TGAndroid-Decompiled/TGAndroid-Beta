@@ -38,35 +38,35 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
+import org.telegram.messenger.az;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.f3;
 import org.telegram.messenger.f4;
-import org.telegram.messenger.fj;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hd;
 import org.telegram.messenger.i5;
 import org.telegram.messenger.j0;
 import org.telegram.messenger.j2;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mi;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.ls;
 import org.telegram.messenger.n5;
-import org.telegram.messenger.ns;
-import org.telegram.messenger.po;
-import org.telegram.messenger.ri;
-import org.telegram.messenger.rs;
+import org.telegram.messenger.ni;
+import org.telegram.messenger.np;
+import org.telegram.messenger.os;
+import org.telegram.messenger.qo;
 import org.telegram.messenger.s2;
+import org.telegram.messenger.si;
+import org.telegram.messenger.ss;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.t0;
 import org.telegram.messenger.t3;
-import org.telegram.messenger.tr;
+import org.telegram.messenger.ur;
 import org.telegram.messenger.w7;
-import org.telegram.messenger.wo;
-import org.telegram.messenger.wy;
-import org.telegram.messenger.x10;
-import org.telegram.messenger.xs;
+import org.telegram.messenger.xo;
+import org.telegram.messenger.xy;
+import org.telegram.messenger.y10;
 import org.telegram.messenger.y2;
-import org.telegram.messenger.yy;
+import org.telegram.messenger.ys;
 import org.telegram.messenger.z4;
 import org.telegram.messenger.zy;
 import org.telegram.tgnet.ConnectionsManager;
@@ -119,44 +119,44 @@ public final class c0 implements Runnable {
         boolean z11 = this.f787b;
         c2 c2Var = (c2) this.f789e;
         try {
-            m6.f29427g0 = m6.km.get(m6.f29432g5, -1);
+            m6.f29430g0 = m6.km.get(m6.f29435g5, -1);
             if (!TextUtils.isEmpty(strArr[0])) {
-                m6.f29446h0 = strArr[0];
-                String absolutePath = new File(t0.h(), Utilities.a(m6.f29446h0) + ".wp").getAbsolutePath();
+                m6.f29449h0 = strArr[0];
+                String absolutePath = new File(t0.h(), Utilities.a(m6.f29449h0) + ".wp").getAbsolutePath();
                 try {
-                    String str = l6Var.f29233c;
+                    String str = l6Var.f29236c;
                     if (str != null && !str.equals(absolutePath)) {
-                        new File(l6Var.f29233c).delete();
+                        new File(l6Var.f29236c).delete();
                     }
                 } catch (Exception unused) {
                 }
-                l6Var.f29233c = absolutePath;
-                Uri parse = Uri.parse(m6.f29446h0);
-                l6Var.f29236e = parse.getQueryParameter("slug");
+                l6Var.f29236c = absolutePath;
+                Uri parse = Uri.parse(m6.f29449h0);
+                l6Var.f29239e = parse.getQueryParameter("slug");
                 String queryParameter = parse.getQueryParameter("mode");
                 if (queryParameter != null && (split = queryParameter.toLowerCase().split(" ")) != null && split.length > 0) {
                     for (int i7 = 0; i7 < split.length; i7++) {
                         if ("blur".equals(split[i7])) {
                             l6Var.h = true;
                         } else if ("motion".equals(split[i7])) {
-                            l6Var.f29245n = true;
+                            l6Var.f29248n = true;
                         }
                     }
                 }
                 Utilities.z(parse.getQueryParameter("intensity"));
-                l6Var.f29250y = 45;
+                l6Var.f29253y = 45;
                 try {
                     String queryParameter2 = parse.getQueryParameter("bg_color");
                     if (!TextUtils.isEmpty(queryParameter2)) {
-                        l6Var.f29246r = Integer.parseInt(queryParameter2.substring(0, 6), 16) | (-16777216);
+                        l6Var.f29249r = Integer.parseInt(queryParameter2.substring(0, 6), 16) | (-16777216);
                         if (queryParameter2.length() >= 13 && g0.S1(queryParameter2.charAt(6))) {
-                            l6Var.f29247s = Integer.parseInt(queryParameter2.substring(7, 13), 16) | (-16777216);
+                            l6Var.f29250s = Integer.parseInt(queryParameter2.substring(7, 13), 16) | (-16777216);
                         }
                         if (queryParameter2.length() >= 20 && g0.S1(queryParameter2.charAt(13))) {
-                            l6Var.f29248w = Integer.parseInt(queryParameter2.substring(14, 20), 16) | (-16777216);
+                            l6Var.f29251w = Integer.parseInt(queryParameter2.substring(14, 20), 16) | (-16777216);
                         }
                         if (queryParameter2.length() == 27 && g0.S1(queryParameter2.charAt(20))) {
-                            l6Var.f29249x = Integer.parseInt(queryParameter2.substring(21), 16) | (-16777216);
+                            l6Var.f29252x = Integer.parseInt(queryParameter2.substring(21), 16) | (-16777216);
                         }
                     }
                 } catch (Exception unused2) {
@@ -164,19 +164,19 @@ public final class c0 implements Runnable {
                 try {
                     String queryParameter3 = parse.getQueryParameter("rotation");
                     if (!TextUtils.isEmpty(queryParameter3)) {
-                        l6Var.f29250y = Utilities.z(queryParameter3).intValue();
+                        l6Var.f29253y = Utilities.z(queryParameter3).intValue();
                     }
                 } catch (Exception unused3) {
                 }
             } else {
                 try {
-                    if (l6Var.f29233c != null) {
-                        new File(l6Var.f29233c).delete();
+                    if (l6Var.f29236c != null) {
+                        new File(l6Var.f29236c).delete();
                     }
                 } catch (Exception unused4) {
                 }
-                l6Var.f29233c = null;
-                m6.f29446h0 = null;
+                l6Var.f29236c = null;
+                m6.f29449h0 = null;
             }
             if (!z11 && m6.M == null) {
                 m6.K = l6Var;
@@ -197,7 +197,7 @@ public final class c0 implements Runnable {
             a8.g(e10, true);
         }
         if (m6.M == null && !m6.Q) {
-            mp.u1(l6Var.F).G4(l6Var, l6Var.k(false), z11, false);
+            np.u1(l6Var.F).G4(l6Var, l6Var.k(false), z11, false);
         }
         c2Var.run();
     }
@@ -237,7 +237,7 @@ public final class c0 implements Runnable {
         int i16;
         int i17;
         int i18;
-        fj fjVar;
+        gj gjVar;
         int i19;
         int i20;
         h6 h6Var;
@@ -258,45 +258,45 @@ public final class c0 implements Runnable {
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "disk worker: log non-fatal event to persistence", null);
                 }
-                e0Var.f800b.e(q2Var, cVar.f5139a, z15);
+                e0Var.f800b.e(q2Var, cVar.f5142a, z15);
                 return;
             case 1:
                 p8 p8Var = (p8) this.f788c;
                 TLObject tLObject = (TLObject) this.f789e;
                 boolean z16 = this.f787b;
-                ArrayList arrayList5 = p8Var.f9549l;
-                int i23 = p8Var.f9540a;
-                if (((int[]) this.d)[0] == p8Var.f9550m) {
-                    p8Var.f9546i = false;
-                    p8Var.f9550m = -1;
+                ArrayList arrayList5 = p8Var.f9552l;
+                int i23 = p8Var.f9543a;
+                if (((int[]) this.d)[0] == p8Var.f9553m) {
+                    p8Var.f9549i = false;
+                    p8Var.f9553m = -1;
                     if (tLObject instanceof TL_stars.TL_payments_savedStarGifts) {
                         TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject;
-                        mp.u1(i23).f4(tL_payments_savedStarGifts.users, false);
-                        mp.u1(i23).Z3(tL_payments_savedStarGifts.chats, false);
+                        np.u1(i23).f4(tL_payments_savedStarGifts.users, false);
+                        np.u1(i23).Z3(tL_payments_savedStarGifts.chats, false);
                         if (z16) {
                             arrayList5.clear();
                         }
                         arrayList5.addAll(tL_payments_savedStarGifts.gifts);
-                        p8Var.f9548k = tL_payments_savedStarGifts.next_offset;
-                        p8Var.f9551n = tL_payments_savedStarGifts.count;
+                        p8Var.f9551k = tL_payments_savedStarGifts.next_offset;
+                        p8Var.f9554n = tL_payments_savedStarGifts.count;
                         if ((tL_payments_savedStarGifts.flags & 2) != 0) {
                             bool = Boolean.valueOf(tL_payments_savedStarGifts.chat_notifications_enabled);
                         }
                         p8Var.h = bool;
-                        if (arrayList5.size() <= p8Var.f9551n && p8Var.f9548k != null) {
+                        if (arrayList5.size() <= p8Var.f9554n && p8Var.f9551k != null) {
                             z10 = false;
                         } else {
                             z10 = true;
                         }
-                        p8Var.f9547j = z10;
+                        p8Var.f9550j = z10;
                         c10 = 1;
                     } else {
                         c10 = 1;
-                        p8Var.f9547j = true;
+                        p8Var.f9550j = true;
                     }
-                    ks f10 = ks.f(i23);
+                    ls f10 = ls.f(i23);
                     Object[] objArr = new Object[2];
-                    objArr[0] = Long.valueOf(p8Var.f9541b);
+                    objArr[0] = Long.valueOf(p8Var.f9544b);
                     objArr[c10] = p8Var;
                     f10.k(232, objArr);
                     return;
@@ -306,22 +306,22 @@ public final class c0 implements Runnable {
                 x2 x2Var = (x2) this.f788c;
                 p0 p0Var = (p0) this.f789e;
                 boolean z17 = this.f787b;
-                z3 z3Var = x2Var.f12761a;
-                c5.X(z3Var.f12888m2, 1, z3Var.l1, new w2(x2Var, z17, p0Var, (View) this.d));
+                z3 z3Var = x2Var.f12764a;
+                c5.X(z3Var.f12891m2, 1, z3Var.l1, new w2(x2Var, z17, p0Var, (View) this.d));
                 return;
             case 3:
                 r1 r1Var = (r1) this.f788c;
                 TLObject tLObject2 = (TLObject) this.d;
                 String str = (String) this.f789e;
                 boolean z18 = this.f787b;
-                t1 t1Var = r1Var.f15323s;
-                if (r1Var.f15322r) {
+                t1 t1Var = r1Var.f15326s;
+                if (r1Var.f15325r) {
                     if (tLObject2 instanceof TLRPC.messages_BotResults) {
                         TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject2;
-                        i2 i2Var = t1Var.f15497r;
-                        ArrayList arrayList6 = t1Var.f15496n;
+                        i2 i2Var = t1Var.f15500r;
+                        ArrayList arrayList6 = t1Var.f15499n;
                         int i24 = i2.C1;
-                        tr.a0(i2Var.f30170a).v1(str, messages_botresults);
+                        ur.a0(i2Var.f30173a).v1(str, messages_botresults);
                         r1Var.h = messages_botresults.next_offset;
                         if (z18) {
                             arrayList6.clear();
@@ -331,7 +331,7 @@ public final class c0 implements Runnable {
                         r1Var.f();
                     }
                     t1Var.d.c(false);
-                    r1Var.f15322r = false;
+                    r1Var.f15325r = false;
                     return;
                 }
                 return;
@@ -368,7 +368,7 @@ public final class c0 implements Runnable {
                 y3 y3Var = (y3) this.d;
                 jg.e0 e0Var2 = (jg.e0) this.f789e;
                 if (!z20) {
-                    h0Var.f17493c = e0Var2;
+                    h0Var.f17496c = e0Var2;
                     y3Var.setRightText(h0Var.H(e0Var2));
                     y3Var.setRightTextMargin(6);
                     h0Var.J.clear();
@@ -388,13 +388,13 @@ public final class c0 implements Runnable {
                     return;
                 }
                 if (z21) {
-                    m2.d dVar = f0Var.f19372s;
+                    m2.d dVar = f0Var.f19375s;
                     dVar.getClass();
-                    dVar.f20517f.a(i25);
+                    dVar.f20520f.a(i25);
                 }
                 LogSessionId k10 = i25.k();
                 synchronized (iVar) {
-                    m2.h hVar2 = iVar.f20548b;
+                    m2.h hVar2 = iVar.f20551b;
                     hVar2.getClass();
                     hVar2.f(k10);
                 }
@@ -414,20 +414,20 @@ public final class c0 implements Runnable {
                 Pair pair = (Pair) this.d;
                 Object obj = this.f789e;
                 boolean z23 = this.f787b;
-                HashMap hashMap = y2Var.f28101c;
+                HashMap hashMap = y2Var.f28008c;
                 if (hashMap != null && (arrayList = (ArrayList) hashMap.get(pair)) != null) {
                     int size2 = arrayList.size();
                     int i26 = 0;
                     while (i26 < size2) {
                         Object obj2 = arrayList.get(i26);
                         i26++;
-                        ((x10) obj2).a(obj);
+                        ((y10) obj2).a(obj);
                     }
                     if (z23) {
                         arrayList.clear();
                     }
                     if (z23) {
-                        y2Var.f28101c.remove(pair);
+                        y2Var.f28008c.remove(pair);
                         return;
                     }
                     return;
@@ -438,14 +438,14 @@ public final class c0 implements Runnable {
                 boolean z24 = this.f787b;
                 TLObject tLObject3 = (TLObject) this.d;
                 TL_phone.getGroupParticipants getgroupparticipants = (TL_phone.getGroupParticipants) this.f789e;
-                t3Var.f26980u = false;
+                t3Var.f26967u = false;
                 if (z24) {
                     t3Var.v = false;
                 }
                 if (tLObject3 != null) {
                     TL_phone.groupParticipants groupparticipants = (TL_phone.groupParticipants) tLObject3;
-                    mp.u1(t3Var.C.f23246a).f4(groupparticipants.users, false);
-                    mp.u1(t3Var.C.f23246a).Z3(groupparticipants.chats, false);
+                    np.u1(t3Var.C.f23202a).f4(groupparticipants.users, false);
+                    np.u1(t3Var.C.f23202a).Z3(groupparticipants.chats, false);
                     t3Var.m(groupparticipants.participants, z24, getgroupparticipants.offset, groupparticipants.next_offset, groupparticipants.version, groupparticipants.count);
                     return;
                 }
@@ -453,7 +453,7 @@ public final class c0 implements Runnable {
             case 10:
                 f4 f4Var = (f4) this.f788c;
                 boolean z25 = this.f787b;
-                f4Var.f23859b = new ArrayList((List) this.d);
+                f4Var.f23854b = new ArrayList((List) this.d);
                 ((ResultCallback) this.f789e).onComplete(f4Var.e((z25 ? 1 : 0) | 2));
                 return;
             case 11:
@@ -468,38 +468,38 @@ public final class c0 implements Runnable {
                     Object obj3 = arrayList7.get(i27);
                     i27++;
                     TLRPC.User user = (TLRPC.User) obj3;
-                    TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) i5Var.f24596g0.get(Long.valueOf(user.f28580id));
+                    TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) i5Var.f24606g0.get(Long.valueOf(user.f28583id));
                     if (tL_contact != null) {
-                        i5Var.f24595f0.remove(tL_contact);
-                        i5Var.f24596g0.remove(Long.valueOf(user.f28580id));
+                        i5Var.f24605f0.remove(tL_contact);
+                        i5Var.f24606g0.remove(Long.valueOf(user.f28583id));
                         z27 = true;
                     }
                 }
                 if (z27) {
                     i5Var.d(false);
                 }
-                ks notificationCenter = i5Var.getNotificationCenter();
-                int i28 = mp.I8;
+                ls notificationCenter = i5Var.getNotificationCenter();
+                int i28 = np.I8;
                 notificationCenter.k(2, 1);
                 i5Var.getNotificationCenter().k(25, new Object[0]);
                 if (z26) {
-                    ks.e().k(295, 1, gd.a0("DeletedFromYourContacts", null, 2131751454, str2));
+                    ls.e().k(295, 1, hd.a0("DeletedFromYourContacts", null, 2131751454, str2));
                     return;
                 }
                 return;
             case 12:
                 MediaController mediaController = (MediaController) this.f788c;
-                wo woVar = (wo) this.d;
+                xo xoVar = (xo) this.d;
                 org.telegram.messenger.c cVar2 = (org.telegram.messenger.c) this.f789e;
                 boolean z28 = this.f787b;
                 String[] strArr = MediaController.W1;
                 TLRPC.TL_document tL_document = new TLRPC.TL_document();
-                tL_document.access_hash = woVar.f27774b;
-                tL_document.f28437id = woVar.f27773a;
+                tL_document.access_hash = xoVar.f27946b;
+                tL_document.f28440id = xoVar.f27945a;
                 tL_document.mime_type = "sound/ogg";
-                tL_document.file_reference = woVar.f27775c;
-                tL_document.dc_id = ConnectionsManager.getInstance(cVar2.f23246a).getCurrentDatacenterId();
-                w7.G(cVar2.f23246a);
+                tL_document.file_reference = xoVar.f27947c;
+                tL_document.dc_id = ConnectionsManager.getInstance(cVar2.f23202a).getCurrentDatacenterId();
+                w7.G(cVar2.f23202a);
                 File J = w7.J(tL_document, null, true, true);
                 if (J.exists()) {
                     if (!z28) {
@@ -518,13 +518,13 @@ public final class c0 implements Runnable {
                 String[] strArr2 = MediaController.W1;
                 boolean exists = file.exists();
                 if (!exists) {
-                    boolean z30 = s2.f26749a;
-                    a8.g(new RuntimeException("file not found :( recordTimeCount " + mediaController2.l1 + " writedFrames" + mediaController2.f22749m1), true);
+                    boolean z30 = s2.f26730a;
+                    a8.g(new RuntimeException("file not found :( recordTimeCount " + mediaController2.l1 + " writedFrames" + mediaController2.f22752m1), true);
                 }
                 if (exists) {
-                    ri.d0(mediaController2.f22743i1).F1(mediaController2.n1, mediaController2.f22753o1, mi.a(mediaController2, file.getAbsolutePath(), z29));
+                    si.d0(mediaController2.f22746i1).F1(mediaController2.n1, mediaController2.f22756o1, ni.a(mediaController2, file.getAbsolutePath(), z29));
                 }
-                tL_document2.date = ConnectionsManager.getInstance(mediaController2.f22743i1).getCurrentTime();
+                tL_document2.date = ConnectionsManager.getInstance(mediaController2.f22746i1).getCurrentTime();
                 tL_document2.size = (int) file.length();
                 TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
                 tL_documentAttributeAudio.voice = true;
@@ -536,43 +536,43 @@ public final class c0 implements Runnable {
                 tL_documentAttributeAudio.duration = mediaController2.l1 / 1000.0d;
                 tL_document2.attributes.clear();
                 tL_document2.attributes.add(tL_documentAttributeAudio);
-                ks.f(mediaController2.f22743i1).k(158, new Object[0]);
-                ks.f(mediaController2.f22743i1).k(162, Integer.valueOf(mediaController2.f22741h1), tL_document2, file.getAbsolutePath());
+                ls.f(mediaController2.f22746i1).k(158, new Object[0]);
+                ls.f(mediaController2.f22746i1).k(162, Integer.valueOf(mediaController2.f22744h1), tL_document2, file.getAbsolutePath());
                 mediaController2.Y(false);
                 return;
             case 14:
-                ri riVar = (ri) this.f788c;
+                si siVar = (si) this.f788c;
                 boolean z31 = this.f787b;
-                riVar.getMessagesController().f4((ArrayList) this.d, z31);
-                riVar.getMessagesController().Z3((ArrayList) this.f789e, z31);
+                siVar.getMessagesController().f4((ArrayList) this.d, z31);
+                siVar.getMessagesController().Z3((ArrayList) this.f789e, z31);
                 return;
             case 15:
-                ri riVar2 = (ri) this.f788c;
+                si siVar2 = (si) this.f788c;
                 boolean z32 = this.f787b;
                 ArrayList arrayList8 = (ArrayList) this.d;
                 a0.h hVar3 = (a0.h) this.f789e;
                 try {
-                    riVar2.getMessagesStorage().f27082b.beginTransaction();
+                    siVar2.getMessagesStorage().f27252b.beginTransaction();
                     if (z32) {
-                        executeFast = riVar2.getMessagesStorage().f27082b.executeFast("UPDATE scheduled_messages_v2 SET replydata = ?, reply_to_message_id = ? WHERE mid = ? AND uid = ?");
+                        executeFast = siVar2.getMessagesStorage().f27252b.executeFast("UPDATE scheduled_messages_v2 SET replydata = ?, reply_to_message_id = ? WHERE mid = ? AND uid = ?");
                     } else {
-                        executeFast = riVar2.getMessagesStorage().f27082b.executeFast("UPDATE messages_v2 SET replydata = ?, reply_to_message_id = ? WHERE mid = ? AND uid = ?");
-                        executeFast2 = riVar2.getMessagesStorage().f27082b.executeFast("UPDATE messages_topics SET replydata = ?, reply_to_message_id = ? WHERE mid = ? AND uid = ?");
+                        executeFast = siVar2.getMessagesStorage().f27252b.executeFast("UPDATE messages_v2 SET replydata = ?, reply_to_message_id = ? WHERE mid = ? AND uid = ?");
+                        executeFast2 = siVar2.getMessagesStorage().f27252b.executeFast("UPDATE messages_topics SET replydata = ?, reply_to_message_id = ? WHERE mid = ? AND uid = ?");
                     }
                     int i29 = 0;
                     while (i29 < arrayList8.size()) {
                         TLRPC.Message message = (TLRPC.Message) arrayList8.get(i29);
-                        SparseArray sparseArray = (SparseArray) hVar3.f(fj.B0(message));
-                        if (sparseArray == null || (arrayList2 = (ArrayList) sparseArray.get(message.f28452id)) == null) {
+                        SparseArray sparseArray = (SparseArray) hVar3.f(gj.B0(message));
+                        if (sparseArray == null || (arrayList2 = (ArrayList) sparseArray.get(message.f28455id)) == null) {
                             sQLitePreparedStatement = executeFast;
                             arrayList3 = arrayList8;
                             i7 = i21;
                         } else {
-                            fj.q5(message);
+                            gj.q5(message);
                             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(message.getObjectSize());
                             message.serializeToStream(nativeByteBuffer);
                             for (int i30 = 0; i30 < arrayList2.size(); i30++) {
-                                fj fjVar2 = (fj) arrayList2.get(i30);
+                                gj gjVar2 = (gj) arrayList2.get(i30);
                                 int i31 = 0;
                                 while (i31 < i21) {
                                     if (i31 == 0) {
@@ -587,12 +587,12 @@ public final class c0 implements Runnable {
                                     } else {
                                         sQLitePreparedStatement2.requery();
                                         sQLitePreparedStatement2.bindByteBuffer(1, nativeByteBuffer);
-                                        sQLitePreparedStatement2.bindInteger(i21, message.f28452id);
+                                        sQLitePreparedStatement2.bindInteger(i21, message.f28455id);
                                         i10 = i21;
-                                        sQLitePreparedStatement2.bindInteger(3, fjVar2.e1());
+                                        sQLitePreparedStatement2.bindInteger(3, gjVar2.e1());
                                         sQLitePreparedStatement3 = executeFast;
                                         arrayList4 = arrayList8;
-                                        sQLitePreparedStatement2.bindLong(4, fj.B0(fjVar2.f23993k));
+                                        sQLitePreparedStatement2.bindLong(4, gj.B0(gjVar2.f24213k));
                                         sQLitePreparedStatement2.step();
                                     }
                                     i31++;
@@ -615,14 +615,14 @@ public final class c0 implements Runnable {
                     if (executeFast2 != null) {
                         executeFast2.dispose();
                     }
-                    riVar2.getMessagesStorage().f27082b.commitTransaction();
+                    siVar2.getMessagesStorage().f27252b.commitTransaction();
                     return;
                 } catch (Exception e12) {
                     a8.g(e12, true);
                     return;
                 }
             case 16:
-                ri riVar3 = (ri) this.f788c;
+                si siVar3 = (si) this.f788c;
                 TLObject tLObject4 = (TLObject) this.d;
                 SharedPreferences sharedPreferences = (SharedPreferences) this.f789e;
                 boolean z33 = this.f787b;
@@ -631,11 +631,11 @@ public final class c0 implements Runnable {
                     tLObject4.serializeToStream(serializedData);
                     SharedPreferences.Editor edit = sharedPreferences.edit();
                     if (z33) {
-                        riVar3.M1 = (TLRPC.TL_emojiList) tLObject4;
+                        siVar3.M1 = (TLRPC.TL_emojiList) tLObject4;
                         edit.putString("profile", Utilities.f(serializedData.toByteArray()));
                         edit.putLong("profile_last_check", System.currentTimeMillis());
                     } else {
-                        riVar3.N1 = (TLRPC.TL_emojiList) tLObject4;
+                        siVar3.N1 = (TLRPC.TL_emojiList) tLObject4;
                         edit.putString("group", Utilities.f(serializedData.toByteArray()));
                         edit.putLong("group_last_check", System.currentTimeMillis());
                     }
@@ -644,73 +644,73 @@ public final class c0 implements Runnable {
                 }
                 return;
             case 17:
-                ri riVar4 = (ri) this.f788c;
+                si siVar4 = (si) this.f788c;
                 TLObject tLObject5 = (TLObject) this.d;
                 String str3 = (String) this.f789e;
                 boolean z34 = this.f787b;
                 if (tLObject5 instanceof TLRPC.TL_messages_stickerSet) {
-                    riVar4.v1(str3, z34, (TLRPC.TL_messages_stickerSet) tLObject5, false, (int) (System.currentTimeMillis() / 1000));
+                    siVar4.v1(str3, z34, (TLRPC.TL_messages_stickerSet) tLObject5, false, (int) (System.currentTimeMillis() / 1000));
                     return;
                 } else {
-                    riVar4.v1(str3, z34, null, false, (int) (System.currentTimeMillis() / 1000));
+                    siVar4.v1(str3, z34, null, false, (int) (System.currentTimeMillis() / 1000));
                     return;
                 }
             case 18:
-                mp mpVar = (mp) this.f788c;
+                np npVar = (np) this.f788c;
                 TLObject tLObject6 = (TLObject) this.d;
                 boolean z35 = this.f787b;
                 TLRPC.TL_contacts_getBlocked tL_contacts_getBlocked = (TLRPC.TL_contacts_getBlocked) this.f789e;
-                LongSparseIntArray longSparseIntArray = mpVar.H0;
+                LongSparseIntArray longSparseIntArray = npVar.H0;
                 if (tLObject6 != null) {
                     TLRPC.contacts_Blocked contacts_blocked = (TLRPC.contacts_Blocked) tLObject6;
-                    mpVar.f4(contacts_blocked.users, false);
-                    mpVar.Z3(contacts_blocked.chats, false);
-                    mpVar.getMessagesStorage().m1(contacts_blocked.users, contacts_blocked.chats, true, true);
+                    npVar.f4(contacts_blocked.users, false);
+                    npVar.Z3(contacts_blocked.chats, false);
+                    npVar.getMessagesStorage().m1(contacts_blocked.users, contacts_blocked.chats, true, true);
                     if (z35) {
                         longSparseIntArray.clear();
                     }
-                    mpVar.I0 = Math.max(contacts_blocked.count, contacts_blocked.blocked.size());
+                    npVar.I0 = Math.max(contacts_blocked.count, contacts_blocked.blocked.size());
                     if (contacts_blocked.blocked.size() < tL_contacts_getBlocked.limit) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    mpVar.J0 = z11;
+                    npVar.J0 = z11;
                     int size4 = contacts_blocked.blocked.size();
                     for (int i32 = 0; i32 < size4; i32++) {
-                        longSparseIntArray.put(fj.B1(contacts_blocked.blocked.get(i32).peer_id), 1);
+                        longSparseIntArray.put(gj.B1(contacts_blocked.blocked.get(i32).peer_id), 1);
                     }
-                    mpVar.G0 = false;
-                    mpVar.getNotificationCenter().k(43, new Object[0]);
+                    npVar.G0 = false;
+                    npVar.getNotificationCenter().k(43, new Object[0]);
                     return;
                 }
                 return;
             case 19:
-                mp mpVar2 = (mp) this.f788c;
+                np npVar2 = (np) this.f788c;
                 boolean z36 = this.f787b;
                 TLRPC.Updates updates = (TLRPC.Updates) this.d;
                 ArrayList arrayList9 = (ArrayList) this.f789e;
                 if (z36) {
                     i11 = 0;
-                    mpVar2.getNotificationCenter().k(2, 64);
+                    npVar2.getNotificationCenter().k(2, 64);
                 } else {
                     i11 = 0;
                 }
-                mpVar2.x5(i11, -updates.chat_id, arrayList9);
-                mpVar2.getNotificationCenter().k(3, new Object[i11]);
+                npVar2.x5(i11, -updates.chat_id, arrayList9);
+                npVar2.getNotificationCenter().k(3, new Object[i11]);
                 return;
             case 20:
-                po poVar = (po) this.f788c;
+                qo qoVar = (qo) this.f788c;
                 TLObject tLObject7 = (TLObject) this.f789e;
                 boolean z37 = this.f787b;
-                int i33 = poVar.f26306a;
-                ArrayList arrayList10 = poVar.f26309e;
-                if (((int[]) this.d)[0] == poVar.f26310f) {
-                    poVar.f26308c = false;
-                    poVar.f26310f = -1;
+                int i33 = qoVar.f26487a;
+                ArrayList arrayList10 = qoVar.f26490e;
+                if (((int[]) this.d)[0] == qoVar.f26491f) {
+                    qoVar.f26489c = false;
+                    qoVar.f26491f = -1;
                     if (tLObject7 instanceof TLRPC.messages_Chats) {
                         TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject7;
-                        mp.u1(i33).Z3(messages_chats.chats, false);
+                        np.u1(i33).Z3(messages_chats.chats, false);
                         if (z37) {
                             arrayList10.clear();
                         }
@@ -720,39 +720,39 @@ public final class c0 implements Runnable {
                         } else {
                             size = messages_chats.chats.size();
                         }
-                        poVar.f26311g = size;
-                        if (arrayList10.size() >= poVar.f26311g) {
+                        qoVar.f26492g = size;
+                        if (arrayList10.size() >= qoVar.f26492g) {
                             z12 = true;
                         } else {
                             z12 = false;
                         }
-                        poVar.d = z12;
+                        qoVar.d = z12;
                         c11 = 1;
                     } else {
                         c11 = 1;
-                        poVar.d = true;
+                        qoVar.d = true;
                     }
-                    ks f11 = ks.f(i33);
+                    ls f11 = ls.f(i33);
                     Object[] objArr2 = new Object[2];
-                    objArr2[0] = Long.valueOf(poVar.f26307b);
-                    objArr2[c11] = poVar;
+                    objArr2[0] = Long.valueOf(qoVar.f26488b);
+                    objArr2[c11] = qoVar;
                     f11.k(242, objArr2);
                     return;
                 }
                 return;
             case 21:
-                ((tr) this.f788c).n1((List) this.d, (List) this.f789e, this.f787b);
+                ((ur) this.f788c).n1((List) this.d, (List) this.f789e, this.f787b);
                 return;
             case 22:
-                xs xsVar = (xs) this.f788c;
+                ys ysVar = (ys) this.f788c;
                 a0.h hVar4 = (a0.h) this.d;
                 boolean z38 = this.f787b;
                 ArrayList arrayList11 = (ArrayList) this.f789e;
-                ArrayList arrayList12 = xsVar.f27994b;
-                a0.h hVar5 = xsVar.f27996c;
-                a0.h hVar6 = xsVar.f28001f;
-                int i34 = xsVar.J;
-                xsVar.getAccountInstance().d();
+                ArrayList arrayList12 = ysVar.f28178b;
+                a0.h hVar5 = ysVar.f28180c;
+                a0.h hVar6 = ysVar.f28185f;
+                int i34 = ysVar.J;
+                ysVar.getAccountInstance().d();
                 Integer num6 = 0;
                 int i35 = 0;
                 while (i35 < hVar4.m()) {
@@ -774,15 +774,15 @@ public final class c0 implements Runnable {
                             int i37 = i36;
                             int intValue = ((Integer) arrayList13.get(i36)).intValue();
                             boolean z39 = z38;
-                            fj fjVar3 = (fj) sparseArray2.get(intValue);
+                            gj gjVar3 = (gj) sparseArray2.get(intValue);
                             ArrayList arrayList14 = arrayList13;
-                            if (fjVar3 == null || fjVar3.J || (z39 && !fjVar3.I)) {
+                            if (gjVar3 == null || gjVar3.J || (z39 && !gjVar3.I)) {
                                 i14 = size5;
                                 num2 = num6;
                                 i15 = i35;
                             } else {
                                 i14 = size5;
-                                long B0 = fj.B0(fjVar3.f23993k);
+                                long B0 = gj.B0(gjVar3.f24213k);
                                 Integer num7 = (Integer) hVar6.f(B0);
                                 if (num7 == null) {
                                     num3 = num6;
@@ -793,7 +793,7 @@ public final class c0 implements Runnable {
                                 Integer valueOf = Integer.valueOf(intValue2);
                                 if (intValue2 <= 0) {
                                     num2 = num6;
-                                    xsVar.f27999e.l(B0);
+                                    ysVar.f28183e.l(B0);
                                     Integer num8 = num3;
                                     i15 = i35;
                                     num4 = num8;
@@ -807,41 +807,41 @@ public final class c0 implements Runnable {
                                 }
                                 if (!num5.equals(num4)) {
                                     Integer num10 = num4;
-                                    if (!xsVar.getMessagesController().s2(B0)) {
-                                        if (xsVar.getMessagesController().y2(B0)) {
-                                            int i38 = xsVar.J;
+                                    if (!ysVar.getMessagesController().s2(B0)) {
+                                        if (ysVar.getMessagesController().y2(B0)) {
+                                            int i38 = ysVar.J;
                                             if (num10.intValue() > 0) {
                                                 i16 = i12;
                                             } else {
                                                 i16 = 0;
                                             }
                                             int i39 = i38 - i16;
-                                            xsVar.J = i39;
+                                            ysVar.J = i39;
                                             if (num5.intValue() > 0) {
                                                 i17 = i12;
                                             } else {
                                                 i17 = 0;
                                             }
-                                            xsVar.J = i39 + i17;
+                                            ysVar.J = i39 + i17;
                                         } else {
-                                            int intValue3 = xsVar.J - num10.intValue();
-                                            xsVar.J = intValue3;
-                                            xsVar.J = num5.intValue() + intValue3;
+                                            int intValue3 = ysVar.J - num10.intValue();
+                                            ysVar.J = intValue3;
+                                            ysVar.J = num5.intValue() + intValue3;
                                         }
                                     }
                                     hVar6.k(num5, B0);
                                 }
                                 if (num5.intValue() == 0) {
                                     hVar6.l(B0);
-                                    xsVar.f28008r.l(B0);
+                                    ysVar.f28192r.l(B0);
                                 }
                                 sparseArray2.remove(intValue);
-                                arrayList12.remove(fjVar3);
-                                xsVar.f27992a.remove(fjVar3);
-                                if (xs.E(fjVar3)) {
-                                    xsVar.K--;
+                                arrayList12.remove(gjVar3);
+                                ysVar.f28176a.remove(gjVar3);
+                                if (ys.E(gjVar3)) {
+                                    ysVar.K--;
                                 }
-                                arrayList11.add(fjVar3);
+                                arrayList11.add(gjVar3);
                             }
                             i36 = i37 + 1;
                             arrayList13 = arrayList14;
@@ -865,37 +865,37 @@ public final class c0 implements Runnable {
                 }
                 int i40 = i22;
                 if (!arrayList11.isEmpty()) {
-                    g0.g3(new ns(xsVar, arrayList11, i40));
+                    g0.g3(new os(ysVar, arrayList11, i40));
                 }
-                if (i34 != xsVar.J) {
-                    if (!xsVar.L) {
+                if (i34 != ysVar.J) {
+                    if (!ysVar.L) {
                         arrayList12.clear();
-                        xsVar.Z(xsVar.L);
+                        ysVar.Z(ysVar.L);
                     } else {
-                        if (xsVar.M > xsVar.getConnectionsManager().getCurrentTime()) {
+                        if (ysVar.M > ysVar.getConnectionsManager().getCurrentTime()) {
                             z13 = true;
                         } else {
                             z13 = false;
                         }
-                        xsVar.Q(z13);
+                        ysVar.Q(z13);
                     }
-                    g0.g3(new rs(xsVar, hVar6.m(), 1));
+                    g0.g3(new ss(ysVar, hVar6.m(), 1));
                 }
-                xsVar.L = false;
-                if (xsVar.S) {
-                    xsVar.S(xsVar.z());
+                ysVar.L = false;
+                if (ysVar.S) {
+                    ysVar.S(ysVar.z());
                     return;
                 }
                 return;
             case 23:
-                wy wyVar = (wy) this.f788c;
-                yy yyVar = (yy) this.f789e;
+                xy xyVar = (xy) this.f788c;
+                zy zyVar = (zy) this.f789e;
                 boolean z40 = this.f787b;
-                wyVar.f27819a = zy.C(((org.telegram.messenger.c) this.d).f23246a).A(yyVar.f28239c, yyVar.f28237a, yyVar.f28257x);
-                if (z40 && yyVar.f28252r) {
-                    new File(yyVar.f28239c).delete();
+                xyVar.f27991a = az.C(((org.telegram.messenger.c) this.d).f23202a).A(zyVar.f28407c, zyVar.f28405a, zyVar.f28425x);
+                if (z40 && zyVar.f28420r) {
+                    new File(zyVar.f28407c).delete();
                 }
-                wyVar.f27821c.countDown();
+                xyVar.f27993c.countDown();
                 return;
             case 24:
                 ((CameraController) this.f788c).lambda$initCamera$3(this.f787b, (Exception) this.d, (Runnable) this.f789e);
@@ -904,7 +904,7 @@ public final class c0 implements Runnable {
                 a();
                 return;
             case 26:
-                bn.S0((bn) this.f788c, (String) this.d, (fj) this.f789e, this.f787b);
+                bn.S0((bn) this.f788c, (String) this.d, (gj) this.f789e, this.f787b);
                 return;
             case 27:
                 bn bnVar = (bn) this.f788c;
@@ -914,7 +914,7 @@ public final class c0 implements Runnable {
                 if (j6Var != null) {
                     bnVar.getClass();
                     j6 k11 = l6Var.k(false);
-                    int i41 = j6Var.f29093a;
+                    int i41 = j6Var.f29096a;
                     UndoView undoView = bnVar.N3;
                     if (undoView != null) {
                         view = undoView.getUndoButton();
@@ -936,54 +936,54 @@ public final class c0 implements Runnable {
                 mm mmVar = (mm) this.f788c;
                 TLRPC.Message message2 = (TLRPC.Message) this.d;
                 boolean z42 = this.f787b;
-                fj fjVar4 = (fj) this.f789e;
+                gj gjVar4 = (gj) this.f789e;
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                bn bnVar2 = mmVar.f49937a;
-                f3.p(null, null, 2131744153, new Object[]{bnVar2.getMessagesController().D1(n5.o(message2.from_id), false)}, spannableStringBuilder);
+                bn bnVar2 = mmVar.f49941a;
+                f3.p(null, null, 2131744151, new Object[]{bnVar2.getMessagesController().D1(n5.o(message2.from_id), false)}, spannableStringBuilder);
                 spannableStringBuilder.append((CharSequence) "\n\n");
                 cg.a n10 = cg.a.n(message2.suggested_post.price);
-                if (n10.f5300a == cg.b.f5303b) {
-                    i18 = ((j0) bnVar2.getMessagesController().A7.f26168f.f15505b).f24792c;
+                if (n10.f5303a == cg.b.f5306b) {
+                    i18 = ((j0) bnVar2.getMessagesController().A7.f26220f.f15508b).f24812c;
                 } else {
-                    i18 = ((j0) bnVar2.getMessagesController().A7.f26163c.f15505b).f24792c;
+                    i18 = ((j0) bnVar2.getMessagesController().A7.f26215c.f15508b).f24812c;
                 }
                 if (z42) {
-                    fjVar = fjVar4;
-                    n10 = cg.a.j((n10.f5301b / 1000) * i18, n10.f5300a);
+                    gjVar = gjVar4;
+                    n10 = cg.a.j((n10.f5304b / 1000) * i18, n10.f5303a);
                 } else {
-                    fjVar = fjVar4;
+                    gjVar = gjVar4;
                 }
                 if (message2.suggested_post.schedule_date == 0) {
                     if (z42) {
-                        f3.p(null, null, 2131744150, new Object[]{n10.g(), ki.j.J0(i18)}, spannableStringBuilder);
+                        f3.p(null, null, 2131744148, new Object[]{n10.g(), ki.j.J0(i18)}, spannableStringBuilder);
                     } else {
-                        f3.p(null, null, 2131744149, new Object[]{n10.g()}, spannableStringBuilder);
+                        f3.p(null, null, 2131744147, new Object[]{n10.g()}, spannableStringBuilder);
                     }
                 } else if (z42) {
-                    f3.p(null, null, 2131744151, new Object[]{n10.g(), r0.L0(message2.suggested_post.schedule_date), ki.j.J0(i18)}, spannableStringBuilder);
+                    f3.p(null, null, 2131744149, new Object[]{n10.g(), r0.L0(message2.suggested_post.schedule_date), ki.j.J0(i18)}, spannableStringBuilder);
                 } else {
-                    f3.p(null, null, 2131744148, new Object[]{n10.g(), r0.L0(message2.suggested_post.schedule_date)}, spannableStringBuilder);
+                    f3.p(null, null, 2131744146, new Object[]{n10.g(), r0.L0(message2.suggested_post.schedule_date)}, spannableStringBuilder);
                 }
                 spannableStringBuilder.append(' ');
                 i19 = ((g2) bnVar2).currentAccount;
-                f3.p(null, null, 2131744152, new Object[]{Long.valueOf(mp.u1(i19).A7.f26173i.n2(TimeUnit.HOURS))}, spannableStringBuilder);
+                f3.p(null, null, 2131744150, new Object[]{Long.valueOf(np.u1(i19).A7.f26225i.n2(TimeUnit.HOURS))}, spannableStringBuilder);
                 gc[] gcVarArr = new gc[1];
                 q5 q5Var = new q5(gcVarArr, 4);
                 org.telegram.ui.ActionBar.t1[] t1VarArr = new org.telegram.ui.ActionBar.t1[1];
-                String N0 = gd.N0(2131744133, null);
+                String N0 = hd.N0(2131744131, null);
                 if (message2.suggested_post.schedule_date == 0) {
                     i20 = 2131748057;
                 } else {
-                    i20 = 2131744132;
+                    i20 = 2131744130;
                 }
-                org.telegram.ui.ActionBar.t1 s02 = c5.s0(bnVar2, N0, spannableStringBuilder, gd.N0(i20, null), false, new ai.b(mmVar, message2, t1VarArr, fjVar, q5Var, 29));
+                org.telegram.ui.ActionBar.t1 s02 = c5.s0(bnVar2, N0, spannableStringBuilder, hd.N0(i20, null), false, new ai.b(mmVar, message2, t1VarArr, gjVar, q5Var, 29));
                 t1VarArr[0] = s02;
                 s02.setOnDismissListener(q5Var);
-                if (z42 && n10.f5300a == cg.b.f5302a) {
+                if (z42 && n10.f5303a == cg.b.f5305a) {
                     bb a10 = cb.a(bnVar2.getParentActivity());
                     h6Var = ((g2) bnVar2).resourceProvider;
-                    gc G = new lc(a10, h6Var).G(2131624068, 10, gd.N0(2131744147, null));
-                    G.f35508j = 60000;
+                    gc G = new lc(a10, h6Var).G(2131624068, 10, hd.N0(2131744145, null));
+                    G.f35527j = 60000;
                     G.k(true);
                     gcVarArr[0] = G;
                     return;
@@ -993,7 +993,7 @@ public final class c0 implements Runnable {
                 zm zmVar = (zm) this.f788c;
                 zmVar.s((s3) this.d, (TLRPC.WallPaper) this.f789e, this.f787b);
                 zmVar.p(zmVar.h);
-                pl plVar = zmVar.G.f46107m1;
+                pl plVar = zmVar.G.f46111m1;
                 if (plVar != null && (m3Var = plVar.M) != null) {
                     m3Var.invalidate();
                     return;
@@ -1026,9 +1026,9 @@ public final class c0 implements Runnable {
         this.f789e = obj3;
     }
 
-    public c0(ri riVar, TLRPC.TL_error tL_error, TLObject tLObject, String str, boolean z10) {
+    public c0(si siVar, TLRPC.TL_error tL_error, TLObject tLObject, String str, boolean z10) {
         this.f786a = 17;
-        this.f788c = riVar;
+        this.f788c = siVar;
         this.d = tLObject;
         this.f789e = str;
         this.f787b = z10;

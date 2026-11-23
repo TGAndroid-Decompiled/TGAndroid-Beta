@@ -9,26 +9,26 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import o5.k;
 public final class a implements k {
-    public static final String f20854c;
+    public static final String f20857c;
     public static final Set d;
-    public static final a f20855e;
-    public static final a f20856f;
-    public final String f20857a;
-    public final String f20858b;
+    public static final a f20858e;
+    public static final a f20859f;
+    public final String f20860a;
+    public final String f20861b;
 
     static {
         String a10 = q9.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
-        f20854c = a10;
+        f20857c = a10;
         String a11 = q9.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
         String a12 = q9.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
         d = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(new l5.c("proto"), new l5.c("json"))));
-        f20855e = new a(a10, null);
-        f20856f = new a(a11, a12);
+        f20858e = new a(a10, null);
+        f20859f = new a(a11, a12);
     }
 
     public a(String str, String str2) {
-        this.f20857a = str;
-        this.f20858b = str2;
+        this.f20860a = str;
+        this.f20861b = str2;
     }
 
     public static a a(byte[] bArr) {

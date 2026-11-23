@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import bi.i5;
+import bi.h5;
 import c8.ma;
 import hi.j3;
 import java.util.List;
@@ -21,15 +21,15 @@ import org.telegram.ui.Components.oh0;
 import org.telegram.ui.Components.rh0;
 import org.telegram.ui.k71;
 public final class i1 extends LinearLayout {
-    public final rh0[] f57957a;
-    public h1 f57958b;
-    public final Paint f57959c;
+    public final rh0[] f57961a;
+    public h1 f57962b;
+    public final Paint f57963c;
     public final int d;
-    public boolean f57960e;
-    public int f57961f;
+    public boolean f57964e;
+    public int f57965f;
     public int h;
-    public float f57962n;
-    public ValueAnimator f57963r;
+    public float f57966n;
+    public ValueAnimator f57967r;
 
     public i1(Context context, boolean z10) {
         super(context);
@@ -37,13 +37,13 @@ public final class i1 extends LinearLayout {
         Object[] objArr2;
         float f10;
         float f11;
-        List list = sg.h.f57255a;
-        this.f57957a = new rh0[list.size() + 2];
+        List list = sg.h.f57259a;
+        this.f57961a = new rh0[list.size() + 2];
         Paint paint = new Paint(1);
-        this.f57959c = paint;
-        this.f57961f = 1;
+        this.f57963c = paint;
+        this.f57965f = 1;
         this.h = -1;
-        this.f57962n = 0.0f;
+        this.f57966n = 0.0f;
         setOrientation(0);
         setGravity(16);
         setWillNotDraw(false);
@@ -53,9 +53,9 @@ public final class i1 extends LinearLayout {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            List list2 = sg.h.f57255a;
+            List list2 = sg.h.f57259a;
             if (i7 < list2.size() + 2) {
-                rh0[] rh0VarArr = this.f57957a;
+                rh0[] rh0VarArr = this.f57961a;
                 if (i7 == 0) {
                     objArr = 1;
                 } else {
@@ -84,21 +84,21 @@ public final class i1 extends LinearLayout {
                 imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
                 rh0VarArr[i10] = imageView;
                 if (i7 == 0) {
-                    this.f57957a[i10].setOnClickListener(new View.OnClickListener(this) {
-                        public final i1 f57895b;
+                    this.f57961a[i10].setOnClickListener(new View.OnClickListener(this) {
+                        public final i1 f57899b;
 
                         {
-                            this.f57895b = this;
+                            this.f57899b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
                             switch (r2) {
                                 case 0:
-                                    this.f57895b.f57958b.a();
+                                    this.f57899b.f57962b.a();
                                     return;
                                 default:
-                                    this.f57895b.f57958b.A();
+                                    this.f57899b.f57962b.A();
                                     return;
                             }
                         }
@@ -106,34 +106,34 @@ public final class i1 extends LinearLayout {
                 } else if (i7 > 0 && i7 <= list2.size()) {
                     sg.h hVar = (sg.h) list2.get(i7 - 1);
                     if (z10 || !(hVar instanceof sg.b)) {
-                        this.f57957a[i10].f(hVar.e(), 28, 28, null);
-                        this.f57957a[i10].setOnClickListener(new i5(this, i10, hVar, 25));
+                        this.f57961a[i10].f(hVar.e(), 28, 28, null);
+                        this.f57961a[i10].setOnClickListener(new h5(this, i10, hVar, 25));
                     } else {
                         i7++;
                     }
                 } else if (i7 == list2.size() + 1) {
-                    this.f57957a[i10].setImageResource(2131232044);
-                    this.f57957a[i10].setOnClickListener(new View.OnClickListener(this) {
-                        public final i1 f57895b;
+                    this.f57961a[i10].setImageResource(2131232044);
+                    this.f57961a[i10].setOnClickListener(new View.OnClickListener(this) {
+                        public final i1 f57899b;
 
                         {
-                            this.f57895b = this;
+                            this.f57899b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
                             switch (r2) {
                                 case 0:
-                                    this.f57895b.f57958b.a();
+                                    this.f57899b.f57962b.a();
                                     return;
                                 default:
-                                    this.f57895b.f57958b.A();
+                                    this.f57899b.f57962b.A();
                                     return;
                             }
                         }
                     });
                 }
-                addView(this.f57957a[i10]);
+                addView(this.f57961a[i10]);
                 i10++;
                 i7++;
             } else {
@@ -144,9 +144,9 @@ public final class i1 extends LinearLayout {
 
     public final void a(int i7) {
         if (i7 >= 0) {
-            rh0[] rh0VarArr = this.f57957a;
+            rh0[] rh0VarArr = this.f57961a;
             if (i7 < rh0VarArr.length) {
-                if (this.f57963r == null || this.h != i7) {
+                if (this.f57967r == null || this.h != i7) {
                     rh0 rh0Var = rh0VarArr[i7];
                     if (rh0Var != null) {
                         Drawable drawable = rh0Var.getDrawable();
@@ -156,23 +156,23 @@ public final class i1 extends LinearLayout {
                             oh0Var.start();
                         }
                     }
-                    ValueAnimator valueAnimator = this.f57963r;
+                    ValueAnimator valueAnimator = this.f57967r;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
-                    if (this.f57961f != i7) {
-                        if (this.f57960e) {
-                            this.f57960e = false;
+                    if (this.f57965f != i7) {
+                        if (this.f57964e) {
+                            this.f57964e = false;
                             org.telegram.messenger.g0.P3(rh0VarArr[this.d + 1], 2131232044);
                         }
                         this.h = i7;
-                        this.f57962n = 0.0f;
+                        this.f57966n = 0.0f;
                         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(250L);
-                        this.f57963r = duration;
-                        duration.setInterpolator(nr.f37956f);
-                        this.f57963r.addUpdateListener(new j3(this, 27));
-                        this.f57963r.addListener(new k71(this, 18));
-                        this.f57963r.start();
+                        this.f57967r = duration;
+                        duration.setInterpolator(nr.f37961f);
+                        this.f57967r.addUpdateListener(new j3(this, 27));
+                        this.f57967r.addListener(new k71(this, 18));
+                        this.f57967r.start();
                     }
                 }
             }
@@ -181,7 +181,7 @@ public final class i1 extends LinearLayout {
 
     public final void b(int i7) {
         a(i7);
-        this.f57958b.x().i(i7 - 1, true);
+        this.f57962b.x().i(i7 - 1, true);
     }
 
     @Override
@@ -192,13 +192,13 @@ public final class i1 extends LinearLayout {
             for (int i7 = 1; i7 < getChildCount() - 1; i7++) {
                 View childAt = getChildAt(i7);
                 if (x10 >= childAt.getLeft() && x10 <= childAt.getRight()) {
-                    if (this.f57963r != null) {
+                    if (this.f57967r != null) {
                         if (this.h != i7) {
                             a(i7);
                             post(new org.telegram.ui.ActionBar.j1(1, childAt));
                             return true;
                         }
-                    } else if (this.f57961f != i7) {
+                    } else if (this.f57965f != i7) {
                         a(i7);
                         post(new org.telegram.ui.ActionBar.j1(1, childAt));
                         return true;
@@ -216,8 +216,8 @@ public final class i1 extends LinearLayout {
         float f11;
         float f12;
         super.onDraw(canvas);
-        int i7 = this.f57961f;
-        rh0[] rh0VarArr = this.f57957a;
+        int i7 = this.f57965f;
+        rh0[] rh0VarArr = this.f57961a;
         rh0 rh0Var2 = rh0VarArr[i7];
         int i10 = this.h;
         if (i10 != -1) {
@@ -227,7 +227,7 @@ public final class i1 extends LinearLayout {
         }
         float f13 = 0.0f;
         if (rh0Var != null) {
-            f10 = this.f57962n;
+            f10 = this.f57966n;
         } else {
             f10 = 0.0f;
         }
@@ -237,7 +237,7 @@ public final class i1 extends LinearLayout {
         }
         float L = (org.telegram.messenger.g0.L(3.0f) * f14) + (Math.min((rh0Var2.getWidth() - rh0Var2.getPaddingLeft()) - rh0Var2.getPaddingRight(), (rh0Var2.getHeight() - rh0Var2.getPaddingTop()) - rh0Var2.getPaddingBottom()) / 2.0f) + org.telegram.messenger.g0.L(3.0f);
         float width = (rh0Var2.getWidth() / 2.0f) + rh0Var2.getX();
-        int i11 = this.f57961f;
+        int i11 = this.f57965f;
         int i12 = this.d;
         if (i11 == i12 + 1) {
             f11 = org.telegram.messenger.g0.L(4.0f);
@@ -254,18 +254,18 @@ public final class i1 extends LinearLayout {
         if (i13 != -1 && i13 == i12 + 1) {
             f13 = org.telegram.messenger.g0.L(4.0f);
         }
-        canvas.drawCircle(org.telegram.messenger.g0.T1(f15, f12 + f13, f10), (rh0Var2.getHeight() / 2.0f) + rh0Var2.getY(), L, this.f57959c);
+        canvas.drawCircle(org.telegram.messenger.g0.T1(f15, f12 + f13, f10), (rh0Var2.getHeight() / 2.0f) + rh0Var2.getY(), L, this.f57963c);
     }
 
     public void setDelegate(h1 h1Var) {
-        this.f57958b = h1Var;
+        this.f57962b = h1Var;
     }
 
     public void setSelectedIndex(int i7) {
-        this.f57961f = i7;
-        if (this.f57960e) {
-            this.f57960e = false;
-            org.telegram.messenger.g0.P3(this.f57957a[this.d + 1], 2131232044);
+        this.f57965f = i7;
+        if (this.f57964e) {
+            this.f57964e = false;
+            org.telegram.messenger.g0.P3(this.f57961a[this.d + 1], 2131232044);
         }
         invalidate();
     }

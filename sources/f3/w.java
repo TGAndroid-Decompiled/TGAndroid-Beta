@@ -4,21 +4,21 @@ import h2.l0;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class w {
-    public static final Pattern f11240c = Pattern.compile("^ [0-9a-fA-F]{8} ([0-9a-fA-F]{8}) ([0-9a-fA-F]{8})");
-    public int f11241a = -1;
-    public int f11242b = -1;
+    public static final Pattern f11243c = Pattern.compile("^ [0-9a-fA-F]{8} ([0-9a-fA-F]{8}) ([0-9a-fA-F]{8})");
+    public int f11244a = -1;
+    public int f11245b = -1;
 
     public final boolean a(String str) {
-        Matcher matcher = f11240c.matcher(str);
+        Matcher matcher = f11243c.matcher(str);
         if (matcher.find()) {
             try {
                 String group = matcher.group(1);
-                String str2 = l0.f13812a;
+                String str2 = l0.f13815a;
                 int parseInt = Integer.parseInt(group, 16);
                 int parseInt2 = Integer.parseInt(matcher.group(2), 16);
                 if (parseInt > 0 || parseInt2 > 0) {
-                    this.f11241a = parseInt;
-                    this.f11242b = parseInt2;
+                    this.f11244a = parseInt;
+                    this.f11245b = parseInt2;
                     return true;
                 }
                 return false;

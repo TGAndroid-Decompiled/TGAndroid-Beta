@@ -6,11 +6,11 @@ import di.p9;
 import java.util.Collections;
 import java.util.HashSet;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gd;
 import org.telegram.messenger.h0;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
+import org.telegram.messenger.r10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -23,9 +23,9 @@ import org.telegram.ui.Components.nq;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.Wallet.u0;
 public abstract class n {
-    public static final boolean[] f16347a = new boolean[4];
-    public static final m[] f16348b = new m[4];
-    public static final HashSet[] f16349c = new HashSet[4];
+    public static final boolean[] f16350a = new boolean[4];
+    public static final m[] f16351b = new m[4];
+    public static final HashSet[] f16352c = new HashSet[4];
 
     public static void a(int i7, long j3, long j10, int i10, p9 p9Var) {
         u0 D = u0.D(i7);
@@ -41,7 +41,7 @@ public abstract class n {
         }
     }
 
-    public static void b(g2 g2Var, long j3, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity, q10 q10Var, Runnable runnable) {
+    public static void b(g2 g2Var, long j3, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity, r10 r10Var, Runnable runnable) {
         TLRPC.InputCheckPasswordSRP tL_inputCheckPasswordEmpty;
         int currentAccount = g2Var.getCurrentAccount();
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(currentAccount);
@@ -53,20 +53,20 @@ public abstract class n {
         }
         gettmppassword.password = tL_inputCheckPasswordEmpty;
         gettmppassword.period = 60;
-        connectionsManager.sendRequest(gettmppassword, new c(connectionsManager, twoStepVerificationActivity, g2Var, j3, q10Var, runnable, currentAccount, inputCheckPasswordSRP));
+        connectionsManager.sendRequest(gettmppassword, new c(connectionsManager, twoStepVerificationActivity, g2Var, j3, r10Var, runnable, currentAccount, inputCheckPasswordSRP));
     }
 
     public static boolean c(int i7) {
-        return ((h0) mp.u1(i7).A7.f26187p0.f14027b).f24364c;
+        return ((h0) np.u1(i7).A7.f26239p0.f14030b).f24341c;
     }
 
     public static void d(m mVar) {
-        int i7 = mVar.f16341a;
-        m[] mVarArr = f16348b;
+        int i7 = mVar.f16344a;
+        m[] mVarArr = f16351b;
         if (mVarArr[i7] == mVar && !mVar.h) {
-            if (System.currentTimeMillis() - mVar.f16344e > 600000) {
+            if (System.currentTimeMillis() - mVar.f16347e > 600000) {
                 mVarArr[i7] = null;
-                ks.f(i7).k(ks.B3, new Object[0]);
+                ls.f(i7).k(ls.B3, new Object[0]);
                 return;
             }
             TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
@@ -79,9 +79,9 @@ public abstract class n {
     }
 
     public static HashSet e(int i7) {
-        HashSet[] hashSetArr = f16349c;
+        HashSet[] hashSetArr = f16352c;
         if (hashSetArr[i7] == null) {
-            hashSetArr[i7] = new HashSet(mp.u1(i7).h7.getStringSet("gram_earnings_wallet_withdraws", Collections.EMPTY_SET));
+            hashSetArr[i7] = new HashSet(np.u1(i7).h7.getStringSet("gram_earnings_wallet_withdraws", Collections.EMPTY_SET));
         }
         return hashSetArr[i7];
     }
@@ -108,15 +108,15 @@ public abstract class n {
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g2Var.getContext(), g2Var.getResourceProvider());
-        String a02 = gd.a0(null, null, 2131749321, u0.x(j3, false));
-        t1 t1Var = alertDialog$Builder.f28774a;
+        String a02 = hd.a0(null, null, 2131749321, u0.x(j3, false));
+        t1 t1Var = alertDialog$Builder.f28777a;
         t1Var.S = a02;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(gd.N0(2131749322, null));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(hd.N0(2131749322, null));
         f(spannableStringBuilder, "⚙", 2131232362, -1);
-        f(spannableStringBuilder, "💎", 2131231956, m6.f29713v6);
+        f(spannableStringBuilder, "💎", 2131231956, m6.f29716v6);
         t1Var.U = spannableStringBuilder;
-        alertDialog$Builder.h(gd.N0(2131752577, null), null);
-        alertDialog$Builder.k(gd.N0(2131749329, null), new di.h(g2Var, j3, iVar, 3));
+        alertDialog$Builder.h(hd.N0(2131752577, null), null);
+        alertDialog$Builder.k(hd.N0(2131749329, null), new di.h(g2Var, j3, iVar, 3));
         alertDialog$Builder.p();
     }
 
@@ -129,16 +129,16 @@ public abstract class n {
             return true;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) gd.N0(2131742600, null));
-        spannableStringBuilder.append((CharSequence) "\n\n• ").append((CharSequence) g0.W2(gd.N0(2131751288, null)));
-        spannableStringBuilder.append((CharSequence) "\n• ").append((CharSequence) g0.W2(gd.N0(2131751287, null)));
-        spannableStringBuilder.append((CharSequence) "\n\n").append((CharSequence) gd.N0(2131751286, null));
+        spannableStringBuilder.append((CharSequence) hd.N0(2131742598, null));
+        spannableStringBuilder.append((CharSequence) "\n\n• ").append((CharSequence) g0.W2(hd.N0(2131751288, null)));
+        spannableStringBuilder.append((CharSequence) "\n• ").append((CharSequence) g0.W2(hd.N0(2131751287, null)));
+        spannableStringBuilder.append((CharSequence) "\n\n").append((CharSequence) hd.N0(2131751286, null));
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, twoStepVerificationActivity.getParentActivity(), twoStepVerificationActivity.getResourceProvider());
-        String N0 = gd.N0(2131751285, null);
-        t1 t1Var = alertDialog$Builder.f28774a;
+        String N0 = hd.N0(2131751285, null);
+        t1 t1Var = alertDialog$Builder.f28777a;
         t1Var.S = N0;
         t1Var.U = spannableStringBuilder;
-        alertDialog$Builder.k(gd.N0(2131747637, null), null);
+        alertDialog$Builder.k(hd.N0(2131747637, null), null);
         twoStepVerificationActivity.showDialog(t1Var);
         return true;
     }

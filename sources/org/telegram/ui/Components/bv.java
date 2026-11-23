@@ -1,23 +1,23 @@
 package org.telegram.ui.Components;
 public final class bv implements Runnable {
-    public final int f33936a;
-    public final cv f33937b;
+    public final int f33929a;
+    public final cv f33930b;
 
     public bv(cv cvVar, int i7) {
-        this.f33936a = i7;
-        this.f33937b = cvVar;
+        this.f33929a = i7;
+        this.f33930b = cvVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f33936a;
-        cv cvVar = this.f33937b;
+        int i7 = this.f33929a;
+        cv cvVar = this.f33930b;
         switch (i7) {
             case 0:
-                cvVar.f34313f.dismiss();
+                cvVar.f34307f.dismiss();
                 return;
             default:
-                ev evVar = cvVar.f34313f;
+                ev evVar = cvVar.f34307f;
                 evVar.dismiss();
                 org.telegram.ui.ActionBar.g2 g2Var = evVar.n1;
                 if (g2Var != null && g2Var.getParentActivity() != null) {

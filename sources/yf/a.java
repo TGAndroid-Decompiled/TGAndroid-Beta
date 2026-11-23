@@ -1,23 +1,23 @@
 package yf;
 
-import org.telegram.messenger.ks;
+import org.telegram.messenger.ls;
 public final class a implements Runnable {
-    public final int f61224a;
-    public final c f61225b;
+    public final int f61228a;
+    public final c f61229b;
 
     public a(c cVar, int i7) {
-        this.f61224a = i7;
-        this.f61225b = cVar;
+        this.f61228a = i7;
+        this.f61229b = cVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f61224a) {
+        switch (this.f61228a) {
             case 0:
-                this.f61225b.g(false);
+                this.f61229b.g(false);
                 return;
             default:
-                ks.f(this.f61225b.f61233c).k(310, new Object[0]);
+                ls.f(this.f61229b.f61237c).k(310, new Object[0]);
                 return;
         }
     }

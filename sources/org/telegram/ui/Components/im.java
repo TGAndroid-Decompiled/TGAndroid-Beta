@@ -13,6 +13,6 @@ public final class im extends a9 {
     @Override
     public final void onMeasure(int i7, int i10) {
         jm jmVar = this.F;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(jmVar.f36566w.L0, 1073741824), View.MeasureSpec.makeMeasureSpec(jmVar.f36566w.L0, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(jmVar.f36561w.L0, 1073741824), View.MeasureSpec.makeMeasureSpec(jmVar.f36561w.L0, 1073741824));
     }
 }

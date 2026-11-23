@@ -18,18 +18,18 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicReference;
 import p4.z;
 public final class f implements b {
-    public static final ab.m f58577n = new ab.m(1);
-    public final k f58581e;
+    public static final ab.m f58581n = new ab.m(1);
+    public final k f58585e;
     public final e h;
-    public final HashMap f58578a = new HashMap();
-    public final HashMap f58579b = new HashMap();
-    public final HashMap f58580c = new HashMap();
+    public final HashMap f58582a = new HashMap();
+    public final HashMap f58583b = new HashMap();
+    public final HashMap f58584c = new HashMap();
     public final HashSet d = new HashSet();
-    public final AtomicReference f58582f = new AtomicReference();
+    public final AtomicReference f58586f = new AtomicReference();
 
     public f(Executor executor, ArrayList arrayList, ArrayList arrayList2, e eVar) {
         k kVar = new k(executor);
-        this.f58581e = kVar;
+        this.f58585e = kVar;
         this.h = eVar;
         ArrayList arrayList3 = new ArrayList();
         int i7 = 0;
@@ -70,7 +70,7 @@ public final class f implements b {
             }
             Iterator it2 = arrayList3.iterator();
             while (it2.hasNext()) {
-                Object[] array = ((a) it2.next()).f58570b.toArray();
+                Object[] array = ((a) it2.next()).f58574b.toArray();
                 int length = array.length;
                 int i12 = 0;
                 while (true) {
@@ -87,10 +87,10 @@ public final class f implements b {
                     }
                 }
             }
-            if (this.f58578a.isEmpty()) {
+            if (this.f58582a.isEmpty()) {
                 vc.a(arrayList3);
             } else {
-                ArrayList arrayList6 = new ArrayList(this.f58578a.keySet());
+                ArrayList arrayList6 = new ArrayList(this.f58582a.keySet());
                 arrayList6.addAll(arrayList3);
                 vc.a(arrayList6);
             }
@@ -100,7 +100,7 @@ public final class f implements b {
                 Object obj4 = arrayList3.get(i13);
                 i13++;
                 a aVar2 = (a) obj4;
-                this.f58578a.put(aVar2, new m(new o9.c(2, this, aVar2)));
+                this.f58582a.put(aVar2, new m(new o9.c(2, this, aVar2)));
             }
             arrayList5.addAll(j(arrayList3));
             arrayList5.addAll(k());
@@ -112,9 +112,9 @@ public final class f implements b {
             i7++;
             ((Runnable) obj5).run();
         }
-        Boolean bool = (Boolean) this.f58582f.get();
+        Boolean bool = (Boolean) this.f58586f.get();
         if (bool != null) {
-            d(this.f58578a, bool.booleanValue());
+            d(this.f58582a, bool.booleanValue());
         }
     }
 
@@ -127,7 +127,7 @@ public final class f implements b {
     public final o b(q qVar) {
         ua.b f10 = f(qVar);
         if (f10 == null) {
-            return new o(o.f58599c, o.d);
+            return new o(o.f58603c, o.d);
         }
         if (f10 instanceof o) {
             return (o) f10;
@@ -149,12 +149,12 @@ public final class f implements b {
                 bVar.get();
             }
         }
-        k kVar = this.f58581e;
+        k kVar = this.f58585e;
         synchronized (kVar) {
             try {
-                arrayDeque = kVar.f58592b;
+                arrayDeque = kVar.f58596b;
                 if (arrayDeque != null) {
-                    kVar.f58592b = null;
+                    kVar.f58596b = null;
                 } else {
                     arrayDeque = null;
                 }
@@ -183,12 +183,12 @@ public final class f implements b {
     @Override
     public final synchronized ua.b f(q qVar) {
         wc.a(qVar, "Null interface requested.");
-        return (ua.b) this.f58579b.get(qVar);
+        return (ua.b) this.f58583b.get(qVar);
     }
 
     public final void g(boolean z10) {
         HashMap hashMap;
-        AtomicReference atomicReference = this.f58582f;
+        AtomicReference atomicReference = this.f58586f;
         Boolean valueOf = Boolean.valueOf(z10);
         while (!atomicReference.compareAndSet(null, valueOf)) {
             if (atomicReference.get() != null) {
@@ -196,37 +196,37 @@ public final class f implements b {
             }
         }
         synchronized (this) {
-            hashMap = new HashMap(this.f58578a);
+            hashMap = new HashMap(this.f58582a);
         }
         d(hashMap, z10);
     }
 
     public final void h() {
         boolean z10;
-        HashMap hashMap = this.f58579b;
-        HashMap hashMap2 = this.f58580c;
-        for (a aVar : this.f58578a.keySet()) {
-            for (i iVar : aVar.f58571c) {
-                if (iVar.f58589b == 2) {
+        HashMap hashMap = this.f58583b;
+        HashMap hashMap2 = this.f58584c;
+        for (a aVar : this.f58582a.keySet()) {
+            for (i iVar : aVar.f58575c) {
+                if (iVar.f58593b == 2) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                q qVar = iVar.f58588a;
+                q qVar = iVar.f58592a;
                 if (z10 && !hashMap2.containsKey(qVar)) {
                     Set set = Collections.EMPTY_SET;
                     ?? obj = new Object();
-                    obj.f58598b = null;
-                    obj.f58597a = Collections.newSetFromMap(new ConcurrentHashMap());
-                    obj.f58597a.addAll(set);
+                    obj.f58602b = null;
+                    obj.f58601a = Collections.newSetFromMap(new ConcurrentHashMap());
+                    obj.f58601a.addAll(set);
                     hashMap2.put(qVar, obj);
                 } else if (hashMap.containsKey(qVar)) {
                     continue;
                 } else {
-                    int i7 = iVar.f58589b;
+                    int i7 = iVar.f58593b;
                     if (i7 != 1) {
                         if (i7 != 2) {
-                            hashMap.put(qVar, new o(o.f58599c, o.d));
+                            hashMap.put(qVar, new o(o.f58603c, o.d));
                         }
                     } else {
                         throw new RuntimeException("Unsatisfied dependency for component " + aVar + ": " + qVar);
@@ -240,9 +240,9 @@ public final class f implements b {
     public final Set i(q qVar) {
         ua.b bVar;
         synchronized (this) {
-            bVar = (n) this.f58580c.get(qVar);
+            bVar = (n) this.f58584c.get(qVar);
             if (bVar == null) {
-                bVar = f58577n;
+                bVar = f58581n;
             }
         }
         return (Set) bVar.get();
@@ -256,10 +256,10 @@ public final class f implements b {
             Object obj = arrayList.get(i7);
             i7++;
             a aVar = (a) obj;
-            if (aVar.f58572e == 0) {
-                ua.b bVar = (ua.b) this.f58578a.get(aVar);
-                for (q qVar : aVar.f58570b) {
-                    HashMap hashMap = this.f58579b;
+            if (aVar.f58576e == 0) {
+                ua.b bVar = (ua.b) this.f58582a.get(aVar);
+                for (q qVar : aVar.f58574b) {
+                    HashMap hashMap = this.f58583b;
                     if (!hashMap.containsKey(qVar)) {
                         hashMap.put(qVar, bVar);
                     } else {
@@ -272,14 +272,14 @@ public final class f implements b {
     }
 
     public final ArrayList k() {
-        HashMap hashMap = this.f58580c;
+        HashMap hashMap = this.f58584c;
         ArrayList arrayList = new ArrayList();
         HashMap hashMap2 = new HashMap();
-        for (Map.Entry entry : this.f58578a.entrySet()) {
+        for (Map.Entry entry : this.f58582a.entrySet()) {
             a aVar = (a) entry.getKey();
-            if (aVar.f58572e != 0) {
+            if (aVar.f58576e != 0) {
                 ua.b bVar = (ua.b) entry.getValue();
-                for (q qVar : aVar.f58570b) {
+                for (q qVar : aVar.f58574b) {
                     if (!hashMap2.containsKey(qVar)) {
                         hashMap2.put(qVar, new HashSet());
                     }
@@ -290,9 +290,9 @@ public final class f implements b {
         for (Map.Entry entry2 : hashMap2.entrySet()) {
             if (!hashMap.containsKey(entry2.getKey())) {
                 ?? obj = new Object();
-                obj.f58598b = null;
-                obj.f58597a = Collections.newSetFromMap(new ConcurrentHashMap());
-                obj.f58597a.addAll((Set) ((Collection) entry2.getValue()));
+                obj.f58602b = null;
+                obj.f58601a = Collections.newSetFromMap(new ConcurrentHashMap());
+                obj.f58601a.addAll((Set) ((Collection) entry2.getValue()));
                 hashMap.put((q) entry2.getKey(), obj);
             } else {
                 n nVar = (n) hashMap.get(entry2.getKey());

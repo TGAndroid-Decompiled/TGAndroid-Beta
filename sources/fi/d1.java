@@ -3,26 +3,26 @@ package fi;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
 public final class d1 implements VideoSink {
-    public volatile VideoSink f11876a;
-    public volatile int f11877b;
-    public volatile int f11878c;
+    public volatile VideoSink f11879a;
+    public volatile int f11880b;
+    public volatile int f11881c;
     public final f2.a d = new f2.a(this, 6);
-    public final e1 f11879e;
+    public final e1 f11882e;
 
     public d1(e1 e1Var) {
-        this.f11879e = e1Var;
+        this.f11882e = e1Var;
     }
 
     @Override
     public final void onFrame(VideoFrame videoFrame) {
         int rotatedWidth = videoFrame.getRotatedWidth();
         int rotatedHeight = videoFrame.getRotatedHeight();
-        if (rotatedWidth != this.f11877b || rotatedHeight != this.f11878c) {
-            this.f11877b = rotatedWidth;
-            this.f11878c = rotatedHeight;
+        if (rotatedWidth != this.f11880b || rotatedHeight != this.f11881c) {
+            this.f11880b = rotatedWidth;
+            this.f11881c = rotatedHeight;
             org.telegram.messenger.g0.g3(this.d);
         }
-        VideoSink videoSink = this.f11876a;
+        VideoSink videoSink = this.f11879a;
         if (videoSink != null) {
             videoSink.onFrame(videoFrame);
         }

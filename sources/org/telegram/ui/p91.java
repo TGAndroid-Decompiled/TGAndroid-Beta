@@ -11,7 +11,7 @@ public final class p91 extends rg.b {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59165f;
+        int i7 = f1Var.f59169f;
         if (i7 != 0 && i7 != 3) {
             return false;
         }
@@ -21,7 +21,7 @@ public final class p91 extends rg.b {
     public final ArrayList F() {
         y91 y91Var = this.d;
         y91Var.getClass();
-        return y91Var.f54098b;
+        return y91Var.f54102b;
     }
 
     @Override
@@ -34,12 +34,12 @@ public final class p91 extends rg.b {
         if (i7 == b() - 1) {
             return 2;
         }
-        return ((q91) this.d.f54098b.get(i7)).f56630a;
+        return ((q91) this.d.f54102b.get(i7)).f56634a;
     }
 
     @Override
     public final void f() {
-        this.d.f54101c = b();
+        this.d.f54105c = b();
         super.f();
     }
 
@@ -64,30 +64,30 @@ public final class p91 extends rg.b {
             org.telegram.ui.Components.yz yzVar = new org.telegram.ui.Components.yz(viewGroup.getContext(), null);
             yzVar.setViewType(24);
             yzVar.setIsSingleCell(true);
-            yzVar.f42613x = true;
+            yzVar.f42606x = true;
             return new v4.f1(yzVar);
         }
         v91 v91Var = new v91(y91Var, viewGroup.getContext(), false);
         if (i7 == 3) {
             i10 = ((org.telegram.ui.ActionBar.g2) y91Var).currentAccount;
-            boolean w10 = org.telegram.messenger.o10.w(org.telegram.messenger.mp.u1(i10).c2(Long.valueOf(-y91Var.f54095a)));
-            v91Var.setForumIcon(qg.c.e(qg.a.f56173k[0], ""));
+            boolean w10 = org.telegram.messenger.p10.w(org.telegram.messenger.np.u1(i10).c2(Long.valueOf(-y91Var.f54099a)));
+            v91Var.setForumIcon(qg.c.e(qg.a.f56177k[0], ""));
             if (!w10) {
                 i11 = 2131753063;
             } else {
                 i11 = 2131753065;
             }
-            v91Var.setTitleOverride(org.telegram.messenger.gd.N0(i11, null));
+            v91Var.setTitleOverride(org.telegram.messenger.hd.N0(i11, null));
             if (!w10) {
                 i12 = 2131753064;
             } else {
                 i12 = 2131753066;
             }
-            v91Var.setCustomMessage(org.telegram.messenger.gd.N0(i12, null));
+            v91Var.setCustomMessage(org.telegram.messenger.hd.N0(i12, null));
         }
         z10 = ((org.telegram.ui.ActionBar.g2) y91Var).inPreviewMode;
-        v91Var.f31974l0 = z10;
-        v91Var.setArchivedPullAnimation(y91Var.f54142x);
+        v91Var.f31977l0 = z10;
+        v91Var.setArchivedPullAnimation(y91Var.f54146x);
         return new v4.f1(v91Var);
     }
 }

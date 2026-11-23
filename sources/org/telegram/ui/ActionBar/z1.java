@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.j10;
+import org.telegram.messenger.k10;
 import org.telegram.messenger.w7;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
@@ -17,32 +17,32 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.nr;
 import org.telegram.ui.Components.wm0;
 public final class z1 implements Runnable {
-    public final int f30312a;
-    public final Object f30313b;
-    public final Object f30314c;
+    public final int f30315a;
+    public final Object f30316b;
+    public final Object f30317c;
 
     public z1(int i7, Object obj, Object obj2) {
-        this.f30312a = i7;
-        this.f30313b = obj;
-        this.f30314c = obj2;
+        this.f30315a = i7;
+        this.f30316b = obj;
+        this.f30317c = obj2;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f30312a;
+        int i7 = this.f30315a;
         float f10 = 0.0f;
         ArrayList arrayList = null;
         Bitmap bitmap = null;
-        Object obj = this.f30314c;
-        Object obj2 = this.f30313b;
+        Object obj = this.f30317c;
+        Object obj2 = this.f30316b;
         switch (i7) {
             case 0:
                 fh.g gVar = (fh.g) obj;
                 ri.q qVar = ((g2) obj2).glassEngine;
-                ArrayList arrayList2 = qVar.f56737c;
+                ArrayList arrayList2 = qVar.f56741c;
                 for (int size = arrayList2.size() - 1; size >= 0; size--) {
-                    if (((ri.p) arrayList2.get(size)).f56729b == gVar && ((ri.p) arrayList2.remove(size)).f56734i) {
-                        qVar.f56739f = true;
+                    if (((ri.p) arrayList2.get(size)).f56733b == gVar && ((ri.p) arrayList2.remove(size)).f56738i) {
+                        qVar.f56743f = true;
                     }
                 }
                 return;
@@ -96,7 +96,7 @@ public final class z1 implements Runnable {
                 return;
             case 3:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
-                Drawable drawable = ActionBarLayout.f28704w1;
+                Drawable drawable = ActionBarLayout.f28707w1;
                 actionBarLayout.e0((g2) obj2, false);
                 actionBarLayout.setVisibility(8);
                 View view = actionBarLayout.I0;
@@ -108,7 +108,7 @@ public final class z1 implements Runnable {
             case 4:
                 g2 g2Var = (g2) obj2;
                 g2 g2Var2 = (g2) obj;
-                Drawable drawable2 = ActionBarLayout.f28704w1;
+                Drawable drawable2 = ActionBarLayout.f28707w1;
                 if (g2Var != null) {
                     g2Var.onTransitionAnimationEnd(false, false);
                 }
@@ -142,8 +142,8 @@ public final class z1 implements Runnable {
                         if (arrayList == null) {
                             arrayList = new ArrayList();
                         }
-                        if (!arrayList.contains(j6Var.f29105o)) {
-                            arrayList.add(j6Var.f29105o);
+                        if (!arrayList.contains(j6Var.f29108o)) {
+                            arrayList.add(j6Var.f29108o);
                         }
                     }
                     i10++;
@@ -156,22 +156,22 @@ public final class z1 implements Runnable {
                         tL_inputWallPaperSlug.slug = (String) arrayList.get(i11);
                         getmultiwallpapers.wallpapers.add(tL_inputWallPaperSlug);
                     }
-                    ConnectionsManager.getInstance(g6Var.f28984a).sendRequest(getmultiwallpapers, new e6(g6Var, arrayList3, 0));
+                    ConnectionsManager.getInstance(g6Var.f28987a).sendRequest(getmultiwallpapers, new e6(g6Var, arrayList3, 0));
                     return;
                 }
                 return;
             case 7:
                 g6 g6Var2 = (g6) obj2;
                 f6 f6Var = (f6) obj;
-                TLRPC.TL_wallPaper tL_wallPaper = f6Var.f28960a;
-                w7.G(j10.f24798t0);
+                TLRPC.TL_wallPaper tL_wallPaper = f6Var.f28963a;
+                w7.G(k10.f24968t0);
                 File J = w7.J(tL_wallPaper.document, null, true, true);
-                ArrayList arrayList4 = f6Var.f28961b;
+                ArrayList arrayList4 = f6Var.f28964b;
                 int size4 = arrayList4.size();
                 ArrayList arrayList5 = null;
                 for (int i12 = 0; i12 < size4; i12++) {
                     j6 j6Var2 = (j6) arrayList4.get(i12);
-                    if (j6Var2.f29105o.equals(tL_wallPaper.slug)) {
+                    if (j6Var2.f29108o.equals(tL_wallPaper.slug)) {
                         bitmap = g6.b(bitmap, "application/x-tgwallpattern".equals(tL_wallPaper.document.mime_type), J, j6Var2);
                         if (arrayList5 == null) {
                             arrayList5 = new ArrayList();
@@ -186,15 +186,15 @@ public final class z1 implements Runnable {
                 return;
             default:
                 l6 l6Var = (l6) obj2;
-                l6Var.d((File) obj, l6Var.f29242i0);
+                l6Var.d((File) obj, l6Var.f29245i0);
                 org.telegram.messenger.g0.g3(new k6(l6Var, 0));
                 return;
         }
     }
 
     public z1(ActionBarLayout actionBarLayout, g2 g2Var) {
-        this.f30312a = 3;
-        this.f30314c = actionBarLayout;
-        this.f30313b = g2Var;
+        this.f30315a = 3;
+        this.f30317c = actionBarLayout;
+        this.f30316b = g2Var;
     }
 }

@@ -12,21 +12,21 @@ import java.util.Iterator;
 import org.telegram.ui.Components.nr;
 import org.telegram.ui.Components.oh0;
 public final class f5 extends LinearLayout {
-    public final z4 f28955a;
-    public final boolean f28956b;
-    public final HashMap f28957c;
+    public final z4 f28958a;
+    public final boolean f28959b;
+    public final HashMap f28960c;
     public final ArrayList d;
-    public final te.h f28958e;
-    public boolean f28959f;
+    public final te.h f28961e;
+    public boolean f28962f;
 
     public f5(Context context, z4 z4Var, boolean z10) {
         super(context);
-        this.f28957c = new HashMap();
+        this.f28960c = new HashMap();
         this.d = new ArrayList();
-        this.f28958e = new te.h(new d5(this), nr.h, 380L);
-        this.f28959f = true;
-        this.f28955a = z4Var;
-        this.f28956b = z10;
+        this.f28961e = new te.h(new d5(this), nr.h, 380L);
+        this.f28962f = true;
+        this.f28958a = z4Var;
+        this.f28959b = z10;
         setOrientation(0);
         setGravity(21);
     }
@@ -64,24 +64,24 @@ public final class f5 extends LinearLayout {
         boolean z10;
         LinearLayout.LayoutParams layoutParams;
         Context context = getContext();
-        z4 z4Var = this.f28955a;
-        boolean z11 = this.f28956b;
+        z4 z4Var = this.f28958a;
+        boolean z11 = this.f28959b;
         if (z11) {
-            i12 = z4Var.f30333j0;
+            i12 = z4Var.f30336j0;
         } else {
-            i12 = z4Var.f30332i0;
+            i12 = z4Var.f30335i0;
         }
         if (z11) {
-            i13 = z4Var.f30331h0;
+            i13 = z4Var.f30334h0;
         } else {
-            i13 = z4Var.f30330g0;
+            i13 = z4Var.f30333g0;
         }
         if (str != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        g5 g5Var = new g5(context, this, i12, i13, z10, z4Var.f30319a);
+        g5 g5Var = new g5(context, this, i12, i13, z10, z4Var.f30322a);
         g5Var.setTag(Integer.valueOf(i7));
         if (str != null) {
             g5Var.F.setText(str);
@@ -94,11 +94,11 @@ public final class f5 extends LinearLayout {
             layoutParams.leftMargin = L;
         } else {
             if (drawable instanceof oh0) {
-                g5Var.f29930y.setAnimation((oh0) drawable);
+                g5Var.f29933y.setAnimation((oh0) drawable);
             } else if (drawable != null) {
-                g5Var.f29930y.setImageDrawable(drawable);
+                g5Var.f29933y.setImageDrawable(drawable);
             } else if (i10 != 0) {
-                g5Var.f29930y.setImageResource(i10);
+                g5Var.f29933y.setImageResource(i10);
             }
             layoutParams = new LinearLayout.LayoutParams(i11, -1);
             int i14 = -org.telegram.messenger.g0.L(5.0f);
@@ -106,7 +106,7 @@ public final class f5 extends LinearLayout {
             layoutParams.leftMargin = i14;
         }
         addView(g5Var, -1, layoutParams);
-        g5Var.setOnClickListener(new bi.i5(this, g5Var, i7, 3));
+        g5Var.setOnClickListener(new bi.h5(this, g5Var, i7, 3));
         if (charSequence != null) {
             g5Var.setContentDescription(charSequence);
         }
@@ -119,28 +119,28 @@ public final class f5 extends LinearLayout {
 
     public final void e() {
         int i7;
-        Iterator it = this.f28957c.values().iterator();
+        Iterator it = this.f28960c.values().iterator();
         while (true) {
             i7 = 0;
             if (!it.hasNext()) {
                 break;
             }
-            ((e5) it.next()).f28931b = false;
+            ((e5) it.next()).f28934b = false;
         }
         float width = getWidth() - getPaddingRight();
-        te.h hVar = this.f28958e;
-        float f10 = hVar.d.f57714f.f57722a;
+        te.h hVar = this.f28961e;
+        float f10 = hVar.d.f57718f.f57726a;
         float min = Math.min(1.0f, getPillWidth() / org.telegram.messenger.g0.L(46.0f));
-        ArrayList arrayList = hVar.f57717b;
+        ArrayList arrayList = hVar.f57721b;
         int size = arrayList.size();
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             te.e eVar = (te.e) obj;
-            e5 e5Var = (e5) eVar.f57705a;
-            View view = e5Var.f28930a;
+            e5 e5Var = (e5) eVar.f57709a;
+            View view = e5Var.f28933a;
             RectF b10 = eVar.b();
-            e5Var.f28931b = true;
+            e5Var.f28934b = true;
             view.setTranslationX((((width - Math.max(f10, b10.right)) + b10.left) + ((LinearLayout.LayoutParams) view.getLayoutParams()).leftMargin) - view.getLeft());
             e5Var.c(eVar.c(), min);
         }
@@ -157,8 +157,8 @@ public final class f5 extends LinearLayout {
     }
 
     public float getPillWidth() {
-        te.g gVar = this.f28958e.d;
-        return (org.telegram.messenger.g0.L(8.0f) * gVar.f57712c.f57722a) + gVar.f57714f.f57722a;
+        te.g gVar = this.f28961e.d;
+        return (org.telegram.messenger.g0.L(8.0f) * gVar.f57716c.f57726a) + gVar.f57718f.f57726a;
     }
 
     public float getTargetPillWidth() {
@@ -180,17 +180,17 @@ public final class f5 extends LinearLayout {
         int i7;
         int i10;
         int i11;
-        z4 z4Var = this.f28955a;
-        boolean z10 = this.f28956b;
+        z4 z4Var = this.f28958a;
+        boolean z10 = this.f28959b;
         if (z10) {
-            i7 = z4Var.f30331h0;
+            i7 = z4Var.f30334h0;
         } else {
-            i7 = z4Var.f30330g0;
+            i7 = z4Var.f30333g0;
         }
         if (z10) {
-            i10 = z4Var.f30333j0;
+            i10 = z4Var.f30336j0;
         } else {
-            i10 = z4Var.f30332i0;
+            i10 = z4Var.f30335i0;
         }
         int childCount = getChildCount();
         for (int i12 = 0; i12 < childCount; i12++) {
@@ -222,7 +222,7 @@ public final class f5 extends LinearLayout {
         int childCount = getChildCount();
         int i13 = 0;
         while (true) {
-            hashMap = this.f28957c;
+            hashMap = this.f28960c;
             if (i13 >= childCount) {
                 break;
             }
@@ -233,19 +233,19 @@ public final class f5 extends LinearLayout {
             }
             i13++;
         }
-        if (!this.f28959f && isLaidOut()) {
+        if (!this.f28962f && isLaidOut()) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f28958e.m(arrayList, z11);
-        this.f28959f = false;
+        this.f28961e.m(arrayList, z11);
+        this.f28962f = false;
         e();
         int childCount2 = getChildCount();
         for (int i14 = 0; i14 < childCount2; i14++) {
             View childAt2 = getChildAt(i14);
             e5 e5Var2 = (e5) hashMap.get(childAt2);
-            if (e5Var2 != null && !e5Var2.f28931b && childAt2.getVisibility() != 8 && !h(childAt2)) {
+            if (e5Var2 != null && !e5Var2.f28934b && childAt2.getVisibility() != 8 && !h(childAt2)) {
                 if (childAt2 instanceof g5) {
                     ((g5) childAt2).Y();
                 } else {
@@ -253,18 +253,18 @@ public final class f5 extends LinearLayout {
                 }
             }
         }
-        this.f28955a.invalidate();
+        this.f28958a.invalidate();
     }
 
     @Override
     public final void onViewAdded(View view) {
         super.onViewAdded(view);
-        this.f28957c.put(view, new e5(view));
+        this.f28960c.put(view, new e5(view));
     }
 
     @Override
     public final void onViewRemoved(View view) {
         super.onViewRemoved(view);
-        this.f28957c.remove(view);
+        this.f28960c.remove(view);
     }
 }

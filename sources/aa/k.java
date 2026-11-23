@@ -49,8 +49,8 @@ public final class k implements Consumer {
                 if (((byte) 1) == 1) {
                     k0 k0Var = new k0(new l0(intValue));
                     try {
-                        ga.b.f13299g.getClass();
-                        ga.b.g(bVar.f13302b.b(str, "profiling-manager-info"), ea.a.f10906a.v(k0Var));
+                        ga.b.f13302g.getClass();
+                        ga.b.g(bVar.f13305b.b(str, "profiling-manager-info"), ea.a.f10909a.v(k0Var));
                         return;
                     } catch (IOException e10) {
                         Log.w("FirebaseCrashlytics", "Could not persist Profiling Manager info " + str, e10);
@@ -62,10 +62,10 @@ public final class k implements Consumer {
                 j0 j0Var = (j0) this.f819c;
                 ci.m mVar2 = (ci.m) this.f818b;
                 Canvas canvas = (Canvas) obj;
-                ci.c cVar2 = j0Var.f5727y;
+                ci.c cVar2 = j0Var.f5730y;
                 RectF rectF = cVar2.N;
                 WeakHashMap weakHashMap = cVar2.O;
-                Paint paint = cVar2.f5626c;
+                Paint paint = cVar2.f5629c;
                 long b10 = ci.c.b();
                 int i7 = 0;
                 while (i7 < mVar2.getChildCount()) {
@@ -88,7 +88,7 @@ public final class k implements Consumer {
                             f11 = 2.5f;
                         }
                         String key = ((ci.l) childAt).getKey();
-                        if (key != null && (fArr = (float[]) cVar2.f5633n.get(key)) != null) {
+                        if (key != null && (fArr = (float[]) cVar2.f5636n.get(key)) != null) {
                             float c10 = ci.c.c(fArr, b10);
                             if (c10 > 0.004f) {
                                 float translationX = childAt.getTranslationX() + childAt.getLeft();
@@ -113,7 +113,7 @@ public final class k implements Consumer {
                     cVar2 = cVar;
                 }
                 if (!j0Var.d.J.isEmpty()) {
-                    j0Var.f5727y.invalidate();
+                    j0Var.f5730y.invalidate();
                     return;
                 }
                 return;

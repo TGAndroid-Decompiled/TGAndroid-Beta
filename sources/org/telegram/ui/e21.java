@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.view.View;
 import java.util.HashMap;
-public final class e21 extends org.telegram.ui.Components.sa implements org.telegram.messenger.fs {
+public final class e21 extends org.telegram.ui.Components.sa implements org.telegram.messenger.gs {
     public final org.telegram.ui.Components.wy T1;
     public final hi.e U1;
     public final fi.h6 V1;
@@ -11,26 +11,26 @@ public final class e21 extends org.telegram.ui.Components.sa implements org.tele
     public int Y1;
     public org.telegram.ui.Components.c51 Z1;
 
-    public e21(org.telegram.ui.ActionBar.g2 r17, long r18, int r20, bi.b5 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.e21.<init>(org.telegram.ui.ActionBar.g2, long, int, bi.b5):void");
+    public e21(org.telegram.ui.ActionBar.g2 r17, long r18, int r20, bi.a5 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.e21.<init>(org.telegram.ui.ActionBar.g2, long, int, bi.a5):void");
     }
 
     @Override
     public final org.telegram.ui.Components.dk0 M0(org.telegram.ui.Components.ek0 ek0Var) {
-        org.telegram.ui.Components.c51 c51Var = new org.telegram.ui.Components.c51(ek0Var, getContext(), this.f30170a, 0, false, new a5(this, 26), this.J0);
+        org.telegram.ui.Components.c51 c51Var = new org.telegram.ui.Components.c51(ek0Var, getContext(), this.f30173a, 0, false, new a5(this, 26), this.J0);
         this.Z1 = c51Var;
-        c51Var.f34068r = false;
+        c51Var.f34062r = false;
         return c51Var;
     }
 
     @Override
     public final CharSequence P0() {
-        return org.telegram.messenger.gd.N0(2131744557, null);
+        return org.telegram.messenger.hd.N0(2131744555, null);
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.A5 && ((fi.h6) objArr[0]) == this.V1) {
+        if (i7 == org.telegram.messenger.ls.A5 && ((fi.h6) objArr[0]) == this.V1) {
             this.Z1.O(false);
             e1();
         }
@@ -63,18 +63,18 @@ public final class e21 extends org.telegram.ui.Components.sa implements org.tele
             return false;
         }
         Object obj = G.H;
-        if (obj instanceof org.telegram.messenger.fj) {
-            org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) obj;
-            int e12 = fjVar.e1();
+        if (obj instanceof org.telegram.messenger.gj) {
+            org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) obj;
+            int e12 = gjVar.e1();
             Integer valueOf = Integer.valueOf(e12);
             HashMap hashMap = this.W1;
             if (hashMap.containsKey(valueOf)) {
                 hashMap.remove(Integer.valueOf(e12));
-                G.f38091e = false;
+                G.f38085e = false;
                 ((org.telegram.ui.Cells.p7) view).i(false, true);
             } else {
-                hashMap.put(Integer.valueOf(e12), fjVar.f23998l);
-                G.f38091e = true;
+                hashMap.put(Integer.valueOf(e12), gjVar.f24218l);
+                G.f38085e = true;
                 ((org.telegram.ui.Cells.p7) view).i(true, true);
             }
             hi.e eVar = this.U1;
@@ -88,13 +88,13 @@ public final class e21 extends org.telegram.ui.Components.sa implements org.tele
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.Y1 = this.V1.o();
-        org.telegram.messenger.ks.f(this.f30170a).c(this, org.telegram.messenger.ks.A5);
+        org.telegram.messenger.ls.f(this.f30173a).c(this, org.telegram.messenger.ls.A5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.V1.z(this.Y1);
-        org.telegram.messenger.ks.f(this.f30170a).n(this, org.telegram.messenger.ks.A5);
+        org.telegram.messenger.ls.f(this.f30173a).n(this, org.telegram.messenger.ls.A5);
     }
 }

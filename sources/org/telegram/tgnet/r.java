@@ -4,15 +4,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_iv;
 public final class r implements Vector.TLDeserializer {
-    public final int f28634a;
+    public final int f28637a;
 
     public r(int i7) {
-        this.f28634a = i7;
+        this.f28637a = i7;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
-        switch (this.f28634a) {
+        switch (this.f28637a) {
             case 0:
                 return TLRPC.Message.TLdeserialize(inputSerializedData, i7, z10);
             case 1:

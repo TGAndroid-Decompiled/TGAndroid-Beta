@@ -5,12 +5,12 @@ import android.util.LongSparseArray;
 import android.view.View;
 import java.util.HashMap;
 public abstract class n41 {
-    public final int f37768a;
+    public final int f37773a;
 
     public n41() {
         int i7 = o41.K;
         o41.K = i7 + 1;
-        this.f37768a = i7;
+        this.f37773a = i7;
     }
 
     public static void h(n41 n41Var) {
@@ -23,7 +23,7 @@ public abstract class n41 {
         Class<?> cls = n41Var.getClass();
         if (!o41.M.containsKey(cls)) {
             o41.M.put(cls, n41Var);
-            o41.L.put(n41Var.f37768a, n41Var);
+            o41.L.put(n41Var.f37773a, n41Var);
         }
     }
 
@@ -38,7 +38,7 @@ public abstract class n41 {
     }
 
     public boolean f() {
-        return !(this instanceof org.telegram.messenger.tt);
+        return !(this instanceof org.telegram.messenger.ut);
     }
 
     public boolean g() {

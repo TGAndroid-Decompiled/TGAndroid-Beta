@@ -3,11 +3,11 @@ package org.telegram.ui.web;
 import java.io.BufferedInputStream;
 import java.io.FilterInputStream;
 public final class d1 extends FilterInputStream {
-    public final int f53114a;
+    public final int f53118a;
 
     public d1(BufferedInputStream bufferedInputStream, int i7) {
         super(bufferedInputStream);
-        this.f53114a = i7;
+        this.f53118a = i7;
     }
 
     public static int a(int i7) {
@@ -41,7 +41,7 @@ public final class d1 extends FilterInputStream {
 
     @Override
     public int read() {
-        switch (this.f53114a) {
+        switch (this.f53118a) {
             case 0:
                 int read = ((FilterInputStream) this).in.read();
                 if (read == 61) {
@@ -63,7 +63,7 @@ public final class d1 extends FilterInputStream {
 
     @Override
     public int read(byte[] bArr, int i7, int i10) {
-        switch (this.f53114a) {
+        switch (this.f53118a) {
             case 0:
                 int i11 = 0;
                 for (int i12 = 0; i12 < i10; i12++) {

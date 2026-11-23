@@ -18,15 +18,15 @@ public final class ya implements ua.b {
             case 1:
                 return this.f729b.a("FIREBASE_ML_SDK", new l5.c("proto"), cb.d);
             case 2:
-                return this.f729b.a("FIREBASE_ML_SDK", new l5.c("json"), xf.f5092e);
+                return this.f729b.a("FIREBASE_ML_SDK", new l5.c("json"), xf.f5095e);
             case 3:
                 return this.f729b.a("FIREBASE_ML_SDK", new l5.c("proto"), xf.d);
             case 4:
-                return this.f729b.a("FIREBASE_ML_SDK", new l5.c("json"), y7.g9.f60865e);
+                return this.f729b.a("FIREBASE_ML_SDK", new l5.c("json"), y7.g9.f60869e);
             case 5:
                 return this.f729b.a("FIREBASE_ML_SDK", new l5.c("proto"), y7.g9.d);
             case 6:
-                return this.f729b.a("FIREBASE_ML_SDK", new l5.c("json"), z7.qa.f61744e);
+                return this.f729b.a("FIREBASE_ML_SDK", new l5.c("json"), z7.qa.f61748e);
             default:
                 return this.f729b.a("FIREBASE_ML_SDK", new l5.c("proto"), z7.qa.d);
         }

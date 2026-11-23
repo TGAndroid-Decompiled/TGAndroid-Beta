@@ -9,20 +9,20 @@ import ki.r3;
 import ki.s2;
 import org.telegram.messenger.h2;
 public final class m implements View.OnLayoutChangeListener {
-    public final int f18409a;
-    public final Object f18410b;
+    public final int f18412a;
+    public final Object f18413b;
 
     public m(Object obj, int i7) {
-        this.f18409a = i7;
-        this.f18410b = obj;
+        this.f18412a = i7;
+        this.f18413b = obj;
     }
 
     @Override
     public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
         int i17;
-        int i18 = this.f18409a;
+        int i18 = this.f18412a;
         int i19 = 0;
-        Object obj = this.f18410b;
+        Object obj = this.f18413b;
         switch (i18) {
             case 0:
                 n.g0((n) obj);
@@ -30,10 +30,10 @@ public final class m implements View.OnLayoutChangeListener {
             case 1:
                 view.removeOnLayoutChangeListener(this);
                 s2 s2Var = (s2) obj;
-                h2 h2Var = s2Var.f18947o0;
-                j2 j2Var = s2Var.f18959x;
+                h2 h2Var = s2Var.f18950o0;
+                j2 j2Var = s2Var.f18962x;
                 j2Var.setSwipeOffsetY(j2Var.getHeight());
-                s2Var.f18937f.setAlpha(1.0f);
+                s2Var.f18940f.setAlpha(1.0f);
                 if (s2Var.I0 != Float.MAX_VALUE) {
                     j2Var.setSwipeOffsetAnimationDisallowed(true);
                     j2Var.setOffsetY(s2Var.I0);
@@ -43,18 +43,18 @@ public final class m implements View.OnLayoutChangeListener {
                 h2.f fVar = new h2.f((int[]) null);
                 fVar.d();
                 if (!s2Var.H0 && !s2Var.r()) {
-                    r1.g gVar = new r1.g((Object) j2Var, (r1.e) r3.f18898c0, 0.0f);
+                    r1.g gVar = new r1.g((Object) j2Var, (r1.e) r3.f18901c0, 0.0f);
                     r1.h hVar = new r1.h(0.0f);
                     hVar.a(0.75f);
                     hVar.b(500.0f);
-                    gVar.f56364m = hVar;
+                    gVar.f56368m = hVar;
                     gVar.a(new wi.c(fVar, 2));
                     gVar.h();
                 } else {
                     j2Var.f(j2Var.getTopActionBarOffsetY() + (-j2Var.getOffsetY()), false, new i0(fVar, 14));
                 }
                 j2Var.L = true;
-                if (s2Var.f18938f0 && h2Var != null) {
+                if (s2Var.f18941f0 && h2Var != null) {
                     h2Var.setAlpha(0.0f);
                     h2Var.animate().alpha(1.0f).setDuration(220L).start();
                     return;
@@ -69,7 +69,7 @@ public final class m implements View.OnLayoutChangeListener {
                     int paddingLeft = searchView.I.getPaddingLeft();
                     Rect rect = new Rect();
                     boolean a10 = m.r3.a(searchView);
-                    if (searchView.f1909g0) {
+                    if (searchView.f1916g0) {
                         i19 = resources.getDimensionPixelSize(2131165225) + resources.getDimensionPixelSize(2131165226);
                     }
                     searchAutoComplete.getDropDownBackground().getPadding(rect);

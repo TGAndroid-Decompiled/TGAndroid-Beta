@@ -3,25 +3,25 @@ package qi;
 import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
-import org.telegram.messenger.bz;
+import org.telegram.messenger.cz;
 import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.m6;
 public final class g extends CharacterStyle {
-    public final String f56220a;
-    public final float f56221b;
-    public final boolean f56222c;
+    public final String f56224a;
+    public final float f56225b;
+    public final boolean f56226c;
 
     public g(String str, String str2, boolean z10) {
         int length;
         int i7;
-        this.f56222c = z10;
-        this.f56220a = str;
+        this.f56226c = z10;
+        this.f56224a = str;
         if (str2 == null) {
             length = 0;
         } else {
             length = str2.length();
         }
-        p pVar = j.f56228a;
+        p pVar = j.f56232a;
         if (length > 120) {
             i7 = 5;
         } else if (length > 50) {
@@ -29,13 +29,13 @@ public final class g extends CharacterStyle {
         } else {
             i7 = 2;
         }
-        this.f56221b = i7;
+        this.f56225b = i7;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        if (this.f56222c) {
-            textPaint.setTextSize(g0.L(bz.W0 - this.f56221b));
+        if (this.f56226c) {
+            textPaint.setTextSize(g0.L(cz.W0 - this.f56225b));
         }
         textPaint.setColor(m6.x0(null, m6.Vc, false));
         textPaint.setTypeface(Typeface.MONOSPACE);

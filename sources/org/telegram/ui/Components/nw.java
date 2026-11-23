@@ -16,21 +16,21 @@ public final class nw extends ev {
     @Override
     public final void L0(boolean z10) {
         ty tyVar = this.S1;
-        ArrayList arrayList = tyVar.f40137q1;
+        ArrayList arrayList = tyVar.f40130q1;
         TLRPC.StickerSet stickerSet = this.R1;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f28458id))) {
-                arrayList.add(Long.valueOf(stickerSet.f28458id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f28461id))) {
+                arrayList.add(Long.valueOf(stickerSet.f28461id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f28458id));
+            arrayList.remove(Long.valueOf(stickerSet.f28461id));
         }
         tyVar.U();
     }
 
     @Override
     public final void dismiss() {
-        this.S1.f40163x2 = false;
+        this.S1.f40156x2 = false;
         super.dismiss();
     }
 }

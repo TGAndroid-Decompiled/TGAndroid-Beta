@@ -17,11 +17,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.zip.ZipFile;
 public class WidgetEngineService extends Service {
-    public static volatile String f54712b;
-    public static String f54713c;
-    public static final ExecutorService d = Executors.newSingleThreadExecutor(new ai.a1(6));
-    public static volatile boolean f54714e;
-    public final a0 f54715a = new a0(this);
+    public static volatile String f54716b;
+    public static String f54717c;
+    public static final ExecutorService d = Executors.newSingleThreadExecutor(new ai.z0(6));
+    public static volatile boolean f54718e;
+    public final a0 f54719a = new a0(this);
 
     public static final class Forked extends WidgetEngineService {
     }
@@ -61,7 +61,7 @@ public class WidgetEngineService extends Service {
         if (Build.VERSION.SDK_INT >= 28 && Process.isIsolated()) {
             return true;
         }
-        String str = f54712b;
+        String str = f54716b;
         if (str == null) {
             try {
                 FileInputStream fileInputStream = new FileInputStream("/proc/self/cmdline");
@@ -77,7 +77,7 @@ public class WidgetEngineService extends Service {
             } catch (Exception unused) {
                 str = "";
             }
-            f54712b = str;
+            f54716b = str;
         }
         return str.contains(":widgets");
     }
@@ -116,7 +116,7 @@ public class WidgetEngineService extends Service {
         q qVar2 = qVar;
         synchronized (WidgetEngineService.class) {
             try {
-                String str = f54713c;
+                String str = f54717c;
                 if (str != null) {
                     return str;
                 }
@@ -213,7 +213,7 @@ public class WidgetEngineService extends Service {
                                 }
                                 WidgetSandboxNative.registerResources(sb3.toString().getBytes(StandardCharsets.UTF_8), bArr, bArr2, bArr3, bArr4, bArr5);
                                 String sb4 = sb3.toString();
-                                f54713c = sb4;
+                                f54717c = sb4;
                                 return sb4;
                             }
                             throw new IllegalStateException("Widget bundles are missing");
@@ -243,7 +243,7 @@ public class WidgetEngineService extends Service {
 
     @Override
     public final IBinder onBind(Intent intent) {
-        return this.f54715a;
+        return this.f54719a;
     }
 
     @Override
@@ -261,7 +261,7 @@ public class WidgetEngineService extends Service {
                 Process.killProcess(Process.myPid());
                 return;
             }
-            f54714e = true;
+            f54718e = true;
             Log.e("WidgetEngine", "no seccomp filter in this kernel (errno " + installSeccomp + "): the engine makes no session");
             return;
         }

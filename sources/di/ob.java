@@ -5,29 +5,29 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.ks;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.ls;
 import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.gk0;
 import org.telegram.ui.Components.j71;
 import org.telegram.ui.Components.o41;
 import org.telegram.ui.Components.tt0;
-public final class ob extends LinearLayout implements fs {
-    public final int f9495a;
-    public final j71 f9496b;
-    public final nb f9497c;
+public final class ob extends LinearLayout implements gs {
+    public final int f9498a;
+    public final j71 f9499b;
+    public final nb f9500c;
     public final FrameLayout d;
-    public final tt0 f9498e;
-    public final long f9499f;
+    public final tt0 f9501e;
+    public final long f9502f;
 
     public ob(Context context, int i7, boolean z10, long j3, int i10, org.telegram.ui.ActionBar.h6 h6Var, tt0 tt0Var) {
         super(context);
         j71 gk0Var;
         gk0 gk0Var2;
         int i11;
-        this.f9498e = tt0Var;
-        this.f9495a = i7;
-        this.f9499f = j3;
+        this.f9501e = tt0Var;
+        this.f9498a = i7;
+        this.f9502f = j3;
         setOrientation(1);
         if (tt0Var == null) {
             gk0Var = new j71(context, null);
@@ -35,15 +35,15 @@ public final class ob extends LinearLayout implements fs {
             gk0Var = new gk0(context, h6Var, tt0Var);
         }
         j71 j71Var = gk0Var;
-        this.f9496b = j71Var;
+        this.f9499b = j71Var;
         nb nbVar = new nb(context, i7, z10, j3, i10, h6Var);
-        this.f9497c = nbVar;
+        this.f9500c = nbVar;
         if (tt0Var == null) {
             gk0Var2 = null;
         } else {
             gk0Var2 = (gk0) j71Var;
         }
-        nbVar.f9421g = gk0Var2;
+        nbVar.f9424g = gk0Var2;
         j71Var.setAdapter(nbVar);
         if (tt0Var == null) {
             i11 = 3;
@@ -52,12 +52,12 @@ public final class ob extends LinearLayout implements fs {
         }
         View i12 = j71Var.i(i11, true);
         View view = new View(context);
-        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29379d7, view, h6Var);
+        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29382d7, view, h6Var);
         if (tt0Var == null) {
             this.d = null;
             addView(i12, c8.ma.o(-1, 48));
-            addView(view, new LinearLayout.LayoutParams(c8.ma.z(-1.0f), c8.ma.z(1.0f / org.telegram.messenger.g0.f24145p)));
-            setBackgroundColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29451h5, h6Var));
+            addView(view, new LinearLayout.LayoutParams(c8.ma.z(-1.0f), c8.ma.z(1.0f / org.telegram.messenger.g0.f24045p)));
+            setBackgroundColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, h6Var));
         } else {
             setClipChildren(false);
             setClipToPadding(false);
@@ -71,16 +71,16 @@ public final class ob extends LinearLayout implements fs {
 
     public final void a(boolean z10) {
         int i7;
-        nb nbVar = this.f9497c;
-        j71 j71Var = this.f9496b;
-        tt0 tt0Var = this.f9498e;
+        nb nbVar = this.f9500c;
+        j71 j71Var = this.f9499b;
+        tt0 tt0Var = this.f9501e;
         if (tt0Var == null) {
             nbVar.i();
             j71Var.j(z10);
             return;
         }
-        ArrayList arrayList = nbVar.f9422i;
-        ArrayList arrayList2 = nbVar.f9422i;
+        ArrayList arrayList = nbVar.f9425i;
+        ArrayList arrayList2 = nbVar.f9425i;
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             i10 |= 1 << ((o41) arrayList.get(i11)).A;
@@ -121,19 +121,19 @@ public final class ob extends LinearLayout implements fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = ks.B3;
-        long j3 = this.f9499f;
-        if ((i7 == i11 && j3 == 0) || (i7 == ks.F3 && j3 != 0 && ((Long) objArr[0]).longValue() == j3)) {
+        int i11 = ls.B3;
+        long j3 = this.f9502f;
+        if ((i7 == i11 && j3 == 0) || (i7 == ls.F3 && j3 != 0 && ((Long) objArr[0]).longValue() == j3)) {
             a(true);
         }
     }
 
     public ek0 getCurrentListView() {
-        View currentView = this.f9496b.getCurrentView();
+        View currentView = this.f9499b.getCurrentView();
         if (!(currentView instanceof mb)) {
             return null;
         }
-        return ((mb) currentView).f9358a;
+        return ((mb) currentView).f9361a;
     }
 
     public FrameLayout getTabsContainer() {
@@ -141,18 +141,18 @@ public final class ob extends LinearLayout implements fs {
     }
 
     public j71 getViewPager() {
-        return this.f9496b;
+        return this.f9499b;
     }
 
     @Override
     public final void onAttachedToWindow() {
         int i7;
         a(false);
-        ks f10 = ks.f(this.f9495a);
-        if (this.f9499f == 0) {
-            i7 = ks.B3;
+        ls f10 = ls.f(this.f9498a);
+        if (this.f9502f == 0) {
+            i7 = ls.B3;
         } else {
-            i7 = ks.F3;
+            i7 = ls.F3;
         }
         f10.c(this, i7);
         super.onAttachedToWindow();
@@ -161,11 +161,11 @@ public final class ob extends LinearLayout implements fs {
     @Override
     public final void onDetachedFromWindow() {
         int i7;
-        ks f10 = ks.f(this.f9495a);
-        if (this.f9499f == 0) {
-            i7 = ks.B3;
+        ls f10 = ls.f(this.f9498a);
+        if (this.f9502f == 0) {
+            i7 = ls.B3;
         } else {
-            i7 = ks.F3;
+            i7 = ls.F3;
         }
         f10.n(this, i7);
         super.onDetachedFromWindow();
@@ -174,14 +174,14 @@ public final class ob extends LinearLayout implements fs {
     public void setGlassEngine(ri.q qVar) {
         View[] viewPages;
         if (qVar != null) {
-            nb nbVar = this.f9497c;
+            nb nbVar = this.f9500c;
             if (nbVar.h != qVar) {
                 nbVar.h = qVar;
-                j71 j71Var = this.f9496b;
+                j71 j71Var = this.f9499b;
                 qVar.c(j71Var);
                 for (View view : j71Var.getViewPages()) {
                     if (view instanceof mb) {
-                        qVar.b(((mb) view).f9358a);
+                        qVar.b(((mb) view).f9361a);
                     }
                 }
             }

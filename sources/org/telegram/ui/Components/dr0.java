@@ -2,13 +2,13 @@ package org.telegram.ui.Components;
 
 import android.view.ViewGroup;
 public final class dr0 extends g.p {
-    public final int f34554c;
+    public final int f34549c;
     public final Object d;
-    public final ViewGroup f34555e;
+    public final ViewGroup f34550e;
 
     public dr0(ViewGroup viewGroup, Object obj, int i7) {
-        this.f34554c = i7;
-        this.f34555e = viewGroup;
+        this.f34549c = i7;
+        this.f34550e = viewGroup;
         this.d = obj;
     }
 
@@ -16,17 +16,17 @@ public final class dr0 extends g.p {
     public final int i(int i7) {
         int i10;
         int i11;
-        switch (this.f34554c) {
+        switch (this.f34549c) {
             case 0:
                 ds0 ds0Var = (ds0) this.d;
-                v4.i0 adapter = ds0Var.f34566n.getAdapter();
-                jt0 jt0Var = (jt0) this.f34555e;
+                v4.i0 adapter = ds0Var.f34561n.getAdapter();
+                jt0 jt0Var = (jt0) this.f34550e;
                 dt0 dt0Var = jt0Var.L;
                 if (adapter == dt0Var) {
                     if (dt0Var.d(i7) != 2) {
                         return 1;
                     }
-                    return ds0Var.f34567r.J;
+                    return ds0Var.f34562r.J;
                 } else if (jt0.y(jt0Var, adapter) == -1) {
                     return 1;
                 } else {
@@ -35,7 +35,7 @@ public final class dr0 extends g.p {
                 }
             case 1:
                 f51 f51Var = (f51) this.d;
-                c51 c51Var = ((h51) this.f34555e).f35796g3;
+                c51 c51Var = ((h51) this.f34550e).f35790g3;
                 if (c51Var == null) {
                     return f51Var.J;
                 }
@@ -46,7 +46,7 @@ public final class dr0 extends g.p {
                 return i10;
             default:
                 f51 f51Var2 = (f51) this.d;
-                c51 c51Var2 = ((h51) this.f34555e).f35796g3;
+                c51 c51Var2 = ((h51) this.f34550e).f35790g3;
                 if (c51Var2 == null) {
                     return f51Var2.J;
                 }

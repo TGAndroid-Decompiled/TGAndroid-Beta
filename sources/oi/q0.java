@@ -9,8 +9,8 @@ import android.widget.FrameLayout;
 import c8.ma;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.bz;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.cz;
+import org.telegram.messenger.hd;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
@@ -18,33 +18,33 @@ import org.telegram.ui.Cells.i9;
 import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
 public final class q0 extends FrameLayout implements org.telegram.ui.ActionBar.b6, i9 {
-    public final h6 f22319a;
-    public final bi.m3 f22320b;
-    public final AnimatedArrowDrawable f22321c;
+    public final h6 f22322a;
+    public final bi.m3 f22323b;
+    public final AnimatedArrowDrawable f22324c;
     public final f1 d;
-    public final Paint f22322e;
-    public a f22323f;
+    public final Paint f22325e;
+    public a f22326f;
     public c3 h;
-    public boolean f22324n;
+    public boolean f22327n;
 
     public q0(Context context, h6 h6Var) {
         super(context);
-        this.f22322e = new Paint();
-        this.f22319a = h6Var;
+        this.f22325e = new Paint();
+        this.f22322a = h6Var;
         setClipToPadding(false);
         setWillNotDraw(false);
         AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(m6.w0(m6.ul, h6Var));
-        this.f22321c = animatedArrowDrawable;
+        this.f22324c = animatedArrowDrawable;
         animatedArrowDrawable.setCallback(new a5.b(this, 5));
         bi.m3 m3Var = new bi.m3(9, context, this);
-        this.f22320b = m3Var;
+        this.f22323b = m3Var;
         m3Var.setOnClickListener(new hi.o4(this, 18));
         addView(m3Var, ma.e(53, -1, 51));
         f1 f1Var = new f1(context, h6Var);
         this.d = f1Var;
         f1Var.setAllowNewlines(false);
-        f1Var.setTextSize(1, bz.W0);
-        f1Var.setHint(gd.N0(2131754015, null));
+        f1Var.setTextSize(1, cz.W0);
+        f1Var.setHint(hd.N0(2131754015, null));
         f1Var.setPadding(0, org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(12.66f));
         f1Var.setListener(new n0(this));
         f1Var.setDelegate(new kg.x1(this, 20));
@@ -63,7 +63,7 @@ public final class q0 extends FrameLayout implements org.telegram.ui.ActionBar.b
         j9 j9Var;
         c3 c3Var = this.h;
         if (c3Var != null) {
-            j9Var = c3Var.f22042a.getTextSelectionHelper();
+            j9Var = c3Var.f22045a.getTextSelectionHelper();
         } else {
             j9Var = null;
         }
@@ -84,7 +84,7 @@ public final class q0 extends FrameLayout implements org.telegram.ui.ActionBar.b
     }
 
     public a getRow() {
-        return this.f22323f;
+        return this.f22326f;
     }
 
     @Override
@@ -99,15 +99,15 @@ public final class q0 extends FrameLayout implements org.telegram.ui.ActionBar.b
 
     @Override
     public final void onDraw(Canvas canvas) {
-        a aVar = this.f22323f;
+        a aVar = this.f22326f;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f21932b;
+            TL_iv.PageBlock pageBlock = aVar.f21935b;
             if ((pageBlock instanceof TL_iv.pageBlockDetails) && ((TL_iv.pageBlockDetails) pageBlock).open) {
                 return;
             }
         }
         int measuredHeight = getMeasuredHeight();
-        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f22322e);
+        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f22325e);
     }
 
     @Override
@@ -123,11 +123,11 @@ public final class q0 extends FrameLayout implements org.telegram.ui.ActionBar.b
     public final void updateColors() {
         this.d.updateColors();
         int i7 = m6.ul;
-        h6 h6Var = this.f22319a;
+        h6 h6Var = this.f22322a;
         int w02 = m6.w0(i7, h6Var);
-        AnimatedArrowDrawable animatedArrowDrawable = this.f22321c;
-        animatedArrowDrawable.f32555a.setColor(w02);
+        AnimatedArrowDrawable animatedArrowDrawable = this.f22324c;
+        animatedArrowDrawable.f32558a.setColor(w02);
         animatedArrowDrawable.invalidateSelf();
-        this.f22322e.setColor(m6.w0(m6.wl, h6Var));
+        this.f22325e.setColor(m6.w0(m6.wl, h6Var));
     }
 }

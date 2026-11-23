@@ -34,95 +34,95 @@ public final class p0 {
     public final hi.t5 X;
     public final hi.t5 Y;
     public final h9.g1 Z;
-    public final HashMap f26159a;
-    public final hi.t5 f26160a0;
-    public final hi.t5 f26161b;
-    public final hi.t5 f26162b0;
-    public final hi.t5 f26163c;
-    public final hi.t5 f26164c0;
+    public final HashMap f26211a;
+    public final hi.t5 f26212a0;
+    public final hi.t5 f26213b;
+    public final hi.t5 f26214b0;
+    public final hi.t5 f26215c;
+    public final hi.t5 f26216c0;
     public final hi.t5 d;
-    public final hi.t5 f26165d0;
-    public final hi.t5 f26166e;
-    public final hi.t5 f26167e0;
-    public final hi.t5 f26168f;
-    public final hi.t5 f26169f0;
-    public final h9.g1 f26170g;
-    public final hi.t5 f26171g0;
+    public final hi.t5 f26217d0;
+    public final hi.t5 f26218e;
+    public final hi.t5 f26219e0;
+    public final hi.t5 f26220f;
+    public final hi.t5 f26221f0;
+    public final h9.g1 f26222g;
+    public final hi.t5 f26223g0;
     public final h9.g1 h;
-    public final hi.t5 f26172h0;
-    public final hi.w4 f26173i;
-    public final hi.t5 f26174i0;
-    public final hi.w4 f26175j;
-    public final hi.t5 f26176j0;
-    public final hi.w4 f26177k;
-    public final hi.t5 f26178k0;
-    public final hi.w4 f26179l;
-    public final h9.g1 f26180l0;
-    public final h9.g1 f26181m;
+    public final hi.t5 f26224h0;
+    public final hi.w4 f26225i;
+    public final hi.t5 f26226i0;
+    public final hi.w4 f26227j;
+    public final hi.t5 f26228j0;
+    public final hi.w4 f26229k;
+    public final hi.t5 f26230k0;
+    public final hi.w4 f26231l;
+    public final h9.g1 f26232l0;
+    public final h9.g1 f26233m;
     public final h9.g1 m0;
-    public final hi.t5 f26182n;
-    public final h9.g1 f26183n0;
-    public final hi.t5 f26184o;
-    public final h9.g1 f26185o0;
-    public final hi.t5 f26186p;
-    public final h9.g1 f26187p0;
-    public final hi.t5 f26188q;
-    public final h9.g1 f26189q0;
-    public final h9.g1 f26190r;
-    public final h9.g1 f26191r0;
-    public final h9.g1 f26192s;
-    public final h9.g1 f26193s0;
-    public final h9.g1 f26194t;
-    public final hi.w4 f26195t0;
-    public final h9.g1 f26196u;
-    public final h9.g1 f26197u0;
+    public final hi.t5 f26234n;
+    public final h9.g1 f26235n0;
+    public final hi.t5 f26236o;
+    public final h9.g1 f26237o0;
+    public final hi.t5 f26238p;
+    public final h9.g1 f26239p0;
+    public final hi.t5 f26240q;
+    public final h9.g1 f26241q0;
+    public final h9.g1 f26242r;
+    public final h9.g1 f26243r0;
+    public final h9.g1 f26244s;
+    public final h9.g1 f26245s0;
+    public final h9.g1 f26246t;
+    public final hi.w4 f26247t0;
+    public final h9.g1 f26248u;
+    public final h9.g1 f26249u0;
     public final hi.t5 v;
-    public final hi.t5 f26198v0;
-    public final hi.t5 f26199w;
-    public final h9.g1 f26200x;
-    public final hi.t5 f26201y;
-    public final hi.t5 f26202z;
+    public final hi.t5 f26250v0;
+    public final hi.t5 f26251w;
+    public final h9.g1 f26252x;
+    public final hi.t5 f26253y;
+    public final hi.t5 f26254z;
 
     public p0() {
         HashMap hashMap = new HashMap();
-        this.f26159a = hashMap;
-        this.f26161b = e(10, "stars_paid_messages_channel_amount_default");
-        this.f26163c = e(850, "stars_suggested_post_commission_permille");
+        this.f26211a = hashMap;
+        this.f26213b = e(10, "stars_paid_messages_channel_amount_default");
+        this.f26215c = e(850, "stars_suggested_post_commission_permille");
         this.d = e(5, "stars_suggested_post_amount_min");
-        this.f26166e = e(100000, "stars_suggested_post_amount_max");
-        this.f26168f = e(850, "ton_suggested_post_commission_permille");
-        this.f26170g = f(10000000L, "ton_suggested_post_amount_min");
+        this.f26218e = e(100000, "stars_suggested_post_amount_max");
+        this.f26220f = e(850, "ton_suggested_post_commission_permille");
+        this.f26222g = f(10000000L, "ton_suggested_post_amount_min");
         this.h = f(10000000000000L, "ton_suggested_post_amount_max");
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        this.f26173i = h(86400L, "stars_suggested_post_age_min");
-        this.f26175j = h(300L, "stars_suggested_post_future_min");
-        this.f26177k = h(2678400L, "stars_suggested_post_future_max");
+        this.f26225i = h(86400L, "stars_suggested_post_age_min");
+        this.f26227j = h(300L, "stars_suggested_post_future_min");
+        this.f26229k = h(2678400L, "stars_suggested_post_future_max");
         hi.w4 w4Var = new hi.w4(20);
-        hashMap.put("ton_usd_rate", (i0) w4Var.f15705b);
-        this.f26179l = w4Var;
+        hashMap.put("ton_usd_rate", (i0) w4Var.f15708b);
+        this.f26231l = w4Var;
         g("stars_rating_learnmore_url", "https://telegram.org/blog/telegram-stars");
-        this.f26181m = d("need_age_video_verification", false);
-        this.f26182n = e(800, "stars_stargift_resale_commission_permille");
-        this.f26184o = e(800, "ton_stargift_resale_commission_permille");
-        this.f26186p = e(125, "stars_stargift_resale_amount_min");
-        this.f26188q = e(35000, "stars_stargift_resale_amount_max");
-        this.f26190r = f(10000000L, "ton_stargift_resale_amount_min");
-        this.f26192s = f(10000000000000L, "ton_stargift_resale_amount_max");
-        this.f26194t = d("stargifts_fragment_resale_enabled", false);
-        this.f26196u = d("stargifts_fixed_sale_enabled", false);
+        this.f26233m = d("need_age_video_verification", false);
+        this.f26234n = e(800, "stars_stargift_resale_commission_permille");
+        this.f26236o = e(800, "ton_stargift_resale_commission_permille");
+        this.f26238p = e(125, "stars_stargift_resale_amount_min");
+        this.f26240q = e(35000, "stars_stargift_resale_amount_max");
+        this.f26242r = f(10000000L, "ton_stargift_resale_amount_min");
+        this.f26244s = f(10000000000000L, "ton_stargift_resale_amount_max");
+        this.f26246t = d("stargifts_fragment_resale_enabled", false);
+        this.f26248u = d("stargifts_fixed_sale_enabled", false);
         this.v = g("stargifts_stars_resale", "default");
-        this.f26199w = g("stargifts_ton_resale", "default");
-        this.f26200x = d("stargifts_craft_minted_first_source", false);
-        this.f26201y = e(100, "stargifts_collections_limit");
+        this.f26251w = g("stargifts_ton_resale", "default");
+        this.f26252x = d("stargifts_craft_minted_first_source", false);
+        this.f26253y = e(100, "stargifts_collections_limit");
         e(100, "stargifts_collection_gifts_limit");
-        this.f26202z = e(100, "stories_albums_limit");
+        this.f26254z = e(100, "stories_albums_limit");
         e(100, "stories_album_stories_limit");
         this.A = h(30L, "message_typing_draft_ttl");
         this.B = h(10L, "group_call_message_ttl");
         this.C = e(128, "group_call_message_length_limit");
         this.D = e(128, "contact_note_length_limit");
         this.E = e(5, "passkeys_account_passkeys_max");
-        boolean z10 = s2.f26749a;
+        boolean z10 = s2.f26730a;
         this.F = d("settings_display_passkeys", true);
         this.G = d("android_disable_blur_in_light_theme", false);
         this.H = d("android_disable_blur_in_dark_theme", false);
@@ -146,41 +146,41 @@ public final class p0 {
         this.X = e(5, "aicompose_tone_saved_limit_default");
         this.Y = e(20, "aicompose_tone_saved_limit_premium");
         this.Z = d("message_primary_edited_date", false);
-        this.f26160a0 = e(32768, "rich_message_length_limit");
-        this.f26162b0 = e(500, "rich_message_max_blocks");
-        this.f26164c0 = e(16, "rich_message_max_depth");
-        this.f26165d0 = e(50, "rich_message_max_media");
-        this.f26167e0 = e(20, "rich_message_max_table_cols");
-        this.f26169f0 = g("rich_message_posting", "premium");
-        this.f26171g0 = g("speech_to_text", "enabled");
+        this.f26212a0 = e(32768, "rich_message_length_limit");
+        this.f26214b0 = e(500, "rich_message_max_blocks");
+        this.f26216c0 = e(16, "rich_message_max_depth");
+        this.f26217d0 = e(50, "rich_message_max_media");
+        this.f26219e0 = e(20, "rich_message_max_table_cols");
+        this.f26221f0 = g("rich_message_posting", "premium");
+        this.f26223g0 = g("speech_to_text", "enabled");
         e(100, "community_peers_limit");
         e(100, "community_bot_peers_limit");
-        this.f26172h0 = e(4096, "message_length_limit_default");
-        this.f26174i0 = e(8192, "message_length_limit_premium");
-        this.f26176j0 = e(20, "quick_reply_messages_limit");
-        this.f26178k0 = e(5, "ephemeral_welcome_messages_max");
-        this.f26180l0 = d("android_audio_recorder_v2_disabled", false);
+        this.f26224h0 = e(4096, "message_length_limit_default");
+        this.f26226i0 = e(8192, "message_length_limit_premium");
+        this.f26228j0 = e(20, "quick_reply_messages_limit");
+        this.f26230k0 = e(5, "ephemeral_welcome_messages_max");
+        this.f26232l0 = d("android_audio_recorder_v2_disabled", false);
         this.m0 = d("android_round_video_recorder_v2_disabled", false);
-        this.f26183n0 = d("stars_spend_topup_invoice_disabled", false);
+        this.f26235n0 = d("stars_spend_topup_invoice_disabled", false);
         h9.g1 g1Var = new h9.g1("bot_allowed_suffixes", Collections.singleton("bot"));
-        hashMap.put("bot_allowed_suffixes", (o0) g1Var.f14027b);
-        this.f26185o0 = g1Var;
-        this.f26187p0 = d("wallet_available", true);
-        this.f26189q0 = d("wallet_paid_message_recipient_message_amount_check", true);
-        this.f26191r0 = f(100000000L, "wallet_transfer_min_nanos");
+        hashMap.put("bot_allowed_suffixes", (o0) g1Var.f14030b);
+        this.f26237o0 = g1Var;
+        this.f26239p0 = d("wallet_available", true);
+        this.f26241q0 = d("wallet_paid_message_recipient_message_amount_check", true);
+        this.f26243r0 = f(100000000L, "wallet_transfer_min_nanos");
         f(100000000L, "wallet_gasless_min_nanos");
         h9.g1 g1Var2 = new h9.g1("wallet_card_bg_gifts", Collections.EMPTY_SET);
-        hashMap.put("wallet_card_bg_gifts", (o0) g1Var2.f14027b);
-        this.f26193s0 = g1Var2;
+        hashMap.put("wallet_card_bg_gifts", (o0) g1Var2.f14030b);
+        this.f26245s0 = g1Var2;
         hi.w4 w4Var2 = new hi.w4(21);
-        hashMap.put("agent_bot_ids", (m0) w4Var2.f15705b);
-        this.f26195t0 = w4Var2;
-        this.f26197u0 = d("widgets_disabled", false);
-        this.f26198v0 = e(6, "widgets_processes");
+        hashMap.put("agent_bot_ids", (m0) w4Var2.f15708b);
+        this.f26247t0 = w4Var2;
+        this.f26249u0 = d("widgets_disabled", false);
+        this.f26250v0 = e(6, "widgets_processes");
     }
 
     public static String i(hi.t5 t5Var) {
-        String str = ((n0) t5Var.f15505b).f25899c;
+        String str = ((n0) t5Var.f15508b).f25711c;
         if (!"visible".equals(str) && !"hidden".equals(str)) {
             return "default";
         }
@@ -192,7 +192,7 @@ public final class p0 {
         boolean z10 = false;
         for (int i7 = 0; i7 < size; i7++) {
             TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i7);
-            k0 k0Var = (k0) this.f26159a.get(tL_jsonObjectValue.key);
+            k0 k0Var = (k0) this.f26211a.get(tL_jsonObjectValue.key);
             if (k0Var != null) {
                 z10 |= k0Var.a(editor, tL_jsonObjectValue.value);
             }
@@ -209,12 +209,12 @@ public final class p0 {
         TLRPC.TL_jsonBool tL_jsonBool2 = new TLRPC.TL_jsonBool();
         tL_jsonBool2.value = false;
         boolean b13 = b12 | b(editor, tL_jsonObject, "stargifts_fixed_sale_enabled", tL_jsonBool2);
-        boolean z11 = s2.f26749a;
+        boolean z11 = s2.f26730a;
         TLRPC.TL_jsonBool tL_jsonBool3 = new TLRPC.TL_jsonBool();
         tL_jsonBool3.value = true;
         boolean b14 = b(editor, tL_jsonObject, "wallet_available", tL_jsonBool3) | b13;
-        if (((h0) this.f26197u0.f14027b).f24364c) {
-            ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.n0.f54887a;
+        if (((h0) this.f26249u0.f14030b).f24341c) {
+            ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.n0.f54891a;
             g0.g3(new cd0(18));
         }
         return b14;
@@ -230,7 +230,7 @@ public final class p0 {
                 }
                 i7++;
             } else {
-                k0 k0Var = (k0) this.f26159a.get(str);
+                k0 k0Var = (k0) this.f26211a.get(str);
                 if (k0Var != null) {
                     return k0Var.a(editor, jSONValue);
                 }
@@ -240,7 +240,7 @@ public final class p0 {
     }
 
     public final void c(SharedPreferences sharedPreferences) {
-        for (k0 k0Var : this.f26159a.values()) {
+        for (k0 k0Var : this.f26211a.values()) {
             try {
                 k0Var.b(sharedPreferences);
             } catch (ClassCastException e10) {
@@ -251,32 +251,32 @@ public final class p0 {
 
     public final h9.g1 d(String str, boolean z10) {
         h9.g1 g1Var = new h9.g1(str, z10);
-        this.f26159a.put(str, (h0) g1Var.f14027b);
+        this.f26211a.put(str, (h0) g1Var.f14030b);
         return g1Var;
     }
 
     public final hi.t5 e(int i7, String str) {
         hi.t5 t5Var = new hi.t5(str, i7);
-        this.f26159a.put(str, (j0) t5Var.f15505b);
+        this.f26211a.put(str, (j0) t5Var.f15508b);
         return t5Var;
     }
 
     public final h9.g1 f(long j3, String str) {
         h9.g1 g1Var = new h9.g1(str, j3);
-        this.f26159a.put(str, (l0) g1Var.f14027b);
+        this.f26211a.put(str, (l0) g1Var.f14030b);
         return g1Var;
     }
 
     public final hi.t5 g(String str, String str2) {
         hi.t5 t5Var = new hi.t5(str, str2);
-        this.f26159a.put(str, (n0) t5Var.f15505b);
+        this.f26211a.put(str, (n0) t5Var.f15508b);
         return t5Var;
     }
 
     public final hi.w4 h(long j3, String str) {
         TimeUnit timeUnit = TimeUnit.SECONDS;
         hi.w4 w4Var = new hi.w4(str, j3);
-        this.f26159a.put(str, (l0) w4Var.f15705b);
+        this.f26211a.put(str, (l0) w4Var.f15708b);
         return w4Var;
     }
 }

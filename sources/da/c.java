@@ -1,14 +1,14 @@
 package da;
 public final class c implements na.d {
-    public static final c f7981a = new Object();
-    public static final na.c f7982b = na.c.c("key");
-    public static final na.c f7983c = na.c.c("value");
+    public static final c f7984a = new Object();
+    public static final na.c f7985b = na.c.c("key");
+    public static final na.c f7986c = na.c.c("value");
 
     @Override
     public final void a(Object obj, Object obj2) {
         na.e eVar = (na.e) obj2;
         h0 h0Var = (h0) ((v1) obj);
-        eVar.a(f7982b, h0Var.f8066a);
-        eVar.a(f7983c, h0Var.f8067b);
+        eVar.a(f7985b, h0Var.f8069a);
+        eVar.a(f7986c, h0Var.f8070b);
     }
 }

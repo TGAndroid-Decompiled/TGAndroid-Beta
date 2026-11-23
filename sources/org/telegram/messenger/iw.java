@@ -1,52 +1,46 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_stories;
+import java.util.HashMap;
+import org.telegram.tgnet.TLObject;
 public final class iw implements Runnable {
-    public final TL_stories.StoryItem E;
-    public final bw F;
-    public final long G;
-    public final boolean H;
-    public final long I;
-    public final Runnable J;
-    public final sh.f f24758a;
-    public final ArrayList f24759b;
-    public final long f24760c;
-    public final c d;
-    public final CharSequence f24761e;
-    public final boolean f24762f;
-    public final ArrayList h;
-    public final fj f24763n;
-    public final fj f24764r;
-    public final fj f24765s;
-    public final boolean f24766w;
-    public final int f24767x;
-    public final int f24768y;
+    public final int f24785a;
+    public final az f24786b;
+    public final TLObject f24787c;
+    public final gj d;
+    public final String f24788e;
+    public final my f24789f;
+    public final boolean h;
+    public final my f24790n;
+    public final Object f24791r;
+    public final HashMap f24792s;
+    public final boolean f24793w;
 
-    public iw(sh.f fVar, ArrayList arrayList, long j3, c cVar, CharSequence charSequence, boolean z10, ArrayList arrayList2, fj fjVar, fj fjVar2, fj fjVar3, boolean z11, int i7, int i10, TL_stories.StoryItem storyItem, bw bwVar, long j10, boolean z12, long j11, Runnable runnable) {
-        this.f24758a = fVar;
-        this.f24759b = arrayList;
-        this.f24760c = j3;
-        this.d = cVar;
-        this.f24761e = charSequence;
-        this.f24762f = z10;
-        this.h = arrayList2;
-        this.f24763n = fjVar;
-        this.f24764r = fjVar2;
-        this.f24765s = fjVar3;
-        this.f24766w = z11;
-        this.f24767x = i7;
-        this.f24768y = i10;
-        this.E = storyItem;
-        this.F = bwVar;
-        this.G = j10;
-        this.H = z12;
-        this.I = j11;
-        this.J = runnable;
+    public iw(az azVar, TLObject tLObject, gj gjVar, String str, my myVar, boolean z10, my myVar2, Object obj, HashMap hashMap, boolean z11, int i7) {
+        this.f24785a = i7;
+        this.f24786b = azVar;
+        this.f24787c = tLObject;
+        this.d = gjVar;
+        this.f24788e = str;
+        this.f24789f = myVar;
+        this.h = z10;
+        this.f24790n = myVar2;
+        this.f24791r = obj;
+        this.f24792s = hashMap;
+        this.f24793w = z11;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.iw.run():void");
+        switch (this.f24785a) {
+            case 0:
+                this.f24786b.O(this.f24787c, this.d, this.f24788e, this.f24789f, this.h, this.f24790n, this.f24791r, this.f24792s, this.f24793w);
+                return;
+            case 1:
+                this.f24786b.O(this.f24787c, this.d, this.f24788e, this.f24789f, this.h, this.f24790n, this.f24791r, this.f24792s, this.f24793w);
+                return;
+            default:
+                this.f24786b.O(this.f24787c, this.d, this.f24788e, this.f24789f, this.h, this.f24790n, this.f24791r, this.f24792s, this.f24793w);
+                return;
+        }
     }
 }

@@ -75,36 +75,36 @@ public class Track {
             this.syncSamples = new LinkedList<>();
             this.handler = "vide";
             ?? aVar = new com.googlecode.mp4parser.a("vmhd");
-            aVar.f16079e = 0;
-            aVar.f16080f = new int[3];
+            aVar.f16082e = 0;
+            aVar.f16083f = new int[3];
             aVar.g(1);
             this.headerBox = aVar;
             this.sampleDescriptionBox = new i5.o();
             String string = mediaFormat.getString("mime");
             if (string.equals("video/avc")) {
                 j5.c cVar = new j5.c("avc1");
-                cVar.f17255f = 1;
-                cVar.f17263y = 24;
-                cVar.f17261w = 1;
-                cVar.f17259r = 72.0d;
-                cVar.f17260s = 72.0d;
+                cVar.f17258f = 1;
+                cVar.f17266y = 24;
+                cVar.f17264w = 1;
+                cVar.f17262r = 72.0d;
+                cVar.f17263s = 72.0d;
                 cVar.h = this.width;
-                cVar.f17258n = this.height;
+                cVar.f17261n = this.height;
                 ?? aVar2 = new com.googlecode.mp4parser.a("avcC");
                 ?? obj = new Object();
-                obj.f56139f = new ArrayList();
-                obj.f56140g = new ArrayList();
+                obj.f56143f = new ArrayList();
+                obj.f56144g = new ArrayList();
                 obj.h = true;
-                obj.f56141i = 1;
-                obj.f56142j = 0;
-                obj.f56143k = 0;
-                obj.f56144l = new ArrayList();
-                obj.f56145m = 63;
-                obj.f56146n = 7;
-                obj.f56147o = 31;
-                obj.f56148p = 31;
-                obj.f56149q = 31;
-                aVar2.f56134a = obj;
+                obj.f56145i = 1;
+                obj.f56146j = 0;
+                obj.f56147k = 0;
+                obj.f56148l = new ArrayList();
+                obj.f56149m = 63;
+                obj.f56150n = 7;
+                obj.f56151o = 31;
+                obj.f56152p = 31;
+                obj.f56153q = 31;
+                aVar2.f56138a = obj;
                 if (mediaFormat.getByteBuffer("csd-0") != null) {
                     ArrayList arrayList = new ArrayList();
                     ByteBuffer byteBuffer = mediaFormat.getByteBuffer("csd-0");
@@ -119,9 +119,9 @@ public class Track {
                     byteBuffer2.get(bArr2);
                     arrayList2.add(bArr2);
                     i5.c.w(ze.a.c(qc.a.h, aVar2, aVar2, arrayList));
-                    aVar2.f56134a.f56139f = arrayList;
-                    i5.c.w(ze.a.c(qc.a.f56128n, aVar2, aVar2, arrayList2));
-                    aVar2.f56134a.f56140g = arrayList2;
+                    aVar2.f56138a.f56143f = arrayList;
+                    i5.c.w(ze.a.c(qc.a.f56132n, aVar2, aVar2, arrayList2));
+                    aVar2.f56138a.f56144g = arrayList2;
                 }
                 if (mediaFormat.containsKey("level")) {
                     int integer = mediaFormat.getInteger("level");
@@ -183,30 +183,30 @@ public class Track {
                 } else {
                     aVar2.e(100);
                 }
-                i5.c.w(ze.a.c(qc.a.f56130s, aVar2, aVar2, new Integer(-1)));
-                aVar2.f56134a.f56142j = -1;
-                i5.c.w(ze.a.c(qc.a.f56131w, aVar2, aVar2, new Integer(-1)));
-                aVar2.f56134a.f56143k = -1;
-                i5.c.w(ze.a.c(qc.a.f56129r, aVar2, aVar2, new Integer(-1)));
-                aVar2.f56134a.f56141i = -1;
-                i5.c.w(ze.a.c(qc.a.f56124b, aVar2, aVar2, new Integer(1)));
-                aVar2.f56134a.f56135a = 1;
-                i5.c.w(ze.a.c(qc.a.f56127f, aVar2, aVar2, new Integer(3)));
-                aVar2.f56134a.f56138e = 3;
+                i5.c.w(ze.a.c(qc.a.f56134s, aVar2, aVar2, new Integer(-1)));
+                aVar2.f56138a.f56146j = -1;
+                i5.c.w(ze.a.c(qc.a.f56135w, aVar2, aVar2, new Integer(-1)));
+                aVar2.f56138a.f56147k = -1;
+                i5.c.w(ze.a.c(qc.a.f56133r, aVar2, aVar2, new Integer(-1)));
+                aVar2.f56138a.f56145i = -1;
+                i5.c.w(ze.a.c(qc.a.f56128b, aVar2, aVar2, new Integer(1)));
+                aVar2.f56138a.f56139a = 1;
+                i5.c.w(ze.a.c(qc.a.f56131f, aVar2, aVar2, new Integer(3)));
+                aVar2.f56138a.f56142e = 3;
                 i5.c.w(ze.a.c(qc.a.d, aVar2, aVar2, new Integer(0)));
-                aVar2.f56134a.f56137c = 0;
+                aVar2.f56138a.f56141c = 0;
                 cVar.a(aVar2);
                 this.sampleDescriptionBox.a(cVar);
                 return;
             } else if (string.equals("video/mp4v")) {
                 j5.c cVar2 = new j5.c("mp4v");
-                cVar2.f17255f = 1;
-                cVar2.f17263y = 24;
-                cVar2.f17261w = 1;
-                cVar2.f17259r = 72.0d;
-                cVar2.f17260s = 72.0d;
+                cVar2.f17258f = 1;
+                cVar2.f17266y = 24;
+                cVar2.f17264w = 1;
+                cVar2.f17262r = 72.0d;
+                cVar2.f17263s = 72.0d;
                 cVar2.h = this.width;
-                cVar2.f17258n = this.height;
+                cVar2.f17261n = this.height;
                 this.sampleDescriptionBox.a(cVar2);
                 return;
             } else if (string.equals("video/hevc") && mediaFormat.getByteBuffer("csd-0") != null) {
@@ -255,7 +255,7 @@ public class Track {
                 try {
                     j5.c parseFromCsd = HevcDecoderConfigurationRecord.parseFromCsd(Arrays.asList(ByteBuffer.wrap(bArr3), ByteBuffer.wrap(bArr5), ByteBuffer.wrap(bArr4)));
                     parseFromCsd.h = this.width;
-                    parseFromCsd.f17258n = this.height;
+                    parseFromCsd.f17261n = this.height;
                     this.sampleDescriptionBox.a(parseFromCsd);
                     return;
                 } catch (IOException e10) {
@@ -273,31 +273,31 @@ public class Track {
         this.sampleDescriptionBox = new i5.o();
         ?? aVar3 = new j5.a("mp4a");
         aVar3.h = mediaFormat.getInteger("channel-count");
-        aVar3.f17257r = mediaFormat.getInteger("sample-rate");
-        aVar3.f17255f = 1;
-        aVar3.f17256n = 16;
+        aVar3.f17260r = mediaFormat.getInteger("sample-rate");
+        aVar3.f17258f = 1;
+        aVar3.f17259n = 16;
         ?? aVar4 = new com.googlecode.mp4parser.a("esds");
         ?? obj2 = new Object();
-        obj2.f19774i = 0;
-        obj2.f19780o = new ArrayList();
+        obj2.f19777i = 0;
+        obj2.f19783o = new ArrayList();
         obj2.d = 0;
         ?? obj3 = new Object();
         obj3.d = 2;
-        obj2.f19779n = obj3;
+        obj2.f19782n = obj3;
         if (mediaFormat.containsKey("mime")) {
             str = mediaFormat.getString("mime");
         } else {
             str = "audio/mp4-latm";
         }
         ?? obj4 = new Object();
-        obj4.f19768k = new ArrayList();
+        obj4.f19771k = new ArrayList();
         if ("audio/mpeg".equals(str)) {
             obj4.d = 105;
         } else {
             obj4.d = 64;
         }
-        obj4.f19763e = 5;
-        obj4.f19765g = 1536;
+        obj4.f19766e = 5;
+        obj4.f19768g = 1536;
         if (mediaFormat.containsKey("max-bitrate")) {
             i10 = 13;
             z11 = true;
@@ -307,43 +307,43 @@ public class Track {
             z11 = true;
             obj4.h = 96000L;
         }
-        obj4.f19766i = this.timeScale;
+        obj4.f19769i = this.timeScale;
         ?? obj5 = new Object();
-        obj5.f19736e = 2;
-        obj5.f19737f = samplingFrequencyIndexMap.get(Integer.valueOf((int) aVar3.f17257r)).intValue();
+        obj5.f19739e = 2;
+        obj5.f19740f = samplingFrequencyIndexMap.get(Integer.valueOf((int) aVar3.f17260r)).intValue();
         obj5.h = aVar3.h;
-        obj4.f19767j = obj5;
-        obj2.f19778m = obj4;
+        obj4.f19770j = obj5;
+        obj2.f19781m = obj4;
         ByteBuffer allocate = ByteBuffer.allocate(obj2.c());
         h5.b.r(3, allocate);
         allocate.put((byte) ((obj2.c() - 2) & 255));
         h5.b.p(obj2.d, allocate);
-        allocate.put((byte) (((obj2.f19771e << 7) | (obj2.f19772f << 6) | (obj2.f19773g << 5) | (31 & obj2.h)) & 255));
-        if (obj2.f19771e > 0) {
-            h5.b.p(obj2.f19776k, allocate);
+        allocate.put((byte) (((obj2.f19774e << 7) | (obj2.f19775f << 6) | (obj2.f19776g << 5) | (31 & obj2.h)) & 255));
+        if (obj2.f19774e > 0) {
+            h5.b.p(obj2.f19779k, allocate);
         }
-        if (obj2.f19772f > 0) {
-            allocate.put((byte) (obj2.f19774i & 255));
-            allocate.put(h5.b.b(obj2.f19775j));
+        if (obj2.f19775f > 0) {
+            allocate.put((byte) (obj2.f19777i & 255));
+            allocate.put(h5.b.b(obj2.f19778j));
             allocate.put((byte) 0);
         }
-        if (obj2.f19773g > 0) {
-            h5.b.p(obj2.f19777l, allocate);
+        if (obj2.f19776g > 0) {
+            h5.b.p(obj2.f19780l, allocate);
         }
-        lc.d dVar = obj2.f19778m;
-        lc.a aVar5 = dVar.f19767j;
+        lc.d dVar = obj2.f19781m;
+        lc.a aVar5 = dVar.f19770j;
         if (aVar5 == null) {
             i11 = 0;
-        } else if (aVar5.f19736e == 2) {
+        } else if (aVar5.f19739e == 2) {
             i11 = 4;
         } else {
             throw new UnsupportedOperationException("can't serialize that yet");
         }
         ByteBuffer allocate2 = ByteBuffer.allocate(i11 + 15);
         h5.b.r(4, allocate2);
-        lc.a aVar6 = dVar.f19767j;
+        lc.a aVar6 = dVar.f19770j;
         if (aVar6 != null) {
-            if (aVar6.f19736e == 2) {
+            if (aVar6.f19739e == 2) {
                 i12 = 4;
             } else {
                 throw new UnsupportedOperationException("can't serialize that yet");
@@ -351,21 +351,21 @@ public class Track {
         }
         allocate2.put((byte) ((i12 + i10) & 255));
         allocate2.put((byte) (dVar.d & 255));
-        allocate2.put((byte) (((dVar.f19763e << 2) | (dVar.f19764f << 1) | 1) & 255));
-        h5.b.q(dVar.f19765g, allocate2);
+        allocate2.put((byte) (((dVar.f19766e << 2) | (dVar.f19767f << 1) | 1) & 255));
+        h5.b.q(dVar.f19768g, allocate2);
         allocate2.putInt((int) dVar.h);
-        allocate2.putInt((int) dVar.f19766i);
-        lc.a aVar7 = dVar.f19767j;
+        allocate2.putInt((int) dVar.f19769i);
+        lc.a aVar7 = dVar.f19770j;
         if (aVar7 != null) {
-            if (aVar7.f19736e == 2) {
+            if (aVar7.f19739e == 2) {
                 ByteBuffer allocate3 = ByteBuffer.allocate(4);
                 h5.b.r(5, allocate3);
-                if (aVar7.f19736e == 2) {
+                if (aVar7.f19739e == 2) {
                     allocate3.put((byte) 2);
                     lc.c cVar3 = new lc.c(1, allocate3);
-                    cVar3.c(aVar7.f19736e, 5);
-                    cVar3.c(aVar7.f19737f, 4);
-                    if (aVar7.f19737f != 15) {
+                    cVar3.c(aVar7.f19739e, 5);
+                    cVar3.c(aVar7.f19740f, 4);
+                    if (aVar7.f19740f != 15) {
                         cVar3.c(aVar7.h, 4);
                         allocate2.put(allocate3.array());
                     } else {
@@ -378,7 +378,7 @@ public class Track {
                 throw new UnsupportedOperationException("can't serialize that yet");
             }
         }
-        lc.m mVar = obj2.f19779n;
+        lc.m mVar = obj2.f19782n;
         mVar.getClass();
         ByteBuffer allocate4 = ByteBuffer.allocate(3);
         h5.b.r(6, allocate4);
@@ -387,7 +387,7 @@ public class Track {
         allocate.put(allocate2.array());
         allocate.put(allocate4.array());
         i5.c.w(ze.a.c(kc.a.h, aVar4, aVar4, allocate));
-        aVar4.f18237e = allocate;
+        aVar4.f18240e = allocate;
         aVar3.a(aVar4);
         this.sampleDescriptionBox.a(aVar3);
     }

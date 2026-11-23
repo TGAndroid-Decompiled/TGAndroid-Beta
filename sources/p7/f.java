@@ -3,24 +3,24 @@ package p7;
 import c8.mb;
 import j$.util.Objects;
 public final class f extends e {
-    public static final f f55524e = new f(0, new Object[0]);
-    public final transient Object[] f55525c;
+    public static final f f55528e = new f(0, new Object[0]);
+    public final transient Object[] f55529c;
     public final transient int d;
 
     public f(int i7, Object[] objArr) {
-        this.f55525c = objArr;
+        this.f55529c = objArr;
         this.d = i7;
     }
 
     @Override
     public final Object[] f() {
-        return this.f55525c;
+        return this.f55529c;
     }
 
     @Override
     public final Object get(int i7) {
         mb.a(i7, this.d);
-        Object obj = this.f55525c[i7];
+        Object obj = this.f55529c[i7];
         Objects.requireNonNull(obj);
         return obj;
     }
@@ -37,7 +37,7 @@ public final class f extends e {
 
     @Override
     public final int k(Object[] objArr) {
-        Object[] objArr2 = this.f55525c;
+        Object[] objArr2 = this.f55529c;
         int i7 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i7);
         return i7;

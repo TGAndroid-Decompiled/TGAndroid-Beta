@@ -1,43 +1,55 @@
 package org.telegram.messenger;
+public final class lo implements gs {
+    public final int f25255a;
+    public final int f25256b;
+    public final int f25257c;
+    public final long d;
+    public final bp f25258e;
+    public final np f25259f;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLRPC;
-public final class lo extends y2 {
-    public final mp f25442e;
-
-    public lo(mp mpVar) {
-        this.f25442e = mpVar;
+    public lo(np npVar, int i7, int i10, int i11, long j3, bp bpVar) {
+        this.f25259f = npVar;
+        this.f25255a = i7;
+        this.f25256b = i10;
+        this.f25257c = i11;
+        this.d = j3;
+        this.f25258e = bpVar;
     }
 
     @Override
-    public final boolean b(Object obj) {
-        Integer num = (Integer) obj;
-        return true;
-    }
-
-    @Override
-    public final void e(int i7, Object obj, q10 q10Var) {
-        Integer num = (Integer) obj;
-        this.f25442e.getMessagesStorage().f27080a.c(new ho(i7, (w2) q10Var, 1));
-    }
-
-    @Override
-    public final void f(int i7, Object obj, long j3, x2 x2Var) {
-        Integer num = (Integer) obj;
-        TLRPC.TL_messages_getAvailableEffects tL_messages_getAvailableEffects = new TLRPC.TL_messages_getAvailableEffects();
-        tL_messages_getAvailableEffects.hash = (int) j3;
-        this.f25442e.getConnectionsManager().sendRequest(tL_messages_getAvailableEffects, new io(x2Var, 1));
-    }
-
-    @Override
-    public final void g(int i7, Object obj, Object obj2) {
-        Integer num = (Integer) obj;
-        tr.a0(i7).f27080a.c(new x0(i7, (TLRPC.messages_AvailableEffects) obj2, 6));
-    }
-
-    @Override
-    public final void h(int i7, long j3) {
-        SharedPreferences.Editor edit = this.f25442e.h7.edit();
-        edit.putLong("effects_last_" + i7, j3).apply();
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        int i11 = ls.I;
+        bp bpVar = this.f25258e;
+        int i12 = this.f25255a;
+        np npVar = this.f25259f;
+        int i13 = ls.H;
+        if (i7 == i13 && ((Integer) objArr[0]).intValue() == i12) {
+            int intValue = ((Integer) objArr[1]).intValue();
+            boolean booleanValue = ((Boolean) objArr[2]).booleanValue();
+            boolean booleanValue2 = ((Boolean) objArr[3]).booleanValue();
+            int intValue2 = ((Integer) objArr[4]).intValue();
+            int i14 = this.f25256b;
+            if (intValue < i14 / 2 && !booleanValue2 && booleanValue) {
+                int i15 = this.f25257c;
+                if (i15 != 0) {
+                    npVar.f3(this.d, 0L, false, i14, i15, 0, false, 0, this.f25255a, 3, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
+                    return;
+                } else {
+                    npVar.f3(this.d, 0L, false, i14, i15, 0, false, 0, this.f25255a, 2, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
+                    return;
+                }
+            }
+            npVar.getNotificationCenter().n(this, i13);
+            npVar.getNotificationCenter().n(this, i11);
+            if (bpVar != null) {
+                bpVar.f(booleanValue);
+            }
+        } else if (i7 == i11 && ((Integer) objArr[0]).intValue() == i12) {
+            npVar.getNotificationCenter().n(this, i13);
+            npVar.getNotificationCenter().n(this, i11);
+            if (bpVar != null) {
+                bpVar.a();
+            }
+        }
     }
 }

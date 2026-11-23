@@ -21,20 +21,20 @@ public final class md0 extends org.telegram.ui.ActionBar.w2 {
     public final ArrayList G1;
     public final ArrayList H1;
     public final TLRPC.TL_userContact_old2 I1;
-    public final org.telegram.ui.Cells.c5 f37488m1;
+    public final org.telegram.ui.Cells.c5 f37487m1;
     public final fd0 n1;
-    public final LinearLayout f37489o1;
-    public final gd0 f37490p1;
-    public final View f37491q1;
-    public final View f37492r1;
-    public final TextView f37493s1;
-    public final org.telegram.ui.ActionBar.g2 f37494t1;
-    public boolean f37495u1;
-    public final Paint f37496v1;
-    public int f37497w1;
-    public AnimatorSet f37498x1;
-    public AnimatorSet f37499y1;
-    public final int f37500z1;
+    public final LinearLayout f37488o1;
+    public final gd0 f37489p1;
+    public final View f37490q1;
+    public final View f37491r1;
+    public final TextView f37492s1;
+    public final org.telegram.ui.ActionBar.g2 f37493t1;
+    public boolean f37494u1;
+    public final Paint f37495v1;
+    public int f37496w1;
+    public AnimatorSet f37497x1;
+    public AnimatorSet f37498y1;
+    public final int f37499z1;
 
     public md0(org.telegram.ui.ActionBar.g2 r19, org.telegram.messenger.f5 r20, org.telegram.tgnet.TLRPC.User r21, android.net.Uri r22, java.io.File r23, java.lang.String r24, java.lang.String r25, java.lang.String r26, final org.telegram.ui.ActionBar.h6 r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.md0.<init>(org.telegram.ui.ActionBar.g2, org.telegram.messenger.f5, org.telegram.tgnet.TLRPC$User, android.net.Uri, java.io.File, java.lang.String, java.lang.String, java.lang.String, org.telegram.ui.ActionBar.h6):void");
@@ -46,7 +46,7 @@ public final class md0 extends org.telegram.ui.ActionBar.w2 {
     }
 
     public final void J0() {
-        TextView textView = this.f37493s1;
+        TextView textView = this.f37492s1;
         if (textView != null) {
             int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Ji, this.J0);
             if (!textView.isEnabled()) {
@@ -80,7 +80,7 @@ public final class md0 extends org.telegram.ui.ActionBar.w2 {
         } else {
             z11 = false;
         }
-        gd0 gd0Var = this.f37490p1;
+        gd0 gd0Var = this.f37489p1;
         if ((z11 && gd0Var.getTag() == null) || (!z11 && gd0Var.getTag() != null)) {
             if (z11) {
                 num = num2;
@@ -88,17 +88,17 @@ public final class md0 extends org.telegram.ui.ActionBar.w2 {
                 num = null;
             }
             gd0Var.setTag(num);
-            AnimatorSet animatorSet = this.f37498x1;
+            AnimatorSet animatorSet = this.f37497x1;
             if (animatorSet != null) {
                 animatorSet.cancel();
-                this.f37498x1 = null;
+                this.f37497x1 = null;
             }
-            View view = this.f37491q1;
+            View view = this.f37490q1;
             if (z10) {
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f37498x1 = animatorSet2;
+                this.f37497x1 = animatorSet2;
                 animatorSet2.setDuration(180L);
-                AnimatorSet animatorSet3 = this.f37498x1;
+                AnimatorSet animatorSet3 = this.f37497x1;
                 Property property = View.ALPHA;
                 if (z11) {
                     f14 = 1.0f;
@@ -112,8 +112,8 @@ public final class md0 extends org.telegram.ui.ActionBar.w2 {
                     f15 = 0.0f;
                 }
                 animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property, f15));
-                this.f37498x1.addListener(new jd0(this, 0));
-                this.f37498x1.start();
+                this.f37497x1.addListener(new jd0(this, 0));
+                this.f37497x1.start();
             } else {
                 if (z11) {
                     f12 = 1.0f;
@@ -129,9 +129,9 @@ public final class md0 extends org.telegram.ui.ActionBar.w2 {
                 view.setAlpha(f13);
             }
         }
-        if (this.f37497w1 != top) {
-            this.f37497w1 = top;
-            this.f30173b.invalidate();
+        if (this.f37496w1 != top) {
+            this.f37496w1 = top;
+            this.f30176b.invalidate();
         }
         childAt.getBottom();
         fd0Var.getMeasuredHeight();
@@ -140,22 +140,22 @@ public final class md0 extends org.telegram.ui.ActionBar.w2 {
         } else {
             z12 = false;
         }
-        View view2 = this.f37492r1;
+        View view2 = this.f37491r1;
         if ((z12 && view2.getTag() == null) || (!z12 && view2.getTag() != null)) {
             if (!z12) {
                 num2 = null;
             }
             view2.setTag(num2);
-            AnimatorSet animatorSet4 = this.f37499y1;
+            AnimatorSet animatorSet4 = this.f37498y1;
             if (animatorSet4 != null) {
                 animatorSet4.cancel();
-                this.f37499y1 = null;
+                this.f37498y1 = null;
             }
             if (z10) {
                 AnimatorSet animatorSet5 = new AnimatorSet();
-                this.f37499y1 = animatorSet5;
+                this.f37498y1 = animatorSet5;
                 animatorSet5.setDuration(180L);
-                AnimatorSet animatorSet6 = this.f37499y1;
+                AnimatorSet animatorSet6 = this.f37498y1;
                 Property property2 = View.ALPHA;
                 if (z12) {
                     f11 = 1.0f;
@@ -163,8 +163,8 @@ public final class md0 extends org.telegram.ui.ActionBar.w2 {
                     f11 = 0.0f;
                 }
                 animatorSet6.playTogether(ObjectAnimator.ofFloat(view2, property2, f11));
-                this.f37499y1.addListener(new jd0(this, 1));
-                this.f37499y1.start();
+                this.f37498y1.addListener(new jd0(this, 1));
+                this.f37498y1.start();
                 return;
             }
             if (z12) {
@@ -179,13 +179,13 @@ public final class md0 extends org.telegram.ui.ActionBar.w2 {
     @Override
     public final void onStart() {
         super.onStart();
-        gc.a((FrameLayout) this.f30173b, new bi.t(9));
+        gc.a((FrameLayout) this.f30176b, new bi.t(9));
     }
 
     @Override
     public final void onStop() {
         super.onStop();
-        gc.h((FrameLayout) this.f30173b);
+        gc.h((FrameLayout) this.f30176b);
     }
 
     @Override

@@ -5,30 +5,30 @@ import org.json.JSONObject;
 import org.telegram.messenger.a8;
 import org.telegram.ui.LaunchActivity;
 public final class q implements Runnable {
-    public final int f53278a;
-    public final v0 f53279b;
+    public final int f53282a;
+    public final v0 f53283b;
 
     public q(v0 v0Var, int i7) {
-        this.f53278a = i7;
-        this.f53279b = v0Var;
+        this.f53282a = i7;
+        this.f53283b = v0Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f53278a) {
+        switch (this.f53282a) {
             case 0:
-                c0 c0Var = this.f53279b.f53341c;
+                c0 c0Var = this.f53283b.f53345c;
                 if (c0Var != null) {
                     c0Var.b();
                 }
                 LaunchActivity.J();
                 return;
             case 1:
-                v0 v0Var = this.f53279b;
+                v0 v0Var = this.f53283b;
                 if (v0Var.T) {
                     v0Var.T = false;
-                    c0 c0Var2 = v0Var.f53341c;
+                    c0 c0Var2 = v0Var.f53345c;
                     if (c0Var2 != null) {
                         c0Var2.t(false);
                     }
@@ -37,17 +37,17 @@ public final class q implements Runnable {
                 v0Var.O = false;
                 v0Var.Q = 0L;
                 v0Var.U = false;
-                s0 s0Var = v0Var.f53337a;
+                s0 s0Var = v0Var.f53341a;
                 if (s0Var != null) {
                     s0Var.onResume();
-                    v0Var.f53337a.reload();
+                    v0Var.f53341a.reload();
                     return;
                 }
                 return;
             default:
-                v0 v0Var2 = this.f53279b;
+                v0 v0Var2 = this.f53283b;
                 f7 f7Var = v0Var2.K0;
-                ki.r0 r0Var = v0Var2.f53353l0;
+                ki.r0 r0Var = v0Var2.f53357l0;
                 r0Var.getClass();
                 JSONObject jSONObject = new JSONObject();
                 try {
@@ -55,7 +55,7 @@ public final class q implements Runnable {
                     if (r0Var.d()) {
                         jSONObject.put("access_requested", r0Var.d);
                         if (r0Var.d) {
-                            if (r0Var.f18889e && r0Var.a()) {
+                            if (r0Var.f18892e && r0Var.a()) {
                                 z10 = true;
                             } else {
                                 z10 = false;

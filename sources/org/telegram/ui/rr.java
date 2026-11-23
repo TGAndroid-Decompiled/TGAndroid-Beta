@@ -1,19 +1,19 @@
 package org.telegram.ui;
-public final class rr implements org.telegram.messenger.nr {
-    public final int f51751a;
-    public final ContactsActivity f51752b;
+public final class rr implements org.telegram.messenger.or {
+    public final int f51755a;
+    public final ContactsActivity f51756b;
 
     public rr(ContactsActivity contactsActivity, int i7) {
-        this.f51751a = i7;
-        this.f51752b = contactsActivity;
+        this.f51755a = i7;
+        this.f51756b = contactsActivity;
     }
 
     @Override
     public final void a(int i7) {
         boolean z10;
-        switch (this.f51751a) {
+        switch (this.f51755a) {
             case 0:
-                ContactsActivity contactsActivity = this.f51752b;
+                ContactsActivity contactsActivity = this.f51756b;
                 contactsActivity.getClass();
                 if (i7 != 0) {
                     z10 = true;
@@ -27,7 +27,7 @@ public final class rr implements org.telegram.messenger.nr {
                 }
                 return;
             default:
-                ContactsActivity.a0(this.f51752b, i7);
+                ContactsActivity.a0(this.f51756b, i7);
                 return;
         }
     }

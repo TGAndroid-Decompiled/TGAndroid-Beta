@@ -4,8 +4,8 @@ import android.animation.ObjectAnimator;
 import android.graphics.drawable.AnimationDrawable;
 import c8.k0;
 public final class c extends k0 {
-    public final ObjectAnimator f15896a;
-    public final boolean f15897b;
+    public final ObjectAnimator f15899a;
+    public final boolean f15900b;
 
     public c(AnimationDrawable animationDrawable, boolean z10, boolean z11) {
         int i7;
@@ -19,12 +19,12 @@ public final class c extends k0 {
         }
         ?? obj = new Object();
         int numberOfFrames2 = animationDrawable.getNumberOfFrames();
-        obj.f15899b = numberOfFrames2;
-        int[] iArr = obj.f15898a;
+        obj.f15902b = numberOfFrames2;
+        int[] iArr = obj.f15901a;
         if (iArr == null || iArr.length < numberOfFrames2) {
-            obj.f15898a = new int[numberOfFrames2];
+            obj.f15901a = new int[numberOfFrames2];
         }
-        int[] iArr2 = obj.f15898a;
+        int[] iArr2 = obj.f15901a;
         int i12 = 0;
         for (int i13 = 0; i13 < numberOfFrames2; i13++) {
             if (z10) {
@@ -36,32 +36,32 @@ public final class c extends k0 {
             iArr2[i13] = duration;
             i12 += duration;
         }
-        obj.f15900c = i12;
+        obj.f15903c = i12;
         ObjectAnimator ofInt = ObjectAnimator.ofInt(animationDrawable, "currentIndex", i11, i7);
         j.a.a(ofInt, true);
-        ofInt.setDuration(obj.f15900c);
+        ofInt.setDuration(obj.f15903c);
         ofInt.setInterpolator(obj);
-        this.f15897b = z11;
-        this.f15896a = ofInt;
+        this.f15900b = z11;
+        this.f15899a = ofInt;
     }
 
     @Override
     public final boolean a() {
-        return this.f15897b;
+        return this.f15900b;
     }
 
     @Override
     public final void b() {
-        this.f15896a.reverse();
+        this.f15899a.reverse();
     }
 
     @Override
     public final void c() {
-        this.f15896a.start();
+        this.f15899a.start();
     }
 
     @Override
     public final void d() {
-        this.f15896a.cancel();
+        this.f15899a.cancel();
     }
 }

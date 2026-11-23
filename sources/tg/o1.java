@@ -17,7 +17,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
-import bi.h5;
+import bi.g5;
 import c8.ic;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -40,7 +40,7 @@ import m.o3;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.j6;
-import org.telegram.messenger.jc;
+import org.telegram.messenger.kc;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ko;
 import org.telegram.ui.Components.oh0;
@@ -48,22 +48,22 @@ import org.telegram.ui.Components.rj0;
 import org.telegram.ui.Components.tm;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.md0;
-public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram.ui.ActionBar.q1, rj0, wh.a, ua.a, d5.a {
-    public final int f58100a;
-    public final Object f58101b;
+public final class o1 implements OnSuccessListener, kc, w5.b, u9.d, org.telegram.ui.ActionBar.q1, rj0, wh.a, ua.a, d5.a {
+    public final int f58104a;
+    public final Object f58105b;
 
     public o1(Object obj, int i7) {
-        this.f58100a = i7;
-        this.f58101b = obj;
+        this.f58104a = i7;
+        this.f58105b = obj;
     }
 
     @Override
     public void b(ua.b bVar) {
-        x9.a aVar = (x9.a) this.f58101b;
+        x9.a aVar = (x9.a) this.f58105b;
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
         }
-        aVar.f60467b.set((x9.a) bVar.get());
+        aVar.f60471b.set((x9.a) bVar.get());
     }
 
     @Override
@@ -98,44 +98,44 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
         Task onSuccessTask;
         NetworkInfo activeNetworkInfo;
         ia.b a11;
-        switch (this.f58100a) {
+        switch (this.f58104a) {
             case 8:
-                return this.f58101b;
+                return this.f58105b;
             default:
-                CrashlyticsRegistrar crashlyticsRegistrar = (CrashlyticsRegistrar) this.f58101b;
+                CrashlyticsRegistrar crashlyticsRegistrar = (CrashlyticsRegistrar) this.f58105b;
                 int i13 = CrashlyticsRegistrar.d;
                 long currentTimeMillis = System.currentTimeMillis();
                 o9.g gVar = (o9.g) r7Var.a(o9.g.class);
                 u9.o s5 = r7Var.s(x9.a.class);
                 u9.o s9 = r7Var.s(p9.a.class);
                 u9.o s10 = r7Var.s(fb.a.class);
-                ExecutorService executorService = (ExecutorService) r7Var.e(crashlyticsRegistrar.f7581c);
+                ExecutorService executorService = (ExecutorService) r7Var.e(crashlyticsRegistrar.f7584c);
                 gVar.a();
-                Context context = gVar.f21785a;
+                Context context = gVar.f21788a;
                 String packageName = context.getPackageName();
                 Log.i("FirebaseCrashlytics", "Initializing Firebase Crashlytics 20.1.1 for " + packageName, null);
-                ba.e eVar2 = new ba.e((ExecutorService) r7Var.e(crashlyticsRegistrar.f7579a), (ExecutorService) r7Var.e(crashlyticsRegistrar.f7580b));
+                ba.e eVar2 = new ba.e((ExecutorService) r7Var.e(crashlyticsRegistrar.f7582a), (ExecutorService) r7Var.e(crashlyticsRegistrar.f7583b));
                 ga.d dVar = new ga.d(context);
                 aa.w wVar = new aa.w(gVar);
                 aa.a0 a0Var = new aa.a0(context, packageName, (va.d) r7Var.a(va.d.class), wVar);
                 x9.a aVar = new x9.a(s5);
                 androidx.emoji2.text.f fVar = new androidx.emoji2.text.f(s9);
                 aa.j jVar = new aa.j(wVar, dVar);
-                hb.c cVar = hb.c.f14149a;
-                hb.d dVar2 = hb.d.f14151a;
-                hb.c cVar2 = hb.c.f14149a;
+                hb.c cVar = hb.c.f14152a;
+                hb.d dVar2 = hb.d.f14154a;
+                hb.c cVar2 = hb.c.f14152a;
                 hb.a a12 = hb.c.a(dVar2);
-                if (a12.f14142b != null) {
+                if (a12.f14145b != null) {
                     Log.d("FirebaseSessions", "Subscriber " + dVar2 + " already registered.");
                 } else {
-                    a12.f14142b = jVar;
+                    a12.f14145b = jVar;
                     Log.d("FirebaseSessions", "Subscriber " + dVar2 + " registered.");
-                    a12.f14141a.countDown();
+                    a12.f14144a.countDown();
                 }
                 aa.t tVar2 = new aa.t(gVar, a0Var, aVar, wVar, new w9.a(fVar), new w9.a(fVar), dVar, jVar, new v4.f0(s10), eVar2);
                 ba.e eVar3 = tVar2.f864n;
                 gVar.a();
-                String str7 = gVar.f21787c.f21798b;
+                String str7 = gVar.f21790c.f21801b;
                 int e10 = aa.g.e(context, "com.google.firebase.crashlytics.mapping_file_id", "string");
                 if (e10 == 0) {
                     e10 = aa.g.e(context, "com.crashlytics.android.build_id", "string");
@@ -235,7 +235,7 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                     bVar = null;
                 }
                 if (p10 != null) {
-                    obj.f11315a = p10;
+                    obj.f11318a = p10;
                     String str12 = Build.MANUFACTURER;
                     String str13 = aa.a0.h;
                     String E = a8.p0.E(str12.replaceAll(str13, ""), "/", Build.MODEL.replaceAll(str13, ""));
@@ -287,18 +287,18 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                     ?? obj4 = new Object();
                     AtomicReference atomicReference = new AtomicReference();
                     obj4.h = atomicReference;
-                    obj4.f16219i = new AtomicReference(new TaskCompletionSource());
-                    obj4.f16213a = context;
-                    obj4.f16214b = eVar4;
+                    obj4.f16222i = new AtomicReference(new TaskCompletionSource());
+                    obj4.f16216a = context;
+                    obj4.f16217b = eVar4;
                     obj4.d = sVar;
-                    obj4.f16215c = t5Var;
-                    obj4.f16216e = g1Var;
-                    obj4.f16217f = obj;
-                    obj4.f16218g = wVar;
+                    obj4.f16218c = t5Var;
+                    obj4.f16219e = g1Var;
+                    obj4.f16220f = obj;
+                    obj4.f16221g = wVar;
                     atomicReference.set(pb.b.D0(sVar));
-                    AtomicReference atomicReference2 = (AtomicReference) obj4.f16219i;
+                    AtomicReference atomicReference2 = (AtomicReference) obj4.f16222i;
                     AtomicReference atomicReference3 = (AtomicReference) obj4.h;
-                    if (((Context) obj4.f16213a).getSharedPreferences("com.google.firebase.crashlytics", 0).getString("existing_instance_identifier", "").equals((String) ((ia.e) obj4.f16214b).f16225f) && (a11 = obj4.a(1)) != null) {
+                    if (((Context) obj4.f16216a).getSharedPreferences("com.google.firebase.crashlytics", 0).getString("existing_instance_identifier", "").equals((String) ((ia.e) obj4.f16217b).f16228f) && (a11 = obj4.a(1)) != null) {
                         atomicReference3.set(a11);
                         ((TaskCompletionSource) atomicReference2.get()).trySetResult(a11);
                         onSuccessTask = Tasks.forResult(null);
@@ -308,12 +308,12 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                             atomicReference3.set(a13);
                             ((TaskCompletionSource) atomicReference2.get()).trySetResult(a13);
                         }
-                        aa.w wVar2 = (aa.w) obj4.f16218g;
+                        aa.w wVar2 = (aa.w) obj4.f16221g;
                         Task task2 = wVar2.h.getTask();
                         synchronized (wVar2.f877c) {
                             task = wVar2.d.getTask();
                         }
-                        onSuccessTask = ba.a.a(task2, task).onSuccessTask(eVar2.f3100a, new q4.q(27, (Object) obj4, eVar2));
+                        onSuccessTask = ba.a.a(task2, task).onSuccessTask(eVar2.f3107a, new q4.q(27, (Object) obj4, eVar2));
                     }
                     onSuccessTask.addOnFailureListener(executorService, new ug.x(14));
                     aa.t tVar3 = tVar;
@@ -359,19 +359,19 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                         o3 o3Var = new o3(str16, dVar4, eVar5);
                         ca.f fVar2 = new ca.f(dVar4);
                         wf.b bVar2 = new wf.b(new ja.a[]{new nb.a(12)});
-                        ((u9.o) tVar3.f863m.f59159a).a(new x2.z0(2));
+                        ((u9.o) tVar3.f863m.f59163a).a(new x2.z0(2));
                         tVar3.f857f = new aa.p(tVar3.f853a, tVar3.f858g, tVar3.f854b, tVar3.h, tVar3.f856e, a10, o3Var, fVar2, aa.e0.d(tVar3.f853a, tVar3.f858g, tVar3.h, a10, fVar2, o3Var, bVar2, obj4, tVar3.f855c, tVar3.f861k, tVar3.f864n), tVar3.f862l, tVar3.f860j, tVar3.f861k, tVar3.f864n);
                         wf.b bVar3 = tVar3.d;
-                        ga.d dVar5 = (ga.d) bVar3.f59712c;
+                        ga.d dVar5 = (ga.d) bVar3.f59716c;
                         dVar5.getClass();
-                        boolean exists = new File((File) dVar5.d, (String) bVar3.f59711b).exists();
+                        boolean exists = new File((File) dVar5.d, (String) bVar3.f59715b).exists();
                         try {
-                            Boolean.TRUE.equals((Boolean) eVar5.f3100a.f3097a.submit(new aa.s(tVar3, 0)).get(3L, TimeUnit.SECONDS));
+                            Boolean.TRUE.equals((Boolean) eVar5.f3107a.f3104a.submit(new aa.s(tVar3, 0)).get(3L, TimeUnit.SECONDS));
                         } catch (Exception unused) {
                         }
                         aa.p pVar = tVar3.f857f;
                         Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
-                        pVar.f833e.f3100a.a(new a1.e(2, pVar, str16));
+                        pVar.f833e.f3107a.a(new a1.e(2, pVar, str16));
                         aa.v vVar = new aa.v(new ob.c(pVar, 1), obj4, defaultUncaughtExceptionHandler, pVar.f837j);
                         pVar.f841n = vVar;
                         Thread.setDefaultUncaughtExceptionHandler(vVar);
@@ -387,7 +387,7 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                             if (Log.isLoggable(str2, 3)) {
                                 Log.d(str2, "Successfully configured exception handler.", null);
                             }
-                            eVar5.f3100a.a(new aa.q(tVar3, obj4, 0));
+                            eVar5.f3107a.a(new aa.q(tVar3, obj4, 0));
                         }
                     } catch (Exception e16) {
                         Log.e(str2, "Crashlytics was not started due to an exception during initialization", e16);
@@ -415,17 +415,17 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
     @Override
     public Object g() {
         SQLiteDatabase a10;
-        int i7 = this.f58100a;
-        Object obj = this.f58101b;
+        int i7 = this.f58104a;
+        Object obj = this.f58105b;
         switch (i7) {
             case 4:
                 v5.g gVar = (v5.g) ((v5.c) obj);
                 gVar.getClass();
-                int i10 = r5.a.f56500e;
+                int i10 = r5.a.f56504e;
                 ?? obj2 = new Object();
-                obj2.f60662a = null;
-                obj2.f60663b = new ArrayList();
-                obj2.f60664c = null;
+                obj2.f60666a = null;
+                obj2.f60667b = new ArrayList();
+                obj2.f60668c = null;
                 obj2.d = "";
                 HashMap hashMap = new HashMap();
                 a10 = gVar.a();
@@ -438,7 +438,7 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                 }
             case 5:
                 v5.g gVar2 = (v5.g) ((v5.d) obj);
-                long r10 = gVar2.f59322b.r() - gVar2.d.d;
+                long r10 = gVar2.f59326b.r() - gVar2.d.d;
                 a10 = gVar2.a();
                 a10.beginTransaction();
                 try {
@@ -456,12 +456,12 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                 } finally {
                 }
             case 6:
-                v5.g gVar3 = (v5.g) ((v5.c) ((ia.c) obj).f16219i);
+                v5.g gVar3 = (v5.g) ((v5.c) ((ia.c) obj).f16222i);
                 a10 = gVar3.a();
                 a10.beginTransaction();
                 try {
                     a10.compileStatement("DELETE FROM log_event_dropped").execute();
-                    a10.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + gVar3.f59322b.r()).execute();
+                    a10.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + gVar3.f59326b.r()).execute();
                     a10.setTransactionSuccessful();
                     return null;
                 } finally {
@@ -477,12 +477,12 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f58100a) {
+        switch (this.f58104a) {
             case 10:
-                ((wg.r0) this.f58101b).run();
+                ((wg.r0) this.f58105b).run();
                 return;
             case 11:
-                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f58101b;
+                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f58105b;
                 org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     wg.c0.f1(Q, tL_payments_giveawayInfoResults.gift_code_slug, null);
@@ -490,10 +490,10 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                 }
                 return;
             case 12:
-                ((ko) this.f58101b).run();
+                ((ko) this.f58105b).run();
                 return;
             default:
-                ((wg.r0) this.f58101b).run();
+                ((wg.r0) this.f58105b).run();
                 return;
         }
     }
@@ -501,20 +501,20 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
     @Override
     public void i(WebView webView, xa xaVar, Uri uri, boolean z10, e5.f fVar) {
         e5.f fVar2;
-        xi.i iVar = (xi.i) this.f58101b;
-        if (webView == iVar.f60685o && z10 && uri != null && iVar.f60677f.equals(uri.toString()) && iVar.j(webView)) {
+        xi.i iVar = (xi.i) this.f58105b;
+        if (webView == iVar.f60689o && z10 && uri != null && iVar.f60681f.equals(uri.toString()) && iVar.j(webView)) {
             int i7 = xaVar.f713b;
             if (i7 == 0) {
                 xaVar.f(0);
                 String str = (String) xaVar.f714c;
-                if (!iVar.f60687q && str != null && str.startsWith("tproxy-base64:")) {
-                    synchronized (iVar.f60673a) {
-                        if (!iVar.f60691u && iVar.f60688r && iVar.f60686p == fVar) {
+                if (!iVar.f60691q && str != null && str.startsWith("tproxy-base64:")) {
+                    synchronized (iVar.f60677a) {
+                        if (!iVar.f60695u && iVar.f60692r && iVar.f60690p == fVar) {
                             if (str.length() - 14 > 1398112) {
                                 iVar.h();
                                 return;
                             } else {
-                                iVar.f60681k.execute(new wg.q(13, iVar, str));
+                                iVar.f60685k.execute(new wg.q(13, iVar, str));
                                 return;
                             }
                         }
@@ -523,12 +523,12 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                 }
                 iVar.i(str, fVar);
             } else if (i7 == 1) {
-                synchronized (iVar.f60673a) {
-                    if (!iVar.f60691u && (fVar2 = iVar.f60686p) != null && fVar2 == fVar) {
+                synchronized (iVar.f60677a) {
+                    if (!iVar.f60695u && (fVar2 = iVar.f60690p) != null && fVar2 == fVar) {
                         xaVar.f(1);
                         byte[] bArr = (byte[]) xaVar.d;
                         Objects.requireNonNull(bArr);
-                        iVar.f60681k.execute(new wg.q(14, iVar, bArr));
+                        iVar.f60685k.execute(new wg.q(14, iVar, bArr));
                     }
                 }
             }
@@ -537,10 +537,10 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
 
     @Override
     public void m(Canvas canvas, int i7) {
-        wh.h hVar = (wh.h) this.f58101b;
+        wh.h hVar = (wh.h) this.f58105b;
         hVar.getClass();
         canvas.save();
-        RectF rectF = hVar.f59964r;
+        RectF rectF = hVar.f59968r;
         canvas.translate(-rectF.left, (-rectF.top) + org.telegram.messenger.g0.L(30.0f));
         hVar.e(canvas, true, i7);
         canvas.restore();
@@ -549,7 +549,7 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
     @Override
     public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         oh0 B;
-        g2 g2Var = (g2) this.f58101b;
+        g2 g2Var = (g2) this.f58105b;
         if (z10 && !z11 && (B = imageReceiver.B()) != null) {
             g2Var.q(B);
         }
@@ -557,8 +557,8 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
 
     @Override
     public void onSuccess(Object obj) {
-        int i7 = this.f58100a;
-        Object obj2 = this.f58101b;
+        int i7 = this.f58104a;
+        Object obj2 = this.f58105b;
         switch (i7) {
             case 0:
                 p1 p1Var = (p1) obj2;
@@ -567,20 +567,20 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                 p1Var.C0 = false;
                 return;
             case 1:
-                h5 h5Var = (h5) obj2;
+                g5 g5Var = (g5) obj2;
                 zb.b bVar2 = (zb.b) obj;
                 ArrayList arrayList = new ArrayList();
-                for (int i10 = 0; i10 < bVar2.f61842a.size(); i10++) {
-                    zb.a aVar = (zb.a) bVar2.f61842a.get(i10);
+                for (int i10 = 0; i10 < bVar2.f61846a.size(); i10++) {
+                    zb.a aVar = (zb.a) bVar2.f61846a.get(i10);
                     ?? obj3 = new Object();
-                    obj3.f57837a = aVar.f61838a;
-                    obj3.f57838b = aVar.d;
-                    obj3.f57839c = aVar.f61841e;
-                    obj3.d = aVar.f61839b;
-                    obj3.f57840e = aVar.f61840c;
+                    obj3.f57841a = aVar.f61842a;
+                    obj3.f57842b = aVar.d;
+                    obj3.f57843c = aVar.f61845e;
+                    obj3.d = aVar.f61843b;
+                    obj3.f57844e = aVar.f61844c;
                     arrayList.add(obj3);
                 }
-                h5Var.a(arrayList);
+                g5Var.a(arrayList);
                 return;
             default:
                 f2 f2Var = (f2) obj2;
@@ -589,25 +589,25 @@ public final class o1 implements OnSuccessListener, jc, w5.b, u9.d, org.telegram
                     a8.b("objimg: no objects");
                     return;
                 }
-                int i11 = ((wb.a) list.get(0)).f59696c;
+                int i11 = ((wb.a) list.get(0)).f59700c;
                 String str = null;
-                if (ic.f4858a == null) {
-                    ic.f4858a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
+                if (ic.f4861a == null) {
+                    ic.f4861a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
                 }
                 if (i11 >= 0) {
-                    String[] strArr = ic.f4858a;
+                    String[] strArr = ic.f4861a;
                     if (i11 < strArr.length) {
                         str = strArr[i11];
                     }
                 }
-                f2Var.f57863d0 = str;
+                f2Var.f57867d0 = str;
                 StringBuilder sb2 = new StringBuilder("objimg: detected #");
-                sb2.append(((wb.a) list.get(0)).f59696c);
+                sb2.append(((wb.a) list.get(0)).f59700c);
                 sb2.append(" ");
-                sb2.append(f2Var.f57863d0);
+                sb2.append(f2Var.f57867d0);
                 sb2.append(" ");
-                p5.c.s(((wb.a) list.get(0)).f59694a, sb2);
-                j6.g(f2Var.f57863d0);
+                p5.c.s(((wb.a) list.get(0)).f59698a, sb2);
+                j6.g(f2Var.f57867d0);
                 return;
         }
     }

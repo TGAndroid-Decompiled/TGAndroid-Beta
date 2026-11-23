@@ -19,10 +19,10 @@ import java.math.BigDecimal;
 import java.util.Locale;
 import java.util.WeakHashMap;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.nq;
@@ -51,19 +51,19 @@ public final class w3 extends Dialog {
     public boolean U;
     public Runnable V;
     public final int[] W;
-    public final org.telegram.ui.ActionBar.g2 f45241a;
-    public final uf0 f45242b;
-    public final boolean f45243c;
+    public final org.telegram.ui.ActionBar.g2 f45245a;
+    public final uf0 f45246b;
+    public final boolean f45247c;
     public final boolean d;
-    public final boolean f45244e;
-    public final RectF f45245f;
+    public final boolean f45248e;
+    public final RectF f45249f;
     public final u3 h;
-    public final v3 f45246n;
-    public final x6 f45247r;
-    public final r8 f45248s;
-    public final ih0 f45249w;
-    public final TextView f45250x;
-    public final Paint f45251y;
+    public final v3 f45250n;
+    public final x6 f45251r;
+    public final r8 f45252s;
+    public final ih0 f45253w;
+    public final TextView f45254x;
+    public final Paint f45255y;
 
     public w3(final org.telegram.ui.ActionBar.g2 g2Var, uf0 uf0Var, TLRPC.User user, final TL_wallet.card cardVar) {
         super(g2Var.getParentActivity(), 2131755352);
@@ -75,30 +75,30 @@ public final class w3 extends Dialog {
         int i10;
         String a02;
         RectF rectF = new RectF();
-        this.f45245f = rectF;
-        this.f45251y = new Paint(3);
+        this.f45249f = rectF;
+        this.f45255y = new Paint(3);
         this.E = new RectF();
         ui.b bVar = new ui.b();
         this.F = bVar;
-        this.I = i0.b.f15913e;
+        this.I = i0.b.f15916e;
         this.M = new h6.m(29);
         this.N = new RectF();
         this.O = new RectF();
         this.W = new int[2];
-        this.f45241a = g2Var;
-        this.f45242b = uf0Var;
-        if (user != null && user.f28580id == j10.i(g2Var.getCurrentAccount()).e()) {
+        this.f45245a = g2Var;
+        this.f45246b = uf0Var;
+        if (user != null && user.f28583id == k10.i(g2Var.getCurrentAccount()).e()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f45244e = z10;
-        if (user != null && !z10 && ((org.telegram.messenger.h0) mp.u1(g2Var.getCurrentAccount()).A7.f26187p0.f14027b).f24364c) {
+        this.f45248e = z10;
+        if (user != null && !z10 && ((org.telegram.messenger.h0) np.u1(g2Var.getCurrentAccount()).A7.f26239p0.f14030b).f24341c) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f45243c = z11;
+        this.f45247c = z11;
         if (user != null && !z10 && !z11) {
             z12 = true;
         } else {
@@ -106,26 +106,26 @@ public final class w3 extends Dialog {
         }
         this.d = z12;
         uf0Var.getLocationOnScreen(new int[2]);
-        rectF.set(uf0Var.f38204w);
+        rectF.set(uf0Var.f38198w);
         rectF.offset(iArr[0], iArr[1]);
         org.telegram.messenger.g0.S(getWindow());
         u3 u3Var = new u3(this, getContext());
         this.h = u3Var;
         v3 v3Var = new v3(this, getContext());
-        this.f45246n = v3Var;
+        this.f45250n = v3Var;
         v3Var.setAlpha(0.0f);
         u3Var.addView(v3Var, c8.ma.c(-1.0f, -1));
         u3Var.setClipChildren(false);
         u3Var.setClipToPadding(false);
         u3Var.setOnClickListener(new o3(this, 0));
         h3 h3Var = new h3(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f56285a;
+        WeakHashMap weakHashMap = r0.i0.f56289a;
         r0.a0.i(u3Var, h3Var);
         x6 x6Var = new x6(getContext());
-        this.f45247r = x6Var;
+        this.f45251r = x6Var;
         x6Var.setDiamondOnCard(true);
         int currentAccount = g2Var.getCurrentAccount();
-        String q10 = o10.q(user);
+        String q10 = p10.q(user);
         Locale locale = Locale.ROOT;
         x6Var.setCardHolder(q10.toUpperCase(locale));
         if (!TextUtils.isEmpty(cardVar.address)) {
@@ -137,10 +137,10 @@ public final class w3 extends Dialog {
             x6Var.P.c(r10, false, true);
         }
         x6Var.setCardOnClickListener(new View.OnClickListener(this) {
-            public final w3 f45023b;
+            public final w3 f45027b;
 
             {
-                this.f45023b = this;
+                this.f45027b = this;
             }
 
             @Override
@@ -148,9 +148,9 @@ public final class w3 extends Dialog {
                 p pVar;
                 switch (r4) {
                     case 0:
-                        w3 w3Var = this.f45023b;
+                        w3 w3Var = this.f45027b;
                         if (!w3Var.S) {
-                            boolean z13 = w3Var.f45244e;
+                            boolean z13 = w3Var.f45248e;
                             org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                             if (z13) {
                                 n6.N0(g2Var2.getCurrentAccount(), w3Var.getContext(), g2Var2.getResourceProvider());
@@ -161,7 +161,7 @@ public final class w3 extends Dialog {
                                 Context context = w3Var.getContext();
                                 int currentAccount2 = g2Var2.getCurrentAccount();
                                 String str = cardVar2.address;
-                                if (!w3Var.f45243c) {
+                                if (!w3Var.f45247c) {
                                     pVar = null;
                                 } else {
                                     pVar = new p(w3Var, g2Var2, cardVar2, 10);
@@ -173,15 +173,15 @@ public final class w3 extends Dialog {
                         }
                         return;
                     default:
-                        w3 w3Var2 = this.f45023b;
+                        w3 w3Var2 = this.f45027b;
                         if (!w3Var2.S) {
-                            boolean z14 = w3Var2.f45244e;
+                            boolean z14 = w3Var2.f45248e;
                             org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
                             if (z14) {
                                 w3Var2.V = new t3(0, g2Var3);
                             } else if (w3Var2.d) {
                                 w3Var2.V = new t3(1, g2Var3);
-                            } else if (w3Var2.f45243c) {
+                            } else if (w3Var2.f45247c) {
                                 TL_wallet.card cardVar3 = cardVar;
                                 if (!TextUtils.isEmpty(cardVar3.address)) {
                                     w3Var2.V = new r3(g2Var3, cardVar3, 1);
@@ -202,15 +202,15 @@ public final class w3 extends Dialog {
         x6Var.setAlpha(0.0f);
         u3Var.addView(x6Var, c8.ma.c(-2.0f, -2));
         r8 r8Var = new r8(g2Var, x6Var, null, cardVar);
-        this.f45248s = r8Var;
+        this.f45252s = r8Var;
         u3Var.addView(r8Var, c8.ma.c(-1.0f, -1));
         dh.c cVar = new dh.c(bVar, bVar, bVar);
         this.G = cVar;
         cVar.h = new jh.k(u3Var);
-        cVar.f8406i = u3Var;
+        cVar.f8409i = u3Var;
         ih0 ih0Var = new ih0(getContext());
-        this.f45249w = ih0Var;
-        fh.g c10 = cVar.c(ih0Var, new gh.b(org.telegram.ui.ActionBar.m6.f29378d6, g2Var.getResourceProvider()), false);
+        this.f45253w = ih0Var;
+        fh.g c10 = cVar.c(ih0Var, new gh.b(org.telegram.ui.ActionBar.m6.f29381d6, g2Var.getResourceProvider()), false);
         c10.q(org.telegram.messenger.g0.L(8.0f));
         c10.r(org.telegram.messenger.g0.L(22.0f));
         ih0Var.setBackground(c10);
@@ -220,20 +220,20 @@ public final class w3 extends Dialog {
         eVar.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
         eVar.setRoundRadius(19);
         if (z10) {
-            i7 = 2131742797;
+            i7 = 2131742795;
         } else if (z11) {
-            i7 = 2131742753;
+            i7 = 2131742751;
         } else {
             i7 = 2131749083;
         }
-        CharSequence N0 = gd.N0(i7, null);
+        CharSequence N0 = hd.N0(i7, null);
         if (!z11) {
             eVar.i(N0, false, true);
         } else {
             SpannableStringBuilder append = new SpannableStringBuilder("G  ").append(N0);
             nq nqVar = new nq(2131231957, 0);
             nqVar.c(org.telegram.messenger.g0.L(20.0f));
-            nqVar.f37950y = -1;
+            nqVar.f37955y = -1;
             append.setSpan(nqVar, 0, 1, 33);
             eVar.i(append, false, true);
         }
@@ -241,10 +241,10 @@ public final class w3 extends Dialog {
         ih0Var.addView(eVar, c8.ma.e(-2, -1, 17));
         ih0Var.setContentDescription(N0);
         ih0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final w3 f45023b;
+            public final w3 f45027b;
 
             {
-                this.f45023b = this;
+                this.f45027b = this;
             }
 
             @Override
@@ -252,9 +252,9 @@ public final class w3 extends Dialog {
                 p pVar;
                 switch (r4) {
                     case 0:
-                        w3 w3Var = this.f45023b;
+                        w3 w3Var = this.f45027b;
                         if (!w3Var.S) {
-                            boolean z13 = w3Var.f45244e;
+                            boolean z13 = w3Var.f45248e;
                             org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                             if (z13) {
                                 n6.N0(g2Var2.getCurrentAccount(), w3Var.getContext(), g2Var2.getResourceProvider());
@@ -265,7 +265,7 @@ public final class w3 extends Dialog {
                                 Context context = w3Var.getContext();
                                 int currentAccount2 = g2Var2.getCurrentAccount();
                                 String str = cardVar2.address;
-                                if (!w3Var.f45243c) {
+                                if (!w3Var.f45247c) {
                                     pVar = null;
                                 } else {
                                     pVar = new p(w3Var, g2Var2, cardVar2, 10);
@@ -277,15 +277,15 @@ public final class w3 extends Dialog {
                         }
                         return;
                     default:
-                        w3 w3Var2 = this.f45023b;
+                        w3 w3Var2 = this.f45027b;
                         if (!w3Var2.S) {
-                            boolean z14 = w3Var2.f45244e;
+                            boolean z14 = w3Var2.f45248e;
                             org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
                             if (z14) {
                                 w3Var2.V = new t3(0, g2Var3);
                             } else if (w3Var2.d) {
                                 w3Var2.V = new t3(1, g2Var3);
-                            } else if (w3Var2.f45243c) {
+                            } else if (w3Var2.f45247c) {
                                 TL_wallet.card cardVar3 = cardVar;
                                 if (!TextUtils.isEmpty(cardVar3.address)) {
                                     w3Var2.V = new r3(g2Var3, cardVar3, 1);
@@ -311,7 +311,7 @@ public final class w3 extends Dialog {
         ih0Var.setVisibility(i10);
         u3Var.addView(ih0Var, c8.ma.e(-2, 60, 81));
         TextView textView = new TextView(getContext());
-        this.f45250x = textView;
+        this.f45254x = textView;
         textView.setTextSize(14.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setGravity(17);
@@ -319,13 +319,13 @@ public final class w3 extends Dialog {
         d();
         textView.setAlpha(0.0f);
         if (z10) {
-            textView.setText(gd.N0(2131742779, null));
+            textView.setText(hd.N0(2131742777, null));
         } else if (user != null) {
-            String k10 = o10.k(user, true);
+            String k10 = p10.k(user, true);
             if (new BigDecimal(u0.u(cardVar.balance, false)).signum() == 0) {
-                a02 = gd.a0(null, null, 2131742781, k10);
+                a02 = hd.a0(null, null, 2131742779, k10);
             } else {
-                a02 = gd.a0(null, null, 2131742782, k10, u0.q("Grams", x6.e(cardVar.balance).toString(), 2131749314).toString().replace(' ', (char) 160));
+                a02 = hd.a0(null, null, 2131742780, k10, u0.q("Grams", x6.e(cardVar.balance).toString(), 2131749314).toString().replace(' ', (char) 160));
             }
             textView.setText(hi.l3.b(a02, textView.getPaint()));
         }
@@ -353,7 +353,7 @@ public final class w3 extends Dialog {
             z10 = false;
         }
         this.L = z10;
-        x6 x6Var = this.f45247r;
+        x6 x6Var = this.f45251r;
         x6Var.getClass();
         x6Var.setLayerType(2, null);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.J, f10);
@@ -373,13 +373,13 @@ public final class w3 extends Dialog {
     public final void b() {
         if (!this.T) {
             this.T = true;
-            this.f45247r.setLayerType(0, null);
-            this.f45242b.setEjectProgress(0.0f);
+            this.f45251r.setLayerType(0, null);
+            this.f45246b.setEjectProgress(0.0f);
             super.dismiss();
-            this.f45248s.p();
+            this.f45252s.p();
             this.F.a(null);
             this.H = null;
-            if (this.V != null && this.f45241a.getParentActivity() != null) {
+            if (this.V != null && this.f45245a.getParentActivity() != null) {
                 Runnable runnable = this.V;
                 this.V = null;
                 org.telegram.messenger.g0.g3(runnable);
@@ -388,7 +388,7 @@ public final class w3 extends Dialog {
     }
 
     public final boolean c() {
-        if (!this.f45243c && !this.d && !this.f45244e) {
+        if (!this.f45247c && !this.d && !this.f45248e) {
             return false;
         }
         return true;
@@ -398,7 +398,7 @@ public final class w3 extends Dialog {
         int i7;
         boolean q10 = org.telegram.ui.ActionBar.m6.I.q();
         Bitmap bitmap = this.H;
-        TextView textView = this.f45250x;
+        TextView textView = this.f45254x;
         if (bitmap != null && !bitmap.isRecycled()) {
             u3 u3Var = this.h;
             if (u3Var.getWidth() > 0 && u3Var.getHeight() > 0) {
@@ -421,7 +421,7 @@ public final class w3 extends Dialog {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f45249w.setEnabled(false);
+            this.f45253w.setEnabled(false);
             if (this.h.isAttachedToWindow() && this.J != 0.0f) {
                 a(0.0f);
             } else {
@@ -433,7 +433,7 @@ public final class w3 extends Dialog {
     public final void e() {
         float f10;
         float f11;
-        float interpolation = nr.f37957g.getInterpolation(Math.max(0.0f, Math.min(1.0f, this.J / 0.4f)));
+        float interpolation = nr.f37962g.getInterpolation(Math.max(0.0f, Math.min(1.0f, this.J / 0.4f)));
         float max = Math.max(0.0f, Math.min(1.0f, (this.J - 0.3f) / 0.7f));
         float interpolation2 = nr.h.getInterpolation(max);
         if (this.L) {
@@ -443,10 +443,10 @@ public final class w3 extends Dialog {
         } else {
             f10 = interpolation2;
         }
-        x6 x6Var = this.f45247r;
+        x6 x6Var = this.f45251r;
         float width = x6Var.getWidth();
         float height = x6Var.getHeight();
-        RectF rectF = this.f45245f;
+        RectF rectF = this.f45249f;
         float max2 = Math.max(0.2f, Math.min(1.0f, rectF.width() / Math.max(1.0f, height)));
         float T1 = org.telegram.messenger.g0.T1(max2, 1.0f, f10);
         float centerY = rectF.centerY();
@@ -486,12 +486,12 @@ public final class w3 extends Dialog {
         x6Var.setUseGyroscope(this.R * interpolation2);
         float f22 = 1.0f - interpolation2;
         this.K = Math.max(0.0f, f12 * f22);
-        this.f45242b.setEjectProgress(interpolation);
-        this.f45246n.setAlpha(this.J);
-        this.f45248s.setAlpha(interpolation2);
-        ih0 ih0Var = this.f45249w;
+        this.f45246b.setEjectProgress(interpolation);
+        this.f45250n.setAlpha(this.J);
+        this.f45252s.setAlpha(interpolation2);
+        ih0 ih0Var = this.f45253w;
         ih0Var.setAlpha(interpolation2);
-        TextView textView = this.f45250x;
+        TextView textView = this.f45254x;
         textView.setAlpha(interpolation2);
         textView.setTranslationY((-org.telegram.messenger.g0.L(8.0f)) * f22);
         ih0Var.setTranslationY(org.telegram.messenger.g0.L(16.0f) * f22);
@@ -529,7 +529,7 @@ public final class w3 extends Dialog {
         }
         yk0.d(new e(this, 6));
         super.show();
-        WeakHashMap weakHashMap = r0.i0.f56285a;
+        WeakHashMap weakHashMap = r0.i0.f56289a;
         r0.y.c(this.h);
     }
 }

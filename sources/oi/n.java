@@ -4,16 +4,16 @@ import android.text.SpannableString;
 import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.bj;
+import org.telegram.messenger.cj;
 import org.telegram.messenger.j6;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.tx;
 public final class n implements tx {
-    public final o f22248a;
+    public final o f22251a;
 
     public n(o oVar) {
-        this.f22248a = oVar;
+        this.f22251a = oVar;
     }
 
     @Override
@@ -50,8 +50,8 @@ public final class n implements tx {
     public final void i(int i7) {
         f1 focusedEditTextOrNull;
         boolean z10 = false;
-        o oVar = this.f22248a;
-        if (i7 != 0 && (focusedEditTextOrNull = oVar.f22267r.getFocusedEditTextOrNull()) != null) {
+        o oVar = this.f22251a;
+        if (i7 != 0 && (focusedEditTextOrNull = oVar.f22270r.getFocusedEditTextOrNull()) != null) {
             oVar.G = focusedEditTextOrNull;
             oVar.H = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
@@ -69,7 +69,7 @@ public final class n implements tx {
 
     @Override
     public final boolean k() {
-        f1 R = o.R(this.f22248a);
+        f1 R = o.R(this.f22251a);
         if (R == null || R.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class n implements tx {
 
     @Override
     public final void l(String str) {
-        o oVar = this.f22248a;
+        o oVar = this.f22251a;
         f1 R = o.R(oVar);
         if (R != null) {
             int S = o.S(oVar, R);
@@ -104,7 +104,7 @@ public final class n implements tx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.y5 y5Var;
-        o oVar = this.f22248a;
+        o oVar = this.f22251a;
         f1 R = o.R(oVar);
         if (R != null) {
             int S = o.S(oVar, R);
@@ -133,7 +133,7 @@ public final class n implements tx {
 
     @Override
     public final boolean z() {
-        return this.f22248a.E;
+        return this.f22251a.E;
     }
 
     @Override
@@ -185,7 +185,7 @@ public final class n implements tx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, bj bjVar, boolean z10, int i7) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, cj cjVar, boolean z10, int i7) {
     }
 
     @Override

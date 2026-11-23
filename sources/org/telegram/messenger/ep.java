@@ -1,9 +1,8 @@
 package org.telegram.messenger;
+
+import org.telegram.tgnet.TLRPC;
 public final class ep {
-    public long f23775a;
-    public long f23776b;
-    public long f23777c;
-    public int d;
-    public int f23778e;
-    public long f23779f;
+    public long f23747a;
+    public long f23748b;
+    public TLRPC.SendMessageAction f23749c;
 }

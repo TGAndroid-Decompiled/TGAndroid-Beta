@@ -5,16 +5,16 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.widget.Button;
 public final class x3 extends org.telegram.ui.Components.o6 {
-    public final int f32336s;
+    public final int f32339s;
 
     public x3(Context context, boolean z10, boolean z11, boolean z12, int i7) {
         super(context, z10, z11, z12);
-        this.f32336s = i7;
+        this.f32339s = i7;
     }
 
     @Override
     public CharSequence getAccessibilityClassName() {
-        switch (this.f32336s) {
+        switch (this.f32339s) {
             case 0:
                 return Button.class.getName();
             case 1:
@@ -26,9 +26,9 @@ public final class x3 extends org.telegram.ui.Components.o6 {
 
     @Override
     public int getBaseline() {
-        switch (this.f32336s) {
+        switch (this.f32339s) {
             case 5:
-                return Math.round((getHeight() - getDrawable().f37795e) / 2.0f) - getPaint().getFontMetricsInt().ascent;
+                return Math.round((getHeight() - getDrawable().f37800e) / 2.0f) - getPaint().getFontMetricsInt().ascent;
             default:
                 return super.getBaseline();
         }
@@ -36,7 +36,7 @@ public final class x3 extends org.telegram.ui.Components.o6 {
 
     @Override
     public void invalidate() {
-        switch (this.f32336s) {
+        switch (this.f32339s) {
             case 4:
                 if (ch.f0.b(this)) {
                     return;
@@ -51,7 +51,7 @@ public final class x3 extends org.telegram.ui.Components.o6 {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f32336s) {
+        switch (this.f32339s) {
             case 2:
                 canvas.save();
                 canvas.translate(org.telegram.messenger.g0.L(17.0f), 0.0f);
@@ -66,7 +66,7 @@ public final class x3 extends org.telegram.ui.Components.o6 {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f32336s) {
+        switch (this.f32339s) {
             case 3:
                 super.onMeasure(i7, i10);
                 setPivotX(getMeasuredWidth());
@@ -76,7 +76,7 @@ public final class x3 extends org.telegram.ui.Components.o6 {
                 super.onMeasure(i7, i10);
                 return;
             case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f24146q.x, Integer.MIN_VALUE), i10);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f24046q.x, Integer.MIN_VALUE), i10);
                 setMeasuredDimension(View.resolveSize((int) Math.ceil(getDrawable().c()), i7), getMeasuredHeight());
                 return;
         }
@@ -84,12 +84,12 @@ public final class x3 extends org.telegram.ui.Components.o6 {
 
     public x3(Context context, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
         super(context, z10, z11, z12, z13, z14);
-        this.f32336s = 5;
+        this.f32339s = 5;
     }
 
     @Override
     public void invalidate(int i7, int i10, int i11, int i12) {
-        switch (this.f32336s) {
+        switch (this.f32339s) {
             case 4:
                 if (ch.f0.b(this)) {
                     return;

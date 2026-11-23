@@ -1,10 +1,10 @@
 package org.telegram.ui.Components;
 public final class cn0 {
-    public float f34227a;
-    public float f34228b;
-    public float f34229c;
+    public float f34221a;
+    public float f34222b;
+    public float f34223c;
     public float d;
-    public float f34230e;
-    public float f34231f;
-    public float f34232g;
+    public float f34224e;
+    public float f34225f;
+    public float f34226g;
 }

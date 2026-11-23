@@ -5,46 +5,46 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class u implements RequestDelegate {
-    public final int f27583a;
-    public final Object f27584b;
+    public final int f27546a;
+    public final Object f27547b;
 
     public u(Object obj, int i7) {
-        this.f27583a = i7;
-        this.f27584b = obj;
+        this.f27546a = i7;
+        this.f27547b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27583a) {
+        switch (this.f27546a) {
             case 0:
-                ((VoIPService) this.f27584b).lambda$hangUp$4(tLObject, tL_error);
+                ((VoIPService) this.f27547b).lambda$hangUp$4(tLObject, tL_error);
                 return;
             case 1:
-                ((VoIPService) this.f27584b).lambda$hangUp$5(tLObject, tL_error);
+                ((VoIPService) this.f27547b).lambda$hangUp$5(tLObject, tL_error);
                 return;
             case 2:
-                ((VoIPService) this.f27584b).lambda$startOutgoingCall$7(tLObject, tL_error);
+                ((VoIPService) this.f27547b).lambda$startOutgoingCall$7(tLObject, tL_error);
                 return;
             case 3:
-                ((VoIPService) this.f27584b).lambda$startGroupCheckShortpoll$62(tLObject, tL_error);
+                ((VoIPService) this.f27547b).lambda$startGroupCheckShortpoll$62(tLObject, tL_error);
                 return;
             case 4:
-                ((VoIPService) this.f27584b).lambda$declineIncomingCall$105(tLObject, tL_error);
+                ((VoIPService) this.f27547b).lambda$declineIncomingCall$105(tLObject, tL_error);
                 return;
             case 5:
-                ((VoIPService) this.f27584b).lambda$processAcceptedCall$20(tLObject, tL_error);
+                ((VoIPService) this.f27547b).lambda$processAcceptedCall$20(tLObject, tL_error);
                 return;
             case 6:
-                ((VoIPService) this.f27584b).lambda$startGroupCall$23(tLObject, tL_error);
+                ((VoIPService) this.f27547b).lambda$startGroupCall$23(tLObject, tL_error);
                 return;
             case 7:
-                ((VoIPService) this.f27584b).lambda$stopScreenCapture$15(tLObject, tL_error);
+                ((VoIPService) this.f27547b).lambda$stopScreenCapture$15(tLObject, tL_error);
                 return;
             case 8:
-                ((VoIPService) this.f27584b).lambda$acceptIncomingCall$102(tLObject, tL_error);
+                ((VoIPService) this.f27547b).lambda$acceptIncomingCall$102(tLObject, tL_error);
                 return;
             default:
-                VoIPService.lambda$updateServerConfig$107((SharedPreferences) this.f27584b, tLObject, tL_error);
+                VoIPService.lambda$updateServerConfig$107((SharedPreferences) this.f27547b, tLObject, tL_error);
                 return;
         }
     }

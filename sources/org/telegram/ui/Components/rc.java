@@ -17,11 +17,11 @@ import android.graphics.Shader;
 import android.view.View;
 import java.util.HashSet;
 public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
-    public static final int[] f39134a0;
-    public static final int[] f39135b0;
-    public static long f39136c0;
-    public static Long f39137d0;
-    public static Long f39138e0;
+    public static final int[] f39144a0;
+    public static final int[] f39145b0;
+    public static long f39146c0;
+    public static Long f39147d0;
+    public static Long f39148e0;
     public final Paint E;
     public RectF F;
     public final Path G;
@@ -41,19 +41,19 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
     public int U;
     public int[] V;
     public float[] W;
-    public final RectF f39139a;
-    public final RectF f39140b;
-    public final RectF f39141c;
+    public final RectF f39149a;
+    public final RectF f39150b;
+    public final RectF f39151c;
     public final int d;
-    public final boolean f39142e;
-    public final int[] f39143f;
+    public final boolean f39152e;
+    public final int[] f39153f;
     public boolean h;
-    public final d6 f39144n;
-    public boolean f39145r;
-    public final d6 f39146s;
-    public final pc[] f39147w;
-    public final float[] f39148x;
-    public final RectF f39149y;
+    public final d6 f39154n;
+    public boolean f39155r;
+    public final d6 f39156s;
+    public final pc[] f39157w;
+    public final float[] f39158x;
+    public final RectF f39159y;
 
     static {
         int i7 = org.telegram.ui.ActionBar.m6.ck;
@@ -65,23 +65,23 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
         int i15 = org.telegram.ui.ActionBar.m6.ek;
         int i16 = org.telegram.ui.ActionBar.m6.hk;
         int i17 = org.telegram.ui.ActionBar.m6.bk;
-        f39134a0 = new int[]{i7, i10, i11, i12, i13, i14, i15, i16, i12, i17, i17};
-        f39135b0 = new int[]{2131623951, 2131623954, 2131623948, 2131623949, 2131623954, 2131623949, 2131623953, 2131623952, 2131623950, 2131623950, 2131623948};
-        f39136c0 = -1L;
+        f39144a0 = new int[]{i7, i10, i11, i12, i13, i14, i15, i16, i12, i17, i17};
+        f39145b0 = new int[]{2131623951, 2131623954, 2131623948, 2131623949, 2131623954, 2131623949, 2131623953, 2131623952, 2131623950, 2131623950, 2131623948};
+        f39146c0 = -1L;
     }
 
     public rc(Context context, int i7, int[] iArr, int i10, int[] iArr2) {
         super(context);
-        this.f39139a = new RectF();
-        this.f39140b = new RectF();
-        this.f39141c = new RectF();
+        this.f39149a = new RectF();
+        this.f39150b = new RectF();
+        this.f39151c = new RectF();
         this.h = true;
         nr nrVar = nr.h;
-        this.f39144n = new d6(this, 750L, nrVar);
-        this.f39145r = false;
-        this.f39146s = new d6(this, 650L, nrVar);
-        this.f39148x = new float[2];
-        this.f39149y = new RectF();
+        this.f39154n = new d6(this, 750L, nrVar);
+        this.f39155r = false;
+        this.f39156s = new d6(this, 650L, nrVar);
+        this.f39158x = new float[2];
+        this.f39159y = new RectF();
         Paint paint = new Paint(1);
         this.E = paint;
         this.G = new Path();
@@ -100,13 +100,13 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
         this.S = true;
         this.U = -1;
         setLayerType(2, null);
-        this.f39143f = iArr2;
+        this.f39153f = iArr2;
         this.d = i10;
-        this.f39142e = i10 == 0;
-        this.f39147w = new pc[i7];
+        this.f39152e = i10 == 0;
+        this.f39157w = new pc[i7];
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
-        paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29470i6, false));
+        paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29473i6, false));
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(200.0f), new int[]{7263574, -9513642, -12469647, 4307569}, new float[]{0.0f, 0.07f, 0.93f, 1.0f}, tileMode);
@@ -125,27 +125,27 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
         n6Var.u(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.G6, false));
         n6Var.x(org.telegram.messenger.g0.o());
         n6Var.w(org.telegram.messenger.g0.L(32.0f));
-        n6Var.f37791b = 17;
+        n6Var.f37796b = 17;
         n6Var2.n(0.6f, 450L, nrVar);
         n6Var2.B = 0.6f;
-        n6Var2.u(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29770y6, false));
+        n6Var2.u(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29773y6, false));
         n6Var2.w(org.telegram.messenger.g0.L(12.0f));
-        n6Var2.f37791b = 17;
+        n6Var2.f37796b = 17;
         n6Var3.n(0.2f, 450L, nrVar);
         n6Var3.B = 0.6f;
-        n6Var3.f37789a.setShader(linearGradient2);
+        n6Var3.f37794a.setShader(linearGradient2);
         n6Var3.x(org.telegram.messenger.g0.o());
         n6Var3.w(org.telegram.messenger.g0.L(32.0f));
-        n6Var3.f37791b = 17;
+        n6Var3.f37796b = 17;
         n6Var4.n(0.6f, 450L, nrVar);
         n6Var4.B = 0.6f;
-        n6Var4.f37789a.setShader(linearGradient2);
+        n6Var4.f37794a.setShader(linearGradient2);
         n6Var4.x(org.telegram.messenger.g0.o());
         n6Var4.w(org.telegram.messenger.g0.L(12.0f));
-        n6Var4.f37791b = 17;
+        n6Var4.f37796b = 17;
         int i11 = 0;
         while (true) {
-            pc[] pcVarArr = this.f39147w;
+            pc[] pcVarArr = this.f39157w;
             if (i11 < pcVarArr.length) {
                 pc pcVar = new pc(this);
                 pcVarArr[i11] = pcVar;
@@ -155,9 +155,9 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
                 RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(86.0f), new int[]{w11, w10}, new float[]{0.3f, 1.0f}, Shader.TileMode.CLAMP);
                 pcVar.v = radialGradient;
                 Matrix matrix = new Matrix();
-                pcVar.f38565w = matrix;
+                pcVar.f38564w = matrix;
                 radialGradient.setLocalMatrix(matrix);
-                pcVar.f38560q.setShader(pcVar.v);
+                pcVar.f38559q.setShader(pcVar.v);
                 i11++;
             } else {
                 return;
@@ -213,16 +213,16 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
         this.T = true;
         int i7 = 0;
         while (true) {
-            pc[] pcVarArr = this.f39147w;
+            pc[] pcVarArr = this.f39157w;
             if (i7 < pcVarArr.length) {
                 pc pcVar = pcVarArr[i7];
-                if (pcVar.f38547b == null) {
-                    boolean z10 = this.f39142e;
-                    int[] iArr = this.f39143f;
+                if (pcVar.f38546b == null) {
+                    boolean z10 = this.f39152e;
+                    int[] iArr = this.f39153f;
                     if (z10) {
-                        pcVar.f38547b = org.telegram.messenger.mz.d(iArr[i7], org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), -1);
+                        pcVar.f38546b = org.telegram.messenger.nz.d(iArr[i7], org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), -1);
                     } else {
-                        pcVar.f38547b = BitmapFactory.decodeResource(getContext().getResources(), iArr[i7]);
+                        pcVar.f38546b = BitmapFactory.decodeResource(getContext().getResources(), iArr[i7]);
                     }
                 }
                 i7++;
@@ -244,12 +244,12 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
         int i7 = 0;
         this.T = false;
         while (true) {
-            pc[] pcVarArr = this.f39147w;
+            pc[] pcVarArr = this.f39157w;
             if (i7 < pcVarArr.length) {
-                Bitmap bitmap = pcVarArr[i7].f38547b;
+                Bitmap bitmap = pcVarArr[i7].f38546b;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    pcVarArr[i7].f38547b = null;
+                    pcVarArr[i7].f38546b = null;
                 }
                 i7++;
             } else {
@@ -263,7 +263,7 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
         int size = View.MeasureSpec.getSize(i7);
         int L = org.telegram.messenger.g0.L(c());
         int L2 = org.telegram.messenger.g0.L(172.0f);
-        RectF rectF = this.f39139a;
+        RectF rectF = this.f39149a;
         rectF.set((size - L2) / 2.0f, (L - L2) / 2.0f, (size + L2) / 2.0f, (L2 + L) / 2.0f);
         Matrix matrix = this.L;
         matrix.reset();
@@ -275,9 +275,9 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
         this.K.setLocalMatrix(matrix2);
         ug.s1 s1Var = this.R;
         if (s1Var != null) {
-            s1Var.f58927a.set(0.0f, 0.0f, org.telegram.messenger.g0.L(140.0f), org.telegram.messenger.g0.L(140.0f));
-            this.R.f58927a.offset((getMeasuredWidth() - this.R.f58927a.width()) / 2.0f, (getMeasuredHeight() - this.R.f58927a.height()) / 2.0f);
-            this.R.f58928b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            s1Var.f58931a.set(0.0f, 0.0f, org.telegram.messenger.g0.L(140.0f), org.telegram.messenger.g0.L(140.0f));
+            this.R.f58931a.offset((getMeasuredWidth() - this.R.f58931a.width()) / 2.0f, (getMeasuredHeight() - this.R.f58931a.height()) / 2.0f);
+            this.R.f58932b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             this.R.f();
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(L, 1073741824));
@@ -294,7 +294,7 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
         }
         int i10 = 0;
         while (true) {
-            pc[] pcVarArr = this.f39147w;
+            pc[] pcVarArr = this.f39157w;
             if (i10 < pcVarArr.length) {
                 if (i7 == i10 && pcVarArr[i10].d <= 0.0f) {
                     i7 = -1;
@@ -305,7 +305,7 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
                 } else {
                     z10 = false;
                 }
-                pcVar.f38557n = z10;
+                pcVar.f38556n = z10;
                 i10++;
             } else {
                 this.U = i7;
@@ -318,7 +318,7 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
     @Override
     public final void updateColors() {
         try {
-            this.E.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29470i6, false));
+            this.E.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29473i6, false));
             try {
                 n6 n6Var = this.N;
                 if (n6Var != null) {
@@ -326,7 +326,7 @@ public abstract class rc extends View implements org.telegram.ui.ActionBar.b6 {
                 }
                 n6 n6Var2 = this.O;
                 if (n6Var2 != null) {
-                    n6Var2.u(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29770y6, false));
+                    n6Var2.u(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29773y6, false));
                 }
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);

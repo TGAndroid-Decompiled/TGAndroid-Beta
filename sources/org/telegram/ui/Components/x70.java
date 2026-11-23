@@ -7,110 +7,110 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 public final class x70 extends View {
-    public static DecelerateInterpolator f41996w;
-    public static Paint f41997x;
-    public long f41998a;
-    public float f41999b;
-    public float f42000c;
+    public static DecelerateInterpolator f41989w;
+    public static Paint f41990x;
+    public long f41991a;
+    public float f41992b;
+    public float f41993c;
     public long d;
-    public float f42001e;
-    public float f42002f;
+    public float f41994e;
+    public float f41995f;
     public int h;
-    public int f42003n;
-    public final RectF f42004r;
-    public org.telegram.ui.Components.voip.n f42005s;
+    public int f41996n;
+    public final RectF f41997r;
+    public org.telegram.ui.Components.voip.n f41998s;
 
     public x70(Context context) {
         super(context);
-        this.f42002f = 1.0f;
-        this.f42004r = new RectF();
-        if (f41996w == null) {
-            f41996w = new DecelerateInterpolator();
+        this.f41995f = 1.0f;
+        this.f41997r = new RectF();
+        if (f41989w == null) {
+            f41989w = new DecelerateInterpolator();
             Paint paint = new Paint(1);
-            f41997x = paint;
+            f41990x = paint;
             paint.setStrokeCap(Paint.Cap.ROUND);
-            f41997x.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+            f41990x.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         }
     }
 
     public final void a(boolean z10, float f10) {
         if (!z10) {
-            this.f42001e = f10;
-            this.f42000c = f10;
+            this.f41994e = f10;
+            this.f41993c = f10;
         } else {
-            this.f42000c = this.f42001e;
+            this.f41993c = this.f41994e;
         }
         if (f10 != 1.0f) {
-            this.f42002f = 1.0f;
+            this.f41995f = 1.0f;
         }
-        this.f41999b = f10;
+        this.f41992b = f10;
         this.d = 0L;
-        this.f41998a = System.currentTimeMillis();
+        this.f41991a = System.currentTimeMillis();
         invalidate();
     }
 
     public float getCurrentProgress() {
-        return this.f41999b;
+        return this.f41992b;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i7 = this.h;
-        RectF rectF = this.f42004r;
-        if (i7 != 0 && this.f42001e != 1.0f) {
-            f41997x.setColor(i7);
-            f41997x.setAlpha((int) (this.f42002f * 255.0f));
+        RectF rectF = this.f41997r;
+        if (i7 != 0 && this.f41994e != 1.0f) {
+            f41990x.setColor(i7);
+            f41990x.setAlpha((int) (this.f41995f * 255.0f));
             getWidth();
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, f41997x);
+            canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, f41990x);
         }
-        f41997x.setColor(this.f42003n);
-        f41997x.setAlpha((int) (this.f42002f * 255.0f));
-        rectF.set(0.0f, 0.0f, getWidth() * this.f42001e, getHeight());
-        canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, f41997x);
-        if (this.f42002f > 0.0f) {
-            if (this.f42005s == null) {
+        f41990x.setColor(this.f41996n);
+        f41990x.setAlpha((int) (this.f41995f * 255.0f));
+        rectF.set(0.0f, 0.0f, getWidth() * this.f41994e, getHeight());
+        canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, f41990x);
+        if (this.f41995f > 0.0f) {
+            if (this.f41998s == null) {
                 org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n(160, 0);
-                this.f42005s = nVar;
-                nVar.f41189k = false;
-                nVar.f41192n = 0.8f;
-                nVar.f41191m = 1.2f;
+                this.f41998s = nVar;
+                nVar.f41191k = false;
+                nVar.f41194n = 0.8f;
+                nVar.f41193m = 1.2f;
             }
-            this.f42005s.f41185f = getMeasuredWidth();
-            this.f42005s.a(getHeight() / 2.0f, canvas, rectF, null);
+            this.f41998s.f41187f = getMeasuredWidth();
+            this.f41998s.a(getHeight() / 2.0f, canvas, rectF, null);
             invalidate();
         }
         long currentTimeMillis = System.currentTimeMillis();
-        long j3 = currentTimeMillis - this.f41998a;
-        this.f41998a = currentTimeMillis;
-        float f10 = this.f42001e;
+        long j3 = currentTimeMillis - this.f41991a;
+        this.f41991a = currentTimeMillis;
+        float f10 = this.f41994e;
         if (f10 != 1.0f) {
-            float f11 = this.f41999b;
+            float f11 = this.f41992b;
             if (f10 != f11) {
-                float f12 = this.f42000c;
+                float f12 = this.f41993c;
                 float f13 = f11 - f12;
                 if (f13 > 0.0f) {
                     long j10 = this.d + j3;
                     this.d = j10;
                     if (j10 >= 300) {
-                        this.f42001e = f11;
-                        this.f42000c = f11;
+                        this.f41994e = f11;
+                        this.f41993c = f11;
                         this.d = 0L;
                     } else {
-                        this.f42001e = (f41996w.getInterpolation(((float) j10) / 300.0f) * f13) + f12;
+                        this.f41994e = (f41989w.getInterpolation(((float) j10) / 300.0f) * f13) + f12;
                     }
                 }
                 invalidate();
             }
         }
-        int i10 = (this.f42001e > 1.0f ? 1 : (this.f42001e == 1.0f ? 0 : -1));
+        int i10 = (this.f41994e > 1.0f ? 1 : (this.f41994e == 1.0f ? 0 : -1));
         if (i10 >= 0 && i10 == 0) {
-            float f14 = this.f42002f;
+            float f14 = this.f41995f;
             if (f14 != 0.0f) {
                 float f15 = f14 - (((float) j3) / 200.0f);
-                this.f42002f = f15;
+                this.f41995f = f15;
                 if (f15 <= 0.0f) {
-                    this.f42002f = 0.0f;
+                    this.f41995f = 0.0f;
                 }
                 invalidate();
             }
@@ -122,6 +122,6 @@ public final class x70 extends View {
     }
 
     public void setProgressColor(int i7) {
-        this.f42003n = i7;
+        this.f41996n = i7;
     }
 }

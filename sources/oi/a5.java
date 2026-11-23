@@ -119,7 +119,7 @@ public abstract class a5 {
                 if (gVar != null) {
                     TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
                     pageblockpreformatted.text = c6.f(subSequence2);
-                    String str = gVar.f56220a;
+                    String str = gVar.f56224a;
                     if (str == null) {
                         str = "";
                     }
@@ -129,7 +129,7 @@ public abstract class a5 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = c6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (jh0Var != null && jh0Var.f36510e) {
+                    if (jh0Var != null && jh0Var.f36505e) {
                         z11 = z10;
                     } else {
                         z11 = false;
@@ -185,9 +185,9 @@ public abstract class a5 {
                     c10 = false;
                     continue;
                 } else {
-                    ArrayList arrayList2 = aVar.f21939k;
-                    if (!aVar.f21937i && aVar.f21933c <= 0) {
-                        TL_iv.PageBlock pageBlock = aVar.f21932b;
+                    ArrayList arrayList2 = aVar.f21942k;
+                    if (!aVar.f21940i && aVar.f21936c <= 0) {
+                        TL_iv.PageBlock pageBlock = aVar.f21935b;
                         if (!(pageBlock instanceof TL_iv.pageBlockPullquote)) {
                             boolean z10 = pageBlock instanceof TL_iv.pageBlockBlockquote;
                             if (arrayList2.size() + (z10 ? 1 : 0) <= 1 && (!z10 || (richText = ((TL_iv.pageBlockBlockquote) pageBlock).caption) == null || (richText instanceof TL_iv.textEmpty) || c6.l(richText).isEmpty())) {
@@ -225,21 +225,21 @@ public abstract class a5 {
         SpannableStringBuilder r10;
         TL_iv.RichText richText = null;
         if (z10) {
-            TL_iv.PageBlock pageBlock = aVar.f21932b;
+            TL_iv.PageBlock pageBlock = aVar.f21935b;
             if (pageBlock != null) {
                 richText = pageBlock.text;
             }
             r10 = c6.r(richText, pageBlock, false);
         } else {
-            TL_iv.PageBlock pageBlock2 = aVar.f21932b;
+            TL_iv.PageBlock pageBlock2 = aVar.f21935b;
             if (pageBlock2 != null) {
                 richText = pageBlock2.text;
             }
             r10 = c6.r(richText, pageBlock2, true);
         }
-        if (aVar.f21932b instanceof TL_iv.pageBlockPreformatted) {
+        if (aVar.f21935b instanceof TL_iv.pageBlockPreformatted) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(r10);
-            spannableStringBuilder.setSpan(new qi.g(((TL_iv.pageBlockPreformatted) aVar.f21932b).language, spannableStringBuilder.toString(), true), 0, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new qi.g(((TL_iv.pageBlockPreformatted) aVar.f21935b).language, spannableStringBuilder.toString(), true), 0, spannableStringBuilder.length(), 33);
             return spannableStringBuilder;
         }
         return r10;
@@ -251,11 +251,11 @@ public abstract class a5 {
         int i7 = 0;
         while (list != null && i7 < list.size()) {
             a aVar = (a) list.get(i7);
-            if (!aVar.f21939k.isEmpty()) {
-                long longValue = ((Long) aVar.f21939k.get(0)).longValue();
+            if (!aVar.f21942k.isEmpty()) {
+                long longValue = ((Long) aVar.f21942k.get(0)).longValue();
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 int i10 = i7;
-                while (i10 < list.size() && !((a) list.get(i10)).f21939k.isEmpty() && ((Long) ((a) list.get(i10)).f21939k.get(0)).longValue() == longValue) {
+                while (i10 < list.size() && !((a) list.get(i10)).f21942k.isEmpty() && ((Long) ((a) list.get(i10)).f21942k.get(0)).longValue() == longValue) {
                     if (i10 > i7) {
                         spannableStringBuilder.append('\n');
                     }
@@ -268,7 +268,7 @@ public abstract class a5 {
                 arrayList.add(spannableStringBuilder);
                 i7 = i10;
             } else {
-                TL_iv.PageBlock pageBlock = aVar.f21932b;
+                TL_iv.PageBlock pageBlock = aVar.f21935b;
                 if (!(pageBlock instanceof TL_iv.pageBlockBlockquote) && !(pageBlock instanceof TL_iv.pageBlockPullquote)) {
                     arrayList.add(e(aVar, z10));
                 } else {
@@ -279,7 +279,7 @@ public abstract class a5 {
                         r10 = c6.r(pageBlock.text, pageBlock, true);
                     }
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(r10);
-                    TL_iv.PageBlock pageBlock2 = aVar.f21932b;
+                    TL_iv.PageBlock pageBlock2 = aVar.f21935b;
                     z11 = ((pageBlock2 instanceof TL_iv.pageBlockBlockquote) && ((TL_iv.pageBlockBlockquote) pageBlock2).collapsed) ? false : false;
                     if (spannableStringBuilder2.length() > 0) {
                         jh0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z11);

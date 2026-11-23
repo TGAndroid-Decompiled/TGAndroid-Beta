@@ -1,10 +1,10 @@
 package vc;
 public final class a {
-    public final String f59405a;
-    public final String f59406b;
+    public final String f59409a;
+    public final String f59410b;
 
     public a(String str, String str2) {
-        this.f59405a = str;
-        this.f59406b = str2;
+        this.f59409a = str;
+        this.f59410b = str2;
     }
 }

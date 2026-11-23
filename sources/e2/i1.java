@@ -3,31 +3,31 @@ package e2;
 import j$.util.Objects;
 public final class i1 {
     public static final String h;
-    public static final String f10456i;
-    public static final String f10457j;
-    public static final String f10458k;
-    public static final String f10459l;
-    public Object f10460a;
-    public Object f10461b;
-    public int f10462c;
+    public static final String f10459i;
+    public static final String f10460j;
+    public static final String f10461k;
+    public static final String f10462l;
+    public Object f10463a;
+    public Object f10464b;
+    public int f10465c;
     public long d;
-    public long f10463e;
-    public boolean f10464f;
-    public c f10465g = c.f10370c;
+    public long f10466e;
+    public boolean f10467f;
+    public c f10468g = c.f10373c;
 
     static {
-        String str = h2.l0.f13812a;
+        String str = h2.l0.f13815a;
         h = Integer.toString(0, 36);
-        f10456i = Integer.toString(1, 36);
-        f10457j = Integer.toString(2, 36);
-        f10458k = Integer.toString(3, 36);
-        f10459l = Integer.toString(4, 36);
+        f10459i = Integer.toString(1, 36);
+        f10460j = Integer.toString(2, 36);
+        f10461k = Integer.toString(3, 36);
+        f10462l = Integer.toString(4, 36);
     }
 
     public final long a(int i7, int i10) {
-        a a10 = this.f10465g.a(i7);
-        if (a10.f10334a != -1) {
-            return a10.f10338f[i10];
+        a a10 = this.f10468g.a(i7);
+        if (a10.f10337a != -1) {
+            return a10.f10341f[i10];
         }
         return -9223372036854775807L;
     }
@@ -36,15 +36,15 @@ public final class i1 {
         int i7;
         a a10;
         int i10;
-        c cVar = this.f10465g;
+        c cVar = this.f10468g;
         long j10 = this.d;
-        int i11 = cVar.f10372a;
+        int i11 = cVar.f10375a;
         if (j3 != Long.MIN_VALUE && (j10 == -9223372036854775807L || j3 < j10)) {
             int i12 = 0;
             while (i12 < i11) {
                 cVar.a(i12).getClass();
                 cVar.a(i12).getClass();
-                if (0 > j3 && ((i10 = (a10 = cVar.a(i12)).f10334a) == -1 || a10.a(-1) < i10)) {
+                if (0 > j3 && ((i10 = (a10 = cVar.a(i12)).f10337a) == -1 || a10.a(-1) < i10)) {
                     break;
                 }
                 i12++;
@@ -62,8 +62,8 @@ public final class i1 {
     }
 
     public final int c(long j3) {
-        c cVar = this.f10465g;
-        int i7 = cVar.f10372a;
+        c cVar = this.f10468g;
+        int i7 = cVar.f10375a;
         int i10 = i7 - 1;
         if (i10 == i7 - 1) {
             cVar.a(i10).getClass();
@@ -77,10 +77,10 @@ public final class i1 {
         }
         if (i10 >= 0) {
             a a10 = cVar.a(i10);
-            int i11 = a10.f10334a;
+            int i11 = a10.f10337a;
             if (i11 != -1) {
                 for (int i12 = 0; i12 < i11; i12++) {
-                    int i13 = a10.f10337e[i12];
+                    int i13 = a10.f10340e[i12];
                     if (i13 != 0 && i13 != 1) {
                     }
                 }
@@ -91,19 +91,19 @@ public final class i1 {
     }
 
     public final long d(int i7) {
-        this.f10465g.a(i7).getClass();
+        this.f10468g.a(i7).getClass();
         return 0L;
     }
 
     public final int e(int i7) {
-        return this.f10465g.a(i7).a(-1);
+        return this.f10468g.a(i7).a(-1);
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && i1.class.equals(obj.getClass())) {
                 i1 i1Var = (i1) obj;
-                if (Objects.equals(this.f10460a, i1Var.f10460a) && Objects.equals(this.f10461b, i1Var.f10461b) && this.f10462c == i1Var.f10462c && this.d == i1Var.d && this.f10463e == i1Var.f10463e && this.f10464f == i1Var.f10464f && Objects.equals(this.f10465g, i1Var.f10465g)) {
+                if (Objects.equals(this.f10463a, i1Var.f10463a) && Objects.equals(this.f10464b, i1Var.f10464b) && this.f10465c == i1Var.f10465c && this.d == i1Var.d && this.f10466e == i1Var.f10466e && this.f10467f == i1Var.f10467f && Objects.equals(this.f10468g, i1Var.f10468g)) {
                     return true;
                 }
                 return false;
@@ -114,8 +114,8 @@ public final class i1 {
     }
 
     public final boolean f(int i7) {
-        c cVar = this.f10465g;
-        int i10 = cVar.f10372a;
+        c cVar = this.f10468g;
+        int i10 = cVar.f10375a;
         if (i7 == i10 - 1 && i7 == i10 - 1) {
             cVar.a(i7).getClass();
             return false;
@@ -124,23 +124,23 @@ public final class i1 {
     }
 
     public final boolean g(int i7) {
-        this.f10465g.a(i7).getClass();
+        this.f10468g.a(i7).getClass();
         return false;
     }
 
     public final void h(Object obj, Object obj2, int i7, long j3, long j10, c cVar, boolean z10) {
-        this.f10460a = obj;
-        this.f10461b = obj2;
-        this.f10462c = i7;
+        this.f10463a = obj;
+        this.f10464b = obj2;
+        this.f10465c = i7;
         this.d = j3;
-        this.f10463e = j10;
-        this.f10465g = cVar;
-        this.f10464f = z10;
+        this.f10466e = j10;
+        this.f10468g = cVar;
+        this.f10467f = z10;
     }
 
     public final int hashCode() {
         int hashCode;
-        Object obj = this.f10460a;
+        Object obj = this.f10463a;
         int i7 = 0;
         if (obj == null) {
             hashCode = 0;
@@ -148,12 +148,12 @@ public final class i1 {
             hashCode = obj.hashCode();
         }
         int i10 = (217 + hashCode) * 31;
-        Object obj2 = this.f10461b;
+        Object obj2 = this.f10464b;
         if (obj2 != null) {
             i7 = obj2.hashCode();
         }
         long j3 = this.d;
-        long j10 = this.f10463e;
-        return this.f10465g.hashCode() + ((((((((((i10 + i7) * 31) + this.f10462c) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + (this.f10464f ? 1 : 0)) * 31);
+        long j10 = this.f10466e;
+        return this.f10468g.hashCode() + ((((((((((i10 + i7) * 31) + this.f10465c) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + (this.f10467f ? 1 : 0)) * 31);
     }
 }

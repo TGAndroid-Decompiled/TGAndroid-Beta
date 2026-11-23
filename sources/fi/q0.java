@@ -5,28 +5,28 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import c8.ma;
 import c8.ra;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.q9;
 public final class q0 extends FrameLayout {
-    public final n0 f12485a;
-    public final q9 f12486b;
-    public final org.telegram.ui.Components.b9 f12487c;
+    public final n0 f12488a;
+    public final q9 f12489b;
+    public final org.telegram.ui.Components.b9 f12490c;
     public final ImageView d;
-    public final o0 f12488e;
-    public s0 f12489f;
+    public final o0 f12491e;
+    public s0 f12492f;
 
     public q0(Context context) {
         super(context);
         ra.a(this);
         n0 n0Var = new n0(this, context);
-        this.f12485a = n0Var;
+        this.f12488a = n0Var;
         n0Var.setOrientation(0);
         addView(n0Var, ma.d(-2, -2.0f, 119, 0.0f, 0.0f, 6.0f, 0.0f));
-        this.f12487c = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
+        this.f12490c = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
         q9 q9Var = new q9(context);
-        this.f12486b = q9Var;
+        this.f12489b = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(11.0f));
         n0Var.addView(q9Var, ma.q(22, 22, 0.0f, 51, 3, 2, 7, 2));
         ImageView imageView = new ImageView(context);
@@ -34,7 +34,7 @@ public final class q0 extends FrameLayout {
         imageView.setVisibility(8);
         n0Var.addView(imageView, ma.t(18, 18, 19, 0, 0, 3, 0));
         o0 o0Var = new o0(context);
-        this.f12488e = o0Var;
+        this.f12491e = o0Var;
         o0Var.setLines(1);
         o0Var.setSingleLine();
         o0Var.setTextColor(-1);
@@ -44,28 +44,28 @@ public final class q0 extends FrameLayout {
     }
 
     public void set(s0 s0Var) {
-        this.f12489f = s0Var;
-        int i7 = (s0Var.f12552b > 0L ? 1 : (s0Var.f12552b == 0L ? 0 : -1));
-        q9 q9Var = this.f12486b;
-        org.telegram.ui.Components.b9 b9Var = this.f12487c;
+        this.f12492f = s0Var;
+        int i7 = (s0Var.f12555b > 0L ? 1 : (s0Var.f12555b == 0L ? 0 : -1));
+        q9 q9Var = this.f12489b;
+        org.telegram.ui.Components.b9 b9Var = this.f12490c;
         if (i7 >= 0) {
-            TLRPC.User c22 = mp.u1(j10.f24798t0).c2(Long.valueOf(s0Var.f12552b));
+            TLRPC.User c22 = np.u1(k10.f24968t0).c2(Long.valueOf(s0Var.f12555b));
             b9Var.r(c22);
             q9Var.f(c22, b9Var);
         } else {
-            TLRPC.Chat O0 = mp.u1(j10.f24798t0).O0(Long.valueOf(-s0Var.f12552b));
+            TLRPC.Chat O0 = np.u1(k10.f24968t0).O0(Long.valueOf(-s0Var.f12555b));
             b9Var.q(O0);
             q9Var.f(O0, b9Var);
         }
-        int i10 = s0Var.f12554e;
+        int i10 = s0Var.f12557e;
         ImageView imageView = this.d;
         if (i10 > 0) {
-            imageView.setImageDrawable(new i0(getContext(), s0Var.f12554e));
+            imageView.setImageDrawable(new i0(getContext(), s0Var.f12557e));
             imageView.setVisibility(0);
         } else {
             imageView.setVisibility(8);
         }
-        this.f12488e.setText(org.telegram.messenger.n5.l(j10.f24798t0, s0Var.f12552b));
-        this.f12485a.invalidate();
+        this.f12491e.setText(org.telegram.messenger.n5.l(k10.f24968t0, s0Var.f12555b));
+        this.f12488a.invalidate();
     }
 }

@@ -3,9 +3,9 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 public final class ox extends h51 {
-    public ox(Context context, int i7, org.telegram.messenger.q10 q10Var, org.telegram.messenger.v10 v10Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, i7, -1, false, q10Var, v10Var, null, h6Var, -1, 0);
-        this.f34897z2 = true;
+    public ox(Context context, int i7, org.telegram.messenger.r10 r10Var, org.telegram.messenger.w10 w10Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, i7, -1, false, r10Var, w10Var, null, h6Var, -1, 0);
+        this.f34895z2 = true;
         setOverScrollMode(2);
     }
 
@@ -24,7 +24,7 @@ public final class ox extends h51 {
                 i7 = 0;
             }
             if (i7 != 0) {
-                org.telegram.messenger.g0.J(this, new j01(this, view, i7, 24));
+                org.telegram.messenger.g0.J(this, new f21(this, view, i7, 23));
             }
         }
     }

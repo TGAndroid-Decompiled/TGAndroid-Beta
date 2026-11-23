@@ -2,8 +2,8 @@ package hi;
 
 import java.util.TimeZone;
 public abstract class qb {
-    public static String f15314a;
-    public static pb f15315b;
+    public static String f15317a;
+    public static pb f15318b;
 
     public static boolean a() {
         String id2 = TimeZone.getDefault().getID();

@@ -3,15 +3,15 @@ package m1;
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 public class d0 implements a {
-    public final File f20343a;
-    public final y0 f20344b;
-    public final AtomicBoolean f20345c;
+    public final File f20346a;
+    public final y0 f20347b;
+    public final AtomicBoolean f20348c;
 
     public d0(File file, y0 serializer) {
         kotlin.jvm.internal.j.e(serializer, "serializer");
-        this.f20343a = file;
-        this.f20344b = serializer;
-        this.f20345c = new AtomicBoolean(false);
+        this.f20346a = file;
+        this.f20347b = serializer;
+        this.f20348c = new AtomicBoolean(false);
     }
 
     public static java.lang.Object a(m1.d0 r7, kd.c r8) {
@@ -20,6 +20,6 @@ public class d0 implements a {
 
     @Override
     public final void close() {
-        this.f20345c.set(true);
+        this.f20348c.set(true);
     }
 }

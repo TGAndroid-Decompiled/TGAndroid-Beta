@@ -34,9 +34,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import m9.y;
-import org.telegram.messenger.cj;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.i10;
+import org.telegram.messenger.dj;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.j10;
 import org.telegram.messenger.p2;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -61,17 +61,17 @@ import org.telegram.ui.Components.y5;
 import org.telegram.ui.Components.ya;
 import org.telegram.ui.fr0;
 public final class s implements androidx.car.app.messaging.model.b, b7.e, com.google.android.gms.common.api.internal.r, eg.a, fg.a, si, ja.a, SuccessContinuation, u9.d, gh.a, kb, m1, q2.q, r0.q, u2.k, y9.a, s0 {
-    public static s f59665b;
-    public static final s f59666c = new s(13);
+    public static s f59669b;
+    public static final s f59670c = new s(13);
     public static s d;
-    public final int f59667a;
+    public final int f59671a;
 
     public s(int i7) {
-        this.f59667a = i7;
+        this.f59671a = i7;
     }
 
     public static MediaCodec V(b8 b8Var) {
-        String str = ((u2.o) b8Var.f341a).f58379a;
+        String str = ((u2.o) b8Var.f341a).f58383a;
         Trace.beginSection("createCodec:" + str);
         MediaCodec createByCodecName = MediaCodec.createByCodecName(str);
         Trace.endSection();
@@ -88,7 +88,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
             if (bitmap != null) {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 la.p(bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream));
-                a10.putByteArray(g2.b.f13128x, byteArrayOutputStream.toByteArray());
+                a10.putByteArray(g2.b.f13131x, byteArrayOutputStream.toByteArray());
             }
             arrayList.add(a10);
         }
@@ -117,7 +117,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     public static y s0(List list) {
         Iterator it = list.iterator();
         while (it.hasNext()) {
-            if (((l0) it.next()).f10530b == null) {
+            if (((l0) it.next()).f10533b == null) {
                 UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException();
                 ?? obj = new Object();
                 obj.n(unsupportedOperationException);
@@ -177,8 +177,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
         lbVar.setInOutOffset(lbVar.getMeasuredHeight());
         rlVar.accept(Float.valueOf(lbVar.getTranslationY()));
         r1.g gVar = new r1.g((Object) lbVar, lb.IN_OUT_OFFSET_Y, 0.0f);
-        gVar.f56364m.a(0.8f);
-        gVar.f56364m.b(400.0f);
+        gVar.f56368m.a(0.8f);
+        gVar.f56368m.b(400.0f);
         gVar.a(new y0(2, lbVar, ogVar));
         gVar.b(new jb(rlVar, lbVar, 1));
         gVar.h();
@@ -240,15 +240,15 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     public b7.d Q(Context context, String str, b7.c cVar) {
         b7.d dVar = new b7.d();
         int o4 = cVar.o(context, str, true);
-        dVar.f2956b = o4;
+        dVar.f2963b = o4;
         if (o4 != 0) {
-            dVar.f2957c = 1;
+            dVar.f2964c = 1;
             return dVar;
         }
         int C = cVar.C(context, str);
-        dVar.f2955a = C;
+        dVar.f2962a = C;
         if (C != 0) {
-            dVar.f2957c = -1;
+            dVar.f2964c = -1;
         }
         return dVar;
     }
@@ -274,7 +274,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public boolean T1(r1 r1Var, fj fjVar) {
+    public boolean T1(r1 r1Var, gj gjVar) {
         return false;
     }
 
@@ -355,7 +355,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
 
     @Override
     public Object e(r7 r7Var) {
-        switch (this.f59667a) {
+        switch (this.f59671a) {
             case 14:
                 return new ob.c(r7Var.L(ob.b.class));
             default:
@@ -379,8 +379,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public boolean f1(fj fjVar) {
-        return c0.a(fjVar);
+    public boolean f1(gj gjVar) {
+        return c0.a(gjVar);
     }
 
     @Override
@@ -421,8 +421,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     @Override
     public void j(lb lbVar, wa waVar, ua uaVar, xa xaVar) {
         r1.g gVar = new r1.g(lbVar, lb.IN_OUT_OFFSET_Y, lbVar.getHeight());
-        gVar.f56364m.a(0.8f);
-        gVar.f56364m.b(400.0f);
+        gVar.f56368m.a(0.8f);
+        gVar.f56368m.b(400.0f);
         gVar.a(new ya(uaVar, 1));
         gVar.b(new jb(xaVar, lbVar, 0));
         gVar.h();
@@ -543,7 +543,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public boolean y0(fj fjVar) {
+    public boolean y0(gj gjVar) {
         return true;
     }
 
@@ -563,7 +563,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     public s() {
-        this.f59667a = 12;
+        this.f59671a = 12;
         if (Build.VERSION.SDK_INT >= 35) {
         }
     }
@@ -637,7 +637,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void L(cj cjVar) {
+    public void L(dj djVar) {
     }
 
     @Override
@@ -649,7 +649,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void O1(fj fjVar) {
+    public void O1(gj gjVar) {
     }
 
     @Override
@@ -657,7 +657,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void R(fj fjVar) {
+    public void R(gj gjVar) {
     }
 
     @Override
@@ -757,7 +757,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void a2(r1 r1Var, i10 i10Var) {
+    public void a2(r1 r1Var, j10 j10Var) {
     }
 
     @Override
@@ -861,7 +861,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void S1(fj fjVar, String str, String str2, String str3, String str4, int i7, int i10) {
+    public void S1(gj gjVar, String str, String str2, String str3, String str4, int i7, int i10) {
     }
 
     @Override

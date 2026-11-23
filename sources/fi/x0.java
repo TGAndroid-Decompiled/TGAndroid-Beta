@@ -2,8 +2,8 @@ package fi;
 
 import j$.util.Objects;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -11,20 +11,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_phone;
 public final class x0 implements RequestDelegate {
-    public final int f12756a;
-    public final c1 f12757b;
+    public final int f12759a;
+    public final c1 f12760b;
 
     public x0(c1 c1Var, int i7) {
-        this.f12756a = i7;
-        this.f12757b = c1Var;
+        this.f12759a = i7;
+        this.f12760b = c1Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         TLRPC.TL_groupCallParticipantVideo tL_groupCallParticipantVideo;
-        switch (this.f12756a) {
+        switch (this.f12759a) {
             case 0:
-                final c1 c1Var = this.f12757b;
+                final c1 c1Var = this.f12760b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -34,14 +34,14 @@ public final class x0 implements RequestDelegate {
                                 c1 c1Var2 = c1Var;
                                 TLObject tLObject2 = tLObject;
                                 TLRPC.TL_error tL_error2 = tL_error;
-                                int i10 = c1Var2.f11836e;
-                                if (!c1Var2.f11842x) {
+                                int i10 = c1Var2.f11839e;
+                                if (!c1Var2.f11845x) {
                                     if (tLObject2 instanceof TL_phone.groupCall) {
                                         TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject2;
-                                        mp.u1(i10).f4(groupcall.users, false);
-                                        mp.u1(i10).Z3(groupcall.chats, false);
-                                        c1Var2.f11841w = groupcall.call;
-                                        ks.f(i10).k(176, Long.valueOf(c1Var2.f11841w.f28441id));
+                                        np.u1(i10).f4(groupcall.users, false);
+                                        np.u1(i10).Z3(groupcall.chats, false);
+                                        c1Var2.f11844w = groupcall.call;
+                                        ls.f(i10).k(176, Long.valueOf(c1Var2.f11844w.f28444id));
                                     } else if (tL_error2 != null && "GROUPCALL_INVALID".equalsIgnoreCase(tL_error2.text)) {
                                         org.telegram.messenger.g0.g3(new w0(c1Var2, 4));
                                     }
@@ -67,11 +67,11 @@ public final class x0 implements RequestDelegate {
                                 c1 c1Var3 = c1Var;
                                 TLObject tLObject3 = tLObject;
                                 TLRPC.TL_error tL_error3 = tL_error;
-                                if (!c1Var3.f11842x) {
+                                if (!c1Var3.f11845x) {
                                     if (tLObject3 instanceof Vector) {
                                         if (!((Vector) tLObject3).toIntArray().contains(Integer.valueOf(c1Var3.L))) {
                                             if (c1Var3.F != null) {
-                                                org.telegram.messenger.q5 q5Var = Utilities.f22807e;
+                                                org.telegram.messenger.q5 q5Var = Utilities.f22810e;
                                                 NativeInstance nativeInstance = c1Var3.F;
                                                 Objects.requireNonNull(nativeInstance);
                                                 q5Var.c(new org.telegram.messenger.voip.q0(nativeInstance, 3));
@@ -82,10 +82,10 @@ public final class x0 implements RequestDelegate {
                                         }
                                     } else if (tLObject3 instanceof TL_phone.groupCall) {
                                         TL_phone.groupCall groupcall2 = (TL_phone.groupCall) tLObject3;
-                                        mp.u1(c1Var3.f11836e).f4(groupcall2.users, false);
-                                        mp.u1(c1Var3.f11836e).Z3(groupcall2.chats, false);
-                                        c1Var3.f11841w = groupcall2.call;
-                                        ks.f(c1Var3.f11836e).k(176, Long.valueOf(c1Var3.f11841w.f28441id));
+                                        np.u1(c1Var3.f11839e).f4(groupcall2.users, false);
+                                        np.u1(c1Var3.f11839e).Z3(groupcall2.chats, false);
+                                        c1Var3.f11844w = groupcall2.call;
+                                        ls.f(c1Var3.f11839e).k(176, Long.valueOf(c1Var3.f11844w.f28444id));
                                     } else if (tL_error3 != null) {
                                         if ("GROUPCALL_JOIN_MISSING".equals(tL_error3.text)) {
                                             org.telegram.messenger.a8.b("[LivePlayer] received GROUPCALL_JOIN_MISSING on checkGroupCall => rejoining");
@@ -113,26 +113,26 @@ public final class x0 implements RequestDelegate {
                 return;
             case 1:
                 boolean z10 = tLObject instanceof TLRPC.Updates;
-                c1 c1Var2 = this.f12757b;
+                c1 c1Var2 = this.f12760b;
                 if (z10) {
-                    mp.u1(c1Var2.f11836e).V3((TLRPC.Updates) tLObject, false);
+                    np.u1(c1Var2.f11839e).V3((TLRPC.Updates) tLObject, false);
                     return;
                 } else {
                     c1Var2.getClass();
                     return;
                 }
             case 2:
-                c1 c1Var3 = this.f12757b;
-                int i7 = c1Var3.f11836e;
+                c1 c1Var3 = this.f12760b;
+                int i7 = c1Var3.f11839e;
                 if (tLObject instanceof TL_phone.groupCall) {
                     TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
                     int i10 = 0;
-                    mp.u1(i7).f4(groupcall.users, false);
-                    mp.u1(i7).Z3(groupcall.chats, false);
-                    if (c1Var3.F != null && !c1Var3.f11842x) {
+                    np.u1(i7).f4(groupcall.users, false);
+                    np.u1(i7).Z3(groupcall.chats, false);
+                    if (c1Var3.F != null && !c1Var3.f11845x) {
                         while (true) {
                             if (i10 < groupcall.participants.size()) {
-                                if (org.telegram.messenger.n5.o(groupcall.participants.get(i10).peer) == c1Var3.f11834b) {
+                                if (org.telegram.messenger.n5.o(groupcall.participants.get(i10).peer) == c1Var3.f11837b) {
                                     c1Var3.H = groupcall.participants.get(i10);
                                 } else {
                                     i10++;
@@ -155,7 +155,7 @@ public final class x0 implements RequestDelegate {
                 }
                 return;
             case 3:
-                final c1 c1Var4 = this.f12757b;
+                final c1 c1Var4 = this.f12760b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -165,14 +165,14 @@ public final class x0 implements RequestDelegate {
                                 c1 c1Var22 = c1Var4;
                                 TLObject tLObject2 = tLObject;
                                 TLRPC.TL_error tL_error2 = tL_error;
-                                int i102 = c1Var22.f11836e;
-                                if (!c1Var22.f11842x) {
+                                int i102 = c1Var22.f11839e;
+                                if (!c1Var22.f11845x) {
                                     if (tLObject2 instanceof TL_phone.groupCall) {
                                         TL_phone.groupCall groupcall2 = (TL_phone.groupCall) tLObject2;
-                                        mp.u1(i102).f4(groupcall2.users, false);
-                                        mp.u1(i102).Z3(groupcall2.chats, false);
-                                        c1Var22.f11841w = groupcall2.call;
-                                        ks.f(i102).k(176, Long.valueOf(c1Var22.f11841w.f28441id));
+                                        np.u1(i102).f4(groupcall2.users, false);
+                                        np.u1(i102).Z3(groupcall2.chats, false);
+                                        c1Var22.f11844w = groupcall2.call;
+                                        ls.f(i102).k(176, Long.valueOf(c1Var22.f11844w.f28444id));
                                     } else if (tL_error2 != null && "GROUPCALL_INVALID".equalsIgnoreCase(tL_error2.text)) {
                                         org.telegram.messenger.g0.g3(new w0(c1Var22, 4));
                                     }
@@ -198,11 +198,11 @@ public final class x0 implements RequestDelegate {
                                 c1 c1Var32 = c1Var4;
                                 TLObject tLObject3 = tLObject;
                                 TLRPC.TL_error tL_error3 = tL_error;
-                                if (!c1Var32.f11842x) {
+                                if (!c1Var32.f11845x) {
                                     if (tLObject3 instanceof Vector) {
                                         if (!((Vector) tLObject3).toIntArray().contains(Integer.valueOf(c1Var32.L))) {
                                             if (c1Var32.F != null) {
-                                                org.telegram.messenger.q5 q5Var = Utilities.f22807e;
+                                                org.telegram.messenger.q5 q5Var = Utilities.f22810e;
                                                 NativeInstance nativeInstance2 = c1Var32.F;
                                                 Objects.requireNonNull(nativeInstance2);
                                                 q5Var.c(new org.telegram.messenger.voip.q0(nativeInstance2, 3));
@@ -213,10 +213,10 @@ public final class x0 implements RequestDelegate {
                                         }
                                     } else if (tLObject3 instanceof TL_phone.groupCall) {
                                         TL_phone.groupCall groupcall22 = (TL_phone.groupCall) tLObject3;
-                                        mp.u1(c1Var32.f11836e).f4(groupcall22.users, false);
-                                        mp.u1(c1Var32.f11836e).Z3(groupcall22.chats, false);
-                                        c1Var32.f11841w = groupcall22.call;
-                                        ks.f(c1Var32.f11836e).k(176, Long.valueOf(c1Var32.f11841w.f28441id));
+                                        np.u1(c1Var32.f11839e).f4(groupcall22.users, false);
+                                        np.u1(c1Var32.f11839e).Z3(groupcall22.chats, false);
+                                        c1Var32.f11844w = groupcall22.call;
+                                        ls.f(c1Var32.f11839e).k(176, Long.valueOf(c1Var32.f11844w.f28444id));
                                     } else if (tL_error3 != null) {
                                         if ("GROUPCALL_JOIN_MISSING".equals(tL_error3.text)) {
                                             org.telegram.messenger.a8.b("[LivePlayer] received GROUPCALL_JOIN_MISSING on checkGroupCall => rejoining");
@@ -243,13 +243,13 @@ public final class x0 implements RequestDelegate {
                 });
                 return;
             case 4:
-                c1 c1Var5 = this.f12757b;
-                int i11 = c1Var5.f11836e;
+                c1 c1Var5 = this.f12760b;
+                int i11 = c1Var5.f11839e;
                 if (tLObject instanceof TLRPC.Updates) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    mp.u1(i11).f4(updates.users, false);
-                    mp.u1(i11).Z3(updates.chats, false);
-                    mp.u1(i11).V3(updates, false);
+                    np.u1(i11).f4(updates.users, false);
+                    np.u1(i11).Z3(updates.chats, false);
+                    np.u1(i11).V3(updates, false);
                     return;
                 } else if (tL_error != null && "GROUPCALL_ALREADY_DISCARDED".equalsIgnoreCase(tL_error.text)) {
                     org.telegram.messenger.g0.g3(new w0(c1Var5, 4));
@@ -259,9 +259,9 @@ public final class x0 implements RequestDelegate {
                 }
             default:
                 boolean z11 = tLObject instanceof TLRPC.Updates;
-                c1 c1Var6 = this.f12757b;
+                c1 c1Var6 = this.f12760b;
                 if (z11) {
-                    mp.u1(c1Var6.f11836e).V3((TLRPC.Updates) tLObject, false);
+                    np.u1(c1Var6.f11839e).V3((TLRPC.Updates) tLObject, false);
                     return;
                 } else {
                     c1Var6.getClass();

@@ -6,31 +6,31 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.ArrayList;
 public final class fr extends Drawable {
-    public final Drawable f47811a;
-    public final Drawable f47812b;
+    public final Drawable f47815a;
+    public final Drawable f47816b;
     public int d;
-    public int f47814e;
-    public final ArrayList f47813c = new ArrayList();
-    public boolean f47815f = false;
-    public final org.telegram.ui.Components.d6 f47816g = new org.telegram.ui.Components.d6(new bh(this, 14), 420, org.telegram.ui.Components.nr.h);
+    public int f47818e;
+    public final ArrayList f47817c = new ArrayList();
+    public boolean f47819f = false;
+    public final org.telegram.ui.Components.d6 f47820g = new org.telegram.ui.Components.d6(new bh(this, 14), 420, org.telegram.ui.Components.nr.h);
     public int h = 255;
 
     public fr(Drawable drawable, Drawable drawable2) {
-        this.f47811a = drawable;
-        this.f47812b = drawable2;
+        this.f47815a = drawable;
+        this.f47816b = drawable2;
     }
 
     public final void a(int i7, int i10) {
         this.d = i7;
-        this.f47814e = i10;
+        this.f47818e = i10;
     }
 
     public final void b(boolean z10) {
-        if (this.f47815f == z10) {
+        if (this.f47819f == z10) {
             return;
         }
-        this.f47815f = z10;
-        ArrayList arrayList = this.f47813c;
+        this.f47819f = z10;
+        ArrayList arrayList = this.f47817c;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -43,16 +43,16 @@ public final class fr extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        float d = this.f47816g.d(this.f47815f);
+        float d = this.f47820g.d(this.f47819f);
         int i7 = this.h;
-        Drawable drawable = this.f47811a;
+        Drawable drawable = this.f47815a;
         drawable.setAlpha(i7);
         drawable.setBounds(getBounds());
         drawable.draw(canvas);
         if (d > 0.0f) {
-            Drawable drawable2 = this.f47812b;
+            Drawable drawable2 = this.f47816b;
             drawable2.setAlpha((int) (this.h * d));
-            drawable2.setBounds(getBounds().left + this.d, getBounds().top + this.f47814e, drawable2.getIntrinsicWidth() + getBounds().left + this.d, drawable2.getIntrinsicHeight() + getBounds().top + this.f47814e);
+            drawable2.setBounds(getBounds().left + this.d, getBounds().top + this.f47818e, drawable2.getIntrinsicWidth() + getBounds().left + this.d, drawable2.getIntrinsicHeight() + getBounds().top + this.f47818e);
             float T1 = org.telegram.messenger.g0.T1(0.5f, 1.0f, d);
             canvas.save();
             canvas.scale(T1, T1, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
@@ -63,12 +63,12 @@ public final class fr extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f47811a.getIntrinsicHeight();
+        return this.f47815a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f47811a.getIntrinsicWidth();
+        return this.f47815a.getIntrinsicWidth();
     }
 
     @Override
@@ -83,7 +83,7 @@ public final class fr extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f47811a.setColorFilter(colorFilter);
-        this.f47812b.setColorFilter(colorFilter);
+        this.f47815a.setColorFilter(colorFilter);
+        this.f47816b.setColorFilter(colorFilter);
     }
 }

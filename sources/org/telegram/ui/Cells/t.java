@@ -4,19 +4,19 @@ import android.view.View;
 import c8.ya;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
 import org.telegram.ui.Components.ek0;
 import org.telegram.ui.z80;
-public final class t extends ek0 implements fs {
-    public ArrayList f31822f3;
-    public v4.c0 f31823g3;
-    public int f31824h3;
+public final class t extends ek0 implements gs {
+    public ArrayList f31825f3;
+    public v4.c0 f31826g3;
+    public int f31827h3;
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25172k5) {
+        if (i7 == ls.f25338k5) {
             z1();
         }
     }
@@ -24,13 +24,13 @@ public final class t extends ek0 implements fs {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ks.e().c(this, ks.f25172k5);
+        ls.e().c(this, ls.f25338k5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ks.e().n(this, ks.f25172k5);
+        ls.e().n(this, ls.f25338k5);
     }
 
     @Override
@@ -45,13 +45,13 @@ public final class t extends ek0 implements fs {
     }
 
     public final void z1() {
-        ArrayList arrayList = this.f31822f3;
+        ArrayList arrayList = this.f31825f3;
         arrayList.clear();
         arrayList.addAll(Arrays.asList(z80.values()));
-        if (mp.u1(this.f31824h3).K3()) {
+        if (np.u1(this.f31827h3).K3()) {
             int i7 = 0;
             while (i7 < arrayList.size()) {
-                if (((z80) arrayList.get(i7)).f54493e) {
+                if (((z80) arrayList.get(i7)).f54497e) {
                     arrayList.remove(i7);
                     i7--;
                 }
@@ -62,7 +62,7 @@ public final class t extends ek0 implements fs {
         a0();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             if (ya.a((z80) arrayList.get(i10))) {
-                this.f31823g3.h1(i10, org.telegram.messenger.g0.L(16.0f));
+                this.f31826g3.h1(i10, org.telegram.messenger.g0.L(16.0f));
                 return;
             }
         }

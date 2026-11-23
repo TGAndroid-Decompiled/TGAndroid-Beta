@@ -3,28 +3,28 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
 public final class xj implements ValueAnimator.AnimatorUpdateListener {
-    public final int f42156a;
-    public final int f42157b;
-    public final float f42158c;
+    public final int f42149a;
+    public final int f42150b;
+    public final float f42151c;
     public final FrameLayout d;
 
     public xj(FrameLayout frameLayout, int i7, float f10, int i10) {
-        this.f42156a = i10;
+        this.f42149a = i10;
         this.d = frameLayout;
-        this.f42157b = i7;
-        this.f42158c = f10;
+        this.f42150b = i7;
+        this.f42151c = f10;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f42156a) {
+        switch (this.f42149a) {
             case 0:
                 mk mkVar = (mk) this.d;
-                ak akVar = mkVar.f37536r;
-                ak akVar2 = mkVar.f37537s;
+                ak akVar = mkVar.f37535r;
+                ak akVar2 = mkVar.f37536s;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                int i7 = this.f42157b;
-                float f10 = this.f42158c;
+                int i7 = this.f42150b;
+                float f10 = this.f42151c;
                 if (i7 == 1) {
                     akVar.setTranslationX(f10 * floatValue);
                     akVar.setAlpha(1.0f - floatValue);
@@ -48,9 +48,9 @@ public final class xj implements ValueAnimator.AnimatorUpdateListener {
                 qa0 qa0Var = (qa0) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float f13 = 1.0f - floatValue2;
-                int i10 = (int) ((qa0Var.S * floatValue2) + (this.f42157b * f13));
+                int i10 = (int) ((qa0Var.S * floatValue2) + (this.f42150b * f13));
                 qa0Var.U = i10;
-                qa0Var.f((qa0Var.T * floatValue2) + (this.f42158c * f13), i10);
+                qa0Var.f((qa0Var.T * floatValue2) + (this.f42151c * f13), i10);
                 return;
         }
     }

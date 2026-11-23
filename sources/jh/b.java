@@ -2,21 +2,21 @@ package jh;
 
 import android.graphics.RectF;
 import java.util.HashSet;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.r10;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.as;
-public final class b implements q10 {
-    public final int f17773a;
+public final class b implements r10 {
+    public final int f17776a;
 
     public b(int i7) {
-        this.f17773a = i7;
+        this.f17776a = i7;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f17773a) {
+        switch (this.f17776a) {
             case 0:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
@@ -29,12 +29,12 @@ public final class b implements q10 {
             case 2:
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                int i7 = mp.I8;
+                int i7 = np.I8;
                 return;
             case 3:
                 TLRPC.Bool bool3 = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
-                int i10 = mp.I8;
+                int i10 = np.I8;
                 return;
             case 4:
                 TLRPC.Bool bool4 = (TLRPC.Bool) obj;

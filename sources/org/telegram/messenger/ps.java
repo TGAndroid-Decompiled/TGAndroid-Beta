@@ -1,9 +1,19 @@
 package org.telegram.messenger;
+public final class ps implements Runnable {
+    public final int f26346a;
+    public final ys f26347b;
+    public final long f26348c;
+    public final int d;
 
-import android.graphics.ImageDecoder;
-public final class ps implements ImageDecoder.OnHeaderDecodedListener {
+    public ps(ys ysVar, long j3, int i7, int i10) {
+        this.f26346a = i10;
+        this.f26347b = ysVar;
+        this.f26348c = j3;
+        this.d = i7;
+    }
+
     @Override
-    public final void onHeaderDecoded(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
-        imageDecoder.setPostProcessor(new Object());
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ps.run():void");
     }
 }

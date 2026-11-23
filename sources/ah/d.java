@@ -1,12 +1,12 @@
 package ah;
 
-import ai.y0;
-import ai.z2;
+import ai.a3;
+import ai.c1;
 import android.view.View;
 import android.widget.TextView;
 import bi.e2;
-import bi.m7;
-import bi.p7;
+import bi.l7;
+import bi.o7;
 import bi.t0;
 import ch.b0;
 import di.b6;
@@ -31,13 +31,14 @@ import hi.v0;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.g2;
 import org.telegram.ui.Components.a30;
 import org.telegram.ui.Components.a70;
 import org.telegram.ui.Dictation.DictationAsr;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
+import ug.y0;
 public final class d implements View.OnClickListener {
     public final int f1062a;
     public final Object f1063b;
@@ -61,10 +62,10 @@ public final class d implements View.OnClickListener {
                 }
                 return;
             case 1:
-                z2 z2Var = (z2) this.f1063b;
-                z2Var.getClass();
+                a3 a3Var = (a3) this.f1063b;
+                a3Var.getClass();
                 DictationAsr.Y(!DictationAsr.x());
-                z2Var.e0();
+                a3Var.e0();
                 return;
             case 2:
                 ((androidx.mediarouter.app.g) this.f1063b).dismiss();
@@ -77,42 +78,42 @@ public final class d implements View.OnClickListener {
                 return;
             case 5:
                 e2 e2Var = (e2) this.f1063b;
-                LinkedHashMap linkedHashMap = e2Var.f3558a2;
+                LinkedHashMap linkedHashMap = e2Var.f3576a2;
                 if (!linkedHashMap.isEmpty()) {
                     ArrayList arrayList = new ArrayList(linkedHashMap.values());
                     e2Var.dismiss();
-                    e2Var.V1.f3393c.a(arrayList);
+                    e2Var.V1.f3400c.a(arrayList);
                     return;
                 }
                 return;
             case 6:
-                if (((m7) this.f1063b).f3890n > 0 && (Q = LaunchActivity.Q()) != 0) {
+                if (((l7) this.f1063b).f3858n > 0 && (Q = LaunchActivity.Q()) != 0) {
                     ?? obj = new Object();
-                    obj.f28902a = true;
+                    obj.f28905a = true;
                     Q.showAsSheet(new pb(), obj);
                     return;
                 }
                 return;
             case 7:
-                ((p7) this.f1063b).performClick();
+                ((o7) this.f1063b).performClick();
                 return;
             case 8:
                 b0 b0Var = (b0) this.f1063b;
-                if (b0Var.f5331k) {
+                if (b0Var.f5334k) {
                     b0Var.d();
                     return;
                 }
                 return;
             case 9:
-                ((ci.n) this.f1063b).f5751c.f5787b.f5694a.presentFragment(new PremiumPreviewFragment(0, "qr_emoji"));
+                ((ci.n) this.f1063b).f5754c.f5790b.f5697a.presentFragment(new PremiumPreviewFragment(0, "qr_emoji"));
                 return;
             case 10:
                 ((a30) this.f1063b).dismiss();
                 return;
             case 11:
                 o0 o0Var = (o0) this.f1063b;
-                TextView textView = o0Var.f9435u1;
-                a70 G = a70.G(o0Var.f30176c, o0Var.J0, textView);
+                TextView textView = o0Var.f9438u1;
+                a70 G = a70.G(o0Var.f30179c, o0Var.J0, textView);
                 int[] iArr = o0.H1;
                 int i7 = 0;
                 while (true) {
@@ -122,7 +123,7 @@ public final class d implements View.OnClickListener {
                         if (i10 != o0Var.C1) {
                             z10 = false;
                         }
-                        G.i(new y0(o0Var, i10, 5), gd.G(i10 / 3600, "GiftOfferHours", new Object[0]), z10);
+                        G.i(new c1(o0Var, i10, 5), hd.G(i10 / 3600, "GiftOfferHours", new Object[0]), z10);
                         i7++;
                     } else {
                         G.W(5);
@@ -135,10 +136,10 @@ public final class d implements View.OnClickListener {
                 return;
             case 13:
                 u0 u0Var = (u0) this.f1063b;
-                cg.b bVar = u0Var.f9876z1.f5300a;
-                cg.b bVar2 = cg.b.f5303b;
+                cg.b bVar = u0Var.f9879z1.f5303a;
+                cg.b bVar2 = cg.b.f5306b;
                 if (bVar == bVar2) {
-                    bVar2 = cg.b.f5302a;
+                    bVar2 = cg.b.f5305a;
                 }
                 u0Var.K0(cg.a.j(0L, bVar2), true, false, true);
                 u0Var.n1.setText("");
@@ -155,7 +156,7 @@ public final class d implements View.OnClickListener {
             case 17:
                 h5 h5Var = (h5) this.f1063b;
                 h5Var.getClass();
-                new gb(h5Var.f8953b, h5Var.f8957g).show();
+                new gb(h5Var.f8956b, h5Var.f8960g).show();
                 return;
             case 18:
                 ((b6) this.f1063b).dismiss();
@@ -164,15 +165,15 @@ public final class d implements View.OnClickListener {
                 ((h9) this.f1063b).run();
                 return;
             case 20:
-                if (((eb) ((a) this.f1063b).f1055c).f8751e > 0 && (Q2 = LaunchActivity.Q()) != 0) {
+                if (((eb) ((a) this.f1063b).f1055c).f8754e > 0 && (Q2 = LaunchActivity.Q()) != 0) {
                     ?? obj2 = new Object();
-                    obj2.f28902a = true;
+                    obj2.f28905a = true;
                     Q2.showAsSheet(new pb(), obj2);
                     return;
                 }
                 return;
             case 21:
-                ((a2) this.f1063b).q(!a2Var.f12606g0, true);
+                ((a2) this.f1063b).q(!a2Var.f12609g0, true);
                 return;
             case 22:
                 ((f9) this.f1063b).T();
@@ -181,27 +182,27 @@ public final class d implements View.OnClickListener {
                 ((n5) this.f1063b).dismiss();
                 g2 Q3 = LaunchActivity.Q();
                 if (Q3 != null) {
-                    Q3.showDialog(new ug.y0(Q3, 14, false));
+                    Q3.showDialog(new y0(Q3, 14, false));
                     return;
                 }
                 return;
             case 24:
                 j8 j8Var = (j8) this.f1063b;
-                j8Var.onClick(j8Var.f12199b);
+                j8Var.onClick(j8Var.f12202b);
                 return;
             case 25:
                 o8 o8Var = (o8) this.f1063b;
-                o8Var.f12387b.f12039u1.animate().alpha(0.0f).setDuration(150L).setListener(new y8(o8Var, 0)).start();
+                o8Var.f12390b.f12042u1.animate().alpha(0.0f).setDuration(150L).setListener(new y8(o8Var, 0)).start();
                 return;
             case 26:
                 ((f2.a) this.f1063b).run();
                 return;
             case 27:
                 hi.o oVar = (hi.o) this.f1063b;
-                hi.h hVar = oVar.f15148f;
+                hi.h hVar = oVar.f15151f;
                 hVar.d();
                 hVar.k(true);
-                hi.f fVar = oVar.f15145d0;
+                hi.f fVar = oVar.f15148d0;
                 g0.r(fVar);
                 fVar.run();
                 return;

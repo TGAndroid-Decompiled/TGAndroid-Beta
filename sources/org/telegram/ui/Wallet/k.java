@@ -1,38 +1,38 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.gd;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.m80;
 import org.telegram.ui.u60;
-public final class k implements x10 {
-    public final int f44467a;
-    public final Object f44468b;
+public final class k implements y10 {
+    public final int f44471a;
+    public final Object f44472b;
 
     public k(Object obj, int i7) {
-        this.f44467a = i7;
-        this.f44468b = obj;
+        this.f44471a = i7;
+        this.f44472b = obj;
     }
 
     @Override
     public final void a(Object obj) {
         int i7;
         CharSequence V;
-        int i10 = this.f44467a;
+        int i10 = this.f44471a;
         boolean z10 = false;
-        Object obj2 = this.f44468b;
+        Object obj2 = this.f44472b;
         switch (i10) {
             case 0:
-                ai.w2 w2Var = (ai.w2) obj2;
+                ai.x2 x2Var = (ai.x2) obj2;
                 if (((String) obj) == null) {
                     z10 = true;
                 }
-                w2Var.a(Boolean.valueOf(z10));
+                x2Var.a(Boolean.valueOf(z10));
                 return;
             case 1:
                 String str = (String) obj;
                 l2.m("disconnect session", str);
-                ((x10) obj2).a(str);
+                ((y10) obj2).a(str);
                 return;
             case 2:
                 String str2 = (String) obj;
@@ -50,20 +50,20 @@ public final class k implements x10 {
                 } else {
                     i7 = 24;
                 }
-                if (u8Var.f45178a != i7) {
-                    u8Var.f45178a = i7;
+                if (u8Var.f45182a != i7) {
+                    u8Var.f45182a = i7;
                     u8Var.b0(u8Var.getParentActivity());
                     u8Var.d0();
                     m80 m80Var = u8Var.h;
-                    byte[] bArr = u8Var.f45185s;
+                    byte[] bArr = u8Var.f45189s;
                     Integer valueOf = Integer.valueOf(i7);
                     Object[] objArr = new Object[1];
                     if (bArr != null) {
                         objArr[0] = valueOf;
-                        V = gd.V(null, null, 2131742848, objArr);
+                        V = hd.V(null, null, 2131742846, objArr);
                     } else {
                         objArr[0] = valueOf;
-                        V = gd.V(null, null, 2131742846, objArr);
+                        V = hd.V(null, null, 2131742844, objArr);
                     }
                     m80Var.setText(V);
                     return;

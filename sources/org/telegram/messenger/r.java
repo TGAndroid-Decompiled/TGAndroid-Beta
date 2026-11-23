@@ -10,16 +10,16 @@ import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.ui.Components.u41;
-public final class r implements p10 {
-    public final SpannableStringBuilder f26540a;
-    public final int f26541b;
-    public final boolean f26542c;
+public final class r implements q10 {
+    public final SpannableStringBuilder f26533a;
+    public final int f26534b;
+    public final boolean f26535c;
     public final boolean d;
 
     public r(SpannableStringBuilder spannableStringBuilder, int i7, boolean z10, boolean z11) {
-        this.f26540a = spannableStringBuilder;
-        this.f26541b = i7;
-        this.f26542c = z10;
+        this.f26533a = spannableStringBuilder;
+        this.f26534b = i7;
+        this.f26535c = z10;
         this.d = z11;
     }
 
@@ -36,7 +36,7 @@ public final class r implements p10 {
         int i14;
         String str;
         int i15;
-        SpannableStringBuilder spannableStringBuilder2 = this.f26540a;
+        SpannableStringBuilder spannableStringBuilder2 = this.f26533a;
         String obj = spannableStringBuilder2.toString();
         int i16 = 0;
         if (!obj.contains("\u202c") && !obj.contains("\u202d") && !obj.contains("\u202e")) {
@@ -56,14 +56,14 @@ public final class r implements p10 {
                     length--;
                 }
                 ArrayList arrayList = new ArrayList();
-                boolean z13 = this.f26542c;
+                boolean z13 = this.f26535c;
                 int i17 = 4;
-                if (!z13 && (this.f26541b & 4) != 0) {
+                if (!z13 && (this.f26534b & 4) != 0) {
                     Linkify.addLinks(spannableStringBuilder2, 4);
                 }
-                Pattern pattern = oc.f26078a;
+                Pattern pattern = pc.f26296a;
                 String[] strArr = {"http://", "https://", "tg://", "tonsite://"};
-                f fVar = g0.f24123c0;
+                f fVar = g0.f24023c0;
                 if (TextUtils.indexOf((CharSequence) spannableStringBuilder2, (char) 9472) >= 0) {
                     spannableStringBuilder = new SpannableStringBuilder(spannableStringBuilder2.toString().replace((char) 9472, ' '));
                 } else {
@@ -112,9 +112,9 @@ public final class r implements p10 {
                         } else {
                             z12 = true;
                         }
-                        obj2.f23479a = str;
-                        obj2.f23480b = start;
-                        obj2.f23481c = end;
+                        obj2.f23464a = str;
+                        obj2.f23465b = start;
+                        obj2.f23466c = end;
                         arrayList.add(obj2);
                     }
                     i16 = i14;
@@ -128,10 +128,10 @@ public final class r implements p10 {
                     d0 d0Var = (d0) arrayList.get(i18);
                     int i19 = i18 + 1;
                     d0 d0Var2 = (d0) arrayList.get(i19);
-                    int i20 = d0Var.f23480b;
-                    int i21 = d0Var2.f23480b;
-                    if (i20 <= i21 && (i10 = d0Var.f23481c) > i21) {
-                        int i22 = d0Var2.f23481c;
+                    int i20 = d0Var.f23465b;
+                    int i21 = d0Var2.f23465b;
+                    if (i20 <= i21 && (i10 = d0Var.f23466c) > i21) {
+                        int i22 = d0Var2.f23466c;
                         if (i22 <= i10 || (i11 = i10 - i20) > (i12 = i22 - i21)) {
                             i13 = i19;
                         } else if (i11 < i12) {
@@ -150,7 +150,7 @@ public final class r implements p10 {
                     int size2 = arrayList.size();
                     for (int i23 = i7; i23 < size2; i23++) {
                         d0 d0Var3 = (d0) arrayList.get(i23);
-                        URLSpan[] uRLSpanArr2 = (URLSpan[]) spannableStringBuilder2.getSpans(d0Var3.f23480b, d0Var3.f23481c, URLSpan.class);
+                        URLSpan[] uRLSpanArr2 = (URLSpan[]) spannableStringBuilder2.getSpans(d0Var3.f23465b, d0Var3.f23466c, URLSpan.class);
                         if (uRLSpanArr2 != null && uRLSpanArr2.length > 0) {
                             for (int i24 = i7; i24 < uRLSpanArr2.length; i24++) {
                                 URLSpan uRLSpan2 = uRLSpanArr2[i24];
@@ -160,12 +160,12 @@ public final class r implements p10 {
                                 }
                             }
                         }
-                        String str4 = d0Var3.f23479a;
+                        String str4 = d0Var3.f23464a;
                         if (str4 != null) {
                             str4 = str4.replaceAll("∕|⁄|%E2%81%84|%E2%88%95", "/");
                         }
                         if (!vf.c.k(str4)) {
-                            spannableStringBuilder2.setSpan(new URLSpan(str4), d0Var3.f23480b, d0Var3.f23481c, 33);
+                            spannableStringBuilder2.setSpan(new URLSpan(str4), d0Var3.f23465b, d0Var3.f23466c, 33);
                         }
                     }
                     z11 = z12;

@@ -1,15 +1,15 @@
 package fi;
 
-import org.telegram.messenger.u10;
-public final class w1 implements u10 {
-    public final int f12712a;
-    public final Object f12713b;
-    public final Object f12714c;
+import org.telegram.messenger.v10;
+public final class w1 implements v10 {
+    public final int f12715a;
+    public final Object f12716b;
+    public final Object f12717c;
 
     public w1(int i7, Object obj, Object obj2) {
-        this.f12712a = i7;
-        this.f12713b = obj;
-        this.f12714c = obj2;
+        this.f12715a = i7;
+        this.f12716b = obj;
+        this.f12717c = obj2;
     }
 
     @Override

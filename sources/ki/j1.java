@@ -1,8 +1,8 @@
 package ki;
 public final class j1 {
-    public String f18758a;
-    public long f18759b;
-    public String f18760c;
+    public String f18761a;
+    public long f18762b;
+    public String f18763c;
     public long d;
-    public long f18761e;
+    public long f18764e;
 }

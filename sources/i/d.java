@@ -2,16 +2,16 @@ package i;
 
 import android.animation.TimeInterpolator;
 public final class d implements TimeInterpolator {
-    public int[] f15898a;
-    public int f15899b;
-    public int f15900c;
+    public int[] f15901a;
+    public int f15902b;
+    public int f15903c;
 
     @Override
     public final float getInterpolation(float f10) {
         float f11;
-        int i7 = (int) ((f10 * this.f15900c) + 0.5f);
-        int i10 = this.f15899b;
-        int[] iArr = this.f15898a;
+        int i7 = (int) ((f10 * this.f15903c) + 0.5f);
+        int i10 = this.f15902b;
+        int[] iArr = this.f15901a;
         int i11 = 0;
         while (i11 < i10) {
             int i12 = iArr[i11];
@@ -22,7 +22,7 @@ public final class d implements TimeInterpolator {
             i11++;
         }
         if (i11 < i10) {
-            f11 = i7 / this.f15900c;
+            f11 = i7 / this.f15903c;
         } else {
             f11 = 0.0f;
         }

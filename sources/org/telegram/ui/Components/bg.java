@@ -13,7 +13,7 @@ public final class bg extends ki.l0 {
     public final void setTranslationY(float f10) {
         super.setTranslationY(f10);
         ChatActivityEnterView chatActivityEnterView = this.E;
-        if (chatActivityEnterView.W0 != null && chatActivityEnterView.f32606e4 == 1) {
+        if (chatActivityEnterView.W0 != null && chatActivityEnterView.f32609e4 == 1) {
             chatActivityEnterView.P3.x(f10);
         }
     }

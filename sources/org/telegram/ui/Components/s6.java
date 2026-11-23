@@ -15,10 +15,10 @@ public final class s6 extends eb {
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(Typeface.SANS_SERIF);
         addView(textView, c8.ma.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(z80Var.f54491b));
+        qVar.setImageDrawable(launchActivity.getDrawable(z80Var.f54495b));
         qVar.setOuterPadding(org.telegram.messenger.g0.L(8.0f));
         qVar.setBackgroundOuterPadding(org.telegram.messenger.g0.L(24.0f));
-        qVar.setForeground(z80Var.f54492c);
-        org.telegram.messenger.f3.q(null, null, 2131754235, new Object[]{org.telegram.messenger.gd.N0(z80Var.d, null)}, textView);
+        qVar.setForeground(z80Var.f54496c);
+        org.telegram.messenger.f3.q(null, null, 2131754235, new Object[]{org.telegram.messenger.hd.N0(z80Var.d, null)}, textView);
     }
 }

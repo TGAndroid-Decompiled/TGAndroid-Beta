@@ -9,22 +9,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class uc0 implements RequestDelegate {
-    public final int f52531a;
-    public final gd0 f52532b;
-    public final TLRPC.TL_auth_signIn f52533c;
+    public final int f52535a;
+    public final gd0 f52536b;
+    public final TLRPC.TL_auth_signIn f52537c;
 
     public uc0(gd0 gd0Var, TLRPC.TL_auth_signIn tL_auth_signIn, int i7) {
-        this.f52531a = i7;
-        this.f52532b = gd0Var;
-        this.f52533c = tL_auth_signIn;
+        this.f52535a = i7;
+        this.f52536b = gd0Var;
+        this.f52537c = tL_auth_signIn;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f52531a) {
+        switch (this.f52535a) {
             case 0:
-                final gd0 gd0Var = this.f52532b;
-                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f52533c;
+                final gd0 gd0Var = this.f52536b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn = this.f52537c;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,32 +39,32 @@ public final class uc0 implements RequestDelegate {
                         final gd0 gd0Var2 = gd0Var;
                         switch (i13) {
                             case 0:
-                                int i14 = gd0Var2.f48065i0;
-                                de0 de0Var = gd0Var2.f48080v0;
+                                int i14 = gd0Var2.f48069i0;
+                                de0 de0Var = gd0Var2.f48084v0;
                                 gd0Var2.y(false);
                                 if (tL_error2 == null) {
-                                    gd0Var2.f48063g0 = false;
+                                    gd0Var2.f48067g0 = false;
                                     de0Var.N1(false, true);
                                     gd0Var2.u();
                                     gd0Var2.t();
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            de0Var.f46948s0 = tL_help_termsOfService;
+                                            de0Var.f46951s0 = tL_help_termsOfService;
                                         }
                                         final Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", gd0Var2.d);
-                                        bundle.putString("phoneHash", gd0Var2.f48056c);
+                                        bundle.putString("phoneHash", gd0Var2.f48060c);
                                         bundle.putString("code", tL_auth_signIn2.phone_code);
                                         gd0Var2.p(new Runnable() {
                                             @Override
                                             public final void run() {
                                                 switch (r3) {
                                                     case 0:
-                                                        gd0Var2.f48080v0.M1(5, true, bundle, false);
+                                                        gd0Var2.f48084v0.M1(5, true, bundle, false);
                                                         return;
                                                     default:
-                                                        gd0Var2.f48080v0.M1(6, true, bundle, false);
+                                                        gd0Var2.f48084v0.M1(6, true, bundle, false);
                                                         return;
                                                 }
                                             }
@@ -74,7 +74,7 @@ public final class uc0 implements RequestDelegate {
                                     }
                                 } else {
                                     String str = tL_error2.text;
-                                    gd0Var2.f48064h0 = str;
+                                    gd0Var2.f48068h0 = str;
                                     if (str.contains("SESSION_PASSWORD_NEEDED")) {
                                         TL_account.getPassword getpassword = new TL_account.getPassword();
                                         i12 = ((org.telegram.ui.ActionBar.g2) de0Var).currentAccount;
@@ -82,34 +82,34 @@ public final class uc0 implements RequestDelegate {
                                         gd0Var2.u();
                                         gd0Var2.t();
                                     } else {
-                                        gd0Var2.f48063g0 = false;
+                                        gd0Var2.f48067g0 = false;
                                         de0Var.N1(false, true);
-                                        if ((i14 == 3 && ((i11 = gd0Var2.f48066j0) == 4 || i11 == 2 || i11 == 17 || i11 == 16)) || ((i14 == 2 && ((i10 = gd0Var2.f48066j0) == 4 || i10 == 3)) || (i14 == 4 && ((i7 = gd0Var2.f48066j0) == 2 || i7 == 17 || i7 == 16)))) {
+                                        if ((i14 == 3 && ((i11 = gd0Var2.f48070j0) == 4 || i11 == 2 || i11 == 17 || i11 == 16)) || ((i14 == 2 && ((i10 = gd0Var2.f48070j0) == 4 || i10 == 3)) || (i14 == 4 && ((i7 = gd0Var2.f48070j0) == 2 || i7 == 17 || i7 == 16)))) {
                                             gd0Var2.s();
                                         }
                                         if (i14 == 15) {
-                                            org.telegram.messenger.ks.e().b(gd0Var2, 260);
+                                            org.telegram.messenger.ls.e().b(gd0Var2, 260);
                                         } else if (i14 == 2) {
                                             org.telegram.messenger.g0.C3(true);
-                                            org.telegram.messenger.ks.e().b(gd0Var2, 260);
+                                            org.telegram.messenger.ls.e().b(gd0Var2, 260);
                                         } else if (i14 == 3) {
                                             org.telegram.messenger.g0.B3(true);
-                                            org.telegram.messenger.ks.e().b(gd0Var2, 261);
+                                            org.telegram.messenger.ls.e().b(gd0Var2, 261);
                                             org.telegram.messenger.g0.g3(new org.telegram.ui.Components.me(29));
                                         }
-                                        gd0Var2.f48062f0 = true;
+                                        gd0Var2.f48066f0 = true;
                                         if (i14 != 3) {
                                             if (tL_error2.text.contains("PHONE_NUMBER_INVALID")) {
-                                                de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131748986, "InvalidPhoneNumber"));
+                                                de0Var.D1(org.telegram.messenger.hd.N0(2131745875, null), org.telegram.messenger.hd.N0(2131748986, "InvalidPhoneNumber"));
                                             } else if (!tL_error2.text.contains("PHONE_CODE_EMPTY") && !tL_error2.text.contains("PHONE_CODE_INVALID")) {
                                                 if (tL_error2.text.contains("PHONE_CODE_EXPIRED")) {
                                                     gd0Var2.c(true);
                                                     de0Var.M1(0, true, null, true);
-                                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131752009, "CodeExpired"));
+                                                    de0Var.D1(org.telegram.messenger.hd.N0(2131745875, null), org.telegram.messenger.hd.N0(2131752009, "CodeExpired"));
                                                 } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
-                                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131750670, "FloodWait"));
+                                                    de0Var.D1(org.telegram.messenger.hd.N0(2131745875, null), org.telegram.messenger.hd.N0(2131750670, "FloodWait"));
                                                 } else {
-                                                    String N0 = org.telegram.messenger.gd.N0(2131745875, null);
+                                                    String N0 = org.telegram.messenger.hd.N0(2131745875, null);
                                                     StringBuilder sb2 = new StringBuilder();
                                                     org.telegram.ui.Cells.c0.u("ErrorOccurred", 2131751093, sb2, "\n");
                                                     sb2.append(tL_error2.text);
@@ -121,13 +121,13 @@ public final class uc0 implements RequestDelegate {
                                             }
                                             int i15 = 0;
                                             while (true) {
-                                                br brVar = gd0Var2.f48061f;
-                                                er[] erVarArr = brVar.f46297f;
+                                                br brVar = gd0Var2.f48065f;
+                                                er[] erVarArr = brVar.f46301f;
                                                 if (i15 < erVarArr.length) {
                                                     erVarArr[i15].setText("");
                                                     i15++;
                                                 } else {
-                                                    brVar.f46296e = false;
+                                                    brVar.f46300e = false;
                                                     erVarArr[0].requestFocus();
                                                     return;
                                                 }
@@ -144,13 +144,13 @@ public final class uc0 implements RequestDelegate {
                                 }
                                 return;
                             default:
-                                gd0Var2.f48063g0 = false;
-                                de0 de0Var2 = gd0Var2.f48080v0;
+                                gd0Var2.f48067g0 = false;
+                                de0 de0Var2 = gd0Var2.f48084v0;
                                 de0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;
                                     if (!TwoStepVerificationActivity.n0(password, true)) {
-                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743577, "UpdateAppAlert"), true);
+                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.hd.N0(2131743575, "UpdateAppAlert"), true);
                                         return;
                                     }
                                     final Bundle bundle2 = new Bundle();
@@ -158,32 +158,32 @@ public final class uc0 implements RequestDelegate {
                                     password.serializeToStream(serializedData);
                                     bundle2.putString("password", Utilities.f(serializedData.toByteArray()));
                                     bundle2.putString("phoneFormated", gd0Var2.d);
-                                    bundle2.putString("phoneHash", gd0Var2.f48056c);
+                                    bundle2.putString("phoneHash", gd0Var2.f48060c);
                                     bundle2.putString("code", tL_auth_signIn2.phone_code);
                                     gd0Var2.p(new Runnable() {
                                         @Override
                                         public final void run() {
                                             switch (r3) {
                                                 case 0:
-                                                    gd0Var2.f48080v0.M1(5, true, bundle2, false);
+                                                    gd0Var2.f48084v0.M1(5, true, bundle2, false);
                                                     return;
                                                 default:
-                                                    gd0Var2.f48080v0.M1(6, true, bundle2, false);
+                                                    gd0Var2.f48084v0.M1(6, true, bundle2, false);
                                                     return;
                                             }
                                         }
                                     });
                                     return;
                                 }
-                                de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error2.text);
+                                de0Var2.D1(org.telegram.messenger.hd.N0(2131745875, null), tL_error2.text);
                                 return;
                         }
                     }
                 });
                 return;
             default:
-                final gd0 gd0Var2 = this.f52532b;
-                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f52533c;
+                final gd0 gd0Var2 = this.f52536b;
+                final TLRPC.TL_auth_signIn tL_auth_signIn2 = this.f52537c;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -198,32 +198,32 @@ public final class uc0 implements RequestDelegate {
                         final gd0 gd0Var22 = gd0Var2;
                         switch (i13) {
                             case 0:
-                                int i14 = gd0Var22.f48065i0;
-                                de0 de0Var = gd0Var22.f48080v0;
+                                int i14 = gd0Var22.f48069i0;
+                                de0 de0Var = gd0Var22.f48084v0;
                                 gd0Var22.y(false);
                                 if (tL_error2 == null) {
-                                    gd0Var22.f48063g0 = false;
+                                    gd0Var22.f48067g0 = false;
                                     de0Var.N1(false, true);
                                     gd0Var22.u();
                                     gd0Var22.t();
                                     if (tLObject2 instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject2).terms_of_service;
                                         if (tL_help_termsOfService != null) {
-                                            de0Var.f46948s0 = tL_help_termsOfService;
+                                            de0Var.f46951s0 = tL_help_termsOfService;
                                         }
                                         final Bundle bundle = new Bundle();
                                         bundle.putString("phoneFormated", gd0Var22.d);
-                                        bundle.putString("phoneHash", gd0Var22.f48056c);
+                                        bundle.putString("phoneHash", gd0Var22.f48060c);
                                         bundle.putString("code", tL_auth_signIn22.phone_code);
                                         gd0Var22.p(new Runnable() {
                                             @Override
                                             public final void run() {
                                                 switch (r3) {
                                                     case 0:
-                                                        gd0Var22.f48080v0.M1(5, true, bundle, false);
+                                                        gd0Var22.f48084v0.M1(5, true, bundle, false);
                                                         return;
                                                     default:
-                                                        gd0Var22.f48080v0.M1(6, true, bundle, false);
+                                                        gd0Var22.f48084v0.M1(6, true, bundle, false);
                                                         return;
                                                 }
                                             }
@@ -233,7 +233,7 @@ public final class uc0 implements RequestDelegate {
                                     }
                                 } else {
                                     String str = tL_error2.text;
-                                    gd0Var22.f48064h0 = str;
+                                    gd0Var22.f48068h0 = str;
                                     if (str.contains("SESSION_PASSWORD_NEEDED")) {
                                         TL_account.getPassword getpassword = new TL_account.getPassword();
                                         i12 = ((org.telegram.ui.ActionBar.g2) de0Var).currentAccount;
@@ -241,34 +241,34 @@ public final class uc0 implements RequestDelegate {
                                         gd0Var22.u();
                                         gd0Var22.t();
                                     } else {
-                                        gd0Var22.f48063g0 = false;
+                                        gd0Var22.f48067g0 = false;
                                         de0Var.N1(false, true);
-                                        if ((i14 == 3 && ((i11 = gd0Var22.f48066j0) == 4 || i11 == 2 || i11 == 17 || i11 == 16)) || ((i14 == 2 && ((i10 = gd0Var22.f48066j0) == 4 || i10 == 3)) || (i14 == 4 && ((i7 = gd0Var22.f48066j0) == 2 || i7 == 17 || i7 == 16)))) {
+                                        if ((i14 == 3 && ((i11 = gd0Var22.f48070j0) == 4 || i11 == 2 || i11 == 17 || i11 == 16)) || ((i14 == 2 && ((i10 = gd0Var22.f48070j0) == 4 || i10 == 3)) || (i14 == 4 && ((i7 = gd0Var22.f48070j0) == 2 || i7 == 17 || i7 == 16)))) {
                                             gd0Var22.s();
                                         }
                                         if (i14 == 15) {
-                                            org.telegram.messenger.ks.e().b(gd0Var22, 260);
+                                            org.telegram.messenger.ls.e().b(gd0Var22, 260);
                                         } else if (i14 == 2) {
                                             org.telegram.messenger.g0.C3(true);
-                                            org.telegram.messenger.ks.e().b(gd0Var22, 260);
+                                            org.telegram.messenger.ls.e().b(gd0Var22, 260);
                                         } else if (i14 == 3) {
                                             org.telegram.messenger.g0.B3(true);
-                                            org.telegram.messenger.ks.e().b(gd0Var22, 261);
+                                            org.telegram.messenger.ls.e().b(gd0Var22, 261);
                                             org.telegram.messenger.g0.g3(new org.telegram.ui.Components.me(29));
                                         }
-                                        gd0Var22.f48062f0 = true;
+                                        gd0Var22.f48066f0 = true;
                                         if (i14 != 3) {
                                             if (tL_error2.text.contains("PHONE_NUMBER_INVALID")) {
-                                                de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131748986, "InvalidPhoneNumber"));
+                                                de0Var.D1(org.telegram.messenger.hd.N0(2131745875, null), org.telegram.messenger.hd.N0(2131748986, "InvalidPhoneNumber"));
                                             } else if (!tL_error2.text.contains("PHONE_CODE_EMPTY") && !tL_error2.text.contains("PHONE_CODE_INVALID")) {
                                                 if (tL_error2.text.contains("PHONE_CODE_EXPIRED")) {
                                                     gd0Var22.c(true);
                                                     de0Var.M1(0, true, null, true);
-                                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131752009, "CodeExpired"));
+                                                    de0Var.D1(org.telegram.messenger.hd.N0(2131745875, null), org.telegram.messenger.hd.N0(2131752009, "CodeExpired"));
                                                 } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
-                                                    de0Var.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131750670, "FloodWait"));
+                                                    de0Var.D1(org.telegram.messenger.hd.N0(2131745875, null), org.telegram.messenger.hd.N0(2131750670, "FloodWait"));
                                                 } else {
-                                                    String N0 = org.telegram.messenger.gd.N0(2131745875, null);
+                                                    String N0 = org.telegram.messenger.hd.N0(2131745875, null);
                                                     StringBuilder sb2 = new StringBuilder();
                                                     org.telegram.ui.Cells.c0.u("ErrorOccurred", 2131751093, sb2, "\n");
                                                     sb2.append(tL_error2.text);
@@ -280,13 +280,13 @@ public final class uc0 implements RequestDelegate {
                                             }
                                             int i15 = 0;
                                             while (true) {
-                                                br brVar = gd0Var22.f48061f;
-                                                er[] erVarArr = brVar.f46297f;
+                                                br brVar = gd0Var22.f48065f;
+                                                er[] erVarArr = brVar.f46301f;
                                                 if (i15 < erVarArr.length) {
                                                     erVarArr[i15].setText("");
                                                     i15++;
                                                 } else {
-                                                    brVar.f46296e = false;
+                                                    brVar.f46300e = false;
                                                     erVarArr[0].requestFocus();
                                                     return;
                                                 }
@@ -303,13 +303,13 @@ public final class uc0 implements RequestDelegate {
                                 }
                                 return;
                             default:
-                                gd0Var22.f48063g0 = false;
-                                de0 de0Var2 = gd0Var22.f48080v0;
+                                gd0Var22.f48067g0 = false;
+                                de0 de0Var2 = gd0Var22.f48084v0;
                                 de0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;
                                     if (!TwoStepVerificationActivity.n0(password, true)) {
-                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743577, "UpdateAppAlert"), true);
+                                        org.telegram.ui.Components.c5.u0(de0Var2.getParentActivity(), org.telegram.messenger.hd.N0(2131743575, "UpdateAppAlert"), true);
                                         return;
                                     }
                                     final Bundle bundle2 = new Bundle();
@@ -317,24 +317,24 @@ public final class uc0 implements RequestDelegate {
                                     password.serializeToStream(serializedData);
                                     bundle2.putString("password", Utilities.f(serializedData.toByteArray()));
                                     bundle2.putString("phoneFormated", gd0Var22.d);
-                                    bundle2.putString("phoneHash", gd0Var22.f48056c);
+                                    bundle2.putString("phoneHash", gd0Var22.f48060c);
                                     bundle2.putString("code", tL_auth_signIn22.phone_code);
                                     gd0Var22.p(new Runnable() {
                                         @Override
                                         public final void run() {
                                             switch (r3) {
                                                 case 0:
-                                                    gd0Var22.f48080v0.M1(5, true, bundle2, false);
+                                                    gd0Var22.f48084v0.M1(5, true, bundle2, false);
                                                     return;
                                                 default:
-                                                    gd0Var22.f48080v0.M1(6, true, bundle2, false);
+                                                    gd0Var22.f48084v0.M1(6, true, bundle2, false);
                                                     return;
                                             }
                                         }
                                     });
                                     return;
                                 }
-                                de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), tL_error2.text);
+                                de0Var2.D1(org.telegram.messenger.hd.N0(2131745875, null), tL_error2.text);
                                 return;
                         }
                     }

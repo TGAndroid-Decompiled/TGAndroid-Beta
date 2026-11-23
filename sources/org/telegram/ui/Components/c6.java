@@ -72,59 +72,59 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     public final Path[] X;
     public float Y;
     public float Z;
-    public boolean f34073a;
-    public boolean f34074a0;
-    public boolean f34075b;
-    public final RectF f34076b0;
-    public int f34077c;
-    public volatile boolean f34078c0;
+    public boolean f34067a;
+    public boolean f34068a0;
+    public boolean f34069b;
+    public final RectF f34070b0;
+    public int f34071c;
+    public volatile boolean f34072c0;
     public final int[] d;
-    public volatile boolean f34079d0;
-    public a6 f34080e;
-    public volatile AnimatedFileNative f34081e0;
-    public boolean f34082f;
-    public boolean f34083f0;
-    public org.telegram.messenger.r5 f34084g0;
+    public volatile boolean f34073d0;
+    public a6 f34074e;
+    public volatile AnimatedFileNative f34075e0;
+    public boolean f34076f;
+    public boolean f34077f0;
+    public org.telegram.messenger.r5 f34078g0;
     public final ArrayList h;
-    public float f34085h0;
-    public float f34086i0;
-    public int f34087j0;
-    public int f34088k0;
-    public final boolean f34089l0;
+    public float f34079h0;
+    public float f34080i0;
+    public int f34081j0;
+    public int f34082k0;
+    public final boolean f34083l0;
     public final boolean m0;
-    public z5 f34090n;
-    public float f34091n0;
-    public boolean f34092o0;
-    public final TLRPC.Document f34093p0;
-    public final RectF[] f34094q0;
-    public z5 f34095r;
-    public final Paint[] f34096r0;
-    public z5 f34097s;
-    public WeakReference f34098s0;
-    public final xe.b f34099t0;
-    public final xe.b f34100u0;
-    public AnimatedFileDrawableStream f34101v0;
-    public z5 f34102w;
-    public boolean f34103w0;
-    public boolean f34104x;
-    public boolean f34105x0;
-    public boolean f34106y;
-    public boolean f34107y0;
-    public int f34108z0;
+    public z5 f34084n;
+    public float f34085n0;
+    public boolean f34086o0;
+    public final TLRPC.Document f34087p0;
+    public final RectF[] f34088q0;
+    public z5 f34089r;
+    public final Paint[] f34090r0;
+    public z5 f34091s;
+    public WeakReference f34092s0;
+    public final xe.b f34093t0;
+    public final xe.b f34094u0;
+    public AnimatedFileDrawableStream f34095v0;
+    public z5 f34096w;
+    public boolean f34097w0;
+    public boolean f34098x;
+    public boolean f34099x0;
+    public boolean f34100y;
+    public boolean f34101y0;
+    public int f34102z0;
 
-    public c6(File file, boolean z10, long j3, int i7, TLRPC.Document document, org.telegram.messenger.fc fcVar, Object obj, long j10, int i10, boolean z11) {
-        this(file, z10, j3, i7, document, fcVar, obj, j10, i10, z11, 0, 0, null, document != null ? 1 : 0, true);
+    public c6(File file, boolean z10, long j3, int i7, TLRPC.Document document, org.telegram.messenger.gc gcVar, Object obj, long j10, int i10, boolean z11) {
+        this(file, z10, j3, i7, document, gcVar, obj, j10, i10, z11, 0, 0, null, document != null ? 1 : 0, true);
     }
 
     public final void A(boolean z10) {
-        this.f34107y0 = z10;
+        this.f34101y0 = z10;
         if (z10) {
-            this.f34075b = false;
+            this.f34069b = false;
         }
     }
 
     public final void B(int[] iArr) {
-        boolean isEmpty = this.f34099t0.isEmpty();
+        boolean isEmpty = this.f34093t0.isEmpty();
         int[] iArr2 = this.U;
         if (!isEmpty) {
             if (this.V == null) {
@@ -134,16 +134,16 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
             System.arraycopy(iArr2, 0, iArr3, 0, iArr3.length);
         }
         for (int i7 = 0; i7 < 4; i7++) {
-            if (!this.f34105x0 && iArr[i7] != iArr2[i7]) {
-                this.f34105x0 = true;
+            if (!this.f34099x0 && iArr[i7] != iArr2[i7]) {
+                this.f34099x0 = true;
             }
             iArr2[i7] = iArr[i7];
         }
     }
 
     public final void C(long j3, long j10) {
-        this.f34085h0 = ((float) j3) / 1000.0f;
-        this.f34086i0 = ((float) j10) / 1000.0f;
+        this.f34079h0 = ((float) j3) / 1000.0f;
+        this.f34080i0 = ((float) j10) / 1000.0f;
         if (j3 >= 0 && o() < j3) {
             y(j3, true, false);
         }
@@ -155,43 +155,43 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
         if (this.S0) {
             this.S0 = false;
             a6 a6Var = new a6(this, 0);
-            Typeface typeface = org.telegram.messenger.g0.f24118a;
+            Typeface typeface = org.telegram.messenger.g0.f24018a;
             if (Looper.myLooper() != Looper.getMainLooper()) {
                 org.telegram.messenger.g0.g3(a6Var);
             } else {
                 a6Var.run();
             }
         }
-        if (!this.U0 && (this.f34078c0 || !this.E)) {
+        if (!this.U0 && (this.f34072c0 || !this.E)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        if (this.f34078c0) {
-            z5 z5Var = this.f34090n;
-            if (z5Var == null && this.f34095r == null) {
+        if (this.f34072c0) {
+            z5 z5Var = this.f34084n;
+            if (z5Var == null && this.f34089r == null) {
                 x(false);
-            } else if (this.f34095r != null) {
-                if (z5Var == null || (z10 && !this.f34073a && this.N < 0)) {
-                    z5 z5Var2 = this.f34090n;
+            } else if (this.f34089r != null) {
+                if (z5Var == null || (z10 && !this.f34067a && this.N < 0)) {
+                    z5 z5Var2 = this.f34084n;
                     if (z5Var2 != null) {
                         this.h.add(z5Var2);
                     }
-                    this.f34090n = this.f34095r;
-                    this.f34095r = this.f34097s;
-                    this.f34097s = null;
+                    this.f34084n = this.f34089r;
+                    this.f34089r = this.f34091s;
+                    this.f34091s = null;
                     this.U0 = false;
                     x(false);
                 }
             }
-        } else if (!this.f34078c0 && this.E && z10 && this.f34095r != null) {
-            z5 z5Var3 = this.f34090n;
+        } else if (!this.f34072c0 && this.E && z10 && this.f34089r != null) {
+            z5 z5Var3 = this.f34084n;
             if (z5Var3 != null) {
                 this.h.add(z5Var3);
             }
-            this.f34090n = this.f34095r;
-            this.f34095r = this.f34097s;
-            this.f34097s = null;
+            this.f34084n = this.f34089r;
+            this.f34089r = this.f34091s;
+            this.f34091s = null;
             this.U0 = false;
             x(false);
         }
@@ -203,16 +203,16 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
         int[] iArr;
         int i11;
         int i12;
-        if (!this.f34092o0 && (i7 = this.f34087j0) > 0 && (i10 = this.f34088k0) > 0 && (i11 = (iArr = this.d)[0]) > 0 && (i12 = iArr[1]) > 0) {
+        if (!this.f34086o0 && (i7 = this.f34081j0) > 0 && (i10 = this.f34082k0) > 0 && (i11 = (iArr = this.d)[0]) > 0 && (i12 = iArr[1]) > 0) {
             float max = Math.max(i10 / i11, i7 / i12);
-            this.f34091n0 = max;
+            this.f34085n0 = max;
             if (max > 0.0f && max <= 0.7d) {
                 return;
             }
-            this.f34091n0 = 1.0f;
+            this.f34085n0 = 1.0f;
             return;
         }
-        this.f34091n0 = 1.0f;
+        this.f34085n0 = 1.0f;
     }
 
     @Override
@@ -227,7 +227,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
         if (bitmap2 == null) {
             this.N0 = Bitmap.createBitmap(iArr[0], iArr[1], Bitmap.Config.ARGB_8888);
         }
-        this.O0.c(this.N0, false, this.f34085h0, this.f34086i0, this.f34089l0);
+        this.O0.c(this.N0, false, this.f34079h0, this.f34080i0, this.f34083l0);
         long j3 = this.M0;
         if (j3 != 0 && ((i7 = iArr[3]) == 0 || j3 > i7)) {
             return 0;
@@ -244,7 +244,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
         this.Q0 = i11;
         bitmap.eraseColor(0);
         canvas.save();
-        float width = this.f34088k0 / this.N0.getWidth();
+        float width = this.f34082k0 / this.N0.getWidth();
         canvas.scale(width, width);
         canvas.drawBitmap(this.N0, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
@@ -254,7 +254,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
 
     @Override
     public final void b() {
-        this.O0 = AnimatedFileNative.a(this.H.getAbsolutePath(), this.d, this.K, this.I, this.f34101v0, false);
+        this.O0 = AnimatedFileNative.a(this.H.getAbsolutePath(), this.d, this.K, this.I, this.f34095v0, false);
     }
 
     @Override
@@ -268,19 +268,19 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
 
     public final void d() {
         int i7;
-        if (this.f34088k0 == 0 && this.f34087j0 == 0) {
+        if (this.f34082k0 == 0 && this.f34081j0 == 0) {
             int[] iArr = this.d;
             int i10 = iArr[0];
             if (i10 <= 3000 && (i7 = iArr[1]) <= 3000) {
                 if (i10 > 2200 || i7 > 2200) {
-                    this.f34088k0 = i10 / 2;
-                    this.f34087j0 = i7 / 2;
+                    this.f34082k0 = i10 / 2;
+                    this.f34081j0 = i7 / 2;
                     return;
                 }
                 return;
             }
-            this.f34088k0 = i10 / 4;
-            this.f34087j0 = iArr[1] / 4;
+            this.f34082k0 = i10 / 4;
+            this.f34081j0 = iArr[1] / 4;
         }
     }
 
@@ -290,7 +290,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     }
 
     public final void e(ImageReceiver imageReceiver) {
-        if (imageReceiver != null && this.f34100u0.add(imageReceiver) && this.f34078c0) {
+        if (imageReceiver != null && this.f34094u0.add(imageReceiver) && this.f34072c0) {
             x(false);
         }
         h();
@@ -298,13 +298,13 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
 
     public final void f(View view) {
         if (view != null) {
-            this.f34099t0.add(view);
+            this.f34093t0.add(view);
         }
     }
 
     public final void finalize() {
         try {
-            this.f34099t0.clear();
+            this.f34093t0.clear();
             u();
         } finally {
             super.finalize();
@@ -317,7 +317,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
                 return false;
             }
             return true;
-        } else if (this.f34081e0 == null && this.f34106y) {
+        } else if (this.f34075e0 == null && this.f34100y) {
             return false;
         } else {
             return true;
@@ -327,7 +327,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     @Override
     public final int getIntrinsicHeight() {
         int i7 = 0;
-        if (this.f34106y) {
+        if (this.f34100y) {
             int[] iArr = this.d;
             int i10 = iArr[2];
             if (i10 != 90 && i10 != 270) {
@@ -339,13 +339,13 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
         if (i7 == 0) {
             return org.telegram.messenger.g0.L(100.0f);
         }
-        return (int) (i7 * this.f34091n0);
+        return (int) (i7 * this.f34085n0);
     }
 
     @Override
     public final int getIntrinsicWidth() {
         int i7 = 0;
-        if (this.f34106y) {
+        if (this.f34100y) {
             int[] iArr = this.d;
             int i10 = iArr[2];
             if (i10 != 90 && i10 != 270) {
@@ -357,13 +357,13 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
         if (i7 == 0) {
             return org.telegram.messenger.g0.L(100.0f);
         }
-        return (int) (i7 * this.f34091n0);
+        return (int) (i7 * this.f34085n0);
     }
 
     @Override
     public final int getMinimumHeight() {
         int i7 = 0;
-        if (this.f34106y) {
+        if (this.f34100y) {
             int[] iArr = this.d;
             int i10 = iArr[2];
             if (i10 != 90 && i10 != 270) {
@@ -381,7 +381,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     @Override
     public final int getMinimumWidth() {
         int i7 = 0;
-        if (this.f34106y) {
+        if (this.f34100y) {
             int[] iArr = this.d;
             int i10 = iArr[2];
             if (i10 != 90 && i10 != 270) {
@@ -404,7 +404,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     public final void h() {
         a6 a6Var;
         if (this.A0 != null) {
-            boolean isEmpty = this.f34100u0.isEmpty();
+            boolean isEmpty = this.f34094u0.isEmpty();
             if (isEmpty && this.K0 == null) {
                 a6 a6Var2 = new a6(this, 3);
                 this.K0 = a6Var2;
@@ -418,7 +418,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
 
     public final void i() {
         int i7;
-        if (this.f34078c0 && !this.S0 && !this.f34082f) {
+        if (this.f34072c0 && !this.S0 && !this.f34076f) {
             if (!this.V0 && (i7 = this.d[5]) > 0) {
                 this.V0 = true;
                 this.R0 = 0;
@@ -433,23 +433,23 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
 
     @Override
     public final boolean isRunning() {
-        return this.f34078c0;
+        return this.f34072c0;
     }
 
     public final void j() {
-        xe.b bVar = this.f34100u0;
+        xe.b bVar = this.f34094u0;
         Iterator it = bVar.iterator();
         int i7 = 0;
         int i10 = 0;
         while (it.hasNext()) {
             ImageReceiver imageReceiver = (ImageReceiver) it.next();
-            if (!imageReceiver.f22704y1) {
+            if (!imageReceiver.f22707y1) {
                 bVar.remove(imageReceiver);
             } else {
                 i7++;
             }
             int i11 = imageReceiver.D1;
-            if (i11 > 0 && this.f34108z0 >= i11) {
+            if (i11 > 0 && this.f34102z0 >= i11) {
                 i10++;
             }
         }
@@ -462,30 +462,30 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
 
     public final void k() {
         if (!g()) {
-            z5 z5Var = this.f34090n;
+            z5 z5Var = this.f34084n;
             if (z5Var != null) {
-                z5Var.f42679b.recycle();
-                Arrays.fill(z5Var.f42678a, (Object) null);
-                this.f34090n = null;
+                z5Var.f42683b.recycle();
+                Arrays.fill(z5Var.f42682a, (Object) null);
+                this.f34084n = null;
             }
-            z5 z5Var2 = this.f34102w;
+            z5 z5Var2 = this.f34096w;
             if (z5Var2 != null) {
-                z5Var2.f42679b.recycle();
-                Arrays.fill(z5Var2.f42678a, (Object) null);
-                this.f34102w = null;
+                z5Var2.f42683b.recycle();
+                Arrays.fill(z5Var2.f42682a, (Object) null);
+                this.f34096w = null;
             }
-            org.telegram.messenger.r5 r5Var = this.f34084g0;
+            org.telegram.messenger.r5 r5Var = this.f34078g0;
             if (r5Var != null) {
                 r5Var.recycle();
-                this.f34084g0 = null;
+                this.f34078g0 = null;
             }
             int i7 = 0;
             while (true) {
                 ArrayList arrayList = this.h;
                 if (i7 < arrayList.size()) {
                     z5 z5Var3 = (z5) arrayList.get(i7);
-                    z5Var3.f42679b.recycle();
-                    Arrays.fill(z5Var3.f42678a, (Object) null);
+                    z5Var3.f42683b.recycle();
+                    Arrays.fill(z5Var3.f42682a, (Object) null);
                     i7++;
                 } else {
                     arrayList.clear();
@@ -501,17 +501,17 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     }
 
     public final Bitmap m() {
-        z5 z5Var = this.f34090n;
+        z5 z5Var = this.f34084n;
         if (z5Var != null) {
-            return z5Var.f42679b;
+            return z5Var.f42683b;
         }
-        z5 z5Var2 = this.f34095r;
+        z5 z5Var2 = this.f34089r;
         if (z5Var2 != null) {
-            return z5Var2.f42679b;
+            return z5Var2.f42683b;
         }
-        z5 z5Var3 = this.f34097s;
+        z5 z5Var3 = this.f34091s;
         if (z5Var3 != null) {
-            return z5Var3.f42679b;
+            return z5Var3.f42683b;
         }
         return null;
     }
@@ -532,13 +532,13 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
         if (this.N >= 0) {
             return (int) this.N;
         }
-        z5 z5Var = this.f34095r;
-        if (z5Var != null && (i7 = z5Var.f42681e) != 0) {
+        z5 z5Var = this.f34089r;
+        if (z5Var != null && (i7 = z5Var.f42685e) != 0) {
             return i7;
         }
-        z5 z5Var2 = this.f34090n;
+        z5 z5Var2 = this.f34084n;
         if (z5Var2 != null) {
-            return z5Var2.f42681e;
+            return z5Var2.f42685e;
         }
         return 0;
     }
@@ -546,16 +546,16 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f34074a0 = true;
+        this.f34068a0 = true;
     }
 
     public final Bitmap p() {
-        int i7 = this.f34088k0;
-        int i10 = this.f34087j0;
+        int i7 = this.f34082k0;
+        int i10 = this.f34081j0;
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
         Bitmap createBitmap = Bitmap.createBitmap(i7, i10, config);
         Canvas canvas = new Canvas(createBitmap);
-        AnimatedFileNative a10 = AnimatedFileNative.a(this.H.getAbsolutePath(), this.d, this.K, this.I, this.f34101v0, false);
+        AnimatedFileNative a10 = AnimatedFileNative.a(this.H.getAbsolutePath(), this.d, this.K, this.I, this.f34095v0, false);
         if (a10 == null) {
             return createBitmap;
         }
@@ -563,11 +563,11 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
             int[] iArr = this.d;
             this.N0 = Bitmap.createBitmap(Math.max(1, iArr[0]), Math.max(1, iArr[1]), config);
         }
-        a10.c(this.N0, false, this.f34085h0, this.f34086i0, true);
+        a10.c(this.N0, false, this.f34079h0, this.f34080i0, true);
         a10.f();
         createBitmap.eraseColor(0);
         canvas.save();
-        float width = this.f34088k0 / this.N0.getWidth();
+        float width = this.f34082k0 / this.N0.getWidth();
         canvas.scale(width, width);
         canvas.drawBitmap(this.N0, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
@@ -576,21 +576,21 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
 
     public final Bitmap q(long j3, boolean z10) {
         int c10;
-        if (this.f34106y && this.f34081e0 != null) {
-            AnimatedFileDrawableStream animatedFileDrawableStream = this.f34101v0;
+        if (this.f34100y && this.f34075e0 != null) {
+            AnimatedFileDrawableStream animatedFileDrawableStream = this.f34095v0;
             if (animatedFileDrawableStream != null) {
                 animatedFileDrawableStream.b(false);
-                this.f34101v0.d();
+                this.f34095v0.d();
             }
             if (!z10) {
-                this.f34081e0.g(j3, z10);
+                this.f34075e0.g(j3, z10);
             }
             int[] iArr = this.d;
             Bitmap createBitmap = Bitmap.createBitmap(iArr[0], iArr[1], Bitmap.Config.ARGB_8888);
             if (z10) {
-                c10 = this.f34081e0.b(j3, createBitmap);
+                c10 = this.f34075e0.b(j3, createBitmap);
             } else {
-                c10 = this.f34081e0.c(createBitmap, true, 0.0f, 0.0f, true);
+                c10 = this.f34075e0.c(createBitmap, true, 0.0f, 0.0f, true);
             }
             if (c10 != 0) {
                 return createBitmap;
@@ -601,29 +601,29 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     }
 
     public final Bitmap r(boolean z10) {
-        if (this.f34081e0 == null) {
-            z5 z5Var = this.f34102w;
+        if (this.f34075e0 == null) {
+            z5 z5Var = this.f34096w;
             if (z5Var != null) {
-                return z5Var.f42679b;
+                return z5Var.f42683b;
             }
             return null;
         }
-        if (this.f34102w == null) {
+        if (this.f34096w == null) {
             if (!this.h.isEmpty()) {
-                this.f34102w = (z5) this.h.remove(0);
+                this.f34096w = (z5) this.h.remove(0);
             } else {
                 int[] iArr = this.d;
-                float f10 = this.f34091n0;
-                this.f34102w = new z5(Bitmap.createBitmap((int) (iArr[0] * f10), (int) (iArr[1] * f10), Bitmap.Config.ARGB_8888));
+                float f10 = this.f34085n0;
+                this.f34096w = new z5(Bitmap.createBitmap((int) (iArr[0] * f10), (int) (iArr[1] * f10), Bitmap.Config.ARGB_8888));
             }
         }
-        this.f34081e0.c(this.f34102w.f42679b, false, this.f34085h0, this.f34086i0, z10);
-        return this.f34102w.f42679b;
+        this.f34075e0.c(this.f34096w.f42683b, false, this.f34079h0, this.f34080i0, z10);
+        return this.f34096w.f42683b;
     }
 
     public final boolean s() {
         if (g()) {
-            if (this.f34090n != null || this.f34095r != null) {
+            if (this.f34084n != null || this.f34089r != null) {
                 return true;
             }
             return false;
@@ -633,8 +633,8 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
 
     @Override
     public final void start() {
-        if (!this.f34078c0 && !this.f34100u0.isEmpty()) {
-            this.f34078c0 = true;
+        if (!this.f34072c0 && !this.f34094u0.isEmpty()) {
+            this.f34072c0 = true;
             this.S0 = false;
             x(false);
             org.telegram.messenger.g0.g3(this.J0);
@@ -649,9 +649,9 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
 
     @Override
     public final void stop() {
-        this.f34078c0 = false;
+        this.f34072c0 = false;
         a6 a6Var = new a6(this, 0);
-        Typeface typeface = org.telegram.messenger.g0.f24118a;
+        Typeface typeface = org.telegram.messenger.g0.f24018a;
         if (Looper.myLooper() != Looper.getMainLooper()) {
             org.telegram.messenger.g0.g3(a6Var);
         } else {
@@ -660,22 +660,22 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     }
 
     public final void t() {
-        Iterator it = this.f34100u0.iterator();
+        Iterator it = this.f34094u0.iterator();
         while (it.hasNext()) {
             ((ImageReceiver) it.next()).invalidate();
         }
     }
 
     public final void u() {
-        if (!this.f34099t0.isEmpty()) {
+        if (!this.f34093t0.isEmpty()) {
             this.L = true;
             return;
         }
         int i7 = 0;
-        this.f34078c0 = false;
-        this.f34079d0 = true;
+        this.f34072c0 = false;
+        this.f34073d0 = true;
         a6 a6Var = new a6(this, 0);
-        Typeface typeface = org.telegram.messenger.g0.f24118a;
+        Typeface typeface = org.telegram.messenger.g0.f24018a;
         if (Looper.myLooper() != Looper.getMainLooper()) {
             org.telegram.messenger.g0.g3(a6Var);
         } else {
@@ -686,27 +686,27 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
             oh0.U0.cancelRunnable(this.E0);
             this.E0 = null;
         }
-        if (this.f34080e == null) {
-            if (this.f34081e0 != null) {
-                this.f34081e0.f();
-                this.f34081e0 = null;
+        if (this.f34074e == null) {
+            if (this.f34075e0 != null) {
+                this.f34075e0.f();
+                this.f34075e0 = null;
             }
             ArrayList arrayList = new ArrayList();
-            z5 z5Var = this.f34090n;
+            z5 z5Var = this.f34084n;
             if (z5Var != null) {
-                arrayList.add(z5Var.f42679b);
+                arrayList.add(z5Var.f42683b);
             }
-            z5 z5Var2 = this.f34095r;
+            z5 z5Var2 = this.f34089r;
             if (z5Var2 != null) {
-                arrayList.add(z5Var2.f42679b);
+                arrayList.add(z5Var2.f42683b);
             }
-            z5 z5Var3 = this.f34097s;
+            z5 z5Var3 = this.f34091s;
             if (z5Var3 != null) {
-                arrayList.add(z5Var3.f42679b);
+                arrayList.add(z5Var3.f42683b);
             }
-            z5 z5Var4 = this.f34102w;
+            z5 z5Var4 = this.f34096w;
             if (z5Var4 != null) {
-                arrayList.add(z5Var4.f42679b);
+                arrayList.add(z5Var4.f42683b);
             }
             ArrayList arrayList2 = this.h;
             int size = arrayList2.size();
@@ -715,28 +715,28 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
                 i7++;
                 z5 z5Var5 = (z5) obj;
                 if (z5Var5 != null) {
-                    arrayList.add(z5Var5.f42679b);
+                    arrayList.add(z5Var5.f42683b);
                 }
             }
             this.h.clear();
-            this.f34090n = null;
-            this.f34095r = null;
-            this.f34097s = null;
-            this.f34102w = null;
-            org.telegram.messenger.r5 r5Var = this.f34084g0;
+            this.f34084n = null;
+            this.f34089r = null;
+            this.f34091s = null;
+            this.f34096w = null;
+            org.telegram.messenger.r5 r5Var = this.f34078g0;
             if (r5Var != null) {
                 r5Var.recycle();
-                this.f34084g0 = null;
+                this.f34078g0 = null;
             }
             getPaint().setShader(null);
             org.telegram.messenger.g0.A2(arrayList);
         } else {
-            this.f34104x = true;
+            this.f34098x = true;
         }
-        AnimatedFileDrawableStream animatedFileDrawableStream = this.f34101v0;
+        AnimatedFileDrawableStream animatedFileDrawableStream = this.f34095v0;
         if (animatedFileDrawableStream != null) {
             animatedFileDrawableStream.b(true);
-            this.f34101v0 = null;
+            this.f34095v0 = null;
         }
         a6 a6Var2 = new a6(this, 2);
         if (Looper.myLooper() != Looper.getMainLooper()) {
@@ -747,16 +747,16 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     }
 
     public final void v(ImageReceiver imageReceiver) {
-        xe.b bVar = this.f34100u0;
+        xe.b bVar = this.f34094u0;
         bVar.remove(imageReceiver);
         if (bVar.isEmpty()) {
-            this.f34108z0 = 0;
+            this.f34102z0 = 0;
         }
         h();
     }
 
     public final void w(View view) {
-        xe.b bVar = this.f34099t0;
+        xe.b bVar = this.f34093t0;
         bVar.remove(view);
         if (bVar.isEmpty()) {
             if (this.L) {
@@ -773,34 +773,34 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     public final void x(boolean z10) {
         a6 a6Var;
         a6 a6Var2;
-        if (this.f34080e == null || z10) {
-            if ((this.f34075b && (this.f34097s == null || (!this.L0 && this.N >= 0))) || this.f34095r == null) {
-                if ((this.f34090n == null || !this.f34082f) && g() && !this.f34104x) {
-                    if ((this.f34078c0 || (this.E && !this.F)) && !this.f34100u0.isEmpty() && !this.D0) {
-                        if (this.f34103w0) {
-                            if (this.f34107y0) {
+        if (this.f34074e == null || z10) {
+            if ((this.f34069b && (this.f34091s == null || (!this.L0 && this.N >= 0))) || this.f34089r == null) {
+                if ((this.f34084n == null || !this.f34076f) && g() && !this.f34098x) {
+                    if ((this.f34072c0 || (this.E && !this.F)) && !this.f34094u0.isEmpty() && !this.D0) {
+                        if (this.f34097w0) {
+                            if (this.f34101y0) {
                                 a6 a6Var3 = this.I0;
-                                this.f34080e = a6Var3;
+                                this.f34074e = a6Var3;
                                 org.telegram.messenger.s5.a(a6Var3);
                             } else {
-                                if (z10 && (a6Var2 = this.f34080e) != null) {
+                                if (z10 && (a6Var2 = this.f34074e) != null) {
                                     X0.remove(a6Var2);
                                 }
                                 ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = X0;
                                 a6 a6Var4 = this.I0;
-                                this.f34080e = a6Var4;
+                                this.f34074e = a6Var4;
                                 scheduledThreadPoolExecutor.execute(a6Var4);
                             }
                         } else {
-                            if (this.f34084g0 == null) {
-                                this.f34084g0 = new org.telegram.messenger.r5("decodeQueue" + this, true);
+                            if (this.f34078g0 == null) {
+                                this.f34078g0 = new org.telegram.messenger.r5("decodeQueue" + this, true);
                             }
-                            if (z10 && (a6Var = this.f34080e) != null) {
-                                this.f34084g0.cancelRunnable(a6Var);
+                            if (z10 && (a6Var = this.f34074e) != null) {
+                                this.f34078g0.cancelRunnable(a6Var);
                             }
-                            org.telegram.messenger.r5 r5Var = this.f34084g0;
+                            org.telegram.messenger.r5 r5Var = this.f34078g0;
                             a6 a6Var5 = this.I0;
-                            this.f34080e = a6Var5;
+                            this.f34074e = a6Var5;
                             r5Var.postRunnable(a6Var5, 0L);
                         }
                         this.L0 = true;
@@ -818,10 +818,10 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
                 this.M = j3;
                 this.N = j3;
                 this.L0 = false;
-                if (this.f34081e0 != null) {
-                    this.f34081e0.e();
+                if (this.f34075e0 != null) {
+                    this.f34075e0.e();
                 }
-                if (this.f34106y && (animatedFileDrawableStream = this.f34101v0) != null) {
+                if (this.f34100y && (animatedFileDrawableStream = this.f34095v0) != null) {
                     animatedFileDrawableStream.b(z10);
                     this.O = z10;
                     if (z10) {
@@ -833,7 +833,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
                 }
                 if (z11 && this.E) {
                     this.F = false;
-                    if (this.f34080e == null) {
+                    if (this.f34074e == null) {
                         x(true);
                     } else {
                         this.G = true;
@@ -853,10 +853,10 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
             return;
         }
         rectF.set(f10, f11, f15, f14);
-        this.f34105x0 = true;
+        this.f34099x0 = true;
     }
 
-    public c6(java.io.File r19, boolean r20, long r21, int r23, org.telegram.tgnet.TLRPC.Document r24, org.telegram.messenger.fc r25, java.lang.Object r26, long r27, int r29, boolean r30, int r31, int r32, bg.f r33, int r34, boolean r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c6.<init>(java.io.File, boolean, long, int, org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.fc, java.lang.Object, long, int, boolean, int, int, bg.f, int, boolean):void");
+    public c6(java.io.File r19, boolean r20, long r21, int r23, org.telegram.tgnet.TLRPC.Document r24, org.telegram.messenger.gc r25, java.lang.Object r26, long r27, int r29, boolean r30, int r31, int r32, bg.f r33, int r34, boolean r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c6.<init>(java.io.File, boolean, long, int, org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.gc, java.lang.Object, long, int, boolean, int, int, bg.f, int, boolean):void");
     }
 }

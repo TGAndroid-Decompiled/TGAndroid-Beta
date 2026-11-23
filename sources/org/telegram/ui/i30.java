@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class i30 extends v4.o {
-    public final f40 f48563b;
+    public final f40 f48567b;
 
     public i30(f40 f40Var) {
-        this.f48563b = f40Var;
+        this.f48567b = f40Var;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class i30 extends v4.o {
         int i13;
         int i14;
         int i15;
-        f40 f40Var = this.f48563b;
+        f40 f40Var = this.f48567b;
         z30 z30Var = f40Var.K1;
-        int i16 = z30Var.f54394x;
+        int i16 = z30Var.f54398x;
         if (i16 >= 0) {
-            int i17 = f40Var.f47493g5;
+            int i17 = f40Var.f47497g5;
             if (i7 == i17 && i10 == i16) {
                 return true;
             }
@@ -32,9 +32,9 @@ public final class i30 extends v4.o {
                 return false;
             }
         }
-        int i18 = z30Var.f54395y;
+        int i18 = z30Var.f54399y;
         if (i18 >= 0) {
-            int i19 = f40Var.f47549t5;
+            int i19 = f40Var.f47553t5;
             if (i7 == i19 && i10 == i18) {
                 return true;
             }
@@ -44,7 +44,7 @@ public final class i30 extends v4.o {
         }
         int i20 = z30Var.E;
         if (i20 >= 0) {
-            int i21 = f40Var.f47554u5;
+            int i21 = f40Var.f47558u5;
             if (i7 == i21 && i10 == i20) {
                 return true;
             }
@@ -54,7 +54,7 @@ public final class i30 extends v4.o {
         }
         int i22 = z30Var.L;
         if (i22 >= 0) {
-            int i23 = f40Var.f47489f5;
+            int i23 = f40Var.f47493f5;
             if (i7 == i23 && i10 == i22) {
                 return true;
             }
@@ -73,7 +73,7 @@ public final class i30 extends v4.o {
             }
         }
         int i26 = z30Var.J;
-        if (i26 >= 0 && i26 == i10 && i7 == f40Var.f47540r5) {
+        if (i26 >= 0 && i26 == i10 && i7 == f40Var.f47544r5) {
             return true;
         }
         int i27 = f40Var.D2;
@@ -81,23 +81,23 @@ public final class i30 extends v4.o {
             return true;
         }
         if (i7 != i27 - 1 && i10 != z30Var.G - 1) {
-            if (i10 >= z30Var.H && i10 < z30Var.I && i7 >= (i15 = f40Var.f47530p5) && i7 < f40Var.f47535q5) {
-                return ((org.telegram.messenger.u3) f40Var.f47576z2.get(i7 - i15)).equals((org.telegram.messenger.u3) f40Var.f47509l2.get(i10 - f40Var.K1.H));
+            if (i10 >= z30Var.H && i10 < z30Var.I && i7 >= (i15 = f40Var.f47534p5) && i7 < f40Var.f47539q5) {
+                return ((org.telegram.messenger.u3) f40Var.f47580z2.get(i7 - i15)).equals((org.telegram.messenger.u3) f40Var.f47513l2.get(i10 - f40Var.K1.H));
             }
-            if (i10 >= z30Var.d && i10 < z30Var.f54388e && i7 >= (i14 = f40Var.f47497h5) && i7 < f40Var.f47501i5) {
-                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) f40Var.f47571y2.get(i7 - i14);
-                if (org.telegram.messenger.fj.B1(groupCallParticipant.peer) != org.telegram.messenger.fj.B1(((TLRPC.GroupCallParticipant) f40Var.V2.f26967g.get(i10 - f40Var.K1.d)).peer) || (i7 != i10 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
+            if (i10 >= z30Var.d && i10 < z30Var.f54392e && i7 >= (i14 = f40Var.f47501h5) && i7 < f40Var.f47505i5) {
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) f40Var.f47575y2.get(i7 - i14);
+                if (org.telegram.messenger.gj.B1(groupCallParticipant.peer) != org.telegram.messenger.gj.B1(((TLRPC.GroupCallParticipant) f40Var.V2.f26954g.get(i10 - f40Var.K1.d)).peer) || (i7 != i10 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
                     return false;
                 }
                 return true;
-            } else if (i10 >= z30Var.f54389f && i10 < z30Var.h && i7 >= (i13 = f40Var.f47504j5) && i7 < f40Var.f47508k5) {
-                return ((Long) f40Var.A2.get(i7 - i13)).equals((Long) f40Var.V2.f26969j.get(i10 - f40Var.K1.f54389f));
+            } else if (i10 >= z30Var.f54393f && i10 < z30Var.h && i7 >= (i13 = f40Var.f47508j5) && i7 < f40Var.f47512k5) {
+                return ((Long) f40Var.A2.get(i7 - i13)).equals((Long) f40Var.V2.f26956j.get(i10 - f40Var.K1.f54393f));
             } else {
-                if (i10 >= z30Var.f54390n && i10 < z30Var.f54391r && i7 >= (i12 = f40Var.f47512l5) && i7 < f40Var.f47517m5) {
-                    return ((Long) f40Var.B2.get(i7 - i12)).equals((Long) f40Var.V2.f26972m.get(i10 - f40Var.K1.f54390n));
+                if (i10 >= z30Var.f54394n && i10 < z30Var.f54395r && i7 >= (i12 = f40Var.f47516l5) && i7 < f40Var.f47521m5) {
+                    return ((Long) f40Var.B2.get(i7 - i12)).equals((Long) f40Var.V2.f26959m.get(i10 - f40Var.K1.f54394n));
                 }
-                if (i10 >= z30Var.f54392s && i10 < z30Var.f54393w && i7 >= (i11 = f40Var.f47521n5) && i7 < f40Var.f47525o5) {
-                    return ((Long) f40Var.C2.get(i7 - i11)).equals((Long) f40Var.V2.f26971l.get(i10 - f40Var.K1.f54392s));
+                if (i10 >= z30Var.f54396s && i10 < z30Var.f54397w && i7 >= (i11 = f40Var.f47525n5) && i7 < f40Var.f47529o5) {
+                    return ((Long) f40Var.C2.get(i7 - i11)).equals((Long) f40Var.V2.f26958l.get(i10 - f40Var.K1.f54396s));
                 }
             }
         }
@@ -106,11 +106,11 @@ public final class i30 extends v4.o {
 
     @Override
     public final int d() {
-        return this.f48563b.K1.G;
+        return this.f48567b.K1.G;
     }
 
     @Override
     public final int e() {
-        return this.f48563b.D2;
+        return this.f48567b.D2;
     }
 }

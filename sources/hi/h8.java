@@ -2,22 +2,22 @@ package hi;
 
 import android.animation.ValueAnimator;
 public final class h8 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f14757a;
-    public final i8 f14758b;
+    public final int f14760a;
+    public final i8 f14761b;
 
     public h8(i8 i8Var, int i7) {
-        this.f14757a = i7;
-        this.f14758b = i8Var;
+        this.f14760a = i7;
+        this.f14761b = i8Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f14757a) {
+        switch (this.f14760a) {
             case 0:
-                i8.a(this.f14758b, valueAnimator);
+                i8.a(this.f14761b, valueAnimator);
                 return;
             default:
-                i8 i8Var = this.f14758b;
+                i8 i8Var = this.f14761b;
                 i8Var.getClass();
                 i8Var.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;

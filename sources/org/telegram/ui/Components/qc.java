@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 public class qc {
-    public int f38874a;
-    public boolean f38875b;
-    public long f38876c;
+    public int f38868a;
+    public boolean f38869b;
+    public long f38870c;
 }

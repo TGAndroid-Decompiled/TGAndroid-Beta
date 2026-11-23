@@ -5,15 +5,15 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.gc;
-import org.telegram.messenger.pc;
+import org.telegram.messenger.hc;
+import org.telegram.messenger.qc;
 import org.telegram.ui.Components.xs;
 public final class m1 extends xs {
     public int N;
     public int O;
     public ArrayList P;
     public final ArrayList Q = new ArrayList();
-    public final boolean R = pc.e(8200);
+    public final boolean R = qc.e(8200);
     public final o1 S;
 
     public m1(o1 o1Var) {
@@ -24,12 +24,12 @@ public final class m1 extends xs {
         if (p5Var != null) {
             p5Var.setAlpha((int) (f10 * 255.0f));
             p5Var.draw(canvas);
-        } else if (n1Var.f15065f != null) {
+        } else if (n1Var.f15068f != null) {
             canvas.save();
-            ImageReceiver imageReceiver = n1Var.f15065f;
-            canvas.clipRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), n1Var.f15065f.A());
-            n1Var.f15065f.setAlpha(f10);
-            n1Var.f15065f.h(canvas, null);
+            ImageReceiver imageReceiver = n1Var.f15068f;
+            canvas.clipRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), n1Var.f15068f.A());
+            n1Var.f15068f.setAlpha(f10);
+            n1Var.f15068f.h(canvas, null);
             canvas.restore();
         }
     }
@@ -73,9 +73,9 @@ public final class m1 extends xs {
                 n1Var.getClass();
                 org.telegram.ui.Components.p5 p5Var = n1Var.d;
                 if (p5Var != null) {
-                    p5Var.setColorFilter(this.S.f15195p3);
+                    p5Var.setColorFilter(this.S.f15198p3);
                 }
-                n1Var.f15067r.h(canvas, n1Var.f15066n[this.L]);
+                n1Var.f15070r.h(canvas, n1Var.f15069n[this.L]);
                 i7++;
             } else {
                 return;
@@ -100,11 +100,11 @@ public final class m1 extends xs {
                 if (p5Var2 != null) {
                     p5Var2.setBounds(rect);
                 }
-                ImageReceiver imageReceiver = n1Var.f15065f;
+                ImageReceiver imageReceiver = n1Var.f15068f;
                 if (imageReceiver != null) {
                     imageReceiver.z0(rect);
                 }
-                PorterDuffColorFilter porterDuffColorFilter = this.S.f15195p3;
+                PorterDuffColorFilter porterDuffColorFilter = this.S.f15198p3;
                 if (porterDuffColorFilter != null && (p5Var = n1Var.d) != null) {
                     p5Var.setColorFilter(porterDuffColorFilter);
                 }
@@ -127,9 +127,9 @@ public final class m1 extends xs {
         while (true) {
             ArrayList arrayList = this.Q;
             if (i7 < arrayList.size()) {
-                gc gcVar = ((n1) arrayList.get(i7)).f15066n[this.L];
-                if (gcVar != null) {
-                    gcVar.a();
+                hc hcVar = ((n1) arrayList.get(i7)).f15069n[this.L];
+                if (hcVar != null) {
+                    hcVar.a();
                 }
                 i7++;
             } else {

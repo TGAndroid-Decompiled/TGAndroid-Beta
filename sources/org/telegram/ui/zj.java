@@ -12,7 +12,7 @@ public final class zj extends fr0 {
     @Override
     public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
         if (f10 > 0.0f) {
-            View view = this.f47820e;
+            View view = this.f47824e;
             if (view instanceof org.telegram.ui.Cells.r1) {
                 org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) view;
                 RectF rectF = org.telegram.messenger.g0.P;

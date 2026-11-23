@@ -4,28 +4,28 @@ import e2.l1;
 import j$.util.Objects;
 import x2.g0;
 public final class a {
-    public final long f20504a;
-    public final l1 f20505b;
-    public final int f20506c;
+    public final long f20507a;
+    public final l1 f20508b;
+    public final int f20509c;
     public final g0 d;
-    public final long f20507e;
-    public final l1 f20508f;
-    public final int f20509g;
+    public final long f20510e;
+    public final l1 f20511f;
+    public final int f20512g;
     public final g0 h;
-    public final long f20510i;
-    public final long f20511j;
+    public final long f20513i;
+    public final long f20514j;
 
     public a(long j3, l1 l1Var, int i7, g0 g0Var, long j10, l1 l1Var2, int i10, g0 g0Var2, long j11, long j12) {
-        this.f20504a = j3;
-        this.f20505b = l1Var;
-        this.f20506c = i7;
+        this.f20507a = j3;
+        this.f20508b = l1Var;
+        this.f20509c = i7;
         this.d = g0Var;
-        this.f20507e = j10;
-        this.f20508f = l1Var2;
-        this.f20509g = i10;
+        this.f20510e = j10;
+        this.f20511f = l1Var2;
+        this.f20512g = i10;
         this.h = g0Var2;
-        this.f20510i = j11;
-        this.f20511j = j12;
+        this.f20513i = j11;
+        this.f20514j = j12;
     }
 
     public final boolean equals(Object obj) {
@@ -34,7 +34,7 @@ public final class a {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f20504a == aVar.f20504a && this.f20506c == aVar.f20506c && this.f20507e == aVar.f20507e && this.f20509g == aVar.f20509g && this.f20510i == aVar.f20510i && this.f20511j == aVar.f20511j && Objects.equals(this.f20505b, aVar.f20505b) && Objects.equals(this.d, aVar.d) && Objects.equals(this.f20508f, aVar.f20508f) && Objects.equals(this.h, aVar.h)) {
+            if (this.f20507a == aVar.f20507a && this.f20509c == aVar.f20509c && this.f20510e == aVar.f20510e && this.f20512g == aVar.f20512g && this.f20513i == aVar.f20513i && this.f20514j == aVar.f20514j && Objects.equals(this.f20508b, aVar.f20508b) && Objects.equals(this.d, aVar.d) && Objects.equals(this.f20511f, aVar.f20511f) && Objects.equals(this.h, aVar.h)) {
                 return true;
             }
         }
@@ -42,6 +42,6 @@ public final class a {
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f20504a), this.f20505b, Integer.valueOf(this.f20506c), this.d, Long.valueOf(this.f20507e), this.f20508f, Integer.valueOf(this.f20509g), this.h, Long.valueOf(this.f20510i), Long.valueOf(this.f20511j));
+        return Objects.hash(Long.valueOf(this.f20507a), this.f20508b, Integer.valueOf(this.f20509c), this.d, Long.valueOf(this.f20510e), this.f20511f, Integer.valueOf(this.f20512g), this.h, Long.valueOf(this.f20513i), Long.valueOf(this.f20514j));
     }
 }

@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.tgnet.TLRPC;
 public final class gw0 extends dk0 {
-    public final Context f35669c;
+    public final Context f35688c;
     public int d;
-    public final SparseArray f35670e = new SparseArray();
-    public final SparseArray f35671f = new SparseArray();
+    public final SparseArray f35689e = new SparseArray();
+    public final SparseArray f35690f = new SparseArray();
     public int h;
-    public int f35672n;
-    public final kw0 f35673r;
+    public int f35691n;
+    public final kw0 f35692r;
 
     public gw0(kw0 kw0Var, Context context) {
-        this.f35673r = kw0Var;
-        this.f35669c = context;
+        this.f35692r = kw0Var;
+        this.f35688c = context;
     }
 
     @Override
@@ -37,9 +37,9 @@ public final class gw0 extends dk0 {
 
     @Override
     public final int d(int i7) {
-        kw0 kw0Var = this.f35673r;
+        kw0 kw0Var = this.f35692r;
         if (kw0Var.R1 != null) {
-            Object obj = this.f35670e.get(i7);
+            Object obj = this.f35689e.get(i7);
             if (obj != null) {
                 if (obj instanceof TLRPC.Document) {
                     return 0;
@@ -60,22 +60,22 @@ public final class gw0 extends dk0 {
         List list;
         int i7;
         int i10;
-        kw0 kw0Var = this.f35673r;
+        kw0 kw0Var = this.f35692r;
         int i11 = 0;
         if (kw0Var.R1 != null) {
             int measuredWidth = kw0Var.n1.getMeasuredWidth();
             if (measuredWidth == 0) {
-                measuredWidth = org.telegram.messenger.g0.f24146q.x;
+                measuredWidth = org.telegram.messenger.g0.f24046q.x;
             }
             int L = measuredWidth / org.telegram.messenger.g0.L(72.0f);
             this.d = L;
             kw0Var.H1.y1(L);
-            SparseArray sparseArray = this.f35670e;
+            SparseArray sparseArray = this.f35689e;
             sparseArray.clear();
-            SparseArray sparseArray2 = this.f35671f;
+            SparseArray sparseArray2 = this.f35690f;
             sparseArray2.clear();
             this.h = 0;
-            this.f35672n = 0;
+            this.f35691n = 0;
             for (int i12 = 0; i12 < kw0Var.R1.size(); i12++) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) kw0Var.R1.get(i12);
                 if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
@@ -87,7 +87,7 @@ public final class gw0 extends dk0 {
                     list = list.subList(0, Math.min(list.size(), this.d));
                 }
                 if (list != null && (!list.isEmpty() || stickerSetCovered.cover != null)) {
-                    this.f35672n++;
+                    this.f35691n++;
                     sparseArray2.put(this.h, stickerSetCovered);
                     int i13 = this.h;
                     this.h = i13 + 1;
@@ -138,7 +138,7 @@ public final class gw0 extends dk0 {
 
     @Override
     public final void s(int i7) {
-        ArrayList arrayList = this.f35673r.T1;
+        ArrayList arrayList = this.f35692r.T1;
         if (arrayList != null) {
             this.h = arrayList.size();
         }
@@ -147,12 +147,12 @@ public final class gw0 extends dk0 {
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        View view = f1Var.f59161a;
-        kw0 kw0Var = this.f35673r;
+        View view = f1Var.f59165a;
+        kw0 kw0Var = this.f35692r;
         ArrayList arrayList = kw0Var.R1;
         if (arrayList != null) {
-            int i10 = f1Var.f59165f;
-            SparseArray sparseArray = this.f35670e;
+            int i10 = f1Var.f59169f;
+            SparseArray sparseArray = this.f35689e;
             if (i10 != 0) {
                 if (i10 != 1) {
                     if (i10 == 2) {
@@ -164,14 +164,14 @@ public final class gw0 extends dk0 {
                 ((org.telegram.ui.Cells.n3) view).setHeight(org.telegram.messenger.g0.L(82.0f));
                 return;
             }
-            ((org.telegram.ui.Cells.a8) view).d((TLRPC.Document) sparseArray.get(i7), null, this.f35671f.get(i7), null, false, false);
+            ((org.telegram.ui.Cells.a8) view).d((TLRPC.Document) sparseArray.get(i7), null, this.f35690f.get(i7), null, false, false);
         } else if (kw0Var.S1 != null) {
-            ((org.telegram.ui.Cells.a8) view).setSticker((org.telegram.messenger.sy) kw0Var.T1.get(i7));
-        } else if (f1Var.f59165f != 3) {
+            ((org.telegram.ui.Cells.a8) view).setSticker((org.telegram.messenger.ty) kw0Var.T1.get(i7));
+        } else if (f1Var.f59169f != 3) {
             org.telegram.ui.Cells.a8 a8Var = (org.telegram.ui.Cells.a8) view;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = kw0Var.N1;
             if (tL_messages_stickerSet != null) {
-                a8Var.d(tL_messages_stickerSet.documents.get(i7), null, kw0Var.N1, null, kw0Var.f37004c2, kw0Var.M1);
+                a8Var.d(tL_messages_stickerSet.documents.get(i7), null, kw0Var.N1, null, kw0Var.f37007c2, kw0Var.M1);
                 a8Var.K.setOnClickListener(new m8(24, this, a8Var));
             }
         }
@@ -181,8 +181,8 @@ public final class gw0 extends dk0 {
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         FrameLayout frameLayout;
         FrameLayout frameLayout2;
-        kw0 kw0Var = this.f35673r;
-        Context context = this.f35669c;
+        kw0 kw0Var = this.f35692r;
+        Context context = this.f35688c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -191,31 +191,31 @@ public final class gw0 extends dk0 {
                     } else {
                         org.telegram.ui.ActionBar.h6 h6Var = kw0Var.J0;
                         ?? frameLayout3 = new FrameLayout(context);
-                        frameLayout3.f35007a = h6Var;
+                        frameLayout3.f35005a = h6Var;
                         View view = new View(context);
-                        frameLayout3.f35009c = view;
+                        frameLayout3.f35007c = view;
                         int L = org.telegram.messenger.g0.L(28.0f);
                         int i10 = org.telegram.ui.ActionBar.m6.Ef;
                         ShapeDrawable d02 = org.telegram.ui.ActionBar.m6.d0(L, org.telegram.ui.ActionBar.m6.r1(0.12f, org.telegram.ui.ActionBar.m6.w0(i10, h6Var)));
-                        frameLayout3.f35008b = d02;
+                        frameLayout3.f35006b = d02;
                         Drawable g10 = i5.c.g(context, 2131231080);
                         org.telegram.ui.ActionBar.t6.x(frameLayout3, g10, i10, h6Var, PorterDuff.Mode.MULTIPLY);
                         oq oqVar = new oq(d02, g10);
                         int L2 = org.telegram.messenger.g0.L(56.0f);
                         int L3 = org.telegram.messenger.g0.L(56.0f);
                         oqVar.h = L2;
-                        oqVar.f38341n = L3;
+                        oqVar.f38335n = L3;
                         int L4 = org.telegram.messenger.g0.L(24.0f);
                         int L5 = org.telegram.messenger.g0.L(24.0f);
-                        oqVar.f38339e = L4;
-                        oqVar.f38340f = L5;
+                        oqVar.f38333e = L4;
+                        oqVar.f38334f = L5;
                         view.setBackground(oqVar);
                         c8.ra.a(view);
                         frameLayout3.addView(view, c8.ma.e(56, 56, 17));
                         frameLayout = frameLayout3;
                     }
                 } else {
-                    frameLayout2 = new org.telegram.ui.Cells.v3(8, this.f35669c, kw0Var.J0, true, false);
+                    frameLayout2 = new org.telegram.ui.Cells.v3(8, this.f35688c, kw0Var.J0, true, false);
                 }
             } else {
                 frameLayout2 = new org.telegram.ui.Cells.n3(context);

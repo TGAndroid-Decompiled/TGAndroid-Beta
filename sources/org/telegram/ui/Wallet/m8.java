@@ -1,9 +1,9 @@
 package org.telegram.ui.Wallet;
 public final class m8 implements Runnable {
-    public final r8 f44631a;
+    public final r8 f44635a;
 
     public m8(r8 r8Var) {
-        this.f44631a = r8Var;
+        this.f44635a = r8Var;
     }
 
     @Override

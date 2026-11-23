@@ -3,25 +3,25 @@ package m2;
 import e2.l1;
 import x2.g0;
 public final class e {
-    public final String f20520a;
-    public int f20521b;
-    public long f20522c;
+    public final String f20523a;
+    public int f20524b;
+    public long f20525c;
     public final g0 d;
-    public boolean f20523e;
-    public boolean f20524f;
-    public final f f20525g;
+    public boolean f20526e;
+    public boolean f20527f;
+    public final f f20528g;
 
     public e(f fVar, String str, int i7, g0 g0Var) {
         long j3;
-        this.f20525g = fVar;
-        this.f20520a = str;
-        this.f20521b = i7;
+        this.f20528g = fVar;
+        this.f20523a = str;
+        this.f20524b = i7;
         if (g0Var == null) {
             j3 = -1;
         } else {
             j3 = g0Var.d;
         }
-        this.f20522c = j3;
+        this.f20525c = j3;
         if (g0Var != null && g0Var.b()) {
             this.d = g0Var;
         }
@@ -29,35 +29,35 @@ public final class e {
 
     public final boolean a(a aVar) {
         g0 g0Var = aVar.d;
-        l1 l1Var = aVar.f20505b;
+        l1 l1Var = aVar.f20508b;
         if (g0Var == null) {
-            if (this.f20521b != aVar.f20506c) {
+            if (this.f20524b != aVar.f20509c) {
                 return true;
             }
             return false;
         }
-        long j3 = this.f20522c;
+        long j3 = this.f20525c;
         if (j3 != -1) {
             if (g0Var.d <= j3) {
                 g0 g0Var2 = this.d;
                 if (g0Var2 != null) {
-                    int i7 = g0Var2.f60130b;
-                    int b10 = l1Var.b(g0Var.f60129a);
-                    int b11 = l1Var.b(g0Var2.f60129a);
+                    int i7 = g0Var2.f60134b;
+                    int b10 = l1Var.b(g0Var.f60133a);
+                    int b11 = l1Var.b(g0Var2.f60133a);
                     if (g0Var.d >= g0Var2.d && b10 >= b11) {
                         if (b10 <= b11) {
                             if (g0Var.b()) {
-                                int i10 = g0Var.f60130b;
-                                int i11 = g0Var.f60131c;
+                                int i10 = g0Var.f60134b;
+                                int i11 = g0Var.f60135c;
                                 if (i10 <= i7) {
-                                    if (i10 == i7 && i11 > g0Var2.f60131c) {
+                                    if (i10 == i7 && i11 > g0Var2.f60135c) {
                                         return true;
                                     }
                                     return false;
                                 }
                                 return true;
                             }
-                            int i12 = g0Var.f60132e;
+                            int i12 = g0Var.f60136e;
                             if (i12 == -1 || i12 > i7) {
                                 return true;
                             }

@@ -12,9 +12,9 @@ import java.util.List;
 import org.telegram.ui.Components.jn;
 import w7.s;
 public final class c extends da {
-    public final x f59073a = new x();
-    public final d4.f f59074b = new d4.f();
-    public k0 f59075c;
+    public final x f59077a = new x();
+    public final d4.f f59078b = new d4.f();
+    public k0 f59079c;
 
     @Override
     public final q0 b(o3.a aVar, ByteBuffer byteBuffer) {
@@ -29,17 +29,17 @@ public final class c extends da {
         boolean z16;
         long j10;
         long j11;
-        k0 k0Var = this.f59075c;
-        if (k0Var == null || aVar.f21703r != k0Var.e()) {
-            k0 k0Var2 = new k0(aVar.f18156e);
-            this.f59075c = k0Var2;
-            k0Var2.a(aVar.f18156e - aVar.f21703r);
+        k0 k0Var = this.f59079c;
+        if (k0Var == null || aVar.f21706r != k0Var.e()) {
+            k0 k0Var2 = new k0(aVar.f18159e);
+            this.f59079c = k0Var2;
+            k0Var2.a(aVar.f18159e - aVar.f21706r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        x xVar = this.f59073a;
+        x xVar = this.f59077a;
         xVar.L(limit, array);
-        d4.f fVar = this.f59074b;
+        d4.f fVar = this.f59078b;
         fVar.H(limit, array);
         fVar.L(39);
         long j12 = (fVar.j(1) << 32) | fVar.j(32);
@@ -54,12 +54,12 @@ public final class c extends da {
                         if (j14 != 6) {
                             obj = null;
                         } else {
-                            k0 k0Var3 = this.f59075c;
+                            k0 k0Var3 = this.f59079c;
                             long d = a.d(j12, xVar);
                             obj = new a(d, 1, k0Var3.b(d));
                         }
                     } else {
-                        k0 k0Var4 = this.f59075c;
+                        k0 k0Var4 = this.f59079c;
                         xVar.C();
                         if ((xVar.A() & 128) != 0) {
                             z13 = true;

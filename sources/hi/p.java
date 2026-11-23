@@ -1,21 +1,21 @@
 package hi;
 public final class p implements Runnable {
-    public final int f15240a;
-    public final ia f15241b;
+    public final int f15243a;
+    public final ia f15244b;
 
     public p(ia iaVar, int i7) {
-        this.f15240a = i7;
-        this.f15241b = iaVar;
+        this.f15243a = i7;
+        this.f15244b = iaVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f15240a) {
+        switch (this.f15243a) {
             case 0:
-                this.f15241b.n();
+                this.f15244b.n();
                 return;
             case 1:
-                ia iaVar = this.f15241b;
+                ia iaVar = this.f15244b;
                 iaVar.K0 = false;
                 iaVar.L0 = Integer.MIN_VALUE;
                 iaVar.invalidate();
@@ -23,7 +23,7 @@ public final class p implements Runnable {
                 iaVar.T0.setVisibility(0);
                 return;
             default:
-                sa saVar = this.f15241b.S1;
+                sa saVar = this.f15244b.S1;
                 ga gaVar = saVar.Y0;
                 if (gaVar != null) {
                     gaVar.P = false;

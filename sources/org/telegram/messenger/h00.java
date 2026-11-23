@@ -1,52 +1,44 @@
 package org.telegram.messenger;
+public final class h00 implements Runnable {
+    public final int f24342a;
+    public final a10 f24343b;
+    public final String f24344c;
+    public final gj d;
+    public final long f24345e;
+    public final int f24346f;
 
-import android.icu.text.Collator;
-import java.util.Comparator;
-import java.util.List;
-public final class h00 implements Comparator {
-    public final int f24365a;
-    public final Object f24366b;
-
-    public h00(Object obj, int i7) {
-        this.f24365a = i7;
-        this.f24366b = obj;
+    public h00(a10 a10Var, String str, gj gjVar, long j3, int i7, int i10) {
+        this.f24342a = i10;
+        this.f24343b = a10Var;
+        this.f24344c = str;
+        this.d = gjVar;
+        this.f24345e = j3;
+        this.f24346f = i7;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f24365a) {
+    public final void run() {
+        switch (this.f24342a) {
             case 0:
-                return z00.a((Collator) this.f24366b, (s00) obj, (s00) obj2);
+                a10 a10Var = this.f24343b;
+                gj gjVar = this.d;
+                long j3 = this.f24345e;
+                int i7 = this.f24346f;
+                c6.d(this.f24344c, new k00(a10Var, gjVar, j3, i7), new k00(a10Var, gjVar, j3, i7), false);
+                return;
             default:
-                cd cdVar = (cd) this.f24366b;
-                cd cdVar2 = (cd) obj;
-                cd cdVar3 = (cd) obj2;
-                if (cdVar2 != cdVar) {
-                    if (cdVar3 != cdVar) {
-                        List list = z00.N;
-                        int indexOf = list.indexOf(cdVar2.f23360f);
-                        int indexOf2 = list.indexOf(cdVar3.f23360f);
-                        if (indexOf >= 0 && indexOf2 >= 0) {
-                            return indexOf - indexOf2;
-                        }
-                        if (indexOf < 0) {
-                            if (indexOf2 < 0) {
-                                int i7 = cdVar2.f23364k;
-                                int i10 = cdVar3.f23364k;
-                                if (i7 == i10) {
-                                    return cdVar2.f23356a.compareTo(cdVar3.f23356a);
-                                }
-                                if (i7 <= i10) {
-                                    if (i7 >= i10) {
-                                        return 0;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    return 1;
+                a10 a10Var2 = this.f24343b;
+                a10Var2.getClass();
+                String str = this.f24344c;
+                if (str == null) {
+                    str = "und";
                 }
-                return -1;
+                gj gjVar2 = this.d;
+                gjVar2.f24213k.originalLanguage = str;
+                a10Var2.getMessagesStorage().X1(this.f24345e, gjVar2.f24213k);
+                a10Var2.f22849w.remove(Integer.valueOf(this.f24346f));
+                a10Var2.f(gjVar2);
+                return;
         }
     }
 }

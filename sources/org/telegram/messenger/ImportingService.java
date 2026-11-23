@@ -3,19 +3,19 @@ package org.telegram.messenger;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-public class ImportingService extends Service implements fs {
-    public e0.q f22707a;
+public class ImportingService extends Service implements gs {
+    public e0.q f22710a;
 
     public ImportingService() {
         for (int i7 = 0; i7 < 4; i7++) {
-            ks.f(i7).b(this, ks.f25233v1);
-            ks.f(i7).b(this, ks.f25240w1);
+            ls.f(i7).b(this, ls.f25399v1);
+            ls.f(i7).b(this, ls.f25406w1);
         }
     }
 
     public static boolean a() {
         for (int i7 = 0; i7 < 4; i7++) {
-            if (zy.C(i7).G.size() != 0) {
+            if (az.C(i7).G.size() != 0) {
                 return true;
             }
         }
@@ -24,7 +24,7 @@ public class ImportingService extends Service implements fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if ((i7 == ks.f25233v1 || i7 == ks.f25240w1) && !a() && !a()) {
+        if ((i7 == ls.f25399v1 || i7 == ls.f25406w1) && !a() && !a()) {
             stopSelf();
         }
     }
@@ -41,12 +41,12 @@ public class ImportingService extends Service implements fs {
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new e0.i0(t0.f26941b).b(5, null);
+        new e0.i0(t0.f26931b).b(5, null);
         for (int i7 = 0; i7 < 4; i7++) {
-            ks.f(i7).n(this, ks.f25233v1);
-            ks.f(i7).n(this, ks.f25240w1);
+            ls.f(i7).n(this, ls.f25399v1);
+            ls.f(i7).n(this, ls.f25406w1);
         }
-        if (s2.f26749a) {
+        if (s2.f26730a) {
             a8.b("destroy import service");
         }
     }
@@ -55,50 +55,50 @@ public class ImportingService extends Service implements fs {
     public final int onStartCommand(Intent intent, int i7, int i10) {
         if (!a()) {
             for (int i11 = 0; i11 < 4; i11++) {
-                if (zy.C(i11).E.m() == 0) {
+                if (az.C(i11).E.m() == 0) {
                 }
             }
             stopSelf();
             return 2;
         }
-        if (s2.f26749a) {
+        if (s2.f26730a) {
             a8.b("start import service");
         }
-        if (this.f22707a == null) {
-            xs.i();
-            e0.q qVar = new e0.q(t0.f26941b, null);
-            this.f22707a = qVar;
+        if (this.f22710a == null) {
+            ys.i();
+            e0.q qVar = new e0.q(t0.f26931b, null);
+            this.f22710a = qVar;
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
-            e0.q qVar2 = this.f22707a;
-            qVar2.f10295y = xs.f27984k0;
-            qVar2.g(gd.N0(2131689472, null));
+            e0.q qVar2 = this.f22710a;
+            qVar2.f10298y = ys.f28168k0;
+            qVar2.g(hd.N0(2131689472, null));
             int i12 = 0;
             while (true) {
                 if (i12 < 4) {
-                    if (zy.C(i12).E.m() != 0) {
-                        this.f22707a.p(gd.N0(2131749074, null));
-                        this.f22707a.f(gd.N0(2131749074, null));
+                    if (az.C(i12).E.m() != 0) {
+                        this.f22710a.p(hd.N0(2131749074, null));
+                        this.f22710a.f(hd.N0(2131749074, null));
                         break;
                     }
                     i12++;
                 } else {
-                    this.f22707a.p(gd.N0(2131749073, null));
-                    this.f22707a.f(gd.N0(2131749073, null));
+                    this.f22710a.p(hd.N0(2131749073, null));
+                    this.f22710a.f(hd.N0(2131749073, null));
                     break;
                 }
             }
         }
-        e0.q qVar3 = this.f22707a;
-        qVar3.f10285n = 100;
-        qVar3.f10286o = 0;
-        qVar3.f10287p = true;
+        e0.q qVar3 = this.f22710a;
+        qVar3.f10288n = 100;
+        qVar3.f10289o = 0;
+        qVar3.f10290p = true;
         try {
             startForeground(5, qVar3.b());
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
-        new e0.i0(t0.f26941b).e(null, 5, this.f22707a.b());
+        new e0.i0(t0.f26931b).e(null, 5, this.f22710a.b());
         return 2;
     }
 

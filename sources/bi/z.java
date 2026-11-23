@@ -6,13 +6,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ma;
 import org.json.JSONObject;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.q9;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
+import org.telegram.messenger.r10;
+import org.telegram.messenger.r9;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -21,20 +21,20 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.cb;
 import org.telegram.ui.Components.lc;
-public final class z implements q10 {
-    public final int f4316a = 2;
-    public final int f4317b;
-    public final long f4318c;
+public final class z implements r10 {
+    public final int f4319a = 2;
+    public final int f4320b;
+    public final long f4321c;
     public final Object d;
-    public final Object f4319e;
-    public final Object f4320f;
+    public final Object f4322e;
+    public final Object f4323f;
 
     public z(int i7, long j3, TLRPC.Photo photo, Context context, fi.b bVar) {
-        this.f4317b = i7;
-        this.f4318c = j3;
-        this.f4319e = photo;
+        this.f4320b = i7;
+        this.f4321c = j3;
+        this.f4322e = photo;
         this.d = context;
-        this.f4320f = bVar;
+        this.f4323f = bVar;
     }
 
     @Override
@@ -47,54 +47,54 @@ public final class z implements q10 {
         TLObject O02;
         int i13;
         int i14;
-        int i15 = this.f4316a;
-        long j3 = this.f4318c;
-        int i16 = this.f4317b;
-        Object obj3 = this.f4320f;
-        Object obj4 = this.f4319e;
+        int i15 = this.f4319a;
+        long j3 = this.f4321c;
+        int i16 = this.f4320b;
+        Object obj3 = this.f4323f;
+        Object obj4 = this.f4322e;
         Object obj5 = this.d;
         switch (i15) {
             case 0:
                 Context context = (Context) obj5;
                 org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj4;
                 Runnable runnable = (Runnable) obj3;
-                q9 q9Var = (q9) obj;
+                r9 r9Var = (r9) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (q9Var != null) {
-                    int i17 = this.f4317b;
-                    j10.i(i17);
-                    long o4 = org.telegram.messenger.n5.o(q9Var.f26399e.peer);
-                    long j10 = this.f4318c;
+                if (r9Var != null) {
+                    int i17 = this.f4320b;
+                    k10.i(i17);
+                    long o4 = org.telegram.messenger.n5.o(r9Var.f26582e.peer);
+                    long j10 = this.f4321c;
                     if (j10 != o4 && j10 != 0 && o4 != 0) {
-                        e0 e0Var = new e0(context, i17, q9Var, j10, runnable);
+                        e0 e0Var = new e0(context, i17, r9Var, j10, runnable);
                         if (i10 >= 0) {
-                            O0 = mp.u1(i17).c2(Long.valueOf(o4));
+                            O0 = np.u1(i17).c2(Long.valueOf(o4));
                             i11 = 0;
                         } else {
                             i11 = 0;
-                            O0 = mp.u1(i17).O0(Long.valueOf(-o4));
+                            O0 = np.u1(i17).O0(Long.valueOf(-o4));
                         }
                         if (i7 >= 0) {
-                            O02 = mp.u1(i17).c2(Long.valueOf(j10));
+                            O02 = np.u1(i17).c2(Long.valueOf(j10));
                             i12 = i11;
                         } else {
                             i12 = i11;
-                            O02 = mp.u1(i17).O0(Long.valueOf(-j10));
+                            O02 = np.u1(i17).O0(Long.valueOf(-j10));
                         }
                         LinearLayout g10 = org.telegram.messenger.f3.g(context, 1);
                         g10.addView(new di.c6(context, O0, O02), ma.t(-1, -2, 48, 0, -4, 0, 0));
                         TextView textView = new TextView(context);
-                        ks.i(textView);
-                        textView.setText(gd.N0(2131750288, null));
-                        int i18 = org.telegram.ui.ActionBar.m6.f29486j5;
+                        ls.i(textView);
+                        textView.setText(hd.N0(2131750288, null));
+                        int i18 = org.telegram.ui.ActionBar.m6.f29489j5;
                         org.telegram.messenger.f3.l(textView, i18, h6Var, 1, 20.0f);
-                        if (gd.f24241a0) {
+                        if (hd.f24444a0) {
                             i13 = 5;
                         } else {
                             i13 = 3;
                         }
                         textView.setGravity(i13);
-                        if (gd.f24241a0) {
+                        if (hd.f24444a0) {
                             i14 = 5;
                         } else {
                             i14 = 3;
@@ -112,17 +112,17 @@ public final class z implements q10 {
                         g10.addView(textView2, ma.t(-1, -2, 48, 24, 4, 24, 4));
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(i12, context, h6Var);
                         alertDialog$Builder.o(g10);
-                        alertDialog$Builder.k(gd.N0(2131751759, null), new a1.c(e0Var, 13));
-                        alertDialog$Builder.h(gd.N0(2131752577, null), null);
-                        alertDialog$Builder.f28774a.show();
+                        alertDialog$Builder.k(hd.N0(2131751759, null), new a1.c(e0Var, 13));
+                        alertDialog$Builder.h(hd.N0(2131752577, null), null);
+                        alertDialog$Builder.f28777a.show();
                         return;
-                    } else if (q9Var.f26399e.bid_date > 0 && !q9Var.f()) {
-                        y yVar = new y(context, h6Var, null, q9Var);
-                        yVar.f4265j2 = runnable;
+                    } else if (r9Var.f26582e.bid_date > 0 && !r9Var.f()) {
+                        y yVar = new y(context, h6Var, null, r9Var);
+                        yVar.f4286j2 = runnable;
                         yVar.show();
                         return;
                     } else {
-                        new m0(context, h6Var, j10, q9Var.d, runnable).show();
+                        new m0(context, h6Var, j10, r9Var.d, runnable).show();
                         return;
                     }
                 }
@@ -132,12 +132,12 @@ public final class z implements q10 {
                 ci.n0 n0Var = (ci.n0) obj3;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                if (o0Var.f5766x == ((int[]) obj4)[0]) {
-                    o0Var.f5766x = 0;
+                if (o0Var.f5769x == ((int[]) obj4)[0]) {
+                    o0Var.f5769x = 0;
                 }
                 if (n0Var != null && ci.o0.h(i16).get(j3) == n0Var) {
                     if (tL_error2 == null) {
-                        n0Var.f5753b = SystemClock.elapsedRealtime();
+                        n0Var.f5756b = SystemClock.elapsedRealtime();
                     } else {
                         ci.o0.h(i16).remove(j3);
                     }
@@ -145,9 +145,9 @@ public final class z implements q10 {
                 if (tL_error2 != null) {
                     org.telegram.messenger.a8.d("QrShare: setShareTheme " + tL_error2.text);
                     if (!o0Var.F) {
-                        ci.z0 z0Var = o0Var.f5758b;
+                        ci.z0 z0Var = o0Var.f5761b;
                         z0Var.getClass();
-                        z0Var.d1(2131232438, gd.N0(2131751093, null), null);
+                        z0Var.d1(2131232438, hd.N0(2131751093, null), null);
                         return;
                     }
                     return;
@@ -160,9 +160,9 @@ public final class z implements q10 {
                 Integer num = (Integer) obj;
                 String str = (String) obj2;
                 TL_account.reportProfilePhoto reportprofilephoto = new TL_account.reportProfilePhoto();
-                reportprofilephoto.peer = mp.u1(i16).l1(j3);
+                reportprofilephoto.peer = np.u1(i16).l1(j3);
                 TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputPhoto.f28450id = photo.f28455id;
+                tL_inputPhoto.f28453id = photo.f28458id;
                 tL_inputPhoto.file_reference = photo.file_reference;
                 tL_inputPhoto.access_hash = photo.access_hash;
                 reportprofilephoto.photo_id = tL_inputPhoto;
@@ -185,49 +185,49 @@ public final class z implements q10 {
                 return;
             default:
                 org.telegram.ui.Wallet.l2 l2Var = (org.telegram.ui.Wallet.l2) obj5;
-                x10 x10Var = (x10) obj4;
+                y10 y10Var = (y10) obj4;
                 JSONObject jSONObject = (JSONObject) obj3;
                 TLRPC.Bool bool2 = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 if (tL_error3 == null && (bool2 instanceof TLRPC.TL_boolTrue)) {
                     boolean optBoolean = jSONObject.optBoolean("disconnect");
-                    long j11 = this.f4318c;
-                    int i19 = this.f4317b;
+                    long j11 = this.f4321c;
+                    int i19 = this.f4320b;
                     if (optBoolean) {
                         TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
                         tonconnectclosesession.session_id = j11;
-                        l2Var.f44523f.sendRequestTyped(tonconnectclosesession, new d3.b(1), new org.telegram.ui.Wallet.w1(l2Var, x10Var, j11, i19, 1));
+                        l2Var.f44527f.sendRequestTyped(tonconnectclosesession, new d3.b(1), new org.telegram.ui.Wallet.w1(l2Var, y10Var, j11, i19, 1));
                         return;
                     }
-                    l2Var.e(i19, j11, x10Var);
+                    l2Var.e(i19, j11, y10Var);
                     return;
                 }
-                x10Var.a(org.telegram.ui.Wallet.l2.z(tL_error3, "submitResponse"));
+                y10Var.a(org.telegram.ui.Wallet.l2.z(tL_error3, "submitResponse"));
                 return;
         }
     }
 
     public z(Context context, org.telegram.ui.ActionBar.h6 h6Var, int i7, long j3, Runnable runnable) {
         this.d = context;
-        this.f4319e = h6Var;
-        this.f4317b = i7;
-        this.f4318c = j3;
-        this.f4320f = runnable;
+        this.f4322e = h6Var;
+        this.f4320b = i7;
+        this.f4321c = j3;
+        this.f4323f = runnable;
     }
 
     public z(ci.o0 o0Var, int[] iArr, ci.n0 n0Var, int i7, long j3) {
         this.d = o0Var;
-        this.f4319e = iArr;
-        this.f4320f = n0Var;
-        this.f4317b = i7;
-        this.f4318c = j3;
+        this.f4322e = iArr;
+        this.f4323f = n0Var;
+        this.f4320b = i7;
+        this.f4321c = j3;
     }
 
-    public z(org.telegram.ui.Wallet.l2 l2Var, x10 x10Var, JSONObject jSONObject, long j3, int i7) {
+    public z(org.telegram.ui.Wallet.l2 l2Var, y10 y10Var, JSONObject jSONObject, long j3, int i7) {
         this.d = l2Var;
-        this.f4319e = x10Var;
-        this.f4320f = jSONObject;
-        this.f4318c = j3;
-        this.f4317b = i7;
+        this.f4322e = y10Var;
+        this.f4323f = jSONObject;
+        this.f4321c = j3;
+        this.f4320b = i7;
     }
 }

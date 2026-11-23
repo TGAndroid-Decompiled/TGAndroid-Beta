@@ -7,43 +7,43 @@ import h9.h2;
 import h9.t0;
 import java.util.HashMap;
 public final class a implements u {
-    public final d f56783a;
+    public final d f56787a;
 
     public a(d dVar) {
-        this.f56783a = dVar;
+        this.f56787a = dVar;
     }
 
     @Override
     public final void a() {
-        this.f56783a.f56801e.remove(this);
+        this.f56787a.f56805e.remove(this);
     }
 
     @Override
     public final boolean d(Uri uri, b3.j jVar, boolean z10) {
         c cVar;
-        d dVar = this.f56783a;
+        d dVar = this.f56787a;
         HashMap hashMap = dVar.d;
         if (dVar.H == null) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             c cVar2 = (c) hashMap.get(uri);
             cVar2.getClass();
-            w wVar = cVar2.f56795a;
-            int size = wVar.f56947b.size();
-            h2 it = t0.q(wVar.f56947b.values()).iterator();
+            w wVar = cVar2.f56799a;
+            int size = wVar.f56951b.size();
+            h2 it = t0.q(wVar.f56951b.values()).iterator();
             int i7 = 0;
             while (it.hasNext()) {
                 Uri uri2 = (Uri) it.next();
                 c cVar3 = (c) hashMap.get(uri2);
                 if (cVar3 != null) {
-                    b bVar = (b) p5.c.i(cVar3.f56796b, uri2, uri2);
+                    b bVar = (b) p5.c.i(cVar3.f56800b, uri2, uri2);
                     bVar.getClass();
-                    if (elapsedRealtime <= bVar.f56790r) {
+                    if (elapsedRealtime <= bVar.f56794r) {
                         i7++;
                     }
                 }
             }
-            int size2 = dVar.f56807x.size();
-            g0 listIterator = dVar.f56807x.listIterator(0);
+            int size2 = dVar.f56811x.size();
+            g0 listIterator = dVar.f56811x.listIterator(0);
             int i10 = 0;
             while (listIterator.hasNext()) {
                 if (dVar.e((w) listIterator.next(), elapsedRealtime)) {
@@ -51,10 +51,10 @@ public final class a implements u {
                 }
             }
             b3.h hVar = new b3.h(size, i7, size2, i10);
-            dVar.f56800c.getClass();
+            dVar.f56804c.getClass();
             b3.i Q4 = qb.a.Q4(hVar, jVar);
             if (Q4 != null && (cVar = (c) hashMap.get(uri)) != null) {
-                return c.c(cVar, uri, Q4.f2912b);
+                return c.c(cVar, uri, Q4.f2919b);
             }
         }
         return false;

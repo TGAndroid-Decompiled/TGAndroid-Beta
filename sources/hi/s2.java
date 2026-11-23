@@ -9,20 +9,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.nr;
 import org.telegram.ui.cn0;
 import org.telegram.ui.hf0;
 public final class s2 extends org.telegram.ui.ActionBar.m0 {
-    public final int f15364a;
-    public Object f15365b;
-    public final Object f15366c;
+    public final int f15367a;
+    public Object f15368b;
+    public final Object f15369c;
 
     public s2(d3 d3Var) {
-        this.f15364a = 0;
-        this.f15366c = d3Var;
+        this.f15367a = 0;
+        this.f15369c = d3Var;
     }
 
     public static boolean n(String str, String str2) {
@@ -44,9 +44,9 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
 
     @Override
     public boolean b() {
-        switch (this.f15364a) {
+        switch (this.f15367a) {
             case 1:
-                ((cn0) this.f15366c).finishFragment();
+                ((cn0) this.f15369c).finishFragment();
                 return false;
             default:
                 return super.b();
@@ -56,14 +56,14 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
     @Override
     public void h() {
         int i7;
-        int i10 = this.f15364a;
-        Object obj = this.f15366c;
+        int i10 = this.f15367a;
+        Object obj = this.f15369c;
         switch (i10) {
             case 0:
                 d3 d3Var = (d3) obj;
                 di.b1 b1Var = d3Var.d;
                 u2 u2Var = d3Var.G;
-                AnimatorSet animatorSet = (AnimatorSet) this.f15365b;
+                AnimatorSet animatorSet = (AnimatorSet) this.f15368b;
                 if (animatorSet != null) {
                     animatorSet.cancel();
                 }
@@ -89,62 +89,62 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
                 ofFloat.addUpdateListener(new r2(this, 1));
                 arrayList.add(ofFloat);
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f15365b = animatorSet2;
+                this.f15368b = animatorSet2;
                 animatorSet2.setDuration(320L);
-                ((AnimatorSet) this.f15365b).setInterpolator(nr.h);
-                ((AnimatorSet) this.f15365b).playTogether(arrayList);
-                ((AnimatorSet) this.f15365b).addListener(new ah.l(4, this, searchField));
-                ((AnimatorSet) this.f15365b).start();
+                ((AnimatorSet) this.f15368b).setInterpolator(nr.h);
+                ((AnimatorSet) this.f15368b).playTogether(arrayList);
+                ((AnimatorSet) this.f15368b).addListener(new ah.l(4, this, searchField));
+                ((AnimatorSet) this.f15368b).start();
                 return;
             case 1:
             default:
                 return;
             case 2:
                 org.telegram.ui.web.m mVar = (org.telegram.ui.web.m) obj;
-                mVar.f53233w = null;
-                org.telegram.messenger.g0.r((oi.c2) this.f15365b);
-                org.telegram.ui.web.i iVar = mVar.f53229f;
+                mVar.f53237w = null;
+                org.telegram.messenger.g0.r((oi.c2) this.f15368b);
+                org.telegram.ui.web.i iVar = mVar.f53233f;
                 if (iVar != null) {
                     iVar.c();
-                    mVar.f53229f = null;
+                    mVar.f53233f = null;
                 }
-                bi.g6 g6Var = mVar.f34683a;
-                if (g6Var != null) {
-                    g6Var.f35796g3.O(true);
-                    mVar.f34683a.f35795f3.h1(0, 0);
+                bi.f6 f6Var = mVar.f34681a;
+                if (f6Var != null) {
+                    f6Var.f35790g3.O(true);
+                    mVar.f34681a.f35789f3.h1(0, 0);
                     return;
                 }
                 return;
             case 3:
                 org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) obj;
-                x0Var.f53394r = null;
-                x0Var.f53393n = false;
-                org.telegram.messenger.g0.r((oi.c2) this.f15365b);
-                bi.g6 g6Var2 = x0Var.f34683a;
-                if (g6Var2 != null) {
-                    g6Var2.f35796g3.O(true);
-                    x0Var.f34683a.f35795f3.h1(0, 0);
+                x0Var.f53398r = null;
+                x0Var.f53397n = false;
+                org.telegram.messenger.g0.r((oi.c2) this.f15368b);
+                bi.f6 f6Var2 = x0Var.f34681a;
+                if (f6Var2 != null) {
+                    f6Var2.f35790g3.O(true);
+                    x0Var.f34681a.f35789f3.h1(0, 0);
                 }
-                xh.l lVar = x0Var.f53398y.d;
-                if (TextUtils.isEmpty(x0Var.f53394r)) {
-                    i7 = 2131742654;
+                xh.l lVar = x0Var.f53402y.d;
+                if (TextUtils.isEmpty(x0Var.f53398r)) {
+                    i7 = 2131742652;
                 } else {
-                    i7 = 2131742653;
+                    i7 = 2131742651;
                 }
-                lVar.setText(gd.N0(i7, null));
+                lVar.setText(hd.N0(i7, null));
                 return;
         }
     }
 
     @Override
     public final void i() {
-        switch (this.f15364a) {
+        switch (this.f15367a) {
             case 0:
-                d3 d3Var = (d3) this.f15366c;
+                d3 d3Var = (d3) this.f15369c;
                 di.b1 b1Var = d3Var.d;
                 FrameLayout frameLayout = d3Var.h;
                 u2 u2Var = d3Var.G;
-                AnimatorSet animatorSet = (AnimatorSet) this.f15365b;
+                AnimatorSet animatorSet = (AnimatorSet) this.f15368b;
                 if (animatorSet != null) {
                     animatorSet.cancel();
                 }
@@ -167,17 +167,17 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
                 arrayList.add(ObjectAnimator.ofFloat(b1Var, property3, 0.0f));
                 b1Var.setFastScrollVisible(false);
                 arrayList.add(ObjectAnimator.ofFloat(frameLayout, property3, 1.0f));
-                d3Var.f14501s.setVisibility(0);
+                d3Var.f14504s.setVisibility(0);
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new r2(this, 0));
                 arrayList.add(ofFloat);
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f15365b = animatorSet2;
+                this.f15368b = animatorSet2;
                 animatorSet2.setDuration(320L);
-                ((AnimatorSet) this.f15365b).setInterpolator(nr.h);
-                ((AnimatorSet) this.f15365b).playTogether(arrayList);
-                ((AnimatorSet) this.f15365b).addListener(new ai.k0(this, 20));
-                ((AnimatorSet) this.f15365b).start();
+                ((AnimatorSet) this.f15368b).setInterpolator(nr.h);
+                ((AnimatorSet) this.f15368b).playTogether(arrayList);
+                ((AnimatorSet) this.f15368b).addListener(new ai.k0(this, 20));
+                ((AnimatorSet) this.f15368b).start();
                 return;
             case 1:
             case 2:
@@ -188,9 +188,9 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
 
     @Override
     public void k(EditTextBoldCursor editTextBoldCursor) {
-        switch (this.f15364a) {
+        switch (this.f15367a) {
             case 1:
-                ((cn0) this.f15366c).g0(editTextBoldCursor);
+                ((cn0) this.f15369c).g0(editTextBoldCursor);
                 return;
             default:
                 return;
@@ -201,25 +201,25 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
     public final void l(EditText editText) {
         int i7;
         int i10;
-        int i11 = this.f15364a;
-        Object obj = this.f15366c;
+        int i11 = this.f15367a;
+        Object obj = this.f15369c;
         switch (i11) {
             case 0:
                 String obj2 = editText.getText().toString();
-                v2 v2Var = ((d3) obj).f14500r;
-                l lVar = v2Var.f14325w;
-                if (!TextUtils.equals(v2Var.f14321f, obj2)) {
-                    if (v2Var.f14320e != -1) {
-                        ConnectionsManager.getInstance(v2Var.f14326x.f14484a).cancelRequest(v2Var.f14320e, true);
-                        v2Var.f14320e = -1;
+                v2 v2Var = ((d3) obj).f14503r;
+                l lVar = v2Var.f14328w;
+                if (!TextUtils.equals(v2Var.f14324f, obj2)) {
+                    if (v2Var.f14323e != -1) {
+                        ConnectionsManager.getInstance(v2Var.f14329x.f14487a).cancelRequest(v2Var.f14323e, true);
+                        v2Var.f14323e = -1;
                     }
                     v2Var.d = false;
                     v2Var.h = null;
                 }
-                v2Var.f14321f = obj2;
+                v2Var.f14324f = obj2;
                 org.telegram.messenger.g0.r(lVar);
                 if (TextUtils.isEmpty(obj2)) {
-                    v2Var.f14319c.clear();
+                    v2Var.f14322c.clear();
                     v2Var.F(false);
                     v2Var.f();
                     return;
@@ -228,19 +228,19 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
                 org.telegram.messenger.g0.h3(lVar, 1500L);
                 return;
             case 1:
-                hf0 hf0Var = (hf0) this.f15365b;
+                hf0 hf0Var = (hf0) this.f15368b;
                 cn0 cn0Var = (cn0) obj;
                 if (editText.getText().length() == 0) {
-                    cn0Var.f46602f.clear();
+                    cn0Var.f46605f.clear();
                     cn0Var.h.clear();
-                    cn0Var.f46622w = null;
-                    cn0Var.f46617s = true;
-                    cn0Var.f46615r = false;
-                    if (cn0Var.f46626y != 0) {
-                        ConnectionsManager.getInstance(cn0.b0(cn0Var)).cancelRequest(cn0Var.f46626y, true);
-                        cn0Var.f46626y = 0;
+                    cn0Var.f46625w = null;
+                    cn0Var.f46620s = true;
+                    cn0Var.f46618r = false;
+                    if (cn0Var.f46629y != 0) {
+                        ConnectionsManager.getInstance(cn0.b0(cn0Var)).cancelRequest(cn0Var.f46629y, true);
+                        cn0Var.f46629y = 0;
                     }
-                    cn0Var.O.d.setText(gd.N0(2131747976, null));
+                    cn0Var.O.d.setText(hd.N0(2131747976, null));
                     cn0Var.O.e(false, true);
                     cn0Var.o0();
                     return;
@@ -250,27 +250,27 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
                 return;
             case 2:
                 org.telegram.ui.web.m mVar = (org.telegram.ui.web.m) obj;
-                boolean z10 = !TextUtils.isEmpty(mVar.f53233w);
+                boolean z10 = !TextUtils.isEmpty(mVar.f53237w);
                 String obj3 = editText.getText().toString();
-                if (!TextUtils.equals(mVar.f53233w, obj3)) {
-                    mVar.f53233w = obj3;
-                    org.telegram.ui.web.i iVar = mVar.f53229f;
+                if (!TextUtils.equals(mVar.f53237w, obj3)) {
+                    mVar.f53237w = obj3;
+                    org.telegram.ui.web.i iVar = mVar.f53233f;
                     if (iVar != null) {
                         iVar.c();
                     }
                     i7 = ((org.telegram.ui.ActionBar.g2) mVar).currentAccount;
                     org.telegram.ui.web.i iVar2 = new org.telegram.ui.web.i(obj3, i7, new org.telegram.ui.web.l(mVar, 1));
-                    mVar.f53229f = iVar2;
+                    mVar.f53233f = iVar2;
                     iVar2.a();
-                    oi.c2 c2Var = (oi.c2) this.f15365b;
+                    oi.c2 c2Var = (oi.c2) this.f15368b;
                     org.telegram.messenger.g0.r(c2Var);
                     org.telegram.messenger.g0.h3(c2Var, 500L);
                 }
-                bi.g6 g6Var = mVar.f34683a;
-                if (g6Var != null) {
-                    g6Var.f35796g3.O(true);
+                bi.f6 f6Var = mVar.f34681a;
+                if (f6Var != null) {
+                    f6Var.f35790g3.O(true);
                     if (z10 != (!TextUtils.isEmpty(obj3))) {
-                        mVar.f34683a.f35795f3.h1(0, 0);
+                        mVar.f34681a.f35789f3.h1(0, 0);
                         return;
                     }
                     return;
@@ -278,27 +278,27 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
                 return;
             default:
                 org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) obj;
-                boolean z11 = !TextUtils.isEmpty(x0Var.f53394r);
+                boolean z11 = !TextUtils.isEmpty(x0Var.f53398r);
                 String obj4 = editText.getText().toString();
-                if (!TextUtils.equals(x0Var.f53394r, obj4)) {
-                    x0Var.f53394r = obj4;
-                    x0Var.f53393n = true;
-                    oi.c2 c2Var2 = (oi.c2) this.f15365b;
+                if (!TextUtils.equals(x0Var.f53398r, obj4)) {
+                    x0Var.f53398r = obj4;
+                    x0Var.f53397n = true;
+                    oi.c2 c2Var2 = (oi.c2) this.f15368b;
                     org.telegram.messenger.g0.r(c2Var2);
                     org.telegram.messenger.g0.h3(c2Var2, 500L);
-                    xh.l lVar2 = x0Var.f53398y.d;
+                    xh.l lVar2 = x0Var.f53402y.d;
                     if (TextUtils.isEmpty(obj4)) {
-                        i10 = 2131742654;
+                        i10 = 2131742652;
                     } else {
-                        i10 = 2131742653;
+                        i10 = 2131742651;
                     }
-                    lVar2.setText(gd.N0(i10, null));
+                    lVar2.setText(hd.N0(i10, null));
                 }
-                bi.g6 g6Var2 = x0Var.f34683a;
-                if (g6Var2 != null) {
-                    g6Var2.f35796g3.O(true);
+                bi.f6 f6Var2 = x0Var.f34681a;
+                if (f6Var2 != null) {
+                    f6Var2.f35790g3.O(true);
                     if (z11 != (!TextUtils.isEmpty(obj4))) {
-                        x0Var.f34683a.f35795f3.h1(0, 0);
+                        x0Var.f34681a.f35789f3.h1(0, 0);
                         return;
                     }
                     return;
@@ -308,21 +308,21 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
     }
 
     public s2(cn0 cn0Var) {
-        this.f15364a = 1;
-        this.f15366c = cn0Var;
-        this.f15365b = new hf0(this, 15);
+        this.f15367a = 1;
+        this.f15369c = cn0Var;
+        this.f15368b = new hf0(this, 15);
     }
 
     public s2(org.telegram.ui.web.m mVar) {
-        this.f15364a = 2;
-        this.f15366c = mVar;
-        this.f15365b = new oi.c2(this, 26);
+        this.f15367a = 2;
+        this.f15369c = mVar;
+        this.f15368b = new oi.c2(this, 26);
     }
 
     public s2(org.telegram.ui.web.x0 x0Var) {
-        this.f15364a = 3;
-        this.f15366c = x0Var;
-        this.f15365b = new oi.c2(this, 29);
+        this.f15367a = 3;
+        this.f15369c = x0Var;
+        this.f15368b = new oi.c2(this, 29);
     }
 
     private final void o() {

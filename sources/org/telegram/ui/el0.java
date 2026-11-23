@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.os.AsyncTask;
 public final class el0 extends AsyncTask {
-    public final uc.a f47323a;
-    public final ml0 f47324b;
+    public final uc.a f47327a;
+    public final ml0 f47328b;
 
     public el0(ml0 ml0Var, uc.a aVar) {
-        this.f47324b = ml0Var;
-        this.f47323a = aVar;
+        this.f47328b = ml0Var;
+        this.f47327a = aVar;
     }
 
     @Override
@@ -18,14 +18,14 @@ public final class el0 extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         String str = (String) obj;
-        ml0 ml0Var = this.f47324b;
+        ml0 ml0Var = this.f47328b;
         if (ml0Var.R0) {
             return;
         }
         if (str == null) {
-            org.telegram.ui.Components.c5.t0(org.telegram.messenger.gd.N0(2131747210, null), ml0Var);
+            org.telegram.ui.Components.c5.t0(org.telegram.messenger.hd.N0(2131747210, null), ml0Var);
         } else {
-            ml0Var.f49933x0 = str;
+            ml0Var.f49937x0 = str;
             ml0Var.z0();
         }
         ml0Var.N0(true, false);

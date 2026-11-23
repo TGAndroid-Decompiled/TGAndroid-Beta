@@ -1,33 +1,50 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class lh implements Runnable {
-    public final int f25406a;
-    public final oi f25407b;
-    public final ArrayList f25408c;
-    public final String d;
+    public final int f25221a = 2;
+    public final boolean f25222b;
+    public final boolean f25223c;
+    public final Object d;
+    public final Object f25224e;
+    public final Object f25225f;
+    public final Object h;
+    public final Object f25226n;
 
-    public lh(oi oiVar, ArrayList arrayList, String str, int i7) {
-        this.f25406a = i7;
-        this.f25407b = oiVar;
-        this.f25408c = arrayList;
-        this.d = str;
+    public lh(bf bfVar, boolean z10, TLRPC.PhotoSize photoSize, gj gjVar, TLRPC.Photo photo, boolean z11, TLRPC.Document document) {
+        this.d = bfVar;
+        this.f25222b = z10;
+        this.f25224e = photoSize;
+        this.f25225f = gjVar;
+        this.h = photo;
+        this.f25223c = z11;
+        this.f25226n = document;
     }
 
     @Override
     public final void run() {
-        switch (this.f25406a) {
-            case 0:
-                g0.g3(new lh(this.f25407b, this.f25408c, this.d, 2));
-                return;
-            case 1:
-                ArrayList arrayList = this.f25408c;
-                this.f25407b.e(this.d, arrayList);
-                return;
-            default:
-                ArrayList arrayList2 = this.f25408c;
-                this.f25407b.e(this.d, arrayList2);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.lh.run():void");
+    }
+
+    public lh(si siVar, Integer num, ArrayList arrayList, boolean z10, boolean z11, ArrayList[] arrayListArr, Runnable runnable) {
+        this.d = siVar;
+        this.f25224e = num;
+        this.f25225f = arrayList;
+        this.f25222b = z10;
+        this.f25223c = z11;
+        this.h = arrayListArr;
+        this.f25226n = runnable;
+    }
+
+    public lh(np npVar, yo yoVar, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.g2 g2Var, TLObject tLObject, boolean z10, boolean z11) {
+        this.d = npVar;
+        this.f25224e = yoVar;
+        this.f25225f = tL_error;
+        this.h = g2Var;
+        this.f25226n = tLObject;
+        this.f25222b = z10;
+        this.f25223c = z11;
     }
 }

@@ -5,20 +5,20 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class zb extends s11 {
-    public final ub f54512f2;
-    public final j11[] f54513g2;
-    public final qc f54514h2;
+    public final ub f54516f2;
+    public final j11[] f54517g2;
+    public final qc f54518h2;
 
     public zb(qc qcVar, qc qcVar2, Activity activity, Integer num, int i7, org.telegram.ui.ActionBar.h6 h6Var, int i10, int i11, ub ubVar, j11[] j11VarArr) {
         super(qcVar2, activity, true, num, i7, true, h6Var, i10, i11);
-        this.f54514h2 = qcVar;
-        this.f54512f2 = ubVar;
-        this.f54513g2 = j11VarArr;
+        this.f54518h2 = qcVar;
+        this.f54516f2 = ubVar;
+        this.f54517g2 = j11VarArr;
     }
 
     @Override
     public final long getDialogId() {
-        return this.f54514h2.f51205a;
+        return this.f54518h2.f51209a;
     }
 
     @Override
@@ -34,10 +34,10 @@ public final class zb extends s11 {
         } else {
             longValue = l10.longValue();
         }
-        this.f54512f2.a(Long.valueOf(longValue), num, tL_starGiftUnique);
-        j11 j11Var = this.f54513g2[0];
+        this.f54516f2.a(Long.valueOf(longValue), num, tL_starGiftUnique);
+        j11 j11Var = this.f54517g2[0];
         if (j11Var != null) {
-            this.f54514h2.R = null;
+            this.f54518h2.R = null;
             j11Var.dismiss();
         }
     }

@@ -7,27 +7,27 @@ import android.view.View;
 import android.view.WindowInsets;
 import java.util.ArrayList;
 public final class oc extends com.google.android.gms.common.api.q {
-    public final ArrayList f9500b;
-    public final RuntimeShader f9501c;
+    public final ArrayList f9503b;
+    public final RuntimeShader f9504c;
     public RenderEffect d;
-    public int f9502e;
-    public int f9503f;
-    public int f9504g;
+    public int f9505e;
+    public int f9506f;
+    public int f9507g;
     public float h;
-    public final float[] f9505i;
-    public final float[] f9506j;
-    public final float[] f9507k;
-    public final float[] f9508l;
+    public final float[] f9508i;
+    public final float[] f9509j;
+    public final float[] f9510k;
+    public final float[] f9511l;
 
     public oc(View view) {
         super(view);
-        this.f9500b = new ArrayList();
-        this.f9505i = new float[7];
-        this.f9506j = new float[7];
-        this.f9507k = new float[7];
-        this.f9508l = new float[7];
+        this.f9503b = new ArrayList();
+        this.f9508i = new float[7];
+        this.f9509j = new float[7];
+        this.f9510k = new float[7];
+        this.f9511l = new float[7];
         RuntimeShader runtimeShader = new RuntimeShader(org.telegram.messenger.g0.y2(null, 2131624242));
-        this.f9501c = runtimeShader;
+        this.f9504c = runtimeShader;
         e1(true);
         this.d = RenderEffect.createRuntimeShaderEffect(runtimeShader, "img");
     }
@@ -39,18 +39,18 @@ public final class oc extends com.google.android.gms.common.api.q {
         float f10;
         float radius;
         float f11;
-        View view = (View) this.f6424a;
-        if (!z10 && this.f9503f == view.getWidth() && this.f9504g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f24145p) <= 0.01f) {
+        View view = (View) this.f6427a;
+        if (!z10 && this.f9506f == view.getWidth() && this.f9507g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f24045p) <= 0.01f) {
             return;
         }
-        RuntimeShader runtimeShader = this.f9501c;
+        RuntimeShader runtimeShader = this.f9504c;
         int width = view.getWidth();
-        this.f9503f = width;
+        this.f9506f = width;
         int height = view.getHeight();
-        this.f9504g = height;
+        this.f9507g = height;
         runtimeShader.setFloatUniform("size", width, height);
-        RuntimeShader runtimeShader2 = this.f9501c;
-        float f12 = org.telegram.messenger.g0.f24145p;
+        RuntimeShader runtimeShader2 = this.f9504c;
+        float f12 = org.telegram.messenger.g0.f24045p;
         this.h = f12;
         runtimeShader2.setFloatUniform("density", f12);
         WindowInsets rootWindowInsets = view.getRootWindowInsets();
@@ -73,9 +73,9 @@ public final class oc extends com.google.android.gms.common.api.q {
         if (rootWindowInsets != null) {
             roundedCorner4 = rootWindowInsets.getRoundedCorner(2);
         }
-        RuntimeShader runtimeShader3 = this.f9501c;
+        RuntimeShader runtimeShader3 = this.f9504c;
         float f13 = 0.0f;
-        if (roundedCorner4 != null && (view == view.getRootView() || org.telegram.messenger.g0.f24141n <= 0)) {
+        if (roundedCorner4 != null && (view == view.getRootView() || org.telegram.messenger.g0.f24041n <= 0)) {
             f10 = roundedCorner4.getRadius();
         } else {
             f10 = 0.0f;
@@ -85,7 +85,7 @@ public final class oc extends com.google.android.gms.common.api.q {
         } else {
             radius = roundedCorner2.getRadius();
         }
-        if (roundedCorner3 != null && (view == view.getRootView() || org.telegram.messenger.g0.f24141n <= 0)) {
+        if (roundedCorner3 != null && (view == view.getRootView() || org.telegram.messenger.g0.f24041n <= 0)) {
             f11 = roundedCorner3.getRadius();
         } else {
             f11 = 0.0f;
@@ -106,24 +106,24 @@ public final class oc extends com.google.android.gms.common.api.q {
         boolean z11;
         boolean z12;
         boolean z13;
-        View view = (View) this.f6424a;
-        ArrayList arrayList = this.f9500b;
+        View view = (View) this.f6427a;
+        ArrayList arrayList = this.f9503b;
         boolean z14 = false;
         if (!arrayList.isEmpty()) {
             boolean z15 = true;
-            if (this.f9502e != Math.min(7, arrayList.size())) {
+            if (this.f9505e != Math.min(7, arrayList.size())) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f9502e = Math.min(7, arrayList.size());
+            this.f9505e = Math.min(7, arrayList.size());
             int i7 = 0;
             while (true) {
-                int i10 = this.f9502e;
-                fArr = this.f9508l;
-                fArr2 = this.f9507k;
-                fArr3 = this.f9506j;
-                fArr4 = this.f9505i;
+                int i10 = this.f9505e;
+                fArr = this.f9511l;
+                fArr2 = this.f9510k;
+                fArr3 = this.f9509j;
+                fArr4 = this.f9508i;
                 if (i7 >= i10) {
                     break;
                 }
@@ -134,9 +134,9 @@ public final class oc extends com.google.android.gms.common.api.q {
                     z11 = true;
                 }
                 float f10 = ncVar.d;
-                float f11 = ncVar.f9425c;
-                float f12 = ncVar.f9424b;
-                float f13 = ncVar.f9423a;
+                float f11 = ncVar.f9428c;
+                float f12 = ncVar.f9427b;
+                float f13 = ncVar.f9426a;
                 fArr4[i7] = f10;
                 if (!z11 && Math.abs(fArr3[i7] - f13) <= 0.001f) {
                     z12 = false;
@@ -158,17 +158,17 @@ public final class oc extends com.google.android.gms.common.api.q {
                 fArr[i7] = f11;
                 i7++;
             }
-            if (!z10 && this.f9503f == view.getWidth() && this.f9504g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f24145p) <= 0.01f) {
+            if (!z10 && this.f9506f == view.getWidth() && this.f9507g == view.getHeight() && Math.abs(this.h - org.telegram.messenger.g0.f24045p) <= 0.01f) {
                 z15 = false;
             }
             if (z15) {
-                this.f9501c.setIntUniform("count", this.f9502e);
-                this.f9501c.setFloatUniform("t", fArr4);
-                this.f9501c.setFloatUniform("centerX", fArr3);
-                this.f9501c.setFloatUniform("centerY", fArr2);
-                this.f9501c.setFloatUniform("intensity", fArr);
+                this.f9504c.setIntUniform("count", this.f9505e);
+                this.f9504c.setFloatUniform("t", fArr4);
+                this.f9504c.setFloatUniform("centerX", fArr3);
+                this.f9504c.setFloatUniform("centerY", fArr2);
+                this.f9504c.setFloatUniform("intensity", fArr);
                 e1(false);
-                this.d = RenderEffect.createRuntimeShaderEffect(this.f9501c, "img");
+                this.d = RenderEffect.createRuntimeShaderEffect(this.f9504c, "img");
             }
             z14 = z15;
         }

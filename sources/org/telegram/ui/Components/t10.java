@@ -3,14 +3,14 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class t10 extends v4.o {
-    public final ArrayList f39757b;
-    public final ArrayList f39758c;
+    public final ArrayList f39750b;
+    public final ArrayList f39751c;
     public final v10 d;
 
     public t10(v10 v10Var, ArrayList arrayList, ArrayList arrayList2) {
         this.d = v10Var;
-        this.f39757b = arrayList;
-        this.f39758c = arrayList2;
+        this.f39750b = arrayList;
+        this.f39751c = arrayList2;
     }
 
     @Override
@@ -22,32 +22,32 @@ public final class t10 extends v4.o {
     public final boolean b(int i7, int i10) {
         TLRPC.GroupCallParticipant groupCallParticipant;
         TLRPC.GroupCallParticipant groupCallParticipant2;
-        ArrayList arrayList = this.f39757b;
+        ArrayList arrayList = this.f39750b;
         int size = arrayList.size();
         v10 v10Var = this.d;
-        if (i7 < size && i10 < v10Var.f40636e.size()) {
-            return ((org.telegram.messenger.u3) arrayList.get(i7)).equals(v10Var.f40636e.get(i10));
+        if (i7 < size && i10 < v10Var.f40628e.size()) {
+            return ((org.telegram.messenger.u3) arrayList.get(i7)).equals(v10Var.f40628e.get(i10));
         }
         int size2 = i7 - arrayList.size();
-        int size3 = i10 - v10Var.f40636e.size();
-        ArrayList arrayList2 = this.f39758c;
-        if (size3 >= 0 && size3 < v10Var.f40637f.size() && size2 >= 0 && size2 < arrayList2.size()) {
-            if (org.telegram.messenger.fj.B1(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != org.telegram.messenger.fj.B1(((TLRPC.GroupCallParticipant) v10Var.f40637f.get(size3)).peer)) {
+        int size3 = i10 - v10Var.f40628e.size();
+        ArrayList arrayList2 = this.f39751c;
+        if (size3 >= 0 && size3 < v10Var.f40629f.size() && size2 >= 0 && size2 < arrayList2.size()) {
+            if (org.telegram.messenger.gj.B1(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != org.telegram.messenger.gj.B1(((TLRPC.GroupCallParticipant) v10Var.f40629f.get(size3)).peer)) {
                 return false;
             }
             return true;
         }
         if (i7 < arrayList.size()) {
-            groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27145a;
+            groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27155a;
         } else {
             groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(size2);
         }
-        if (i10 < v10Var.f40636e.size()) {
-            groupCallParticipant2 = ((org.telegram.messenger.u3) v10Var.f40636e.get(i10)).f27145a;
+        if (i10 < v10Var.f40628e.size()) {
+            groupCallParticipant2 = ((org.telegram.messenger.u3) v10Var.f40628e.get(i10)).f27155a;
         } else {
-            groupCallParticipant2 = (TLRPC.GroupCallParticipant) v10Var.f40637f.get(size3);
+            groupCallParticipant2 = (TLRPC.GroupCallParticipant) v10Var.f40629f.get(size3);
         }
-        if (org.telegram.messenger.fj.B1(groupCallParticipant.peer) != org.telegram.messenger.fj.B1(groupCallParticipant2.peer)) {
+        if (org.telegram.messenger.gj.B1(groupCallParticipant.peer) != org.telegram.messenger.gj.B1(groupCallParticipant2.peer)) {
             return false;
         }
         return true;
@@ -56,11 +56,11 @@ public final class t10 extends v4.o {
     @Override
     public final int d() {
         v10 v10Var = this.d;
-        return v10Var.f40637f.size() + v10Var.f40636e.size();
+        return v10Var.f40629f.size() + v10Var.f40628e.size();
     }
 
     @Override
     public final int e() {
-        return this.f39758c.size() + this.f39757b.size();
+        return this.f39751c.size() + this.f39750b.size();
     }
 }

@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import java.io.Serializable;
-public final class yi implements org.telegram.messenger.v10, org.telegram.messenger.w10 {
-    public final ej f42445a;
+public final class yi implements org.telegram.messenger.w10, org.telegram.messenger.x10 {
+    public final ej f42438a;
 
     @Override
     public Boolean a(o41 o41Var, View view, Integer num, Float f10, Float f11) {
-        this.f42445a.R(o41Var, view);
+        this.f42438a.R(o41Var, view);
         return Boolean.TRUE;
     }
 
@@ -16,6 +16,6 @@ public final class yi implements org.telegram.messenger.v10, org.telegram.messen
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        this.f42445a.R((o41) obj, (View) obj2);
+        this.f42438a.R((o41) obj, (View) obj2);
     }
 }

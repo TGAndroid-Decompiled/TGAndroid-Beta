@@ -1,8 +1,8 @@
 package n2;
 public final class k {
-    public final boolean f21190a;
-    public final boolean f21191b;
-    public final boolean f21192c;
+    public final boolean f21193a;
+    public final boolean f21194b;
+    public final boolean f21195c;
     public final int d;
 
     static {
@@ -10,9 +10,9 @@ public final class k {
     }
 
     public k(j jVar) {
-        this.f21190a = jVar.f21165b;
-        this.f21191b = jVar.f21166c;
-        this.f21192c = jVar.d;
-        this.d = jVar.f21164a;
+        this.f21193a = jVar.f21168b;
+        this.f21194b = jVar.f21169c;
+        this.f21195c = jVar.d;
+        this.d = jVar.f21167a;
     }
 }

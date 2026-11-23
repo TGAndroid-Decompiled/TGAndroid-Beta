@@ -4,23 +4,23 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 public final class r41 extends MetricAffectingSpan {
-    public final CharSequence f39062a;
-    public final int f39063b;
-    public final int f39064c;
+    public final CharSequence f39072a;
+    public final int f39073b;
+    public final int f39074c;
     public final byte d;
-    public final fz0 f39065e;
+    public final fz0 f39075e;
 
     public r41(CharSequence charSequence, int i7, int i10, byte b10, fz0 fz0Var) {
-        this.f39062a = charSequence;
-        this.f39063b = i7;
-        this.f39064c = i10;
+        this.f39072a = charSequence;
+        this.f39073b = i7;
+        this.f39074c = i10;
         this.d = b10;
-        this.f39065e = fz0Var;
+        this.f39075e = fz0Var;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.bz.W0 - 1));
+        textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.cz.W0 - 1));
         byte b10 = this.d;
         if (b10 == 2) {
             textPaint.setColor(-1);
@@ -29,7 +29,7 @@ public final class r41 extends MetricAffectingSpan {
         } else {
             textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Vc, false));
         }
-        fz0 fz0Var = this.f39065e;
+        fz0 fz0Var = this.f39075e;
         if (fz0Var != null) {
             fz0Var.a(textPaint);
             return;
@@ -40,9 +40,9 @@ public final class r41 extends MetricAffectingSpan {
 
     @Override
     public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.bz.W0 - 1));
+        textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.cz.W0 - 1));
         textPaint.setFlags(textPaint.getFlags() | 128);
-        fz0 fz0Var = this.f39065e;
+        fz0 fz0Var = this.f39075e;
         if (fz0Var != null) {
             fz0Var.a(textPaint);
         } else {

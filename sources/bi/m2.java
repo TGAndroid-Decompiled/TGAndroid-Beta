@@ -1,20 +1,20 @@
 package bi;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.x10;
-public final class m2 implements x10 {
-    public final int f3868a;
-    public final Object f3869b;
-    public final Object f3870c;
+import org.telegram.messenger.y10;
+public final class m2 implements y10 {
+    public final int f3882a;
+    public final Object f3883b;
+    public final Object f3884c;
     public final Object d;
-    public final Object f3871e;
+    public final Object f3885e;
 
     public m2(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f3868a = i7;
-        this.f3869b = obj;
-        this.f3870c = obj2;
+        this.f3882a = i7;
+        this.f3883b = obj;
+        this.f3884c = obj2;
         this.d = obj3;
-        this.f3871e = obj4;
+        this.f3885e = obj4;
     }
 
     @Override
@@ -23,10 +23,10 @@ public final class m2 implements x10 {
     }
 
     public m2(AtomicBoolean atomicBoolean, org.telegram.ui.ActionBar.g2 g2Var, String str, vf.b bVar) {
-        this.f3868a = 17;
-        this.f3869b = atomicBoolean;
+        this.f3882a = 17;
+        this.f3883b = atomicBoolean;
         this.d = g2Var;
-        this.f3871e = str;
-        this.f3870c = bVar;
+        this.f3885e = str;
+        this.f3884c = bVar;
     }
 }

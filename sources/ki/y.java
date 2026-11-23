@@ -13,7 +13,7 @@ import android.text.TextUtils;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.messenger.j6;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.m6;
@@ -26,40 +26,40 @@ public final class y extends View implements b6 {
     public oh0 H;
     public int I;
     public int J;
-    public final RectF f19089a;
-    public final Paint f19090b;
-    public final TextPaint f19091c;
+    public final RectF f19092a;
+    public final Paint f19093b;
+    public final TextPaint f19094c;
     public final v d;
-    public final oh0 f19092e;
-    public boolean f19093f;
+    public final oh0 f19095e;
+    public boolean f19096f;
     public float h;
-    public String f19094n;
-    public StaticLayout f19095r;
-    public float f19096s;
-    public boolean f19097w;
-    public boolean f19098x;
-    public boolean f19099y;
+    public String f19097n;
+    public StaticLayout f19098r;
+    public float f19099s;
+    public boolean f19100w;
+    public boolean f19101x;
+    public boolean f19102y;
 
     public y(Context context) {
         super(context);
-        this.f19089a = new RectF();
-        this.f19090b = new Paint(1);
+        this.f19092a = new RectF();
+        this.f19093b = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
-        this.f19091c = textPaint;
+        this.f19094c = textPaint;
         v vVar = new v(this);
         this.d = vVar;
         oh0 oh0Var = new oh0(2131623945, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f));
-        this.f19092e = oh0Var;
-        this.f19094n = gd.N0(2131752879, null);
+        this.f19095e = oh0Var;
+        this.f19097n = hd.N0(2131752879, null);
         this.F = true;
         updateColors();
-        vVar.f29997n = true;
+        vVar.f30000n = true;
         vVar.h = false;
         vVar.a(false, 0.0f);
         vVar.setCallback(this);
         textPaint.setTypeface(org.telegram.messenger.g0.o());
-        vVar.f29986a.setStrokeCap(Paint.Cap.ROUND);
-        vVar.f29995l = true;
+        vVar.f29989a.setStrokeCap(Paint.Cap.ROUND);
+        vVar.f29998l = true;
         int L = org.telegram.messenger.g0.L(16.0f);
         int x02 = m6.x0(null, m6.Hi, false);
         this.G = x02;
@@ -68,7 +68,7 @@ public final class y extends View implements b6 {
         k02.setCallback(this);
         oh0Var.setCallback(this);
         oh0Var.R(this);
-        setContentDescription(gd.N0(2131754917, "AccDescrBotMenu"));
+        setContentDescription(hd.N0(2131754917, "AccDescrBotMenu"));
     }
 
     @Override
@@ -99,26 +99,26 @@ public final class y extends View implements b6 {
     public final void onMeasure(int i7, int i10) {
         float f10;
         int size = (View.MeasureSpec.getSize(i10) + View.MeasureSpec.getSize(i7)) << 16;
-        if (this.J != size || this.f19095r == null) {
+        if (this.J != size || this.f19098r == null) {
             this.d.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            TextPaint textPaint = this.f19091c;
+            TextPaint textPaint = this.f19094c;
             textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
             this.J = size;
-            CharSequence m10 = j6.m(this.f19094n, textPaint.getFontMetricsInt(), false, null, 0);
-            int i11 = (int) (org.telegram.messenger.g0.f24146q.x * 0.6f);
+            CharSequence m10 = j6.m(this.f19097n, textPaint.getFontMetricsInt(), false, null, 0);
+            int i11 = (int) (org.telegram.messenger.g0.f24046q.x * 0.6f);
             StaticLayout c10 = zu0.c(m10, textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i11, 1, true);
-            this.f19095r = c10;
+            this.f19098r = c10;
             if (c10.getLineCount() > 0) {
-                f10 = this.f19095r.getLineWidth(0);
+                f10 = this.f19098r.getLineWidth(0);
             } else {
                 f10 = 0.0f;
             }
-            this.f19096s = f10;
+            this.f19099s = f10;
         }
         org.telegram.messenger.g0.L(4.0f);
         int L = org.telegram.messenger.g0.L(40.0f);
-        if (this.f19093f) {
-            L = org.telegram.messenger.f3.C(4.0f, (int) this.f19096s, L);
+        if (this.f19096f) {
+            L = org.telegram.messenger.f3.C(4.0f, (int) this.f19099s, L);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(L, 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
     }
@@ -130,21 +130,21 @@ public final class y extends View implements b6 {
 
     public void setOpened(boolean z10) {
         float f10;
-        if (this.f19097w != z10) {
-            this.f19097w = z10;
+        if (this.f19100w != z10) {
+            this.f19100w = z10;
         }
         int i7 = 1;
-        if (this.f19098x) {
-            if (this.f19099y != z10) {
-                oh0 oh0Var = this.f19092e;
+        if (this.f19101x) {
+            if (this.f19102y != z10) {
+                oh0 oh0Var = this.f19095e;
                 oh0Var.stop();
                 oh0Var.h = true;
                 if (z10) {
-                    i7 = oh0Var.f38217e[0];
+                    i7 = oh0Var.f38211e[0];
                 }
                 oh0Var.P(i7);
                 oh0Var.start();
-                this.f19099y = z10;
+                this.f19102y = z10;
                 return;
             }
             return;
@@ -158,20 +158,20 @@ public final class y extends View implements b6 {
     }
 
     public void setWebView(boolean z10) {
-        this.f19098x = z10;
+        this.f19101x = z10;
         invalidate();
     }
 
     @Override
     public final void updateColors() {
-        TextPaint textPaint = this.f19091c;
+        TextPaint textPaint = this.f19094c;
         try {
-            this.f19090b.setColor(m6.x0(null, m6.Uf, false));
+            this.f19093b.setColor(m6.x0(null, m6.Uf, false));
             int x02 = m6.x0(null, m6.Wf, false);
             v vVar = this.d;
-            vVar.f29994k = x02;
-            vVar.f29993j = x02;
-            oh0 oh0Var = this.f19092e;
+            vVar.f29997k = x02;
+            vVar.f29996j = x02;
+            oh0 oh0Var = this.f19095e;
             if (oh0Var != null) {
                 if (oh0Var == this.H) {
                     if (x02 != this.I) {

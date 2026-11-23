@@ -16,11 +16,11 @@ import org.telegram.messenger.AppStartReceiver;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.bz;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.nt;
+import org.telegram.messenger.cz;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ot;
 import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.Dictation.DictationAsr;
@@ -31,10 +31,10 @@ import org.telegram.ui.Wallet.j9;
 import org.telegram.ui.Wallet.n6;
 import org.telegram.ui.qb1;
 public final class n implements Runnable {
-    public final int f1329a;
+    public final int f1304a;
 
     public n(int i7) {
-        this.f1329a = i7;
+        this.f1304a = i7;
     }
 
     @Override
@@ -42,10 +42,10 @@ public final class n implements Runnable {
         lc Y;
         org.telegram.ui.ActionBar.g2 c02;
         int i7 = 0;
-        switch (this.f1329a) {
+        switch (this.f1304a) {
             case 0:
-                t[] tVarArr = DictationAsr.f43064a;
-                ArrayList arrayList = new ArrayList(DictationAsr.f43069g);
+                t[] tVarArr = DictationAsr.f43068a;
+                ArrayList arrayList = new ArrayList(DictationAsr.f43073g);
                 int size = arrayList.size();
                 while (i7 < size) {
                     Object obj = arrayList.get(i7);
@@ -63,7 +63,7 @@ public final class n implements Runnable {
                 xa xaVar = bg.i.B;
                 if (xaVar != null) {
                     ArrayList arrayList2 = null;
-                    for (int i10 = 0; i10 < bg.i.f3259y; i10++) {
+                    for (int i10 = 0; i10 < bg.i.f3266y; i10++) {
                         if (((Bitmap[]) xaVar.d)[i10] != null) {
                             if (arrayList2 == null) {
                                 arrayList2 = new ArrayList();
@@ -74,7 +74,7 @@ public final class n implements Runnable {
                         ((bg.e0[]) xaVar.f714c)[i10] = null;
                     }
                     if (!arrayList2.isEmpty()) {
-                        Utilities.f22807e.c(new bg.e(0, arrayList2));
+                        Utilities.f22810e.c(new bg.e(0, arrayList2));
                     }
                     bg.i.B = null;
                     return;
@@ -84,36 +84,36 @@ public final class n implements Runnable {
                 org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
                 if (Q != 0) {
                     ?? obj2 = new Object();
-                    obj2.f28902a = true;
+                    obj2.f28905a = true;
                     Q.showAsSheet(new PremiumPreviewFragment(0, "gifts"), obj2);
                     return;
                 }
                 return;
             case 5:
-                gc t6 = i4.h().t(gd.N0(2131749560, null), null);
-                t6.f35518t = true;
+                gc t6 = i4.h().t(hd.N0(2131749560, null), null);
+                t6.f35537t = true;
                 t6.j();
                 return;
             case 6:
-                ks.e().k(99, 512);
+                ls.e().k(99, 512);
                 return;
             case 7:
-                lc.Y().N(gd.N0(2131745665, null), gd.N0(2131751093, null)).j();
+                lc.Y().N(hd.N0(2131745665, null), hd.N0(2131751093, null)).j();
                 return;
             case 8:
                 org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
                 if (T != null) {
                     n6 n6Var = new n6();
-                    j9 j9Var = n6Var.f44672j0;
+                    j9 j9Var = n6Var.f44676j0;
                     if (j9Var != null) {
                         j9Var.b(false);
                     }
-                    if (!n6Var.f44669g0) {
+                    if (!n6Var.f44673g0) {
                         n6Var.I0 = true;
                     } else {
                         n6Var.I0 = false;
-                        n6Var.f44668f0 = 1;
-                        hi.i1 i1Var = n6Var.f44683s0;
+                        n6Var.f44672f0 = 1;
+                        hi.i1 i1Var = n6Var.f44687s0;
                         if (i1Var != null) {
                             i1Var.setPosition(1);
                         }
@@ -132,8 +132,8 @@ public final class n implements Runnable {
                 } else {
                     Y = lc.Y();
                 }
-                gc Q2 = Y.Q(2131624052, 36, gd.N0(2131750199, null));
-                Q2.f35518t = true;
+                gc Q2 = Y.Q(2131624052, 36, hd.N0(2131750199, null));
+                Q2.f35537t = true;
                 Q2.j();
                 return;
             case 10:
@@ -152,13 +152,13 @@ public final class n implements Runnable {
             case 13:
                 return;
             case 14:
-                int i11 = n5.f12340r1;
+                int i11 = n5.f12343r1;
                 return;
             case 15:
                 Comparator comparator = p6.X;
                 return;
             case 16:
-                int i12 = hi.g0.f14661y0;
+                int i12 = hi.g0.f14664y0;
                 return;
             case 17:
                 Looper myLooper = Looper.myLooper();
@@ -170,33 +170,33 @@ public final class n implements Runnable {
             case 18:
                 return;
             case 19:
-                mp.g1().edit().putInt("storydualhint", mp.g1().getInt("storydualhint", 0) + 1).apply();
+                np.g1().edit().putInt("storydualhint", np.g1().getInt("storydualhint", 0) + 1).apply();
                 return;
             case 20:
                 return;
             case 21:
-                kg.v1[] v1VarArr = kg.v1.f18540g;
+                kg.v1[] v1VarArr = kg.v1.f18543g;
                 return;
             case 22:
-                HashSet hashSet = ki.s2.f18924b1;
+                HashSet hashSet = ki.s2.f18927b1;
                 return;
             case 23:
                 int i13 = mi.h.I;
                 return;
             case 24:
-                int i14 = AppStartReceiver.f22635a;
-                bz.t();
-                if (bz.f23222s.length() > 0) {
-                    bz.f23236x = true;
-                    bz.y();
+                int i14 = AppStartReceiver.f22638a;
+                cz.t();
+                if (cz.f23439s.length() > 0) {
+                    cz.f23453x = true;
+                    cz.y();
                 }
                 org.telegram.messenger.t0.x();
                 return;
             case 25:
-                Utilities.f22807e.c(new n(28));
+                Utilities.f22810e.c(new n(28));
                 return;
             case 26:
-                boolean z10 = a8.f22866j;
+                boolean z10 = a8.f22881j;
                 StringBuilder sb2 = new StringBuilder();
                 for (Map.Entry<Thread, StackTraceElement[]> entry : Thread.getAllStackTraces().entrySet()) {
                     StackTraceElement[] value = entry.getValue();
@@ -218,26 +218,26 @@ public final class n implements Runnable {
                 org.telegram.messenger.t0.x();
                 return;
             case 28:
-                org.telegram.utils.twidget.p1.d(org.telegram.messenger.t0.f26941b);
+                org.telegram.utils.twidget.p1.d(org.telegram.messenger.t0.f26931b);
                 return;
             default:
-                if (((nt) org.telegram.messenger.t0.l()).hasServices()) {
-                    ((nt) org.telegram.messenger.t0.l()).onRequestPushToken();
+                if (((ot) org.telegram.messenger.t0.l()).hasServices()) {
+                    ((ot) org.telegram.messenger.t0.l()).onRequestPushToken();
                     return;
                 }
-                if (org.telegram.messenger.s2.f26749a) {
-                    ((nt) org.telegram.messenger.t0.l()).getClass();
+                if (org.telegram.messenger.s2.f26730a) {
+                    ((ot) org.telegram.messenger.t0.l()).getClass();
                     a8.b("No valid Google Play Services APK found.");
                 }
-                bz.h = "__NO_GOOGLE_PLAY_SERVICES__";
-                ((nt) org.telegram.messenger.t0.l()).getClass();
+                cz.h = "__NO_GOOGLE_PLAY_SERVICES__";
+                ((ot) org.telegram.messenger.t0.l()).getClass();
                 PushListenerController.sendRegistrationToServer(2, null);
                 return;
         }
     }
 
     public n(Object obj, int i7) {
-        this.f1329a = i7;
+        this.f1304a = i7;
     }
 
     private final void a() {

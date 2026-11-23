@@ -9,9 +9,9 @@ public abstract class b {
         j.e(th2, "<this>");
         j.e(exception, "exception");
         if (th2 != exception) {
-            Integer num = nd.a.f21495a;
+            Integer num = nd.a.f21498a;
             if (num != null && num.intValue() < 19) {
-                Method method = md.a.f20992a;
+                Method method = md.a.f20995a;
                 if (method != null) {
                     method.invoke(th2, exception);
                     return;

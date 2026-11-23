@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class uo0 implements org.telegram.ui.Components.y20 {
-    public final PhotoViewer f52611a;
+    public final PhotoViewer f52615a;
 
     public uo0(PhotoViewer photoViewer) {
-        this.f52611a = photoViewer;
+        this.f52615a = photoViewer;
     }
 
     public final void a(int i7) {
-        PhotoViewer photoViewer = this.f52611a;
+        PhotoViewer photoViewer = this.f52615a;
         photoViewer.P4 = -1;
-        org.telegram.messenger.hc hcVar = photoViewer.f43287j5;
-        if (hcVar != null) {
-            hcVar.a();
-            photoViewer.f43287j5 = null;
+        org.telegram.messenger.ic icVar = photoViewer.f43291j5;
+        if (icVar != null) {
+            icVar.a();
+            photoViewer.f43291j5 = null;
         }
-        photoViewer.f43304l5 = true;
+        photoViewer.f43308l5 = true;
         photoViewer.z2(i7);
-        photoViewer.f43304l5 = false;
+        photoViewer.f43308l5 = false;
     }
 }

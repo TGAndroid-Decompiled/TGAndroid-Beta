@@ -8,7 +8,7 @@ import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 public final class r4 extends n41 {
-    public static final int f22357b = 0;
+    public static final int f22360b = 0;
 
     static {
         n41.h(new n41());
@@ -30,7 +30,7 @@ public final class r4 extends n41 {
     @Override
     public final View d(Context context, ek0 ek0Var, int i7, h6 h6Var) {
         s4 s4Var = new s4(context, h6Var);
-        s4Var.setBackground(new y1(m6.w0(m6.f29378d6, h6Var)));
+        s4Var.setBackground(new y1(m6.w0(m6.f29381d6, h6Var)));
         return s4Var;
     }
 

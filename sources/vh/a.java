@@ -6,61 +6,61 @@ import java.util.HashMap;
 import org.telegram.ui.Components.jn;
 import org.telegram.ui.Components.tn;
 public final class a implements View.OnClickListener {
-    public final int f59590a;
-    public final g f59591b;
+    public final int f59594a;
+    public final g f59595b;
 
     public a(g gVar, int i7) {
-        this.f59590a = i7;
-        this.f59591b = gVar;
+        this.f59594a = i7;
+        this.f59595b = gVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f59590a;
-        g gVar = this.f59591b;
+        int i7 = this.f59594a;
+        g gVar = this.f59595b;
         switch (i7) {
             case 0:
-                jn jnVar = gVar.f59608g2;
+                jn jnVar = gVar.f59612g2;
                 if (jnVar != null) {
-                    ArrayList arrayList = new ArrayList(gVar.f59607f2.keySet());
-                    tn tnVar = (tn) jnVar.f36572b;
+                    ArrayList arrayList = new ArrayList(gVar.f59611f2.keySet());
+                    tn tnVar = (tn) jnVar.f36567b;
                     ArrayList arrayList2 = tnVar.Q0;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
                     int i10 = tnVar.M0;
                     if (i10 >= 0) {
-                        tnVar.f39988r.g(i10);
+                        tnVar.f39981r.g(i10);
                     }
                 }
                 gVar.dismiss();
                 return;
             case 1:
-                jn jnVar2 = gVar.f59608g2;
+                jn jnVar2 = gVar.f59612g2;
                 if (jnVar2 != null) {
-                    ArrayList arrayList3 = new ArrayList(gVar.f59607f2.keySet());
-                    tn tnVar2 = (tn) jnVar2.f36572b;
+                    ArrayList arrayList3 = new ArrayList(gVar.f59611f2.keySet());
+                    tn tnVar2 = (tn) jnVar2.f36567b;
                     ArrayList arrayList4 = tnVar2.Q0;
                     arrayList4.clear();
                     arrayList4.addAll(arrayList3);
                     int i11 = tnVar2.M0;
                     if (i11 >= 0) {
-                        tnVar2.f39988r.g(i11);
+                        tnVar2.f39981r.g(i11);
                     }
                 }
                 gVar.dismiss();
                 return;
             case 2:
-                HashMap hashMap = gVar.f59607f2;
+                HashMap hashMap = gVar.f59611f2;
                 hashMap.clear();
                 gVar.d2.b();
                 gVar.Z1.O(true);
-                gVar.f59603a2.c(hashMap.size(), true);
+                gVar.f59607a2.c(hashMap.size(), true);
                 return;
             case 3:
                 gVar.h1(view);
                 return;
             default:
-                int i12 = g.f59602n2;
+                int i12 = g.f59606n2;
                 gVar.h1(view);
                 return;
         }

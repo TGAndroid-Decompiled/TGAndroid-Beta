@@ -1,30 +1,12 @@
 package org.telegram.messenger;
-
-import android.util.Pair;
-import java.util.HashMap;
 public final class ws {
-    public final long f27784a;
-    public String f27785b;
-    public final HashMap f27786c;
-    public boolean d;
-    public long f27787e;
+    public final long f27796a;
+    public final long f27797b;
+    public final boolean f27798c;
 
-    public ws(String str, long j3, int i7, long j10, long j11) {
-        HashMap hashMap = new HashMap();
-        this.f27786c = hashMap;
-        this.f27784a = j3;
-        this.f27785b = str;
-        hashMap.put(Integer.valueOf(i7), new Pair(Long.valueOf(j10), Long.valueOf(j11)));
-        this.f27787e = j10;
-    }
-
-    public final long a() {
-        long j3 = -1;
-        for (Pair pair : this.f27786c.values()) {
-            if (j3 == -1 || j3 > ((Long) pair.first).longValue()) {
-                j3 = ((Long) pair.first).longValue();
-            }
-        }
-        return j3;
+    public ws(long j3, long j10, boolean z10) {
+        this.f27796a = j3;
+        this.f27797b = j10;
+        this.f27798c = z10;
     }
 }

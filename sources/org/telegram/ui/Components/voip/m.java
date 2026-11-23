@@ -8,37 +8,37 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import c8.ma;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.p10;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.m6;
 import org.webrtc.RendererCommon;
 public final class m extends FrameLayout {
-    public final n2 f41169a;
-    public final h f41170b;
-    public final TextView f41171c;
+    public final n2 f41171a;
+    public final h f41172b;
+    public final TextView f41173c;
     public final TextView d;
-    public final ImageView f41172e;
-    public final k f41173f;
+    public final ImageView f41174e;
+    public final k f41175f;
     public TLRPC.User h;
-    public boolean f41174n;
-    public long f41175r;
+    public boolean f41176n;
+    public long f41177r;
 
     public m(Context context) {
         super(context);
-        this.f41174n = false;
-        this.f41175r = SystemClock.elapsedRealtime();
+        this.f41176n = false;
+        this.f41177r = SystemClock.elapsedRealtime();
         setBackgroundColor(-14999773);
         n2 n2Var = new n2(context, false, true, false, false);
-        this.f41169a = n2Var;
+        this.f41171a = n2Var;
         RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FIT;
         m2 m2Var = n2Var.d;
         m2Var.setScalingType(scalingType);
         m2Var.setEnableHardwareScaler(true);
         m2Var.setRotateTextureWithScreen(true);
-        n2Var.f41212b0 = 1;
+        n2Var.f41214b0 = 1;
         m2Var.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
         View view = n2Var.h;
         if (view != null) {
@@ -46,10 +46,10 @@ public final class m extends FrameLayout {
         }
         addView(n2Var, ma.c(-1.0f, -1));
         h hVar = new h(context);
-        this.f41170b = hVar;
+        this.f41172b = hVar;
         addView(hVar, ma.c(-1.0f, -1));
         TextView textView = new TextView(context);
-        this.f41171c = textView;
+        this.f41173c = textView;
         textView.setTextColor(-1);
         textView.setTextSize(1, 13.0f);
         textView.setSingleLine();
@@ -67,11 +67,11 @@ public final class m extends FrameLayout {
         textView2.setVisibility(8);
         addView(textView2, ma.d(-1, -2.0f, 49, 32.0f, 8.0f, 32.0f, 0.0f));
         k kVar = new k(context);
-        this.f41173f = kVar;
+        this.f41175f = kVar;
         addView(kVar, ma.c(-1.0f, -1));
         kVar.a();
         ImageView imageView = new ImageView(context);
-        this.f41172e = imageView;
+        this.f41174e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setColorFilter(-1);
         imageView.setBackground(m6.L(org.telegram.messenger.g0.L(28.0f), 1711276032));
@@ -95,18 +95,18 @@ public final class m extends FrameLayout {
             return;
         }
         TLRPC.User user = sharedInstance.getUser();
-        TextView textView = this.f41171c;
-        h hVar = this.f41170b;
+        TextView textView = this.f41173c;
+        h hVar = this.f41172b;
         if (user != null && user != this.h) {
             this.h = user;
             sharedInstance.getAccount();
             hVar.a(user);
-            textView.setText(o10.q(user));
+            textView.setText(p10.q(user));
         }
         boolean a10 = a(sharedInstance);
         boolean z11 = true;
-        n2 n2Var = this.f41169a;
-        if (a10 && !n2Var.d.isFirstFrameRendered() && SystemClock.elapsedRealtime() - this.f41175r < 1200) {
+        n2 n2Var = this.f41171a;
+        if (a10 && !n2Var.d.isFirstFrameRendered() && SystemClock.elapsedRealtime() - this.f41177r < 1200) {
             z10 = true;
         } else {
             z10 = false;
@@ -114,8 +114,8 @@ public final class m extends FrameLayout {
         if (!a10 || (!n2Var.d.isFirstFrameRendered() && !z10)) {
             z11 = false;
         }
-        if (this.f41174n != z11) {
-            this.f41174n = z11;
+        if (this.f41176n != z11) {
+            this.f41176n = z11;
             if (z11) {
                 i10 = 8;
             } else {
@@ -134,15 +134,15 @@ public final class m extends FrameLayout {
         } else {
             i7 = 2131232433;
         }
-        this.f41172e.setImageResource(i7);
-        this.f41173f.c();
+        this.f41174e.setImageResource(i7);
+        this.f41175f.c();
         int callState = sharedInstance.getCallState();
         TextView textView2 = this.d;
         if (callState == 5) {
-            textView2.setText(gd.N0(2131743010, null));
+            textView2.setText(hd.N0(2131743008, null));
             textView2.setVisibility(0);
         } else if (callState != 3) {
-            textView2.setText(gd.N0(2131743176, null));
+            textView2.setText(hd.N0(2131743174, null));
             textView2.setVisibility(0);
         } else {
             textView2.setVisibility(8);

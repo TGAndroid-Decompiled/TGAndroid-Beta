@@ -6,10 +6,10 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class qb implements wi0 {
-    public final rb f38873a;
+    public final rb f38867a;
 
     public qb(rb rbVar) {
-        this.f38873a = rbVar;
+        this.f38867a = rbVar;
     }
 
     @Override
@@ -20,28 +20,28 @@ public final class qb implements wi0 {
     @Override
     public final void g(View view, ch.p0 p0Var, boolean z10, boolean z11) {
         boolean z12;
-        rb rbVar = this.f38873a;
-        org.telegram.ui.ActionBar.g2 g2Var = rbVar.f39132f;
-        if (rbVar.f39131e == null) {
+        rb rbVar = this.f38867a;
+        org.telegram.ui.ActionBar.g2 g2Var = rbVar.f39142f;
+        if (rbVar.f39141e == null) {
             return;
         }
-        long e10 = org.telegram.messenger.j10.i(g2Var.getCurrentAccount()).e();
+        long e10 = org.telegram.messenger.k10.i(g2Var.getCurrentAccount()).e();
         if ((g2Var instanceof org.telegram.ui.bn) && ((org.telegram.ui.bn) g2Var).a() == e10) {
             z12 = true;
         } else {
             z12 = false;
         }
         int i7 = 0;
-        for (int i10 = 0; i10 < rbVar.f39131e.size(); i10++) {
-            int keyAt = rbVar.f39131e.keyAt(i10);
+        for (int i10 = 0; i10 < rbVar.f39141e.size(); i10++) {
+            int keyAt = rbVar.f39141e.keyAt(i10);
             TLRPC.Message message = new TLRPC.Message();
             message.dialog_id = g2Var.getUserConfig().e();
-            message.f28452id = keyAt;
-            org.telegram.messenger.fj fjVar = new org.telegram.messenger.fj(g2Var.getCurrentAccount(), message, false, false);
+            message.f28455id = keyAt;
+            org.telegram.messenger.gj gjVar = new org.telegram.messenger.gj(g2Var.getCurrentAccount(), message, false, false);
             ArrayList arrayList = new ArrayList();
             arrayList.add(p0Var);
-            g2Var.getSendMessagesHelper().s0(fjVar, arrayList, p0Var, false, false, rbVar.f39132f, null);
-            i7 = message.f28452id;
+            g2Var.getSendMessagesHelper().s0(gjVar, arrayList, p0Var, false, false, rbVar.f39142f, null);
+            i7 = message.f28455id;
         }
         rbVar.f();
         gc.e();

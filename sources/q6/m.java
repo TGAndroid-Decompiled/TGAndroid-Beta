@@ -9,9 +9,9 @@ import com.google.android.gms.internal.vision.e2;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public abstract class m {
-    public static final Object f55977a = new Object();
-    public static boolean f55978b;
-    public static int f55979c;
+    public static final Object f55981a = new Object();
+    public static boolean f55982b;
+    public static int f55983c;
 
     public static void a(String str, boolean z10) {
         if (z10) {
@@ -112,7 +112,7 @@ public abstract class m {
     }
 
     public static com.google.android.gms.common.api.f m(Status status) {
-        if (status.f6225c != null) {
+        if (status.f6228c != null) {
             return new com.google.android.gms.common.api.f(status);
         }
         return new com.google.android.gms.common.api.f(status);

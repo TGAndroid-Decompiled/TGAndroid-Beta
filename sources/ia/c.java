@@ -9,15 +9,15 @@ import org.json.JSONObject;
 import p1.g;
 import w7.s;
 public final class c {
-    public Object f16213a;
-    public Object f16214b;
-    public Object f16215c;
+    public Object f16216a;
+    public Object f16217b;
+    public Object f16218c;
     public Object d;
-    public Object f16216e;
-    public Object f16217f;
-    public Object f16218g;
+    public Object f16219e;
+    public Object f16220f;
+    public Object f16221g;
     public Object h;
-    public Object f16219i;
+    public Object f16222i;
 
     public static void d(String str, JSONObject jSONObject) {
         StringBuilder m10 = e2.m(str);
@@ -32,13 +32,13 @@ public final class c {
         b bVar = null;
         try {
             if (!g.b(2, i7)) {
-                JSONObject K = ((g1) this.f16216e).K();
+                JSONObject K = ((g1) this.f16219e).K();
                 if (K != null) {
-                    b s5 = ((t5) this.f16215c).s(K);
+                    b s5 = ((t5) this.f16218c).s(K);
                     d("Loaded cached settings: ", K);
                     ((s) this.d).getClass();
                     long currentTimeMillis = System.currentTimeMillis();
-                    if (!g.b(3, i7) && s5.f16210c < currentTimeMillis) {
+                    if (!g.b(3, i7) && s5.f16213c < currentTimeMillis) {
                         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                             Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
                             return null;

@@ -6,67 +6,67 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class ff implements View.OnClickListener {
-    public final int f47675a;
-    public final bn f47676b;
-    public final int f47677c;
+    public final int f47679a;
+    public final bn f47680b;
+    public final int f47681c;
     public final ArrayList d;
-    public final String f47678e;
-    public final String f47679f;
+    public final String f47682e;
+    public final String f47683f;
     public final Serializable h;
-    public final TLRPC.InputPeer f47680n;
-    public final int[] f47681r;
-    public final boolean f47682s;
-    public final ef f47683w;
-    public final Object f47684x;
+    public final TLRPC.InputPeer f47684n;
+    public final int[] f47685r;
+    public final boolean f47686s;
+    public final ef f47687w;
+    public final Object f47688x;
 
     public ff(bn bnVar, int i7, ArrayList arrayList, String str, String str2, String str3, TLRPC.InputPeer inputPeer, int[] iArr, Object obj, boolean z10, ef efVar, int i10) {
-        this.f47675a = i10;
-        this.f47676b = bnVar;
-        this.f47677c = i7;
+        this.f47679a = i10;
+        this.f47680b = bnVar;
+        this.f47681c = i7;
         this.d = arrayList;
-        this.f47678e = str;
-        this.f47679f = str2;
+        this.f47682e = str;
+        this.f47683f = str2;
         this.h = str3;
-        this.f47680n = inputPeer;
-        this.f47681r = iArr;
-        this.f47684x = obj;
-        this.f47682s = z10;
-        this.f47683w = efVar;
+        this.f47684n = inputPeer;
+        this.f47685r = iArr;
+        this.f47688x = obj;
+        this.f47686s = z10;
+        this.f47687w = efVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f47675a) {
+        switch (this.f47679a) {
             case 0:
-                boolean z10 = this.f47682s;
-                ef efVar = this.f47683w;
-                bn.s0(this.f47676b, this.f47677c, this.d, this.f47678e, this.f47679f, (String) this.h, this.f47680n, this.f47681r, (TL_iv.RichMessage) this.f47684x, z10, efVar);
+                boolean z10 = this.f47686s;
+                ef efVar = this.f47687w;
+                bn.s0(this.f47680b, this.f47681c, this.d, this.f47682e, this.f47683f, (String) this.h, this.f47684n, this.f47685r, (TL_iv.RichMessage) this.f47688x, z10, efVar);
                 return;
             case 1:
-                boolean z11 = this.f47682s;
-                ef efVar2 = this.f47683w;
-                bn.E0(this.f47676b, this.f47677c, this.d, this.f47678e, this.f47679f, (String) this.h, this.f47680n, this.f47681r, (CharSequence) this.f47684x, z11, efVar2);
+                boolean z11 = this.f47686s;
+                ef efVar2 = this.f47687w;
+                bn.E0(this.f47680b, this.f47681c, this.d, this.f47682e, this.f47683f, (String) this.h, this.f47684n, this.f47685r, (CharSequence) this.f47688x, z11, efVar2);
                 return;
             default:
-                boolean z12 = this.f47682s;
-                ef efVar3 = this.f47683w;
-                bn.z0(this.f47676b, this.f47677c, this.d, (String[]) this.h, this.f47678e, this.f47679f, this.f47680n, this.f47681r, (CharSequence) this.f47684x, z12, efVar3);
+                boolean z12 = this.f47686s;
+                ef efVar3 = this.f47687w;
+                bn.z0(this.f47680b, this.f47681c, this.d, (String[]) this.h, this.f47682e, this.f47683f, this.f47684n, this.f47685r, (CharSequence) this.f47688x, z12, efVar3);
                 return;
         }
     }
 
     public ff(bn bnVar, int i7, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC.InputPeer inputPeer, int[] iArr, CharSequence charSequence, boolean z10, ef efVar) {
-        this.f47675a = 2;
-        this.f47676b = bnVar;
-        this.f47677c = i7;
+        this.f47679a = 2;
+        this.f47680b = bnVar;
+        this.f47681c = i7;
         this.d = arrayList;
         this.h = strArr;
-        this.f47678e = str;
-        this.f47679f = str2;
-        this.f47680n = inputPeer;
-        this.f47681r = iArr;
-        this.f47684x = charSequence;
-        this.f47682s = z10;
-        this.f47683w = efVar;
+        this.f47682e = str;
+        this.f47683f = str2;
+        this.f47684n = inputPeer;
+        this.f47685r = iArr;
+        this.f47688x = charSequence;
+        this.f47686s = z10;
+        this.f47687w = efVar;
     }
 }

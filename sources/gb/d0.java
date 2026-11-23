@@ -5,57 +5,57 @@ import android.os.Process;
 import java.util.LinkedHashMap;
 import java.util.Map;
 public final class d0 {
-    public final Context f13343a;
-    public final gd.i f13344b;
-    public final int f13345c;
+    public final Context f13346a;
+    public final gd.i f13347b;
+    public final int f13348c;
     public final gd.i d;
-    public final gd.i f13346e;
-    public boolean f13347f;
+    public final gd.i f13349e;
+    public boolean f13350f;
 
     public d0(Context appContext, i1 uuidGenerator) {
         kotlin.jvm.internal.j.e(appContext, "appContext");
         kotlin.jvm.internal.j.e(uuidGenerator, "uuidGenerator");
-        this.f13343a = appContext;
-        this.f13344b = b5.a.c(new rd.a(this) {
-            public final d0 f13332b;
+        this.f13346a = appContext;
+        this.f13347b = b5.a.c(new rd.a(this) {
+            public final d0 f13335b;
 
             {
-                this.f13332b = this;
+                this.f13335b = this;
             }
 
             @Override
             public final Object invoke() {
                 switch (r2) {
                     case 0:
-                        return ((e0) this.f13332b.f13346e.getValue()).f13360a;
+                        return ((e0) this.f13335b.f13349e.getValue()).f13363a;
                     default:
-                        return f0.b(this.f13332b.f13343a);
+                        return f0.b(this.f13335b.f13346a);
                 }
             }
         });
-        this.f13345c = Process.myPid();
+        this.f13348c = Process.myPid();
         this.d = b5.a.c(new androidx.activity.d(uuidGenerator, 1));
-        this.f13346e = b5.a.c(new rd.a(this) {
-            public final d0 f13332b;
+        this.f13349e = b5.a.c(new rd.a(this) {
+            public final d0 f13335b;
 
             {
-                this.f13332b = this;
+                this.f13335b = this;
             }
 
             @Override
             public final Object invoke() {
                 switch (r2) {
                     case 0:
-                        return ((e0) this.f13332b.f13346e.getValue()).f13360a;
+                        return ((e0) this.f13335b.f13349e.getValue()).f13363a;
                     default:
-                        return f0.b(this.f13332b.f13343a);
+                        return f0.b(this.f13335b.f13346a);
                 }
             }
         });
     }
 
     public final String a() {
-        return (String) this.f13344b.getValue();
+        return (String) this.f13347b.getValue();
     }
 
     public final Map b(Map map) {
@@ -70,7 +70,7 @@ public final class d0 {
                 }
                 return hd.r.g(linkedHashMap);
             }
-            return hd.o.f14175a;
+            return hd.o.f14178a;
         }
         return hd.r.c(new gd.e(a(), new b0(Process.myPid(), (String) iVar.getValue())));
     }

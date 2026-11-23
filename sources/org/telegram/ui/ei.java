@@ -3,35 +3,35 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class ei extends AnimatorListenerAdapter {
-    public final int f47300a;
-    public final bn f47301b;
+    public final int f47304a;
+    public final bn f47305b;
 
     public ei(bn bnVar, int i7) {
-        this.f47300a = i7;
-        this.f47301b = bnVar;
+        this.f47304a = i7;
+        this.f47305b = bnVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         bj bjVar;
-        switch (this.f47300a) {
+        switch (this.f47304a) {
             case 0:
-                bn bnVar = this.f47301b;
-                org.telegram.ui.Components.h50 h50Var = bnVar.f46158q3;
+                bn bnVar = this.f47305b;
+                org.telegram.ui.Components.h50 h50Var = bnVar.f46162q3;
                 if (h50Var != null) {
                     h50Var.setIsMessageTransition(false);
-                    bnVar.f46158q3.d(true);
-                    bnVar.f46158q3.setVisibility(4);
+                    bnVar.f46162q3.d(true);
+                    bnVar.f46162q3.setVisibility(4);
                     return;
                 }
                 return;
             case 1:
-                bn bnVar2 = this.f47301b;
+                bn bnVar2 = this.f47305b;
                 bnVar2.X9 = org.telegram.messenger.g0.L(30.0f);
                 bnVar2.M9();
                 return;
             case 2:
-                bn bnVar3 = this.f47301b;
+                bn bnVar3 = this.f47305b;
                 if (bnVar3.fragmentView != null && (bjVar = bnVar3.A0) != null) {
                     bjVar.invalidate();
                     bnVar3.fragmentView.invalidate();
@@ -39,53 +39,53 @@ public final class ei extends AnimatorListenerAdapter {
                 }
                 return;
             case 3:
-                this.f47301b.R.setVisibility(4);
+                this.f47305b.R.setVisibility(4);
                 return;
             case 4:
-                bn bnVar4 = this.f47301b;
-                if (animator.equals(bnVar4.f46222v3)) {
-                    bnVar4.f46222v3 = null;
+                bn bnVar4 = this.f47305b;
+                if (animator.equals(bnVar4.f46226v3)) {
+                    bnVar4.f46226v3 = null;
                     return;
                 }
                 return;
             case 5:
-                bn bnVar5 = this.f47301b;
-                if (animator.equals(bnVar5.f46222v3)) {
-                    bnVar5.f46222v3 = null;
+                bn bnVar5 = this.f47305b;
+                if (animator.equals(bnVar5.f46226v3)) {
+                    bnVar5.f46226v3 = null;
                     return;
                 }
                 return;
             case 6:
-                bn bnVar6 = this.f47301b;
-                if (animator.equals(bnVar6.f46236w3)) {
-                    bnVar6.f46249x3 = 1.0f;
+                bn bnVar6 = this.f47305b;
+                if (animator.equals(bnVar6.f46240w3)) {
+                    bnVar6.f46253x3 = 1.0f;
                     bnVar6.Tc();
-                    bnVar6.f46236w3 = null;
+                    bnVar6.f46240w3 = null;
                     return;
                 }
                 return;
             case 7:
-                bn bnVar7 = this.f47301b;
-                if (animator.equals(bnVar7.f46236w3)) {
-                    bnVar7.f46249x3 = 0.0f;
+                bn bnVar7 = this.f47305b;
+                if (animator.equals(bnVar7.f46240w3)) {
+                    bnVar7.f46253x3 = 0.0f;
                     bnVar7.Tc();
-                    bnVar7.f46236w3 = null;
+                    bnVar7.f46240w3 = null;
                     return;
                 }
                 return;
             case 8:
-                this.f47301b.f46047h5 = null;
+                this.f47305b.f46051h5 = null;
                 return;
             case 9:
-                bn bnVar8 = this.f47301b;
-                bnVar8.f45972bb = 1.0f;
-                bnVar8.f45946a0.setVisibility(4);
-                bnVar8.f45990d1.setVisibility(4);
+                bn bnVar8 = this.f47305b;
+                bnVar8.f45976bb = 1.0f;
+                bnVar8.f45950a0.setVisibility(4);
+                bnVar8.f45994d1.setVisibility(4);
                 bnVar8.M9();
                 return;
             default:
-                bn bnVar9 = this.f47301b;
-                bnVar9.f45972bb = 0.0f;
+                bn bnVar9 = this.f47305b;
+                bnVar9.f45976bb = 0.0f;
                 bnVar9.M9();
                 return;
         }

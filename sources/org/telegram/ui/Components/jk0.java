@@ -5,11 +5,11 @@ import android.view.ViewParent;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 public final class jk0 extends FrameLayout {
-    public View f36557a;
+    public View f36552a;
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        View view = this.f36557a;
+        View view = this.f36552a;
         if (view == null) {
             ViewParent parent = getParent();
             while (true) {
@@ -36,10 +36,10 @@ public final class jk0 extends FrameLayout {
     }
 
     public void setViewportView(View view) {
-        if (this.f36557a == view) {
+        if (this.f36552a == view) {
             return;
         }
-        this.f36557a = view;
+        this.f36552a = view;
         requestLayout();
     }
 }

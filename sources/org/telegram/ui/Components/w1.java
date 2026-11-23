@@ -10,20 +10,20 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class w1 implements View.OnClickListener {
-    public final int f41613a;
-    public final KeyEvent.Callback f41614b;
-    public final Object f41615c;
+    public final int f41615a;
+    public final KeyEvent.Callback f41616b;
+    public final Object f41617c;
     public final Object d;
-    public final Object f41616e;
-    public final Object f41617f;
+    public final Object f41618e;
+    public final Object f41619f;
     public final Object h;
 
     public w1(KeyEvent.Callback callback, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
-        this.f41613a = i7;
-        this.f41614b = callback;
-        this.f41616e = obj;
-        this.f41617f = obj2;
-        this.f41615c = obj3;
+        this.f41615a = i7;
+        this.f41616b = callback;
+        this.f41618e = obj;
+        this.f41619f = obj2;
+        this.f41617c = obj3;
         this.h = obj4;
         this.d = obj5;
     }
@@ -31,12 +31,12 @@ public final class w1 implements View.OnClickListener {
     @Override
     public final void onClick(View view) {
         boolean z10;
-        switch (this.f41613a) {
+        switch (this.f41615a) {
             case 0:
-                tb0 tb0Var = (tb0) this.f41614b;
-                j4 j4Var = (j4) this.f41616e;
-                k4 k4Var = (k4) this.f41617f;
-                Calendar calendar = (Calendar) this.f41615c;
+                tb0 tb0Var = (tb0) this.f41616b;
+                j4 j4Var = (j4) this.f41618e;
+                k4 k4Var = (k4) this.f41619f;
+                Calendar calendar = (Calendar) this.f41617c;
                 org.telegram.ui.aj0 aj0Var = (org.telegram.ui.aj0) this.h;
                 hi.w4 w4Var = (hi.w4) this.d;
                 boolean g10 = c5.g(null, null, 0L, 0L, 0, tb0Var, j4Var, k4Var);
@@ -49,15 +49,15 @@ public final class w1 implements View.OnClickListener {
                     calendar.set(14, 0);
                 }
                 int timeInMillis = (int) (calendar.getTimeInMillis() / 1000);
-                ((boolean[]) aj0Var.f45640c)[0] = true;
-                ((org.telegram.ui.i01) aj0Var.f45639b).e(Integer.valueOf(timeInMillis));
-                ((org.telegram.ui.ActionBar.w2) w4Var.f15705b).f30215y0.run();
+                ((boolean[]) aj0Var.f45644c)[0] = true;
+                ((org.telegram.ui.i01) aj0Var.f45643b).e(Integer.valueOf(timeInMillis));
+                ((org.telegram.ui.ActionBar.w2) w4Var.f15708b).f30218y0.run();
                 return;
             case 1:
-                tb0 tb0Var2 = (tb0) this.f41614b;
-                b4 b4Var = (b4) this.f41616e;
-                c4 c4Var = (c4) this.f41617f;
-                Calendar calendar2 = (Calendar) this.f41615c;
+                tb0 tb0Var2 = (tb0) this.f41616b;
+                b4 b4Var = (b4) this.f41618e;
+                c4 c4Var = (c4) this.f41619f;
+                Calendar calendar2 = (Calendar) this.f41617c;
                 a5 a5Var = (a5) this.h;
                 hi.w4 w4Var2 = (hi.w4) this.d;
                 boolean g11 = c5.g(null, null, 0L, 0L, 0, tb0Var2, b4Var, c4Var);
@@ -70,13 +70,13 @@ public final class w1 implements View.OnClickListener {
                     calendar2.set(14, 0);
                 }
                 a5Var.O((int) (calendar2.getTimeInMillis() / 1000), 0, true);
-                ((org.telegram.ui.ActionBar.w2) w4Var2.f15705b).f30215y0.run();
+                ((org.telegram.ui.ActionBar.w2) w4Var2.f15708b).f30218y0.run();
                 return;
             case 2:
-                tb0 tb0Var3 = (tb0) this.f41614b;
-                tb0 tb0Var4 = (tb0) this.f41616e;
-                tb0 tb0Var5 = (tb0) this.f41617f;
-                Calendar calendar3 = (Calendar) this.f41615c;
+                tb0 tb0Var3 = (tb0) this.f41616b;
+                tb0 tb0Var4 = (tb0) this.f41618e;
+                tb0 tb0Var5 = (tb0) this.f41619f;
+                Calendar calendar3 = (Calendar) this.f41617c;
                 c5.b(tb0Var3, tb0Var4, tb0Var5);
                 calendar3.set(1, tb0Var5.getValue());
                 calendar3.set(2, tb0Var4.getValue());
@@ -84,14 +84,14 @@ public final class w1 implements View.OnClickListener {
                 calendar3.set(12, 0);
                 calendar3.set(11, 0);
                 calendar3.set(13, 0);
-                ((org.telegram.messenger.nr) this.h).a((int) (calendar3.getTimeInMillis() / 1000));
-                ((org.telegram.ui.ActionBar.w2) ((hi.w4) this.d).f15705b).f30215y0.run();
+                ((org.telegram.messenger.or) this.h).a((int) (calendar3.getTimeInMillis() / 1000));
+                ((org.telegram.ui.ActionBar.w2) ((hi.w4) this.d).f15708b).f30218y0.run();
                 return;
             case 3:
-                kw0 kw0Var = (kw0) this.f41614b;
-                int[] iArr = (int[]) this.f41616e;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f41617f;
-                TextView textView = (TextView) this.f41615c;
+                kw0 kw0Var = (kw0) this.f41616b;
+                int[] iArr = (int[]) this.f41618e;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f41619f;
+                TextView textView = (TextView) this.f41617c;
                 TextView textView2 = (TextView) this.h;
                 AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.d;
                 int i7 = iArr[0];
@@ -100,13 +100,13 @@ public final class w1 implements View.OnClickListener {
                         iArr[0] = 1;
                         TLRPC.TL_stickers_suggestShortName tL_stickers_suggestShortName = new TLRPC.TL_stickers_suggestShortName();
                         String obj = editTextBoldCursor.getText().toString();
-                        kw0Var.f37014m2 = obj;
+                        kw0Var.f37017m2 = obj;
                         tL_stickers_suggestShortName.title = obj;
-                        ConnectionsManager.getInstance(kw0Var.f30170a).sendRequest(tL_stickers_suggestShortName, new di.m7(kw0Var, editTextBoldCursor, textView, textView2, iArr, 7));
+                        ConnectionsManager.getInstance(kw0Var.f30173a).sendRequest(tL_stickers_suggestShortName, new di.m7(kw0Var, editTextBoldCursor, textView, textView2, iArr, 7));
                         return;
                     } else if (i7 == 2) {
                         iArr[0] = 3;
-                        if (!kw0Var.f37012l2) {
+                        if (!kw0Var.f37015l2) {
                             org.telegram.messenger.g0.D3(editTextBoldCursor);
                             try {
                                 editTextBoldCursor.performHapticFeedback(3, 2);
@@ -114,18 +114,18 @@ public final class w1 implements View.OnClickListener {
                             }
                         }
                         org.telegram.messenger.g0.v1(editTextBoldCursor);
-                        org.telegram.messenger.zy C = org.telegram.messenger.zy.C(kw0Var.f30170a);
-                        String str = kw0Var.f37014m2;
-                        String str2 = kw0Var.f37010j2;
+                        org.telegram.messenger.az C = org.telegram.messenger.az.C(kw0Var.f30173a);
+                        String str = kw0Var.f37017m2;
+                        String str2 = kw0Var.f37013j2;
                         String str3 = kw0Var.V1;
                         ArrayList arrayList = kw0Var.T1;
                         uv0 uv0Var = new uv0(kw0Var);
                         if (C.G.get(str2) != null) {
                             uv0Var.a(null);
                         } else {
-                            new Thread(new org.telegram.messenger.tj((Object) C, str, str2, (Object) str3, (Object) arrayList, (Object) uv0Var, 9)).start();
+                            new Thread(new org.telegram.messenger.uj((Object) C, str, str2, (Object) str3, (Object) arrayList, (Object) uv0Var, 9)).start();
                         }
-                        alertDialog$Builder.f28774a.M0.run();
+                        alertDialog$Builder.f28777a.M0.run();
                         kw0Var.dismiss();
                         return;
                     } else {
@@ -134,18 +134,18 @@ public final class w1 implements View.OnClickListener {
                 }
                 return;
             case 4:
-                org.telegram.ui.ActionBar.w2 w2Var = (org.telegram.ui.ActionBar.w2) this.f41614b;
-                ArrayList arrayList2 = (ArrayList) this.f41617f;
-                int[] iArr2 = (int[]) this.f41615c;
+                org.telegram.ui.ActionBar.w2 w2Var = (org.telegram.ui.ActionBar.w2) this.f41616b;
+                ArrayList arrayList2 = (ArrayList) this.f41619f;
+                int[] iArr2 = (int[]) this.f41617c;
                 b9 b9Var = (b9) this.h;
                 q9 q9Var = (q9) this.d;
-                a70 G = a70.G(w2Var.f30176c, w2Var.J0, (FrameLayout) this.f41616e);
+                a70 G = a70.G(w2Var.f30179c, w2Var.J0, (FrameLayout) this.f41618e);
                 int size = arrayList2.size();
                 int i10 = 0;
                 while (i10 < size) {
                     int i11 = i10 + 1;
                     int intValue = ((Integer) arrayList2.get(i10)).intValue();
-                    TLRPC.User f10 = org.telegram.messenger.j10.i(intValue).f();
+                    TLRPC.User f10 = org.telegram.messenger.k10.i(intValue).f();
                     if (f10 != null) {
                         if (iArr2[0] == intValue) {
                             z10 = true;
@@ -156,30 +156,30 @@ public final class w1 implements View.OnClickListener {
                     }
                     i10 = i11;
                 }
-                G.f33386t = false;
-                G.f33354b0 = true;
-                G.f33384s = 0;
-                G.f33365i = 3;
+                G.f33399t = false;
+                G.f33367b0 = true;
+                G.f33397s = 0;
+                G.f33378i = 3;
                 G.b0(-org.telegram.messenger.g0.L(8.0f), -org.telegram.messenger.g0.L(8.0f));
                 G.a0();
                 return;
             default:
-                Calendar calendar4 = (Calendar) this.f41615c;
-                calendar4.setTimeInMillis((((tb0) this.f41614b).getValue() * 86400000) + System.currentTimeMillis());
-                calendar4.set(11, ((wg.f) this.f41616e).getValue());
-                calendar4.set(12, ((wg.g) this.f41617f).getValue() * 5);
+                Calendar calendar4 = (Calendar) this.f41617c;
+                calendar4.setTimeInMillis((((tb0) this.f41616b).getValue() * 86400000) + System.currentTimeMillis());
+                calendar4.set(11, ((wg.f) this.f41618e).getValue());
+                calendar4.set(12, ((wg.g) this.f41619f).getValue() * 5);
                 ((wg.u) this.h).O((int) (calendar4.getTimeInMillis() / 1000), 0, true);
-                ((org.telegram.ui.ActionBar.w2) ((hi.w4) this.d).f15705b).f30215y0.run();
+                ((org.telegram.ui.ActionBar.w2) ((hi.w4) this.d).f15708b).f30218y0.run();
                 return;
         }
     }
 
     public w1(Calendar calendar, tb0 tb0Var, wg.f fVar, wg.g gVar, wg.u uVar, hi.w4 w4Var) {
-        this.f41613a = 5;
-        this.f41615c = calendar;
-        this.f41614b = tb0Var;
-        this.f41616e = fVar;
-        this.f41617f = gVar;
+        this.f41615a = 5;
+        this.f41617c = calendar;
+        this.f41616b = tb0Var;
+        this.f41618e = fVar;
+        this.f41619f = gVar;
         this.h = uVar;
         this.d = w4Var;
     }

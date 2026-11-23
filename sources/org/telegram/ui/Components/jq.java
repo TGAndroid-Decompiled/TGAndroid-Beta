@@ -5,28 +5,28 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 public final class jq implements TextWatcher {
-    public final int f36588a = 1;
-    public final int f36589b;
-    public final View f36590c;
+    public final int f36583a = 1;
+    public final int f36584b;
+    public final View f36585c;
 
     public jq(mq mqVar, int i7) {
-        this.f36590c = mqVar;
-        this.f36589b = i7;
+        this.f36585c = mqVar;
+        this.f36584b = i7;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i7;
-        int i10 = this.f36588a;
-        int i11 = this.f36589b;
-        View view = this.f36590c;
+        int i10 = this.f36583a;
+        int i11 = this.f36584b;
+        View view = this.f36585c;
         boolean z10 = false;
         switch (i10) {
             case 0:
                 mq mqVar = (mq) view;
                 EditTextBoldCursor[] editTextBoldCursorArr = mqVar.F;
-                if (!mqVar.f37614r) {
-                    mqVar.f37614r = true;
+                if (!mqVar.f37612r) {
+                    mqVar.f37612r = true;
                     int i12 = 0;
                     while (i12 < editable.length()) {
                         char charAt = editable.charAt(i12);
@@ -37,7 +37,7 @@ public final class jq implements TextWatcher {
                         i12++;
                     }
                     if (editable.length() == 0) {
-                        mqVar.f37614r = false;
+                        mqVar.f37612r = false;
                         return;
                     }
                     try {
@@ -51,9 +51,9 @@ public final class jq implements TextWatcher {
                         editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
                         editTextBoldCursorArr[i11].setSelection(editable.length());
                     }
-                    mqVar.f37616w[mqVar.T].a(color);
-                    mqVar.f37602a.c(color, mqVar.T, true);
-                    mqVar.f37614r = false;
+                    mqVar.f37614w[mqVar.T].a(color);
+                    mqVar.f37600a.c(color, mqVar.T, true);
+                    mqVar.f37612r = false;
                     return;
                 }
                 return;
@@ -75,17 +75,17 @@ public final class jq implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f36588a;
+        int i12 = this.f36583a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f36588a;
+        int i12 = this.f36583a;
     }
 
     public jq(int i7, NumberTextView numberTextView) {
-        this.f36589b = i7;
-        this.f36590c = numberTextView;
+        this.f36584b = i7;
+        this.f36585c = numberTextView;
     }
 
     private final void a(int i7, int i10, int i11, CharSequence charSequence) {

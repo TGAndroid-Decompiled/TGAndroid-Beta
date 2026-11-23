@@ -1,24 +1,11 @@
 package org.telegram.messenger;
 
-import android.graphics.drawable.Drawable;
-public final class rt implements jc {
-    public final st f26723a;
-
-    public rt(st stVar) {
-        this.f26723a = stVar;
-    }
-
-    @Override
-    public final void V(ImageReceiver imageReceiver) {
-        st stVar = this.f26723a;
-        stVar.m(stVar.T, true);
-    }
-
-    @Override
-    public final void G0(int i7, Drawable drawable) {
-    }
-
-    @Override
-    public final void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-    }
+import android.text.StaticLayout;
+public final class rt {
+    public StaticLayout f26658a;
+    public int f26659b;
+    public int f26660c;
+    public int d;
+    public float f26661e;
+    public float f26662f;
 }

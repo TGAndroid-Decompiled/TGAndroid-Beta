@@ -14,27 +14,27 @@ import org.telegram.ui.Components.b9;
 import org.telegram.ui.Components.q9;
 import org.telegram.ui.i2;
 public final class n0 extends FrameLayout implements b6 {
-    public final q9 f59838a;
-    public final i2 f59839b;
-    public final Paint f59840c;
+    public final q9 f59842a;
+    public final i2 f59843b;
+    public final Paint f59844c;
     public TLRPC.Chat d;
-    public final b9 f59841e;
+    public final b9 f59845e;
 
     public n0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f59840c = paint;
-        this.f59841e = new b9((h6) null);
+        this.f59844c = paint;
+        this.f59845e = new b9((h6) null);
         q9 q9Var = new q9(getContext());
-        this.f59838a = q9Var;
+        this.f59842a = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(30.0f));
         i2 i2Var = new i2(context);
         Paint paint2 = new Paint(1);
-        i2Var.f48558b = paint2;
-        i2Var.f48559c = i2Var.getContext().getDrawable(2131231933);
-        int i7 = m6.f29451h5;
+        i2Var.f48562b = paint2;
+        i2Var.f48563c = i2Var.getContext().getDrawable(2131231933);
+        int i7 = m6.f29454h5;
         paint2.setColor(m6.x0(null, i7, false));
-        this.f59839b = i2Var;
+        this.f59843b = i2Var;
         i2Var.setAlpha(0.0f);
         addView(q9Var, ma.d(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
         addView(i2Var, ma.d(28, 28.0f, 85, 0.0f, 0.0f, 0.0f, 3.0f));
@@ -43,13 +43,13 @@ public final class n0 extends FrameLayout implements b6 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - org.telegram.messenger.g0.L(2.0f), this.f59840c);
+        canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - org.telegram.messenger.g0.L(2.0f), this.f59844c);
         super.dispatchDraw(canvas);
     }
 
     @Override
     public final void updateColors() {
-        this.f59840c.setColor(m6.x0(null, m6.f29451h5, false));
+        this.f59844c.setColor(m6.x0(null, m6.f29454h5, false));
         invalidate();
     }
 

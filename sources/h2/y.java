@@ -2,9 +2,9 @@ package h2;
 
 import a8.la;
 public final class y {
-    public static final y f13865c = new y(-1, -1);
-    public final int f13866a;
-    public final int f13867b;
+    public static final y f13868c = new y(-1, -1);
+    public final int f13869a;
+    public final int f13870b;
 
     static {
         new y(0, 0);
@@ -20,8 +20,8 @@ public final class y {
             z10 = true;
         }
         la.f(z10);
-        this.f13866a = i7;
-        this.f13867b = i10;
+        this.f13869a = i7;
+        this.f13870b = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -33,7 +33,7 @@ public final class y {
         }
         if (obj instanceof y) {
             y yVar = (y) obj;
-            if (this.f13866a == yVar.f13866a && this.f13867b == yVar.f13867b) {
+            if (this.f13869a == yVar.f13869a && this.f13870b == yVar.f13870b) {
                 return true;
             }
         }
@@ -41,11 +41,11 @@ public final class y {
     }
 
     public final int hashCode() {
-        int i7 = this.f13866a;
-        return ((i7 >>> 16) | (i7 << 16)) ^ this.f13867b;
+        int i7 = this.f13869a;
+        return ((i7 >>> 16) | (i7 << 16)) ^ this.f13870b;
     }
 
     public final String toString() {
-        return this.f13866a + "x" + this.f13867b;
+        return this.f13869a + "x" + this.f13870b;
     }
 }

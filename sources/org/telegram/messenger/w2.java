@@ -1,16 +1,16 @@
 package org.telegram.messenger;
 
 import android.util.Pair;
-public final class w2 implements q10 {
-    public final y2 f27660a;
-    public final Pair f27661b;
-    public final Object f27662c;
+public final class w2 implements r10 {
+    public final y2 f27678a;
+    public final Pair f27679b;
+    public final Object f27680c;
     public final int d;
 
     public w2(y2 y2Var, Pair pair, Object obj, int i7) {
-        this.f27660a = y2Var;
-        this.f27661b = pair;
-        this.f27662c = obj;
+        this.f27678a = y2Var;
+        this.f27679b = pair;
+        this.f27680c = obj;
         this.d = i7;
     }
 
@@ -18,10 +18,10 @@ public final class w2 implements q10 {
     public final void a(Object obj, Object obj2) {
         Object obj3;
         Long l10 = (Long) obj;
-        y2 y2Var = this.f27660a;
-        Pair pair = this.f27661b;
+        y2 y2Var = this.f27678a;
+        Pair pair = this.f27679b;
         if (y2Var.i(pair)) {
-            Object obj4 = this.f27662c;
+            Object obj4 = this.f27680c;
             if (obj2 != null && y2Var.b(obj4)) {
                 y2Var.a(pair, obj2);
                 obj3 = obj2;

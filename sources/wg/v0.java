@@ -15,7 +15,7 @@ public final class v0 extends ah.o {
         super.onLayout(z10, i7, i10, i11, i12);
         int L = org.telegram.messenger.g0.L(78.0f) + getMeasuredHeight();
         w0 w0Var = this.L;
-        w0Var.f59885l2 = L;
-        w0Var.f59884k2.G();
+        w0Var.f59889l2 = L;
+        w0Var.f59888k2.G();
     }
 }

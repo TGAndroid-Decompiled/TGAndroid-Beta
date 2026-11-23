@@ -1,22 +1,22 @@
 package ki;
 
-import org.telegram.messenger.x10;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLRPC;
-public final class v1 implements x10 {
-    public final int f19031a;
-    public final s2 f19032b;
+public final class v1 implements y10 {
+    public final int f19034a;
+    public final s2 f19035b;
 
     public v1(s2 s2Var, int i7) {
-        this.f19031a = i7;
-        this.f19032b = s2Var;
+        this.f19034a = i7;
+        this.f19035b = s2Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f19031a) {
+        switch (this.f19034a) {
             case 0:
                 Boolean bool = (Boolean) obj;
-                k2 k2Var = this.f19032b.E;
+                k2 k2Var = this.f19035b.E;
                 if (k2Var != null) {
                     if (bool.booleanValue()) {
                         k2Var.Q = System.currentTimeMillis();
@@ -29,7 +29,7 @@ public final class v1 implements x10 {
                 }
                 return;
             default:
-                org.telegram.messenger.g0.g3(new ji.i(9, this.f19032b, (TLRPC.UserFull) obj));
+                org.telegram.messenger.g0.g3(new ji.i(9, this.f19035b, (TLRPC.UserFull) obj));
                 return;
         }
     }

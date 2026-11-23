@@ -6,13 +6,13 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.animation.DecelerateInterpolator;
 public abstract class fq extends Drawable {
-    public final Paint f35299a;
-    public long f35300b;
-    public final RectF f35301c;
+    public final Paint f35301a;
+    public long f35302b;
+    public final RectF f35303c;
     public float d;
-    public boolean f35302e;
-    public int f35303f;
-    public int f35304g;
+    public boolean f35304e;
+    public int f35305f;
+    public int f35306g;
 
     public fq() {
         this(2.0f);
@@ -42,15 +42,15 @@ public abstract class fq extends Drawable {
 
     public fq(float f10) {
         Paint paint = new Paint(1);
-        this.f35299a = paint;
+        this.f35301a = paint;
         new DecelerateInterpolator();
-        this.f35301c = new RectF();
-        this.f35304g = 255;
+        this.f35303c = new RectF();
+        this.f35306g = 255;
         paint.setColor(-1);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(f10));
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStyle(Paint.Style.STROKE);
-        this.f35303f = org.telegram.messenger.g0.L(8.0f);
+        this.f35305f = org.telegram.messenger.g0.L(8.0f);
     }
 
     @Override

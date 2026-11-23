@@ -1,24 +1,24 @@
 package bg;
 
 import a8.xa;
+import ai.b1;
 import android.text.StaticLayout;
 import android.text.TextUtils;
 import android.view.View;
-import bi.x4;
 import com.google.android.gms.internal.clearcut.y0;
 import fi.y7;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.lr;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.mr;
+import org.telegram.messenger.np;
 import org.telegram.messenger.r1;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -60,27 +60,27 @@ import org.telegram.ui.la;
 import org.telegram.ui.pu;
 import org.telegram.ui.wq0;
 import org.telegram.ui.xs0;
-public final class g0 implements w30, q1, l6, sj0, lr, f5.n, c3, org.telegram.messenger.q1, h2.j {
-    public final int f3245a;
-    public final int f3246b;
-    public final Object f3247c;
+public final class g0 implements w30, q1, l6, sj0, mr, f5.n, c3, org.telegram.messenger.q1, h2.j {
+    public final int f3252a;
+    public final int f3253b;
+    public final Object f3254c;
     public final Object d;
-    public final Object f3248e;
+    public final Object f3255e;
 
     public g0(int i7, bh bhVar, r4 r4Var, x30 x30Var) {
-        this.f3245a = 0;
-        this.f3246b = i7;
-        this.f3247c = bhVar;
+        this.f3252a = 0;
+        this.f3253b = i7;
+        this.f3254c = bhVar;
         this.d = r4Var;
-        this.f3248e = x30Var;
+        this.f3255e = x30Var;
     }
 
     @Override
     public void V(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, boolean z10, final TLRPC.VideoSize videoSize) {
-        final bh bhVar = (bh) this.f3247c;
+        final bh bhVar = (bh) this.f3254c;
         final r4 r4Var = (r4) this.d;
-        final x30 x30Var = (x30) this.f3248e;
-        final int i7 = this.f3246b;
+        final x30 x30Var = (x30) this.f3255e;
+        final int i7 = this.f3253b;
         org.telegram.messenger.g0.g3(new Runnable() {
             @Override
             public final void run() {
@@ -111,9 +111,9 @@ public final class g0 implements w30, q1, l6, sj0, lr, f5.n, c3, org.telegram.me
 
     @Override
     public void a(f5.f fVar, List list) {
-        ArrayList arrayList = (ArrayList) this.f3247c;
+        ArrayList arrayList = (ArrayList) this.f3254c;
         TLRPC.Chat chat = (TLRPC.Chat) this.d;
-        x10 x10Var = (x10) this.f3248e;
+        y10 y10Var = (y10) this.f3255e;
         Iterator it = list.iterator();
         while (it.hasNext()) {
             f5.m mVar = (f5.m) it.next();
@@ -126,55 +126,55 @@ public final class g0 implements w30, q1, l6, sj0, lr, f5.n, c3, org.telegram.me
                     i7++;
                     TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) obj;
                     String str = tL_premiumGiftCodeOption.store_product;
-                    if (str != null && str.equals(mVar.f11330c)) {
-                        tL_premiumGiftCodeOption.amount = (long) (Math.pow(10.0d, r1.i().h(tL_premiumGiftCodeOption.currency)) * (a10.f11317b / Math.pow(10.0d, 6.0d)));
-                        tL_premiumGiftCodeOption.currency = a10.f11318c;
+                    if (str != null && str.equals(mVar.f11333c)) {
+                        tL_premiumGiftCodeOption.amount = (long) (Math.pow(10.0d, r1.i().h(tL_premiumGiftCodeOption.currency)) * (a10.f11320b / Math.pow(10.0d, 6.0d)));
+                        tL_premiumGiftCodeOption.currency = a10.f11321c;
                         break;
                     }
                 }
             }
         }
-        org.telegram.messenger.g0.g3(new wg.m(chat, this.f3246b, arrayList, x10Var, 0));
+        org.telegram.messenger.g0.g3(new wg.m(chat, this.f3253b, arrayList, y10Var, 0));
     }
 
     @Override
     public void accept(Object obj) {
-        xa xaVar = (xa) this.f3247c;
-        ((x2.k0) obj).I(xaVar.f713b, (x2.g0) xaVar.f714c, (x2.u) this.d, (x2.c0) this.f3248e, this.f3246b);
+        xa xaVar = (xa) this.f3254c;
+        ((x2.k0) obj).I(xaVar.f713b, (x2.g0) xaVar.f714c, (x2.u) this.d, (x2.c0) this.f3255e, this.f3253b);
     }
 
     @Override
     public void b(f5.f fVar, List list) {
-        org.telegram.messenger.g0.g3(new m0(fVar, (g2) this.f3247c, list, this.f3246b, (y0) this.d, (xs0) this.f3248e, 12));
+        org.telegram.messenger.g0.g3(new m0(fVar, (g2) this.f3254c, list, this.f3253b, (y0) this.d, (xs0) this.f3255e, 12));
     }
 
     @Override
     public boolean c(int i7, View view) {
         int i10;
-        em0 em0Var = (em0) this.f3247c;
+        em0 em0Var = (em0) this.f3254c;
         g2 g2Var = (g2) this.d;
-        h6 h6Var = (h6) this.f3248e;
-        ArrayList arrayList = em0Var.f34910r;
+        h6 h6Var = (h6) this.f3255e;
+        ArrayList arrayList = em0Var.f34908r;
         if (i7 >= 0 && i7 < arrayList.size()) {
-            int i11 = this.f3246b;
-            if (j10.i(i11).q()) {
-                if (!j10.i(i11).q()) {
+            int i11 = this.f3253b;
+            if (k10.i(i11).q()) {
+                if (!k10.i(i11).q()) {
                     new ug.y0(g2Var, 24, true).show();
                     return true;
                 }
-                cm0 cm0Var = ((dm0) view).f34531a;
+                cm0 cm0Var = ((dm0) view).f34526a;
                 if (cm0Var != null) {
                     cm0Var.p();
                 }
                 bm0 bm0Var = (bm0) arrayList.get(i7);
                 a70 I = a70.I(g2Var, view);
-                I.f33365i = 3;
-                if (TextUtils.isEmpty(bm0Var.f33865c)) {
+                I.f33378i = 3;
+                if (TextUtils.isEmpty(bm0Var.f33858c)) {
                     i10 = 2131745685;
                 } else {
                     i10 = 2131745673;
                 }
-                I.c(2131231902, gd.N0(i10, null), new x4(em0Var, i11, bm0Var, h6Var, 27), false);
+                I.c(2131231902, hd.N0(i10, null), new b1(em0Var, i11, bm0Var, h6Var, 28), false);
                 I.a0();
                 return true;
             }
@@ -186,15 +186,15 @@ public final class g0 implements w30, q1, l6, sj0, lr, f5.n, c3, org.telegram.me
     public void d(boolean z10) {
         boolean z11;
         int i7;
-        cx cxVar = (cx) this.f3247c;
+        cx cxVar = (cx) this.f3254c;
         ArrayList arrayList = (ArrayList) this.d;
-        HashSet hashSet = (HashSet) this.f3248e;
+        HashSet hashSet = (HashSet) this.f3255e;
         if (arrayList.isEmpty()) {
             return;
         }
         ArrayList arrayList2 = new ArrayList(arrayList);
         UndoView l42 = cxVar.l4();
-        int i10 = this.f3246b;
+        int i10 = this.f3253b;
         if (l42 != null) {
             if (i10 == 102) {
                 i7 = 27;
@@ -218,31 +218,31 @@ public final class g0 implements w30, q1, l6, sj0, lr, f5.n, c3, org.telegram.me
 
     @Override
     public void f(CharSequence charSequence) {
-        n6 n6Var = (n6) this.f3247c;
+        n6 n6Var = (n6) this.f3254c;
         ArrayList arrayList = (ArrayList) this.d;
-        ArrayList arrayList2 = (ArrayList) this.f3248e;
-        StaticLayout j3 = n6Var.j(this.f3246b - ((int) Math.ceil(Math.min(n6Var.d, n6Var.f37799j))), charSequence);
+        ArrayList arrayList2 = (ArrayList) this.f3255e;
+        StaticLayout j3 = n6Var.j(this.f3253b - ((int) Math.ceil(Math.min(n6Var.d, n6Var.f37804j))), charSequence);
         k6 k6Var = new k6(n6Var, j3, n6Var.d, arrayList.size());
-        k6 k6Var2 = new k6(n6Var, j3, n6Var.f37799j, arrayList2.size());
+        k6 k6Var2 = new k6(n6Var, j3, n6Var.f37804j, arrayList2.size());
         arrayList2.add(k6Var);
         arrayList.add(k6Var2);
         float f10 = n6Var.d;
-        float f11 = k6Var.f36810f;
+        float f11 = k6Var.f36813f;
         n6Var.d = f10 + f11;
-        n6Var.f37799j += f11;
+        n6Var.f37804j += f11;
         n6Var.f(k6Var);
         n6Var.g(k6Var2);
     }
 
     @Override
     public void g(d3 d3Var) {
-        hc1 hc1Var = (hc1) this.f3247c;
+        hc1 hc1Var = (hc1) this.f3254c;
         e3 e3Var = (e3) this.d;
-        VoIPService voIPService = (VoIPService) this.f3248e;
+        VoIPService voIPService = (VoIPService) this.f3255e;
         if (VoIPService.getSharedInstance() != null) {
             org.telegram.messenger.g0.r(hc1Var.S0);
             hc1Var.R0 = false;
-            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(hc1Var.f48329b, false, Integer.valueOf(this.f3246b));
+            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(hc1Var.f48333b, false, Integer.valueOf(this.f3253b));
             hc1Var.l(e3Var, voIPService);
         }
     }
@@ -260,11 +260,11 @@ public final class g0 implements w30, q1, l6, sj0, lr, f5.n, c3, org.telegram.me
     @Override
     public void h(t1 t1Var, int i7) {
         TL_bots.toggleUsername toggleusername;
-        int i10 = this.f3245a;
-        int i11 = this.f3246b;
-        Object obj = this.f3248e;
+        int i10 = this.f3252a;
+        int i11 = this.f3253b;
+        Object obj = this.f3255e;
         Object obj2 = this.d;
-        Object obj3 = this.f3247c;
+        Object obj3 = this.f3254c;
         switch (i10) {
             case 1:
                 final ca caVar = (ca) obj3;
@@ -273,8 +273,8 @@ public final class g0 implements w30, q1, l6, sj0, lr, f5.n, c3, org.telegram.me
                 final boolean z10 = tL_username.active;
                 final String str = tL_username.username;
                 final boolean z11 = !z10;
-                la laVar = caVar.f46498a;
-                long j3 = laVar.f49537y;
+                la laVar = caVar.f46501a;
+                long j3 = laVar.f49541y;
                 if (j3 == 0) {
                     TL_account.toggleUsername toggleusername2 = new TL_account.toggleUsername();
                     toggleusername2.username = str;
@@ -282,20 +282,20 @@ public final class g0 implements w30, q1, l6, sj0, lr, f5.n, c3, org.telegram.me
                     toggleusername = toggleusername2;
                 } else {
                     TL_bots.toggleUsername toggleusername3 = new TL_bots.toggleUsername();
-                    toggleusername3.bot = mp.u1(la.g0(laVar)).q1(j3);
+                    toggleusername3.bot = np.u1(la.g0(laVar)).q1(j3);
                     toggleusername3.username = str;
                     toggleusername3.active = z11;
                     toggleusername = toggleusername3;
                 }
                 ConnectionsManager connectionsManager = laVar.getConnectionsManager();
-                final int i12 = this.f3246b;
+                final int i12 = this.f3253b;
                 connectionsManager.sendRequest(toggleusername, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        org.telegram.messenger.g0.g3(new org.telegram.messenger.ew(ca.this, str, tLObject, i12, z11, tL_error, tL_username, z10));
+                        org.telegram.messenger.g0.g3(new org.telegram.messenger.fw(ca.this, str, tLObject, i12, z11, tL_error, tL_username, z10));
                     }
                 });
-                laVar.f49536x.add(tL_username.username);
+                laVar.f49540x.add(tL_username.username);
                 ((ia) view).setLoading(true);
                 return;
             case 2:
@@ -316,21 +316,21 @@ public final class g0 implements w30, q1, l6, sj0, lr, f5.n, c3, org.telegram.me
                 return;
             case 5:
                 jt0 jt0Var = (jt0) obj3;
-                fj fjVar = (fj) obj;
+                gj gjVar = (gj) obj;
                 t1[] t1VarArr = {new t1(3, jt0Var.getContext(), (h6) obj2)};
                 TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
                 TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
                 TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
                 tL_inputMediaPoll.poll = tL_poll;
-                TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) fjVar.f23993k.media).poll;
-                tL_poll.f28457id = poll.f28457id;
+                TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) gjVar.f24213k.media).poll;
+                tL_poll.f28460id = poll.f28460id;
                 tL_poll.question = poll.question;
                 tL_poll.answers = poll.answers;
                 tL_poll.closed = true;
                 tL_messages_editMessage.media = tL_inputMediaPoll;
-                int i13 = this.f3246b;
-                tL_messages_editMessage.peer = mp.u1(i13).l1(jt0Var.f36653m1);
-                tL_messages_editMessage.f28515id = fjVar.e1();
+                int i13 = this.f3253b;
+                tL_messages_editMessage.peer = np.u1(i13).l1(jt0Var.f36648m1);
+                tL_messages_editMessage.f28518id = gjVar.e1();
                 tL_messages_editMessage.flags |= 16384;
                 org.telegram.messenger.g0.h3(new aq0(t1VarArr, i13, ConnectionsManager.getInstance(i13).sendRequest(tL_messages_editMessage, new y7(jt0Var, t1VarArr, i13, tL_messages_editMessage, 5)), 1), 500L);
                 return;
@@ -343,27 +343,27 @@ public final class g0 implements w30, q1, l6, sj0, lr, f5.n, c3, org.telegram.me
     }
 
     public g0(Object obj, int i7, Object obj2, Object obj3, int i10) {
-        this.f3245a = i10;
-        this.f3247c = obj;
-        this.f3246b = i7;
+        this.f3252a = i10;
+        this.f3254c = obj;
+        this.f3253b = i7;
         this.d = obj2;
-        this.f3248e = obj3;
+        this.f3255e = obj3;
     }
 
     public g0(Object obj, Object obj2, int i7, Object obj3, int i10) {
-        this.f3245a = i10;
-        this.f3247c = obj;
+        this.f3252a = i10;
+        this.f3254c = obj;
         this.d = obj2;
-        this.f3246b = i7;
-        this.f3248e = obj3;
+        this.f3253b = i7;
+        this.f3255e = obj3;
     }
 
     public g0(Object obj, Object obj2, Object obj3, int i7, int i10) {
-        this.f3245a = i10;
-        this.f3247c = obj;
+        this.f3252a = i10;
+        this.f3254c = obj;
         this.d = obj2;
-        this.f3248e = obj3;
-        this.f3246b = i7;
+        this.f3255e = obj3;
+        this.f3253b = i7;
     }
 
     @Override

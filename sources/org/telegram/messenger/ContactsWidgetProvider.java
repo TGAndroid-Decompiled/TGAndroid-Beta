@@ -28,12 +28,12 @@ public class ContactsWidgetProvider extends AppWidgetProvider {
             int i13 = sharedPreferences.getInt("account" + i7, -1);
             if (i13 == -1) {
                 SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.putInt(i5.c.i(i7, "account"), j10.f24798t0);
+                edit.putInt(i5.c.i(i7, "account"), k10.f24968t0);
                 edit.putInt("type" + i7, 0).commit();
             }
             ArrayList arrayList = new ArrayList();
             if (i13 >= 0) {
-                tr.a0(c.a(i13).f23246a).q0(i7, 1, arrayList, null, null, false);
+                ur.a0(c.a(i13).f23202a).q0(i7, 1, arrayList, null, null, false);
             }
             int ceil = (int) Math.ceil(arrayList.size() / 2.0f);
             if (i11 != 1 && ceil > 1) {
@@ -43,11 +43,11 @@ public class ContactsWidgetProvider extends AppWidgetProvider {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), i12);
         remoteViews.setRemoteAdapter(i7, 2131296478, intent);
         remoteViews.setEmptyView(2131296478, 2131296425);
-        Intent intent2 = new Intent(t0.f26941b, LaunchActivity.class);
+        Intent intent2 = new Intent(t0.f26931b, LaunchActivity.class);
         intent2.setAction("com.tmessages.openchat" + Math.random() + Integer.MAX_VALUE);
         intent2.addFlags(67108864);
         intent2.addCategory("android.intent.category.LAUNCHER");
-        remoteViews.setPendingIntentTemplate(2131296478, PendingIntent.getActivity(t0.f26941b, 0, intent2, 167772160));
+        remoteViews.setPendingIntentTemplate(2131296478, PendingIntent.getActivity(t0.f26931b, 0, intent2, 167772160));
         appWidgetManager.updateAppWidget(i7, remoteViews);
         appWidgetManager.notifyAppWidgetViewDataChanged(i7, 2131296478);
     }
@@ -67,8 +67,8 @@ public class ContactsWidgetProvider extends AppWidgetProvider {
         for (int i7 = 0; i7 < iArr.length; i7++) {
             int i10 = sharedPreferences.getInt("account" + iArr[i7], -1);
             if (i10 >= 0) {
-                tr a02 = tr.a0(c.a(i10).f23246a);
-                a02.f27080a.c(new rp(a02, iArr[i7], 1));
+                ur a02 = ur.a0(c.a(i10).f23202a);
+                a02.f27250a.c(new sp(a02, iArr[i7], 1));
             }
             edit.remove("account" + iArr[i7]);
             edit.remove("type" + iArr[i7]);

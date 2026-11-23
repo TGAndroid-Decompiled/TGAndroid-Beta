@@ -1,8 +1,8 @@
 package gb;
 public final class g implements na.d {
-    public static final g f13368a = new Object();
-    public static final na.c f13369b = na.c.c("eventType");
-    public static final na.c f13370c = na.c.c("sessionData");
+    public static final g f13371a = new Object();
+    public static final na.c f13372b = na.c.c("eventType");
+    public static final na.c f13373c = na.c.c("sessionData");
     public static final na.c d = na.c.c("applicationInfo");
 
     @Override
@@ -10,8 +10,8 @@ public final class g implements na.d {
         o0 o0Var = (o0) obj;
         na.e eVar = (na.e) obj2;
         o0Var.getClass();
-        eVar.a(f13369b, m.f13411b);
-        eVar.a(f13370c, o0Var.f13420a);
-        eVar.a(d, o0Var.f13421b);
+        eVar.a(f13372b, m.f13414b);
+        eVar.a(f13373c, o0Var.f13423a);
+        eVar.a(d, o0Var.f13424b);
     }
 }

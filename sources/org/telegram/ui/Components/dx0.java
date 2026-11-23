@@ -5,15 +5,15 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class dx0 extends Drawable {
-    public boolean f34610a;
-    public final d6 f34611b;
-    public final Drawable f34612c;
+    public boolean f34605a;
+    public final d6 f34606b;
+    public final Drawable f34607c;
     public final Drawable d;
-    public int f34613e = 255;
+    public int f34608e = 255;
 
     public dx0(org.telegram.ui.Cells.r1 r1Var) {
-        this.f34611b = new d6(r1Var, 420L, nr.h);
-        this.f34612c = r1Var.getContext().getResources().getDrawable(2131232771);
+        this.f34606b = new d6(r1Var, 420L, nr.h);
+        this.f34607c = r1Var.getContext().getResources().getDrawable(2131232771);
         this.d = r1Var.getContext().getResources().getDrawable(2131232772);
     }
 
@@ -22,9 +22,9 @@ public final class dx0 extends Drawable {
         Rect bounds = getBounds();
         Drawable drawable = this.d;
         drawable.setBounds(bounds);
-        drawable.setAlpha(this.f34613e);
+        drawable.setAlpha(this.f34608e);
         drawable.draw(canvas);
-        float d = this.f34611b.d(this.f34610a);
+        float d = this.f34606b.d(this.f34605a);
         float centerX = getBounds().centerX();
         float centerY = getBounds().centerY();
         float width = getBounds().width();
@@ -44,9 +44,9 @@ public final class dx0 extends Drawable {
             canvas.translate((-width) * f12 * 0.4f, f12 * width * 0.4f);
         }
         Rect bounds2 = getBounds();
-        Drawable drawable2 = this.f34612c;
+        Drawable drawable2 = this.f34607c;
         drawable2.setBounds(bounds2);
-        drawable2.setAlpha(this.f34613e);
+        drawable2.setAlpha(this.f34608e);
         drawable2.draw(canvas);
         canvas.restore();
         canvas.save();
@@ -61,7 +61,7 @@ public final class dx0 extends Drawable {
             canvas.translate((-width) * abs3 * 0.4f, width * abs3 * 0.4f);
         }
         drawable2.setBounds(getBounds());
-        drawable2.setAlpha(this.f34613e);
+        drawable2.setAlpha(this.f34608e);
         drawable2.draw(canvas);
         canvas.restore();
         canvas.restore();
@@ -69,12 +69,12 @@ public final class dx0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f34612c.getIntrinsicHeight();
+        return this.f34607c.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f34612c.getIntrinsicWidth();
+        return this.f34607c.getIntrinsicWidth();
     }
 
     @Override
@@ -84,12 +84,12 @@ public final class dx0 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f34613e = i7;
+        this.f34608e = i7;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34612c.setColorFilter(colorFilter);
+        this.f34607c.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
     }
 }

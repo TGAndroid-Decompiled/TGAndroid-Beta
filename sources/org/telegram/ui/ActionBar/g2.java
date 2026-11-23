@@ -31,17 +31,17 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.qd;
-import org.telegram.messenger.ri;
-import org.telegram.messenger.tr;
-import org.telegram.messenger.u9;
+import org.telegram.messenger.az;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
+import org.telegram.messenger.rd;
+import org.telegram.messenger.si;
+import org.telegram.messenger.ur;
+import org.telegram.messenger.v9;
 import org.telegram.messenger.w7;
-import org.telegram.messenger.xs;
-import org.telegram.messenger.xv;
-import org.telegram.messenger.zy;
+import org.telegram.messenger.ys;
+import org.telegram.messenger.yv;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.fb;
@@ -79,13 +79,13 @@ public abstract class g2 {
     private j5 simpleMenuOverlay;
     private g2 simpleMenuOverlayHost;
     public Dialog visibleDialog;
-    protected int currentAccount = j10.f24798t0;
+    protected int currentAccount = k10.f24968t0;
     protected boolean hasOwnBackground = false;
     protected boolean isPaused = true;
     protected boolean inTransitionAnimation = false;
     protected final ri.q glassEngine = new ri.q();
     private final h6 themedColors = new r1(this, 1);
-    protected i0.b mSystemInsets = i0.b.f15913e;
+    protected i0.b mSystemInsets = i0.b.f15916e;
     protected int classGuid = ConnectionsManager.generateClassGuid();
 
     public g2(Bundle bundle) {
@@ -131,7 +131,7 @@ public abstract class g2 {
         }
         f9 lastStoryViewer = getLastStoryViewer();
         if (lastStoryViewer != null) {
-            lastStoryViewer.f12043w0 = c2Var;
+            lastStoryViewer.f12046w0 = c2Var;
             c2Var.n(new fi.e3(lastStoryViewer, 3));
         }
         this.sheetsStack.add(c2Var);
@@ -250,11 +250,11 @@ public abstract class g2 {
     public k createActionBar(Context context) {
         r4 r4Var;
         k kVar = new k(context, getResourceProvider());
-        t6.h(m6.f29658s8, kVar, this.themedColors);
-        t6.l(kVar, 3, m6.f29676t8, this.themedColors);
-        t6.a(kVar, m6.f29791z8, this.themedColors, true);
-        t6.l(kVar, 1, m6.f29715v8, this.themedColors);
-        t6.b(kVar, m6.f29772y8, this.themedColors, true);
+        t6.h(m6.f29661s8, kVar, this.themedColors);
+        t6.l(kVar, 3, m6.f29679t8, this.themedColors);
+        t6.a(kVar, m6.f29794z8, this.themedColors, true);
+        t6.l(kVar, 1, m6.f29718v8, this.themedColors);
+        t6.b(kVar, m6.f29775y8, this.themedColors, true);
         if (!this.inPreviewMode && !this.inBubbleMode && ((r4Var = this.parentLayout) == null || !((ActionBarLayout) r4Var).T0)) {
             return kVar;
         }
@@ -291,8 +291,8 @@ public abstract class g2 {
         }
         f9 f9Var = new f9(this);
         r4 r4Var = this.parentLayout;
-        if (r4Var != null && ((ActionBarLayout) r4Var).f28710b) {
-            f9Var.f12032r1 = true;
+        if (r4Var != null && ((ActionBarLayout) r4Var).f28713b) {
+            f9Var.f12035r1 = true;
         }
         this.sheetsStack.add(f9Var);
         updateSheetsVisibility();
@@ -346,7 +346,7 @@ public abstract class g2 {
     }
 
     public void dumpCanvas() {
-        Typeface typeface = org.telegram.messenger.g0.f24118a;
+        Typeface typeface = org.telegram.messenger.g0.f24018a;
     }
 
     public boolean extendActionMode(Menu menu) {
@@ -359,7 +359,7 @@ public abstract class g2 {
         if (dialog != null) {
             dialog.dismiss();
         } else if (this.inPreviewMode && (f2Var = this.previewDelegate) != null) {
-            ((yy0) ((qi0) f2Var).f51288b).a();
+            ((yy0) ((qi0) f2Var).f51292b).a();
         } else {
             finishFragment(true);
         }
@@ -431,11 +431,11 @@ public abstract class g2 {
     }
 
     public ConnectionsManager getConnectionsManager() {
-        return ConnectionsManager.getInstance(getAccountInstance().f23246a);
+        return ConnectionsManager.getInstance(getAccountInstance().f23202a);
     }
 
     public org.telegram.messenger.i5 getContactsController() {
-        return org.telegram.messenger.i5.r(getAccountInstance().f23246a);
+        return org.telegram.messenger.i5.r(getAccountInstance().f23202a);
     }
 
     public Context getContext() {
@@ -451,18 +451,18 @@ public abstract class g2 {
     }
 
     public org.telegram.messenger.a6 getDownloadController() {
-        return org.telegram.messenger.a6.q(getAccountInstance().f23246a);
+        return org.telegram.messenger.a6.q(getAccountInstance().f23202a);
     }
 
     public p3 getEdgeToEdgeSupportMode() {
         if (isSupportEdgeToEdge()) {
-            return p3.f29882b;
+            return p3.f29885b;
         }
-        return p3.f29881a;
+        return p3.f29884a;
     }
 
     public w7 getFileLoader() {
-        return w7.G(getAccountInstance().f23246a);
+        return w7.G(getAccountInstance().f23202a);
     }
 
     public boolean getFragmentBeginToShow() {
@@ -481,15 +481,15 @@ public abstract class g2 {
         return this.fragmentView;
     }
 
-    public u9 getGiftAuctionsController() {
-        return u9.c(getAccountInstance().f23246a);
+    public v9 getGiftAuctionsController() {
+        return v9.c(getAccountInstance().f23202a);
     }
 
     public boolean getInPassivePreviewMode() {
         r4 r4Var = this.parentLayout;
         if (r4Var != null) {
             ActionBarLayout actionBarLayout = (ActionBarLayout) r4Var;
-            if ((actionBarLayout.h && actionBarLayout.K == null) || actionBarLayout.f28711b0) {
+            if ((actionBarLayout.h && actionBarLayout.K == null) || actionBarLayout.f28714b0) {
                 return true;
             }
             return false;
@@ -539,28 +539,28 @@ public abstract class g2 {
         return null;
     }
 
-    public qd getLocationController() {
-        return qd.f(getAccountInstance().f23246a);
+    public rd getLocationController() {
+        return rd.f(getAccountInstance().f23202a);
     }
 
     public MediaController getMediaController() {
         return MediaController.B();
     }
 
-    public ri getMediaDataController() {
-        return ri.d0(getAccountInstance().f23246a);
+    public si getMediaDataController() {
+        return si.d0(getAccountInstance().f23202a);
     }
 
-    public mp getMessagesController() {
-        return mp.u1(getAccountInstance().f23246a);
+    public np getMessagesController() {
+        return np.u1(getAccountInstance().f23202a);
     }
 
-    public tr getMessagesStorage() {
-        return tr.a0(getAccountInstance().f23246a);
+    public ur getMessagesStorage() {
+        return ur.a0(getAccountInstance().f23202a);
     }
 
     public int getNavigationBarColor() {
-        int w02 = m6.w0(m6.f29321a7, getResourceProvider());
+        int w02 = m6.w0(m6.f29324a7, getResourceProvider());
         if (this.sheetsStack != null) {
             for (int i7 = 0; i7 < this.sheetsStack.size(); i7++) {
                 c2 c2Var = this.sheetsStack.get(i7);
@@ -572,12 +572,12 @@ public abstract class g2 {
         return w02;
     }
 
-    public ks getNotificationCenter() {
-        return ks.f(getAccountInstance().f23246a);
+    public ls getNotificationCenter() {
+        return ls.f(getAccountInstance().f23202a);
     }
 
-    public xs getNotificationsController() {
-        return xs.t(getAccountInstance().f23246a);
+    public ys getNotificationsController() {
+        return ys.t(getAccountInstance().f23202a);
     }
 
     public SharedPreferences getNotificationsSettings() {
@@ -592,8 +592,8 @@ public abstract class g2 {
         if (f9Var == null) {
             f9Var = new f9(this);
             r4 r4Var = this.parentLayout;
-            if (r4Var != null && ((ActionBarLayout) r4Var).f28710b) {
-                f9Var.f12032r1 = true;
+            if (r4Var != null && ((ActionBarLayout) r4Var).f28713b) {
+                f9Var.f12035r1 = true;
             }
             this.sheetsStack.add(f9Var);
             updateSheetsVisibility();
@@ -625,12 +625,12 @@ public abstract class g2 {
         return null;
     }
 
-    public xv getSecretChatHelper() {
-        return xv.i(getAccountInstance().f23246a);
+    public yv getSecretChatHelper() {
+        return yv.i(getAccountInstance().f23202a);
     }
 
-    public zy getSendMessagesHelper() {
-        return zy.C(getAccountInstance().f23246a);
+    public az getSendMessagesHelper() {
+        return az.C(getAccountInstance().f23202a);
     }
 
     public z4 getSimpleActionBar() {
@@ -693,8 +693,8 @@ public abstract class g2 {
         return m6.V0(str);
     }
 
-    public j10 getUserConfig() {
-        return j10.i(getAccountInstance().f23246a);
+    public k10 getUserConfig() {
+        return k10.i(getAccountInstance().f23202a);
     }
 
     public Dialog getVisibleDialog() {
@@ -797,12 +797,12 @@ public abstract class g2 {
         if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
             if (!hasForceLightStatusBar() || m6.D0().q()) {
                 h6 resourceProvider = getResourceProvider();
-                int i7 = m6.f29658s8;
+                int i7 = m6.f29661s8;
                 k kVar = this.actionBar;
                 if (kVar != null && kVar.x()) {
-                    i7 = m6.f29734w8;
+                    i7 = m6.f29737w8;
                 } else if (this.simpleActionBar != null) {
-                    i7 = m6.f29321a7;
+                    i7 = m6.f29324a7;
                 }
                 if (resourceProvider != null) {
                     x02 = resourceProvider.i(i7);
@@ -830,7 +830,7 @@ public abstract class g2 {
         if (this.sheetsStack != null) {
             for (int i7 = 0; i7 < this.sheetsStack.size(); i7++) {
                 c2 c2Var = this.sheetsStack.get(i7);
-                if ((c2Var instanceof f9) && view == ((f9) c2Var).f12033s) {
+                if ((c2Var instanceof f9) && view == ((f9) c2Var).f12036s) {
                     return true;
                 }
             }
@@ -877,7 +877,7 @@ public abstract class g2 {
         k actionBar;
         String title;
         this.isFullyVisible = true;
-        if (((AccessibilityManager) org.telegram.messenger.t0.f26941b.getSystemService("accessibility")).isEnabled() && ((actionBar = getActionBar()) != null || this.simpleActionBar != null)) {
+        if (((AccessibilityManager) org.telegram.messenger.t0.f26931b.getSystemService("accessibility")).isEnabled() && ((actionBar = getActionBar()) != null || this.simpleActionBar != null)) {
             if (actionBar != null) {
                 title = actionBar.getTitle();
             } else {
@@ -946,7 +946,7 @@ public abstract class g2 {
         }
         if (hasForceLightStatusBar() && !org.telegram.messenger.g0.Q1() && getParentLayout().getLastFragment() == this && getParentActivity() != null && !this.finishing) {
             Activity parentActivity = getParentActivity();
-            if (m6.x0(null, m6.f29658s8, false) == -1) {
+            if (m6.x0(null, m6.f29661s8, false) == -1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -968,7 +968,7 @@ public abstract class g2 {
         int i7 = 0;
         i0.b I0 = org.telegram.messenger.g0.I0(l1Var, false);
         int i10 = I0.d;
-        int i11 = I0.f15915b;
+        int i11 = I0.f15918b;
         this.mSystemInsets = I0;
         ViewGroup viewGroup = this.listViewForSimpleGlass;
         if (viewGroup != null) {
@@ -981,11 +981,11 @@ public abstract class g2 {
             this.navigationBarFadeView.getLayoutParams().height = this.mSystemInsets.d;
             this.navigationBarFadeView.setVisibility(i7);
         }
-        int i12 = I0.f15914a;
-        int i13 = I0.f15916c;
+        int i12 = I0.f15917a;
+        int i13 = I0.f15919c;
         this.bottomInset = i10;
         onInsets(i12, i11, i13, i10);
-        return r0.l1.f56298b;
+        return r0.l1.f56302b;
     }
 
     public void onPause() {
@@ -1020,7 +1020,7 @@ public abstract class g2 {
         }
         if (getLastStoryViewer() != null) {
             f9 lastStoryViewer = getLastStoryViewer();
-            lastStoryViewer.f12035s1 = true;
+            lastStoryViewer.f12038s1 = true;
             e9 e9Var = lastStoryViewer.A0;
             if (e9Var != null) {
                 e9Var.release(null);
@@ -1033,7 +1033,7 @@ public abstract class g2 {
                 }
                 fi.c1 c1Var = lastStoryViewer.B0;
                 if (c1Var != null) {
-                    if (c1Var.f11838n) {
+                    if (c1Var.f11841n) {
                         c1Var.s(null);
                     } else {
                         c1Var.e();
@@ -1041,7 +1041,7 @@ public abstract class g2 {
                     lastStoryViewer.B0 = null;
                 }
             }
-            fi.t6 t6Var = lastStoryViewer.f12039u1;
+            fi.t6 t6Var = lastStoryViewer.f12042u1;
             if (t6Var != null) {
                 t6Var.b();
             }
@@ -1065,11 +1065,11 @@ public abstract class g2 {
         }
         if (getLastStoryViewer() != null) {
             f9 lastStoryViewer = getLastStoryViewer();
-            lastStoryViewer.f12035s1 = false;
+            lastStoryViewer.f12038s1 = false;
             if (!org.telegram.ui.g4.v().W && lastStoryViewer.z() != null) {
                 lastStoryViewer.z().d1(false);
             }
-            fi.t6 t6Var = lastStoryViewer.f12039u1;
+            fi.t6 t6Var = lastStoryViewer.f12042u1;
             if (t6Var != null) {
                 t6Var.a(false);
             }
@@ -1114,10 +1114,10 @@ public abstract class g2 {
             } else if (scrollViewForSimpleGlass != null) {
                 FrameLayout frameLayout = (FrameLayout) createView;
                 h6 h6Var = this.resourceProvider;
-                baseSimpleGlass.f56665m = frameLayout;
-                baseSimpleGlass.f56666n = scrollViewForSimpleGlass;
-                baseSimpleGlass.f56667o = new di.f(8, scrollViewForSimpleGlass, frameLayout);
-                ri.q qVar = baseSimpleGlass.f56655a;
+                baseSimpleGlass.f56669m = frameLayout;
+                baseSimpleGlass.f56670n = scrollViewForSimpleGlass;
+                baseSimpleGlass.f56671o = new di.f(8, scrollViewForSimpleGlass, frameLayout);
+                ri.q qVar = baseSimpleGlass.f56659a;
                 qVar.getClass();
                 scrollViewForSimpleGlass.M.add(new ri.k(qVar, scrollViewForSimpleGlass));
                 ri.l lVar = new ri.l(qVar);
@@ -1135,7 +1135,7 @@ public abstract class g2 {
             }
             ViewGroup viewGroup = this.listViewForSimpleGlass;
             i0.b bVar = this.mSystemInsets;
-            ri.a.e(viewGroup, bVar.f15915b, bVar.d, k.getCurrentActionBarHeight(), 0);
+            ri.a.e(viewGroup, bVar.f15918b, bVar.d, k.getCurrentActionBarHeight(), 0);
             if (drawEdgeNavigationBar()) {
                 View view2 = new View(context);
                 this.navigationBarFadeView = view2;
@@ -1160,7 +1160,7 @@ public abstract class g2 {
             ActionBarLayout actionBarLayout = (ActionBarLayout) r4Var;
             actionBarLayout.getClass();
             p4 p4Var = new p4(g2Var);
-            p4Var.f29887e = true;
+            p4Var.f29890e = true;
             if (actionBarLayout.U(p4Var)) {
                 return true;
             }
@@ -1175,8 +1175,8 @@ public abstract class g2 {
             ActionBarLayout actionBarLayout = (ActionBarLayout) r4Var;
             actionBarLayout.getClass();
             p4 p4Var = new p4(g2Var);
-            p4Var.f29887e = true;
-            p4Var.f29888f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+            p4Var.f29890e = true;
+            p4Var.f29891f = actionBarPopupWindow$ActionBarPopupWindowLayout;
             if (actionBarLayout.U(p4Var)) {
                 return true;
             }
@@ -1211,11 +1211,11 @@ public abstract class g2 {
         if (r4Var != null) {
             ActionBarLayout actionBarLayout = (ActionBarLayout) r4Var;
             actionBarLayout.Y0 = true;
-            Runnable runnable = actionBarLayout.f28718e;
+            Runnable runnable = actionBarLayout.f28721e;
             if (runnable != null && actionBarLayout.d == null) {
                 org.telegram.messenger.g0.r(runnable);
-                actionBarLayout.f28718e.run();
-                actionBarLayout.f28718e = null;
+                actionBarLayout.f28721e.run();
+                actionBarLayout.f28721e = null;
             }
         }
     }
@@ -1322,17 +1322,17 @@ public abstract class g2 {
     public void setParentGlass(RectF rectF, Runnable runnable) {
         if (this.simpleGlass != null) {
             ri.q qVar = this.glassEngine;
-            RectF rectF2 = qVar.f56738e;
+            RectF rectF2 = qVar.f56742e;
             if (rectF == null) {
                 if (!rectF2.isEmpty()) {
                     rectF2.setEmpty();
-                    qVar.f56739f = true;
+                    qVar.f56743f = true;
                 }
             } else if (!rectF2.equals(rectF)) {
                 rectF2.set(rectF);
-                qVar.f56739f = true;
+                qVar.f56743f = true;
             }
-            this.simpleGlass.f56662j = runnable;
+            this.simpleGlass.f56666j = runnable;
         }
     }
 
@@ -1343,7 +1343,7 @@ public abstract class g2 {
         if (this.parentLayout != r4Var) {
             this.parentLayout = r4Var;
             boolean z11 = false;
-            if (r4Var != null && ((ActionBarLayout) r4Var).f28721f) {
+            if (r4Var != null && ((ActionBarLayout) r4Var).f28724f) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -1401,7 +1401,7 @@ public abstract class g2 {
                 k createActionBar = createActionBar(r4Var5.getView().getContext());
                 this.actionBar = createActionBar;
                 if (createActionBar != null) {
-                    createActionBar.f29161u0 = this;
+                    createActionBar.f29164u0 = this;
                 }
             }
         }
@@ -1453,9 +1453,9 @@ public abstract class g2 {
     }
 
     public void setupBulletinGlass(gc gcVar) {
-        lb lbVar = gcVar.f35504e;
+        lb lbVar = gcVar.f35523e;
         if (this.simpleGlass != null && this.fragmentView != null && lbVar != null && lbVar.canHaveGlassBackground()) {
-            fh.g c10 = this.simpleGlass.f56657c.c(lbVar, null, false);
+            fh.g c10 = this.simpleGlass.f56661c.c(lbVar, null, false);
             c10.p(c8.i0.c(getResourceProvider()));
             c10.r(org.telegram.messenger.g0.L(16.0f));
             lbVar.setGlassBackground(c10, new z1(0, this, c10));
@@ -1479,7 +1479,7 @@ public abstract class g2 {
         Activity activity;
         r4 r4Var = this.parentLayout;
         if (r4Var != null && (activity = (actionBarLayout = (ActionBarLayout) r4Var).R0) != null) {
-            if (actionBarLayout.f28708a0) {
+            if (actionBarLayout.f28711a0) {
                 AnimatorSet animatorSet = actionBarLayout.L;
                 if (animatorSet != null) {
                     animatorSet.cancel();
@@ -1490,7 +1490,7 @@ public abstract class g2 {
                 } else if (actionBarLayout.G0 != null) {
                     actionBarLayout.N();
                 }
-                actionBarLayout.f28747s.invalidate();
+                actionBarLayout.f28750s.invalidate();
             }
             if (intent != null) {
                 activity.startActivityForResult(intent, i7);
@@ -1553,7 +1553,7 @@ public abstract class g2 {
         w2[] w2VarArr = {b2Var};
         if (e2Var != null) {
             b2Var.u0(false);
-            w2VarArr[0].W0 = e2Var.f28902a;
+            w2VarArr[0].W0 = e2Var.f28905a;
         }
         w2 w2Var = w2VarArr[0];
         g2Var.parentDialog = w2Var;
@@ -1572,11 +1572,11 @@ public abstract class g2 {
             ActionBarLayout actionBarLayout = (ActionBarLayout) r4Var;
             actionBarLayout.getClass();
             p4 p4Var = new p4(g2Var);
-            p4Var.f29885b = z10;
-            p4Var.f29886c = z11;
+            p4Var.f29888b = z10;
+            p4Var.f29889c = z11;
             p4Var.d = true;
-            p4Var.f29887e = false;
-            p4Var.f29888f = null;
+            p4Var.f29890e = false;
+            p4Var.f29891f = null;
             if (actionBarLayout.U(p4Var)) {
                 return true;
             }
@@ -1650,8 +1650,8 @@ public abstract class g2 {
         if (f9Var == null) {
             f9 f9Var3 = new f9(this);
             r4 r4Var = this.parentLayout;
-            if (r4Var != null && ((ActionBarLayout) r4Var).f28710b) {
-                f9Var3.f12032r1 = true;
+            if (r4Var != null && ((ActionBarLayout) r4Var).f28713b) {
+                f9Var3.f12035r1 = true;
             }
             this.sheetsStack.add(f9Var3);
             updateSheetsVisibility();

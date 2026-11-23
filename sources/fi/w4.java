@@ -3,7 +3,7 @@ package fi;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.o10;
 import org.telegram.ui.Components.mk;
 import org.telegram.ui.Components.nv0;
 import org.telegram.ui.Components.yz;
@@ -25,15 +25,15 @@ public final class w4 extends nv0 {
                 super.e(z10, z11);
                 float f10 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = ((TextView) y91Var.f54124n.d).animate();
+                    ViewPropertyAnimator animate = ((TextView) y91Var.f54128n.d).animate();
                     if (z10) {
                         f10 = 0.0f;
                     }
                     animate.alpha(f10).start();
                     return;
                 }
-                ((TextView) y91Var.f54124n.d).animate().cancel();
-                TextView textView = (TextView) y91Var.f54124n.d;
+                ((TextView) y91Var.f54128n.d).animate().cancel();
+                TextView textView = (TextView) y91Var.f54128n.d;
                 if (z10) {
                     f10 = 0.0f;
                 }
@@ -60,7 +60,7 @@ public final class w4 extends nv0 {
         switch (this.L) {
             case 0:
                 b5 b5Var = ((x4) this.M).d;
-                super.onMeasure(i7, n10.c(b5Var.f11812e, b5Var.f11814n - b5Var.f11815r.getPaddingTop(), 1073741824));
+                super.onMeasure(i7, o10.c(b5Var.f11815e, b5Var.f11817n - b5Var.f11818r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);

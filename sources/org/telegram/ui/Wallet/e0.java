@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.np;
+import org.telegram.messenger.r10;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
@@ -20,25 +20,25 @@ import org.telegram.ui.n60;
 import org.telegram.ui.p51;
 import org.telegram.ui.u60;
 import org.telegram.ui.u80;
-public final class e0 implements q10 {
-    public final int f44137a;
-    public final Object f44138b;
-    public final Object f44139c;
+public final class e0 implements r10 {
+    public final int f44141a;
+    public final Object f44142b;
+    public final Object f44143c;
 
     public e0(int i7, Object obj, Object obj2) {
-        this.f44137a = i7;
-        this.f44138b = obj;
-        this.f44139c = obj2;
+        this.f44141a = i7;
+        this.f44142b = obj;
+        this.f44143c = obj2;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         Object obj3 = null;
         int i7 = 0;
-        switch (this.f44137a) {
+        switch (this.f44141a) {
             case 0:
-                u0 u0Var = (u0) this.f44138b;
-                p51 p51Var = (p51) this.f44139c;
+                u0 u0Var = (u0) this.f44142b;
+                p51 p51Var = (p51) this.f44143c;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
@@ -55,17 +55,17 @@ public final class e0 implements q10 {
                 p51Var.a(null);
                 return;
             case 1:
-                q10 q10Var = (q10) this.f44139c;
+                r10 r10Var = (r10) this.f44143c;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str2 = (String) obj2;
-                if (!((g0) this.f44138b).f44278a) {
-                    q10Var.a(wallettransaction, str2);
+                if (!((g0) this.f44142b).f44282a) {
+                    r10Var.a(wallettransaction, str2);
                     return;
                 }
                 return;
             case 2:
-                String str3 = (String) this.f44138b;
-                ai.a2 a2Var = (ai.a2) this.f44139c;
+                String str3 = (String) this.f44142b;
+                ai.b2 b2Var = (ai.b2) this.f44143c;
                 TL_toncenter.apiResponse apiresponse = (TL_toncenter.apiResponse) obj;
                 if (((TLRPC.TL_error) obj2) == null && apiresponse != null && apiresponse.response != null) {
                     try {
@@ -83,11 +83,11 @@ public final class e0 implements q10 {
                         org.telegram.messenger.a8.g(e10, true);
                     }
                 }
-                a2Var.a(obj3);
+                b2Var.a(obj3);
                 return;
             case 3:
-                TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f44138b;
-                u60 u60Var = (u60) this.f44139c;
+                TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) this.f44142b;
+                u60 u60Var = (u60) this.f44143c;
                 TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = (TL_wallet.inputTonConnectOauthSession) obj;
                 String str4 = (String) obj2;
                 if (str4 == null) {
@@ -96,22 +96,22 @@ public final class e0 implements q10 {
                 u60Var.a(str4);
                 return;
             case 4:
-                ((r0) this.f44138b).close();
-                ((n60) this.f44139c).a((h2) obj, (String) obj2);
+                ((r0) this.f44142b).close();
+                ((n60) this.f44143c).a((h2) obj, (String) obj2);
                 return;
             case 5:
-                ((r0) this.f44138b).close();
-                org.telegram.messenger.g0.g3(new p((Object) ((e0) this.f44139c), (Object) ((TL_wallet.inputTonConnectOauthSession) obj), (String) obj2, 3));
+                ((r0) this.f44142b).close();
+                org.telegram.messenger.g0.g3(new p((Object) ((e0) this.f44143c), (Object) ((TL_wallet.inputTonConnectOauthSession) obj), (String) obj2, 3));
                 return;
             case 6:
-                d9.g0((d9) this.f44138b, (x10) this.f44139c, (r0) obj, (String) obj2);
+                d9.g0((d9) this.f44142b, (y10) this.f44143c, (r0) obj, (String) obj2);
                 return;
             case 7:
-                na naVar = (na) this.f44138b;
-                o oVar = (o) this.f44139c;
+                na naVar = (na) this.f44142b;
+                o oVar = (o) this.f44143c;
                 TL_wallet.walletUserAddress walletuseraddress = (TL_wallet.walletUserAddress) obj;
                 if (((String) obj2) != null) {
-                    naVar.f44703a0.setLoading(false);
+                    naVar.f44707a0.setLoading(false);
                     return;
                 }
                 if (walletuseraddress != null) {
@@ -120,44 +120,44 @@ public final class e0 implements q10 {
                 oVar.a(obj3);
                 return;
             case 8:
-                sh.o oVar2 = (sh.o) this.f44138b;
-                String str5 = (String) this.f44139c;
+                sh.o oVar2 = (sh.o) this.f44142b;
+                String str5 = (String) this.f44143c;
                 TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                int i10 = oVar2.f57514a;
+                int i10 = oVar2.f57518a;
                 if (webpagepreview != null) {
-                    mp.u1(i10).f4(webpagepreview.users, false);
-                    mp.u1(i10).Z3(webpagepreview.chats, false);
+                    np.u1(i10).f4(webpagepreview.users, false);
+                    np.u1(i10).Z3(webpagepreview.chats, false);
                     TLRPC.MessageMedia messageMedia = webpagepreview.media;
                     if (messageMedia != null) {
                         obj3 = messageMedia.webpage;
                     }
                 }
-                oVar2.f57515b.put(str5, obj3);
-                ArrayList arrayList = (ArrayList) oVar2.f57516c.remove(str5);
+                oVar2.f57519b.put(str5, obj3);
+                ArrayList arrayList = (ArrayList) oVar2.f57520c.remove(str5);
                 if (arrayList != null) {
                     int size = arrayList.size();
                     while (i7 < size) {
                         Object obj4 = arrayList.get(i7);
                         i7++;
-                        ((q10) obj4).a(obj3, tL_error2);
+                        ((r10) obj4).a(obj3, tL_error2);
                     }
                     return;
                 }
                 return;
             default:
-                wg.a0 a0Var = (wg.a0) this.f44138b;
-                TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) this.f44139c;
+                wg.a0 a0Var = (wg.a0) this.f44142b;
+                TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) this.f44143c;
                 Boolean bool = (Boolean) obj;
                 String str6 = (String) obj2;
-                a0Var.f59745m2.f61241a.setLoading(false);
+                a0Var.f59749m2.f61245a.setLoading(false);
                 if (a0Var.getContext() != null) {
                     org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
-                    u80 u80Var = LaunchActivity.H1.f43149w0;
+                    u80 u80Var = LaunchActivity.H1.f43153w0;
                     if (T != null) {
                         if (bool.booleanValue()) {
                             a0Var.dismiss();
-                            bn ua2 = bn.ua(-a0Var.X1.f28431id);
+                            bn ua2 = bn.ua(-a0Var.X1.f28434id);
                             T.presentFragment(ua2);
                             T.whenFullyVisible(new wg.q(3, ua2, tL_starsGiveawayOption));
                             if (u80Var != null) {
@@ -167,7 +167,7 @@ public final class e0 implements q10 {
                             return;
                         } else if (str6 != null) {
                             a0Var.dismiss();
-                            lc.b0(T).Q(2131624012, 36, gd.a0(null, null, 2131743635, str6)).j();
+                            lc.b0(T).Q(2131624012, 36, hd.a0(null, null, 2131743633, str6)).j();
                             return;
                         } else {
                             return;

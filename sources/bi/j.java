@@ -5,12 +5,12 @@ import fi.f9;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.n10;
-import org.telegram.messenger.ri;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.si;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -25,17 +25,17 @@ import org.telegram.ui.Components.rx;
 import org.telegram.ui.Components.tn;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
-public final class j implements x10 {
-    public final int f3733a;
-    public final Object f3734b;
-    public final Object f3735c;
+public final class j implements y10 {
+    public final int f3739a;
+    public final Object f3740b;
+    public final Object f3741c;
     public final Object d;
 
     public j(Object obj, Object obj2, Object obj3, int i7) {
-        this.f3733a = i7;
+        this.f3739a = i7;
         this.d = obj;
-        this.f3734b = obj2;
-        this.f3735c = obj3;
+        this.f3740b = obj2;
+        this.f3741c = obj3;
     }
 
     @Override
@@ -46,18 +46,18 @@ public final class j implements x10 {
         ArrayList<TLRPC.Document> arrayList;
         String str;
         TLRPC.ChatFull P0;
-        int i10 = this.f3733a;
+        int i10 = this.f3739a;
         int i11 = 0;
         boolean z10 = false;
-        Object obj2 = this.f3735c;
-        Object obj3 = this.f3734b;
+        Object obj2 = this.f3741c;
+        Object obj3 = this.f3740b;
         Object obj4 = this.d;
         switch (i10) {
             case 0:
                 y yVar = (y) obj4;
                 yVar.getClass();
                 ((boolean[]) obj3)[0] = false;
-                new e(yVar.getContext(), (org.telegram.ui.ActionBar.h6) obj2, yVar.f4263h2, (List) obj).show();
+                new e(yVar.getContext(), (org.telegram.ui.ActionBar.h6) obj2, yVar.f4284h2, (List) obj).show();
                 return;
             case 1:
                 m0 m0Var = (m0) obj4;
@@ -65,8 +65,8 @@ public final class j implements x10 {
                 List list = (List) obj;
                 m0Var.getClass();
                 ((boolean[]) obj3)[0] = false;
-                if (m0Var.f3864i2 != null) {
-                    new e(m0Var.getContext(), h6Var, m0Var.f3864i2, list).show();
+                if (m0Var.f3878i2 != null) {
+                    new e(m0Var.getContext(), h6Var, m0Var.f3878i2, list).show();
                     m0Var.dismiss();
                     return;
                 }
@@ -82,7 +82,7 @@ public final class j implements x10 {
                 } else {
                     i7 = 2131749617;
                 }
-                y4.s(tL_starGiftUnique, gd.a0(null, null, i7, str2));
+                x4.s(tL_starGiftUnique, hd.a0(null, null, i7, str2));
                 return;
             case 3:
                 di.f6 f6Var = (di.f6) obj4;
@@ -98,7 +98,7 @@ public final class j implements x10 {
                 if (!org.telegram.ui.Wallet.u0.L(str3)) {
                     if (str3 != null) {
                         if (e2Var != null) {
-                            k10 = new lc(e2Var.f30176c, f6Var2.J0);
+                            k10 = new lc(e2Var.f30179c, f6Var2.J0);
                         } else {
                             k10 = f6Var2.k();
                         }
@@ -134,7 +134,7 @@ public final class j implements x10 {
                 g3Var.getClass();
                 ArrayList arrayList2 = new ArrayList(1);
                 arrayList2.add((TLRPC.InputStickerSet) obj);
-                ev evVar = new ev(((f9) obj3).f12007f, g3Var.getContext(), (org.telegram.ui.ActionBar.h6) obj2, arrayList2);
+                ev evVar = new ev(((f9) obj3).f12010f, g3Var.getContext(), (org.telegram.ui.ActionBar.h6) obj2, arrayList2);
                 fi.s3 s3Var = g3Var.A0.A1;
                 if (s3Var != null) {
                     ((fi.w8) s3Var).h(evVar);
@@ -145,12 +145,12 @@ public final class j implements x10 {
                 fi.r3 r3Var = (fi.r3) obj4;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj3;
                 TL_stories.StoryItem storyItem2 = (TL_stories.StoryItem) obj2;
-                x10 x10Var = (x10) obj;
-                fi.z3 z3Var = r3Var.f12529x;
-                if ((storyItem instanceof fi.z5) && (a6Var = ((fi.z5) storyItem).f12945a) != null) {
-                    di.a8 a8Var = new di.a8(a6Var, storyItem2, x10Var, 4);
+                y10 y10Var = (y10) obj;
+                fi.z3 z3Var = r3Var.f12532x;
+                if ((storyItem instanceof fi.z5) && (a6Var = ((fi.z5) storyItem).f12948a) != null) {
+                    di.a8 a8Var = new di.a8(a6Var, storyItem2, y10Var, 4);
                     if (a6Var.F != 0) {
-                        ConnectionsManager.getInstance(a6Var.f12082c).cancelRequest(a6Var.F, true);
+                        ConnectionsManager.getInstance(a6Var.f12085c).cancelRequest(a6Var.F, true);
                         a6Var.F = 0;
                     }
                     a6Var.C = false;
@@ -159,26 +159,26 @@ public final class j implements x10 {
                     return;
                 }
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
-                tL_stories_getStoriesByID.peer = mp.u1(z3Var.f12888m2).l1(storyItem.dialogId);
-                tL_stories_getStoriesByID.f28677id.add(Integer.valueOf(storyItem.f28670id));
-                ConnectionsManager.getInstance(z3Var.f12888m2).sendRequest(tL_stories_getStoriesByID, new q1(r3Var, storyItem, x10Var, 8));
+                tL_stories_getStoriesByID.peer = np.u1(z3Var.f12891m2).l1(storyItem.dialogId);
+                tL_stories_getStoriesByID.f28680id.add(Integer.valueOf(storyItem.f28673id));
+                ConnectionsManager.getInstance(z3Var.f12891m2).sendRequest(tL_stories_getStoriesByID, new q1(r3Var, storyItem, y10Var, 8));
                 return;
             case 8:
                 fi.i6 i6Var = (fi.i6) obj;
-                fi.z3 z3Var2 = ((fi.r3) obj4).f12529x;
-                z3Var2.C1.c(i6Var.f12141a, z3Var2.l1, (TL_stories.StoryItem) obj3);
-                n10.u(gd.a0(null, null, 2131744490, i6Var.f12142b), new lc(z3Var2.M0, (org.telegram.ui.ActionBar.h6) obj2), 2131623990, 36);
+                fi.z3 z3Var2 = ((fi.r3) obj4).f12532x;
+                z3Var2.C1.c(i6Var.f12144a, z3Var2.l1, (TL_stories.StoryItem) obj3);
+                o10.u(hd.a0(null, null, 2131744488, i6Var.f12145b), new lc(z3Var2.M0, (org.telegram.ui.ActionBar.h6) obj2), 2131623990, 36);
                 return;
             case 9:
                 hi.j6 j6Var = (hi.j6) obj4;
-                mp mpVar = (mp) obj3;
+                np npVar = (np) obj3;
                 String str4 = (String) obj2;
                 Long l10 = (Long) obj;
                 if (l10 == null) {
                     j6Var.a(null);
                     return;
                 }
-                TLObject g22 = mpVar.g2(l10.longValue());
+                TLObject g22 = npVar.g2(l10.longValue());
                 if (g22 instanceof TLRPC.User) {
                     j6Var.a(new hi.k6(str4, (TLRPC.User) g22));
                     return;
@@ -189,11 +189,11 @@ public final class j implements x10 {
                     return;
                 }
             case 10:
-                x10 x10Var2 = (x10) obj3;
+                y10 y10Var2 = (y10) obj3;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj2;
                 ((org.telegram.ui.ActionBar.t1) obj4).dismiss();
-                if (((Boolean) obj).booleanValue() && x10Var2 != null) {
-                    x10Var2.a(inputPeer);
+                if (((Boolean) obj).booleanValue() && y10Var2 != null) {
+                    y10Var2.a(inputPeer);
                     return;
                 }
                 return;
@@ -207,13 +207,13 @@ public final class j implements x10 {
                     return;
                 }
                 TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
-                tL_messages_uploadMedia.peer = mp.u1(f8Var.f30170a).l1(j10.i(f8Var.f30170a).e());
+                tL_messages_uploadMedia.peer = np.u1(f8Var.f30173a).l1(k10.i(f8Var.f30173a).e());
                 TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
                 tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
                 tL_inputMediaUploadedDocument.file = inputFile;
                 tL_inputMediaUploadedDocument.mime_type = document.mime_type;
                 tL_inputMediaUploadedDocument.attributes.addAll(document.attributes);
-                ConnectionsManager.getInstance(f8Var.f30170a).sendRequest(tL_messages_uploadMedia, new org.telegram.ui.u7(12, f8Var, t1Var));
+                ConnectionsManager.getInstance(f8Var.f30173a).sendRequest(tL_messages_uploadMedia, new org.telegram.ui.u7(12, f8Var, t1Var));
                 return;
             case 12:
                 tn tnVar = (tn) obj4;
@@ -224,8 +224,8 @@ public final class j implements x10 {
                     org.telegram.ui.Components.c5.I(bnVar.getParentActivity(), bnVar.a(), new a3.h(tnVar, tL_messageMediaToDo, l11, 29));
                     return;
                 }
-                tnVar.f39976k0.d(tL_messageMediaToDo, null, null, null, true, 0, l11.longValue());
-                tnVar.f37521b.a(true);
+                tnVar.f39969k0.d(tL_messageMediaToDo, null, null, null, true, 0, l11.longValue());
+                tnVar.f37520b.a(true);
                 return;
             case 13:
                 rx rxVar = (rx) obj4;
@@ -240,7 +240,7 @@ public final class j implements x10 {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet n02 = ri.d0(rxVar.f39358a.G.f40099d1).n0(ri.b0(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
+                        TLRPC.TL_messages_stickerSet n02 = si.d0(rxVar.f39368a.G.f40092d1).n0(si.b0(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
                         if (n02 != null) {
                             arrayList = n02.documents;
                         } else {
@@ -298,17 +298,17 @@ public final class j implements x10 {
                 ((p80) obj3).setLoading(false);
                 if (tL_premium_boostsStatus != null) {
                     k0Var.X1.boosts++;
-                    if (k0Var.d2 == 32 && (P0 = mp.u1(k0Var.f30170a).P0(-k0Var.W1)) != null) {
+                    if (k0Var.d2 == 32 && (P0 = np.u1(k0Var.f30173a).P0(-k0Var.W1)) != null) {
                         P0.boosts_applied++;
                     }
                     k0Var.u1();
-                    k0Var.A1(tL_premium_boostsStatus, k0Var.f58764a2);
+                    k0Var.A1(tL_premium_boostsStatus, k0Var.f58768a2);
                     org.telegram.messenger.g3 g3Var2 = k0Var.Y1;
                     if (k0Var.X1.next_level_boosts <= 0) {
                         z10 = true;
                     }
-                    g3Var2.f24190m = z10;
-                    g3Var2.f24189l = true;
+                    g3Var2.f24084m = z10;
+                    g3Var2.f24083l = true;
                     g3Var2.a(tL_premium_myBoosts);
                     k0Var.w1();
                     return;

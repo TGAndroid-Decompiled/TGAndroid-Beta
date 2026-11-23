@@ -5,29 +5,29 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.TextView;
 public final class zs extends org.telegram.ui.Cells.d5 {
-    public final int f54628e;
-    public final org.telegram.ui.Cells.a9 f54629f;
+    public final int f54632e;
+    public final org.telegram.ui.Cells.a9 f54633f;
     public final org.telegram.ui.Cells.s8[] h;
-    public final AnimatorSet[] f54630n;
-    public final DataAutoDownloadActivity f54631r;
+    public final AnimatorSet[] f54634n;
+    public final DataAutoDownloadActivity f54635r;
 
     public zs(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i7, org.telegram.ui.Cells.a9 a9Var, org.telegram.ui.Cells.s8[] s8VarArr, AnimatorSet[] animatorSetArr) {
         super(activity);
         int i10;
         int i11;
         int i12;
-        this.f54631r = dataAutoDownloadActivity;
-        this.f54628e = i7;
-        this.f54629f = a9Var;
+        this.f54635r = dataAutoDownloadActivity;
+        this.f54632e = i7;
+        this.f54633f = a9Var;
         this.h = s8VarArr;
-        this.f54630n = animatorSetArr;
+        this.f54634n = animatorSetArr;
         setWillNotDraw(false);
         TextView textView = new TextView(activity);
-        this.f30566a = textView;
-        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29486j5, null);
-        org.telegram.messenger.n10.q(textView, 1, 16.0f, 1, 1);
+        this.f30569a = textView;
+        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29489j5, null);
+        org.telegram.messenger.o10.q(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
-        if (org.telegram.messenger.gd.f24241a0) {
+        if (org.telegram.messenger.hd.f24444a0) {
             i10 = 5;
         } else {
             i10 = 3;
@@ -35,27 +35,27 @@ public final class zs extends org.telegram.ui.Cells.d5 {
         textView.setGravity(i10 | 48);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setImportantForAccessibility(2);
-        if (org.telegram.messenger.gd.f24241a0) {
+        if (org.telegram.messenger.hd.f24444a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         addView(textView, c8.ma.d(-1, -1.0f, i11 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(activity);
-        this.f30567b = textView2;
-        org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29559n5, null);
-        org.telegram.messenger.n10.q(textView2, 1, 16.0f, 1, 1);
+        this.f30570b = textView2;
+        org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29562n5, null);
+        org.telegram.messenger.o10.q(textView2, 1, 16.0f, 1, 1);
         textView2.setSingleLine(true);
-        if (org.telegram.messenger.gd.f24241a0) {
+        if (org.telegram.messenger.hd.f24444a0) {
             i12 = 3;
         } else {
             i12 = 5;
         }
         textView2.setGravity(i12 | 48);
         textView2.setImportantForAccessibility(2);
-        addView(textView2, c8.ma.d(-2, -1.0f, (org.telegram.messenger.gd.f24241a0 ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+        addView(textView2, c8.ma.d(-2, -1.0f, (org.telegram.messenger.hd.f24444a0 ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         org.telegram.ui.Cells.i0 i0Var = new org.telegram.ui.Cells.i0(activity);
-        this.f30568c = i0Var;
+        this.f30571c = i0Var;
         i0Var.setReportChanges(true);
         i0Var.setDelegate(new org.telegram.ui.Cells.c5(this));
         i0Var.setImportantForAccessibility(2);

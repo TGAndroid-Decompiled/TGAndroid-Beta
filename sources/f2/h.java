@@ -6,28 +6,28 @@ import android.os.Build;
 import android.os.Handler;
 import j$.util.Objects;
 public final class h {
-    public final int f11068a;
-    public final AudioManager.OnAudioFocusChangeListener f11069b;
-    public final Handler f11070c;
+    public final int f11071a;
+    public final AudioManager.OnAudioFocusChangeListener f11072b;
+    public final Handler f11073c;
     public final e2.e d;
-    public final boolean f11071e;
-    public final Object f11072f;
+    public final boolean f11074e;
+    public final Object f11075f;
 
     public h(int i7, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler, e2.e eVar, boolean z10, boolean z11) {
-        this.f11068a = i7;
-        this.f11070c = handler;
+        this.f11071a = i7;
+        this.f11073c = handler;
         this.d = eVar;
-        this.f11071e = z10;
+        this.f11074e = z10;
         int i10 = Build.VERSION.SDK_INT;
         if (i10 < 26) {
-            this.f11069b = new g(onAudioFocusChangeListener, handler);
+            this.f11072b = new g(onAudioFocusChangeListener, handler);
         } else {
-            this.f11069b = onAudioFocusChangeListener;
+            this.f11072b = onAudioFocusChangeListener;
         }
         if (i10 >= 26) {
-            this.f11072f = new AudioFocusRequest.Builder(i7).setAudioAttributes(eVar.b()).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).setAcceptsDelayedFocusGain(z11).build();
+            this.f11075f = new AudioFocusRequest.Builder(i7).setAudioAttributes(eVar.b()).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).setAcceptsDelayedFocusGain(z11).build();
         } else {
-            this.f11072f = null;
+            this.f11075f = null;
         }
     }
 
@@ -39,13 +39,13 @@ public final class h {
             return false;
         }
         h hVar = (h) obj;
-        if (this.f11068a == hVar.f11068a && this.f11071e == hVar.f11071e && Objects.equals(this.f11069b, hVar.f11069b) && Objects.equals(this.f11070c, hVar.f11070c) && Objects.equals(this.d, hVar.d)) {
+        if (this.f11071a == hVar.f11071a && this.f11074e == hVar.f11074e && Objects.equals(this.f11072b, hVar.f11072b) && Objects.equals(this.f11073c, hVar.f11073c) && Objects.equals(this.d, hVar.d)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f11068a), this.f11069b, this.f11070c, this.d, Boolean.valueOf(this.f11071e));
+        return Objects.hash(Integer.valueOf(this.f11071a), this.f11072b, this.f11073c, this.d, Boolean.valueOf(this.f11074e));
     }
 }

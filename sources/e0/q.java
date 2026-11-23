@@ -21,49 +21,49 @@ public final class q {
     public o E;
     public final Notification F;
     public final ArrayList G;
-    public final Context f10274a;
-    public final ArrayList f10275b;
-    public final ArrayList f10276c;
+    public final Context f10277a;
+    public final ArrayList f10278b;
+    public final ArrayList f10279c;
     public final ArrayList d;
-    public CharSequence f10277e;
-    public CharSequence f10278f;
-    public PendingIntent f10279g;
+    public CharSequence f10280e;
+    public CharSequence f10281f;
+    public PendingIntent f10282g;
     public IconCompat h;
-    public int f10280i;
-    public int f10281j;
-    public boolean f10282k;
-    public y f10283l;
-    public CharSequence f10284m;
-    public int f10285n;
-    public int f10286o;
-    public boolean f10287p;
-    public String f10288q;
-    public boolean f10289r;
-    public String f10290s;
-    public boolean f10291t;
-    public String f10292u;
+    public int f10283i;
+    public int f10284j;
+    public boolean f10285k;
+    public y f10286l;
+    public CharSequence f10287m;
+    public int f10288n;
+    public int f10289o;
+    public boolean f10290p;
+    public String f10291q;
+    public boolean f10292r;
+    public String f10293s;
+    public boolean f10294t;
+    public String f10295u;
     public Bundle v;
-    public int f10293w;
-    public int f10294x;
-    public String f10295y;
-    public String f10296z;
+    public int f10296w;
+    public int f10297x;
+    public String f10298y;
+    public String f10299z;
 
     public q(Context context, String str) {
-        this.f10275b = new ArrayList();
-        this.f10276c = new ArrayList();
+        this.f10278b = new ArrayList();
+        this.f10279c = new ArrayList();
         this.d = new ArrayList();
-        this.f10282k = true;
-        this.f10291t = false;
-        this.f10293w = 0;
-        this.f10294x = 0;
+        this.f10285k = true;
+        this.f10294t = false;
+        this.f10296w = 0;
+        this.f10297x = 0;
         this.C = 0;
         Notification notification = new Notification();
         this.F = notification;
-        this.f10274a = context;
-        this.f10295y = str;
+        this.f10277a = context;
+        this.f10298y = str;
         notification.when = System.currentTimeMillis();
         notification.audioStreamType = -1;
-        this.f10281j = 0;
+        this.f10284j = 0;
         this.G = new ArrayList();
         this.D = true;
     }
@@ -83,7 +83,7 @@ public final class q {
         if (i7 != 0) {
             iconCompat = IconCompat.e(null, "", i7);
         }
-        this.f10275b.add(new h(iconCompat, str, pendingIntent, new Bundle(), null, null, true, 0, true));
+        this.f10278b.add(new h(iconCompat, str, pendingIntent, new Bundle(), null, null, true, 0, true));
     }
 
     public final Notification b() {
@@ -91,7 +91,7 @@ public final class q {
         Bundle bundle;
         a4.k kVar = new a4.k(this);
         q qVar = (q) kVar.f193e;
-        y yVar = qVar.f10283l;
+        y yVar = qVar.f10286l;
         if (yVar != null) {
             yVar.b(kVar);
         }
@@ -123,7 +123,7 @@ public final class q {
             }
         }
         if (yVar != null) {
-            qVar.f10283l.getClass();
+            qVar.f10286l.getClass();
         }
         if (yVar != null && (bundle = build.extras) != null) {
             yVar.a(bundle);
@@ -134,9 +134,9 @@ public final class q {
     public final void c(d0 d0Var) {
         Bundle bundle;
         Bundle bundle2 = new Bundle();
-        if (!d0Var.f10218a.isEmpty()) {
-            ArrayList<? extends Parcelable> arrayList = new ArrayList<>(d0Var.f10218a.size());
-            ArrayList arrayList2 = d0Var.f10218a;
+        if (!d0Var.f10221a.isEmpty()) {
+            ArrayList<? extends Parcelable> arrayList = new ArrayList<>(d0Var.f10221a.size());
+            ArrayList arrayList2 = d0Var.f10221a;
             int size = arrayList2.size();
             int i7 = 0;
             while (i7 < size) {
@@ -145,12 +145,12 @@ public final class q {
                 h hVar = (h) obj;
                 int i10 = Build.VERSION.SDK_INT;
                 IconCompat a10 = hVar.a();
-                Bundle bundle3 = hVar.f10241a;
+                Bundle bundle3 = hVar.f10244a;
                 Icon icon = null;
                 if (a10 != null) {
                     icon = a10.m(null);
                 }
-                Notification.Action.Builder a11 = a0.a(icon, hVar.h, hVar.f10247i);
+                Notification.Action.Builder a11 = a0.a(icon, hVar.h, hVar.f10250i);
                 boolean z10 = hVar.d;
                 if (bundle3 != null) {
                     bundle = new Bundle(bundle3);
@@ -165,7 +165,7 @@ public final class q {
                     c0.a(a11, false);
                 }
                 z.a(a11, bundle);
-                l0[] l0VarArr = hVar.f10243c;
+                l0[] l0VarArr = hVar.f10246c;
                 if (l0VarArr != null) {
                     for (RemoteInput remoteInput : l0.a(l0VarArr)) {
                         z.b(a11, remoteInput);
@@ -175,27 +175,27 @@ public final class q {
             }
             bundle2.putParcelableArrayList("actions", arrayList);
         }
-        int i11 = d0Var.f10219b;
+        int i11 = d0Var.f10222b;
         if (i11 != 1) {
             bundle2.putInt("flags", i11);
         }
-        if (!d0Var.f10220c.isEmpty()) {
-            ArrayList arrayList3 = d0Var.f10220c;
+        if (!d0Var.f10223c.isEmpty()) {
+            ArrayList arrayList3 = d0Var.f10223c;
             bundle2.putParcelableArray("pages", (Parcelable[]) arrayList3.toArray(new Notification[arrayList3.size()]));
         }
         int i12 = d0Var.d;
         if (i12 != 8388613) {
             bundle2.putInt("contentIconGravity", i12);
         }
-        int i13 = d0Var.f10221e;
+        int i13 = d0Var.f10224e;
         if (i13 != -1) {
             bundle2.putInt("contentActionIndex", i13);
         }
-        int i14 = d0Var.f10222f;
+        int i14 = d0Var.f10225f;
         if (i14 != 80) {
             bundle2.putInt("gravity", i14);
         }
-        String str = d0Var.f10223g;
+        String str = d0Var.f10226g;
         if (str != null) {
             bundle2.putString("dismissalId", str);
         }
@@ -210,15 +210,15 @@ public final class q {
     }
 
     public final void e(String str) {
-        this.f10295y = str;
+        this.f10298y = str;
     }
 
     public final void f(String str) {
-        this.f10278f = d(str);
+        this.f10281f = d(str);
     }
 
     public final void g(CharSequence charSequence) {
-        this.f10277e = d(charSequence);
+        this.f10280e = d(charSequence);
     }
 
     public final void h(int i7, boolean z10) {
@@ -240,7 +240,7 @@ public final class q {
             c10 = null;
         } else {
             if (Build.VERSION.SDK_INT < 27) {
-                Resources resources = this.f10274a.getResources();
+                Resources resources = this.f10277a.getResources();
                 int dimensionPixelSize = resources.getDimensionPixelSize(2131165308);
                 int dimensionPixelSize2 = resources.getDimensionPixelSize(2131165307);
                 if (bitmap.getWidth() > dimensionPixelSize || bitmap.getHeight() > dimensionPixelSize2) {
@@ -254,11 +254,11 @@ public final class q {
     }
 
     public final void k() {
-        this.f10291t = true;
+        this.f10294t = true;
     }
 
     public final void l(String str) {
-        this.f10290s = str;
+        this.f10293s = str;
     }
 
     public final void m(Uri uri) {
@@ -269,17 +269,17 @@ public final class q {
     }
 
     public final void n(y yVar) {
-        if (this.f10283l != yVar) {
-            this.f10283l = yVar;
-            if (yVar.f10306a != this) {
-                yVar.f10306a = this;
+        if (this.f10286l != yVar) {
+            this.f10286l = yVar;
+            if (yVar.f10309a != this) {
+                yVar.f10309a = this;
                 n(yVar);
             }
         }
     }
 
     public final void o(String str) {
-        this.f10284m = d(str);
+        this.f10287m = d(str);
     }
 
     public final void p(String str) {

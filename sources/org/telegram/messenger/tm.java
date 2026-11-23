@@ -1,23 +1,27 @@
 package org.telegram.messenger;
-public final class tm implements Runnable {
-    public final int f27056a;
-    public final q0.a f27057b;
-    public final int f27058c;
 
-    public tm(q0.a aVar, int i7, int i10) {
-        this.f27056a = i10;
-        this.f27057b = aVar;
-        this.f27058c = i7;
+import org.telegram.tgnet.TLRPC;
+public final class tm implements Runnable {
+    public final int f27054a;
+    public final np f27055b;
+    public final TLRPC.Updates f27056c;
+    public final boolean d;
+
+    public tm(np npVar, TLRPC.Updates updates, boolean z10, int i7) {
+        this.f27054a = i7;
+        this.f27055b = npVar;
+        this.f27056c = updates;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f27056a) {
+        switch (this.f27054a) {
             case 0:
-                this.f27057b.accept(Integer.valueOf(this.f27058c));
+                Utilities.d.c(new tm(this.f27055b, this.f27056c, this.d, 1));
                 return;
             default:
-                this.f27057b.accept(Integer.valueOf(this.f27058c));
+                this.f27055b.V3(this.f27056c, this.d);
                 return;
         }
     }

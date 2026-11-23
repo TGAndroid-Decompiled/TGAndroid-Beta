@@ -5,9 +5,9 @@ public final class l90 extends zh.l {
     public final int E = 1;
     public final Object F;
 
-    public l90(bi.c9 c9Var, bi.c9 c9Var2, FrameLayout frameLayout, long j3) {
-        super(c9Var2, frameLayout, j3, true);
-        this.F = c9Var;
+    public l90(bi.b9 b9Var, bi.b9 b9Var2, FrameLayout frameLayout, long j3) {
+        super(b9Var2, frameLayout, j3, true);
+        this.F = b9Var;
     }
 
     @Override
@@ -16,14 +16,14 @@ public final class l90 extends zh.l {
             case 0:
                 zh.b bVar = (zh.b) this.F;
                 nv0 nv0Var = bVar.R1;
-                if (this.f62053e.isEmpty()) {
+                if (this.f62057e.isEmpty()) {
                     if (nv0Var.getVisibility() != 4) {
                         nv0Var.setVisibility(4);
                         return;
                     }
                     return;
                 } else if (z11) {
-                    bVar.f39080w1.K.setText("");
+                    bVar.f39090w1.K.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);
@@ -31,7 +31,7 @@ public final class l90 extends zh.l {
                 }
             default:
                 if (z11) {
-                    bi.c9.Z((bi.c9) this.F).setSearchFieldText("");
+                    bi.b9.Z((bi.b9) this.F).setSearchFieldText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

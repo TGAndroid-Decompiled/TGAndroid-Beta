@@ -13,19 +13,19 @@ public final class ys implements SensorEventListener {
     public boolean J;
     public boolean K;
     public float M;
-    public final SensorManager f42510a;
-    public final AudioManager f42511b;
-    public final Sensor f42512c;
+    public final SensorManager f42503a;
+    public final AudioManager f42504b;
+    public final Sensor f42505c;
     public final Sensor d;
-    public final Sensor f42513e;
-    public final Sensor f42514f;
+    public final Sensor f42506e;
+    public final Sensor f42507f;
     public final PowerManager.WakeLock h;
-    public boolean f42515n;
-    public boolean f42516r;
-    public i61 f42517s;
-    public boolean f42518w;
-    public long f42519x;
-    public int f42520y;
+    public boolean f42508n;
+    public boolean f42509r;
+    public i61 f42510s;
+    public boolean f42511w;
+    public long f42512x;
+    public int f42513y;
     public long I = 0;
     public float L = -100.0f;
     public final float[] N = new float[3];
@@ -33,32 +33,32 @@ public final class ys implements SensorEventListener {
     public final float[] P = new float[3];
 
     public ys() {
-        SensorManager sensorManager = (SensorManager) org.telegram.messenger.t0.f26941b.getSystemService("sensor");
-        this.f42510a = sensorManager;
-        this.f42512c = sensorManager.getDefaultSensor(8);
+        SensorManager sensorManager = (SensorManager) org.telegram.messenger.t0.f26931b.getSystemService("sensor");
+        this.f42503a = sensorManager;
+        this.f42505c = sensorManager.getDefaultSensor(8);
         Sensor defaultSensor = sensorManager.getDefaultSensor(10);
-        this.f42513e = defaultSensor;
+        this.f42506e = defaultSensor;
         Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
-        this.f42514f = defaultSensor2;
+        this.f42507f = defaultSensor2;
         if (defaultSensor == null || defaultSensor2 == null) {
-            if (org.telegram.messenger.s2.f26749a) {
+            if (org.telegram.messenger.s2.f26730a) {
                 org.telegram.messenger.a8.b("gravity or linear sensor not found");
             }
             this.d = sensorManager.getDefaultSensor(1);
-            this.f42513e = null;
-            this.f42514f = null;
+            this.f42506e = null;
+            this.f42507f = null;
         }
-        this.h = ((PowerManager) org.telegram.messenger.t0.f26941b.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
-        this.f42511b = (AudioManager) org.telegram.messenger.t0.f26941b.getSystemService("audio");
+        this.h = ((PowerManager) org.telegram.messenger.t0.f26931b.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
+        this.f42504b = (AudioManager) org.telegram.messenger.t0.f26931b.getSystemService("audio");
     }
 
     public final void a() {
         int i7;
-        i61 i61Var = this.f42517s;
+        i61 i61Var = this.f42510s;
         if (i61Var == null) {
             return;
         }
-        if (this.f42516r) {
+        if (this.f42509r) {
             i7 = 0;
         } else {
             i7 = 3;

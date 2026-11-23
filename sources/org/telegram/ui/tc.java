@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class tc implements View.OnClickListener {
-    public final int f52296a;
-    public final ad f52297b;
+    public final int f52300a;
+    public final ad f52301b;
 
     public tc(ad adVar, int i7) {
-        this.f52296a = i7;
-        this.f52297b = adVar;
+        this.f52300a = i7;
+        this.f52301b = adVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
-        switch (this.f52296a) {
+        switch (this.f52300a) {
             case 0:
-                ad.c0(this.f52297b, view);
+                ad.c0(this.f52301b, view);
                 return;
             case 1:
-                ad adVar = this.f52297b;
-                org.telegram.ui.Components.x30 x30Var = adVar.f45602x;
+                ad adVar = this.f52301b;
+                org.telegram.ui.Components.x30 x30Var = adVar.f45606x;
                 if (adVar.E != null) {
                     z10 = true;
                 } else {
@@ -28,24 +28,24 @@ public final class tc implements View.OnClickListener {
                 x30Var.n(z10, new rc(adVar, 2), new q5(adVar, 2), 0);
                 adVar.L.M(0);
                 adVar.L.P(43);
-                adVar.f45588n.d();
+                adVar.f45592n.d();
                 return;
             case 2:
-                ad adVar2 = this.f52297b;
-                if (!adVar2.f45587l0) {
+                ad adVar2 = this.f52301b;
+                if (!adVar2.f45591l0) {
                     adVar2.l0();
                     return;
-                } else if (adVar2.f45576c0) {
-                    adVar2.f45576c0 = false;
+                } else if (adVar2.f45580c0) {
+                    adVar2.f45580c0 = false;
                     adVar2.n0();
                     return;
                 } else {
                     return;
                 }
             default:
-                ad adVar3 = this.f52297b;
-                if (!adVar3.f45576c0) {
-                    adVar3.f45576c0 = true;
+                ad adVar3 = this.f52301b;
+                if (!adVar3.f45580c0) {
+                    adVar3.f45580c0 = true;
                     adVar3.n0();
                     return;
                 }

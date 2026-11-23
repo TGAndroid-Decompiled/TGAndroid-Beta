@@ -9,7 +9,7 @@ public final class d91 extends v4.z {
 
     @Override
     public final boolean s() {
-        if (this.T.f54144y > 0) {
+        if (this.T.f54148y > 0) {
             return true;
         }
         return false;

@@ -1,15 +1,15 @@
 package oi;
 
 import android.text.Editable;
-import org.telegram.messenger.cu;
+import org.telegram.messenger.du;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.mt;
 public final class s2 implements j5, d1 {
-    public final t3 f22366a;
+    public final t3 f22369a;
 
     public s2(t3 t3Var) {
-        this.f22366a = t3Var;
+        this.f22369a = t3Var;
     }
 
     public void a(f1 f1Var, i4 i4Var, boolean z10) {
@@ -18,8 +18,8 @@ public final class s2 implements j5, d1 {
         boolean z12;
         boolean z13;
         boolean z14;
-        t3 t3Var = this.f22366a;
-        r3 r3Var = t3Var.f22425p3;
+        t3 t3Var = this.f22369a;
+        r3 r3Var = t3Var.f22428p3;
         Editable text = f1Var.getText();
         int i7 = -1;
         if (text == null) {
@@ -33,7 +33,7 @@ public final class s2 implements j5, d1 {
         int i10 = i7;
         if (spanStart >= 0 && i10 > spanStart) {
             if (!z10) {
-                TL_iv.textButton textbutton = i4Var.f22179a;
+                TL_iv.textButton textbutton = i4Var.f22182a;
                 if (textbutton != null) {
                     g2 g2Var = t3Var.R3;
                     if (g2Var != null) {
@@ -75,20 +75,20 @@ public final class s2 implements j5, d1 {
                     textbutton.style = richButtonStyle;
                     Editable text2 = f1Var.getText();
                     if (text2 != null && text2.getSpanStart(i4Var) >= 0) {
-                        cu cuVar = i4Var.f22180b;
-                        if (cuVar != null && i4Var.f22181c == f1Var) {
-                            cuVar.b(f1Var);
-                            i4Var.f22181c = null;
+                        du duVar = i4Var.f22183b;
+                        if (duVar != null && i4Var.f22184c == f1Var) {
+                            duVar.b(f1Var);
+                            i4Var.f22184c = null;
                         }
                         text2.removeSpan(i4Var);
                         i4 i4Var2 = new i4(textbutton);
-                        i4Var2.a(t3Var.f22422n3, f1Var, t3Var.f22424o3);
+                        i4Var2.a(t3Var.f22425n3, f1Var, t3Var.f22427o3);
                         text2.setSpan(i4Var2, spanStart, i10, 33);
                         mt mtVar = f1Var.T1;
                         if (mtVar != null) {
                             mtVar.g();
                         }
-                        f1Var.f22114v2 = true;
+                        f1Var.f22117v2 = true;
                         f1Var.invalidate();
                         f1Var.requestLayout();
                         f1Var.f();

@@ -3,33 +3,33 @@ package tg;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class g extends AnimatorListenerAdapter {
-    public final int f57885a;
-    public final j f57886b;
+    public final int f57889a;
+    public final j f57890b;
 
     public g(j jVar, int i7) {
-        this.f57885a = i7;
-        this.f57886b = jVar;
+        this.f57889a = i7;
+        this.f57890b = jVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f57885a) {
+        switch (this.f57889a) {
             case 0:
-                j jVar = this.f57886b;
-                if (animator == jVar.f57971b0) {
-                    jVar.f57971b0 = null;
+                j jVar = this.f57890b;
+                if (animator == jVar.f57975b0) {
+                    jVar.f57975b0 = null;
                     return;
                 }
                 return;
             case 1:
-                j jVar2 = this.f57886b;
-                if (animator == jVar2.f57973c0) {
-                    jVar2.f57973c0 = null;
+                j jVar2 = this.f57890b;
+                if (animator == jVar2.f57977c0) {
+                    jVar2.f57977c0 = null;
                     return;
                 }
                 return;
             case 2:
-                j jVar3 = this.f57886b;
+                j jVar3 = this.f57890b;
                 if (animator == jVar3.Q) {
                     jVar3.Q = null;
                     jVar3.P = 0.0f;
@@ -37,14 +37,14 @@ public final class g extends AnimatorListenerAdapter {
                 }
                 return;
             case 3:
-                j jVar4 = this.f57886b;
+                j jVar4 = this.f57890b;
                 if (animator == jVar4.R) {
                     jVar4.R = null;
                     return;
                 }
                 return;
             default:
-                j jVar5 = this.f57886b;
+                j jVar5 = this.f57890b;
                 if (!jVar5.m0) {
                     org.telegram.messenger.g0.E2(jVar5.I);
                     jVar5.I = null;

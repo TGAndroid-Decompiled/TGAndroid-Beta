@@ -2,14 +2,14 @@ package p4;
 
 import java.util.List;
 public final class w {
-    public final h9.i0 f55489a;
-    public final int f55490b;
-    public final long f55491c;
+    public final h9.i0 f55493a;
+    public final int f55494b;
+    public final long f55495c;
 
     public w(List list, int i7, long j3) {
-        this.f55489a = h9.i0.q(list);
-        this.f55490b = i7;
-        this.f55491c = j3;
+        this.f55493a = h9.i0.q(list);
+        this.f55494b = i7;
+        this.f55495c = j3;
     }
 
     public final boolean equals(Object obj) {
@@ -20,13 +20,13 @@ public final class w {
             return false;
         }
         w wVar = (w) obj;
-        if (this.f55489a.equals(wVar.f55489a) && this.f55490b == wVar.f55490b && this.f55491c == wVar.f55491c) {
+        if (this.f55493a.equals(wVar.f55493a) && this.f55494b == wVar.f55494b && this.f55495c == wVar.f55495c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return c8.l1.b(this.f55491c) + (((this.f55489a.hashCode() * 31) + this.f55490b) * 31);
+        return c8.l1.b(this.f55495c) + (((this.f55493a.hashCode() * 31) + this.f55494b) * 31);
     }
 }

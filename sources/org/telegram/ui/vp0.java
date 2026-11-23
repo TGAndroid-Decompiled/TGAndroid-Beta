@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public final class vp0 extends tg.h0 {
     public final PhotoViewer Y1;
 
-    public vp0(PhotoViewer photoViewer, Context context, Activity activity, int i7, Bitmap bitmap, Bitmap bitmap2, int i10, ArrayList arrayList, org.telegram.messenger.we weVar, hn0 hn0Var, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, activity, i7, bitmap, bitmap2, i10, arrayList, weVar, hn0Var, h6Var);
+    public vp0(PhotoViewer photoViewer, Context context, Activity activity, int i7, Bitmap bitmap, Bitmap bitmap2, int i10, ArrayList arrayList, org.telegram.messenger.xe xeVar, hn0 hn0Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, activity, i7, bitmap, bitmap2, i10, arrayList, xeVar, hn0Var, h6Var);
         this.Y1 = photoViewer;
     }
 
@@ -16,7 +16,7 @@ public final class vp0 extends tg.h0 {
     public final int getPKeyboardHeight() {
         hi.o3 o3Var = this.Y1.L1;
         if (o3Var != null) {
-            return o3Var.f15207l;
+            return o3Var.f15210l;
         }
         return 0;
     }

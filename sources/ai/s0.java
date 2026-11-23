@@ -70,77 +70,77 @@ public final class s0 extends View {
     public final Path X0;
     public Paint Y0;
     public float Z0;
-    public final p0 f1452a;
-    public int f1453a0;
-    public float f1454a1;
-    public fe f1455b;
-    public final Paint f1456b0;
-    public long f1457b1;
-    public oe f1458c;
-    public final Paint f1459c0;
-    public long f1460c1;
+    public final p0 f1460a;
+    public int f1461a0;
+    public float f1462a1;
+    public fe f1463b;
+    public final Paint f1464b0;
+    public long f1465b1;
+    public oe f1466c;
+    public final Paint f1467c0;
+    public long f1468c1;
     public final Paint d;
-    public final Paint f1461d0;
-    public r0 f1462d1;
-    public final Paint f1463e;
-    public final Paint f1464e0;
-    public int f1465e1;
-    public final Paint f1466f;
-    public final Paint f1467f0;
-    public int f1468f1;
-    public final d6 f1469g0;
-    public int f1470g1;
+    public final Paint f1469d0;
+    public r0 f1470d1;
+    public final Paint f1471e;
+    public final Paint f1472e0;
+    public int f1473e1;
+    public final Paint f1474f;
+    public final Paint f1475f0;
+    public int f1476f1;
+    public final d6 f1477g0;
+    public int f1478g1;
     public final Paint h;
-    public final d6 f1471h0;
-    public int f1472h1;
-    public float f1473i0;
-    public int f1474i1;
-    public float f1475j0;
-    public boolean f1476j1;
-    public float f1477k0;
-    public final sa f1478k1;
-    public boolean f1479l0;
+    public final d6 f1479h0;
+    public int f1480h1;
+    public float f1481i0;
+    public int f1482i1;
+    public float f1483j0;
+    public boolean f1484j1;
+    public float f1485k0;
+    public final sa f1486k1;
+    public boolean f1487l0;
     public boolean l1;
     public final RectF m0;
-    public float f1480m1;
-    public final Drawable f1481n;
-    public final RectF f1482n0;
+    public float f1488m1;
+    public final Drawable f1489n;
+    public final RectF f1490n0;
     public float n1;
-    public final int[] f1483o0;
-    public boolean f1484p0;
-    public int f1485q0;
-    public final RectF f1486r;
-    public int f1487r0;
-    public final RectF f1488s;
-    public LinearGradient f1489s0;
-    public RadialGradient f1490t0;
-    public LinearGradient f1491u0;
-    public final Paint f1492v0;
-    public final RectF f1493w;
-    public final Paint f1494w0;
-    public final float[] f1495x;
-    public final Matrix f1496x0;
-    public boolean f1497y;
-    public boolean f1498y0;
-    public final float[] f1499z0;
+    public final int[] f1491o0;
+    public boolean f1492p0;
+    public int f1493q0;
+    public final RectF f1494r;
+    public int f1495r0;
+    public final RectF f1496s;
+    public LinearGradient f1497s0;
+    public RadialGradient f1498t0;
+    public LinearGradient f1499u0;
+    public final Paint f1500v0;
+    public final RectF f1501w;
+    public final Paint f1502w0;
+    public final float[] f1503x;
+    public final Matrix f1504x0;
+    public boolean f1505y;
+    public boolean f1506y0;
+    public final float[] f1507z0;
 
     public s0(Context context, p0 p0Var) {
         super(context);
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f1463e = new Paint(1);
-        this.f1466f = new Paint(1);
+        this.f1471e = new Paint(1);
+        this.f1474f = new Paint(1);
         Paint paint2 = new Paint(1);
         this.h = paint2;
-        this.f1486r = new RectF();
-        this.f1488s = new RectF();
-        this.f1493w = new RectF();
-        this.f1495x = new float[2];
-        nr nrVar = nr.f37957g;
+        this.f1494r = new RectF();
+        this.f1496s = new RectF();
+        this.f1501w = new RectF();
+        this.f1503x = new float[2];
+        nr nrVar = nr.f37962g;
         this.F = new d6(this, 0L, 220L, nrVar);
         nr nrVar2 = nr.h;
         this.G = new d6(this, 0L, 320L, nrVar2);
-        nr nrVar3 = nr.f37959j;
+        nr nrVar3 = nr.f37964j;
         this.H = new d6(this, 0L, 200L, nrVar3);
         this.I = new d6(this, 0L, 300L, nrVar2);
         this.J = new d6(this, 0L, 200L, nrVar3);
@@ -150,20 +150,20 @@ public final class s0 extends View {
         this.Q = -1;
         this.U = new Paint(1);
         this.V = new Path();
-        this.f1456b0 = new Paint(1);
-        this.f1459c0 = new Paint(1);
-        this.f1461d0 = new Paint(1);
-        this.f1464e0 = new Paint(1);
-        this.f1467f0 = new Paint(1);
-        this.f1469g0 = new d6(this, 0L, 320L, new nr(0.25d, 0.1d, 0.25d, 1.0d));
-        this.f1471h0 = new d6(this, 0L, 150L, nrVar);
+        this.f1464b0 = new Paint(1);
+        this.f1467c0 = new Paint(1);
+        this.f1469d0 = new Paint(1);
+        this.f1472e0 = new Paint(1);
+        this.f1475f0 = new Paint(1);
+        this.f1477g0 = new d6(this, 0L, 320L, new nr(0.25d, 0.1d, 0.25d, 1.0d));
+        this.f1479h0 = new d6(this, 0L, 150L, nrVar);
         this.m0 = new RectF();
-        this.f1482n0 = new RectF();
-        this.f1483o0 = new int[2];
-        this.f1492v0 = new Paint(1);
-        this.f1494w0 = new Paint(1);
-        this.f1496x0 = new Matrix();
-        this.f1499z0 = new float[5];
+        this.f1490n0 = new RectF();
+        this.f1491o0 = new int[2];
+        this.f1500v0 = new Paint(1);
+        this.f1502w0 = new Paint(1);
+        this.f1504x0 = new Matrix();
+        this.f1507z0 = new float[5];
         this.K0 = new int[2];
         this.M0 = new d6(this, 0L, 220L, nrVar);
         this.N0 = new d6(this, 0L, 420L, nrVar3);
@@ -174,19 +174,19 @@ public final class s0 extends View {
         this.T0 = new SparseArray();
         this.U0 = new Paint(1);
         this.X0 = new Path();
-        this.f1465e1 = -15820126;
-        this.f1468f1 = -14910766;
-        this.f1470g1 = -14910766;
-        this.f1472h1 = -7696492;
-        this.f1474i1 = -1726275033;
-        this.f1478k1 = new sa(this, 2);
-        this.f1452a = p0Var;
+        this.f1473e1 = -15820126;
+        this.f1476f1 = -14910766;
+        this.f1478g1 = -14910766;
+        this.f1480h1 = -7696492;
+        this.f1482i1 = -1726275033;
+        this.f1486k1 = new sa(this, 2);
+        this.f1460a = p0Var;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
         paint2.setColor(-1);
         Drawable g10 = i5.c.g(context, 2131232696);
-        this.f1481n = g10;
+        this.f1489n = g10;
         g10.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
     }
 
@@ -216,14 +216,14 @@ public final class s0 extends View {
     }
 
     public final int b(int i7) {
-        if (this.f1484p0) {
+        if (this.f1492p0) {
             return g(i7);
         }
-        float max = Math.max(0.0f, Math.min(1.0f, this.f1454a1)) * v0.c(11);
+        float max = Math.max(0.0f, Math.min(1.0f, this.f1462a1)) * v0.c(11);
         if (max <= 0.004f) {
-            return this.f1474i1;
+            return this.f1482i1;
         }
-        return i0.a.f(max, this.f1474i1, i0.a.f(0.5f, i7, this.f1470g1) | (-16777216));
+        return i0.a.f(max, this.f1482i1, i0.a.f(0.5f, i7, this.f1478g1) | (-16777216));
     }
 
     public final void c(Canvas canvas, float f10, float f11, float f12, float f13, int i7, float f14) {
@@ -254,7 +254,7 @@ public final class s0 extends View {
         paint.setStrokeWidth(Math.max(1.0f, org.telegram.messenger.g0.N(1.1f)));
         paint.setColor(-1);
         paint.setAlpha((int) (Math.min(1.0f, f14) * 255.0f));
-        RectF rectF = this.f1493w;
+        RectF rectF = this.f1501w;
         rectF.set(f10 - f12, f11 - f12, f10 + f12, f11 + f12);
         canvas.drawArc(rectF, f15, 140.0f, false, paint);
         paint.setShader(null);
@@ -265,7 +265,7 @@ public final class s0 extends View {
     }
 
     public final void e() {
-        this.f1497y = false;
+        this.f1505y = false;
         this.E = false;
         this.F.e(true, 0.0f);
         this.G.e(true, 0.0f);
@@ -273,18 +273,18 @@ public final class s0 extends View {
     }
 
     public final int f(float f10, float f11) {
-        if (this.f1479l0) {
+        if (this.f1487l0) {
             RectF rectF = this.m0;
-            if (!rectF.isEmpty() && this.f1469g0.f34391c > 0.7f && rectF.contains(f10, f11)) {
+            if (!rectF.isEmpty() && this.f1477g0.f34386c > 0.7f && rectF.contains(f10, f11)) {
                 return 1;
             }
         }
-        if (this.F.f34391c >= 0.6f && this.f1497y) {
-            RectF rectF2 = this.f1486r;
+        if (this.F.f34386c >= 0.6f && this.f1505y) {
+            RectF rectF2 = this.f1494r;
             if (!rectF2.isEmpty() && this.E && rectF2.contains(f10, f11)) {
                 return 0;
             }
-            if (this.f1488s.contains(f10, f11)) {
+            if (this.f1496s.contains(f10, f11)) {
                 return 2;
             }
         }
@@ -292,10 +292,10 @@ public final class s0 extends View {
     }
 
     public final int g(int i7) {
-        if (this.f1484p0) {
+        if (this.f1492p0) {
             return i0.a.f(0.4f, i7, -1);
         }
-        return i0.a.f(v0.c(11), this.f1472h1, i0.a.f(0.5f, i7, this.f1470g1));
+        return i0.a.f(v0.c(11), this.f1480h1, i0.a.f(0.5f, i7, this.f1478g1));
     }
 
     public int getRightMode() {
@@ -303,9 +303,9 @@ public final class s0 extends View {
     }
 
     public final void h() {
-        if (!this.f1476j1 && isAttachedToWindow()) {
-            this.f1476j1 = true;
-            postOnAnimation(this.f1478k1);
+        if (!this.f1484j1 && isAttachedToWindow()) {
+            this.f1484j1 = true;
+            postOnAnimation(this.f1486k1);
         }
     }
 
@@ -320,8 +320,8 @@ public final class s0 extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        removeCallbacks(this.f1478k1);
-        this.f1476j1 = false;
+        removeCallbacks(this.f1486k1);
+        this.f1484j1 = false;
     }
 
     @Override
@@ -331,7 +331,7 @@ public final class s0 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f1497y) {
+        if (this.f1505y) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked == 0) {
                 this.Q = f(motionEvent.getX(), motionEvent.getY());
@@ -349,21 +349,21 @@ public final class s0 extends View {
                         performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    p0 p0Var = this.f1452a;
+                    p0 p0Var = this.f1460a;
                     if (i7 == 0) {
                         p0Var.s();
                     } else if (i7 == 1) {
                         p0Var.t();
                     } else {
-                        sf sfVar = p0Var.f1386f;
-                        int i10 = p0Var.f1399r;
+                        sf sfVar = p0Var.f1392f;
+                        int i10 = p0Var.f1405r;
                         if (i10 == 1) {
-                            Editable text = sfVar.f39580a.F0.getText();
-                            if (p0Var.f1401s.getRightMode() == 2 || (text != null && ((p0Var.w() > 0 || p0Var.N > 0) && text.toString().trim().length() > 0))) {
+                            Editable text = sfVar.f39573a.F0.getText();
+                            if (p0Var.f1407s.getRightMode() == 2 || (text != null && ((p0Var.w() > 0 || p0Var.N > 0) && text.toString().trim().length() > 0))) {
                                 p0Var.B();
                             }
                         } else if (i10 == 3) {
-                            sfVar.f39580a.v1();
+                            sfVar.f39573a.v1();
                         }
                     }
                 }
@@ -394,7 +394,7 @@ public final class s0 extends View {
     }
 
     public void setBubbleProvider(r0 r0Var) {
-        this.f1462d1 = r0Var;
+        this.f1470d1 = r0Var;
     }
 
     public void setCancelShown(boolean z10) {
@@ -406,8 +406,8 @@ public final class s0 extends View {
     }
 
     public void setDayIconBase(int i7) {
-        this.f1472h1 = (-16777216) | i7;
-        this.f1474i1 = i7;
+        this.f1480h1 = (-16777216) | i7;
+        this.f1482i1 = i7;
     }
 
     public void setHandOff(boolean z10) {
@@ -428,15 +428,15 @@ public final class s0 extends View {
     }
 
     public void setSendIconColor(int i7) {
-        this.f1481n.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
+        this.f1489n.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
     }
 
     public void setShown(boolean z10) {
         float f10;
-        if (this.f1497y == z10 && this.E == z10) {
+        if (this.f1505y == z10 && this.E == z10) {
             return;
         }
-        this.f1497y = z10;
+        this.f1505y = z10;
         this.E = z10;
         if (z10) {
             setVisibility(0);
@@ -469,17 +469,17 @@ public final class s0 extends View {
     }
 
     public void setStopIsland(boolean z10) {
-        if (this.f1479l0 == z10) {
+        if (this.f1487l0 == z10) {
             return;
         }
-        this.f1479l0 = z10;
-        d6 d6Var = this.f1469g0;
+        this.f1487l0 = z10;
+        d6 d6Var = this.f1477g0;
         if (z10) {
             d6Var.e(true, 0.0f);
-            this.f1471h0.e(true, 0.0f);
+            this.f1479h0.e(true, 0.0f);
         } else {
-            float f10 = d6Var.f34391c;
-            this.f1473i0 = f10;
+            float f10 = d6Var.f34386c;
+            this.f1481i0 = f10;
             d6Var.e(true, f10);
         }
         invalidate();

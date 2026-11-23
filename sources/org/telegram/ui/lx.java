@@ -2,23 +2,23 @@ package org.telegram.ui;
 
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
-public final class lx implements org.telegram.messenger.jc {
-    public final mx f49715a;
-    public final boolean f49716b;
-    public final org.telegram.messenger.fj f49717c;
+public final class lx implements org.telegram.messenger.kc {
+    public final mx f49719a;
+    public final boolean f49720b;
+    public final org.telegram.messenger.gj f49721c;
     public final nx d;
 
-    public lx(nx nxVar, mx mxVar, boolean z10, org.telegram.messenger.fj fjVar) {
+    public lx(nx nxVar, mx mxVar, boolean z10, org.telegram.messenger.gj gjVar) {
         this.d = nxVar;
-        this.f49715a = mxVar;
-        this.f49716b = z10;
-        this.f49717c = fjVar;
+        this.f49719a = mxVar;
+        this.f49720b = z10;
+        this.f49721c = gjVar;
     }
 
     @Override
     public final void V(ImageReceiver imageReceiver) {
-        org.telegram.messenger.fj fjVar;
-        if (this.f49716b && (fjVar = this.f49717c) != null && fjVar.F2() && imageReceiver.B() != null && imageReceiver.B().f38243y == null) {
+        org.telegram.messenger.gj gjVar;
+        if (this.f49720b && (gjVar = this.f49721c) != null && gjVar.F2() && imageReceiver.B() != null && imageReceiver.B().f38237y == null) {
             try {
                 this.d.H.performHapticFeedback(3, 1);
             } catch (Exception unused) {
@@ -28,7 +28,7 @@ public final class lx implements org.telegram.messenger.jc {
 
     @Override
     public final void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        ImageReceiver imageReceiver2 = this.f49715a.f50021r;
+        ImageReceiver imageReceiver2 = this.f49719a.f50025r;
         if (imageReceiver2.B() != null) {
             imageReceiver2.B().N(0, false, true);
         }

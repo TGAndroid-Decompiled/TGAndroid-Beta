@@ -6,49 +6,49 @@ import java.util.ArrayList;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 public final class b10 {
-    public a10[] f33680a;
-    public a10 f33681b;
-    public a10 f33682c;
+    public a10[] f33693a;
+    public a10 f33694b;
+    public a10 f33695c;
     public a10 d;
-    public float f33683e;
-    public float f33684f;
-    public float f33685g;
+    public float f33696e;
+    public float f33697f;
+    public float f33698g;
     public float h;
-    public float f33686i;
-    public long f33687j;
-    public float f33688k;
-    public ArrayList f33689l;
-    public Paint f33690m;
-    public Path f33691n;
+    public float f33699i;
+    public long f33700j;
+    public float f33701k;
+    public ArrayList f33702l;
+    public Paint f33703m;
+    public Path f33704n;
 
     public final void a(float f10) {
-        this.f33685g = f10;
-        float f11 = this.f33683e;
+        this.f33698g = f10;
+        float f11 = this.f33696e;
         this.h = (f10 - f11) / 250.0f;
-        this.f33686i = (f10 - f11) / 120.0f;
+        this.f33699i = (f10 - f11) / 120.0f;
     }
 
     public final void b(int i7, boolean z10) {
         a10 a10Var;
-        a10 a10Var2 = this.f33681b;
-        if (a10Var2 != null && a10Var2.f33256i == i7) {
+        a10 a10Var2 = this.f33694b;
+        if (a10Var2 != null && a10Var2.f33259i == i7) {
             return;
         }
-        if (VoIPService.getSharedInstance() == null && this.f33681b == null) {
-            this.f33681b = this.d;
+        if (VoIPService.getSharedInstance() == null && this.f33694b == null) {
+            this.f33694b = this.d;
             return;
         }
         if (z10) {
-            a10Var = this.f33681b;
+            a10Var = this.f33694b;
         } else {
             a10Var = null;
         }
-        this.f33682c = a10Var;
-        this.f33681b = this.f33680a[i7];
+        this.f33695c = a10Var;
+        this.f33694b = this.f33693a[i7];
         if (a10Var != null) {
-            this.f33688k = 0.0f;
+            this.f33701k = 0.0f;
         } else {
-            this.f33688k = 1.0f;
+            this.f33701k = 1.0f;
         }
     }
 
@@ -63,7 +63,7 @@ public final class b10 {
             org.telegram.messenger.t3 t3Var = sharedInstance.groupCall;
             if (t3Var != null) {
                 TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) t3Var.d.f(sharedInstance.getSelfId());
-                if ((groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !org.telegram.messenger.v3.w(14, sharedInstance.getChat())) || sharedInstance.groupCall.f26963b.rtmp_stream) {
+                if ((groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !org.telegram.messenger.v3.w(14, sharedInstance.getChat())) || sharedInstance.groupCall.f26950b.rtmp_stream) {
                     sharedInstance.setMicMute(true, false, false);
                     b(3, z10);
                     return;

@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class kt extends org.telegram.ui.Components.rc {
-    public final org.telegram.ui.Components.ni0 f49380f0;
+    public final org.telegram.ui.Components.ni0 f49384f0;
 
     public kt(org.telegram.ui.Components.ni0 ni0Var, Context context, int i7, int[] iArr, int[] iArr2) {
         super(context, i7, iArr, 1, iArr2);
-        this.f49380f0 = ni0Var;
+        this.f49384f0 = ni0Var;
     }
 
     @Override
@@ -17,13 +17,13 @@ public final class kt extends org.telegram.ui.Components.rc {
     @Override
     public final void d(int i7, boolean z10) {
         int i10;
-        mt mtVar = (mt) this.f49380f0.f37879e;
+        mt mtVar = (mt) this.f49384f0.f37884e;
         if (!z10) {
             mtVar.l1();
-        } else if (i7 >= 0 && i7 < mtVar.f49976o3.length) {
+        } else if (i7 >= 0 && i7 < mtVar.f49980o3.length) {
             int i11 = 0;
             while (true) {
-                lt[] ltVarArr = mtVar.f49976o3;
+                lt[] ltVarArr = mtVar.f49980o3;
                 i10 = -1;
                 if (i11 < ltVarArr.length) {
                     if (ltVarArr[i11].d == i7) {
@@ -37,9 +37,9 @@ public final class kt extends org.telegram.ui.Components.rc {
             }
             int i12 = 0;
             while (true) {
-                if (i12 < mtVar.f49972k3.size()) {
-                    ht htVar = (ht) mtVar.f49972k3.get(i12);
-                    if (htVar != null && htVar.f56630a == 2 && htVar.h == i11) {
+                if (i12 < mtVar.f49976k3.size()) {
+                    ht htVar = (ht) mtVar.f49976k3.get(i12);
+                    if (htVar != null && htVar.f56634a == 2 && htVar.h == i11) {
                         i10 = i12;
                         break;
                     }

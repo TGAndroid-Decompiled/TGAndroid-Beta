@@ -9,34 +9,34 @@ import fi.s2;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.p5;
 public final class l extends View {
-    public final int f5731a;
-    public p5 f5732b;
-    public final Paint f5733c;
+    public final int f5734a;
+    public p5 f5735b;
+    public final Paint f5736c;
     public long d;
-    public TLRPC.Document f5734e;
-    public String f5735f;
+    public TLRPC.Document f5737e;
+    public String f5738f;
     public float h;
-    public float f5736n;
-    public float f5737r;
+    public float f5739n;
+    public float f5740r;
 
     public l(Context context, int i7) {
         super(context);
         Paint paint = new Paint(1);
-        this.f5733c = paint;
-        this.f5736n = 1.0f;
-        this.f5737r = 1.0f;
-        this.f5731a = i7;
+        this.f5736c = paint;
+        this.f5739n = 1.0f;
+        this.f5740r = 1.0f;
+        this.f5734a = i7;
         paint.setColor(738197503);
     }
 
     public String getKey() {
-        return this.f5735f;
+        return this.f5738f;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        p5 p5Var = this.f5732b;
+        p5 p5Var = this.f5735b;
         if (p5Var != null) {
             p5Var.a(this);
         }
@@ -45,7 +45,7 @@ public final class l extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        p5 p5Var = this.f5732b;
+        p5 p5Var = this.f5735b;
         if (p5Var != null) {
             p5Var.n(this);
         }
@@ -69,20 +69,20 @@ public final class l extends View {
             this.h = f10;
             invalidate();
         }
-        float f13 = (1.0f - (this.h * 0.2f)) * this.f5736n * this.f5737r;
+        float f13 = (1.0f - (this.h * 0.2f)) * this.f5739n * this.f5740r;
         if (f13 > 0.01f) {
             float width = getWidth() * 0.78f * f13;
             float width2 = getWidth() / 2.0f;
             float height = getHeight() / 2.0f;
-            p5 p5Var = this.f5732b;
-            if (p5Var == null || (s2Var = p5Var.f38501k) == null || !s2Var.I()) {
-                canvas.drawCircle(width2, height, 0.42f * width, this.f5733c);
+            p5 p5Var = this.f5735b;
+            if (p5Var == null || (s2Var = p5Var.f38500k) == null || !s2Var.I()) {
+                canvas.drawCircle(width2, height, 0.42f * width, this.f5736c);
             }
-            p5 p5Var2 = this.f5732b;
+            p5 p5Var2 = this.f5735b;
             if (p5Var2 != null) {
                 float f14 = width / 2.0f;
                 p5Var2.setBounds((int) (width2 - f14), (int) (height - f14), (int) (width2 + f14), (int) (height + f14));
-                s.b(canvas, this.f5732b);
+                s.b(canvas, this.f5735b);
             }
         }
     }
@@ -94,29 +94,29 @@ public final class l extends View {
     }
 
     public void set(TLRPC.Document document) {
-        long j3 = document.f28437id;
+        long j3 = document.f28440id;
         if (j3 == 0) {
-            if (this.f5732b != null && isAttachedToWindow()) {
-                this.f5732b.n(this);
+            if (this.f5735b != null && isAttachedToWindow()) {
+                this.f5735b.n(this);
             }
-            this.f5732b = null;
+            this.f5735b = null;
             this.d = 0L;
-            this.f5734e = document;
-            this.f5735f = null;
+            this.f5737e = document;
+            this.f5738f = null;
             invalidate();
-        } else if (j3 == this.d && this.f5732b != null) {
+        } else if (j3 == this.d && this.f5735b != null) {
         } else {
-            if (this.f5732b != null && isAttachedToWindow()) {
-                this.f5732b.n(this);
+            if (this.f5735b != null && isAttachedToWindow()) {
+                this.f5735b.n(this);
             }
-            this.d = document.f28437id;
-            this.f5734e = document;
-            this.f5735f = "c:" + document.f28437id;
-            this.f5732b = p5.l(this.f5731a, 2, document);
+            this.d = document.f28440id;
+            this.f5737e = document;
+            this.f5738f = "c:" + document.f28440id;
+            this.f5735b = p5.l(this.f5734a, 2, document);
             if (isAttachedToWindow()) {
-                this.f5732b.a(this);
+                this.f5735b.a(this);
             }
-            setContentDescription(document.f28437id + "");
+            setContentDescription(document.f28440id + "");
             invalidate();
         }
     }

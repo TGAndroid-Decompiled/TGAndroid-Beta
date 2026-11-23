@@ -4,17 +4,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.ue;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ve;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.zy0;
 public final class v1 extends org.telegram.ui.ActionBar.j {
-    public final int f4169a;
-    public final Object f4170b;
+    public final int f4171a;
+    public final Object f4172b;
 
     public v1(Object obj, int i7) {
-        this.f4169a = i7;
-        this.f4170b = obj;
+        this.f4171a = i7;
+        this.f4172b = obj;
     }
 
     @Override
@@ -22,8 +22,8 @@ public final class v1 extends org.telegram.ui.ActionBar.j {
         int i10;
         int i11;
         org.telegram.ui.ActionBar.h6 h6Var;
-        int i12 = this.f4169a;
-        Object obj = this.f4170b;
+        int i12 = this.f4171a;
+        Object obj = this.f4172b;
         switch (i12) {
             case 0:
                 if (i7 == -1) {
@@ -39,7 +39,7 @@ public final class v1 extends org.telegram.ui.ActionBar.j {
                 return;
             case 2:
                 if (i7 == -1) {
-                    ((k8) obj).finishFragment();
+                    ((j8) obj).finishFragment();
                     return;
                 }
                 return;
@@ -66,7 +66,7 @@ public final class v1 extends org.telegram.ui.ActionBar.j {
                     }
                     return;
                 } else if (i7 >= 10) {
-                    d3Var.e((ue) d3Var.f14496h0.get(i7 - 10), false);
+                    d3Var.e((ve) d3Var.f14499h0.get(i7 - 10), false);
                     return;
                 } else {
                     return;
@@ -163,7 +163,7 @@ public final class v1 extends org.telegram.ui.ActionBar.j {
                 return;
             case 13:
                 kg.s1 s1Var = (kg.s1) obj;
-                ArrayList arrayList = s1Var.f18507b;
+                ArrayList arrayList = s1Var.f18510b;
                 if (i7 == -1) {
                     if (arrayList.isEmpty()) {
                         s1Var.finishFragment();
@@ -181,7 +181,7 @@ public final class v1 extends org.telegram.ui.ActionBar.j {
                             Activity parentActivity = s1Var.getParentActivity();
                             i11 = ((org.telegram.ui.ActionBar.g2) s1Var).currentAccount;
                             h6Var = ((org.telegram.ui.ActionBar.g2) s1Var).resourceProvider;
-                            kg.s1.i0(parentActivity, i11, null, c10, h6Var, new ai.a2(this, intValue, 3));
+                            kg.s1.i0(parentActivity, i11, null, c10, h6Var, new ai.b2(this, intValue, 3));
                             return;
                         }
                         return;
@@ -189,12 +189,12 @@ public final class v1 extends org.telegram.ui.ActionBar.j {
                     return;
                 } else if (i7 == 2) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, s1Var.getParentActivity(), s1Var.getResourceProvider());
-                    String G = gd.G(arrayList.size(), "BusinessRepliesDeleteTitle", new Object[0]);
-                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+                    String G = hd.G(arrayList.size(), "BusinessRepliesDeleteTitle", new Object[0]);
+                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
                     t1Var.S = G;
-                    t1Var.U = gd.G(arrayList.size(), "BusinessRepliesDeleteMessage", new Object[0]);
-                    alertDialog$Builder.k(gd.N0(2131746125, null), new di.v6(this, 29));
-                    alertDialog$Builder.h(gd.N0(2131752577, null), null);
+                    t1Var.U = hd.G(arrayList.size(), "BusinessRepliesDeleteMessage", new Object[0]);
+                    alertDialog$Builder.k(hd.N0(2131746125, null), new di.v6(this, 29));
+                    alertDialog$Builder.h(hd.N0(2131752577, null), null);
                     s1Var.showDialog(t1Var);
                     return;
                 } else {
@@ -237,53 +237,53 @@ public final class v1 extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 20:
-                li.d0 d0Var = ((li.y) obj).f20039n;
+                li.d0 d0Var = ((li.y) obj).f20042n;
                 if (i7 == -1) {
                     if (d0Var.I1) {
                         d0Var.dismiss();
                         return;
                     }
-                    d0Var.f19937v1.d.f35796g3.O(false);
-                    d0Var.f19930o1.A(0);
+                    d0Var.f19940v1.d.f35790g3.O(false);
+                    d0Var.f19933o1.A(0);
                     return;
                 } else if (i7 == 3) {
                     d0Var.n1.a(true, true);
                     d0Var.u0(false);
                     d0Var.N1 = null;
-                    d0Var.B1.f35796g3.O(true);
-                    d0Var.f19941z1.f34647r.getText().clear();
-                    d0Var.f19941z1.f34647r.requestFocus();
-                    org.telegram.messenger.g0.I3(d0Var.f19941z1.f34647r);
+                    d0Var.B1.f35790g3.O(true);
+                    d0Var.f19944z1.f34642r.getText().clear();
+                    d0Var.f19944z1.f34642r.requestFocus();
+                    org.telegram.messenger.g0.I3(d0Var.f19944z1.f34642r);
                     return;
                 } else {
                     return;
                 }
             case 21:
-                li.d0 d0Var2 = ((li.z) obj).f20041r;
+                li.d0 d0Var2 = ((li.z) obj).f20044r;
                 if (i7 == 2) {
                     Bundle bundle = new Bundle();
-                    bundle.putLong("community_id", d0Var2.f19931p1);
-                    d0Var2.f19936u1.presentFragment(new li.p(bundle));
+                    bundle.putLong("community_id", d0Var2.f19934p1);
+                    d0Var2.f19939u1.presentFragment(new li.p(bundle));
                     d0Var2.dismiss();
                     return;
                 } else if (i7 == 3) {
-                    d0Var2.f19929m1.a(true, true);
+                    d0Var2.f19932m1.a(true, true);
                     d0Var2.u0(false);
                     TextUtils.isEmpty(d0Var2.M1);
                     d0Var2.M1 = null;
-                    d0Var2.A1.h(0L, d0Var2.f19931p1, 0L, 0L, null, false, null, true);
-                    d0Var2.f19940y1.f34647r.getText().clear();
-                    d0Var2.f19940y1.f34647r.requestFocus();
-                    org.telegram.messenger.g0.I3(d0Var2.f19940y1.f34647r);
+                    d0Var2.A1.h(0L, d0Var2.f19934p1, 0L, 0L, null, false, null, true);
+                    d0Var2.f19943y1.f34642r.getText().clear();
+                    d0Var2.f19943y1.f34642r.requestFocus();
+                    org.telegram.messenger.g0.I3(d0Var2.f19943y1.f34642r);
                     return;
                 } else {
                     return;
                 }
             case 22:
-                li.d0 d0Var3 = ((li.y) obj).f20039n;
+                li.d0 d0Var3 = ((li.y) obj).f20042n;
                 if (i7 == -1) {
-                    d0Var3.f19937v1.d.f35796g3.O(false);
-                    d0Var3.f19930o1.A(0);
+                    d0Var3.f19940v1.d.f35790g3.O(false);
+                    d0Var3.f19933o1.A(0);
                     return;
                 }
                 return;
@@ -327,7 +327,7 @@ public final class v1 extends org.telegram.ui.ActionBar.j {
                 org.telegram.ui.x6 x6Var = (org.telegram.ui.x6) obj;
                 if (i7 == -1) {
                     if (org.telegram.ui.x6.e0(x6Var).x()) {
-                        ei.c cVar2 = x6Var.f53652e0;
+                        ei.c cVar2 = x6Var.f53656e0;
                         if (cVar2 != null) {
                             cVar2.d();
                         }

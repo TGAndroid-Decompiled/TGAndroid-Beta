@@ -25,46 +25,46 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
     public float E;
     public final org.telegram.ui.Components.d6 F;
     public final org.telegram.ui.Components.d6 G;
-    public final org.telegram.ui.ActionBar.h6 f15603a;
-    public final ImageReceiver f15604b;
-    public final Paint f15605c;
+    public final org.telegram.ui.ActionBar.h6 f15606a;
+    public final ImageReceiver f15607b;
+    public final Paint f15608c;
     public final Paint d;
-    public final org.telegram.ui.Components.n6 f15606e;
-    public boolean f15607f;
+    public final org.telegram.ui.Components.n6 f15609e;
+    public boolean f15610f;
     public boolean h;
-    public View.OnClickListener f15608n;
-    public final mc f15609r;
-    public int f15610s;
-    public String f15611w;
-    public float f15612x;
-    public float f15613y;
+    public View.OnClickListener f15611n;
+    public final mc f15612r;
+    public int f15613s;
+    public String f15614w;
+    public float f15615x;
+    public float f15616y;
 
     public v3(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f15604b = imageReceiver;
+        this.f15607b = imageReceiver;
         Paint paint = new Paint(1);
-        this.f15605c = paint;
+        this.f15608c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, false, false);
-        this.f15606e = n6Var;
-        this.f15609r = new mc(this);
-        this.f15610s = -1;
+        this.f15609e = n6Var;
+        this.f15612r = new mc(this);
+        this.f15613s = -1;
         nr nrVar = nr.h;
         this.F = new org.telegram.ui.Components.d6(this, 0L, 320L, nrVar);
         this.G = new org.telegram.ui.Components.d6(this, 0L, 320L, nrVar);
         n6Var.setCallback(this);
         n6Var.u(-1);
-        n6Var.f37791b = 17;
+        n6Var.f37796b = 17;
         n6Var.w(org.telegram.messenger.g0.L(16.0f));
         n6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
-        n6Var.N = org.telegram.messenger.g0.f24146q.x;
+        n6Var.N = org.telegram.messenger.g0.f24046q.x;
         n6Var.n(0.65f, 480L, nrVar);
         n6Var.B = 0.35f;
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(-1);
-        this.f15603a = h6Var;
+        this.f15606a = h6Var;
         paint2.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, h6Var));
         imageReceiver.J0(org.telegram.messenger.g0.L(6.0f));
         c8.ra.a(this);
@@ -73,21 +73,21 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
     public final void a(int i7, int i10, final c7 c7Var) {
         String str;
         Uri withAppendedId;
-        if (this.f15610s != i7) {
-            this.f15611w = null;
-            this.f15604b.f();
-            this.f15610s = i7;
+        if (this.f15613s != i7) {
+            this.f15614w = null;
+            this.f15607b.f();
+            this.f15613s = i7;
         }
-        this.f15606e.t(Integer.toString(i10 + 1), false, true);
+        this.f15609e.t(Integer.toString(i10 + 1), false, true);
         File file = c7Var.O0;
         if (file != null) {
-            if (!TextUtils.equals(this.f15611w, file.getPath())) {
-                this.f15611w = c7Var.O0.getPath();
-                Utilities.f22809g.c(new Runnable(this) {
-                    public final v3 f15368b;
+            if (!TextUtils.equals(this.f15614w, file.getPath())) {
+                this.f15614w = c7Var.O0.getPath();
+                Utilities.f22812g.c(new Runnable(this) {
+                    public final v3 f15371b;
 
                     {
-                        this.f15368b = this;
+                        this.f15371b = this;
                     }
 
                     @Override
@@ -105,16 +105,16 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
                                 options.inDither = true;
                                 options.inJustDecodeBounds = false;
                                 final Bitmap decodeFile = BitmapFactory.decodeFile(c7Var2.O0.getPath(), options);
-                                final v3 v3Var = this.f15368b;
+                                final v3 v3Var = this.f15371b;
                                 org.telegram.messenger.g0.g3(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                v3Var.f15604b.v0(decodeFile);
+                                                v3Var.f15607b.v0(decodeFile);
                                                 return;
                                             default:
-                                                v3Var.f15604b.v0(decodeFile);
+                                                v3Var.f15607b.v0(decodeFile);
                                                 return;
                                         }
                                     }
@@ -132,16 +132,16 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
                                 options2.inDither = true;
                                 options2.inJustDecodeBounds = false;
                                 final Bitmap decodeFile2 = BitmapFactory.decodeFile(c7Var3.L.getPath(), options2);
-                                final v3 v3Var2 = this.f15368b;
+                                final v3 v3Var2 = this.f15371b;
                                 org.telegram.messenger.g0.g3(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                v3Var2.f15604b.v0(decodeFile2);
+                                                v3Var2.f15607b.v0(decodeFile2);
                                                 return;
                                             default:
-                                                v3Var2.f15604b.v0(decodeFile2);
+                                                v3Var2.f15607b.v0(decodeFile2);
                                                 return;
                                         }
                                     }
@@ -157,9 +157,9 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
                 bitmap = null;
             }
             if (bitmap == null && (str = c7Var.N) != null && str.startsWith("vthumb://")) {
-                if (!TextUtils.equals(this.f15611w, c7Var.N)) {
+                if (!TextUtils.equals(this.f15614w, c7Var.N)) {
                     String str2 = c7Var.N;
-                    this.f15611w = str2;
+                    this.f15614w = str2;
                     long parseLong = Long.parseLong(str2.substring(9));
                     if (bitmap == null && Build.VERSION.SDK_INT >= 29) {
                         try {
@@ -176,16 +176,16 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
                     return;
                 }
             }
-            this.f15604b.v0(bitmap);
+            this.f15607b.v0(bitmap);
         } else {
             File file2 = c7Var.L;
-            if (file2 != null && !TextUtils.equals(this.f15611w, file2.getPath())) {
-                this.f15611w = c7Var.L.getPath();
-                Utilities.f22809g.c(new Runnable(this) {
-                    public final v3 f15368b;
+            if (file2 != null && !TextUtils.equals(this.f15614w, file2.getPath())) {
+                this.f15614w = c7Var.L.getPath();
+                Utilities.f22812g.c(new Runnable(this) {
+                    public final v3 f15371b;
 
                     {
-                        this.f15368b = this;
+                        this.f15371b = this;
                     }
 
                     @Override
@@ -203,16 +203,16 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
                                 options.inDither = true;
                                 options.inJustDecodeBounds = false;
                                 final Bitmap decodeFile = BitmapFactory.decodeFile(c7Var2.O0.getPath(), options);
-                                final v3 v3Var = this.f15368b;
+                                final v3 v3Var = this.f15371b;
                                 org.telegram.messenger.g0.g3(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                v3Var.f15604b.v0(decodeFile);
+                                                v3Var.f15607b.v0(decodeFile);
                                                 return;
                                             default:
-                                                v3Var.f15604b.v0(decodeFile);
+                                                v3Var.f15607b.v0(decodeFile);
                                                 return;
                                         }
                                     }
@@ -230,16 +230,16 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
                                 options2.inDither = true;
                                 options2.inJustDecodeBounds = false;
                                 final Bitmap decodeFile2 = BitmapFactory.decodeFile(c7Var3.L.getPath(), options2);
-                                final v3 v3Var2 = this.f15368b;
+                                final v3 v3Var2 = this.f15371b;
                                 org.telegram.messenger.g0.g3(new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
-                                                v3Var2.f15604b.v0(decodeFile2);
+                                                v3Var2.f15607b.v0(decodeFile2);
                                                 return;
                                             default:
-                                                v3Var2.f15604b.v0(decodeFile2);
+                                                v3Var2.f15607b.v0(decodeFile2);
                                                 return;
                                         }
                                     }
@@ -253,10 +253,10 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
     }
 
     public final void b(boolean z10, boolean z11) {
-        if (this.f15607f == z10) {
+        if (this.f15610f == z10) {
             return;
         }
-        this.f15607f = z10;
+        this.f15610f = z10;
         if (!z11) {
             this.F.a(z10);
         }
@@ -266,40 +266,40 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        ImageReceiver imageReceiver = this.f15604b;
+        ImageReceiver imageReceiver = this.f15607b;
         imageReceiver.y0(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(94.0f), org.telegram.messenger.g0.L(112.0f));
         imageReceiver.h(canvas, null);
-        Paint paint = this.f15605c;
+        Paint paint = this.f15608c;
         paint.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
-        float d = this.F.d(this.f15607f);
+        float d = this.F.d(this.f15610f);
         if (d > 0.0f) {
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(96.0f), org.telegram.messenger.g0.L(116.0f));
             paint.setAlpha((int) (d * 255.0f));
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), paint);
         }
-        this.f15612x = (getWidth() - org.telegram.messenger.g0.L(17.163f)) - org.telegram.messenger.g0.L(3.0f);
-        this.f15613y = org.telegram.messenger.g0.L(3.0f) + org.telegram.messenger.g0.L(17.833f);
+        this.f15615x = (getWidth() - org.telegram.messenger.g0.L(17.163f)) - org.telegram.messenger.g0.L(3.0f);
+        this.f15616y = org.telegram.messenger.g0.L(3.0f) + org.telegram.messenger.g0.L(17.833f);
         this.E = org.telegram.messenger.g0.L(12.833f);
         float d2 = this.G.d(this.h);
-        float a10 = this.f15609r.a(0.075f);
+        float a10 = this.f15612r.a(0.075f);
         canvas.save();
-        canvas.scale(a10, a10, this.f15612x, this.f15613y);
+        canvas.scale(a10, a10, this.f15615x, this.f15616y);
         int i7 = (d2 > 0.0f ? 1 : (d2 == 0.0f ? 0 : -1));
         if (i7 > 0) {
             Paint paint2 = this.d;
             paint2.setAlpha((int) (d2 * 255.0f));
-            canvas.drawCircle(this.f15612x, this.f15613y, this.E, paint2);
+            canvas.drawCircle(this.f15615x, this.f15616y, this.E, paint2);
         }
         paint.setAlpha(255);
-        canvas.drawCircle(this.f15612x, this.f15613y, this.E - org.telegram.messenger.g0.L(1.0f), paint);
+        canvas.drawCircle(this.f15615x, this.f15616y, this.E - org.telegram.messenger.g0.L(1.0f), paint);
         if (i7 > 0) {
-            float f10 = this.f15612x;
+            float f10 = this.f15615x;
             float f11 = this.E;
             float f12 = f10 - f11;
-            float f13 = this.f15613y;
+            float f13 = this.f15616y;
             float f14 = f10 + f11;
-            org.telegram.ui.Components.n6 n6Var = this.f15606e;
+            org.telegram.ui.Components.n6 n6Var = this.f15609e;
             n6Var.o(f12, f13, f14, f13);
             n6Var.C = (int) (d2 * 255.0f);
             n6Var.draw(canvas);
@@ -310,13 +310,13 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f15604b.P();
+        this.f15607b.P();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f15604b.R();
+        this.f15607b.R();
     }
 
     @Override
@@ -328,31 +328,31 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         View.OnClickListener onClickListener;
-        if (motionEvent.getX() >= this.f15612x - org.telegram.messenger.g0.L(14.0f) && motionEvent.getX() <= this.f15612x + org.telegram.messenger.g0.L(14.0f) && motionEvent.getY() >= this.f15613y - org.telegram.messenger.g0.L(14.0f) && motionEvent.getY() <= this.f15613y + org.telegram.messenger.g0.L(14.0f)) {
+        if (motionEvent.getX() >= this.f15615x - org.telegram.messenger.g0.L(14.0f) && motionEvent.getX() <= this.f15615x + org.telegram.messenger.g0.L(14.0f) && motionEvent.getY() >= this.f15616y - org.telegram.messenger.g0.L(14.0f) && motionEvent.getY() <= this.f15616y + org.telegram.messenger.g0.L(14.0f)) {
             z10 = true;
         } else {
             z10 = false;
         }
         int action = motionEvent.getAction();
-        mc mcVar = this.f15609r;
+        mc mcVar = this.f15612r;
         if (action == 0) {
             mcVar.c(z10);
         } else if (motionEvent.getAction() == 1) {
-            if (mcVar.f37479i && z10 && (onClickListener = this.f15608n) != null) {
+            if (mcVar.f37478i && z10 && (onClickListener = this.f15611n) != null) {
                 onClickListener.onClick(this);
             }
             mcVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             mcVar.c(false);
         }
-        if (mcVar.f37479i || super.onTouchEvent(motionEvent)) {
+        if (mcVar.f37478i || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
     }
 
     public void setOnCheckboxClick(View.OnClickListener onClickListener) {
-        this.f15608n = onClickListener;
+        this.f15611n = onClickListener;
     }
 
     public void setPosition(int i7) {
@@ -362,13 +362,13 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
         } else {
             num = Integer.toString(i7 + 1);
         }
-        this.f15606e.t(num, true, true);
+        this.f15609e.t(num, true, true);
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.d.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.f15603a));
+            this.d.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.f15606a));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
@@ -377,7 +377,7 @@ public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f15606e && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f15609e && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

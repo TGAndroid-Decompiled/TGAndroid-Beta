@@ -8,24 +8,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.n10;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.lc;
-public final class s8 implements x10 {
-    public final int f15377a;
-    public final sa f15378b;
+public final class s8 implements y10 {
+    public final int f15380a;
+    public final sa f15381b;
 
     public s8(sa saVar, int i7) {
-        this.f15377a = i7;
-        this.f15378b = saVar;
+        this.f15380a = i7;
+        this.f15381b = saVar;
     }
 
     @Override
@@ -40,25 +40,25 @@ public final class s8 implements x10 {
         l9 l9Var;
         int contentHeight;
         float L;
-        int i10 = this.f15377a;
+        int i10 = this.f15380a;
         float f10 = 1.0f;
         float f11 = 0.0f;
         x5 x5Var = null;
         int i11 = 0;
-        sa saVar = this.f15378b;
+        sa saVar = this.f15381b;
         switch (i10) {
             case 0:
-                n2 n2Var = saVar.f15438s;
-                n2Var.f15083p = ((Float) obj).floatValue();
+                n2 n2Var = saVar.f15441s;
+                n2Var.f15086p = ((Float) obj).floatValue();
                 n2Var.i();
                 return;
             case 1:
                 Bitmap bitmap = (Bitmap) obj;
                 c7 c7Var = saVar.L1;
                 if (c7Var != null) {
-                    org.telegram.messenger.g0.z2(c7Var.f14352g0);
-                    saVar.L1.f14352g0 = bitmap;
-                    p8 p8Var = saVar.f15435r0;
+                    org.telegram.messenger.g0.z2(c7Var.f14355g0);
+                    saVar.L1.f14355g0 = bitmap;
+                    p8 p8Var = saVar.f15438r0;
                     if (p8Var != null) {
                         p8Var.U0(bitmap);
                         return;
@@ -69,14 +69,14 @@ public final class s8 implements x10 {
             case 2:
                 c7 c7Var2 = (c7) obj;
                 saVar.V(c7Var2, false);
-                int i12 = saVar.f15389c;
-                fi.p6 R1 = mp.u1(i12).R1();
-                a0.h hVar = R1.f12425e;
-                int i13 = R1.f12422a;
+                int i12 = saVar.f15392c;
+                fi.p6 R1 = np.u1(i12).R1();
+                a0.h hVar = R1.f12428e;
+                int i13 = R1.f12425a;
                 ArrayList arrayList = R1.h;
-                ArrayList arrayList2 = R1.f12427g;
+                ArrayList arrayList2 = R1.f12430g;
                 fi.o6 o6Var = new fi.o6(R1, c7Var2);
-                boolean z14 = c7Var2.f14351g;
+                boolean z14 = c7Var2.f14354g;
                 long j3 = o6Var.K;
                 if (z14) {
                     HashMap hashMap = (HashMap) hVar.f(j3);
@@ -84,12 +84,12 @@ public final class s8 implements x10 {
                         hashMap = new HashMap();
                         hVar.k(hashMap, j3);
                     }
-                    hashMap.put(Integer.valueOf(c7Var2.f14349f), o6Var);
+                    hashMap.put(Integer.valueOf(c7Var2.f14352f), o6Var);
                 } else {
-                    R1.d(j3, o6Var, R1.f12423b, false);
+                    R1.d(j3, o6Var, R1.f12426b, false);
                 }
-                R1.d(j3, o6Var, R1.f12424c, true);
-                if (j3 != j10.i(i13).f24817n) {
+                R1.d(j3, o6Var, R1.f12427c, true);
+                if (j3 != k10.i(i13).f24987n) {
                     int i14 = 0;
                     while (true) {
                         if (i14 < arrayList2.size()) {
@@ -118,19 +118,19 @@ public final class s8 implements x10 {
                     }
                     if (!z10) {
                         TL_stories.TL_peerStories tL_peerStories = new TL_stories.TL_peerStories();
-                        tL_peerStories.peer = mp.u1(i13).B1(j3);
+                        tL_peerStories.peer = np.u1(i13).B1(j3);
                         R1.e0(j3, tL_peerStories);
                         arrayList2.add(0, tL_peerStories);
                         R1.R(j3);
                     }
                 }
                 o6Var.d();
-                ks.f(i13).k(327, new Object[0]);
-                if (c7Var2.f14341c && !c7Var2.f14351g) {
-                    mp.u1(i12).R1().f12441w.b(c7Var2);
+                ls.f(i13).k(327, new Object[0]);
+                if (c7Var2.f14344c && !c7Var2.f14354g) {
+                    np.u1(i12).R1().f12444w.b(c7Var2);
                 }
-                if (c7Var2.f14348e1 != 0) {
-                    ConnectionsManager.getInstance(c7Var2.f14335a).cancelRequest(c7Var2.f14348e1, true);
+                if (c7Var2.f14351e1 != 0) {
+                    ConnectionsManager.getInstance(c7Var2.f14338a).cancelRequest(c7Var2.f14351e1, true);
                     return;
                 }
                 return;
@@ -141,12 +141,12 @@ public final class s8 implements x10 {
                     if (x5Var2 == null) {
                         str = null;
                     } else {
-                        str = x5Var2.f15747a;
+                        str = x5Var2.f15750a;
                     }
                     n6Var.setLink(str);
                     fa faVar = saVar.B0;
                     if (faVar != null) {
-                        y5 y5Var = faVar.f14666c;
+                        y5 y5Var = faVar.f14669c;
                         if (saVar.E0.E) {
                             x5Var = saVar.D0.d;
                         }
@@ -161,32 +161,32 @@ public final class s8 implements x10 {
                 c7 c7Var3 = saVar.L1;
                 if (c7Var3 != null) {
                     c7Var3.I0 = num.intValue();
-                    mp.g1().edit().putInt("story_period", num.intValue()).apply();
+                    np.g1().edit().putInt("story_period", num.intValue()).apply();
                     return;
                 }
                 return;
             case 5:
-                fi.b bVar = saVar.f15381a;
+                fi.b bVar = saVar.f15384a;
                 int intValue = ((Integer) obj).intValue() / 3600;
-                org.telegram.ui.Components.bb bbVar = new org.telegram.ui.Components.cb(saVar.f15385b, new bi.t(2)).f34145a;
+                org.telegram.ui.Components.bb bbVar = new org.telegram.ui.Components.cb(saVar.f15388b, new bi.t(2)).f34139a;
                 WindowManager.LayoutParams layout = bbVar.getLayout();
                 if (layout != null) {
                     layout.height = -2;
-                    layout.width = saVar.f15434r.getWidth();
-                    layout.y = (int) (saVar.f15434r.getY() + org.telegram.messenger.g0.L(56.0f));
-                    org.telegram.ui.Components.cb cbVar2 = bbVar.f33826a;
-                    cbVar2.getWindow().setAttributes(cbVar2.f34146b);
+                    layout.width = saVar.f15437r.getWidth();
+                    layout.y = (int) (saVar.f15437r.getY() + org.telegram.messenger.g0.L(56.0f));
+                    org.telegram.ui.Components.cb cbVar2 = bbVar.f33819a;
+                    cbVar2.getWindow().setAttributes(cbVar2.f34140b);
                 }
                 bbVar.setTouchable(true);
-                new lc(bbVar, bVar).G(2131624021, 3, org.telegram.messenger.g0.R2(gd.G(intValue, "StoryPeriodPremium", new Object[0]), org.telegram.ui.ActionBar.m6.Xc, 0, new r8(saVar, 27), bVar)).k(true);
+                new lc(bbVar, bVar).G(2131624021, 3, org.telegram.messenger.g0.R2(hd.G(intValue, "StoryPeriodPremium", new Object[0]), org.telegram.ui.ActionBar.m6.Xc, 0, new r8(saVar, 27), bVar)).k(true);
                 return;
             case 6:
                 Boolean bool = (Boolean) obj;
-                if (bool.booleanValue() && (cbVar = saVar.f15383a1) != null && cbVar.Q) {
+                if (bool.booleanValue() && (cbVar = saVar.f15386a1) != null && cbVar.Q) {
                     cbVar.Q = false;
                     if (cbVar.F && cbVar.h == null) {
                         cbVar.H = true;
-                        wa waVar = cbVar.f14394a;
+                        wa waVar = cbVar.f14397a;
                         if (waVar != null) {
                             waVar.h1(true);
                         }
@@ -198,9 +198,9 @@ public final class s8 implements x10 {
                 if (bool.booleanValue()) {
                     f10 = 0.0f;
                 }
-                n10.n(animate, f10, 120L);
-                gc gcVar = gc.f35500w;
-                if (gcVar != null && gcVar.f35501a == 2) {
+                o10.n(animate, f10, 120L);
+                gc gcVar = gc.f35519w;
+                if (gcVar != null && gcVar.f35520a == 2) {
                     gcVar.l();
                     return;
                 }
@@ -221,7 +221,7 @@ public final class s8 implements x10 {
                     v9Var.recordHevc = !saVar.B0.j();
                 }
                 saVar.H0.setDrawable(new w(vVar, false));
-                saVar.b0(saVar.I0, saVar.J0.f14205e, true);
+                saVar.b0(saVar.I0, saVar.J0.f14208e, true);
                 d6 d6Var = saVar.P0;
                 if (saVar.B0.j()) {
                     f11 = saVar.B0.getFilledProgress();
@@ -237,21 +237,21 @@ public final class s8 implements x10 {
             case 9:
                 saVar.P = true;
                 saVar.p(true);
-                org.telegram.messenger.g0.h3(new h9((x10) obj, 0), 210L);
+                org.telegram.messenger.g0.h3(new h9((y10) obj, 0), 210L);
                 return;
             case 10:
                 Integer num2 = (Integer) obj;
                 if (!saVar.Q1 && !saVar.R1) {
                     int intValue2 = num2.intValue();
                     saVar.P1 = intValue2;
-                    v6 v6Var = saVar.f15428p0;
+                    v6 v6Var = saVar.f15431p0;
                     if (intValue2 == -1) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     v6Var.a(z11, true);
-                    if (saVar.P1 == 1 && !saVar.J0.f14205e) {
+                    if (saVar.P1 == 1 && !saVar.J0.f14208e) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -264,15 +264,15 @@ public final class s8 implements x10 {
                     } else {
                         z13 = false;
                     }
-                    d6Var2.f14528o0 = -1.0f;
-                    d6Var2.f14529p0 = z13;
+                    d6Var2.f14531o0 = -1.0f;
+                    d6Var2.f14532p0 = z13;
                     d6Var2.invalidate();
                     if (num2.intValue() == -1) {
                         v9 v9Var2 = saVar.C0;
                         if (v9Var2 != null && v9Var2.isDual()) {
                             saVar.C0.toggleDual();
                         }
-                        l3 l3Var = saVar.f15420m1;
+                        l3 l3Var = saVar.f15423m1;
                         if (l3Var != null) {
                             l3Var.f(true);
                         }
@@ -300,7 +300,7 @@ public final class s8 implements x10 {
             case 11:
                 Float f12 = (Float) obj;
                 d6 d6Var3 = saVar.P0;
-                d6Var3.f14528o0 = f12.floatValue();
+                d6Var3.f14531o0 = f12.floatValue();
                 d6Var3.invalidate();
                 d6 d6Var4 = saVar.P0;
                 int i16 = 8;
@@ -328,7 +328,7 @@ public final class s8 implements x10 {
             case 12:
                 Integer num3 = (Integer) obj;
                 if (saVar.L1 != null) {
-                    ia iaVar = saVar.f15394d1;
+                    ia iaVar = saVar.f15397d1;
                     if (!iaVar.O1) {
                         iaVar.clearFocus();
                         if (num3.intValue() == 5) {
@@ -336,9 +336,9 @@ public final class s8 implements x10 {
                             return;
                         } else if (num3.intValue() == 0) {
                             saVar.k0(0, false, true);
-                            u9 u9Var = saVar.f15453w1;
+                            u9 u9Var = saVar.f15456w1;
                             if (u9Var != null) {
-                                u9Var.f14907w0 = false;
+                                u9Var.f14910w0 = false;
                                 u9Var.O0(0);
                                 u9Var.A0(null, true);
                                 return;
@@ -346,19 +346,19 @@ public final class s8 implements x10 {
                             return;
                         } else if (num3.intValue() == 1) {
                             saVar.k0(0, false, true);
-                            u9 u9Var2 = saVar.f15453w1;
+                            u9 u9Var2 = saVar.f15456w1;
                             if (u9Var2 != null) {
                                 u9Var2.O0(2);
                                 u9Var2.V1 = true;
                                 u9Var2.l0(true);
-                                saVar.f15453w1.f14907w0 = true;
+                                saVar.f15456w1.f14910w0 = true;
                                 return;
                             }
                             return;
                         } else if (num3.intValue() == 2) {
                             saVar.t();
                             saVar.G();
-                            u9 u9Var3 = saVar.f15453w1;
+                            u9 u9Var3 = saVar.f15456w1;
                             if (u9Var3 != null) {
                                 u9Var3.O0(1);
                                 u9Var3.x0();
@@ -382,17 +382,17 @@ public final class s8 implements x10 {
                 Integer num4 = (Integer) obj;
                 FrameLayout frameLayout = saVar.Z0;
                 if (frameLayout != null) {
-                    if (saVar.f15406h0 == 2) {
+                    if (saVar.f15409h0 == 2) {
                         L = org.telegram.messenger.g0.L(68.0f);
                     } else {
-                        L = org.telegram.messenger.g0.L(64.0f) + (-(org.telegram.messenger.g0.L(12.0f) + saVar.f15394d1.getEditTextHeight()));
+                        L = org.telegram.messenger.g0.L(64.0f) + (-(org.telegram.messenger.g0.L(12.0f) + saVar.f15397d1.getEditTextHeight()));
                     }
                     frameLayout.setTranslationY(L);
                 }
-                l9 l9Var2 = saVar.f15397e1;
+                l9 l9Var2 = saVar.f15400e1;
                 if (l9Var2 != null) {
-                    int i17 = -(org.telegram.messenger.g0.L(24.0f) + saVar.f15394d1.getEditTextHeight());
-                    cb cbVar3 = saVar.f15383a1;
+                    int i17 = -(org.telegram.messenger.g0.L(24.0f) + saVar.f15397d1.getEditTextHeight());
+                    cb cbVar3 = saVar.f15386a1;
                     if (cbVar3 == null) {
                         contentHeight = 0;
                     } else {
@@ -400,11 +400,11 @@ public final class s8 implements x10 {
                     }
                     l9Var2.setTranslationY(i17 - contentHeight);
                 }
-                gc gcVar2 = gc.f35500w;
-                if (gcVar2 != null && gcVar2.f35501a == 2) {
+                gc gcVar2 = gc.f35519w;
+                if (gcVar2 != null && gcVar2.f35520a == 2) {
                     gcVar2.l();
                 }
-                if (saVar.f15394d1.f15159p0 && (l9Var = saVar.f15397e1) != null) {
+                if (saVar.f15397d1.f15162p0 && (l9Var = saVar.f15400e1) != null) {
                     l9Var.c(false, true);
                     return;
                 }
@@ -433,14 +433,14 @@ public final class s8 implements x10 {
                     if (inputPeer == null) {
                         inputPeer = new TLRPC.TL_inputPeerSelf();
                     }
-                    c7Var5.f14379v0 = inputPeer;
+                    c7Var5.f14382v0 = inputPeer;
                     ArrayList arrayList4 = saVar.I1;
                     if (arrayList4 != null) {
                         int size2 = arrayList4.size();
                         while (i11 < size2) {
                             Object obj3 = arrayList4.get(i11);
                             i11++;
-                            ((c7) obj3).f14379v0 = saVar.L1.f14379v0;
+                            ((c7) obj3).f14382v0 = saVar.L1.f14382v0;
                         }
                         return;
                     }
@@ -451,14 +451,14 @@ public final class s8 implements x10 {
                 HashSet hashSet = (HashSet) obj;
                 c7 c7Var6 = saVar.L1;
                 if (c7Var6 != null) {
-                    c7Var6.f14381w0 = hashSet;
+                    c7Var6.f14384w0 = hashSet;
                     ArrayList arrayList5 = saVar.I1;
                     if (arrayList5 != null) {
                         int size3 = arrayList5.size();
                         while (i11 < size3) {
                             Object obj4 = arrayList5.get(i11);
                             i11++;
-                            ((c7) obj4).f14381w0 = hashSet;
+                            ((c7) obj4).f14384w0 = hashSet;
                         }
                         return;
                     }
@@ -469,12 +469,12 @@ public final class s8 implements x10 {
                 Bitmap bitmap2 = (Bitmap) obj;
                 c7 c7Var7 = saVar.L1;
                 if (c7Var7 != null) {
-                    Bitmap bitmap3 = c7Var7.f14352g0;
+                    Bitmap bitmap3 = c7Var7.f14355g0;
                     if (bitmap3 != null) {
                         bitmap3.recycle();
                     }
-                    saVar.L1.f14352g0 = bitmap2;
-                    p8 p8Var2 = saVar.f15435r0;
+                    saVar.L1.f14355g0 = bitmap2;
+                    p8 p8Var2 = saVar.f15438r0;
                     if (p8Var2 != null) {
                         p8Var2.U0(bitmap2);
                         return;
@@ -483,25 +483,25 @@ public final class s8 implements x10 {
                 }
                 return;
             case 18:
-                saVar.f15463z0 = (n8) obj;
+                saVar.f15466z0 = (n8) obj;
                 return;
             case 19:
                 TLRPC.InputPeer inputPeer2 = (TLRPC.InputPeer) obj;
-                v6 v6Var2 = saVar.f15428p0;
-                saVar.f15460y0 = inputPeer2;
+                v6 v6Var2 = saVar.f15431p0;
+                saVar.f15463y0 = inputPeer2;
                 v6Var2.set(inputPeer2);
                 return;
             case 20:
                 TLRPC.InputPeer inputPeer3 = (TLRPC.InputPeer) obj;
-                v6 v6Var3 = saVar.f15428p0;
-                saVar.f15460y0 = inputPeer3;
+                v6 v6Var3 = saVar.f15431p0;
+                saVar.f15463y0 = inputPeer3;
                 v6Var3.set(inputPeer3);
                 return;
             default:
-                n2 n2Var2 = saVar.f15438s;
+                n2 n2Var2 = saVar.f15441s;
                 float floatValue = ((Float) obj).floatValue();
-                n2Var2.f15082o = floatValue;
-                n2Var2.f15081n = n2.f(floatValue);
+                n2Var2.f15085o = floatValue;
+                n2Var2.f15084n = n2.f(floatValue);
                 n2Var2.g();
                 return;
         }

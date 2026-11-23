@@ -10,21 +10,21 @@ import java.util.Collections;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.r10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.ui.Components.c51;
 import org.telegram.ui.Components.o41;
 import org.telegram.ui.qw0;
-public final class b implements q10 {
-    public final int f53102a;
-    public final Object f53103b;
+public final class b implements r10 {
+    public final int f53106a;
+    public final Object f53107b;
 
     public b(Object obj, int i7) {
-        this.f53102a = i7;
-        this.f53103b = obj;
+        this.f53106a = i7;
+        this.f53107b = obj;
     }
 
     @Override
@@ -33,16 +33,16 @@ public final class b implements q10 {
         boolean z11;
         boolean z12;
         boolean z13;
-        int i7 = this.f53102a;
-        Object obj3 = this.f53103b;
+        int i7 = this.f53106a;
+        Object obj3 = this.f53107b;
         switch (i7) {
             case 0:
                 final k kVar = (k) obj3;
                 ArrayList arrayList = (ArrayList) obj;
                 c51 c51Var = (c51) obj2;
                 i iVar = kVar.E;
-                ArrayList arrayList2 = kVar.f53216y;
-                if (!kVar.f53207b && arrayList2.isEmpty()) {
+                ArrayList arrayList2 = kVar.f53220y;
+                if (!kVar.f53211b && arrayList2.isEmpty()) {
                     arrayList.add(o41.k(kVar.d));
                 }
                 SharedPreferences sharedPreferences = kVar.getContext().getSharedPreferences("webhistory", 0);
@@ -55,7 +55,7 @@ public final class b implements q10 {
                         for (JSONArray jSONArray = new JSONArray(string); i10 < jSONArray.length(); jSONArray = jSONArray) {
                             JSONObject jSONObject = jSONArray.getJSONObject(i10);
                             j jVar = new j(jSONObject.optString("name"), jSONObject.optLong("usage", System.currentTimeMillis()));
-                            jVar.f53166c = jSONObject.optDouble("rank", 0.0d);
+                            jVar.f53170c = jSONObject.optDouble("rank", 0.0d);
                             arrayList4.add(jVar);
                             i10++;
                         }
@@ -67,7 +67,7 @@ public final class b implements q10 {
                             i11++;
                             j jVar2 = (j) obj4;
                             if (arrayList3.size() < 20) {
-                                arrayList3.add(jVar2.f53164a);
+                                arrayList3.add(jVar2.f53168a);
                             }
                         }
                     } catch (Exception unused) {
@@ -76,7 +76,7 @@ public final class b implements q10 {
                 arrayList2.size();
                 arrayList3.size();
                 if (!arrayList2.isEmpty()) {
-                    arrayList.add(o41.k(kVar.f53214w));
+                    arrayList.add(o41.k(kVar.f53218w));
                 }
                 for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                     final String str = (String) arrayList2.get(i12);
@@ -111,19 +111,19 @@ public final class b implements q10 {
                             }
                         }
                     };
-                    int i13 = d.f53112b;
+                    int i13 = d.f53116b;
                     o41 K = o41.K(d.class);
                     K.A = 1;
-                    K.f38098m = str;
+                    K.f38092m = str;
                     K.E = onClickListener;
-                    K.f38103r = z12;
-                    K.f38104s = z13;
+                    K.f38097r = z12;
+                    K.f38098s = z13;
                     K.H = Boolean.TRUE;
                     K.I = kVar;
                     arrayList.add(K);
                 }
                 if (!arrayList3.isEmpty()) {
-                    arrayList.add(o41.s(gd.N0(2131742648, null), gd.N0(2131742652, null), new o4(kVar, 27)));
+                    arrayList.add(o41.s(hd.N0(2131742646, null), hd.N0(2131742650, null), new o4(kVar, 27)));
                     for (int i14 = 0; i14 < arrayList3.size(); i14++) {
                         final String str2 = (String) arrayList3.get(i14);
                         if (i14 == 0) {
@@ -157,34 +157,34 @@ public final class b implements q10 {
                                 }
                             }
                         };
-                        int i15 = d.f53112b;
+                        int i15 = d.f53116b;
                         o41 K2 = o41.K(d.class);
                         K2.A = 0;
-                        K2.f38098m = str2;
+                        K2.f38092m = str2;
                         K2.E = onClickListener2;
-                        K2.f38103r = z10;
-                        K2.f38104s = z11;
+                        K2.f38097r = z10;
+                        K2.f38098s = z11;
                         K2.H = Boolean.TRUE;
                         K2.I = kVar;
                         arrayList.add(K2);
                     }
                 }
                 if (iVar != null) {
-                    ArrayList arrayList5 = iVar.f53152a;
+                    ArrayList arrayList5 = iVar.f53156a;
                     if (!arrayList5.isEmpty()) {
-                        arrayList.add(o41.r(gd.N0(2131742649, null)));
+                        arrayList.add(o41.r(hd.N0(2131742647, null)));
                         for (int i16 = 0; i16 < arrayList5.size(); i16++) {
-                            fj fjVar = (fj) arrayList5.get(i16);
-                            if (!TextUtils.isEmpty(k.a(fjVar))) {
-                                int i17 = g.f53134b;
+                            gj gjVar = (gj) arrayList5.get(i16);
+                            if (!TextUtils.isEmpty(k.a(gjVar))) {
+                                int i17 = g.f53138b;
                                 o41 K3 = o41.K(g.class);
                                 K3.A = 3;
-                                K3.f38103r = true;
-                                K3.I = fjVar;
+                                K3.f38097r = true;
+                                K3.I = gjVar;
                                 arrayList.add(K3);
                             }
                         }
-                        if (!iVar.f53156f) {
+                        if (!iVar.f53160f) {
                             arrayList.add(o41.q(arrayList.size(), 32));
                             arrayList.add(o41.q(arrayList.size(), 32));
                             arrayList.add(o41.q(arrayList.size(), 32));
@@ -197,7 +197,7 @@ public final class b implements q10 {
                 return;
             case 1:
                 a5 a5Var = (a5) obj3;
-                a5Var.f58204z0 = ((Integer) obj).intValue();
+                a5Var.f58208z0 = ((Integer) obj).intValue();
                 a5Var.A0 = ((Integer) obj2).intValue();
                 org.telegram.messenger.g0.h3(new z0(a5Var, 19), 60L);
                 return;
@@ -207,8 +207,8 @@ public final class b implements q10 {
                 c51 c51Var2 = (c51) obj2;
                 ArrayList arrayList7 = gVar.W1;
                 if (arrayList7 != null && !arrayList7.isEmpty()) {
-                    int L = org.telegram.messenger.g0.L(13.0f) + ((org.telegram.messenger.g0.f24146q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.L(68.0f));
-                    int L2 = org.telegram.messenger.g0.L(88.0f) + gVar.f59609h2;
+                    int L = org.telegram.messenger.g0.L(13.0f) + ((org.telegram.messenger.g0.f24046q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.L(68.0f));
+                    int L2 = org.telegram.messenger.g0.L(88.0f) + gVar.f59613h2;
                     arrayList6.add(o41.E(0, L2));
                     int i18 = L - L2;
                     int size2 = arrayList7.size();
@@ -219,12 +219,12 @@ public final class b implements q10 {
                         for (TLRPC.TL_help_country tL_help_country : (List) gVar.V1.get((String) obj5)) {
                             if (TextUtils.isEmpty(gVar.Y1) || wg.w0.h1(tL_help_country, org.telegram.messenger.g0.M3(gVar.Y1).toLowerCase())) {
                                 i18 -= org.telegram.messenger.g0.L(44.0f);
-                                boolean containsKey = gVar.f59607f2.containsKey(tL_help_country.iso2);
-                                int i20 = vh.f.f59601b;
+                                boolean containsKey = gVar.f59611f2.containsKey(tL_help_country.iso2);
+                                int i20 = vh.f.f59605b;
                                 o41 K4 = o41.K(vh.f.class);
-                                K4.f38098m = tL_help_country.iso2;
+                                K4.f38092m = tL_help_country.iso2;
                                 K4.H = tL_help_country;
-                                K4.f38091e = containsKey;
+                                K4.f38085e = containsKey;
                                 arrayList6.add(K4);
                             }
                         }

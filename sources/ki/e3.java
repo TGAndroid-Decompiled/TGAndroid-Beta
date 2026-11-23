@@ -11,44 +11,44 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ma;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.o10;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Components.q9;
 public final class e3 extends FrameLayout {
-    public final int f18665a;
-    public final h6 f18666b;
-    public final q9 f18667c;
+    public final int f18668a;
+    public final h6 f18669b;
+    public final q9 f18670c;
     public final View d;
-    public final View f18668e;
-    public final ImageView f18669f;
+    public final View f18671e;
+    public final ImageView f18672f;
     public final TextView h;
-    public final TextView f18670n;
-    public final ImageView f18671r;
-    public boolean f18672s;
+    public final TextView f18673n;
+    public final ImageView f18674r;
+    public boolean f18675s;
 
     public e3(int i7, Context context, h6 h6Var) {
         super(context);
-        this.f18665a = i7;
-        this.f18666b = h6Var;
+        this.f18668a = i7;
+        this.f18669b = h6Var;
         q9 q9Var = new q9(context);
-        this.f18667c = q9Var;
+        this.f18670c = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(46.0f));
         addView(q9Var, ma.d(46, 46.0f, 19, 13.0f, 0.0f, 13.0f, 0.0f));
         View view = new View(context);
         this.d = view;
         int L = org.telegram.messenger.g0.L(11.0f);
-        int i10 = m6.f29378d6;
+        int i10 = m6.f29381d6;
         Drawable L2 = m6.L(L, m6.w0(i10, h6Var));
         p6 M = t6.M(i10);
         view.setBackground(L2);
         t6.j(view, L2, M, null, h6Var);
         addView(view, ma.d(22, 22.0f, 19, 40.0f, 15.0f, 0.0f, 0.0f));
         View view2 = new View(context);
-        this.f18668e = view2;
+        this.f18671e = view2;
         int L3 = org.telegram.messenger.g0.L(9.665f);
         int i11 = m6.lk;
         Drawable L4 = m6.L(L3, m6.w0(i11, h6Var));
@@ -57,7 +57,7 @@ public final class e3 extends FrameLayout {
         t6.j(view2, L4, M2, null, h6Var);
         addView(view2, ma.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f18669f = imageView;
+        this.f18672f = imageView;
         imageView.setScaleX(0.6f);
         imageView.setScaleY(0.6f);
         addView(imageView, ma.b(19.33f, 19.33f, 19, 41.33f, 15.0f, 0.0f, 0.0f));
@@ -73,17 +73,17 @@ public final class e3 extends FrameLayout {
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setTextSize(1, 16.0f);
         t6.U(textView, m6.G6, h6Var);
-        ks.i(textView);
-        TextView f10 = n10.f(linearLayout, textView, ma.t(-1, -2, 55, 6, 0, 24, 0), context);
-        this.f18670n = f10;
+        ls.i(textView);
+        TextView f10 = o10.f(linearLayout, textView, ma.t(-1, -2, 55, 6, 0, 24, 0), context);
+        this.f18673n = f10;
         f10.setMaxLines(1);
         f10.setSingleLine(true);
         f10.setEllipsize(truncateAt);
         f10.setTextSize(1, 14.0f);
-        t6.U(f10, m6.f29789z6, h6Var);
+        t6.U(f10, m6.f29792z6, h6Var);
         linearLayout.addView(f10, ma.t(-1, -2, 55, 6, 1, 24, 0));
         ImageView imageView2 = new ImageView(context);
-        this.f18671r = imageView2;
+        this.f18674r = imageView2;
         t6.s(imageView2, m6.M6, h6Var, PorterDuff.Mode.SRC_IN);
         imageView2.setImageResource(2131232061);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
@@ -93,8 +93,8 @@ public final class e3 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f18672s) {
-            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getHeight() - 1, getWidth(), getHeight(), m6.f29501k0);
+        if (this.f18675s) {
+            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getHeight() - 1, getWidth(), getHeight(), m6.f29504k0);
         }
     }
 

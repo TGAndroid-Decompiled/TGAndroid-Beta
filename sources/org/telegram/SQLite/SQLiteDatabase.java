@@ -15,7 +15,7 @@ public class SQLiteDatabase {
 
     public void beginTransaction() {
         if (this.inTransaction) {
-            boolean z10 = s2.f26749a;
+            boolean z10 = s2.f26730a;
             commitTransaction();
         }
         this.inTransaction = true;
@@ -37,7 +37,7 @@ public class SQLiteDatabase {
                 commitTransaction();
                 closedb(this.sqliteHandle);
             } catch (SQLiteException e10) {
-                if (s2.f26749a) {
+                if (s2.f26730a) {
                     a8.e(e10.getMessage(), e10);
                 }
             }

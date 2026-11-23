@@ -5,32 +5,32 @@ import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class sg extends k1.b {
-    public final int[] f39581o;
-    public final ChatActivityEnterView.RecordCircle f39582p;
+    public final int[] f39574o;
+    public final ChatActivityEnterView.RecordCircle f39575p;
 
     public sg(ChatActivityEnterView.RecordCircle recordCircle, ChatActivityEnterView.RecordCircle recordCircle2) {
         super(recordCircle2);
-        this.f39582p = recordCircle;
-        this.f39581o = new int[2];
+        this.f39575p = recordCircle;
+        this.f39574o = new int[2];
     }
 
     @Override
     public final int g(float f10, float f11) {
         Rect rect;
         ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-        if (chatActivityEnterView.f32639i5 && chatActivityEnterView.D2 != null) {
+        if (chatActivityEnterView.f32642i5 && chatActivityEnterView.D2 != null) {
             if (chatActivityEnterView.J4.contains((int) f10, (int) f11)) {
                 return 1;
             }
             if (chatActivityEnterView.I4.contains(f10, f11)) {
                 return 2;
             }
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f32570a2;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f32573a2;
             if (slideTextView != null && (rect = slideTextView.I) != null) {
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(rect);
-                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f32570a2;
-                int[] iArr = this.f39581o;
+                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f32573a2;
+                int[] iArr = this.f39574o;
                 slideTextView2.getLocationOnScreen(iArr);
                 rectF.offset(iArr[0], iArr[1]);
                 chatActivityEnterView.D2.getLocationOnScreen(iArr);
@@ -47,7 +47,7 @@ public final class sg extends k1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        if (ChatActivityEnterView.this.f32639i5) {
+        if (ChatActivityEnterView.this.f32642i5) {
             arrayList.add(1);
             arrayList.add(3);
         }
@@ -64,27 +64,27 @@ public final class sg extends k1.b {
         ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
         if (i7 == 1) {
             cVar.h(chatActivityEnterView.J4);
-            cVar.o(org.telegram.messenger.gd.N0(2131745444, "Send"));
+            cVar.o(org.telegram.messenger.hd.N0(2131745444, "Send"));
         } else if (i7 == 2) {
             Rect rect2 = chatActivityEnterView.K4;
             RectF rectF = chatActivityEnterView.I4;
             rect2.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
             cVar.h(chatActivityEnterView.K4);
-            cVar.o(org.telegram.messenger.gd.N0(2131744600, null));
+            cVar.o(org.telegram.messenger.hd.N0(2131744598, null));
         } else if (i7 == 3 && chatActivityEnterView.D2 != null) {
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f32570a2;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f32573a2;
             if (slideTextView != null && (rect = slideTextView.I) != null) {
                 Rect rect3 = org.telegram.messenger.g0.Q;
                 rect3.set(rect);
-                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f32570a2;
-                int[] iArr = this.f39581o;
+                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f32573a2;
+                int[] iArr = this.f39574o;
                 slideTextView2.getLocationOnScreen(iArr);
                 rect3.offset(iArr[0], iArr[1]);
                 chatActivityEnterView.D2.getLocationOnScreen(iArr);
                 rect3.offset(-iArr[0], -iArr[1]);
                 cVar.h(rect3);
             }
-            cVar.o(org.telegram.messenger.gd.N0(2131752577, "Cancel"));
+            cVar.o(org.telegram.messenger.hd.N0(2131752577, "Cancel"));
         }
     }
 }

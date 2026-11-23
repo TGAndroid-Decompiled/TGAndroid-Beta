@@ -6,9 +6,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.bj;
+import org.telegram.messenger.cj;
 import org.telegram.messenger.g6;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.messenger.j6;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
@@ -16,10 +16,10 @@ import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.tx;
 import org.telegram.ui.Components.y5;
 public final class b0 implements tx {
-    public final h0 f57779a;
+    public final h0 f57783a;
 
     public b0(h0 h0Var) {
-        this.f57779a = h0Var;
+        this.f57783a = h0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class b0 implements tx {
 
     @Override
     public final boolean k() {
-        b editText = ((n2) this.f57779a.C0).getEditText();
+        b editText = ((n2) this.f57783a.C0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -72,7 +72,7 @@ public final class b0 implements tx {
         n2 n2Var;
         b editText;
         g6[] g6VarArr;
-        j jVar = this.f57779a.C0;
+        j jVar = this.f57783a.C0;
         if (!(jVar instanceof n2) || (editText = (n2Var = (n2) jVar).getEditText()) == null) {
             return;
         }
@@ -84,7 +84,7 @@ public final class b0 implements tx {
             CharSequence m10 = j6.m(str, n2Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (g6VarArr = (g6[]) ((Spanned) m10).getSpans(0, m10.length(), g6.class)) != null) {
                 for (g6 g6Var : g6VarArr) {
-                    g6Var.f24201b = 0.85f;
+                    g6Var.f24095b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -99,14 +99,14 @@ public final class b0 implements tx {
 
     @Override
     public final void n() {
-        h0 h0Var = this.f57779a;
+        h0 h0Var = this.f57783a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, h0Var.getContext(), h0Var.A1);
-        String N0 = gd.N0(2131752056, null);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+        String N0 = hd.N0(2131752056, null);
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
         t1Var.S = N0;
-        t1Var.U = gd.N0(2131752057, null);
-        alertDialog$Builder.k(gd.N0(2131752087, null), new org.telegram.tgnet.u(this, 29));
-        alertDialog$Builder.h(gd.N0(2131752577, null), null);
+        t1Var.U = hd.N0(2131752057, null);
+        alertDialog$Builder.k(hd.N0(2131752087, null), new org.telegram.tgnet.u(this, 29));
+        alertDialog$Builder.h(hd.N0(2131752577, null), null);
         alertDialog$Builder.p();
     }
 
@@ -118,7 +118,7 @@ public final class b0 implements tx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         y5 y5Var;
-        b editText = ((n2) this.f57779a.C0).getEditText();
+        b editText = ((n2) this.f57783a.C0).getEditText();
         if (editText == null) {
             return;
         }
@@ -198,7 +198,7 @@ public final class b0 implements tx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, bj bjVar, boolean z10, int i7) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, cj cjVar, boolean z10, int i7) {
     }
 
     @Override

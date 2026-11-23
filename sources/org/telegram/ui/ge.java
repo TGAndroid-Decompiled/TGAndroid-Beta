@@ -4,21 +4,21 @@ import android.app.Activity;
 import android.net.Uri;
 import android.text.TextUtils;
 public final class ge implements Runnable {
-    public final int f48084a;
-    public final bn f48085b;
-    public final String f48086c;
+    public final int f48088a;
+    public final bn f48089b;
+    public final String f48090c;
 
     public ge(bn bnVar, String str, int i7) {
-        this.f48084a = i7;
-        this.f48085b = bnVar;
-        this.f48086c = str;
+        this.f48088a = i7;
+        this.f48089b = bnVar;
+        this.f48090c = str;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f48084a;
-        String str = this.f48086c;
-        bn bnVar = this.f48085b;
+        int i7 = this.f48088a;
+        String str = this.f48090c;
+        bn bnVar = this.f48089b;
         switch (i7) {
             case 0:
                 bn.t1(bnVar, str);
@@ -27,17 +27,17 @@ public final class ge implements Runnable {
                 bn.B1(bnVar, str);
                 return;
             case 2:
-                g4.d(str, bnVar.currentAccount, bnVar.f46107m1, null, bnVar.Ba);
+                g4.d(str, bnVar.currentAccount, bnVar.f46111m1, null, bnVar.Ba);
                 return;
             case 3:
                 if (str != null) {
                     bnVar.getClass();
                     if (str.length() != 0) {
-                        bnVar.getMessagesController().K4(str, bnVar.f46015f);
+                        bnVar.getMessagesController().K4(str, bnVar.f46019f);
                         return;
                     }
                 }
-                bnVar.getSendMessagesHelper().r0(org.telegram.messenger.xy.b("/start", bnVar.f46099l6, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                bnVar.getSendMessagesHelper().r0(org.telegram.messenger.yy.b("/start", bnVar.f46103l6, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 4:
                 bnVar.Oa(str);
@@ -67,7 +67,7 @@ public final class ge implements Runnable {
                 return;
             case 9:
                 org.telegram.messenger.g0.g(str);
-                org.telegram.messenger.n10.t(null, 2131747101, org.telegram.ui.Components.lc.b0(bnVar));
+                org.telegram.messenger.o10.t(null, 2131747101, org.telegram.ui.Components.lc.b0(bnVar));
                 return;
             case 10:
                 bn.a0(bnVar, str);
@@ -78,7 +78,7 @@ public final class ge implements Runnable {
                 return;
             case 12:
                 org.telegram.messenger.g0.g(str);
-                org.telegram.messenger.n10.t(null, 2131747101, org.telegram.ui.Components.lc.b0(bnVar));
+                org.telegram.messenger.o10.t(null, 2131747101, org.telegram.ui.Components.lc.b0(bnVar));
                 return;
             default:
                 Activity parentActivity4 = bnVar.getParentActivity();

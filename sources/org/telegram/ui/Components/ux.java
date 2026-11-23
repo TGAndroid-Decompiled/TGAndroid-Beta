@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class ux extends n41 {
-    public static final int f40611b = 0;
+    public static final int f40604b = 0;
 
     static {
         n41.h(new n41());
@@ -12,13 +12,13 @@ public final class ux extends n41 {
 
     public static o41 i(TLRPC.StickerSetCovered stickerSetCovered, mx mxVar, boolean z10) {
         o41 K = o41.K(ux.class);
-        long j3 = stickerSetCovered.set.f28458id;
+        long j3 = stickerSetCovered.set.f28461id;
         long j10 = 1 + j3;
         K.d = (int) (j10 ^ (j10 >>> 32));
         K.C = j3;
         K.H = stickerSetCovered;
         K.I = mxVar;
-        K.f38091e = z10;
+        K.f38085e = z10;
         return K;
     }
 
@@ -29,16 +29,16 @@ public final class ux extends n41 {
         if (obj instanceof TLRPC.TL_messages_stickerSet) {
             bVar.setPack((TLRPC.TL_messages_stickerSet) obj);
         } else if (obj instanceof TLRPC.StickerSetCovered) {
-            TLRPC.Document document = ((mx) o41Var.I).f37660e;
+            TLRPC.Document document = ((mx) o41Var.I).f37658e;
             bVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            bVar.f55672c.d(document, null, null, null, false, false);
+            bVar.f55676c.d(document, null, null, null, false, false);
         }
-        bVar.a(o41Var.f38091e, false);
+        bVar.a(o41Var.f38085e, false);
     }
 
     @Override
     public final boolean c(o41 o41Var, o41 o41Var2) {
-        if (o41Var.C == o41Var2.C && o41Var.f38091e == o41Var2.f38091e) {
+        if (o41Var.C == o41Var2.C && o41Var.f38085e == o41Var2.f38085e) {
             return true;
         }
         return false;

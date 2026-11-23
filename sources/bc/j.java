@@ -2,22 +2,22 @@ package bc;
 
 import a8.w9;
 public abstract class j {
-    public final float f3145a;
-    public final float f3146b;
+    public final float f3152a;
+    public final float f3153b;
 
     public j(float f10, float f11) {
-        this.f3145a = f10;
-        this.f3146b = f11;
+        this.f3152a = f10;
+        this.f3153b = f11;
     }
 
     public static float a(j jVar, j jVar2) {
-        return w9.a(jVar.f3145a, jVar.f3146b, jVar2.f3145a, jVar2.f3146b);
+        return w9.a(jVar.f3152a, jVar.f3153b, jVar2.f3152a, jVar2.f3153b);
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof j) {
             j jVar = (j) obj;
-            if (this.f3145a == jVar.f3145a && this.f3146b == jVar.f3146b) {
+            if (this.f3152a == jVar.f3152a && this.f3153b == jVar.f3153b) {
                 return true;
             }
         }
@@ -25,10 +25,10 @@ public abstract class j {
     }
 
     public final int hashCode() {
-        return Float.floatToIntBits(this.f3146b) + (Float.floatToIntBits(this.f3145a) * 31);
+        return Float.floatToIntBits(this.f3153b) + (Float.floatToIntBits(this.f3152a) * 31);
     }
 
     public final String toString() {
-        return "(" + this.f3145a + ',' + this.f3146b + ')';
+        return "(" + this.f3152a + ',' + this.f3153b + ')';
     }
 }

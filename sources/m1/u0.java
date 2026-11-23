@@ -6,14 +6,14 @@ import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 import zd.c2;
 public final class u0 extends kotlin.jvm.internal.k implements rd.l {
-    public final int f20470b;
-    public final Serializable f20471c;
+    public final int f20473b;
+    public final Serializable f20474c;
     public final Object d;
 
     public u0(int i7, Serializable serializable, Object obj) {
         super(1);
-        this.f20470b = i7;
-        this.f20471c = serializable;
+        this.f20473b = i7;
+        this.f20474c = serializable;
         this.d = obj;
     }
 
@@ -24,48 +24,48 @@ public final class u0 extends kotlin.jvm.internal.k implements rd.l {
         gd.k kVar;
         gd.k kVar2;
         Throwable th2;
-        switch (this.f20470b) {
+        switch (this.f20473b) {
             case 0:
-                boolean a10 = kotlin.jvm.internal.j.a((String) obj, ((File) this.f20471c).getName());
-                gd.k kVar3 = gd.k.f13514a;
+                boolean a10 = kotlin.jvm.internal.j.a((String) obj, ((File) this.f20474c).getName());
+                gd.k kVar3 = gd.k.f13517a;
                 if (a10) {
                     be.r rVar = (be.r) ((be.s) this.d);
                     Object b10 = rVar.b(kVar3);
                     if (!(b10 instanceof be.i)) {
                         gd.k kVar4 = (gd.k) b10;
                     } else {
-                        Object obj2 = ((be.j) zd.b0.u(new be.l(rVar, (id.c) null, 0))).f3184a;
+                        Object obj2 = ((be.j) zd.b0.u(new be.l(rVar, (id.c) null, 0))).f3191a;
                     }
                 }
                 return kVar3;
             default:
                 Throwable th3 = (Throwable) obj;
-                ((y) this.f20471c).invoke(th3);
-                be.c cVar = (be.c) ((xi.e) this.d).f60664c;
+                ((y) this.f20474c).invoke(th3);
+                be.c cVar = (be.c) ((xi.e) this.d).f60668c;
                 cVar.g(th3, false);
                 do {
                     cVar.getClass();
-                    AtomicLongFieldUpdater atomicLongFieldUpdater = be.c.f3154c;
+                    AtomicLongFieldUpdater atomicLongFieldUpdater = be.c.f3161c;
                     long j3 = atomicLongFieldUpdater.get(cVar);
-                    AtomicLongFieldUpdater atomicLongFieldUpdater2 = be.c.f3153b;
+                    AtomicLongFieldUpdater atomicLongFieldUpdater2 = be.c.f3160b;
                     long j10 = atomicLongFieldUpdater2.get(cVar);
                     if (cVar.r(j10, true)) {
                         hVar = new be.h(cVar.m());
                     } else {
                         int i7 = (j3 > (j10 & 1152921504606846975L) ? 1 : (j3 == (j10 & 1152921504606846975L) ? 0 : -1));
-                        be.i iVar = be.j.f3183b;
+                        be.i iVar = be.j.f3190b;
                         if (i7 < 0) {
-                            ee.t tVar = be.e.f3170k;
+                            ee.t tVar = be.e.f3177k;
                             be.k kVar5 = (be.k) be.c.h.get(cVar);
                             while (true) {
                                 if (cVar.r(atomicLongFieldUpdater2.get(cVar), true)) {
                                     hVar = new be.h(cVar.m());
                                 } else {
                                     long andIncrement = atomicLongFieldUpdater.getAndIncrement(cVar);
-                                    long j11 = be.e.f3163b;
+                                    long j11 = be.e.f3170b;
                                     long j12 = andIncrement / j11;
                                     int i10 = (int) (andIncrement % j11);
-                                    if (kVar5.f10974c != j12) {
+                                    if (kVar5.f10977c != j12) {
                                         be.k l10 = cVar.l(j12, kVar5);
                                         if (l10 == null) {
                                             continue;
@@ -74,7 +74,7 @@ public final class u0 extends kotlin.jvm.internal.k implements rd.l {
                                         }
                                     }
                                     Object z10 = cVar.z(kVar5, i10, andIncrement, tVar);
-                                    if (z10 == be.e.f3172m) {
+                                    if (z10 == be.e.f3179m) {
                                         if (tVar instanceof c2) {
                                             c2Var = (c2) tVar;
                                         } else {
@@ -85,11 +85,11 @@ public final class u0 extends kotlin.jvm.internal.k implements rd.l {
                                         }
                                         cVar.B(andIncrement);
                                         kVar5.i();
-                                    } else if (z10 == be.e.f3174o) {
+                                    } else if (z10 == be.e.f3181o) {
                                         if (andIncrement < cVar.p()) {
                                             kVar5.b();
                                         }
-                                    } else if (z10 != be.e.f3173n) {
+                                    } else if (z10 != be.e.f3180n) {
                                         kVar5.b();
                                         hVar = z10;
                                     } else {
@@ -104,9 +104,9 @@ public final class u0 extends kotlin.jvm.internal.k implements rd.l {
                     if (hVar instanceof be.i) {
                         hVar = null;
                     }
-                    kVar2 = gd.k.f13514a;
+                    kVar2 = gd.k.f13517a;
                     if (hVar != null) {
-                        zd.t tVar2 = ((n0) hVar).f20416b;
+                        zd.t tVar2 = ((n0) hVar).f20419b;
                         if (th3 == null) {
                             th2 = new CancellationException("DataStore scope was cancelled before updateData could complete");
                         } else {

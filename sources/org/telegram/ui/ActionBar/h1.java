@@ -2,12 +2,12 @@ package org.telegram.ui.ActionBar;
 
 import android.view.ViewTreeObserver;
 public final class h1 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f28991a;
-    public final Object f28992b;
+    public final int f28994a;
+    public final Object f28995b;
 
     public h1(Object obj, int i7) {
-        this.f28991a = i7;
-        this.f28992b = obj;
+        this.f28994a = i7;
+        this.f28995b = obj;
     }
 
     @Override

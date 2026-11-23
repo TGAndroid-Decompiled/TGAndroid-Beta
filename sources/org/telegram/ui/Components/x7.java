@@ -36,7 +36,7 @@ public final class x7 extends a8 {
                 e90Var2.setEllipsize(TextUtils.TruncateAt.END);
                 e90Var2.setSingleLine(true);
                 e90Var2.setPadding(org.telegram.messenger.g0.L(6.0f), 0, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(1.0f));
-                int i10 = org.telegram.ui.ActionBar.m6.f29470i6;
+                int i10 = org.telegram.ui.ActionBar.m6.f29473i6;
                 org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.m6.a0(org.telegram.ui.ActionBar.m6.w0(i10, f8Var.J0), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
                 org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i10);
                 org.telegram.ui.ActionBar.h6 h6Var = f8Var.J0;

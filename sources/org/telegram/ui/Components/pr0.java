@@ -14,7 +14,7 @@ public final class pr0 extends dt0 {
         super.f();
         jt0 jt0Var = this.h;
         ds0 g02 = jt0Var.g0(0);
-        if (g02 != null && g02.f34566n.getVisibility() == 0) {
+        if (g02 != null && g02.f34561n.getVisibility() == 0) {
             jt0Var.L.f();
         }
     }

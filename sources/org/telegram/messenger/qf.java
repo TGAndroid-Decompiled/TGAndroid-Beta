@@ -1,70 +1,77 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gs0;
-import org.telegram.ui.Components.mp0;
-import org.telegram.ui.StickersActivity;
-public final class qf implements RequestDelegate {
-    public final int f26419a;
-    public final int f26420b;
-    public final int f26421c;
-    public final Object d;
-    public final Object f26422e;
+public final class qf implements Runnable {
+    public final int f26444a;
+    public final si f26445b;
+    public final TLRPC.messages_Messages f26446c;
+    public final int d;
+    public final long f26447e;
+    public final ArrayList f26448f;
+    public final int h;
+    public final int f26449n;
+    public final boolean f26450r;
+    public final int f26451s;
+    public final int f26452w;
 
-    public qf(Object obj, int i7, int i10, Object obj2, int i11) {
-        this.f26419a = i11;
-        this.d = obj;
-        this.f26420b = i7;
-        this.f26421c = i10;
-        this.f26422e = obj2;
+    public qf(si siVar, TLRPC.messages_Messages messages_messages, int i7, long j3, ArrayList arrayList, int i10, int i11, boolean z10, int i12, int i13, int i14) {
+        this.f26444a = i14;
+        this.f26445b = siVar;
+        this.f26446c = messages_messages;
+        this.d = i7;
+        this.f26447e = j3;
+        this.f26448f = arrayList;
+        this.h = i10;
+        this.f26449n = i11;
+        this.f26450r = z10;
+        this.f26451s = i12;
+        this.f26452w = i13;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f26419a) {
+    public final void run() {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        switch (this.f26444a) {
             case 0:
-                g0.g3(new jg.o1(this.f26420b, this.f26421c, 8, (ri) this.d, (StickersActivity) this.f26422e, tLObject));
-                return;
-            case 1:
-                mp mpVar = (mp) this.d;
-                Runnable runnable = (Runnable) this.f26422e;
-                if (tL_error == null) {
-                    TLRPC.messages_Dialogs messages_dialogs = (TLRPC.messages_Dialogs) tLObject;
-                    mpVar.Q3(messages_dialogs, null, null, this.f26420b, 0, this.f26421c, 0, false, false, false);
-                    if (runnable != null && messages_dialogs.dialogs.isEmpty()) {
-                        g0.g3(runnable);
-                        return;
-                    }
-                    return;
-                }
+                g0.g3(new qf(this.f26445b, this.f26446c, this.d, this.f26447e, this.f26448f, this.h, this.f26449n, this.f26450r, this.f26451s, this.f26452w, 1));
                 return;
             default:
-                gs0 gs0Var = (gs0) this.d;
-                String str = (String) this.f26422e;
-                ArrayList arrayList = new ArrayList();
-                if (tL_error == null) {
-                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                    for (int i7 = 0; i7 < messages_messages.messages.size(); i7++) {
-                        TLRPC.Message message = messages_messages.messages.get(i7);
-                        int i10 = this.f26420b;
-                        if (i10 == 0 || message.f28452id <= i10) {
-                            arrayList.add(new fj(gs0Var.f35646w.f36689y1.getCurrentAccount(), message, false, true));
-                        }
-                    }
+                TLRPC.messages_Messages messages_messages = this.f26446c;
+                int i7 = messages_messages.count;
+                si siVar = this.f26445b;
+                np messagesController = siVar.getMessagesController();
+                ArrayList<TLRPC.User> arrayList = messages_messages.users;
+                int i10 = this.d;
+                if (i10 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                g0.g3(new mp0(gs0Var, this.f26421c, arrayList, str, 2));
+                messagesController.f4(arrayList, z10);
+                np messagesController2 = siVar.getMessagesController();
+                ArrayList<TLRPC.Chat> arrayList2 = messages_messages.chats;
+                if (i10 != 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                messagesController2.Z3(arrayList2, z11);
+                ls notificationCenter = siVar.getNotificationCenter();
+                Long valueOf = Long.valueOf(this.f26447e);
+                Integer valueOf2 = Integer.valueOf(i7);
+                Integer valueOf3 = Integer.valueOf(this.h);
+                Integer valueOf4 = Integer.valueOf(this.f26449n);
+                Boolean valueOf5 = Boolean.valueOf(this.f26450r);
+                if (this.f26451s != 0) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                notificationCenter.k(32, valueOf, valueOf2, this.f26448f, valueOf3, valueOf4, valueOf5, Boolean.valueOf(z12), Integer.valueOf(this.f26452w));
                 return;
         }
-    }
-
-    public qf(ri riVar, int i7, StickersActivity stickersActivity, int i10) {
-        this.f26419a = 0;
-        this.d = riVar;
-        this.f26420b = i7;
-        this.f26422e = stickersActivity;
-        this.f26421c = i10;
     }
 }

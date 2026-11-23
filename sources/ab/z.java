@@ -7,10 +7,10 @@ import fi.p6;
 import fi.x6;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.messenger.n5;
 import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.messenger.xo;
+import org.telegram.messenger.yo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.q1;
 import org.telegram.ui.ActionBar.t1;
@@ -27,7 +27,7 @@ import org.telegram.ui.kz;
 import org.telegram.ui.rj;
 import p4.c1;
 import p4.i1;
-public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2.j, xh.j {
+public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, yo, c1, h2.j, xh.j {
     public final int f1006a;
     public final boolean f1007b;
     public final Object f1008c;
@@ -41,7 +41,7 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2
     @Override
     public void a(xh.f fVar, float f10, float f11) {
         xh.l lVar = (xh.l) this.f1008c;
-        if (!lVar.d && !lVar.f60638e && !lVar.f60639f && this.f1007b) {
+        if (!lVar.d && !lVar.f60642e && !lVar.f60643f && this.f1007b) {
             lVar.c(f10, f11);
         }
     }
@@ -56,15 +56,15 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2
         fi.q qVar = (fi.q) this.f1008c;
         if (!this.f1007b && z10) {
             boolean z11 = true;
-            if (qVar.f12451b != 1) {
+            if (qVar.f12454b != 1) {
                 z11 = false;
             }
-            p6 p6Var = qVar.f12473s;
+            p6 p6Var = qVar.f12476s;
             if (z11) {
-                if (!p6Var.f12444z) {
+                if (!p6Var.f12447z) {
                     return;
                 }
-            } else if (!p6Var.f12435p) {
+            } else if (!p6Var.f12438p) {
                 return;
             }
             p6Var.T(z11);
@@ -76,11 +76,11 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2
         switch (this.f1006a) {
             case 2:
                 kg.b0 b0Var = (kg.b0) this.f1008c;
-                ArrayList arrayList2 = b0Var.f18283k;
-                ArrayList arrayList3 = b0Var.f18282j;
+                ArrayList arrayList2 = b0Var.f18286k;
+                ArrayList arrayList3 = b0Var.f18285j;
                 int i10 = 0;
                 if (this.f1007b) {
-                    b0Var.f18279f = i7;
+                    b0Var.f18282f = i7;
                     arrayList3.clear();
                     arrayList3.addAll(arrayList);
                     while (i10 < arrayList3.size()) {
@@ -88,7 +88,7 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2
                         i10++;
                     }
                 } else {
-                    b0Var.f18280g = i7;
+                    b0Var.f18283g = i7;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
                     while (i10 < arrayList2.size()) {
@@ -96,7 +96,7 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2
                         i10++;
                     }
                 }
-                b0Var.f18278e.run();
+                b0Var.f18281e.run();
                 return;
             default:
                 kz kzVar = (kz) this.f1008c;
@@ -156,7 +156,7 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2
                 return;
             case 4:
             default:
-                f40 f40Var = ((k30) this.f1008c).f49189b;
+                f40 f40Var = ((k30) this.f1008c).f49193b;
                 f40Var.V2.A(0, null);
                 UndoView o12 = f40Var.o1();
                 if (this.f1007b) {
@@ -168,7 +168,7 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2
                 return;
             case 5:
                 bn bnVar = (bn) this.f1008c;
-                rj rjVar = bnVar.f45946a0;
+                rj rjVar = bnVar.f45950a0;
                 if (rjVar != null) {
                     if (this.f1007b) {
                         bnVar.finishFragment();
@@ -184,9 +184,9 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2
 
     @Override
     public void i(long j3) {
-        n6 n6Var = ((x1) this.f1008c).f32312a.f31687z3;
+        n6 n6Var = ((x1) this.f1008c).f32315a.f31690z3;
         if (n6Var != null) {
-            n6Var.t(gd.M((int) j3, this.f1007b), true, true);
+            n6Var.t(hd.M((int) j3, this.f1007b), true, true);
         }
     }
 
@@ -203,13 +203,13 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2
                 if (z10) {
                     o02 = -1;
                 } else {
-                    o02 = e0Var.f55245t.o0();
+                    o02 = e0Var.f55249t.o0();
                 }
                 int i10 = o02;
                 if (z10) {
                     l10 = -9223372036854775807L;
                 } else {
-                    l10 = e0Var.f55245t.l();
+                    l10 = e0Var.f55249t.l();
                 }
                 return e0Var.q(vVar, u10, i10, l10);
             default:
@@ -218,13 +218,13 @@ public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2
                 if (z11) {
                     o03 = -1;
                 } else {
-                    o03 = e0Var.f55245t.o0();
+                    o03 = e0Var.f55249t.o0();
                 }
                 int i11 = o03;
                 if (z11) {
                     l11 = -9223372036854775807L;
                 } else {
-                    l11 = e0Var.f55245t.l();
+                    l11 = e0Var.f55249t.l();
                 }
                 return e0Var.q(vVar, list, i11, l11);
         }

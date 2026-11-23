@@ -5,58 +5,58 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 public final class uj0 implements Runnable {
-    public final int f40474a;
-    public final float f40475b;
-    public final float f40476c;
+    public final int f40467a;
+    public final float f40468b;
+    public final float f40469c;
     public final Object d;
 
     public uj0(Object obj, float f10, float f11, int i7) {
-        this.f40474a = i7;
+        this.f40467a = i7;
         this.d = obj;
-        this.f40475b = f10;
-        this.f40476c = f11;
+        this.f40468b = f10;
+        this.f40469c = f11;
     }
 
     @Override
     public final void run() {
         View view;
-        int i7 = this.f40474a;
-        float f10 = this.f40476c;
-        float f11 = this.f40475b;
+        int i7 = this.f40467a;
+        float f10 = this.f40469c;
+        float f11 = this.f40468b;
         Object obj = this.d;
         switch (i7) {
             case 0:
-                ek0 ek0Var = (ek0) ((xj0) obj).f42160b;
-                if (ek0Var.f34855d1 != null && (view = ek0Var.M1) != null) {
+                ek0 ek0Var = (ek0) ((xj0) obj).f42153b;
+                if (ek0Var.f34853d1 != null && (view = ek0Var.M1) != null) {
                     ek0Var.j1(view, f11, f10, true);
-                    ek0Var.f34855d1 = null;
+                    ek0Var.f34853d1 = null;
                     return;
                 }
                 return;
             default:
                 vg.h hVar = (vg.h) obj;
-                vg.m mVar = hVar.f59489b;
-                ValueAnimator valueAnimator = mVar.f59505d0;
-                vg.g gVar = mVar.f59512i0;
-                vg.g gVar2 = mVar.f59511h0;
+                vg.m mVar = hVar.f59493b;
+                ValueAnimator valueAnimator = mVar.f59509d0;
+                vg.g gVar = mVar.f59516i0;
+                vg.g gVar2 = mVar.f59515h0;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
-                    mVar.f59505d0.cancel();
-                    mVar.f59505d0 = null;
+                    mVar.f59509d0.cancel();
+                    mVar.f59509d0 = null;
                 }
-                AnimatorSet animatorSet = mVar.f59507e0;
+                AnimatorSet animatorSet = mVar.f59511e0;
                 if (animatorSet != null) {
                     animatorSet.removeAllListeners();
-                    mVar.f59507e0.cancel();
-                    mVar.f59507e0 = null;
+                    mVar.f59511e0.cancel();
+                    mVar.f59511e0 = null;
                 }
-                if (Math.abs(mVar.f59501b.d) > 10.0f) {
+                if (Math.abs(mVar.f59505b.d) > 10.0f) {
                     mVar.l();
                     return;
                 }
-                org.telegram.messenger.g0.r(mVar.f59509f0);
-                mVar.f59507e0 = new AnimatorSet();
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(mVar.f59501b.d, f11);
+                org.telegram.messenger.g0.r(mVar.f59513f0);
+                mVar.f59511e0 = new AnimatorSet();
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(mVar.f59505b.d, f11);
                 ofFloat.addUpdateListener(gVar2);
                 long j3 = 220;
                 ofFloat.setDuration(j3);
@@ -68,7 +68,7 @@ public final class uj0 implements Runnable {
                 ofFloat2.setDuration(600L);
                 OvershootInterpolator overshootInterpolator = org.telegram.messenger.g0.H;
                 ofFloat2.setInterpolator(overshootInterpolator);
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(mVar.f59501b.f59469i, f10);
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(mVar.f59505b.f59473i, f10);
                 ofFloat3.addUpdateListener(gVar);
                 ofFloat3.setDuration(j3);
                 ofFloat3.setInterpolator(nrVar);
@@ -77,9 +77,9 @@ public final class uj0 implements Runnable {
                 ofFloat4.setStartDelay(j3);
                 ofFloat4.setDuration(600L);
                 ofFloat4.setInterpolator(overshootInterpolator);
-                mVar.f59507e0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
-                mVar.f59507e0.addListener(new org.telegram.ui.k71(hVar, 23));
-                mVar.f59507e0.start();
+                mVar.f59511e0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+                mVar.f59511e0.addListener(new org.telegram.ui.k71(hVar, 23));
+                mVar.f59511e0.start();
                 return;
         }
     }

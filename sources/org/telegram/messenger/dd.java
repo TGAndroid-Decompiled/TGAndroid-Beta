@@ -1,202 +1,137 @@
 package org.telegram.messenger;
-public final class dd {
-    public final int f23537a;
 
-    public final int a(int i7) {
-        switch (this.f23537a) {
-            case 0:
-                int i10 = i7 % 100;
-                if (i7 == 0) {
-                    return 1;
+import android.text.TextUtils;
+import java.io.File;
+public final class dd {
+    public String f23529a;
+    public String f23530b;
+    public String f23531c;
+    public String d;
+    public String f23532e;
+    public String f23533f;
+    public boolean f23534g;
+    public int h;
+    public int f23535i;
+    public boolean f23536j;
+    public int f23537k;
+
+    public static dd a(String str) {
+        String str2;
+        String str3;
+        dd ddVar = null;
+        ddVar = null;
+        ddVar = null;
+        if (str != null && str.length() != 0) {
+            String[] split = str.split("\\|");
+            if (split.length >= 4) {
+                ?? obj = new Object();
+                boolean z10 = false;
+                obj.f23529a = split[0];
+                obj.f23530b = split[1];
+                obj.f23531c = split[2].toLowerCase();
+                obj.d = split[3];
+                if (split.length >= 5) {
+                    obj.h = Utilities.z(split[4]).intValue();
                 }
-                if (i7 == 1) {
-                    return 2;
+                if (split.length >= 6) {
+                    str2 = split[5];
+                } else {
+                    str2 = "";
                 }
-                if (i7 == 2) {
-                    return 4;
+                obj.f23532e = str2;
+                if (split.length >= 7) {
+                    str3 = split[6];
+                } else {
+                    str3 = obj.f23531c;
                 }
-                if (i10 >= 3 && i10 <= 10) {
-                    return 8;
-                }
-                if (i10 >= 11 && i10 <= 99) {
-                    return 16;
-                }
-                return 0;
-            case 1:
-                int i11 = i7 % 100;
-                int i12 = i7 % 10;
-                if (i12 == 1 && i11 != 11) {
-                    return 2;
-                }
-                if (i12 >= 2 && i12 <= 4 && (i11 < 12 || i11 > 14)) {
-                    return 8;
-                }
-                if (i12 != 0 && ((i12 < 5 || i12 > 9) && (i11 < 11 || i11 > 14))) {
-                    return 0;
-                }
-                return 16;
-            case 2:
-                if (i7 == 0) {
-                    return 1;
-                }
-                if (i7 == 1) {
-                    return 2;
-                }
-                if (i7 == 2) {
-                    return 4;
-                }
-                if (i7 == 3) {
-                    return 8;
-                }
-                if (i7 == 6) {
-                    return 16;
-                }
-                return 0;
-            case 3:
-                if (i7 == 1) {
-                    return 2;
-                }
-                if (i7 >= 2 && i7 <= 4) {
-                    return 8;
-                }
-                return 0;
-            case 4:
-                if (i7 >= 0 && i7 < 2) {
-                    return 2;
-                }
-                return 0;
-            case 5:
-                if (i7 == 0) {
-                    return 1;
-                }
-                if (i7 == 1) {
-                    return 2;
-                }
-                return 0;
-            case 6:
-                if (i7 == 0) {
-                    return 1;
-                }
-                if (i7 % 10 == 1 && i7 % 100 != 11) {
-                    return 2;
-                }
-                return 0;
-            case 7:
-                int i13 = i7 % 100;
-                int i14 = i7 % 10;
-                if (i14 == 1 && (i13 < 11 || i13 > 19)) {
-                    return 2;
-                }
-                if (i14 >= 2 && i14 <= 9 && (i13 < 11 || i13 > 19)) {
-                    return 8;
-                }
-                return 0;
-            case 8:
-                if (i7 % 10 == 1 && i7 != 11) {
-                    return 2;
-                }
-                return 0;
-            case 9:
-                int i15 = i7 % 100;
-                if (i7 == 1) {
-                    return 2;
-                }
-                if (i7 != 0 && (i15 < 2 || i15 > 10)) {
-                    if (i15 >= 11 && i15 <= 19) {
-                        return 16;
+                obj.f23533f = str3;
+                if (split.length >= 8) {
+                    if (Utilities.z(split[7]).intValue() == 1) {
+                        z10 = true;
                     }
-                    return 0;
+                    obj.f23534g = z10;
                 }
-                return 8;
-            case 10:
-                return 0;
-            case 11:
-                if (i7 == 1) {
-                    return 2;
+                if (split.length >= 9) {
+                    obj.f23535i = Utilities.z(split[8]).intValue();
                 }
-                return 0;
-            case 12:
-                int i16 = i7 % 100;
-                int i17 = i7 % 10;
-                if (i7 == 1) {
-                    return 2;
+                if (split.length >= 10) {
+                    obj.f23537k = Utilities.z(split[9]).intValue();
+                } else {
+                    obj.f23537k = Integer.MAX_VALUE;
                 }
-                if (i17 >= 2 && i17 <= 4 && (i16 < 12 || i16 > 14)) {
-                    return 8;
+                boolean isEmpty = TextUtils.isEmpty(obj.f23532e);
+                ddVar = obj;
+                if (!isEmpty) {
+                    obj.f23532e = obj.f23532e.replace("-", "_");
+                    ddVar = obj;
                 }
-                if ((i17 >= 0 && i17 <= 1) || ((i17 >= 5 && i17 <= 9) || (i16 >= 12 && i16 <= 14))) {
-                    return 16;
-                }
-                return 0;
-            case 13:
-                int i18 = i7 % 100;
-                if (i7 == 1) {
-                    return 2;
-                }
-                if (i7 != 0 && (i18 < 1 || i18 > 19)) {
-                    return 0;
-                }
-                return 8;
-            case 14:
-                int i19 = i7 % 100;
-                int i20 = i7 % 10;
-                if (i20 == 1 && i19 != 11) {
-                    return 2;
-                }
-                if (i20 >= 2 && i20 <= 4 && (i19 < 12 || i19 > 14)) {
-                    return 8;
-                }
-                return 0;
-            case 15:
-                int i21 = i7 % 100;
-                if (i21 == 1) {
-                    return 2;
-                }
-                if (i21 == 2) {
-                    return 4;
-                }
-                if (i21 >= 3 && i21 <= 4) {
-                    return 8;
-                }
-                return 0;
-            case 16:
-                if (i7 >= 0 && i7 <= 1) {
-                    return 2;
-                }
-                if (i7 >= 2 && i7 <= 10) {
-                    return 8;
-                }
-                return 0;
-            case 17:
-                if (i7 == 1) {
-                    return 2;
-                }
-                if (i7 == 2) {
-                    return 4;
-                }
-                return 0;
-            case 18:
-                if (i7 == 0) {
-                    return 1;
-                }
-                if (i7 == 1) {
-                    return 2;
-                }
-                if (i7 == 2) {
-                    return 4;
-                }
-                if (i7 == 3) {
-                    return 8;
-                }
-                if (i7 == 6) {
-                    return 16;
-                }
-                return 0;
-            default:
-                if (i7 != 0 && i7 != 1) {
-                    return 0;
-                }
-                return 2;
+            }
         }
+        return ddVar;
+    }
+
+    public final String b() {
+        if (this.d != null && !i() && !j()) {
+            return "local_" + this.f23531c;
+        } else if (j()) {
+            return "unofficial_" + this.f23531c;
+        } else {
+            return this.f23531c;
+        }
+    }
+
+    public final String c() {
+        return this.f23531c.replace("_", "-");
+    }
+
+    public final File d() {
+        if (j()) {
+            return new File(t0.h(), a8.p0.s(new StringBuilder("unofficial_base_"), this.f23531c, ".xml"));
+        }
+        return null;
+    }
+
+    public final File e() {
+        if (i()) {
+            return new File(t0.h(), a8.p0.s(new StringBuilder("remote_"), this.f23531c, ".xml"));
+        }
+        if (j()) {
+            return new File(t0.h(), a8.p0.s(new StringBuilder("unofficial_"), this.f23531c, ".xml"));
+        }
+        if (!TextUtils.isEmpty(this.d)) {
+            return new File(this.d);
+        }
+        return null;
+    }
+
+    public final String f() {
+        String str = this.f23532e;
+        if (str == null) {
+            str = "";
+        }
+        TextUtils.isEmpty(this.f23533f);
+        return this.f23529a + "|" + this.f23530b + "|" + this.f23531c + "|" + this.d + "|" + this.h + "|" + str + "|" + this.f23533f + "|" + (this.f23534g ? 1 : 0) + "|" + this.f23535i + "|" + this.f23537k;
+    }
+
+    public final boolean g() {
+        if (j() && !TextUtils.isEmpty(this.f23532e) && !this.f23532e.equals(this.f23531c)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean h() {
+        if (!TextUtils.isEmpty(this.d) && !i() && !j()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean i() {
+        return "remote".equals(this.d);
+    }
+
+    public final boolean j() {
+        return "unofficial".equals(this.d);
     }
 }

@@ -17,28 +17,28 @@ public final class ia0 extends v4.u {
     public final boolean B1(int i7) {
         byte b10;
         byte b11;
-        org.telegram.messenger.xi d;
+        org.telegram.messenger.yi d;
         byte b12;
         switch (this.S) {
             case 0:
                 qa0 qa0Var = (qa0) this.T;
-                org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) qa0Var.f38868r.f24484f.get(i7);
-                org.telegram.messenger.aj a10 = qa0.a(qa0Var, fjVar);
+                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) qa0Var.f38862r.f24737f.get(i7);
+                org.telegram.messenger.bj a10 = qa0.a(qa0Var, gjVar);
                 if (a10 == null) {
                     return false;
                 }
-                ArrayList arrayList = a10.f22926e;
-                org.telegram.messenger.xi d2 = a10.d(fjVar);
-                if (d2.f27908a == d2.f27909b || (b10 = d2.f27910c) != d2.d || b10 == 0) {
+                ArrayList arrayList = a10.f23113e;
+                org.telegram.messenger.yi d2 = a10.d(gjVar);
+                if (d2.f28092a == d2.f28093b || (b10 = d2.f28094c) != d2.d || b10 == 0) {
                     return false;
                 }
                 int size = arrayList.size();
                 for (int i10 = 0; i10 < size; i10++) {
-                    org.telegram.messenger.xi xiVar = (org.telegram.messenger.xi) arrayList.get(i10);
-                    if (xiVar != d2) {
-                        byte b13 = xiVar.f27910c;
-                        byte b14 = d2.f27910c;
-                        if (b13 <= b14 && xiVar.d >= b14) {
+                    org.telegram.messenger.yi yiVar = (org.telegram.messenger.yi) arrayList.get(i10);
+                    if (yiVar != d2) {
+                        byte b13 = yiVar.f28094c;
+                        byte b14 = d2.f28094c;
+                        if (b13 <= b14 && yiVar.d >= b14) {
                             return true;
                         }
                     }
@@ -46,19 +46,19 @@ public final class ia0 extends v4.u {
                 return false;
             case 1:
                 org.telegram.ui.eg0 eg0Var = (org.telegram.ui.eg0) this.T;
-                org.telegram.messenger.fj fjVar2 = (org.telegram.messenger.fj) eg0Var.N.get((B() - 1) - i7);
-                org.telegram.messenger.aj l10 = eg0Var.l(fjVar2);
+                org.telegram.messenger.gj gjVar2 = (org.telegram.messenger.gj) eg0Var.N.get((B() - 1) - i7);
+                org.telegram.messenger.bj l10 = eg0Var.l(gjVar2);
                 if (l10 != null) {
-                    ArrayList arrayList2 = l10.f22926e;
-                    org.telegram.messenger.xi d10 = l10.d(fjVar2);
-                    if (d10.f27908a != d10.f27909b && (b11 = d10.f27910c) == d10.d && b11 != 0) {
+                    ArrayList arrayList2 = l10.f23113e;
+                    org.telegram.messenger.yi d10 = l10.d(gjVar2);
+                    if (d10.f28092a != d10.f28093b && (b11 = d10.f28094c) == d10.d && b11 != 0) {
                         int size2 = arrayList2.size();
                         for (int i11 = 0; i11 < size2; i11++) {
-                            org.telegram.messenger.xi xiVar2 = (org.telegram.messenger.xi) arrayList2.get(i11);
-                            if (xiVar2 != d10) {
-                                byte b15 = xiVar2.f27910c;
-                                byte b16 = d10.f27910c;
-                                if (b15 <= b16 && xiVar2.d >= b16) {
+                            org.telegram.messenger.yi yiVar2 = (org.telegram.messenger.yi) arrayList2.get(i11);
+                            if (yiVar2 != d10) {
+                                byte b15 = yiVar2.f28094c;
+                                byte b16 = d10.f28094c;
+                                if (b15 <= b16 && yiVar2.d >= b16) {
                                     return true;
                                 }
                             }
@@ -68,17 +68,17 @@ public final class ia0 extends v4.u {
                 return false;
             default:
                 hi.a5 a5Var = (hi.a5) this.T;
-                ArrayList arrayList3 = a5Var.f58198t0;
+                ArrayList arrayList3 = a5Var.f58202t0;
                 int size3 = (arrayList3.size() - 1) - i7;
-                org.telegram.messenger.aj ajVar = a5Var.f58199u0;
-                if (ajVar != null && size3 >= 0 && size3 < arrayList3.size() && (d = ajVar.d((org.telegram.messenger.fj) arrayList3.get(size3))) != null && d.f27908a != d.f27909b && (b12 = d.f27910c) == d.d && b12 != 0) {
-                    int size4 = ajVar.f22926e.size();
+                org.telegram.messenger.bj bjVar = a5Var.f58203u0;
+                if (bjVar != null && size3 >= 0 && size3 < arrayList3.size() && (d = bjVar.d((org.telegram.messenger.gj) arrayList3.get(size3))) != null && d.f28092a != d.f28093b && (b12 = d.f28094c) == d.d && b12 != 0) {
+                    int size4 = bjVar.f23113e.size();
                     for (int i12 = 0; i12 < size4; i12++) {
-                        org.telegram.messenger.xi xiVar3 = (org.telegram.messenger.xi) ajVar.f22926e.get(i12);
-                        if (xiVar3 != d) {
-                            byte b17 = xiVar3.f27910c;
-                            byte b18 = d.f27910c;
-                            if (b17 <= b18 && xiVar3.d >= b18) {
+                        org.telegram.messenger.yi yiVar3 = (org.telegram.messenger.yi) bjVar.f23113e.get(i12);
+                        if (yiVar3 != d) {
+                            byte b17 = yiVar3.f28094c;
+                            byte b18 = d.f28094c;
+                            if (b17 <= b18 && yiVar3.d >= b18) {
                                 return true;
                             }
                         }
@@ -110,7 +110,7 @@ public final class ia0 extends v4.u {
     public void b0(v4.x0 x0Var, v4.c1 c1Var) {
         switch (this.S) {
             case 0:
-                boolean z10 = org.telegram.messenger.s2.f26749a;
+                boolean z10 = org.telegram.messenger.s2.f26730a;
                 try {
                     super.b0(x0Var, c1Var);
                     return;

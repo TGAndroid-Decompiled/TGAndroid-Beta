@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.content.Context;
 import java.util.ArrayList;
 public final class k91 extends w91 {
-    public final y91 f49257p3;
+    public final y91 f49261p3;
 
     public k91(y91 y91Var, Context context) {
         super(y91Var, context);
-        this.f49257p3 = y91Var;
+        this.f49261p3 = y91Var;
     }
 
     @Override
     public final boolean R0() {
-        ArrayList arrayList = this.f49257p3.f54098b;
-        if (getAdapter() == null || this.W1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((q91) arrayList.get(0)).f51149c == null || ((q91) arrayList.get(0)).f51149c.f28483id != 1 ? getAdapter().b() > 1 : getAdapter().b() > 2)) {
+        ArrayList arrayList = this.f49261p3.f54102b;
+        if (getAdapter() == null || this.W1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((q91) arrayList.get(0)).f51153c == null || ((q91) arrayList.get(0)).f51153c.f28486id != 1 ? getAdapter().b() > 1 : getAdapter().b() > 2)) {
             return false;
         }
         return true;
@@ -22,6 +22,6 @@ public final class k91 extends w91 {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        this.f49257p3.C0();
+        this.f49261p3.C0();
     }
 }

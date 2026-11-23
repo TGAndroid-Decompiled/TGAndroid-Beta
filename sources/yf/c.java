@@ -8,8 +8,8 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.ks;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.ls;
 import org.telegram.messenger.s2;
 import org.telegram.messenger.t0;
 import org.telegram.messenger.w7;
@@ -19,22 +19,22 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import wg.q;
 public final class c {
-    public static volatile long f61229g;
+    public static volatile long f61233g;
     public static volatile long h;
-    public static final HashSet f61230i = new HashSet(Arrays.asList("audio/mpeg3", "audio/mpeg", "audio/ogg", "audio/m4a"));
-    public final long f61231a;
-    public final int f61233c;
+    public static final HashSet f61234i = new HashSet(Arrays.asList("audio/mpeg3", "audio/mpeg", "audio/ogg", "audio/m4a"));
+    public final long f61235a;
+    public final int f61237c;
     public int d;
-    public boolean f61235f;
-    public String f61232b = null;
-    public final ArrayList f61234e = new ArrayList();
+    public boolean f61239f;
+    public String f61236b = null;
+    public final ArrayList f61238e = new ArrayList();
 
     public c(int i7) {
-        this.f61233c = i7;
-        this.f61231a = j10.i(i7).f24817n;
+        this.f61237c = i7;
+        this.f61235a = k10.i(i7).f24987n;
         SharedPreferences d = d();
         try {
-            f61229g = d.getLong("hash", 0L);
+            f61233g = d.getLong("hash", 0L);
             h = d.getLong("lastReload", 0L);
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -43,37 +43,37 @@ public final class c {
     }
 
     public final void a(TLRPC.Document document) {
-        if (document == null || c(document.f28437id) != null) {
+        if (document == null || c(document.f28440id) != null) {
             return;
         }
         ?? obj = new Object();
-        obj.f61226a = document;
+        obj.f61230a = document;
         int i7 = this.d;
         this.d = i7 + 1;
-        obj.f61228c = i7;
+        obj.f61232c = i7;
         obj.d = false;
-        this.f61234e.add(obj);
+        this.f61238e.add(obj);
         h();
     }
 
     public final void b() {
-        if (!this.f61235f) {
+        if (!this.f61239f) {
             f(true);
-            this.f61235f = true;
+            this.f61239f = true;
         }
-        Utilities.f22807e.c(new q(16, this, new ArrayList(this.f61234e)));
+        Utilities.f22810e.c(new q(16, this, new ArrayList(this.f61238e)));
     }
 
     public final TLRPC.Document c(long j3) {
-        ArrayList arrayList = this.f61234e;
-        if (!this.f61235f) {
+        ArrayList arrayList = this.f61238e;
+        if (!this.f61239f) {
             f(true);
-            this.f61235f = true;
+            this.f61239f = true;
         }
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             try {
-                if (arrayList.get(i7) != null && ((b) arrayList.get(i7)).f61226a != null && ((b) arrayList.get(i7)).f61226a.f28437id == j3) {
-                    return ((b) arrayList.get(i7)).f61226a;
+                if (arrayList.get(i7) != null && ((b) arrayList.get(i7)).f61230a != null && ((b) arrayList.get(i7)).f61230a.f28440id == j3) {
+                    return ((b) arrayList.get(i7)).f61230a;
                 }
             } catch (Exception e10) {
                 a8.g(e10, true);
@@ -84,27 +84,27 @@ public final class c {
     }
 
     public final SharedPreferences d() {
-        if (this.f61232b == null) {
-            this.f61232b = "ringtones_pref_" + this.f61231a;
+        if (this.f61236b == null) {
+            this.f61236b = "ringtones_pref_" + this.f61235a;
         }
-        return t0.f26941b.getSharedPreferences(this.f61232b, 0);
+        return t0.f26931b.getSharedPreferences(this.f61236b, 0);
     }
 
     public final String e(long j3) {
-        if (!this.f61235f) {
+        if (!this.f61239f) {
             f(true);
-            this.f61235f = true;
+            this.f61239f = true;
         }
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f61234e;
+            ArrayList arrayList = this.f61238e;
             if (i7 < arrayList.size()) {
-                if (((b) arrayList.get(i7)).f61226a != null && ((b) arrayList.get(i7)).f61226a.f28437id == j3) {
-                    if (!TextUtils.isEmpty(((b) arrayList.get(i7)).f61227b)) {
-                        return ((b) arrayList.get(i7)).f61227b;
+                if (((b) arrayList.get(i7)).f61230a != null && ((b) arrayList.get(i7)).f61230a.f28440id == j3) {
+                    if (!TextUtils.isEmpty(((b) arrayList.get(i7)).f61231b)) {
+                        return ((b) arrayList.get(i7)).f61231b;
                     }
-                    w7.G(this.f61233c);
-                    return w7.I(((b) arrayList.get(i7)).f61226a).toString();
+                    w7.G(this.f61237c);
+                    return w7.I(((b) arrayList.get(i7)).f61230a).toString();
                 }
                 i7++;
             } else {
@@ -116,7 +116,7 @@ public final class c {
     public final void f(boolean z10) {
         SharedPreferences d = d();
         int i7 = d.getInt("count", 0);
-        ArrayList arrayList = this.f61234e;
+        ArrayList arrayList = this.f61238e;
         arrayList.clear();
         for (int i10 = 0; i10 < i7; i10++) {
             String string = d.getString("tone_document" + i10, "");
@@ -125,14 +125,14 @@ public final class c {
             try {
                 TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                 ?? obj = new Object();
-                obj.f61226a = TLdeserialize;
-                obj.f61227b = string2;
+                obj.f61230a = TLdeserialize;
+                obj.f61231b = string2;
                 int i11 = this.d;
                 this.d = i11 + 1;
-                obj.f61228c = i11;
+                obj.f61232c = i11;
                 arrayList.add(obj);
             } catch (Throwable th2) {
-                boolean z11 = s2.f26749a;
+                boolean z11 = s2.f26730a;
                 a8.g(th2, true);
             }
         }
@@ -149,14 +149,14 @@ public final class c {
             z11 = true;
         }
         TL_account.getSavedRingtones getsavedringtones = new TL_account.getSavedRingtones();
-        getsavedringtones.hash = f61229g;
+        getsavedringtones.hash = f61233g;
         if (z11) {
-            ConnectionsManager.getInstance(this.f61233c).sendRequest(getsavedringtones, new d(this, 1));
+            ConnectionsManager.getInstance(this.f61237c).sendRequest(getsavedringtones, new d(this, 1));
             return;
         }
-        if (!this.f61235f) {
+        if (!this.f61239f) {
             f(true);
-            this.f61235f = true;
+            this.f61239f = true;
         }
         b();
     }
@@ -168,12 +168,12 @@ public final class c {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f61234e;
+            ArrayList arrayList = this.f61238e;
             if (i7 < arrayList.size()) {
                 if (!((b) arrayList.get(i7)).d) {
                     i10++;
-                    TLRPC.Document document = ((b) arrayList.get(i7)).f61226a;
-                    String str = ((b) arrayList.get(i7)).f61227b;
+                    TLRPC.Document document = ((b) arrayList.get(i7)).f61230a;
+                    String str = ((b) arrayList.get(i7)).f61231b;
                     SerializedData serializedData = new SerializedData(document.getObjectSize());
                     document.serializeToStream(serializedData);
                     edit.putString("tone_document" + i7, Utilities.f(serializedData.toByteArray()));
@@ -185,7 +185,7 @@ public final class c {
             } else {
                 edit.putInt("count", i10);
                 edit.apply();
-                ks.f(this.f61233c).k(ks.f25155h5, new Object[0]);
+                ls.f(this.f61237c).k(ls.f25321h5, new Object[0]);
                 return;
             }
         }

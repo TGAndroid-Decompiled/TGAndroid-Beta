@@ -3,18 +3,18 @@ package yb;
 import a8.r7;
 import pb.g;
 public final class e implements u9.d {
-    public static final e f61170b = new e(0);
-    public static final e f61171c = new e(1);
+    public static final e f61174b = new e(0);
+    public static final e f61175c = new e(1);
     public static final e d = new e(2);
-    public final int f61172a;
+    public final int f61176a;
 
     public e(int i7) {
-        this.f61172a = i7;
+        this.f61176a = i7;
     }
 
     @Override
     public final Object e(r7 r7Var) {
-        switch (this.f61172a) {
+        switch (this.f61176a) {
             case 0:
                 return new c((g) r7Var.a(g.class));
             case 1:

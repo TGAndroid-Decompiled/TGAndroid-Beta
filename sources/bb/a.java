@@ -4,14 +4,14 @@ public enum a implements qa.b {
     MESSAGE_DELIVERED(1),
     MESSAGE_OPEN(2);
     
-    public final int f3105a;
+    public final int f3112a;
 
     a(int i7) {
-        this.f3105a = i7;
+        this.f3112a = i7;
     }
 
     @Override
     public final int a() {
-        return this.f3105a;
+        return this.f3112a;
     }
 }

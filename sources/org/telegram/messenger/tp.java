@@ -1,28 +1,68 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import org.telegram.SQLite.SQLitePreparedStatement;
 public final class tp implements Runnable {
-    public final int f27069a;
-    public final tr f27070b;
-    public final ArrayList f27071c;
-    public final int d;
+    public final int f27065a;
+    public final ur f27066b;
+    public final ArrayList f27067c;
+    public final ArrayList d;
 
-    public tp(tr trVar, int i7, ArrayList arrayList, int i10) {
-        this.f27069a = i10;
-        this.f27070b = trVar;
-        this.d = i7;
-        this.f27071c = arrayList;
+    public tp(ur urVar, ArrayList arrayList, ArrayList arrayList2, int i7) {
+        this.f27065a = i7;
+        this.f27066b = urVar;
+        this.f27067c = arrayList;
+        this.d = arrayList2;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.tp.run():void");
-    }
-
-    public tp(tr trVar, ArrayList arrayList, int i7) {
-        this.f27069a = 1;
-        this.f27070b = trVar;
-        this.f27071c = arrayList;
-        this.d = i7;
+        switch (this.f27065a) {
+            case 0:
+                ArrayList arrayList = this.f27067c;
+                ArrayList arrayList2 = this.d;
+                ur urVar = this.f27066b;
+                urVar.getClass();
+                SQLitePreparedStatement sQLitePreparedStatement = null;
+                try {
+                    try {
+                        sQLitePreparedStatement = urVar.f27252b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
+                        int size = arrayList.size();
+                        for (int i7 = 0; i7 < size; i7++) {
+                            sQLitePreparedStatement.requery();
+                            sQLitePreparedStatement.bindInteger(1, ((Integer) arrayList2.get(i7)).intValue());
+                            sQLitePreparedStatement.bindLong(2, ((Long) arrayList.get(i7)).longValue());
+                            sQLitePreparedStatement.step();
+                        }
+                        sQLitePreparedStatement.dispose();
+                        return;
+                    } catch (Exception e10) {
+                        urVar.o(e10, true);
+                        if (sQLitePreparedStatement != null) {
+                            sQLitePreparedStatement.dispose();
+                            return;
+                        }
+                        return;
+                    }
+                } catch (Throwable th2) {
+                    if (sQLitePreparedStatement != null) {
+                        sQLitePreparedStatement.dispose();
+                    }
+                    throw th2;
+                }
+            default:
+                ur urVar2 = this.f27066b;
+                urVar2.getClass();
+                ArrayList arrayList3 = this.f27067c;
+                if (!arrayList3.isEmpty()) {
+                    urVar2.getMessagesController().f4(arrayList3, true);
+                }
+                ArrayList arrayList4 = this.d;
+                if (!arrayList4.isEmpty()) {
+                    urVar2.getMessagesController().Z3(arrayList4, true);
+                    return;
+                }
+                return;
+        }
     }
 }

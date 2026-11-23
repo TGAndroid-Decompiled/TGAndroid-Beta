@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class qo implements Runnable {
-    public final int f51311a;
-    public final ro f51312b;
+    public final int f51315a;
+    public final ro f51316b;
 
     public qo(ro roVar, int i7) {
-        this.f51311a = i7;
-        this.f51312b = roVar;
+        this.f51315a = i7;
+        this.f51316b = roVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f51311a) {
+        switch (this.f51315a) {
             case 0:
-                this.f51312b.f51683y.d.Q = false;
+                this.f51316b.f51687y.d.Q = false;
                 return;
             default:
-                this.f51312b.f51683y.d.Q = false;
+                this.f51316b.f51687y.d.Q = false;
                 return;
         }
     }

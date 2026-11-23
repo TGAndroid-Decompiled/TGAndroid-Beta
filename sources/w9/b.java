@@ -6,14 +6,14 @@ import aa.w;
 import android.content.SharedPreferences;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class b {
-    public final t f59677a;
+    public final t f59681a;
 
     public b(t tVar) {
-        this.f59677a = tVar;
+        this.f59681a = tVar;
     }
 
     public final void a() {
-        t tVar = this.f59677a;
+        t tVar = this.f59681a;
         Boolean bool = Boolean.TRUE;
         w wVar = tVar.f854b;
         synchronized (wVar) {
@@ -37,7 +37,7 @@ public final class b {
     }
 
     public final void b(String str, String str2) {
-        t tVar = this.f59677a;
-        tVar.f864n.f3100a.a(new r((Object) tVar, (Object) str, (Object) str2, 0));
+        t tVar = this.f59681a;
+        tVar.f864n.f3107a.a(new r((Object) tVar, (Object) str, (Object) str2, 0));
     }
 }

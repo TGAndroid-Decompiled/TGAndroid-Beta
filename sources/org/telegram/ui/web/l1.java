@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import hi.k3;
-import org.telegram.messenger.j10;
+import org.telegram.messenger.k10;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.n2;
@@ -18,7 +18,7 @@ import org.telegram.ui.Components.o41;
 import org.telegram.ui.Components.oq;
 import org.telegram.ui.Components.p5;
 public final class l1 extends n41 {
-    public static final int f53227b = 0;
+    public static final int f53231b = 0;
 
     static {
         n41.h(new n41());
@@ -27,12 +27,12 @@ public final class l1 extends n41 {
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         m1 m1Var = (m1) view;
-        CharSequence charSequence = o41Var.f38100o;
-        String str = (String) o41Var.f38098m;
+        CharSequence charSequence = o41Var.f38094o;
+        String str = (String) o41Var.f38092m;
         long j3 = o41Var.C;
-        ImageView imageView = m1Var.f53239a;
-        m1Var.f53240b.setText(charSequence);
-        n2 n2Var = m1Var.f53241c;
+        ImageView imageView = m1Var.f53243a;
+        m1Var.f53244b.setText(charSequence);
+        n2 n2Var = m1Var.f53245c;
         n2Var.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
             n2Var.setTranslationY(-org.telegram.messenger.g0.L(14.0f));
@@ -43,7 +43,7 @@ public final class l1 extends n41 {
             n2Var.setScaleX(1.0f);
             n2Var.setScaleY(1.0f);
         }
-        m1Var.f53242e = str;
+        m1Var.f53246e = str;
         if (TextUtils.isEmpty(charSequence)) {
             if (!str.isEmpty() && !TextUtils.isEmpty(str)) {
                 charSequence = str;
@@ -59,7 +59,7 @@ public final class l1 extends n41 {
         }
         m1Var.h = null;
         if (j3 != 0) {
-            p5 m10 = p5.m(j10.f24798t0, j3, null, 1);
+            p5 m10 = p5.m(k10.f24968t0, j3, null, 1);
             m1Var.d = m10;
             m10.a(imageView);
             imageView.setImageDrawable(m1Var.d);
@@ -70,10 +70,10 @@ public final class l1 extends n41 {
             int L = org.telegram.messenger.g0.L(28.0f);
             int L2 = org.telegram.messenger.g0.L(28.0f);
             oqVar.h = L;
-            oqVar.f38341n = L2;
+            oqVar.f38335n = L2;
             imageView.setImageDrawable(oqVar);
         }
-        m1Var.f53243f = z10;
+        m1Var.f53247f = z10;
         m1Var.invalidate();
     }
 

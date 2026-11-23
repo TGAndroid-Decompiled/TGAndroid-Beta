@@ -4,9 +4,9 @@ import a8.xa;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.np;
+import org.telegram.messenger.p10;
 public class e3 {
     public boolean A;
     public boolean B;
@@ -20,39 +20,39 @@ public class e3 {
     public org.telegram.ui.g4 J;
     public ki.v0 K;
     public boolean L;
-    public ki.e4 f28906a;
-    public org.telegram.ui.web.s0 f28907b;
-    public org.telegram.ui.k3 f28908c;
+    public ki.e4 f28909a;
+    public org.telegram.ui.web.s0 f28910b;
+    public org.telegram.ui.k3 f28911c;
     public Object d;
-    public boolean f28909e;
-    public String f28910f;
-    public int f28911g;
+    public boolean f28912e;
+    public String f28913f;
+    public int f28914g;
     public int h;
-    public int f28912i;
-    public boolean f28913j;
-    public float f28914k = Float.MAX_VALUE;
-    public boolean f28915l = true;
-    public Bitmap f28916m;
-    public boolean f28917n;
-    public boolean f28918o;
-    public int f28919p;
-    public int f28920q;
-    public int f28921r;
-    public int f28922s;
-    public boolean f28923t;
-    public boolean f28924u;
+    public int f28915i;
+    public boolean f28916j;
+    public float f28917k = Float.MAX_VALUE;
+    public boolean f28918l = true;
+    public Bitmap f28919m;
+    public boolean f28920n;
+    public boolean f28921o;
+    public int f28922p;
+    public int f28923q;
+    public int f28924r;
+    public int f28925s;
+    public boolean f28926t;
+    public boolean f28927u;
     public boolean v;
-    public xa f28925w;
-    public String f28926x;
-    public boolean f28927y;
-    public boolean f28928z;
+    public xa f28928w;
+    public String f28929x;
+    public boolean f28930y;
+    public boolean f28931z;
 
     public final void a() {
         try {
-            org.telegram.ui.web.s0 s0Var = this.f28907b;
+            org.telegram.ui.web.s0 s0Var = this.f28910b;
             if (s0Var != null) {
                 s0Var.destroy();
-                this.f28907b = null;
+                this.f28910b = null;
             }
             org.telegram.ui.g4 g4Var = this.J;
             if (g4Var != null) {
@@ -66,17 +66,17 @@ public class e3 {
     public String b() {
         if (this.J != null) {
             if (TextUtils.isEmpty(this.E)) {
-                return gd.N0(2131742662, null);
+                return hd.N0(2131742660, null);
             }
             return this.E;
         }
-        ki.e4 e4Var = this.f28906a;
+        ki.e4 e4Var = this.f28909a;
         if (e4Var == null) {
             return "";
         }
-        if (e4Var.f18678g == 6) {
-            return e4Var.f18676e;
+        if (e4Var.f18681g == 6) {
+            return e4Var.f18679e;
         }
-        return o10.q(mp.u1(e4Var.f18673a).c2(Long.valueOf(this.f28906a.f18675c)));
+        return p10.q(np.u1(e4Var.f18676a).c2(Long.valueOf(this.f28909a.f18678c)));
     }
 }

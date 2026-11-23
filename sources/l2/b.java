@@ -6,29 +6,29 @@ public abstract class b implements i1 {
     public boolean F;
     public x2.g0 H;
     public a3.s I;
-    public final int f19281b;
+    public final int f19284b;
     public m1 d;
-    public int f19283e;
-    public m2.i f19284f;
+    public int f19286e;
+    public m2.i f19287f;
     public h2.g0 h;
-    public int f19285n;
-    public x2.d1 f19286r;
-    public e2.u[] f19287s;
-    public long f19288w;
-    public long f19289x;
-    public final Object f19280a = new Object();
-    public final k8.a f19282c = new k8.a(1, false);
-    public long f19290y = Long.MIN_VALUE;
-    public e2.l1 G = e2.l1.f10534a;
+    public int f19288n;
+    public x2.d1 f19289r;
+    public e2.u[] f19290s;
+    public long f19291w;
+    public long f19292x;
+    public final Object f19283a = new Object();
+    public final k8.a f19285c = new k8.a(1, false);
+    public long f19293y = Long.MIN_VALUE;
+    public e2.l1 G = e2.l1.f10537a;
 
     public b(int i7) {
-        this.f19281b = i7;
+        this.f19284b = i7;
     }
 
     public final int B(long j3) {
-        x2.d1 d1Var = this.f19286r;
+        x2.d1 d1Var = this.f19289r;
         d1Var.getClass();
-        return d1Var.j(j3 - this.f19288w);
+        return d1Var.j(j3 - this.f19291w);
     }
 
     public abstract int C(e2.u uVar);
@@ -46,7 +46,7 @@ public abstract class b implements i1 {
     }
 
     public long g(long j3, long j10) {
-        if (this.f19285n == 1) {
+        if (this.f19288n == 1) {
             if (m() || l()) {
                 return 1000000L;
             }
@@ -62,7 +62,7 @@ public abstract class b implements i1 {
     public abstract String i();
 
     public final boolean k() {
-        if (this.f19290y == Long.MIN_VALUE) {
+        if (this.f19293y == Long.MIN_VALUE) {
             return true;
         }
         return false;
@@ -77,30 +77,30 @@ public abstract class b implements i1 {
     public abstract void p(long j3, boolean z10, boolean z11);
 
     public final int w(k8.a aVar, k2.h hVar, int i7) {
-        x2.d1 d1Var = this.f19286r;
+        x2.d1 d1Var = this.f19289r;
         d1Var.getClass();
         int m10 = d1Var.m(aVar, hVar, i7);
         if (m10 == -4) {
             if (hVar.isEndOfStream()) {
-                this.f19290y = Long.MIN_VALUE;
+                this.f19293y = Long.MIN_VALUE;
                 if (this.E) {
                     return -4;
                 }
                 return -3;
             }
-            long j3 = hVar.f18156e + this.f19288w;
-            hVar.f18156e = j3;
-            this.f19290y = Math.max(this.f19290y, j3);
+            long j3 = hVar.f18159e + this.f19291w;
+            hVar.f18159e = j3;
+            this.f19293y = Math.max(this.f19293y, j3);
             return m10;
         }
         if (m10 == -5) {
-            e2.u uVar = (e2.u) aVar.f18212c;
+            e2.u uVar = (e2.u) aVar.f18215c;
             uVar.getClass();
-            long j10 = uVar.f10799x;
+            long j10 = uVar.f10802x;
             if (j10 != Long.MAX_VALUE) {
                 e2.t a10 = uVar.a();
-                a10.f10747w = j10 + this.f19288w;
-                aVar.f18212c = new e2.u(a10);
+                a10.f10750w = j10 + this.f19291w;
+                aVar.f18215c = new e2.u(a10);
             }
         }
         return m10;
@@ -110,20 +110,20 @@ public abstract class b implements i1 {
 
     public final void y(e2.u[] uVarArr, x2.d1 d1Var, long j3, long j10, x2.g0 g0Var) {
         la.p(!this.E);
-        this.f19286r = d1Var;
+        this.f19289r = d1Var;
         this.H = g0Var;
-        if (this.f19290y == Long.MIN_VALUE) {
-            this.f19290y = j3;
+        if (this.f19293y == Long.MIN_VALUE) {
+            this.f19293y = j3;
         }
-        this.f19287s = uVarArr;
-        this.f19288w = j10;
+        this.f19290s = uVarArr;
+        this.f19291w = j10;
         u(uVarArr, j3, j10, g0Var);
     }
 
     public final void z(long j3, boolean z10, boolean z11) {
         this.E = false;
-        this.f19289x = j3;
-        this.f19290y = j3;
+        this.f19292x = j3;
+        this.f19293y = j3;
         if (!z11) {
             if (B(j3) != 0) {
                 z11 = true;

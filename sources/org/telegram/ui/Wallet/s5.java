@@ -2,33 +2,33 @@ package org.telegram.ui.Wallet;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import org.telegram.messenger.ce;
+import org.telegram.messenger.de;
 public final class s5 implements TextWatcher {
-    public final String[] f45030a;
-    public final u4 f45031b;
-    public final Runnable[] f45032c;
-    public final ce d;
+    public final String[] f45034a;
+    public final u4 f45035b;
+    public final Runnable[] f45036c;
+    public final de d;
 
-    public s5(String[] strArr, u4 u4Var, Runnable[] runnableArr, ce ceVar) {
-        this.f45030a = strArr;
-        this.f45031b = u4Var;
-        this.f45032c = runnableArr;
-        this.d = ceVar;
+    public s5(String[] strArr, u4 u4Var, Runnable[] runnableArr, de deVar) {
+        this.f45034a = strArr;
+        this.f45035b = u4Var;
+        this.f45036c = runnableArr;
+        this.d = deVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f45030a[0] = editable.toString();
-        this.f45031b.run();
-        Runnable[] runnableArr = this.f45032c;
+        this.f45034a[0] = editable.toString();
+        this.f45035b.run();
+        Runnable[] runnableArr = this.f45036c;
         Runnable runnable = runnableArr[0];
         if (runnable != null) {
             runnable.run();
             runnableArr[0] = null;
         }
-        ce ceVar = this.d;
-        org.telegram.messenger.g0.r(ceVar);
-        org.telegram.messenger.g0.h3(ceVar, 1000L);
+        de deVar = this.d;
+        org.telegram.messenger.g0.r(deVar);
+        org.telegram.messenger.g0.h3(deVar, 1000L);
     }
 
     @Override

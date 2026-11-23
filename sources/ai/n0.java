@@ -5,15 +5,15 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.text.style.ReplacementSpan;
 public final class n0 extends ReplacementSpan {
-    public final Paint f1330a;
-    public final Path f1331b;
-    public final float f1332c;
+    public final Paint f1305a;
+    public final Path f1306b;
+    public final float f1307c;
 
     public n0() {
         Paint paint = new Paint(1);
-        this.f1330a = paint;
-        this.f1331b = new Path();
-        this.f1332c = 3.25f;
+        this.f1305a = paint;
+        this.f1306b = new Path();
+        this.f1307c = 3.25f;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -25,11 +25,11 @@ public final class n0 extends ReplacementSpan {
         float L = f10 + org.telegram.messenger.g0.L(3.0f);
         float textSize = i12 - (paint.getTextSize() * 0.36f);
         int color = paint.getColor();
-        Paint paint2 = this.f1330a;
+        Paint paint2 = this.f1305a;
         paint2.setColor(color);
-        Path path = this.f1331b;
+        Path path = this.f1306b;
         path.rewind();
-        float f11 = this.f1332c;
+        float f11 = this.f1307c;
         path.moveTo(L, textSize - org.telegram.messenger.g0.L(f11));
         path.lineTo(org.telegram.messenger.g0.L(f11) + L, textSize);
         path.lineTo(L, textSize + org.telegram.messenger.g0.L(f11));
@@ -38,6 +38,6 @@ public final class n0 extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        return org.telegram.messenger.g0.L(this.f1332c + 3.0f + 1.0f);
+        return org.telegram.messenger.g0.L(this.f1307c + 3.0f + 1.0f);
     }
 }

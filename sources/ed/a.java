@@ -5,19 +5,19 @@ import java.util.regex.Pattern;
 import kf.p;
 import kf.s;
 public final class a extends h {
-    public static final Pattern f10915e = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
-    public static final Pattern f10916f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
+    public static final Pattern f10918e = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
+    public static final Pattern f10919f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
 
     @Override
     public final p b() {
-        String a10 = a(f10915e);
+        String a10 = a(f10918e);
         if (a10 != null) {
             String k10 = e2.k(a10, 1, 1);
             kf.k kVar = new kf.k(1, p5.c.k("mailto:", k10), null);
             kVar.b(new s(k10));
             return kVar;
         }
-        String a11 = a(f10916f);
+        String a11 = a(f10919f);
         if (a11 == null) {
             return null;
         }

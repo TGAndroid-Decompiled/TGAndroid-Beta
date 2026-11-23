@@ -17,34 +17,34 @@ public final class kq0 extends ds0 {
         float translationX = getTranslationX();
         super.setTranslationX(f10);
         jt0 jt0Var = this.Q;
-        ds0[] ds0VarArr = jt0Var.f36656n0;
+        ds0[] ds0VarArr = jt0Var.f36651n0;
         if (ds0VarArr[0] == this) {
             float f11 = translationX - f10;
-            ri.q qVar = jt0Var.f36641h2;
+            ri.q qVar = jt0Var.f36636h2;
             if (qVar != null) {
-                float f12 = jt0Var.f36644i2 + f11;
-                jt0Var.f36644i2 = f12;
+                float f12 = jt0Var.f36639i2 + f11;
+                jt0Var.f36639i2 = f12;
                 int i10 = (int) f12;
                 if (i10 != 0) {
-                    jt0Var.f36644i2 = f12 - i10;
+                    jt0Var.f36639i2 = f12 - i10;
                     qVar.h(i10, 0);
                 }
             }
         }
-        if (jt0Var.f36646j1 && (ds0Var = ds0VarArr[0]) == this) {
+        if (jt0Var.f36641j1 && (ds0Var = ds0VarArr[0]) == this) {
             float abs = Math.abs(ds0Var.getTranslationX()) / ds0VarArr[0].getMeasuredWidth();
             jt0Var.l1(abs, ds0VarArr[1].F);
             if (jt0Var.I()) {
                 int i11 = jt0Var.A0;
                 if (i11 == 2) {
-                    jt0Var.f36668r0 = 1.0f - abs;
+                    jt0Var.f36663r0 = 1.0f - abs;
                 } else if (i11 == 1) {
-                    jt0Var.f36668r0 = abs;
+                    jt0Var.f36663r0 = abs;
                 }
                 jt0Var.M1(abs);
                 float k02 = jt0Var.k0(abs);
-                jt0Var.f36672s0 = k02;
-                ImageView imageView = jt0Var.f36677u0;
+                jt0Var.f36667s0 = k02;
+                ImageView imageView = jt0Var.f36672u0;
                 if (k02 != 0.0f && jt0Var.I() && !jt0Var.A0()) {
                     i7 = 0;
                 } else {
@@ -52,7 +52,7 @@ public final class kq0 extends ds0 {
                 }
                 imageView.setVisibility(i7);
             } else {
-                jt0Var.f36668r0 = 0.0f;
+                jt0Var.f36663r0 = 0.0f;
             }
             jt0Var.I1(false);
         }

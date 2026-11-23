@@ -2,27 +2,27 @@ package p7;
 
 import c8.mb;
 public final class c extends e {
-    public final transient e f55520c;
+    public final transient e f55524c;
 
     public c(e eVar) {
-        this.f55520c = eVar;
+        this.f55524c = eVar;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f55520c.contains(obj);
+        return this.f55524c.contains(obj);
     }
 
     @Override
     public final Object get(int i7) {
-        e eVar = this.f55520c;
+        e eVar = this.f55524c;
         mb.a(i7, eVar.size());
         return eVar.get((eVar.size() - 1) - i7);
     }
 
     @Override
     public final int indexOf(Object obj) {
-        e eVar = this.f55520c;
+        e eVar = this.f55524c;
         int lastIndexOf = eVar.lastIndexOf(obj);
         if (lastIndexOf < 0) {
             return -1;
@@ -32,12 +32,12 @@ public final class c extends e {
 
     @Override
     public final e l() {
-        return this.f55520c;
+        return this.f55524c;
     }
 
     @Override
     public final int lastIndexOf(Object obj) {
-        e eVar = this.f55520c;
+        e eVar = this.f55524c;
         int indexOf = eVar.indexOf(obj);
         if (indexOf < 0) {
             return -1;
@@ -47,13 +47,13 @@ public final class c extends e {
 
     @Override
     public final e subList(int i7, int i10) {
-        e eVar = this.f55520c;
+        e eVar = this.f55524c;
         mb.b(i7, i10, eVar.size());
         return eVar.subList(eVar.size() - i10, eVar.size() - i7).l();
     }
 
     @Override
     public final int size() {
-        return this.f55520c.size();
+        return this.f55524c.size();
     }
 }

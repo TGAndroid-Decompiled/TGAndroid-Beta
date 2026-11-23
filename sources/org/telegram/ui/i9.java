@@ -6,35 +6,35 @@ import android.widget.FrameLayout;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class i9 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.Cells.h6 f48689a;
-    public final org.telegram.ui.Components.pg0 f48690b;
-    public TLRPC.Chat f48691c;
+    public final org.telegram.ui.Cells.h6 f48693a;
+    public final org.telegram.ui.Components.pg0 f48694b;
+    public TLRPC.Chat f48695c;
 
     public i9(Context context) {
         super(context);
         int i7;
         int L;
-        String N0 = org.telegram.messenger.gd.N0(2131743199, null);
+        String N0 = org.telegram.messenger.hd.N0(2131743197, null);
         org.telegram.ui.Components.pg0 pg0Var = new org.telegram.ui.Components.pg0(context);
-        this.f48690b = pg0Var;
+        this.f48694b = pg0Var;
         int ceil = (int) Math.ceil(pg0Var.getPaint().measureText(N0));
         org.telegram.ui.Cells.h6 h6Var = new org.telegram.ui.Cells.h6(context, null);
-        this.f48689a = h6Var;
+        this.f48693a = h6Var;
         h6Var.N0 = true;
         h6Var.F0 = true;
-        if (org.telegram.messenger.gd.f24241a0) {
+        if (org.telegram.messenger.hd.f24444a0) {
             i7 = org.telegram.messenger.g0.L(44.0f) + ceil;
         } else {
             i7 = 0;
         }
-        if (org.telegram.messenger.gd.f24241a0) {
+        if (org.telegram.messenger.hd.f24444a0) {
             L = 0;
         } else {
             L = org.telegram.messenger.g0.L(44.0f) + ceil;
         }
         h6Var.setPadding(i7, 0, L, 0);
-        h6Var.f30733c0 = 0;
-        h6Var.f30734d0 = -org.telegram.messenger.g0.L(4.0f);
+        h6Var.f30736c0 = 0;
+        h6Var.f30737d0 = -org.telegram.messenger.g0.L(4.0f);
         addView(h6Var, c8.ma.c(-1.0f, -1));
         pg0Var.setText(N0);
         pg0Var.setTextSize(1, 14.0f);
@@ -55,7 +55,7 @@ public final class i9 extends FrameLayout implements org.telegram.ui.ActionBar.b
     @Override
     public final void updateColors() {
         try {
-            this.f48690b.setProgressColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Ei, false));
+            this.f48694b.setProgressColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Ei, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

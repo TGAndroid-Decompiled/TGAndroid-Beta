@@ -9,22 +9,22 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashMap;
 public final class ec0 extends FrameLayout {
-    public Bitmap f34732a;
-    public HashMap f34733b;
-    public boolean f34734c;
+    public Bitmap f34730a;
+    public HashMap f34731b;
+    public boolean f34732c;
     public BitmapDrawable d;
-    public boolean f34735e;
+    public boolean f34733e;
 
     public ec0(Context context) {
         super(context);
-        this.f34735e = true;
+        this.f34733e = true;
     }
 
     public final void a() {
-        this.f34732a = null;
+        this.f34730a = null;
         this.d = null;
         setBackground(null);
-        HashMap hashMap = this.f34733b;
+        HashMap hashMap = this.f34731b;
         if (hashMap != null) {
             hashMap.clear();
         }
@@ -50,14 +50,14 @@ public final class ec0 extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f34735e) {
+        if (!this.f34733e) {
             return false;
         }
         return super.drawChild(canvas, view, j3);
     }
 
     public Bitmap getBitmap() {
-        return this.f34732a;
+        return this.f34730a;
     }
 
     public Bitmap getThumb() {
@@ -83,30 +83,30 @@ public final class ec0 extends FrameLayout {
         int i14;
         int i15;
         int measuredHeight;
-        if (this.f34733b != null) {
+        if (this.f34731b != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight2 = getMeasuredHeight();
             int childCount = getChildCount();
             for (int i16 = 0; i16 < childCount; i16++) {
                 View childAt = getChildAt(i16);
-                org.telegram.messenger.c20 c20Var = (org.telegram.messenger.c20) this.f34733b.get(childAt);
-                if (c20Var != null) {
+                org.telegram.messenger.d20 d20Var = (org.telegram.messenger.d20) this.f34731b.get(childAt);
+                if (d20Var != null) {
                     int measuredWidth2 = childAt.getMeasuredWidth();
                     int measuredHeight3 = childAt.getMeasuredHeight();
                     if (childAt instanceof tg.b) {
-                        if (c20Var.A) {
-                            i13 = ((int) (((c20Var.f23261f / 2.0f) + c20Var.f23259c) * measuredWidth)) - (childAt.getMeasuredWidth() / 2);
-                            i15 = (int) (((c20Var.f23262g / 2.0f) + c20Var.d) * measuredHeight2);
+                        if (d20Var.A) {
+                            i13 = ((int) (((d20Var.f23482f / 2.0f) + d20Var.f23480c) * measuredWidth)) - (childAt.getMeasuredWidth() / 2);
+                            i15 = (int) (((d20Var.f23483g / 2.0f) + d20Var.d) * measuredHeight2);
                             measuredHeight = childAt.getMeasuredHeight() / 2;
                         } else {
-                            i13 = ((int) (measuredWidth * c20Var.f23278y)) - (childAt.getMeasuredWidth() / 2);
-                            i15 = (int) (measuredHeight2 * c20Var.f23279z);
+                            i13 = ((int) (measuredWidth * d20Var.f23499y)) - (childAt.getMeasuredWidth() / 2);
+                            i15 = (int) (measuredHeight2 * d20Var.f23500z);
                             measuredHeight = childAt.getMeasuredHeight() / 2;
                         }
                         i14 = i15 - measuredHeight;
                     } else {
-                        i13 = (int) (measuredWidth * c20Var.f23259c);
-                        i14 = (int) (measuredHeight2 * c20Var.d);
+                        i13 = (int) (measuredWidth * d20Var.f23480c);
+                        i14 = (int) (measuredHeight2 * d20Var.d);
                     }
                     childAt.layout(i13, i14, measuredWidth2 + i13, measuredHeight3 + i14);
                 }
@@ -117,32 +117,32 @@ public final class ec0 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         float f10;
-        this.f34734c = true;
+        this.f34732c = true;
         setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
-        if (this.f34733b != null) {
+        if (this.f34731b != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             int childCount = getChildCount();
             for (int i11 = 0; i11 < childCount; i11++) {
                 View childAt = getChildAt(i11);
-                org.telegram.messenger.c20 c20Var = (org.telegram.messenger.c20) this.f34733b.get(childAt);
-                if (c20Var != null) {
+                org.telegram.messenger.d20 d20Var = (org.telegram.messenger.d20) this.f34731b.get(childAt);
+                if (d20Var != null) {
                     if (childAt instanceof tg.b) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(c20Var.f23271q, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                        if (c20Var.A) {
-                            f10 = (c20Var.f23261f * getMeasuredWidth()) / c20Var.f23271q;
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(d20Var.f23492q, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+                        if (d20Var.A) {
+                            f10 = (d20Var.f23482f * getMeasuredWidth()) / d20Var.f23492q;
                         } else {
-                            f10 = c20Var.v * ((c20Var.f23276w * measuredWidth) / c20Var.f23271q);
+                            f10 = d20Var.v * ((d20Var.f23497w * measuredWidth) / d20Var.f23492q);
                         }
                         childAt.setScaleX(f10);
                         childAt.setScaleY(f10);
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (measuredWidth * c20Var.f23261f), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (measuredHeight * c20Var.f23262g), 1073741824));
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (measuredWidth * d20Var.f23482f), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (measuredHeight * d20Var.f23483g), 1073741824));
                     }
                 }
             }
         }
-        this.f34734c = false;
+        this.f34732c = false;
     }
 
     @Override
@@ -152,7 +152,7 @@ public final class ec0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f34734c) {
+        if (this.f34732c) {
             return;
         }
         super.requestLayout();
@@ -175,7 +175,7 @@ public final class ec0 extends FrameLayout {
     }
 
     public void setBitmap(Bitmap bitmap) {
-        this.f34732a = bitmap;
+        this.f34730a = bitmap;
         BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
         this.d = bitmapDrawable;
         setBackground(bitmapDrawable);

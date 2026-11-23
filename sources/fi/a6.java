@@ -2,8 +2,8 @@ package fi;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
@@ -30,8 +30,8 @@ public final class a6 extends h6 {
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
         TL_bots.reorderPreviewMedias reorderpreviewmedias = new TL_bots.reorderPreviewMedias();
-        int i7 = this.f12082c;
-        reorderpreviewmedias.bot = mp.u1(i7).q1(this.d);
+        int i7 = this.f12085c;
+        reorderpreviewmedias.bot = np.u1(i7).q1(this.d);
         reorderpreviewmedias.lang_code = this.E;
         int size = arrayList.size();
         int i10 = 0;
@@ -39,9 +39,9 @@ public final class a6 extends h6 {
             Object obj = arrayList.get(i10);
             i10++;
             Integer num = (Integer) obj;
-            fj f10 = f(num.intValue());
+            gj f10 = f(num.intValue());
             if (f10 != null) {
-                reorderpreviewmedias.order.add(mp.l5(f10.f23998l.media));
+                reorderpreviewmedias.order.add(np.l5(f10.f24218l.media));
                 arrayList2.add(f10);
                 arrayList3.add(num);
             }
@@ -53,7 +53,7 @@ public final class a6 extends h6 {
         }
         ((ArrayList) arrayList4.get(0)).clear();
         ((ArrayList) arrayList4.get(0)).addAll(arrayList3);
-        ArrayList arrayList5 = this.f12086i;
+        ArrayList arrayList5 = this.f12089i;
         arrayList5.clear();
         arrayList5.addAll(arrayList2);
     }
@@ -61,20 +61,20 @@ public final class a6 extends h6 {
     public final void F(ArrayList arrayList) {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f12086i;
+            ArrayList arrayList2 = this.f12089i;
             if (i7 >= arrayList2.size()) {
                 break;
             }
-            fj fjVar = (fj) arrayList2.get(i7);
+            gj gjVar = (gj) arrayList2.get(i7);
             int i10 = 0;
             while (true) {
                 if (i10 >= arrayList.size()) {
                     break;
-                } else if (mp.u0(fjVar.f23998l.media, (TLRPC.MessageMedia) arrayList.get(i10))) {
+                } else if (np.u0(gjVar.f24218l.media, (TLRPC.MessageMedia) arrayList.get(i10))) {
                     arrayList2.remove(i7);
                     ArrayList arrayList3 = this.H;
-                    if (!arrayList3.isEmpty() && fjVar.e1() < ((ArrayList) arrayList3.get(0)).size()) {
-                        ((ArrayList) arrayList3.get(0)).remove(fjVar.e1());
+                    if (!arrayList3.isEmpty() && gjVar.e1() < ((ArrayList) arrayList3.get(0)).size()) {
+                        ((ArrayList) arrayList3.get(0)).remove(gjVar.e1());
                     }
                     i7--;
                 } else {
@@ -84,49 +84,49 @@ public final class a6 extends h6 {
             i7++;
         }
         TL_bots.deletePreviewMedia deletepreviewmedia = new TL_bots.deletePreviewMedia();
-        int i11 = this.f12082c;
-        deletepreviewmedia.bot = mp.u1(i11).q1(this.d);
+        int i11 = this.f12085c;
+        deletepreviewmedia.bot = np.u1(i11).q1(this.d);
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
-            deletepreviewmedia.media.add(mp.l5((TLRPC.MessageMedia) arrayList.get(i12)));
+            deletepreviewmedia.media.add(np.l5((TLRPC.MessageMedia) arrayList.get(i12)));
         }
         ConnectionsManager.getInstance(i11).sendRequest(deletepreviewmedia, null);
-        e6 e6Var = this.f12094q;
+        e6 e6Var = this.f12097q;
         org.telegram.messenger.g0.r(e6Var);
         org.telegram.messenger.g0.g3(e6Var);
     }
 
     public final void G(TLRPC.InputMedia inputMedia, TL_bots.botPreviewMedia botpreviewmedia) {
         ArrayList arrayList;
-        fj fjVar;
+        gj gjVar;
         int e12;
         TL_stories.StoryItem storyItem;
         TLRPC.MessageMedia messageMedia;
         TLRPC.Document document;
         int i7 = 0;
         while (true) {
-            arrayList = this.f12086i;
+            arrayList = this.f12089i;
             if (i7 < arrayList.size()) {
-                fjVar = (fj) arrayList.get(i7);
-                if (inputMedia != null && (storyItem = fjVar.f23998l) != null && (messageMedia = storyItem.media) != null) {
+                gjVar = (gj) arrayList.get(i7);
+                if (inputMedia != null && (storyItem = gjVar.f24218l) != null && (messageMedia = storyItem.media) != null) {
                     if (inputMedia instanceof TLRPC.TL_inputMediaPhoto) {
                         TLRPC.Photo photo = messageMedia.photo;
-                        if (photo != null && photo.f28455id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f28494id.f28450id) {
+                        if (photo != null && photo.f28458id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f28497id.f28453id) {
                             break;
                         }
-                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f28437id == ((TLRPC.TL_inputMediaDocument) inputMedia).f28492id.f28443id) {
+                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f28440id == ((TLRPC.TL_inputMediaDocument) inputMedia).f28495id.f28446id) {
                         break;
                     }
                 }
                 i7++;
             } else {
-                fjVar = null;
+                gjVar = null;
                 i7 = 0;
                 break;
             }
         }
         ArrayList arrayList2 = this.H;
-        if (fjVar != null) {
-            arrayList.remove(fjVar);
+        if (gjVar != null) {
+            arrayList.remove(gjVar);
             if (arrayList2.isEmpty()) {
                 arrayList2.add(new ArrayList());
             }
@@ -135,24 +135,24 @@ public final class a6 extends h6 {
             }
         }
         z5 z5Var = new z5(this, this.d, botpreviewmedia);
-        fj fjVar2 = new fj(this.f12082c, z5Var);
-        TLRPC.Message message = fjVar2.f23993k;
-        if (fjVar == null) {
+        gj gjVar2 = new gj(this.f12085c, z5Var);
+        TLRPC.Message message = gjVar2.f24213k;
+        if (gjVar == null) {
             e12 = this.I;
             this.I = e12 + 1;
         } else {
-            e12 = fjVar.e1();
+            e12 = gjVar.e1();
         }
-        message.f28452id = e12;
-        z5Var.f28670id = e12;
-        fjVar2.f23989j = this;
-        fjVar2.r0(false);
+        message.f28455id = e12;
+        z5Var.f28673id = e12;
+        gjVar2.f24209j = this;
+        gjVar2.r0(false);
         if (arrayList2.isEmpty()) {
             arrayList2.add(new ArrayList());
         }
-        ((ArrayList) arrayList2.get(0)).add(i7, Integer.valueOf(fjVar2.e1()));
-        arrayList.add(i7, fjVar2);
-        e6 e6Var = this.f12094q;
+        ((ArrayList) arrayList2.get(0)).add(i7, Integer.valueOf(gjVar2.e1()));
+        arrayList.add(i7, gjVar2);
+        e6 e6Var = this.f12097q;
         org.telegram.messenger.g0.r(e6Var);
         org.telegram.messenger.g0.g3(e6Var);
     }
@@ -162,15 +162,15 @@ public final class a6 extends h6 {
         if (!this.C && !this.D) {
             long j3 = this.d;
             String str = this.E;
-            int i7 = this.f12082c;
+            int i7 = this.f12085c;
             if (str != null) {
                 TL_bots.getPreviewInfo getpreviewinfo = new TL_bots.getPreviewInfo();
-                getpreviewinfo.bot = mp.u1(i7).q1(j3);
+                getpreviewinfo.bot = np.u1(i7).q1(j3);
                 getpreviewinfo.lang_code = str;
                 getpreviewmedias = getpreviewinfo;
             } else {
                 TL_bots.getPreviewMedias getpreviewmedias2 = new TL_bots.getPreviewMedias();
-                getpreviewmedias2.bot = mp.u1(i7).q1(j3);
+                getpreviewmedias2.bot = np.u1(i7).q1(j3);
                 getpreviewmedias = getpreviewmedias2;
             }
             this.C = true;
@@ -182,33 +182,33 @@ public final class a6 extends h6 {
 
     public final void I(TL_bots.botPreviewMedia botpreviewmedia) {
         z5 z5Var = new z5(this, this.d, botpreviewmedia);
-        fj fjVar = new fj(this.f12082c, z5Var);
-        TLRPC.Message message = fjVar.f23993k;
+        gj gjVar = new gj(this.f12085c, z5Var);
+        TLRPC.Message message = gjVar.f24213k;
         int i7 = this.I;
         this.I = i7 + 1;
-        message.f28452id = i7;
-        z5Var.f28670id = i7;
-        fjVar.f23989j = this;
-        fjVar.r0(false);
+        message.f28455id = i7;
+        z5Var.f28673id = i7;
+        gjVar.f24209j = this;
+        gjVar.r0(false);
         ArrayList arrayList = this.H;
         if (arrayList.isEmpty()) {
             arrayList.add(new ArrayList());
         }
-        ((ArrayList) arrayList.get(0)).add(0, Integer.valueOf(fjVar.e1()));
-        this.f12086i.add(0, fjVar);
-        e6 e6Var = this.f12094q;
+        ((ArrayList) arrayList.get(0)).add(0, Integer.valueOf(gjVar.e1()));
+        this.f12089i.add(0, gjVar);
+        e6 e6Var = this.f12097q;
         org.telegram.messenger.g0.r(e6Var);
         org.telegram.messenger.g0.g3(e6Var);
     }
 
     @Override
-    public final fj f(int i7) {
+    public final gj f(int i7) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f12086i;
+            ArrayList arrayList = this.f12089i;
             if (i10 < arrayList.size()) {
-                if (((fj) arrayList.get(i10)).e1() == i7) {
-                    return (fj) arrayList.get(i10);
+                if (((gj) arrayList.get(i10)).e1() == i7) {
+                    return (gj) arrayList.get(i10);
                 }
                 i10++;
             } else {
@@ -219,7 +219,7 @@ public final class a6 extends h6 {
 
     @Override
     public final int g() {
-        return this.f12086i.size();
+        return this.f12089i.size();
     }
 
     @Override
@@ -229,7 +229,7 @@ public final class a6 extends h6 {
 
     @Override
     public final int i() {
-        return this.f12086i.size();
+        return this.f12089i.size();
     }
 
     @Override

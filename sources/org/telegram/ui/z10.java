@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class z10 extends v4.u0 {
-    public final f40 f54365a;
+    public final f40 f54369a;
 
     public z10(f40 f40Var) {
-        this.f54365a = f40Var;
+        this.f54369a = f40Var;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i7, int i10) {
-        f40 f40Var = this.f54365a;
-        f40Var.f30173b.invalidate();
+        f40 f40Var = this.f54369a;
+        f40Var.f30176b.invalidate();
         f40Var.Z3.invalidate();
     }
 }

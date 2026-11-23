@@ -1,28 +1,28 @@
 package org.telegram.ui;
 public final class ea0 implements Runnable {
-    public final int f47211a;
-    public final qa0 f47212b;
-    public final org.telegram.messenger.xa f47213c;
+    public final int f47215a;
+    public final qa0 f47216b;
+    public final org.telegram.messenger.ya f47217c;
 
-    public ea0(qa0 qa0Var, org.telegram.messenger.xa xaVar, int i7) {
-        this.f47211a = i7;
-        this.f47212b = qa0Var;
-        this.f47213c = xaVar;
+    public ea0(qa0 qa0Var, org.telegram.messenger.ya yaVar, int i7) {
+        this.f47215a = i7;
+        this.f47216b = qa0Var;
+        this.f47217c = yaVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f47211a) {
+        switch (this.f47215a) {
             case 0:
-                qa0 qa0Var = this.f47212b;
-                org.telegram.messenger.xa xaVar = this.f47213c;
+                qa0 qa0Var = this.f47216b;
+                org.telegram.messenger.ya yaVar = this.f47217c;
                 if (qa0Var.H != null && qa0Var.getParentActivity() != null) {
                     try {
-                        ((a8.r7) xaVar).y();
-                        ((pb.b) org.telegram.messenger.t0.k()).initializeMaps(org.telegram.messenger.t0.f26941b);
+                        ((a8.r7) yaVar).y();
+                        ((pb.b) org.telegram.messenger.t0.k()).initializeMaps(org.telegram.messenger.t0.f26931b);
                         ((a8.r7) qa0Var.H).t(new f3(qa0Var, 3));
-                        qa0Var.f51184x0 = true;
-                        if (qa0Var.f51186y0) {
+                        qa0Var.f51188x0 = true;
+                        if (qa0Var.f51190y0) {
                             ((a8.r7) qa0Var.H).F();
                             return;
                         }
@@ -34,13 +34,13 @@ public final class ea0 implements Runnable {
                 }
                 return;
             default:
-                qa0 qa0Var2 = this.f47212b;
-                org.telegram.messenger.xa xaVar2 = this.f47213c;
+                qa0 qa0Var2 = this.f47216b;
+                org.telegram.messenger.ya yaVar2 = this.f47217c;
                 try {
-                    ((a8.r7) xaVar2).y();
+                    ((a8.r7) yaVar2).y();
                 } catch (Exception unused) {
                 }
-                org.telegram.messenger.g0.g3(new ea0(qa0Var2, xaVar2, 0));
+                org.telegram.messenger.g0.g3(new ea0(qa0Var2, yaVar2, 0));
                 return;
         }
     }

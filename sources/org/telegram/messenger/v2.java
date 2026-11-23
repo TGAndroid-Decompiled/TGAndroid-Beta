@@ -9,12 +9,12 @@ import java.util.HashSet;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
 public final class v2 {
-    public final int f27345a;
-    public boolean f27346b = false;
-    public final int[] f27347c = {-1, -1, -1, -1};
+    public final int f27313a;
+    public boolean f27314b = false;
+    public final int[] f27315c = {-1, -1, -1, -1};
 
     public v2(int i7) {
-        this.f27345a = i7;
+        this.f27313a = i7;
     }
 
     public static long a(int i7) {
@@ -31,7 +31,7 @@ public final class v2 {
             return 172800L;
         }
         if (i7 == 5) {
-            boolean z10 = s2.f26749a;
+            boolean z10 = s2.f26730a;
             return Long.MAX_VALUE;
         }
         return Long.MAX_VALUE;
@@ -50,40 +50,40 @@ public final class v2 {
         if (i7 == 3) {
             return 6;
         }
-        return bz.G;
+        return cz.G;
     }
 
     public static String f(int i7) {
         if (i7 == 5) {
-            return gd.G(1, "Minutes", new Object[0]);
+            return hd.G(1, "Minutes", new Object[0]);
         }
         if (i7 == 3) {
-            return gd.G(1, "Days", new Object[0]);
+            return hd.G(1, "Days", new Object[0]);
         }
         if (i7 == 6) {
-            return gd.G(2, "Days", new Object[0]);
+            return hd.G(2, "Days", new Object[0]);
         }
         if (i7 == 0) {
-            return gd.G(1, "Weeks", new Object[0]);
+            return hd.G(1, "Weeks", new Object[0]);
         }
         if (i7 == 1) {
-            return gd.G(1, "Months", new Object[0]);
+            return hd.G(1, "Months", new Object[0]);
         }
-        return gd.N0(2131753848, null);
+        return hd.N0(2131753848, null);
     }
 
     public final int c(int i7) {
-        boolean z10 = this.f27346b;
-        int[] iArr = this.f27347c;
+        boolean z10 = this.f27314b;
+        int[] iArr = this.f27315c;
         if (!z10) {
-            this.f27346b = true;
+            this.f27314b = true;
             for (int i10 = 0; i10 < 4; i10++) {
-                iArr[i10] = bz.q().getInt(i5.c.i(i10, "keep_media_type_"), b(i10));
+                iArr[i10] = cz.q().getInt(i5.c.i(i10, "keep_media_type_"), b(i10));
             }
         }
         int i11 = iArr[i7];
         if (i11 == -1) {
-            return bz.G;
+            return cz.G;
         }
         return i11;
     }
@@ -91,7 +91,7 @@ public final class v2 {
     public final ArrayList d(int i7) {
         ArrayList arrayList = new ArrayList();
         HashSet hashSet = new HashSet();
-        SharedPreferences k10 = j10.i(this.f27345a).k();
+        SharedPreferences k10 = k10.i(this.f27313a).k();
         String string = k10.getString("keep_media_exceptions_" + i7, "");
         if (TextUtils.isEmpty(string)) {
             return arrayList;
@@ -115,7 +115,7 @@ public final class v2 {
         for (int i7 = 0; i7 < 3; i7++) {
             ArrayList d = d(i7);
             for (int i10 = 0; i10 < d.size(); i10++) {
-                longSparseArray.put(((t2) d.get(i10)).f26960a, (t2) d.get(i10));
+                longSparseArray.put(((t2) d.get(i10)).f26947a, (t2) d.get(i10));
             }
         }
         return longSparseArray;
@@ -123,12 +123,12 @@ public final class v2 {
 
     public final void g(ArrayList arrayList) {
         int i7;
-        int i10 = this.f27345a;
+        int i10 = this.f27313a;
         f8 f8Var = w7.G(i10).d;
         f8Var.getClass();
         CountDownLatch countDownLatch = new CountDownLatch(1);
         LongSparseArray longSparseArray = new LongSparseArray();
-        f8Var.h(new tl(f8Var, arrayList, longSparseArray, countDownLatch, 7));
+        f8Var.h(new ul(f8Var, arrayList, longSparseArray, countDownLatch, 7));
         try {
             countDownLatch.await();
         } catch (InterruptedException e10) {
@@ -142,9 +142,9 @@ public final class v2 {
                 i7 = 0;
             } else {
                 long j3 = -keyAt;
-                TLRPC.Chat O0 = mp.u1(i10).O0(Long.valueOf(j3));
+                TLRPC.Chat O0 = np.u1(i10).O0(Long.valueOf(j3));
                 if (O0 == null) {
-                    O0 = tr.a0(i10).P(j3);
+                    O0 = ur.a0(i10).P(j3);
                 }
                 if (O0 == null) {
                     i7 = -1;
@@ -158,10 +158,10 @@ public final class v2 {
             for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                 u2 u2Var = (u2) arrayList2.get(i12);
                 if (i7 >= 0) {
-                    u2Var.f27144c = i7;
+                    u2Var.f27154c = i7;
                 }
                 if (t2Var != null) {
-                    u2Var.f27143b = t2Var.f26961b;
+                    u2Var.f27153b = t2Var.f26948b;
                 }
             }
         }
@@ -170,19 +170,19 @@ public final class v2 {
     public final void h(int i7, ArrayList arrayList) {
         String i10 = i5.c.i(i7, "keep_media_exceptions_");
         boolean isEmpty = arrayList.isEmpty();
-        int i11 = this.f27345a;
+        int i11 = this.f27313a;
         if (isEmpty) {
-            j10.i(i11).k().edit().remove(i10).apply();
+            k10.i(i11).k().edit().remove(i10).apply();
             return;
         }
         int size = arrayList.size();
         ByteBuffer allocate = ByteBuffer.allocate((size * 12) + 4);
         allocate.putInt(size);
         for (int i12 = 0; i12 < size; i12++) {
-            allocate.putLong(((t2) arrayList.get(i12)).f26960a);
-            allocate.putInt(((t2) arrayList.get(i12)).f26961b);
+            allocate.putLong(((t2) arrayList.get(i12)).f26947a);
+            allocate.putInt(((t2) arrayList.get(i12)).f26948b);
         }
-        j10.i(i11).k().edit().putString(i10, Utilities.f(allocate.array())).apply();
+        k10.i(i11).k().edit().putString(i10, Utilities.f(allocate.array())).apply();
         allocate.clear();
     }
 }

@@ -3,18 +3,18 @@ package p4;
 import android.os.Bundle;
 import j$.util.Objects;
 public final class v {
-    public final q4.r f55483a;
-    public final int f55484b;
-    public final int f55485c;
+    public final q4.r f55487a;
+    public final int f55488b;
+    public final int f55489c;
     public final u d;
-    public final Bundle f55486e;
+    public final Bundle f55490e;
 
     public v(q4.r rVar, int i7, int i10, boolean z10, u uVar, Bundle bundle) {
-        this.f55483a = rVar;
-        this.f55484b = i7;
-        this.f55485c = i10;
+        this.f55487a = rVar;
+        this.f55488b = i7;
+        this.f55489c = i10;
         this.d = uVar;
-        this.f55486e = bundle;
+        this.f55490e = bundle;
     }
 
     public final boolean equals(Object obj) {
@@ -28,20 +28,20 @@ public final class v {
         u uVar = vVar.d;
         u uVar2 = this.d;
         if (uVar2 == null && uVar == null) {
-            return this.f55483a.equals(vVar.f55483a);
+            return this.f55487a.equals(vVar.f55487a);
         }
         return Objects.equals(uVar2, uVar);
     }
 
     public final int hashCode() {
-        return Objects.hash(this.d, this.f55483a);
+        return Objects.hash(this.d, this.f55487a);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("ControllerInfo {pkg=");
-        q4.r rVar = this.f55483a;
-        sb2.append(rVar.f55869a.f55870a);
+        q4.r rVar = this.f55487a;
+        sb2.append(rVar.f55873a.f55874a);
         sb2.append(", uid=");
-        return a8.p0.n(rVar.f55869a.f55872c, "}", sb2);
+        return a8.p0.n(rVar.f55873a.f55876c, "}", sb2);
     }
 }

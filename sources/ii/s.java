@@ -6,9 +6,9 @@ import di.y8;
 import di.za;
 import hi.d7;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.ks;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ls;
 import org.telegram.ui.ActionBar.g2;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Components.c51;
@@ -20,7 +20,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.m7;
 import org.telegram.ui.bn;
 import org.telegram.ui.rj;
-public final class s extends sa implements fs {
+public final class s extends sa implements gs {
     public final cg.a T1;
     public final za U1;
     public final FrameLayout V1;
@@ -35,13 +35,13 @@ public final class s extends sa implements fs {
     @Override
     public final void L() {
         super.L();
-        ks.f(this.f30170a).n(this, ks.f25249x3);
-        ks.f(this.f30170a).n(this, ks.A3);
+        ls.f(this.f30173a).n(this, ls.f25415x3);
+        ls.f(this.f30173a).n(this, ls.A3);
     }
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39539o1, getContext(), this.f30170a, 0, true, new d7(this, 5), this.J0);
+        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new d7(this, 5), this.J0);
         this.Y1 = c51Var;
         return c51Var;
     }
@@ -52,25 +52,25 @@ public final class s extends sa implements fs {
         if (zaVar == null) {
             return null;
         }
-        return ((TextView) zaVar.f10203c).getText();
+        return ((TextView) zaVar.f10206c).getText();
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         Runnable runnable;
-        if (i7 == ks.f25249x3 || i7 == ks.A3) {
+        if (i7 == ls.f25415x3 || i7 == ls.A3) {
             c51 c51Var = this.Y1;
             if (c51Var != null) {
                 c51Var.O(true);
             }
-            cg.a s5 = y8.y(this.f30170a, true).s();
+            cg.a s5 = y8.y(this.f30173a, true).s();
             cg.a aVar = this.T1;
-            ((TextView) this.U1.f10203c).setText(gd.a0(null, null, 2131743804, cg.a.j(aVar.f5301b - s5.f5301b, cg.b.f5303b).d()));
-            na naVar = this.f39540p1;
+            ((TextView) this.U1.f10206c).setText(hd.a0(null, null, 2131743802, cg.a.j(aVar.f5304b - s5.f5304b, cg.b.f5306b).d()));
+            na naVar = this.f39533p1;
             if (naVar != null) {
                 naVar.setTitle(P0());
             }
-            if (s5.f5301b >= aVar.f5301b && (runnable = this.W1) != null) {
+            if (s5.f5304b >= aVar.f5304b && (runnable = this.W1) != null) {
                 runnable.run();
                 this.W1 = null;
                 dismiss();
@@ -83,7 +83,7 @@ public final class s extends sa implements fs {
         super.dismiss();
         za zaVar = this.U1;
         if (zaVar != null) {
-            ((m7) zaVar.f10202b).setPaused(true);
+            ((m7) zaVar.f10205b).setPaused(true);
         }
     }
 
@@ -91,7 +91,7 @@ public final class s extends sa implements fs {
     public final void s0() {
         super.s0();
         try {
-            int w02 = m6.w0(m6.f29451h5, this.J0);
+            int w02 = m6.w0(m6.f29454h5, this.J0);
             if (w02 != this.X1) {
                 this.X1 = w02;
                 v0(w02);
@@ -104,7 +104,7 @@ public final class s extends sa implements fs {
     @Override
     public final void show() {
         rj rjVar;
-        if (y8.y(this.f30170a, true).s().f5301b >= this.T1.f5301b) {
+        if (y8.y(this.f30173a, true).s().f5304b >= this.T1.f5304b) {
             Runnable runnable = this.W1;
             if (runnable != null) {
                 runnable.run();
@@ -116,12 +116,12 @@ public final class s extends sa implements fs {
         g2 Q = LaunchActivity.Q();
         if (Q instanceof bn) {
             bn bnVar = (bn) Q;
-            if (bnVar.V9() && (rjVar = bnVar.f45946a0) != null) {
+            if (bnVar.V9() && (rjVar = bnVar.f45950a0) != null) {
                 rjVar.U();
             }
         }
         super.show();
-        ks.f(this.f30170a).c(this, ks.f25249x3);
-        ks.f(this.f30170a).c(this, ks.A3);
+        ls.f(this.f30173a).c(this, ls.f25415x3);
+        ls.f(this.f30173a).c(this, ls.A3);
     }
 }

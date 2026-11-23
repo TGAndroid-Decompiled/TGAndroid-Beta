@@ -6,16 +6,16 @@ import android.view.View;
 import java.util.regex.Pattern;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
-public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram.ui.ActionBar.q6, org.telegram.ui.ActionBar.r6, a5, org.telegram.messenger.jc, org.telegram.messenger.cb, org.telegram.messenger.i9, p.a, ih.b, vt0, wt0 {
-    public final int f37069a;
+public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram.ui.ActionBar.q6, org.telegram.ui.ActionBar.r6, a5, org.telegram.messenger.kc, org.telegram.messenger.db, org.telegram.messenger.j9, p.a, ih.b, vt0, wt0 {
+    public final int f37075a;
 
     public l2(int i7) {
-        this.f37069a = i7;
+        this.f37075a = i7;
     }
 
     @Override
     public void O(int i7, int i10, boolean z10) {
-        switch (this.f37069a) {
+        switch (this.f37075a) {
             case 16:
                 MediaController.B().B0(1, i7, z10, false);
                 return;
@@ -41,17 +41,17 @@ public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram
     @Override
     public void c(Object obj, float f10) {
         yb0 yb0Var = (yb0) obj;
-        switch (this.f37069a) {
+        switch (this.f37075a) {
             case 26:
-                yb0Var.f42387f = f10;
+                yb0Var.f42380f = f10;
                 if (!yb0Var.E || yb0Var.G) {
-                    yb0Var.f42385c.setStrokeWidth(org.telegram.messenger.g0.T1(yb0Var.f42391w, yb0Var.f42392x, f10));
+                    yb0Var.f42378c.setStrokeWidth(org.telegram.messenger.g0.T1(yb0Var.f42384w, yb0Var.f42385x, f10));
                     yb0Var.f();
                 }
                 yb0Var.invalidate();
                 return;
             default:
-                yb0Var.f42388n = f10;
+                yb0Var.f42381n = f10;
                 if (!yb0Var.E || yb0Var.G) {
                     yb0Var.f();
                 }
@@ -77,25 +77,25 @@ public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram
     @Override
     public float get(Object obj) {
         yb0 yb0Var = (yb0) obj;
-        switch (this.f37069a) {
+        switch (this.f37075a) {
             case 25:
-                return yb0Var.f42387f;
+                return yb0Var.f42380f;
             case 26:
             default:
-                return yb0Var.f42390s;
+                return yb0Var.f42383s;
             case 27:
-                return yb0Var.f42388n;
+                return yb0Var.f42381n;
         }
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f37069a) {
+        switch (this.f37075a) {
             case 1:
                 t1Var.dismiss();
                 return;
             case 5:
-                Pattern pattern = c5.f34019a;
+                Pattern pattern = c5.f34013a;
                 return;
             default:
                 t1Var.dismiss();
@@ -106,7 +106,7 @@ public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram
     @Override
     public String i(int i7) {
         int i10;
-        switch (this.f37069a) {
+        switch (this.f37075a) {
             case 0:
                 return String.format("%02d", Integer.valueOf(i7));
             case 1:
@@ -114,7 +114,7 @@ public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram
             default:
                 return String.format("%02d", Integer.valueOf(i7));
             case 2:
-                boolean z10 = org.telegram.messenger.gd.f24243c0;
+                boolean z10 = org.telegram.messenger.hd.f24446c0;
                 int i11 = 12;
                 if (z10) {
                     i10 = 24;
@@ -127,91 +127,91 @@ public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram
                 }
                 String format = String.format("%02d", Integer.valueOf(i11));
                 if (i7 >= 24) {
-                    return org.telegram.messenger.gd.a0(null, null, 2131752735, format);
+                    return org.telegram.messenger.hd.a0(null, null, 2131752735, format);
                 }
                 return format;
             case 3:
                 return String.format("%02d", Integer.valueOf(i7));
             case 4:
                 if (i7 == 0) {
-                    return org.telegram.messenger.gd.N0(2131745165, null);
+                    return org.telegram.messenger.hd.N0(2131745165, null);
                 }
                 if (i7 >= 1 && i7 < 16) {
-                    return org.telegram.messenger.gd.c0(i7);
+                    return org.telegram.messenger.hd.c0(i7);
                 }
                 if (i7 == 16) {
-                    return org.telegram.messenger.gd.c0(30);
+                    return org.telegram.messenger.hd.c0(30);
                 }
                 if (i7 == 17) {
-                    return org.telegram.messenger.gd.c0(60);
+                    return org.telegram.messenger.hd.c0(60);
                 }
                 if (i7 == 18) {
-                    return org.telegram.messenger.gd.c0(3600);
+                    return org.telegram.messenger.hd.c0(3600);
                 }
                 if (i7 == 19) {
-                    return org.telegram.messenger.gd.c0(86400);
+                    return org.telegram.messenger.hd.c0(86400);
                 }
                 if (i7 != 20) {
                     return "";
                 }
-                return org.telegram.messenger.gd.c0(604800);
+                return org.telegram.messenger.hd.c0(604800);
             case 6:
                 return i5.c.i(i7, "");
             case 7:
                 switch (i7) {
                     case 0:
-                        return org.telegram.messenger.gd.N0(2131748893, null);
+                        return org.telegram.messenger.hd.N0(2131748893, null);
                     case 1:
-                        return org.telegram.messenger.gd.N0(2131750817, null);
+                        return org.telegram.messenger.hd.N0(2131750817, null);
                     case 2:
-                        return org.telegram.messenger.gd.N0(2131748490, null);
+                        return org.telegram.messenger.hd.N0(2131748490, null);
                     case 3:
-                        return org.telegram.messenger.gd.N0(2131754170, null);
+                        return org.telegram.messenger.hd.N0(2131754170, null);
                     case 4:
-                        return org.telegram.messenger.gd.N0(2131748469, null);
+                        return org.telegram.messenger.hd.N0(2131748469, null);
                     case 5:
-                        return org.telegram.messenger.gd.N0(2131748871, null);
+                        return org.telegram.messenger.hd.N0(2131748871, null);
                     case 6:
-                        return org.telegram.messenger.gd.N0(2131748873, null);
+                        return org.telegram.messenger.hd.N0(2131748873, null);
                     case 7:
-                        return org.telegram.messenger.gd.N0(2131753892, null);
+                        return org.telegram.messenger.hd.N0(2131753892, null);
                     case 8:
-                        return org.telegram.messenger.gd.N0(2131745369, null);
+                        return org.telegram.messenger.hd.N0(2131745369, null);
                     case 9:
-                        return org.telegram.messenger.gd.N0(2131747636, null);
+                        return org.telegram.messenger.hd.N0(2131747636, null);
                     case 10:
-                        return org.telegram.messenger.gd.N0(2131747641, null);
+                        return org.telegram.messenger.hd.N0(2131747641, null);
                     default:
-                        return org.telegram.messenger.gd.N0(2131751593, null);
+                        return org.telegram.messenger.hd.N0(2131751593, null);
                 }
             case 8:
                 return i5.c.i(i7, "");
             case 9:
                 switch (i7) {
                     case 0:
-                        return org.telegram.messenger.gd.N0(2131748893, null);
+                        return org.telegram.messenger.hd.N0(2131748893, null);
                     case 1:
-                        return org.telegram.messenger.gd.N0(2131750817, null);
+                        return org.telegram.messenger.hd.N0(2131750817, null);
                     case 2:
-                        return org.telegram.messenger.gd.N0(2131748490, null);
+                        return org.telegram.messenger.hd.N0(2131748490, null);
                     case 3:
-                        return org.telegram.messenger.gd.N0(2131754170, null);
+                        return org.telegram.messenger.hd.N0(2131754170, null);
                     case 4:
-                        return org.telegram.messenger.gd.N0(2131748469, null);
+                        return org.telegram.messenger.hd.N0(2131748469, null);
                     case 5:
-                        return org.telegram.messenger.gd.N0(2131748871, null);
+                        return org.telegram.messenger.hd.N0(2131748871, null);
                     case 6:
-                        return org.telegram.messenger.gd.N0(2131748873, null);
+                        return org.telegram.messenger.hd.N0(2131748873, null);
                     case 7:
-                        return org.telegram.messenger.gd.N0(2131753892, null);
+                        return org.telegram.messenger.hd.N0(2131753892, null);
                     case 8:
-                        return org.telegram.messenger.gd.N0(2131745369, null);
+                        return org.telegram.messenger.hd.N0(2131745369, null);
                     case 9:
-                        return org.telegram.messenger.gd.N0(2131747636, null);
+                        return org.telegram.messenger.hd.N0(2131747636, null);
                     case 10:
-                        return org.telegram.messenger.gd.N0(2131747641, null);
+                        return org.telegram.messenger.hd.N0(2131747641, null);
                     default:
-                        return org.telegram.messenger.gd.N0(2131751593, null);
+                        return org.telegram.messenger.hd.N0(2131751593, null);
                 }
             case 10:
                 return String.format("%02d", Integer.valueOf(i7));
@@ -224,7 +224,7 @@ public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram
 
     @Override
     public Object m(Object obj) {
-        switch (this.f37069a) {
+        switch (this.f37075a) {
             case 21:
                 Void r22 = (Void) obj;
                 return CheckBoxBase.I;

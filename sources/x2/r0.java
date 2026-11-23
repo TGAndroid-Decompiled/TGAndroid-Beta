@@ -1,17 +1,17 @@
 package x2;
 public final class r0 {
-    public static final r0 f60250a;
-    public static final r0 f60251b;
-    public static final r0 f60252c;
+    public static final r0 f60254a;
+    public static final r0 f60255b;
+    public static final r0 f60256c;
     public static final r0[] d;
 
     static {
         ?? r02 = new Enum("PASS_THROUGH", 0);
-        f60250a = r02;
+        f60254a = r02;
         ?? r12 = new Enum("DISCARD_AFTER_NEXT_SAMPLE_METADATA", 1);
-        f60251b = r12;
+        f60255b = r12;
         ?? r32 = new Enum("DISCARDING", 2);
-        f60252c = r32;
+        f60256c = r32;
         d = new r0[]{r02, r12, r32};
     }
 

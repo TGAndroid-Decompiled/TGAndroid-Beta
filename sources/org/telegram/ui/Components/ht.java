@@ -4,24 +4,24 @@ import android.graphics.Canvas;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 public final class ht extends ShapeDrawable {
-    public final int f35970a = 1;
-    public final EditTextBoldCursor f35971b;
+    public final int f35964a = 1;
+    public final EditTextBoldCursor f35965b;
 
     public ht(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
         super(rectShape);
-        this.f35971b = editTextBoldCursor;
+        this.f35965b = editTextBoldCursor;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f35970a) {
+        switch (this.f35964a) {
             case 0:
                 super.draw(canvas);
-                this.f35971b.H0 = true;
+                this.f35965b.H0 = true;
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor = this.f35971b;
-                if (editTextBoldCursor.f32945e1) {
+                EditTextBoldCursor editTextBoldCursor = this.f35965b;
+                if (editTextBoldCursor.f32948e1) {
                     editTextBoldCursor.H0 = true;
                     return;
                 } else {
@@ -33,9 +33,9 @@ public final class ht extends ShapeDrawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f35970a) {
+        switch (this.f35964a) {
             case 1:
-                return org.telegram.messenger.g0.L(this.f35971b.f32954j0 + 20);
+                return org.telegram.messenger.g0.L(this.f35965b.f32957j0 + 20);
             default:
                 return super.getIntrinsicHeight();
         }
@@ -43,15 +43,15 @@ public final class ht extends ShapeDrawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f35970a) {
+        switch (this.f35964a) {
             case 1:
-                return org.telegram.messenger.g0.L(this.f35971b.F0);
+                return org.telegram.messenger.g0.L(this.f35965b.F0);
             default:
                 return super.getIntrinsicWidth();
         }
     }
 
     public ht(EditTextBoldCursor editTextBoldCursor) {
-        this.f35971b = editTextBoldCursor;
+        this.f35965b = editTextBoldCursor;
     }
 }

@@ -17,7 +17,7 @@ public final class k2 extends v90 {
     @Override
     public final void f(Canvas canvas, Rect rect, float f10) {
         z3 z3Var = this.W;
-        a8.b8 b8Var = z3Var.f12938z1;
+        a8.b8 b8Var = z3Var.f12941z1;
         b8Var.k(getX(), -getY(), getX() + getMeasuredWidth(), (-getY()) + getMeasuredHeight());
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(rect);
@@ -25,7 +25,7 @@ public final class k2 extends v90 {
         canvas.drawRoundRect(rectF, f10, f10, (Paint) b8Var.f341a);
         canvas.drawRoundRect(rectF, f10, f10, z3Var.X1);
         if (rectF.top < getMeasuredHeight() - 1) {
-            canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, z3Var.f12884l0.g("paintDivider"));
+            canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, z3Var.f12887l0.g("paintDivider"));
         }
     }
 }

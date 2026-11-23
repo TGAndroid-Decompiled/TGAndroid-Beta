@@ -1,34 +1,25 @@
 package org.telegram.messenger;
 
-import java.util.List;
+import java.util.ArrayList;
 public final class tq implements Runnable {
-    public final int f27072a;
-    public final c1 f27073b;
-    public final long f27074c;
-    public final boolean d;
-    public final int f27075e;
-    public final Object f27076f;
+    public final ur f27068a;
+    public final int f27069b;
+    public final ArrayList f27070c;
+    public final int d;
+    public final int f27071e;
+    public final int f27072f;
 
-    public tq(c1 c1Var, long j3, List list, boolean z10, int i7, int i10) {
-        this.f27072a = i10;
-        this.f27073b = c1Var;
-        this.f27074c = j3;
-        this.f27076f = list;
-        this.d = z10;
-        this.f27075e = i7;
+    public tq(ur urVar, int i7, ArrayList arrayList, int i10, int i11, int i12) {
+        this.f27068a = urVar;
+        this.f27069b = i7;
+        this.f27070c = arrayList;
+        this.d = i10;
+        this.f27071e = i11;
+        this.f27072f = i12;
     }
 
     @Override
     public final void run() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.tq.run():void");
-    }
-
-    public tq(tr trVar, boolean z10, String str, long j3, int i7, String str2) {
-        this.f27072a = 0;
-        this.f27073b = trVar;
-        this.d = z10;
-        this.f27076f = str;
-        this.f27074c = j3;
-        this.f27075e = i7;
     }
 }

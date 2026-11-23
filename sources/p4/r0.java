@@ -6,14 +6,14 @@ import java.io.InputStream;
 import java.util.List;
 import org.telegram.utils.code.highlight.PrismaHighlighter;
 public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
-    public final int f55466a;
+    public final int f55470a;
 
     public r0(int i7) {
-        this.f55466a = i7;
+        this.f55470a = i7;
     }
 
     public static qi.a b() {
-        InputStream open = org.telegram.messenger.t0.f26941b.getAssets().open("grammars.dat");
+        InputStream open = org.telegram.messenger.t0.f26931b.getAssets().open("grammars.dat");
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             byte[] bArr = new byte[8192];
@@ -42,7 +42,7 @@ public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
 
     @Override
     public void a(i1 i1Var, v vVar, List list) {
-        switch (this.f55466a) {
+        switch (this.f55470a) {
             case 9:
                 i1Var.x0(list);
                 return;
@@ -55,7 +55,7 @@ public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
     @Override
     public void accept(Object obj) {
         i1 i1Var = (i1) obj;
-        switch (this.f55466a) {
+        switch (this.f55470a) {
             case 0:
                 i1Var.C0();
                 return;
@@ -108,12 +108,12 @@ public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
 
     @Override
     public Object k(e0 e0Var, v vVar, int i7) {
-        switch (this.f55466a) {
+        switch (this.f55470a) {
             case 4:
                 e0Var.getClass();
                 throw new ClassCastException();
             case 7:
-                w7.s sVar = e0Var.f55231e;
+                w7.s sVar = e0Var.f55235e;
                 e0Var.s(vVar);
                 sVar.getClass();
                 return t9.b(new o1(-6));
@@ -130,7 +130,7 @@ public final class r0 implements h2.j, c1, b1, q2.l, androidx.car.app.utils.b {
                 e0Var.getClass();
                 throw new ClassCastException();
             default:
-                w7.s sVar2 = e0Var.f55231e;
+                w7.s sVar2 = e0Var.f55235e;
                 e0Var.s(vVar);
                 sVar2.getClass();
                 return t9.b(new o1(-6));

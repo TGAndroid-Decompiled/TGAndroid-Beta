@@ -30,18 +30,18 @@ public final class kr0 extends org.telegram.ui.Cells.b6 {
         bi.u uVar = this.d;
         uVar.getText().replace(uVar.getSelectionStart(), uVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
         int i7 = 0;
-        while (!arrayList.isEmpty() && i7 < pr0Var.f50946n) {
-            for (int length = pr0Var.f50958w.length - 1; length > i7; length--) {
-                CharSequence[] charSequenceArr = pr0Var.f50958w;
+        while (!arrayList.isEmpty() && i7 < pr0Var.f50950n) {
+            for (int length = pr0Var.f50962w.length - 1; length > i7; length--) {
+                CharSequence[] charSequenceArr = pr0Var.f50962w;
                 charSequenceArr[length] = charSequenceArr[length - 1];
             }
-            pr0Var.f50958w[i7] = (CharSequence) arrayList.remove(0);
+            pr0Var.f50962w[i7] = (CharSequence) arrayList.remove(0);
             pr0Var.E++;
             i7++;
         }
         pr0Var.w0();
-        pr0Var.f50941h0 = (pr0Var.f50948o0 + i7) - 1;
-        pr0Var.f50931b.f();
+        pr0Var.f50945h0 = (pr0Var.f50952o0 + i7) - 1;
+        pr0Var.f50935b.f();
         return true;
     }
 

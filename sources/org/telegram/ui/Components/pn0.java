@@ -5,9 +5,9 @@ import android.text.TextUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class pn0 extends LinearLayout {
-    public final ut0 f38644a;
-    public final TextView f38645b;
-    public final TextView f38646c;
+    public final ut0 f38643a;
+    public final TextView f38644b;
+    public final TextView f38645c;
 
     public pn0(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
@@ -18,13 +18,13 @@ public final class pn0 extends LinearLayout {
         int i7 = L / 2;
         setPadding(L, i7, L, i7);
         ut0 ut0Var = new ut0(context);
-        this.f38644a = ut0Var;
+        this.f38643a = ut0Var;
         addView(ut0Var, c8.ma.c(40.0f, 40));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, c8.ma.m(1.0f, 0, -1, 12, 0, 0));
         TextView textView = new TextView(context);
-        this.f38645b = textView;
+        this.f38644b = textView;
         int i10 = org.telegram.ui.ActionBar.m6.E8;
         org.telegram.ui.ActionBar.t6.U(textView, i10, h6Var);
         textView.setTextSize(1, 16.0f);
@@ -32,7 +32,7 @@ public final class pn0 extends LinearLayout {
         textView.setMaxLines(1);
         linearLayout.addView(textView);
         TextView textView2 = new TextView(context);
-        this.f38646c = textView2;
+        this.f38645c = textView2;
         org.telegram.ui.ActionBar.t6.V(textView2, org.telegram.ui.ActionBar.t6.g(i10, 102), h6Var);
         textView2.setTextSize(1, 14.0f);
         textView2.setTag(textView2);

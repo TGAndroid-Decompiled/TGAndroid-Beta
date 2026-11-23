@@ -4,17 +4,17 @@ import android.text.SpannableString;
 import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.bj;
+import org.telegram.messenger.cj;
 import org.telegram.messenger.j6;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.tx;
 import org.telegram.ui.StickersActivity;
 public final class s1 implements tx {
-    public final b2 f22365a;
+    public final b2 f22368a;
 
     public s1(b2 b2Var) {
-        this.f22365a = b2Var;
+        this.f22368a = b2Var;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class s1 implements tx {
     public final void i(int i7) {
         f1 focusedEditTextOrNull;
         boolean z10 = false;
-        b2 b2Var = this.f22365a;
+        b2 b2Var = this.f22368a;
         if (i7 != 0 && (focusedEditTextOrNull = b2Var.Q.getFocusedEditTextOrNull()) != null) {
             b2Var.S0 = focusedEditTextOrNull;
             b2Var.T0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
@@ -70,7 +70,7 @@ public final class s1 implements tx {
 
     @Override
     public final boolean k() {
-        f1 f02 = b2.f0(this.f22365a);
+        f1 f02 = b2.f0(this.f22368a);
         if (f02 == null || f02.length() == 0) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class s1 implements tx {
 
     @Override
     public final void l(String str) {
-        b2 b2Var = this.f22365a;
+        b2 b2Var = this.f22368a;
         f1 f02 = b2.f0(b2Var);
         if (f02 != null) {
             int g02 = b2.g0(b2Var, f02);
@@ -104,18 +104,18 @@ public final class s1 implements tx {
 
     @Override
     public final void t(ArrayList arrayList) {
-        this.f22365a.presentFragment(new StickersActivity(5, arrayList));
+        this.f22368a.presentFragment(new StickersActivity(5, arrayList));
     }
 
     @Override
     public final void w() {
-        this.f22365a.presentFragment(new StickersActivity(0, null));
+        this.f22368a.presentFragment(new StickersActivity(0, null));
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.y5 y5Var;
-        b2 b2Var = this.f22365a;
+        b2 b2Var = this.f22368a;
         f1 f02 = b2.f0(b2Var);
         if (f02 != null) {
             int g02 = b2.g0(b2Var, f02);
@@ -144,7 +144,7 @@ public final class s1 implements tx {
 
     @Override
     public final boolean z() {
-        return this.f22365a.D0;
+        return this.f22368a.D0;
     }
 
     @Override
@@ -188,7 +188,7 @@ public final class s1 implements tx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, bj bjVar, boolean z10, int i7) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, cj cjVar, boolean z10, int i7) {
     }
 
     @Override

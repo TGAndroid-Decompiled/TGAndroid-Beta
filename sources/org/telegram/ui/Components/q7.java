@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.ui.PhotoViewer;
 public final class q7 extends zc {
-    public final int f38805b;
-    public final org.telegram.messenger.fs f38806c;
+    public final int f38799b;
+    public final org.telegram.messenger.gs f38800c;
 
-    public q7(org.telegram.messenger.fs fsVar, Context context, int i7) {
+    public q7(org.telegram.messenger.gs gsVar, Context context, int i7) {
         super(context);
-        this.f38805b = i7;
-        this.f38806c = fsVar;
+        this.f38799b = i7;
+        this.f38800c = gsVar;
     }
 
     @Override
     public final void c(boolean z10) {
         boolean z11;
         int i7;
-        switch (this.f38805b) {
+        switch (this.f38799b) {
             case 0:
-                f8 f8Var = (f8) this.f38806c;
+                f8 f8Var = (f8) this.f38800c;
                 f8Var.updateColors();
                 org.telegram.ui.xq xqVar = f8Var.I1;
                 if (xqVar != null) {
@@ -27,7 +27,7 @@ public final class q7 extends zc {
                 }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f38806c;
+                PhotoViewer photoViewer = (PhotoViewer) this.f38800c;
                 org.telegram.ui.ActionBar.y0 y0Var = photoViewer.G0;
                 if (y0Var != null) {
                     y0Var.f(z10);
@@ -41,14 +41,14 @@ public final class q7 extends zc {
                 }
                 i61 i61Var = photoViewer.G2;
                 if (i61Var != null) {
-                    if (!d1.f.u() && !photoViewer.f43351r) {
+                    if (!d1.f.u() && !photoViewer.f43355r) {
                         z11 = false;
                     } else {
                         z11 = true;
                     }
                     i61Var.t0(z11);
                 }
-                org.telegram.ui.xq xqVar2 = photoViewer.f43407x0;
+                org.telegram.ui.xq xqVar2 = photoViewer.f43411x0;
                 if (xqVar2 != null) {
                     xqVar2.a(d1.f.u());
                     return;

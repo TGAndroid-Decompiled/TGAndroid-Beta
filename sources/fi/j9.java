@@ -2,26 +2,26 @@ package fi;
 
 import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.messenger.j10;
+import org.telegram.messenger.k10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
 public final class j9 extends g9 {
-    public final i9 f12209a;
-    public final TL_stories.TL_mediaAreaWeather f12210b;
-    public View f12211c;
+    public final i9 f12212a;
+    public final TL_stories.TL_mediaAreaWeather f12213b;
+    public View f12214c;
     public final k9 d;
 
     public j9(k9 k9Var, TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather) {
         this.d = k9Var;
-        this.f12210b = tL_mediaAreaWeather;
+        this.f12213b = tL_mediaAreaWeather;
         ?? tLObject = new TLObject();
-        tLObject.f15283c = tL_mediaAreaWeather.emoji;
+        tLObject.f15286c = tL_mediaAreaWeather.emoji;
         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
-        i9 i9Var = new i9(this, org.telegram.messenger.t0.f26941b, org.telegram.messenger.g0.f24145p);
-        this.f12209a = i9Var;
-        i9Var.setMaxWidth(org.telegram.messenger.g0.f24146q.x);
+        i9 i9Var = new i9(this, org.telegram.messenger.t0.f26931b, org.telegram.messenger.g0.f24045p);
+        this.f12212a = i9Var;
+        i9Var.setMaxWidth(org.telegram.messenger.g0.f24046q.x);
         i9Var.setIsVideo(false);
-        i9Var.d(j10.f24798t0, tLObject.f15283c);
+        i9Var.d(k10.f24968t0, tLObject.f15286c);
         i9Var.setText(tLObject.a());
         i9Var.e(3, tL_mediaAreaWeather.color);
         i9Var.f();
@@ -33,15 +33,15 @@ public final class j9 extends g9 {
         int heightInternal;
         k9 k9Var = this.d;
         double d = k9Var.d;
-        TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f12210b;
+        TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f12213b;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaWeather.coordinates;
-        double d2 = (mediaAreaCoordinates.f28667x * d) / 100.0d;
-        double d10 = k9Var.f12243e;
-        double d11 = (mediaAreaCoordinates.f28668y * d10) / 100.0d;
-        float f11 = (float) ((d * mediaAreaCoordinates.f28666w) / 100.0d);
+        double d2 = (mediaAreaCoordinates.f28670x * d) / 100.0d;
+        double d10 = k9Var.f12246e;
+        double d11 = (mediaAreaCoordinates.f28671y * d10) / 100.0d;
+        float f11 = (float) ((d * mediaAreaCoordinates.f28669w) / 100.0d);
         canvas.save();
-        canvas.translate((float) (d2 + k9Var.f12241b), (float) (d11 + k9Var.f12242c));
-        i9 i9Var = this.f12209a;
+        canvas.translate((float) (d2 + k9Var.f12244b), (float) (d11 + k9Var.f12245c));
+        i9 i9Var = this.f12212a;
         float min = Math.min(f11 / ((i9Var.getWidthInternal() - i9Var.getPaddingLeft()) - i9Var.getPaddingRight()), ((float) ((d10 * mediaAreaCoordinates.h) / 100.0d)) / ((i9Var.getHeightInternal() - i9Var.getPaddingTop()) - i9Var.getPaddingBottom()));
         canvas.scale(min, min);
         double d12 = tL_mediaAreaWeather.coordinates.rotation;
@@ -55,24 +55,24 @@ public final class j9 extends g9 {
 
     @Override
     public final void b(boolean z10) {
-        i9 i9Var = this.f12209a;
+        i9 i9Var = this.f12212a;
         if (z10) {
             i9Var.L = true;
             if (i9Var.M) {
-                i9Var.f58068s.P();
+                i9Var.f58072s.P();
                 return;
             } else {
-                i9Var.f58067r.P();
+                i9Var.f58071r.P();
                 return;
             }
         }
         i9Var.L = false;
-        i9Var.f58067r.R();
-        i9Var.f58068s.R();
+        i9Var.f58071r.R();
+        i9Var.f58072s.R();
     }
 
     @Override
     public final void c(View view) {
-        this.f12211c = view;
+        this.f12214c = view;
     }
 }

@@ -3,26 +3,26 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.view.View;
 public final class cs implements View.OnClickListener {
-    public final int f46663a;
-    public final ns f46664b;
+    public final int f46666a;
+    public final ns f46667b;
 
     public cs(ns nsVar, int i7) {
-        this.f46663a = i7;
-        this.f46664b = nsVar;
+        this.f46666a = i7;
+        this.f46667b = nsVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f46663a) {
+        switch (this.f46666a) {
             case 0:
-                ns nsVar = this.f46664b;
+                ns nsVar = this.f46667b;
                 nsVar.K = false;
-                nsVar.f50307z.invalidate();
+                nsVar.f50311z.invalidate();
                 nsVar.m();
                 return;
             case 1:
-                ns nsVar2 = this.f46664b;
-                Activity activity = nsVar2.f50304w;
+                ns nsVar2 = this.f46667b;
+                Activity activity = nsVar2.f50308w;
                 if (activity instanceof LaunchActivity) {
                     LaunchActivity launchActivity = (LaunchActivity) activity;
                     if (launchActivity.M() != null && launchActivity.M().getLastFragment() != null) {
@@ -31,20 +31,20 @@ public final class cs implements View.OnClickListener {
                     launchActivity.t0(new PremiumPreviewFragment(0, PremiumPreviewFragment.q0(5)));
                 }
                 nsVar2.K = false;
-                nsVar2.f50307z.invalidate();
+                nsVar2.f50311z.invalidate();
                 nsVar2.m();
                 return;
             case 2:
-                ns nsVar3 = this.f46664b;
-                ls lsVar = nsVar3.f50294l;
+                ns nsVar3 = this.f46667b;
+                ls lsVar = nsVar3.f50298l;
                 if (lsVar != null) {
                     lsVar.K();
                 }
                 nsVar3.o();
                 return;
             default:
-                ns nsVar4 = this.f46664b;
-                ls lsVar2 = nsVar4.f50294l;
+                ns nsVar4 = this.f46667b;
+                ls lsVar2 = nsVar4.f50298l;
                 if (lsVar2 != null) {
                     lsVar2.q();
                 }

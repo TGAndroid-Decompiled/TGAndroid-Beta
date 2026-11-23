@@ -14,14 +14,14 @@ import j$.util.function.Consumer$CC;
 import java.util.function.Consumer;
 import org.telegram.messenger.Utilities;
 public final class d0 implements Consumer {
-    public final j0 f5647a;
-    public final m f5648b;
-    public final r f5649c;
+    public final j0 f5650a;
+    public final m f5651b;
+    public final r f5652c;
 
     public d0(j0 j0Var, m mVar, r rVar) {
-        this.f5647a = j0Var;
-        this.f5648b = mVar;
-        this.f5649c = rVar;
+        this.f5650a = j0Var;
+        this.f5651b = mVar;
+        this.f5652c = rVar;
     }
 
     @Override
@@ -57,28 +57,28 @@ public final class d0 implements Consumer {
         m mVar;
         float max2;
         Canvas canvas3 = (Canvas) obj;
-        j0 j0Var = this.f5647a;
+        j0 j0Var = this.f5650a;
         int[] iArr6 = j0Var.V;
         int[] iArr7 = j0Var.U;
         float[] fArr = j0Var.T;
         RectF rectF2 = j0Var.S;
-        RectF rectF3 = j0Var.f5712i0;
+        RectF rectF3 = j0Var.f5715i0;
         Paint paint3 = j0Var.P;
         Paint paint4 = j0Var.K;
         int[] iArr8 = j0Var.N;
-        Paint paint5 = j0Var.f5711h0;
+        Paint paint5 = j0Var.f5714h0;
         int[] iArr9 = j0Var.M;
         Paint paint6 = j0Var.R;
         Matrix matrix = j0Var.Q;
-        m mVar2 = this.f5648b;
+        m mVar2 = this.f5651b;
         if (mVar2.isVerticalScrollBarEnabled()) {
             mVar2.setVerticalScrollBarEnabled(false);
         }
-        if (!j0Var.f5709f0) {
+        if (!j0Var.f5712f0) {
             iArr = iArr6;
             h0 h0Var = j0Var.h;
             if (h0Var != null) {
-                j0Var.f5709f0 = true;
+                j0Var.f5712f0 = true;
                 j0.c0(h0Var);
             }
         } else {
@@ -88,15 +88,15 @@ public final class d0 implements Consumer {
             z0 z0Var = j0Var.d;
             if (z0Var != null) {
                 f10 = 1.0f;
-                if (z0Var.f5951h1 < 0.5f) {
+                if (z0Var.f5954h1 < 0.5f) {
                     iArr2 = iArr7;
-                    f11 = (-Utilities.l(((float) (AnimationUtils.currentAnimationTimeMillis() - z0Var.f5925e6)) / 150.0f)) - 1.0E-4f;
+                    f11 = (-Utilities.l(((float) (AnimationUtils.currentAnimationTimeMillis() - z0Var.f5928e6)) / 150.0f)) - 1.0E-4f;
                 } else {
                     iArr2 = iArr7;
-                    if (!z0Var.f5936f6) {
+                    if (!z0Var.f5939f6) {
                         f11 = 0.0f;
                     } else {
-                        f11 = Utilities.l(((float) (AnimationUtils.currentAnimationTimeMillis() - z0Var.f5914d6)) / 470.0f);
+                        f11 = Utilities.l(((float) (AnimationUtils.currentAnimationTimeMillis() - z0Var.f5917d6)) / 470.0f);
                     }
                 }
             } else {
@@ -106,13 +106,13 @@ public final class d0 implements Consumer {
             }
             z0 z0Var2 = j0Var.d;
             int[] iArr10 = iArr2;
-            if (z0Var2 != null && z0Var2.f5951h1 > 0.5f) {
+            if (z0Var2 != null && z0Var2.f5954h1 > 0.5f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (z0Var2 != null) {
-                f12 = Utilities.l(z0Var2.f5941g1);
+                f12 = Utilities.l(z0Var2.f5944g1);
             } else {
                 f12 = f10;
             }
@@ -205,14 +205,14 @@ public final class d0 implements Consumer {
             } else {
                 iArr3 = iArr8;
             }
-            r rVar = this.f5649c;
+            r rVar = this.f5652c;
             rVar.getLocationOnScreen(iArr9);
             float f29 = iArr9[1] - iArr3[1];
             float f30 = (f29 - f28) / f18;
             float L = ((org.telegram.messenger.g0.L(12.0f) + rVar.getHeight()) / f18) + f30;
-            c cVar = j0Var.f5727y;
+            c cVar = j0Var.f5730y;
             if (cVar != null) {
-                float height = (f29 + rVar.getHeight()) - j0Var.f5705d0;
+                float height = (f29 + rVar.getHeight()) - j0Var.f5708d0;
                 paint2 = paint3;
                 if (cVar.L != height) {
                     cVar.L = height;
@@ -221,10 +221,10 @@ public final class d0 implements Consumer {
             } else {
                 paint2 = paint3;
             }
-            rVar.getLocationOnScreen(j0Var.f5713j0);
-            mVar2.getLocationOnScreen(j0Var.f5714k0);
+            rVar.getLocationOnScreen(j0Var.f5716j0);
+            mVar2.getLocationOnScreen(j0Var.f5717k0);
             float scaleX = (iArr4[0] - iArr5[0]) / mVar2.getScaleX();
-            rectF3.set((j0Var.f5702b0 / f18) + scaleX, (j0Var.f5704c0 / f18) + f30, ((rVar.getWidth() - j0Var.f5702b0) / f18) + scaleX, ((rVar.getHeight() - j0Var.f5705d0) / f18) + f30);
+            rectF3.set((j0Var.f5705b0 / f18) + scaleX, (j0Var.f5707c0 / f18) + f30, ((rVar.getWidth() - j0Var.f5705b0) / f18) + scaleX, ((rVar.getHeight() - j0Var.f5708d0) / f18) + f30);
             paint6.setAlpha(255);
             canvas3.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, paint6);
             matrix.setScale(1.0f, L - f30);
@@ -251,9 +251,9 @@ public final class d0 implements Consumer {
             z0 z0Var3 = j0Var.d;
             float f33 = 90.0f;
             if (z0Var3 != null) {
-                j0Var.f5707e0 = j0Var.f5721r - (z0Var3.H0() - org.telegram.messenger.g0.L(8.0f));
+                j0Var.f5710e0 = j0Var.f5724r - (z0Var3.H0() - org.telegram.messenger.g0.L(8.0f));
                 float translationY = rVar.getTranslationY();
-                float f34 = j0Var.f5707e0;
+                float f34 = j0Var.f5710e0;
                 if (translationY != f34) {
                     rVar.setTranslationY(f34);
                     rVar.invalidate();
@@ -283,7 +283,7 @@ public final class d0 implements Consumer {
                 if (rVar.getAlpha() != f23) {
                     rVar.setAlpha(f23);
                 }
-                if ((f24 != 1.0f || f23 != 1.0f) && (mVar = j0Var.f5700a0) != null) {
+                if ((f24 != 1.0f || f23 != 1.0f) && (mVar = j0Var.f5703a0) != null) {
                     mVar.postInvalidateOnAnimation();
                 }
             }
@@ -319,8 +319,8 @@ public final class d0 implements Consumer {
                         canvas2 = canvas3;
                         f22 = 1.0f;
                     }
-                    if (lVar.f5737r != f22) {
-                        lVar.f5737r = f22;
+                    if (lVar.f5740r != f22) {
+                        lVar.f5740r = f22;
                         lVar.invalidate();
                     }
                 }
@@ -331,8 +331,8 @@ public final class d0 implements Consumer {
             Canvas canvas4 = canvas3;
             if (z11 && f37 > 0.0f) {
                 float x11 = org.telegram.ui.Cells.c0.x(f36, max5, f37, 1.0f);
-                if (j0Var.f5710g0 == null) {
-                    j0Var.f5710g0 = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, 0, -16777216, Shader.TileMode.CLAMP);
+                if (j0Var.f5713g0 == null) {
+                    j0Var.f5713g0 = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, 0, -16777216, Shader.TileMode.CLAMP);
                 }
                 if (f11 >= 0.0f) {
                     f20 = 1.0f;
@@ -343,9 +343,9 @@ public final class d0 implements Consumer {
                     matrix.setScale(1.0f, f37);
                     matrix.postTranslate(0.0f, ((Math.max(-1.0f, (((-f11) * 150.0f) - 76.5f) / Math.min(25.0f, 60.0f / Math.max(1.0f, x11 - 1.0f))) * f37) + max5) - (f37 / 2.0f));
                 }
-                j0Var.f5710g0.setLocalMatrix(matrix);
+                j0Var.f5713g0.setLocalMatrix(matrix);
                 Paint paint7 = paint;
-                paint7.setShader(j0Var.f5710g0);
+                paint7.setShader(j0Var.f5713g0);
                 if (paint7.getXfermode() == null) {
                     paint7.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
                 }
@@ -356,15 +356,15 @@ public final class d0 implements Consumer {
                 canvas = canvas4;
                 f20 = 1.0f;
             }
-            c cVar2 = j0Var.f5727y;
+            c cVar2 = j0Var.f5730y;
             if (cVar2 != null) {
                 RectF rectF4 = cVar2.G;
-                if (cVar2.f5638y > 0.003f && !rectF4.isEmpty()) {
+                if (cVar2.f5641y > 0.003f && !rectF4.isEmpty()) {
                     RectF rectF5 = rectF;
                     rectF5.set(rectF4);
                     fArr[0] = rectF4.height() / 2.0f;
                     fArr[1] = cVar2.E;
-                    j0Var.f5727y.getLocationOnScreen(iArr10);
+                    j0Var.f5730y.getLocationOnScreen(iArr10);
                     int[] iArr11 = iArr;
                     mVar2.getLocationOnScreen(iArr11);
                     if (mVar2.getScaleX() > 0.01f) {

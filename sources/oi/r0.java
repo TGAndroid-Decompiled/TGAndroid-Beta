@@ -9,7 +9,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 public final class r0 extends n41 {
-    public static final int f22353b = 0;
+    public static final int f22356b = 0;
 
     static {
         n41.h(new n41());
@@ -17,7 +17,7 @@ public final class r0 extends n41 {
 
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
-        ((s0) view).f22364c = (a) o41Var.H;
+        ((s0) view).f22367c = (a) o41Var.H;
     }
 
     @Override

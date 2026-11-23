@@ -4,35 +4,35 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class l5 extends ViewGroup {
-    public final int f22223a;
-    public final m5 f22224b;
+    public final int f22226a;
+    public final m5 f22227b;
 
     public l5(m5 m5Var, Context context) {
         super(context);
-        this.f22224b = m5Var;
-        this.f22223a = org.telegram.messenger.g0.L(16.0f);
+        this.f22227b = m5Var;
+        this.f22226a = org.telegram.messenger.g0.L(16.0f);
         setClipChildren(false);
         setClipToPadding(false);
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        m5 m5Var = this.f22224b;
-        int measuredWidth = m5Var.f22245w.getMeasuredWidth();
-        int measuredHeight = m5Var.f22245w.getMeasuredHeight();
-        o5 o5Var = m5Var.f22245w;
-        int i13 = this.f22223a;
+        m5 m5Var = this.f22227b;
+        int measuredWidth = m5Var.f22248w.getMeasuredWidth();
+        int measuredHeight = m5Var.f22248w.getMeasuredHeight();
+        o5 o5Var = m5Var.f22248w;
+        int i13 = this.f22226a;
         o5Var.layout(-i13, 0, measuredWidth - i13, measuredHeight);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
-        int i11 = this.f22223a;
+        int i11 = this.f22226a;
         int max = Math.max(0, size + i11);
-        m5 m5Var = this.f22224b;
-        m5Var.f22245w.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), i10);
-        int measuredWidth = m5Var.f22245w.getMeasuredWidth();
-        setMeasuredDimension(Math.max(0, measuredWidth - i11), m5Var.f22245w.getMeasuredHeight());
+        m5 m5Var = this.f22227b;
+        m5Var.f22248w.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), i10);
+        int measuredWidth = m5Var.f22248w.getMeasuredWidth();
+        setMeasuredDimension(Math.max(0, measuredWidth - i11), m5Var.f22248w.getMeasuredHeight());
     }
 }

@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import org.telegram.ui.Wallet.h1;
 public final class a0 extends z {
-    public final LinkedList f56536b;
-    public final o f56537c;
+    public final LinkedList f56540b;
+    public final o f56541c;
     public boolean d;
-    public x f56538e;
-    public boolean f56539f;
+    public x f56542e;
+    public boolean f56543f;
 
     public a0(u uVar) {
         super("WritingThread", uVar, 2);
-        this.f56536b = new LinkedList();
-        this.f56537c = uVar.f56601u;
+        this.f56540b = new LinkedList();
+        this.f56541c = uVar.f56605u;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class a0 extends z {
             c();
         } catch (Throwable th2) {
             v vVar = new v(39, "An uncaught throwable was detected in the writing thread: " + th2.getMessage(), th2);
-            ab.q qVar = this.f56611a.d;
+            ab.q qVar = this.f56615a.d;
             qVar.d(vVar);
             ArrayList arrayList = (ArrayList) qVar.p();
             int size = arrayList.size();
@@ -44,7 +44,7 @@ public final class a0 extends z {
             }
         }
         synchronized (this) {
-            this.f56539f = true;
+            this.f56543f = true;
             notifyAll();
         }
         d();
@@ -52,12 +52,12 @@ public final class a0 extends z {
 
     public final void b() {
         try {
-            this.f56611a.f56589i.flush();
+            this.f56615a.f56593i.flush();
             synchronized (this) {
             }
         } catch (IOException e10) {
             v vVar = new v(27, "Flushing frames to the server failed: " + e10.getMessage(), e10);
-            ab.q qVar = this.f56611a.d;
+            ab.q qVar = this.f56615a.d;
             qVar.d(vVar);
             ArrayList arrayList = (ArrayList) qVar.p();
             int size = arrayList.size();
@@ -81,10 +81,10 @@ public final class a0 extends z {
 
     public final void c() {
         boolean z10;
-        u uVar = this.f56611a;
-        synchronized (uVar.f56588g) {
-            uVar.f56596p = true;
-            z10 = uVar.f56595o;
+        u uVar = this.f56615a;
+        synchronized (uVar.f56592g) {
+            uVar.f56600p = true;
+            z10 = uVar.f56599o;
         }
         uVar.a();
         if (z10) {
@@ -95,7 +95,7 @@ public final class a0 extends z {
             if (j3 != 1) {
                 if (j3 == 3) {
                     try {
-                        this.f56611a.f56589i.flush();
+                        this.f56615a.f56593i.flush();
                     } catch (IOException unused) {
                     }
                 } else if (j3 == 2) {
@@ -117,13 +117,13 @@ public final class a0 extends z {
     }
 
     public final void d() {
-        u uVar = this.f56611a;
-        x xVar = this.f56538e;
-        synchronized (uVar.f56588g) {
+        u uVar = this.f56615a;
+        x xVar = this.f56542e;
+        synchronized (uVar.f56592g) {
             try {
-                uVar.f56598r = true;
-                uVar.f56600t = xVar;
-                if (!uVar.f56597q) {
+                uVar.f56602r = true;
+                uVar.f56604t = xVar;
+                if (!uVar.f56601q) {
                     return;
                 }
                 uVar.d();
@@ -148,9 +148,9 @@ public final class a0 extends z {
         int i7;
         byte[] bArr;
         byte[] bArr2;
-        o oVar = this.f56537c;
+        o oVar = this.f56541c;
         boolean z10 = true;
-        if (oVar != null && (((i7 = xVar.f56608e) == 1 || i7 == 2) && xVar.f56605a && !xVar.f56606b && (bArr = xVar.f56610g) != null && bArr.length != 0)) {
+        if (oVar != null && (((i7 = xVar.f56612e) == 1 || i7 == 2) && xVar.f56609a && !xVar.f56610b && (bArr = xVar.f56614g) != null && bArr.length != 0)) {
             try {
                 bArr2 = oVar.b(bArr);
             } catch (v unused) {
@@ -158,10 +158,10 @@ public final class a0 extends z {
             }
             if (bArr.length > bArr2.length) {
                 xVar.c(bArr2);
-                xVar.f56606b = true;
+                xVar.f56610b = true;
             }
         }
-        ArrayList arrayList = (ArrayList) this.f56611a.d.p();
+        ArrayList arrayList = (ArrayList) this.f56615a.d.p();
         int size = arrayList.size();
         int i10 = 0;
         int i11 = 0;
@@ -178,8 +178,8 @@ public final class a0 extends z {
                 h1Var.getClass();
             }
         }
-        if (this.f56538e != null) {
-            ArrayList arrayList2 = (ArrayList) this.f56611a.d.p();
+        if (this.f56542e != null) {
+            ArrayList arrayList2 = (ArrayList) this.f56615a.d.p();
             int size2 = arrayList2.size();
             while (i10 < size2) {
                 Object obj2 = arrayList2.get(i10);
@@ -196,30 +196,30 @@ public final class a0 extends z {
             }
             return;
         }
-        int i12 = xVar.f56608e;
+        int i12 = xVar.f56612e;
         if (i12 == 8) {
-            this.f56538e = xVar;
+            this.f56542e = xVar;
         }
         if (i12 == 8) {
-            r0 r0Var = this.f56611a.f56584b;
+            r0 r0Var = this.f56615a.f56588b;
             synchronized (r0Var) {
-                int i13 = r0Var.f10713a;
+                int i13 = r0Var.f10716a;
                 if (i13 != 4 && i13 != 5) {
-                    r0Var.f10713a = 4;
-                    if (r0Var.f10714b == 1) {
-                        r0Var.f10714b = 3;
+                    r0Var.f10716a = 4;
+                    if (r0Var.f10717b == 1) {
+                        r0Var.f10717b = 3;
                     }
                 } else {
                     z10 = false;
                 }
             }
             if (z10) {
-                this.f56611a.d.f();
+                this.f56615a.d.f();
             }
         }
         try {
-            this.f56611a.f56589i.a(xVar);
-            ArrayList arrayList3 = (ArrayList) this.f56611a.d.p();
+            this.f56615a.f56593i.a(xVar);
+            ArrayList arrayList3 = (ArrayList) this.f56615a.d.p();
             int size3 = arrayList3.size();
             while (i10 < size3) {
                 Object obj3 = arrayList3.get(i10);
@@ -236,7 +236,7 @@ public final class a0 extends z {
             }
         } catch (IOException e10) {
             v vVar = new v(26, "An I/O error occurred when a frame was tried to be sent: " + e10.getMessage(), e10);
-            ab.q qVar = this.f56611a.d;
+            ab.q qVar = this.f56615a.d;
             qVar.d(vVar);
             ArrayList arrayList4 = (ArrayList) qVar.p();
             int size4 = arrayList4.size();
@@ -267,10 +267,10 @@ public final class a0 extends z {
                 if (this.d) {
                     return 1;
                 }
-                if (this.f56538e != null) {
+                if (this.f56542e != null) {
                     return 1;
                 }
-                if (this.f56536b.size() == 0) {
+                if (this.f56540b.size() == 0) {
                     try {
                         wait();
                     } catch (InterruptedException unused) {
@@ -279,7 +279,7 @@ public final class a0 extends z {
                 if (this.d) {
                     return 1;
                 }
-                if (this.f56536b.size() == 0) {
+                if (this.f56540b.size() == 0) {
                     return 2;
                 }
                 return 0;

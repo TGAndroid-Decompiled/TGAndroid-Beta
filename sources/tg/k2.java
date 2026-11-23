@@ -5,12 +5,12 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.view.View;
 import android.view.WindowInsets;
-import org.telegram.ui.Components.y01;
+import org.telegram.ui.Components.x01;
 public final class k2 implements View.OnApplyWindowInsetsListener {
-    public final l2 f58032a;
+    public final l2 f58036a;
 
     public k2(l2 l2Var) {
-        this.f58032a = l2Var;
+        this.f58036a = l2Var;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class k2 implements View.OnApplyWindowInsetsListener {
         int i10;
         int i11;
         int i12;
-        l2 l2Var = this.f58032a;
-        y01 y01Var = l2Var.f58044b;
+        l2 l2Var = this.f58036a;
+        x01 x01Var = l2Var.f58048b;
         Rect rect = l2Var.h;
         int i13 = Build.VERSION.SDK_INT;
         if (i13 >= 30) {
@@ -34,8 +34,8 @@ public final class k2 implements View.OnApplyWindowInsetsListener {
         } else {
             rect.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
         }
-        y01Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
-        y01Var.requestLayout();
+        x01Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+        x01Var.requestLayout();
         if (i13 >= 30) {
             windowInsets2 = WindowInsets.CONSUMED;
             return windowInsets2;

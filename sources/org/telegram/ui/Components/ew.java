@@ -18,7 +18,7 @@ public final class ew extends v4.t {
             tyVar.Z();
         }
         if (tyVar.U0 == null) {
-            jg.d1 d1Var = new jg.d1(tyVar, tyVar.f40099d1, tyVar.f40151u1.a(), tyVar.f40151u1.f(), 1);
+            jg.d1 d1Var = new jg.d1(tyVar, tyVar.f40092d1, tyVar.f40144u1.a(), tyVar.f40144u1.f(), 1);
             tyVar.U0 = d1Var;
             d1Var.a();
         }
@@ -30,7 +30,7 @@ public final class ew extends v4.t {
     public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
         try {
             pi.l lVar = new pi.l(recyclerView.getContext(), 2);
-            lVar.f59105a = i7;
+            lVar.f59109a = i7;
             w0(lVar);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

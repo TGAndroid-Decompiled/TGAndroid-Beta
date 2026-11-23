@@ -8,41 +8,41 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 public final class d0 extends y {
-    public final c0 f20057e;
-    public Drawable f20058f;
-    public ColorStateList f20059g;
+    public final c0 f20060e;
+    public Drawable f20061f;
+    public ColorStateList f20062g;
     public PorterDuff.Mode h;
-    public boolean f20060i;
-    public boolean f20061j;
+    public boolean f20063i;
+    public boolean f20064j;
 
     public d0(c0 c0Var) {
         super(c0Var);
-        this.f20059g = null;
+        this.f20062g = null;
         this.h = null;
-        this.f20060i = false;
-        this.f20061j = false;
-        this.f20057e = c0Var;
+        this.f20063i = false;
+        this.f20064j = false;
+        this.f20060e = c0Var;
     }
 
     @Override
     public final void b(AttributeSet attributeSet, int i7) {
         super.b(attributeSet, i7);
-        c0 c0Var = this.f20057e;
+        c0 c0Var = this.f20060e;
         Context context = c0Var.getContext();
-        int[] iArr = f.a.f11022g;
+        int[] iArr = f.a.f11025g;
         h6.m D = h6.m.D(context, attributeSet, iArr, i7);
-        TypedArray typedArray = (TypedArray) D.f13966c;
-        r0.i0.i(c0Var, c0Var.getContext(), iArr, attributeSet, (TypedArray) D.f13966c, i7);
+        TypedArray typedArray = (TypedArray) D.f13969c;
+        r0.i0.i(c0Var, c0Var.getContext(), iArr, attributeSet, (TypedArray) D.f13969c, i7);
         Drawable v = D.v(0);
         if (v != null) {
             c0Var.setThumb(v);
         }
         Drawable t6 = D.t(1);
-        Drawable drawable = this.f20058f;
+        Drawable drawable = this.f20061f;
         if (drawable != null) {
             drawable.setCallback(null);
         }
-        this.f20058f = t6;
+        this.f20061f = t6;
         if (t6 != null) {
             t6.setCallback(c0Var);
             t6.setLayoutDirection(c0Var.getLayoutDirection());
@@ -54,30 +54,30 @@ public final class d0 extends y {
         c0Var.invalidate();
         if (typedArray.hasValue(3)) {
             this.h = l1.b(typedArray.getInt(3, -1), this.h);
-            this.f20061j = true;
+            this.f20064j = true;
         }
         if (typedArray.hasValue(2)) {
-            this.f20059g = D.s(2);
-            this.f20060i = true;
+            this.f20062g = D.s(2);
+            this.f20063i = true;
         }
         D.G();
         f();
     }
 
     public final void f() {
-        Drawable drawable = this.f20058f;
+        Drawable drawable = this.f20061f;
         if (drawable != null) {
-            if (this.f20060i || this.f20061j) {
+            if (this.f20063i || this.f20064j) {
                 Drawable mutate = drawable.mutate();
-                this.f20058f = mutate;
-                if (this.f20060i) {
-                    mutate.setTintList(this.f20059g);
+                this.f20061f = mutate;
+                if (this.f20063i) {
+                    mutate.setTintList(this.f20062g);
                 }
-                if (this.f20061j) {
-                    this.f20058f.setTintMode(this.h);
+                if (this.f20064j) {
+                    this.f20061f.setTintMode(this.h);
                 }
-                if (this.f20058f.isStateful()) {
-                    this.f20058f.setState(this.f20057e.getDrawableState());
+                if (this.f20061f.isStateful()) {
+                    this.f20061f.setState(this.f20060e.getDrawableState());
                 }
             }
         }
@@ -86,12 +86,12 @@ public final class d0 extends y {
     public final void g(Canvas canvas) {
         c0 c0Var;
         int i7;
-        if (this.f20058f != null) {
-            int max = this.f20057e.getMax();
+        if (this.f20061f != null) {
+            int max = this.f20060e.getMax();
             int i10 = 1;
             if (max > 1) {
-                int intrinsicWidth = this.f20058f.getIntrinsicWidth();
-                int intrinsicHeight = this.f20058f.getIntrinsicHeight();
+                int intrinsicWidth = this.f20061f.getIntrinsicWidth();
+                int intrinsicHeight = this.f20061f.getIntrinsicHeight();
                 if (intrinsicWidth >= 0) {
                     i7 = intrinsicWidth / 2;
                 } else {
@@ -100,12 +100,12 @@ public final class d0 extends y {
                 if (intrinsicHeight >= 0) {
                     i10 = intrinsicHeight / 2;
                 }
-                this.f20058f.setBounds(-i7, -i10, i7, i10);
+                this.f20061f.setBounds(-i7, -i10, i7, i10);
                 float width = ((c0Var.getWidth() - c0Var.getPaddingLeft()) - c0Var.getPaddingRight()) / max;
                 int save = canvas.save();
                 canvas.translate(c0Var.getPaddingLeft(), c0Var.getHeight() / 2);
                 for (int i11 = 0; i11 <= max; i11++) {
-                    this.f20058f.draw(canvas);
+                    this.f20061f.draw(canvas);
                     canvas.translate(width, 0.0f);
                 }
                 canvas.restoreToCount(save);

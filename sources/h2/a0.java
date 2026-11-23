@@ -5,27 +5,27 @@ import e2.i1;
 import e2.l1;
 import j$.util.Objects;
 public final class a0 {
-    public long f13742a;
-    public long f13743b;
-    public long f13744c;
+    public long f13745a;
+    public long f13746b;
+    public long f13747c;
     public int d;
-    public boolean f13745e;
-    public int f13746f;
-    public int f13747g;
+    public boolean f13748e;
+    public int f13749f;
+    public int f13750g;
     public Object h;
-    public final Object f13748i;
+    public final Object f13751i;
 
     public a0(e0 e0Var, int i7) {
-        this.f13748i = e0Var;
+        this.f13751i = e0Var;
         this.d = i7;
     }
 
     public void a() {
         Object l10;
         int i7 = this.d;
-        e0 e0Var = (e0) this.f13748i;
-        i0 i0Var = (i0) e0Var.f13777f;
-        l2.f0 f0Var = (l2.f0) e0Var.f13773a;
+        e0 e0Var = (e0) this.f13751i;
+        i0 i0Var = (i0) e0Var.f13780f;
+        l2.f0 f0Var = (l2.f0) e0Var.f13776a;
         if (f0Var.i() == 2 && f0Var.u() && f0Var.w0() == 0) {
             l1 y02 = f0Var.y0();
             if (y02.p()) {
@@ -38,39 +38,39 @@ public final class a0 {
             long d02 = f0Var.d0();
             long max = Math.max(0L, f0Var.r() - Math.max(0L, d02 - f0Var.l()));
             if (l10 != null && n02 == -1) {
-                d02 -= l0.h0(y02.g(l10, (i1) e0Var.f13776e).f10463e);
+                d02 -= l0.h0(y02.g(l10, (i1) e0Var.f13779e).f10466e);
             }
             ((g0) e0Var.d).getClass();
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            if (this.f13745e && Objects.equals(l10, this.h) && n02 == this.f13746f && O == this.f13747g && d02 == this.f13742a && max == this.f13743b) {
-                if (elapsedRealtime - this.f13744c >= i7) {
-                    ((l2.z) e0Var.f13775c).f19625a.A1(new l2.l(2, new f0(1, i7), 1003));
+            if (this.f13748e && Objects.equals(l10, this.h) && n02 == this.f13749f && O == this.f13750g && d02 == this.f13745a && max == this.f13746b) {
+                if (elapsedRealtime - this.f13747c >= i7) {
+                    ((l2.z) e0Var.f13778c).f19628a.A1(new l2.l(2, new f0(1, i7), 1003));
                     return;
                 }
                 return;
             }
-            this.f13745e = true;
-            this.f13744c = elapsedRealtime;
+            this.f13748e = true;
+            this.f13747c = elapsedRealtime;
             this.h = l10;
-            this.f13746f = n02;
-            this.f13747g = O;
-            this.f13742a = d02;
-            this.f13743b = max;
+            this.f13749f = n02;
+            this.f13750g = O;
+            this.f13745a = d02;
+            this.f13746b = max;
             i0Var.e(1);
-            i0Var.f13797a.sendEmptyMessageDelayed(1, i7);
+            i0Var.f13800a.sendEmptyMessageDelayed(1, i7);
             return;
         }
-        if (this.f13745e) {
+        if (this.f13748e) {
             i0Var.e(1);
         }
-        this.f13745e = false;
+        this.f13748e = false;
     }
 
     public a0(String str, long j3, long j10, long j11, jg.o0 o0Var) {
-        this.f13748i = o0Var;
+        this.f13751i = o0Var;
         this.h = str;
-        this.f13742a = j3;
-        this.f13743b = j10;
-        this.f13744c = j11;
+        this.f13745a = j3;
+        this.f13746b = j10;
+        this.f13747c = j11;
     }
 }

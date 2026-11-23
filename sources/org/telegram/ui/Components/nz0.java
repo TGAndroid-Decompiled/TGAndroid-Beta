@@ -5,41 +5,41 @@ import android.graphics.Matrix;
 import android.view.View;
 import java.util.ArrayList;
 public final class nz0 {
-    public final View f38015a;
-    public final ArrayList f38016b;
-    public final Runnable f38017c;
+    public final View f38020a;
+    public final ArrayList f38021b;
+    public final Runnable f38022c;
     public Runnable d;
-    public final Bitmap f38018e;
-    public final Matrix f38019f;
-    public float f38020g;
+    public final Bitmap f38023e;
+    public final Matrix f38024f;
+    public float f38025g;
 
     public nz0(View view, Runnable runnable) {
-        this.f38020g = 1.0f;
-        this.f38015a = view;
-        this.f38016b = null;
-        this.f38017c = null;
+        this.f38025g = 1.0f;
+        this.f38020a = view;
+        this.f38021b = null;
+        this.f38022c = null;
         this.d = runnable;
-        this.f38018e = null;
-        this.f38019f = null;
+        this.f38023e = null;
+        this.f38024f = null;
     }
 
     public nz0(ArrayList arrayList, es0 es0Var) {
-        this.f38020g = 1.0f;
-        this.f38015a = null;
-        this.f38016b = arrayList;
-        this.f38017c = null;
+        this.f38025g = 1.0f;
+        this.f38020a = null;
+        this.f38021b = arrayList;
+        this.f38022c = null;
         this.d = es0Var;
-        this.f38018e = null;
-        this.f38019f = null;
+        this.f38023e = null;
+        this.f38024f = null;
     }
 
     public nz0(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        this.f38020g = 1.0f;
-        this.f38015a = null;
-        this.f38016b = null;
-        this.f38017c = runnable;
+        this.f38025g = 1.0f;
+        this.f38020a = null;
+        this.f38021b = null;
+        this.f38022c = runnable;
         this.d = runnable2;
-        this.f38019f = matrix;
-        this.f38018e = bitmap;
+        this.f38024f = matrix;
+        this.f38023e = bitmap;
     }
 }

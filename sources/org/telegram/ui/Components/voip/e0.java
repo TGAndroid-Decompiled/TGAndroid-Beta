@@ -8,7 +8,7 @@ import android.view.View;
 import c8.md;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.telegram.messenger.fj;
+import org.telegram.messenger.gj;
 import org.telegram.messenger.t3;
 import org.telegram.messenger.u3;
 import org.telegram.messenger.voip.VoIPService;
@@ -20,20 +20,20 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.b20;
 import org.telegram.ui.f40;
 public final class e0 implements wi.l {
-    public static e0 f40985e;
-    public wi.n f40986a;
-    public a0 f40987b;
-    public float f40988c;
+    public static e0 f40987e;
+    public wi.n f40988a;
+    public a0 f40989b;
+    public float f40990c;
     public String d;
 
     public static ArrayList a(long j3, t3 t3Var) {
         b20 b20Var;
-        ArrayList arrayList = t3Var.f26966f;
+        ArrayList arrayList = t3Var.f26953f;
         ArrayList arrayList2 = new ArrayList();
         f40 f40Var = f40.C5;
         u3 u3Var = null;
-        if (f40Var != null && (b20Var = f40Var.Z3) != null && b20Var.f41108b) {
-            u3Var = b20Var.f41113e;
+        if (f40Var != null && (b20Var = f40Var.Z3) != null && b20Var.f41110b) {
+            u3Var = b20Var.f41115e;
         }
         if (u3Var != null && g(t3Var, u3Var, j3)) {
             arrayList2.add(u3Var);
@@ -50,13 +50,13 @@ public final class e0 implements wi.l {
     public static boolean g(t3 t3Var, u3 u3Var, long j3) {
         TLRPC.GroupCallParticipant groupCallParticipant;
         TLRPC.TL_groupCallParticipantVideo tL_groupCallParticipantVideo;
-        if (u3Var != t3Var.f26984z && (groupCallParticipant = u3Var.f27145a) != null && !groupCallParticipant.self) {
-            long B1 = fj.B1(groupCallParticipant.peer);
+        if (u3Var != t3Var.f26971z && (groupCallParticipant = u3Var.f27155a) != null && !groupCallParticipant.self) {
+            long B1 = gj.B1(groupCallParticipant.peer);
             if (B1 != j3 && t3Var.d.f(B1) != null) {
-                if (u3Var.f27146b) {
-                    tL_groupCallParticipantVideo = u3Var.f27145a.presentation;
+                if (u3Var.f27156b) {
+                    tL_groupCallParticipantVideo = u3Var.f27155a.presentation;
                 } else {
-                    tL_groupCallParticipantVideo = u3Var.f27145a.video;
+                    tL_groupCallParticipantVideo = u3Var.f27155a.video;
                 }
                 if (tL_groupCallParticipantVideo != null && j(u3Var) != null) {
                     return true;
@@ -69,8 +69,8 @@ public final class e0 implements wi.l {
     }
 
     public static String j(u3 u3Var) {
-        boolean z10 = u3Var.f27146b;
-        TLRPC.GroupCallParticipant groupCallParticipant = u3Var.f27145a;
+        boolean z10 = u3Var.f27156b;
+        TLRPC.GroupCallParticipant groupCallParticipant = u3Var.f27155a;
         if (z10) {
             return groupCallParticipant.presentationEndpoint;
         }
@@ -80,29 +80,29 @@ public final class e0 implements wi.l {
     public static void k() {
         wi.n nVar;
         ?? r42;
-        e0 e0Var = f40985e;
-        if (e0Var != null && (nVar = e0Var.f40986a) != null && nVar.d()) {
-            c20 c20Var = c20.f33987f0;
-            wi.n nVar2 = f40985e.f40986a;
+        e0 e0Var = f40987e;
+        if (e0Var != null && (nVar = e0Var.f40988a) != null && nVar.d()) {
+            c20 c20Var = c20.f33981f0;
+            wi.n nVar2 = f40987e.f40988a;
             boolean z10 = false;
             if (c20Var != null) {
                 r42 = 1;
             } else {
                 r42 = 0;
             }
-            if (c20Var != null && c20Var.f34000r) {
+            if (c20Var != null && c20Var.f33994r) {
                 z10 = true;
             }
-            int i7 = nVar2.f60030c;
+            int i7 = nVar2.f60034c;
             if (i7 != 3) {
-                nVar2.f60032f = r42;
-                nVar2.f60033g = z10;
+                nVar2.f60036f = r42;
+                nVar2.f60037g = z10;
                 if (i7 == 2) {
                     nVar2.d = r42;
                 } else {
-                    nVar2.f60030c = r42;
+                    nVar2.f60034c = r42;
                 }
-                nVar2.f60029b.f();
+                nVar2.f60033b.f();
             }
         }
     }
@@ -113,18 +113,18 @@ public final class e0 implements wi.l {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         t3 t3Var = null;
         if (sharedInstance != null && sharedInstance.groupCall != null && !sharedInstance.isHangingUp()) {
-            if (f40985e == null) {
+            if (f40987e == null) {
                 ?? obj = new Object();
-                obj.f40988c = 1.0f;
-                f40985e = obj;
+                obj.f40990c = 1.0f;
+                f40987e = obj;
             }
-            wi.n nVar = f40985e.f40986a;
+            wi.n nVar = f40987e.f40988a;
             if (nVar == null || !nVar.d()) {
-                f40985e.f40986a = l2.i.d().k(f40985e);
+                f40987e.f40988a = l2.i.d().k(f40987e);
                 k();
             }
-            e0 e0Var = f40985e;
-            if (e0Var.f40987b == null) {
+            e0 e0Var = f40987e;
+            if (e0Var.f40989b == null) {
                 VoIPService sharedInstance2 = VoIPService.getSharedInstance();
                 VoIPService sharedInstance3 = VoIPService.getSharedInstance();
                 if (sharedInstance3 != null) {
@@ -139,12 +139,12 @@ public final class e0 implements wi.l {
                     StringBuilder sb2 = new StringBuilder();
                     for (int i7 = 0; i7 < a10.size(); i7++) {
                         u3 u3Var = (u3) a10.get(i7);
-                        float f11 = u3Var.f27147c;
+                        float f11 = u3Var.f27157c;
                         if (f11 <= 0.0f) {
                             f11 = 0.0f;
                         }
                         fArr[i7] = f11;
-                        if (u3Var.f27146b) {
+                        if (u3Var.f27156b) {
                             f10 = 2.0f;
                         } else {
                             f10 = 1.0f;
@@ -158,19 +158,19 @@ public final class e0 implements wi.l {
                     String sb3 = sb2.toString();
                     if (!sb3.equals(e0Var.d)) {
                         e0Var.d = sb3;
-                        e0Var.f40988c = md.a(fArr, fArr2, 0.45f, 2.35f, null, 0.0f).f60018a;
+                        e0Var.f40990c = md.a(fArr, fArr2, 0.45f, 2.35f, null, 0.0f).f60022a;
                     }
                 }
             }
-            f40985e.f40986a.c();
+            f40987e.f40988a.c();
             return;
         }
-        e0 e0Var2 = f40985e;
+        e0 e0Var2 = f40987e;
         if (e0Var2 != null) {
-            f40985e = null;
-            wi.n nVar2 = e0Var2.f40986a;
+            f40987e = null;
+            wi.n nVar2 = e0Var2.f40988a;
             if (nVar2 != null) {
-                e0Var2.f40986a = null;
+                e0Var2.f40988a = null;
                 nVar2.f();
             }
         }
@@ -197,11 +197,11 @@ public final class e0 implements wi.l {
     @Override
     public final int J() {
         float f10;
-        a0 a0Var = this.f40987b;
+        a0 a0Var = this.f40989b;
         if (a0Var != null) {
-            f10 = a0Var.f40890n;
+            f10 = a0Var.f40892n;
         } else {
-            f10 = this.f40988c;
+            f10 = this.f40990c;
         }
         return Math.round(f10 * 1000.0f);
     }
@@ -217,7 +217,7 @@ public final class e0 implements wi.l {
             t3Var = null;
         }
         if (sharedInstance != null && t3Var != null && !sharedInstance.isHangingUp() && !t3Var.j()) {
-            TLRPC.GroupCall groupCall = t3Var.f26963b;
+            TLRPC.GroupCall groupCall = t3Var.f26950b;
             if (groupCall == null || !groupCall.rtmp_stream) {
                 return true;
             }
@@ -243,7 +243,7 @@ public final class e0 implements wi.l {
 
     @Override
     public final void U() {
-        this.f40986a = null;
+        this.f40988a = null;
         f40 f40Var = f40.C5;
         if (f40Var != null && f40Var.getWindow() != null) {
             f40Var.getWindow().getDecorView().setVisibility(0);
@@ -263,8 +263,8 @@ public final class e0 implements wi.l {
         if (sharedInstance != null && sharedInstance.getVideoState(false) != 0) {
             z10 = true;
         }
-        g.f41006a = z10;
-        this.f40987b = (a0) view;
+        g.f41008a = z10;
+        this.f40989b = (a0) view;
         f40 f40Var = f40.C5;
         if (f40Var != null) {
             f40Var.y1();
@@ -272,13 +272,13 @@ public final class e0 implements wi.l {
                 f40Var.getWindow().getDecorView().setVisibility(4);
             }
         }
-        a0 a0Var = this.f40987b;
-        if (!a0Var.f40893w) {
-            a0Var.f40893w = true;
-            a0Var.f40894x = SystemClock.elapsedRealtime();
+        a0 a0Var = this.f40989b;
+        if (!a0Var.f40895w) {
+            a0Var.f40895w = true;
+            a0Var.f40896x = SystemClock.elapsedRealtime();
             VoIPService.getSharedInstance();
             a0Var.H = g.c();
-            a0Var.f40889f.a();
+            a0Var.f40891f.a();
             a0Var.j(true);
             org.telegram.messenger.g0.h3(a0Var.J, 250L);
         }
@@ -297,12 +297,12 @@ public final class e0 implements wi.l {
 
     @Override
     public final void d(View view) {
-        g.f41006a = false;
+        g.f41008a = false;
         ((a0) view).i();
-        a0 a0Var = this.f40987b;
+        a0 a0Var = this.f40989b;
         if (a0Var == view) {
-            this.f40988c = a0Var.f40890n;
-            this.f40987b = null;
+            this.f40990c = a0Var.f40892n;
+            this.f40989b = null;
         }
         f40 f40Var = f40.C5;
         if (f40Var != null) {
@@ -373,8 +373,8 @@ public final class e0 implements wi.l {
     @Override
     public final void w(View view) {
         ((a0) view).i();
-        if (this.f40987b == view) {
-            this.f40987b = null;
+        if (this.f40989b == view) {
+            this.f40989b = null;
         }
     }
 

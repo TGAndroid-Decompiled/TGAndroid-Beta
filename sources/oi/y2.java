@@ -2,21 +2,21 @@ package oi;
 
 import android.view.View;
 public final class y2 implements Runnable {
-    public final int f22538a;
-    public final t3 f22539b;
-    public final a f22540c;
+    public final int f22541a;
+    public final t3 f22542b;
+    public final a f22543c;
 
     public y2(t3 t3Var, a aVar, int i7) {
-        this.f22538a = i7;
-        this.f22539b = t3Var;
-        this.f22540c = aVar;
+        this.f22541a = i7;
+        this.f22542b = t3Var;
+        this.f22543c = aVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f22538a) {
+        switch (this.f22541a) {
             case 0:
-                View C1 = this.f22539b.C1(this.f22540c);
+                View C1 = this.f22542b.C1(this.f22543c);
                 if (C1 instanceof a6) {
                     a6 a6Var = (a6) C1;
                     a6Var.B();
@@ -25,19 +25,19 @@ public final class y2 implements Runnable {
                 }
                 return;
             case 1:
-                this.f22539b.g3(this.f22540c);
+                this.f22542b.g3(this.f22543c);
                 return;
             case 2:
-                this.f22539b.g3(this.f22540c);
+                this.f22542b.g3(this.f22543c);
                 return;
             case 3:
-                this.f22539b.h3(this.f22540c);
+                this.f22542b.h3(this.f22543c);
                 return;
             case 4:
-                this.f22539b.g3(this.f22540c);
+                this.f22542b.g3(this.f22543c);
                 return;
             default:
-                this.f22539b.g3(this.f22540c);
+                this.f22542b.g3(this.f22543c);
                 return;
         }
     }

@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class m8 implements Runnable {
-    public final int f49779a;
-    public final j9 f49780b;
+    public final int f49783a;
+    public final j9 f49784b;
 
     public m8(j9 j9Var, int i7) {
-        this.f49779a = i7;
-        this.f49780b = j9Var;
+        this.f49783a = i7;
+        this.f49784b = j9Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f49779a) {
+        switch (this.f49783a) {
             case 0:
-                this.f49780b.m0(false);
+                this.f49784b.m0(false);
                 return;
             default:
-                this.f49780b.h0();
+                this.f49784b.h0();
                 return;
         }
     }

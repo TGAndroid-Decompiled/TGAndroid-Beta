@@ -20,7 +20,7 @@ public final class p5 extends e3 {
     public final void U0(float f10) {
         super.U0(f10);
         if (this.X1 instanceof j71) {
-            this.f30206s0.setBounds(0, (int) f10, this.f30173b.getWidth(), this.f30173b.getHeight());
+            this.f30209s0.setBounds(0, (int) f10, this.f30176b.getWidth(), this.f30176b.getHeight());
         }
     }
 
@@ -31,7 +31,7 @@ public final class p5 extends e3 {
 
     @Override
     public final int e1() {
-        return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29378d6, this.J0);
+        return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29381d6, this.J0);
     }
 
     @Override
@@ -42,11 +42,11 @@ public final class p5 extends e3 {
             if (viewArr[0] == null) {
                 jh.h hVar = new jh.h(this, this.Z1);
                 viewArr[0] = hVar;
-                this.f30173b.addView(hVar, 0, c8.ma.e(-1, 50, 80));
+                this.f30176b.addView(hVar, 0, c8.ma.e(-1, 50, 80));
             }
-            this.f30173b.setBackground(null);
-            this.f30173b.setPadding(0, 0, 0, 0);
-            this.f39539o1.setPadding(0, 0, 0, 0);
+            this.f30176b.setBackground(null);
+            this.f30176b.setPadding(0, 0, 0, 0);
+            this.f39532o1.setPadding(0, 0, 0, 0);
         }
     }
 }

@@ -11,11 +11,11 @@ import java.util.Date;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
 import org.telegram.messenger.n5;
-import org.telegram.messenger.o10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.p10;
 import org.telegram.messenger.v3;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -56,14 +56,14 @@ public final class r extends yg.c implements b6 {
         this.H = true;
         this.L = new av0(this);
         this.d.setTypeface(g0.o());
-        this.f61256f.setVisibility(8);
+        this.f61260f.setVisibility(8);
         if (z11) {
             op opVar = new op(21, context, h6Var);
             this.f1108w = opVar;
-            opVar.b(m6.B5, m6.f29451h5, m6.f29508k7);
+            opVar.b(m6.B5, m6.f29454h5, m6.f29511k7);
             opVar.setDrawUnchecked(false);
             opVar.setDrawBackgroundAsArc(3);
-            boolean z13 = gd.f24241a0;
+            boolean z13 = hd.f24444a0;
             if (z13) {
                 i12 = 5;
             } else {
@@ -81,15 +81,15 @@ public final class r extends yg.c implements b6 {
             op opVar2 = new op(21, context, h6Var);
             this.f1108w = opVar2;
             if (z12) {
-                opVar2.b(m6.i7, m6.f29488j7, m6.C5);
+                opVar2.b(m6.i7, m6.f29491j7, m6.C5);
             } else {
-                opVar2.b(m6.B5, m6.f29488j7, m6.C5);
+                opVar2.b(m6.B5, m6.f29491j7, m6.C5);
             }
             opVar2.setDrawUnchecked(true);
             opVar2.setDrawBackgroundAsArc(10);
             addView(opVar2);
             opVar2.a(false, false);
-            if (gd.f24241a0) {
+            if (hd.f24444a0) {
                 i7 = 5;
             } else {
                 i7 = 3;
@@ -104,10 +104,10 @@ public final class r extends yg.c implements b6 {
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(2131231244);
-        int i14 = m6.f29644rd;
+        int i14 = m6.f29647rd;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         t6.s(imageView, i14, h6Var, mode);
-        if (gd.f24241a0) {
+        if (hd.f24444a0) {
             i10 = 3;
         } else {
             i10 = 5;
@@ -119,7 +119,7 @@ public final class r extends yg.c implements b6 {
         imageView2.setImageResource(2131231847);
         int i15 = m6.Fi;
         t6.s(imageView2, i15, h6Var, mode);
-        boolean z14 = gd.f24241a0;
+        boolean z14 = hd.f24444a0;
         if (z14) {
             i11 = 3;
         } else {
@@ -143,7 +143,7 @@ public final class r extends yg.c implements b6 {
         imageView3.setScaleType(scaleType);
         imageView3.setImageResource(2131231916);
         t6.s(imageView3, i15, h6Var, mode);
-        addView(imageView3, ma.d(32, 32.0f, (gd.f24241a0 ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
+        addView(imageView3, ma.d(32, 32.0f, (hd.f24444a0 ? 3 : 5) | 16, 12.0f, 0.0f, 12.0f, 0.0f));
         imageView3.setVisibility(8);
     }
 
@@ -165,7 +165,7 @@ public final class r extends yg.c implements b6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(m6.f29792z9));
+        hashSet.add(Integer.valueOf(m6.f29795z9));
     }
 
     @Override
@@ -307,7 +307,7 @@ public final class r extends yg.c implements b6 {
         this.f1109x.setVisibility(8);
         this.J = chat;
         this.I = null;
-        b9 b9Var = this.f61253b;
+        b9 b9Var = this.f61257b;
         b9Var.q(chat);
         if (v3.c0(chat)) {
             f10 = 12.0f;
@@ -315,7 +315,7 @@ public final class r extends yg.c implements b6 {
             f10 = 20.0f;
         }
         int L = g0.L(f10);
-        q9 q9Var = this.f61254c;
+        q9 q9Var = this.f61258c;
         q9Var.setRoundRadius(L);
         q9Var.f(chat, b9Var);
         String str2 = chat.title;
@@ -332,17 +332,17 @@ public final class r extends yg.c implements b6 {
             } else {
                 str = "Members";
             }
-            N0 = gd.G(i7, str, new Object[0]);
+            N0 = hd.G(i7, str, new Object[0]);
         } else {
             if (V) {
                 i10 = 2131751378;
             } else {
                 i10 = 2131754876;
             }
-            N0 = gd.N0(i10, null);
+            N0 = hd.N0(i10, null);
         }
         setSubtitle(N0);
-        t6.X(this.f61255e, m6.f29636r5, this.f61252a);
+        t6.X(this.f61259e, m6.f29639r5, this.f61256a);
         if (i7 > 200) {
             f11 = 0.3f;
         } else {
@@ -370,37 +370,37 @@ public final class r extends yg.c implements b6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.L.f33637a.a();
+        this.L.f33650a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.L.f33637a.b();
+        this.L.f33650a.b();
     }
 
     public void setBoost(TL_stories.TL_myBoost tL_myBoost) {
         this.f1109x.setVisibility(8);
         this.K = tL_myBoost;
-        TLRPC.Chat O0 = mp.u1(j10.f24798t0).O0(Long.valueOf(-n5.o(tL_myBoost.peer)));
+        TLRPC.Chat O0 = np.u1(k10.f24968t0).O0(Long.valueOf(-n5.o(tL_myBoost.peer)));
         this.J = O0;
-        b9 b9Var = this.f61253b;
+        b9 b9Var = this.f61257b;
         b9Var.q(O0);
         int L = g0.L(20.0f);
-        q9 q9Var = this.f61254c;
+        q9 q9Var = this.f61258c;
         q9Var.setRoundRadius(L);
         q9Var.f(this.J, b9Var);
         String str = this.J.title;
         u3 u3Var = this.d;
         u3Var.k(str);
-        int i7 = m6.f29636r5;
-        h6 h6Var = this.f61252a;
-        m5 m5Var = this.f61255e;
+        int i7 = m6.f29639r5;
+        h6 h6Var = this.f61256a;
+        m5 m5Var = this.f61259e;
         t6.X(m5Var, i7, h6Var);
-        setSubtitle(gd.a0(null, null, 2131753658, gd.E0().o0().format(new Date(tL_myBoost.expires * 1000))));
+        setSubtitle(hd.a0(null, null, 2131753658, hd.E0().o0().format(new Date(tL_myBoost.expires * 1000))));
         int i10 = tL_myBoost.cooldown_until_date;
         if (i10 > 0) {
-            setSubtitle(gd.a0(null, null, 2131753591, f((i10 * 1000) - System.currentTimeMillis())));
+            setSubtitle(hd.a0(null, null, 2131753591, f((i10 * 1000) - System.currentTimeMillis())));
             u3Var.setAlpha(0.65f);
             m5Var.setAlpha(0.65f);
             i(false, 0.3f);
@@ -426,38 +426,38 @@ public final class r extends yg.c implements b6 {
         this.f1109x.setVisibility(8);
         this.I = user;
         this.J = null;
-        b9 b9Var = this.f61253b;
+        b9 b9Var = this.f61257b;
         b9Var.r(user);
         int L = g0.L(20.0f);
-        q9 q9Var = this.f61254c;
+        q9 q9Var = this.f61258c;
         q9Var.setRoundRadius(L);
         q9Var.f(user, b9Var);
-        String q10 = o10.q(user);
+        String q10 = p10.q(user);
         u3 u3Var = this.d;
         u3Var.k(q10);
         boolean[] zArr = this.f1107s;
         zArr[0] = false;
-        if (o10.u(user)) {
+        if (p10.u(user)) {
             int i10 = user.bot_active_users;
             if (i10 > 0) {
-                setSubtitle(gd.H(',', "BotUsers", i10));
+                setSubtitle(hd.H(',', "BotUsers", i10));
             } else {
-                setSubtitle(gd.N0(2131753153, null));
+                setSubtitle(hd.N0(2131753153, null));
             }
         } else {
-            setSubtitle(gd.d0(j10.f24798t0, user, zArr, null));
+            setSubtitle(hd.d0(k10.f24968t0, user, zArr, null));
         }
         if (zArr[0]) {
-            i7 = m6.f29559n5;
+            i7 = m6.f29562n5;
         } else {
-            i7 = m6.f29636r5;
+            i7 = m6.f29639r5;
         }
-        t6.X(this.f61255e, i7, this.f61252a);
+        t6.X(this.f61259e, i7, this.f61256a);
         op opVar = this.f1108w;
         if (opVar != null) {
             opVar.setAlpha(1.0f);
         }
-        int x02 = m6.x0(null, m6.f29792z9, false);
+        int x02 = m6.x0(null, m6.f29795z9, false);
         this.M = x02;
         u3Var.i(this.L.a(user, x02, false));
     }
@@ -468,7 +468,7 @@ public final class r extends yg.c implements b6 {
         u3 u3Var;
         int x02;
         try {
-            if (this.I != null && (av0Var = this.L) != null && (u3Var = this.d) != null && (x02 = m6.x0(null, m6.f29792z9, false)) != this.M) {
+            if (this.I != null && (av0Var = this.L) != null && (u3Var = this.d) != null && (x02 = m6.x0(null, m6.f29795z9, false)) != this.M) {
                 this.M = x02;
                 av0Var.a(this.I, x02, false);
                 u3Var.invalidate();

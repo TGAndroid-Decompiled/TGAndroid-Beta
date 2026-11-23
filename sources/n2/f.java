@@ -1,21 +1,21 @@
 package n2;
 public final class f {
     public static final f d = new Object().a();
-    public final boolean f21118a;
-    public final boolean f21119b;
-    public final boolean f21120c;
+    public final boolean f21121a;
+    public final boolean f21122b;
+    public final boolean f21123c;
 
     public f(ia.a aVar) {
-        this.f21118a = aVar.f16205a;
-        this.f21119b = aVar.f16206b;
-        this.f21120c = aVar.f16207c;
+        this.f21121a = aVar.f16208a;
+        this.f21122b = aVar.f16209b;
+        this.f21123c = aVar.f16210c;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && f.class == obj.getClass()) {
                 f fVar = (f) obj;
-                if (this.f21118a == fVar.f21118a && this.f21119b == fVar.f21119b && this.f21120c == fVar.f21120c) {
+                if (this.f21121a == fVar.f21121a && this.f21122b == fVar.f21122b && this.f21123c == fVar.f21123c) {
                     return true;
                 }
                 return false;
@@ -26,6 +26,6 @@ public final class f {
     }
 
     public final int hashCode() {
-        return ((this.f21118a ? 1 : 0) << 2) + ((this.f21119b ? 1 : 0) << 1) + (this.f21120c ? 1 : 0);
+        return ((this.f21121a ? 1 : 0) << 2) + ((this.f21122b ? 1 : 0) << 1) + (this.f21123c ? 1 : 0);
     }
 }

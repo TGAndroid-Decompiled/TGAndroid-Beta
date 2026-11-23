@@ -11,28 +11,28 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 public final class d6 extends View {
     public ValueAnimator E;
-    public final Paint f44076a;
-    public final Path f44077b;
-    public final PathMeasure f44078c;
+    public final Paint f44080a;
+    public final Path f44081b;
+    public final PathMeasure f44082c;
     public final String d;
-    public final RectF f44079e;
-    public final float[] f44080f;
+    public final RectF f44083e;
+    public final float[] f44084f;
     public final float[] h;
-    public String f44081n;
-    public float[] f44082r;
-    public float f44083s;
-    public float f44084w;
-    public float f44085x;
-    public float f44086y;
+    public String f44085n;
+    public float[] f44086r;
+    public float f44087s;
+    public float f44088w;
+    public float f44089x;
+    public float f44090y;
 
     public d6(Context context, String str) {
         super(context);
         Paint paint = new Paint(1);
-        this.f44076a = paint;
-        this.f44077b = new Path();
-        this.f44078c = new PathMeasure();
-        this.f44079e = new RectF();
-        this.f44080f = new float[2];
+        this.f44080a = paint;
+        this.f44081b = new Path();
+        this.f44082c = new PathMeasure();
+        this.f44083e = new RectF();
+        this.f44084f = new float[2];
         this.h = new float[2];
         this.d = a8.p0.s(new StringBuilder(), n6.x0(str.toUpperCase().replace('_', ' ').replace('-', ' ')), "   ·   ");
         paint.setColor(-16747826);
@@ -41,14 +41,14 @@ public final class d6 extends View {
     }
 
     public final void a() {
-        if (isAttachedToWindow() && this.f44085x > 0.0f) {
+        if (isAttachedToWindow() && this.f44089x > 0.0f) {
             ValueAnimator valueAnimator = this.E;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, this.f44085x);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, this.f44089x);
             this.E = ofFloat;
-            ofFloat.setDuration(Math.max(1L, (this.f44085x / org.telegram.messenger.g0.L(24.0f)) * 1000.0f));
+            ofFloat.setDuration(Math.max(1L, (this.f44089x / org.telegram.messenger.g0.L(24.0f)) * 1000.0f));
             this.E.setInterpolator(new LinearInterpolator());
             this.E.setRepeatCount(-1);
             this.E.addUpdateListener(new z3(this, 1));
@@ -77,26 +77,26 @@ public final class d6 extends View {
         Canvas canvas2;
         float[] fArr;
         super.onDraw(canvas);
-        if (this.f44082r != null && this.f44084w > 0.0f && this.f44085x > 0.0f) {
+        if (this.f44086r != null && this.f44088w > 0.0f && this.f44089x > 0.0f) {
             int i7 = 0;
             float f10 = 0.0f;
-            while (i7 < this.f44081n.length()) {
-                float f11 = this.f44082r[i7] * this.f44083s;
-                float f12 = ((f11 / 2.0f) + f10) - this.f44086y;
-                float f13 = this.f44084w;
+            while (i7 < this.f44085n.length()) {
+                float f11 = this.f44086r[i7] * this.f44087s;
+                float f12 = ((f11 / 2.0f) + f10) - this.f44090y;
+                float f13 = this.f44088w;
                 float f14 = f12 % f13;
                 if (f14 < 0.0f) {
                     f14 += f13;
                 }
-                if (this.f44081n.charAt(i7) != ' ') {
-                    PathMeasure pathMeasure = this.f44078c;
-                    float[] fArr2 = this.f44080f;
+                if (this.f44085n.charAt(i7) != ' ') {
+                    PathMeasure pathMeasure = this.f44082c;
+                    float[] fArr2 = this.f44084f;
                     if (pathMeasure.getPosTan(f14, fArr2, this.h)) {
                         canvas.save();
                         canvas.translate(fArr2[0], fArr2[1]);
                         canvas.rotate((float) Math.toDegrees(Math.atan2(fArr[1], fArr[0])));
                         canvas2 = canvas;
-                        canvas2.drawText(this.f44081n, i7, i7 + 1, (-this.f44082r[i7]) / 2.0f, org.telegram.messenger.g0.L(3.0f), this.f44076a);
+                        canvas2.drawText(this.f44085n, i7, i7 + 1, (-this.f44086r[i7]) / 2.0f, org.telegram.messenger.g0.L(3.0f), this.f44080a);
                         canvas2.restore();
                         f10 += f11;
                         i7++;
@@ -115,35 +115,35 @@ public final class d6 extends View {
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
         float L = org.telegram.messenger.g0.L(12.0f) + org.telegram.messenger.g0.L(266.0f);
-        RectF rectF = this.f44079e;
+        RectF rectF = this.f44083e;
         rectF.set(((i7 - org.telegram.messenger.g0.L(212.0f)) / 2.0f) - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(22.0f) - org.telegram.messenger.g0.L(12.0f), ((org.telegram.messenger.g0.L(212.0f) + i7) / 2.0f) + org.telegram.messenger.g0.L(12.0f), L);
-        Path path = this.f44077b;
+        Path path = this.f44081b;
         path.reset();
         path.addRoundRect(rectF, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f), Path.Direction.CW);
-        PathMeasure pathMeasure = this.f44078c;
+        PathMeasure pathMeasure = this.f44082c;
         pathMeasure.setPath(path, true);
-        this.f44084w = pathMeasure.getLength();
-        Paint paint = this.f44076a;
+        this.f44088w = pathMeasure.getLength();
+        Paint paint = this.f44080a;
         String str = this.d;
-        int max = Math.max(1, Math.round(this.f44084w / paint.measureText(str)));
+        int max = Math.max(1, Math.round(this.f44088w / paint.measureText(str)));
         StringBuilder sb2 = new StringBuilder(str.length() * max);
         int i13 = 0;
         for (int i14 = 0; i14 < max; i14++) {
             sb2.append(str);
         }
         String sb3 = sb2.toString();
-        this.f44081n = sb3;
-        this.f44082r = new float[sb3.length()];
+        this.f44085n = sb3;
+        this.f44086r = new float[sb3.length()];
         float f10 = 0.0f;
-        while (i13 < this.f44081n.length()) {
+        while (i13 < this.f44085n.length()) {
             int i15 = i13 + 1;
-            this.f44082r[i13] = paint.measureText(this.f44081n, i13, i15);
-            f10 += this.f44082r[i13];
+            this.f44086r[i13] = paint.measureText(this.f44085n, i13, i15);
+            f10 += this.f44086r[i13];
             i13 = i15;
         }
-        float f11 = this.f44084w;
-        this.f44083s = f11 / f10;
-        this.f44085x = f11 / max;
+        float f11 = this.f44088w;
+        this.f44087s = f11 / f10;
+        this.f44089x = f11 / max;
         a();
     }
 }

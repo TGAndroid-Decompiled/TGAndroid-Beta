@@ -1,17 +1,78 @@
 package org.telegram.messenger;
-public final class ph implements Runnable {
-    public final int f26276a;
-    public final ri f26277b;
-    public final boolean f26278c;
 
-    public ph(ri riVar, boolean z10, int i7) {
-        this.f26276a = i7;
-        this.f26277b = riVar;
-        this.f26278c = z10;
+import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class ph implements RequestDelegate {
+    public final int f26305a;
+    public final si f26306b;
+    public final int f26307c;
+
+    public ph(si siVar, int i7, int i10) {
+        this.f26305a = i10;
+        this.f26306b = siVar;
+        this.f26307c = i7;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ph.run():void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        ArrayList<TLRPC.Document> arrayList;
+        ArrayList<TLRPC.Document> arrayList2;
+        switch (this.f26305a) {
+            case 0:
+                si siVar = this.f26306b;
+                Long[] lArr = siVar.G0;
+                Long valueOf = Long.valueOf(System.currentTimeMillis() / 1000);
+                int i7 = this.f26307c;
+                lArr[i7] = valueOf;
+                if (tLObject instanceof TL_account.TL_emojiStatusesNotModified) {
+                    siVar.I0[i7] = false;
+                    return;
+                } else if (tLObject instanceof TL_account.TL_emojiStatuses) {
+                    TL_account.TL_emojiStatuses tL_emojiStatuses = (TL_account.TL_emojiStatuses) tLObject;
+                    siVar.E0[i7] = tL_emojiStatuses.hash;
+                    siVar.F0[i7] = tL_emojiStatuses.statuses;
+                    siVar.getMessagesStorage().f27250a.c(new l7(siVar, i7, tL_emojiStatuses, 8));
+                    g0.g3(new fg(siVar, 3));
+                    return;
+                } else {
+                    return;
+                }
+            case 1:
+                g0.g3(new eg(this.f26306b, tL_error, tLObject, this.f26307c, 0));
+                return;
+            case 2:
+                if (tLObject instanceof TLRPC.TL_messages_savedGifs) {
+                    arrayList = ((TLRPC.TL_messages_savedGifs) tLObject).gifs;
+                } else {
+                    arrayList = null;
+                }
+                this.f26306b.B1(this.f26307c, arrayList, true, 0, true);
+                return;
+            default:
+                int i10 = this.f26307c;
+                if (i10 != 3 && i10 != 7) {
+                    if (i10 == 2) {
+                        if (tLObject instanceof TLRPC.TL_messages_favedStickers) {
+                            arrayList2 = ((TLRPC.TL_messages_favedStickers) tLObject).stickers;
+                        }
+                        arrayList2 = null;
+                    } else {
+                        if (tLObject instanceof TLRPC.TL_messages_recentStickers) {
+                            arrayList2 = ((TLRPC.TL_messages_recentStickers) tLObject).stickers;
+                        }
+                        arrayList2 = null;
+                    }
+                } else {
+                    if (tLObject instanceof TLRPC.TL_messages_stickers) {
+                        arrayList2 = ((TLRPC.TL_messages_stickers) tLObject).stickers;
+                    }
+                    arrayList2 = null;
+                }
+                this.f26306b.B1(i10, arrayList2, false, 0, true);
+                return;
+        }
     }
 }

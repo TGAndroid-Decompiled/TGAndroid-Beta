@@ -6,8 +6,8 @@ public final class f extends q7 {
     public final boolean a(h hVar, d dVar, d dVar2) {
         synchronized (hVar) {
             try {
-                if (hVar.f4367b == dVar) {
-                    hVar.f4367b = dVar2;
+                if (hVar.f4370b == dVar) {
+                    hVar.f4370b = dVar2;
                     return true;
                 }
                 return false;
@@ -21,8 +21,8 @@ public final class f extends q7 {
     public final boolean b(h hVar, Object obj, Object obj2) {
         synchronized (hVar) {
             try {
-                if (hVar.f4366a == obj) {
-                    hVar.f4366a = obj2;
+                if (hVar.f4369a == obj) {
+                    hVar.f4369a = obj2;
                     return true;
                 }
                 return false;
@@ -36,8 +36,8 @@ public final class f extends q7 {
     public final boolean c(h hVar, g gVar, g gVar2) {
         synchronized (hVar) {
             try {
-                if (hVar.f4368c == gVar) {
-                    hVar.f4368c = gVar2;
+                if (hVar.f4371c == gVar) {
+                    hVar.f4371c = gVar2;
                     return true;
                 }
                 return false;
@@ -49,11 +49,11 @@ public final class f extends q7 {
 
     @Override
     public final void d(g gVar, g gVar2) {
-        gVar.f4363b = gVar2;
+        gVar.f4366b = gVar2;
     }
 
     @Override
     public final void e(g gVar, Thread thread) {
-        gVar.f4362a = thread;
+        gVar.f4365a = thread;
     }
 }

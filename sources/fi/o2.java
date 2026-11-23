@@ -2,25 +2,25 @@ package fi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.ef;
-import org.telegram.messenger.iw;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.yy;
+import org.telegram.messenger.az;
+import org.telegram.messenger.ff;
+import org.telegram.messenger.jw;
+import org.telegram.messenger.ls;
 import org.telegram.messenger.zy;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.si;
 public final class o2 implements si {
-    public final z3 f12363a;
+    public final z3 f12366a;
 
     public o2(z3 z3Var) {
-        this.f12363a = z3Var;
+        this.f12366a = z3Var;
     }
 
     @Override
     public final void K0() {
-        this.f12363a.L1.U();
+        this.f12366a.L1.U();
     }
 
     @Override
@@ -33,8 +33,8 @@ public final class o2 implements si {
         org.telegram.messenger.c accountInstance;
         CharSequence charSequence2;
         boolean z12;
-        z3 z3Var = this.f12363a;
-        TL_stories.StoryItem storyItem = z3Var.f12934y1.f12762a;
+        z3 z3Var = this.f12366a;
+        TL_stories.StoryItem storyItem = z3Var.f12937y1.f12765a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = z3Var.getAccountInstance();
             if (charSequence != null) {
@@ -43,8 +43,8 @@ public final class o2 implements si {
                 charSequence2 = null;
             }
             long j11 = z3Var.l1;
-            org.telegram.messenger.q5 q5Var = zy.J;
-            new Thread(new iw(null, arrayList, j11, accountInstance, charSequence2, false, null, null, null, null, z10, i7, i10, storyItem, null, j3, z11, j10, null)).start();
+            org.telegram.messenger.q5 q5Var = az.J;
+            new Thread(new jw(null, arrayList, j11, accountInstance, charSequence2, false, null, null, null, null, z10, i7, i10, storyItem, null, j3, z11, j10, null)).start();
             if (j10 <= 0) {
                 z12 = true;
             } else {
@@ -56,12 +56,12 @@ public final class o2 implements si {
 
     @Override
     public final void f0(gh ghVar) {
-        ks.f(this.f12363a.f12888m2).d(ghVar);
+        ls.f(this.f12366a.f12891m2).d(ghVar);
     }
 
     @Override
     public final boolean g0() {
-        return this.f12363a.L0();
+        return this.f12366a.L0();
     }
 
     @Override
@@ -74,10 +74,10 @@ public final class o2 implements si {
         boolean z17;
         String str;
         String str2;
-        z3 z3Var = this.f12363a;
-        if (z3Var.f12913t0.f12023n0 && (storyItem = z3Var.f12934y1.f12762a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || z3Var.f12911s2.f40386e2.getSelectedPhotos().isEmpty())) {
-                n2 n2Var = z3Var.f12911s2;
+        z3 z3Var = this.f12366a;
+        if (z3Var.f12916t0.f12026n0 && (storyItem = z3Var.f12937y1.f12765a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || z3Var.f12914s2.f40379e2.getSelectedPhotos().isEmpty())) {
+                n2 n2Var = z3Var.f12914s2;
                 if (n2Var != null) {
                     n2Var.M(i7);
                     return;
@@ -86,10 +86,10 @@ public final class o2 implements si {
             }
             boolean z18 = true;
             if (i7 != 8) {
-                z3Var.f12911s2.a(true);
+                z3Var.f12914s2.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = z3Var.f12911s2.f40386e2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = z3Var.f12911s2.f40386e2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = z3Var.f12914s2.f40379e2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = z3Var.f12914s2.f40379e2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i12 = 0;
                 int i13 = 0;
@@ -100,40 +100,40 @@ public final class o2 implements si {
                     for (int i15 = i12; i15 < min; i15++) {
                         int i16 = i14 + i15;
                         if (i16 < selectedPhotosOrder.size()) {
-                            ef efVar = (ef) selectedPhotos.get(selectedPhotosOrder.get(i16));
+                            ff ffVar = (ff) selectedPhotos.get(selectedPhotosOrder.get(i16));
                             ?? obj = new Object();
-                            boolean z19 = efVar.f27875b;
-                            if (!z19 && (str2 = efVar.h) != null) {
-                                obj.f28239c = str2;
+                            boolean z19 = ffVar.f28059b;
+                            if (!z19 && (str2 = ffVar.h) != null) {
+                                obj.f28407c = str2;
                             } else {
-                                String str3 = efVar.I;
+                                String str3 = ffVar.I;
                                 if (str3 != null) {
-                                    obj.f28239c = str3;
+                                    obj.f28407c = str3;
                                 }
                             }
-                            obj.f28240e = efVar.f27876c;
-                            obj.f28241f = efVar.f27879g;
-                            obj.f28249o = z19;
-                            CharSequence charSequence = efVar.f27874a;
+                            obj.f28408e = ffVar.f28060c;
+                            obj.f28409f = ffVar.f28063g;
+                            obj.f28417o = z19;
+                            CharSequence charSequence = ffVar.f28058a;
                             if (charSequence != null) {
                                 str = charSequence.toString();
                             } else {
                                 str = null;
                             }
                             obj.d = str;
-                            obj.f28243i = efVar.f27885n;
-                            obj.f28244j = efVar.f27889r;
-                            obj.h = efVar.f27894x;
-                            obj.f28245k = efVar.f27890s;
-                            obj.f28252r = efVar.L;
-                            obj.f28254t = zy.h(efVar.f27874a);
-                            obj.f28255u = efVar.M;
+                            obj.f28411i = ffVar.f28069n;
+                            obj.f28412j = ffVar.f28073r;
+                            obj.h = ffVar.f28078x;
+                            obj.f28413k = ffVar.f28074s;
+                            obj.f28420r = ffVar.L;
+                            obj.f28422t = az.h(ffVar.f28058a);
+                            obj.f28423u = ffVar.M;
                             arrayList.add(obj);
-                            efVar.e();
+                            ffVar.e();
                         }
                     }
                     if (i13 == 0) {
-                        z15 = ((yy) arrayList.get(i12)).f28254t;
+                        z15 = ((zy) arrayList.get(i12)).f28422t;
                     } else {
                         z15 = i12;
                     }
@@ -149,7 +149,7 @@ public final class o2 implements si {
                         z16 = true;
                         z17 = 1;
                     }
-                    zy.X(accountInstance, arrayList, j11, null, null, storyItem, null, z17, z10, null, null, z11, i10, i11, z15, null, null, 0L, false, 0L, z3Var.L1.getSendMonoForumPeerId(), z3Var.L1.getSendMessageSuggestionParams(), null, false);
+                    az.X(accountInstance, arrayList, j11, null, null, storyItem, null, z17, z10, null, null, z11, i10, i11, z15, null, null, 0L, false, 0L, z3Var.L1.getSendMonoForumPeerId(), z3Var.L1.getSendMessageSuggestionParams(), null, false);
                     i13++;
                     z18 = true;
                     selectedPhotos = hashMap;

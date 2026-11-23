@@ -7,38 +7,38 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import java.util.HashMap;
 public final class l0 {
-    public static final Object f55970g = new Object();
+    public static final Object f55974g = new Object();
     public static l0 h;
-    public static HandlerThread f55971i;
-    public final HashMap f55972a = new HashMap();
-    public final Context f55973b;
-    public volatile com.google.android.gms.internal.cast.y f55974c;
+    public static HandlerThread f55975i;
+    public final HashMap f55976a = new HashMap();
+    public final Context f55977b;
+    public volatile com.google.android.gms.internal.cast.y f55978c;
     public final w6.a d;
-    public final long f55975e;
-    public final long f55976f;
+    public final long f55979e;
+    public final long f55980f;
 
     public l0(Context context, Looper looper) {
         k0 k0Var = new k0(this);
-        this.f55973b = context.getApplicationContext();
+        this.f55977b = context.getApplicationContext();
         ?? handler = new Handler(looper, k0Var);
         Looper.getMainLooper();
-        this.f55974c = handler;
+        this.f55978c = handler;
         this.d = w6.a.a();
-        this.f55975e = 5000L;
-        this.f55976f = 300000L;
+        this.f55979e = 5000L;
+        this.f55980f = 300000L;
     }
 
     public static HandlerThread a() {
-        synchronized (f55970g) {
+        synchronized (f55974g) {
             try {
-                HandlerThread handlerThread = f55971i;
+                HandlerThread handlerThread = f55975i;
                 if (handlerThread != null) {
                     return handlerThread;
                 }
                 HandlerThread handlerThread2 = new HandlerThread("GoogleApiHandler", 9);
-                f55971i = handlerThread2;
+                f55975i = handlerThread2;
                 handlerThread2.start();
-                return f55971i;
+                return f55975i;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -47,26 +47,26 @@ public final class l0 {
 
     public final n6.a b(i0 i0Var, e0 e0Var, String str) {
         n6.a aVar;
-        HashMap hashMap = this.f55972a;
+        HashMap hashMap = this.f55976a;
         synchronized (hashMap) {
             try {
                 j0 j0Var = (j0) hashMap.get(i0Var);
                 if (j0Var == null) {
                     j0Var = new j0(this, i0Var);
-                    j0Var.f55957a.put(e0Var, e0Var);
+                    j0Var.f55961a.put(e0Var, e0Var);
                     aVar = j0Var.a(str, null);
                     hashMap.put(i0Var, j0Var);
                 } else {
-                    this.f55974c.removeMessages(0, i0Var);
-                    if (!j0Var.f55957a.containsKey(e0Var)) {
-                        j0Var.f55957a.put(e0Var, e0Var);
-                        int i7 = j0Var.f55958b;
+                    this.f55978c.removeMessages(0, i0Var);
+                    if (!j0Var.f55961a.containsKey(e0Var)) {
+                        j0Var.f55961a.put(e0Var, e0Var);
+                        int i7 = j0Var.f55962b;
                         if (i7 != 1) {
                             if (i7 == 2) {
                                 aVar = j0Var.a(str, null);
                             }
                         } else {
-                            e0Var.onServiceConnected(j0Var.f55961f, j0Var.d);
+                            e0Var.onServiceConnected(j0Var.f55965f, j0Var.d);
                         }
                         aVar = null;
                     } else {
@@ -77,8 +77,8 @@ public final class l0 {
                         throw new IllegalStateException(sb2.toString());
                     }
                 }
-                if (j0Var.f55959c) {
-                    return n6.a.f21445f;
+                if (j0Var.f55963c) {
+                    return n6.a.f21448f;
                 }
                 if (aVar == null) {
                     aVar = new n6.a(-1, null, null);
@@ -93,15 +93,15 @@ public final class l0 {
     public final void c(String str, String str2, ServiceConnection serviceConnection, boolean z10) {
         i0 i0Var = new i0(str, str2, z10);
         m.i(serviceConnection, "ServiceConnection must not be null");
-        HashMap hashMap = this.f55972a;
+        HashMap hashMap = this.f55976a;
         synchronized (hashMap) {
             try {
                 j0 j0Var = (j0) hashMap.get(i0Var);
                 if (j0Var != null) {
-                    if (j0Var.f55957a.containsKey(serviceConnection)) {
-                        j0Var.f55957a.remove(serviceConnection);
-                        if (j0Var.f55957a.isEmpty()) {
-                            this.f55974c.sendMessageDelayed(this.f55974c.obtainMessage(0, i0Var), this.f55975e);
+                    if (j0Var.f55961a.containsKey(serviceConnection)) {
+                        j0Var.f55961a.remove(serviceConnection);
+                        if (j0Var.f55961a.isEmpty()) {
+                            this.f55978c.sendMessageDelayed(this.f55978c.obtainMessage(0, i0Var), this.f55979e);
                         }
                     } else {
                         String i0Var2 = i0Var.toString();

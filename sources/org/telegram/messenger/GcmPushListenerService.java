@@ -5,7 +5,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import java.util.HashMap;
 public class GcmPushListenerService extends FirebaseMessagingService {
-    public static final int f22646n = 0;
+    public static final int f22649n = 0;
 
     @Override
     public final void c(ab.a0 a0Var) {
@@ -39,7 +39,7 @@ public class GcmPushListenerService extends FirebaseMessagingService {
             }
             parseLong = 0;
         }
-        if (s2.f26749a) {
+        if (s2.f26730a) {
             a8.b("FCM received data: " + hashMap + " from: " + string);
         }
         PushListenerController.processRemoteMessage(2, (String) hashMap.get("p"), parseLong);

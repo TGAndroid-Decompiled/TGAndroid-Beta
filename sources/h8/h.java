@@ -7,17 +7,17 @@ import c8.bc;
 import f7.t0;
 public final class h extends r6.a {
     public static final Parcelable.Creator<h> CREATOR = new t0(25);
-    public String[] f13984a;
-    public int[] f13985b;
-    public RemoteViews f13986c;
+    public String[] f13987a;
+    public int[] f13988b;
+    public RemoteViews f13989c;
     public byte[] d;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
-        bc.m(parcel, 1, this.f13984a);
-        bc.g(parcel, 2, this.f13985b);
-        bc.k(parcel, 3, this.f13986c, i7);
+        bc.m(parcel, 1, this.f13987a);
+        bc.g(parcel, 2, this.f13988b);
+        bc.k(parcel, 3, this.f13989c, i7);
         bc.c(parcel, 4, this.d);
         bc.s(parcel, r10);
     }

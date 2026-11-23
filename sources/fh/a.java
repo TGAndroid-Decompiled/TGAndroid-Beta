@@ -17,20 +17,20 @@ import org.telegram.ui.Components.voip.q1;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.bn;
 public final class a extends ViewOutlineProvider {
-    public final int f11640a;
-    public final Object f11641b;
+    public final int f11643a;
+    public final Object f11644b;
 
     public a(Object obj, int i7) {
-        this.f11640a = i7;
-        this.f11641b = obj;
+        this.f11643a = i7;
+        this.f11644b = obj;
     }
 
     @Override
     public final void getOutline(View view, Outline outline) {
         float f10;
-        int i7 = this.f11640a;
+        int i7 = this.f11643a;
         float f11 = 0.0f;
-        Object obj = this.f11641b;
+        Object obj = this.f11644b;
         switch (i7) {
             case 0:
                 ((g) obj).getOutline(outline);
@@ -51,7 +51,7 @@ public final class a extends ViewOutlineProvider {
                 return;
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                ui uiVar = chatAttachAlertPhotoLayout.f37521b;
+                ui uiVar = chatAttachAlertPhotoLayout.f37520b;
                 float f12 = uiVar.E2[1];
                 hi.j jVar = uiVar.C4;
                 if (jVar != null) {
@@ -59,25 +59,25 @@ public final class a extends ViewOutlineProvider {
                 } else {
                     f10 = 0.0f;
                 }
-                int min = (int) Math.min((uiVar.f30173b.getTranslationY() + ((f12 - f10) + chatAttachAlertPhotoLayout.X0)) - chatAttachAlertPhotoLayout.Q.getTranslationY(), view.getMeasuredHeight());
-                if (chatAttachAlertPhotoLayout.f32804c0) {
+                int min = (int) Math.min((uiVar.f30176b.getTranslationY() + ((f12 - f10) + chatAttachAlertPhotoLayout.X0)) - chatAttachAlertPhotoLayout.Q.getTranslationY(), view.getMeasuredHeight());
+                if (chatAttachAlertPhotoLayout.f32807c0) {
                     min = view.getMeasuredHeight();
-                } else if (chatAttachAlertPhotoLayout.f32808e0) {
-                    min = g0.W1(chatAttachAlertPhotoLayout.f32810f0, min, view.getMeasuredHeight());
+                } else if (chatAttachAlertPhotoLayout.f32811e0) {
+                    min = g0.W1(chatAttachAlertPhotoLayout.f32813f0, min, view.getMeasuredHeight());
                 }
-                boolean z10 = chatAttachAlertPhotoLayout.f32808e0;
+                boolean z10 = chatAttachAlertPhotoLayout.f32811e0;
                 if (z10) {
                     RectF rectF = g0.P;
-                    float f13 = chatAttachAlertPhotoLayout.f32827o1;
-                    boolean z11 = ChatAttachAlertPhotoLayout.f32795r1;
-                    float f14 = 1.0f - chatAttachAlertPhotoLayout.f32810f0;
-                    rectF.set((0.0f * f14) + f13, (f14 * chatAttachAlertPhotoLayout.f32800a0) + chatAttachAlertPhotoLayout.l1, chatAttachAlertPhotoLayout.n1, chatAttachAlertPhotoLayout.f32823m1);
+                    float f13 = chatAttachAlertPhotoLayout.f32830o1;
+                    boolean z11 = ChatAttachAlertPhotoLayout.f32798r1;
+                    float f14 = 1.0f - chatAttachAlertPhotoLayout.f32813f0;
+                    rectF.set((0.0f * f14) + f13, (f14 * chatAttachAlertPhotoLayout.f32803a0) + chatAttachAlertPhotoLayout.l1, chatAttachAlertPhotoLayout.n1, chatAttachAlertPhotoLayout.f32826m1);
                     outline.setRect((int) rectF.left, (int) rectF.top, (int) rectF.right, Math.min(min, (int) rectF.bottom));
                     return;
-                } else if (!z10 && !chatAttachAlertPhotoLayout.f32804c0) {
+                } else if (!z10 && !chatAttachAlertPhotoLayout.f32807c0) {
                     int L = g0.L(16.0f);
-                    boolean z12 = ChatAttachAlertPhotoLayout.f32795r1;
-                    outline.setRoundRect((int) 0.0f, (int) chatAttachAlertPhotoLayout.f32800a0, view.getMeasuredWidth() + L, Math.min(min, view.getMeasuredHeight()) + L, L);
+                    boolean z12 = ChatAttachAlertPhotoLayout.f32798r1;
+                    outline.setRoundRect((int) 0.0f, (int) chatAttachAlertPhotoLayout.f32803a0, view.getMeasuredWidth() + L, Math.min(min, view.getMeasuredHeight()) + L, L);
                     return;
                 } else {
                     outline.setRect(0, 0, view.getMeasuredWidth(), Math.min(min, view.getMeasuredHeight()));
@@ -88,11 +88,11 @@ public final class a extends ViewOutlineProvider {
                 if (s5Var.getTag() != null) {
                     int intValue = ((Integer) s5Var.getTag()).intValue();
                     jm jmVar = (jm) obj;
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = jmVar.f36566w;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = jmVar.f36561w;
                     if (jmVar.d && chatAttachAlertPhotoLayout2.U0 == chatAttachAlertPhotoLayout2.V0 && !chatAttachAlertPhotoLayout2.P0) {
                         intValue++;
                     }
-                    if (chatAttachAlertPhotoLayout2.f32815h1) {
+                    if (chatAttachAlertPhotoLayout2.f32818h1) {
                         intValue++;
                     }
                     if (intValue == 0) {
@@ -144,11 +144,11 @@ public final class a extends ViewOutlineProvider {
                 }
             case 8:
                 n2 n2Var = (n2) obj;
-                if (n2Var.f41211b < 1.0f) {
+                if (n2Var.f41213b < 1.0f) {
                     outline.setRect((int) n2Var.P, (int) n2Var.O, (int) (view.getMeasuredWidth() - n2Var.P), (int) (view.getMeasuredHeight() - n2Var.O));
                     return;
                 } else {
-                    outline.setRoundRect((int) n2Var.P, (int) n2Var.O, (int) (view.getMeasuredWidth() - n2Var.P), (int) (view.getMeasuredHeight() - n2Var.O), n2Var.f41211b);
+                    outline.setRoundRect((int) n2Var.P, (int) n2Var.O, (int) (view.getMeasuredWidth() - n2Var.P), (int) (view.getMeasuredHeight() - n2Var.O), n2Var.f41213b);
                     return;
                 }
             default:

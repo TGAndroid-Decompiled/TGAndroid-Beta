@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.tgnet.tl.TL_account;
 public final class ri0 extends org.telegram.ui.Components.n41 {
-    public static final int f51583b = 0;
+    public static final int f51587b = 0;
 
     static {
         org.telegram.ui.Components.n41.h(new org.telegram.ui.Components.n41());
@@ -18,18 +18,18 @@ public final class ri0 extends org.telegram.ui.Components.n41 {
         si0 si0Var = (si0) view;
         TL_account.Passkey passkey = (TL_account.Passkey) o41Var.H;
         View.OnClickListener onClickListener = o41Var.E;
-        TextView textView = si0Var.f52052n;
+        TextView textView = si0Var.f52056n;
         TextView textView2 = si0Var.h;
         org.telegram.ui.ActionBar.h6 h6Var = si0Var.d;
-        FrameLayout frameLayout = si0Var.f52050e;
-        org.telegram.ui.Components.q9 q9Var = si0Var.f52051f;
-        si0Var.f52055w = passkey.f28638id;
+        FrameLayout frameLayout = si0Var.f52054e;
+        org.telegram.ui.Components.q9 q9Var = si0Var.f52055f;
+        si0Var.f52059w = passkey.f28641id;
         long j3 = passkey.software_emoji_id;
         if (j3 != 0) {
-            q9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.p5.m(si0Var.f52049c, j3, null, 3));
+            q9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.p5.m(si0Var.f52053c, j3, null, 3));
             frameLayout.setBackground(null);
             q9Var.setColorFilter(null);
-            si0Var.f52047a = false;
+            si0Var.f52051a = false;
             q9Var.setScaleX(1.0f);
             q9Var.setScaleY(1.0f);
         } else {
@@ -43,18 +43,18 @@ public final class ri0 extends org.telegram.ui.Components.n41 {
             q9Var.setAnimatedEmojiDrawable(null);
         }
         if (TextUtils.isEmpty(passkey.name)) {
-            textView2.setText(org.telegram.messenger.gd.N0(2131747434, null));
+            textView2.setText(org.telegram.messenger.hd.N0(2131747434, null));
         } else {
             textView2.setText(passkey.name);
         }
         int i10 = passkey.last_usage_date;
         if (i10 != 0) {
-            textView.setText(org.telegram.messenger.gd.a0(null, null, 2131747440, org.telegram.messenger.gd.x(i10, false)));
+            textView.setText(org.telegram.messenger.hd.a0(null, null, 2131747440, org.telegram.messenger.hd.x(i10, false)));
         } else {
-            textView.setText(org.telegram.messenger.gd.a0(null, null, 2131747453, org.telegram.messenger.gd.x(passkey.date, false)));
+            textView.setText(org.telegram.messenger.hd.a0(null, null, 2131747453, org.telegram.messenger.hd.x(passkey.date, false)));
         }
-        si0Var.f52053r.setOnClickListener(onClickListener);
-        si0Var.f52054s = z10;
+        si0Var.f52057r.setOnClickListener(onClickListener);
+        si0Var.f52058s = z10;
         si0Var.setWillNotDraw(!z10);
     }
 

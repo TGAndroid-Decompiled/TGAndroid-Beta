@@ -11,59 +11,59 @@ public final class q1 {
     public int C;
     public int D;
     public final r1 E;
-    public int f31293a;
-    public int f31294b;
-    public int f31295c;
+    public int f31296a;
+    public int f31297b;
+    public int f31298c;
     public int d;
-    public float f31296e;
-    public int f31297f;
-    public float f31298g;
+    public float f31299e;
+    public int f31300f;
+    public float f31301g;
     public float h;
-    public boolean f31299i;
-    public int f31300j;
-    public boolean f31301k;
-    public boolean f31302l;
-    public float f31303m;
-    public float f31304n;
-    public boolean f31305o;
-    public StaticLayout f31306p;
-    public xy0 f31307q;
-    public org.telegram.ui.Components.u5 f31308r;
-    public TLRPC.PollAnswer f31309s;
-    public TLRPC.TodoItem f31310t;
-    public boolean f31311u;
+    public boolean f31302i;
+    public int f31303j;
+    public boolean f31304k;
+    public boolean f31305l;
+    public float f31306m;
+    public float f31307n;
+    public boolean f31308o;
+    public StaticLayout f31309p;
+    public xy0 f31310q;
+    public org.telegram.ui.Components.u5 f31311r;
+    public TLRPC.PollAnswer f31312s;
+    public TLRPC.TodoItem f31313t;
+    public boolean f31314u;
     public int v;
-    public Drawable f31312w;
-    public uh.b f31313x;
-    public org.telegram.ui.Components.b9 f31314y;
-    public ImageReceiver f31315z;
+    public Drawable f31315w;
+    public uh.b f31316x;
+    public org.telegram.ui.Components.b9 f31317y;
+    public ImageReceiver f31318z;
 
     public q1(r1 r1Var) {
         this.E = r1Var;
     }
 
     public final void a() {
-        ImageReceiver imageReceiver = this.f31315z;
+        ImageReceiver imageReceiver = this.f31318z;
         if (imageReceiver != null) {
             imageReceiver.P();
         }
-        uh.b bVar = this.f31313x;
+        uh.b bVar = this.f31316x;
         if (bVar != null) {
-            bVar.f59015b.a();
-            bVar.f59016c.P();
+            bVar.f59019b.a();
+            bVar.f59020c.P();
             bVar.F.e();
         }
     }
 
     public final void b() {
-        ImageReceiver imageReceiver = this.f31315z;
+        ImageReceiver imageReceiver = this.f31318z;
         if (imageReceiver != null) {
             imageReceiver.R();
         }
-        uh.b bVar = this.f31313x;
+        uh.b bVar = this.f31316x;
         if (bVar != null) {
-            bVar.f59015b.b();
-            bVar.f59016c.R();
+            bVar.f59019b.b();
+            bVar.f59020c.R();
             bVar.F.f();
         }
     }

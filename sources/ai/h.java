@@ -2,19 +2,19 @@ package ai;
 
 import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class h {
-    public static final g f1212c = new g(null, 0, null, true);
-    public final int f1213a;
-    public int f1214b = -1;
+    public static final g f1218c = new g(null, 0, null, true);
+    public final int f1219a;
+    public int f1220b = -1;
 
     public h(int i7) {
-        this.f1213a = i7;
+        this.f1219a = i7;
         try {
-            mp.u1(i7).T1().b();
+            np.u1(i7).T1().b();
         } catch (Exception unused) {
         }
     }
@@ -22,7 +22,7 @@ public final class h {
     public final void a(g gVar, String str, f fVar) {
         b();
         boolean z10 = gVar.d;
-        TL_aicompose.AiComposeTone aiComposeTone = gVar.f1202c;
+        TL_aicompose.AiComposeTone aiComposeTone = gVar.f1211c;
         if (!z10 && aiComposeTone == null) {
             org.telegram.messenger.g0.g3(new a3.f(fVar, 4));
             return;
@@ -39,21 +39,21 @@ public final class h {
         }
         boolean[] zArr = new boolean[1];
         org.telegram.messenger.g0.h3(new aa.r(this, zArr, fVar, 2), 25000L);
-        this.f1214b = ConnectionsManager.getInstance(this.f1213a).sendRequestTyped(tL_messages_composeMessageWithAI, new d3.b(1), new e(this, zArr, currentTimeMillis, fVar));
+        this.f1220b = ConnectionsManager.getInstance(this.f1219a).sendRequestTyped(tL_messages_composeMessageWithAI, new d3.b(1), new e(this, zArr, currentTimeMillis, fVar));
     }
 
     public final void b() {
-        if (this.f1214b >= 0) {
-            ConnectionsManager.getInstance(this.f1213a).cancelRequest(this.f1214b, true);
-            this.f1214b = -1;
+        if (this.f1220b >= 0) {
+            ConnectionsManager.getInstance(this.f1219a).cancelRequest(this.f1220b, true);
+            this.f1220b = -1;
         }
     }
 
     public final ArrayList c() {
         ArrayList arrayList = new ArrayList();
-        org.telegram.messenger.e T1 = mp.u1(this.f1213a).T1();
+        org.telegram.messenger.e T1 = np.u1(this.f1219a).T1();
         if (T1 != null) {
-            ArrayList arrayList2 = T1.f23639b;
+            ArrayList arrayList2 = T1.f23645b;
             int size = arrayList2.size();
             int i7 = 0;
             while (i7 < size) {

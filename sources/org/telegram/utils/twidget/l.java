@@ -4,9 +4,9 @@ import android.content.Context;
 import java.io.ByteArrayOutputStream;
 import java.util.zip.CRC32;
 public abstract class l {
-    public static int f54868b;
-    public static boolean f54869c;
-    public static final Object f54867a = new Object();
+    public static int f54872b;
+    public static boolean f54873c;
+    public static final Object f54871a = new Object();
     public static final byte[] d = {-119, 80, 78, 71, 13, 10, 26, 10};
 
     public static long b(int i7, byte[] bArr) {

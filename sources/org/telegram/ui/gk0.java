@@ -6,14 +6,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class gk0 extends FrameLayout {
-    public TextView f48129a;
-    public TextView f48130b;
-    public ImageView f48131c;
+    public TextView f48133a;
+    public TextView f48134b;
+    public ImageView f48135c;
     public boolean d;
 
     public final void a(String str, boolean z10) {
-        this.f48129a.setText(str);
-        this.f48130b.setText("");
+        this.f48133a.setText(str);
+        this.f48134b.setText("");
         this.d = z10;
         setWillNotDraw(!z10);
     }
@@ -23,7 +23,7 @@ public final class gk0 extends FrameLayout {
         float L;
         int i7;
         if (this.d) {
-            if (org.telegram.messenger.gd.f24241a0) {
+            if (org.telegram.messenger.hd.f24444a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(20.0f);
@@ -31,12 +31,12 @@ public final class gk0 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.gd.f24241a0) {
+            if (org.telegram.messenger.hd.f24444a0) {
                 i7 = org.telegram.messenger.g0.L(20.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29501k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29504k0);
         }
     }
 
@@ -47,7 +47,7 @@ public final class gk0 extends FrameLayout {
 
     public void setChecked(boolean z10) {
         int i7;
-        ImageView imageView = this.f48131c;
+        ImageView imageView = this.f48135c;
         if (z10) {
             i7 = 0;
         } else {
@@ -63,6 +63,6 @@ public final class gk0 extends FrameLayout {
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f48130b.setText(charSequence);
+        this.f48134b.setText(charSequence);
     }
 }

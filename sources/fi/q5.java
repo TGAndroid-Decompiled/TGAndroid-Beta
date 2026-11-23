@@ -17,11 +17,11 @@ import java.util.concurrent.CountDownLatch;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.ri;
-import org.telegram.messenger.tr;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
+import org.telegram.messenger.si;
+import org.telegram.messenger.ur;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -30,32 +30,32 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.s11;
 import org.telegram.ui.ut0;
 public final class q5 implements Runnable {
-    public final int f12493a;
-    public final boolean f12494b;
-    public final boolean f12495c;
+    public final int f12496a;
+    public final boolean f12497b;
+    public final boolean f12498c;
     public final Object d;
-    public final Object f12496e;
-    public final Object f12497f;
+    public final Object f12499e;
+    public final Object f12500f;
 
     public q5(p6 p6Var, boolean z10, TL_stories.TL_stories_getAllStories tL_stories_getAllStories, TLObject tLObject, boolean z11) {
-        this.f12493a = 0;
+        this.f12496a = 0;
         this.d = p6Var;
-        this.f12494b = z10;
-        this.f12496e = tL_stories_getAllStories;
-        this.f12497f = tLObject;
-        this.f12495c = z11;
+        this.f12497b = z10;
+        this.f12499e = tL_stories_getAllStories;
+        this.f12500f = tLObject;
+        this.f12498c = z11;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        x10 x10Var;
+        y10 y10Var;
         int[] iArr;
-        int i7 = this.f12493a;
-        boolean z11 = this.f12495c;
-        boolean z12 = this.f12494b;
-        Object obj = this.f12497f;
-        Object obj2 = this.f12496e;
+        int i7 = this.f12496a;
+        boolean z11 = this.f12498c;
+        boolean z12 = this.f12497b;
+        Object obj = this.f12500f;
+        Object obj2 = this.f12499e;
         Object obj3 = this.d;
         int i10 = 0;
         switch (i7) {
@@ -63,47 +63,47 @@ public final class q5 implements Runnable {
                 p6 p6Var = (p6) obj3;
                 TL_stories.TL_stories_getAllStories tL_stories_getAllStories = (TL_stories.TL_stories_getAllStories) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i11 = p6Var.f12422a;
-                SharedPreferences sharedPreferences = p6Var.f12431l;
+                int i11 = p6Var.f12425a;
+                SharedPreferences sharedPreferences = p6Var.f12434l;
                 if (z12) {
-                    p6Var.f12437r = false;
+                    p6Var.f12440r = false;
                 } else {
-                    p6Var.f12436q = false;
+                    p6Var.f12439q = false;
                 }
                 org.telegram.messenger.a8.b("StoriesController loaded stories from server state=" + tL_stories_getAllStories.state + " more=" + tL_stories_getAllStories.next + "  " + tLObject);
                 if (tLObject instanceof TL_stories.TL_stories_allStories) {
                     TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) tLObject;
-                    tr.a0(i11).m1(tL_stories_allStories.users, null, true, true);
+                    ur.a0(i11).m1(tL_stories_allStories.users, null, true, true);
                     if (!z12) {
-                        p6Var.f12440u = tL_stories_allStories.count;
-                        p6Var.f12435p = tL_stories_allStories.has_more;
-                        p6Var.f12434o = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state", p6Var.f12434o).putBoolean("last_stories_has_more", p6Var.f12435p).putInt("total_stores", p6Var.f12440u).apply();
+                        p6Var.f12443u = tL_stories_allStories.count;
+                        p6Var.f12438p = tL_stories_allStories.has_more;
+                        p6Var.f12437o = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state", p6Var.f12437o).putBoolean("last_stories_has_more", p6Var.f12438p).putInt("total_stores", p6Var.f12443u).apply();
                     } else {
                         p6Var.v = tL_stories_allStories.count;
-                        p6Var.f12444z = tL_stories_allStories.has_more;
-                        p6Var.f12443y = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", p6Var.f12443y).putBoolean("last_stories_has_more_hidden", p6Var.f12444z).putInt("total_stores_hidden", p6Var.v).apply();
+                        p6Var.f12447z = tL_stories_allStories.has_more;
+                        p6Var.f12446y = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", p6Var.f12446y).putBoolean("last_stories_has_more_hidden", p6Var.f12447z).putInt("total_stores_hidden", p6Var.v).apply();
                     }
                     p6Var.b0(tL_stories_allStories, z12, false, z11);
                     return;
                 } else if (tLObject instanceof TL_stories.TL_stories_allStoriesNotModified) {
                     if (!z12) {
-                        p6Var.f12435p = sharedPreferences.getBoolean("last_stories_has_more", false);
-                        p6Var.f12434o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state", p6Var.f12434o).apply();
+                        p6Var.f12438p = sharedPreferences.getBoolean("last_stories_has_more", false);
+                        p6Var.f12437o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state", p6Var.f12437o).apply();
                     } else {
-                        p6Var.f12444z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
-                        p6Var.f12443y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", p6Var.f12443y).apply();
+                        p6Var.f12447z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
+                        p6Var.f12446y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", p6Var.f12446y).apply();
                     }
                     if (z12) {
-                        z10 = p6Var.f12444z;
+                        z10 = p6Var.f12447z;
                     } else {
-                        z10 = p6Var.f12435p;
+                        z10 = p6Var.f12438p;
                     }
                     if (z10) {
-                        ks.f(i11).k(327, new Object[0]);
+                        ls.f(i11).k(327, new Object[0]);
                         return;
                     }
                     return;
@@ -114,9 +114,9 @@ public final class q5 implements Runnable {
                 c7 c7Var = (c7) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 ai.n nVar = (ai.n) obj;
-                int i12 = c7Var.f11854a;
-                tr trVar = c7Var.f11855b;
-                SQLiteDatabase sQLiteDatabase = trVar.f27082b;
+                int i12 = c7Var.f11857a;
+                ur urVar = c7Var.f11858b;
+                SQLiteDatabase sQLiteDatabase = urVar.f27252b;
                 int i13 = 0;
                 while (i13 < arrayList.size()) {
                     TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i13);
@@ -125,7 +125,7 @@ public final class q5 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i14 = i10; i14 < arrayList2.size(); i14++) {
                             if (arrayList2.get(i14) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f10 = c7Var.f(arrayList2.get(i14).f28670id, o4);
+                                TL_stories.StoryItem f10 = c7Var.f(arrayList2.get(i14).f28673id, o4);
                                 if (f10 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i14, f10);
                                 }
@@ -144,31 +144,31 @@ public final class q5 implements Runnable {
                         while (queryFinalized.next()) {
                             long longValue = queryFinalized.longValue(0);
                             if (longValue > 0) {
-                                TLRPC.User c22 = mp.u1(i12).c2(Long.valueOf(longValue));
+                                TLRPC.User c22 = np.u1(i12).c2(Long.valueOf(longValue));
                                 if (c22 == null) {
-                                    c22 = tr.a0(i12).j0(longValue);
+                                    c22 = ur.a0(i12).j0(longValue);
                                 }
                                 if (c22 == null || (c22.stories_hidden == z11 && !arrayList3.contains(Long.valueOf(longValue)))) {
                                     arrayList3.add(Long.valueOf(longValue));
                                 }
                             } else {
                                 long j3 = -longValue;
-                                TLRPC.Chat O0 = mp.u1(i12).O0(Long.valueOf(j3));
+                                TLRPC.Chat O0 = np.u1(i12).O0(Long.valueOf(j3));
                                 if (O0 == null) {
-                                    O0 = tr.a0(i12).O(j3);
+                                    O0 = ur.a0(i12).O(j3);
                                 }
                                 if (O0 == null || (O0.stories_hidden == z11 && !arrayList3.contains(Long.valueOf(longValue)))) {
                                     arrayList3.add(Long.valueOf(longValue));
                                 }
                             }
                         }
-                        if (org.telegram.messenger.s2.f26749a) {
+                        if (org.telegram.messenger.s2.f26730a) {
                             org.telegram.messenger.a8.b("StoriesStorage delete dialogs " + TextUtils.join(",", arrayList3));
                         }
                         Locale locale = Locale.US;
                         sQLiteDatabase.executeFast("DELETE FROM stories WHERE dialog_id IN(" + TextUtils.join(",", arrayList3) + ")").stepThis().dispose();
                     } catch (Throwable th2) {
-                        trVar.o(th2, true);
+                        urVar.o(th2, true);
                     }
                 }
                 for (int i15 = 0; i15 < arrayList.size(); i15++) {
@@ -186,16 +186,16 @@ public final class q5 implements Runnable {
                 String[] strArr = (String[]) obj;
                 final LinkedHashSet linkedHashSet = new LinkedHashSet();
                 final LinkedHashSet linkedHashSet2 = new LinkedHashSet();
-                final HashMap hashMap = ri.d0(s11Var.W).f26661r;
+                final HashMap hashMap = si.d0(s11Var.W).f26847r;
                 final ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
                 boolean d = org.telegram.messenger.j6.d(str);
                 final ArrayList arrayList6 = new ArrayList();
                 HashMap hashMap2 = new HashMap();
                 final ArrayList arrayList7 = new ArrayList();
-                final boolean z13 = this.f12494b;
-                final boolean z14 = this.f12495c;
-                x10 x10Var2 = new x10() {
+                final boolean z13 = this.f12497b;
+                final boolean z14 = this.f12498c;
+                y10 y10Var2 = new y10() {
                     @Override
                     public final void a(Object obj4) {
                         Runnable runnable = (Runnable) obj4;
@@ -226,7 +226,7 @@ public final class q5 implements Runnable {
                                 }
                                 s11Var3.A1 = true;
                                 s11Var3.z(true, z15);
-                                k01 k01Var = s11Var3.f51836g0;
+                                k01 k01Var = s11Var3.f51840g0;
                                 if (k01Var != null) {
                                     k01Var.d(true);
                                 }
@@ -255,8 +255,8 @@ public final class q5 implements Runnable {
                                     arrayList15.clear();
                                 }
                                 int i16 = 0;
-                                s11Var3.f51842j0.v0(0);
-                                int i17 = s11Var3.f51819a0;
+                                s11Var3.f51846j0.v0(0);
+                                int i17 = s11Var3.f51823a0;
                                 if (i17 == 1 || i17 == 14 || i17 == 11 || i17 == 2) {
                                     ArrayList arrayList16 = arrayList8;
                                     if (!arrayList16.isEmpty()) {
@@ -279,7 +279,7 @@ public final class q5 implements Runnable {
                                     ArrayList arrayList18 = s11Var3.C1;
                                     ?? obj5 = new Object();
                                     long longValue2 = l10.longValue();
-                                    obj5.f5505g = longValue2;
+                                    obj5.f5508g = longValue2;
                                     obj5.h = longValue2;
                                     arrayList18.add(obj5);
                                 }
@@ -295,39 +295,39 @@ public final class q5 implements Runnable {
                                     i16++;
                                     s11Var3.E1.addAll((ArrayList) obj6);
                                 }
-                                s11Var3.f51857r0.E(true ^ z16);
+                                s11Var3.f51861r0.E(true ^ z16);
                             }
                         });
                     }
                 };
-                int i16 = s11Var.f51819a0;
+                int i16 = s11Var.f51823a0;
                 if (i16 == 13) {
-                    Utilities.u(0, new x10() {
+                    Utilities.u(0, new y10() {
                         @Override
                         public final void a(Object obj4) {
                             switch (r4) {
                                 case 0:
                                     s11 s11Var2 = s11Var;
-                                    org.telegram.messenger.ri.d0(s11Var2.W).X(s11.f51816c2, str, false, new aj0(15, linkedHashSet2, (Runnable) obj4), false, false, false, false, 0);
+                                    org.telegram.messenger.si.d0(s11Var2.W).X(s11.f51820c2, str, false, new aj0(15, linkedHashSet2, (Runnable) obj4), false, false, false, false, 0);
                                     return;
                                 default:
                                     s11 s11Var3 = s11Var;
                                     String str2 = str;
-                                    org.telegram.messenger.ri d02 = org.telegram.messenger.ri.d0(s11Var3.W);
+                                    org.telegram.messenger.si d02 = org.telegram.messenger.si.d0(s11Var3.W);
                                     d01 d01Var = new d01(linkedHashSet2, (Runnable) obj4, 0);
                                     if (str2 == null) {
                                         d01Var.a(new ArrayList());
                                         return;
                                     }
-                                    Utilities.f22809g.c(new org.telegram.messenger.tl(str2, d02.u0(5), d02.f26667t0[1], d01Var, 16));
+                                    Utilities.f22812g.c(new org.telegram.messenger.ul(str2, d02.u0(5), d02.f26853t0[1], d01Var, 16));
                                     return;
                             }
                         }
-                    }, x10Var2);
+                    }, y10Var2);
                     return;
                 } else if (i16 == 14) {
                     if (d) {
-                        x10Var = new x10() {
+                        y10Var = new y10() {
                             @Override
                             public final void a(Object obj4) {
                                 ArrayList arrayList8;
@@ -335,7 +335,7 @@ public final class q5 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects G0 = org.telegram.messenger.mp.u1(s11Var.W).G0();
+                                        TLRPC.messages_AvailableEffects G0 = org.telegram.messenger.np.u1(s11Var.W).G0();
                                         if (G0 != null) {
                                             for (int i17 = 0; i17 < G0.effects.size(); i17++) {
                                                 try {
@@ -356,13 +356,13 @@ public final class q5 implements Runnable {
                                         return;
                                     default:
                                         s11 s11Var2 = s11Var;
-                                        org.telegram.messenger.ri.d0(s11Var2.W).X(s11.f51816c2, str, false, new a1.d(s11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
+                                        org.telegram.messenger.si.d0(s11Var2.W).X(s11.f51820c2, str, false, new a1.d(s11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
                                         return;
                                 }
                             }
                         };
                     } else {
-                        x10Var = new x10() {
+                        y10Var = new y10() {
                             @Override
                             public final void a(Object obj4) {
                                 ArrayList arrayList8;
@@ -370,7 +370,7 @@ public final class q5 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects G0 = org.telegram.messenger.mp.u1(s11Var.W).G0();
+                                        TLRPC.messages_AvailableEffects G0 = org.telegram.messenger.np.u1(s11Var.W).G0();
                                         if (G0 != null) {
                                             for (int i17 = 0; i17 < G0.effects.size(); i17++) {
                                                 try {
@@ -391,43 +391,43 @@ public final class q5 implements Runnable {
                                         return;
                                     default:
                                         s11 s11Var2 = s11Var;
-                                        org.telegram.messenger.ri.d0(s11Var2.W).X(s11.f51816c2, str, false, new a1.d(s11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
+                                        org.telegram.messenger.si.d0(s11Var2.W).X(s11.f51820c2, str, false, new a1.d(s11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
                                         return;
                                 }
                             }
                         };
                     }
-                    Utilities.u(0, x10Var, x10Var2);
+                    Utilities.u(0, y10Var, y10Var2);
                     return;
                 } else {
-                    Utilities.u(0, new kb(d, str, linkedHashSet, 4), new x10() {
+                    Utilities.u(0, new kb(d, str, linkedHashSet, 4), new y10() {
                         @Override
                         public final void a(Object obj4) {
                             switch (r4) {
                                 case 0:
                                     s11 s11Var2 = s11Var;
-                                    org.telegram.messenger.ri.d0(s11Var2.W).X(s11.f51816c2, str, false, new aj0(15, linkedHashSet, (Runnable) obj4), false, false, false, false, 0);
+                                    org.telegram.messenger.si.d0(s11Var2.W).X(s11.f51820c2, str, false, new aj0(15, linkedHashSet, (Runnable) obj4), false, false, false, false, 0);
                                     return;
                                 default:
                                     s11 s11Var3 = s11Var;
                                     String str2 = str;
-                                    org.telegram.messenger.ri d02 = org.telegram.messenger.ri.d0(s11Var3.W);
+                                    org.telegram.messenger.si d02 = org.telegram.messenger.si.d0(s11Var3.W);
                                     d01 d01Var = new d01(linkedHashSet, (Runnable) obj4, 0);
                                     if (str2 == null) {
                                         d01Var.a(new ArrayList());
                                         return;
                                     }
-                                    Utilities.f22809g.c(new org.telegram.messenger.tl(str2, d02.u0(5), d02.f26667t0[1], d01Var, 16));
+                                    Utilities.f22812g.c(new org.telegram.messenger.ul(str2, d02.u0(5), d02.f26853t0[1], d01Var, 16));
                                     return;
                             }
                         }
-                    }, new bi.m2(s11Var, strArr, str, linkedHashSet, 13), new ut0(s11Var, d, linkedHashSet, str, hashMap, arrayList4), new bi.m2(s11Var, str, arrayList6, hashMap2, 14), new org.telegram.ui.x(s11Var, str, arrayList7, 12), x10Var2);
+                    }, new bi.m2(s11Var, strArr, str, linkedHashSet, 13), new ut0(s11Var, d, linkedHashSet, str, hashMap, arrayList4), new bi.m2(s11Var, str, arrayList6, hashMap2, 14), new org.telegram.ui.x(s11Var, str, arrayList7, 12), y10Var2);
                     return;
                 }
             case 4:
                 p4.v vVar = (p4.v) obj;
                 p4.e0 e0Var = ((p4.n0) ((m.b3) obj3).d).h;
-                p4.i1 i1Var = e0Var.f55245t;
+                p4.i1 i1Var = e0Var.f55249t;
                 jb.b(i1Var, (p4.w) obj2);
                 int i17 = i1Var.i();
                 if (z12) {
@@ -465,11 +465,11 @@ public final class q5 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                sg.i0 i0Var = ((sg.s0) obj3).E.f57399c;
-                yt0 yt0Var = i0Var.f57267g;
-                sg.h0 h = i0Var.h(new RectF(0.0f, 0.0f, yt0Var.f42553a, yt0Var.f42554b), false, z12, z11);
+                sg.i0 i0Var = ((sg.s0) obj3).E.f57403c;
+                yt0 yt0Var = i0Var.f57271g;
+                sg.h0 h = i0Var.h(new RectF(0.0f, 0.0f, yt0Var.f42546a, yt0Var.f42547b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f57257b;
+                    bitmapArr[0] = (Bitmap) h.f57261b;
                 }
                 countDownLatch.countDown();
                 return;
@@ -477,29 +477,29 @@ public final class q5 implements Runnable {
     }
 
     public q5(Object obj, Object obj2, boolean z10, boolean z11, Object obj3, int i7) {
-        this.f12493a = i7;
+        this.f12496a = i7;
         this.d = obj;
-        this.f12496e = obj2;
-        this.f12494b = z10;
-        this.f12495c = z11;
-        this.f12497f = obj3;
+        this.f12499e = obj2;
+        this.f12497b = z10;
+        this.f12498c = z11;
+        this.f12500f = obj3;
     }
 
     public q5(ProfileActivity profileActivity, TLRPC.User user, String str, boolean z10, boolean z11) {
-        this.f12493a = 2;
+        this.f12496a = 2;
         this.d = profileActivity;
-        this.f12496e = user;
-        this.f12497f = str;
-        this.f12494b = z10;
-        this.f12495c = z11;
+        this.f12499e = user;
+        this.f12500f = str;
+        this.f12497b = z10;
+        this.f12498c = z11;
     }
 
     public q5(sg.s0 s0Var, boolean z10, boolean z11, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
-        this.f12493a = 6;
+        this.f12496a = 6;
         this.d = s0Var;
-        this.f12494b = z10;
-        this.f12495c = z11;
-        this.f12496e = bitmapArr;
-        this.f12497f = countDownLatch;
+        this.f12497b = z10;
+        this.f12498c = z11;
+        this.f12499e = bitmapArr;
+        this.f12500f = countDownLatch;
     }
 }

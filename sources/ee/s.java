@@ -1,6 +1,6 @@
 package ee;
 public abstract class s {
-    public static final int f10975a = 0;
+    public static final int f10978a = 0;
 
     static {
         Object a10;

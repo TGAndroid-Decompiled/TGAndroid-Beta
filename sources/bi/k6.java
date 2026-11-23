@@ -1,62 +1,12 @@
 package bi;
-
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.View;
-import android.widget.ScrollView;
-public final class k6 extends ScrollView {
-    public final int f3794a;
-
-    public k6(Context context, int i7) {
-        super(context);
-        this.f3794a = i7;
+public final class k6 extends org.telegram.ui.Components.p5 {
+    @Override
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(24.0f);
     }
 
     @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f3794a) {
-            case 0:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(260.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
-                return;
-            case 1:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(260.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
-                return;
-            case 2:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i10), Math.min(org.telegram.messenger.g0.f24146q.y * 0.35f, org.telegram.messenger.g0.L(400.0f))), View.MeasureSpec.getMode(i10)));
-                return;
-            case 3:
-            default:
-                super.onMeasure(i7, i10);
-                return;
-            case 4:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(320.0f)), Integer.MIN_VALUE));
-                return;
-            case 5:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(360.0f)), Integer.MIN_VALUE));
-                return;
-        }
-    }
-
-    @Override
-    public boolean onRequestFocusInDescendants(int i7, Rect rect) {
-        switch (this.f3794a) {
-            case 3:
-                return false;
-            default:
-                return super.onRequestFocusInDescendants(i7, rect);
-        }
-    }
-
-    @Override
-    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.f3794a) {
-            case 3:
-                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-                rect.top = org.telegram.messenger.g0.L(20.0f) + rect.top;
-                rect.bottom = org.telegram.messenger.g0.L(50.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-            default:
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-        }
+    public final int getIntrinsicWidth() {
+        return org.telegram.messenger.g0.L(24.0f);
     }
 }

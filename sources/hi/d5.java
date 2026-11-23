@@ -5,17 +5,17 @@ import android.text.Spanned;
 import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.bj;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.cj;
+import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.tx;
 public final class d5 implements tx {
-    public final k5 f14508a;
+    public final k5 f14511a;
 
     public d5(k5 k5Var) {
-        this.f14508a = k5Var;
+        this.f14511a = k5Var;
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class d5 implements tx {
 
     @Override
     public final boolean k() {
-        tg.b editText = ((tg.n2) this.f14508a.f14901t0).getEditText();
+        tg.b editText = ((tg.n2) this.f14511a.f14904t0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -68,7 +68,7 @@ public final class d5 implements tx {
         tg.n2 n2Var;
         tg.b editText;
         org.telegram.messenger.g6[] g6VarArr;
-        tg.j jVar = this.f14508a.f14901t0;
+        tg.j jVar = this.f14511a.f14904t0;
         if (!(jVar instanceof tg.n2) || (editText = (n2Var = (tg.n2) jVar).getEditText()) == null) {
             return;
         }
@@ -80,7 +80,7 @@ public final class d5 implements tx {
             CharSequence m10 = org.telegram.messenger.j6.m(str, n2Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (g6VarArr = (org.telegram.messenger.g6[]) ((Spanned) m10).getSpans(0, m10.length(), org.telegram.messenger.g6.class)) != null) {
                 for (org.telegram.messenger.g6 g6Var : g6VarArr) {
-                    g6Var.f24201b = 0.85f;
+                    g6Var.f24095b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -95,14 +95,14 @@ public final class d5 implements tx {
 
     @Override
     public final void n() {
-        k5 k5Var = this.f14508a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, k5Var.getContext(), k5Var.f14896q1);
-        String N0 = gd.N0(2131752056, null);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+        k5 k5Var = this.f14511a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, k5Var.getContext(), k5Var.f14899q1);
+        String N0 = hd.N0(2131752056, null);
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
         t1Var.S = N0;
-        t1Var.U = gd.N0(2131752057, null);
-        alertDialog$Builder.k(gd.N0(2131752087, null), new di.v6(this, 22));
-        alertDialog$Builder.h(gd.N0(2131752577, null), null);
+        t1Var.U = hd.N0(2131752057, null);
+        alertDialog$Builder.k(hd.N0(2131752087, null), new di.v6(this, 22));
+        alertDialog$Builder.h(hd.N0(2131752577, null), null);
         alertDialog$Builder.p();
     }
 
@@ -114,7 +114,7 @@ public final class d5 implements tx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.y5 y5Var;
-        tg.b editText = ((tg.n2) this.f14508a.f14901t0).getEditText();
+        tg.b editText = ((tg.n2) this.f14511a.f14904t0).getEditText();
         if (editText == null) {
             return;
         }
@@ -125,7 +125,7 @@ public final class d5 implements tx {
         try {
             SpannableString spannableString = new SpannableString(str);
             if (document != null) {
-                y5Var = new org.telegram.ui.Components.y5(document.f28437id, 1.0f, editText.getPaint().getFontMetricsInt());
+                y5Var = new org.telegram.ui.Components.y5(document.f28440id, 1.0f, editText.getPaint().getFontMetricsInt());
                 y5Var.document = document;
             } else {
                 y5Var = new org.telegram.ui.Components.y5(j3, 1.0f, editText.getPaint().getFontMetricsInt());
@@ -195,7 +195,7 @@ public final class d5 implements tx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, bj bjVar, boolean z10, int i7) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, cj cjVar, boolean z10, int i7) {
     }
 
     @Override

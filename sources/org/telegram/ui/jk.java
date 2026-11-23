@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class jk implements org.telegram.ui.Components.wi0 {
-    public final bn f49007a;
+    public final bn f49011a;
 
     public jk(bn bnVar) {
-        this.f49007a = bnVar;
+        this.f49011a = bnVar;
     }
 
     @Override

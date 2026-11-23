@@ -1,8 +1,9 @@
 package org.telegram.messenger;
+
+import java.util.ArrayList;
 public final class jp {
-    public int f24930a;
-    public int f24931b;
-    public int f24932c;
-    public int d;
-    public boolean f24933e;
+    public ArrayList f24896a;
+    public Integer f24897b;
+    public long f24898c;
+    public boolean d;
 }

@@ -3,12 +3,12 @@ package di;
 import android.text.SpannableString;
 import android.text.style.CharacterStyle;
 import java.util.ArrayList;
-import org.telegram.messenger.bj;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.o10;
-import org.telegram.messenger.sr;
+import org.telegram.messenger.cj;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.p10;
 import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.tr;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.a70;
@@ -28,21 +28,21 @@ import org.telegram.ui.ge;
 import org.telegram.ui.gg;
 import org.telegram.ui.hq0;
 import org.telegram.ui.ww;
-public final class n2 implements x10 {
-    public final int f9383a;
-    public final Object f9384b;
-    public final Object f9385c;
+public final class n2 implements y10 {
+    public final int f9386a;
+    public final Object f9387b;
+    public final Object f9388c;
     public final Object d;
-    public final Object f9386e;
-    public final Object f9387f;
+    public final Object f9389e;
+    public final Object f9390f;
 
     public n2(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
-        this.f9383a = i7;
-        this.f9384b = obj;
-        this.f9385c = obj2;
+        this.f9386a = i7;
+        this.f9387b = obj;
+        this.f9388c = obj2;
         this.d = obj3;
-        this.f9386e = obj4;
-        this.f9387f = obj5;
+        this.f9389e = obj4;
+        this.f9390f = obj5;
     }
 
     @Override
@@ -50,13 +50,13 @@ public final class n2 implements x10 {
         boolean z10;
         final TLRPC.UserFull userFull;
         ?? r15;
-        int i7 = this.f9383a;
+        int i7 = this.f9386a;
         String str = "";
-        Object obj2 = this.f9386e;
-        Object obj3 = this.f9387f;
+        Object obj2 = this.f9389e;
+        Object obj3 = this.f9390f;
         Object obj4 = this.d;
-        Object obj5 = this.f9385c;
-        Object obj6 = this.f9384b;
+        Object obj5 = this.f9388c;
+        Object obj6 = this.f9387b;
         int i10 = 0;
         switch (i7) {
             case 0:
@@ -67,11 +67,11 @@ public final class n2 implements x10 {
                 boolean[] zArr = (boolean[]) obj3;
                 ArrayList arrayList = (ArrayList) obj;
                 if (arrayList != null) {
-                    new h1(f6Var.getContext(), f6Var.J0, f6Var.f30170a, starGift.title, arrayList, false).show();
+                    new h1(f6Var.getContext(), f6Var.J0, f6Var.f30173a, starGift.title, arrayList, false).show();
                     z10 = false;
                 } else {
                     z10 = false;
-                    f6Var.C2(ncVarArr[0], gd.a0(null, null, 2131750029, ki.j.J0(starGiftAttribute.getRarityPermille())), false);
+                    f6Var.C2(ncVarArr[0], hd.a0(null, null, 2131750029, ki.j.J0(starGiftAttribute.getRarityPermille())), false);
                 }
                 zArr[z10 ? 1 : 0] = z10;
                 return;
@@ -86,33 +86,33 @@ public final class n2 implements x10 {
                 CharacterStyle characterStyle = (CharacterStyle) obj3;
                 final TLRPC.User user = (TLRPC.User) obj;
                 if (user != null) {
-                    userFull = bnVar.getMessagesController().d2(user.f28580id);
+                    userFull = bnVar.getMessagesController().d2(user.f28583id);
                 } else {
                     userFull = null;
                 }
                 a70 J = a70.J(bnVar, r1Var);
                 yk0 yk0Var = new yk0(bnVar.getParentActivity(), bnVar.Ba);
-                J.f33378p = new fe(yk0Var, 1);
+                J.f33391p = new fe(yk0Var, 1);
                 org.telegram.ui.x xVar = new org.telegram.ui.x(bnVar, user, str2, 3);
                 a70 K = J.K();
-                K.c(2131231240, gd.N0(2131753753, null), new hq0(J, 27), false);
+                K.c(2131231240, hd.N0(2131753753, null), new hq0(J, 27), false);
                 K.k();
-                K.c(2131232046, gd.N0(2131751705, null), new org.telegram.ui.o1(bnVar, J, str2), false);
-                K.c(2131231781, gd.N0(2131754372, null), new hq0(xVar, 28), false);
-                if (tL_contact == null && (user == null || !bnVar.getContactsController().f24596g0.containsKey(Long.valueOf(user.f28580id)))) {
-                    J.c(2131232101, gd.N0(2131754374, null), new bi.y5(J, K, 5), false);
+                K.c(2131232046, hd.N0(2131751705, null), new org.telegram.ui.o1(bnVar, J, str2), false);
+                K.c(2131231781, hd.N0(2131754372, null), new hq0(xVar, 28), false);
+                if (tL_contact == null && (user == null || !bnVar.getContactsController().f24606g0.containsKey(Long.valueOf(user.f28583id)))) {
+                    J.c(2131232101, hd.N0(2131754374, null), new bi.x5(J, K, 5), false);
                     J.k();
                 }
                 if (user == null) {
-                    J.c(2131231837, gd.N0(2131748914, null), new ge(bnVar, str2, 10), false);
-                    J.c(2131232087, gd.N0(2131743279, null), new ge(bnVar, str2, 11), false);
-                    J.c(2131232105, gd.N0(2131751748, null), new ge(bnVar, str2, 12), false);
+                    J.c(2131231837, hd.N0(2131748914, null), new ge(bnVar, str2, 10), false);
+                    J.c(2131232087, hd.N0(2131743277, null), new ge(bnVar, str2, 11), false);
+                    J.c(2131232105, hd.N0(2131751748, null), new ge(bnVar, str2, 12), false);
                     J.k();
-                    J.p(13, -1, gd.N0(2131747639, null));
+                    J.p(13, -1, hd.N0(2131747639, null));
                 } else {
-                    J.c(2131232115, gd.N0(2131745405, null), new gg(bnVar, user, 0), false);
-                    if (!o10.C(user)) {
-                        J.c(2131232085, gd.N0(2131743278, null), new Runnable() {
+                    J.c(2131232115, hd.N0(2131745405, null), new gg(bnVar, user, 0), false);
+                    if (!p10.C(user)) {
+                        J.c(2131232085, hd.N0(2131743276, null), new Runnable() {
                             @Override
                             public final void run() {
                                 boolean z11;
@@ -153,7 +153,7 @@ public final class n2 implements x10 {
                                 }
                             }
                         }, false);
-                        J.c(2131232421, gd.N0(2131743365, null), new Runnable() {
+                        J.c(2131232421, hd.N0(2131743363, null), new Runnable() {
                             @Override
                             public final void run() {
                                 boolean z11;
@@ -195,10 +195,10 @@ public final class n2 implements x10 {
                             }
                         }, false);
                     }
-                    J.c(2131232087, gd.N0(2131743279, null), new ge(bnVar, str2, 8), false);
-                    J.c(2131232105, gd.N0(2131751748, null), new ge(bnVar, str2, 9), false);
+                    J.c(2131232087, hd.N0(2131743277, null), new ge(bnVar, str2, 8), false);
+                    J.c(2131232105, hd.N0(2131751748, null), new ge(bnVar, str2, 9), false);
                     J.k();
-                    J.n(user, gd.N0(2131743303, null), new org.telegram.ui.o1(bnVar, yk0Var, user, 18));
+                    J.n(user, hd.N0(2131743301, null), new org.telegram.ui.o1(bnVar, yk0Var, user, 18));
                 }
                 yk0Var.e(J);
                 if (characterStyle instanceof u41) {
@@ -231,30 +231,30 @@ public final class n2 implements x10 {
                 bn bnVar2 = (bn) obj6;
                 TLRPC.TL_document tL_document = (TLRPC.TL_document) obj5;
                 String str3 = (String) obj4;
-                bj bjVar = (bj) obj3;
+                cj cjVar = (cj) obj3;
                 Long l10 = (Long) obj;
-                int i11 = bnVar2.f46032g4;
-                Object obj7 = this.f9386e;
+                int i11 = bnVar2.f46036g4;
+                Object obj7 = this.f9389e;
                 if (i11 == 1) {
-                    org.telegram.ui.Components.c5.J(bnVar2.getParentActivity(), bnVar2.f46099l6, new a1.d(bnVar2, tL_document, str3, obj7, 7), bnVar2.Ba);
+                    org.telegram.ui.Components.c5.J(bnVar2.getParentActivity(), bnVar2.f46103l6, new a1.d(bnVar2, tL_document, str3, obj7, 7), bnVar2.Ba);
                 } else {
-                    bnVar2.getSendMessagesHelper().v0(tL_document, str3, bnVar2.f46099l6, bnVar2.F5, bnVar2.f46110m4, null, bnVar2.D5, bjVar, true, 0, 0, false, obj7, bnVar2.Y8(), l10.longValue(), bnVar2.j9(), bnVar2.f46264y5);
+                    bnVar2.getSendMessagesHelper().v0(tL_document, str3, bnVar2.f46103l6, bnVar2.F5, bnVar2.f46114m4, null, bnVar2.D5, cjVar, true, 0, 0, false, obj7, bnVar2.Y8(), l10.longValue(), bnVar2.j9(), bnVar2.f46268y5);
                     tL_document = tL_document;
                 }
                 bnVar2.D9(false);
-                bnVar2.f45946a0.n(tL_document);
-                bnVar2.f45946a0.setFieldText("");
+                bnVar2.f45950a0.n(tL_document);
+                bnVar2.f45950a0.setFieldText("");
                 return;
             case 4:
                 ArrayList arrayList2 = (ArrayList) obj4;
                 ArrayList arrayList3 = (ArrayList) obj2;
                 ArrayList arrayList4 = (ArrayList) obj3;
                 Runnable runnable = (Runnable) obj;
-                sx sxVar = ((rx) obj6).f39358a;
-                String str4 = sxVar.f39723w;
-                ArrayList arrayList5 = sxVar.f39721r;
+                sx sxVar = ((rx) obj6).f39368a;
+                String str4 = sxVar.f39716w;
+                ArrayList arrayList5 = sxVar.f39714r;
                 ArrayList arrayList6 = sxVar.h;
-                ArrayList arrayList7 = sxVar.f39722s;
+                ArrayList arrayList7 = sxVar.f39715s;
                 ty tyVar = sxVar.G;
                 if (((String) obj5).equals(str4)) {
                     vv vvVar = tyVar.W;
@@ -267,7 +267,7 @@ public final class n2 implements x10 {
                         gxVar.setAdapter(sxVar2);
                     }
                     arrayList6.clear();
-                    arrayList6.addAll(sxVar.f39720n);
+                    arrayList6.addAll(sxVar.f39713n);
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     arrayList7.clear();
@@ -278,8 +278,8 @@ public final class n2 implements x10 {
                         Object obj8 = arrayList3.get(i12);
                         i12++;
                         mx mxVar = (mx) obj8;
-                        if (longSparseIntArray.indexOfKey(mxVar.f37659c.f28458id) < 0) {
-                            longSparseIntArray.append(mxVar.f37659c.f28458id, 1);
+                        if (longSparseIntArray.indexOfKey(mxVar.f37657c.f28461id) < 0) {
+                            longSparseIntArray.append(mxVar.f37657c.f28461id, 1);
                             arrayList7.add(mxVar);
                         }
                     }
@@ -288,8 +288,8 @@ public final class n2 implements x10 {
                         Object obj9 = arrayList4.get(i10);
                         i10++;
                         mx mxVar2 = (mx) obj9;
-                        if (longSparseIntArray.indexOfKey(mxVar2.f37659c.f28458id) < 0) {
-                            longSparseIntArray.append(mxVar2.f37659c.f28458id, 1);
+                        if (longSparseIntArray.indexOfKey(mxVar2.f37657c.f28461id) < 0) {
+                            longSparseIntArray.append(mxVar2.f37657c.f28461id, 1);
                             arrayList7.add(mxVar2);
                         }
                     }
@@ -309,7 +309,7 @@ public final class n2 implements x10 {
                 ((org.telegram.ui.ActionBar.g2) obj3).finishFragment();
                 if (wwVar != null) {
                     ArrayList arrayList8 = new ArrayList();
-                    arrayList8.add(sr.a(-l11.longValue(), 0L));
+                    arrayList8.add(tr.a(-l11.longValue(), 0L));
                     wwVar.y(cxVar, arrayList8, null, false, cxVar.L2, cxVar.M2, cxVar.N2, null);
                     return;
                 }

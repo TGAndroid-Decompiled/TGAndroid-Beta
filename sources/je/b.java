@@ -9,17 +9,17 @@ import v0.g;
 import w0.d;
 import zd.m;
 public final class b implements OnCompleteListener, g {
-    public final m f17415a;
+    public final m f17418a;
 
     public b(m mVar) {
-        this.f17415a = mVar;
+        this.f17418a = mVar;
     }
 
     @Override
     public void a(Object obj) {
         d e10 = (d) obj;
         j.e(e10, "e");
-        m mVar = this.f17415a;
+        m mVar = this.f17418a;
         if (mVar.w()) {
             mVar.resumeWith(h.a(e10));
         }
@@ -28,7 +28,7 @@ public final class b implements OnCompleteListener, g {
     @Override
     public void onComplete(Task task) {
         Exception exception = task.getException();
-        m mVar = this.f17415a;
+        m mVar = this.f17418a;
         if (exception == null) {
             if (task.isCanceled()) {
                 mVar.n(null);
@@ -45,7 +45,7 @@ public final class b implements OnCompleteListener, g {
     public void onResult(Object obj) {
         c result = (c) obj;
         j.e(result, "result");
-        m mVar = this.f17415a;
+        m mVar = this.f17418a;
         if (mVar.w()) {
             mVar.resumeWith(result);
         }

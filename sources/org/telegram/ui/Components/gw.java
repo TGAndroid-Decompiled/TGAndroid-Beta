@@ -13,7 +13,7 @@ public final class gw extends gy {
     public final void setTranslationY(float f10) {
         if (f10 != getTranslationY()) {
             super.setTranslationY(f10);
-            this.I.f40165y0.invalidate();
+            this.I.f40158y0.invalidate();
         }
     }
 }

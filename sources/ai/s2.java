@@ -1,38 +1,25 @@
 package ai;
 
-import android.view.View;
-public final class s2 implements View.OnClickListener {
-    public final int f1506a;
-    public final org.telegram.ui.ActionBar.w2[] f1507b;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import org.telegram.messenger.np;
+import org.telegram.ui.Dictation.DictationAsr;
+import org.telegram.ui.j20;
+public final class s2 {
+    public final j20 f1511a;
+    public boolean f1513c;
+    public volatile boolean d;
+    public Thread f1514e;
+    public final ConcurrentLinkedQueue f1512b = new ConcurrentLinkedQueue();
+    public long f1515f = 1;
 
-    public s2(org.telegram.ui.ActionBar.w2[] w2VarArr, int i7) {
-        this.f1506a = i7;
-        this.f1507b = w2VarArr;
+    public s2(j20 j20Var) {
+        this.f1511a = j20Var;
     }
 
-    @Override
-    public final void onClick(View view) {
-        switch (this.f1506a) {
-            case 0:
-                org.telegram.ui.ActionBar.w2 w2Var = this.f1507b[0];
-                if (w2Var != null) {
-                    w2Var.dismiss();
-                    return;
-                }
-                return;
-            case 1:
-                this.f1507b[0].dismiss();
-                return;
-            case 2:
-                org.telegram.ui.ActionBar.w2 w2Var2 = this.f1507b[0];
-                if (w2Var2 != null) {
-                    w2Var2.dismiss();
-                    return;
-                }
-                return;
-            default:
-                this.f1507b[0].dismiss();
-                return;
+    public static boolean a() {
+        if (!DictationAsr.D() || !np.g1().getBoolean("asr_live_captions", false)) {
+            return false;
         }
+        return true;
     }
 }

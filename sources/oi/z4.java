@@ -3,7 +3,7 @@ package oi;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
@@ -18,7 +18,7 @@ public abstract class z4 {
             b((TL_iv.PageBlock) obj, linkedHashSet);
         }
         ArrayList arrayList2 = new ArrayList(linkedHashSet.size());
-        mp u12 = mp.u1(i7);
+        np u12 = np.u1(i7);
         Iterator it = linkedHashSet.iterator();
         while (it.hasNext()) {
             Long l10 = (Long) it.next();

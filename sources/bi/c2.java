@@ -1,8 +1,8 @@
 package bi;
 public final class c2 {
-    public int f3451a;
-    public boolean f3452b;
-    public boolean f3453c;
+    public int f3456a;
+    public boolean f3457b;
+    public boolean f3458c;
     public Object d;
-    public Object f3454e;
+    public Object f3459e;
 }

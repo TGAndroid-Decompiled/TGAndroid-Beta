@@ -7,38 +7,38 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class j3 implements View.OnClickListener {
-    public final int f36389a = 1;
-    public final int[] f36390b;
-    public final Object f36391c;
+    public final int f36384a = 1;
+    public final int[] f36385b;
+    public final Object f36386c;
     public final Object d;
-    public final KeyEvent.Callback f36392e;
-    public final ViewGroup f36393f;
+    public final KeyEvent.Callback f36387e;
+    public final ViewGroup f36388f;
     public final Object h;
-    public final Object f36394n;
-    public final Object f36395r;
+    public final Object f36389n;
+    public final Object f36390r;
 
     public j3(FrameLayout frameLayout, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.ui.ActionBar.w2 w2Var, FrameLayout frameLayout2, int[] iArr, String[] strArr, int[] iArr2, org.telegram.messenger.camera.i iVar) {
-        this.f36391c = frameLayout;
+        this.f36386c = frameLayout;
         this.d = h6Var;
-        this.f36392e = w2Var;
-        this.f36393f = frameLayout2;
-        this.f36390b = iArr;
+        this.f36387e = w2Var;
+        this.f36388f = frameLayout2;
+        this.f36385b = iArr;
         this.h = strArr;
-        this.f36394n = iArr2;
-        this.f36395r = iVar;
+        this.f36389n = iArr2;
+        this.f36390r = iVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f36389a;
-        Object obj = this.f36395r;
-        Object obj2 = this.f36394n;
+        int i7 = this.f36384a;
+        Object obj = this.f36390r;
+        Object obj2 = this.f36389n;
         Object obj3 = this.h;
-        int[] iArr = this.f36390b;
-        ViewGroup viewGroup = this.f36393f;
-        KeyEvent.Callback callback = this.f36392e;
+        int[] iArr = this.f36385b;
+        ViewGroup viewGroup = this.f36388f;
+        KeyEvent.Callback callback = this.f36387e;
         Object obj4 = this.d;
-        Object obj5 = this.f36391c;
+        Object obj5 = this.f36386c;
         switch (i7) {
             case 0:
                 di.i0 i0Var = (di.i0) obj2;
@@ -46,14 +46,14 @@ public final class j3 implements View.OnClickListener {
                 ((boolean[]) obj5)[0] = false;
                 int c10 = (int) (c5.c(null, (tb0) obj4, (tb0) callback, (tb0) viewGroup, (tb0) obj3) / 1000);
                 int i10 = iArr[0];
-                ot otVar = (ot) i0Var.f9024c;
-                int i11 = i0Var.f9022a;
-                int i12 = i0Var.f9023b;
+                ot otVar = (ot) i0Var.f9027c;
+                int i11 = i0Var.f9025a;
+                int i12 = i0Var.f9026b;
                 Editable text = otVar.getText();
                 ?? obj6 = new Object();
-                obj6.f35335a |= 128;
-                obj6.f35336b = i11;
-                obj6.f35337c = i12;
+                obj6.f35337a |= 128;
+                obj6.f35338b = i11;
+                obj6.f35339c = i12;
                 TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
                 tL_messageEntityFormattedDate.date = c10;
                 tL_messageEntityFormattedDate.flags = i10;
@@ -66,7 +66,7 @@ public final class j3 implements View.OnClickListener {
                 if (mtVar != null) {
                     mtVar.g();
                 }
-                ((org.telegram.ui.ActionBar.w2) w4Var.f15705b).f30215y0.run();
+                ((org.telegram.ui.ActionBar.w2) w4Var.f15708b).f30218y0.run();
                 return;
             default:
                 FrameLayout frameLayout = (FrameLayout) obj5;
@@ -76,28 +76,28 @@ public final class j3 implements View.OnClickListener {
                 String[] strArr = (String[]) obj3;
                 int[] iArr2 = (int[]) obj2;
                 Runnable runnable = (Runnable) obj;
-                if (!org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24798t0).q()) {
-                    new lc(frameLayout, h6Var).Q(2131624217, 36, org.telegram.messenger.g0.x2(org.telegram.messenger.gd.N0(2131748304, null), new org.telegram.messenger.j2(23))).j();
+                if (!org.telegram.messenger.k10.i(org.telegram.messenger.k10.f24968t0).q()) {
+                    new lc(frameLayout, h6Var).Q(2131624217, 36, org.telegram.messenger.g0.x2(org.telegram.messenger.hd.N0(2131748304, null), new org.telegram.messenger.j2(23))).j();
                     return;
                 }
-                a70 G = a70.G(w2Var.f30176c, h6Var, frameLayout2);
+                a70 G = a70.G(w2Var.f30179c, h6Var, frameLayout2);
                 for (int i13 = 0; i13 < iArr.length; i13++) {
                     G.c(0, strArr[i13], new d3(iArr2, iArr[i13], runnable), false);
                 }
-                G.f33365i = 1;
+                G.f33378i = 1;
                 G.a0();
                 return;
         }
     }
 
     public j3(boolean[] zArr, tb0 tb0Var, tb0 tb0Var2, tb0 tb0Var3, tb0 tb0Var4, di.i0 i0Var, int[] iArr, hi.w4 w4Var) {
-        this.f36391c = zArr;
+        this.f36386c = zArr;
         this.d = tb0Var;
-        this.f36392e = tb0Var2;
-        this.f36393f = tb0Var3;
+        this.f36387e = tb0Var2;
+        this.f36388f = tb0Var3;
         this.h = tb0Var4;
-        this.f36394n = i0Var;
-        this.f36390b = iArr;
-        this.f36395r = w4Var;
+        this.f36389n = i0Var;
+        this.f36385b = iArr;
+        this.f36390r = w4Var;
     }
 }

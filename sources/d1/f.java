@@ -32,8 +32,8 @@ import m.z0;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.ks;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.ls;
 import org.telegram.messenger.t0;
 import org.telegram.ui.Components.i61;
 import org.telegram.ui.LaunchActivity;
@@ -41,11 +41,11 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.u9;
 import q6.m;
 public abstract class f {
-    public static int f7643a;
-    public static AtomicInteger f7644b;
-    public static boolean f7645c;
+    public static int f7646a;
+    public static AtomicInteger f7647b;
+    public static boolean f7648c;
     public static int d;
-    public static e2 f7646e;
+    public static e2 f7649e;
 
     public static void A(float f10) {
         BasePendingResult basePendingResult;
@@ -53,10 +53,10 @@ public abstract class f {
         if (e10 == null) {
             return;
         }
-        if (f7644b == null) {
-            f7644b = new AtomicInteger(0);
+        if (f7647b == null) {
+            f7647b = new AtomicInteger(0);
         }
-        f7644b.incrementAndGet();
+        f7647b.incrementAndGet();
         double d2 = f10;
         m.e("Must be called from the main thread.");
         if (!e10.w()) {
@@ -79,33 +79,33 @@ public abstract class f {
         boolean m10;
         q e10;
         long j3;
-        int i7 = f7643a;
+        int i7 = f7646a;
         if (i7 == 0) {
             PhotoViewer.p1().g3();
         } else if (i7 == 1) {
             MediaController B = MediaController.B();
-            if (B.f22768v0 != null) {
+            if (B.f22771v0 != null) {
                 B.U1 = true;
-                if (u() && ((atomicInteger = f7644b) == null || atomicInteger.get() <= 0)) {
+                if (u() && ((atomicInteger = f7647b) == null || atomicInteger.get() <= 0)) {
                     h e11 = e();
                     if (e11 == null) {
                         a10 = -1;
                     } else {
                         a10 = e11.a();
                     }
-                    long D = B.D(B.f22768v0);
+                    long D = B.D(B.f22771v0);
                     if (D >= 0 && a10 >= 0 && Math.abs(D - a10) > 1000) {
-                        fj fjVar = B.f22768v0;
-                        if ((B.f22744j0 != null || B.F0 != null) && fjVar != null && B.L(fjVar)) {
+                        gj gjVar = B.f22771v0;
+                        if ((B.f22747j0 != null || B.F0 != null) && gjVar != null && B.L(gjVar)) {
                             try {
-                                i61 i61Var = B.f22744j0;
+                                i61 i61Var = B.f22747j0;
                                 if (i61Var != null) {
                                     j3 = i61Var.U();
                                     if (j3 != -9223372036854775807L) {
-                                        fjVar.f23953b0 = Utilities.l(((float) a10) / ((float) j3));
+                                        gjVar.f24173b0 = Utilities.l(((float) a10) / ((float) j3));
                                     }
-                                    B.f22744j0.q0(a10, false);
-                                    fjVar.f23966e0 = a10;
+                                    B.f22747j0.q0(a10, false);
+                                    gjVar.f24186e0 = a10;
                                     if (!B.U1) {
                                         v(a10);
                                     }
@@ -122,7 +122,7 @@ public abstract class f {
                                     }
                                 }
                                 if (j3 != 0) {
-                                    ks.f(fjVar.K1).k(ks.f25158i2, Integer.valueOf(fjVar.e1()), Float.valueOf(Utilities.l(((float) a10) / ((float) j3))));
+                                    ls.f(gjVar.K1).k(ls.f25324i2, Integer.valueOf(gjVar.e1()), Float.valueOf(Utilities.l(((float) a10) / ((float) j3))));
                                 }
                             } catch (Exception e12) {
                                 a8.g(e12, true);
@@ -132,15 +132,15 @@ public abstract class f {
                     h e13 = e();
                     if (e13 == null) {
                         m10 = false;
-                    } else if (f7643a == 0) {
+                    } else if (f7646a == 0) {
                         m10 = !e13.l();
                     } else {
                         m10 = e13.m();
                     }
                     if (m10) {
-                        B.S(B.f22768v0);
+                        B.S(B.f22771v0);
                     } else {
-                        B.R(B.f22768v0, true);
+                        B.R(B.f22771v0, true);
                     }
                     h e14 = e();
                     float f10 = 1.0f;
@@ -172,13 +172,13 @@ public abstract class f {
     }
 
     public static Person E(j0 j0Var) {
-        Person.Builder name = new Person.Builder().setName(j0Var.f10257a);
-        IconCompat iconCompat = j0Var.f10258b;
+        Person.Builder name = new Person.Builder().setName(j0Var.f10260a);
+        IconCompat iconCompat = j0Var.f10261b;
         Icon icon = null;
         if (iconCompat != null) {
             icon = iconCompat.m(null);
         }
-        return name.setIcon(icon).setUri(j0Var.f10259c).setKey(j0Var.d).setBot(j0Var.f10260e).setImportant(j0Var.f10261f).build();
+        return name.setIcon(icon).setUri(j0Var.f10262c).setKey(j0Var.d).setBot(j0Var.f10263e).setImportant(j0Var.f10264f).build();
     }
 
     public static void a(Notification.Builder builder, Person person) {
@@ -187,14 +187,14 @@ public abstract class f {
 
     public static void b(int i7) {
         g6.a c10;
-        f7643a = i7;
-        if (!f7645c) {
+        f7646a = i7;
+        if (!f7648c) {
             try {
                 if (f() == null || (c10 = g6.a.c(f())) == null) {
                     return;
                 }
                 c10.b().a(new b7.l(i7));
-                f7645c = true;
+                f7648c = true;
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
@@ -209,7 +209,7 @@ public abstract class f {
         boolean z11;
         Context f10;
         AudioManager audioManager;
-        e2 e2Var = f7646e;
+        e2 e2Var = f7649e;
         if (e2Var != null) {
             z11 = true;
         } else {
@@ -223,14 +223,14 @@ public abstract class f {
                     ContentResolver contentResolver = f11.getContentResolver();
                     Uri uri = Settings.System.CONTENT_URI;
                     e2 e2Var2 = new e2(new Handler(), 3);
-                    f7646e = e2Var2;
+                    f7649e = e2Var2;
                     contentResolver.registerContentObserver(uri, true, e2Var2);
                     A(g());
                     audioManager.adjustStreamVolume(3, 0, 1);
                 }
             } else if (e2Var != null && (f10 = f()) != null) {
-                f10.getContentResolver().unregisterContentObserver(f7646e);
-                f7646e = null;
+                f10.getContentResolver().unregisterContentObserver(f7649e);
+                f7649e = null;
                 AudioManager audioManager2 = (AudioManager) f10.getSystemService("audio");
                 if (audioManager2 != null) {
                     audioManager2.setStreamVolume(3, d, 0);
@@ -247,7 +247,7 @@ public abstract class f {
                 g6.a c11 = g6.a.c(f());
                 if (c11 != null && (c10 = c11.b().c()) != null && c10.b()) {
                     m.e("Must be called from the main thread.");
-                    return c10.f13243j;
+                    return c10.f13246j;
                 }
             } catch (Exception e10) {
                 a8.g(e10, true);
@@ -260,7 +260,7 @@ public abstract class f {
     public static Context f() {
         LaunchActivity launchActivity = LaunchActivity.H1;
         if (launchActivity == null) {
-            return t0.f26941b;
+            return t0.f26931b;
         }
         return launchActivity;
     }
@@ -359,10 +359,10 @@ public abstract class f {
         if (e10 == null) {
             return;
         }
-        if (f7644b == null) {
-            f7644b = new AtomicInteger(0);
+        if (f7647b == null) {
+            f7647b = new AtomicInteger(0);
         }
-        f7644b.incrementAndGet();
+        f7647b.incrementAndGet();
         e10.q(new p(j3)).b(new u9(3));
     }
 
@@ -375,10 +375,10 @@ public abstract class f {
         BasePendingResult basePendingResult2;
         h e10 = e();
         if (e10 != null && z10 != e10.m()) {
-            if (f7644b == null) {
-                f7644b = new AtomicInteger(0);
+            if (f7647b == null) {
+                f7647b = new AtomicInteger(0);
             }
-            f7644b.incrementAndGet();
+            f7647b.incrementAndGet();
             if (z10) {
                 m.e("Must be called from the main thread.");
                 if (!e10.w()) {
@@ -413,10 +413,10 @@ public abstract class f {
         if (e10 == null) {
             return;
         }
-        if (f7644b == null) {
-            f7644b = new AtomicInteger(0);
+        if (f7647b == null) {
+            f7647b = new AtomicInteger(0);
         }
-        f7644b.incrementAndGet();
+        f7647b.incrementAndGet();
         double d2 = f10;
         m.e("Must be called from the main thread.");
         if (!e10.w()) {

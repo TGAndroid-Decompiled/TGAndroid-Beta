@@ -18,31 +18,31 @@ public final class i3 extends org.telegram.ui.web.v0 {
         boolean z11;
         k3 k3Var = this.U0;
         if (z10) {
-            if (k3Var.f49183r == null) {
-                h3 h3Var = k3Var.f49180e;
+            if (k3Var.f49187r == null) {
+                h3 h3Var = k3Var.f49184e;
                 b3 b3Var = new b3(k3Var.getContext());
-                k3Var.f49183r = b3Var;
+                k3Var.f49187r = b3Var;
                 h3Var.addView(b3Var, c8.ma.c(-1.0f, -1));
-                k3Var.f49183r.h.setOnClickListener(new a(k3Var, 2));
-                org.telegram.messenger.g0.X3(k3Var.f49183r, k3Var.f49182n, 1.0f, true, false);
+                k3Var.f49187r.h.setOnClickListener(new a(k3Var, 2));
+                org.telegram.messenger.g0.X3(k3Var.f49187r, k3Var.f49186n, 1.0f, true, false);
             }
-            b3 b3Var2 = k3Var.f49183r;
+            b3 b3Var2 = k3Var.f49187r;
             if (getWebView() != null) {
                 str2 = getWebView().getUrl();
             } else {
                 str2 = null;
             }
-            TextView textView = b3Var2.f45758e;
-            b3Var2.d.setText(org.telegram.messenger.gd.N0(2131742658, null));
+            TextView textView = b3Var2.f45762e;
+            b3Var2.d.setText(org.telegram.messenger.hd.N0(2131742656, null));
             String u10 = org.telegram.ui.web.v0.u(str2);
             if (u10 != null && Uri.parse(u10) != null && Uri.parse(u10).getAuthority() != null) {
-                N0 = org.telegram.messenger.gd.a0(null, null, 2131742659, Uri.parse(u10).getAuthority());
+                N0 = org.telegram.messenger.hd.a0(null, null, 2131742657, Uri.parse(u10).getAuthority());
             } else {
-                N0 = org.telegram.messenger.gd.N0(2131742661, null);
+                N0 = org.telegram.messenger.hd.N0(2131742659, null);
             }
             textView.setText(org.telegram.messenger.j6.m(org.telegram.messenger.g0.W2(N0), textView.getPaint().getFontMetricsInt(), false, null, 0));
-            b3Var2.f45759f.setText(str);
-            b3 b3Var3 = k3Var.f49183r;
+            b3Var2.f45763f.setText(str);
+            b3 b3Var3 = k3Var.f49187r;
             int i7 = org.telegram.ui.ActionBar.m6.Gl;
             if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.m6.x0(null, i7, false)) <= 0.721f) {
                 z11 = true;
@@ -50,10 +50,10 @@ public final class i3 extends org.telegram.ui.web.v0 {
                 z11 = false;
             }
             b3Var3.b(z11, false);
-            org.telegram.ui.ActionBar.t6.h(i7, k3Var.f49183r, null);
+            org.telegram.ui.ActionBar.t6.h(i7, k3Var.f49187r, null);
         }
-        b3 b3Var4 = k3Var.f49183r;
-        k3Var.f49182n = z10;
+        b3 b3Var4 = k3Var.f49187r;
+        k3Var.f49186n = z10;
         org.telegram.messenger.g0.X3(b3Var4, z10, 1.0f, true, false);
         invalidate();
     }
@@ -70,46 +70,46 @@ public final class i3 extends org.telegram.ui.web.v0 {
         boolean z13;
         boolean z14 = true;
         k3 k3Var = this.U0;
-        k3Var.f49184s = !z10;
-        k3Var.f49185w = !z11;
+        k3Var.f49188s = !z10;
+        k3Var.f49189w = !z11;
         g4 g4Var = k3Var.M;
         g4Var.g0(true);
-        if (k3Var == g4Var.f47969v0[0]) {
-            l0 l0Var = g4Var.f47957i0;
-            if (!l0Var.f53171a0 && !l0Var.U) {
-                ArticleViewer$WindowView articleViewer$WindowView = g4Var.f47955g0;
-                if (!articleViewer$WindowView.f30358e && !articleViewer$WindowView.f30359f) {
-                    if (!g4Var.H() && g4Var.f47953e0.size() <= 1) {
-                        g4Var.f47957i0.setBackButtonCached(false);
-                        g4Var.f47957i0.Q.c();
+        if (k3Var == g4Var.f47973v0[0]) {
+            l0 l0Var = g4Var.f47961i0;
+            if (!l0Var.f53175a0 && !l0Var.U) {
+                ArticleViewer$WindowView articleViewer$WindowView = g4Var.f47959g0;
+                if (!articleViewer$WindowView.f30361e && !articleViewer$WindowView.f30362f) {
+                    if (!g4Var.H() && g4Var.f47957e0.size() <= 1) {
+                        g4Var.f47961i0.setBackButtonCached(false);
+                        g4Var.f47961i0.Q.c();
                     } else {
-                        org.telegram.ui.ActionBar.x1 x1Var = g4Var.f47957i0.N;
-                        if (!k3Var.f49184s && g4Var.f47953e0.size() <= 1) {
+                        org.telegram.ui.ActionBar.x1 x1Var = g4Var.f47961i0.N;
+                        if (!k3Var.f49188s && g4Var.f47957e0.size() <= 1) {
                             f10 = 1.0f;
                         } else {
                             f10 = 0.0f;
                         }
                         x1Var.c(true, f10);
-                        l0 l0Var2 = g4Var.f47957i0;
-                        if (!k3Var.f49184s && g4Var.f47953e0.size() <= 1) {
+                        l0 l0Var2 = g4Var.f47961i0;
+                        if (!k3Var.f49188s && g4Var.f47957e0.size() <= 1) {
                             z12 = false;
                         } else {
                             z12 = true;
                         }
                         l0Var2.setBackButtonCached(z12);
-                        g4Var.f47957i0.Q.c();
+                        g4Var.f47961i0.Q.c();
                     }
-                    g4Var.f47957i0.setHasForward(k3Var.f49185w);
-                    l0 l0Var3 = g4Var.f47957i0;
-                    k3 k3Var2 = g4Var.f47969v0[0];
+                    g4Var.f47961i0.setHasForward(k3Var.f49189w);
+                    l0 l0Var3 = g4Var.f47961i0;
+                    k3 k3Var2 = g4Var.f47973v0[0];
                     if (k3Var2 != null && k3Var2.e()) {
                         z13 = true;
                     } else {
                         z13 = false;
                     }
                     l0Var3.setIsTonsite(z13);
-                    l0 l0Var4 = g4Var.f47957i0;
-                    k3 k3Var3 = g4Var.f47969v0[0];
+                    l0 l0Var4 = g4Var.f47961i0;
+                    k3 k3Var3 = g4Var.f47973v0[0];
                     if (k3Var3 == null || !k3Var3.d()) {
                         z14 = false;
                     }
@@ -121,7 +121,7 @@ public final class i3 extends org.telegram.ui.web.v0 {
 
     @Override
     public final void K(org.telegram.ui.web.s0 s0Var) {
-        this.U0.f49180e.setWebView(s0Var);
+        this.U0.f49184e.setWebView(s0Var);
     }
 
     @Override
@@ -129,7 +129,7 @@ public final class i3 extends org.telegram.ui.web.v0 {
         org.telegram.ui.web.t1 t1Var;
         k3 k3Var = this.U0;
         g4 g4Var = k3Var.M;
-        if (g4Var.f47957i0 != null && k3Var == g4Var.f47969v0[0] && (t1Var = k3Var.F) != null && t1Var.b() == null) {
+        if (g4Var.f47961i0 != null && k3Var == g4Var.f47973v0[0] && (t1Var = k3Var.F) != null && t1Var.b() == null) {
             k3Var.F.d(getWebView());
         }
         super.U(str, z10);

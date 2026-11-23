@@ -4,34 +4,34 @@ import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import java.util.WeakHashMap;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.y10;
 public class o3 {
-    public final View f15198a;
-    public View f15199b;
-    public final x10 f15200c;
+    public final View f15201a;
+    public View f15202b;
+    public final y10 f15203c;
     public boolean d;
-    public boolean f15201e;
-    public boolean f15202f;
-    public boolean f15203g;
+    public boolean f15204e;
+    public boolean f15205f;
+    public boolean f15206g;
     public final Rect h = new Rect();
-    public final bi.s1 f15204i;
-    public final m3 f15205j;
-    public int f15206k;
-    public int f15207l;
+    public final bi.s1 f15207i;
+    public final m3 f15208j;
+    public int f15209k;
+    public int f15210l;
 
-    public o3(View view, boolean z10, x10 x10Var) {
+    public o3(View view, boolean z10, y10 y10Var) {
         bi.s1 s1Var = new bi.s1(this, 1);
-        this.f15204i = s1Var;
+        this.f15207i = s1Var;
         ?? r12 = new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public final void onGlobalLayout() {
                 o3.this.d();
             }
         };
-        this.f15205j = r12;
-        this.f15198a = view;
-        this.f15200c = x10Var;
-        this.f15199b = view;
+        this.f15208j = r12;
+        this.f15201a = view;
+        this.f15203c = y10Var;
+        this.f15202b = view;
         if (view.isAttachedToWindow()) {
             view.getViewTreeObserver().addOnGlobalLayoutListener(r12);
             view.addOnLayoutChangeListener(s1Var);
@@ -40,16 +40,16 @@ public class o3 {
     }
 
     public final void a() {
-        if (this.f15201e) {
-            if (this.f15207l >= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f24141n) {
-                this.f15201e = false;
+        if (this.f15204e) {
+            if (this.f15210l >= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f24041n) {
+                this.f15204e = false;
             } else {
                 return;
             }
         }
-        x10 x10Var = this.f15200c;
-        if (x10Var != null) {
-            x10Var.a(Integer.valueOf(this.f15207l));
+        y10 y10Var = this.f15203c;
+        if (y10Var != null) {
+            y10Var.a(Integer.valueOf(this.f15210l));
         }
     }
 
@@ -59,7 +59,7 @@ public class o3 {
     }
 
     public final boolean c() {
-        if (this.f15207l <= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f24141n && !this.f15201e) {
+        if (this.f15210l <= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f24041n && !this.f15204e) {
             return false;
         }
         return true;
@@ -68,40 +68,40 @@ public class o3 {
     public final void d() {
         int i7;
         if (!this.d) {
-            boolean z10 = this.f15202f;
+            boolean z10 = this.f15205f;
             boolean z11 = false;
-            View view = this.f15198a;
+            View view = this.f15201a;
             if (z10) {
-                View view2 = this.f15199b;
+                View view2 = this.f15202b;
                 if (view2 != null) {
                     view = view2;
                 }
-                WeakHashMap weakHashMap = r0.i0.f56285a;
+                WeakHashMap weakHashMap = r0.i0.f56289a;
                 r0.l1 a10 = r0.b0.a(view);
                 if (a10 != null) {
-                    i7 = a10.f56299a.f(8).d;
+                    i7 = a10.f56303a.f(8).d;
                 } else {
                     i7 = 0;
                 }
-                this.f15207l = i7;
+                this.f15210l = i7;
             } else {
                 Rect rect = this.h;
                 view.getWindowVisibleDisplayFrame(rect);
-                View view3 = this.f15199b;
+                View view3 = this.f15202b;
                 if (view3 != null) {
                     view = view3;
                 }
-                this.f15207l = view.getHeight() - rect.bottom;
+                this.f15210l = view.getHeight() - rect.bottom;
             }
-            if (this.f15203g) {
-                this.f15207l = Math.max(0, this.f15207l - org.telegram.messenger.g0.f24141n);
+            if (this.f15206g) {
+                this.f15210l = Math.max(0, this.f15210l - org.telegram.messenger.g0.f24041n);
             }
-            int i10 = this.f15206k;
-            int i11 = this.f15207l;
+            int i10 = this.f15209k;
+            int i11 = this.f15210l;
             if (i10 != i11) {
                 z11 = true;
             }
-            this.f15206k = i11;
+            this.f15209k = i11;
             if (z11) {
                 a();
             }

@@ -1,12 +1,18 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.tl.TL_iv;
 public final class wt {
-    public final TL_iv.RichText f27788a;
-    public final int f27789b;
+    public final int f27799a;
+    public final int f27800b;
+    public final int f27801c;
+    public final int d;
+    public final int f27802e;
+    public final int f27803f;
 
-    public wt(TL_iv.RichText richText, int i7) {
-        this.f27788a = richText;
-        this.f27789b = i7;
+    public wt(int i7, int i10, int i11, int i12, int i13, int i14) {
+        this.f27799a = i7;
+        this.f27800b = i10;
+        this.f27801c = i11;
+        this.d = i12;
+        this.f27802e = i13;
+        this.f27803f = i14;
     }
 }

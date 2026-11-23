@@ -4,25 +4,25 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import java.util.ArrayList;
-import org.telegram.ui.Components.j01;
+import org.telegram.ui.Components.f21;
 import org.telegram.ui.Components.yt0;
 public final class g1 {
-    public u0 f57241a;
-    public o0 f57242b;
-    public Paint f57243c;
+    public u0 f57245a;
+    public o0 f57246b;
+    public Paint f57247c;
     public Paint d;
-    public Paint f57244e;
-    public Paint f57245f;
-    public Paint f57246g;
+    public Paint f57248e;
+    public Paint f57249f;
+    public Paint f57250g;
     public x0 h;
-    public float f57247i;
-    public float f57248j;
-    public f1 f57249k;
-    public c1 f57250l;
-    public ArrayList f57251m;
-    public ArrayList f57252n;
-    public Matrix f57253o;
-    public float[] f57254p;
+    public float f57251i;
+    public float f57252j;
+    public f1 f57253k;
+    public c1 f57254l;
+    public ArrayList f57255m;
+    public ArrayList f57256n;
+    public Matrix f57257o;
+    public float[] f57258p;
 
     public static float a(float f10, float f11, float f12, float f13, float f14, float f15) {
         float f16 = f14 - f12;
@@ -36,29 +36,29 @@ public final class g1 {
     public final void b(Canvas canvas, yt0 yt0Var, f1 f1Var) {
         Paint paint;
         Paint paint2;
-        float width = (f1Var.d / yt0Var.f42553a) * canvas.getWidth();
-        float height = (f1Var.f57236e / yt0Var.f42554b) * canvas.getHeight();
+        float width = (f1Var.d / yt0Var.f42546a) * canvas.getWidth();
+        float height = (f1Var.f57240e / yt0Var.f42547b) * canvas.getHeight();
         float L = org.telegram.messenger.g0.L(5.0f);
-        boolean z10 = f1Var.f57233a;
+        boolean z10 = f1Var.f57237a;
         if (z10) {
             paint = this.d;
         } else {
-            paint = this.f57245f;
+            paint = this.f57249f;
         }
         canvas.drawCircle(width, height, L, paint);
-        float width2 = (f1Var.d / yt0Var.f42553a) * canvas.getWidth();
-        float height2 = (f1Var.f57236e / yt0Var.f42554b) * canvas.getHeight();
+        float width2 = (f1Var.d / yt0Var.f42546a) * canvas.getWidth();
+        float height2 = (f1Var.f57240e / yt0Var.f42547b) * canvas.getHeight();
         float L2 = org.telegram.messenger.g0.L(5.0f);
         if (z10) {
-            paint2 = this.f57244e;
+            paint2 = this.f57248e;
         } else {
-            paint2 = this.f57246g;
+            paint2 = this.f57250g;
         }
         canvas.drawCircle(width2, height2, L2, paint2);
     }
 
     public final void c(float f10, float f11, boolean z10) {
-        float[] fArr = this.f57254p;
+        float[] fArr = this.f57258p;
         fArr[0] = f10;
         fArr[1] = f11;
         d(z10);
@@ -66,14 +66,14 @@ public final class g1 {
 
     public final void d(boolean z10) {
         int i7;
-        float[] fArr = this.f57254p;
+        float[] fArr = this.f57258p;
         x0 x0Var = this.h;
         if (x0Var != null) {
             float f10 = x0Var.h;
             if (f10 != 0.0f) {
-                float f11 = fArr[0] - x0Var.f57439b;
+                float f11 = fArr[0] - x0Var.f57443b;
                 fArr[0] = f11;
-                fArr[1] = fArr[1] - x0Var.f57440c;
+                fArr[1] = fArr[1] - x0Var.f57444c;
                 if (z10) {
                     i7 = -1;
                 } else {
@@ -83,35 +83,35 @@ public final class g1 {
                 float cos = (float) ((Math.cos(d) * f11) - (Math.sin(d) * fArr[1]));
                 double sin = Math.sin(d) * fArr[0];
                 x0 x0Var2 = this.h;
-                fArr[0] = cos + x0Var2.f57439b;
-                fArr[1] = ((float) i5.c.c(d, fArr[1], sin)) + x0Var2.f57440c;
+                fArr[0] = cos + x0Var2.f57443b;
+                fArr[1] = ((float) i5.c.c(d, fArr[1], sin)) + x0Var2.f57444c;
             }
         }
     }
 
     public final void e() {
         x0 x0Var;
-        u0 u0Var = this.f57241a;
+        u0 u0Var = this.f57245a;
         if (u0Var != null && u0Var.getPainting() != null && (x0Var = this.h) != null) {
-            x0Var.f57442f = u0Var.getCurrentWeight();
+            x0Var.f57446f = u0Var.getCurrentWeight();
             i0 painting = u0Var.getPainting();
             x0 x0Var2 = this.h;
             int currentColor = u0Var.getCurrentColor();
             if (x0Var2 != null) {
-                if (painting.f57277r != null) {
-                    painting.f57266f.f(new j01(painting, x0Var2, currentColor, 26));
+                if (painting.f57281r != null) {
+                    painting.f57270f.f(new f21(painting, x0Var2, currentColor, 25));
                 }
             } else {
                 painting.getClass();
             }
-            this.f57251m.clear();
-            this.f57252n.clear();
+            this.f57255m.clear();
+            this.f57256n.clear();
             this.h = null;
-            t0 t0Var = u0Var.f57397a;
+            t0 t0Var = u0Var.f57401a;
             if (t0Var != null) {
                 t0Var.n();
             }
-            u0Var.f57400e.f57430z = true;
+            u0Var.f57404e.f57434z = true;
         }
     }
 }

@@ -10,7 +10,7 @@ import java.util.Arrays;
 import q6.m;
 import sg.h0;
 public final class e extends j {
-    public static final com.google.android.gms.common.api.e f59335l = new com.google.android.gms.common.api.e("ModuleInstall.API", new a9.e(19), new Object());
+    public static final com.google.android.gms.common.api.e f59339l = new com.google.android.gms.common.api.e("ModuleInstall.API", new a9.e(19), new Object());
 
     public final Task f(n... nVarArr) {
         boolean z10;
@@ -24,14 +24,14 @@ public final class e extends j {
             m.i(nVar, "Requested API must not be null.");
         }
         a b10 = a.b(Arrays.asList(nVarArr), false);
-        if (b10.f59330a.isEmpty()) {
+        if (b10.f59334a.isEmpty()) {
             return Tasks.forResult(new u6.a(0, true));
         }
         t b11 = u.b();
         b11.d = new n6.c[]{n7.b.d};
-        b11.f6381a = 27301;
-        b11.f6382b = false;
-        b11.f6383c = new h0(7, this, b10);
+        b11.f6384a = 27301;
+        b11.f6385b = false;
+        b11.f6386c = new h0(7, this, b10);
         return e(0, b11.a());
     }
 }

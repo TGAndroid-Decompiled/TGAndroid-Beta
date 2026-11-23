@@ -2,12 +2,12 @@ package di;
 
 import android.content.Context;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.or;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.vm;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.np;
+import org.telegram.messenger.pr;
+import org.telegram.messenger.r10;
 import org.telegram.messenger.wm;
+import org.telegram.messenger.xm;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -15,39 +15,39 @@ import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.u80;
 public final class s6 implements RequestDelegate {
-    public final int f9743a = 0;
-    public final Context f9744b;
-    public final long f9745c;
+    public final int f9746a = 0;
+    public final Context f9747b;
+    public final long f9748c;
     public final Object d;
-    public final Object f9746e;
-    public final Object f9747f;
-    public final Object f9748g;
+    public final Object f9749e;
+    public final Object f9750f;
+    public final Object f9751g;
     public final Object h;
-    public final TLObject f9749i;
+    public final TLObject f9752i;
 
-    public s6(y8 y8Var, q10 q10Var, long j3, String str, Context context, org.telegram.ui.ActionBar.h6 h6Var, TLRPC.ChatInvite chatInvite, String str2) {
+    public s6(y8 y8Var, r10 r10Var, long j3, String str, Context context, org.telegram.ui.ActionBar.h6 h6Var, TLRPC.ChatInvite chatInvite, String str2) {
         this.d = y8Var;
-        this.f9746e = q10Var;
-        this.f9745c = j3;
-        this.f9747f = str;
-        this.f9744b = context;
+        this.f9749e = r10Var;
+        this.f9748c = j3;
+        this.f9750f = str;
+        this.f9747b = context;
         this.h = h6Var;
-        this.f9749i = chatInvite;
-        this.f9748g = str2;
+        this.f9752i = chatInvite;
+        this.f9751g = str2;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f9743a) {
+        switch (this.f9746a) {
             case 0:
                 final y8 y8Var = (y8) this.d;
-                final q10 q10Var = (q10) this.f9746e;
-                final String str = (String) this.f9747f;
+                final r10 r10Var = (r10) this.f9749e;
+                final String str = (String) this.f9750f;
                 final org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.h;
-                final TLRPC.ChatInvite chatInvite = (TLRPC.ChatInvite) this.f9749i;
-                final String str2 = (String) this.f9748g;
-                final long j3 = this.f9745c;
-                final Context context = this.f9744b;
+                final TLRPC.ChatInvite chatInvite = (TLRPC.ChatInvite) this.f9752i;
+                final String str2 = (String) this.f9751g;
+                final long j3 = this.f9748c;
+                final Context context = this.f9747b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -57,7 +57,7 @@ public final class s6 implements RequestDelegate {
                         u80 u80Var;
                         y8 y8Var2 = y8.this;
                         TLObject tLObject2 = tLObject;
-                        q10 q10Var2 = q10Var;
+                        r10 r10Var2 = r10Var;
                         long j11 = j3;
                         String str4 = str;
                         TLRPC.TL_error tL_error2 = tL_error;
@@ -88,71 +88,71 @@ public final class s6 implements RequestDelegate {
                                     }
                                 }
                             }
-                            q10Var2.a(Long.valueOf(j10), Boolean.TRUE);
+                            r10Var2.a(Long.valueOf(j10), Boolean.TRUE);
                             if (j10 == 0) {
-                                Y.I(2131624226, gd.N0(2131744753, null), org.telegram.messenger.g0.W2(gd.G((int) j11, "StarsSubscriptionCompletedText", str4))).j();
+                                Y.I(2131624226, hd.N0(2131744751, null), org.telegram.messenger.g0.W2(hd.G((int) j11, "StarsSubscriptionCompletedText", str4))).j();
                             }
                             LaunchActivity launchActivity = LaunchActivity.H1;
-                            if (launchActivity != null && (u80Var = launchActivity.f43149w0) != null) {
+                            if (launchActivity != null && (u80Var = launchActivity.f43153w0) != null) {
                                 u80Var.c(true);
                             }
                             y8Var2.R(true);
                             y8Var2.Q();
                         } else if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
-                            if (mp.u1(y8Var2.f10082a).f25735m7) {
-                                q10Var2.a(0L, Boolean.FALSE);
+                            if (np.u1(y8Var2.f10085a).f25906m7) {
+                                r10Var2.a(0L, Boolean.FALSE);
                                 y8.c0(context2, h6Var2);
                                 return;
                             }
                             boolean[] zArr = {false};
-                            fb fbVar = new fb(context2, h6Var2, j11, 1, chatInvite2.title, new ai.b(y8Var2, zArr, str5, chatInvite2, q10Var2), 0L);
-                            fbVar.setOnDismissListener(new n7(0, q10Var2, zArr));
+                            fb fbVar = new fb(context2, h6Var2, j11, 1, chatInvite2.title, new ai.b(y8Var2, zArr, str5, chatInvite2, r10Var2), 0L);
+                            fbVar.setOnDismissListener(new n7(0, r10Var2, zArr));
                             fbVar.show();
                         } else {
-                            q10Var2.a(0L, Boolean.FALSE);
+                            r10Var2.a(0L, Boolean.FALSE);
                             if (tL_error2 != null) {
                                 str3 = tL_error2.text;
                             } else {
                                 str3 = "FAILED_SEND_STARS";
                             }
-                            Y.Q(2131624012, 36, gd.a0(null, null, 2131743635, str3)).j();
+                            Y.Q(2131624012, 36, hd.a0(null, null, 2131743633, str3)).j();
                         }
                     }
                 });
                 return;
             default:
-                mp mpVar = (mp) this.d;
-                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) this.f9746e;
-                or orVar = (or) this.f9747f;
-                Runnable runnable = (Runnable) this.f9748g;
+                np npVar = (np) this.d;
+                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) this.f9749e;
+                pr prVar = (pr) this.f9750f;
+                Runnable runnable = (Runnable) this.f9751g;
                 org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.h;
-                TLRPC.TL_messages_migrateChat tL_messages_migrateChat = (TLRPC.TL_messages_migrateChat) this.f9749i;
-                Context context2 = this.f9744b;
+                TLRPC.TL_messages_migrateChat tL_messages_migrateChat = (TLRPC.TL_messages_migrateChat) this.f9752i;
+                Context context2 = this.f9747b;
                 if (tL_error == null) {
                     if (context2 != null) {
-                        org.telegram.messenger.g0.g3(new vm(0, context2, t1Var));
+                        org.telegram.messenger.g0.g3(new wm(0, context2, t1Var));
                     }
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    mpVar.V3(updates, false);
-                    org.telegram.messenger.g0.g3(new org.telegram.messenger.d4(orVar, updates, this.f9745c, 17));
+                    npVar.V3(updates, false);
+                    org.telegram.messenger.g0.g3(new org.telegram.messenger.d4(prVar, updates, this.f9748c, 17));
                     return;
                 }
                 if (runnable != null) {
                     runnable.run();
                 }
-                org.telegram.messenger.g0.g3(new wm(mpVar, orVar, context2, t1Var, tL_error, g2Var, tL_messages_migrateChat, 0));
+                org.telegram.messenger.g0.g3(new xm(npVar, prVar, context2, t1Var, tL_error, g2Var, tL_messages_migrateChat, 0));
                 return;
         }
     }
 
-    public s6(mp mpVar, Context context, org.telegram.ui.ActionBar.t1 t1Var, or orVar, long j3, Runnable runnable, org.telegram.ui.ActionBar.g2 g2Var, TLRPC.TL_messages_migrateChat tL_messages_migrateChat) {
-        this.d = mpVar;
-        this.f9744b = context;
-        this.f9746e = t1Var;
-        this.f9747f = orVar;
-        this.f9745c = j3;
-        this.f9748g = runnable;
+    public s6(np npVar, Context context, org.telegram.ui.ActionBar.t1 t1Var, pr prVar, long j3, Runnable runnable, org.telegram.ui.ActionBar.g2 g2Var, TLRPC.TL_messages_migrateChat tL_messages_migrateChat) {
+        this.d = npVar;
+        this.f9747b = context;
+        this.f9749e = t1Var;
+        this.f9750f = prVar;
+        this.f9748c = j3;
+        this.f9751g = runnable;
         this.h = g2Var;
-        this.f9749i = tL_messages_migrateChat;
+        this.f9752i = tL_messages_migrateChat;
     }
 }

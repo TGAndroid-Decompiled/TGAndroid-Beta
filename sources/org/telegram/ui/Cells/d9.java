@@ -7,26 +7,26 @@ import android.graphics.PorterDuff;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 public final class d9 extends FrameLayout {
-    public final ImageView f30581a;
-    public final org.telegram.ui.ActionBar.m5 f30582b;
-    public final org.telegram.ui.ActionBar.h6 f30583c;
+    public final ImageView f30584a;
+    public final org.telegram.ui.ActionBar.m5 f30585b;
+    public final org.telegram.ui.ActionBar.h6 f30586c;
     public boolean d;
 
     public d9(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.f30583c = h6Var;
+        this.f30586c = h6Var;
         org.telegram.ui.ActionBar.m5 m5Var = new org.telegram.ui.ActionBar.m5(context);
-        this.f30582b = m5Var;
-        org.telegram.ui.ActionBar.t6.X(m5Var, org.telegram.ui.ActionBar.m6.f29486j5, h6Var);
+        this.f30585b = m5Var;
+        org.telegram.ui.ActionBar.t6.X(m5Var, org.telegram.ui.ActionBar.m6.f29489j5, h6Var);
         m5Var.setTextSize(16);
         m5Var.setGravity(19);
         addView(m5Var, c8.ma.d(-1, 48.0f, 16, 22.0f, 0.0f, 56.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f30581a = imageView;
+        this.f30584a = imageView;
         org.telegram.ui.ActionBar.t6.s(imageView, org.telegram.ui.ActionBar.m6.C6, h6Var, PorterDuff.Mode.SRC_IN);
         addView(imageView, c8.ma.d(24, 24.0f, 8388629, 0.0f, 0.0f, 16.0f, 0.0f));
-        int i7 = org.telegram.ui.ActionBar.m6.f29451h5;
-        int i10 = org.telegram.ui.ActionBar.a6.f28793a;
+        int i7 = org.telegram.ui.ActionBar.m6.f29454h5;
+        int i10 = org.telegram.ui.ActionBar.a6.f28796a;
         int x02 = org.telegram.ui.ActionBar.m6.x0(null, i7, false);
         setBackground(org.telegram.ui.ActionBar.a6.d(x02, org.telegram.ui.ActionBar.a6.b(x02), new float[0]));
     }
@@ -36,14 +36,14 @@ public final class d9 extends FrameLayout {
         Paint paint;
         super.dispatchDraw(canvas);
         if (this.d) {
-            org.telegram.ui.ActionBar.h6 h6Var = this.f30583c;
+            org.telegram.ui.ActionBar.h6 h6Var = this.f30586c;
             if (h6Var != null) {
                 paint = h6Var.g("paintDivider");
             } else {
                 paint = null;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.m6.f29501k0;
+                paint = org.telegram.ui.ActionBar.m6.f29504k0;
             }
             canvas.drawLine(org.telegram.messenger.g0.L(22.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
         }

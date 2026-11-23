@@ -18,7 +18,7 @@ import java.util.Calendar;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegram.messenger.fs {
+public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegram.messenger.gs {
     public long E;
     public boolean F;
     public boolean G;
@@ -41,58 +41,58 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
     public int X;
     public final int Y;
     public boolean Z;
-    public w7 f48615a;
-    public final int f48616a0;
-    public di.b1 f48617b;
-    public final int f48618b0;
-    public v4.c0 f48619c;
-    public di.d1 f48620c0;
+    public w7 f48619a;
+    public final int f48620a0;
+    public di.b1 f48621b;
+    public final int f48622b0;
+    public v4.c0 f48623c;
+    public di.d1 f48624c0;
     public final TextPaint d;
-    public int f48621d0;
-    public final TextPaint f48622e;
-    public boolean f48623e0;
-    public final TextPaint f48624f;
-    public int f48625f0;
-    public fi.h6 f48626g0;
+    public int f48625d0;
+    public final TextPaint f48626e;
+    public boolean f48627e0;
+    public final TextPaint f48628f;
+    public int f48629f0;
+    public fi.h6 f48630g0;
     public TextView h;
-    public v7 f48627h0;
-    public int f48628i0;
-    public w0 f48629j0;
-    public hi.l5 f48630k0;
-    public View f48631l0;
+    public v7 f48631h0;
+    public int f48632i0;
+    public w0 f48633j0;
+    public hi.l5 f48634k0;
+    public View f48635l0;
     public final Path m0;
-    public TextView f48632n;
-    public final xh.f f48633n0;
-    public int f48634o0;
-    public boolean f48635p0;
-    public int f48636q0;
-    public final Paint f48637r;
-    public int f48638r0;
-    public final Paint f48639s;
-    public int f48640s0;
-    public bi.m3 f48641w;
-    public final Paint f48642x;
-    public long f48643y;
+    public TextView f48636n;
+    public final xh.f f48637n0;
+    public int f48638o0;
+    public boolean f48639p0;
+    public int f48640q0;
+    public final Paint f48641r;
+    public int f48642r0;
+    public final Paint f48643s;
+    public int f48644s0;
+    public bi.m3 f48645w;
+    public final Paint f48646x;
+    public long f48647y;
 
     public i8(int i7, int i10, Bundle bundle) {
         super(bundle);
         this.d = new TextPaint(1);
-        this.f48622e = new TextPaint(1);
-        this.f48624f = new TextPaint(1);
+        this.f48626e = new TextPaint(1);
+        this.f48628f = new TextPaint(1);
         Paint paint = new Paint(1);
-        this.f48637r = paint;
-        this.f48639s = new Paint(1);
-        this.f48642x = new Paint(1);
+        this.f48641r = paint;
+        this.f48643s = new Paint(1);
+        this.f48646x = new Paint(1);
         this.T = new SparseArray();
         this.V = 0;
         this.m0 = new Path();
-        this.f48633n0 = new xh.f();
+        this.f48637n0 = new xh.f();
         this.Y = i7;
         if (i10 != 0) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(i10 * 1000);
-            this.f48616a0 = calendar.get(1);
-            this.f48618b0 = calendar.get(2);
+            this.f48620a0 = calendar.get(1);
+            this.f48622b0 = calendar.get(2);
         }
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -112,13 +112,13 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
                     sparseArray.put(i10, sparseArray2);
                 }
                 g8 g8Var = new g8();
-                g8Var.f47991a = new org.telegram.messenger.fj(i8Var.currentAccount, tL_messages_searchResultsCalendar.messages.get(i7), false, false);
+                g8Var.f47995a = new org.telegram.messenger.gj(i8Var.currentAccount, tL_messages_searchResultsCalendar.messages.get(i7), false, false);
                 g8Var.h = (int) (calendar.getTimeInMillis() / 1000);
                 int i11 = i8Var.V + tL_messages_searchResultsCalendar.periods.get(i7).count;
                 i8Var.V = i11;
-                g8Var.f47993c = i11;
+                g8Var.f47997c = i11;
                 int i12 = calendar.get(5) - 1;
-                if (sparseArray2.get(i12, null) == null || !((g8) sparseArray2.get(i12, null)).f47996g) {
+                if (sparseArray2.get(i12, null) == null || !((g8) sparseArray2.get(i12, null)).f48000g) {
                     sparseArray2.put(i12, g8Var);
                 }
                 int i13 = i8Var.X;
@@ -128,7 +128,7 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             }
             int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
             int i14 = tL_messages_searchResultsCalendar.min_date;
-            i8Var.f48621d0 = i14;
+            i8Var.f48625d0 = i14;
             while (true) {
                 calendar.setTimeInMillis(i14 * 1000);
                 calendar.set(11, 0);
@@ -147,7 +147,7 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
                 int i16 = calendar.get(5) - 1;
                 if (sparseArray3.get(i16, null) == null) {
                     g8 g8Var2 = new g8();
-                    g8Var2.f47996g = false;
+                    g8Var2.f48000g = false;
                     g8Var2.h = (int) (calendar.getTimeInMillis() / 1000);
                     sparseArray3.put(i16, g8Var2);
                 }
@@ -155,7 +155,7 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             }
             i8Var.F = false;
             if (!tL_messages_searchResultsCalendar.messages.isEmpty()) {
-                i8Var.W = ((TLRPC.Message) i5.c.h(1, tL_messages_searchResultsCalendar.messages)).f28452id;
+                i8Var.W = ((TLRPC.Message) i5.c.h(1, tL_messages_searchResultsCalendar.messages)).f28455id;
                 i8Var.U = false;
                 i8Var.v0();
             } else {
@@ -164,7 +164,7 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             if (i8Var.Z) {
                 i8Var.G = true;
             }
-            i8Var.f48617b.invalidate();
+            i8Var.f48621b.invalidate();
             int timeInMillis = ((int) (((calendar.getTimeInMillis() / 1000) - tL_messages_searchResultsCalendar.min_date) / 2629800)) + 1;
             i8Var.M.k(0, i8Var.L);
             int i17 = i8Var.L;
@@ -203,7 +203,7 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
     }
 
     public static void h0(i8 i8Var) {
-        if (i8Var.f48641w == null) {
+        if (i8Var.f48645w == null) {
             return;
         }
         int measuredWidth = (int) (i8Var.parentLayout.getView().getMeasuredWidth() / 6.0f);
@@ -213,28 +213,28 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         canvas.scale(0.16666667f, 0.16666667f);
         i8Var.parentLayout.getView().draw(canvas);
         Utilities.stackBlurBitmap(createBitmap, Math.max(7, Math.max(measuredWidth, measuredHeight) / 180));
-        i8Var.f48641w.setBackground(new BitmapDrawable(createBitmap));
-        i8Var.f48641w.setAlpha(0.0f);
-        i8Var.f48641w.setVisibility(0);
+        i8Var.f48645w.setBackground(new BitmapDrawable(createBitmap));
+        i8Var.f48645w.setAlpha(0.0f);
+        i8Var.f48645w.setVisibility(0);
     }
 
     public final void A0(f8 f8Var, boolean z10) {
         int i7;
         int i10;
         if (this.Q != 0 && this.R != 0) {
-            if (f8Var.f47629n != null) {
+            if (f8Var.f47633n != null) {
                 if (!z10) {
-                    SparseArray sparseArray = f8Var.f47633x;
+                    SparseArray sparseArray = f8Var.f47637x;
                     for (int i11 = 0; i11 < sparseArray.size(); i11++) {
                         f8Var.c(sparseArray.keyAt(i11), 0, 0, false, false);
                     }
                 }
-                int i12 = f8Var.f47627e;
+                int i12 = f8Var.f47631e;
                 int i13 = -1;
                 int i14 = -1;
                 int i15 = 0;
                 for (int i16 = 0; i16 < f8Var.d; i16++) {
-                    g8 g8Var = (g8) f8Var.f47629n.get(i16, null);
+                    g8 g8Var = (g8) f8Var.f47633n.get(i16, null);
                     if (g8Var != null && (i10 = g8Var.h) >= this.Q && i10 <= this.R) {
                         if (i13 == -1) {
                             i13 = i12;
@@ -267,7 +267,7 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             }
             return;
         }
-        SparseArray sparseArray2 = f8Var.f47633x;
+        SparseArray sparseArray2 = f8Var.f47637x;
         for (int i18 = 0; i18 < sparseArray2.size(); i18++) {
             f8Var.c(sparseArray2.keyAt(i18), 0, 0, false, z10);
         }
@@ -279,8 +279,8 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         String N0;
         TextView textView;
         hi.l3 l3Var;
-        if (!this.f48623e0) {
-            this.simpleActionBar.setTitle(org.telegram.messenger.gd.N0(2131752630, null));
+        if (!this.f48627e0) {
+            this.simpleActionBar.setTitle(org.telegram.messenger.hd.N0(2131752630, null));
             this.I.c(true, 0.0f);
             return;
         }
@@ -291,8 +291,8 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         } else {
             abs = (Math.abs(i7 - i10) / 86400) + 1;
         }
-        boolean z11 = this.f48635p0;
-        int i11 = this.f48634o0;
+        boolean z11 = this.f48639p0;
+        int i11 = this.f48638o0;
         if (abs == i11 && z11 == this.H) {
             return;
         }
@@ -301,31 +301,31 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         } else {
             z10 = false;
         }
-        this.f48634o0 = abs;
+        this.f48638o0 = abs;
         boolean z12 = this.H;
-        this.f48635p0 = z12;
+        this.f48639p0 = z12;
         float f10 = 1.0f;
         if (abs > 0) {
-            N0 = org.telegram.messenger.gd.G(abs, "Days", new Object[0]);
+            N0 = org.telegram.messenger.hd.G(abs, "Days", new Object[0]);
             this.I.c(true, 1.0f);
         } else if (z12) {
-            N0 = org.telegram.messenger.gd.N0(2131745464, null);
+            N0 = org.telegram.messenger.hd.N0(2131745464, null);
             this.I.c(true, 1.0f);
         } else {
-            N0 = org.telegram.messenger.gd.N0(2131752630, null);
+            N0 = org.telegram.messenger.hd.N0(2131752630, null);
             this.I.c(true, 0.0f);
         }
         String str = N0;
         if (abs > 1) {
-            this.f48632n.setText(org.telegram.messenger.gd.a0("ClearHistoryForTheseDays", null, 2131752075, new Object[0]));
+            this.f48636n.setText(org.telegram.messenger.hd.a0("ClearHistoryForTheseDays", null, 2131752075, new Object[0]));
         } else if (abs > 0 || this.H) {
-            this.f48632n.setText(org.telegram.messenger.gd.a0("ClearHistoryForThisDay", null, 2131752074, new Object[0]));
+            this.f48636n.setText(org.telegram.messenger.hd.a0("ClearHistoryForThisDay", null, 2131752074, new Object[0]));
         }
-        di.d1 d1Var = this.f48620c0;
+        di.d1 d1Var = this.f48624c0;
         if (abs <= 0 && !this.H) {
             textView = this.h;
         } else {
-            textView = this.f48632n;
+            textView = this.f48636n;
         }
         d1Var.a(textView, true);
         org.telegram.ui.ActionBar.z4 z4Var = this.simpleActionBar;
@@ -341,28 +341,28 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             }
             this.h.setVisibility(0);
             this.h.animate().setListener(null).cancel();
-            this.f48632n.animate().setListener(null).cancel();
+            this.f48636n.animate().setListener(null).cancel();
             this.h.animate().alpha(1.0f).translationY(0.0f).start();
-            this.f48632n.animate().alpha(0.0f).translationY(-org.telegram.messenger.g0.L(20.0f)).setDuration(150L).setListener(new on(this.f48632n)).start();
+            this.f48636n.animate().alpha(0.0f).translationY(-org.telegram.messenger.g0.L(20.0f)).setDuration(150L).setListener(new on(this.f48636n)).start();
             this.h.setEnabled(true);
-            this.f48632n.setEnabled(false);
+            this.f48636n.setEnabled(false);
             return;
         }
-        if (this.f48632n.getVisibility() == 8) {
-            this.f48632n.setAlpha(0.0f);
-            this.f48632n.setTranslationY(-org.telegram.messenger.g0.L(20.0f));
+        if (this.f48636n.getVisibility() == 8) {
+            this.f48636n.setAlpha(0.0f);
+            this.f48636n.setTranslationY(-org.telegram.messenger.g0.L(20.0f));
         }
-        this.f48632n.setVisibility(0);
+        this.f48636n.setVisibility(0);
         this.h.animate().setListener(null).cancel();
-        this.f48632n.animate().setListener(null).cancel();
+        this.f48636n.animate().setListener(null).cancel();
         this.h.animate().alpha(0.0f).translationY(org.telegram.messenger.g0.L(20.0f)).setDuration(150L).setListener(new on(this.h)).start();
-        ViewPropertyAnimator animate = this.f48632n.animate();
+        ViewPropertyAnimator animate = this.f48636n.animate();
         if (abs == 0) {
             f10 = 0.5f;
         }
         animate.alpha(f10).translationY(0.0f).start();
         this.h.setEnabled(false);
-        this.f48632n.setEnabled(true);
+        this.f48636n.setEnabled(true);
     }
 
     @Override
@@ -373,64 +373,64 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         textPaint.setTextSize(org.telegram.messenger.g0.L(16.0f));
         Paint.Align align = Paint.Align.CENTER;
         textPaint.setTextAlign(align);
-        TextPaint textPaint2 = this.f48624f;
+        TextPaint textPaint2 = this.f48628f;
         textPaint2.setTextSize(org.telegram.messenger.g0.L(11.0f));
         textPaint2.setTextAlign(align);
         textPaint2.setTypeface(org.telegram.messenger.g0.o());
-        TextPaint textPaint3 = this.f48622e;
+        TextPaint textPaint3 = this.f48626e;
         textPaint3.setTextSize(org.telegram.messenger.g0.L(16.0f));
         textPaint3.setTypeface(org.telegram.messenger.g0.o());
         textPaint3.setTextAlign(align);
         w7 w7Var = new w7(this, context);
-        this.f48615a = w7Var;
-        w7Var.setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.m6.f29321a7));
-        this.f48615a.addView(this.simpleActionBar);
-        this.simpleActionBar.setTitle(org.telegram.messenger.gd.N0(2131752630, null));
+        this.f48619a = w7Var;
+        w7Var.setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.m6.f29324a7));
+        this.f48619a.addView(this.simpleActionBar);
+        this.simpleActionBar.setTitle(org.telegram.messenger.hd.N0(2131752630, null));
         di.b1 b1Var = new di.b1(8, context, this);
-        this.f48617b = b1Var;
+        this.f48621b = b1Var;
         v4.c0 c0Var = new v4.c0();
-        this.f48619c = c0Var;
+        this.f48623c = c0Var;
         b1Var.setLayoutManager(c0Var);
-        this.f48619c.k1(true);
-        di.b1 b1Var2 = this.f48617b;
+        this.f48623c.k1(true);
+        di.b1 b1Var2 = this.f48621b;
         y7 y7Var = new y7(this, 0);
         this.M = y7Var;
         b1Var2.setAdapter(y7Var);
-        this.f48617b.j(new g3(this, 4));
-        if (this.f48625f0 == 0 && this.f48623e0) {
+        this.f48621b.j(new g3(this, 4));
+        if (this.f48629f0 == 0 && this.f48627e0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        w7 w7Var2 = this.f48615a;
-        di.b1 b1Var3 = this.f48617b;
+        w7 w7Var2 = this.f48619a;
+        di.b1 b1Var3 = this.f48621b;
         if (z10) {
             f10 = 48.0f;
         } else {
             f10 = 0.0f;
         }
         w7Var2.addView(b1Var3, c8.ma.d(-1, -1.0f, 0, 0.0f, 36.0f, 0.0f, f10));
-        hi.l5 l5Var = new hi.l5(this, context, new String[]{org.telegram.messenger.gd.N0(2131752628, null), org.telegram.messenger.gd.N0(2131752624, null), org.telegram.messenger.gd.N0(2131752623, null), org.telegram.messenger.gd.N0(2131752625, null), org.telegram.messenger.gd.N0(2131752629, null), org.telegram.messenger.gd.N0(2131752627, null), org.telegram.messenger.gd.N0(2131752626, null)}, 2);
-        this.f48630k0 = l5Var;
+        hi.l5 l5Var = new hi.l5(this, context, new String[]{org.telegram.messenger.hd.N0(2131752628, null), org.telegram.messenger.hd.N0(2131752624, null), org.telegram.messenger.hd.N0(2131752623, null), org.telegram.messenger.hd.N0(2131752625, null), org.telegram.messenger.hd.N0(2131752629, null), org.telegram.messenger.hd.N0(2131752627, null), org.telegram.messenger.hd.N0(2131752626, null)}, 2);
+        this.f48634k0 = l5Var;
         l5Var.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
-        hi.l5 l5Var2 = this.f48630k0;
-        fh.g c10 = getBaseSimpleGlass().f56657c.c(this.f48630k0, null, false);
+        hi.l5 l5Var2 = this.f48634k0;
+        fh.g c10 = getBaseSimpleGlass().f56661c.c(this.f48634k0, null, false);
         c10.p(c8.i0.m(this.resourceProvider));
         c10.q(org.telegram.messenger.g0.L(9.66f));
         c10.r(org.telegram.messenger.g0.L(18.0f));
         l5Var2.setBackground(c10);
-        this.f48630k0.setTranslationY(ri.a.d(0) - org.telegram.messenger.g0.L(9.66f));
+        this.f48634k0.setTranslationY(ri.a.d(0) - org.telegram.messenger.g0.L(9.66f));
         this.simpleActionBar.setActionBarMenuOnItemClick(new x7(this, 0));
-        this.fragmentView = this.f48615a;
+        this.fragmentView = this.f48619a;
         Calendar calendar = Calendar.getInstance();
         this.J = calendar.get(1);
         int i7 = calendar.get(2);
         this.K = i7;
-        int i10 = this.f48616a0;
+        int i10 = this.f48620a0;
         if (i10 != 0) {
-            int v = com.google.android.gms.internal.vision.e2.v(this.J, i10, 12, i7) - this.f48618b0;
+            int v = com.google.android.gms.internal.vision.e2.v(this.J, i10, 12, i7) - this.f48622b0;
             this.L = v + 1;
-            this.f48619c.h1(v, org.telegram.messenger.g0.L(120.0f));
+            this.f48623c.h1(v, org.telegram.messenger.g0.L(120.0f));
         }
         if (this.L < 3) {
             this.L = 3;
@@ -443,7 +443,7 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         y0();
         textPaint3.setColor(-1);
         if (z10) {
-            this.f48620c0 = new di.d1(this, context);
+            this.f48624c0 = new di.d1(this, context);
             TextView textView = new TextView(context);
             this.h = textView;
             textView.setGravity(17);
@@ -452,144 +452,144 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             this.h.setTextSize(1, 15.0f);
             this.h.setTypeface(org.telegram.messenger.g0.o());
             this.h.setOnClickListener(new View.OnClickListener(this) {
-                public final i8 f52241b;
+                public final i8 f52245b;
 
                 {
-                    this.f52241b = this;
+                    this.f52245b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            i8 i8Var = this.f52241b;
+                            i8 i8Var = this.f52245b;
                             i8Var.H = true;
                             i8Var.B0();
                             return;
                         default:
-                            i8 i8Var2 = this.f52241b;
-                            int i11 = i8Var2.f48634o0;
+                            i8 i8Var2 = this.f52245b;
+                            int i11 = i8Var2.f48638o0;
                             if (i11 == 0) {
                                 if (i8Var2.P == null) {
-                                    hi.l3 l3Var = new hi.l3(i8Var2.f48615a.getContext(), 3);
+                                    hi.l3 l3Var = new hi.l3(i8Var2.f48619a.getContext(), 3);
                                     l3Var.r(true);
                                     l3Var.h = org.telegram.messenger.g0.L(310.0f);
                                     l3Var.d = 2300L;
                                     l3Var.U = true;
-                                    l3Var.f14969e = true;
+                                    l3Var.f14972e = true;
                                     l3Var.n(11.0f, 6.0f, 11.0f, 7.0f);
-                                    l3Var.f14990v0 = -org.telegram.messenger.g0.L(10.0f);
+                                    l3Var.f14993v0 = -org.telegram.messenger.g0.L(10.0f);
                                     i8Var2.P = l3Var;
                                     l3Var.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
-                                    i8Var2.P.l(i8Var2.getBaseSimpleGlass().f56657c);
-                                    i8Var2.f48615a.addView(i8Var2.P, c8.ma.e(-1, 150, 55));
-                                    i8Var2.P.v(org.telegram.messenger.gd.N0(2131745463, null));
+                                    i8Var2.P.l(i8Var2.getBaseSimpleGlass().f56661c);
+                                    i8Var2.f48619a.addView(i8Var2.P, c8.ma.e(-1, 150, 55));
+                                    i8Var2.P.v(org.telegram.messenger.hd.N0(2131745463, null));
                                 }
-                                i8Var2.P.z(i8Var2.f48620c0, true);
+                                i8Var2.P.z(i8Var2.f48624c0, true);
                                 return;
                             }
-                            org.telegram.ui.Components.c5.q(i8Var2, i11, i8Var2.getMessagesController().c2(Long.valueOf(i8Var2.f48643y)), null, false, new v7(i8Var2), null);
+                            org.telegram.ui.Components.c5.q(i8Var2, i11, i8Var2.getMessagesController().c2(Long.valueOf(i8Var2.f48647y)), null, false, new v7(i8Var2), null);
                             return;
                     }
                 }
             });
-            this.h.setText(org.telegram.messenger.gd.N0(2131745464, null));
-            this.f48620c0.addView(this.h, c8.ma.e(-2, 38, 17));
+            this.h.setText(org.telegram.messenger.hd.N0(2131745464, null));
+            this.f48624c0.addView(this.h, c8.ma.e(-2, 38, 17));
             TextView textView2 = new TextView(context);
-            this.f48632n = textView2;
+            this.f48636n = textView2;
             textView2.setGravity(17);
-            this.f48632n.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
-            this.f48632n.setSingleLine();
-            this.f48632n.setTextSize(1, 15.0f);
-            this.f48632n.setTypeface(org.telegram.messenger.g0.o());
-            this.f48632n.setOnClickListener(new View.OnClickListener(this) {
-                public final i8 f52241b;
+            this.f48636n.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
+            this.f48636n.setSingleLine();
+            this.f48636n.setTextSize(1, 15.0f);
+            this.f48636n.setTypeface(org.telegram.messenger.g0.o());
+            this.f48636n.setOnClickListener(new View.OnClickListener(this) {
+                public final i8 f52245b;
 
                 {
-                    this.f52241b = this;
+                    this.f52245b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            i8 i8Var = this.f52241b;
+                            i8 i8Var = this.f52245b;
                             i8Var.H = true;
                             i8Var.B0();
                             return;
                         default:
-                            i8 i8Var2 = this.f52241b;
-                            int i11 = i8Var2.f48634o0;
+                            i8 i8Var2 = this.f52245b;
+                            int i11 = i8Var2.f48638o0;
                             if (i11 == 0) {
                                 if (i8Var2.P == null) {
-                                    hi.l3 l3Var = new hi.l3(i8Var2.f48615a.getContext(), 3);
+                                    hi.l3 l3Var = new hi.l3(i8Var2.f48619a.getContext(), 3);
                                     l3Var.r(true);
                                     l3Var.h = org.telegram.messenger.g0.L(310.0f);
                                     l3Var.d = 2300L;
                                     l3Var.U = true;
-                                    l3Var.f14969e = true;
+                                    l3Var.f14972e = true;
                                     l3Var.n(11.0f, 6.0f, 11.0f, 7.0f);
-                                    l3Var.f14990v0 = -org.telegram.messenger.g0.L(10.0f);
+                                    l3Var.f14993v0 = -org.telegram.messenger.g0.L(10.0f);
                                     i8Var2.P = l3Var;
                                     l3Var.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
-                                    i8Var2.P.l(i8Var2.getBaseSimpleGlass().f56657c);
-                                    i8Var2.f48615a.addView(i8Var2.P, c8.ma.e(-1, 150, 55));
-                                    i8Var2.P.v(org.telegram.messenger.gd.N0(2131745463, null));
+                                    i8Var2.P.l(i8Var2.getBaseSimpleGlass().f56661c);
+                                    i8Var2.f48619a.addView(i8Var2.P, c8.ma.e(-1, 150, 55));
+                                    i8Var2.P.v(org.telegram.messenger.hd.N0(2131745463, null));
                                 }
-                                i8Var2.P.z(i8Var2.f48620c0, true);
+                                i8Var2.P.z(i8Var2.f48624c0, true);
                                 return;
                             }
-                            org.telegram.ui.Components.c5.q(i8Var2, i11, i8Var2.getMessagesController().c2(Long.valueOf(i8Var2.f48643y)), null, false, new v7(i8Var2), null);
+                            org.telegram.ui.Components.c5.q(i8Var2, i11, i8Var2.getMessagesController().c2(Long.valueOf(i8Var2.f48647y)), null, false, new v7(i8Var2), null);
                             return;
                     }
                 }
             });
-            this.f48632n.setVisibility(8);
-            this.f48620c0.addView(this.f48632n, c8.ma.e(-2, 38, 17));
-            this.f48615a.addView(this.f48620c0, c8.ma.e(-1, 50, 80));
-            this.f48620c0.a(this.h, false);
+            this.f48636n.setVisibility(8);
+            this.f48624c0.addView(this.f48636n, c8.ma.e(-2, 38, 17));
+            this.f48619a.addView(this.f48624c0, c8.ma.e(-1, 50, 80));
+            this.f48624c0.a(this.h, false);
             int L = org.telegram.messenger.g0.L(19.0f);
             TextView textView3 = this.h;
-            int i11 = org.telegram.ui.ActionBar.m6.f29664sf;
+            int i11 = org.telegram.ui.ActionBar.m6.f29667sf;
             org.telegram.ui.ActionBar.t6.Q(textView3, org.telegram.ui.ActionBar.m6.a0(i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, i11, false), 51), L, L), null, org.telegram.ui.ActionBar.t6.g(i11, 51), null);
-            TextView textView4 = this.f48632n;
-            int i12 = org.telegram.ui.ActionBar.m6.f29619q7;
+            TextView textView4 = this.f48636n;
+            int i12 = org.telegram.ui.ActionBar.m6.f29622q7;
             org.telegram.ui.ActionBar.t6.Q(textView4, org.telegram.ui.ActionBar.m6.a0(i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, i12, false), 51), L, L), null, org.telegram.ui.ActionBar.t6.g(i12, 51), null);
             org.telegram.ui.ActionBar.t6.U(this.h, i11, null);
-            org.telegram.ui.ActionBar.t6.U(this.f48632n, i12, null);
+            org.telegram.ui.ActionBar.t6.U(this.f48636n, i12, null);
         }
         View view = new View(context);
-        this.f48631l0 = view;
-        this.f48615a.addView(view, c8.ma.e(-1, 0, 48));
-        this.f48631l0.getLayoutParams().height = org.telegram.messenger.g0.L(44.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.mSystemInsets.f15915b;
-        this.f48615a.addView(this.f48630k0, c8.ma.d(-1, 56.0f, 0, -4.0f, 0.0f, -4.0f, 0.0f));
+        this.f48635l0 = view;
+        this.f48619a.addView(view, c8.ma.e(-1, 0, 48));
+        this.f48635l0.getLayoutParams().height = org.telegram.messenger.g0.L(44.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.mSystemInsets.f15918b;
+        this.f48619a.addView(this.f48634k0, c8.ma.d(-1, 56.0f, 0, -4.0f, 0.0f, -4.0f, 0.0f));
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.A5 && this.f48626g0 == ((fi.h6) objArr[0])) {
+        if (i7 == org.telegram.messenger.ls.A5 && this.f48630g0 == ((fi.h6) objArr[0])) {
             z0();
         }
     }
 
     @Override
     public final org.telegram.ui.Components.ek0 getListViewForSimpleGlass() {
-        return this.f48617b;
+        return this.f48621b;
     }
 
     @Override
     public final ArrayList getThemeDescriptions() {
         new ArrayList();
-        int i7 = org.telegram.ui.ActionBar.m6.f29313a;
-        int i10 = org.telegram.ui.ActionBar.m6.f29313a;
-        int i11 = org.telegram.ui.ActionBar.m6.f29313a;
+        int i7 = org.telegram.ui.ActionBar.m6.f29316a;
+        int i10 = org.telegram.ui.ActionBar.m6.f29316a;
+        int i11 = org.telegram.ui.ActionBar.m6.f29316a;
         return super.getThemeDescriptions();
     }
 
     @Override
     public final boolean isLightStatusBar() {
-        if (i0.a.h(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29378d6, true)) > 0.699999988079071d) {
+        if (i0.a.h(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29381d6, true)) > 0.699999988079071d) {
             return true;
         }
         return false;
@@ -622,26 +622,26 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f48643y = getArguments().getLong("dialog_id");
+        this.f48647y = getArguments().getLong("dialog_id");
         this.E = getArguments().getLong("topic_id");
         int i7 = getArguments().getInt("type");
-        this.f48625f0 = i7;
+        this.f48629f0 = i7;
         if (i7 == 2) {
-            this.f48626g0 = org.telegram.messenger.mp.u1(this.currentAccount).R1().A(0, -1, this.f48643y, true);
+            this.f48630g0 = org.telegram.messenger.np.u1(this.currentAccount).R1().A(0, -1, this.f48647y, true);
         } else if (i7 == 3) {
-            this.f48626g0 = org.telegram.messenger.mp.u1(this.currentAccount).R1().A(1, -1, this.f48643y, true);
+            this.f48630g0 = org.telegram.messenger.np.u1(this.currentAccount).R1().A(1, -1, this.f48647y, true);
         }
-        fi.h6 h6Var = this.f48626g0;
+        fi.h6 h6Var = this.f48630g0;
         if (h6Var != null) {
-            this.f48627h0 = new v7(this);
+            this.f48631h0 = new v7(this);
         }
-        if (this.f48643y >= 0) {
-            this.f48623e0 = true;
+        if (this.f48647y >= 0) {
+            this.f48627e0 = true;
         } else {
-            this.f48623e0 = false;
+            this.f48627e0 = false;
         }
         if (h6Var != null) {
-            org.telegram.messenger.ks.f(this.currentAccount).c(this, org.telegram.messenger.ks.A5);
+            org.telegram.messenger.ls.f(this.currentAccount).c(this, org.telegram.messenger.ls.A5);
         }
         return super.onFragmentCreate();
     }
@@ -649,29 +649,29 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        if (this.f48626g0 != null) {
-            org.telegram.messenger.ks.f(this.currentAccount).n(this, org.telegram.messenger.ks.A5);
+        if (this.f48630g0 != null) {
+            org.telegram.messenger.ls.f(this.currentAccount).n(this, org.telegram.messenger.ls.A5);
         }
     }
 
     @Override
     public final void onInsets(int i7, int i10, int i11, int i12) {
-        this.f48631l0.getLayoutParams().height = org.telegram.messenger.g0.L(44.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10;
-        this.f48630k0.setTranslationY(ri.a.d(i10) - org.telegram.messenger.g0.L(9.66f));
+        this.f48635l0.getLayoutParams().height = org.telegram.messenger.g0.L(44.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10;
+        this.f48634k0.setTranslationY(ri.a.d(i10) - org.telegram.messenger.g0.L(9.66f));
         w0(i10, i12);
     }
 
     @Override
     public final void onThemeColorsChanged() {
         super.onThemeColorsChanged();
-        if (this.actionBar != null && this.I != null && this.d != null && this.f48624f != null && this.f48622e != null) {
-            int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29378d6, false);
+        if (this.actionBar != null && this.I != null && this.d != null && this.f48628f != null && this.f48626e != null) {
+            int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29381d6, false);
             int x03 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.G6, false);
-            int x04 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29470i6, false);
-            if (x02 != this.f48636q0 || x03 != this.f48638r0 || x04 != this.f48640s0) {
-                this.f48636q0 = x02;
-                this.f48638r0 = x03;
-                this.f48640s0 = x04;
+            int x04 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29473i6, false);
+            if (x02 != this.f48640q0 || x03 != this.f48642r0 || x04 != this.f48644s0) {
+                this.f48640q0 = x02;
+                this.f48642r0 = x03;
+                this.f48644s0 = x04;
                 y0();
             }
         }
@@ -680,21 +680,21 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
         bi.m3 m3Var;
-        if (z10 && (m3Var = this.f48641w) != null && m3Var.getVisibility() == 0) {
-            this.f48641w.setVisibility(8);
-            this.f48641w.setBackground(null);
+        if (z10 && (m3Var = this.f48645w) != null && m3Var.getVisibility() == 0) {
+            this.f48645w.setVisibility(8);
+            this.f48645w.setBackground(null);
         }
     }
 
     @Override
     public final void onTransitionAnimationProgress(boolean z10, float f10) {
         super.onTransitionAnimationProgress(z10, f10);
-        bi.m3 m3Var = this.f48641w;
+        bi.m3 m3Var = this.f48645w;
         if (m3Var != null && m3Var.getVisibility() == 0) {
             if (z10) {
-                this.f48641w.setAlpha(1.0f - f10);
+                this.f48645w.setAlpha(1.0f - f10);
             } else {
-                this.f48641w.setAlpha(f10);
+                this.f48645w.setAlpha(f10);
             }
         }
     }
@@ -708,36 +708,36 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
     @Override
     public final void onViewCreated(View view) {
         super.onViewCreated(view);
-        this.f48631l0.setBackground(this.simpleActionBar.getBackground());
+        this.f48635l0.setBackground(this.simpleActionBar.getBackground());
         this.simpleActionBar.setBackground(null);
         i0.b bVar = this.mSystemInsets;
-        w0(bVar.f15915b, bVar.d);
+        w0(bVar.f15918b, bVar.d);
     }
 
     public final void u0() {
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
-        duration.setInterpolator(org.telegram.ui.Components.nr.f37956f);
+        duration.setInterpolator(org.telegram.ui.Components.nr.f37961f);
         duration.addUpdateListener(new a3(this, 2));
         duration.addListener(new ki.m3(this, 19));
         duration.start();
         this.S = duration;
-        for (int i7 = 0; i7 < this.f48617b.getChildCount(); i7++) {
-            A0((f8) this.f48617b.getChildAt(i7), true);
+        for (int i7 = 0; i7 < this.f48621b.getChildCount(); i7++) {
+            A0((f8) this.f48621b.getChildAt(i7), true);
         }
-        for (int i10 = 0; i10 < this.f48617b.getCachedChildCount(); i10++) {
-            f8 f8Var = (f8) this.f48617b.P(i10);
+        for (int i10 = 0; i10 < this.f48621b.getCachedChildCount(); i10++) {
+            f8 f8Var = (f8) this.f48621b.P(i10);
             A0(f8Var, false);
             f8.a(f8Var, this.Q, this.R);
             f8.b(f8Var, 1.0f);
         }
-        for (int i11 = 0; i11 < this.f48617b.getHiddenChildCount(); i11++) {
-            f8 f8Var2 = (f8) this.f48617b.V(i11);
+        for (int i11 = 0; i11 < this.f48621b.getHiddenChildCount(); i11++) {
+            f8 f8Var2 = (f8) this.f48621b.V(i11);
             A0(f8Var2, false);
             f8.a(f8Var2, this.Q, this.R);
             f8.b(f8Var2, 1.0f);
         }
-        for (int i12 = 0; i12 < this.f48617b.getAttachedScrapChildCount(); i12++) {
-            f8 f8Var3 = (f8) this.f48617b.O(i12);
+        for (int i12 = 0; i12 < this.f48621b.getAttachedScrapChildCount(); i12++) {
+            f8 f8Var3 = (f8) this.f48621b.O(i12);
             A0(f8Var3, false);
             f8.a(f8Var3, this.Q, this.R);
             f8.b(f8Var3, 1.0f);
@@ -752,11 +752,11 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
     public final void v0() {
         if (!this.F && !this.U) {
             int i7 = Integer.MAX_VALUE;
-            for (int i10 = 0; i10 < this.f48617b.getChildCount(); i10++) {
-                View childAt = this.f48617b.getChildAt(i10);
+            for (int i10 = 0; i10 < this.f48621b.getChildCount(); i10++) {
+                View childAt = this.f48621b.getChildAt(i10);
                 if (childAt instanceof f8) {
                     f8 f8Var = (f8) childAt;
-                    int i11 = (f8Var.f47625b * 100) + f8Var.f47626c;
+                    int i11 = (f8Var.f47629b * 100) + f8Var.f47630c;
                     if (i11 < i7) {
                         i7 = i11;
                     }
@@ -771,13 +771,13 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
 
     public final void w0(int i7, int i10) {
         int i11;
-        if (this.f48620c0 != null) {
+        if (this.f48624c0 != null) {
             i11 = org.telegram.messenger.g0.L(50.0f);
         } else {
             i11 = 0;
         }
-        ri.a.e(this.f48617b, i7, i10, org.telegram.messenger.g0.L(42.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), i11);
-        di.d1 d1Var = this.f48620c0;
+        ri.a.e(this.f48621b, i7, i10, org.telegram.messenger.g0.L(42.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), i11);
+        di.d1 d1Var = this.f48624c0;
         if (d1Var != null) {
             d1Var.setTranslationY((-i10) - org.telegram.messenger.g0.L(6.0f));
         }
@@ -785,10 +785,10 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
 
     public final void x0() {
         if (!this.F && !this.U) {
-            if (this.f48626g0 != null) {
+            if (this.f48630g0 != null) {
                 z0();
-                this.f48626g0.p(100, false);
-                this.F = this.f48626g0.k();
+                this.f48630g0.p(100, false);
+                this.F = this.f48630g0.k();
                 return;
             }
             this.F = true;
@@ -801,36 +801,36 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             } else {
                 tL_messages_getSearchResultsCalendar.filter = new TLRPC.TL_inputMessagesFilterPhotoVideo();
             }
-            tL_messages_getSearchResultsCalendar.peer = getMessagesController().l1(this.f48643y);
-            if (this.E != 0 && this.f48643y == getUserConfig().e()) {
+            tL_messages_getSearchResultsCalendar.peer = getMessagesController().l1(this.f48647y);
+            if (this.E != 0 && this.f48647y == getUserConfig().e()) {
                 tL_messages_getSearchResultsCalendar.flags |= 4;
                 tL_messages_getSearchResultsCalendar.saved_peer_id = getMessagesController().l1(this.E);
             }
             tL_messages_getSearchResultsCalendar.offset_id = this.W;
             Calendar calendar = Calendar.getInstance();
-            this.f48617b.setItemAnimator(null);
+            this.f48621b.setItemAnimator(null);
             getConnectionsManager().sendRequest(tL_messages_getSearchResultsCalendar, new u7(0, this, calendar));
         }
     }
 
     public final void y0() {
-        this.f48622e.setColor(-1);
+        this.f48626e.setColor(-1);
         int i7 = org.telegram.ui.ActionBar.m6.G6;
         this.d.setColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
-        this.f48624f.setColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
+        this.f48628f.setColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
         this.I.a(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
     }
 
     public final void z0() {
-        this.F = this.f48626g0.k();
+        this.F = this.f48630g0.k();
         Calendar calendar = Calendar.getInstance();
         SparseArray sparseArray = this.T;
         sparseArray.clear();
-        this.f48621d0 = Integer.MAX_VALUE;
-        for (int i7 = 0; i7 < this.f48626g0.f12086i.size(); i7++) {
-            org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) this.f48626g0.f12086i.get(i7);
-            this.f48621d0 = Math.min(this.f48621d0, fjVar.f23993k.date);
-            calendar.setTimeInMillis(fjVar.f23993k.date * 1000);
+        this.f48625d0 = Integer.MAX_VALUE;
+        for (int i7 = 0; i7 < this.f48630g0.f12089i.size(); i7++) {
+            org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) this.f48630g0.f12089i.get(i7);
+            this.f48625d0 = Math.min(this.f48625d0, gjVar.f24213k.date);
+            calendar.setTimeInMillis(gjVar.f24213k.date * 1000);
             int i10 = calendar.get(2) + (calendar.get(1) * 100);
             SparseArray sparseArray2 = (SparseArray) sparseArray.get(i10);
             if (sparseArray2 == null) {
@@ -841,10 +841,10 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             g8 g8Var = (g8) sparseArray2.get(i11);
             if (g8Var == null) {
                 g8Var = new g8();
-                g8Var.f47992b = new ArrayList();
+                g8Var.f47996b = new ArrayList();
             }
-            g8Var.f47992b.add(Integer.valueOf(fjVar.e1()));
-            g8Var.f47991a = fjVar;
+            g8Var.f47996b.add(Integer.valueOf(gjVar.e1()));
+            g8Var.f47995a = gjVar;
             g8Var.h = (int) (calendar.getTimeInMillis() / 1000);
             sparseArray2.put(i11, g8Var);
             int i12 = this.X;
@@ -853,7 +853,7 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             }
         }
         int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-        for (int i13 = this.f48621d0; i13 < currentTimeMillis; i13 += 86400) {
+        for (int i13 = this.f48625d0; i13 < currentTimeMillis; i13 += 86400) {
             calendar.setTimeInMillis(i13 * 1000);
             calendar.set(11, 0);
             calendar.set(12, 0);
@@ -868,17 +868,17 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             int i15 = calendar.get(5) - 1;
             if (sparseArray3.get(i15, null) == null) {
                 g8 g8Var2 = new g8();
-                g8Var2.f47996g = false;
+                g8Var2.f48000g = false;
                 g8Var2.h = (int) (calendar.getTimeInMillis() / 1000);
                 sparseArray3.put(i15, g8Var2);
             }
         }
-        this.U = this.f48626g0.f12095r;
+        this.U = this.f48630g0.f12098r;
         if (this.Z) {
             this.G = true;
         }
-        this.f48617b.invalidate();
-        int timeInMillis = ((int) (((calendar.getTimeInMillis() / 1000) - this.f48621d0) / 2629800)) + 1;
+        this.f48621b.invalidate();
+        int timeInMillis = ((int) (((calendar.getTimeInMillis() / 1000) - this.f48625d0) / 2629800)) + 1;
         this.M.k(0, this.L);
         int i16 = this.L;
         if (timeInMillis > i16) {

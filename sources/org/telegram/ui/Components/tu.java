@@ -12,6 +12,6 @@ public final class tu extends ap0 {
 
     @Override
     public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        org.telegram.messenger.g0.h3(new org.telegram.ui.b0(this, hVar, i7, 10), 100L);
+        org.telegram.messenger.g0.h3(new org.telegram.ui.f0(this, hVar, i7, 9), 100L);
     }
 }

@@ -4,24 +4,24 @@ import android.graphics.Bitmap;
 import android.graphics.RectF;
 import android.text.TextUtils;
 import android.widget.FrameLayout;
-import org.telegram.messenger.ef;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.ff;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.np;
+import org.telegram.messenger.r10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.yt0;
 import org.telegram.ui.ProfileActivity;
-public final class j9 implements q10 {
-    public final int f14836a;
-    public final boolean f14837b;
-    public final fs f14838c;
+public final class j9 implements r10 {
+    public final int f14839a;
+    public final boolean f14840b;
+    public final gs f14841c;
 
-    public j9(fs fsVar, boolean z10, int i7) {
-        this.f14836a = i7;
-        this.f14838c = fsVar;
-        this.f14837b = z10;
+    public j9(gs gsVar, boolean z10, int i7) {
+        this.f14839a = i7;
+        this.f14841c = gsVar;
+        this.f14840b = z10;
     }
 
     @Override
@@ -30,30 +30,30 @@ public final class j9 implements q10 {
         float f10;
         yt0 yt0Var;
         TLRPC.PhotoSize w10;
-        int i7 = this.f14836a;
+        int i7 = this.f14839a;
         int i10 = 0;
-        boolean z11 = this.f14837b;
-        fs fsVar = this.f14838c;
+        boolean z11 = this.f14840b;
+        gs gsVar = this.f14841c;
         switch (i7) {
             case 0:
-                sa saVar = (sa) fsVar;
+                sa saVar = (sa) gsVar;
                 Bitmap bitmap = (Bitmap) obj2;
-                int i11 = saVar.f15389c;
-                if (obj != null && saVar.f15433q2 == null && !saVar.X && saVar.I()) {
+                int i11 = saVar.f15392c;
+                if (obj != null && saVar.f15436q2 == null && !saVar.X && saVar.I()) {
                     if (z11) {
                         if (saVar.L1 != null) {
                             saVar.t();
-                            saVar.L1.f14356j = true;
-                            if (obj instanceof ef) {
-                                u9 u9Var = saVar.f15453w1;
-                                u9Var.b0(u9Var.h0(((ef) obj).I, false));
+                            saVar.L1.f14359j = true;
+                            if (obj instanceof ff) {
+                                u9 u9Var = saVar.f15456w1;
+                                u9Var.b0(u9Var.h0(((ff) obj).I, false));
                             } else if (obj instanceof TLObject) {
-                                u9 u9Var2 = saVar.f15453w1;
+                                u9 u9Var2 = saVar.f15456w1;
                                 TLObject tLObject = (TLObject) obj;
                                 u9Var2.V1 = true;
                                 f5 f5Var = u9Var2.B0;
                                 if ((tLObject instanceof TLRPC.Photo) && (w10 = org.telegram.messenger.w7.w(((TLRPC.Photo) tLObject).sizes, 1000, false, null, false)) != null) {
-                                    f10 = w10.f28456w / w10.h;
+                                    f10 = w10.f28459w / w10.h;
                                 } else {
                                     f10 = 1.0f;
                                 }
@@ -83,21 +83,21 @@ public final class j9 implements q10 {
                         } else {
                             z10 = false;
                         }
-                        d6Var.f14528o0 = -1.0f;
-                        d6Var.f14529p0 = z10;
+                        d6Var.f14531o0 = -1.0f;
+                        d6Var.f14532p0 = z10;
                         d6Var.invalidate();
                         saVar.e(false);
-                        boolean z12 = obj instanceof ef;
+                        boolean z12 = obj instanceof ff;
                         if (z12) {
-                            ef efVar = (ef) obj;
-                            if (efVar.f27875b && !efVar.d()) {
+                            ff ffVar = (ff) obj;
+                            if (ffVar.f28059b && !ffVar.d()) {
                                 i10 = 1;
                             }
                             saVar.P1 = i10;
-                            c7 l10 = c7.l(efVar);
+                            c7 l10 = c7.l(ffVar);
                             l10.M0 = bitmap;
-                            l10.J0 = saVar.f15452w0;
-                            l10.K0 = saVar.f15456x0;
+                            l10.J0 = saVar.f15455w0;
+                            l10.K0 = saVar.f15459x0;
                             l10.A();
                             saVar.M1 = true;
                             if (saVar.B0.j()) {
@@ -118,12 +118,12 @@ public final class j9 implements q10 {
                         } else if (obj instanceof c7) {
                             c7 c7Var = (c7) obj;
                             if (c7Var.L == null && !c7Var.v()) {
-                                saVar.f15401f1.c("Failed to load draft");
-                                mp.u1(i11).R1().f12441w.b(c7Var);
+                                saVar.f15404f1.c("Failed to load draft");
+                                np.u1(i11).R1().f12444w.b(c7Var);
                                 return;
                             }
-                            c7Var.J0 = saVar.f15452w0;
-                            c7Var.K0 = saVar.f15456x0;
+                            c7Var.J0 = saVar.f15455w0;
+                            c7Var.K0 = saVar.f15459x0;
                             saVar.P1 = c7Var.K ? 1 : 0;
                             c7Var.M0 = bitmap;
                             saVar.M1 = false;
@@ -139,31 +139,31 @@ public final class j9 implements q10 {
                     }
                     g3 g3Var = saVar.N0;
                     if (g3Var != null) {
-                        saVar.f15421m2 = g3Var.f14491e.e0();
-                        saVar.f15424n2 = saVar.N0.getSelectedAlbum();
+                        saVar.f15424m2 = g3Var.f14494e.e0();
+                        saVar.f15427n2 = saVar.N0.getSelectedAlbum();
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                li.d0 d0Var = (li.d0) fsVar;
+                li.d0 d0Var = (li.d0) gsVar;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
                     if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
-                        li.l0.f(new lc((FrameLayout) d0Var.f30173b, d0Var.J0), 2, z11);
-                        d0Var.f19930o1.A(0);
+                        li.l0.f(new lc((FrameLayout) d0Var.f30176b, d0Var.J0), 2, z11);
+                        d0Var.f19933o1.A(0);
                         return;
                     }
-                    org.telegram.ui.Cells.c0.t((FrameLayout) d0Var.f30173b, d0Var.J0, tL_error, false);
+                    org.telegram.ui.Cells.c0.t((FrameLayout) d0Var.f30176b, d0Var.J0, tL_error, false);
                     return;
                 }
-                li.l0.f(new lc((FrameLayout) d0Var.f30173b, d0Var.J0), 1, z11);
-                d0Var.f19930o1.A(0);
+                li.l0.f(new lc((FrameLayout) d0Var.f30176b, d0Var.J0), 1, z11);
+                d0Var.f19933o1.A(0);
                 return;
             default:
-                ProfileActivity profileActivity = (ProfileActivity) fsVar;
+                ProfileActivity profileActivity = (ProfileActivity) gsVar;
                 Integer num = (Integer) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 RectF rectF = ProfileActivity.Z6;
@@ -172,7 +172,7 @@ public final class j9 implements q10 {
                         if (num.intValue() == 1) {
                             lc.l(null, profileActivity, z11).j();
                         } else if (num.intValue() == 2) {
-                            lc.l(org.telegram.messenger.n5.t(profileActivity.f43581e1), profileActivity, z11).j();
+                            lc.l(org.telegram.messenger.n5.t(profileActivity.f43585e1), profileActivity, z11).j();
                         } else if (tL_error2 != null) {
                             lc.e0(tL_error2);
                         }

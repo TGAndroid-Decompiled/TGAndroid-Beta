@@ -7,33 +7,33 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import java.io.Serializable;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.tr;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.ur;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.ConnectionsManager;
 public final class r5 implements Runnable {
-    public final int f15330a;
-    public final int f15331b;
-    public final int f15332c;
+    public final int f15333a;
+    public final int f15334b;
+    public final int f15335c;
     public final int d;
-    public final Object f15333e;
-    public final Object f15334f;
+    public final Object f15336e;
+    public final Object f15337f;
 
     public r5(int i7, int i10, int i11, Serializable serializable, Object obj, int i12) {
-        this.f15330a = i12;
-        this.f15331b = i7;
-        this.f15332c = i10;
+        this.f15333a = i12;
+        this.f15334b = i7;
+        this.f15335c = i10;
         this.d = i11;
-        this.f15333e = serializable;
-        this.f15334f = obj;
+        this.f15336e = serializable;
+        this.f15337f = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f15330a) {
+        switch (this.f15333a) {
             case 0:
-                Bitmap[] bitmapArr = (Bitmap[]) this.f15333e;
-                x10 x10Var = (x10) this.f15334f;
-                Bitmap createBitmap = Bitmap.createBitmap(this.f15331b, this.f15332c, Bitmap.Config.ARGB_8888);
+                Bitmap[] bitmapArr = (Bitmap[]) this.f15336e;
+                y10 y10Var = (y10) this.f15337f;
+                Bitmap createBitmap = Bitmap.createBitmap(this.f15334b, this.f15335c, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 Path path = new Path();
                 RectF rectF = new RectF();
@@ -54,23 +54,23 @@ public final class r5 implements Runnable {
                     }
                 }
                 Utilities.stackBlurBitmap(createBitmap, 1);
-                org.telegram.messenger.g0.g3(new c(6, x10Var, createBitmap));
+                org.telegram.messenger.g0.g3(new c(6, y10Var, createBitmap));
                 return;
             case 1:
-                ((tr) this.f15333e).B0(this.f15331b, this.f15332c, this.d, (long[]) this.f15334f);
+                ((ur) this.f15336e).B0(this.f15334b, this.f15335c, this.d, (long[]) this.f15337f);
                 return;
             default:
-                ConnectionsManager.lambda$onCaptchaCheck$28(this.f15331b, this.f15332c, this.d, (String) this.f15333e, (String) this.f15334f);
+                ConnectionsManager.lambda$onCaptchaCheck$28(this.f15334b, this.f15335c, this.d, (String) this.f15336e, (String) this.f15337f);
                 return;
         }
     }
 
-    public r5(tr trVar, int i7, int i10, int i11, long[] jArr) {
-        this.f15330a = 1;
-        this.f15333e = trVar;
-        this.f15331b = i7;
-        this.f15332c = i10;
+    public r5(ur urVar, int i7, int i10, int i11, long[] jArr) {
+        this.f15333a = 1;
+        this.f15336e = urVar;
+        this.f15334b = i7;
+        this.f15335c = i10;
         this.d = i11;
-        this.f15334f = jArr;
+        this.f15337f = jArr;
     }
 }

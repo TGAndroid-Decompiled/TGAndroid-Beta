@@ -5,15 +5,15 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import org.telegram.messenger.ImageReceiver;
 public final class q0 extends ViewOutlineProvider {
-    public final int f3339a;
+    public final int f3346a;
 
     public q0(int i7) {
-        this.f3339a = i7;
+        this.f3346a = i7;
     }
 
     @Override
     public final void getOutline(View view, Outline outline) {
-        switch (this.f3339a) {
+        switch (this.f3346a) {
             case 0:
                 outline.setOval(0, 0, view.getWidth(), view.getHeight());
                 return;
@@ -42,7 +42,7 @@ public final class q0 extends ViewOutlineProvider {
                 outline.setRoundRect(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), view.getMeasuredWidth() - org.telegram.messenger.g0.L(1.0f), view.getMeasuredHeight() - org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(6.0f));
                 return;
             case 9:
-                int i7 = org.telegram.messenger.g0.f24150u;
+                int i7 = org.telegram.messenger.g0.f24050u;
                 outline.setOval(0, 0, i7, i7);
                 return;
             case 10:
@@ -89,7 +89,7 @@ public final class q0 extends ViewOutlineProvider {
                     outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
                     return;
                 }
-                int i12 = org.telegram.messenger.g0.f24150u;
+                int i12 = org.telegram.messenger.g0.f24050u;
                 outline.setOval(0, 0, i12, i12);
                 return;
             case 22:

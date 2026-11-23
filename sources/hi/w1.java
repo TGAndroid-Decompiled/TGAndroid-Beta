@@ -3,11 +3,11 @@ package hi;
 import android.content.Context;
 import org.telegram.ui.Components.ov;
 public final class w1 extends ov {
-    public final y1 f15689h0;
+    public final y1 f15692h0;
 
     public w1(y1 y1Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, h6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29713v6, h6Var), false);
-        this.f15689h0 = y1Var;
+        super(context, h6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29716v6, h6Var), false);
+        this.f15692h0 = y1Var;
     }
 
     @Override
@@ -15,10 +15,10 @@ public final class w1 extends ov {
         int i10;
         int paddingTop;
         c2 c2Var;
-        y1 y1Var = this.f15689h0;
-        o1 o1Var = y1Var.f15777b;
-        x1 x1Var = y1Var.f15778c;
-        d2 d2Var = y1Var.f15780f;
+        y1 y1Var = this.f15692h0;
+        o1 o1Var = y1Var.f15780b;
+        x1 x1Var = y1Var.f15781c;
+        d2 d2Var = y1Var.f15783f;
         int i11 = 0;
         if (this.d) {
             return false;
@@ -47,12 +47,12 @@ public final class w1 extends ov {
             }
         }
         if (i10 >= 0) {
-            float f10 = y1Var.f15781n;
+            float f10 = y1Var.f15784n;
             if (f10 >= 0.0f) {
                 paddingTop = o1Var.getPaddingTop();
             } else {
                 f10 = y1Var.b();
-                y1Var.f15781n = f10;
+                y1Var.f15784n = f10;
                 paddingTop = o1Var.getPaddingTop();
             }
             o1.z1(o1Var, i10, ((int) (f10 + paddingTop)) - org.telegram.messenger.g0.L(102.0f));

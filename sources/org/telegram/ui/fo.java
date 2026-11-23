@@ -4,13 +4,13 @@ import android.content.Context;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class fo extends org.telegram.ui.Components.v70 {
-    public final Context f47801x;
-    public final jo f47802y;
+    public final Context f47805x;
+    public final jo f47806y;
 
     public fo(jo joVar, Context context, TLRPC.Chat chat, Context context2) {
         super(context, chat);
-        this.f47802y = joVar;
-        this.f47801x = context2;
+        this.f47806y = joVar;
+        this.f47805x = context2;
     }
 
     @Override
@@ -19,11 +19,11 @@ public final class fo extends org.telegram.ui.Components.v70 {
         int i7;
         String str;
         org.telegram.ui.ActionBar.h6 h6Var;
-        jo joVar = this.f47802y;
+        jo joVar = this.f47806y;
         if (!joVar.W || (chatFull = joVar.Z) == null || (i7 = chatFull.invitesCount) == 0) {
             return true;
         }
-        if (joVar.f49031b0) {
+        if (joVar.f49035b0) {
             if (z10) {
                 str = "ApproveNewMembersEnableForLinksChannel";
             } else {
@@ -34,18 +34,18 @@ public final class fo extends org.telegram.ui.Components.v70 {
         } else {
             str = "ApproveNewMembersDisableForLinks";
         }
-        Context context = this.f47801x;
+        Context context = this.f47805x;
         h6Var = ((org.telegram.ui.ActionBar.g2) joVar).resourceProvider;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, h6Var);
-        String N0 = org.telegram.messenger.gd.N0(2131754201, null);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+        String N0 = org.telegram.messenger.hd.N0(2131754201, null);
+        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
         t1Var.S = N0;
-        t1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.G(i7, str, new Object[0]));
-        alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131754203, null), new org.telegram.ui.ActionBar.q1(this) {
-            public final fo f47344b;
+        t1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.G(i7, str, new Object[0]));
+        alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131754203, null), new org.telegram.ui.ActionBar.q1(this) {
+            public final fo f47348b;
 
             {
-                this.f47344b = this;
+                this.f47348b = this;
             }
 
             @Override
@@ -53,24 +53,24 @@ public final class fo extends org.telegram.ui.Components.v70 {
                 switch (r3) {
                     case 0:
                         boolean z11 = z10;
-                        fo foVar = this.f47344b;
+                        fo foVar = this.f47348b;
                         foVar.setJoinRequest(z11);
-                        foVar.f47802y.X = true;
+                        foVar.f47806y.X = true;
                         return;
                     default:
                         boolean z12 = z10;
-                        fo foVar2 = this.f47344b;
+                        fo foVar2 = this.f47348b;
                         foVar2.setJoinRequest(z12);
-                        foVar2.f47802y.X = false;
+                        foVar2.f47806y.X = false;
                         return;
                 }
             }
         });
-        alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131754202, null), new org.telegram.ui.ActionBar.q1(this) {
-            public final fo f47344b;
+        alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131754202, null), new org.telegram.ui.ActionBar.q1(this) {
+            public final fo f47348b;
 
             {
-                this.f47344b = this;
+                this.f47348b = this;
             }
 
             @Override
@@ -78,15 +78,15 @@ public final class fo extends org.telegram.ui.Components.v70 {
                 switch (r3) {
                     case 0:
                         boolean z11 = z10;
-                        fo foVar = this.f47344b;
+                        fo foVar = this.f47348b;
                         foVar.setJoinRequest(z11);
-                        foVar.f47802y.X = true;
+                        foVar.f47806y.X = true;
                         return;
                     default:
                         boolean z12 = z10;
-                        fo foVar2 = this.f47344b;
+                        fo foVar2 = this.f47348b;
                         foVar2.setJoinRequest(z12);
-                        foVar2.f47802y.X = false;
+                        foVar2.f47806y.X = false;
                         return;
                 }
             }

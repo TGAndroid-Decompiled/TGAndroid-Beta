@@ -9,21 +9,21 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import android.widget.FrameLayout;
 public final class uh extends FrameLayout {
-    public final int f40368a;
-    public final ui f40369b;
+    public final int f40361a;
+    public final ui f40362b;
 
     public uh(ui uiVar, Context context, int i7) {
         super(context);
-        this.f40368a = i7;
-        this.f40369b = uiVar;
+        this.f40361a = i7;
+        this.f40362b = uiVar;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f40368a) {
+        switch (this.f40361a) {
             case 2:
                 canvas.save();
-                canvas.clipRect(0.0f, this.f40369b.T3, getMeasuredWidth(), getMeasuredHeight());
+                canvas.clipRect(0.0f, this.f40362b.T3, getMeasuredWidth(), getMeasuredHeight());
                 super.dispatchDraw(canvas);
                 canvas.restore();
                 return;
@@ -35,9 +35,9 @@ public final class uh extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f40368a) {
+        switch (this.f40361a) {
             case 2:
-                ui uiVar = this.f40369b;
+                ui uiVar = this.f40362b;
                 uh uhVar = uiVar.B2;
                 if (uiVar.A2.getAlpha() > 0.0f) {
                     float f10 = uiVar.U3;
@@ -51,7 +51,7 @@ public final class uh extends FrameLayout {
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
                         uiVar.V3 = ofFloat;
                         ofFloat.addUpdateListener(new x(this, 11));
-                        uiVar.V3.setInterpolator(nr.f37956f);
+                        uiVar.V3.setInterpolator(nr.f37961f);
                         uiVar.V3.setDuration(200L);
                         uiVar.V3.start();
                         uiVar.U3 = 0.0f;
@@ -68,22 +68,22 @@ public final class uh extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f40368a) {
+        switch (this.f40361a) {
             case 3:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                ui uiVar = this.f40369b;
-                mi miVar = uiVar.f40448w2;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40386e2;
+                ui uiVar = this.f40362b;
+                mi miVar = uiVar.f40441w2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40379e2;
                 if (miVar == chatAttachAlertPhotoLayout) {
-                    accessibilityNodeInfo.setText(org.telegram.messenger.gd.G(chatAttachAlertPhotoLayout.getSelectedItemsCount(), "AccDescrSendPhotos", new Object[0]));
+                    accessibilityNodeInfo.setText(org.telegram.messenger.hd.G(chatAttachAlertPhotoLayout.getSelectedItemsCount(), "AccDescrSendPhotos", new Object[0]));
                 } else {
-                    mk mkVar = uiVar.f40403k2;
+                    mk mkVar = uiVar.f40396k2;
                     if (miVar == mkVar) {
-                        accessibilityNodeInfo.setText(org.telegram.messenger.gd.G(mkVar.getSelectedItemsCount(), "AccDescrSendFiles", new Object[0]));
+                        accessibilityNodeInfo.setText(org.telegram.messenger.hd.G(mkVar.getSelectedItemsCount(), "AccDescrSendFiles", new Object[0]));
                     } else {
-                        ej ejVar = uiVar.f40392g2;
+                        ej ejVar = uiVar.f40385g2;
                         if (miVar == ejVar) {
-                            accessibilityNodeInfo.setText(org.telegram.messenger.gd.G(ejVar.getSelectedItemsCount(), "AccDescrSendAudio", new Object[0]));
+                            accessibilityNodeInfo.setText(org.telegram.messenger.hd.G(ejVar.getSelectedItemsCount(), "AccDescrSendAudio", new Object[0]));
                         }
                     }
                 }
@@ -99,9 +99,9 @@ public final class uh extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f40368a) {
+        switch (this.f40361a) {
             case 0:
-                if (this.f40369b.f40393g3.getVisibility() != 0) {
+                if (this.f40362b.f40386g3.getVisibility() != 0) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -112,9 +112,9 @@ public final class uh extends FrameLayout {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f40368a) {
+        switch (this.f40361a) {
             case 1:
-                ui uiVar = this.f40369b;
+                ui uiVar = this.f40362b;
                 if (uiVar.C1 && uiVar.D1 != 0) {
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(36.0f) + (org.telegram.messenger.g0.L(80.0f) * Integer.bitCount(uiVar.D1))), 1073741824), i10);
                     return;
@@ -129,9 +129,9 @@ public final class uh extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f40368a) {
+        switch (this.f40361a) {
             case 0:
-                if (this.f40369b.f40393g3.getVisibility() != 0) {
+                if (this.f40362b.f40386g3.getVisibility() != 0) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
@@ -142,12 +142,12 @@ public final class uh extends FrameLayout {
 
     @Override
     public void setAlpha(float f10) {
-        switch (this.f40368a) {
+        switch (this.f40361a) {
             case 0:
                 super.setAlpha(f10);
-                ui uiVar = this.f40369b;
+                ui uiVar = this.f40362b;
                 uiVar.Q1(0);
-                uiVar.f30173b.invalidate();
+                uiVar.f30176b.invalidate();
                 return;
             case 1:
             default:
@@ -162,10 +162,10 @@ public final class uh extends FrameLayout {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f40368a) {
+        switch (this.f40361a) {
             case 1:
                 super.setTranslationY(f10);
-                this.f40369b.f40448w2.l();
+                this.f40362b.f40441w2.l();
                 return;
             default:
                 super.setTranslationY(f10);

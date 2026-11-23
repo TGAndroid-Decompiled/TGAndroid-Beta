@@ -17,14 +17,14 @@ public final class d8 extends m8 {
         k8 k8Var = this.N;
         org.telegram.ui.Cells.y3 y3Var = k8Var.E;
         float y10 = getY();
-        FrameLayout frameLayout = k8Var.f14930e;
+        FrameLayout frameLayout = k8Var.f14933e;
         if (frameLayout == null) {
             paddingTop = 0;
         } else {
             paddingTop = frameLayout.getPaddingTop();
         }
         y3Var.setTranslationY((Math.min(org.telegram.messenger.g0.L(150.0f), this.K) + (y10 - paddingTop)) - 1.0f);
-        FrameLayout frameLayout2 = k8Var.f14930e;
+        FrameLayout frameLayout2 = k8Var.f14933e;
         if (frameLayout2 != null) {
             frameLayout2.invalidate();
         }
@@ -37,14 +37,14 @@ public final class d8 extends m8 {
         k8 k8Var = this.N;
         org.telegram.ui.Cells.y3 y3Var = k8Var.E;
         float y10 = getY();
-        FrameLayout frameLayout = k8Var.f14930e;
+        FrameLayout frameLayout = k8Var.f14933e;
         if (frameLayout == null) {
             paddingTop = 0;
         } else {
             paddingTop = frameLayout.getPaddingTop();
         }
         y3Var.setTranslationY((Math.min(org.telegram.messenger.g0.L(150.0f), this.K) + (y10 - paddingTop)) - 1.0f);
-        FrameLayout frameLayout2 = k8Var.f14930e;
+        FrameLayout frameLayout2 = k8Var.f14933e;
         if (frameLayout2 != null) {
             frameLayout2.invalidate();
         }

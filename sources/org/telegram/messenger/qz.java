@@ -1,156 +1,217 @@
 package org.telegram.messenger;
 
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.service.media.MediaBrowserService;
-import android.support.v4.media.session.PlaybackStateCompat;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.ui.LaunchActivity;
-public final class qz {
-    public static volatile qz f26526p;
-    public final Context f26527a;
-    public final android.support.v4.media.session.a0 f26528b;
-    public int f26529c;
-    public long d;
-    public boolean f26530e;
-    public boolean f26531f;
-    public Paint f26537m;
-    public RectF f26538n;
-    public final ArrayList f26532g = new ArrayList();
-    public final a0.h h = new a0.h();
-    public final a0.h f26533i = new a0.h();
-    public final a0.h f26534j = new a0.h();
-    public final a0.h f26535k = new a0.h();
-    public final a0.h f26536l = new a0.h();
-    public final ArrayList f26539o = new ArrayList();
+import org.telegram.tgnet.TLRPC;
+public final class qz extends android.support.v4.media.session.s {
+    public final rz f26532g;
 
-    public qz(Context context) {
-        this.f26527a = context;
-        int i7 = j10.f24798t0;
-        this.f26529c = i7;
-        this.d = g0.b1(mp.u1(i7).f25686g7, "auto_lastSelectedDialog", 0L);
-        android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(context, "TelegramMediaSession", (ComponentName) null, (PendingIntent) null);
-        this.f26528b = a0Var;
-        android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) a0Var.f1717b;
-        uVar.f1747a.setFlags(3);
-        a0Var.s(new pz(this), null);
-        uVar.f1747a.setSessionActivity(PendingIntent.getActivity(context, 99, new Intent(context, LaunchActivity.class), 167772160));
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_QUEUE", true);
-        bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS", true);
-        bundle.putBoolean("com.google.android.gms.car.media.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT", true);
-        uVar.f1747a.setExtras(bundle);
-        a0Var.r(true);
-        ArrayList arrayList = new ArrayList();
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        fj fjVar = MediaController.B().f22768v0;
-        if (fjVar != null) {
-            r3 = MediaController.B().H() ? 2477828L : 2477830L;
-            if (fjVar.I3()) {
-                r3 |= 48;
-            }
-        }
-        a0Var.u(new PlaybackStateCompat(0, 0L, 0L, 1.0f, r3, 0, null, elapsedRealtime, arrayList, -1L, null));
-        f();
-        a0Var.x(bz.N0 ? 1 : 0);
-        ks.e().b(new j5(this, 1), ks.f25142f4);
+    public qz(rz rzVar) {
+        super(0);
+        this.f26532g = rzVar;
     }
 
-    public static qz a(MusicBrowserService musicBrowserService) {
-        if (f26526p == null) {
-            synchronized (qz.class) {
-                try {
-                    if (f26526p == null) {
-                        f26526p = new qz(musicBrowserService.getApplicationContext());
-                    }
-                } finally {
-                }
-            }
-        }
-        return f26526p;
+    @Override
+    public final void A(String str, Bundle bundle) {
+        t(str);
     }
 
-    public static boolean b() {
-        int i7;
-        int elapsedRealtime = (int) (SystemClock.elapsedRealtime() / 1000);
-        if (bz.f23222s.length() > 0) {
-            if (!bz.f23236x) {
-                if ((bz.f23239y != 0 && (i7 = bz.B) != 0 && i7 + bz.f23239y <= elapsedRealtime) || elapsedRealtime + 5 < bz.B) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
+    @Override
+    public final void G(long j3) {
+        gj gjVar = MediaController.B().f22771v0;
+        if (gjVar != null) {
+            MediaController.B().i0(gjVar, (float) ((j3 / 1000.0d) / gjVar.L0()));
         }
-        return false;
     }
 
-    public final void c(String str, j1 j1Var) {
-        long j3;
-        if (!this.f26530e) {
-            this.f26539o.add(new nz(str, j1Var));
-            if (this.f26531f) {
-                return;
-            }
-            this.f26531f = true;
-            int i7 = this.f26529c;
-            tr a02 = tr.a0(i7);
-            a02.f27080a.c(new l7(this, a02, i7, 22));
-            return;
-        }
-        if (str != null && str.startsWith("__CHAT_")) {
-            try {
-                j3 = Long.parseLong(str.substring(7));
-            } catch (Exception e10) {
-                a8.g(e10, true);
-            }
-            if (j3 == 0 && this.f26534j.f(j3) == null) {
-                e(new kg((Object) this, (Object) j1Var, str, 29), j3);
-                return;
-            }
-            ((MediaBrowserService.Result) j1Var.f24797b).sendResult(d(str));
-        }
-        j3 = 0;
-        if (j3 == 0) {
-        }
-        ((MediaBrowserService.Result) j1Var.f24797b).sendResult(d(str));
-    }
-
-    public final java.util.ArrayList d(java.lang.String r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.qz.d(java.lang.String):java.util.ArrayList");
-    }
-
-    public final void e(Runnable runnable, long j3) {
-        a0.h hVar = this.f26536l;
-        ArrayList arrayList = (ArrayList) hVar.f(j3);
-        if (arrayList != null) {
-            arrayList.add(runnable);
-            return;
-        }
-        ArrayList arrayList2 = new ArrayList();
-        arrayList2.add(runnable);
-        hVar.k(arrayList2, j3);
-        int i7 = this.f26529c;
-        tr a02 = tr.a0(i7);
-        a02.f27080a.c(new ek(i7, 11, j3, this, a02));
-    }
-
-    public final void f() {
-        int i7 = bz.S0;
+    @Override
+    public final void M(int i7) {
         int i10 = 2;
         if (i7 != 1) {
-            if (i7 != 2) {
+            if (i7 != 2 && i7 != 3) {
                 i10 = 0;
             } else {
                 i10 = 1;
             }
         }
-        this.f26528b.w(i10);
+        cz.E(i10);
+        this.f26532g.f();
+        g0.g3(new yr(this, 16));
+    }
+
+    @Override
+    public final void P(int i7) {
+        int i10 = 0;
+        boolean z10 = true;
+        if (i7 != 1 && i7 != 2) {
+            z10 = false;
+        }
+        if (z10 != cz.N0) {
+            MediaController B = MediaController.B();
+            if (z10) {
+                i10 = 2;
+            }
+            B.l0(i10);
+        }
+        this.f26532g.f26711b.x(cz.N0 ? 1 : 0);
+        g0.g3(new yr(this, 16));
+    }
+
+    @Override
+    public final void S() {
+        gj gjVar = MediaController.B().f22771v0;
+        if (gjVar != null && gjVar.I3()) {
+            MediaController.B().U(false);
+        }
+    }
+
+    @Override
+    public final void V() {
+        gj gjVar = MediaController.B().f22771v0;
+        if (gjVar != null && gjVar.I3()) {
+            MediaController.B().V();
+        }
+    }
+
+    @Override
+    public final void Y(long j3) {
+        MediaController.B().T((int) j3);
+    }
+
+    @Override
+    public final void f(String str) {
+        int i7;
+        boolean equals = "org.telegram.android.musicplayer.repeat".equals(str);
+        rz rzVar = this.f26532g;
+        if (equals) {
+            cz.E((cz.S0 + 1) % 3);
+            rzVar.f();
+        } else if ("org.telegram.android.musicplayer.shuffle".equals(str)) {
+            MediaController B = MediaController.B();
+            if (cz.N0) {
+                i7 = 0;
+            } else {
+                i7 = 2;
+            }
+            B.l0(i7);
+            rzVar.f26711b.x(cz.N0 ? 1 : 0);
+        }
+    }
+
+    @Override
+    public final void k() {
+        MediaController.B().R(MediaController.B().f22771v0, true);
+    }
+
+    @Override
+    public final void n() {
+        gj gjVar = MediaController.B().f22771v0;
+        if (gjVar == null) {
+            rz rzVar = this.f26532g;
+            if (rzVar.d != 0) {
+                q(a8.p0.r(new StringBuilder(), rzVar.d, "_0"), null);
+                return;
+            }
+            return;
+        }
+        MediaController.B().S(gjVar);
+    }
+
+    @Override
+    public final void q(String str, Bundle bundle) {
+        String str2;
+        String str3;
+        rz rzVar = this.f26532g;
+        android.support.v4.media.session.a0 a0Var = rzVar.f26711b;
+        if (!TextUtils.isEmpty(str)) {
+            String[] split = str.split("_");
+            if (split.length == 2) {
+                try {
+                    long parseLong = Long.parseLong(split[0]);
+                    int parseInt = Integer.parseInt(split[1]);
+                    ArrayList arrayList = (ArrayList) rzVar.f26717j.f(parseLong);
+                    if (arrayList == null) {
+                        rzVar.e(new pz(this, str, bundle, 0), parseLong);
+                        return;
+                    }
+                    ArrayList arrayList2 = (ArrayList) rzVar.f26718k.f(parseLong);
+                    if (parseInt >= 0 && parseInt < arrayList.size()) {
+                        rzVar.d = parseLong;
+                        np.u1(rzVar.f26712c).f25857g7.edit().putLong("auto_lastSelectedDialog", parseLong).apply();
+                        MediaController.B().o0(arrayList, (gj) arrayList.get(parseInt), 0L, false, null, 0L);
+                        a0Var.v(arrayList2);
+                        if (n5.E(parseLong)) {
+                            TLRPC.User user = (TLRPC.User) rzVar.h.f(parseLong);
+                            if (user != null) {
+                                str3 = i5.m(0, user.first_name, user.last_name);
+                            } else {
+                                str3 = "DELETED USER";
+                            }
+                            ((android.support.v4.media.session.u) a0Var.f1724b).f1754a.setQueueTitle(str3);
+                            return;
+                        }
+                        TLRPC.Chat chat = (TLRPC.Chat) rzVar.f26716i.f(-parseLong);
+                        if (chat != null) {
+                            str2 = chat.title;
+                        } else {
+                            str2 = "DELETED CHAT";
+                        }
+                        ((android.support.v4.media.session.u) a0Var.f1724b).f1754a.setQueueTitle(str2);
+                    }
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void t(String str) {
+        String str2;
+        String str3;
+        String str4;
+        rz rzVar = this.f26532g;
+        ArrayList arrayList = rzVar.f26715g;
+        if (str != null && str.length() != 0) {
+            String lowerCase = str.toLowerCase();
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                long longValue = ((Long) arrayList.get(i7)).longValue();
+                if (n5.E(longValue)) {
+                    TLRPC.User user = (TLRPC.User) rzVar.h.f(longValue);
+                    if (user != null) {
+                        String str5 = user.first_name;
+                        if (str5 != null) {
+                            str3 = str5.toLowerCase();
+                        } else {
+                            str3 = null;
+                        }
+                        String str6 = user.last_name;
+                        if (str6 != null) {
+                            str4 = str6.toLowerCase();
+                        } else {
+                            str4 = null;
+                        }
+                        if ((str3 != null && str3.contains(lowerCase)) || (str4 != null && str4.contains(lowerCase))) {
+                            q(longValue + "_0", null);
+                            return;
+                        }
+                    } else {
+                        continue;
+                    }
+                } else {
+                    TLRPC.Chat chat = (TLRPC.Chat) rzVar.f26716i.f(-longValue);
+                    if (chat != null && (str2 = chat.title) != null && str2.toLowerCase().contains(lowerCase)) {
+                        q(longValue + "_0", null);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void x(String str, Bundle bundle) {
+        q(str, bundle);
     }
 }

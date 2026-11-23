@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
-public final class a00 implements org.telegram.messenger.x10 {
-    public final int f33234a = 1;
-    public final org.telegram.ui.ActionBar.r4 f33235b;
-    public final rh f33236c;
+public final class a00 implements org.telegram.messenger.y10 {
+    public final int f33237a = 1;
+    public final org.telegram.ui.ActionBar.r4 f33238b;
+    public final rh f33239c;
 
     public a00(org.telegram.ui.ActionBar.r4 r4Var, rh rhVar) {
-        this.f33235b = r4Var;
-        this.f33236c = rhVar;
+        this.f33238b = r4Var;
+        this.f33239c = rhVar;
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class a00 implements org.telegram.messenger.x10 {
     }
 
     public a00(rh rhVar, org.telegram.ui.ActionBar.r4 r4Var) {
-        this.f33236c = rhVar;
-        this.f33235b = r4Var;
+        this.f33239c = rhVar;
+        this.f33238b = r4Var;
     }
 }

@@ -7,24 +7,24 @@ import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class au0 implements View.OnClickListener {
-    public final int f45702a;
-    public final ProfileActivity f45703b;
+    public final int f45706a;
+    public final ProfileActivity f45707b;
 
     public au0(ProfileActivity profileActivity, int i7) {
-        this.f45702a = i7;
-        this.f45703b = profileActivity;
+        this.f45706a = i7;
+        this.f45707b = profileActivity;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f45702a;
-        ProfileActivity profileActivity = this.f45703b;
+        int i7 = this.f45706a;
+        ProfileActivity profileActivity = this.f45707b;
         switch (i7) {
             case 0:
                 ProfileActivity.k0(profileActivity);
                 return;
             case 1:
-                if (profileActivity.f43676s.getTag() == null) {
+                if (profileActivity.f43680s.getTag() == null) {
                     profileActivity.L4();
                     return;
                 }
@@ -38,9 +38,9 @@ public final class au0 implements View.OnClickListener {
                 profileActivity.o5();
                 return;
             case 4:
-                TLRPC.UserFull userFull = profileActivity.f43706w2;
+                TLRPC.UserFull userFull = profileActivity.f43710w2;
                 if (userFull != null && userFull.wallet_card != null && profileActivity.getParentActivity() != null) {
-                    profileActivity.showDialog(new org.telegram.ui.Wallet.w3(profileActivity, profileActivity.f43573d0, profileActivity.getMessagesController().c2(Long.valueOf(profileActivity.f43581e1)), profileActivity.f43706w2.wallet_card));
+                    profileActivity.showDialog(new org.telegram.ui.Wallet.w3(profileActivity, profileActivity.f43577d0, profileActivity.getMessagesController().c2(Long.valueOf(profileActivity.f43585e1)), profileActivity.f43710w2.wallet_card));
                     return;
                 }
                 return;
@@ -51,8 +51,8 @@ public final class au0 implements View.OnClickListener {
                 RectF rectF3 = ProfileActivity.Z6;
                 profileActivity.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity.f43589f1);
-                bundle.putLong("user_id", profileActivity.f43581e1);
+                bundle.putLong("chat_id", profileActivity.f43593f1);
+                bundle.putLong("user_id", profileActivity.f43585e1);
                 profileActivity.presentFragment(new ci.j0(bundle));
                 return;
             case 7:
@@ -77,7 +77,7 @@ public final class au0 implements View.OnClickListener {
                             xv xvVar = cxVar.H3;
                             if (xvVar != null) {
                                 org.telegram.ui.ActionBar.g2 fragment = xvVar.getFragment();
-                                if ((fragment instanceof y91) && (-((y91) fragment).f54095a) == profileActivity.a()) {
+                                if ((fragment instanceof y91) && (-((y91) fragment).f54099a) == profileActivity.a()) {
                                     cxVar.H3.a();
                                 }
                             }
@@ -87,13 +87,13 @@ public final class au0 implements View.OnClickListener {
                                 i10--;
                             }
                         } else if (g2Var instanceof y91) {
-                            if ((-((y91) g2Var).f54095a) == profileActivity.a()) {
+                            if ((-((y91) g2Var).f54099a) == profileActivity.a()) {
                                 ((ActionBarLayout) profileActivity.getParentLayout()).d0(g2Var, false);
                                 i10--;
                             }
                         } else if ((g2Var instanceof ProfileActivity) && g2Var != profileActivity) {
                             ProfileActivity profileActivity2 = (ProfileActivity) g2Var;
-                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f43662q1) {
+                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f43666q1) {
                                 ((ActionBarLayout) profileActivity.getParentLayout()).d0(g2Var, false);
                                 i10--;
                             }
@@ -103,8 +103,8 @@ public final class au0 implements View.OnClickListener {
                 }
                 profileActivity.J1 = 0;
                 Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f43589f1);
-                HashSet hashSet = y91.f54094s1;
+                bundle2.putLong("chat_id", profileActivity.f43593f1);
+                HashSet hashSet = y91.f54098s1;
                 profileActivity.presentFragment(y91.I0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
                 return;
             case 11:

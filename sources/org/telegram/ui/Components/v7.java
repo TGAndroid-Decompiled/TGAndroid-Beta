@@ -61,7 +61,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                 if (!z10 && (imageView2 = profileActivity.Y0) != null) {
                     imageView2.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
                 }
-                if (profileActivity.J0 && (imageView = this.f29127e) != null) {
+                if (profileActivity.J0 && (imageView = this.f29130e) != null) {
                     imageView.setColorFilter(i7, PorterDuff.Mode.SRC_IN);
                     return;
                 }
@@ -76,7 +76,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
     public boolean Q(View view) {
         switch (this.G1) {
             case 3:
-                if (!super.Q(view) && view != ((org.telegram.ui.cx) this.H1).f46757n0) {
+                if (!super.Q(view) && view != ((org.telegram.ui.cx) this.H1).f46760n0) {
                     return false;
                 }
                 return true;
@@ -104,7 +104,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
             case 3:
                 org.telegram.ui.cx cxVar = (org.telegram.ui.cx) this.H1;
                 org.telegram.ui.qw qwVar = cxVar.Y;
-                if (qwVar != null && qwVar.getAlpha() > 0.0f && cxVar.f46696b.f57697f) {
+                if (qwVar != null && qwVar.getAlpha() > 0.0f && cxVar.f46699b.f57701f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -118,11 +118,11 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
         switch (this.G1) {
             case 3:
                 org.telegram.ui.cx cxVar = (org.telegram.ui.cx) this.H1;
-                cxVar.Y.f34647r.getText().clear();
-                if (z10 && cxVar.Y.f34647r.isFocused()) {
-                    org.telegram.messenger.g0.v1(cxVar.Y.f34647r);
+                cxVar.Y.f34642r.getText().clear();
+                if (z10 && cxVar.Y.f34642r.isFocused()) {
+                    org.telegram.messenger.g0.v1(cxVar.Y.f34642r);
                 }
-                cxVar.Y.f34647r.clearFocus();
+                cxVar.Y.f34642r.clearFocus();
                 cxVar.Z.b(false);
                 return;
             default:
@@ -168,13 +168,13 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
         switch (this.G1) {
             case 0:
                 super.setAlpha(f10);
-                ((f8) this.H1).f30173b.invalidate();
+                ((f8) this.H1).f30176b.invalidate();
                 return;
             case 1:
                 ui uiVar = (ui) this.H1;
                 uh uhVar = uiVar.B2;
-                TextView textView = uiVar.f40396h3;
-                uh uhVar2 = uiVar.f40445v3;
+                TextView textView = uiVar.f40389h3;
+                uh uhVar2 = uiVar.f40438v3;
                 float alpha = getAlpha();
                 super.setAlpha(f10);
                 if (alpha != f10) {
@@ -190,17 +190,17 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                         textView.setVisibility(i7);
                     }
                     ui.J0(uiVar);
-                    uiVar.f30173b.invalidate();
+                    uiVar.f30176b.invalidate();
                     if (uhVar != null && uhVar2 != null) {
                         if (uhVar.getTag() == null) {
-                            mi miVar = uiVar.f40448w2;
+                            mi miVar = uiVar.f40441w2;
                             if (miVar == null || miVar.N()) {
                                 uhVar2.setAlpha(1.0f - f10);
                                 uhVar2.setTranslationY(org.telegram.messenger.g0.L(44.0f) * f10);
                             }
                             uhVar.setTranslationY(org.telegram.messenger.g0.L(48.0f) * f10);
                             return;
-                        } else if (uiVar.f40448w2 == null) {
+                        } else if (uiVar.f40441w2 == null) {
                             if (f10 == 0.0f) {
                                 f11 = 1.0f;
                             }
@@ -218,7 +218,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                 return;
             case 2:
                 super.setAlpha(f10);
-                ((ff0) this.H1).f30173b.invalidate();
+                ((ff0) this.H1).f30176b.invalidate();
                 return;
             case 3:
             case 5:
@@ -227,18 +227,18 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                 return;
             case 4:
                 super.setAlpha(f10);
-                ((PhotoViewer) this.H1).f43249f0.invalidate();
+                ((PhotoViewer) this.H1).f43253f0.invalidate();
                 return;
             case 6:
                 super.setAlpha(f10);
                 SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.H1;
-                secretMediaViewer.f43792r.setAlpha(f10);
-                secretMediaViewer.f43784n.setAlpha(f10);
+                secretMediaViewer.f43796r.setAlpha(f10);
+                secretMediaViewer.f43788n.setAlpha(f10);
                 return;
             case 7:
                 if (getAlpha() != f10) {
                     super.setAlpha(f10);
-                    ((ug.y0) this.H1).f30173b.invalidate();
+                    ((ug.y0) this.H1).f30176b.invalidate();
                     return;
                 }
                 return;
@@ -254,7 +254,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                 ug.y0 y0Var = (ug.y0) this.H1;
                 v7 v7Var = y0Var.I1;
                 if (v7Var != null && v7Var.getTag() != null) {
-                    if (i0.a.h(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29451h5, y0Var.J0)) > 0.699999988079071d) {
+                    if (i0.a.h(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, y0Var.J0)) > 0.699999988079071d) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -262,7 +262,7 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                     org.telegram.messenger.g0.p3(y0Var, z10);
                     return;
                 }
-                org.telegram.ui.ActionBar.g2 g2Var = y0Var.f58992m1;
+                org.telegram.ui.ActionBar.g2 g2Var = y0Var.f58996m1;
                 if (g2Var != null) {
                     org.telegram.messenger.g0.p3(y0Var, g2Var.isLightStatusBar());
                     return;
@@ -330,9 +330,9 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
         }
     }
 
-    public v7(org.telegram.messenger.fs fsVar, Context context, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
+    public v7(org.telegram.messenger.gs gsVar, Context context, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
         super(context, h6Var);
         this.G1 = i7;
-        this.H1 = fsVar;
+        this.H1 = gsVar;
     }
 }

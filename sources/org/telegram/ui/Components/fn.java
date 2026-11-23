@@ -4,12 +4,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class fn implements tx {
-    public final org.telegram.messenger.x10 f35263a;
-    public final fi.n2 f35264b;
+    public final org.telegram.messenger.y10 f35265a;
+    public final fi.n2 f35266b;
 
-    public fn(org.telegram.messenger.x10 x10Var, fi.n2 n2Var) {
-        this.f35263a = x10Var;
-        this.f35264b = n2Var;
+    public fn(org.telegram.messenger.y10 y10Var, fi.n2 n2Var) {
+        this.f35265a = y10Var;
+        this.f35266b = n2Var;
     }
 
     @Override
@@ -53,9 +53,9 @@ public final class fn implements tx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.bj bjVar, boolean z10, int i7) {
-        this.f35263a.a(new th.h(obj, document));
-        this.f35264b.a(true);
+    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.cj cjVar, boolean z10, int i7) {
+        this.f35265a.a(new th.h(obj, document));
+        this.f35266b.a(true);
     }
 
     @Override
@@ -65,8 +65,8 @@ public final class fn implements tx {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        this.f35263a.a(new th.h(null, document));
-        this.f35264b.a(true);
+        this.f35265a.a(new th.h(null, document));
+        this.f35266b.a(true);
     }
 
     @Override

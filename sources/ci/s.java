@@ -8,27 +8,27 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import bi.l8;
+import bi.k8;
 import bi.u1;
 import bi.w2;
 import c8.ma;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.hd;
 import org.telegram.messenger.j6;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.ri;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
+import org.telegram.messenger.si;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k5;
 import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.m5;
 import org.telegram.ui.Components.p5;
-public abstract class s extends FrameLayout implements fs {
+public abstract class s extends FrameLayout implements gs {
     public static final long[] L = {5449505950283078474L, 5420315771991497307L, 5373141891321699086L, 5373026167722876724L, 5435957248314579621L, 5440354006335495210L, 5436040291507247633L, 5445284980978621387L, 5442983582882601962L, 5409008750893734809L, 5371017798065592581L, 5472030678633684592L, 5467583879948803288L, 5471952986970267163L, 5415696465945173620L, 5397915559037785261L, 5283020991981693429L, 5283051451889756068L, 5282816560128336499L, 5465449362807070392L, 5470012829983580233L};
     public static final PorterDuffColorFilter M = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     public TLRPC.TL_messages_stickerSet E;
@@ -38,45 +38,45 @@ public abstract class s extends FrameLayout implements fs {
     public final HashSet I;
     public ArrayList J;
     public boolean K;
-    public final int f5786a;
-    public final g0 f5787b;
-    public final m f5788c;
+    public final int f5789a;
+    public final g0 f5790b;
+    public final m f5791c;
     public final v4.t d;
-    public final k f5789e;
-    public final k5 f5790f;
+    public final k f5792e;
+    public final k5 f5793f;
     public final r h;
-    public final ArrayList f5791n;
-    public int f5792r;
-    public int f5793s;
-    public boolean f5794w;
-    public final boolean f5795x;
-    public int f5796y;
+    public final ArrayList f5794n;
+    public int f5795r;
+    public int f5796s;
+    public boolean f5797w;
+    public final boolean f5798x;
+    public int f5799y;
 
     public s(Context context, int i7, g0 g0Var) {
         super(context);
         h0 h0Var = (h0) this;
         k kVar = new k(h0Var);
-        this.f5789e = kVar;
-        this.f5791n = new ArrayList();
-        this.f5792r = 7;
-        this.f5796y = -1711276033;
+        this.f5792e = kVar;
+        this.f5794n = new ArrayList();
+        this.f5795r = 7;
+        this.f5799y = -1711276033;
         this.H = new HashSet();
         this.I = new HashSet();
-        this.f5786a = i7;
-        this.f5787b = g0Var;
-        this.f5795x = j10.i(i7).q();
+        this.f5789a = i7;
+        this.f5790b = g0Var;
+        this.f5798x = k10.i(i7).q();
         ?? ek0Var = new ek0(context, null);
-        this.f5788c = ek0Var;
-        v4.t tVar = new v4.t(this.f5792r);
+        this.f5791c = ek0Var;
+        v4.t tVar = new v4.t(this.f5795r);
         this.d = tVar;
         tVar.O = new w2(h0Var, 3);
         ek0Var.setLayoutManager(tVar);
         k5 k5Var = new k5(ek0Var, tVar);
-        this.f5790f = k5Var;
-        k5Var.f29188r = new h(h0Var, 0);
+        this.f5793f = k5Var;
+        k5Var.f29191r = new h(h0Var, 0);
         ek0Var.setAdapter(kVar);
         ek0Var.setSelectorDrawableColor(0);
-        ek0Var.setOnItemClickListener(new l8(g0Var, 1));
+        ek0Var.setOnItemClickListener(new k8(g0Var, 1));
         ek0Var.setItemAnimator(null);
         ek0Var.setOverScrollMode(2);
         ek0Var.setVerticalScrollBarEnabled(false);
@@ -101,7 +101,7 @@ public abstract class s extends FrameLayout implements fs {
     }
 
     public static boolean d(Drawable drawable) {
-        if ((drawable instanceof p5) && fj.C4(((p5) drawable).f38496e)) {
+        if ((drawable instanceof p5) && gj.C4(((p5) drawable).f38495e)) {
             return true;
         }
         return false;
@@ -111,7 +111,7 @@ public abstract class s extends FrameLayout implements fs {
         String[] split;
         if (this.J == null) {
             this.J = new ArrayList();
-            for (String str : mp.u1(this.f5786a).h7.getString("qrAppliedEmoji", "").split(",")) {
+            for (String str : np.u1(this.f5789a).h7.getString("qrAppliedEmoji", "").split(",")) {
                 try {
                     if (!str.isEmpty()) {
                         this.J.add(Long.valueOf(Long.parseLong(str)));
@@ -125,7 +125,7 @@ public abstract class s extends FrameLayout implements fs {
 
     public final int c() {
         int R;
-        m mVar = this.f5788c;
+        m mVar = this.f5791c;
         int paddingTop = mVar.getPaddingTop();
         int i7 = Integer.MAX_VALUE;
         int i10 = -1;
@@ -146,7 +146,7 @@ public abstract class s extends FrameLayout implements fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25246x0 && objArr.length > 0) {
+        if (i7 == ls.f25412x0 && objArr.length > 0) {
             Object obj = objArr[0];
             if ((obj instanceof Integer) && ((Integer) obj).intValue() != 5) {
                 return;
@@ -172,9 +172,9 @@ public abstract class s extends FrameLayout implements fs {
         int i11;
         TLRPC.Document document;
         ArrayList<TLRPC.Document> arrayList5;
-        int i12 = this.f5786a;
-        ri d02 = ri.d0(i12);
-        ArrayList<o> arrayList6 = this.f5791n;
+        int i12 = this.f5789a;
+        si d02 = si.d0(i12);
+        ArrayList<o> arrayList6 = this.f5794n;
         arrayList6.clear();
         ArrayList arrayList7 = new ArrayList();
         ArrayList u02 = d02.u0(5);
@@ -211,7 +211,7 @@ public abstract class s extends FrameLayout implements fs {
             this.F = true;
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
             tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
-            TLRPC.TL_messages_stickerSet n02 = ri.d0(i12).n0(tL_inputStickerSetShortName, null, false, true, new ai.h0(this, 6));
+            TLRPC.TL_messages_stickerSet n02 = si.d0(i12).n0(tL_inputStickerSetShortName, null, false, true, new ai.h0(this, 6));
             if (n02 != null && (arrayList5 = n02.documents) != null && !arrayList5.isEmpty()) {
                 this.E = n02;
             }
@@ -236,7 +236,7 @@ public abstract class s extends FrameLayout implements fs {
                     TLRPC.Document document5 = document4;
                     String str4 = str;
                     if (document5 != null) {
-                        hashMap.put(Long.valueOf(document5.f28437id), document5);
+                        hashMap.put(Long.valueOf(document5.f28440id), document5);
                     }
                     str = str4;
                 }
@@ -271,7 +271,7 @@ public abstract class s extends FrameLayout implements fs {
                 }
                 if (document6 != null) {
                     arrayList10.add(document6);
-                    hashSet.add(Long.valueOf(document6.f28437id));
+                    hashSet.add(Long.valueOf(document6.f28440id));
                 } else if (this.H.add(Long.valueOf(j11))) {
                     p5.g(i12).b(j11, new m5() {
                         @Override
@@ -283,11 +283,11 @@ public abstract class s extends FrameLayout implements fs {
             }
         }
         if (!arrayList10.isEmpty()) {
-            arrayList6.add(new o(0, gd.N0(2131746301, null), arrayList10));
+            arrayList6.add(new o(0, hd.N0(2131746301, null), arrayList10));
         }
         ArrayList arrayList11 = new ArrayList();
         HashSet hashSet2 = new HashSet();
-        int i20 = this.f5792r * 3;
+        int i20 = this.f5795r * 3;
         ArrayList a10 = a();
         int i21 = 0;
         while (i21 < a10.size() && arrayList11.size() < i20) {
@@ -300,7 +300,7 @@ public abstract class s extends FrameLayout implements fs {
                     document = (TLRPC.Document) obj2;
                     arrayList4 = a10;
                     i11 = i21;
-                    if (document.f28437id == longValue) {
+                    if (document.f28440id == longValue) {
                         break;
                     }
                     a10 = arrayList4;
@@ -315,7 +315,7 @@ public abstract class s extends FrameLayout implements fs {
             if (document == null) {
                 document = p5.e(i12, longValue);
             }
-            if (document != null && str2.equals(document.mime_type) && hashSet2.add(Long.valueOf(document.f28437id))) {
+            if (document != null && str2.equals(document.mime_type) && hashSet2.add(Long.valueOf(document.f28440id))) {
                 arrayList11.add(document);
             }
             i21 = i11 + 1;
@@ -324,7 +324,7 @@ public abstract class s extends FrameLayout implements fs {
         }
         int i22 = 0;
         while (true) {
-            ArrayList arrayList12 = j6.f24844i;
+            ArrayList arrayList12 = j6.f24836i;
             if (i22 >= arrayList12.size() || arrayList11.size() >= i20) {
                 break;
             }
@@ -337,7 +337,7 @@ public abstract class s extends FrameLayout implements fs {
                     } else {
                         z10 = false;
                     }
-                    if (z10 && hashSet2.add(Long.valueOf(e10.f28437id))) {
+                    if (z10 && hashSet2.add(Long.valueOf(e10.f28440id))) {
                         arrayList11.add(e10);
                     }
                 } catch (NumberFormatException unused) {
@@ -347,7 +347,7 @@ public abstract class s extends FrameLayout implements fs {
         }
         if (!arrayList11.isEmpty()) {
             i7 = 1;
-            arrayList6.add(new o(1, gd.N0(2131746165, null), arrayList11));
+            arrayList6.add(new o(1, hd.N0(2131746165, null), arrayList11));
         } else {
             i7 = 1;
         }
@@ -360,22 +360,22 @@ public abstract class s extends FrameLayout implements fs {
             i24++;
             o oVar2 = oVar;
             oVar2.d = i23;
-            if (oVar2.f5755b != null) {
+            if (oVar2.f5758b != null) {
                 i10 = i7;
             } else {
                 i10 = 0;
             }
-            i23 += oVar2.f5756c.size() + i10;
+            i23 += oVar2.f5759c.size() + i10;
         }
-        this.f5793s = i23;
-        this.f5789e.f();
+        this.f5796s = i23;
+        this.f5792e.f();
         r rVar = this.h;
         rVar.setSections(arrayList6);
         rVar.a(f(c()), false);
     }
 
     public final int f(int i7) {
-        ArrayList arrayList = this.f5791n;
+        ArrayList arrayList = this.f5794n;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             if (((o) arrayList.get(size)).d <= i7) {
                 return size;
@@ -385,7 +385,7 @@ public abstract class s extends FrameLayout implements fs {
     }
 
     public m getGrid() {
-        return this.f5788c;
+        return this.f5791c;
     }
 
     public r getTabs() {
@@ -395,42 +395,42 @@ public abstract class s extends FrameLayout implements fs {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        int i7 = this.f5786a;
-        ks.f(i7).c(this, ks.f25246x0);
-        ks.f(i7).c(this, ks.B0);
+        int i7 = this.f5789a;
+        ls.f(i7).c(this, ls.f25412x0);
+        ls.f(i7).c(this, ls.B0);
         e();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        int i7 = this.f5786a;
-        ks.f(i7).n(this, ks.f25246x0);
-        ks.f(i7).n(this, ks.B0);
+        int i7 = this.f5789a;
+        ls.f(i7).n(this, ls.f25412x0);
+        ls.f(i7).n(this, ls.B0);
     }
 
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
-        m mVar = this.f5788c;
+        m mVar = this.f5791c;
         int max = Math.max(5, ((i7 - mVar.getPaddingLeft()) - mVar.getPaddingRight()) / org.telegram.messenger.g0.L(46.0f));
-        if (max != this.f5792r) {
-            this.f5792r = max;
+        if (max != this.f5795r) {
+            this.f5795r = max;
             this.d.y1(max);
             post(new ca.r(this, 5));
         }
     }
 
     public void setHeaderColor(int i7) {
-        if (this.f5796y != i7) {
-            this.f5796y = i7;
+        if (this.f5799y != i7) {
+            this.f5799y = i7;
             int i10 = 0;
             while (true) {
-                m mVar = this.f5788c;
+                m mVar = this.f5791c;
                 if (i10 < mVar.getChildCount()) {
                     View childAt = mVar.getChildAt(i10);
                     if (childAt instanceof n) {
-                        ((n) childAt).f5749a.setTextColor(i7);
+                        ((n) childAt).f5752a.setTextColor(i7);
                     }
                     i10++;
                 } else {

@@ -1,26 +1,26 @@
 package cc;
 public class g {
     public static final byte[] d = new byte[0];
-    public final bc.d f5203a;
-    public byte[] f5204b = d;
-    public final int[] f5205c = new int[32];
+    public final bc.d f5206a;
+    public byte[] f5207b = d;
+    public final int[] f5208c = new int[32];
 
     public g(bc.d dVar) {
-        this.f5203a = dVar;
+        this.f5206a = dVar;
     }
 
     public b a() {
         int[] iArr;
-        bc.d dVar = this.f5203a;
-        int i7 = dVar.f3130a;
-        int i10 = dVar.f3131b;
+        bc.d dVar = this.f5206a;
+        int i7 = dVar.f3137a;
+        int i10 = dVar.f3138b;
         b bVar = new b(i7, i10);
-        if (this.f5204b.length < i7) {
-            this.f5204b = new byte[i7];
+        if (this.f5207b.length < i7) {
+            this.f5207b = new byte[i7];
         }
         int i11 = 0;
         while (true) {
-            iArr = this.f5205c;
+            iArr = this.f5208c;
             if (i11 >= 32) {
                 break;
             }
@@ -28,7 +28,7 @@ public class g {
             i11++;
         }
         for (int i12 = 1; i12 < 5; i12++) {
-            byte[] b10 = dVar.b((i10 * i12) / 5, this.f5204b);
+            byte[] b10 = dVar.b((i10 * i12) / 5, this.f5207b);
             int i13 = (i7 * 4) / 5;
             for (int i14 = i7 / 5; i14 < i13; i14++) {
                 int i15 = (b10[i14] & 255) >> 3;

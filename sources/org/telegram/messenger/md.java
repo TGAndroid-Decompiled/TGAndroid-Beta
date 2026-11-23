@@ -1,42 +1,29 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class md implements Runnable {
-    public final int f25584a;
-    public final qd f25585b;
-    public final ArrayList f25586c;
+    public final int f25570a;
+    public final rd f25571b;
+    public final Integer f25572c;
 
-    public md(qd qdVar, ArrayList arrayList, int i7) {
-        this.f25584a = i7;
-        this.f25585b = qdVar;
-        this.f25586c = arrayList;
+    public md(rd rdVar, Integer num, int i7) {
+        this.f25570a = i7;
+        this.f25571b = rdVar;
+        this.f25572c = num;
     }
 
     @Override
     public final void run() {
-        switch (this.f25584a) {
+        int i7 = this.f25570a;
+        Integer num = this.f25572c;
+        rd rdVar = this.f25571b;
+        switch (i7) {
             case 0:
-                qd qdVar = this.f25585b;
-                ArrayList arrayList = qdVar.f26408b;
-                ArrayList arrayList2 = this.f25586c;
-                arrayList.addAll(arrayList2);
-                for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                    pd pdVar = (pd) arrayList.get(i7);
-                    qdVar.f26407a.k(pdVar, pdVar.f26253a);
+                if (!rdVar.f26591b.isEmpty()) {
+                    g0.g3(new md(rdVar, num, 1));
+                    return;
                 }
-                g0.g3(new md(qdVar, arrayList2, 1));
                 return;
             default:
-                qd qdVar2 = this.f25585b;
-                ArrayList arrayList3 = qdVar2.J;
-                ArrayList arrayList4 = this.f25586c;
-                arrayList3.addAll(arrayList4);
-                for (int i10 = 0; i10 < arrayList4.size(); i10++) {
-                    pd pdVar2 = (pd) arrayList4.get(i10);
-                    qdVar2.K.k(pdVar2, pdVar2.f26253a);
-                }
-                qd.q();
-                ks.e().k(283, new Object[0]);
+                rdVar.getNotificationCenter().k(76, num);
                 return;
         }
     }

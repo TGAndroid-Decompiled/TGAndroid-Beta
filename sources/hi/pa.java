@@ -5,19 +5,19 @@ import android.view.MotionEvent;
 import org.telegram.ui.Components.f81;
 import org.telegram.ui.Components.p10;
 public final class pa extends p10 {
-    public final ra f15280a;
+    public final ra f15283a;
 
     public pa(ra raVar) {
-        this.f15280a = raVar;
+        this.f15283a = raVar;
     }
 
     @Override
     public final boolean a() {
         v9 v9Var;
-        sa saVar = this.f15280a.f15350o0;
-        if (saVar.f15403g0 == 0 && (v9Var = saVar.C0) != null && !saVar.T1 && v9Var.isInited() && !saVar.Q1 && !saVar.P0.f14543y0) {
+        sa saVar = this.f15283a.f15353o0;
+        if (saVar.f15406g0 == 0 && (v9Var = saVar.C0) != null && !saVar.T1 && v9Var.isInited() && !saVar.Q1 && !saVar.P0.f14546y0) {
             n6 n6Var = saVar.E0;
-            if ((n6Var == null || (!n6Var.f15113y.f37479i && !n6Var.M)) && !saVar.I() && saVar.f15433q2 == null) {
+            if ((n6Var == null || (!n6Var.f15116y.f37478i && !n6Var.M)) && !saVar.I() && saVar.f15436q2 == null) {
                 return true;
             }
             return false;
@@ -27,17 +27,17 @@ public final class pa extends p10 {
 
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
-        sa saVar = this.f15280a.f15350o0;
+        sa saVar = this.f15283a.f15353o0;
         v9 v9Var = saVar.C0;
-        if (v9Var != null && !saVar.T1 && !saVar.Q1 && v9Var.isInited() && saVar.f15403g0 == 0 && saVar.P1 != -1) {
+        if (v9Var != null && !saVar.T1 && !saVar.Q1 && v9Var.isInited() && saVar.f15406g0 == 0 && saVar.P1 != -1) {
             saVar.C0.switchCamera();
             saVar.P0.d(180.0f);
             sa.Z(saVar.C0.isFrontface());
             if (saVar.p0()) {
-                saVar.f15438s.c(null);
+                saVar.f15441s.c(null);
                 return true;
             }
-            saVar.f15438s.d();
+            saVar.f15441s.d();
             return true;
         }
         return false;
@@ -45,7 +45,7 @@ public final class pa extends p10 {
 
     @Override
     public final boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        v9 v9Var = this.f15280a.f15350o0.C0;
+        v9 v9Var = this.f15283a.f15353o0.C0;
         if (v9Var != null) {
             v9Var.O = null;
             v9Var.L = -1L;
@@ -56,9 +56,9 @@ public final class pa extends p10 {
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        ra raVar = this.f15280a;
+        ra raVar = this.f15283a;
         raVar.m0 = 0.0f;
-        raVar.f15349n0 = 0.0f;
+        raVar.f15352n0 = 0.0f;
         return false;
     }
 
@@ -70,16 +70,16 @@ public final class pa extends p10 {
         fa faVar;
         boolean z10;
         boolean z11;
-        ra raVar = this.f15280a;
-        sa saVar = raVar.f15350o0;
+        ra raVar = this.f15283a;
+        sa saVar = raVar.f15353o0;
         ValueAnimator valueAnimator = saVar.F;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((n6Var = saVar.E0) != null && (n6Var.f15113y.f37479i || n6Var.M)) || saVar.P0.f14543y0 || (((v9Var = saVar.C0) != null && v9Var.f14469s) || raVar.f15347k0 || (((f81Var = saVar.W0) != null && (f81Var.G || f81Var.H)) || saVar.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((n6Var = saVar.E0) != null && (n6Var.f15116y.f37478i || n6Var.M)) || saVar.P0.f14546y0 || (((v9Var = saVar.C0) != null && v9Var.f14472s) || raVar.f15350k0 || (((f81Var = saVar.W0) != null && (f81Var.G || f81Var.H)) || saVar.H())))) {
             return false;
         }
         boolean z12 = true;
-        raVar.f15345i0 = true;
+        raVar.f15348i0 = true;
         if (saVar.X) {
-            if (Math.abs(saVar.f15434r.f14940a) >= org.telegram.messenger.g0.L(1.0f)) {
+            if (Math.abs(saVar.f15437r.f14943a) >= org.telegram.messenger.g0.L(1.0f)) {
                 if ((f11 > 0.0f && Math.abs(f11) > 2000.0f && Math.abs(f11) > Math.abs(f10)) || saVar.L > 0.4f) {
                     saVar.p(true);
                 } else {
@@ -127,7 +127,7 @@ public final class pa extends p10 {
 
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        v9 v9Var = this.f15280a.f15350o0.C0;
+        v9 v9Var = this.f15283a.f15353o0.C0;
         if (v9Var != null) {
             c1 c1Var = v9Var.O;
             if (c1Var != null) {
@@ -142,7 +142,7 @@ public final class pa extends p10 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        sa saVar = this.f15280a.f15350o0;
+        sa saVar = this.f15283a.f15353o0;
         saVar.X = false;
         saVar.Y = false;
         if (!a() && onSingleTapConfirmed(motionEvent)) {

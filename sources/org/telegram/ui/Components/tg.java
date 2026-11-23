@@ -16,19 +16,19 @@ public final class tg extends View {
     public final Paint I;
     public long J;
     public final ChatActivityEnterView K;
-    public float f39904a;
-    public boolean f39905b;
-    public boolean f39906c;
+    public float f39897a;
+    public boolean f39898b;
+    public boolean f39899c;
     public final oh0 d;
-    public boolean f39907e;
-    public boolean f39908f;
+    public boolean f39900e;
+    public boolean f39901f;
     public long h;
-    public boolean f39909n;
-    public long f39910r;
-    public float f39911s;
-    public float f39912w;
-    public float f39913x;
-    public float f39914y;
+    public boolean f39902n;
+    public long f39903r;
+    public float f39904s;
+    public float f39905w;
+    public float f39906x;
+    public float f39907y;
 
     public tg(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
@@ -39,12 +39,12 @@ public final class tg extends View {
         this.I = new Paint(1);
         oh0 oh0Var = new oh0(2131623975, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), false, null);
         this.d = oh0Var;
-        oh0Var.f38230p0 = true;
+        oh0Var.f38224p0 = true;
         h();
     }
 
     public static void a(tg tgVar) {
-        tgVar.f39907e = true;
+        tgVar.f39900e = true;
     }
 
     public static float b(long j3) {
@@ -52,11 +52,11 @@ public final class tg extends View {
     }
 
     public final void c() {
-        this.f39906c = true;
+        this.f39899c = true;
         this.J = SystemClock.uptimeMillis();
         oh0 oh0Var = this.d;
         oh0Var.T(true, 0.0f);
-        if (this.f39905b) {
+        if (this.f39898b) {
             oh0Var.start();
         }
     }
@@ -67,17 +67,17 @@ public final class tg extends View {
 
     public final void e() {
         ChatActivityEnterView chatActivityEnterView = this.K;
-        chatActivityEnterView.f32666m4.setColor(chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.f29330ag));
-        this.f39904a = 1.0f;
+        chatActivityEnterView.f32669m4.setColor(chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.f29333ag));
+        this.f39897a = 1.0f;
         System.currentTimeMillis();
         this.H = -1L;
         this.h = -1L;
-        this.f39906c = false;
+        this.f39899c = false;
         this.d.stop();
-        this.f39909n = false;
-        this.f39914y = 0.0f;
-        this.f39913x = 0.0f;
-        this.f39912w = 0.0f;
+        this.f39902n = false;
+        this.f39907y = 0.0f;
+        this.f39906x = 0.0f;
+        this.f39905w = 0.0f;
         invalidate();
     }
 
@@ -93,20 +93,20 @@ public final class tg extends View {
     }
 
     public final float g() {
-        float i7 = (1.0f - Utilities.i(this.f39913x / 0.8f, 1.0f, 0.0f)) * this.f39912w;
+        float i7 = (1.0f - Utilities.i(this.f39906x / 0.8f, 1.0f, 0.0f)) * this.f39905w;
         return com.google.android.gms.internal.vision.e2.C(i7, 2.0f, 3.0f, 12.0f * i7 * i7);
     }
 
     public final void h() {
-        int i7 = org.telegram.ui.ActionBar.m6.f29330ag;
-        int i10 = ChatActivityEnterView.f32566s7;
+        int i7 = org.telegram.ui.ActionBar.m6.f29333ag;
+        int i10 = ChatActivityEnterView.f32569s7;
         ChatActivityEnterView chatActivityEnterView = this.K;
         int G0 = chatActivityEnterView.G0(i7);
         int G02 = chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.Je);
         int G03 = chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.Vf);
-        chatActivityEnterView.f32666m4.setColor(G0);
+        chatActivityEnterView.f32669m4.setColor(G0);
         oh0 oh0Var = this.d;
-        oh0Var.f38211a0 = true;
+        oh0Var.f38205a0 = true;
         oh0Var.Q(G03, "Cup Red");
         oh0Var.Q(G03, "Box Red");
         oh0Var.Q(G03, "Cup Grey");
@@ -129,12 +129,12 @@ public final class tg extends View {
             oh0 oh0Var = new oh0(2131623977, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), false, null);
             this.E = oh0Var;
             oh0Var.J(true);
-            this.E.f38230p0 = false;
+            this.E.f38224p0 = false;
             int i7 = org.telegram.ui.ActionBar.m6.Vf;
-            int i10 = ChatActivityEnterView.f32566s7;
+            int i10 = ChatActivityEnterView.f32569s7;
             int G0 = this.K.G0(i7);
             oh0 oh0Var2 = this.E;
-            oh0Var2.f38211a0 = true;
+            oh0Var2.f38205a0 = true;
             oh0Var2.Q(G0, "Cup Grey");
             this.E.Q(G0, "Box_Grey 2");
             this.E.Q(G0, "Box Grey");
@@ -148,8 +148,8 @@ public final class tg extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f39905b = true;
-        boolean z10 = this.f39906c;
+        this.f39898b = true;
+        boolean z10 = this.f39899c;
         oh0 oh0Var = this.d;
         if (z10) {
             oh0Var.start();
@@ -160,7 +160,7 @@ public final class tg extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f39905b = false;
+        this.f39898b = false;
         oh0 oh0Var = this.d;
         oh0Var.stop();
         oh0Var.R(null);
@@ -176,12 +176,12 @@ public final class tg extends View {
         float f15;
         char c10;
         ChatActivityEnterView chatActivityEnterView = this.K;
-        Paint paint = chatActivityEnterView.f32666m4;
-        if (this.f39909n) {
-            float min = Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f39910r)) / 240.0f);
-            float f16 = this.f39914y;
-            int i7 = ChatActivityEnterView.f32566s7;
-            float interpolation = nr.f37958i.getInterpolation(Utilities.i(f16 / 0.6f, 1.0f, 0.0f));
+        Paint paint = chatActivityEnterView.f32669m4;
+        if (this.f39902n) {
+            float min = Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f39903r)) / 240.0f);
+            float f16 = this.f39907y;
+            int i7 = ChatActivityEnterView.f32569s7;
+            float interpolation = nr.f37963i.getInterpolation(Utilities.i(f16 / 0.6f, 1.0f, 0.0f));
             float[] fArr = this.F;
             fArr[0] = 1.0f - ChatActivityEnterView.H2(0.05f, 0.55f, f16);
             fArr[1] = org.telegram.messenger.g0.T1(1.0f, 0.55f, interpolation);
@@ -189,11 +189,11 @@ public final class tg extends View {
             float measuredWidth = getMeasuredWidth() / 2.0f;
             float measuredHeight = getMeasuredHeight() / 2.0f;
             oh0 i10 = i();
-            float f17 = this.f39913x;
+            float f17 = this.f39906x;
             if (f17 > 0.0f) {
                 f15 = (Math.min(1.0f, f17) * 14.0f) + 30.0f;
             } else {
-                f15 = this.f39912w * 8.0f;
+                f15 = this.f39905w * 8.0f;
             }
             i10.T(true, f15 / 52.0f);
             i10.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
@@ -204,12 +204,12 @@ public final class tg extends View {
             canvas.rotate(g(), measuredWidth, org.telegram.messenger.g0.L(12.0f) + measuredHeight);
             float min2 = Math.min(1.0f, 1.8f * min);
             float H2 = 1.0f - ChatActivityEnterView.H2(0.25f, 0.85f, min);
-            float interpolation2 = nr.f37957g.getInterpolation(min);
+            float interpolation2 = nr.f37962g.getInterpolation(min);
             if (H2 > 0.0f) {
                 c10 = 0;
-                paint.setColor(i0.a.f(min2, chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.f29330ag), chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.Vf)));
+                paint.setColor(i0.a.f(min2, chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.f29333ag), chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.Vf)));
                 paint.setAlpha((int) (H2 * 255.0f * fArr[0]));
-                canvas.drawCircle(measuredWidth, (org.telegram.messenger.g0.L(2.0f) * interpolation2) + measuredHeight, org.telegram.messenger.g0.T1(this.f39911s, org.telegram.messenger.g0.L(1.5f), interpolation2), paint);
+                canvas.drawCircle(measuredWidth, (org.telegram.messenger.g0.L(2.0f) * interpolation2) + measuredHeight, org.telegram.messenger.g0.T1(this.f39904s, org.telegram.messenger.g0.L(1.5f), interpolation2), paint);
             } else {
                 c10 = 0;
             }
@@ -233,27 +233,27 @@ public final class tg extends View {
             i12.setAlpha(255);
             i12.draw(canvas);
         } else {
-            if (!this.f39908f) {
+            if (!this.f39901f) {
                 long uptimeMillis = SystemClock.uptimeMillis();
-                boolean z10 = this.f39907e;
+                boolean z10 = this.f39900e;
                 if (z10 || this.H < 0) {
                     this.H = uptimeMillis;
                 }
-                if (!z10 && !this.f39906c) {
+                if (!z10 && !this.f39899c) {
                     f14 = b(uptimeMillis - this.H);
                 } else {
                     f14 = 1.0f;
                 }
-                this.f39904a = f14;
+                this.f39897a = f14;
             }
-            if (this.f39906c) {
+            if (this.f39899c) {
                 f10 = 1.0f;
                 f11 = Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.J)) / 160.0f);
             } else {
                 f10 = 1.0f;
                 f11 = 0.0f;
             }
-            boolean z11 = this.f39906c;
+            boolean z11 = this.f39899c;
             oh0 oh0Var = this.d;
             if (z11) {
                 oh0Var.setAlpha((int) (f11 * 255.0f));
@@ -262,12 +262,12 @@ public final class tg extends View {
                     invalidate();
                 }
             }
-            if (!this.f39906c || f11 < f10 || !oh0Var.u()) {
-                boolean z12 = this.f39906c;
+            if (!this.f39899c || f11 < f10 || !oh0Var.u()) {
+                boolean z12 = this.f39899c;
                 if (z12) {
                     f12 = 1.0f;
                 } else {
-                    f12 = this.f39904a;
+                    f12 = this.f39897a;
                 }
                 if (z12 && oh0Var.u()) {
                     f13 = 1.0f - f11;
@@ -275,7 +275,7 @@ public final class tg extends View {
                     f13 = 1.0f;
                 }
                 if (f13 <= 0.0f) {
-                    if (!this.f39908f) {
+                    if (!this.f39901f) {
                         invalidate();
                         return;
                     }
@@ -287,8 +287,8 @@ public final class tg extends View {
                 float measuredWidth2 = getMeasuredWidth() / 2.0f;
                 float measuredHeight2 = getMeasuredHeight() / 2.0f;
                 float T13 = org.telegram.messenger.g0.T1(0.85f, 1.0f, f12) * org.telegram.messenger.g0.L(5.0f);
-                if (this.f39906c) {
-                    paint.setColor(i0.a.f(Math.min(1.0f, f11 * 2.5f), chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.f29330ag), chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.Vf)));
+                if (this.f39899c) {
+                    paint.setColor(i0.a.f(Math.min(1.0f, f11 * 2.5f), chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.f29333ag), chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.Vf)));
                 }
                 int color = paint.getColor();
                 Paint paint2 = this.I;
@@ -299,7 +299,7 @@ public final class tg extends View {
                 canvas.drawCircle(measuredWidth2, measuredHeight2, T13, paint);
                 canvas.restore();
             }
-            if (!this.f39908f) {
+            if (!this.f39901f) {
                 invalidate();
             }
         }

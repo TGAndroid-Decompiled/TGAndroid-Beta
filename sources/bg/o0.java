@@ -22,7 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.TreeSet;
 public abstract class o0 {
-    public static RenderEffect f3334a;
+    public static RenderEffect f3341a;
 
     public static RenderEffect a() {
         ColorMatrix colorMatrix = new ColorMatrix();
@@ -106,17 +106,17 @@ public abstract class o0 {
             }
             return h9.i0.q(treeSet);
         }
-        h9.g0 g0Var = h9.i0.f14032b;
-        return t1.f14100e;
+        h9.g0 g0Var = h9.i0.f14035b;
+        return t1.f14103e;
     }
 
     public static RenderEffect d() {
-        if (f3334a == null) {
+        if (f3341a == null) {
             ColorMatrix colorMatrix = new ColorMatrix();
             colorMatrix.setSaturation(3.0f);
-            f3334a = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+            f3341a = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
         }
-        return f3334a;
+        return f3341a;
     }
 
     public static Bitmap e(Bitmap bitmap) {
@@ -156,7 +156,7 @@ public abstract class o0 {
 
     public static void j(q4.q qVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((q4.l) qVar.f55867b).f55849a;
+            MediaSession mediaSession = ((q4.l) qVar.f55871b).f55853a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
         } catch (IllegalArgumentException e10) {

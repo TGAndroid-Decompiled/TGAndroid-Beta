@@ -10,16 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 public final class j00 extends rg.b {
     public final Context d;
-    public final FiltersSetupActivity f48853e;
+    public final FiltersSetupActivity f48857e;
 
     public j00(FiltersSetupActivity filtersSetupActivity, Context context) {
-        this.f48853e = filtersSetupActivity;
+        this.f48857e = filtersSetupActivity;
         this.d = context;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59165f;
+        int i7 = f1Var.f59169f;
         if (i7 != 3 && i7 != 0 && i7 != 5 && i7 != 1) {
             return true;
         }
@@ -28,18 +28,18 @@ public final class j00 extends rg.b {
 
     @Override
     public final int b() {
-        return this.f48853e.f43095n.size();
+        return this.f48857e.f43099n.size();
     }
 
     @Override
     public final int d(int i7) {
         h00 h00Var;
         if (i7 >= 0) {
-            FiltersSetupActivity filtersSetupActivity = this.f48853e;
-            if (i7 >= filtersSetupActivity.f43095n.size() || (h00Var = (h00) filtersSetupActivity.f43095n.get(i7)) == null) {
+            FiltersSetupActivity filtersSetupActivity = this.f48857e;
+            if (i7 >= filtersSetupActivity.f43099n.size() || (h00Var = (h00) filtersSetupActivity.f43099n.get(i7)) == null) {
                 return 3;
             }
-            return h00Var.f56630a;
+            return h00Var.f56634a;
         }
         return 3;
     }
@@ -66,45 +66,45 @@ public final class j00 extends rg.b {
                             if (i7 != 6) {
                                 ?? frameLayout = new FrameLayout(context);
                                 TextView textView = new TextView(context);
-                                frameLayout.f49152a = textView;
+                                frameLayout.f49156a = textView;
                                 org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.G6, null);
-                                org.telegram.messenger.n10.q(textView, 1, 16.0f, 1, 1);
+                                org.telegram.messenger.o10.q(textView, 1, 16.0f, 1, 1);
                                 textView.setSingleLine(true);
                                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                                 textView.setEllipsize(truncateAt);
-                                if (org.telegram.messenger.gd.f24241a0) {
+                                if (org.telegram.messenger.hd.f24444a0) {
                                     i10 = 5;
                                 } else {
                                     i10 = 3;
                                 }
                                 textView.setGravity(i10);
-                                if (org.telegram.messenger.gd.f24241a0) {
+                                if (org.telegram.messenger.hd.f24444a0) {
                                     i11 = 5;
                                 } else {
                                     i11 = 3;
                                 }
                                 frameLayout.addView(textView, c8.ma.d(-2, -2.0f, i11, 22.0f, 10.0f, 22.0f, 0.0f));
                                 TextView textView2 = new TextView(context);
-                                frameLayout.f49153b = textView2;
-                                org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29789z6, null);
-                                org.telegram.messenger.n10.q(textView2, 1, 13.0f, 1, 1);
+                                frameLayout.f49157b = textView2;
+                                org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29792z6, null);
+                                org.telegram.messenger.o10.q(textView2, 1, 13.0f, 1, 1);
                                 textView2.setSingleLine(true);
                                 textView2.setEllipsize(truncateAt);
-                                if (org.telegram.messenger.gd.f24241a0) {
+                                if (org.telegram.messenger.hd.f24444a0) {
                                     i12 = 5;
                                 } else {
                                     i12 = 3;
                                 }
                                 textView2.setGravity(i12);
-                                if (org.telegram.messenger.gd.f24241a0) {
+                                if (org.telegram.messenger.hd.f24444a0) {
                                     i13 = 5;
                                 } else {
                                     i13 = 3;
                                 }
                                 frameLayout.addView(textView2, c8.ma.d(-2, -2.0f, i13, 22.0f, 35.0f, 22.0f, 0.0f));
                                 org.telegram.ui.Components.pg0 pg0Var = new org.telegram.ui.Components.pg0(context);
-                                frameLayout.f49154c = pg0Var;
-                                pg0Var.setText(org.telegram.messenger.gd.N0(2131754483, null));
+                                frameLayout.f49158c = pg0Var;
+                                pg0Var.setText(org.telegram.messenger.hd.N0(2131754483, null));
                                 org.telegram.ui.ActionBar.t6.U(pg0Var, org.telegram.ui.ActionBar.m6.Ji, null);
                                 pg0Var.setProgressColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Ei, false));
                                 int i15 = org.telegram.ui.ActionBar.m6.Fi;
@@ -124,18 +124,18 @@ public final class j00 extends rg.b {
                         } else {
                             ?? frameLayout2 = new FrameLayout(context);
                             org.telegram.ui.ActionBar.m5 m5Var = new org.telegram.ui.ActionBar.m5(context);
-                            frameLayout2.f49437a = m5Var;
+                            frameLayout2.f49441a = m5Var;
                             m5Var.setTextSize(16);
-                            if (!org.telegram.messenger.gd.f24241a0) {
+                            if (!org.telegram.messenger.hd.f24444a0) {
                                 i14 = 3;
                             }
                             m5Var.setGravity(i14);
-                            int i16 = org.telegram.ui.ActionBar.m6.f29578o6;
+                            int i16 = org.telegram.ui.ActionBar.m6.f29581o6;
                             org.telegram.ui.ActionBar.t6.X(m5Var, i16, null);
                             m5Var.setTag(Integer.valueOf(i16));
                             frameLayout2.addView(m5Var);
                             ImageView imageView = new ImageView(context);
-                            frameLayout2.f49438b = imageView;
+                            frameLayout2.f49442b = imageView;
                             imageView.setScaleType(ImageView.ScaleType.CENTER);
                             frameLayout2.addView(imageView);
                             f00Var = frameLayout2;
@@ -144,16 +144,16 @@ public final class j00 extends rg.b {
                         f00Var = new org.telegram.ui.Cells.a9(context);
                     }
                 } else {
-                    f00 f00Var2 = new f00(this.f48853e, context);
+                    f00 f00Var2 = new f00(this.f48857e, context);
                     f00Var2.setOnReorderButtonTouchListener(new hi.p1(5, this, f00Var2));
                     f00Var2.setOnOptionsClick(new a(this, 27));
                     f00Var = f00Var2;
                 }
             } else {
-                SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.a0(null, null, 2131751703, new Object[0]));
+                SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0(null, null, 2131751703, new Object[0]));
                 ?? frameLayout3 = new FrameLayout(context);
                 ?? imageView2 = new ImageView(context);
-                frameLayout3.f47897a = imageView2;
+                frameLayout3.f47901a = imageView2;
                 imageView2.f(2131624019, 90, 90, null);
                 imageView2.setScaleType(ImageView.ScaleType.CENTER);
                 imageView2.d();

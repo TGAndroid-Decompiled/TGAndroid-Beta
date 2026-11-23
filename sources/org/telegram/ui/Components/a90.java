@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.tl.TL_iv;
 public final class a90 extends c8.f1 {
-    public int f33428a;
-    public final TL_iv.PageBlock f33429b;
-    public TL_iv.textConcat f33430c = new TL_iv.textConcat();
+    public int f33441a;
+    public final TL_iv.PageBlock f33442b;
+    public TL_iv.textConcat f33443c = new TL_iv.textConcat();
 
     public a90(TL_iv.PageBlock pageBlock) {
-        this.f33429b = pageBlock;
+        this.f33442b = pageBlock;
     }
 
     public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
@@ -22,29 +22,29 @@ public final class a90 extends c8.f1 {
 
     @Override
     public final void a(kf.b bVar) {
-        int i7 = this.f33428a;
+        int i7 = this.f33441a;
         if (i7 >= 64) {
             return;
         }
-        this.f33428a = i7 + 1;
+        this.f33441a = i7 + 1;
         try {
             v(bVar);
         } finally {
-            this.f33428a--;
+            this.f33441a--;
         }
     }
 
     @Override
     public final void b(kf.c cVar) {
-        int i7 = this.f33428a;
+        int i7 = this.f33441a;
         if (i7 >= 64) {
             return;
         }
-        this.f33428a = i7 + 1;
+        this.f33441a = i7 + 1;
         try {
             v(cVar);
         } finally {
-            this.f33428a--;
+            this.f33441a--;
         }
     }
 
@@ -62,7 +62,7 @@ public final class a90 extends c8.f1 {
             textstrike.text = y(eVar);
             w(textstrike);
         } else if (eVar instanceof zc.d) {
-            w(d90.c(((zc.d) eVar).f61851g));
+            w(d90.c(((zc.d) eVar).f61855g));
         } else {
             v(eVar);
         }
@@ -83,10 +83,10 @@ public final class a90 extends c8.f1 {
     @Override
     public final void k(kf.n nVar) {
         if (nVar instanceof zc.a) {
-            if (!this.f33430c.texts.isEmpty()) {
+            if (!this.f33443c.texts.isEmpty()) {
                 w(d90.n("\n"));
             }
-            w(d90.c(((zc.a) nVar).f61846g));
+            w(d90.c(((zc.a) nVar).f61850g));
             w(d90.n("\n"));
             return;
         }
@@ -95,35 +95,35 @@ public final class a90 extends c8.f1 {
 
     @Override
     public final void l(kf.o oVar) {
-        int i7 = this.f33428a;
+        int i7 = this.f33441a;
         if (i7 >= 64) {
             return;
         }
-        this.f33428a = i7 + 1;
+        this.f33441a = i7 + 1;
         try {
             v(oVar);
         } finally {
-            this.f33428a--;
+            this.f33441a--;
         }
     }
 
     @Override
     public final void m(kf.q qVar) {
-        int i7 = this.f33428a;
+        int i7 = this.f33441a;
         if (i7 >= 64) {
             return;
         }
-        this.f33428a = i7 + 1;
+        this.f33441a = i7 + 1;
         try {
             v(qVar);
         } finally {
-            this.f33428a--;
+            this.f33441a--;
         }
     }
 
     @Override
     public final void n(kf.r rVar) {
-        if (!this.f33430c.texts.isEmpty()) {
+        if (!this.f33443c.texts.isEmpty()) {
             w(d90.n("\n\n"));
         }
         v(rVar);
@@ -131,7 +131,7 @@ public final class a90 extends c8.f1 {
 
     @Override
     public final void o(kf.s sVar) {
-        w(d90.n(sVar.f18268g));
+        w(d90.n(sVar.f18271g));
     }
 
     @Override
@@ -172,7 +172,7 @@ public final class a90 extends c8.f1 {
     @Override
     public final void t(kf.g gVar) {
         String str;
-        if (this.f33429b instanceof TL_iv.pageBlockBlockquote) {
+        if (this.f33442b instanceof TL_iv.pageBlockBlockquote) {
             str = "\n";
         } else {
             str = " ";
@@ -188,15 +188,15 @@ public final class a90 extends c8.f1 {
     }
 
     public final void w(TL_iv.RichText richText) {
-        this.f33430c.texts.add(richText);
+        this.f33443c.texts.add(richText);
     }
 
     public final TL_iv.RichText y(kf.p pVar) {
-        TL_iv.textConcat textconcat = this.f33430c;
-        this.f33430c = new TL_iv.textConcat();
+        TL_iv.textConcat textconcat = this.f33443c;
+        this.f33443c = new TL_iv.textConcat();
         v(pVar);
-        TL_iv.RichText x10 = x(this.f33430c);
-        this.f33430c = textconcat;
+        TL_iv.RichText x10 = x(this.f33443c);
+        this.f33443c = textconcat;
         return x10;
     }
 }

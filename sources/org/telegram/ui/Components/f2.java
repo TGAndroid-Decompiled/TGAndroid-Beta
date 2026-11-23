@@ -4,23 +4,23 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class f2 implements RequestDelegate {
-    public final int f35062a;
-    public final Object f35063b;
+    public final int f35063a;
+    public final Object f35064b;
 
     public f2(Object obj, int i7) {
-        this.f35062a = i7;
-        this.f35063b = obj;
+        this.f35063a = i7;
+        this.f35064b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f35062a;
-        Object obj = this.f35063b;
+        int i7 = this.f35063a;
+        Object obj = this.f35064b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.c cVar = (org.telegram.messenger.c) obj;
                 if (tLObject instanceof TLRPC.Updates) {
-                    org.telegram.messenger.mp.u1(cVar.f23246a).V3((TLRPC.Updates) tLObject, false);
+                    org.telegram.messenger.np.u1(cVar.f23202a).V3((TLRPC.Updates) tLObject, false);
                     return;
                 }
                 return;
@@ -58,7 +58,7 @@ public final class f2 implements RequestDelegate {
                     TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList = (TLRPC.TL_messages_messageReactionsList) tLObject;
                     int i10 = tL_messages_messageReactionsList.count;
                     tL_messages_messageReactionsList.users.size();
-                    wh0Var.post(new org.telegram.ui.b0(wh0Var, i10, tL_messages_messageReactionsList, 17));
+                    wh0Var.post(new org.telegram.ui.f0(wh0Var, i10, tL_messages_messageReactionsList, 16));
                     return;
                 }
                 return;
@@ -72,15 +72,15 @@ public final class f2 implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new es0((kw0) obj, tL_error, tLObject, 3));
                 return;
             case 13:
-                org.telegram.messenger.g0.g3(new di.e8(tLObject, (org.telegram.messenger.x10) obj, 1));
+                org.telegram.messenger.g0.g3(new di.e8(tLObject, (org.telegram.messenger.y10) obj, 1));
                 return;
             case 14:
-                b21 b21Var = (b21) obj;
+                a21 a21Var = (a21) obj;
                 if (tLObject != null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    org.telegram.messenger.mp.u1(b21Var.f33710e).V3(updates, false);
+                    org.telegram.messenger.np.u1(a21Var.f33287e).V3(updates, false);
                     if (!updates.chats.isEmpty()) {
-                        org.telegram.messenger.g0.h3(new fm0(14, b21Var, updates), 1000L);
+                        org.telegram.messenger.g0.h3(new fm0(14, a21Var, updates), 1000L);
                         return;
                     }
                     return;
@@ -95,7 +95,7 @@ public final class f2 implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new es0(j41Var, tL_error, tLObject, 6));
                 return;
             default:
-                int i11 = UndoView.f33204j0;
+                int i11 = UndoView.f33207j0;
                 org.telegram.messenger.g0.g3(new fm0(20, (UndoView) obj, tLObject));
                 return;
         }

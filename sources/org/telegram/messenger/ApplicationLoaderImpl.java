@@ -12,7 +12,7 @@ import org.telegram.tgnet.TLRPC;
 public class ApplicationLoaderImpl extends t0 {
     @Override
     public final boolean b(Context context) {
-        if (Build.VERSION.SDK_INT >= 26 && !t0.f26941b.getPackageManager().canRequestPackageInstalls()) {
+        if (Build.VERSION.SDK_INT >= 26 && !t0.f26931b.getPackageManager().canRequestPackageInstalls()) {
             org.telegram.ui.Components.c5.j(context, null).show();
             return false;
         }
@@ -46,7 +46,7 @@ public class ApplicationLoaderImpl extends t0 {
         boolean z10 = false;
         try {
             w7.r(null, document);
-            w7.G(j10.f24798t0);
+            w7.G(k10.f24968t0);
             File J = w7.J(document, null, true, true);
             z10 = J.exists();
             if (z10) {

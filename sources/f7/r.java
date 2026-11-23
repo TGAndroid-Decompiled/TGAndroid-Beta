@@ -18,16 +18,16 @@ public enum r implements Parcelable {
     ATTESTATION_NOT_PRIVATE_ERR(36);
     
     public static final Parcelable.Creator<r> CREATOR = new t0(12);
-    public final int f11587a;
+    public final int f11590a;
 
     r(int i7) {
-        this.f11587a = i7;
+        this.f11590a = i7;
     }
 
     public static r a(int i7) {
         r[] values;
         for (r rVar : values()) {
-            if (i7 == rVar.f11587a) {
+            if (i7 == rVar.f11590a) {
                 return rVar;
             }
         }
@@ -42,6 +42,6 @@ public enum r implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        parcel.writeInt(this.f11587a);
+        parcel.writeInt(this.f11590a);
     }
 }

@@ -21,21 +21,21 @@ public class wy extends v4.t {
         if (yt0Var == null) {
             return null;
         }
-        if (yt0Var.f42553a == 0.0f) {
-            yt0Var.f42553a = 100.0f;
+        if (yt0Var.f42546a == 0.0f) {
+            yt0Var.f42546a = 100.0f;
         }
-        if (yt0Var.f42554b == 0.0f) {
-            yt0Var.f42554b = 100.0f;
+        if (yt0Var.f42547b == 0.0f) {
+            yt0Var.f42547b = 100.0f;
         }
-        float f10 = yt0Var.f42553a;
-        float f11 = yt0Var.f42554b;
+        float f10 = yt0Var.f42546a;
+        float f11 = yt0Var.f42547b;
         float f12 = f10 / f11;
         if (f12 <= 4.0f && f12 >= 0.2f) {
             return yt0Var;
         }
         float max = Math.max(f10, f11);
-        yt0Var.f42553a = max;
-        yt0Var.f42554b = max;
+        yt0Var.f42546a = max;
+        yt0Var.f42547b = max;
         return yt0Var;
     }
 
@@ -47,8 +47,8 @@ public class wy extends v4.t {
         boolean z11;
         float f10;
         SparseIntArray sparseIntArray = this.R;
-        if (sparseIntArray.size() != A() || this.W != this.f59255m || this.T != this.J) {
-            int i10 = this.f59255m;
+        if (sparseIntArray.size() != A() || this.W != this.f59259m || this.T != this.J) {
+            int i10 = this.f59259m;
             this.W = i10;
             float f11 = i10;
             if (f11 == 0.0f) {
@@ -88,13 +88,13 @@ public class wy extends v4.t {
                     min = i11;
                 } else {
                     i7 = L;
-                    min = Math.min(i11, (int) Math.floor((((yt0Var.f42553a / yt0Var.f42554b) * L) / f11) * i11));
+                    min = Math.min(i11, (int) Math.floor((((yt0Var.f42546a / yt0Var.f42547b) * L) / f11) * i11));
                     if (i15 >= min && (min <= 33 || i15 >= min - 15)) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    if (yt0Var.f42555c) {
+                    if (yt0Var.f42548c) {
                         sparseIntArray.put(i13, i15);
                         this.V++;
                         f10 = f11;

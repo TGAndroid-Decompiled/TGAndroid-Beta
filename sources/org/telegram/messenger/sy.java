@@ -1,23 +1,19 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class sy {
-    public String f26928a;
-    public String f26929b;
-    public boolean f26930c;
-    public String d;
-    public boolean f26931e;
-    public TLRPC.TL_inputStickerSetItem f26932f;
-    public e20 f26933g;
+public final class sy implements RequestDelegate {
+    public final Runnable f26926a;
+    public final ty f26927b;
 
-    public final void a(int i7, TLRPC.InputFile inputFile, Runnable runnable) {
-        TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
-        tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
-        TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
-        tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
-        tL_inputMediaUploadedDocument.file = inputFile;
-        tL_inputMediaUploadedDocument.mime_type = this.d;
-        ConnectionsManager.getInstance(i7).sendRequest(tL_messages_uploadMedia, new ry(this, runnable), 2);
+    public sy(ty tyVar, Runnable runnable) {
+        this.f26927b = tyVar;
+        this.f26926a = runnable;
+    }
+
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        g0.g3(new lg(this, tLObject, this.f26926a, 28));
     }
 }

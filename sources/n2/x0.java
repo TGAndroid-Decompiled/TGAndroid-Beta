@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 public abstract class x0 {
-    public static final t1 f21304a = h9.i0.u(12);
+    public static final t1 f21307a = h9.i0.u(12);
 
     public static h9.i0 a(AudioDeviceInfo audioDeviceInfo) {
         List<AudioProfile> audioProfiles = audioDeviceInfo.getAudioProfiles();
@@ -33,7 +33,7 @@ public abstract class x0 {
         h9.i0 i0Var;
         int speakerLayoutChannelMask;
         boolean a10 = aa.a(audioDeviceInfo.getType());
-        t1 t1Var = f21304a;
+        t1 t1Var = f21307a;
         if (!a10) {
             if (audioDeviceInfo.getType() == 1) {
                 return h9.i0.u(4);
@@ -141,8 +141,8 @@ public abstract class x0 {
                                 List.EL.sort(arrayList, new jg.w(7));
                                 i0Var = h9.i0.q(arrayList);
                             } else {
-                                h9.g0 g0Var = h9.i0.f14032b;
-                                i0Var = t1.f14100e;
+                                h9.g0 g0Var = h9.i0.f14035b;
+                                i0Var = t1.f14103e;
                             }
                             if (!i0Var.isEmpty()) {
                                 return i0Var;

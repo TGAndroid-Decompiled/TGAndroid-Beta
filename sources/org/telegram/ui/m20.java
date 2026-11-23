@@ -6,34 +6,34 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.widget.FrameLayout;
 public final class m20 extends FrameLayout {
-    public final RectF f49742a;
-    public final RectF f49743b;
-    public final RectF f49744c;
+    public final RectF f49746a;
+    public final RectF f49747b;
+    public final RectF f49748c;
     public final Paint d;
-    public final f40 f49745e;
+    public final f40 f49749e;
 
     public m20(f40 f40Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f49745e = f40Var;
-        this.f49742a = new RectF();
-        this.f49743b = new RectF();
-        this.f49744c = new RectF();
+        this.f49749e = f40Var;
+        this.f49746a = new RectF();
+        this.f49747b = new RectF();
+        this.f49748c = new RectF();
         this.d = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        f40 f40Var = this.f49745e;
+        f40 f40Var = this.f49749e;
         o20 o20Var = f40Var.A1;
         float y10 = o20Var.getY() + o20Var.getMeasuredHeight();
         te.c cVar = f40Var.A5;
-        RectF rectF = this.f49742a;
-        rectF.set(0.0f, y10 - cVar.f57702f, getMeasuredWidth(), getMeasuredHeight());
-        RectF rectF2 = this.f49743b;
+        RectF rectF = this.f49746a;
+        rectF.set(0.0f, y10 - cVar.f57706f, getMeasuredWidth(), getMeasuredHeight());
+        RectF rectF2 = this.f49747b;
         rectF2.set(0.0f, o20Var.getY() + o20Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
         float y11 = o20Var.getY() + o20Var.getMeasuredHeight();
-        RectF rectF3 = this.f49744c;
-        rectF3.set(0.0f, (o20Var.getY() + o20Var.getMeasuredHeight()) - cVar.f57702f, getMeasuredWidth(), y11);
+        RectF rectF3 = this.f49748c;
+        rectF3.set(0.0f, (o20Var.getY() + o20Var.getMeasuredHeight()) - cVar.f57706f, getMeasuredWidth(), y11);
         int i7 = Build.VERSION.SDK_INT;
         Paint paint = this.d;
         if (i7 >= 29 && f40Var.P4 != null && canvas.isHardwareAccelerated()) {

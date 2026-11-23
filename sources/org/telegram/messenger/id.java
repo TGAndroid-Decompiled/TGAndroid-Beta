@@ -1,47 +1,125 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
-public final class id implements RequestDelegate {
-    public final int f24683a;
-    public final qd f24684b;
+public final class id implements Runnable {
+    public final int f24706a;
+    public final rd f24707b;
 
-    public id(qd qdVar, int i7) {
-        this.f24683a = i7;
-        this.f24684b = qdVar;
+    public id(rd rdVar, int i7) {
+        this.f24706a = i7;
+        this.f24707b = rdVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f24683a) {
+    public final void run() {
+        switch (this.f24706a) {
             case 0:
-                qd qdVar = this.f24684b;
-                if (tL_error != null) {
-                    qdVar.getClass();
-                    return;
-                } else {
-                    qdVar.getMessagesController().V3((TLRPC.Updates) tLObject, false);
+                rd rdVar = this.f24707b;
+                ArrayList arrayList = new ArrayList();
+                ArrayList arrayList2 = new ArrayList();
+                ArrayList arrayList3 = new ArrayList();
+                try {
+                    ArrayList arrayList4 = new ArrayList();
+                    ArrayList arrayList5 = new ArrayList();
+                    SQLiteCursor queryFinalized = rdVar.getMessagesStorage().f27252b.queryFinalized("SELECT uid, mid, date, period, message, proximity FROM sharing_locations WHERE 1", new Object[0]);
+                    while (queryFinalized.next()) {
+                        ?? obj = new Object();
+                        obj.f26434a = queryFinalized.longValue(0);
+                        obj.f26435b = queryFinalized.intValue(1);
+                        obj.f26436c = queryFinalized.intValue(2);
+                        obj.d = queryFinalized.intValue(3);
+                        obj.f26438f = queryFinalized.intValue(5);
+                        obj.f26437e = rdVar.currentAccount;
+                        NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(4);
+                        if (byteBufferValue != null) {
+                            gj gjVar = new gj(rdVar.currentAccount, TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false), false, false);
+                            obj.h = gjVar;
+                            ur.e(gjVar.f24213k, arrayList4, arrayList5, null);
+                            byteBufferValue.reuse();
+                        }
+                        arrayList.add(obj);
+                        if (n5.z(obj.f26434a)) {
+                            if (!arrayList5.contains(Long.valueOf(-obj.f26434a))) {
+                                arrayList5.add(Long.valueOf(-obj.f26434a));
+                            }
+                        } else if (n5.E(obj.f26434a) && !arrayList4.contains(Long.valueOf(obj.f26434a))) {
+                            arrayList4.add(Long.valueOf(obj.f26434a));
+                        }
+                    }
+                    queryFinalized.dispose();
+                    if (!arrayList5.isEmpty()) {
+                        rdVar.getMessagesStorage().Q(TextUtils.join(",", arrayList5), arrayList3);
+                    }
+                    rdVar.getMessagesStorage().n0(arrayList4, arrayList2, false);
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                }
+                if (!arrayList.isEmpty()) {
+                    g0.g3(new ul(rdVar, arrayList2, arrayList3, arrayList, 10));
                     return;
                 }
+                return;
             case 1:
-                qd qdVar2 = this.f24684b;
-                if (tL_error != null) {
-                    qdVar2.getClass();
+                rd rdVar2 = this.f24707b;
+                rdVar2.J.clear();
+                rdVar2.K.b();
+                rd.s();
+                ls.e().k(283, new Object[0]);
+                return;
+            case 2:
+                rd rdVar3 = this.f24707b;
+                rdVar3.I = 0L;
+                rdVar3.G.clear();
+                rdVar3.f26590a.b();
+                rdVar3.f26591b.clear();
+                rdVar3.f26597s = null;
+                rdVar3.r(true);
+                return;
+            case 3:
+                this.f24707b.a(true);
+                return;
+            case 4:
+                Boolean bool = Boolean.FALSE;
+                rd rdVar4 = this.f24707b;
+                rdVar4.L = bool;
+                try {
+                    ((com.google.android.gms.common.api.internal.d0) rdVar4.N).f6282a.e();
+                    rdVar4.p();
                     return;
-                } else {
-                    qdVar2.getMessagesController().V3((TLRPC.Updates) tLObject, false);
+                } catch (Throwable unused) {
                     return;
                 }
+            case 5:
+                rd rdVar5 = this.f24707b;
+                rd f10 = rd.f(rdVar5.getAccountInstance().f23202a);
+                rdVar5.getNotificationCenter().b(f10, 1);
+                rdVar5.getNotificationCenter().b(f10, 7);
+                rdVar5.getNotificationCenter().b(f10, 49);
+                return;
             default:
-                boolean z10 = tLObject instanceof TLRPC.TL_messages_affectedMessages;
-                qd qdVar3 = this.f24684b;
-                if (z10) {
-                    TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
-                    qdVar3.getMessagesController().T3(tL_messages_affectedMessages.pts, -1, tL_messages_affectedMessages.pts_count);
-                    return;
+                rd rdVar6 = this.f24707b;
+                ArrayList arrayList6 = rdVar6.f26591b;
+                for (int i7 = 0; i7 < arrayList6.size(); i7++) {
+                    qd qdVar = (qd) arrayList6.get(i7);
+                    TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
+                    tL_messages_editMessage.peer = rdVar6.getMessagesController().l1(qdVar.f26434a);
+                    tL_messages_editMessage.f28518id = qdVar.f26435b;
+                    tL_messages_editMessage.flags |= 16384;
+                    TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
+                    tL_messages_editMessage.media = tL_inputMediaGeoLive;
+                    tL_inputMediaGeoLive.stopped = true;
+                    tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
+                    rdVar6.getConnectionsManager().sendRequest(tL_messages_editMessage, new jd(rdVar6, 1));
                 }
-                qdVar3.getClass();
+                arrayList6.clear();
+                rdVar6.f26590a.b();
+                rdVar6.l(null, 2);
+                rdVar6.r(true);
+                g0.g3(new id(rdVar6, 1));
                 return;
         }
     }

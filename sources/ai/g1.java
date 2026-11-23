@@ -24,9 +24,9 @@ import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 import ki.s3;
 import oi.y4;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.tr;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.r10;
+import org.telegram.messenger.ur;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -36,12 +36,12 @@ import org.telegram.ui.Dictation.DictationAsr;
 import org.telegram.ui.Wallet.u4;
 import org.telegram.ui.qw0;
 public final class g1 implements RequestDelegate {
-    public final int f1206a;
-    public final Object f1207b;
+    public final int f1215a;
+    public final Object f1216b;
 
     public g1(Object obj, int i7) {
-        this.f1206a = i7;
-        this.f1207b = obj;
+        this.f1215a = i7;
+        this.f1216b = obj;
     }
 
     @Override
@@ -52,9 +52,9 @@ public final class g1 implements RequestDelegate {
         final Comparator qw0Var2;
         Locale locale2;
         int i7 = 0;
-        switch (this.f1206a) {
+        switch (this.f1215a) {
             case 0:
-                CountDownLatch countDownLatch = (CountDownLatch) this.f1207b;
+                CountDownLatch countDownLatch = (CountDownLatch) this.f1216b;
                 if (tLObject instanceof Vector) {
                     ArrayList arrayList = new ArrayList();
                     ArrayList<T> arrayList2 = ((Vector) tLObject).objects;
@@ -69,9 +69,9 @@ public final class g1 implements RequestDelegate {
                             }
                         }
                     }
-                    synchronized (l1.class) {
-                        l1.f1276a = arrayList;
-                        l1.k(arrayList);
+                    synchronized (m1.class) {
+                        m1.f1295a = arrayList;
+                        m1.k(arrayList);
                     }
                     Log.d("Dictation", "speech models: " + arrayList.size() + " from the server");
                     DictationAsr.P();
@@ -85,96 +85,96 @@ public final class g1 implements RequestDelegate {
                     }
                     p5.c.t(sb2, str, "Dictation");
                 }
-                synchronized (l1.class) {
-                    l1.f1278c = null;
+                synchronized (m1.class) {
+                    m1.f1297c = null;
                 }
                 countDownLatch.countDown();
                 return;
             case 1:
-                org.telegram.messenger.g0.g3(new c1.a(26, (di.b0) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new c1.a(26, (di.b0) this.f1216b, tLObject));
                 return;
             case 2:
-                org.telegram.messenger.g0.g3(new c1.a(27, (di.c0) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new c1.a(27, (di.c0) this.f1216b, tLObject));
                 return;
             case 3:
-                org.telegram.messenger.g0.g3(new di.f2(12, tLObject, (h0) this.f1207b));
+                org.telegram.messenger.g0.g3(new di.f2(12, tLObject, (h0) this.f1216b));
                 return;
             case 4:
-                org.telegram.messenger.g0.g3(new di.f2(14, (p8) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new di.f2(14, (p8) this.f1216b, tLObject));
                 return;
             case 5:
-                mc mcVar = (mc) this.f1207b;
+                mc mcVar = (mc) this.f1216b;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    tr.a0(mcVar.n1).j1(new ArrayList(Arrays.asList(mcVar.G1.f23993k)), true, true, true, 0, false, 0, 0L);
+                    ur.a0(mcVar.n1).j1(new ArrayList(Arrays.asList(mcVar.G1.f24213k)), true, true, true, 0, false, 0, 0L);
                     return;
                 } else {
                     mcVar.getClass();
                     return;
                 }
             case 6:
-                org.telegram.messenger.g0.g3(new f2.a((a8) this.f1207b, 13));
+                org.telegram.messenger.g0.g3(new f2.a((a8) this.f1216b, 13));
                 return;
             case 7:
-                org.telegram.messenger.g0.g3(new l4(2, (b6) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new l4(2, (b6) this.f1216b, tLObject));
                 return;
             case 8:
-                org.telegram.messenger.g0.g3(new l4(4, (d6) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new l4(4, (d6) this.f1216b, tLObject));
                 return;
             case 9:
-                org.telegram.messenger.g0.g3(new hi.c(2, (hi.r1) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new hi.c(2, (hi.r1) this.f1216b, tLObject));
                 return;
             case 10:
-                org.telegram.messenger.g0.g3(new hi.c(12, (u6) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new hi.c(12, (u6) this.f1216b, tLObject));
                 return;
             case 11:
-                org.telegram.messenger.g0.g3(new hi.c(14, (c7) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new hi.c(14, (c7) this.f1216b, tLObject));
                 return;
             case 12:
-                org.telegram.messenger.g0.g3(new hi.c(15, (k7) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new hi.c(15, (k7) this.f1216b, tLObject));
                 return;
             case 13:
-                org.telegram.messenger.g0.g3(new ii.a((q10) this.f1207b, tLObject, tL_error, 0));
+                org.telegram.messenger.g0.g3(new ii.a((r10) this.f1216b, tLObject, tL_error, 0));
                 return;
             case 14:
-                org.telegram.messenger.g0.g3(new hi.c(22, (ii.m) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new hi.c(22, (ii.m) this.f1216b, tLObject));
                 return;
             case 15:
-                jg.h0 h0Var = (jg.h0) this.f1207b;
+                jg.h0 h0Var = (jg.h0) this.f1216b;
                 h0Var.getClass();
                 org.telegram.messenger.g0.g3(new hi.c(24, h0Var, tLObject));
                 return;
             case 16:
-                org.telegram.messenger.g0.g3(new di.a8((kg.c) this.f1207b, tL_error, tLObject, 27));
+                org.telegram.messenger.g0.g3(new di.a8((kg.c) this.f1216b, tL_error, tLObject, 27));
                 return;
             case 17:
-                org.telegram.messenger.g0.g3(new ji.i(1, (kg.f) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new ji.i(1, (kg.f) this.f1216b, tLObject));
                 return;
             case 18:
-                org.telegram.messenger.g0.g3(new di.a8((kg.n) this.f1207b, tL_error, tLObject, 28));
+                org.telegram.messenger.g0.g3(new di.a8((kg.n) this.f1216b, tL_error, tLObject, 28));
                 return;
             case 19:
-                org.telegram.messenger.g0.g3(new kg.y((kg.u0) this.f1207b, tL_error, tLObject, 2));
+                org.telegram.messenger.g0.g3(new kg.y((kg.u0) this.f1216b, tL_error, tLObject, 2));
                 return;
             case 20:
-                org.telegram.messenger.g0.g3(new kg.y((kg.e1) this.f1207b, tL_error, tLObject, 3));
+                org.telegram.messenger.g0.g3(new kg.y((kg.e1) this.f1216b, tL_error, tLObject, 3));
                 return;
             case 21:
-                org.telegram.messenger.g0.g3(new ji.i(6, (kg.v1) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new ji.i(6, (kg.v1) this.f1216b, tLObject));
                 return;
             case 22:
-                org.telegram.messenger.g0.g3(new ji.i(14, (s3) this.f1207b, tL_error));
+                org.telegram.messenger.g0.g3(new ji.i(14, (s3) this.f1216b, tL_error));
                 return;
             case 23:
-                org.telegram.messenger.g0.g3(new oi.t(0, (oi.v) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new oi.t(0, (oi.v) this.f1216b, tLObject));
                 return;
             case 24:
-                org.telegram.messenger.g0.g3(new oi.t(5, (y4) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new oi.t(5, (y4) this.f1216b, tLObject));
                 return;
             case 25:
-                org.telegram.messenger.g0.g3(new u4(26, (org.telegram.ui.web.t1) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new u4(26, (org.telegram.ui.web.t1) this.f1216b, tLObject));
                 return;
             case 26:
-                wg.u0 u0Var = (wg.u0) this.f1207b;
+                wg.u0 u0Var = (wg.u0) this.f1216b;
                 if (tLObject != null) {
                     TLRPC.TL_help_countriesList tL_help_countriesList = (TLRPC.TL_help_countriesList) tLObject;
                     HashMap hashMap = new HashMap();
@@ -197,8 +197,8 @@ public final class g1 implements RequestDelegate {
                         }
                     }
                     if (Build.VERSION.SDK_INT >= 24) {
-                        if (gd.E0().f24269y != null) {
-                            locale = gd.E0().f24269y;
+                        if (hd.E0().f24472y != null) {
+                            locale = hd.E0().f24472y;
                         } else {
                             locale = Locale.getDefault();
                         }
@@ -229,7 +229,7 @@ public final class g1 implements RequestDelegate {
                 }
                 return;
             case 27:
-                ug.z zVar = (ug.z) this.f1207b;
+                ug.z zVar = (ug.z) this.f1216b;
                 if (tLObject != null) {
                     TLRPC.TL_help_countriesList tL_help_countriesList2 = (TLRPC.TL_help_countriesList) tLObject;
                     HashMap hashMap2 = new HashMap();
@@ -243,7 +243,7 @@ public final class g1 implements RequestDelegate {
                         }
                         if (!tL_help_country2.hidden || equalsIgnoreCase) {
                             if (equalsIgnoreCase) {
-                                String N0 = gd.N0(2131750504, null);
+                                String N0 = hd.N0(2131750504, null);
                                 tL_help_country2.default_name = N0;
                                 tL_help_country2.name = N0;
                             }
@@ -258,8 +258,8 @@ public final class g1 implements RequestDelegate {
                         }
                     }
                     if (Build.VERSION.SDK_INT >= 24) {
-                        if (gd.E0().f24269y != null) {
-                            locale2 = gd.E0().f24269y;
+                        if (hd.E0().f24472y != null) {
+                            locale2 = hd.E0().f24472y;
                         } else {
                             locale2 = Locale.getDefault();
                         }
@@ -290,7 +290,7 @@ public final class g1 implements RequestDelegate {
                 }
                 return;
             default:
-                org.telegram.messenger.g0.g3(new wg.q(5, (wg.e1) this.f1207b, tLObject));
+                org.telegram.messenger.g0.g3(new wg.q(5, (wg.e1) this.f1216b, tLObject));
                 return;
         }
     }

@@ -4,37 +4,37 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 public final class or implements Runnable {
-    public final int f38347a;
-    public final rr f38348b;
+    public final int f38341a;
+    public final rr f38342b;
 
     public or(rr rrVar, int i7) {
-        this.f38347a = i7;
-        this.f38348b = rrVar;
+        this.f38341a = i7;
+        this.f38342b = rrVar;
     }
 
     @Override
     public final void run() {
         View view;
-        switch (this.f38347a) {
+        switch (this.f38341a) {
             case 0:
-                rr rrVar = this.f38348b;
-                if (rrVar.f39313b == null && (view = rrVar.d) != null) {
+                rr rrVar = this.f38342b;
+                if (rrVar.f39323b == null && (view = rrVar.d) != null) {
                     View findFocus = view.findFocus();
                     if (findFocus instanceof EditText) {
-                        rrVar.f39313b = (EditText) findFocus;
+                        rrVar.f39323b = (EditText) findFocus;
                     }
                 }
-                EditText editText = rrVar.f39313b;
+                EditText editText = rrVar.f39323b;
                 if (editText != null) {
-                    if (editText.length() != 0 || rrVar.f39315e) {
+                    if (editText.length() != 0 || rrVar.f39325e) {
                         try {
                             rrVar.performHapticFeedback(3, 2);
                             rrVar.playSoundEffect(0);
                         } catch (Exception unused) {
                         }
-                        rrVar.f39313b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        rrVar.f39313b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (rrVar.f39316f) {
+                        rrVar.f39323b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        rrVar.f39323b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (rrVar.f39326f) {
                             rrVar.postDelayed(rrVar.h, 50L);
                             return;
                         }
@@ -44,9 +44,9 @@ public final class or implements Runnable {
                 }
                 return;
             default:
-                rr rrVar2 = this.f38348b;
-                rrVar2.f39317n = false;
-                rrVar2.f39316f = true;
+                rr rrVar2 = this.f38342b;
+                rrVar2.f39327n = false;
+                rrVar2.f39326f = true;
                 rrVar2.h.run();
                 return;
         }

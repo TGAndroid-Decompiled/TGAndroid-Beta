@@ -5,7 +5,7 @@ import android.view.ViewPropertyAnimator;
 public final class k0 extends v4.k {
     @Override
     public final void D(v4.f1 f1Var) {
-        View view = f1Var.f59161a;
+        View view = f1Var.f59165a;
         ViewPropertyAnimator animate = view.animate();
         this.A.add(f1Var);
         animate.setDuration(this.d).alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setListener(new j0(this, f1Var, animate, view, 0)).start();
@@ -34,7 +34,7 @@ public final class k0 extends v4.k {
     @Override
     public final void p(v4.f1 f1Var) {
         super.p(f1Var);
-        View view = f1Var.f59161a;
+        View view = f1Var.f59165a;
         view.setScaleX(0.0f);
         view.setScaleY(0.0f);
     }

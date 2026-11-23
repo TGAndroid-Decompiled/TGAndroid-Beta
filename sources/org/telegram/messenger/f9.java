@@ -1,66 +1,45 @@
 package org.telegram.messenger;
 
-import android.os.Bundle;
-import com.google.android.gms.tasks.CancellationToken;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.util.concurrent.CancellationException;
-import org.json.JSONObject;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.h60;
-public final class f9 implements v0.g {
-    public final CancellationToken f23886a;
-    public final TaskCompletionSource f23887b;
-    public final h60 f23888c;
-    public final int d;
-    public final Runnable[] f23889e;
+public final class f9 implements Runnable {
+    public final int f23881a;
+    public final int f23882b;
+    public final int f23883c;
 
-    public f9(CancellationToken cancellationToken, TaskCompletionSource taskCompletionSource, h60 h60Var, int i7, Runnable[] runnableArr) {
-        this.f23886a = cancellationToken;
-        this.f23887b = taskCompletionSource;
-        this.f23888c = h60Var;
-        this.d = i7;
-        this.f23889e = runnableArr;
+    public f9(int i7, int i10, int i11) {
+        this.f23881a = i11;
+        this.f23882b = i7;
+        this.f23883c = i10;
     }
 
     @Override
-    public final void a(Object obj) {
-        w0.i iVar = (w0.i) obj;
-        if (this.f23886a.isCancellationRequested()) {
-            return;
-        }
-        boolean z10 = iVar instanceof w0.k;
-        TaskCompletionSource taskCompletionSource = this.f23887b;
-        if (z10) {
-            taskCompletionSource.trySetException(new Exception("EMPTY"));
-        } else if (!(iVar instanceof w0.g) && !(iVar instanceof w0.j)) {
-            taskCompletionSource.trySetException(iVar);
-        } else {
-            taskCompletionSource.trySetException(new CancellationException());
-        }
-    }
-
-    @Override
-    public final void onResult(Object obj) {
-        v0.n nVar = (v0.n) obj;
-        TaskCompletionSource taskCompletionSource = this.f23887b;
-        CancellationToken cancellationToken = this.f23886a;
-        if (!cancellationToken.isCancellationRequested()) {
-            try {
-                String string = new JSONObject(((Bundle) nVar.f59064a.f6424a).getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON")).getJSONObject("data").getJSONObject("vp_token").getJSONArray("firebase").getString(0);
-                this.f23888c.run();
-                TLRPC.TL_auth_finishFirebasePnvLogin tL_auth_finishFirebasePnvLogin = new TLRPC.TL_auth_finishFirebasePnvLogin();
-                tL_auth_finishFirebasePnvLogin.google_token = string;
-                int i7 = this.d;
-                e9 e9Var = new e9(i7, ConnectionsManager.getInstance(i7).sendRequestTyped(tL_auth_finishFirebasePnvLogin, new d3.b(1), new z3(1, cancellationToken, taskCompletionSource), 8), 1);
-                Runnable[] runnableArr = this.f23889e;
-                runnableArr[0] = e9Var;
-                if (cancellationToken.isCancellationRequested()) {
-                    runnableArr[0].run();
-                }
-            } catch (Exception e10) {
-                taskCompletionSource.trySetException(e10);
-            }
+    public final void run() {
+        int i7 = this.f23881a;
+        int i10 = this.f23883c;
+        int i11 = this.f23882b;
+        switch (i7) {
+            case 0:
+                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
+                return;
+            case 1:
+                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
+                return;
+            case 2:
+                String[] strArr = MediaController.W1;
+                ls.f(i11).k(156, Integer.valueOf(i10));
+                return;
+            case 3:
+                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
+                return;
+            case 4:
+                ConnectionsManager.lambda$onConnectionStateChanged$15(i11, i10);
+                return;
+            case 5:
+                ConnectionsManager.lambda$onRequestNewServerIpAndPort$18(i11, i10);
+                return;
+            default:
+                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
+                return;
         }
     }
 }

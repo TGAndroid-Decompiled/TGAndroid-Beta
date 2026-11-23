@@ -8,18 +8,18 @@ import p5.e;
 import v5.d;
 import w5.c;
 public final class a implements b {
-    public static final Logger f57654f = Logger.getLogger(s.class.getName());
-    public final md0 f57655a;
-    public final Executor f57656b;
-    public final e f57657c;
+    public static final Logger f57658f = Logger.getLogger(s.class.getName());
+    public final md0 f57659a;
+    public final Executor f57660b;
+    public final e f57661c;
     public final d d;
-    public final c f57658e;
+    public final c f57662e;
 
     public a(Executor executor, e eVar, md0 md0Var, d dVar, c cVar) {
-        this.f57656b = executor;
-        this.f57657c = eVar;
-        this.f57655a = md0Var;
+        this.f57660b = executor;
+        this.f57661c = eVar;
+        this.f57659a = md0Var;
         this.d = dVar;
-        this.f57658e = cVar;
+        this.f57662e = cVar;
     }
 }

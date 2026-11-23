@@ -1,211 +1,177 @@
 package org.telegram.messenger;
 
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
-import android.text.Layout;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
 import android.view.MotionEvent;
-public abstract class vu extends zt {
-    public final dv X;
-    public final dv Y;
-    public final dv[] Z;
-    public final boolean f27628a0;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_iv;
+public final class vu extends uu {
+    public h6.m f27616d0;
+    public org.telegram.ui.Components.mc f27617e0;
+    public boolean f27618f0;
+    public boolean f27619g0;
+    public boolean f27620h0;
+    public boolean f27621i0;
+    public float f27622j0;
+    public int f27623k0;
+    public final Drawable f27624l0;
+    public int m0;
 
-    public vu(ev evVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2, Layout.Alignment alignment) {
-        super(evVar, rect, i7);
-        boolean z10;
-        dv dvVar;
-        if (alignment == Layout.Alignment.ALIGN_CENTER) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f27628a0 = z10;
-        dv dvVar2 = new dv(evVar, spannableStringBuilder, this.f28379c, alignment);
-        this.X = dvVar2;
-        if (!TextUtils.isEmpty(spannableStringBuilder2)) {
-            dvVar = new dv(evVar, spannableStringBuilder2, this.f28379c, alignment);
-        } else {
-            dvVar = null;
-        }
-        this.Y = dvVar;
-        this.Z = dvVar == null ? new dv[]{dvVar2} : new dv[]{dvVar2, dvVar};
+    public vu(fv fvVar, Rect rect, int i7, TL_iv.pageBlockBlockquote pageblockblockquote, SpannableStringBuilder spannableStringBuilder) {
+        super(fvVar, rect, i7, spannableStringBuilder);
+        this.f27624l0 = i5.c.g(t0.f26931b, 2131230871);
+        boolean z10 = pageblockblockquote.collapsed;
+        this.f27620h0 = z10;
+        this.f27621i0 = z10;
     }
 
     @Override
     public final int I() {
-        int i7;
-        Rect rect = this.f28378b;
-        int i02 = i0() + this.X.f23605b.getHeight() + rect.top;
-        dv dvVar = this.Y;
-        if (dvVar != null) {
-            i7 = dvVar.f23605b.getHeight();
-        } else {
-            i7 = 0;
+        if (this.f27620h0) {
+            Rect rect = this.f22969b;
+            return (int) Math.min((this.X.f23770b.getPaint().getTextSize() * 1.4f * 3.0f) + rect.top + this.f27267a0 + rect.bottom, super.I());
         }
-        return i02 + i7 + rect.bottom;
-    }
-
-    @Override
-    public final int J() {
-        dv dvVar = this.Y;
-        if (dvVar == null) {
-            dvVar = this.X;
-        }
-        Rect rect = this.f28378b;
-        return dvVar.q() + rect.left + rect.right;
-    }
-
-    @Override
-    public final int K() {
-        int i7;
-        Rect rect = this.f28378b;
-        int i10 = rect.left;
-        int r10 = this.X.r();
-        dv dvVar = this.Y;
-        if (dvVar != null) {
-            i7 = dvVar.r();
-        } else {
-            i7 = 0;
-        }
-        return Math.max(r10, i7) + i10 + rect.right;
-    }
-
-    @Override
-    public final org.telegram.ui.Cells.u9[] L() {
-        return this.Z;
-    }
-
-    @Override
-    public final void T() {
-        this.X.i(this.W);
-        dv dvVar = this.Y;
-        if (dvVar != null) {
-            dvVar.i(this.W);
-        }
-    }
-
-    @Override
-    public final void V() {
-        this.X.f(this.W);
-        dv dvVar = this.Y;
-        if (dvVar != null) {
-            dvVar.f(this.W);
-        }
+        return super.I();
     }
 
     @Override
     public final void W(Canvas canvas) {
-        canvas.save();
-        dv dvVar = this.X;
-        canvas.translate(j0(dvVar), 0.0f);
-        dvVar.d(canvas, dvVar.T);
-        canvas.restore();
-        dv dvVar2 = this.Y;
-        if (dvVar2 != null) {
+        float f10;
+        boolean z10;
+        org.telegram.ui.Components.mc mcVar = this.f27617e0;
+        if (mcVar != null) {
+            f10 = mcVar.a(0.01f);
+        } else {
+            f10 = 1.0f;
+        }
+        int i7 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
+        int i10 = this.f22970c;
+        if (i7 != 0) {
             canvas.save();
-            canvas.translate(j0(dvVar2), i0() + dvVar.f23605b.getHeight());
-            dvVar2.d(canvas, dvVar2.T);
+            canvas.scale(f10, f10, i10 / 2.0f, I() / 2.0f);
+        }
+        if (this.f27622j0 > 0.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int i11 = (this.f27623k0 - this.f22969b.bottom) - this.f27268b0;
+        canvas.save();
+        canvas.clipRect(0, 0, i10, i11);
+        if (z10) {
+            canvas.saveLayer(0.0f, 0.0f, i10, i11, null);
+        }
+        super.W(canvas);
+        if (z10) {
+            if (this.f27616d0 == null) {
+                this.f27616d0 = new h6.m(29);
+            }
+            RectF rectF = g0.P;
+            rectF.set(0.0f, i11 - g0.L(24.0f), i10, i11 + 1);
+            this.f27616d0.n(canvas, rectF, 3, this.f27622j0);
+            canvas.restore();
+        }
+        canvas.restore();
+        fv fvVar = this.f22968a;
+        int i12 = fvVar.f23997y.i();
+        int i13 = this.m0;
+        Drawable drawable = this.f27624l0;
+        if (i12 != i13) {
+            int i14 = fvVar.f23997y.i();
+            this.m0 = i14;
+            drawable.setColorFilter(new PorterDuffColorFilter(i14, PorterDuff.Mode.SRC_IN));
+        }
+        bg.t.e(this.f27624l0, fvVar.C - g0.L(24.0f), g0.L(8.0f) + ((i11 - g0.L(16.0f)) - g0.L(2.0f)), g0.L(16.0f), g0.L(16.0f), 17);
+        canvas.save();
+        canvas.rotate(g0.W1(this.f27622j0, 180, 0), drawable.getBounds().exactCenterX(), drawable.getBounds().exactCenterY());
+        drawable.draw(canvas);
+        canvas.restore();
+        if (i7 != 0) {
             canvas.restore();
         }
     }
 
     @Override
     public final boolean Y(MotionEvent motionEvent) {
-        int i7;
-        dv dvVar = this.X;
-        int height = dvVar.f23605b.getHeight();
-        float y10 = motionEvent.getY();
-        int i10 = 0;
-        if (y10 >= 0.0f && y10 < height) {
-            i7 = j0(dvVar);
-        } else {
-            dvVar = this.Y;
-            if (dvVar == null || y10 < i0() + height) {
+        View view;
+        int actionMasked = motionEvent.getActionMasked();
+        if (this.f27619g0) {
+            if (actionMasked == 1 || actionMasked == 3) {
+                this.f27619g0 = false;
+            }
+            return super.Y(motionEvent);
+        }
+        fv fvVar = this.f22968a;
+        if (actionMasked == 0) {
+            boolean Y = super.Y(motionEvent);
+            this.f27619g0 = Y;
+            if (!Y) {
+                this.f27618f0 = true;
+                if (this.f27617e0 == null && (view = fvVar.Q) != null) {
+                    this.f27617e0 = new org.telegram.ui.Components.mc(view);
+                }
+                org.telegram.ui.Components.mc mcVar = this.f27617e0;
+                if (mcVar != null) {
+                    mcVar.c(true);
+                    return true;
+                }
+            }
+        } else if (actionMasked == 1) {
+            if (!this.f27618f0) {
                 return false;
             }
-            int j02 = j0(dvVar);
-            i10 = i0() + height;
-            i7 = j02;
-        }
-        motionEvent.offsetLocation(-i7, -i10);
-        boolean t6 = dvVar.t(motionEvent);
-        motionEvent.offsetLocation(i7, i10);
-        return t6;
-    }
-
-    @Override
-    public final void Z(int i7, int i10, int i11) {
-        dv dvVar = this.X;
-        dvVar.f23606c = (j0(dvVar) + i7) - dvVar.f23608f;
-        dvVar.d = i10;
-        dvVar.f23607e = i11;
-        dv dvVar2 = this.Y;
-        if (dvVar2 != null) {
-            dvVar2.f23606c = (j0(dvVar2) + i7) - dvVar2.f23608f;
-            dvVar2.d = i0() + dvVar.f23605b.getHeight() + i10;
-            dvVar2.f23607e = i11;
-        }
-    }
-
-    @Override
-    public final Layout a() {
-        return this.X.f23605b;
-    }
-
-    public final int i0() {
-        if (this.Y != null) {
-            return g0.L(2.0f);
-        }
-        return 0;
-    }
-
-    public final int j0(dv dvVar) {
-        int L;
-        int r10;
-        boolean z10 = this.f27628a0;
-        Rect rect = this.f28378b;
-        ev evVar = this.f28377a;
-        if (z10) {
-            L = (((evVar.C + evVar.T) - evVar.S) - dvVar.r()) / 2;
-            r10 = rect.left;
-        } else if (!evVar.I()) {
-            return 0;
+            this.f27618f0 = false;
+            org.telegram.ui.Components.mc mcVar2 = this.f27617e0;
+            if (mcVar2 != null) {
+                mcVar2.c(false);
+            }
+            View view2 = fvVar.Q;
+            if (view2 != null) {
+                view2.playSoundEffect(0);
+            }
+            fvVar.X();
+            this.f27620h0 = !this.f27620h0;
+            fvVar.f23994u = true;
+            fvVar.Q();
+            View view3 = fvVar.Q;
+            if (view3 != null) {
+                view3.invalidate();
+            }
+            org.telegram.ui.Cells.r1 r1Var = fvVar.E;
+            org.telegram.ui.Cells.m1 m1Var = fvVar.F;
+            if (r1Var != null && m1Var != null) {
+                m1Var.B1(r1Var, true, true);
+            }
         } else {
-            L = (((evVar.C + evVar.T) - g0.L(14.0f)) - rect.right) - rect.left;
-            r10 = dvVar.r();
+            if (actionMasked == 3) {
+                this.f27618f0 = false;
+                org.telegram.ui.Components.mc mcVar3 = this.f27617e0;
+                if (mcVar3 != null) {
+                    mcVar3.c(false);
+                }
+            }
+            return this.f27618f0;
         }
-        return L - r10;
+        return true;
     }
 
     @Override
-    public final void k(SpannableStringBuilder spannableStringBuilder) {
-        zt.l(spannableStringBuilder, null, this.Z);
+    public final void d0() {
+        super.d0();
+        this.f27621i0 = this.f27620h0;
     }
 
     @Override
-    public final boolean u(CharacterStyle characterStyle, int i7, qt qtVar) {
-        dv dvVar = this.X;
-        boolean o4 = dvVar.o(characterStyle, qtVar);
-        Rect rect = this.f28378b;
-        if (o4) {
-            qtVar.f26478e = (j0(dvVar) + rect.left) - dvVar.f23608f;
-            qtVar.f26479f = i7 + rect.top;
-            return true;
+    public final float z() {
+        org.telegram.ui.Components.mc mcVar = this.f27617e0;
+        if (mcVar != null) {
+            return mcVar.a(0.01f);
         }
-        dv dvVar2 = this.Y;
-        if (dvVar2 != null && dvVar2.o(characterStyle, qtVar)) {
-            qtVar.f26478e = (j0(dvVar2) + rect.left) - dvVar2.f23608f;
-            qtVar.f26479f = i0() + dvVar.f23605b.getHeight() + i7 + rect.top;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean v() {
-        return this.f27628a0;
+        return 1.0f;
     }
 }

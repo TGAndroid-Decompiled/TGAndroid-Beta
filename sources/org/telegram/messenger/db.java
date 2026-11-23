@@ -1,3 +1,4 @@
 package org.telegram.messenger;
-public final class db extends fb {
+public interface db {
+    void onClick();
 }

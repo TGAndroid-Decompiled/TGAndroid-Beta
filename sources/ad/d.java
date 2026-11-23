@@ -29,31 +29,31 @@ public final class d extends g1 {
 
     public static Map a(i iVar) {
         boolean z10;
-        cd.c cVar = iVar.f8346k;
-        int i7 = cVar.f5223a;
+        cd.c cVar = iVar.f8349k;
+        int i7 = cVar.f5226a;
         if (i7 > 0) {
             HashMap hashMap = new HashMap(i7);
             int i10 = 0;
             while (true) {
-                if (i10 < cVar.f5223a) {
+                if (i10 < cVar.f5226a) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (z10) {
-                    String str = cVar.f5225c[i10];
-                    String str2 = cVar.f5224b[i10];
+                    String str = cVar.f5228c[i10];
+                    String str2 = cVar.f5227b[i10];
                     if (str == null) {
                         str = "";
                     }
                     ?? obj = new Object();
                     if (str2 != null) {
-                        obj.f5217a = str2.trim();
+                        obj.f5220a = str2.trim();
                         if (str2.length() != 0) {
-                            obj.f5218b = str;
-                            obj.f5219c = cVar;
+                            obj.f5221b = str;
+                            obj.f5222c = cVar;
                             i10++;
-                            hashMap.put(obj.f5217a.toLowerCase(Locale.US), obj.f5218b);
+                            hashMap.put(obj.f5220a.toLowerCase(Locale.US), obj.f5221b);
                         } else {
                             throw new IllegalArgumentException("String must not be empty");
                         }

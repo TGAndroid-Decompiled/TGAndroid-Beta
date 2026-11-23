@@ -6,6 +6,6 @@ public final class q20 extends org.telegram.ui.Components.tb0 {
 
     @Override
     public final CharSequence d(int i7) {
-        return org.telegram.messenger.gd.G(i7, "Minutes", new Object[0]);
+        return org.telegram.messenger.hd.G(i7, "Minutes", new Object[0]);
     }
 }

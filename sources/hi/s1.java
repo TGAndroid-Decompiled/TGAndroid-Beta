@@ -28,8 +28,8 @@ public final class s1 extends wy {
         int i10;
         int i11;
         yt0 yt0Var = this.X;
-        yt0Var.f42555c = false;
-        Object F = this.Y.f15493c.F(i7);
+        yt0Var.f42548c = false;
+        Object F = this.Y.f15496c.F(i7);
         if (F instanceof TLRPC.BotInlineResult) {
             TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) F;
             document = botInlineResult.document;
@@ -52,22 +52,22 @@ public final class s1 extends wy {
             document = (TLRPC.Document) F;
             arrayList = document.attributes;
         } else {
-            yt0Var.f42555c = true;
+            yt0Var.f42548c = true;
             return yt0Var;
         }
-        yt0Var.f42554b = 100.0f;
-        yt0Var.f42553a = 100.0f;
-        yt0Var.f42555c = false;
-        if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i10 = w10.f28456w) != 0 && (i11 = w10.h) != 0) {
-            yt0Var.f42553a = i10;
-            yt0Var.f42554b = i11;
+        yt0Var.f42547b = 100.0f;
+        yt0Var.f42546a = 100.0f;
+        yt0Var.f42548c = false;
+        if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i10 = w10.f28459w) != 0 && (i11 = w10.h) != 0) {
+            yt0Var.f42546a = i10;
+            yt0Var.f42547b = i11;
         }
         if (arrayList != null) {
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i12);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    yt0Var.f42553a = documentAttribute.f28438w;
-                    yt0Var.f42554b = documentAttribute.h;
+                    yt0Var.f42546a = documentAttribute.f28441w;
+                    yt0Var.f42547b = documentAttribute.h;
                     break;
                 }
             }

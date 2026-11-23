@@ -3,24 +3,24 @@ package ai;
 import java.util.ArrayList;
 import org.telegram.ui.Dictation.DictationAsr;
 public final class t {
-    public final String f1508a;
-    public final String[] f1509b;
-    public volatile String[] f1510c;
+    public final String f1516a;
+    public final String[] f1517b;
+    public volatile String[] f1518c;
     public volatile String[] d;
-    public volatile long f1511e;
-    public volatile long f1512f;
-    public int f1513g;
-    public boolean f1514i;
-    public boolean f1515j;
-    public volatile float f1516k;
+    public volatile long f1519e;
+    public volatile long f1520f;
+    public int f1521g;
+    public boolean f1522i;
+    public boolean f1523j;
+    public volatile float f1524k;
     public final ArrayList h = new ArrayList();
-    public final ArrayList f1517l = new ArrayList();
+    public final ArrayList f1525l = new ArrayList();
 
     public t(String str, String[] strArr, String[] strArr2, long j3) {
-        this.f1508a = str;
-        this.f1509b = strArr;
-        this.f1510c = strArr2;
-        this.f1511e = j3;
+        this.f1516a = str;
+        this.f1517b = strArr;
+        this.f1518c = strArr2;
+        this.f1519e = j3;
     }
 
     public final String a(String str) {
@@ -36,11 +36,11 @@ public final class t {
     }
 
     public final String b() {
-        return a8.p0.s(new StringBuilder(), this.f1508a, ".tzf");
+        return a8.p0.s(new StringBuilder(), this.f1516a, ".tzf");
     }
 
     public final boolean c(String str) {
-        for (String str2 : this.f1509b) {
+        for (String str2 : this.f1517b) {
             if (str2.equals(str)) {
                 return true;
             }
@@ -53,7 +53,7 @@ public final class t {
         if (this.d != null) {
             strArr = this.d;
         } else {
-            strArr = this.f1510c;
+            strArr = this.f1518c;
         }
         ArrayList arrayList = new ArrayList();
         for (String str2 : strArr) {

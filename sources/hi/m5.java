@@ -6,13 +6,13 @@ import android.graphics.PorterDuffColorFilter;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 public final class m5 extends ImageView {
-    public final int f15020a;
-    public final o5 f15021b;
+    public final int f15023a;
+    public final o5 f15024b;
 
     public m5(o5 o5Var, Context context, int i7, int i10) {
         super(context);
-        this.f15021b = o5Var;
-        this.f15020a = i7;
+        this.f15024b = o5Var;
+        this.f15023a = i7;
         setBackground(org.telegram.ui.ActionBar.m6.h0(1090519039, 1, -1));
         setScaleType(ImageView.ScaleType.CENTER);
         setImageResource(i10);

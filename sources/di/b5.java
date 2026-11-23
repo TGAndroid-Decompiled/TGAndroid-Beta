@@ -15,10 +15,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.n10;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.s10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.r10;
+import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.nr;
@@ -43,33 +43,33 @@ public final class b5 extends FrameLayout {
     public hi.l3 U;
     public final int[] V;
     public final int[] W;
-    public final org.telegram.ui.ActionBar.h6 f8555a;
-    public int f8556a0;
-    public final a5 f8557b;
-    public long f8558b0;
-    public final ImageView f8559c;
-    public TLRPC.Document f8560c0;
+    public final org.telegram.ui.ActionBar.h6 f8558a;
+    public int f8559a0;
+    public final a5 f8560b;
+    public long f8561b0;
+    public final ImageView f8562c;
+    public TLRPC.Document f8563c0;
     public final ai.l0[] d;
-    public String f8561d0;
-    public final ai.l0 f8562e;
-    public ArrayList f8563e0;
-    public final x4 f8564f;
-    public s10 f8565f0;
-    public q10 f8566g0;
+    public String f8564d0;
+    public final ai.l0 f8565e;
+    public ArrayList f8566e0;
+    public final x4 f8567f;
+    public t10 f8568f0;
+    public r10 f8569g0;
     public final v4 h;
-    public Runnable f8567h0;
-    public boolean f8568i0;
-    public boolean f8569j0;
-    public boolean f8570k0;
-    public Runnable f8571l0;
+    public Runnable f8570h0;
+    public boolean f8571i0;
+    public boolean f8572j0;
+    public boolean f8573k0;
+    public Runnable f8574l0;
     public rh0 m0;
-    public final z4[] f8572n;
-    public SpannableStringBuilder f8573n0;
-    public final xh.l f8574r;
-    public boolean f8575s;
-    public final LinearLayout f8576w;
-    public final LinearLayout f8577x;
-    public final q4[] f8578y;
+    public final z4[] f8575n;
+    public SpannableStringBuilder f8576n0;
+    public final xh.l f8577r;
+    public boolean f8578s;
+    public final LinearLayout f8579w;
+    public final LinearLayout f8580x;
+    public final q4[] f8581y;
 
     public b5(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
@@ -79,24 +79,24 @@ public final class b5 extends FrameLayout {
         int i7;
         this.V = new int[]{-14861233, -15787732, -11327734, -14742773, -14527649, -15920861};
         this.W = new int[]{org.telegram.ui.ActionBar.m6.r1(0.08f, -1), org.telegram.ui.ActionBar.m6.r1(0.08f, -1), -294362, -3914963, -13519030, -12613223};
-        this.f8555a = h6Var;
+        this.f8558a = h6Var;
         a5 a5Var = new a5();
-        this.f8557b = a5Var;
+        this.f8560b = a5Var;
         Drawable g10 = i5.c.g(context, 2131231111);
         g10.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.SRC_IN));
-        a5Var.f8508g = g10;
+        a5Var.f8511g = g10;
         setBackground(a5Var);
         FrameLayout frameLayout = new FrameLayout(context);
         this.Q = frameLayout;
         addView(frameLayout, c8.ma.e(-1, 60, 55));
         ImageView imageView = new ImageView(context);
-        this.f8559c = imageView;
+        this.f8562c = imageView;
         imageView.setImageResource(2131232504);
         imageView.setBackground(new p5(org.telegram.messenger.g0.L(24.0f), org.telegram.ui.ActionBar.m6.r1(0.08f, -1)));
         frameLayout.addView(imageView, c8.ma.d(32, 32.0f, 51, 14.0f, 14.0f, 14.0f, 14.0f));
         imageView.setOnClickListener(new o4(this, 0));
         c8.ra.a(imageView);
-        ImageView e10 = n10.e(context, 2131232098);
+        ImageView e10 = o10.e(context, 2131232098);
         e10.setBackground(new p5(org.telegram.messenger.g0.L(24.0f), org.telegram.ui.ActionBar.m6.r1(0.08f, -1)));
         frameLayout.addView(e10, c8.ma.d(32, 32.0f, 53, 14.0f, 14.0f, 14.0f, 14.0f));
         e10.setOnClickListener(new o4(this, 1));
@@ -106,7 +106,7 @@ public final class b5 extends FrameLayout {
         textView.setGravity(17);
         textView.setTextSize(1, 20.0f);
         textView.setTextColor(-1);
-        textView.setText(gd.N0(2131749741, null));
+        textView.setText(hd.N0(2131749741, null));
         addView(textView, c8.ma.d(-1, -2.0f, 49, 0.0f, 20.0f, 0.0f, 0.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.R = frameLayout2;
@@ -120,13 +120,13 @@ public final class b5 extends FrameLayout {
         frameLayout4.setAlpha(0.0f);
         addView(frameLayout4, c8.ma.e(-1, -1, 119));
         xh.l lVar = new xh.l(context);
-        this.f8574r = lVar;
+        this.f8577r = lVar;
         lVar.setGravity(17);
         lVar.setTextSize(1, 13.0f);
         lVar.setTextColor(-1);
         frameLayout2.addView(lVar, c8.ma.d(-1, -2.0f, 49, 32.0f, 244.0f, 32.0f, 84.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f8576w = linearLayout;
+        this.f8579w = linearLayout;
         LayoutTransition layoutTransition = new LayoutTransition();
         layoutTransition.setDuration(2, 320L);
         layoutTransition.setDuration(3, 320L);
@@ -143,7 +143,7 @@ public final class b5 extends FrameLayout {
         linearLayout.setOrientation(0);
         linearLayout.setGravity(17);
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f8577x = linearLayout2;
+        this.f8580x = linearLayout2;
         LayoutTransition layoutTransition2 = new LayoutTransition();
         layoutTransition2.setDuration(2, 320L);
         layoutTransition2.setDuration(3, 320L);
@@ -159,25 +159,25 @@ public final class b5 extends FrameLayout {
         linearLayout2.setOrientation(0);
         linearLayout2.setAlpha(0.0f);
         linearLayout2.setGravity(17);
-        this.f8578y = new q4[4];
+        this.f8581y = new q4[4];
         this.E = new q4[4];
         for (int i10 = 0; i10 < 4; i10++) {
-            LinearLayout linearLayout3 = this.f8576w;
-            q4[] q4VarArr = this.f8578y;
+            LinearLayout linearLayout3 = this.f8579w;
+            q4[] q4VarArr = this.f8581y;
             q4 q4Var = new q4(context);
             q4VarArr[i10] = q4Var;
             linearLayout3.addView(q4Var, c8.ma.k(0.0f, 0.0f, 0.0f, 0.0f, 48, 54));
-            this.f8578y[i10].setOnClickListener(new o4(this, 2));
+            this.f8581y[i10].setOnClickListener(new o4(this, 2));
         }
         for (int i11 = 0; i11 < 4; i11++) {
-            LinearLayout linearLayout4 = this.f8576w;
+            LinearLayout linearLayout4 = this.f8579w;
             q4[] q4VarArr2 = this.E;
             q4 q4Var2 = new q4(context);
             q4VarArr2[i11] = q4Var2;
             linearLayout4.addView(q4Var2, c8.ma.k(0.0f, 0.0f, 0.0f, 0.0f, 48, 54));
             this.E[i11].setOnClickListener(new o4(this, 3));
         }
-        this.f8572n = new z4[4];
+        this.f8575n = new z4[4];
         this.d = new ai.l0[6];
         int i12 = 0;
         for (int i13 = 6; i12 < i13; i13 = 6) {
@@ -208,12 +208,12 @@ public final class b5 extends FrameLayout {
             if (z10) {
                 q9Var.setTranslationX(org.telegram.messenger.g0.L(-4.0f));
                 w4 w4Var = new w4(context);
-                l0Var.f1275c = w4Var;
-                w4Var.f9986e = org.telegram.messenger.g0.L(37.0f);
-                w4Var.f9983a.setStrokeWidth(org.telegram.messenger.g0.N(4.66f));
+                l0Var.f1282c = w4Var;
+                w4Var.f9989e = org.telegram.messenger.g0.L(37.0f);
+                w4Var.f9986a.setStrokeWidth(org.telegram.messenger.g0.N(4.66f));
                 frameLayout5.addView(w4Var, c8.ma.e(90, 90, 17));
                 org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, false, false, false);
-                l0Var.f1274b = o6Var;
+                l0Var.f1281b = o6Var;
                 o6Var.getDrawable().r(false, true);
                 o6Var.setTypeface(org.telegram.messenger.g0.o());
                 o6Var.setTextColor(-1);
@@ -225,9 +225,9 @@ public final class b5 extends FrameLayout {
             l0VarArr[i12] = l0Var;
             i12++;
         }
-        this.f8562e = this.d[5];
+        this.f8565e = this.d[5];
         x4 x4Var = new x4(context);
-        this.f8564f = x4Var;
+        this.f8567f = x4Var;
         x4Var.setVisibility(8);
         x4Var.setAlpha(0.0f);
         addView(x4Var, c8.ma.d(300, 300.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -238,11 +238,11 @@ public final class b5 extends FrameLayout {
         this.F = x5Var;
         x5Var.setTextSize(1, 12.0f);
         x5Var.setTypeface(org.telegram.messenger.g0.o());
-        x5Var.setText(org.telegram.messenger.g0.I2(gd.N0(2131749737, null), false, org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f)));
+        x5Var.setText(org.telegram.messenger.g0.I2(hd.N0(2131749737, null), false, org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f)));
         x5Var.setPadding(org.telegram.messenger.g0.L(9.0f), 0, org.telegram.messenger.g0.L(9.0f), 0);
         x5Var.setGravity(17);
         x5Var.setTextColor(-1);
-        if (this.f8563e0 != null) {
+        if (this.f8566e0 != null) {
             f10 = 1.0f;
         } else {
             f10 = 0.25f;
@@ -251,9 +251,9 @@ public final class b5 extends FrameLayout {
         x5Var.setBackground(new p5(org.telegram.messenger.g0.L(14.0f), org.telegram.ui.ActionBar.m6.r1(0.08f, -1)));
         c8.ra.b(x5Var, 0.02f, 1.2f);
         this.R.addView(x5Var, c8.ma.d(-2, 27.0f, 49, 32.0f, 412.0f, 32.0f, 84.0f));
-        x5Var.setOnClickListener(new ai.x2(16, this, h6Var));
-        this.R.addView(this.f8576w, c8.ma.d(-2, 54.0f, 49, 32.0f, 340.0f, 32.0f, 84.0f));
-        this.R.addView(this.f8577x, c8.ma.d(-2, 54.0f, 49, 32.0f, 394.0f, 32.0f, 84.0f));
+        x5Var.setOnClickListener(new ai.y2(16, this, h6Var));
+        this.R.addView(this.f8579w, c8.ma.d(-2, 54.0f, 49, 32.0f, 340.0f, 32.0f, 84.0f));
+        this.R.addView(this.f8580x, c8.ma.d(-2, 54.0f, 49, 32.0f, 394.0f, 32.0f, 84.0f));
         LinearLayout linearLayout5 = new LinearLayout(context);
         this.H = linearLayout5;
         linearLayout5.setOrientation(1);
@@ -269,7 +269,7 @@ public final class b5 extends FrameLayout {
         o6Var2.setTypeface(org.telegram.messenger.g0.o());
         o6Var2.setGravity(17);
         o6Var2.setTextColor(org.telegram.ui.ActionBar.m6.r1(0.75f, -1));
-        o6Var2.setText(gd.N0(2131749780, null));
+        o6Var2.setText(hd.N0(2131749780, null));
         o6Var2.setTextSize(org.telegram.messenger.g0.L(14.0f));
         linearLayout5.addView(o6Var2, c8.ma.s(-1, 18, 55, 16.0f, 7.33f, 16.0f, 0.0f));
         org.telegram.ui.Components.o6 o6Var3 = new org.telegram.ui.Components.o6(context, false, false, false);
@@ -277,7 +277,7 @@ public final class b5 extends FrameLayout {
         o6Var3.getDrawable().r(true, false);
         o6Var3.setGravity(17);
         o6Var3.setTextColor(org.telegram.ui.ActionBar.m6.r1(0.75f, -1));
-        o6Var3.setText(org.telegram.messenger.g0.W2(gd.a0(null, null, 2131749749, "0%")));
+        o6Var3.setText(org.telegram.messenger.g0.W2(hd.a0(null, null, 2131749749, "0%")));
         o6Var3.setTextSize(org.telegram.messenger.g0.L(12.0f));
         linearLayout5.addView(o6Var3, c8.ma.s(-1, 14, 55, 16.0f, 2.66f, 16.0f, 7.66f));
         LinearLayout linearLayout6 = new LinearLayout(context);
@@ -293,7 +293,7 @@ public final class b5 extends FrameLayout {
         textView2.setTextColor(-1);
         textView2.setTypeface(org.telegram.messenger.g0.o());
         textView2.setGravity(17);
-        textView2.setText(gd.N0(2131749757, null));
+        textView2.setText(hd.N0(2131749757, null));
         linearLayout6.addView(textView2, c8.ma.t(-2, -2, 17, 0, 0, 0, 0));
         this.S.addView(linearLayout6, c8.ma.d(-1, -2.0f, 49, 0.0f, 350.0f, 0.0f, 0.0f));
         TextView textView3 = new TextView(context);
@@ -315,7 +315,7 @@ public final class b5 extends FrameLayout {
         m11.setTextColor(org.telegram.ui.ActionBar.m6.r1(0.5f, -1));
         org.telegram.messenger.f3.k(m11, 17, null, 2131749758);
         TextView m12 = org.telegram.ui.Cells.c0.m(this.S, m11, c8.ma.d(-1, -2.0f, 81, 42.0f, 0.0f, 42.0f, 24.0f), context);
-        m12.setText(gd.N0(2131749771, null));
+        m12.setText(hd.N0(2131749771, null));
         m12.setTextColor(-505270);
         m12.setTextSize(1, 20.0f);
         m12.setTypeface(org.telegram.messenger.g0.o());
@@ -337,15 +337,15 @@ public final class b5 extends FrameLayout {
     public final void a(int i7, long j3, TLRPC.Document document, String str) {
         z4[] z4VarArr;
         float f10;
-        this.f8556a0 = i7;
-        this.f8558b0 = j3;
-        this.f8560c0 = document;
-        this.f8561d0 = str;
-        this.f8568i0 = false;
-        this.f8570k0 = false;
+        this.f8559a0 = i7;
+        this.f8561b0 = j3;
+        this.f8563c0 = document;
+        this.f8564d0 = str;
+        this.f8571i0 = false;
+        this.f8573k0 = false;
         int i10 = 0;
         while (true) {
-            z4VarArr = this.f8572n;
+            z4VarArr = this.f8575n;
             if (i10 >= z4VarArr.length) {
                 break;
             }
@@ -356,12 +356,12 @@ public final class b5 extends FrameLayout {
             i10++;
         }
         v4 v4Var = this.h;
-        View[] viewArr = v4Var.f9941a;
+        View[] viewArr = v4Var.f9944a;
         u4 u4Var = v4Var.I;
         if (u4Var != null) {
-            u4Var.f9887e = true;
-            u4Var.f9893l = false;
-            u4Var.f9884a.I = null;
+            u4Var.f9890e = true;
+            u4Var.f9896l = false;
+            u4Var.f9887a.I = null;
             v4Var.I = null;
         }
         ValueAnimator valueAnimator = v4Var.H;
@@ -371,9 +371,9 @@ public final class b5 extends FrameLayout {
         }
         v4Var.G = -1;
         v4Var.F = 0.0f;
-        v4Var.f9949w.clear();
-        v4Var.f9950x.clear();
-        v4Var.f9951y.clear();
+        v4Var.f9952w.clear();
+        v4Var.f9953x.clear();
+        v4Var.f9954y.clear();
         for (int i11 = 0; i11 < 6; i11++) {
             v4Var.E[i11] = 0.0f;
         }
@@ -383,10 +383,10 @@ public final class b5 extends FrameLayout {
             viewArr[i12].setVisibility(0);
             v4Var.addView(viewArr[i12], c8.ma.e(108, 108, 17));
         }
-        Matrix.setIdentityM(v4Var.f9943c, 0);
-        v4Var.f9944e = 0.0f;
+        Matrix.setIdentityM(v4Var.f9946c, 0);
+        v4Var.f9947e = 0.0f;
         v4Var.d = 0.0f;
-        v4Var.f9945f = true;
+        v4Var.f9948f = true;
         z4 z4Var2 = new z4(getContext());
         z4VarArr[0] = z4Var2;
         addView(z4Var2, c8.ma.d(76, 76.0f, 49, -117.0f, 74.0f, 0.0f, 0.0f));
@@ -405,7 +405,7 @@ public final class b5 extends FrameLayout {
             z4VarArr[i13].setOnClickListener(new o4(this, 5));
         }
         d(false);
-        this.f8568i0 = false;
+        this.f8571i0 = false;
         FrameLayout frameLayout = this.R;
         frameLayout.animate().cancel();
         frameLayout.setAlpha(1.0f);
@@ -421,30 +421,30 @@ public final class b5 extends FrameLayout {
         FrameLayout frameLayout4 = this.Q;
         frameLayout4.animate().cancel();
         frameLayout4.setAlpha(1.0f);
-        if (this.f8575s) {
+        if (this.f8578s) {
             f10 = 0.0f;
-        } else if (this.f8563e0 != null) {
+        } else if (this.f8566e0 != null) {
             f10 = 1.0f;
         } else {
             f10 = 0.25f;
         }
         this.F.setAlpha(f10);
-        x4 x4Var = this.f8564f;
+        x4 x4Var = this.f8567f;
         x4Var.setVisibility(8);
         x4Var.setAlpha(0.0f);
-        String N0 = gd.N0(2131749780, null);
+        String N0 = hd.N0(2131749780, null);
         org.telegram.ui.Components.o6 o6Var = this.I;
         o6Var.setText(N0);
         o6Var.setTranslationY(0.0f);
         this.J.setAlpha(1.0f);
-        org.telegram.messenger.u9.c(i7).j(j3, new p4(this, j3, j3, 0));
+        org.telegram.messenger.v9.c(i7).j(j3, new p4(this, j3, j3, 0));
     }
 
     public final void b(q4 q4Var) {
         if (q4Var.d != null) {
-            c(q4Var, org.telegram.messenger.g0.W2(gd.G(Math.round(q4Var.f9603f * 100.0f), "GiftCraftBackdropChance", q4Var.d.name)));
-        } else if (q4Var.f9602e != null) {
-            c(q4Var, org.telegram.messenger.g0.W2(gd.G(Math.round(q4Var.f9603f * 100.0f), "GiftCraftSymbolChance", q4Var.f9602e.name)));
+            c(q4Var, org.telegram.messenger.g0.W2(hd.G(Math.round(q4Var.f9606f * 100.0f), "GiftCraftBackdropChance", q4Var.d.name)));
+        } else if (q4Var.f9605e != null) {
+            c(q4Var, org.telegram.messenger.g0.W2(hd.G(Math.round(q4Var.f9606f * 100.0f), "GiftCraftSymbolChance", q4Var.f9605e.name)));
         }
     }
 
@@ -457,7 +457,7 @@ public final class b5 extends FrameLayout {
             l3Var.f(true);
             this.U = null;
         }
-        if (!this.f8568i0 && !this.f8570k0) {
+        if (!this.f8571i0 && !this.f8573k0) {
             if (q4Var.getParent() instanceof View) {
                 view = (View) q4Var.getParent();
             }
@@ -497,7 +497,7 @@ public final class b5 extends FrameLayout {
         TL_stars.StarGift starGift;
         int i7 = 0;
         while (true) {
-            z4[] z4VarArr = this.f8572n;
+            z4[] z4VarArr = this.f8575n;
             if (i7 >= z4VarArr.length) {
                 return null;
             }
@@ -524,7 +524,7 @@ public final class b5 extends FrameLayout {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            z4[] z4VarArr = this.f8572n;
+            z4[] z4VarArr = this.f8575n;
             if (i7 < z4VarArr.length) {
                 z4 z4Var = z4VarArr[i7];
                 if (z4Var != null) {
@@ -548,7 +548,7 @@ public final class b5 extends FrameLayout {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            z4[] z4VarArr = this.f8572n;
+            z4[] z4VarArr = this.f8575n;
             if (i7 < z4VarArr.length) {
                 z4 z4Var = z4VarArr[i7];
                 if (z4Var != null) {
@@ -577,15 +577,15 @@ public final class b5 extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 
-    public void setOnAddGift(q10 q10Var) {
-        this.f8566g0 = q10Var;
+    public void setOnAddGift(r10 r10Var) {
+        this.f8569g0 = r10Var;
     }
 
     public void setOnClose(Runnable runnable) {
-        this.f8567h0 = runnable;
+        this.f8570h0 = runnable;
     }
 
-    public void setOnCraft(s10 s10Var) {
-        this.f8565f0 = s10Var;
+    public void setOnCraft(t10 t10Var) {
+        this.f8568f0 = t10Var;
     }
 }

@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import org.telegram.messenger.a8;
 public abstract class w0 {
-    public static final HashMap f1589a = new HashMap();
+    public static final HashMap f1600a = new HashMap();
 
     static {
         new HashSet();
@@ -57,7 +57,7 @@ public abstract class w0 {
     }
 
     public static ArrayList c(Context context, long j3) {
-        ArrayList arrayList = (ArrayList) f1589a.get(Long.valueOf(j3));
+        ArrayList arrayList = (ArrayList) f1600a.get(Long.valueOf(j3));
         if (arrayList != null && !arrayList.isEmpty()) {
             return new ArrayList(arrayList);
         }

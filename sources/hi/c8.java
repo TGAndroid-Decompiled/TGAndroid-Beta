@@ -2,29 +2,29 @@ package hi;
 
 import android.os.SystemClock;
 import android.util.Pair;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.lv0;
-public final class c8 implements x10 {
-    public final int f14388a;
-    public final long f14389b;
-    public final Object f14390c;
+public final class c8 implements y10 {
+    public final int f14391a;
+    public final long f14392b;
+    public final Object f14393c;
 
     public c8(Object obj, long j3, int i7) {
-        this.f14388a = i7;
-        this.f14390c = obj;
-        this.f14389b = j3;
+        this.f14391a = i7;
+        this.f14393c = obj;
+        this.f14392b = j3;
     }
 
     @Override
     public final void a(Object obj) {
         long j3;
-        switch (this.f14388a) {
+        switch (this.f14391a) {
             case 0:
-                k8 k8Var = (k8) this.f14390c;
+                k8 k8Var = (k8) this.f14393c;
                 TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) obj;
                 org.telegram.ui.ActionBar.t1 t1Var = k8Var.H;
                 if (t1Var != null) {
@@ -47,26 +47,26 @@ public final class c8 implements x10 {
                         tL_chatParticipant.user_id = j3;
                         tL_chatParticipants.participants.add(tL_chatParticipant);
                     }
-                    k8Var.e(this.f14389b, tL_chatParticipants);
+                    k8Var.e(this.f14392b, tL_chatParticipants);
                     return;
                 }
                 return;
             case 1:
-                org.telegram.messenger.g0.h3(new ji.i(0, (ji.o) this.f14390c, (String) obj), Math.max(0L, (this.f14389b + 1200) - SystemClock.uptimeMillis()));
+                org.telegram.messenger.g0.h3(new ji.i(0, (ji.o) this.f14393c, (String) obj), Math.max(0L, (this.f14392b + 1200) - SystemClock.uptimeMillis()));
                 return;
             case 2:
-                ResultCallback resultCallback = (ResultCallback) this.f14390c;
+                ResultCallback resultCallback = (ResultCallback) this.f14393c;
                 gg.a aVar = (gg.a) obj;
                 if (resultCallback != null) {
-                    resultCallback.onComplete(new Pair(Long.valueOf(this.f14389b), aVar));
+                    resultCallback.onComplete(new Pair(Long.valueOf(this.f14392b), aVar));
                     return;
                 }
                 return;
             default:
-                lv0 lv0Var = (lv0) this.f14390c;
+                lv0 lv0Var = (lv0) this.f14393c;
                 TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
                 if (tL_messages_emojiGroups != null) {
-                    ks.f(j10.f24798t0).d(new bi.q2(lv0Var, tL_messages_emojiGroups, this.f14389b, 26));
+                    ls.f(k10.f24968t0).d(new bi.q2(lv0Var, tL_messages_emojiGroups, this.f14392b, 26));
                     return;
                 }
                 return;

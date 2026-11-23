@@ -9,23 +9,23 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class q0 extends Drawable {
     public static final float[][] h = {new float[]{7.0f, 9.5f, 10.25f}, new float[]{12.0f, 17.0f, 10.25f}, new float[]{7.0f, 13.0f, 13.75f}, new float[]{15.5f, 17.0f, 13.75f}};
-    public final Paint f41268a;
-    public final Paint f41269b;
-    public final RectF f41270c;
+    public final Paint f41270a;
+    public final Paint f41271b;
+    public final RectF f41272c;
     public float d;
-    public boolean f41271e;
-    public ValueAnimator f41272f;
-    public int f41273g;
+    public boolean f41273e;
+    public ValueAnimator f41274f;
+    public int f41275g;
 
     public q0(boolean z10) {
         float f10;
         Paint paint = new Paint(1);
-        this.f41268a = paint;
+        this.f41270a = paint;
         Paint paint2 = new Paint(1);
-        this.f41269b = paint2;
-        this.f41270c = new RectF();
-        this.f41273g = 255;
-        this.f41271e = z10;
+        this.f41271b = paint2;
+        this.f41272c = new RectF();
+        this.f41275g = 255;
+        this.f41273e = z10;
         if (z10) {
             f10 = 1.0f;
         } else {
@@ -65,13 +65,13 @@ public final class q0 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f41273g = i7;
+        this.f41275g = i7;
         invalidateSelf();
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f41268a.setColorFilter(colorFilter);
+        this.f41270a.setColorFilter(colorFilter);
         invalidateSelf();
     }
 }

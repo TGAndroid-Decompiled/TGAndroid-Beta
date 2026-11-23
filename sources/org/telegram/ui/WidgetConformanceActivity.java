@@ -9,7 +9,7 @@ public final class WidgetConformanceActivity extends Activity {
     public final void onCreate(Bundle bundle) {
         org.telegram.messenger.t0.w();
         super.onCreate(bundle);
-        boolean z10 = org.telegram.messenger.s2.f26749a;
+        boolean z10 = org.telegram.messenger.s2.f26730a;
         finish();
     }
 
@@ -25,9 +25,9 @@ public final class WidgetConformanceActivity extends Activity {
             return;
         }
         for (int i7 = 0; i7 < 4; i7++) {
-            if (org.telegram.messenger.j10.i(i7).p()) {
-                org.telegram.messenger.tr a02 = org.telegram.messenger.tr.a0(i7);
-                a02.f27080a.c(new org.telegram.messenger.pq(a02, 1));
+            if (org.telegram.messenger.k10.i(i7).p()) {
+                org.telegram.messenger.ur a02 = org.telegram.messenger.ur.a0(i7);
+                a02.f27250a.c(new org.telegram.messenger.qq(a02, 1));
             }
         }
         Log.i("WidgetConformance", "widget heights cleared");

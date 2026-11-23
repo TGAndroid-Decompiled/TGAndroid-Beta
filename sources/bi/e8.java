@@ -1,77 +1,67 @@
 package bi;
 
-import android.content.Context;
-import org.telegram.messenger.x10;
+import di.ab;
+import org.telegram.messenger.np;
+import org.telegram.messenger.r10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.lm0;
-import org.telegram.ui.nl0;
-public final class e8 implements x10 {
-    public final int f3594a = 0;
-    public final long f3595b;
-    public final Object f3596c;
+import org.telegram.ui.Components.m70;
+import org.telegram.ui.Components.o41;
+import org.telegram.ui.Components.q20;
+import org.telegram.ui.Components.r70;
+import org.telegram.ui.Components.sa;
+public final class e8 implements r10 {
+    public final int f3604a;
+    public final long f3605b;
+    public final org.telegram.ui.ActionBar.w2 f3606c;
     public final Object d;
-    public final Object f3597e;
-    public final Object f3598f;
 
-    public e8(j8 j8Var, org.telegram.ui.ActionBar.t1 t1Var, cg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
-        this.f3596c = j8Var;
-        this.d = t1Var;
-        this.f3597e = bVar;
-        this.f3598f = tL_starGiftUnique;
-        this.f3595b = j3;
+    public e8(sa saVar, Object obj, long j3, int i7) {
+        this.f3604a = i7;
+        this.f3606c = saVar;
+        this.d = obj;
+        this.f3605b = j3;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f3594a) {
+    public final void a(Object obj, Object obj2) {
+        TLRPC.Updates updates;
+        switch (this.f3604a) {
             case 0:
-                j8 j8Var = (j8) this.f3596c;
-                cg.b bVar = (cg.b) this.f3597e;
-                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f3598f;
-                TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift = (TLRPC.TL_payments_paymentFormStarGift) obj;
-                ((org.telegram.ui.ActionBar.t1) this.d).dismiss();
-                if (tL_payments_paymentFormStarGift != null) {
-                    di.f5 f5Var = new di.f5(bVar, tL_payments_paymentFormStarGift);
-                    Context context = j8Var.getContext();
-                    org.telegram.ui.ActionBar.h6 h6Var = j8Var.J0;
-                    int i7 = j8Var.f30170a;
-                    StringBuilder sb2 = new StringBuilder();
-                    sb2.append(tL_starGiftUnique.title);
-                    sb2.append(" #");
-                    String l10 = i5.c.l(tL_starGiftUnique.num, ',', sb2);
-                    long j3 = this.f3595b;
-                    new di.h5(context, h6Var, tL_starGiftUnique, f5Var, i7, j3, l10, true, new f8(j8Var, tL_starGiftUnique, j3, 0)).b();
-                    return;
-                }
+                i8 i8Var = (i8) this.f3606c;
+                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.d;
+                di.f5 f5Var = (di.f5) obj;
+                vf.b bVar = (vf.b) obj2;
+                bVar.d();
+                di.y8.x(i8Var.f30173a, f5Var.f8791a).h(f5Var.f8792b, tL_starGiftUnique, this.f3605b, null, true, new h0(i8Var, bVar, tL_starGiftUnique, 2));
                 return;
             case 1:
-                di.f6 f6Var = (di.f6) this.f3596c;
-                TL_stars.starGiftDepositPayload stargiftdepositpayload = (TL_stars.starGiftDepositPayload) this.d;
-                e2 e2Var = (e2) this.f3598f;
-                f6Var.getClass();
-                long longValue = ((Long) this.f3597e).longValue();
-                f6Var.v1(this.f3595b, stargiftdepositpayload, longValue, (vf.b) obj, e2Var);
+                ab.e1((ab) this.f3606c, (o41) this.d, this.f3605b, (Boolean) obj, (String) obj2);
                 return;
             default:
-                lm0.a0((lm0) this.f3596c, (cg.b) this.f3597e, (TL_stars.TL_starGiftUnique) this.f3598f, this.f3595b, (nl0) this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                r70 r70Var = (r70) this.f3606c;
+                TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = (TLRPC.TL_messages_importChatInvite) this.d;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    np.u1(r70Var.f30173a).V3(updates2, false);
+                    updates = updates2;
+                } else {
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        org.telegram.messenger.g0.g3(new m70(r70Var, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult, this.f3605b, 1));
+                    }
+                    updates = null;
+                }
+                org.telegram.messenger.g0.g3(new q20(r70Var, tL_error, updates, tL_messages_importChatInvite, 1));
                 return;
         }
     }
 
-    public e8(di.f6 f6Var, long j3, TL_stars.starGiftDepositPayload stargiftdepositpayload, Long l10, e2 e2Var) {
-        this.f3596c = f6Var;
-        this.f3595b = j3;
-        this.d = stargiftdepositpayload;
-        this.f3597e = l10;
-        this.f3598f = e2Var;
-    }
-
-    public e8(lm0 lm0Var, cg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, nl0 nl0Var) {
-        this.f3596c = lm0Var;
-        this.f3597e = bVar;
-        this.f3598f = tL_starGiftUnique;
-        this.f3595b = j3;
-        this.d = nl0Var;
+    public e8(r70 r70Var, long j3, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        this.f3604a = 2;
+        this.f3606c = r70Var;
+        this.f3605b = j3;
+        this.d = tL_messages_importChatInvite;
     }
 }

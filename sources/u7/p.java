@@ -5,16 +5,16 @@ import c8.tc;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 public final class p extends i0 implements ListIterator {
-    public final int f58500b;
-    public int f58501c;
+    public final int f58504b;
+    public int f58505c;
     public final r d;
 
     public p(r rVar, int i7) {
         super(6);
         int size = rVar.size();
         if (i7 >= 0 && i7 <= size) {
-            this.f58500b = size;
-            this.f58501c = i7;
+            this.f58504b = size;
+            this.f58505c = i7;
             this.d = rVar;
             return;
         }
@@ -32,7 +32,7 @@ public final class p extends i0 implements ListIterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f58501c < this.f58500b) {
+        if (this.f58505c < this.f58504b) {
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ public final class p extends i0 implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f58501c > 0) {
+        if (this.f58505c > 0) {
             return true;
         }
         return false;
@@ -49,8 +49,8 @@ public final class p extends i0 implements ListIterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            int i7 = this.f58501c;
-            this.f58501c = i7 + 1;
+            int i7 = this.f58505c;
+            this.f58505c = i7 + 1;
             return a(i7);
         }
         throw new NoSuchElementException();
@@ -58,14 +58,14 @@ public final class p extends i0 implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f58501c;
+        return this.f58505c;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i7 = this.f58501c - 1;
-            this.f58501c = i7;
+            int i7 = this.f58505c - 1;
+            this.f58505c = i7;
             return a(i7);
         }
         throw new NoSuchElementException();
@@ -73,7 +73,7 @@ public final class p extends i0 implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f58501c - 1;
+        return this.f58505c - 1;
     }
 
     @Override

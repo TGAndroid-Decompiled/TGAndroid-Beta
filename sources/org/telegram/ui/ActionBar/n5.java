@@ -6,21 +6,21 @@ import android.widget.TextView;
 import org.telegram.ui.Components.nr;
 import org.telegram.ui.Components.up;
 public abstract class n5 extends TextView {
-    public boolean f29810a;
-    public final org.telegram.ui.Components.d6 f29811b;
-    public final up f29812c;
+    public boolean f29813a;
+    public final org.telegram.ui.Components.d6 f29814b;
+    public final up f29815c;
 
     public n5(Context context) {
         super(context);
-        this.f29810a = false;
-        this.f29811b = new org.telegram.ui.Components.d6(this, 320L, nr.h);
-        this.f29812c = new up(-1);
+        this.f29813a = false;
+        this.f29814b = new org.telegram.ui.Components.d6(this, 320L, nr.h);
+        this.f29815c = new up(-1);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float d = this.f29811b.d(this.f29810a);
+        float d = this.f29814b.d(this.f29813a);
         if (d < 1.0f) {
             if (d <= 0.0f) {
                 canvas.save();
@@ -38,7 +38,7 @@ public abstract class n5 extends TextView {
         if (d > 0.0f) {
             int height = getHeight() / 2;
             int width = (getWidth() / 2) - ((int) ((1.0f - d) * org.telegram.messenger.g0.L(6.0f)));
-            up upVar = this.f29812c;
+            up upVar = this.f29815c;
             upVar.setAlpha((int) (d * 255.0f));
             upVar.setBounds(width - (upVar.getIntrinsicWidth() / 2), height - (upVar.getIntrinsicWidth() / 2), (upVar.getIntrinsicWidth() / 2) + width, (upVar.getIntrinsicHeight() / 2) + height);
             upVar.draw(canvas2);
@@ -49,6 +49,6 @@ public abstract class n5 extends TextView {
     @Override
     public void setTextColor(int i7) {
         super.setTextColor(i7);
-        this.f29812c.b(i7);
+        this.f29815c.b(i7);
     }
 }

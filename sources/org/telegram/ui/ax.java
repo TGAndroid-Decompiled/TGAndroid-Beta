@@ -11,19 +11,19 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 public final class ax extends v4.w {
     public v4.f1 d;
-    public boolean f45716e;
-    public boolean f45717f;
-    public final bx f45718g;
+    public boolean f45720e;
+    public boolean f45721f;
+    public final bx f45722g;
     public final cx h;
 
     public ax(cx cxVar, bx bxVar) {
         this.h = cxVar;
-        this.f45718g = bxVar;
+        this.f45722g = bxVar;
     }
 
     @Override
     public final int b(int i7, int i10) {
-        if (this.f45717f) {
+        if (this.f45721f) {
             return 0;
         }
         return super.b(i7, i10);
@@ -37,7 +37,7 @@ public final class ax extends v4.w {
             return 200L;
         }
         if (i7 == 8 && (u2Var = (cxVar = this.h).Z0) != null) {
-            org.telegram.messenger.g0.h3(new sg(1, u2Var), this.f45718g.f46331y.f59235e);
+            org.telegram.messenger.g0.h3(new sg(1, u2Var), this.f45722g.f46335y.f59239e);
             cxVar.Z0 = null;
         }
         return super.d(recyclerView, i7, f10, f11);
@@ -68,8 +68,8 @@ public final class ax extends v4.w {
         char c10;
         int i7;
         cx cxVar = this.h;
-        ArrayList arrayList = cxVar.f46704c1;
-        View view = f1Var2.f59161a;
+        ArrayList arrayList = cxVar.f46707c1;
+        View view = f1Var2.f59165a;
         char c11 = 0;
         if (view instanceof org.telegram.ui.Cells.u2) {
             long dialogId = ((org.telegram.ui.Cells.u2) view).getDialogId();
@@ -77,14 +77,14 @@ public final class ax extends v4.w {
             if (dialog != null && cxVar.v4(dialog) && !org.telegram.messenger.n5.D(dialogId)) {
                 int b10 = f1Var.b();
                 int b11 = f1Var2.b();
-                bx bxVar = this.f45718g;
-                if (bxVar.f46321a.getItemAnimator() == null) {
-                    bxVar.f46321a.setItemAnimator(bxVar.f46331y);
+                bx bxVar = this.f45722g;
+                if (bxVar.f46325a.getItemAnimator() == null) {
+                    bxVar.f46325a.setItemAnimator(bxVar.f46335y);
                 }
                 kv kvVar = bxVar.d;
                 cx cxVar2 = kvVar.S;
                 int i10 = kvVar.G;
-                ArrayList d42 = cxVar2.d4(i10, kvVar.h, kvVar.f17604r, false);
+                ArrayList d42 = cxVar2.d4(i10, kvVar.h, kvVar.f17607r, false);
                 int H = kvVar.H(b10);
                 int H2 = kvVar.H(b11);
                 TLRPC.Dialog dialog2 = (TLRPC.Dialog) d42.get(H);
@@ -95,36 +95,36 @@ public final class ax extends v4.w {
                     dialog2.pinnedNum = dialog3.pinnedNum;
                     dialog3.pinnedNum = i12;
                 } else {
-                    org.telegram.messenger.ro[] roVarArr = org.telegram.messenger.mp.u1(i10).N;
+                    org.telegram.messenger.so[] soVarArr = org.telegram.messenger.np.u1(i10).N;
                     if (kvVar.h == 8) {
                         c10 = 1;
                     } else {
                         c10 = 0;
                     }
-                    LongSparseIntArray longSparseIntArray = roVarArr[c10].f26707j;
-                    int i13 = longSparseIntArray.get(dialog2.f28435id);
-                    longSparseIntArray.put(dialog2.f28435id, longSparseIntArray.get(dialog3.f28435id));
-                    longSparseIntArray.put(dialog3.f28435id, i13);
+                    LongSparseIntArray longSparseIntArray = soVarArr[c10].f26893j;
+                    int i13 = longSparseIntArray.get(dialog2.f28438id);
+                    longSparseIntArray.put(dialog2.f28438id, longSparseIntArray.get(dialog3.f28438id));
+                    longSparseIntArray.put(dialog3.f28438id, i13);
                 }
                 Collections.swap(d42, H, H2);
                 kvVar.X(null);
-                int i14 = cxVar.f46719f0[0].f46328s;
+                int i14 = cxVar.f46722f0[0].f46332s;
                 if (i14 != 7) {
                     i7 = 8;
                     if (i14 != 8) {
-                        cxVar.f46698b1 = true;
+                        cxVar.f46701b1 = true;
                         return true;
                     }
                 } else {
                     i7 = 8;
                 }
-                org.telegram.messenger.ro[] roVarArr2 = cxVar.getMessagesController().N;
-                if (cxVar.f46719f0[0].f46328s == i7) {
+                org.telegram.messenger.so[] soVarArr2 = cxVar.getMessagesController().N;
+                if (cxVar.f46722f0[0].f46332s == i7) {
                     c11 = 1;
                 }
-                org.telegram.messenger.ro roVar = roVarArr2[c11];
-                if (!arrayList.contains(roVar)) {
-                    arrayList.add(roVar);
+                org.telegram.messenger.so soVar = soVarArr2[c11];
+                if (!arrayList.contains(soVar)) {
+                    arrayList.add(soVar);
                     return true;
                 }
                 return true;
@@ -136,13 +136,13 @@ public final class ax extends v4.w {
     @Override
     public final void p(v4.f1 f1Var, int i7) {
         if (f1Var != null) {
-            this.f45718g.f46321a.d1(false);
+            this.f45722g.f46325a.d1(false);
         }
         this.d = f1Var;
         if (f1Var != null) {
-            View view = f1Var.f59161a;
+            View view = f1Var.f59165a;
             if (view instanceof org.telegram.ui.Cells.u2) {
-                ((org.telegram.ui.Cells.u2) view).f32034x = false;
+                ((org.telegram.ui.Cells.u2) view).f32037x = false;
             }
         }
     }
@@ -152,13 +152,13 @@ public final class ax extends v4.w {
         int i7;
         cx cxVar = this.h;
         if (f1Var != null) {
-            org.telegram.ui.Cells.u2 u2Var = (org.telegram.ui.Cells.u2) f1Var.f59161a;
+            org.telegram.ui.Cells.u2 u2Var = (org.telegram.ui.Cells.u2) f1Var.f59165a;
             long dialogId = u2Var.getDialogId();
             boolean D = org.telegram.messenger.n5.D(dialogId);
             int i10 = 0;
-            bx bxVar = this.f45718g;
+            bx bxVar = this.f45722g;
             if (D) {
-                yw ywVar = bxVar.f46321a;
+                yw ywVar = bxVar.f46325a;
                 int i11 = yw.C3;
                 ywVar.C1(false, u2Var);
                 return;
@@ -169,7 +169,7 @@ public final class ax extends v4.w {
             }
             if (!cxVar.getMessagesController().I2(dialogId, false) && cxVar.Y2 == 0) {
                 i7 = ((org.telegram.ui.ActionBar.g2) cxVar).currentAccount;
-                if (org.telegram.messenger.bz.m(i7) == 1) {
+                if (org.telegram.messenger.cz.m(i7) == 1) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(Long.valueOf(dialogId));
                     if (dialog.unread_count > 0 || dialog.unread_mark) {
@@ -189,26 +189,26 @@ public final class ax extends v4.w {
             cxVar.Y0 = u2Var;
             l2.x xVar = new l2.x(this, dialog, bxVar.d.b(), f1Var.b(), 13);
             cxVar.U4(true, true);
-            if (Utilities.f22805b.nextInt(1000) == 1) {
+            if (Utilities.f22808b.nextInt(1000) == 1) {
                 if (cxVar.X0 == null) {
-                    yw ywVar2 = bxVar.f46321a;
+                    yw ywVar2 = bxVar.f46325a;
                     ?? obj = new Object();
-                    obj.f33476a = new Paint(1);
+                    obj.f33489a = new Paint(1);
                     Paint paint = new Paint(1);
-                    obj.f33477b = paint;
-                    obj.f33479e = 0L;
-                    obj.f33480f = new RectF();
+                    obj.f33490b = paint;
+                    obj.f33492e = 0L;
+                    obj.f33493f = new RectF();
                     paint.setStyle(Paint.Style.STROKE);
                     paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-                    obj.f33478c = ywVar2;
+                    obj.f33491c = ywVar2;
                     cxVar.X0 = obj;
                 }
                 org.telegram.ui.Components.ac0 ac0Var = cxVar.X0;
                 ac0Var.d = xVar;
                 ac0Var.h = 0.0f;
-                ac0Var.f33481g = 0.0f;
-                ac0Var.f33479e = System.currentTimeMillis();
-                ac0Var.f33478c.invalidate();
+                ac0Var.f33494g = 0.0f;
+                ac0Var.f33492e = System.currentTimeMillis();
+                ac0Var.f33491c.invalidate();
                 return;
             }
             xVar.run();

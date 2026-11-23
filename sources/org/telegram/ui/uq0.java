@@ -12,7 +12,7 @@ public interface uq0 {
 
     void D();
 
-    wq0 E(org.telegram.messenger.fj fjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11);
+    wq0 E(org.telegram.messenger.gj gjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11);
 
     void F(boolean z10);
 
@@ -28,7 +28,7 @@ public interface uq0 {
 
     boolean L();
 
-    void M(org.telegram.messenger.e20 e20Var);
+    void M(org.telegram.messenger.f20 f20Var);
 
     boolean N();
 
@@ -46,7 +46,7 @@ public interface uq0 {
 
     boolean U();
 
-    org.telegram.messenger.fj V();
+    org.telegram.messenger.gj V();
 
     void W();
 
@@ -80,9 +80,9 @@ public interface uq0 {
 
     void i();
 
-    org.telegram.messenger.hc j(int i7);
+    org.telegram.messenger.ic j(int i7);
 
-    int k(int i7, org.telegram.messenger.e20 e20Var);
+    int k(int i7, org.telegram.messenger.f20 f20Var);
 
     boolean l();
 
@@ -90,7 +90,7 @@ public interface uq0 {
 
     void n();
 
-    void o(int i7, org.telegram.messenger.e20 e20Var, boolean z10, int i10, int i11, boolean z11);
+    void o(int i7, org.telegram.messenger.f20 f20Var, boolean z10, int i10, int i11, boolean z11);
 
     boolean p();
 

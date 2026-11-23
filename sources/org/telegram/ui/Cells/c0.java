@@ -12,8 +12,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Random;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.lc;
 import org.telegram.ui.Components.tt0;
@@ -48,8 +48,8 @@ public abstract class c0 {
         return "PAID";
     }
 
-    public static boolean a(fj fjVar) {
-        if (fjVar != null && fj.B0(fjVar.f23993k) == 1271266957) {
+    public static boolean a(gj gjVar) {
+        if (gjVar != null && gj.B0(gjVar.f24213k) == 1271266957) {
             return true;
         }
         return false;
@@ -130,13 +130,13 @@ public abstract class c0 {
     }
 
     public static Integer n(int i7, ArrayList arrayList, int i10, ArrayList arrayList2, int i11) {
-        arrayList.add(gd.N0(i7, null));
+        arrayList.add(hd.N0(i7, null));
         arrayList2.add(Integer.valueOf(i10));
         return Integer.valueOf(i11);
     }
 
     public static Integer o(int i7, ArrayList arrayList, ArrayList arrayList2, Integer num, int i10) {
-        arrayList.add(gd.N0(i7, null));
+        arrayList.add(hd.N0(i7, null));
         arrayList2.add(num);
         return Integer.valueOf(i10);
     }
@@ -157,7 +157,7 @@ public abstract class c0 {
     }
 
     public static void s(int i7, ArrayList arrayList, ArrayList arrayList2, Integer num) {
-        arrayList.add(gd.N0(i7, null));
+        arrayList.add(hd.N0(i7, null));
         arrayList2.add(num);
     }
 
@@ -166,12 +166,12 @@ public abstract class c0 {
     }
 
     public static void u(String str, int i7, StringBuilder sb2, String str2) {
-        sb2.append(gd.N0(i7, str));
+        sb2.append(hd.N0(i7, str));
         sb2.append(str2);
     }
 
     public static void v(String str, int i7, ArrayList arrayList, int i10, ArrayList arrayList2) {
-        arrayList.add(gd.N0(i7, str));
+        arrayList.add(hd.N0(i7, str));
         arrayList2.add(Integer.valueOf(i10));
     }
 

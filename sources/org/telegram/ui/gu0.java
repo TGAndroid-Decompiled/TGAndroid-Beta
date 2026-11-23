@@ -5,27 +5,27 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class gu0 implements org.telegram.messenger.x10 {
-    public final int f48170a;
-    public final ProfileActivity f48171b;
+public final class gu0 implements org.telegram.messenger.y10 {
+    public final int f48174a;
+    public final ProfileActivity f48175b;
 
     public gu0(ProfileActivity profileActivity, int i7) {
-        this.f48170a = i7;
-        this.f48171b = profileActivity;
+        this.f48174a = i7;
+        this.f48175b = profileActivity;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f48170a;
-        ProfileActivity profileActivity = this.f48171b;
+        int i7 = this.f48174a;
+        ProfileActivity profileActivity = this.f48175b;
         switch (i7) {
             case 0:
                 View view = (View) obj;
                 RectF rectF = ProfileActivity.Z6;
                 if (view instanceof org.telegram.ui.Cells.y8) {
                     org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) view;
-                    y8Var.f32512a.setLoading(profileActivity.f43652o5);
-                    y8Var.f32513b.setLoading(profileActivity.f43652o5);
+                    y8Var.f32515a.setLoading(profileActivity.f43656o5);
+                    y8Var.f32516b.setLoading(profileActivity.f43656o5);
                     return;
                 }
                 return;
@@ -54,10 +54,10 @@ public final class gu0 implements org.telegram.messenger.x10 {
                     ((org.telegram.ui.Cells.j5) view2).getCheckBox().invalidate();
                 } else if (view2 instanceof kg.h1) {
                     kg.h1 h1Var = (kg.h1) view2;
-                    org.telegram.ui.Components.dq dqVar = h1Var.f18372r;
+                    org.telegram.ui.Components.dq dqVar = h1Var.f18375r;
                     int L = org.telegram.messenger.g0.L(8.0f);
-                    int i10 = org.telegram.ui.ActionBar.m6.f29578o6;
-                    org.telegram.ui.ActionBar.h6 h6Var = h1Var.f18366a;
+                    int i10 = org.telegram.ui.ActionBar.m6.f29581o6;
+                    org.telegram.ui.ActionBar.h6 h6Var = h1Var.f18369a;
                     int w02 = org.telegram.ui.ActionBar.m6.w0(i10, h6Var);
                     h1Var.a(w02);
                     int r12 = org.telegram.ui.ActionBar.m6.r1(0.1f, w02);
@@ -72,7 +72,7 @@ public final class gu0 implements org.telegram.messenger.x10 {
                     ((org.telegram.ui.Cells.g6) view2).updateColors();
                 }
                 lw0 lw0Var = profileActivity.d;
-                profileActivity.f43549a.getClass();
+                profileActivity.f43553a.getClass();
                 lw0Var.d(RecyclerView.R(view2));
                 profileActivity.d.getClass();
                 return;

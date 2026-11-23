@@ -6,21 +6,21 @@ import java.util.function.Predicate;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class h1 implements Predicate {
-    public final int f18726a;
-    public final Object f18727b;
+    public final int f18729a;
+    public final Object f18730b;
 
     public h1(Object obj, int i7) {
-        this.f18726a = i7;
-        this.f18727b = obj;
+        this.f18729a = i7;
+        this.f18730b = obj;
     }
 
     public Predicate and(Predicate predicate) {
-        int i7 = this.f18726a;
+        int i7 = this.f18729a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f18726a) {
+        switch (this.f18729a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             case 1:
@@ -31,7 +31,7 @@ public final class h1 implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i7 = this.f18726a;
+        int i7 = this.f18729a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
@@ -39,15 +39,15 @@ public final class h1 implements Predicate {
     public final boolean test(Object obj) {
         boolean contains;
         boolean z10;
-        switch (this.f18726a) {
+        switch (this.f18729a) {
             case 0:
-                contains = ((HashSet) this.f18727b).contains(Long.valueOf(((j1) obj).f18759b));
+                contains = ((HashSet) this.f18730b).contains(Long.valueOf(((j1) obj).f18762b));
                 break;
             case 1:
-                contains = ((HashSet) this.f18727b).contains(Long.valueOf(((j1) obj).f18759b));
+                contains = ((HashSet) this.f18730b).contains(Long.valueOf(((j1) obj).f18762b));
                 break;
             default:
-                bi.n3 n3Var = (bi.n3) this.f18727b;
+                bi.n3 n3Var = (bi.n3) this.f18730b;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
                 if (starGift instanceof TL_stars.TL_starGiftUnique) {
                     z10 = n3Var.W1.disallow_unique_stargifts;

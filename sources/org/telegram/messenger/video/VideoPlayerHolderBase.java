@@ -1,6 +1,6 @@
 package org.telegram.messenger.video;
 
-import ai.n2;
+import ai.o2;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.SurfaceTexture;
@@ -175,10 +175,10 @@ public class VideoPlayerHolderBase {
     }
 
     public VideoPlayerHolderBase() {
-        if (Utilities.f22812k == null) {
-            Utilities.f22812k = new r5("playerQueue", true);
+        if (Utilities.f22815k == null) {
+            Utilities.f22815k = new r5("playerQueue", true);
         }
-        this.dispatchQueue = Utilities.f22812k;
+        this.dispatchQueue = Utilities.f22815k;
         this.progressRunnable = new Runnable() {
             {
                 VideoPlayerHolderBase.this = this;
@@ -231,7 +231,7 @@ public class VideoPlayerHolderBase {
         this.videoPlayer = i61Var2;
         i61Var2.E = this.allowMultipleInstances;
         i61Var2.K = new AnonymousClass2();
-        this.videoPlayer.f36165c = true;
+        this.videoPlayer.f36159c = true;
     }
 
     public void lambda$loopBack$9() {
@@ -379,7 +379,7 @@ public class VideoPlayerHolderBase {
         boolean d02 = i61Var.d0();
         if (z10) {
             i61 i61Var2 = this.videoPlayer;
-            if (i61Var2.f36166c0) {
+            if (i61Var2.f36160c0) {
                 i61Var2.g0();
                 long S = this.videoPlayer.S();
                 this.videoPlayer.m0();
@@ -631,14 +631,14 @@ public class VideoPlayerHolderBase {
         TLRPC.Document document = this.document;
         if (document != null) {
             ConcurrentHashMap concurrentHashMap = s8.J;
-            Integer num = (Integer) concurrentHashMap.get(Long.valueOf(document.f28437id));
+            Integer num = (Integer) concurrentHashMap.get(Long.valueOf(document.f28440id));
             if (num == null) {
                 intValue = 3;
             } else {
                 intValue = num.intValue();
             }
             if (intValue != 0) {
-                concurrentHashMap.put(Long.valueOf(document.f28437id), 0);
+                concurrentHashMap.put(Long.valueOf(document.f28440id), 0);
                 w7.G(this.currentAccount).h(0, document, null, null, null, null);
             }
         }
@@ -742,7 +742,7 @@ public class VideoPlayerHolderBase {
     }
 
     public void seekTo(long j3, boolean z10, Runnable runnable) {
-        this.dispatchQueue.postRunnable(new n2(this, j3, z10, runnable, 1));
+        this.dispatchQueue.postRunnable(new o2(this, j3, z10, runnable, 1));
     }
 
     public VideoPlayerHolderBase with(TextureView textureView) {

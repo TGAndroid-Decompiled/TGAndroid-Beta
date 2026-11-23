@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 public final class uu extends dk0 {
-    public final ev f40594c;
+    public final ev f40587c;
 
     public uu(ev evVar) {
-        this.f40594c = evVar;
+        this.f40587c = evVar;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59165f == 1) {
+        if (f1Var.f59169f == 1) {
             return true;
         }
         return false;
@@ -24,8 +24,8 @@ public final class uu extends dk0 {
 
     public final int E(int i7) {
         int i10;
-        ev evVar = this.f40594c;
-        qu quVar = evVar.f34994p1;
+        ev evVar = this.f40587c;
+        qu quVar = evVar.f34992p1;
         if (evVar.D1) {
             i10 = 2;
         } else {
@@ -33,13 +33,13 @@ public final class uu extends dk0 {
         }
         int i11 = 0;
         while (true) {
-            ArrayList[] arrayListArr = quVar.f34311c;
+            ArrayList[] arrayListArr = quVar.f34305c;
             if (i11 >= arrayListArr.length || i11 == i7) {
                 break;
             }
             int size = arrayListArr[i11].size();
-            if (quVar.f34311c.length > 1) {
-                size = Math.min(evVar.f35003y1.J * 2, size);
+            if (quVar.f34305c.length > 1) {
+                size = Math.min(evVar.f35001y1.J * 2, size);
             }
             i10 += size + 2;
             i11++;
@@ -53,22 +53,22 @@ public final class uu extends dk0 {
         int i7;
         int min;
         ArrayList arrayList;
-        ev evVar = this.f40594c;
-        qu quVar = evVar.f34994p1;
-        if (!org.telegram.messenger.j10.i(evVar.f30170a).q() && (arrayList = quVar.f34310b) != null && arrayList.size() == 1 && org.telegram.messenger.fj.V3((TLRPC.TL_messages_stickerSet) quVar.f34310b.get(0))) {
+        ev evVar = this.f40587c;
+        qu quVar = evVar.f34992p1;
+        if (!org.telegram.messenger.k10.i(evVar.f30173a).q() && (arrayList = quVar.f34304b) != null && arrayList.size() == 1 && org.telegram.messenger.gj.V3((TLRPC.TL_messages_stickerSet) quVar.f34304b.get(0))) {
             r22 = 1;
         } else {
             r22 = 0;
         }
         evVar.D1 = r22;
         int i10 = r22 + 1;
-        if (quVar.f34311c == null) {
+        if (quVar.f34305c == null) {
             i7 = 0;
         } else {
             int i11 = 0;
             i7 = 0;
             while (true) {
-                ArrayList[] arrayListArr = quVar.f34311c;
+                ArrayList[] arrayListArr = quVar.f34305c;
                 if (i11 >= arrayListArr.length) {
                     break;
                 }
@@ -77,20 +77,20 @@ public final class uu extends dk0 {
                     if (arrayListArr.length == 1) {
                         min = arrayList2.size();
                     } else {
-                        min = Math.min(quVar.f34313f.f35003y1.J * 2, arrayList2.size());
+                        min = Math.min(quVar.f34307f.f35001y1.J * 2, arrayList2.size());
                     }
                     i7 = min + i7 + 1;
                 }
                 i11++;
             }
         }
-        return Math.max(0, quVar.f34311c.length - 1) + i10 + i7;
+        return Math.max(0, quVar.f34305c.length - 1) + i10 + i7;
     }
 
     @Override
     public final int d(int i7) {
-        ev evVar = this.f40594c;
-        qu quVar = evVar.f34994p1;
+        ev evVar = this.f40587c;
+        qu quVar = evVar.f34992p1;
         int i10 = 0;
         if (i7 == 0) {
             return 0;
@@ -106,7 +106,7 @@ public final class uu extends dk0 {
         }
         int i12 = 0;
         while (true) {
-            ArrayList[] arrayListArr = quVar.f34311c;
+            ArrayList[] arrayListArr = quVar.f34305c;
             if (i10 >= arrayListArr.length) {
                 return 1;
             }
@@ -114,8 +114,8 @@ public final class uu extends dk0 {
                 return 2;
             }
             int size = arrayListArr[i10].size();
-            if (quVar.f34311c.length > 1) {
-                size = Math.min(evVar.f35003y1.J * 2, size);
+            if (quVar.f34305c.length > 1) {
+                size = Math.min(evVar.f35001y1.J * 2, size);
             }
             int i13 = size + 1 + i12;
             if (i11 == i13) {
@@ -135,18 +135,18 @@ public final class uu extends dk0 {
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View view;
         View view2;
-        ev evVar = this.f40594c;
+        ev evVar = this.f40587c;
         if (i7 == 0) {
-            view = evVar.f34993o1;
+            view = evVar.f34991o1;
         } else {
             boolean z10 = true;
             if (i7 == 1) {
                 ?? view3 = new View(evVar.getContext());
-                view3.f42226a = new org.telegram.messenger.gc[2];
+                view3.f42219a = new org.telegram.messenger.hc[2];
                 view2 = view3;
             } else if (i7 == 2) {
                 Context context = evVar.getContext();
-                if (evVar.f34994p1.f34311c.length > 1) {
+                if (evVar.f34992p1.f34305c.length > 1) {
                     z10 = false;
                 }
                 view2 = new av(evVar, context, z10);

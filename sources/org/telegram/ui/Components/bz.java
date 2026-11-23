@@ -4,19 +4,19 @@ import android.graphics.SurfaceTexture;
 import android.os.Looper;
 import android.view.Surface;
 public final class bz implements Runnable {
-    public final int f33951a;
-    public final ez f33952b;
+    public final int f33944a;
+    public final ez f33945b;
 
     public bz(ez ezVar, int i7) {
-        this.f33951a = i7;
-        this.f33952b = ezVar;
+        this.f33944a = i7;
+        this.f33945b = ezVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f33951a) {
+        switch (this.f33944a) {
             case 0:
-                this.f33952b.finish();
+                this.f33945b.finish();
                 Looper myLooper = Looper.myLooper();
                 if (myLooper != null) {
                     myLooper.quit();
@@ -24,15 +24,15 @@ public final class bz implements Runnable {
                 }
                 return;
             case 1:
-                ez.a(this.f33952b);
+                ez.a(this.f33945b);
                 return;
             default:
-                ez ezVar = this.f33952b;
-                ky kyVar = ezVar.f35025c0;
-                SurfaceTexture surfaceTexture = ezVar.f35034x;
-                y51 y51Var = (y51) kyVar.f37035b;
-                if (y51Var.f42329a != null) {
-                    y51Var.f42329a.y0(new Surface(surfaceTexture));
+                ez ezVar = this.f33945b;
+                ky kyVar = ezVar.f35023c0;
+                SurfaceTexture surfaceTexture = ezVar.f35032x;
+                y51 y51Var = (y51) kyVar.f37038b;
+                if (y51Var.f42322a != null) {
+                    y51Var.f42322a.y0(new Surface(surfaceTexture));
                     return;
                 }
                 return;

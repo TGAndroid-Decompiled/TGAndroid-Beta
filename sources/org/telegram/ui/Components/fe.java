@@ -18,16 +18,16 @@ public final class fe extends ah {
         Paint paint = chatActivityEnterView.G2;
         float[] fArr = chatActivityEnterView.H6;
         float[] fArr2 = chatActivityEnterView.G6;
-        int i7 = ChatActivityEnterView.f32566s7;
+        int i7 = ChatActivityEnterView.f32569s7;
         if (chatActivityEnterView.o0()) {
             if (chatActivityEnterView.F6 == null) {
                 oh0 oh0Var = new oh0(2131623977, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), false, null);
                 chatActivityEnterView.F6 = oh0Var;
                 oh0Var.J(true);
-                chatActivityEnterView.F6.f38230p0 = false;
+                chatActivityEnterView.F6.f38224p0 = false;
                 int G0 = chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.Vf);
                 oh0 oh0Var2 = chatActivityEnterView.F6;
-                oh0Var2.f38211a0 = true;
+                oh0Var2.f38205a0 = true;
                 oh0Var2.Q(G0, "Cup Grey");
                 chatActivityEnterView.F6.Q(G0, "Box_Grey 2");
                 chatActivityEnterView.F6.Q(G0, "Box Grey");
@@ -47,7 +47,7 @@ public final class fe extends ah {
             if (getScaleY() != 0.0f) {
                 f11 = getScaleY();
             }
-            if (ChatActivityEnterView.h(chatActivityEnterView, chatActivityEnterView.f32579b2, fArr2) && ChatActivityEnterView.h(chatActivityEnterView, this, fArr)) {
+            if (ChatActivityEnterView.h(chatActivityEnterView, chatActivityEnterView.f32582b2, fArr2) && ChatActivityEnterView.h(chatActivityEnterView, this, fArr)) {
                 width = com.google.android.gms.internal.vision.e2.A(fArr2[0], fArr[0], f10, width);
             }
             float L = org.telegram.messenger.g0.L(14.0f) / f10;
@@ -57,7 +57,7 @@ public final class fe extends ah {
             return;
         }
         super.onDraw(canvas);
-        if (getTag() != null && chatActivityEnterView.f32613f2 != null && !chatActivityEnterView.X0 && !this.f33507x && !org.telegram.messenger.ri.d0(chatActivityEnterView.R).f26671v0[0].isEmpty() && paint != null) {
+        if (getTag() != null && chatActivityEnterView.f32616f2 != null && !chatActivityEnterView.X0 && !this.f33520x && !org.telegram.messenger.si.d0(chatActivityEnterView.R).f26857v0[0].isEmpty() && paint != null) {
             canvas.drawCircle(org.telegram.messenger.g0.L(9.0f) + (getWidth() / 2), (getHeight() / 2) - org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(5.0f), paint);
         }
     }

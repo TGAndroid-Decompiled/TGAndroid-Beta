@@ -15,11 +15,11 @@ public final class d60 extends nv0 {
         switch (this.L) {
             case 0:
                 super.onAttachedToWindow();
-                this.f37989b.getImageReceiver().P0(false);
+                this.f37994b.getImageReceiver().P0(false);
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f37989b.getImageReceiver().P0(false);
+                this.f37994b.getImageReceiver().P0(false);
                 return;
             default:
                 super.onAttachedToWindow();

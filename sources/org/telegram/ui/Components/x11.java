@@ -1,25 +1,31 @@
 package org.telegram.ui.Components;
-public final class x11 {
-    public static final x11 f41953a;
-    public static final x11 f41954b;
-    public static final x11 f41955c;
-    public static final x11[] d;
 
-    static {
-        ?? r02 = new Enum("TOP", 0);
-        f41953a = r02;
-        ?? r12 = new Enum("LEFT", 1);
-        f41954b = r12;
-        ?? r32 = new Enum("BOTTOM", 2);
-        f41955c = r32;
-        d = new x11[]{r02, r12, r32};
+import android.animation.ValueAnimator;
+public final class x11 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f41947a;
+    public final z11 f41948b;
+
+    public x11(z11 z11Var, int i7) {
+        this.f41947a = i7;
+        this.f41948b = z11Var;
     }
 
-    public static x11 valueOf(String str) {
-        return (x11) Enum.valueOf(x11.class, str);
-    }
-
-    public static x11[] values() {
-        return (x11[]) d.clone();
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f41947a) {
+            case 0:
+                z11 z11Var = this.f41948b;
+                z11Var.getClass();
+                z11Var.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z11Var.h();
+                z11Var.g();
+                return;
+            default:
+                float max = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                z11 z11Var2 = this.f41948b;
+                z11Var2.M = max;
+                z11Var2.h.invalidate();
+                return;
+        }
     }
 }

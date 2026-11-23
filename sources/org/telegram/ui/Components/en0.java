@@ -24,37 +24,37 @@ public final class en0 {
     public float K;
     public float L;
     public dn0 M;
-    public int f34918a;
-    public int f34919b;
-    public float f34920c;
+    public int f34916a;
+    public int f34917b;
+    public float f34918c;
     public float d;
-    public boolean f34921e;
-    public boolean f34922f;
-    public int f34923g;
+    public boolean f34919e;
+    public boolean f34920f;
+    public int f34921g;
     public int h;
-    public int f34924i;
-    public int f34925j;
-    public org.telegram.ui.Cells.r1 f34926k;
-    public byte[] f34927l;
-    public org.telegram.messenger.fj f34928m;
-    public org.telegram.ui.Cells.r1 f34929n;
-    public boolean f34930o;
-    public int f34931p;
-    public int f34932q;
-    public int f34933r;
-    public float f34934s;
-    public float f34935t;
-    public boolean f34936u;
+    public int f34922i;
+    public int f34923j;
+    public org.telegram.ui.Cells.r1 f34924k;
+    public byte[] f34925l;
+    public org.telegram.messenger.gj f34926m;
+    public org.telegram.ui.Cells.r1 f34927n;
+    public boolean f34928o;
+    public int f34929p;
+    public int f34930q;
+    public int f34931r;
+    public float f34932s;
+    public float f34933t;
+    public boolean f34934u;
     public d6 v;
-    public float f34937w;
-    public Path f34938x;
-    public Path f34939y;
-    public boolean f34940z;
+    public float f34935w;
+    public Path f34936x;
+    public Path f34937y;
+    public boolean f34938z;
 
     public final void a(Path path, float f10, float f11) {
         float N2 = org.telegram.messenger.g0.N(2.0f);
-        int z10 = org.telegram.messenger.n10.z(14.0f, this.h, 2);
-        float f12 = f11 * this.f34937w;
+        int z10 = org.telegram.messenger.o10.z(14.0f, this.h, 2);
+        float f12 = f11 * this.f34935w;
         RectF rectF = org.telegram.messenger.g0.P;
         float f13 = N2 / 2.0f;
         rectF.set((org.telegram.messenger.g0.N(1.0f) + f10) - f13, ((-f12) - f13) + org.telegram.messenger.g0.L(7.0f) + z10, org.telegram.messenger.g0.N(1.0f) + f10 + f13, f12 + f13 + org.telegram.messenger.g0.L(7.0f) + z10);
@@ -63,7 +63,7 @@ public final class en0 {
 
     public final float[] b(int i7) {
         int i10;
-        byte[] bArr = this.f34927l;
+        byte[] bArr = this.f34925l;
         if (bArr != null && i7 > 0) {
             float[] fArr = new float[i7];
             int i11 = 5;
@@ -86,10 +86,10 @@ public final class en0 {
                     int i18 = i17 / 8;
                     int i19 = i17 - (i18 * 8);
                     int i20 = 5 - (8 - i19);
-                    byte min = (byte) ((this.f34927l[i18] >> i19) & ((2 << (Math.min(i11, i10) - 1)) - 1));
+                    byte min = (byte) ((this.f34925l[i18] >> i19) & ((2 << (Math.min(i11, i10) - 1)) - 1));
                     if (i20 > 0) {
                         int i21 = i18 + 1;
-                        byte[] bArr2 = this.f34927l;
+                        byte[] bArr2 = this.f34925l;
                         if (i21 < bArr2.length) {
                             min = (byte) (((byte) (min << i20)) | (bArr2[i21] & ((2 << (4 - i10)) - 1)));
                         }
@@ -125,49 +125,49 @@ public final class en0 {
         Paint paint2;
         d6 d6Var = this.B;
         float N2 = org.telegram.messenger.g0.N(2.0f);
-        org.telegram.messenger.fj fjVar = this.f34928m;
-        if (fjVar != null && fjVar.f23993k.media_unread && !fjVar.N3() && this.f34920c <= 0.0f) {
+        org.telegram.messenger.gj gjVar = this.f34926m;
+        if (gjVar != null && gjVar.f24213k.media_unread && !gjVar.N3() && this.f34918c <= 0.0f) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f34936u = z10;
+        this.f34934u = z10;
         Paint paint3 = N;
         if (z10) {
-            i7 = this.f34932q;
-        } else if (this.f34930o) {
-            i7 = this.f34933r;
+            i7 = this.f34930q;
+        } else if (this.f34928o) {
+            i7 = this.f34931r;
         } else {
-            i7 = this.f34931p;
+            i7 = this.f34929p;
         }
         paint3.setColor(i7);
-        O.setColor(this.f34932q);
-        d6Var.f34389a = this.f34929n;
-        boolean I = MediaController.B().I(this.f34928m);
-        if (this.f34940z && !I) {
+        O.setColor(this.f34930q);
+        d6Var.f34384a = this.f34927n;
+        boolean I = MediaController.B().I(this.f34926m);
+        if (this.f34938z && !I) {
             f11 = 1.0f;
         } else {
             f11 = 0.0f;
         }
         float e10 = d6Var.e(false, f11);
         Paint paint4 = N;
-        paint4.setColor(i0.a.f(e10, paint4.getColor(), this.f34931p));
+        paint4.setColor(i0.a.f(e10, paint4.getColor(), this.f34929p));
         float f12 = 1.0f - e10;
         O.setAlpha((int) (paint.getAlpha() * f12 * f10));
         N.setAlpha((int) (paint2.getAlpha() * f10));
-        canvas.drawRect(0.0f, 0.0f, this.f34923g + N2, this.h, N);
+        canvas.drawRect(0.0f, 0.0f, this.f34921g + N2, this.h, N);
         if (e10 < 1.0f) {
-            canvas.drawRect(0.0f, 0.0f, (this.f34923g + N2) * this.f34920c * f12, this.h, O);
+            canvas.drawRect(0.0f, 0.0f, (this.f34921g + N2) * this.f34918c * f12, this.h, O);
         }
         if (e10 > 0.0f) {
-            if (this.C == null || Math.abs(this.D - this.f34923g) > org.telegram.messenger.g0.L(8.0f) || this.E != this.f34931p || this.F != this.f34932q) {
+            if (this.C == null || Math.abs(this.D - this.f34921g) > org.telegram.messenger.g0.L(8.0f) || this.E != this.f34929p || this.F != this.f34930q) {
                 if (this.C == null) {
                     this.C = new Paint(1);
                 }
-                this.E = this.f34931p;
-                this.F = this.f34932q;
+                this.E = this.f34929p;
+                this.F = this.f34930q;
                 Paint paint5 = this.C;
-                float f13 = this.f34923g;
+                float f13 = this.f34921g;
                 this.D = f13;
                 int i10 = this.E;
                 paint5.setShader(new LinearGradient(0.0f, 0.0f, f13, 0.0f, new int[]{i10, this.F, i10}, new float[]{0.0f, 0.2f, 0.4f}, Shader.TileMode.CLAMP));
@@ -176,9 +176,9 @@ public final class en0 {
             canvas.save();
             float pow = ((((float) Math.pow(((float) (SystemClock.elapsedRealtime() - this.A)) / 270.0f, 0.75d)) % 1.6f) - 0.6f) * this.D;
             canvas.translate(pow, 0.0f);
-            canvas.drawRect(-pow, 0.0f, (this.f34923g + 5) - pow, this.h, this.C);
+            canvas.drawRect(-pow, 0.0f, (this.f34921g + 5) - pow, this.h, this.C);
             canvas.restore();
-            org.telegram.ui.Cells.r1 r1Var = this.f34929n;
+            org.telegram.ui.Cells.r1 r1Var = this.f34927n;
             if (r1Var != null) {
                 r1Var.invalidate();
             }
@@ -186,7 +186,7 @@ public final class en0 {
     }
 
     public final void e(float f10) {
-        this.f34934s = f10;
+        this.f34932s = f10;
     }
 
     public final void f() {
@@ -196,51 +196,51 @@ public final class en0 {
     public final void g(boolean z10, float f10) {
         float f11;
         int i7;
-        if (!this.f34926k.N2()) {
-            this.f34920c = 1.0f;
+        if (!this.f34924k.N2()) {
+            this.f34918c = 1.0f;
             return;
         }
-        boolean z11 = this.f34936u;
+        boolean z11 = this.f34934u;
         if (z11) {
             f11 = 1.0f;
         } else {
             f11 = f10;
         }
-        this.f34920c = f11;
+        this.f34918c = f11;
         if (z11) {
-            i7 = this.f34923g;
+            i7 = this.f34921g;
         } else {
-            i7 = this.f34918a;
+            i7 = this.f34916a;
         }
         if (z10 && i7 != 0 && f10 == 0.0f) {
-            this.f34935t = 0.0f;
+            this.f34933t = 0.0f;
         } else if (!z10) {
-            this.f34935t = 1.0f;
+            this.f34933t = 1.0f;
         }
-        int ceil = (int) Math.ceil(this.f34923g * f10);
-        this.f34918a = ceil;
+        int ceil = (int) Math.ceil(this.f34921g * f10);
+        this.f34916a = ceil;
         if (ceil < 0) {
-            this.f34918a = 0;
+            this.f34916a = 0;
             return;
         }
-        int i10 = this.f34923g;
+        int i10 = this.f34921g;
         if (ceil > i10) {
-            this.f34918a = i10;
+            this.f34916a = i10;
         }
     }
 
     public final void h(int i7, int i10, int i11, int i12) {
-        this.f34923g = i7;
+        this.f34921g = i7;
         this.h = i10;
         float[] fArr = this.G;
         if (fArr == null || fArr.length != ((int) (i7 / org.telegram.messenger.g0.N(3.0f)))) {
-            this.G = b((int) (this.f34923g / org.telegram.messenger.g0.N(3.0f)));
+            this.G = b((int) (this.f34921g / org.telegram.messenger.g0.N(3.0f)));
         }
-        if (i11 != i12 && (this.f34924i != i11 || this.f34925j != i12)) {
-            this.f34924i = i11;
-            this.f34925j = i12;
+        if (i11 != i12 && (this.f34922i != i11 || this.f34923j != i12)) {
+            this.f34922i = i11;
+            this.f34923j = i12;
             this.H = b((int) (i11 / org.telegram.messenger.g0.N(3.0f)));
-            this.I = b((int) (this.f34925j / org.telegram.messenger.g0.N(3.0f)));
+            this.I = b((int) (this.f34923j / org.telegram.messenger.g0.N(3.0f)));
         } else if (i11 == i12) {
             this.I = null;
             this.H = null;

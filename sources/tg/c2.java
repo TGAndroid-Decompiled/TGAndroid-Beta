@@ -11,44 +11,44 @@ import android.view.View;
 import org.telegram.ui.Components.d6;
 import org.telegram.ui.Components.nr;
 public final class c2 {
-    public boolean f57786b;
-    public int f57787c;
+    public boolean f57790b;
+    public int f57791c;
     public Bitmap d;
-    public Bitmap f57788e;
-    public Bitmap f57789f;
-    public Bitmap f57790g;
-    public float f57792j;
-    public float f57793k;
-    public int f57796n;
-    public float[] f57797o;
-    public final Paint f57800r;
-    public final Paint f57801s;
-    public final f2 f57802t;
-    public final d6 f57785a = new d6(0.0f, (View) null, 0, 320, nr.h);
+    public Bitmap f57792e;
+    public Bitmap f57793f;
+    public Bitmap f57794g;
+    public float f57796j;
+    public float f57797k;
+    public int f57800n;
+    public float[] f57801o;
+    public final Paint f57804r;
+    public final Paint f57805s;
+    public final f2 f57806t;
+    public final d6 f57789a = new d6(0.0f, (View) null, 0, 320, nr.h);
     public final RectF h = new RectF();
-    public final RectF f57791i = new RectF();
-    public final Path f57794l = new Path();
-    public final Path f57795m = new Path();
-    public final Paint f57798p = new Paint(1);
-    public final Paint f57799q = new Paint(1);
+    public final RectF f57795i = new RectF();
+    public final Path f57798l = new Path();
+    public final Path f57799m = new Path();
+    public final Paint f57802p = new Paint(1);
+    public final Paint f57803q = new Paint(1);
 
     public c2(f2 f2Var) {
-        this.f57802t = f2Var;
+        this.f57806t = f2Var;
         new Paint(1);
-        this.f57800r = new Paint(1);
-        this.f57801s = new Paint(1);
+        this.f57804r = new Paint(1);
+        this.f57805s = new Paint(1);
     }
 
     public final Bitmap a() {
-        Bitmap bitmap = this.f57790g;
+        Bitmap bitmap = this.f57794g;
         if (bitmap != null) {
             return bitmap;
         }
-        return this.f57789f;
+        return this.f57793f;
     }
 
     public final Bitmap b() {
-        Bitmap bitmap = this.f57788e;
+        Bitmap bitmap = this.f57792e;
         if (bitmap != null) {
             return bitmap;
         }

@@ -8,39 +8,39 @@ import j$.time.ZoneId;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public final class z1 {
-    public static volatile z1[] f18578e = new z1[4];
-    public static final Object[] f18579f = new Object[4];
-    public final int f18580a;
-    public boolean f18581b;
-    public boolean f18582c;
+    public static volatile z1[] f18581e = new z1[4];
+    public static final Object[] f18582f = new Object[4];
+    public final int f18583a;
+    public boolean f18584b;
+    public boolean f18585c;
     public final ArrayList d = new ArrayList();
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
-            f18579f[i7] = new Object();
+            f18582f[i7] = new Object();
         }
     }
 
     public z1(int i7) {
-        this.f18580a = i7;
+        this.f18583a = i7;
     }
 
     public static z1 b(int i7) {
         z1 z1Var;
-        z1 z1Var2 = f18578e[i7];
+        z1 z1Var2 = f18581e[i7];
         if (z1Var2 == null) {
-            synchronized (f18579f[i7]) {
+            synchronized (f18582f[i7]) {
                 try {
-                    z1Var = f18578e[i7];
+                    z1Var = f18581e[i7];
                     if (z1Var == null) {
-                        z1[] z1VarArr = f18578e;
+                        z1[] z1VarArr = f18581e;
                         z1 z1Var3 = new z1(i7);
                         z1VarArr[i7] = z1Var3;
                         z1Var = z1Var3;
@@ -110,7 +110,7 @@ public final class z1 {
                 return null;
             }
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i7);
-            if (TextUtils.equals(tL_timezone.f28571id, str)) {
+            if (TextUtils.equals(tL_timezone.f28574id, str)) {
                 return tL_timezone;
             }
             i7++;
@@ -133,7 +133,7 @@ public final class z1 {
             return "";
         }
         if (z10) {
-            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, gd.E0().f24269y);
+            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, hd.E0().f24472y);
             str2 = "GMT";
             if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
                 str2 = "GMT".concat(displayName);
@@ -151,10 +151,10 @@ public final class z1 {
     }
 
     public final void g() {
-        if (!this.f18581b && !this.f18582c) {
-            this.f18581b = true;
-            int i7 = this.f18580a;
-            SharedPreferences sharedPreferences = mp.u1(i7).h7;
+        if (!this.f18584b && !this.f18585c) {
+            this.f18584b = true;
+            int i7 = this.f18583a;
+            SharedPreferences sharedPreferences = np.u1(i7).h7;
             TLRPC.help_timezonesList help_timezoneslist = null;
             String string = sharedPreferences.getString("timezones", null);
             int i10 = 0;
@@ -167,7 +167,7 @@ public final class z1 {
             if (help_timezoneslist != null) {
                 arrayList.addAll(help_timezoneslist.timezones);
             }
-            ks.f(i7).k(ks.f25222t3, new Object[0]);
+            ls.f(i7).k(ls.f25388t3, new Object[0]);
             TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
             if (help_timezoneslist != null) {
                 i10 = help_timezoneslist.hash;

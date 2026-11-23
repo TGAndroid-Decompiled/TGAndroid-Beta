@@ -8,6 +8,6 @@ public final class gt0 extends v4.k {
 
     @Override
     public final void P(v4.f1 f1Var) {
-        this.F.f43501c.invalidate();
+        this.F.f43505c.invalidate();
     }
 }

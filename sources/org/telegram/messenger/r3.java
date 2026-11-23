@@ -3,16 +3,16 @@ package org.telegram.messenger;
 import android.os.SystemClock;
 import org.telegram.tgnet.TLRPC;
 public final class r3 implements Runnable {
-    public final t3 f26565a;
+    public final t3 f26559a;
 
     public r3(t3 t3Var) {
-        this.f26565a = t3Var;
+        this.f26559a = t3Var;
     }
 
     @Override
     public final void run() {
         int i7;
-        t3 t3Var = this.f26565a;
+        t3 t3Var = this.f26559a;
         a0.h hVar = t3Var.P;
         long uptimeMillis = SystemClock.uptimeMillis();
         int i10 = 0;
@@ -23,7 +23,7 @@ public final class r3 implements Runnable {
                 hVar.l(j3);
                 String str = null;
                 if (j3 > 0) {
-                    TLRPC.User c22 = mp.u1(t3Var.C.f23246a).c2(Long.valueOf(j3));
+                    TLRPC.User c22 = np.u1(t3Var.C.f23202a).c2(Long.valueOf(j3));
                     StringBuilder t6 = a8.p0.t(j3, "remove from speaking ", " ");
                     if (c22 != null) {
                         str = c22.first_name;
@@ -32,7 +32,7 @@ public final class r3 implements Runnable {
                     i7 = i10;
                 } else {
                     i7 = i10;
-                    TLRPC.Chat O0 = mp.u1(t3Var.C.f23246a).O0(Long.valueOf(-j3));
+                    TLRPC.Chat O0 = np.u1(t3Var.C.f23202a).O0(Long.valueOf(-j3));
                     StringBuilder t10 = a8.p0.t(j3, "remove from speaking ", " ");
                     if (O0 != null) {
                         str = O0.title;
@@ -48,7 +48,7 @@ public final class r3 implements Runnable {
             g0.h3(t3Var.Q, 550L);
         }
         if (z10) {
-            ks.f(t3Var.C.f23246a).k(ks.f25255y2, Long.valueOf(t3Var.f26964c), Long.valueOf(t3Var.f26963b.f28441id), Boolean.FALSE);
+            ls.f(t3Var.C.f23202a).k(ls.f25421y2, Long.valueOf(t3Var.f26951c), Long.valueOf(t3Var.f26950b.f28444id), Boolean.FALSE);
         }
     }
 }

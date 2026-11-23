@@ -11,55 +11,55 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.voip.VoIPService;
 public final class o2 extends View {
-    public StaticLayout f41241a;
-    public final RectF f41242b;
-    public final Paint f41243c;
+    public StaticLayout f41243a;
+    public final RectF f41244b;
+    public final Paint f41245c;
     public final Paint d;
-    public String f41244e;
-    public final TextPaint f41245f;
+    public String f41246e;
+    public final TextPaint f41247f;
     public int h;
-    public boolean f41246n;
-    public final Drawable f41247r;
-    public final oi.c2 f41248s;
+    public boolean f41248n;
+    public final Drawable f41249r;
+    public final oi.c2 f41250s;
 
     public o2(Activity activity) {
         super(activity);
-        this.f41242b = new RectF();
+        this.f41244b = new RectF();
         Paint paint = new Paint(1);
-        this.f41243c = paint;
+        this.f41245c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         TextPaint textPaint = new TextPaint(1);
-        this.f41245f = textPaint;
+        this.f41247f = textPaint;
         this.h = 4;
-        this.f41246n = false;
-        this.f41248s = new oi.c2(this, 23);
+        this.f41248n = false;
+        this.f41250s = new oi.c2(this, 23);
         textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
         textPaint.setColor(-1);
         paint.setColor(i0.a.o(-1, 229));
         paint2.setColor(i0.a.o(-1, 102));
         Drawable drawable = activity.getDrawable(2131230918);
-        this.f41247r = drawable;
+        this.f41249r = drawable;
         drawable.setBounds(0, 0, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f));
     }
 
     public final void a() {
-        oi.c2 c2Var = this.f41248s;
+        oi.c2 c2Var = this.f41250s;
         removeCallbacks(c2Var);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance == null) {
             return;
         }
         String g02 = org.telegram.messenger.g0.g0((int) (sharedInstance.getCallDuration() / 1000), true, false);
-        String str = this.f41244e;
+        String str = this.f41246e;
         if (str == null || !str.equals(g02)) {
-            this.f41244e = g02;
-            if (this.f41241a == null) {
+            this.f41246e = g02;
+            if (this.f41243a == null) {
                 requestLayout();
             }
-            String str2 = this.f41244e;
-            TextPaint textPaint = this.f41245f;
-            this.f41241a = new StaticLayout(str2, textPaint, (int) textPaint.measureText(str2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            String str2 = this.f41246e;
+            TextPaint textPaint = this.f41247f;
+            this.f41243a = new StaticLayout(str2, textPaint, (int) textPaint.measureText(str2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
         postDelayed(c2Var, 300L);
         invalidate();
@@ -69,7 +69,7 @@ public final class o2 extends View {
     public final void onDraw(Canvas canvas) {
         int L;
         Paint paint;
-        StaticLayout staticLayout = this.f41241a;
+        StaticLayout staticLayout = this.f41243a;
         int i7 = 0;
         if (staticLayout == null) {
             L = 0;
@@ -79,9 +79,9 @@ public final class o2 extends View {
         canvas.save();
         canvas.translate((getMeasuredWidth() - L) / 2.0f, 0.0f);
         canvas.save();
-        if (this.f41246n) {
+        if (this.f41248n) {
             canvas.translate(-org.telegram.messenger.g0.L(7.0f), -org.telegram.messenger.g0.L(3.0f));
-            this.f41247r.draw(canvas);
+            this.f41249r.draw(canvas);
         } else {
             canvas.translate(0.0f, (getMeasuredHeight() - org.telegram.messenger.g0.L(11.0f)) / 2.0f);
             while (i7 < 4) {
@@ -89,11 +89,11 @@ public final class o2 extends View {
                 if (i10 > this.h) {
                     paint = this.d;
                 } else {
-                    paint = this.f41243c;
+                    paint = this.f41245c;
                 }
                 float f10 = i7;
                 float N = org.telegram.messenger.g0.N(2.75f);
-                RectF rectF = this.f41242b;
+                RectF rectF = this.f41244b;
                 rectF.set(org.telegram.messenger.g0.N(4.16f) * f10, org.telegram.messenger.g0.N(2.75f) * (3 - i7), N + (org.telegram.messenger.g0.N(4.16f) * f10), org.telegram.messenger.g0.L(11.0f));
                 canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(0.7f), org.telegram.messenger.g0.N(0.7f), paint);
                 i7 = i10;
@@ -109,7 +109,7 @@ public final class o2 extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        StaticLayout staticLayout = this.f41241a;
+        StaticLayout staticLayout = this.f41243a;
         if (staticLayout != null) {
             setMeasuredDimension(View.MeasureSpec.getSize(i7), staticLayout.getHeight());
         } else {
@@ -126,14 +126,14 @@ public final class o2 extends View {
     public void setVisibility(int i7) {
         if (getVisibility() != i7) {
             if (i7 == 0) {
-                this.f41244e = "00:00";
-                String str = this.f41244e;
-                TextPaint textPaint = this.f41245f;
-                this.f41241a = new StaticLayout(str, textPaint, (int) textPaint.measureText(str), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.f41246e = "00:00";
+                String str = this.f41246e;
+                TextPaint textPaint = this.f41247f;
+                this.f41243a = new StaticLayout(str, textPaint, (int) textPaint.measureText(str), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 a();
             } else {
-                this.f41244e = null;
-                this.f41241a = null;
+                this.f41246e = null;
+                this.f41243a = null;
             }
         }
         super.setVisibility(i7);

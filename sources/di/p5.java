@@ -6,13 +6,13 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class p5 extends Drawable {
-    public final float f9526a;
-    public final Paint f9527b;
+    public final float f9529a;
+    public final Paint f9530b;
 
     public p5(float f10, int i7) {
         Paint paint = new Paint(1);
-        this.f9527b = paint;
-        this.f9526a = f10;
+        this.f9530b = paint;
+        this.f9529a = f10;
         paint.setColor(i7);
     }
 
@@ -20,8 +20,8 @@ public final class p5 extends Drawable {
     public final void draw(Canvas canvas) {
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(getBounds());
-        Paint paint = this.f9527b;
-        float f10 = this.f9526a;
+        Paint paint = this.f9530b;
+        float f10 = this.f9529a;
         canvas.drawRoundRect(rectF, f10, f10, paint);
         org.telegram.messenger.g0.P(canvas, rectF, f10);
     }

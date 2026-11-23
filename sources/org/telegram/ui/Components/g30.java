@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.view.View;
 import java.io.Serializable;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class g30 implements org.telegram.messenger.v10, org.telegram.messenger.w10 {
-    public final h30 f35395a;
+public final class g30 implements org.telegram.messenger.w10, org.telegram.messenger.x10 {
+    public final h30 f35414a;
 
     public g30(h30 h30Var) {
-        this.f35395a = h30Var;
+        this.f35414a = h30Var;
     }
 
     @Override
@@ -15,15 +15,15 @@ public final class g30 implements org.telegram.messenger.v10, org.telegram.messe
         int i7 = o41Var.d;
         boolean z10 = false;
         if (i7 != 0) {
-            h30 h30Var = this.f35395a;
-            String str = (String) h30Var.f35775c.get(i7 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, h30Var.getContext(), h30Var.f35774b);
-            String N0 = org.telegram.messenger.gd.N0(2131752042, null);
-            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+            h30 h30Var = this.f35414a;
+            String str = (String) h30Var.f35769c.get(i7 - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, h30Var.getContext(), h30Var.f35768b);
+            String N0 = org.telegram.messenger.hd.N0(2131752042, null);
+            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
             t1Var.S = N0;
-            t1Var.U = org.telegram.messenger.gd.a0(null, null, 2131752040, str);
-            alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131752043, null), new h2(18, h30Var, str));
-            alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131752577, null), null);
+            t1Var.U = org.telegram.messenger.hd.a0(null, null, 2131752040, str);
+            alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131752043, null), new h2(18, h30Var, str));
+            alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131752577, null), null);
             t1Var.show();
             z10 = true;
         }
@@ -37,17 +37,17 @@ public final class g30 implements org.telegram.messenger.v10, org.telegram.messe
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
         int i7 = ((o41) obj).d;
-        h30 h30Var = this.f35395a;
+        h30 h30Var = this.f35414a;
         if (i7 == 0) {
-            org.telegram.messenger.ma a10 = org.telegram.messenger.ma.a(h30Var.f35773a);
-            a10.f25580f.clear();
+            org.telegram.messenger.na a10 = org.telegram.messenger.na.a(h30Var.f35767a);
+            a10.f25751f.clear();
             a10.d();
-            h30Var.f35777f.O(true);
+            h30Var.f35771f.O(true);
             return;
         }
-        org.telegram.messenger.x10 x10Var = h30Var.h;
-        if (x10Var != null) {
-            x10Var.a((String) h30Var.f35775c.get(i7 - 1));
+        org.telegram.messenger.y10 y10Var = h30Var.h;
+        if (y10Var != null) {
+            y10Var.a((String) h30Var.f35769c.get(i7 - 1));
         }
     }
 }

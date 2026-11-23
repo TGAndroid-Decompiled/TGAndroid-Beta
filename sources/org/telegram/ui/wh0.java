@@ -6,19 +6,19 @@ import java.io.File;
 import java.io.IOException;
 import org.telegram.tgnet.TLRPC;
 public final class wh0 {
-    public boolean f53436a;
-    public boolean f53437b;
-    public int f53438c;
+    public boolean f53440a;
+    public boolean f53441b;
+    public int f53442c;
     public int d;
-    public TLRPC.Document f53439e;
-    public String f53440f;
-    public String f53441g;
+    public TLRPC.Document f53443e;
+    public String f53444f;
+    public String f53445g;
 
     public final Uri a(int i7) {
-        if (!TextUtils.isEmpty(this.f53441g)) {
-            return Uri.fromFile(new File(this.f53441g));
+        if (!TextUtils.isEmpty(this.f53445g)) {
+            return Uri.fromFile(new File(this.f53445g));
         }
-        TLRPC.Document document = this.f53439e;
+        TLRPC.Document document = this.f53443e;
         if (document != null) {
             String str = document.file_name_fixed;
             String A = org.telegram.messenger.w7.A(document);
@@ -31,7 +31,7 @@ public final class wh0 {
                 if (!file.exists()) {
                     try {
                         org.telegram.messenger.w7.G(i7);
-                        org.telegram.messenger.g0.E(org.telegram.messenger.w7.I(this.f53439e), file);
+                        org.telegram.messenger.g0.E(org.telegram.messenger.w7.I(this.f53443e), file);
                     } catch (IOException e10) {
                         e10.printStackTrace();
                     }

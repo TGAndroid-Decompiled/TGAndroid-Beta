@@ -15,7 +15,7 @@ public final class k20 extends org.telegram.ui.Components.yt {
         if (view == getEditText()) {
             canvas.save();
             f40 f40Var = this.W;
-            f40Var.C1.getEditText().setTranslationY(view.getMeasuredHeight() - f40Var.A5.f57702f);
+            f40Var.C1.getEditText().setTranslationY(view.getMeasuredHeight() - f40Var.A5.f57706f);
             boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild;
@@ -28,10 +28,10 @@ public final class k20 extends org.telegram.ui.Components.yt {
         super.f();
         org.telegram.ui.Components.ty emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f40161x0 = false;
-            emojiView.f40167y2 = false;
+            emojiView.f40154x0 = false;
+            emojiView.f40160y2 = false;
             emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(this.W.f30173b.getPaddingBottom());
+            emojiView.setBottomInset(this.W.f30176b.getPaddingBottom());
         }
     }
 
@@ -39,7 +39,7 @@ public final class k20 extends org.telegram.ui.Components.yt {
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
         te.c cVar = this.W.A5;
-        if (cVar.f57702f == 0.0f) {
+        if (cVar.f57706f == 0.0f) {
             cVar.c(getMeasuredHeight());
         } else {
             cVar.a(getMeasuredHeight());
@@ -50,7 +50,7 @@ public final class k20 extends org.telegram.ui.Components.yt {
     public final void p() {
         int i7;
         rh.h hVar = this.W.B3;
-        if (this.f42545e) {
+        if (this.f42538e) {
             i7 = Math.max(0, getEmojiPadding());
         } else if (this.O) {
             i7 = Math.max(0, getKeyboardHeight());
@@ -66,6 +66,6 @@ public final class k20 extends org.telegram.ui.Components.yt {
 
     @Override
     public final void y() {
-        this.W.f30173b.requestApplyInsets();
+        this.W.f30176b.requestApplyInsets();
     }
 }

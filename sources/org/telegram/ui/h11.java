@@ -11,7 +11,7 @@ public final class h11 extends org.telegram.ui.Components.lv0 {
 
     @Override
     public final boolean D1() {
-        if (!org.telegram.messenger.pc.e(16388) && this.H3.G.f51819a0 != 4) {
+        if (!org.telegram.messenger.qc.e(16388) && this.H3.G.f51823a0 != 4) {
             return false;
         }
         return true;

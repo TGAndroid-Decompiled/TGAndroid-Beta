@@ -1,6 +1,6 @@
 package bi;
 public final class a2 {
-    public String f3391a;
-    public String f3392b;
-    public ai.a2 f3393c;
+    public String f3398a;
+    public String f3399b;
+    public ai.b2 f3400c;
 }

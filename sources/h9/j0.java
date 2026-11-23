@@ -6,12 +6,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public class j0 extends m implements a1, Serializable {
-    public final transient y1 f14036e;
-    public final transient int f14037f;
+    public final transient y1 f14039e;
+    public final transient int f14040f;
 
     public j0(y1 y1Var, int i7) {
-        this.f14036e = y1Var;
-        this.f14037f = i7;
+        this.f14039e = y1Var;
+        this.f14040f = i7;
     }
 
     @Override
@@ -54,26 +54,26 @@ public class j0 extends m implements a1, Serializable {
 
     @Override
     public final Collection get(Object obj) {
-        i0 i0Var = (i0) this.f14036e.get(obj);
+        i0 i0Var = (i0) this.f14039e.get(obj);
         if (i0Var == null) {
-            g0 g0Var = i0.f14032b;
-            return t1.f14100e;
+            g0 g0Var = i0.f14035b;
+            return t1.f14103e;
         }
         return i0Var;
     }
 
     @Override
     public l0 b() {
-        return this.f14036e;
+        return this.f14039e;
     }
 
     @Override
     public final Set keySet() {
-        y1 y1Var = this.f14036e;
-        t0 t0Var = y1Var.f14046b;
+        y1 y1Var = this.f14039e;
+        t0 t0Var = y1Var.f14049b;
         if (t0Var == null) {
             w1 d = y1Var.d();
-            y1Var.f14046b = d;
+            y1Var.f14049b = d;
             return d;
         }
         return t0Var;
@@ -86,6 +86,6 @@ public class j0 extends m implements a1, Serializable {
 
     @Override
     public final int size() {
-        return this.f14037f;
+        return this.f14040f;
     }
 }

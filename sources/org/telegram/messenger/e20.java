@@ -1,265 +1,126 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
-import android.graphics.PointF;
+import android.graphics.SurfaceTexture;
+import java.nio.FloatBuffer;
 import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ce0;
-public final class e20 {
-    public ff A;
-    public String B;
-    public String C;
-    public String D;
-    public String E;
-    public String F;
-    public ArrayList G;
-    public we H;
-    public boolean I;
-    public boolean J;
-    public hi.b7 K;
-    public hi.v L;
-    public ArrayList M;
-    public boolean N;
-    public Bitmap O;
-    public boolean P;
-    public Integer Q;
-    public Integer R;
-    public int S;
-    public boolean T;
-    public boolean V;
-    public boolean W;
-    public boolean X;
-    public long f23662a;
-    public boolean f23663a0;
-    public long f23664b;
-    public float d;
-    public float f23667e;
-    public int f23668f;
-    public int f23669g;
-    public int h;
-    public int f23670i;
-    public int f23671j;
-    public int f23672k;
-    public int f23673l;
-    public int f23674m;
-    public String f23676o;
-    public long f23677p;
-    public long f23678q;
-    public long f23679r;
-    public boolean f23680s;
-    public boolean f23681t;
-    public long v;
-    public TLRPC.InputFile f23683w;
-    public TLRPC.InputEncryptedFile f23684x;
-    public byte[] f23685y;
-    public byte[] f23686z;
-    public long f23666c = -1;
-    public int f23675n = 24;
-    public float f23682u = 1.0f;
-    public long U = Long.MIN_VALUE;
-    public boolean Y = false;
-    public boolean Z = true;
-    public final ArrayList f23665b0 = new ArrayList();
+import org.telegram.messenger.video.MediaCodecPlayer;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+public final class e20 extends TLObject {
+    public static final int C = 0;
+    public MediaCodecPlayer B;
+    public int f23661a;
+    public boolean f23662b;
+    public boolean f23663c;
+    public String d;
+    public float f23664e = 1.0f;
+    public long f23665f = 0;
+    public boolean f23666i = true;
+    public float f23667j;
+    public float f23668k;
+    public int f23669l;
+    public int f23670m;
+    public long f23671o;
+    public hi.u f23672r;
+    public FloatBuffer f23673s;
+    public FloatBuffer f23674t;
+    public org.telegram.ui.Components.c6 f23675u;
+    public float v;
+    public SurfaceTexture f23676z;
 
-    public final boolean a() {
-        return this.f23680s;
+    public static ArrayList a(hi.c7 c7Var) {
+        if (c7Var != null && c7Var.T != null) {
+            ArrayList arrayList = new ArrayList();
+            for (int i7 = 0; i7 < c7Var.T.size(); i7++) {
+                hi.c7 c7Var2 = (hi.c7) c7Var.T.get(i7);
+                ?? tLObject = new TLObject();
+                tLObject.f23664e = 1.0f;
+                tLObject.f23665f = 0L;
+                tLObject.f23666i = true;
+                tLObject.f23662b = c7Var2.K;
+                tLObject.f23663c = c7Var2.Y;
+                tLObject.d = c7Var2.L.getAbsolutePath();
+                tLObject.f23664e = c7Var2.P;
+                tLObject.f23666i = c7Var2.U;
+                tLObject.f23665f = c7Var2.X;
+                tLObject.f23667j = c7Var2.V;
+                tLObject.f23668k = c7Var2.W;
+                tLObject.f23669l = c7Var2.f14362k0;
+                tLObject.f23670m = c7Var2.f14364l0;
+                tLObject.f23671o = c7Var2.f14356h0;
+                tLObject.f23672r = (hi.u) c7Var.S.f15591e.get(i7);
+                arrayList.add(tLObject);
+            }
+            return arrayList;
+        }
+        return null;
     }
 
-    public final String b() {
-        int i7;
-        byte[] bArr;
-        String f10;
-        Object obj;
-        ArrayList arrayList;
-        if (this.f23666c == -1 && this.A == null && this.B == null && this.C == null && (((arrayList = this.G) == null || arrayList.isEmpty()) && this.H == null)) {
-            f10 = "";
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        boolean z11;
+        boolean z12;
+        int readInt32 = inputSerializedData.readInt32(z10);
+        this.f23661a = readInt32;
+        boolean z13 = false;
+        if ((readInt32 & 1) != 0) {
+            z11 = true;
         } else {
-            if (this.A != null) {
-                i7 = 170;
-            } else {
-                i7 = 10;
-            }
-            String str = this.B;
-            byte[] bArr2 = null;
-            if (str != null) {
-                bArr = str.getBytes();
-                i7 += bArr.length;
-            } else {
-                bArr = null;
-            }
-            String str2 = this.C;
-            if (str2 != null) {
-                bArr2 = str2.getBytes();
-                i7 += bArr2.length;
-            }
-            SerializedData serializedData = new SerializedData(i7);
-            serializedData.writeInt32(11);
-            serializedData.writeInt64(this.f23666c);
-            serializedData.writeInt32(this.f23671j);
-            if (this.A != null) {
-                serializedData.writeByte(1);
-                serializedData.writeFloat(this.A.f23914a);
-                serializedData.writeFloat(this.A.f23915b);
-                serializedData.writeFloat(this.A.f23916c);
-                serializedData.writeFloat(this.A.d);
-                serializedData.writeFloat(this.A.f23917e);
-                serializedData.writeFloat(this.A.f23918f);
-                serializedData.writeFloat(this.A.f23919g);
-                serializedData.writeInt32(this.A.h);
-                serializedData.writeInt32(this.A.f23920i);
-                serializedData.writeFloat(this.A.f23921j);
-                serializedData.writeFloat(this.A.f23922k);
-                serializedData.writeFloat(this.A.f23923l);
-                serializedData.writeFloat(this.A.f23924m);
-                serializedData.writeInt32(this.A.f23925n);
-                serializedData.writeFloat(this.A.f23926o);
-                serializedData.writeFloat(this.A.f23928q);
-                PointF pointF = this.A.f23929r;
-                if (pointF != null) {
-                    serializedData.writeFloat(pointF.x);
-                    serializedData.writeFloat(this.A.f23929r.y);
-                } else {
-                    serializedData.writeFloat(0.0f);
-                    serializedData.writeFloat(0.0f);
-                }
-                serializedData.writeFloat(this.A.f23930s);
-                serializedData.writeFloat(this.A.f23931t);
-                for (int i10 = 0; i10 < 4; i10++) {
-                    if (i10 == 0) {
-                        obj = this.A.f23927p.f13759b;
-                    } else if (i10 == 1) {
-                        obj = this.A.f23927p.f13760c;
-                    } else if (i10 == 2) {
-                        obj = this.A.f23927p.d;
-                    } else {
-                        obj = this.A.f23927p.f13761e;
-                    }
-                    ce0 ce0Var = (ce0) obj;
-                    serializedData.writeFloat(ce0Var.f34196a);
-                    serializedData.writeFloat(ce0Var.f34197b);
-                    serializedData.writeFloat(ce0Var.f34198c);
-                    serializedData.writeFloat(ce0Var.d);
-                    serializedData.writeFloat(ce0Var.f34199e);
-                }
-            } else {
-                serializedData.writeByte(0);
-            }
-            if (bArr != null) {
-                serializedData.writeByte(1);
-                serializedData.writeByteArray(bArr);
-            } else {
-                serializedData.writeByte(0);
-            }
-            ArrayList arrayList2 = this.G;
-            if (arrayList2 != null && !arrayList2.isEmpty()) {
-                serializedData.writeByte(1);
-                serializedData.writeInt32(this.G.size());
-                int size = this.G.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    ((c20) this.G.get(i11)).b(serializedData, false);
-                }
-                serializedData.writeByte(this.I ? 1 : 0);
-            } else {
-                serializedData.writeByte(0);
-            }
-            if (this.H != null) {
-                serializedData.writeByte(1);
-                serializedData.writeFloat(this.H.f27702a);
-                serializedData.writeFloat(this.H.f27703b);
-                serializedData.writeFloat(this.H.f27705e);
-                serializedData.writeFloat(this.H.f27706f);
-                serializedData.writeFloat(this.H.f27704c);
-                serializedData.writeFloat(this.H.d);
-                serializedData.writeInt32(this.H.f27707i);
-                serializedData.writeInt32(this.H.f27708j);
-                serializedData.writeInt32(this.H.f27709k);
-                serializedData.writeBool(this.H.f27710l);
-            } else {
-                serializedData.writeByte(0);
-            }
-            serializedData.writeInt32(0);
-            serializedData.writeBool(this.J);
-            serializedData.writeBool(this.f23663a0);
-            if (bArr2 != null) {
-                serializedData.writeByte(1);
-                serializedData.writeByteArray(bArr2);
-            } else {
-                serializedData.writeByte(0);
-            }
-            serializedData.writeFloat(this.f23682u);
-            serializedData.writeBool(this.N);
-            hi.v vVar = this.L;
-            if (vVar != null && this.M != null && vVar.f15588e.size() > 1 && !this.M.isEmpty()) {
-                serializedData.writeInt32(-559038737);
-                serializedData.writeString(this.L.f15585a);
-                for (int i12 = 0; i12 < this.M.size(); i12++) {
-                    ((d20) this.M.get(i12)).serializeToStream(serializedData);
-                }
-            } else {
-                serializedData.writeInt32(1450380236);
-            }
-            f10 = Utilities.f(serializedData.toByteArray());
-            serializedData.cleanup();
+            z11 = false;
         }
-        Locale locale = Locale.US;
-        long j3 = this.f23662a;
-        long j10 = this.f23664b;
-        int i13 = this.f23669g;
-        int i14 = this.h;
-        int i15 = this.f23670i;
-        int i16 = this.f23674m;
-        int i17 = this.f23672k;
-        int i18 = this.f23673l;
-        long j11 = this.v;
-        int i19 = this.f23675n;
-        long j12 = this.f23677p;
-        String str3 = f10;
-        String str4 = this.f23676o;
-        StringBuilder t6 = a8.p0.t(j3, "-1_", "_");
-        t6.append(j10);
-        t6.append("_");
-        t6.append(i13);
-        t6.append("_");
-        t6.append(i14);
-        t6.append("_");
-        t6.append(i15);
-        t6.append("_");
-        t6.append(i16);
-        t6.append("_");
-        t6.append(i17);
-        t6.append("_");
-        t6.append(i18);
-        t6.append("_");
-        t6.append(j11);
-        t6.append("_");
-        t6.append(i19);
-        t6.append("_");
-        t6.append(j12);
-        t6.append("_-");
-        return p5.c.m(str3, "_", str4, t6);
+        this.f23662b = z11;
+        if ((readInt32 & 2) != 0) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        this.f23666i = z12;
+        if ((readInt32 & 4) != 0) {
+            z13 = true;
+        }
+        this.f23663c = z13;
+        this.d = inputSerializedData.readString(z10);
+        this.f23664e = inputSerializedData.readFloat(z10);
+        this.f23665f = inputSerializedData.readInt64(z10);
+        this.f23667j = inputSerializedData.readFloat(z10);
+        this.f23668k = inputSerializedData.readFloat(z10);
+        this.f23669l = inputSerializedData.readInt32(z10);
+        this.f23670m = inputSerializedData.readInt32(z10);
+        this.f23671o = inputSerializedData.readInt64(z10);
     }
 
-    public final boolean c() {
-        we weVar;
-        boolean z10 = this.J;
-        ArrayList arrayList = this.f23665b0;
-        if (z10) {
-            if (this.f23663a0 && arrayList.isEmpty() && this.G == null && this.B == null && this.C == null && this.A == null && (((weVar = this.H) == null || weVar.b()) && this.f23662a <= 0)) {
-                long j3 = this.f23664b;
-                if ((j3 == -1 || j3 == this.f23679r) && this.f23670i == this.f23673l && this.h == this.f23672k) {
-                    return false;
-                }
-            }
-            return true;
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        int i7;
+        int i10;
+        int i11;
+        if (this.f23662b) {
+            i7 = this.f23661a | 1;
+        } else {
+            i7 = this.f23661a & (-2);
         }
-        if (arrayList.isEmpty() && this.G == null && this.B == null && this.C == null && this.A == null && this.H == null && this.f23680s && this.f23662a <= 0) {
-            long j10 = this.f23664b;
-            if (j10 == -1 || j10 == this.f23679r) {
-                return false;
-            }
+        this.f23661a = i7;
+        if (this.f23666i) {
+            i10 = i7 | 2;
+        } else {
+            i10 = i7 & (-3);
         }
-        return true;
+        this.f23661a = i10;
+        if (this.f23663c) {
+            i11 = i10 | 4;
+        } else {
+            i11 = i10 & (-5);
+        }
+        this.f23661a = i11;
+        outputSerializedData.writeInt32(i11);
+        outputSerializedData.writeString(this.d);
+        outputSerializedData.writeFloat(this.f23664e);
+        outputSerializedData.writeInt64(this.f23665f);
+        outputSerializedData.writeFloat(this.f23667j);
+        outputSerializedData.writeFloat(this.f23668k);
+        outputSerializedData.writeInt32(this.f23669l);
+        outputSerializedData.writeInt32(this.f23670m);
+        outputSerializedData.writeInt64(this.f23671o);
     }
 }

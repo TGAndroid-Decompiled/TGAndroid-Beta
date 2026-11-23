@@ -4,14 +4,14 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.ImageView;
 public final class ge implements View.OnClickListener {
-    public final org.telegram.ui.bn f35524a;
-    public final Activity f35525b;
-    public final ChatActivityEnterView f35526c;
+    public final org.telegram.ui.bn f35543a;
+    public final Activity f35544b;
+    public final ChatActivityEnterView f35545c;
 
     public ge(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.bn bnVar, Activity activity) {
-        this.f35526c = chatActivityEnterView;
-        this.f35524a = bnVar;
-        this.f35525b = activity;
+        this.f35545c = chatActivityEnterView;
+        this.f35543a = bnVar;
+        this.f35544b = activity;
     }
 
     @Override
@@ -20,19 +20,19 @@ public final class ge implements View.OnClickListener {
         String str;
         int i7;
         int i10;
-        org.telegram.ui.bn bnVar = this.f35524a;
+        org.telegram.ui.bn bnVar = this.f35543a;
         if (bnVar == null) {
             return;
         }
-        ChatActivityEnterView chatActivityEnterView = this.f35526c;
+        ChatActivityEnterView chatActivityEnterView = this.f35545c;
         chatActivityEnterView.W2 = !chatActivityEnterView.W2;
-        if (chatActivityEnterView.f32611f0 == null) {
-            chatActivityEnterView.f32611f0 = new kr(this.f35525b, 2131231510, org.telegram.ui.ActionBar.m6.Nl);
+        if (chatActivityEnterView.f32614f0 == null) {
+            chatActivityEnterView.f32614f0 = new kr(this.f35544b, 2131231510, org.telegram.ui.ActionBar.m6.Nl);
         }
-        chatActivityEnterView.f32611f0.a(chatActivityEnterView.W2, true);
-        chatActivityEnterView.f32756y2.setImageDrawable(chatActivityEnterView.f32611f0);
-        org.telegram.messenger.mp.u1(chatActivityEnterView.R).f25686g7.edit().putBoolean("silent_" + chatActivityEnterView.G3, chatActivityEnterView.W2).commit();
-        org.telegram.messenger.xs t6 = org.telegram.messenger.xs.t(chatActivityEnterView.R);
+        chatActivityEnterView.f32614f0.a(chatActivityEnterView.W2, true);
+        chatActivityEnterView.f32759y2.setImageDrawable(chatActivityEnterView.f32614f0);
+        org.telegram.messenger.np.u1(chatActivityEnterView.R).f25857g7.edit().putBoolean("silent_" + chatActivityEnterView.G3, chatActivityEnterView.W2).commit();
+        org.telegram.messenger.ys t6 = org.telegram.messenger.ys.t(chatActivityEnterView.R);
         long j3 = chatActivityEnterView.G3;
         if (bnVar == null) {
             d = 0;
@@ -50,7 +50,7 @@ public final class ge implements View.OnClickListener {
             }
             undoView.j(i10, 0L, null);
         }
-        ImageView imageView = chatActivityEnterView.f32756y2;
+        ImageView imageView = chatActivityEnterView.f32759y2;
         if (chatActivityEnterView.W2) {
             str = "AccDescrChanSilentOn";
             i7 = 2131754906;
@@ -58,7 +58,7 @@ public final class ge implements View.OnClickListener {
             str = "AccDescrChanSilentOff";
             i7 = 2131754907;
         }
-        imageView.setContentDescription(org.telegram.messenger.gd.N0(i7, str));
+        imageView.setContentDescription(org.telegram.messenger.hd.N0(i7, str));
         chatActivityEnterView.n2(true);
     }
 }

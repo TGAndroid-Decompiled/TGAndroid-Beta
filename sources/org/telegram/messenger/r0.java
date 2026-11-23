@@ -9,26 +9,26 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 public final class r0 implements Application.ActivityLifecycleCallbacks {
-    public static r0 f26543f;
-    public int f26544a;
-    public boolean f26545b = true;
-    public long f26546c = 0;
+    public static r0 f26536f;
+    public int f26537a;
+    public boolean f26538b = true;
+    public long f26539c = 0;
     public final CopyOnWriteArrayList d = new CopyOnWriteArrayList();
-    public final ArrayList f26547e = new ArrayList();
+    public final ArrayList f26540e = new ArrayList();
 
     public r0(t0 t0Var) {
-        f26543f = this;
+        f26536f = this;
         t0Var.registerActivityLifecycleCallbacks(this);
     }
 
     public final void a(Activity activity) {
-        int i7 = this.f26544a + 1;
-        this.f26544a = i7;
+        int i7 = this.f26537a + 1;
+        this.f26537a = i7;
         if (i7 == 1) {
-            if (SystemClock.elapsedRealtime() - this.f26546c < 200) {
-                this.f26545b = false;
+            if (SystemClock.elapsedRealtime() - this.f26539c < 200) {
+                this.f26538b = false;
             }
-            if (s2.f26749a) {
+            if (s2.f26730a) {
                 a8.b("switch to foreground");
             }
             Iterator it = this.d.iterator();
@@ -43,7 +43,7 @@ public final class r0 implements Application.ActivityLifecycleCallbacks {
     }
 
     public final void b(Activity activity) {
-        ArrayList arrayList = this.f26547e;
+        ArrayList arrayList = this.f26540e;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             Activity activity2 = (Activity) ((WeakReference) arrayList.get(size)).get();
             if (activity2 == null || activity2 == activity) {
@@ -65,13 +65,13 @@ public final class r0 implements Application.ActivityLifecycleCallbacks {
     @Override
     public final void onActivityResumed(Activity activity) {
         b(activity);
-        this.f26547e.add(new WeakReference(activity));
+        this.f26540e.add(new WeakReference(activity));
     }
 
     @Override
     public final void onActivityStarted(Activity activity) {
         boolean z10;
-        if (this.f26544a == 0) {
+        if (this.f26537a == 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -84,12 +84,12 @@ public final class r0 implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public final void onActivityStopped(Activity activity) {
-        int i7 = this.f26544a - 1;
-        this.f26544a = i7;
+        int i7 = this.f26537a - 1;
+        this.f26537a = i7;
         if (i7 == 0) {
-            this.f26546c = SystemClock.elapsedRealtime();
-            this.f26545b = true;
-            if (s2.f26749a) {
+            this.f26539c = SystemClock.elapsedRealtime();
+            this.f26538b = true;
+            if (s2.f26730a) {
                 a8.b("switch to background");
             }
             Iterator it = this.d.iterator();

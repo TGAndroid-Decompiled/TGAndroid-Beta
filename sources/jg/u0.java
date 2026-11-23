@@ -1,24 +1,24 @@
 package jg;
 
 import java.util.ArrayList;
-import org.telegram.messenger.oi;
+import org.telegram.messenger.pi;
 import org.telegram.ui.Cells.h2;
 import org.telegram.ui.Components.q90;
-public final class u0 implements oi, h2 {
-    public final h1 f17705a;
+public final class u0 implements pi, h2 {
+    public final h1 f17708a;
 
     public u0(h1 h1Var) {
-        this.f17705a = h1Var;
+        this.f17708a = h1Var;
     }
 
     @Override
     public void e(String str, ArrayList arrayList) {
         boolean z10;
-        h1 h1Var = this.f17705a;
+        h1 h1Var = this.f17708a;
         h1Var.O = arrayList;
         h1Var.J = null;
         h1Var.B0 = null;
-        h1Var.f17556y = null;
+        h1Var.f17559y = null;
         h1Var.E = null;
         h1Var.K = null;
         h1Var.R = null;

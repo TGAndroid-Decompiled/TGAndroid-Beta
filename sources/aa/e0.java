@@ -63,9 +63,9 @@ public final class e0 {
     public static t0 a(t0 t0Var, ca.f fVar, o3 o3Var, Map map) {
         Map unmodifiableMap;
         s0 a10 = t0Var.a();
-        String n10 = ((ca.d) fVar.f5147b).n();
+        String n10 = ((ca.d) fVar.f5150b).n();
         if (n10 != null) {
-            a10.f8208e = new h1(n10);
+            a10.f8211e = new h1(n10);
         } else if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", "No log data to include with this event.", null);
         }
@@ -89,37 +89,37 @@ public final class e0 {
             unmodifiableMap = DesugarCollections.unmodifiableMap(hashMap);
         }
         List f10 = f(unmodifiableMap);
-        List f11 = f(((ca.e) ((AtomicMarkableReference) ((ab.q) o3Var.f20189e).f988b).getReference()).a());
+        List f11 = f(((ca.e) ((AtomicMarkableReference) ((ab.q) o3Var.f20192e).f988b).getReference()).a());
         if (!f10.isEmpty() || !f11.isEmpty()) {
-            u0 a11 = t0Var.f8218c.a();
-            a11.f8228b = f10;
-            a11.f8229c = f11;
-            a10.f8207c = a11.a();
+            u0 a11 = t0Var.f8221c.a();
+            a11.f8231b = f10;
+            a11.f8232c = f11;
+            a10.f8210c = a11.a();
         }
         return a10.a();
     }
 
     public static q2 b(t0 t0Var, o3 o3Var) {
-        List a10 = ((ca.q) o3Var.f20190f).a();
+        List a10 = ((ca.q) o3Var.f20193f).a();
         ArrayList arrayList = new ArrayList();
         for (int i7 = 0; i7 < a10.size(); i7++) {
             ca.p pVar = (ca.p) a10.get(i7);
             pVar.getClass();
             ?? obj = new Object();
             ca.b bVar = (ca.b) pVar;
-            String str = bVar.f5137e;
+            String str = bVar.f5140e;
             if (str != null) {
-                String str2 = bVar.f5135b;
+                String str2 = bVar.f5138b;
                 if (str2 != null) {
-                    obj.f8077a = new k1(str2, str);
-                    String str3 = bVar.f5136c;
+                    obj.f8080a = new k1(str2, str);
+                    String str3 = bVar.f5139c;
                     if (str3 != null) {
-                        obj.f8078b = str3;
+                        obj.f8081b = str3;
                         String str4 = bVar.d;
                         if (str4 != null) {
-                            obj.f8079c = str4;
-                            obj.d = bVar.f5138f;
-                            obj.f8080e = (byte) (obj.f8080e | 1);
+                            obj.f8082c = str4;
+                            obj.d = bVar.f5141f;
+                            obj.f8083e = (byte) (obj.f8083e | 1);
                             arrayList.add(obj.a());
                         } else {
                             throw new NullPointerException("Null parameterValue");
@@ -138,7 +138,7 @@ public final class e0 {
             return t0Var;
         }
         s0 a11 = t0Var.a();
-        a11.f8209f = new l1(arrayList);
+        a11.f8212f = new l1(arrayList);
         return a11.a();
     }
 
@@ -171,9 +171,9 @@ public final class e0 {
     public static e0 d(Context context, a0 a0Var, ga.d dVar, a aVar, ca.f fVar, o3 o3Var, wf.b bVar, ia.c cVar, q4.q qVar, j jVar, ba.e eVar) {
         u uVar = new u(context, a0Var, aVar, bVar, cVar);
         ga.b bVar2 = new ga.b(dVar, cVar, jVar);
-        ea.a aVar2 = ha.a.f14128b;
+        ea.a aVar2 = ha.a.f14131b;
         o5.s.b(context);
-        return new e0(uVar, bVar2, new ha.a(new ha.b(o5.s.a().c(new m5.a(ha.a.f14129c, ha.a.d)).a("FIREBASE_CRASHLYTICS_REPORT", new l5.c("json"), ha.a.f14130e), cVar.b(), qVar)), fVar, o3Var, a0Var, eVar);
+        return new e0(uVar, bVar2, new ha.a(new ha.b(o5.s.a().c(new m5.a(ha.a.f14132c, ha.a.d)).a("FIREBASE_CRASHLYTICS_REPORT", new l5.c("json"), ha.a.f14133e), cVar.b(), qVar)), fVar, o3Var, a0Var, eVar);
     }
 
     public static List f(Map map) {
@@ -197,7 +197,7 @@ public final class e0 {
     }
 
     public final ApplicationExitInfo e(String str, List list, Predicate predicate) {
-        long lastModified = this.f800b.f13302b.b(str, "start-time").lastModified();
+        long lastModified = this.f800b.f13305b.b(str, "start-time").lastModified();
         Iterator it = list.iterator();
         while (it.hasNext()) {
             ApplicationExitInfo applicationExitInfo = (ApplicationExitInfo) it.next();
@@ -213,7 +213,7 @@ public final class e0 {
         byte b10;
         boolean z11;
         boolean equals = str.equals("crash");
-        long j3 = cVar.f5140b;
+        long j3 = cVar.f5143b;
         u uVar = this.f799a;
         Context context = uVar.f867a;
         int i7 = context.getResources().getConfiguration().orientation;
@@ -230,11 +230,11 @@ public final class e0 {
         }
         ab.c0 c0Var2 = c0Var;
         ?? obj = new Object();
-        obj.f8206b = str;
-        obj.f8205a = j3;
-        obj.f8210g = (byte) (obj.f8210g | 1);
-        j2 b11 = x9.c.f60469a.b(context);
-        int i10 = ((e1) b11).f8037c;
+        obj.f8209b = str;
+        obj.f8208a = j3;
+        obj.f8213g = (byte) (obj.f8213g | 1);
+        j2 b11 = x9.c.f60473a.b(context);
+        int i10 = ((e1) b11).f8040c;
         if (i10 > 0) {
             if (i10 != 100) {
                 z11 = true;
@@ -299,18 +299,18 @@ public final class e0 {
                     if (a11 != null) {
                         w0 w0Var = new w0(unmodifiableList, c10, null, null, e10, a11);
                         if (b12 == 1) {
-                            obj.f8207c = new v0(w0Var, null, null, bool2, b11, a10, i7);
+                            obj.f8210c = new v0(w0Var, null, null, bool2, b11, a10, i7);
                             obj.d = uVar.b(i7);
                             t0 a12 = obj.a();
-                            Map map = cVar.f5141c;
+                            Map map = cVar.f5144c;
                             ca.f fVar = this.d;
                             o3 o3Var = this.f802e;
                             q2 b15 = b(a(a12, fVar, o3Var, map), o3Var);
                             if (!z10) {
-                                this.f804g.f3101b.a(new c0(this, b15, cVar, equals, 0));
+                                this.f804g.f3108b.a(new c0(this, b15, cVar, equals, 0));
                                 return;
                             } else {
-                                this.f800b.e(b15, cVar.f5139a, equals);
+                                this.f800b.e(b15, cVar.f5142a, equals);
                                 return;
                             }
                         }
@@ -344,7 +344,7 @@ public final class e0 {
             int i10 = i7 + 1;
             File file = (File) c10.get(i7);
             try {
-                ea.a aVar = ga.b.f13299g;
+                ea.a aVar = ga.b.f13302g;
                 String f10 = ga.b.f(file);
                 aVar.getClass();
                 arrayList.add(new b(ea.a.j(f10), file.getName(), file));
@@ -365,35 +365,35 @@ public final class e0 {
                 ha.a aVar2 = this.f801c;
                 da.d0 d0Var = bVar2.f779a;
                 boolean z10 = true;
-                if (d0Var.f8013f != null && d0Var.f8014g != null) {
+                if (d0Var.f8016f != null && d0Var.f8017g != null) {
                     bVar = bVar2;
                 } else {
                     z b10 = this.f803f.b(true);
                     da.d0 d0Var2 = bVar2.f779a;
                     String str2 = b10.f885a;
                     da.c0 a10 = d0Var2.a();
-                    a10.f7987e = str2;
+                    a10.f7990e = str2;
                     da.d0 a11 = a10.a();
                     String str3 = b10.f886b;
                     da.c0 a12 = a11.a();
-                    a12.f7988f = str3;
+                    a12.f7991f = str3;
                     bVar = new b(a12.a(), bVar2.f780b, bVar2.f781c);
                 }
                 if (str == null) {
                     z10 = false;
                 }
-                ha.b bVar3 = aVar2.f14131a;
-                synchronized (bVar3.f14136f) {
+                ha.b bVar3 = aVar2.f14134a;
+                synchronized (bVar3.f14139f) {
                     try {
                         TaskCompletionSource taskCompletionSource2 = new TaskCompletionSource();
                         if (z10) {
-                            ((AtomicInteger) bVar3.f14138i.f55867b).getAndIncrement();
-                            if (bVar3.f14136f.size() < bVar3.f14135e) {
-                                x9.b bVar4 = x9.b.f60468a;
+                            ((AtomicInteger) bVar3.f14141i.f55871b).getAndIncrement();
+                            if (bVar3.f14139f.size() < bVar3.f14138e) {
+                                x9.b bVar4 = x9.b.f60472a;
                                 bVar4.b("Enqueueing report: " + bVar.f780b);
-                                bVar4.b("Queue size: " + bVar3.f14136f.size());
+                                bVar4.b("Queue size: " + bVar3.f14139f.size());
                                 taskCompletionSource = taskCompletionSource2;
-                                bVar3.f14137g.execute(new a9.h(bVar3, bVar, taskCompletionSource2, false, 5));
+                                bVar3.f14140g.execute(new a9.h(bVar3, bVar, taskCompletionSource2, false, 5));
                                 bVar4.b("Closing task for report: " + bVar.f780b);
                                 taskCompletionSource.trySetResult(bVar);
                             } else {
@@ -403,7 +403,7 @@ public final class e0 {
                                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                                     Log.d("FirebaseCrashlytics", str4, null);
                                 }
-                                ((AtomicInteger) bVar3.f14138i.f55868c).getAndIncrement();
+                                ((AtomicInteger) bVar3.f14141i.f55872c).getAndIncrement();
                                 taskCompletionSource.trySetResult(bVar);
                             }
                         } else {

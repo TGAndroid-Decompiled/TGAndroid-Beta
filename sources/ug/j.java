@@ -4,30 +4,30 @@ import com.google.android.gms.internal.vision.e2;
 import org.telegram.messenger.s2;
 import org.telegram.tgnet.TLRPC;
 public final class j {
-    public final TLRPC.TL_premiumGiftOption f58742a;
-    public final TLRPC.TL_premiumGiftCodeOption f58743b;
-    public final TLRPC.TL_premiumGiftOption f58744c;
+    public final TLRPC.TL_premiumGiftOption f58746a;
+    public final TLRPC.TL_premiumGiftCodeOption f58747b;
+    public final TLRPC.TL_premiumGiftOption f58748c;
     public final TLRPC.TL_premiumGiftCodeOption d;
-    public int f58745e;
-    public long f58746f;
-    public long f58747g;
+    public int f58749e;
+    public long f58750f;
+    public long f58751g;
     public f5.m h;
 
     public j(TLRPC.TL_premiumGiftOption tL_premiumGiftOption) {
-        this.f58742a = tL_premiumGiftOption;
-        this.f58743b = null;
-        this.f58744c = null;
+        this.f58746a = tL_premiumGiftOption;
+        this.f58747b = null;
+        this.f58748c = null;
         this.d = null;
     }
 
     public final String a() {
-        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f58742a;
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f58746a;
         if (tL_premiumGiftOption != null) {
             if (s2.b() || tL_premiumGiftOption.store_product == null) {
                 return tL_premiumGiftOption.currency;
             }
         } else {
-            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f58743b;
+            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f58747b;
             if (tL_premiumGiftCodeOption != null && (s2.b() || tL_premiumGiftCodeOption.store_product == null)) {
                 return tL_premiumGiftCodeOption.currency;
             }
@@ -36,29 +36,29 @@ public final class j {
         if (mVar == null) {
             return "";
         }
-        return mVar.a().f11318c;
+        return mVar.a().f11321c;
     }
 
     public final int b() {
-        if (this.f58745e == 0) {
+        if (this.f58749e == 0) {
             if (f() == 0) {
                 return 0;
             }
-            if (this.f58747g != 0) {
-                int f10 = (int) ((1.0d - (f() / this.f58747g)) * 100.0d);
-                this.f58745e = f10;
+            if (this.f58751g != 0) {
+                int f10 = (int) ((1.0d - (f() / this.f58751g)) * 100.0d);
+                this.f58749e = f10;
                 if (f10 == 0) {
-                    this.f58745e = -1;
+                    this.f58749e = -1;
                 }
             }
         }
-        return this.f58745e;
+        return this.f58749e;
     }
 
     public final String c() {
         TLRPC.TL_premiumGiftOption tL_premiumGiftOption;
         TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
-        if (!s2.b() && (((tL_premiumGiftOption = this.f58742a) == null || tL_premiumGiftOption.store_product != null) && ((tL_premiumGiftCodeOption = this.f58743b) == null || tL_premiumGiftCodeOption.store_product != null))) {
+        if (!s2.b() && (((tL_premiumGiftOption = this.f58746a) == null || tL_premiumGiftOption.store_product != null) && ((tL_premiumGiftCodeOption = this.f58747b) == null || tL_premiumGiftCodeOption.store_product != null))) {
             if (this.h == null) {
                 return "";
             }
@@ -72,11 +72,11 @@ public final class j {
     }
 
     public final int d() {
-        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f58742a;
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f58746a;
         if (tL_premiumGiftOption != null) {
             return tL_premiumGiftOption.months;
         }
-        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f58743b;
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f58747b;
         if (tL_premiumGiftCodeOption != null) {
             return tL_premiumGiftCodeOption.months;
         }
@@ -84,13 +84,13 @@ public final class j {
     }
 
     public final long e() {
-        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f58742a;
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f58746a;
         if (tL_premiumGiftOption != null) {
             if (s2.b() || tL_premiumGiftOption.store_product == null) {
                 return tL_premiumGiftOption.amount;
             }
         } else {
-            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f58743b;
+            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f58747b;
             if (tL_premiumGiftCodeOption != null && (s2.b() || tL_premiumGiftCodeOption.store_product == null)) {
                 return tL_premiumGiftCodeOption.amount;
             }
@@ -99,21 +99,21 @@ public final class j {
         if (mVar == null) {
             return 0L;
         }
-        return mVar.a().f11317b;
+        return mVar.a().f11320b;
     }
 
     public final long f() {
-        if (this.f58746f == 0) {
+        if (this.f58750f == 0) {
             long e10 = e();
             if (e10 != 0) {
-                this.f58746f = e10 / d();
+                this.f58750f = e10 / d();
             }
         }
-        return this.f58746f;
+        return this.f58750f;
     }
 
     public final long g() {
-        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f58744c;
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f58748c;
         if (tL_premiumGiftOption != null) {
             return tL_premiumGiftOption.amount;
         }
@@ -125,11 +125,11 @@ public final class j {
     }
 
     public final String h() {
-        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f58742a;
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f58746a;
         if (tL_premiumGiftOption != null) {
             return tL_premiumGiftOption.store_product;
         }
-        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f58743b;
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f58747b;
         if (tL_premiumGiftCodeOption != null) {
             return tL_premiumGiftCodeOption.store_product;
         }
@@ -137,9 +137,9 @@ public final class j {
     }
 
     public j(TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2) {
-        this.f58742a = null;
-        this.f58743b = tL_premiumGiftCodeOption;
-        this.f58744c = null;
+        this.f58746a = null;
+        this.f58747b = tL_premiumGiftCodeOption;
+        this.f58748c = null;
         this.d = e2.s(tL_premiumGiftCodeOption2) ? tL_premiumGiftCodeOption2 : null;
     }
 }

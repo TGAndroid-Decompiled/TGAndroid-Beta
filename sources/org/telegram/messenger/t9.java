@@ -1,4 +1,6 @@
 package org.telegram.messenger;
+
+import java.util.ArrayList;
 public interface t9 {
-    void c(q9 q9Var);
+    void g(ArrayList arrayList);
 }

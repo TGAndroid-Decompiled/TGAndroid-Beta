@@ -3,27 +3,27 @@ package oi;
 import android.os.Bundle;
 import java.util.ArrayList;
 public final class z3 implements z2.a {
-    public ArrayList f22589a;
+    public ArrayList f22592a;
 
     public z3(wf.e eVar) {
         ArrayList arrayList = new ArrayList(1);
-        this.f22589a = arrayList;
+        this.f22592a = arrayList;
         arrayList.add(eVar);
     }
 
     @Override
     public long a(long j3) {
-        ArrayList arrayList = this.f22589a;
+        ArrayList arrayList = this.f22592a;
         if (arrayList.isEmpty()) {
             return Long.MIN_VALUE;
         }
-        if (j3 < ((c4.a) arrayList.get(0)).f4402b) {
-            return ((c4.a) arrayList.get(0)).f4402b;
+        if (j3 < ((c4.a) arrayList.get(0)).f4405b) {
+            return ((c4.a) arrayList.get(0)).f4405b;
         }
         for (int i7 = 1; i7 < arrayList.size(); i7++) {
             c4.a aVar = (c4.a) arrayList.get(i7);
-            long j10 = aVar.f4402b;
-            long j11 = aVar.f4402b;
+            long j10 = aVar.f4405b;
+            long j11 = aVar.f4405b;
             if (j3 < j10) {
                 long j12 = ((c4.a) arrayList.get(i7 - 1)).d;
                 if (j12 != -9223372036854775807L && j12 > j3 && j12 < j11) {
@@ -43,16 +43,16 @@ public final class z3 implements z2.a {
     public h9.i0 b(long j3) {
         int i7 = i(j3);
         if (i7 == 0) {
-            h9.g0 g0Var = h9.i0.f14032b;
-            return h9.t1.f14100e;
+            h9.g0 g0Var = h9.i0.f14035b;
+            return h9.t1.f14103e;
         }
-        c4.a aVar = (c4.a) this.f22589a.get(i7 - 1);
+        c4.a aVar = (c4.a) this.f22592a.get(i7 - 1);
         long j10 = aVar.d;
         if (j10 != -9223372036854775807L && j3 >= j10) {
-            h9.g0 g0Var2 = h9.i0.f14032b;
-            return h9.t1.f14100e;
+            h9.g0 g0Var2 = h9.i0.f14035b;
+            return h9.t1.f14103e;
         }
-        return aVar.f4401a;
+        return aVar.f4404a;
     }
 
     @Override
@@ -62,17 +62,17 @@ public final class z3 implements z2.a {
 
     @Override
     public void clear() {
-        this.f22589a.clear();
+        this.f22592a.clear();
     }
 
     @Override
     public long d(long j3) {
-        ArrayList arrayList = this.f22589a;
-        if (arrayList.isEmpty() || j3 < ((c4.a) arrayList.get(0)).f4402b) {
+        ArrayList arrayList = this.f22592a;
+        if (arrayList.isEmpty() || j3 < ((c4.a) arrayList.get(0)).f4405b) {
             return -9223372036854775807L;
         }
         for (int i7 = 1; i7 < arrayList.size(); i7++) {
-            long j10 = ((c4.a) arrayList.get(i7)).f4402b;
+            long j10 = ((c4.a) arrayList.get(i7)).f4405b;
             int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
             if (i10 == 0) {
                 return j10;
@@ -83,7 +83,7 @@ public final class z3 implements z2.a {
                 if (j11 != -9223372036854775807L && j11 <= j3) {
                     return j11;
                 }
-                return aVar.f4402b;
+                return aVar.f4405b;
             }
         }
         c4.a aVar2 = (c4.a) h9.o.n(arrayList);
@@ -91,12 +91,12 @@ public final class z3 implements z2.a {
         if (j12 != -9223372036854775807L && j3 >= j12) {
             return j12;
         }
-        return aVar2.f4402b;
+        return aVar2.f4405b;
     }
 
     @Override
     public void e(long j3) {
-        ArrayList arrayList = this.f22589a;
+        ArrayList arrayList = this.f22592a;
         int i7 = i(j3);
         if (i7 == 0) {
             return;
@@ -109,17 +109,17 @@ public final class z3 implements z2.a {
     }
 
     public s4.r f() {
-        if (this.f22589a == null) {
-            return s4.r.f57063c;
+        if (this.f22592a == null) {
+            return s4.r.f57067c;
         }
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("controlCategories", this.f22589a);
-        return new s4.r(bundle, this.f22589a);
+        bundle.putStringArrayList("controlCategories", this.f22592a);
+        return new s4.r(bundle, this.f22592a);
     }
 
     public void g(StringBuilder sb2) {
         String str;
-        if (((Boolean) p5.c.g(1, this.f22589a)).booleanValue()) {
+        if (((Boolean) p5.c.g(1, this.f22592a)).booleanValue()) {
             str = "</ol>";
         } else {
             str = "</ul>";
@@ -128,15 +128,15 @@ public final class z3 implements z2.a {
     }
 
     public void h(StringBuilder sb2) {
-        while (!this.f22589a.isEmpty()) {
+        while (!this.f22592a.isEmpty()) {
             g(sb2);
         }
     }
 
     public int i(long j3) {
-        ArrayList arrayList = this.f22589a;
+        ArrayList arrayList = this.f22592a;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            if (j3 < ((c4.a) arrayList.get(i7)).f4402b) {
+            if (j3 < ((c4.a) arrayList.get(i7)).f4405b) {
                 return i7;
             }
         }
@@ -144,16 +144,16 @@ public final class z3 implements z2.a {
     }
 
     public wf.e j(int i7) {
-        return (wf.e) this.f22589a.get(i7);
+        return (wf.e) this.f22592a.get(i7);
     }
 
     public z3(int i7) {
         switch (i7) {
             case 3:
-                this.f22589a = new ArrayList();
+                this.f22592a = new ArrayList();
                 return;
             default:
-                this.f22589a = new ArrayList();
+                this.f22592a = new ArrayList();
                 return;
         }
     }

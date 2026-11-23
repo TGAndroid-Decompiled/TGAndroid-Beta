@@ -16,7 +16,7 @@ public final class wv0 extends ap0 {
         org.telegram.ui.ActionBar.g2 g2Var = this.V2.G1;
         if (g2Var instanceof org.telegram.ui.bn) {
             org.telegram.messenger.g0.Z2(g2Var.getParentActivity(), g2Var.getClassGuid());
-            if (((org.telegram.ui.bn) g2Var).f45946a0.getVisibility() == 0) {
+            if (((org.telegram.ui.bn) g2Var).f45950a0.getVisibility() == 0) {
                 g2Var.getFragmentView().requestLayout();
             }
         }
@@ -27,6 +27,6 @@ public final class wv0 extends ap0 {
         if (!z10) {
             return;
         }
-        org.telegram.messenger.g0.h3(new org.telegram.ui.b0(this, hVar, i7, 27), 100L);
+        org.telegram.messenger.g0.h3(new org.telegram.ui.f0(this, hVar, i7, 26), 100L);
     }
 }

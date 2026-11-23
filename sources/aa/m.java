@@ -6,7 +6,7 @@ import j$.util.Objects;
 import j$.util.function.Predicate$CC;
 import java.io.File;
 import java.util.function.Predicate;
-import org.telegram.messenger.fj;
+import org.telegram.messenger.gj;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 public final class m implements Predicate {
@@ -88,7 +88,7 @@ public final class m implements Predicate {
                 }
                 return false;
             case 6:
-                return !fj.c3(((fj) obj).f23993k);
+                return !gj.c3(((gj) obj).f24213k);
             default:
                 return Objects.nonNull((TLObject) obj);
         }

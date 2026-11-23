@@ -6,26 +6,26 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class zh0 extends v4.i0 {
-    public final int f42836c;
+    public final int f42840c;
     public final Context d;
-    public final org.telegram.ui.ActionBar.h6 f42837e;
-    public final boolean f42838f;
+    public final org.telegram.ui.ActionBar.h6 f42841e;
+    public final boolean f42842f;
     public final gi0 h;
 
     public zh0(gi0 gi0Var, int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
         this.h = gi0Var;
-        this.f42836c = i7;
+        this.f42840c = i7;
         this.d = context;
-        this.f42837e = h6Var;
-        this.f42838f = z10;
+        this.f42841e = h6Var;
+        this.f42842f = z10;
     }
 
     @Override
     public final int b() {
         int i7;
         gi0 gi0Var = this.h;
-        int size = gi0Var.f35566n.size();
-        if (!gi0Var.I.isEmpty() && !org.telegram.messenger.mp.u1(this.f42836c).K3()) {
+        int size = gi0Var.f35585n.size();
+        if (!gi0Var.I.isEmpty() && !org.telegram.messenger.np.u1(this.f42840c).K3()) {
             i7 = 1;
         } else {
             i7 = 0;
@@ -35,7 +35,7 @@ public final class zh0 extends v4.i0 {
 
     @Override
     public final int d(int i7) {
-        if (i7 < this.h.f35566n.size()) {
+        if (i7 < this.h.f35585n.size()) {
             return 0;
         }
         return 1;
@@ -43,8 +43,8 @@ public final class zh0 extends v4.i0 {
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        if (f1Var.f59165f == 0) {
-            ((org.telegram.ui.Cells.n6) f1Var.f59161a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f35566n.get(i7));
+        if (f1Var.f59169f == 0) {
+            ((org.telegram.ui.Cells.n6) f1Var.f59165a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f35585n.get(i7));
         }
     }
 
@@ -64,11 +64,11 @@ public final class zh0 extends v4.i0 {
             Context context = this.d;
             n6Var = new FrameLayout(context);
             View view = new View(context);
-            org.telegram.ui.ActionBar.t6.i(view, org.telegram.ui.ActionBar.t6.K(0.06f, org.telegram.ui.ActionBar.m6.E8), this.f42837e);
+            org.telegram.ui.ActionBar.t6.i(view, org.telegram.ui.ActionBar.t6.K(0.06f, org.telegram.ui.ActionBar.m6.E8), this.f42841e);
             n6Var.addView(view, c8.ma.c(8.0f, -1));
             n6Var.addView(gi0Var.K, c8.ma.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
         } else {
-            n6Var = new org.telegram.ui.Cells.n6(0, this.f42836c, this.d, this.f42837e, true, this.f42838f);
+            n6Var = new org.telegram.ui.Cells.n6(0, this.f42840c, this.d, this.f42841e, true, this.f42842f);
         }
         return new v4.f1(n6Var);
     }

@@ -9,8 +9,8 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.np;
 import org.telegram.ui.Components.aj0;
 import org.telegram.ui.Components.du0;
 import org.telegram.ui.Components.gc;
@@ -29,39 +29,39 @@ public final class ia extends t {
     @Override
     public final boolean e() {
         gc gcVar;
-        if (mp.u1(this.V).K3() || ((gcVar = gc.f35500w) != null && gcVar.f35501a == 2)) {
+        if (np.u1(this.V).K3() || ((gcVar = gc.f35519w) != null && gcVar.f35520a == 2)) {
             return false;
         }
-        int i7 = mp.u1(this.V).Z4;
-        SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(gd.G(Math.round(i7 / mp.u1(this.V).Y4), "CaptionPremiumSubtitle", i5.c.i(i7, "")));
+        int i7 = np.u1(this.V).Z4;
+        SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(hd.G(Math.round(i7 / np.u1(this.V).Y4), "CaptionPremiumSubtitle", i5.c.i(i7, "")));
         int indexOf = W2.toString().indexOf("__");
         if (indexOf >= 0) {
             W2.replace(indexOf, indexOf + 2, (CharSequence) "");
             int indexOf2 = W2.toString().indexOf("__");
             if (indexOf2 >= 0) {
                 W2.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
-                W2.setSpan(new k00(org.telegram.ui.ActionBar.m6.Xc, this.f15139a), indexOf, indexOf2, 33);
+                W2.setSpan(new k00(org.telegram.ui.ActionBar.m6.Xc, this.f15142a), indexOf, indexOf2, 33);
                 W2.setSpan(new ha(this, 0), indexOf, indexOf2, 33);
             }
         }
-        gc I = new lc(this.S1.m0, this.f15139a).I(2131623970, gd.N0(2131752544, null), W2);
-        I.f35501a = 2;
-        I.f35508j = 5000;
+        gc I = new lc(this.S1.m0, this.f15142a).I(2131623970, hd.N0(2131752544, null), W2);
+        I.f35520a = 2;
+        I.f35527j = 5000;
         I.k(false);
         return true;
     }
 
     @Override
     public final boolean g() {
-        return this.S1.f15439s0.c();
+        return this.S1.f15442s0.c();
     }
 
     @Override
     public final int getTimelineHeight() {
         cb cbVar;
         sa saVar = this.S1;
-        if (saVar.Z0 != null && (cbVar = saVar.f15383a1) != null && cbVar.getVisibility() == 0) {
-            return saVar.f15383a1.getTimelineHeight();
+        if (saVar.Z0 != null && (cbVar = saVar.f15386a1) != null && cbVar.getVisibility() == 0) {
+            return saVar.f15386a1.getTimelineHeight();
         }
         return 0;
     }
@@ -83,31 +83,31 @@ public final class ia extends t {
 
     @Override
     public final void i(Bitmap bitmap) {
-        this.S1.f15422n.X(12.0f, bitmap);
+        this.S1.f15425n.X(12.0f, bitmap);
         Utilities.stackBlurBitmap(bitmap, (int) 12.0f);
     }
 
     @Override
     public final boolean l(float f10, float f11) {
         sa saVar = this.S1;
-        u9 u9Var = saVar.f15453w1;
+        u9 u9Var = saVar.f15456w1;
         if (u9Var != null && u9Var.B0 != null) {
-            ia iaVar = saVar.f15394d1;
-            if (!iaVar.f15159p0) {
+            ia iaVar = saVar.f15397d1;
+            if (!iaVar.f15162p0) {
                 float x10 = iaVar.getX() + f10;
-                float y10 = saVar.f15394d1.getY() + f11;
+                float y10 = saVar.f15397d1.getY() + f11;
                 float x11 = saVar.m0.getX() + x10;
                 float y11 = saVar.m0.getY() + y10;
-                float x12 = x11 - saVar.f15409i0.getX();
-                float y12 = y11 - saVar.f15409i0.getY();
-                for (int i7 = 0; i7 < saVar.f15453w1.B0.getChildCount(); i7++) {
-                    View childAt = saVar.f15453w1.B0.getChildAt(i7);
+                float x12 = x11 - saVar.f15412i0.getX();
+                float y12 = y11 - saVar.f15412i0.getY();
+                for (int i7 = 0; i7 < saVar.f15456w1.B0.getChildCount(); i7++) {
+                    View childAt = saVar.f15456w1.B0.getChildAt(i7);
                     if (childAt instanceof tg.j) {
                         aj0 selectionBounds = ((tg.j) childAt).getSelectionBounds();
                         RectF rectF = org.telegram.messenger.g0.P;
-                        float f12 = selectionBounds.f33522a;
-                        float f13 = selectionBounds.f33523b;
-                        rectF.set(f12, f13, selectionBounds.f33524c + f12, selectionBounds.d + f13);
+                        float f12 = selectionBounds.f33535a;
+                        float f13 = selectionBounds.f33536b;
+                        rectF.set(f12, f13, selectionBounds.f33537c + f12, selectionBounds.d + f13);
                         if (rectF.contains(x12, y12)) {
                             return true;
                         }
@@ -120,7 +120,7 @@ public final class ia extends t {
 
     @Override
     public final void n() {
-        bi.m3 m3Var = this.S1.f15445u0;
+        bi.m3 m3Var = this.S1.f15448u0;
         if (m3Var != null) {
             m3Var.invalidate();
         }
@@ -131,12 +131,12 @@ public final class ia extends t {
         boolean z11;
         c7 c7Var;
         sa saVar = this.S1;
-        o5 o5Var = saVar.f15391c1;
+        o5 o5Var = saVar.f15394c1;
         if (!saVar.O1 && !z10) {
-            fi.p6 R1 = mp.u1(this.V).R1();
+            fi.p6 R1 = np.u1(this.V).R1();
             int A = saVar.A();
             fi.j6 o4 = R1.o();
-            if (o4 == null || !o4.a(R1.f12422a, A) || ((c7Var = saVar.L1) != null && c7Var.f14351g)) {
+            if (o4 == null || !o4.a(R1.f12425a, A) || ((c7Var = saVar.L1) != null && c7Var.f14354g)) {
                 z11 = true;
                 o5Var.setShareEnabled(z11);
             }

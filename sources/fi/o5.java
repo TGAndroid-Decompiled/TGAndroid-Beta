@@ -2,34 +2,34 @@ package fi;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class o5 implements RequestDelegate {
-    public final int f12368a;
-    public final p6 f12369b;
+    public final int f12371a;
+    public final p6 f12372b;
 
     public o5(p6 p6Var, int i7) {
-        this.f12368a = i7;
-        this.f12369b = p6Var;
+        this.f12371a = i7;
+        this.f12372b = p6Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f12368a) {
+        switch (this.f12371a) {
             case 0:
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                 if (updates != null) {
-                    p6 p6Var = this.f12369b;
-                    mp.u1(p6Var.f12422a).U3(updates.updates, updates.users, updates.chats, false, updates.date);
+                    p6 p6Var = this.f12372b;
+                    np.u1(p6Var.f12425a).U3(updates.updates, updates.users, updates.chats, false, updates.date);
                     org.telegram.messenger.g0.g3(new v5(p6Var, 1));
                     return;
                 }
                 return;
             case 1:
-                final p6 p6Var2 = this.f12369b;
+                final p6 p6Var2 = this.f12372b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -37,13 +37,13 @@ public final class o5 implements RequestDelegate {
                             case 0:
                                 p6 p6Var3 = p6Var2;
                                 HashSet hashSet = p6Var3.L;
-                                int i7 = p6Var3.f12422a;
+                                int i7 = p6Var3.f12425a;
                                 TLObject tLObject2 = tLObject;
                                 boolean z10 = true;
                                 if (tLObject2 instanceof TLRPC.TL_contacts_blocked) {
                                     TLRPC.TL_contacts_blocked tL_contacts_blocked = (TLRPC.TL_contacts_blocked) tLObject2;
-                                    mp.u1(i7).f4(tL_contacts_blocked.users, false);
-                                    mp.u1(i7).Z3(tL_contacts_blocked.chats, false);
+                                    np.u1(i7).f4(tL_contacts_blocked.users, false);
+                                    np.u1(i7).Z3(tL_contacts_blocked.chats, false);
                                     hashSet.clear();
                                     ArrayList<TLRPC.TL_peerBlocked> arrayList = tL_contacts_blocked.blocked;
                                     int size = arrayList.size();
@@ -57,8 +57,8 @@ public final class o5 implements RequestDelegate {
                                     p6Var3.O = true;
                                 } else if (tLObject2 instanceof TLRPC.TL_contacts_blockedSlice) {
                                     TLRPC.TL_contacts_blockedSlice tL_contacts_blockedSlice = (TLRPC.TL_contacts_blockedSlice) tLObject2;
-                                    mp.u1(i7).f4(tL_contacts_blockedSlice.users, false);
-                                    mp.u1(i7).Z3(tL_contacts_blockedSlice.chats, false);
+                                    np.u1(i7).f4(tL_contacts_blockedSlice.users, false);
+                                    np.u1(i7).Z3(tL_contacts_blockedSlice.chats, false);
                                     ArrayList<TLRPC.TL_peerBlocked> arrayList2 = tL_contacts_blockedSlice.blocked;
                                     int size2 = arrayList2.size();
                                     int i11 = 0;
@@ -75,38 +75,38 @@ public final class o5 implements RequestDelegate {
                                 } else {
                                     return;
                                 }
-                                ks.f(i7).k(198, new Object[0]);
+                                ls.f(i7).k(198, new Object[0]);
                                 p6Var3.P = false;
                                 p6Var3.Q = System.currentTimeMillis();
                                 return;
                             default:
                                 p6 p6Var4 = p6Var2;
-                                int i12 = p6Var4.f12422a;
+                                int i12 = p6Var4.f12425a;
                                 ArrayList arrayList3 = p6Var4.T;
                                 arrayList3.clear();
                                 arrayList3.add(new TLRPC.TL_inputPeerSelf());
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 instanceof TLRPC.TL_messages_chats) {
                                     ArrayList<TLRPC.Chat> arrayList4 = ((TLRPC.TL_messages_chats) tLObject3).chats;
-                                    mp.u1(i12).Z3(arrayList4, false);
+                                    np.u1(i12).Z3(arrayList4, false);
                                     int size3 = arrayList4.size();
                                     int i13 = 0;
                                     while (i13 < size3) {
                                         TLRPC.Chat chat = arrayList4.get(i13);
                                         i13++;
-                                        arrayList3.add(mp.n1(chat));
+                                        arrayList3.add(np.n1(chat));
                                     }
                                 }
                                 p6Var4.U = false;
                                 p6Var4.V = true;
-                                ks.f(i12).k(200, new Object[0]);
+                                ls.f(i12).k(200, new Object[0]);
                                 return;
                         }
                     }
                 });
                 return;
             case 2:
-                final p6 p6Var3 = this.f12369b;
+                final p6 p6Var3 = this.f12372b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -114,13 +114,13 @@ public final class o5 implements RequestDelegate {
                             case 0:
                                 p6 p6Var32 = p6Var3;
                                 HashSet hashSet = p6Var32.L;
-                                int i7 = p6Var32.f12422a;
+                                int i7 = p6Var32.f12425a;
                                 TLObject tLObject2 = tLObject;
                                 boolean z10 = true;
                                 if (tLObject2 instanceof TLRPC.TL_contacts_blocked) {
                                     TLRPC.TL_contacts_blocked tL_contacts_blocked = (TLRPC.TL_contacts_blocked) tLObject2;
-                                    mp.u1(i7).f4(tL_contacts_blocked.users, false);
-                                    mp.u1(i7).Z3(tL_contacts_blocked.chats, false);
+                                    np.u1(i7).f4(tL_contacts_blocked.users, false);
+                                    np.u1(i7).Z3(tL_contacts_blocked.chats, false);
                                     hashSet.clear();
                                     ArrayList<TLRPC.TL_peerBlocked> arrayList = tL_contacts_blocked.blocked;
                                     int size = arrayList.size();
@@ -134,8 +134,8 @@ public final class o5 implements RequestDelegate {
                                     p6Var32.O = true;
                                 } else if (tLObject2 instanceof TLRPC.TL_contacts_blockedSlice) {
                                     TLRPC.TL_contacts_blockedSlice tL_contacts_blockedSlice = (TLRPC.TL_contacts_blockedSlice) tLObject2;
-                                    mp.u1(i7).f4(tL_contacts_blockedSlice.users, false);
-                                    mp.u1(i7).Z3(tL_contacts_blockedSlice.chats, false);
+                                    np.u1(i7).f4(tL_contacts_blockedSlice.users, false);
+                                    np.u1(i7).Z3(tL_contacts_blockedSlice.chats, false);
                                     ArrayList<TLRPC.TL_peerBlocked> arrayList2 = tL_contacts_blockedSlice.blocked;
                                     int size2 = arrayList2.size();
                                     int i11 = 0;
@@ -152,43 +152,43 @@ public final class o5 implements RequestDelegate {
                                 } else {
                                     return;
                                 }
-                                ks.f(i7).k(198, new Object[0]);
+                                ls.f(i7).k(198, new Object[0]);
                                 p6Var32.P = false;
                                 p6Var32.Q = System.currentTimeMillis();
                                 return;
                             default:
                                 p6 p6Var4 = p6Var3;
-                                int i12 = p6Var4.f12422a;
+                                int i12 = p6Var4.f12425a;
                                 ArrayList arrayList3 = p6Var4.T;
                                 arrayList3.clear();
                                 arrayList3.add(new TLRPC.TL_inputPeerSelf());
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 instanceof TLRPC.TL_messages_chats) {
                                     ArrayList<TLRPC.Chat> arrayList4 = ((TLRPC.TL_messages_chats) tLObject3).chats;
-                                    mp.u1(i12).Z3(arrayList4, false);
+                                    np.u1(i12).Z3(arrayList4, false);
                                     int size3 = arrayList4.size();
                                     int i13 = 0;
                                     while (i13 < size3) {
                                         TLRPC.Chat chat = arrayList4.get(i13);
                                         i13++;
-                                        arrayList3.add(mp.n1(chat));
+                                        arrayList3.add(np.n1(chat));
                                     }
                                 }
                                 p6Var4.U = false;
                                 p6Var4.V = true;
-                                ks.f(i12).k(200, new Object[0]);
+                                ls.f(i12).k(200, new Object[0]);
                                 return;
                         }
                     }
                 });
                 return;
             case 3:
-                p6 p6Var4 = this.f12369b;
+                p6 p6Var4 = this.f12372b;
                 p6Var4.getClass();
                 org.telegram.messenger.g0.g3(new v5(p6Var4, 0));
                 return;
             case 4:
-                p6 p6Var5 = this.f12369b;
+                p6 p6Var5 = this.f12372b;
                 p6Var5.getClass();
                 if (tL_error == null) {
                     org.telegram.messenger.g0.g3(new v5(p6Var5, 0));
@@ -196,7 +196,7 @@ public final class o5 implements RequestDelegate {
                 }
                 return;
             default:
-                org.telegram.messenger.g0.g3(new di.a8(this.f12369b, tLObject, tL_error, 5));
+                org.telegram.messenger.g0.g3(new di.a8(this.f12372b, tLObject, tL_error, 5));
                 return;
         }
     }

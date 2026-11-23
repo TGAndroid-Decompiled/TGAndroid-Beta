@@ -18,7 +18,7 @@ import android.widget.Magnifier;
 import androidx.core.widget.NestedScrollView;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.fj;
+import org.telegram.messenger.gj;
 import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.rq;
 public abstract class w9 {
@@ -48,81 +48,81 @@ public abstract class w9 {
     public r9 X;
     public org.telegram.ui.ActionBar.x3 Y;
     public boolean Z;
-    public int f32265a;
-    public final m9 f32266a0;
-    public int f32267b;
-    public int f32268b0;
-    public int f32269c;
-    public final OvershootInterpolator f32270c0;
+    public int f32268a;
+    public final m9 f32269a0;
+    public int f32270b;
+    public int f32271b0;
+    public int f32272c;
+    public final OvershootInterpolator f32273c0;
     public int d;
-    public int f32271d0;
-    public boolean f32272e;
-    public final e9 f32273e0;
-    public float f32274f;
-    public final e9 f32275f0;
-    public float f32276g;
-    public org.telegram.ui.ActionBar.h6 f32277g0;
+    public int f32274d0;
+    public boolean f32275e;
+    public final e9 f32276e0;
+    public float f32277f;
+    public final e9 f32278f0;
+    public float f32279g;
+    public org.telegram.ui.ActionBar.h6 f32280g0;
     public final int[] h = new int[2];
-    public boolean f32278h0;
-    public boolean f32279i;
-    public boolean f32280i0;
-    public boolean f32281j;
-    public boolean f32282j0;
-    public boolean f32283k;
-    public org.telegram.ui.s f32284k0;
-    public final int f32285l;
-    public ValueAnimator f32286l0;
-    public final int f32287m;
+    public boolean f32281h0;
+    public boolean f32282i;
+    public boolean f32283i0;
+    public boolean f32284j;
+    public boolean f32285j0;
+    public boolean f32286k;
+    public org.telegram.ui.s f32287k0;
+    public final int f32288l;
+    public ValueAnimator f32289l0;
+    public final int f32290m;
     public final f m0;
-    public final float f32288n;
-    public final e9 f32289n0;
-    public final Paint f32290o;
-    public final q9 f32291o0;
-    public final Paint f32292p;
-    public final rq f32293q;
-    public final Path f32294r;
-    public int f32295s;
-    public int f32296t;
-    public int f32297u;
+    public final float f32291n;
+    public final e9 f32292n0;
+    public final Paint f32293o;
+    public final q9 f32294o0;
+    public final Paint f32295p;
+    public final rq f32296q;
+    public final Path f32297r;
+    public int f32298s;
+    public int f32299t;
+    public int f32300u;
     public int v;
-    public int f32298w;
-    public int f32299x;
-    public boolean f32300y;
-    public boolean f32301z;
+    public int f32301w;
+    public int f32302x;
+    public boolean f32303y;
+    public boolean f32304z;
 
     public w9() {
-        new Path().f31213a = 0.0f;
+        new Path().f31216a = 0.0f;
         Paint paint = new Paint(1);
-        this.f32290o = paint;
-        this.f32292p = new Paint(1);
+        this.f32293o = paint;
+        this.f32295p = new Paint(1);
         rq rqVar = new rq();
-        this.f32293q = rqVar;
-        this.f32294r = new Path();
-        new Path().f31173a = rqVar;
-        this.f32297u = -1;
+        this.f32296q = rqVar;
+        this.f32297r = new Path();
+        new Path().f31176a = rqVar;
+        this.f32300u = -1;
         this.v = -1;
         this.A = new h9(this, new g9(this));
         this.B = new Rect();
         this.S = new RectF();
         this.T = new RectF();
-        this.f32266a0 = new Object();
-        this.f32270c0 = new OvershootInterpolator();
-        this.f32273e0 = new e9(this, 0);
-        this.f32275f0 = new e9(this, 1);
-        this.f32278h0 = true;
-        this.f32284k0 = null;
+        this.f32269a0 = new Object();
+        this.f32273c0 = new OvershootInterpolator();
+        this.f32276e0 = new e9(this, 0);
+        this.f32278f0 = new e9(this, 1);
+        this.f32281h0 = true;
+        this.f32287k0 = null;
         new ArrayList();
         this.m0 = new f(this, 9);
-        this.f32289n0 = new e9(this, 2);
+        this.f32292n0 = new e9(this, 2);
         ?? path = new Path();
-        path.f31330a = 0.0f;
-        path.f31331b = new ArrayList(1);
-        path.f31332c = 0;
-        this.f32291o0 = path;
-        this.f32285l = ViewConfiguration.getLongPressTimeout();
-        this.f32287m = ViewConfiguration.get(org.telegram.messenger.t0.f26941b).getScaledTouchSlop();
+        path.f31333a = 0.0f;
+        path.f31334b = new ArrayList(1);
+        path.f31335c = 0;
+        this.f32294o0 = path;
+        this.f32288l = ViewConfiguration.getLongPressTimeout();
+        this.f32290m = ViewConfiguration.get(org.telegram.messenger.t0.f26931b).getScaledTouchSlop();
         float L = org.telegram.messenger.g0.L(6.0f);
-        this.f32288n = L;
+        this.f32291n = L;
         paint.setPathEffect(new CornerPathEffect(L));
         rqVar.d = 1.0f;
     }
@@ -131,27 +131,27 @@ public abstract class w9 {
         int i10;
         int lineRight;
         int lineLeft;
-        m9 m9Var = w9Var.f32266a0;
-        if (Build.VERSION.SDK_INT >= 28 && w9Var.W != null && !w9Var.f32283k && w9Var.f32279i && w9Var.C != null) {
-            if (w9Var.f32281j) {
-                i10 = w9Var.f32297u;
+        m9 m9Var = w9Var.f32269a0;
+        if (Build.VERSION.SDK_INT >= 28 && w9Var.W != null && !w9Var.f32286k && w9Var.f32282i && w9Var.C != null) {
+            if (w9Var.f32284j) {
+                i10 = w9Var.f32300u;
             } else {
                 i10 = w9Var.v;
             }
             w9Var.i(i10, m9Var, false);
             Layout layout = (Layout) m9Var.d;
             if (layout != null) {
-                int lineForOffset = layout.getLineForOffset(Utilities.j(i10 - m9Var.f31108a, layout.getText().length(), 0));
+                int lineForOffset = layout.getLineForOffset(Utilities.j(i10 - m9Var.f31111a, layout.getText().length(), 0));
                 int lineBottom = layout.getLineBottom(lineForOffset) - layout.getLineTop(lineForOffset);
                 int[] l10 = w9Var.l();
-                int lineTop = (int) (((((layout.getLineTop(lineForOffset) + w9Var.f32267b) + l10[1]) - lineBottom) - org.telegram.messenger.g0.L(8.0f)) + m9Var.f31109b);
+                int lineTop = (int) (((((layout.getLineTop(lineForOffset) + w9Var.f32270b) + l10[1]) - lineBottom) - org.telegram.messenger.g0.L(8.0f)) + m9Var.f31112b);
                 r9 r9Var = w9Var.W;
                 if (r9Var instanceof org.telegram.ui.s2) {
                     lineLeft = l10[0];
                     lineRight = ((View) r9Var).getMeasuredWidth() + lineLeft;
                 } else {
-                    float f10 = l10[0] + w9Var.f32265a + m9Var.f31110c;
-                    lineRight = (int) (layout.getLineRight(lineForOffset) + l10[0] + w9Var.f32265a + m9Var.f31110c);
+                    float f10 = l10[0] + w9Var.f32268a + m9Var.f31113c;
+                    lineRight = (int) (layout.getLineRight(lineForOffset) + l10[0] + w9Var.f32268a + m9Var.f31113c);
                     lineLeft = (int) (layout.getLineLeft(lineForOffset) + f10);
                 }
                 if (i7 < lineLeft) {
@@ -212,37 +212,37 @@ public abstract class w9 {
     public void A(int i7, int i10, boolean z10, float f10, float f11, r9 r9Var) {
         int i11;
         int i12;
-        if (this.f32281j) {
-            this.f32297u = i10;
+        if (this.f32284j) {
+            this.f32300u = i10;
             if (!z10 && i10 > (i12 = this.v)) {
                 this.v = i10;
-                this.f32297u = i12;
-                this.f32281j = false;
+                this.f32300u = i12;
+                this.f32284j = false;
             }
-            this.f32300y = true;
+            this.f32303y = true;
             return;
         }
         this.v = i10;
-        if (!z10 && (i11 = this.f32297u) > i10) {
+        if (!z10 && (i11 = this.f32300u) > i10) {
             this.v = i11;
-            this.f32297u = i10;
-            this.f32281j = true;
+            this.f32300u = i10;
+            this.f32284j = true;
         }
-        this.f32300y = true;
+        this.f32303y = true;
     }
 
     public final int[] B(int i7) {
-        m9 m9Var = this.f32266a0;
+        m9 m9Var = this.f32269a0;
         i(i7, m9Var, false);
         Layout layout = (Layout) m9Var.d;
-        int i10 = i7 - m9Var.f31108a;
+        int i10 = i7 - m9Var.f31111a;
         int[] iArr = this.h;
         if (layout != null && i10 >= 0 && i10 <= layout.getText().length()) {
             int lineForOffset = layout.getLineForOffset(i10);
-            iArr[0] = (int) (layout.getPrimaryHorizontal(i10) + m9Var.f31110c);
+            iArr[0] = (int) (layout.getPrimaryHorizontal(i10) + m9Var.f31113c);
             int lineBottom = layout.getLineBottom(lineForOffset);
             iArr[1] = lineBottom;
-            iArr[1] = (int) (lineBottom + m9Var.f31109b);
+            iArr[1] = (int) (lineBottom + m9Var.f31112b);
         }
         return iArr;
     }
@@ -269,7 +269,7 @@ public abstract class w9 {
     public final boolean M(MotionEvent motionEvent) {
         w9 w9Var;
         int action = motionEvent.getAction();
-        e9 e9Var = this.f32275f0;
+        e9 e9Var = this.f32278f0;
         if (action != 0) {
             if (action != 1) {
                 if (action != 2) {
@@ -277,30 +277,30 @@ public abstract class w9 {
                         return false;
                     }
                 } else {
-                    int y10 = this.f32296t - ((int) motionEvent.getY());
-                    int x10 = this.f32295s - ((int) motionEvent.getX());
+                    int y10 = this.f32299t - ((int) motionEvent.getY());
+                    int x10 = this.f32298s - ((int) motionEvent.getX());
                     int i7 = (x10 * x10) + (y10 * y10);
-                    int i10 = this.f32287m;
+                    int i10 = this.f32290m;
                     if (i7 > i10 * i10) {
                         org.telegram.messenger.g0.r(e9Var);
-                        this.f32301z = false;
+                        this.f32304z = false;
                     }
-                    return this.f32301z;
+                    return this.f32304z;
                 }
             }
             org.telegram.messenger.g0.r(e9Var);
-            this.f32301z = false;
+            this.f32304z = false;
             return false;
         }
-        this.f32295s = (int) motionEvent.getX();
-        this.f32296t = (int) motionEvent.getY();
-        this.f32301z = false;
+        this.f32298s = (int) motionEvent.getX();
+        this.f32299t = (int) motionEvent.getY();
+        this.f32304z = false;
         Rect rect = this.B;
         rect.inset(-org.telegram.messenger.g0.L(8.0f), -org.telegram.messenger.g0.L(8.0f));
-        if (rect.contains(this.f32295s, this.f32296t) && this.X != null) {
+        if (rect.contains(this.f32298s, this.f32299t) && this.X != null) {
             rect.inset(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f));
-            int i11 = this.f32295s;
-            int i12 = this.f32296t;
+            int i11 = this.f32298s;
+            int i12 = this.f32299t;
             int i13 = rect.right;
             if (i11 > i13) {
                 i11 = i13 - 1;
@@ -319,31 +319,31 @@ public abstract class w9 {
                 i12 = i17 - 1;
             }
             w9Var = this;
-            int k10 = w9Var.k(i15, i12, this.f32269c, this.d, this.X, true);
+            int k10 = w9Var.k(i15, i12, this.f32272c, this.d, this.X, true);
             CharSequence s5 = s(w9Var.X, true);
             if (k10 >= s5.length()) {
-                m9 m9Var = w9Var.f32266a0;
+                m9 m9Var = w9Var.f32269a0;
                 i(k10, m9Var, true);
                 Layout layout = (Layout) m9Var.d;
                 if (layout == null) {
-                    w9Var.f32301z = false;
+                    w9Var.f32304z = false;
                     return false;
                 }
                 int lineCount = layout.getLineCount() - 1;
-                float f10 = i15 - w9Var.f32269c;
+                float f10 = i15 - w9Var.f32272c;
                 if (f10 < ((Layout) m9Var.d).getLineRight(lineCount) + org.telegram.messenger.g0.L(4.0f) && f10 > ((Layout) m9Var.d).getLineLeft(lineCount)) {
                     k10 = s5.length() - 1;
                 }
             }
             if (k10 >= 0 && k10 < s5.length() && s5.charAt(k10) != '\n') {
                 org.telegram.messenger.g0.r(e9Var);
-                org.telegram.messenger.g0.h3(e9Var, w9Var.f32285l);
-                w9Var.f32301z = true;
+                org.telegram.messenger.g0.h3(e9Var, w9Var.f32288l);
+                w9Var.f32304z = true;
             }
         } else {
             w9Var = this;
         }
-        return w9Var.f32301z;
+        return w9Var.f32304z;
     }
 
     public boolean P(int i7, int i10) {
@@ -355,7 +355,7 @@ public abstract class w9 {
     }
 
     public final void R() {
-        this.f32280i0 = true;
+        this.f32283i0 = true;
     }
 
     public final void S(ViewGroup viewGroup) {
@@ -366,35 +366,35 @@ public abstract class w9 {
     }
 
     public final void T() {
-        if (this.C != null && !this.f32279i && x() && d()) {
+        if (this.C != null && !this.f32282i && x() && d()) {
             if (!this.P) {
                 org.telegram.ui.ActionBar.x3 x3Var = this.Y;
                 h9 h9Var = this.A;
                 if (x3Var == null) {
                     org.telegram.ui.ActionBar.x3 x3Var2 = new org.telegram.ui.ActionBar.x3(this.C.getContext(), h9Var, this.C, new org.telegram.ui.ActionBar.l4(this.C.getContext(), this.C, 1, q(), null));
                     this.Y = x3Var2;
-                    h9Var.onCreateActionMode(x3Var2, x3Var2.f30257c);
+                    h9Var.onCreateActionMode(x3Var2, x3Var2.f30260c);
                 }
                 org.telegram.ui.ActionBar.x3 x3Var3 = this.Y;
-                h9Var.onPrepareActionMode(x3Var3, x3Var3.f30257c);
+                h9Var.onPrepareActionMode(x3Var3, x3Var3.f30260c);
                 this.Y.hide(1L);
             }
-            org.telegram.messenger.g0.r(this.f32289n0);
+            org.telegram.messenger.g0.r(this.f32292n0);
             this.P = true;
         }
     }
 
     public final void U() {
         if (this.V != 1.0f && this.C != null) {
-            ValueAnimator valueAnimator = this.f32286l0;
+            ValueAnimator valueAnimator = this.f32289l0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.V, 1.0f);
-            this.f32286l0 = ofFloat;
+            this.f32289l0 = ofFloat;
             ofFloat.addUpdateListener(new r(this, 7));
-            this.f32286l0.setDuration(Math.abs(1.0f - this.V) * 250.0f);
-            this.f32286l0.start();
+            this.f32289l0.setDuration(Math.abs(1.0f - this.V) * 250.0f);
+            this.f32289l0.start();
         }
     }
 
@@ -411,7 +411,7 @@ public abstract class w9 {
     }
 
     public boolean c(int i7) {
-        if (i7 != this.f32297u && i7 != this.v) {
+        if (i7 != this.f32300u && i7 != this.v) {
             return true;
         }
         return false;
@@ -430,15 +430,15 @@ public abstract class w9 {
 
     public void f(boolean z10) {
         E(z10);
-        this.f32297u = -1;
+        this.f32300u = -1;
         this.v = -1;
         v();
         u();
         w();
         this.W = null;
-        this.f32298w = 0;
-        org.telegram.messenger.g0.r(this.f32275f0);
-        this.f32301z = false;
+        this.f32301w = 0;
+        org.telegram.messenger.g0.r(this.f32278f0);
+        this.f32304z = false;
         v9 v9Var = this.C;
         if (v9Var != null) {
             v9Var.setVisibility(8);
@@ -449,13 +449,13 @@ public abstract class w9 {
         if (haVar != null) {
             haVar.a(false);
         }
-        this.f32295s = -1;
-        this.f32296t = -1;
-        this.f32269c = -1;
+        this.f32298s = -1;
+        this.f32299t = -1;
+        this.f32272c = -1;
         this.d = -1;
-        this.f32274f = 0.0f;
-        this.f32276g = 0.0f;
-        this.f32279i = false;
+        this.f32277f = 0.0f;
+        this.f32279g = 0.0f;
+        this.f32282i = false;
     }
 
     public final void g(Layout layout, int i7, int i10, int i11, boolean z10, boolean z11, float f10) {
@@ -467,25 +467,25 @@ public abstract class w9 {
         float f14;
         float f15;
         int lineTop;
-        q9 q9Var = this.f32291o0;
+        q9 q9Var = this.f32294o0;
         q9Var.reset();
         layout.getSelectionPath(i10, i11, q9Var);
-        if (q9Var.f31330a < layout.getLineBottom(i7)) {
+        if (q9Var.f31333a < layout.getLineBottom(i7)) {
             f12 = layout.getLineTop(i7);
-            f11 = (layout.getLineBottom(i7) - lineTop) / (q9Var.f31330a - f12);
+            f11 = (layout.getLineBottom(i7) - lineTop) / (q9Var.f31333a - f12);
         } else {
             f11 = 1.0f;
             f12 = 0.0f;
         }
         int i13 = 0;
         while (true) {
-            i12 = q9Var.f31332c;
-            rqVar = this.f32293q;
-            f13 = this.f32288n;
+            i12 = q9Var.f31335c;
+            rqVar = this.f32296q;
+            f13 = this.f32291n;
             if (i13 >= i12) {
                 break;
             }
-            RectF rectF = (RectF) q9Var.f31331b.get(i13);
+            RectF rectF = (RectF) q9Var.f31334b.get(i13);
             float max = Math.max(f10, rectF.left);
             if (z10) {
                 f14 = f13 / 2.0f;
@@ -570,13 +570,13 @@ public abstract class w9 {
     }
 
     public org.telegram.ui.ActionBar.h6 q() {
-        return this.f32277g0;
+        return this.f32280g0;
     }
 
     public CharSequence r() {
         CharSequence s5 = s(this.W, false);
         if (s5 != null) {
-            return s5.subSequence(this.f32297u, this.v);
+            return s5.subSequence(this.f32300u, this.v);
         }
         return null;
     }
@@ -584,14 +584,14 @@ public abstract class w9 {
     public abstract CharSequence s(r9 r9Var, boolean z10);
 
     public int t(int i7) {
-        return org.telegram.ui.ActionBar.m6.w0(i7, this.f32277g0);
+        return org.telegram.ui.ActionBar.m6.w0(i7, this.f32280g0);
     }
 
     public final void u() {
         org.telegram.ui.ActionBar.x3 x3Var;
         if (this.Y != null && this.P) {
             this.P = false;
-            this.f32289n0.run();
+            this.f32292n0.run();
         }
         this.P = false;
         if (!x() && (x3Var = this.Y) != null) {
@@ -620,14 +620,14 @@ public abstract class w9 {
     }
 
     public final boolean x() {
-        if (this.f32297u >= 0 && this.v >= 0) {
+        if (this.f32300u >= 0 && this.v >= 0) {
             return true;
         }
         return false;
     }
 
-    public boolean z(fj fjVar) {
-        if (fjVar == null || this.f32298w != fjVar.e1()) {
+    public boolean z(gj gjVar) {
+        if (gjVar == null || this.f32301w != gjVar.e1()) {
             return false;
         }
         return true;
@@ -654,6 +654,6 @@ public abstract class w9 {
     public void K(float f10, float f11) {
     }
 
-    public void I(int i7, int i10, fj fjVar) {
+    public void I(int i7, int i10, gj gjVar) {
     }
 }

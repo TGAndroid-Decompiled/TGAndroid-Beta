@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.window.OnBackInvokedCallback;
 public final class wn0 implements OnBackInvokedCallback {
-    public final int f53460a;
-    public final Object f53461b;
+    public final int f53464a;
+    public final Object f53465b;
 
     public wn0(Object obj, int i7) {
-        this.f53460a = i7;
-        this.f53461b = obj;
+        this.f53464a = i7;
+        this.f53465b = obj;
     }
 
     public final void onBackInvoked() {
-        switch (this.f53460a) {
+        switch (this.f53464a) {
             case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f53461b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f53465b;
                 Activity activity = photoViewer.E;
                 if (activity instanceof LaunchActivity) {
                     ((LaunchActivity) activity).onBackPressed();
@@ -26,7 +26,7 @@ public final class wn0 implements OnBackInvokedCallback {
                     return;
                 }
             default:
-                ((tb1) this.f53461b).run();
+                ((tb1) this.f53465b).run();
                 return;
         }
     }

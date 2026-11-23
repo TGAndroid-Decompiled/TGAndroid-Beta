@@ -19,8 +19,8 @@ import di.ta;
 import n2.o0;
 import org.telegram.messenger.f3;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.o10;
 import org.telegram.messenger.v3;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h6;
@@ -30,52 +30,52 @@ import org.telegram.ui.Components.m80;
 import org.telegram.ui.Components.nr;
 import ug.s1;
 public final class r extends FrameLayout {
-    public final bc f61298a;
-    public final o f61299b;
-    public final TextView f61300c;
+    public final bc f61302a;
+    public final o f61303b;
+    public final TextView f61304c;
     public final m80 d;
-    public final h6 f61301e;
-    public final o0 f61302f;
+    public final h6 f61305e;
+    public final o0 f61306f;
     public final Paint[] h;
-    public ValueAnimator f61303n;
+    public ValueAnimator f61307n;
 
     public r(Context context, h6 h6Var) {
         super(context);
-        this.f61301e = h6Var;
+        this.f61305e = h6Var;
         LinearLayout g10 = f3.g(context, 1);
         bc bcVar = new bc(context, 1, 0, 5);
-        this.f61298a = bcVar;
+        this.f61302a = bcVar;
         Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         int i7 = m6.Dk;
-        canvas.drawColor(i0.a.f(0.5f, m6.w0(i7, h6Var), m6.w0(m6.f29451h5, h6Var)));
+        canvas.drawColor(i0.a.f(0.5f, m6.w0(i7, h6Var), m6.w0(m6.f29454h5, h6Var)));
         bcVar.setBackgroundBitmap(createBitmap);
-        vg.f fVar = bcVar.f59501b;
-        fVar.f59485z = i7;
+        vg.f fVar = bcVar.f59505b;
+        fVar.f59489z = i7;
         fVar.A = m6.Ck;
         fVar.b();
         g10.addView(bcVar, ma.r(160, 160, 1));
         o oVar = new o(this, context);
-        this.f61299b = oVar;
+        this.f61303b = oVar;
         this.h = new Paint[20];
         a(0.0f);
-        s1 s1Var = oVar.f58954a;
-        s1Var.f58941q = false;
+        s1 s1Var = oVar.f58958a;
+        s1Var.f58945q = false;
         s1Var.K = false;
         s1Var.L = true;
         s1Var.H = true;
-        s1Var.f58936l = new ta(this, 5);
+        s1Var.f58940l = new ta(this, 5);
         s1Var.c();
         bcVar.setStarParticlesView(oVar);
         TextView textView = new TextView(context);
-        this.f61300c = textView;
-        n10.p(textView, 1, 22.0f);
+        this.f61304c = textView;
+        o10.p(textView, 1, 22.0f);
         int i10 = m6.G6;
         t6.U(textView, i10, h6Var);
         textView.setGravity(1);
         g10.addView(textView, ma.t(-2, -2, 1, 24, -8, 24, 0));
         o0 o0Var = new o0(this);
-        this.f61302f = o0Var;
+        this.f61306f = o0Var;
         m80 m80Var = new m80(context, o0Var, h6Var);
         this.d = m80Var;
         m80Var.setTextSize(1, 15.0f);
@@ -93,7 +93,7 @@ public final class r extends FrameLayout {
 
     public final void a(float f10) {
         int i7 = m6.Ck;
-        h6 h6Var = this.f61301e;
+        h6 h6Var = this.f61305e;
         int w02 = m6.w0(i7, h6Var);
         int w03 = m6.w0(m6.Dk, h6Var);
         int f11 = i0.a.f(f10, w02, -371690);
@@ -114,7 +114,7 @@ public final class r extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        o0 o0Var = this.f61302f;
+        o0 o0Var = this.f61306f;
         if (o0Var != null) {
             canvas.save();
             m80 m80Var = this.d;
@@ -129,9 +129,9 @@ public final class r extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        bc bcVar = this.f61298a;
+        bc bcVar = this.f61302a;
         float measuredHeight = (bcVar.getMeasuredHeight() / 2.0f) + bcVar.getTop();
-        o oVar = this.f61299b;
+        o oVar = this.f61303b;
         oVar.setTranslationY(measuredHeight - (oVar.getMeasuredHeight() / 2.0f));
     }
 
@@ -142,45 +142,45 @@ public final class r extends FrameLayout {
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
         marginLayoutParams.topMargin = -g0.L(6.0f);
         setLayoutParams(marginLayoutParams);
-        int i10 = m6.f29321a7;
-        h6 h6Var = this.f61301e;
+        int i10 = m6.f29324a7;
+        h6 h6Var = this.f61305e;
         t6.h(i10, this, h6Var);
-        this.f61300c.setText(gd.a0("BoostingBoostsViaGifts", null, 2131753559, new Object[0]));
+        this.f61304c.setText(hd.a0("BoostingBoostsViaGifts", null, 2131753559, new Object[0]));
         if (v3.V(chat)) {
             i7 = 2131753507;
         } else {
             i7 = 2131753502;
         }
-        String a02 = gd.a0(null, null, i7, new Object[0]);
+        String a02 = hd.a0(null, null, i7, new Object[0]);
         m80 m80Var = this.d;
         m80Var.setText(a02);
-        t6.U(m80Var, m6.f29636r5, h6Var);
+        t6.U(m80Var, m6.f29639r5, h6Var);
     }
 
     public void setPaused(boolean z10) {
-        this.f61298a.setPaused(z10);
-        this.f61299b.setPaused(z10);
+        this.f61302a.setPaused(z10);
+        this.f61303b.setPaused(z10);
     }
 
     public void setStars(final boolean z10) {
         final float f10;
-        ValueAnimator valueAnimator = this.f61303n;
+        ValueAnimator valueAnimator = this.f61307n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        bc bcVar = this.f61298a;
-        final float f11 = bcVar.f59501b.f59472l;
+        bc bcVar = this.f61302a;
+        final float f11 = bcVar.f59505b.f59476l;
         if (z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
-        this.f61303n = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f61307n = ValueAnimator.ofFloat(0.0f, 1.0f);
         final float[] fArr = {0.0f};
-        g0.r(bcVar.f59509f0);
+        g0.r(bcVar.f59513f0);
         bcVar.d();
         bcVar.l();
-        this.f61303n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        this.f61307n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 int i7;
@@ -192,23 +192,23 @@ public final class r extends FrameLayout {
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 float f14 = floatValue - fArr2[0];
                 fArr2[0] = floatValue;
-                rVar.f61298a.f59501b.f59472l = g0.T1(f12, f13, floatValue);
-                vg.f fVar = rVar.f61298a.f59501b;
-                float f15 = fVar.f59467f;
+                rVar.f61302a.f59505b.f59476l = g0.T1(f12, f13, floatValue);
+                vg.f fVar = rVar.f61302a.f59505b;
+                float f15 = fVar.f59471f;
                 float f16 = f14 * 360.0f;
                 if (z11) {
                     i7 = 1;
                 } else {
                     i7 = -1;
                 }
-                fVar.f59467f = (f16 * i7) + f15;
-                rVar.f61298a.f59501b.b();
-                rVar.a(rVar.f61298a.f59501b.f59472l);
+                fVar.f59471f = (f16 * i7) + f15;
+                rVar.f61302a.f59505b.b();
+                rVar.a(rVar.f61302a.f59505b.f59476l);
             }
         });
-        this.f61303n.addListener(new q(this, fArr, f11, f10, z10));
-        this.f61303n.setDuration(680L);
-        this.f61303n.setInterpolator(nr.h);
-        this.f61303n.start();
+        this.f61307n.addListener(new q(this, fArr, f11, f10, z10));
+        this.f61307n.setDuration(680L);
+        this.f61307n.setInterpolator(nr.h);
+        this.f61307n.start();
     }
 }

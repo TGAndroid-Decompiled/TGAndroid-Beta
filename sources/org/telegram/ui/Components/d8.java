@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class d8 implements Runnable {
-    public final int f34402a = 0;
-    public final e8 f34403b;
-    public final ArrayList f34404c;
+    public final int f34397a = 0;
+    public final e8 f34398b;
+    public final ArrayList f34399c;
     public final String d;
 
     public d8(e8 e8Var, String str, ArrayList arrayList) {
-        this.f34403b = e8Var;
+        this.f34398b = e8Var;
         this.d = str;
-        this.f34404c = arrayList;
+        this.f34399c = arrayList;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class d8 implements Runnable {
         TLRPC.Document document;
         boolean z10;
         String str;
-        int i10 = this.f34402a;
+        int i10 = this.f34397a;
         String str2 = null;
         String str3 = this.d;
-        ArrayList arrayList = this.f34404c;
-        e8 e8Var = this.f34403b;
+        ArrayList arrayList = this.f34399c;
+        e8 e8Var = this.f34398b;
         switch (i10) {
             case 0:
                 e8Var.getClass();
@@ -33,7 +33,7 @@ public final class d8 implements Runnable {
                     org.telegram.messenger.g0.g3(new d8(e8Var, new ArrayList(), str3));
                     return;
                 }
-                String T0 = org.telegram.messenger.gd.E0().T0(lowerCase, true, false);
+                String T0 = org.telegram.messenger.hd.E0().T0(lowerCase, true, false);
                 if (!lowerCase.equals(T0) && T0.length() != 0) {
                     str2 = T0;
                 }
@@ -50,20 +50,20 @@ public final class d8 implements Runnable {
                 }
                 ArrayList arrayList2 = new ArrayList();
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) arrayList.get(i12);
+                    org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) arrayList.get(i12);
                     int i13 = 0;
                     while (true) {
                         if (i13 < i11) {
                             String str4 = strArr[i13];
-                            String I0 = fjVar.I0();
+                            String I0 = gjVar.I0();
                             if (I0 != null && I0.length() != 0) {
                                 if (I0.toLowerCase().contains(str4)) {
-                                    arrayList2.add(fjVar);
+                                    arrayList2.add(gjVar);
                                 } else {
-                                    if (fjVar.D == 0) {
-                                        document = fjVar.f23993k.media.webpage.document;
+                                    if (gjVar.D == 0) {
+                                        document = gjVar.f24213k.media.webpage.document;
                                     } else {
-                                        document = fjVar.f23993k.media.document;
+                                        document = gjVar.f24213k.media.document;
                                     }
                                     int i14 = 0;
                                     while (true) {
@@ -87,7 +87,7 @@ public final class d8 implements Runnable {
                                         }
                                     }
                                     if (z10) {
-                                        arrayList2.add(fjVar);
+                                        arrayList2.add(gjVar);
                                     }
                                 }
                             }
@@ -98,14 +98,14 @@ public final class d8 implements Runnable {
                 org.telegram.messenger.g0.g3(new d8(e8Var, arrayList2, str3));
                 return;
             default:
-                f8 f8Var = e8Var.f34700n;
-                if (f8Var.f35129r1) {
-                    f8Var.f35127q1 = true;
+                f8 f8Var = e8Var.f34698n;
+                if (f8Var.f35131r1) {
+                    f8Var.f35129q1 = true;
                     e8Var.d = arrayList;
-                    e8Var.f34698e = str3;
+                    e8Var.f34696e = str3;
                     e8Var.f();
-                    f8Var.f35133t1.n0(0);
-                    org.telegram.messenger.f3.q(null, null, 2131748047, new Object[]{str3}, f8Var.f35141x1);
+                    f8Var.f35135t1.n0(0);
+                    org.telegram.messenger.f3.q(null, null, 2131748047, new Object[]{str3}, f8Var.f35143x1);
                     return;
                 }
                 return;
@@ -113,8 +113,8 @@ public final class d8 implements Runnable {
     }
 
     public d8(e8 e8Var, ArrayList arrayList, String str) {
-        this.f34403b = e8Var;
-        this.f34404c = arrayList;
+        this.f34398b = e8Var;
+        this.f34399c = arrayList;
         this.d = str;
     }
 }

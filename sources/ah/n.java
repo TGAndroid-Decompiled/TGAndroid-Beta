@@ -32,7 +32,7 @@ public final class n extends ViewGroup {
     public void a() {
         m8 m8Var = (m8) this.f1092n;
         m8Var.I = true;
-        ArrayList arrayList = m8Var.f15030e;
+        ArrayList arrayList = m8Var.f15033e;
         ArrayList arrayList2 = new ArrayList(arrayList);
         ArrayList arrayList3 = this.h;
         arrayList3.clear();

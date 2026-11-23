@@ -3,12 +3,12 @@ package ee;
 import com.google.android.gms.internal.vision.e2;
 import h2.x;
 public final class t {
-    public final int f10976a;
-    public final String f10977b;
+    public final int f10979a;
+    public final String f10980b;
 
     public t(String str, int i7) {
-        this.f10976a = i7;
-        this.f10977b = str;
+        this.f10979a = i7;
+        this.f10980b = str;
     }
 
     public static t a(x xVar) {
@@ -47,9 +47,9 @@ public final class t {
     }
 
     public String toString() {
-        switch (this.f10976a) {
+        switch (this.f10979a) {
             case 0:
-                return "<" + this.f10977b + '>';
+                return "<" + this.f10980b + '>';
             default:
                 return super.toString();
         }

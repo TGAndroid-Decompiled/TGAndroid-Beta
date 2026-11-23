@@ -9,26 +9,26 @@ import org.telegram.ui.Components.og;
 import org.telegram.ui.Components.qc0;
 import org.telegram.ui.Components.ui;
 public final class y0 implements r1.c {
-    public final int f4278a;
-    public final Object f4279b;
-    public final Object f4280c;
+    public final int f4299a;
+    public final Object f4300b;
+    public final Object f4301c;
 
     public y0(int i7, Object obj, Object obj2) {
-        this.f4278a = i7;
-        this.f4279b = obj;
-        this.f4280c = obj2;
+        this.f4299a = i7;
+        this.f4300b = obj;
+        this.f4301c = obj2;
     }
 
     @Override
     public final void a(r1.g gVar, boolean z10, float f10, float f11) {
-        switch (this.f4278a) {
+        switch (this.f4299a) {
             case 0:
-                ((b1) this.f4279b).b(0.0f);
-                ((a3.f) this.f4280c).run();
+                ((b1) this.f4300b).b(0.0f);
+                ((a3.f) this.f4301c).run();
                 return;
             case 1:
-                ki.r3 r3Var = (ki.r3) this.f4279b;
-                Runnable runnable = (Runnable) this.f4280c;
+                ki.r3 r3Var = (ki.r3) this.f4300b;
+                Runnable runnable = (Runnable) this.f4301c;
                 if (gVar == r3Var.H) {
                     r3Var.H = null;
                     if (runnable != null) {
@@ -40,44 +40,44 @@ public final class y0 implements r1.c {
                     }
                     float f12 = r3Var.h;
                     if (f12 != -1.0f) {
-                        boolean z11 = r3Var.f18908s;
-                        r3Var.f18908s = true;
+                        boolean z11 = r3Var.f18911s;
+                        r3Var.f18911s = true;
                         r3Var.setOffsetY(f12);
                         r3Var.h = -1.0f;
-                        r3Var.f18908s = z11;
+                        r3Var.f18911s = z11;
                     }
-                    r3Var.f18906n = -2.1474836E9f;
+                    r3Var.f18909n = -2.1474836E9f;
                     return;
                 }
                 return;
             case 2:
-                og ogVar = (og) this.f4280c;
-                ((lb) this.f4279b).setInOutOffset(0.0f);
+                og ogVar = (og) this.f4301c;
+                ((lb) this.f4300b).setInOutOffset(0.0f);
                 if (!z10) {
                     ogVar.run();
                     return;
                 }
                 return;
             case 3:
-                org.telegram.ui.Components.g gVar2 = (org.telegram.ui.Components.g) this.f4280c;
-                AnimatorSet animatorSet = ((ui) this.f4279b).A0;
+                org.telegram.ui.Components.g gVar2 = (org.telegram.ui.Components.g) this.f4301c;
+                AnimatorSet animatorSet = ((ui) this.f4300b).A0;
                 if (animatorSet != null && !animatorSet.isRunning()) {
                     gVar2.run();
                     return;
                 }
                 return;
             case 4:
-                ui uiVar = (ui) ((di.a4) this.f4279b).d;
-                uiVar.f40452x2.setTranslationY(0.0f);
-                uiVar.f40452x2.m(uiVar.f40402j4);
+                ui uiVar = (ui) ((di.a4) this.f4300b).d;
+                uiVar.f40445x2.setTranslationY(0.0f);
+                uiVar.f40445x2.m(uiVar.f40395j4);
                 uiVar.Y0.g();
-                uiVar.f30173b.invalidate();
-                ((gh) this.f4280c).run();
+                uiVar.f30176b.invalidate();
+                ((gh) this.f4301c).run();
                 uiVar.Q1(0);
                 return;
             default:
-                qc0 qc0Var = (qc0) this.f4279b;
-                cb0 cb0Var = (cb0) this.f4280c;
+                qc0 qc0Var = (qc0) this.f4300b;
+                cb0 cb0Var = (cb0) this.f4301c;
                 LinkedList linkedList = qc0Var.V;
                 qc0Var.U = null;
                 cb0Var.D = null;

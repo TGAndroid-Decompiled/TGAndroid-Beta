@@ -8,23 +8,23 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 public final class pu0 extends Drawable implements Drawable.Callback {
-    public final n6 f38667a;
-    public final Paint f38668b;
+    public final n6 f38666a;
+    public final Paint f38667b;
 
     public pu0() {
         n6 n6Var = new n6(false, true, true);
-        this.f38667a = n6Var;
+        this.f38666a = n6Var;
         n6Var.setCallback(this);
         n6Var.n(0.3f, 165L, nr.h);
-        n6Var.f37791b = 1;
+        n6Var.f37796b = 1;
         n6Var.x(org.telegram.messenger.g0.o());
         n6Var.w(org.telegram.messenger.g0.L(10.0f));
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = n6Var.f37789a;
+        TextPaint textPaint = n6Var.f37794a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(org.telegram.messenger.g0.N(0.6f));
         Paint paint = new Paint(1);
-        this.f38668b = paint;
+        this.f38667b = paint;
         paint.setStyle(Paint.Style.STROKE);
     }
 
@@ -40,8 +40,8 @@ public final class pu0 extends Drawable implements Drawable.Callback {
 
     public final void b(boolean z10, float f10) {
         String str = a(f10) + "X";
-        n6 n6Var = this.f38667a;
-        if (z10 && TextUtils.equals(n6Var.f37798i, str)) {
+        n6 n6Var = this.f38666a;
+        if (z10 && TextUtils.equals(n6Var.f37803i, str)) {
             return;
         }
         n6Var.a();
@@ -51,19 +51,19 @@ public final class pu0 extends Drawable implements Drawable.Callback {
 
     @Override
     public final void draw(Canvas canvas) {
-        n6 n6Var = this.f38667a;
-        Paint paint = this.f38668b;
+        n6 n6Var = this.f38666a;
+        Paint paint = this.f38667b;
         if (paint != null) {
             paint.setStrokeWidth(org.telegram.messenger.g0.N(1.6f));
             RectF rectF = org.telegram.messenger.g0.P;
             float L = ((org.telegram.messenger.g0.L(24.0f) - n6Var.c()) / 2.0f) - org.telegram.messenger.g0.N(3.0f);
-            float N = org.telegram.messenger.g0.N(0.2f) + ((org.telegram.messenger.g0.L(24.0f) - n6Var.f37795e) / 2.0f);
+            float N = org.telegram.messenger.g0.N(0.2f) + ((org.telegram.messenger.g0.L(24.0f) - n6Var.f37800e) / 2.0f);
             float c10 = n6Var.c();
-            rectF.set(L, N, org.telegram.messenger.g0.N(3.0f) + ((c10 + org.telegram.messenger.g0.L(24.0f)) / 2.0f), (org.telegram.messenger.g0.L(24.0f) + n6Var.f37795e) / 2.0f);
+            rectF.set(L, N, org.telegram.messenger.g0.N(3.0f) + ((c10 + org.telegram.messenger.g0.L(24.0f)) / 2.0f), (org.telegram.messenger.g0.L(24.0f) + n6Var.f37800e) / 2.0f);
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(3.0f), org.telegram.messenger.g0.N(3.0f), paint);
         }
-        n6Var.f37789a.setStrokeWidth(org.telegram.messenger.g0.N(0.3f));
-        n6Var.setBounds(0, (int) ((org.telegram.messenger.g0.L(24.0f) - n6Var.f37795e) / 2.0f), org.telegram.messenger.g0.L(24.0f), (int) ((org.telegram.messenger.g0.L(24.0f) + n6Var.f37795e) / 2.0f));
+        n6Var.f37794a.setStrokeWidth(org.telegram.messenger.g0.N(0.3f));
+        n6Var.setBounds(0, (int) ((org.telegram.messenger.g0.L(24.0f) - n6Var.f37800e) / 2.0f), org.telegram.messenger.g0.L(24.0f), (int) ((org.telegram.messenger.g0.L(24.0f) + n6Var.f37800e) / 2.0f));
         n6Var.draw(canvas);
     }
 
@@ -94,8 +94,8 @@ public final class pu0 extends Drawable implements Drawable.Callback {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f38667a.C = i7;
-        Paint paint = this.f38668b;
+        this.f38666a.C = i7;
+        Paint paint = this.f38667b;
         if (paint != null) {
             paint.setAlpha(i7);
         }

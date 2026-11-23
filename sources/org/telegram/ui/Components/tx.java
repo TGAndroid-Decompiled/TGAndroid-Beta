@@ -30,7 +30,7 @@ public interface tx {
 
     void l(String str);
 
-    void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.bj bjVar, boolean z10, int i7);
+    void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.cj cjVar, boolean z10, int i7);
 
     void n();
 

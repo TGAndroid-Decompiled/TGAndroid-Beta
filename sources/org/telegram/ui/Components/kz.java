@@ -16,21 +16,21 @@ public final class kz extends v4.k {
     @Override
     public final void C(v4.f1 f1Var, v4.j jVar) {
         super.C(f1Var, jVar);
-        View view = f1Var.f59161a;
+        View view = f1Var.f59165a;
         if (view instanceof pz) {
             pz pzVar = (pz) view;
-            if (pzVar.f38713x) {
-                ValueAnimator valueAnimator = pzVar.f38691a;
+            if (pzVar.f38712x) {
+                ValueAnimator valueAnimator = pzVar.f38690a;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
-                    pzVar.f38691a.removeAllUpdateListeners();
-                    pzVar.f38691a.cancel();
+                    pzVar.f38690a.removeAllUpdateListeners();
+                    pzVar.f38690a.cancel();
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new jz(pzVar, 0));
                 ofFloat.addListener(new y(pzVar, 27));
-                pzVar.f38691a = ofFloat;
-                ofFloat.setDuration(this.f59235e);
+                pzVar.f38690a = ofFloat;
+                ofFloat.setDuration(this.f59239e);
                 ofFloat.start();
             }
         }
@@ -39,7 +39,7 @@ public final class kz extends v4.k {
     @Override
     public final void f(v4.f1 f1Var) {
         super.f(f1Var);
-        View view = f1Var.f59161a;
+        View view = f1Var.f59165a;
         view.setTranslationX(0.0f);
         if (view instanceof pz) {
             ((pz) view).a();
@@ -48,14 +48,14 @@ public final class kz extends v4.k {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f59209p.isEmpty();
-        boolean isEmpty2 = this.f59211r.isEmpty();
-        boolean isEmpty3 = this.f59212s.isEmpty();
-        boolean isEmpty4 = this.f59210q.isEmpty();
+        boolean isEmpty = this.f59213p.isEmpty();
+        boolean isEmpty2 = this.f59215r.isEmpty();
+        boolean isEmpty3 = this.f59216s.isEmpty();
+        boolean isEmpty4 = this.f59214q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
             ofFloat.addUpdateListener(new x(this, 25));
-            ofFloat.setDuration(this.f59235e);
+            ofFloat.setDuration(this.f59239e);
             ofFloat.start();
         }
         super.m();
@@ -89,7 +89,7 @@ public final class kz extends v4.k {
         boolean z17;
         boolean z18;
         int i23;
-        View view = f1Var.f59161a;
+        View view = f1Var.f59165a;
         if (view instanceof pz) {
             int translationX = i7 + ((int) view.getTranslationX());
             int translationY = i10 + ((int) view.getTranslationY());
@@ -103,19 +103,19 @@ public final class kz extends v4.k {
                 view.setTranslationY(-i25);
             }
             pz pzVar = (pz) view;
-            rz rzVar = pzVar.f38709n0;
-            TextPaint textPaint = rzVar.f39383b;
-            TextPaint textPaint2 = rzVar.f39385c;
-            int i26 = pzVar.f38693b.d;
+            rz rzVar = pzVar.f38708n0;
+            TextPaint textPaint = rzVar.f39393b;
+            TextPaint textPaint2 = rzVar.f39395c;
+            int i26 = pzVar.f38692b.d;
             int i27 = pzVar.J;
             if (i26 != i27) {
                 pzVar.I = true;
                 pzVar.K = i27;
-                pzVar.f38702g0 = pzVar.f38699e0;
-                pzVar.f38703h0 = pzVar.f38701f0;
+                pzVar.f38701g0 = pzVar.f38698e0;
+                pzVar.f38702h0 = pzVar.f38700f0;
                 if (i27 > 0 && i26 > 0) {
                     String valueOf = String.valueOf(i27);
-                    String valueOf2 = String.valueOf(pzVar.f38693b.d);
+                    String valueOf2 = String.valueOf(pzVar.f38692b.d);
                     if (valueOf.length() == valueOf2.length()) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(valueOf);
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(valueOf2);
@@ -170,7 +170,7 @@ public final class kz extends v4.k {
                 r32 = 0;
                 z10 = false;
             }
-            int i31 = pzVar.f38693b.d;
+            int i31 = pzVar.f38692b.d;
             if (i31 > 0) {
                 Object[] objArr = new Object[i15];
                 objArr[r32] = Integer.valueOf(i31);
@@ -180,12 +180,12 @@ public final class kz extends v4.k {
                 i16 = r32;
                 str = null;
             }
-            int i32 = pzVar.f38693b.f38424c;
+            int i32 = pzVar.f38692b.f38418c;
             if (i16 != 0) {
                 if (str != null) {
                     f11 = 1.0f;
                 } else {
-                    f11 = rzVar.f39412x;
+                    f11 = rzVar.f39422x;
                 }
                 i17 = org.telegram.messenger.g0.L(f11 * 6.0f) + i16;
             } else {
@@ -201,13 +201,13 @@ public final class kz extends v4.k {
                 z11 = z10;
             }
             CharSequence charSequence3 = pzVar.O;
-            if (charSequence3 != null && !pzVar.f38693b.f38423b.equals(charSequence3)) {
-                if (pzVar.O.length() > pzVar.f38693b.f38423b.length()) {
+            if (charSequence3 != null && !pzVar.f38692b.f38417b.equals(charSequence3)) {
+                if (pzVar.O.length() > pzVar.f38692b.f38417b.length()) {
                     charSequence = pzVar.O;
-                    charSequence2 = pzVar.f38693b.f38423b;
+                    charSequence2 = pzVar.f38692b.f38417b;
                     z14 = i15;
                 } else {
-                    charSequence = pzVar.f38693b.f38423b;
+                    charSequence = pzVar.f38692b.f38417b;
                     charSequence2 = pzVar.O;
                     z14 = r32;
                 }
@@ -230,7 +230,7 @@ public final class kz extends v4.k {
                     StaticLayout staticLayout = new StaticLayout(spannableStringBuilder4, textPaint, L, alignment3, 1.0f, 0.0f, false);
                     pzVar.Q = staticLayout;
                     if (pzVar.m0) {
-                        if (pzVar.f38693b.f38427g) {
+                        if (pzVar.f38692b.f38421g) {
                             i22 = 26;
                         } else {
                             i22 = i34 == 1 ? 1 : 0;
@@ -243,7 +243,7 @@ public final class kz extends v4.k {
                     StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder5, textPaint, org.telegram.messenger.g0.L(400.0f), alignment3, 1.0f, 0.0f, false);
                     pzVar.U = staticLayout2;
                     if (pzVar.m0) {
-                        if (pzVar.f38693b.f38427g) {
+                        if (pzVar.f38692b.f38421g) {
                             i21 = 26;
                         } else {
                             i21 = i34 == 1 ? 1 : 0;
@@ -263,20 +263,20 @@ public final class kz extends v4.k {
                     } else {
                         f10 = -pzVar.U.getPrimaryHorizontal(t6);
                     }
-                    pzVar.f38694b0 = f10;
-                    pzVar.f38697d0 = pzVar.f38696c0;
+                    pzVar.f38693b0 = f10;
+                    pzVar.f38696d0 = pzVar.f38695c0;
                     pzVar.S = null;
                     y5.release(pzVar, pzVar.R);
                     i20 = i34;
                 } else {
                     int i35 = r32;
-                    CharSequence charSequence4 = pzVar.f38693b.f38423b;
+                    CharSequence charSequence4 = pzVar.f38692b.f38417b;
                     int L2 = org.telegram.messenger.g0.L(400.0f);
                     Layout.Alignment alignment4 = Layout.Alignment.ALIGN_NORMAL;
                     StaticLayout staticLayout3 = new StaticLayout(charSequence4, textPaint, L2, alignment4, 1.0f, 0.0f, false);
                     pzVar.Q = staticLayout3;
                     if (pzVar.m0) {
-                        if (pzVar.f38693b.f38427g) {
+                        if (pzVar.f38692b.f38421g) {
                             i19 = 26;
                         } else {
                             i19 = i35;
@@ -289,7 +289,7 @@ public final class kz extends v4.k {
                     StaticLayout staticLayout4 = new StaticLayout(pzVar.O, textPaint, org.telegram.messenger.g0.L(400.0f), alignment4, 1.0f, 0.0f, false);
                     pzVar.S = staticLayout4;
                     if (pzVar.m0) {
-                        if (pzVar.f38693b.f38427g) {
+                        if (pzVar.f38692b.f38421g) {
                             i18 = 26;
                         } else {
                             i18 = i35;
@@ -305,8 +305,8 @@ public final class kz extends v4.k {
                     pzVar.U = null;
                     y5.release(pzVar, pzVar.T);
                     pzVar.V = z15;
-                    pzVar.f38694b0 = 0.0f;
-                    pzVar.f38697d0 = pzVar.f38696c0;
+                    pzVar.f38693b0 = 0.0f;
+                    pzVar.f38696d0 = pzVar.f38695c0;
                     i20 = i35;
                 }
                 z11 = true;
@@ -314,17 +314,17 @@ public final class kz extends v4.k {
             } else {
                 z12 = r32;
             }
-            if (i33 != pzVar.f38704i0 || pzVar.getMeasuredWidth() != pzVar.f38706k0) {
+            if (i33 != pzVar.f38703i0 || pzVar.getMeasuredWidth() != pzVar.f38705k0) {
                 z13 = true;
-                pzVar.f38692a0 = true;
-                pzVar.f38705j0 = pzVar.f38704i0;
+                pzVar.f38691a0 = true;
+                pzVar.f38704j0 = pzVar.f38703i0;
                 z11 = true;
             } else {
                 z13 = true;
             }
             if (z11) {
-                pzVar.f38714y = 0.0f;
-                pzVar.f38713x = z13;
+                pzVar.f38713y = 0.0f;
+                pzVar.f38712x = z13;
                 rz rzVar2 = this.F;
                 rzVar2.G.invalidate();
                 rzVar2.invalidate();
@@ -333,7 +333,7 @@ public final class kz extends v4.k {
                 v(f1Var);
                 return z12;
             }
-            this.f59211r.add(new v4.j(f1Var, i13, i14, i11, i12));
+            this.f59215r.add(new v4.j(f1Var, i13, i14, i11, i12));
             return z13;
         }
         return super.r(f1Var, r0Var, i7, i10, i11, i12);
@@ -341,8 +341,8 @@ public final class kz extends v4.k {
 
     @Override
     public final void x(v4.f1 f1Var) {
-        f1Var.f59161a.setTranslationX(0.0f);
-        View view = f1Var.f59161a;
+        f1Var.f59165a.setTranslationX(0.0f);
+        View view = f1Var.f59165a;
         if (view instanceof pz) {
             ((pz) view).a();
         }

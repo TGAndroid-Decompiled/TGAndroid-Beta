@@ -2,14 +2,14 @@ package yi;
 
 import java.io.File;
 public final class h {
-    public final long f61354a;
-    public final File f61355b;
-    public long f61356c;
+    public final long f61358a;
+    public final File f61359b;
+    public long f61360c;
     public boolean d = true;
-    public boolean f61357e;
+    public boolean f61361e;
 
     public h(long j3, File file) {
-        this.f61354a = j3;
-        this.f61355b = file;
+        this.f61358a = j3;
+        this.f61359b = file;
     }
 }

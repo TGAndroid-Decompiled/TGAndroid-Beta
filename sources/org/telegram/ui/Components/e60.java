@@ -6,15 +6,15 @@ import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class e60 extends dk0 {
-    public final l60 f34690c;
+    public final l60 f34688c;
 
     public e60(l60 l60Var) {
-        this.f34690c = l60Var;
+        this.f34688c = l60Var;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59165f;
+        int i7 = f1Var.f59169f;
         if (i7 == 3 || i7 == 1) {
             return true;
         }
@@ -22,25 +22,25 @@ public final class e60 extends dk0 {
     }
 
     public final TLObject E(int i7) {
-        l60 l60Var = this.f34690c;
-        if (l60Var.f37120h2 != null) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) l60Var.f37121i2.get(i7 - l60Var.T1);
-            if (org.telegram.messenger.n5.E(dialog.f28435id)) {
-                return org.telegram.messenger.mp.u1(l60Var.f30170a).c2(Long.valueOf(dialog.f28435id));
+        l60 l60Var = this.f34688c;
+        if (l60Var.f37126h2 != null) {
+            TLRPC.Dialog dialog = (TLRPC.Dialog) l60Var.f37127i2.get(i7 - l60Var.T1);
+            if (org.telegram.messenger.n5.E(dialog.f28438id)) {
+                return org.telegram.messenger.np.u1(l60Var.f30173a).c2(Long.valueOf(dialog.f28438id));
             }
-            return org.telegram.messenger.mp.u1(l60Var.f30170a).O0(Long.valueOf(-dialog.f28435id));
+            return org.telegram.messenger.np.u1(l60Var.f30173a).O0(Long.valueOf(-dialog.f28438id));
         }
         return (TLObject) l60Var.Z1.get(i7 - l60Var.T1);
     }
 
     @Override
     public final int b() {
-        return this.f34690c.X1;
+        return this.f34688c.X1;
     }
 
     @Override
     public final int d(int i7) {
-        l60 l60Var = this.f34690c;
+        l60 l60Var = this.f34688c;
         if (i7 == l60Var.S1) {
             return 1;
         }
@@ -66,21 +66,21 @@ public final class e60 extends dk0 {
         boolean z10;
         long j10;
         boolean z11;
-        int i10 = f1Var.f59165f;
-        View view = f1Var.f59161a;
+        int i10 = f1Var.f59169f;
+        View view = f1Var.f59165a;
         if (i10 != 2) {
             if (i10 == 3) {
                 org.telegram.ui.Cells.i4 i4Var = (org.telegram.ui.Cells.i4) view;
                 TLObject E = E(i7);
                 Object object = i4Var.getObject();
                 if (object instanceof TLRPC.User) {
-                    j3 = ((TLRPC.User) object).f28580id;
+                    j3 = ((TLRPC.User) object).f28583id;
                 } else if (object instanceof TLRPC.Chat) {
-                    j3 = -((TLRPC.Chat) object).f28431id;
+                    j3 = -((TLRPC.Chat) object).f28434id;
                 } else {
                     j3 = 0;
                 }
-                l60 l60Var = this.f34690c;
+                l60 l60Var = this.f34688c;
                 boolean z12 = false;
                 if (i7 != l60Var.U1) {
                     z10 = true;
@@ -89,9 +89,9 @@ public final class e60 extends dk0 {
                 }
                 i4Var.e(E, null, null, z10);
                 if (E instanceof TLRPC.User) {
-                    j10 = ((TLRPC.User) E).f28580id;
+                    j10 = ((TLRPC.User) E).f28583id;
                 } else if (E instanceof TLRPC.Chat) {
-                    j10 = -((TLRPC.Chat) E).f28431id;
+                    j10 = -((TLRPC.Chat) E).f28434id;
                 } else {
                     j10 = 0;
                 }
@@ -102,7 +102,7 @@ public final class e60 extends dk0 {
                         i4Var.setCheckBoxEnabled(false);
                         return;
                     }
-                    if (l60Var.f37114a2.h(j10) >= 0) {
+                    if (l60Var.f37120a2.h(j10) >= 0) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -127,25 +127,25 @@ public final class e60 extends dk0 {
         boolean z10;
         Context context = viewGroup.getContext();
         if (i7 != 2) {
-            l60 l60Var = this.f34690c;
+            l60 l60Var = this.f34688c;
             if (i7 != 3) {
                 if (i7 != 4) {
                     if (i7 != 5) {
                         org.telegram.ui.Cells.y4 y4Var2 = new org.telegram.ui.Cells.y4(context);
-                        y4Var2.b(2131232205, 7, org.telegram.messenger.gd.N0(2131743147, null), true);
-                        int i10 = org.telegram.ui.ActionBar.m6.f29559n5;
+                        y4Var2.b(2131232205, 7, org.telegram.messenger.hd.N0(2131743145, null), true);
+                        int i10 = org.telegram.ui.ActionBar.m6.f29562n5;
                         y4Var2.a(i10, i10);
                         y4Var = y4Var2;
                     } else {
                         d60 d60Var = new d60(context, null, 0, null, 0);
                         d60Var.setLayoutParams(new v4.q0(-1, -1));
-                        d60Var.f37991e.setVisibility(8);
-                        org.telegram.ui.zr zrVar = l60Var.f37120h2;
+                        d60Var.f37996e.setVisibility(8);
+                        org.telegram.ui.zr zrVar = l60Var.f37126h2;
                         xh.l lVar = d60Var.d;
                         if (zrVar != null) {
-                            lVar.setText(org.telegram.messenger.gd.N0(2131750714, null));
+                            lVar.setText(org.telegram.messenger.hd.N0(2131750714, null));
                         } else {
-                            lVar.setText(org.telegram.messenger.gd.N0(2131748030, null));
+                            lVar.setText(org.telegram.messenger.hd.N0(2131748030, null));
                         }
                         d60Var.setAnimateLayoutChange(true);
                         y4Var = d60Var;
@@ -154,7 +154,7 @@ public final class e60 extends dk0 {
                     y4Var = new View(context);
                 }
             } else {
-                if (l60Var.f37120h2 != null) {
+                if (l60Var.f37126h2 != null) {
                     z10 = true;
                 } else {
                     z10 = false;

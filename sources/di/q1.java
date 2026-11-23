@@ -3,20 +3,20 @@ package di;
 import android.graphics.Bitmap;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.ef;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.s10;
+import org.telegram.messenger.ff;
+import org.telegram.messenger.gs;
+import org.telegram.messenger.np;
+import org.telegram.messenger.r10;
+import org.telegram.messenger.t10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-public final class q1 implements s10 {
-    public final int f9589a;
-    public final fs f9590b;
+public final class q1 implements t10 {
+    public final int f9592a;
+    public final gs f9593b;
 
-    public q1(fs fsVar, int i7) {
-        this.f9589a = i7;
-        this.f9590b = fsVar;
+    public q1(gs gsVar, int i7) {
+        this.f9592a = i7;
+        this.f9593b = gsVar;
     }
 
     @Override
@@ -25,18 +25,18 @@ public final class q1 implements s10 {
         int i7;
         hi.v vVar;
         float f10;
-        switch (this.f9589a) {
+        switch (this.f9592a) {
             case 0:
-                ((f6) this.f9590b).C2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                ((f6) this.f9593b).C2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
                 return;
             case 1:
-                f6 f6Var = (f6) this.f9590b;
+                f6 f6Var = (f6) this.f9593b;
                 ArrayList arrayList = (ArrayList) obj;
-                q10 q10Var = (q10) obj2;
+                r10 r10Var = (r10) obj2;
                 Runnable runnable = (Runnable) obj3;
-                bi.i8 i8Var = f6Var.S2;
-                if (i8Var != null) {
-                    i8Var.b();
+                bi.h8 h8Var = f6Var.S2;
+                if (h8Var != null) {
+                    h8Var.b();
                     f6Var.S2 = null;
                 }
                 TL_stars.craftStarGift craftstargift = new TL_stars.craftStarGift();
@@ -49,14 +49,14 @@ public final class q1 implements s10 {
                     tL_inputSavedStarGiftSlug.slug = ((TL_stars.StarGift) obj4).slug;
                     craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
                 }
-                ConnectionsManager.getInstance(f6Var.f30170a).sendRequestTyped(craftstargift, new d3.b(1), new e2(f6Var, q10Var, arrayList, runnable, 0));
+                ConnectionsManager.getInstance(f6Var.f30173a).sendRequestTyped(craftstargift, new d3.b(1), new e2(f6Var, r10Var, arrayList, runnable, 0));
                 return;
             default:
-                hi.sa saVar = (hi.sa) this.f9590b;
+                hi.sa saVar = (hi.sa) this.f9593b;
                 Boolean bool = (Boolean) obj;
                 ArrayList arrayList2 = (ArrayList) obj2;
                 ArrayList arrayList3 = (ArrayList) obj3;
-                if (saVar.f15403g0 == 0 && arrayList2 != null && !arrayList2.isEmpty() && saVar.f15433q2 == null && !saVar.X && saVar.I()) {
+                if (saVar.f15406g0 == 0 && arrayList2 != null && !arrayList2.isEmpty() && saVar.f15436q2 == null && !saVar.X && saVar.I()) {
                     saVar.I1 = null;
                     saVar.J1 = null;
                     saVar.K1 = null;
@@ -71,7 +71,7 @@ public final class q1 implements s10 {
                                     Object obj5 = a10.get(i11);
                                     i11++;
                                     vVar = (hi.v) obj5;
-                                    if (vVar.f15588e.size() >= size2) {
+                                    if (vVar.f15591e.size() >= size2) {
                                     }
                                 } else {
                                     vVar = null;
@@ -95,14 +95,14 @@ public final class q1 implements s10 {
                             saVar.J0.setSelected(vVar);
                             int indexOf = hi.v.a().indexOf(vVar);
                             if (indexOf >= 0) {
-                                saVar.J0.f14202a.v0(indexOf);
+                                saVar.J0.f14205a.v0(indexOf);
                             }
                             hi.v9 v9Var2 = saVar.C0;
                             if (v9Var2 != null) {
                                 v9Var2.recordHevc = !saVar.B0.j();
                             }
                             saVar.H0.setDrawable(new hi.w(vVar, false));
-                            saVar.b0(saVar.I0, saVar.J0.f14205e, true);
+                            saVar.b0(saVar.I0, saVar.J0.f14208e, true);
                             hi.d6 d6Var = saVar.P0;
                             if (saVar.B0.j()) {
                                 f10 = saVar.B0.getFilledProgress();
@@ -116,10 +116,10 @@ public final class q1 implements s10 {
                     int i12 = 0;
                     while (true) {
                         if (i12 < arrayList2.size()) {
-                            hi.c7 l10 = hi.c7.l((ef) arrayList2.get(i12));
+                            hi.c7 l10 = hi.c7.l((ff) arrayList2.get(i12));
                             l10.M0 = (Bitmap) arrayList3.get(i12);
-                            l10.J0 = saVar.f15452w0;
-                            l10.K0 = saVar.f15456x0;
+                            l10.J0 = saVar.f15455w0;
+                            l10.K0 = saVar.f15459x0;
                             l10.A();
                             if (bool.booleanValue()) {
                                 if (saVar.B0.l(l10)) {
@@ -153,8 +153,8 @@ public final class q1 implements s10 {
                         } else {
                             z10 = false;
                         }
-                        d6Var2.f14528o0 = -1.0f;
-                        d6Var2.f14529p0 = z10;
+                        d6Var2.f14531o0 = -1.0f;
+                        d6Var2.f14532p0 = z10;
                         d6Var2.invalidate();
                         saVar.J1 = new ArrayList();
                         saVar.K1 = new ArrayList();
@@ -166,11 +166,11 @@ public final class q1 implements s10 {
                         saVar.l0(true);
                         saVar.e(false);
                         saVar.J(1, true);
-                        hi.l9 l9Var = saVar.f15397e1;
+                        hi.l9 l9Var = saVar.f15400e1;
                         if (l9Var != null) {
                             hi.l lVar = l9Var.h;
-                            if (!l9Var.J && !l9Var.N && (i7 = mp.g1().getInt("multistorieshint", 0)) < 3) {
-                                mp.g1().edit().putInt("multistorieshint", i7 + 1).apply();
+                            if (!l9Var.J && !l9Var.N && (i7 = np.g1().getInt("multistorieshint", 0)) < 3) {
+                                np.g1().edit().putInt("multistorieshint", i7 + 1).apply();
                                 org.telegram.messenger.g0.r(lVar);
                                 l9Var.J = true;
                                 l9Var.invalidate();
@@ -179,8 +179,8 @@ public final class q1 implements s10 {
                         }
                         hi.g3 g3Var = saVar.N0;
                         if (g3Var != null) {
-                            saVar.f15421m2 = g3Var.f14491e.e0();
-                            saVar.f15424n2 = saVar.N0.getSelectedAlbum();
+                            saVar.f15424m2 = g3Var.f14494e.e0();
+                            saVar.f15427n2 = saVar.N0.getSelectedAlbum();
                             return;
                         }
                         return;
@@ -194,8 +194,8 @@ public final class q1 implements s10 {
                     saVar.e(false);
                     hi.g3 g3Var2 = saVar.N0;
                     if (g3Var2 != null) {
-                        saVar.f15421m2 = g3Var2.f14491e.e0();
-                        saVar.f15424n2 = saVar.N0.getSelectedAlbum();
+                        saVar.f15424m2 = g3Var2.f14494e.e0();
+                        saVar.f15427n2 = saVar.N0.getSelectedAlbum();
                         return;
                     }
                     return;

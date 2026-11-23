@@ -5,27 +5,27 @@ import android.hardware.camera2.CameraCharacteristics;
 import android.util.Range;
 import android.util.Size;
 public final class i {
-    public final String f62141a;
-    public final n0 f62142b;
-    public final CameraCharacteristics f62143c;
+    public final String f62145a;
+    public final n0 f62146b;
+    public final CameraCharacteristics f62147c;
     public final Size d;
-    public final int f62144e;
-    public final o0 f62145f;
-    public final p0 f62146g;
+    public final int f62148e;
+    public final o0 f62149f;
+    public final p0 f62150g;
     public final Range h;
-    public final xa f62147i;
-    public final float f62148j;
+    public final xa f62151i;
+    public final float f62152j;
 
     public i(String str, n0 n0Var, CameraCharacteristics cameraCharacteristics, Size size, int i7, o0 o0Var, p0 p0Var, Range range, xa xaVar, float f10) {
-        this.f62141a = str;
-        this.f62142b = n0Var;
-        this.f62143c = cameraCharacteristics;
+        this.f62145a = str;
+        this.f62146b = n0Var;
+        this.f62147c = cameraCharacteristics;
         this.d = size;
-        this.f62144e = i7;
-        this.f62145f = o0Var;
-        this.f62146g = p0Var;
+        this.f62148e = i7;
+        this.f62149f = o0Var;
+        this.f62150g = p0Var;
         this.h = range;
-        this.f62147i = xaVar;
-        this.f62148j = f10;
+        this.f62151i = xaVar;
+        this.f62152j = f10;
     }
 }

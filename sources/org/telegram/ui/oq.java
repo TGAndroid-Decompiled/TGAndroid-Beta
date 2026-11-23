@@ -3,14 +3,14 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class oq implements Runnable {
-    public final int f50641a;
-    public final qq f50642b;
-    public final String f50643c;
+    public final int f50645a;
+    public final qq f50646b;
+    public final String f50647c;
 
     public oq(qq qqVar, String str, int i7) {
-        this.f50641a = i7;
-        this.f50642b = qqVar;
-        this.f50643c = str;
+        this.f50645a = i7;
+        this.f50646b = qqVar;
+        this.f50647c = str;
     }
 
     @Override
@@ -20,31 +20,31 @@ public final class oq implements Runnable {
         org.telegram.messenger.camera.i iVar;
         boolean z10;
         long j3;
-        switch (this.f50641a) {
+        switch (this.f50645a) {
             case 0:
-                qq qqVar = this.f50642b;
+                qq qqVar = this.f50646b;
                 qqVar.getClass();
-                org.telegram.messenger.g0.g3(new oq(qqVar, this.f50643c, 1));
+                org.telegram.messenger.g0.g3(new oq(qqVar, this.f50647c, 1));
                 return;
             default:
-                qq qqVar2 = this.f50642b;
-                qqVar2.f51321n = null;
+                qq qqVar2 = this.f50646b;
+                qqVar2.f51325n = null;
                 rq rqVar = qqVar2.E;
-                TLRPC.Chat chat = rqVar.f51720n;
-                int i7 = rqVar.f51704e1;
-                if (!org.telegram.messenger.v3.T(chat) && rqVar.f51728r != null) {
-                    arrayList = new ArrayList(rqVar.f51728r.participants.participants);
+                TLRPC.Chat chat = rqVar.f51724n;
+                int i7 = rqVar.f51708e1;
+                if (!org.telegram.messenger.v3.T(chat) && rqVar.f51732r != null) {
+                    arrayList = new ArrayList(rqVar.f51732r.participants.participants);
                 } else {
                     arrayList = null;
                 }
                 if (i7 == 1) {
-                    arrayList2 = new ArrayList(rqVar.getContactsController().f24595f0);
+                    arrayList2 = new ArrayList(rqVar.getContactsController().f24605f0);
                 } else {
                     arrayList2 = null;
                 }
-                String str = this.f50643c;
+                String str = this.f50647c;
                 if (arrayList == null && arrayList2 == null) {
-                    qqVar2.f51323s = false;
+                    qqVar2.f51327s = false;
                     iVar = null;
                 } else {
                     iVar = new org.telegram.messenger.camera.i(qqVar2, str, arrayList, arrayList2, 18);
@@ -55,7 +55,7 @@ public final class oq implements Runnable {
                 } else {
                     z10 = false;
                 }
-                if (org.telegram.messenger.v3.T(rqVar.f51720n)) {
+                if (org.telegram.messenger.v3.T(rqVar.f51724n)) {
                     j3 = rqVar.N;
                 } else {
                     j3 = 0;

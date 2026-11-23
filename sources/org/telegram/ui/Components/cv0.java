@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
 public final class cv0 extends dk0 {
-    public int f34314c;
+    public int f34308c;
     public final lv0 d;
 
     public cv0(lv0 lv0Var) {
@@ -14,7 +14,7 @@ public final class cv0 extends dk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59165f == 1) {
+        if (f1Var.f59169f == 1) {
             return true;
         }
         return false;
@@ -24,19 +24,19 @@ public final class cv0 extends dk0 {
     public final int b() {
         int length;
         lv0 lv0Var = this.d;
-        hv0[] hv0VarArr = lv0Var.f37286g3;
+        hv0[] hv0VarArr = lv0Var.f37293g3;
         if (hv0VarArr == null) {
             length = 0;
         } else {
             length = hv0VarArr.length;
         }
         int i7 = length + 1;
-        if (i7 != this.f34314c) {
-            bi.m3 m3Var = lv0Var.f37298t3;
+        if (i7 != this.f34308c) {
+            bi.m3 m3Var = lv0Var.f37305t3;
             if (m3Var != null) {
                 m3Var.requestLayout();
             }
-            this.f34314c = i7;
+            this.f34308c = i7;
         }
         return i7;
     }
@@ -54,18 +54,18 @@ public final class cv0 extends dk0 {
         lv0 lv0Var;
         hv0[] hv0VarArr;
         boolean z10 = true;
-        if (f1Var.f59165f == 1 && (hv0VarArr = (lv0Var = this.d).f37286g3) != null) {
+        if (f1Var.f59169f == 1 && (hv0VarArr = (lv0Var = this.d).f37293g3) != null) {
             int i10 = i7 - 1;
             hv0 hv0Var = hv0VarArr[i10];
-            final gv0 gv0Var = (gv0) f1Var.f59161a;
-            if (lv0Var.f37299u3 != i10) {
+            final gv0 gv0Var = (gv0) f1Var.f59165a;
+            if (lv0Var.f37306u3 != i10) {
                 z10 = false;
             }
             gv0Var.getClass();
             if (!TextUtils.isEmpty(hv0Var.d)) {
                 gv0Var.setContentDescription(hv0Var.d);
-            } else if (!TextUtils.isEmpty(hv0Var.f35984a)) {
-                gv0Var.setContentDescription(hv0Var.f35984a);
+            } else if (!TextUtils.isEmpty(hv0Var.f35978a)) {
+                gv0Var.setContentDescription(hv0Var.f35978a);
             } else {
                 gv0Var.setContentDescription(null);
             }
@@ -77,9 +77,9 @@ public final class cv0 extends dk0 {
             gv0Var.setImageResource(0);
             gv0Var.a();
             final boolean D1 = gv0Var.I.D1();
-            gv0Var.f35667x = false;
+            gv0Var.f35686x = false;
             gv0Var.E = 1.0f;
-            p5.g(org.telegram.messenger.j10.f24798t0).b(hv0Var.f35986c, new m5() {
+            p5.g(org.telegram.messenger.k10.f24968t0).b(hv0Var.f35980c, new m5() {
                 @Override
                 public final void a(TLRPC.Document document) {
                     gv0 gv0Var2 = gv0.this;
@@ -90,9 +90,9 @@ public final class cv0 extends dk0 {
             });
             org.telegram.messenger.g0.h3(new cp0(gv0Var, 10), 60L);
             gv0Var.l(z10, false);
-            gv0Var.setAlpha(lv0Var.f37301w3);
-            gv0Var.setScaleX(lv0Var.f37301w3);
-            gv0Var.setScaleY(lv0Var.f37301w3);
+            gv0Var.setAlpha(lv0Var.f37308w3);
+            gv0Var.setScaleX(lv0Var.f37308w3);
+            gv0Var.setScaleY(lv0Var.f37308w3);
             gv0Var.j();
         }
     }
@@ -103,7 +103,7 @@ public final class cv0 extends dk0 {
         lv0 lv0Var = this.d;
         if (i7 == 0) {
             bi.m3 m3Var = new bi.m3(28, lv0Var.getContext(), this);
-            lv0Var.f37298t3 = m3Var;
+            lv0Var.f37305t3 = m3Var;
             gv0Var = m3Var;
         } else {
             gv0Var = new gv0(lv0Var, lv0Var.getContext());
@@ -114,9 +114,9 @@ public final class cv0 extends dk0 {
     @Override
     public final void y(v4.f1 f1Var) {
         boolean z10 = true;
-        if (f1Var.f59165f == 1) {
-            gv0 gv0Var = (gv0) f1Var.f59161a;
-            if (this.d.f37299u3 != f1Var.b() - 1) {
+        if (f1Var.f59169f == 1) {
+            gv0 gv0Var = (gv0) f1Var.f59165a;
+            if (this.d.f37306u3 != f1Var.b() - 1) {
                 z10 = false;
             }
             gv0Var.l(z10, false);

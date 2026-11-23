@@ -5,11 +5,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import kotlin.jvm.internal.j;
 public final class c {
-    public static final c f14149a = new Object();
-    public static final Map f14150b = DesugarCollections.synchronizedMap(new LinkedHashMap());
+    public static final c f14152a = new Object();
+    public static final Map f14153b = DesugarCollections.synchronizedMap(new LinkedHashMap());
 
     public static a a(d dVar) {
-        Map dependencies = f14150b;
+        Map dependencies = f14153b;
         j.d(dependencies, "dependencies");
         Object obj = dependencies.get(dVar);
         if (obj != null) {

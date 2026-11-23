@@ -3,7 +3,7 @@ package org.webrtc;
 import com.google.android.gms.internal.vision.e2;
 import java.util.Map;
 public class RTCStats {
-    private final String f55059id;
+    private final String f55063id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
@@ -11,7 +11,7 @@ public class RTCStats {
     public RTCStats(long j3, String str, String str2, Map<String, Object> map) {
         this.timestampUs = j3;
         this.type = str;
-        this.f55059id = str2;
+        this.f55063id = str2;
         this.members = map;
     }
 
@@ -40,7 +40,7 @@ public class RTCStats {
     }
 
     public String getId() {
-        return this.f55059id;
+        return this.f55063id;
     }
 
     public Map<String, Object> getMembers() {
@@ -61,7 +61,7 @@ public class RTCStats {
         m10.append(", type: ");
         m10.append(this.type);
         m10.append(", id: ");
-        m10.append(this.f55059id);
+        m10.append(this.f55063id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
             m10.append(", ");
             m10.append(entry.getKey());

@@ -9,7 +9,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 public final class d2 extends n41 {
-    public static final int f3498b = 0;
+    public static final int f3534b = 0;
 
     static {
         n41.h(new n41());
@@ -19,10 +19,10 @@ public final class d2 extends n41 {
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         ah.r rVar = (ah.r) view;
         rVar.setUser((TLRPC.User) o41Var.H);
-        CharSequence charSequence = o41Var.f38099n;
+        CharSequence charSequence = o41Var.f38093n;
         if (charSequence != null) {
             rVar.setSubtitle(charSequence);
-            rVar.setSubtitleColorKey(org.telegram.ui.ActionBar.m6.f29636r5);
+            rVar.setSubtitleColorKey(org.telegram.ui.ActionBar.m6.f29639r5);
         }
         rVar.setOptions(o41Var.E);
         rVar.setDivider(z10);

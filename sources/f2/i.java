@@ -15,16 +15,16 @@ import android.view.Display;
 import android.view.MenuItem;
 import di.f2;
 public abstract class i {
-    public static AudioManager f11073a;
+    public static AudioManager f11076a;
 
     public static void a(AudioManager audioManager, h hVar) {
         if (Build.VERSION.SDK_INT >= 26) {
-            Object obj = hVar.f11072f;
+            Object obj = hVar.f11075f;
             obj.getClass();
             audioManager.abandonAudioFocusRequest((AudioFocusRequest) obj);
             return;
         }
-        audioManager.abandonAudioFocus(hVar.f11069b);
+        audioManager.abandonAudioFocus(hVar.f11072b);
     }
 
     public static Icon b(Bitmap bitmap) {
@@ -56,9 +56,9 @@ public abstract class i {
             synchronized (i.class) {
                 Context applicationContext = context.getApplicationContext();
                 if (applicationContext != null) {
-                    f11073a = null;
+                    f11076a = null;
                 }
-                AudioManager audioManager = f11073a;
+                AudioManager audioManager = f11076a;
                 if (audioManager != null) {
                     return audioManager;
                 }
@@ -67,12 +67,12 @@ public abstract class i {
                     h2.i iVar = new h2.i();
                     h2.a.e().execute(new f2(21, applicationContext, iVar));
                     iVar.b();
-                    AudioManager audioManager2 = f11073a;
+                    AudioManager audioManager2 = f11076a;
                     audioManager2.getClass();
                     return audioManager2;
                 }
                 AudioManager audioManager3 = (AudioManager) applicationContext.getSystemService("audio");
-                f11073a = audioManager3;
+                f11076a = audioManager3;
                 audioManager3.getClass();
                 return audioManager3;
             }

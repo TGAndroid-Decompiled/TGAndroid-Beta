@@ -10,16 +10,16 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Locale;
-import org.telegram.messenger.ab;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.bb;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.hd;
 import org.telegram.messenger.i5;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.k10;
 import org.telegram.messenger.n5;
-import org.telegram.messenger.o10;
-import org.telegram.messenger.pd;
+import org.telegram.messenger.np;
+import org.telegram.messenger.p10;
 import org.telegram.messenger.qd;
+import org.telegram.messenger.rd;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m5;
@@ -46,7 +46,7 @@ public class r0 extends c {
     public final int L;
     public final long M;
     public int N;
-    public fj O;
+    public gj O;
     public TLRPC.TL_channelLocation P;
     public ArrayList Q;
     public boolean R;
@@ -58,23 +58,23 @@ public class r0 extends c {
     public boolean X;
     public final boolean Y;
     public ka0 Z;
-    public boolean f17664a0;
-    public boolean f17665b0;
-    public boolean f17666c0;
-    public FrameLayout f17667d0;
-    public final int f17668x;
-    public final Context f17669y;
+    public boolean f17667a0;
+    public boolean f17668b0;
+    public boolean f17669c0;
+    public FrameLayout f17670d0;
+    public final int f17671x;
+    public final Context f17672y;
 
     public r0(Context context, int i7, long j3, boolean z10, h6 h6Var, boolean z11, boolean z12, boolean z13) {
         super(z11, z13);
-        this.f17668x = j10.f24798t0;
+        this.f17671x = k10.f24968t0;
         this.N = -1;
         this.Q = new ArrayList();
         this.U = true;
-        this.f17665b0 = false;
-        this.f17666c0 = false;
+        this.f17668b0 = false;
+        this.f17669c0 = false;
         this.Y = z12;
-        this.f17669y = context;
+        this.f17672y = context;
         this.L = i7;
         this.M = j3;
         this.S = z10;
@@ -83,9 +83,9 @@ public class r0 extends c {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59165f;
+        int i7 = f1Var.f59169f;
         if (i7 == 6) {
-            if (qd.f(this.f17668x).h(this.M) == null && this.G == null) {
+            if (rd.f(this.f17671x).h(this.M) == null && this.G == null) {
                 return false;
             }
         } else if (i7 != 1 && i7 != 8 && i7 != 12 && i7 != 7) {
@@ -101,7 +101,7 @@ public class r0 extends c {
             if (location != null || (location = this.G) != null) {
                 this.R = true;
                 Q();
-                qd.d(location, this.f17430e ? 1 : 0, this);
+                rd.d(location, this.f17433e ? 1 : 0, this);
                 return;
             }
             return;
@@ -116,7 +116,7 @@ public class r0 extends c {
                 }
                 this.R = true;
                 Q();
-                qd.d(location2, 0, this);
+                rd.d(location2, 0, this);
                 return;
             }
             return;
@@ -132,7 +132,7 @@ public class r0 extends c {
             if (this.d) {
                 i10 = 2;
             }
-            qd.d(location4, i10, this);
+            rd.d(location4, i10, this);
         }
     }
 
@@ -159,10 +159,10 @@ public class r0 extends c {
             }
             return tL_messageMediaVenue;
         }
-        fj fjVar = this.O;
-        if (fjVar != null) {
+        gj gjVar = this.O;
+        if (gjVar != null) {
             if (i7 == 1) {
-                return fjVar;
+                return gjVar;
             }
             if (i7 > 4 && i7 < this.Q.size() + 5) {
                 return this.Q.get(i7 - 5);
@@ -170,7 +170,7 @@ public class r0 extends c {
         } else {
             int i11 = 2;
             if (i10 == 2) {
-                pd h = qd.f(this.f17668x).h(this.M);
+                qd h = rd.f(this.f17671x).h(this.M);
                 if (h != null && h.d != Integer.MAX_VALUE) {
                     i11 = 3;
                 }
@@ -193,7 +193,7 @@ public class r0 extends c {
         } else {
             this.J = str;
         }
-        if (i7 == 7 && this.f17666c0) {
+        if (i7 == 7 && this.f17669c0) {
             this.V = null;
             this.W = null;
         }
@@ -259,9 +259,9 @@ public class r0 extends c {
 
     public void N(ArrayList arrayList) {
         this.Q = new ArrayList(arrayList);
-        long e10 = j10.i(this.f17668x).e();
+        long e10 = k10.i(this.f17671x).e();
         for (int i7 = 0; i7 < this.Q.size(); i7++) {
-            if (((ma0) this.Q.get(i7)).f49825a == e10 || ((ma0) this.Q.get(i7)).f49826b.out) {
+            if (((ma0) this.Q.get(i7)).f49829a == e10 || ((ma0) this.Q.get(i7)).f49830b.out) {
                 this.Q.remove(i7);
                 break;
             }
@@ -270,11 +270,11 @@ public class r0 extends c {
     }
 
     public final void O(boolean z10, boolean z11) {
-        if (this.f17665b0 == z10 && this.f17666c0 == z11) {
+        if (this.f17668b0 == z10 && this.f17669c0 == z11) {
             return;
         }
-        this.f17665b0 = z10;
-        this.f17666c0 = z11;
+        this.f17668b0 = z10;
+        this.f17669c0 = z11;
         if (z11) {
             this.V = null;
             this.W = null;
@@ -284,7 +284,7 @@ public class r0 extends c {
 
     public final void P(int i7) {
         this.E = i7;
-        FrameLayout frameLayout = this.f17667d0;
+        FrameLayout frameLayout = this.f17670d0;
         if (frameLayout != null) {
             v4.q0 q0Var = (v4.q0) frameLayout.getLayoutParams();
             if (q0Var == null) {
@@ -292,8 +292,8 @@ public class r0 extends c {
             } else {
                 ((ViewGroup.MarginLayoutParams) q0Var).height = this.E;
             }
-            this.f17667d0.setLayoutParams(q0Var);
-            this.f17667d0.forceLayout();
+            this.f17670d0.setLayoutParams(q0Var);
+            this.f17670d0.forceLayout();
         }
     }
 
@@ -311,27 +311,27 @@ public class r0 extends c {
                 } else if (!TextUtils.isEmpty(this.J)) {
                     N0 = this.J;
                 } else if (this.R) {
-                    N0 = gd.N0(2131748586, null);
+                    N0 = hd.N0(2131748586, null);
                 } else {
-                    N0 = gd.N0(2131743634, null);
+                    N0 = hd.N0(2131743632, null);
                 }
-                r6Var.b(gd.N0(2131745315, null), N0);
+                r6Var.b(hd.N0(2131745315, null), N0);
                 r6Var.setHasLocation(true);
                 return;
             }
             String str = "";
             if (i7 != 4 && this.H == null) {
                 if (this.G != null) {
-                    r6Var.b(gd.N0(2131745415, null), gd.a0(null, null, 2131754692, gd.G((int) this.G.getAccuracy(), "Meters", new Object[0])));
+                    r6Var.b(hd.N0(2131745415, null), hd.a0(null, null, 2131754692, hd.G((int) this.G.getAccuracy(), "Meters", new Object[0])));
                     r6Var.setHasLocation(true);
                     return;
                 }
-                String N02 = gd.N0(2131745415, null);
-                if (!this.f17665b0) {
-                    str = gd.N0(2131748586, null);
+                String N02 = hd.N0(2131745415, null);
+                if (!this.f17668b0) {
+                    str = hd.N0(2131748586, null);
                 }
                 r6Var.b(N02, str);
-                r6Var.setHasLocation(!this.f17665b0);
+                r6Var.setHasLocation(!this.f17668b0);
                 return;
             }
             if (!TextUtils.isEmpty(this.I)) {
@@ -341,24 +341,24 @@ public class r0 extends c {
             } else {
                 Location location = this.H;
                 if ((location == null && this.G == null) || this.R) {
-                    str = gd.N0(2131748586, null);
+                    str = hd.N0(2131748586, null);
                 } else if (location != null) {
                     str = String.format(Locale.US, "(%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(this.H.getLongitude()));
                 } else {
                     Location location2 = this.G;
                     if (location2 != null) {
                         str = String.format(Locale.US, "(%f,%f)", Double.valueOf(location2.getLatitude()), Double.valueOf(this.G.getLongitude()));
-                    } else if (!this.f17665b0) {
-                        str = gd.N0(2131748586, null);
+                    } else if (!this.f17668b0) {
+                        str = hd.N0(2131748586, null);
                     }
                 }
             }
             if (this.X) {
-                r6Var.b(gd.N0(2131753934, null), str);
+                r6Var.b(hd.N0(2131753934, null), str);
             } else if (i7 == 4) {
-                r6Var.b(gd.N0(2131752199, null), str);
+                r6Var.b(hd.N0(2131752199, null), str);
             } else {
-                r6Var.b(gd.N0(2131745394, null), str);
+                r6Var.b(hd.N0(2131745394, null), str);
             }
             r6Var.setHasLocation(true);
         }
@@ -368,7 +368,7 @@ public class r0 extends c {
     public final int b() {
         int i7 = 2;
         int i10 = this.L;
-        if (i10 != 6 && i10 != 5 && i10 != 4 && !this.f17430e) {
+        if (i10 != 6 && i10 != 5 && i10 != 4 && !this.f17433e) {
             boolean z10 = this.S;
             int i11 = 0;
             if (i10 == 7) {
@@ -386,7 +386,7 @@ public class r0 extends c {
                 }
                 i7 = 2 + i11;
             } else if (i10 == 2) {
-                pd h = qd.f(this.f17668x).h(this.M);
+                qd h = rd.f(this.f17671x).h(this.M);
                 int size = this.Q.size() + 2;
                 if (h != null && h.d != Integer.MAX_VALUE) {
                     i11 = 1;
@@ -399,7 +399,7 @@ public class r0 extends c {
                 i7 += z10 ? 1 : 0;
             }
         }
-        if (this.Z != null && this.f17664a0) {
+        if (this.Z != null && this.f17667a0) {
             return i7 + 1;
         }
         return i7;
@@ -407,8 +407,8 @@ public class r0 extends c {
 
     @Override
     public final int d(int i7) {
-        pd h;
-        if (i7 == b() - 1 && this.Z != null && this.f17664a0) {
+        qd h;
+        if (i7 == b() - 1 && this.Z != null && this.f17667a0) {
             return 13;
         }
         if (i7 == 0) {
@@ -424,7 +424,7 @@ public class r0 extends c {
                     if (i10 != 2 && i10 != 1) {
                         h = null;
                     } else {
-                        h = qd.f(this.f17668x).h(this.M);
+                        h = rd.f(this.f17671x).h(this.M);
                     }
                     if (this.O != null) {
                         if (this.Q.isEmpty()) {
@@ -478,8 +478,8 @@ public class r0 extends c {
     public final void t(v4.f1 f1Var, int i7) {
         boolean z10;
         long j3;
-        int i10 = f1Var.f59165f;
-        View view = f1Var.f59161a;
+        int i10 = f1Var.f59169f;
+        View view = f1Var.f59165a;
         if (i10 != 0) {
             boolean z11 = true;
             if (i10 != 1) {
@@ -490,7 +490,7 @@ public class r0 extends c {
                             if (i10 != 8) {
                                 if (i10 == 12) {
                                     w4 w4Var = (w4) view;
-                                    if (this.f17666c0) {
+                                    if (this.f17669c0) {
                                         if (i7 != 1 || this.W == null) {
                                             z11 = false;
                                         }
@@ -512,31 +512,31 @@ public class r0 extends c {
                             }
                             s7 s7Var = (s7) view;
                             if (this.L == 6) {
-                                s7Var.b(this.O, this.G, this.f17665b0);
+                                s7Var.b(this.O, this.G, this.f17668b0);
                                 return;
                             }
                             TLRPC.TL_channelLocation tL_channelLocation = this.P;
                             long j10 = this.M;
                             if (tL_channelLocation != null) {
-                                TextView textView = s7Var.f31801f;
-                                Location location = s7Var.f31807y;
-                                q9 q9Var = s7Var.f31799c;
-                                s7Var.F = j10.f24798t0;
+                                TextView textView = s7Var.f31804f;
+                                Location location = s7Var.f31810y;
+                                q9 q9Var = s7Var.f31802c;
+                                s7Var.F = k10.f24968t0;
                                 String str = tL_channelLocation.address;
-                                s7Var.f31802n = null;
+                                s7Var.f31805n = null;
                                 String str2 = "";
                                 if (n5.E(j10)) {
-                                    TLRPC.User c22 = mp.u1(s7Var.F).c2(Long.valueOf(j10));
+                                    TLRPC.User c22 = np.u1(s7Var.F).c2(Long.valueOf(j10));
                                     if (c22 != null) {
-                                        s7Var.f31802n = new b9(0, c22);
-                                        str2 = o10.q(c22);
-                                        q9Var.f(c22, s7Var.f31802n);
+                                        s7Var.f31805n = new b9(0, c22);
+                                        str2 = p10.q(c22);
+                                        q9Var.f(c22, s7Var.f31805n);
                                     }
                                 } else {
-                                    TLRPC.Chat O0 = mp.u1(s7Var.F).O0(Long.valueOf(-j10));
+                                    TLRPC.Chat O0 = np.u1(s7Var.F).O0(Long.valueOf(-j10));
                                     if (O0 != null) {
                                         b9 b9Var = new b9(O0);
-                                        s7Var.f31802n = b9Var;
+                                        s7Var.f31805n = b9Var;
                                         str2 = O0.title;
                                         q9Var.f(O0, b9Var);
                                     }
@@ -549,55 +549,55 @@ public class r0 extends c {
                                 textView.setText(str);
                                 return;
                             }
-                            fj fjVar = this.O;
-                            if (fjVar != null && i7 == 1) {
-                                s7Var.b(fjVar, this.G, this.f17665b0);
+                            gj gjVar = this.O;
+                            if (gjVar != null && i7 == 1) {
+                                s7Var.b(gjVar, this.G, this.f17668b0);
                                 return;
                             }
-                            if (fjVar != null) {
+                            if (gjVar != null) {
                                 i11 = 5;
                             }
                             int i12 = i7 - i11;
-                            pd h = qd.f(this.f17668x).h(j10);
+                            qd h = rd.f(this.f17671x).h(j10);
                             if (h != null && h.d != Integer.MAX_VALUE) {
                                 i12--;
                             }
                             if (i12 >= 0 && i12 < this.Q.size()) {
                                 ma0 ma0Var = (ma0) this.Q.get(i12);
                                 Location location2 = this.G;
-                                TextView textView2 = s7Var.f31801f;
-                                q9 q9Var2 = s7Var.f31799c;
+                                TextView textView2 = s7Var.f31804f;
+                                q9 q9Var2 = s7Var.f31802c;
                                 m5 m5Var = s7Var.d;
-                                Location location3 = s7Var.f31807y;
-                                s7Var.f31806x = ma0Var;
-                                if (n5.E(ma0Var.f49825a)) {
-                                    TLRPC.User c23 = mp.u1(s7Var.F).c2(Long.valueOf(ma0Var.f49825a));
+                                Location location3 = s7Var.f31810y;
+                                s7Var.f31809x = ma0Var;
+                                if (n5.E(ma0Var.f49829a)) {
+                                    TLRPC.User c23 = np.u1(s7Var.F).c2(Long.valueOf(ma0Var.f49829a));
                                     if (c23 != null) {
-                                        s7Var.f31802n.r(c23);
+                                        s7Var.f31805n.r(c23);
                                         m5Var.l(i5.m(0, c23.first_name, c23.last_name), false);
-                                        q9Var2.f(c23, s7Var.f31802n);
+                                        q9Var2.f(c23, s7Var.f31805n);
                                     }
                                 } else {
-                                    TLRPC.Chat O02 = mp.u1(s7Var.F).O0(Long.valueOf(-ma0Var.f49825a));
+                                    TLRPC.Chat O02 = np.u1(s7Var.F).O0(Long.valueOf(-ma0Var.f49829a));
                                     if (O02 != null) {
-                                        s7Var.f31802n.q(O02);
+                                        s7Var.f31805n.q(O02);
                                         m5Var.l(O02.title, false);
-                                        q9Var2.f(O02, s7Var.f31802n);
+                                        q9Var2.f(O02, s7Var.f31805n);
                                     }
                                 }
-                                ab a10 = ma0Var.f49828e.a();
-                                location3.setLatitude(a10.f22879a);
-                                location3.setLongitude(a10.f22880b);
-                                TLRPC.Message message = ma0Var.f49826b;
+                                bb a10 = ma0Var.f49832e.a();
+                                location3.setLatitude(a10.f23066a);
+                                location3.setLongitude(a10.f23067b);
+                                TLRPC.Message message = ma0Var.f49830b;
                                 int i13 = message.edit_date;
                                 if (i13 != 0) {
                                     j3 = i13;
                                 } else {
                                     j3 = message.date;
                                 }
-                                String D = gd.D(j3);
+                                String D = hd.D(j3);
                                 if (location2 != null) {
-                                    textView2.setText(D + " - " + gd.y(location3.distanceTo(location2), 0, null));
+                                    textView2.setText(D + " - " + hd.y(location3.distanceTo(location2), 0, null));
                                     return;
                                 }
                                 textView2.setText(D);
@@ -623,11 +623,11 @@ public class r0 extends c {
                     if (i14 >= b() || d(i14) != 7) {
                         z11 = false;
                     }
-                    r6Var2.f31739y = z11;
+                    r6Var2.f31742y = z11;
                     r6Var2.invalidate();
                     return;
                 }
-                ((o4) view).setText(gd.N0(2131748644, null));
+                ((o4) view).setText(hd.N0(2131748644, null));
                 return;
             }
             r6 r6Var3 = (r6) view;
@@ -652,7 +652,7 @@ public class r0 extends c {
         View view;
         View view2;
         int i10;
-        Context context = this.f17669y;
+        Context context = this.f17672y;
         if (i7 != 0) {
             h6 h6Var = this.T;
             if (i7 != 1) {
@@ -685,7 +685,7 @@ public class r0 extends c {
                             break;
                         case 10:
                             View z6Var = new z6(context, (org.telegram.ui.Cells.c0) null);
-                            new oq(new ColorDrawable(m6.w0(m6.f29321a7, h6Var)), m6.Y0(context, 2131231230, m6.f29342b7)).f38345x = true;
+                            new oq(new ColorDrawable(m6.w0(m6.f29324a7, h6Var)), m6.Y0(context, 2131231230, m6.f29345b7)).f38339x = true;
                             view2 = z6Var;
                             break;
                         case 11:
@@ -714,9 +714,9 @@ public class r0 extends c {
             return new v4.f1(view2);
         }
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f17667d0 = frameLayout;
+        this.f17670d0 = frameLayout;
         frameLayout.setTag(-33024);
-        this.f17667d0.setLayoutParams(new v4.q0(-1, this.E));
+        this.f17670d0.setLayoutParams(new v4.q0(-1, this.E));
         view = frameLayout;
         view2 = view;
         return new v4.f1(view2);
@@ -724,8 +724,8 @@ public class r0 extends c {
 
     @Override
     public final void y(v4.f1 f1Var) {
-        if (f1Var.f59165f == 1) {
-            this.F = (r6) f1Var.f59161a;
+        if (f1Var.f59169f == 1) {
+            this.F = (r6) f1Var.f59165a;
             Q();
         }
     }

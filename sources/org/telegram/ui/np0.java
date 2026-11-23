@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.media.MediaFormat;
 public final class np0 implements d3.v {
-    public final PhotoViewer f50269a;
+    public final PhotoViewer f50273a;
 
     public np0(PhotoViewer photoViewer) {
-        this.f50269a = photoViewer;
+        this.f50273a = photoViewer;
     }
 
     @Override
     public final void a(long j3, long j10, e2.u uVar, MediaFormat mediaFormat) {
         org.telegram.ui.Components.i61 i61Var;
-        PhotoViewer photoViewer = this.f50269a;
+        PhotoViewer photoViewer = this.f50273a;
         if (!photoViewer.J4 || (i61Var = photoViewer.G2) == null) {
             return;
         }

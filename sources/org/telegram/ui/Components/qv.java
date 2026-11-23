@@ -7,17 +7,17 @@ import android.util.Pair;
 import android.view.View;
 import java.util.ArrayList;
 public final class qv implements ri.m, sj0, el0, te.b {
-    public final int f39001a;
-    public final ty f39002b;
+    public final int f38995a;
+    public final ty f38996b;
 
     public qv(ty tyVar, int i7) {
-        this.f39001a = i7;
-        this.f39002b = tyVar;
+        this.f38995a = i7;
+        this.f38996b = tyVar;
     }
 
     @Override
     public void H(int i7, float f10, float f11, te.c cVar) {
-        this.f39002b.S();
+        this.f38996b.S();
     }
 
     @Override
@@ -28,32 +28,32 @@ public final class qv implements ri.m, sj0, el0, te.b {
         int i13;
         int i14;
         fy fyVar;
-        switch (this.f39001a) {
+        switch (this.f38995a) {
             case 2:
-                ty tyVar = this.f39002b;
-                yx yxVar = tyVar.f40117j0;
-                int i15 = tyVar.f40099d1;
-                xx xxVar = tyVar.f40130o0;
-                ay ayVar = tyVar.f40123l0;
-                if (i7 != tyVar.f40147t0 || !xxVar.f42251y.isEmpty()) {
-                    tyVar.f40114i0.C0();
-                    tyVar.f40136q0.k(i7, 0);
-                    if (i7 != tyVar.f40144s0 && i7 != tyVar.f40147t0) {
-                        ArrayList arrayList = org.telegram.messenger.mp.u1(i15).f25664e4;
-                        tyVar.f40120k0.H((String) arrayList.get(i7 - tyVar.f40150u0));
-                        int i16 = i7 - tyVar.f40150u0;
+                ty tyVar = this.f38996b;
+                yx yxVar = tyVar.f40110j0;
+                int i15 = tyVar.f40092d1;
+                xx xxVar = tyVar.f40123o0;
+                ay ayVar = tyVar.f40116l0;
+                if (i7 != tyVar.f40140t0 || !xxVar.f42244y.isEmpty()) {
+                    tyVar.f40107i0.C0();
+                    tyVar.f40129q0.k(i7, 0);
+                    if (i7 != tyVar.f40137s0 && i7 != tyVar.f40140t0) {
+                        ArrayList arrayList = org.telegram.messenger.np.u1(i15).f25835e4;
+                        tyVar.f40113k0.H((String) arrayList.get(i7 - tyVar.f40143u0));
+                        int i16 = i7 - tyVar.f40143u0;
                         if (i16 > 0) {
                             ayVar.a((String) arrayList.get(i16 - 1), true);
                         }
-                        if (i7 - tyVar.f40150u0 < arrayList.size() - 1) {
-                            ayVar.a((String) arrayList.get((i7 - tyVar.f40150u0) + 1), true);
+                        if (i7 - tyVar.f40143u0 < arrayList.size() - 1) {
+                            ayVar.a((String) arrayList.get((i7 - tyVar.f40143u0) + 1), true);
                         }
                     } else {
-                        tyVar.f40133p0.d.setText("");
-                        if (i7 == tyVar.f40147t0 && (i11 = xxVar.J) >= 1) {
+                        tyVar.f40126p0.d.setText("");
+                        if (i7 == tyVar.f40140t0 && (i11 = xxVar.J) >= 1) {
                             yxVar.h1(i11, -org.telegram.messenger.g0.L(4.0f));
                         } else {
-                            tx txVar = tyVar.f40151u1;
+                            tx txVar = tyVar.f40144u1;
                             if (txVar != null && txVar.A()) {
                                 i10 = 0;
                             } else {
@@ -61,8 +61,8 @@ public final class qv implements ri.m, sj0, el0, te.b {
                             }
                             yxVar.h1(i10, 0);
                         }
-                        if (i7 == tyVar.f40147t0) {
-                            ArrayList arrayList2 = org.telegram.messenger.mp.u1(i15).f25664e4;
+                        if (i7 == tyVar.f40140t0) {
+                            ArrayList arrayList2 = org.telegram.messenger.np.u1(i15).f25835e4;
                             if (!arrayList2.isEmpty()) {
                                 ayVar.a((String) arrayList2.get(0), true);
                             }
@@ -73,18 +73,18 @@ public final class qv implements ri.m, sj0, el0, te.b {
                 }
                 return;
             default:
-                ty tyVar2 = this.f39002b;
+                ty tyVar2 = this.f38996b;
                 gw gwVar = tyVar2.H0;
-                ArrayList arrayList3 = tyVar2.f40102e1;
+                ArrayList arrayList3 = tyVar2.f40095e1;
                 hw hwVar = tyVar2.C0;
-                ly lyVar = tyVar2.f40168z0;
+                ly lyVar = tyVar2.f40161z0;
                 dw dwVar = tyVar2.E0;
                 if (!tyVar2.T0) {
                     if (i7 == tyVar2.I1) {
-                        tyVar2.f40151u1.o(new k41(tyVar2.getContext(), new ow(tyVar2), tyVar2.f40166y1, tyVar2.f40169z1, tyVar2.A1, null, tyVar2.f40089a2));
+                        tyVar2.f40144u1.o(new k41(tyVar2.getContext(), new ow(tyVar2), tyVar2.f40159y1, tyVar2.f40162z1, tyVar2.A1, null, tyVar2.f40082a2));
                         return;
                     }
-                    if (gwVar != null && (fyVar = gwVar.f35699r) != null && fyVar.getSelectedCategory() != null) {
+                    if (gwVar != null && (fyVar = gwVar.f35718r) != null && fyVar.getSelectedCategory() != null) {
                         gwVar.c(null, false);
                         fyVar.I1(null);
                     }
@@ -166,7 +166,7 @@ public final class qv implements ri.m, sj0, el0, te.b {
         int i14;
         float f11;
         boolean z12;
-        ty tyVar = this.f39002b;
+        ty tyVar = this.f38996b;
         int i15 = tyVar.D1;
         gx gxVar = tyVar.Q;
         int[] iArr = tyVar.E1;
@@ -174,20 +174,20 @@ public final class qv implements ri.m, sj0, el0, te.b {
         if (view instanceof cy) {
             cy cyVar = (cy) view;
             v4.f1 f1Var = null;
-            if (cyVar.f34332c) {
+            if (cyVar.f34326c) {
                 View F = gxVar.F(view);
                 if (F != null) {
                     f1Var = gxVar.T(F);
                 }
                 if (f1Var != null && f1Var.b() <= tyVar.getRecentEmoji().size()) {
-                    tyVar.f40151u1.n();
+                    tyVar.f40144u1.n();
                 }
                 gxVar.A1(view);
                 return true;
             } else if (cyVar.getSpan() == null && (str = (String) cyVar.getTag()) != null) {
                 String replace = str.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
-                if (!cyVar.f34332c) {
-                    str2 = (String) org.telegram.messenger.j6.f24845j.get(replace);
+                if (!cyVar.f34326c) {
+                    str2 = (String) org.telegram.messenger.j6.f24837j.get(replace);
                 } else {
                     str2 = null;
                 }
@@ -196,24 +196,24 @@ public final class qv implements ri.m, sj0, el0, te.b {
                 } else {
                     z10 = false;
                 }
-                if (z10 || org.telegram.messenger.k6.f25024l.contains(replace)) {
+                if (z10 || org.telegram.messenger.k6.f25026l.contains(replace)) {
                     tyVar.S1 = cyVar;
                     tyVar.V1 = tyVar.T1;
                     tyVar.W1 = tyVar.U1;
                     if (z10) {
                         replace = ty.g(replace, str2);
                     } else {
-                        int indexOf = org.telegram.messenger.j4.f24834a.indexOf(str2) + 1;
-                        ju juVar = kuVar.f36982c;
-                        int[] iArr2 = juVar.f36697n;
+                        int indexOf = org.telegram.messenger.j4.f24826a.indexOf(str2) + 1;
+                        ju juVar = kuVar.f36985c;
+                        int[] iArr2 = juVar.f36692n;
                         if (iArr2[0] != indexOf) {
                             iArr2[0] = indexOf;
                             juVar.invalidate();
                         }
                     }
                     kuVar.getClass();
-                    ju juVar2 = kuVar.f36982c;
-                    int i16 = kuVar.f36983e;
+                    ju juVar2 = kuVar.f36985c;
+                    int i16 = kuVar.f36986e;
                     if (org.telegram.messenger.j4.a(replace, null, null) != null) {
                         z11 = true;
                     } else {
@@ -221,23 +221,23 @@ public final class qv implements ri.m, sj0, el0, te.b {
                     }
                     kuVar.d = z11;
                     int i17 = 3;
-                    Drawable[] drawableArr = juVar2.f36693b;
-                    int[] iArr3 = juVar2.f36697n;
-                    juVar2.f36696f = z11;
-                    juVar2.f36695e = replace;
+                    Drawable[] drawableArr = juVar2.f36688b;
+                    int[] iArr3 = juVar2.f36692n;
+                    juVar2.f36691f = z11;
+                    juVar2.f36690e = replace;
                     int i18 = 5;
                     if (z11) {
                         drawableArr[0] = org.telegram.messenger.j4.a(replace, -1, -1);
-                        drawableArr[1] = org.telegram.messenger.j4.a(juVar2.f36695e, 0, -2);
-                        drawableArr[2] = org.telegram.messenger.j4.a(juVar2.f36695e, 1, -2);
-                        drawableArr[3] = org.telegram.messenger.j4.a(juVar2.f36695e, 2, -2);
-                        drawableArr[4] = org.telegram.messenger.j4.a(juVar2.f36695e, 3, -2);
-                        drawableArr[5] = org.telegram.messenger.j4.a(juVar2.f36695e, 4, -2);
-                        drawableArr[6] = org.telegram.messenger.j4.a(juVar2.f36695e, -2, 0);
-                        drawableArr[7] = org.telegram.messenger.j4.a(juVar2.f36695e, -2, 1);
-                        drawableArr[8] = org.telegram.messenger.j4.a(juVar2.f36695e, -2, 2);
-                        drawableArr[9] = org.telegram.messenger.j4.a(juVar2.f36695e, -2, 3);
-                        drawableArr[10] = org.telegram.messenger.j4.a(juVar2.f36695e, -2, 4);
+                        drawableArr[1] = org.telegram.messenger.j4.a(juVar2.f36690e, 0, -2);
+                        drawableArr[2] = org.telegram.messenger.j4.a(juVar2.f36690e, 1, -2);
+                        drawableArr[3] = org.telegram.messenger.j4.a(juVar2.f36690e, 2, -2);
+                        drawableArr[4] = org.telegram.messenger.j4.a(juVar2.f36690e, 3, -2);
+                        drawableArr[5] = org.telegram.messenger.j4.a(juVar2.f36690e, 4, -2);
+                        drawableArr[6] = org.telegram.messenger.j4.a(juVar2.f36690e, -2, 0);
+                        drawableArr[7] = org.telegram.messenger.j4.a(juVar2.f36690e, -2, 1);
+                        drawableArr[8] = org.telegram.messenger.j4.a(juVar2.f36690e, -2, 2);
+                        drawableArr[9] = org.telegram.messenger.j4.a(juVar2.f36690e, -2, 3);
+                        drawableArr[10] = org.telegram.messenger.j4.a(juVar2.f36690e, -2, 4);
                         Pair c10 = org.telegram.messenger.j4.c(replace);
                         if (c10 != null) {
                             int intValue = ((Integer) c10.first).intValue();
@@ -261,7 +261,7 @@ public final class qv implements ri.m, sj0, el0, te.b {
                     } else {
                         for (int i19 = 0; i19 < 6; i19++) {
                             if (i19 != 0) {
-                                str3 = ty.g(replace, (String) org.telegram.messenger.j4.f24834a.get(i19 - 1));
+                                str3 = ty.g(replace, (String) org.telegram.messenger.j4.f24826a.get(i19 - 1));
                             } else {
                                 str3 = replace;
                             }
@@ -306,7 +306,7 @@ public final class qv implements ri.m, sj0, el0, te.b {
                     int i22 = (i12 * i16) + L3;
                     cyVar.getLocationOnScreen(iArr);
                     if (!kuVar.d) {
-                        int i23 = juVar2.f36697n[0];
+                        int i23 = juVar2.f36692n[0];
                         int i24 = i23 * i15;
                         int i25 = i23 * 4;
                         if (!org.telegram.messenger.g0.Q1()) {
@@ -320,7 +320,7 @@ public final class qv implements ri.m, sj0, el0, te.b {
                         i13 = org.telegram.ui.Cells.c0.i(5.0f, iArr[0] - i13, i13);
                     } else {
                         int i26 = (iArr[0] - i13) + L2;
-                        Point point = org.telegram.messenger.g0.f24146q;
+                        Point point = org.telegram.messenger.g0.f24046q;
                         if (i26 > point.x - org.telegram.messenger.g0.L(5.0f)) {
                             i13 += ((iArr[0] - i13) + L2) - (point.x - org.telegram.messenger.g0.L(5.0f));
                         }
@@ -351,13 +351,13 @@ public final class qv implements ri.m, sj0, el0, te.b {
 
     @Override
     public void l(int i7) {
-        ty tyVar = this.f39002b;
-        dh.g gVar = tyVar.f40122k2;
+        ty tyVar = this.f38996b;
+        dh.g gVar = tyVar.f40115k2;
         if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
             if (c8.dd.a(i7, 4)) {
-                gVar.h(tyVar.f40132o2.e());
+                gVar.h(tyVar.f40125o2.e());
             }
-            gVar.e(tyVar.f40124l2, tyVar.getWidth(), tyVar.getHeight());
+            gVar.e(tyVar.f40117l2, tyVar.getWidth(), tyVar.getHeight());
         }
     }
 

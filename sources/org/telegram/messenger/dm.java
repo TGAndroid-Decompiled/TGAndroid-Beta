@@ -1,254 +1,82 @@
 package org.telegram.messenger;
 
-import java.io.File;
-import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.zn0;
 public final class dm implements RequestDelegate {
-    public final int f23572a = 0;
-    public final c1 f23573b;
-    public final String f23574c;
-    public final long d;
-    public final Object f23575e;
-    public final Object f23576f;
-    public final Object f23577g;
-    public final TLObject h;
+    public final int f23583a;
+    public final long f23584b;
+    public final int f23585c;
+    public final Object d;
 
-    public dm(mp mpVar, long j3, String str, Runnable runnable, org.telegram.ui.ActionBar.g2 g2Var, TLRPC.TL_channels_updateUsername tL_channels_updateUsername, Runnable runnable2) {
-        this.f23573b = mpVar;
-        this.d = j3;
-        this.f23574c = str;
-        this.f23575e = runnable;
-        this.f23577g = g2Var;
-        this.h = tL_channels_updateUsername;
-        this.f23576f = runnable2;
+    public dm(c1 c1Var, long j3, int i7, int i10) {
+        this.f23583a = i10;
+        this.d = c1Var;
+        this.f23584b = j3;
+        this.f23585c = i7;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        mp mpVar;
-        TLRPC.Photo photo;
-        TLRPC.VideoSize videoSize;
-        mp mpVar2;
-        String str;
-        switch (this.f23572a) {
+        switch (this.f23583a) {
             case 0:
-                mp mpVar3 = (mp) this.f23573b;
-                Runnable runnable = (Runnable) this.f23575e;
-                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f23577g;
-                TLRPC.TL_channels_updateUsername tL_channels_updateUsername = (TLRPC.TL_channels_updateUsername) this.h;
-                Runnable runnable2 = (Runnable) this.f23576f;
-                if (!(tLObject instanceof TLRPC.TL_boolTrue) && (tL_error == null || !"USERNAME_NOT_MODIFIED".equals(tL_error.text))) {
-                    org.telegram.ui.Components.c5.c0(j10.f24798t0, tL_error, g2Var, tL_channels_updateUsername, new Object[0]);
-                    runnable2.run();
+                np npVar = (np) this.d;
+                HashMap hashMap = npVar.f26017y8;
+                hashMap.remove(this.f23584b + "_" + this.f23585c);
+                if (tL_error == null && tLObject != null) {
+                    npVar.V3((TLRPC.Updates) tLObject, false);
                     return;
                 }
-                g0.g3(new fm(mpVar3, this.d, this.f23574c, runnable, 5));
                 return;
             case 1:
-                mp mpVar4 = (mp) this.f23573b;
-                TLRPC.TL_inputChatPhoto tL_inputChatPhoto = (TLRPC.TL_inputChatPhoto) this.f23576f;
-                TLRPC.FileLocation fileLocation = (TLRPC.FileLocation) this.f23577g;
-                TLRPC.FileLocation fileLocation2 = (TLRPC.FileLocation) this.h;
-                Runnable runnable3 = (Runnable) this.f23575e;
-                if (tL_error == null) {
-                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    boolean z10 = false;
-                    if (tL_inputChatPhoto == null) {
-                        int size = updates.updates.size();
-                        int i7 = 0;
-                        while (true) {
-                            if (i7 < size) {
-                                TLRPC.Update update = updates.updates.get(i7);
-                                if (update instanceof TL_update.TL_updateNewChannelMessage) {
-                                    TLRPC.MessageAction messageAction = ((TL_update.TL_updateNewChannelMessage) update).message.action;
-                                    if (messageAction instanceof TLRPC.TL_messageActionChatEditPhoto) {
-                                        photo = messageAction.photo;
-                                        if (photo instanceof TLRPC.TL_photo) {
-                                        }
-                                    } else {
-                                        continue;
-                                    }
-                                    i7++;
-                                } else {
-                                    if (update instanceof TL_update.TL_updateNewMessage) {
-                                        TLRPC.MessageAction messageAction2 = ((TL_update.TL_updateNewMessage) update).message.action;
-                                        if (messageAction2 instanceof TLRPC.TL_messageActionChatEditPhoto) {
-                                            photo = messageAction2.photo;
-                                            if (photo instanceof TLRPC.TL_photo) {
-                                            }
-                                        } else {
-                                            continue;
-                                        }
-                                    } else {
-                                        continue;
-                                    }
-                                    i7++;
-                                }
-                                mpVar.V3(updates, z10);
-                                g0.g3(new fi(18, mpVar, runnable3));
-                                return;
-                            }
-                            photo = null;
-                        }
-                        if (photo != null) {
-                            TLRPC.PhotoSize w10 = w7.w(photo.sizes, 150, false, null, false);
-                            if (photo.video_sizes.isEmpty()) {
-                                videoSize = null;
-                            } else {
-                                videoSize = photo.video_sizes.get(0);
-                            }
-                            if (w10 != null && fileLocation != null) {
-                                mpVar4.getFileLoader().getClass();
-                                File J = w7.J(w10, null, true, true);
-                                mpVar4.getFileLoader().getClass();
-                                w7.J(fileLocation, null, true, true).renameTo(J);
-                                StringBuilder sb2 = new StringBuilder();
-                                sb2.append(fileLocation.volume_id);
-                                sb2.append("_");
-                                String n10 = a8.p0.n(fileLocation.local_id, "@50_50", sb2);
-                                StringBuilder sb3 = new StringBuilder();
-                                mpVar2 = mpVar4;
-                                sb3.append(w10.location.volume_id);
-                                sb3.append("_");
-                                ec.D().R(n10, a8.p0.n(w10.location.local_id, "@50_50", sb3), fc.i(w10, photo), true);
-                            } else {
-                                mpVar2 = mpVar4;
-                            }
-                            TLRPC.PhotoSize w11 = w7.w(photo.sizes, 800, false, null, false);
-                            if (w11 != null && fileLocation2 != null) {
-                                mpVar2.getFileLoader().getClass();
-                                File J2 = w7.J(w11, null, true, true);
-                                mpVar2.getFileLoader().getClass();
-                                w7.J(fileLocation2, null, true, true).renameTo(J2);
-                            }
-                            if (videoSize != null && (str = this.f23574c) != null) {
-                                mpVar2.getFileLoader().getClass();
-                                new File(str).renameTo(w7.J(videoSize, "mp4", true, true));
-                            }
-                            mpVar = mpVar2;
-                            mpVar.W0(-this.d);
-                            z10 = false;
-                            mpVar.V3(updates, z10);
-                            g0.g3(new fi(18, mpVar, runnable3));
-                            return;
-                        }
+                f00 f00Var = (f00) this.d;
+                a0.h hVar = new a0.h();
+                boolean z10 = tLObject instanceof TLRPC.TL_messages_savedDialogs;
+                long j3 = this.f23584b;
+                int i7 = this.f23585c;
+                int i10 = 0;
+                if (z10) {
+                    TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs = (TLRPC.TL_messages_savedDialogs) tLObject;
+                    while (i10 < tL_messages_savedDialogs.messages.size()) {
+                        hVar.k(tL_messages_savedDialogs.messages.get(i10), tL_messages_savedDialogs.messages.get(i10).f28455id);
+                        i10++;
                     }
-                    mpVar = mpVar4;
-                    mpVar.V3(updates, z10);
-                    g0.g3(new fi(18, mpVar, runnable3));
+                    g0.g3(new z1(f00Var, tL_messages_savedDialogs, j3, hVar, i7, 7));
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_messages_savedDialogsSlice) {
+                    TLRPC.TL_messages_savedDialogsSlice tL_messages_savedDialogsSlice = (TLRPC.TL_messages_savedDialogsSlice) tLObject;
+                    while (i10 < tL_messages_savedDialogsSlice.messages.size()) {
+                        hVar.k(tL_messages_savedDialogsSlice.messages.get(i10), tL_messages_savedDialogsSlice.messages.get(i10).f28455id);
+                        i10++;
+                    }
+                    g0.g3(new z1(f00Var, tL_messages_savedDialogsSlice, j3, hVar, i7, 8));
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_messages_savedDialogsNotModified) {
+                    g0.g3(new cr(f00Var, j3, (TLRPC.TL_messages_savedDialogsNotModified) tLObject, 5));
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_messages_forumTopics) {
+                    TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
+                    while (i10 < tL_messages_forumTopics.messages.size()) {
+                        hVar.k(tL_messages_forumTopics.messages.get(i10), tL_messages_forumTopics.messages.get(i10).f28455id);
+                        i10++;
+                    }
+                    g0.g3(new bi.p4(f00Var, tL_messages_forumTopics, j3, tL_messages_forumTopics, hVar, i7));
+                    return;
+                } else {
+                    g0.g3(new wz(f00Var, j3, 0));
                     return;
                 }
-                return;
             default:
-                final z00 z00Var = (z00) this.f23573b;
-                final fj fjVar = (fj) this.f23575e;
-                final f3.s sVar = (f3.s) this.f23576f;
-                final zn0 zn0Var = (zn0) this.f23577g;
-                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.h;
-                z00Var.getClass();
-                boolean z11 = tLObject instanceof TLRPC.TL_messages_translateResult;
-                final String str2 = this.f23574c;
-                final long j3 = this.d;
-                if (z11) {
-                    ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
-                    if (arrayList.size() <= 0) {
-                        g0.g3(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r8) {
-                                    case 0:
-                                        z00 z00Var2 = z00Var;
-                                        z00Var2.getClass();
-                                        fj fjVar2 = fjVar;
-                                        TLRPC.Message message = fjVar2.f23993k;
-                                        message.translatedToLanguage = str2;
-                                        message.translatedText = null;
-                                        tr messagesStorage = z00Var2.getMessagesStorage();
-                                        f3.s sVar2 = sVar;
-                                        messagesStorage.X1(sVar2.f11225a, fjVar2.f23993k);
-                                        z00Var2.M.remove(sVar2);
-                                        g0.h3(zn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
-                                        return;
-                                    default:
-                                        z00 z00Var3 = z00Var;
-                                        z00Var3.getClass();
-                                        fj fjVar3 = fjVar;
-                                        TLRPC.Message message2 = fjVar3.f23993k;
-                                        message2.translatedToLanguage = str2;
-                                        message2.translatedText = null;
-                                        tr messagesStorage2 = z00Var3.getMessagesStorage();
-                                        f3.s sVar3 = sVar;
-                                        messagesStorage2.X1(sVar3.f11225a, fjVar3.f23993k);
-                                        z00Var3.M.remove(sVar3);
-                                        g0.h3(zn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    } else {
-                        g0.g3(new di.m3(z00Var, fjVar, str2, tL_textWithEntities, arrayList.get(0), sVar, zn0Var, j3));
-                        return;
-                    }
-                }
-                g0.g3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r8) {
-                            case 0:
-                                z00 z00Var2 = z00Var;
-                                z00Var2.getClass();
-                                fj fjVar2 = fjVar;
-                                TLRPC.Message message = fjVar2.f23993k;
-                                message.translatedToLanguage = str2;
-                                message.translatedText = null;
-                                tr messagesStorage = z00Var2.getMessagesStorage();
-                                f3.s sVar2 = sVar;
-                                messagesStorage.X1(sVar2.f11225a, fjVar2.f23993k);
-                                z00Var2.M.remove(sVar2);
-                                g0.h3(zn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
-                                return;
-                            default:
-                                z00 z00Var3 = z00Var;
-                                z00Var3.getClass();
-                                fj fjVar3 = fjVar;
-                                TLRPC.Message message2 = fjVar3.f23993k;
-                                message2.translatedToLanguage = str2;
-                                message2.translatedText = null;
-                                tr messagesStorage2 = z00Var3.getMessagesStorage();
-                                f3.s sVar3 = sVar;
-                                messagesStorage2.X1(sVar3.f11225a, fjVar3.f23993k);
-                                z00Var3.M.remove(sVar3);
-                                g0.h3(zn0Var, Math.max(0L, 400 - (System.currentTimeMillis() - j3)));
-                                return;
-                        }
-                    }
-                });
+                g0.g3(new bi.u3(this.f23585c, 3, this.f23584b, (org.telegram.ui.g4) this.d, tLObject));
                 return;
         }
     }
 
-    public dm(mp mpVar, TLRPC.TL_inputChatPhoto tL_inputChatPhoto, TLRPC.FileLocation fileLocation, TLRPC.FileLocation fileLocation2, String str, long j3, Runnable runnable) {
-        this.f23573b = mpVar;
-        this.f23576f = tL_inputChatPhoto;
-        this.f23577g = fileLocation;
-        this.h = fileLocation2;
-        this.f23574c = str;
-        this.d = j3;
-        this.f23575e = runnable;
-    }
-
-    public dm(z00 z00Var, fj fjVar, String str, f3.s sVar, zn0 zn0Var, long j3, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f23573b = z00Var;
-        this.f23575e = fjVar;
-        this.f23574c = str;
-        this.f23576f = sVar;
-        this.f23577g = zn0Var;
-        this.d = j3;
-        this.h = tL_textWithEntities;
+    public dm(org.telegram.ui.g4 g4Var, int i7, long j3) {
+        this.f23583a = 2;
+        this.d = g4Var;
+        this.f23585c = i7;
+        this.f23584b = j3;
     }
 }

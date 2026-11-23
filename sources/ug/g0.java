@@ -7,18 +7,18 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import c8.ma;
 import di.n4;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m5;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
 public final class g0 extends FrameLayout {
-    public final ImageView f58700a;
-    public final m5 f58701b;
-    public final n4 f58702c;
+    public final ImageView f58704a;
+    public final m5 f58705b;
+    public final n4 f58706c;
     public final m5 d;
-    public f0 f58703e;
-    public e0 f58704f;
+    public f0 f58707e;
+    public e0 f58708f;
 
     public g0(k0 k0Var, Context context, h6 h6Var) {
         super(context);
@@ -26,24 +26,24 @@ public final class g0 extends FrameLayout {
         float f10;
         float f11;
         int i10 = k0.S2;
-        int i11 = k0Var.f30208u0;
+        int i11 = k0Var.f30211u0;
         setPadding(i11, 0, i11, 0);
         ImageView imageView = new ImageView(context);
-        this.f58700a = imageView;
+        this.f58704a = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         t6.s(imageView, m6.Ck, h6Var, PorterDuff.Mode.SRC_IN);
-        if (gd.f24241a0) {
+        if (hd.f24444a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         addView(imageView, ma.d(24, 24.0f, i7 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
         m5 m5Var = new m5(context);
-        this.f58701b = m5Var;
+        this.f58705b = m5Var;
         m5Var.setWidthWrapContent(true);
-        t6.X(m5Var, m6.f29486j5, h6Var);
+        t6.X(m5Var, m6.f29489j5, h6Var);
         m5Var.setTextSize(14);
-        boolean z10 = gd.f24241a0;
+        boolean z10 = hd.f24444a0;
         int i12 = (z10 ? 5 : 3) | 16;
         if (z10) {
             f10 = 30.0f;
@@ -63,7 +63,7 @@ public final class g0 extends FrameLayout {
         m5Var2.setTypeface(org.telegram.messenger.g0.o());
         m5Var2.setTextSize(14);
         n4 n4Var = new n4(this, context, h6Var);
-        this.f58702c = n4Var;
+        this.f58706c = n4Var;
         n4Var.setWillNotDraw(false);
         n4Var.addView(m5Var2, ma.e(-2, -2, 17));
         addView(n4Var, ma.c(-1.0f, -1));
@@ -72,7 +72,7 @@ public final class g0 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         float f10;
-        if (this.f58704f != null) {
+        if (this.f58708f != null) {
             f10 = 49.0f;
         } else {
             f10 = 36.0f;

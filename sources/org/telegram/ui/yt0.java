@@ -4,25 +4,25 @@ import android.graphics.RectF;
 import java.util.List;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class yt0 implements org.telegram.messenger.lr, pr {
-    public final ProfileActivity f54288a;
-    public final TLRPC.User f54289b;
+public final class yt0 implements org.telegram.messenger.mr, pr {
+    public final ProfileActivity f54292a;
+    public final TLRPC.User f54293b;
 
     public yt0(ProfileActivity profileActivity, TLRPC.User user) {
-        this.f54288a = profileActivity;
-        this.f54289b = user;
+        this.f54292a = profileActivity;
+        this.f54293b = user;
     }
 
     @Override
     public void a() {
-        ProfileActivity.j0(this.f54288a, this.f54289b);
+        ProfileActivity.j0(this.f54292a, this.f54293b);
     }
 
     @Override
     public void d(boolean z10) {
         org.telegram.ui.ActionBar.g2 g2Var;
         RectF rectF = ProfileActivity.Z6;
-        ProfileActivity profileActivity = this.f54288a;
+        ProfileActivity profileActivity = this.f54292a;
         if (profileActivity.getParentLayout() != null) {
             List fragmentStack = profileActivity.getParentLayout().getFragmentStack();
             if (fragmentStack != null && fragmentStack.size() >= 2) {
@@ -36,6 +36,6 @@ public final class yt0 implements org.telegram.messenger.lr, pr {
         }
         profileActivity.N1 = true;
         profileActivity.finishFragment();
-        profileActivity.getNotificationCenter().k(org.telegram.messenger.ks.K2, Long.valueOf(profileActivity.f43610i1), this.f54289b, profileActivity.F2, Boolean.valueOf(z10));
+        profileActivity.getNotificationCenter().k(org.telegram.messenger.ls.K2, Long.valueOf(profileActivity.f43614i1), this.f54293b, profileActivity.F2, Boolean.valueOf(z10));
     }
 }

@@ -19,20 +19,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.a8;
 public class g1 extends PopupWindow {
-    public static Method f28967k;
-    public static final Field f28968l;
-    public static final DecelerateInterpolator f28969m = new DecelerateInterpolator();
-    public static final z0 f28970n;
-    public AnimatorSet f28971a;
-    public boolean f28972b;
-    public int f28973c;
+    public static Method f28970k;
+    public static final Field f28971l;
+    public static final DecelerateInterpolator f28972m = new DecelerateInterpolator();
+    public static final z0 f28973n;
+    public AnimatorSet f28974a;
+    public boolean f28975b;
+    public int f28976c;
     public boolean d;
-    public boolean f28974e;
-    public long f28975f;
-    public boolean f28976g;
+    public boolean f28977e;
+    public long f28978f;
+    public boolean f28979g;
     public ViewTreeObserver.OnScrollChangedListener h;
-    public ViewTreeObserver f28977i;
-    public h2.f f28978j;
+    public ViewTreeObserver f28980i;
+    public h2.f f28981j;
 
     static {
         Field field = null;
@@ -41,21 +41,21 @@ public class g1 extends PopupWindow {
             field.setAccessible(true);
         } catch (NoSuchFieldException unused) {
         }
-        f28968l = field;
-        f28970n = new z0(0);
+        f28971l = field;
+        f28973n = new z0(0);
     }
 
     public g1(View view, int i7, int i10) {
         super(view, i7, i10);
-        this.f28972b = true;
-        this.f28973c = 150;
-        this.f28975f = -1L;
-        this.f28978j = new h2.f((int[]) null);
+        this.f28975b = true;
+        this.f28976c = 150;
+        this.f28978f = -1L;
+        this.f28981j = new h2.f((int[]) null);
         e();
     }
 
     public static void i(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        actionBarPopupWindow$ActionBarPopupWindowLayout.f28768n = true;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.f28771n = true;
         actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY(0.0f);
         float f10 = 1.0f;
         actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(1.0f);
@@ -75,10 +75,10 @@ public class g1 extends PopupWindow {
                 }
             }
         }
-        if (actionBarPopupWindow$ActionBarPopupWindowLayout.f28771w) {
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f28770s = itemsCount - 1;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout.f28774w) {
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f28773s = itemsCount - 1;
         } else {
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f28770s = 0;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f28773s = 0;
         }
         if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().c(true);
@@ -87,8 +87,8 @@ public class g1 extends PopupWindow {
         AnimatorSet animatorSet = new AnimatorSet();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new hi.j3(actionBarPopupWindow$ActionBarPopupWindowLayout, 12));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.f28763a = false;
-        actionBarPopupWindow$ActionBarPopupWindowLayout.f28764b = true;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.f28766a = false;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.f28767b = true;
         animatorSet.playTogether(ObjectAnimator.ofFloat(actionBarPopupWindow$ActionBarPopupWindowLayout, "backScaleY", 0.0f, f10), ObjectAnimator.ofInt(actionBarPopupWindow$ActionBarPopupWindowLayout, "backAlpha", 0, 255), ofFloat);
         animatorSet.setDuration((i7 * 16) + 150);
         animatorSet.addListener(new ki.m3(actionBarPopupWindow$ActionBarPopupWindowLayout, 9));
@@ -110,7 +110,7 @@ public class g1 extends PopupWindow {
     public void d(boolean z10) {
         float f10;
         ArrayList arrayList;
-        long j3 = this.f28975f;
+        long j3 = this.f28978f;
         setFocusable(false);
         View rootView = getContentView().getRootView();
         WindowManager windowManager = (WindowManager) getContentView().getContext().getSystemService("window");
@@ -126,18 +126,18 @@ public class g1 extends PopupWindow {
             } catch (Exception unused) {
             }
         }
-        AnimatorSet animatorSet = this.f28971a;
+        AnimatorSet animatorSet = this.f28974a;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = null;
         if (animatorSet != null) {
             if (!z10 || !this.d) {
                 animatorSet.cancel();
-                this.f28971a = null;
+                this.f28974a = null;
             } else {
                 return;
             }
         }
         this.d = false;
-        if (this.f28972b && z10) {
+        if (this.f28975b && z10) {
             this.d = true;
             ViewGroup viewGroup = (ViewGroup) getContentView();
             for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
@@ -145,39 +145,39 @@ public class g1 extends PopupWindow {
                     actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup.getChildAt(i10);
                 }
             }
-            if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (arrayList = actionBarPopupWindow$ActionBarPopupWindowLayout.f28773y) != null && !arrayList.isEmpty()) {
-                int size = actionBarPopupWindow$ActionBarPopupWindowLayout.f28773y.size();
+            if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (arrayList = actionBarPopupWindow$ActionBarPopupWindowLayout.f28776y) != null && !arrayList.isEmpty()) {
+                int size = actionBarPopupWindow$ActionBarPopupWindowLayout.f28776y.size();
                 for (int i11 = 0; i11 < size; i11++) {
-                    AnimatorSet animatorSet2 = (AnimatorSet) actionBarPopupWindow$ActionBarPopupWindowLayout.f28773y.get(i11);
+                    AnimatorSet animatorSet2 = (AnimatorSet) actionBarPopupWindow$ActionBarPopupWindowLayout.f28776y.get(i11);
                     animatorSet2.removeAllListeners();
                     animatorSet2.cancel();
                 }
-                actionBarPopupWindow$ActionBarPopupWindowLayout.f28773y.clear();
+                actionBarPopupWindow$ActionBarPopupWindowLayout.f28776y.clear();
             }
             AnimatorSet animatorSet3 = new AnimatorSet();
-            this.f28971a = animatorSet3;
+            this.f28974a = animatorSet3;
             if (j3 > 0) {
                 animatorSet3.playTogether(ValueAnimator.ofFloat(0.0f, 1.0f));
-                this.f28971a.setDuration(j3);
-            } else if (this.f28976g) {
+                this.f28974a.setDuration(j3);
+            } else if (this.f28979g) {
                 animatorSet3.playTogether(ObjectAnimator.ofFloat(viewGroup, View.SCALE_Y, 0.8f), ObjectAnimator.ofFloat(viewGroup, View.SCALE_X, 0.8f), ObjectAnimator.ofFloat(viewGroup, View.ALPHA, 0.0f));
-                this.f28971a.setDuration(this.f28973c);
+                this.f28974a.setDuration(this.f28976c);
             } else {
                 Property property = View.TRANSLATION_Y;
                 float translationY = viewGroup.getTranslationY();
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && actionBarPopupWindow$ActionBarPopupWindowLayout.f28771w) {
+                if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && actionBarPopupWindow$ActionBarPopupWindowLayout.f28774w) {
                     f10 = 5.0f;
                 } else {
                     f10 = -5.0f;
                 }
                 animatorSet3.playTogether(ObjectAnimator.ofFloat(viewGroup, property, translationY + org.telegram.messenger.g0.L(f10)), ObjectAnimator.ofFloat(viewGroup, View.ALPHA, 0.0f));
-                this.f28971a.setDuration(this.f28973c);
+                this.f28974a.setDuration(this.f28976c);
             }
-            this.f28971a.addListener(new b1(this, 1));
-            if (this.f28974e) {
-                this.f28978j.d();
+            this.f28974a.addListener(new b1(this, 1));
+            if (this.f28977e) {
+                this.f28981j.d();
             }
-            this.f28971a.start();
+            this.f28974a.start();
             return;
         }
         try {
@@ -217,11 +217,11 @@ public class g1 extends PopupWindow {
                 });
             }
         }
-        Field field = f28968l;
+        Field field = f28971l;
         if (field != null) {
             try {
                 this.h = (ViewTreeObserver.OnScrollChangedListener) field.get(this);
-                field.set(this, f28970n);
+                field.set(this, f28973n);
             } catch (Exception unused) {
                 this.h = null;
             }
@@ -236,12 +236,12 @@ public class g1 extends PopupWindow {
             } else {
                 viewTreeObserver = null;
             }
-            ViewTreeObserver viewTreeObserver2 = this.f28977i;
+            ViewTreeObserver viewTreeObserver2 = this.f28980i;
             if (viewTreeObserver != viewTreeObserver2) {
                 if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.f28977i.removeOnScrollChangedListener(this.h);
+                    this.f28980i.removeOnScrollChangedListener(this.h);
                 }
-                this.f28977i = viewTreeObserver;
+                this.f28980i = viewTreeObserver;
                 if (viewTreeObserver != null) {
                     viewTreeObserver.addOnScrollChangedListener(this.h);
                 }
@@ -251,12 +251,12 @@ public class g1 extends PopupWindow {
 
     public final void g() {
         try {
-            if (f28967k == null) {
+            if (f28970k == null) {
                 Method declaredMethod = PopupWindow.class.getDeclaredMethod("setLayoutInScreenEnabled", Boolean.TYPE);
-                f28967k = declaredMethod;
+                f28970k = declaredMethod;
                 declaredMethod.setAccessible(true);
             }
-            f28967k.invoke(this, Boolean.TRUE);
+            f28970k.invoke(this, Boolean.TRUE);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
@@ -264,17 +264,17 @@ public class g1 extends PopupWindow {
 
     public final void h() {
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout;
-        if (this.f28972b && this.f28971a == null) {
+        if (this.f28975b && this.f28974a == null) {
             ViewGroup viewGroup = (ViewGroup) getContentView();
             if (viewGroup instanceof ActionBarPopupWindow$ActionBarPopupWindowLayout) {
                 actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.f28768n = true;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.f28771n = true;
             } else {
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = null;
                 for (int i7 = 0; i7 < viewGroup.getChildCount(); i7++) {
                     if (viewGroup.getChildAt(i7) instanceof ActionBarPopupWindow$ActionBarPopupWindowLayout) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout2 = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup.getChildAt(i7);
-                        actionBarPopupWindow$ActionBarPopupWindowLayout2.f28768n = true;
+                        actionBarPopupWindow$ActionBarPopupWindowLayout2.f28771n = true;
                     }
                 }
                 actionBarPopupWindow$ActionBarPopupWindowLayout = actionBarPopupWindow$ActionBarPopupWindowLayout2;
@@ -296,31 +296,31 @@ public class g1 extends PopupWindow {
                     i10++;
                 }
             }
-            if (actionBarPopupWindow$ActionBarPopupWindowLayout.f28771w) {
-                actionBarPopupWindow$ActionBarPopupWindowLayout.f28770s = itemsCount - 1;
+            if (actionBarPopupWindow$ActionBarPopupWindowLayout.f28774w) {
+                actionBarPopupWindow$ActionBarPopupWindowLayout.f28773s = itemsCount - 1;
             } else {
-                actionBarPopupWindow$ActionBarPopupWindowLayout.f28770s = 0;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.f28773s = 0;
             }
             if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
                 actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().c(true);
                 f10 = actionBarPopupWindow$ActionBarPopupWindowLayout.h;
             }
             AnimatorSet animatorSet = new AnimatorSet();
-            this.f28971a = animatorSet;
+            this.f28974a = animatorSet;
             animatorSet.playTogether(ObjectAnimator.ofFloat(actionBarPopupWindow$ActionBarPopupWindowLayout, "backScaleY", 0.0f, f10), ObjectAnimator.ofInt(actionBarPopupWindow$ActionBarPopupWindowLayout, "backAlpha", 0, 255));
-            this.f28971a.setDuration((i10 * 16) + 150);
-            this.f28971a.addListener(new b1(this, 0));
-            this.f28971a.start();
+            this.f28974a.setDuration((i10 * 16) + 150);
+            this.f28974a.addListener(new b1(this, 0));
+            this.f28974a.start();
         }
     }
 
     public final void j() {
         ViewTreeObserver viewTreeObserver;
-        if (this.h != null && (viewTreeObserver = this.f28977i) != null) {
+        if (this.h != null && (viewTreeObserver = this.f28980i) != null) {
             if (viewTreeObserver.isAlive()) {
-                this.f28977i.removeOnScrollChangedListener(this.h);
+                this.f28980i.removeOnScrollChangedListener(this.h);
             }
-            this.f28977i = null;
+            this.f28980i = null;
         }
     }
 

@@ -5,13 +5,13 @@ import android.content.Context;
 import android.view.OrientationEventListener;
 import org.telegram.ui.PhotoViewer;
 public final class cu extends OrientationEventListener {
-    public final int f34307a;
-    public final Object f34308b;
+    public final int f34301a;
+    public final Object f34302b;
 
     public cu(int i7, Context context, Object obj) {
         super(context);
-        this.f34307a = i7;
-        this.f34308b = obj;
+        this.f34301a = i7;
+        this.f34302b = obj;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class cu extends OrientationEventListener {
         ue0 ue0Var;
         Activity activity2;
         int i10;
-        switch (this.f34307a) {
+        switch (this.f34301a) {
             case 0:
-                iu iuVar = (iu) this.f34308b;
+                iu iuVar = (iu) this.f34302b;
                 z71 z71Var = iuVar.n1;
-                if (iuVar.A1 != null && z71Var.getVisibility() == 0 && (activity = iuVar.f36324t1) != null && z71Var.U && iuVar.H1) {
+                if (iuVar.A1 != null && z71Var.getVisibility() == 0 && (activity = iuVar.f36318t1) != null && z71Var.U && iuVar.H1) {
                     if (i7 >= 240 && i7 <= 300) {
                         iuVar.I1 = true;
                         return;
@@ -42,8 +42,8 @@ public final class cu extends OrientationEventListener {
                 }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f34308b;
-                if (photoViewer.W3 != null && (ue0Var = photoViewer.f43428z2) != null && ue0Var.getVisibility() == 0 && (activity2 = photoViewer.E) != null && (i10 = photoViewer.Y3) != 0) {
+                PhotoViewer photoViewer = (PhotoViewer) this.f34302b;
+                if (photoViewer.W3 != null && (ue0Var = photoViewer.f43432z2) != null && ue0Var.getVisibility() == 0 && (activity2 = photoViewer.E) != null && (i10 = photoViewer.Y3) != 0) {
                     if (i10 == 1) {
                         if (i7 >= 240 && i7 <= 300) {
                             photoViewer.Z3 = true;

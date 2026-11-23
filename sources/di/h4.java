@@ -29,7 +29,7 @@ public final class h4 extends j71 {
         }
         float i7 = Utilities.i(f10 / getMeasuredWidth(), 1.0f, -1.0f);
         f6 f6Var = this.W;
-        view.setTranslationX(((-i7) * 2.0f * f6Var.f30208u0) + f10);
+        view.setTranslationX(((-i7) * 2.0f * f6Var.f30211u0) + f10);
         float f11 = 0.0f;
         if (i7 <= 0.0f) {
             f11 = view.getMeasuredWidth();
@@ -43,14 +43,14 @@ public final class h4 extends j71 {
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
                 z2Var = f6Var.Y1;
-                if (z2Var != null && view2 == z2Var.U1 && (k4Var3 = z2Var.f8792a2) != null) {
+                if (z2Var != null && view2 == z2Var.U1 && (k4Var3 = z2Var.f8795a2) != null) {
                     k4Var3.invalidate();
                 }
-                if (view2 == f6Var.U1 && (k4Var2 = f6Var.f8792a2) != null) {
+                if (view2 == f6Var.U1 && (k4Var2 = f6Var.f8795a2) != null) {
                     k4Var2.invalidate();
                 }
                 z2Var2 = f6Var.Z1;
-                if (z2Var2 == null && view2 == z2Var2.U1 && (k4Var = z2Var2.f8792a2) != null) {
+                if (z2Var2 == null && view2 == z2Var2.U1 && (k4Var = z2Var2.f8795a2) != null) {
                     k4Var.invalidate();
                     return;
                 }
@@ -73,11 +73,11 @@ public final class h4 extends j71 {
     @Override
     public final void C() {
         super.C();
-        int i7 = this.f36438b;
+        int i7 = this.f36433b;
         f6 f6Var = this.W;
         boolean z10 = false;
         if (i7 != f6Var.N1(false)) {
-            if (this.f36438b > f6Var.N1(false)) {
+            if (this.f36433b > f6Var.N1(false)) {
                 z10 = true;
             }
             org.telegram.messenger.g0.g3(new ch.k(3, this, z10));
@@ -97,13 +97,13 @@ public final class h4 extends j71 {
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
         f6 f6Var = this.W;
-        canvas.clipRect(f6Var.f30208u0, -getHeight(), getWidth() - f6Var.f30208u0, getHeight() * 2);
+        canvas.clipRect(f6Var.f30211u0, -getHeight(), getWidth() - f6Var.f30211u0, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
     }
 
     @Override
     public final float getAvailableTranslationX() {
-        return Math.max(1, getMeasuredWidth() - (this.W.f30208u0 * 2));
+        return Math.max(1, getMeasuredWidth() - (this.W.f30211u0 * 2));
     }
 }

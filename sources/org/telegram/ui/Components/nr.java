@@ -4,38 +4,38 @@ import android.graphics.PointF;
 import android.view.animation.Interpolator;
 import android.view.animation.PathInterpolator;
 public final class nr implements Interpolator {
-    public static final nr f37956f = new nr(0.25d, 0.1d, 0.25d, 1.0d);
-    public static final nr f37957g = new nr(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final nr f37961f = new nr(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final nr f37962g = new nr(0.0d, 0.0d, 0.58d, 1.0d);
     public static final nr h = new nr(0.23d, 1.0d, 0.32d, 1.0d);
-    public static final nr f37958i = new nr(0.42d, 0.0d, 1.0d, 1.0d);
-    public static final nr f37959j = new nr(0.42d, 0.0d, 0.58d, 1.0d);
-    public static final nr f37960k = new nr(0.34d, 1.56d, 0.64d, 1.0d);
-    public static final PathInterpolator f37961l;
-    public final PointF f37962a;
-    public final PointF f37963b;
-    public final PointF f37964c;
+    public static final nr f37963i = new nr(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final nr f37964j = new nr(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final nr f37965k = new nr(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f37966l;
+    public final PointF f37967a;
+    public final PointF f37968b;
+    public final PointF f37969c;
     public final PointF d;
-    public final PointF f37965e;
+    public final PointF f37970e;
 
     static {
         new PathInterpolator(c8.l0.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
         new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
         new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
-        f37961l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
+        f37966l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
     public nr(float f10, float f11, float f12, float f13) {
         PointF pointF = new PointF(f10, f11);
         PointF pointF2 = new PointF(f12, f13);
-        this.f37964c = new PointF();
+        this.f37969c = new PointF();
         this.d = new PointF();
-        this.f37965e = new PointF();
+        this.f37970e = new PointF();
         float f14 = pointF.x;
         if (f14 >= 0.0f && f14 <= 1.0f) {
             float f15 = pointF2.x;
             if (f15 >= 0.0f && f15 <= 1.0f) {
-                this.f37962a = pointF;
-                this.f37963b = pointF2;
+                this.f37967a = pointF;
+                this.f37968b = pointF2;
                 return;
             }
             throw new IllegalArgumentException("endX value must be in the range [0, 1]");
@@ -53,11 +53,11 @@ public final class nr implements Interpolator {
         int i7 = 1;
         float f11 = f10;
         while (true) {
-            pointF = this.f37963b;
-            pointF2 = this.f37962a;
-            pointF3 = this.f37964c;
+            pointF = this.f37968b;
+            pointF2 = this.f37967a;
+            pointF3 = this.f37969c;
             pointF4 = this.d;
-            pointF5 = this.f37965e;
+            pointF5 = this.f37970e;
             if (i7 >= 14) {
                 break;
             }

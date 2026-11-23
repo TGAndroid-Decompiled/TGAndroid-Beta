@@ -3,26 +3,26 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class jv0 implements kp {
-    public final int f49100a;
-    public final TLRPC.ChatParticipant f49101b;
-    public final boolean f49102c;
+    public final int f49104a;
+    public final TLRPC.ChatParticipant f49105b;
+    public final boolean f49106c;
     public final boolean[] d;
-    public final ProfileActivity f49103e;
+    public final ProfileActivity f49107e;
 
     public jv0(ProfileActivity profileActivity, int i7, TLRPC.ChatParticipant chatParticipant, boolean z10, boolean[] zArr) {
-        this.f49103e = profileActivity;
-        this.f49100a = i7;
-        this.f49101b = chatParticipant;
-        this.f49102c = z10;
+        this.f49107e = profileActivity;
+        this.f49104a = i7;
+        this.f49105b = chatParticipant;
+        this.f49106c = z10;
         this.d = zArr;
     }
 
     @Override
     public final void a(TLRPC.User user) {
         int i7;
-        ProfileActivity profileActivity = this.f49103e;
+        ProfileActivity profileActivity = this.f49107e;
         UndoView undoView = profileActivity.M;
-        long j3 = -profileActivity.f43589f1;
+        long j3 = -profileActivity.f43593f1;
         if (profileActivity.F2.megagroup) {
             i7 = 10;
         } else {
@@ -37,9 +37,9 @@ public final class jv0 implements kp {
         boolean z10;
         TLRPC.ChatParticipant tL_chatParticipant;
         int i10 = 0;
-        TLRPC.ChatParticipant chatParticipant = this.f49101b;
-        ProfileActivity profileActivity = this.f49103e;
-        int i11 = this.f49100a;
+        TLRPC.ChatParticipant chatParticipant = this.f49105b;
+        ProfileActivity profileActivity = this.f49107e;
+        int i11 = this.f49104a;
         if (i11 == 0) {
             if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
                 TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
@@ -67,20 +67,20 @@ public final class jv0 implements kp {
                 tL_chatParticipant.user_id = chatParticipant.user_id;
                 tL_chatParticipant.date = chatParticipant.date;
                 tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                int indexOf = profileActivity.f43698v2.participants.participants.indexOf(chatParticipant);
+                int indexOf = profileActivity.f43702v2.participants.participants.indexOf(chatParticipant);
                 if (indexOf >= 0) {
-                    profileActivity.f43698v2.participants.participants.set(indexOf, tL_chatParticipant);
+                    profileActivity.f43702v2.participants.participants.set(indexOf, tL_chatParticipant);
                 }
             }
-            if (i7 == 1 && !this.f49102c) {
+            if (i7 == 1 && !this.f49106c) {
                 this.d[0] = true;
             }
-        } else if (i11 == 1 && i7 == 0 && profileActivity.F2.megagroup && (chatFull = profileActivity.f43698v2) != null && chatFull.participants != null) {
+        } else if (i11 == 1 && i7 == 0 && profileActivity.F2.megagroup && (chatFull = profileActivity.f43702v2) != null && chatFull.participants != null) {
             int i12 = 0;
             while (true) {
-                if (i12 < profileActivity.f43698v2.participants.participants.size()) {
-                    if (org.telegram.messenger.fj.B1(((TLRPC.TL_chatChannelParticipant) profileActivity.f43698v2.participants.participants.get(i12)).channelParticipant.peer) == chatParticipant.user_id) {
-                        TLRPC.ChatFull chatFull2 = profileActivity.f43698v2;
+                if (i12 < profileActivity.f43702v2.participants.participants.size()) {
+                    if (org.telegram.messenger.gj.B1(((TLRPC.TL_chatChannelParticipant) profileActivity.f43702v2.participants.participants.get(i12)).channelParticipant.peer) == chatParticipant.user_id) {
+                        TLRPC.ChatFull chatFull2 = profileActivity.f43702v2;
                         chatFull2.participants_count--;
                         chatFull2.participants.participants.remove(i12);
                         z10 = true;
@@ -92,13 +92,13 @@ public final class jv0 implements kp {
                     break;
                 }
             }
-            TLRPC.ChatFull chatFull3 = profileActivity.f43698v2;
+            TLRPC.ChatFull chatFull3 = profileActivity.f43702v2;
             if (chatFull3 != null && chatFull3.participants != null) {
                 while (true) {
-                    if (i10 >= profileActivity.f43698v2.participants.participants.size()) {
+                    if (i10 >= profileActivity.f43702v2.participants.participants.size()) {
                         break;
-                    } else if (profileActivity.f43698v2.participants.participants.get(i10).user_id == chatParticipant.user_id) {
-                        profileActivity.f43698v2.participants.participants.remove(i10);
+                    } else if (profileActivity.f43702v2.participants.participants.get(i10).user_id == chatParticipant.user_id) {
+                        profileActivity.f43702v2.participants.participants.remove(i10);
                         z10 = true;
                         break;
                     } else {

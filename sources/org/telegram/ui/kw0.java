@@ -21,39 +21,39 @@ public final class kw0 extends org.telegram.ui.Cells.y6 {
         int i13;
         int i14;
         this.h = lw0Var;
-        this.f32502f = org.telegram.messenger.j10.f24798t0;
+        this.f32505f = org.telegram.messenger.k10.f24968t0;
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f32498a = textView;
+        this.f32501a = textView;
         i5.c.x(textView, 1, 15.0f);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        if (org.telegram.messenger.gd.f24241a0) {
+        if (org.telegram.messenger.hd.f24444a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
         org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.L6, h6Var);
-        if (org.telegram.messenger.gd.f24241a0) {
+        if (org.telegram.messenger.hd.f24444a0) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         addView(textView, c8.ma.t(-1, -2, i10 | 48, 21, 15, 21, 0));
         org.telegram.ui.Components.m80 m80Var = new org.telegram.ui.Components.m80(context, h6Var);
-        this.f32499b = m80Var;
+        this.f32502b = m80Var;
         org.telegram.ui.ActionBar.t6.U(m80Var, org.telegram.ui.ActionBar.m6.G6, h6Var);
         m80Var.setTextSize(1, 14.0f);
         org.telegram.ui.ActionBar.t6.G(m80Var, org.telegram.ui.ActionBar.m6.J6, h6Var);
         org.telegram.ui.ActionBar.t6.C(m80Var, org.telegram.ui.ActionBar.m6.K6, h6Var);
         m80Var.setMovementMethod(new org.telegram.messenger.c0(false));
-        if (org.telegram.messenger.gd.f24241a0) {
+        if (org.telegram.messenger.hd.f24444a0) {
             i11 = 5;
         } else {
             i11 = 3;
         }
         m80Var.setGravity(i11);
-        if (org.telegram.messenger.gd.f24241a0) {
+        if (org.telegram.messenger.hd.f24444a0) {
             i12 = 5;
         } else {
             i12 = 3;
@@ -84,25 +84,25 @@ public final class kw0 extends org.telegram.ui.Cells.y6 {
             }
             linearLayout.addView(textView2, c8.ma.m(0.5f, 0, 44, i13, i14, 0));
             if (i15 == 0) {
-                this.f32500c = textView2;
+                this.f32503c = textView2;
                 textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final kw0 f32345b;
+                    public final kw0 f32348b;
 
                     {
-                        this.f32345b = this;
+                        this.f32348b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                kw0 kw0Var = this.f32345b;
-                                org.telegram.messenger.g0.g3(new jw0(kw0Var, kw0Var.f32501e, 0));
+                                kw0 kw0Var = this.f32348b;
+                                org.telegram.messenger.g0.g3(new jw0(kw0Var, kw0Var.f32504e, 0));
                                 return;
                             default:
-                                kw0 kw0Var2 = this.f32345b;
-                                int i16 = kw0Var2.f32501e;
-                                ProfileActivity profileActivity = kw0Var2.h.f49714e;
+                                kw0 kw0Var2 = this.f32348b;
+                                int i16 = kw0Var2.f32504e;
+                                ProfileActivity profileActivity = kw0Var2.h.f49718e;
                                 if (i16 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.g(3));
                                     return;
@@ -116,23 +116,23 @@ public final class kw0 extends org.telegram.ui.Cells.y6 {
             } else {
                 this.d = textView2;
                 textView2.setOnClickListener(new View.OnClickListener(this) {
-                    public final kw0 f32345b;
+                    public final kw0 f32348b;
 
                     {
-                        this.f32345b = this;
+                        this.f32348b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                kw0 kw0Var = this.f32345b;
-                                org.telegram.messenger.g0.g3(new jw0(kw0Var, kw0Var.f32501e, 0));
+                                kw0 kw0Var = this.f32348b;
+                                org.telegram.messenger.g0.g3(new jw0(kw0Var, kw0Var.f32504e, 0));
                                 return;
                             default:
-                                kw0 kw0Var2 = this.f32345b;
-                                int i16 = kw0Var2.f32501e;
-                                ProfileActivity profileActivity = kw0Var2.h.f49714e;
+                                kw0 kw0Var2 = this.f32348b;
+                                int i16 = kw0Var2.f32504e;
+                                ProfileActivity profileActivity = kw0Var2.h.f49718e;
                                 if (i16 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.g(3));
                                     return;

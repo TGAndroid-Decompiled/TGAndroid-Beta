@@ -5,34 +5,34 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.widget.TextView;
 public final class em extends TextView {
-    public float f34901a;
-    public boolean f34902b;
-    public final Paint f34903c;
+    public float f34899a;
+    public boolean f34900b;
+    public final Paint f34901c;
 
     public em(Context context, Paint paint) {
         super(context);
-        this.f34903c = paint;
-        this.f34901a = 0.0f;
+        this.f34901c = paint;
+        this.f34899a = 0.0f;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int i7 = (int) ((this.f34901a * 130.0f) + 125.0f);
-        Paint paint = this.f34903c;
+        int i7 = (int) ((this.f34899a * 130.0f) + 125.0f);
+        Paint paint = this.f34901c;
         paint.setAlpha(i7);
-        if (!this.f34902b) {
-            float f10 = this.f34901a - 0.026666667f;
-            this.f34901a = f10;
+        if (!this.f34900b) {
+            float f10 = this.f34899a - 0.026666667f;
+            this.f34899a = f10;
             if (f10 <= 0.0f) {
-                this.f34901a = 0.0f;
-                this.f34902b = true;
+                this.f34899a = 0.0f;
+                this.f34900b = true;
             }
         } else {
-            float f11 = this.f34901a + 0.026666667f;
-            this.f34901a = f11;
+            float f11 = this.f34899a + 0.026666667f;
+            this.f34899a = f11;
             if (f11 >= 1.0f) {
-                this.f34901a = 1.0f;
-                this.f34902b = false;
+                this.f34899a = 1.0f;
+                this.f34900b = false;
             }
         }
         super.onDraw(canvas);

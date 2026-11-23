@@ -2,5 +2,5 @@ package b7;
 
 import android.database.Cursor;
 public final class k {
-    public Cursor f2972a;
+    public Cursor f2979a;
 }

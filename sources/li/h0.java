@@ -2,10 +2,10 @@ package li;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.qo;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k10;
+import org.telegram.messenger.np;
+import org.telegram.messenger.ro;
 import org.telegram.messenger.v3;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h6;
@@ -21,22 +21,22 @@ public final class h0 extends n41 {
         n41.h(new n41());
     }
 
-    public static o41 i(qo qoVar, q2 q2Var) {
+    public static o41 i(ro roVar, q2 q2Var) {
         long j3;
-        TLRPC.User user = qoVar.f26459c;
+        TLRPC.User user = roVar.f26642c;
         if (user != null) {
             o41 K = o41.K(h0.class);
-            long j10 = user.f28580id;
+            long j10 = user.f28583id;
             K.C = j10;
             K.d = (int) (j10 ^ (j10 >>> 32));
             K.H = user;
             K.I = q2Var;
             return K;
         }
-        TLRPC.Chat chat = qoVar.f26458b;
+        TLRPC.Chat chat = roVar.f26641b;
         o41 K2 = o41.K(h0.class);
         if (chat != null) {
-            j3 = -chat.f28431id;
+            j3 = -chat.f28434id;
         } else {
             j3 = 0;
         }
@@ -55,8 +55,8 @@ public final class h0 extends n41 {
         boolean z11 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            u2Var.R0 = v3.e0(j10.f24798t0, chat);
-            TLRPC.Dialog U0 = mp.u1(j10.f24798t0).U0(-chat.f28431id);
+            u2Var.R0 = v3.e0(k10.f24968t0, chat);
+            TLRPC.Dialog U0 = np.u1(k10.f24968t0).U0(-chat.f28434id);
             if (U0 != null) {
                 z11 = false;
             }
@@ -66,12 +66,12 @@ public final class h0 extends n41 {
                 u2Var.e0(U0, 0, 0);
                 return;
             }
-            u2Var.setCustomMessageWithoutRebuild(gd.G(chat.participants_count, "Members", new Object[0]));
-            u2Var.d0(-chat.f28431id, null, 0, false, false);
+            u2Var.setCustomMessageWithoutRebuild(hd.G(chat.participants_count, "Members", new Object[0]));
+            u2Var.d0(-chat.f28434id, null, 0, false, false);
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
-            u2Var.R0 = v3.f0(j10.f24798t0, user);
-            TLRPC.Dialog U02 = mp.u1(j10.f24798t0).U0(user.f28580id);
+            u2Var.R0 = v3.f0(k10.f24968t0, user);
+            TLRPC.Dialog U02 = np.u1(k10.f24968t0).U0(user.f28583id);
             if (U02 != null) {
                 z11 = false;
             }
@@ -81,8 +81,8 @@ public final class h0 extends n41 {
                 u2Var.e0(U02, 0, 0);
                 return;
             }
-            u2Var.setCustomMessageWithoutRebuild(gd.N0(2131753153, null));
-            u2Var.d0(user.f28580id, null, 0, false, false);
+            u2Var.setCustomMessageWithoutRebuild(hd.N0(2131753153, null));
+            u2Var.d0(user.f28583id, null, 0, false, false);
         }
     }
 

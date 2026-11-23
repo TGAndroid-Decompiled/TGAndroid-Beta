@@ -20,9 +20,9 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.List;
 public final class g extends m0 {
-    public static final Class f15926a;
-    public static final Constructor f15927b;
-    public static final Method f15928c;
+    public static final Class f15929a;
+    public static final Constructor f15930b;
+    public static final Method f15931c;
     public static final Method d;
 
     static {
@@ -43,15 +43,15 @@ public final class g extends m0 {
             method = null;
             method2 = null;
         }
-        f15927b = constructor;
-        f15926a = cls;
-        f15928c = method2;
+        f15930b = constructor;
+        f15929a = cls;
+        f15931c = method2;
         d = method;
     }
 
     public static boolean g(Object obj, ByteBuffer byteBuffer, int i7, int i10, boolean z10) {
         try {
-            return ((Boolean) f15928c.invoke(obj, byteBuffer, Integer.valueOf(i7), null, Integer.valueOf(i10), Boolean.valueOf(z10))).booleanValue();
+            return ((Boolean) f15931c.invoke(obj, byteBuffer, Integer.valueOf(i7), null, Integer.valueOf(i10), Boolean.valueOf(z10))).booleanValue();
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return false;
         }
@@ -59,7 +59,7 @@ public final class g extends m0 {
 
     public static Typeface h(Object obj) {
         try {
-            Object newInstance = Array.newInstance(f15926a, 1);
+            Object newInstance = Array.newInstance(f15929a, 1);
             Array.set(newInstance, 0, obj);
             return (Typeface) d.invoke(null, newInstance);
         } catch (IllegalAccessException | InvocationTargetException unused) {
@@ -74,13 +74,13 @@ public final class g extends m0 {
         MappedByteBuffer mappedByteBuffer;
         FileInputStream fileInputStream;
         try {
-            obj = f15927b.newInstance(null);
+            obj = f15930b.newInstance(null);
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
             obj = null;
         }
         if (obj != null) {
-            for (h0.f fVar : eVar.f13713a) {
-                int i10 = fVar.f13718f;
+            for (h0.f fVar : eVar.f13716a) {
+                int i10 = fVar.f13721f;
                 File d2 = n0.d(context);
                 if (d2 != null) {
                     try {
@@ -94,7 +94,7 @@ public final class g extends m0 {
                                 FileChannel channel = fileInputStream.getChannel();
                                 mappedByteBuffer = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
                                 fileInputStream.close();
-                                if (mappedByteBuffer != null && g(obj, mappedByteBuffer, fVar.f13717e, fVar.f13715b, fVar.f13716c)) {
+                                if (mappedByteBuffer != null && g(obj, mappedByteBuffer, fVar.f13720e, fVar.f13718b, fVar.f13719c)) {
                                 }
                             } finally {
                                 break;
@@ -117,7 +117,7 @@ public final class g extends m0 {
     public final Typeface b(Context context, o0.h[] hVarArr, int i7) {
         Object obj;
         try {
-            obj = f15927b.newInstance(null);
+            obj = f15930b.newInstance(null);
         } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
             obj = null;
         }
@@ -128,13 +128,13 @@ public final class g extends m0 {
             while (true) {
                 if (i10 < length) {
                     o0.h hVar = hVarArr[i10];
-                    Uri uri = hVar.f21601a;
+                    Uri uri = hVar.f21604a;
                     ByteBuffer byteBuffer = (ByteBuffer) lVar.get(uri);
                     if (byteBuffer == null) {
                         byteBuffer = n0.e(context, uri);
                         lVar.put(uri, byteBuffer);
                     }
-                    if (byteBuffer == null || !g(obj, byteBuffer, hVar.f21602b, hVar.f21603c, hVar.d)) {
+                    if (byteBuffer == null || !g(obj, byteBuffer, hVar.f21605b, hVar.f21606c, hVar.d)) {
                         break;
                     }
                     i10++;

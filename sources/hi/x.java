@@ -13,21 +13,21 @@ import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.ev;
 import org.telegram.ui.ns;
 public final class x extends ek0 {
-    public final int f15726f3 = 0;
-    public final Object f15727g3;
-    public final KeyEvent.Callback f15728h3;
+    public final int f15729f3 = 0;
+    public final Object f15730g3;
+    public final KeyEvent.Callback f15731h3;
 
     public x(a0 a0Var, Context context) {
         super(context, null);
-        this.f15728h3 = a0Var;
-        this.f15727g3 = new h6.m(29);
+        this.f15731h3 = a0Var;
+        this.f15730g3 = new h6.m(29);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int i7 = this.f15726f3;
-        KeyEvent.Callback callback = this.f15728h3;
-        Object obj = this.f15727g3;
+        int i7 = this.f15729f3;
+        KeyEvent.Callback callback = this.f15731h3;
+        Object obj = this.f15730g3;
         switch (i7) {
             case 0:
                 a0 a0Var = (a0) callback;
@@ -50,7 +50,7 @@ public final class x extends ek0 {
                 canvas.restore();
                 return;
             case 1:
-                HashSet hashSet = org.telegram.ui.g4.f47925d1;
+                HashSet hashSet = org.telegram.ui.g4.f47929d1;
                 ((org.telegram.ui.g4) obj).l();
                 super.dispatchDraw(canvas);
                 return;
@@ -58,7 +58,7 @@ public final class x extends ek0 {
                 Paint paint = (Paint) obj;
                 ev evVar = (ev) callback;
                 org.telegram.ui.Components.d6 d6Var = evVar.H1;
-                if (d6Var != null && evVar.F1 >= 0 && evVar.G1 >= 0 && evVar.f34997s1 != null && this.H) {
+                if (d6Var != null && evVar.F1 >= 0 && evVar.G1 >= 0 && evVar.f34995s1 != null && this.H) {
                     float e10 = d6Var.e(false, 0.0f);
                     if (e10 > 0.0f) {
                         int i10 = Integer.MAX_VALUE;
@@ -72,7 +72,7 @@ public final class x extends ek0 {
                             }
                         }
                         if (i10 < i11) {
-                            paint.setColor(org.telegram.ui.ActionBar.m6.r1(e10, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Ce, this.f34875o2)));
+                            paint.setColor(org.telegram.ui.ActionBar.m6.r1(e10, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Ce, this.f34873o2)));
                             canvas.drawRect(0.0f, i10, getMeasuredWidth(), i11, paint);
                         }
                         invalidate();
@@ -85,7 +85,7 @@ public final class x extends ek0 {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f15726f3) {
+        switch (this.f15729f3) {
             case 0:
                 if (motionEvent.getX() > getPaddingLeft() && motionEvent.getX() < getWidth() - getPaddingRight()) {
                     return super.dispatchTouchEvent(motionEvent);
@@ -98,7 +98,7 @@ public final class x extends ek0 {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f15726f3) {
+        switch (this.f15729f3) {
             case 2:
                 return false;
             default:
@@ -109,18 +109,18 @@ public final class x extends ek0 {
     @Override
     public void l0(int i7) {
         org.telegram.ui.s3 s3Var;
-        switch (this.f15726f3) {
+        switch (this.f15729f3) {
             case 1:
-                org.telegram.ui.t3 t3Var = ((org.telegram.ui.g4) this.f15727g3).L;
-                if (t3Var != null && (s3Var = t3Var.f52190c) != null) {
+                org.telegram.ui.t3 t3Var = ((org.telegram.ui.g4) this.f15730g3).L;
+                if (t3Var != null && (s3Var = t3Var.f52194c) != null) {
                     s3Var.invalidate();
                     return;
                 }
                 return;
             case 2:
-                ev evVar = (ev) this.f15728h3;
-                evVar.f34995q1.a();
-                evVar.f30173b.invalidate();
+                ev evVar = (ev) this.f15731h3;
+                evVar.f34993q1.a();
+                evVar.f30176b.invalidate();
                 return;
             default:
                 return;
@@ -129,11 +129,11 @@ public final class x extends ek0 {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f15726f3) {
+        switch (this.f15729f3) {
             case 2:
                 super.onDetachedFromWindow();
-                ev evVar = (ev) this.f15728h3;
-                org.telegram.ui.Components.y5.release(evVar.f30173b, evVar.f34992m1);
+                ev evVar = (ev) this.f15731h3;
+                org.telegram.ui.Components.y5.release(evVar.f30176b, evVar.f34990m1);
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -145,7 +145,7 @@ public final class x extends ek0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         MotionEvent motionEvent2;
         org.telegram.ui.ActionBar.g1 g1Var;
-        switch (this.f15726f3) {
+        switch (this.f15729f3) {
             case 0:
                 if (motionEvent.getX() > getPaddingLeft() && motionEvent.getX() < getWidth() - getPaddingRight()) {
                     getParent().requestDisallowInterceptTouchEvent(true);
@@ -153,22 +153,22 @@ public final class x extends ek0 {
                 }
                 return false;
             case 1:
-                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f15727g3;
-                if (g4Var.d != null && g4Var.f50748b == null && (((g1Var = g4Var.I) == null || !g1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    g4Var.f50748b = null;
+                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f15730g3;
+                if (g4Var.d != null && g4Var.f50752b == null && (((g1Var = g4Var.I) == null || !g1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    g4Var.f50752b = null;
                     g4Var.d = null;
-                    g4Var.f50751f = null;
-                } else if (g4Var.d != null && g4Var.f50748b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.e4)) {
+                    g4Var.f50755f = null;
+                } else if (g4Var.d != null && g4Var.f50752b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.e4)) {
                     motionEvent2 = motionEvent;
-                    org.telegram.ui.g4.j(g4Var, (org.telegram.ui.e4) getAdapter(), motionEvent2, g4Var.f50751f, g4Var.d, 0, 0);
+                    org.telegram.ui.g4.j(g4Var, (org.telegram.ui.e4) getAdapter(), motionEvent2, g4Var.f50755f, g4Var.d, 0, 0);
                     return super.onInterceptTouchEvent(motionEvent2);
                 }
                 motionEvent2 = motionEvent;
                 return super.onInterceptTouchEvent(motionEvent2);
             default:
                 ns p10 = ns.p();
-                ev evVar = (ev) this.f15728h3;
-                boolean q10 = p10.q(motionEvent, evVar.f34996r1, evVar.I1, this.f34875o2);
+                ev evVar = (ev) this.f15731h3;
+                boolean q10 = p10.q(motionEvent, evVar.f34994r1, evVar.I1, this.f34873o2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
                     return false;
                 }
@@ -178,14 +178,14 @@ public final class x extends ek0 {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f15726f3) {
+        switch (this.f15729f3) {
             case 1:
                 z1(z10, i7, i10, i11, i12);
-                ((org.telegram.ui.k3) this.f15728h3).K = -1.0f;
+                ((org.telegram.ui.k3) this.f15731h3).K = -1.0f;
                 return;
             case 2:
                 super.onLayout(z10, i7, i10, i11, i12);
-                ((ev) this.f15728h3).f34995q1.a();
+                ((ev) this.f15731h3).f34993q1.a();
                 return;
             default:
                 super.onLayout(z10, i7, i10, i11, i12);
@@ -195,10 +195,10 @@ public final class x extends ek0 {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f15726f3) {
+        switch (this.f15729f3) {
             case 2:
                 View.MeasureSpec.getSize(i7);
-                ((ev) this.f15728h3).f35003y1.y1(40);
+                ((ev) this.f15731h3).f35001y1.y1(40);
                 super.onMeasure(i7, i10);
                 return;
             default:
@@ -210,13 +210,13 @@ public final class x extends ek0 {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.g1 g1Var;
-        switch (this.f15726f3) {
+        switch (this.f15729f3) {
             case 1:
-                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f15727g3;
-                if (g4Var.d != null && g4Var.f50748b == null && (((g1Var = g4Var.I) == null || !g1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    g4Var.f50748b = null;
+                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f15730g3;
+                if (g4Var.d != null && g4Var.f50752b == null && (((g1Var = g4Var.I) == null || !g1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    g4Var.f50752b = null;
                     g4Var.d = null;
-                    g4Var.f50751f = null;
+                    g4Var.f50755f = null;
                 }
                 return super.onTouchEvent(motionEvent);
             default:
@@ -239,13 +239,13 @@ public final class x extends ek0 {
 
     public x(ev evVar, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, h6Var);
-        this.f15728h3 = evVar;
-        this.f15727g3 = new Paint(1);
+        this.f15731h3 = evVar;
+        this.f15730g3 = new Paint(1);
     }
 
     public x(org.telegram.ui.k3 k3Var, Context context) {
         super(context, null);
-        this.f15728h3 = k3Var;
-        this.f15727g3 = k3Var.M;
+        this.f15731h3 = k3Var;
+        this.f15730g3 = k3Var.M;
     }
 }

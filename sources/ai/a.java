@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.Components.a30;
 public final class a implements Runnable {
     public final int f1111a;
@@ -36,28 +36,28 @@ public final class a implements Runnable {
                 new a30(context).show();
                 return;
             case 3:
-                vf.c.t(context, gd.N0(2131744725, null));
+                vf.c.t(context, hd.N0(2131744723, null));
                 return;
             case 4:
-                vf.c.t(context, gd.N0(2131744725, null));
+                vf.c.t(context, hd.N0(2131744723, null));
                 return;
             case 5:
-                vf.c.t(context, gd.N0(2131747540, null));
+                vf.c.t(context, hd.N0(2131747540, null));
                 return;
             case 6:
-                vf.c.t(context, gd.N0(2131744778, null));
+                vf.c.t(context, hd.N0(2131744776, null));
                 return;
             case 7:
-                vf.c.t(context, gd.N0(2131744725, null));
+                vf.c.t(context, hd.N0(2131744723, null));
                 return;
             case 8:
-                vf.c.t(context, gd.N0(2131744803, null));
+                vf.c.t(context, hd.N0(2131744801, null));
                 return;
             case 9:
                 new a30(context).show();
                 return;
             case 10:
-                vf.c.t(context, gd.N0(2131752494, null));
+                vf.c.t(context, hd.N0(2131752494, null));
                 return;
             case 11:
                 if (Build.VERSION.SDK_INT >= 28) {
@@ -71,7 +71,7 @@ public final class a implements Runnable {
                 new ThreadPoolExecutor(0, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue()).execute(new a(context, 13));
                 return;
             default:
-                u4.d.s(context, new d3.b(3), u4.d.f58442a, false);
+                u4.d.s(context, new d3.b(3), u4.d.f58446a, false);
                 return;
         }
     }

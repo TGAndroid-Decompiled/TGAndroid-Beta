@@ -1,57 +1,288 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public abstract class ui {
-    public static void a(TLRPC.Message message, TLRPC.TL_message tL_message) {
-        tL_message.voiceTranscription = message.voiceTranscription;
-        tL_message.voiceTranscriptionOpen = message.voiceTranscriptionOpen;
-        tL_message.voiceTranscriptionFinal = message.voiceTranscriptionFinal;
-        tL_message.voiceTranscriptionForce = message.voiceTranscriptionForce;
-        tL_message.voiceTranscriptionRated = message.voiceTranscriptionRated;
-        tL_message.voiceTranscriptionId = message.voiceTranscriptionId;
-        tL_message.voiceTranscriptionLocal = message.voiceTranscriptionLocal;
-        tL_message.voiceTranscriptionWords = message.voiceTranscriptionWords;
-        tL_message.premiumEffectWasPlayed = message.premiumEffectWasPlayed;
-        tL_message.originalLanguage = message.originalLanguage;
-        tL_message.translatedToLanguage = message.translatedToLanguage;
-        tL_message.translatedPoll = message.translatedPoll;
-        tL_message.translatedText = message.translatedText;
-        tL_message.translatedRichMessage = message.translatedRichMessage;
-        tL_message.errorAllowedPriceStars = message.errorAllowedPriceStars;
-        tL_message.errorNewPriceStars = message.errorNewPriceStars;
-        tL_message.translatedVoiceTranscription = message.translatedVoiceTranscription;
-        tL_message.summarizedOpen = message.summarizedOpen;
-        tL_message.summaryText = message.summaryText;
-        tL_message.translatedSummaryText = message.translatedSummaryText;
-        tL_message.translatedSummaryLanguage = message.translatedSummaryLanguage;
-    }
+import org.telegram.tgnet.tl.TL_iv;
+public final class ui extends TLObject {
+    public final TLRPC.Message f27198a;
+    public int f27199b;
 
-    public static void b(TLRPC.Message message, NativeByteBuffer nativeByteBuffer) {
-        if (nativeByteBuffer == null) {
-            return;
+    public ui(TLRPC.Message message) {
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        this.f27199b = 0;
+        this.f27198a = message;
+        if (message.voiceTranscription != null) {
+            i7 = 1;
+        } else {
+            i7 = 0;
         }
-        int readInt32 = nativeByteBuffer.readInt32(true);
-        if (readInt32 == 1) {
-            new ti(message).readParams(nativeByteBuffer, true);
-            return;
+        this.f27199b = i7;
+        if (message.voiceTranscriptionForce) {
+            i10 = 2;
+        } else {
+            i10 = 0;
         }
-        throw new RuntimeException(i5.c.i(readInt32, "can't read params version = "));
-    }
-
-    public static NativeByteBuffer c(TLRPC.Message message) {
+        int i18 = i7 | i10;
+        this.f27199b = i18;
+        if (message.originalLanguage != null) {
+            i11 = 4;
+        } else {
+            i11 = 0;
+        }
+        int i19 = i18 | i11;
+        this.f27199b = i19;
+        if (message.translatedToLanguage != null) {
+            i12 = 8;
+        } else {
+            i12 = 0;
+        }
+        int i20 = i19 | i12;
+        this.f27199b = i20;
+        if (message.translatedText != null) {
+            i13 = 16;
+        } else {
+            i13 = 0;
+        }
+        int i21 = i20 | i13;
+        this.f27199b = i21;
+        if (message.translatedPoll != null) {
+            i14 = 32;
+        } else {
+            i14 = 0;
+        }
+        int i22 = i21 | i14;
+        this.f27199b = i22;
+        if (message.errorAllowedPriceStars != 0) {
+            i15 = 64;
+        } else {
+            i15 = 0;
+        }
+        int i23 = i22 | i15;
+        this.f27199b = i23;
+        if (message.errorNewPriceStars != 0) {
+            i16 = 128;
+        } else {
+            i16 = 0;
+        }
+        int i24 = i23 | i16;
+        this.f27199b = i24;
+        if (message.translatedVoiceTranscription != null) {
+            i17 = 256;
+        } else {
+            i17 = 0;
+        }
+        int i25 = i24 | i17;
+        this.f27199b = i25;
+        if (message.summaryText != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int flag = TLObject.setFlag(i25, 1024, z10);
+        this.f27199b = flag;
+        if (message.translatedSummaryText != null) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        int flag2 = TLObject.setFlag(flag, 2048, z11);
+        this.f27199b = flag2;
+        if (message.translatedSummaryLanguage != null) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        int flag3 = TLObject.setFlag(flag2, 4096, z12);
+        this.f27199b = flag3;
+        if (message.translatedRichMessage != null) {
+            z13 = true;
+        } else {
+            z13 = false;
+        }
+        int flag4 = TLObject.setFlag(flag3, 8192, z13);
+        this.f27199b = flag4;
         TLRPC.MessageAction messageAction = message.action;
-        if ((!(messageAction instanceof TLRPC.TL_messageActionGramTransfer) || !((TLRPC.TL_messageActionGramTransfer) messageAction).comment_encrypted_preparing) && message.voiceTranscription == null && message.translatedVoiceTranscription == null && !message.voiceTranscriptionOpen && !message.summarizedOpen && message.summaryText == null && message.translatedSummaryLanguage == null && message.translatedSummaryText == null && !message.voiceTranscriptionFinal && !message.voiceTranscriptionRated && !message.voiceTranscriptionForce && message.voiceTranscriptionId == 0 && !message.voiceTranscriptionLocal && message.voiceTranscriptionWords == null && !message.premiumEffectWasPlayed && message.originalLanguage == null && message.translatedToLanguage == null && message.translatedPoll == null && message.translatedText == null && message.translatedRichMessage == null && message.errorAllowedPriceStars == 0 && message.errorNewPriceStars == 0) {
-            return null;
+        if ((messageAction instanceof TLRPC.TL_messageActionGramTransfer) && ((TLRPC.TL_messageActionGramTransfer) messageAction).comment_encrypted_preparing) {
+            z14 = true;
+        } else {
+            z14 = false;
         }
-        ti tiVar = new ti(message);
-        try {
-            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tiVar.getObjectSize());
-            tiVar.serializeToStream(nativeByteBuffer);
-            return nativeByteBuffer;
-        } catch (Exception e10) {
-            e10.printStackTrace();
-            return null;
+        int flag5 = TLObject.setFlag(flag4, 16384, z14);
+        this.f27199b = flag5;
+        int flag6 = TLObject.setFlag(flag5, 32768, message.voiceTranscriptionLocal);
+        this.f27199b = flag6;
+        this.f27199b = TLObject.setFlag(flag6, 65536, message.voiceTranscriptionWords != null);
+    }
+
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        boolean z11;
+        x00 x00Var;
+        boolean z12;
+        boolean z13 = true;
+        int readInt32 = inputSerializedData.readInt32(true);
+        this.f27199b = readInt32;
+        TLRPC.Message message = this.f27198a;
+        TLRPC.MessageAction messageAction = message.action;
+        if (messageAction instanceof TLRPC.TL_messageActionGramTransfer) {
+            TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer = (TLRPC.TL_messageActionGramTransfer) messageAction;
+            if (!tL_messageActionGramTransfer.comment_encrypted && TLObject.hasFlag(readInt32, 16384)) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            tL_messageActionGramTransfer.comment_encrypted_preparing = z12;
+        }
+        if ((this.f27199b & 1) != 0) {
+            message.voiceTranscription = inputSerializedData.readString(z10);
+        }
+        int i7 = this.f27199b;
+        if ((i7 & 2) != 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        message.voiceTranscriptionForce = z11;
+        if ((i7 & 512) == 0) {
+            z13 = false;
+        }
+        message.summarizedOpen = z13;
+        message.voiceTranscriptionOpen = inputSerializedData.readBool(z10);
+        message.voiceTranscriptionFinal = inputSerializedData.readBool(z10);
+        message.voiceTranscriptionRated = inputSerializedData.readBool(z10);
+        message.voiceTranscriptionId = inputSerializedData.readInt64(z10);
+        message.premiumEffectWasPlayed = inputSerializedData.readBool(z10);
+        if ((this.f27199b & 4) != 0) {
+            message.originalLanguage = inputSerializedData.readString(z10);
+        }
+        if ((this.f27199b & 8) != 0) {
+            message.translatedToLanguage = inputSerializedData.readString(z10);
+        }
+        if ((this.f27199b & 16) != 0) {
+            message.translatedText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+        if ((this.f27199b & 32) != 0) {
+            int readInt322 = inputSerializedData.readInt32(z10);
+            if (613759672 != readInt322) {
+                x00Var = null;
+            } else {
+                x00Var = new x00();
+            }
+            message.translatedPoll = (x00) TLObject.TLdeserialize(x00.class, x00Var, inputSerializedData, readInt322, z10);
+        }
+        if ((this.f27199b & 64) != 0) {
+            message.errorAllowedPriceStars = inputSerializedData.readInt64(z10);
+        }
+        if ((this.f27199b & 128) != 0) {
+            message.errorNewPriceStars = inputSerializedData.readInt64(z10);
+        }
+        if ((this.f27199b & 256) != 0) {
+            message.translatedVoiceTranscription = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+        if (TLObject.hasFlag(this.f27199b, 1024)) {
+            message.summaryText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+        if (TLObject.hasFlag(this.f27199b, 2048)) {
+            message.translatedSummaryText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+        if (TLObject.hasFlag(this.f27199b, 4096)) {
+            message.translatedSummaryLanguage = inputSerializedData.readString(z10);
+        }
+        if (TLObject.hasFlag(this.f27199b, 8192)) {
+            message.translatedRichMessage = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+        message.voiceTranscriptionLocal = TLObject.hasFlag(this.f27199b, 32768);
+        if (TLObject.hasFlag(this.f27199b, 65536)) {
+            int readInt323 = inputSerializedData.readInt32(z10);
+            message.voiceTranscriptionWords = new int[readInt323];
+            for (int i10 = 0; i10 < readInt323; i10++) {
+                message.voiceTranscriptionWords[i10] = inputSerializedData.readInt32(z10);
+            }
+            return;
+        }
+        message.voiceTranscriptionWords = null;
+    }
+
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        int i7;
+        int i10;
+        outputSerializedData.writeInt32(1);
+        TLRPC.Message message = this.f27198a;
+        if (message.voiceTranscriptionForce) {
+            i7 = this.f27199b | 2;
+        } else {
+            i7 = this.f27199b & (-3);
+        }
+        this.f27199b = i7;
+        if (message.summarizedOpen) {
+            i10 = i7 | 512;
+        } else {
+            i10 = i7 & (-513);
+        }
+        this.f27199b = i10;
+        outputSerializedData.writeInt32(i10);
+        if ((1 & this.f27199b) != 0) {
+            outputSerializedData.writeString(message.voiceTranscription);
+        }
+        outputSerializedData.writeBool(message.voiceTranscriptionOpen);
+        outputSerializedData.writeBool(message.voiceTranscriptionFinal);
+        outputSerializedData.writeBool(message.voiceTranscriptionRated);
+        outputSerializedData.writeInt64(message.voiceTranscriptionId);
+        outputSerializedData.writeBool(message.premiumEffectWasPlayed);
+        if ((this.f27199b & 4) != 0) {
+            outputSerializedData.writeString(message.originalLanguage);
+        }
+        if ((this.f27199b & 8) != 0) {
+            outputSerializedData.writeString(message.translatedToLanguage);
+        }
+        if ((this.f27199b & 16) != 0) {
+            message.translatedText.serializeToStream(outputSerializedData);
+        }
+        if ((this.f27199b & 32) != 0) {
+            message.translatedPoll.serializeToStream(outputSerializedData);
+        }
+        if ((this.f27199b & 64) != 0) {
+            outputSerializedData.writeInt64(message.errorAllowedPriceStars);
+        }
+        if ((this.f27199b & 128) != 0) {
+            outputSerializedData.writeInt64(message.errorNewPriceStars);
+        }
+        if ((this.f27199b & 256) != 0) {
+            message.translatedVoiceTranscription.serializeToStream(outputSerializedData);
+        }
+        if (TLObject.hasFlag(this.f27199b, 1024)) {
+            message.summaryText.serializeToStream(outputSerializedData);
+        }
+        if (TLObject.hasFlag(this.f27199b, 2048)) {
+            message.translatedSummaryText.serializeToStream(outputSerializedData);
+        }
+        if (TLObject.hasFlag(this.f27199b, 4096)) {
+            outputSerializedData.writeString(message.translatedSummaryLanguage);
+        }
+        if (TLObject.hasFlag(this.f27199b, 8192)) {
+            message.translatedRichMessage.serializeToStream(outputSerializedData);
+        }
+        if (TLObject.hasFlag(this.f27199b, 65536)) {
+            outputSerializedData.writeInt32(message.voiceTranscriptionWords.length);
+            for (int i11 : message.voiceTranscriptionWords) {
+                outputSerializedData.writeInt32(i11);
+            }
         }
     }
 }

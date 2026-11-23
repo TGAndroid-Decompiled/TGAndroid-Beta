@@ -15,15 +15,15 @@ public final class a1 extends c51 {
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         super.t(f1Var, i7);
-        View view = f1Var.f59161a;
+        View view = f1Var.f59165a;
         if (!(view instanceof f1)) {
             return;
         }
         f1 f1Var2 = (f1) view;
-        c1 c1Var = f1Var2.f8777w;
+        c1 c1Var = f1Var2.f8780w;
         boolean g12 = this.Q.g1(c1Var);
-        f1Var2.f8771c.f(g12, false);
-        f1Var2.f8775r.a(g12, false);
-        f1Var2.setOnClickListener(new ai.x2(12, this, c1Var));
+        f1Var2.f8774c.f(g12, false);
+        f1Var2.f8778r.a(g12, false);
+        f1Var2.setOnClickListener(new ai.y2(12, this, c1Var));
     }
 }

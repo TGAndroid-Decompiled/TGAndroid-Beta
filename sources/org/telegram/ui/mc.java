@@ -5,13 +5,13 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class mc extends org.telegram.ui.Components.dk0 {
-    public final int f49845c;
+    public final int f49849c;
     public final org.telegram.ui.ActionBar.h6 d;
-    public final oc f49846e;
+    public final oc f49850e;
 
     public mc(oc ocVar, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f49846e = ocVar;
-        this.f49845c = i7;
+        this.f49850e = ocVar;
+        this.f49849c = i7;
         this.d = h6Var;
     }
 
@@ -22,7 +22,7 @@ public final class mc extends org.telegram.ui.Components.dk0 {
 
     @Override
     public final int b() {
-        return this.f49846e.f50542c.size();
+        return this.f49850e.f50546c.size();
     }
 
     @Override
@@ -32,26 +32,26 @@ public final class mc extends org.telegram.ui.Components.dk0 {
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        return new v4.f1(new org.telegram.ui.Components.l01(this.f49845c, 3, viewGroup.getContext(), this.d));
+        return new v4.f1(new org.telegram.ui.Components.k01(this.f49849c, 3, viewGroup.getContext(), this.d));
     }
 
     @Override
     public final void y(v4.f1 f1Var) {
         TLRPC.WallPaper wallPaper;
-        oc ocVar = this.f49846e;
-        ArrayList arrayList = ocVar.f50542c;
+        oc ocVar = this.f49850e;
+        ArrayList arrayList = ocVar.f50546c;
         int b10 = f1Var.b();
-        View view = f1Var.f59161a;
+        View view = f1Var.f59165a;
         if (b10 >= 0 && b10 < arrayList.size()) {
             org.telegram.ui.Components.mp mpVar = (org.telegram.ui.Components.mp) arrayList.get(b10);
-            org.telegram.ui.Components.l01 l01Var = (org.telegram.ui.Components.l01) view;
-            l01Var.g(mpVar.d, false);
-            if (mpVar.f37594a.f29981b) {
+            org.telegram.ui.Components.k01 k01Var = (org.telegram.ui.Components.k01) view;
+            k01Var.g(mpVar.d, false);
+            if (mpVar.f37593a.f29984b) {
                 wallPaper = null;
             } else {
-                wallPaper = ocVar.f50548w;
+                wallPaper = ocVar.f50552w;
             }
-            l01Var.setFallbackWallpaper(wallPaper);
+            k01Var.setFallbackWallpaper(wallPaper);
         }
     }
 }

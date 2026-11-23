@@ -3,7 +3,7 @@ package b9;
 import android.os.Parcelable;
 import com.google.android.gms.wearable.internal.DataItemAssetParcelable;
 public final class c implements Parcelable.Creator {
-    public final int f2987a;
+    public final int f2994a;
 
     @Override
     public final java.lang.Object createFromParcel(android.os.Parcel r10) {
@@ -12,7 +12,7 @@ public final class c implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f2987a) {
+        switch (this.f2994a) {
             case 0:
                 return new b[i7];
             case 1:

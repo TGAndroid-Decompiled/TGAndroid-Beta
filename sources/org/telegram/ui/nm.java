@@ -2,13 +2,13 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class nm extends c8.oa {
-    public org.telegram.messenger.fj f50211a;
-    public int f50212b = 0;
-    public boolean f50213c = true;
+    public org.telegram.messenger.gj f50215a;
+    public int f50216b = 0;
+    public boolean f50217c = true;
     public int d = 0;
-    public int f50214e;
-    public boolean f50215f;
-    public int f50216g;
+    public int f50218e;
+    public boolean f50219f;
+    public int f50220g;
     public final bn h;
 
     public nm(bn bnVar) {
@@ -17,19 +17,19 @@ public final class nm extends c8.oa {
 
     @Override
     public final void a() {
-        org.telegram.messenger.fj fjVar = this.f50211a;
+        org.telegram.messenger.gj gjVar = this.f50215a;
         bn bnVar = this.h;
-        if (fjVar != null) {
+        if (gjVar != null) {
             bnVar.D0.T();
-            int indexOf = bnVar.M6.indexOf(this.f50211a) + bnVar.D0.K;
+            int indexOf = bnVar.M6.indexOf(this.f50215a) + bnVar.D0.K;
             if (indexOf >= 0) {
-                bnVar.C0.i1(indexOf, (int) ((this.f50214e + this.f50216g) - bnVar.P9), this.f50215f);
+                bnVar.C0.i1(indexOf, (int) ((this.f50218e + this.f50220g) - bnVar.P9), this.f50219f);
             }
         } else {
             bnVar.D0.T();
-            bnVar.C0.i1(this.f50212b, this.d, this.f50213c);
+            bnVar.C0.i1(this.f50216b, this.d, this.f50217c);
         }
-        this.f50211a = null;
+        this.f50215a = null;
         bnVar.B3 = true;
         bnVar.Gd(false);
         org.telegram.messenger.g0.g3(new bh(this, 9));
@@ -38,9 +38,9 @@ public final class nm extends c8.oa {
     @Override
     public final void c() {
         bn bnVar = this.h;
-        bnVar.fa = bnVar.getNotificationCenter().q(bn.f45942sd, bnVar.fa, true);
+        bnVar.fa = bnVar.getNotificationCenter().q(bn.f45946sd, bnVar.fa, true);
         zj zjVar = bnVar.Ta;
-        if (zjVar.f47828n) {
+        if (zjVar.f47832n) {
             zjVar.d();
         }
     }

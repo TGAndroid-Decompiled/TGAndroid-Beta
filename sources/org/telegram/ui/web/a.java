@@ -3,21 +3,21 @@ package org.telegram.ui.web;
 import android.view.View;
 import java.io.Serializable;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.v10;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.w10;
 import org.telegram.ui.Components.o41;
-public final class a implements org.telegram.ui.ActionBar.q1, v10 {
-    public final k f53092a;
+public final class a implements org.telegram.ui.ActionBar.q1, w10 {
+    public final k f53096a;
 
     public a(k kVar) {
-        this.f53092a = kVar;
+        this.f53096a = kVar;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        k kVar = this.f53092a;
+        k kVar = this.f53096a;
         kVar.getContext().getSharedPreferences("webhistory", 0).edit().remove("queries_json").apply();
-        kVar.f53215x.f35796g3.O(true);
+        kVar.f53219x.f35790g3.O(true);
     }
 
     @Override
@@ -29,16 +29,16 @@ public final class a implements org.telegram.ui.ActionBar.q1, v10 {
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
         boolean H = o41Var.H(d.class);
-        k kVar = this.f53092a;
+        k kVar = this.f53096a;
         if (H) {
-            String charSequence = o41Var.f38098m.toString();
+            String charSequence = o41Var.f38092m.toString();
             org.telegram.ui.x xVar = kVar.M;
             if (xVar != null) {
                 xVar.a(charSequence);
             }
         } else if (o41Var.H(g.class) && (qVar = kVar.O) != null) {
             try {
-                qVar.a(k.a((fj) o41Var.I));
+                qVar.a(k.a((gj) o41Var.I));
             } catch (Exception e10) {
                 a8.g(e10, true);
             }

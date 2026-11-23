@@ -6,45 +6,45 @@ import android.view.View;
 import java.util.ArrayList;
 public final class co extends org.telegram.ui.Cells.a9 {
     public final jo E;
-    public ValueAnimator f46628x;
-    public int f46629y;
+    public ValueAnimator f46631x;
+    public int f46632y;
 
     public co(jo joVar, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(12, context, h6Var);
         this.E = joVar;
-        this.f46629y = -1;
+        this.f46632y = -1;
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        if (this.f46629y != -1) {
+        if (this.f46632y != -1) {
             jo joVar = this.E;
-            if (joVar.f49045n != null) {
+            if (joVar.f49049n != null) {
                 ArrayList arrayList = new ArrayList();
                 boolean z11 = false;
-                for (int i13 = 0; i13 < joVar.f49045n.getChildCount(); i13++) {
-                    View childAt = joVar.f49045n.getChildAt(i13);
+                for (int i13 = 0; i13 < joVar.f49049n.getChildCount(); i13++) {
+                    View childAt = joVar.f49049n.getChildAt(i13);
                     if (z11) {
                         arrayList.add(childAt);
                     } else if (childAt == this) {
                         z11 = true;
                     }
                 }
-                float height = this.f46629y - getHeight();
-                ValueAnimator valueAnimator = this.f46628x;
+                float height = this.f46632y - getHeight();
+                ValueAnimator valueAnimator = this.f46631x;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.f46628x = ofFloat;
+                this.f46631x = ofFloat;
                 ofFloat.addUpdateListener(new rf(arrayList, height, 1));
-                this.f46628x.setInterpolator(org.telegram.ui.Components.nr.h);
-                this.f46628x.setDuration(350L);
-                this.f46628x.start();
+                this.f46631x.setInterpolator(org.telegram.ui.Components.nr.h);
+                this.f46631x.setDuration(350L);
+                this.f46631x.start();
             }
         }
-        this.f46629y = getHeight();
+        this.f46632y = getHeight();
     }
 
     @Override
@@ -56,12 +56,12 @@ public final class co extends org.telegram.ui.Cells.a9 {
             jo joVar = this.E;
             if (indexOf >= 0) {
                 charSequence.replace(indexOf, indexOf + 1, " ");
-                charSequence.setSpan(new org.telegram.ui.Components.k00(org.telegram.ui.ActionBar.m6.f29599p7, jo.Z(joVar)), 0, indexOf, 33);
+                charSequence.setSpan(new org.telegram.ui.Components.k00(org.telegram.ui.ActionBar.m6.f29602p7, jo.Z(joVar)), 0, indexOf, 33);
             }
             org.telegram.ui.Components.l41[] l41VarArr = (org.telegram.ui.Components.l41[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.l41.class);
-            ah.i iVar = joVar.f49030b;
+            ah.i iVar = joVar.f49034b;
             if (iVar != null && iVar.getText() != null) {
-                str = joVar.f49030b.getText().toString();
+                str = joVar.f49034b.getText().toString();
             } else {
                 str = "";
             }

@@ -9,7 +9,7 @@ import android.graphics.RuntimeShader;
 import android.os.Build;
 import android.os.SystemClock;
 import java.util.Random;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.o10;
 import org.telegram.ui.Components.yu0;
 public final class u0 {
     public static float U;
@@ -33,57 +33,57 @@ public final class u0 {
     public final boolean[] R;
     public final boolean[] S;
     public float T;
-    public final Paint f1522a;
-    public final Object f1523b;
-    public final Paint f1524c;
+    public final Paint f1534a;
+    public final Object f1535b;
+    public final Paint f1536c;
     public final Paint d;
-    public final Matrix f1525e;
-    public final Paint f1526f;
-    public final RectF f1527g;
+    public final Matrix f1537e;
+    public final Paint f1538f;
+    public final RectF f1539g;
     public boolean h;
-    public final long f1528i;
-    public final float[] f1529j;
-    public final float[] f1530k;
-    public final float[] f1531l;
-    public final float[] f1532m;
-    public final float[] f1533n;
-    public final float[] f1534o;
-    public final float[] f1535p;
-    public final float[] f1536q;
-    public final int[] f1537r;
-    public final boolean[] f1538s;
-    public final Random f1539t;
-    public long f1540u;
+    public final long f1540i;
+    public final float[] f1541j;
+    public final float[] f1542k;
+    public final float[] f1543l;
+    public final float[] f1544m;
+    public final float[] f1545n;
+    public final float[] f1546o;
+    public final float[] f1547p;
+    public final float[] f1548q;
+    public final int[] f1549r;
+    public final boolean[] f1550s;
+    public final Random f1551t;
+    public long f1552u;
     public float v;
-    public float f1541w;
-    public final Path f1542x;
-    public final RectF f1543y;
-    public final float[] f1544z;
+    public float f1553w;
+    public final Path f1554x;
+    public final RectF f1555y;
+    public final float[] f1556z;
 
     public u0() {
         Paint paint = new Paint(1);
-        this.f1522a = paint;
-        this.f1524c = new Paint(1);
+        this.f1534a = paint;
+        this.f1536c = new Paint(1);
         this.d = new Paint(1);
-        this.f1525e = new Matrix();
-        this.f1526f = new Paint(1);
-        this.f1527g = new RectF();
+        this.f1537e = new Matrix();
+        this.f1538f = new Paint(1);
+        this.f1539g = new RectF();
         this.h = true;
-        this.f1528i = SystemClock.uptimeMillis();
-        this.f1529j = new float[140];
-        this.f1530k = new float[140];
-        this.f1531l = new float[140];
-        this.f1532m = new float[140];
-        this.f1533n = new float[140];
-        this.f1534o = new float[140];
-        this.f1535p = new float[140];
-        this.f1536q = new float[140];
-        this.f1537r = new int[140];
-        this.f1538s = new boolean[140];
-        this.f1539t = new Random();
-        this.f1542x = new Path();
-        this.f1543y = new RectF();
-        this.f1544z = new float[]{0.08f, 0.73f, 0.76f, 0.1f, 0.74f, 0.52f, 0.19f, 0.6f, 0.93f, 0.72f, 0.98f, 0.9f};
+        this.f1540i = SystemClock.uptimeMillis();
+        this.f1541j = new float[140];
+        this.f1542k = new float[140];
+        this.f1543l = new float[140];
+        this.f1544m = new float[140];
+        this.f1545n = new float[140];
+        this.f1546o = new float[140];
+        this.f1547p = new float[140];
+        this.f1548q = new float[140];
+        this.f1549r = new int[140];
+        this.f1550s = new boolean[140];
+        this.f1551t = new Random();
+        this.f1554x = new Path();
+        this.f1555y = new RectF();
+        this.f1556z = new float[]{0.08f, 0.73f, 0.76f, 0.1f, 0.74f, 0.52f, 0.19f, 0.6f, 0.93f, 0.72f, 0.98f, 0.9f};
         this.A = new int[]{-15420490, -14699385, -13787165};
         this.B = new int[7];
         this.C = -1.0f;
@@ -105,13 +105,13 @@ public final class u0 {
             try {
                 t0.c();
                 RuntimeShader a10 = t0.a();
-                this.f1523b = a10;
+                this.f1535b = a10;
                 paint.setShader(a10);
             } catch (Throwable unused) {
-                this.f1523b = null;
+                this.f1535b = null;
             }
         }
-        Paint paint2 = this.f1524c;
+        Paint paint2 = this.f1536c;
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         this.d.setStyle(style);
@@ -193,7 +193,7 @@ public final class u0 {
         if (rectF == null || rectF.width() <= 0.0f || rectF.height() <= 0.0f) {
             return 0;
         }
-        float uptimeMillis = ((float) ((SystemClock.uptimeMillis() - this.f1528i) % 3600000)) / 1000.0f;
+        float uptimeMillis = ((float) ((SystemClock.uptimeMillis() - this.f1540i) % 3600000)) / 1000.0f;
         if (this.h) {
             c10 = 1.0f;
         } else {
@@ -213,7 +213,7 @@ public final class u0 {
             f17 = 1.0f;
             f13 = 1.0f;
         } else {
-            float[] fArr = this.f1544z;
+            float[] fArr = this.f1556z;
             float f22 = fArr[0];
             f12 = fArr[1];
             f13 = fArr[2];
@@ -248,7 +248,7 @@ public final class u0 {
             this.R[i7] = false;
         }
         for (int i10 = 0; i10 < 140; i10++) {
-            this.f1538s[i10] = false;
+            this.f1550s[i10] = false;
         }
     }
 
@@ -265,7 +265,7 @@ public final class u0 {
         float f15;
         float f16;
         v0.f();
-        float[] fArr = v0.f1569f;
+        float[] fArr = v0.f1571f;
         float f17 = fArr[2];
         float f18 = fArr[1];
         float f19 = v0.i(i7)[0];
@@ -276,7 +276,7 @@ public final class u0 {
         } else {
             z10 = false;
         }
-        int i12 = v0.f1568e;
+        int i12 = v0.f1570e;
         if (i12 != 1) {
             if (i12 != 2) {
                 if (i12 != 3) {
@@ -293,7 +293,7 @@ public final class u0 {
                         f15 = v0.d(f21);
                         f12 = v0.d(f22);
                         c10 = 1;
-                        f17 = n10.A(f19, 0.16f, 0.95f, f17);
+                        f17 = o10.A(f19, 0.16f, 0.95f, f17);
                     } else {
                         c10 = 1;
                         f15 = h7 - 28.0f;
@@ -331,13 +331,13 @@ public final class u0 {
         iArr[c10] = v0.a(f17, f18, f11);
         iArr[2] = v0.a(f17, f18, f12);
         iArr[3] = v0.g(Math.min(0.98f, f17 + 0.12f), 0.5f * f18, f10);
-        if (v0.f1568e != 0) {
+        if (v0.f1570e != 0) {
             f13 = Math.min(0.62f, f17 - 0.1f);
         } else {
             f18 = 0.2f;
             f13 = 0.55f;
             if (!z10) {
-                int i13 = v0.f1567c;
+                int i13 = v0.f1569c;
                 if (i13 == 0) {
                     f10 = fArr[0] + h;
                 } else if (i13 != 2) {
@@ -354,7 +354,7 @@ public final class u0 {
         iArr[6] = v0.g(0.58f, 0.18f, max + 4.0f);
         int i14 = 0;
         while (true) {
-            float[] fArr2 = this.f1544z;
+            float[] fArr2 = this.f1556z;
             if (i14 < 3) {
                 int i15 = i14 * 3;
                 fArr2[i15] = Color.red(iArr[i14]) / 255.0f;
@@ -385,9 +385,9 @@ public final class u0 {
         float f16 = -1.0f;
         int i10 = 0;
         while (true) {
-            fArr = this.f1533n;
-            fArr2 = this.f1534o;
-            zArr = this.f1538s;
+            fArr = this.f1545n;
+            fArr2 = this.f1546o;
+            zArr = this.f1550s;
             if (i7 < 140) {
                 if (!zArr[i7]) {
                     break;
@@ -403,16 +403,16 @@ public final class u0 {
                 break;
             }
         }
-        this.f1529j[i7] = f10;
-        this.f1530k[i7] = f11;
-        this.f1531l[i7] = f12;
-        this.f1532m[i7] = f13;
+        this.f1541j[i7] = f10;
+        this.f1542k[i7] = f11;
+        this.f1543l[i7] = f12;
+        this.f1544m[i7] = f13;
         fArr[i7] = f14;
         fArr2[i7] = 0.0f;
-        this.f1535p[i7] = org.telegram.messenger.g0.L(f15);
-        Random random = this.f1539t;
-        this.f1536q[i7] = random.nextFloat() * 6.28f;
-        this.f1537r[i7] = random.nextInt(3);
+        this.f1547p[i7] = org.telegram.messenger.g0.L(f15);
+        Random random = this.f1551t;
+        this.f1548q[i7] = random.nextFloat() * 6.28f;
+        this.f1549r[i7] = random.nextInt(3);
         zArr[i7] = true;
     }
 }

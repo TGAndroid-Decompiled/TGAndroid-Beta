@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.content.Context;
 public final class o6 extends org.telegram.ui.ActionBar.w2 {
     public static final int n1 = 0;
-    public final int f50484m1;
+    public final int f50488m1;
 
     public o6(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
         super(i7, context, h6Var, z10);
-        this.f50484m1 = 2;
+        this.f50488m1 = 2;
     }
 
     @Override
     public boolean I() {
-        switch (this.f50484m1) {
+        switch (this.f50488m1) {
             case 0:
                 return false;
             default:
@@ -22,11 +22,11 @@ public final class o6 extends org.telegram.ui.ActionBar.w2 {
 
     @Override
     public void s0() {
-        switch (this.f50484m1) {
+        switch (this.f50488m1) {
             case 2:
                 super.s0();
                 try {
-                    int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29451h5, this.J0);
+                    int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, this.J0);
                     if (this.H0 != w02) {
                         P(w02);
                         return;
@@ -44,6 +44,6 @@ public final class o6 extends org.telegram.ui.ActionBar.w2 {
 
     public o6(int i7, Context context, boolean z10) {
         super(context, z10);
-        this.f50484m1 = i7;
+        this.f50488m1 = i7;
     }
 }

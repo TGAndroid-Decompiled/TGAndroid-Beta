@@ -3,14 +3,14 @@ package oe;
 import c8.w9;
 import java.util.List;
 public final class g implements me.d {
-    public final me.d f21822a;
-    public final me.d f21823b;
+    public final me.d f21825a;
+    public final me.d f21826b;
 
     public g(me.d keyDesc, me.d valueDesc) {
         kotlin.jvm.internal.j.e(keyDesc, "keyDesc");
         kotlin.jvm.internal.j.e(valueDesc, "valueDesc");
-        this.f21822a = keyDesc;
-        this.f21823b = valueDesc;
+        this.f21825a = keyDesc;
+        this.f21826b = valueDesc;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class g implements me.d {
         if (this != obj) {
             if (obj instanceof g) {
                 g gVar = (g) obj;
-                if (!kotlin.jvm.internal.j.a(this.f21822a, gVar.f21822a) || !kotlin.jvm.internal.j.a(this.f21823b, gVar.f21823b)) {
+                if (!kotlin.jvm.internal.j.a(this.f21825a, gVar.f21825a) || !kotlin.jvm.internal.j.a(this.f21826b, gVar.f21826b)) {
                     return false;
                 }
                 return true;
@@ -64,19 +64,19 @@ public final class g implements me.d {
 
     @Override
     public final List getAnnotations() {
-        return hd.n.f14174a;
+        return hd.n.f14177a;
     }
 
     @Override
     public final List h(int i7) {
         if (i7 >= 0) {
-            return hd.n.f14174a;
+            return hd.n.f14177a;
         }
         throw new IllegalArgumentException(i5.c.j(i7, "Illegal index ", ", kotlin.collections.LinkedHashMap expects only non-negative indices").toString());
     }
 
     public final int hashCode() {
-        return this.f21823b.hashCode() + ((this.f21822a.hashCode() + 710441009) * 31);
+        return this.f21826b.hashCode() + ((this.f21825a.hashCode() + 710441009) * 31);
     }
 
     @Override
@@ -85,11 +85,11 @@ public final class g implements me.d {
             int i10 = i7 % 2;
             if (i10 != 0) {
                 if (i10 == 1) {
-                    return this.f21823b;
+                    return this.f21826b;
                 }
                 throw new IllegalStateException("Unreached");
             }
-            return this.f21822a;
+            return this.f21825a;
         }
         throw new IllegalArgumentException(i5.c.j(i7, "Illegal index ", ", kotlin.collections.LinkedHashMap expects only non-negative indices").toString());
     }
@@ -108,6 +108,6 @@ public final class g implements me.d {
     }
 
     public final String toString() {
-        return "kotlin.collections.LinkedHashMap(" + this.f21822a + ", " + this.f21823b + ')';
+        return "kotlin.collections.LinkedHashMap(" + this.f21825a + ", " + this.f21826b + ')';
     }
 }

@@ -1,9 +1,9 @@
 package org.telegram.ui.Components;
 public class cs0 extends ek0 implements fi.w6 {
-    public int f34299f3;
-    public int f34300g3;
-    public int f34301h3;
-    public int f34302i3;
+    public int f34293f3;
+    public int f34294g3;
+    public int f34295h3;
+    public int f34296i3;
     public boolean j3;
 
     @Override
@@ -13,14 +13,14 @@ public class cs0 extends ek0 implements fi.w6 {
             iArr[1] = getMeasuredHeight() - getPaddingBottom();
             return;
         }
-        iArr[0] = (getPaddingTop() - org.telegram.messenger.g0.L(2.0f)) - this.f34301h3;
-        iArr[1] = (getMeasuredHeight() - getPaddingBottom()) - this.f34302i3;
+        iArr[0] = (getPaddingTop() - org.telegram.messenger.g0.L(2.0f)) - this.f34295h3;
+        iArr[1] = (getMeasuredHeight() - getPaddingBottom()) - this.f34296i3;
     }
 
     @Override
     public final void setPadding(int i7, int i10, int i11, int i12) {
-        this.f34299f3 = i10;
-        this.f34300g3 = i12;
+        this.f34293f3 = i10;
+        this.f34294g3 = i12;
         super.setPadding(i7, i10, i11, i12);
     }
 }

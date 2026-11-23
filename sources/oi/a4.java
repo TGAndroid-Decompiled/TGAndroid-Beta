@@ -3,11 +3,11 @@ package oi;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class a4 {
-    public String f21959a;
-    public boolean f21960b;
-    public String f21961c;
+    public String f21962a;
+    public boolean f21963b;
+    public String f21964c;
     public HashMap d;
-    public final ArrayList f21962e = new ArrayList();
+    public final ArrayList f21965e = new ArrayList();
 
     public final String a(String str) {
         HashMap hashMap = this.d;

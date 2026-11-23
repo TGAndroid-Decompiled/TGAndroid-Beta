@@ -53,7 +53,7 @@ public interface ls {
 
     boolean h();
 
-    void i(org.telegram.messenger.sy syVar);
+    void i(org.telegram.messenger.ty tyVar);
 
     boolean j();
 
@@ -87,5 +87,5 @@ public interface ls {
 
     void y(CharSequence charSequence, String str, org.telegram.ui.Components.rh rhVar);
 
-    org.telegram.messenger.fj z();
+    org.telegram.messenger.gj z();
 }

@@ -10,32 +10,32 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.o10;
 import org.telegram.ui.Components.nr;
 public final class o extends View {
-    public final Paint f57342a;
-    public final int[] f57343b;
-    public final Paint f57344c;
+    public final Paint f57346a;
+    public final int[] f57347b;
+    public final Paint f57348c;
     public final LongSparseArray d;
-    public long f57345e;
-    public final Path f57346f;
+    public long f57349e;
+    public final Path f57350f;
     public final float[] h;
-    public final HashMap f57347n;
-    public final q f57348r;
+    public final HashMap f57351n;
+    public final q f57352r;
 
     public o(q qVar, Context context) {
         super(context);
         int f10;
-        this.f57348r = qVar;
-        this.f57342a = new Paint(1);
-        this.f57343b = new int[]{-16735784, -16752387, -11788361, -6804548, -4707235, -180718, -38656, -152832, -211200, -198077, -2495689, -8996289};
+        this.f57352r = qVar;
+        this.f57346a = new Paint(1);
+        this.f57347b = new int[]{-16735784, -16752387, -11788361, -6804548, -4707235, -180718, -38656, -152832, -211200, -198077, -2495689, -8996289};
         Paint paint = new Paint(1);
-        this.f57344c = paint;
+        this.f57348c = paint;
         this.d = new LongSparseArray();
-        this.f57345e = Long.MIN_VALUE;
-        this.f57346f = new Path();
+        this.f57349e = Long.MIN_VALUE;
+        this.f57350f = new Path();
         this.h = new float[8];
-        this.f57347n = new HashMap();
+        this.f57351n = new HashMap();
         setPadding(org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(3.0f));
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
@@ -44,21 +44,21 @@ public final class o extends View {
         for (int i7 = 0; i7 < 12; i7++) {
             for (int i10 = 0; i10 < 10; i10++) {
                 if (i10 == 0) {
-                    this.f57347n.put(Long.valueOf((i7 << 16) + i10), Integer.valueOf(i0.a.f(i7 / 11.0f, -1, -16777216)));
+                    this.f57351n.put(Long.valueOf((i7 << 16) + i10), Integer.valueOf(i0.a.f(i7 / 11.0f, -1, -16777216)));
                 } else {
                     if (i10 < 6) {
-                        f10 = i0.a.f(((5 - i10) / 4.0f) * 0.5f, this.f57343b[i7], -16777216);
+                        f10 = i0.a.f(((5 - i10) / 4.0f) * 0.5f, this.f57347b[i7], -16777216);
                     } else {
-                        f10 = i0.a.f(n10.w(9 - i10, 5.0f, 0.5f, 0.5f), this.f57343b[i7], -1);
+                        f10 = i0.a.f(o10.w(9 - i10, 5.0f, 0.5f, 0.5f), this.f57347b[i7], -1);
                     }
-                    this.f57347n.put(Long.valueOf((i7 << 16) + i10), Integer.valueOf(f10));
+                    this.f57351n.put(Long.valueOf((i7 << 16) + i10), Integer.valueOf(f10));
                 }
             }
         }
     }
 
     public final void a(int i7) {
-        for (Map.Entry entry : this.f57347n.entrySet()) {
+        for (Map.Entry entry : this.f57351n.entrySet()) {
             if (((Integer) entry.getValue()).intValue() == i7) {
                 long longValue = ((Long) entry.getKey()).longValue();
                 int i10 = (int) (longValue >> 16);
@@ -66,16 +66,16 @@ public final class o extends View {
                 return;
             }
         }
-        this.f57345e = Long.MIN_VALUE;
+        this.f57349e = Long.MIN_VALUE;
         invalidate();
     }
 
     public final void b(int i7, int i10) {
         long j3 = (i7 << 16) + i10;
-        this.f57345e = j3;
+        this.f57349e = j3;
         LongSparseArray longSparseArray = this.d;
         if (longSparseArray.get(j3) == null) {
-            longSparseArray.put(this.f57345e, Float.valueOf(0.0f));
+            longSparseArray.put(this.f57349e, Float.valueOf(0.0f));
         }
         invalidate();
     }
@@ -83,11 +83,11 @@ public final class o extends View {
     public final void c(MotionEvent motionEvent) {
         int x10 = (int) ((motionEvent.getX() - getPaddingLeft()) / (((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12));
         int y10 = (int) (motionEvent.getY() / (((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10));
-        Integer num = (Integer) this.f57347n.get(Long.valueOf((x10 << 16) + y10));
+        Integer num = (Integer) this.f57351n.get(Long.valueOf((x10 << 16) + y10));
         if (num != null) {
             int intValue = num.intValue();
-            int i7 = q.f57358u1;
-            this.f57348r.J0(intValue, 3);
+            int i7 = q.f57362u1;
+            this.f57352r.J0(intValue, 3);
             b(x10, y10);
         }
     }
@@ -105,7 +105,7 @@ public final class o extends View {
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
         canvas.save();
-        Path path = this.f57348r.f57361p1;
+        Path path = this.f57352r.f57365p1;
         path.rewind();
         float f14 = 10.0f;
         path.addRoundRect(rectF, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), Path.Direction.CW);
@@ -114,7 +114,7 @@ public final class o extends View {
         float height = ((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10.0f;
         int i10 = 0;
         while (true) {
-            hashMap = this.f57347n;
+            hashMap = this.f57351n;
             if (i10 >= 12) {
                 break;
             }
@@ -122,7 +122,7 @@ public final class o extends View {
                 Integer num = (Integer) hashMap.get(Long.valueOf((i10 << 16) + i11));
                 if (num != null) {
                     int intValue = num.intValue();
-                    Paint paint = this.f57342a;
+                    Paint paint = this.f57346a;
                     paint.setColor(intValue);
                     RectF rectF2 = org.telegram.messenger.g0.P;
                     rectF2.set((i10 * width) + getPaddingLeft(), (i11 * height) + getPaddingTop(), ((i10 + 1) * width) + getPaddingLeft(), ((i11 + 1) * height) + getPaddingTop());
@@ -138,7 +138,7 @@ public final class o extends View {
             if (i12 < longSparseArray.size()) {
                 long keyAt = longSparseArray.keyAt(i12);
                 float floatValue = ((Float) longSparseArray.valueAt(i12)).floatValue();
-                if (this.f57345e == keyAt) {
+                if (this.f57349e == keyAt) {
                     max = Math.min(1.0f, floatValue + 0.045714285f);
                 } else {
                     max = Math.max(0.0f, floatValue - 0.10666667f);
@@ -147,7 +147,7 @@ public final class o extends View {
                 int i13 = (int) (keyAt >> 16);
                 int i14 = (int) (keyAt - (i13 << 16));
                 Integer num2 = (Integer) hashMap.get(Long.valueOf(keyAt));
-                Paint paint2 = this.f57344c;
+                Paint paint2 = this.f57348c;
                 if (num2 != null) {
                     if (org.telegram.messenger.g0.B(num2.intValue()) > 0.721f) {
                         i7 = -15658735;
@@ -157,7 +157,7 @@ public final class o extends View {
                     paint2.setColor(i7);
                 }
                 paint2.setStrokeWidth(nr.h.getInterpolation(max) * org.telegram.messenger.g0.L(3.0f));
-                Path path2 = this.f57346f;
+                Path path2 = this.f57350f;
                 path2.rewind();
                 RectF rectF3 = org.telegram.messenger.g0.P;
                 float f16 = width;
@@ -195,7 +195,7 @@ public final class o extends View {
                 fArr[6] = f13;
                 path2.addRoundRect(rectF3, fArr, Path.Direction.CW);
                 canvas.drawPath(path2, paint2);
-                if (max <= 0.0f && this.f57345e != keyAt) {
+                if (max <= 0.0f && this.f57349e != keyAt) {
                     longSparseArray.removeAt(i12);
                     i12--;
                     invalidate();

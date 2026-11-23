@@ -4,25 +4,25 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.c51;
 public final class u2 implements Runnable {
-    public final int f9880a = 0;
-    public final TLRPC.Chat f9881b;
+    public final int f9883a = 0;
+    public final TLRPC.Chat f9884b;
 
     public u2(f6 f6Var, TLRPC.Chat chat) {
-        this.f9881b = chat;
+        this.f9884b = chat;
     }
 
     @Override
     public final void run() {
-        switch (this.f9880a) {
+        switch (this.f9883a) {
             case 0:
-                f6.p2(c51.g0(this.f9881b, true));
+                f6.p2(c51.g0(this.f9884b, true));
                 return;
             default:
-                TLRPC.Chat chat = this.f9881b;
+                TLRPC.Chat chat = this.f9884b;
                 if (chat != null) {
                     ?? obj = new Object();
-                    obj.f28902a = true;
-                    LaunchActivity.Q().showAsSheet(new org.telegram.ui.t5(-chat.f28431id), obj);
+                    obj.f28905a = true;
+                    LaunchActivity.Q().showAsSheet(new org.telegram.ui.t5(-chat.f28434id), obj);
                     return;
                 }
                 return;
@@ -30,6 +30,6 @@ public final class u2 implements Runnable {
     }
 
     public u2(TLRPC.Chat chat) {
-        this.f9881b = chat;
+        this.f9884b = chat;
     }
 }

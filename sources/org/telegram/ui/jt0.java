@@ -2,13 +2,13 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class jt0 implements org.telegram.messenger.x10 {
-    public final int f49091a;
-    public final kt0 f49092b;
+public final class jt0 implements org.telegram.messenger.y10 {
+    public final int f49095a;
+    public final kt0 f49096b;
 
     public jt0(kt0 kt0Var, int i7) {
-        this.f49091a = i7;
-        this.f49092b = kt0Var;
+        this.f49095a = i7;
+        this.f49096b = kt0Var;
     }
 
     @Override
@@ -16,11 +16,11 @@ public final class jt0 implements org.telegram.messenger.x10 {
         TL_account.TL_birthday tL_birthday;
         int i7;
         int i10;
-        switch (this.f49091a) {
+        switch (this.f49095a) {
             case 0:
-                PrivacyControlActivity privacyControlActivity = this.f49092b.d;
+                PrivacyControlActivity privacyControlActivity = this.f49096b.d;
                 privacyControlActivity.N = ((Integer) obj).intValue();
-                org.telegram.messenger.g0.Y3(privacyControlActivity.f43513l0, privacyControlActivity.f43501c);
+                org.telegram.messenger.g0.Y3(privacyControlActivity.f43517l0, privacyControlActivity.f43505c);
                 privacyControlActivity.P0();
                 return;
             default:
@@ -28,7 +28,7 @@ public final class jt0 implements org.telegram.messenger.x10 {
                 TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                 updatebirthday.flags |= 1;
                 updatebirthday.birthday = tL_birthday2;
-                kt0 kt0Var = this.f49092b;
+                kt0 kt0Var = this.f49096b;
                 PrivacyControlActivity privacyControlActivity2 = kt0Var.d;
                 TLRPC.UserFull d2 = privacyControlActivity2.getMessagesController().d2(privacyControlActivity2.getUserConfig().e());
                 if (d2 != null) {
@@ -44,9 +44,9 @@ public final class jt0 implements org.telegram.messenger.x10 {
                 privacyControlActivity2.getMessagesController().o2();
                 privacyControlActivity2.getConnectionsManager().sendRequest(updatebirthday, new mo0(kt0Var, d2, tL_birthday, 1), 1024);
                 i7 = ((org.telegram.ui.ActionBar.g2) privacyControlActivity2).currentAccount;
-                org.telegram.messenger.mp.u1(i7).s4(0L, "BIRTHDAY_SETUP");
+                org.telegram.messenger.np.u1(i7).s4(0L, "BIRTHDAY_SETUP");
                 i10 = ((org.telegram.ui.ActionBar.g2) privacyControlActivity2).currentAccount;
-                org.telegram.messenger.ks.f(i10).k(312, new Object[0]);
+                org.telegram.messenger.ls.f(i10).k(312, new Object[0]);
                 privacyControlActivity2.Q0(true);
                 return;
         }

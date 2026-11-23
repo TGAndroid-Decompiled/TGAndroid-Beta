@@ -13,7 +13,7 @@ import c8.ra;
 import di.eb;
 import di.ua;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
@@ -42,7 +42,7 @@ public final class a extends LinearLayout {
                 d6 d6Var = (d6) this.f1056e;
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.d;
-                paint.setColor(m6.w0(m6.f29321a7, (h6) this.f1054b));
+                paint.setColor(m6.w0(m6.f29324a7, (h6) this.f1054b));
                 ek0 ek0Var = (ek0) this.f1055c;
                 float f10 = 1.0f;
                 if (ek0Var != null) {
@@ -93,7 +93,7 @@ public final class a extends LinearLayout {
         setOrientation(1);
         TextView textView = new TextView(context);
         this.f1054b = textView;
-        int i7 = m6.f29770y6;
+        int i7 = m6.f29773y6;
         t6.U(textView, i7, h6Var);
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);
@@ -102,12 +102,12 @@ public final class a extends LinearLayout {
         s sVar = new s(2, context, h6Var, true);
         this.f1055c = sVar;
         sVar.setMinWidth(g0.L(200.0f));
-        sVar.i(gd.N0(2131746521, null), false, true);
+        sVar.i(hd.N0(2131746521, null), false, true);
         addView(sVar, ma.r(-2, 44, 17));
         gi.j jVar = new gi.j(context, h6Var);
         this.d = jVar;
         t6.U(jVar, i7, h6Var);
-        jVar.setText(gd.N0(2131746507, null));
+        jVar.setText(hd.N0(2131746507, null));
         jVar.setTextSize(1, 14.0f);
         jVar.setTextAlignment(4);
         jVar.setGravity(17);
@@ -129,8 +129,8 @@ public final class a extends LinearLayout {
         frameLayout.addView(uaVar, ma.c(-1.0f, -1));
         vg.m mVar = new vg.m(context, 1, 2);
         this.f1054b = mVar;
-        vg.f fVar = mVar.f59501b;
-        fVar.f59485z = m6.Wk;
+        vg.f fVar = mVar.f59505b;
+        fVar.f59489z = m6.Wk;
         fVar.A = m6.Xk;
         fVar.b();
         mVar.setStarParticlesView(uaVar);
@@ -145,7 +145,7 @@ public final class a extends LinearLayout {
         TextView textView = new TextView(context);
         this.d = textView;
         i5.c.x(textView, 1, 20.0f);
-        int i10 = m6.f29486j5;
+        int i10 = m6.f29489j5;
         t6.U(textView, i10, h6Var);
         textView.setGravity(17);
         addView(textView, ma.t(-2, -2, 1, 0, 2, 0, 0));

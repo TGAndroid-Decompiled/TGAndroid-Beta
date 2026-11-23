@@ -2,30 +2,30 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class ka0 extends org.telegram.ui.Cells.k9 {
-    public final qa0 f36871w0;
+    public final qa0 f36874w0;
 
     public ka0(qa0 qa0Var) {
-        this.f36871w0 = qa0Var;
-        this.f32277g0 = qa0Var.f38864d0.G;
+        this.f36874w0 = qa0Var;
+        this.f32280g0 = qa0Var.f38858d0.G;
     }
 
     @Override
-    public final void I(int i7, int i10, org.telegram.messenger.fj fjVar) {
+    public final void I(int i7, int i10, org.telegram.messenger.gj gjVar) {
         org.telegram.ui.rm rmVar;
-        org.telegram.messenger.fj fjVar2;
-        qa0 qa0Var = this.f36871w0;
-        ka0 ka0Var = qa0Var.f38865e;
-        int i11 = ka0Var.v - ka0Var.f32297u;
-        wa0 wa0Var = qa0Var.f38864d0;
-        if (i11 > org.telegram.messenger.mp.u1(wa0Var.f41752x).f25777r4) {
+        org.telegram.messenger.gj gjVar2;
+        qa0 qa0Var = this.f36874w0;
+        ka0 ka0Var = qa0Var.f38859e;
+        int i11 = ka0Var.v - ka0Var.f32300u;
+        wa0 wa0Var = qa0Var.f38858d0;
+        if (i11 > org.telegram.messenger.np.u1(wa0Var.f41746x).f25948r4) {
             qa0Var.g();
             return;
         }
-        org.telegram.messenger.jj jjVar = wa0Var.d;
-        jjVar.f24895e = ka0Var.f32297u;
-        jjVar.f24896f = ka0Var.v;
-        org.telegram.messenger.fj c10 = qa0Var.c(fjVar);
-        if (c10 != null && ((rmVar = wa0Var.d.d) == null || rmVar.f51625m || (fjVar2 = rmVar.f51615a) == null || fjVar2.e1() != c10.e1())) {
+        org.telegram.messenger.kj kjVar = wa0Var.d;
+        kjVar.f25082e = ka0Var.f32300u;
+        kjVar.f25083f = ka0Var.v;
+        org.telegram.messenger.gj c10 = qa0Var.c(gjVar);
+        if (c10 != null && ((rmVar = wa0Var.d.d) == null || rmVar.f51629m || (gjVar2 = rmVar.f51619a) == null || gjVar2.e1() != c10.e1())) {
             wa0Var.d.d = org.telegram.ui.rm.b(i7, i10, c10);
         }
         wa0Var.b();
@@ -34,14 +34,14 @@ public final class ka0 extends org.telegram.ui.Cells.k9 {
 
     @Override
     public final boolean b() {
-        org.telegram.messenger.fj c10;
+        org.telegram.messenger.gj c10;
         TLRPC.Message message;
-        qa0 qa0Var = this.f36871w0;
-        if (qa0Var.f38858a == 0 && (c10 = qa0Var.c(null)) != null && (message = c10.f23993k) != null && message.rich_message != null) {
+        qa0 qa0Var = this.f36874w0;
+        if (qa0Var.f38852a == 0 && (c10 = qa0Var.c(null)) != null && (message = c10.f24213k) != null && message.rich_message != null) {
             return false;
         }
-        org.telegram.messenger.jj jjVar = qa0Var.f38864d0.d;
-        if (jjVar != null && jjVar.f24908s) {
+        org.telegram.messenger.kj kjVar = qa0Var.f38858d0.d;
+        if (kjVar != null && kjVar.f25095s) {
             return false;
         }
         return true;
@@ -49,12 +49,12 @@ public final class ka0 extends org.telegram.ui.Cells.k9 {
 
     @Override
     public final boolean e() {
-        org.telegram.messenger.fj c10;
+        org.telegram.messenger.gj c10;
         TLRPC.Message message;
-        qa0 qa0Var = this.f36871w0;
-        int i7 = qa0Var.f38858a;
-        if (i7 == 0 && !qa0Var.f38864d0.d.f24898i) {
-            if (i7 != 0 || (c10 = qa0Var.c(null)) == null || (message = c10.f23993k) == null || message.rich_message == null || org.telegram.messenger.iv.c(qa0Var.c(null))) {
+        qa0 qa0Var = this.f36874w0;
+        int i7 = qa0Var.f38852a;
+        if (i7 == 0 && !qa0Var.f38858d0.d.f25085i) {
+            if (i7 != 0 || (c10 = qa0Var.c(null)) == null || (message = c10.f24213k) == null || message.rich_message == null || org.telegram.messenger.jv.c(qa0Var.c(null))) {
                 return true;
             }
             return false;
@@ -64,22 +64,22 @@ public final class ka0 extends org.telegram.ui.Cells.k9 {
 
     @Override
     public final org.telegram.ui.ActionBar.h6 q() {
-        return this.f32277g0;
+        return this.f32280g0;
     }
 
     @Override
     public final void w() {
         super.w();
-        di.b1 b1Var = this.f36871w0.f38866f;
+        di.b1 b1Var = this.f36874w0.f38860f;
         if (b1Var != null) {
             b1Var.invalidate();
         }
     }
 
     @Override
-    public final boolean z(org.telegram.messenger.fj fjVar) {
-        qa0 qa0Var = this.f36871w0;
-        if (qa0Var.f38858a == 0 && !qa0Var.f38864d0.d.f24898i && x()) {
+    public final boolean z(org.telegram.messenger.gj gjVar) {
+        qa0 qa0Var = this.f36874w0;
+        if (qa0Var.f38852a == 0 && !qa0Var.f38858d0.d.f25085i && x()) {
             return true;
         }
         return false;

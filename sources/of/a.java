@@ -6,7 +6,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ThreadPoolExecutor;
 import org.telegram.messenger.a8;
 public final class a extends ThreadPoolExecutor implements AutoCloseable {
-    public final b0 f21849a;
+    public final b0 f21852a;
 
     public a(com.google.android.gms.internal.cast.b0 r8, java.util.concurrent.PriorityBlockingQueue r9) {
         throw new UnsupportedOperationException("Method not decompiled: of.a.<init>(com.google.android.gms.internal.cast.b0, java.util.concurrent.PriorityBlockingQueue):void");
@@ -14,7 +14,7 @@ public final class a extends ThreadPoolExecutor implements AutoCloseable {
 
     @Override
     public final void beforeExecute(Thread thread, Runnable runnable) {
-        CountDownLatch countDownLatch = (CountDownLatch) this.f21849a.f6516c;
+        CountDownLatch countDownLatch = (CountDownLatch) this.f21852a.f6519c;
         if (countDownLatch != null) {
             try {
                 countDownLatch.await();

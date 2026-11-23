@@ -9,7 +9,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.o41;
 public final class d4 extends n41 {
-    public static final int f44073b = 0;
+    public static final int f44077b = 0;
 
     static {
         n41.h(new n41());
@@ -20,7 +20,7 @@ public final class d4 extends n41 {
         o41 K = o41.K(d4.class);
         c4 c4Var = new c4(wallettransaction);
         c4Var.set(wallettransaction);
-        c4Var.f28694id = wallettransaction.f28694id;
+        c4Var.f28697id = wallettransaction.f28697id;
         c4Var.random_id = wallettransaction.random_id;
         c4Var.gasless = wallettransaction.gasless;
         c4Var.gaslessMessageBodyHash = wallettransaction.gaslessMessageBodyHash;
@@ -34,7 +34,7 @@ public final class d4 extends n41 {
         } else {
             a10 = e4Var.a(walletTransactionPeer.address);
         }
-        K.f38098m = a10;
+        K.f38092m = a10;
         return K;
     }
 
@@ -42,12 +42,12 @@ public final class d4 extends n41 {
         TL_wallet.walletTransaction wallettransaction3;
         TL_wallet.walletTransaction wallettransaction4;
         if (wallettransaction instanceof c4) {
-            wallettransaction3 = ((c4) wallettransaction).f44027a;
+            wallettransaction3 = ((c4) wallettransaction).f44031a;
         } else {
             wallettransaction3 = wallettransaction;
         }
         if (wallettransaction2 instanceof c4) {
-            wallettransaction4 = ((c4) wallettransaction2).f44027a;
+            wallettransaction4 = ((c4) wallettransaction2).f44031a;
         } else {
             wallettransaction4 = wallettransaction2;
         }

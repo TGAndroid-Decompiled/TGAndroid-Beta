@@ -12,65 +12,65 @@ import h9.t1;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.ui.LaunchActivity;
 public final class r {
-    public static final AtomicReference f55454n = new AtomicReference(null);
-    public final Context f55455a;
-    public final e2.c1 f55456b;
-    public String f55457c;
+    public static final AtomicReference f55458n = new AtomicReference(null);
+    public final Context f55459a;
+    public final e2.c1 f55460b;
+    public String f55461c;
     public final w7.s d;
-    public final Bundle f55458e;
-    public final Bundle f55459f;
-    public h2.d f55460g;
+    public final Bundle f55462e;
+    public final Bundle f55463f;
+    public h2.d f55464g;
     public final boolean h;
-    public final t1 f55461i;
-    public final t1 f55462j;
-    public final t1 f55463k;
-    public final boolean f55464l;
-    public boolean f55465m;
+    public final t1 f55465i;
+    public final t1 f55466j;
+    public final t1 f55467k;
+    public final boolean f55468l;
+    public boolean f55469m;
 
     public r(LaunchActivity launchActivity, e2.c1 c1Var) {
         w7.s sVar = new w7.s(20);
         Context applicationContext = launchActivity.getApplicationContext();
         applicationContext.getClass();
-        this.f55455a = applicationContext;
-        this.f55456b = c1Var;
+        this.f55459a = applicationContext;
+        this.f55460b = c1Var;
         la.f(c1Var.P());
-        this.f55457c = "";
+        this.f55461c = "";
         this.d = sVar;
-        this.f55458e = new Bundle();
-        this.f55459f = new Bundle();
-        h9.g0 g0Var = h9.i0.f14032b;
-        t1 t1Var = t1.f14100e;
-        this.f55461i = t1Var;
-        this.f55462j = t1Var;
+        this.f55462e = new Bundle();
+        this.f55463f = new Bundle();
+        h9.g0 g0Var = h9.i0.f14035b;
+        t1 t1Var = t1.f14103e;
+        this.f55465i = t1Var;
+        this.f55466j = t1Var;
         this.h = true;
-        this.f55464l = true;
-        this.f55463k = t1Var;
+        this.f55468l = true;
+        this.f55467k = t1Var;
     }
 
     public final x a() {
-        la.p(!this.f55465m);
-        this.f55465m = true;
-        Object obj = x.f55492b;
+        la.p(!this.f55469m);
+        this.f55469m = true;
+        Object obj = x.f55496b;
         int intValue = ((Integer) e0.C.get()).intValue();
         int i7 = Build.VERSION.SDK_INT;
-        Context context = this.f55455a;
+        Context context = this.f55459a;
         if (i7 < 27) {
             intValue = Math.max(intValue, (int) TypedValue.applyDimension(1, 320.0f, context.getResources().getDisplayMetrics()));
         }
-        h2.d dVar = this.f55460g;
+        h2.d dVar = this.f55464g;
         if (dVar == null) {
             ?? obj2 = new Object();
-            obj2.f3368c = context;
-            obj2.f3367b = -1;
-            obj2.f3367b = intValue;
-            obj2.f3366a = true;
-            this.f55460g = new j2.i(obj2);
+            obj2.f3375c = context;
+            obj2.f3374b = -1;
+            obj2.f3374b = intValue;
+            obj2.f3373a = true;
+            this.f55464g = new j2.i(obj2);
         } else {
-            this.f55460g = new b3.j(dVar, intValue, 10);
+            this.f55464g = new b3.j(dVar, intValue, 10);
         }
         if (i7 == 29) {
-            h2.d dVar2 = this.f55460g;
-            AtomicReference atomicReference = f55454n;
+            h2.d dVar2 = this.f55464g;
+            AtomicReference atomicReference = f55458n;
             l9.a aVar = (l9.a) atomicReference.get();
             if (aVar == null) {
                 Display defaultDisplay = ((WindowManager) context.getSystemService(WindowManager.class)).getDefaultDisplay();
@@ -85,9 +85,9 @@ public final class r {
                 atomicReference.set(aVar2);
                 aVar = aVar2;
             }
-            this.f55460g = new ji.l(20, dVar2, aVar);
+            this.f55464g = new ji.l(20, dVar2, aVar);
         }
-        this.f55460g = new k8.a(this.f55460g);
-        return new x(this.f55455a, this.f55457c, this.f55456b, this.f55461i, this.f55462j, this.f55463k, this.d, this.f55458e, this.f55459f, this.f55460g, this.h, this.f55464l);
+        this.f55464g = new k8.a(this.f55464g);
+        return new x(this.f55459a, this.f55461c, this.f55460b, this.f55465i, this.f55466j, this.f55467k, this.d, this.f55462e, this.f55463f, this.f55464g, this.h, this.f55468l);
     }
 }

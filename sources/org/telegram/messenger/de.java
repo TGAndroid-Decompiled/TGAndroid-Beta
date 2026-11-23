@@ -1,94 +1,96 @@
 package org.telegram.messenger;
 
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.io.File;
 import java.util.ArrayList;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.RequestDelegate;
+import org.json.JSONObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.jt0;
-import org.telegram.ui.Components.np0;
-public final class de implements RequestDelegate {
-    public final int f23538a;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.ExternalActionActivity;
+import org.telegram.ui.xs0;
+public final class de implements Runnable {
+    public final int f23538a = 0;
     public final int f23539b;
-    public final int f23540c;
-    public final fs d;
+    public final Object f23540c;
+    public final Object d;
+    public final Object f23541e;
+    public final Object f23542f;
+    public final Object h;
+    public final Object f23543n;
+    public final Object f23544r;
 
-    public de(fs fsVar, int i7, int i10, int i11) {
-        this.f23538a = i11;
-        this.d = fsVar;
+    public de(int i7, File file, String str, org.telegram.ui.ActionBar.t1 t1Var, boolean[] zArr, String str2, y10 y10Var, boolean[] zArr2) {
         this.f23539b = i7;
-        this.f23540c = i10;
+        this.f23540c = file;
+        this.d = str;
+        this.f23542f = t1Var;
+        this.h = zArr;
+        this.f23541e = str2;
+        this.f23544r = y10Var;
+        this.f23543n = zArr2;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f23538a;
-        fs fsVar = this.d;
-        switch (i7) {
-            case 0:
-                String[] strArr = MediaController.W1;
-                g0.g3(new jg.o1(this.f23539b, this.f23540c, 7, (MediaController) fsVar, tLObject, tL_error));
-                return;
-            case 1:
-                mp mpVar = (mp) fsVar;
-                LongSparseIntArray longSparseIntArray = mpVar.Z0;
-                int i10 = 0;
-                if (tL_error == null) {
-                    TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) tLObject;
-                    if (updates_difference instanceof TLRPC.TL_updates_differenceTooLong) {
-                        g0.g3(new l2.x(mpVar, updates_difference, this.f23539b, this.f23540c, 4));
-                        return;
-                    }
-                    if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
-                        TLRPC.TL_updates_state tL_updates_state = updates_difference.intermediate_state;
-                        mpVar.a1(tL_updates_state.pts, tL_updates_state.date, tL_updates_state.qts, true);
-                    }
-                    a0.h hVar = new a0.h();
-                    a0.h hVar2 = new a0.h();
-                    for (int i11 = 0; i11 < updates_difference.users.size(); i11++) {
-                        TLRPC.User user = updates_difference.users.get(i11);
-                        hVar.k(user, user.f28580id);
-                    }
-                    for (int i12 = 0; i12 < updates_difference.chats.size(); i12++) {
-                        TLRPC.Chat chat = updates_difference.chats.get(i12);
-                        hVar2.k(chat, chat.f28431id);
-                    }
-                    ArrayList arrayList = new ArrayList();
-                    if (!updates_difference.other_updates.isEmpty()) {
-                        while (i10 < updates_difference.other_updates.size()) {
-                            TLRPC.Update update = updates_difference.other_updates.get(i10);
-                            if (update instanceof TL_update.TL_updateMessageID) {
-                                arrayList.add((TL_update.TL_updateMessageID) update);
-                                updates_difference.other_updates.remove(i10);
-                            } else {
-                                if (mp.a2(update) == 2) {
-                                    long X1 = mp.X1(update);
-                                    int i13 = longSparseIntArray.get(X1);
-                                    if (i13 == 0 && (i13 = mpVar.getMessagesStorage().N(X1)) != 0) {
-                                        longSparseIntArray.put(X1, i13);
-                                    }
-                                    if (i13 != 0 && mp.Y1(update) <= i13) {
-                                        updates_difference.other_updates.remove(i10);
-                                    }
-                                }
-                                i10++;
-                            }
-                            i10--;
-                            i10++;
-                        }
-                    }
-                    g0.g3(new fi(11, mpVar, updates_difference));
-                    mpVar.getMessagesStorage().f27080a.c(new fn(mpVar, updates_difference, arrayList, hVar, hVar2, 8));
-                    return;
-                }
-                mpVar.f25698i2 = false;
-                mpVar.getConnectionsManager().setIsUpdating(false);
-                a8.b("received: isUpdating = false");
-                return;
-            default:
-                g0.g3(new np0((jt0) fsVar, tL_error, this.f23539b, this.f23540c, tLObject, 0));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.de.run():void");
+    }
+
+    public de(TLObject tLObject, org.telegram.ui.ActionBar.g2 g2Var, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, xs0 xs0Var, com.google.android.gms.internal.clearcut.y0 y0Var, int i7, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+        this.f23540c = tLObject;
+        this.d = g2Var;
+        this.f23541e = tL_inputStorePaymentPremiumSubscription;
+        this.f23542f = xs0Var;
+        this.h = y0Var;
+        this.f23539b = i7;
+        this.f23543n = tL_error;
+        this.f23544r = tL_payments_canPurchaseStore;
+    }
+
+    public de(org.telegram.ui.Components.rf rfVar, View view, FrameLayout frameLayout, FrameLayout.LayoutParams layoutParams, ArrayList arrayList, ArrayList arrayList2, int i7, ji.f fVar) {
+        this.f23540c = rfVar;
+        this.d = view;
+        this.f23541e = frameLayout;
+        this.f23542f = layoutParams;
+        this.h = arrayList;
+        this.f23543n = arrayList2;
+        this.f23539b = i7;
+        this.f23544r = fVar;
+    }
+
+    public de(ExternalActionActivity externalActionActivity, org.telegram.ui.ActionBar.t1 t1Var, TLObject tLObject, int i7, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2) {
+        this.f23540c = externalActionActivity;
+        this.f23542f = t1Var;
+        this.h = tLObject;
+        this.f23539b = i7;
+        this.f23543n = authorizationform;
+        this.f23544r = getauthorizationform;
+        this.d = str;
+        this.f23541e = str2;
+    }
+
+    public de(org.telegram.ui.Wallet.r0 r0Var, String str, byte[] bArr, JSONObject jSONObject, String str2, int i7, org.telegram.ui.Wallet.y2 y2Var, org.telegram.ui.Wallet.u0 u0Var) {
+        this.f23540c = r0Var;
+        this.d = str;
+        this.f23542f = bArr;
+        this.h = jSONObject;
+        this.f23541e = str2;
+        this.f23539b = i7;
+        this.f23543n = y2Var;
+        this.f23544r = u0Var;
+    }
+
+    public de(Runnable[] runnableArr, TextView[] textViewArr, int i7, org.telegram.ui.ActionBar.h6 h6Var, TL_wallet.walletTransaction wallettransaction, String[] strArr, boolean[] zArr, byte[] bArr) {
+        this.f23540c = runnableArr;
+        this.d = textViewArr;
+        this.f23539b = i7;
+        this.f23541e = h6Var;
+        this.f23542f = wallettransaction;
+        this.f23543n = strArr;
+        this.h = zArr;
+        this.f23544r = bArr;
     }
 }

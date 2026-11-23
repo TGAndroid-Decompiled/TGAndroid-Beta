@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 public final class kn0 extends LinearLayout {
-    public final int f36932a;
-    public final int f36933b;
+    public final int f36935a;
+    public final int f36936b;
 
     public kn0(Context context, int i7, int i10) {
         super(context);
-        this.f36932a = i7;
-        this.f36933b = i10;
+        this.f36935a = i7;
+        this.f36936b = i10;
     }
 
     @Override
@@ -20,6 +20,6 @@ public final class kn0 extends LinearLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), this.f36932a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f36933b), View.MeasureSpec.getMode(i10)));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), this.f36935a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f36936b), View.MeasureSpec.getMode(i10)));
     }
 }

@@ -14,6 +14,6 @@ public abstract class x {
         hashMap2.remove(bb.e.class);
         hashMap.put(bb.d.class, a.f887a);
         hashMap2.remove(bb.d.class);
-        f1005a = new md0(new HashMap(hashMap), new HashMap(hashMap2), qa.f.f56122a, 11);
+        f1005a = new md0(new HashMap(hashMap), new HashMap(hashMap2), qa.f.f56126a, 11);
     }
 }

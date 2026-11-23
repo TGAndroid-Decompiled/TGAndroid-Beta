@@ -3,50 +3,50 @@ package di;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_stars;
 public final class o5 {
-    public final z5 f9458a;
-    public t5 f9459b;
-    public t5 f9460c;
+    public final z5 f9461a;
+    public t5 f9462b;
+    public t5 f9463c;
     public t5 d;
     public k5 h;
-    public k5 f9464i;
-    public k5 f9465j;
-    public k5 f9466k;
-    public TL_stars.TL_starGiftUnique f9467l;
-    public long f9468m;
-    public k1 f9473r;
-    public k1 f9474s;
-    public float f9475t;
-    public boolean f9476u;
+    public k5 f9467i;
+    public k5 f9468j;
+    public k5 f9469k;
+    public TL_stars.TL_starGiftUnique f9470l;
+    public long f9471m;
+    public k1 f9476r;
+    public k1 f9477s;
+    public float f9478t;
+    public boolean f9479u;
     public boolean v;
-    public final ArrayList f9461e = new ArrayList();
-    public final ArrayList f9462f = new ArrayList();
-    public final ArrayList f9463g = new ArrayList();
-    public float f9469n = 0.0f;
-    public boolean f9470o = false;
-    public boolean f9471p = false;
-    public boolean f9472q = false;
+    public final ArrayList f9464e = new ArrayList();
+    public final ArrayList f9465f = new ArrayList();
+    public final ArrayList f9466g = new ArrayList();
+    public float f9472n = 0.0f;
+    public boolean f9473o = false;
+    public boolean f9474p = false;
+    public boolean f9475q = false;
 
     public o5(z5 z5Var) {
-        this.f9458a = z5Var;
-        z5Var.f10144c.addOnAttachStateChangeListener(new bi.v2(this, 4));
+        this.f9461a = z5Var;
+        z5Var.f10147c.addOnAttachStateChangeListener(new bi.v2(this, 4));
     }
 
     public final void a() {
-        this.f9470o = false;
-        this.f9458a.f10144c.c();
+        this.f9473o = false;
+        this.f9461a.f10147c.c();
         k5 k5Var = this.h;
         if (k5Var != null) {
             k5Var.a();
         }
-        k5 k5Var2 = this.f9464i;
+        k5 k5Var2 = this.f9467i;
         if (k5Var2 != null) {
             k5Var2.a();
         }
-        k5 k5Var3 = this.f9465j;
+        k5 k5Var3 = this.f9468j;
         if (k5Var3 != null) {
             k5Var3.a();
         }
-        k5 k5Var4 = this.f9466k;
+        k5 k5Var4 = this.f9469k;
         if (k5Var4 != null) {
             k5Var4.a();
         }
@@ -54,17 +54,17 @@ public final class o5 {
     }
 
     public final void b() {
-        if (this.f9470o && !this.v) {
+        if (this.f9473o && !this.v) {
             this.v = true;
             org.telegram.messenger.g0.g3(new i5(this, 1));
         }
     }
 
     public final void c() {
-        if (this.f9470o) {
+        if (this.f9473o) {
             return;
         }
-        ArrayList arrayList = this.f9461e;
+        ArrayList arrayList = this.f9464e;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -73,7 +73,7 @@ public final class o5 {
             ((m5) obj).a();
         }
         arrayList.clear();
-        this.f9462f.clear();
-        this.f9463g.clear();
+        this.f9465f.clear();
+        this.f9466g.clear();
     }
 }

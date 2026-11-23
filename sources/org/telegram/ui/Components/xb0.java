@@ -9,39 +9,39 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
-public final class xb0 implements wt0, org.telegram.messenger.jc, gh.d, r0.m, org.telegram.ui.ActionBar.q1, org.telegram.ui.ActionBar.q6, org.telegram.ui.ActionBar.r6, vt0, org.telegram.messenger.i9, org.telegram.messenger.mc, pb0 {
-    public final int f42042a;
+public final class xb0 implements wt0, org.telegram.messenger.kc, gh.d, r0.m, org.telegram.ui.ActionBar.q1, org.telegram.ui.ActionBar.q6, org.telegram.ui.ActionBar.r6, vt0, org.telegram.messenger.j9, org.telegram.messenger.nc, pb0 {
+    public final int f42035a;
 
     public xb0(int i7) {
-        this.f42042a = i7;
+        this.f42035a = i7;
     }
 
     @Override
     public void G0(int i7, Drawable drawable) {
-        int i10 = this.f42042a;
+        int i10 = this.f42035a;
     }
 
     @Override
     public r0.l1 P0(View view, r0.l1 l1Var) {
-        return r0.l1.f56298b;
+        return r0.l1.f56302b;
     }
 
     @Override
     public void V(ImageReceiver imageReceiver) {
-        int i7 = this.f42042a;
+        int i7 = this.f42035a;
     }
 
     @Override
     public void c(Object obj, float f10) {
-        switch (this.f42042a) {
+        switch (this.f42035a) {
             case 0:
                 yb0 yb0Var = (yb0) obj;
-                yb0Var.f42390s = f10;
+                yb0Var.f42383s = f10;
                 yb0Var.f();
                 return;
             default:
                 rn0 rn0Var = (rn0) obj;
-                rn0Var.f39283n = f10;
+                rn0Var.f39293n = f10;
                 rn0Var.invalidate();
                 return;
         }
@@ -54,17 +54,17 @@ public final class xb0 implements wt0, org.telegram.messenger.jc, gh.d, r0.m, or
 
     @Override
     public int f(View view) {
-        return ((rm0) view).f39276w;
+        return ((rm0) view).f39286w;
     }
 
     @Override
     public float get(Object obj) {
-        return ((rn0) obj).f39283n;
+        return ((rn0) obj).f39293n;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f42042a) {
+        switch (this.f42035a) {
             case 5:
                 t1Var.dismiss();
                 return;
@@ -81,7 +81,7 @@ public final class xb0 implements wt0, org.telegram.messenger.jc, gh.d, r0.m, or
             case 19:
             case 21:
             default:
-                org.telegram.messenger.mp.h1().edit().putBoolean("askedAboutFSILockscreen", true).commit();
+                org.telegram.messenger.np.h1().edit().putBoolean("askedAboutFSILockscreen", true).commit();
                 return;
             case 12:
                 t1Var.dismiss();
@@ -93,7 +93,7 @@ public final class xb0 implements wt0, org.telegram.messenger.jc, gh.d, r0.m, or
                 t1Var.dismiss();
                 return;
             case 17:
-                int i10 = kw0.f37001r2;
+                int i10 = kw0.f37004r2;
                 return;
             case 18:
                 t1Var.dismiss();
@@ -107,14 +107,14 @@ public final class xb0 implements wt0, org.telegram.messenger.jc, gh.d, r0.m, or
             case 23:
                 return;
             case 24:
-                org.telegram.messenger.mp.h1().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
+                org.telegram.messenger.np.h1().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
                 return;
         }
     }
 
     @Override
     public String i(int i7) {
-        switch (this.f42042a) {
+        switch (this.f42035a) {
             case 26:
                 return String.format("%02d", Integer.valueOf(i7));
             default:
@@ -124,13 +124,13 @@ public final class xb0 implements wt0, org.telegram.messenger.jc, gh.d, r0.m, or
 
     @Override
     public int j(org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
-        Bitmap bitmap = ci.u.f5809a;
-        return (((int) a8.p0.f(ci.c1.f5641b[3], 255.0f, 100.0f, 0.5f)) << 24) | 16777215;
+        Bitmap bitmap = ci.u.f5812a;
+        return (((int) a8.p0.f(ci.c1.f5644b[3], 255.0f, 100.0f, 0.5f)) << 24) | 16777215;
     }
 
     @Override
     public Object m(Object obj) {
-        switch (this.f42042a) {
+        switch (this.f42035a) {
             case 11:
                 Integer num = (Integer) obj;
                 int i7 = ap0.U2;
@@ -140,7 +140,7 @@ public final class xb0 implements wt0, org.telegram.messenger.jc, gh.d, r0.m, or
                 int L = org.telegram.messenger.g0.L(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(org.telegram.messenger.g0.L(200.0f), L, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29378d6, false));
+                canvas.drawColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29381d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, L / 2.0f, paint);
@@ -161,7 +161,7 @@ public final class xb0 implements wt0, org.telegram.messenger.jc, gh.d, r0.m, or
     public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         oh0 B;
         boolean z13;
-        switch (this.f42042a) {
+        switch (this.f42035a) {
             case 1:
                 if (z10 && !z11 && (B = imageReceiver.B()) != null) {
                     B.start();
@@ -169,13 +169,13 @@ public final class xb0 implements wt0, org.telegram.messenger.jc, gh.d, r0.m, or
                 }
                 return;
             default:
-                if (!(imageReceiver.f22672k0 instanceof org.telegram.messenger.o6) && !(imageReceiver.T instanceof org.telegram.messenger.o6) && !(imageReceiver.f22651b0 instanceof org.telegram.messenger.o6) && !(imageReceiver.f22677n0 instanceof org.telegram.messenger.o6)) {
+                if (!(imageReceiver.f22675k0 instanceof org.telegram.messenger.o6) && !(imageReceiver.T instanceof org.telegram.messenger.o6) && !(imageReceiver.f22654b0 instanceof org.telegram.messenger.o6) && !(imageReceiver.f22680n0 instanceof org.telegram.messenger.o6)) {
                     z13 = false;
                 } else {
                     z13 = true;
                 }
                 if (z13) {
-                    imageReceiver.f22681p1 = new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
+                    imageReceiver.f22684p1 = new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
                     return;
                 }
                 return;

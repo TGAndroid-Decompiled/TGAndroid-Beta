@@ -3,12 +3,12 @@ package fi;
 import android.view.SurfaceView;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 public final class e9 extends VideoPlayerHolderBase {
-    public boolean f11961a;
-    public final f9 f11962b;
+    public boolean f11964a;
+    public final f9 f11965b;
 
     public e9(f9 f9Var, SurfaceView surfaceView, x8 x8Var) {
-        this.f11962b = f9Var;
-        if (f9Var.f11993a) {
+        this.f11965b = f9Var;
+        if (f9Var.f11996a) {
             with(surfaceView);
         } else {
             with(x8Var);
@@ -17,15 +17,15 @@ public final class e9 extends VideoPlayerHolderBase {
 
     @Override
     public final boolean needRepeat() {
-        return this.f11962b.f12021m1;
+        return this.f11965b.f12024m1;
     }
 
     @Override
     public final void onRenderedFirstFrame() {
-        f9 f9Var = this.f11962b;
+        f9 f9Var = this.f11965b;
         y3 y3Var = f9Var.G0;
         if (y3Var != null) {
-            y3Var.f12810a = true;
+            y3Var.f12813a = true;
             this.firstFrameRendered = true;
             y3Var.b();
             if (this.paused && f9Var.D0 != null) {
@@ -38,40 +38,40 @@ public final class e9 extends VideoPlayerHolderBase {
     public final void onStateChanged(boolean z10, int i7) {
         if (i7 == 3 || i7 == 2) {
             if (this.firstFrameRendered && i7 == 2) {
-                this.f11961a = true;
+                this.f11964a = true;
                 org.telegram.messenger.g0.g3(new Runnable(this) {
-                    public final e9 f11905b;
+                    public final e9 f11908b;
 
                     {
-                        this.f11905b = this;
+                        this.f11908b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                z3 z11 = this.f11905b.f11962b.z();
+                                z3 z11 = this.f11908b.f11965b.z();
                                 if (z11 != null) {
-                                    x3 x3Var = z11.f12934y1;
-                                    if (x3Var.f12762a != null) {
+                                    x3 x3Var = z11.f12937y1;
+                                    if (x3Var.f12765a != null) {
                                         StringBuilder sb2 = new StringBuilder("StoryViewer displayed story buffering dialogId=");
                                         sb2.append(z11.getCurrentPeer());
                                         sb2.append(" storyId=");
-                                        i5.c.t(x3Var.f12762a.f28670id, sb2);
+                                        i5.c.t(x3Var.f12765a.f28673id, sb2);
                                         return;
                                     }
                                     return;
                                 }
                                 return;
                             default:
-                                z3 z12 = this.f11905b.f11962b.z();
+                                z3 z12 = this.f11908b.f11965b.z();
                                 if (z12 != null) {
-                                    x3 x3Var2 = z12.f12934y1;
-                                    if (x3Var2.f12762a != null) {
+                                    x3 x3Var2 = z12.f12937y1;
+                                    if (x3Var2.f12765a != null) {
                                         StringBuilder sb3 = new StringBuilder("StoryViewer displayed story playing dialogId=");
                                         sb3.append(z12.getCurrentPeer());
                                         sb3.append(" storyId=");
-                                        i5.c.t(x3Var2.f12762a.f28670id, sb3);
+                                        i5.c.t(x3Var2.f12765a.f28673id, sb3);
                                         return;
                                     }
                                     return;
@@ -81,41 +81,41 @@ public final class e9 extends VideoPlayerHolderBase {
                     }
                 });
             }
-            if (this.f11961a && i7 == 3) {
-                this.f11961a = false;
+            if (this.f11964a && i7 == 3) {
+                this.f11964a = false;
                 org.telegram.messenger.g0.g3(new Runnable(this) {
-                    public final e9 f11905b;
+                    public final e9 f11908b;
 
                     {
-                        this.f11905b = this;
+                        this.f11908b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                z3 z11 = this.f11905b.f11962b.z();
+                                z3 z11 = this.f11908b.f11965b.z();
                                 if (z11 != null) {
-                                    x3 x3Var = z11.f12934y1;
-                                    if (x3Var.f12762a != null) {
+                                    x3 x3Var = z11.f12937y1;
+                                    if (x3Var.f12765a != null) {
                                         StringBuilder sb2 = new StringBuilder("StoryViewer displayed story buffering dialogId=");
                                         sb2.append(z11.getCurrentPeer());
                                         sb2.append(" storyId=");
-                                        i5.c.t(x3Var.f12762a.f28670id, sb2);
+                                        i5.c.t(x3Var.f12765a.f28673id, sb2);
                                         return;
                                     }
                                     return;
                                 }
                                 return;
                             default:
-                                z3 z12 = this.f11905b.f11962b.z();
+                                z3 z12 = this.f11908b.f11965b.z();
                                 if (z12 != null) {
-                                    x3 x3Var2 = z12.f12934y1;
-                                    if (x3Var2.f12762a != null) {
+                                    x3 x3Var2 = z12.f12937y1;
+                                    if (x3Var2.f12765a != null) {
                                         StringBuilder sb3 = new StringBuilder("StoryViewer displayed story playing dialogId=");
                                         sb3.append(z12.getCurrentPeer());
                                         sb3.append(" storyId=");
-                                        i5.c.t(x3Var2.f12762a.f28670id, sb3);
+                                        i5.c.t(x3Var2.f12765a.f28673id, sb3);
                                         return;
                                     }
                                     return;

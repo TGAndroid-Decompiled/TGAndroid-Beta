@@ -1,17 +1,17 @@
 package zi;
 public final class o0 {
-    public static final o0 f62275a;
-    public static final o0 f62276b;
-    public static final o0 f62277c;
+    public static final o0 f62279a;
+    public static final o0 f62280b;
+    public static final o0 f62281c;
     public static final o0[] d;
 
     static {
         ?? r02 = new Enum("HIGH", 0);
-        f62275a = r02;
+        f62279a = r02;
         ?? r12 = new Enum("MEDIUM", 1);
-        f62276b = r12;
+        f62280b = r12;
         ?? r32 = new Enum("LOW", 2);
-        f62277c = r32;
+        f62281c = r32;
         d = new o0[]{r02, r12, r32};
     }
 

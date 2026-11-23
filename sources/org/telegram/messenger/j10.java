@@ -1,629 +1,237 @@
 package org.telegram.messenger;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.LongSparseArray;
+import android.util.Base64;
+import android.util.SparseIntArray;
+import android.view.View;
 import java.util.Arrays;
+import java.util.Map;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class j10 extends c1 {
-    public static int f24798t0;
-    public static volatile j10[] f24799u0 = new j10[4];
-    public int E;
-    public int F;
-    public int G;
-    public int H;
-    public boolean I;
-    public boolean J;
-    public int K;
-    public int L;
-    public long M;
-    public long N;
-    public long O;
-    public long P;
-    public boolean Q;
-    public int R;
-    public int S;
-    public boolean T;
-    public boolean U;
-    public boolean V;
-    public boolean W;
-    public boolean X;
-    public boolean Y;
-    public int Z;
-    public final Object f24800a;
-    public TLRPC.TL_help_termsOfService f24801a0;
-    public volatile boolean f24802b;
-    public long f24803b0;
-    public TLRPC.User f24804c;
-    public String f24805c0;
-    public boolean d;
-    public String f24806d0;
-    public int f24807e;
-    public String f24808e0;
-    public int f24809f;
-    public String f24810f0;
-    public long f24811g0;
-    public int h;
-    public long f24812h0;
-    public long f24813i0;
-    public long f24814j0;
-    public volatile byte[] f24815k0;
-    public volatile byte[] f24816l0;
-    public volatile long m0;
-    public long f24817n;
-    public LongSparseArray f24818n0;
-    public LongSparseArray f24819o0;
-    public LongSparseArray f24820p0;
-    public int f24821q0;
-    public int f24822r;
-    public boolean f24823r0;
-    public int f24824s;
-    public long f24825s0;
-    public boolean f24826w;
-    public boolean f24827x;
-    public TL_account.tmpPassword f24828y;
+import org.telegram.tgnet.tl.TL_iv;
+public final class j10 implements Runnable {
+    public final int f24818a;
+    public final boolean f24819b;
+    public final Object f24820c;
 
-    public j10(int i7) {
-        super(i7);
-        this.f24800a = new Object();
-        this.f24807e = -210000;
-        this.f24809f = -1;
-        this.f24827x = true;
-        this.K = -1;
-        this.L = -1;
-        this.M = -1L;
-        this.N = -1L;
-        this.O = -1L;
-        this.P = -1L;
-        this.V = true;
-        this.W = true;
-        this.f24821q0 = 0;
-        this.f24823r0 = false;
+    public j10(int i7, Object obj, boolean z10) {
+        this.f24818a = i7;
+        this.f24820c = obj;
+        this.f24819b = z10;
     }
 
-    public static int c() {
-        int i7 = 0;
-        for (int i10 = 0; i10 < 4; i10++) {
-            if (i(c.a(i10).f23246a).p()) {
-                i7++;
-            }
-        }
-        return i7;
-    }
-
-    public static j10 i(int i7) {
-        j10 j10Var;
-        j10 j10Var2 = f24799u0[i7];
-        if (j10Var2 == null) {
-            synchronized (j10.class) {
-                try {
-                    j10Var = f24799u0[i7];
-                    if (j10Var == null) {
-                        j10[] j10VarArr = f24799u0;
-                        j10 j10Var3 = new j10(i7);
-                        j10VarArr[i7] = j10Var3;
-                        j10Var = j10Var3;
+    @Override
+    public final void run() {
+        switch (this.f24818a) {
+            case 0:
+                k10 k10Var = (k10) this.f24820c;
+                boolean z10 = this.f24819b;
+                if (k10Var.f24972b) {
+                    synchronized (k10Var.f24970a) {
+                        try {
+                            try {
+                                SharedPreferences.Editor edit = k10Var.k().edit();
+                                if (k10Var.currentAccount == 0) {
+                                    edit.putInt("selectedAccount", k10.f24968t0);
+                                }
+                                edit.putBoolean("registeredForPush", k10Var.d);
+                                edit.putInt("lastSendMessageId", k10Var.f24977e);
+                                edit.putInt("contactsSavedCount", k10Var.h);
+                                edit.putInt("lastBroadcastId", k10Var.f24979f);
+                                edit.putInt("lastContactsSyncTime", k10Var.f24992r);
+                                edit.putInt("lastHintsSyncTime", k10Var.f24994s);
+                                edit.putBoolean("draftsLoaded", k10Var.f24996w);
+                                edit.putBoolean("unreadDialogsLoaded", k10Var.f24997x);
+                                edit.putInt("ratingLoadTime", k10Var.E);
+                                edit.putInt("botRatingLoadTime", k10Var.F);
+                                edit.putInt("botGuestRatingLoadTime", k10Var.G);
+                                edit.putInt("webappRatingLoadTime", k10Var.H);
+                                edit.putBoolean("contactsReimported", k10Var.I);
+                                edit.putInt("loginTime", k10Var.Z);
+                                edit.putBoolean("syncContacts", k10Var.V);
+                                edit.putBoolean("showCallsTab", k10Var.X);
+                                edit.putBoolean("suggestContacts", k10Var.W);
+                                edit.putBoolean("hasSecureData", k10Var.Y);
+                                edit.putBoolean("notificationsSettingsLoaded4", k10Var.T);
+                                edit.putBoolean("notificationsSignUpSettingsLoaded", k10Var.U);
+                                edit.putLong("autoDownloadConfigLoadTime", k10Var.f24973b0);
+                                edit.putBoolean("hasValidDialogLoadIds", k10Var.J);
+                                edit.putInt("sharingMyLocationUntil", k10Var.R);
+                                edit.putInt("lastMyLocationShareTime", k10Var.S);
+                                edit.putBoolean("filtersLoaded", k10Var.Q);
+                                edit.putString("premiumGiftsStickerPack", k10Var.f24975c0);
+                                edit.putLong("lastUpdatedPremiumGiftsStickerPack", k10Var.f24981g0);
+                                edit.putString("genericAnimationsStickerPack", k10Var.f24978e0);
+                                edit.putLong("lastUpdatedGenericAnimations", k10Var.f24983i0);
+                                edit.putInt("6migrateOffsetId", k10Var.K);
+                                if (k10Var.K != -1) {
+                                    edit.putInt("6migrateOffsetDate", k10Var.L);
+                                    edit.putLong("6migrateOffsetUserId", k10Var.M);
+                                    edit.putLong("6migrateOffsetChatId", k10Var.N);
+                                    edit.putLong("6migrateOffsetChannelId", k10Var.O);
+                                    edit.putLong("6migrateOffsetAccess", k10Var.P);
+                                }
+                                TLRPC.TL_help_termsOfService tL_help_termsOfService = k10Var.f24971a0;
+                                if (tL_help_termsOfService != null) {
+                                    try {
+                                        SerializedData serializedData = new SerializedData(tL_help_termsOfService.getObjectSize());
+                                        k10Var.f24971a0.serializeToStream(serializedData);
+                                        edit.putString("terms", Base64.encodeToString(serializedData.toByteArray(), 0));
+                                        serializedData.cleanup();
+                                    } catch (Exception unused) {
+                                    }
+                                } else {
+                                    edit.remove("terms");
+                                }
+                                cz.y();
+                                if (k10Var.f24998y != null) {
+                                    SerializedData serializedData2 = new SerializedData();
+                                    k10Var.f24998y.serializeToStream(serializedData2);
+                                    edit.putString("tmpPassword", Base64.encodeToString(serializedData2.toByteArray(), 0));
+                                    serializedData2.cleanup();
+                                } else {
+                                    edit.remove("tmpPassword");
+                                }
+                                if (k10Var.f24974c != null) {
+                                    if (z10) {
+                                        SerializedData serializedData3 = new SerializedData();
+                                        k10Var.f24974c.serializeToStream(serializedData3);
+                                        edit.putString("user", Base64.encodeToString(serializedData3.toByteArray(), 0));
+                                        serializedData3.cleanup();
+                                    }
+                                } else {
+                                    edit.remove("user");
+                                }
+                                edit.apply();
+                            } catch (Throwable th2) {
+                                throw th2;
+                            }
+                        } catch (Exception e10) {
+                            a8.g(e10, true);
+                        }
                     }
-                } catch (Throwable th2) {
-                    throw th2;
+                    return;
                 }
-            }
-            return j10Var;
-        }
-        return j10Var2;
-    }
-
-    public static int l() {
-        int i7;
-        for (int i10 = -1; i10 < 4; i10++) {
-            if (i10 < 0) {
-                i7 = f24798t0;
-            } else {
-                i7 = i10;
-            }
-            if (i(i7).p() && !ConnectionsManager.getInstance(i7).isTestBackend()) {
-                return i7;
-            }
-        }
-        return f24798t0;
-    }
-
-    public static boolean o() {
-        for (int i7 = 0; i7 < 4; i7++) {
-            if (i(c.a(i7).f23246a).p() && i(c.a(i7).f23246a).getUserConfig().q()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean r(int i7) {
-        if (i7 >= 0 && i7 < 4 && i(i7).p()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void A(int i7, LongSparseArray longSparseArray) {
-        if (i7 == 1) {
-            this.f24818n0 = longSparseArray;
-            c6.n(f3.e(new StringBuilder("users_save_gallery_exceptions_"), this.currentAccount, t0.f26941b, 0), this.f24818n0);
-        } else if (i7 == 2) {
-            this.f24820p0 = longSparseArray;
-            c6.n(f3.e(new StringBuilder("groups_save_gallery_exceptions_"), this.currentAccount, t0.f26941b, 0), this.f24820p0);
-        } else if (i7 == 4) {
-            this.f24819o0 = longSparseArray;
-            c6.n(f3.e(new StringBuilder("channels_save_gallery_exceptions_"), this.currentAccount, t0.f26941b, 0), this.f24819o0);
-        }
-    }
-
-    public final void a(TLRPC.User user, final TLRPC.User user2) {
-        if (user != null && user2 != null && user.premium != user2.premium) {
-            g0.g3(new Runnable(this) {
-                public final j10 f24379b;
-
-                {
-                    this.f24379b = this;
-                }
-
-                @Override
-                public final void run() {
-                    switch (r3) {
-                        case 0:
-                            j10 j10Var = this.f24379b;
-                            j10Var.getMessagesController().y5(user2.premium);
-                            ks.f(j10Var.currentAccount).k(311, new Object[0]);
-                            ks.e().k(313, new Object[0]);
-                            j10Var.getMediaDataController().U0(false);
-                            j10Var.getMediaDataController().V0(false, null);
-                            fi.p6 R1 = j10Var.getMessagesController().R1();
-                            R1.R = false;
-                            R1.S = null;
-                            return;
-                        default:
-                            j10 j10Var2 = this.f24379b;
-                            j10Var2.getMessagesController().y5(user2.premium);
-                            ks.f(j10Var2.currentAccount).k(311, new Object[0]);
-                            j10Var2.getMediaDataController().U0(true);
-                            return;
+                return;
+            case 1:
+                w7 w7Var = (w7) this.f24820c;
+                boolean z11 = this.f24819b;
+                for (Map.Entry entry : w7Var.h.entrySet()) {
+                    y8 y8Var = (y8) entry.getValue();
+                    if (y8Var.f28029m == 1) {
+                        Utilities.d.c(new j10(2, y8Var, z11));
+                        g0.g3(new u8(y8Var, 2));
                     }
                 }
-            });
-        } else if (user == null) {
-            g0.g3(new Runnable(this) {
-                public final j10 f24379b;
-
-                {
-                    this.f24379b = this;
-                }
-
-                @Override
-                public final void run() {
-                    switch (r3) {
-                        case 0:
-                            j10 j10Var = this.f24379b;
-                            j10Var.getMessagesController().y5(user2.premium);
-                            ks.f(j10Var.currentAccount).k(311, new Object[0]);
-                            ks.e().k(313, new Object[0]);
-                            j10Var.getMediaDataController().U0(false);
-                            j10Var.getMediaDataController().V0(false, null);
-                            fi.p6 R1 = j10Var.getMessagesController().R1();
-                            R1.R = false;
-                            R1.S = null;
-                            return;
-                        default:
-                            j10 j10Var2 = this.f24379b;
-                            j10Var2.getMessagesController().y5(user2.premium);
-                            ks.f(j10Var2.currentAccount).k(311, new Object[0]);
-                            j10Var2.getMediaDataController().U0(true);
-                            return;
+                for (Map.Entry entry2 : w7Var.f27698n.entrySet()) {
+                    y8 y8Var2 = (y8) entry2.getValue();
+                    if (y8Var2.f28029m == 1) {
+                        Utilities.d.c(new j10(2, y8Var2, z11));
+                        g0.g3(new u8(y8Var2, 2));
                     }
                 }
-            });
-        }
-    }
-
-    public final void b() {
-        k().edit().clear().apply();
-        this.R = 0;
-        this.S = 0;
-        this.f24804c = null;
-        this.f24817n = 0L;
-        this.d = false;
-        this.h = 0;
-        this.f24807e = -210000;
-        this.f24809f = -1;
-        this.T = false;
-        this.U = false;
-        this.K = -1;
-        this.L = -1;
-        this.M = -1L;
-        this.N = -1L;
-        this.O = -1L;
-        this.P = -1L;
-        this.E = 0;
-        this.F = 0;
-        this.G = 0;
-        this.H = 0;
-        this.f24826w = false;
-        this.I = true;
-        this.V = true;
-        this.X = false;
-        this.W = true;
-        this.f24827x = true;
-        this.J = true;
-        this.f24801a0 = null;
-        this.Q = false;
-        this.Y = false;
-        this.Z = (int) (System.currentTimeMillis() / 1000);
-        this.f24822r = ((int) (System.currentTimeMillis() / 1000)) - 82800;
-        this.f24824s = ((int) (System.currentTimeMillis() / 1000)) - 90000;
-        u();
-        int i7 = 0;
-        while (true) {
-            if (i7 < 4) {
-                if (i(c.a(i7).f23246a).p()) {
-                    break;
-                }
-                i7++;
-            } else {
-                bz.f23242z = false;
-                bz.f23236x = false;
-                bz.f23219r = 0;
-                bz.f23225t = 0L;
-                bz.f23228u = 0L;
-                bz.v = 0;
-                bz.f23222s = "";
-                bz.f23233w = new byte[0];
-                bz.f23239y = 3600;
-                bz.B = 0;
-                bz.D = true;
-                bz.f23191g0 = true;
-                bz.C = false;
-                bz.A = false;
-                bz.J = 0;
-                bz.K = 0;
-                bz.L = 0L;
-                bz.M = 0;
-                bz.N = 0L;
-                bz.O = 0;
-                bz.P = false;
-                bz.Q = false;
-                bz.f23181c1 = 3;
-                bz.f23183d1 = 3;
-                bz.f23186e1 = 3;
-                bz.f23185e0 = 2;
-                bz.S = 0;
-                bz.y();
-                break;
-            }
-        }
-        v(true);
-    }
-
-    public final String d() {
-        String str;
-        synchronized (this.f24800a) {
-            try {
-                TLRPC.User user = this.f24804c;
-                if (user == null || (str = user.phone) == null) {
-                    str = "";
-                }
-            } finally {
-            }
-        }
-        return str;
-    }
-
-    public final long e() {
-        long j3;
-        synchronized (this.f24800a) {
-            try {
-                TLRPC.User user = this.f24804c;
-                if (user != null) {
-                    j3 = user.f28580id;
+                return;
+            case 2:
+                y8 y8Var3 = (y8) this.f24820c;
+                boolean z12 = this.f24819b;
+                SparseIntArray sparseIntArray = y8Var3.f28032p;
+                if (y8Var3.f28025i != z12) {
+                    y8Var3.f28025i = z12;
+                    if (s2.f26730a) {
+                        a8.b("network changed to slow = " + y8Var3.f28025i);
+                    }
+                    int i7 = 0;
+                    while (true) {
+                        int i10 = 1;
+                        if (i7 < sparseIntArray.size()) {
+                            ConnectionsManager.getInstance(y8Var3.f28019a).cancelRequest(sparseIntArray.valueAt(i7), true);
+                            i7++;
+                        } else {
+                            sparseIntArray.clear();
+                            y8Var3.b();
+                            y8Var3.f28020b = false;
+                            y8Var3.f28021c = false;
+                            y8Var3.f28027k = 0;
+                            y8Var3.f28034r = 0;
+                            y8Var3.v = 0L;
+                            y8Var3.f28038w = 0L;
+                            y8Var3.f28039x = 0;
+                            y8Var3.f28040y = null;
+                            y8Var3.f28041z = null;
+                            y8Var3.A = null;
+                            y8Var3.K = 0;
+                            Arrays.fill(y8Var3.f28024g, 0);
+                            y8Var3.N = 0;
+                            y8Var3.P = false;
+                            y8Var3.Q.clear();
+                            y8Var3.d++;
+                            if (!y8Var3.f28025i) {
+                                i10 = 8;
+                            }
+                            for (int i11 = 0; i11 < i10; i11++) {
+                                y8Var3.d();
+                            }
+                            return;
+                        }
+                    }
                 } else {
-                    j3 = 0;
+                    return;
                 }
-            } catch (Throwable th2) {
-                throw th2;
-            }
+            case 3:
+                rd rdVar = (rd) this.f24820c;
+                boolean z13 = this.f24819b;
+                if (!z13) {
+                    rdVar.L = Boolean.FALSE;
+                }
+                if (!rdVar.f26591b.isEmpty()) {
+                    if (z13) {
+                        try {
+                            ((h6.m) t0.j()).getLastLocation(new ld(rdVar, 0));
+                            ((h6.m) t0.j()).requestLocationUpdates(rdVar.O, rdVar.f26596r);
+                            return;
+                        } catch (Throwable th3) {
+                            a8.g(th3, true);
+                            return;
+                        }
+                    }
+                    rdVar.p();
+                    return;
+                }
+                return;
+            case 4:
+                np npVar = (np) this.f24820c;
+                boolean z14 = this.f24819b;
+                npVar.R0 = null;
+                npVar.S0.clear();
+                npVar.getNotificationCenter().k(184, new Object[0]);
+                if (z14) {
+                    npVar.getNotificationCenter().k(3, new Object[0]);
+                    return;
+                }
+                return;
+            default:
+                au auVar = (au) this.f24820c;
+                fv fvVar = auVar.f22968a;
+                boolean z15 = !this.f24819b;
+                TLObject tLObject = auVar.H;
+                if (tLObject instanceof TL_iv.PageListItem) {
+                    ((TL_iv.PageListItem) tLObject).checked = z15;
+                } else if (tLObject instanceof TL_iv.PageListOrderedItem) {
+                    ((TL_iv.PageListOrderedItem) tLObject).checked = z15;
+                }
+                View view = fvVar.Q;
+                if (view != null) {
+                    auVar.f22974r.f32860a = view;
+                }
+                auVar.f22974r.f(-1, z15, true);
+                View view2 = fvVar.Q;
+                if (view2 != null) {
+                    view2.invalidate();
+                    return;
+                }
+                return;
         }
-        return j3;
-    }
-
-    public final TLRPC.User f() {
-        TLRPC.User user;
-        synchronized (this.f24800a) {
-            user = this.f24804c;
-        }
-        return user;
-    }
-
-    public final long[] g(int i7) {
-        Integer valueOf;
-        int i10;
-        Integer valueOf2;
-        Integer valueOf3;
-        long j3;
-        Integer valueOf4;
-        long j10;
-        Integer valueOf5;
-        long j11;
-        long j12;
-        SharedPreferences k10 = k();
-        StringBuilder sb2 = new StringBuilder("2dialogsLoadOffsetId");
-        Object obj = "";
-        if (i7 == 0) {
-            valueOf = "";
-        } else {
-            valueOf = Integer.valueOf(i7);
-        }
-        sb2.append(valueOf);
-        String sb3 = sb2.toString();
-        int i11 = -1;
-        if (this.J) {
-            i10 = 0;
-        } else {
-            i10 = -1;
-        }
-        int i12 = k10.getInt(sb3, i10);
-        StringBuilder sb4 = new StringBuilder("2dialogsLoadOffsetDate");
-        if (i7 == 0) {
-            valueOf2 = "";
-        } else {
-            valueOf2 = Integer.valueOf(i7);
-        }
-        sb4.append(valueOf2);
-        String sb5 = sb4.toString();
-        if (this.J) {
-            i11 = 0;
-        }
-        int i13 = k10.getInt(sb5, i11);
-        StringBuilder sb6 = new StringBuilder("2dialogsLoadOffsetUserId");
-        if (i7 == 0) {
-            valueOf3 = "";
-        } else {
-            valueOf3 = Integer.valueOf(i7);
-        }
-        sb6.append(valueOf3);
-        String sb7 = sb6.toString();
-        if (this.J) {
-            j3 = 0;
-        } else {
-            j3 = -1;
-        }
-        long b12 = g0.b1(k10, sb7, j3);
-        StringBuilder sb8 = new StringBuilder("2dialogsLoadOffsetChatId");
-        if (i7 == 0) {
-            valueOf4 = "";
-        } else {
-            valueOf4 = Integer.valueOf(i7);
-        }
-        sb8.append(valueOf4);
-        String sb9 = sb8.toString();
-        if (this.J) {
-            j10 = 0;
-        } else {
-            j10 = -1;
-        }
-        long b13 = g0.b1(k10, sb9, j10);
-        StringBuilder sb10 = new StringBuilder("2dialogsLoadOffsetChannelId");
-        if (i7 == 0) {
-            valueOf5 = "";
-        } else {
-            valueOf5 = Integer.valueOf(i7);
-        }
-        sb10.append(valueOf5);
-        String sb11 = sb10.toString();
-        if (this.J) {
-            j11 = 0;
-        } else {
-            j11 = -1;
-        }
-        long b14 = g0.b1(k10, sb11, j11);
-        StringBuilder sb12 = new StringBuilder("2dialogsLoadOffsetAccess");
-        if (i7 != 0) {
-            obj = Integer.valueOf(i7);
-        }
-        sb12.append(obj);
-        String sb13 = sb12.toString();
-        if (this.J) {
-            j12 = 0;
-        } else {
-            j12 = -1;
-        }
-        return new long[]{i12, i13, b12, b13, b14, k10.getLong(sb13, j12)};
-    }
-
-    public final int h() {
-        return this.f24821q0;
-    }
-
-    public final int j() {
-        int i7;
-        synchronized (this.f24800a) {
-            i7 = this.f24807e;
-            this.f24807e = i7 - 1;
-        }
-        return i7;
-    }
-
-    public final SharedPreferences k() {
-        if (this.currentAccount == 0) {
-            return t0.f26941b.getSharedPreferences("userconfing", 0);
-        }
-        return f3.e(new StringBuilder("userconfig"), this.currentAccount, t0.f26941b, 0);
-    }
-
-    public final LongSparseArray m(int i7) {
-        if (i7 == 1) {
-            if (this.f24818n0 == null) {
-                Context context = t0.f26941b;
-                this.f24818n0 = c6.l(context.getSharedPreferences("users_save_gallery_exceptions_" + this.currentAccount, 0));
-            }
-            return this.f24818n0;
-        } else if (i7 == 2) {
-            if (this.f24820p0 == null) {
-                Context context2 = t0.f26941b;
-                this.f24820p0 = c6.l(context2.getSharedPreferences("groups_save_gallery_exceptions_" + this.currentAccount, 0));
-            }
-            return this.f24820p0;
-        } else if (i7 == 4) {
-            if (this.f24819o0 == null) {
-                Context context3 = t0.f26941b;
-                this.f24819o0 = c6.l(context3.getSharedPreferences("channels_save_gallery_exceptions_" + this.currentAccount, 0));
-            }
-            return this.f24819o0;
-        } else {
-            return null;
-        }
-    }
-
-    public final int n(int i7) {
-        Object valueOf;
-        SharedPreferences k10 = k();
-        StringBuilder sb2 = new StringBuilder("2totalDialogsLoadCount");
-        if (i7 == 0) {
-            valueOf = "";
-        } else {
-            valueOf = Integer.valueOf(i7);
-        }
-        sb2.append(valueOf);
-        return k10.getInt(sb2.toString(), 0);
-    }
-
-    public final boolean p() {
-        boolean z10;
-        synchronized (this.f24800a) {
-            if (this.f24804c != null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-        }
-        return z10;
-    }
-
-    public final boolean q() {
-        TLRPC.User user = this.f24804c;
-        if (user == null) {
-            return false;
-        }
-        return user.premium;
-    }
-
-    public final void s() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.j10.s():void");
-    }
-
-    public final void t() {
-        if (!this.f24823r0 && System.currentTimeMillis() - this.f24825s0 >= 60000) {
-            this.f24823r0 = true;
-            getConnectionsManager().sendRequest(new TLRPC.TL_messages_getDefaultHistoryTTL(), new s1(this, 8));
-        }
-    }
-
-    public final void u() {
-        this.m0 = 0L;
-        if (this.f24815k0 != null) {
-            Arrays.fill(this.f24815k0, (byte) 0);
-            this.f24815k0 = null;
-        }
-        if (this.f24816l0 != null) {
-            Arrays.fill(this.f24816l0, (byte) 0);
-            this.f24816l0 = null;
-        }
-    }
-
-    public final void v(boolean z10) {
-        ks.f(this.currentAccount).d(new i10(0, this, z10));
-    }
-
-    public final void w(TLRPC.User user) {
-        synchronized (this.f24800a) {
-            TLRPC.User user2 = this.f24804c;
-            this.f24804c = user;
-            this.f24817n = user.f28580id;
-            a(user2, user);
-        }
-    }
-
-    public final void x(int i7, int i10, int i11, long j3, long j10, long j11, long j12) {
-        Integer valueOf;
-        Integer valueOf2;
-        Integer valueOf3;
-        Integer valueOf4;
-        Integer valueOf5;
-        SharedPreferences.Editor edit = k().edit();
-        StringBuilder sb2 = new StringBuilder("2dialogsLoadOffsetId");
-        Object obj = "";
-        if (i7 == 0) {
-            valueOf = "";
-        } else {
-            valueOf = Integer.valueOf(i7);
-        }
-        sb2.append(valueOf);
-        edit.putInt(sb2.toString(), i10);
-        StringBuilder sb3 = new StringBuilder("2dialogsLoadOffsetDate");
-        if (i7 == 0) {
-            valueOf2 = "";
-        } else {
-            valueOf2 = Integer.valueOf(i7);
-        }
-        sb3.append(valueOf2);
-        edit.putInt(sb3.toString(), i11);
-        StringBuilder sb4 = new StringBuilder("2dialogsLoadOffsetUserId");
-        if (i7 == 0) {
-            valueOf3 = "";
-        } else {
-            valueOf3 = Integer.valueOf(i7);
-        }
-        sb4.append(valueOf3);
-        edit.putLong(sb4.toString(), j3);
-        StringBuilder sb5 = new StringBuilder("2dialogsLoadOffsetChatId");
-        if (i7 == 0) {
-            valueOf4 = "";
-        } else {
-            valueOf4 = Integer.valueOf(i7);
-        }
-        sb5.append(valueOf4);
-        edit.putLong(sb5.toString(), j10);
-        StringBuilder sb6 = new StringBuilder("2dialogsLoadOffsetChannelId");
-        if (i7 == 0) {
-            valueOf5 = "";
-        } else {
-            valueOf5 = Integer.valueOf(i7);
-        }
-        sb6.append(valueOf5);
-        edit.putLong(sb6.toString(), j11);
-        StringBuilder sb7 = new StringBuilder("2dialogsLoadOffsetAccess");
-        if (i7 != 0) {
-            obj = Integer.valueOf(i7);
-        }
-        sb7.append(obj);
-        edit.putLong(sb7.toString(), j12);
-        edit.putBoolean("hasValidDialogLoadIds", true);
-        edit.commit();
-    }
-
-    public final void y(int i7, boolean z10) {
-        SharedPreferences.Editor edit = k().edit();
-        edit.putBoolean("2pinnedDialogsLoaded" + i7, z10).commit();
-    }
-
-    public final void z(int i7, int i10) {
-        Object valueOf;
-        SharedPreferences.Editor edit = k().edit();
-        StringBuilder sb2 = new StringBuilder("2totalDialogsLoadCount");
-        if (i7 == 0) {
-            valueOf = "";
-        } else {
-            valueOf = Integer.valueOf(i7);
-        }
-        sb2.append(valueOf);
-        edit.putInt(sb2.toString(), i10).commit();
     }
 }

@@ -4,18 +4,18 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class xu extends View {
-    public org.telegram.messenger.gc[] f42226a;
-    public fi.s2 f42227b;
-    public y5 f42228c;
+    public org.telegram.messenger.hc[] f42219a;
+    public fi.s2 f42220b;
+    public y5 f42221c;
     public ValueAnimator d;
-    public float f42229e;
+    public float f42222e;
 
     public TLRPC.Document getDocument() {
-        y5 y5Var = this.f42228c;
+        y5 y5Var = this.f42221c;
         if (y5Var != null) {
             TLRPC.Document document = y5Var.document;
             if (document == null) {
-                return p5.e(org.telegram.messenger.j10.f24798t0, y5Var.getDocumentId());
+                return p5.e(org.telegram.messenger.k10.f24968t0, y5Var.getDocumentId());
             }
             return document;
         }
@@ -39,7 +39,7 @@ public final class xu extends View {
                 this.d.cancel();
             }
             if (!z10) {
-                float f10 = this.f42229e;
+                float f10 = this.f42222e;
                 if (f10 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
                     this.d = ofFloat;

@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import kg.x1;
-import org.telegram.messenger.ri;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.si;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -23,18 +23,18 @@ import tg.c2;
 import tg.d2;
 import tg.f2;
 public final class s0 implements Runnable {
-    public final int f55469a;
-    public final Object f55470b;
-    public final Object f55471c;
+    public final int f55473a;
+    public final Object f55474b;
+    public final Object f55475c;
     public final Object d;
-    public final Object f55472e;
+    public final Object f55476e;
 
     public s0(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f55469a = i7;
-        this.f55471c = obj;
+        this.f55473a = i7;
+        this.f55475c = obj;
         this.d = obj2;
-        this.f55470b = obj3;
-        this.f55472e = obj4;
+        this.f55474b = obj3;
+        this.f55476e = obj4;
     }
 
     @Override
@@ -44,56 +44,56 @@ public final class s0 implements Runnable {
         int max2;
         boolean z10 = false;
         int i7 = 1;
-        switch (this.f55469a) {
+        switch (this.f55473a) {
             case 0:
-                e1 e1Var = (e1) this.f55471c;
+                e1 e1Var = (e1) this.f55475c;
                 v vVar = (v) this.d;
-                e0 e0Var = (e0) this.f55470b;
-                l lVar = (l) this.f55472e;
-                ab.c0 c0Var = e1Var.f55252b;
+                e0 e0Var = (e0) this.f55474b;
+                l lVar = (l) this.f55476e;
+                ab.c0 c0Var = e1Var.f55256b;
                 try {
-                    e1Var.f55253c.remove(vVar);
+                    e1Var.f55257c.remove(vVar);
                     if (!e0Var.j()) {
                         z0 z0Var = (z0) vVar.d;
                         z0Var.getClass();
-                        IBinder asBinder = z0Var.f55504a.asBinder();
+                        IBinder asBinder = z0Var.f55508a.asBinder();
                         t m10 = e0Var.m(vVar);
                         if (c0Var.A(vVar)) {
                             h2.a.l("MediaSessionStub", "Controller " + vVar + " has sent connection request multiple times");
                         }
-                        c0Var.b(asBinder, vVar, m10.f55475a, m10.f55476b);
+                        c0Var.b(asBinder, vVar, m10.f55479a, m10.f55480b);
                         com.google.android.gms.common.api.internal.t v = c0Var.v(vVar);
                         if (v == null) {
                             h2.a.l("MediaSessionStub", "Ignoring connection request from unknown controller info");
                         } else {
-                            i1 i1Var = e0Var.f55245t;
-                            g1 g1Var = e0Var.f55244s;
-                            e2.y0 y0Var = m10.f55476b;
+                            i1 i1Var = e0Var.f55249t;
+                            g1 g1Var = e0Var.f55248s;
+                            e2.y0 y0Var = m10.f55480b;
                             g1 A1 = e1Var.A1(g1Var);
-                            MediaSession.Token token = ((q4.l) e0Var.h.f55382n.f55867b).f55851c.f55864b;
-                            h9.i0 i0Var = m10.f55477c;
+                            MediaSession.Token token = ((q4.l) e0Var.h.f55386n.f55871b).f55855c.f55868b;
+                            h9.i0 i0Var = m10.f55481c;
                             if (i0Var == null) {
-                                i0Var = e0Var.f55249y;
+                                i0Var = e0Var.f55253y;
                             }
                             h9.i0 i0Var2 = m10.d;
                             if (i0Var2 == null) {
-                                i0Var2 = e0Var.f55250z;
+                                i0Var2 = e0Var.f55254z;
                             }
                             h9.i0 i0Var3 = i0Var;
-                            h9.i0 i0Var4 = e0Var.f55243r;
-                            l1 l1Var = m10.f55475a;
+                            h9.i0 i0Var4 = e0Var.f55247r;
+                            l1 l1Var = m10.f55479a;
                             e2.y0 t6 = i1Var.t();
-                            q1 q1Var = e0Var.f55235j.f55432a;
+                            q1 q1Var = e0Var.f55239j.f55436a;
                             q1Var.getClass();
-                            j jVar = new j(e1Var, i0Var3, i0Var2, i0Var4, l1Var, y0Var, t6, new Bundle(q1Var.f55453g), e0Var.A, A1, token);
+                            j jVar = new j(e1Var, i0Var3, i0Var2, i0Var4, l1Var, y0Var, t6, new Bundle(q1Var.f55457g), e0Var.A, A1, token);
                             if (!e0Var.j()) {
                                 try {
-                                    ((k) lVar).h1(v.e(), jVar.a(vVar.f55485c));
+                                    ((k) lVar).h1(v.e(), jVar.a(vVar.f55489c));
                                     z10 = true;
                                 } catch (RemoteException unused) {
                                 }
-                                if (z10 && (!e0Var.f55248x || !e0.k(vVar))) {
-                                    e0Var.f55231e.getClass();
+                                if (z10 && (!e0Var.f55252x || !e0.k(vVar))) {
+                                    e0Var.f55235e.getClass();
                                     break;
                                 }
                                 return;
@@ -107,10 +107,10 @@ public final class s0 implements Runnable {
                     }
                 }
             case 1:
-                m9.e0 e0Var2 = (m9.e0) this.f55471c;
+                m9.e0 e0Var2 = (m9.e0) this.f55475c;
                 h2.j jVar2 = (h2.j) this.d;
-                m9.y yVar = (m9.y) this.f55472e;
-                if (((e0) this.f55470b).j()) {
+                m9.y yVar = (m9.y) this.f55476e;
+                if (((e0) this.f55474b).j()) {
                     e0Var2.m(null);
                     return;
                 }
@@ -123,31 +123,31 @@ public final class s0 implements Runnable {
                     return;
                 }
             case 2:
-                e0 e0Var3 = (e0) this.f55470b;
-                b1 b1Var = (b1) this.f55471c;
+                e0 e0Var3 = (e0) this.f55474b;
+                b1 b1Var = (b1) this.f55475c;
                 v vVar2 = (v) this.d;
-                List list = (List) this.f55472e;
+                List list = (List) this.f55476e;
                 if (!e0Var3.j()) {
-                    b1Var.a(e0Var3.f55245t, vVar2, list);
+                    b1Var.a(e0Var3.f55249t, vVar2, list);
                     return;
                 }
                 return;
             case 3:
-                t5.a aVar = (t5.a) this.f55471c;
+                t5.a aVar = (t5.a) this.f55475c;
                 o5.i iVar = (o5.i) this.d;
-                String str = iVar.f21736a;
-                l5.g gVar = (l5.g) this.f55470b;
-                o5.h hVar = (o5.h) this.f55472e;
+                String str = iVar.f21739a;
+                l5.g gVar = (l5.g) this.f55474b;
+                o5.h hVar = (o5.h) this.f55476e;
                 aVar.getClass();
-                Logger logger = t5.a.f57654f;
+                Logger logger = t5.a.f57658f;
                 try {
-                    p5.f a11 = aVar.f57657c.a(str);
+                    p5.f a11 = aVar.f57661c.a(str);
                     if (a11 == null) {
                         String str2 = "Transport backend '" + str + "' is not registered";
                         logger.warning(str2);
                         gVar.a(new IllegalArgumentException(str2));
                     } else {
-                        ((v5.g) aVar.f57658e).f(new tm(aVar, iVar, ((m5.c) a11).a(hVar), 12));
+                        ((v5.g) aVar.f57662e).f(new tm(aVar, iVar, ((m5.c) a11).a(hVar), 12));
                         gVar.a(null);
                     }
                     return;
@@ -157,21 +157,21 @@ public final class s0 implements Runnable {
                     return;
                 }
             case 4:
-                f2 f2Var = (f2) this.f55471c;
+                f2 f2Var = (f2) this.f55475c;
                 f2Var.H = true;
                 f2Var.I = (c2[]) ((ArrayList) this.d).toArray(new c2[0]);
-                ((on0) this.f55470b).a((c2) this.f55472e);
+                ((on0) this.f55474b).a((c2) this.f55476e);
                 return;
             case 5:
-                f2 f2Var2 = (f2) this.f55471c;
+                f2 f2Var2 = (f2) this.f55475c;
                 TLObject tLObject = (TLObject) this.d;
-                d2 d2Var = (d2) this.f55470b;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f55472e;
+                d2 d2Var = (d2) this.f55474b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f55476e;
                 if (tLObject instanceof TLRPC.TL_messageMediaDocument) {
                     f2Var2.getClass();
                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) tLObject;
-                    d2Var.f57815e = ri.c0(tL_messageMediaDocument.document, d2Var.f57814c);
-                    d2Var.f57816f = tL_messageMediaDocument;
+                    d2Var.f57819e = si.c0(tL_messageMediaDocument.document, d2Var.f57818c);
+                    d2Var.f57820f = tL_messageMediaDocument;
                     f2Var2.a();
                     return;
                 }
@@ -179,45 +179,45 @@ public final class s0 implements Runnable {
                 f2Var2.n(tL_error);
                 return;
             case 6:
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f55471c;
-                x10 x10Var = (x10) this.d;
-                TLObject tLObject2 = (TLObject) this.f55470b;
-                x10 x10Var2 = (x10) this.f55472e;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f55475c;
+                y10 y10Var = (y10) this.d;
+                TLObject tLObject2 = (TLObject) this.f55474b;
+                y10 y10Var2 = (y10) this.f55476e;
                 if (tL_error2 != null) {
-                    x10Var.a(tL_error2);
+                    y10Var.a(tL_error2);
                     return;
                 } else if (tLObject2 instanceof TLRPC.payments_GiveawayInfo) {
-                    x10Var2.a((TLRPC.payments_GiveawayInfo) tLObject2);
+                    y10Var2.a((TLRPC.payments_GiveawayInfo) tLObject2);
                     return;
                 } else {
                     return;
                 }
             case 7:
-                xi.e eVar = (xi.e) this.f55471c;
-                ((ArrayDeque) eVar.f60662a).addLast(new xi.d((x1) this.d, (xi.a) this.f55470b, (RequestTimeDelegate) this.f55472e));
+                xi.e eVar = (xi.e) this.f55475c;
+                ((ArrayDeque) eVar.f60666a).addLast(new xi.d((x1) this.d, (xi.a) this.f55474b, (RequestTimeDelegate) this.f55476e));
                 eVar.K();
                 return;
             default:
-                zi.t tVar = (zi.t) this.f55471c;
+                zi.t tVar = (zi.t) this.f55475c;
                 zi.n0 n0Var = (zi.n0) this.d;
-                zi.n0 n0Var2 = (zi.n0) this.f55470b;
-                Handler handler = (Handler) this.f55472e;
-                if (tVar.f62329r0 && tVar.W == 0 && tVar.T) {
+                zi.n0 n0Var2 = (zi.n0) this.f55474b;
+                Handler handler = (Handler) this.f55476e;
+                if (tVar.f62333r0 && tVar.W == 0 && tVar.T) {
                     tVar.N.g(tVar.L, tVar.D, false);
                     tVar.U = false;
                     tVar.V = false;
-                    tVar.f62302c0 = 0.0f;
+                    tVar.f62306c0 = 0.0f;
                     tVar.W = 1;
                     long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
                     tVar.X = elapsedRealtimeNanos;
                     tVar.Y = elapsedRealtimeNanos;
-                    tVar.f62303d0 = n0Var;
-                    tVar.f62305e0 = n0Var2;
-                    String[] strArr = zi.v0.f62378a;
+                    tVar.f62307d0 = n0Var;
+                    tVar.f62309e0 = n0Var2;
+                    String[] strArr = zi.v0.f62382a;
                     synchronized (zi.v0.class) {
                         zi.v0.b();
                         if (n0Var != n0Var2) {
-                            if (n0Var == zi.n0.f62270b) {
+                            if (n0Var == zi.n0.f62274b) {
                                 i7 = 0;
                             }
                             a10 = zi.v0.a(i7);
@@ -225,13 +225,13 @@ public final class s0 implements Runnable {
                             throw new IllegalArgumentException("Camera switch direction must change");
                         }
                     }
-                    tVar.f62300b0 = a10;
+                    tVar.f62304b0 = a10;
                     tVar.Z = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a10 - 400) * 3) / 20))) * 45) / 100) * 1000000;
-                    tVar.f62298a0 = (max - max2) * 1000000;
-                    tVar.f62311i.b("synthetic camera switch started: from=" + n0Var + ", to=" + n0Var2 + ", expectedWaitMs=" + tVar.f62300b0 + ", targetBlurRadiusPx=" + (((tVar.N.f62094a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f62298a0) / 1000000));
+                    tVar.f62302a0 = (max - max2) * 1000000;
+                    tVar.f62315i.b("synthetic camera switch started: from=" + n0Var + ", to=" + n0Var2 + ", expectedWaitMs=" + tVar.f62304b0 + ", targetBlurRadiusPx=" + (((tVar.N.f62098a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f62302a0) / 1000000));
                     tVar.Q = -1L;
-                    handler.removeCallbacks(tVar.f62342y0);
-                    handler.post(tVar.f62342y0);
+                    handler.removeCallbacks(tVar.f62346y0);
+                    handler.post(tVar.f62346y0);
                     return;
                 }
                 return;
@@ -239,10 +239,10 @@ public final class s0 implements Runnable {
     }
 
     public s0(e0 e0Var, Object obj, Object obj2, Object obj3, int i7) {
-        this.f55469a = i7;
-        this.f55470b = e0Var;
-        this.f55471c = obj;
+        this.f55473a = i7;
+        this.f55474b = e0Var;
+        this.f55475c = obj;
         this.d = obj2;
-        this.f55472e = obj3;
+        this.f55476e = obj3;
     }
 }

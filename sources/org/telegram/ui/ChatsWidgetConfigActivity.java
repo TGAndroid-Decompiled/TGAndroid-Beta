@@ -23,13 +23,13 @@ public class ChatsWidgetConfigActivity extends ExternalActionActivity {
                 if (this.d.getFragmentStack().isEmpty()) {
                     this.d.c(-1, kxVar);
                 }
-            } else if (this.f43082c.getFragmentStack().isEmpty()) {
-                this.f43082c.c(-1, kxVar);
+            } else if (this.f43086c.getFragmentStack().isEmpty()) {
+                this.f43086c.c(-1, kxVar);
             }
             if (!org.telegram.messenger.g0.Q1()) {
-                this.f43083e.setVisibility(8);
+                this.f43087e.setVisibility(8);
             }
-            this.f43082c.f0();
+            this.f43086c.f0();
             if (org.telegram.messenger.g0.Q1()) {
                 this.d.f0();
             }

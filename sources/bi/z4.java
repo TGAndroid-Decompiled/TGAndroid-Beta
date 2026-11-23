@@ -1,70 +1,41 @@
 package bi;
 
-import android.view.View;
-import android.widget.TextView;
-import di.j9;
 import java.util.HashMap;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.tr;
-import org.telegram.messenger.zy;
-import org.telegram.ui.Components.a70;
-public final class z4 implements View.OnClickListener {
-    public final int f4333a;
-    public final d5 f4334b;
+import org.telegram.messenger.sq;
+import org.telegram.messenger.ur;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class z4 implements Runnable {
+    public final int f4336a;
+    public final c5 f4337b;
 
-    public z4(d5 d5Var, int i7) {
-        this.f4333a = i7;
-        this.f4334b = d5Var;
+    public z4(c5 c5Var, int i7) {
+        this.f4336a = i7;
+        this.f4337b = c5Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z10;
-        int i7 = this.f4333a;
-        d5 d5Var = this.f4334b;
+    public final void run() {
+        int i7 = this.f4336a;
+        c5 c5Var = this.f4337b;
         switch (i7) {
             case 0:
-                TextView textView = d5Var.f3518v1;
-                a70 G = a70.G(d5Var.f30176c, d5Var.J0, textView);
-                int[] iArr = d5.A1;
-                for (int i10 = 0; i10 < 6; i10++) {
-                    int i11 = iArr[i10];
-                    if (i11 == d5Var.f3521y1) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    G.i(new ai.y0(d5Var, i11, 3), gd.G(i11 / 3600, "GiftOfferHours", new Object[0]), z10);
-                }
-                G.W(5);
-                d5Var.I0(textView, G, true);
+                EditTextBoldCursor editTextBoldCursor = c5Var.f3491s1;
+                editTextBoldCursor.requestFocus();
+                org.telegram.messenger.g0.I3(editTextBoldCursor);
                 return;
             case 1:
-                d5 d5Var2 = this.f4334b;
-                hi.e eVar = d5Var2.f3519w1;
-                if (eVar.f14564e0 && !eVar.R) {
-                    if (mp.u1(d5Var2.f30170a).A2()) {
-                        org.telegram.ui.b.b(d5Var2.f30170a);
-                        return;
-                    }
-                    org.telegram.messenger.g0.v1(d5Var2.f3515s1);
-                    long j3 = d5Var2.f3520x1;
-                    int i12 = d5Var2.f3521y1;
-                    eVar.setLoading(true);
-                    int i13 = d5Var2.f30170a;
-                    String str = d5Var2.f3510m1.slug;
-                    b5 b5Var = new b5(d5Var2, j3, i12, 0);
-                    HashMap hashMap = i4.f3720a;
-                    zy.C(i13);
-                    long E = zy.E();
-                    tr a02 = tr.a0(i13);
-                    a02.f27080a.c(new j9(a02, E, str, j3, i12, b5Var));
-                    return;
+                di.k1 k1Var = c5Var.f3487o1;
+                if (k1Var != null) {
+                    k1Var.run();
                 }
+                c5Var.dismiss();
                 return;
             default:
-                org.telegram.ui.Wallet.n6.N0(d5Var.f30170a, d5Var.getContext(), d5Var.J0);
+                int i10 = c5Var.f30173a;
+                String str = c5Var.f3486m1.slug;
+                HashMap hashMap = i4.f3725a;
+                ur a02 = ur.a0(i10);
+                a02.f27250a.c(new sq(6, a02, str));
                 return;
         }
     }

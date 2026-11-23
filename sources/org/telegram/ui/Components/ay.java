@@ -5,27 +5,27 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ay {
-    public final ArrayList f33657a = new ArrayList();
-    public final ty f33658b;
+    public final ArrayList f33670a = new ArrayList();
+    public final ty f33671b;
 
     public ay(ty tyVar) {
-        this.f33658b = tyVar;
+        this.f33671b = tyVar;
     }
 
     public final void a(String str, boolean z10) {
-        ty tyVar = this.f33658b;
-        int i7 = tyVar.f40099d1;
+        ty tyVar = this.f33671b;
+        int i7 = tyVar.f40092d1;
         String p10 = a8.p0.p("gif_search_", str, "_");
         if (!z10 || !tyVar.m0.containsKey(p10)) {
             String str2 = str;
             di.j3 j3Var = new di.j3(this, str2, z10, p10, 6);
-            ArrayList arrayList = this.f33657a;
+            ArrayList arrayList = this.f33670a;
             if (z10) {
                 arrayList.add(p10);
-                org.telegram.messenger.tr.a0(i7).M(p10, j3Var);
+                org.telegram.messenger.ur.a0(i7).M(p10, j3Var);
                 return;
             }
-            org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(i7);
+            org.telegram.messenger.np u12 = org.telegram.messenger.np.u1(i7);
             TLObject h22 = u12.h2(u12.N3);
             if (!(h22 instanceof TLRPC.User)) {
                 return;

@@ -16,15 +16,15 @@ import yg.d0;
 import yg.r;
 import yg.t;
 public abstract class e extends dk0 {
-    public final h6 f60526c;
+    public final h6 f60530c;
     public boolean d;
-    public g2 f60527e;
-    public TLRPC.TL_payments_checkedGiftCode f60528f;
+    public g2 f60531e;
+    public TLRPC.TL_payments_checkedGiftCode f60532f;
     public String h;
-    public m2 f60529n;
+    public m2 f60533n;
 
     public e(h6 h6Var) {
-        this.f60526c = h6Var;
+        this.f60530c = h6Var;
     }
 
     @Override
@@ -71,7 +71,7 @@ public abstract class e extends dk0 {
     public final f1 x(ViewGroup viewGroup, int i7) {
         View tVar;
         Context context = viewGroup.getContext();
-        h6 h6Var = this.f60526c;
+        h6 h6Var = this.f60530c;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {

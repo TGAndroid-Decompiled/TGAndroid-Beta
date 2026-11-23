@@ -1,7 +1,7 @@
 package ce;
 public abstract class x {
-    public static final ee.t f5295a = new ee.t("NONE", 0);
-    public static final ee.t f5296b = new ee.t("PENDING", 0);
+    public static final ee.t f5298a = new ee.t("NONE", 0);
+    public static final ee.t f5299b = new ee.t("PENDING", 0);
 
     public static final java.lang.Object a(ce.z r4, m1.n r5, java.lang.Throwable r6, kd.c r7) {
         throw new UnsupportedOperationException("Method not decompiled: ce.x.a(ce.z, m1.n, java.lang.Throwable, kd.c):java.lang.Object");

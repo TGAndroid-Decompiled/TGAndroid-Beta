@@ -1,21 +1,21 @@
 package org.telegram.messenger;
+
+import java.util.List;
 public final class uq implements Runnable {
-    public final int f27235a;
-    public final tr f27236b;
-    public final int f27237c;
-    public final long d;
-    public final long f27238e;
+    public final int f27242a;
+    public final c1 f27243b;
+    public final long f27244c;
+    public final boolean d;
+    public final int f27245e;
+    public final Object f27246f;
 
-    public uq(int i7, long j3, long j10, tr trVar) {
-        this.f27235a = 2;
-        this.f27236b = trVar;
-        this.d = j3;
-        this.f27237c = i7;
-        this.f27238e = j10;
-    }
-
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.uq.a():void");
+    public uq(c1 c1Var, long j3, List list, boolean z10, int i7, int i10) {
+        this.f27242a = i10;
+        this.f27243b = c1Var;
+        this.f27244c = j3;
+        this.f27246f = list;
+        this.d = z10;
+        this.f27245e = i7;
     }
 
     @Override
@@ -23,19 +23,12 @@ public final class uq implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.uq.run():void");
     }
 
-    public uq(tr trVar, int i7, long j3, long j10, int i10) {
-        this.f27235a = i10;
-        this.f27236b = trVar;
-        this.f27237c = i7;
-        this.d = j3;
-        this.f27238e = j10;
-    }
-
-    public uq(tr trVar, long j3, long j10, int i7, int i10) {
-        this.f27235a = i10;
-        this.f27236b = trVar;
-        this.d = j3;
-        this.f27238e = j10;
-        this.f27237c = i7;
+    public uq(ur urVar, boolean z10, String str, long j3, int i7, String str2) {
+        this.f27242a = 0;
+        this.f27243b = urVar;
+        this.d = z10;
+        this.f27246f = str;
+        this.f27244c = j3;
+        this.f27245e = i7;
     }
 }

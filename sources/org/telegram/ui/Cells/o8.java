@@ -5,32 +5,32 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.Components.CheckBoxSquare;
 public final class o8 extends FrameLayout {
-    public TextView f31210a;
-    public CheckBoxSquare f31211b;
-    public boolean f31212c;
+    public TextView f31213a;
+    public CheckBoxSquare f31214b;
+    public boolean f31215c;
 
     public final void a(String str, boolean z10, boolean z11) {
-        this.f31210a.setText(str);
-        this.f31211b.a(z10, false);
-        this.f31212c = z11;
+        this.f31213a.setText(str);
+        this.f31214b.a(z10, false);
+        this.f31215c = z11;
         setWillNotDraw(!z11);
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f31211b.invalidate();
+        this.f31214b.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float L;
         int i7;
-        if (this.f31212c) {
-            if (gd.f24241a0) {
+        if (this.f31215c) {
+            if (hd.f24444a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(20.0f);
@@ -38,12 +38,12 @@ public final class o8 extends FrameLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (gd.f24241a0) {
+            if (hd.f24444a0) {
                 i7 = org.telegram.messenger.g0.L(20.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29501k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29504k0);
         }
     }
 
@@ -52,15 +52,15 @@ public final class o8 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f31211b.h);
+        accessibilityNodeInfo.setChecked(this.f31214b.h);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f) + (this.f31212c ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f) + (this.f31215c ? 1 : 0), 1073741824));
     }
 
     public void setChecked(boolean z10) {
-        this.f31211b.a(z10, true);
+        this.f31214b.a(z10, true);
     }
 }

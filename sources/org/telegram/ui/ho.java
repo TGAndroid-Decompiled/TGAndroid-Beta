@@ -4,15 +4,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
 public final class ho extends org.telegram.ui.Components.dk0 {
-    public final io f48500c;
+    public final io f48504c;
 
     public ho(io ioVar) {
-        this.f48500c = ioVar;
+        this.f48504c = ioVar;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59165f == 1) {
+        if (f1Var.f59169f == 1) {
             return true;
         }
         return false;
@@ -20,7 +20,7 @@ public final class ho extends org.telegram.ui.Components.dk0 {
 
     @Override
     public final int b() {
-        return this.f48500c.f48794i3.O.size() + 2;
+        return this.f48504c.f48798i3.O.size() + 2;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class ho extends org.telegram.ui.Components.dk0 {
         if (i7 == 0) {
             return 0;
         }
-        if (i7 <= this.f48500c.f48794i3.O.size()) {
+        if (i7 <= this.f48504c.f48798i3.O.size()) {
             return 1;
         }
         return 2;
@@ -36,15 +36,15 @@ public final class ho extends org.telegram.ui.Components.dk0 {
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        io ioVar = this.f48500c;
-        jo joVar = ioVar.f48794i3;
-        int i10 = f1Var.f59165f;
-        View view = f1Var.f59161a;
+        io ioVar = this.f48504c;
+        jo joVar = ioVar.f48798i3;
+        int i10 = f1Var.f59169f;
+        View view = f1Var.f59165a;
         if (i10 != 0) {
             boolean z10 = true;
             if (i10 != 1) {
                 if (i10 == 2) {
-                    ((org.telegram.ui.Cells.a9) view).setText(org.telegram.messenger.gd.N0(2131743400, null));
+                    ((org.telegram.ui.Cells.a9) view).setText(org.telegram.messenger.hd.N0(2131743398, null));
                     return;
                 }
                 return;
@@ -65,14 +65,14 @@ public final class ho extends org.telegram.ui.Components.dk0 {
             return;
         }
         org.telegram.ui.Cells.o4 o4Var = (org.telegram.ui.Cells.o4) view;
-        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29378d6, o4Var, ioVar.f34875o2);
-        o4Var.setText(org.telegram.messenger.gd.N0(2131743401, null));
+        org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29381d6, o4Var, ioVar.f34873o2);
+        o4Var.setText(org.telegram.messenger.hd.N0(2131743399, null));
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        io ioVar = this.f48500c;
-        org.telegram.ui.ActionBar.h6 h6Var = ioVar.f34875o2;
+        io ioVar = this.f48504c;
+        org.telegram.ui.ActionBar.h6 h6Var = ioVar.f34873o2;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {

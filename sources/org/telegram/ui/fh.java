@@ -1,13 +1,13 @@
 package org.telegram.ui;
-public final class fh implements org.telegram.messenger.p10 {
-    public final int f47722a;
-    public final Object f47723b;
-    public final Object f47724c;
+public final class fh implements org.telegram.messenger.q10 {
+    public final int f47726a;
+    public final Object f47727b;
+    public final Object f47728c;
 
     public fh(int i7, Object obj, Object obj2) {
-        this.f47722a = i7;
-        this.f47723b = obj;
-        this.f47724c = obj2;
+        this.f47726a = i7;
+        this.f47727b = obj;
+        this.f47728c = obj2;
     }
 
     @Override

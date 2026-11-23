@@ -31,27 +31,27 @@ public final class lq0 extends wy {
         int i11;
         v4.i0 adapter = this.Y.h.getAdapter();
         jt0 jt0Var = this.Z;
-        ys0[] ys0VarArr = jt0Var.f36683w1;
-        if (adapter == jt0Var.R && !ys0VarArr[5].f42521a.isEmpty()) {
-            document = ((org.telegram.messenger.fj) ys0VarArr[5].f42521a.get(i7)).F0();
+        ys0[] ys0VarArr = jt0Var.f36678w1;
+        if (adapter == jt0Var.R && !ys0VarArr[5].f42514a.isEmpty()) {
+            document = ((org.telegram.messenger.gj) ys0VarArr[5].f42514a.get(i7)).F0();
         } else {
             document = null;
         }
         yt0 yt0Var = this.X;
-        yt0Var.f42554b = 100.0f;
-        yt0Var.f42553a = 100.0f;
+        yt0Var.f42547b = 100.0f;
+        yt0Var.f42546a = 100.0f;
         if (document != null) {
             TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
-            if (w10 != null && (i10 = w10.f28456w) != 0 && (i11 = w10.h) != 0) {
-                yt0Var.f42553a = i10;
-                yt0Var.f42554b = i11;
+            if (w10 != null && (i10 = w10.f28459w) != 0 && (i11 = w10.h) != 0) {
+                yt0Var.f42546a = i10;
+                yt0Var.f42547b = i11;
             }
             ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i12);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    yt0Var.f42553a = documentAttribute.f28438w;
-                    yt0Var.f42554b = documentAttribute.h;
+                    yt0Var.f42546a = documentAttribute.f28441w;
+                    yt0Var.f42547b = documentAttribute.h;
                     break;
                 }
             }
@@ -63,7 +63,7 @@ public final class lq0 extends wy {
     public final void U(v4.x0 x0Var, v4.c1 c1Var, View view, s0.c cVar) {
         qf qfVar;
         super.U(x0Var, c1Var, view, cVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56781a;
+        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56785a;
         AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
         if (collectionItemInfo != null) {
             qfVar = new qf(collectionItemInfo, 15);
@@ -71,7 +71,7 @@ public final class lq0 extends wy {
             qfVar = null;
         }
         if (qfVar != null) {
-            Object obj = qfVar.f38902b;
+            Object obj = qfVar.f38896b;
             if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
                 accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
             }

@@ -3,8 +3,8 @@ package fi;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.mp;
+import org.telegram.messenger.gj;
+import org.telegram.messenger.np;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
@@ -28,11 +28,11 @@ public final class b6 extends h6 {
     }
 
     @Override
-    public final fj f(int i7) {
+    public final gj f(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f12086i;
+            ArrayList arrayList = this.f12089i;
             if (i7 < arrayList.size()) {
-                return (fj) arrayList.get(i7);
+                return (gj) arrayList.get(i7);
             }
             return null;
         }
@@ -51,7 +51,7 @@ public final class b6 extends h6 {
 
     @Override
     public final int i() {
-        return this.f12086i.size();
+        return this.f12089i.size();
     }
 
     @Override
@@ -86,18 +86,18 @@ public final class b6 extends h6 {
         String str2 = this.D;
         boolean isEmpty = TextUtils.isEmpty(str2);
         TLObject tLObject = null;
-        int i10 = this.f12082c;
+        int i10 = this.f12085c;
         if (!isEmpty) {
-            TLObject h22 = mp.u1(i10).h2(str2);
+            TLObject h22 = np.u1(i10).h2(str2);
             if (h22 == null) {
-                mp.u1(i10).f2().a(str2, null, new l2(this, z10, i7, list));
+                np.u1(i10).f2().a(str2, null, new l2(this, z10, i7, list));
                 return true;
             }
             tLObject = h22;
         }
         if (tLObject != null) {
             tL_stories_searchPosts.flags |= 4;
-            tL_stories_searchPosts.peer = mp.m1(tLObject);
+            tL_stories_searchPosts.peer = np.m1(tLObject);
         }
         this.I = ConnectionsManager.getInstance(i10).sendRequest(tL_stories_searchPosts, new ai.g1(this, 7));
         return true;

@@ -12,18 +12,18 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 public class m30 extends FrameLayout {
-    public final di.xb f37394a;
-    public final ImageView f37395b;
-    public View f37396c;
+    public final di.xb f37393a;
+    public final ImageView f37394b;
+    public View f37395c;
     public AnimatorSet d;
-    public Runnable f37397e;
-    public final int f37398f;
+    public Runnable f37396e;
+    public final int f37397f;
     public final boolean h;
-    public float f37399n;
-    public float f37400r;
-    public int f37401s;
-    public long f37402w;
-    public boolean f37403x;
+    public float f37398n;
+    public float f37399r;
+    public int f37400s;
+    public long f37401w;
+    public boolean f37402x;
 
     public m30(Context context, int i7) {
         this(i7, context, null, false);
@@ -34,10 +34,10 @@ public class m30 extends FrameLayout {
             return;
         }
         setTag(null);
-        Runnable runnable = this.f37397e;
+        Runnable runnable = this.f37396e;
         if (runnable != null) {
             org.telegram.messenger.g0.r(runnable);
-            this.f37397e = null;
+            this.f37396e = null;
         }
         AnimatorSet animatorSet = this.d;
         if (animatorSet != null) {
@@ -46,12 +46,12 @@ public class m30 extends FrameLayout {
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.d = animatorSet2;
-        boolean z10 = this.f37403x;
+        boolean z10 = this.f37402x;
         Property property = View.ALPHA;
         if (z10) {
             animatorSet2.playTogether(ObjectAnimator.ofFloat(this, property, 1.0f, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.0f, 0.5f), ObjectAnimator.ofFloat(this, View.SCALE_X, 1.0f, 0.5f));
             this.d.setDuration(150L);
-            this.d.setInterpolator(nr.f37956f);
+            this.d.setInterpolator(nr.f37961f);
         } else {
             animatorSet2.playTogether(ObjectAnimator.ofFloat(this, property, 0.0f));
             this.d.setDuration(300L);
@@ -62,13 +62,13 @@ public class m30 extends FrameLayout {
 
     public final void b() {
         float f10;
-        di.xb xbVar = this.f37394a;
+        di.xb xbVar = this.f37393a;
         org.telegram.ui.ActionBar.t6.q(xbVar);
-        ImageView imageView = this.f37395b;
+        ImageView imageView = this.f37394b;
         org.telegram.ui.ActionBar.t6.q(imageView);
         xbVar.setTextColor(-1);
         imageView.setColorFilter(new PorterDuffColorFilter(-366530760, PorterDuff.Mode.MULTIPLY));
-        int i7 = this.f37398f;
+        int i7 = this.f37397f;
         if (i7 != 7 && i7 != 8) {
             f10 = 3.0f;
         } else {
@@ -78,14 +78,14 @@ public class m30 extends FrameLayout {
     }
 
     public final void c(View view) {
-        if (this.f37396c != view && getTag() == null) {
-            Runnable runnable = this.f37397e;
+        if (this.f37395c != view && getTag() == null) {
+            Runnable runnable = this.f37396e;
             if (runnable != null) {
                 org.telegram.messenger.g0.r(runnable);
-                this.f37397e = null;
+                this.f37396e = null;
             }
             d(view);
-            this.f37396c = view;
+            this.f37395c = view;
             AnimatorSet animatorSet = this.d;
             if (animatorSet != null) {
                 animatorSet.cancel();
@@ -95,10 +95,10 @@ public class m30 extends FrameLayout {
             setVisibility(0);
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.d = animatorSet2;
-            boolean z10 = this.f37403x;
+            boolean z10 = this.f37402x;
             Property property = View.ALPHA;
             if (z10) {
-                ImageView imageView = this.f37395b;
+                ImageView imageView = this.f37394b;
                 setPivotX((imageView.getMeasuredWidth() / 2.0f) + imageView.getX());
                 setPivotY((imageView.getMeasuredHeight() / 2.0f) + imageView.getY());
                 this.d.playTogether(ObjectAnimator.ofFloat(this, property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.5f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_X, 0.5f, 1.0f));
@@ -125,7 +125,7 @@ public class m30 extends FrameLayout {
     }
 
     public float getBaseTranslationY() {
-        return this.f37399n;
+        return this.f37398n;
     }
 
     public org.telegram.ui.Cells.r1 getMessageCell() {
@@ -138,38 +138,38 @@ public class m30 extends FrameLayout {
     }
 
     public void setBottomOffset(int i7) {
-        this.f37401s = i7;
+        this.f37400s = i7;
     }
 
     public void setExtraTranslationY(float f10) {
-        this.f37400r = f10;
-        setTranslationY(f10 + this.f37399n);
+        this.f37399r = f10;
+        setTranslationY(f10 + this.f37398n);
     }
 
     public void setOverrideText(String str) {
-        this.f37394a.setText(str);
+        this.f37393a.setText(str);
     }
 
     public void setShowingDuration(long j3) {
-        this.f37402w = j3;
+        this.f37401w = j3;
     }
 
     public void setText(CharSequence charSequence) {
-        this.f37394a.setText(charSequence);
+        this.f37393a.setText(charSequence);
     }
 
     public void setUseScale(boolean z10) {
-        this.f37403x = z10;
+        this.f37402x = z10;
     }
 
     public m30(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
         super(context);
-        this.f37402w = 2000L;
-        this.f37398f = i7;
+        this.f37401w = 2000L;
+        this.f37397f = i7;
         this.h = z10;
         di.xb xbVar = new di.xb(context, 24);
-        this.f37394a = xbVar;
-        int i10 = org.telegram.ui.ActionBar.m6.f29443gg;
+        this.f37393a = xbVar;
+        int i10 = org.telegram.ui.ActionBar.m6.f29446gg;
         org.telegram.ui.ActionBar.t6.U(xbVar, i10, h6Var);
         xbVar.setTextSize(1, 14.0f);
         xbVar.setMaxLines(2);
@@ -202,7 +202,7 @@ public class m30 extends FrameLayout {
             addView(xbVar, c8.ma.d(-2, -2.0f, 51, 0.0f, z10 ? 6.0f : 0.0f, 0.0f, z10 ? 0.0f : 6.0f));
         }
         if (i7 == 0) {
-            xbVar.setText(org.telegram.messenger.gd.N0(2131753759, null));
+            xbVar.setText(org.telegram.messenger.hd.N0(2131753759, null));
             ImageView imageView = new ImageView(context);
             imageView.setImageResource(2131232789);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -210,7 +210,7 @@ public class m30 extends FrameLayout {
             addView(imageView, c8.ma.d(38, 34.0f, 51, 7.0f, 7.0f, 0.0f, 0.0f));
         }
         ImageView imageView2 = new ImageView(context);
-        this.f37395b = imageView2;
+        this.f37394b = imageView2;
         imageView2.setImageResource(z10 ? 2131232786 : 2131232785);
         org.telegram.ui.ActionBar.t6.s(imageView2, org.telegram.ui.ActionBar.m6.hg, h6Var, PorterDuff.Mode.MULTIPLY);
         addView(imageView2, c8.ma.d(14, 6.0f, (z10 ? 48 : 80) | 3, 0.0f, 0.0f, 0.0f, 0.0f));

@@ -3,39 +3,39 @@ package wi;
 import android.widget.ImageView;
 import org.telegram.messenger.g0;
 public final class b implements Runnable {
-    public final int f59974a;
-    public final h f59975b;
+    public final int f59978a;
+    public final h f59979b;
 
     public b(h hVar, int i7) {
-        this.f59974a = i7;
-        this.f59975b = hVar;
+        this.f59978a = i7;
+        this.f59979b = hVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f59974a) {
+        switch (this.f59978a) {
             case 0:
-                h hVar = this.f59975b;
-                ImageView imageView = hVar.f59996l;
+                h hVar = this.f59979b;
+                ImageView imageView = hVar.f60000l;
                 if (imageView != null) {
                     imageView.setVisibility(8);
-                    hVar.f59996l.setImageDrawable(null);
+                    hVar.f60000l.setImageDrawable(null);
                     return;
                 }
                 return;
             case 1:
-                h hVar2 = this.f59975b;
+                h hVar2 = this.f59979b;
                 if (hVar2.b() && hVar2.c()) {
                     boolean z10 = false;
                     float f10 = hVar2.M[0];
-                    if (f10 >= hVar2.f60007x * 0.5f) {
+                    if (f10 >= hVar2.f60011x * 0.5f) {
                         z10 = true;
                     }
-                    if (hVar2.f59988b.V(z10, f10, hVar2.G) && !hVar2.f60005u) {
-                        hVar2.f60005u = true;
+                    if (hVar2.f59992b.V(z10, f10, hVar2.G) && !hVar2.f60009u) {
+                        hVar2.f60009u = true;
                         hVar2.o(true);
-                        if (!hVar2.f60006w) {
-                            hVar2.f60006w = true;
+                        if (!hVar2.f60010w) {
+                            hVar2.f60010w = true;
                             g0.h3(hVar2.P, 1500L);
                             return;
                         }
@@ -45,10 +45,10 @@ public final class b implements Runnable {
                 }
                 return;
             case 2:
-                g0.g3(new b(this.f59975b, 0));
+                g0.g3(new b(this.f59979b, 0));
                 return;
             default:
-                h hVar3 = this.f59975b;
+                h hVar3 = this.f59979b;
                 hVar3.getClass();
                 g0.g3(new b(hVar3, 0));
                 return;

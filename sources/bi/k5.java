@@ -1,32 +1,37 @@
 package bi;
 
-import org.telegram.messenger.r10;
-import org.telegram.ui.Components.gq0;
-public final class k5 implements te.b, r10 {
-    public final gq0 f3793a;
+import org.telegram.messenger.y10;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.ProfileActivity;
+public final class k5 implements y10 {
+    public final int f3802a;
+    public final s6 f3803b;
 
-    public k5(gq0 gq0Var) {
-        this.f3793a = gq0Var;
+    public k5(s6 s6Var, int i7) {
+        this.f3802a = i7;
+        this.f3803b = s6Var;
     }
 
     @Override
-    public void H(int i7, float f10, float f11, te.c cVar) {
-        this.f3793a.l();
-    }
-
-    @Override
-    public Object g(Number number, Object obj) {
-        Integer num = (Integer) obj;
-        gq0 gq0Var = this.f3793a;
-        gq0Var.i();
-        if (((Integer) number).intValue() == -1) {
-            gq0Var.h(null, new l5(gq0Var, 1));
-            return Boolean.TRUE;
+    public final void a(Object obj) {
+        switch (this.f3802a) {
+            case 0:
+                s6 s6Var = this.f3803b;
+                s6Var.f(true);
+                i71 i71Var = s6Var.f4096n;
+                int i7 = ((TL_stars.TL_starGiftCollection) obj).collection_id;
+                i71Var.e(i7, s6Var.f4094e.f(i7) + 1);
+                org.telegram.ui.ActionBar.g2 g2Var = s6Var.f4091a;
+                if (g2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) g2Var).X4(true);
+                }
+                s6Var.o();
+                return;
+            default:
+                s6 s6Var2 = this.f3803b;
+                s6Var2.f4094e.b((String) obj, new k5(s6Var2, 0));
+                return;
         }
-        return Boolean.FALSE;
-    }
-
-    @Override
-    public void D(float f10, int i7) {
     }
 }

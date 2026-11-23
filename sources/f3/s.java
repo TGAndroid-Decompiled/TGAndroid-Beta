@@ -1,7 +1,7 @@
 package f3;
 
 import android.animation.ObjectAnimator;
-import org.telegram.messenger.fj;
+import org.telegram.messenger.gj;
 import org.telegram.ui.Components.kb;
 import org.telegram.ui.Components.lb;
 import org.telegram.ui.Components.og;
@@ -11,11 +11,11 @@ import org.telegram.ui.Components.wa;
 import org.telegram.ui.Components.xa;
 import org.telegram.ui.Components.zs;
 public final class s implements kb {
-    public long f11225a;
+    public long f11228a;
 
-    public s(fj fjVar) {
-        this.f11225a = fj.B0(fjVar.f23993k);
-        fjVar.e1();
+    public s(gj gjVar) {
+        this.f11228a = gj.B0(gjVar.f24213k);
+        gjVar.e1();
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class s implements kb {
         lbVar.setInOutOffset(lbVar.getMeasuredHeight());
         rlVar.accept(Float.valueOf(lbVar.getTranslationY()));
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(lbVar, lb.IN_OUT_OFFSET_Y2, 0.0f);
-        ofFloat.setDuration(this.f11225a);
+        ofFloat.setDuration(this.f11228a);
         ofFloat.setInterpolator(zs.d);
         ofFloat.addListener(new ah.l(waVar, ogVar, 19));
         ofFloat.addUpdateListener(new ch.w(13, rlVar, lbVar));
@@ -31,7 +31,7 @@ public final class s implements kb {
     }
 
     public boolean a(tf.m mVar) {
-        if (mVar.f912b == this.f11225a && tf.a.c(mVar)) {
+        if (mVar.f912b == this.f11228a && tf.a.c(mVar)) {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public final class s implements kb {
     public void j(lb lbVar, wa waVar, ua uaVar, xa xaVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(lbVar, lb.IN_OUT_OFFSET_Y2, lbVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(zs.f42973c);
+        ofFloat.setInterpolator(zs.f42977c);
         ofFloat.addListener(new ah.l(waVar, uaVar, 20));
         ofFloat.addUpdateListener(new ch.w(12, xaVar, lbVar));
         ofFloat.start();

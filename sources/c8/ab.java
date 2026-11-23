@@ -3,11 +3,11 @@ package c8;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 public abstract class ab {
-    public static int[] f4511a;
+    public static int[] f4514a;
 
     public static int a(ArrayList arrayList, ca.q qVar) {
         int size = arrayList.size();
-        ArrayList arrayList2 = qVar.f5170a;
+        ArrayList arrayList2 = qVar.f5173a;
         int size2 = arrayList2.size();
         int i7 = 0;
         while (i7 < size2) {
@@ -15,9 +15,9 @@ public abstract class ab {
             i7++;
             org.telegram.ui.Wallet.x3 x3Var = (org.telegram.ui.Wallet.x3) obj;
             ?? obj2 = new Object();
-            obj2.f45288a = x3Var.f45288a;
-            obj2.f45289b = x3Var.f45289b;
-            obj2.f45290c = x3Var.f45290c;
+            obj2.f45292a = x3Var.f45292a;
+            obj2.f45293b = x3Var.f45293b;
+            obj2.f45294c = x3Var.f45294c;
             obj2.d = new int[x3Var.d.length];
             int i10 = 0;
             while (true) {
@@ -29,7 +29,7 @@ public abstract class ab {
             }
             arrayList.add(obj2);
         }
-        return qVar.f5171b + size;
+        return qVar.f5174b + size;
     }
 
     public static ca.q b(byte[] bArr) {
@@ -54,21 +54,21 @@ public abstract class ab {
                     i14 += i11 * c10;
                 }
                 ?? obj = new Object();
-                obj.f5170a = new ArrayList();
-                obj.f5171b = c12;
+                obj.f5173a = new ArrayList();
+                obj.f5174b = c12;
                 for (int i15 = 0; i15 < c10; i15++) {
                     ?? obj2 = new Object();
                     int i16 = i14 + 1;
                     int i17 = bArr[i14];
-                    obj2.f45288a = i17 & 255;
+                    obj2.f45292a = i17 & 255;
                     int i18 = i14 + 2;
                     int i19 = bArr[i16] & 255;
-                    obj2.f45289b = i19;
+                    obj2.f45293b = i19;
                     if ((i17 & 16) == 0) {
                         int i20 = i17 & 7;
                         int i21 = (i19 + 1) / 2;
                         byte[] bArr2 = new byte[i21];
-                        obj2.f45290c = bArr2;
+                        obj2.f45294c = bArr2;
                         System.arraycopy(bArr, i18, bArr2, 0, i21);
                         i14 = i18 + i21;
                         obj2.d = new int[i20];
@@ -76,7 +76,7 @@ public abstract class ab {
                             obj2.d[i22] = c(i14, i10, bArr);
                             i14 += i10;
                         }
-                        obj.f5170a.add(obj2);
+                        obj.f5173a.add(obj2);
                     } else {
                         throw new IllegalArgumentException("Cells with cached hashes are not supported");
                     }

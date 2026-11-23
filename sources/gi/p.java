@@ -21,22 +21,22 @@ public final class p extends sa {
         this.T1 = g2Var.getCurrentAccount();
         this.U1 = str;
         c1();
-        this.f39546v1 = 0.6f;
-        this.f39549y1 = true;
-        this.f39550z1 = true;
+        this.f39539v1 = 0.6f;
+        this.f39542y1 = true;
+        this.f39543z1 = true;
         O();
         Z0();
-        ek0 ek0Var = this.f39539o1;
-        int i7 = this.f30208u0;
+        ek0 ek0Var = this.f39532o1;
+        int i7 = this.f30211u0;
         ek0Var.setPadding(i7, 0, i7, 0);
-        this.f39539o1.setOnItemClickListener(new g4(1, this, h0Var));
+        this.f39532o1.setOnItemClickListener(new g4(1, this, h0Var));
     }
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
         c51 c51Var = new c51(ek0Var, getContext(), this.T1, 0, false, new bi.b(this, 23), this.J0);
         this.V1 = c51Var;
-        c51Var.f34068r = false;
+        c51Var.f34062r = false;
         return c51Var;
     }
 

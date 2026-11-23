@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class mq0 extends g.p {
-    public final kq0 f37619c;
+    public final kq0 f37617c;
     public final jt0 d;
 
     public mq0(jt0 jt0Var, kq0 kq0Var) {
         this.d = jt0Var;
-        this.f37619c = kq0Var;
+        this.f37617c = kq0Var;
     }
 
     @Override

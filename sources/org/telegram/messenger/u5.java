@@ -5,44 +5,44 @@ import android.graphics.Path;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public abstract class u5 {
-    public static lz a(int i7) {
+    public static mz a(int i7) {
         try {
-            lz lzVar = new lz();
-            dz dzVar = new dz(256.0f, 256.0f, 204.8f);
-            lzVar.f25511a.add(dzVar);
-            lzVar.f25512b.put(dzVar, new Paint(1));
-            lzVar.f25514e = 512;
-            lzVar.f25515f = 512;
-            lzVar.f(i7, null, 0.65f, false);
-            return lzVar;
+            mz mzVar = new mz();
+            ez ezVar = new ez(256.0f, 256.0f, 204.8f);
+            mzVar.f25689a.add(ezVar);
+            mzVar.f25690b.put(ezVar, new Paint(1));
+            mzVar.f25692e = 512;
+            mzVar.f25693f = 512;
+            mzVar.f(i7, null, 0.65f, false);
+            return mzVar;
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
         }
     }
 
-    public static lz b(int i7) {
+    public static mz b(int i7) {
         Path path = new Path();
         path.addRect(0.0f, 0.0f, 512.0f, 512.0f, Path.Direction.CW);
         path.close();
-        lz lzVar = new lz();
-        lzVar.f25511a.add(path);
-        lzVar.f25512b.put(path, new Paint(1));
-        lzVar.f25514e = 512;
-        lzVar.f25515f = 512;
-        lzVar.f(i7, null, 1.0f, false);
-        return lzVar;
+        mz mzVar = new mz();
+        mzVar.f25689a.add(path);
+        mzVar.f25690b.put(path, new Paint(1));
+        mzVar.f25692e = 512;
+        mzVar.f25693f = 512;
+        mzVar.f(i7, null, 1.0f, false);
+        return mzVar;
     }
 
-    public static lz c(float f10, int i7) {
-        lz h = mz.h(2131624085, -65536);
+    public static mz c(float f10, int i7) {
+        mz h = nz.h(2131624085, -65536);
         if (h != null) {
             h.f(i7, null, f10, false);
         }
         return h;
     }
 
-    public static lz d(ArrayList arrayList, int i7, float f10, boolean z10) {
+    public static mz d(ArrayList arrayList, int i7, float f10, boolean z10) {
         int size = arrayList.size();
         int i10 = 512;
         int i11 = 512;
@@ -52,25 +52,25 @@ public abstract class u5 {
             if (photoSize instanceof TLRPC.TL_photoPathSize) {
                 tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
             } else if ((photoSize instanceof TLRPC.TL_photoSize) && z10) {
-                i10 = photoSize.f28456w;
+                i10 = photoSize.f28459w;
                 i11 = photoSize.h;
             }
         }
         if (tL_photoPathSize == null || i10 == 0 || i11 == 0) {
             return null;
         }
-        lz j3 = mz.j(i10, i11, tL_photoPathSize.svgPath);
+        mz j3 = nz.j(i10, i11, tL_photoPathSize.svgPath);
         if (j3 != null) {
             j3.f(i7, null, f10, false);
         }
         return j3;
     }
 
-    public static lz e(TLRPC.Document document, int i7, float f10) {
+    public static mz e(TLRPC.Document document, int i7, float f10) {
         return f(document, i7, f10, null);
     }
 
-    public static lz f(TLRPC.Document document, int i7, float f10, org.telegram.ui.ActionBar.h6 h6Var) {
+    public static mz f(TLRPC.Document document, int i7, float f10, org.telegram.ui.ActionBar.h6 h6Var) {
         int i10;
         int i11;
         if (document != null) {
@@ -82,7 +82,7 @@ public abstract class u5 {
                     for (int i13 = 0; i13 < size2; i13++) {
                         TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i13);
                         if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                            i10 = documentAttribute.f28438w;
+                            i10 = documentAttribute.f28441w;
                             i11 = documentAttribute.h;
                             break;
                         }
@@ -90,7 +90,7 @@ public abstract class u5 {
                     i10 = 512;
                     i11 = 512;
                     if (i10 != 0 && i11 != 0) {
-                        lz j3 = mz.j((int) (i10 * 1.0f), (int) (i11 * 1.0f), ((TLRPC.TL_photoPathSize) photoSize).svgPath);
+                        mz j3 = nz.j((int) (i10 * 1.0f), (int) (i11 * 1.0f), ((TLRPC.TL_photoPathSize) photoSize).svgPath);
                         if (j3 != null) {
                             j3.f(i7, h6Var, f10, false);
                         }

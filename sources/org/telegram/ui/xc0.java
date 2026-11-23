@@ -5,23 +5,23 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xc0 implements RequestDelegate {
-    public final int f53824a;
-    public final gd0 f53825b;
-    public final Bundle f53826c;
+    public final int f53828a;
+    public final gd0 f53829b;
+    public final Bundle f53830c;
 
     public xc0(gd0 gd0Var, Bundle bundle, int i7) {
-        this.f53824a = i7;
-        this.f53825b = gd0Var;
-        this.f53826c = bundle;
+        this.f53828a = i7;
+        this.f53829b = gd0Var;
+        this.f53830c = bundle;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f53824a) {
+        switch (this.f53828a) {
             case 0:
-                gd0 gd0Var = this.f53825b;
+                gd0 gd0Var = this.f53829b;
                 if (tLObject != null) {
-                    org.telegram.messenger.g0.g3(new mc0(gd0Var, this.f53826c, tLObject, 3));
+                    org.telegram.messenger.g0.g3(new mc0(gd0Var, this.f53830c, tLObject, 3));
                     return;
                 } else if (tL_error != null && tL_error.text != null) {
                     org.telegram.messenger.g0.g3(new h60(24, gd0Var, tL_error));
@@ -30,7 +30,7 @@ public final class xc0 implements RequestDelegate {
                     return;
                 }
             default:
-                org.telegram.messenger.g0.g3(new org.telegram.ui.Components.q20(this.f53825b, tL_error, this.f53826c, tLObject));
+                org.telegram.messenger.g0.g3(new org.telegram.ui.Components.q20(this.f53829b, tL_error, this.f53830c, tLObject));
                 return;
         }
     }

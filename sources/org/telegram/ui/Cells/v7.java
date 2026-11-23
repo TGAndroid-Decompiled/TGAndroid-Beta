@@ -18,18 +18,18 @@ public final class v7 extends org.telegram.ui.Components.q9 {
     public final void onDraw(Canvas canvas) {
         int L;
         x7 x7Var = this.I;
-        z41 z41Var = x7Var.f32354w;
-        if (z41Var != null && (z41Var.f54432a instanceof TL_stats.TL_postInteractionCountersStory)) {
+        z41 z41Var = x7Var.f32357w;
+        if (z41Var != null && (z41Var.f54436a instanceof TL_stats.TL_postInteractionCountersStory)) {
             float L2 = org.telegram.messenger.g0.L(1.0f);
-            x7Var.f32352r.F.set(L2, L2, getMeasuredWidth() - L, getMeasuredHeight() - L);
-            fi.e7 e7Var = x7Var.f32352r;
-            e7Var.f11931a = false;
-            e7Var.f11932b = false;
+            x7Var.f32355r.F.set(L2, L2, getMeasuredWidth() - L, getMeasuredHeight() - L);
+            fi.e7 e7Var = x7Var.f32355r;
+            e7Var.f11934a = false;
+            e7Var.f11935b = false;
             e7Var.v = true;
-            e7Var.f11943o = false;
-            e7Var.f11953z = 1;
+            e7Var.f11946o = false;
+            e7Var.f11956z = 1;
             e7Var.J = this.H;
-            fi.i7.h(0L, canvas, this.f38842a, e7Var);
+            fi.i7.h(0L, canvas, this.f38836a, e7Var);
             return;
         }
         super.onDraw(canvas);

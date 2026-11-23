@@ -12,9 +12,9 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.az;
 import org.telegram.messenger.c1;
 import org.telegram.messenger.n5;
-import org.telegram.messenger.zy;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.json.TLJsonBuilder;
@@ -102,7 +102,7 @@ public class GroupCallMessagesController extends c1 {
         ConferenceCall conferenceCall;
         TLRPC.GroupCall groupCall;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f28441id != j3) {
+        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f28444id != j3) {
             return null;
         }
         long callId = conferenceCall.getCallId();
@@ -155,8 +155,8 @@ public class GroupCallMessagesController extends c1 {
                 Object obj = arrayList.get(i7);
                 i7++;
                 TLRPC.Update update2 = (TLRPC.Update) obj;
-                if ((update2 instanceof TL_update.TL_updateGroupCallMessage) && (inputGroupCall = (tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) update2).call) != null && inputGroupCall.f28448id == j3 && (groupCallMessage2 = tL_updateGroupCallMessage.message) != null && n5.o(groupCallMessage2.from_id) == j10) {
-                    String str = j3 + "_" + tL_updateGroupCallMessage.message.f28442id;
+                if ((update2 instanceof TL_update.TL_updateGroupCallMessage) && (inputGroupCall = (tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) update2).call) != null && inputGroupCall.f28451id == j3 && (groupCallMessage2 = tL_updateGroupCallMessage.message) != null && n5.o(groupCallMessage2.from_id) == j10) {
+                    String str = j3 + "_" + tL_updateGroupCallMessage.message.f28445id;
                     if (this.sentMessageIds.add(str)) {
                         org.telegram.messenger.g0.h3(new oi.t(13, this, str), 60000L);
                     }
@@ -222,10 +222,10 @@ public class GroupCallMessagesController extends c1 {
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage) {
-        long j3 = tL_updateGroupCallMessage.call.f28448id;
+        long j3 = tL_updateGroupCallMessage.call.f28451id;
         long o4 = n5.o(tL_updateGroupCallMessage.message.from_id);
-        long j10 = tL_updateGroupCallMessage.message.f28442id;
-        if (getUserConfig().f24817n == o4) {
+        long j10 = tL_updateGroupCallMessage.message.f28445id;
+        if (getUserConfig().f24987n == o4) {
             return;
         }
         if (this.sentMessageIds.contains(j3 + "_" + j10)) {
@@ -241,10 +241,10 @@ public class GroupCallMessagesController extends c1 {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && sharedInstance.getAccount() == this.currentAccount) {
             getSendMessagesHelper().getClass();
-            long E = zy.E();
+            long E = az.E();
             if (sharedInstance.isConference()) {
                 ConferenceCall conferenceCall = sharedInstance.conference;
-                if (conferenceCall != null && (groupCall = conferenceCall.groupCall) != null && groupCall.f28441id == j10) {
+                if (conferenceCall != null && (groupCall = conferenceCall.groupCall) != null && groupCall.f28444id == j10) {
                     long callId = conferenceCall.getCallId();
                     if (callId != -1) {
                         TLRPC.TL_groupCallMessage tL_groupCallMessage = new TLRPC.TL_groupCallMessage();
@@ -304,12 +304,12 @@ public class GroupCallMessagesController extends c1 {
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallEncryptedMessage tL_updateGroupCallEncryptedMessage) {
-        long j3 = tL_updateGroupCallEncryptedMessage.call.f28448id;
+        long j3 = tL_updateGroupCallEncryptedMessage.call.f28451id;
         long o4 = n5.o(tL_updateGroupCallEncryptedMessage.from_id);
         byte[] bArr = tL_updateGroupCallEncryptedMessage.encrypted_message;
-        if (getUserConfig().f24817n == o4) {
+        if (getUserConfig().f24987n == o4) {
             return;
         }
-        Utilities.f22807e.c(new d3.e0(this, j3, o4, bArr, 4));
+        Utilities.f22810e.c(new d3.e0(this, j3, o4, bArr, 4));
     }
 }

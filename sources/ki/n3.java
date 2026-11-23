@@ -12,20 +12,20 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Components.xt0;
 public class n3 extends View implements b6 {
-    public final xt0 f18827a;
-    public final Paint f18828b;
-    public float f18829c;
+    public final xt0 f18830a;
+    public final Paint f18831b;
+    public float f18832c;
     public r1.g d;
-    public final h6 f18830e;
+    public final h6 f18833e;
 
     public n3(Context context, h6 h6Var) {
         super(context);
         xt0 xt0Var = new xt0(new e9(18), new e9(19));
-        xt0Var.f42225c = 100.0f;
-        this.f18827a = xt0Var;
+        xt0Var.f42218c = 100.0f;
+        this.f18830a = xt0Var;
         Paint paint = new Paint(1);
-        this.f18828b = paint;
-        this.f18830e = h6Var;
+        this.f18831b = paint;
+        this.f18833e = h6Var;
         paint.setColor(m6.w0(m6.Fi, h6Var));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
@@ -35,21 +35,21 @@ public class n3 extends View implements b6 {
     @Override
     public final void draw(Canvas canvas) {
         super.draw(canvas);
-        if (this.f18829c > 0.0f) {
-            Paint paint = this.f18828b;
+        if (this.f18832c > 0.0f) {
+            Paint paint = this.f18831b;
             float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
-            canvas.drawLine(0.0f, height, getWidth() * this.f18829c, height, paint);
+            canvas.drawLine(0.0f, height, getWidth() * this.f18832c, height, paint);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        r1.g gVar = new r1.g(this, this.f18827a);
+        r1.g gVar = new r1.g(this, this.f18830a);
         r1.h hVar = new r1.h();
         hVar.b(400.0f);
         hVar.a(1.0f);
-        gVar.f56364m = hVar;
+        gVar.f56368m = hVar;
         this.d = gVar;
     }
 
@@ -61,7 +61,7 @@ public class n3 extends View implements b6 {
     }
 
     public void setLoadProgress(float f10) {
-        this.f18829c = f10;
+        this.f18832c = f10;
         invalidate();
     }
 
@@ -71,14 +71,14 @@ public class n3 extends View implements b6 {
             setLoadProgress(f10);
             return;
         }
-        gVar.f56364m.f56372i = f10 * 100.0f;
+        gVar.f56368m.f56376i = f10 * 100.0f;
         gVar.h();
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.f18828b.setColor(m6.w0(m6.Fi, this.f18830e));
+            this.f18831b.setColor(m6.w0(m6.Fi, this.f18833e));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

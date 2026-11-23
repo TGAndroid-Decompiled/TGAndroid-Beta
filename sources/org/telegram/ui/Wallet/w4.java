@@ -2,39 +2,39 @@ package org.telegram.ui.Wallet;
 
 import android.view.View;
 import java.util.Locale;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.h51;
 import org.telegram.ui.d61;
-public final class w4 implements x10 {
-    public final int f45252a;
-    public final n6 f45253b;
+public final class w4 implements y10 {
+    public final int f45256a;
+    public final n6 f45257b;
 
     public w4(n6 n6Var, int i7) {
-        this.f45252a = i7;
-        this.f45253b = n6Var;
+        this.f45256a = i7;
+        this.f45257b = n6Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f45252a) {
+        switch (this.f45256a) {
             case 0:
                 Boolean bool = (Boolean) obj;
-                n6 n6Var = this.f45253b;
+                n6 n6Var = this.f45257b;
                 n6Var.E0.setClickable(!bool.booleanValue());
                 n6Var.F0.setClickable(!bool.booleanValue());
                 if (bool.booleanValue()) {
-                    n6Var.f44668f0 = 1;
-                    n6Var.f44683s0.setPosition(1);
-                    n6Var.f44683s0.post(new q4(n6Var, 3));
+                    n6Var.f44672f0 = 1;
+                    n6Var.f44687s0.setPosition(1);
+                    n6Var.f44687s0.post(new q4(n6Var, 3));
                     return;
                 }
                 return;
             case 1:
                 String lowerCase = ((String) obj).trim().toLowerCase(Locale.ROOT);
-                n6 n6Var2 = this.f45253b;
-                n6Var2.f44674l0 = lowerCase;
-                h51[] h51VarArr = n6Var2.f44685u0;
+                n6 n6Var2 = this.f45257b;
+                n6Var2.f44678l0 = lowerCase;
+                h51[] h51VarArr = n6Var2.f44689u0;
                 h51 h51Var = h51VarArr[1];
                 if (h51Var != null) {
                     n6.d1(h51Var, true);
@@ -45,7 +45,7 @@ public final class w4 implements x10 {
                 return;
             case 2:
                 float floatValue = ((Float) obj).floatValue();
-                n6 n6Var3 = this.f45253b;
+                n6 n6Var3 = this.f45257b;
                 if (n6Var3.D0 != floatValue) {
                     n6Var3.D0 = floatValue;
                     float B = org.telegram.ui.Cells.c0.B(floatValue, 0.6f, 1.0f, 0.0f);
@@ -66,11 +66,11 @@ public final class w4 implements x10 {
                 }
                 return;
             case 3:
-                n6.k0(this.f45253b, (String) obj);
+                n6.k0(this.f45257b, (String) obj);
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) obj;
-                n6 n6Var4 = this.f45253b;
+                n6 n6Var4 = this.f45257b;
                 if (!n6Var4.isFinished) {
                     if (user == null) {
                         org.telegram.messenger.g0.g3(new q4(n6Var4, 9));

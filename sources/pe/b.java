@@ -10,16 +10,16 @@ import qe.h;
 import w7.s;
 public final class b {
     public static final b d = new b();
-    public final o0 f55613a = new o0();
-    public final s f55614b = re.a.f56612a;
-    public final c5 f55615c = new c5(15);
+    public final o0 f55617a = new o0();
+    public final s f55618b = re.a.f56616a;
+    public final c5 f55619c = new c5(15);
 
     public final Object a(ke.a deserializer, String str) {
         byte b10;
         j.e(deserializer, "deserializer");
-        this.f55613a.getClass();
+        this.f55617a.getClass();
         k kVar = new k(str);
-        Object l10 = new h2.c(this, qe.j.f56166c, kVar, deserializer.d()).l(deserializer);
+        Object l10 = new h2.c(this, qe.j.f56170c, kVar, deserializer.d()).l(deserializer);
         String str2 = (String) kVar.f194f;
         int i7 = kVar.f191b;
         while (true) {
@@ -50,9 +50,9 @@ public final class b {
         Object removeLast;
         j.e(serializer, "serializer");
         mc.a aVar = new mc.a(1);
-        qe.b bVar = qe.b.f56151c;
+        qe.b bVar = qe.b.f56155c;
         synchronized (bVar) {
-            hd.d dVar = (hd.d) bVar.f2165b;
+            hd.d dVar = (hd.d) bVar.f2172b;
             cArr = null;
             if (dVar.isEmpty()) {
                 removeLast = null;
@@ -61,17 +61,17 @@ public final class b {
             }
             char[] cArr2 = (char[]) removeLast;
             if (cArr2 != null) {
-                bVar.f2164a -= cArr2.length;
+                bVar.f2171a -= cArr2.length;
                 cArr = cArr2;
             }
         }
         if (cArr == null) {
             cArr = new char[128];
         }
-        aVar.f20990b = cArr;
+        aVar.f20993b = cArr;
         try {
-            this.f55613a.getClass();
-            new h(new i(aVar, 8), this, qe.j.f56166c, new h[qe.j.f56169n.f()]).i(serializer, obj);
+            this.f55617a.getClass();
+            new h(new i(aVar, 8), this, qe.j.f56170c, new h[qe.j.f56173n.f()]).i(serializer, obj);
             return aVar.toString();
         } finally {
             aVar.b();

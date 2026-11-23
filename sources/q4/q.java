@@ -62,20 +62,20 @@ import r0.l0;
 import r0.l1;
 import s4.t0;
 public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListener, ib.b, g9.k, i6.a, j6.n {
-    public final int f55866a;
-    public Object f55867b;
-    public Object f55868c;
+    public final int f55870a;
+    public Object f55871b;
+    public Object f55872c;
 
     public q(int i7, Object obj, Object obj2) {
-        this.f55866a = i7;
-        this.f55868c = obj;
-        this.f55867b = obj2;
+        this.f55870a = i7;
+        this.f55872c = obj;
+        this.f55871b = obj2;
     }
 
     public static String h(q qVar) {
-        Collection<String> collection = (Collection) qVar.f55868c;
+        Collection<String> collection = (Collection) qVar.f55872c;
         StringBuilder sb2 = new StringBuilder("com.google.android.gms.cast.CATEGORY_CAST");
-        String str = (String) qVar.f55867b;
+        String str = (String) qVar.f55871b;
         if (str != null) {
             String upperCase = str.toUpperCase(Locale.ROOT);
             if (upperCase.matches("[A-F0-9]+")) {
@@ -97,7 +97,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                     if (!z10) {
                         sb2.append(",");
                     }
-                    if (!j6.a.f17264a.matcher(str2).matches()) {
+                    if (!j6.a.f17267a.matcher(str2).matches()) {
                         StringBuilder sb3 = new StringBuilder(str2.length());
                         for (int i7 = 0; i7 < str2.length(); i7++) {
                             char charAt = str2.charAt(i7);
@@ -128,12 +128,12 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     @Override
     public l1 P0(View view, l1 l1Var) {
-        c5.l lVar = (c5.l) this.f55868c;
+        c5.l lVar = (c5.l) this.f55872c;
         l1 g10 = i0.g(view, l1Var);
-        if (g10.f56299a.n()) {
+        if (g10.f56303a.n()) {
             return g10;
         }
-        Rect rect = (Rect) this.f55867b;
+        Rect rect = (Rect) this.f55871b;
         rect.left = g10.b();
         rect.top = g10.d();
         rect.right = g10.c();
@@ -151,12 +151,12 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     public f3.o a(Object... objArr) {
         Constructor b10;
-        synchronized (((AtomicBoolean) this.f55868c)) {
-            if (!((AtomicBoolean) this.f55868c).get()) {
+        synchronized (((AtomicBoolean) this.f55872c)) {
+            if (!((AtomicBoolean) this.f55872c).get()) {
                 try {
-                    b10 = ((ci.v) this.f55867b).b();
+                    b10 = ((ci.v) this.f55871b).b();
                 } catch (ClassNotFoundException unused) {
-                    ((AtomicBoolean) this.f55868c).set(true);
+                    ((AtomicBoolean) this.f55872c).set(true);
                 } catch (Exception e10) {
                     throw new RuntimeException("Error instantiating extension", e10);
                 }
@@ -175,26 +175,26 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     @Override
     public Object apply(Object obj) {
-        return ((g9.k) ((g1) this.f55867b).f14027b).apply(obj);
+        return ((g9.k) ((g1) this.f55871b).f14030b).apply(obj);
     }
 
     public synchronized Map b() {
         try {
-            if (((Map) this.f55868c) == null) {
-                this.f55868c = DesugarCollections.unmodifiableMap(new HashMap((HashMap) this.f55867b));
+            if (((Map) this.f55872c) == null) {
+                this.f55872c = DesugarCollections.unmodifiableMap(new HashMap((HashMap) this.f55871b));
             }
         } catch (Throwable th2) {
             throw th2;
         }
-        return (Map) this.f55868c;
+        return (Map) this.f55872c;
     }
 
     public void c(k.a aVar) {
-        c0 c0Var = (c0) this.f55867b;
+        c0 c0Var = (c0) this.f55871b;
         ((ActionMode.Callback) c0Var.f908b).onDestroyActionMode(c0Var.m(aVar));
-        g.s sVar = (g.s) this.f55868c;
+        g.s sVar = (g.s) this.f55872c;
         if (sVar.F != null) {
-            sVar.f13055f.getDecorView().removeCallbacks(sVar.G);
+            sVar.f13058f.getDecorView().removeCallbacks(sVar.G);
         }
         if (sVar.E != null) {
             l0 l0Var = sVar.H;
@@ -206,18 +206,18 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             sVar.H = a10;
             a10.d(new g.j(this, 2));
         }
-        sVar.f13072y = null;
+        sVar.f13075y = null;
         ViewGroup viewGroup = sVar.K;
-        WeakHashMap weakHashMap = i0.f56285a;
+        WeakHashMap weakHashMap = i0.f56289a;
         r0.y.c(viewGroup);
         sVar.y();
     }
 
     public boolean d(k.a aVar, Menu menu) {
-        ViewGroup viewGroup = ((g.s) this.f55868c).K;
-        WeakHashMap weakHashMap = i0.f56285a;
+        ViewGroup viewGroup = ((g.s) this.f55872c).K;
+        WeakHashMap weakHashMap = i0.f56289a;
         r0.y.c(viewGroup);
-        c0 c0Var = (c0) this.f55867b;
+        c0 c0Var = (c0) this.f55871b;
         ActionMode.Callback callback = (ActionMode.Callback) c0Var.f908b;
         k.e m10 = c0Var.m(aVar);
         a0.l lVar = (a0.l) c0Var.f910e;
@@ -230,53 +230,53 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     }
 
     public void e(android.support.v4.media.session.s sVar, Handler handler) {
-        l lVar = (l) this.f55867b;
+        l lVar = (l) this.f55871b;
         synchronized (lVar.d) {
-            lVar.f55858l = sVar;
-            lVar.f55849a.setCallback((android.support.v4.media.session.r) sVar.f1743e, handler);
+            lVar.f55862l = sVar;
+            lVar.f55853a.setCallback((android.support.v4.media.session.r) sVar.f1750e, handler);
             sVar.d0(lVar, handler);
         }
     }
 
     public void f(w wVar) {
-        l lVar = (l) this.f55867b;
-        lVar.f55854g = wVar;
+        l lVar = (l) this.f55871b;
+        lVar.f55858g = wVar;
         synchronized (lVar.d) {
-            for (int beginBroadcast = lVar.f55853f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+            for (int beginBroadcast = lVar.f55857f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                 try {
-                    ((b) lVar.f55853f.getBroadcastItem(beginBroadcast)).T0(wVar);
+                    ((b) lVar.f55857f.getBroadcastItem(beginBroadcast)).T0(wVar);
                 } catch (RemoteException | SecurityException e10) {
                     h2.a.d("MediaSessionCompat", "Dead object in setPlaybackState.", e10);
                 }
             }
-            lVar.f55853f.finishBroadcast();
+            lVar.f55857f.finishBroadcast();
         }
-        MediaSession mediaSession = lVar.f55849a;
-        if (wVar.f55888x == null) {
+        MediaSession mediaSession = lVar.f55853a;
+        if (wVar.f55892x == null) {
             PlaybackState.Builder builder = new PlaybackState.Builder();
-            builder.setState(wVar.f55879a, wVar.f55880b, wVar.d, wVar.f55884n);
-            builder.setBufferedPosition(wVar.f55881c);
-            builder.setActions(wVar.f55882e);
+            builder.setState(wVar.f55883a, wVar.f55884b, wVar.d, wVar.f55888n);
+            builder.setBufferedPosition(wVar.f55885c);
+            builder.setActions(wVar.f55886e);
             builder.setErrorMessage(wVar.h);
-            for (v vVar : wVar.f55885r) {
+            for (v vVar : wVar.f55889r) {
                 vVar.getClass();
-                PlaybackState.CustomAction.Builder builder2 = new PlaybackState.CustomAction.Builder(vVar.f55876a, vVar.f55877b, vVar.f55878c);
+                PlaybackState.CustomAction.Builder builder2 = new PlaybackState.CustomAction.Builder(vVar.f55880a, vVar.f55881b, vVar.f55882c);
                 builder2.setExtras(vVar.d);
                 PlaybackState.CustomAction build = builder2.build();
                 if (build != null) {
                     builder.addCustomAction(build);
                 }
             }
-            builder.setActiveQueueItemId(wVar.f55886s);
-            builder.setExtras(wVar.f55887w);
-            wVar.f55888x = builder.build();
+            builder.setActiveQueueItemId(wVar.f55890s);
+            builder.setExtras(wVar.f55891w);
+            wVar.f55892x = builder.build();
         }
-        mediaSession.setPlaybackState(wVar.f55888x);
+        mediaSession.setPlaybackState(wVar.f55892x);
     }
 
     @Override
     public void g(String str, long j3, long j10, long j11) {
-        j6.n nVar = (j6.n) this.f55867b;
+        j6.n nVar = (j6.n) this.f55871b;
         if (nVar != null) {
             nVar.g(str, j3, j10, j11);
         }
@@ -284,19 +284,19 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     @Override
     public Object mo24get() {
-        return new u0((h1) ((ib.c) this.f55867b).mo24get(), (i1) ((ib.c) this.f55868c).mo24get());
+        return new u0((h1) ((ib.c) this.f55871b).mo24get(), (i1) ((ib.c) this.f55872c).mo24get());
     }
 
     @Override
     public void j(String str, long j3, int i7, Object obj, long j10, long j11) {
         int i10;
-        j6.m mVar = (j6.m) this.f55868c;
-        if (((j6.n) this.f55867b) != null) {
+        j6.m mVar = (j6.m) this.f55872c;
+        if (((j6.n) this.f55871b) != null) {
             if (i7 == 2001) {
-                Object[] objArr = {Integer.valueOf(mVar.f17279i)};
-                j6.b bVar = mVar.f17301a;
-                Log.w(bVar.f17266a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
-                Iterator it = ((h6.h) mVar.h.f7907b).f13954i.iterator();
+                Object[] objArr = {Integer.valueOf(mVar.f17282i)};
+                j6.b bVar = mVar.f17304a;
+                Log.w(bVar.f17269a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
+                Iterator it = ((h6.h) mVar.h.f7910b).f13957i.iterator();
                 while (it.hasNext()) {
                     ((h6.g) it.next()).o();
                 }
@@ -304,26 +304,26 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             } else {
                 i10 = i7;
             }
-            ((j6.n) this.f55867b).j(str, j3, i10, obj, j10, j11);
+            ((j6.n) this.f55871b).j(str, j3, i10, obj, j10, j11);
         }
     }
 
     @Override
     public void onComplete(Task task) {
-        d9.c cVar = (d9.c) this.f55867b;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f55868c;
-        synchronized (cVar.f7923f) {
-            cVar.f7922e.remove(taskCompletionSource);
+        d9.c cVar = (d9.c) this.f55871b;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f55872c;
+        synchronized (cVar.f7926f) {
+            cVar.f7925e.remove(taskCompletionSource);
         }
     }
 
     @Override
     public Task then(Object obj) {
         FileWriter fileWriter;
-        switch (this.f55866a) {
+        switch (this.f55870a) {
             case 3:
                 Boolean bool = (Boolean) obj;
-                aa.p pVar = (aa.p) this.f55868c;
+                aa.p pVar = (aa.p) this.f55872c;
                 if (!bool.booleanValue()) {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Deleting cached crash reports...", null);
@@ -331,10 +331,10 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                     for (File file : ga.d.i(((File) pVar.f835g.d).listFiles(aa.p.f828r))) {
                         file.delete();
                     }
-                    ga.d dVar = pVar.f840m.f800b.f13302b;
-                    ga.b.b(ga.d.i(((File) dVar.f13309f).listFiles()));
+                    ga.d dVar = pVar.f840m.f800b.f13305b;
+                    ga.b.b(ga.d.i(((File) dVar.f13312f).listFiles()));
                     ga.b.b(ga.d.i(((File) dVar.h).listFiles()));
-                    ga.b.b(ga.d.i(((File) dVar.f13310n).listFiles()));
+                    ga.b.b(ga.d.i(((File) dVar.f13313n).listFiles()));
                     pVar.f844q.trySetResult(null);
                     return Tasks.forResult(null);
                 }
@@ -345,26 +345,26 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                 aa.w wVar = pVar.f831b;
                 if (booleanValue) {
                     wVar.h.trySetResult(null);
-                    return ((Task) this.f55867b).onSuccessTask(pVar.f833e.f3100a, new d6.i(this, 1));
+                    return ((Task) this.f55871b).onSuccessTask(pVar.f833e.f3107a, new d6.i(this, 1));
                 }
                 wVar.getClass();
                 throw new IllegalStateException("An invalid data collection token was used.");
             default:
                 Void r10 = (Void) obj;
-                ia.c cVar = (ia.c) this.f55868c;
-                JSONObject jSONObject = (JSONObject) ((ba.e) this.f55867b).f3102c.f3097a.submit(new aa.s(this, 2)).get();
+                ia.c cVar = (ia.c) this.f55872c;
+                JSONObject jSONObject = (JSONObject) ((ba.e) this.f55871b).f3109c.f3104a.submit(new aa.s(this, 2)).get();
                 FileWriter fileWriter2 = null;
                 if (jSONObject != null) {
-                    ia.b s5 = ((t5) cVar.f16215c).s(jSONObject);
-                    g1 g1Var = (g1) cVar.f16216e;
-                    long j3 = s5.f16210c;
+                    ia.b s5 = ((t5) cVar.f16218c).s(jSONObject);
+                    g1 g1Var = (g1) cVar.f16219e;
+                    long j3 = s5.f16213c;
                     g1Var.getClass();
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Writing settings to cache file...", null);
                     }
                     try {
                         jSONObject.put("expires_at", j3);
-                        fileWriter = new FileWriter((File) g1Var.f14027b);
+                        fileWriter = new FileWriter((File) g1Var.f14030b);
                         try {
                             try {
                                 fileWriter.write(jSONObject.toString());
@@ -380,11 +380,11 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                             Log.e("FirebaseCrashlytics", "Failed to cache settings", e);
                             aa.g.b(fileWriter, "Failed to close settings writer.");
                             ia.c.d("Loaded settings: ", jSONObject);
-                            SharedPreferences.Editor edit = ((Context) cVar.f16213a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
-                            edit.putString("existing_instance_identifier", (String) ((ia.e) cVar.f16214b).f16225f);
+                            SharedPreferences.Editor edit = ((Context) cVar.f16216a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                            edit.putString("existing_instance_identifier", (String) ((ia.e) cVar.f16217b).f16228f);
                             edit.apply();
                             ((AtomicReference) cVar.h).set(s5);
-                            ((TaskCompletionSource) ((AtomicReference) cVar.f16219i).get()).trySetResult(s5);
+                            ((TaskCompletionSource) ((AtomicReference) cVar.f16222i).get()).trySetResult(s5);
                             return Tasks.forResult(null);
                         }
                     } catch (Exception e11) {
@@ -397,11 +397,11 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                     }
                     aa.g.b(fileWriter, "Failed to close settings writer.");
                     ia.c.d("Loaded settings: ", jSONObject);
-                    SharedPreferences.Editor edit2 = ((Context) cVar.f16213a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
-                    edit2.putString("existing_instance_identifier", (String) ((ia.e) cVar.f16214b).f16225f);
+                    SharedPreferences.Editor edit2 = ((Context) cVar.f16216a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                    edit2.putString("existing_instance_identifier", (String) ((ia.e) cVar.f16217b).f16228f);
                     edit2.apply();
                     ((AtomicReference) cVar.h).set(s5);
-                    ((TaskCompletionSource) ((AtomicReference) cVar.f16219i).get()).trySetResult(s5);
+                    ((TaskCompletionSource) ((AtomicReference) cVar.f16222i).get()).trySetResult(s5);
                 }
                 return Tasks.forResult(null);
         }
@@ -414,92 +414,92 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     @Override
     public void v0(Bitmap bitmap) {
-        wf.b bVar = (wf.b) this.f55867b;
-        bVar.f59712c = bitmap;
-        i6.f fVar = (i6.f) this.f55868c;
-        fVar.f16163l = bVar;
+        wf.b bVar = (wf.b) this.f55871b;
+        bVar.f59716c = bitmap;
+        i6.f fVar = (i6.f) this.f55872c;
+        fVar.f16166l = bVar;
         fVar.b();
     }
 
     public q(int i7, boolean z10) {
-        this.f55866a = i7;
+        this.f55870a = i7;
     }
 
     public q(Context context) {
-        this.f55866a = 14;
-        this.f55867b = context;
+        this.f55870a = 14;
+        this.f55871b = context;
     }
 
     public q(Object obj, Object obj2, boolean z10, int i7) {
-        this.f55866a = i7;
-        this.f55867b = obj;
-        this.f55868c = obj2;
+        this.f55870a = i7;
+        this.f55871b = obj;
+        this.f55872c = obj2;
     }
 
     public q(int i7) {
-        this.f55866a = i7;
+        this.f55870a = i7;
         switch (i7) {
             case 15:
-                this.f55867b = new ConcurrentHashMap(16, 0.75f, 10);
-                this.f55868c = new ReferenceQueue();
+                this.f55871b = new ConcurrentHashMap(16, 0.75f, 10);
+                this.f55872c = new ReferenceQueue();
                 return;
             case 28:
-                this.f55867b = new HashMap();
+                this.f55871b = new HashMap();
                 return;
             default:
-                this.f55867b = new AtomicInteger();
-                this.f55868c = new AtomicInteger();
+                this.f55871b = new AtomicInteger();
+                this.f55872c = new AtomicInteger();
                 return;
         }
     }
 
     public q(Animation animation) {
-        this.f55866a = 6;
-        this.f55867b = animation;
-        this.f55868c = null;
+        this.f55870a = 6;
+        this.f55871b = animation;
+        this.f55872c = null;
     }
 
     public q(Animator animator) {
-        this.f55866a = 6;
-        this.f55867b = null;
+        this.f55870a = 6;
+        this.f55871b = null;
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f55868c = animatorSet;
+        this.f55872c = animatorSet;
         animatorSet.play(animator);
     }
 
     public q(ArrayList arrayList, ArrayList arrayList2) {
-        this.f55866a = 23;
+        this.f55870a = 23;
         int size = arrayList.size();
-        this.f55867b = new int[size];
-        this.f55868c = new float[size];
+        this.f55871b = new int[size];
+        this.f55872c = new float[size];
         for (int i7 = 0; i7 < size; i7++) {
-            ((int[]) this.f55867b)[i7] = ((Integer) arrayList.get(i7)).intValue();
-            ((float[]) this.f55868c)[i7] = ((Float) arrayList2.get(i7)).floatValue();
+            ((int[]) this.f55871b)[i7] = ((Integer) arrayList.get(i7)).intValue();
+            ((float[]) this.f55872c)[i7] = ((Float) arrayList2.get(i7)).floatValue();
         }
     }
 
     public q(int i7, int i10) {
-        this.f55866a = 23;
-        this.f55867b = new int[]{i7, i10};
-        this.f55868c = new float[]{0.0f, 1.0f};
+        this.f55870a = 23;
+        this.f55871b = new int[]{i7, i10};
+        this.f55872c = new float[]{0.0f, 1.0f};
     }
 
     public q(int i7, int i10, int i11) {
-        this.f55866a = 23;
-        this.f55867b = new int[]{i7, i10, i11};
-        this.f55868c = new float[]{0.0f, 0.5f, 1.0f};
+        this.f55870a = 23;
+        this.f55871b = new int[]{i7, i10, i11};
+        this.f55872c = new float[]{0.0f, 0.5f, 1.0f};
     }
 
     public q(d3.e eVar) {
-        this.f55866a = 16;
-        this.f55868c = eVar;
+        this.f55870a = 16;
+        this.f55872c = eVar;
     }
 
     public q(Context context, String str, ComponentName componentName, PendingIntent pendingIntent, Bundle bundle) {
-        this.f55866a = 0;
+        this.f55870a = 0;
         if (!TextUtils.isEmpty(str)) {
             if (componentName == null) {
-                int i7 = t0.f57078b;
+                int i7 = t0.f57082b;
                 Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
                 intent.setPackage(context.getPackageName());
                 List<ResolveInfo> queryBroadcastReceivers = context.getPackageManager().queryBroadcastReceivers(intent, 0);
@@ -523,44 +523,44 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             }
             int i10 = Build.VERSION.SDK_INT;
             if (i10 >= 29) {
-                this.f55867b = new l(context, str, bundle);
+                this.f55871b = new l(context, str, bundle);
             } else if (i10 >= 28) {
-                this.f55867b = new l(context, str, bundle);
+                this.f55871b = new l(context, str, bundle);
             } else {
-                this.f55867b = new l(context, str, bundle);
+                this.f55871b = new l(context, str, bundle);
             }
             Looper myLooper = Looper.myLooper();
             e(new android.support.v4.media.session.s(1), new Handler(myLooper == null ? Looper.getMainLooper() : myLooper));
-            ((l) this.f55867b).f55849a.setMediaButtonReceiver(pendingIntent);
-            p pVar = ((l) this.f55867b).f55851c;
+            ((l) this.f55871b).f55853a.setMediaButtonReceiver(pendingIntent);
+            p pVar = ((l) this.f55871b).f55855c;
             ?? obj = new Object();
             DesugarCollections.synchronizedSet(new HashSet());
             if (Build.VERSION.SDK_INT >= 29) {
-                obj.f55875a = new f(context, pVar);
+                obj.f55879a = new f(context, pVar);
             } else {
-                obj.f55875a = new f(context, pVar);
+                obj.f55879a = new f(context, pVar);
             }
-            this.f55868c = obj;
+            this.f55872c = obj;
             return;
         }
         throw new IllegalArgumentException("tag must not be null or empty");
     }
 
     public q(t1 t1Var, int[] iArr) {
-        this.f55866a = 25;
-        this.f55867b = h9.i0.q(t1Var);
-        this.f55868c = iArr;
+        this.f55870a = 25;
+        this.f55871b = h9.i0.q(t1Var);
+        this.f55872c = iArr;
     }
 
     public q(c5.l lVar) {
-        this.f55866a = 8;
-        this.f55868c = lVar;
-        this.f55867b = new Rect();
+        this.f55870a = 8;
+        this.f55872c = lVar;
+        this.f55871b = new Rect();
     }
 
     public q(ci.v vVar) {
-        this.f55866a = 18;
-        this.f55867b = vVar;
-        this.f55868c = new AtomicBoolean(false);
+        this.f55870a = 18;
+        this.f55871b = vVar;
+        this.f55872c = new AtomicBoolean(false);
     }
 }

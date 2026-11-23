@@ -2,22 +2,22 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class gd implements DialogInterface.OnDismissListener {
-    public final int f35522a;
-    public final ChatActivityEnterView f35523b;
+    public final int f35541a;
+    public final ChatActivityEnterView f35542b;
 
     public gd(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f35522a = i7;
-        this.f35523b = chatActivityEnterView;
+        this.f35541a = i7;
+        this.f35542b = chatActivityEnterView;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f35522a) {
+        switch (this.f35541a) {
             case 0:
-                this.f35523b.M0 = null;
+                this.f35542b.M0 = null;
                 return;
             default:
-                this.f35523b.M0 = null;
+                this.f35542b.M0 = null;
                 return;
         }
     }

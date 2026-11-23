@@ -2,20 +2,20 @@ package r2;
 
 import android.text.TextUtils;
 public final class q {
-    public final int f56477a;
-    public final int f56478b;
-    public final String f56479c;
+    public final int f56481a;
+    public final int f56482b;
+    public final String f56483c;
     public final String d;
-    public final String f56480e;
-    public final String f56481f;
+    public final String f56484e;
+    public final String f56485f;
 
     public q(int i7, String str, int i10, String str2, String str3, String str4) {
-        this.f56477a = i7;
-        this.f56478b = i10;
-        this.f56479c = str;
+        this.f56481a = i7;
+        this.f56482b = i10;
+        this.f56483c = str;
         this.d = str2;
-        this.f56480e = str3;
-        this.f56481f = str4;
+        this.f56484e = str3;
+        this.f56485f = str4;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +24,7 @@ public final class q {
         }
         if (obj != null && q.class == obj.getClass()) {
             q qVar = (q) obj;
-            if (this.f56477a == qVar.f56477a && this.f56478b == qVar.f56478b && TextUtils.equals(this.f56479c, qVar.f56479c) && TextUtils.equals(this.d, qVar.d) && TextUtils.equals(this.f56480e, qVar.f56480e) && TextUtils.equals(this.f56481f, qVar.f56481f)) {
+            if (this.f56481a == qVar.f56481a && this.f56482b == qVar.f56482b && TextUtils.equals(this.f56483c, qVar.f56483c) && TextUtils.equals(this.d, qVar.d) && TextUtils.equals(this.f56484e, qVar.f56484e) && TextUtils.equals(this.f56485f, qVar.f56485f)) {
                 return true;
             }
         }
@@ -35,9 +35,9 @@ public final class q {
         int i7;
         int i10;
         int i11;
-        int i12 = ((this.f56477a * 31) + this.f56478b) * 31;
+        int i12 = ((this.f56481a * 31) + this.f56482b) * 31;
         int i13 = 0;
-        String str = this.f56479c;
+        String str = this.f56483c;
         if (str != null) {
             i7 = str.hashCode();
         } else {
@@ -51,14 +51,14 @@ public final class q {
             i10 = 0;
         }
         int i15 = (i14 + i10) * 31;
-        String str3 = this.f56480e;
+        String str3 = this.f56484e;
         if (str3 != null) {
             i11 = str3.hashCode();
         } else {
             i11 = 0;
         }
         int i16 = (i15 + i11) * 31;
-        String str4 = this.f56481f;
+        String str4 = this.f56485f;
         if (str4 != null) {
             i13 = str4.hashCode();
         }

@@ -4,49 +4,49 @@ import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.hd;
 public final class t8 {
-    public final org.telegram.ui.ActionBar.g2 f9837a;
-    public final long f9838b;
-    public final org.telegram.ui.Components.gc f9839c;
+    public final org.telegram.ui.ActionBar.g2 f9840a;
+    public final long f9841b;
+    public final org.telegram.ui.Components.gc f9842c;
     public final org.telegram.ui.Components.ac d;
-    public final org.telegram.ui.Components.ec f9840e;
-    public final x8 f9841f;
-    public int f9842g;
+    public final org.telegram.ui.Components.ec f9843e;
+    public final x8 f9844f;
+    public int f9845g;
     public long h;
-    public ai.w2 f9843i;
-    public final ArrayList f9844j = new ArrayList();
-    public final HashSet f9845k = new HashSet();
-    public final long f9846l = System.currentTimeMillis();
-    public boolean f9847m = true;
-    public boolean f9848n;
-    public boolean f9849o;
-    public final s8 f9850p;
+    public ai.x2 f9846i;
+    public final ArrayList f9847j = new ArrayList();
+    public final HashSet f9848k = new HashSet();
+    public final long f9849l = System.currentTimeMillis();
+    public boolean f9850m = true;
+    public boolean f9851n;
+    public boolean f9852o;
+    public final s8 f9853p;
 
     public t8(org.telegram.ui.ActionBar.g2 g2Var, long j3) {
         ?? r22 = new Runnable(this) {
-            public final t8 f9753b;
+            public final t8 f9756b;
 
             {
-                this.f9753b = this;
+                this.f9756b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f9753b.a();
+                        this.f9756b.a();
                         return;
                     default:
-                        t8 t8Var = this.f9753b;
-                        if (!t8Var.f9848n && !t8Var.f9849o && t8Var.f9847m) {
-                            t8Var.f9848n = true;
-                            ai.w2 w2Var = t8Var.f9843i;
-                            if (w2Var != null) {
-                                w2Var.a(t8Var.f9845k);
+                        t8 t8Var = this.f9756b;
+                        if (!t8Var.f9851n && !t8Var.f9852o && t8Var.f9850m) {
+                            t8Var.f9851n = true;
+                            ai.x2 x2Var = t8Var.f9846i;
+                            if (x2Var != null) {
+                                x2Var.a(t8Var.f9848k);
                             }
-                            if (t8Var.f9840e != null) {
-                                t8Var.f9839c.b();
+                            if (t8Var.f9843e != null) {
+                                t8Var.f9842c.b();
                                 return;
                             }
                             return;
@@ -55,16 +55,16 @@ public final class t8 {
                 }
             }
         };
-        this.f9850p = r22;
-        this.f9837a = g2Var;
-        this.f9838b = j3;
+        this.f9853p = r22;
+        this.f9840a = g2Var;
+        this.f9841b = j3;
         Context t6 = y8.t(g2Var);
         org.telegram.ui.Components.ac acVar = new org.telegram.ui.Components.ac(t6, g2Var.getResourceProvider());
         this.d = acVar;
         acVar.c(2131624227, new String[0]);
         ?? zbVar = new org.telegram.ui.Components.zb(t6, g2Var.getResourceProvider());
-        this.f9841f = zbVar;
-        zbVar.f42762b = 3000L;
+        this.f9844f = zbVar;
+        zbVar.f42766b = 3000L;
         int i7 = org.telegram.ui.ActionBar.m6.xj;
         org.telegram.ui.ActionBar.h6 resourceProvider = g2Var.getResourceProvider();
         ci.v vVar = new ci.v(4);
@@ -73,36 +73,36 @@ public final class t8 {
         vVar2.d(P, zbVar);
         org.telegram.ui.ActionBar.n6 w10 = org.telegram.ui.ActionBar.t6.w(101, zbVar);
         w10.c(i7, -1, 0, 0.0f, resourceProvider);
-        w10.f29824n = vVar;
-        w10.f29825o = vVar2;
-        w10.f29823m = false;
-        w10.f29818g = P;
+        w10.f29827n = vVar;
+        w10.f29828o = vVar2;
+        w10.f29826m = false;
+        w10.f29821g = P;
         org.telegram.ui.Components.ec ecVar = new org.telegram.ui.Components.ec(t6, g2Var.getResourceProvider(), true, false);
-        this.f9840e = ecVar;
-        ecVar.e(gd.N0(2131744782, null));
-        ecVar.f34727b = new Runnable(this) {
-            public final t8 f9753b;
+        this.f9843e = ecVar;
+        ecVar.e(hd.N0(2131744780, null));
+        ecVar.f34725b = new Runnable(this) {
+            public final t8 f9756b;
 
             {
-                this.f9753b = this;
+                this.f9756b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f9753b.a();
+                        this.f9756b.a();
                         return;
                     default:
-                        t8 t8Var = this.f9753b;
-                        if (!t8Var.f9848n && !t8Var.f9849o && t8Var.f9847m) {
-                            t8Var.f9848n = true;
-                            ai.w2 w2Var = t8Var.f9843i;
-                            if (w2Var != null) {
-                                w2Var.a(t8Var.f9845k);
+                        t8 t8Var = this.f9756b;
+                        if (!t8Var.f9851n && !t8Var.f9852o && t8Var.f9850m) {
+                            t8Var.f9851n = true;
+                            ai.x2 x2Var = t8Var.f9846i;
+                            if (x2Var != null) {
+                                x2Var.a(t8Var.f9848k);
                             }
-                            if (t8Var.f9840e != null) {
-                                t8Var.f9839c.b();
+                            if (t8Var.f9843e != null) {
+                                t8Var.f9842c.b();
                                 return;
                             }
                             return;
@@ -112,35 +112,35 @@ public final class t8 {
             }
         };
         ecVar.addView((View) zbVar, c8.ma.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-        ecVar.f34729e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
+        ecVar.f34727e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
         acVar.setButton(ecVar);
         org.telegram.ui.Components.gc b10 = org.telegram.ui.Components.lc.b0(g2Var).b(acVar, -1);
-        this.f9839c = b10;
-        b10.f35516r = false;
+        this.f9842c = b10;
+        b10.f35535r = false;
         b10.k(true);
         b10.v = new Runnable(this) {
-            public final t8 f9753b;
+            public final t8 f9756b;
 
             {
-                this.f9753b = this;
+                this.f9756b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f9753b.a();
+                        this.f9756b.a();
                         return;
                     default:
-                        t8 t8Var = this.f9753b;
-                        if (!t8Var.f9848n && !t8Var.f9849o && t8Var.f9847m) {
-                            t8Var.f9848n = true;
-                            ai.w2 w2Var = t8Var.f9843i;
-                            if (w2Var != null) {
-                                w2Var.a(t8Var.f9845k);
+                        t8 t8Var = this.f9756b;
+                        if (!t8Var.f9851n && !t8Var.f9852o && t8Var.f9850m) {
+                            t8Var.f9851n = true;
+                            ai.x2 x2Var = t8Var.f9846i;
+                            if (x2Var != null) {
+                                x2Var.a(t8Var.f9848k);
                             }
-                            if (t8Var.f9840e != null) {
-                                t8Var.f9839c.b();
+                            if (t8Var.f9843e != null) {
+                                t8Var.f9842c.b();
                                 return;
                             }
                             return;
@@ -154,9 +154,9 @@ public final class t8 {
     }
 
     public final void a() {
-        if (!this.f9848n && !this.f9849o) {
-            this.f9849o = true;
-            ArrayList arrayList = this.f9844j;
+        if (!this.f9851n && !this.f9852o) {
+            this.f9852o = true;
+            ArrayList arrayList = this.f9847j;
             int size = arrayList.size();
             int i7 = 0;
             while (i7 < size) {
@@ -164,8 +164,8 @@ public final class t8 {
                 i7++;
                 ((Runnable) obj).run();
             }
-            if (this.f9840e != null) {
-                this.f9839c.b();
+            if (this.f9843e != null) {
+                this.f9842c.b();
             }
         }
     }

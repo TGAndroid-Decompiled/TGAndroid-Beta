@@ -13,7 +13,7 @@ public final class fy extends lv0 {
 
     @Override
     public final boolean D1() {
-        return org.telegram.messenger.pc.e(8200);
+        return org.telegram.messenger.qc.e(8200);
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class fy extends lv0 {
         super.H1(i7);
         gy gyVar = this.I3;
         ty tyVar = gyVar.H;
-        fy fyVar = gyVar.f35699r;
+        fy fyVar = gyVar.f35718r;
         boolean z11 = true;
         if (fyVar.getSelectedCategory() == null) {
             z10 = true;
@@ -43,7 +43,7 @@ public final class fy extends lv0 {
             if (fyVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            hwVar.f35606p0 = z11;
+            hwVar.f35625p0 = z11;
             hwVar.invalidate();
         }
         gyVar.g(false);

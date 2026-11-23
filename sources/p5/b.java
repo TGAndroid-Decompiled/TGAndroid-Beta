@@ -3,18 +3,18 @@ package p5;
 import a8.p0;
 import android.content.Context;
 public final class b extends d {
-    public final Context f55508a;
-    public final x5.a f55509b;
-    public final x5.a f55510c;
+    public final Context f55512a;
+    public final x5.a f55513b;
+    public final x5.a f55514c;
     public final String d;
 
     public b(Context context, x5.a aVar, x5.a aVar2, String str) {
         if (context != null) {
-            this.f55508a = context;
+            this.f55512a = context;
             if (aVar != null) {
-                this.f55509b = aVar;
+                this.f55513b = aVar;
                 if (aVar2 != null) {
-                    this.f55510c = aVar2;
+                    this.f55514c = aVar2;
                     if (str != null) {
                         this.d = str;
                         return;
@@ -34,7 +34,7 @@ public final class b extends d {
         }
         if (obj instanceof d) {
             b bVar = (b) ((d) obj);
-            if (this.f55508a.equals(bVar.f55508a) && this.f55509b.equals(bVar.f55509b) && this.f55510c.equals(bVar.f55510c) && this.d.equals(bVar.d)) {
+            if (this.f55512a.equals(bVar.f55512a) && this.f55513b.equals(bVar.f55513b) && this.f55514c.equals(bVar.f55514c) && this.d.equals(bVar.d)) {
                 return true;
             }
         }
@@ -42,16 +42,16 @@ public final class b extends d {
     }
 
     public final int hashCode() {
-        return ((((((this.f55508a.hashCode() ^ 1000003) * 1000003) ^ this.f55509b.hashCode()) * 1000003) ^ this.f55510c.hashCode()) * 1000003) ^ this.d.hashCode();
+        return ((((((this.f55512a.hashCode() ^ 1000003) * 1000003) ^ this.f55513b.hashCode()) * 1000003) ^ this.f55514c.hashCode()) * 1000003) ^ this.d.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("CreationContext{applicationContext=");
-        sb2.append(this.f55508a);
+        sb2.append(this.f55512a);
         sb2.append(", wallClock=");
-        sb2.append(this.f55509b);
+        sb2.append(this.f55513b);
         sb2.append(", monotonicClock=");
-        sb2.append(this.f55510c);
+        sb2.append(this.f55514c);
         sb2.append(", backendName=");
         return p0.s(sb2, this.d, "}");
     }

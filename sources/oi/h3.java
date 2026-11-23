@@ -14,7 +14,7 @@ public final class h3 extends j9 {
     @Override
     public final boolean C() {
         t3 t3Var = this.G0;
-        CharSequence r10 = t3Var.f22437v3.r();
+        CharSequence r10 = t3Var.f22440v3.r();
         if (r10 != null && r10.length() != 0) {
             t3Var.f5(r10);
             return true;
@@ -25,7 +25,7 @@ public final class h3 extends j9 {
     @Override
     public final void D() {
         t3 t3Var = this.G0;
-        CharSequence r10 = t3Var.f22437v3.r();
+        CharSequence r10 = t3Var.f22440v3.r();
         if (r10 != null && r10.length() > 0) {
             t3Var.f5(r10);
         }
@@ -66,23 +66,23 @@ public final class h3 extends j9 {
         String str;
         int length;
         t3 t3Var = this.G0;
-        h3 h3Var = t3Var.f22437v3;
-        ArrayList arrayList = t3Var.f22433t3;
-        if (!arrayList.isEmpty() && h3Var.x() && h3Var.f30920p0 == 0 && h3Var.f30921q0 == 0 && h3Var.f30922r0 <= 0 && h3Var.f30923s0 == (size = arrayList.size() - 1)) {
+        h3 h3Var = t3Var.f22440v3;
+        ArrayList arrayList = t3Var.f22436t3;
+        if (!arrayList.isEmpty() && h3Var.x() && h3Var.f30923p0 == 0 && h3Var.f30924q0 == 0 && h3Var.f30925r0 <= 0 && h3Var.f30926s0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
-            if (a6.p(aVar.f21932b)) {
-                str = c6.l(a6.j(aVar.f21932b));
+            if (a6.p(aVar.f21935b)) {
+                str = c6.l(a6.j(aVar.f21935b));
             } else {
                 str = "";
             }
             int i7 = !str.isEmpty();
-            if (h3Var.f30924t0 == i7) {
+            if (h3Var.f30927t0 == i7) {
                 if (i7 == 1) {
                     length = str.length();
                 } else {
-                    length = a6.z(aVar.f21932b).length();
+                    length = a6.z(aVar.f21935b).length();
                 }
-                if (h3Var.f30925u0 >= length) {
+                if (h3Var.f30928u0 >= length) {
                     z10 = true;
                     return !z10;
                 }

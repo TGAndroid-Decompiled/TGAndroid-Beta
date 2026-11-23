@@ -5,19 +5,19 @@ import java.util.HashSet;
 import java.util.Set;
 import org.telegram.tgnet.TLRPC;
 public final class o0 implements k0 {
-    public final String f26041a;
-    public final HashSet f26042b;
-    public HashSet f26043c;
+    public final String f26069a;
+    public final HashSet f26070b;
+    public HashSet f26071c;
 
     public o0(String str, Set set) {
         HashSet hashSet;
-        this.f26041a = str;
+        this.f26069a = str;
         if (set == null) {
             hashSet = null;
         } else {
             hashSet = new HashSet(set);
         }
-        this.f26042b = hashSet;
+        this.f26070b = hashSet;
     }
 
     @Override
@@ -32,9 +32,9 @@ public final class o0 implements k0 {
                     hashSet.add(((TLRPC.TL_jsonString) jSONValue2).value);
                 }
             }
-            if (!hashSet.equals(this.f26043c)) {
-                this.f26043c = hashSet;
-                editor.putStringSet(this.f26041a, new HashSet(this.f26043c));
+            if (!hashSet.equals(this.f26071c)) {
+                this.f26071c = hashSet;
+                editor.putStringSet(this.f26069a, new HashSet(this.f26071c));
                 return true;
             }
         }
@@ -44,12 +44,12 @@ public final class o0 implements k0 {
     @Override
     public final void b(SharedPreferences sharedPreferences) {
         HashSet hashSet;
-        Set<String> stringSet = sharedPreferences.getStringSet(this.f26041a, this.f26042b);
+        Set<String> stringSet = sharedPreferences.getStringSet(this.f26069a, this.f26070b);
         if (stringSet == null) {
             hashSet = null;
         } else {
             hashSet = new HashSet(stringSet);
         }
-        this.f26043c = hashSet;
+        this.f26071c = hashSet;
     }
 }

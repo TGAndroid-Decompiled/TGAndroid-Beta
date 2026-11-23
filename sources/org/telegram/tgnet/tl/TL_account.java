@@ -2,7 +2,7 @@ package org.telegram.tgnet.tl;
 
 import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.ed;
+import org.telegram.messenger.fd;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -105,7 +105,7 @@ public class TL_account {
         public static final int constructor = -1738457409;
         public int date;
         public int flags;
-        public String f28638id;
+        public String f28641id;
         public int last_usage_date;
         public String name;
         public long software_emoji_id;
@@ -123,7 +123,7 @@ public class TL_account {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.flags = inputSerializedData.readInt32(z10);
-            this.f28638id = inputSerializedData.readString(z10);
+            this.f28641id = inputSerializedData.readString(z10);
             this.name = inputSerializedData.readString(z10);
             this.date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -138,7 +138,7 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1738457409);
             outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeString(this.f28638id);
+            outputSerializedData.writeString(this.f28641id);
             outputSerializedData.writeString(this.name);
             outputSerializedData.writeInt32(this.date);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -666,7 +666,7 @@ public class TL_account {
             this.link = inputSerializedData.readString(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.entities = Vector.deserialize(inputSerializedData, new ed(9), z10);
+                this.entities = Vector.deserialize(inputSerializedData, new fd(9), z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.title = inputSerializedData.readString(z10);
@@ -1145,7 +1145,7 @@ public class TL_account {
             this.flags = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.entities = Vector.deserialize(inputSerializedData, new ed(9), z10);
+                this.entities = Vector.deserialize(inputSerializedData, new fd(9), z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.title = inputSerializedData.readString(z10);
@@ -2286,12 +2286,12 @@ public class TL_account {
 
     public static class deletePasskey extends TLMethod<TLRPC.Bool> {
         public static final int constructor = -172665281;
-        public String f28639id;
+        public String f28642id;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-172665281);
-            outputSerializedData.writeString(this.f28639id);
+            outputSerializedData.writeString(this.f28642id);
         }
 
         @Override
@@ -2842,7 +2842,7 @@ public class TL_account {
 
     public static class getRequirementsToContact extends TLObject {
         public static final int constructor = -660962397;
-        public ArrayList<TLRPC.InputUser> f28640id = new ArrayList<>();
+        public ArrayList<TLRPC.InputUser> f28643id = new ArrayList<>();
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z10) {
@@ -2851,20 +2851,20 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f28640id = Vector.deserialize(inputSerializedData, new p(11), z10);
+            this.f28643id = Vector.deserialize(inputSerializedData, new p(11), z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-660962397);
-            Vector.serialize(outputSerializedData, this.f28640id);
+            Vector.serialize(outputSerializedData, this.f28643id);
         }
     }
 
     public static class getSavedMusicByID extends TLObject {
         public static final int constructor = 1970513129;
         public ArrayList<TLRPC.InputDocument> documents = new ArrayList<>();
-        public TLRPC.InputUser f28641id;
+        public TLRPC.InputUser f28644id;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z10) {
@@ -2874,7 +2874,7 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1970513129);
-            this.f28641id.serializeToStream(outputSerializedData);
+            this.f28644id.serializeToStream(outputSerializedData);
             Vector.serialize(outputSerializedData, this.documents);
         }
     }
@@ -3101,7 +3101,7 @@ public class TL_account {
 
     public static class inputPasskeyCredentialPublicKey extends TLObject {
         public static final int constructor = 1009235855;
-        public String f28642id;
+        public String f28645id;
         public String raw_id;
         public InputPasskeyResponse response;
 
@@ -3117,7 +3117,7 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f28642id = inputSerializedData.readString(z10);
+            this.f28645id = inputSerializedData.readString(z10);
             this.raw_id = inputSerializedData.readString(z10);
             this.response = InputPasskeyResponse.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
@@ -3125,7 +3125,7 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1009235855);
-            outputSerializedData.writeString(this.f28642id);
+            outputSerializedData.writeString(this.f28645id);
             outputSerializedData.writeString(this.raw_id);
             this.response.serializeToStream(outputSerializedData);
         }
@@ -3754,7 +3754,7 @@ public class TL_account {
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.entities = Vector.deserialize(inputSerializedData, new ed(9), z10);
+                this.entities = Vector.deserialize(inputSerializedData, new fd(9), z10);
             }
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
@@ -3800,7 +3800,7 @@ public class TL_account {
 
     public static class saveRingtone extends TLObject {
         public static final int constructor = 1038768899;
-        public TLRPC.InputDocument f28643id;
+        public TLRPC.InputDocument f28646id;
         public boolean unsave;
 
         @Override
@@ -3811,7 +3811,7 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1038768899);
-            this.f28643id.serializeToStream(outputSerializedData);
+            this.f28646id.serializeToStream(outputSerializedData);
             outputSerializedData.writeBool(this.unsave);
         }
     }

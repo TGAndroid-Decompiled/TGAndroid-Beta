@@ -9,32 +9,32 @@ import org.telegram.ui.Components.zf;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.bc1;
 public final class i9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f14805a;
-    public final float f14806b;
-    public final float f14807c;
+    public final int f14808a;
+    public final float f14809b;
+    public final float f14810c;
     public final Object d;
 
     public i9(Object obj, float f10, float f11, int i7) {
-        this.f14805a = i7;
+        this.f14808a = i7;
         this.d = obj;
-        this.f14806b = f10;
-        this.f14807c = f11;
+        this.f14809b = f10;
+        this.f14810c = f11;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         boolean z10;
-        int i7 = this.f14805a;
-        float f10 = this.f14807c;
-        float f11 = this.f14806b;
+        int i7 = this.f14808a;
+        float f10 = this.f14810c;
+        float f11 = this.f14809b;
         Object obj = this.d;
         switch (i7) {
             case 0:
                 sa saVar = (sa) obj;
                 saVar.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                saVar.f15434r.setTranslationY(f11 * floatValue);
-                saVar.f15434r.b(f10 * floatValue);
+                saVar.f15437r.setTranslationY(f11 * floatValue);
+                saVar.f15437r.b(f10 * floatValue);
                 return;
             case 1:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
@@ -49,7 +49,7 @@ public final class i9 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 ovVar.M = floatValue3;
                 ovVar.L = org.telegram.messenger.g0.T1(f11, f10, floatValue3);
-                ovVar.f36926b.invalidate();
+                ovVar.f36929b.invalidate();
                 return;
             case 3:
                 bc1 bc1Var = (bc1) obj;
@@ -63,28 +63,28 @@ public final class i9 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 4:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                CropAreaView cropAreaView = photoViewer.D1.f39154b.f21918a;
+                CropAreaView cropAreaView = photoViewer.D1.f39164b.f21921a;
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f11;
-                float f13 = photoViewer.f43207a6;
-                cropAreaView.f32925o0 = floatValue4;
-                cropAreaView.f32926p0 = ((photoViewer.f43245e6 - f13) * photoViewer.f43305l6) + f13;
-                cropAreaView.f32927q0 = 0.0f;
-                cropAreaView.f32929r0 = 0.0f;
+                float f13 = photoViewer.f43211a6;
+                cropAreaView.f32928o0 = floatValue4;
+                cropAreaView.f32929p0 = ((photoViewer.f43249e6 - f13) * photoViewer.f43309l6) + f13;
+                cropAreaView.f32930q0 = 0.0f;
+                cropAreaView.f32932r0 = 0.0f;
                 cropAreaView.invalidate();
-                photoViewer.D1.f39155c.b(org.telegram.messenger.g0.T1(f10, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                photoViewer.D1.f39165c.b(org.telegram.messenger.g0.T1(f10, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 return;
             case 5:
                 org.telegram.ui.Wallet.m4 m4Var = (org.telegram.ui.Wallet.m4) obj;
                 float floatValue5 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 m4Var.A = (f11 * floatValue5) + m4Var.g();
-                m4Var.B = (f10 * floatValue5) + (m4Var.f44573k.F * 0.14f);
+                m4Var.B = (f10 * floatValue5) + (m4Var.f44577k.F * 0.14f);
                 if (floatValue5 > 0.0f) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 m4Var.D = z10;
-                m4Var.f44555a.invalidate();
+                m4Var.f44559a.invalidate();
                 return;
             case 6:
                 org.telegram.ui.Wallet.s6 s6Var = (org.telegram.ui.Wallet.s6) obj;
@@ -96,7 +96,7 @@ public final class i9 implements ValueAnimator.AnimatorUpdateListener {
             case 7:
                 te.c cVar = (te.c) obj;
                 if (cVar.h) {
-                    DecelerateInterpolator decelerateInterpolator = se.a.f57187a;
+                    DecelerateInterpolator decelerateInterpolator = se.a.f57191a;
                     float animatedFraction = valueAnimator.getAnimatedFraction();
                     cVar.d((f10 * animatedFraction) + f11, animatedFraction);
                     return;
@@ -106,9 +106,9 @@ public final class i9 implements ValueAnimator.AnimatorUpdateListener {
                 vg.e eVar = (vg.e) obj;
                 eVar.getClass();
                 float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = eVar.f59452a;
+                vg.f fVar = eVar.f59456a;
                 fVar.d = f11 * floatValue7;
-                fVar.f59469i = f10 * floatValue7;
+                fVar.f59473i = f10 * floatValue7;
                 return;
         }
     }

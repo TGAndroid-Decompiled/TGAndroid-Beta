@@ -4,27 +4,27 @@ import android.text.TextUtils;
 import android.widget.LinearLayout;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONObject;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.u10;
-import org.telegram.messenger.x10;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.r10;
+import org.telegram.messenger.v10;
+import org.telegram.messenger.y10;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.a70;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.p51;
 public final class v7 implements Runnable {
-    public final int f45209a;
-    public final Object f45210b;
-    public final Object f45211c;
+    public final int f45213a;
+    public final Object f45214b;
+    public final Object f45215c;
     public final Object d;
-    public final Object f45212e;
+    public final Object f45216e;
 
     public v7(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f45209a = i7;
-        this.f45210b = obj;
+        this.f45213a = i7;
+        this.f45214b = obj;
         this.d = obj2;
-        this.f45212e = obj3;
-        this.f45211c = obj4;
+        this.f45216e = obj3;
+        this.f45215c = obj4;
     }
 
     @Override
@@ -35,16 +35,16 @@ public final class v7 implements Runnable {
         int i10;
         boolean z10;
         int i11;
-        int i12 = this.f45209a;
+        int i12 = this.f45213a;
         byte[] bArr = null;
         boolean z11 = true;
-        Object obj = this.f45211c;
-        Object obj2 = this.f45212e;
+        Object obj = this.f45215c;
+        Object obj2 = this.f45216e;
         Object obj3 = this.d;
-        Object obj4 = this.f45210b;
+        Object obj4 = this.f45214b;
         switch (i12) {
             case 0:
-                ((WalletEngine2) obj4).lambda$prepareRotateKey$37((u10) obj3, (WalletEngine2.PreparedRotation) obj2, (String) obj);
+                ((WalletEngine2) obj4).lambda$prepareRotateKey$37((v10) obj3, (WalletEngine2.PreparedRotation) obj2, (String) obj);
                 return;
             case 1:
                 ((WalletEngine2) obj4).lambda$rotateKey$55((WalletEngine2.RotationCallbacks) obj3, (byte[]) obj2, (String) obj);
@@ -70,15 +70,15 @@ public final class v7 implements Runnable {
                 TL_wallet.nftItem nftitem = (TL_wallet.nftItem) obj2;
                 t0 t0Var2 = (t0) obj;
                 u0Var.getClass();
-                if (wallettransaction2.pending || wallettransaction2.failed || TextUtils.isEmpty(wallettransaction2.f28694id)) {
+                if (wallettransaction2.pending || wallettransaction2.failed || TextUtils.isEmpty(wallettransaction2.f28697id)) {
                     wallettransaction2.pending = false;
                     wallettransaction2.failed = true;
-                    u0Var.f45138r.remove(wallettransaction2);
-                    x10 x10Var = (x10) u0Var.f45137q.remove(wallettransaction2);
-                    if (x10Var != null) {
-                        x10Var.a(Boolean.FALSE);
+                    u0Var.f45142r.remove(wallettransaction2);
+                    y10 y10Var = (y10) u0Var.f45141q.remove(wallettransaction2);
+                    if (y10Var != null) {
+                        y10Var.a(Boolean.FALSE);
                     }
-                    if (nftitem != null && (l0Var = u0Var.f45135o) != null) {
+                    if (nftitem != null && (l0Var = u0Var.f45139o) != null) {
                         l0.a(l0Var, wallettransaction2);
                     }
                     t0Var2.k();
@@ -108,7 +108,7 @@ public final class v7 implements Runnable {
                 g2 g2Var = (g2) obj3;
                 k kVar = (k) obj2;
                 TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj;
-                u0 u0Var2 = l2Var.f44520b;
+                u0 u0Var2 = l2Var.f44524b;
                 String y10 = u0Var2.y();
                 byte[] E = u0Var2.E();
                 if (E != null) {
@@ -129,7 +129,7 @@ public final class v7 implements Runnable {
                 h2 h2Var = (h2) obj2;
                 p51 p51Var3 = (p51) obj;
                 try {
-                    jSONObject = WalletEngine2.signData(r0Var, h2Var.f44329a, h2Var.h, h2Var.f44334g, new JSONObject(h2Var.f44337k), l2.n(h2Var.f44329a.manifest.url), l2Var2.f44523f.getCurrentTime());
+                    jSONObject = WalletEngine2.signData(r0Var, h2Var.f44333a, h2Var.h, h2Var.f44338g, new JSONObject(h2Var.f44341k), l2.n(h2Var.f44333a.manifest.url), l2Var2.f44527f.getCurrentTime());
                     i7 = null;
                 } catch (Exception e10) {
                     i7 = l2.i("sign data", e10);
@@ -144,11 +144,11 @@ public final class v7 implements Runnable {
                 hi.e eVar2 = (hi.e) obj;
                 boolean a10 = y2Var.a();
                 if (iArr[0] == 2) {
-                    i10 = 2131742726;
+                    i10 = 2131742724;
                 } else {
-                    i10 = 2131742924;
+                    i10 = 2131742922;
                 }
-                eVar.setText(gd.N0(i10, null));
+                eVar.setText(hd.N0(i10, null));
                 if (!a10 && !y2Var.d && ((i11 = iArr[0]) == 1 || i11 == 2)) {
                     z10 = true;
                 } else {
@@ -176,41 +176,41 @@ public final class v7 implements Runnable {
                 }
                 return;
             case 12:
-                ((WalletEngine2) obj4).lambda$signMessage$13((q10) obj3, (String) obj, (String) obj2);
+                ((WalletEngine2) obj4).lambda$signMessage$13((r10) obj3, (String) obj, (String) obj2);
                 return;
             case 13:
-                ((WalletEngine2) obj4).lambda$decryptTransactionComment$48((String) obj, (byte[]) obj3, (q10) obj2);
+                ((WalletEngine2) obj4).lambda$decryptTransactionComment$48((String) obj, (byte[]) obj3, (r10) obj2);
                 return;
             case 14:
-                ((WalletEngine2) obj4).lambda$prepareRotateKey$38((byte[]) obj2, (String) obj, (u10) obj3);
+                ((WalletEngine2) obj4).lambda$prepareRotateKey$38((byte[]) obj2, (String) obj, (v10) obj3);
                 return;
             default:
-                WalletEngine2.lambda$emulateSend$18((AtomicBoolean) obj4, (q10) obj3, (TL_wallet.walletTransaction) obj2, (String) obj);
+                WalletEngine2.lambda$emulateSend$18((AtomicBoolean) obj4, (r10) obj3, (TL_wallet.walletTransaction) obj2, (String) obj);
                 return;
         }
     }
 
     public v7(Object obj, Object obj2, String str, Object obj3, int i7) {
-        this.f45209a = i7;
-        this.f45210b = obj;
+        this.f45213a = i7;
+        this.f45214b = obj;
         this.d = obj2;
-        this.f45211c = str;
-        this.f45212e = obj3;
+        this.f45215c = str;
+        this.f45216e = obj3;
     }
 
-    public v7(WalletEngine2 walletEngine2, String str, byte[] bArr, q10 q10Var) {
-        this.f45209a = 13;
-        this.f45210b = walletEngine2;
-        this.f45211c = str;
+    public v7(WalletEngine2 walletEngine2, String str, byte[] bArr, r10 r10Var) {
+        this.f45213a = 13;
+        this.f45214b = walletEngine2;
+        this.f45215c = str;
         this.d = bArr;
-        this.f45212e = q10Var;
+        this.f45216e = r10Var;
     }
 
-    public v7(WalletEngine2 walletEngine2, byte[] bArr, String str, u10 u10Var) {
-        this.f45209a = 14;
-        this.f45210b = walletEngine2;
-        this.f45212e = bArr;
-        this.f45211c = str;
-        this.d = u10Var;
+    public v7(WalletEngine2 walletEngine2, byte[] bArr, String str, v10 v10Var) {
+        this.f45213a = 14;
+        this.f45214b = walletEngine2;
+        this.f45216e = bArr;
+        this.f45215c = str;
+        this.d = v10Var;
     }
 }

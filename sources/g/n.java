@@ -13,16 +13,16 @@ import android.view.accessibility.AccessibilityEvent;
 import java.util.ArrayList;
 import java.util.List;
 public final class n implements Window.Callback {
-    public final Window.Callback f13023a;
-    public boolean f13024b;
-    public boolean f13025c;
+    public final Window.Callback f13026a;
+    public boolean f13027b;
+    public boolean f13028c;
     public boolean d;
-    public final s f13026e;
+    public final s f13029e;
 
     public n(s sVar, Window.Callback callback) {
-        this.f13026e = sVar;
+        this.f13029e = sVar;
         if (callback != null) {
-            this.f13023a = callback;
+            this.f13026a = callback;
             return;
         }
         throw new IllegalArgumentException("Window callback may not be null");
@@ -30,38 +30,38 @@ public final class n implements Window.Callback {
 
     public final void a(Window.Callback callback) {
         try {
-            this.f13024b = true;
+            this.f13027b = true;
             callback.onContentChanged();
         } finally {
-            this.f13024b = false;
+            this.f13027b = false;
         }
     }
 
     public final boolean b(int i7, Menu menu) {
-        return this.f13023a.onMenuOpened(i7, menu);
+        return this.f13026a.onMenuOpened(i7, menu);
     }
 
     public final void c(int i7, Menu menu) {
-        this.f13023a.onPanelClosed(i7, menu);
+        this.f13026a.onPanelClosed(i7, menu);
     }
 
     public final void d(List list, Menu menu, int i7) {
-        k.k.a(this.f13023a, list, menu, i7);
+        k.k.a(this.f13026a, list, menu, i7);
     }
 
     @Override
     public final boolean dispatchGenericMotionEvent(MotionEvent motionEvent) {
-        return this.f13023a.dispatchGenericMotionEvent(motionEvent);
+        return this.f13026a.dispatchGenericMotionEvent(motionEvent);
     }
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        boolean z10 = this.f13025c;
-        Window.Callback callback = this.f13023a;
+        boolean z10 = this.f13028c;
+        Window.Callback callback = this.f13026a;
         if (z10) {
             return callback.dispatchKeyEvent(keyEvent);
         }
-        if (!this.f13026e.k(keyEvent) && !callback.dispatchKeyEvent(keyEvent)) {
+        if (!this.f13029e.k(keyEvent) && !callback.dispatchKeyEvent(keyEvent)) {
             return false;
         }
         return true;
@@ -74,38 +74,38 @@ public final class n implements Window.Callback {
 
     @Override
     public final boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        return this.f13023a.dispatchPopulateAccessibilityEvent(accessibilityEvent);
+        return this.f13026a.dispatchPopulateAccessibilityEvent(accessibilityEvent);
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return this.f13023a.dispatchTouchEvent(motionEvent);
+        return this.f13026a.dispatchTouchEvent(motionEvent);
     }
 
     @Override
     public final boolean dispatchTrackballEvent(MotionEvent motionEvent) {
-        return this.f13023a.dispatchTrackballEvent(motionEvent);
+        return this.f13026a.dispatchTrackballEvent(motionEvent);
     }
 
     @Override
     public final void onActionModeFinished(ActionMode actionMode) {
-        this.f13023a.onActionModeFinished(actionMode);
+        this.f13026a.onActionModeFinished(actionMode);
     }
 
     @Override
     public final void onActionModeStarted(ActionMode actionMode) {
-        this.f13023a.onActionModeStarted(actionMode);
+        this.f13026a.onActionModeStarted(actionMode);
     }
 
     @Override
     public final void onAttachedToWindow() {
-        this.f13023a.onAttachedToWindow();
+        this.f13026a.onAttachedToWindow();
     }
 
     @Override
     public final void onContentChanged() {
-        if (this.f13024b) {
-            this.f13023a.onContentChanged();
+        if (this.f13027b) {
+            this.f13026a.onContentChanged();
         }
     }
 
@@ -114,32 +114,32 @@ public final class n implements Window.Callback {
         if (i7 == 0 && !(menu instanceof l.k)) {
             return false;
         }
-        return this.f13023a.onCreatePanelMenu(i7, menu);
+        return this.f13026a.onCreatePanelMenu(i7, menu);
     }
 
     @Override
     public final View onCreatePanelView(int i7) {
-        return this.f13023a.onCreatePanelView(i7);
+        return this.f13026a.onCreatePanelView(i7);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f13023a.onDetachedFromWindow();
+        this.f13026a.onDetachedFromWindow();
     }
 
     @Override
     public final boolean onMenuItemSelected(int i7, MenuItem menuItem) {
-        return this.f13023a.onMenuItemSelected(i7, menuItem);
+        return this.f13026a.onMenuItemSelected(i7, menuItem);
     }
 
     @Override
     public final boolean onMenuOpened(int i7, Menu menu) {
         b0 r10;
         b(i7, menu);
-        if (i7 == 108 && (r10 = this.f13026e.r()) != null) {
-            ArrayList arrayList = r10.f12979m;
-            if (true != r10.f12978l) {
-                r10.f12978l = true;
+        if (i7 == 108 && (r10 = this.f13029e.r()) != null) {
+            ArrayList arrayList = r10.f12982m;
+            if (true != r10.f12981l) {
+                r10.f12981l = true;
                 if (arrayList.size() > 0) {
                     arrayList.get(0).getClass();
                     throw new ClassCastException();
@@ -152,17 +152,17 @@ public final class n implements Window.Callback {
     @Override
     public final void onPanelClosed(int i7, Menu menu) {
         if (this.d) {
-            this.f13023a.onPanelClosed(i7, menu);
+            this.f13026a.onPanelClosed(i7, menu);
             return;
         }
         c(i7, menu);
-        s sVar = this.f13026e;
+        s sVar = this.f13029e;
         if (i7 == 108) {
             b0 r10 = sVar.r();
             if (r10 != null) {
-                ArrayList arrayList = r10.f12979m;
-                if (r10.f12978l) {
-                    r10.f12978l = false;
+                ArrayList arrayList = r10.f12982m;
+                if (r10.f12981l) {
+                    r10.f12981l = false;
                     if (arrayList.size() > 0) {
                         arrayList.get(0).getClass();
                         throw new ClassCastException();
@@ -171,7 +171,7 @@ public final class n implements Window.Callback {
             }
         } else if (i7 == 0) {
             r q10 = sVar.q(i7);
-            if (q10.f13042m) {
+            if (q10.f13045m) {
                 sVar.j(q10, false);
             }
         }
@@ -179,7 +179,7 @@ public final class n implements Window.Callback {
 
     @Override
     public final void onPointerCaptureChanged(boolean z10) {
-        k.l.a(this.f13023a, z10);
+        k.l.a(this.f13026a, z10);
     }
 
     @Override
@@ -194,18 +194,18 @@ public final class n implements Window.Callback {
             return false;
         }
         if (kVar != null) {
-            kVar.f19225x = true;
+            kVar.f19228x = true;
         }
-        boolean onPreparePanel = this.f13023a.onPreparePanel(i7, view, menu);
+        boolean onPreparePanel = this.f13026a.onPreparePanel(i7, view, menu);
         if (kVar != null) {
-            kVar.f19225x = false;
+            kVar.f19228x = false;
         }
         return onPreparePanel;
     }
 
     @Override
     public final void onProvideKeyboardShortcuts(List list, Menu menu, int i7) {
-        l.k kVar = this.f13026e.q(0).h;
+        l.k kVar = this.f13029e.q(0).h;
         if (kVar != null) {
             d(list, kVar, i7);
         } else {
@@ -215,17 +215,17 @@ public final class n implements Window.Callback {
 
     @Override
     public final boolean onSearchRequested(SearchEvent searchEvent) {
-        return k.j.a(this.f13023a, searchEvent);
+        return k.j.a(this.f13026a, searchEvent);
     }
 
     @Override
     public final void onWindowAttributesChanged(WindowManager.LayoutParams layoutParams) {
-        this.f13023a.onWindowAttributesChanged(layoutParams);
+        this.f13026a.onWindowAttributesChanged(layoutParams);
     }
 
     @Override
     public final void onWindowFocusChanged(boolean z10) {
-        this.f13023a.onWindowFocusChanged(z10);
+        this.f13026a.onWindowFocusChanged(z10);
     }
 
     @Override
@@ -235,7 +235,7 @@ public final class n implements Window.Callback {
 
     @Override
     public final boolean onSearchRequested() {
-        return this.f13023a.onSearchRequested();
+        return this.f13026a.onSearchRequested();
     }
 
     @Override

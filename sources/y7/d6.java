@@ -2,13 +2,13 @@ package y7;
 
 import org.telegram.ui.md0;
 public final class d6 {
-    public final Long f60829a;
-    public final k6 f60830b;
-    public final Boolean f60831c;
+    public final Long f60833a;
+    public final k6 f60834b;
+    public final Boolean f60835c;
 
     public d6(md0 md0Var) {
-        this.f60829a = (Long) md0Var.f49853b;
-        this.f60830b = (k6) md0Var.f49854c;
-        this.f60831c = (Boolean) md0Var.d;
+        this.f60833a = (Long) md0Var.f49857b;
+        this.f60834b = (k6) md0Var.f49858c;
+        this.f60835c = (Boolean) md0Var.d;
     }
 }

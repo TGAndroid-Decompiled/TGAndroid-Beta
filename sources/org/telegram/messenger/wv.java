@@ -1,44 +1,52 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class wv extends TLObject {
-    public int f27793a;
-    public TLRPC.TL_decryptedMessageLayer f27794b;
-    public TLRPC.EncryptedFile f27795c;
-    public boolean d;
-    public int f27796e;
+public final class wv implements Runnable {
+    public final int f27805a;
+    public final yv f27806b;
+    public final ArrayList f27807c;
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        inputSerializedData.readInt64(z10);
-        this.f27793a = inputSerializedData.readInt32(z10);
-        this.f27794b = TLRPC.TL_decryptedMessageLayer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-        if (inputSerializedData.readBool(z10)) {
-            this.f27795c = TLRPC.EncryptedFile.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-        }
-        this.d = inputSerializedData.readBool(z10);
+    public wv(yv yvVar, ArrayList arrayList, int i7) {
+        this.f27805a = i7;
+        this.f27806b = yvVar;
+        this.f27807c = arrayList;
     }
 
     @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        boolean z10;
-        outputSerializedData.writeInt32(1431655929);
-        outputSerializedData.writeInt64(0L);
-        outputSerializedData.writeInt32(this.f27793a);
-        this.f27794b.serializeToStream(outputSerializedData);
-        if (this.f27795c != null) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void run() {
+        switch (this.f27805a) {
+            case 0:
+                yv yvVar = this.f27806b;
+                yvVar.getClass();
+                int i7 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f27807c;
+                    if (i7 < arrayList.size()) {
+                        gj gjVar = new gj(yvVar.currentAccount, (TLRPC.Message) arrayList.get(i7), false, true);
+                        gjVar.C0 = true;
+                        yvVar.getSendMessagesHelper().k0(0L, gjVar, true);
+                        i7++;
+                    } else {
+                        return;
+                    }
+                }
+            default:
+                yv yvVar2 = this.f27806b;
+                yvVar2.getClass();
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f27807c;
+                    if (i10 < arrayList2.size()) {
+                        gj gjVar2 = (gj) yvVar2.getMessagesController().T.f(((Long) arrayList2.get(i10)).longValue());
+                        if (gjVar2 != null) {
+                            gjVar2.Z = true;
+                        }
+                        i10++;
+                    } else {
+                        return;
+                    }
+                }
         }
-        outputSerializedData.writeBool(z10);
-        TLRPC.EncryptedFile encryptedFile = this.f27795c;
-        if (encryptedFile != null) {
-            encryptedFile.serializeToStream(outputSerializedData);
-        }
-        outputSerializedData.writeBool(this.d);
     }
 }

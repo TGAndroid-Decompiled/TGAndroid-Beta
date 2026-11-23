@@ -21,55 +21,55 @@ public final class h1 {
     public final Matrix C;
     public long D;
     public long E;
-    public final Paint f54780a = new Paint(1);
-    public final Paint f54781b;
-    public final Paint f54782c;
+    public final Paint f54784a = new Paint(1);
+    public final Paint f54785b;
+    public final Paint f54786c;
     public final Paint d;
-    public final Path f54783e;
-    public final Path f54784f;
-    public final Path f54785g;
+    public final Path f54787e;
+    public final Path f54788f;
+    public final Path f54789g;
     public final RectF h;
-    public final RectF f54786i;
-    public final float[] f54787j;
-    public final float[] f54788k;
-    public final Matrix f54789l;
-    public final HashMap f54790m;
-    public final IdentityHashMap f54791n;
-    public final float[] f54792o;
-    public final RectF f54793p;
-    public final RectF f54794q;
-    public final float[] f54795r;
-    public boolean f54796s;
-    public boolean f54797t;
-    public float[] f54798u;
+    public final RectF f54790i;
+    public final float[] f54791j;
+    public final float[] f54792k;
+    public final Matrix f54793l;
+    public final HashMap f54794m;
+    public final IdentityHashMap f54795n;
+    public final float[] f54796o;
+    public final RectF f54797p;
+    public final RectF f54798q;
+    public final float[] f54799r;
+    public boolean f54800s;
+    public boolean f54801t;
+    public float[] f54802u;
     public int v;
-    public int f54799w;
-    public int f54800x;
-    public long f54801y;
-    public long f54802z;
+    public int f54803w;
+    public int f54804x;
+    public long f54805y;
+    public long f54806z;
 
     public h1() {
         Paint paint = new Paint(1);
-        this.f54781b = paint;
-        this.f54782c = new Paint(2);
+        this.f54785b = paint;
+        this.f54786c = new Paint(2);
         this.d = new Paint(1);
-        this.f54783e = new Path();
-        this.f54784f = new Path();
-        this.f54785g = new Path();
+        this.f54787e = new Path();
+        this.f54788f = new Path();
+        this.f54789g = new Path();
         this.h = new RectF();
         new RectF();
-        this.f54786i = new RectF();
-        this.f54787j = new float[8];
-        this.f54788k = new float[8];
-        this.f54789l = new Matrix();
-        this.f54790m = new HashMap();
-        this.f54791n = new IdentityHashMap();
-        this.f54792o = new float[9];
-        this.f54793p = new RectF();
-        this.f54794q = new RectF();
-        this.f54795r = new float[8];
-        this.f54798u = new float[64];
-        this.f54802z = 67108864L;
+        this.f54790i = new RectF();
+        this.f54791j = new float[8];
+        this.f54792k = new float[8];
+        this.f54793l = new Matrix();
+        this.f54794m = new HashMap();
+        this.f54795n = new IdentityHashMap();
+        this.f54796o = new float[9];
+        this.f54797p = new RectF();
+        this.f54798q = new RectF();
+        this.f54799r = new float[8];
+        this.f54802u = new float[64];
+        this.f54806z = 67108864L;
         this.A = new RectF();
         this.B = new RectF();
         this.C = new Matrix();
@@ -162,15 +162,15 @@ public final class h1 {
     }
 
     public final void a(Path path, RectF rectF, float f10) {
-        if (!this.f54796s) {
+        if (!this.f54800s) {
             path.addRect(rectF, Path.Direction.CW);
             return;
         }
         int i7 = 0;
         while (true) {
-            float[] fArr = this.f54787j;
+            float[] fArr = this.f54791j;
             if (i7 < 8) {
-                fArr[i7] = Math.max(this.f54795r[i7] + f10, 0.0f);
+                fArr[i7] = Math.max(this.f54799r[i7] + f10, 0.0f);
                 i7++;
             } else {
                 path.addRoundRect(rectF, fArr, Path.Direction.CW);
@@ -181,16 +181,16 @@ public final class h1 {
 
     public final void b(int i7, int i10) {
         this.v = 0;
-        this.f54799w = 0;
-        this.f54801y = 0L;
-        this.f54800x = 0;
-        this.f54802z = Math.max(67108864L, Math.max(0, i7) * 8 * Math.max(0, i10));
+        this.f54803w = 0;
+        this.f54805y = 0L;
+        this.f54804x = 0;
+        this.f54806z = Math.max(67108864L, Math.max(0, i7) * 8 * Math.max(0, i10));
     }
 
     public final void c(Canvas canvas, Paint paint) {
         float f10;
-        if (this.f54796s) {
-            float[] fArr = this.f54795r;
+        if (this.f54800s) {
+            float[] fArr = this.f54799r;
             f10 = fArr[0];
             int i7 = 1;
             while (true) {
@@ -207,13 +207,13 @@ public final class h1 {
             f10 = 0.0f;
         }
         int i10 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
-        RectF rectF = this.f54793p;
+        RectF rectF = this.f54797p;
         if (i10 == 0) {
             canvas.drawRect(rectF, paint);
         } else if (i10 > 0) {
             canvas.drawRoundRect(rectF, f10, f10, paint);
         } else {
-            Path path = this.f54783e;
+            Path path = this.f54787e;
             n(rectF, path);
             canvas.drawPath(path, paint);
         }
@@ -230,7 +230,7 @@ public final class h1 {
         rectF.set(f11, f12, f13, f14);
         this.D = 0L;
         this.E = h(rectF.width(), rectF.height(), f10) * 64;
-        if (Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && jVar.f54833c) {
+        if (Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && jVar.f54837c) {
             z10 = true;
         } else {
             z10 = false;
@@ -240,14 +240,14 @@ public final class h1 {
         } else {
             i7 = -1;
         }
-        e(canvas, jVar, jVar.f54832b, g1Var, f10, true);
+        e(canvas, jVar, jVar.f54836b, g1Var, f10, true);
         if (z10) {
             canvas.restoreToCount(i7);
         }
     }
 
     public final Shader g(b3.j jVar, int i7) {
-        float[] fArr = this.f54788k;
+        float[] fArr = this.f54792k;
         jVar.k(7, fArr);
         float f10 = fArr[0];
         float f11 = fArr[1];
@@ -271,14 +271,14 @@ public final class h1 {
         Object obj;
         int i7;
         f1 f1Var = (f1) p5.c.g(1, (ArrayList) eVar.h);
-        if (f1Var.f54770c != null || f1Var.f54772f != null) {
-            eVar.f5195b--;
+        if (f1Var.f54774c != null || f1Var.f54776f != null) {
+            eVar.f5198b--;
         }
         while (true) {
-            int i10 = eVar.f5194a;
-            obj = f1Var.f54770c;
-            if (obj == null && f1Var.f54772f == null) {
-                i7 = f1Var.f54769b;
+            int i10 = eVar.f5197a;
+            obj = f1Var.f54774c;
+            if (obj == null && f1Var.f54776f == null) {
+                i7 = f1Var.f54773b;
             } else {
                 i7 = 0;
             }
@@ -289,23 +289,23 @@ public final class h1 {
         }
         if (obj != null) {
             e1.d(f1Var, f10);
-            eVar.d = f1Var.f54768a;
+            eVar.d = f1Var.f54772a;
         } else {
-            Bitmap bitmap = f1Var.f54772f;
+            Bitmap bitmap = f1Var.f54776f;
             if (bitmap != null) {
-                r7 r7Var = f1Var.f54774i;
+                r7 r7Var = f1Var.f54778i;
                 WidgetClientNative.filterPixels(bitmap, (int[]) r7Var.f617b, (float[]) r7Var.d, (float[]) r7Var.f619e, (float[]) r7Var.f620f, (int[]) r7Var.f618c, f1Var.h);
-                eVar.d = f1Var.f54768a;
+                eVar.d = f1Var.f54772a;
                 Matrix matrix = new Matrix();
-                if (f1Var.f54773g.invert(matrix)) {
+                if (f1Var.f54777g.invert(matrix)) {
                     ((Canvas) eVar.d).save();
                     ((Canvas) eVar.d).concat(matrix);
-                    ((Canvas) eVar.d).drawBitmap(f1Var.f54772f, f1Var.d, f1Var.f54771e, this.f54782c);
+                    ((Canvas) eVar.d).drawBitmap(f1Var.f54776f, f1Var.d, f1Var.f54775e, this.f54786c);
                     ((Canvas) eVar.d).restore();
                 }
             }
         }
-        eVar.f5194a = f1Var.f54769b;
+        eVar.f5197a = f1Var.f54773b;
     }
 
     public final void l(b3.j jVar, Path path) {
@@ -317,21 +317,21 @@ public final class h1 {
         path.rewind();
         int e10 = jVar.e(1048576, 0);
         int e11 = jVar.e(6291456, 1);
-        int i13 = jVar.f2914b;
+        int i13 = jVar.f2921b;
         long j3 = (e10 + 3) / 4;
-        j jVar2 = (j) jVar.f2915c;
+        j jVar2 = (j) jVar.f2922c;
         if (4 * j3 <= jVar2.d - i13) {
-            jVar.f2914b = (((int) j3) * 4) + i13;
-            float[] fArr = this.f54798u;
+            jVar.f2921b = (((int) j3) * 4) + i13;
+            float[] fArr = this.f54802u;
             int i14 = 2;
             if (fArr.length < e11) {
-                this.f54798u = new float[Math.max(e11, fArr.length * 2)];
+                this.f54802u = new float[Math.max(e11, fArr.length * 2)];
             }
-            jVar.k(e11, this.f54798u);
+            jVar.k(e11, this.f54802u);
             int i15 = 0;
             int i16 = 0;
             while (i15 < e10) {
-                int i17 = jVar2.f54831a.get(i13 + i15) & 255;
+                int i17 = jVar2.f54835a.get(i13 + i15) & 255;
                 if (i17 == 3) {
                     i7 = 6;
                 } else if (i17 == i14) {
@@ -356,7 +356,7 @@ public final class h1 {
                                 i11 = i14;
                                 i12 = i18;
                             } else {
-                                float[] fArr2 = this.f54798u;
+                                float[] fArr2 = this.f54802u;
                                 int i19 = i16;
                                 i11 = i14;
                                 i12 = i18;
@@ -368,7 +368,7 @@ public final class h1 {
                             int i20 = i16;
                             i11 = i14;
                             i12 = i18;
-                            float[] fArr3 = this.f54798u;
+                            float[] fArr3 = this.f54802u;
                             path.quadTo(fArr3[i20], fArr3[i20 + 1], fArr3[i20 + 2], fArr3[i20 + 3]);
                         }
                     } else {
@@ -376,7 +376,7 @@ public final class h1 {
                         int i21 = i16;
                         i11 = i14;
                         i12 = i18;
-                        float[] fArr4 = this.f54798u;
+                        float[] fArr4 = this.f54802u;
                         path.lineTo(fArr4[i21], fArr4[i21 + 1]);
                     }
                 } else {
@@ -384,7 +384,7 @@ public final class h1 {
                     int i22 = i16;
                     i11 = i14;
                     i12 = i18;
-                    float[] fArr5 = this.f54798u;
+                    float[] fArr5 = this.f54802u;
                     path.moveTo(fArr5[i22], fArr5[i22 + 1]);
                 }
                 i15 = i10 + 1;
@@ -404,8 +404,8 @@ public final class h1 {
 
     public final void n(RectF rectF, Path path) {
         float[] fArr;
-        if (this.f54796s) {
-            fArr = this.f54795r;
+        if (this.f54800s) {
+            fArr = this.f54799r;
         } else {
             fArr = null;
         }
@@ -420,10 +420,10 @@ public final class h1 {
     public final boolean p(long j3) {
         if (j3 > 0) {
             long j10 = j3 * 4;
-            long j11 = this.f54802z;
-            long j12 = this.f54801y;
+            long j11 = this.f54806z;
+            long j12 = this.f54805y;
             if (j10 <= j11 - j12) {
-                this.f54801y = j12 + j10;
+                this.f54805y = j12 + j10;
                 return true;
             }
             return false;
@@ -433,7 +433,7 @@ public final class h1 {
 
     public final boolean q(cc.e eVar, RectF rectF, float f10) {
         Matrix matrix = this.C;
-        if (!((Matrix) eVar.f5198f).invert(matrix)) {
+        if (!((Matrix) eVar.f5201f).invert(matrix)) {
             return false;
         }
         RectF rectF2 = this.A;

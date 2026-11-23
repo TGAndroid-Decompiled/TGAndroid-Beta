@@ -17,38 +17,38 @@ public class h implements f, e, c {
     public View F;
     public int G;
     public int H;
-    public final te.c f56644a;
-    public final k f56645b = new k(0.0f);
-    public final l f56646c = new l();
+    public final te.c f56648a;
+    public final k f56649b = new k(0.0f);
+    public final l f56650c = new l();
     public final l d = new l();
-    public final h2.f f56647e = new h2.f((int[]) null);
-    public final uz f56648f;
+    public final h2.f f56651e = new h2.f((int[]) null);
+    public final uz f56652f;
     public final Runnable h;
-    public boolean f56649n;
-    public l1 f56650r;
-    public int f56651s;
-    public int f56652w;
-    public int f56653x;
-    public final g f56654y;
+    public boolean f56653n;
+    public l1 f56654r;
+    public int f56655s;
+    public int f56656w;
+    public int f56657x;
+    public final g f56658y;
 
     public h(Runnable runnable) {
         s6 s6Var = new s6(this, 25);
         ?? obj = new Object();
-        obj.f40618c = b.f56634a;
+        obj.f40611c = b.f56638a;
         obj.d = new z0(obj, 7);
-        obj.f40617b = s6Var;
-        Typeface typeface = g0.f24118a;
+        obj.f40610b = s6Var;
+        Typeface typeface = g0.f24018a;
         float f10 = 1.0f;
         try {
-            f10 = Settings.Global.getFloat(t0.f26941b.getContentResolver(), "animator_duration_scale", 1.0f);
+            f10 = Settings.Global.getFloat(t0.f26931b.getContentResolver(), "animator_duration_scale", 1.0f);
         } catch (Exception unused) {
         }
-        obj.f40616a = f10 * 250.0f * 1.1f;
-        this.f56648f = obj;
-        this.f56651s = 1;
-        this.f56654y = new g(this, 0);
+        obj.f40609a = f10 * 250.0f * 1.1f;
+        this.f56652f = obj;
+        this.f56655s = 1;
+        this.f56658y = new g(this, 0);
         this.h = runnable;
-        this.f56644a = new te.c(0, new ji.l(this, runnable, false, 27), i1.f29002w, 250L);
+        this.f56648a = new te.c(0, new ji.l(this, runnable, false, 27), i1.f29005w, 250L);
     }
 
     @Override
@@ -65,15 +65,15 @@ public class h implements f, e, c {
     }
 
     public final void a() {
-        boolean z10 = this.f56644a.h;
-        boolean z11 = this.f56649n;
-        h2.f fVar = this.f56647e;
+        boolean z10 = this.f56648a.h;
+        boolean z11 = this.f56653n;
+        h2.f fVar = this.f56651e;
         if (!z11 && z10) {
-            this.f56649n = true;
+            this.f56653n = true;
             fVar.d();
         }
-        if (this.f56649n && !z10) {
-            this.f56649n = false;
+        if (this.f56653n && !z10) {
+            this.f56653n = false;
             fVar.e();
         }
     }
@@ -82,49 +82,49 @@ public class h implements f, e, c {
         d dVar = this.E;
         l lVar = this.d;
         if (dVar != null && this.H > 0) {
-            return Math.max(this.G, lVar.d.f57722a);
+            return Math.max(this.G, lVar.d.f57726a);
         }
-        return lVar.d.f57722a;
+        return lVar.d.f57726a;
     }
 
     public final float d() {
         d dVar = this.E;
-        l lVar = this.f56646c;
+        l lVar = this.f56650c;
         if (dVar != null && this.H > 0) {
-            return Math.max(this.G, lVar.d.f57722a);
+            return Math.max(this.G, lVar.d.f57726a);
         }
-        return lVar.d.f57722a;
+        return lVar.d.f57726a;
     }
 
     public final int e() {
         if (this.E != null && this.H > 0) {
-            return Math.max(this.G, Math.max(f(527).d, this.f56652w));
+            return Math.max(this.G, Math.max(f(527).d, this.f56656w));
         }
-        return Math.max(f(527).d, this.f56652w);
+        return Math.max(f(527).d, this.f56656w);
     }
 
     public final i0.b f(int i7) {
-        l1 l1Var = this.f56650r;
+        l1 l1Var = this.f56654r;
         if (l1Var != null) {
-            return l1Var.f56299a.f(i7);
+            return l1Var.f56303a.f(i7);
         }
-        return i0.b.f15913e;
+        return i0.b.f15916e;
     }
 
     public final void g(int i7) {
-        if (this.f56652w == i7 && this.f56651s == 0) {
+        if (this.f56656w == i7 && this.f56655s == 0) {
             return;
         }
-        g0.r(this.f56654y);
-        this.f56653x = Math.max(this.f56652w, i7);
-        this.f56652w = i7;
-        this.f56651s = 0;
-        j(this.f56650r);
+        g0.r(this.f56658y);
+        this.f56657x = Math.max(this.f56656w, i7);
+        this.f56656w = i7;
+        this.f56655s = 0;
+        j(this.f56654r);
     }
 
     public final void h(int i7) {
         if (i7 > 0) {
-            g(i7 + g0.f24141n);
+            g(i7 + g0.f24041n);
         } else {
             i(true);
         }
@@ -132,16 +132,16 @@ public class h implements f, e, c {
 
     public final void i(boolean z10) {
         int i7;
-        if (this.f56652w != 0) {
-            g gVar = this.f56654y;
+        if (this.f56656w != 0) {
+            g gVar = this.f56658y;
             g0.r(gVar);
             if (z10) {
                 i7 = 3;
             } else {
                 i7 = 2;
             }
-            this.f56651s = i7;
-            j(this.f56650r);
+            this.f56655s = i7;
+            j(this.f56654r);
             if (z10) {
                 g0.h3(gVar, 1000L);
             }
@@ -150,7 +150,7 @@ public class h implements f, e, c {
 
     public final void j(l1 l1Var) {
         boolean z10;
-        if (this.f56650r != null) {
+        if (this.f56654r != null) {
             z10 = true;
         } else {
             z10 = false;
@@ -167,19 +167,19 @@ public class h implements f, e, c {
         te.c cVar;
         float f11;
         l1 b10 = b(l1Var);
-        this.f56650r = b10;
-        i0.b bVar3 = i0.b.f15913e;
+        this.f56654r = b10;
+        i0.b bVar3 = i0.b.f15916e;
         if (b10 != null) {
-            r0.i1 i1Var = b10.f56299a;
+            r0.i1 i1Var = b10.f56303a;
             bVar = i0.b.a(i1Var.f(647), i1Var.g(647));
         } else {
             bVar = bVar3;
         }
         if (b10 != null) {
-            bVar3 = b10.f56299a.f(8);
+            bVar3 = b10.f56303a.f(8);
         }
-        uz uzVar = this.f56648f;
-        b bVar4 = (b) uzVar.f40618c;
+        uz uzVar = this.f56652f;
+        b bVar4 = (b) uzVar.f40611c;
         if (bVar3.d > 0) {
             z11 = true;
         } else {
@@ -189,38 +189,38 @@ public class h implements f, e, c {
             if (z11) {
                 bVar2 = b.d;
             } else {
-                bVar2 = b.f56634a;
+                bVar2 = b.f56638a;
             }
         } else if (z11) {
-            bVar2 = b.f56636c;
+            bVar2 = b.f56640c;
         } else {
-            bVar2 = b.f56635b;
+            bVar2 = b.f56639b;
         }
         if (bVar4 != bVar2) {
             uzVar.a(bVar2, false);
         }
-        int i10 = this.f56651s;
+        int i10 = this.f56655s;
         if (i10 == 2) {
-            this.f56652w = 0;
+            this.f56656w = 0;
         }
         if (i10 == 3 && bVar3.d > 0) {
-            this.f56652w = 0;
+            this.f56656w = 0;
         }
-        i0.b a10 = i0.b.a(bVar3, i0.b.b(0, 0, 0, this.f56652w));
-        int i11 = a10.f15916c;
-        int i12 = a10.f15915b;
-        int i13 = a10.f15914a;
+        i0.b a10 = i0.b.a(bVar3, i0.b.b(0, 0, 0, this.f56656w));
+        int i11 = a10.f15919c;
+        int i12 = a10.f15918b;
+        int i13 = a10.f15917a;
         int i14 = a10.d;
         i0.b a11 = i0.b.a(bVar, a10);
         int i15 = a11.d;
-        int i16 = a11.f15916c;
-        int i17 = a11.f15915b;
-        int i18 = a11.f15914a;
+        int i16 = a11.f15919c;
+        int i17 = a11.f15918b;
+        int i18 = a11.f15917a;
         Runnable runnable = this.h;
-        te.c cVar2 = this.f56644a;
+        te.c cVar2 = this.f56648a;
         l lVar = this.d;
-        l lVar2 = this.f56646c;
-        k kVar = this.f56645b;
+        l lVar2 = this.f56650c;
+        k kVar = this.f56649b;
         if (z10) {
             if (i14 > 0) {
                 f10 = 1.0f;
@@ -248,7 +248,7 @@ public class h implements f, e, c {
             } else {
                 f11 = 0.0f;
             }
-            kVar.f57724c = f11;
+            kVar.f57728c = f11;
             lVar2.e(i18, i17, i7, i15);
             lVar.e(i13, i12, i11, i14);
             te.c cVar3 = cVar;
@@ -273,7 +273,7 @@ public class h implements f, e, c {
         int i7;
         l1 b10 = b(l1Var);
         if (b10 != null) {
-            i7 = b10.f56299a.f(8).d;
+            i7 = b10.f56303a.f(8).d;
         } else {
             i7 = 0;
         }

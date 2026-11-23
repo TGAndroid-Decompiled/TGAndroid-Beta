@@ -6,17 +6,17 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import android.view.View;
 public final class u30 extends View {
-    public int[] f52431a;
-    public int f52432b;
-    public final Paint f52433c;
+    public int[] f52435a;
+    public int f52436b;
+    public final Paint f52437c;
     public float d;
-    public final f40 f52434e;
+    public final f40 f52438e;
 
     public u30(f40 f40Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f52434e = f40Var;
+        this.f52438e = f40Var;
         Paint paint = new Paint(1);
-        this.f52433c = paint;
+        this.f52437c = paint;
         paint.setStyle(Paint.Style.FILL);
         paint.setAlpha(0);
     }
@@ -24,37 +24,37 @@ public final class u30 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        f40 f40Var = this.f52434e;
-        if (f40Var.f47573y4 && f40Var.Z3.f41110c < 0.1d) {
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f52433c);
+        f40 f40Var = this.f52438e;
+        if (f40Var.f47577y4 && f40Var.Z3.f41112c < 0.1d) {
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f52437c);
         }
     }
 
     public void setNewColors(int[] iArr) {
-        int[] iArr2 = this.f52431a;
-        Paint paint = this.f52433c;
+        int[] iArr2 = this.f52435a;
+        Paint paint = this.f52437c;
         boolean z10 = true;
-        f40 f40Var = this.f52434e;
+        f40 f40Var = this.f52438e;
         boolean z11 = false;
         if (iArr2 == null || iArr[0] != iArr2[0] || iArr[1] != iArr2[1]) {
             if (iArr2 == null) {
                 paint.setAlpha(255);
             }
-            this.f52431a = iArr;
-            if (f40Var.f47476c3 != null) {
-                float f10 = f40Var.f47479d3;
+            this.f52435a = iArr;
+            if (f40Var.f47480c3 != null) {
+                float f10 = f40Var.f47483d3;
                 if (f10 != 1.0f) {
                     iArr[0] = i0.a.o(iArr[0], (int) (f10 * 255.0f));
-                    int[] iArr3 = this.f52431a;
-                    iArr3[1] = i0.a.o(iArr3[1], (int) (f40Var.f47479d3 * 255.0f));
+                    int[] iArr3 = this.f52435a;
+                    iArr3[1] = i0.a.o(iArr3[1], (int) (f40Var.f47483d3 * 255.0f));
                 }
             }
-            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, f40Var.P2.getMeasuredHeight(), this.f52431a, (float[]) null, Shader.TileMode.CLAMP));
+            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, f40Var.P2.getMeasuredHeight(), this.f52435a, (float[]) null, Shader.TileMode.CLAMP));
             z11 = true;
         }
-        if (this.f52432b != f40Var.U3) {
+        if (this.f52436b != f40Var.U3) {
             paint.setShadowLayer(org.telegram.messenger.g0.L(36.0f), 0.0f, this.d, f40Var.U3);
-            this.f52432b = f40Var.U3;
+            this.f52436b = f40Var.U3;
         } else {
             z10 = z11;
         }
@@ -67,7 +67,7 @@ public final class u30 extends View {
     public void setShadowOffset(int i7) {
         float f10 = i7;
         if (this.d != f10) {
-            this.f52433c.setShadowLayer(org.telegram.messenger.g0.L(36.0f), 0.0f, this.d, this.f52434e.U3);
+            this.f52437c.setShadowLayer(org.telegram.messenger.g0.L(36.0f), 0.0f, this.d, this.f52438e.U3);
             this.d = f10;
             invalidate();
         }

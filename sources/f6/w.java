@@ -6,14 +6,14 @@ import c8.bc;
 import java.util.Arrays;
 public final class w extends r6.a {
     public static final Parcelable.Creator<w> CREATOR = new v(2);
-    public final float f11500a;
-    public final float f11501b;
-    public final float f11502c;
+    public final float f11503a;
+    public final float f11504b;
+    public final float f11505c;
 
     public w(float f10, float f11, float f12) {
-        this.f11500a = f10;
-        this.f11501b = f11;
-        this.f11502c = f12;
+        this.f11503a = f10;
+        this.f11504b = f11;
+        this.f11505c = f12;
     }
 
     public final boolean equals(Object obj) {
@@ -24,25 +24,25 @@ public final class w extends r6.a {
             return false;
         }
         w wVar = (w) obj;
-        if (this.f11500a == wVar.f11500a && this.f11501b == wVar.f11501b && this.f11502c == wVar.f11502c) {
+        if (this.f11503a == wVar.f11503a && this.f11504b == wVar.f11504b && this.f11505c == wVar.f11505c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Float.valueOf(this.f11500a), Float.valueOf(this.f11501b), Float.valueOf(this.f11502c)});
+        return Arrays.hashCode(new Object[]{Float.valueOf(this.f11503a), Float.valueOf(this.f11504b), Float.valueOf(this.f11505c)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
         bc.q(parcel, 2, 4);
-        parcel.writeFloat(this.f11500a);
+        parcel.writeFloat(this.f11503a);
         bc.q(parcel, 3, 4);
-        parcel.writeFloat(this.f11501b);
+        parcel.writeFloat(this.f11504b);
         bc.q(parcel, 4, 4);
-        parcel.writeFloat(this.f11502c);
+        parcel.writeFloat(this.f11505c);
         bc.s(parcel, r10);
     }
 }

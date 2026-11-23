@@ -1,89 +1,67 @@
 package org.telegram.messenger;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.os.Bundle;
 import android.os.SystemClock;
-public final class od implements LocationListener {
-    public final int f26079a;
-    public final Object f26080b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class od implements Runnable {
+    public final int f26108a;
+    public final long f26109b;
+    public final Object f26110c;
 
-    public od(Object obj, int i7) {
-        this.f26079a = i7;
-        this.f26080b = obj;
+    public od(Object obj, long j3, int i7) {
+        this.f26108a = i7;
+        this.f26110c = obj;
+        this.f26109b = j3;
     }
 
     @Override
-    public final void onLocationChanged(Location location) {
-        switch (this.f26079a) {
+    public final void run() {
+        int i7 = this.f26108a;
+        long j3 = this.f26109b;
+        Object obj = this.f26110c;
+        switch (i7) {
             case 0:
-                qd qdVar = (qd) this.f26080b;
-                if (location != null) {
-                    Location location2 = qdVar.f26414s;
-                    if (location2 != null && (this == qdVar.h || this == qdVar.f26412n)) {
-                        if (!qdVar.E && location.distanceTo(location2) > 20.0f) {
-                            qdVar.m(location);
-                            qdVar.f26415w = SystemClock.elapsedRealtime() - 25000;
-                            return;
-                        }
+                rd rdVar = (rd) obj;
+                ArrayList arrayList = rdVar.f26591b;
+                a0.h hVar = rdVar.f26590a;
+                qd qdVar = (qd) hVar.f(j3);
+                hVar.l(j3);
+                if (qdVar != null) {
+                    TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
+                    tL_messages_editMessage.peer = rdVar.getMessagesController().l1(qdVar.f26434a);
+                    tL_messages_editMessage.f28518id = qdVar.f26435b;
+                    tL_messages_editMessage.flags |= 16384;
+                    TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
+                    tL_messages_editMessage.media = tL_inputMediaGeoLive;
+                    tL_inputMediaGeoLive.stopped = true;
+                    tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
+                    rdVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new jd(rdVar, 0));
+                    arrayList.remove(qdVar);
+                    rdVar.l(qdVar, 1);
+                    g0.g3(new kd(rdVar, qdVar, 0));
+                    if (arrayList.isEmpty()) {
+                        rdVar.r(true);
                         return;
                     }
-                    qdVar.m(location);
                     return;
                 }
+                return;
+            case 1:
+                ((bi.a5) obj).a(Long.valueOf(j3));
                 return;
             default:
-                a8.b8 b8Var = (a8.b8) this.f26080b;
-                if (location != null && ((xr) b8Var.f344e) != null) {
-                    if (s2.f26749a) {
-                        a8.b("found location " + location);
-                    }
-                    b8Var.f345f = location;
-                    if (location.getAccuracy() < 100.0f) {
-                        ((vy) b8Var.f341a).f(location);
-                        xr xrVar = (xr) b8Var.f344e;
-                        if (xrVar != null) {
-                            g0.r(xrVar);
-                        }
-                        b8Var.d();
-                        return;
-                    }
-                    return;
+                bz bzVar = (bz) obj;
+                bzVar.f23200e = SystemClock.elapsedRealtime();
+                bzVar.f23199c = false;
+                if (j3 == -1) {
+                    bzVar.d = false;
+                    bzVar.f23198b = 0L;
+                } else {
+                    bzVar.f23198b = j3;
+                    bzVar.d = true;
                 }
+                ls.e().k(281, bzVar);
                 return;
         }
-    }
-
-    @Override
-    public final void onProviderDisabled(String str) {
-        int i7 = this.f26079a;
-    }
-
-    @Override
-    public final void onProviderEnabled(String str) {
-        int i7 = this.f26079a;
-    }
-
-    @Override
-    public final void onStatusChanged(String str, int i7, Bundle bundle) {
-        int i10 = this.f26079a;
-    }
-
-    private final void a(String str) {
-    }
-
-    private final void b(String str) {
-    }
-
-    private final void c(String str) {
-    }
-
-    private final void d(String str) {
-    }
-
-    private final void e(String str, int i7, Bundle bundle) {
-    }
-
-    private final void f(String str, int i7, Bundle bundle) {
     }
 }

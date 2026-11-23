@@ -1,100 +1,56 @@
 package org.telegram.messenger;
 
-import android.util.SparseArray;
-import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-public final class mk implements Runnable {
-    public final int f25605a = 1;
-    public final mp f25606b;
-    public final long f25607c;
-    public final int d;
-    public final long f25608e;
-    public final Object f25609f;
-    public final Object h;
-    public final Object f25610n;
-    public final Object f25611r;
+public final class mk implements RequestDelegate {
+    public final int f25599a;
+    public final np f25600b;
+    public final long f25601c;
+    public final long d;
 
-    public mk(mp mpVar, ArrayList arrayList, long j3, TLRPC.updates_ChannelDifference updates_channeldifference, TLRPC.Chat chat, a0.h hVar, int i7, long j10) {
-        this.f25606b = mpVar;
-        this.f25609f = arrayList;
-        this.f25607c = j3;
-        this.h = updates_channeldifference;
-        this.f25610n = chat;
-        this.f25611r = hVar;
-        this.d = i7;
-        this.f25608e = j10;
+    public mk(int i7, long j3, long j10, np npVar) {
+        this.f25599a = i7;
+        this.f25600b = npVar;
+        this.f25601c = j3;
+        this.d = j10;
     }
 
     @Override
-    public final void run() {
-        TLRPC.Chat chat;
-        a0.h hVar;
-        switch (this.f25605a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f25599a) {
             case 0:
-                mp mpVar = this.f25606b;
-                boolean[] zArr = (boolean[]) this.f25609f;
-                tr trVar = (tr) this.h;
-                long j3 = this.f25607c;
-                Runnable[] runnableArr = (Runnable[]) this.f25610n;
-                long j10 = this.f25608e;
-                int i7 = this.d;
-                ap apVar = (ap) this.f25611r;
-                if (!zArr[0]) {
-                    g0.g3(new nb(mpVar, zArr, trVar.O(j3), runnableArr, j10, i7, apVar));
+                np npVar = this.f25600b;
+                npVar.getClass();
+                if (tL_error == null) {
+                    TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
+                    npVar.S3(tL_messages_affectedMessages.pts, tL_messages_affectedMessages.pts_count, this.f25601c);
+                }
+                long j3 = this.d;
+                if (j3 != 0) {
+                    npVar.getMessagesStorage().q1(j3);
                     return;
                 }
                 return;
             default:
-                mp mpVar2 = this.f25606b;
-                ArrayList arrayList = (ArrayList) this.f25609f;
-                long j11 = this.f25607c;
-                TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) this.h;
-                TLRPC.Chat chat2 = (TLRPC.Chat) this.f25610n;
-                a0.h hVar2 = (a0.h) this.f25611r;
-                int i10 = this.d;
-                long j12 = this.f25608e;
-                if (!arrayList.isEmpty()) {
-                    SparseArray sparseArray = new SparseArray();
-                    int size = arrayList.size();
-                    int i11 = 0;
-                    while (i11 < size) {
-                        Object obj = arrayList.get(i11);
-                        i11++;
-                        TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
-                        TLRPC.Chat chat3 = chat2;
-                        a0.h hVar3 = hVar2;
-                        ArrayList arrayList2 = arrayList;
-                        long[] a22 = mpVar2.getMessagesStorage().a2(tL_updateMessageID.random_id, -j11, null, tL_updateMessageID.f28689id, 0, -1, 0);
-                        if (a22 != null) {
-                            sparseArray.put(tL_updateMessageID.f28689id, a22);
-                        }
-                        chat2 = chat3;
-                        hVar2 = hVar3;
-                        arrayList = arrayList2;
+                np npVar2 = this.f25600b;
+                if (tLObject != null) {
+                    TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
+                    if (!tL_messages_peerDialogs.dialogs.isEmpty()) {
+                        TLRPC.TL_messages_dialogs tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
+                        tL_messages_dialogs.dialogs.addAll(tL_messages_peerDialogs.dialogs);
+                        tL_messages_dialogs.messages.addAll(tL_messages_peerDialogs.messages);
+                        tL_messages_dialogs.users.addAll(tL_messages_peerDialogs.users);
+                        tL_messages_dialogs.chats.addAll(tL_messages_peerDialogs.chats);
+                        npVar2.Q3(tL_messages_dialogs, null, null, ((TLRPC.TL_dialog) tL_messages_peerDialogs.dialogs.get(0)).folder_id, 0, 1, npVar2.V7, false, false, false);
                     }
-                    chat = chat2;
-                    hVar = hVar2;
-                    if (sparseArray.size() != 0) {
-                        g0.g3(new sl(mpVar2, sparseArray, 1));
-                    }
-                } else {
-                    chat = chat2;
-                    hVar = hVar2;
                 }
-                Utilities.d.c(new jm(mpVar2, updates_channeldifference, j11, chat, hVar, i10, j12));
+                long j10 = this.f25601c;
+                if (j10 != 0) {
+                    npVar2.getMessagesStorage().q1(j10);
+                }
+                npVar2.f25823d1.e(this.d);
                 return;
         }
-    }
-
-    public mk(mp mpVar, boolean[] zArr, tr trVar, long j3, Runnable[] runnableArr, long j10, int i7, ap apVar) {
-        this.f25606b = mpVar;
-        this.f25609f = zArr;
-        this.h = trVar;
-        this.f25607c = j3;
-        this.f25610n = runnableArr;
-        this.f25608e = j10;
-        this.d = i7;
-        this.f25611r = apVar;
     }
 }

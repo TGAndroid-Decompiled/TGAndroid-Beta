@@ -2,8 +2,8 @@ package g5;
 
 import java.util.Random;
 public final class a extends Random {
-    public long f13210a;
-    public long f13211b;
+    public long f13213a;
+    public long f13214b;
 
     @Override
     public final int next(int i7) {
@@ -54,18 +54,18 @@ public final class a extends Random {
 
     @Override
     public final long nextLong() {
-        long j3 = this.f13210a;
-        long j10 = this.f13211b;
+        long j3 = this.f13213a;
+        long j10 = this.f13214b;
         long j11 = j3 + j10;
         long j12 = j10 ^ j3;
-        this.f13210a = (Long.rotateLeft(j3, 55) ^ j12) ^ (j12 << 14);
-        this.f13211b = Long.rotateLeft(j12, 36);
+        this.f13213a = (Long.rotateLeft(j3, 55) ^ j12) ^ (j12 << 14);
+        this.f13214b = Long.rotateLeft(j12, 36);
         return j11;
     }
 
     @Override
     public final void setSeed(long j3) {
-        if (this.f13210a == 0 && this.f13211b == 0) {
+        if (this.f13213a == 0 && this.f13214b == 0) {
             return;
         }
         throw new RuntimeException("No seed set");

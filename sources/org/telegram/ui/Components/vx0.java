@@ -1,20 +1,20 @@
 package org.telegram.ui.Components;
 public final class vx0 {
-    public static final vx0 f41582e = new vx0(false, new sx0(Integer.MIN_VALUE, -2147483647), yx0.T, 0.0f);
-    public final boolean f41583a;
-    public final sx0 f41584b;
-    public final kx0 f41585c;
+    public static final vx0 f41584e = new vx0(false, new sx0(Integer.MIN_VALUE, -2147483647), yx0.T, 0.0f);
+    public final boolean f41585a;
+    public final sx0 f41586b;
+    public final kx0 f41587c;
     public final float d;
 
     public vx0(boolean z10, sx0 sx0Var, kx0 kx0Var, float f10) {
-        this.f41583a = z10;
-        this.f41584b = sx0Var;
-        this.f41585c = kx0Var;
+        this.f41585a = z10;
+        this.f41586b = sx0Var;
+        this.f41587c = kx0Var;
         this.d = f10;
     }
 
     public static kx0 a(vx0 vx0Var, boolean z10) {
-        kx0 kx0Var = vx0Var.f41585c;
+        kx0 kx0Var = vx0Var.f41587c;
         if (kx0Var != yx0.T) {
             return kx0Var;
         }
@@ -35,13 +35,13 @@ public final class vx0 {
             return false;
         }
         vx0 vx0Var = (vx0) obj;
-        if (this.f41585c.equals(vx0Var.f41585c) && this.f41584b.equals(vx0Var.f41584b)) {
+        if (this.f41587c.equals(vx0Var.f41587c) && this.f41586b.equals(vx0Var.f41586b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f41585c.hashCode() + (this.f41584b.hashCode() * 31);
+        return this.f41587c.hashCode() + (this.f41586b.hashCode() * 31);
     }
 }

@@ -4,18 +4,18 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import c8.ma;
-import org.telegram.messenger.bz;
+import org.telegram.messenger.cz;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.h6;
 public final class p5 extends FrameLayout {
-    public final f1 f22312a;
-    public TL_iv.pageTableCell f22313b;
+    public final f1 f22315a;
+    public TL_iv.pageTableCell f22316b;
 
     public p5(Context context, h6 h6Var) {
         super(context);
         f1 f1Var = new f1(context, h6Var);
-        this.f22312a = f1Var;
-        f1Var.setTextSize(1, Math.max(8, bz.W0 - 2));
+        this.f22315a = f1Var;
+        f1Var.setTextSize(1, Math.max(8, cz.W0 - 2));
         f1Var.setAllowNewlines(true);
         setCompact(false);
         addView(f1Var, ma.e(-1, -2, 51));
@@ -25,9 +25,9 @@ public final class p5 extends FrameLayout {
         int i7;
         int i10;
         int i11;
-        f1 f1Var = this.f22312a;
+        f1 f1Var = this.f22315a;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) f1Var.getLayoutParams();
-        TL_iv.pageTableCell pagetablecell = this.f22313b;
+        TL_iv.pageTableCell pagetablecell = this.f22316b;
         if (pagetablecell.align_right) {
             i7 = 5;
         } else if (pagetablecell.align_center) {
@@ -44,7 +44,7 @@ public final class p5 extends FrameLayout {
         }
         layoutParams.gravity = i10;
         f1Var.setLayoutParams(layoutParams);
-        TL_iv.pageTableCell pagetablecell2 = this.f22313b;
+        TL_iv.pageTableCell pagetablecell2 = this.f22316b;
         if (pagetablecell2.align_right) {
             i11 = 53;
         } else if (pagetablecell2.align_center) {
@@ -63,7 +63,7 @@ public final class p5 extends FrameLayout {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z10;
-        f1 f1Var = this.f22312a;
+        f1 f1Var = this.f22315a;
         if (f1Var.getVisibility() == 0 && motionEvent.getActionMasked() != 3) {
             float x10 = motionEvent.getX();
             float y10 = motionEvent.getY();
@@ -89,7 +89,7 @@ public final class p5 extends FrameLayout {
     }
 
     public void setCompact(boolean z10) {
-        f1 f1Var = this.f22312a;
+        f1 f1Var = this.f22315a;
         if (z10) {
             f1Var.setPadding(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(5.0f));
             f1Var.setMinHeight(org.telegram.messenger.g0.L(18.0f));
@@ -100,6 +100,6 @@ public final class p5 extends FrameLayout {
     }
 
     public void setLocked(boolean z10) {
-        this.f22312a.setLocked(z10);
+        this.f22315a.setLocked(z10);
     }
 }

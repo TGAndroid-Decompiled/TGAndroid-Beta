@@ -5,14 +5,14 @@ import com.google.android.gms.common.api.internal.BasePendingResult;
 import java.util.Iterator;
 import zi.k0;
 public abstract class o extends BasePendingResult {
-    public k0 f13969o;
-    public final boolean f13970p;
-    public final h f13971q;
+    public k0 f13972o;
+    public final boolean f13973p;
+    public final h f13974q;
 
     public o(h hVar, boolean z10) {
         super(null);
-        this.f13971q = hVar;
-        this.f13970p = z10;
+        this.f13974q = hVar;
+        this.f13973p = z10;
     }
 
     @Override
@@ -23,17 +23,17 @@ public abstract class o extends BasePendingResult {
     public abstract void n();
 
     public final j6.n o() {
-        if (this.f13969o == null) {
-            this.f13969o = new k0(this);
+        if (this.f13972o == null) {
+            this.f13972o = new k0(this);
         }
-        return this.f13969o;
+        return this.f13972o;
     }
 
     public final void p() {
-        if (!this.f13970p) {
-            Iterator it = this.f13971q.h.iterator();
+        if (!this.f13973p) {
+            Iterator it = this.f13974q.h.iterator();
             if (!it.hasNext()) {
-                Iterator it2 = this.f13971q.f13954i.iterator();
+                Iterator it2 = this.f13974q.f13957i.iterator();
                 while (it2.hasNext()) {
                     ((g) it2.next()).f();
                 }
@@ -43,7 +43,7 @@ public abstract class o extends BasePendingResult {
             }
         }
         try {
-            synchronized (this.f13971q.f13948a) {
+            synchronized (this.f13974q.f13951a) {
                 n();
             }
         } catch (j6.k unused) {

@@ -15,26 +15,26 @@ public final class y6 implements SensorEventListener {
     public static y6 H;
     public float E;
     public float F;
-    public final SensorManager f45352a;
-    public final Sensor f45353b;
-    public final WindowManager f45354c;
-    public boolean f45358r;
-    public boolean f45359s;
-    public float f45360w;
-    public float f45361x;
+    public final SensorManager f45356a;
+    public final Sensor f45357b;
+    public final WindowManager f45358c;
+    public boolean f45362r;
+    public boolean f45363s;
+    public float f45364w;
+    public float f45365x;
     public final Handler d = new Handler(Looper.getMainLooper());
-    public final WeakHashMap f45355e = new WeakHashMap();
-    public final float[] f45356f = new float[9];
+    public final WeakHashMap f45359e = new WeakHashMap();
+    public final float[] f45360f = new float[9];
     public final float[] h = new float[9];
-    public final float[] f45357n = new float[3];
-    public int f45362y = -1;
+    public final float[] f45361n = new float[3];
+    public int f45366y = -1;
     public final t40 G = new t40(this, 1);
 
     public y6(Context context) {
         Sensor defaultSensor;
         SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.f45352a = sensorManager;
-        this.f45354c = (WindowManager) context.getSystemService("window");
+        this.f45356a = sensorManager;
+        this.f45358c = (WindowManager) context.getSystemService("window");
         if (sensorManager == null) {
             defaultSensor = null;
         } else {
@@ -43,15 +43,15 @@ public final class y6 implements SensorEventListener {
         if (defaultSensor == null && sensorManager != null) {
             defaultSensor = sensorManager.getDefaultSensor(11);
         }
-        this.f45353b = defaultSensor;
+        this.f45357b = defaultSensor;
     }
 
     public final void a() {
-        if (this.f45358r) {
-            this.f45352a.unregisterListener(this);
+        if (this.f45362r) {
+            this.f45356a.unregisterListener(this);
         }
-        this.f45359s = false;
-        this.f45358r = false;
+        this.f45363s = false;
+        this.f45362r = false;
         this.d.removeCallbacks(this.G);
         this.F = 0.0f;
         this.E = 0.0f;
@@ -61,14 +61,14 @@ public final class y6 implements SensorEventListener {
     public final void onSensorChanged(SensorEvent sensorEvent) {
         int i7;
         float[] fArr = sensorEvent.values;
-        float[] fArr2 = this.f45356f;
+        float[] fArr2 = this.f45360f;
         SensorManager.getRotationMatrixFromVector(fArr2, fArr);
-        int rotation = this.f45354c.getDefaultDisplay().getRotation();
-        if (this.f45362y != rotation) {
-            this.f45359s = false;
-            this.f45362y = rotation;
+        int rotation = this.f45358c.getDefaultDisplay().getRotation();
+        if (this.f45366y != rotation) {
+            this.f45363s = false;
+            this.f45366y = rotation;
         }
-        int i10 = this.f45362y;
+        int i10 = this.f45366y;
         int i11 = 129;
         if (i10 == 1) {
             i7 = 129;
@@ -87,21 +87,21 @@ public final class y6 implements SensorEventListener {
         }
         float[] fArr3 = this.h;
         SensorManager.remapCoordinateSystem(fArr2, i11, i7, fArr3);
-        float[] fArr4 = this.f45357n;
+        float[] fArr4 = this.f45361n;
         SensorManager.getOrientation(fArr3, fArr4);
         if (!Float.isNaN(fArr4[1]) && !Float.isNaN(fArr4[2])) {
-            if (!this.f45359s) {
-                this.f45360w = fArr4[1];
-                this.f45361x = fArr4[2];
-                this.f45359s = true;
+            if (!this.f45363s) {
+                this.f45364w = fArr4[1];
+                this.f45365x = fArr4[2];
+                this.f45363s = true;
             }
-            float C = a8.p0.C((float) Math.IEEEremainder(fArr4[2] - this.f45361x, 6.283185307179586d), 0.45f, 1.0f, -1.0f);
-            float C2 = a8.p0.C((float) Math.IEEEremainder(fArr4[1] - this.f45360w, 6.283185307179586d), 0.45f, 1.0f, -1.0f);
+            float C = a8.p0.C((float) Math.IEEEremainder(fArr4[2] - this.f45365x, 6.283185307179586d), 0.45f, 1.0f, -1.0f);
+            float C2 = a8.p0.C((float) Math.IEEEremainder(fArr4[1] - this.f45364w, 6.283185307179586d), 0.45f, 1.0f, -1.0f);
             float f10 = this.E;
             this.E = com.google.android.gms.internal.vision.e2.z(C, f10, 0.12f, f10);
             float f11 = this.F;
             this.F = com.google.android.gms.internal.vision.e2.z(C2, f11, 0.12f, f11);
-            for (View view : this.f45355e.keySet()) {
+            for (View view : this.f45359e.keySet()) {
                 view.invalidate();
             }
         }

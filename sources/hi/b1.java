@@ -4,24 +4,24 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.tr;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.ur;
 public final class b1 {
-    public final int f14279a;
-    public final ArrayList f14280b = new ArrayList();
-    public boolean f14281c;
+    public final int f14282a;
+    public final ArrayList f14283b = new ArrayList();
+    public boolean f14284c;
     public boolean d;
-    public boolean f14282e;
-    public boolean f14283f;
-    public File f14284g;
+    public boolean f14285e;
+    public boolean f14286f;
+    public File f14287g;
 
     public b1(int i7) {
-        this.f14279a = i7;
-        if (!this.f14282e && !this.f14283f) {
-            this.f14283f = true;
+        this.f14282a = i7;
+        if (!this.f14285e && !this.f14286f) {
+            this.f14286f = true;
             x0 x0Var = new x0(this, 0);
-            tr a02 = tr.a0(i7);
-            a02.f27080a.c(new di.p6((Object) a02, true, (Object) x0Var, 3));
+            ur a02 = ur.a0(i7);
+            a02.f27250a.c(new di.p6((Object) a02, true, (Object) x0Var, 3));
         }
     }
 
@@ -29,10 +29,10 @@ public final class b1 {
         String str;
         StringBuilder sb2;
         long j3;
-        int i7 = this.f14279a;
-        tr a02 = tr.a0(i7);
+        int i7 = this.f14282a;
+        ur a02 = ur.a0(i7);
         StringBuilder sb3 = new StringBuilder("StoryDraft append ");
-        sb3.append(a1Var.f14207a);
+        sb3.append(a1Var.f14210a);
         sb3.append(" (edit=");
         sb3.append(a1Var.G);
         if (a1Var.G) {
@@ -59,8 +59,8 @@ public final class b1 {
         sb3.append(System.currentTimeMillis());
         sb3.append(")");
         org.telegram.messenger.a8.b(sb3.toString());
-        a02.f27080a.c(new y0(a02, a1Var, 1));
-        ks.f(i7).k(ks.B5, new Object[0]);
+        a02.f27250a.c(new y0(a02, a1Var, 1));
+        ls.f(i7).k(ls.B5, new Object[0]);
     }
 
     public final void b(c7 c7Var) {
@@ -79,12 +79,12 @@ public final class b1 {
                 c7 c7Var = (c7) arrayList.get(i7);
                 if (c7Var != null) {
                     StringBuilder sb3 = new StringBuilder("StoryDraft delete ");
-                    sb3.append(c7Var.f14338b);
+                    sb3.append(c7Var.f14341b);
                     sb3.append(" (edit=");
-                    sb3.append(c7Var.f14351g);
-                    if (c7Var.f14351g) {
+                    sb3.append(c7Var.f14354g);
+                    if (c7Var.f14354g) {
                         StringBuilder sb4 = new StringBuilder(", storyId=");
-                        sb4.append(c7Var.f14349f);
+                        sb4.append(c7Var.f14352f);
                         sb4.append(", ");
                         if (c7Var.H != 0) {
                             sb2 = new StringBuilder("documentId=");
@@ -106,18 +106,18 @@ public final class b1 {
                     sb3.append(System.currentTimeMillis());
                     sb3.append(")");
                     org.telegram.messenger.a8.b(sb3.toString());
-                    arrayList2.add(Long.valueOf(c7Var.f14338b));
+                    arrayList2.add(Long.valueOf(c7Var.f14341b));
                     c7Var.i(true);
                 }
             }
             if (arrayList2.isEmpty()) {
                 return;
             }
-            this.f14280b.removeAll(arrayList);
-            int i10 = this.f14279a;
-            tr a02 = tr.a0(i10);
-            a02.f27080a.c(new z0(a02, arrayList2, 0));
-            ks.f(i10).k(ks.B5, new Object[0]);
+            this.f14283b.removeAll(arrayList);
+            int i10 = this.f14282a;
+            ur a02 = ur.a0(i10);
+            a02.f27250a.c(new z0(a02, arrayList2, 0));
+            ls.f(i10).k(ls.B5, new Object[0]);
         }
     }
 
@@ -126,31 +126,31 @@ public final class b1 {
             return;
         }
         e(c7Var);
-        ArrayList arrayList = this.f14280b;
+        ArrayList arrayList = this.f14283b;
         arrayList.remove(c7Var);
-        if (!c7Var.f14380w) {
+        if (!c7Var.f14383w) {
             arrayList.add(0, c7Var);
         }
         a1 a1Var = new a1(c7Var);
-        int i7 = this.f14279a;
-        tr a02 = tr.a0(i7);
-        a02.f27080a.c(new y0(a02, a1Var, 0));
-        ks.f(i7).k(ks.B5, new Object[0]);
+        int i7 = this.f14282a;
+        ur a02 = ur.a0(i7);
+        a02.f27250a.c(new y0(a02, a1Var, 0));
+        ls.f(i7).k(ls.B5, new Object[0]);
     }
 
     public final void e(c7 c7Var) {
         if (c7Var == null) {
             return;
         }
-        if (c7Var.f14338b == 0) {
-            c7Var.f14338b = Utilities.f22805b.nextLong();
+        if (c7Var.f14341b == 0) {
+            c7Var.f14341b = Utilities.f22808b.nextLong();
         }
         c7Var.d = System.currentTimeMillis();
-        c7Var.f14341c = true;
+        c7Var.f14344c = true;
         if (c7Var.M) {
             c7Var.L = f(c7Var.L);
         } else if (c7Var.L != null) {
-            File x10 = c7.x(this.f14279a, c7Var.K);
+            File x10 = c7.x(this.f14282a, c7Var.K);
             try {
                 org.telegram.messenger.g0.E(c7Var.L, x10);
                 c7Var.L = f(x10);
@@ -168,15 +168,15 @@ public final class b1 {
         if (file == null) {
             return null;
         }
-        if (this.f14284g == null) {
+        if (this.f14287g == null) {
             File file2 = new File(org.telegram.messenger.w7.z(4), "drafts");
-            this.f14284g = file2;
+            this.f14287g = file2;
             if (!file2.exists()) {
-                this.f14284g.mkdir();
+                this.f14287g.mkdir();
             }
         }
-        if (!file.getAbsolutePath().startsWith(this.f14284g.getAbsolutePath())) {
-            File file3 = new File(this.f14284g, file.getName());
+        if (!file.getAbsolutePath().startsWith(this.f14287g.getAbsolutePath())) {
+            File file3 = new File(this.f14287g, file.getName());
             if (file.renameTo(file3)) {
                 return file3;
             }

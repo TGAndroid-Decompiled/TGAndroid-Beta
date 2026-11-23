@@ -3,28 +3,28 @@ package l2;
 import android.os.Handler;
 import java.util.concurrent.Executor;
 public final class d0 implements Executor {
-    public final int f19312a;
-    public final Object f19313b;
+    public final int f19315a;
+    public final Object f19316b;
 
     public d0(Object obj, int i7) {
-        this.f19312a = i7;
-        this.f19313b = obj;
+        this.f19315a = i7;
+        this.f19316b = obj;
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        switch (this.f19312a) {
+        switch (this.f19315a) {
             case 0:
-                ((h2.i0) this.f19313b).d(runnable);
+                ((h2.i0) this.f19316b).d(runnable);
                 return;
             case 1:
-                ((Handler) this.f19313b).post(runnable);
+                ((Handler) this.f19316b).post(runnable);
                 return;
             case 2:
-                h2.l0.W(((p4.e0) this.f19313b).f55237l, runnable);
+                h2.l0.W(((p4.e0) this.f19316b).f55241l, runnable);
                 return;
             default:
-                ((s4.b) this.f19313b).post(runnable);
+                ((s4.b) this.f19316b).post(runnable);
                 return;
         }
     }

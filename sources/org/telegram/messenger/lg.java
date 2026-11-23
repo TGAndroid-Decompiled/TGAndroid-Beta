@@ -1,132 +1,165 @@
 package org.telegram.messenger;
 
+import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class lg implements Runnable {
-    public final int f25401a;
-    public final ri f25402b;
-    public final long f25403c;
-    public final long d;
-    public final int f25404e;
-    public final int f25405f;
+    public final int f25218a;
+    public final Object f25219b;
+    public final Object f25220c;
+    public final Object d;
 
-    public lg(ri riVar, long j3, long j10, int i7, int i10, int i11) {
-        this.f25401a = i11;
-        this.f25402b = riVar;
-        this.f25403c = j3;
-        this.d = j10;
-        this.f25404e = i7;
-        this.f25405f = i10;
+    public lg(Object obj, Object obj2, Object obj3, int i7) {
+        this.f25218a = i7;
+        this.f25219b = obj;
+        this.f25220c = obj2;
+        this.d = obj3;
+    }
+
+    private final void a() {
+        ur urVar = (ur) this.f25219b;
+        String str = (String) this.f25220c;
+        String str2 = (String) this.d;
+        urVar.getClass();
+        try {
+            if (str.length() != 0) {
+                SQLiteDatabase sQLiteDatabase = urVar.f27252b;
+                Locale locale = Locale.US;
+                sQLiteDatabase.executeFast("UPDATE user_phones_v7 SET deleted = 0 WHERE sphone IN(" + str + ")").stepThis().dispose();
+            }
+            if (str2.length() != 0) {
+                SQLiteDatabase sQLiteDatabase2 = urVar.f27252b;
+                Locale locale2 = Locale.US;
+                sQLiteDatabase2.executeFast("UPDATE user_phones_v7 SET deleted = 1 WHERE sphone IN(" + str2 + ")").stepThis().dispose();
+            }
+        } catch (Exception e10) {
+            urVar.o(e10, true);
+        }
+    }
+
+    private final void b() {
+        SQLiteCursor sQLiteCursor;
+        NativeByteBuffer byteBufferValue;
+        ur urVar = (ur) this.f25219b;
+        ArrayList arrayList = (ArrayList) this.f25220c;
+        org.telegram.ui.wg wgVar = (org.telegram.ui.wg) this.d;
+        long e10 = urVar.getUserConfig().e();
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            int i10 = i7 + 1;
+            gj gjVar = (gj) arrayList.get(i7);
+            if (!gjVar.f24242r1 && !gj.b4(gjVar.f24213k)) {
+                try {
+                    sQLiteCursor = urVar.f27252b.queryFinalized("SELECT data FROM messages_v2 WHERE uid = ? AND mid = ?", Long.valueOf(gj.B0(gjVar.f24213k)), Integer.valueOf(gjVar.e1()));
+                    try {
+                        try {
+                            if (sQLiteCursor.next() && (byteBufferValue = sQLiteCursor.byteBufferValue(0)) != null) {
+                                TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                                TLdeserialize.readAttachPath(byteBufferValue, e10);
+                                byteBufferValue.reuse();
+                                gjVar.f24213k.attachPath = TLdeserialize.attachPath;
+                                gjVar.K(true);
+                            }
+                        } catch (Exception e11) {
+                            e = e11;
+                            a8.g(e, true);
+                            if (sQLiteCursor == null) {
+                                i7 = i10;
+                            }
+                            sQLiteCursor.dispose();
+                            i7 = i10;
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                        if (sQLiteCursor != null) {
+                            sQLiteCursor.dispose();
+                        }
+                        throw th;
+                    }
+                } catch (Exception e12) {
+                    e = e12;
+                    sQLiteCursor = null;
+                } catch (Throwable th3) {
+                    th = th3;
+                    sQLiteCursor = null;
+                }
+                sQLiteCursor.dispose();
+            }
+            i7 = i10;
+        }
+        g0.g3(wgVar);
+    }
+
+    private final void c() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.lg.c():void");
+    }
+
+    private final void d() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.lg.d():void");
+    }
+
+    private final void f() {
+        Runnable runnable = (Runnable) this.d;
+        ((az) this.f25219b).f23012w.remove((String) this.f25220c);
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    private final void g() {
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f25220c;
+        TLRPC.TL_messages_startHistoryImport tL_messages_startHistoryImport = (TLRPC.TL_messages_startHistoryImport) this.d;
+        ry ryVar = ((qy) this.f25219b).f26531b;
+        az azVar = ryVar.f26708q;
+        azVar.E.l(ryVar.f26701j);
+        int i7 = ls.f25399v1;
+        if (tL_error == null) {
+            azVar.getNotificationCenter().k(i7, Long.valueOf(ryVar.f26701j));
+        } else {
+            azVar.getNotificationCenter().k(i7, Long.valueOf(ryVar.f26701j), tL_messages_startHistoryImport, tL_error);
+        }
+    }
+
+    private final void h() {
+        TLObject tLObject = (TLObject) this.f25220c;
+        Runnable runnable = (Runnable) this.d;
+        ty tyVar = ((sy) this.f25219b).f26927b;
+        if (tLObject instanceof TLRPC.TL_messageMediaDocument) {
+            TLRPC.TL_inputStickerSetItem tL_inputStickerSetItem = new TLRPC.TL_inputStickerSetItem();
+            tyVar.f27132f = tL_inputStickerSetItem;
+            tL_inputStickerSetItem.document = new TLRPC.TL_inputDocument();
+            TLRPC.TL_inputStickerSetItem tL_inputStickerSetItem2 = tyVar.f27132f;
+            TLRPC.InputDocument inputDocument = tL_inputStickerSetItem2.document;
+            TLRPC.Document document = ((TLRPC.TL_messageMediaDocument) tLObject).document;
+            inputDocument.f28446id = document.f28440id;
+            inputDocument.access_hash = document.access_hash;
+            inputDocument.file_reference = document.file_reference;
+            String str = tyVar.f27129b;
+            if (str == null) {
+                str = "";
+            }
+            tL_inputStickerSetItem2.emoji = str;
+            tyVar.d = document.mime_type;
+        } else if (tyVar.f27131e) {
+            tyVar.d = "application/x-bad-tgsticker";
+        }
+        runnable.run();
     }
 
     @Override
     public final void run() {
-        SQLiteCursor queryFinalized;
-        boolean z10;
-        int i7;
-        int i10;
-        long j3;
-        int i11;
-        int i12;
-        SQLitePreparedStatement executeFast;
-        int i13;
-        switch (this.f25401a) {
-            case 0:
-                int i14 = this.f25405f;
-                long j10 = this.f25403c;
-                int i15 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-                ri riVar = this.f25402b;
-                long j11 = this.d;
-                int i16 = this.f25404e;
-                if (i15 != 0) {
-                    try {
-                        SQLiteDatabase sQLiteDatabase = riVar.getMessagesStorage().f27082b;
-                        Locale locale = Locale.US;
-                        queryFinalized = sQLiteDatabase.queryFinalized("SELECT count, old FROM media_counts_topics WHERE uid = " + j11 + " AND topic_id = " + j10 + " AND type = " + i16 + " LIMIT 1", new Object[0]);
-                    } catch (Exception e10) {
-                        e = e10;
-                        z10 = true;
-                        a8.g(e, z10);
-                        return;
-                    }
-                } else {
-                    try {
-                        SQLiteDatabase sQLiteDatabase2 = riVar.getMessagesStorage().f27082b;
-                        Locale locale2 = Locale.US;
-                        queryFinalized = sQLiteDatabase2.queryFinalized("SELECT count, old FROM media_counts_v2 WHERE uid = " + j11 + " AND type = " + i16 + " LIMIT 1", new Object[0]);
-                    } catch (Exception e11) {
-                        e = e11;
-                        z10 = true;
-                        a8.g(e, z10);
-                        return;
-                    }
-                }
-                if (queryFinalized.next()) {
-                    i7 = queryFinalized.intValue(0);
-                    i10 = queryFinalized.intValue(1);
-                } else {
-                    i7 = -1;
-                    i10 = 0;
-                }
-                queryFinalized.dispose();
-                if (i7 == -1 && n5.C(j11)) {
-                    SQLiteDatabase sQLiteDatabase3 = riVar.getMessagesStorage().f27082b;
-                    Locale locale3 = Locale.US;
-                    SQLiteCursor queryFinalized2 = sQLiteDatabase3.queryFinalized("SELECT COUNT(mid) FROM media_v4 WHERE uid = " + j11 + " AND type = " + i16 + " LIMIT 1", new Object[0]);
-                    if (queryFinalized2.next()) {
-                        i7 = queryFinalized2.intValue(0);
-                    }
-                    int i17 = i7;
-                    queryFinalized2.dispose();
-                    if (i17 != -1) {
-                        riVar.M1(j11, j10, i16, i17);
-                        j3 = j10;
-                        i11 = i16;
-                    } else {
-                        j3 = j10;
-                        i11 = i16;
-                    }
-                    i12 = i17;
-                } else {
-                    j3 = j10;
-                    i11 = i16;
-                    i12 = i7;
-                }
-                g0.g3(new lf(riVar, j11, true, i12, i11, i10, j3, i14));
-                return;
-            default:
-                long j12 = this.d;
-                int i18 = this.f25404e;
-                int i19 = this.f25405f;
-                long j13 = this.f25403c;
-                int i20 = (j13 > 0L ? 1 : (j13 == 0L ? 0 : -1));
-                ri riVar2 = this.f25402b;
-                try {
-                    if (i20 != 0) {
-                        executeFast = riVar2.getMessagesStorage().f27082b.executeFast("REPLACE INTO media_counts_topics VALUES(?, ?, ?, ?, ?)");
-                    } else {
-                        executeFast = riVar2.getMessagesStorage().f27082b.executeFast("REPLACE INTO media_counts_v2 VALUES(?, ?, ?, ?)");
-                    }
-                    executeFast.requery();
-                    executeFast.bindLong(1, j12);
-                    if (i20 != 0) {
-                        executeFast.bindLong(2, j13);
-                        i13 = 3;
-                    } else {
-                        i13 = 2;
-                    }
-                    executeFast.bindInteger(i13, i18);
-                    executeFast.bindInteger(i13 + 1, i19);
-                    executeFast.bindInteger(i13 + 2, 0);
-                    executeFast.step();
-                    executeFast.dispose();
-                    return;
-                } catch (Exception e12) {
-                    a8.g(e12, true);
-                    return;
-                }
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.lg.run():void");
+    }
+
+    public lg(Object obj, Object obj2, String str, int i7) {
+        this.f25218a = i7;
+        this.f25219b = obj;
+        this.d = obj2;
+        this.f25220c = str;
     }
 }

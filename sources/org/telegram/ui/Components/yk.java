@@ -5,26 +5,26 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.TextView;
 public final class yk implements TextWatcher {
-    public boolean f42448a;
-    public final TextView f42449b;
+    public boolean f42441a;
+    public final TextView f42442b;
 
     public yk(kg.z0 z0Var, TextView textView) {
-        this.f42449b = textView;
-        this.f42448a = TextUtils.isEmpty(z0Var.getText());
+        this.f42442b = textView;
+        this.f42441a = TextUtils.isEmpty(z0Var.getText());
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i7;
         boolean isEmpty = TextUtils.isEmpty(editable);
-        if (isEmpty != this.f42448a) {
-            this.f42448a = isEmpty;
+        if (isEmpty != this.f42441a) {
+            this.f42441a = isEmpty;
             if (isEmpty) {
                 i7 = 2131746125;
             } else {
                 i7 = 2131754483;
             }
-            this.f42449b.setText(org.telegram.messenger.gd.N0(i7, null));
+            this.f42442b.setText(org.telegram.messenger.hd.N0(i7, null));
         }
     }
 

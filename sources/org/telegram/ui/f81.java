@@ -7,35 +7,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public final class f81 extends FrameLayout {
-    public final int f47638a;
-    public final i81 f47639b;
+    public final int f47642a;
+    public final i81 f47643b;
 
     public f81(i81 i81Var, Context context, int i7) {
         super(context);
-        this.f47638a = i7;
-        this.f47639b = i81Var;
+        this.f47642a = i7;
+        this.f47643b = i81Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         org.telegram.ui.Cells.r1 r1Var;
-        switch (this.f47638a) {
+        switch (this.f47642a) {
             case 0:
-                i81 i81Var = this.f47639b;
-                if (i81Var.f48688y > 0.0f && i81Var.f48686w != null) {
-                    i81Var.f48687x.reset();
-                    float width = getWidth() / i81Var.f48684r.getWidth();
-                    i81Var.f48687x.postScale(width, width);
-                    i81Var.f48685s.setLocalMatrix(i81Var.f48687x);
-                    i81Var.f48686w.setAlpha((int) (i81Var.f48688y * 255.0f));
+                i81 i81Var = this.f47643b;
+                if (i81Var.f48692y > 0.0f && i81Var.f48690w != null) {
+                    i81Var.f48691x.reset();
+                    float width = getWidth() / i81Var.f48688r.getWidth();
+                    i81Var.f48691x.postScale(width, width);
+                    i81Var.f48689s.setLocalMatrix(i81Var.f48691x);
+                    i81Var.f48690w.setAlpha((int) (i81Var.f48692y * 255.0f));
                     canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), i81Var.f48686w);
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), i81Var.f48690w);
                 } else {
                     canvas2 = canvas;
                 }
                 if (i81Var.O && (r1Var = i81Var.L) != null) {
-                    r1Var.f31385c6 = i81Var.P;
+                    r1Var.f31388c6 = i81Var.P;
                     r1Var.invalidate();
                     i81Var.O = false;
                 }
@@ -49,10 +49,10 @@ public final class f81 extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f47638a) {
+        switch (this.f47642a) {
             case 0:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f47639b.c(true);
+                    this.f47643b.c(true);
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -63,14 +63,14 @@ public final class f81 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f47638a) {
+        switch (this.f47642a) {
             case 1:
-                i81 i81Var = this.f47639b;
+                i81 i81Var = this.f47643b;
                 if (view != i81Var.K && view != i81Var.J) {
                     return super.drawChild(canvas, view, j3);
                 }
                 canvas.save();
-                canvas.clipRect(0.0f, org.telegram.messenger.g0.T1(i81Var.M, 0.0f, i81Var.f48688y), getWidth(), org.telegram.messenger.g0.T1(i81Var.N, getHeight(), i81Var.f48688y));
+                canvas.clipRect(0.0f, org.telegram.messenger.g0.T1(i81Var.M, 0.0f, i81Var.f48692y), getWidth(), org.telegram.messenger.g0.T1(i81Var.N, getHeight(), i81Var.f48692y));
                 boolean drawChild = super.drawChild(canvas, view, j3);
                 canvas.restore();
                 return drawChild;
@@ -81,10 +81,10 @@ public final class f81 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f47638a) {
+        switch (this.f47642a) {
             case 0:
                 super.onLayout(z10, i7, i10, i11, i12);
-                this.f47639b.d();
+                this.f47643b.d();
                 return;
             default:
                 super.onLayout(z10, i7, i10, i11, i12);
@@ -94,11 +94,11 @@ public final class f81 extends FrameLayout {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f47638a) {
+        switch (this.f47642a) {
             case 2:
                 int size = View.MeasureSpec.getSize(i7);
                 int size2 = View.MeasureSpec.getSize(i10);
-                i81 i81Var = this.f47639b;
+                i81 i81Var = this.f47643b;
                 i81Var.e();
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     View childAt = getChildAt(i11);
@@ -133,11 +133,11 @@ public final class f81 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f47638a) {
+        switch (this.f47642a) {
             case 0:
                 super.onSizeChanged(i7, i10, i11, i12);
-                i81 i81Var = this.f47639b;
-                ih.d.c(i81Var.F, i81Var.f48674b);
+                i81 i81Var = this.f47643b;
+                ih.d.c(i81Var.F, i81Var.f48678b);
                 i81Var.G.d();
                 return;
             default:

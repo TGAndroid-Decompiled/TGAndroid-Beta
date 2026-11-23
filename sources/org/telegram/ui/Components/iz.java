@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.graphics.RectF;
 import android.view.View;
 public final class iz implements rj0, sj0 {
-    public final rz f36340a;
+    public final rz f36334a;
 
     public iz(rz rzVar) {
-        this.f36340a = rzVar;
+        this.f36334a = rzVar;
     }
 
     @Override
@@ -21,24 +21,24 @@ public final class iz implements rj0, sj0 {
 
     @Override
     public void f(float f10, float f11, int i7, View view) {
-        rz rzVar = this.f36340a;
+        rz rzVar = this.f36334a;
         nz nzVar = rzVar.K;
-        if (!((org.telegram.ui.tw) nzVar).f52401b.f46749l2) {
+        if (!((org.telegram.ui.tw) nzVar).f52405b.f46752l2) {
             pz pzVar = (pz) view;
-            if (rzVar.f39398n) {
+            if (rzVar.f39408n) {
                 if (i7 != 0) {
                     int L = org.telegram.messenger.g0.L(6.0f);
-                    RectF rectF = pzVar.f38700f;
+                    RectF rectF = pzVar.f38699f;
                     float f12 = L;
                     if (rectF.left - f12 < f10 && rectF.right + f12 > f10) {
                         org.telegram.ui.tw twVar = (org.telegram.ui.tw) rzVar.K;
-                        twVar.d((org.telegram.messenger.ro) twVar.f52401b.getMessagesController().V0().get(pzVar.f38693b.f38422a));
+                        twVar.d((org.telegram.messenger.so) twVar.f52405b.getMessagesController().V0().get(pzVar.f38692b.f38416a));
                     }
                 }
             } else if (i7 == rzVar.L && nzVar != null) {
-                ((org.telegram.ui.tw) nzVar).f52401b.R4(true, false);
+                ((org.telegram.ui.tw) nzVar).f52405b.R4(true, false);
             } else {
-                rzVar.g(pzVar.f38693b, i7);
+                rzVar.g(pzVar.f38692b, i7);
             }
         }
     }

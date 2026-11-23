@@ -6,10 +6,10 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class m71 extends org.telegram.ui.ActionBar.j {
-    public final x71 f49778a;
+    public final x71 f49782a;
 
     public m71(x71 x71Var) {
-        this.f49778a = x71Var;
+        this.f49782a = x71Var;
     }
 
     @Override
@@ -19,8 +19,8 @@ public final class m71 extends org.telegram.ui.ActionBar.j {
         String b10;
         int i10;
         String str2;
-        x71 x71Var = this.f49778a;
-        org.telegram.ui.ActionBar.j6 j6Var = x71Var.f53771w;
+        x71 x71Var = this.f49782a;
+        org.telegram.ui.ActionBar.j6 j6Var = x71Var.f53775w;
         if (i7 == -1) {
             if (x71Var.U0(true)) {
                 x71Var.S0(false);
@@ -28,7 +28,7 @@ public final class m71 extends org.telegram.ui.ActionBar.j {
         } else if (i7 >= 1 && i7 <= 3) {
             x71Var.d1(i7, true);
         } else if (i7 == 4) {
-            if (x71Var.f53774x) {
+            if (x71Var.f53778x) {
                 org.telegram.ui.ActionBar.m6.v1(false);
             }
             File e10 = j6Var.e();
@@ -41,26 +41,26 @@ public final class m71 extends org.telegram.ui.ActionBar.j {
             } else {
                 str2 = "";
             }
-            j6Var.f29105o = str2;
-            j6Var.f29106p = x71Var.n1;
-            j6Var.f29107q = x71Var.G1;
-            if (((int) j6Var.f29100j) == 0) {
-                j6Var.f29100j = 4294967296L;
+            j6Var.f29108o = str2;
+            j6Var.f29109p = x71Var.n1;
+            j6Var.f29110q = x71Var.G1;
+            if (((int) j6Var.f29103j) == 0) {
+                j6Var.f29103j = 4294967296L;
             }
-            if (((int) j6Var.f29101k) == 0) {
-                j6Var.f29101k = 4294967296L;
+            if (((int) j6Var.f29104k) == 0) {
+                j6Var.f29104k = 4294967296L;
             }
-            if (((int) j6Var.f29102l) == 0) {
-                j6Var.f29102l = 4294967296L;
+            if (((int) j6Var.f29105l) == 0) {
+                j6Var.f29105l = 4294967296L;
             }
-            if (((int) j6Var.f29103m) == 0) {
-                j6Var.f29103m = 4294967296L;
+            if (((int) j6Var.f29106m) == 0) {
+                j6Var.f29106m = 4294967296L;
             }
             x71Var.b1();
-            org.telegram.messenger.ks.e().n(x71Var, org.telegram.messenger.ks.f25154h4);
-            org.telegram.ui.ActionBar.m6.z1(x71Var.f53733g0, true, false, false, true, false);
+            org.telegram.messenger.ls.e().n(x71Var, org.telegram.messenger.ls.f25320h4);
+            org.telegram.ui.ActionBar.m6.z1(x71Var.f53737g0, true, false, false, true, false);
             org.telegram.ui.ActionBar.m6.p();
-            org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25243w4, x71Var.f53733g0, Boolean.valueOf(x71Var.f53736h0), null, -1);
+            org.telegram.messenger.ls.e().k(org.telegram.messenger.ls.f25409w4, x71Var.f53737g0, Boolean.valueOf(x71Var.f53740h0), null, -1);
             x71Var.finishFragment();
         } else if (i7 == 5) {
             if (x71Var.getParentActivity() != null) {
@@ -78,7 +78,7 @@ public final class m71 extends org.telegram.ui.ActionBar.j {
                 if (obj instanceof TLRPC.TL_wallPaper) {
                     StringBuilder sb3 = new StringBuilder("https://");
                     i10 = ((org.telegram.ui.ActionBar.g2) x71Var).currentAccount;
-                    sb3.append(org.telegram.messenger.mp.u1(i10).X2);
+                    sb3.append(org.telegram.messenger.np.u1(i10).X2);
                     sb3.append("/bg/");
                     sb3.append(((TLRPC.TL_wallPaper) obj).slug);
                     b10 = sb3.toString();
@@ -94,32 +94,32 @@ public final class m71 extends org.telegram.ui.ActionBar.j {
                     } else {
                         str = "c";
                     }
-                    rc1 rc1Var = new rc1(str, x71Var.f53717b1, x71Var.f53724d1, x71Var.f53727e1, x71Var.f53731f1, x71Var.f53743j1, x71Var.n1, x71Var.G1, null);
-                    rc1Var.f51547g = tL_wallPaper2;
+                    rc1 rc1Var = new rc1(str, x71Var.f53721b1, x71Var.f53728d1, x71Var.f53731e1, x71Var.f53735f1, x71Var.f53747j1, x71Var.n1, x71Var.G1, null);
+                    rc1Var.f51551g = tL_wallPaper2;
                     b10 = rc1Var.b();
                 } else {
-                    boolean z10 = org.telegram.messenger.s2.f26749a;
+                    boolean z10 = org.telegram.messenger.s2.f26730a;
                     return;
                 }
                 x71Var.showDialog(new j71(this, x71Var.getParentActivity(), b10, b10));
             }
         } else if (i7 == 6) {
-            if (org.telegram.messenger.bz.S <= 3) {
-                org.telegram.messenger.bz.S = 10;
-                SharedPreferences.Editor edit = org.telegram.messenger.mp.g1().edit();
-                int i11 = org.telegram.messenger.bz.S + 1;
-                org.telegram.messenger.bz.S = i11;
+            if (org.telegram.messenger.cz.S <= 3) {
+                org.telegram.messenger.cz.S = 10;
+                SharedPreferences.Editor edit = org.telegram.messenger.np.g1().edit();
+                int i11 = org.telegram.messenger.cz.S + 1;
+                org.telegram.messenger.cz.S = i11;
                 edit.putInt("dayNightWallpaperSwitchHint", i11);
                 edit.apply();
             }
-            boolean d = x71Var.f53761r1.d();
-            p71 p71Var = x71Var.f53761r1;
+            boolean d = x71Var.f53765r1.d();
+            p71 p71Var = x71Var.f53765r1;
             if (p71Var != null) {
                 if (!p71Var.Y0()) {
                     x71Var.l1();
                     return;
                 }
-                x71Var.f53761r1.l1(true);
+                x71Var.f53765r1.l1(true);
                 org.telegram.ui.Components.oh0 oh0Var = x71Var.P1;
                 oh0Var.h = true;
                 if (d) {
@@ -129,11 +129,11 @@ public final class m71 extends org.telegram.ui.ActionBar.j {
                 }
                 x71Var.P1.start();
                 if (x71Var.O1) {
-                    p71 p71Var2 = x71Var.f53761r1;
+                    p71 p71Var2 = x71Var.f53765r1;
                     float f10 = 0.0f;
                     if (p71Var2 != null && p71Var2.d()) {
                         x71Var.T1.setVisibility(0);
-                        x71Var.T1.a(x71Var.f53756p1);
+                        x71Var.T1.a(x71Var.f53760p1);
                     } else {
                         x71Var.T1.a(0.0f);
                     }
@@ -142,8 +142,8 @@ public final class m71 extends org.telegram.ui.ActionBar.j {
                         valueAnimator.removeAllListeners();
                         x71Var.R1.cancel();
                     }
-                    float f11 = x71Var.f53758q1;
-                    if (x71Var.f53761r1.d()) {
+                    float f11 = x71Var.f53762q1;
+                    if (x71Var.f53765r1.d()) {
                         f10 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
@@ -151,20 +151,20 @@ public final class m71 extends org.telegram.ui.ActionBar.j {
                     ofFloat.addUpdateListener(new iz0(this, 10));
                     x71Var.R1.addListener(new k71(this, 0));
                     x71Var.R1.setDuration(250L);
-                    x71Var.R1.setInterpolator(org.telegram.ui.Components.nr.f37956f);
+                    x71Var.R1.setInterpolator(org.telegram.ui.Components.nr.f37961f);
                     x71Var.R1.start();
                 }
             }
         } else if (i7 == 7) {
             Object obj2 = x71Var.D1;
-            if ((obj2 instanceof sc1) && (file = ((sc1) obj2).f52019e) != null) {
-                org.telegram.messenger.ef efVar = new org.telegram.messenger.ef(0, file.getAbsolutePath(), 0, false, 0, 0);
-                efVar.f27875b = false;
-                efVar.f27876c = null;
+            if ((obj2 instanceof sc1) && (file = ((sc1) obj2).f52023e) != null) {
+                org.telegram.messenger.ff ffVar = new org.telegram.messenger.ff(0, file.getAbsolutePath(), 0, false, 0, 0);
+                ffVar.f28059b = false;
+                ffVar.f28060c = null;
                 ArrayList arrayList = new ArrayList();
-                arrayList.add(efVar);
+                arrayList.add(ffVar);
                 PhotoViewer.p1().I2(x71Var.getParentActivity(), null, null);
-                PhotoViewer.p1().f2(arrayList, 0, 3, false, new l71(this, efVar), null);
+                PhotoViewer.p1().f2(arrayList, 0, 3, false, new l71(this, ffVar), null);
             }
         }
     }

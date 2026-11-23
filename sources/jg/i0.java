@@ -8,7 +8,7 @@ import org.telegram.ui.Components.d71;
 import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.i71;
 import org.telegram.ui.Components.lz;
-import org.telegram.ui.Components.o11;
+import org.telegram.ui.Components.n11;
 import org.telegram.ui.Components.rz;
 import org.telegram.ui.Components.tt0;
 import org.telegram.ui.Components.u90;
@@ -54,13 +54,13 @@ public final class i0 extends v4.c0 {
     public int W0(v4.c1 c1Var) {
         switch (this.I) {
             case 6:
-                if (((h51) this.J).f35798i3) {
-                    return org.telegram.messenger.g0.f24146q.y;
+                if (((h51) this.J).f35792i3) {
+                    return org.telegram.messenger.g0.f24046q.y;
                 }
                 return super.W0(c1Var);
             case 7:
-                if (((o11) this.J).f35798i3) {
-                    return org.telegram.messenger.g0.f24146q.y;
+                if (((n11) this.J).f35792i3) {
+                    return org.telegram.messenger.g0.f24046q.y;
                 }
                 return super.W0(c1Var);
             default:
@@ -74,7 +74,7 @@ public final class i0 extends v4.c0 {
         switch (this.I) {
             case 3:
                 super.k1(z10);
-                u90 u90Var = ((v90) this.J).f40742b;
+                u90 u90Var = ((v90) this.J).f40744b;
                 if (z10) {
                     i7 = -1;
                 } else {
@@ -96,7 +96,7 @@ public final class i0 extends v4.c0 {
         boolean z12;
         switch (this.I) {
             case 2:
-                a70 a70Var = ((tw) ((rz) this.J).K).f52401b.M0;
+                a70 a70Var = ((tw) ((rz) this.J).K).f52405b.M0;
                 if (a70Var != null && a70Var.E()) {
                     i7 = 0;
                 }
@@ -106,7 +106,7 @@ public final class i0 extends v4.c0 {
                 return super.m0(i7, x0Var, c1Var);
             case 4:
                 xi0 xi0Var = (xi0) this.J;
-                di.b1 b1Var = xi0Var.f42112b;
+                di.b1 b1Var = xi0Var.f42105b;
                 boolean z13 = false;
                 if (i7 < 0 && xi0Var.C0 != 0.0f) {
                     float pullingLeftProgress = xi0Var.getPullingLeftProgress();
@@ -143,10 +143,10 @@ public final class i0 extends v4.c0 {
                 }
                 int m0 = super.m0(i7, x0Var, c1Var);
                 if (i7 > 0 && m0 == 0 && b1Var.getScrollState() == 1 && xi0Var.q()) {
-                    ValueAnimator valueAnimator = xi0Var.f42155z0;
+                    ValueAnimator valueAnimator = xi0Var.f42148z0;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        xi0Var.f42155z0.cancel();
+                        xi0Var.f42148z0.cancel();
                     }
                     int i10 = (xi0Var.getPullingLeftProgress() > 1.0f ? 1 : (xi0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
                     if (i10 > 0) {
@@ -222,12 +222,12 @@ public final class i0 extends v4.c0 {
         switch (this.I) {
             case 2:
                 lz lzVar = new lz(this, recyclerView.getContext());
-                lzVar.f59105a = i7;
+                lzVar.f59109a = i7;
                 w0(lzVar);
                 return;
             case 8:
                 d71 d71Var = new d71(this, recyclerView.getContext());
-                d71Var.f59105a = i7;
+                d71Var.f59109a = i7;
                 w0(d71Var);
                 return;
             default:
@@ -256,7 +256,7 @@ public final class i0 extends v4.c0 {
     public void z0(v4.c1 c1Var, int[] iArr) {
         switch (this.I) {
             case 9:
-                iArr[1] = ((StickersActivity) this.J).f43827a.getHeight();
+                iArr[1] = ((StickersActivity) this.J).f43831a.getHeight();
                 return;
             default:
                 super.z0(c1Var, iArr);

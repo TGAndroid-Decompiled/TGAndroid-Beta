@@ -5,7 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.y10;
+import org.telegram.messenger.z10;
 public class TLJsonParser {
     private final JSONObject jsonObject;
 
@@ -17,9 +17,9 @@ public class TLJsonParser {
         this.jsonObject = jSONObject;
     }
 
-    private static <T extends Deserializable> T parse(TLJsonParser tLJsonParser, y10 y10Var) {
+    private static <T extends Deserializable> T parse(TLJsonParser tLJsonParser, z10 z10Var) {
         try {
-            return (T) y10Var.a(tLJsonParser);
+            return (T) z10Var.a(tLJsonParser);
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -90,10 +90,10 @@ public class TLJsonParser {
         return parseInt64(this.jsonObject.opt(str), i7);
     }
 
-    public <T extends Deserializable> T readObject(String str, y10 y10Var) {
+    public <T extends Deserializable> T readObject(String str, z10 z10Var) {
         JSONObject optJSONObject = this.jsonObject.optJSONObject(str);
         if (optJSONObject != null) {
-            return (T) parse(new TLJsonParser(optJSONObject), y10Var);
+            return (T) parse(new TLJsonParser(optJSONObject), z10Var);
         }
         return null;
     }
@@ -102,14 +102,14 @@ public class TLJsonParser {
         return readString(str, null);
     }
 
-    public <T extends Deserializable> ArrayList<T> readVector(String str, y10 y10Var) {
+    public <T extends Deserializable> ArrayList<T> readVector(String str, z10 z10Var) {
         ArrayList<T> arrayList = (ArrayList<T>) new ArrayList();
         JSONArray optJSONArray = this.jsonObject.optJSONArray(str);
         if (optJSONArray != null) {
             int length = optJSONArray.length();
             for (int i7 = 0; i7 < length; i7++) {
                 try {
-                    Deserializable parse = parse(new TLJsonParser(optJSONArray.getJSONObject(i7)), y10Var);
+                    Deserializable parse = parse(new TLJsonParser(optJSONArray.getJSONObject(i7)), z10Var);
                     if (parse != null) {
                         arrayList.add(parse);
                     }

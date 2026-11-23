@@ -12,9 +12,9 @@ import c8.ma;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.au;
-import org.telegram.messenger.bz;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.bu;
+import org.telegram.messenger.cz;
+import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.t6;
@@ -24,39 +24,39 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
     public int G;
     public int H;
     public final j6.o I;
-    public final int f22061n;
-    public final h6 f22062r;
-    public final HorizontalScrollView f22063s;
-    public final LinearLayout f22064w;
-    public final x1 f22065x;
-    public final TextView f22066y;
+    public final int f22064n;
+    public final h6 f22065r;
+    public final HorizontalScrollView f22066s;
+    public final LinearLayout f22067w;
+    public final x1 f22068x;
+    public final TextView f22069y;
 
     public e0(int i7, Context context, h6 h6Var) {
         super(context);
         this.E = new ArrayList();
         this.I = new j6.o(this, 6);
-        this.f22061n = i7;
-        this.f22062r = h6Var;
+        this.f22064n = i7;
+        this.f22065r = h6Var;
         f(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(4.0f));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f22063s = horizontalScrollView;
+        this.f22066s = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f22064w = linearLayout;
+        this.f22067w = linearLayout;
         linearLayout.setOrientation(0);
         horizontalScrollView.addView(linearLayout, new FrameLayout.LayoutParams(-2, -1));
         addView(horizontalScrollView, ma.e(-1, -1, 23));
         x1 x1Var = new x1(2131232044, context, h6Var);
-        x1Var.f22518e = 19;
+        x1Var.f22521e = 19;
         x1Var.updateColors();
-        this.f22065x = x1Var;
+        this.f22068x = x1Var;
         x1Var.setSelected(true);
-        x1Var.setContentDescription(gd.N0(2131754483, null));
+        x1Var.setContentDescription(hd.N0(2131754483, null));
         x1Var.setOnClickListener(new View.OnClickListener(this) {
-            public final e0 f21950b;
+            public final e0 f21953b;
 
             {
-                this.f21950b = this;
+                this.f21953b = this;
             }
 
             @Override
@@ -65,22 +65,22 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
                 a aVar2;
                 switch (r2) {
                     case 0:
-                        e0 e0Var = this.f21950b;
+                        e0 e0Var = this.f21953b;
                         c0 c0Var = e0Var.F;
-                        if (c0Var != null && (aVar = e0Var.f22528a) != null) {
-                            t3 t3Var = ((l3) c0Var).f22221a;
+                        if (c0Var != null && (aVar = e0Var.f22531a) != null) {
+                            t3 t3Var = ((l3) c0Var).f22224a;
                             t3Var.r3(false);
-                            t3Var.f22425p3.x(new q3(t3Var, aVar, -1), view);
+                            t3Var.f22428p3.x(new q3(t3Var, aVar, -1), view);
                             return;
                         }
                         return;
                     default:
-                        e0 e0Var2 = this.f21950b;
+                        e0 e0Var2 = this.f21953b;
                         c0 c0Var2 = e0Var2.F;
-                        if (c0Var2 != null && (aVar2 = e0Var2.f22528a) != null) {
-                            t3 t3Var2 = ((l3) c0Var2).f22221a;
+                        if (c0Var2 != null && (aVar2 = e0Var2.f22531a) != null) {
+                            t3 t3Var2 = ((l3) c0Var2).f22224a;
                             t3Var2.r3(false);
-                            t3Var2.f22425p3.x(new q3(t3Var2, aVar2, -1), view);
+                            t3Var2.f22428p3.x(new q3(t3Var2, aVar2, -1), view);
                             return;
                         }
                         return;
@@ -89,18 +89,18 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
         });
         addView(x1Var, ma.e(38, 38, 21));
         TextView textView = new TextView(context);
-        this.f22066y = textView;
-        textView.setText(gd.N0(2131745816, null));
+        this.f22069y = textView;
+        textView.setText(hd.N0(2131745816, null));
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setGravity(17);
         textView.setCompoundDrawablePadding(org.telegram.messenger.g0.L(7.0f));
         textView.setPadding(org.telegram.messenger.g0.L(15.0f), 0, org.telegram.messenger.g0.L(15.0f), 0);
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final e0 f21950b;
+            public final e0 f21953b;
 
             {
-                this.f21950b = this;
+                this.f21953b = this;
             }
 
             @Override
@@ -109,22 +109,22 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
                 a aVar2;
                 switch (r2) {
                     case 0:
-                        e0 e0Var = this.f21950b;
+                        e0 e0Var = this.f21953b;
                         c0 c0Var = e0Var.F;
-                        if (c0Var != null && (aVar = e0Var.f22528a) != null) {
-                            t3 t3Var = ((l3) c0Var).f22221a;
+                        if (c0Var != null && (aVar = e0Var.f22531a) != null) {
+                            t3 t3Var = ((l3) c0Var).f22224a;
                             t3Var.r3(false);
-                            t3Var.f22425p3.x(new q3(t3Var, aVar, -1), view);
+                            t3Var.f22428p3.x(new q3(t3Var, aVar, -1), view);
                             return;
                         }
                         return;
                     default:
-                        e0 e0Var2 = this.f21950b;
+                        e0 e0Var2 = this.f21953b;
                         c0 c0Var2 = e0Var2.F;
-                        if (c0Var2 != null && (aVar2 = e0Var2.f22528a) != null) {
-                            t3 t3Var2 = ((l3) c0Var2).f22221a;
+                        if (c0Var2 != null && (aVar2 = e0Var2.f22531a) != null) {
+                            t3 t3Var2 = ((l3) c0Var2).f22224a;
                             t3Var2.r3(false);
-                            t3Var2.f22425p3.x(new q3(t3Var2, aVar2, -1), view);
+                            t3Var2.f22428p3.x(new q3(t3Var2, aVar2, -1), view);
                             return;
                         }
                         return;
@@ -134,7 +134,7 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
         addView(textView, ma.e(-2, 38, 17));
         int i10 = m6.Fi;
         int w02 = m6.w0(i10, h6Var);
-        int w10 = m6.w(m6.w0(m6.f29378d6, h6Var), m6.r1(0.1f, w02));
+        int w10 = m6.w(m6.w0(m6.f29381d6, h6Var), m6.r1(0.1f, w02));
         t6.U(textView, i10, h6Var);
         textView.setBackground(m6.b0(w10, m6.r1(0.16f, w02), org.telegram.messenger.g0.L(19.0f), org.telegram.messenger.g0.L(19.0f)));
         Drawable mutate = getContext().getResources().getDrawable(2131232044).mutate();
@@ -160,7 +160,7 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(m6.f29378d6));
+        hashSet.add(Integer.valueOf(m6.f29381d6));
     }
 
     public final void h() {
@@ -184,7 +184,7 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
         } else {
             i11 = 0;
         }
-        HorizontalScrollView horizontalScrollView = this.f22063s;
+        HorizontalScrollView horizontalScrollView = this.f22066s;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) horizontalScrollView.getLayoutParams();
         if (layoutParams.rightMargin != i11) {
             layoutParams.rightMargin = i11;
@@ -201,7 +201,7 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
                 for (int i18 = 0; i18 < size3; i18++) {
                     b0 b0Var = (b0) arrayList.get(i18);
                     b0Var.getClass();
-                    int max3 = Math.max(org.telegram.messenger.g0.L(34.0f), b0Var.f21978a.h());
+                    int max3 = Math.max(org.telegram.messenger.g0.L(34.0f), b0Var.f21981a.h());
                     iArr[i18] = max3;
                     i17 += max3;
                 }
@@ -246,13 +246,13 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
                         int i29 = iArr[i28];
                         b0 b0Var2 = (b0) arrayList.get(i28);
                         b0Var2.getClass();
-                        i27 += i29 - Math.max(org.telegram.messenger.g0.L(34.0f), b0Var2.f21978a.e());
+                        i27 += i29 - Math.max(org.telegram.messenger.g0.L(34.0f), b0Var2.f21981a.e());
                     }
                     if (i27 <= 0) {
                         for (int i30 = 0; i30 < size3; i30++) {
                             b0 b0Var3 = (b0) arrayList.get(i30);
                             b0Var3.getClass();
-                            iArr[i30] = Math.max(org.telegram.messenger.g0.L(34.0f), b0Var3.f21978a.e());
+                            iArr[i30] = Math.max(org.telegram.messenger.g0.L(34.0f), b0Var3.f21981a.e());
                         }
                     } else {
                         int min = Math.min(i17 - max2, i27);
@@ -262,7 +262,7 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
                             int i33 = iArr[i31];
                             b0 b0Var4 = (b0) arrayList.get(i31);
                             b0Var4.getClass();
-                            int max4 = i33 - Math.max(org.telegram.messenger.g0.L(34.0f), b0Var4.f21978a.e());
+                            int max4 = i33 - Math.max(org.telegram.messenger.g0.L(34.0f), b0Var4.f21981a.e());
                             if (i31 == i16) {
                                 i13 = min - i32;
                                 i12 = min;
@@ -281,12 +281,12 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
                 for (int i34 = 0; i34 < size3; i34++) {
                     b0 b0Var5 = (b0) arrayList.get(i34);
                     int i35 = iArr[i34];
-                    au auVar = b0Var5.f21978a;
-                    auVar.f22977e = Math.max(org.telegram.messenger.g0.L(34.0f), i35);
+                    bu buVar = b0Var5.f21981a;
+                    buVar.f23164e = Math.max(org.telegram.messenger.g0.L(34.0f), i35);
                     LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) b0Var5.getLayoutParams();
                     if (layoutParams2 != null) {
                         int i36 = layoutParams2.width;
-                        int i37 = auVar.f22977e;
+                        int i37 = buVar.f23164e;
                         if (i36 != i37) {
                             layoutParams2.width = i37;
                             b0Var5.setLayoutParams(layoutParams2);
@@ -296,10 +296,10 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
             }
         }
         if (size2 > 0) {
-            L = ((b0) arrayList.get(0)).f21978a.c();
+            L = ((b0) arrayList.get(0)).f21981a.c();
             L2 = org.telegram.messenger.g0.L(8.0f);
         } else {
-            L = org.telegram.messenger.g0.L(bz.W0 + 18);
+            L = org.telegram.messenger.g0.L(cz.W0 + 18);
             L2 = org.telegram.messenger.g0.L(8.0f);
         }
         int paddingBottom = getPaddingBottom() + getPaddingTop() + L2 + L;
@@ -309,16 +309,16 @@ public final class e0 extends y implements org.telegram.ui.ActionBar.b6 {
 
     @Override
     public final void updateColors() {
-        this.f22065x.updateColors();
+        this.f22068x.updateColors();
         int i7 = m6.Fi;
-        h6 h6Var = this.f22062r;
+        h6 h6Var = this.f22065r;
         int w02 = m6.w0(i7, h6Var);
-        int i10 = m6.f29378d6;
+        int i10 = m6.f29381d6;
         int w03 = m6.w0(i10, h6Var);
         if (w02 != this.G || w03 != this.H) {
             this.G = w02;
             this.H = w03;
-            TextView textView = this.f22066y;
+            TextView textView = this.f22069y;
             Drawable background = textView.getBackground();
             m6.H1(background, m6.w(w03, m6.r1(0.1f, w02)), false);
             m6.H1(background, m6.r1(0.16f, w02), true);
