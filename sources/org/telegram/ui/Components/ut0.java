@@ -10,27 +10,27 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 public final class ut0 extends View {
-    public final ImageReceiver f40582a;
-    public final b9 f40583b;
-    public final Paint f40584c;
+    public final ImageReceiver f40581a;
+    public final b9 f40582b;
+    public final Paint f40583c;
     public float d;
-    public boolean f40585e;
-    public ValueAnimator f40586f;
+    public boolean f40584e;
+    public ValueAnimator f40585f;
 
     public ut0(Context context) {
         super(context);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f40582a = imageReceiver;
-        this.f40583b = new b9((org.telegram.ui.ActionBar.h6) null);
+        this.f40581a = imageReceiver;
+        this.f40582b = new b9((org.telegram.ui.ActionBar.h6) null);
         Paint paint = new Paint(1);
-        this.f40584c = paint;
+        this.f40583c = paint;
         imageReceiver.J0(org.telegram.messenger.g0.L(28.0f));
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         paint.setStyle(Paint.Style.STROKE);
     }
 
     public final void a(boolean z10, boolean z11) {
-        ValueAnimator valueAnimator = this.f40586f;
+        ValueAnimator valueAnimator = this.f40585f;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -40,11 +40,11 @@ public final class ut0 extends View {
                 f10 = 1.0f;
             }
             ValueAnimator duration = ValueAnimator.ofFloat(this.d, f10).setDuration(200L);
-            duration.setInterpolator(nr.f37961f);
+            duration.setInterpolator(nr.f37960f);
             duration.addUpdateListener(new h60(this, 22));
             duration.addListener(new s60(this, 22));
             duration.start();
-            this.f40586f = duration;
+            this.f40585f = duration;
             return;
         }
         if (z10) {
@@ -65,13 +65,13 @@ public final class ut0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f40582a.P();
+        this.f40581a.P();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f40582a.R();
+        this.f40581a.R();
     }
 
     @Override
@@ -81,7 +81,7 @@ public final class ut0 extends View {
         float f10 = (this.d * 0.1f) + 0.9f;
         canvas.scale(f10, f10);
         int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29545m5, false);
-        Paint paint = this.f40584c;
+        Paint paint = this.f40583c;
         paint.setColor(x02);
         paint.setAlpha((int) (Color.alpha(paint.getColor()) * this.d));
         float strokeWidth = paint.getStrokeWidth();
@@ -89,25 +89,25 @@ public final class ut0 extends View {
         rectF.set(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth);
         canvas.drawArc(rectF, -90.0f, this.d * 360.0f, false, paint);
         canvas.restore();
-        if (!this.f40585e) {
+        if (!this.f40584e) {
             float strokeWidth2 = paint.getStrokeWidth() * 2.5f * this.d;
             float f11 = 2.0f * strokeWidth2;
             float width = getWidth() - f11;
             float height = getHeight() - f11;
-            ImageReceiver imageReceiver = this.f40582a;
+            ImageReceiver imageReceiver = this.f40581a;
             imageReceiver.y0(strokeWidth2, strokeWidth2, width, height);
             imageReceiver.h(canvas, null);
         }
     }
 
     public void setAvatar(TLObject tLObject) {
-        b9 b9Var = this.f40583b;
+        b9 b9Var = this.f40582b;
         b9Var.l(tLObject);
-        this.f40582a.i0(tLObject, b9Var, null);
+        this.f40581a.i0(tLObject, b9Var, null);
     }
 
     public void setHideAvatar(boolean z10) {
-        this.f40585e = z10;
+        this.f40584e = z10;
         invalidate();
     }
 }

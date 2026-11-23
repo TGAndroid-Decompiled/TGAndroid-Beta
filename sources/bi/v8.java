@@ -27,7 +27,7 @@ public final class v8 extends du0 {
 
     @Override
     public final void S() {
-        this.f4197h0.f39532o1.invalidate();
+        this.f4197h0.f39531o1.invalidate();
     }
 
     @Override

@@ -2,25 +2,25 @@ package org.telegram.ui.Components;
 
 import org.telegram.ui.ProfileActivity;
 public final class uu0 implements Runnable {
-    public final int f40588a;
-    public final xu0 f40589b;
+    public final int f40587a;
+    public final xu0 f40588b;
 
     public uu0(xu0 xu0Var, int i7) {
-        this.f40588a = i7;
-        this.f40589b = xu0Var;
+        this.f40587a = i7;
+        this.f40588b = xu0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f40588a) {
+        switch (this.f40587a) {
             case 0:
-                xu0 xu0Var = this.f40589b;
+                xu0 xu0Var = this.f40588b;
                 xu0Var.invalidate();
                 org.telegram.messenger.g0.g3(new uu0(xu0Var, 1));
                 return;
             default:
-                xu0 xu0Var2 = this.f40589b;
-                wu0 wu0Var = xu0Var2.f42226e;
+                xu0 xu0Var2 = this.f40588b;
+                wu0 wu0Var = xu0Var2.f42225e;
                 if (wu0Var != null) {
                     xu0Var2.getVisibilityFactor();
                     ProfileActivity profileActivity = ((org.telegram.ui.tt0) wu0Var).f52393b;

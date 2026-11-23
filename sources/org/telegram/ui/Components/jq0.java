@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Rect;
 public final class jq0 extends org.telegram.ui.nx0 {
-    public final jt0 f36586x;
+    public final jt0 f36585x;
 
     public jq0(jt0 jt0Var, Context context, fi.d6 d6Var, iq0 iq0Var) {
         super(context, d6Var, iq0Var);
-        this.f36586x = jt0Var;
+        this.f36585x = jt0Var;
     }
 
     @Override
@@ -17,8 +17,8 @@ public final class jq0 extends org.telegram.ui.nx0 {
         rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
         setClipBounds(rect);
         invalidate();
-        jt0 jt0Var = this.f36586x;
-        ds0[] ds0VarArr = jt0Var.f36651n0;
+        jt0 jt0Var = this.f36585x;
+        ds0[] ds0VarArr = jt0Var.f36650n0;
         if (ds0VarArr != null) {
             for (ds0 ds0Var : ds0VarArr) {
                 if (ds0Var != null && (nq0Var = ds0Var.h) != null) {

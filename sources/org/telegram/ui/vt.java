@@ -740,7 +740,7 @@ public final class vt extends org.telegram.ui.Components.e51 {
                 break;
         }
         if (o41Var.f56634a == 4) {
-            this.f34681a.f35790g3.O(z10);
+            this.f34681a.f35789g3.O(z10);
         }
     }
 

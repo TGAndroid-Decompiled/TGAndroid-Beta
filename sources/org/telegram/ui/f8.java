@@ -49,7 +49,7 @@ public final class f8 extends FrameLayout {
         addView(m5Var, c8.ma.d(-1, 28.0f, 0, 0.0f, 12.0f, 0.0f, 4.0f));
         org.telegram.ui.Components.jn jnVar = new org.telegram.ui.Components.jn(context, new d8(this, context));
         this.f47635s = jnVar;
-        ((GestureDetector) jnVar.f36567b).setIsLongpressEnabled(i8Var.f48629f0 == 0);
+        ((GestureDetector) jnVar.f36566b).setIsLongpressEnabled(i8Var.f48629f0 == 0);
     }
 
     public static void a(f8 f8Var, int i7, int i10) {
@@ -136,7 +136,7 @@ public final class f8 extends FrameLayout {
         sparseArray2.put(i7, obj);
         if (z11) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
-            duration.setInterpolator(org.telegram.ui.Components.zs.f42978e);
+            duration.setInterpolator(org.telegram.ui.Components.zs.f42977e);
             final float f17 = f11;
             final float f18 = f15;
             final float f19 = f10;
@@ -204,6 +204,6 @@ public final class f8 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return ((GestureDetector) this.f47635s.f36567b).onTouchEvent(motionEvent);
+        return ((GestureDetector) this.f47635s.f36566b).onTouchEvent(motionEvent);
     }
 }

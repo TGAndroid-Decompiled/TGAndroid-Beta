@@ -6,15 +6,15 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.MotionEvent;
 public final class x21 extends o6 {
-    public final Paint f41956s;
-    public final n2.o0 f41957w;
-    public final z21 f41958x;
+    public final Paint f41955s;
+    public final n2.o0 f41956w;
+    public final z21 f41957x;
 
     public x21(z21 z21Var, Context context) {
         super(context, false, false, false);
-        this.f41958x = z21Var;
-        this.f41956s = new Paint(1);
-        this.f41957w = new n2.o0();
+        this.f41957x = z21Var;
+        this.f41955s = new Paint(1);
+        this.f41956w = new n2.o0();
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class x21 extends o6 {
         } else {
             org.telegram.messenger.g0.P.set(0.0f, (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, d(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
         }
-        b31 b31Var = this.f41958x.f42660n;
+        b31 b31Var = this.f41957x.f42659n;
         int i7 = org.telegram.ui.ActionBar.m6.Gj;
         String[] strArr = b31.S1;
         int r12 = org.telegram.ui.ActionBar.m6.r1(0.1175f, org.telegram.ui.ActionBar.m6.w0(i7, b31Var.J0));
-        Paint paint = this.f41956s;
+        Paint paint = this.f41955s;
         paint.setColor(r12);
         canvas.drawRoundRect(org.telegram.messenger.g0.P, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint);
-        if (this.f41957w.h(canvas)) {
+        if (this.f41956w.h(canvas)) {
             invalidate();
         }
         super.onDraw(canvas);
@@ -39,9 +39,9 @@ public final class x21 extends o6 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        b31 b31Var = this.f41958x.f42660n;
+        b31 b31Var = this.f41957x.f42659n;
         int action = motionEvent.getAction();
-        n2.o0 o0Var = this.f41957w;
+        n2.o0 o0Var = this.f41956w;
         if (action == 0) {
             String[] strArr = b31.S1;
             n80 n80Var = new n80(null, b31Var.J0, motionEvent.getX(), motionEvent.getY(), 0);

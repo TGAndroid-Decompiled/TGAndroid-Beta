@@ -34,7 +34,7 @@ public final class au extends org.telegram.ui.Components.sa {
         this.f30207r0 = false;
         c1();
         this.f30207r0 = true;
-        this.f39539v1 = 0.2f;
+        this.f39538v1 = 0.2f;
         Activity parentActivity = x6Var.getParentActivity();
         O();
         this.f30214w0 = false;
@@ -86,8 +86,8 @@ public final class au extends org.telegram.ui.Components.sa {
                 org.telegram.ui.Components.qw0[] qw0VarArr = this.X1;
                 ?? obj = new Object();
                 Paint paint = new Paint((int) r62);
-                obj.f39009e = paint;
-                obj.f39008c = r62;
+                obj.f39008e = paint;
+                obj.f39007c = r62;
                 obj.d = false;
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeWidth(org.telegram.messenger.g0.L(5.0f));
@@ -95,8 +95,8 @@ public final class au extends org.telegram.ui.Components.sa {
                 paint.setStrokeJoin(Paint.Join.ROUND);
                 qw0VarArr[i11] = obj;
                 org.telegram.ui.Components.qw0 qw0Var = this.X1[i11];
-                qw0Var.f39006a = j3;
-                qw0Var.f39007b = i12;
+                qw0Var.f39005a = j3;
+                qw0Var.f39006b = i12;
                 parentActivity = activity;
                 org.telegram.ui.Cells.d2 d2Var2 = new org.telegram.ui.Cells.d2(parentActivity, 4, 21, false, null);
                 d2Var2.setTag(Integer.valueOf(i11));
@@ -133,17 +133,17 @@ public final class au extends org.telegram.ui.Components.sa {
         }
         zt ztVar2 = this.T1;
         org.telegram.ui.Components.qw0[] qw0VarArr2 = this.X1;
-        ztVar2.f39358b = qw0VarArr2;
+        ztVar2.f39357b = qw0VarArr2;
         ztVar2.G = cVar;
         ztVar2.invalidate();
-        ztVar2.f39359c = new float[qw0VarArr2.length];
+        ztVar2.f39358c = new float[qw0VarArr2.length];
         ztVar2.d = new float[qw0VarArr2.length];
-        ztVar2.f39360e = new float[qw0VarArr2.length];
+        ztVar2.f39359e = new float[qw0VarArr2.length];
         ztVar2.c(false);
         if (ztVar2.E > 1) {
-            ztVar2.f39361f = 0.0f;
+            ztVar2.f39360f = 0.0f;
         } else {
-            ztVar2.f39361f = 1.0f;
+            ztVar2.f39360f = 1.0f;
         }
         i6 i6Var = new i6(this, getContext(), x6Var);
         this.f45703a2 = i6Var;
@@ -165,7 +165,7 @@ public final class au extends org.telegram.ui.Components.sa {
         }
         this.f45703a2.setCacheModel(cVar);
         this.f45703a2.setDelegate(new ji.l(this, cVar, false, 16));
-        org.telegram.ui.Components.la laVar = this.f39538u1;
+        org.telegram.ui.Components.la laVar = this.f39537u1;
         if (laVar != null) {
             laVar.setChildLayout(this.f45703a2);
         } else {
@@ -184,13 +184,13 @@ public final class au extends org.telegram.ui.Components.sa {
 
     @Override
     public final CharSequence P0() {
-        return this.f39536s1.getMessagesController().e1(this.f45704b2);
+        return this.f39535s1.getMessagesController().e1(this.f45704b2);
     }
 
     @Override
     public final void V0(org.telegram.ui.Components.du0 du0Var) {
-        this.f39532o1.j(new g3(this, 10));
-        if (this.f39538u1 != null) {
+        this.f39531o1.j(new g3(this, 10));
+        if (this.f39537u1 != null) {
             e1();
             du0Var.addView(this.W1, c8.ma.e(-1, 72, 80));
         }

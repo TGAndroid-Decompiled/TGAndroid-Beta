@@ -70,12 +70,12 @@ public final class cg implements Runnable {
                         }
                         wg wgVar = chatActivityEnterView.Z0;
                         if (wgVar != null) {
-                            wgVar.f41797a = false;
+                            wgVar.f41796a = false;
                             wgVar.d = 0L;
-                            wgVar.f41800e = 0L;
+                            wgVar.f41799e = 0L;
                             wgVar.h = 0L;
-                            wgVar.f41802n = 0L;
-                            wgVar.f41798b = false;
+                            wgVar.f41801n = 0L;
+                            wgVar.f41797b = false;
                             return;
                         }
                         return;
@@ -114,7 +114,7 @@ public final class cg implements Runnable {
                 }
                 tg tgVar = chatActivityEnterView.f32582b2;
                 if (tgVar != null) {
-                    tgVar.f39900e = false;
+                    tgVar.f39899e = false;
                 }
                 oeVar.getParent().requestDisallowInterceptTouchEvent(true);
                 chatActivityEnterView.A0().I(true);
@@ -146,7 +146,7 @@ public final class cg implements Runnable {
                             DictationAsr.u(tVar, false);
                         }
                         Context context2 = chatActivityEnterView.getContext();
-                        ExecutorService executorService = DictationLid.f43075a;
+                        ExecutorService executorService = DictationLid.f43074a;
                         if (DictationAsr.x()) {
                             DictationLid.d(context2);
                         }
@@ -183,7 +183,7 @@ public final class cg implements Runnable {
                 }
                 tg tgVar2 = chatActivityEnterView.f32582b2;
                 if (tgVar2 != null) {
-                    tgVar2.f39900e = false;
+                    tgVar2.f39899e = false;
                 }
                 oeVar.getParent().requestDisallowInterceptTouchEvent(true);
                 ChatActivityEnterView.RecordCircle recordCircle3 = chatActivityEnterView.D2;

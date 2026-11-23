@@ -69,11 +69,11 @@ public final class f0 implements Runnable {
                     long j13 = u0Var2.I;
                     long j14 = u0Var2.K;
                     long j15 = u0Var2.L;
-                    ((b50) qfVar.f38896b).f33762w.setProgress(((float) j13) / 60000.0f);
-                    b50 b50Var = (b50) qfVar.f38896b;
+                    ((b50) qfVar.f38895b).f33762w.setProgress(((float) j13) / 60000.0f);
+                    b50 b50Var = (b50) qfVar.f38895b;
                     b50Var.f33748k0 = false;
                     b50Var.I.setAlpha(0.0f);
-                    b50 b50Var2 = (b50) qfVar.f38896b;
+                    b50 b50Var2 = (b50) qfVar.f38895b;
                     if (b50Var2.V == null) {
                         u0 u0Var3 = b50Var2.P;
                         if (u0Var3 == null) {
@@ -83,9 +83,9 @@ public final class f0 implements Runnable {
                             file = u0Var3.V;
                         }
                         if (file != null) {
-                            b50 b50Var3 = (b50) qfVar.f38896b;
+                            b50 b50Var3 = (b50) qfVar.f38895b;
                             b50Var3.U = b50Var3.t(file, j13, null);
-                            b50 b50Var4 = (b50) qfVar.f38896b;
+                            b50 b50Var4 = (b50) qfVar.f38895b;
                             f20 f20Var = b50Var4.U;
                             if (j14 > 0) {
                                 j3 = j14;
@@ -99,15 +99,15 @@ public final class f0 implements Runnable {
                                 j10 = -1;
                             }
                             f20Var.f23828b = j10;
-                            ls.f(b50Var4.f33742f).k(162, Integer.valueOf(((b50) qfVar.f38896b).h), ((b50) qfVar.f38896b).U, file.getAbsolutePath(), new ArrayList());
+                            ls.f(b50Var4.f33742f).k(162, Integer.valueOf(((b50) qfVar.f38895b).h), ((b50) qfVar.f38895b).U, file.getAbsolutePath(), new ArrayList());
                             float max = (float) Math.max(1L, j13);
                             float f10 = ((float) j14) / max;
                             float f11 = ((float) j15) / max;
-                            g50 g50Var = ((b50) qfVar.f38896b).f35787b;
+                            g50 g50Var = ((b50) qfVar.f38895b).f35786b;
                             if (g50Var != null && (rjVar = ((ee) g50Var).f47250b.f45950a0) != null && (w61Var = rjVar.f32623g1) != null) {
                                 float max2 = Math.max(0.0f, Math.min(1.0f, f10));
-                                w61Var.f41665b = max2;
-                                w61Var.f41666c = Math.max(max2, Math.min(1.0f, f11));
+                                w61Var.f41664b = max2;
+                                w61Var.f41665c = Math.max(max2, Math.min(1.0f, f11));
                                 w61Var.invalidate();
                             }
                         }

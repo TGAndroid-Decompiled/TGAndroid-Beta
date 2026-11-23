@@ -57,10 +57,10 @@ public final class il implements ViewTreeObserver.OnPreDrawListener {
                 ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_Y, iArr2[1] - cameraRect.top);
                 View buttonsLayout = bnVar.f46162q3.getButtonsLayout();
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(bnVar.f46162q3.getPaint(), org.telegram.ui.Components.r6.f39095b, 0), ObjectAnimator.ofFloat(bnVar.f46162q3.getMuteImageView(), property, 0.0f));
+                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(bnVar.f46162q3.getPaint(), org.telegram.ui.Components.r6.f39094b, 0), ObjectAnimator.ofFloat(bnVar.f46162q3.getMuteImageView(), property, 0.0f));
                 animatorSet.setInterpolator(org.telegram.ui.Components.nr.h);
                 ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_X, iArr2[0] - cameraRect.left);
-                ofFloat4.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                ofFloat4.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                 animatorSet2.playTogether(ofFloat4, animatorSet);
                 animatorSet2.setDuration(300L);
                 org.telegram.ui.Components.h50 h50Var = bnVar.f46162q3;

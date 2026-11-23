@@ -40,7 +40,7 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
         org.telegram.ui.Components.i71 i7 = p5Var.i(10, true);
         this.f50348b = i7;
         i7.h(org.telegram.ui.ActionBar.m6.f29765xi, org.telegram.ui.ActionBar.m6.G6, org.telegram.ui.ActionBar.m6.f29727vi, org.telegram.ui.ActionBar.m6.f29784yi, org.telegram.ui.ActionBar.m6.f29661s8);
-        i7.f36216r = 12;
+        i7.f36215r = 12;
         i7.setPreTabClick(new org.telegram.messenger.s10() {
             @Override
             public final Object g(Number number, Object obj) {
@@ -56,7 +56,7 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
                             return Boolean.TRUE;
                         }
                         if (num.intValue() == -1) {
-                            org.telegram.ui.Components.c5.P(iq0Var2.f36300a, iq0Var2.f36301b, iq0Var2.f36302c, new org.telegram.ui.Components.ky(iq0Var2, 19));
+                            org.telegram.ui.Components.c5.P(iq0Var2.f36299a, iq0Var2.f36300b, iq0Var2.f36301c, new org.telegram.ui.Components.ky(iq0Var2, 19));
                             return Boolean.TRUE;
                         }
                         return Boolean.FALSE;
@@ -65,9 +65,9 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
                         if (num.intValue() != -1 && num.intValue() != 0 && !jq0Var2.f50351f) {
                             final int intValue = num.intValue();
                             org.telegram.ui.Components.jt0 jt0Var = iq0Var2.d;
-                            org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36684y1;
+                            org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36683y1;
                             storiesController = jt0Var.getStoriesController();
-                            if (storiesController.i(jt0Var.f36648m1)) {
+                            if (storiesController.i(jt0Var.f36647m1)) {
                                 org.telegram.ui.Components.a70 I = org.telegram.ui.Components.a70.I(g2Var, view);
                                 I.X(new bi.r5(iq0Var2));
                                 I.c(2131231764, org.telegram.messenger.hd.N0(2131744555, null), new Runnable() {
@@ -76,47 +76,47 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
                                         switch (r3) {
                                             case 0:
                                                 jt0 jt0Var2 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36684y1;
-                                                jt0Var2.a1(intValue, jt0Var2.f36648m1, g2Var2);
+                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36683y1;
+                                                jt0Var2.a1(intValue, jt0Var2.f36647m1, g2Var2);
                                                 return;
                                             case 1:
                                                 jt0 jt0Var3 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36684y1;
-                                                jt0Var3.c1(intValue, jt0Var3.f36648m1, g2Var3);
+                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36683y1;
+                                                jt0Var3.c1(intValue, jt0Var3.f36647m1, g2Var3);
                                                 return;
                                             case 2:
                                                 iq0Var2.d.s1(intValue);
                                                 return;
                                             default:
                                                 jt0 jt0Var4 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36684y1;
-                                                jt0Var4.b1(intValue, jt0Var4.f36648m1, g2Var4);
+                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36683y1;
+                                                jt0Var4.b1(intValue, jt0Var4.f36647m1, g2Var4);
                                                 return;
                                         }
                                     }
                                 }, false);
-                                jt0Var.B(new org.telegram.ui.Cells.c5(I), g2Var, jt0Var.f36648m1, intValue);
+                                jt0Var.B(new org.telegram.ui.Cells.c5(I), g2Var, jt0Var.f36647m1, intValue);
                                 I.c(2131232118, org.telegram.messenger.hd.N0(2131744550, null), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 jt0 jt0Var2 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36684y1;
-                                                jt0Var2.a1(intValue, jt0Var2.f36648m1, g2Var2);
+                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36683y1;
+                                                jt0Var2.a1(intValue, jt0Var2.f36647m1, g2Var2);
                                                 return;
                                             case 1:
                                                 jt0 jt0Var3 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36684y1;
-                                                jt0Var3.c1(intValue, jt0Var3.f36648m1, g2Var3);
+                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36683y1;
+                                                jt0Var3.c1(intValue, jt0Var3.f36647m1, g2Var3);
                                                 return;
                                             case 2:
                                                 iq0Var2.d.s1(intValue);
                                                 return;
                                             default:
                                                 jt0 jt0Var4 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36684y1;
-                                                jt0Var4.b1(intValue, jt0Var4.f36648m1, g2Var4);
+                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36683y1;
+                                                jt0Var4.b1(intValue, jt0Var4.f36647m1, g2Var4);
                                                 return;
                                         }
                                     }
@@ -127,21 +127,21 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
                                         switch (r3) {
                                             case 0:
                                                 jt0 jt0Var2 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36684y1;
-                                                jt0Var2.a1(intValue, jt0Var2.f36648m1, g2Var2);
+                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36683y1;
+                                                jt0Var2.a1(intValue, jt0Var2.f36647m1, g2Var2);
                                                 return;
                                             case 1:
                                                 jt0 jt0Var3 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36684y1;
-                                                jt0Var3.c1(intValue, jt0Var3.f36648m1, g2Var3);
+                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36683y1;
+                                                jt0Var3.c1(intValue, jt0Var3.f36647m1, g2Var3);
                                                 return;
                                             case 2:
                                                 iq0Var2.d.s1(intValue);
                                                 return;
                                             default:
                                                 jt0 jt0Var4 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36684y1;
-                                                jt0Var4.b1(intValue, jt0Var4.f36648m1, g2Var4);
+                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36683y1;
+                                                jt0Var4.b1(intValue, jt0Var4.f36647m1, g2Var4);
                                                 return;
                                         }
                                     }
@@ -152,21 +152,21 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
                                         switch (r3) {
                                             case 0:
                                                 jt0 jt0Var2 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36684y1;
-                                                jt0Var2.a1(intValue, jt0Var2.f36648m1, g2Var2);
+                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36683y1;
+                                                jt0Var2.a1(intValue, jt0Var2.f36647m1, g2Var2);
                                                 return;
                                             case 1:
                                                 jt0 jt0Var3 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36684y1;
-                                                jt0Var3.c1(intValue, jt0Var3.f36648m1, g2Var3);
+                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36683y1;
+                                                jt0Var3.c1(intValue, jt0Var3.f36647m1, g2Var3);
                                                 return;
                                             case 2:
                                                 iq0Var2.d.s1(intValue);
                                                 return;
                                             default:
                                                 jt0 jt0Var4 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36684y1;
-                                                jt0Var4.b1(intValue, jt0Var4.f36648m1, g2Var4);
+                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36683y1;
+                                                jt0Var4.b1(intValue, jt0Var4.f36647m1, g2Var4);
                                                 return;
                                         }
                                     }
@@ -194,7 +194,7 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
                             return Boolean.TRUE;
                         }
                         if (num.intValue() == -1) {
-                            org.telegram.ui.Components.c5.P(iq0Var2.f36300a, iq0Var2.f36301b, iq0Var2.f36302c, new org.telegram.ui.Components.ky(iq0Var2, 19));
+                            org.telegram.ui.Components.c5.P(iq0Var2.f36299a, iq0Var2.f36300b, iq0Var2.f36301c, new org.telegram.ui.Components.ky(iq0Var2, 19));
                             return Boolean.TRUE;
                         }
                         return Boolean.FALSE;
@@ -203,9 +203,9 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
                         if (num.intValue() != -1 && num.intValue() != 0 && !jq0Var2.f50351f) {
                             final int intValue = num.intValue();
                             org.telegram.ui.Components.jt0 jt0Var = iq0Var2.d;
-                            org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36684y1;
+                            org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36683y1;
                             storiesController = jt0Var.getStoriesController();
-                            if (storiesController.i(jt0Var.f36648m1)) {
+                            if (storiesController.i(jt0Var.f36647m1)) {
                                 org.telegram.ui.Components.a70 I = org.telegram.ui.Components.a70.I(g2Var, view);
                                 I.X(new bi.r5(iq0Var2));
                                 I.c(2131231764, org.telegram.messenger.hd.N0(2131744555, null), new Runnable() {
@@ -214,47 +214,47 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
                                         switch (r3) {
                                             case 0:
                                                 jt0 jt0Var2 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36684y1;
-                                                jt0Var2.a1(intValue, jt0Var2.f36648m1, g2Var2);
+                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36683y1;
+                                                jt0Var2.a1(intValue, jt0Var2.f36647m1, g2Var2);
                                                 return;
                                             case 1:
                                                 jt0 jt0Var3 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36684y1;
-                                                jt0Var3.c1(intValue, jt0Var3.f36648m1, g2Var3);
+                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36683y1;
+                                                jt0Var3.c1(intValue, jt0Var3.f36647m1, g2Var3);
                                                 return;
                                             case 2:
                                                 iq0Var2.d.s1(intValue);
                                                 return;
                                             default:
                                                 jt0 jt0Var4 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36684y1;
-                                                jt0Var4.b1(intValue, jt0Var4.f36648m1, g2Var4);
+                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36683y1;
+                                                jt0Var4.b1(intValue, jt0Var4.f36647m1, g2Var4);
                                                 return;
                                         }
                                     }
                                 }, false);
-                                jt0Var.B(new org.telegram.ui.Cells.c5(I), g2Var, jt0Var.f36648m1, intValue);
+                                jt0Var.B(new org.telegram.ui.Cells.c5(I), g2Var, jt0Var.f36647m1, intValue);
                                 I.c(2131232118, org.telegram.messenger.hd.N0(2131744550, null), new Runnable() {
                                     @Override
                                     public final void run() {
                                         switch (r3) {
                                             case 0:
                                                 jt0 jt0Var2 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36684y1;
-                                                jt0Var2.a1(intValue, jt0Var2.f36648m1, g2Var2);
+                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36683y1;
+                                                jt0Var2.a1(intValue, jt0Var2.f36647m1, g2Var2);
                                                 return;
                                             case 1:
                                                 jt0 jt0Var3 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36684y1;
-                                                jt0Var3.c1(intValue, jt0Var3.f36648m1, g2Var3);
+                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36683y1;
+                                                jt0Var3.c1(intValue, jt0Var3.f36647m1, g2Var3);
                                                 return;
                                             case 2:
                                                 iq0Var2.d.s1(intValue);
                                                 return;
                                             default:
                                                 jt0 jt0Var4 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36684y1;
-                                                jt0Var4.b1(intValue, jt0Var4.f36648m1, g2Var4);
+                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36683y1;
+                                                jt0Var4.b1(intValue, jt0Var4.f36647m1, g2Var4);
                                                 return;
                                         }
                                     }
@@ -265,21 +265,21 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
                                         switch (r3) {
                                             case 0:
                                                 jt0 jt0Var2 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36684y1;
-                                                jt0Var2.a1(intValue, jt0Var2.f36648m1, g2Var2);
+                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36683y1;
+                                                jt0Var2.a1(intValue, jt0Var2.f36647m1, g2Var2);
                                                 return;
                                             case 1:
                                                 jt0 jt0Var3 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36684y1;
-                                                jt0Var3.c1(intValue, jt0Var3.f36648m1, g2Var3);
+                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36683y1;
+                                                jt0Var3.c1(intValue, jt0Var3.f36647m1, g2Var3);
                                                 return;
                                             case 2:
                                                 iq0Var2.d.s1(intValue);
                                                 return;
                                             default:
                                                 jt0 jt0Var4 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36684y1;
-                                                jt0Var4.b1(intValue, jt0Var4.f36648m1, g2Var4);
+                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36683y1;
+                                                jt0Var4.b1(intValue, jt0Var4.f36647m1, g2Var4);
                                                 return;
                                         }
                                     }
@@ -290,21 +290,21 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
                                         switch (r3) {
                                             case 0:
                                                 jt0 jt0Var2 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36684y1;
-                                                jt0Var2.a1(intValue, jt0Var2.f36648m1, g2Var2);
+                                                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var2.f36683y1;
+                                                jt0Var2.a1(intValue, jt0Var2.f36647m1, g2Var2);
                                                 return;
                                             case 1:
                                                 jt0 jt0Var3 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36684y1;
-                                                jt0Var3.c1(intValue, jt0Var3.f36648m1, g2Var3);
+                                                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var3.f36683y1;
+                                                jt0Var3.c1(intValue, jt0Var3.f36647m1, g2Var3);
                                                 return;
                                             case 2:
                                                 iq0Var2.d.s1(intValue);
                                                 return;
                                             default:
                                                 jt0 jt0Var4 = iq0Var2.d;
-                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36684y1;
-                                                jt0Var4.b1(intValue, jt0Var4.f36648m1, g2Var4);
+                                                org.telegram.ui.ActionBar.g2 g2Var4 = jt0Var4.f36683y1;
+                                                jt0Var4.b1(intValue, jt0Var4.f36647m1, g2Var4);
                                                 return;
                                         }
                                     }
@@ -449,8 +449,8 @@ public abstract class nx0 extends FrameLayout implements org.telegram.messenger.
             i71Var.setReordering(z10);
             boolean z11 = this.f50351f;
             org.telegram.ui.Components.jq0 jq0Var = (org.telegram.ui.Components.jq0) this;
-            org.telegram.ui.Components.jt0 jt0Var = jq0Var.f36586x;
-            TextView textView = jt0Var.f36670t0;
+            org.telegram.ui.Components.jt0 jt0Var = jq0Var.f36585x;
+            TextView textView = jt0Var.f36669t0;
             textView.setVisibility(0);
             ViewPropertyAnimator animate = textView.animate();
             float f12 = 1.0f;

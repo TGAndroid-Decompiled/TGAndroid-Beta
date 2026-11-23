@@ -23,11 +23,11 @@ public final class p3 extends GestureDetector.SimpleOnGestureListener {
         switch (this.f18860a) {
             case 1:
                 rr rrVar = (rr) this.f18862c;
-                or orVar = rrVar.f39328r;
-                if (rrVar.f39327n) {
+                or orVar = rrVar.f39327r;
+                if (rrVar.f39326n) {
                     rrVar.removeCallbacks(orVar);
                 }
-                rrVar.f39327n = true;
+                rrVar.f39326n = true;
                 rrVar.postDelayed(orVar, 200L);
                 rrVar.h.run();
                 return true;
@@ -95,8 +95,8 @@ public final class p3 extends GestureDetector.SimpleOnGestureListener {
                 return super.onFling(motionEvent, motionEvent2, f10, f11);
             case 2:
                 kf0 kf0Var = (kf0) viewGroup;
-                if (!kf0Var.f36902f && !kf0Var.h && f10 >= 600.0f) {
-                    kf0Var.f36901e = false;
+                if (!kf0Var.f36901f && !kf0Var.h && f10 >= 600.0f) {
+                    kf0Var.f36900e = false;
                     kf0Var.h = false;
                     kf0Var.a(0.0f, f10 / 6000.0f);
                 }

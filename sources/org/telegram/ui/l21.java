@@ -17,9 +17,9 @@ public final class l21 implements View.OnClickListener {
     @Override
     public final void onClick(View view) {
         org.telegram.ui.Components.vg vgVar = this.f49454a;
-        Switch r02 = (Switch) vgVar.f40823f;
+        Switch r02 = (Switch) vgVar.f40822f;
         r02.c(!r02.h, true);
-        this.f49455b.call_requests_disabled = !((Switch) vgVar.f40823f).h;
+        this.f49455b.call_requests_disabled = !((Switch) vgVar.f40822f).h;
         n21.K0(this.f49456c);
     }
 }

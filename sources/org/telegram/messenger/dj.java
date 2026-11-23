@@ -550,7 +550,7 @@ public final class dj implements wg0 {
         }
         this.U.setColor(i0.a.o(i10, 38));
         canvas.drawRect(rectF.left + g0.L(10.0f), (rectF.bottom - g0.L(38.0f)) - g0.f1(), rectF.right - g0.L(6.66f), rectF.bottom - g0.L(38.0f), this.U);
-        float min = Math.min(rectF.width() - g0.L(12.0f), (this.Q.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + this.R.f42247c);
+        float min = Math.min(rectF.width() - g0.L(12.0f), (this.Q.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + this.R.f42246c);
         float centerX = rectF.centerX() - (min / 2.0f);
         float L = rectF.bottom - (g0.L(38.0f) / 2.0f);
         if (this.P != i7) {
@@ -564,7 +564,7 @@ public final class dj implements wg0 {
         this.Q.draw(canvas);
         float intrinsicWidth = (this.Q.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + centerX;
         xy0 xy0Var = this.R;
-        xy0Var.f42258p = g0.L(12.0f) + ((int) (min - ((this.Q.getIntrinsicWidth() * 0.8f) + g0.L(5.0f))));
+        xy0Var.f42257p = g0.L(12.0f) + ((int) (min - ((this.Q.getIntrinsicWidth() * 0.8f) + g0.L(5.0f))));
         xy0Var.c(intrinsicWidth, L, f10, i7, canvas);
     }
 
@@ -628,7 +628,7 @@ public final class dj implements wg0 {
         }
         xy0 xy0Var = new xy0(b10, i11 - (i10 / 2), g0.o());
         this.M = xy0Var;
-        this.N = g0.L(4.0f) + ((int) (xy0Var.f42245a.getTextSize() * 1.714f));
+        this.N = g0.L(4.0f) + ((int) (xy0Var.f42244a.getTextSize() * 1.714f));
     }
 
     public final void n(String str, boolean z10) {

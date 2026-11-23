@@ -285,7 +285,7 @@ public abstract class p0 {
             if (view.getParent() == this.f59250b) {
                 md0 md0Var = this.f59249a;
                 va vaVar = (va) md0Var.f49858c;
-                int indexOfChild = ((RecyclerView) ((qf) md0Var.f49857b).f38896b).indexOfChild(view);
+                int indexOfChild = ((RecyclerView) ((qf) md0Var.f49857b).f38895b).indexOfChild(view);
                 if (indexOfChild == -1 || vaVar.G(indexOfChild)) {
                     D = -1;
                 } else {
@@ -444,7 +444,7 @@ public abstract class p0 {
             md0 md0Var = this.f59249a;
             int x10 = md0Var.x(i7);
             qf qfVar = (qf) md0Var.f49857b;
-            View childAt = ((RecyclerView) qfVar.f38896b).getChildAt(x10);
+            View childAt = ((RecyclerView) qfVar.f38895b).getChildAt(x10);
             if (childAt != null) {
                 if (((va) md0Var.f49858c).I(x10)) {
                     md0Var.K(childAt);

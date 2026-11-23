@@ -47,7 +47,7 @@ public final class r {
         this.f18886o = upVar;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
         this.f18887p = nVar;
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
         n6Var.w(org.telegram.messenger.g0.L(14.0f));
         n6Var.x(org.telegram.messenger.g0.o());
         n6Var.N = org.telegram.messenger.g0.f24046q.x * 4;
@@ -55,7 +55,7 @@ public final class r {
         n6Var.setCallback(tVar);
         upVar.setCallback(tVar);
         a02.setCallback(tVar);
-        nVar.f41192l = true;
-        nVar.f41193m = 2.0f;
+        nVar.f41191l = true;
+        nVar.f41192m = 2.0f;
     }
 }

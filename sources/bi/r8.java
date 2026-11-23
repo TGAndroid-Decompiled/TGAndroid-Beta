@@ -54,7 +54,7 @@ public final class r8 implements q0.a {
                 s2Var.F.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(nr.f37961f);
+                    duration.setInterpolator(nr.f37960f);
                     duration.addUpdateListener(new ki.r1(s2Var, 1));
                     duration.addListener(new ai.k0(s2Var, 29));
                     duration.start();
@@ -67,7 +67,7 @@ public final class r8 implements q0.a {
                 s3Var.J.setLoadProgressAnimated(f11.floatValue());
                 if (f11.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(nr.f37961f);
+                    duration2.setInterpolator(nr.f37960f);
                     duration2.addUpdateListener(new ki.k3(s3Var, 1));
                     duration2.addListener(new ki.m3(s3Var, 0));
                     duration2.start();

@@ -95,7 +95,7 @@ public final class t8 implements View.OnClickListener {
                         valueAnimator2.setDuration(j3);
                         ValueAnimator valueAnimator3 = saVar2.F2;
                         if (z12) {
-                            nrVar = nr.f37963i;
+                            nrVar = nr.f37962i;
                         } else {
                             nrVar = nr.h;
                         }

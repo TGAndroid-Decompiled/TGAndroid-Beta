@@ -74,10 +74,10 @@ public final class g2 extends org.telegram.ui.Components.q6 {
                 return;
             case 3:
                 rz rzVar = (rz) this.f30678c;
-                rzVar.f39423x0 = f10;
+                rzVar.f39422x0 = f10;
                 int i7 = rzVar.V;
-                org.telegram.ui.ActionBar.h6 h6Var = rzVar.f39391a;
-                rzVar.U.setColor(i0.a.f(f10, org.telegram.ui.ActionBar.m6.w0(i7, h6Var), org.telegram.ui.ActionBar.m6.w0(rzVar.f39397d0, h6Var)));
+                org.telegram.ui.ActionBar.h6 h6Var = rzVar.f39390a;
+                rzVar.U.setColor(i0.a.f(f10, org.telegram.ui.ActionBar.m6.w0(i7, h6Var), org.telegram.ui.ActionBar.m6.w0(rzVar.f39396d0, h6Var)));
                 di.b1 b1Var = rzVar.G;
                 b1Var.g1();
                 b1Var.invalidate();
@@ -86,7 +86,7 @@ public final class g2 extends org.telegram.ui.Components.q6 {
             case 4:
                 k71 k71Var = (k71) obj;
                 k71 k71Var2 = (k71) this.f30678c;
-                k71Var2.f36857y = f10;
+                k71Var2.f36856y = f10;
                 k71Var2.invalidate();
                 return;
             case 5:
@@ -123,10 +123,10 @@ public final class g2 extends org.telegram.ui.Components.q6 {
                 return Float.valueOf(((org.telegram.ui.Components.f8) this.f30678c).L2);
             case 3:
                 rz rzVar = (rz) obj;
-                return Float.valueOf(((rz) this.f30678c).f39423x0);
+                return Float.valueOf(((rz) this.f30678c).f39422x0);
             case 4:
                 k71 k71Var = (k71) obj;
-                return Float.valueOf(((k71) this.f30678c).f36857y);
+                return Float.valueOf(((k71) this.f30678c).f36856y);
             case 5:
                 f81 f81Var = (f81) obj;
                 return Float.valueOf(((f81) this.f30678c).F);

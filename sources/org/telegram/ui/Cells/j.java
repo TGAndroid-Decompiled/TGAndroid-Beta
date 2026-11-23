@@ -150,7 +150,7 @@ public abstract class j extends FrameLayout implements org.telegram.ui.ActionBar
             if (hd.f24444a0) {
                 alignment = zu0.a();
             } else {
-                Layout.Alignment[] alignmentArr = zu0.f42994a;
+                Layout.Alignment[] alignmentArr = zu0.f42993a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {

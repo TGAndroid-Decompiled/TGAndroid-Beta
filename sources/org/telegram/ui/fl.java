@@ -363,10 +363,10 @@ public final class fl implements org.telegram.ui.Cells.s0 {
                 if (!messageObject.f24236q) {
                     if (videoSize2 != null) {
                         org.telegram.ui.Components.x30 x30Var = new org.telegram.ui.Components.x30(0, true, true);
-                        x30Var.f41959a = bnVar;
+                        x30Var.f41958a = bnVar;
                         x30Var.e();
-                        x30Var.f41961c.f40379e2.u0(null, videoSize2, 0L);
-                        x30Var.f41960b = new bg.f0(bnVar, new TLRPC.FileLocation[1], new TLRPC.FileLocation[1], bnVar.getUserConfig().e(), 0);
+                        x30Var.f41960c.f40378e2.u0(null, videoSize2, 0L);
+                        x30Var.f41959b = new bg.f0(bnVar, new TLRPC.FileLocation[1], new TLRPC.FileLocation[1], bnVar.getUserConfig().e(), 0);
                         return;
                     }
                     ArrayList arrayList3 = new ArrayList();
@@ -407,8 +407,8 @@ public final class fl implements org.telegram.ui.Cells.s0 {
                     if (videoSize != null) {
                         z11 = true;
                     }
-                    v30Var.f40673e = z11;
-                    v30Var.f40671b = bnVar.getMessagesController().c2(Long.valueOf(bnVar.f46103l6));
+                    v30Var.f40672e = z11;
+                    v30Var.f40670b = bnVar.getMessagesController().c2(Long.valueOf(bnVar.f46103l6));
                     PhotoViewer.p1().v2(v30Var);
                 }
             } else if (videoSize != null) {

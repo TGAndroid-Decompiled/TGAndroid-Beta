@@ -26,7 +26,7 @@ public final class g0 extends h1 {
         this.N2 = str;
         gc.a((FrameLayout) this.f30176b, new bi.t(16));
         if (!z10) {
-            ek0 ek0Var = this.f39532o1;
+            ek0 ek0Var = this.f39531o1;
             int i10 = this.f30211u0;
             ek0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(68.0f));
             yg.a aVar = new yg.a(getContext(), this.J0);
@@ -46,7 +46,7 @@ public final class g0 extends h1 {
     public static void m1(g0 g0Var) {
         cx cxVar = new cx(org.telegram.ui.Cells.c0.l(3, "onlySelect", "dialogsType", true));
         cxVar.E2 = new wc1(25, g0Var, "https://t.me/giftcode/" + g0Var.N2);
-        g0Var.f39536s1.presentFragment(cxVar);
+        g0Var.f39535s1.presentFragment(cxVar);
         g0Var.dismiss();
     }
 

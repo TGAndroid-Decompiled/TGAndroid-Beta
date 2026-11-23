@@ -7,14 +7,14 @@ public final class tu0 extends sa {
     public tu0(Context context) {
         super(context, null, true, false, null);
         O();
-        this.f39543z1 = true;
-        this.f39542y1 = true;
+        this.f39542z1 = true;
+        this.f39541y1 = true;
         Z0();
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i7 = this.f30211u0;
         ek0Var.setPadding(i7, 0, i7, 0);
-        this.f39532o1.j(new oa(this, 20));
-        this.f39532o1.setOnItemClickListener(new o(this, 14));
+        this.f39531o1.j(new oa(this, 20));
+        this.f39531o1.setOnItemClickListener(new o(this, 14));
     }
 
     @Override

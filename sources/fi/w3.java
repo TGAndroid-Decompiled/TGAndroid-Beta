@@ -80,13 +80,13 @@ public final class w3 {
             }
             oh0Var.P(i10);
         } else if (z10) {
-            if (oh0Var.f38207b0 > 20) {
+            if (oh0Var.f38206b0 > 20) {
                 oh0Var.N(0, false, false);
             }
             oh0Var.P(20);
             oh0Var.start();
         } else {
-            int i11 = oh0Var.f38207b0;
+            int i11 = oh0Var.f38206b0;
             if (i11 != 0 && i11 < 43) {
                 oh0Var.P(43);
                 oh0Var.start();

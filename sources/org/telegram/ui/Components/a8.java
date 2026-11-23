@@ -96,22 +96,22 @@ public abstract class a8 extends FrameLayout {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr[i12], 0.75f);
             ofFloat.setDuration(200L);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final a8 f42693b;
+                public final a8 f42692b;
 
                 {
-                    this.f42693b = this;
+                    this.f42692b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            a8 a8Var = this.f42693b;
+                            a8 a8Var = this.f42692b;
                             a8Var.f33410b[i12] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             a8Var.invalidate();
                             return;
                         default:
-                            a8 a8Var2 = this.f42693b;
+                            a8 a8Var2 = this.f42692b;
                             a8Var2.f33410b[i12] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             a8Var2.invalidate();
                             return;
@@ -122,22 +122,22 @@ public abstract class a8 extends FrameLayout {
             ofFloat2.setStartDelay(100L);
             ofFloat2.setDuration(200L);
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final a8 f42693b;
+                public final a8 f42692b;
 
                 {
-                    this.f42693b = this;
+                    this.f42692b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            a8 a8Var = this.f42693b;
+                            a8 a8Var = this.f42692b;
                             a8Var.f33410b[i7] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             a8Var.invalidate();
                             return;
                         default:
-                            a8 a8Var2 = this.f42693b;
+                            a8 a8Var2 = this.f42692b;
                             a8Var2.f33410b[i7] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             a8Var2.invalidate();
                             return;

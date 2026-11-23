@@ -519,9 +519,9 @@ public abstract class c5 {
         final hi.w4 w4Var = new hi.w4(context, h6Var);
         ((org.telegram.ui.ActionBar.w2) w4Var.f15708b).f30214w0 = false;
         tb0 tb0Var2 = new tb0(context, h6Var);
-        int i16 = z4Var.f42671a;
-        int i17 = z4Var.f42673c;
-        int i18 = z4Var.f42672b;
+        int i16 = z4Var.f42670a;
+        int i17 = z4Var.f42672c;
+        int i18 = z4Var.f42671b;
         tb0Var2.setTextColor(i16);
         tb0Var2.setTextOffset(org.telegram.messenger.g0.L(10.0f));
         tb0Var2.setItemCount(5);
@@ -587,7 +587,7 @@ public abstract class c5 {
             frameLayout2 = frameLayout5;
             zArr = zArr2;
             viewGroup = frameLayout3;
-            q0Var = new org.telegram.ui.ActionBar.q0(context, null, 0, z4Var.f42671a, false, h6Var);
+            q0Var = new org.telegram.ui.ActionBar.q0(context, null, 0, z4Var.f42670a, false, h6Var);
             context2 = context;
             q0Var.setLongClickEnabled(false);
             q0Var.setSubMenuOpenSide(2);
@@ -749,7 +749,7 @@ public abstract class c5 {
         }
         xbVar.setPadding(org.telegram.messenger.g0.L(34.0f), i14, org.telegram.messenger.g0.L(34.0f), i14);
         xbVar.setGravity(17);
-        xbVar.setTextColor(z4Var.f42676g);
+        xbVar.setTextColor(z4Var.f42675g);
         xbVar.setTextSize(1, f10);
         xbVar.setTypeface(org.telegram.messenger.g0.o());
         int i20 = z4Var.h;
@@ -822,13 +822,13 @@ public abstract class c5 {
                 zArr5[0] = !z11;
                 oh0 oh0Var2 = oh0Var;
                 if (!z11) {
-                    if (oh0Var2.f38207b0 >= 40) {
+                    if (oh0Var2.f38206b0 >= 40) {
                         oh0Var2.M(0);
                     }
                     oh0Var2.P(40);
                     oh0Var2.start();
                 } else {
-                    if (oh0Var2.f38207b0 < 40) {
+                    if (oh0Var2.f38206b0 < 40) {
                         oh0Var2.M(40);
                     }
                     oh0Var2.P(80);
@@ -1944,7 +1944,7 @@ public abstract class c5 {
         org.telegram.ui.ActionBar.t6.j(editTextBoldCursor, d02, K, null, h6Var);
         LinearLayout g10 = org.telegram.messenger.f3.g(context, 1);
         g10.addView((View) editTextBoldCursor, c8.ma.k(24.0f, 4.0f, 24.0f, 9.0f, -1, -2));
-        int i10 = p71.f38527f;
+        int i10 = p71.f38526f;
         if (webPage != null && (webPage.site_name != null || webPage.title != null || webPage.description != null || webPage.photo != null || webPage.document != null)) {
             p71 p71Var = new p71(context, h6Var);
             p71Var.setWebPage(webPage);
@@ -3148,7 +3148,7 @@ public abstract class c5 {
             org.telegram.ui.ActionBar.t6.j(textView, d02, K, null, h6Var);
             LinearLayout g10 = org.telegram.messenger.f3.g(context, 1);
             g10.addView(textView, c8.ma.k(22.0f, 4.0f, 22.0f, 9.0f, -1, -2));
-            int i10 = p71.f38527f;
+            int i10 = p71.f38526f;
             if (webPage != null && (webPage.site_name != null || webPage.title != null || webPage.description != null || webPage.photo != null || webPage.document != null)) {
                 p71 p71Var = new p71(context, h6Var);
                 p71Var.setWebPage(webPage);
@@ -3253,7 +3253,7 @@ public abstract class c5 {
         textView.setOnClickListener(new l1(user, g2Var, alertDialog$Builder, 0));
         SpannableString valueOf = SpannableString.valueOf(org.telegram.messenger.hd.N0(2131748142, null) + "  ");
         nq nqVar = new nq(2131230875, 0);
-        nqVar.f37950n = 1;
+        nqVar.f37949n = 1;
         nqVar.c(org.telegram.messenger.g0.L(10.0f));
         valueOf.setSpan(nqVar, valueOf.length() - 1, valueOf.length(), 33);
         textView.setText(valueOf);

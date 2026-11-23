@@ -319,13 +319,13 @@ public final class g3 extends v4.u0 {
                 return;
             case 10:
                 au auVar = (au) obj;
-                org.telegram.ui.Components.la laVar = auVar.f39538u1;
+                org.telegram.ui.Components.la laVar = auVar.f39537u1;
                 if (laVar != null) {
-                    org.telegram.ui.Components.kb0 kb0Var = laVar.f37157i0;
-                    if (kb0Var != null && kb0Var.getTop() == laVar.f37159k0) {
+                    org.telegram.ui.Components.kb0 kb0Var = laVar.f37156i0;
+                    if (kb0Var != null && kb0Var.getTop() == laVar.f37158k0) {
                         z13 = true;
                     }
-                    auVar.f39540w1 = !z13;
+                    auVar.f39539w1 = !z13;
                     laVar.invalidate();
                     return;
                 }
@@ -333,7 +333,7 @@ public final class g3 extends v4.u0 {
             case 11:
                 kz kzVar = (kz) obj;
                 if (kzVar.f49426a.J1 && (fzVar = kzVar.L) != null && (g3Var = fzVar.f30831b) != null) {
-                    if (g3Var.f42538e) {
+                    if (g3Var.f42537e) {
                         g3Var.k(true);
                         return;
                     } else {

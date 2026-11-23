@@ -18,7 +18,7 @@ public final class gp0 implements org.telegram.messenger.y10 {
                 org.telegram.messenger.g0.h3(new fm0(5, jt0Var, i6Var), 100L);
                 return;
             default:
-                int[] iArr = jt0.f36605t2;
+                int[] iArr = jt0.f36604t2;
                 org.telegram.messenger.g0.h3(new fm0(5, jt0Var, i6Var), 100L);
                 return;
         }

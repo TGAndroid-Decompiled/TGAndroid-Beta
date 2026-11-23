@@ -71,7 +71,7 @@ public final class m0 extends sa implements u9 {
         long j10 = starGift.f28663id;
         this.U1 = j10;
         this.F1 = org.telegram.messenger.g0.L(6.0f);
-        this.f39539v1 = 0.2f;
+        this.f39538v1 = 0.2f;
         O();
         String str = starGift.title;
         String str2 = str == null ? "Gift" : str;
@@ -180,7 +180,7 @@ public final class m0 extends sa implements u9 {
         d.leftMargin = i14 + i15;
         d.rightMargin += i15;
         this.f30176b.addView(eVar, d);
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i16 = this.f30211u0;
         ek0Var.setPadding(i16, i13, i16, org.telegram.messenger.g0.L(64.0f));
         this.f3880k2.O(i13);
@@ -423,7 +423,7 @@ public final class m0 extends sa implements u9 {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new b(this, 3), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new b(this, 3), this.J0);
         this.f3880k2 = c51Var;
         c51Var.f34062r = false;
         return c51Var;

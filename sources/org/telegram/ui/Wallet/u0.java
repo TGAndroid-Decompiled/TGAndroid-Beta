@@ -1373,7 +1373,7 @@ public final class u0 {
             synchronized (z0.f45376g) {
                 try {
                     try {
-                        i7 = z0Var.s().f39007b;
+                        i7 = z0Var.s().f39006b;
                     } catch (Exception e10) {
                         z0Var.m(e10);
                         i7 = 0;

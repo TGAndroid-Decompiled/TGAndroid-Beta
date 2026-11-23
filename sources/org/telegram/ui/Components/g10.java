@@ -16,14 +16,14 @@ public final class g10 extends AnimatorListenerAdapter {
         switch (this.f35362a) {
             case 0:
                 i10 i10Var = this.f35363b;
-                org.telegram.messenger.ls.f(i10Var.f36112r.f36351a).j(i10Var.f36110f);
+                org.telegram.messenger.ls.f(i10Var.f36111r.f36350a).j(i10Var.f36109f);
                 i10Var.requestLayout();
                 return;
             default:
                 i10 i10Var2 = this.f35363b;
                 i10Var2.d = null;
-                i10Var2.f36106a = null;
-                i10Var2.f36107b = false;
+                i10Var2.f36105a = null;
+                i10Var2.f36106b = false;
                 return;
         }
     }

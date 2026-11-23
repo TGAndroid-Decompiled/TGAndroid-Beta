@@ -19,7 +19,7 @@ public final class z1 extends n41 {
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         ah.r rVar = (ah.r) view;
         rVar.setUser((TLRPC.User) o41Var.H);
-        rVar.c(o41Var.f38085e, false);
+        rVar.c(o41Var.f38084e, false);
         rVar.setDivider(z10);
     }
 

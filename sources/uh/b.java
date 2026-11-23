@@ -64,7 +64,7 @@ public final class b extends Drawable implements y5 {
         this.E = new te.a(view, nr.h, 380L);
         n6 n6Var = new n6(false, false, false);
         this.f59018a = n6Var;
-        n6Var.f37796b = 21;
+        n6Var.f37795b = 21;
         n6Var.w(g0.L(11.0f));
         n6Var.setCallback(view);
         this.f59019b = new g9(i7, view, g0.L(18.0f), g0.L(8.33f), g0.N(1.0f));

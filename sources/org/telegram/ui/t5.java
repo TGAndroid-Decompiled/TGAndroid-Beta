@@ -74,9 +74,9 @@ public final class t5 extends s00 implements org.telegram.messenger.gs {
                     if (z11 && boost.user_id == -1) {
                         org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(t5Var.getParentActivity(), t5Var.getResourceProvider());
                         obVar.c(2131623982, 36, 36, new String[0]);
-                        obVar.f38158b.setText(org.telegram.messenger.hd.N0(2131753300, null));
-                        obVar.f38158b.setSingleLine(false);
-                        obVar.f38158b.setMaxLines(2);
+                        obVar.f38157b.setText(org.telegram.messenger.hd.N0(2131753300, null));
+                        obVar.f38157b.setSingleLine(false);
+                        obVar.f38157b.setMaxLines(2);
                         org.telegram.ui.Components.gc.g(t5Var, obVar, 2750).j();
                     } else if (!z12 && !z11) {
                         t5Var.presentFragment(ProfileActivity.D4(bVar.getDialogId()));

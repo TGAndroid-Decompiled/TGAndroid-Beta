@@ -35,7 +35,7 @@ public final class go0 extends yt {
             }
             this.f35647c0 = ofFloat;
             ofFloat.setDuration(200L);
-            ofFloat.setInterpolator(nr.f37961f);
+            ofFloat.setInterpolator(nr.f37960f);
             ofFloat.start();
             this.W = false;
         }
@@ -48,8 +48,8 @@ public final class go0 extends yt {
         ty emojiView = getEmojiView();
         ap0 ap0Var = this.f35648d0;
         if (emojiView != null) {
-            emojiView.f40154x0 = false;
-            emojiView.f40160y2 = false;
+            emojiView.f40153x0 = false;
+            emojiView.f40159y2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(ap0Var.C2.d);
         }

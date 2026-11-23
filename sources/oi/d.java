@@ -37,7 +37,7 @@ public final class d implements Runnable {
             case 2:
                 o oVar3 = this.f22050b;
                 if (!k10.i(oVar3.f22269n).q()) {
-                    new ug.y0(oVar3.f37520b.f40368a2, oVar3.getContext(), oVar3.f22269n, 43, true).show();
+                    new ug.y0(oVar3.f37519b.f40367a2, oVar3.getContext(), oVar3.f22269n, 43, true).show();
                     return;
                 }
                 return;

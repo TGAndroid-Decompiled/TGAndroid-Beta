@@ -47,12 +47,12 @@ public final class s1 extends j {
         l8 l8Var = this.f58163t0;
         if (l8Var != null) {
             l8Var.f12274e = (int) ((1.0f - e10) * 255.0f);
-            l8Var.setBounds(padding, padding, ((int) yt0Var.f42546a) - padding, ((int) yt0Var.f42547b) - padding);
+            l8Var.setBounds(padding, padding, ((int) yt0Var.f42545a) - padding, ((int) yt0Var.f42546b) - padding);
             this.f58163t0.draw(canvas);
         }
         l8 l8Var2 = this.f58162s0;
         l8Var2.f12274e = (int) (e10 * 255.0f);
-        l8Var2.setBounds(padding, padding, ((int) yt0Var.f42546a) - padding, ((int) yt0Var.f42547b) - padding);
+        l8Var2.setBounds(padding, padding, ((int) yt0Var.f42545a) - padding, ((int) yt0Var.f42546b) - padding);
         this.f58162s0.draw(canvas);
         Rect rect = org.telegram.messenger.g0.Q;
         float width = (this.f58162s0.getBounds().width() * 0.61f) / 2.0f;
@@ -102,7 +102,7 @@ public final class s1 extends j {
     }
 
     public int getPadding() {
-        return (int) ((this.f58161r0.f42547b - org.telegram.messenger.g0.L(84.0f)) / 2.0f);
+        return (int) ((this.f58161r0.f42546b - org.telegram.messenger.g0.L(84.0f)) / 2.0f);
     }
 
     @Override
@@ -121,8 +121,8 @@ public final class s1 extends j {
     @Override
     public final void k() {
         yt0 yt0Var = this.f58161r0;
-        setX(getPositionX() - (yt0Var.f42546a / 2.0f));
-        setY(getPositionY() - (yt0Var.f42547b / 2.0f));
+        setX(getPositionX() - (yt0Var.f42545a / 2.0f));
+        setY(getPositionY() - (yt0Var.f42546b / 2.0f));
         m();
     }
 
@@ -143,7 +143,7 @@ public final class s1 extends j {
     @Override
     public final void onMeasure(int i7, int i10) {
         yt0 yt0Var = this.f58161r0;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) yt0Var.f42546a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) yt0Var.f42547b, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) yt0Var.f42545a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) yt0Var.f42546b, 1073741824));
     }
 
     public final void q(boolean z10) {
@@ -174,7 +174,7 @@ public final class s1 extends j {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new ch.w(28, this, zArr));
         ofFloat.addListener(new h10(21, this, zArr));
-        ofFloat.setInterpolator(nr.f37962g);
+        ofFloat.setInterpolator(nr.f37961g);
         ofFloat.setDuration(350L);
         ofFloat.start();
     }

@@ -2,28 +2,28 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class ol implements a5, sj0, e81 {
-    public final int f38276a;
-    public final ChatAttachAlertPhotoLayout f38277b;
+    public final int f38275a;
+    public final ChatAttachAlertPhotoLayout f38276b;
 
     public ol(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7) {
-        this.f38276a = i7;
-        this.f38277b = chatAttachAlertPhotoLayout;
+        this.f38275a = i7;
+        this.f38276b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public void O(int i7, int i10, boolean z10) {
-        int i11 = this.f38276a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f38277b;
+        int i11 = this.f38275a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f38276b;
         switch (i11) {
             case 0:
                 boolean z11 = ChatAttachAlertPhotoLayout.f32798r1;
-                ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+                ui uiVar = chatAttachAlertPhotoLayout.f37519b;
                 uiVar.N0();
                 uiVar.X3.y1(7, false, z10, i7, 0, 0L, uiVar.g1(), false, 0L);
                 return;
             default:
                 boolean z12 = ChatAttachAlertPhotoLayout.f32798r1;
-                ui uiVar2 = chatAttachAlertPhotoLayout.f37520b;
+                ui uiVar2 = chatAttachAlertPhotoLayout.f37519b;
                 uiVar2.N0();
                 uiVar2.X3.y1(4, true, z10, i7, 0, 0L, uiVar2.g1(), false, 0L);
                 return;
@@ -32,7 +32,7 @@ public final class ol implements a5, sj0, e81 {
 
     @Override
     public void b(float f10) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f38277b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f38276b;
         gm gmVar = chatAttachAlertPhotoLayout.Q;
         if (gmVar != null) {
             chatAttachAlertPhotoLayout.C0 = f10;
@@ -44,8 +44,8 @@ public final class ol implements a5, sj0, e81 {
     @Override
     public boolean c(int i7, View view) {
         boolean z10 = ChatAttachAlertPhotoLayout.f32798r1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f38277b;
-        ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f38276b;
+        ui uiVar = chatAttachAlertPhotoLayout.f37519b;
         if (!uiVar.R2) {
             if (i7 == 0 && chatAttachAlertPhotoLayout.U0 == chatAttachAlertPhotoLayout.V0) {
                 si siVar = uiVar.X3;

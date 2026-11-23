@@ -33,7 +33,7 @@ public final class r10 implements View.OnClickListener {
             int i11 = 0;
             if (f40Var.v1() && !f40Var.V2.j()) {
                 b20 b20Var = f40Var.Z3;
-                if (b20Var != null && b20Var.f41110b && (org.telegram.messenger.g0.Q1() || f40.E5 == f40Var.u1())) {
+                if (b20Var != null && b20Var.f41109b && (org.telegram.messenger.g0.Q1() || f40.E5 == f40Var.u1())) {
                     f40Var.i1(null);
                     if (f40.E5) {
                         org.telegram.messenger.g0.h3(new lz(this, 5), 200L);

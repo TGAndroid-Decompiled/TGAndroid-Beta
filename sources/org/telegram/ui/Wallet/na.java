@@ -76,7 +76,7 @@ public final class na extends e51 {
             bi.f6 f6Var;
             na naVar = na.this;
             if (!naVar.f44715r && (f6Var = naVar.f34681a) != null) {
-                f6Var.f35790g3.O(true);
+                f6Var.f35789g3.O(true);
             }
         }
     };
@@ -231,7 +231,7 @@ public final class na extends e51 {
             arrayList.add(o41.u(hd.N0(2131742774, null)));
             x01 x01Var = this.N;
             o41 o41Var = new o41(-1);
-            o41Var.f38084c = x01Var;
+            o41Var.f38083c = x01Var;
             o41Var.A = 50;
             arrayList.add(o41Var);
             c51Var.U();
@@ -317,7 +317,7 @@ public final class na extends e51 {
                 c51Var.V();
                 FrameLayout frameLayout2 = this.H;
                 o41 o41Var2 = new o41(-1);
-                o41Var2.f38084c = frameLayout2;
+                o41Var2.f38083c = frameLayout2;
                 o41Var2.A = 60;
                 arrayList.add(o41Var2);
                 c51Var.U();
@@ -371,13 +371,13 @@ public final class na extends e51 {
                 }
                 o41 w10 = o41.w(user2);
                 if (!TextUtils.isEmpty(lowerCase)) {
-                    w10.f38092m = org.telegram.messenger.g0.r0(user2.first_name, user2.last_name, trim);
+                    w10.f38091m = org.telegram.messenger.g0.r0(user2.first_name, user2.last_name, trim);
                     String o4 = p10.o(user2);
                     if (!TextUtils.isEmpty(o4)) {
-                        w10.f38093n = org.telegram.messenger.g0.r0(p5.c.k("@", o4), null, "@".concat(trim));
+                        w10.f38092n = org.telegram.messenger.g0.r0(p5.c.k("@", o4), null, "@".concat(trim));
                     }
                     i10 = i12;
-                    w10.G = new o(user2, w10.f38092m, w10.f38093n, 9);
+                    w10.G = new o(user2, w10.f38091m, w10.f38092n, 9);
                 } else {
                     i10 = i12;
                 }
@@ -448,7 +448,7 @@ public final class na extends e51 {
         this.f34681a.setPadding(0, 0, 0, org.telegram.messenger.g0.L(68.0f));
         this.f34681a.setClipToPadding(false);
         bi.f6 f6Var = this.f34681a;
-        f6Var.f35790g3.f34062r = false;
+        f6Var.f35789g3.f34062r = false;
         f6Var.j(new org.telegram.ui.Components.oa(this, 26));
         x01 x01Var = new x01(5, context, this);
         this.U = (ClipboardManager) context.getSystemService("clipboard");
@@ -533,7 +533,7 @@ public final class na extends e51 {
         this.W.addView(this.f44707a0, c8.ma.e(-1, 48, 119));
         ((FrameLayout) this.fragmentView).addView(this.W, c8.ma.e(-1, 68, 87));
         o0();
-        this.f34681a.f35790g3.O(false);
+        this.f34681a.f35789g3.O(false);
         return this.fragmentView;
     }
 
@@ -593,14 +593,14 @@ public final class na extends e51 {
             }
             bi.f6 f6Var = this.f34681a;
             if (f6Var != null) {
-                f6Var.f35790g3.O(true);
+                f6Var.f35789g3.O(true);
                 return;
             }
             return;
         }
         bi.f6 f6Var2 = this.f34681a;
         if (f6Var2 != null) {
-            f6Var2.f35790g3.O(true);
+            f6Var2.f35789g3.O(true);
         }
     }
 

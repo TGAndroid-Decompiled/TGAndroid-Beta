@@ -34,15 +34,15 @@ public final class m1 extends WebChromeClient {
             default:
                 super.onHideCustomView();
                 org.telegram.ui.Components.iu iuVar = (org.telegram.ui.Components.iu) this.f49740b;
-                if (iuVar.f36313o1 != null) {
+                if (iuVar.f36312o1 != null) {
                     iuVar.f30176b.setVisibility(0);
-                    iuVar.f36314p1.setVisibility(4);
-                    iuVar.f36314p1.removeView(iuVar.f36313o1);
-                    WebChromeClient.CustomViewCallback customViewCallback2 = iuVar.f36315q1;
+                    iuVar.f36313p1.setVisibility(4);
+                    iuVar.f36313p1.removeView(iuVar.f36312o1);
+                    WebChromeClient.CustomViewCallback customViewCallback2 = iuVar.f36314q1;
                     if (customViewCallback2 != null && !customViewCallback2.getClass().getName().contains(".chromium.")) {
-                        iuVar.f36315q1.onCustomViewHidden();
+                        iuVar.f36314q1.onCustomViewHidden();
                     }
-                    iuVar.f36313o1 = null;
+                    iuVar.f36312o1 = null;
                     return;
                 }
                 return;
@@ -76,13 +76,13 @@ public final class m1 extends WebChromeClient {
                 return;
             default:
                 org.telegram.ui.Components.iu iuVar = (org.telegram.ui.Components.iu) this.f49740b;
-                if (iuVar.f36313o1 == null && !iuVar.N0()) {
+                if (iuVar.f36312o1 == null && !iuVar.N0()) {
                     iuVar.M0();
-                    iuVar.f36313o1 = view;
+                    iuVar.f36312o1 = view;
                     iuVar.f30176b.setVisibility(4);
-                    iuVar.f36314p1.setVisibility(0);
-                    iuVar.f36314p1.addView(view, c8.ma.c(-1.0f, -1));
-                    iuVar.f36315q1 = customViewCallback;
+                    iuVar.f36313p1.setVisibility(0);
+                    iuVar.f36313p1.addView(view, c8.ma.c(-1.0f, -1));
+                    iuVar.f36314q1 = customViewCallback;
                     return;
                 }
                 customViewCallback.onCustomViewHidden();

@@ -6,19 +6,19 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import android.widget.ImageView;
 public final class yl extends AnimatorListenerAdapter {
-    public final int f42454a;
-    public final ChatAttachAlertPhotoLayout f42455b;
+    public final int f42453a;
+    public final ChatAttachAlertPhotoLayout f42454b;
 
     public yl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7) {
-        this.f42454a = i7;
-        this.f42455b = chatAttachAlertPhotoLayout;
+        this.f42453a = i7;
+        this.f42454b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i7;
-        int i10 = this.f42454a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f42455b;
+        int i10 = this.f42453a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f42454b;
         switch (i10) {
             case 0:
                 ImageView imageView = chatAttachAlertPhotoLayout.f32838s0;
@@ -43,7 +43,7 @@ public final class yl extends AnimatorListenerAdapter {
                     chatAttachAlertPhotoLayout.Q.invalidate();
                 }
                 if (chatAttachAlertPhotoLayout.f32807c0) {
-                    chatAttachAlertPhotoLayout.f37520b.X3.K0();
+                    chatAttachAlertPhotoLayout.f37519b.X3.K0();
                 }
                 gm gmVar3 = chatAttachAlertPhotoLayout.Q;
                 if (gmVar3 != null) {

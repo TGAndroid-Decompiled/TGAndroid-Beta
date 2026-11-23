@@ -12,14 +12,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.PhotoViewer;
 public final class nl0 implements qj0 {
-    public final int f37898a;
-    public final int f37899b;
-    public final FrameLayout f37900c;
+    public final int f37897a;
+    public final int f37898b;
+    public final FrameLayout f37899c;
 
     public nl0(FrameLayout frameLayout, int i7, int i10) {
-        this.f37898a = i10;
-        this.f37900c = frameLayout;
-        this.f37899b = i7;
+        this.f37897a = i10;
+        this.f37899c = frameLayout;
+        this.f37898b = i7;
     }
 
     @Override
@@ -37,11 +37,11 @@ public final class nl0 implements qj0 {
         int L;
         ch.p0 p0Var;
         TLRPC.Document document;
-        switch (this.f37898a) {
+        switch (this.f37897a) {
             case 0:
-                sl0 sl0Var = (sl0) this.f37900c;
+                sl0 sl0Var = (sl0) this.f37899c;
                 org.telegram.ui.ActionBar.g2 g2Var = sl0Var.H;
-                di.l4 l4Var = sl0Var.f39618c;
+                di.l4 l4Var = sl0Var.f39617c;
                 org.telegram.messenger.gj E = l4Var.E(i7);
                 if (E != null) {
                     boolean z11 = false;
@@ -53,13 +53,13 @@ public final class nl0 implements qj0 {
                         vzVar.f52922b = e12;
                         l4Var.g(i7);
                         if (!sl0Var.J.V1()) {
-                            l4Var.k(0, ((sl0) l4Var.d).f39622r);
+                            l4Var.k(0, ((sl0) l4Var.d).f39621r);
                             return;
                         }
                         return;
                     }
                     if (view instanceof pl0) {
-                        org.telegram.ui.Cells.i7 i7Var = ((pl0) view).f38614a;
+                        org.telegram.ui.Cells.i7 i7Var = ((pl0) view).f38613a;
                         org.telegram.messenger.gj message = i7Var.getMessage();
                         TLRPC.Document F0 = message.F0();
                         if (i7Var.H) {
@@ -111,7 +111,7 @@ public final class nl0 implements qj0 {
                             E.P = true;
                             org.telegram.messenger.w7.G(org.telegram.messenger.c.a(org.telegram.messenger.k10.f24968t0).f23202a).W(F0, E, 0, 0);
                             i7Var.f(true);
-                            org.telegram.messenger.a6.q(this.f37899b).y();
+                            org.telegram.messenger.a6.q(this.f37898b).y();
                         } else {
                             org.telegram.messenger.w7.G(org.telegram.messenger.c.a(org.telegram.messenger.k10.f24968t0).f23202a).f(F0);
                             i7Var.f(true);
@@ -126,7 +126,7 @@ public final class nl0 implements qj0 {
                 }
                 return;
             case 1:
-                org.telegram.ui.fm0 fm0Var2 = (org.telegram.ui.fm0) this.f37900c;
+                org.telegram.ui.fm0 fm0Var2 = (org.telegram.ui.fm0) this.f37899c;
                 org.telegram.ui.lm0 lm0Var = fm0Var2.f47786q0;
                 ArrayList arrayList2 = fm0Var2.m0;
                 if (view instanceof org.telegram.ui.em0) {
@@ -191,7 +191,7 @@ public final class nl0 implements qj0 {
                     return;
                 }
                 int i16 = fm0Var2.W;
-                int i17 = this.f37899b;
+                int i17 = this.f37898b;
                 if (i7 == i16) {
                     fm0Var2.h = -1;
                     fm0Var2.f47782n = 0L;
@@ -284,9 +284,9 @@ public final class nl0 implements qj0 {
                 }
                 return;
             default:
-                org.telegram.ui.s11 s11Var = (org.telegram.ui.s11) this.f37900c;
+                org.telegram.ui.s11 s11Var = (org.telegram.ui.s11) this.f37899c;
                 boolean z12 = view instanceof org.telegram.ui.c11;
-                int i20 = this.f37899b;
+                int i20 = this.f37898b;
                 try {
                     if (z12) {
                         org.telegram.ui.c11 c11Var = (org.telegram.ui.c11) view;

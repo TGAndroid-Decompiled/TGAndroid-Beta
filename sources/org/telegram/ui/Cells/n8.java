@@ -225,7 +225,7 @@ public class n8 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
         super.dispatchDraw(canvas);
         org.telegram.ui.Components.n5 n5Var3 = this.L;
         if (n5Var3 != null) {
-            n5Var3.setBounds((getWidth() - this.L.f37781s) - org.telegram.messenger.g0.L(18.0f), (getHeight() - this.L.f37781s) / 2, getWidth() - org.telegram.messenger.g0.L(18.0f), (getHeight() + this.L.f37781s) / 2);
+            n5Var3.setBounds((getWidth() - this.L.f37780s) - org.telegram.messenger.g0.L(18.0f), (getHeight() - this.L.f37780s) / 2, getWidth() - org.telegram.messenger.g0.L(18.0f), (getHeight() + this.L.f37780s) / 2);
             this.L.draw(canvas);
         }
     }
@@ -254,7 +254,7 @@ public class n8 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
         }
         ra0 ra0Var = new ra0(1);
         ra0Var.b(i7, i10);
-        ra0Var.f39138b = q10;
+        ra0Var.f39137b = q10;
         rh0Var.setBackground(ra0Var);
     }
 

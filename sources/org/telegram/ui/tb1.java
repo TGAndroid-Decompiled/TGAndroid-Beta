@@ -30,7 +30,7 @@ public final class tb1 implements Runnable {
                 return;
             case 4:
                 org.telegram.ui.Components.voip.q1 q1Var = this.f52299b.f48331a0;
-                q1Var.f41282d0 = false;
+                q1Var.f41281d0 = false;
                 q1Var.invalidate();
                 return;
             case 5:
@@ -102,7 +102,7 @@ public final class tb1 implements Runnable {
                 hc1Var4.f48351i0.setAlpha(0.0f);
                 hc1Var4.L.setAlpha(0.0f);
                 hc1Var4.M0.setAlpha(0.0f);
-                hc1Var4.Z.f41281c0 = true;
+                hc1Var4.Z.f41280c0 = true;
                 org.telegram.messenger.g0.h3(new mz0(23, hc1Var4, b10), 32L);
                 return;
             case 12:

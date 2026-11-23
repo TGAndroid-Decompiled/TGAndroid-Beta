@@ -69,7 +69,7 @@ public final class n8 extends sa implements gs {
     }
 
     public final void e1() {
-        this.f39532o1.setPadding(org.telegram.messenger.g0.L(9.0f) + this.d2.f15917a + this.f30211u0, 0, org.telegram.messenger.g0.L(9.0f) + this.d2.f15919c + this.f30211u0, this.d2.d);
+        this.f39531o1.setPadding(org.telegram.messenger.g0.L(9.0f) + this.d2.f15917a + this.f30211u0, 0, org.telegram.messenger.g0.L(9.0f) + this.d2.f15919c + this.f30211u0, this.d2.d);
         i0.b bVar = this.d2;
         int i7 = bVar.f15917a;
         int i10 = this.f30211u0;
@@ -77,7 +77,7 @@ public final class n8 extends sa implements gs {
     }
 
     public final boolean f1() {
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         if (ek0Var != null && ek0Var.H) {
             for (int i7 = 0; i7 < ek0Var.getChildCount(); i7++) {
                 if (ek0Var.getChildAt(i7) instanceof yz) {

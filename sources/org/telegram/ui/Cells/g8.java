@@ -19,13 +19,13 @@ public final class g8 extends n41 {
         boolean z10;
         h8 h8Var = (h8) view;
         boolean z11 = false;
-        if (o41Var != null && o41Var.f38085e) {
+        if (o41Var != null && o41Var.f38084e) {
             z10 = true;
         } else {
             z10 = false;
         }
         h8Var.b(z10, true);
-        if ((ek0Var instanceof h51) && ((h51) ek0Var).f35793k3) {
+        if ((ek0Var instanceof h51) && ((h51) ek0Var).f35792k3) {
             z11 = true;
         }
         h8Var.c(z11);
@@ -46,7 +46,7 @@ public final class g8 extends n41 {
                 public final boolean onTouch(View view, MotionEvent motionEvent) {
                     h51 h51Var2;
                     v4.z zVar;
-                    if (motionEvent.getAction() == 0 && (zVar = (h51Var2 = h51.this).f35791h3) != null) {
+                    if (motionEvent.getAction() == 0 && (zVar = (h51Var2 = h51.this).f35790h3) != null) {
                         zVar.t(h51Var2.T(h8Var));
                         return false;
                     }

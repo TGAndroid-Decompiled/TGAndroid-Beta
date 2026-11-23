@@ -14,12 +14,12 @@ public abstract class ms extends c51 {
     public boolean X;
     public final ArrayList Y;
     public boolean Z;
-    public boolean f37622a0;
-    public boolean f37623b0;
-    public int f37624c0;
-    public int f37625d0;
-    public String f37626e0;
-    public final oo f37627f0;
+    public boolean f37621a0;
+    public boolean f37622b0;
+    public int f37623c0;
+    public int f37624d0;
+    public String f37625e0;
+    public final oo f37626f0;
 
     public ms(ek0 ek0Var, Context context, int i7, int i10) {
         super(ek0Var, context, i7, 0, false, null, null);
@@ -29,7 +29,7 @@ public abstract class ms extends c51 {
         this.V = new ArrayList();
         this.Y = new ArrayList();
         pm0 pm0Var = (pm0) this;
-        this.f37627f0 = new oo(pm0Var, 8);
+        this.f37626f0 = new oo(pm0Var, 8);
         this.f34064w = new d(pm0Var, 10);
         this.Q = i7;
         this.R = i10;

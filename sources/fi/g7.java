@@ -29,12 +29,12 @@ public final class g7 {
         this.f12068g = new org.telegram.ui.Components.g5(buVar, 350L, nrVar);
         s10 s10Var = new s10();
         this.f12065c = s10Var;
-        s10Var.f39446a = true;
-        s10Var.f39447b = true;
+        s10Var.f39445a = true;
+        s10Var.f39446b = true;
         b(false);
-        s10Var.f39448c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
-        s10Var.f39448c.setStyle(Paint.Style.STROKE);
-        s10Var.f39448c.setStrokeCap(Paint.Cap.ROUND);
+        s10Var.f39447c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
+        s10Var.f39447c.setStyle(Paint.Style.STROKE);
+        s10Var.f39447c.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public final Paint a(RectF rectF) {
@@ -72,7 +72,7 @@ public final class g7 {
         s10 s10Var = this.f12065c;
         s10Var.d(a10, a11, 0, 0);
         s10Var.b(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        return s10Var.f39448c;
+        return s10Var.f39447c;
     }
 
     public final void b(boolean z10) {

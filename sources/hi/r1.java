@@ -225,7 +225,7 @@ public final class r1 extends dk0 {
             i2Var3.getPhotoImage().E0(7);
             if (i2Var3.f30817e0 == null) {
                 mc mcVar = new mc(i2Var3, 1.0f, 3.0f);
-                mcVar.f37475e = 120L;
+                mcVar.f37474e = 120L;
                 i2Var3.f30817e0 = mcVar;
             }
             i2Var3.setIsKeyboard(true);

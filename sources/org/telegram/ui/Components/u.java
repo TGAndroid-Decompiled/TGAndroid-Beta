@@ -6,31 +6,31 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class u implements org.telegram.messenger.r10 {
-    public final int f40178a;
-    public final int f40179b;
-    public final Object f40180c;
+    public final int f40177a;
+    public final int f40178b;
+    public final Object f40179c;
 
     public u(Object obj, int i7, int i10) {
-        this.f40178a = i10;
-        this.f40180c = obj;
-        this.f40179b = i7;
+        this.f40177a = i10;
+        this.f40179c = obj;
+        this.f40178b = i7;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         String str;
         boolean z10;
-        int i7 = this.f40178a;
-        int i10 = this.f40179b;
-        Object obj3 = this.f40180c;
+        int i7 = this.f40177a;
+        int i10 = this.f40178b;
+        Object obj3 = this.f40179c;
         switch (i7) {
             case 0:
                 w wVar = (w) obj3;
                 TL_aicompose.aiComposeToneExample aicomposetoneexample = (TL_aicompose.aiComposeToneExample) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (aicomposetoneexample != null) {
-                    wVar.f41607e2[i10] = aicomposetoneexample;
-                    wVar.f41606c2.O(true);
+                    wVar.f41606e2[i10] = aicomposetoneexample;
+                    wVar.f41605c2.O(true);
                     return;
                 }
                 wVar.getClass();

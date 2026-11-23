@@ -6,18 +6,18 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class zh0 extends v4.i0 {
-    public final int f42840c;
+    public final int f42839c;
     public final Context d;
-    public final org.telegram.ui.ActionBar.h6 f42841e;
-    public final boolean f42842f;
+    public final org.telegram.ui.ActionBar.h6 f42840e;
+    public final boolean f42841f;
     public final gi0 h;
 
     public zh0(gi0 gi0Var, int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
         this.h = gi0Var;
-        this.f42840c = i7;
+        this.f42839c = i7;
         this.d = context;
-        this.f42841e = h6Var;
-        this.f42842f = z10;
+        this.f42840e = h6Var;
+        this.f42841f = z10;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class zh0 extends v4.i0 {
         int i7;
         gi0 gi0Var = this.h;
         int size = gi0Var.f35585n.size();
-        if (!gi0Var.I.isEmpty() && !org.telegram.messenger.np.u1(this.f42840c).K3()) {
+        if (!gi0Var.I.isEmpty() && !org.telegram.messenger.np.u1(this.f42839c).K3()) {
             i7 = 1;
         } else {
             i7 = 0;
@@ -64,11 +64,11 @@ public final class zh0 extends v4.i0 {
             Context context = this.d;
             n6Var = new FrameLayout(context);
             View view = new View(context);
-            org.telegram.ui.ActionBar.t6.i(view, org.telegram.ui.ActionBar.t6.K(0.06f, org.telegram.ui.ActionBar.m6.E8), this.f42841e);
+            org.telegram.ui.ActionBar.t6.i(view, org.telegram.ui.ActionBar.t6.K(0.06f, org.telegram.ui.ActionBar.m6.E8), this.f42840e);
             n6Var.addView(view, c8.ma.c(8.0f, -1));
             n6Var.addView(gi0Var.K, c8.ma.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
         } else {
-            n6Var = new org.telegram.ui.Cells.n6(0, this.f42840c, this.d, this.f42841e, true, this.f42842f);
+            n6Var = new org.telegram.ui.Cells.n6(0, this.f42839c, this.d, this.f42840e, true, this.f42841f);
         }
         return new v4.f1(n6Var);
     }

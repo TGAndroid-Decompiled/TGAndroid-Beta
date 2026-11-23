@@ -33,10 +33,10 @@ public final class b extends sa {
         int i7;
         int i10;
         this.F1 = g0.L(30.0f);
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i11 = this.f30211u0;
         ek0Var.setPadding(i11, 0, i11, g0.L(130.0f) + g0.f24041n);
-        this.f39532o1.setClipToPadding(false);
+        this.f39531o1.setClipToPadding(false);
         e eVar = new e(context, this.J0, true);
         eVar.setText(hd.N0(2131752577, null));
         eVar.e();
@@ -79,7 +79,7 @@ public final class b extends sa {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new d7(this, 25), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new d7(this, 25), this.J0);
         this.U1 = c51Var;
         c51Var.f34062r = false;
         return c51Var;

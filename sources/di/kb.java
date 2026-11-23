@@ -93,7 +93,7 @@ public final class kb extends LinearLayout {
         nq nqVar = new nq(0, i5.c.g(context, 2131231958));
         nqVar.d = false;
         nqVar.c(org.telegram.messenger.g0.L(18.0f));
-        nqVar.f37952s = org.telegram.messenger.g0.L(0.5f);
+        nqVar.f37951s = org.telegram.messenger.g0.L(0.5f);
         spannableString2.setSpan(nqVar, 0, spannableString2.length(), 33);
     }
 

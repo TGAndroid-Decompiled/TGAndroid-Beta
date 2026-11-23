@@ -38,7 +38,7 @@ public final class av {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.f22983f = ofFloat;
             ofFloat.setDuration(Utilities.i(this.f22982e * 0.3f, 550.0f, 250.0f));
-            this.f22983f.setInterpolator(org.telegram.ui.Components.nr.f37964j);
+            this.f22983f.setInterpolator(org.telegram.ui.Components.nr.f37963j);
             this.f22983f.addUpdateListener(new q(2, this, view));
             this.f22983f.addListener(new ah.l(12, this, view));
             this.f22983f.start();

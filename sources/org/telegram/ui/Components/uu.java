@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 public final class uu extends dk0 {
-    public final ev f40587c;
+    public final ev f40586c;
 
     public uu(ev evVar) {
-        this.f40587c = evVar;
+        this.f40586c = evVar;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class uu extends dk0 {
 
     public final int E(int i7) {
         int i10;
-        ev evVar = this.f40587c;
+        ev evVar = this.f40586c;
         qu quVar = evVar.f34992p1;
         if (evVar.D1) {
             i10 = 2;
@@ -53,7 +53,7 @@ public final class uu extends dk0 {
         int i7;
         int min;
         ArrayList arrayList;
-        ev evVar = this.f40587c;
+        ev evVar = this.f40586c;
         qu quVar = evVar.f34992p1;
         if (!org.telegram.messenger.k10.i(evVar.f30173a).q() && (arrayList = quVar.f34304b) != null && arrayList.size() == 1 && org.telegram.messenger.gj.V3((TLRPC.TL_messages_stickerSet) quVar.f34304b.get(0))) {
             r22 = 1;
@@ -89,7 +89,7 @@ public final class uu extends dk0 {
 
     @Override
     public final int d(int i7) {
-        ev evVar = this.f40587c;
+        ev evVar = this.f40586c;
         qu quVar = evVar.f34992p1;
         int i10 = 0;
         if (i7 == 0) {
@@ -135,14 +135,14 @@ public final class uu extends dk0 {
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View view;
         View view2;
-        ev evVar = this.f40587c;
+        ev evVar = this.f40586c;
         if (i7 == 0) {
             view = evVar.f34991o1;
         } else {
             boolean z10 = true;
             if (i7 == 1) {
                 ?? view3 = new View(evVar.getContext());
-                view3.f42219a = new org.telegram.messenger.hc[2];
+                view3.f42218a = new org.telegram.messenger.hc[2];
                 view2 = view3;
             } else if (i7 == 2) {
                 Context context = evVar.getContext();

@@ -528,7 +528,7 @@ public abstract class c6 {
         }
         m00 m00Var = (m00) b6Var.f22031e;
         if (m00Var != null) {
-            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = m00Var.f37369b;
+            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = m00Var.f37368b;
             TL_iv.textDate textdate = new TL_iv.textDate();
             textdate.text = richText10;
             textdate.flags = tL_messageEntityFormattedDate.flags;

@@ -23,7 +23,7 @@ public final class f3 implements x4 {
         int indexOf = t3Var.f22436t3.indexOf(this.f22125b);
         if (indexOf >= 0) {
             t3Var.f22436t3.remove(indexOf);
-            t3Var.f35790g3.O(true);
+            t3Var.f35789g3.O(true);
         }
         t3Var.f22428p3.onContentChanged();
     }
@@ -40,7 +40,7 @@ public final class f3 implements x4 {
         }
         t3 t3Var = this.f22126c;
         t3Var.f22419h4.remove(rVar);
-        t3Var.f35790g3.O(false);
+        t3Var.f35789g3.O(false);
         t3Var.f22428p3.onContentChanged();
     }
 

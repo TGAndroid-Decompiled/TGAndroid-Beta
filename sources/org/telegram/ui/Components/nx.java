@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class nx extends c5.a {
-    public final ty f38004c;
+    public final ty f38003c;
 
     public nx(ty tyVar) {
-        this.f38004c = tyVar;
+        this.f38003c = tyVar;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class nx extends c5.a {
 
     @Override
     public final int b() {
-        return this.f38004c.f40093e.size();
+        return this.f38003c.f40092e.size();
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class nx extends c5.a {
 
     @Override
     public final Object e(c5.l lVar, int i7) {
-        FrameLayout frameLayout = ((py) this.f38004c.f40093e.get(i7)).f38678b;
+        FrameLayout frameLayout = ((py) this.f38003c.f40092e.get(i7)).f38677b;
         lVar.addView(frameLayout);
         return frameLayout;
     }

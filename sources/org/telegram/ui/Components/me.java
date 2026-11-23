@@ -8,15 +8,15 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class me implements Runnable {
-    public final int f37500a;
+    public final int f37499a;
 
     public me(int i7) {
-        this.f37500a = i7;
+        this.f37499a = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f37500a) {
+        switch (this.f37499a) {
             case 0:
                 MediaController.B().B0(0, 0, false, false);
                 return;
@@ -26,7 +26,7 @@ public final class me implements Runnable {
             case 2:
                 return;
             case 3:
-                int i7 = tn.f39948s1;
+                int i7 = tn.f39947s1;
                 return;
             case 4:
                 PhotoViewer.p1().z0(false, false);
@@ -62,16 +62,16 @@ public final class me implements Runnable {
                 }
                 return;
             case 12:
-                int i10 = yy0.f42592f;
+                int i10 = yy0.f42591f;
                 return;
             case 13:
                 SharedPreferences.Editor edit = org.telegram.messenger.np.g1().edit();
-                oz0.f38422f = Boolean.TRUE;
+                oz0.f38421f = Boolean.TRUE;
                 edit.putBoolean("nothanos", true).apply();
                 return;
             case 14:
                 SharedPreferences.Editor edit2 = org.telegram.messenger.np.g1().edit();
-                oz0.f38422f = Boolean.TRUE;
+                oz0.f38421f = Boolean.TRUE;
                 edit2.putBoolean("nothanos", true).apply();
                 return;
             case 15:
@@ -131,7 +131,7 @@ public final class me implements Runnable {
     }
 
     public me(Object obj, int i7) {
-        this.f37500a = i7;
+        this.f37499a = i7;
     }
 
     private final void a() {

@@ -21,15 +21,15 @@ public final class p extends sa {
         this.T1 = g2Var.getCurrentAccount();
         this.U1 = str;
         c1();
-        this.f39539v1 = 0.6f;
-        this.f39542y1 = true;
-        this.f39543z1 = true;
+        this.f39538v1 = 0.6f;
+        this.f39541y1 = true;
+        this.f39542z1 = true;
         O();
         Z0();
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i7 = this.f30211u0;
         ek0Var.setPadding(i7, 0, i7, 0);
-        this.f39532o1.setOnItemClickListener(new g4(1, this, h0Var));
+        this.f39531o1.setOnItemClickListener(new g4(1, this, h0Var));
     }
 
     @Override

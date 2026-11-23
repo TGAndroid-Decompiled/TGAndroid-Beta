@@ -39,9 +39,9 @@ public final class m5 implements View.OnClickListener {
                 return;
             default:
                 jt0 jt0Var = (jt0) this.d;
-                org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36684y1;
+                org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36683y1;
                 if (this.f3895b) {
-                    jt0Var.a1(this.f3896c, jt0Var.f36648m1, g2Var);
+                    jt0Var.a1(this.f3896c, jt0Var.f36647m1, g2Var);
                     return;
                 }
                 g2Var.getMessagesController().h7.edit().putBoolean("story_keep", true).apply();

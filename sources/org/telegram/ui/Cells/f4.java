@@ -20,11 +20,11 @@ public final class f4 {
         org.telegram.ui.Components.w9 w9Var2 = new org.telegram.ui.Components.w9(8);
         this.f30641g = w9Var2;
         float f10 = i7;
-        w9Var.f41713a = f10;
+        w9Var.f41712a = f10;
         float f11 = i10;
-        w9Var.f41714b = f11;
-        w9Var2.f41713a = f10;
-        w9Var2.f41714b = f11;
+        w9Var.f41713b = f11;
+        w9Var2.f41712a = f10;
+        w9Var2.f41713b = f11;
         w9Var.b();
         w9Var2.b();
         int i11 = org.telegram.ui.ActionBar.m6.f29464hh;
@@ -37,7 +37,7 @@ public final class f4 {
     }
 
     public final float b() {
-        float interpolation = nr.f37962g.getInterpolation(this.d);
+        float interpolation = nr.f37961g.getInterpolation(this.d);
         return com.google.android.gms.internal.vision.e2.z(1.0f, interpolation, 1.0f, ((this.f30636a * 0.2f) + 0.9f) * interpolation);
     }
 

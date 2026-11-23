@@ -116,7 +116,7 @@ public final class sa implements Runnable {
                 org.telegram.messenger.g0.r(this);
                 ai.p0 p0Var = (ai.p0) this.f641b;
                 if (p0Var.f1405r == 1 && p0Var.f1407s != null) {
-                    Editable text = p0Var.f1392f.f39573a.F0.getText();
+                    Editable text = p0Var.f1392f.f39572a.F0.getText();
                     if (text != null && text.toString().trim().length() > 0) {
                         z10 = true;
                     } else {
@@ -218,7 +218,7 @@ public final class sa implements Runnable {
                                     ai.p0 p0Var2 = a0Var2.f1114b;
                                     float[] fArr = p0Var2.D0;
                                     org.telegram.ui.Components.d6 d6Var = p0Var2.Y;
-                                    if (d6Var == null || d6Var.f34386c < 0.2f || !p0Var2.r(fArr) || (layout = p0Var2.f1392f.f39573a.F0.getLayout()) == null || spanEnd2 > layout.getText().length()) {
+                                    if (d6Var == null || d6Var.f34386c < 0.2f || !p0Var2.r(fArr) || (layout = p0Var2.f1392f.f39572a.F0.getLayout()) == null || spanEnd2 > layout.getText().length()) {
                                         h2VarArr = h2VarArr2;
                                         i7 = length2;
                                     } else {

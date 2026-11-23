@@ -170,8 +170,8 @@ public final class i1 implements Runnable {
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.d;
         gj gjVar = (gj) this.f1240e;
         org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.f1241f;
-        int[] iArr = lu0Var.f38211e;
-        RLottieNative[] rLottieNativeArr = lu0Var.f37286g1;
+        int[] iArr = lu0Var.f38210e;
+        RLottieNative[] rLottieNativeArr = lu0Var.f37285g1;
         if (lu0Var.X0) {
             org.telegram.messenger.g0.g3(new ju0(lu0Var, 2));
             return;
@@ -206,7 +206,7 @@ public final class i1 implements Runnable {
                         z10 = true;
                     } else {
                         rLottieNativeArr[i11] = RLottieNative.b(y22, iArr, null, null);
-                        lu0Var.f37287h1[i11] = iArr[0];
+                        lu0Var.f37286h1[i11] = iArr[0];
                     }
                 }
             }
@@ -392,12 +392,12 @@ public final class i1 implements Runnable {
                     saVar.U1 = -1;
                     saVar.Y1 = "";
                     saVar.Z1 = new ArrayList();
-                    saVar.f36069b2 = "";
+                    saVar.f36068b2 = "";
                     saVar.d2 = new ArrayList();
                     ArrayList arrayList3 = new ArrayList();
-                    saVar.f36071e2 = arrayList3;
-                    saVar.f36088v2 = -1;
-                    saVar.f36091y2 = -5;
+                    saVar.f36070e2 = arrayList3;
+                    saVar.f36087v2 = -1;
+                    saVar.f36090y2 = -5;
                     saVar.T1 = str;
                     saVar.V1 = chatlist_chatlistinvite;
                     arrayList3.clear();
@@ -406,12 +406,12 @@ public final class i1 implements Runnable {
                         TLRPC.TL_textWithEntities tL_textWithEntities = tL_chatlists_chatlistInvite2.title;
                         saVar.Y1 = tL_textWithEntities.text;
                         saVar.Z1 = tL_textWithEntities.entities;
-                        saVar.f36068a2 = tL_chatlists_chatlistInvite2.title_noanimate;
-                        saVar.f36070c2 = tL_chatlists_chatlistInvite2.peers;
+                        saVar.f36067a2 = tL_chatlists_chatlistInvite2.title_noanimate;
+                        saVar.f36069c2 = tL_chatlists_chatlistInvite2.peers;
                     } else if (chatlist_chatlistinvite instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) {
                         TL_chatlists.TL_chatlists_chatlistInviteAlready tL_chatlists_chatlistInviteAlready2 = (TL_chatlists.TL_chatlists_chatlistInviteAlready) chatlist_chatlistinvite;
-                        saVar.f36070c2 = tL_chatlists_chatlistInviteAlready2.missing_peers;
-                        saVar.f36072f2 = tL_chatlists_chatlistInviteAlready2.already_peers;
+                        saVar.f36069c2 = tL_chatlists_chatlistInviteAlready2.missing_peers;
+                        saVar.f36071f2 = tL_chatlists_chatlistInviteAlready2.already_peers;
                         saVar.U1 = tL_chatlists_chatlistInviteAlready2.filter_id;
                         ArrayList arrayList4 = g2Var.getMessagesController().Q0;
                         if (arrayList4 != null) {
@@ -423,7 +423,7 @@ public final class i1 implements Runnable {
                                 if (soVar.f26886a == saVar.U1) {
                                     saVar.Y1 = soVar.f26887b;
                                     saVar.Z1 = soVar.f26888c;
-                                    saVar.f36068a2 = soVar.f26897n;
+                                    saVar.f36067a2 = soVar.f26897n;
                                     break;
                                 }
                                 i10++;

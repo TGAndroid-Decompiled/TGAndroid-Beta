@@ -53,7 +53,7 @@ public final class b2 extends org.telegram.ui.Components.o6 {
                 canvas.translate(org.telegram.messenger.g0.L(15.0f), 0.0f);
                 super.onDraw(canvas);
                 canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(11.0f));
-                ((o51) this.f30456w).f38111b.draw(canvas);
+                ((o51) this.f30456w).f38110b.draw(canvas);
                 canvas.restore();
                 return;
             case 3:

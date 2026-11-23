@@ -62,9 +62,9 @@ public final class x0 extends e51 {
                     int i13 = g.f53138b;
                     o41 K = o41.K(g.class);
                     K.A = 3;
-                    K.f38097r = false;
+                    K.f38096r = false;
                     K.I = w0Var;
-                    K.f38093n = str;
+                    K.f38092n = str;
                     arrayList.add(K);
                 }
             }
@@ -84,9 +84,9 @@ public final class x0 extends e51 {
                 int i16 = g.f53138b;
                 o41 K2 = o41.K(g.class);
                 K2.A = 3;
-                K2.f38097r = false;
+                K2.f38096r = false;
                 K2.I = w0Var2;
-                K2.f38093n = str2;
+                K2.f38092n = str2;
                 arrayList.add(K2);
                 size2--;
                 i7 = 5;
@@ -164,7 +164,7 @@ public final class x0 extends e51 {
             i7 = 2131742651;
         }
         nv0Var.d.setText(hd.N0(i7, null));
-        this.f53402y.f37996e.setVisibility(8);
+        this.f53402y.f37995e.setVisibility(8);
         this.f53402y.e(false, false);
         this.f53402y.setAnimateLayoutChange(true);
         ((FrameLayout) this.fragmentView).addView(this.f53402y, ma.c(-1.0f, -1));

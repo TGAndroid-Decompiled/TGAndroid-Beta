@@ -31,11 +31,11 @@ public final class f3 extends n41 {
         K.v = 1;
         K.A = i7;
         K.H = starGift;
-        K.f38085e = z10;
+        K.f38084e = z10;
         K.I = Boolean.valueOf(z11);
-        K.f38098s = z13;
-        K.f38097r = z12;
-        K.f38100u = z14;
+        K.f38097s = z13;
+        K.f38096r = z12;
+        K.f38099u = z14;
         return K;
     }
 
@@ -120,31 +120,31 @@ public final class f3 extends n41 {
             g3Var.l();
         } else if (obj instanceof TL_stars.StarGift) {
             TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-            boolean z13 = o41Var.f38085e;
+            boolean z13 = o41Var.f38084e;
             Object obj2 = o41Var.I;
             if (obj2 instanceof Boolean) {
                 z11 = ((Boolean) obj2).booleanValue();
             } else {
                 z11 = false;
             }
-            g3Var.h(starGift, z13, z11, o41Var.f38097r, o41Var.f38098s, o41Var.f38100u);
+            g3Var.h(starGift, z13, z11, o41Var.f38096r, o41Var.f38097s, o41Var.f38099u);
         } else if (obj instanceof TL_stars.SavedStarGift) {
-            z12 = g3Var.i((TL_stars.SavedStarGift) obj, o41Var.f38097r, o41Var.f38098s);
+            z12 = g3Var.i((TL_stars.SavedStarGift) obj, o41Var.f38096r, o41Var.f38097s);
         }
-        if (o41Var.f38086f) {
-            g3Var.c(o41Var.f38085e, z12);
+        if (o41Var.f38085f) {
+            g3Var.c(o41Var.f38084e, z12);
         }
         g3Var.e(o41Var.h, z12);
         FrameLayout frameLayout = g3Var.d;
         float f11 = 1.0f;
-        if (o41Var.f38087g) {
+        if (o41Var.f38086g) {
             f10 = 1.0f;
         } else {
             f10 = 0.65f;
         }
         frameLayout.setAlpha(f10);
         h3 h3Var = g3Var.f3654f;
-        if (!o41Var.f38087g) {
+        if (!o41Var.f38086g) {
             f11 = 0.5f;
         }
         h3Var.setAlpha(f11);
@@ -157,7 +157,7 @@ public final class f3 extends n41 {
 
     @Override
     public final boolean e(o41 o41Var, o41 o41Var2) {
-        if (o41Var.f38097r == o41Var2.f38097r) {
+        if (o41Var.f38096r == o41Var2.f38096r) {
             Object obj = o41Var.H;
             if (obj != null || o41Var2.H != null) {
                 if (obj instanceof ug.j) {
@@ -187,7 +187,7 @@ public final class f3 extends n41 {
                     }
                 }
             }
-            if (o41Var.A == o41Var2.A && o41Var.f38085e == o41Var2.f38085e && o41Var.C == o41Var2.C && TextUtils.equals(o41Var.f38092m, o41Var2.f38092m)) {
+            if (o41Var.A == o41Var2.A && o41Var.f38084e == o41Var2.f38084e && o41Var.C == o41Var2.C && TextUtils.equals(o41Var.f38091m, o41Var2.f38091m)) {
                 return true;
             }
             return false;

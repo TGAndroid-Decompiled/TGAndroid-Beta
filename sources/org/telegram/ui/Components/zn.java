@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class zn implements j8 {
-    public final org.telegram.ui.ActionBar.g1[] f42947a;
-    public final co f42948b;
+    public final org.telegram.ui.ActionBar.g1[] f42946a;
+    public final co f42947b;
 
     public zn(co coVar, org.telegram.ui.ActionBar.g1[] g1VarArr) {
-        this.f42948b = coVar;
-        this.f42947a = g1VarArr;
+        this.f42947b = coVar;
+        this.f42946a = g1VarArr;
     }
 
     @Override
     public final void R0(int i7, int i10) {
         int i11;
-        org.telegram.ui.bn bnVar = this.f42948b.H;
+        org.telegram.ui.bn bnVar = this.f42947b.H;
         if (bnVar != null) {
             bnVar.getMessagesController().T4(i7, bnVar.a());
             TLRPC.ChatFull chatFull = bnVar.f46181r8;
@@ -37,7 +37,7 @@ public final class zn implements j8 {
 
     @Override
     public final void dismiss() {
-        org.telegram.ui.ActionBar.g1 g1Var = this.f42947a[0];
+        org.telegram.ui.ActionBar.g1 g1Var = this.f42946a[0];
         if (g1Var != null) {
             g1Var.dismiss();
         }

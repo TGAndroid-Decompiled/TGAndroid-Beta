@@ -90,7 +90,7 @@ public final class i2 extends View implements org.telegram.ui.ActionBar.b6 {
         this.f48562b = p50Var;
         org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(new ColorDrawable(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Hl, false)), org.telegram.ui.ActionBar.m6.X0(context, 2131231230, -16777216));
         this.f48563c = oqVar;
-        oqVar.f38339x = true;
+        oqVar.f38338x = true;
         setBackgroundDrawable(oqVar);
         setImportantForAccessibility(2);
     }

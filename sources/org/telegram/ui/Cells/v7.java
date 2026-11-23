@@ -29,7 +29,7 @@ public final class v7 extends org.telegram.ui.Components.q9 {
             e7Var.f11946o = false;
             e7Var.f11956z = 1;
             e7Var.J = this.H;
-            fi.i7.h(0L, canvas, this.f38836a, e7Var);
+            fi.i7.h(0L, canvas, this.f38835a, e7Var);
             return;
         }
         super.onDraw(canvas);

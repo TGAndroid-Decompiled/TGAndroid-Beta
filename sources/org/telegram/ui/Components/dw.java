@@ -16,7 +16,7 @@ public final class dw extends rg.d {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.f34593h3.f40125o2.g();
+        this.f34593h3.f40124o2.g();
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class dw extends rg.d {
             hwVar.setUnderlineHeight(i10);
         }
         if (oyVar != null && getAdapter() == oyVar && oyVar.d == 0) {
-            oy oyVar2 = oyVar.P.f38016x;
+            oy oyVar2 = oyVar.P.f38015x;
             if (!oyVar2.R.H0.G && !oyVar2.E) {
                 if (tyVar.F0.N0() + 50 > oyVar.b()) {
                     ny nyVar = oyVar.P;
@@ -48,11 +48,11 @@ public final class dw extends rg.d {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         ty tyVar = this.f34593h3;
-        if (!tyVar.f40097f) {
+        if (!tyVar.f40096f) {
             org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
             dw dwVar = tyVar.E0;
             tyVar.getMeasuredHeight();
-            boolean q10 = p10.q(motionEvent, dwVar, tyVar.f40106h2, this.f34873o2);
+            boolean q10 = p10.q(motionEvent, dwVar, tyVar.f40105h2, this.f34873o2);
             if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
                 return false;
             }
@@ -64,7 +64,7 @@ public final class dw extends rg.d {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         ty tyVar = this.f34593h3;
-        if (tyVar.J0 && tyVar.f40161z0.b() > 0) {
+        if (tyVar.J0 && tyVar.f40160z0.b() > 0) {
             this.f34592g3 = true;
             tyVar.F0.h1(0, 0);
             tyVar.J0 = false;

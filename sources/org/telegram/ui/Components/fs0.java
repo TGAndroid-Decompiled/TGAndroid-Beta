@@ -30,7 +30,7 @@ public final class fs0 extends org.telegram.ui.Cells.h7 {
                     MediaController B = MediaController.B();
                     ArrayList arrayList4 = gs0Var.d;
                     jt0 jt0Var = gs0Var.f35665w;
-                    long j3 = jt0Var.f36629f1;
+                    long j3 = jt0Var.f36628f1;
                     playlistTopicId = jt0Var.getPlaylistTopicId();
                     return B.o0(arrayList4, gjVar, j3, true, null, playlistTopicId);
                 }
@@ -49,21 +49,21 @@ public final class fs0 extends org.telegram.ui.Cells.h7 {
             case 1:
                 ws0 ws0Var = (ws0) this.f35313n0;
                 int i7 = ws0Var.d;
-                jt0 jt0Var2 = ws0Var.f41891f;
+                jt0 jt0Var2 = ws0Var.f41890f;
                 if (!org.telegram.messenger.gj.R4(gjVar.f24213k) && !gjVar.h4()) {
                     if (!gjVar.I3()) {
                         return false;
                     }
                     MediaController B3 = MediaController.B();
-                    ArrayList arrayList5 = jt0Var2.f36678w1[i7].f42514a;
-                    long j10 = jt0Var2.f36629f1;
+                    ArrayList arrayList5 = jt0Var2.f36677w1[i7].f42513a;
+                    long j10 = jt0Var2.f36628f1;
                     playlistTopicId2 = jt0Var2.getPlaylistTopicId();
                     return B3.o0(arrayList5, gjVar, j10, true, null, playlistTopicId2);
                 }
                 boolean S2 = MediaController.B().S(gjVar);
                 MediaController B4 = MediaController.B();
                 if (S2) {
-                    arrayList2 = jt0Var2.f36678w1[i7].f42514a;
+                    arrayList2 = jt0Var2.f36677w1[i7].f42513a;
                 } else {
                     arrayList2 = null;
                 }

@@ -94,8 +94,8 @@ public final class e5 implements c5.h {
                 return;
             default:
                 zf0 zf0Var = (zf0) this.f11931b;
-                if (!zf0Var.f42796a && Math.abs(i7 - zf0Var.f42805x) == 1) {
-                    int i14 = zf0Var.f42805x;
+                if (!zf0Var.f42795a && Math.abs(i7 - zf0Var.f42804x) == 1) {
+                    int i14 = zf0Var.f42804x;
                     if (i7 > i14) {
                         zf0.a(zf0Var, 0, 1, 1);
                     } else if (i7 < i14) {
@@ -103,10 +103,10 @@ public final class e5 implements c5.h {
                         zf0.a(zf0Var, 2, 0, -1);
                     }
                 }
-                int i15 = zf0Var.f42805x;
-                int i16 = zf0Var.f42806y;
-                zf0Var.f42805x = i7;
-                zf0Var.f42806y = i10;
+                int i15 = zf0Var.f42804x;
+                int i16 = zf0Var.f42805y;
+                zf0Var.f42804x = i7;
+                zf0Var.f42805y = i10;
                 if (i15 != i7 || i16 != i10) {
                     zf0Var.I = true;
                     zf0Var.postInvalidateOnAnimation();

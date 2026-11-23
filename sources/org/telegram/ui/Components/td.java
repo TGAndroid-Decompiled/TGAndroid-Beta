@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.tl.TL_iv;
 public final class td implements Runnable {
-    public final int f39868a;
-    public final ChatActivityEnterView f39869b;
+    public final int f39867a;
+    public final ChatActivityEnterView f39868b;
 
     public td(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f39868a = i7;
-        this.f39869b = chatActivityEnterView;
+        this.f39867a = i7;
+        this.f39868b = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f39868a;
-        ChatActivityEnterView chatActivityEnterView = this.f39869b;
+        int i7 = this.f39867a;
+        ChatActivityEnterView chatActivityEnterView = this.f39868b;
         switch (i7) {
             case 0:
                 gf gfVar = chatActivityEnterView.F0;
@@ -42,7 +42,7 @@ public final class td implements Runnable {
                 return;
             case 4:
                 int i10 = ChatActivityEnterView.f32569s7;
-                ChatActivityEnterView chatActivityEnterView2 = this.f39869b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f39868b;
                 chatActivityEnterView2.w1(true, 2147483646, 0, 0L, true);
                 org.telegram.ui.eg0 eg0Var2 = chatActivityEnterView2.M0;
                 if (eg0Var2 != null) {
@@ -134,7 +134,7 @@ public final class td implements Runnable {
                 q0 q0Var = chatActivityEnterView.f32679n6;
                 if (q0Var != null && q0Var.d) {
                     q0Var.d = false;
-                    q0Var.f38718a.invalidate();
+                    q0Var.f38717a.invalidate();
                 }
                 if (chatActivityEnterView.f32755x6) {
                     chatActivityEnterView.f32755x6 = false;

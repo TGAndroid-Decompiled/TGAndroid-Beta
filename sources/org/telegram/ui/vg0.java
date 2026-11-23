@@ -62,7 +62,7 @@ public final class vg0 extends org.telegram.ui.Components.sa {
         this.f52829n2 = bool;
         this.f52830o2 = bool2;
         this.f52828m2 = ug0Var;
-        this.f39533p1.setTitle(P0());
+        this.f39532p1.setTitle(P0());
         rg0 rg0Var = new rg0(0, getContext(), this.J0);
         this.W1 = rg0Var;
         rg0Var.setOnCloseClickListener(new pg0(this, 0));
@@ -100,20 +100,20 @@ public final class vg0 extends org.telegram.ui.Components.sa {
         int i14 = this.f30211u0;
         viewGroup4.addView(aVar, c8.ma.f(-2.0f, -1, 87, i14, 0, i14, 0));
         xg.h hVar = this.f52822g2;
-        org.telegram.ui.Components.ek0 ek0Var = this.f39532o1;
+        org.telegram.ui.Components.ek0 ek0Var = this.f39531o1;
         hVar.f60549n = arrayList;
         hVar.f60548f = ek0Var;
         int i15 = this.f30211u0;
         ek0Var.setPadding(i15, 0, i15, org.telegram.messenger.g0.L(60.0f));
-        this.f39532o1.j(new g3(this, 21));
-        this.f39532o1.setOnItemClickListener(new ai.v1(this, i7, 17));
+        this.f39531o1.j(new g3(this, 21));
+        this.f39531o1.setOnItemClickListener(new ai.v1(this, i7, 17));
         v4.k kVar = new v4.k();
         kVar.n(350L);
         kVar.o(org.telegram.ui.Components.nr.h);
         kVar.C = false;
         kVar.f59194m = false;
-        this.f39532o1.setItemAnimator(kVar);
-        this.f39532o1.i(new ai.j0(this, 7));
+        this.f39531o1.setItemAnimator(kVar);
+        this.f39531o1.i(new ai.j0(this, 7));
         sg0Var.setText("");
         sg0Var.d.b(false);
         sg0Var.b(false, hashSet, new pg0(this, 1), null);
@@ -171,7 +171,7 @@ public final class vg0 extends org.telegram.ui.Components.sa {
         uv uvVar = this.V1;
         uvVar.setTranslationY(translationY2);
         int measuredHeight = sg0Var.getMeasuredHeight() + rg0Var.getMeasuredHeight();
-        this.f39532o1.setTranslationY((uvVar.getMeasuredHeight() + measuredHeight) - org.telegram.messenger.g0.L(8.0f));
+        this.f39531o1.setTranslationY((uvVar.getMeasuredHeight() + measuredHeight) - org.telegram.messenger.g0.L(8.0f));
     }
 
     @Override
@@ -393,7 +393,7 @@ public final class vg0 extends org.telegram.ui.Components.sa {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            org.telegram.ui.Components.ek0 ek0Var = this.f39532o1;
+            org.telegram.ui.Components.ek0 ek0Var = this.f39531o1;
             if (i10 >= ek0Var.getChildCount()) {
                 break;
             }

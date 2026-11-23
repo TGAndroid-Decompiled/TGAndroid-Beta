@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import org.telegram.ui.LaunchActivity;
 public final class rc0 extends qc0 {
-    public final sc0 f39160k0;
+    public final sc0 f39159k0;
 
     public rc0(sc0 sc0Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f39160k0 = sc0Var;
+        this.f39159k0 = sc0Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class rc0 extends qc0 {
 
     @Override
     public final void j() {
-        sc0.a(this.f39160k0);
+        sc0.a(this.f39159k0);
         LaunchActivity launchActivity = LaunchActivity.H1;
         if (launchActivity == null) {
             return;

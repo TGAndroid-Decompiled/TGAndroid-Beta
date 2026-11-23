@@ -42,7 +42,7 @@ public final class pu0 implements org.telegram.ui.ActionBar.n0, dr0, gh.a, org.t
     @Override
     public void H(org.telegram.messenger.gj gjVar) {
         org.telegram.ui.Components.zf0 zf0Var = this.f50991a.f43646n0;
-        if (zf0Var != null && zf0Var.f42796a) {
+        if (zf0Var != null && zf0Var.f42795a) {
             zf0Var.L.e(true, 0.0f);
             zf0Var.invalidate();
         }

@@ -224,13 +224,13 @@ public final class cf0 extends FrameLayout {
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str);
         if (tL_chatInviteExported.permanent && !tL_chatInviteExported.revoked) {
             org.telegram.ui.Components.us usVar = new org.telegram.ui.Components.us();
-            usVar.f40571b = org.telegram.messenger.g0.L(1.5f);
+            usVar.f40570b = org.telegram.messenger.g0.L(1.5f);
             spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(usVar, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
             spannableStringBuilder2.append((CharSequence) org.telegram.messenger.hd.N0(2131747127, null));
         } else if (!tL_chatInviteExported.expired && !tL_chatInviteExported.revoked) {
             if (tL_chatInviteExported.expire_date > 0) {
                 org.telegram.ui.Components.us usVar2 = new org.telegram.ui.Components.us();
-                usVar2.f40571b = org.telegram.messenger.g0.L(1.5f);
+                usVar2.f40570b = org.telegram.messenger.g0.L(1.5f);
                 spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(usVar2, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
                 long currentTimeMillis = (tL_chatInviteExported.expire_date * 1000) - ((ff0Var.f47708o0 * 1000) + System.currentTimeMillis());
                 if (currentTimeMillis < 0) {
@@ -257,7 +257,7 @@ public final class cf0 extends FrameLayout {
                 spannableStringBuilder2.append((CharSequence) N0);
             }
             org.telegram.ui.Components.us usVar3 = new org.telegram.ui.Components.us();
-            usVar3.f40571b = org.telegram.messenger.g0.L(1.5f);
+            usVar3.f40570b = org.telegram.messenger.g0.L(1.5f);
             spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(usVar3, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
             boolean z10 = tL_chatInviteExported.revoked;
             if (!z10 && (i12 = tL_chatInviteExported.usage_limit) > 0 && tL_chatInviteExported.usage >= i12) {
@@ -273,7 +273,7 @@ public final class cf0 extends FrameLayout {
         }
         if (tL_chatInviteExported.request_needed) {
             org.telegram.ui.Components.us usVar4 = new org.telegram.ui.Components.us();
-            usVar4.f40571b = org.telegram.messenger.g0.L(1.5f);
+            usVar4.f40570b = org.telegram.messenger.g0.L(1.5f);
             spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(usVar4, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
             spannableStringBuilder2.append((CharSequence) org.telegram.messenger.hd.N0(2131754206, null));
         }

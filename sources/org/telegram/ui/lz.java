@@ -44,7 +44,7 @@ public final class lz implements Runnable {
                 f00Var.I.g0(true);
                 return;
             case 4:
-                FiltersSetupActivity filtersSetupActivity = (FiltersSetupActivity) ((org.telegram.ui.Components.qz) obj).f39021f;
+                FiltersSetupActivity filtersSetupActivity = (FiltersSetupActivity) ((org.telegram.ui.Components.qz) obj).f39020f;
                 if (!org.telegram.messenger.k10.i(org.telegram.messenger.k10.f24968t0).q()) {
                     ArrayList V0 = filtersSetupActivity.getMessagesController().V0();
                     int i11 = 0;
@@ -96,8 +96,8 @@ public final class lz implements Runnable {
                 org.telegram.messenger.gc gcVar = o30Var.d;
                 if (gcVar != null) {
                     d20Var.L0 = gcVar;
-                    d20Var.f35894r1 = null;
-                    d20Var.f35895s1 = null;
+                    d20Var.f35893r1 = null;
+                    d20Var.f35894s1 = null;
                     o30Var.d = null;
                 }
                 TLRPC.Chat O0 = org.telegram.messenger.np.u1(f40Var2.f47526o1.f23202a).O0(Long.valueOf(-o30Var.f50449e));

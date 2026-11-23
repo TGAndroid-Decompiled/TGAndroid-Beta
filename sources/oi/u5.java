@@ -222,7 +222,7 @@ public final class u5 implements e1 {
                 a aVar = a6Var.f21978y;
                 t3 t3Var = ((d3) x5Var).f22056a;
                 ArrayList arrayList = t3Var.f22445x4;
-                c51 c51Var = t3Var.f35790g3;
+                c51 c51Var = t3Var.f35789g3;
                 ArrayList arrayList2 = t3Var.f22436t3;
                 int indexOf = arrayList2.indexOf(aVar);
                 if (indexOf >= 0) {

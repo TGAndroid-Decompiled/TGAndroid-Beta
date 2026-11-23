@@ -58,7 +58,7 @@ public final class c1 extends g2 implements gs {
         if (this.f18305b != null) {
             this.f18305b.a(a0(), z10);
             h51 h51Var = this.f18304a;
-            if (h51Var != null && h51Var.f35790g3 != null) {
+            if (h51Var != null && h51Var.f35789g3 != null) {
                 boolean z12 = this.G;
                 if (this.f18312w != null && (this.f18313x != null || !TextUtils.isEmpty(this.f18314y))) {
                     z11 = true;
@@ -66,7 +66,7 @@ public final class c1 extends g2 implements gs {
                     z11 = false;
                 }
                 if (z12 != z11) {
-                    this.f18304a.f35790g3.O(true);
+                    this.f18304a.f35789g3.O(true);
                 }
             }
         }
@@ -234,7 +234,7 @@ public final class c1 extends g2 implements gs {
         }
         d0();
         h51 h51Var = this.f18304a;
-        if (h51Var != null && (c51Var = h51Var.f35790g3) != null) {
+        if (h51Var != null && (c51Var = h51Var.f35789g3) != null) {
             c51Var.O(true);
         }
         this.f18311s = true;
@@ -309,7 +309,7 @@ public final class c1 extends g2 implements gs {
         h51Var.r1();
         this.f18304a.setSectionsDrawBackground(true);
         h51 h51Var2 = this.f18304a;
-        h51Var2.f35790g3.f34062r = false;
+        h51Var2.f35789g3.f34062r = false;
         frameLayout.addView(h51Var2, ma.c(-1.0f, -1));
         c0();
         this.fragmentView = frameLayout;

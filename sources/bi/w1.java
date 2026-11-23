@@ -147,7 +147,7 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                 kg.y1 y1Var = (kg.y1) obj;
                 y1Var.d = false;
                 y1Var.f18573e = null;
-                y1Var.f18570a.f35790g3.O(true);
+                y1Var.f18570a.f35789g3.O(true);
                 y1Var.f18570a.v0(0);
                 return;
             case 2:
@@ -189,7 +189,7 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                 tqVar.f52375n = null;
                 f6 f6Var = tqVar.f34681a;
                 if (f6Var != null) {
-                    f6Var.f35790g3.O(true);
+                    f6Var.f35789g3.O(true);
                     return;
                 }
                 return;
@@ -210,11 +210,11 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                 return;
             case 7:
                 mk mkVar = (mk) obj;
-                mkVar.f37529c0 = false;
+                mkVar.f37528c0 = false;
                 mkVar.H.setVisibility(0);
-                ak akVar = mkVar.f37535r;
+                ak akVar = mkVar.f37534r;
                 v4.i0 adapter = akVar.getAdapter();
-                ek ekVar = mkVar.f37537w;
+                ek ekVar = mkVar.f37536w;
                 if (adapter != ekVar) {
                     akVar.setAdapter(ekVar);
                 }
@@ -223,24 +223,24 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                 return;
             case 8:
                 ml mlVar = (ml) obj;
-                mlVar.f37550d0 = false;
-                mlVar.f37551e0 = false;
+                mlVar.f37549d0 = false;
+                mlVar.f37550e0 = false;
                 mlVar.O.G(null);
                 mlVar.j0();
                 mlVar.M.setVisibility(0);
                 mlVar.K.setVisibility(0);
                 mlVar.N.setVisibility(8);
-                mlVar.f37566s.setVisibility(8);
+                mlVar.f37565s.setVisibility(8);
                 return;
             case 9:
                 ContactsActivity contactsActivity = (ContactsActivity) obj;
                 contactsActivity.h.G(null);
-                contactsActivity.f43026c0 = null;
+                contactsActivity.f43025c0 = null;
                 contactsActivity.E = false;
-                contactsActivity.f43045y = false;
-                contactsActivity.d.setAdapter(contactsActivity.f43023b);
+                contactsActivity.f43044y = false;
+                contactsActivity.d.setAdapter(contactsActivity.f43022b);
                 contactsActivity.d.setSectionsType(1);
-                contactsActivity.f43023b.f();
+                contactsActivity.f43022b.f();
                 contactsActivity.d.setFastScrollVisible(true);
                 contactsActivity.d.setVerticalScrollBarEnabled(false);
                 ContactsActivity.g0(contactsActivity);
@@ -365,7 +365,7 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                 o31 o31Var = (o31) obj;
                 o31Var.f50451a.a(false, true);
                 o31Var.o0(false, true);
-                o31Var.f50455c.f35790g3.O(false);
+                o31Var.f50455c.f35789g3.O(false);
                 return;
             case 23:
                 y91.f0((y91) obj, false);
@@ -439,7 +439,7 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
             case 1:
                 kg.y1 y1Var = (kg.y1) obj;
                 y1Var.f18573e = editText.getText().toString();
-                y1Var.f18570a.f35790g3.O(true);
+                y1Var.f18570a.f35789g3.O(true);
                 y1Var.f18570a.v0(0);
                 return;
             case 2:
@@ -497,7 +497,7 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                 tqVar.f52375n = editText.getText().toString();
                 f6 f6Var = tqVar.f34681a;
                 if (f6Var != null) {
-                    f6Var.f35790g3.O(true);
+                    f6Var.f35789g3.O(true);
                     return;
                 }
                 return;
@@ -522,22 +522,22 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                 if (klVar != null) {
                     String obj4 = editText.getText().toString();
                     if (obj4.length() != 0) {
-                        mlVar.f37551e0 = true;
-                        mlVar.f37573x.setShowSearchProgress(true);
+                        mlVar.f37550e0 = true;
+                        mlVar.f37572x.setShowSearchProgress(true);
                         b1Var3.setVisibility(8);
                         e3Var.setVisibility(8);
                         if (ek0Var2.getAdapter() != klVar) {
                             ek0Var2.setAdapter(klVar);
                         }
                         ek0Var2.setVisibility(0);
-                        mlVar.f37552f0 = klVar.f17434f.isEmpty();
+                        mlVar.f37551f0 = klVar.f17434f.isEmpty();
                         mlVar.j0();
                     } else {
                         b1Var3.setVisibility(0);
                         e3Var.setVisibility(0);
                         ek0Var2.setAdapter(null);
                         ek0Var2.setVisibility(8);
-                        mlVar.f37566s.setVisibility(8);
+                        mlVar.f37565s.setVisibility(8);
                     }
                     klVar.G(obj4);
                     return;
@@ -547,9 +547,9 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                 ContactsActivity contactsActivity = (ContactsActivity) obj;
                 if (contactsActivity.h != null) {
                     String obj5 = editText.getText().toString();
-                    contactsActivity.f43026c0 = obj5;
+                    contactsActivity.f43025c0 = obj5;
                     if (!obj5.isEmpty()) {
-                        contactsActivity.f43045y = true;
+                        contactsActivity.f43044y = true;
                         ek0 ek0Var3 = contactsActivity.d;
                         if (ek0Var3 != null) {
                             ek0Var3.setAdapter(contactsActivity.h);
@@ -558,15 +558,15 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                             contactsActivity.d.setFastScrollVisible(false);
                             contactsActivity.d.setVerticalScrollBarEnabled(true);
                         }
-                        contactsActivity.f43025c.e(true, true);
+                        contactsActivity.f43024c.e(true, true);
                         contactsActivity.h.G(obj5);
                         return;
                     }
-                    contactsActivity.f43045y = false;
+                    contactsActivity.f43044y = false;
                     contactsActivity.h.G(null);
                     ek0 ek0Var4 = contactsActivity.d;
                     if (ek0Var4 != null) {
-                        ek0Var4.setAdapter(contactsActivity.f43023b);
+                        ek0Var4.setAdapter(contactsActivity.f43022b);
                         contactsActivity.d.setSectionsType(1);
                         contactsActivity.d.setFastScrollVisible(true);
                         contactsActivity.d.setVerticalScrollBarEnabled(false);
@@ -617,7 +617,7 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
             case 12:
                 cx cxVar = (cx) obj;
                 String obj7 = editText.getText().toString();
-                if (!obj7.isEmpty() || (((kwVar = cxVar.D0) != null && (nm0Var = kwVar.f40503e0) != null && nm0Var.M()) || cxVar.f46803v3 || cxVar.L)) {
+                if (!obj7.isEmpty() || (((kwVar = cxVar.D0) != null && (nm0Var = kwVar.f40502e0) != null && nm0Var.M()) || cxVar.f46803v3 || cxVar.L)) {
                     cxVar.f46756m2 = true;
                     if (!cxVar.f46788s3) {
                         cxVar.i5(true, false, true, false);
@@ -626,7 +626,7 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                 kw kwVar2 = cxVar.D0;
                 if (kwVar2 != null) {
                     View currentView = kwVar2.getCurrentView();
-                    boolean z11 = !kwVar2.f40506h0;
+                    boolean z11 = !kwVar2.f40505h0;
                     if (!TextUtils.isEmpty(kwVar2.N0)) {
                         z10 = z11;
                     }
@@ -671,7 +671,7 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                     a60Var.f45517r.e(true, true);
                     a60Var.f45517r.setStickerType(1);
                     a60Var.f45517r.d.setText(hd.N0(2131747974, null));
-                    a60Var.f45517r.f37996e.setText(hd.N0(2131745611, null));
+                    a60Var.f45517r.f37995e.setText(hd.N0(2131745611, null));
                     return;
                 }
                 a60.d0(a60Var);
@@ -810,7 +810,7 @@ public final class w1 extends org.telegram.ui.ActionBar.m0 {
                 String obj13 = editText.getText().toString();
                 u91 u91Var = ((y91) obj).f54140s0;
                 if (!u91Var.f52490e0.equals(obj13)) {
-                    u91Var.I(u91Var.f36435e[0], u91Var.getCurrentPosition(), obj13, false);
+                    u91Var.I(u91Var.f36434e[0], u91Var.getCurrentPosition(), obj13, false);
                     return;
                 }
                 return;

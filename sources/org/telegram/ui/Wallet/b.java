@@ -79,7 +79,7 @@ public final class b extends n41 {
             if (nftitem.image_small != null && nftitem.image != null) {
                 gcVar = c.c(nftitem, true);
             }
-            q9Var.f38836a.r0(c10, "160_160", gcVar, "100_100", oqVar, 0L, null, nftitem, 0);
+            q9Var.f38835a.r0(c10, "160_160", gcVar, "100_100", oqVar, 0L, null, nftitem, 0);
             q9Var.d();
         } else if (c10 != null) {
             q9Var.j(c10, "46_46", oqVar, nftitem);

@@ -133,7 +133,7 @@ public final class m81 extends org.telegram.ui.Components.dk0 {
                 int i10 = org.telegram.ui.ActionBar.m6.f29324a7;
                 ColorDrawable colorDrawable = new ColorDrawable(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
                 org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(colorDrawable, Y0);
-                oqVar.f38339x = true;
+                oqVar.f38338x = true;
                 z6Var.setBackground(oqVar);
                 org.telegram.ui.ActionBar.t6.x(z6Var, colorDrawable, i10, null, PorterDuff.Mode.SRC_IN);
                 i4Var = z6Var;

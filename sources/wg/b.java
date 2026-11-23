@@ -29,7 +29,7 @@ public final class b extends View {
         n6Var.x(org.telegram.messenger.g0.o());
         n6Var.u(-1);
         n6Var.t("", true, true);
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
         Paint paint = new Paint(1);
         this.f59764e = paint;
         paint.setColor(-6915073);
@@ -62,9 +62,9 @@ public final class b extends View {
             this.f59763c.start();
         }
         this.d = i7;
-        int length = n6Var.f37803i.length();
+        int length = n6Var.f37802i.length();
         n6Var.t("x" + i7, z10, true);
-        int length2 = n6Var.f37803i.length();
+        int length2 = n6Var.f37802i.length();
         invalidate();
         if (length != length2) {
             requestLayout();

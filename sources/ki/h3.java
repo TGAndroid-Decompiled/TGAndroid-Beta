@@ -265,8 +265,8 @@ public final class h3 extends s00 implements gs {
             nq nqVar = new nq(2131231971, 0);
             nqVar.I = 0.937f;
             nqVar.J = 0.937f;
-            nqVar.f37951r = -org.telegram.messenger.g0.L(1.33f);
-            nqVar.f37952s = org.telegram.messenger.g0.L(1.0f);
+            nqVar.f37950r = -org.telegram.messenger.g0.L(1.33f);
+            nqVar.f37951s = org.telegram.messenger.g0.L(1.0f);
             nqVar.H = 0.8f;
             scaleType = scaleType2;
             spannableStringBuilder.setSpan(nqVar, 0, 1, 33);

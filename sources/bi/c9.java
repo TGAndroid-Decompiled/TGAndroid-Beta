@@ -119,7 +119,7 @@ public class c9 extends sa implements gs, u9 {
         } else if (z11) {
             this.f3519n2 = false;
         }
-        this.f39539v1 = 0.2f;
+        this.f39538v1 = 0.2f;
         if (j3 >= 0) {
             j10 = 0;
             this.f3508b2 = p10.l(np.u1(i7).c2(Long.valueOf(j3)));
@@ -264,7 +264,7 @@ public class c9 extends sa implements gs, u9 {
         kVar.n(350L);
         kVar.o(nr.h);
         kVar.D = 40L;
-        this.f39532o1.setItemAnimator(kVar);
+        this.f39531o1.setItemAnimator(kVar);
         this.f3522q2.O(false);
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.f3515j2 = linearLayout2;
@@ -359,11 +359,11 @@ public class c9 extends sa implements gs, u9 {
         b0Var.k1(true);
         this.f3522q2.O(false);
         this.n1.h1(this.f3522q2.E.size(), org.telegram.messenger.g0.L(200.0f));
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i22 = this.f30211u0;
         ek0Var.setPadding(i22, 0, i22, org.telegram.messenger.g0.L(68 + ((starGift != null && starGift.limited && this.f3517l2 == null) ? 40 : 0)));
-        this.f39532o1.i(new a9(this));
-        this.f39532o1.setOnItemClickListener(new qj0() {
+        this.f39531o1.i(new a9(this));
+        this.f39531o1.setOnItemClickListener(new qj0() {
             @Override
             public final void c(int i23, View view2) {
                 boolean z16;
@@ -464,12 +464,12 @@ public class c9 extends sa implements gs, u9 {
                 }
             }
         });
-        this.f39533p1.setTitle(P0());
+        this.f39532p1.setTitle(P0());
     }
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.U1, 0, true, new o8(this, 0), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.U1, 0, true, new o8(this, 0), this.J0);
         this.f3522q2 = c51Var;
         c51Var.f34062r = false;
         return c51Var;
@@ -509,7 +509,7 @@ public class c9 extends sa implements gs, u9 {
         org.telegram.ui.Cells.g3 g3Var2 = w8Var.f30831b;
         if (g3Var.getEmojiPadding() > 0) {
             g3Var2.k(true);
-        } else if (g3Var2.f42543w) {
+        } else if (g3Var2.f42542w) {
             g3Var2.d();
         } else {
             g3Var2.r();
@@ -559,7 +559,7 @@ public class c9 extends sa implements gs, u9 {
             np.u1(i7).e4(user, true, false);
             ls.f(i7).k(ls.E0, Long.valueOf(user.f28583id), d2);
         }
-        org.telegram.ui.ActionBar.g2 g2Var = this.f39536s1;
+        org.telegram.ui.ActionBar.g2 g2Var = this.f39535s1;
         if (g2Var != null) {
             ArrayList arrayList = new ArrayList(((LaunchActivity) g2Var.getParentActivity()).M().getFragmentStack());
             org.telegram.ui.ActionBar.r4 parentLayout = g2Var.getParentLayout();
@@ -672,7 +672,7 @@ public class c9 extends sa implements gs, u9 {
         org.telegram.ui.Cells.g3 g3Var2 = w8Var.f30831b;
         if (g3Var.getEmojiPadding() > 0) {
             g3Var2.k(true);
-        } else if (g3Var2.f42543w) {
+        } else if (g3Var2.f42542w) {
             g3Var2.d();
         } else {
             super.onBackPressed();
@@ -729,6 +729,6 @@ public class c9 extends sa implements gs, u9 {
 
     @Override
     public final void v() {
-        this.f39532o1.a0();
+        this.f39531o1.a0();
     }
 }

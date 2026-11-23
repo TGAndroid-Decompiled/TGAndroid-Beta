@@ -73,11 +73,11 @@ public final class h4 extends j71 {
     @Override
     public final void C() {
         super.C();
-        int i7 = this.f36433b;
+        int i7 = this.f36432b;
         f6 f6Var = this.W;
         boolean z10 = false;
         if (i7 != f6Var.N1(false)) {
-            if (this.f36433b > f6Var.N1(false)) {
+            if (this.f36432b > f6Var.N1(false)) {
                 z10 = true;
             }
             org.telegram.messenger.g0.g3(new ch.k(3, this, z10));

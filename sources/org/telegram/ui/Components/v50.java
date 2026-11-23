@@ -6,16 +6,16 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class v50 extends dk0 {
-    public final a60 f40686c;
+    public final a60 f40685c;
 
     public v50(a60 a60Var) {
-        this.f40686c = a60Var;
+        this.f40685c = a60Var;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
         int b10 = f1Var.b();
-        a60 a60Var = this.f40686c;
+        a60 a60Var = this.f40685c;
         if (b10 == a60Var.f33338s1) {
             if (a60Var.f33333m1.admin_id != org.telegram.messenger.k10.i(a60Var.f30173a).f24987n) {
                 return true;
@@ -33,12 +33,12 @@ public final class v50 extends dk0 {
 
     @Override
     public final int b() {
-        return this.f40686c.N1;
+        return this.f40685c.N1;
     }
 
     @Override
     public final int d(int i7) {
-        a60 a60Var = this.f40686c;
+        a60 a60Var = this.f40685c;
         if (i7 == a60Var.f33337r1 || i7 == a60Var.I1 || i7 == a60Var.f33342w1 || i7 == a60Var.f33335p1) {
             return 0;
         }
@@ -89,7 +89,7 @@ public final class v50 extends dk0 {
         yz yzVar;
         r50 r50Var;
         Context context = viewGroup.getContext();
-        a60 a60Var = this.f40686c;
+        a60 a60Var = this.f40685c;
         switch (i7) {
             case 1:
                 r50Var = new y50(context);
@@ -114,7 +114,7 @@ public final class v50 extends dk0 {
                 yz yzVar2 = new yz(context, null);
                 yzVar2.setIsSingleCell(true);
                 yzVar2.setViewType(10);
-                yzVar2.f42606x = false;
+                yzVar2.f42605x = false;
                 yzVar2.setPaddingLeft(org.telegram.messenger.g0.L(10.0f));
                 yzVar = yzVar2;
                 r50Var = yzVar;
@@ -128,7 +128,7 @@ public final class v50 extends dk0 {
             case 8:
                 ?? frameLayout = new FrameLayout(context);
                 TextView textView = new TextView(context);
-                frameLayout.f41650a = textView;
+                frameLayout.f41649a = textView;
                 textView.setTextSize(1, 14.0f);
                 org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29773y6, null);
                 textView.setGravity(1);

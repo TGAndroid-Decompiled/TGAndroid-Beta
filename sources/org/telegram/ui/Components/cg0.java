@@ -28,7 +28,7 @@ public final class cg0 extends q9 implements au0 {
         this.L = -1L;
         this.N = i7;
         this.O = paint;
-        setLayerNum(hg0Var.f35890m1);
+        setLayerNum(hg0Var.f35889m1);
     }
 
     @Override
@@ -53,13 +53,13 @@ public final class cg0 extends q9 implements au0 {
         hg0 hg0Var = this.Q;
         float[] fArr = hg0Var.P0;
         Path path = hg0Var.N0;
-        ArrayList arrayList = hg0Var.f35881c1;
+        ArrayList arrayList = hg0Var.f35880c1;
         RectF rectF = hg0Var.O0;
-        org.telegram.ui.fr0 fr0Var = hg0Var.f35887i1;
+        org.telegram.ui.fr0 fr0Var = hg0Var.f35886i1;
         if (fr0Var == null || !fr0Var.f47832n) {
             if (this.I != null) {
                 int k10 = hg0Var.E0.k(this.N);
-                if (hg0Var.f35888j1) {
+                if (hg0Var.f35887j1) {
                     k10--;
                 }
                 Drawable t6 = getImageReceiver().t();
@@ -81,7 +81,7 @@ public final class cg0 extends q9 implements au0 {
                         this.J = ofFloat;
                         ofFloat.setStartDelay(j10);
                         this.J.setDuration(this.K * 250.0f);
-                        this.J.setInterpolator(nr.f37961f);
+                        this.J.setInterpolator(nr.f37960f);
                         this.J.addUpdateListener(new h60(this, 5));
                         this.J.addListener(new ki.e2(this, k10, 11));
                         this.J.start();
@@ -97,10 +97,10 @@ public final class cg0 extends q9 implements au0 {
                             j3 = 750;
                         }
                         if (currentTimeMillis <= 250 + j3 && currentTimeMillis > j3) {
-                            this.I.E = nr.f37961f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
+                            this.I.E = nr.f37960f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
                         }
                     }
-                    if (hg0Var.f35886h1) {
+                    if (hg0Var.f35885h1) {
                         invalidate();
                     } else {
                         postInvalidateOnAnimation();
@@ -108,12 +108,12 @@ public final class cg0 extends q9 implements au0 {
                     invalidate();
                 }
                 int i7 = hg0Var.n1;
-                if (i7 == 0 && hg0Var.f35891o1 == 0) {
+                if (i7 == 0 && hg0Var.f35890o1 == 0) {
                     canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.O);
                     canvas2 = canvas;
                 } else {
                     canvas2 = canvas;
-                    int i10 = hg0Var.f35891o1;
+                    int i10 = hg0Var.f35890o1;
                     Paint paint = this.O;
                     if (i7 == i10) {
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -124,7 +124,7 @@ public final class cg0 extends q9 implements au0 {
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                         for (int i11 = 0; i11 < 4; i11++) {
                             fArr[i11] = hg0Var.n1;
-                            fArr[i11 + 4] = hg0Var.f35891o1;
+                            fArr[i11 + 4] = hg0Var.f35890o1;
                         }
                         path.addRoundRect(rectF, fArr, Path.Direction.CW);
                         canvas2.drawPath(path, paint);
@@ -173,7 +173,7 @@ public final class cg0 extends q9 implements au0 {
     public final void invalidate() {
         super.invalidate();
         hg0 hg0Var = this.Q;
-        if (hg0Var.f35886h1) {
+        if (hg0Var.f35885h1) {
             hg0Var.invalidate();
         }
         Runnable runnable = this.P;

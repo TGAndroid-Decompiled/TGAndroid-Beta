@@ -22,14 +22,14 @@ public final class f implements org.telegram.messenger.y10 {
                 return;
             case 1:
                 TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj;
-                n0Var.f37699s2.f23645b.add(0, aiComposeTone);
+                n0Var.f37698s2.f23645b.add(0, aiComposeTone);
                 n0Var.E1();
                 new lc(n0Var.E2, n0Var.J0).p(aiComposeTone.emoji_id, org.telegram.messenger.hd.a0(null, null, 2131754956, aiComposeTone.title), org.telegram.messenger.hd.N0(2131754957, null)).j();
                 return;
             case 2:
                 TL_aicompose.AiComposeTone aiComposeTone2 = (TL_aicompose.AiComposeTone) obj;
                 if (aiComposeTone2 instanceof TL_aicompose.TL_aiComposeTone) {
-                    org.telegram.messenger.e eVar = n0Var.f37699s2;
+                    org.telegram.messenger.e eVar = n0Var.f37698s2;
                     TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone2;
                     ArrayList arrayList = eVar.f23645b;
                     while (true) {

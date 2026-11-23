@@ -697,7 +697,7 @@ public final class de0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             if (z11) {
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
                 this.d = duration;
-                duration.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                duration.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                 this.d.addUpdateListener(new sa0(this, 2));
                 this.d.addListener(new db0(this, 0));
                 this.d.start();
@@ -710,7 +710,7 @@ public final class de0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
         if (z11) {
             ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(300L);
             this.d = duration2;
-            duration2.setInterpolator(org.telegram.ui.Components.zs.f42978e);
+            duration2.setInterpolator(org.telegram.ui.Components.zs.f42977e);
             this.d.addUpdateListener(new sa0(this, 0));
             this.d.addListener(new db0(this, 1));
             this.d.start();
@@ -1004,23 +1004,23 @@ public final class de0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             iu0Var.updateColors();
         }
         org.telegram.ui.Components.rr rrVar = this.f46930c;
-        org.telegram.ui.Components.pr prVar = rrVar.f39322a;
+        org.telegram.ui.Components.pr prVar = rrVar.f39321a;
         int x06 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.G6, false);
-        if (x06 != rrVar.f39329s || prVar.getColorFilter() == null) {
-            rrVar.f39329s = x06;
+        if (x06 != rrVar.f39328s || prVar.getColorFilter() == null) {
+            rrVar.f39328s = x06;
             prVar.setColorFilter(x06, PorterDuff.Mode.SRC_ATOP);
         }
         int x07 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29473i6, false);
         int o4 = i0.a.o(x07, 30);
-        if (x07 != rrVar.f39330w) {
+        if (x07 != rrVar.f39329w) {
             z10 = true;
         } else {
             z10 = false;
         }
-        rrVar.f39330w = x07;
+        rrVar.f39329w = x07;
         int i12 = 0;
         while (true) {
-            View[] viewArr = rrVar.f39324c;
+            View[] viewArr = rrVar.f39323c;
             if (i12 >= viewArr.length) {
                 break;
             }

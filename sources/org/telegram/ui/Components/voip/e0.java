@@ -20,10 +20,10 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.b20;
 import org.telegram.ui.f40;
 public final class e0 implements wi.l {
-    public static e0 f40987e;
-    public wi.n f40988a;
-    public a0 f40989b;
-    public float f40990c;
+    public static e0 f40986e;
+    public wi.n f40987a;
+    public a0 f40988b;
+    public float f40989c;
     public String d;
 
     public static ArrayList a(long j3, t3 t3Var) {
@@ -32,8 +32,8 @@ public final class e0 implements wi.l {
         ArrayList arrayList2 = new ArrayList();
         f40 f40Var = f40.C5;
         u3 u3Var = null;
-        if (f40Var != null && (b20Var = f40Var.Z3) != null && b20Var.f41110b) {
-            u3Var = b20Var.f41115e;
+        if (f40Var != null && (b20Var = f40Var.Z3) != null && b20Var.f41109b) {
+            u3Var = b20Var.f41114e;
         }
         if (u3Var != null && g(t3Var, u3Var, j3)) {
             arrayList2.add(u3Var);
@@ -80,10 +80,10 @@ public final class e0 implements wi.l {
     public static void k() {
         wi.n nVar;
         ?? r42;
-        e0 e0Var = f40987e;
-        if (e0Var != null && (nVar = e0Var.f40988a) != null && nVar.d()) {
+        e0 e0Var = f40986e;
+        if (e0Var != null && (nVar = e0Var.f40987a) != null && nVar.d()) {
             c20 c20Var = c20.f33981f0;
-            wi.n nVar2 = f40987e.f40988a;
+            wi.n nVar2 = f40986e.f40987a;
             boolean z10 = false;
             if (c20Var != null) {
                 r42 = 1;
@@ -113,18 +113,18 @@ public final class e0 implements wi.l {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         t3 t3Var = null;
         if (sharedInstance != null && sharedInstance.groupCall != null && !sharedInstance.isHangingUp()) {
-            if (f40987e == null) {
+            if (f40986e == null) {
                 ?? obj = new Object();
-                obj.f40990c = 1.0f;
-                f40987e = obj;
+                obj.f40989c = 1.0f;
+                f40986e = obj;
             }
-            wi.n nVar = f40987e.f40988a;
+            wi.n nVar = f40986e.f40987a;
             if (nVar == null || !nVar.d()) {
-                f40987e.f40988a = l2.i.d().k(f40987e);
+                f40986e.f40987a = l2.i.d().k(f40986e);
                 k();
             }
-            e0 e0Var = f40987e;
-            if (e0Var.f40989b == null) {
+            e0 e0Var = f40986e;
+            if (e0Var.f40988b == null) {
                 VoIPService sharedInstance2 = VoIPService.getSharedInstance();
                 VoIPService sharedInstance3 = VoIPService.getSharedInstance();
                 if (sharedInstance3 != null) {
@@ -158,19 +158,19 @@ public final class e0 implements wi.l {
                     String sb3 = sb2.toString();
                     if (!sb3.equals(e0Var.d)) {
                         e0Var.d = sb3;
-                        e0Var.f40990c = md.a(fArr, fArr2, 0.45f, 2.35f, null, 0.0f).f60022a;
+                        e0Var.f40989c = md.a(fArr, fArr2, 0.45f, 2.35f, null, 0.0f).f60022a;
                     }
                 }
             }
-            f40987e.f40988a.c();
+            f40986e.f40987a.c();
             return;
         }
-        e0 e0Var2 = f40987e;
+        e0 e0Var2 = f40986e;
         if (e0Var2 != null) {
-            f40987e = null;
-            wi.n nVar2 = e0Var2.f40988a;
+            f40986e = null;
+            wi.n nVar2 = e0Var2.f40987a;
             if (nVar2 != null) {
-                e0Var2.f40988a = null;
+                e0Var2.f40987a = null;
                 nVar2.f();
             }
         }
@@ -197,11 +197,11 @@ public final class e0 implements wi.l {
     @Override
     public final int J() {
         float f10;
-        a0 a0Var = this.f40989b;
+        a0 a0Var = this.f40988b;
         if (a0Var != null) {
-            f10 = a0Var.f40892n;
+            f10 = a0Var.f40891n;
         } else {
-            f10 = this.f40990c;
+            f10 = this.f40989c;
         }
         return Math.round(f10 * 1000.0f);
     }
@@ -243,7 +243,7 @@ public final class e0 implements wi.l {
 
     @Override
     public final void U() {
-        this.f40988a = null;
+        this.f40987a = null;
         f40 f40Var = f40.C5;
         if (f40Var != null && f40Var.getWindow() != null) {
             f40Var.getWindow().getDecorView().setVisibility(0);
@@ -263,8 +263,8 @@ public final class e0 implements wi.l {
         if (sharedInstance != null && sharedInstance.getVideoState(false) != 0) {
             z10 = true;
         }
-        g.f41008a = z10;
-        this.f40989b = (a0) view;
+        g.f41007a = z10;
+        this.f40988b = (a0) view;
         f40 f40Var = f40.C5;
         if (f40Var != null) {
             f40Var.y1();
@@ -272,13 +272,13 @@ public final class e0 implements wi.l {
                 f40Var.getWindow().getDecorView().setVisibility(4);
             }
         }
-        a0 a0Var = this.f40989b;
-        if (!a0Var.f40895w) {
-            a0Var.f40895w = true;
-            a0Var.f40896x = SystemClock.elapsedRealtime();
+        a0 a0Var = this.f40988b;
+        if (!a0Var.f40894w) {
+            a0Var.f40894w = true;
+            a0Var.f40895x = SystemClock.elapsedRealtime();
             VoIPService.getSharedInstance();
             a0Var.H = g.c();
-            a0Var.f40891f.a();
+            a0Var.f40890f.a();
             a0Var.j(true);
             org.telegram.messenger.g0.h3(a0Var.J, 250L);
         }
@@ -297,12 +297,12 @@ public final class e0 implements wi.l {
 
     @Override
     public final void d(View view) {
-        g.f41008a = false;
+        g.f41007a = false;
         ((a0) view).i();
-        a0 a0Var = this.f40989b;
+        a0 a0Var = this.f40988b;
         if (a0Var == view) {
-            this.f40990c = a0Var.f40892n;
-            this.f40989b = null;
+            this.f40989c = a0Var.f40891n;
+            this.f40988b = null;
         }
         f40 f40Var = f40.C5;
         if (f40Var != null) {
@@ -373,8 +373,8 @@ public final class e0 implements wi.l {
     @Override
     public final void w(View view) {
         ((a0) view).i();
-        if (this.f40989b == view) {
-            this.f40989b = null;
+        if (this.f40988b == view) {
+            this.f40988b = null;
         }
     }
 

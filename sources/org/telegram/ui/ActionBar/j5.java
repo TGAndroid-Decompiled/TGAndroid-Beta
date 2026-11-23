@@ -285,7 +285,7 @@ public final class j5 extends FrameLayout {
                 swipeBack.setForegroundOnGlass(true);
                 if (this.f29075b != swipeBack) {
                     this.f29075b = swipeBack;
-                    swipeBack.f36908y.add(new jf0() {
+                    swipeBack.f36907y.add(new jf0() {
                         @Override
                         public final void a(float f10, float f11) {
                             j5.this.invalidate();

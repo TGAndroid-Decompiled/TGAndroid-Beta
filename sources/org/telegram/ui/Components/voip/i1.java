@@ -13,28 +13,28 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.ik;
 import org.webrtc.RendererCommon;
 public final class i1 extends FrameLayout {
-    public final n2 f41056a;
-    public boolean f41057b;
-    public boolean f41058c;
+    public final n2 f41055a;
+    public boolean f41056b;
+    public boolean f41057c;
     public final long d;
-    public final ik f41059e;
-    public final j1 f41060f;
+    public final ik f41058e;
+    public final j1 f41059f;
 
     public i1(j1 j1Var, Context context) {
         super(context);
-        this.f41060f = j1Var;
-        this.f41058c = true;
+        this.f41059f = j1Var;
+        this.f41057c = true;
         this.d = SystemClock.elapsedRealtime();
-        this.f41059e = new ik(this, 24);
+        this.f41058e = new ik(this, 24);
         setBackgroundColor(-16777216);
         h hVar = new h(context);
         addView(hVar, ma.c(-1.0f, -1));
         n2 n2Var = new n2(context, false, false, false, false);
-        this.f41056a = n2Var;
+        this.f41055a = n2Var;
         RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FILL;
         m2 m2Var = n2Var.d;
         m2Var.setScalingType(scalingType);
-        n2Var.f41214b0 = 0;
+        n2Var.f41213b0 = 0;
         m2Var.setRotateTextureWithScreen(true);
         m2Var.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
         View view = n2Var.h;
@@ -52,12 +52,12 @@ public final class i1 extends FrameLayout {
 
     public final void a() {
         float f10;
-        boolean a10 = this.f41060f.f41088b.a(this.d);
-        if (this.f41058c == a10) {
+        boolean a10 = this.f41059f.f41087b.a(this.d);
+        if (this.f41057c == a10) {
             return;
         }
-        this.f41058c = a10;
-        n2 n2Var = this.f41056a;
+        this.f41057c = a10;
+        n2 n2Var = this.f41055a;
         n2Var.animate().cancel();
         ViewPropertyAnimator animate = n2Var.animate();
         if (a10) {

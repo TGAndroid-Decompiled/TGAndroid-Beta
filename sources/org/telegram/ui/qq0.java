@@ -99,7 +99,7 @@ public final class qq0 extends org.telegram.ui.Components.eu0 {
         super.draw(canvas);
         PhotoViewer photoViewer = this.f51334o0;
         dq0 dq0Var = photoViewer.f43262g0;
-        if (dq0Var != null && dq0Var.f37178y) {
+        if (dq0Var != null && dq0Var.f37177y) {
             int measuredHeight = ((int) ((photoViewer.f43211a6 - 1.0f) * dq0Var.getWebView().getMeasuredHeight())) / 2;
             org.telegram.ui.Components.a61 a61Var = photoViewer.A1;
             if (a61Var != null && a61Var.f33354j) {

@@ -224,7 +224,7 @@ public abstract class o extends FrameLayout {
         int L = org.telegram.messenger.g0.L(36.0f);
         int L2 = org.telegram.messenger.g0.L(36.0f);
         oqVar.h = L;
-        oqVar.f38335n = L2;
+        oqVar.f38334n = L2;
         kVar.setImageDrawable(oqVar);
         kVar.setScaleType(ImageView.ScaleType.CENTER);
         kVar.setContentDescription(hd.N0(2131751342, null));
@@ -329,7 +329,7 @@ public abstract class o extends FrameLayout {
                             this.M.b(false);
                             hVar.getEditText().setForceCursorEnd(true);
                             hVar.getEditText().requestFocus();
-                            tt ttVar = hVar.f42535a;
+                            tt ttVar = hVar.f42534a;
                             ttVar.requestFocus();
                             org.telegram.messenger.g0.I3(ttVar);
                             hVar.getEditText().setScrollY(0);
@@ -526,7 +526,7 @@ public abstract class o extends FrameLayout {
 
     public final boolean p() {
         h hVar = this.f15151f;
-        boolean z10 = hVar.f42545y;
+        boolean z10 = hVar.f42544y;
         o3 o3Var = this.M;
         if (z10 && hVar.getEmojiView() != null) {
             if (o3Var.c()) {
@@ -539,10 +539,10 @@ public abstract class o extends FrameLayout {
                 hVar.d.t(false);
             }
             return true;
-        } else if (hVar.f42538e) {
+        } else if (hVar.f42537e) {
             hVar.k(true);
             return true;
-        } else if ((!hVar.f42543w && !o3Var.c()) || o3Var.d) {
+        } else if ((!hVar.f42542w && !o3Var.c()) || o3Var.d) {
             return false;
         } else {
             hVar.d();
@@ -626,7 +626,7 @@ public abstract class o extends FrameLayout {
         }
         h hVar = this.f15151f;
         boolean z10 = false;
-        if (hVar.f42538e) {
+        if (hVar.f42537e) {
             i7 = Math.max(0, hVar.getEmojiPadding() + a());
         } else if (hVar.O) {
             i7 = Math.max(0, hVar.getKeyboardHeight() + a());

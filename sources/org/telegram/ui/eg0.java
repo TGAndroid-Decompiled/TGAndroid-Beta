@@ -228,10 +228,10 @@ public class eg0 extends Dialog implements org.telegram.messenger.gs {
                 org.telegram.messenger.ls.f(i7).c(this, org.telegram.messenger.ls.f25408w3);
             }
             vf0 vf0Var = this.f47271e0;
-            if (vf0Var != null && !vf0Var.f42122h1) {
-                vf0Var.f42122h1 = true;
-                vf0Var.f42124i1 = true;
-                ch.b0 b0Var = vf0Var.f42147y0;
+            if (vf0Var != null && !vf0Var.f42121h1) {
+                vf0Var.f42121h1 = true;
+                vf0Var.f42123i1 = true;
+                ch.b0 b0Var = vf0Var.f42146y0;
                 if (b0Var != null && (xVar = b0Var.f5336m) != null && !xVar.M1) {
                     xVar.M1 = true;
                     xVar.N1 = true;
@@ -432,7 +432,7 @@ public class eg0 extends Dialog implements org.telegram.messenger.gs {
         if (this.C0 != null && this.D0 != null) {
             float f14 = (f10 + f12) / 2.0f;
             float f15 = (f11 + f13) / 2.0f;
-            float L = org.telegram.messenger.g0.L(28.0f) + this.C0.f42247c;
+            float L = org.telegram.messenger.g0.L(28.0f) + this.C0.f42246c;
             RectF rectF = org.telegram.messenger.g0.P;
             float f16 = L / 2.0f;
             float f17 = f14 - f16;
@@ -731,11 +731,11 @@ public class eg0 extends Dialog implements org.telegram.messenger.gs {
         org.telegram.ui.Components.ug ugVar2 = this.W;
         uf0 uf0Var2 = this.X;
         uf0Var2.H = ugVar2.H;
-        uf0Var2.f40352s0 = ugVar2.f40352s0;
-        uf0Var2.f40337f0.t(ugVar2.f40337f0.f37803i, false, true);
-        uf0Var2.f40338g0 = ugVar2.f40338g0;
-        uf0Var2.setEmoji(ugVar2.f40344n.f37778f[0]);
-        uf0Var2.i(ugVar2.f40358x, ugVar2.f40356w, true);
+        uf0Var2.f40351s0 = ugVar2.f40351s0;
+        uf0Var2.f40336f0.t(ugVar2.f40336f0.f37802i, false, true);
+        uf0Var2.f40337g0 = ugVar2.f40337g0;
+        uf0Var2.setEmoji(ugVar2.f40343n.f37777f[0]);
+        uf0Var2.i(ugVar2.f40357x, ugVar2.f40355w, true);
         uf0Var2.S.e(true, ugVar2.S.f34386c);
         uf0Var2.F.e(true, ugVar2.F.f34386c);
         int i7 = ugVar2.L;

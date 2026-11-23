@@ -396,7 +396,7 @@ public final class wc1 implements OnSuccessListener, org.telegram.ui.ActionBar.q
                 long j3 = 0;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     j3 = ((org.telegram.messenger.tr) arrayList.get(i11)).f27073a;
-                    g0Var.f39536s1.getSendMessagesHelper().r0(org.telegram.messenger.yy.b(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                    g0Var.f39535s1.getSendMessagesHelper().r0(org.telegram.messenger.yy.b(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
                 }
                 cxVar.finishFragment();
                 wg.h.h(j3);

@@ -4,16 +4,16 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import java.util.ArrayList;
 public final class qg extends k1.b {
-    public final rg f38919o;
+    public final rg f38918o;
 
     public qg(rg rgVar, rg rgVar2) {
         super(rgVar2);
-        this.f38919o = rgVar;
+        this.f38918o = rgVar;
     }
 
     @Override
     public final int g(float f10, float f11) {
-        rg rgVar = this.f38919o;
+        rg rgVar = this.f38918o;
         ChatActivityEnterView chatActivityEnterView = rgVar.Q0;
         if (chatActivityEnterView.f32642i5 && chatActivityEnterView.D2 != null && chatActivityEnterView.I4.contains(f10, f11)) {
             return 2;
@@ -26,7 +26,7 @@ public final class qg extends k1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f38919o.Q0;
+        ChatActivityEnterView chatActivityEnterView = this.f38918o.Q0;
         if (chatActivityEnterView.f32642i5) {
             arrayList.add(2);
         }
@@ -44,7 +44,7 @@ public final class qg extends k1.b {
     public final void l(int i7, s0.c cVar) {
         int i10;
         int i11;
-        rg rgVar = this.f38919o;
+        rg rgVar = this.f38918o;
         ChatActivityEnterView chatActivityEnterView = rgVar.Q0;
         if (i7 == 2) {
             Rect rect = chatActivityEnterView.K4;

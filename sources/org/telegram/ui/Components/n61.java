@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
 public final class n61 {
-    public final double f37821a;
-    public final int f37822b;
-    public final int f37823c;
+    public final double f37820a;
+    public final int f37821b;
+    public final int f37822c;
 
     public n61(int i7, int i10, double d) {
-        this.f37821a = d;
-        this.f37822b = i7;
-        this.f37823c = i10;
+        this.f37820a = d;
+        this.f37821b = i7;
+        this.f37822c = i10;
     }
 }

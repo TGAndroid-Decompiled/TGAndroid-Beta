@@ -38,7 +38,7 @@ public final class e extends sh.c implements Drawable.Callback, te.b {
         this.d = i5.c.g(t0.f26931b, 2131231746);
         upVar.setCallback(this);
         upVar.b(m6.x0(null, m6.f29582o7, false));
-        upVar.f40542a = g0.L(15.0f);
+        upVar.f40541a = g0.L(15.0f);
     }
 
     @Override

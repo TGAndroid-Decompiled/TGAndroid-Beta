@@ -32,7 +32,7 @@ public final class h implements TextView.OnEditorActionListener {
             case 2:
                 zk zkVar = (zk) this.f35732b;
                 if (i7 == 6) {
-                    hi.e eVar = zkVar.f42918p0;
+                    hi.e eVar = zkVar.f42917p0;
                     if (eVar.f14567e0) {
                         eVar.performClick();
                         return true;
@@ -67,7 +67,7 @@ public final class h implements TextView.OnEditorActionListener {
             case 6:
                 r4 r4Var = (r4) this.f35732b;
                 if (i7 == 6) {
-                    r4Var.f38940m1.f38610a.callOnClick();
+                    r4Var.f38939m1.f38609a.callOnClick();
                     return true;
                 }
                 return false;

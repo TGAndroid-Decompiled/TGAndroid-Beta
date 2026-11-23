@@ -187,7 +187,7 @@ public final class ej0 implements View.OnLayoutChangeListener {
         if (k5Var.d) {
             if (z10) {
                 ((ValueAnimator) k5Var.h).setDuration(150L);
-                ((ValueAnimator) k5Var.h).setInterpolator(nr.f37962g);
+                ((ValueAnimator) k5Var.h).setInterpolator(nr.f37961g);
             } else {
                 long measuredHeight = ((i26 / ek0Var.getMeasuredHeight()) + 1.0f) * 200.0f;
                 if (measuredHeight >= 300) {

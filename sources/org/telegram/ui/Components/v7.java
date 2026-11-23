@@ -173,8 +173,8 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
             case 1:
                 ui uiVar = (ui) this.H1;
                 uh uhVar = uiVar.B2;
-                TextView textView = uiVar.f40389h3;
-                uh uhVar2 = uiVar.f40438v3;
+                TextView textView = uiVar.f40388h3;
+                uh uhVar2 = uiVar.f40437v3;
                 float alpha = getAlpha();
                 super.setAlpha(f10);
                 if (alpha != f10) {
@@ -193,14 +193,14 @@ public final class v7 extends org.telegram.ui.ActionBar.k {
                     uiVar.f30176b.invalidate();
                     if (uhVar != null && uhVar2 != null) {
                         if (uhVar.getTag() == null) {
-                            mi miVar = uiVar.f40441w2;
+                            mi miVar = uiVar.f40440w2;
                             if (miVar == null || miVar.N()) {
                                 uhVar2.setAlpha(1.0f - f10);
                                 uhVar2.setTranslationY(org.telegram.messenger.g0.L(44.0f) * f10);
                             }
                             uhVar.setTranslationY(org.telegram.messenger.g0.L(48.0f) * f10);
                             return;
-                        } else if (uiVar.f40441w2 == null) {
+                        } else if (uiVar.f40440w2 == null) {
                             if (f10 == 0.0f) {
                                 f11 = 1.0f;
                             }

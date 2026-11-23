@@ -325,7 +325,7 @@ public final class v1 implements e1, h2.o, mr, pb0, kc, a5, sj0, rj0, org.telegr
                         if (i27 == r2Var2.f1452r && r2Var2.d != null && fArr2 != null) {
                             int i29 = 0;
                             while (true) {
-                                int[] iArr = DictationLid.f43082j;
+                                int[] iArr = DictationLid.f43082k;
                                 if (i29 < iArr.length) {
                                     if (iArr[i29] > i28) {
                                         break;
@@ -515,11 +515,11 @@ public final class v1 implements e1, h2.o, mr, pb0, kc, a5, sj0, rj0, org.telegr
             xi0Var.getClass();
             return false;
         }
-        wi0 wi0Var = xi0Var.f42121h0;
+        wi0 wi0Var = xi0Var.f42120h0;
         if (wi0Var == null || !(view instanceof vi0)) {
             return false;
         }
-        wi0Var.g(xi0Var, ((vi0) view).f40840e, true, false);
+        wi0Var.g(xi0Var, ((vi0) view).f40839e, true, false);
         return true;
     }
 
@@ -697,8 +697,8 @@ public final class v1 implements e1, h2.o, mr, pb0, kc, a5, sj0, rj0, org.telegr
     public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         int i7;
         w7 w7Var = (w7) this.f1575c;
-        if (this.f1574b == w7Var.f41676b) {
-            f8 f8Var = w7Var.f41678e;
+        if (this.f1574b == w7Var.f41675b) {
+            f8 f8Var = w7Var.f41677e;
             Bitmap n10 = imageReceiver.n();
             if ((n10 != null && imageReceiver.J()) || imageReceiver.I()) {
                 i7 = org.telegram.messenger.g0.L(64.0f);

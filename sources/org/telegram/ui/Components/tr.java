@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class tr implements org.telegram.messenger.r10 {
-    public final int f40020a;
-    public final as f40021b;
+    public final int f40019a;
+    public final as f40020b;
 
     public tr(as asVar, int i7) {
-        this.f40020a = i7;
-        this.f40021b = asVar;
+        this.f40019a = i7;
+        this.f40020b = asVar;
     }
 
     @Override

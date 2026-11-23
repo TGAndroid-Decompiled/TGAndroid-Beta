@@ -249,7 +249,7 @@ public final class y implements si, com.google.android.gms.common.api.internal.q
     public void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
         ui uiVar = (ui) this.f58224b;
         try {
-            HashMap<Object, Object> selectedPhotos = uiVar.f40379e2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = uiVar.f40378e2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 ff ffVar = (ff) selectedPhotos.values().iterator().next();
                 String str = ffVar.h;

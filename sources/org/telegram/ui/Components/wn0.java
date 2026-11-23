@@ -5,18 +5,18 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowInsets;
 public final class wn0 implements ri.m, r0.m, org.telegram.ui.ActionBar.e1, ri.n {
-    public final int f41860a;
-    public final ap0 f41861b;
+    public final int f41859a;
+    public final ap0 f41860b;
 
     public wn0(ap0 ap0Var, int i7) {
-        this.f41860a = i7;
-        this.f41861b = ap0Var;
+        this.f41859a = i7;
+        this.f41860b = ap0Var;
     }
 
     @Override
     public r0.l1 P0(View view, r0.l1 l1Var) {
         WindowInsets g10 = l1Var.g();
-        ap0 ap0Var = this.f41861b;
+        ap0 ap0Var = this.f41860b;
         ap0Var.t0(g10);
         i0.b f10 = l1Var.f56303a.f(519);
         if (!ap0Var.C2.equals(f10)) {
@@ -28,7 +28,7 @@ public final class wn0 implements ri.m, r0.m, org.telegram.ui.ActionBar.e1, ri.n
 
     @Override
     public int e() {
-        ap0 ap0Var = this.f41861b;
+        ap0 ap0Var = this.f41860b;
         ap0Var.getClass();
         return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29381d6, ap0Var.J0);
     }
@@ -37,9 +37,9 @@ public final class wn0 implements ri.m, r0.m, org.telegram.ui.ActionBar.e1, ri.n
     public void j(KeyEvent keyEvent) {
         org.telegram.ui.ActionBar.g1 g1Var;
         org.telegram.ui.ActionBar.g1 g1Var2;
-        switch (this.f41860a) {
+        switch (this.f41859a) {
             case 2:
-                ap0 ap0Var = this.f41861b;
+                ap0 ap0Var = this.f41860b;
                 ap0Var.getClass();
                 if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var = ap0Var.F2) != null && g1Var.isShowing()) {
                     ap0Var.F2.d(true);
@@ -47,7 +47,7 @@ public final class wn0 implements ri.m, r0.m, org.telegram.ui.ActionBar.e1, ri.n
                 }
                 return;
             default:
-                ap0 ap0Var2 = this.f41861b;
+                ap0 ap0Var2 = this.f41860b;
                 ap0Var2.getClass();
                 if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var2 = ap0Var2.F2) != null && g1Var2.isShowing()) {
                     ap0Var2.F2.d(true);
@@ -59,7 +59,7 @@ public final class wn0 implements ri.m, r0.m, org.telegram.ui.ActionBar.e1, ri.n
 
     @Override
     public void l(int i7) {
-        ap0 ap0Var = this.f41861b;
+        ap0 ap0Var = this.f41860b;
         dh.g gVar = ap0Var.K2;
         if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
             if (c8.dd.a(i7, 4)) {

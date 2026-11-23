@@ -216,7 +216,7 @@ public final class c11 extends View {
         Drawable drawable = this.F;
         if (drawable instanceof org.telegram.ui.Components.p5) {
             ((org.telegram.ui.Components.p5) drawable).o(this.V);
-            fi.s2 s2Var = ((org.telegram.ui.Components.p5) this.F).f38500k;
+            fi.s2 s2Var = ((org.telegram.ui.Components.p5) this.F).f38499k;
             if (s2Var != null) {
                 s2Var.g0(false);
             }

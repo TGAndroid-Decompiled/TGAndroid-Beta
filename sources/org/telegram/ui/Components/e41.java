@@ -10,16 +10,16 @@ public final class e41 implements hw0 {
 
     @Override
     public final boolean b() {
-        return this.f34677a.f36769b.a();
+        return this.f34677a.f36768b.a();
     }
 
     @Override
     public final boolean c() {
-        return this.f34677a.f36769b.c();
+        return this.f34677a.f36768b.c();
     }
 
     @Override
     public final void d(TLRPC.Document document, String str, Object obj, org.telegram.messenger.cj cjVar, boolean z10, boolean z11, int i7, int i10) {
-        this.f34677a.f36769b.f(document, obj, z11, i7);
+        this.f34677a.f36768b.f(document, obj, z11, i7);
     }
 }

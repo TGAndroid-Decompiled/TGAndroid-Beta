@@ -14,7 +14,7 @@ public final class h7 extends up {
             case 0:
                 return org.telegram.messenger.g0.L(26.0f);
             default:
-                return (int) ((this.f40543b * 2.0f) + this.f40542a);
+                return (int) ((this.f40542b * 2.0f) + this.f40541a);
         }
     }
 
@@ -24,7 +24,7 @@ public final class h7 extends up {
             case 0:
                 return org.telegram.messenger.g0.L(26.0f);
             default:
-                return (int) ((this.f40543b * 2.0f) + this.f40542a);
+                return (int) ((this.f40542b * 2.0f) + this.f40541a);
         }
     }
 

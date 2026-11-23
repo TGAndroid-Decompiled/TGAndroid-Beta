@@ -113,7 +113,7 @@ public class ProfileStoriesView extends View implements gs {
         nr nrVar = nr.h;
         this.U = new d6(this, 0L, 480L, nrVar);
         this.V = new d6(this, 0L, 240L, nrVar);
-        this.W = new d6(this, 0L, 150L, nr.f37961f);
+        this.W = new d6(this, 0L, 150L, nr.f37960f);
         this.f43844a0 = 1.0f;
         this.f43848c0 = new Path();
         this.f43849d0 = new Matrix();

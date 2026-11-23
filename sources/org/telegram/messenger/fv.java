@@ -356,7 +356,7 @@ public final class fv {
                     break;
                 }
                 org.telegram.ui.Cells.u9 u9Var = (org.telegram.ui.Cells.u9) arrayList.get(i7);
-                if ((u9Var instanceof ev) && (u5Var = ((ev) u9Var).F) != null && !u5Var.f40262a.isEmpty()) {
+                if ((u9Var instanceof ev) && (u5Var = ((ev) u9Var).F) != null && !u5Var.f40261a.isEmpty()) {
                     return true;
                 }
                 i7++;
@@ -887,17 +887,17 @@ public final class fv {
             if (mcVar == null) {
                 this.G = new org.telegram.ui.Components.mc(this.Q, 1.5f, 2.0f);
             } else {
-                View view = mcVar.f37472a;
+                View view = mcVar.f37471a;
                 View view2 = this.Q;
                 if (view != view2) {
-                    mcVar.f37472a = view2;
+                    mcVar.f37471a = view2;
                 }
             }
             if (this.H == null) {
                 this.H = new Paint(1);
             }
             this.H.setColor(org.telegram.ui.ActionBar.m6.r1(0.1f, w02));
-            float f13 = this.I.f42247c;
+            float f13 = this.I.f42246c;
             int i14 = this.C;
             float f14 = (((i14 + i13) + this.T) / 2.0f) - this.S;
             float L = g0.L(4.0f) + min;
@@ -918,12 +918,12 @@ public final class fv {
             if (q80Var2 == null && z11) {
                 q80 q80Var3 = new q80();
                 this.J = q80Var3;
-                q80Var3.f38833x.setStrokeWidth(g0.L(1.25f));
+                q80Var3.f38832x.setStrokeWidth(g0.L(1.25f));
                 this.J.D = true;
             } else if (q80Var2 != null && z11 && (q80Var2.c() || this.J.d())) {
                 q80 q80Var4 = this.J;
-                q80Var4.f38814b = -1L;
-                q80Var4.f38815c = -1L;
+                q80Var4.f38813b = -1L;
+                q80Var4.f38814c = -1L;
             }
             q80 q80Var5 = this.J;
             if (q80Var5 != null) {

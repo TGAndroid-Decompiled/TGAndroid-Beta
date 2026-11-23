@@ -42,8 +42,8 @@ public final class g extends sa implements t9 {
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
         this.T1 = o41.j(-1, linearLayout);
-        this.f39532o1.setPadding(this.f30211u0, org.telegram.messenger.g0.L(9.0f), this.f30211u0, org.telegram.messenger.g0.L(9.0f));
-        this.f39532o1.setOverScrollMode(2);
+        this.f39531o1.setPadding(this.f30211u0, org.telegram.messenger.g0.L(9.0f), this.f30211u0, org.telegram.messenger.g0.L(9.0f));
+        this.f39531o1.setOverScrollMode(2);
         this.X1.O(false);
         ArrayList arrayList = v9.c(this.f30173a).f27336c;
         int size = arrayList.size();
@@ -61,7 +61,7 @@ public final class g extends sa implements t9 {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new b(this, 1), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new b(this, 1), this.J0);
         this.X1 = c51Var;
         c51Var.f34062r = false;
         return c51Var;
@@ -86,7 +86,7 @@ public final class g extends sa implements t9 {
     public final void g(ArrayList arrayList) {
         int i7;
         this.V1 = new ArrayList(arrayList);
-        this.f39533p1.setTitle(P0());
+        this.f39532p1.setTitle(P0());
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {

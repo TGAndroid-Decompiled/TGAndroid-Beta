@@ -175,7 +175,7 @@ public final class e1 extends sa implements gs {
                 boolean z10 = true;
                 switch (i15) {
                     case 0:
-                        e1Var.Y1.a(!opVar2.f38321a.f32874q, true);
+                        e1Var.Y1.a(!opVar2.f38320a.f32874q, true);
                         return;
                     default:
                         int i16 = e1Var.T1;
@@ -195,7 +195,7 @@ public final class e1 extends sa implements gs {
                                         r10 r10Var = e1Var.f59807u2;
                                         if (r10Var != null) {
                                             op opVar3 = e1Var.Y1;
-                                            r10Var.a(Boolean.valueOf((opVar3 == null || !opVar3.f38321a.f32874q) ? false : false), hashSet2);
+                                            r10Var.a(Boolean.valueOf((opVar3 == null || !opVar3.f38320a.f32874q) ? false : false), hashSet2);
                                             e1Var.f59807u2 = null;
                                         }
                                         e1Var.dismiss();
@@ -243,7 +243,7 @@ public final class e1 extends sa implements gs {
                 boolean z10 = true;
                 switch (i15) {
                     case 0:
-                        e1Var.Y1.a(!opVar2.f38321a.f32874q, true);
+                        e1Var.Y1.a(!opVar2.f38320a.f32874q, true);
                         return;
                     default:
                         int i16 = e1Var.T1;
@@ -263,7 +263,7 @@ public final class e1 extends sa implements gs {
                                         r10 r10Var = e1Var.f59807u2;
                                         if (r10Var != null) {
                                             op opVar3 = e1Var.Y1;
-                                            r10Var.a(Boolean.valueOf((opVar3 == null || !opVar3.f38321a.f32874q) ? false : false), hashSet2);
+                                            r10Var.a(Boolean.valueOf((opVar3 == null || !opVar3.f38320a.f32874q) ? false : false), hashSet2);
                                             e1Var.f59807u2 = null;
                                         }
                                         e1Var.dismiss();
@@ -300,26 +300,26 @@ public final class e1 extends sa implements gs {
         int i16 = this.f30211u0;
         viewGroup5.addView(frameLayout, ma.f(300.0f, -1, 87, i16, 0, i16, org.telegram.messenger.g0.L(68.0f)));
         xg.h hVar2 = this.f59797k2;
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         hVar2.f60549n = arrayList;
         hVar2.f60548f = ek0Var;
         int i17 = this.f30211u0;
         ek0Var.setPadding(i17, 0, i17, org.telegram.messenger.g0.L(60.0f));
-        this.f39532o1.j(new i1(this, 3));
-        this.f39532o1.setOnItemClickListener(new d1(this, h0Var, i7));
-        this.f39532o1.setOnItemLongClickListener(new d1(this));
+        this.f39531o1.j(new i1(this, 3));
+        this.f39531o1.setOnItemClickListener(new d1(this, h0Var, i7));
+        this.f39531o1.setOnItemLongClickListener(new d1(this));
         v4.k kVar = new v4.k();
         kVar.n(350L);
         kVar.o(nr.h);
         kVar.C = false;
         kVar.f59194m = false;
-        this.f39532o1.setItemAnimator(kVar);
-        this.f39532o1.i(new ai.j0(this, 10));
+        this.f39531o1.setItemAnimator(kVar);
+        this.f39531o1.i(new ai.j0(this, 10));
         sg0Var.setText("");
         sg0Var.d.b(false);
         sg0Var.b(false, hashSet, new x0(this, 11), null);
         rg0Var.setText(P0());
-        na naVar = this.f39533p1;
+        na naVar = this.f39532p1;
         if (naVar != null) {
             naVar.setTitle(P0());
         }
@@ -375,7 +375,7 @@ public final class e1 extends sa implements gs {
         uv uvVar = this.W1;
         uvVar.setTranslationY(translationY2);
         int measuredHeight = sg0Var.getMeasuredHeight() + rg0Var.getMeasuredHeight();
-        this.f39532o1.setTranslationY((uvVar.getMeasuredHeight() + measuredHeight) - org.telegram.messenger.g0.L(8.0f));
+        this.f39531o1.setTranslationY((uvVar.getMeasuredHeight() + measuredHeight) - org.telegram.messenger.g0.L(8.0f));
     }
 
     @Override
@@ -584,7 +584,7 @@ public final class e1 extends sa implements gs {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            ek0 ek0Var = this.f39532o1;
+            ek0 ek0Var = this.f39531o1;
             if (i10 >= ek0Var.getChildCount()) {
                 break;
             }
@@ -632,7 +632,7 @@ public final class e1 extends sa implements gs {
     @Override
     public final void s0() {
         super.s0();
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         if (ek0Var != null) {
             for (int i7 = 0; i7 < ek0Var.getChildCount(); i7++) {
                 try {

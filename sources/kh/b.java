@@ -26,7 +26,7 @@ public final class b extends FrameLayout {
             tqVar.setReverse(this.d);
             addView(this.f18595c, ma.e(-1, 28, 48));
         }
-        this.f18595c.f40016a.c(i7, z10);
+        this.f18595c.f40015a.c(i7, z10);
     }
 
     public final void b(boolean z10, boolean z11) {
@@ -42,7 +42,7 @@ public final class b extends FrameLayout {
             }
             up upVar = new up(g0.L(18.0f), g0.L(1.7f), -9079435);
             aVar.f18589e = upVar;
-            upVar.f40546f = 90.0f;
+            upVar.f40545f = 90.0f;
             ImageView imageView = new ImageView(aVar.getContext());
             aVar.d = imageView;
             imageView.setBackground(aVar.f18589e);
@@ -51,7 +51,7 @@ public final class b extends FrameLayout {
         }
         te.a aVar2 = aVar.f18586a;
         if (!aVar2.f57701f && aVar2.f57700e == 0.0f) {
-            aVar.f18589e.f40544c = -1L;
+            aVar.f18589e.f40543c = -1L;
         }
         aVar2.a(z10, z11);
     }

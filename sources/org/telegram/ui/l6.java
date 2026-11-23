@@ -35,7 +35,7 @@ public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
         n6Var.setCallback(k0Var);
         n6Var.w(org.telegram.messenger.g0.L(14.0f));
         n6Var.t(org.telegram.messenger.hd.N0(2131752086, null), true, true);
-        n6Var.f37796b = 5;
+        n6Var.f37795b = 5;
         n6Var.x(org.telegram.messenger.g0.o());
         int i10 = org.telegram.ui.ActionBar.m6.Ji;
         n6Var.u(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
@@ -47,7 +47,7 @@ public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
         n6Var2.x(org.telegram.messenger.g0.o());
         n6Var2.u(org.telegram.ui.ActionBar.m6.w(org.telegram.ui.ActionBar.m6.x0(null, i7, false), org.telegram.ui.ActionBar.m6.r1(0.7f, org.telegram.ui.ActionBar.m6.x0(null, i10, false))));
         n6Var2.t("", true, true);
-        k0Var.setContentDescription(TextUtils.concat(n6Var.f37803i, "\t", n6Var2.f37803i));
+        k0Var.setContentDescription(TextUtils.concat(n6Var.f37802i, "\t", n6Var2.f37802i));
         addView(k0Var, c8.ma.d(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
     }
 
@@ -78,7 +78,7 @@ public class l6 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
         setDisabled(z11);
         k0 k0Var = this.f49504a;
         k0Var.invalidate();
-        k0Var.setContentDescription(TextUtils.concat(n6Var.f37803i, "\t", n6Var2.f37803i));
+        k0Var.setContentDescription(TextUtils.concat(n6Var.f37802i, "\t", n6Var2.f37802i));
     }
 
     @Override

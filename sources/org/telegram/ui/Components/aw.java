@@ -13,7 +13,7 @@ public final class aw extends gy {
     public final void setTranslationY(float f10) {
         if (getTranslationY() != f10) {
             super.setTranslationY(f10);
-            this.I.f40104h0.invalidate();
+            this.I.f40103h0.invalidate();
         }
     }
 }

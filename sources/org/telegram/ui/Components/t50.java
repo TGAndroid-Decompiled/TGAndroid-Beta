@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class t50 implements org.telegram.ui.j90 {
-    public final u50 f39774a;
+    public final u50 f39773a;
 
     public t50(u50 u50Var) {
-        this.f39774a = u50Var;
+        this.f39773a = u50Var;
     }
 
     @Override
     public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
         int i7;
-        org.telegram.ui.ab abVar = this.f39774a.f40265a.f40686c.f33329e2;
+        org.telegram.ui.ab abVar = this.f39773a.f40264a.f40685c.f33329e2;
         if (abVar != null) {
             TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
             TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();

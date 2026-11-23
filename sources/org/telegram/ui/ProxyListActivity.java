@@ -189,7 +189,7 @@ public class ProxyListActivity extends org.telegram.ui.ActionBar.g2 implements o
         this.f43739b = ek0Var;
         ek0Var.r1();
         ((v4.k) this.f43739b.getItemAnimator()).C = false;
-        ((v4.k) this.f43739b.getItemAnimator()).f59212o = org.telegram.ui.Components.nr.f37961f;
+        ((v4.k) this.f43739b.getItemAnimator()).f59212o = org.telegram.ui.Components.nr.f37960f;
         this.f43739b.setSectionsDrawBackground(true);
         this.f43739b.setVerticalScrollBarEnabled(false);
         this.f43739b.setLayoutManager(new v4.c0(1, false));

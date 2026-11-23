@@ -133,11 +133,11 @@ public final class e implements m, hs, ly0, q5.b {
         if (i7 >= 0) {
             zArr[0] = false;
             String trim = str.trim();
-            Matcher matcher = z71.f42708y0.matcher(trim);
+            Matcher matcher = z71.f42707y0.matcher(trim);
             if (matcher.find()) {
                 trim = trim.substring(matcher.group(0).length());
             } else {
-                Matcher matcher2 = z71.f42709z0.matcher(trim);
+                Matcher matcher2 = z71.f42708z0.matcher(trim);
                 if (matcher2.find()) {
                     trim = trim.substring(matcher2.group(0).length());
                     zArr[0] = true;
@@ -150,7 +150,7 @@ public final class e implements m, hs, ly0, q5.b {
     }
 
     public boolean C() {
-        bn bnVar = ((o) this.d).f17995b.f39178a.F3;
+        bn bnVar = ((o) this.d).f17995b.f39177a.F3;
         if (bnVar != null) {
             if (bnVar.f46041g9 == null) {
                 Dialog visibleDialog = bnVar.getVisibleDialog();
@@ -211,7 +211,7 @@ public final class e implements m, hs, ly0, q5.b {
         }
         Log.d("VoiceLive", "field: send " + trim.length() + " chars as text");
         oVar.m("field send");
-        ChatActivityEnterView chatActivityEnterView = oVar.f17995b.f39178a;
+        ChatActivityEnterView chatActivityEnterView = oVar.f17995b.f39177a;
         int i7 = ChatActivityEnterView.f32569s7;
         chatActivityEnterView.A2(trim, new dd(chatActivityEnterView, 20));
     }
@@ -583,7 +583,7 @@ public final class e implements m, hs, ly0, q5.b {
     public fh.g k(ji.e eVar) {
         fh.g gVar;
         gh.a aVar;
-        ChatActivityEnterView chatActivityEnterView = ((o) this.d).f17995b.f39178a;
+        ChatActivityEnterView chatActivityEnterView = ((o) this.d).f17995b.f39177a;
         int i7 = ChatActivityEnterView.f32569s7;
         jh.f D0 = chatActivityEnterView.D0();
         dh.c cVar = chatActivityEnterView.L1;
@@ -705,7 +705,7 @@ public final class e implements m, hs, ly0, q5.b {
     }
 
     public Drawable t() {
-        ChatActivityEnterView chatActivityEnterView = ((o) this.d).f17995b.f39178a;
+        ChatActivityEnterView chatActivityEnterView = ((o) this.d).f17995b.f39177a;
         long j3 = chatActivityEnterView.P6;
         f6 f6Var = null;
         if (j3 == 0) {
@@ -729,7 +729,7 @@ public final class e implements m, hs, ly0, q5.b {
         int[] iArr3 = (int[]) this.f60666a;
         o oVar = (o) this.d;
         if (oVar.K != null) {
-            ChatActivityEnterView chatActivityEnterView = oVar.f17995b.f39178a;
+            ChatActivityEnterView chatActivityEnterView = oVar.f17995b.f39177a;
             du0 du0Var = chatActivityEnterView.f32591c2;
             RectF rectF2 = chatActivityEnterView.I4;
             if (du0Var != null && chatActivityEnterView.getWidth() > 0) {
@@ -941,7 +941,7 @@ public final class e implements m, hs, ly0, q5.b {
     }
 
     public float x() {
-        gf gfVar = ((o) this.d).f17995b.f39178a.F0;
+        gf gfVar = ((o) this.d).f17995b.f39177a.F0;
         if (gfVar != null) {
             return gfVar.getTextSize();
         }

@@ -333,7 +333,7 @@ public final class p extends g2 implements w30, gs, te.b {
         this.f20011e = h51Var;
         h51Var.setClipToPadding(false);
         h51 h51Var2 = this.f20011e;
-        c51 c51Var = h51Var2.f35790g3;
+        c51 c51Var = h51Var2.f35789g3;
         c51Var.f34062r = false;
         c51Var.f34063s = true;
         h51Var2.r1();
@@ -365,7 +365,7 @@ public final class p extends g2 implements w30, gs, te.b {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
             if (chatFull.f28435id == this.f20010c) {
                 this.K = chatFull;
-                this.f20011e.f35790g3.O(true);
+                this.f20011e.f35789g3.O(true);
             }
         }
     }
@@ -380,7 +380,7 @@ public final class p extends g2 implements w30, gs, te.b {
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.G.f41961c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.G.f41960c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -489,8 +489,8 @@ public final class p extends g2 implements w30, gs, te.b {
         this.K = getMessagesController().P0(this.f20010c);
         x30 x30Var = new x30(3, true, true);
         this.G = x30Var;
-        x30Var.f41959a = this;
-        x30Var.f41960b = this;
+        x30Var.f41958a = this;
+        x30Var.f41959b = this;
         getNotificationCenter().c(this, ls.T);
         return super.onFragmentCreate();
     }
@@ -543,7 +543,7 @@ public final class p extends g2 implements w30, gs, te.b {
     public final void restoreSelfArgs(Bundle bundle) {
         x30 x30Var = this.G;
         if (x30Var != null) {
-            x30Var.f41963f = bundle.getString("path");
+            x30Var.f41962f = bundle.getString("path");
         }
     }
 
@@ -551,7 +551,7 @@ public final class p extends g2 implements w30, gs, te.b {
     public final void saveSelfArgs(Bundle bundle) {
         String str;
         x30 x30Var = this.G;
-        if (x30Var != null && (str = x30Var.f41963f) != null) {
+        if (x30Var != null && (str = x30Var.f41962f) != null) {
             bundle.putString("path", str);
         }
         e3 e3Var = this.f20014r;

@@ -61,7 +61,7 @@ public final class d2 extends FrameLayout {
     public final boolean b() {
         op opVar = this.f30562r;
         if (opVar != null) {
-            return opVar.f38321a.f32874q;
+            return opVar.f38320a.f32874q;
         }
         return this.f30561n.h;
     }

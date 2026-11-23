@@ -131,11 +131,11 @@ public final class s5 implements Runnable {
                 v5 v5Var4 = this.f15376b;
                 y51 y51Var = v5Var4.f15636n;
                 if (y51Var != null) {
-                    ez ezVar = y51Var.f42323b;
+                    ez ezVar = y51Var.f42322b;
                     if (ezVar != null) {
                         ezVar.postRunnable(new bz(ezVar, 0));
                     }
-                    y51Var.f42322a = null;
+                    y51Var.f42321a = null;
                     v5Var4.removeView(v5Var4.f15636n);
                     v5Var4.f15636n = null;
                     return;

@@ -69,7 +69,7 @@ public final class fn0 extends Drawable {
         mVar.w(org.telegram.messenger.g0.L(16.0f));
         c(false, 2.0f);
         mVar.u(-1);
-        mVar.f37796b = 17;
+        mVar.f37795b = 17;
         paint.setPathEffect(new CornerPathEffect(org.telegram.messenger.g0.L(1.66f)));
         path2.moveTo(org.telegram.messenger.g0.L(8.66f), -org.telegram.messenger.g0.L(6.33f));
         path2.lineTo(0.0f, 0.0f);
@@ -203,7 +203,7 @@ public final class fn0 extends Drawable {
                     this.f35270e.K(1);
                     this.f35270e.start();
                 }
-                float L = this.f35272g.f42247c + org.telegram.messenger.g0.L(54.0f);
+                float L = this.f35272g.f42246c + org.telegram.messenger.g0.L(54.0f);
                 RectF rectF2 = this.f35283s;
                 float f14 = L / 2.0f;
                 float centerX = bounds.centerX() - f14;
@@ -223,7 +223,7 @@ public final class fn0 extends Drawable {
                 canvas.drawRoundRect(this.f35283s, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), this.f35269c);
                 this.f35270e.setBounds(org.telegram.messenger.g0.L(11.0f) + ((int) this.f35283s.left), ((int) this.f35283s.centerY()) - (org.telegram.messenger.g0.L(24.0f) / 2), org.telegram.messenger.g0.L(35.0f) + ((int) this.f35283s.left), (org.telegram.messenger.g0.L(24.0f) / 2) + ((int) this.f35283s.centerY()));
                 this.f35270e.setAlpha((int) (255.0f * d2));
-                if (!this.f35270e.f38220l0) {
+                if (!this.f35270e.f38219l0) {
                     this.f35270e.H(true);
                 }
                 this.f35270e.draw(canvas);

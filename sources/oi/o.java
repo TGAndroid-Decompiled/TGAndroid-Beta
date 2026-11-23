@@ -82,7 +82,7 @@ public final class o extends mi implements gs {
         this.Q = new d(this, 3);
         this.f22269n = i7;
         this.h = true;
-        this.f37523f = true;
+        this.f37522f = true;
         t3 t3Var = new t3(context, i7, h6Var, new k8.a(7, this, h6Var));
         this.f22270r = t3Var;
         t3Var.setAdaptiveLinkDialogs(false);
@@ -122,7 +122,7 @@ public final class o extends mi implements gs {
             z10 = true;
         }
         if (!z10) {
-            ui uiVar = oVar.f37520b;
+            ui uiVar = oVar.f37519b;
             if (!uiVar.M1 && uiVar.Q2) {
                 i7 = org.telegram.messenger.g0.L(62.0f);
             }
@@ -144,15 +144,15 @@ public final class o extends mi implements gs {
             oVar.W(true);
             return;
         }
-        ui uiVar = oVar.f37520b;
+        ui uiVar = oVar.f37519b;
         if (oVar.f22273x == null) {
-            ty tyVar = new ty(uiVar.f40368a2, true, false, false, oVar.getContext(), true, null, uiVar.f40414p3, true, oVar.f37519a, false, false);
+            ty tyVar = new ty(uiVar.f40367a2, true, false, false, oVar.getContext(), true, null, uiVar.f40413p3, true, oVar.f37518a, false, false);
             oVar.f22273x = tyVar;
             tyVar.setVisibility(8);
             ty tyVar2 = oVar.f22273x;
-            tyVar2.f40160y2 = false;
+            tyVar2.f40159y2 = false;
             tyVar2.setBottomInset(org.telegram.messenger.g0.f24041n);
-            View view = oVar.f22273x.f40149w;
+            View view = oVar.f22273x.f40148w;
             if (view != null) {
                 view.setVisibility(8);
             }
@@ -202,16 +202,16 @@ public final class o extends mi implements gs {
     }
 
     public static void T(o oVar, int i7, int i10) {
-        ui uiVar = oVar.f37520b;
-        if (uiVar.f40368a2 == null) {
+        ui uiVar = oVar.f37519b;
+        if (uiVar.f40367a2 == null) {
             return;
         }
-        ui uiVar2 = new ui(oVar.getContext(), uiVar.f40368a2, false, false, true, oVar.f37519a);
+        ui uiVar2 = new ui(oVar.getContext(), uiVar.f40367a2, false, false, true, oVar.f37518a);
         uiVar2.X3 = new l(oVar, uiVar2);
-        uiVar2.f40379e2.i0();
+        uiVar2.f40378e2.i0();
         uiVar2.z1(1, true);
         uiVar2.W0(i7);
-        uiVar2.f40435u4 = new e(oVar, uiVar2);
+        uiVar2.f40434u4 = new e(oVar, uiVar2);
         uiVar2.T1 = new e(oVar, uiVar2);
         uiVar2.S1 = new m(oVar, uiVar2);
         uiVar2.f1();
@@ -296,7 +296,7 @@ public final class o extends mi implements gs {
 
     private int getEmojiPanelHeight() {
         String str;
-        int Q = this.f37520b.f40414p3.Q();
+        int Q = this.f37519b.f40413p3.Q();
         if (Q <= 0) {
             SharedPreferences f12 = np.f1();
             Point point = org.telegram.messenger.g0.f24046q;
@@ -320,8 +320,8 @@ public final class o extends mi implements gs {
 
     @Override
     public final void I(mi miVar) {
-        this.f37520b.V2.setTitle("");
-        this.f22270r.f35790g3.O(false);
+        this.f37519b.V2.setTitle("");
+        this.f22270r.f35789g3.O(false);
         a0(false);
         post(new d(this, 4));
     }
@@ -345,7 +345,7 @@ public final class o extends mi implements gs {
         boolean B4 = np.u1(i11).B4();
         t3 t3Var = this.f22270r;
         if (!B4 && !k10.i(i11).q() && a5.d(t3Var.f22436t3, t3Var.f22438u3)) {
-            b2.u0(getContext(), new b(t3Var, 0), new d(this, 2), this.f37519a);
+            b2.u0(getContext(), new b(t3Var, 0), new d(this, 2), this.f37518a);
             return false;
         }
         if (t3Var.n3() && !t3Var.p3()) {
@@ -357,9 +357,9 @@ public final class o extends mi implements gs {
                 }
             } else {
                 boolean B42 = np.u1(i11).B4();
-                ui uiVar = this.f37520b;
+                ui uiVar = this.f37519b;
                 if (!B42) {
-                    org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+                    org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
                     if ((g2Var instanceof bn) && (rjVar2 = ((bn) g2Var).f45950a0) != null) {
                         rjVar2.u1(a5.g(t3Var.f22436t3), z10, i7, i10);
                         uiVar.a(true);
@@ -371,7 +371,7 @@ public final class o extends mi implements gs {
                         ArrayList E2 = t3Var.E2();
                         ArrayList B2 = t3Var.B2();
                         ArrayList a10 = z4.a(i11, c32);
-                        org.telegram.ui.ActionBar.g2 g2Var2 = uiVar.f40368a2;
+                        org.telegram.ui.ActionBar.g2 g2Var2 = uiVar.f40367a2;
                         if (g2Var2 instanceof bn) {
                             bn bnVar = (bn) g2Var2;
                             gj gjVar3 = bnVar.F5;
@@ -391,7 +391,7 @@ public final class o extends mi implements gs {
                             gjVar2 = null;
                         }
                         az.R(org.telegram.messenger.c.a(uiVar.H3), c32, E2, B2, a10, uiVar.c1(), gjVar2, gjVar, rmVar, z10, i7, i10, cwVar, j3, j10, 0L);
-                        org.telegram.ui.ActionBar.g2 g2Var3 = uiVar.f40368a2;
+                        org.telegram.ui.ActionBar.g2 g2Var3 = uiVar.f40367a2;
                         if ((g2Var3 instanceof bn) && (rjVar = ((bn) g2Var3).f45950a0) != null && (ngVar = rjVar.P3) != null) {
                             ngVar.H(null, z10, i7, i10, 0L);
                         }
@@ -426,7 +426,7 @@ public final class o extends mi implements gs {
         if (t3Var == null || !t3Var.n3()) {
             return true;
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f37519a);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f37518a);
         String N0 = hd.N0(2131753990, null);
         org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
         t1Var.S = N0;
@@ -442,12 +442,12 @@ public final class o extends mi implements gs {
             public final void h(org.telegram.ui.ActionBar.t1 t1Var2, int i7) {
                 switch (r2) {
                     case 0:
-                        this.f22167b.f37520b.dismiss();
+                        this.f22167b.f37519b.dismiss();
                         return;
                     default:
                         o oVar = this.f22167b;
                         oVar.Y();
-                        oVar.f37520b.dismiss();
+                        oVar.f37519b.dismiss();
                         return;
                 }
             }
@@ -463,12 +463,12 @@ public final class o extends mi implements gs {
             public final void h(org.telegram.ui.ActionBar.t1 t1Var2, int i7) {
                 switch (r2) {
                     case 0:
-                        this.f22167b.f37520b.dismiss();
+                        this.f22167b.f37519b.dismiss();
                         return;
                     default:
                         o oVar = this.f22167b;
                         oVar.Y();
-                        oVar.f37520b.dismiss();
+                        oVar.f37519b.dismiss();
                         return;
                 }
             }
@@ -519,12 +519,12 @@ public final class o extends mi implements gs {
         }
         ty tyVar = this.f22273x;
         float f13 = 0.0f;
-        ui uiVar = this.f37520b;
+        ui uiVar = this.f37519b;
         if (tyVar != null) {
             if (this.f22274y) {
                 float f14 = this.F - i7;
                 if (this.E) {
-                    f12 = -uiVar.f40395j4;
+                    f12 = -uiVar.f40394j4;
                 } else {
                     f12 = 0.0f;
                 }
@@ -548,7 +548,7 @@ public final class o extends mi implements gs {
                 f10 = i10;
             }
             if (!z10 || this.E) {
-                f10 += uiVar.f40395j4;
+                f10 += uiVar.f40394j4;
             }
             y3Var.getBottomContainer().animate().cancel();
             y3Var.getBottomContainer().setTranslationY(-f10);
@@ -557,7 +557,7 @@ public final class o extends mi implements gs {
                 f13 = i7;
             }
             if (!z11 || this.E) {
-                f13 += uiVar.f40395j4;
+                f13 += uiVar.f40394j4;
             }
             y3Var.setBottomGradientTranslationY(-f13);
             if (this.N != this.L) {
@@ -569,7 +569,7 @@ public final class o extends mi implements gs {
     }
 
     public final boolean Y() {
-        org.telegram.ui.ActionBar.g2 g2Var = this.f37520b.f40368a2;
+        org.telegram.ui.ActionBar.g2 g2Var = this.f37519b.f40367a2;
         if (g2Var instanceof bn) {
             bn bnVar = (bn) g2Var;
             t3 t3Var = this.f22270r;
@@ -597,10 +597,10 @@ public final class o extends mi implements gs {
         } else {
             z11 = true;
         }
-        ui uiVar = this.f37520b;
-        uh uhVar = uiVar.f40438v3;
-        if (uiVar.f40439v4 != z11) {
-            uiVar.f40439v4 = z11;
+        ui uiVar = this.f37519b;
+        uh uhVar = uiVar.f40437v3;
+        if (uiVar.f40438v4 != z11) {
+            uiVar.f40438v4 = z11;
             if (uiVar.Q2) {
                 uhVar.animate().cancel();
                 if (!z11) {
@@ -717,8 +717,8 @@ public final class o extends mi implements gs {
         int action = keyEvent.getAction();
         t3 t3Var = this.f22270r;
         if (action == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
-            if ((this.f37520b.f40368a2 instanceof bn) && t3Var.u2() && Y()) {
-                org.telegram.messenger.f3.n(null, 2131745807, new lc(this.f22271s, this.f37519a), 2131623990, 36);
+            if ((this.f37519b.f40367a2 instanceof bn) && t3Var.u2() && Y()) {
+                org.telegram.messenger.f3.n(null, 2131745807, new lc(this.f22271s, this.f37518a), 2131623990, 36);
                 return true;
             }
         } else if (!t3Var.k3(keyEvent)) {
@@ -935,7 +935,7 @@ public final class o extends mi implements gs {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f37520b.f30176b.invalidate();
+        this.f37519b.f30176b.invalidate();
         invalidate();
     }
 
@@ -953,7 +953,7 @@ public final class o extends mi implements gs {
     @Override
     public final void y() {
         boolean z10;
-        if (this.f37520b.f40414p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
+        if (this.f37519b.f40413p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             z10 = true;
         } else {
             z10 = false;

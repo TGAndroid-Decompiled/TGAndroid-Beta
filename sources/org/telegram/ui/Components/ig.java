@@ -13,20 +13,20 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.StickersActivity;
 public final class ig implements tx {
-    public final ChatActivityEnterView f36246a;
+    public final ChatActivityEnterView f36245a;
 
     public ig(ChatActivityEnterView chatActivityEnterView) {
-        this.f36246a = chatActivityEnterView;
+        this.f36245a = chatActivityEnterView;
     }
 
     @Override
     public final boolean A() {
-        return this.f36246a.f32692p4;
+        return this.f36245a.f32692p4;
     }
 
     public final void B(View view, Object obj, String str, Object obj2, boolean z10, int i7, int i10, org.telegram.messenger.ff ffVar, boolean z11) {
         vg vgVar;
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         vg vgVar2 = chatActivityEnterView.G0;
         org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
         org.telegram.ui.rm rmVar = chatActivityEnterView.L3;
@@ -42,7 +42,7 @@ public final class ig implements tx {
                 } else {
                     vgVar = vgVar2;
                 }
-                ngVar.s1(vgVar, ((org.telegram.ui.ActionBar.m5) vgVar2.f40821c).getText(), true);
+                ngVar.s1(vgVar, ((org.telegram.ui.ActionBar.m5) vgVar2.f40820c).getText(), true);
             }
         } else {
             c5.X(chatActivityEnterView.R, 1, chatActivityEnterView.G3, new yd(this, obj, ffVar, z10, i7, i10, z11, str, obj2));
@@ -51,12 +51,12 @@ public final class ig implements tx {
 
     @Override
     public final long a() {
-        return this.f36246a.G3;
+        return this.f36245a.G3;
     }
 
     @Override
     public final boolean b() {
-        org.telegram.ui.bn bnVar = this.f36246a.F3;
+        org.telegram.ui.bn bnVar = this.f36245a.F3;
         if (bnVar != null && bnVar.S6()) {
             return true;
         }
@@ -65,7 +65,7 @@ public final class ig implements tx {
 
     @Override
     public final boolean c() {
-        org.telegram.ui.bn bnVar = this.f36246a.F3;
+        org.telegram.ui.bn bnVar = this.f36245a.F3;
         if (bnVar != null && bnVar.c()) {
             return true;
         }
@@ -74,10 +74,10 @@ public final class ig implements tx {
 
     @Override
     public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         hg hgVar = chatActivityEnterView.Q3;
         if (hgVar != null && !hgVar.J) {
-            hgVar.f41642o1.b(stickerSet, inputStickerSet);
+            hgVar.f41641o1.b(stickerSet, inputStickerSet);
             return;
         }
         org.telegram.ui.ActionBar.g2 g2Var = chatActivityEnterView.F3;
@@ -102,7 +102,7 @@ public final class ig implements tx {
     @Override
     public final void e(Object obj, Object obj2) {
         File file;
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
         if (bnVar != null) {
             PhotoViewer.p1().I2(null, bnVar, bnVar.Ba);
@@ -134,13 +134,13 @@ public final class ig implements tx {
     @Override
     public final int f() {
         int threadMessageId;
-        threadMessageId = this.f36246a.getThreadMessageId();
+        threadMessageId = this.f36245a.getThreadMessageId();
         return threadMessageId;
     }
 
     @Override
     public final boolean g() {
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         if (chatActivityEnterView.G3 == org.telegram.messenger.k10.i(chatActivityEnterView.R).e()) {
             return true;
         }
@@ -149,7 +149,7 @@ public final class ig implements tx {
 
     @Override
     public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         org.telegram.messenger.si.d0(chatActivityEnterView.R).k2(chatActivityEnterView.E3, stickerSetCovered, 0, chatActivityEnterView.F3, false, false);
     }
 
@@ -157,7 +157,7 @@ public final class ig implements tx {
     public final void i(int i7) {
         boolean z10;
         int i10 = ChatActivityEnterView.f32569s7;
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         chatActivityEnterView.P1(i7, true);
         if (i7 != 0) {
             if (i7 == 1) {
@@ -179,7 +179,7 @@ public final class ig implements tx {
 
     @Override
     public final boolean k() {
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         TextView textView = chatActivityEnterView.U6;
         if (textView == null) {
             textView = chatActivityEnterView.F0;
@@ -193,7 +193,7 @@ public final class ig implements tx {
 
     @Override
     public final void l(String str) {
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         EditText editText = chatActivityEnterView.U6;
         if (editText == null) {
             editText = chatActivityEnterView.F0;
@@ -220,7 +220,7 @@ public final class ig implements tx {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.cj cjVar, boolean z10, int i7) {
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         vg vgVar = chatActivityEnterView.G0;
         if (!chatActivityEnterView.f32695p7) {
             hg hgVar = chatActivityEnterView.Q3;
@@ -234,7 +234,7 @@ public final class ig implements tx {
                     if (view == null) {
                         view = vgVar;
                     }
-                    ngVar.s1(view, ((org.telegram.ui.ActionBar.m5) vgVar.f40821c).getText(), true);
+                    ngVar.s1(view, ((org.telegram.ui.ActionBar.m5) vgVar.f40820c).getText(), true);
                     return;
                 }
                 return;
@@ -276,7 +276,7 @@ public final class ig implements tx {
     @Override
     public final void n() {
         Activity activity;
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
         if (bnVar != null && (activity = chatActivityEnterView.E3) != null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, activity, chatActivityEnterView.M4);
@@ -292,7 +292,7 @@ public final class ig implements tx {
 
     @Override
     public final void o(k41 k41Var) {
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         org.telegram.ui.ActionBar.g2 g2Var = chatActivityEnterView.F3;
         if (g2Var == null) {
             g2Var = LaunchActivity.Q();
@@ -310,12 +310,12 @@ public final class ig implements tx {
 
     @Override
     public final float p() {
-        return this.f36246a.f32749x0;
+        return this.f36245a.f32749x0;
     }
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.g2 g2Var = this.f36246a.F3;
+        org.telegram.ui.ActionBar.g2 g2Var = this.f36245a.F3;
         if (g2Var == null) {
             g2Var = LaunchActivity.Q();
         }
@@ -324,14 +324,14 @@ public final class ig implements tx {
 
     @Override
     public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         org.telegram.messenger.si.d0(chatActivityEnterView.R).k2(chatActivityEnterView.E3, stickerSetCovered, 2, chatActivityEnterView.F3, false, false);
     }
 
     @Override
     public final void s(int i7) {
         boolean z10;
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         chatActivityEnterView.P3.V();
         ng ngVar = chatActivityEnterView.P3;
         if (i7 == 3) {
@@ -345,7 +345,7 @@ public final class ig implements tx {
 
     @Override
     public final void t(ArrayList arrayList) {
-        org.telegram.ui.bn bnVar = this.f36246a.F3;
+        org.telegram.ui.bn bnVar = this.f36245a.F3;
         if (bnVar != null) {
             bnVar.presentFragment(new StickersActivity(5, arrayList));
         }
@@ -353,7 +353,7 @@ public final class ig implements tx {
 
     @Override
     public final void u() {
-        this.f36246a.invalidate();
+        this.f36245a.invalidate();
     }
 
     @Override
@@ -363,7 +363,7 @@ public final class ig implements tx {
 
     @Override
     public final void w() {
-        org.telegram.ui.bn bnVar = this.f36246a.F3;
+        org.telegram.ui.bn bnVar = this.f36245a.F3;
         if (bnVar != null) {
             bnVar.presentFragment(new StickersActivity(0, null));
         }
@@ -371,7 +371,7 @@ public final class ig implements tx {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         EditTextBoldCursor editTextBoldCursor = chatActivityEnterView.U6;
         if (editTextBoldCursor == null) {
             editTextBoldCursor = chatActivityEnterView.F0;
@@ -381,7 +381,7 @@ public final class ig implements tx {
 
     @Override
     public final void y(long j3) {
-        ChatActivityEnterView chatActivityEnterView = this.f36246a;
+        ChatActivityEnterView chatActivityEnterView = this.f36245a;
         org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
         if (bnVar != null) {
             if (org.telegram.messenger.g0.Q1()) {
@@ -395,7 +395,7 @@ public final class ig implements tx {
 
     @Override
     public final boolean z() {
-        if (this.f36246a.H2 != 0) {
+        if (this.f36245a.H2 != 0) {
             return true;
         }
         return false;

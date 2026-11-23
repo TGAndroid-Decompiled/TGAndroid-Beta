@@ -129,7 +129,7 @@ public final class g extends g2 implements gs {
         this.f19963f = h51Var;
         h51Var.setClipToPadding(false);
         h51 h51Var2 = this.f19963f;
-        c51 c51Var = h51Var2.f35790g3;
+        c51 c51Var = h51Var2.f35789g3;
         c51Var.f34062r = false;
         c51Var.f34063s = true;
         h51Var2.r1();
@@ -158,7 +158,7 @@ public final class g extends g2 implements gs {
                 h6Var.setSubLabel(hd.G(i11, "Chats", new Object[0]));
                 return;
             }
-            this.f19963f.f35790g3.O(false);
+            this.f19963f.f35789g3.O(false);
         }
     }
 

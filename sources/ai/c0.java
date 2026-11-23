@@ -19,7 +19,7 @@ public final class c0 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 sf sfVar = this.f1139b.f1392f;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ChatActivityEnterView chatActivityEnterView = sfVar.f39573a;
+                ChatActivityEnterView chatActivityEnterView = sfVar.f39572a;
                 chatActivityEnterView.A1 = floatValue;
                 chatActivityEnterView.m2();
                 return;

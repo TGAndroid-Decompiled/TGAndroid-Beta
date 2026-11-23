@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.content.DialogInterface;
 import android.view.View;
 public final class z0 implements DialogInterface.OnDismissListener {
-    public final int f42609a;
-    public final Object f42610b;
+    public final int f42608a;
+    public final Object f42609b;
 
     public z0(Object obj, int i7) {
-        this.f42609a = i7;
-        this.f42610b = obj;
+        this.f42608a = i7;
+        this.f42609b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i7 = this.f42609a;
-        Object obj = this.f42610b;
+        int i7 = this.f42608a;
+        Object obj = this.f42609b;
         switch (i7) {
             case 0:
                 ((org.telegram.ui.vf) obj).run();
@@ -35,7 +35,7 @@ public final class z0 implements DialogInterface.OnDismissListener {
                 return;
             case 5:
                 ot otVar = (ot) obj;
-                otVar.f38347b2 = null;
+                otVar.f38346b2 = null;
                 otVar.requestFocus();
                 return;
             case 6:

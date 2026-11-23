@@ -732,7 +732,7 @@ public class k implements a0 {
         }
         iArr[i7] = 1;
         for (mx0 mx0Var : ((mx0[][]) this.d)[i7]) {
-            w(mx0Var.f37659a.f39720b);
+            w(mx0Var.f37658a.f39719b);
             int i10 = this.f191b;
             this.f191b = i10 - 1;
             ((mx0[]) this.f192c)[i10] = mx0Var;
@@ -815,7 +815,7 @@ public class k implements a0 {
         mx0[][] mx0VarArr2 = new mx0[e10];
         int[] iArr = new int[e10];
         for (mx0 mx0Var : mx0VarArr) {
-            int i7 = mx0Var.f37659a.f39719a;
+            int i7 = mx0Var.f37658a.f39718a;
             iArr[i7] = iArr[i7] + 1;
         }
         for (int i10 = 0; i10 < e10; i10++) {
@@ -823,7 +823,7 @@ public class k implements a0 {
         }
         Arrays.fill(iArr, 0);
         for (mx0 mx0Var2 : mx0VarArr) {
-            int i11 = mx0Var2.f37659a.f39719a;
+            int i11 = mx0Var2.f37658a.f39718a;
             mx0[] mx0VarArr3 = mx0VarArr2[i11];
             int i12 = iArr[i11];
             iArr[i11] = i12 + 1;

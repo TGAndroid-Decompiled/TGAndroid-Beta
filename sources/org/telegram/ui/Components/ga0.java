@@ -17,13 +17,13 @@ public final class ga0 implements Runnable {
         switch (this.f35506a) {
             case 0:
                 qa0 qa0Var = this.f35507b;
-                qa0Var.f38858d0.a(false);
+                qa0Var.f38857d0.a(false);
                 org.telegram.messenger.g0.g3(new ga0(qa0Var, this.f35508c, 1));
                 return;
             default:
                 Context context = this.f35508c;
                 if (org.telegram.messenger.g0.E1(context)) {
-                    new ug.y0(43, context, this.f35507b.f38858d0.G).show();
+                    new ug.y0(43, context, this.f35507b.f38857d0.G).show();
                     return;
                 }
                 return;

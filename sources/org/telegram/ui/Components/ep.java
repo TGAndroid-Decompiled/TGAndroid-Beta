@@ -63,7 +63,7 @@ public final class ep implements si {
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
         ui uiVar = this.f34944a;
         try {
-            HashMap<Object, Object> selectedPhotos = uiVar.f40379e2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = uiVar.f40378e2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) selectedPhotos.values().iterator().next();
                 String str = ffVar.h;

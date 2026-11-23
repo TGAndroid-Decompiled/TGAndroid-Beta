@@ -28,7 +28,7 @@ public final class zy extends org.telegram.ui.Components.sa {
             arrayList2.addAll(arrayList);
         }
         i1(false);
-        this.f39533p1.setTitle(f1(null));
+        this.f39532p1.setTitle(f1(null));
         P(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29454h5, false));
         this.T1 = this.H0;
         TextView textView = new TextView(getContext());
@@ -75,7 +75,7 @@ public final class zy extends org.telegram.ui.Components.sa {
 
     @Override
     public final void V0(org.telegram.ui.Components.du0 du0Var) {
-        org.telegram.ui.Components.ek0 ek0Var = this.f39532o1;
+        org.telegram.ui.Components.ek0 ek0Var = this.f39531o1;
         ek0Var.setOverScrollMode(2);
         ek0Var.setOnItemClickListener(new h(this, 11));
         v4.k kVar = new v4.k();
@@ -94,7 +94,7 @@ public final class zy extends org.telegram.ui.Components.sa {
         while (true) {
             soVar = this.U1;
             int size = soVar.h.size();
-            g2Var = this.f39536s1;
+            g2Var = this.f39535s1;
             if (i7 >= size) {
                 break;
             }
@@ -152,7 +152,7 @@ public final class zy extends org.telegram.ui.Components.sa {
         } else {
             i10 = 0;
         }
-        this.f39532o1.setPadding(L, 0, L2, i10);
+        this.f39531o1.setPadding(L, 0, L2, i10);
     }
 
     public final void i1(boolean z10) {
@@ -179,7 +179,7 @@ public final class zy extends org.telegram.ui.Components.sa {
             if (z10) {
                 yyVar.E(arrayList, arrayList2);
             } else {
-                this.f39532o1.getAdapter().f();
+                this.f39531o1.getAdapter().f();
             }
         }
     }

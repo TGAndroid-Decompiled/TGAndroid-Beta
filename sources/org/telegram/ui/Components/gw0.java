@@ -171,7 +171,7 @@ public final class gw0 extends dk0 {
             org.telegram.ui.Cells.a8 a8Var = (org.telegram.ui.Cells.a8) view;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = kw0Var.N1;
             if (tL_messages_stickerSet != null) {
-                a8Var.d(tL_messages_stickerSet.documents.get(i7), null, kw0Var.N1, null, kw0Var.f37007c2, kw0Var.M1);
+                a8Var.d(tL_messages_stickerSet.documents.get(i7), null, kw0Var.N1, null, kw0Var.f37006c2, kw0Var.M1);
                 a8Var.K.setOnClickListener(new m8(24, this, a8Var));
             }
         }
@@ -204,11 +204,11 @@ public final class gw0 extends dk0 {
                         int L2 = org.telegram.messenger.g0.L(56.0f);
                         int L3 = org.telegram.messenger.g0.L(56.0f);
                         oqVar.h = L2;
-                        oqVar.f38335n = L3;
+                        oqVar.f38334n = L3;
                         int L4 = org.telegram.messenger.g0.L(24.0f);
                         int L5 = org.telegram.messenger.g0.L(24.0f);
-                        oqVar.f38333e = L4;
-                        oqVar.f38334f = L5;
+                        oqVar.f38332e = L4;
+                        oqVar.f38333f = L5;
                         view.setBackground(oqVar);
                         c8.ra.a(view);
                         frameLayout3.addView(view, c8.ma.e(56, 56, 17));

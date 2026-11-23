@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class su extends g.p {
-    public final ev f39690c;
+    public final ev f39689c;
 
     public su(ev evVar) {
-        this.f39690c = evVar;
+        this.f39689c = evVar;
     }
 
     @Override
     public final int i(int i7) {
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
         TLRPC.StickerSet stickerSet;
-        ev evVar = this.f39690c;
+        ev evVar = this.f39689c;
         v4.t tVar = evVar.f35001y1;
         qu quVar = evVar.f34992p1;
         hi.x xVar = evVar.f34994r1;

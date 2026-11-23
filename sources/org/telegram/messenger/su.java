@@ -14,7 +14,7 @@ public final class su implements wg0 {
 
     @Override
     public final Layout a() {
-        qx0 qx0Var = this.f26910a.f39370b;
+        qx0 qx0Var = this.f26910a.f39369b;
         if (qx0Var == null) {
             return null;
         }

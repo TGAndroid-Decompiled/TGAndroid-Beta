@@ -23,7 +23,7 @@ public final class cq0 implements ViewTreeObserver.OnPreDrawListener {
         photoViewer.f43271h0.getViewTreeObserver().removeOnPreDrawListener(this);
         photoViewer.G.setTranslationY(-org.telegram.messenger.g0.L(32.0f));
         ViewPropertyAnimator duration = photoViewer.G.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
-        org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37961f;
+        org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37960f;
         duration.setInterpolator(nrVar).start();
         photoViewer.O0.setTranslationY(-org.telegram.messenger.g0.L(32.0f));
         photoViewer.O0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(nrVar).start();

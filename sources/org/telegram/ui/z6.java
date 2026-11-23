@@ -302,7 +302,7 @@ public final class z6 implements org.telegram.ui.Components.tj0, org.telegram.ui
                 org.telegram.messenger.cz.f23410h0 = (String) this.f54450c;
                 org.telegram.messenger.cz.y();
                 org.telegram.messenger.cz.f23393b = false;
-                dataSettingsActivity.s0(dataSettingsActivity.f43062n);
+                dataSettingsActivity.s0(dataSettingsActivity.f43061n);
                 org.telegram.messenger.fc.D().i(new bt(dataSettingsActivity, 2));
                 ((AlertDialog$Builder) this.d).f28777a.M0.run();
                 return;

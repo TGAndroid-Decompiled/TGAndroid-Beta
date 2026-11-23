@@ -28,7 +28,7 @@ public final class w2 implements Runnable {
             case 0:
                 if (!Arrays.equals(a3Var.h, DictationAsr.E()) && a3Var.getParentActivity() != null && a3Var.f34681a != null) {
                     a3Var.d0(a3Var.getParentActivity());
-                    a3Var.f34681a.f35790g3.O(true);
+                    a3Var.f34681a.f35789g3.O(true);
                     return;
                 }
                 a3Var.e0();

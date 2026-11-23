@@ -18,19 +18,19 @@ public final class r0 extends ViewGroup {
     public int E;
     public boolean F;
     public final s0 G;
-    public final long f41315a;
-    public boolean f41316b;
-    public long f41317c;
+    public final long f41314a;
+    public boolean f41315b;
+    public long f41316c;
     public final ImageReceiver d;
-    public final TextView f41318e;
-    public final ai.k2 f41319f;
+    public final TextView f41317e;
+    public final ai.k2 f41318f;
     public final Paint h;
-    public final d6 f41320n;
-    public final d6 f41321r;
-    public final RectF f41322s;
-    public final Path f41323w;
-    public int f41324x;
-    public int f41325y;
+    public final d6 f41319n;
+    public final d6 f41320r;
+    public final RectF f41321s;
+    public final Path f41322w;
+    public int f41323x;
+    public int f41324y;
 
     public r0(s0 s0Var, Context context, long j3) {
         super(context);
@@ -40,19 +40,19 @@ public final class r0 extends ViewGroup {
         Paint paint = new Paint(1);
         this.h = paint;
         nr nrVar = nr.h;
-        this.f41320n = new d6(this, 0L, 320L, nrVar);
-        this.f41321r = new d6(this, 0L, 320L, nrVar);
-        this.f41322s = new RectF();
-        this.f41323w = new Path();
-        this.f41315a = j3;
+        this.f41319n = new d6(this, 0L, 320L, nrVar);
+        this.f41320r = new d6(this, 0L, 320L, nrVar);
+        this.f41321s = new RectF();
+        this.f41322w = new Path();
+        this.f41314a = j3;
         TextView textView = new TextView(context);
-        this.f41318e = textView;
+        this.f41317e = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(-1);
         textView.setIncludeFontPadding(false);
         addView(textView);
         ai.k2 k2Var = new ai.k2(textView);
-        this.f41319f = k2Var;
+        this.f41318f = k2Var;
         k2Var.c(-9717249, -1, true);
         imageReceiver.J0(org.telegram.messenger.g0.L(11.0f));
         paint.setColor(-13946053);
@@ -62,18 +62,18 @@ public final class r0 extends ViewGroup {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean z10 = false;
-        float e10 = this.f41320n.e(false, this.f41325y);
-        float e11 = this.f41321r.e(false, this.E);
-        RectF rectF = this.f41322s;
+        float e10 = this.f41319n.e(false, this.f41324y);
+        float e11 = this.f41320r.e(false, this.E);
+        RectF rectF = this.f41321s;
         float f10 = 0.0f;
         rectF.set(0.0f, 0.0f, e10, e11);
-        Path path = this.f41323w;
+        Path path = this.f41322w;
         path.rewind();
         path.addRoundRect(rectF, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), Path.Direction.CW);
         canvas.drawPath(path, this.h);
         if (Build.VERSION.SDK_INT >= 29) {
             s0 s0Var = this.G;
-            if (s0Var.f41337b != null && canvas.isHardwareAccelerated()) {
+            if (s0Var.f41336b != null && canvas.isHardwareAccelerated()) {
                 View view = this;
                 float f11 = 0.0f;
                 while (true) {
@@ -94,9 +94,9 @@ public final class r0 extends ViewGroup {
                     canvas.save();
                     canvas.clipPath(path);
                     canvas.translate(-f10, -f11);
-                    float f12 = s0Var.f41338c;
+                    float f12 = s0Var.f41337c;
                     canvas.scale(f12, f12);
-                    canvas.drawRenderNode(s0Var.f41337b);
+                    canvas.drawRenderNode(s0Var.f41336b);
                     canvas.restore();
                 }
             }
@@ -122,7 +122,7 @@ public final class r0 extends ViewGroup {
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        TextView textView = this.f41318e;
+        TextView textView = this.f41317e;
         Layout layout = textView.getLayout();
         int L = org.telegram.messenger.g0.L(19.0f);
         int i13 = 0;
@@ -141,16 +141,16 @@ public final class r0 extends ViewGroup {
         int size = View.MeasureSpec.getSize(i7);
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size - org.telegram.messenger.g0.L(44.0f)), Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
-        TextView textView = this.f41318e;
+        TextView textView = this.f41317e;
         textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f41325y = org.telegram.messenger.g0.L(44.0f) + textView.getMeasuredWidth();
+        this.f41324y = org.telegram.messenger.g0.L(44.0f) + textView.getMeasuredWidth();
         int b10 = org.telegram.messenger.f3.b(8.0f, textView.getMeasuredHeight(), org.telegram.messenger.g0.L(28.0f));
         this.E = b10;
         setMeasuredDimension(size, b10);
         if (!this.F) {
             this.F = true;
-            this.f41320n.e(true, this.f41325y);
-            this.f41321r.e(true, this.E);
+            this.f41319n.e(true, this.f41324y);
+            this.f41320r.e(true, this.E);
         }
         invalidate();
     }

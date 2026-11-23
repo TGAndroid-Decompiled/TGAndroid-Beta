@@ -36,8 +36,8 @@ public final class g1 {
     public final void b(Canvas canvas, yt0 yt0Var, f1 f1Var) {
         Paint paint;
         Paint paint2;
-        float width = (f1Var.d / yt0Var.f42546a) * canvas.getWidth();
-        float height = (f1Var.f57240e / yt0Var.f42547b) * canvas.getHeight();
+        float width = (f1Var.d / yt0Var.f42545a) * canvas.getWidth();
+        float height = (f1Var.f57240e / yt0Var.f42546b) * canvas.getHeight();
         float L = org.telegram.messenger.g0.L(5.0f);
         boolean z10 = f1Var.f57237a;
         if (z10) {
@@ -46,8 +46,8 @@ public final class g1 {
             paint = this.f57249f;
         }
         canvas.drawCircle(width, height, L, paint);
-        float width2 = (f1Var.d / yt0Var.f42546a) * canvas.getWidth();
-        float height2 = (f1Var.f57240e / yt0Var.f42547b) * canvas.getHeight();
+        float width2 = (f1Var.d / yt0Var.f42545a) * canvas.getWidth();
+        float height2 = (f1Var.f57240e / yt0Var.f42546b) * canvas.getHeight();
         float L2 = org.telegram.messenger.g0.L(5.0f);
         if (z10) {
             paint2 = this.f57248e;

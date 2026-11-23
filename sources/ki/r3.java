@@ -165,7 +165,7 @@ public abstract class r3 extends FrameLayout {
             } else {
                 obtain.setLocation(motionEvent.getX(actionIndex) + (motionEvent.getRawX() - motionEvent.getX()), motionEvent.getY(actionIndex) + (motionEvent.getRawY() - motionEvent.getY()));
             }
-            boolean onTouchEvent = ((GestureDetector) this.f18904b.f36567b).onTouchEvent(obtain);
+            boolean onTouchEvent = ((GestureDetector) this.f18904b.f36566b).onTouchEvent(obtain);
             obtain.recycle();
             if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                 boolean z10 = this.f18906c;

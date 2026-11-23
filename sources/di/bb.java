@@ -28,13 +28,13 @@ public final class bb extends n41 {
         K.A = i10;
         long j3 = tL_starsTopupOption.stars;
         K.C = j3;
-        K.f38092m = hd.H(' ', "StarsCount", (int) j3);
+        K.f38091m = hd.H(' ', "StarsCount", (int) j3);
         if (tL_starsTopupOption.loadingStorePrice) {
             f10 = null;
         } else {
             f10 = org.telegram.messenger.r1.i().f(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
         }
-        K.f38093n = f10;
+        K.f38092n = f10;
         K.H = tL_starsTopupOption;
         return K;
     }
@@ -44,8 +44,8 @@ public final class bb extends n41 {
         float f10;
         cb cbVar = (cb) view;
         int i7 = o41Var.A;
-        CharSequence charSequence = o41Var.f38092m;
-        CharSequence charSequence2 = o41Var.f38093n;
+        CharSequence charSequence = o41Var.f38091m;
+        CharSequence charSequence2 = o41Var.f38092n;
         org.telegram.ui.Components.o6 o6Var = cbVar.f8657e;
         TextView textView = cbVar.d;
         boolean equals = TextUtils.equals(textView.getText(), charSequence);
@@ -79,7 +79,7 @@ public final class bb extends n41 {
 
     @Override
     public final boolean c(o41 o41Var, o41 o41Var2) {
-        if (o41Var.A == o41Var2.A && o41Var.d == o41Var2.d && TextUtils.equals(o41Var.f38093n, o41Var2.f38093n)) {
+        if (o41Var.A == o41Var2.A && o41Var.d == o41Var2.d && TextUtils.equals(o41Var.f38092n, o41Var2.f38092n)) {
             return true;
         }
         return false;

@@ -435,7 +435,7 @@ public abstract class j extends FrameLayout {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 this.R = duration;
-                duration.setInterpolator(nr.f37961f);
+                duration.setInterpolator(nr.f37960f);
                 this.R.addUpdateListener(new f(this, 0));
                 this.R.addListener(new g(this, 3));
                 this.R.start();
@@ -568,7 +568,7 @@ public abstract class j extends FrameLayout {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
         this.f57975b0 = duration;
-        duration.setInterpolator(nr.f37961f);
+        duration.setInterpolator(nr.f37960f);
         this.f57975b0.addUpdateListener(new f(this, 3));
         this.f57975b0.addListener(new g(this, 0));
         this.f57975b0.start();
@@ -581,7 +581,7 @@ public abstract class j extends FrameLayout {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
         this.f57977c0 = duration;
-        duration.setInterpolator(nr.f37961f);
+        duration.setInterpolator(nr.f37960f);
         this.f57977c0.addUpdateListener(new f(this, 4));
         this.f57977c0.addListener(new g(this, 1));
         this.f57977c0.start();

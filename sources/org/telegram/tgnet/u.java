@@ -211,8 +211,8 @@ public final class u implements Vector.TLDeserializer, r0.m, e1, q1, GlGenericDr
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 25 && (i7 & 1) != 0) {
             try {
-                ((t0.h) qfVar.f38896b).e();
-                Parcelable parcelable = (Parcelable) ((t0.h) qfVar.f38896b).g();
+                ((t0.h) qfVar.f38895b).e();
+                Parcelable parcelable = (Parcelable) ((t0.h) qfVar.f38895b).g();
                 if (bundle == null) {
                     bundle = new Bundle();
                 } else {
@@ -224,7 +224,7 @@ public final class u implements Vector.TLDeserializer, r0.m, e1, q1, GlGenericDr
                 return false;
             }
         }
-        t0.h hVar = (t0.h) qfVar.f38896b;
+        t0.h hVar = (t0.h) qfVar.f38895b;
         ClipData clipData = new ClipData(hVar.getDescription(), new ClipData.Item(hVar.c()));
         if (i10 >= 31) {
             dVar = new m2.h(clipData, 2);

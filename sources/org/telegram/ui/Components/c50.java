@@ -1013,7 +1013,7 @@ public final class c50 extends h50 implements org.telegram.messenger.gs {
                 ofFloat.addUpdateListener(new x(this, 28));
                 this.l1.addListener(new g40(this, 1));
                 this.l1.setDuration(350L);
-                this.l1.setInterpolator(nr.f37961f);
+                this.l1.setInterpolator(nr.f37960f);
                 this.l1.start();
             }
         }
@@ -1339,7 +1339,7 @@ public final class c50 extends h50 implements org.telegram.messenger.gs {
         float f18;
         float f19;
         float measuredHeight;
-        d50 d50Var = this.f35786a;
+        d50 d50Var = this.f35785a;
         if (d50Var != null) {
             ((org.telegram.ui.ee) d50Var).f47250b.f46004dd.a(z10, true);
         }
@@ -1399,7 +1399,7 @@ public final class c50 extends h50 implements org.telegram.messenger.gs {
         Property property = View.ALPHA;
         ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(linearLayout, property, fArr);
         ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.G, property, 0.0f);
-        p6 p6Var = r6.f39095b;
+        p6 p6Var = r6.f39094b;
         if (z10) {
             i7 = 255;
         } else {
@@ -1710,7 +1710,7 @@ public final class c50 extends h50 implements org.telegram.messenger.gs {
                     l2Var.setImageDrawable(this.f34056y);
                     if (this.f34022d1 == null) {
                         oh0 oh0Var2 = this.f34056y;
-                        oh0Var2.M(oh0Var2.f38211e[0] - 1);
+                        oh0Var2.M(oh0Var2.f38210e[0] - 1);
                     } else {
                         this.f34056y.M(0);
                         this.f34056y.start();
@@ -1724,7 +1724,7 @@ public final class c50 extends h50 implements org.telegram.messenger.gs {
                     l2Var.setImageDrawable(this.E);
                     if (this.f34022d1 == null) {
                         oh0 oh0Var4 = this.E;
-                        oh0Var4.M(oh0Var4.f38211e[0] - 1);
+                        oh0Var4.M(oh0Var4.f38210e[0] - 1);
                     } else {
                         this.E.M(0);
                         this.E.start();

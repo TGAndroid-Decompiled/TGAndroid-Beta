@@ -92,8 +92,8 @@ public final class x90 extends FrameLayout implements org.telegram.ui.ActionBar.
         this.f53792b = spannableStringBuilder;
         org.telegram.ui.Components.s9 s9Var = new org.telegram.ui.Components.s9();
         this.f53791a = s9Var;
-        s9Var.f39524a = b2Var2.getPaint();
-        s9Var.f39528f = org.telegram.messenger.g0.L(1.5f);
+        s9Var.f39523a = b2Var2.getPaint();
+        s9Var.f39527f = org.telegram.messenger.g0.L(1.5f);
         s9Var.setBounds(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(-20.0f), org.telegram.messenger.g0.L(23.0f), 0);
         spannableStringBuilder.setSpan(new ImageSpan(s9Var, 0), 0, spannableStringBuilder.length(), 33);
         TextView textView3 = new TextView(context);

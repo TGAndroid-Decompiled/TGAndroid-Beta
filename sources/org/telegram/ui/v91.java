@@ -81,7 +81,7 @@ public final class v91 extends org.telegram.ui.Cells.u2 {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
             this.f52772l5 = ofFloat;
             ofFloat.addUpdateListener(new iz0(this, 14));
-            this.f52772l5.setInterpolator(org.telegram.ui.Components.nr.f37962g);
+            this.f52772l5.setInterpolator(org.telegram.ui.Components.nr.f37961g);
             this.f52772l5.start();
             return;
         }

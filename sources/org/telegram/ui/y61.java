@@ -223,7 +223,7 @@ public final class y61 extends FrameLayout {
             case 3:
                 pg.i iVar = (pg.i) this.f54072b;
                 pg.d dVar = iVar.f55667r;
-                boolean onTouchEvent = ((GestureDetector) ((org.telegram.ui.Components.jn) this.f54073c).f36567b).onTouchEvent(motionEvent);
+                boolean onTouchEvent = ((GestureDetector) ((org.telegram.ui.Components.jn) this.f54073c).f36566b).onTouchEvent(motionEvent);
                 if (motionEvent.getAction() == 0) {
                     org.telegram.messenger.g0.h3(dVar, 200L);
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {

@@ -72,7 +72,7 @@ public final class l implements Runnable {
                     pVar.getMessagesController().B(pVar.f20010c, null, inputFile3, inputFile4, videoSize2, this.f19999f, this.f19998e, photoSize2.location, photoSize.location, null);
                     pVar.f0(false, true);
                 }
-                pVar.f20011e.f35790g3.O(true);
+                pVar.f20011e.f35789g3.O(true);
                 return;
             case 1:
                 ad adVar = (ad) w30Var;

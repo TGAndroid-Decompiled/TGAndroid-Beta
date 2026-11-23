@@ -45,7 +45,7 @@ public final class ld implements TextView.OnEditorActionListener {
             case 2:
                 org.telegram.ui.Components.rn rnVar = (org.telegram.ui.Components.rn) this.f49592c;
                 org.telegram.ui.Components.tn tnVar = (org.telegram.ui.Components.tn) ((l4) this.f49591b).f49474e;
-                f61 f61Var = tnVar.f39984s;
+                f61 f61Var = tnVar.f39983s;
                 if (i7 == 5) {
                     View F = f61Var.F(rnVar);
                     if (F == null) {
@@ -56,7 +56,7 @@ public final class ld implements TextView.OnEditorActionListener {
                     if (T == null || (b10 = T.b()) == -1) {
                         return true;
                     }
-                    int i10 = b10 - tnVar.f39987u0;
+                    int i10 = b10 - tnVar.f39986u0;
                     int i11 = tnVar.N;
                     int i12 = i11 - 1;
                     if (i10 == i12 && i11 < tnVar.K) {

@@ -7,28 +7,28 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class k5 implements Runnable {
-    public final int f36779a;
-    public final l5 f36780b;
-    public final ArrayList f36781c;
+    public final int f36778a;
+    public final l5 f36779b;
+    public final ArrayList f36780c;
     public final TLObject d;
 
     public k5(l5 l5Var, ArrayList arrayList, TLObject tLObject, int i7) {
-        this.f36779a = i7;
-        this.f36780b = l5Var;
-        this.f36781c = arrayList;
+        this.f36778a = i7;
+        this.f36779b = l5Var;
+        this.f36780c = arrayList;
         this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f36779a) {
+        switch (this.f36778a) {
             case 0:
-                org.telegram.messenger.g0.g3(new k5(this.f36780b, this.f36781c, this.d, 1));
+                org.telegram.messenger.g0.g3(new k5(this.f36779b, this.f36780c, this.d, 1));
                 return;
             default:
-                l5 l5Var = this.f36780b;
-                int i7 = l5Var.f37111e;
-                HashSet hashSet = new HashSet(this.f36781c);
+                l5 l5Var = this.f36779b;
+                int i7 = l5Var.f37110e;
+                HashSet hashSet = new HashSet(this.f36780c);
                 TLObject tLObject = this.d;
                 if (tLObject instanceof Vector) {
                     ArrayList arrayList = ((Vector) tLObject).objects;

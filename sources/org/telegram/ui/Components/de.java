@@ -232,7 +232,7 @@ public final class de extends FrameLayout {
                         Float f10 = (Float) chatActivityEnterView.C0.get(childAt);
                         if (f10 != null) {
                             childAt.setTranslationX(f10.floatValue() - childAt.getLeft());
-                            childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(nr.f37961f).start();
+                            childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(nr.f37960f).start();
                         }
                     }
                     chatActivityEnterView.C0.clear();

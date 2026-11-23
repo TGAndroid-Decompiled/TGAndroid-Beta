@@ -39,7 +39,7 @@ public final class p01 extends org.telegram.ui.Components.ov {
             org.telegram.ui.Components.ov ovVar = s11Var.f51832d0[s11Var.R ? 1 : 0];
             s11Var.f51835e0 = ovVar;
             ovVar.setVisibility(0);
-            org.telegram.ui.Components.kv kvVar = s11Var.f51835e0.f38379y;
+            org.telegram.ui.Components.kv kvVar = s11Var.f51835e0.f38378y;
             Context context = getContext();
             if (s11Var.R) {
                 i12 = 2131232129;
@@ -47,7 +47,7 @@ public final class p01 extends org.telegram.ui.Components.ov {
                 i12 = 2131232128;
             }
             kvVar.setDrawable(context.getDrawable(i12));
-            org.telegram.ui.Components.kv kvVar2 = s11Var.f51835e0.f38379y;
+            org.telegram.ui.Components.kv kvVar2 = s11Var.f51835e0.f38378y;
             if (s11Var.R) {
                 i13 = 2131754755;
             } else {
@@ -59,13 +59,13 @@ public final class p01 extends org.telegram.ui.Components.ov {
             return true;
         }
         org.telegram.ui.Components.kv kvVar3 = this.F;
-        if (kvVar3 != null && this.f38371c0) {
+        if (kvVar3 != null && this.f38370c0) {
             i10 = 1;
         } else {
             i10 = 0;
         }
         int i16 = i10 + 1;
-        if (kvVar3 != null && this.f38371c0 && i7 == 1) {
+        if (kvVar3 != null && this.f38370c0 && i7 == 1) {
             i11 = s11Var.f51852n;
         } else {
             if ((i15 != 4 || i7 != 0) && i7 > 0) {

@@ -53,15 +53,15 @@ public final class b2 extends ha {
                 return;
             default:
                 qa0 qa0Var = (qa0) this.f11796b;
-                ka0 ka0Var = qa0Var.f38859e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = qa0Var.f38863s;
-                wa0 wa0Var = qa0Var.f38858d0;
-                if (wa0Var.f41744s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f36899b > 0.0f) {
+                ka0 ka0Var = qa0Var.f38858e;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = qa0Var.f38862s;
+                wa0 wa0Var = qa0Var.f38857d0;
+                if (wa0Var.f41743s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f36898b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (ka0Var.v - ka0Var.f32300u > np.u1(wa0Var.f41746x).f25948r4) {
+                        if (ka0Var.v - ka0Var.f32300u > np.u1(wa0Var.f41745x).f25948r4) {
                             qa0Var.g();
                             return;
                         }

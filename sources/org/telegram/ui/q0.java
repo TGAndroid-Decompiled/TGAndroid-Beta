@@ -47,8 +47,8 @@ public final class q0 extends org.telegram.ui.Components.q6 {
                         secretMediaViewer.R.setScaleX(f12);
                         secretMediaViewer.R.setScaleY(f12);
                         org.telegram.ui.Components.k61 k61Var = secretMediaViewer.P;
-                        if (k61Var.f36841y != f11) {
-                            k61Var.f36841y = f11;
+                        if (k61Var.f36840y != f11) {
+                            k61Var.f36840y = f11;
                             k61Var.v.invalidate();
                             return;
                         }

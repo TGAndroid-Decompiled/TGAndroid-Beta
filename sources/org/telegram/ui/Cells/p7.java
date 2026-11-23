@@ -243,9 +243,9 @@ public class p7 extends FrameLayout {
             if ((imageReceiver == null || imageReceiver.R0) && this.h && this.P != null) {
                 float L = org.telegram.messenger.g0.L(5.33f);
                 xy0 xy0Var = this.P;
-                xy0Var.f42258p = (int) (rectF.width() - (2.0f * L));
-                xy0Var.f42262t = org.telegram.messenger.g0.L(14.0f);
-                xy0Var.f42245a.setShadowLayer(org.telegram.messenger.g0.L(1.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.m6.r1(0.4f * f10, -16777216));
+                xy0Var.f42257p = (int) (rectF.width() - (2.0f * L));
+                xy0Var.f42261t = org.telegram.messenger.g0.L(14.0f);
+                xy0Var.f42244a.setShadowLayer(org.telegram.messenger.g0.L(1.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.m6.r1(0.4f * f10, -16777216));
                 float f12 = rectF.left + L;
                 float f13 = rectF.top;
                 if (this.f31275r <= 2) {
@@ -558,7 +558,7 @@ public class p7 extends FrameLayout {
         this.f31269l0 = f11;
         this.m0 = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(c8.l9.a(this.m0 * 0.3f, 250.0f, 550.0f));
-        duration.setInterpolator(nr.f37964j);
+        duration.setInterpolator(nr.f37963j);
         duration.addUpdateListener(new r(this, 5));
         duration.addListener(new ki.m3(this, 29));
         duration.start();

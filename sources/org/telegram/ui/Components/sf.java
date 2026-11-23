@@ -9,15 +9,15 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.util.SparseArray;
 public final class sf {
-    public final ChatActivityEnterView f39573a;
+    public final ChatActivityEnterView f39572a;
 
     public sf(ChatActivityEnterView chatActivityEnterView) {
-        this.f39573a = chatActivityEnterView;
+        this.f39572a = chatActivityEnterView;
     }
 
     public final void a(Canvas canvas) {
         org.telegram.ui.bj bjVar;
-        ChatActivityEnterView chatActivityEnterView = this.f39573a;
+        ChatActivityEnterView chatActivityEnterView = this.f39572a;
         Drawable backgroundImage = chatActivityEnterView.f32591c2.getBackgroundImage();
         if (backgroundImage != null) {
             backgroundImage.draw(canvas);
@@ -39,7 +39,7 @@ public final class sf {
     public final void b() {
         boolean z10;
         Editable text;
-        ChatActivityEnterView chatActivityEnterView = this.f39573a;
+        ChatActivityEnterView chatActivityEnterView = this.f39572a;
         fe feVar = chatActivityEnterView.R0;
         if (feVar != null) {
             feVar.invalidate();
@@ -75,7 +75,7 @@ public final class sf {
     }
 
     public final void c(float f10, int i7) {
-        ChatActivityEnterView chatActivityEnterView = this.f39573a;
+        ChatActivityEnterView chatActivityEnterView = this.f39572a;
         fe feVar = chatActivityEnterView.R0;
         SparseArray sparseArray = chatActivityEnterView.C1;
         int i10 = org.telegram.ui.ActionBar.m6.Nl;
@@ -107,7 +107,7 @@ public final class sf {
 
     public final void d(float f10) {
         boolean z10;
-        ChatActivityEnterView chatActivityEnterView = this.f39573a;
+        ChatActivityEnterView chatActivityEnterView = this.f39572a;
         chatActivityEnterView.f32758y1 = f10;
         if (f10 >= 1.0f || f10 <= 0.0f) {
             Editable text = chatActivityEnterView.F0.getText();

@@ -199,7 +199,7 @@ public final class qd0 extends FrameLayout {
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(250L);
         duration.addListener(new pd0(this, 1));
         duration.addUpdateListener(new nd0(this, 0));
-        duration.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+        duration.setInterpolator(org.telegram.ui.Components.nr.f37960f);
         duration.start();
     }
 

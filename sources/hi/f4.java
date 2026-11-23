@@ -60,7 +60,7 @@ public final class f4 implements ValueAnimator.AnimatorUpdateListener {
                 float animatedFraction = valueAnimator.getAnimatedFraction();
                 kw0 kw0Var = (kw0) ((cl0) obj).f34216b;
                 kw0Var.n1.setAlpha(animatedFraction);
-                kw0Var.f37025r1.setAlpha(animatedFraction);
+                kw0Var.f37024r1.setAlpha(animatedFraction);
                 if (i11 != 0) {
                     int i13 = (int) ((1.0f - animatedFraction) * i11);
                     kw0Var.X0(i10 + i13);

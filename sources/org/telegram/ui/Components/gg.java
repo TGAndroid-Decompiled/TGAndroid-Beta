@@ -138,7 +138,7 @@ public final class gg implements org.telegram.ui.uq0 {
         hi.h hVar;
         yc b12 = PhotoViewer.p1().b1();
         if (b12 != null && (hVar = b12.f15151f) != null) {
-            tt ttVar = hVar.f42535a;
+            tt ttVar = hVar.f42534a;
             ttVar.requestFocus();
             org.telegram.messenger.g0.I3(ttVar);
         }

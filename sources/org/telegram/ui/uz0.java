@@ -219,14 +219,14 @@ public final class uz0 extends Dialog {
                 org.telegram.ui.Components.oz0 oz0Var2 = this.d;
                 sz0 sz0Var2 = this.O;
                 pz0 pz0Var = new pz0(this, 1);
-                org.telegram.ui.Components.mz0 mz0Var = oz0Var2.f38423a;
+                org.telegram.ui.Components.mz0 mz0Var = oz0Var2.f38422a;
                 if (mz0Var != null) {
                     mz0Var.b(1.5f, sz0Var2, pz0Var);
-                    Choreographer.getInstance().postFrameCallback(oz0Var2.f38424b);
+                    Choreographer.getInstance().postFrameCallback(oz0Var2.f38423b);
                 } else {
                     org.telegram.ui.Components.nz0 nz0Var = new org.telegram.ui.Components.nz0(sz0Var2, pz0Var);
-                    nz0Var.f38025g = 1.5f;
-                    oz0Var2.f38425c.add(nz0Var);
+                    nz0Var.f38024g = 1.5f;
+                    oz0Var2.f38424c.add(nz0Var);
                 }
                 WindowManager.LayoutParams attributes = getWindow().getAttributes();
                 attributes.flags |= 16;
@@ -235,13 +235,13 @@ public final class uz0 extends Dialog {
             org.telegram.ui.Components.ys ysVar = this.F;
             if (ysVar != null) {
                 PowerManager.WakeLock wakeLock = ysVar.h;
-                SensorManager sensorManager = ysVar.f42503a;
-                if (ysVar.f42508n) {
-                    Sensor sensor = ysVar.f42507f;
+                SensorManager sensorManager = ysVar.f42502a;
+                if (ysVar.f42507n) {
+                    Sensor sensor = ysVar.f42506f;
                     if (sensor != null) {
                         sensorManager.unregisterListener(ysVar, sensor);
                     }
-                    Sensor sensor2 = ysVar.f42506e;
+                    Sensor sensor2 = ysVar.f42505e;
                     if (sensor2 != null) {
                         sensorManager.unregisterListener(ysVar, sensor2);
                     }
@@ -249,11 +249,11 @@ public final class uz0 extends Dialog {
                     if (sensor3 != null) {
                         sensorManager.unregisterListener(ysVar, sensor3);
                     }
-                    sensorManager.unregisterListener(ysVar, ysVar.f42505c);
+                    sensorManager.unregisterListener(ysVar, ysVar.f42504c);
                     if (wakeLock != null && wakeLock.isHeld()) {
                         wakeLock.release();
                     }
-                    ysVar.f42508n = false;
+                    ysVar.f42507n = false;
                 }
             }
         }
@@ -353,13 +353,13 @@ public final class uz0 extends Dialog {
             org.telegram.ui.Components.ys ysVar = this.F;
             if (ysVar != null) {
                 PowerManager.WakeLock wakeLock = ysVar.h;
-                SensorManager sensorManager = ysVar.f42503a;
-                if (!ysVar.f42508n) {
-                    Sensor sensor = ysVar.f42507f;
+                SensorManager sensorManager = ysVar.f42502a;
+                if (!ysVar.f42507n) {
+                    Sensor sensor = ysVar.f42506f;
                     if (sensor != null) {
                         sensorManager.registerListener(ysVar, sensor, 30000);
                     }
-                    Sensor sensor2 = ysVar.f42506e;
+                    Sensor sensor2 = ysVar.f42505e;
                     if (sensor2 != null) {
                         sensorManager.registerListener(ysVar, sensor2, 30000);
                     }
@@ -367,11 +367,11 @@ public final class uz0 extends Dialog {
                     if (sensor3 != null) {
                         sensorManager.registerListener(ysVar, sensor3, 30000);
                     }
-                    sensorManager.registerListener(ysVar, ysVar.f42505c, 3);
+                    sensorManager.registerListener(ysVar, ysVar.f42504c, 3);
                     if (wakeLock != null && Build.MANUFACTURER.equalsIgnoreCase("samsung")) {
                         wakeLock.acquire();
                     }
-                    ysVar.f42508n = true;
+                    ysVar.f42507n = true;
                 }
             }
         }

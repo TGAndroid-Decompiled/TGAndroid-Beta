@@ -64,7 +64,7 @@ public final class o0 extends FrameLayout {
         if (p5Var != null) {
             int L = org.telegram.messenger.g0.L(24.0f);
             int L2 = org.telegram.messenger.g0.L(16.0f);
-            fi.s2 s2Var = p5Var.f38500k;
+            fi.s2 s2Var = p5Var.f38499k;
             if (s2Var != null && s2Var.J() && this.h == 0) {
                 this.h = SystemClock.uptimeMillis();
             }

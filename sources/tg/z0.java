@@ -103,9 +103,9 @@ public abstract class z0 extends ek0 {
         float interpolation;
         float f11;
         if (z10) {
-            interpolation = nr.f37962g.getInterpolation(f10);
+            interpolation = nr.f37961g.getInterpolation(f10);
         } else {
-            interpolation = nr.f37963i.getInterpolation(f10);
+            interpolation = nr.f37962i.getInterpolation(f10);
         }
         float childCount = 1.0f / (getChildCount() - 1);
         for (int i7 = 0; i7 < getChildCount(); i7++) {

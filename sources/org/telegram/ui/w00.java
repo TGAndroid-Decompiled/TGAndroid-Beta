@@ -23,7 +23,7 @@ public final class w00 implements org.telegram.ui.Components.sj0, r0.m, NativeIn
         i0.b f11 = i1Var.f(8);
         f40 f40Var = this.f52931b;
         k20 k20Var = f40Var.C1;
-        if (!k20Var.O && !k20Var.f42538e) {
+        if (!k20Var.O && !k20Var.f42537e) {
             keyboardHeight = 0;
         } else {
             keyboardHeight = k20Var.getKeyboardHeight();
@@ -46,7 +46,7 @@ public final class w00 implements org.telegram.ui.Components.sj0, r0.m, NativeIn
             viewGroup2.setPadding(f10.f15917a + i10, f10.f15918b, i10 + f10.f15919c, f10.d);
         }
         f40Var.f30176b.requestLayout();
-        if (max == 0 && !k20Var.O && !k20Var.f42538e && !k20Var.P) {
+        if (max == 0 && !k20Var.O && !k20Var.f42537e && !k20Var.P) {
             k20Var.j();
         }
         if (max > 0) {
@@ -127,7 +127,7 @@ public final class w00 implements org.telegram.ui.Components.sj0, r0.m, NativeIn
         for (int i7 = 0; i7 < iArr.length; i7++) {
             TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) f40Var.V2.f26962p.get(iArr[i7]);
             if (groupCallParticipant != null) {
-                if (!b20Var.f41110b) {
+                if (!b20Var.f41109b) {
                     if (f40Var.f47522n2) {
                         arrayList = f40Var.f47575y2;
                     } else {

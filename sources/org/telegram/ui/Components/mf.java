@@ -20,14 +20,14 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class mf implements Runnable {
-    public final int f37503a;
-    public final Object f37504b;
-    public final Object f37505c;
+    public final int f37502a;
+    public final Object f37503b;
+    public final Object f37504c;
 
     public mf(int i7, Object obj, Object obj2) {
-        this.f37503a = i7;
-        this.f37504b = obj;
-        this.f37505c = obj2;
+        this.f37502a = i7;
+        this.f37503b = obj;
+        this.f37504c = obj2;
     }
 
     @Override
@@ -38,12 +38,12 @@ public final class mf implements Runnable {
         String str;
         Bitmap createBitmap;
         String str2 = "";
-        switch (this.f37503a) {
+        switch (this.f37502a) {
             case 0:
-                rf rfVar = (rf) this.f37504b;
+                rf rfVar = (rf) this.f37503b;
                 rfVar.getClass();
-                org.telegram.messenger.g0.E2((ji.p) this.f37505c);
-                ChatActivityEnterView chatActivityEnterView = rfVar.f39178a;
+                org.telegram.messenger.g0.E2((ji.p) this.f37504c);
+                ChatActivityEnterView chatActivityEnterView = rfVar.f39177a;
                 chatActivityEnterView.f32721t1 = false;
                 ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.D2;
                 if (recordCircle != null) {
@@ -52,11 +52,11 @@ public final class mf implements Runnable {
                 }
                 return;
             case 1:
-                ((tf) this.f37504b).onAnimationEnd((Animator) this.f37505c);
+                ((tf) this.f37503b).onAnimationEnd((Animator) this.f37504c);
                 return;
             case 2:
-                og ogVar = (og) this.f37505c;
-                ChatActivityEnterView chatActivityEnterView2 = ((rg) this.f37504b).Q0;
+                og ogVar = (og) this.f37504c;
+                ChatActivityEnterView chatActivityEnterView2 = ((rg) this.f37503b).Q0;
                 chatActivityEnterView2.Y1 = chatActivityEnterView2.f32638i1.getAudioRightMs() - chatActivityEnterView2.f32638i1.getAudioLeftMs();
                 MediaController B = MediaController.B();
                 long audioLeftMs = chatActivityEnterView2.f32638i1.getAudioLeftMs();
@@ -101,26 +101,26 @@ public final class mf implements Runnable {
                     return;
                 }
             case 3:
-                ((ui) this.f37504b).f30176b.removeView((hi.l3) this.f37505c);
+                ((ui) this.f37503b).f30176b.removeView((hi.l3) this.f37504c);
                 return;
             case 4:
-                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f37505c;
-                ((ui) this.f37504b).a(true);
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f37504c;
+                ((ui) this.f37503b).a(true);
                 if (g2Var != null) {
                     g2Var.presentFragment(new PremiumPreviewFragment(0, "caption_limit"));
                     return;
                 }
                 return;
             case 5:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f37505c;
-                if (!((ui) this.f37504b).J && editTextBoldCursor.isFocusable() && editTextBoldCursor.hasFocus() && editTextBoldCursor.isShown()) {
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f37504c;
+                if (!((ui) this.f37503b).J && editTextBoldCursor.isFocusable() && editTextBoldCursor.hasFocus() && editTextBoldCursor.isShown()) {
                     org.telegram.messenger.g0.I3(editTextBoldCursor);
                     return;
                 }
                 return;
             case 6:
-                ui uiVar = (ui) this.f37504b;
-                TLRPC.TL_attachMenuBot tL_attachMenuBot = ((ni) this.f37505c).f37883c;
+                ui uiVar = (ui) this.f37503b;
+                TLRPC.TL_attachMenuBot tL_attachMenuBot = ((ni) this.f37504c).f37882c;
                 tL_attachMenuBot.side_menu_disclaimer_needed = false;
                 tL_attachMenuBot.inactive = false;
                 uiVar.D1(tL_attachMenuBot.bot_id, null, false, true);
@@ -132,41 +132,41 @@ public final class mf implements Runnable {
                 }
                 return;
             case 7:
-                ui uiVar2 = (ui) this.f37504b;
+                ui uiVar2 = (ui) this.f37503b;
                 org.telegram.messenger.si.d0(uiVar2.H3).H0(false, true, null);
-                if (uiVar2.f40441w2 == uiVar2.f40437v2.get(((TLRPC.TL_attachMenuBot) this.f37505c).bot_id)) {
-                    uiVar2.G1(uiVar2.f40379e2);
+                if (uiVar2.f40440w2 == uiVar2.f40436v2.get(((TLRPC.TL_attachMenuBot) this.f37504c).bot_id)) {
+                    uiVar2.G1(uiVar2.f40378e2);
                     return;
                 }
                 return;
             case 8:
-                ej ejVar = (ej) this.f37504b;
+                ej ejVar = (ej) this.f37503b;
                 ejVar.H = false;
-                ejVar.I = (ArrayList) this.f37505c;
+                ejVar.I = (ArrayList) this.f37504c;
                 ejVar.U();
                 return;
             case 9:
-                org.telegram.messenger.g0.g3(new mf(10, (uj) this.f37504b, ((tj) this.f37505c).run()));
+                org.telegram.messenger.g0.g3(new mf(10, (uj) this.f37503b, ((tj) this.f37504c).run()));
                 return;
             case 10:
-                ((uj) this.f37504b).setStatus((CharSequence) this.f37505c);
+                ((uj) this.f37503b).setStatus((CharSequence) this.f37504c);
                 return;
             case 11:
-                lk lkVar = (lk) this.f37504b;
-                String str3 = (String) this.f37505c;
+                lk lkVar = (lk) this.f37503b;
+                String str3 = (String) this.f37504c;
                 lkVar.getClass();
-                ArrayList arrayList = new ArrayList(lkVar.Y.f37537w.f34839e);
-                if (lkVar.Y.f37537w.f34840f.isEmpty()) {
-                    arrayList.addAll(0, (ArrayList) lkVar.Y.f37537w.h);
+                ArrayList arrayList = new ArrayList(lkVar.Y.f37536w.f34839e);
+                if (lkVar.Y.f37536w.f34840f.isEmpty()) {
+                    arrayList.addAll(0, (ArrayList) lkVar.Y.f37536w.h);
                 }
                 Utilities.f22812g.c(new org.telegram.ui.yn(lkVar, str3, !lkVar.S.isEmpty(), arrayList, 4));
                 return;
             case 12:
-                lk lkVar2 = (lk) this.f37504b;
-                ArrayList arrayList2 = (ArrayList) this.f37505c;
+                lk lkVar2 = (lk) this.f37503b;
+                ArrayList arrayList2 = (ArrayList) this.f37504c;
                 mk mkVar = lkVar2.Y;
-                boolean z11 = mkVar.f37529c0;
-                ak akVar = mkVar.f37535r;
+                boolean z11 = mkVar.f37528c0;
+                ak akVar = mkVar.f37534r;
                 if (z11) {
                     v4.i0 adapter = akVar.getAdapter();
                     lk lkVar3 = mkVar.E;
@@ -174,69 +174,69 @@ public final class mf implements Runnable {
                         akVar.setAdapter(lkVar3);
                     }
                 }
-                lkVar2.f37204s = arrayList2;
+                lkVar2.f37203s = arrayList2;
                 lkVar2.f();
                 return;
             case 13:
-                ui uiVar3 = ((zk) this.f37504b).f37520b;
+                ui uiVar3 = ((zk) this.f37503b).f37519b;
                 uiVar3.dismiss();
-                uiVar3.f40368a2.presentFragment(org.telegram.ui.bn.ua(((TLRPC.User) this.f37505c).f28583id));
+                uiVar3.f40367a2.presentFragment(org.telegram.ui.bn.ua(((TLRPC.User) this.f37504c).f28583id));
                 return;
             case 14:
-                org.telegram.messenger.f3.n(null, 2131742955, new lc((zk) this.f37504b, (org.telegram.ui.ActionBar.h6) this.f37505c), 2131623994, 36);
+                org.telegram.messenger.f3.n(null, 2131742955, new lc((zk) this.f37503b, (org.telegram.ui.ActionBar.h6) this.f37504c), 2131623994, 36);
                 return;
             case 15:
-                ml mlVar = (ml) this.f37504b;
-                float[] fArr = (float[]) this.f37505c;
+                ml mlVar = (ml) this.f37503b;
+                float[] fArr = (float[]) this.f37504c;
                 mlVar.getClass();
                 mlVar.h0(fArr[0], fArr[1]);
                 return;
             case 16:
-                mi miVar = (mi) this.f37505c;
+                mi miVar = (mi) this.f37504c;
                 boolean z12 = ChatAttachAlertPhotoLayout.f32798r1;
                 int currentItemTop = miVar.getCurrentItemTop();
                 int listTopPadding = miVar.getListTopPadding();
-                zl zlVar = ((ChatAttachAlertPhotoLayout) this.f37504b).F;
+                zl zlVar = ((ChatAttachAlertPhotoLayout) this.f37503b).F;
                 if (currentItemTop > org.telegram.messenger.g0.L(8.0f)) {
                     listTopPadding -= currentItemTop;
                 }
                 zlVar.scrollBy(0, listTopPadding);
                 return;
             case 17:
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f37505c;
-                gm gmVar = ((ChatAttachAlertPhotoLayout) this.f37504b).Q;
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f37504c;
+                gm gmVar = ((ChatAttachAlertPhotoLayout) this.f37503b).Q;
                 if (gmVar != null) {
                     gmVar.setLayoutParams(layoutParams);
                     return;
                 }
                 return;
             case 18:
-                mi miVar2 = (mi) this.f37505c;
+                mi miVar2 = (mi) this.f37504c;
                 int currentItemTop2 = miVar2.getCurrentItemTop();
                 int listTopPadding2 = miVar2.getListTopPadding();
-                di.b1 b1Var = ((rm) this.f37504b).f39281r;
+                di.b1 b1Var = ((rm) this.f37503b).f39280r;
                 if (currentItemTop2 > org.telegram.messenger.g0.L(7.0f)) {
                     listTopPadding2 -= currentItemTop2;
                 }
                 b1Var.scrollBy(0, listTopPadding2);
                 return;
             case 19:
-                io.a(((go) this.f37504b).f35644c);
-                ((kg.g) this.f37505c).run();
+                io.a(((go) this.f37503b).f35644c);
+                ((kg.g) this.f37504c).run();
                 return;
             case 20:
-                ((jp) this.f37504b).f36581b.S0((ArrayList) this.f37505c);
+                ((jp) this.f37503b).f36580b.S0((ArrayList) this.f37504c);
                 return;
             case 21:
-                ((kp) this.f37504b).f36946b.S0((ArrayList) this.f37505c);
+                ((kp) this.f37503b).f36945b.S0((ArrayList) this.f37504c);
                 return;
             case 22:
-                ((org.telegram.ui.ActionBar.w2) this.f37504b).dismiss();
-                vf.c.t((Context) this.f37505c, "https://t.me/BotFather?start=deletebot");
+                ((org.telegram.ui.ActionBar.w2) this.f37503b).dismiss();
+                vf.c.t((Context) this.f37504c, "https://t.me/BotFather?start=deletebot");
                 return;
             case 23:
-                org.telegram.ui.Cells.l3 l3Var = (org.telegram.ui.Cells.l3) this.f37504b;
-                TreeSet treeSet = (TreeSet) this.f37505c;
+                org.telegram.ui.Cells.l3 l3Var = (org.telegram.ui.Cells.l3) this.f37503b;
+                TreeSet treeSet = (TreeSet) this.f37504c;
                 String charSequence = l3Var.getText().toString();
                 if (!br.a(charSequence, "bot") && br.c(charSequence, treeSet) == null) {
                     str2 = "bot";
@@ -252,14 +252,14 @@ public final class mf implements Runnable {
                 j3Var.setPadding(0, L, org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(15.0f));
                 return;
             case 24:
-                jr jrVar = (jr) this.f37504b;
+                jr jrVar = (jr) this.f37503b;
                 jrVar.getClass();
-                ((hi.e) this.f37505c).setLoading(false);
+                ((hi.e) this.f37504c).setLoading(false);
                 jrVar.dismiss();
                 return;
             case 25:
-                jr jrVar2 = (jr) this.f37504b;
-                TLObject tLObject = (TLObject) this.f37505c;
+                jr jrVar2 = (jr) this.f37503b;
+                TLObject tLObject = (TLObject) this.f37504c;
                 if (tLObject != null && (tLObject instanceof TL_phone.groupCallStreamRtmpUrl)) {
                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject;
                     jrVar2.X1 = groupcallstreamrtmpurl.url;
@@ -271,34 +271,34 @@ public final class mf implements Runnable {
                     obj.f35338b = 0;
                     obj.f35339c = spannableStringBuilder.length();
                     jrVar2.Z1.setSpan(new gz0(obj, 0), 0, jrVar2.Z1.length(), 0);
-                    jrVar2.f36587a2.O(false);
+                    jrVar2.f36586a2.O(false);
                     return;
                 }
                 return;
             case 26:
-                js jsVar = (js) this.f37504b;
-                TLObject tLObject2 = (TLObject) this.f37505c;
-                gs gsVar = jsVar.f36593b;
+                js jsVar = (js) this.f37503b;
+                TLObject tLObject2 = (TLObject) this.f37504c;
+                gs gsVar = jsVar.f36592b;
                 ArrayList arrayList3 = jsVar.h;
-                int i7 = jsVar.f36592a;
+                int i7 = jsVar.f36591a;
                 if (tLObject2 instanceof TL_bots.popularAppBots) {
                     TL_bots.popularAppBots popularappbots = (TL_bots.popularAppBots) tLObject2;
                     org.telegram.messenger.np.u1(i7).f4(popularappbots.users, false);
                     org.telegram.messenger.ur.a0(i7).m1(popularappbots.users, null, false, true);
                     arrayList3.addAll(popularappbots.users);
                     String str4 = popularappbots.next_offset;
-                    jsVar.f36597g = str4;
+                    jsVar.f36596g = str4;
                     if (str4 == null) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    jsVar.f36595e = z10;
+                    jsVar.f36594e = z10;
                     long currentTimeMillis = System.currentTimeMillis();
-                    jsVar.f36596f = currentTimeMillis;
-                    if (!jsVar.f36598i) {
-                        jsVar.f36598i = true;
-                        String str5 = jsVar.f36597g;
+                    jsVar.f36595f = currentTimeMillis;
+                    if (!jsVar.f36597i) {
+                        jsVar.f36597i = true;
+                        String str5 = jsVar.f36596g;
                         if (str5 == null) {
                             str = "";
                         } else {
@@ -310,30 +310,30 @@ public final class mf implements Runnable {
                         org.telegram.messenger.ur a02 = org.telegram.messenger.ur.a0(i7);
                         a02.f27250a.c(new bi.o2(jsVar, a02, arrayList4, currentTimeMillis, str, 11));
                     }
-                    jsVar.f36594c = false;
+                    jsVar.f36593c = false;
                     gsVar.run();
                     return;
                 }
-                jsVar.f36597g = null;
-                jsVar.f36595e = true;
-                jsVar.f36594c = false;
+                jsVar.f36596g = null;
+                jsVar.f36594e = true;
+                jsVar.f36593c = false;
                 gsVar.run();
                 return;
             case 27:
-                Bitmap decodeFile = BitmapFactory.decodeFile((String) this.f37505c);
+                Bitmap decodeFile = BitmapFactory.decodeFile((String) this.f37504c);
                 Canvas canvas = new Canvas(Bitmap.createBitmap(org.telegram.messenger.g0.L(26.0f), org.telegram.messenger.g0.L(26.0f), Bitmap.Config.ARGB_8888));
                 Paint paint = new Paint(3);
                 canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
                 float max3 = Math.max(createBitmap.getWidth() / decodeFile.getWidth(), createBitmap.getHeight() / decodeFile.getHeight());
                 canvas.scale(max3, max3);
                 canvas.drawBitmap(decodeFile, (-decodeFile.getWidth()) / 2.0f, (-decodeFile.getHeight()) / 2.0f, paint);
-                org.telegram.messenger.g0.g3(new mf(28, (et) this.f37504b, decodeFile));
+                org.telegram.messenger.g0.g3(new mf(28, (et) this.f37503b, decodeFile));
                 return;
             case 28:
-                ((et) this.f37504b).setImage((Bitmap) this.f37505c);
+                ((et) this.f37503b).setImage((Bitmap) this.f37504c);
                 return;
             default:
-                ((EditTextBoldCursor) this.f37504b).f32966p0.draw((Canvas) this.f37505c);
+                ((EditTextBoldCursor) this.f37503b).f32966p0.draw((Canvas) this.f37504c);
                 return;
         }
     }

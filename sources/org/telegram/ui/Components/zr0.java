@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zr0 implements jg.y1, org.telegram.ui.Cells.a5 {
-    public final bs0 f42974a;
+    public final bs0 f42973a;
 
     public zr0(bs0 bs0Var) {
-        this.f42974a = bs0Var;
+        this.f42973a = bs0Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class zr0 implements jg.y1, org.telegram.ui.Cells.a5 {
     @Override
     public boolean b(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
         int intValue = ((Integer) b5Var.getTag()).intValue();
-        bs0 bs0Var = this.f42974a;
+        bs0 bs0Var = this.f42973a;
         TLObject E = bs0Var.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
@@ -39,7 +39,7 @@ public final class zr0 implements jg.y1, org.telegram.ui.Cells.a5 {
 
     @Override
     public void r(int i7) {
-        bs0 bs0Var = this.f42974a;
+        bs0 bs0Var = this.f42973a;
         bs0Var.f();
         if (i7 == 1) {
             int i10 = bs0Var.f33914r - 1;
@@ -48,7 +48,7 @@ public final class zr0 implements jg.y1, org.telegram.ui.Cells.a5 {
                 int i11 = 0;
                 while (true) {
                     jt0 jt0Var = bs0Var.f33915s;
-                    ds0[] ds0VarArr = jt0Var.f36651n0;
+                    ds0[] ds0VarArr = jt0Var.f36650n0;
                     if (i11 < ds0VarArr.length) {
                         ds0 ds0Var = ds0VarArr[i11];
                         if (ds0Var.F == 7) {

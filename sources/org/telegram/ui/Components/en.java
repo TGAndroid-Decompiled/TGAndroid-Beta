@@ -32,7 +32,7 @@ public final class en implements si {
     @Override
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
         fi.n2 n2Var = this.f34915c;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = n2Var.f40379e2;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = n2Var.f40378e2;
         org.telegram.messenger.y10 y10Var = this.f34914b;
         if (i7 == 15) {
             org.telegram.ui.ActionBar.g2 g2Var = this.f34913a;

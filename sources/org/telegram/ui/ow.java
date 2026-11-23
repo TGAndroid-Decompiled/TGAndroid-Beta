@@ -34,11 +34,11 @@ public final class ow implements org.telegram.ui.Components.w30 {
         h6Var = ((org.telegram.ui.ActionBar.g2) cxVar).resourceProvider;
         ?? ebVar = new org.telegram.ui.Components.eb(parentActivity, h6Var);
         org.telegram.ui.Components.wb wbVar = new org.telegram.ui.Components.wb(ebVar, parentActivity);
-        ebVar.f42032b = wbVar;
+        ebVar.f42031b = wbVar;
         wbVar.setWillNotDraw(false);
         ebVar.addView(wbVar, c8.ma.i(32.0f, 32.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
         org.telegram.ui.Components.q9 q9Var = new org.telegram.ui.Components.q9(parentActivity);
-        ebVar.f42033c = q9Var;
+        ebVar.f42032c = q9Var;
         q9Var.setRoundRadius(org.telegram.messenger.g0.L(14.0f));
         wbVar.addView(q9Var, c8.ma.e(28, 28, 17));
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(parentActivity, false, false, false);
@@ -50,7 +50,7 @@ public final class ow implements org.telegram.ui.Components.w30 {
         ebVar.setTextColor(ebVar.getThemedColor(org.telegram.ui.ActionBar.m6.yj));
         ebVar.setBackground(ebVar.getThemedColor(org.telegram.ui.ActionBar.m6.wj));
         if (z10) {
-            q9Var.setImageBitmap(cxVar.f46726f4.f41965r);
+            q9Var.setImageBitmap(cxVar.f46726f4.f41964r);
         } else {
             q9Var.setImageBitmap(PhotoViewer.p1().C4.n());
         }
@@ -129,8 +129,8 @@ public final class ow implements org.telegram.ui.Components.w30 {
             org.telegram.ui.Components.xb xbVar = (org.telegram.ui.Components.xb) gcVar.f35523e;
             wq0 wq0Var = new wq0();
             int[] iArr = new int[2];
-            org.telegram.ui.Components.q9 q9Var = xbVar.f42033c;
-            org.telegram.ui.Components.q9 q9Var2 = xbVar.f42033c;
+            org.telegram.ui.Components.q9 q9Var = xbVar.f42032c;
+            org.telegram.ui.Components.q9 q9Var2 = xbVar.f42032c;
             q9Var.getLocationInWindow(iArr);
             wq0Var.f53498b = iArr[0];
             wq0Var.f53499c = iArr[1];

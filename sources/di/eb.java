@@ -37,7 +37,7 @@ public final class eb extends LinearLayout implements gs {
         addView(textView, c8.ma.r(-2, -2, 5));
         db dbVar = new db(this, context, context.getResources().getDrawable(2131232754).mutate());
         this.f8753c = dbVar;
-        dbVar.f38119n = true;
+        dbVar.f38118n = true;
         dbVar.getDrawable().r(false, true);
         dbVar.setTypeface(org.telegram.messenger.g0.o());
         org.telegram.ui.ActionBar.t6.Y(dbVar, i10, h6Var);

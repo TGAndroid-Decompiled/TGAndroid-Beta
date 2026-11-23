@@ -34,7 +34,7 @@ public abstract class q1 extends View {
         }
         this.f58148w = true;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
-        duration.setInterpolator(nr.f37961f);
+        duration.setInterpolator(nr.f37960f);
         duration.addUpdateListener(new j3(this, 28));
         duration.addListener(new c30(15, this, z10));
         duration.start();

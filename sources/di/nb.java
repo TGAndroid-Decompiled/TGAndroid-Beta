@@ -46,7 +46,7 @@ public final class nb extends b71 {
             h51 h51Var = mbVar.f9361a;
             h51Var.setClipToPadding(false);
             h51Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
-            h51Var.f35790g3.f34062r = false;
+            h51Var.f35789g3.f34062r = false;
             h51Var.setCaptureSectionsDecoratorAllowed(true);
             h51Var.setOverScrollMode(0);
             ri.q qVar = this.h;

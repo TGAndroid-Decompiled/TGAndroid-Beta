@@ -3,23 +3,23 @@ package org.telegram.ui.Components;
 import android.view.View;
 import java.util.ArrayList;
 public final class rl implements q0.a {
-    public final int f39276a;
-    public final Object f39277b;
-    public final boolean f39278c;
+    public final int f39275a;
+    public final Object f39276b;
+    public final boolean f39277c;
 
     public rl(int i7, Object obj, boolean z10) {
-        this.f39276a = i7;
-        this.f39277b = obj;
-        this.f39278c = z10;
+        this.f39275a = i7;
+        this.f39276b = obj;
+        this.f39277c = z10;
     }
 
     @Override
     public final void accept(Object obj) {
         gc gcVar;
-        int i7 = this.f39276a;
+        int i7 = this.f39275a;
         boolean z10 = false;
-        boolean z11 = this.f39278c;
-        Object obj2 = this.f39277b;
+        boolean z11 = this.f39277c;
+        Object obj2 = this.f39276b;
         switch (i7) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj2;

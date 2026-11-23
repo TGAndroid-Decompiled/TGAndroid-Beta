@@ -849,7 +849,7 @@ public final class me0 extends qb1 implements org.telegram.messenger.gs, te.b {
         if (this.R) {
             return;
         }
-        if (this.Q == null && org.telegram.ui.Components.n30.f37759r.c()) {
+        if (this.Q == null && org.telegram.ui.Components.n30.f37758r.c()) {
             org.telegram.messenger.g0.h3(new he0(this, 7), 1500L);
         }
         this.R = true;
@@ -962,7 +962,7 @@ public final class me0 extends qb1 implements org.telegram.messenger.gs, te.b {
         d02.getPaint().setShadowLayer(org.telegram.messenger.g0.L(6.0f), 0.0f, org.telegram.messenger.g0.L(1.0f), org.telegram.ui.ActionBar.m6.r1(0.15f, -16777216));
         I.X(d02);
         I.a0();
-        org.telegram.ui.Components.n30.f37759r.a();
+        org.telegram.ui.Components.n30.f37758r.a();
     }
 
     public final cx r0(Bundle bundle) {

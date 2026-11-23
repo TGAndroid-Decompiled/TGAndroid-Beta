@@ -13,12 +13,12 @@ public final class b implements org.telegram.messenger.oc {
         switch (this.f33681a) {
             case 0:
                 n0 n0Var = this.f33682b;
-                n0Var.f37694n2 = str;
+                n0Var.f37693n2 = str;
                 n0Var.P2.O(true);
                 return;
             default:
                 n0 n0Var2 = this.f33682b;
-                n0Var2.f37694n2 = str;
+                n0Var2.f37693n2 = str;
                 n0Var2.P2.O(true);
                 return;
         }

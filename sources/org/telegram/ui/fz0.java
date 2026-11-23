@@ -60,7 +60,7 @@ public final class fz0 implements Runnable {
                     }
                     if (U > 0) {
                         org.telegram.ui.Components.k61 k61Var = secretMediaViewer.P;
-                        if (!k61Var.f36824f) {
+                        if (!k61Var.f36823f) {
                             k61Var.h(false, ((float) S) / ((float) U));
                             secretMediaViewer.Q.invalidate();
                         }

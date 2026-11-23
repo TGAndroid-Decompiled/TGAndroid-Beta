@@ -3,14 +3,14 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.view.View;
 public final class ve implements v61, sj0 {
-    public final ChatActivityEnterView f40813a;
+    public final ChatActivityEnterView f40812a;
 
     public ve(ChatActivityEnterView chatActivityEnterView) {
-        this.f40813a = chatActivityEnterView;
+        this.f40812a = chatActivityEnterView;
     }
 
     public void a() {
-        ChatActivityEnterView chatActivityEnterView = this.f40813a;
+        ChatActivityEnterView chatActivityEnterView = this.f40812a;
         ValueAnimator valueAnimator = chatActivityEnterView.C5;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -38,7 +38,7 @@ public final class ve implements v61, sj0 {
     @Override
     public boolean c(int i7, View view) {
         if (view instanceof ki.w) {
-            ChatActivityEnterView chatActivityEnterView = this.f40813a;
+            ChatActivityEnterView chatActivityEnterView = this.f40812a;
             chatActivityEnterView.setFieldText(((ki.w) view).getCommand() + " ");
             chatActivityEnterView.f32674n0.c();
             return true;

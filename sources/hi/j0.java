@@ -29,7 +29,7 @@ public final class j0 implements og.e {
                 o0Var.f15181e.invalidate();
                 return o0Var.h.j();
             default:
-                qd0 qd0Var = ((rd0) frameLayout).f39163a;
+                qd0 qd0Var = ((rd0) frameLayout).f39162a;
                 if (qd0Var != null) {
                     PhotoViewer photoViewer = ((so0) qd0Var).f52091a;
                     Drawable[] drawableArr = PhotoViewer.Z8;
@@ -49,7 +49,7 @@ public final class j0 implements og.e {
                 ((o0) this.f14818b).h.o();
                 return;
             default:
-                ((rd0) this.f14818b).f39164b.o();
+                ((rd0) this.f14818b).f39163b.o();
                 return;
         }
     }
@@ -64,7 +64,7 @@ public final class j0 implements og.e {
                 ((o0) this.f14818b).h.f21921a.g(1, true);
                 return;
             default:
-                ((rd0) this.f14818b).f39164b.f21921a.g(1, true);
+                ((rd0) this.f14818b).f39163b.f21921a.g(1, true);
                 return;
         }
     }
@@ -89,7 +89,7 @@ public final class j0 implements og.e {
                 o0Var.f15181e.invalidate();
                 return m11;
             default:
-                qd0 qd0Var = ((rd0) frameLayout).f39163a;
+                qd0 qd0Var = ((rd0) frameLayout).f39162a;
                 if (qd0Var == null) {
                     return false;
                 }
@@ -109,7 +109,7 @@ public final class j0 implements og.e {
                 ((o0) this.f14818b).h.k();
                 return;
             default:
-                ((rd0) this.f14818b).f39164b.k();
+                ((rd0) this.f14818b).f39163b.k();
                 return;
         }
     }
@@ -125,9 +125,9 @@ public final class j0 implements og.e {
                 return;
             default:
                 rd0 rd0Var = (rd0) this.f14818b;
-                rd0Var.f39164b.setRotation(f10);
+                rd0Var.f39163b.setRotation(f10);
                 rd0Var.getClass();
-                qd0 qd0Var = rd0Var.f39163a;
+                qd0 qd0Var = rd0Var.f39162a;
                 if (qd0Var != null) {
                     ((so0) qd0Var).n(false);
                     return;

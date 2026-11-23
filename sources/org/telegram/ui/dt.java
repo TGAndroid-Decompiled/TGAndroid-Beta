@@ -38,7 +38,7 @@ public final class dt implements DialogInterface.OnClickListener {
             this.f47034b.edit().putInt("VoipDataSaving", i10).commit();
             dataSettingsActivity.V = true;
         }
-        l4 l4Var = dataSettingsActivity.f43057a;
+        l4 l4Var = dataSettingsActivity.f43056a;
         if (l4Var != null) {
             l4Var.g(this.f47035c);
         }

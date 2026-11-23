@@ -153,7 +153,7 @@ public final class e9 extends org.telegram.ui.Components.n41 {
         }
         imageView.setTag(g9Var);
         imageView.setOnClickListener(onClickListener);
-        boolean z15 = o41Var.f38085e;
+        boolean z15 = o41Var.f38084e;
         org.telegram.ui.Components.op opVar = f9Var.f47647e;
         if (opVar == null) {
             return;

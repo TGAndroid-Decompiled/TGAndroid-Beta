@@ -121,18 +121,18 @@ public final class v50 extends org.telegram.ui.ActionBar.g2 implements org.teleg
         org.telegram.ui.Components.oh0 oh0Var = new org.telegram.ui.Components.oh0(2131624240, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
         this.f52730w = oh0Var;
         oh0Var.h = true;
-        oh0Var.f38205a0 = true;
+        oh0Var.f38204a0 = true;
         oh0Var.o();
         org.telegram.ui.Components.oh0 oh0Var2 = this.f52730w;
         if (org.telegram.ui.ActionBar.m6.D0().q()) {
-            i7 = this.f52730w.f38211e[0] - 1;
+            i7 = this.f52730w.f38210e[0] - 1;
         } else {
             i7 = 0;
         }
         oh0Var2.P(i7);
         org.telegram.ui.Components.oh0 oh0Var3 = this.f52730w;
         if (org.telegram.ui.ActionBar.m6.D0().q()) {
-            i10 = this.f52730w.f38211e[0] - 1;
+            i10 = this.f52730w.f38210e[0] - 1;
         } else {
             i10 = 0;
         }

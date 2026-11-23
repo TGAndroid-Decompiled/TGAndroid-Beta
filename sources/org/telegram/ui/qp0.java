@@ -30,12 +30,12 @@ public final class qp0 extends AnimatorListenerAdapter {
         int i12 = 8;
         if (i11 == 1) {
             photoViewer.D1.a();
-            og.o oVar = photoViewer.D1.f39164b;
+            og.o oVar = photoViewer.D1.f39163b;
             oVar.d = null;
             oVar.K = false;
             photoViewer.V0.setVisibility(8);
             photoViewer.D1.setVisibility(8);
-            CropAreaView cropAreaView = photoViewer.D1.f39164b.f21921a;
+            CropAreaView cropAreaView = photoViewer.D1.f39163b.f21921a;
             cropAreaView.f32928o0 = 0.0f;
             cropAreaView.f32929p0 = 1.0f;
             cropAreaView.f32930q0 = 0.0f;

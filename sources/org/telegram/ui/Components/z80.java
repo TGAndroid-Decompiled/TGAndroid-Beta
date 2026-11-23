@@ -11,22 +11,22 @@ import java.util.Map;
 import java.util.TreeSet;
 import org.telegram.tgnet.tl.TL_iv;
 public final class z80 extends c8.f1 {
-    public final ArrayList f42734a;
-    public TL_iv.RichText f42735b;
-    public final ArrayList f42736c = new ArrayList();
+    public final ArrayList f42733a;
+    public TL_iv.RichText f42734b;
+    public final ArrayList f42735c = new ArrayList();
     public final StringBuilder d = new StringBuilder();
-    public final ad.d f42737e = new ad.d(new nb.a(2), new pb.b(2));
-    public final ArrayDeque f42738f;
+    public final ad.d f42736e = new ad.d(new nb.a(2), new pb.b(2));
+    public final ArrayDeque f42737f;
 
     public z80(ArrayList arrayList, ArrayDeque arrayDeque) {
-        this.f42734a = arrayList;
-        this.f42738f = arrayDeque;
+        this.f42733a = arrayList;
+        this.f42737f = arrayDeque;
     }
 
     public static void A(int i7, List list, List list2) {
         for (Object obj : list) {
             if (obj instanceof x80) {
-                list2.add(((x80) obj).f42011a);
+                list2.add(((x80) obj).f42010a);
             } else if (obj instanceof y80) {
                 C((y80) obj, list2, i7);
             }
@@ -72,8 +72,8 @@ public final class z80 extends c8.f1 {
         String str;
         boolean z10;
         TL_iv.RichText n10;
-        ad.a aVar = y80Var.f42357a;
-        ArrayList arrayList = y80Var.f42359c;
+        ad.a aVar = y80Var.f42356a;
+        ArrayList arrayList = y80Var.f42358c;
         String str2 = aVar.f1032a;
         if (str2 == null) {
             lowerCase = "";
@@ -142,9 +142,9 @@ public final class z80 extends c8.f1 {
                         boolean z11 = obj instanceof y80;
                         if (z11) {
                             y80 y80Var2 = (y80) obj;
-                            if ("summary".equalsIgnoreCase(y80Var2.f42357a.f1032a)) {
+                            if ("summary".equalsIgnoreCase(y80Var2.f42356a.f1032a)) {
                                 StringBuilder sb2 = new StringBuilder();
-                                w(y80Var2.f42359c, sb2);
+                                w(y80Var2.f42358c, sb2);
                                 String trim = sb2.toString().trim();
                                 if (trim.isEmpty()) {
                                     n10 = new TL_iv.textEmpty();
@@ -155,7 +155,7 @@ public final class z80 extends c8.f1 {
                             }
                         }
                         if (obj instanceof x80) {
-                            arrayList2.add(((x80) obj).f42011a);
+                            arrayList2.add(((x80) obj).f42010a);
                         } else if (z11) {
                             C((y80) obj, arrayList2, i7 + 1);
                         }
@@ -176,7 +176,7 @@ public final class z80 extends c8.f1 {
     public static void w(List list, StringBuilder sb2) {
         for (Object obj : list) {
             if (obj instanceof x80) {
-                TL_iv.PageBlock pageBlock = ((x80) obj).f42011a;
+                TL_iv.PageBlock pageBlock = ((x80) obj).f42010a;
                 if (pageBlock instanceof TL_iv.pageBlockParagraph) {
                     if (sb2.length() > 0) {
                         sb2.append('\n');
@@ -194,7 +194,7 @@ public final class z80 extends c8.f1 {
                     sb2.append(d90.p(((TL_iv.pageBlockSubheader) pageBlock).text));
                 }
             } else if (obj instanceof y80) {
-                w(((y80) obj).f42359c, sb2);
+                w(((y80) obj).f42358c, sb2);
             }
         }
     }
@@ -262,8 +262,8 @@ public final class z80 extends c8.f1 {
     @Override
     public final void g(kf.i iVar) {
         TL_iv.RichText e10 = d90.e(d90.a(iVar, null));
-        if (this.f42736c.isEmpty()) {
-            this.f42735b = e10;
+        if (this.f42735c.isEmpty()) {
+            this.f42734b = e10;
         }
         switch (iVar.f18258g) {
             case 1:
@@ -312,7 +312,7 @@ public final class z80 extends c8.f1 {
             return;
         }
         try {
-            this.f42737e.b(sb2, str);
+            this.f42736e.b(sb2, str);
         } catch (Throwable th2) {
             org.telegram.messenger.a8.g(th2, true);
             sb2.append(str);
@@ -402,7 +402,7 @@ public final class z80 extends c8.f1 {
         int length = sb2.length();
         sb2.append((char) 1);
         sb2.length();
-        this.f42736c.add(new x80(length, pageBlock));
+        this.f42735c.add(new x80(length, pageBlock));
     }
 
     public final void y() {
@@ -410,7 +410,7 @@ public final class z80 extends c8.f1 {
         StringBuilder sb2 = this.d;
         ArrayList arrayList = new ArrayList();
         try {
-            ad.d dVar = this.f42737e;
+            ad.d dVar = this.f42736e;
             int length = sb2.length();
             ad.a aVar = dVar.d;
             while (true) {
@@ -441,14 +441,14 @@ public final class z80 extends c8.f1 {
         ArrayList arrayList3 = new ArrayList();
         z(arrayList3, arrayList);
         HashMap hashMap = new HashMap();
-        ArrayList arrayList4 = this.f42736c;
+        ArrayList arrayList4 = this.f42735c;
         int size = arrayList4.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList4.get(i7);
             i7++;
             x80 x80Var = (x80) obj;
-            hashMap.put(Integer.valueOf(x80Var.f42012b), x80Var);
+            hashMap.put(Integer.valueOf(x80Var.f42011b), x80Var);
         }
         TreeSet treeSet = new TreeSet();
         treeSet.add(0);
@@ -498,27 +498,27 @@ public final class z80 extends c8.f1 {
             Object obj3 = arrayList5.get(i12);
             i12++;
             x80 x80Var2 = (x80) obj3;
-            while (i11 < arrayList3.size() && ((ad.a) arrayList3.get(i11)).f1033b <= x80Var2.f42012b) {
+            while (i11 < arrayList3.size() && ((ad.a) arrayList3.get(i11)).f1033b <= x80Var2.f42011b) {
                 int i13 = i11 + 1;
                 ad.a aVar4 = (ad.a) arrayList3.get(i11);
                 int i14 = aVar4.d;
                 int i15 = aVar4.f1033b;
-                if (i14 >= x80Var2.f42012b) {
-                    while (arrayDeque.peek() != y80Var && ((y80) arrayDeque.peek()).f42358b <= i15) {
+                if (i14 >= x80Var2.f42011b) {
+                    while (arrayDeque.peek() != y80Var && ((y80) arrayDeque.peek()).f42357b <= i15) {
                         arrayDeque.pop();
                     }
                     y80 y80Var2 = new y80(aVar4, aVar4.d);
-                    ((y80) arrayDeque.peek()).f42359c.add(y80Var2);
+                    ((y80) arrayDeque.peek()).f42358c.add(y80Var2);
                     arrayDeque.push(y80Var2);
                 }
                 i11 = i13;
             }
-            while (arrayDeque.peek() != y80Var && ((y80) arrayDeque.peek()).f42358b <= x80Var2.f42012b) {
+            while (arrayDeque.peek() != y80Var && ((y80) arrayDeque.peek()).f42357b <= x80Var2.f42011b) {
                 arrayDeque.pop();
             }
-            TL_iv.PageBlock pageBlock = x80Var2.f42011a;
-            ((y80) arrayDeque.peek()).f42359c.add(x80Var2);
+            TL_iv.PageBlock pageBlock = x80Var2.f42010a;
+            ((y80) arrayDeque.peek()).f42358c.add(x80Var2);
         }
-        A(0, y80Var.f42359c, this.f42734a);
+        A(0, y80Var.f42358c, this.f42733a);
     }
 }

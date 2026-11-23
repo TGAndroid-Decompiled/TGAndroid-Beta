@@ -27,7 +27,7 @@ public final class er extends sa {
         TLRPC.Chat O0 = org.telegram.messenger.np.u1(this.f30173a).O0(Long.valueOf(-j3));
         this.f34966b2 = g2Var;
         this.f34967c2 = j3;
-        this.f39539v1 = 0.26f;
+        this.f39538v1 = 0.26f;
         ArrayList arrayList2 = new ArrayList(arrayList);
         this.U1 = arrayList2;
         this.T1 = g70Var;
@@ -139,10 +139,10 @@ public final class er extends sa {
                 }
             }
         });
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i11 = this.f30211u0;
         ek0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(120.0f));
-        this.f39532o1.setOnItemClickListener(new o(this, 4));
+        this.f39531o1.setOnItemClickListener(new o(this, 4));
         O();
         c1();
     }

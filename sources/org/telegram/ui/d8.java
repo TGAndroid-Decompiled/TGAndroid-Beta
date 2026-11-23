@@ -285,11 +285,11 @@ public final class d8 extends GestureDetector.SimpleOnGestureListener {
                 } else {
                     int e13 = gjVar.e1();
                     int i7 = a10.f47997c;
-                    org.telegram.ui.Components.jt0 jt0Var = (org.telegram.ui.Components.jt0) jnVar.f36567b;
-                    org.telegram.ui.Components.ys0[] ys0VarArr = jt0Var.f36678w1;
+                    org.telegram.ui.Components.jt0 jt0Var = (org.telegram.ui.Components.jt0) jnVar.f36566b;
+                    org.telegram.ui.Components.ys0[] ys0VarArr = jt0Var.f36677w1;
                     int i10 = -1;
-                    for (int i11 = 0; i11 < ys0VarArr[0].f42514a.size(); i11++) {
-                        if (((org.telegram.messenger.gj) ys0VarArr[0].f42514a.get(i11)).e1() == e13) {
+                    for (int i11 = 0; i11 < ys0VarArr[0].f42513a.size(); i11++) {
+                        if (((org.telegram.messenger.gj) ys0VarArr[0].f42513a.get(i11)).e1() == e13) {
                             i10 = i11;
                         }
                     }

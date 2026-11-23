@@ -88,7 +88,7 @@ public final class b2 implements y10 {
                 if (view instanceof v3) {
                     f6Var.getClass();
                     int R = RecyclerView.R(view);
-                    o41 G = f6Var.f35790g3.G(R);
+                    o41 G = f6Var.f35789g3.G(R);
                     if (G != null) {
                         v3 v3Var = (v3) view;
                         v3Var.setPosition(w3Var.b(R));
@@ -120,10 +120,10 @@ public final class b2 implements y10 {
                 if (y51Var != null) {
                     int i15 = v5Var.V;
                     int i16 = v5Var.W;
-                    ez ezVar = y51Var.f42323b;
+                    ez ezVar = y51Var.f42322b;
                     if (ezVar == null) {
-                        y51Var.f42327n = i15;
-                        y51Var.f42328r = i16;
+                        y51Var.f42326n = i15;
+                        y51Var.f42327r = i16;
                     } else {
                         ezVar.h(i15, i16);
                     }
@@ -266,11 +266,11 @@ public final class b2 implements y10 {
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = org.telegram.messenger.g0.b0(mlVar.f37555i0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = org.telegram.messenger.g0.b0(mlVar.f37555i0.getLongitude());
+                tL_geoPoint.lat = org.telegram.messenger.g0.b0(mlVar.f37554i0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = org.telegram.messenger.g0.b0(mlVar.f37554i0.getLongitude());
                 tL_messageMediaGeoLive.period = i12;
-                mlVar.f37561o0.b(tL_messageMediaGeoLive, mlVar.f37562p0, true, 0, ((Long) obj).longValue());
-                mlVar.f37520b.a(true);
+                mlVar.f37560o0.b(tL_messageMediaGeoLive, mlVar.f37561p0, true, 0, ((Long) obj).longValue());
+                mlVar.f37519b.a(true);
                 return;
             case 7:
                 m40.l1((m40) obj2, i12, (g3) obj);
@@ -300,7 +300,7 @@ public final class b2 implements y10 {
                         }
                         eVar2.setEnabled(z11);
                     }
-                    naVar.f34681a.f35790g3.O(true);
+                    naVar.f34681a.f35789g3.O(true);
                     return;
                 }
                 return;

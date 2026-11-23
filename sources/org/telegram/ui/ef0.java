@@ -132,7 +132,7 @@ public final class ef0 extends org.telegram.ui.Components.dk0 {
                 org.telegram.ui.Components.yz yzVar2 = new org.telegram.ui.Components.yz(context, null);
                 yzVar2.setIsSingleCell(true);
                 yzVar2.setViewType(9);
-                yzVar2.f42606x = false;
+                yzVar2.f42605x = false;
                 yzVar = yzVar2;
                 g80Var = yzVar;
                 break;

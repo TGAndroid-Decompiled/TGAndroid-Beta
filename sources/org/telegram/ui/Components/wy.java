@@ -21,21 +21,21 @@ public class wy extends v4.t {
         if (yt0Var == null) {
             return null;
         }
-        if (yt0Var.f42546a == 0.0f) {
-            yt0Var.f42546a = 100.0f;
+        if (yt0Var.f42545a == 0.0f) {
+            yt0Var.f42545a = 100.0f;
         }
-        if (yt0Var.f42547b == 0.0f) {
-            yt0Var.f42547b = 100.0f;
+        if (yt0Var.f42546b == 0.0f) {
+            yt0Var.f42546b = 100.0f;
         }
-        float f10 = yt0Var.f42546a;
-        float f11 = yt0Var.f42547b;
+        float f10 = yt0Var.f42545a;
+        float f11 = yt0Var.f42546b;
         float f12 = f10 / f11;
         if (f12 <= 4.0f && f12 >= 0.2f) {
             return yt0Var;
         }
         float max = Math.max(f10, f11);
-        yt0Var.f42546a = max;
-        yt0Var.f42547b = max;
+        yt0Var.f42545a = max;
+        yt0Var.f42546b = max;
         return yt0Var;
     }
 
@@ -88,13 +88,13 @@ public class wy extends v4.t {
                     min = i11;
                 } else {
                     i7 = L;
-                    min = Math.min(i11, (int) Math.floor((((yt0Var.f42546a / yt0Var.f42547b) * L) / f11) * i11));
+                    min = Math.min(i11, (int) Math.floor((((yt0Var.f42545a / yt0Var.f42546b) * L) / f11) * i11));
                     if (i15 >= min && (min <= 33 || i15 >= min - 15)) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    if (yt0Var.f42548c) {
+                    if (yt0Var.f42547c) {
                         sparseIntArray.put(i13, i15);
                         this.V++;
                         f10 = f11;

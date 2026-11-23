@@ -59,7 +59,7 @@ public final class e40 {
         if (f15 > f16) {
             this.f47138f = f16;
         }
-        float interpolation = org.telegram.ui.Components.nr.f37962g.getInterpolation(this.f47138f / f16);
+        float interpolation = org.telegram.ui.Components.nr.f37961g.getInterpolation(this.f47138f / f16);
         float f17 = i11;
         float f18 = this.f47136c;
         float f19 = (((((this.f47134a - f18) * interpolation) + f18) * f17) + i10) - 200.0f;

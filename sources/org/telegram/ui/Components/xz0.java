@@ -4,15 +4,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class xz0 extends AnimatorListenerAdapter {
-    public final ThemeEditorView.EditorAlert f42274a;
+    public final ThemeEditorView.EditorAlert f42273a;
 
     public xz0(ThemeEditorView.EditorAlert editorAlert) {
-        this.f42274a = editorAlert;
+        this.f42273a = editorAlert;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f42274a;
+        ThemeEditorView.EditorAlert editorAlert = this.f42273a;
         editorAlert.n1.setVisibility(4);
         editorAlert.f33197q1.setVisibility(4);
         editorAlert.f33201u1.setVisibility(4);

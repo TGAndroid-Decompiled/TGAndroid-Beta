@@ -26,7 +26,7 @@ public class eb0 extends TextView implements org.telegram.ui.ActionBar.b6 {
         this.f47224c = org.telegram.ui.ActionBar.m6.r1(0.1f, org.telegram.ui.ActionBar.m6.x0(null, i7, false));
         h02.setCallback(this);
         q80Var.D = true;
-        q80Var.f38831u = 0.8f;
+        q80Var.f38830u = 0.8f;
     }
 
     public boolean a() {
@@ -50,16 +50,16 @@ public class eb0 extends TextView implements org.telegram.ui.ActionBar.b6 {
             return;
         }
         org.telegram.ui.Components.h80 h80Var = new org.telegram.ui.Components.h80(0);
-        h80Var.f35827q = org.telegram.messenger.g0.L(3.0f);
-        h80Var.f35828r = org.telegram.messenger.g0.L(6.0f);
+        h80Var.f35826q = org.telegram.messenger.g0.L(3.0f);
+        h80Var.f35827r = org.telegram.messenger.g0.L(6.0f);
         int length = text.length();
         h80Var.d(layout, 0, 0.0f);
         layout.getSelectionPath(0, length, h80Var);
         RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(h80Var.f35829s, h80Var.f35831u, h80Var.f35830t, h80Var.v);
+        rectF.set(h80Var.f35828s, h80Var.f35830u, h80Var.f35829t, h80Var.v);
         this.f47222a.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
         org.telegram.ui.Components.q80 q80Var = this.f47223b;
-        q80Var.f38834y = h80Var;
+        q80Var.f38833y = h80Var;
         q80Var.k(4.0f);
         int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.m6.Ce);
         q80Var.g(org.telegram.ui.ActionBar.m6.r1(0.85f, themedColor), org.telegram.ui.ActionBar.m6.r1(2.0f, themedColor), org.telegram.ui.ActionBar.m6.r1(3.5f, themedColor), org.telegram.ui.ActionBar.m6.r1(6.0f, themedColor));

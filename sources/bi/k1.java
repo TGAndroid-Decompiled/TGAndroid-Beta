@@ -148,7 +148,7 @@ public final class k1 extends org.telegram.ui.ActionBar.w2 {
         ugVar.M = L2;
         ugVar.P = org.telegram.messenger.g0.L(6.0f);
         ugVar.Q = org.telegram.messenger.g0.L(8.0f);
-        ugVar.f40352s0 = true;
+        ugVar.f40351s0 = true;
         this.f30176b.addView((View) ugVar, ma.e(110, 50, 85));
         ugVar.setScrimViewBackgroundColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29381d6, this.J0));
         ugVar.setOnClickListener(new View.OnClickListener(this) {
@@ -376,7 +376,7 @@ public final class k1 extends org.telegram.ui.ActionBar.w2 {
         i1 i1Var = new i1(this, 0);
         org.telegram.ui.ActionBar.m2 m2Var = this.f30179c;
         gc.a(m2Var, i1Var);
-        n30 n30Var = n30.f37760s;
+        n30 n30Var = n30.f37759s;
         if (n30Var.c()) {
             n30Var.b();
             TLObject g22 = np.u1(this.f30173a).g2(this.E1);

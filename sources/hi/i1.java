@@ -93,7 +93,7 @@ public final class i1 extends j71 {
         switch (this.W) {
             case 2:
                 if (getCurrentPosition() == 1) {
-                    ((li.d0) this.f14773a0).f19940v1.d.f35790g3.O(false);
+                    ((li.d0) this.f14773a0).f19940v1.d.f35789g3.O(false);
                     return;
                 }
                 return;

@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public abstract class l70 extends org.telegram.ui.ActionBar.w2 {
-    public boolean f37145m1;
+    public boolean f37144m1;
 
     public l70(Context context, TLRPC.Chat chat) {
         super(context, true);
@@ -48,11 +48,11 @@ public abstract class l70 extends org.telegram.ui.ActionBar.w2 {
         }
         ?? frameLayout = new FrameLayout(context);
         View view = new View(context);
-        frameLayout.f36845a = view;
+        frameLayout.f36844a = view;
         view.setBackground(org.telegram.ui.ActionBar.a6.f(org.telegram.ui.ActionBar.m6.Fi, 4.0f));
         frameLayout.addView(view, c8.ma.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView2 = new TextView(context);
-        frameLayout.f36846b = textView2;
+        frameLayout.f36845b = textView2;
         textView2.setLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(1);
@@ -75,7 +75,7 @@ public abstract class l70 extends org.telegram.ui.ActionBar.w2 {
     @Override
     public final void L() {
         super.L();
-        if (this.f37145m1) {
+        if (this.f37144m1) {
             J0();
         }
     }

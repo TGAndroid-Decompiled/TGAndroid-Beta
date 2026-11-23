@@ -42,7 +42,7 @@ public final class d3 extends n41 {
         if (obj instanceof TL_payments.connectedBotStarRef) {
             e3 e3Var = (e3) view;
             TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-            boolean z11 = o41Var.f38098s;
+            boolean z11 = o41Var.f38097s;
             h6 h6Var = e3Var.f18669b;
             View view2 = e3Var.f18671e;
             ImageView imageView = e3Var.f18672f;
@@ -124,7 +124,7 @@ public final class d3 extends n41 {
         } else if (obj instanceof TL_payments.starRefProgram) {
             e3 e3Var2 = (e3) view;
             TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
-            boolean z12 = o41Var.f38098s;
+            boolean z12 = o41Var.f38097s;
             TLRPC.User c23 = np.u1(e3Var2.f18668a).c2(Long.valueOf(starrefprogram.bot_id));
             b9 b9Var2 = new b9((h6) null);
             b9Var2.r(c23);

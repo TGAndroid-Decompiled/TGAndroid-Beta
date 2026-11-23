@@ -56,12 +56,12 @@ public final class n2 extends TextView {
                 super.draw(canvas);
                 b31 b31Var = (b31) this.f29809b;
                 org.telegram.ui.Components.voip.n nVar = b31Var.f45768c;
-                if (nVar.f41188g <= 1.0f) {
+                if (nVar.f41187g <= 1.0f) {
                     SessionsActivity sessionsActivity = b31Var.f45770f;
                     if (sessionsActivity.W && sessionsActivity.X) {
                         RectF rectF2 = org.telegram.messenger.g0.P;
                         rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                        nVar.f41187f = getMeasuredWidth();
+                        nVar.f41186f = getMeasuredWidth();
                         nVar.a(org.telegram.messenger.g0.L(8.0f), canvas, rectF2, null);
                         invalidate();
                         return;
@@ -109,10 +109,10 @@ public final class n2 extends TextView {
                 if (((org.telegram.ui.Components.voip.n) this.f29809b) == null) {
                     org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
                     this.f29809b = nVar;
-                    nVar.f41191k = false;
-                    nVar.f41193m = 2.0f;
+                    nVar.f41190k = false;
+                    nVar.f41192m = 2.0f;
                 }
-                ((org.telegram.ui.Components.voip.n) this.f29809b).f41187f = getMeasuredWidth();
+                ((org.telegram.ui.Components.voip.n) this.f29809b).f41186f = getMeasuredWidth();
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 ((org.telegram.ui.Components.voip.n) this.f29809b).a(org.telegram.messenger.g0.L(22.0f), canvas, rectF, null);
@@ -188,7 +188,7 @@ public final class n2 extends TextView {
             case 3:
                 super.onMeasure(i7, i10);
                 if (hd.f24444a0) {
-                    ((z21) this.f29809b).f42656b.setPivotX(getMeasuredWidth());
+                    ((z21) this.f29809b).f42655b.setPivotX(getMeasuredWidth());
                     return;
                 }
                 return;
@@ -211,7 +211,7 @@ public final class n2 extends TextView {
         switch (this.f29808a) {
             case 2:
                 super.onSizeChanged(i7, i10, i11, i12);
-                ((FragmentContextView) this.f29809b).P.f41187f = getWidth();
+                ((FragmentContextView) this.f29809b).P.f41186f = getWidth();
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);

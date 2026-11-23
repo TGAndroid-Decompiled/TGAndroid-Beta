@@ -5,21 +5,21 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.View;
 public final class wh extends View {
-    public final int f41819a;
-    public final ui f41820b;
+    public final int f41818a;
+    public final ui f41819b;
 
     public wh(ui uiVar, Context context, int i7) {
         super(context);
-        this.f41819a = i7;
-        this.f41820b = uiVar;
+        this.f41818a = i7;
+        this.f41819b = uiVar;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f41819a) {
+        switch (this.f41818a) {
             case 0:
                 super.draw(canvas);
-                this.f41820b.W1.draw(canvas);
+                this.f41819b.W1.draw(canvas);
                 return;
             default:
                 super.draw(canvas);
@@ -29,10 +29,10 @@ public final class wh extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f41819a) {
+        switch (this.f41818a) {
             case 1:
-                ui uiVar = this.f41820b;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, uiVar.f40441w2.getSelectedItemsCount())));
+                ui uiVar = this.f41819b;
+                String format = String.format("%d", Integer.valueOf(Math.max(1, uiVar.f40440w2.getSelectedItemsCount())));
                 int ceil = (int) Math.ceil(uiVar.H2.measureText(format));
                 int max = Math.max(org.telegram.messenger.g0.L(16.0f) + ceil, org.telegram.messenger.g0.L(24.0f));
                 int measuredWidth = getMeasuredWidth() / 2;
@@ -57,10 +57,10 @@ public final class wh extends View {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f41819a) {
+        switch (this.f41818a) {
             case 0:
                 super.onSizeChanged(i7, i10, i11, i12);
-                this.f41820b.W1.setBounds(0, (i10 - org.telegram.messenger.g0.f24041n) - org.telegram.messenger.g0.L(48.0f), i7, i10);
+                this.f41819b.W1.setBounds(0, (i10 - org.telegram.messenger.g0.f24041n) - org.telegram.messenger.g0.L(48.0f), i7, i10);
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);

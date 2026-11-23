@@ -28,9 +28,9 @@ public class dt0 extends kj0 {
         jt0 jt0Var = this.f34571f;
         if (!jt0Var.G0()) {
             if (this != jt0Var.K && jt0.x(jt0Var, this) == -1) {
-                i7 = jt0Var.f36671t1;
+                i7 = jt0Var.f36670t1;
             } else {
-                i7 = jt0Var.f36657p1[0];
+                i7 = jt0Var.f36656p1[0];
             }
             int ceil = (int) Math.ceil(e() / i7);
             if (ek0Var.getChildCount() != 0 && ek0Var.getChildAt(0).getMeasuredHeight() * ceil > ek0Var.getMeasuredHeight()) {
@@ -42,16 +42,16 @@ public class dt0 extends kj0 {
 
     @Override
     public String F(int i7) {
-        ArrayList arrayList = this.f34571f.f36678w1[0].f42517e;
+        ArrayList arrayList = this.f34571f.f36677w1[0].f42516e;
         if (arrayList == null || arrayList.isEmpty()) {
             return "";
         }
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (i7 <= ((js0) arrayList.get(i10)).f36600b) {
-                return ((js0) arrayList.get(i10)).f36599a;
+            if (i7 <= ((js0) arrayList.get(i10)).f36599b) {
+                return ((js0) arrayList.get(i10)).f36598a;
             }
         }
-        return ((js0) i5.c.h(1, arrayList)).f36599a;
+        return ((js0) i5.c.h(1, arrayList)).f36598a;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class dt0 extends kj0 {
         int i7;
         int measuredHeight = ek0Var.getChildAt(0).getMeasuredHeight();
         jt0 jt0Var = this.f34571f;
-        int[] iArr2 = jt0Var.f36657p1;
+        int[] iArr2 = jt0Var.f36656p1;
         if (jt0.y(jt0Var, this) == -1 && this != jt0Var.L) {
             if (jt0.x(jt0Var, this) != -1) {
                 i7 = iArr2[1];
@@ -67,7 +67,7 @@ public class dt0 extends kj0 {
                 i7 = iArr2[0];
             }
         } else {
-            i7 = jt0Var.f36671t1;
+            i7 = jt0Var.f36670t1;
         }
         int ceil = (int) (Math.ceil(e() / i7) * measuredHeight);
         int measuredHeight2 = ek0Var.getMeasuredHeight() - ek0Var.getPaddingTop();
@@ -85,7 +85,7 @@ public class dt0 extends kj0 {
     public final float H(ek0 ek0Var) {
         int i7;
         jt0 jt0Var = this.f34571f;
-        int[] iArr = jt0Var.f36657p1;
+        int[] iArr = jt0Var.f36656p1;
         if (this != jt0Var.L && jt0.y(jt0Var, this) == -1) {
             if (jt0.x(jt0Var, this) != -1) {
                 i7 = iArr[1];
@@ -93,7 +93,7 @@ public class dt0 extends kj0 {
                 i7 = iArr[0];
             }
         } else {
-            i7 = jt0Var.f36671t1;
+            i7 = jt0Var.f36670t1;
         }
         int ceil = (int) Math.ceil(e() / i7);
         if (ek0Var.getChildCount() != 0) {
@@ -143,7 +143,7 @@ public class dt0 extends kj0 {
     }
 
     public int L(int i7) {
-        return this.f34571f.f36678w1[0].f42524m + i7;
+        return this.f34571f.f36677w1[0].f42523m + i7;
     }
 
     @Override
@@ -153,10 +153,10 @@ public class dt0 extends kj0 {
 
     @Override
     public int d(int i7) {
-        ys0[] ys0VarArr = this.f34571f.f36678w1;
+        ys0[] ys0VarArr = this.f34571f.f36677w1;
         if (!this.d && ys0VarArr[0].c().size() == 0) {
             ys0 ys0Var = ys0VarArr[0];
-            if (!ys0Var.f42519g && ys0Var.f42523l) {
+            if (!ys0Var.f42518g && ys0Var.f42522l) {
                 return 2;
             }
         }
@@ -168,7 +168,7 @@ public class dt0 extends kj0 {
 
     @Override
     public int e() {
-        return this.f34571f.f36678w1[0].e();
+        return this.f34571f.f36677w1[0].e();
     }
 
     @Override
@@ -177,8 +177,8 @@ public class dt0 extends kj0 {
         boolean z10;
         char c10;
         jt0 jt0Var = this.f34571f;
-        int[] iArr = jt0Var.f36657p1;
-        ys0[] ys0VarArr = jt0Var.f36678w1;
+        int[] iArr = jt0Var.f36656p1;
+        ys0[] ys0VarArr = jt0Var.f36677w1;
         if (f1Var.f59169f == 0) {
             ArrayList c11 = ys0VarArr[0].c();
             int d = i7 - ys0VarArr[0].d();
@@ -192,7 +192,7 @@ public class dt0 extends kj0 {
                 } else if (jt0.x(jt0Var, this) != -1) {
                     i10 = iArr[1];
                 } else {
-                    i10 = jt0Var.f36671t1;
+                    i10 = jt0Var.f36670t1;
                 }
                 if (d >= 0 && d < c11.size()) {
                     org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) c11.get(d);
@@ -202,8 +202,8 @@ public class dt0 extends kj0 {
                         z10 = false;
                     }
                     if (jt0Var.F1) {
-                        SparseArray[] sparseArrayArr = jt0Var.f36619c1;
-                        if (org.telegram.messenger.gj.B0(gjVar.f24213k) == jt0Var.f36648m1) {
+                        SparseArray[] sparseArrayArr = jt0Var.f36618c1;
+                        if (org.telegram.messenger.gj.B0(gjVar.f24213k) == jt0Var.f36647m1) {
                             c10 = 0;
                         } else {
                             c10 = 1;
@@ -230,14 +230,14 @@ public class dt0 extends kj0 {
         org.telegram.ui.ActionBar.h6 h6Var = jt0Var.I1;
         Context context = this.f34569c;
         if (i7 != 0 && i7 != 19) {
-            y3 X = jt0.X(0, jt0Var.f36648m1, context, h6Var);
+            y3 X = jt0.X(0, jt0Var.f36647m1, context, h6Var);
             X.setLayoutParams(new v4.q0(-1, -1));
             return new v4.f1(X);
         }
         if (this.f34570e == null) {
             this.f34570e = new m.o3(viewGroup.getContext(), h6Var);
         }
-        org.telegram.ui.Cells.p7 p7Var = new org.telegram.ui.Cells.p7(context, this.f34570e, jt0Var.f36684y1.getCurrentAccount());
+        org.telegram.ui.Cells.p7 p7Var = new org.telegram.ui.Cells.p7(context, this.f34570e, jt0Var.f36683y1.getCurrentAccount());
         if (i7 == 19) {
             p7Var.f31285x0 = true;
         }

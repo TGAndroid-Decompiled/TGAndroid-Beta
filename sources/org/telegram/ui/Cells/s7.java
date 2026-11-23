@@ -215,11 +215,11 @@ public final class s7 extends FrameLayout implements org.telegram.ui.ActionBar.b
             int L = org.telegram.messenger.g0.L(42.0f);
             int L2 = org.telegram.messenger.g0.L(42.0f);
             oqVar.h = L;
-            oqVar.f38335n = L2;
+            oqVar.f38334n = L2;
             int L3 = org.telegram.messenger.g0.L(24.0f);
             int L4 = org.telegram.messenger.g0.L(24.0f);
-            oqVar.f38333e = L3;
-            oqVar.f38334f = L4;
+            oqVar.f38332e = L3;
+            oqVar.f38333f = L4;
             q9Var.setImageDrawable(oqVar);
             m5Var.l(org.telegram.messenger.j6.m(np.u1(this.F).D1(org.telegram.messenger.n5.o(gjVar.f24213k.peer_id), false), m5Var.getPaint().getFontMetricsInt(), false, null, 0), false);
             this.h = false;
@@ -297,11 +297,11 @@ public final class s7 extends FrameLayout implements org.telegram.ui.ActionBar.b
             int L5 = org.telegram.messenger.g0.L(f10);
             int L6 = org.telegram.messenger.g0.L(f10);
             oqVar2.h = L5;
-            oqVar2.f38335n = L6;
+            oqVar2.f38334n = L6;
             int L7 = org.telegram.messenger.g0.L(24.0f);
             int L8 = org.telegram.messenger.g0.L(24.0f);
-            oqVar2.f38333e = L7;
-            oqVar2.f38334f = L8;
+            oqVar2.f38332e = L7;
+            oqVar2.f38333f = L8;
             q9Var.setImageDrawable(oqVar2);
         }
         m5Var.l(charSequence, false);

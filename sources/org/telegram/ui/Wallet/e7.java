@@ -421,7 +421,7 @@ public final class e7 {
                     return;
                 }
                 rectF.set(ra.a(m7Var, viewGroup));
-                rectF.offset(0.0f, uiVar.f40395j4 - uiVar.f40429t2);
+                rectF.offset(0.0f, uiVar.f40394j4 - uiVar.f40428t2);
             }
         }
     }

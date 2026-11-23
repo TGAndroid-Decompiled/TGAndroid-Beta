@@ -15,15 +15,15 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.messenger.b20, org.telegram.messenger.pi, a5, org.telegram.messenger.kc, org.telegram.messenger.mr, p4.m0, m9.q, w5.b, v5.e, h2.j {
-    public final int f39943a;
-    public final Object f39944b;
-    public final Object f39945c;
+    public final int f39942a;
+    public final Object f39943b;
+    public final Object f39944c;
     public final Object d;
 
     public tm(Object obj, Object obj2, Object obj3, int i7) {
-        this.f39943a = i7;
-        this.f39944b = obj;
-        this.f39945c = obj2;
+        this.f39942a = i7;
+        this.f39943b = obj;
+        this.f39944c = obj2;
         this.d = obj3;
     }
 
@@ -34,8 +34,8 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void a(int i7, TLObject tLObject) {
-        as asVar = (as) this.f39944b;
-        ArrayList arrayList = (ArrayList) this.f39945c;
+        as asVar = (as) this.f39943b;
+        ArrayList arrayList = (ArrayList) this.f39944c;
         ArrayList arrayList2 = (ArrayList) this.d;
         long d = org.telegram.messenger.n5.d(tLObject);
         int size = arrayList.size();
@@ -53,7 +53,7 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void accept(Object obj) {
-        ((x2.k0) obj).C(((a8.xa) this.f39944b).f713b, (x2.g0) this.f39945c, (x2.c0) this.d);
+        ((x2.k0) obj).C(((a8.xa) this.f39943b).f713b, (x2.g0) this.f39944c, (x2.c0) this.d);
     }
 
     @Override
@@ -63,30 +63,30 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void d(boolean z10) {
-        TLRPC.Chat chat = (TLRPC.Chat) this.f39944b;
-        org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f39945c;
+        TLRPC.Chat chat = (TLRPC.Chat) this.f39943b;
+        org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f39944c;
         org.telegram.ui.Components.voip.b2.l(chat, null, true, null, g2Var.getParentActivity(), g2Var, (org.telegram.messenger.c) this.d);
     }
 
     @Override
     public void e(String str, ArrayList arrayList) {
-        switch (this.f39943a) {
+        switch (this.f39942a) {
             case 2:
                 Runnable runnable = (Runnable) this.d;
-                sx sxVar = ((rx) this.f39944b).f39368a;
-                if (((String) this.f39945c).equals(sxVar.f39716w)) {
-                    sxVar.f39717x = str;
-                    sxVar.f39713n.addAll(arrayList);
+                sx sxVar = ((rx) this.f39943b).f39367a;
+                if (((String) this.f39944c).equals(sxVar.f39715w)) {
+                    sxVar.f39716x = str;
+                    sxVar.f39712n.addAll(arrayList);
                     runnable.run();
                     return;
                 }
                 return;
             default:
-                ny nyVar = (ny) this.f39944b;
-                HashMap hashMap = (HashMap) this.f39945c;
+                ny nyVar = (ny) this.f39943b;
+                HashMap hashMap = (HashMap) this.f39944c;
                 Runnable runnable2 = (Runnable) this.d;
-                HashMap hashMap2 = nyVar.f38011f;
-                if (nyVar.f38016x.N == nyVar.f38008b) {
+                HashMap hashMap2 = nyVar.f38010f;
+                if (nyVar.f38015x.N == nyVar.f38007b) {
                     int size = arrayList.size();
                     for (int i7 = 0; i7 < size; i7++) {
                         String str2 = ((org.telegram.messenger.oi) arrayList.get(i7)).f26126a;
@@ -105,9 +105,9 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void f(p4.v vVar) {
-        Bundle bundle = (Bundle) this.f39945c;
+        Bundle bundle = (Bundle) this.f39944c;
         ResultReceiver resultReceiver = (ResultReceiver) this.d;
-        p4.e0 e0Var = ((p4.n0) this.f39944b).h;
+        p4.e0 e0Var = ((p4.n0) this.f39943b).h;
         if (bundle == null) {
             Bundle bundle2 = Bundle.EMPTY;
         }
@@ -119,8 +119,8 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public Object g() {
-        t5.a aVar = (t5.a) this.f39944b;
-        o5.i iVar = (o5.i) this.f39945c;
+        t5.a aVar = (t5.a) this.f39943b;
+        o5.i iVar = (o5.i) this.f39944c;
         o5.h hVar = (o5.h) this.d;
         v5.g gVar = (v5.g) aVar.d;
         gVar.getClass();
@@ -143,10 +143,10 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        int i10 = this.f39943a;
+        int i10 = this.f39942a;
         Object obj = this.d;
-        Object obj2 = this.f39945c;
-        Object obj3 = this.f39944b;
+        Object obj2 = this.f39944c;
+        Object obj3 = this.f39943b;
         switch (i10) {
             case 0:
                 tn tnVar = (tn) obj3;
@@ -159,7 +159,7 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
                 jt0 jt0Var = (jt0) obj3;
                 ArrayList arrayList = (ArrayList) obj;
                 ((fi.a6) obj2).F(arrayList);
-                lc.b0(jt0Var.f36684y1).Q(2131624052, 36, org.telegram.messenger.hd.G(arrayList.size(), "BotPreviewsDeleted", new Object[0])).j();
+                lc.b0(jt0Var.f36683y1).Q(2131624052, 36, org.telegram.messenger.hd.G(arrayList.size(), "BotPreviewsDeleted", new Object[0])).j();
                 jt0Var.V(false);
                 return;
             case 8:
@@ -190,12 +190,12 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
     public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         Bitmap bitmap;
         int i7;
-        k01 k01Var = (k01) this.f39944b;
-        mp mpVar = (mp) this.f39945c;
+        k01 k01Var = (k01) this.f39943b;
+        mp mpVar = (mp) this.f39944c;
         TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.d;
         org.telegram.messenger.ic p10 = imageReceiver.p();
         if (z10 && p10 != null && (bitmap = p10.f24704c) != null) {
-            Drawable drawable = mpVar.f37594b;
+            Drawable drawable = mpVar.f37593b;
             if (drawable instanceof cb0) {
                 cb0 cb0Var = (cb0) drawable;
                 TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
@@ -212,9 +212,9 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
     }
 
     public tm(p4.n0 n0Var, p4.k1 k1Var, Bundle bundle, ResultReceiver resultReceiver) {
-        this.f39943a = 9;
-        this.f39944b = n0Var;
-        this.f39945c = bundle;
+        this.f39942a = 9;
+        this.f39943b = n0Var;
+        this.f39944c = bundle;
         this.d = resultReceiver;
     }
 
@@ -228,10 +228,10 @@ public final class tm implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public m9.y apply(Object obj) {
-        int i7 = this.f39943a;
+        int i7 = this.f39942a;
         Object obj2 = this.d;
-        Object obj3 = this.f39945c;
-        Object obj4 = this.f39944b;
+        Object obj3 = this.f39944c;
+        Object obj4 = this.f39943b;
         switch (i7) {
             case 10:
                 p4.e0 e0Var = (p4.e0) obj4;

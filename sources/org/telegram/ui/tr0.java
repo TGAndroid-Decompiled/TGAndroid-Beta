@@ -411,7 +411,7 @@ public final class tr0 implements Runnable {
                 py0Var.f51007b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) this.f52389c;
                 py0Var.f51008c = null;
                 py0Var.d = null;
-                py0Var.f51010f.f35790g3.O(false);
+                py0Var.f51010f.f35789g3.O(false);
                 return;
             case 25:
                 ((py0) ((View[]) this.f52388b)[0]).b((TLRPC.TL_reportResultAddComment) this.f52389c);
@@ -421,7 +421,7 @@ public final class tr0 implements Runnable {
                 py0Var2.f51007b = null;
                 py0Var2.f51008c = (TLRPC.TL_reportResultChooseOption) this.f52389c;
                 py0Var2.d = null;
-                py0Var2.f51010f.f35790g3.O(false);
+                py0Var2.f51010f.f35789g3.O(false);
                 return;
             case 27:
                 ((org.telegram.messenger.video.a) this.f52388b).run();

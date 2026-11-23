@@ -201,27 +201,27 @@ public class y5 extends ReplacementSpan {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.extraScale, 1.0f);
             this.scaleAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final y5 f38786b;
+                public final y5 f38785b;
 
                 {
-                    this.f38786b = this;
+                    this.f38785b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     switch (r2) {
                         case 0:
-                            y5.b(this.f38786b, valueAnimator2);
+                            y5.b(this.f38785b, valueAnimator2);
                             return;
                         default:
-                            y5.a(this.f38786b, valueAnimator2);
+                            y5.a(this.f38785b, valueAnimator2);
                             return;
                     }
                 }
             });
             this.scaleAnimator.addListener(new s5(this, 0));
             this.scaleAnimator.setDuration(130L);
-            this.scaleAnimator.setInterpolator(nr.f37961f);
+            this.scaleAnimator.setInterpolator(nr.f37960f);
             this.scaleAnimator.start();
         } else if (this.isRemoved) {
             this.isRemoved = false;
@@ -234,26 +234,26 @@ public class y5 extends ReplacementSpan {
             ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.extraScale, 0.0f);
             this.scaleAnimator = ofFloat2;
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final y5 f38786b;
+                public final y5 f38785b;
 
                 {
-                    this.f38786b = this;
+                    this.f38785b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator22) {
                     switch (r2) {
                         case 0:
-                            y5.b(this.f38786b, valueAnimator22);
+                            y5.b(this.f38785b, valueAnimator22);
                             return;
                         default:
-                            y5.a(this.f38786b, valueAnimator22);
+                            y5.a(this.f38785b, valueAnimator22);
                             return;
                     }
                 }
             });
             this.scaleAnimator.addListener(new s5(this, 1));
-            this.scaleAnimator.setInterpolator(nr.f37961f);
+            this.scaleAnimator.setInterpolator(nr.f37960f);
             this.scaleAnimator.setDuration(130L);
             this.scaleAnimator.start();
         }
@@ -425,7 +425,7 @@ public class y5 extends ReplacementSpan {
         if (canvas == null || layout == null || u5Var == null) {
             return;
         }
-        ArrayList arrayList = u5Var.f40264c;
+        ArrayList arrayList = u5Var.f40263c;
         int i7 = 0;
         if (org.telegram.messenger.j6.f24840m == 0.0f && f10 == 0.0f) {
             z10 = false;
@@ -441,13 +441,13 @@ public class y5 extends ReplacementSpan {
                 break;
             }
             w5 w5Var = (w5) arrayList.get(i10);
-            if (w5Var.f41648a == layout) {
-                ArrayList arrayList2 = w5Var.f41649b;
+            if (w5Var.f41647a == layout) {
+                ArrayList arrayList2 = w5Var.f41648b;
                 int i11 = i7;
                 while (i11 < arrayList2.size()) {
                     t5 t5Var = (t5) arrayList2.get(i11);
                     if (t5Var != null) {
-                        p5 p5Var = t5Var.f39769f;
+                        p5 p5Var = t5Var.f39768f;
                         if (p5Var != null) {
                             p5Var.setColorFilter(colorFilter);
                         }
@@ -456,60 +456,60 @@ public class y5 extends ReplacementSpan {
                             float f15 = y5Var.measuredSize / 2.0f;
                             float f16 = y5Var.lastDrawnCx;
                             float f17 = y5Var.lastDrawnCy;
-                            t5Var.f39768e.set((int) (f16 - f15), (int) (f17 - f15), (int) (f16 + f15), (int) (f17 + f15));
-                            float max = (list == null || list.isEmpty() || !t5Var.f39773w) ? 1.0f : Math.max(0.0f, list.get(i7).f60603n);
-                            t5Var.f39771r = f13;
-                            t5Var.f39772s = max;
+                            t5Var.f39767e.set((int) (f16 - f15), (int) (f17 - f15), (int) (f16 + f15), (int) (f17 + f15));
+                            float max = (list == null || list.isEmpty() || !t5Var.f39772w) ? 1.0f : Math.max(0.0f, list.get(i7).f60603n);
+                            t5Var.f39770r = f13;
+                            t5Var.f39771s = max;
                             t5Var.getClass();
                             if (f11 != 0.0f || f12 != 0.0f) {
-                                Rect rect = t5Var.f39768e;
+                                Rect rect = t5Var.f39767e;
                                 if (rect.bottom < f11 || rect.top > f12) {
-                                    t5Var.f39770n = true;
+                                    t5Var.f39769n = true;
                                     i11++;
                                     i7 = 0;
                                 }
                             }
-                            t5Var.f39770n = false;
-                            p5 p5Var2 = t5Var.f39769f;
+                            t5Var.f39769n = false;
+                            p5 p5Var2 = t5Var.f39768f;
                             if (p5Var2 == null) {
                                 if (t5Var.h != null) {
                                     float extraScale = t5Var.d.getExtraScale();
-                                    t5Var.h.setAlpha((int) (t5Var.f39772s * 255.0f * f14));
-                                    t5Var.h.setBounds(t5Var.f39768e);
+                                    t5Var.h.setAlpha((int) (t5Var.f39771s * 255.0f * f14));
+                                    t5Var.h.setBounds(t5Var.f39767e);
                                     if (extraScale == 1.0f && !t5Var.d.invert) {
                                         t5Var.h.draw(canvas);
                                     } else {
                                         canvas.save();
-                                        canvas.scale((t5Var.d.invert ? -1 : 1) * extraScale, extraScale, t5Var.f39768e.centerX(), t5Var.f39768e.centerY());
+                                        canvas.scale((t5Var.d.invert ? -1 : 1) * extraScale, extraScale, t5Var.f39767e.centerX(), t5Var.f39767e.centerY());
                                         t5Var.h.draw(canvas);
                                         canvas.restore();
                                     }
                                 }
-                            } else if (p5Var2.f38500k != null) {
+                            } else if (p5Var2.f38499k != null) {
                                 p5Var2.setColorFilter(colorFilter == null ? org.telegram.ui.ActionBar.m6.f29713v3 : colorFilter);
-                                t5Var.f39769f.p(currentTimeMillis);
+                                t5Var.f39768f.p(currentTimeMillis);
                                 float extraScale2 = t5Var.d.getExtraScale();
                                 if (extraScale2 == 1.0f && !t5Var.d.invert) {
-                                    p5 p5Var3 = t5Var.f39769f;
-                                    Rect rect2 = t5Var.f39768e;
-                                    float f18 = t5Var.f39772s * f14;
-                                    fi.s2 s2Var = p5Var3.f38500k;
+                                    p5 p5Var3 = t5Var.f39768f;
+                                    Rect rect2 = t5Var.f39767e;
+                                    float f18 = t5Var.f39771s * f14;
+                                    fi.s2 s2Var = p5Var3.f38499k;
                                     if (s2Var != null) {
                                         s2Var.z0(rect2);
-                                        p5Var3.f38500k.setAlpha(f18);
-                                        p5Var3.f38500k.h(canvas, null);
+                                        p5Var3.f38499k.setAlpha(f18);
+                                        p5Var3.f38499k.h(canvas, null);
                                     }
                                 } else {
                                     canvas.save();
-                                    canvas.scale((t5Var.d.invert ? -1 : 1) * extraScale2, extraScale2, t5Var.f39768e.centerX(), t5Var.f39768e.centerY());
-                                    p5 p5Var4 = t5Var.f39769f;
-                                    Rect rect3 = t5Var.f39768e;
-                                    float f19 = t5Var.f39772s * f14;
-                                    fi.s2 s2Var2 = p5Var4.f38500k;
+                                    canvas.scale((t5Var.d.invert ? -1 : 1) * extraScale2, extraScale2, t5Var.f39767e.centerX(), t5Var.f39767e.centerY());
+                                    p5 p5Var4 = t5Var.f39768f;
+                                    Rect rect3 = t5Var.f39767e;
+                                    float f19 = t5Var.f39771s * f14;
+                                    fi.s2 s2Var2 = p5Var4.f38499k;
                                     if (s2Var2 != null) {
                                         s2Var2.z0(rect3);
-                                        p5Var4.f38500k.setAlpha(f19);
-                                        p5Var4.f38500k.h(canvas, null);
+                                        p5Var4.f38499k.setAlpha(f19);
+                                        p5Var4.f38499k.h(canvas, null);
                                     }
                                     canvas.restore();
                                 }
@@ -607,7 +607,7 @@ public class y5 extends ReplacementSpan {
         if (u5Var == null) {
             return;
         }
-        while (u5Var.f40262a.size() > 0) {
+        while (u5Var.f40261a.size() > 0) {
             u5Var.b(0);
         }
     }
@@ -651,7 +651,7 @@ public class y5 extends ReplacementSpan {
         int i13 = 0;
         if (layoutArr == null || layoutArr.length <= 0) {
             if (u5Var2 != null) {
-                ArrayList arrayList = u5Var2.f40262a;
+                ArrayList arrayList = u5Var2.f40261a;
                 arrayList.clear();
                 while (arrayList.size() > 0) {
                     u5Var2.b(0);
@@ -688,17 +688,17 @@ public class y5 extends ReplacementSpan {
                         }
                         if (r02 == 0) {
                             r02 = new Object();
-                            r02.f40262a = new ArrayList();
-                            r02.f40263b = new HashMap();
-                            r02.f40264c = new ArrayList();
+                            r02.f40261a = new ArrayList();
+                            r02.f40262b = new HashMap();
+                            r02.f40263c = new ArrayList();
                         }
-                        ArrayList arrayList2 = r02.f40262a;
+                        ArrayList arrayList2 = r02.f40261a;
                         int i16 = i13;
                         while (true) {
                             if (i16 >= arrayList2.size()) {
                                 t5Var = fontMetricsInt;
                                 break;
-                            } else if (((t5) arrayList2.get(i16)).d == y5Var && ((t5) arrayList2.get(i16)).f39767c == layout) {
+                            } else if (((t5) arrayList2.get(i16)).d == y5Var && ((t5) arrayList2.get(i16)).f39766c == layout) {
                                 t5Var = (t5) arrayList2.get(i16);
                                 break;
                             } else {
@@ -707,7 +707,7 @@ public class y5 extends ReplacementSpan {
                         }
                         if (t5Var == 0) {
                             t5 t5Var2 = new t5(view, z10);
-                            t5Var2.f39767c = layout;
+                            t5Var2.f39766c = layout;
                             if (y5Var.standard) {
                                 i12 = 8;
                             } else {
@@ -718,48 +718,48 @@ public class y5 extends ReplacementSpan {
                             }
                             if (y5Var.documentAbsolutePath != null) {
                                 i11 = i14;
-                                t5Var2.f39769f = p5.m(org.telegram.messenger.k10.f24968t0, y5Var.getDocumentId(), y5Var.documentAbsolutePath, i12);
+                                t5Var2.f39768f = p5.m(org.telegram.messenger.k10.f24968t0, y5Var.getDocumentId(), y5Var.documentAbsolutePath, i12);
                             } else {
                                 i11 = i14;
                                 TLRPC.Document document = y5Var.document;
                                 if (document != null) {
-                                    t5Var2.f39769f = p5.l(org.telegram.messenger.k10.f24968t0, i12, document);
+                                    t5Var2.f39768f = p5.l(org.telegram.messenger.k10.f24968t0, i12, document);
                                 } else {
                                     long j3 = y5Var.documentId;
                                     if (j3 != 0) {
-                                        t5Var2.f39769f = p5.m(org.telegram.messenger.k10.f24968t0, j3, null, i12);
+                                        t5Var2.f39768f = p5.m(org.telegram.messenger.k10.f24968t0, j3, null, i12);
                                     }
                                 }
                             }
                             int i17 = y5Var.cacheType;
                             if ((i17 == 20 || i17 == 21) && !TextUtils.isEmpty(y5Var.emoji)) {
-                                p5 p5Var = t5Var2.f39769f;
+                                p5 p5Var = t5Var2.f39768f;
                                 if (p5Var != null) {
                                     p5Var.q(y5Var.emoji);
                                 } else {
                                     t5Var2.h = org.telegram.messenger.j6.g(y5Var.emoji);
                                 }
                             }
-                            t5Var2.f39773w = c(layout, spanned.getSpanStart(y5Var), spanned.getSpanEnd(y5Var));
-                            t5Var2.f39768e = new Rect();
+                            t5Var2.f39772w = c(layout, spanned.getSpanStart(y5Var), spanned.getSpanEnd(y5Var));
+                            t5Var2.f39767e = new Rect();
                             t5Var2.d = y5Var;
                             arrayList2.add(t5Var2);
-                            HashMap hashMap = r02.f40263b;
+                            HashMap hashMap = r02.f40262b;
                             w5 w5Var = (w5) hashMap.get(layout);
                             if (w5Var == null) {
-                                w5Var = new w5(t5Var2.f39765a, layout);
+                                w5Var = new w5(t5Var2.f39764a, layout);
                                 hashMap.put(layout, w5Var);
-                                r02.f40264c.add(w5Var);
+                                r02.f40263c.add(w5Var);
                             }
-                            w5Var.f41649b.add(t5Var2);
+                            w5Var.f41648b.add(t5Var2);
                             w5Var.a();
-                            p5 p5Var2 = t5Var2.f39769f;
+                            p5 p5Var2 = t5Var2.f39768f;
                             if (p5Var2 != null) {
                                 p5Var2.b(t5Var2);
                             }
                         } else {
                             i11 = i14;
-                            t5Var.f39773w = c(layout, spanned.getSpanStart(y5Var), spanned.getSpanEnd(y5Var));
+                            t5Var.f39772w = c(layout, spanned.getSpanStart(y5Var), spanned.getSpanEnd(y5Var));
                         }
                     }
                     i15++;
@@ -772,10 +772,10 @@ public class y5 extends ReplacementSpan {
                 u5Var2 = r02;
             }
             if (u5Var2 != null) {
-                ArrayList arrayList3 = u5Var2.f40262a;
+                ArrayList arrayList3 = u5Var2.f40261a;
                 int i18 = 0;
                 while (i18 < arrayList3.size()) {
-                    if (((t5) arrayList3.get(i18)).f39767c == layout) {
+                    if (((t5) arrayList3.get(i18)).f39766c == layout) {
                         y5 y5Var2 = ((t5) arrayList3.get(i18)).d;
                         for (int i19 = 0; y5VarArr != null && i19 < y5VarArr.length; i19++) {
                             if (y5VarArr[i19] == y5Var2) {
@@ -793,10 +793,10 @@ public class y5 extends ReplacementSpan {
             i13 = 0;
         }
         if (u5Var2 != null) {
-            ArrayList arrayList4 = u5Var2.f40262a;
+            ArrayList arrayList4 = u5Var2.f40261a;
             int i20 = 0;
             while (i20 < arrayList4.size()) {
-                Layout layout2 = ((t5) arrayList4.get(i20)).f39767c;
+                Layout layout2 = ((t5) arrayList4.get(i20)).f39766c;
                 int i21 = 0;
                 while (true) {
                     if (i21 < layoutArr.length) {

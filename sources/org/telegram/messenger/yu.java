@@ -23,10 +23,10 @@ public final class yu extends au implements Drawable.Callback {
         k51 k51Var = new k51();
         this.X = k51Var;
         k51Var.setCallback(this);
-        k51Var.f36798n = hd.N0(2131743586, null);
-        k51Var.f36799o = hd.N0(2131743587, null);
-        k51Var.f36800p = hd.N0(2131743581, null);
-        k51Var.f36794j = new yr(fvVar, 7);
+        k51Var.f36797n = hd.N0(2131743586, null);
+        k51Var.f36798o = hd.N0(2131743587, null);
+        k51Var.f36799p = hd.N0(2131743581, null);
+        k51Var.f36793j = new yr(fvVar, 7);
         int i12 = this.f22970c;
         this.Y = i12;
         this.Z = k51Var.a(i12);
@@ -42,7 +42,7 @@ public final class yu extends au implements Drawable.Callback {
     public final boolean Y(MotionEvent motionEvent) {
         View view = this.W;
         if (view != null) {
-            return this.X.f36793i.a(view, motionEvent);
+            return this.X.f36792i.a(view, motionEvent);
         }
         return false;
     }

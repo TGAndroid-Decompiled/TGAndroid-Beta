@@ -24,7 +24,7 @@ public final class c3 extends v {
         this.f11854y = z3Var;
         this.f11852w = w3Var;
         this.f11853x = f9Var;
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
         this.d = new org.telegram.ui.Components.d6(this, 150L, nrVar);
         this.f11847e = new org.telegram.ui.Components.d6(this, 150L, nrVar);
         this.f11848f = new org.telegram.ui.Components.voip.n(32, 102, 240);

@@ -65,7 +65,7 @@ public final class g0 implements Runnable {
                 n1Var.h = j13;
                 n1Var.f53257n = j14;
                 f6 f6Var = n1Var.f34681a;
-                if (f6Var != null && (c51Var = f6Var.f35790g3) != null && f6Var.H) {
+                if (f6Var != null && (c51Var = f6Var.f35789g3) != null && f6Var.H) {
                     c51Var.O(true);
                     return;
                 }

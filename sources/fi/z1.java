@@ -71,7 +71,7 @@ public final class z1 implements View.OnLongClickListener {
                 return true;
             case 1:
                 org.telegram.ui.Components.l0 l0Var = (org.telegram.ui.Components.l0) obj;
-                hi.q4 q4Var = ((org.telegram.ui.Components.m0) obj2).f37366w;
+                hi.q4 q4Var = ((org.telegram.ui.Components.m0) obj2).f37365w;
                 if (q4Var == null) {
                     return false;
                 }
@@ -175,7 +175,7 @@ public final class z1 implements View.OnLongClickListener {
                 ng.f fVar = (ng.f) obj;
                 m41 m41Var = l41Var.d;
                 xz xzVar = l41Var.f49475a;
-                if (!xzVar.f42265c) {
+                if (!xzVar.f42264c) {
                     return false;
                 }
                 m41Var.f();

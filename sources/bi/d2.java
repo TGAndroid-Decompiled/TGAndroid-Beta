@@ -19,7 +19,7 @@ public final class d2 extends n41 {
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         ah.r rVar = (ah.r) view;
         rVar.setUser((TLRPC.User) o41Var.H);
-        CharSequence charSequence = o41Var.f38093n;
+        CharSequence charSequence = o41Var.f38092n;
         if (charSequence != null) {
             rVar.setSubtitle(charSequence);
             rVar.setSubtitleColorKey(org.telegram.ui.ActionBar.m6.f29639r5);

@@ -106,9 +106,9 @@ public final class ea implements sj0, bg.q, kc, org.telegram.messenger.i9, pp, s
                             return;
                         }
                         return;
-                    } else if (B.f38207b0 < 1) {
+                    } else if (B.f38206b0 < 1) {
                         B.stop();
-                        B.N(B.f38211e[0] - 1, false, false);
+                        B.N(B.f38210e[0] - 1, false, false);
                         return;
                     } else {
                         return;

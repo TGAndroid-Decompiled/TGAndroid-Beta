@@ -225,7 +225,7 @@ public final class c4 implements Runnable {
                 return;
             case 15:
                 oi.o oVar = (oi.o) obj;
-                org.telegram.ui.Components.c5.J(oVar.f37520b.f40368a2.getParentActivity(), j3, new hi.t5(oVar, 18), oVar.f37519a);
+                org.telegram.ui.Components.c5.J(oVar.f37519b.f40367a2.getParentActivity(), j3, new hi.t5(oVar, 18), oVar.f37518a);
                 return;
             case 16:
                 oi.b2 b2Var = (oi.b2) obj;
@@ -263,16 +263,16 @@ public final class c4 implements Runnable {
                 return;
             case 23:
                 zk zkVar = (zk) obj;
-                ui uiVar = zkVar.f37520b;
+                ui uiVar = zkVar.f37519b;
                 if (!zkVar.L && zkVar.M0 && zkVar.isShown()) {
-                    hi hiVar = uiVar.f40414p3;
-                    org.telegram.ui.ActionBar.g2 g2Var2 = uiVar.f40368a2;
+                    hi hiVar = uiVar.f40413p3;
+                    org.telegram.ui.ActionBar.g2 g2Var2 = uiVar.f40367a2;
                     if ((hiVar.Q() <= org.telegram.messenger.g0.L(20.0f) || zkVar.C0 || zkVar.L0) && SystemClock.uptimeMillis() < j3) {
                         zkVar.postDelayed(zkVar.P0, 32L);
                         return;
                     }
                     zkVar.P0 = null;
-                    org.telegram.ui.ActionBar.h6 h6Var2 = zkVar.f37519a;
+                    org.telegram.ui.ActionBar.h6 h6Var2 = zkVar.f37518a;
                     if (g2Var2 != null && g2Var2.getParentActivity() != null) {
                         context = g2Var2.getParentActivity();
                     } else {
@@ -288,7 +288,7 @@ public final class c4 implements Runnable {
                         org.telegram.ui.ActionBar.t6.U(z0Var, org.telegram.ui.ActionBar.m6.f29489j5, h6Var2);
                         org.telegram.ui.ActionBar.t6.D(z0Var, org.telegram.ui.ActionBar.m6.f29677t5, h6Var2);
                         z0Var.setHint(hd.N0(2131742923, null));
-                        z0Var.setText(zkVar.f42924t0);
+                        z0Var.setText(zkVar.f42923t0);
                         z0Var.setSelection(z0Var.length());
                         z0Var.setInputType(147457);
                         z0Var.setMaxLines(5);
@@ -303,7 +303,7 @@ public final class c4 implements Runnable {
                         d2Var.setBackground(h02);
                         org.telegram.ui.ActionBar.t6.j(d2Var, h02, null, M, h6Var2);
                         String N02 = hd.N0(2131742830, null);
-                        if (zkVar.f42925u0 && zkVar.getPublicKey() != null) {
+                        if (zkVar.f42924u0 && zkVar.getPublicKey() != null) {
                             z10 = false;
                         } else {
                             z10 = true;
@@ -374,7 +374,7 @@ public final class c4 implements Runnable {
                         }
                         t1Var.show();
                         View d = t1Var.d(-1);
-                        if ((d instanceof TextView) && !TextUtils.isEmpty(zkVar.f42924t0)) {
+                        if ((d instanceof TextView) && !TextUtils.isEmpty(zkVar.f42923t0)) {
                             z0Var.addTextChangedListener(new yk(z0Var, (TextView) d));
                             return;
                         }

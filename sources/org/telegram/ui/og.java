@@ -29,7 +29,7 @@ public final class og implements Runnable {
                         rjVar.f32598d1 = false;
                         org.telegram.ui.Components.pe peVar = rjVar.f32590c1;
                         if (peVar != null) {
-                            peVar.j(org.telegram.ui.Components.yg.f42427a, false);
+                            peVar.j(org.telegram.ui.Components.yg.f42426a, false);
                         }
                         rjVar.f32768z4 = true;
                         rjVar.f32736v3 = true;

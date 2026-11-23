@@ -970,11 +970,11 @@ public abstract class g0 {
         float f13 = f12 * 0.88f;
         nqVar.I = f13;
         nqVar.J = f13;
-        nqVar.f37951r = -f10;
-        nqVar.f37952s = f11;
+        nqVar.f37950r = -f10;
+        nqVar.f37951s = f11;
         nqVar.H = 0.8f;
         if (z10) {
-            nqVar.f37949f = z10;
+            nqVar.f37948f = z10;
         }
         SpannableString spannableString = new SpannableString(" >");
         spannableString.setSpan(nqVar, spannableString.length() - 1, spannableString.length(), 33);
@@ -985,12 +985,12 @@ public abstract class g0 {
         org.telegram.ui.Components.nq nqVar2 = new org.telegram.ui.Components.nq(i7, 0);
         nqVar2.I = f13;
         nqVar2.J = f13;
-        nqVar2.f37951r = f10;
-        nqVar2.f37952s = f11;
-        nqVar2.f37953w = 180.0f;
+        nqVar2.f37950r = f10;
+        nqVar2.f37951s = f11;
+        nqVar2.f37952w = 180.0f;
         nqVar2.H = 0.8f;
         if (z10) {
-            nqVar2.f37949f = z10;
+            nqVar2.f37948f = z10;
         }
         SpannableString spannableString3 = new SpannableString("<");
         spannableString3.setSpan(nqVar2, 0, 1, 33);
@@ -3875,7 +3875,7 @@ public abstract class g0 {
             } else if (drawable instanceof ColorDrawable) {
                 i7 = ((ColorDrawable) drawable).getColor();
             } else if (drawable instanceof org.telegram.ui.Components.p9) {
-                int[] iArr2 = ((org.telegram.ui.Components.p9) drawable).f38534a;
+                int[] iArr2 = ((org.telegram.ui.Components.p9) drawable).f38533a;
                 if (iArr2 != null) {
                     if (iArr2.length > 1) {
                         i7 = w0(iArr2[0], iArr2[1]);
@@ -4279,7 +4279,7 @@ public abstract class g0 {
         ofArgb.addUpdateListener(new q(0, dhVar, window));
         ofArgb.addListener(new ki.m3(window, 5));
         ofArgb.setDuration(200L);
-        ofArgb.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+        ofArgb.setInterpolator(org.telegram.ui.Components.nr.f37960f);
         ofArgb.start();
         if (f24039l0 == null) {
             f24039l0 = new HashMap();

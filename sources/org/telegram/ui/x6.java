@@ -494,7 +494,7 @@ public final class x6 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         float[] fArr;
         ei.c cVar;
         org.telegram.ui.Components.tt0 tt0Var = this.f53653c0;
-        if (tt0Var != null && tt0Var.f40048f0) {
+        if (tt0Var != null && tt0Var.f40047f0) {
             z11 = true;
         } else {
             z11 = false;
@@ -818,7 +818,7 @@ public final class x6 extends org.telegram.ui.ActionBar.g2 implements org.telegr
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         org.telegram.ui.Components.tt0 tt0Var;
-        if (this.N == null || motionEvent == null || (tt0Var = this.f53653c0) == null || !tt0Var.c() || this.f53653c0.j(motionEvent.getX(), motionEvent.getY()) || this.N.getViewPager().f36433b == 0) {
+        if (this.N == null || motionEvent == null || (tt0Var = this.f53653c0) == null || !tt0Var.c() || this.f53653c0.j(motionEvent.getX(), motionEvent.getY()) || this.N.getViewPager().f36432b == 0) {
             return true;
         }
         return false;
@@ -844,7 +844,7 @@ public final class x6 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         long j11 = this.H;
         int i10 = 0;
         while (i10 < 8) {
-            if ((qw0VarArr != null && ((qw0Var = qw0VarArr[i10]) == null || !qw0Var.f39008c)) || (s6Var = (s6) r6Var.d.get(i10)) == null) {
+            if ((qw0VarArr != null && ((qw0Var = qw0VarArr[i10]) == null || !qw0Var.f39007c)) || (s6Var = (s6) r6Var.d.get(i10)) == null) {
                 hashSet = hashSet2;
             } else {
                 hashSet2.addAll(s6Var.f51947b);
@@ -1307,23 +1307,23 @@ public final class x6 extends org.telegram.ui.ActionBar.g2 implements org.telegr
                                 long j19 = t6Var.f52239g;
                                 boolean z12 = zArr[10];
                                 ?? obj = new Object();
-                                obj.f38870c = j19;
-                                obj.f38869b = z12;
+                                obj.f38869c = j19;
+                                obj.f38868b = z12;
                                 qcVarArr[10] = obj;
                             }
                         } else {
                             long j20 = t6Var.f52239g;
                             boolean z13 = zArr[i10];
                             ?? obj2 = new Object();
-                            obj2.f38870c = j20;
-                            obj2.f38869b = z13;
+                            obj2.f38869c = j20;
+                            obj2.f38868b = z13;
                             qcVarArr[i10] = obj2;
                         }
                     }
                     i7++;
                 }
                 if (System.currentTimeMillis() - this.f53651b0 < 80) {
-                    this.X.f39154n.e(true, 0.0f);
+                    this.X.f39153n.e(true, 0.0f);
                 }
                 this.X.f(this.H, true, qcVarArr);
             } else if (z11) {

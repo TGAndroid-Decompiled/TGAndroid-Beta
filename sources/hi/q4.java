@@ -98,7 +98,7 @@ public final class q4 implements z10 {
                 final org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.Components.l0 l0Var = (org.telegram.ui.Components.l0) obj;
-                TL_aicompose.AiComposeTone aiComposeTone = l0Var.f37051e;
+                TL_aicompose.AiComposeTone aiComposeTone = l0Var.f37050e;
                 if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
                     final TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone;
                     a70 G = a70.G(n0Var.f30179c, h6Var, l0Var);
@@ -114,22 +114,22 @@ public final class q4 implements z10 {
                             switch (i12) {
                                 case 0:
                                     i0 i0Var = new i0(n0Var2.getContext(), h6Var2);
-                                    i0Var.f36062f2 = tL_aiComposeTone2;
+                                    i0Var.f36061f2 = tL_aiComposeTone2;
                                     i0Var.d2 = Long.valueOf(tL_aiComposeTone2.emoji_id);
                                     i0Var.g1();
-                                    i0Var.W1.setText(i0Var.f36062f2.title);
-                                    i0Var.X1.setText(i0Var.f36062f2.prompt);
-                                    if (i0Var.f36062f2.author_id != 0) {
+                                    i0Var.W1.setText(i0Var.f36061f2.title);
+                                    i0Var.X1.setText(i0Var.f36061f2.prompt);
+                                    if (i0Var.f36061f2.author_id != 0) {
                                         z10 = true;
                                     } else {
                                         z10 = false;
                                     }
                                     i0Var.Z1.a(z10, false);
-                                    i0Var.f39533p1.setTitle(org.telegram.messenger.hd.N0(2131754996, null));
-                                    i0Var.f36060c2.setText(org.telegram.messenger.hd.N0(2131754979, null));
+                                    i0Var.f39532p1.setTitle(org.telegram.messenger.hd.N0(2131754996, null));
+                                    i0Var.f36059c2.setText(org.telegram.messenger.hd.N0(2131754979, null));
                                     i0Var.f1();
-                                    i0Var.f36066j2.O(false);
-                                    i0Var.f36064h2 = new f(n0Var2, 2);
+                                    i0Var.f36065j2.O(false);
+                                    i0Var.f36063h2 = new f(n0Var2, 2);
                                     i0Var.show();
                                     return;
                                 default:
@@ -159,22 +159,22 @@ public final class q4 implements z10 {
                             switch (i12) {
                                 case 0:
                                     i0 i0Var = new i0(n0Var2.getContext(), h6Var2);
-                                    i0Var.f36062f2 = tL_aiComposeTone2;
+                                    i0Var.f36061f2 = tL_aiComposeTone2;
                                     i0Var.d2 = Long.valueOf(tL_aiComposeTone2.emoji_id);
                                     i0Var.g1();
-                                    i0Var.W1.setText(i0Var.f36062f2.title);
-                                    i0Var.X1.setText(i0Var.f36062f2.prompt);
-                                    if (i0Var.f36062f2.author_id != 0) {
+                                    i0Var.W1.setText(i0Var.f36061f2.title);
+                                    i0Var.X1.setText(i0Var.f36061f2.prompt);
+                                    if (i0Var.f36061f2.author_id != 0) {
                                         z10 = true;
                                     } else {
                                         z10 = false;
                                     }
                                     i0Var.Z1.a(z10, false);
-                                    i0Var.f39533p1.setTitle(org.telegram.messenger.hd.N0(2131754996, null));
-                                    i0Var.f36060c2.setText(org.telegram.messenger.hd.N0(2131754979, null));
+                                    i0Var.f39532p1.setTitle(org.telegram.messenger.hd.N0(2131754996, null));
+                                    i0Var.f36059c2.setText(org.telegram.messenger.hd.N0(2131754979, null));
                                     i0Var.f1();
-                                    i0Var.f36066j2.O(false);
-                                    i0Var.f36064h2 = new f(n0Var2, 2);
+                                    i0Var.f36065j2.O(false);
+                                    i0Var.f36063h2 = new f(n0Var2, 2);
                                     i0Var.show();
                                     return;
                                 default:

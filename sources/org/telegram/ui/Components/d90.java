@@ -441,7 +441,7 @@ public abstract class d90 {
                 }
                 arrayList.add(pageblockdetails);
             }
-            TL_iv.RichText richText2 = z80Var.f42735b;
+            TL_iv.RichText richText2 = z80Var.f42734b;
             if (richText2 == null) {
                 return null;
             }

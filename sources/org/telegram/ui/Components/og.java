@@ -11,19 +11,19 @@ import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class og implements Runnable {
-    public final int f38188a;
-    public final Object f38189b;
+    public final int f38187a;
+    public final Object f38188b;
 
     public og(Object obj, int i7) {
-        this.f38188a = i7;
-        this.f38189b = obj;
+        this.f38187a = i7;
+        this.f38188b = obj;
     }
 
     @Override
     public final void run() {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout;
-        int i7 = this.f38188a;
-        Object obj = this.f38189b;
+        int i7 = this.f38187a;
+        Object obj = this.f38188b;
         switch (i7) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = ((rg) obj).Q0;
@@ -43,7 +43,7 @@ public final class og implements Runnable {
                 return;
             case 1:
                 lc lcVar = (lc) obj;
-                new ug.y0(42, lcVar.X(), lcVar.f37163c).show();
+                new ug.y0(42, lcVar.X(), lcVar.f37162c).show();
                 return;
             case 2:
                 b5 b5Var = (b5) obj;
@@ -54,14 +54,14 @@ public final class og implements Runnable {
                 org.telegram.messenger.g0.I3((EditText) obj);
                 return;
             case 4:
-                SparseArray sparseArray = p5.f38486r;
+                SparseArray sparseArray = p5.f38485r;
                 ((p5) obj).u();
                 return;
             case 5:
                 l5 l5Var = (l5) obj;
-                ArrayList arrayList = new ArrayList(l5Var.f37110c);
-                l5Var.f37110c.clear();
-                org.telegram.messenger.ur.a0(l5Var.f37111e).f27250a.c(new i5(l5Var, arrayList, 0));
+                ArrayList arrayList = new ArrayList(l5Var.f37109c);
+                l5Var.f37109c.clear();
+                org.telegram.messenger.ur.a0(l5Var.f37110e).f27250a.c(new i5(l5Var, arrayList, 0));
                 l5Var.d = null;
                 return;
             case 6:
@@ -72,10 +72,10 @@ public final class og implements Runnable {
                 return;
             case 8:
                 o6 o6Var = (o6) obj;
-                CharSequence charSequence = o6Var.f38118f;
+                CharSequence charSequence = o6Var.f38117f;
                 if (charSequence != null) {
                     o6Var.c(charSequence, o6Var.h, true);
-                    o6Var.f38118f = null;
+                    o6Var.f38117f = null;
                     o6Var.h = false;
                     return;
                 }
@@ -93,7 +93,7 @@ public final class og implements Runnable {
                 return;
             case 12:
                 z9 z9Var = (z9) obj;
-                if (!z9Var.f42739a) {
+                if (!z9Var.f42738a) {
                     aa aaVar2 = z9Var.d;
                     Bitmap[] bitmapArr = aaVar2.f33449g;
                     Canvas[] canvasArr = aaVar2.h;
@@ -111,7 +111,7 @@ public final class og implements Runnable {
                 }
                 return;
             case 13:
-                ca caVar = ((ha) obj).f35857t;
+                ca caVar = ((ha) obj).f35856t;
                 if (caVar != null) {
                     caVar.d();
                     return;
@@ -142,8 +142,8 @@ public final class og implements Runnable {
                 return;
             case 17:
                 yc ycVar = (yc) obj;
-                if (ycVar.f42399o1) {
-                    ycVar.f42399o1 = false;
+                if (ycVar.f42398o1) {
+                    ycVar.f42398o1 = false;
                     ycVar.invalidate();
                     return;
                 }
@@ -160,7 +160,7 @@ public final class og implements Runnable {
                 ((Dialog) obj).dismiss();
                 return;
             case 21:
-                ChatActivityEnterView chatActivityEnterView2 = ((jf) obj).f36488f;
+                ChatActivityEnterView chatActivityEnterView2 = ((jf) obj).f36487f;
                 int i12 = ChatActivityEnterView.f32569s7;
                 chatActivityEnterView2.U1();
                 return;
@@ -171,7 +171,7 @@ public final class og implements Runnable {
                 ((ah) obj).f33518s = null;
                 return;
             case 24:
-                ((hi) obj).f35905l0.f40450y3.f();
+                ((hi) obj).f35904l0.f40449y3.f();
                 return;
             case 25:
                 mk mkVar = (mk) ((androidx.mediarouter.app.f) obj).f2687b;
@@ -196,15 +196,15 @@ public final class og implements Runnable {
             case 27:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout3 = ((am) obj).f33550c;
                 gm gmVar = chatAttachAlertPhotoLayout3.Q;
-                if (gmVar != null && !chatAttachAlertPhotoLayout3.f37520b.J) {
+                if (gmVar != null && !chatAttachAlertPhotoLayout3.f37519b.J) {
                     gmVar.setSystemUiVisibility(1028);
                     return;
                 }
                 return;
             case 28:
                 rm rmVar = (rm) obj;
-                ui uiVar = rmVar.f37520b;
-                if (rmVar.R && (chatAttachAlertPhotoLayout = uiVar.f40379e2) != null) {
+                ui uiVar = rmVar.f37519b;
+                if (rmVar.R && (chatAttachAlertPhotoLayout = uiVar.f40378e2) != null) {
                     org.telegram.ui.ActionBar.y0 y0Var = chatAttachAlertPhotoLayout.f32810d1;
                     y0Var.setIcon(2131231240);
                     y0Var.setText(org.telegram.messenger.hd.N0(2131753753, null));
@@ -214,7 +214,7 @@ public final class og implements Runnable {
                 return;
             default:
                 tn tnVar = (tn) obj;
-                tnVar.f39972m1 = -1;
+                tnVar.f39971m1 = -1;
                 tnVar.l1 = null;
                 return;
         }

@@ -18,7 +18,7 @@ public final class do0 extends g.p {
                 return 1;
             case 1:
                 xo0 xo0Var = this.d.I1;
-                if (i7 != xo0Var.f42184x && i7 != xo0Var.f42185y && i7 != xo0Var.E && i7 != xo0Var.G && xo0Var.d(i7) != 0) {
+                if (i7 != xo0Var.f42183x && i7 != xo0Var.f42184y && i7 != xo0Var.E && i7 != xo0Var.G && xo0Var.d(i7) != 0) {
                     return 1;
                 }
                 return 4;

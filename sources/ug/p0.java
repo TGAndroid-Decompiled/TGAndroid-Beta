@@ -103,7 +103,7 @@ public final class p0 extends FrameLayout implements n0 {
             return;
         }
         float abs = Math.abs(f10 / getMeasuredWidth());
-        float interpolation = nr.f37963i.getInterpolation(abs);
+        float interpolation = nr.f37962i.getInterpolation(abs);
         int right = getRight();
         o0 o0Var = this.f58866e;
         o0Var.setTranslationX(((o0Var.getWidth() * 1.5f) + (right - o0Var.getRight()) + org.telegram.messenger.g0.L(32.0f)) * interpolation);
@@ -119,7 +119,7 @@ public final class p0 extends FrameLayout implements n0 {
         float i10 = Utilities.i(org.telegram.messenger.g0.T1(1.0f, 1.8f, abs), 1.0f, 0.0f);
         o0Var2.setScaleX(i10);
         o0Var2.setScaleY(i10);
-        float interpolation2 = nr.f37962g.getInterpolation(abs);
+        float interpolation2 = nr.f37961g.getInterpolation(abs);
         int left = getLeft();
         o0 o0Var3 = this.d;
         o0Var3.setTranslationX((((left - o0Var3.getLeft()) - (o0Var3.getWidth() * 2.5f)) + org.telegram.messenger.g0.L(32.0f)) * interpolation2);

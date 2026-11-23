@@ -25,7 +25,7 @@ public final class xw0 extends Drawable implements org.telegram.ui.ActionBar.l5 
         n6Var.setCallback(new wq(1, this));
         n6Var.t(str, true, true);
         n6Var.w(org.telegram.messenger.g0.L(11.0f));
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
         paint.setColor(520093696);
     }
 

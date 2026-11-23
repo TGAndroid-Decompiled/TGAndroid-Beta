@@ -26,7 +26,7 @@ public final class cr0 extends em0 {
         qr0 qr0Var;
         boolean z11;
         jt0 jt0Var = this.J;
-        org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36659q0;
+        org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36658q0;
         if (q0Var == null) {
             return false;
         }
@@ -39,7 +39,7 @@ public final class cr0 extends em0 {
         }
         jt0Var.X0 = z10;
         jt0Var.B1(false);
-        int i7 = jt0Var.f36651n0[0].F;
+        int i7 = jt0Var.f36650n0[0].F;
         if (i7 == 11) {
             vs0 vs0Var = jt0Var.V;
             if (vs0Var != null) {
@@ -81,9 +81,9 @@ public final class cr0 extends em0 {
             z11 = false;
         }
         g(z11);
-        org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36656p0;
+        org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36655p0;
         if (q0Var != null) {
-            if (a() && jt0Var.f36684y1.getUserConfig().q()) {
+            if (a() && jt0Var.f36683y1.getUserConfig().q()) {
                 i10 = 2131232445;
             } else {
                 i10 = 2131232488;
@@ -99,7 +99,7 @@ public final class cr0 extends em0 {
                 }
             }
         }
-        org.telegram.ui.ActionBar.q0 q0Var2 = jt0Var.f36659q0;
+        org.telegram.ui.ActionBar.q0 q0Var2 = jt0Var.f36658q0;
         if (q0Var2 != null) {
             if (cr0Var != null && cr0Var.a() && jt0Var.getSelectedTab() == 11) {
                 i7 = 2131745672;

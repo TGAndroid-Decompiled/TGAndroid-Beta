@@ -36,14 +36,14 @@ public final class ex extends xs {
             z10 = true;
         }
         if (!z10) {
-            if (tyVar.f40152w2 > 0 && SystemClock.elapsedRealtime() - tyVar.f40152w2 < gxVar.z1()) {
+            if (tyVar.f40151w2 > 0 && SystemClock.elapsedRealtime() - tyVar.f40151w2 < gxVar.z1()) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             for (int i12 = 0; i12 < this.P.size(); i12++) {
                 cy cyVar = (cy) this.P.get(i12);
-                if (cyVar.h != 0.0f || cyVar.f34329n != null || ((i11 = cyVar.f34324a) > tyVar.f40145u2 && i11 < tyVar.f40148v2 && z11)) {
+                if (cyVar.h != 0.0f || cyVar.f34329n != null || ((i11 = cyVar.f34324a) > tyVar.f40144u2 && i11 < tyVar.f40147v2 && z11)) {
                     break;
                 }
             }
@@ -68,10 +68,10 @@ public final class ex extends xs {
                 p5 p5Var = cyVar.f34325b;
                 if (p5Var != null) {
                     org.telegram.messenger.hc hcVar = cyVar.f34328f[this.L];
-                    fi.s2 s2Var = p5Var.f38500k;
+                    fi.s2 s2Var = p5Var.f38499k;
                     if (s2Var != null) {
-                        s2Var.setAlpha(p5Var.f38501l);
-                        p5Var.f38500k.h(canvas, hcVar);
+                        s2Var.setAlpha(p5Var.f38500l);
+                        p5Var.f38499k.h(canvas, hcVar);
                     }
                 }
                 i7++;
@@ -115,9 +115,9 @@ public final class ex extends xs {
             cy cyVar = (cy) this.P.get(i7);
             y5 span = cyVar.getSpan();
             org.telegram.messenger.hc[] hcVarArr = cyVar.f34328f;
-            if (span != null && (p5Var = (p5) tyVar.f40096e2.get(cyVar.d.getDocumentId())) != null && p5Var.f38500k != null) {
+            if (span != null && (p5Var = (p5) tyVar.f40095e2.get(cyVar.d.getDocumentId())) != null && p5Var.f38499k != null) {
                 p5Var.s(j3);
-                fi.s2 s2Var = p5Var.f38500k;
+                fi.s2 s2Var = p5Var.f38499k;
                 int i10 = this.L;
                 org.telegram.messenger.hc e02 = s2Var.e0(hcVarArr[i10], i10);
                 hcVarArr[i10] = e02;
@@ -131,7 +131,7 @@ public final class ex extends xs {
                 cyVar.f34325b = p5Var;
                 org.telegram.messenger.hc hcVar = hcVarArr[i10];
                 if (p5Var.c()) {
-                    porterDuffColorFilter = tyVar.f40100f2;
+                    porterDuffColorFilter = tyVar.f40099f2;
                 } else {
                     porterDuffColorFilter = null;
                 }

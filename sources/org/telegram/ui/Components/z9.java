@@ -5,9 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import org.telegram.messenger.Utilities;
 public final class z9 implements Runnable {
-    public boolean f42739a;
-    public int f42740b;
-    public int f42741c;
+    public boolean f42738a;
+    public int f42739b;
+    public int f42740c;
     public final aa d;
 
     public z9(aa aaVar) {
@@ -24,12 +24,12 @@ public final class z9 implements Runnable {
             aaVar.f33448f = new Bitmap[2];
             aaVar.f33450i = new Canvas[2];
         }
-        int i10 = (int) (this.f42740b / 15.0f);
+        int i10 = (int) (this.f42739b / 15.0f);
         for (int i11 = 0; i11 < 2; i11++) {
             if (i11 == 0) {
                 i7 = aaVar.f33460s;
             } else {
-                i7 = this.f42741c;
+                i7 = this.f42740c;
             }
             int i12 = (int) (i7 / 15.0f);
             Bitmap bitmap2 = aaVar.f33448f[i11];
@@ -59,7 +59,7 @@ public final class z9 implements Runnable {
             if (canvas != null) {
                 canvas.drawBitmap(aaVar.f33447e[i11], 0.0f, 0.0f, paint);
             }
-            if (this.f42739a) {
+            if (this.f42738a) {
                 return;
             }
         }

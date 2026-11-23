@@ -194,7 +194,7 @@ public final class wo0 {
             } else if (i7 == 4) {
                 we0Var.a(true, z12);
             }
-            we0Var.f41789f = view;
+            we0Var.f41788f = view;
             we0Var.invalidateSelf();
         }
         this.f53469a = System.currentTimeMillis();

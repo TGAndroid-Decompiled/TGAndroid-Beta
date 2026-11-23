@@ -156,7 +156,7 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
             default:
                 jn m10 = jn.m();
                 wi.h hVar = (wi.h) this.f21856b;
-                ((SharedPreferences) m10.f36567b).edit().putFloat("scale_factor", hVar.f60013z).apply();
+                ((SharedPreferences) m10.f36566b).edit().putFloat("scale_factor", hVar.f60013z).apply();
                 if (!hVar.D.f56362f && !hVar.E.f56362f) {
                     b();
                     return;

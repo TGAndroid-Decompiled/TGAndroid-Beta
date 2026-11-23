@@ -187,7 +187,7 @@ public final class a6 implements Runnable {
                     b7.l lVar = c6Var5.B0;
                     int i12 = lVar.f2980a;
                     bg.i iVar2 = c6Var5.A0;
-                    int f11 = iVar2.f(iVar2.f3274i, c6Var5.f34096w.f42683b);
+                    int f11 = iVar2.f(iVar2.f3274i, c6Var5.f34096w.f42682b);
                     lVar.f2980a = iVar2.f3274i;
                     if (iVar2.f3282q && !iVar2.f3271e.isEmpty()) {
                         int i13 = iVar2.f3274i + 1;
@@ -202,9 +202,9 @@ public final class a6 implements Runnable {
                     int[] iArr2 = c6Var5.d;
                     z5 z5Var2 = c6Var5.f34096w;
                     int max = c6Var5.B0.f2980a * Math.max(16, iArr2[4] / Math.max(1, c6Var5.A0.f3271e.size()));
-                    z5Var2.f42685e = max;
+                    z5Var2.f42684e = max;
                     iArr2[3] = max;
-                    c6Var5.f34096w.f42686f = false;
+                    c6Var5.f34096w.f42685f = false;
                     if (c6Var5.A0.g()) {
                         org.telegram.messenger.g0.g3(c6Var5.F0);
                     }
@@ -252,7 +252,7 @@ public final class a6 implements Runnable {
                 }
                 if (c6Var5.f34096w != null) {
                     System.currentTimeMillis();
-                    if (c6Var5.f34075e0.c(c6Var5.f34096w.f42683b, false, c6Var5.f34079h0, c6Var5.f34080i0, c6Var5.f34083l0) == 0) {
+                    if (c6Var5.f34075e0.c(c6Var5.f34096w.f42682b, false, c6Var5.f34079h0, c6Var5.f34080i0, c6Var5.f34083l0) == 0) {
                         org.telegram.messenger.g0.g3(c6Var5.C0);
                         return;
                     }
@@ -272,11 +272,11 @@ public final class a6 implements Runnable {
                         c6Var5.f34071c = i14;
                     }
                     z5 z5Var3 = c6Var5.f34096w;
-                    z5Var3.f42685e = i14;
+                    z5Var3.f42684e = i14;
                     if (c6Var5.f34075e0.f32565a[6] == 1) {
                         z14 = true;
                     }
-                    z5Var3.f42686f = z14;
+                    z5Var3.f42685f = z14;
                 }
                 org.telegram.messenger.g0.g3(c6Var5.G0);
                 return;

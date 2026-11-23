@@ -29,7 +29,7 @@ public final class u2 extends org.telegram.ui.ActionBar.q0 {
                 return;
             case 2:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((rm) this.B0).f39285y.getText());
+                accessibilityNodeInfo.setText(((rm) this.B0).f39284y.getText());
                 return;
             default:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);

@@ -362,10 +362,10 @@ public final class g1 extends sa {
         ViewGroup viewGroup = this.f30176b;
         int i13 = this.f30211u0;
         viewGroup.addView(frameLayout, ma.f(-2.0f, -1, 87, i13, 0, i13, 0));
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i14 = this.f30211u0;
         ek0Var.setPadding(i14, 0, i14, org.telegram.messenger.g0.L(68.0f) + r11);
-        this.f39532o1.r1();
+        this.f39531o1.r1();
         int i15 = m6.f29324a7;
         v0(m6.w0(i15, this.J0));
         Q(i15);
@@ -413,7 +413,7 @@ public final class g1 extends sa {
     public final void onCreate(Bundle bundle) {
         int b10;
         super.onCreate(bundle);
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         if (ek0Var.getAdapter() == null) {
             b10 = 0;
         } else {

@@ -7,35 +7,35 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ko implements Runnable {
-    public final int f36937a = 1;
-    public final long f36938b;
-    public final long f36939c;
+    public final int f36936a = 1;
+    public final long f36937b;
+    public final long f36938c;
     public final Object d;
-    public final Object f36940e;
-    public final Object f36941f;
+    public final Object f36939e;
+    public final Object f36940f;
 
     public ko(long j3, long j10, TL_stories.PrepaidGiveaway prepaidGiveaway, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, wg.a0 a0Var) {
         this.d = a0Var;
-        this.f36940e = prepaidGiveaway;
-        this.f36941f = tL_prepaidStarsGiveaway;
-        this.f36938b = j3;
-        this.f36939c = j10;
+        this.f36939e = prepaidGiveaway;
+        this.f36940f = tL_prepaidStarsGiveaway;
+        this.f36937b = j3;
+        this.f36938c = j10;
     }
 
     @Override
     public final void run() {
         boolean z10;
         ?? tL_inputStorePaymentStarsGiveaway;
-        int i7 = this.f36937a;
-        Object obj = this.f36941f;
-        Object obj2 = this.f36940e;
+        int i7 = this.f36936a;
+        Object obj = this.f36940f;
+        Object obj2 = this.f36939e;
         Object obj3 = this.d;
         switch (i7) {
             case 0:
                 ((a70) obj3).v();
                 Bundle bundle = new Bundle();
-                bundle.putLong("dialog_id", this.f36938b);
-                bundle.putLong("topic_id", this.f36939c);
+                bundle.putLong("dialog_id", this.f36937b);
+                bundle.putLong("topic_id", this.f36938c);
                 ((org.telegram.ui.ActionBar.g2) obj2).presentFragment(new org.telegram.ui.jx0(bundle, (org.telegram.ui.ActionBar.h6) obj));
                 return;
             default:
@@ -58,7 +58,7 @@ public final class ko implements Runnable {
                 boolean z12 = a0Var.f59755s2;
                 int i12 = prepaidGiveaway.quantity;
                 String str = a0Var.f59754r2;
-                wg.y yVar = new wg.y(this.f36938b, this.f36939c, prepaidGiveaway, tL_prepaidStarsGiveaway, a0Var);
+                wg.y yVar = new wg.y(this.f36937b, this.f36938c, prepaidGiveaway, tL_prepaidStarsGiveaway, a0Var);
                 wg.v vVar = new wg.v(a0Var, 6);
                 org.telegram.messenger.np u12 = org.telegram.messenger.np.u1(org.telegram.messenger.k10.f24968t0);
                 ConnectionsManager connectionsManager = ConnectionsManager.getInstance(org.telegram.messenger.k10.f24968t0);
@@ -142,9 +142,9 @@ public final class ko implements Runnable {
 
     public ko(a70 a70Var, long j3, long j10, org.telegram.ui.bn bnVar, org.telegram.ui.ActionBar.h6 h6Var) {
         this.d = a70Var;
-        this.f36938b = j3;
-        this.f36939c = j10;
-        this.f36940e = bnVar;
-        this.f36941f = h6Var;
+        this.f36937b = j3;
+        this.f36938c = j10;
+        this.f36939e = bnVar;
+        this.f36940f = h6Var;
     }
 }

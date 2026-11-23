@@ -162,7 +162,7 @@ public abstract class n0 {
         this.P = reactionCount.chosen;
         sq sqVar = this.E;
         sqVar.G = false;
-        sqVar.f39652a = true;
+        sqVar.f39651a = true;
         if (reaction != null) {
             if (d.f5503a) {
                 this.f5474l = true;
@@ -195,7 +195,7 @@ public abstract class n0 {
             }
         }
         this.E.d(org.telegram.messenger.g0.L(26.0f), org.telegram.messenger.g0.L(100.0f));
-        this.E.f39655e = q0.V;
+        this.E.f39654e = q0.V;
         if (z10) {
             String M1 = np.u1(i7).M1(reaction);
             this.f5483u = M1;
@@ -203,7 +203,7 @@ public abstract class n0 {
         }
         if (this.f5482t) {
             n6 n6Var3 = this.F;
-            n6Var3.t(j6.m(this.f5483u, n6Var3.f37794a.getFontMetricsInt(), false, null, 0), !hd.f24444a0, true);
+            n6Var3.t(j6.m(this.f5483u, n6Var3.f37793a.getFontMetricsInt(), false, null, 0), !hd.f24444a0, true);
             if (this instanceof cm0) {
                 Integer.toString(reactionCount.count);
                 this.E.c(this.v, false);
@@ -220,7 +220,7 @@ public abstract class n0 {
         }
         sq sqVar2 = this.E;
         sqVar2.I = 2;
-        sqVar2.f39674z = 3;
+        sqVar2.f39673z = 3;
     }
 
     public final void a() {
@@ -308,7 +308,7 @@ public abstract class n0 {
         h6 h6Var2 = this.W;
         p5 p5Var = this.C;
         if (p5Var != null) {
-            imageReceiver = p5Var.f38500k;
+            imageReceiver = p5Var.f38499k;
         } else {
             imageReceiver = this.B;
         }
@@ -393,7 +393,7 @@ public abstract class n0 {
                 sqVar = sqVar2;
                 h6Var = h6Var2;
                 imageReceiver2 = imageReceiver;
-                n6Var.m(0.6f, 650L, 1.6f, nr.f37965k);
+                n6Var.m(0.6f, 650L, 1.6f, nr.f37964k);
                 n6Var.t(org.telegram.messenger.g0.o0(this.v, 0), false, true);
                 view = view2;
                 n6Var.t(hd.E(this.v, ','), true, true);
@@ -512,7 +512,7 @@ public abstract class n0 {
             int i13 = ((int) f11) + i11;
             rect.set(i12, i13, i12 + L, L + i13);
             p5 p5Var2 = this.C;
-            if (p5Var2 == null || (imageReceiver3 = p5Var2.f38500k) == null) {
+            if (p5Var2 == null || (imageReceiver3 = p5Var2.f38499k) == null) {
                 imageReceiver3 = this.B;
             }
             if (imageReceiver3 != null && rect != null) {
@@ -537,7 +537,7 @@ public abstract class n0 {
                             k10.R();
                             n();
                         }
-                    } else if (k10.B() != null && !k10.B().f38220l0) {
+                    } else if (k10.B() != null && !k10.B().f38219l0) {
                         float alpha3 = k10.getAlpha() - 0.08f;
                         if (alpha3 <= 0.0f) {
                             k10.R();
@@ -639,7 +639,7 @@ public abstract class n0 {
 
     public boolean e() {
         int i7 = this.v;
-        if ((i7 != 0 && (!this.R || this.f5482t || i7 != 1)) || this.E.f39661l != 1.0f) {
+        if ((i7 != 0 && (!this.R || this.f5482t || i7 != 1)) || this.E.f39660l != 1.0f) {
             return true;
         }
         return false;
@@ -744,7 +744,7 @@ public abstract class n0 {
     public final void p() {
         ImageReceiver imageReceiver;
         p5 p5Var = this.C;
-        if (p5Var == null || (imageReceiver = p5Var.f38500k) == null) {
+        if (p5Var == null || (imageReceiver = p5Var.f38499k) == null) {
             imageReceiver = this.B;
         }
         if (imageReceiver != null) {
@@ -763,7 +763,7 @@ public abstract class n0 {
     public final void q() {
         ImageReceiver imageReceiver;
         p5 p5Var = this.C;
-        if (p5Var == null || (imageReceiver = p5Var.f38500k) == null) {
+        if (p5Var == null || (imageReceiver = p5Var.f38499k) == null) {
             imageReceiver = this.B;
         }
         if (imageReceiver != null) {

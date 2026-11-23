@@ -19,13 +19,13 @@ public final class nm0 extends jg.h0 {
         int i7 = this.C0;
         super.f();
         org.telegram.ui.kw kwVar = this.L0;
-        if (!kwVar.L0 && (b1Var = kwVar.f40500b0) != null) {
+        if (!kwVar.L0 && (b1Var = kwVar.f40499b0) != null) {
             b1Var.v0(0);
             kwVar.L0 = true;
         }
         if (b() != 0 || i7 == 0 || this.E0 > 0) {
             return;
         }
-        kwVar.f40501c0.e(false, false);
+        kwVar.f40500c0.e(false, false);
     }
 }

@@ -393,8 +393,8 @@ public final class y0 extends w2 implements gs {
         linearLayout.setOrientation(1);
         int i12 = m6.V8;
         int i13 = m6.P9;
-        iaVar.f36232n = i12;
-        iaVar.f36233r = i13;
+        iaVar.f36231n = i12;
+        iaVar.f36232r = i13;
         if (!z11) {
             linearLayout.addView(iaVar, ma.t(this.f58997o1.size() * 11, 5, 1, 0, 0, 0, 10));
         }

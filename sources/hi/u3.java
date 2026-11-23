@@ -18,8 +18,8 @@ public final class u3 extends n41 {
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         v3 v3Var = (v3) view;
         v3Var.a(o41Var.d, o41Var.A, (c7) o41Var.H);
-        v3Var.b(o41Var.f38085e, false);
-        boolean z11 = o41Var.f38086f;
+        v3Var.b(o41Var.f38084e, false);
+        boolean z11 = o41Var.f38085f;
         if (v3Var.h != z11) {
             v3Var.h = z11;
             v3Var.G.a(z11);

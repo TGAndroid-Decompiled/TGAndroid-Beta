@@ -34,7 +34,7 @@ public final class q1 extends ReplacementSpan {
                 float f11 = (i11 + i13) / 2.0f;
                 RectF rectF = org.telegram.messenger.g0.P;
                 float f12 = N / 2.0f;
-                rectF.set(f10, f11 - f12, ((int) (((xy0) this.f18469c).f42247c + org.telegram.messenger.g0.L(10.0f))) + f10, f12 + f11);
+                rectF.set(f10, f11 - f12, ((int) (((xy0) this.f18469c).f42246c + org.telegram.messenger.g0.L(10.0f))) + f10, f12 + f11);
                 Paint paint2 = (Paint) this.f18468b;
                 int i14 = m6.f29792z6;
                 paint2.setColor(m6.r1(0.15f, m6.x0(null, i14, false)));
@@ -44,7 +44,7 @@ public final class q1 extends ReplacementSpan {
             case 1:
                 float f13 = (i11 + i13) / 2.0f;
                 RectF rectF2 = org.telegram.messenger.g0.P;
-                rectF2.set(f10, f13 - org.telegram.messenger.g0.L(7.66f), ((xy0) this.f18469c).f42247c + f10 + org.telegram.messenger.g0.L(6.66f), org.telegram.messenger.g0.L(7.66f) + f13);
+                rectF2.set(f10, f13 - org.telegram.messenger.g0.L(7.66f), ((xy0) this.f18469c).f42246c + f10 + org.telegram.messenger.g0.L(6.66f), org.telegram.messenger.g0.L(7.66f) + f13);
                 canvas.saveLayerAlpha(rectF2, 255, 31);
                 Paint paint3 = (Paint) this.f18468b;
                 paint3.setColor(paint.getColor());
@@ -78,9 +78,9 @@ public final class q1 extends ReplacementSpan {
     public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
         switch (this.f18467a) {
             case 0:
-                return (int) (((xy0) this.f18469c).f42247c + org.telegram.messenger.g0.L(10.0f));
+                return (int) (((xy0) this.f18469c).f42246c + org.telegram.messenger.g0.L(10.0f));
             case 1:
-                return (int) (((xy0) this.f18469c).f42247c + org.telegram.messenger.g0.L(6.66f));
+                return (int) (((xy0) this.f18469c).f42246c + org.telegram.messenger.g0.L(6.66f));
             default:
                 return org.telegram.messenger.g0.L(20.0f);
         }
@@ -97,6 +97,6 @@ public final class q1 extends ReplacementSpan {
         this.f18468b = new Paint(1);
         xy0 xy0Var = new xy0("x50", 13.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
         this.f18469c = xy0Var;
-        xy0Var.f42245a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        xy0Var.f42244a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 }

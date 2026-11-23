@@ -91,18 +91,18 @@ public final class z implements y10 {
                     ob obVar = new ob(Q.getParentActivity(), Q.getResourceProvider());
                     if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
                         obVar.c(2131623982, 30, 30, new String[0]);
-                        obVar.f38158b.setText(hd.N0(2131753368, null));
+                        obVar.f38157b.setText(hd.N0(2131753368, null));
                     } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo) {
                         if (((TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo).participating) {
                             obVar.c(2131624029, 30, 30, new String[0]);
-                            obVar.f38158b.setText(hd.N0(2131753366, null));
+                            obVar.f38157b.setText(hd.N0(2131753366, null));
                         } else {
                             obVar.c(2131623982, 30, 30, new String[0]);
-                            obVar.f38158b.setText(hd.N0(2131753367, null));
+                            obVar.f38157b.setText(hd.N0(2131753367, null));
                         }
                     }
-                    obVar.f38158b.setSingleLine(false);
-                    obVar.f38158b.setMaxLines(2);
+                    obVar.f38157b.setSingleLine(false);
+                    obVar.f38157b.setMaxLines(2);
                     ec ecVar = new ec(Q.getParentActivity(), Q.getResourceProvider(), true);
                     ecVar.e(hd.N0(2131748817, null));
                     ecVar.f34725b = new ai.i(payments_giveawayinfo, z10, b10, j3, tL_messageMediaGiveaway2, Q);

@@ -169,7 +169,7 @@ public final class i1 implements fb {
                 L = org.telegram.messenger.g0.L(12.0f);
                 break;
             case 6:
-                return ((org.telegram.ui.Components.u7) this.f3719b).f40284e.f35145y1.getHeight();
+                return ((org.telegram.ui.Components.u7) this.f3719b).f40283e.f35145y1.getHeight();
             case 7:
                 fb fbVar = (fb) this.f3719b;
                 if (fbVar == null) {
@@ -178,14 +178,14 @@ public final class i1 implements fb {
                 return fbVar.f(i7);
             case 8:
                 editTextHeight = org.telegram.messenger.g0.L(126.0f);
-                L = ((gm) this.f3719b).f35637c.f37520b.R();
+                L = ((gm) this.f3719b).f35637c.f37519b.R();
                 break;
             case 9:
                 editTextHeight = k90.Z((k90) this.f3719b).d;
                 L = org.telegram.messenger.g0.L(72.0f);
                 break;
             case 10:
-                FrameLayout frameLayout = ((kw0) this.f3719b).f37030w1;
+                FrameLayout frameLayout = ((kw0) this.f3719b).f37029w1;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }

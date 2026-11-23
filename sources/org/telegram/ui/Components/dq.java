@@ -27,11 +27,11 @@ public final class dq extends o6 {
             Rect rect = this.f34544s;
             rect.set(bounds);
             int ceil = (int) Math.ceil(getDrawable().c());
-            if (getDrawable().f37796b == 3) {
+            if (getDrawable().f37795b == 3) {
                 rect.right = rect.left + ceil;
-            } else if (getDrawable().f37796b == 5) {
+            } else if (getDrawable().f37795b == 5) {
                 rect.left = rect.right - ceil;
-            } else if (getDrawable().f37796b == 17) {
+            } else if (getDrawable().f37795b == 17) {
                 int i7 = (rect.left + rect.right) / 2;
                 int i10 = ceil / 2;
                 rect.left = i7 - i10;

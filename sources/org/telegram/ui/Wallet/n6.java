@@ -467,10 +467,10 @@ public final class n6 extends e51 implements gs {
 
     public static void d1(h51 h51Var, boolean z10) {
         boolean canScrollVertically = h51Var.canScrollVertically(-1);
-        h51Var.f35790g3.O(z10);
+        h51Var.f35789g3.O(z10);
         h51Var.a0();
         if (!canScrollVertically) {
-            h51Var.f35789f3.h1(0, 0);
+            h51Var.f35788f3.h1(0, 0);
         }
     }
 
@@ -937,7 +937,7 @@ public final class n6 extends e51 implements gs {
                 j9Var.a();
             }
             if (n6Var.M0 <= 0.0f && n6Var.D0()) {
-                int top = n6Var.f34681a.f35789f3.m(n6Var.h).getTop() - n6Var.f34681a.getPaddingTop();
+                int top = n6Var.f34681a.f35788f3.m(n6Var.h).getTop() - n6Var.f34681a.getPaddingTop();
                 n6Var.f34681a.C0();
                 if (top < 0) {
                     n6Var.f34681a.w0(0, top, nr.h);
@@ -1066,7 +1066,7 @@ public final class n6 extends e51 implements gs {
         if (!this.f44685r0 && (k5Var = this.f44681o0) != null && k5Var.isAttachedToWindow()) {
             ViewParent parent = this.f44681o0.getParent();
             bi.f6 f6Var = this.f34681a;
-            if (parent == f6Var.f35789f3.m(f6Var.f35790g3.E.size() - 1)) {
+            if (parent == f6Var.f35788f3.m(f6Var.f35789g3.E.size() - 1)) {
                 return true;
             }
             return false;
@@ -1077,7 +1077,7 @@ public final class n6 extends e51 implements gs {
     public final boolean D0() {
         View m10;
         bi.f6 f6Var = this.f34681a;
-        if (f6Var != null && (m10 = f6Var.f35789f3.m(this.h)) != null && this.B0 < 0.5f && m10.getBottom() > this.f34681a.getPaddingTop()) {
+        if (f6Var != null && (m10 = f6Var.f35788f3.m(this.h)) != null && this.B0 < 0.5f && m10.getBottom() > this.f34681a.getPaddingTop()) {
             return true;
         }
         return false;
@@ -1094,7 +1094,7 @@ public final class n6 extends e51 implements gs {
     public final void H0() {
         l0 l0Var;
         h51 h51Var = this.f44689u0[1];
-        if (this.f44672f0 == 1 && h51Var != null && h51Var.H && (l0Var = this.H0) != null && !l0Var.f44510i && !l0Var.f44509g && l0Var.f44514m == null && h51Var.f35789f3.N0() >= h51Var.f35790g3.E.size() - 3) {
+        if (this.f44672f0 == 1 && h51Var != null && h51Var.H && (l0Var = this.H0) != null && !l0Var.f44510i && !l0Var.f44509g && l0Var.f44514m == null && h51Var.f35788f3.N0() >= h51Var.f35789g3.E.size() - 3) {
             this.H0.f();
         }
     }
@@ -1102,7 +1102,7 @@ public final class n6 extends e51 implements gs {
     public final void I0() {
         t0 t0Var;
         h51 h51Var = this.f44689u0[0];
-        if (h51Var != null && h51Var.H && (t0Var = this.G0) != null && !t0Var.f45093k && !t0Var.h && h51Var.f35789f3.N0() >= h51Var.f35790g3.E.size() - 3) {
+        if (h51Var != null && h51Var.H && (t0Var = this.G0) != null && !t0Var.f45093k && !t0Var.h && h51Var.f35788f3.N0() >= h51Var.f35789g3.E.size() - 3) {
             this.G0.h();
         }
     }
@@ -1569,9 +1569,9 @@ public final class n6 extends e51 implements gs {
         b6 b6Var2;
         if (this.f34681a != null && this.f44669e != null && this.f44690v0 != null && this.E != null && (y61Var = this.F) != null && this.simpleActionBar != null) {
             y61Var.bringToFront();
-            View m10 = this.f34681a.f35789f3.m(this.h);
+            View m10 = this.f34681a.f35788f3.m(this.h);
             if (m10 == null) {
-                if (this.f34681a.f35789f3.L0() > this.h) {
+                if (this.f34681a.f35788f3.L0() > this.h) {
                     i7 = 1.0f;
                 } else {
                     i7 = 0.0f;
@@ -1746,9 +1746,9 @@ public final class n6 extends e51 implements gs {
         this.h = arrayList.size();
         y5 y5Var = this.f44671f;
         o41 o41Var = new o41(-4);
-        o41Var.f38084c = y5Var;
+        o41Var.f38083c = y5Var;
         o41Var.A = -1;
-        o41Var.f38085e = true;
+        o41Var.f38084e = true;
         arrayList.add(o41Var);
         arrayList.add(o41.m(this.C0));
         boolean S0 = S0();
@@ -1758,23 +1758,23 @@ public final class n6 extends e51 implements gs {
             String N02 = hd.N0(2131742752, null);
             int i7 = f6.f44243b;
             o41 K = o41.K(f6.class);
-            K.f38090k = 2131232832;
-            K.f38092m = N0;
-            K.f38093n = N02;
+            K.f38089k = 2131232832;
+            K.f38091m = N0;
+            K.f38092n = N02;
             arrayList.add(K);
             String N03 = hd.N0(2131742821, null);
             String N04 = hd.N0(2131742820, null);
             o41 K2 = o41.K(f6.class);
-            K2.f38090k = 2131232830;
-            K2.f38092m = N03;
-            K2.f38093n = N04;
+            K2.f38089k = 2131232830;
+            K2.f38091m = N03;
+            K2.f38092n = N04;
             arrayList.add(K2);
             String N05 = hd.N0(2131742936, null);
             String N06 = hd.N0(2131742935, null);
             o41 K3 = o41.K(f6.class);
-            K3.f38090k = 2131232834;
-            K3.f38092m = N05;
-            K3.f38093n = N06;
+            K3.f38089k = 2131232834;
+            K3.f38091m = N05;
+            K3.f38092n = N06;
             arrayList.add(K3);
             arrayList.add(o41.m(this.f44666b0));
         } else if (this.f44681o0 != null) {
@@ -1783,9 +1783,9 @@ public final class n6 extends e51 implements gs {
             }
             k5 k5Var = this.f44681o0;
             o41 o41Var2 = new o41(-3);
-            o41Var2.f38084c = k5Var;
+            o41Var2.f38083c = k5Var;
             o41Var2.A = 0;
-            o41Var2.f38104z = 1;
+            o41Var2.f38103z = 1;
             arrayList.add(o41Var2);
         }
         m80 m80Var = this.f44665a0;
@@ -1809,7 +1809,7 @@ public final class n6 extends e51 implements gs {
         o6Var.setTextColor(org.telegram.messenger.g0.d2(f10, i7, i0.a.o(themedColor, Math.round(142.8f))));
         w6 w6Var = this.f44696y0;
         if (w6Var != null) {
-            w6Var.f37955y = org.telegram.messenger.g0.d2(f10, -1, getThemedColor(org.telegram.ui.ActionBar.m6.Fi));
+            w6Var.f37954y = org.telegram.messenger.g0.d2(f10, -1, getThemedColor(org.telegram.ui.ActionBar.m6.Fi));
         }
         e6 e6Var = this.f44697z0;
         if (e6Var != null) {
@@ -1929,8 +1929,8 @@ public final class n6 extends e51 implements gs {
                     h51Var.C0();
                 }
             }
-            this.f34681a.f35790g3.O(false);
-            this.f34681a.f35789f3.h1(0, 0);
+            this.f34681a.f35789g3.O(false);
+            this.f34681a.f35788f3.h1(0, 0);
             this.f34681a.post(new q4(this, 6));
         }
         if (!S0) {
@@ -2328,7 +2328,7 @@ public final class n6 extends e51 implements gs {
             this.f44677k0.Y(l0Var2);
         }
         this.f34681a.j(new org.telegram.ui.Components.oa(this, 24));
-        c51 c51Var = this.f34681a.f35790g3;
+        c51 c51Var = this.f34681a.f35789g3;
         c51Var.f34062r = false;
         c51Var.O(false);
         j6 j6Var2 = new j6(this);
@@ -2361,7 +2361,7 @@ public final class n6 extends e51 implements gs {
                         this.V0 = true;
                         this.W0 = ((TL_account.Password) obj).has_password;
                         bi.f6 f6Var2 = this.f34681a;
-                        if (f6Var2 != null && (c51Var = f6Var2.f35790g3) != null) {
+                        if (f6Var2 != null && (c51Var = f6Var2.f35789g3) != null) {
                             c51Var.O(true);
                             return;
                         }
@@ -2372,7 +2372,7 @@ public final class n6 extends e51 implements gs {
             } else if (i7 == ls.f25302e4 && objArr.length > 0) {
                 Object obj2 = objArr[0];
                 t0 t0Var = this.G0;
-                if (obj2 == t0Var && (f6Var = this.f34681a) != null && f6Var.f35790g3 != null) {
+                if (obj2 == t0Var && (f6Var = this.f34681a) != null && f6Var.f35789g3 != null) {
                     if (t0Var.f45086b.isEmpty()) {
                         t0 t0Var2 = this.G0;
                         if (!t0Var2.h) {
@@ -2425,7 +2425,7 @@ public final class n6 extends e51 implements gs {
                     h51Var.setPadding(0, i15, 0, i16);
                 }
                 if (!canScrollVertically) {
-                    h51Var.f35789f3.h1(0, 0);
+                    h51Var.f35788f3.h1(0, 0);
                 }
             }
         }

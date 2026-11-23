@@ -71,12 +71,12 @@ public final class f1 extends LinearLayout implements b6 {
             ShapeDrawable d02 = m6.d0(org.telegram.messenger.g0.L(28.0f), m6.w0(m6.Fi, this.f17482b));
             this.f17481a = d02;
             oq oqVar = new oq(d02, getContext().getResources().getDrawable(2131231831).mutate());
-            oqVar.f38337s = org.telegram.messenger.g0.L(-0.66f);
-            oqVar.f38338w = 0;
+            oqVar.f38336s = org.telegram.messenger.g0.L(-0.66f);
+            oqVar.f38337w = 0;
             int L = org.telegram.messenger.g0.L(20.0f);
             int L2 = org.telegram.messenger.g0.L(20.0f);
-            oqVar.f38333e = L;
-            oqVar.f38334f = L2;
+            oqVar.f38332e = L;
+            oqVar.f38333f = L2;
             q9Var.setImageDrawable(oqVar);
             textView2.setText(hd.a0(null, null, 2131749151, str));
             textView.setText(hd.N0(2131749152, null));

@@ -14,10 +14,10 @@ public final class b implements Runnable {
     public final void run() {
         switch (this.f23251a) {
             case 0:
-                Camera2Session.e(this.f23252b, this.f23253c);
+                this.f23252b.lambda$destroy$4(this.f23253c);
                 return;
             default:
-                Camera2Session.d(this.f23252b, this.f23253c);
+                this.f23252b.lambda$destroy$3(this.f23253c);
                 return;
         }
     }

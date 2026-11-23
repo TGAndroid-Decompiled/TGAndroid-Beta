@@ -138,8 +138,8 @@ public final class p1 extends j {
     @Override
     public final void k() {
         yt0 yt0Var = this.f58130w0;
-        float f10 = yt0Var.f42546a / 2.0f;
-        float f11 = yt0Var.f42547b / 2.0f;
+        float f10 = yt0Var.f42545a / 2.0f;
+        float f11 = yt0Var.f42546b / 2.0f;
         xe xeVar = this.H0;
         if (xeVar != null) {
             f10 *= xeVar.f27877e;
@@ -163,8 +163,8 @@ public final class p1 extends j {
     @Override
     public final void onMeasure(int i7, int i10) {
         yt0 yt0Var = this.f58130w0;
-        float f10 = yt0Var.f42546a;
-        float f11 = yt0Var.f42547b;
+        float f10 = yt0Var.f42545a;
+        float f11 = yt0Var.f42546b;
         xe xeVar = this.H0;
         if (xeVar != null) {
             f10 *= xeVar.f27877e;

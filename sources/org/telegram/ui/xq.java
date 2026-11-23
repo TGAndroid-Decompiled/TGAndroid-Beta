@@ -50,14 +50,14 @@ public final class xq extends Drawable {
         n6Var.u(-16777216);
         n6Var.w(org.telegram.messenger.g0.L(7.0f));
         n6Var.setCallback(wqVar);
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
         Point point = org.telegram.messenger.g0.f24046q;
         n6Var.N = point.x;
         n6Var2.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
         n6Var2.u(-16777216);
         n6Var2.w(org.telegram.messenger.g0.L(7.0f));
         n6Var2.setCallback(wqVar);
-        n6Var2.f37796b = 17;
+        n6Var2.f37795b = 17;
         n6Var2.N = point.x;
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(org.telegram.messenger.g0.L(0.66f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.33f));

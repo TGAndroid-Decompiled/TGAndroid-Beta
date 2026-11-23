@@ -20,7 +20,7 @@ public final class yy extends rg.b {
     }
 
     public final v4.i0 F() {
-        return this.d.f39532o1.getAdapter();
+        return this.d.f39531o1.getAdapter();
     }
 
     @Override

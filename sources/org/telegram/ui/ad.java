@@ -773,7 +773,7 @@ public final class ad extends org.telegram.ui.ActionBar.g2 implements org.telegr
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
         org.telegram.ui.Components.x30 x30Var = this.f45606x;
-        if ((x30Var == null || dialog != x30Var.f41961c) && super.dismissDialogOnPause(dialog)) {
+        if ((x30Var == null || dialog != x30Var.f41960c) && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -977,7 +977,7 @@ public final class ad extends org.telegram.ui.ActionBar.g2 implements org.telegr
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            float f11 = this.f45577b.f37620c;
+            float f11 = this.f45577b.f37619c;
             float f12 = 0.0f;
             if (z10) {
                 f10 = 1.0f;
@@ -988,12 +988,12 @@ public final class ad extends org.telegram.ui.ActionBar.g2 implements org.telegr
             this.f45609y0 = ofFloat;
             ofFloat.addUpdateListener(new a3(this, 3));
             ValueAnimator valueAnimator2 = this.f45609y0;
-            float f13 = this.f45577b.f37620c;
+            float f13 = this.f45577b.f37619c;
             if (z10) {
                 f12 = 1.0f;
             }
             valueAnimator2.setDuration(Math.abs(f13 - f12) * 200.0f);
-            this.f45609y0.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+            this.f45609y0.setInterpolator(org.telegram.ui.Components.nr.f37960f);
             this.f45609y0.start();
         }
     }
@@ -1125,7 +1125,7 @@ public final class ad extends org.telegram.ui.ActionBar.g2 implements org.telegr
     @Override
     public final boolean onBackPressed(boolean z10) {
         org.telegram.ui.Components.yt ytVar = this.d;
-        if (ytVar == null || !ytVar.f42538e) {
+        if (ytVar == null || !ytVar.f42537e) {
             return true;
         }
         if (z10) {
@@ -1157,8 +1157,8 @@ public final class ad extends org.telegram.ui.ActionBar.g2 implements org.telegr
         }
         org.telegram.ui.Components.x30 x30Var = this.f45606x;
         if (x30Var != null) {
-            x30Var.f41959a = this;
-            x30Var.f41960b = this;
+            x30Var.f41958a = this;
+            x30Var.f41959b = this;
         }
         return super.onFragmentCreate();
     }
@@ -1244,7 +1244,7 @@ public final class ad extends org.telegram.ui.ActionBar.g2 implements org.telegr
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
         if (z10 && this.f45589j0 != 1) {
             this.d.requestFocus();
-            org.telegram.ui.Components.tt ttVar = this.d.f42535a;
+            org.telegram.ui.Components.tt ttVar = this.d.f42534a;
             ttVar.requestFocus();
             org.telegram.messenger.g0.I3(ttVar);
         }
@@ -1255,7 +1255,7 @@ public final class ad extends org.telegram.ui.ActionBar.g2 implements org.telegr
         if (this.f45589j0 == 0) {
             org.telegram.ui.Components.x30 x30Var = this.f45606x;
             if (x30Var != null) {
-                x30Var.f41963f = bundle.getString("path");
+                x30Var.f41962f = bundle.getString("path");
             }
             String string = bundle.getString("nameTextView");
             if (string != null) {
@@ -1274,7 +1274,7 @@ public final class ad extends org.telegram.ui.ActionBar.g2 implements org.telegr
         String str;
         if (this.f45589j0 == 0) {
             org.telegram.ui.Components.x30 x30Var = this.f45606x;
-            if (x30Var != null && (str = x30Var.f41963f) != null) {
+            if (x30Var != null && (str = x30Var.f41962f) != null) {
                 bundle.putString("path", str);
             }
             org.telegram.ui.Components.yt ytVar = this.d;

@@ -66,11 +66,11 @@ public final class hn0 implements Runnable {
                 return;
             case 8:
                 org.telegram.ui.Components.rd0 rd0Var = this.f48503b.D1;
-                og.f fVar = rd0Var.f39165c;
+                og.f fVar = rd0Var.f39164c;
                 fVar.b(0.0f);
                 fVar.setMirrored(false);
                 fVar.setRotated(false);
-                rd0Var.f39164b.l(true);
+                rd0Var.f39163b.l(true);
                 return;
             case 9:
                 PhotoViewer photoViewer9 = this.f48503b;
@@ -150,7 +150,7 @@ public final class hn0 implements Runnable {
                         if (photoViewer21.f43378t4) {
                             dq0 dq0Var = photoViewer21.f43262g0;
                             if (dq0Var != null) {
-                                if ((!dq0Var.f37178y || !"inapp".equals(org.telegram.messenger.np.u1(dq0Var.f37168a).D3)) && photoViewer21.f43262g0.e()) {
+                                if ((!dq0Var.f37177y || !"inapp".equals(org.telegram.messenger.np.u1(dq0Var.f37167a).D3)) && photoViewer21.f43262g0.e()) {
                                     photoViewer21.K3 = false;
                                     if (PhotoViewer.f43203g9 != null) {
                                         PhotoViewer.f43203g9.J0();

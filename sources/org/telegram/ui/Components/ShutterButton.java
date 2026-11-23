@@ -43,7 +43,7 @@ public class ShutterButton extends View {
             this.f33162f = ot0Var;
             this.f33164r = System.currentTimeMillis();
             this.f33165s = 0L;
-            if (this.f33162f != ot0.f38350b) {
+            if (this.f33162f != ot0.f38349b) {
                 this.f33163n = 0.0f;
             }
             invalidate();
@@ -79,7 +79,7 @@ public class ShutterButton extends View {
         float f10 = measuredWidth;
         float f11 = measuredHeight;
         canvas.drawCircle(f10, f11, org.telegram.messenger.g0.L(26.0f), paint2);
-        if (this.f33162f == ot0.f38350b) {
+        if (this.f33162f == ot0.f38349b) {
             if (this.f33163n != 1.0f) {
                 long abs = Math.abs(System.currentTimeMillis() - this.f33164r);
                 if (abs > 17) {

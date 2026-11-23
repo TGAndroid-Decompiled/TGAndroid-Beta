@@ -266,7 +266,7 @@ public final class u0 extends View {
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (mcVar.f37478i) {
+            if (mcVar.f37477i) {
                 if (contains) {
                     if (this.H) {
                         Runnable runnable = this.R;

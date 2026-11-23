@@ -121,7 +121,7 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
             String obj = cxVar.f46746k0.getSearchField().getText().toString();
             View currentView = kwVar2.getCurrentView();
             boolean z10 = true;
-            boolean z11 = !kwVar2.f40506h0;
+            boolean z11 = !kwVar2.f40505h0;
             if (!TextUtils.isEmpty(kwVar2.N0)) {
                 z10 = z11;
             }
@@ -149,8 +149,8 @@ public final class hv implements e50, org.telegram.ui.Components.ng, org.telegra
             }
         }
         kw kwVar = cxVar.D0;
-        di.b1 b1Var = kwVar.f40500b0;
-        return cxVar.F4(view, i7, f10, kwVar.f40503e0);
+        di.b1 b1Var = kwVar.f40499b0;
+        return cxVar.F4(view, i7, f10, kwVar.f40502e0);
     }
 
     @Override

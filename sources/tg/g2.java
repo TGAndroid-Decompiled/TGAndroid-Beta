@@ -117,8 +117,8 @@ public class g2 extends j {
     @Override
     public final void k() {
         yt0 yt0Var = this.f57905w0;
-        setX(getPositionX() - (yt0Var.f42546a / 2.0f));
-        setY(getPositionY() - (yt0Var.f42547b / 2.0f));
+        setX(getPositionX() - (yt0Var.f42545a / 2.0f));
+        setY(getPositionY() - (yt0Var.f42546b / 2.0f));
         m();
     }
 
@@ -137,7 +137,7 @@ public class g2 extends j {
     @Override
     public final void onMeasure(int i7, int i10) {
         yt0 yt0Var = this.f57905w0;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) yt0Var.f42546a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) yt0Var.f42547b, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) yt0Var.f42545a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) yt0Var.f42546b, 1073741824));
     }
 
     public final void r(boolean z10) {

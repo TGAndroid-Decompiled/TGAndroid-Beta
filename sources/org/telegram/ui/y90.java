@@ -277,7 +277,7 @@ public final class y90 extends FrameLayout {
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setEnabled(true);
         if (opVar.getVisibility() == 0) {
-            accessibilityNodeInfo.setChecked(opVar.f38321a.f32874q);
+            accessibilityNodeInfo.setChecked(opVar.f38320a.f32874q);
         } else {
             accessibilityNodeInfo.setChecked(this.f54091f.h);
         }

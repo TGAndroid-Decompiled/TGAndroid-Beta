@@ -53,9 +53,9 @@ public final class l1 implements org.telegram.ui.Components.w71 {
         if (z10) {
             org.telegram.ui.Components.z71 z71Var2 = g4Var.F0;
             if (z71Var2 != null && z71Var2 != z71Var) {
-                z71Var2.f42710a.g0();
+                z71Var2.f42709a.g0();
                 z71Var2.n();
-                z71Var2.f42721g0.d(true, true);
+                z71Var2.f42720g0.d(true, true);
             }
             g4Var.F0 = z71Var;
             try {

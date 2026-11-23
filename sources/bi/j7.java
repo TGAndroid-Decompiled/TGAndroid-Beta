@@ -25,8 +25,8 @@ public final class j7 extends n41 {
         k7 k7Var = (k7) view;
         TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) o41Var.H;
         int i7 = o41Var.A;
-        String str = (String) o41Var.f38092m;
-        boolean z11 = o41Var.f38085e;
+        String str = (String) o41Var.f38091m;
+        boolean z11 = o41Var.f38084e;
         k7Var.getClass();
         ShapeDrawable L = org.telegram.ui.ActionBar.m6.L(org.telegram.messenger.g0.L(20.0f), stargiftattributebackdrop.center_color | (-16777216));
         SpannableStringBuilder spannableStringBuilder = stargiftattributebackdrop.name;

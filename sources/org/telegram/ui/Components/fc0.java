@@ -16,15 +16,15 @@ public final class fc0 implements Runnable {
         qc0 qc0Var = this.f35204b;
         switch (i7) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = qc0Var.f38887r;
-                if (!qc0Var.Q && qc0Var.isAttachedToWindow() && qc0Var.f38891y.getVisibility() != 0 && editTextBoldCursor != null) {
+                EditTextBoldCursor editTextBoldCursor = qc0Var.f38886r;
+                if (!qc0Var.Q && qc0Var.isAttachedToWindow() && qc0Var.f38890y.getVisibility() != 0 && editTextBoldCursor != null) {
                     editTextBoldCursor.requestFocus();
                     org.telegram.messenger.g0.I3(editTextBoldCursor);
                     return;
                 }
                 return;
             default:
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(qc0Var.f38875b0, 0.0f);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(qc0Var.f38874b0, 0.0f);
                 qc0Var.T = ofFloat;
                 ofFloat.addUpdateListener(new gc0(qc0Var, 1));
                 ofFloat.addListener(new s60(qc0Var, 6));

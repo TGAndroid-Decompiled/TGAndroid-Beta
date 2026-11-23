@@ -71,8 +71,8 @@ public final class iv extends v4.u0 {
         bx bxVar = this.f48833b;
         ev evVar = bxVar.f46335y;
         int i13 = -i10;
-        ArrayList arrayList = evVar.f40031x;
-        ArrayList arrayList2 = evVar.f40023o;
+        ArrayList arrayList = evVar.f40030x;
+        ArrayList arrayList2 = evVar.f40022o;
         boolean z11 = false;
         if (!arrayList2.isEmpty()) {
             int size = arrayList2.size();

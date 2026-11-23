@@ -557,7 +557,7 @@ public final class cn0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
         HashMap hashMap = this.f46598b;
         if (!hashMap.isEmpty() && this.f46622t0 != null && !this.T) {
             org.telegram.ui.Components.yt ytVar = this.f46604e0;
-            if (ytVar != null && ytVar.f42535a.length() > 0) {
+            if (ytVar != null && ytVar.f42534a.length() > 0) {
                 Object obj = hashMap.get(this.f46600c.get(0));
                 if (obj instanceof org.telegram.messenger.ff) {
                     ((org.telegram.messenger.ff) obj).f28058a = this.f46604e0.getText().toString();
@@ -852,7 +852,7 @@ public final class cn0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
     @Override
     public final boolean onBackPressed(boolean z10) {
         org.telegram.ui.Components.yt ytVar = this.f46604e0;
-        if (ytVar != null && ytVar.f42538e) {
+        if (ytVar != null && ytVar.f42537e) {
             if (z10) {
                 ytVar.k(true);
                 return false;
@@ -888,7 +888,7 @@ public final class cn0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
         if (ek0Var == null) {
             return;
         }
-        if (this.f46604e0.f42538e) {
+        if (this.f46604e0.f42537e) {
             this.fragmentView.setTranslationY(f10);
             this.L.setTranslationY(0.0f);
             return;

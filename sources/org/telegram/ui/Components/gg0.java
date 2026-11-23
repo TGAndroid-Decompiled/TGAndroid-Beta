@@ -103,7 +103,7 @@ public final class gg0 extends wp {
         arrayList.clear();
         hg0 hg0Var = this.h;
         int size2 = hg0Var.Y0.size();
-        if (hg0Var.f35888j1) {
+        if (hg0Var.f35887j1) {
             size2++;
         }
         org.telegram.messenger.vo voVar = hg0Var.T0;
@@ -124,7 +124,7 @@ public final class gg0 extends wp {
     public final int j() {
         hg0 hg0Var = this.h;
         int size = hg0Var.Y0.size();
-        if (hg0Var.f35888j1) {
+        if (hg0Var.f35887j1) {
             size++;
         }
         if (size >= 2) {

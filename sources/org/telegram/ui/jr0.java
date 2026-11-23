@@ -133,7 +133,7 @@ public final class jr0 implements org.telegram.ui.Components.tx {
             } else {
                 y5Var = new org.telegram.ui.Components.y5(j3, editField.getPaint().getFontMetricsInt());
             }
-            y5Var.cacheType = pr0Var.S.f40087c;
+            y5Var.cacheType = pr0Var.S.f40086c;
             spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
             editField.setText(editField.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();

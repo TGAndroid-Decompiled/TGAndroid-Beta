@@ -7,14 +7,14 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class rf {
-    public final ChatActivityEnterView f39178a;
+    public final ChatActivityEnterView f39177a;
 
     public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f39178a = chatActivityEnterView;
+        this.f39177a = chatActivityEnterView;
     }
 
     public final View a() {
-        ChatActivityEnterView chatActivityEnterView = this.f39178a;
+        ChatActivityEnterView chatActivityEnterView = this.f39177a;
         ChatActivityEnterView chatActivityEnterView2 = chatActivityEnterView;
         while (chatActivityEnterView2 != 0 && chatActivityEnterView2.getParent() != chatActivityEnterView.f32591c2) {
             if (chatActivityEnterView2.getParent() instanceof View) {
@@ -28,14 +28,14 @@ public final class rf {
 
     public final boolean b(float[] fArr) {
         float f10;
-        ChatActivityEnterView chatActivityEnterView = this.f39178a;
+        ChatActivityEnterView chatActivityEnterView = this.f39177a;
         zi0 zi0Var = chatActivityEnterView.f32638i1;
         boolean z10 = false;
         if (zi0Var != null && chatActivityEnterView.R3 != null && zi0Var.getVisibility() == 0) {
             fArr[0] = chatActivityEnterView.f32638i1.getAudioLeft();
             z10 = true;
             fArr[1] = chatActivityEnterView.f32638i1.getAudioRight();
-            if (chatActivityEnterView.f32638i1.f42876p0) {
+            if (chatActivityEnterView.f32638i1.f42875p0) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
@@ -46,7 +46,7 @@ public final class rf {
     }
 
     public final boolean c() {
-        ChatActivityEnterView chatActivityEnterView = this.f39178a;
+        ChatActivityEnterView chatActivityEnterView = this.f39177a;
         if (!chatActivityEnterView.f32736v3 && chatActivityEnterView.R3 == null && !MediaController.B().J()) {
             return false;
         }
@@ -54,7 +54,7 @@ public final class rf {
     }
 
     public final boolean d() {
-        ChatActivityEnterView chatActivityEnterView = this.f39178a;
+        ChatActivityEnterView chatActivityEnterView = this.f39177a;
         if (chatActivityEnterView.f32736v3 && !chatActivityEnterView.O2 && !chatActivityEnterView.Z2) {
             if ((!chatActivityEnterView.U2 || !chatActivityEnterView.f32598d1) && chatActivityEnterView.f32764z0 && !chatActivityEnterView.l1 && chatActivityEnterView.F3 != null && chatActivityEnterView.F0 != null && !MediaController.B().K()) {
                 ai.p0 p0Var = chatActivityEnterView.f32645j1;
@@ -69,7 +69,7 @@ public final class rf {
     }
 
     public final void e() {
-        ChatActivityEnterView chatActivityEnterView = this.f39178a;
+        ChatActivityEnterView chatActivityEnterView = this.f39177a;
         if (chatActivityEnterView.f32736v3 && !MediaController.B().K()) {
             ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.D2;
             if (recordCircle != null && ChatActivityEnterView.this.f32642i5) {
@@ -90,7 +90,7 @@ public final class rf {
             return;
         }
         int i7 = ChatActivityEnterView.f32569s7;
-        ai.p0 A0 = this.f39178a.A0();
+        ai.p0 A0 = this.f39177a.A0();
         A0.j();
         long uptimeMillis = SystemClock.uptimeMillis();
         A0.H.a((ai.g) obj, str, new ai.d0(A0, uptimeMillis, y10Var));
@@ -102,7 +102,7 @@ public final class rf {
         float f14;
         int[] iArr;
         int[] iArr2;
-        ChatActivityEnterView chatActivityEnterView = this.f39178a;
+        ChatActivityEnterView chatActivityEnterView = this.f39177a;
         du0 du0Var = chatActivityEnterView.f32591c2;
         RectF rectF = chatActivityEnterView.I4;
         if (chatActivityEnterView.E2 != null) {

@@ -1190,7 +1190,7 @@ public final class c51 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             org.telegram.messenger.g0.E2(transactionTabs);
             c51Var.m0.addView(transactionTabs, layoutParams);
             c51Var.f46446k0.setTabsPinnedChangedListener(new ru0(c51Var, 20));
-            c51Var.f46449n0.a(c51Var.f46446k0.f40048f0, false);
+            c51Var.f46449n0.a(c51Var.f46446k0.f40047f0, false);
         }
         frameLayout5.getViewTreeObserver().addOnPreDrawListener(new gk(c51Var, 2));
         c51Var.getBaseSimpleGlass().f56671o = new wu(c51Var, frameLayout5, new z5(1, frameLayout5), 1);
@@ -1450,7 +1450,7 @@ public final class c51 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             }
         }
         a41 a41Var2 = this.f46444i0;
-        if (a41Var2 != null && (a41Var2.f36433b != 0 || a41Var2.f36434c != 1.0f)) {
+        if (a41Var2 != null && (a41Var2.f36432b != 0 || a41Var2.f36433c != 1.0f)) {
             return false;
         }
         return super.isSwipeBackEnabled(motionEvent);
@@ -1546,20 +1546,20 @@ public final class c51 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             Drawable background = view.getBackground();
             if (background instanceof org.telegram.ui.Components.oq) {
                 org.telegram.ui.Components.oq oqVar = (org.telegram.ui.Components.oq) background;
-                if ((oqVar.f38330a instanceof ColorDrawable) && oqVar.f38331b != null) {
+                if ((oqVar.f38329a instanceof ColorDrawable) && oqVar.f38330b != null) {
                     int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29345b7, false);
                     if (this.H0 == null || this.I0 != x02) {
                         this.I0 = x02;
                         this.H0 = new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY);
                     }
-                    ((ColorDrawable) oqVar.f38330a).setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29324a7, false));
-                    oqVar.f38331b.setColorFilter(this.H0);
+                    ((ColorDrawable) oqVar.f38329a).setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29324a7, false));
+                    oqVar.f38330b.setColorFilter(this.H0);
                     view.invalidate();
                     return;
                 }
             }
             org.telegram.ui.Components.oq oqVar2 = new org.telegram.ui.Components.oq(new ColorDrawable(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29324a7, false)), org.telegram.ui.ActionBar.m6.Y0(org.telegram.messenger.t0.f26931b, 2131231229, org.telegram.ui.ActionBar.m6.f29345b7), 0, 0);
-            oqVar2.f38339x = true;
+            oqVar2.f38338x = true;
             view.setBackground(oqVar2);
         } else if (view instanceof ng.c) {
             ((ng.c) view).a();

@@ -25,8 +25,8 @@ public final class j51 extends org.telegram.ui.Components.n41 {
     @Override
     public final void b(View view, org.telegram.ui.Components.o41 o41Var, boolean z10, org.telegram.ui.Components.c51 c51Var, org.telegram.ui.Components.h51 h51Var) {
         org.telegram.ui.Cells.p7 p7Var = (org.telegram.ui.Cells.p7) view;
-        p7Var.k((org.telegram.messenger.gj) o41Var.H, o41Var.f38101w, false);
-        p7Var.i(o41Var.f38085e, false);
+        p7Var.k((org.telegram.messenger.gj) o41Var.H, o41Var.f38100w, false);
+        p7Var.i(o41Var.f38084e, false);
         p7Var.l(o41Var.h, false);
     }
 
@@ -43,7 +43,7 @@ public final class j51 extends org.telegram.ui.Components.n41 {
 
     @Override
     public final boolean e(org.telegram.ui.Components.o41 o41Var, org.telegram.ui.Components.o41 o41Var2) {
-        if (o41Var.f38097r == o41Var2.f38097r && o41Var.f38085e == o41Var2.f38085e && o41Var.C == o41Var2.C) {
+        if (o41Var.f38096r == o41Var2.f38096r && o41Var.f38084e == o41Var2.f38084e && o41Var.C == o41Var2.C) {
             return true;
         }
         return false;

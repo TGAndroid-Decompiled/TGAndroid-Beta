@@ -14,17 +14,17 @@ public final class xo0 extends dk0 {
     public wo0 I;
     public int K;
     public final ap0 L;
-    public final Context f42177c;
-    public final vo0 f42178e;
-    public uo0 f42179f;
+    public final Context f42176c;
+    public final vo0 f42177e;
+    public uo0 f42178f;
     public uo0 h;
-    public String f42180n;
-    public int f42181r;
-    public int f42182s;
-    public int f42183w;
+    public String f42179n;
+    public int f42180r;
+    public int f42181s;
+    public int f42182w;
     public ArrayList d = new ArrayList();
-    public int f42184x = -1;
-    public int f42185y = -1;
+    public int f42183x = -1;
+    public int f42184y = -1;
     public int E = -1;
     public int F = -1;
     public int G = -1;
@@ -32,9 +32,9 @@ public final class xo0 extends dk0 {
 
     public xo0(ap0 ap0Var, Context context) {
         this.L = ap0Var;
-        this.f42177c = context;
+        this.f42176c = context;
         ?? z1Var = new jg.z1(false);
-        this.f42178e = z1Var;
+        this.f42177e = z1Var;
         z1Var.f17755a = new org.telegram.ui.Cells.c5(this);
     }
 
@@ -48,13 +48,13 @@ public final class xo0 extends dk0 {
     }
 
     public final void E(String str) {
-        if (str != null && str.equals(this.f42180n)) {
+        if (str != null && str.equals(this.f42179n)) {
             return;
         }
-        this.f42180n = str;
-        if (this.f42179f != null) {
-            Utilities.f22812g.a(this.f42179f);
-            this.f42179f = null;
+        this.f42179n = str;
+        if (this.f42178f != null) {
+            Utilities.f22812g.a(this.f42178f);
+            this.f42178f = null;
         }
         uo0 uo0Var = this.h;
         if (uo0Var != null) {
@@ -62,22 +62,22 @@ public final class xo0 extends dk0 {
             this.h = null;
         }
         this.d.clear();
-        this.f42178e.f(null, null);
-        this.f42178e.g(null, true, true, true, true, 0L, false, 0, 0);
+        this.f42177e.f(null, null);
+        this.f42177e.g(null, true, true, true, true, 0L, false, 0, 0);
         f();
         this.L.L0(true);
         if (TextUtils.isEmpty(str)) {
             ap0.K0(this.L);
-            this.f42181r = -1;
+            this.f42180r = -1;
             this.J = false;
         } else {
             this.J = true;
-            int i7 = this.f42181r + 1;
-            this.f42181r = i7;
+            int i7 = this.f42180r + 1;
+            this.f42180r = i7;
             this.L.M1.e(true, true);
             org.telegram.messenger.q5 q5Var = Utilities.f22812g;
             uo0 uo0Var2 = new uo0(this, str, i7, 0);
-            this.f42179f = uo0Var2;
+            this.f42178f = uo0Var2;
             q5Var.d(uo0Var2, 300L);
         }
         this.L.L0(false);
@@ -86,21 +86,21 @@ public final class xo0 extends dk0 {
     @Override
     public final int b() {
         this.H = 0;
-        this.f42184x = -1;
-        this.f42185y = -1;
+        this.f42183x = -1;
+        this.f42184y = -1;
         this.F = -1;
         this.G = -1;
-        if (TextUtils.isEmpty(this.f42180n)) {
+        if (TextUtils.isEmpty(this.f42179n)) {
             int i7 = this.H;
             this.E = i7;
             this.H = i7 + 2;
-            this.f42184x = i7 + 1;
+            this.f42183x = i7 + 1;
             ap0 ap0Var = this.L;
             if (ap0Var.A2.size() > 0) {
                 int i10 = this.H;
                 int i11 = i10 + 1;
                 this.H = i11;
-                this.f42185y = i10;
+                this.f42184y = i10;
                 this.F = i11;
                 this.H = ap0Var.A2.size() + i11;
             }
@@ -115,7 +115,7 @@ public final class xo0 extends dk0 {
         int i15 = i14 + 1;
         this.H = i15;
         this.E = i14;
-        int size = this.f42178e.d.size() + this.d.size() + i15;
+        int size = this.f42177e.d.size() + this.d.size() + i15;
         this.H = size;
         if (size == 1) {
             this.E = -1;
@@ -138,13 +138,13 @@ public final class xo0 extends dk0 {
         if (i7 == this.E) {
             return 1;
         }
-        if (i7 == this.f42184x) {
+        if (i7 == this.f42183x) {
             return 2;
         }
-        if (i7 == this.f42185y) {
+        if (i7 == this.f42184y) {
             return 3;
         }
-        if (TextUtils.isEmpty(this.f42180n)) {
+        if (TextUtils.isEmpty(this.f42179n)) {
             return 0;
         }
         return 5;
@@ -177,10 +177,10 @@ public final class xo0 extends dk0 {
             }
             return;
         }
-        boolean isEmpty = TextUtils.isEmpty(this.f42180n);
+        boolean isEmpty = TextUtils.isEmpty(this.f42179n);
         TLObject tLObject2 = null;
         String m10 = null;
-        vo0 vo0Var = this.f42178e;
+        vo0 vo0Var = this.f42177e;
         TLRPC.TL_encryptedChat tL_encryptedChat2 = null;
         if (isEmpty) {
             int i11 = this.F;
@@ -249,7 +249,7 @@ public final class xo0 extends dk0 {
         int i12 = i7 - 1;
         if (i12 < this.d.size()) {
             po0 po0Var = (po0) this.d.get(i12);
-            j10 = po0Var.f38646a.f28438id;
+            j10 = po0Var.f38645a.f28438id;
             str2 = po0Var.d;
         } else {
             i12 -= this.d.size();
@@ -302,7 +302,7 @@ public final class xo0 extends dk0 {
         org.telegram.ui.Cells.y3 y3Var;
         float f10;
         ap0 ap0Var = this.L;
-        Context context = this.f42177c;
+        Context context = this.f42176c;
         if (i7 != 0) {
             if (i7 != 2) {
                 if (i7 != 3) {

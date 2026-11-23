@@ -140,7 +140,7 @@ public final class y extends View implements b6 {
                 oh0Var.stop();
                 oh0Var.h = true;
                 if (z10) {
-                    i7 = oh0Var.f38211e[0];
+                    i7 = oh0Var.f38210e[0];
                 }
                 oh0Var.P(i7);
                 oh0Var.start();

@@ -176,11 +176,11 @@ public final class a3 extends AnimatorListenerAdapter {
                     int L0 = tVar.L0();
                     ek0Var.setTranslationY(0.0f);
                     if (ek0Var == tyVar.E0) {
-                        ek0Var.setPadding(0, org.telegram.messenger.g0.L(36.0f), 0, org.telegram.messenger.g0.L(44.0f) + tyVar.f40135r2);
-                    } else if (ek0Var == tyVar.f40107i0) {
-                        ek0Var.setPadding(0, tyVar.f40089c1, 0, org.telegram.messenger.g0.L(44.0f) + tyVar.f40135r2);
+                        ek0Var.setPadding(0, org.telegram.messenger.g0.L(36.0f), 0, org.telegram.messenger.g0.L(44.0f) + tyVar.f40134r2);
+                    } else if (ek0Var == tyVar.f40106i0) {
+                        ek0Var.setPadding(0, tyVar.f40088c1, 0, org.telegram.messenger.g0.L(44.0f) + tyVar.f40134r2);
                     } else if (ek0Var == tyVar.Q) {
-                        ek0Var.setPadding(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(44.0f) + tyVar.f40135r2);
+                        ek0Var.setPadding(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(44.0f) + tyVar.f40134r2);
                     }
                     if (L0 != -1) {
                         tVar.h1(L0, 0);
@@ -248,10 +248,10 @@ public final class a3 extends AnimatorListenerAdapter {
                 launchActivity.f43136n0.invalidate();
                 launchActivity.f43136n0.setImageDrawable(null);
                 i01 i01Var = launchActivity.f43136n0;
-                i01Var.f36096c = null;
-                i01Var.f36094a.setShader(null);
-                i01Var.f36099n = null;
-                i01Var.f36100r = null;
+                i01Var.f36095c = null;
+                i01Var.f36093a.setShader(null);
+                i01Var.f36098n = null;
+                i01Var.f36099r = null;
                 launchActivity.f43136n0.setVisibility(8);
                 launchActivity.f43137o0.setVisibility(8);
                 rh0 rh0Var2 = (rh0) this.f11751b;

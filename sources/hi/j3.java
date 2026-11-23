@@ -147,13 +147,13 @@ public final class j3 implements ValueAnimator.AnimatorUpdateListener {
             case 16:
                 org.telegram.ui.Components.voip.a0 a0Var = (org.telegram.ui.Components.voip.a0) this.f14826b;
                 a0Var.getClass();
-                a0Var.f40893r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a0Var.f40892r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 a0Var.e();
                 return;
             case 17:
                 org.telegram.ui.Components.voip.o0 o0Var = (org.telegram.ui.Components.voip.o0) this.f14826b;
                 o0Var.getClass();
-                o0Var.f41237i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o0Var.f41236i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 18:
                 org.telegram.ui.Components.voip.q0 q0Var = (org.telegram.ui.Components.voip.q0) this.f14826b;
@@ -165,7 +165,7 @@ public final class j3 implements ValueAnimator.AnimatorUpdateListener {
                 bc1 bc1Var = (bc1) this.f14826b;
                 bc1Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 int L = (org.telegram.messenger.g0.f24046q.x - org.telegram.messenger.g0.L(36.0f)) - org.telegram.messenger.g0.L(52.0f);
-                org.telegram.ui.Components.voip.a1 a1Var = bc1Var.f40927c;
+                org.telegram.ui.Components.voip.a1 a1Var = bc1Var.f40926c;
                 a1Var.getLayoutParams().width = org.telegram.messenger.g0.L(52.0f) + ((int) (L * bc1Var.F));
                 a1Var.requestLayout();
                 return;
@@ -178,12 +178,12 @@ public final class j3 implements ValueAnimator.AnimatorUpdateListener {
             case 21:
                 org.telegram.ui.Components.voip.h2 h2Var = (org.telegram.ui.Components.voip.h2) this.f14826b;
                 h2Var.getClass();
-                h2Var.f41047w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                h2Var.f41040b.invalidate();
+                h2Var.f41046w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h2Var.f41039b.invalidate();
                 return;
             case 22:
                 fi.s2 s2Var = (fi.s2) this.f14826b;
-                ((fi.t3) s2Var.L1).f38836a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((fi.t3) s2Var.L1).f38835a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 s2Var.invalidate();
                 return;
             case 23:

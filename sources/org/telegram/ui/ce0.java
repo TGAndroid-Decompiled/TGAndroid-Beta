@@ -143,7 +143,7 @@ public final class ce0 extends org.telegram.ui.Components.iu0 implements Adapter
         this.d = viewSwitcher;
         viewSwitcher.setFactory(new zd0(context, 0));
         Animation loadAnimation = AnimationUtils.loadAnimation(context, 2130772019);
-        loadAnimation.setInterpolator(org.telegram.ui.Components.zs.f42978e);
+        loadAnimation.setInterpolator(org.telegram.ui.Components.zs.f42977e);
         viewSwitcher.setInAnimation(loadAnimation);
         ImageView imageView = new ImageView(context);
         this.f46545s = imageView;
@@ -556,7 +556,7 @@ public final class ce0 extends org.telegram.ui.Components.iu0 implements Adapter
             i7 = 2130772020;
         }
         Animation loadAnimation = AnimationUtils.loadAnimation(context, i7);
-        loadAnimation.setInterpolator(org.telegram.ui.Components.zs.f42978e);
+        loadAnimation.setInterpolator(org.telegram.ui.Components.zs.f42977e);
         this.d.setOutAnimation(loadAnimation);
         CharSequence text = this.d.getCurrentView().getText();
         org.telegram.ui.Components.hz0 hz0Var = this.d;
@@ -679,7 +679,7 @@ public final class ce0 extends org.telegram.ui.Components.iu0 implements Adapter
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(250L);
                     duration.addListener(new pd0(qd0Var, 0));
                     duration.addUpdateListener(new nd0(qd0Var, 1));
-                    duration.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                    duration.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                     duration.start();
                     return;
                 }

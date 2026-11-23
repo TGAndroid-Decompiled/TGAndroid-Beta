@@ -49,11 +49,11 @@ public final class l1 extends ScrollView {
                 int size = View.MeasureSpec.getSize(i7);
                 int size2 = View.MeasureSpec.getSize(i10);
                 if (!org.telegram.messenger.g0.Q1() && size2 <= size) {
-                    l60Var.f37132n2 = org.telegram.messenger.g0.L(56.0f);
+                    l60Var.f37131n2 = org.telegram.messenger.g0.L(56.0f);
                 } else {
-                    l60Var.f37132n2 = org.telegram.messenger.g0.L(144.0f);
+                    l60Var.f37131n2 = org.telegram.messenger.g0.L(144.0f);
                 }
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(l60Var.f37132n2, Integer.MIN_VALUE));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(l60Var.f37131n2, Integer.MIN_VALUE));
                 return;
             case 2:
                 super.onMeasure(i7, i10);

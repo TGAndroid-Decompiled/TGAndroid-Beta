@@ -97,26 +97,26 @@ public final class e2 extends sa implements gs {
         this.U1 = t1Var2;
         this.V1 = a2Var;
         this.W1 = c2Var;
-        this.f39539v1 = 0.35f;
+        this.f39538v1 = 0.35f;
         int i10 = org.telegram.ui.ActionBar.m6.f29324a7;
         w0(i10);
         Q(i10);
-        org.telegram.messenger.g0.E2(this.f39533p1);
-        this.f39540w1 = false;
+        org.telegram.messenger.g0.E2(this.f39532p1);
+        this.f39539w1 = false;
         ri.a aVar = new ri.a(this.Y0, new a1.c(this, 15));
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i11 = this.f30211u0;
         ek0Var.setPadding(i11, 0, i11, 0);
-        this.f39532o1.r1();
+        this.f39531o1.r1();
         v4.k kVar = new v4.k();
         kVar.f59194m = false;
         kVar.C = false;
         kVar.o(nr.h);
         kVar.n(350L);
-        this.f39532o1.setItemAnimator(kVar);
-        this.f39532o1.setOnScrollListener(new u1(this, 0));
-        this.f39532o1.addOnLayoutChangeListener(new s1(this, 0));
-        this.f39532o1.setOnItemClickListener(new t1(this, c2Var, a2Var, 0));
+        this.f39531o1.setItemAnimator(kVar);
+        this.f39531o1.setOnScrollListener(new u1(this, 0));
+        this.f39531o1.addOnLayoutChangeListener(new s1(this, 0));
+        this.f39531o1.setOnItemClickListener(new t1(this, c2Var, a2Var, 0));
         org.telegram.ui.ActionBar.z4 z4Var = new org.telegram.ui.ActionBar.z4(context, h6Var);
         this.f3591q2 = z4Var;
         z4Var.setBackButtonImage(2131231240);
@@ -130,7 +130,7 @@ public final class e2 extends sa implements gs {
         b10.O();
         b10.C0 = new w1(this, 0);
         z4Var.setSearchFieldHint(hd.N0(2131745640, null));
-        aVar.f((FrameLayout) this.f30176b, this.f39532o1, z4Var, h6Var);
+        aVar.f((FrameLayout) this.f30176b, this.f39531o1, z4Var, h6Var);
         int i12 = this.f30211u0;
         org.telegram.messenger.g0.z3(z4Var, i12, 0, i12, 0);
         si.f a10 = aVar.a(z4Var);
@@ -139,10 +139,10 @@ public final class e2 extends sa implements gs {
         this.Y0.i(this.f30176b);
         if (a2Var != null) {
             int L = org.telegram.messenger.g0.L(72.0f);
-            ek0 ek0Var2 = this.f39532o1;
+            ek0 ek0Var2 = this.f39531o1;
             int i13 = this.f30211u0;
             ek0Var2.setPadding(i13, 0, i13, L);
-            this.f39532o1.setClipToPadding(false);
+            this.f39531o1.setClipToPadding(false);
             lh.f fVar = new lh.f(context);
             fVar.setupColorKey(i10);
             fVar.setFadeZoneBottom(L);
@@ -308,9 +308,9 @@ public final class e2 extends sa implements gs {
             this.f3589o2 = size;
             this.f3590p2 = 0;
         }
-        int max = Math.max(this.f3590p2, this.f39535r1);
+        int max = Math.max(this.f3590p2, this.f39534r1);
         this.f3590p2 = max;
-        this.f39535r1 = max;
+        this.f39534r1 = max;
     }
 
     @Override
@@ -397,9 +397,9 @@ public final class e2 extends sa implements gs {
                     int i11 = z1.f4328b;
                     o41 K = o41.K(z1.class);
                     K.d = i7;
-                    K.f38103y = user.f28583id;
+                    K.f38102y = user.f28583id;
                     K.H = user;
-                    K.f38085e = containsKey;
+                    K.f38084e = containsKey;
                     arrayList.add(K);
                 } else {
                     if (str2 == null && this.W1 == null) {
@@ -410,9 +410,9 @@ public final class e2 extends sa implements gs {
                     int i12 = d2.f3534b;
                     o41 K2 = o41.K(d2.class);
                     K2.d = i7;
-                    K2.f38103y = user.f28583id;
+                    K2.f38102y = user.f28583id;
                     K2.H = user;
-                    K2.f38093n = str2;
+                    K2.f38092n = str2;
                     K2.E = y2Var;
                     arrayList.add(K2);
                 }
@@ -428,8 +428,8 @@ public final class e2 extends sa implements gs {
         oq oqVar = new oq(org.telegram.ui.ActionBar.m6.L(org.telegram.messenger.g0.L(40.0f), i10), mutate);
         int L = org.telegram.messenger.g0.L(24.0f);
         int L2 = org.telegram.messenger.g0.L(24.0f);
-        oqVar.f38333e = L;
-        oqVar.f38334f = L2;
+        oqVar.f38332e = L;
+        oqVar.f38333f = L2;
         return oqVar;
     }
 
@@ -437,7 +437,7 @@ public final class e2 extends sa implements gs {
         float f10 = Float.MAX_VALUE;
         int i7 = 0;
         while (true) {
-            ek0 ek0Var = this.f39532o1;
+            ek0 ek0Var = this.f39531o1;
             if (i7 < ek0Var.getChildCount()) {
                 View childAt = ek0Var.getChildAt(i7);
                 int R = RecyclerView.R(childAt);
@@ -493,7 +493,7 @@ public final class e2 extends sa implements gs {
     public final void p1() {
         float i12 = i1();
         if (i12 == Float.MAX_VALUE) {
-            i12 = this.f39532o1.getHeight();
+            i12 = this.f39531o1.getHeight();
         }
         float max = Math.max(0.0f, i12 - org.telegram.messenger.g0.f24040m);
         this.f3591q2.setTranslationY(max);

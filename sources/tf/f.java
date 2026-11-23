@@ -29,7 +29,7 @@ public final class f {
             byte[] bArr = new byte[3];
             int i11 = 0;
             while (i11 < 3) {
-                int read = ((ab.d) jnVar.f36567b).read(bArr, i11, 3 - i11);
+                int read = ((ab.d) jnVar.f36566b).read(bArr, i11, 3 - i11);
                 if (read > 0) {
                     i11 += read;
                 } else {
@@ -42,7 +42,7 @@ public final class f {
             byte[] bArr2 = new byte[4];
             int i12 = 0;
             while (i12 < 4) {
-                int read2 = ((ab.d) jnVar.f36567b).read(bArr2, i12, 4 - i12);
+                int read2 = ((ab.d) jnVar.f36566b).read(bArr2, i12, 4 - i12);
                 if (read2 > 0) {
                     i12 += read2;
                 } else {

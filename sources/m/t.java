@@ -30,10 +30,10 @@ public final class t {
     }
 
     public final void b(boolean z10) {
-        ((lc) this.f20237b.f36567b).b(z10);
+        ((lc) this.f20237b.f36566b).b(z10);
     }
 
     public final void c(boolean z10) {
-        ((lc) this.f20237b.f36567b).c(z10);
+        ((lc) this.f20237b.f36566b).c(z10);
     }
 }

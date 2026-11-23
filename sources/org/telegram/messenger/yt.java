@@ -96,7 +96,7 @@ public final class yt extends au implements y5, gs {
 
     @Override
     public final boolean Q() {
-        return this.f28197a0.f42460e;
+        return this.f28197a0.f42459e;
     }
 
     @Override
@@ -104,7 +104,7 @@ public final class yt extends au implements y5, gs {
         View view = this.W;
         if (view != null) {
             this.Z.n(view);
-            this.f28197a0.f42473s = this.W;
+            this.f28197a0.f42472s = this.W;
         }
         l0(false);
         fv fvVar = this.f22968a;
@@ -566,7 +566,7 @@ public final class yt extends au implements y5, gs {
         TLRPC.Document document = this.Y;
         if (document != null && (gjVar = this.X) != null) {
             ym0 ym0Var = this.f28197a0;
-            if (!ym0Var.f42460e) {
+            if (!ym0Var.f42459e) {
                 ym0Var.h(gjVar.f24173b0);
             }
             if (MediaController.B().I(gjVar)) {

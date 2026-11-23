@@ -119,7 +119,7 @@ public final class e implements r10 {
                     n6Var.V0 = true;
                     n6Var.W0 = password.has_password;
                     bi.f6 f6Var = n6Var.f34681a;
-                    if (f6Var != null && (c51Var = f6Var.f35790g3) != null) {
+                    if (f6Var != null && (c51Var = f6Var.f35789g3) != null) {
                         c51Var.O(true);
                         return;
                     }

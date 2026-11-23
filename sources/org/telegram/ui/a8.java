@@ -45,7 +45,7 @@ public final class a8 implements View.OnClickListener {
                 ((ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f45532b).getSwipeBack().b(true);
                 return;
             case 2:
-                if (((b31) this.f45532b).f45766a.getImageReceiver().B() != null && !((b31) this.f45532b).f45766a.getImageReceiver().B().f38220l0) {
+                if (((b31) this.f45532b).f45766a.getImageReceiver().B() != null && !((b31) this.f45532b).f45766a.getImageReceiver().B().f38219l0) {
                     ((b31) this.f45532b).f45766a.getImageReceiver().B().N(0, false, false);
                     ((b31) this.f45532b).f45766a.getImageReceiver().B().H(false);
                     return;

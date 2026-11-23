@@ -335,7 +335,7 @@ public final class fc {
             return Math.max(c6Var.getIntrinsicHeight() * c6Var.getIntrinsicWidth(), c6Var.f34082k0 * c6Var.f34081j0) * 12;
         } else if (bitmapDrawable instanceof oh0) {
             oh0 oh0Var = (oh0) bitmapDrawable;
-            int i7 = oh0Var.f38206b * oh0Var.f38208c;
+            int i7 = oh0Var.f38205b * oh0Var.f38207c;
             if (oh0Var.H) {
                 return i7 * 2;
             }

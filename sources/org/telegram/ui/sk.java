@@ -77,7 +77,7 @@ public final class sk implements ll {
                 } else {
                     org.telegram.ui.Components.ob obVar2 = new org.telegram.ui.Components.ob(bnVar.getParentActivity(), zmVar);
                     obVar2.c(2131624061, 28, 28, "Pin", "Line");
-                    obVar2.f38158b.setText(org.telegram.messenger.hd.G(i11, "MessagesUnpinned", new Object[0]));
+                    obVar2.f38157b.setText(org.telegram.messenger.hd.G(i11, "MessagesUnpinned", new Object[0]));
                     obVar = obVar2;
                 }
                 org.telegram.ui.Components.ec ecVar = new org.telegram.ui.Components.ec(bnVar.getParentActivity(), zmVar, true);

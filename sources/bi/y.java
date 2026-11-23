@@ -88,13 +88,13 @@ public final class y extends sa implements u9 {
         long j10 = r9Var.f26580b;
         this.T1 = j10;
         this.M1 = true;
-        this.f39539v1 = 0.2f;
+        this.f39538v1 = 0.2f;
         r9 l10 = v9.c(this.f30173a).l(j10, this);
         this.X1 = new bg.r(new h(this));
         this.G1 = false;
         this.F1 = org.telegram.messenger.g0.L(12.0f);
         O();
-        m0.e1(this.f39533p1, context, h6Var, l10.d);
+        m0.e1(this.f39532p1, context, h6Var, l10.d);
         TLRPC.User c22 = np.u1(this.f30173a).c2(Long.valueOf(k10.i(this.f30173a).e()));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -265,10 +265,10 @@ public final class y extends sa implements u9 {
         d.leftMargin = i19 + i20;
         d.rightMargin += i20;
         this.f30176b.addView(sVar, d);
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i21 = this.f30211u0;
         ek0Var.setPadding(i21, 0, i21, org.telegram.messenger.g0.L(64.0f));
-        this.f39532o1.setOnItemClickListener(new a(1));
+        this.f39531o1.setOnItemClickListener(new a(1));
         long j12 = l10.f26582e.bid_amount;
         if (j12 > 0) {
             this.Y1.setValue((int) j12);
@@ -276,7 +276,7 @@ public final class y extends sa implements u9 {
             this.Y1.setValue((int) l10.e());
         }
         o1(false);
-        this.f39532o1.setOverScrollMode(2);
+        this.f39531o1.setOverScrollMode(2);
         di.b bVar = new di.b(this.f30173a, context, h6Var);
         this.V1 = bVar;
         bVar.setScaleX(0.6f);
@@ -304,7 +304,7 @@ public final class y extends sa implements u9 {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new b(this, 2), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new b(this, 2), this.J0);
         this.f4296t2 = c51Var;
         c51Var.f34062r = false;
         return c51Var;

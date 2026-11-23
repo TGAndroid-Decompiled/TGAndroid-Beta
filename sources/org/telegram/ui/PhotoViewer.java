@@ -646,13 +646,13 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             org.telegram.ui.Components.ui uiVar = photoViewer.f43217b2;
             if (uiVar != null) {
                 boolean z11 = this.f43443e;
-                uiVar.f40441w2.m(uiVar.f40395j4);
-                if (uiVar.f40427s4 != z11) {
-                    uiVar.f40427s4 = z11;
-                    org.telegram.ui.Components.mi miVar = uiVar.f40441w2;
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40379e2;
+                uiVar.f40440w2.m(uiVar.f40394j4);
+                if (uiVar.f40426s4 != z11) {
+                    uiVar.f40426s4 = z11;
+                    org.telegram.ui.Components.mi miVar = uiVar.f40440w2;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40378e2;
                     if (miVar == chatAttachAlertPhotoLayout && chatAttachAlertPhotoLayout != null && !chatAttachAlertPhotoLayout.f32822j1) {
-                        if (z11 && !uiVar.f40431t4) {
+                        if (z11 && !uiVar.f40430t4) {
                             z10 = false;
                         } else {
                             z10 = true;
@@ -791,7 +791,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             if (i7 == 0) {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, property2, 0.0f);
                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this, property, 0.0f);
-                org.telegram.ui.Components.p6 p6Var = org.telegram.ui.Components.r6.f39095b;
+                org.telegram.ui.Components.p6 p6Var = org.telegram.ui.Components.r6.f39094b;
                 animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofInt(paint, p6Var, 0), ObjectAnimator.ofInt(textPaint, p6Var, 0));
                 animatorSet.setInterpolator(new DecelerateInterpolator());
             } else {
@@ -799,7 +799,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                 if (i10 == 0) {
                     ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this, property2, 0.0f, 1.0f);
                     ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, property, 0.0f, 1.0f);
-                    org.telegram.ui.Components.p6 p6Var2 = org.telegram.ui.Components.r6.f39095b;
+                    org.telegram.ui.Components.p6 p6Var2 = org.telegram.ui.Components.r6.f39094b;
                     animatorSet.playTogether(ofFloat3, ofFloat4, ObjectAnimator.ofInt(paint, p6Var2, 0, 255), ObjectAnimator.ofInt(textPaint, p6Var2, 0, 255));
                     animatorSet.setInterpolator(new DecelerateInterpolator());
                 } else if (i7 < i10) {
@@ -977,7 +977,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         this.W7 = -1L;
         this.X7 = -1L;
         this.Z7 = -1;
-        this.E8 = new org.telegram.ui.Components.d6(new hn0(this, 25), 180L, org.telegram.ui.Components.nr.f37962g);
+        this.E8 = new org.telegram.ui.Components.d6(new hn0(this, 25), 180L, org.telegram.ui.Components.nr.f37961g);
         this.M8 = new Object();
         this.N8 = new a0.h();
         this.T8 = new RectF();
@@ -1082,7 +1082,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         TextureView textureView;
         if (photoViewer.V7 != -1 && (textureView = photoViewer.C2) != null) {
             photoViewer.V7 = -1L;
-            photoViewer.A2.animate().alpha(1.0f).setInterpolator(org.telegram.ui.Components.nr.f37964j).setDuration(85L).setListener(new org.telegram.ui.Components.h10(12, photoViewer, textureView.getBitmap())).start();
+            photoViewer.A2.animate().alpha(1.0f).setInterpolator(org.telegram.ui.Components.nr.f37963j).setDuration(85L).setListener(new org.telegram.ui.Components.h10(12, photoViewer, textureView.getBitmap())).start();
         }
     }
 
@@ -1107,10 +1107,10 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
     public static void Q(PhotoViewer photoViewer) {
         int i7;
         org.telegram.ui.Components.k61 k61Var = photoViewer.f43349q3;
-        if (k61Var.f36824f) {
+        if (k61Var.f36823f) {
             i7 = k61Var.d;
         } else {
-            i7 = k61Var.f36821b;
+            i7 = k61Var.f36820b;
         }
         int L = (org.telegram.messenger.g0.L(2.0f) + ((org.telegram.ui.Components.k61.S / 2) + i7)) - (photoViewer.f43369s3.getMeasuredWidth() / 2);
         int L2 = org.telegram.messenger.g0.L(10.0f);
@@ -1498,7 +1498,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             iArr2[1] = (int) (j10 % 60);
         } else {
             dq0 dq0Var = this.f43262g0;
-            if (dq0Var != null && dq0Var.f37178y) {
+            if (dq0Var != null && dq0Var.f37177y) {
                 long max3 = Math.max(0, dq0Var.getCurrentPosition());
                 long max4 = Math.max(0, this.f43262g0.getVideoDuration());
                 if (!this.B8 && this.R7.getVisibility() == 0) {
@@ -1542,13 +1542,13 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             if (this.d2 != 1) {
                 return;
             }
-            CropAreaView cropAreaView = this.D1.f39164b.f21921a;
+            CropAreaView cropAreaView = this.D1.f39163b.f21921a;
             cropAreaView.f(true, false);
             cropAreaView.setDimVisibility(true);
             cropAreaView.invalidate();
             this.D1.setVisibility(0);
             this.D1.setAlpha(1.0f);
-            og.o oVar = this.D1.f39164b;
+            og.o oVar = this.D1.f39163b;
             oVar.q();
             CropAreaView cropAreaView2 = oVar.f21921a;
             cropAreaView2.setDimVisibility(true);
@@ -1707,7 +1707,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                 iq0Var5.invalidate();
             }
             xo0 xo0Var = this.S7;
-            if (xo0Var != null && xo0Var.f39503f0) {
+            if (xo0Var != null && xo0Var.f39502f0) {
                 xo0Var.invalidate();
             }
             qq0 qq0Var = this.f43253f0;
@@ -1767,7 +1767,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
 
     public final boolean D3() {
         org.telegram.ui.Components.v30 v30Var = this.f43339p2;
-        if (v30Var != null && v30Var.d && !v30Var.f40673e) {
+        if (v30Var != null && v30Var.d && !v30Var.f40672e) {
             return true;
         }
         return false;
@@ -1870,14 +1870,14 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         this.f43282i3.addView(this.f43359r3, c8.ma.c(-1.0f, -1));
         org.telegram.ui.Components.k61 k61Var = new org.telegram.ui.Components.k61(this.f43359r3);
         this.f43349q3 = k61Var;
-        k61Var.f36842z = org.telegram.messenger.g0.L(2.0f);
+        k61Var.f36841z = org.telegram.messenger.g0.L(2.0f);
         org.telegram.ui.Components.k61 k61Var2 = this.f43349q3;
-        k61Var2.f36828k = 872415231;
-        k61Var2.f36829l = 872415231;
-        k61Var2.f36830m = -1;
-        k61Var2.f36831n = -1;
+        k61Var2.f36827k = 872415231;
+        k61Var2.f36828l = 872415231;
+        k61Var2.f36829m = -1;
+        k61Var2.f36830n = -1;
         k61Var2.A = 1509949439;
-        k61Var2.f36827j = so0Var;
+        k61Var2.f36826j = so0Var;
         kp0 kp0Var = new kp0(this, this.f43253f0.getContext(), new qn0(this));
         this.f43369s3 = kp0Var;
         kp0Var.setAlpha(0.0f);
@@ -1903,7 +1903,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
     public final boolean F1() {
         org.telegram.ui.Components.yc b12 = b1();
         if (b12 != null) {
-            if (b12.M.c() || b12.f15151f.f42538e) {
+            if (b12.M.c() || b12.f15151f.f42537e) {
                 return true;
             }
             return false;
@@ -1962,14 +1962,14 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                 org.telegram.ui.Components.y51 y51Var = new org.telegram.ui.Components.y51(this.E, this.G2);
                 this.f43225c0.e();
                 org.telegram.ui.Components.ca caVar = this.f43225c0;
-                y51Var.f42329s = caVar;
-                org.telegram.ui.Components.ez ezVar = y51Var.f42323b;
+                y51Var.f42328s = caVar;
+                org.telegram.ui.Components.ez ezVar = y51Var.f42322b;
                 if (ezVar != null && (haVar = ezVar.J) != null) {
-                    org.telegram.ui.Components.ca caVar2 = haVar.f35857t;
+                    org.telegram.ui.Components.ca caVar2 = haVar.f35856t;
                     if (caVar2 != null && caVar2.f34135m != null) {
                         caVar2.f34135m = null;
                     }
-                    haVar.f35857t = caVar;
+                    haVar.f35856t = caVar;
                     if (caVar != null && caVar.f34135m != haVar) {
                         caVar.f34135m = haVar;
                         caVar.d();
@@ -2101,12 +2101,12 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         this.f43326n6 = System.currentTimeMillis();
         AnimatorSet animatorSet = new AnimatorSet();
         this.f43343p6 = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.r6.f39099g, 0.0f, 1.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.r6.f39098g, 0.0f, 1.0f));
         this.f43343p6.setDuration(250L);
-        this.f43343p6.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+        this.f43343p6.setInterpolator(org.telegram.ui.Components.nr.f37960f);
         this.f43343p6.addListener(new hp0(this, 0));
         this.f43343p6.start();
-        og.m mVar = this.D1.f39164b.M;
+        og.m mVar = this.D1.f39163b.M;
         if (mVar != null) {
             z10 = mVar.f21918j;
         }
@@ -2157,7 +2157,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         org.telegram.ui.Components.rd0 rd0Var;
         float f11;
         if (this.f43343p6 == null && (rd0Var = this.D1) != null) {
-            rd0Var.f39164b.i();
+            rd0Var.f39163b.i();
             this.f43221b6 = 0.0f;
             this.f43259f6 = 0.0f + f10;
             if (z10) {
@@ -2173,7 +2173,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                 if (imageReceiver != null) {
                     int q10 = imageReceiver.q();
                     int o4 = this.C4.o();
-                    if (Math.abs((((int) this.D1.f39164b.getStateOrientation()) / 90) % 2) == 1) {
+                    if (Math.abs((((int) this.D1.f39163b.getStateOrientation()) / 90) % 2) == 1) {
                         o4 = q10;
                         q10 = o4;
                     }
@@ -2198,13 +2198,13 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                 this.f43249e6 = p2(false) * this.f43249e6;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new hi.i9(this, f10, this.D1.f39165c.getRotation(), 4));
-            this.f43343p6.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.r6.f39099g, 0.0f, 1.0f), ofFloat);
+            ofFloat.addUpdateListener(new hi.i9(this, f10, this.D1.f39164c.getRotation(), 4));
+            this.f43343p6.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.r6.f39098g, 0.0f, 1.0f), ofFloat);
             this.f43343p6.setDuration(250L);
-            this.f43343p6.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+            this.f43343p6.setInterpolator(org.telegram.ui.Components.nr.f37960f);
             this.f43343p6.addListener(new di.j6(this, f10, runnable, 5));
             this.f43343p6.start();
-            if (Math.abs(this.D1.f39164b.getStateOrientation() + f10) > 0.01f) {
+            if (Math.abs(this.D1.f39163b.getStateOrientation() + f10) > 0.01f) {
                 return true;
             }
         }
@@ -2741,7 +2741,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             w1Var.L = L;
             w1Var.M = L2;
             oi.w1 w1Var2 = this.T0;
-            w1Var2.f40352s0 = true;
+            w1Var2.f40351s0 = true;
             fh.g a21 = this.Z.a(w1Var2);
             a21.p(c8.i0.j(h6Var));
             w1Var2.setBlurredBackgroundDrawable(a21);
@@ -3816,8 +3816,8 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         }
         org.telegram.ui.Components.z20 z20Var = this.f43312m1;
         z20Var.d.clear();
-        z20Var.f42647e.clear();
-        z20Var.f42644c.clear();
+        z20Var.f42646e.clear();
+        z20Var.f42643c.clear();
         uq0 uq0Var2 = this.d;
         if (uq0Var2 != null) {
             uq0Var2.D();
@@ -4235,7 +4235,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                     }
                 } else {
                     dq0 dq0Var = this.f43262g0;
-                    if (dq0Var == null || !dq0Var.f37178y || !dq0Var.H) {
+                    if (dq0Var == null || !dq0Var.f37177y || !dq0Var.H) {
                         return;
                     }
                 }
@@ -4255,7 +4255,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             if (!z10 && this.f43369s3.getTag() == null) {
                 return;
             }
-            if (z10 && !this.f43369s3.f38138s && ((dq0Var = this.f43262g0) == null || !dq0Var.f37178y || dq0Var.f37176w.isEmpty())) {
+            if (z10 && !this.f43369s3.f38137s && ((dq0Var = this.f43262g0) == null || !dq0Var.f37177y || dq0Var.f37175w.isEmpty())) {
                 this.f43385u3 = true;
                 return;
             }
@@ -4347,7 +4347,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(xo0Var, View.TRANSLATION_Y, xo0Var.getTranslationY(), 0.0f);
             this.A7 = ofFloat;
             ofFloat.setDuration(220L);
-            this.A7.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+            this.A7.setInterpolator(org.telegram.ui.Components.nr.f37960f);
             this.A7.start();
         } else if (!z10 && this.R7.getTag() != null) {
             ObjectAnimator objectAnimator2 = this.A7;
@@ -4360,7 +4360,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             this.A7 = ofFloat2;
             ofFloat2.addListener(new on(this.R7));
             this.A7.setDuration(220L);
-            this.A7.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+            this.A7.setInterpolator(org.telegram.ui.Components.nr.f37960f);
             this.A7.start();
         }
         FrameLayout frameLayout2 = this.R7;
@@ -4410,7 +4410,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         this.f43326n6 = System.currentTimeMillis();
         AnimatorSet animatorSet = new AnimatorSet();
         this.f43343p6 = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.r6.f39099g, 0.0f, 1.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.r6.f39098g, 0.0f, 1.0f));
         this.f43343p6.setInterpolator(this.t6);
         this.f43343p6.setDuration(250);
         this.f43343p6.addListener(new hp0(this, 7));
@@ -4805,7 +4805,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(-org.telegram.messenger.g0.L(12.0f), f10);
         ofFloat.addUpdateListener(new gn0(this, 6));
         ofFloat2.addUpdateListener(new gn0(this, 7));
-        this.f43343p6.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.r6.f39099g, 0.0f, 1.0f), ofFloat, ofFloat2);
+        this.f43343p6.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.r6.f39098g, 0.0f, 1.0f), ofFloat, ofFloat2);
         this.M1.m0(true);
         this.f43343p6.setDuration(200L);
         this.f43343p6.addListener(new hp0(this, 3));
@@ -5284,7 +5284,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
     public final boolean j0(MotionEvent motionEvent) {
         boolean z10;
         dq0 dq0Var;
-        if (this.G2 != null || ((dq0Var = this.f43262g0) != null && dq0Var.f37178y)) {
+        if (this.G2 != null || ((dq0Var = this.f43262g0) != null && dq0Var.f37177y)) {
             if (motionEvent.getX() >= (g1(this.f43386u4) / 3) * 2) {
                 z10 = true;
             } else {
@@ -5402,11 +5402,11 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         if (!z10 && F1()) {
             x0(true);
             hi.h hVar = this.V1.f15151f;
-            if (hVar.f42538e) {
+            if (hVar.f42537e) {
                 hVar.k(true);
             }
             hi.h hVar2 = this.W1.f15151f;
-            if (hVar2.f42538e) {
+            if (hVar2.f42537e) {
                 hVar2.k(true);
             }
             this.V1.f15151f.d();
@@ -5434,7 +5434,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
 
     public final long k1() {
         dq0 dq0Var = this.f43262g0;
-        if (dq0Var != null && dq0Var.f37178y) {
+        if (dq0Var != null && dq0Var.f37177y) {
             return dq0Var.getCurrentPosition();
         }
         org.telegram.ui.Components.i61 i61Var = this.G2;
@@ -5516,10 +5516,10 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             this.B2 = null;
         }
         org.telegram.ui.Components.rd0 rd0Var = this.D1;
-        if (rd0Var != null && (animatorSet = rd0Var.f39170s) != null) {
+        if (rd0Var != null && (animatorSet = rd0Var.f39169s) != null) {
             animatorSet.cancel();
-            rd0Var.f39170s = null;
-            rd0Var.f39167f = false;
+            rd0Var.f39169s = null;
+            rd0Var.f39166f = false;
         }
     }
 
@@ -5660,44 +5660,44 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         } else {
             z11 = false;
         }
-        xo0Var.f39508x = z11;
+        xo0Var.f39507x = z11;
         xo0Var.d = f10;
-        xo0Var.f39500e = f11;
-        float f12 = xo0Var.f39506s;
+        xo0Var.f39499e = f11;
+        float f12 = xo0Var.f39505s;
         if (f12 < f10) {
-            xo0Var.f39506s = f10;
+            xo0Var.f39505s = f10;
         } else if (f12 > f11) {
-            xo0Var.f39506s = f11;
+            xo0Var.f39505s = f11;
         }
         try {
             if (i10 > 0) {
                 File file = new File(str);
                 ParcelFileDescriptor open = ParcelFileDescriptor.open(file, 268435456);
-                xo0Var.f39509y = open;
+                xo0Var.f39508y = open;
                 xo0Var.E.setDataSource(open.getFileDescriptor(), j3, file.length() - j3);
             } else {
                 mediaMetadataRetriever.setDataSource(str);
             }
             String extractMetadata = xo0Var.E.extractMetadata(9);
             if (extractMetadata != null) {
-                xo0Var.f39493a = Long.parseLong(extractMetadata);
+                xo0Var.f39492a = Long.parseLong(extractMetadata);
             }
             String extractMetadata2 = xo0Var.E.extractMetadata(18);
             if (extractMetadata2 != null) {
-                xo0Var.f39495b = Integer.parseInt(extractMetadata2);
+                xo0Var.f39494b = Integer.parseInt(extractMetadata2);
             }
             String extractMetadata3 = xo0Var.E.extractMetadata(19);
             if (extractMetadata3 != null) {
-                xo0Var.f39497c = Integer.parseInt(extractMetadata3);
+                xo0Var.f39496c = Integer.parseInt(extractMetadata3);
             }
             String extractMetadata4 = xo0Var.E.extractMetadata(24);
             if (extractMetadata4 != null && ((parseInt = Integer.parseInt(extractMetadata4)) == 90 || parseInt == 270)) {
-                int i11 = xo0Var.f39495b;
-                xo0Var.f39495b = xo0Var.f39497c;
-                xo0Var.f39497c = i11;
+                int i11 = xo0Var.f39494b;
+                xo0Var.f39494b = xo0Var.f39496c;
+                xo0Var.f39496c = i11;
             }
-            if (xo0Var.f39508x) {
-                xo0Var.f39502f = (float) ((j10 / 1000.0d) / xo0Var.f39493a);
+            if (xo0Var.f39507x) {
+                xo0Var.f39501f = (float) ((j10 / 1000.0d) / xo0Var.f39492a);
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
@@ -5828,11 +5828,11 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         if (textureView != null) {
             if (textureView instanceof org.telegram.ui.Components.y51) {
                 org.telegram.ui.Components.y51 y51Var = (org.telegram.ui.Components.y51) textureView;
-                org.telegram.ui.Components.ez ezVar = y51Var.f42323b;
+                org.telegram.ui.Components.ez ezVar = y51Var.f42322b;
                 if (ezVar != null) {
                     ezVar.postRunnable(new org.telegram.ui.Components.bz(ezVar, 0));
                 }
-                y51Var.f42322a = null;
+                y51Var.f42321a = null;
             }
             this.C2 = null;
         }
@@ -6377,7 +6377,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         org.telegram.ui.Components.i61 i61Var2;
         dq0 dq0Var;
         org.telegram.ui.Components.i61 i61Var3 = this.G2;
-        if (i61Var3 == null && ((dq0Var = this.f43262g0) == null || !dq0Var.f37178y)) {
+        if (i61Var3 == null && ((dq0Var = this.f43262g0) == null || !dq0Var.f37177y)) {
             return;
         }
         if (i61Var3 != null) {
@@ -6732,7 +6732,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
 
     public final void r2(long j3) {
         dq0 dq0Var = this.f43262g0;
-        if (dq0Var != null && dq0Var.f37178y) {
+        if (dq0Var != null && dq0Var.f37177y) {
             dq0Var.i(j3);
         } else {
             org.telegram.ui.Components.i61 i61Var = this.G2;
@@ -7441,7 +7441,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             String str2 = null;
             if (this.d2 == 1) {
                 if (!z13 && (v30Var = this.f43339p2) != null) {
-                    TLObject tLObject = v30Var.f40670a;
+                    TLObject tLObject = v30Var.f40669a;
                     if (tLObject instanceof TLRPC.User) {
                         TLRPC.User user = (TLRPC.User) tLObject;
                         String str3 = user.first_name;
@@ -7470,7 +7470,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                     Drawable drawable = context.getDrawable(2131232058);
                     view.f49211f = drawable;
                     drawable.setAlpha(100);
-                    TLObject tLObject2 = this.f43339p2.f40670a;
+                    TLObject tLObject2 = this.f43339p2.f40669a;
                     qq0 qq0Var = this.f43253f0;
                     org.telegram.ui.Components.rd0 rd0Var = this.D1;
                     b9Var.l(tLObject2);
@@ -7478,7 +7478,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                     view.f49209c = qq0Var;
                     view.d = rd0Var;
                     t1Var.W = view;
-                    if (this.f43339p2.f40672c == 1) {
+                    if (this.f43339p2.f40671c == 1) {
                         if (org.telegram.messenger.k10.i(this.U).f24987n == j3) {
                             t1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.N0(2131745303, "SetUserPhotoSelfAlertMessage"));
                         } else {
@@ -7574,7 +7574,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                 if ((j11 > 2097152000 && !org.telegram.messenger.k10.i(this.U).q()) || j11 > 4194304000L) {
                     if (this.f43217b2 != null) {
                         org.telegram.ui.Components.ui uiVar = this.f43217b2;
-                        new ug.k0(6, org.telegram.messenger.k10.f24968t0, uiVar.f30179c.getContext(), uiVar.f40368a2, null).show();
+                        new ug.k0(6, org.telegram.messenger.k10.f24968t0, uiVar.f30179c.getContext(), uiVar.f40367a2, null).show();
                         return;
                     }
                     return;
@@ -7928,8 +7928,8 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
     public final void v0(int i7) {
         org.telegram.ui.Components.f61 f61Var;
         org.telegram.ui.Components.i61 i61Var = this.G2;
-        if (i61Var != null && i61Var.d != null && i7 != i61Var.f36163e0) {
-            i61Var.f36163e0 = i7;
+        if (i61Var != null && i61Var.d != null && i7 != i61Var.f36162e0) {
+            i61Var.f36162e0 = i7;
             ArrayList arrayList = i61Var.O;
             if (arrayList != null && i7 >= 0 && i7 < arrayList.size()) {
                 f61Var = (org.telegram.ui.Components.f61) i61Var.O.get(i7);
@@ -7975,8 +7975,8 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                 this.T0.setVisibility(0);
                 this.f43329o0.setVisibility(8);
             }
-            if (v30Var != null && (user = v30Var.f40671b) != null && v30Var.f40672c == 1 && this.f43339p2.d) {
-                if (v30Var.f40673e) {
+            if (v30Var != null && (user = v30Var.f40670b) != null && v30Var.f40671c == 1 && this.f43339p2.d) {
+                if (v30Var.f40672e) {
                     this.D1.setSubtitle(org.telegram.messenger.hd.a0(null, null, 2131745316, user.first_name));
                 } else {
                     this.D1.setSubtitle(org.telegram.messenger.hd.a0(null, null, 2131745317, user.first_name));
@@ -7986,8 +7986,8 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
             }
         }
         if (v30Var != null) {
-            if (v30Var.f40672c == 2) {
-                if (v30Var.f40673e) {
+            if (v30Var.f40671c == 2) {
+                if (v30Var.f40672e) {
                     str = "SuggestVideo";
                     i7 = 2131744154;
                 } else {
@@ -7996,7 +7996,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                 }
                 M2(org.telegram.messenger.hd.N0(i7, str));
             }
-            if (v30Var.f40673e) {
+            if (v30Var.f40672e) {
                 this.T7.setText(org.telegram.messenger.hd.N0(2131745339, "SetCover"));
             }
             this.G.setBackground(null);
@@ -8030,7 +8030,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
                 this.N.a(org.telegram.messenger.hd.N0(2131745083, "SoundMuted"), true);
             }
             org.telegram.ui.Components.j00 j00Var = this.f43244e1;
-            j00Var.f36342e = true;
+            j00Var.f36341e = true;
             j00Var.invalidateSelf();
             if (this.f43296k1.getTag() != null) {
                 this.f43296k1.setAlpha(0.5f);
@@ -8048,7 +8048,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
         }
         this.N.a(this.D8, true);
         org.telegram.ui.Components.j00 j00Var2 = this.f43244e1;
-        j00Var2.f36342e = false;
+        j00Var2.f36341e = false;
         j00Var2.invalidateSelf();
         if (this.f43296k1.getTag() != null) {
             this.f43296k1.setAlpha(1.0f);
@@ -8130,7 +8130,7 @@ public class PhotoViewer implements org.telegram.messenger.gs, org.telegram.ui.C
 
     public final long x1() {
         dq0 dq0Var = this.f43262g0;
-        if (dq0Var != null && dq0Var.f37178y) {
+        if (dq0Var != null && dq0Var.f37177y) {
             return dq0Var.getVideoDuration();
         }
         org.telegram.ui.Components.i61 i61Var = this.G2;

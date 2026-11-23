@@ -26,7 +26,7 @@ public final class w implements TextWatcher {
                 String obj2 = editable.toString();
                 d0 d0Var2 = this.f20039b;
                 d0Var2.N1 = obj2;
-                d0Var2.B1.f35790g3.O(true);
+                d0Var2.B1.f35789g3.O(true);
                 return;
         }
     }

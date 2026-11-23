@@ -48,7 +48,7 @@ public final class gc implements ValueAnimator.AnimatorUpdateListener {
                 u10Var.N = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i11, i10);
                 u10Var.G.setColorFilter(new PorterDuffColorFilter(u10Var.M, PorterDuff.Mode.MULTIPLY));
                 u10Var.F.setColor(u10Var.M);
-                u10Var.f40199r.setColor(u10Var.N);
+                u10Var.f40198r.setColor(u10Var.N);
                 u10Var.K.d(i0.a.o(u10Var.N, 38));
                 u10Var.invalidate();
                 return;

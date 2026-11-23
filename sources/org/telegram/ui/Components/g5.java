@@ -17,7 +17,7 @@ public final class g5 {
 
     public g5(View view) {
         this.f35424f = 200L;
-        this.f35425g = nr.f37961f;
+        this.f35425g = nr.f37960f;
         this.f35420a = view;
         this.f35423e = true;
     }
@@ -66,7 +66,7 @@ public final class g5 {
 
     public g5(View view, long j3, TimeInterpolator timeInterpolator) {
         this.f35424f = 200L;
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
         this.f35420a = view;
         this.f35424f = j3;
         this.f35425g = timeInterpolator;
@@ -75,7 +75,7 @@ public final class g5 {
 
     public g5(View view, long j3, TimeInterpolator timeInterpolator, int i7) {
         this.f35424f = 200L;
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
         this.f35420a = view;
         this.f35424f = j3;
         this.f35425g = timeInterpolator;
@@ -84,7 +84,7 @@ public final class g5 {
 
     public g5(Runnable runnable, long j3, TimeInterpolator timeInterpolator) {
         this.f35424f = 200L;
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
         this.f35421b = runnable;
         this.f35424f = j3;
         this.f35425g = timeInterpolator;

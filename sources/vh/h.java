@@ -29,12 +29,12 @@ public final class h extends sa {
         this.G1 = false;
         this.F1 = g0.L(12.0f);
         this.U1 = org.telegram.ui.c51.i0(tL_statsPollStats.votes_graph, hd.N0(2131746925, null), 2, false);
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i7 = this.f30211u0;
         ek0Var.setPadding(i7, 0, i7, g0.f24041n);
-        this.f39532o1.setClipToPadding(false);
-        this.f39532o1.setSections(true);
-        y s5 = this.f39533p1.s();
+        this.f39531o1.setClipToPadding(false);
+        this.f39531o1.setSections(true);
+        y s5 = this.f39532p1.s();
         s5.a(-1, 2131231269);
         s5.setTranslationX(-g0.L(5.0f));
         this.T1.O(false);

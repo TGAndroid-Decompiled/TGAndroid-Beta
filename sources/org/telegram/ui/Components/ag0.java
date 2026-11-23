@@ -14,7 +14,7 @@ public final class ag0 implements c5.h {
     public final void a(int i7) {
         boolean z10;
         hg0 hg0Var = this.f33516a;
-        int i10 = hg0Var.f35892p1;
+        int i10 = hg0Var.f35891p1;
         int i11 = 0;
         if (i7 >= i10) {
             z10 = true;
@@ -23,7 +23,7 @@ public final class ag0 implements c5.h {
         }
         if (i7 != i10) {
             hg0Var.getClass();
-            hg0Var.f35892p1 = i7;
+            hg0Var.f35891p1 = i7;
         }
         org.telegram.messenger.vo voVar = hg0Var.T0;
         if (voVar != null) {
@@ -42,7 +42,7 @@ public final class ag0 implements c5.h {
         hg0Var.B(f10, i7);
         if (i10 == 0) {
             int k10 = hg0Var.E0.k(i7);
-            if (hg0Var.f35888j1) {
+            if (hg0Var.f35887j1) {
                 k10--;
             }
             hg0Var.getCurrentItemView();
@@ -52,7 +52,7 @@ public final class ag0 implements c5.h {
                 if (childAt instanceof q9) {
                     gg0 gg0Var = hg0Var.E0;
                     int k11 = gg0Var.k(gg0Var.d.indexOf(childAt));
-                    if (hg0Var.f35888j1) {
+                    if (hg0Var.f35887j1) {
                         k11--;
                     }
                     ImageReceiver imageReceiver = ((q9) childAt).getImageReceiver();

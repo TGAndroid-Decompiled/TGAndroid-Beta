@@ -527,7 +527,7 @@ public final class x40 extends org.telegram.ui.Components.kj0 {
                 } else {
                     org.telegram.ui.Components.d60 d60Var = new org.telegram.ui.Components.d60(context, null, 0, null, 1);
                     d60Var.setLayoutParams(new v4.q0(-1, -1));
-                    d60Var.f37996e.setVisibility(8);
+                    d60Var.f37995e.setVisibility(8);
                     d60Var.d.setText(org.telegram.messenger.hd.N0(2131748030, null));
                     d60Var.setAnimateLayoutChange(true);
                     y3Var = d60Var;

@@ -48,7 +48,7 @@ public final class h0 extends mi implements b6, gs, te.b {
         tiVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f18364r = frameLayout;
-        qi qiVar = new qi(context, h6Var, this.f37520b);
+        qi qiVar = new qi(context, h6Var, this.f37519b);
         this.G = qiVar;
         qiVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
         ah.j jVar = new ah.j(this, 10);
@@ -69,7 +69,7 @@ public final class h0 extends mi implements b6, gs, te.b {
         setBlur3Capture(b1Var);
         this.d = b1Var;
         this.h = true;
-        this.f37523f = true;
+        this.f37522f = true;
         ls.e().h(b1Var, ls.f25342l4, new s6(this, 8));
         b1Var.setClipToPadding(false);
         getContext();
@@ -118,8 +118,8 @@ public final class h0 extends mi implements b6, gs, te.b {
     @Override
     public final void B(int i7, int i10) {
         int i11;
-        ui uiVar = this.f37520b;
-        if (uiVar.f40414p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
+        ui uiVar = this.f37519b;
+        if (uiVar.f40413p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             i11 = org.telegram.messenger.g0.L(8.0f);
             uiVar.f30207r0 = false;
         } else {
@@ -133,7 +133,7 @@ public final class h0 extends mi implements b6, gs, te.b {
             i11 = (i10 / 5) * 2;
             uiVar.f30207r0 = true;
         }
-        this.f18365s.q1(0, i11 + org.telegram.messenger.g0.f24040m, 0, this.f37522e);
+        this.f18365s.q1(0, i11 + org.telegram.messenger.g0.f24040m, 0, this.f37521e);
     }
 
     @Override
@@ -245,13 +245,13 @@ public final class h0 extends mi implements b6, gs, te.b {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f37520b.f30176b.invalidate();
+        this.f37519b.f30176b.invalidate();
     }
 
     public void setupBlurredSearchField(dh.c cVar) {
         qi qiVar = this.G;
         if (qiVar != null) {
-            qiVar.setupBlurredBackground(cVar.c(qiVar, c8.i0.a(this.f37519a), false));
+            qiVar.setupBlurredBackground(cVar.c(qiVar, c8.i0.a(this.f37518a), false));
         }
     }
 

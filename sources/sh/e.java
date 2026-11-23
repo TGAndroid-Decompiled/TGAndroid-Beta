@@ -188,14 +188,14 @@ public final class e extends Drawable implements y5, xm0 {
                     int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
                     int intrinsicHeight = (int) (this.Q.getIntrinsicHeight() * 0.8f);
                     int A = (int) e2.A(imageReceiver.N0, intrinsicWidth, 2.0f, imageReceiver.L0);
-                    int interpolation = (int) ((((imageReceiver.O0 / 2.0f) - intrinsicHeight) + imageReceiver.M0) - ((1.0f - nr.f37965k.getInterpolation(imageReceiver.f22672i1)) * g0.L(16.0f)));
+                    int interpolation = (int) ((((imageReceiver.O0 / 2.0f) - intrinsicHeight) + imageReceiver.M0) - ((1.0f - nr.f37964k.getInterpolation(imageReceiver.f22672i1)) * g0.L(16.0f)));
                     this.Q.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.f22672i1 * 5.0f) * 255.0f));
                     this.Q.setBounds(A, interpolation, intrinsicWidth + A, intrinsicHeight + interpolation);
                     this.Q.draw(canvas);
                 }
                 radialProgress2.r(bounds.centerX() - g0.L(22.0f), bounds.centerY() - g0.L(22.0f), g0.L(22.0f) + bounds.centerX(), g0.L(22.0f) + bounds.centerY());
                 if (this.H && this.f57494w != null) {
-                    canvas.drawRoundRect(g0.L(6.0f) + bounds.left, g0.L(6.0f) + bounds.top, bounds.left + this.f57494w.f42247c + g0.L(18.0f), g0.L(23.0f) + bounds.top, g0.L(8.5f), g0.L(8.5f), this.f57495x);
+                    canvas.drawRoundRect(g0.L(6.0f) + bounds.left, g0.L(6.0f) + bounds.top, bounds.left + this.f57494w.f42246c + g0.L(18.0f), g0.L(23.0f) + bounds.top, g0.L(8.5f), g0.L(8.5f), this.f57495x);
                     this.f57494w.e(canvas, g0.L(12.0f) + bounds.left, g0.L(15.0f) + bounds.top);
                 }
             } else {
@@ -228,13 +228,13 @@ public final class e extends Drawable implements y5, xm0 {
                         float f11 = 1.0f - f10;
                         int i16 = i15 + i10;
                         canvas.scale(f11, f11, g0.L(56.0f) + i13, g0.L(35.0f) + i16);
-                        this.f57492r.f42245a.setAlpha((int) (f11 * 255.0f));
+                        this.f57492r.f42244a.setAlpha((int) (f11 * 255.0f));
                         this.f57492r.e(canvas, g0.L(56.0f) + i13, g0.L(35.0f) + i16);
                         canvas.restore();
                     }
                     if (f10 > 0.0f) {
                         ym0 ym0Var = this.L;
-                        ym0Var.f42474t = f10;
+                        ym0Var.f42473t = f10;
                         ym0Var.i(o10.x(56.0f, i13, bounds.right), g0.L(30.0f));
                         canvas.save();
                         float L3 = g0.L(45.0f) + i13;
@@ -316,7 +316,7 @@ public final class e extends Drawable implements y5, xm0 {
                     this.f57491n = new xy0(str, 15.0f, g0.o());
                 }
                 xy0 xy0Var = this.f57491n;
-                xy0Var.q(TextUtils.ellipsize(this.f57485e, xy0Var.f42245a, L, TextUtils.TruncateAt.MIDDLE));
+                xy0Var.q(TextUtils.ellipsize(this.f57485e, xy0Var.f42244a, L, TextUtils.TruncateAt.MIDDLE));
             }
             String str2 = this.f57487f;
             if (str2 != null) {
@@ -324,7 +324,7 @@ public final class e extends Drawable implements y5, xm0 {
                     this.f57492r = new xy0(str2, 14.0f, null);
                 }
                 xy0 xy0Var2 = this.f57492r;
-                xy0Var2.q(TextUtils.ellipsize(this.f57487f, xy0Var2.f42245a, L, TextUtils.TruncateAt.END));
+                xy0Var2.q(TextUtils.ellipsize(this.f57487f, xy0Var2.f42244a, L, TextUtils.TruncateAt.END));
             }
             String str3 = this.h;
             if (str3 != null) {
@@ -332,7 +332,7 @@ public final class e extends Drawable implements y5, xm0 {
                     this.f57493s = new xy0(str3, 12.0f, null);
                 }
                 xy0 xy0Var3 = this.f57493s;
-                xy0Var3.q(TextUtils.ellipsize(this.h, xy0Var3.f42245a, L, TextUtils.TruncateAt.END));
+                xy0Var3.q(TextUtils.ellipsize(this.h, xy0Var3.f42244a, L, TextUtils.TruncateAt.END));
             }
             if (this.H && this.f57494w == null) {
                 this.f57494w = new xy0(g0.g0(this.K, true, false), 12.0f, null);
@@ -536,9 +536,9 @@ public final class e extends Drawable implements y5, xm0 {
             if (gjVar != null && j3) {
                 i7 = gjVar.f24205i0;
                 ym0 ym0Var = this.L;
-                if (!ym0Var.f42460e) {
+                if (!ym0Var.f42459e) {
                     ym0Var.h(gjVar.f24173b0);
-                    ym0Var.f42471q = gjVar.f24196g0;
+                    ym0Var.f42470q = gjVar.f24196g0;
                 }
                 ym0Var.j(gjVar);
             } else {

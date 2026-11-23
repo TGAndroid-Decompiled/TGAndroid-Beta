@@ -55,7 +55,7 @@ public final class aa {
             this.f33447e = new Bitmap[2];
             this.f33451j = new Canvas[2];
         }
-        this.v.f42739a = true;
+        this.v.f42738a = true;
         this.v = new z9(this);
         for (int i7 = 0; i7 < 2; i7++) {
             hi.l5 l5Var = this.d;

@@ -56,13 +56,13 @@ public final class x4 extends LinearLayout {
             case 5:
                 canvas.save();
                 z11 z11Var = (z11) this.f15749c;
-                float d = ((org.telegram.ui.Components.d6) this.f15748b).d(z11Var.f42637y);
+                float d = ((org.telegram.ui.Components.d6) this.f15748b).d(z11Var.f42636y);
                 if (d > 0.0f) {
-                    if (z11Var.f42629c == null) {
-                        z11Var.f42629c = new tn0(this);
+                    if (z11Var.f42628c == null) {
+                        z11Var.f42628c = new tn0(this);
                     }
                     canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-                    z11Var.f42629c.a(canvas, d);
+                    z11Var.f42628c.a(canvas, d);
                     canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
                 }
                 super.dispatchDraw(canvas);
@@ -186,7 +186,7 @@ public final class x4 extends LinearLayout {
                     if (layout == null) {
                         interpolation = 0.0f;
                     } else {
-                        interpolation = nr.f37961f.getInterpolation(k5Var.K0);
+                        interpolation = nr.f37960f.getInterpolation(k5Var.K0);
                     }
                     float primaryHorizontal = layout2.getPrimaryHorizontal(layout2.getLineStart(0)) + textView3.getX();
                     if (layout != null) {
@@ -234,7 +234,7 @@ public final class x4 extends LinearLayout {
                 if (layout3 == null) {
                     interpolation2 = 0.0f;
                 } else {
-                    interpolation2 = nr.f37961f.getInterpolation(h0Var.S0);
+                    interpolation2 = nr.f37960f.getInterpolation(h0Var.S0);
                 }
                 float primaryHorizontal3 = layout4.getPrimaryHorizontal(layout4.getLineStart(0)) + textView4.getX();
                 if (textView2 != null) {

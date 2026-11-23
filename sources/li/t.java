@@ -59,7 +59,7 @@ public final class t implements r10 {
                         f3.n(null, 2131751893, new lc((FrameLayout) d0Var.f30176b, d0Var.J0), 2131624068, 36);
                         return;
                     }
-                    d0Var.f19942x1.d.f35790g3.O(false);
+                    d0Var.f19942x1.d.f35789g3.O(false);
                     d0Var.f19933o1.A(2);
                     return;
                 } else {
@@ -79,7 +79,7 @@ public final class t implements r10 {
                 String N0 = hd.N0(2131751837, null);
                 o41 o41Var = new o41(39);
                 o41Var.d = 101;
-                o41Var.f38092m = N0;
+                o41Var.f38091m = N0;
                 o41Var.A = 0;
                 o41Var.L(d0Var.f19936r1);
                 arrayList3.add(o41Var);
@@ -106,11 +106,11 @@ public final class t implements r10 {
                         int i15 = mi.i.f21064b;
                         o41 K = o41.K(mi.i.class);
                         K.d = 100;
-                        K.f38090k = 2131231167;
-                        K.f38092m = G;
-                        K.f38094o = str;
+                        K.f38089k = 2131231167;
+                        K.f38091m = G;
+                        K.f38093o = str;
                         K.C = ((-15497247) << 32) | ((-14899731) & 4294967295L);
-                        K.f38097r = true;
+                        K.f38096r = true;
                         arrayList3.add(K);
                         arrayList3.add(o41.E(5, org.telegram.messenger.g0.L(14.33f)));
                     }

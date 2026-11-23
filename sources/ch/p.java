@@ -334,21 +334,21 @@ public final class p extends g2 implements gs {
                 if (z11) {
                     f0();
                     this.f5500w.animate().setListener(null).cancel();
-                    this.f5500w.animate().alpha(0.0f).setDuration(350L).setInterpolator(nr.f37961f).setListener(new ai.k0(this, 3)).start();
+                    this.f5500w.animate().alpha(0.0f).setDuration(350L).setInterpolator(nr.f37960f).setListener(new ai.k0(this, 3)).start();
                     this.h.setFocusableInTouchMode(false);
-                    this.F.f35790g3.O(true);
+                    this.F.f35789g3.O(true);
                     return;
                 }
                 this.f5500w.setVisibility(4);
                 this.h.setFocusableInTouchMode(false);
-                this.F.f35790g3.O(false);
+                this.F.f35789g3.O(false);
                 return;
             }
             this.f5500w.setVisibility(0);
-            this.F.f35790g3.O(z11);
+            this.F.f35789g3.O(z11);
             if (z11) {
                 this.f5500w.animate().setListener(null).cancel();
-                this.f5500w.animate().alpha(1.0f).setDuration(350L).setInterpolator(nr.f37961f).start();
+                this.f5500w.animate().alpha(1.0f).setDuration(350L).setInterpolator(nr.f37960f).start();
                 this.F.post(new h(this, 1));
                 LinkedHashMap linkedHashMap = this.I;
                 if (linkedHashMap.isEmpty()) {

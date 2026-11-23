@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.MediaController;
 public final class s40 implements Runnable {
-    public final int f39481a;
-    public final u40 f39482b;
+    public final int f39480a;
+    public final u40 f39481b;
 
     public s40(u40 u40Var, int i7) {
-        this.f39481a = i7;
-        this.f39482b = u40Var;
+        this.f39480a = i7;
+        this.f39481b = u40Var;
     }
 
     @Override
     public final void run() {
         org.telegram.messenger.f20 f20Var;
-        int i7 = this.f39481a;
-        u40 u40Var = this.f39482b;
+        int i7 = this.f39480a;
+        u40 u40Var = this.f39481b;
         switch (i7) {
             case 0:
                 u40Var.I0.s(false, false);
@@ -47,7 +47,7 @@ public final class s40 implements Runnable {
                 if (u40Var.H0 && (f20Var = u40Var.I0.S) != null) {
                     f20Var.P = false;
                 }
-                u40Var.c(u40Var.f40224a, 0L, true);
+                u40Var.c(u40Var.f40223a, 0L, true);
                 MediaController.B().Y(false);
                 return;
             case 3:

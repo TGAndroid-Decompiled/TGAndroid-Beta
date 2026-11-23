@@ -14,21 +14,21 @@ import java.util.ArrayList;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.LaunchActivity;
 public final class zb0 extends Dialog implements org.telegram.ui.ActionBar.o4 {
-    public final ActionBarLayout f42775a;
-    public final FrameLayout f42776b;
-    public final qc0 f42777c;
+    public final ActionBarLayout f42774a;
+    public final FrameLayout f42775b;
+    public final qc0 f42776c;
 
     public zb0(Context context) {
         super(context, 2131755352);
         ActionBarLayout actionBarLayout = new ActionBarLayout(context, false);
-        this.f42775a = actionBarLayout;
+        this.f42774a = actionBarLayout;
         actionBarLayout.setFragmentStack(new ArrayList());
         org.telegram.ui.ActionBar.p4 p4Var = new org.telegram.ui.ActionBar.p4(new bi.b9(this, 9));
         p4Var.f29889c = true;
         actionBarLayout.U(p4Var);
         actionBarLayout.setDelegate(this);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f42776b = frameLayout;
+        this.f42775b = frameLayout;
         frameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
         frameLayout.addView(actionBarLayout.getView(), new FrameLayout.LayoutParams(-1, -1, 17));
         if (org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.E && !org.telegram.messenger.g0.P1()) {
@@ -38,7 +38,7 @@ public final class zb0 extends Dialog implements org.telegram.ui.ActionBar.o4 {
             h6.m.i(actionBarLayout.getView());
         }
         qc0 qc0Var = new qc0(context);
-        this.f42777c = qc0Var;
+        this.f42776c = qc0Var;
         frameLayout.addView(qc0Var, c8.ma.c(-1.0f, -1));
         setContentView(frameLayout);
     }
@@ -55,7 +55,7 @@ public final class zb0 extends Dialog implements org.telegram.ui.ActionBar.o4 {
         } else {
             z10 = false;
         }
-        this.f42775a.T(g2Var, z10);
+        this.f42774a.T(g2Var, z10);
     }
 
     @Override
@@ -87,14 +87,14 @@ public final class zb0 extends Dialog implements org.telegram.ui.ActionBar.o4 {
 
     @Override
     public final void onBackPressed() {
-        if (this.f42777c.getVisibility() == 0) {
+        if (this.f42776c.getVisibility() == 0) {
             if (getOwnerActivity() != null) {
                 getOwnerActivity().finish();
                 return;
             }
             return;
         }
-        ActionBarLayout actionBarLayout = this.f42775a;
+        ActionBarLayout actionBarLayout = this.f42774a;
         actionBarLayout.I();
         if (actionBarLayout.getFragmentStack().size() <= 1) {
             dismiss();
@@ -125,7 +125,7 @@ public final class zb0 extends Dialog implements org.telegram.ui.ActionBar.o4 {
         }
         window.setAttributes(attributes);
         window.setStatusBarColor(0);
-        FrameLayout frameLayout = this.f42776b;
+        FrameLayout frameLayout = this.f42775b;
         frameLayout.setSystemUiVisibility(1280);
         frameLayout.setOnApplyWindowInsetsListener(new org.telegram.ui.ActionBar.x2(2));
         if (i7 >= 26) {
@@ -144,7 +144,7 @@ public final class zb0 extends Dialog implements org.telegram.ui.ActionBar.o4 {
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).A0.add(this.f42777c);
+            ((LaunchActivity) context).A0.add(this.f42776c);
         }
     }
 
@@ -156,7 +156,7 @@ public final class zb0 extends Dialog implements org.telegram.ui.ActionBar.o4 {
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).A0.remove(this.f42777c);
+            ((LaunchActivity) context).A0.remove(this.f42776c);
         }
     }
 

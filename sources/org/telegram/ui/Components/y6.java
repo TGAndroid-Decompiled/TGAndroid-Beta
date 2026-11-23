@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.messenger.MediaController;
 public final class y6 implements org.telegram.ui.ActionBar.l0, sj0 {
-    public final int f42330a;
-    public final f8 f42331b;
+    public final int f42329a;
+    public final f8 f42330b;
 
     public y6(f8 f8Var, int i7) {
-        this.f42330a = i7;
-        this.f42331b = f8Var;
+        this.f42329a = i7;
+        this.f42330b = f8Var;
     }
 
     @Override
     public boolean c(int i7, View view) {
         boolean z10 = view instanceof org.telegram.ui.Cells.w;
-        f8 f8Var = this.f42331b;
+        f8 f8Var = this.f42330b;
         if (z10) {
             if (!f8Var.P0()) {
                 org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) view;
@@ -29,9 +29,9 @@ public final class y6 implements org.telegram.ui.ActionBar.l0, sj0 {
 
     @Override
     public void g(int i7) {
-        switch (this.f42330a) {
+        switch (this.f42329a) {
             case 0:
-                f8 f8Var = this.f42331b;
+                f8 f8Var = this.f42330b;
                 f8Var.getClass();
                 if (i7 >= 0) {
                     float[] fArr = f8.U2;
@@ -44,7 +44,7 @@ public final class y6 implements org.telegram.ui.ActionBar.l0, sj0 {
                 }
                 return;
             case 1:
-                f8 f8Var2 = this.f42331b;
+                f8 f8Var2 = this.f42330b;
                 if (i7 != 1 && i7 != 2) {
                     if (i7 == 4) {
                         if (org.telegram.messenger.cz.S0 == 1) {
@@ -73,7 +73,7 @@ public final class y6 implements org.telegram.ui.ActionBar.l0, sj0 {
                 f8Var2.d1();
                 return;
             default:
-                this.f42331b.Q0(i7);
+                this.f42330b.Q0(i7);
                 return;
         }
     }

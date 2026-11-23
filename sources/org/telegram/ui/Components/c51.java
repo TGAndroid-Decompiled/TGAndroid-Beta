@@ -68,7 +68,7 @@ public class c51 extends rg.b {
         } else if (i7 != 3 && i7 != 5 && i7 != 6 && i7 != 30 && i7 != 4 && i7 != 10 && i7 != 44 && i7 != 11 && i7 != 12 && i7 != 17 && i7 != 16 && i7 != 29 && i7 != 25 && i7 != 27 && i7 != 32 && i7 != 33 && i7 != 35 && i7 != 36 && i7 != 37 && i7 != 41 && i7 != 39 && i7 != 40 && i7 != 38) {
             return false;
         }
-        if (G != null && !G.f38087g) {
+        if (G != null && !G.f38086g) {
             return false;
         }
         return true;
@@ -79,7 +79,7 @@ public class c51 extends rg.b {
             ArrayList arrayList = this.I;
             if (i7 < arrayList.size()) {
                 z41 z41Var = (z41) arrayList.get(i7);
-                this.N.a(Integer.valueOf(i7), new ArrayList(this.E.subList(z41Var.f42680a, z41Var.f42681b + 1)));
+                this.N.a(Integer.valueOf(i7), new ArrayList(this.E.subList(z41Var.f42679a, z41Var.f42680b + 1)));
                 this.M = false;
             }
         }
@@ -102,7 +102,7 @@ public class c51 extends rg.b {
             ArrayList arrayList = this.I;
             if (i10 < arrayList.size()) {
                 z41 z41Var = (z41) arrayList.get(i10);
-                if (i7 >= z41Var.f42680a && i7 <= z41Var.f42681b) {
+                if (i7 >= z41Var.f42679a && i7 <= z41Var.f42680b) {
                     return i10;
                 }
                 i10++;
@@ -119,7 +119,7 @@ public class c51 extends rg.b {
     public final boolean J(int i7) {
         o41 G = G(i7);
         o41 G2 = G(i7 + 1);
-        if (G != null && !G.f38089j && G2 != null && K(G2.f56634a) == K(G.f56634a)) {
+        if (G != null && !G.f38088j && G2 != null && K(G2.f56634a) == K(G.f56634a)) {
             return true;
         }
         return false;
@@ -128,16 +128,16 @@ public class c51 extends rg.b {
     public final void L() {
         z41 z41Var = this.K;
         if (z41Var != null) {
-            z41Var.f42681b = Math.max(0, this.E.size() - 1);
+            z41Var.f42680b = Math.max(0, this.E.size() - 1);
         }
     }
 
     public final int M() {
         ?? obj = new Object();
         this.K = obj;
-        obj.f42680a = this.E.size();
+        obj.f42679a = this.E.size();
         z41 z41Var = this.K;
-        z41Var.f42681b = -1;
+        z41Var.f42680b = -1;
         ArrayList arrayList = this.I;
         arrayList.add(z41Var);
         return arrayList.size() - 1;
@@ -295,7 +295,7 @@ public class c51 extends rg.b {
                 Object obj = arrayList2.get(i7);
                 i7++;
                 z41 z41Var = (z41) obj;
-                ek0Var.L2.add(Long.valueOf(org.telegram.messenger.g0.w2(z41Var.f42680a, z41Var.f42681b)));
+                ek0Var.L2.add(Long.valueOf(org.telegram.messenger.g0.w2(z41Var.f42679a, z41Var.f42680b)));
             }
         }
     }
@@ -318,9 +318,9 @@ public class c51 extends rg.b {
     public final void U() {
         z41 z41Var = this.J;
         if (z41Var != null) {
-            z41Var.f42681b = Math.max(0, (this.E.size() + this.G) - 1);
+            z41Var.f42680b = Math.max(0, (this.E.size() + this.G) - 1);
             z41 z41Var2 = this.J;
-            if (z41Var2.f42680a == z41Var2.f42681b) {
+            if (z41Var2.f42679a == z41Var2.f42680b) {
                 this.H.remove(z41Var2);
             }
             this.J = null;
@@ -330,9 +330,9 @@ public class c51 extends rg.b {
     public final void V() {
         ?? obj = new Object();
         this.J = obj;
-        obj.f42680a = this.E.size() + this.G;
+        obj.f42679a = this.E.size() + this.G;
         z41 z41Var = this.J;
-        z41Var.f42681b = -1;
+        z41Var.f42680b = -1;
         this.H.add(z41Var);
     }
 
@@ -407,7 +407,7 @@ public class c51 extends rg.b {
                     break;
                 case -3:
                     ?? frameLayout2 = new FrameLayout(context);
-                    frameLayout2.f42318a = 0;
+                    frameLayout2.f42317a = 0;
                     o4Var = frameLayout2;
                     break;
                 case -2:

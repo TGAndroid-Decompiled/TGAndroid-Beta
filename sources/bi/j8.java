@@ -106,7 +106,7 @@ public class j8 extends org.telegram.ui.ActionBar.g2 implements te.b {
         ArrayList arrayList = new ArrayList(x7Var.f4258f);
         Collections.sort(arrayList, new x6(j8Var, 2));
         i7 i7Var = new i7(j8Var, new y6(j8Var, strArr, arrayList, 2), new z6(j8Var, r14, 2), null, 1);
-        i7Var.f35790g3.f34062r = false;
+        i7Var.f35789g3.f34062r = false;
         h51[] h51VarArr = {i7Var};
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
@@ -153,7 +153,7 @@ public class j8 extends org.telegram.ui.ActionBar.g2 implements te.b {
         ArrayList arrayList = new ArrayList(x7Var.f4259g);
         Collections.sort(arrayList, new x6(j8Var, 1));
         i7 i7Var = new i7(j8Var, new y6(j8Var, strArr, arrayList, 1), new z6(j8Var, r14, 1), null, 2);
-        i7Var.f35790g3.f34062r = false;
+        i7Var.f35789g3.f34062r = false;
         h51[] h51VarArr = {i7Var};
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
@@ -200,7 +200,7 @@ public class j8 extends org.telegram.ui.ActionBar.g2 implements te.b {
         ArrayList arrayList = new ArrayList(x7Var.h);
         Collections.sort(arrayList, new x6(j8Var, 0));
         i7 i7Var = new i7(j8Var, new y6(j8Var, strArr, arrayList, 0), new z6(j8Var, r13, 0), null, 3);
-        i7Var.f35790g3.f34062r = false;
+        i7Var.f35789g3.f34062r = false;
         h51[] h51VarArr = {i7Var};
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
@@ -311,7 +311,7 @@ public class j8 extends org.telegram.ui.ActionBar.g2 implements te.b {
         ri.a baseSimpleGlass = getBaseSimpleGlass();
         i7 i7Var = new i7(this, new b(this, 9), new d7(this), new a3.l(this, 22), 0);
         this.f3761f = i7Var;
-        i7Var.f35790g3.f34062r = false;
+        i7Var.f35789g3.f34062r = false;
         i7Var.setSpanCount(3);
         this.f3761f.j(new u1(this, 1));
         du0Var.addView(this.f3761f, ma.e(-1, -1, 119));

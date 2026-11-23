@@ -16,7 +16,7 @@ public final class nw extends ev {
     @Override
     public final void L0(boolean z10) {
         ty tyVar = this.S1;
-        ArrayList arrayList = tyVar.f40130q1;
+        ArrayList arrayList = tyVar.f40129q1;
         TLRPC.StickerSet stickerSet = this.R1;
         if (z10) {
             if (!arrayList.contains(Long.valueOf(stickerSet.f28461id))) {
@@ -30,7 +30,7 @@ public final class nw extends ev {
 
     @Override
     public final void dismiss() {
-        this.S1.f40156x2 = false;
+        this.S1.f40155x2 = false;
         super.dismiss();
     }
 }

@@ -184,7 +184,7 @@ public final class pr0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             pr0Var.f50938c0 = b6Var;
             b6Var.setEmojiButtonVisibility(true);
             org.telegram.ui.Components.ah emojiButton = b6Var.getEmojiButton();
-            org.telegram.ui.Components.yg ygVar = org.telegram.ui.Components.yg.f42430e;
+            org.telegram.ui.Components.yg ygVar = org.telegram.ui.Components.yg.f42429e;
             emojiButton.j(ygVar, false);
             f61 f61Var = pr0Var.f50937c;
             View F = f61Var.F(b6Var);
@@ -722,7 +722,7 @@ public final class pr0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
         if (!this.Q && (tyVar = this.S) != null && tyVar.getVisibility() != 8) {
             org.telegram.ui.Cells.b6 b6Var = this.f50938c0;
             if (b6Var != null && (emojiButton = b6Var.getEmojiButton()) != null) {
-                emojiButton.j(org.telegram.ui.Components.yg.f42430e, false);
+                emojiButton.j(org.telegram.ui.Components.yg.f42429e, false);
             }
             this.S.setVisibility(8);
         }
@@ -830,14 +830,14 @@ public final class pr0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
                     z10 = false;
                 }
                 org.telegram.ui.Components.ty tyVar2 = this.S;
-                if (tyVar2 != null && tyVar2.f40092d1 != org.telegram.messenger.k10.f24968t0) {
+                if (tyVar2 != null && tyVar2.f40091d1 != org.telegram.messenger.k10.f24968t0) {
                     this.f50940e.removeView(tyVar2);
                     this.S = null;
                 }
                 if (this.S == null) {
                     org.telegram.ui.Components.ty tyVar3 = new org.telegram.ui.Components.ty(null, true, false, false, getParentActivity(), true, null, null, true, this.resourceProvider, false, false);
                     this.S = tyVar3;
-                    tyVar3.f40160y2 = false;
+                    tyVar3.f40159y2 = false;
                     tyVar3.V0 = false;
                     tyVar3.setVisibility(8);
                     if (org.telegram.messenger.g0.Q1()) {
@@ -895,7 +895,7 @@ public final class pr0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             }
             org.telegram.ui.Components.ah emojiButton2 = this.f50938c0.getEmojiButton();
             if (emojiButton2 != null) {
-                emojiButton2.j(org.telegram.ui.Components.yg.f42430e, true);
+                emojiButton2.j(org.telegram.ui.Components.yg.f42429e, true);
             }
             org.telegram.ui.Components.ty tyVar5 = this.S;
             if (tyVar5 != null) {

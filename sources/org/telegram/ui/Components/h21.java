@@ -7,18 +7,16 @@ import org.telegram.tgnet.TLRPC;
 public final class h21 {
     public final Integer f35759a;
     public final org.telegram.messenger.gj f35760b;
-    public final org.telegram.ui.Cells.m1 f35761c;
-    public final int d;
+    public final int f35761c;
+    public final long d;
     public final long f35762e;
-    public final long f35763f;
 
-    public h21(Integer num, org.telegram.messenger.gj gjVar, org.telegram.ui.Cells.m1 m1Var, int i7, long j3, long j10) {
+    public h21(Integer num, org.telegram.messenger.gj gjVar, int i7, long j3, long j10) {
         this.f35759a = num;
         this.f35760b = gjVar;
-        this.f35761c = m1Var;
-        this.d = i7;
-        this.f35762e = j3;
-        this.f35763f = j10;
+        this.f35761c = i7;
+        this.d = j3;
+        this.f35762e = j10;
     }
 
     public final void a(String str, int[] iArr, boolean z10) {
@@ -44,9 +42,9 @@ public final class h21 {
             message.voiceTranscriptionFinal = false;
             message.voiceTranscriptionOpen = true;
             j21.q(gjVar);
-            org.telegram.messenger.ls.f(this.d).k(org.telegram.messenger.ls.A1, gjVar, null, null, Boolean.TRUE, Boolean.FALSE);
+            org.telegram.messenger.ls.f(this.f35761c).k(org.telegram.messenger.ls.A1, gjVar, null, null, Boolean.TRUE, Boolean.FALSE);
             return;
         }
-        org.telegram.messenger.g0.h3(new bi.p4(gjVar, message, str, iArr, this.d, this.f35762e), Math.max(0L, 350 - (SystemClock.elapsedRealtime() - this.f35763f)));
+        org.telegram.messenger.g0.h3(new bi.p4(gjVar, message, str, iArr, this.f35761c, this.d), Math.max(0L, 350 - (SystemClock.elapsedRealtime() - this.f35762e)));
     }
 }

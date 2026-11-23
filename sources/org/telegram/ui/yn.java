@@ -197,7 +197,7 @@ public final class yn implements Runnable {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.d;
                 boolean z17 = this.f54237b;
                 TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = (TLRPC.TL_messages_importChatInvite) this.f54239e;
-                org.telegram.ui.ActionBar.g2 g2Var = r70Var.f39107o1;
+                org.telegram.ui.ActionBar.g2 g2Var = r70Var.f39106o1;
                 if (g2Var != null && g2Var.getParentActivity() != null) {
                     if (tL_error2 != null) {
                         if ("INVITE_REQUEST_SENT".equals(tL_error2.text)) {
@@ -214,7 +214,7 @@ public final class yn implements Runnable {
                 TLObject tLObject2 = (TLObject) this.f54239e;
                 boolean z18 = this.f54237b;
                 org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) this.d;
-                org.telegram.ui.Components.kw0 kw0Var = ((org.telegram.ui.Components.zv0) this.f54238c).f42996a;
+                org.telegram.ui.Components.kw0 kw0Var = ((org.telegram.ui.Components.zv0) this.f54238c).f42995a;
                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                     org.telegram.messenger.si.d0(org.telegram.messenger.k10.f24968t0).N1(tL_messages_stickerSet, true);

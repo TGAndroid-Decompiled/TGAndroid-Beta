@@ -4,20 +4,20 @@ import android.util.SparseIntArray;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 public final class wi implements org.telegram.messenger.z10 {
-    public final int f41831a;
-    public final Object f41832b;
+    public final int f41830a;
+    public final Object f41831b;
 
     public wi(Object obj, int i7) {
-        this.f41831a = i7;
-        this.f41832b = obj;
+        this.f41830a = i7;
+        this.f41831b = obj;
     }
 
     @Override
     public final Object a(Object obj) {
         int i7;
-        int i10 = this.f41831a;
+        int i10 = this.f41830a;
         boolean z10 = true;
-        Object obj2 = this.f41832b;
+        Object obj2 = this.f41831b;
         switch (i10) {
             case 0:
                 return Boolean.valueOf(ej.P((ej) obj2, (org.telegram.messenger.gj) obj));

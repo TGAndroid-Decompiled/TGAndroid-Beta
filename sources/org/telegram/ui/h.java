@@ -121,11 +121,11 @@ public final class h implements org.telegram.ui.Components.qj0 {
                     } else if (i12 == 7) {
                         if (!kVar.getUserConfig().q() && !kVar.getMessagesController().f25807b4 && !kVar.d.archive_and_mute_new_noncontact_peers) {
                             org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(kVar.getParentActivity(), kVar.getResourceProvider());
-                            org.telegram.ui.Components.m80 m80Var = ybVar.f42375b;
+                            org.telegram.ui.Components.m80 m80Var = ybVar.f42374b;
                             m80Var.setText(org.telegram.messenger.g0.R2(org.telegram.messenger.hd.N0(2131743621, null), org.telegram.ui.ActionBar.m6.xj, 0, new hq0(kVar, 3), null));
                             m80Var.setSingleLine(false);
                             m80Var.setPadding(0, org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f));
-                            ybVar.f42374a.setImageResource(2131232364);
+                            ybVar.f42373a.setImageResource(2131232364);
                             org.telegram.ui.Components.gc.g(kVar, ybVar, 3500).j();
                             int i13 = -kVar.f49152e;
                             kVar.f49152e = i13;
@@ -471,7 +471,7 @@ public final class h implements org.telegram.ui.Components.qj0 {
                     int i22 = czVar2.f56634a;
                     if (i22 == 7) {
                         zyVar.dismiss();
-                        zyVar.f39536s1.presentFragment(new ky(zyVar.U1, czVar2.f46840m));
+                        zyVar.f39535s1.presentFragment(new ky(zyVar.U1, czVar2.f46840m));
                         return;
                     } else if (i22 == 8) {
                         zyVar.e1();

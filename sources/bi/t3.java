@@ -257,7 +257,7 @@ public final class t3 implements Runnable {
                 ArrayList arrayList6 = (ArrayList) obj2;
                 bn bnVar2 = (bn) obj;
                 boolean z11 = ChatAttachAlertPhotoLayout.f32798r1;
-                ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+                ui uiVar = chatAttachAlertPhotoLayout.f37519b;
                 if (uiVar.A1 && !uiVar.B1) {
                     PhotoViewer.p1().I2(null, g2Var, null);
                     PhotoViewer p12 = PhotoViewer.p1();

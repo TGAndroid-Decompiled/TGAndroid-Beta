@@ -440,7 +440,7 @@ public final class j9 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         h51Var.setCaptureSectionsDecoratorAllowed(true);
         this.f48935c.r1();
         this.f48935c.setSectionsDrawBackground(true);
-        this.f48935c.f35790g3.f34062r = false;
+        this.f48935c.f35789g3.f34062r = false;
         w8 w8Var = new w8(0, context, this);
         this.f48938n = w8Var;
         this.fragmentView = w8Var;
@@ -448,7 +448,7 @@ public final class j9 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         this.h = yzVar;
         yzVar.setViewType(8);
         org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29324a7, this.h, null);
-        this.h.f42606x = false;
+        this.h.f42605x = false;
         this.f48933a = new di.n4(this, context, this.h);
         this.f48935c.setClipToPadding(false);
         this.f48935c.setEmptyView(this.f48933a);
@@ -596,7 +596,7 @@ public final class j9 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         }
         org.telegram.ui.Components.h51 h51Var = this.f48935c;
         if (h51Var != null) {
-            h51Var.f35790g3.O(true);
+            h51Var.f35789g3.O(true);
         }
         TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
         tL_messages_search.limit = i10;
@@ -623,7 +623,7 @@ public final class j9 extends org.telegram.ui.ActionBar.g2 implements org.telegr
                 opVar.a(false, z10);
             }
         }
-        this.f48935c.f35790g3.O(true);
+        this.f48935c.f35789g3.O(true);
     }
 
     @Override
@@ -655,7 +655,7 @@ public final class j9 extends org.telegram.ui.ActionBar.g2 implements org.telegr
             userConfig.X = z10;
             userConfig.v(false);
         }
-        this.f48935c.f35790g3.O(true);
+        this.f48935c.f35789g3.O(true);
         org.telegram.messenger.ls.f(this.currentAccount).k(org.telegram.messenger.ls.R5, new Object[0]);
     }
 
@@ -808,7 +808,7 @@ public final class j9 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         super.onResume();
         org.telegram.ui.Components.h51 h51Var = this.f48935c;
         if (h51Var != null) {
-            h51Var.f35790g3.O(true);
+            h51Var.f35789g3.O(true);
         }
     }
 

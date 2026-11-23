@@ -203,7 +203,7 @@ public final class nq extends org.telegram.ui.Components.dk0 {
                 org.telegram.ui.Components.yz yzVar = new org.telegram.ui.Components.yz(context, null);
                 yzVar.setIsSingleCell(true);
                 yzVar.setViewType(6);
-                yzVar.f42606x = false;
+                yzVar.f42605x = false;
                 yzVar.setUseHeaderOffset(false);
                 yzVar.setPaddingLeft(org.telegram.messenger.g0.L(5.0f));
                 v4.q0 q0Var = new v4.q0(-1, -1);

@@ -51,7 +51,7 @@ public final class fo0 extends FrameLayout {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
                     ap0Var.f33585s2 = ofFloat;
                     ofFloat.addUpdateListener(new h60(this, 18));
-                    ap0Var.f33585s2.setInterpolator(nr.f37961f);
+                    ap0Var.f33585s2.setInterpolator(nr.f37960f);
                     ap0Var.f33585s2.setDuration(200L);
                     ap0Var.f33585s2.start();
                     ap0Var.f33583r2 = 0.0f;

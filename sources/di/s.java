@@ -38,7 +38,7 @@ public final class s extends FrameLayout {
         h51 h51Var = new h51(context, i10, classGuid, true, bVar, cVar, null, h6Var);
         this.f9715c = h51Var;
         h51Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
-        h51Var.f35790g3.f34062r = false;
+        h51Var.f35789g3.f34062r = false;
         h51Var.setCaptureSectionsDecoratorAllowed(true);
         h51Var.setClipToPadding(false);
         h51Var.setOverScrollMode(0);
@@ -75,7 +75,7 @@ public final class s extends FrameLayout {
             String str = this.d;
             tL_payments_getStarsTransactions.offset = str;
             tL_payments_getStarsTransactions.limit = 20;
-            this.f9715c.f35790g3.O(false);
+            this.f9715c.f35789g3.O(false);
             i10 = ((org.telegram.ui.ActionBar.g2) tVar).currentAccount;
             int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_payments_getStarsTransactions, new bi.o1(4, this, str));
             i11 = ((org.telegram.ui.ActionBar.g2) tVar).currentAccount;

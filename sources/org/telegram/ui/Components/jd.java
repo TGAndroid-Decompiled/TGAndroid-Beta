@@ -5,29 +5,29 @@ import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class jd implements Runnable {
-    public final int f36469a = 0;
-    public final Object f36470b;
-    public final boolean f36471c;
+    public final int f36468a = 0;
+    public final Object f36469b;
+    public final boolean f36470c;
     public final int d;
-    public final int f36472e;
-    public final boolean f36473f;
+    public final int f36471e;
+    public final boolean f36472f;
     public final Long h;
-    public final String f36474n;
-    public final Object f36475r;
-    public final Object f36476s;
-    public final Object f36477w;
+    public final String f36473n;
+    public final Object f36474r;
+    public final Object f36475s;
+    public final Object f36476w;
 
     public jd(ig igVar, Object obj, org.telegram.messenger.ff ffVar, boolean z10, int i7, int i10, boolean z11, Long l10, String str, Object obj2) {
-        this.f36475r = igVar;
-        this.f36470b = obj;
-        this.f36476s = ffVar;
-        this.f36471c = z10;
+        this.f36474r = igVar;
+        this.f36469b = obj;
+        this.f36475s = ffVar;
+        this.f36470c = z10;
         this.d = i7;
-        this.f36472e = i10;
-        this.f36473f = z11;
+        this.f36471e = i10;
+        this.f36472f = z11;
         this.h = l10;
-        this.f36474n = str;
-        this.f36477w = obj2;
+        this.f36473n = str;
+        this.f36476w = obj2;
     }
 
     @Override
@@ -42,13 +42,13 @@ public final class jd implements Runnable {
         String str;
         org.telegram.messenger.gj threadMessage4;
         String str2;
-        switch (this.f36469a) {
+        switch (this.f36468a) {
             case 0:
-                ChatActivityEnterView.f((ChatActivityEnterView) this.f36475r, (TLRPC.Document) this.f36476s, this.f36474n, (org.telegram.messenger.cj) this.f36477w, this.f36471c, this.d, this.f36472e, this.f36470b, this.h, this.f36473f);
+                ChatActivityEnterView.f((ChatActivityEnterView) this.f36474r, (TLRPC.Document) this.f36475s, this.f36473n, (org.telegram.messenger.cj) this.f36476w, this.f36470c, this.d, this.f36471e, this.f36469b, this.h, this.f36472f);
                 return;
             default:
-                org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) this.f36476s;
-                ChatActivityEnterView chatActivityEnterView = ((ig) this.f36475r).f36246a;
+                org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) this.f36475s;
+                ChatActivityEnterView chatActivityEnterView = ((ig) this.f36474r).f36245a;
                 boolean z11 = chatActivityEnterView.f32692p4;
                 org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
                 boolean z12 = false;
@@ -65,15 +65,15 @@ public final class jd implements Runnable {
                 } else {
                     storyItem = null;
                 }
-                Object obj = this.f36470b;
+                Object obj = this.f36469b;
                 boolean z13 = obj instanceof TLRPC.Document;
-                boolean z14 = this.f36471c;
+                boolean z14 = this.f36470c;
                 int i7 = this.d;
-                int i10 = this.f36472e;
+                int i10 = this.f36471e;
                 Long l10 = this.h;
                 int i11 = i7;
-                String str3 = this.f36474n;
-                Object obj2 = this.f36477w;
+                String str3 = this.f36473n;
+                Object obj2 = this.f36476w;
                 if (z13) {
                     TLRPC.Document document = (TLRPC.Document) obj;
                     if (ffVar != null) {
@@ -88,7 +88,7 @@ public final class jd implements Runnable {
                         f20Var.f23845t = true;
                         z12 = c10;
                     }
-                    boolean z15 = this.f36473f;
+                    boolean z15 = this.f36472f;
                     if (z12) {
                         ArrayList arrayList = new ArrayList();
                         ?? obj3 = new Object();
@@ -222,15 +222,15 @@ public final class jd implements Runnable {
     }
 
     public jd(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, org.telegram.messenger.cj cjVar, boolean z10, int i7, int i10, Object obj, Long l10, boolean z11) {
-        this.f36475r = chatActivityEnterView;
-        this.f36476s = document;
-        this.f36474n = str;
-        this.f36477w = cjVar;
-        this.f36471c = z10;
+        this.f36474r = chatActivityEnterView;
+        this.f36475s = document;
+        this.f36473n = str;
+        this.f36476w = cjVar;
+        this.f36470c = z10;
         this.d = i7;
-        this.f36472e = i10;
-        this.f36470b = obj;
+        this.f36471e = i10;
+        this.f36469b = obj;
         this.h = l10;
-        this.f36473f = z11;
+        this.f36472f = z11;
     }
 }

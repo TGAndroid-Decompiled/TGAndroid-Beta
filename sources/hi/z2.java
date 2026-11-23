@@ -537,7 +537,7 @@ public final class z2 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             y2 y2Var = this.K;
-            if (y2Var != null && y2Var.f38321a.f32874q) {
+            if (y2Var != null && y2Var.f38320a.f32874q) {
                 z10 = true;
             } else {
                 z10 = false;

@@ -200,7 +200,7 @@ public final class h extends rg.b {
                 ((ah.f) view).setLetter(gVar.f60537f);
             } else if (i12 == 5) {
                 try {
-                    ((nv0) view).f37994b.getImageReceiver().P0(false);
+                    ((nv0) view).f37993b.getImageReceiver().P0(false);
                 } catch (Exception unused) {
                 }
             } else if (i12 == 8) {
@@ -252,8 +252,8 @@ public final class h extends rg.b {
             if (i7 == 5) {
                 nv0 nv0Var = new nv0(context, null, 1, h6Var);
                 nv0Var.d.setText(hd.N0(2131747974, null));
-                nv0Var.f37996e.setText(hd.N0(2131745611, null));
-                nv0Var.f37993a.setTranslationY(g0.L(24.0f));
+                nv0Var.f37995e.setText(hd.N0(2131745611, null));
+                nv0Var.f37992a.setTranslationY(g0.L(24.0f));
                 rVar = nv0Var;
             } else {
                 boolean z10 = this.h;

@@ -638,7 +638,7 @@ public final class p6 {
                                 }
                             } else {
                                 org.telegram.ui.Components.p5 p5Var = new org.telegram.ui.Components.p5(1, i7, d.f5508g);
-                                p5Var.f38502m = true;
+                                p5Var.f38501m = true;
                                 p5Var.u();
                             }
                         }

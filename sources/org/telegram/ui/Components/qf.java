@@ -32,12 +32,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x2.e1, com.google.android.gms.common.api.internal.q, tg.m1, sg.t0, u4.c, com.google.android.gms.common.api.internal.n, v4.e0, v4.k1 {
-    public final int f38895a;
-    public final Object f38896b;
+    public final int f38894a;
+    public final Object f38895b;
 
     public qf(Object obj, int i7) {
-        this.f38895a = i7;
-        this.f38896b = obj;
+        this.f38894a = i7;
+        this.f38895b = obj;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public void A0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f38896b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f38895b;
         if (arrayDeque.isEmpty()) {
             return;
         }
@@ -115,11 +115,11 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
         } else {
             Log.e("ProfileInstaller", str, (Throwable) obj);
         }
-        ((ProfileInstallReceiver) this.f38896b).setResultCode(i7);
+        ((ProfileInstallReceiver) this.f38895b).setResultCode(i7);
     }
 
     public long C0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f38896b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f38895b;
         if (arrayDeque.isEmpty()) {
             return 0L;
         }
@@ -128,17 +128,17 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public View E() {
-        return ((iu) this.f38896b).O1;
+        return ((iu) this.f38895b).O1;
     }
 
     @Override
     public void E0() {
-        ((k51) this.f38896b).h.c(false);
+        ((k51) this.f38895b).h.c(false);
     }
 
     @Override
     public void F(int i7, int i10) {
-        ((v4.i0) this.f38896b).j(i7, i10);
+        ((v4.i0) this.f38895b).j(i7, i10);
     }
 
     @Override
@@ -148,17 +148,17 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void I() {
-        ((jt0) this.f38896b).J.a(-1);
+        ((jt0) this.f38895b).J.a(-1);
     }
 
     @Override
     public int J() {
-        return ((iu) this.f38896b).P1;
+        return ((iu) this.f38895b).P1;
     }
 
     @Override
     public org.telegram.ui.ActionBar.y0 K(String str) {
-        org.telegram.ui.ActionBar.g5 g5Var = ((jt0) this.f38896b).J;
+        org.telegram.ui.ActionBar.g5 g5Var = ((jt0) this.f38895b).J;
         return g5Var.d(0, 0, null, str, true, true, g5Var.f29918n0);
     }
 
@@ -169,7 +169,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void M(float f10, float f11) {
-        Runnable runnable = ((k51) this.f38896b).f36794j;
+        Runnable runnable = ((k51) this.f38895b).f36793j;
         if (runnable != null) {
             runnable.run();
         }
@@ -177,7 +177,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void M0(int i7, int i10) {
-        ((v4.i0) this.f38896b).p(i7, i10);
+        ((v4.i0) this.f38895b).p(i7, i10);
     }
 
     @Override
@@ -192,15 +192,15 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public Paint.FontMetricsInt P() {
-        return ((ui) this.f38896b).C2.getEditText().getPaint().getFontMetricsInt();
+        return ((ui) this.f38895b).C2.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public r0.l1 P0(View view, r0.l1 l1Var) {
         i0.b I0 = org.telegram.messenger.g0.I0(l1Var, false);
-        yk0 yk0Var = (yk0) this.f38896b;
-        yk0Var.f42451w.setPadding(I0.f15917a, I0.f15918b, I0.f15919c, I0.d);
-        yk0Var.f42450s.requestLayout();
+        yk0 yk0Var = (yk0) this.f38895b;
+        yk0Var.f42450w.setPadding(I0.f15917a, I0.f15918b, I0.f15919c, I0.d);
+        yk0Var.f42449s.requestLayout();
         return r0.l1.f56302b;
     }
 
@@ -212,7 +212,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     @Override
     public boolean Q0(float f10, float f11) {
         int L = org.telegram.messenger.g0.L(9.0f);
-        RectF rectF = ((k51) this.f38896b).f36792g;
+        RectF rectF = ((k51) this.f38895b).f36791g;
         float f12 = -L;
         rectF.inset(f12, f12);
         boolean contains = rectF.contains(f10, f11);
@@ -223,7 +223,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public int R() {
-        v4.p0 p0Var = (v4.p0) this.f38896b;
+        v4.p0 p0Var = (v4.p0) this.f38895b;
         return p0Var.f59259m - p0Var.E();
     }
 
@@ -234,12 +234,12 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void T(boolean z10) {
-        ((ji.r) this.f38896b).setEditPillHidden(z10);
+        ((ji.r) this.f38895b).setEditPillHidden(z10);
     }
 
     @Override
     public void U() {
-        iu iuVar = (iu) this.f38896b;
+        iu iuVar = (iu) this.f38895b;
         iuVar.N1 = null;
         iuVar.L0();
     }
@@ -251,12 +251,12 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void W(RectF rectF) {
-        ((ji.r) this.f38896b).l(rectF);
+        ((ji.r) this.f38895b).l(rectF);
     }
 
     @Override
     public void Z() {
-        ((iu) this.f38896b).M0();
+        ((iu) this.f38895b).M0();
     }
 
     @Override
@@ -271,13 +271,13 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public int a0() {
-        return ((iu) this.f38896b).Q1;
+        return ((iu) this.f38895b).Q1;
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        int i7 = this.f38895a;
-        Object obj3 = this.f38896b;
+        int i7 = this.f38894a;
+        Object obj3 = this.f38895b;
         switch (i7) {
             case 17:
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
@@ -323,11 +323,11 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void b() {
-        z71 z71Var = ((iu) this.f38896b).n1;
-        if (z71Var != null && z71Var.f42731x) {
-            z71Var.f42710a.g0();
+        z71 z71Var = ((iu) this.f38895b).n1;
+        if (z71Var != null && z71Var.f42730x) {
+            z71Var.f42709a.g0();
             z71Var.n();
-            z71Var.f42721g0.d(true, true);
+            z71Var.f42720g0.d(true, true);
         }
     }
 
@@ -339,13 +339,13 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     @Override
     public void c0(x2.f1 f1Var) {
         r2.p pVar = (r2.p) f1Var;
-        r2.j jVar = (r2.j) this.f38896b;
+        r2.j jVar = (r2.j) this.f38895b;
         jVar.H.c0(jVar);
     }
 
     @Override
     public View d0(int i7) {
-        return ((v4.p0) this.f38896b).q(i7);
+        return ((v4.p0) this.f38895b).q(i7);
     }
 
     @Override
@@ -360,7 +360,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void e0() {
-        tg.p0 p0Var = (tg.p0) this.f38896b;
+        tg.p0 p0Var = (tg.p0) this.f38895b;
         p0Var.f58115b.f57316a.u();
         p0Var.f58123x.setViewHidden(false);
         PhotoViewer photoViewer = ((org.telegram.ui.up0) p0Var).L;
@@ -375,21 +375,21 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void g0(int i7, int i10) {
-        ((v4.i0) this.f38896b).o(i7, i10);
+        ((v4.i0) this.f38895b).o(i7, i10);
     }
 
     @Override
     public void g1(int i7, int i10) {
-        ((v4.i0) this.f38896b).n(i7, i10, null);
+        ((v4.i0) this.f38895b).n(i7, i10, null);
     }
 
     @Override
     public Object mo24get() {
-        switch (this.f38895a) {
+        switch (this.f38894a) {
             case 9:
-                return new org.telegram.ui.md0((Context) ((e.a) this.f38896b).f10209a, new qb.a(28), new pb.b(28), 5);
+                return new org.telegram.ui.md0((Context) ((e.a) this.f38895b).f10209a, new qb.a(28), new pb.b(28), 5);
             default:
-                return new v5.i(Integer.valueOf(v5.i.d).intValue(), (Context) ((fd.a) this.f38896b).mo24get(), "com.google.android.datatransport.events");
+                return new v5.i(Integer.valueOf(v5.i.d).intValue(), (Context) ((fd.a) this.f38895b).mo24get(), "com.google.android.datatransport.events");
         }
     }
 
@@ -410,7 +410,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public org.telegram.ui.ActionBar.y0 i0(int i7, Runnable runnable, String str, boolean z10, boolean z11) {
-        jt0 jt0Var = (jt0) this.f38896b;
+        jt0 jt0Var = (jt0) this.f38895b;
         org.telegram.ui.ActionBar.y0 e10 = jt0Var.J.e(0, i7, str);
         if (z10) {
             int i10 = org.telegram.ui.ActionBar.m6.f29602p7;
@@ -422,13 +422,13 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void j() {
-        tg.p0 p0Var = (tg.p0) this.f38896b;
+        tg.p0 p0Var = (tg.p0) this.f38895b;
         p0Var.f58117e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new hi.j3(p0Var, 26)).setInterpolator(nr.h);
     }
 
     @Override
     public ji.r k0() {
-        return (ji.r) this.f38896b;
+        return (ji.r) this.f38895b;
     }
 
     @Override
@@ -438,7 +438,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void l0(int i7, int i10, CharSequence charSequence, boolean z10) {
-        ui uiVar = (ui) this.f38896b;
+        ui uiVar = (ui) this.f38895b;
         if (uiVar.b1() == null) {
             return;
         }
@@ -467,7 +467,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void n0() {
-        ((tg.p0) this.f38896b).f58123x.setViewHidden(true);
+        ((tg.p0) this.f38895b).f58123x.setViewHidden(true);
     }
 
     @Override
@@ -477,8 +477,8 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public boolean p() {
-        iu iuVar = (iu) this.f38896b;
-        if (iuVar.O1 == iuVar.f36312m1 && iuVar.f36323y1 && "inapp".equals(org.telegram.messenger.np.u1(iuVar.f30173a).D3)) {
+        iu iuVar = (iu) this.f38895b;
+        if (iuVar.O1 == iuVar.f36311m1 && iuVar.f36322y1 && "inapp".equals(org.telegram.messenger.np.u1(iuVar.f30173a).D3)) {
             return false;
         }
         return true;
@@ -488,7 +488,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     public void q(Object obj) {
         com.google.android.gms.common.api.internal.m mVar;
         org.telegram.messenger.y9 y9Var = (org.telegram.messenger.y9) obj;
-        androidx.activity.n nVar = ((u7.i) this.f38896b).f58493b;
+        androidx.activity.n nVar = ((u7.i) this.f38895b).f58493b;
         synchronized (nVar) {
             nVar.f1807b = false;
             mVar = ((com.google.android.gms.common.api.internal.o) nVar.f1808c).f6367b;
@@ -500,7 +500,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void r(int i7) {
-        org.telegram.ui.Wallet.na naVar = (org.telegram.ui.Wallet.na) this.f38896b;
+        org.telegram.ui.Wallet.na naVar = (org.telegram.ui.Wallet.na) this.f38895b;
         if (!naVar.f44715r && i7 == naVar.K) {
             naVar.j0(naVar.O.getText().toString().trim());
         }
@@ -519,7 +519,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
         int i19;
         byte[] bArr;
         int i20;
-        x3.f fVar = (x3.f) this.f38896b;
+        x3.f fVar = (x3.f) this.f38895b;
         x3.g gVar = fVar.f60392b;
         SparseArray sparseArray = fVar.f60394c;
         h2.x xVar = fVar.f60408k;
@@ -783,12 +783,12 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public ClipDescription s0() {
-        return ((t0.h) this.f38896b).getDescription();
+        return ((t0.h) this.f38895b).getDescription();
     }
 
     @Override
     public void t0() {
-        ((k51) this.f38896b).h.c(true);
+        ((k51) this.f38895b).h.c(true);
     }
 
     @Override
@@ -797,7 +797,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public void u0(int i7, long j3) {
-        x3.f fVar = (x3.f) this.f38896b;
+        x3.f fVar = (x3.f) this.f38895b;
         if (i7 != 240) {
             if (i7 != 241) {
                 if (i7 != 20529) {
@@ -1074,7 +1074,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     public void v0() {
         r2.p[] pVarArr;
         r2.p[] pVarArr2;
-        r2.j jVar = (r2.j) this.f38896b;
+        r2.j jVar = (r2.j) this.f38895b;
         int i7 = jVar.I - 1;
         jVar.I = i7;
         if (i7 > 0) {
@@ -1112,7 +1112,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public void x0(int i7) {
-        RecyclerView recyclerView = (RecyclerView) this.f38896b;
+        RecyclerView recyclerView = (RecyclerView) this.f38895b;
         View childAt = recyclerView.getChildAt(i7);
         if (childAt != null) {
             recyclerView.r(childAt);
@@ -1127,7 +1127,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public void y0(long j3, int i7, long j10) {
-        x3.f fVar = (x3.f) this.f38896b;
+        x3.f fVar = (x3.f) this.f38895b;
         fVar.f60407j0.getClass();
         if (i7 != 160) {
             if (i7 != 174) {
@@ -1238,7 +1238,7 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public void y1(float f10) {
-        org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f38896b;
+        org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f38895b;
         sg.k0.e(vp0Var.f57946z1).k(String.valueOf(sg.h.f57259a.indexOf(vp0Var.G0.getCurrentBrush())), f10);
         sg.h1 h1Var = vp0Var.f57936u1;
         h1Var.f57265c = f10;
@@ -1247,11 +1247,11 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
 
     @Override
     public int z() {
-        return ((v4.p0) this.f38896b).D();
+        return ((v4.p0) this.f38895b).D();
     }
 
     public void z0(int i7, String str) {
-        x3.f fVar = (x3.f) this.f38896b;
+        x3.f fVar = (x3.f) this.f38895b;
         if (i7 != 134) {
             if (i7 != 17026) {
                 if (i7 != 21358) {
@@ -1277,39 +1277,39 @@ public final class qf implements oe0, s90, wi.l, r0.m, is0, ue.a, jg.y1, q5.b, x
     }
 
     public qf(boolean z10) {
-        this.f38895a = 10;
-        this.f38896b = new AtomicBoolean(z10);
+        this.f38894a = 10;
+        this.f38895b = new AtomicBoolean(z10);
     }
 
     public qf(int i7) {
-        this.f38895a = i7;
+        this.f38894a = i7;
         switch (i7) {
             case 12:
-                this.f38896b = new ArrayDeque(16);
+                this.f38895b = new ArrayDeque(16);
                 return;
             default:
-                this.f38896b = h9.i0.p();
+                this.f38895b = h9.i0.p();
                 return;
         }
     }
 
     public qf(Uri uri, ClipDescription clipDescription, Uri uri2) {
-        this.f38895a = 18;
+        this.f38894a = 18;
         if (Build.VERSION.SDK_INT >= 25) {
-            this.f38896b = new t0.g(uri, clipDescription, uri2);
+            this.f38895b = new t0.g(uri, clipDescription, uri2);
         } else {
-            this.f38896b = new org.telegram.ui.md0(uri, clipDescription, uri2, 16);
+            this.f38895b = new org.telegram.ui.md0(uri, clipDescription, uri2, 16);
         }
     }
 
     public qf(Context context, p10 p10Var) {
-        this.f38895a = 3;
-        this.f38896b = new o10(context, p10Var);
+        this.f38894a = 3;
+        this.f38895b = new o10(context, p10Var);
     }
 
     @Override
     public float get() {
-        org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f38896b;
+        org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f38895b;
         int i7 = vp0Var.f57946z1;
         sg.h currentBrush = vp0Var.G0.getCurrentBrush();
         if (currentBrush == null) {

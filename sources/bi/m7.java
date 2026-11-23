@@ -14,13 +14,13 @@ public final class m7 extends n41 {
 
     public static o41 i(String str) {
         o41 K = o41.K(m7.class);
-        K.f38092m = str;
+        K.f38091m = str;
         return K;
     }
 
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
-        ((n7) view).set(o41Var.f38092m);
+        ((n7) view).set(o41Var.f38091m);
     }
 
     @Override

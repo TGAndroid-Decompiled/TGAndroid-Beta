@@ -284,7 +284,7 @@ public final class c0 implements ib.b, wi0, ly0 {
                 obj.f33906c = xy0Var;
                 int L2 = org.telegram.messenger.g0.L(9.32f);
                 xy0 xy0Var2 = obj.f33906c;
-                obj.f33909g = L2 + ((int) xy0Var2.f42247c);
+                obj.f33909g = L2 + ((int) xy0Var2.f42246c);
                 xy0Var2.i();
                 int i11 = m6.f29565n8;
                 obj.f33908f = i11;

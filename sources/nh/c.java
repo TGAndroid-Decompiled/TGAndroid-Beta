@@ -98,7 +98,7 @@ public final class c extends ViewGroup implements ue.a, gs, te.b {
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         imageReceiver.J0(g0.L(11.0f));
-        nVar.f41185c.setStrokeWidth(g0.L(1.0f));
+        nVar.f41184c.setStrokeWidth(g0.L(1.0f));
         this.f21561n = new ImageReceiver(this);
         setWillNotDraw(false);
     }
@@ -112,8 +112,8 @@ public final class c extends ViewGroup implements ue.a, gs, te.b {
         this.f21560f.setAlpha(Math.round(this.f21557b.f57700e * 100.0f));
         int round = Math.round(this.f21556a.f57700e * 220.0f);
         n nVar = this.h;
-        nVar.f41183a.setAlpha(round);
-        nVar.f41185c.setAlpha(round);
+        nVar.f41182a.setAlpha(round);
+        nVar.f41184c.setAlpha(round);
         invalidate();
     }
 
@@ -359,7 +359,7 @@ public final class c extends ViewGroup implements ue.a, gs, te.b {
             }
         }
         setMeasuredDimension(size, this.f21565x.f10472b);
-        this.h.f41187f = Math.round(((RectF) this.f21565x.f10473c).width() + g0.L(48.0f));
+        this.h.f41186f = Math.round(((RectF) this.f21565x.f10473c).width() + g0.L(48.0f));
     }
 
     @Override

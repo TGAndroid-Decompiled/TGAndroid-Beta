@@ -112,8 +112,8 @@ public final class q5 implements DialogInterface.OnDismissListener {
                     profileActivity.W.P(86);
                     org.telegram.ui.Components.tf0 tf0Var = profileActivity.f43554a0;
                     if (tf0Var != null) {
-                        org.telegram.ui.Components.qf0 i10 = org.telegram.ui.Components.tf0.i(14, tf0Var.f39884a);
-                        if (i10 != null && (oh0Var = i10.f38905k) != null) {
+                        org.telegram.ui.Components.qf0 i10 = org.telegram.ui.Components.tf0.i(14, tf0Var.f39883a);
+                        if (i10 != null && (oh0Var = i10.f38904k) != null) {
                             oh0Var.start();
                         }
                     } else {

@@ -1260,7 +1260,7 @@ public abstract class z3 extends du0 implements gs {
             return;
         }
         r0();
-        this.f12914s2.f40379e2.i0();
+        this.f12914s2.f40378e2.i0();
         this.f12914s2.z1(-1, true);
         n2 n2Var = this.f12914s2;
         n2Var.U1 = this.l1;
@@ -1406,11 +1406,11 @@ public abstract class z3 extends du0 implements gs {
                 Drawable mutate = getContext().getDrawable(2131232795).mutate();
                 mutate.setAlpha(255);
                 oq oqVar = new oq(mutate, null);
-                oqVar.f38339x = true;
+                oqVar.f38338x = true;
                 int L = org.telegram.messenger.g0.L(16.0f);
                 int L2 = org.telegram.messenger.g0.L(16.0f);
                 oqVar.h = L;
-                oqVar.f38335n = L2;
+                oqVar.f38334n = L2;
                 v3Var.f12685b.i(oqVar);
             } else {
                 v3Var.f12685b.i(null);
@@ -1435,11 +1435,11 @@ public abstract class z3 extends du0 implements gs {
             Drawable mutate2 = getContext().getDrawable(2131232795).mutate();
             mutate2.setAlpha(255);
             oq oqVar2 = new oq(mutate2, null);
-            oqVar2.f38339x = true;
+            oqVar2.f38338x = true;
             int L3 = org.telegram.messenger.g0.L(16.0f);
             int L4 = org.telegram.messenger.g0.L(16.0f);
             oqVar2.h = L3;
-            oqVar2.f38335n = L4;
+            oqVar2.f38334n = L4;
             u3Var2.i(oqVar2);
             return;
         }
@@ -1539,7 +1539,7 @@ public abstract class z3 extends du0 implements gs {
                     ofFloat.addUpdateListener(new s1(this, 1));
                     ofFloat.addListener(new d2(this, z10, 0));
                     ofFloat.setDuration(200L);
-                    ofFloat.setInterpolator(nr.f37962g);
+                    ofFloat.setInterpolator(nr.f37961g);
                     ofFloat.start();
                     return;
                 }
@@ -1770,7 +1770,7 @@ public abstract class z3 extends du0 implements gs {
             float measuredHeight = (t2Var.getMeasuredHeight() / 2.0f) + t2Var.getY() + linearLayout.getY();
             int L = org.telegram.messenger.g0.L(24.0f);
             float f10 = L / 2.0f;
-            float T1 = org.telegram.messenger.g0.T1(this.f12871g3, measuredWidth - f10, nr.f37962g.getInterpolation(this.f12867f3));
+            float T1 = org.telegram.messenger.g0.T1(this.f12871g3, measuredWidth - f10, nr.f37961g.getInterpolation(this.f12867f3));
             float T12 = org.telegram.messenger.g0.T1(this.f12875h3, measuredHeight - f10, this.f12867f3);
             int W1 = org.telegram.messenger.g0.W1(this.f12867f3, this.f12879i3, L);
             if (this.Z2) {
@@ -2336,16 +2336,16 @@ public abstract class z3 extends du0 implements gs {
                     if (storyItem.views.reactions_count > 0) {
                         spannableStringBuilder2.append((CharSequence) "  d ");
                         nq nqVar = new nq(2131231981, 0);
-                        nqVar.f37955y = -53704;
-                        nqVar.f37950n = org.telegram.messenger.g0.L(0.2f);
+                        nqVar.f37954y = -53704;
+                        nqVar.f37949n = org.telegram.messenger.g0.L(0.2f);
                         spannableStringBuilder2.setSpan(nqVar, spannableStringBuilder2.length() - 2, spannableStringBuilder2.length() - 1, 0);
                         spannableStringBuilder2.append((CharSequence) String.valueOf(storyItem.views.reactions_count));
                     }
                     if (storyItem.views.forwards_count > 0) {
                         spannableStringBuilder2.append((CharSequence) "  d ");
                         nq nqVar2 = new nq(2131231972, 0);
-                        nqVar2.f37955y = -14161823;
-                        nqVar2.f37950n = org.telegram.messenger.g0.L(0.2f);
+                        nqVar2.f37954y = -14161823;
+                        nqVar2.f37949n = org.telegram.messenger.g0.L(0.2f);
                         spannableStringBuilder2.setSpan(nqVar2, spannableStringBuilder2.length() - 2, spannableStringBuilder2.length() - 1, 0);
                         spannableStringBuilder2.append((CharSequence) String.valueOf(storyItem.views.forwards_count));
                     }
@@ -2702,7 +2702,7 @@ public abstract class z3 extends du0 implements gs {
                         childAt.setTranslationY(this.L1.getEmojiView().getMeasuredHeight() - this.f12910r2);
                     } else if (childAt instanceof m30) {
                         m30 m30Var = (m30) childAt;
-                        View view2 = m30Var.f37395c;
+                        View view2 = m30Var.f37394c;
                         if (view2 != null) {
                             m30Var.d(view2);
                         }
@@ -3430,7 +3430,7 @@ public abstract class z3 extends du0 implements gs {
             n2 n2Var = new n2(this, getContext(), this.f12887l0);
             this.f12914s2 = n2Var;
             n2Var.X3 = new o2(this);
-            n2Var.f40379e2.i0();
+            n2Var.f40378e2.i0();
             n2 n2Var2 = this.f12914s2;
             n2Var2.R1 = true;
             n2Var2.f1();
@@ -3543,7 +3543,7 @@ public abstract class z3 extends du0 implements gs {
         editField.f32976u0.w(editField.getPaint().getTextSize());
         gt gtVar2 = new gt(editField, 1);
         editField.f32978v0 = gtVar2;
-        gtVar2.f37796b = 5;
+        gtVar2.f37795b = 5;
         gtVar2.u(editField.f32984y0);
         editField.f32978v0.w(editField.getPaint().getTextSize());
         this.L1.getEditField().setScaleX(0.0f);

@@ -58,8 +58,8 @@ public final class k4 extends View {
         h80Var.rewind();
         int i10 = this.h;
         int i11 = this.f9180n;
-        h80Var.f39317e = i10;
-        h80Var.f39318f = i11;
+        h80Var.f39316e = i10;
+        h80Var.f39317f = i11;
         if (this.f9179f) {
             h80Var.e(null, 0, 0.0f, 0.0f);
             float f10 = Float.MAX_VALUE;

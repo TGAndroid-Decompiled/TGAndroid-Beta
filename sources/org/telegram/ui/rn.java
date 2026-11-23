@@ -333,7 +333,7 @@ public class rn extends org.telegram.ui.ActionBar.g2 implements org.telegram.ui.
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.f51667s.f41961c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.f51667s.f41960c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -514,7 +514,7 @@ public class rn extends org.telegram.ui.ActionBar.g2 implements org.telegram.ui.
         String str;
         String str2;
         if (!this.O0 && (ytVar = this.f51672w) != null) {
-            if (ytVar.f42535a.length() == 0) {
+            if (ytVar.f42534a.length() == 0) {
                 Vibrator vibrator = (Vibrator) getParentActivity().getSystemService("vibrator");
                 if (vibrator != null) {
                     vibrator.vibrate(200L);
@@ -633,7 +633,7 @@ public class rn extends org.telegram.ui.ActionBar.g2 implements org.telegram.ui.
     @Override
     public final boolean onBackPressed(boolean z10) {
         org.telegram.ui.Components.yt ytVar = this.f51672w;
-        if (ytVar != null && ytVar.f42538e) {
+        if (ytVar != null && ytVar.f42537e) {
             if (z10) {
                 ytVar.k(true);
                 return false;
@@ -886,7 +886,7 @@ public class rn extends org.telegram.ui.ActionBar.g2 implements org.telegram.ui.
     public final void restoreSelfArgs(Bundle bundle) {
         org.telegram.ui.Components.x30 x30Var = this.f51667s;
         if (x30Var != null) {
-            x30Var.f41963f = bundle.getString("path");
+            x30Var.f41962f = bundle.getString("path");
         }
     }
 
@@ -934,7 +934,7 @@ public class rn extends org.telegram.ui.ActionBar.g2 implements org.telegram.ui.
     public final void saveSelfArgs(Bundle bundle) {
         String str;
         org.telegram.ui.Components.x30 x30Var = this.f51667s;
-        if (x30Var != null && (str = x30Var.f41963f) != null) {
+        if (x30Var != null && (str = x30Var.f41962f) != null) {
             bundle.putString("path", str);
         }
         org.telegram.ui.Components.yt ytVar = this.f51672w;

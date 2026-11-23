@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.os.SystemClock;
 public final class w40 implements Runnable {
-    public final int f41644a;
-    public final b50 f41645b;
+    public final int f41643a;
+    public final b50 f41644b;
 
     public w40(b50 b50Var, int i7) {
-        this.f41644a = i7;
-        this.f41645b = b50Var;
+        this.f41643a = i7;
+        this.f41644b = b50Var;
     }
 
     @Override
     public final void run() {
         zi.t0 t0Var;
-        int i7 = this.f41644a;
-        b50 b50Var = this.f41645b;
+        int i7 = this.f41643a;
+        b50 b50Var = this.f41644b;
         switch (i7) {
             case 0:
                 zi.t0 t0Var2 = b50Var.R;

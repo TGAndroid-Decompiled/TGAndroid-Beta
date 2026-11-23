@@ -20,44 +20,44 @@ public final class rd0 extends FrameLayout {
     public final org.telegram.ui.ActionBar.h6 E;
     public final od0 F;
     public final od0 G;
-    public qd0 f39163a;
-    public final og.o f39164b;
-    public final og.f f39165c;
+    public qd0 f39162a;
+    public final og.o f39163b;
+    public final og.f f39164c;
     public final boolean d;
-    public final ImageReceiver f39166e;
-    public boolean f39167f;
+    public final ImageReceiver f39165e;
+    public boolean f39166f;
     public boolean h;
-    public float f39168n;
-    public float f39169r;
-    public AnimatorSet f39170s;
-    public AnimatorSet f39171w;
-    public float f39172x;
-    public final Paint f39173y;
+    public float f39167n;
+    public float f39168r;
+    public AnimatorSet f39169s;
+    public AnimatorSet f39170w;
+    public float f39171x;
+    public final Paint f39172y;
 
     public rd0(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.h6 h6Var) {
         super(contextThemeWrapper);
         this.h = true;
-        this.f39169r = 1.0f;
-        this.f39172x = 0.0f;
-        this.f39173y = new Paint(1);
+        this.f39168r = 1.0f;
+        this.f39171x = 0.0f;
+        this.f39172y = new Paint(1);
         this.F = new od0(this, 0);
         this.G = new od0(this, 1);
         this.E = h6Var;
         this.d = contextThemeWrapper instanceof BubbleActivity;
         og.o oVar = new og.o(contextThemeWrapper);
-        this.f39164b = oVar;
+        this.f39163b = oVar;
         oVar.setListener(new jn(this, 3));
         oVar.setBottomPadding(org.telegram.messenger.g0.L(64.0f));
         addView(oVar);
-        this.f39166e = new ImageReceiver(this);
+        this.f39165e = new ImageReceiver(this);
         og.f fVar = new og.f(contextThemeWrapper);
-        this.f39165c = fVar;
+        this.f39164c = fVar;
         fVar.setListener(new hi.j0(2, this));
         addView(fVar, c8.ma.d(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
     public final void a() {
-        og.o oVar = this.f39164b;
+        og.o oVar = this.f39163b;
         oVar.f21922b.setVisibility(4);
         CropAreaView cropAreaView = oVar.f21921a;
         cropAreaView.setDimVisibility(false);
@@ -70,10 +70,10 @@ public final class rd0 extends FrameLayout {
         org.telegram.messenger.xe xeVar2;
         requestLayout();
         int i10 = 0;
-        this.f39167f = false;
+        this.f39166f = false;
         Bitmap bitmap2 = null;
-        this.f39166e.w0(null);
-        og.o oVar = this.f39164b;
+        this.f39165e.w0(null);
+        og.o oVar = this.f39163b;
         ImageView imageView = oVar.f21922b;
         oVar.f21931y = z10;
         oVar.d = y51Var;
@@ -122,7 +122,7 @@ public final class rd0 extends FrameLayout {
             }
             imageView.setImageBitmap(bitmap2);
         }
-        og.f fVar = this.f39165c;
+        og.f fVar = this.f39164c;
         fVar.setFreeform(z10);
         fVar.b(0.0f);
         fVar.setMirrored(false);
@@ -148,10 +148,10 @@ public final class rd0 extends FrameLayout {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         og.o oVar;
         boolean drawChild = super.drawChild(canvas, view, j3);
-        if (this.f39167f && view == (oVar = this.f39164b)) {
+        if (this.f39166f && view == (oVar = this.f39163b)) {
             RectF actualRect = oVar.getActualRect();
             int L = org.telegram.messenger.g0.L(32.0f);
-            org.telegram.ui.so0 so0Var = (org.telegram.ui.so0) this.f39163a;
+            org.telegram.ui.so0 so0Var = (org.telegram.ui.so0) this.f39162a;
             so0Var.getClass();
             PhotoViewer photoViewer = so0Var.f52091a;
             float measuredWidth = (photoViewer.S7.getMeasuredWidth() - org.telegram.messenger.g0.L(32.0f)) * photoViewer.f43409w8;
@@ -159,45 +159,45 @@ public final class rd0 extends FrameLayout {
             int L2 = org.telegram.messenger.g0.L(2.0f) + (((int) (measuredWidth + org.telegram.messenger.g0.L(16.0f))) - i7);
             int measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.L(156.0f);
             float f10 = actualRect.left;
-            float f11 = this.f39169r;
+            float f11 = this.f39168r;
             float f12 = ((L2 - f10) * f11) + f10;
             float f13 = actualRect.top;
             float z10 = com.google.android.gms.internal.vision.e2.z(measuredHeight, f13, f11, f13);
-            float width = ((L - actualRect.width()) * this.f39169r) + actualRect.width();
-            ImageReceiver imageReceiver = this.f39166e;
+            float width = ((L - actualRect.width()) * this.f39168r) + actualRect.width();
+            ImageReceiver imageReceiver = this.f39165e;
             imageReceiver.J0((int) (width / 2.0f));
             imageReceiver.y0(f12, z10, width, width);
-            imageReceiver.setAlpha(this.f39168n);
+            imageReceiver.setAlpha(this.f39167n);
             imageReceiver.h(canvas, null);
-            int i10 = (this.f39172x > 0.0f ? 1 : (this.f39172x == 0.0f ? 0 : -1));
-            Paint paint = this.f39173y;
+            int i10 = (this.f39171x > 0.0f ? 1 : (this.f39171x == 0.0f ? 0 : -1));
+            Paint paint = this.f39172y;
             if (i10 > 0) {
                 paint.setColor(-1);
-                paint.setAlpha((int) (this.f39172x * 255.0f));
+                paint.setAlpha((int) (this.f39171x * 255.0f));
                 canvas.drawCircle(actualRect.centerX(), actualRect.centerY(), actualRect.width() / 2.0f, paint);
             }
             paint.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29630qg, this.E));
-            paint.setAlpha(Math.min(255, (int) (this.f39169r * 255.0f * this.f39168n)));
+            paint.setAlpha(Math.min(255, (int) (this.f39168r * 255.0f * this.f39167n)));
             canvas.drawCircle(L2 + i7, org.telegram.messenger.g0.L(8.0f) + measuredHeight + L, org.telegram.messenger.g0.L(3.0f), paint);
         }
         return drawChild;
     }
 
     public float getRectSizeX() {
-        return this.f39164b.getCropWidth();
+        return this.f39163b.getCropWidth();
     }
 
     public float getRectSizeY() {
-        return this.f39164b.getCropHeight();
+        return this.f39163b.getCropHeight();
     }
 
     public float getRectX() {
-        return this.f39164b.getCropLeft() - org.telegram.messenger.g0.L(14.0f);
+        return this.f39163b.getCropLeft() - org.telegram.messenger.g0.L(14.0f);
     }
 
     public float getRectY() {
         int i7;
-        float cropTop = this.f39164b.getCropTop() - org.telegram.messenger.g0.L(14.0f);
+        float cropTop = this.f39163b.getCropTop() - org.telegram.messenger.g0.L(14.0f);
         if (!this.d) {
             i7 = org.telegram.messenger.g0.f24040m;
         } else {
@@ -207,8 +207,8 @@ public final class rd0 extends FrameLayout {
     }
 
     public Bitmap getVideoThumb() {
-        if (this.f39167f && this.h) {
-            return this.f39166e.n();
+        if (this.f39166f && this.h) {
+            return this.f39165e.n();
         }
         return null;
     }
@@ -216,15 +216,15 @@ public final class rd0 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f39164b.invalidate();
+        this.f39163b.invalidate();
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.h && this.f39167f) {
-            if (this.f39166e.O(motionEvent.getX(), motionEvent.getY())) {
+        if (this.h && this.f39166f) {
+            if (this.f39165e.O(motionEvent.getX(), motionEvent.getY())) {
                 if (motionEvent.getAction() == 1) {
-                    ((org.telegram.ui.so0) this.f39163a).o();
+                    ((org.telegram.ui.so0) this.f39162a).o();
                 }
                 return true;
             }
@@ -236,7 +236,7 @@ public final class rd0 extends FrameLayout {
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         og.m mVar;
         super.onLayout(z10, i7, i10, i11, i12);
-        og.o oVar = this.f39164b;
+        og.o oVar = this.f39163b;
         CropAreaView cropAreaView = oVar.f21921a;
         float cropWidth = cropAreaView.getCropWidth();
         if (cropWidth != 0.0f && (mVar = oVar.M) != null) {
@@ -250,10 +250,10 @@ public final class rd0 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.h && this.f39167f) {
-            if (this.f39166e.O(motionEvent.getX(), motionEvent.getY())) {
+        if (this.h && this.f39166f) {
+            if (this.f39165e.O(motionEvent.getX(), motionEvent.getY())) {
                 if (motionEvent.getAction() == 1) {
-                    ((org.telegram.ui.so0) this.f39163a).o();
+                    ((org.telegram.ui.so0) this.f39162a).o();
                 }
                 return true;
             }
@@ -262,23 +262,23 @@ public final class rd0 extends FrameLayout {
     }
 
     public void setAspectRatio(float f10) {
-        this.f39164b.setAspectRatio(f10);
+        this.f39163b.setAspectRatio(f10);
     }
 
     public void setDelegate(qd0 qd0Var) {
-        this.f39163a = qd0Var;
+        this.f39162a = qd0Var;
     }
 
     public void setFreeform(boolean z10) {
-        this.f39164b.setFreeform(z10);
+        this.f39163b.setFreeform(z10);
     }
 
     public void setSubtitle(String str) {
-        this.f39164b.setSubtitle(str);
+        this.f39163b.setSubtitle(str);
     }
 
     public void setVideoThumbFlashAlpha(float f10) {
-        this.f39172x = f10;
+        this.f39171x = f10;
         invalidate();
     }
 
@@ -288,20 +288,20 @@ public final class rd0 extends FrameLayout {
             return;
         }
         this.h = z10;
-        AnimatorSet animatorSet = this.f39171w;
+        AnimatorSet animatorSet = this.f39170w;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f39171w = animatorSet2;
+        this.f39170w = animatorSet2;
         if (z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
         animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.G, f10));
-        this.f39171w.setDuration(180L);
-        this.f39171w.addListener(new pd0(this, 1));
-        this.f39171w.start();
+        this.f39170w.setDuration(180L);
+        this.f39170w.addListener(new pd0(this, 1));
+        this.f39170w.start();
     }
 }

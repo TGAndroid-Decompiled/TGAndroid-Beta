@@ -19,7 +19,7 @@ public final class j implements Runnable {
             case 0:
                 boolean[] zArr = this.f1246b;
                 h21 h21Var = this.f1247c;
-                t[] tVarArr = DictationAsr.f43068a;
+                t[] tVarArr = DictationAsr.f43067a;
                 if (!zArr[0]) {
                     h21Var.a(null, null, true);
                     return;
@@ -28,7 +28,7 @@ public final class j implements Runnable {
             case 1:
                 boolean[] zArr2 = this.f1246b;
                 h21 h21Var2 = this.f1247c;
-                t[] tVarArr2 = DictationAsr.f43068a;
+                t[] tVarArr2 = DictationAsr.f43067a;
                 if (!zArr2[0]) {
                     h21Var2.a(null, null, true);
                     return;
@@ -37,7 +37,7 @@ public final class j implements Runnable {
             default:
                 boolean[] zArr3 = this.f1246b;
                 h21 h21Var3 = this.f1247c;
-                t[] tVarArr3 = DictationAsr.f43068a;
+                t[] tVarArr3 = DictationAsr.f43067a;
                 if (!zArr3[0]) {
                     h21Var3.a(null, null, true);
                     return;

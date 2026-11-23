@@ -106,7 +106,7 @@ public class h8 extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                mcVar.f37476f = new bu(1, view);
+                mcVar.f37475f = new bu(1, view);
             }
             mcVar.c(true);
             yVar.setHotspot(motionEvent.getX(), motionEvent.getY());

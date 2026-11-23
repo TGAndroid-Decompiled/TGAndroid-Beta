@@ -736,7 +736,7 @@ public final class rq extends org.telegram.ui.ActionBar.g2 implements org.telegr
         this.C1 = yzVar;
         yzVar.setViewType(6);
         org.telegram.ui.Components.yz yzVar2 = this.C1;
-        yzVar2.f42606x = false;
+        yzVar2.f42605x = false;
         yzVar2.setUseHeaderOffset(false);
         org.telegram.ui.Components.yz yzVar3 = this.C1;
         int i12 = org.telegram.ui.ActionBar.m6.G8;
@@ -751,7 +751,7 @@ public final class rq extends org.telegram.ui.ActionBar.g2 implements org.telegr
         org.telegram.ui.Components.nv0 nv0Var = new org.telegram.ui.Components.nv0(context, frameLayout2, 1, null);
         this.f51698b = nv0Var;
         nv0Var.d.setText(org.telegram.messenger.hd.N0(2131747974, null));
-        this.f51698b.f37996e.setText(org.telegram.messenger.hd.N0(2131745611, null));
+        this.f51698b.f37995e.setText(org.telegram.messenger.hd.N0(2131745611, null));
         this.f51698b.setVisibility(8);
         this.f51698b.setAnimateLayoutChange(true);
         this.f51698b.e(true, false);
@@ -879,7 +879,7 @@ public final class rq extends org.telegram.ui.ActionBar.g2 implements org.telegr
         arrayList.add(new org.telegram.ui.ActionBar.v6(this.f51701c, 0, new Class[]{org.telegram.ui.Cells.b5.class}, new String[]{"statusColor"}, (Drawable[]) null, f6Var, i7));
         arrayList.add(new org.telegram.ui.ActionBar.v6(this.f51701c, 0, new Class[]{org.telegram.ui.Cells.b5.class}, new String[]{"statusOnlineColor"}, (Drawable[]) null, f6Var, org.telegram.ui.ActionBar.m6.f29563n6));
         arrayList.add(new org.telegram.ui.ActionBar.v6(this.f51698b.d, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.u6) null, org.telegram.ui.ActionBar.m6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.v6(this.f51698b.f37996e, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.u6) null, i7));
+        arrayList.add(new org.telegram.ui.ActionBar.v6(this.f51698b.f37995e, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.u6) null, i7));
         return arrayList;
     }
 

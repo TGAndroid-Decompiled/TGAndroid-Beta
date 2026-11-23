@@ -137,7 +137,7 @@ public final class z9 implements View.OnClickListener {
                     float scrollX = horizontalScrollView.getScrollX();
                     float x10 = hi0Var.getX() - ((horizontalScrollView.getWidth() - hi0Var.getWidth()) / 2.0f);
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                    duration.setInterpolator(nr.f37961f);
+                    duration.setInterpolator(nr.f37960f);
                     duration.addUpdateListener(new org.telegram.ui.Cells.b(horizontalScrollView, scrollX, x10, hi0Var2, hi0Var));
                     duration.start();
                     return;

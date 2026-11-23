@@ -160,16 +160,16 @@ public final class y9 extends AnimatorListenerAdapter {
                 ((rq) ypVar.d).f51701c.removeView(view4);
                 return;
             case 11:
-                org.telegram.ui.Components.voip.y yVar = ((org.telegram.ui.Components.voip.u) this.f32522b).f41381t0;
-                if (yVar.f41496y0.getParent() != null) {
-                    yVar.f41462a.removeView(yVar.f41496y0);
+                org.telegram.ui.Components.voip.y yVar = ((org.telegram.ui.Components.voip.u) this.f32522b).f41380t0;
+                if (yVar.f41495y0.getParent() != null) {
+                    yVar.f41461a.removeView(yVar.f41495y0);
                     return;
                 }
                 return;
             case 12:
                 org.telegram.ui.Components.voip.a0 a0Var = (org.telegram.ui.Components.voip.a0) this.f32522b;
-                a0Var.f40894s = null;
-                a0Var.f40893r = 1.0f;
+                a0Var.f40893s = null;
+                a0Var.f40892r = 1.0f;
                 a0Var.b();
                 a0Var.e();
                 return;
@@ -183,7 +183,7 @@ public final class y9 extends AnimatorListenerAdapter {
                 return;
             case 14:
                 bc1 bc1Var = (bc1) this.f32522b;
-                if (!bc1Var.f40925a) {
+                if (!bc1Var.f40924a) {
                     bc1Var.W.f48370w.T = true;
                     bc1Var.W.f48370w.invalidate();
                     return;
@@ -191,14 +191,14 @@ public final class y9 extends AnimatorListenerAdapter {
                 return;
             case 15:
                 org.telegram.ui.Components.voip.l1 l1Var = (org.telegram.ui.Components.voip.l1) this.f32522b;
-                l1Var.f41161i = false;
-                l1Var.f41164l.setAlpha(35);
-                l1Var.f41163k.setAlpha(102);
-                l1Var.f41162j.setAlpha(35);
+                l1Var.f41160i = false;
+                l1Var.f41163l.setAlpha(35);
+                l1Var.f41162k.setAlpha(102);
+                l1Var.f41161j.setAlpha(35);
                 l1Var.c();
                 return;
             case 16:
-                org.telegram.ui.Components.voip.q1 q1Var = ((org.telegram.ui.Components.voip.o1) this.f32522b).f41242c;
+                org.telegram.ui.Components.voip.q1 q1Var = ((org.telegram.ui.Components.voip.o1) this.f32522b).f41241c;
                 q1Var.P = false;
                 q1Var.requestLayout();
                 return;
@@ -209,15 +209,15 @@ public final class y9 extends AnimatorListenerAdapter {
                 org.telegram.ui.Components.voip.m2 m2Var = n2Var.d;
                 m2Var.setScaleX(n2Var.U);
                 m2Var.setScaleY(n2Var.U);
-                TextureView textureView = n2Var.f41218e;
+                TextureView textureView = n2Var.f41217e;
                 if (textureView != null) {
                     textureView.setScaleX(n2Var.V);
                     textureView.setScaleY(n2Var.V);
                 }
                 n2Var.setTranslationY(0.0f);
                 n2Var.setTranslationX(0.0f);
-                n2Var.f41212a0 = n2Var.W;
-                n2Var.f41216c0 = null;
+                n2Var.f41211a0 = n2Var.W;
+                n2Var.f41215c0 = null;
                 return;
             case 18:
                 org.telegram.ui.Components.voip.q2 q2Var = (org.telegram.ui.Components.voip.q2) this.f32522b;
@@ -230,10 +230,10 @@ public final class y9 extends AnimatorListenerAdapter {
                 q2Var.a(q2Var.S, q2Var.T);
                 return;
             case 19:
-                ((org.telegram.ui.Components.voip.r2) this.f32522b).f41329c.e();
-                org.telegram.messenger.g0.O3(((org.telegram.ui.Components.voip.r2) this.f32522b).f41327a);
+                ((org.telegram.ui.Components.voip.r2) this.f32522b).f41328c.e();
+                org.telegram.messenger.g0.O3(((org.telegram.ui.Components.voip.r2) this.f32522b).f41326a);
                 if (((org.telegram.ui.Components.voip.r2) this.f32522b).getParent() != null) {
-                    WindowManager windowManager = (WindowManager) ((org.telegram.ui.Components.voip.r2) this.f32522b).f41327a.getSystemService("window");
+                    WindowManager windowManager = (WindowManager) ((org.telegram.ui.Components.voip.r2) this.f32522b).f41326a.getSystemService("window");
                     ((org.telegram.ui.Components.voip.r2) this.f32522b).setVisibility(8);
                     try {
                         windowManager.removeView((org.telegram.ui.Components.voip.r2) this.f32522b);
@@ -246,7 +246,7 @@ public final class y9 extends AnimatorListenerAdapter {
             case 20:
                 org.telegram.ui.Components.voip.x2 x2Var = (org.telegram.ui.Components.voip.x2) this.f32522b;
                 x2Var.K = false;
-                x2Var.U.f41158e = false;
+                x2Var.U.f41157e = false;
                 if (x2Var.V && (animatorSet = x2Var.R) != null) {
                     animatorSet.cancel();
                     x2Var.R.start();
@@ -254,7 +254,7 @@ public final class y9 extends AnimatorListenerAdapter {
                 x2Var.c();
                 return;
             case 21:
-                ((org.telegram.ui.Components.voip.e3) this.f32522b).f40996e.setVisibility(8);
+                ((org.telegram.ui.Components.voip.e3) this.f32522b).f40995e.setVisibility(8);
                 return;
             case 22:
                 AnimatorSet[] animatorSetArr = (AnimatorSet[]) this.f32522b;

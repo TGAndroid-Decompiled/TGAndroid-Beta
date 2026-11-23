@@ -384,7 +384,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
         String[] strArr = this.f33571k2;
         oo0 oo0Var = this.S1;
         if (oo0Var != null) {
-            str2 = strArr[oo0Var.f38316e];
+            str2 = strArr[oo0Var.f38315e];
         } else {
             TLRPC.TL_exportedMessageLink tL_exportedMessageLink = this.f33567g2;
             if (tL_exportedMessageLink != null) {
@@ -399,7 +399,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
             }
         }
         op opVar = this.f33562a2;
-        if (opVar != null && opVar.f38321a.f32874q) {
+        if (opVar != null && opVar.f38320a.f32874q) {
             try {
                 str2 = Uri.parse(str2).buildUpon().appendQueryParameter("t", org.telegram.messenger.g0.n0(this.X1)).build().toString();
             } catch (Exception e10) {
@@ -450,7 +450,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
         kVar.getSubtitleTextView().setTranslationY(org.telegram.messenger.g0.L(16.0f) * f14);
         kVar.setAlpha(f10);
         ek0Var.getLocationInWindow(iArr);
-        float interpolation = nr.f37962g.getInterpolation(f10);
+        float interpolation = nr.f37961g.getInterpolation(f10);
         for (int i7 = 0; i7 < Q0.getChildCount(); i7++) {
             View childAt = Q0.getChildAt(i7);
             if (childAt instanceof org.telegram.ui.Cells.e7) {
@@ -603,11 +603,11 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
                         long j10 = org.telegram.messenger.k10.i(ap0Var.f30173a).f24987n;
                         if (ap0Var.H2) {
                             to0 to0Var = ap0Var.G1;
-                            a0.h hVar2 = to0Var.f40002e;
+                            a0.h hVar2 = to0Var.f40001e;
                             ArrayList arrayList = to0Var.d;
                             TLRPC.Dialog dialog2 = (TLRPC.Dialog) hVar2.f(dialog.f28438id);
                             if (dialog2 == null) {
-                                to0Var.f40002e.k(dialog, dialog.f28438id);
+                                to0Var.f40001e.k(dialog, dialog.f28438id);
                                 arrayList.add(!arrayList.isEmpty(), dialog);
                             } else if (dialog2.f28438id != j10) {
                                 arrayList.remove(dialog2);
@@ -660,17 +660,17 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
             boolean z11 = true;
             if (i13 < m10) {
                 long j3 = hVar.j(i13);
-                if (c5.h(getContext(), this.f30173a, j3, (fo0Var.getTag() == null || go0Var.f42535a.length() <= 0) ? false : false)) {
+                if (c5.h(getContext(), this.f30173a, j3, (fo0Var.getTag() == null || go0Var.f42534a.length() <= 0) ? false : false)) {
                     return;
                 }
                 i13++;
             } else {
                 Editable text = go0Var.getText();
-                tt ttVar = go0Var.f42535a;
+                tt ttVar = go0Var.f42534a;
                 final CharSequence[] charSequenceArr = {text};
                 final ArrayList Y = org.telegram.messenger.si.d0(this.f30173a).Y(charSequenceArr, true, true);
                 op opVar = this.f33562a2;
-                if (opVar != null && opVar.f38321a.f32874q) {
+                if (opVar != null && opVar.f38320a.f32874q) {
                     i7 = this.X1;
                 } else {
                     i7 = -1;
@@ -699,7 +699,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
                 } else {
                     oo0 oo0Var = this.S1;
                     if (oo0Var != null) {
-                        i10 = oo0Var.f38316e;
+                        i10 = oo0Var.f38315e;
                     } else {
                         i10 = 0;
                     }
@@ -852,7 +852,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
                                     if (gjVar3 != null) {
                                         gjVar3.f24232p = true;
                                     }
-                                    if (fo0Var3.getTag() != null && go0Var3.f42535a.length() > 0) {
+                                    if (fo0Var3.getTag() != null && go0Var3.f42534a.length() > 0) {
                                         CharSequence charSequence4 = charSequenceArr2[0];
                                         if (charSequence4 == null) {
                                             charSequence3 = null;
@@ -939,7 +939,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
                             boolean z23 = z18;
                             oo0 oo0Var2 = ap0Var.S1;
                             if (oo0Var2 != null) {
-                                i23 = oo0Var2.f38316e;
+                                i23 = oo0Var2.f38315e;
                             } else {
                                 i23 = 0;
                             }
@@ -975,7 +975,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
                                         gjVar2 = null;
                                     }
                                     if (ap0Var.B2 == null) {
-                                        if (fo0Var2.getTag() != null && go0Var3.f42535a.length() > 0) {
+                                        if (fo0Var2.getTag() != null && go0Var3.f42534a.length() > 0) {
                                             CharSequence charSequence5 = charSequenceArr3[0];
                                             if (charSequence5 == null) {
                                                 charSequence2 = null;
@@ -989,7 +989,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
                                             b10 = org.telegram.messenger.yy.b(strArr[i23], j17, gjVar2, gjVar2, null, true, null, null, null, z23, 0, 0, null, false);
                                         }
                                     } else {
-                                        if (fo0Var2.getTag() != null && go0Var3.f42535a.length() > 0 && charSequenceArr3[0] != null) {
+                                        if (fo0Var2.getTag() != null && go0Var3.f42534a.length() > 0 && charSequenceArr3[0] != null) {
                                             org.telegram.messenger.gj gjVar6 = gjVar2;
                                             gjVar2 = gjVar6;
                                             org.telegram.messenger.az.C(ap0Var.f30173a).r0(org.telegram.messenger.yy.b(charSequenceArr3[0].toString(), j17, null, gjVar6, null, true, null, null, null, z23, 0, 0, null, false));
@@ -1043,7 +1043,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
                                         c10 = 0;
                                         gjVar = null;
                                     }
-                                    if (fo0Var2.getTag() != null && go0Var3.f42535a.length() > 0) {
+                                    if (fo0Var2.getTag() != null && go0Var3.f42534a.length() > 0) {
                                         CharSequence charSequence6 = charSequenceArr3[c10];
                                         if (charSequence6 == null) {
                                             charSequence = null;
@@ -1312,7 +1312,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
         }
         Object tag = this.n1.getTag();
         go0 go0Var = this.f33576o1;
-        if (tag != null && go0Var.f42535a.length() > 0) {
+        if (tag != null && go0Var.f42534a.length() > 0) {
             size++;
         }
         long j3 = 0;
@@ -1372,7 +1372,7 @@ public class ap0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.me
             return;
         }
         go0 go0Var = this.f33576o1;
-        if (go0Var != null && go0Var.f42538e) {
+        if (go0Var != null && go0Var.f42537e) {
             go0Var.k(true);
         } else {
             super.onBackPressed();

@@ -44,7 +44,7 @@ public final class py0 extends FrameLayout implements org.telegram.ui.ActionBar.
         org.telegram.ui.Components.h51 h51Var = new org.telegram.ui.Components.h51(context, qy0Var.f30173a, 0, true, new a5(this, 20), new qi0(this, 14), null, qy0Var.J0);
         this.f51010f = h51Var;
         h51Var.setClipToPadding(false);
-        h51Var.f35789f3.k1(true);
+        h51Var.f35788f3.k1(true);
         h51Var.setOnScrollListener(new g3(this, 28));
         frameLayout.addView(h51Var, c8.ma.c(-1.0f, -1));
     }
@@ -60,7 +60,7 @@ public final class py0 extends FrameLayout implements org.telegram.ui.ActionBar.
         this.h.b(z10);
         org.telegram.ui.Components.h51 h51Var = this.f51010f;
         if (h51Var != null) {
-            h51Var.f35790g3.O(true);
+            h51Var.f35789g3.O(true);
         }
     }
 
@@ -68,7 +68,7 @@ public final class py0 extends FrameLayout implements org.telegram.ui.ActionBar.
         this.f51007b = null;
         this.f51008c = null;
         this.d = tL_reportResultAddComment;
-        this.f51010f.f35790g3.O(false);
+        this.f51010f.f35789g3.O(false);
         if (this.f51011n != null) {
             org.telegram.messenger.g0.h3(new my0(this, 1), 120L);
         }

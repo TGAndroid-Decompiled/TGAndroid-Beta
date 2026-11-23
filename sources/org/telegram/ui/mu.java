@@ -18,7 +18,7 @@ public final class mu implements org.telegram.ui.Components.qj0 {
         switch (this.f49991a) {
             case 0:
                 cx cxVar = this.f49992b;
-                Object obj = cxVar.D0.f40522y0.G(i7).H;
+                Object obj = cxVar.D0.f40521y0.G(i7).H;
                 if (obj instanceof org.telegram.messenger.gj) {
                     org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) obj;
                     Bundle bundle = new Bundle();

@@ -23,7 +23,7 @@ public final class gn0 implements ValueAnimator.AnimatorUpdateListener {
                 photoViewer.f43282i3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                CropAreaView cropAreaView = photoViewer.D1.f39164b.f21921a;
+                CropAreaView cropAreaView = photoViewer.D1.f39163b.f21921a;
                 float T1 = org.telegram.messenger.g0.T1(photoViewer.f43211a6, photoViewer.f43249e6, photoViewer.f43309l6);
                 float T12 = org.telegram.messenger.g0.T1(photoViewer.X5, photoViewer.f43231c6, photoViewer.f43309l6);
                 float T13 = org.telegram.messenger.g0.T1(photoViewer.Y5, photoViewer.f43239d6, photoViewer.f43309l6);

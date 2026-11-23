@@ -41,7 +41,7 @@ public final class s extends sa implements gs {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new d7(this, 5), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new d7(this, 5), this.J0);
         this.Y1 = c51Var;
         return c51Var;
     }
@@ -66,7 +66,7 @@ public final class s extends sa implements gs {
             cg.a s5 = y8.y(this.f30173a, true).s();
             cg.a aVar = this.T1;
             ((TextView) this.U1.f10206c).setText(hd.a0(null, null, 2131743802, cg.a.j(aVar.f5304b - s5.f5304b, cg.b.f5306b).d()));
-            na naVar = this.f39533p1;
+            na naVar = this.f39532p1;
             if (naVar != null) {
                 naVar.setTitle(P0());
             }

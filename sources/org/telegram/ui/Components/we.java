@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class we implements Runnable {
-    public final int f41782a;
-    public int f41783b;
-    public final KeyEvent.Callback f41784c;
+    public final int f41781a;
+    public int f41782b;
+    public final KeyEvent.Callback f41783c;
 
     public we(KeyEvent.Callback callback, int i7, int i10) {
-        this.f41782a = i10;
-        this.f41784c = callback;
-        this.f41783b = i7;
+        this.f41781a = i10;
+        this.f41783c = callback;
+        this.f41782b = i7;
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class we implements Runnable {
         boolean z10;
         boolean z11;
         int max;
-        int i7 = this.f41782a;
-        KeyEvent.Callback callback = this.f41784c;
+        int i7 = this.f41781a;
+        KeyEvent.Callback callback = this.f41783c;
         switch (i7) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) callback;
                 fg fgVar = chatActivityEnterView.V0;
-                if (fgVar != null && (currentPage = fgVar.getCurrentPage()) != this.f41783b) {
-                    this.f41783b = currentPage;
+                if (fgVar != null && (currentPage = fgVar.getCurrentPage()) != this.f41782b) {
+                    this.f41782b = currentPage;
                     boolean z12 = chatActivityEnterView.f32677n4;
                     int i10 = 2;
                     if (currentPage != 1 && currentPage != 2) {
@@ -66,12 +66,12 @@ public final class we implements Runnable {
                 }
                 return;
             case 1:
-                int i11 = this.f41783b;
+                int i11 = this.f41782b;
                 np npVar = (np) callback;
-                v4.p0 layoutManager = npVar.f37936w1.getLayoutManager();
+                v4.p0 layoutManager = npVar.f37935w1.getLayoutManager();
                 if (layoutManager != null) {
                     if (i11 > npVar.K1) {
-                        max = Math.min(i11 + 1, npVar.f37931r1.d.size() - 1);
+                        max = Math.min(i11 + 1, npVar.f37930r1.d.size() - 1);
                     } else {
                         max = Math.max(i11 - 1, 0);
                     }
@@ -82,7 +82,7 @@ public final class we implements Runnable {
                 npVar.K1 = i11;
                 return;
             default:
-                int i12 = this.f41783b;
+                int i12 = this.f41782b;
                 hi.x7 x7Var = (hi.x7) callback;
                 if (((we) x7Var.f15760f) == this) {
                     ArrayList arrayList = new ArrayList();
@@ -110,8 +110,8 @@ public final class we implements Runnable {
     }
 
     public we(ChatActivityEnterView chatActivityEnterView) {
-        this.f41782a = 0;
-        this.f41784c = chatActivityEnterView;
-        this.f41783b = -1;
+        this.f41781a = 0;
+        this.f41783c = chatActivityEnterView;
+        this.f41782b = -1;
     }
 }

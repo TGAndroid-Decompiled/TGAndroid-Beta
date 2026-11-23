@@ -144,7 +144,7 @@ public final class yb extends View implements te.b {
                 Paint paint = (Paint) this.f10119b;
                 paint.setShader(linearGradient);
                 xy0 xy0Var = (xy0) this.f10122f;
-                float L = xy0Var.f42247c + org.telegram.messenger.g0.L(30.0f);
+                float L = xy0Var.f42246c + org.telegram.messenger.g0.L(30.0f);
                 Paint paint2 = (Paint) this.f10121e;
                 paint2.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29382d7, (org.telegram.ui.ActionBar.h6) this.h));
                 canvas.drawRect(org.telegram.messenger.g0.L(24.0f), (getHeight() / 2.0f) - 1.0f, ((getWidth() - L) / 2.0f) - org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, paint2);
@@ -152,7 +152,7 @@ public final class yb extends View implements te.b {
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set((getWidth() - L) / 2.0f, 0.0f, (getWidth() + L) / 2.0f, getHeight());
                 canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, paint);
-                ((xy0) this.f10122f).c((getWidth() - xy0Var.f42247c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
+                ((xy0) this.f10122f).c((getWidth() - xy0Var.f42246c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
                 return;
             case 1:
                 ArrayList arrayList = (ArrayList) this.d;

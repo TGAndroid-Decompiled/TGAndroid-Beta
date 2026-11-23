@@ -3,23 +3,23 @@ package org.telegram.ui.Components;
 import android.view.View;
 import android.widget.LinearLayout;
 public final class v1 implements View.OnClickListener {
-    public final int f40624a = 1;
-    public final LinearLayout f40625b;
-    public final int[] f40626c;
+    public final int f40623a = 1;
+    public final LinearLayout f40624b;
+    public final int[] f40625c;
 
     public v1(LinearLayout linearLayout, int[] iArr) {
-        this.f40625b = linearLayout;
-        this.f40626c = iArr;
+        this.f40624b = linearLayout;
+        this.f40625c = iArr;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         boolean z11;
-        switch (this.f40624a) {
+        switch (this.f40623a) {
             case 0:
-                this.f40626c[0] = ((Integer) view.getTag()).intValue();
-                LinearLayout linearLayout = this.f40625b;
+                this.f40625c[0] = ((Integer) view.getTag()).intValue();
+                LinearLayout linearLayout = this.f40624b;
                 int childCount = linearLayout.getChildCount();
                 for (int i7 = 0; i7 < childCount; i7++) {
                     View childAt = linearLayout.getChildAt(i7);
@@ -35,7 +35,7 @@ public final class v1 implements View.OnClickListener {
                 }
                 return;
             default:
-                LinearLayout linearLayout2 = this.f40625b;
+                LinearLayout linearLayout2 = this.f40624b;
                 int childCount2 = linearLayout2.getChildCount();
                 for (int i10 = 0; i10 < childCount2; i10++) {
                     org.telegram.ui.Cells.k6 k6Var2 = (org.telegram.ui.Cells.k6) linearLayout2.getChildAt(i10);
@@ -46,13 +46,13 @@ public final class v1 implements View.OnClickListener {
                     }
                     k6Var2.f30958c.a(z11, true);
                 }
-                this.f40626c[0] = org.telegram.ui.Cells.u8.f32072f[((Integer) view.getTag()).intValue()];
+                this.f40625c[0] = org.telegram.ui.Cells.u8.f32072f[((Integer) view.getTag()).intValue()];
                 return;
         }
     }
 
     public v1(int[] iArr, LinearLayout linearLayout) {
-        this.f40626c = iArr;
-        this.f40625b = linearLayout;
+        this.f40625c = iArr;
+        this.f40624b = linearLayout;
     }
 }

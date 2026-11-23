@@ -10,14 +10,14 @@ public final class l3 implements org.telegram.ui.ActionBar.q1, q3, j9 {
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        this.f18801a.f37520b.dismiss();
+        this.f18801a.f37519b.dismiss();
     }
 
     @Override
     public Object m(Object obj) {
         boolean z10;
         Void r22 = (Void) obj;
-        if (this.f18801a.f37520b.f40414p3.getKeyboardHeight() >= org.telegram.messenger.g0.L(20.0f)) {
+        if (this.f18801a.f37519b.f40413p3.getKeyboardHeight() >= org.telegram.messenger.g0.L(20.0f)) {
             z10 = true;
         } else {
             z10 = false;

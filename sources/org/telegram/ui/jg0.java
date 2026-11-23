@@ -97,7 +97,7 @@ public final class jg0 implements View.OnClickListener {
                 if (g3Var.f24077e && wg.s.i()) {
                     k0Var.f58769b2 = true;
                     k0Var.f58786t2.f33068e0 = false;
-                    org.telegram.ui.ActionBar.g2 g2Var2 = k0Var.f39536s1;
+                    org.telegram.ui.ActionBar.g2 g2Var2 = k0Var.f39535s1;
                     org.telegram.messenger.g3 g3Var2 = k0Var.Y1;
                     wg.q0 q0Var = new wg.q0(g2Var2, g3Var2.h, g3Var2.f24082k);
                     q0Var.show();
@@ -289,22 +289,22 @@ public final class jg0 implements View.OnClickListener {
                             org.telegram.ui.Components.v51 v51Var = photoViewer2.f43296k1;
                             org.telegram.ui.Components.cp0 cp0Var = o01Var.d;
                             if (v51Var != null) {
-                                o01Var.f38032a = v51Var;
+                                o01Var.f38031a = v51Var;
                                 o01Var.a();
-                                o01Var.f38034c = true;
+                                o01Var.f38033c = true;
                                 org.telegram.messenger.g0.r(cp0Var);
                                 org.telegram.messenger.g0.h3(cp0Var, 2000L);
-                                ViewPropertyAnimator viewPropertyAnimator = o01Var.f38033b;
+                                ViewPropertyAnimator viewPropertyAnimator = o01Var.f38032b;
                                 if (viewPropertyAnimator != null) {
                                     viewPropertyAnimator.setListener(null);
-                                    o01Var.f38033b.cancel();
-                                    o01Var.f38033b = null;
+                                    o01Var.f38032b.cancel();
+                                    o01Var.f38032b = null;
                                 }
                                 if (o01Var.getVisibility() != 0) {
                                     o01Var.setAlpha(0.0f);
                                     o01Var.setVisibility(0);
                                     ViewPropertyAnimator listener = o01Var.animate().setDuration(300L).alpha(1.0f).setListener(null);
-                                    o01Var.f38033b = listener;
+                                    o01Var.f38032b = listener;
                                     listener.start();
                                     return;
                                 }
@@ -599,14 +599,14 @@ public final class jg0 implements View.OnClickListener {
                 int i18 = l41Var.f49477c;
                 m41 m41Var = l41Var.d;
                 org.telegram.ui.Components.xz xzVar = l41Var.f49475a;
-                if (xzVar.f42265c) {
+                if (xzVar.f42264c) {
                     ArrayList arrayList = m41Var.f49763n;
                     lg.g gVar = m41Var.f49760c;
                     int size = arrayList.size();
                     int i19 = 0;
                     while (true) {
                         if (i19 < size) {
-                            if (i19 == i18 || !((l41) arrayList.get(i19)).f49475a.f42265c || !((l41) arrayList.get(i19)).f49475a.f42264b) {
+                            if (i19 == i18 || !((l41) arrayList.get(i19)).f49475a.f42264c || !((l41) arrayList.get(i19)).f49475a.f42263b) {
                                 i19++;
                             }
                         } else {
@@ -618,11 +618,11 @@ public final class jg0 implements View.OnClickListener {
                         org.telegram.messenger.g0.D3(xzVar);
                         return;
                     }
-                    xzVar.setChecked(!xzVar.f42264b);
-                    fVar.f21541n = xzVar.f42264b;
+                    xzVar.setChecked(!xzVar.f42263b);
+                    fVar.f21541n = xzVar.f42263b;
                     m41Var.f49759b.z();
                     if (m41Var.f49764r.f50474c > 0 && i18 < gVar.d.size()) {
-                        ((ng.f) gVar.d.get(i18)).f21541n = xzVar.f42264b;
+                        ((ng.f) gVar.d.get(i18)).f21541n = xzVar.f42263b;
                         gVar.z();
                         return;
                     }
@@ -752,7 +752,7 @@ public final class jg0 implements View.OnClickListener {
                 org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f48992b;
                 kVar.f53211b = true;
                 ((w) this.f48993c).run();
-                kVar.f53219x.f35790g3.O(true);
+                kVar.f53219x.f35789g3.O(true);
                 return;
             case 25:
                 sg.q qVar = (sg.q) this.f48992b;
@@ -817,7 +817,7 @@ public final class jg0 implements View.OnClickListener {
                             Objects.requireNonNull(nVar5);
                             iVar.setColorListener(new bi.r8(nVar5, 6));
                             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                            duration.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                            duration.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                             duration.addUpdateListener(new hi.j3(iVar, 29));
                             duration.start();
                             androidx.activity.n nVar6 = qVar.f57368s1;

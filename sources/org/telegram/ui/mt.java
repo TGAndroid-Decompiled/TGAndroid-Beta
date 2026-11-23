@@ -167,8 +167,8 @@ public final class mt extends org.telegram.ui.Components.ek0 {
                         z10 = true;
                         ?? obj = new Object();
                         obj.d = i20;
-                        obj.f38870c = z12;
-                        obj.f38869b = z10;
+                        obj.f38869c = z12;
+                        obj.f38868b = z10;
                         obj.f49701e = z13;
                         obj.f49703g = i11;
                         obj.f49702f = B1;
@@ -184,8 +184,8 @@ public final class mt extends org.telegram.ui.Components.ek0 {
                 i13 = org.telegram.messenger.dz.e(i12).f23638e[this.f49973g3 - 1][i26];
                 ?? obj2 = new Object();
                 obj2.d = i20;
-                obj2.f38870c = z12;
-                obj2.f38869b = z10;
+                obj2.f38869c = z12;
+                obj2.f38868b = z10;
                 obj2.f49701e = z13;
                 obj2.f49703g = i11;
                 obj2.f49702f = B1;

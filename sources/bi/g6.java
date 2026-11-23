@@ -191,11 +191,11 @@ public final class g6 extends v4.u0 {
             case 5:
                 cx cxVar = (cx) this.f3687b;
                 of0 of0Var = (of0) this.f3688c;
-                h51 h51Var2 = of0Var.f38179c;
-                if (TextUtils.isEmpty(of0Var.f38186x)) {
-                    arrayList = of0Var.f38180e;
+                h51 h51Var2 = of0Var.f38178c;
+                if (TextUtils.isEmpty(of0Var.f38185x)) {
+                    arrayList = of0Var.f38179e;
                 } else {
-                    arrayList = of0Var.f38182n;
+                    arrayList = of0Var.f38181n;
                 }
                 if (!arrayList.isEmpty()) {
                     if (h51Var2.canScrollVertically(1)) {
@@ -268,7 +268,7 @@ public final class g6 extends v4.u0 {
                 sh.n nVar = (sh.n) this.f3688c;
                 sh.m mVar = (sh.m) this.f3687b;
                 if (!mVar.h && !mVar.f57513i) {
-                    if ((nVar.f57517c.f35790g3.E.size() - 1) - nVar.f57517c.f35789f3.M0() < 5) {
+                    if ((nVar.f57517c.f35789g3.E.size() - 1) - nVar.f57517c.f35788f3.M0() < 5) {
                         mVar.a();
                         return;
                     }

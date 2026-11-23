@@ -64,7 +64,7 @@ public final class y0 implements View.OnClickListener {
                             case 0:
                                 TLRPC.User user2 = user;
                                 if (user2 != null) {
-                                    g2 g2Var = e1Var2.f39536s1;
+                                    g2 g2Var = e1Var2.f39535s1;
                                     if (g2Var == null) {
                                         g2 T = LaunchActivity.T();
                                         ?? obj4 = new Object();
@@ -86,7 +86,7 @@ public final class y0 implements View.OnClickListener {
                             default:
                                 TLRPC.User user3 = user;
                                 if (user3 != null) {
-                                    g2 g2Var2 = e1Var2.f39536s1;
+                                    g2 g2Var2 = e1Var2.f39535s1;
                                     if (g2Var2 == null) {
                                         g2 T2 = LaunchActivity.T();
                                         if (T2 != 0) {
@@ -115,7 +115,7 @@ public final class y0 implements View.OnClickListener {
                             case 0:
                                 TLRPC.User user2 = user;
                                 if (user2 != null) {
-                                    g2 g2Var = e1Var2.f39536s1;
+                                    g2 g2Var = e1Var2.f39535s1;
                                     if (g2Var == null) {
                                         g2 T = LaunchActivity.T();
                                         ?? obj4 = new Object();
@@ -137,7 +137,7 @@ public final class y0 implements View.OnClickListener {
                             default:
                                 TLRPC.User user3 = user;
                                 if (user3 != null) {
-                                    g2 g2Var2 = e1Var2.f39536s1;
+                                    g2 g2Var2 = e1Var2.f39535s1;
                                     if (g2Var2 == null) {
                                         g2 T2 = LaunchActivity.T();
                                         if (T2 != 0) {

@@ -18,7 +18,7 @@ public final class lx implements org.telegram.messenger.kc {
     @Override
     public final void V(ImageReceiver imageReceiver) {
         org.telegram.messenger.gj gjVar;
-        if (this.f49720b && (gjVar = this.f49721c) != null && gjVar.F2() && imageReceiver.B() != null && imageReceiver.B().f38237y == null) {
+        if (this.f49720b && (gjVar = this.f49721c) != null && gjVar.F2() && imageReceiver.B() != null && imageReceiver.B().f38236y == null) {
             try {
                 this.d.H.performHapticFeedback(3, 1);
             } catch (Exception unused) {

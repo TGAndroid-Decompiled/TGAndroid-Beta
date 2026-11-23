@@ -120,7 +120,7 @@ public final class cw0 extends FrameLayout {
         kw0 kw0Var = this.f34314e;
         if (i13 != i14) {
             this.f34311a = i14;
-            gw0 gw0Var = kw0Var.f37019o1;
+            gw0 gw0Var = kw0Var.f37018o1;
             if (gw0Var != null && kw0Var.R1 != null) {
                 gw0Var.f();
             }
@@ -142,38 +142,38 @@ public final class cw0 extends FrameLayout {
         kw0 kw0Var = this.f34314e;
         ArrayList arrayList = kw0Var.S1;
         boolean z10 = true;
-        kw0Var.f37006b2 = true;
+        kw0Var.f37005b2 = true;
         int i15 = kw0Var.f30211u0;
         setPadding(i15, org.telegram.messenger.g0.f24040m, i15, 0);
-        kw0Var.f37006b2 = false;
+        kw0Var.f37005b2 = false;
         if (kw0Var.R0()) {
             int measuredWidth = kw0Var.n1.getMeasuredWidth();
             if (measuredWidth == 0) {
                 measuredWidth = org.telegram.messenger.g0.f24046q.x;
             }
-            gw0 gw0Var = kw0Var.f37019o1;
+            gw0 gw0Var = kw0Var.f37018o1;
             if (org.telegram.messenger.g0.Q1()) {
                 f10 = 60.0f;
             } else {
                 f10 = 45.0f;
             }
             gw0Var.d = Math.max(1, measuredWidth / org.telegram.messenger.g0.L(f10));
-            int size2 = (View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(36.0f)) / kw0Var.f37019o1.d;
+            int size2 = (View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(36.0f)) / kw0Var.f37018o1.d;
             kw0Var.J1 = size2;
             kw0Var.K1 = size2;
         } else {
-            kw0Var.f37019o1.d = 5;
-            kw0Var.J1 = (View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(36.0f)) / kw0Var.f37019o1.d;
+            kw0Var.f37018o1.d = 5;
+            kw0Var.J1 = (View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(36.0f)) / kw0Var.f37018o1.d;
             kw0Var.K1 = org.telegram.messenger.g0.L(82.0f);
         }
-        float f11 = kw0Var.f37019o1.d;
+        float f11 = kw0Var.f37018o1.d;
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) kw0Var.n1.getLayoutParams();
         int i16 = 3;
         if (arrayList != null) {
             i13 = (Math.max(3, (int) Math.ceil(arrayList.size() / f11)) * kw0Var.K1) + org.telegram.messenger.g0.L(48.0f) + marginLayoutParams.bottomMargin + kw0Var.f30210t0 + org.telegram.messenger.g0.f24040m;
         } else {
             if (kw0Var.R1 != null) {
-                i12 = (kw0Var.f37019o1.f35691n * kw0Var.K1) + (kw0Var.R1.size() * org.telegram.messenger.g0.L(60.0f)) + org.telegram.messenger.g0.L(8.0f) + marginLayoutParams.bottomMargin + kw0Var.f30210t0;
+                i12 = (kw0Var.f37018o1.f35691n * kw0Var.K1) + (kw0Var.R1.size() * org.telegram.messenger.g0.L(60.0f)) + org.telegram.messenger.g0.L(8.0f) + marginLayoutParams.bottomMargin + kw0Var.f30210t0;
                 max = org.telegram.messenger.g0.L(24.0f);
             } else {
                 int L = org.telegram.messenger.g0.L(48.0f) + marginLayoutParams.bottomMargin;
@@ -209,10 +209,10 @@ public final class cw0 extends FrameLayout {
             i14 += org.telegram.messenger.g0.L(8.0f);
         }
         if (kw0Var.n1.getPaddingTop() != i14) {
-            kw0Var.f37006b2 = true;
+            kw0Var.f37005b2 = true;
             kw0Var.n1.setPadding(org.telegram.messenger.g0.L(10.0f), i14, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(8.0f));
             kw0Var.F1.setPadding(0, i14, 0, 0);
-            kw0Var.f37006b2 = false;
+            kw0Var.f37005b2 = false;
         }
         if (i13 < size) {
             z10 = false;
@@ -231,7 +231,7 @@ public final class cw0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f34314e.f37006b2) {
+        if (this.f34314e.f37005b2) {
             return;
         }
         super.requestLayout();

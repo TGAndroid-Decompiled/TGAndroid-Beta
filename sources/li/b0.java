@@ -52,7 +52,7 @@ public abstract class b0 extends FrameLayout {
             View childAt = this.d.getChildAt(i7);
             f1 T = this.d.T(childAt);
             if (T != null) {
-                o41 G = this.d.f35790g3.G(T.b());
+                o41 G = this.d.f35789g3.G(T.b());
                 if (G != null && G.d != 99) {
                     f10 = Math.min(childAt.getY() + this.f19923c.getPaddingTop(), f10);
                 }

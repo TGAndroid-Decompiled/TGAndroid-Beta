@@ -106,7 +106,7 @@ public final class n4 extends FrameLayout {
         switch (this.f9394a) {
             case 0:
                 f6 f6Var = (f6) this.f9397e;
-                org.telegram.ui.Components.na naVar = f6Var.f39533p1;
+                org.telegram.ui.Components.na naVar = f6Var.f39532p1;
                 FrameLayout frameLayout = f6Var.f8808h2;
                 f6Var.X0(canvas, this);
                 canvas.save();
@@ -357,7 +357,7 @@ public final class n4 extends FrameLayout {
         switch (this.f9394a) {
             case 0:
                 f6 f6Var = (f6) this.f9397e;
-                if (view == f6Var.f39533p1) {
+                if (view == f6Var.f39532p1) {
                     return false;
                 }
                 if (view != f6Var.f8795a2) {
@@ -458,7 +458,7 @@ public final class n4 extends FrameLayout {
         e5 e5Var;
         float max = Math.max(0.0f, getHeight() - a());
         f6 f6Var = (f6) this.f9397e;
-        ek0 ek0Var = f6Var.f39532o1;
+        ek0 ek0Var = f6Var.f39531o1;
         int childCount = ek0Var.getChildCount() - 1;
         while (true) {
             if (childCount < 0) {
@@ -491,7 +491,7 @@ public final class n4 extends FrameLayout {
 
     public void g() {
         int i7 = org.telegram.ui.ActionBar.m6.G6;
-        org.telegram.ui.ActionBar.h6 h6Var = ((rz) this.f9397e).f39391a;
+        org.telegram.ui.ActionBar.h6 h6Var = ((rz) this.f9397e).f39390a;
         int w02 = org.telegram.ui.ActionBar.m6.w0(i7, h6Var);
         ((ImageView) this.f9395b).setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
         ((TextView) this.f9396c).setTextColor(w02);
@@ -518,7 +518,7 @@ public final class n4 extends FrameLayout {
         if (frameLayout != null) {
             frameLayout.setTranslationY((getTranslationY() - a()) - org.telegram.messenger.g0.f24041n);
         }
-        org.telegram.messenger.g0.V3(f6Var.f8813k2, f6Var.f39532o1.canScrollVertically(1));
+        org.telegram.messenger.g0.V3(f6Var.f8813k2, f6Var.f39531o1.canScrollVertically(1));
     }
 
     @Override
@@ -670,13 +670,13 @@ public final class n4 extends FrameLayout {
                 setPadding(0, 0, 0, R);
                 f6Var.f8797b2.N.setPadding(0, 0, 0, R);
                 int size = View.MeasureSpec.getSize(i10);
-                f6Var.f39535r1 = size;
+                f6Var.f39534r1 = size;
                 int size2 = View.MeasureSpec.getSize(i7);
                 for (int i15 = 0; i15 < getChildCount(); i15++) {
                     View childAt = getChildAt(i15);
                     if (childAt instanceof hi.l3) {
                         childAt.measure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), 1073741824));
-                    } else if (childAt == f6Var.f39532o1) {
+                    } else if (childAt == f6Var.f39531o1) {
                         childAt.measure(i7, View.MeasureSpec.makeMeasureSpec(size - R, 1073741824));
                     } else {
                         if (childAt.getLayoutParams() != null && childAt.getLayoutParams().height == -1) {
@@ -942,7 +942,7 @@ public final class n4 extends FrameLayout {
             ((org.telegram.ui.Components.voip.f1[]) this.d)[i7].setAllStarsProvider(new org.telegram.tgnet.u(this, 8));
             org.telegram.ui.Components.voip.f1 f1Var = ((org.telegram.ui.Components.voip.f1[]) this.d)[i7];
             f1Var.d = new org.telegram.ui.Components.h2(25, this, activity);
-            f1Var.f41007f = i7;
+            f1Var.f41006f = i7;
             ((FrameLayout) this.f9396c).addView(f1Var, c8.ma.d(-2, -2.0f, 51, i7 * 41, 0.0f, 0.0f, 0.0f));
         }
         addView((ai.l0) this.f9395b, c8.ma.d(300, 152.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));

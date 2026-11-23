@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import java.io.File;
 import java.util.ArrayList;
 public final class lg extends org.telegram.ui.oq0 {
-    public boolean f37181a;
-    public final org.telegram.messenger.ff f37182b;
-    public final File f37183c;
+    public boolean f37180a;
+    public final org.telegram.messenger.ff f37181b;
+    public final File f37182c;
     public final mg d;
 
     public lg(mg mgVar, org.telegram.messenger.ff ffVar, File file) {
         this.d = mgVar;
-        this.f37182b = ffVar;
-        this.f37183c = file;
+        this.f37181b = ffVar;
+        this.f37182c = file;
     }
 
     @Override
     public final void G() {
-        if (!this.f37181a) {
+        if (!this.f37180a) {
             try {
-                this.f37183c.delete();
+                this.f37182c.delete();
             } catch (Throwable unused) {
             }
         }
@@ -36,7 +36,7 @@ public final class lg extends org.telegram.ui.oq0 {
         org.telegram.messenger.cw cwVar;
         String str2;
         org.telegram.ui.bn bnVar;
-        ChatActivityEnterView chatActivityEnterView = this.d.f37509f2;
+        ChatActivityEnterView chatActivityEnterView = this.d.f37508f2;
         org.telegram.ui.rm rmVar = chatActivityEnterView.L3;
         if (rmVar != null && (bnVar = chatActivityEnterView.F3) != null && rmVar.f51623f) {
             bnVar.yc();
@@ -44,7 +44,7 @@ public final class lg extends org.telegram.ui.oq0 {
         }
         ArrayList arrayList = new ArrayList();
         ?? obj = new Object();
-        org.telegram.messenger.ff ffVar = this.f37182b;
+        org.telegram.messenger.ff ffVar = this.f37181b;
         if (!ffVar.f28059b && (str2 = ffVar.h) != null) {
             obj.f28407c = str2;
         } else {
@@ -73,7 +73,7 @@ public final class lg extends org.telegram.ui.oq0 {
         obj.f28420r = true;
         arrayList.add(obj);
         ffVar.e();
-        this.f37181a = true;
+        this.f37180a = true;
         boolean h = org.telegram.messenger.az.h(obj.d);
         org.telegram.messenger.c cVar = chatActivityEnterView.S;
         org.telegram.messenger.lj ljVar = null;

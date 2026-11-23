@@ -716,7 +716,7 @@ public final class i8 extends org.telegram.ui.ActionBar.g2 implements org.telegr
 
     public final void u0() {
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
-        duration.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+        duration.setInterpolator(org.telegram.ui.Components.nr.f37960f);
         duration.addUpdateListener(new a3(this, 2));
         duration.addListener(new ki.m3(this, 19));
         duration.start();

@@ -38,13 +38,13 @@ public final class n6 extends n41 {
             m80Var.setTextColor((int) o41Var.C);
         }
         m80Var.setTextSize(1, o41Var.B);
-        if (o41Var.f38097r) {
+        if (o41Var.f38096r) {
             typeface = org.telegram.messenger.g0.o();
         }
         m80Var.setTypeface(typeface);
-        int i7 = o41Var.f38088i;
-        m80Var.setPadding(i7, 0, i7, o41Var.f38090k);
-        m80Var.setText(o41Var.f38092m);
+        int i7 = o41Var.f38087i;
+        m80Var.setPadding(i7, 0, i7, o41Var.f38089k);
+        m80Var.setText(o41Var.f38091m);
     }
 
     @Override

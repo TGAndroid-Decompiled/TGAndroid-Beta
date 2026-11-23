@@ -735,7 +735,7 @@ public final class q0 {
                 if (n0Var.f5482t) {
                     n0Var.f5487z = (int) (n6Var.d + org.telegram.messenger.g0.L(8.0f) + n0Var.f5487z);
                 } else if (sqVar != null && n0Var.v > 1) {
-                    n0Var.f5487z = f3.C(8.0f, (int) Math.ceil(sqVar.f39662m), n0Var.f5487z);
+                    n0Var.f5487z = f3.C(8.0f, (int) Math.ceil(sqVar.f39661m), n0Var.f5487z);
                 }
             } else {
                 int L2 = org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.L(8.0f);
@@ -756,8 +756,8 @@ public final class q0 {
                     n0Var.S.f34436o = org.telegram.messenger.g0.L(26.0f);
                 } else if (n0Var.f5482t) {
                     n0Var.f5487z = (int) (n6Var.d + org.telegram.messenger.g0.L(8.0f) + n0Var.f5487z);
-                } else if (((int) Math.ceil(sqVar.f39662m)) > 0) {
-                    n0Var.f5487z = f3.C(8.0f, (int) Math.ceil(sqVar.f39662m), n0Var.f5487z);
+                } else if (((int) Math.ceil(sqVar.f39661m)) > 0) {
+                    n0Var.f5487z = f3.C(8.0f, (int) Math.ceil(sqVar.f39661m), n0Var.f5487z);
                 } else {
                     n0Var.f5487z -= org.telegram.messenger.g0.L(1.0f);
                 }

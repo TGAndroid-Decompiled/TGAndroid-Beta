@@ -156,13 +156,13 @@ public final class ay extends AnimatorListenerAdapter {
             case 12:
                 rp0 rp0Var = (rp0) obj;
                 PhotoViewer photoViewer2 = rp0Var.f51694b;
-                og.o oVar = photoViewer2.D1.f39164b;
+                og.o oVar = photoViewer2.D1.f39163b;
                 oVar.q();
                 CropAreaView cropAreaView = oVar.f21921a;
                 cropAreaView.setDimVisibility(true);
                 cropAreaView.f(true, true);
                 cropAreaView.invalidate();
-                photoViewer2.D1.f39164b.K = true;
+                photoViewer2.D1.f39163b.K = true;
                 photoViewer2.f43343p6 = null;
                 photoViewer2.f43386u4 = rp0Var.f51693a;
                 hi.o3 o3Var = photoViewer2.b1().M;
@@ -330,12 +330,12 @@ public final class ay extends AnimatorListenerAdapter {
                     childAt.setScaleX(1.0f);
                     childAt.setScaleY(1.0f);
                 }
-                for (int i11 = 0; i11 < s11Var2.f51835e0.f36929b.getChildCount(); i11++) {
-                    View childAt2 = s11Var2.f51835e0.f36929b.getChildAt(i11);
+                for (int i11 = 0; i11 < s11Var2.f51835e0.f36928b.getChildCount(); i11++) {
+                    View childAt2 = s11Var2.f51835e0.f36928b.getChildAt(i11);
                     childAt2.setScaleX(1.0f);
                     childAt2.setScaleY(1.0f);
                 }
-                s11Var2.f51835e0.f36929b.invalidate();
+                s11Var2.f51835e0.f36928b.invalidate();
                 s11Var2.f51850l0.invalidate();
                 q01Var2.invalidate();
                 return;

@@ -22,9 +22,9 @@ public final class b2 extends fq {
             case 1:
                 return ((org.telegram.ui.ActionBar.q0) this.f14288i).f29904c.f30283b.f29160s0;
             case 2:
-                return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Bf, ((gy) this.f14288i).H.f40082a2);
+                return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Bf, ((gy) this.f14288i).H.f40081a2);
             case 3:
-                return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Q5, ((tl0) this.f14288i).f39942e);
+                return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Q5, ((tl0) this.f14288i).f39941e);
             default:
                 return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Bf, ((k01) this.f14288i).G.f51824a1);
         }

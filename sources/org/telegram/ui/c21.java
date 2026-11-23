@@ -72,7 +72,7 @@ public final class c21 extends org.telegram.ui.Components.sa {
         frameLayout2.addView((View) editTextBoldCursor, c8.ma.e(-1, -1, 119));
         frameLayout.addView(frameLayout2, c8.ma.d(-1, 40.0f, 23, 11.0f, 0.0f, 11.0f, 0.0f));
         ViewGroup viewGroup = this.f30176b;
-        int max = Math.max(0, viewGroup.indexOfChild(this.f39533p1));
+        int max = Math.max(0, viewGroup.indexOfChild(this.f39532p1));
         float f10 = this.f30211u0 / org.telegram.messenger.g0.f24045p;
         viewGroup.addView(frameLayout, max, c8.ma.d(-1, 64.0f, 55, f10, 0.0f, f10, 0.0f));
         ?? frameLayout3 = new FrameLayout(context);
@@ -89,19 +89,19 @@ public final class c21 extends org.telegram.ui.Components.sa {
         b21 b21Var3 = new b21(this.f30173a, chat.f28434id, new TLRPC.TL_channelParticipantsSearch());
         b21Var3.f45754e.add(new ru0(this, 17));
         this.f46396c2 = b21Var3;
-        org.telegram.ui.Components.ek0 ek0Var = this.f39532o1;
+        org.telegram.ui.Components.ek0 ek0Var = this.f39531o1;
         int i11 = this.f30211u0;
         ek0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(68.0f));
-        this.f39532o1.setClipToPadding(false);
-        this.f39532o1.setOnItemClickListener(new zx0(this, 3));
+        this.f39531o1.setClipToPadding(false);
+        this.f39531o1.setOnItemClickListener(new zx0(this, 3));
         x11 x11Var = new x11(this);
         x11Var.f59194m = false;
         x11Var.C = false;
         x11Var.o(org.telegram.ui.Components.nr.h);
         x11Var.n(350L);
-        this.f39532o1.setItemAnimator(x11Var);
-        this.f39532o1.addOnLayoutChangeListener(new y11(this));
-        this.f39532o1.j(new z11(this));
+        this.f39531o1.setItemAnimator(x11Var);
+        this.f39531o1.addOnLayoutChangeListener(new y11(this));
+        this.f39531o1.j(new z11(this));
         this.f30176b.addView(new a21(this, getContext()), c8.ma.e(-1, 68, 87));
         hi.e eVar = new hi.e(getContext(), h6Var, true);
         eVar.setRoundRadius(24);
@@ -121,7 +121,7 @@ public final class c21 extends org.telegram.ui.Components.sa {
     }
 
     public static void e1(c21 c21Var) {
-        org.telegram.ui.Components.ek0 ek0Var = c21Var.f39532o1;
+        org.telegram.ui.Components.ek0 ek0Var = c21Var.f39531o1;
         float f10 = -org.telegram.messenger.g0.L(64.0f);
         int i7 = 0;
         while (true) {

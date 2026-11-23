@@ -72,11 +72,11 @@ public final class ez extends org.telegram.messenger.r5 {
         if (z12) {
             ha haVar = new ha();
             this.J = haVar;
-            ca caVar2 = haVar.f35857t;
+            ca caVar2 = haVar.f35856t;
             if (caVar2 != null && caVar2.f34135m != null) {
                 caVar2.f34135m = null;
             }
-            haVar.f35857t = caVar;
+            haVar.f35856t = caVar;
             if (caVar != null && caVar.f34135m != haVar) {
                 caVar.f34135m = haVar;
                 caVar.d();
@@ -85,7 +85,7 @@ public final class ez extends org.telegram.messenger.r5 {
         this.h = false;
         hz hzVar = new hz(false, null);
         this.K = hzVar;
-        hzVar.f36023i1 = z11;
+        hzVar.f36022i1 = z11;
         float[] fArr = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
         if (z10) {
             fArr[2] = 0.0f;
@@ -117,7 +117,7 @@ public final class ez extends org.telegram.messenger.r5 {
                 ezVar.G = true;
             }
             if (ezVar.f35019a0) {
-                if (ezVar.h && ((gzVar = ezVar.K.f36015f1) == null || gzVar.q())) {
+                if (ezVar.h && ((gzVar = ezVar.K.f36014f1) == null || gzVar.q())) {
                     GLES20.glViewport(0, 0, ezVar.f35028n, ezVar.f35029r);
                     GLES20.glBindFramebuffer(36160, 0);
                     GLES20.glUseProgram(ezVar.P);
@@ -128,11 +128,11 @@ public final class ez extends org.telegram.messenger.r5 {
                     int i7 = ezVar.S;
                     FloatBuffer floatBuffer = ezVar.Z;
                     if (floatBuffer == null) {
-                        floatBuffer = ezVar.K.f36001a1;
+                        floatBuffer = ezVar.K.f36000a1;
                     }
                     GLES20.glVertexAttribPointer(i7, 2, 5126, false, 8, (Buffer) floatBuffer);
                     GLES20.glEnableVertexAttribArray(ezVar.Q);
-                    GLES20.glVertexAttribPointer(ezVar.Q, 2, 5126, false, 8, (Buffer) ezVar.K.f36004b1);
+                    GLES20.glVertexAttribPointer(ezVar.Q, 2, 5126, false, 8, (Buffer) ezVar.K.f36003b1);
                     GLES20.glUniformMatrix4fv(ezVar.R, 1, false, ezVar.E, 0);
                     GLES20.glDrawArrays(5, 0, 4);
                     ezVar.f35020b.eglSwapBuffers(ezVar.f35022c, ezVar.f35025e);
@@ -166,7 +166,7 @@ public final class ez extends org.telegram.messenger.r5 {
                     int i10 = ezVar.N;
                     FloatBuffer floatBuffer2 = ezVar.Z;
                     if (floatBuffer2 == null) {
-                        floatBuffer2 = ezVar.K.f36001a1;
+                        floatBuffer2 = ezVar.K.f36000a1;
                     }
                     GLES20.glVertexAttribPointer(i10, 2, 5126, false, 8, (Buffer) floatBuffer2);
                     GLES20.glEnableVertexAttribArray(ezVar.M);
@@ -478,11 +478,11 @@ public final class ez extends org.telegram.messenger.r5 {
         if (z10) {
             ha haVar = new ha();
             this.J = haVar;
-            ca caVar2 = haVar.f35857t;
+            ca caVar2 = haVar.f35856t;
             if (caVar2 != null && caVar2.f34135m != null) {
                 caVar2.f34135m = null;
             }
-            haVar.f35857t = caVar;
+            haVar.f35856t = caVar;
             if (caVar != null && caVar.f34135m != haVar) {
                 caVar.f34135m = haVar;
                 caVar.d();

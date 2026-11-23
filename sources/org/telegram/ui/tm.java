@@ -40,10 +40,10 @@ public final class tm extends org.telegram.ui.ActionBar.m0 {
                     bnVar.sc(true);
                     return false;
                 }
-                int currentPosition = bnVar2.E1.f40878a.getCurrentPosition();
+                int currentPosition = bnVar2.E1.f40877a.getCurrentPosition();
                 int i7 = bnVar2.G1;
                 if (currentPosition != i7) {
-                    bnVar2.E1.f40878a.e(i7, i7);
+                    bnVar2.E1.f40877a.e(i7, i7);
                     return false;
                 }
             } else if (bnVar2.f46045gd.f57701f) {
@@ -187,8 +187,8 @@ public final class tm extends org.telegram.ui.ActionBar.m0 {
             }
         }
         if (bnVar.F1 != null) {
-            if (bnVar.E1.f40878a.getCurrentPosition() != 0) {
-                bnVar.E1.f40878a.e(0, 0);
+            if (bnVar.E1.f40877a.getCurrentPosition() != 0) {
+                bnVar.E1.f40877a.e(0, 0);
                 bnVar.H1 = true;
             } else {
                 bnVar.F1.h.clear();
@@ -286,10 +286,10 @@ public final class tm extends org.telegram.ui.ActionBar.m0 {
             bkVar.g(z10);
         }
         if (bnVar.J3 != null && (ojVar = bnVar.E1) != null) {
-            int currentPosition = ojVar.f40878a.getCurrentPosition();
+            int currentPosition = ojVar.f40877a.getCurrentPosition();
             int i10 = bnVar.G1;
             if (currentPosition != i10) {
-                bnVar.E1.f40878a.e(i10, i10);
+                bnVar.E1.f40877a.e(i10, i10);
             }
         }
     }
@@ -352,7 +352,7 @@ public final class tm extends org.telegram.ui.ActionBar.m0 {
             bnVar.g7(true);
             i10 = ((org.telegram.ui.ActionBar.g2) bnVar).currentAccount;
             org.telegram.messenger.na.a(i10).c(bnVar.J3);
-            bnVar.I1.f35771f.O(true);
+            bnVar.I1.f35770f.O(true);
             View currentView = bnVar.F1.getCurrentView();
             if (bnVar.f45996d4 == 3) {
                 i12 = ((org.telegram.ui.ActionBar.g2) bnVar).currentAccount;
@@ -378,8 +378,8 @@ public final class tm extends org.telegram.ui.ActionBar.m0 {
                 bnVar.pd();
             }
             oj ojVar2 = bnVar.E1;
-            if (ojVar2 != null && ojVar2.f40878a.getCurrentPosition() != 0) {
-                bnVar.E1.f40878a.e(0, 0);
+            if (ojVar2 != null && ojVar2.f40877a.getCurrentPosition() != 0) {
+                bnVar.E1.f40877a.e(0, 0);
             }
         }
         oj ojVar3 = bnVar.E1;

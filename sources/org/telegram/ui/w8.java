@@ -102,7 +102,7 @@ public final class w8 extends org.telegram.ui.Components.du0 {
     public Drawable getNewDrawable() {
         switch (this.f53016g0) {
             case 1:
-                Drawable c10 = ((zm) ((org.telegram.ui.Components.qa0) this.f53017h0).f38858d0.G).c();
+                Drawable c10 = ((zm) ((org.telegram.ui.Components.qa0) this.f53017h0).f38857d0.G).c();
                 if (c10 == null) {
                     return super.getNewDrawable();
                 }
@@ -139,7 +139,7 @@ public final class w8 extends org.telegram.ui.Components.du0 {
     public org.telegram.ui.ActionBar.h6 getResourceProvider() {
         switch (this.f53016g0) {
             case 2:
-                return ((org.telegram.ui.Components.py0) this.f53017h0).f38681c;
+                return ((org.telegram.ui.Components.py0) this.f53017h0).f38680c;
             default:
                 return super.getResourceProvider();
         }
@@ -176,7 +176,7 @@ public final class w8 extends org.telegram.ui.Components.du0 {
                 z4Var = ((org.telegram.ui.ActionBar.g2) contactsActivity).simpleActionBar;
                 measureChildWithMargins(z4Var, i7, 0, i10, 0);
                 z4Var2 = ((org.telegram.ui.ActionBar.g2) contactsActivity).simpleActionBar;
-                ((ViewGroup.MarginLayoutParams) contactsActivity.f43025c.getLayoutParams()).topMargin = z4Var2.getMeasuredHeight();
+                ((ViewGroup.MarginLayoutParams) contactsActivity.f43024c.getLayoutParams()).topMargin = z4Var2.getMeasuredHeight();
                 super.onMeasure(i7, i10);
                 return;
             case 6:

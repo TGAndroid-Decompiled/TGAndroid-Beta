@@ -78,8 +78,8 @@ public final class i4 extends FrameLayout implements org.telegram.ui.ActionBar.b
         if (z10) {
             int L = org.telegram.messenger.g0.L(18.0f);
             int L2 = org.telegram.messenger.g0.L(18.0f);
-            oqVar.f38333e = L;
-            oqVar.f38334f = L2;
+            oqVar.f38332e = L;
+            oqVar.f38333f = L2;
         }
         return oqVar;
     }
@@ -101,7 +101,7 @@ public final class i4 extends FrameLayout implements org.telegram.ui.ActionBar.b
                 ofFloat.addUpdateListener(new r(this, 3));
                 this.H.addListener(new ki.m3(this, 24));
                 this.H.setDuration(180L);
-                this.H.setInterpolator(nr.f37962g);
+                this.H.setInterpolator(nr.f37961g);
                 this.H.start();
             } else {
                 float f11 = 0.82f;
@@ -267,7 +267,7 @@ public final class i4 extends FrameLayout implements org.telegram.ui.ActionBar.b
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         op opVar = this.d;
         if (opVar != null) {
-            z10 = opVar.f38321a.f32874q;
+            z10 = opVar.f38320a.f32874q;
         } else {
             z10 = this.I;
         }

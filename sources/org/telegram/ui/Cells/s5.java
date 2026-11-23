@@ -112,13 +112,13 @@ public final class s5 extends FrameLayout {
     }
 
     public final boolean a() {
-        return this.d.f38321a.f32874q;
+        return this.d.f38320a.f32874q;
     }
 
     public final void b(int i7, boolean z10, boolean z11) {
         float f10;
         float f11;
-        this.d.f38321a.f(i7, z10, z11);
+        this.d.f38320a.f(i7, z10, z11);
         boolean z12 = false;
         if (this.E) {
             AnimatorSet animatorSet = this.L;
@@ -203,14 +203,14 @@ public final class s5 extends FrameLayout {
             this.L = null;
             op opVar = this.d;
             float f11 = 1.0f;
-            if (opVar.f38321a.f32874q) {
+            if (opVar.f38320a.f32874q) {
                 f10 = 0.787f;
             } else {
                 f10 = 1.0f;
             }
             bi.e3 e3Var = this.f31786b;
             e3Var.setScaleX(f10);
-            if (opVar.f38321a.f32874q) {
+            if (opVar.f38320a.f32874q) {
                 f11 = 0.787f;
             }
             e3Var.setScaleY(f11);
@@ -443,7 +443,7 @@ public final class s5 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         ff ffVar;
         jf jfVar;
-        boolean z10 = this.d.f38321a.f32874q;
+        boolean z10 = this.d.f38320a.f32874q;
         o5 o5Var = this.f31784a;
         if (!z10 && this.f31786b.getScaleX() == 1.0f && o5Var.getImageReceiver().L() && o5Var.getImageReceiver().f22672i1 == 1.0f && (((ffVar = this.I) == null || !PhotoViewer.K1(ffVar.I)) && ((jfVar = this.J) == null || !PhotoViewer.K1(jfVar.g())))) {
             return;
@@ -478,7 +478,7 @@ public final class s5 extends FrameLayout {
             sb2.append(hd.E0().z0().format(this.I.D * 1000));
         }
         accessibilityNodeInfo.setText(sb2);
-        if (this.d.f38321a.f32874q) {
+        if (this.d.f38320a.f32874q) {
             accessibilityNodeInfo.setSelected(true);
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(2131296266, hd.N0(2131747623, null)));

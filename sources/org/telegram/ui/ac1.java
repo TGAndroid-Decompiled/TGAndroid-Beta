@@ -18,13 +18,13 @@ public final class ac1 extends org.telegram.ui.Components.voip.r2 {
     public ac1(Activity activity, boolean z10, hc1 hc1Var) {
         super(activity);
         this.f45574y = hc1Var;
-        this.f41329c = new h2.f((int[]) null);
-        this.f41327a = activity;
+        this.f41328c = new h2.f((int[]) null);
+        this.f41326a = activity;
         setSystemUiVisibility(1792);
         org.telegram.messenger.g0.g2(activity);
         OrientationHelper.cameraRotationDisabled = true;
         if (!z10) {
-            this.f41330e = true;
+            this.f41329e = true;
         }
         this.f45571s = new Path();
         this.f45572w = new RectF();

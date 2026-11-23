@@ -618,7 +618,7 @@ public final class m3 extends View {
             }
             this.f29271j0.setCallback(this);
         }
-        float L3 = this.f29269h0.f42247c + org.telegram.messenger.g0.L(24.0f);
+        float L3 = this.f29269h0.f42246c + org.telegram.messenger.g0.L(24.0f);
         float f38 = (f37 - L3) / 2.0f;
         this.f29271j0.setBounds((int) f38, (int) ((f36 - (org.telegram.messenger.g0.L(95.0f) / 2.0f)) - org.telegram.messenger.g0.L(14.0f)), (int) ((f37 + L3) / 2.0f), (int) ((f36 - (org.telegram.messenger.g0.L(95.0f) / 2.0f)) + org.telegram.messenger.g0.L(14.0f)));
         this.f29271j0.setAlpha((int) (this.W * f11));

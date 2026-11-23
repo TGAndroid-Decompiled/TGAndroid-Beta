@@ -70,11 +70,11 @@ public final class e21 extends org.telegram.ui.Components.sa implements org.tele
             HashMap hashMap = this.W1;
             if (hashMap.containsKey(valueOf)) {
                 hashMap.remove(Integer.valueOf(e12));
-                G.f38085e = false;
+                G.f38084e = false;
                 ((org.telegram.ui.Cells.p7) view).i(false, true);
             } else {
                 hashMap.put(Integer.valueOf(e12), gjVar.f24218l);
-                G.f38085e = true;
+                G.f38084e = true;
                 ((org.telegram.ui.Cells.p7) view).i(true, true);
             }
             hi.e eVar = this.U1;

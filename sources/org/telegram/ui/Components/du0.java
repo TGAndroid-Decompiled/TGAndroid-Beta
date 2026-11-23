@@ -91,7 +91,7 @@ public class du0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
             if (du0Var.L == null) {
                 ou0 ou0Var = new ou0(1);
                 du0Var.L = ou0Var;
-                ou0Var.f38360g = -1;
+                ou0Var.f38359g = -1;
                 ou0Var.c();
             }
             du0Var.L.b(canvas, du0Var.M);
@@ -140,7 +140,7 @@ public class du0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
         if (this.f34587w == null) {
             m71 m71Var2 = new m71(getContext());
             this.f34587w = m71Var2;
-            m71Var2.f37447n = new ky(this, 20);
+            m71Var2.f37446n = new ky(this, 20);
             if (getMeasuredWidth() != 0 && getMeasuredHeight() != 0) {
                 m71 m71Var3 = this.f34587w;
                 int measuredWidth = getMeasuredWidth();

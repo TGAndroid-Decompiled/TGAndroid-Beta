@@ -18,7 +18,7 @@ public final class y5 extends n41 {
 
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
-        ((a6) view).f((a) o41Var.H, (x5) o41Var.I, o41Var.f38098s);
+        ((a6) view).f((a) o41Var.H, (x5) o41Var.I, o41Var.f38097s);
     }
 
     @Override

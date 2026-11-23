@@ -5,17 +5,17 @@ import android.graphics.drawable.BitmapDrawable;
 import java.io.File;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class qz0 implements o71 {
-    public final ThemeEditorView f39022a;
+    public final ThemeEditorView f39021a;
 
     public qz0(ThemeEditorView themeEditorView) {
-        this.f39022a = themeEditorView;
+        this.f39021a = themeEditorView;
     }
 
     @Override
     public final void a() {
         int i7 = 0;
         while (true) {
-            ThemeEditorView themeEditorView = this.f39022a;
+            ThemeEditorView themeEditorView = this.f39021a;
             if (i7 < themeEditorView.f33184e.size()) {
                 org.telegram.ui.ActionBar.v6 v6Var = (org.telegram.ui.ActionBar.v6) themeEditorView.f33184e.get(i7);
                 int x02 = org.telegram.ui.ActionBar.m6.x0(v6Var.f30144i, v6Var.f30141e, false);
@@ -35,7 +35,7 @@ public final class qz0 implements o71 {
 
     @Override
     public final void b(File file, Bitmap bitmap, boolean z10) {
-        org.telegram.ui.ActionBar.l6 l6Var = this.f39022a.f33193o;
+        org.telegram.ui.ActionBar.l6 l6Var = this.f39021a.f33193o;
         org.telegram.ui.ActionBar.m6.lm.delete(org.telegram.ui.ActionBar.m6.Ee);
         org.telegram.ui.ActionBar.m6.lm.delete(org.telegram.ui.ActionBar.m6.Fe);
         org.telegram.ui.ActionBar.m6.lm.delete(org.telegram.ui.ActionBar.m6.Ge);

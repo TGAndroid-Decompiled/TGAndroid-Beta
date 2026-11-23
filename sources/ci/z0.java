@@ -1072,7 +1072,7 @@ public final class z0 extends View {
         n6Var.w(org.telegram.messenger.g0.L(11.0f));
         n6Var.n(0.35f, 280L, nr.h);
         n6Var.setCallback(this);
-        n6Var.f37796b = 3;
+        n6Var.f37795b = 3;
         x0 t6 = t(H9);
         this.f6008n = t6;
         this.f5909c7 = W0(t6.f5867c);
@@ -3254,7 +3254,7 @@ public final class z0 extends View {
 
     public final Bitmap V(p5 p5Var) {
         Bitmap n10;
-        s2 s2Var = p5Var.f38500k;
+        s2 s2Var = p5Var.f38499k;
         if (s2Var != null) {
             oh0 B = s2Var.B();
             if (B != null) {
@@ -3371,7 +3371,7 @@ public final class z0 extends View {
         s2 s2Var;
         if (w0Var != null && w0Var.f5843e == null && (p5Var = w0Var.f5842c) != null) {
             t tVar = w0Var.F;
-            if ((tVar == null || tVar.h) && (s2Var = p5Var.f38500k) != null && s2Var.J() && s2Var.L()) {
+            if ((tVar == null || tVar.h) && (s2Var = p5Var.f38499k) != null && s2Var.J() && s2Var.L()) {
                 int L = org.telegram.messenger.g0.L(48.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(L, L, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);

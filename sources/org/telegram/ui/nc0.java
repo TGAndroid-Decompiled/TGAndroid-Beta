@@ -21,7 +21,7 @@ public final class nc0 implements Runnable {
                     if (z10 && System.currentTimeMillis() - oc0Var.f50555a >= 10000) {
                         xcVar.setAnimation(oh0Var);
                         oh0Var.N(0, false, false);
-                        oh0Var.f38231u0 = new nc0(oc0Var, 1);
+                        oh0Var.f38230u0 = new nc0(oc0Var, 1);
                         xcVar.d();
                         oc0Var.f50555a = System.currentTimeMillis();
                     }

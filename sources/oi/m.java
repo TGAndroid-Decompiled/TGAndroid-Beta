@@ -21,7 +21,7 @@ public final class m implements ck {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f22229b.f37520b.f40368a2.startActivityForResult(intent, 21);
+            this.f22229b.f37519b.f40367a2.startActivityForResult(intent, 21);
         } catch (Exception e10) {
             a8.g(e10, true);
         }

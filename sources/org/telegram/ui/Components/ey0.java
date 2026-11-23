@@ -257,8 +257,8 @@ public final class ey0 extends TableLayout implements org.telegram.ui.ActionBar.
             oq a10 = di.kb.a(44, "anonymous");
             int L = org.telegram.messenger.g0.L(16.0f);
             int L2 = org.telegram.messenger.g0.L(16.0f);
-            a10.f38333e = L;
-            a10.f38334f = L2;
+            a10.f38332e = L;
+            a10.f38333f = L2;
             imageReceiver.w0(a10);
             z10 = false;
             z11 = false;
@@ -267,8 +267,8 @@ public final class ey0 extends TableLayout implements org.telegram.ui.ActionBar.
             oq a11 = di.kb.a(44, "fragment");
             int L3 = org.telegram.messenger.g0.L(16.0f);
             int L4 = org.telegram.messenger.g0.L(16.0f);
-            a11.f38333e = L3;
-            a11.f38334f = L4;
+            a11.f38332e = L3;
+            a11.f38333f = L4;
             imageReceiver.w0(a11);
             z11 = true;
             z10 = false;
@@ -338,8 +338,8 @@ public final class ey0 extends TableLayout implements org.telegram.ui.ActionBar.
             oq a10 = di.kb.a(44, "anonymous");
             int L = org.telegram.messenger.g0.L(16.0f);
             int L2 = org.telegram.messenger.g0.L(16.0f);
-            a10.f38333e = L;
-            a10.f38334f = L2;
+            a10.f38332e = L;
+            a10.f38333f = L2;
             imageReceiver.w0(a10);
             z10 = false;
         } else {
@@ -348,8 +348,8 @@ public final class ey0 extends TableLayout implements org.telegram.ui.ActionBar.
                 oq a11 = di.kb.a(44, "fragment");
                 int L3 = org.telegram.messenger.g0.L(16.0f);
                 int L4 = org.telegram.messenger.g0.L(16.0f);
-                a11.f38333e = L3;
-                a11.f38334f = L4;
+                a11.f38332e = L3;
+                a11.f38333f = L4;
                 imageReceiver.w0(a11);
             } else if (j3 >= 0) {
                 TLRPC.User c22 = org.telegram.messenger.np.u1(i7).c2(Long.valueOf(j3));

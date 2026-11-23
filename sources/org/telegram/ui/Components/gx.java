@@ -34,7 +34,7 @@ public final class gx extends ek0 {
         this.f35697k3 = new ArrayList();
         this.f35698l3 = -1;
         new SparseIntArray();
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
     }
 
     public final void A1(View view) {
@@ -61,7 +61,7 @@ public final class gx extends ek0 {
 
     public final void B1() {
         ty tyVar = this.f35700n3;
-        int i7 = tyVar.f40087c;
+        int i7 = tyVar.f40086c;
         gx gxVar = tyVar.Q;
         gx gxVar2 = tyVar.Q;
         y5[] y5VarArr = new y5[gxVar.getChildCount()];
@@ -71,7 +71,7 @@ public final class gx extends ek0 {
                 y5VarArr[i10] = ((cy) childAt).getSpan();
             }
         }
-        tyVar.f40096e2 = y5.update(i7, this, y5VarArr, tyVar.f40096e2);
+        tyVar.f40095e2 = y5.update(i7, this, y5VarArr, tyVar.f40095e2);
     }
 
     @Override
@@ -108,13 +108,13 @@ public final class gx extends ek0 {
         }
         sparseArray.clear();
         int i12 = 1;
-        if (tyVar.f40152w2 > 0 && SystemClock.elapsedRealtime() - tyVar.f40152w2 < z1() && tyVar.f40142t2 != null && tyVar.f40145u2 >= 0) {
+        if (tyVar.f40151w2 > 0 && SystemClock.elapsedRealtime() - tyVar.f40151w2 < z1() && tyVar.f40141t2 != null && tyVar.f40144u2 >= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         float f10 = 0.0f;
-        if (tyVar.f40096e2 != null && gxVar != null) {
+        if (tyVar.f40095e2 != null && gxVar != null) {
             int i13 = 0;
             while (i13 < gxVar.getChildCount()) {
                 View childAt = gxVar.getChildAt(i13);
@@ -131,9 +131,9 @@ public final class gx extends ek0 {
                     }
                     arrayList4.add((cy) childAt);
                 }
-                if (z10 && childAt != null && RecyclerView.R(childAt) == tyVar.f40145u2 - i12) {
+                if (z10 && childAt != null && RecyclerView.R(childAt) == tyVar.f40144u2 - i12) {
                     z11 = z10;
-                    float interpolation = nr.f37962g.getInterpolation(c8.l9.a(((float) (SystemClock.elapsedRealtime() - tyVar.f40152w2)) / 140.0f, f10, 1.0f));
+                    float interpolation = nr.f37961g.getInterpolation(c8.l9.a(((float) (SystemClock.elapsedRealtime() - tyVar.f40151w2)) / 140.0f, f10, 1.0f));
                     if (interpolation >= 1.0f || (Build.VERSION.SDK_INT >= 30 && canvas2.quickReject(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom()))) {
                         i7 = i13;
                     } else {
@@ -143,7 +143,7 @@ public final class gx extends ek0 {
                         canvas2.translate(childAt.getLeft(), childAt.getTop());
                         float f12 = (f11 * 0.5f) + 0.5f;
                         canvas2.scale(f12, f12, childAt.getWidth() / 2.0f, childAt.getHeight() / 2.0f);
-                        tyVar.f40142t2.draw(canvas2);
+                        tyVar.f40141t2.draw(canvas2);
                         canvas2.restore();
                     }
                 } else {
@@ -234,7 +234,7 @@ public final class gx extends ek0 {
         super.dispatchDraw(canvas);
         ty tyVar = this.f35700n3;
         gx gxVar = tyVar.Q;
-        tyVar.f40125o2.g();
+        tyVar.f40124o2.g();
         if (this.f35698l3 != getChildCount()) {
             B1();
             this.f35698l3 = getChildCount();
@@ -254,12 +254,12 @@ public final class gx extends ek0 {
             i10++;
         }
         sparseArray.clear();
-        if (tyVar.f40152w2 > 0 && SystemClock.elapsedRealtime() - tyVar.f40152w2 < z1() && tyVar.f40142t2 != null && tyVar.f40145u2 >= 0) {
+        if (tyVar.f40151w2 > 0 && SystemClock.elapsedRealtime() - tyVar.f40151w2 < z1() && tyVar.f40141t2 != null && tyVar.f40144u2 >= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (tyVar.f40096e2 != null && gxVar != null) {
+        if (tyVar.f40095e2 != null && gxVar != null) {
             for (int i11 = 0; i11 < gxVar.getChildCount(); i11++) {
                 View childAt = gxVar.getChildAt(i11);
                 if (childAt instanceof cy) {
@@ -275,15 +275,15 @@ public final class gx extends ek0 {
                     }
                     arrayList4.add((cy) childAt);
                 }
-                if (z10 && childAt != null && RecyclerView.R(childAt) == tyVar.f40145u2 - 1) {
-                    float interpolation = nr.f37962g.getInterpolation(c8.l9.a(((float) (SystemClock.elapsedRealtime() - tyVar.f40152w2)) / 140.0f, 0.0f, 1.0f));
+                if (z10 && childAt != null && RecyclerView.R(childAt) == tyVar.f40144u2 - 1) {
+                    float interpolation = nr.f37961g.getInterpolation(c8.l9.a(((float) (SystemClock.elapsedRealtime() - tyVar.f40151w2)) / 140.0f, 0.0f, 1.0f));
                     if (interpolation < 1.0f) {
                         float f10 = 1.0f - interpolation;
                         canvas.saveLayerAlpha(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom(), (int) (255.0f * f10), 31);
                         canvas.translate(childAt.getLeft(), childAt.getTop());
                         float f11 = (f10 * 0.5f) + 0.5f;
                         canvas.scale(f11, f11, childAt.getWidth() / 2.0f, childAt.getHeight() / 2.0f);
-                        tyVar.f40142t2.draw(canvas);
+                        tyVar.f40141t2.draw(canvas);
                         canvas.restore();
                     }
                 }
@@ -461,7 +461,7 @@ public final class gx extends ek0 {
     public final void onDetachedFromWindow() {
         ArrayList arrayList;
         super.onDetachedFromWindow();
-        y5.release(this, this.f35700n3.f40096e2);
+        y5.release(this, this.f35700n3.f40095e2);
         int i7 = 0;
         int i10 = 0;
         while (true) {
@@ -488,8 +488,8 @@ public final class gx extends ek0 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         ty tyVar = this.f35700n3;
-        if (!tyVar.f40097f) {
-            boolean q10 = org.telegram.ui.ns.p().q(motionEvent, this, tyVar.f40106h2, this.f34873o2);
+        if (!tyVar.f40096f) {
+            boolean q10 = org.telegram.ui.ns.p().q(motionEvent, this, tyVar.f40105h2, this.f34873o2);
             if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
                 return false;
             }
@@ -501,10 +501,10 @@ public final class gx extends ek0 {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         ty tyVar = this.f35700n3;
-        if (tyVar.f40094e0 && tyVar.f40091d0) {
+        if (tyVar.f40093e0 && tyVar.f40090d0) {
             this.f35693f3 = true;
             tyVar.R.h1(0, 0);
-            tyVar.f40091d0 = false;
+            tyVar.f40090d0 = false;
             this.f35693f3 = false;
         }
         super.onLayout(z10, i7, i10, i11, i12);
@@ -551,15 +551,15 @@ public final class gx extends ek0 {
                     }
                     getLocationOnScreen(iArr);
                     float x10 = motionEvent.getX() + iArr[0];
-                    kuVar.f36985c.getLocationOnScreen(iArr);
+                    kuVar.f36984c.getLocationOnScreen(iArr);
                     int L = (int) (x10 - (org.telegram.messenger.g0.L(3.0f) + iArr[0]));
                     boolean z10 = kuVar.d;
-                    ju juVar = kuVar.f36985c;
+                    ju juVar = kuVar.f36984c;
                     if (!z10) {
-                        int max = Math.max(0, Math.min(5, L / (org.telegram.messenger.g0.L(4.0f) + kuVar.f36986e)));
-                        if (juVar.f36692n[0] != max) {
+                        int max = Math.max(0, Math.min(5, L / (org.telegram.messenger.g0.L(4.0f) + kuVar.f36985e)));
+                        if (juVar.f36691n[0] != max) {
                             org.telegram.messenger.g0.a4(juVar);
-                            int[] iArr2 = juVar.f36692n;
+                            int[] iArr2 = juVar.f36691n;
                             if (iArr2[0] != max) {
                                 iArr2[0] = max;
                                 juVar.invalidate();
@@ -570,7 +570,7 @@ public final class gx extends ek0 {
             } else {
                 if (kuVar != null && kuVar.isShowing() && !kuVar.d) {
                     kuVar.dismiss();
-                    int i7 = kuVar.f36985c.f36692n[0];
+                    int i7 = kuVar.f36984c.f36691n[0];
                     if (i7 >= 1 && i7 <= 5) {
                         str = (String) org.telegram.messenger.j4.f24826a.get(i7 - 1);
                     } else {
@@ -625,6 +625,6 @@ public final class gx extends ek0 {
 
     public final long z1() {
         ty tyVar = this.f35700n3;
-        return Math.max(400L, Math.min(45, tyVar.f40148v2 - tyVar.f40145u2) * 35) + Math.max(600L, Math.min(55, tyVar.f40148v2 - tyVar.f40145u2) * 40) + 150;
+        return Math.max(400L, Math.min(45, tyVar.f40147v2 - tyVar.f40144u2) * 35) + Math.max(600L, Math.min(55, tyVar.f40147v2 - tyVar.f40144u2) * 40) + 150;
     }
 }

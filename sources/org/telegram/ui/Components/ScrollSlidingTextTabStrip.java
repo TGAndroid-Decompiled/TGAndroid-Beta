@@ -516,7 +516,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements o
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
                         ofFloat.addUpdateListener(new hi.f4(this, i16 - e10, i13 - i15, 3));
                         ofFloat.setDuration(200L);
-                        ofFloat.setInterpolator(nr.f37961f);
+                        ofFloat.setInterpolator(nr.f37960f);
                         ofFloat.start();
                     }
                     this.V = 0;

@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 public final class ir extends n41 {
-    public static final int f36303b = 0;
+    public static final int f36302b = 0;
 
     static {
         n41.h(new n41());
@@ -15,9 +15,9 @@ public final class ir extends n41 {
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) view;
-        y8Var.c(o41Var.f38092m, o41Var.f38094o, !o41Var.f38089j);
+        y8Var.c(o41Var.f38091m, o41Var.f38093o, !o41Var.f38088j);
         xh.l lVar = y8Var.f32515a;
-        if (o41Var.f38092m instanceof SpannableStringBuilder) {
+        if (o41Var.f38091m instanceof SpannableStringBuilder) {
             lVar.setTextSize(1, 13.0f);
             lVar.setTranslationY(org.telegram.messenger.g0.L(2.0f));
             lVar.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));

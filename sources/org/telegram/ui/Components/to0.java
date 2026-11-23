@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class to0 extends dk0 {
-    public final Context f40001c;
+    public final Context f40000c;
     public final ArrayList d = new ArrayList();
-    public final a0.h f40002e = new a0.h();
-    public final ap0 f40003f;
+    public final a0.h f40001e = new a0.h();
+    public final ap0 f40002f;
 
     public to0(ap0 ap0Var, Context context) {
-        this.f40003f = ap0Var;
-        this.f40001c = context;
+        this.f40002f = ap0Var;
+        this.f40000c = context;
         E();
     }
 
@@ -29,9 +29,9 @@ public final class to0 extends dk0 {
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
         ArrayList arrayList = this.d;
         arrayList.clear();
-        a0.h hVar = this.f40002e;
+        a0.h hVar = this.f40001e;
         hVar.b();
-        ap0 ap0Var = this.f40003f;
+        ap0 ap0Var = this.f40002f;
         long j3 = org.telegram.messenger.k10.i(ap0Var.f30173a).f24987n;
         if (ap0Var.V1) {
             TLRPC.Dialog dialog = new TLRPC.Dialog();
@@ -117,8 +117,8 @@ public final class to0 extends dk0 {
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View ro0Var;
         float f10;
-        ap0 ap0Var = this.f40003f;
-        Context context = this.f40001c;
+        ap0 ap0Var = this.f40002f;
+        Context context = this.f40000c;
         if (i7 != 0) {
             ro0Var = new View(context);
             if (ap0Var.d2 && ap0Var.f33571k2[1] != null) {

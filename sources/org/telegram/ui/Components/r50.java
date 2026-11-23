@@ -12,7 +12,7 @@ public final class r50 extends g80 {
 
     @Override
     public final void e(SpannableStringBuilder spannableStringBuilder) {
-        a60 a60Var = this.N.f40686c;
+        a60 a60Var = this.N.f40685c;
         org.telegram.ui.ActionBar.m2 m2Var = a60Var.f30179c;
         int i7 = a60.f33325i2;
         gc Q = new lc(m2Var, a60Var.J0).Q(2131624029, 36, spannableStringBuilder);

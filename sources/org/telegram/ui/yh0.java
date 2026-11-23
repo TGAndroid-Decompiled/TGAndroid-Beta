@@ -84,11 +84,11 @@ public final class yh0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
                     ImageView imageView = (ImageView) childAt;
                     if (imageView.getDrawable() instanceof org.telegram.ui.Components.oq) {
                         org.telegram.ui.Components.oq oqVar = (org.telegram.ui.Components.oq) imageView.getDrawable();
-                        Drawable drawable = oqVar.f38330a;
+                        Drawable drawable = oqVar.f38329a;
                         if (drawable != null) {
                             drawable.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
                         }
-                        Drawable drawable2 = oqVar.f38331b;
+                        Drawable drawable2 = oqVar.f38330b;
                         if (drawable2 != null) {
                             drawable2.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
                         }
@@ -419,7 +419,7 @@ public final class yh0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
                     if (T0.startsWith("content://")) {
                         T0 = MediaController.t(-1L, intent.getData(), "mp3");
                     }
-                    if (this.O.f40396k2.R(new File(T0))) {
+                    if (this.O.f40395k2.R(new File(T0))) {
                         getMediaDataController().q2(T0);
                         getNotificationCenter().k(i11, new Object[0]);
                         z11 = z10;
@@ -436,7 +436,7 @@ public final class yh0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
                     if (uri2.startsWith("content://")) {
                         uri2 = MediaController.t(-1L, uri, "mp3");
                     }
-                    if (this.O.f40396k2.R(new File(uri2))) {
+                    if (this.O.f40395k2.R(new File(uri2))) {
                         getMediaDataController().q2(uri2);
                         getNotificationCenter().k(i11, new Object[0]);
                         z12 = true;

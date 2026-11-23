@@ -73,7 +73,7 @@ public final class h extends FrameLayout implements b6 {
         addView(q9Var, ma.d(52, 52.0f, 51, 11.0f, 9.0f, 0.0f, 0.0f));
         nq nqVar = new nq(2131231979, 0);
         this.f21060s = nqVar;
-        nqVar.f37951r = g0.L(2.0f);
+        nqVar.f37950r = g0.L(2.0f);
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTypeface(g0.o());

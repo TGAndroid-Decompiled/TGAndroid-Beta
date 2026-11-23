@@ -44,8 +44,8 @@ public final class n implements Runnable {
         int i7 = 0;
         switch (this.f1304a) {
             case 0:
-                t[] tVarArr = DictationAsr.f43068a;
-                ArrayList arrayList = new ArrayList(DictationAsr.f43073g);
+                t[] tVarArr = DictationAsr.f43067a;
+                ArrayList arrayList = new ArrayList(DictationAsr.f43072g);
                 int size = arrayList.size();
                 while (i7 < size) {
                     Object obj = arrayList.get(i7);

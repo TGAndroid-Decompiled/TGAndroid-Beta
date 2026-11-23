@@ -629,7 +629,7 @@ public final class sa implements gs {
         n6Var.u(-1);
         n6Var.x(org.telegram.messenger.g0.o());
         n6Var.setCallback(view2);
-        n6Var.f37796b = 1;
+        n6Var.f37795b = 1;
         view2.a(0L, false);
         this.K0 = view2;
         h0(false, false);
@@ -927,7 +927,7 @@ public final class sa implements gs {
                 oh0Var.P(0);
                 this.f15413i1.M(0);
             }
-            this.f15413i1.f38205a0 = true;
+            this.f15413i1.f38204a0 = true;
             int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.J9, this.f15384a);
             this.f15413i1.Q(w02, "Sunny");
             this.f15413i1.Q(w02, "Path 6");
@@ -1930,8 +1930,8 @@ public final class sa implements gs {
                     oq oqVar = new oq(new ColorDrawable(-14540254), mutate);
                     int L = org.telegram.messenger.g0.L(64.0f);
                     int L2 = org.telegram.messenger.g0.L(64.0f);
-                    oqVar.f38333e = L;
-                    oqVar.f38334f = L2;
+                    oqVar.f38332e = L;
+                    oqVar.f38333f = L2;
                     this.B0.setCameraThumb(oqVar);
                     if (activity.shouldShowRequestPermissionRationale("android.permission.CAMERA")) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, activity, this.f15384a);
@@ -2236,14 +2236,14 @@ public final class sa implements gs {
             oh0Var2.N(i7, false, false);
         } else if (z10) {
             oh0 oh0Var3 = this.f15407g1;
-            if (oh0Var3.f38207b0 > 20) {
+            if (oh0Var3.f38206b0 > 20) {
                 oh0Var3.N(0, false, false);
             }
             this.f15407g1.P(20);
             this.f15407g1.start();
         } else {
             oh0 oh0Var4 = this.f15407g1;
-            int i10 = oh0Var4.f38207b0;
+            int i10 = oh0Var4.f38206b0;
             if (i10 != 0 && i10 < 43) {
                 oh0Var4.P(43);
                 this.f15407g1.start();
@@ -2854,7 +2854,7 @@ public final class sa implements gs {
         int i7;
         oh0 oh0Var = this.f15413i1;
         if (oh0Var != null) {
-            int[] iArr = oh0Var.f38211e;
+            int[] iArr = oh0Var.f38210e;
             int i10 = 0;
             if (z10) {
                 c7 c7Var = this.L1;

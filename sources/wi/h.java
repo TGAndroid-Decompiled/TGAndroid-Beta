@@ -105,10 +105,10 @@ public final class h {
             f10 = 0.5625f;
         }
         jn m12 = jn.m();
-        float f11 = ((SharedPreferences) m12.f36567b).getFloat("scale_factor", 1.0f);
+        float f11 = ((SharedPreferences) m12.f36566b).getFloat("scale_factor", 1.0f);
         float i11 = i(f10) * f11;
         float i12 = ((int) (i(f10) * f10)) * f11;
-        SharedPreferences sharedPreferences = (SharedPreferences) m12.f36567b;
+        SharedPreferences sharedPreferences = (SharedPreferences) m12.f36566b;
         float f12 = sharedPreferences.getFloat("x", -1.0f);
         float f13 = sharedPreferences.getFloat("y", -1.0f);
         if (f12 != -1.0f) {
@@ -311,7 +311,7 @@ public final class h {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f10, f11).setDuration(200L);
         this.v = duration;
-        duration.setInterpolator(nr.f37961f);
+        duration.setInterpolator(nr.f37960f);
         this.v.addUpdateListener(new z1(this, 7));
         this.v.addListener(new k71(this, 25));
         this.v.start();

@@ -24,12 +24,12 @@ public final class mw {
         int i7;
         cx cxVar = this.f49998a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cxVar.getParentActivity());
-        org.telegram.ui.Components.nm0 nm0Var = cxVar.D0.f40503e0;
+        org.telegram.ui.Components.nm0 nm0Var = cxVar.D0.f40502e0;
         boolean z10 = nm0Var.O;
         org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
         if (z10 && nm0Var.O()) {
             t1Var.S = org.telegram.messenger.hd.N0(2131752047, null);
-            org.telegram.ui.Components.nm0 nm0Var2 = cxVar.D0.f40503e0;
+            org.telegram.ui.Components.nm0 nm0Var2 = cxVar.D0.f40502e0;
             if (nm0Var2.O) {
                 arrayList = nm0Var2.f17522w0;
             } else {
@@ -52,15 +52,15 @@ public final class mw {
                 public final void h(org.telegram.ui.ActionBar.t1 t1Var2, int i10) {
                     switch (r2) {
                         case 0:
-                            this.f49716b.f49998a.D0.f40503e0.E();
+                            this.f49716b.f49998a.D0.f40502e0.E();
                             return;
                         default:
                             cx cxVar2 = this.f49716b.f49998a;
-                            if (cxVar2.D0.f40503e0.O()) {
-                                cxVar2.D0.f40503e0.E();
+                            if (cxVar2.D0.f40502e0.O()) {
+                                cxVar2.D0.f40502e0.E();
                                 return;
                             }
-                            org.telegram.ui.Components.nm0 nm0Var3 = cxVar2.D0.f40503e0;
+                            org.telegram.ui.Components.nm0 nm0Var3 = cxVar2.D0.f40502e0;
                             nm0Var3.f17507k0.c();
                             nm0Var3.K.clear();
                             nm0Var3.f();
@@ -82,15 +82,15 @@ public final class mw {
                 public final void h(org.telegram.ui.ActionBar.t1 t1Var2, int i10) {
                     switch (r2) {
                         case 0:
-                            this.f49716b.f49998a.D0.f40503e0.E();
+                            this.f49716b.f49998a.D0.f40502e0.E();
                             return;
                         default:
                             cx cxVar2 = this.f49716b.f49998a;
-                            if (cxVar2.D0.f40503e0.O()) {
-                                cxVar2.D0.f40503e0.E();
+                            if (cxVar2.D0.f40502e0.O()) {
+                                cxVar2.D0.f40502e0.E();
                                 return;
                             }
-                            org.telegram.ui.Components.nm0 nm0Var3 = cxVar2.D0.f40503e0;
+                            org.telegram.ui.Components.nm0 nm0Var3 = cxVar2.D0.f40502e0;
                             nm0Var3.f17507k0.c();
                             nm0Var3.K.clear();
                             nm0Var3.f();
@@ -111,7 +111,7 @@ public final class mw {
         int i7;
         kw kwVar = this.f49998a.D0;
         if (kwVar != null) {
-            org.telegram.ui.Components.hj0 hj0Var = kwVar.f40505g0;
+            org.telegram.ui.Components.hj0 hj0Var = kwVar.f40504g0;
             int i10 = kwVar.V0;
             if (i10 > 0) {
                 i7 = i10 + 1;
@@ -119,29 +119,29 @@ public final class mw {
                 i7 = 0;
             }
             hj0Var.b(i7);
-            kwVar.V0 = kwVar.f40503e0.b();
+            kwVar.V0 = kwVar.f40502e0.b();
         }
     }
 
     public final void d(boolean z10, boolean z11) {
         cx cxVar = this.f49998a;
-        if (cxVar.D0.f40501c0.getVisibility() == 0) {
+        if (cxVar.D0.f40500c0.getVisibility() == 0) {
             z11 = true;
         }
         if (cxVar.f46752l2 && cxVar.f46756m2) {
             kw kwVar = cxVar.D0;
-            if (kwVar.f40501c0 != null) {
-                if (!z10 && kwVar.f40503e0.b() == 0) {
-                    cxVar.D0.f40501c0.e(false, z11);
+            if (kwVar.f40500c0 != null) {
+                if (!z10 && kwVar.f40502e0.b() == 0) {
+                    cxVar.D0.f40500c0.e(false, z11);
                 } else {
-                    cxVar.D0.f40501c0.e(true, z11);
+                    cxVar.D0.f40500c0.e(true, z11);
                 }
             }
         }
-        if (z10 && cxVar.D0.f40503e0.b() == 0) {
+        if (z10 && cxVar.D0.f40502e0.b() == 0) {
             kw kwVar2 = cxVar.D0;
-            kwVar2.f40505g0.a();
-            kwVar2.f40500b0.invalidate();
+            kwVar2.f40504g0.a();
+            kwVar2.f40499b0.invalidate();
             kwVar2.V0 = 0;
         }
     }

@@ -4,21 +4,21 @@ import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class rq0 extends v4.o0 {
-    public final kq0 f39319a;
-    public final jt0 f39320b;
+    public final kq0 f39318a;
+    public final jt0 f39319b;
 
     public rq0(jt0 jt0Var, kq0 kq0Var) {
-        this.f39320b = jt0Var;
-        this.f39319a = kq0Var;
+        this.f39319b = jt0Var;
+        this.f39318a = kq0Var;
     }
 
     @Override
     public final void e(Rect rect, View view, RecyclerView recyclerView, v4.c1 c1Var) {
         boolean z10;
         boolean z11;
-        kq0 kq0Var = this.f39319a;
+        kq0 kq0Var = this.f39318a;
         int i7 = 0;
-        if (kq0Var.h.getAdapter() == this.f39320b.R) {
+        if (kq0Var.h.getAdapter() == this.f39319b.R) {
             int R = RecyclerView.R(view);
             rect.left = 0;
             rect.bottom = 0;

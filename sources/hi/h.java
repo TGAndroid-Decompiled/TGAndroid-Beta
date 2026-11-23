@@ -56,12 +56,12 @@ public final class h extends yt {
         if (emojiView != null) {
             o oVar = this.f14730d0;
             if (oVar.getEditTextStyle() == 2 || oVar.getEditTextStyle() == 3) {
-                emojiView.f40154x0 = false;
-                emojiView.f40160y2 = false;
+                emojiView.f40153x0 = false;
+                emojiView.f40159y2 = false;
                 emojiView.setShouldDrawBackground(false);
                 if (oVar instanceof yc) {
                     emojiView.setPadding(0, 0, 0, org.telegram.messenger.g0.f24041n);
-                    emojiView.f40087c = 3;
+                    emojiView.f40086c = 3;
                 }
                 emojiView.updateColors();
             }

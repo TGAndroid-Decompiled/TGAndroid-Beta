@@ -5,15 +5,15 @@ import android.text.TextUtils;
 import android.view.View;
 import java.util.ArrayList;
 public final class n implements View.OnLongClickListener {
-    public final int f37679a;
-    public final Object f37680b;
-    public final Object f37681c;
+    public final int f37678a;
+    public final Object f37679b;
+    public final Object f37680c;
     public final Object d;
 
     public n(Object obj, Object obj2, Object obj3, int i7) {
-        this.f37679a = i7;
-        this.f37680b = obj;
-        this.f37681c = obj2;
+        this.f37678a = i7;
+        this.f37679b = obj;
+        this.f37680c = obj2;
         this.d = obj3;
     }
 
@@ -24,19 +24,19 @@ public final class n implements View.OnLongClickListener {
         gf gfVar;
         int i10;
         boolean z11;
-        int i11 = this.f37679a;
+        int i11 = this.f37678a;
         Object obj = this.d;
-        Object obj2 = this.f37681c;
-        Object obj3 = this.f37680b;
+        Object obj2 = this.f37680c;
+        Object obj3 = this.f37679b;
         switch (i11) {
             case 0:
                 n0 n0Var = (n0) obj3;
                 org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj2;
                 Context context = (Context) obj;
-                if (n0Var.f37689i2 || (n0Var.f37691k2 == null ? n0Var.f37690j2 == null || n0Var.p1() == null : n0Var.o1() == null)) {
+                if (n0Var.f37688i2 || (n0Var.f37690k2 == null ? n0Var.f37689j2 == null || n0Var.p1() == null : n0Var.o1() == null)) {
                     return false;
                 }
-                if (n0Var.f37688h2 == org.telegram.messenger.k10.i(n0Var.f30173a).e()) {
+                if (n0Var.f37687h2 == org.telegram.messenger.k10.i(n0Var.f30173a).e()) {
                     z10 = true;
                 } else {
                     z10 = false;

@@ -27,27 +27,27 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
     public float M;
     public final OvershootInterpolator N;
     public float O;
-    public final Paint f36118a;
-    public final w9 f36119b;
-    public final w9 f36120c;
+    public final Paint f36117a;
+    public final w9 f36118b;
+    public final w9 f36119c;
     public float d;
-    public float f36121e;
-    public float f36122f;
+    public float f36120e;
+    public float f36121f;
     public h20 h;
-    public h20 f36123n;
-    public float f36124r;
-    public boolean f36125s;
-    public float f36126w;
-    public final LinearGradient f36127x;
-    public final Matrix f36128y;
+    public h20 f36122n;
+    public float f36123r;
+    public boolean f36124s;
+    public float f36125w;
+    public final LinearGradient f36126x;
+    public final Matrix f36127y;
 
     public i20(Context context, int i7) {
         super(context);
-        this.f36118a = new Paint(1);
-        this.f36119b = new w9(8);
-        this.f36120c = new w9(9);
-        this.f36124r = 1.0f;
-        this.f36128y = new Matrix();
+        this.f36117a = new Paint(1);
+        this.f36118b = new w9(8);
+        this.f36119c = new w9(9);
+        this.f36123r = 1.0f;
+        this.f36127y = new Matrix();
         this.E = 0.0f;
         new Random();
         this.J = new h20[4];
@@ -56,12 +56,12 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
         for (int i10 = 0; i10 < 4; i10++) {
             this.J[i10] = new h20(i10);
         }
-        this.f36119b.f41714b = org.telegram.messenger.g0.L(37.0f);
-        this.f36119b.f41713a = org.telegram.messenger.g0.L(32.0f);
-        this.f36120c.f41714b = org.telegram.messenger.g0.L(37.0f);
-        this.f36120c.f41713a = org.telegram.messenger.g0.L(32.0f);
-        this.f36119b.b();
-        this.f36120c.b();
+        this.f36118b.f41713b = org.telegram.messenger.g0.L(37.0f);
+        this.f36118b.f41712a = org.telegram.messenger.g0.L(32.0f);
+        this.f36119c.f41713b = org.telegram.messenger.g0.L(37.0f);
+        this.f36119c.f41712a = org.telegram.messenger.g0.L(32.0f);
+        this.f36118b.b();
+        this.f36119c.b();
         oh0 oh0Var = new oh0(2131624334, org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(30.0f), true, null);
         this.H = oh0Var;
         setWillNotDraw(false);
@@ -70,13 +70,13 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
         imageView.setAnimation(oh0Var);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        this.f36127x = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f36126x = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
     }
 
     private void setAmplitude(double d) {
         float min = (float) (Math.min(8500.0d, d) / 8500.0d);
-        this.f36121e = min;
-        this.f36122f = (min - this.d) / 265.0f;
+        this.f36120e = min;
+        this.f36121f = (min - this.d) / 265.0f;
     }
 
     public final void a() {
@@ -137,7 +137,7 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
         }
         oh0 oh0Var = this.H;
         oh0Var.P(i7);
-        oh0Var.N(oh0Var.f38213f - 1, false, true);
+        oh0Var.N(oh0Var.f38212f - 1, false, true);
         a();
     }
 
@@ -250,14 +250,14 @@ public final class i20 extends FrameLayout implements org.telegram.messenger.gs,
         if (h20Var != null && h20Var.f35755i == i7) {
             return;
         }
-        this.f36123n = h20Var;
+        this.f36122n = h20Var;
         h20 h20Var2 = this.J[i7];
         this.h = h20Var2;
         float f10 = 0.0f;
         if (h20Var != null) {
-            this.f36124r = 0.0f;
+            this.f36123r = 0.0f;
         } else {
-            this.f36124r = 1.0f;
+            this.f36123r = 1.0f;
             int i10 = h20Var2.f35755i;
             if (i10 != 3 && i10 != 2) {
                 f10 = 1.0f;

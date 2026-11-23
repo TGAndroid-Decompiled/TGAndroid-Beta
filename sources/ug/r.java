@@ -120,7 +120,7 @@ public final class r extends View {
                 qVar2.f58878f = ofFloat;
                 ofFloat.addUpdateListener(new o(this, qVar2, 0));
                 qVar2.f58878f.addListener(new p(this, qVar2, 1));
-                qVar2.f58878f.setInterpolator(nr.f37962g);
+                qVar2.f58878f.setInterpolator(nr.f37961g);
                 qVar2.f58878f.setDuration(250L);
                 qVar2.f58878f.setStartDelay(((arrayList.size() - 1) - i10) * 60);
                 qVar2.f58878f.start();

@@ -45,7 +45,7 @@ public final class i1 extends LinearLayout implements b6 {
         int w02 = m6.w0(i14, h6Var);
         q80Var.g(m6.r1(0.05f, w02), m6.r1(0.15f, w02), m6.r1(0.1f, w02), m6.r1(0.3f, w02));
         q80Var.k(4.0f);
-        q80Var.f38833x.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
+        q80Var.f38832x.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
         imageReceiver.J0(org.telegram.messenger.g0.L(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;

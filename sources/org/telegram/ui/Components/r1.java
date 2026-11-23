@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import android.content.DialogInterface;
 import android.widget.EditText;
 public final class r1 implements DialogInterface.OnDismissListener {
-    public final int f39048a;
-    public final EditText f39049b;
+    public final int f39047a;
+    public final EditText f39048b;
 
     public r1(EditText editText, int i7) {
-        this.f39048a = i7;
-        this.f39049b = editText;
+        this.f39047a = i7;
+        this.f39048b = editText;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f39048a) {
+        switch (this.f39047a) {
             case 0:
-                org.telegram.messenger.g0.v1(this.f39049b);
+                org.telegram.messenger.g0.v1(this.f39048b);
                 return;
             default:
-                org.telegram.messenger.g0.v1(this.f39049b);
+                org.telegram.messenger.g0.v1(this.f39048b);
                 return;
         }
     }

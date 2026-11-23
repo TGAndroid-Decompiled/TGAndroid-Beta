@@ -10,6 +10,6 @@ public final class h0 extends org.telegram.ui.j11 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f35733e.f36061e2 = null;
+        this.f35733e.f36060e2 = null;
     }
 }

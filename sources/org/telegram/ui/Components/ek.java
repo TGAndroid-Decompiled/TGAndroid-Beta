@@ -146,7 +146,7 @@ public final class ek extends dk0 {
                     return;
                 }
                 org.telegram.ui.Cells.o4 o4Var = (org.telegram.ui.Cells.o4) view;
-                if (mkVar.f37530d0) {
+                if (mkVar.f37529d0) {
                     o4Var.setText(org.telegram.messenger.hd.N0(2131746171, null));
                     return;
                 } else {
@@ -171,7 +171,7 @@ public final class ek extends dk0 {
         View view;
         switch (this.f34838c) {
             case 0:
-                org.telegram.ui.ActionBar.h6 h6Var = ((mk) this.f34841n).f37519a;
+                org.telegram.ui.ActionBar.h6 h6Var = ((mk) this.f34841n).f37518a;
                 Context context = this.d;
                 if (i7 != 0) {
                     if (i7 != 1) {

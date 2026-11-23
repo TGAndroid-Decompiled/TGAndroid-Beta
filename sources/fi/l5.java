@@ -99,7 +99,7 @@ public final class l5 implements RequestDelegate {
                 org.telegram.messenger.g0.g3(new org.telegram.messenger.j2(0));
                 return;
             case 22:
-                int i14 = wy0.f41915e;
+                int i14 = wy0.f41914e;
                 return;
             case 23:
                 int i15 = gd0.f48055w0;

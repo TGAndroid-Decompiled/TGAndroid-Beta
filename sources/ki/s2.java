@@ -166,7 +166,7 @@ public final class s2 extends Dialog implements gs, org.telegram.ui.ActionBar.j3
 
     static {
         xt0 xt0Var = new xt0(new e9(16), new e9(17));
-        xt0Var.f42218c = 100.0f;
+        xt0Var.f42217c = 100.0f;
         f18928c1 = xt0Var;
         f18929d1 = 0;
     }
@@ -432,7 +432,7 @@ public final class s2 extends Dialog implements gs, org.telegram.ui.ActionBar.j3
         if (z10) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
             this.U0 = duration;
-            duration.setInterpolator(nr.f37961f);
+            duration.setInterpolator(nr.f37960f);
             this.U0.addUpdateListener(new q1(this, color, i7, 0));
             this.U0.addListener(new e2(this, i7, 0));
             this.U0.start();
@@ -623,7 +623,7 @@ public final class s2 extends Dialog implements gs, org.telegram.ui.ActionBar.j3
         }
         if (z10) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
-            duration.setInterpolator(nr.f37961f);
+            duration.setInterpolator(nr.f37960f);
             duration.addUpdateListener(new q1(this, i10, i7, 1));
             duration.addListener(new h2(this, i10, i7, 0));
             duration.start();
@@ -2079,7 +2079,7 @@ public final class s2 extends Dialog implements gs, org.telegram.ui.ActionBar.j3
         p1Var.c(p1Var.f18858b, i12, h6Var);
         if (z11) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
-            duration.setInterpolator(nr.f37961f);
+            duration.setInterpolator(nr.f37960f);
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {

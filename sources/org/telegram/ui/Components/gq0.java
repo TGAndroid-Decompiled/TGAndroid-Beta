@@ -16,7 +16,7 @@ public final class gq0 extends bi.s6 {
         float f10;
         float f11;
         jt0 jt0Var = this.W;
-        TextView textView = jt0Var.f36670t0;
+        TextView textView = jt0Var.f36669t0;
         textView.setVisibility(0);
         ViewPropertyAnimator animate = textView.animate();
         float f12 = 1.0f;

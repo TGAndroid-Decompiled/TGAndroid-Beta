@@ -311,9 +311,9 @@ public abstract class m41 extends FrameLayout implements org.telegram.ui.ActionB
                 if (i10 < arrayList2.size()) {
                     org.telegram.ui.Components.xz xzVar = ((l41) arrayList2.get(i10)).f49475a;
                     xzVar.getClass();
-                    xzVar.f42269r = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29381d6, false);
-                    xzVar.f42271w = -1;
-                    xzVar.f42270s = i7;
+                    xzVar.f42268r = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29381d6, false);
+                    xzVar.f42270w = -1;
+                    xzVar.f42269s = i7;
                     xzVar.invalidate();
                 }
             }
@@ -471,7 +471,7 @@ public abstract class m41 extends FrameLayout implements org.telegram.ui.ActionB
                 while (true) {
                     if (i11 < bVar.d.size()) {
                         if (((mg.a) bVar.d.get(i11)).f21007c.equals(((mg.a) this.f49764r.d.d.get(i7)).f21007c)) {
-                            boolean z12 = ((l41) arrayList.get(i7)).f49475a.f42264b;
+                            boolean z12 = ((l41) arrayList.get(i7)).f49475a.f42263b;
                             ((ng.f) arrayList2.get(i11)).f21541n = z12;
                             ng.f fVar = (ng.f) arrayList2.get(i11);
                             if (z12) {
@@ -480,7 +480,7 @@ public abstract class m41 extends FrameLayout implements org.telegram.ui.ActionB
                                 f10 = 0.0f;
                             }
                             fVar.f21542o = f10;
-                            ((l41) arrayList.get(i7)).f49475a.f42265c = true;
+                            ((l41) arrayList.get(i7)).f49475a.f42264c = true;
                             ((l41) arrayList.get(i7)).f49475a.animate().alpha(1.0f).start();
                             if (z12) {
                                 i10++;
@@ -495,14 +495,14 @@ public abstract class m41 extends FrameLayout implements org.telegram.ui.ActionB
                     }
                 }
                 if (!z11) {
-                    ((l41) arrayList.get(i7)).f49475a.f42265c = false;
+                    ((l41) arrayList.get(i7)).f49475a.f42264c = false;
                     ((l41) arrayList.get(i7)).f49475a.animate().alpha(0.0f).start();
                 }
                 i7++;
             }
             if (i10 == 0) {
                 for (int i12 = 0; i12 < this.f49764r.d.d.size(); i12++) {
-                    ((l41) arrayList.get(i12)).f49475a.f42265c = true;
+                    ((l41) arrayList.get(i12)).f49475a.f42264c = true;
                     ((l41) arrayList.get(i12)).f49475a.animate().alpha(1.0f).start();
                 }
                 return;
@@ -591,7 +591,7 @@ public abstract class m41 extends FrameLayout implements org.telegram.ui.ActionB
                     i7++;
                     l41 l41Var = (l41) obj;
                     l41Var.f49475a.setAlpha(1.0f);
-                    l41Var.f49475a.f42265c = true;
+                    l41Var.f49475a.f42264c = true;
                 }
                 return;
             }
@@ -603,7 +603,7 @@ public abstract class m41 extends FrameLayout implements org.telegram.ui.ActionB
                 i7++;
                 l41 l41Var2 = (l41) obj2;
                 l41Var2.f49475a.animate().alpha(1.0f).start();
-                l41Var2.f49475a.f42265c = true;
+                l41Var2.f49475a.f42264c = true;
             }
             a10.start();
         }

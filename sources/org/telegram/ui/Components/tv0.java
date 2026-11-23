@@ -13,12 +13,12 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class tv0 implements View.OnClickListener {
-    public final int f40063a;
-    public final kw0 f40064b;
+    public final int f40062a;
+    public final kw0 f40063b;
 
     public tv0(kw0 kw0Var, int i7) {
-        this.f40063a = i7;
-        this.f40064b = kw0Var;
+        this.f40062a = i7;
+        this.f40063b = kw0Var;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class tv0 implements View.OnClickListener {
         boolean z10;
         TLRPC.StickerSet stickerSet;
         int i7;
-        int i10 = this.f40063a;
-        kw0 kw0Var = this.f40064b;
+        int i10 = this.f40062a;
+        kw0 kw0Var = this.f40063b;
         switch (i10) {
             case 0:
                 org.telegram.ui.ActionBar.g2 g2Var = kw0Var.G1;
@@ -49,11 +49,11 @@ public final class tv0 implements View.OnClickListener {
                     z10 = true;
                 }
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = kw0Var.N1;
-                if (tL_messages_stickerSet2 != null && (stickerSet = tL_messages_stickerSet2.set) != null && stickerSet.creator && kw0Var.f37027t1 == null) {
-                    kw0Var.f37026s1.e(3, 2131232775, org.telegram.messenger.hd.N0(2131744608, null));
-                    kw0Var.f37026s1.e(4, 2131232118, org.telegram.messenger.hd.N0(2131751252, null));
+                if (tL_messages_stickerSet2 != null && (stickerSet = tL_messages_stickerSet2.set) != null && stickerSet.creator && kw0Var.f37026t1 == null) {
+                    kw0Var.f37025s1.e(3, 2131232775, org.telegram.messenger.hd.N0(2131744608, null));
+                    kw0Var.f37025s1.e(4, 2131232118, org.telegram.messenger.hd.N0(2131751252, null));
                     if (z10) {
-                        kw0Var.f37027t1 = kw0Var.f37026s1.e(5, 2131232110, org.telegram.messenger.hd.N0(2131751586, null));
+                        kw0Var.f37026t1 = kw0Var.f37025s1.e(5, 2131232110, org.telegram.messenger.hd.N0(2131751586, null));
                     } else {
                         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, kw0Var.getContext(), kw0Var.J0);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
@@ -65,26 +65,26 @@ public final class tv0 implements View.OnClickListener {
                         c10.h(0.1f, i11);
                         org.telegram.ui.ActionBar.q0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 0, org.telegram.messenger.hd.N0(2131744611, null), false, kw0Var.J0).setOnClickListener(new tv0(kw0Var, 6));
                         c10.setOnClickListener(new tv0(kw0Var, 7));
-                        kw0Var.f37027t1 = kw0Var.f37026s1.i(2131232110, null, org.telegram.messenger.hd.N0(2131751586, null), actionBarPopupWindow$ActionBarPopupWindowLayout);
+                        kw0Var.f37026t1 = kw0Var.f37025s1.i(2131232110, null, org.telegram.messenger.hd.N0(2131751586, null), actionBarPopupWindow$ActionBarPopupWindowLayout);
                     }
-                    kw0Var.f37026s1.a(-1);
+                    kw0Var.f37025s1.a(-1);
                     aa0 aa0Var = new aa0(kw0Var.f30173a, 4, kw0Var.getContext(), new ArrayList(), kw0Var.J0);
                     aa0Var.setOnClickListener(new tv0(kw0Var, 8));
                     aa0Var.setTag(2131296439, 1);
-                    org.telegram.ui.ActionBar.q0 q0Var = kw0Var.f37026s1;
+                    org.telegram.ui.ActionBar.q0 q0Var = kw0Var.f37025s1;
                     q0Var.q();
                     q0Var.f29902b.a(aa0Var, new LinearLayout.LayoutParams(-1, -2));
                     int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29622q7, kw0Var.J0);
-                    kw0Var.f37027t1.d(w02, w02);
-                    kw0Var.f37027t1.setSelectorColor(org.telegram.ui.ActionBar.m6.r1(0.1f, w02));
-                    if (kw0Var.f37027t1.getRightIcon() != null) {
-                        kw0Var.f37027t1.getRightIcon().setColorFilter(w02);
+                    kw0Var.f37026t1.d(w02, w02);
+                    kw0Var.f37026t1.setSelectorColor(org.telegram.ui.ActionBar.m6.r1(0.1f, w02));
+                    if (kw0Var.f37026t1.getRightIcon() != null) {
+                        kw0Var.f37026t1.getRightIcon().setColorFilter(w02);
                     }
                 }
-                if (kw0Var.f37026s1.getPopupLayout() != null) {
-                    kw0Var.f37026s1.getPopupLayout().requestLayout();
+                if (kw0Var.f37025s1.getPopupLayout() != null) {
+                    kw0Var.f37025s1.getPopupLayout().requestLayout();
                 }
-                kw0Var.f37026s1.V(null, null);
+                kw0Var.f37025s1.V(null, null);
                 return;
             case 2:
                 kw0Var.P0();
@@ -100,7 +100,7 @@ public final class tv0 implements View.OnClickListener {
                 kw0Var.dismiss();
                 return;
             case 4:
-                kw0Var.f37026s1.getPopupLayout().getSwipeBack().b(true);
+                kw0Var.f37025s1.getPopupLayout().getSwipeBack().b(true);
                 return;
             case 5:
                 org.telegram.ui.i50 i50Var = kw0Var.Y1;
@@ -159,16 +159,16 @@ public final class tv0 implements View.OnClickListener {
                 kw0Var.dismiss();
                 return;
             case 6:
-                kw0Var.f37026s1.p();
+                kw0Var.f37025s1.p();
                 kw0Var.dismiss();
                 org.telegram.messenger.si.d0(kw0Var.f30173a).k2(kw0Var.getContext(), kw0Var.N1, 1, kw0Var.G1, true, true);
                 return;
             case 7:
-                kw0Var.f37026s1.p();
+                kw0Var.f37025s1.p();
                 pw0.b(kw0Var.N1.set, kw0Var.J0, kw0Var.getContext(), new vv0(kw0Var, 4));
                 return;
             case 8:
-                kw0Var.f37026s1.p();
+                kw0Var.f37025s1.p();
                 kw0Var.dismiss();
                 org.telegram.messenger.g0.h3(new vv0(kw0Var, 3), 200L);
                 return;
@@ -200,14 +200,14 @@ public final class tv0 implements View.OnClickListener {
                 }
             case 11:
                 kw0Var.dismiss();
-                org.telegram.messenger.si.d0(kw0Var.f30173a).k2(kw0Var.getContext(), kw0Var.N1, 1, kw0Var.G1, true, kw0Var.f37008e2);
+                org.telegram.messenger.si.d0(kw0Var.f30173a).k2(kw0Var.getContext(), kw0Var.N1, 1, kw0Var.G1, true, kw0Var.f37007e2);
                 return;
             case 12:
                 kw0Var.dismiss();
-                org.telegram.messenger.si.d0(kw0Var.f30173a).k2(kw0Var.getContext(), kw0Var.N1, 0, kw0Var.G1, true, kw0Var.f37008e2);
+                org.telegram.messenger.si.d0(kw0Var.f30173a).k2(kw0Var.getContext(), kw0Var.N1, 0, kw0Var.G1, true, kw0Var.f37007e2);
                 return;
             case 13:
-                kw0 kw0Var2 = this.f40064b;
+                kw0 kw0Var2 = this.f40063b;
                 Context context = kw0Var2.getContext();
                 int[] iArr = {0};
                 FrameLayout frameLayout = new FrameLayout(context);

@@ -15,22 +15,22 @@ public final class jr extends sa {
     public String X1;
     public String Y1;
     public SpannableStringBuilder Z1;
-    public c51 f36587a2;
-    public final boolean f36588b2;
-    public ai.u2 f36589c2;
+    public c51 f36586a2;
+    public final boolean f36587b2;
+    public ai.u2 f36588c2;
 
     public jr(Context context, int i7, TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl, TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl, ai.y1 y1Var, fi.b bVar) {
         int i10;
         TLRPC.Chat O0;
         jr saVar = new sa(context, null, false, false, bVar);
         saVar.T1 = true;
-        saVar.f39539v1 = 0.126f;
+        saVar.f39538v1 = 0.126f;
         saVar.U1 = null;
         saVar.W1 = false;
         long n10 = org.telegram.messenger.n5.n(getgroupcallstreamrtmpurl.peer);
         boolean z10 = y1Var != null && (n10 >= 0 || ((O0 = org.telegram.messenger.np.u1(i7).O0(Long.valueOf(-n10))) != null && O0.creator));
         if (y1Var != null) {
-            saVar.f36588b2 = true;
+            saVar.f36587b2 = true;
             hi.e eVar = new hi.e(context, bVar, true);
             eVar.i(org.telegram.messenger.hd.N0(2131748609, null), false, true);
             saVar.f30176b.addView(eVar, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, (z10 ? 52 : 0) + 12));
@@ -50,10 +50,10 @@ public final class jr extends sa {
         kVar.C = false;
         kVar.o(nr.h);
         kVar.n(350L);
-        saVar.f39532o1.setItemAnimator(kVar);
-        ek0 ek0Var = saVar.f39532o1;
+        saVar.f39531o1.setItemAnimator(kVar);
+        ek0 ek0Var = saVar.f39531o1;
         int i11 = saVar.f30211u0;
-        if (saVar.f36588b2) {
+        if (saVar.f36587b2) {
             i10 = org.telegram.messenger.g0.L(z10 ? 124.0f : 72.0f);
         } else {
             i10 = 0;
@@ -70,7 +70,7 @@ public final class jr extends sa {
         obj.f35338b = 0;
         obj.f35339c = spannableStringBuilder.length();
         saVar.Z1.setSpan(new gz0(obj, 0), 0, saVar.Z1.length(), 0);
-        saVar.f36587a2.O(false);
+        saVar.f36586a2.O(false);
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class jr extends sa {
     @Override
     public final dk0 M0(ek0 ek0Var) {
         c51 c51Var = new c51(ek0Var, getContext(), this.f30173a, 0, true, new d(this, 8), this.J0);
-        this.f36587a2 = c51Var;
+        this.f36586a2 = c51Var;
         return c51Var;
     }
 
@@ -98,13 +98,13 @@ public final class jr extends sa {
     public jr(org.telegram.ui.ActionBar.g2 g2Var, TLRPC.Peer peer, long j3, boolean z10, g70 g70Var) {
         super(g2Var, false);
         this.T1 = false;
-        this.f39539v1 = 0.26f;
+        this.f39538v1 = 0.26f;
         this.U1 = g70Var;
         this.W1 = z10;
         Context context = this.f30176b.getContext();
         TLRPC.Chat O0 = org.telegram.messenger.np.u1(this.f30173a).O0(Long.valueOf(-j3));
         boolean z11 = O0 != null && O0.creator;
-        this.f36588b2 = true;
+        this.f36587b2 = true;
         TextView textView = new TextView(context);
         textView.setGravity(17);
         textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -134,7 +134,7 @@ public final class jr extends sa {
             eVar.setOnClickListener(new hr(this, context, eVar, j3, 0));
             this.f30176b.addView(eVar, c8.ma.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
         }
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i11 = this.f30211u0;
         ek0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L((z11 ? 52 : 0) + 72));
         v4.k kVar = new v4.k();
@@ -142,7 +142,7 @@ public final class jr extends sa {
         kVar.C = false;
         kVar.o(nr.h);
         kVar.n(350L);
-        this.f39532o1.setItemAnimator(kVar);
+        this.f39531o1.setItemAnimator(kVar);
         O();
         c1();
         TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();

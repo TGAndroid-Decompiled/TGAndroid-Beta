@@ -165,9 +165,9 @@ public abstract class k extends v4.k {
             }
         }
         if (!this.K.isEmpty() && (oz0Var = (oz0) this.U.run()) != null) {
-            ArrayList arrayList2 = oz0Var.f38425c;
-            if (!oz0Var.f38426e) {
-                oz0Var.f38426e = true;
+            ArrayList arrayList2 = oz0Var.f38424c;
+            if (!oz0Var.f38425e) {
+                oz0Var.f38425e = true;
                 int size2 = arrayList2.size();
                 while (i7 < size2) {
                     Object obj2 = arrayList2.get(i7);
@@ -180,7 +180,7 @@ public abstract class k extends v4.k {
                     }
                 }
                 arrayList2.clear();
-                mz0 mz0Var = oz0Var.f38423a;
+                mz0 mz0Var = oz0Var.f38422a;
                 if (mz0Var != null) {
                     mz0Var.h();
                 }

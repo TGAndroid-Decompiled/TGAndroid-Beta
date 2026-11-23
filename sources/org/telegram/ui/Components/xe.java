@@ -22,12 +22,12 @@ public final class xe extends qn0 {
         this.f28978f = -1L;
         this.f28981j = new h2.f((int[]) null);
         e();
-        this.f38965z = new ArrayList();
+        this.f38964z = new ArrayList();
         this.G = new ArrayList();
-        this.f38958r = peer;
-        this.f38959s = tL_channels_sendAsPeers;
+        this.f38957r = peer;
+        this.f38958s = tL_channels_sendAsPeers;
         bi.e3 e3Var = new bi.e3(25, context, this);
-        this.f38960t = e3Var;
+        this.f38959t = e3Var;
         e3Var.setLayoutParams(c8.ma.c(-2.0f, -2));
         setContentView(e3Var);
         setWidth(-2);
@@ -47,10 +47,10 @@ public final class xe extends qn0 {
         }
         int i7 = (int) (width * 0.75f);
         kn0 kn0Var = new kn0(context, i7, L);
-        this.f38955o = kn0Var;
+        this.f38954o = kn0Var;
         kn0Var.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f38956p = textView;
+        this.f38955p = textView;
         org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29545m5, h6Var);
         textView.setTextSize(1, 16.0f);
         textView.setText(org.telegram.messenger.hd.N0(2131745404, null));
@@ -63,29 +63,29 @@ public final class xe extends qn0 {
         ek0 ek0Var = new ek0(context, null);
         this.v = ek0Var;
         v4.c0 c0Var = new v4.c0();
-        this.f38962w = c0Var;
+        this.f38961w = c0Var;
         ek0Var.setLayoutManager(c0Var);
         ek0Var.setAdapter(new ln0(h6Var, arrayList, npVar, i7, peer));
         ek0Var.j(new mn0(this));
         ek0Var.setOnItemClickListener(new qj0(arrayList, context, bnVar, z10, hVar) {
-            public final List f36569b;
-            public final Context f36570c;
+            public final List f36568b;
+            public final Context f36569c;
             public final org.telegram.ui.bn d;
-            public final a3.h f36571e;
+            public final a3.h f36570e;
 
             {
-                this.f36571e = hVar;
+                this.f36570e = hVar;
             }
 
             @Override
             public final void c(int i10, View view) {
-                qn0.k(xe.this, this.f36569b, this.f36570c, this.d, this.f36571e, view, i10);
+                qn0.k(xe.this, this.f36568b, this.f36569c, this.d, this.f36570e, view, i10);
             }
         });
         ek0Var.setOverScrollMode(2);
         frameLayout.addView(ek0Var);
         View view = new View(context);
-        this.f38961u = view;
+        this.f38960u = view;
         Drawable drawable = context.getDrawable(2131231237);
         drawable.setAlpha(153);
         view.setBackground(drawable);
@@ -97,7 +97,7 @@ public final class xe extends qn0 {
 
     @Override
     public final void dismiss() {
-        ArrayList arrayList = this.f38965z;
+        ArrayList arrayList = this.f38964z;
         ChatActivityEnterView chatActivityEnterView = this.H;
         if (chatActivityEnterView.f32705r0 != this) {
             super.dismiss();
@@ -105,7 +105,7 @@ public final class xe extends qn0 {
         }
         chatActivityEnterView.f32705r0 = null;
         int i7 = 0;
-        if (!this.f38957q) {
+        if (!this.f38956q) {
             l(new r1.g[0]);
             chatActivityEnterView.f32696q0.a(true, true, 0.0f);
             return;

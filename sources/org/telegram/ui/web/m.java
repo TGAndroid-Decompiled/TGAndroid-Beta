@@ -52,7 +52,7 @@ public final class m extends e51 {
         }
         mVar.f53239y.clear();
         mVar.actionBar.w();
-        mVar.f34681a.f35790g3.O(true);
+        mVar.f34681a.f35789g3.O(true);
     }
 
     public static boolean k0(String str, String str2) {
@@ -96,7 +96,7 @@ public final class m extends e51 {
                     int i10 = g.f53138b;
                     o41 K = o41.K(g.class);
                     K.A = 3;
-                    K.f38097r = false;
+                    K.f38096r = false;
                     K.I = gjVar;
                     K.L(j0(gjVar));
                     arrayList.add(K);
@@ -145,9 +145,9 @@ public final class m extends e51 {
                         int i12 = g.f53138b;
                         o41 K2 = o41.K(g.class);
                         K2.A = 3;
-                        K2.f38097r = false;
+                        K2.f38096r = false;
                         K2.I = gjVar2;
-                        K2.f38093n = str3;
+                        K2.f38092n = str3;
                         K2.L(j0(gjVar2));
                         arrayList.add(K2);
                     }
@@ -167,9 +167,9 @@ public final class m extends e51 {
                     int i14 = g.f53138b;
                     o41 K3 = o41.K(g.class);
                     K3.A = 3;
-                    K3.f38097r = false;
+                    K3.f38096r = false;
                     K3.I = gjVar3;
-                    K3.f38093n = str4;
+                    K3.f38092n = str4;
                     K3.L(j0(gjVar3));
                     arrayList.add(K3);
                 }
@@ -250,7 +250,7 @@ public final class m extends e51 {
         this.f34681a.j(new oa(this, 27));
         nv0 nv0Var = new nv0(context, null, 1, null);
         nv0Var.d.setText(hd.N0(2131742653, null));
-        nv0Var.f37996e.setVisibility(8);
+        nv0Var.f37995e.setVisibility(8);
         nv0Var.e(false, false);
         nv0Var.setAnimateLayoutChange(true);
         ((FrameLayout) this.fragmentView).addView(nv0Var, ma.c(-1.0f, -1));
@@ -343,11 +343,11 @@ public final class m extends e51 {
                 break;
             }
         }
-        this.f34681a.f35790g3.O(true);
+        this.f34681a.f35789g3.O(true);
         if (i10 >= 0) {
-            this.f34681a.f35789f3.h1(i10, i7);
+            this.f34681a.f35788f3.h1(i10, i7);
         } else {
-            this.f34681a.f35789f3.h1(0, 0);
+            this.f34681a.f35788f3.h1(0, 0);
         }
     }
 

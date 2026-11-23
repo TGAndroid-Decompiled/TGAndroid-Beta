@@ -49,7 +49,7 @@ public final class q4 implements Runnable {
                     }
                 }
                 bi.f6 f6Var = n6Var.f34681a;
-                if (f6Var != null && f6Var.f35790g3 != null) {
+                if (f6Var != null && f6Var.f35789g3 != null) {
                     n6Var.c1(true);
                     return;
                 }
@@ -66,7 +66,7 @@ public final class q4 implements Runnable {
             case 4:
                 if (n6Var.S.isAttachedToWindow()) {
                     if (!n6Var.f34681a.canScrollVertically(-1)) {
-                        n6Var.f34681a.f35789f3.h1(0, 0);
+                        n6Var.f34681a.f35788f3.h1(0, 0);
                     }
                     n6Var.S.requestLayout();
                     return;

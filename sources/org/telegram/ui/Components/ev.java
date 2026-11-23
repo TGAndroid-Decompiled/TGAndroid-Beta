@@ -269,7 +269,7 @@ public class ev extends org.telegram.ui.ActionBar.w2 implements org.telegram.mes
             this.F1 = this.f34995s1.E(this.J1);
             uu uuVar = this.f34995s1;
             int i13 = this.J1;
-            ev evVar = uuVar.f40587c;
+            ev evVar = uuVar.f40586c;
             boolean z11 = evVar.D1;
             qu quVar2 = evVar.f34992p1;
             if (z11) {
@@ -770,8 +770,8 @@ public class ev extends org.telegram.ui.ActionBar.w2 implements org.telegram.mes
     @Override
     public void dismiss() {
         wu wuVar = this.f34993q1;
-        if (wuVar != null && wuVar.f41902x) {
-            wuVar.f41902x = false;
+        if (wuVar != null && wuVar.f41901x) {
+            wuVar.f41901x = false;
             wuVar.invalidate();
         }
         super.dismiss();
@@ -813,7 +813,7 @@ public class ev extends org.telegram.ui.ActionBar.w2 implements org.telegram.mes
                 upVar.b(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.J0));
             }
             wu wuVar = this.f34993q1;
-            if (wuVar != null && (bool = wuVar.f41895c) != null) {
+            if (wuVar != null && (bool = wuVar.f41894c) != null) {
                 P0(bool.booleanValue());
             }
             ViewGroup viewGroup = this.f30176b;

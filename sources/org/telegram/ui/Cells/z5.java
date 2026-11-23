@@ -127,8 +127,8 @@ public final class z5 extends FrameLayout {
             q10 = org.telegram.ui.ActionBar.m6.I.q();
         }
         ra0 ra0Var = new ra0(1);
-        ra0Var.b(q30Var.f38775a, q30Var.f38776b);
-        ra0Var.f39138b = q10;
+        ra0Var.b(q30Var.f38774a, q30Var.f38775b);
+        ra0Var.f39137b = q10;
         ImageView imageView = this.f32546c;
         imageView.setBackground(ra0Var);
         imageView.setImageResource(i7);

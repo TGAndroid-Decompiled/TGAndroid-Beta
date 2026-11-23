@@ -5,15 +5,15 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.ui.LaunchActivity;
 public final class te0 extends FrameLayout {
-    public float f39879a;
-    public float f39880b;
-    public boolean f39881c;
+    public float f39878a;
+    public float f39879b;
+    public boolean f39880c;
     public boolean d;
-    public final PipRoundVideoView f39882e;
+    public final PipRoundVideoView f39881e;
 
     public te0(PipRoundVideoView pipRoundVideoView, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f39882e = pipRoundVideoView;
+        this.f39881e = pipRoundVideoView;
     }
 
     @Override
@@ -32,8 +32,8 @@ public final class te0 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f39879a = motionEvent.getRawX();
-            this.f39880b = motionEvent.getRawY();
+            this.f39878a = motionEvent.getRawX();
+            this.f39879b = motionEvent.getRawY();
             this.d = true;
         }
         return true;

@@ -157,10 +157,10 @@ public final class b50 extends h50 {
         imageView.setContentDescription(org.telegram.messenger.hd.N0(2131754751, null));
         linearLayout.addView((View) imageView, c8.ma.o(44, 44));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final b50 f41975b;
+            public final b50 f41974b;
 
             {
-                this.f41975b = this;
+                this.f41974b = this;
             }
 
             @Override
@@ -172,7 +172,7 @@ public final class b50 extends h50 {
                 int i10;
                 switch (r2) {
                     case 0:
-                        b50 b50Var = this.f41975b;
+                        b50 b50Var = this.f41974b;
                         zi.u0 u0Var = b50Var.P;
                         if (u0Var != null && (t0Var = b50Var.R) != null && (m0Var = b50Var.S) != null && t0Var.f62348a == 3 && !t0Var.f62352f && !b50Var.f33753p0) {
                             zi.n0 n0Var = m0Var.f62243a;
@@ -212,7 +212,7 @@ public final class b50 extends h50 {
                         }
                         return;
                     default:
-                        b50 b50Var2 = this.f41975b;
+                        b50 b50Var2 = this.f41974b;
                         zi.u0 u0Var2 = b50Var2.P;
                         if (u0Var2 != null && (t0Var2 = b50Var2.R) != null && b50Var2.S != null) {
                             boolean z11 = !t0Var2.f62353g;
@@ -242,10 +242,10 @@ public final class b50 extends h50 {
         imageView2.setScaleType(scaleType);
         linearLayout.addView((View) imageView2, c8.ma.o(44, 44));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final b50 f41975b;
+            public final b50 f41974b;
 
             {
-                this.f41975b = this;
+                this.f41974b = this;
             }
 
             @Override
@@ -257,7 +257,7 @@ public final class b50 extends h50 {
                 int i10;
                 switch (r2) {
                     case 0:
-                        b50 b50Var = this.f41975b;
+                        b50 b50Var = this.f41974b;
                         zi.u0 u0Var = b50Var.P;
                         if (u0Var != null && (t0Var = b50Var.R) != null && (m0Var = b50Var.S) != null && t0Var.f62348a == 3 && !t0Var.f62352f && !b50Var.f33753p0) {
                             zi.n0 n0Var = m0Var.f62243a;
@@ -297,7 +297,7 @@ public final class b50 extends h50 {
                         }
                         return;
                     default:
-                        b50 b50Var2 = this.f41975b;
+                        b50 b50Var2 = this.f41974b;
                         zi.u0 u0Var2 = b50Var2.P;
                         if (u0Var2 != null && (t0Var2 = b50Var2.R) != null && b50Var2.S != null) {
                             boolean z11 = !t0Var2.f62353g;
@@ -327,7 +327,7 @@ public final class b50 extends h50 {
         oh0 oh0Var = new oh0(2131624188, L, L);
         this.f33741e0 = oh0Var;
         oh0Var.setCallback(imageView);
-        oh0Var.M(oh0Var.f38211e[0] - 1);
+        oh0Var.M(oh0Var.f38210e[0] - 1);
         imageView.setImageDrawable(oh0Var);
         E();
         if (h6Var != null && !h6Var.d()) {
@@ -395,7 +395,7 @@ public final class b50 extends h50 {
             }
             if (this.d != z10) {
                 this.d = z10;
-                f50 f50Var = this.f35788c;
+                f50 f50Var = this.f35787c;
                 if (f50Var != null && (rjVar = ((org.telegram.ui.xi) f50Var).f53889a.f45950a0) != null) {
                     rjVar.setRoundVideoUiFrameClockActive(z10);
                 }
@@ -472,7 +472,7 @@ public final class b50 extends h50 {
         float f14;
         float f15;
         float f16;
-        d50 d50Var = this.f35786a;
+        d50 d50Var = this.f35785a;
         if (d50Var != null) {
             ((org.telegram.ui.ee) d50Var).f47250b.f46004dd.a(z10, true);
         }
@@ -615,27 +615,27 @@ public final class b50 extends h50 {
                 long min = Math.min(j3, (SystemClock.elapsedRealtime() + t0Var.f62349b) - t0Var.f62350c);
                 this.f33763w0 = min;
                 this.f33762w.setProgress(((float) min) / ((float) j3));
-                f50 f50Var = this.f35788c;
+                f50 f50Var = this.f35787c;
                 if (f50Var != null && (rjVar = ((org.telegram.ui.xi) f50Var).f53889a.f45950a0) != null && rjVar.Z1) {
                     rjVar.Y1 = min;
                     wg wgVar = rjVar.Z0;
-                    if (wgVar != null && wgVar.f41803r) {
+                    if (wgVar != null && wgVar.f41802r) {
                         wgVar.h = min;
                         wgVar.invalidate();
                     }
                     tg tgVar = rjVar.f32582b2;
-                    if (tgVar != null && tgVar.f39901f) {
-                        if (!tgVar.f39900e) {
+                    if (tgVar != null && tgVar.f39900f) {
+                        if (!tgVar.f39899e) {
                             long j10 = tgVar.h;
                             if (j10 >= 0) {
-                                if (!tgVar.f39899c) {
-                                    tgVar.f39897a = tg.b(Math.max(0L, min - j10));
+                                if (!tgVar.f39898c) {
+                                    tgVar.f39896a = tg.b(Math.max(0L, min - j10));
                                 }
                                 tgVar.invalidate();
                             }
                         }
                         tgVar.h = min;
-                        tgVar.f39897a = 1.0f;
+                        tgVar.f39896a = 1.0f;
                         tgVar.invalidate();
                     }
                     ChatActivityEnterView.SlideTextView slideTextView = rjVar.f32573a2;
@@ -1117,7 +1117,7 @@ public final class b50 extends h50 {
         if (ry0Var == null) {
             j10 = file.length();
         } else {
-            j10 = ry0Var.f39387a;
+            j10 = ry0Var.f39386a;
         }
         f20Var.f23842q = Math.max(1L, j10);
         f20Var.f23844s = true;
@@ -1140,10 +1140,10 @@ public final class b50 extends h50 {
         f20Var.f23837l = i10;
         f20Var.f23840o = file.getAbsolutePath();
         if (ry0Var != null) {
-            f20Var.f23847w = ry0Var.f39388b;
-            f20Var.f23848x = ry0Var.f39389c;
+            f20Var.f23847w = ry0Var.f39387b;
+            f20Var.f23848x = ry0Var.f39388c;
             f20Var.f23849y = ry0Var.d;
-            f20Var.f23850z = ry0Var.f39390e;
+            f20Var.f23850z = ry0Var.f39389e;
         }
         return f20Var;
     }

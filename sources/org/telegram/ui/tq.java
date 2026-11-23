@@ -34,7 +34,7 @@ public final class tq extends org.telegram.ui.Components.e51 {
         long j3 = this.f52374f;
         if (isEmpty && j3 != 0) {
             org.telegram.ui.Components.o41 c10 = org.telegram.ui.Components.o41.c(1, 2131232055, org.telegram.messenger.hd.N0(2131751223, null));
-            c10.f38098s = true;
+            c10.f38097s = true;
             arrayList.add(c10);
             arrayList.add(org.telegram.ui.Components.o41.C(null));
         }
@@ -61,8 +61,8 @@ public final class tq extends org.telegram.ui.Components.e51 {
                 }
                 long j10 = chat.f28434id;
                 org.telegram.ui.Components.o41 o41Var = new org.telegram.ui.Components.o41(11);
-                o41Var.f38102x = true;
-                o41Var.f38103y = -j10;
+                o41Var.f38101x = true;
+                o41Var.f38102y = -j10;
                 if (j3 == j10) {
                     z10 = true;
                 } else {
@@ -74,7 +74,7 @@ public final class tq extends org.telegram.ui.Components.e51 {
         }
         if (TextUtils.isEmpty(this.f52375n) && i10 == 0) {
             org.telegram.ui.Components.o41 c11 = org.telegram.ui.Components.o41.c(2, 2131232091, org.telegram.messenger.hd.N0(2131751220, null));
-            c11.f38097r = true;
+            c11.f38096r = true;
             arrayList.add(c11);
         }
         arrayList.add(org.telegram.ui.Components.o41.C(null));
@@ -109,7 +109,7 @@ public final class tq extends org.telegram.ui.Components.e51 {
             g12.edit().putBoolean("channel_intro", true).apply();
         } else if (o41Var.f56634a == 12) {
             finishFragment();
-            eb1Var.a(getMessagesController().O0(Long.valueOf(-o41Var.f38103y)));
+            eb1Var.a(getMessagesController().O0(Long.valueOf(-o41Var.f38102y)));
         }
     }
 

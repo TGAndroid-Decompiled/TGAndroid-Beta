@@ -125,7 +125,7 @@ public final class n1 extends e51 implements gs {
         String N0 = hd.N0(2131752845, null);
         o41 o41Var = new o41(9);
         o41Var.d = 1;
-        o41Var.f38092m = N0;
+        o41Var.f38091m = N0;
         o41Var.L(S2);
         arrayList.add(o41Var);
         arrayList.add(o41.C(hd.N0(2131752844, null)));
@@ -143,8 +143,8 @@ public final class n1 extends e51 implements gs {
             o41 o41Var2 = new o41(3);
             o41Var2.d = 16;
             o41Var2.H = c2Var;
-            o41Var2.f38092m = N02;
-            o41Var2.f38097r = true;
+            o41Var2.f38091m = N02;
+            o41Var2.f38096r = true;
             arrayList.add(o41Var2);
             TL_account.TL_webBrowserSettings tL_webBrowserSettings = getMessagesController().E8;
             if (tL_webBrowserSettings == null) {
@@ -162,8 +162,8 @@ public final class n1 extends e51 implements gs {
                 long j3 = webDomainException2.favicon;
                 int i11 = l1.f53231b;
                 o41 K = o41.K(l1.class);
-                K.f38092m = str2;
-                K.f38094o = str3;
+                K.f38091m = str2;
+                K.f38093o = str3;
                 K.C = j3;
                 arrayList.add(K);
             }
@@ -171,7 +171,7 @@ public final class n1 extends e51 implements gs {
             if (!arrayList3.isEmpty()) {
                 arrayList.size();
                 o41 e10 = o41.e(5, hd.N0(2131752836, null));
-                e10.f38098s = true;
+                e10.f38097s = true;
                 arrayList.add(e10);
                 arrayList.add(o41.C(null));
                 return;
@@ -210,8 +210,8 @@ public final class n1 extends e51 implements gs {
         o41 o41Var3 = new o41(3);
         o41Var3.d = 15;
         o41Var3.H = c2Var2;
-        o41Var3.f38092m = N05;
-        o41Var3.f38097r = true;
+        o41Var3.f38091m = N05;
+        o41Var3.f38096r = true;
         arrayList.add(o41Var3);
         TL_account.TL_webBrowserSettings tL_webBrowserSettings2 = getMessagesController().E8;
         if (tL_webBrowserSettings2 == null) {
@@ -230,8 +230,8 @@ public final class n1 extends e51 implements gs {
             long j12 = webDomainException4.favicon;
             int i13 = l1.f53231b;
             o41 K2 = o41.K(l1.class);
-            K2.f38092m = str5;
-            K2.f38094o = str6;
+            K2.f38091m = str5;
+            K2.f38093o = str6;
             K2.C = j12;
             arrayList.add(K2);
         }
@@ -239,7 +239,7 @@ public final class n1 extends e51 implements gs {
         if (!arrayList2.isEmpty()) {
             arrayList.size();
             o41 e11 = o41.e(5, hd.N0(2131752836, null));
-            e11.f38098s = true;
+            e11.f38097s = true;
             arrayList.add(e11);
             arrayList.add(o41.C(null));
         }
@@ -279,7 +279,7 @@ public final class n1 extends e51 implements gs {
                 messagesController.G5(tL_webBrowserSettings.open_external_browser, z11);
             }
             ((s8) view).setChecked(z11);
-            this.f34681a.f35790g3.O(true);
+            this.f34681a.f35789g3.O(true);
         } else {
             ?? r62 = 0;
             if (i12 == 1) {
@@ -297,21 +297,21 @@ public final class n1 extends e51 implements gs {
                     i11 = m6.f29400e6;
                 }
                 s8Var.b(m6.x0(null, i11, false), S2);
-                this.f34681a.f35790g3.O(true);
+                this.f34681a.f35789g3.O(true);
             } else if (i12 == 10) {
                 np messagesController3 = getMessagesController();
                 TL_account.TL_webBrowserSettings tL_webBrowserSettings3 = messagesController3.E8;
                 if (tL_webBrowserSettings3 != null) {
                     messagesController3.G5(tL_webBrowserSettings3.open_external_browser, true);
                 }
-                this.f34681a.f35790g3.O(true);
+                this.f34681a.f35789g3.O(true);
             } else if (i12 == 11) {
                 np messagesController4 = getMessagesController();
                 TL_account.TL_webBrowserSettings tL_webBrowserSettings4 = messagesController4.E8;
                 if (tL_webBrowserSettings4 != null) {
                     messagesController4.G5(tL_webBrowserSettings4.open_external_browser, false);
                 }
-                this.f34681a.f35790g3.O(true);
+                this.f34681a.f35789g3.O(true);
             } else {
                 String str = "";
                 if (i12 == 2) {
@@ -401,7 +401,7 @@ public final class n1 extends e51 implements gs {
                                         a8.g(e13, true);
                                     }
                                     n1Var3.f53258r = 0L;
-                                    n1Var3.f34681a.f35790g3.O(true);
+                                    n1Var3.f34681a.f35789g3.O(true);
                                     return;
                                 default:
                                     n1 n1Var4 = this.f53225b;
@@ -415,7 +415,7 @@ public final class n1 extends e51 implements gs {
                                         messagesController5.c5(messagesController5.E8);
                                     }
                                     messagesController5.getConnectionsManager().sendRequestTyped(new TL_account.deleteWebBrowserSettingsExceptions(), new d3.b(1), new bl(messagesController5, 6));
-                                    n1Var4.f34681a.f35790g3.O(true);
+                                    n1Var4.f34681a.f35789g3.O(true);
                                     return;
                             }
                         }
@@ -510,7 +510,7 @@ public final class n1 extends e51 implements gs {
                                         a8.g(e13, true);
                                     }
                                     n1Var3.f53258r = 0L;
-                                    n1Var3.f34681a.f35790g3.O(true);
+                                    n1Var3.f34681a.f35789g3.O(true);
                                     return;
                                 default:
                                     n1 n1Var4 = this.f53225b;
@@ -524,7 +524,7 @@ public final class n1 extends e51 implements gs {
                                         messagesController5.c5(messagesController5.E8);
                                     }
                                     messagesController5.getConnectionsManager().sendRequestTyped(new TL_account.deleteWebBrowserSettingsExceptions(), new d3.b(1), new bl(messagesController5, 6));
-                                    n1Var4.f34681a.f35790g3.O(true);
+                                    n1Var4.f34681a.f35789g3.O(true);
                                     return;
                             }
                         }
@@ -625,7 +625,7 @@ public final class n1 extends e51 implements gs {
                                         a8.g(e13, true);
                                     }
                                     n1Var3.f53258r = 0L;
-                                    n1Var3.f34681a.f35790g3.O(true);
+                                    n1Var3.f34681a.f35789g3.O(true);
                                     return;
                                 default:
                                     n1 n1Var4 = this.f53225b;
@@ -639,7 +639,7 @@ public final class n1 extends e51 implements gs {
                                         messagesController5.c5(messagesController5.E8);
                                     }
                                     messagesController5.getConnectionsManager().sendRequestTyped(new TL_account.deleteWebBrowserSettingsExceptions(), new d3.b(1), new bl(messagesController5, 6));
-                                    n1Var4.f34681a.f35790g3.O(true);
+                                    n1Var4.f34681a.f35789g3.O(true);
                                     return;
                             }
                         }
@@ -736,7 +736,7 @@ public final class n1 extends e51 implements gs {
                                         a8.g(e13, true);
                                     }
                                     n1Var3.f53258r = 0L;
-                                    n1Var3.f34681a.f35790g3.O(true);
+                                    n1Var3.f34681a.f35789g3.O(true);
                                     return;
                                 default:
                                     n1 n1Var4 = this.f53225b;
@@ -750,7 +750,7 @@ public final class n1 extends e51 implements gs {
                                         messagesController5.c5(messagesController5.E8);
                                     }
                                     messagesController5.getConnectionsManager().sendRequestTyped(new TL_account.deleteWebBrowserSettingsExceptions(), new d3.b(1), new bl(messagesController5, 6));
-                                    n1Var4.f34681a.f35790g3.O(true);
+                                    n1Var4.f34681a.f35789g3.O(true);
                                     return;
                             }
                         }
@@ -893,7 +893,7 @@ public final class n1 extends e51 implements gs {
         mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
         g10.setColorFilter(new PorterDuffColorFilter(getThemedColor(m6.f29511k7), mode));
         c2 c2Var = new c2(mutate, g10, 4);
-        c2Var.f38340y = org.telegram.messenger.g0.L(2.0f);
+        c2Var.f38339y = org.telegram.messenger.g0.L(2.0f);
         this.f53255e = c2Var;
         this.fragmentView = super.createView(context);
         this.f34681a.r1();
@@ -905,7 +905,7 @@ public final class n1 extends e51 implements gs {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         f6 f6Var;
         if (i7 == ls.U5 && (f6Var = this.f34681a) != null) {
-            f6Var.f35790g3.O(true);
+            f6Var.f35789g3.O(true);
         }
     }
 
@@ -915,7 +915,7 @@ public final class n1 extends e51 implements gs {
         if (a10 != null) {
             this.f53258r = a10.size();
             f6 f6Var = this.f34681a;
-            if (f6Var != null && (c51Var = f6Var.f35790g3) != null && f6Var.H) {
+            if (f6Var != null && (c51Var = f6Var.f35789g3) != null && f6Var.H) {
                 c51Var.O(true);
             }
         }
@@ -964,11 +964,11 @@ public final class n1 extends e51 implements gs {
                 }
                 this.f53259s = themedColor;
                 this.f53260w = themedColor2;
-                Drawable drawable = c2Var.f38330a;
+                Drawable drawable = c2Var.f38329a;
                 if (drawable != null) {
                     drawable.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
                 }
-                Drawable drawable2 = c2Var.f38331b;
+                Drawable drawable2 = c2Var.f38330b;
                 if (drawable2 != null) {
                     drawable2.setColorFilter(new PorterDuffColorFilter(themedColor2, PorterDuff.Mode.MULTIPLY));
                 }

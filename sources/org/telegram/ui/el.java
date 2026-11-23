@@ -39,8 +39,8 @@ public final class el extends oq0 {
         org.telegram.ui.ActionBar.r4 parentLayout = bnVar.getParentLayout();
         int currentAccount = bnVar.getCurrentAccount();
         org.telegram.ui.Components.x30 x30Var = new org.telegram.ui.Components.x30(0, true, true);
-        x30Var.f41959a = bnVar;
+        x30Var.f41958a = bnVar;
         x30Var.s(ffVar);
-        x30Var.f41960b = new bg.g0(currentAccount, bhVar, parentLayout, x30Var);
+        x30Var.f41959b = new bg.g0(currentAccount, bhVar, parentLayout, x30Var);
     }
 }

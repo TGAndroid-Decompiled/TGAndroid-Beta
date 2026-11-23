@@ -150,12 +150,12 @@ public final class x1 extends v4.i0 {
                     int L = org.telegram.messenger.g0.L(56.0f);
                     int L2 = org.telegram.messenger.g0.L(56.0f);
                     oqVar.h = L;
-                    oqVar.f38335n = L2;
+                    oqVar.f38334n = L2;
                     int L3 = org.telegram.messenger.g0.L(24.0f);
                     int L4 = org.telegram.messenger.g0.L(24.0f);
-                    oqVar.f38333e = L3;
-                    oqVar.f38334f = L4;
-                    oqVar.f38336r = true;
+                    oqVar.f38332e = L3;
+                    oqVar.f38333f = L4;
+                    oqVar.f38335r = true;
                     n1Var.f15064a = oqVar;
                 }
                 n1Var.setDrawable(n1Var.f15064a);

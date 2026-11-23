@@ -5,11 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.view.View;
 public final class ln extends View {
-    public final int f37245a;
+    public final int f37244a;
 
     public ln(Context context, int i7) {
         super(context);
-        this.f37245a = i7;
+        this.f37244a = i7;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class ln extends View {
         int i12;
         float L5;
         int i13;
-        switch (this.f37245a) {
+        switch (this.f37244a) {
             case 8:
                 super.onDraw(canvas);
                 canvas.drawLine(0.0f, org.telegram.messenger.g0.L(14.0f), 2.0f, getMeasuredHeight() - org.telegram.messenger.g0.L(14.0f), org.telegram.ui.ActionBar.m6.f29504k0);
@@ -120,7 +120,7 @@ public final class ln extends View {
         boolean z10;
         float f10;
         float f11;
-        switch (this.f37245a) {
+        switch (this.f37244a) {
             case 1:
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
                 return;

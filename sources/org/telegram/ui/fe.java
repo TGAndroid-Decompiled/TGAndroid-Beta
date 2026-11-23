@@ -16,7 +16,7 @@ public final class fe implements Runnable {
                 if (!yk0Var.N) {
                     yk0Var.N = true;
                     yk0Var.c(new org.telegram.ui.Components.wk0(yk0Var, 0), false);
-                    yk0Var.f42450s.invalidate();
+                    yk0Var.f42449s.invalidate();
                     return;
                 }
                 return;

@@ -17,7 +17,7 @@ public final class x10 extends org.telegram.ui.Components.ek0 {
         f40 f40Var = this.f53585f3;
         n30 n30Var = f40Var.L1;
         b20 b20Var = f40Var.Z3;
-        if (b20Var.f41130r == null && !f40Var.M4.k()) {
+        if (b20Var.f41129r == null && !f40Var.M4.k()) {
             u10Var.setAlpha(1.0f);
             u10Var.setTranslationX(0.0f);
             u10Var.setTranslationY(0.0f);
@@ -28,10 +28,10 @@ public final class x10 extends org.telegram.ui.Components.ek0 {
         if (RecyclerView.R(u10Var) == -1 && u10Var.getRenderer() != null) {
             return true;
         }
-        if (u10Var.getTranslationY() != 0.0f && u10Var.getRenderer() != null && u10Var.getRenderer().f41466c != null) {
+        if (u10Var.getTranslationY() != 0.0f && u10Var.getRenderer() != null && u10Var.getRenderer().f41465c != null) {
             float top = n30Var.getTop() - getTop();
             float measuredHeight = n30Var.getMeasuredHeight() + top;
-            float f10 = b20Var.f41112c;
+            float f10 = b20Var.f41111c;
             canvas.save();
             float f11 = 1.0f - f10;
             canvas.clipRect(0.0f, top * f11, getMeasuredWidth(), (getMeasuredHeight() * f10) + (measuredHeight * f11));

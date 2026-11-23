@@ -105,7 +105,7 @@ public class j3 extends a5.h {
             f12 = 45.0f;
         }
         canvas.rotate(f12, L, L2);
-        float min = Math.min(1.0f, org.telegram.messenger.g0.L(40.0f) / xy0Var.f42247c);
+        float min = Math.min(1.0f, org.telegram.messenger.g0.L(40.0f) / xy0Var.f42246c);
         canvas.scale(min, min, L, L2);
         xy0Var.c(L - (xy0Var.k() / 2.0f), L2 + org.telegram.messenger.g0.L(1.0f), 1.0f, this.f3750y, canvas);
         canvas.restore();

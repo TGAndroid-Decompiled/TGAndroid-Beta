@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class u50 implements f80 {
-    public final v50 f40265a;
+    public final v50 f40264a;
 
     public u50(v50 v50Var) {
-        this.f40265a = v50Var;
+        this.f40264a = v50Var;
     }
 
     @Override
     public final void d() {
-        a60 a60Var = this.f40265a.f40686c;
+        a60 a60Var = this.f40264a.f40685c;
         org.telegram.ui.ActionBar.g2 g2Var = a60Var.P1;
         if (g2Var instanceof org.telegram.ui.ff0) {
             org.telegram.ui.ff0 ff0Var = (org.telegram.ui.ff0) g2Var;
@@ -31,7 +31,7 @@ public final class u50 implements f80 {
 
     @Override
     public final void e() {
-        a60 a60Var = this.f40265a.f40686c;
+        a60 a60Var = this.f40264a.f40685c;
         org.telegram.ui.ActionBar.g2 g2Var = a60Var.P1;
         if (g2Var instanceof org.telegram.ui.ff0) {
             ((org.telegram.ui.ff0) g2Var).k0(a60Var.f33333m1);
@@ -47,7 +47,7 @@ public final class u50 implements f80 {
 
     @Override
     public final void i() {
-        a60 a60Var = this.f40265a.f40686c;
+        a60 a60Var = this.f40264a.f40685c;
         org.telegram.ui.ActionBar.g2 g2Var = a60Var.P1;
         if (g2Var instanceof org.telegram.ui.ff0) {
             ((org.telegram.ui.ff0) g2Var).h0(a60Var.f33333m1);

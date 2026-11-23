@@ -44,7 +44,7 @@ public final class q3 {
                 if (!z10) {
                     d.buttons.add(pageButton);
                 }
-                t3Var.f35790g3.O(false);
+                t3Var.f35789g3.O(false);
                 g2 g2Var2 = t3Var.R3;
                 if (g2Var2 != null) {
                     g2Var2.h();
@@ -64,7 +64,7 @@ public final class q3 {
                 g2Var.d();
             }
             d.buttons.remove(i7);
-            t3Var.f35790g3.O(false);
+            t3Var.f35789g3.O(false);
             g2 g2Var2 = t3Var.R3;
             if (g2Var2 != null) {
                 g2Var2.h();

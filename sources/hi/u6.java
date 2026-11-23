@@ -294,7 +294,7 @@ public final class u6 extends org.telegram.ui.Components.sa implements gs, org.t
                 }
             }
         };
-        this.f39539v1 = 0.35f;
+        this.f39538v1 = 0.35f;
         O();
         Z0();
         this.D1 = org.telegram.messenger.g0.L(4.0f);
@@ -349,16 +349,16 @@ public final class u6 extends org.telegram.ui.Components.sa implements gs, org.t
         frameLayout.setPadding(org.telegram.messenger.g0.L(8.0f) + this.f30211u0, 0, org.telegram.messenger.g0.L(8.0f) + this.f30211u0, 0);
         this.f30176b.addView(frameLayout, c8.ma.e(-1, -2, 55));
         w0(i7);
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i10 = this.f30211u0;
         ek0Var.setPadding(i10, 0, i10, 0);
-        this.f39532o1.r1();
+        this.f39531o1.r1();
         v4.k kVar = new v4.k();
         kVar.f59194m = false;
         kVar.C = false;
         kVar.o(nrVar);
         kVar.n(350L);
-        this.f39532o1.setItemAnimator(kVar);
+        this.f39531o1.setItemAnimator(kVar);
         if (!z10) {
             int i11 = this.f30173a;
             hp hpVar = new hp(i11, k10.i(i11).e());
@@ -476,9 +476,9 @@ public final class u6 extends org.telegram.ui.Components.sa implements gs, org.t
                 });
             }
         }
-        this.f39532o1.setOnScrollListener(new bi.u1(this, 16));
-        this.f39532o1.setOnItemClickListener(new bi.t1(this, y10Var, h6Var, 2));
-        this.Y0.b(this.f39532o1);
+        this.f39531o1.setOnScrollListener(new bi.u1(this, 16));
+        this.f39531o1.setOnItemClickListener(new bi.t1(this, y10Var, h6Var, 2));
+        this.Y0.b(this.f39531o1);
         this.Y0.i(this.f30176b);
         ri.q qVar = this.Y0;
         qVar.f56739a = new q6(this);
@@ -626,7 +626,7 @@ public final class u6 extends org.telegram.ui.Components.sa implements gs, org.t
                 }
                 if (z12 && !z11) {
                     o41 c10 = o41.c(i7, 2131230871, hd.N0(2131745143, null));
-                    c10.f38097r = true;
+                    c10.f38096r = true;
                     arrayList.add(c10);
                     i10 += org.telegram.messenger.g0.L(50.0f);
                 }
@@ -764,7 +764,7 @@ public final class u6 extends org.telegram.ui.Components.sa implements gs, org.t
         boolean z10 = false;
         int i7 = 0;
         while (true) {
-            ek0 ek0Var = this.f39532o1;
+            ek0 ek0Var = this.f39531o1;
             if (i7 >= ek0Var.getChildCount()) {
                 break;
             }

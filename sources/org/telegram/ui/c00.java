@@ -498,7 +498,7 @@ public final class c00 extends FrameLayout implements org.telegram.ui.ActionBar.
         arrayList.add(new org.telegram.ui.ActionBar.v6(etVar, 16384, new Class[]{org.telegram.ui.Cells.l7.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.u6) null, i10));
         org.telegram.ui.Components.nv0 nv0Var = this.f46350c;
         arrayList.add(new org.telegram.ui.ActionBar.v6(nv0Var.d, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.u6) null, org.telegram.ui.ActionBar.m6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.v6(nv0Var.f37996e, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.u6) null, org.telegram.ui.ActionBar.m6.f29773y6));
+        arrayList.add(new org.telegram.ui.ActionBar.v6(nv0Var.f37995e, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.u6) null, org.telegram.ui.ActionBar.m6.f29773y6));
         return arrayList;
     }
 

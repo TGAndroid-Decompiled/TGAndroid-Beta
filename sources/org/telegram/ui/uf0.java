@@ -25,7 +25,7 @@ public final class uf0 extends org.telegram.ui.Components.ug {
 
     @Override
     public final boolean d() {
-        if (this.f52566z0 && this.A0.f47290u0 && this.f40356w <= 0) {
+        if (this.f52566z0 && this.A0.f47290u0 && this.f40355w <= 0) {
             return false;
         }
         return true;

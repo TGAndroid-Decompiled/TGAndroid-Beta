@@ -19,11 +19,11 @@ public final class et0 extends fi.o9 {
         jt0 jt0Var = gt0Var.G;
         int i7 = 0;
         while (true) {
-            ds0[] ds0VarArr = jt0Var.f36651n0;
+            ds0[] ds0VarArr = jt0Var.f36650n0;
             if (i7 < ds0VarArr.length) {
                 nq0 nq0Var2 = ds0VarArr[i7].h;
                 if (nq0Var2 != null && nq0Var2.getAdapter() == gt0Var) {
-                    nq0Var = jt0Var.f36651n0[i7].h;
+                    nq0Var = jt0Var.f36650n0[i7].h;
                     break;
                 }
                 i7++;

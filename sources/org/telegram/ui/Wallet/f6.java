@@ -16,7 +16,7 @@ public final class f6 extends n41 {
 
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
-        ((g6) view).a(o41Var.f38090k, o41Var.f38092m, o41Var.f38093n);
+        ((g6) view).a(o41Var.f38089k, o41Var.f38091m, o41Var.f38092n);
     }
 
     @Override

@@ -1269,7 +1269,7 @@ public class k extends FrameLayout implements te.b, b6, t4 {
             transitionSet.addTransition(new i(0));
             this.A0 = false;
             transitionSet.setDuration(220L);
-            transitionSet.setInterpolator((TimeInterpolator) nr.f37961f);
+            transitionSet.setInterpolator((TimeInterpolator) nr.f37960f);
             TransitionManager.beginDelayedTransition(this, transitionSet);
         }
     }
@@ -1440,10 +1440,10 @@ public class k extends FrameLayout implements te.b, b6, t4 {
             } else {
                 this.T = null;
                 ?? obj = new Object();
-                obj.f40611c = new ArrayList();
+                obj.f40610c = new ArrayList();
                 obj.d = new ArrayList();
                 Paint paint = new Paint(1);
-                obj.f40610b = paint;
+                obj.f40609b = paint;
                 paint.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
                 paint.setColor(m6.x0(null, m6.A8, false) & (-1644826));
                 paint.setStrokeCap(Paint.Cap.ROUND);

@@ -20,7 +20,7 @@ public final class a0 implements q0, bi.a1 {
                 int[] iArr2 = new int[2];
                 p0 p0Var = this.f1114b;
                 sf sfVar = p0Var.f1392f;
-                sfVar.f39573a.f32591c2.getLocationInWindow(iArr);
+                sfVar.f39572a.f32591c2.getLocationInWindow(iArr);
                 p0Var.f1412w.getLocationInWindow(iArr2);
                 canvas.save();
                 canvas.translate(iArr[0] - iArr2[0], iArr[1] - iArr2[1]);
@@ -32,7 +32,7 @@ public final class a0 implements q0, bi.a1 {
                 int[] iArr4 = new int[2];
                 p0 p0Var2 = this.f1114b;
                 sf sfVar2 = p0Var2.f1392f;
-                sfVar2.f39573a.f32591c2.getLocationInWindow(iArr3);
+                sfVar2.f39572a.f32591c2.getLocationInWindow(iArr3);
                 p0Var2.f1412w.getLocationInWindow(iArr4);
                 canvas.save();
                 canvas.translate(iArr3[0] - iArr4[0], iArr3[1] - iArr4[1]);

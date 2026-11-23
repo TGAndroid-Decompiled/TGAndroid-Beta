@@ -297,7 +297,7 @@ public final class da extends e51 implements gs {
         }
         bi.f6 f6Var = daVar.f34681a;
         if (f6Var != null) {
-            f6Var.f35790g3.O(true);
+            f6Var.f35789g3.O(true);
         }
         daVar.C0();
         g9 g9Var = daVar.f44123w;
@@ -388,8 +388,8 @@ public final class da extends e51 implements gs {
             spannableStringBuilder.append((CharSequence) " >");
             nq nqVar = new nq(2131232699, 0);
             float N = org.telegram.messenger.g0.N(0.66f);
-            nqVar.f37951r = 0.0f;
-            nqVar.f37952s = N;
+            nqVar.f37950r = 0.0f;
+            nqVar.f37951s = N;
             spannableStringBuilder.setSpan(nqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             spannableStringBuilder.setSpan(new hi.ha(this, 9), length, spannableStringBuilder.length(), 33);
             this.R.setText(spannableStringBuilder);
@@ -822,7 +822,7 @@ public final class da extends e51 implements gs {
         }
         this.M = new SpannableString("⇅");
         nq nqVar = new nq(2131232817, 0);
-        nqVar.f37954x = 0.72f;
+        nqVar.f37953x = 0.72f;
         SpannableString spannableString = this.M;
         spannableString.setSpan(nqVar, 0, spannableString.length(), 33);
         this.N = new SpannableString("G");
@@ -832,7 +832,7 @@ public final class da extends e51 implements gs {
         spannableString2.setSpan(nqVar2, 0, spannableString2.length(), 33);
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, false, true, true, true, true);
         this.O = o6Var;
-        o6Var.f38116c.m(0.35f, 320L, 3.5f, nr.h);
+        o6Var.f38115c.m(0.35f, 320L, 3.5f, nr.h);
         this.O.setScaleProperty(0.25f);
         this.O.setText(o0(u0.D(this.currentAccount), 0L));
         org.telegram.ui.Components.o6 o6Var2 = this.O;
@@ -914,8 +914,8 @@ public final class da extends e51 implements gs {
         spannableStringBuilder.append((CharSequence) " >");
         nq nqVar3 = new nq(2131232699, 0);
         float N = org.telegram.messenger.g0.N(0.66f);
-        nqVar3.f37951r = 0.0f;
-        nqVar3.f37952s = N;
+        nqVar3.f37950r = 0.0f;
+        nqVar3.f37951s = N;
         spannableStringBuilder.setSpan(nqVar3, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         this.P.setText(spannableStringBuilder);
         this.f44127y.addView(this.P, c8.ma.d(-2, 28.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
@@ -1063,8 +1063,8 @@ public final class da extends e51 implements gs {
         this.f44097a0.addView(this.S, c8.ma.t(-1, -2, 55, 16, 0, 16, 0));
         this.T = new SpannableString(">");
         nq nqVar4 = new nq(2131232699, 0);
-        nqVar4.f37951r = 0.0f;
-        nqVar4.f37952s = org.telegram.messenger.g0.L(1.0f);
+        nqVar4.f37950r = 0.0f;
+        nqVar4.f37951s = org.telegram.messenger.g0.L(1.0f);
         SpannableString spannableString3 = this.T;
         spannableString3.setSpan(nqVar4, 0, spannableString3.length(), 33);
         org.telegram.ui.ActionBar.n2 n2Var = new org.telegram.ui.ActionBar.n2(10, context, this);

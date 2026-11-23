@@ -530,17 +530,17 @@ public final class f8 extends org.telegram.ui.ActionBar.w2 implements org.telegr
         spannableStringBuilder.append((CharSequence) org.telegram.messenger.hd.N0(2131753922, null));
         eVar.setText(spannableStringBuilder);
         eVar.setOnClickListener(new View.OnClickListener(this) {
-            public final f8 f37143b;
+            public final f8 f37142b;
 
             {
-                this.f37143b = this;
+                this.f37142b = this;
             }
 
             @Override
             public final void onClick(View view4) {
                 int i18 = r3;
                 org.telegram.ui.ActionBar.h6 h6Var2 = h6Var;
-                f8 f8Var = this.f37143b;
+                f8 f8Var = this.f37142b;
                 switch (i18) {
                     case 0:
                         org.telegram.messenger.gj gjVar2 = MediaController.B().f22771v0;
@@ -570,17 +570,17 @@ public final class f8 extends org.telegram.ui.ActionBar.w2 implements org.telegr
         this.A1 = eVar2;
         eVar2.setText(org.telegram.messenger.hd.N0(2131753914, null));
         eVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final f8 f37143b;
+            public final f8 f37142b;
 
             {
-                this.f37143b = this;
+                this.f37142b = this;
             }
 
             @Override
             public final void onClick(View view4) {
                 int i18 = r3;
                 org.telegram.ui.ActionBar.h6 h6Var2 = h6Var;
-                f8 f8Var = this.f37143b;
+                f8 f8Var = this.f37142b;
                 switch (i18) {
                     case 0:
                         org.telegram.messenger.gj gjVar2 = MediaController.B().f22771v0;
@@ -1301,7 +1301,7 @@ public final class f8 extends org.telegram.ui.ActionBar.w2 implements org.telegr
             if (m7Var.getVisibility() != 0 && !this.f35116g2) {
                 m7Var.setTag(1);
                 w7 w7Var = this.C1;
-                q9Var.setImageBitmap(w7Var.f41675a[w7Var.f41676b].getImageReceiver().n());
+                q9Var.setImageBitmap(w7Var.f41674a[w7Var.f41675b].getImageReceiver().n());
                 this.f35116g2 = true;
                 yk0.d(new z6(this, 1));
                 m7Var.setVisibility(0);
@@ -1710,8 +1710,8 @@ public final class f8 extends org.telegram.ui.ActionBar.w2 implements org.telegr
             int w05 = org.telegram.ui.ActionBar.m6.w0(i10, this.J0);
             pu0 pu0Var = this.Q1;
             if (pu0Var != null) {
-                pu0Var.f38666a.u(w05);
-                Paint paint = pu0Var.f38667b;
+                pu0Var.f38665a.u(w05);
+                Paint paint = pu0Var.f38666b;
                 if (paint != null) {
                     paint.setColor(w05);
                 }
@@ -1856,8 +1856,8 @@ public final class f8 extends org.telegram.ui.ActionBar.w2 implements org.telegr
             int w03 = org.telegram.ui.ActionBar.m6.w0(i7, this.J0);
             pu0 pu0Var = this.Q1;
             if (pu0Var != null) {
-                pu0Var.f38666a.u(w03);
-                Paint paint = pu0Var.f38667b;
+                pu0Var.f38665a.u(w03);
+                Paint paint = pu0Var.f38666b;
                 if (paint != null) {
                     paint.setColor(w03);
                 }

@@ -129,13 +129,13 @@ public final class b implements r10 {
                     K.A = i11;
                     long j3 = tL_starsGiftOption.stars;
                     K.C = j3;
-                    K.f38092m = hd.H(' ', "StarsCount", (int) j3);
+                    K.f38091m = hd.H(' ', "StarsCount", (int) j3);
                     if (tL_starsGiftOption.loadingStorePrice) {
                         f10 = null;
                     } else {
                         f10 = org.telegram.messenger.r1.i().f(tL_starsGiftOption.amount, tL_starsGiftOption.currency);
                     }
-                    K.f38093n = f10;
+                    K.f38092n = f10;
                     K.H = tL_starsGiftOption;
                     arrayList.add(K);
                     i11 = i13;
@@ -152,9 +152,9 @@ public final class b implements r10 {
                 int i15 = wa.f10014b;
                 o41 K2 = o41.K(wa.class);
                 K2.d = -1;
-                K2.f38092m = N0;
-                K2.f38086f = !abVar.Y1;
-                K2.f38097r = true;
+                K2.f38091m = N0;
+                K2.f38085f = !abVar.Y1;
+                K2.f38096r = true;
                 arrayList.add(K2);
             }
         } else {
@@ -229,9 +229,9 @@ public final class b implements r10 {
                             int i18 = wa.f10014b;
                             o41 K = o41.K(wa.class);
                             K.d = -1;
-                            K.f38092m = N0;
-                            K.f38086f = !fbVar.f8874b2;
-                            K.f38097r = true;
+                            K.f38091m = N0;
+                            K.f38085f = !fbVar.f8874b2;
+                            K.f38096r = true;
                             arrayList.add(K);
                         }
                     } else {
@@ -249,9 +249,9 @@ public final class b implements r10 {
                         int i19 = wa.f10014b;
                         o41 K2 = o41.K(wa.class);
                         K2.d = -1;
-                        K2.f38092m = N02;
-                        K2.f38086f = !fbVar.f8874b2;
-                        K2.f38097r = true;
+                        K2.f38091m = N02;
+                        K2.f38085f = !fbVar.f8874b2;
+                        K2.f38096r = true;
                         arrayList.add(K2);
                     }
                 } else {
@@ -295,7 +295,7 @@ public final class b implements r10 {
                 int i14 = jb.f9130b;
                 o41 K = o41.K(jb.class);
                 K.H = (TL_stars.StarsTransaction) obj3;
-                K.f38097r = true;
+                K.f38096r = true;
                 arrayList2.add(K);
             }
             if (!g10.k(j3).f8670e[i11]) {
@@ -350,7 +350,7 @@ public final class b implements r10 {
                     int i16 = jb.f9130b;
                     o41 K2 = o41.K(jb.class);
                     K2.H = starsTransaction;
-                    K2.f38097r = false;
+                    K2.f38096r = false;
                     arrayList2.add(K2);
                 } else {
                     TL_wallet.walletTransaction wallettransaction2 = new TL_wallet.walletTransaction();
@@ -406,7 +406,7 @@ public final class b implements r10 {
                 int i18 = jb.f9130b;
                 o41 K3 = o41.K(jb.class);
                 K3.H = (TL_stars.StarsTransaction) obj5;
-                K3.f38097r = false;
+                K3.f38096r = false;
                 arrayList2.add(K3);
             }
         }

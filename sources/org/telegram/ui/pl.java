@@ -476,7 +476,7 @@ public final class pl extends org.telegram.ui.Components.du0 {
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         mk mkVar;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1 && (mkVar = this.f50912x0.f45990cb) != null && mkVar.f41744s) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1 && (mkVar = this.f50912x0.f45990cb) != null && mkVar.f41743s) {
             mkVar.a(true);
             return true;
         }

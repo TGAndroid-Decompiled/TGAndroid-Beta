@@ -11,17 +11,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.io.File;
 public final class n20 extends c5.a {
-    public final int f37753c;
+    public final int f37752c;
     public final Object d;
 
     public n20(Object obj, int i7) {
-        this.f37753c = i7;
+        this.f37752c = i7;
         this.d = obj;
     }
 
     @Override
     public final void a(c5.l lVar, Object obj) {
-        switch (this.f37753c) {
+        switch (this.f37752c) {
             case 0:
                 lVar.removeView((View) obj);
                 return;
@@ -42,11 +42,11 @@ public final class n20 extends c5.a {
 
     @Override
     public final int b() {
-        switch (this.f37753c) {
+        switch (this.f37752c) {
             case 0:
-                return ((org.telegram.ui.g30) this.d).f38064p1.length;
+                return ((org.telegram.ui.g30) this.d).f38063p1.length;
             case 1:
-                return ((org.telegram.ui.Components.voip.w0) this.d).f41420f.length;
+                return ((org.telegram.ui.Components.voip.w0) this.d).f41419f.length;
             case 2:
                 return ((org.telegram.ui.v50) this.d).G.length;
             case 3:
@@ -61,7 +61,7 @@ public final class n20 extends c5.a {
 
     @Override
     public int c(Object obj) {
-        switch (this.f37753c) {
+        switch (this.f37752c) {
             case 3:
                 return -1;
             default:
@@ -76,7 +76,7 @@ public final class n20 extends c5.a {
         View view;
         boolean z10;
         float f10;
-        int i11 = this.f37753c;
+        int i11 = this.f37752c;
         int i12 = 2;
         Bitmap bitmap = null;
         int i13 = 0;
@@ -297,7 +297,7 @@ public final class n20 extends c5.a {
 
     @Override
     public final boolean f(View view, Object obj) {
-        switch (this.f37753c) {
+        switch (this.f37752c) {
             case 0:
                 return view.equals(obj);
             case 1:
@@ -319,7 +319,7 @@ public final class n20 extends c5.a {
 
     @Override
     public void h(int i7) {
-        switch (this.f37753c) {
+        switch (this.f37752c) {
             case 0:
             case 1:
                 return;

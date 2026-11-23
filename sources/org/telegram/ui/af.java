@@ -180,7 +180,7 @@ public final class af implements Runnable {
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, 0.5f);
                     ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, 0.5f);
                     Property property = View.ALPHA;
-                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(bnVar.f46162q3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(bnVar.f46162q3.getPaint(), org.telegram.ui.Components.r6.f39095b, 0), ObjectAnimator.ofFloat(bnVar.f46162q3.getMuteImageView(), property, 0.0f));
+                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(bnVar.f46162q3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(bnVar.f46162q3.getPaint(), org.telegram.ui.Components.r6.f39094b, 0), ObjectAnimator.ofFloat(bnVar.f46162q3.getMuteImageView(), property, 0.0f));
                     animatorSet.addListener(new ei(bnVar, 0));
                     animatorSet.start();
                     return;

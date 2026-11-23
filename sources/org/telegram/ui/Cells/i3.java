@@ -35,7 +35,7 @@ public abstract class i3 extends FrameLayout implements org.telegram.ui.ActionBa
         this.f30840y = n6Var;
         n6Var.n(0.2f, 160L, nr.h);
         n6Var.w(org.telegram.messenger.g0.L(15.33f));
-        n6Var.f37796b = 5;
+        n6Var.f37795b = 5;
         this.d = i7;
         g3 g3Var = new g3(this, context, du0Var, h6Var, z10);
         this.f30831b = g3Var;

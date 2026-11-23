@@ -176,7 +176,7 @@ public final class fh0 extends org.telegram.ui.ActionBar.w2 implements AdapterVi
         }
         tL_contacts_importContacts.contacts.add(tL_inputPhoneContact);
         ConnectionsManager.getInstance(this.f30173a).bindRequestToGuid(ConnectionsManager.getInstance(this.f30173a).sendRequest(tL_contacts_importContacts, new z9(this, tL_inputPhoneContact, tL_contacts_importContacts, 26), 2), this.H1);
-        if (this.M1.f38321a.f32874q) {
+        if (this.M1.f38320a.f32874q) {
             Context context = getContext();
             ArrayList<ContentProviderOperation> arrayList = new ArrayList<>();
             ContentProviderOperation.Builder newInsert = ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI);
@@ -206,7 +206,7 @@ public final class fh0 extends org.telegram.ui.ActionBar.w2 implements AdapterVi
     public final void M0(CharSequence charSequence) {
         if (TextUtils.isEmpty(charSequence)) {
             ViewPropertyAnimator animate = this.Q1.animate();
-            org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37961f;
+            org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37960f;
             animate.setInterpolator(nrVar).translationY(org.telegram.messenger.g0.L(30.0f)).setDuration(150L);
             this.U1.animate().setInterpolator(nrVar).translationX(-org.telegram.messenger.g0.L(30.0f)).setDuration(150L);
             this.I1.animate().setInterpolator(nrVar).translationX(-org.telegram.messenger.g0.L(30.0f)).setDuration(150L);
@@ -214,7 +214,7 @@ public final class fh0 extends org.telegram.ui.ActionBar.w2 implements AdapterVi
         }
         this.Q1.animate().setInterpolator(org.telegram.messenger.g0.H).translationY(0.0f).setDuration(350L).start();
         ViewPropertyAnimator animate2 = this.U1.animate();
-        org.telegram.ui.Components.nr nrVar2 = org.telegram.ui.Components.nr.f37961f;
+        org.telegram.ui.Components.nr nrVar2 = org.telegram.ui.Components.nr.f37960f;
         animate2.setInterpolator(nrVar2).translationX(0.0f).setDuration(150L);
         this.I1.animate().setInterpolator(nrVar2).translationX(0.0f).setDuration(150L);
         this.Q1.setText(charSequence);
@@ -294,7 +294,7 @@ public final class fh0 extends org.telegram.ui.ActionBar.w2 implements AdapterVi
         float f11;
         float f12;
         float f13;
-        boolean z11 = this.M1.f38321a.f32874q;
+        boolean z11 = this.M1.f38320a.f32874q;
         final boolean z12 = !z11;
         float f14 = 0.0f;
         int i11 = 0;

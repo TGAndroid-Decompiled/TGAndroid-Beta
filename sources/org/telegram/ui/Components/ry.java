@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ry extends dk0 {
-    public final boolean f39386c;
+    public final boolean f39385c;
     public final ty d;
 
     public ry(ty tyVar, boolean z10) {
         this.d = tyVar;
-        this.f39386c = z10;
+        this.f39385c = z10;
     }
 
     @Override
@@ -22,10 +22,10 @@ public final class ry extends dk0 {
     @Override
     public final int b() {
         ArrayList arrayList;
-        boolean z10 = this.f39386c;
+        boolean z10 = this.f39385c;
         ty tyVar = this.d;
         if (z10) {
-            arrayList = tyVar.f40124o1;
+            arrayList = tyVar.f40123o1;
         } else {
             arrayList = tyVar.n1;
         }
@@ -47,9 +47,9 @@ public final class ry extends dk0 {
         ColorFilter colorFilter;
         q9 q9Var = (q9) f1Var.f59165a;
         ty tyVar = this.d;
-        boolean z10 = this.f39386c;
+        boolean z10 = this.f39385c;
         if (z10) {
-            arrayList = tyVar.f40124o1;
+            arrayList = tyVar.f40123o1;
         } else {
             arrayList = tyVar.n1;
         }
@@ -58,7 +58,7 @@ public final class ry extends dk0 {
         if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
             arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
         } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-            TLRPC.TL_messages_stickerSet o02 = org.telegram.messenger.si.d0(tyVar.f40092d1).o0(org.telegram.messenger.si.b0(stickerSetCovered.set), false);
+            TLRPC.TL_messages_stickerSet o02 = org.telegram.messenger.si.d0(tyVar.f40091d1).o0(org.telegram.messenger.si.b0(stickerSetCovered.set), false);
             if (o02 == null) {
                 arrayList2 = null;
             } else {
@@ -89,7 +89,7 @@ public final class ry extends dk0 {
         if (document != null) {
             if (z10) {
                 if (org.telegram.messenger.gj.C4(document)) {
-                    colorFilter = org.telegram.ui.ActionBar.m6.o0(tyVar.f40082a2);
+                    colorFilter = org.telegram.ui.ActionBar.m6.o0(tyVar.f40081a2);
                 } else {
                     colorFilter = null;
                 }

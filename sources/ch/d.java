@@ -93,7 +93,7 @@ public final class d {
         ImageReceiver imageReceiver = this.f5369j;
         if (imageReceiver != null && this.f5368i) {
             imageReceiver.P();
-            TLRPC.Document document2 = p5Var.f38495e;
+            TLRPC.Document document2 = p5Var.f38494e;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
             String V = gj.V(document2, null, null);
             if (V != null && (tL_availableReaction = (TLRPC.TL_availableReaction) si.d0(i7).f26847r.get(V)) != null && (document = tL_availableReaction.around_animation) != null) {

@@ -43,7 +43,7 @@ public final class s extends LinearLayout implements org.telegram.ui.ActionBar.b
         }
         if (z11) {
             ValueAnimator duration = ValueAnimator.ofFloat(f11, f10).setDuration(250L);
-            duration.setInterpolator(zs.f42978e);
+            duration.setInterpolator(zs.f42977e);
             duration.addUpdateListener(new r(this, 0));
             duration.start();
             return;

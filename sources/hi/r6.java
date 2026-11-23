@@ -28,7 +28,7 @@ public final class r6 implements eh.a {
         switch (this.f15338a) {
             case 0:
                 u6 u6Var = (u6) this.f15339b;
-                ek0 ek0Var = u6Var.f39532o1;
+                ek0 ek0Var = u6Var.f39531o1;
                 ih.d.b(ek0Var, canvas, rectF, ek0Var, u6Var.f30176b, 255);
                 return;
             default:

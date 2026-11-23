@@ -8,17 +8,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class u7 extends FrameLayout {
-    public final RectF f40281a;
-    public boolean f40282b;
-    public int f40283c;
+    public final RectF f40280a;
+    public boolean f40281b;
+    public int f40282c;
     public int d;
-    public final f8 f40284e;
+    public final f8 f40283e;
 
     public u7(f8 f8Var, Context context) {
         super(context);
-        this.f40284e = f8Var;
-        this.f40281a = new RectF();
-        this.f40282b = false;
+        this.f40283e = f8Var;
+        this.f40280a = new RectF();
+        this.f40281b = false;
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class u7 extends FrameLayout {
         float f11;
         float f12;
         float f13;
-        f8 f8Var = this.f40284e;
+        f8 f8Var = this.f40283e;
         r7 r7Var = f8Var.f35133s1;
         v7 v7Var = f8Var.n1;
         boolean z10 = f8Var.f35126o2;
@@ -76,7 +76,7 @@ public final class u7 extends FrameLayout {
             int i13 = L2 + i11;
             f8Var.f30209s0.setBounds(0, i12, getMeasuredWidth(), i10);
             f8Var.f30209s0.draw(canvas);
-            RectF rectF = this.f40281a;
+            RectF rectF = this.f40280a;
             if (!z10 && f11 != 1.0f) {
                 f12 = 20.0f;
                 org.telegram.ui.ActionBar.m6.f29672t0.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, f8Var.J0));
@@ -114,7 +114,7 @@ public final class u7 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        f8 f8Var = this.f40284e;
+        f8 f8Var = this.f40283e;
         f8.J0(f8Var);
         f8Var.a1();
     }
@@ -126,20 +126,20 @@ public final class u7 extends FrameLayout {
         int L;
         int paddingBottom;
         int i13;
-        f8 f8Var = this.f40284e;
+        f8 f8Var = this.f40283e;
         m7 m7Var = f8Var.f35145y1;
         m7 m7Var2 = f8Var.f35113c2;
         r7 r7Var = f8Var.f35133s1;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i7);
-        if (size != this.f40283c || size2 != this.d) {
+        if (size != this.f40282c || size2 != this.d) {
             if (m7Var2.getTag() != null) {
                 f8Var.X0(false, false);
             }
             this.d = size2;
-            this.f40283c = size;
+            this.f40282c = size;
         }
-        this.f40282b = true;
+        this.f40281b = true;
         if (!f8Var.f35129q1 && !f8Var.d) {
             i11 = 0;
         } else {
@@ -194,14 +194,14 @@ public final class u7 extends FrameLayout {
             }
             r7Var.setPadding(0, L, 0, paddingBottom);
         }
-        this.f40282b = false;
+        this.f40281b = false;
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
         getMeasuredHeight();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f40284e.J && super.onTouchEvent(motionEvent)) {
+        if (!this.f40283e.J && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -209,7 +209,7 @@ public final class u7 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f40282b) {
+        if (this.f40281b) {
             return;
         }
         super.requestLayout();

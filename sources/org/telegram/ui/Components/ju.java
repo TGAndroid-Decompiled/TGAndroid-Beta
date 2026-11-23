@@ -16,19 +16,19 @@ public final class ju extends View {
     public boolean H;
     public long I;
     public boolean J;
-    public final int f36687a;
-    public final Drawable[] f36688b;
-    public final Drawable f36689c;
+    public final int f36686a;
+    public final Drawable[] f36687b;
+    public final Drawable f36688c;
     public final Drawable d;
-    public String f36690e;
-    public boolean f36691f;
+    public String f36689e;
+    public boolean f36690f;
     public int h;
-    public final int[] f36692n;
-    public final int[] f36693r;
-    public final Paint f36694s;
-    public final RectF f36695w;
-    public final d6 f36696x;
-    public final d6 f36697y;
+    public final int[] f36691n;
+    public final int[] f36692r;
+    public final Paint f36693s;
+    public final RectF f36694w;
+    public final d6 f36695x;
+    public final d6 f36696y;
 
     public ju(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
@@ -38,19 +38,19 @@ public final class ju extends View {
         } else {
             f10 = 32.0f;
         }
-        this.f36687a = org.telegram.messenger.g0.L(f10);
-        this.f36688b = new Drawable[11];
-        this.f36692n = new int[]{0, 0};
-        this.f36693r = new int[]{0, 0};
-        this.f36694s = new Paint(1);
-        this.f36695w = new RectF();
+        this.f36686a = org.telegram.messenger.g0.L(f10);
+        this.f36687b = new Drawable[11];
+        this.f36691n = new int[]{0, 0};
+        this.f36692r = new int[]{0, 0};
+        this.f36693s = new Paint(1);
+        this.f36694w = new RectF();
         nr nrVar = nr.h;
-        this.f36696x = new d6(this, 125L, nrVar);
-        this.f36697y = new d6(this, 125L, nrVar);
+        this.f36695x = new d6(this, 125L, nrVar);
+        this.f36696y = new d6(this, 125L, nrVar);
         this.G = -1;
         this.H = true;
         this.E = h6Var;
-        this.f36689c = getResources().getDrawable(2131232758);
+        this.f36688c = getResources().getDrawable(2131232758);
         this.d = getResources().getDrawable(2131232759);
         a();
     }
@@ -58,13 +58,13 @@ public final class ju extends View {
     public final void a() {
         int i7 = org.telegram.ui.ActionBar.m6.f29454h5;
         org.telegram.ui.ActionBar.h6 h6Var = this.E;
-        org.telegram.ui.ActionBar.m6.C1(org.telegram.ui.ActionBar.m6.w0(i7, h6Var), this.f36689c);
+        org.telegram.ui.ActionBar.m6.C1(org.telegram.ui.ActionBar.m6.w0(i7, h6Var), this.f36688c);
         org.telegram.ui.ActionBar.m6.C1(org.telegram.ui.ActionBar.m6.w0(i7, h6Var), this.d);
         org.telegram.messenger.j4.f24827b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Ef, h6Var), PorterDuff.Mode.SRC_IN));
     }
 
     public String getEmoji() {
-        return this.f36690e;
+        return this.f36689e;
     }
 
     @Override
@@ -77,7 +77,7 @@ public final class ju extends View {
         ju juVar = this;
         int measuredWidth = juVar.getMeasuredWidth();
         int measuredHeight = juVar.getMeasuredHeight() - org.telegram.messenger.g0.L(2.0f);
-        Drawable drawable = juVar.f36689c;
+        Drawable drawable = juVar.f36688c;
         boolean z10 = false;
         drawable.setBounds(0, 0, measuredWidth, measuredHeight);
         drawable.draw(canvas);
@@ -88,23 +88,23 @@ public final class ju extends View {
         Drawable drawable2 = juVar.d;
         drawable2.setBounds(L3, measuredHeight2, L4, measuredHeight3);
         drawable2.draw(canvas);
-        if (juVar.f36690e != null) {
-            boolean z11 = juVar.f36691f;
+        if (juVar.f36689e != null) {
+            boolean z11 = juVar.f36690f;
             org.telegram.ui.ActionBar.h6 h6Var = juVar.E;
-            int[] iArr = juVar.f36692n;
-            d6 d6Var2 = juVar.f36696x;
-            Paint paint = juVar.f36694s;
-            Drawable[] drawableArr = juVar.f36688b;
-            RectF rectF = juVar.f36695w;
+            int[] iArr = juVar.f36691n;
+            d6 d6Var2 = juVar.f36695x;
+            Paint paint = juVar.f36693s;
+            Drawable[] drawableArr = juVar.f36687b;
+            RectF rectF = juVar.f36694w;
             float f11 = 1.0f;
-            int i7 = juVar.f36687a;
+            int i7 = juVar.f36686a;
             if (z11) {
                 int i10 = 0;
                 while (i10 < 2) {
                     if (i10 == 0) {
                         d6Var = d6Var2;
                     } else {
-                        d6Var = juVar.f36697y;
+                        d6Var = juVar.f36696y;
                     }
                     float e10 = d6Var.e(z10, iArr[i10]);
                     boolean z12 = z10;
@@ -165,12 +165,12 @@ public final class ju extends View {
         if (this.J) {
             this.J = false;
             return false;
-        } else if (!this.f36691f) {
+        } else if (!this.f36690f) {
             return super.onTouchEvent(motionEvent);
         } else {
             int i12 = 0;
             while (true) {
-                Drawable[] drawableArr = this.f36688b;
+                Drawable[] drawableArr = this.f36687b;
                 if (i12 < drawableArr.length) {
                     if (drawableArr[i12].getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) || ((i11 = this.G) != -1 && ((i12 == 0 || ((i11 == 0 && i12 >= 1 && i12 <= 5) || (i11 == 1 && i12 >= 6 && i12 <= 10))) && ((int) motionEvent.getX()) >= drawableArr[i12].getBounds().left && ((int) motionEvent.getX()) <= drawableArr[i12].getBounds().right))) {
                         break;
@@ -185,7 +185,7 @@ public final class ju extends View {
                 return false;
             }
             int action = motionEvent.getAction();
-            int[] iArr = this.f36692n;
+            int[] iArr = this.f36691n;
             if (action == 0) {
                 this.G = -1;
                 this.I = System.currentTimeMillis();
@@ -197,7 +197,7 @@ public final class ju extends View {
                 this.H = z11;
             }
             int i13 = iArr[0];
-            int[] iArr2 = this.f36693r;
+            int[] iArr2 = this.f36692r;
             iArr2[0] = i13;
             iArr2[1] = iArr[1];
             if (System.currentTimeMillis() - this.I > 300 && motionEvent.getAction() == 2) {

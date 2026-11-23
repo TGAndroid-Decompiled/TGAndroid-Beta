@@ -8,18 +8,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.Locale;
 public final class xd0 extends View {
-    public int f42050a;
-    public boolean f42051b;
-    public boolean f42052c;
+    public int f42049a;
+    public boolean f42050b;
+    public boolean f42051c;
     public float d;
-    public aj0 f42053e;
-    public Paint f42054f;
+    public aj0 f42052e;
+    public Paint f42053f;
     public Paint h;
-    public Paint f42055n;
-    public TextPaint f42056r;
-    public Path f42057s;
-    public wd0 f42058w;
-    public h2.c f42059x;
+    public Paint f42054n;
+    public TextPaint f42055r;
+    public Path f42056s;
+    public wd0 f42057w;
+    public h2.c f42058x;
 
     public final void a(int i7, MotionEvent motionEvent) {
         ce0 ce0Var;
@@ -27,14 +27,14 @@ public final class xd0 extends View {
         float y10 = motionEvent.getY();
         if (i7 != 1) {
             if (i7 != 2) {
-                if ((i7 == 3 || i7 == 4 || i7 == 5) && this.f42050a != 0) {
-                    this.f42050a = 0;
+                if ((i7 == 3 || i7 == 4 || i7 == 5) && this.f42049a != 0) {
+                    this.f42049a = 0;
                     return;
                 }
                 return;
             }
             float min = Math.min(2.0f, (this.d - y10) / 8.0f);
-            h2.c cVar = this.f42059x;
+            h2.c cVar = this.f42058x;
             int i10 = cVar.f13761a;
             if (i10 != 0) {
                 if (i10 != 1) {
@@ -53,7 +53,7 @@ public final class xd0 extends View {
             } else {
                 ce0Var = (ce0) cVar.f13762b;
             }
-            int i11 = this.f42050a;
+            int i11 = this.f42049a;
             if (i11 != 1) {
                 if (i11 != 2) {
                     if (i11 != 3) {
@@ -74,9 +74,9 @@ public final class xd0 extends View {
                 ce0Var.f34190a = org.telegram.messenger.o10.A(ce0Var.f34190a, min, 100.0f, 0.0f);
             }
             invalidate();
-            wd0 wd0Var = this.f42058w;
+            wd0 wd0Var = this.f42057w;
             if (wd0Var != null) {
-                ee0 ee0Var = ((yd0) wd0Var).f42421a;
+                ee0 ee0Var = ((yd0) wd0Var).f42420a;
                 ee0Var.d();
                 ez ezVar = ee0Var.m0;
                 if (ezVar != null) {
@@ -84,10 +84,10 @@ public final class xd0 extends View {
                 }
             }
             this.d = y10;
-        } else if (this.f42050a != 0) {
+        } else if (this.f42049a != 0) {
         } else {
-            aj0 aj0Var = this.f42053e;
-            this.f42050a = (int) Math.floor(com.google.android.gms.internal.vision.e2.A(x10, aj0Var.f33535a, aj0Var.f33537c / 5.0f, 1.0f));
+            aj0 aj0Var = this.f42052e;
+            this.f42049a = (int) Math.floor(com.google.android.gms.internal.vision.e2.A(x10, aj0Var.f33535a, aj0Var.f33537c / 5.0f, 1.0f));
         }
     }
 
@@ -96,18 +96,18 @@ public final class xd0 extends View {
         ce0 ce0Var;
         int i7;
         String format;
-        TextPaint textPaint = this.f42056r;
-        Path path = this.f42057s;
-        Paint paint = this.f42055n;
-        h2.c cVar = this.f42059x;
-        aj0 aj0Var = this.f42053e;
+        TextPaint textPaint = this.f42055r;
+        Path path = this.f42056s;
+        Paint paint = this.f42054n;
+        h2.c cVar = this.f42058x;
+        aj0 aj0Var = this.f42052e;
         float f10 = aj0Var.f33537c / 5.0f;
         for (int i10 = 0; i10 < 4; i10++) {
             float f11 = aj0Var.f33535a;
             float f12 = i10 * f10;
             float f13 = f11 + f10 + f12;
             float f14 = aj0Var.f33536b;
-            canvas.drawLine(f13, f14, f12 + f11 + f10, f14 + aj0Var.d, this.f42054f);
+            canvas.drawLine(f13, f14, f12 + f11 + f10, f14 + aj0Var.d, this.f42053f);
         }
         float f15 = aj0Var.f33535a;
         float f16 = aj0Var.f33536b;
@@ -191,6 +191,6 @@ public final class xd0 extends View {
     }
 
     public void setDelegate(wd0 wd0Var) {
-        this.f42058w = wd0Var;
+        this.f42057w = wd0Var;
     }
 }

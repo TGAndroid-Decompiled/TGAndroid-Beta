@@ -68,13 +68,13 @@ public final class s3 extends mi implements gs {
             q10 = j6.m(q10, textPaint.getFontMetricsInt(), false, null, 0);
         } catch (Exception unused) {
         }
-        ui uiVar = this.f37520b;
+        ui uiVar = this.f37519b;
         uiVar.V2.setTitle(q10);
         this.K.setSwipeOffsetY(0.0f);
         if (k2Var.getWebView() != null) {
             k2Var.getWebView().scrollTo(0, 0);
         }
-        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
         if (g2Var != null) {
             k2Var.setParentActivity(g2Var.getParentActivity());
         }
@@ -120,18 +120,18 @@ public final class s3 extends mi implements gs {
             alertDialog$Builder.k(hd.N0(2131752904, null), new l3(this));
             alertDialog$Builder.h(hd.N0(2131752577, null), null);
             t1Var.show();
-            t6.U((TextView) t1Var.d(-1), m6.f29622q7, this.f37519a);
+            t6.U((TextView) t1Var.d(-1), m6.f29622q7, this.f37518a);
             return false;
         }
-        this.f37520b.dismiss();
+        this.f37519b.dismiss();
         return true;
     }
 
     public final void Q() {
-        ui uiVar = this.f37520b;
-        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+        ui uiVar = this.f37519b;
+        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
         if ((g2Var instanceof bn) && ((bn) g2Var).f46111m1.Q() > org.telegram.messenger.g0.L(20.0f)) {
-            org.telegram.messenger.g0.v1(uiVar.f40368a2.getFragmentView());
+            org.telegram.messenger.g0.v1(uiVar.f40367a2.getFragmentView());
             org.telegram.messenger.g0.h3(new j3(this, 1), 250L);
             return;
         }
@@ -147,10 +147,10 @@ public final class s3 extends mi implements gs {
             if (this.f18973y == ((Long) objArr[0]).longValue()) {
                 k2Var.h();
                 this.I = true;
-                this.f37520b.dismiss();
+                this.f37519b.dismiss();
             }
         } else if (i7 == ls.f25369q4) {
-            k2Var.f53358n.b(m6.w0(m6.f29454h5, this.f37519a), 153);
+            k2Var.f53358n.b(m6.w0(m6.f29454h5, this.f37518a), 153);
         }
     }
 
@@ -230,7 +230,7 @@ public final class s3 extends mi implements gs {
     public final void p() {
         ls.f(this.G).n(this, ls.f25427z1);
         ls.e().n(this, ls.f25369q4);
-        org.telegram.ui.ActionBar.y s5 = this.f37520b.V2.s();
+        org.telegram.ui.ActionBar.y s5 = this.f37519b.V2.s();
         org.telegram.ui.ActionBar.q0 q0Var = this.L;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = q0Var.f29902b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
@@ -286,12 +286,12 @@ public final class s3 extends mi implements gs {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f37520b.f30176b.invalidate();
+        this.f37519b.f30176b.invalidate();
     }
 
     @Override
     public final void t() {
-        ui uiVar = this.f37520b;
+        ui uiVar = this.f37519b;
         uiVar.A0(false);
         uiVar.getWindow().setSoftInputMode(48);
     }
@@ -302,7 +302,7 @@ public final class s3 extends mi implements gs {
         this.Q = false;
         k2 k2Var = this.f18968n;
         boolean z10 = k2Var.S;
-        ui uiVar = this.f37520b;
+        ui uiVar = this.f37519b;
         if (!z10) {
             org.telegram.messenger.g0.P3(uiVar.V2.getBackButton(), 2131231240);
         }
@@ -324,11 +324,11 @@ public final class s3 extends mi implements gs {
             }
             return;
         }
-        ui uiVar = this.f37520b;
+        ui uiVar = this.f37519b;
         if (i7 == 2131296502) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", this.f18971w);
-            uiVar.f40368a2.presentFragment(new bn(bundle));
+            uiVar.f40367a2.presentFragment(new bn(bundle));
             uiVar.dismiss();
             return;
         }
@@ -367,7 +367,7 @@ public final class s3 extends mi implements gs {
         } else if (i7 == 2131296507) {
             int i11 = this.G;
             Context context = getContext();
-            lc lcVar = new lc(cb.a(getContext()), this.f37519a);
+            lc lcVar = new lc(cb.a(getContext()), this.f37518a);
             long j3 = this.f18971w;
             int i12 = qy0.f51394w1;
             qy0.K0(i11, context, j3, false, false, new ArrayList(), lcVar, null, new byte[0], null, null);
@@ -396,7 +396,7 @@ public final class s3 extends mi implements gs {
             } else {
                 z11 = false;
             }
-            int Q = this.f37520b.f40414p3.Q() + i7;
+            int Q = this.f37519b.f40413p3.Q() + i7;
             setMeasuredDimension(getMeasuredWidth(), i7);
             this.P = true;
             j2Var.setSwipeOffsetAnimationDisallowed(true);

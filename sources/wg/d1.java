@@ -49,7 +49,7 @@ public final class d1 implements rj0, tj0 {
                 r10 r10Var = e1Var.f59807u2;
                 if (r10Var != null) {
                     op opVar = e1Var.Y1;
-                    if (opVar != null && opVar.f38321a.f32874q) {
+                    if (opVar != null && opVar.f38320a.f32874q) {
                         z10 = true;
                     }
                     r10Var.a(Boolean.valueOf(z10), hashSet);

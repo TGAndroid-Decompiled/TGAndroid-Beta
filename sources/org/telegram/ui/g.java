@@ -284,7 +284,7 @@ public final class g extends org.telegram.ui.ActionBar.g2 {
                         return;
                     case 1:
                         g gVar2 = this.f46843b;
-                        if (!gVar2.f47884a.getAnimatedDrawable().f38220l0) {
+                        if (!gVar2.f47884a.getAnimatedDrawable().f38219l0) {
                             gVar2.f47884a.getAnimatedDrawable().N(0, false, false);
                             gVar2.f47884a.d();
                             return;
@@ -292,7 +292,7 @@ public final class g extends org.telegram.ui.ActionBar.g2 {
                         return;
                     case 2:
                         g gVar3 = this.f46843b;
-                        if (!gVar3.f47884a.getAnimatedDrawable().f38220l0) {
+                        if (!gVar3.f47884a.getAnimatedDrawable().f38219l0) {
                             gVar3.f47884a.getAnimatedDrawable().N(0, false, false);
                             gVar3.f47884a.d();
                             return;
@@ -364,7 +364,7 @@ public final class g extends org.telegram.ui.ActionBar.g2 {
                                         return;
                                     case 1:
                                         g gVar2 = this.f46843b;
-                                        if (!gVar2.f47884a.getAnimatedDrawable().f38220l0) {
+                                        if (!gVar2.f47884a.getAnimatedDrawable().f38219l0) {
                                             gVar2.f47884a.getAnimatedDrawable().N(0, false, false);
                                             gVar2.f47884a.d();
                                             return;
@@ -372,7 +372,7 @@ public final class g extends org.telegram.ui.ActionBar.g2 {
                                         return;
                                     case 2:
                                         g gVar3 = this.f46843b;
-                                        if (!gVar3.f47884a.getAnimatedDrawable().f38220l0) {
+                                        if (!gVar3.f47884a.getAnimatedDrawable().f38219l0) {
                                             gVar3.f47884a.getAnimatedDrawable().N(0, false, false);
                                             gVar3.f47884a.d();
                                             return;
@@ -456,7 +456,7 @@ public final class g extends org.telegram.ui.ActionBar.g2 {
                                 return;
                             case 1:
                                 g gVar2 = this.f46843b;
-                                if (!gVar2.f47884a.getAnimatedDrawable().f38220l0) {
+                                if (!gVar2.f47884a.getAnimatedDrawable().f38219l0) {
                                     gVar2.f47884a.getAnimatedDrawable().N(0, false, false);
                                     gVar2.f47884a.d();
                                     return;
@@ -464,7 +464,7 @@ public final class g extends org.telegram.ui.ActionBar.g2 {
                                 return;
                             case 2:
                                 g gVar3 = this.f46843b;
-                                if (!gVar3.f47884a.getAnimatedDrawable().f38220l0) {
+                                if (!gVar3.f47884a.getAnimatedDrawable().f38219l0) {
                                     gVar3.f47884a.getAnimatedDrawable().N(0, false, false);
                                     gVar3.f47884a.d();
                                     return;
@@ -537,7 +537,7 @@ public final class g extends org.telegram.ui.ActionBar.g2 {
                                 return;
                             case 1:
                                 g gVar2 = this.f46843b;
-                                if (!gVar2.f47884a.getAnimatedDrawable().f38220l0) {
+                                if (!gVar2.f47884a.getAnimatedDrawable().f38219l0) {
                                     gVar2.f47884a.getAnimatedDrawable().N(0, false, false);
                                     gVar2.f47884a.d();
                                     return;
@@ -545,7 +545,7 @@ public final class g extends org.telegram.ui.ActionBar.g2 {
                                 return;
                             case 2:
                                 g gVar3 = this.f46843b;
-                                if (!gVar3.f47884a.getAnimatedDrawable().f38220l0) {
+                                if (!gVar3.f47884a.getAnimatedDrawable().f38219l0) {
                                     gVar3.f47884a.getAnimatedDrawable().N(0, false, false);
                                     gVar3.f47884a.d();
                                     return;
@@ -626,9 +626,9 @@ public final class g extends org.telegram.ui.ActionBar.g2 {
             iArr5[7] = org.telegram.ui.ActionBar.m6.x0(null, i10, false);
             org.telegram.ui.Components.rh0 rh0Var = this.f47884a;
             int[] iArr6 = this.f47891s;
-            org.telegram.ui.Components.oh0 oh0Var = rh0Var.f39232b;
+            org.telegram.ui.Components.oh0 oh0Var = rh0Var.f39231b;
             if (oh0Var != null) {
-                oh0Var.f38221n = iArr6;
+                oh0Var.f38220n = iArr6;
                 oh0Var.G();
             }
         }

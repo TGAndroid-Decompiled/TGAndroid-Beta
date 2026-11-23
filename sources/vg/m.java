@@ -413,7 +413,7 @@ public class m extends TextureView implements TextureView.SurfaceTextureListener
                 ValueAnimator ofFloat6 = ValueAnimator.ofFloat(this.f59505b.d, 360.0f);
                 ofFloat6.addUpdateListener(gVar2);
                 ofFloat6.setDuration(8000L);
-                ofFloat6.setInterpolator(nr.f37961f);
+                ofFloat6.setInterpolator(nr.f37960f);
                 this.f59511e0.playTogether(ofFloat6);
                 this.f59511e0.addListener(new j(this, 0));
                 this.f59511e0.start();
@@ -422,7 +422,7 @@ public class m extends TextureView implements TextureView.SurfaceTextureListener
                 ValueAnimator ofFloat7 = ValueAnimator.ofFloat(this.f59505b.d, 184.0f);
                 ofFloat7.addUpdateListener(gVar2);
                 ofFloat7.setDuration(600L);
-                nr nrVar = nr.f37962g;
+                nr nrVar = nr.f37961g;
                 ofFloat7.setInterpolator(nrVar);
                 ValueAnimator ofFloat8 = ValueAnimator.ofFloat(this.f59505b.f59473i, 50.0f);
                 ofFloat8.addUpdateListener(gVar);
@@ -451,7 +451,7 @@ public class m extends TextureView implements TextureView.SurfaceTextureListener
                 ValueAnimator ofFloat12 = ValueAnimator.ofFloat(this.f59505b.d, 180.0f);
                 ofFloat12.addUpdateListener(gVar2);
                 ofFloat12.setDuration(600L);
-                nr nrVar2 = nr.f37961f;
+                nr nrVar2 = nr.f37960f;
                 ofFloat12.setInterpolator(nrVar2);
                 ValueAnimator ofFloat13 = ValueAnimator.ofFloat(180.0f, 360.0f);
                 ofFloat13.addUpdateListener(gVar2);

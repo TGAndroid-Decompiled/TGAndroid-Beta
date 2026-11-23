@@ -455,8 +455,8 @@ public abstract class d3 extends FrameLayout implements gs {
             e g11 = o10.g(24, context, h6Var, z12);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v");
             nq nqVar = new nq(2131231942, 0);
-            nqVar.f37951r = -org.telegram.messenger.g0.L(1.33f);
-            nqVar.f37952s = org.telegram.messenger.g0.L(0.66f);
+            nqVar.f37950r = -org.telegram.messenger.g0.L(1.33f);
+            nqVar.f37951s = org.telegram.messenger.g0.L(0.66f);
             spannableStringBuilder.setSpan(nqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.N0(2131744536, null));
             g11.i(spannableStringBuilder, false, true);

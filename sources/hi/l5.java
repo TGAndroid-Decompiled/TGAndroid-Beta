@@ -94,11 +94,11 @@ public final class l5 extends View implements te.b {
                 return;
             case 9:
                 b20 b20Var = (b20) this.f15006c;
-                kr krVar = b20Var.f41114d0;
-                float measuredWidth2 = (1.0f - krVar.f36957g) * b20Var.f41116e0.getMeasuredWidth();
+                kr krVar = b20Var.f41113d0;
+                float measuredWidth2 = (1.0f - krVar.f36956g) * b20Var.f41115e0.getMeasuredWidth();
                 canvas.save();
                 org.telegram.ui.Cells.y yVar = (org.telegram.ui.Cells.y) this.f15005b;
-                yVar.setBounds(0, 0, org.telegram.messenger.g0.L(50.0f) + ((int) ((b20Var.f41118f0.getMeasuredWidth() * krVar.f36957g) + measuredWidth2)), getMeasuredHeight());
+                yVar.setBounds(0, 0, org.telegram.messenger.g0.L(50.0f) + ((int) ((b20Var.f41117f0.getMeasuredWidth() * krVar.f36956g) + measuredWidth2)), getMeasuredHeight());
                 yVar.draw(canvas);
                 super.dispatchDraw(canvas);
                 return;
@@ -336,10 +336,10 @@ public final class l5 extends View implements te.b {
                                 }
                                 aaVar.f33458q = l5Var.getMeasuredHeight();
                                 aaVar.f33459r = l5Var.getMeasuredWidth();
-                                aaVar.v.f42740b = l5Var.getMeasuredWidth();
-                                aaVar.v.f42741c = l5Var.getMeasuredHeight();
+                                aaVar.v.f42739b = l5Var.getMeasuredWidth();
+                                aaVar.v.f42740c = l5Var.getMeasuredHeight();
                                 org.telegram.ui.Components.z9 z9Var = aaVar.v;
-                                if (z9Var.f42740b != 0 && z9Var.f42741c != 0) {
+                                if (z9Var.f42739b != 0 && z9Var.f42740c != 0) {
                                     if (aaVar.f33444a == null) {
                                         aaVar.f33444a = new org.telegram.messenger.r5("blur_thread_" + aaVar, (boolean) r15);
                                     }

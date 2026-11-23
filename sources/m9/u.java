@@ -462,8 +462,8 @@ public final class u implements Runnable {
             case 26:
                 ArrayList arrayList = (ArrayList) this.f20986b;
                 for (int i15 = 0; i15 < arrayList.size(); i15++) {
-                    if (arrayList.get(i15) != null && ((mp) arrayList.get(i15)).f37593a != null) {
-                        ((mp) arrayList.get(i15)).f37593a.m(0);
+                    if (arrayList.get(i15) != null && ((mp) arrayList.get(i15)).f37592a != null) {
+                        ((mp) arrayList.get(i15)).f37592a.m(0);
                     }
                 }
                 org.telegram.messenger.g0.g3(new gi(2, this, arrayList));

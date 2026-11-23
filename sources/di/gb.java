@@ -21,20 +21,20 @@ public final class gb extends org.telegram.ui.Components.sa implements gs {
 
     public gb(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, null, false, false, h6Var);
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i7 = this.f30211u0;
         ek0Var.setPadding(i7, 0, i7, 0);
-        this.f39532o1.setOnItemClickListener(new bi.k8(this, 5));
+        this.f39531o1.setOnItemClickListener(new bi.k8(this, 5));
         v4.k kVar = new v4.k();
         kVar.f59194m = false;
         kVar.C = false;
         kVar.o(nr.h);
         kVar.n(350L);
-        this.f39532o1.setItemAnimator(kVar);
+        this.f39531o1.setItemAnimator(kVar);
         int i10 = org.telegram.ui.ActionBar.m6.f29381d6;
         w0(i10);
         Q(i10);
-        this.f39533p1.setTitle(hd.N0(2131744908, null));
+        this.f39532p1.setTitle(hd.N0(2131744908, null));
         FrameLayout frameLayout = new FrameLayout(context);
         this.T1 = frameLayout;
         m80 m80Var = new m80(context, h6Var);
@@ -63,7 +63,7 @@ public final class gb extends org.telegram.ui.Components.sa implements gs {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new bi.b(this, 21), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new bi.b(this, 21), this.J0);
         this.U1 = c51Var;
         c51Var.f34062r = false;
         return c51Var;

@@ -45,7 +45,7 @@ public final class bd implements org.telegram.ui.Components.pt0, org.telegram.ui
             xdVar.f53843k1 = !xdVar.f53843k1;
             org.telegram.messenger.g0.r(cdVar);
             org.telegram.messenger.g0.h3(cdVar, 1000L);
-            xdVar.Y0.f35790g3.O(true);
+            xdVar.Y0.f35789g3.O(true);
         } else if (i10 == 4) {
             xdVar.f53845n0.presentFragment(new ki.h3(j3));
         }

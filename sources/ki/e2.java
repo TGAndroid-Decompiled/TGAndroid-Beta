@@ -146,7 +146,7 @@ public final class e2 extends AnimatorListenerAdapter {
                 return;
             case 9:
                 lx lxVar = (lx) obj;
-                ug.r0 r0Var = lxVar.f37319r;
+                ug.r0 r0Var = lxVar.f37318r;
                 if (i13 == 1) {
                     i7 = 0;
                 } else {
@@ -160,7 +160,7 @@ public final class e2 extends AnimatorListenerAdapter {
                     i10 = 8;
                 }
                 textView.setVisibility(i10);
-                TextView textView2 = lxVar.f37318n;
+                TextView textView2 = lxVar.f37317n;
                 if (i13 == 3) {
                     i12 = 0;
                 }
@@ -180,25 +180,25 @@ public final class e2 extends AnimatorListenerAdapter {
             case 11:
                 cg0 cg0Var = (cg0) obj;
                 cg0Var.I = null;
-                cg0Var.Q.f35883e1.delete(i13);
+                cg0Var.Q.f35882e1.delete(i13);
                 return;
             case 12:
                 yp ypVar = (yp) obj;
-                ((hj0) ypVar.d).f35922b.remove(i13);
+                ((hj0) ypVar.d).f35921b.remove(i13);
                 hj0 hj0Var = (hj0) ypVar.d;
                 hj0Var.d = true;
-                hj0Var.f35921a.invalidate();
+                hj0Var.f35920a.invalidate();
                 return;
             case 13:
                 kr0 kr0Var = (kr0) obj;
-                kr0Var.f36964e.S1.remove(i13);
-                kr0Var.f36961a.invalidate();
+                kr0Var.f36963e.S1.remove(i13);
+                kr0Var.f36960a.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.c1 c1Var = (org.telegram.ui.Components.voip.c1) obj;
-                c1Var.f40935y = -1;
-                c1Var.f40933w = i13;
-                c1Var.f40932s = 0.0f;
+                c1Var.f40934y = -1;
+                c1Var.f40932w = i13;
+                c1Var.f40931s = 0.0f;
                 c1Var.V = null;
                 c1Var.e();
                 return;
@@ -210,9 +210,9 @@ public final class e2 extends AnimatorListenerAdapter {
         switch (this.f18665a) {
             case 9:
                 lx lxVar = (lx) this.f18667c;
-                lxVar.f37319r.setVisibility(0);
+                lxVar.f37318r.setVisibility(0);
                 lxVar.h.setVisibility(0);
-                lxVar.f37318n.setVisibility(0);
+                lxVar.f37317n.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

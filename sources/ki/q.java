@@ -74,7 +74,7 @@ public final class q extends org.telegram.ui.ActionBar.g2 {
             }
             edit.apply();
             h51 h51Var = qVar.f18863a;
-            if (h51Var != null && (c51Var = h51Var.f35790g3) != null) {
+            if (h51Var != null && (c51Var = h51Var.f35789g3) != null) {
                 c51Var.O(true);
             }
         }

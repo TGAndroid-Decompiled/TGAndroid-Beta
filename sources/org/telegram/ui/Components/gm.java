@@ -19,7 +19,7 @@ public final class gm extends CameraView {
     public final void dispatchDraw(Canvas canvas) {
         float f10;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f35637c;
-        ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+        ui uiVar = chatAttachAlertPhotoLayout.f37519b;
         if (org.telegram.messenger.g0.m0) {
             return;
         }

@@ -1089,7 +1089,7 @@ public final class h1 extends dk0 implements gs {
                                 if (booleanValue) {
                                     nq nqVar = new nq(2131231943, 0);
                                     nqVar.a(m6.A6);
-                                    nqVar.f37950n = 1;
+                                    nqVar.f37949n = 1;
                                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str4);
                                     spannableStringBuilder.append((CharSequence) " *");
                                     spannableStringBuilder.setSpan(nqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
@@ -1150,7 +1150,7 @@ public final class h1 extends dk0 implements gs {
                                         t6.x(lnVar, colorDrawable, m6.f29324a7, h6Var, PorterDuff.Mode.SRC_IN);
                                     }
                                     oq oqVar = new oq(colorDrawable, m6.X0(context, 2131231229, m6.w0(m6.f29345b7, h6Var)), 0, 0);
-                                    oqVar.f38339x = true;
+                                    oqVar.f38338x = true;
                                     lnVar.setBackground(oqVar);
                                     view = lnVar;
                                 }

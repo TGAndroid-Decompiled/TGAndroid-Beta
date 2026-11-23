@@ -8,17 +8,17 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 public final class hs0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.ActionBar.h6 f35961a;
-    public final org.telegram.ui.Cells.h6 f35962b;
-    public final View f35963c;
+    public final org.telegram.ui.ActionBar.h6 f35960a;
+    public final org.telegram.ui.Cells.h6 f35961b;
+    public final View f35962c;
 
     public hs0(int i7, Context context, boolean z10, org.telegram.ui.ActionBar.h6 h6Var, cp0 cp0Var) {
         super(context);
         int i10;
         int i11;
-        this.f35961a = h6Var;
+        this.f35960a = h6Var;
         org.telegram.ui.Cells.h6 h6Var2 = new org.telegram.ui.Cells.h6(context, h6Var);
-        this.f35962b = h6Var2;
+        this.f35961b = h6Var2;
         int i12 = org.telegram.ui.ActionBar.m6.f29473i6;
         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.m6.h0(org.telegram.ui.ActionBar.m6.w0(i12, h6Var), 2, -1);
         org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i12);
@@ -26,7 +26,7 @@ public final class hs0 extends FrameLayout implements org.telegram.ui.ActionBar.
         org.telegram.ui.ActionBar.t6.j(h6Var2, h02, null, M, h6Var);
         addView(h6Var2, c8.ma.c(-2.0f, -1));
         View view = new View(context);
-        this.f35963c = view;
+        this.f35962c = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
         int i13 = org.telegram.ui.ActionBar.m6.f29381d6;
         view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.m6.r1(0.4f, org.telegram.ui.ActionBar.m6.w0(i13, h6Var)), org.telegram.ui.ActionBar.m6.w0(i13, h6Var)}));
@@ -77,8 +77,8 @@ public final class hs0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.ActionBar.h6 h6Var = this.f35961a;
-        View view = this.f35963c;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f35960a;
+        View view = this.f35962c;
         if (view != null) {
             try {
                 if (view.getBackground() instanceof GradientDrawable) {

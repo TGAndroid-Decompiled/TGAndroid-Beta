@@ -119,8 +119,8 @@ public final class h5 implements View.OnClickListener {
                 gq0 gq0Var = (gq0) obj2;
                 org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) obj;
                 op opVar = gq0Var.G;
-                opVar.a(!opVar.f38321a.f32874q, true);
-                boolean z15 = opVar.f38321a.f32874q;
+                opVar.a(!opVar.f38320a.f32874q, true);
+                boolean z15 = opVar.f38320a.f32874q;
                 lc b02 = lc.b0(g2Var);
                 if (z15) {
                     i10 = 2131624195;
@@ -224,7 +224,7 @@ public final class h5 implements View.OnClickListener {
             case 11:
                 zk zkVar = (zk) obj2;
                 org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj;
-                a70 G = a70.G(zkVar, h6Var, zkVar.f42931y);
+                a70 G = a70.G(zkVar, h6Var, zkVar.f42930y);
                 G.T = true;
                 G.c(2131232046, hd.N0(2131742891, null), new org.telegram.ui.f0(zkVar, i14, h6Var, 7), false);
                 G.c(2131231779, hd.N0(2131742959, null), new tk(zkVar, 0), false);
@@ -269,9 +269,9 @@ public final class h5 implements View.OnClickListener {
                 return;
             case 13:
                 p30 p30Var = (p30) obj2;
-                p30Var.f38471n = i14;
-                p30Var.f38467b.e(false, view.getLeft());
-                p30Var.f38468c.e(false, view.getRight());
+                p30Var.f38470n = i14;
+                p30Var.f38466b.e(false, view.getLeft());
+                p30Var.f38467c.e(false, view.getRight());
                 ((or) obj).a(i14);
                 p30Var.invalidate();
                 return;
@@ -279,7 +279,7 @@ public final class h5 implements View.OnClickListener {
                 md0 md0Var = (md0) obj2;
                 ViewGroup viewGroup = (ViewGroup) obj;
                 ArrayList arrayList2 = md0Var.H1;
-                org.telegram.ui.ActionBar.g2 g2Var2 = md0Var.f37493t1;
+                org.telegram.ui.ActionBar.g2 g2Var2 = md0Var.f37492t1;
                 int i17 = md0Var.A1;
                 if (i14 >= i17 && i14 < md0Var.B1) {
                     f0Var = (org.telegram.messenger.f0) arrayList2.get(i14 - i17);
@@ -333,7 +333,7 @@ public final class h5 implements View.OnClickListener {
                                 }
                             }
                         }
-                        md0Var.f37492s1.setEnabled(z13);
+                        md0Var.f37491s1.setEnabled(z13);
                         md0Var.J0();
                     }
                     ((kd0) viewGroup).setChecked(f0Var.d);
@@ -343,8 +343,8 @@ public final class h5 implements View.OnClickListener {
             case 15:
                 ur0 ur0Var = (ur0) obj2;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
-                jt0 jt0Var = ur0Var.f40569f;
-                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var.f36684y1;
+                jt0 jt0Var = ur0Var.f40568f;
+                org.telegram.ui.ActionBar.g2 g2Var3 = jt0Var.f36683y1;
                 g2Var3.finishPreviewFragment();
                 chat.left = false;
                 ur0Var.E(false);
@@ -353,7 +353,7 @@ public final class h5 implements View.OnClickListener {
                     jt0Var.P1(true);
                     jt0Var.N();
                 }
-                g2Var3.getNotificationCenter().k(203, Long.valueOf(-jt0Var.f36648m1));
+                g2Var3.getNotificationCenter().k(203, Long.valueOf(-jt0Var.f36647m1));
                 g2Var3.getMessagesController().n(chat.f28434id, g2Var3.getUserConfig().f(), null, g2Var3, new fm0(8, ur0Var, chat));
                 return;
             case 16:
@@ -403,7 +403,7 @@ public final class h5 implements View.OnClickListener {
             case 21:
                 hx hxVar = (hx) obj;
                 s11 s11Var = ((s01) obj2).f51812c;
-                if (!hxVar.f35984e && !k10.i(s11Var.W).q()) {
+                if (!hxVar.f35983e && !k10.i(s11Var.W).q()) {
                     org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
                     if (Q != null) {
                         Q.showDialog(new ug.y0(s11Var.f51833d1, s11Var.getContext(), s11Var.W, 11, false));
@@ -428,8 +428,8 @@ public final class h5 implements View.OnClickListener {
                 if (num != null) {
                     s11Var.i(num.intValue(), view2);
                 }
-                ev.K0(null, hxVar.f35982b, false, null, null);
-                s11Var.C0.add(Long.valueOf(hxVar.f35982b.f28461id));
+                ev.K0(null, hxVar.f35981b, false, null, null);
+                s11Var.C0.add(Long.valueOf(hxVar.f35981b.f28461id));
                 s11Var.B(true, true, true);
                 return;
             case 22:

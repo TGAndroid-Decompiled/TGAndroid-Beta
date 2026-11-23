@@ -56,16 +56,16 @@ public final class h10 extends AnimatorListenerAdapter {
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     i10Var.removeView((View) arrayList.get(i10));
                 }
-                i10Var.f36109e.clear();
-                i10Var.f36106a = null;
-                i10Var.f36107b = false;
+                i10Var.f36108e.clear();
+                i10Var.f36105a = null;
+                i10Var.f36106b = false;
                 return;
             case 1:
                 k60 k60Var = (k60) obj2;
                 k60Var.removeView((p20) obj);
-                k60Var.f36818c = null;
-                k60Var.f36819e.Y1 = null;
-                k60Var.f36816a = false;
+                k60Var.f36817c = null;
+                k60Var.f36818e.Y1 = null;
+                k60Var.f36815a = false;
                 return;
             case 2:
                 ej0 ej0Var = (ej0) obj2;
@@ -132,18 +132,18 @@ public final class h10 extends AnimatorListenerAdapter {
                 yzVar.setAlpha(1.0f);
                 v4.p0.x0(yzVar);
                 hj0 hj0Var = (hj0) obj2;
-                hj0Var.f35923c.remove(yzVar);
-                hj0Var.f35921a.removeView(yzVar);
+                hj0Var.f35922c.remove(yzVar);
+                hj0Var.f35920a.removeView(yzVar);
                 return;
             case 4:
                 super.onAnimationEnd(animator);
                 org.telegram.ui.yp ypVar = (org.telegram.ui.yp) obj2;
-                ((hj0) ypVar.d).f35926g.remove((AnimatorSet) obj);
-                if (((hj0) ypVar.d).f35926g.isEmpty()) {
-                    ((hj0) ypVar.d).f35922b.clear();
+                ((hj0) ypVar.d).f35925g.remove((AnimatorSet) obj);
+                if (((hj0) ypVar.d).f35925g.isEmpty()) {
+                    ((hj0) ypVar.d).f35921b.clear();
                     hj0 hj0Var2 = (hj0) ypVar.d;
                     hj0Var2.d = true;
-                    hj0Var2.f35921a.invalidate();
+                    hj0Var2.f35920a.invalidate();
                     return;
                 }
                 return;
@@ -161,7 +161,7 @@ public final class h10 extends AnimatorListenerAdapter {
                 return;
             case 6:
                 sv0 sv0Var = (sv0) obj2;
-                sv0Var.f39698b = 0.0f;
+                sv0Var.f39697b = 0.0f;
                 sv0Var.invalidate();
                 ((gl0) obj).invalidate();
                 return;
@@ -197,37 +197,37 @@ public final class h10 extends AnimatorListenerAdapter {
                 PhotoViewer photoViewer = (PhotoViewer) obj2;
                 rd0 rd0Var = photoViewer.D1;
                 Bitmap bitmap = (Bitmap) obj;
-                ImageReceiver imageReceiver = rd0Var.f39166e;
+                ImageReceiver imageReceiver = rd0Var.f39165e;
                 if (bitmap != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                rd0Var.f39167f = z10;
+                rd0Var.f39166f = z10;
                 imageReceiver.v0(bitmap);
                 imageReceiver.G0(0, 0, false);
-                AnimatorSet animatorSet = rd0Var.f39170s;
+                AnimatorSet animatorSet = rd0Var.f39169s;
                 if (animatorSet != null) {
                     animatorSet.cancel();
                 }
-                AnimatorSet animatorSet2 = rd0Var.f39171w;
+                AnimatorSet animatorSet2 = rd0Var.f39170w;
                 if (animatorSet2 != null) {
                     animatorSet2.cancel();
                 }
                 rd0Var.h = true;
-                rd0Var.f39168n = 1.0f;
+                rd0Var.f39167n = 1.0f;
                 AnimatorSet animatorSet3 = new AnimatorSet();
-                rd0Var.f39170s = animatorSet3;
+                rd0Var.f39169s = animatorSet3;
                 animatorSet3.playTogether(ObjectAnimator.ofFloat(rd0Var, rd0Var.F, 0.0f, 1.0f));
-                rd0Var.f39170s.setDuration(250L);
-                rd0Var.f39170s.setInterpolator(new OvershootInterpolator(1.01f));
-                rd0Var.f39170s.addListener(new pd0(rd0Var, 0));
-                rd0Var.f39170s.start();
+                rd0Var.f39169s.setDuration(250L);
+                rd0Var.f39169s.setInterpolator(new OvershootInterpolator(1.01f));
+                rd0Var.f39169s.addListener(new pd0(rd0Var, 0));
+                rd0Var.f39169s.start();
                 AnimatorSet animatorSet4 = new AnimatorSet();
                 photoViewer.B2 = animatorSet4;
                 animatorSet4.playTogether(ObjectAnimator.ofFloat(photoViewer.A2, photoViewer.f43237d4, 0.0f));
                 photoViewer.B2.setDuration(85L);
-                photoViewer.B2.setInterpolator(nr.f37962g);
+                photoViewer.B2.setInterpolator(nr.f37961g);
                 photoViewer.B2.addListener(new org.telegram.ui.ay(this, 11));
                 photoViewer.B2.start();
                 return;

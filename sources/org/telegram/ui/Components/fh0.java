@@ -33,21 +33,21 @@ public final class fh0 {
         this.f35234a = rtVar;
         this.f35237e = jh0Var;
         this.f35238f = layout.getPaint();
-        jh0Var.f36504c = spanned.getSpanStart(jh0Var);
-        boolean z13 = jh0Var.f36502a;
+        jh0Var.f36503c = spanned.getSpanStart(jh0Var);
+        boolean z13 = jh0Var.f36501a;
         int spanEnd = spanned.getSpanEnd(jh0Var);
         jh0Var.d = spanEnd;
         if (spanEnd - 1 >= 0 && spanEnd < spanned.length() && spanned.charAt(jh0Var.d) != '\n' && spanned.charAt(jh0Var.d - 1) == '\n') {
             jh0Var.d--;
         }
-        int lineForOffset = layout.getLineForOffset(jh0Var.f36504c);
+        int lineForOffset = layout.getLineForOffset(jh0Var.f36503c);
         int lineForOffset2 = layout.getLineForOffset(jh0Var.d);
         if (lineForOffset2 - lineForOffset < 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        jh0Var.f36506f = z10;
+        jh0Var.f36505f = z10;
         if (lineForOffset <= 0) {
             z11 = true;
         } else {
@@ -59,10 +59,10 @@ public final class fh0 {
         } else {
             z12 = false;
         }
-        jh0Var.f36507n = z12;
+        jh0Var.f36506n = z12;
         if (z13) {
             int lineTop = layout.getLineTop(lineForOffset);
-            if (jh0Var.f36506f) {
+            if (jh0Var.f36505f) {
                 i12 = 0;
             } else {
                 if (jh0Var.h) {
@@ -74,10 +74,10 @@ public final class fh0 {
             }
             this.f35235b = org.telegram.messenger.g0.L(3 - i12) + lineTop;
             int lineBottom = layout.getLineBottom(lineForOffset2);
-            if (jh0Var.f36506f) {
+            if (jh0Var.f36505f) {
                 i14 = 0;
             } else {
-                if (jh0Var.f36507n) {
+                if (jh0Var.f36506n) {
                     i13 = 2;
                 } else {
                     i13 = 0;
@@ -87,26 +87,26 @@ public final class fh0 {
             this.f35236c = lineBottom - org.telegram.messenger.g0.L(2 - i14);
         } else {
             int lineTop2 = layout.getLineTop(lineForOffset);
-            if (jh0Var.f36506f) {
+            if (jh0Var.f36505f) {
                 i7 = 1;
             } else {
                 i7 = 2;
             }
             this.f35235b = org.telegram.messenger.g0.L(3 - i7) + lineTop2;
             int lineBottom2 = layout.getLineBottom(lineForOffset2);
-            if (jh0Var.f36506f) {
+            if (jh0Var.f36505f) {
                 i10 = 1;
             } else {
                 i10 = 2;
             }
             this.f35236c = lineBottom2 - org.telegram.messenger.g0.L(2 - i10);
         }
-        jh0Var.f36508r = false;
+        jh0Var.f36507r = false;
         float f10 = 0.0f;
         while (lineForOffset <= lineForOffset2) {
             f10 = Math.max(f10, layout.getLineRight(lineForOffset));
             if (layout.getLineLeft(lineForOffset) > 0.0f) {
-                jh0Var.f36508r = true;
+                jh0Var.f36507r = true;
             }
             lineForOffset++;
         }
@@ -126,13 +126,13 @@ public final class fh0 {
         jh0 jh0Var = this.f35237e;
         int i14 = jh0Var.J;
         float[] fArr = jh0Var.E;
-        boolean z10 = jh0Var.f36502a;
-        Paint paint = jh0Var.f36512y;
+        boolean z10 = jh0Var.f36501a;
+        Paint paint = jh0Var.f36511y;
         Paint paint2 = jh0Var.G;
         Path path = jh0Var.I;
         float[] fArr2 = jh0Var.H;
         Path path2 = jh0Var.F;
-        Drawable drawable = jh0Var.f36511x;
+        Drawable drawable = jh0Var.f36510x;
         if (i14 != i10) {
             jh0Var.J = i10;
             drawable.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
@@ -181,7 +181,7 @@ public final class fh0 {
             i13 = i17;
             direction = direction2;
             rectF = rectF2;
-            jh0Var.K.d(canvas, this.f35239g, i16 - L3, i17 - L3, i10, jh0Var.f36505e, b());
+            jh0Var.K.d(canvas, this.f35239g, i16 - L3, i17 - L3, i10, jh0Var.f36504e, b());
         } else {
             rectF = rectF2;
             i12 = i15;
@@ -201,7 +201,7 @@ public final class fh0 {
         path.rewind();
         path.addRoundRect(rectF, fArr2, direction);
         canvas.drawPath(path, paint2);
-        if (!jh0Var.f36508r) {
+        if (!jh0Var.f36507r) {
             int intrinsicHeight = (int) (((i12 + i13) - drawable.getIntrinsicHeight()) / 2.0f);
             if (intrinsicHeight > org.telegram.messenger.g0.L(8.0f) + i12) {
                 intrinsicHeight = org.telegram.messenger.g0.L(4.0f) + i12;
@@ -214,7 +214,7 @@ public final class fh0 {
     }
 
     public final boolean b() {
-        if (this.f35237e.f36502a && this.f35236c - this.f35235b > this.f35238f.getTextSize() * 1.3f * 3) {
+        if (this.f35237e.f36501a && this.f35236c - this.f35235b > this.f35238f.getTextSize() * 1.3f * 3) {
             return true;
         }
         return false;

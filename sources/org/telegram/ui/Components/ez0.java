@@ -125,7 +125,7 @@ public abstract class ez0 extends View {
             ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
             ofFloat3.setStartDelay(500L);
             ofFloat3.addUpdateListener(new dz0(this, 3));
-            nr nrVar = nr.f37962g;
+            nr nrVar = nr.f37961g;
             ofFloat3.setInterpolator(nrVar);
             ofFloat3.setDuration(500L);
             ValueAnimator ofFloat4 = ValueAnimator.ofFloat(1.0f, 0.0f);

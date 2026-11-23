@@ -77,7 +77,7 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
                         tnVar.Z((org.telegram.ui.Cells.n8) view, true);
                         return;
                     } else {
-                        tnVar.f39981r.g(tnVar.J0);
+                        tnVar.f39980r.g(tnVar.J0);
                         return;
                     }
                 }
@@ -90,7 +90,7 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
     public void a() {
         uo uoVar = (uo) this.f35747b;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f35748c;
-        if (uoVar.f40534c != null) {
+        if (uoVar.f40533c != null) {
             uoVar.h = actionBarPopupWindow$ActionBarPopupWindowLayout.getVisibleHeight() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight();
             uoVar.a();
         }
@@ -101,30 +101,30 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
         Location location;
         ml mlVar = (ml) this.f35747b;
         org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f35748c;
-        ImageView imageView = mlVar.f37559n;
+        ImageView imageView = mlVar.f37558n;
         Property property = View.TRANSLATION_Y;
         ImageView imageView2 = mlVar.P;
         if (motionEvent.getAction() == 0) {
-            AnimatorSet animatorSet = mlVar.f37548b0;
+            AnimatorSet animatorSet = mlVar.f37547b0;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
-            mlVar.f37548b0 = animatorSet2;
+            mlVar.f37547b0 = animatorSet2;
             animatorSet2.setDuration(200L);
-            mlVar.f37548b0.playTogether(ObjectAnimator.ofFloat(imageView2, property, mlVar.f37557k0 - org.telegram.messenger.g0.L(10.0f)));
-            mlVar.f37548b0.start();
+            mlVar.f37547b0.playTogether(ObjectAnimator.ofFloat(imageView2, property, mlVar.f37556k0 - org.telegram.messenger.g0.L(10.0f)));
+            mlVar.f37547b0.start();
         } else if (motionEvent.getAction() == 1) {
-            AnimatorSet animatorSet3 = mlVar.f37548b0;
+            AnimatorSet animatorSet3 = mlVar.f37547b0;
             if (animatorSet3 != null) {
                 animatorSet3.cancel();
             }
             mlVar.H = 0.0f;
             AnimatorSet animatorSet4 = new AnimatorSet();
-            mlVar.f37548b0 = animatorSet4;
+            mlVar.f37547b0 = animatorSet4;
             animatorSet4.setDuration(200L);
-            mlVar.f37548b0.playTogether(ObjectAnimator.ofFloat(imageView2, property, mlVar.f37557k0));
-            mlVar.f37548b0.start();
+            mlVar.f37547b0.playTogether(ObjectAnimator.ofFloat(imageView2, property, mlVar.f37556k0));
+            mlVar.f37547b0.start();
         }
         if (motionEvent.getAction() == 2) {
             if (!mlVar.m0) {
@@ -134,11 +134,11 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
                 mlVar.m0 = true;
             }
             org.telegram.messenger.ea eaVar = mlVar.E;
-            if (eaVar != null && (location = mlVar.f37556j0) != null) {
+            if (eaVar != null && (location = mlVar.f37555j0) != null) {
                 location.setLatitude(((org.telegram.messenger.bb) eaVar.d().f15539b).f23066a);
-                mlVar.f37556j0.setLongitude(((org.telegram.messenger.bb) mlVar.E.d().f15539b).f23067b);
+                mlVar.f37555j0.setLongitude(((org.telegram.messenger.bb) mlVar.E.d().f15539b).f23067b);
             }
-            mlVar.L.L(mlVar.f37556j0);
+            mlVar.L.L(mlVar.f37555j0);
         }
         return haVar.a(motionEvent).booleanValue();
     }
@@ -159,7 +159,7 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
             case 17:
                 ev evVar = (ev) obj2;
                 Context context = (Context) obj;
-                if (!(view instanceof xu) || (y5Var = ((xu) view).f42221c) == null) {
+                if (!(view instanceof xu) || (y5Var = ((xu) view).f42220c) == null) {
                     return false;
                 }
                 org.telegram.ui.ActionBar.y0 y0Var = new org.telegram.ui.ActionBar.y0(evVar.getContext(), true, true);
@@ -203,12 +203,12 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
     @Override
     public void d(boolean z10) {
         jt0 jt0Var = (jt0) this.f35747b;
-        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36684y1;
+        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36683y1;
         g2Var.finishFragment();
         int i7 = org.telegram.messenger.ls.f25384t;
         g2Var.getNotificationCenter().n((org.telegram.messenger.gs) g2Var, i7);
         g2Var.getNotificationCenter().k(i7, new Object[0]);
-        g2Var.getNotificationCenter().k(org.telegram.messenger.ls.K2, Long.valueOf(jt0Var.f36648m1), (TLRPC.User) this.f35748c, null, Boolean.valueOf(z10));
+        g2Var.getNotificationCenter().k(org.telegram.messenger.ls.K2, Long.valueOf(jt0Var.f36647m1), (TLRPC.User) this.f35748c, null, Boolean.valueOf(z10));
         g2Var.getMessagesController().Z4(false);
     }
 
@@ -219,19 +219,19 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
         TLRPC.Chat chat;
         jm jmVar = (jm) this.f35747b;
         org.telegram.ui.Cells.s5 s5Var2 = (org.telegram.ui.Cells.s5) this.f35748c;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = jmVar.f36561w;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = jmVar.f36560w;
         boolean z11 = chatAttachAlertPhotoLayout.f32843w0;
-        ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+        ui uiVar = chatAttachAlertPhotoLayout.f37519b;
         if (z11) {
             int i10 = uiVar.O2;
-            org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+            org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
             if (i10 == 0 && !uiVar.C1) {
                 int intValue = ((Integer) s5Var.getTag()).intValue();
                 org.telegram.messenger.ff photoEntry = s5Var.getPhotoEntry();
                 if (!chatAttachAlertPhotoLayout.a0(photoEntry)) {
                     HashMap hashMap = ChatAttachAlertPhotoLayout.f32800t1;
                     if (hashMap.size() + 1 > ChatAttachAlertPhotoLayout.R(chatAttachAlertPhotoLayout)) {
-                        new lc(uiVar.f40414p3, chatAttachAlertPhotoLayout.f37519a).t(org.telegram.messenger.g0.W2(org.telegram.messenger.hd.G(((org.telegram.messenger.j0) g2Var.getMessagesController().A7.f26228j0.f15508b).f24812c, "BusinessRepliesToastLimit", new Object[0])), null).j();
+                        new lc(uiVar.f40413p3, chatAttachAlertPhotoLayout.f37518a).t(org.telegram.messenger.g0.W2(org.telegram.messenger.hd.G(((org.telegram.messenger.j0) g2Var.getMessagesController().A7.f26228j0.f15508b).f24812c, "BusinessRepliesToastLimit", new Object[0])), null).j();
                         return;
                     }
                     boolean containsKey = hashMap.containsKey(Integer.valueOf(photoEntry.C));
@@ -239,7 +239,7 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
                     int i11 = 2;
                     if (!containsKey && uiVar.Q3 >= 0 && hashMap.size() >= uiVar.Q3) {
                         if (uiVar.R3 && (g2Var instanceof org.telegram.ui.bn) && (chat = ((org.telegram.ui.bn) g2Var).f46005e) != null && !org.telegram.messenger.v3.N(chat) && chat.slowmode_enabled && chatAttachAlertPhotoLayout.M != 2) {
-                            c5.L(chatAttachAlertPhotoLayout.getContext(), org.telegram.messenger.hd.N0(2131745114, null), org.telegram.messenger.hd.N0(2131745107, null), null, null, chatAttachAlertPhotoLayout.f37519a).p();
+                            c5.L(chatAttachAlertPhotoLayout.getContext(), org.telegram.messenger.hd.N0(2131745114, null), org.telegram.messenger.hd.N0(2131745107, null), null, null, chatAttachAlertPhotoLayout.f37518a).p();
                             if (chatAttachAlertPhotoLayout.M == 1) {
                                 chatAttachAlertPhotoLayout.M = 2;
                                 return;
@@ -265,7 +265,7 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
                         if (jmVar3.d && chatAttachAlertPhotoLayout.U0 == chatAttachAlertPhotoLayout.V0) {
                             intValue++;
                         }
-                        if (jmVar3.f36557f && intValue >= chatAttachAlertPhotoLayout.N0) {
+                        if (jmVar3.f36556f && intValue >= chatAttachAlertPhotoLayout.N0) {
                             intValue++;
                         }
                         jmVar3.g(intValue);
@@ -293,7 +293,7 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
     @Override
     public void f(float f10, float f11, int i7, View view) {
         org.telegram.messenger.w10 w10Var = (org.telegram.messenger.w10) this.f35748c;
-        o41 G = ((h51) this.f35747b).f35790g3.G(i7);
+        o41 G = ((h51) this.f35747b).f35789g3.G(i7);
         if (G == null) {
             return;
         }
@@ -378,14 +378,14 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
                 return;
             case 18:
                 h30 h30Var = (h30) this.f35747b;
-                org.telegram.messenger.na a10 = org.telegram.messenger.na.a(h30Var.f35767a);
+                org.telegram.messenger.na a10 = org.telegram.messenger.na.a(h30Var.f35766a);
                 ArrayList arrayList = a10.f25751f;
                 int indexOf = arrayList.indexOf((String) this.f35748c);
                 if (indexOf != -1) {
                     arrayList.remove(indexOf);
                     a10.d();
                 }
-                h30Var.f35771f.O(true);
+                h30Var.f35770f.O(true);
                 return;
             case 19:
                 um0 um0Var = (um0) this.f35747b;
@@ -467,7 +467,7 @@ public final class h2 implements org.telegram.ui.ActionBar.q1, a5, org.telegram.
     @Override
     public boolean mo23f(float f10, float f11, int i7, View view) {
         org.telegram.messenger.x10 x10Var = (org.telegram.messenger.x10) this.f35748c;
-        o41 G = ((h51) this.f35747b).f35790g3.G(i7);
+        o41 G = ((h51) this.f35747b).f35789g3.G(i7);
         if (G == null) {
             return false;
         }

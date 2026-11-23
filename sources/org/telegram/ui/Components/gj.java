@@ -18,7 +18,7 @@ public final class gj extends org.telegram.ui.Cells.va {
     public final void a(int i7, Object obj) {
         switch (this.f35591x) {
             case 0:
-                q0.a aVar = ((hj) ((qa) this.f35592y).f38851f).f35920y;
+                q0.a aVar = ((hj) ((qa) this.f35592y).f38850f).f35919y;
                 if (aVar != null) {
                     aVar.accept(obj);
                     return;

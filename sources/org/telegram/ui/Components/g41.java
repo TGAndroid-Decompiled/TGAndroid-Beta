@@ -16,7 +16,7 @@ public final class g41 implements ValueAnimator.AnimatorUpdateListener {
         int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f35418b);
         k41 k41Var = this.f35419c;
         k41Var.O = true;
-        k41Var.f36773n.scrollBy(0, floatValue - this.f35417a);
+        k41Var.f36772n.scrollBy(0, floatValue - this.f35417a);
         k41Var.O = false;
         this.f35417a = floatValue;
     }

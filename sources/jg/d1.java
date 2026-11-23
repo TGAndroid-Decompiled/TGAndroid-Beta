@@ -29,7 +29,7 @@ public final class d1 {
                 break;
             default:
                 ty tyVar = (ty) this.h;
-                if (tyVar.f40144u1 != null && tyVar.getVisibility() == 0 && tyVar.L0) {
+                if (tyVar.f40143u1 != null && tyVar.getVisibility() == 0 && tyVar.L0) {
                     N = true;
                     break;
                 } else {

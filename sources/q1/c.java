@@ -73,7 +73,7 @@ public final class c extends j implements p {
                 }
                 b bVar = (b) obj;
                 kotlin.jvm.internal.j.c(bVar, "null cannot be cast to non-null type androidx.datastore.preferences.core.MutablePreferences");
-                ((AtomicBoolean) bVar.f55749b.f38896b).set(true);
+                ((AtomicBoolean) bVar.f55749b.f38895b).set(true);
                 return bVar;
             default:
                 jd.a aVar2 = jd.a.f17409a;

@@ -59,7 +59,7 @@ public final class bb0 implements r1.d {
                 int measuredWidth = (int) (((cr0Var.getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f)) - f10) - i10);
                 int measuredHeight = cr0Var.getMeasuredHeight();
                 k61Var.h = measuredWidth;
-                k61Var.f36826i = measuredHeight;
+                k61Var.f36825i = measuredHeight;
                 View view2 = k61Var.v;
                 if (view2 != null) {
                     view2.invalidate();
@@ -77,7 +77,7 @@ public final class bb0 implements r1.d {
                 int measuredWidth2 = (int) (((oz0Var.getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f)) - f10) - 0);
                 int measuredHeight2 = oz0Var.getMeasuredHeight();
                 k61Var2.h = measuredWidth2;
-                k61Var2.f36826i = measuredHeight2;
+                k61Var2.f36825i = measuredHeight2;
                 View view3 = k61Var2.v;
                 if (view3 != null) {
                     view3.invalidate();

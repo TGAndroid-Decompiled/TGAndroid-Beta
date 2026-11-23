@@ -81,7 +81,7 @@ public final class g implements y10 {
                         }
                         rVar2.setStyleLabel(str);
                         r rVar3 = oVar2.h;
-                        ChatActivityEnterView chatActivityEnterView = rfVar.f39178a;
+                        ChatActivityEnterView chatActivityEnterView = rfVar.f39177a;
                         if (z10) {
                             ai.g gVar = (ai.g) obj;
                             long j3 = gVar.f1210b;

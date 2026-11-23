@@ -950,7 +950,7 @@ public abstract class t0 extends FrameLayout implements gs {
             this.f12603c0.f34725b = new z((a2) this, 0);
             zb zbVar = new zb(getContext(), bVar);
             this.f12604d0 = zbVar;
-            zbVar.f42766b = 5000L;
+            zbVar.f42765b = 5000L;
             zbVar.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.xj, bVar));
             this.f12603c0.addView(this.f12604d0, ma.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
             this.f12603c0.f34727e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
@@ -966,7 +966,7 @@ public abstract class t0 extends FrameLayout implements gs {
         i(getTotalMyStars(), (int) this.S, getDefaultPeerId());
         this.f12601b0.f33487b.setText(getStarsToastTitle());
         this.f12601b0.f33488c.setText(getStarsToastSubtitle());
-        this.f12604d0.f42766b = 5000L;
+        this.f12604d0.f42765b = 5000L;
         org.telegram.messenger.g0.r(a0Var);
         org.telegram.messenger.g0.h3(a0Var, 5000L);
         long j3 = this.S;

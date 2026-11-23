@@ -77,17 +77,17 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
         this.R = 2;
         this.S = 3;
         this.T = new Runnable(this) {
-            public final ej f40836b;
+            public final ej f40835b;
 
             {
-                this.f40836b = this;
+                this.f40835b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bi.f6 f6Var = this.f40836b.f34831w;
+                        bi.f6 f6Var = this.f40835b.f34831w;
                         int i7 = -1;
                         boolean canScrollVertically = f6Var.canScrollVertically(-1);
                         int i10 = -1;
@@ -107,29 +107,29 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 }
                             }
                         }
-                        f6Var.f35790g3.O(true);
+                        f6Var.f35789g3.O(true);
                         if (!canScrollVertically) {
-                            f6Var.f35789f3.h1(0, 0);
+                            f6Var.f35788f3.h1(0, 0);
                             return;
                         } else if (i7 >= 0) {
-                            f6Var.f35789f3.h1(i7, i10 - f6Var.getPaddingTop());
+                            f6Var.f35788f3.h1(i7, i10 - f6Var.getPaddingTop());
                             return;
                         } else {
                             return;
                         }
                     case 1:
-                        this.f40836b.S();
+                        this.f40835b.S();
                         return;
                     case 2:
-                        this.f40836b.T();
+                        this.f40835b.T();
                         return;
                     case 3:
-                        ej ejVar = this.f40836b;
+                        ej ejVar = this.f40835b;
                         ejVar.Q();
-                        ejVar.f37520b.N1(ejVar, 0);
+                        ejVar.f37519b.N1(ejVar, 0);
                         return;
                     default:
-                        ej ejVar2 = this.f40836b;
+                        ej ejVar2 = this.f40835b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -151,7 +151,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
                                 TLRPC.Peer peer = tL_message.peer_id;
-                                long e10 = org.telegram.messenger.k10.i(ejVar2.f37520b.H3).e();
+                                long e10 = org.telegram.messenger.k10.i(ejVar2.f37519b.H3).e();
                                 tL_peerUser.user_id = e10;
                                 peer.user_id = e10;
                                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -186,7 +186,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                obj.f27727e = new org.telegram.messenger.gj(ejVar2.f37520b.H3, tL_message, false, true);
+                                obj.f27727e = new org.telegram.messenger.gj(ejVar2.f37519b.H3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
                                 if (a10 != null && a10.f56629o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
@@ -212,17 +212,17 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
         };
         this.V = -1;
         this.f34816b0 = new Runnable(this) {
-            public final ej f40836b;
+            public final ej f40835b;
 
             {
-                this.f40836b = this;
+                this.f40835b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bi.f6 f6Var = this.f40836b.f34831w;
+                        bi.f6 f6Var = this.f40835b.f34831w;
                         int i7 = -1;
                         boolean canScrollVertically = f6Var.canScrollVertically(-1);
                         int i10 = -1;
@@ -242,29 +242,29 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 }
                             }
                         }
-                        f6Var.f35790g3.O(true);
+                        f6Var.f35789g3.O(true);
                         if (!canScrollVertically) {
-                            f6Var.f35789f3.h1(0, 0);
+                            f6Var.f35788f3.h1(0, 0);
                             return;
                         } else if (i7 >= 0) {
-                            f6Var.f35789f3.h1(i7, i10 - f6Var.getPaddingTop());
+                            f6Var.f35788f3.h1(i7, i10 - f6Var.getPaddingTop());
                             return;
                         } else {
                             return;
                         }
                     case 1:
-                        this.f40836b.S();
+                        this.f40835b.S();
                         return;
                     case 2:
-                        this.f40836b.T();
+                        this.f40835b.T();
                         return;
                     case 3:
-                        ej ejVar = this.f40836b;
+                        ej ejVar = this.f40835b;
                         ejVar.Q();
-                        ejVar.f37520b.N1(ejVar, 0);
+                        ejVar.f37519b.N1(ejVar, 0);
                         return;
                     default:
-                        ej ejVar2 = this.f40836b;
+                        ej ejVar2 = this.f40835b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -286,7 +286,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
                                 TLRPC.Peer peer = tL_message.peer_id;
-                                long e10 = org.telegram.messenger.k10.i(ejVar2.f37520b.H3).e();
+                                long e10 = org.telegram.messenger.k10.i(ejVar2.f37519b.H3).e();
                                 tL_peerUser.user_id = e10;
                                 peer.user_id = e10;
                                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -321,7 +321,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                obj.f27727e = new org.telegram.messenger.gj(ejVar2.f37520b.H3, tL_message, false, true);
+                                obj.f27727e = new org.telegram.messenger.gj(ejVar2.f37519b.H3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
                                 if (a10 != null && a10.f56629o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
@@ -347,17 +347,17 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
         };
         this.f34819e0 = -1;
         this.f34821g0 = new Runnable(this) {
-            public final ej f40836b;
+            public final ej f40835b;
 
             {
-                this.f40836b = this;
+                this.f40835b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bi.f6 f6Var = this.f40836b.f34831w;
+                        bi.f6 f6Var = this.f40835b.f34831w;
                         int i7 = -1;
                         boolean canScrollVertically = f6Var.canScrollVertically(-1);
                         int i10 = -1;
@@ -377,29 +377,29 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 }
                             }
                         }
-                        f6Var.f35790g3.O(true);
+                        f6Var.f35789g3.O(true);
                         if (!canScrollVertically) {
-                            f6Var.f35789f3.h1(0, 0);
+                            f6Var.f35788f3.h1(0, 0);
                             return;
                         } else if (i7 >= 0) {
-                            f6Var.f35789f3.h1(i7, i10 - f6Var.getPaddingTop());
+                            f6Var.f35788f3.h1(i7, i10 - f6Var.getPaddingTop());
                             return;
                         } else {
                             return;
                         }
                     case 1:
-                        this.f40836b.S();
+                        this.f40835b.S();
                         return;
                     case 2:
-                        this.f40836b.T();
+                        this.f40835b.T();
                         return;
                     case 3:
-                        ej ejVar = this.f40836b;
+                        ej ejVar = this.f40835b;
                         ejVar.Q();
-                        ejVar.f37520b.N1(ejVar, 0);
+                        ejVar.f37519b.N1(ejVar, 0);
                         return;
                     default:
-                        ej ejVar2 = this.f40836b;
+                        ej ejVar2 = this.f40835b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -421,7 +421,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
                                 TLRPC.Peer peer = tL_message.peer_id;
-                                long e10 = org.telegram.messenger.k10.i(ejVar2.f37520b.H3).e();
+                                long e10 = org.telegram.messenger.k10.i(ejVar2.f37519b.H3).e();
                                 tL_peerUser.user_id = e10;
                                 peer.user_id = e10;
                                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -456,7 +456,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                obj.f27727e = new org.telegram.messenger.gj(ejVar2.f37520b.H3, tL_message, false, true);
+                                obj.f27727e = new org.telegram.messenger.gj(ejVar2.f37519b.H3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
                                 if (a10 != null && a10.f56629o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
@@ -481,23 +481,23 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
             }
         };
         this.m0 = -1000000000;
-        org.telegram.messenger.ls.f(this.f37520b.H3).c(this, org.telegram.messenger.ls.f25306f2);
-        org.telegram.messenger.ls.f(this.f37520b.H3).c(this, org.telegram.messenger.ls.f25318h2);
-        org.telegram.messenger.ls.f(this.f37520b.H3).c(this, org.telegram.messenger.ls.f25312g2);
-        org.telegram.messenger.ls.f(this.f37520b.H3).c(this, org.telegram.messenger.ls.W3);
+        org.telegram.messenger.ls.f(this.f37519b.H3).c(this, org.telegram.messenger.ls.f25306f2);
+        org.telegram.messenger.ls.f(this.f37519b.H3).c(this, org.telegram.messenger.ls.f25318h2);
+        org.telegram.messenger.ls.f(this.f37519b.H3).c(this, org.telegram.messenger.ls.f25312g2);
+        org.telegram.messenger.ls.f(this.f37519b.H3).c(this, org.telegram.messenger.ls.W3);
         this.H = true;
         Utilities.f22810e.c(new Runnable(this) {
-            public final ej f40836b;
+            public final ej f40835b;
 
             {
-                this.f40836b = this;
+                this.f40835b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bi.f6 f6Var = this.f40836b.f34831w;
+                        bi.f6 f6Var = this.f40835b.f34831w;
                         int i7 = -1;
                         boolean canScrollVertically = f6Var.canScrollVertically(-1);
                         int i10 = -1;
@@ -517,29 +517,29 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 }
                             }
                         }
-                        f6Var.f35790g3.O(true);
+                        f6Var.f35789g3.O(true);
                         if (!canScrollVertically) {
-                            f6Var.f35789f3.h1(0, 0);
+                            f6Var.f35788f3.h1(0, 0);
                             return;
                         } else if (i7 >= 0) {
-                            f6Var.f35789f3.h1(i7, i10 - f6Var.getPaddingTop());
+                            f6Var.f35788f3.h1(i7, i10 - f6Var.getPaddingTop());
                             return;
                         } else {
                             return;
                         }
                     case 1:
-                        this.f40836b.S();
+                        this.f40835b.S();
                         return;
                     case 2:
-                        this.f40836b.T();
+                        this.f40835b.T();
                         return;
                     case 3:
-                        ej ejVar = this.f40836b;
+                        ej ejVar = this.f40835b;
                         ejVar.Q();
-                        ejVar.f37520b.N1(ejVar, 0);
+                        ejVar.f37519b.N1(ejVar, 0);
                         return;
                     default:
-                        ej ejVar2 = this.f40836b;
+                        ej ejVar2 = this.f40835b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -561,7 +561,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
                                 TLRPC.Peer peer = tL_message.peer_id;
-                                long e10 = org.telegram.messenger.k10.i(ejVar2.f37520b.H3).e();
+                                long e10 = org.telegram.messenger.k10.i(ejVar2.f37519b.H3).e();
                                 tL_peerUser.user_id = e10;
                                 peer.user_id = e10;
                                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -596,7 +596,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                obj.f27727e = new org.telegram.messenger.gj(ejVar2.f37520b.H3, tL_message, false, true);
+                                obj.f27727e = new org.telegram.messenger.gj(ejVar2.f37519b.H3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
                                 if (a10 != null && a10.f56629o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
@@ -625,7 +625,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
         tiVar.setVisibility(4);
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.f34829r = frameLayout2;
-        qi qiVar = new qi(context, h6Var, this.f37520b);
+        qi qiVar = new qi(context, h6Var, this.f37519b);
         this.f34830s = qiVar;
         qiVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
         qiVar.f34642r.addTextChangedListener(new ah.j(this, 18));
@@ -638,17 +638,17 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
         this.f34833y = esVar;
         esVar.setPadding(org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(21.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(21.0f));
         esVar.setOnAnimatedHeightChangedListener(new Runnable(this) {
-            public final ej f40836b;
+            public final ej f40835b;
 
             {
-                this.f40836b = this;
+                this.f40835b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        bi.f6 f6Var = this.f40836b.f34831w;
+                        bi.f6 f6Var = this.f40835b.f34831w;
                         int i7 = -1;
                         boolean canScrollVertically = f6Var.canScrollVertically(-1);
                         int i10 = -1;
@@ -668,29 +668,29 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 }
                             }
                         }
-                        f6Var.f35790g3.O(true);
+                        f6Var.f35789g3.O(true);
                         if (!canScrollVertically) {
-                            f6Var.f35789f3.h1(0, 0);
+                            f6Var.f35788f3.h1(0, 0);
                             return;
                         } else if (i7 >= 0) {
-                            f6Var.f35789f3.h1(i7, i10 - f6Var.getPaddingTop());
+                            f6Var.f35788f3.h1(i7, i10 - f6Var.getPaddingTop());
                             return;
                         } else {
                             return;
                         }
                     case 1:
-                        this.f40836b.S();
+                        this.f40835b.S();
                         return;
                     case 2:
-                        this.f40836b.T();
+                        this.f40835b.T();
                         return;
                     case 3:
-                        ej ejVar = this.f40836b;
+                        ej ejVar = this.f40835b;
                         ejVar.Q();
-                        ejVar.f37520b.N1(ejVar, 0);
+                        ejVar.f37519b.N1(ejVar, 0);
                         return;
                     default:
-                        ej ejVar2 = this.f40836b;
+                        ej ejVar2 = this.f40835b;
                         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
                         ArrayList arrayList = new ArrayList();
                         try {
@@ -712,7 +712,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
                                 TLRPC.Peer peer = tL_message.peer_id;
-                                long e10 = org.telegram.messenger.k10.i(ejVar2.f37520b.H3).e();
+                                long e10 = org.telegram.messenger.k10.i(ejVar2.f37519b.H3).e();
                                 tL_peerUser.user_id = e10;
                                 peer.user_id = e10;
                                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
@@ -747,7 +747,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                                 TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
                                 tL_documentAttributeFilename.file_name = file.getName();
                                 tL_message.media.document.attributes.add(tL_documentAttributeFilename);
-                                obj.f27727e = new org.telegram.messenger.gj(ejVar2.f37520b.H3, tL_message, false, true);
+                                obj.f27727e = new org.telegram.messenger.gj(ejVar2.f37519b.H3, tL_message, false, true);
                                 rf.a a10 = rf.a.a(file);
                                 if (a10 != null && a10.f56629o != null) {
                                     int L = org.telegram.messenger.g0.L(44.0f);
@@ -771,11 +771,11 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                 }
             }
         });
-        if (uiVar.f40368a2 != null) {
+        if (uiVar.f40367a2 != null) {
             FrameLayout frameLayout3 = new FrameLayout(context);
             esVar.addView(frameLayout3);
             esVar.j(frameLayout3, true, false);
-            aj ajVar = new aj(this, context, uiVar.f40368a2, frameLayout2, h6Var, frameLayout3);
+            aj ajVar = new aj(this, context, uiVar.f40367a2, frameLayout2, h6Var, frameLayout3);
             frameLayout = frameLayout2;
             frameLayout3.addView(ajVar);
             esVar.setCallFragmentContextView(ajVar);
@@ -787,12 +787,12 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
         frameLayout.addView(esVar, d2);
         bi.f6 f6Var = new bi.f6((ej) this, context, uiVar.H3, new d(this, 6), new yi(this), new yi(this), h6Var);
         this.f34831w = f6Var;
-        f6Var.f35790g3.f34062r = false;
+        f6Var.f35789g3.f34062r = false;
         f6Var.r1();
         setBlur3Capture(f6Var);
         this.d = f6Var;
         this.h = true;
-        this.f37523f = true;
+        this.f37522f = true;
         f6Var.setClipToPadding(false);
         f6Var.setHorizontalScrollBarEnabled(false);
         f6Var.setVerticalScrollBarEnabled(false);
@@ -800,9 +800,9 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
         org.telegram.ui.ActionBar.t6.l(f6Var, 21, org.telegram.ui.ActionBar.m6.A5, h6Var);
         f6Var.setOnScrollListener(new oa(this, 1));
         addView(frameLayout, c8.ma.e(-1, 200, 51));
-        f6Var.f35790g3.O(false);
+        f6Var.f35789g3.O(false);
         Q();
-        int i7 = this.f37520b.H3;
+        int i7 = this.f37519b.H3;
         this.K = new org.telegram.messenger.hp(i7, org.telegram.messenger.k10.i(i7).e());
     }
 
@@ -837,8 +837,8 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
         S();
         this.K.b();
         bi.f6 f6Var = this.f34831w;
-        f6Var.f35789f3.h1(0, 0);
-        f6Var.f35790g3.O(false);
+        f6Var.f35788f3.h1(0, 0);
+        f6Var.f35789g3.O(false);
     }
 
     @Override
@@ -856,13 +856,13 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
             while (it.hasNext()) {
                 arrayList.add(((org.telegram.messenger.we) it.next()).f27727e);
             }
-            ui uiVar = this.f37520b;
+            ui uiVar = this.f37519b;
             return c5.Y(uiVar.H3, uiVar.c1(), uiVar.Y0() + arrayList.size(), new org.telegram.messenger.y10() {
                 @Override
                 public final void a(Object obj) {
                     ej ejVar = ej.this;
                     bj bjVar = ejVar.O;
-                    ui uiVar2 = ejVar.f37520b;
+                    ui uiVar2 = ejVar.f37519b;
                     bjVar.i(arrayList, uiVar2.b1().getText(), z10, i7, i10, j3, z11, ((Long) obj).longValue());
                     uiVar2.a(true);
                 }
@@ -873,8 +873,8 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
 
     public final void Q() {
         int i7;
-        ui uiVar = this.f37520b;
-        if (uiVar.f40414p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
+        ui uiVar = this.f37519b;
+        if (uiVar.f40413p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             i7 = org.telegram.messenger.g0.L(8.0f);
             uiVar.f30207r0 = false;
         } else {
@@ -889,7 +889,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
             uiVar.f30207r0 = true;
         }
         int i10 = i7 + org.telegram.messenger.g0.f24040m;
-        this.f34831w.setPadding(0, (int) (this.f34833y.d(0.0f) + org.telegram.messenger.g0.L(56.0f) + i10), 0, this.f37522e);
+        this.f34831w.setPadding(0, (int) (this.f34833y.d(0.0f) + org.telegram.messenger.g0.L(56.0f) + i10), 0, this.f37521e);
     }
 
     public final void R(o41 o41Var, View view) {
@@ -903,7 +903,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
         } else {
             org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) view;
             org.telegram.messenger.we weVar = (org.telegram.messenger.we) h7Var.getTag();
-            ui uiVar = this.f37520b;
+            ui uiVar = this.f37519b;
             uiVar.getClass();
             int i7 = 1;
             if (uiVar.C1) {
@@ -915,7 +915,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                 HashSet hashSet = this.J;
                 if (hashSet.contains(weVar)) {
                     hashSet.remove(weVar);
-                    o41Var.f38085e = false;
+                    o41Var.f38084e = false;
                     h7Var.e(false, true);
                     i7 = 2;
                 } else {
@@ -924,7 +924,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                         int i10 = this.F;
                         if (size >= i10) {
                             String a02 = org.telegram.messenger.hd.a0(null, null, 2131747257, org.telegram.messenger.hd.G(i10, "Files", new Object[0]));
-                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f37519a);
+                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.f37518a);
                             String N0 = org.telegram.messenger.hd.N0(2131689472, null);
                             org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
                             t1Var.S = N0;
@@ -933,7 +933,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                             return;
                         }
                     }
-                    o41Var.f38085e = true;
+                    o41Var.f38084e = true;
                     hashSet.add(weVar);
                     h7Var.e(true, true);
                 }
@@ -969,7 +969,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
             }
             return;
         }
-        int i10 = this.f37520b.H3;
+        int i10 = this.f37519b.H3;
         org.telegram.messenger.np u12 = org.telegram.messenger.np.u1(i10);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
         int i11 = this.V;
@@ -1013,7 +1013,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
                 arrayList.clear();
                 this.f34822h0 = false;
             }
-            int i7 = this.f37520b.H3;
+            int i7 = this.f37519b.H3;
             org.telegram.messenger.np u12 = org.telegram.messenger.np.u1(i7);
             ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i7);
             int i10 = this.f34819e0;
@@ -1075,7 +1075,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
         int i13 = org.telegram.messenger.ls.f25306f2;
         if (i7 != i13 && i7 != i12 && i7 != i11) {
             if (i7 == org.telegram.messenger.ls.W3 && objArr[0] == this.K && f6Var != null) {
-                f6Var.f35790g3.O(true);
+                f6Var.f35789g3.O(true);
             }
         } else if (i7 != i13 && i7 != i11) {
             if (i7 == i12 && ((org.telegram.messenger.gj) objArr[0]).T == 0) {
@@ -1184,7 +1184,7 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
     @Override
     public final void p() {
         u();
-        ui uiVar = this.f37520b;
+        ui uiVar = this.f37519b;
         org.telegram.messenger.ls.f(uiVar.H3).n(this, org.telegram.messenger.ls.f25306f2);
         int i7 = uiVar.H3;
         org.telegram.messenger.ls.f(i7).n(this, org.telegram.messenger.ls.f25318h2);
@@ -1211,11 +1211,11 @@ public final class ej extends mi implements org.telegram.messenger.gs, te.b {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f37520b.f30176b.invalidate();
+        this.f37519b.f30176b.invalidate();
     }
 
     public void setupBlurredSearchField(dh.c cVar) {
-        org.telegram.ui.ActionBar.h6 h6Var = this.f37519a;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f37518a;
         qi qiVar = this.f34830s;
         if (qiVar != null) {
             qiVar.setupBlurredBackground(cVar.c(qiVar, c8.i0.o(h6Var), false));

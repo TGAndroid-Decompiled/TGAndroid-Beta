@@ -71,7 +71,7 @@ public class et extends View {
         } else {
             f10 = 11.33f;
         }
-        int L2 = org.telegram.messenger.g0.L(19.0f) + ((int) Math.ceil(this.f34978a.f42247c)) + org.telegram.messenger.g0.L(f10);
+        int L2 = org.telegram.messenger.g0.L(19.0f) + ((int) Math.ceil(this.f34978a.f42246c)) + org.telegram.messenger.g0.L(f10);
         int L3 = org.telegram.messenger.g0.L(24.0f);
         int width = (getWidth() - L2) / 2;
         int height = getHeight() / 2;

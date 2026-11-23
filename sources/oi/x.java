@@ -445,7 +445,7 @@ public final class x extends y implements org.telegram.ui.ActionBar.b6, i9, j0, 
         super.onAttachedToWindow();
         this.U = true;
         this.f22515x.n(this);
-        this.f22516y.f42473s = this;
+        this.f22516y.f42472s = this;
         n(false);
         int i7 = this.f22511n;
         ls.f(i7).c(this, ls.f25318h2);
@@ -610,7 +610,7 @@ public final class x extends y implements org.telegram.ui.ActionBar.b6, i9, j0, 
                                 g2Var.d();
                             }
                             arrayList.remove(indexOf);
-                            t3Var.f35790g3.O(true);
+                            t3Var.f35789g3.O(true);
                             g2 g2Var2 = t3Var.R3;
                             if (g2Var2 != null) {
                                 g2Var2.h();
@@ -674,7 +674,7 @@ public final class x extends y implements org.telegram.ui.ActionBar.b6, i9, j0, 
         gj gjVar;
         if (!l() && (gjVar = this.Q) != null) {
             ym0 ym0Var = this.f22516y;
-            if (!ym0Var.f42460e) {
+            if (!ym0Var.f42459e) {
                 ym0Var.h(gjVar.f24173b0);
             }
         }

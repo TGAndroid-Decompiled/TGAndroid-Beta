@@ -116,7 +116,7 @@ public class e extends FrameLayout {
         int L = g0.L(4.0f);
         this.J = m6.k0(L, L, L, L, m6.w0(m6.f29454h5, h6Var), m6.w0(m6.f29473i6, h6Var), -16777216);
         oq oqVar = new oq(this.I, this.J, g0.L(3.0f), g0.L(3.0f));
-        oqVar.f38339x = true;
+        oqVar.f38338x = true;
         setBackground(oqVar);
     }
 

@@ -150,8 +150,8 @@ public final class qi0 implements org.telegram.messenger.w10, org.telegram.ui.Ce
                 if (privacyControlActivity.B0 == null) {
                     SpannableString spannableString = new SpannableString("l");
                     org.telegram.ui.Components.nq nqVar = new org.telegram.ui.Components.nq(2131232245, 0);
-                    nqVar.f37951r = org.telegram.messenger.g0.L(2.0f);
-                    nqVar.f37952s = org.telegram.messenger.g0.L(1.0f);
+                    nqVar.f37950r = org.telegram.messenger.g0.L(2.0f);
+                    nqVar.f37951s = org.telegram.messenger.g0.L(1.0f);
                     spannableString.setSpan(nqVar, 0, 1, 33);
                     privacyControlActivity.B0 = spannableString;
                 }
@@ -343,7 +343,7 @@ public final class qi0 implements org.telegram.messenger.w10, org.telegram.ui.Ce
                         }
                         return;
                     }
-                    qy0.J0(qy0Var, o41Var.f38092m, null, null);
+                    qy0.J0(qy0Var, o41Var.f38091m, null, null);
                     return;
                 }
                 return;

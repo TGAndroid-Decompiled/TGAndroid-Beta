@@ -30,7 +30,7 @@ public final class g0 extends org.telegram.ui.s11 {
         i0Var.f1();
         org.telegram.ui.j11 j11Var = this.f35344f2[0];
         if (j11Var != null) {
-            i0Var.f36061e2 = null;
+            i0Var.f36060e2 = null;
             j11Var.dismiss();
         }
     }

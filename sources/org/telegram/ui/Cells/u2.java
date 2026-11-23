@@ -473,7 +473,7 @@ public class u2 extends z implements fi.v6, org.telegram.ui.ActionBar.b6 {
         boolean z10;
         float f10;
         hi.y2 y2Var;
-        if (this.m0 > 0 && !this.f32034w2 && !Y() && (((y2Var = this.f32007r2) == null || !y2Var.f38321a.f32874q) && !this.f32026v0.f11953w)) {
+        if (this.m0 > 0 && !this.f32034w2 && !Y() && (((y2Var = this.f32007r2) == null || !y2Var.f38320a.f32874q) && !this.f32026v0.f11953w)) {
             z10 = true;
         } else {
             z10 = false;
@@ -512,7 +512,7 @@ public class u2 extends z implements fi.v6, org.telegram.ui.ActionBar.b6 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.B4 = ofFloat;
         ofFloat.setDuration(220L);
-        this.B4.setInterpolator(nr.f37961f);
+        this.B4.setInterpolator(nr.f37960f);
         this.f32042x4 = i7;
         this.f32036w4 = i10;
         this.B4.addUpdateListener(new k2(this, 2));
@@ -680,9 +680,9 @@ public class u2 extends z implements fi.v6, org.telegram.ui.ActionBar.b6 {
                 float f17 = i7;
                 rectF3.set(f16, f17, (this.Q3 * f15) + (this.P3 * f13) + f16 + org.telegram.messenger.g0.L(12.666f), org.telegram.messenger.g0.L(20.666f) + i7);
                 if (f11 <= 0.5f) {
-                    interpolation = nr.f37962g.getInterpolation(f14);
+                    interpolation = nr.f37961g.getInterpolation(f14);
                 } else {
-                    interpolation = nr.f37963i.getInterpolation(f12 - ((f11 - 0.5f) * 2.0f));
+                    interpolation = nr.f37962i.getInterpolation(f12 - ((f11 - 0.5f) * 2.0f));
                 }
                 float f18 = (interpolation * 0.1f) + f12;
                 canvas.save();
@@ -1640,7 +1640,7 @@ public class u2 extends z implements fi.v6, org.telegram.ui.ActionBar.b6 {
                 ofFloat.setDuration(250L);
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat2.addUpdateListener(new yg0(zg0Var3, 6));
-                nr nrVar = nr.f37964j;
+                nr nrVar = nr.f37963j;
                 ofFloat2.setInterpolator(nrVar);
                 ofFloat2.setDuration(150L);
                 ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
@@ -1855,7 +1855,7 @@ public class u2 extends z implements fi.v6, org.telegram.ui.ActionBar.b6 {
             }
         }
         hi.y2 y2Var = this.f32007r2;
-        if (y2Var != null && y2Var.f38321a.f32874q) {
+        if (y2Var != null && y2Var.f38320a.f32874q) {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);

@@ -81,7 +81,7 @@ public final class h1 implements View.OnClickListener {
                     b2Var2.B0 = tyVar;
                     tyVar.setVisibility(8);
                     ty tyVar2 = b2Var2.B0;
-                    tyVar2.f40160y2 = false;
+                    tyVar2.f40159y2 = false;
                     tyVar2.setDelegate(new s1(b2Var2));
                     int indexOfChild = b2Var2.P.indexOfChild(b2Var2.f21991b0);
                     if (indexOfChild < 0) {

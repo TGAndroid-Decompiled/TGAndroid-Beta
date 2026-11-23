@@ -224,8 +224,8 @@ public final class j implements y10 {
                     org.telegram.ui.Components.c5.I(bnVar.getParentActivity(), bnVar.a(), new a3.h(tnVar, tL_messageMediaToDo, l11, 29));
                     return;
                 }
-                tnVar.f39969k0.d(tL_messageMediaToDo, null, null, null, true, 0, l11.longValue());
-                tnVar.f37520b.a(true);
+                tnVar.f39968k0.d(tL_messageMediaToDo, null, null, null, true, 0, l11.longValue());
+                tnVar.f37519b.a(true);
                 return;
             case 13:
                 rx rxVar = (rx) obj4;
@@ -240,7 +240,7 @@ public final class j implements y10 {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet n02 = si.d0(rxVar.f39368a.G.f40092d1).n0(si.b0(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
+                        TLRPC.TL_messages_stickerSet n02 = si.d0(rxVar.f39367a.G.f40091d1).n0(si.b0(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
                         if (n02 != null) {
                             arrayList = n02.documents;
                         } else {

@@ -97,7 +97,7 @@ public class s8 extends FrameLayout {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, K, 0.0f, 1.0f);
         this.f31821y = ofFloat;
         ofFloat.addListener(new q8(this, i7, 0));
-        this.f31821y.setInterpolator(nr.f37962g);
+        this.f31821y.setInterpolator(nr.f37961g);
         this.f31821y.setDuration(240L).start();
     }
 
@@ -388,7 +388,7 @@ public class s8 extends FrameLayout {
         ObjectAnimator duration = ObjectAnimator.ofFloat(this, K, 1.0f, 0.0f).setDuration(240L);
         this.f31821y = duration;
         duration.addListener(new q8(this, i7, 1));
-        this.f31821y.setInterpolator(nr.f37962g);
+        this.f31821y.setInterpolator(nr.f37961g);
         this.f31821y.start();
     }
 

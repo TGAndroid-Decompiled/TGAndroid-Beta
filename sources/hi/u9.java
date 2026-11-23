@@ -31,7 +31,7 @@ public final class u9 extends k5 {
         saVar.f15456w1.L0(false);
         saVar.f15397d1.clearAnimation();
         ViewPropertyAnimator duration = saVar.f15397d1.animate().alpha(0.0f).setDuration(180L);
-        nr nrVar = nr.f37962g;
+        nr nrVar = nr.f37961g;
         duration.setInterpolator(nrVar).start();
         if (saVar.f15409h0 != 2) {
             saVar.Z0.clearAnimation();
@@ -47,12 +47,12 @@ public final class u9 extends k5 {
             saVar.f15435q1.setVisibility(0);
             saVar.f15435q1.setAlpha(0.0f);
             saVar.f15435q1.clearAnimation();
-            saVar.f15435q1.animate().alpha(1.0f).setDuration(180L).setInterpolator(nr.f37962g).start();
+            saVar.f15435q1.animate().alpha(1.0f).setDuration(180L).setInterpolator(nr.f37961g).start();
             return;
         }
         saVar.f15435q1.a(false, z11);
         saVar.f15435q1.clearAnimation();
-        ViewPropertyAnimator interpolator = saVar.f15435q1.animate().alpha(0.0f).withEndAction(new l(this, 19)).setDuration(180L).setInterpolator(nr.f37962g);
+        ViewPropertyAnimator interpolator = saVar.f15435q1.animate().alpha(0.0f).withEndAction(new l(this, 19)).setDuration(180L).setInterpolator(nr.f37961g);
         if (z11) {
             j3 = 500;
         } else {
@@ -92,7 +92,7 @@ public final class u9 extends k5 {
             f10 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f10).setDuration(180L);
-        nr nrVar = nr.f37962g;
+        nr nrVar = nr.f37961g;
         duration.setInterpolator(nrVar).start();
         saVar.Z0.clearAnimation();
         ViewPropertyAnimator animate2 = saVar.Z0.animate();

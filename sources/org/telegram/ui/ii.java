@@ -94,15 +94,15 @@ public final class ii implements Runnable {
                 return;
             case 6:
                 org.telegram.ui.Components.yc ycVar = (org.telegram.ui.Components.yc) obj;
-                hi.l3 l3Var = ycVar.f42390d1;
-                if (ycVar.f42388b1 != i15) {
+                hi.l3 l3Var = ycVar.f42389d1;
+                if (ycVar.f42387b1 != i15) {
                     ycVar.setTimer(i15);
-                    org.telegram.messenger.y10 y10Var = ycVar.f42402r1;
+                    org.telegram.messenger.y10 y10Var = ycVar.f42401r1;
                     if (y10Var != null) {
                         y10Var.a(Integer.valueOf(i15));
                     }
                     if (i15 == 0) {
-                        if (ycVar.f42401q1) {
+                        if (ycVar.f42400q1) {
                             i12 = 2131743885;
                         } else {
                             i12 = 2131743890;
@@ -115,7 +115,7 @@ public final class ii implements Runnable {
                         l3Var.f14973e0 = -org.telegram.messenger.g0.L(1.0f);
                         f10 = 1.0f;
                     } else if (i15 == Integer.MAX_VALUE) {
-                        if (ycVar.f42401q1) {
+                        if (ycVar.f42400q1) {
                             i10 = 2131743884;
                         } else {
                             i10 = 2131743889;
@@ -130,7 +130,7 @@ public final class ii implements Runnable {
                     } else {
                         f10 = 1.0f;
                         if (i15 > 0) {
-                            if (ycVar.f42401q1) {
+                            if (ycVar.f42400q1) {
                                 str = "TimerPeriodVideoSetSeconds";
                             } else {
                                 str = "TimerPeriodPhotoSetSeconds";
@@ -162,8 +162,8 @@ public final class ii implements Runnable {
                     oh0Var.start();
                     l3Var.m(oh0Var);
                     l3Var.x();
-                    ycVar.f42399o1 = false;
-                    org.telegram.messenger.g0.r(ycVar.f42400p1);
+                    ycVar.f42398o1 = false;
+                    org.telegram.messenger.g0.r(ycVar.f42399p1);
                     ycVar.invalidate();
                     return;
                 }
@@ -201,8 +201,8 @@ public final class ii implements Runnable {
             case 10:
                 org.telegram.ui.Components.qm qmVar = (org.telegram.ui.Components.qm) obj;
                 org.telegram.ui.Components.rm rmVar = qmVar.Q;
-                if (i15 == qmVar.P && rmVar.f39284x.isShown()) {
-                    rmVar.f39284x.d(1, true);
+                if (i15 == qmVar.P && rmVar.f39283x.isShown()) {
+                    rmVar.f39283x.d(1, true);
                     return;
                 }
                 return;
@@ -220,10 +220,10 @@ public final class ii implements Runnable {
             case 12:
                 org.telegram.ui.Components.ty tyVar = (org.telegram.ui.Components.ty) obj;
                 if (tyVar.Q1) {
-                    org.telegram.ui.Components.tx txVar = tyVar.f40144u1;
+                    org.telegram.ui.Components.tx txVar = tyVar.f40143u1;
                     if (txVar != null && txVar.k()) {
                         try {
-                            tyVar.f40157y.performHapticFeedback(3);
+                            tyVar.f40156y.performHapticFeedback(3);
                         } catch (Exception unused) {
                         }
                     }
@@ -234,18 +234,18 @@ public final class ii implements Runnable {
                 }
                 return;
             case 13:
-                ((org.telegram.ui.Components.w90) obj).f41733b.a(Integer.valueOf(i15));
+                ((org.telegram.ui.Components.w90) obj).f41732b.a(Integer.valueOf(i15));
                 return;
             case 14:
                 org.telegram.ui.Components.ke0 ke0Var = (org.telegram.ui.Components.ke0) obj;
-                dq0 dq0Var = ke0Var.f36897a;
-                TextView textView = dq0Var.f37171e;
+                dq0 dq0Var = ke0Var.f36896a;
+                TextView textView = dq0Var.f37170e;
                 bi.m3 m3Var = dq0Var.h;
-                RadialProgressView radialProgressView = dq0Var.f37173n;
+                RadialProgressView radialProgressView = dq0Var.f37172n;
                 TextView textView2 = dq0Var.d;
                 textView.setVisibility(8);
-                dq0Var.f37172f.setVisibility(8);
-                LinearLayout linearLayout = dq0Var.f37170c;
+                dq0Var.f37171f.setVisibility(8);
+                LinearLayout linearLayout = dq0Var.f37169c;
                 if (linearLayout.getVisibility() == 8) {
                     linearLayout.setVisibility(0);
                     linearLayout.animate().cancel();
@@ -292,23 +292,23 @@ public final class ii implements Runnable {
                     mh0Var.C(true);
                     return;
                 }
-                mh0Var.f37518b1 = i15;
+                mh0Var.f37517b1 = i15;
                 mh0Var.I();
                 mh0Var.x();
                 return;
             case 16:
                 org.telegram.ui.Components.m31 m31Var = (org.telegram.ui.Components.m31) obj;
                 m31Var.f1();
-                m31Var.f37405c2 = i15;
-                org.telegram.ui.Components.b31.U0(m31Var.f37404b2);
+                m31Var.f37404c2 = i15;
+                org.telegram.ui.Components.b31.U0(m31Var.f37403b2);
                 m31Var.g1();
                 return;
             case 17:
-                ((org.telegram.ui.Components.i71) obj).f36220w.y0(i15);
+                ((org.telegram.ui.Components.i71) obj).f36219w.y0(i15);
                 return;
             case 18:
                 org.telegram.ui.Components.z71 z71Var = (org.telegram.ui.Components.z71) obj;
-                org.telegram.ui.Components.i61 i61Var = z71Var.f42710a;
+                org.telegram.ui.Components.i61 i61Var = z71Var.f42709a;
                 if (i15 == -1) {
                     if (i61Var.d0()) {
                         i61Var.g0();

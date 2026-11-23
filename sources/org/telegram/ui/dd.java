@@ -57,7 +57,7 @@ public final class dd implements Runnable {
                     if (xdVar.f53838f1 == null) {
                         xdVar.f53838f1 = new SpannableStringBuilder("l");
                         org.telegram.ui.Components.nq nqVar = new org.telegram.ui.Components.nq(2131231977, 0);
-                        nqVar.f37950n = 1;
+                        nqVar.f37949n = 1;
                         xdVar.f53838f1.setSpan(nqVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -67,7 +67,7 @@ public final class dd implements Runnable {
                     if (gcVar != null) {
                         org.telegram.ui.Components.lb lbVar = gcVar.f35523e;
                         if ((lbVar instanceof org.telegram.ui.Components.ob) && lbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.f3.q(null, null, 2131752940, new Object[]{di.t.x0(xdVar.C0 - currentTime)}, ((org.telegram.ui.Components.ob) xdVar.Q0.f35523e).f38158b);
+                            org.telegram.messenger.f3.q(null, null, 2131752940, new Object[]{di.t.x0(xdVar.C0 - currentTime)}, ((org.telegram.ui.Components.ob) xdVar.Q0.f35523e).f38157b);
                         }
                     }
                     org.telegram.messenger.g0.r(ddVar2);

@@ -1606,7 +1606,7 @@ public final class e extends View {
                         return true;
                     } else if (i13 == 1) {
                         o oVar = (o) eVar.d;
-                        ChatActivityEnterView chatActivityEnterView = oVar.f17995b.f39178a;
+                        ChatActivityEnterView chatActivityEnterView = oVar.f17995b.f39177a;
                         int i14 = ChatActivityEnterView.f32569s7;
                         ArrayList J = chatActivityEnterView.A0().J();
                         if (J.isEmpty()) {
@@ -1622,7 +1622,7 @@ public final class e extends View {
                             rf rfVar = oVar2.f17995b;
                             e eVar2 = oVar2.K;
                             s6 s6Var = new s6(eVar, 6);
-                            ChatActivityEnterView chatActivityEnterView2 = rfVar.f39178a;
+                            ChatActivityEnterView chatActivityEnterView2 = rfVar.f39177a;
                             du0 du0Var = chatActivityEnterView2.f32591c2;
                             RectF rectF = new RectF();
                             rectF.set(eVar2.f17904k0);
@@ -1681,7 +1681,7 @@ public final class e extends View {
                             rf rfVar2 = oVar4.f17995b;
                             e eVar5 = oVar4.K;
                             ArrayList v = o.v(E, x10, fVar);
-                            ChatActivityEnterView chatActivityEnterView3 = rfVar2.f39178a;
+                            ChatActivityEnterView chatActivityEnterView3 = rfVar2.f39177a;
                             du0 du0Var2 = chatActivityEnterView3.f32591c2;
                             RectF rectF2 = new RectF();
                             rectF2.set(eVar5.A1);
@@ -1700,7 +1700,7 @@ public final class e extends View {
                         int i17 = oVar5.f17997c;
                         if (i17 == 4) {
                             oVar5.s();
-                            bn bnVar = rfVar3.f39178a.F3;
+                            bn bnVar = rfVar3.f39177a.F3;
                             if (bnVar != null) {
                                 bnVar.presentFragment(new a3());
                                 return true;
@@ -1717,8 +1717,8 @@ public final class e extends View {
                         o oVar6 = (o) eVar.d;
                         rf rfVar4 = oVar6.f17995b;
                         if (oVar6.K != null && oVar6.f17997c != 0) {
-                            ChatActivityEnterView chatActivityEnterView4 = rfVar4.f39178a;
-                            ChatActivityEnterView chatActivityEnterView5 = rfVar4.f39178a;
+                            ChatActivityEnterView chatActivityEnterView4 = rfVar4.f39177a;
+                            ChatActivityEnterView chatActivityEnterView5 = rfVar4.f39177a;
                             du0 du0Var3 = chatActivityEnterView4.f32591c2;
                             if (du0Var3 != null) {
                                 EditTextBoldCursor editTextBoldCursor = oVar6.X;

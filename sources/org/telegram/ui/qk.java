@@ -27,14 +27,14 @@ public final class qk extends org.telegram.ui.Components.q9 {
                 if (((org.telegram.ui.Components.so) this.K).h) {
                     path.rewind();
                     RectF rectF = org.telegram.messenger.g0.P;
-                    ImageReceiver imageReceiver = this.f38836a;
-                    rectF.set(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), this.f38836a.A());
+                    ImageReceiver imageReceiver = this.f38835a;
+                    rectF.set(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), this.f38835a.A());
                     path.addRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), Path.Direction.CW);
                     canvas.save();
                     canvas.clipPath(path);
                     fVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
-                    ImageReceiver imageReceiver2 = this.f38836a;
-                    fVar.setBounds((int) imageReceiver2.L0, (int) imageReceiver2.M0, (int) imageReceiver2.y(), (int) this.f38836a.A());
+                    ImageReceiver imageReceiver2 = this.f38835a;
+                    fVar.setBounds((int) imageReceiver2.L0, (int) imageReceiver2.M0, (int) imageReceiver2.y(), (int) this.f38835a.A());
                     fVar.draw(canvas);
                     invalidate();
                     canvas.restore();
@@ -55,11 +55,11 @@ public final class qk extends org.telegram.ui.Components.q9 {
                 xh.f fVar = (xh.f) this.J;
                 Path path = (Path) this.I;
                 super.onDraw(canvas);
-                if (this.f38842r) {
+                if (this.f38841r) {
                     canvas.save();
                     RectF rectF = org.telegram.messenger.g0.P;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                    int[] iArr = this.f38836a.X0;
+                    int[] iArr = this.f38835a.X0;
                     float f10 = iArr[0];
                     fArr[1] = f10;
                     fArr[0] = f10;
@@ -93,7 +93,7 @@ public final class qk extends org.telegram.ui.Components.q9 {
                 org.telegram.ui.Components.c50 c50Var = (org.telegram.ui.Components.c50) this.K;
                 if (c50Var.f34055x0) {
                     int i7 = c50Var.X0;
-                    nVar.f41187f = i7;
+                    nVar.f41186f = i7;
                     RectF rectF2 = org.telegram.messenger.g0.P;
                     float f14 = i7;
                     rectF2.set(0.0f, 0.0f, f14, f14);
@@ -114,7 +114,7 @@ public final class qk extends org.telegram.ui.Components.q9 {
                     rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
                     canvas.drawRoundRect(rectF3, min, min, (Paint) this.I);
                     rectF3.inset(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f));
-                    nVar2.f41187f = getWidth();
+                    nVar2.f41186f = getWidth();
                     nVar2.a(min, canvas, rectF3, null);
                     invalidate();
                     return;

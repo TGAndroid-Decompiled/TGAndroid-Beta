@@ -178,7 +178,7 @@ public final class s extends FrameLayout {
                         if (!z10) {
                             this.f5543n = this.f5544r;
                         }
-                        float interpolation = (nr.f37961f.getInterpolation(this.f5543n) * this.f5545s) + y10;
+                        float interpolation = (nr.f37960f.getInterpolation(this.f5543n) * this.f5545s) + y10;
                         r rVar3 = this.f5539b;
                         if (rVar3 != null) {
                             if (z11 != rVar3.O) {

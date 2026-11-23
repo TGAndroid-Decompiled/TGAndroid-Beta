@@ -64,7 +64,7 @@ public final class t8 {
         acVar.c(2131624227, new String[0]);
         ?? zbVar = new org.telegram.ui.Components.zb(t6, g2Var.getResourceProvider());
         this.f9844f = zbVar;
-        zbVar.f42766b = 3000L;
+        zbVar.f42765b = 3000L;
         int i7 = org.telegram.ui.ActionBar.m6.xj;
         org.telegram.ui.ActionBar.h6 resourceProvider = g2Var.getResourceProvider();
         ci.v vVar = new ci.v(4);

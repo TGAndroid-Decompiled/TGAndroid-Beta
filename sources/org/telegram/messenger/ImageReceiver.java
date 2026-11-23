@@ -517,7 +517,7 @@ public class ImageReceiver implements gs, org.telegram.ui.Components.v5 {
             return;
         }
         oh0 B = B();
-        if (B != null && !B.f38220l0) {
+        if (B != null && !B.f38219l0) {
             B.H(z10);
         }
     }
@@ -1075,7 +1075,7 @@ public class ImageReceiver implements gs, org.telegram.ui.Components.v5 {
             if (B != null) {
                 if (z10) {
                     B.stop();
-                } else if (!B.f38220l0) {
+                } else if (!B.f38219l0) {
                     B.start();
                 }
             }
@@ -1110,8 +1110,8 @@ public class ImageReceiver implements gs, org.telegram.ui.Components.v5 {
                 float f13 = hcVar.f24437s;
                 ColorFilter colorFilter = hcVar.f24443z;
                 int i10 = hcVar.d;
-                Paint[] paintArr = oh0Var.f38219k0;
-                RectF[] rectFArr = oh0Var.f38218j0;
+                Paint[] paintArr = oh0Var.f38218k0;
+                RectF[] rectFArr = oh0Var.f38217j0;
                 if (rectFArr[i10] == null) {
                     rectFArr[i10] = new RectF();
                     Paint paint = new Paint(1);
@@ -1343,7 +1343,7 @@ public class ImageReceiver implements gs, org.telegram.ui.Components.v5 {
         }
         oh0 B = B();
         if (B != null) {
-            return B.f38208c;
+            return B.f38207c;
         }
         Bitmap n10 = n();
         if (n10 == null) {
@@ -1383,7 +1383,7 @@ public class ImageReceiver implements gs, org.telegram.ui.Components.v5 {
         }
         oh0 B = B();
         if (B != null) {
-            return B.f38206b;
+            return B.f38205b;
         }
         Bitmap n10 = n();
         if (n10 == null) {
@@ -1554,9 +1554,9 @@ public class ImageReceiver implements gs, org.telegram.ui.Components.v5 {
         Drawable drawable2 = this.f22680n0;
         if (drawable2 instanceof bj0) {
             vb0 vb0Var = (vb0) ((bj0) drawable2);
-            a6.q(vb0Var.f40770r.K1).v(vb0Var);
-            vb0Var.f40769n = null;
-            vb0Var.f40770r = null;
+            a6.q(vb0Var.f40769r.K1).v(vb0Var);
+            vb0Var.f40768n = null;
+            vb0Var.f40769r = null;
         }
         if (drawable instanceof org.telegram.ui.Components.p5) {
             org.telegram.ui.Components.p5 p5Var = (org.telegram.ui.Components.p5) drawable;

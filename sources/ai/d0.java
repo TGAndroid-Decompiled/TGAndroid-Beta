@@ -61,10 +61,10 @@ public final class d0 implements f, RequestDelegateTimestamp, sr, kc, a5, na0, m
     public void O(int i7, int i10, boolean z10) {
         boolean v12;
         ui uiVar = (ui) this.f1151c;
-        mi miVar = uiVar.f40441w2;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40379e2;
+        mi miVar = uiVar.f40440w2;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40378e2;
         long j3 = this.f1150b;
-        if (miVar != chatAttachAlertPhotoLayout && miVar != uiVar.f40399l2) {
+        if (miVar != chatAttachAlertPhotoLayout && miVar != uiVar.f40398l2) {
             if (!miVar.M(z10, i7, i10, j3, uiVar.g1())) {
                 uiVar.B4 = true;
                 uiVar.dismiss();
@@ -73,10 +73,10 @@ public final class d0 implements f, RequestDelegateTimestamp, sr, kc, a5, na0, m
         } else {
             v12 = uiVar.v1(z10, i7, i10, j3, uiVar.g1());
         }
-        df dfVar = uiVar.f40374c2;
+        df dfVar = uiVar.f40373c2;
         if (dfVar != null) {
             dfVar.h(!v12);
-            uiVar.f40374c2 = null;
+            uiVar.f40373c2 = null;
         }
     }
 
@@ -144,7 +144,7 @@ public final class d0 implements f, RequestDelegateTimestamp, sr, kc, a5, na0, m
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
         switch (this.f1149a) {
             case 8:
-                nm0 nm0Var = ((cx) this.f1151c).D0.f40503e0;
+                nm0 nm0Var = ((cx) this.f1151c).D0.f40502e0;
                 a0.h hVar = nm0Var.f17526y0;
                 long j3 = this.f1150b;
                 jg.g0 g0Var = (jg.g0) hVar.f(j3);

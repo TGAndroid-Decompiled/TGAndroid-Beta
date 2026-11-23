@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class vf extends AnimatorListenerAdapter {
-    public final boolean f40816a;
-    public final ChatActivityEnterView f40817b;
+    public final boolean f40815a;
+    public final ChatActivityEnterView f40816b;
 
     public vf(ChatActivityEnterView chatActivityEnterView, boolean z10) {
-        this.f40817b = chatActivityEnterView;
-        this.f40816a = z10;
+        this.f40816b = chatActivityEnterView;
+        this.f40815a = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f40817b;
+        ChatActivityEnterView chatActivityEnterView = this.f40816b;
         if (animator.equals(chatActivityEnterView.j3)) {
             chatActivityEnterView.j3 = null;
         }
@@ -34,7 +34,7 @@ public final class vf extends AnimatorListenerAdapter {
             }
             gfVar.setAlpha(f10);
         }
-        if (this.f40816a) {
+        if (this.f40815a) {
             zi0 zi0Var = chatActivityEnterView.f32638i1;
             if (zi0Var != null) {
                 zi0Var.setVisibility(8);

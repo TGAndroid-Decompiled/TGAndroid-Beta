@@ -50,7 +50,7 @@ public final class g71 extends View {
     public final void onMeasure(int i7, int i10) {
         f71 f71Var = this.f35444a;
         i71 i71Var = this.f35450r;
-        setMeasuredDimension(org.telegram.messenger.g0.L(i71Var.f36216r * 2) + f71Var.a(i71Var.f36198c) + i71Var.J, View.MeasureSpec.getSize(i10));
+        setMeasuredDimension(org.telegram.messenger.g0.L(i71Var.f36215r * 2) + f71Var.a(i71Var.f36197c) + i71Var.J, View.MeasureSpec.getSize(i10));
     }
 
     public void setReordering(boolean z10) {

@@ -99,7 +99,7 @@ public final class j implements Continuation, oa1, q1, rj0, yr, androidx.car.app
                 } else {
                     arrayList = b0Var.f18285j;
                 }
-                arrayList.remove(Long.valueOf(o41Var.f38103y));
+                arrayList.remove(Long.valueOf(o41Var.f38102y));
                 b0Var.f18281e.run();
                 return;
             case 3:
@@ -115,7 +115,7 @@ public final class j implements Continuation, oa1, q1, rj0, yr, androidx.car.app
                     j9Var.f48943y = false;
                     j9Var.F = true;
                     j9Var.f48941w.setVisibility(8);
-                    j9Var.f48935c.f35790g3.O(true);
+                    j9Var.f48935c.f35789g3.O(true);
                 } else {
                     j9Var.getMessagesController().Z(new ArrayList(j9Var.H), null, null, 0L, 0, zArr[0], 0);
                 }

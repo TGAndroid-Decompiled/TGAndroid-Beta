@@ -464,14 +464,14 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
         if (!g()) {
             z5 z5Var = this.f34084n;
             if (z5Var != null) {
-                z5Var.f42683b.recycle();
-                Arrays.fill(z5Var.f42682a, (Object) null);
+                z5Var.f42682b.recycle();
+                Arrays.fill(z5Var.f42681a, (Object) null);
                 this.f34084n = null;
             }
             z5 z5Var2 = this.f34096w;
             if (z5Var2 != null) {
-                z5Var2.f42683b.recycle();
-                Arrays.fill(z5Var2.f42682a, (Object) null);
+                z5Var2.f42682b.recycle();
+                Arrays.fill(z5Var2.f42681a, (Object) null);
                 this.f34096w = null;
             }
             org.telegram.messenger.r5 r5Var = this.f34078g0;
@@ -484,8 +484,8 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
                 ArrayList arrayList = this.h;
                 if (i7 < arrayList.size()) {
                     z5 z5Var3 = (z5) arrayList.get(i7);
-                    z5Var3.f42683b.recycle();
-                    Arrays.fill(z5Var3.f42682a, (Object) null);
+                    z5Var3.f42682b.recycle();
+                    Arrays.fill(z5Var3.f42681a, (Object) null);
                     i7++;
                 } else {
                     arrayList.clear();
@@ -503,15 +503,15 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
     public final Bitmap m() {
         z5 z5Var = this.f34084n;
         if (z5Var != null) {
-            return z5Var.f42683b;
+            return z5Var.f42682b;
         }
         z5 z5Var2 = this.f34089r;
         if (z5Var2 != null) {
-            return z5Var2.f42683b;
+            return z5Var2.f42682b;
         }
         z5 z5Var3 = this.f34091s;
         if (z5Var3 != null) {
-            return z5Var3.f42683b;
+            return z5Var3.f42682b;
         }
         return null;
     }
@@ -533,12 +533,12 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
             return (int) this.N;
         }
         z5 z5Var = this.f34089r;
-        if (z5Var != null && (i7 = z5Var.f42685e) != 0) {
+        if (z5Var != null && (i7 = z5Var.f42684e) != 0) {
             return i7;
         }
         z5 z5Var2 = this.f34084n;
         if (z5Var2 != null) {
-            return z5Var2.f42685e;
+            return z5Var2.f42684e;
         }
         return 0;
     }
@@ -604,7 +604,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
         if (this.f34075e0 == null) {
             z5 z5Var = this.f34096w;
             if (z5Var != null) {
-                return z5Var.f42683b;
+                return z5Var.f42682b;
             }
             return null;
         }
@@ -617,8 +617,8 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
                 this.f34096w = new z5(Bitmap.createBitmap((int) (iArr[0] * f10), (int) (iArr[1] * f10), Bitmap.Config.ARGB_8888));
             }
         }
-        this.f34075e0.c(this.f34096w.f42683b, false, this.f34079h0, this.f34080i0, z10);
-        return this.f34096w.f42683b;
+        this.f34075e0.c(this.f34096w.f42682b, false, this.f34079h0, this.f34080i0, z10);
+        return this.f34096w.f42682b;
     }
 
     public final boolean s() {
@@ -694,19 +694,19 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
             ArrayList arrayList = new ArrayList();
             z5 z5Var = this.f34084n;
             if (z5Var != null) {
-                arrayList.add(z5Var.f42683b);
+                arrayList.add(z5Var.f42682b);
             }
             z5 z5Var2 = this.f34089r;
             if (z5Var2 != null) {
-                arrayList.add(z5Var2.f42683b);
+                arrayList.add(z5Var2.f42682b);
             }
             z5 z5Var3 = this.f34091s;
             if (z5Var3 != null) {
-                arrayList.add(z5Var3.f42683b);
+                arrayList.add(z5Var3.f42682b);
             }
             z5 z5Var4 = this.f34096w;
             if (z5Var4 != null) {
-                arrayList.add(z5Var4.f42683b);
+                arrayList.add(z5Var4.f42682b);
             }
             ArrayList arrayList2 = this.h;
             int size = arrayList2.size();
@@ -715,7 +715,7 @@ public final class c6 extends BitmapDrawable implements Animatable, bg.g {
                 i7++;
                 z5 z5Var5 = (z5) obj;
                 if (z5Var5 != null) {
-                    arrayList.add(z5Var5.f42683b);
+                    arrayList.add(z5Var5.f42682b);
                 }
             }
             this.h.clear();

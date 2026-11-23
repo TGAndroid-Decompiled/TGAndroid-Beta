@@ -111,7 +111,7 @@ public final class sz0 extends org.telegram.ui.Cells.r1 {
         if (this.Id == null) {
             org.telegram.ui.Components.n01 n01Var = new org.telegram.ui.Components.n01(120);
             this.Id = n01Var;
-            n01Var.f37709b = true;
+            n01Var.f37708b = true;
         }
         paint3.setStrokeWidth(org.telegram.messenger.g0.L(2.8f));
         this.Id.a((1.0f - uz0Var.f52660b0) * (-360.0f), 1.0f, canvas, paint3, rectF2);

@@ -17,7 +17,7 @@ public final class a implements org.telegram.ui.ActionBar.q1, w10 {
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
         k kVar = this.f53096a;
         kVar.getContext().getSharedPreferences("webhistory", 0).edit().remove("queries_json").apply();
-        kVar.f53219x.f35790g3.O(true);
+        kVar.f53219x.f35789g3.O(true);
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class a implements org.telegram.ui.ActionBar.q1, w10 {
         boolean H = o41Var.H(d.class);
         k kVar = this.f53096a;
         if (H) {
-            String charSequence = o41Var.f38092m.toString();
+            String charSequence = o41Var.f38091m.toString();
             org.telegram.ui.x xVar = kVar.M;
             if (xVar != null) {
                 xVar.a(charSequence);

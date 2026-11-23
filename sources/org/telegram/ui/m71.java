@@ -151,7 +151,7 @@ public final class m71 extends org.telegram.ui.ActionBar.j {
                     ofFloat.addUpdateListener(new iz0(this, 10));
                     x71Var.R1.addListener(new k71(this, 0));
                     x71Var.R1.setDuration(250L);
-                    x71Var.R1.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                    x71Var.R1.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                     x71Var.R1.start();
                 }
             }

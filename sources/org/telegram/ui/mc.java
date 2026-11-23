@@ -46,7 +46,7 @@ public final class mc extends org.telegram.ui.Components.dk0 {
             org.telegram.ui.Components.mp mpVar = (org.telegram.ui.Components.mp) arrayList.get(b10);
             org.telegram.ui.Components.k01 k01Var = (org.telegram.ui.Components.k01) view;
             k01Var.g(mpVar.d, false);
-            if (mpVar.f37593a.f29984b) {
+            if (mpVar.f37592a.f29984b) {
                 wallPaper = null;
             } else {
                 wallPaper = ocVar.f50552w;

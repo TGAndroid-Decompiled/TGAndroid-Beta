@@ -191,13 +191,13 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
             y40Var.setSurfaceTextureListener(new be0(this, z11, caVar));
         }
         ?? frameLayout = new FrameLayout(context);
-        frameLayout.f40802a = new PointF();
+        frameLayout.f40801a = new PointF();
         frameLayout.d = new Object();
-        frameLayout.f40805e = new PointF(0.5f, 0.5f);
-        frameLayout.f40806f = 0.15f;
+        frameLayout.f40804e = new PointF(0.5f, 0.5f);
+        frameLayout.f40805f = 0.15f;
         frameLayout.h = 0.35f;
-        frameLayout.f40808r = new RectF();
-        frameLayout.f40812y = 1.0f;
+        frameLayout.f40807r = new RectF();
+        frameLayout.f40811y = 1.0f;
         frameLayout.G = true;
         Paint paint = new Paint(1);
         frameLayout.J = paint;
@@ -218,20 +218,20 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
         frameLayout.setDelegate(new yd0(this));
         h2.c cVar = this.f34744a0;
         ?? view = new View(context);
-        view.f42050a = 0;
-        view.f42052c = true;
-        view.f42053e = new Object();
+        view.f42049a = 0;
+        view.f42051c = true;
+        view.f42052e = new Object();
         Paint paint3 = new Paint(1);
-        view.f42054f = paint3;
+        view.f42053f = paint3;
         Paint paint4 = new Paint(1);
         view.h = paint4;
         Paint paint5 = new Paint(1);
-        view.f42055n = paint5;
+        view.f42054n = paint5;
         TextPaint textPaint = new TextPaint(1);
-        view.f42056r = textPaint;
-        view.f42057s = new Path();
+        view.f42055r = textPaint;
+        view.f42056s = new Path();
         view.setWillNotDraw(false);
-        view.f42059x = cVar;
+        view.f42058x = cVar;
         paint3.setColor(-1711276033);
         paint3.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
         paint3.setStyle(style);
@@ -287,17 +287,17 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
         imageView.setBackgroundDrawable(org.telegram.ui.ActionBar.m6.h0(1090519039, 1, -1));
         linearLayout.addView(imageView, c8.ma.o(56, 48));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final ee0 f42785b;
+            public final ee0 f42784b;
 
             {
-                this.f42785b = this;
+                this.f42784b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        ee0 ee0Var = this.f42785b;
+                        ee0 ee0Var = this.f42784b;
                         ee0Var.f34778z0 = 0;
                         org.telegram.ui.ActionBar.t6.s(ee0Var.A0, org.telegram.ui.ActionBar.m6.f29630qg, h6Var, PorterDuff.Mode.MULTIPLY);
                         ee0Var.B0.setColorFilter((ColorFilter) null);
@@ -305,7 +305,7 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
                         ee0Var.c();
                         return;
                     case 1:
-                        ee0 ee0Var2 = this.f42785b;
+                        ee0 ee0Var2 = this.f42784b;
                         ee0Var2.f34778z0 = 1;
                         ee0Var2.A0.setColorFilter((ColorFilter) null);
                         org.telegram.ui.ActionBar.t6.s(ee0Var2.B0, org.telegram.ui.ActionBar.m6.f29630qg, h6Var, PorterDuff.Mode.MULTIPLY);
@@ -313,7 +313,7 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
                         ee0Var2.c();
                         return;
                     default:
-                        ee0 ee0Var3 = this.f42785b;
+                        ee0 ee0Var3 = this.f42784b;
                         ee0Var3.f34778z0 = 2;
                         ee0Var3.A0.setColorFilter((ColorFilter) null);
                         ee0Var3.B0.setColorFilter((ColorFilter) null);
@@ -330,17 +330,17 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
         imageView2.setBackgroundDrawable(org.telegram.ui.ActionBar.m6.h0(1090519039, 1, -1));
         linearLayout.addView(imageView2, c8.ma.o(56, 48));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final ee0 f42785b;
+            public final ee0 f42784b;
 
             {
-                this.f42785b = this;
+                this.f42784b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        ee0 ee0Var = this.f42785b;
+                        ee0 ee0Var = this.f42784b;
                         ee0Var.f34778z0 = 0;
                         org.telegram.ui.ActionBar.t6.s(ee0Var.A0, org.telegram.ui.ActionBar.m6.f29630qg, h6Var, PorterDuff.Mode.MULTIPLY);
                         ee0Var.B0.setColorFilter((ColorFilter) null);
@@ -348,7 +348,7 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
                         ee0Var.c();
                         return;
                     case 1:
-                        ee0 ee0Var2 = this.f42785b;
+                        ee0 ee0Var2 = this.f42784b;
                         ee0Var2.f34778z0 = 1;
                         ee0Var2.A0.setColorFilter((ColorFilter) null);
                         org.telegram.ui.ActionBar.t6.s(ee0Var2.B0, org.telegram.ui.ActionBar.m6.f29630qg, h6Var, PorterDuff.Mode.MULTIPLY);
@@ -356,7 +356,7 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
                         ee0Var2.c();
                         return;
                     default:
-                        ee0 ee0Var3 = this.f42785b;
+                        ee0 ee0Var3 = this.f42784b;
                         ee0Var3.f34778z0 = 2;
                         ee0Var3.A0.setColorFilter((ColorFilter) null);
                         ee0Var3.B0.setColorFilter((ColorFilter) null);
@@ -376,17 +376,17 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
         imageView3.setBackgroundDrawable(org.telegram.ui.ActionBar.m6.h0(1090519039, 1, -1));
         linearLayout.addView(imageView3, c8.ma.o(56, 48));
         imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final ee0 f42785b;
+            public final ee0 f42784b;
 
             {
-                this.f42785b = this;
+                this.f42784b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        ee0 ee0Var = this.f42785b;
+                        ee0 ee0Var = this.f42784b;
                         ee0Var.f34778z0 = 0;
                         org.telegram.ui.ActionBar.t6.s(ee0Var.A0, org.telegram.ui.ActionBar.m6.f29630qg, h6Var, PorterDuff.Mode.MULTIPLY);
                         ee0Var.B0.setColorFilter((ColorFilter) null);
@@ -394,7 +394,7 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
                         ee0Var.c();
                         return;
                     case 1:
-                        ee0 ee0Var2 = this.f42785b;
+                        ee0 ee0Var2 = this.f42784b;
                         ee0Var2.f34778z0 = 1;
                         ee0Var2.A0.setColorFilter((ColorFilter) null);
                         org.telegram.ui.ActionBar.t6.s(ee0Var2.B0, org.telegram.ui.ActionBar.m6.f29630qg, h6Var, PorterDuff.Mode.MULTIPLY);
@@ -402,7 +402,7 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
                         ee0Var2.c();
                         return;
                     default:
-                        ee0 ee0Var3 = this.f42785b;
+                        ee0 ee0Var3 = this.f42784b;
                         ee0Var3.f34778z0 = 2;
                         ee0Var3.A0.setColorFilter((ColorFilter) null);
                         ee0Var3.B0.setColorFilter((ColorFilter) null);
@@ -1124,12 +1124,12 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
         if (ezVar == null || (haVar = ezVar.J) == null) {
             return null;
         }
-        synchronized (haVar.f35851n) {
+        synchronized (haVar.f35850n) {
             try {
-                if (!haVar.f35854q) {
+                if (!haVar.f35853q) {
                     return null;
                 }
-                return haVar.f35853p;
+                return haVar.f35852p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -1157,7 +1157,7 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
             if (textureView instanceof y51) {
                 float x10 = motionEvent.getX();
                 float y10 = motionEvent.getY();
-                aj0 aj0Var = ((y51) textureView).f42324c;
+                aj0 aj0Var = ((y51) textureView).f42323c;
                 float f10 = aj0Var.f33535a;
                 if (x10 >= f10 && x10 <= f10 + aj0Var.f33537c) {
                     float f11 = aj0Var.f33536b;
@@ -1254,15 +1254,15 @@ public final class ee0 extends FrameLayout implements gz, hi.oa {
             float f18 = i16;
             float f19 = i17;
             xd0 xd0Var = this.f34764q0;
-            aj0 aj0Var = xd0Var.f42053e;
+            aj0 aj0Var = xd0Var.f42052e;
             aj0Var.f33535a = f16;
             aj0Var.f33536b = f17;
             aj0Var.f33537c = f18;
             aj0Var.d = f19;
             vd0 vd0Var = this.f34763p0;
             yt0 yt0Var = vd0Var.d;
-            yt0Var.f42546a = f18;
-            yt0Var.f42547b = f19;
+            yt0Var.f42545a = f18;
+            yt0Var.f42546b = f19;
             ((FrameLayout.LayoutParams) vd0Var.getLayoutParams()).height = org.telegram.messenger.g0.L(38.0f) + i14;
             ((FrameLayout.LayoutParams) xd0Var.getLayoutParams()).height = org.telegram.messenger.g0.L(28.0f) + i14;
             if (org.telegram.messenger.g0.Q1()) {

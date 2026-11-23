@@ -4,27 +4,27 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public abstract class uo extends LinearLayout {
-    public xi0 f40532a;
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f40533b;
-    public FrameLayout f40534c;
+    public xi0 f40531a;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f40532b;
+    public FrameLayout f40533c;
     public int d;
-    public float f40535e;
-    public float f40536f;
+    public float f40534e;
+    public float f40535f;
     public float h;
-    public float f40537n;
-    public float f40538r;
+    public float f40536n;
+    public float f40537r;
 
     public final void a() {
-        FrameLayout frameLayout = this.f40534c;
+        FrameLayout frameLayout = this.f40533c;
         if (frameLayout != null) {
-            frameLayout.setTranslationY(this.h + this.f40537n + this.f40538r);
+            frameLayout.setTranslationY(this.h + this.f40536n + this.f40537r);
         }
     }
 
     public final void b() {
-        float f10 = (1.0f - this.f40536f) * this.f40535e;
-        this.f40533b.setTranslationX(f10);
-        FrameLayout frameLayout = this.f40534c;
+        float f10 = (1.0f - this.f40535f) * this.f40534e;
+        this.f40532b.setTranslationX(f10);
+        FrameLayout frameLayout = this.f40533c;
         if (frameLayout != null) {
             frameLayout.setTranslationX(f10);
         }
@@ -41,8 +41,8 @@ public abstract class uo extends LinearLayout {
     }
 
     public void setExpandSize(float f10) {
-        this.f40533b.setTranslationY(f10);
-        this.f40537n = f10;
+        this.f40532b.setTranslationY(f10);
+        this.f40536n = f10;
         a();
     }
 
@@ -51,27 +51,27 @@ public abstract class uo extends LinearLayout {
     }
 
     public void setPopupAlpha(float f10) {
-        this.f40533b.setAlpha(f10);
-        FrameLayout frameLayout = this.f40534c;
+        this.f40532b.setAlpha(f10);
+        FrameLayout frameLayout = this.f40533c;
         if (frameLayout != null) {
             frameLayout.setAlpha(f10);
         }
     }
 
     public void setPopupWindowLayout(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        this.f40533b = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f40532b = actionBarPopupWindow$ActionBarPopupWindowLayout;
         actionBarPopupWindow$ActionBarPopupWindowLayout.setOnSizeChangedListener(new h2(15, this, actionBarPopupWindow$ActionBarPopupWindowLayout));
         if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
             kf0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
-            swipeBack.f36908y.add(new jf0() {
+            swipeBack.f36907y.add(new jf0() {
                 @Override
                 public final void a(float f10, float f11) {
                     uo uoVar = uo.this;
-                    FrameLayout frameLayout = uoVar.f40534c;
+                    FrameLayout frameLayout = uoVar.f40533c;
                     if (frameLayout != null) {
                         frameLayout.setAlpha(1.0f - f11);
                     }
-                    uoVar.f40536f = f11;
+                    uoVar.f40535f = f11;
                     uoVar.b();
                 }
             });
@@ -79,25 +79,25 @@ public abstract class uo extends LinearLayout {
     }
 
     public void setReactionsLayout(xi0 xi0Var) {
-        this.f40532a = xi0Var;
+        this.f40531a = xi0Var;
         if (xi0Var != null) {
             xi0Var.setChatScrimView(this);
         }
     }
 
     public void setReactionsTransitionProgress(float f10) {
-        this.f40533b.setReactionsTransitionProgress(f10);
-        FrameLayout frameLayout = this.f40534c;
+        this.f40532b.setReactionsTransitionProgress(f10);
+        FrameLayout frameLayout = this.f40533c;
         if (frameLayout != null) {
             frameLayout.setAlpha(f10);
             float f11 = (f10 * 0.5f) + 0.5f;
-            FrameLayout frameLayout2 = this.f40534c;
+            FrameLayout frameLayout2 = this.f40533c;
             frameLayout2.setPivotX(frameLayout2.getMeasuredWidth());
-            this.f40534c.setPivotY(0.0f);
-            this.f40538r = (1.0f - f10) * (-this.f40533b.getMeasuredHeight());
+            this.f40533c.setPivotY(0.0f);
+            this.f40537r = (1.0f - f10) * (-this.f40532b.getMeasuredHeight());
             a();
-            this.f40534c.setScaleX(f11);
-            this.f40534c.setScaleY(f11);
+            this.f40533c.setScaleX(f11);
+            this.f40533c.setScaleY(f11);
         }
     }
 }

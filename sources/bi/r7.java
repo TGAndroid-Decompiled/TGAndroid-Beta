@@ -24,8 +24,8 @@ public final class r7 extends n41 {
         s7 s7Var = (s7) view;
         TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) o41Var.H;
         int i7 = o41Var.A;
-        String str = (String) o41Var.f38092m;
-        boolean z11 = o41Var.f38085e;
+        String str = (String) o41Var.f38091m;
+        boolean z11 = o41Var.f38084e;
         rh0 rh0Var = s7Var.f30289c;
         q7 q7Var = s7Var.f4103b0;
         if (q7Var == null || s7Var.f4102a0 != stargiftattributemodel.document.f28440id) {

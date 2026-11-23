@@ -37,7 +37,7 @@ public final class pe extends ah {
             Rect rect = this.G;
             rect.set(0, 0, measuredWidth2, measuredHeight2);
             rect.inset(org.telegram.messenger.g0.L(7.5f), org.telegram.messenger.g0.L(7.5f));
-            if (getCurrentState() == yg.f42428b) {
+            if (getCurrentState() == yg.f42427b) {
                 drawable = chatActivityEnterView.E4;
             } else {
                 drawable = chatActivityEnterView.D4;

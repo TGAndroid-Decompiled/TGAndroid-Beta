@@ -248,7 +248,7 @@ public final class j extends s00 implements gs {
             return;
         }
         o41 o41Var = new o41(-2);
-        o41Var.f38084c = (uv) super.o0(getParentActivity());
+        o41Var.f38083c = (uv) super.o0(getParentActivity());
         arrayList.add(o41Var);
         arrayList.add(h.i(2131231811, hd.N0(2131753148, null), hd.N0(2131753149, null)));
         arrayList.add(h.i(2131232090, hd.N0(2131753146, null), hd.N0(2131753147, null)));
@@ -298,7 +298,7 @@ public final class j extends s00 implements gs {
         int indexOf = list.indexOf(Integer.valueOf(this.f18750b0.duration_months));
         a aVar2 = new a(this, 2);
         o41 o41Var3 = new o41(14);
-        o41Var3.f38096q = strArr2;
+        o41Var3.f38095q = strArr2;
         o41Var3.A = indexOf;
         o41Var3.D = aVar2;
         o41Var3.C = -1L;
@@ -326,7 +326,7 @@ public final class j extends s00 implements gs {
         arrayList.add(o41.B(3, null));
         if (!this.Z && this.f18750b0.end_date == 0) {
             o41 e10 = o41.e(4, hd.N0(2131754321, null));
-            e10.f38098s = true;
+            e10.f38097s = true;
             arrayList.add(e10);
             arrayList.add(o41.B(5, null));
         }

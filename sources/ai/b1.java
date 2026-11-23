@@ -45,7 +45,7 @@ public final class b1 implements Runnable {
                 } else if (messages_messages instanceof TLRPC.TL_messages_messagesSlice) {
                     i30Var.Z = ((TLRPC.TL_messages_messagesSlice) messages_messages).count;
                 }
-                i30Var.f36136c0 = messages_messages.next_rate;
+                i30Var.f36135c0 = messages_messages.next_rate;
                 np.u1(i7).f4(messages_messages.users, false);
                 np.u1(i7).Z3(messages_messages.chats, false);
                 for (int i10 = 0; i10 < messages_messages.messages.size(); i10++) {
@@ -66,7 +66,7 @@ public final class b1 implements Runnable {
             }
             i30Var.O(true);
             if (isEmpty) {
-                ((lm0) i30Var).f37244f0.f40520w0.h1(0, 0);
+                ((lm0) i30Var).f37243f0.f40519w0.h1(0, 0);
             }
         }
     }

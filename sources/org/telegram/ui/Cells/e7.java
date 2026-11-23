@@ -397,7 +397,7 @@ public class e7 extends FrameLayout implements gs {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.d.f38321a.f32874q) {
+        if (this.d.f38320a.f32874q) {
             accessibilityNodeInfo.setSelected(true);
         }
     }

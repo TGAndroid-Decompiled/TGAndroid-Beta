@@ -208,7 +208,7 @@ public final class mz0 implements Runnable {
                 org.telegram.ui.Components.voip.h2.T = false;
                 org.telegram.ui.Components.voip.h2.b();
                 ViewPropertyAnimator duration = hc1Var2.L.animate().setDuration(150L);
-                org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37961f;
+                org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37960f;
                 duration.setInterpolator(nrVar).start();
                 hc1Var2.I.animate().alpha(1.0f).setDuration(150L).setInterpolator(nrVar).start();
                 hc1Var2.J.animate().alpha(1.0f).setDuration(150L).setInterpolator(nrVar).start();

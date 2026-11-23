@@ -258,7 +258,7 @@ public abstract class v01 extends org.telegram.ui.Components.ek0 {
                         int i17 = s11Var.P1;
                         List list = s11.f51819b2;
                         if (R == i17 - 1) {
-                            float interpolation2 = org.telegram.ui.Components.nr.f37962g.getInterpolation(c8.l9.a(((float) (SystemClock.elapsedRealtime() - s11Var.R1)) / 200.0f, 0.0f, 1.0f));
+                            float interpolation2 = org.telegram.ui.Components.nr.f37961g.getInterpolation(c8.l9.a(((float) (SystemClock.elapsedRealtime() - s11Var.R1)) / 200.0f, 0.0f, 1.0f));
                             if (interpolation2 < 1.0f) {
                                 float f19 = 1.0f - interpolation2;
                                 canvas2.saveLayerAlpha(view.getLeft(), view.getTop(), view.getRight(), view.getBottom(), (int) (255.0f * f19), 31);
@@ -353,7 +353,7 @@ public abstract class v01 extends org.telegram.ui.Components.ek0 {
                         canvas2.translate((int) ((c11Var3.getX() + c11Var3.getMeasuredWidth()) - c11Var3.K.getMeasuredWidth()), (int) ((c11Var3.getY() + c11Var3.getMeasuredHeight()) - c11Var3.K.getMeasuredHeight()));
                         Drawable drawable2 = c11Var3.F;
                         if (drawable2 instanceof org.telegram.ui.Components.p5) {
-                            imageReceiver = ((org.telegram.ui.Components.p5) drawable2).f38500k;
+                            imageReceiver = ((org.telegram.ui.Components.p5) drawable2).f38499k;
                         } else {
                             imageReceiver = c11Var3.h;
                         }

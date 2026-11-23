@@ -101,15 +101,15 @@ public final class i40 extends org.telegram.ui.Components.dk0 {
         if (size > 1 && size != 2 && (size != 3 || i7 == 0 || i7 == 1)) {
             i10 = 3;
         }
-        rVar.f41310a = i10;
-        rVar.f41311b = this;
+        rVar.f41309a = i10;
+        rVar.f41310b = this;
         if (rVar.getMeasuredHeight() != F()) {
             rVar.requestLayout();
         }
         org.telegram.messenger.c.a(this.d);
         TLRPC.Peer peer = this.f48572c.J;
         rVar.d = u3Var;
-        if (participant != null && !participant.equals(u3Var) && rVar.f41313e && rVar.getRenderer() != null) {
+        if (participant != null && !participant.equals(u3Var) && rVar.f41312e && rVar.getRenderer() != null) {
             E(rVar, false);
             E(rVar, true);
         } else if (rVar.getRenderer() != null) {

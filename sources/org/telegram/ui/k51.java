@@ -30,7 +30,7 @@ public final class k51 extends View {
         path.addCircle(L, measuredHeight, org.telegram.messenger.g0.L(30.0f), Path.Direction.CW);
         imageReceiver.h(canvas, null);
         if (this.f49209c != null) {
-            CropAreaView cropAreaView = this.d.f39164b.f21921a;
+            CropAreaView cropAreaView = this.d.f39163b.f21921a;
             float L2 = org.telegram.messenger.g0.L(60.0f) / cropAreaView.f32909a;
             float left = (0.0f - this.d.getLeft()) - cropAreaView.f32911b;
             canvas.save();

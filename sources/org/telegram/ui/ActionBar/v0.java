@@ -113,7 +113,7 @@ public abstract class v0 extends FrameLayout implements b6 {
         r0Var.n(0.3f, 165L, nrVar);
         r0Var.w(org.telegram.messenger.g0.N(14.0f));
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = r0Var.f37794a;
+        TextPaint textPaint = r0Var.f37793a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(org.telegram.messenger.g0.N(0.3f));
         if (hd.f24444a0) {
@@ -121,14 +121,14 @@ public abstract class v0 extends FrameLayout implements b6 {
         } else {
             i7 = 3;
         }
-        r0Var.f37796b = i7;
+        r0Var.f37795b = i7;
         r0 r0Var2 = new r0(this, 1);
         this.d = r0Var2;
         r0Var2.setCallback(this);
         r0Var2.x(org.telegram.messenger.g0.o());
         r0Var2.n(0.3f, 165L, nrVar);
         r0Var2.w(org.telegram.messenger.g0.N(14.0f));
-        TextPaint textPaint2 = r0Var2.f37794a;
+        TextPaint textPaint2 = r0Var2.f37793a;
         textPaint2.setStyle(style);
         textPaint2.setStrokeWidth(org.telegram.messenger.g0.N(0.3f));
         if (hd.f24444a0) {
@@ -136,7 +136,7 @@ public abstract class v0 extends FrameLayout implements b6 {
         } else {
             i10 = 5;
         }
-        r0Var2.f37796b = i10;
+        r0Var2.f37795b = i10;
         paint.setColor(0);
         paint.setShadowLayer(org.telegram.messenger.g0.N(1.33f), 0.0f, org.telegram.messenger.g0.N(0.33f), 1056964608);
         ColorMatrix colorMatrix = new ColorMatrix();
@@ -237,7 +237,7 @@ public abstract class v0 extends FrameLayout implements b6 {
         }
         if (str2 != null) {
             r0 r0Var = this.f30113c;
-            if (!TextUtils.equals(r0Var.f37803i, str2)) {
+            if (!TextUtils.equals(r0Var.f37802i, str2)) {
                 r0Var.a();
                 r0Var.t(str2, true, true);
             }
@@ -247,7 +247,7 @@ public abstract class v0 extends FrameLayout implements b6 {
         }
         if (str != null) {
             r0 r0Var2 = this.d;
-            if (!TextUtils.equals(r0Var2.f37803i, str)) {
+            if (!TextUtils.equals(r0Var2.f37802i, str)) {
                 r0Var2.a();
                 r0Var2.t(str, true, true);
             }

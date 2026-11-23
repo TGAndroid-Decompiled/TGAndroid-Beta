@@ -39,7 +39,7 @@ public final class u8 implements Runnable {
                 }
                 if (!w8Var.f10006m) {
                     w8Var.f10006m = true;
-                    w8Var.f10000f.f42766b = 5000L;
+                    w8Var.f10000f.f42765b = 5000L;
                     org.telegram.messenger.g0.r(u8Var);
                     org.telegram.messenger.g0.h3(u8Var, 5000L);
                     gcVar.k(true);

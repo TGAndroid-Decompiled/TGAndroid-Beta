@@ -122,12 +122,12 @@ public abstract class p0 extends FrameLayout {
         Bitmap bitmap = this.f58118f;
         yt0 yt0Var2 = new yt0(bitmap.getWidth(), bitmap.getHeight());
         float f12 = 1280;
-        yt0Var2.f42546a = f12;
+        yt0Var2.f42545a = f12;
         float floor = (float) Math.floor((f12 * f11) / f10);
-        yt0Var2.f42547b = floor;
+        yt0Var2.f42546b = floor;
         if (floor > f12) {
-            yt0Var2.f42547b = f12;
-            yt0Var2.f42546a = (float) Math.floor((f12 * f10) / f11);
+            yt0Var2.f42546b = f12;
+            yt0Var2.f42545a = (float) Math.floor((f12 * f10) / f11);
         }
         this.f58124y = yt0Var2;
         return yt0Var2;

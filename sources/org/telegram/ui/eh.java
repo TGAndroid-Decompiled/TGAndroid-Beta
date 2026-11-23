@@ -46,7 +46,7 @@ public final class eh implements Runnable {
                     hi.l3 l3Var = bnVar.Z0;
                     l3Var.f14988r0 = new zd(bnVar, 3);
                     l3Var.x();
-                    org.telegram.ui.Components.n30.f37762x.b();
+                    org.telegram.ui.Components.n30.f37761x.b();
                     return;
                 }
                 return;
@@ -167,7 +167,7 @@ public final class eh implements Runnable {
                 roVar.getClass();
                 ((TLRPC.Chat) obj).join_request = true;
                 roVar.h = true;
-                roVar.f40701c.setChecked(true);
+                roVar.f40700c.setChecked(true);
                 return;
             case 15:
                 rq rqVar = (rq) obj2;
@@ -184,7 +184,7 @@ public final class eh implements Runnable {
                 return;
             case 17:
                 TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) obj;
-                org.telegram.messenger.e eVar = ((org.telegram.ui.Components.n0) obj2).f37699s2;
+                org.telegram.messenger.e eVar = ((org.telegram.ui.Components.n0) obj2).f37698s2;
                 eVar.f23645b.remove(tL_aiComposeTone);
                 eVar.d();
                 eVar.c();
@@ -218,9 +218,9 @@ public final class eh implements Runnable {
                 org.telegram.ui.Components.lb lbVar = gcVar.f35523e;
                 if (lbVar instanceof org.telegram.ui.Components.mb) {
                     org.telegram.ui.Components.nb nbVar = (org.telegram.ui.Components.nb) ((org.telegram.ui.Components.mb) lbVar);
-                    nbVar.f38158b.setText(charSequence);
+                    nbVar.f38157b.setText(charSequence);
                     org.telegram.messenger.g0.T3(nbVar.d, false, false);
-                    org.telegram.messenger.g0.T3(nbVar.f38158b, true, false);
+                    org.telegram.messenger.g0.T3(nbVar.f38157b, true, false);
                 }
                 gcVar.i(true);
                 return;

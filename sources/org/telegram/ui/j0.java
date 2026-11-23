@@ -61,13 +61,13 @@ public final class j0 extends vf.b {
                     view = null;
                 }
                 g4Var.f50758s = view;
-                org.telegram.ui.Components.bz0 bz0Var = (org.telegram.ui.Components.bz0) n80Var.f37839i;
+                org.telegram.ui.Components.bz0 bz0Var = (org.telegram.ui.Components.bz0) n80Var.f37838i;
                 o0Var.n(g4Var.f50759w, true);
                 if (z2Var != null) {
-                    g4Var.f50759w = n2.o0.k(z2Var.d, n80Var.f37839i, 0.0f);
+                    g4Var.f50759w = n2.o0.k(z2Var.d, n80Var.f37838i, 0.0f);
                     int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Ce, false);
                     g4Var.f50759w.g(org.telegram.ui.ActionBar.m6.r1(0.8f, x02), org.telegram.ui.ActionBar.m6.r1(1.3f, x02), org.telegram.ui.ActionBar.m6.r1(1.0f, x02), org.telegram.ui.ActionBar.m6.r1(4.0f, x02));
-                    g4Var.f50759w.f38833x.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
+                    g4Var.f50759w.f38832x.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
                     o0Var.c(g4Var.f50759w, z2Var);
                 }
                 View view2 = g4Var.f50758s;

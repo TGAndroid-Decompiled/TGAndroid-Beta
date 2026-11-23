@@ -353,9 +353,9 @@ public final class jo extends org.telegram.ui.ActionBar.g2 implements org.telegr
         foVar.c(z10);
         fo foVar2 = this.V;
         TLRPC.ChatFull chatFull2 = this.Z;
-        org.telegram.ui.Cells.a9 a9Var3 = foVar2.f40702e;
-        boolean V = org.telegram.messenger.v3.V(foVar2.f40704n);
-        boolean t02 = org.telegram.messenger.v3.t0(foVar2.f40704n);
+        org.telegram.ui.Cells.a9 a9Var3 = foVar2.f40701e;
+        boolean V = org.telegram.messenger.v3.V(foVar2.f40703n);
+        boolean t02 = org.telegram.messenger.v3.t0(foVar2.f40703n);
         if (chatFull2 != null && chatFull2.guard_bot_id != 0) {
             String str = "@" + org.telegram.messenger.n5.r(org.telegram.messenger.np.u1(org.telegram.messenger.k10.f24968t0).c2(Long.valueOf(chatFull2.guard_bot_id)));
             if (V) {

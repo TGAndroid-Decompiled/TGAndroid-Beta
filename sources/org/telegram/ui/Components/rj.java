@@ -6,16 +6,16 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class rj extends dk0 {
-    public final Context f39250c;
+    public final Context f39249c;
     public ArrayList d = new ArrayList();
-    public ArrayList f39251e = new ArrayList();
-    public qj f39252f;
+    public ArrayList f39250e = new ArrayList();
+    public qj f39251f;
     public int h;
-    public final vj f39253n;
+    public final vj f39252n;
 
     public rj(vj vjVar, Context context) {
-        this.f39253n = vjVar;
-        this.f39250c = context;
+        this.f39252n = vjVar;
+        this.f39249c = context;
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class rj extends dk0 {
     @Override
     public final void f() {
         super.f();
-        this.f39253n.S();
+        this.f39252n.S();
     }
 
     @Override
@@ -73,16 +73,16 @@ public final class rj extends dk0 {
                 user = f5Var.f23870m;
                 if (user == null) {
                     ujVar.setCurrentId(f5Var.f23860a);
-                    ujVar.a(null, (CharSequence) this.f39251e.get(i7 - 1), new nj(f5Var, 1), z10);
+                    ujVar.a(null, (CharSequence) this.f39250e.get(i7 - 1), new nj(f5Var, 1), z10);
                     user = null;
                 }
             } else {
                 user = (TLRPC.User) E;
             }
             if (user != null) {
-                ujVar.a(user, (CharSequence) this.f39251e.get(i7 - 1), new oj(1, user), z10);
+                ujVar.a(user, (CharSequence) this.f39250e.get(i7 - 1), new oj(1, user), z10);
             }
-            boolean containsKey = this.f39253n.f40852x.containsKey(lj.a(E));
+            boolean containsKey = this.f39252n.f40851x.containsKey(lj.a(E));
             op opVar = ujVar.d;
             if (opVar.getVisibility() != 0) {
                 opVar.setVisibility(0);
@@ -94,7 +94,7 @@ public final class rj extends dk0 {
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View ujVar;
-        Context context = this.f39250c;
+        Context context = this.f39249c;
         if (i7 != 0) {
             if (i7 != 1) {
                 ujVar = new View(context);
@@ -105,7 +105,7 @@ public final class rj extends dk0 {
                 ujVar.setTag(-33024);
             }
         } else {
-            ujVar = new uj(context, this.f39253n.f37519a);
+            ujVar = new uj(context, this.f39252n.f37518a);
         }
         return new v4.f1(ujVar);
     }

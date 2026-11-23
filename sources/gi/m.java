@@ -120,7 +120,7 @@ public final class m extends FrameLayout {
         ek0Var.setAdapter(lVar);
         i iVar = new i(this, context);
         this.f13691y = iVar;
-        iVar.f42606x = false;
+        iVar.f42605x = false;
         nv0 nv0Var = new nv0(context, iVar, 1, null);
         this.E = nv0Var;
         nv0Var.setVisibility(8);
@@ -128,11 +128,11 @@ public final class m extends FrameLayout {
         addView(nv0Var, ma.c(-1.0f, -1));
         nv0Var.setOnTouchListener(new a(0));
         nv0Var.e(true, false);
-        nv0Var.f37994b.setVisibility(8);
+        nv0Var.f37993b.setVisibility(8);
         nv0Var.d.setText(hd.N0(2131746502, null));
-        nv0Var.f37996e.setText(hd.G(np.u1(fq0Var.f13697b).W5, "ProfileBotPreviewEmptyText", new Object[0]));
+        nv0Var.f37995e.setText(hd.G(np.u1(fq0Var.f13697b).W5, "ProfileBotPreviewEmptyText", new Object[0]));
         String N0 = hd.N0(2131746506, null);
-        hi.e eVar2 = nv0Var.f37997f;
+        hi.e eVar2 = nv0Var.f37996f;
         eVar2.i(N0, false, true);
         eVar2.setVisibility(0);
         eVar2.setOnClickListener(new b(this, 0));
@@ -147,7 +147,7 @@ public final class m extends FrameLayout {
         jVar.setGravity(17);
         jVar.setTypeface(g0.o());
         LinearLayout.LayoutParams t6 = ma.t(165, -2, 17, 0, 17, 0, 12);
-        d61 d61Var = nv0Var.f37993a;
+        d61 d61Var = nv0Var.f37992a;
         d61Var.addView(jVar, t6);
         hi.e eVar3 = new hi.e(context, h6Var, false);
         this.G = eVar3;
@@ -218,7 +218,7 @@ public final class m extends FrameLayout {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f11);
                 ofFloat.addUpdateListener(new d4(this, 1));
                 ofFloat.addListener(new g7(6, this, z10));
-                ofFloat.setInterpolator(nr.f37961f);
+                ofFloat.setInterpolator(nr.f37960f);
                 ofFloat.setDuration(200L);
                 ofFloat.start();
             }
@@ -342,20 +342,20 @@ public final class m extends FrameLayout {
         if (z10) {
             nv0Var.d.setVisibility(0);
             nv0Var.d.setText(hd.N0(2131746502, null));
-            nv0Var.f37996e.setText(hd.G(np.u1(i11).W5, "ProfileBotPreviewEmptyText", new Object[0]));
-            nv0Var.f37997f.i(hd.N0(2131746506, null), false, true);
+            nv0Var.f37995e.setText(hd.G(np.u1(i11).W5, "ProfileBotPreviewEmptyText", new Object[0]));
+            nv0Var.f37996f.i(hd.N0(2131746506, null), false, true);
             jVar2.setVisibility(8);
             eVar2.setVisibility(8);
         } else {
             nv0Var.d.setVisibility(8);
-            nv0Var.f37996e.setText(hd.a0(null, null, 2131746498, b31.P0(this.f13680a.E, null, null)));
-            nv0Var.f37997f.i(hd.N0(2131746506, null), false, true);
+            nv0Var.f37995e.setText(hd.a0(null, null, 2131746498, b31.P0(this.f13680a.E, null, null)));
+            nv0Var.f37996f.i(hd.N0(2131746506, null), false, true);
             jVar2.setVisibility(0);
             eVar2.setVisibility(0);
             eVar2.i(hd.N0(2131746500, null), false, true);
             eVar2.setOnClickListener(new b(this, 1));
         }
-        hi.e eVar3 = nv0Var.f37997f;
+        hi.e eVar3 = nv0Var.f37996f;
         if (this.f13689w.b() >= np.u1(i11).W5) {
             i12 = 8;
         }

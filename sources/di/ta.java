@@ -44,7 +44,7 @@ public final class ta implements z10 {
                     uiVar.z1(1, false);
                     uiVar.f1();
                     MediaController.f22723h2 = true;
-                    uiVar.f40379e2.i0();
+                    uiVar.f40378e2.i0();
                     uiVar.show();
                 }
                 return Boolean.TRUE;

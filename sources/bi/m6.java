@@ -50,7 +50,7 @@ public final class m6 extends FrameLayout implements gs {
         this.f3899c = h6Var;
         f6 f6Var = new f6(context, i7, new b(this, 8), new d6(this), new d6(this), h6Var, gq0Var);
         this.f3901f = f6Var;
-        f6Var.f35790g3.f34062r = false;
+        f6Var.f35789g3.f34062r = false;
         f6Var.setSelectorType(9);
         f6Var.setSelectorDrawableColor(0);
         f6Var.setClipToPadding(false);
@@ -221,7 +221,7 @@ public final class m6 extends FrameLayout implements gs {
                 }
                 i7++;
             }
-            c51 c51Var = f6Var.f35790g3;
+            c51 c51Var = f6Var.f35789g3;
             if (c51Var != null) {
                 c51Var.T();
             }
@@ -268,7 +268,7 @@ public final class m6 extends FrameLayout implements gs {
     public final void f(boolean z10) {
         c51 c51Var;
         f6 f6Var = this.f3901f;
-        if (f6Var != null && (c51Var = f6Var.f35790g3) != null) {
+        if (f6Var != null && (c51Var = f6Var.f35789g3) != null) {
             boolean canScrollVertically = f6Var.canScrollVertically(-1);
             c51Var.O(z10);
             if (!canScrollVertically) {
@@ -340,7 +340,7 @@ public final class m6 extends FrameLayout implements gs {
         this.I = z10;
         f6 f6Var = this.f3901f;
         boolean canScrollVertically = f6Var.canScrollVertically(-1);
-        f6Var.f35790g3.O(true);
+        f6Var.f35789g3.O(true);
         if (!canScrollVertically) {
             f6Var.v0(0);
         }

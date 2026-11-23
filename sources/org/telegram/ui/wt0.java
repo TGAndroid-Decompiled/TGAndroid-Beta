@@ -127,7 +127,7 @@ public final class wt0 implements Runnable {
                 if (((String) obj4).equals(ww0Var.E)) {
                     if (!ww0Var.f53550x && (g2Var instanceof ProfileActivity)) {
                         try {
-                            ((ProfileActivity) g2Var).P.f37994b.getImageReceiver().P0(false);
+                            ((ProfileActivity) g2Var).P.f37993b.getImageReceiver().P0(false);
                             ((ProfileActivity) g2Var).P.d.setText(org.telegram.messenger.hd.N0(2131745280, null));
                         } catch (Exception e10) {
                             org.telegram.messenger.a8.g(e10, true);
@@ -140,7 +140,7 @@ public final class wt0 implements Runnable {
                     ww0Var.f();
                     if (g2Var instanceof ProfileActivity) {
                         try {
-                            ((ProfileActivity) g2Var).P.f37994b.getImageReceiver().P0(false);
+                            ((ProfileActivity) g2Var).P.f37993b.getImageReceiver().P0(false);
                             return;
                         } catch (Exception e11) {
                             org.telegram.messenger.a8.g(e11, true);

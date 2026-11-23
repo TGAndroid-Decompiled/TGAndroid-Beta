@@ -4,10 +4,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zv0 implements org.telegram.ui.ls {
-    public final kw0 f42996a;
+    public final kw0 f42995a;
 
     public zv0(kw0 kw0Var) {
-        this.f42996a = kw0Var;
+        this.f42995a = kw0Var;
     }
 
     @Override
@@ -32,13 +32,13 @@ public final class zv0 implements org.telegram.ui.ls {
 
     @Override
     public final void F(TLRPC.Document document) {
-        kw0 kw0Var = this.f42996a;
+        kw0 kw0Var = this.f42995a;
         kw0Var.N1.documents.remove(document);
         boolean isEmpty = kw0Var.N1.documents.isEmpty();
         if (isEmpty) {
             kw0Var.dismiss();
         }
-        kw0Var.f37019o1.f();
+        kw0Var.f37018o1.f();
         org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, kw0Var.getContext(), kw0Var.J0);
         t1Var.r(350L);
         TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
@@ -78,7 +78,7 @@ public final class zv0 implements org.telegram.ui.ls {
 
     @Override
     public final long a() {
-        org.telegram.ui.ActionBar.g2 g2Var = this.f42996a.G1;
+        org.telegram.ui.ActionBar.g2 g2Var = this.f42995a.G1;
         if (g2Var instanceof org.telegram.ui.bn) {
             return ((org.telegram.ui.bn) g2Var).a();
         }
@@ -87,7 +87,7 @@ public final class zv0 implements org.telegram.ui.ls {
 
     @Override
     public final boolean b() {
-        hw0 hw0Var = this.f42996a.W1;
+        hw0 hw0Var = this.f42995a.W1;
         if (hw0Var != null && hw0Var.b()) {
             return true;
         }
@@ -96,7 +96,7 @@ public final class zv0 implements org.telegram.ui.ls {
 
     @Override
     public final boolean c() {
-        hw0 hw0Var = this.f42996a.W1;
+        hw0 hw0Var = this.f42995a.W1;
         if (hw0Var != null && hw0Var.c()) {
             return true;
         }
@@ -115,7 +115,7 @@ public final class zv0 implements org.telegram.ui.ls {
 
     @Override
     public final boolean f() {
-        if (this.f42996a.S1 != null) {
+        if (this.f42995a.S1 != null) {
             return true;
         }
         return false;
@@ -129,7 +129,7 @@ public final class zv0 implements org.telegram.ui.ls {
     @Override
     public final boolean h() {
         TLRPC.StickerSet stickerSet;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f42996a.N1;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f42995a.N1;
         if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && stickerSet.emojis) {
             return false;
         }
@@ -138,7 +138,7 @@ public final class zv0 implements org.telegram.ui.ls {
 
     @Override
     public final void i(org.telegram.messenger.ty tyVar) {
-        this.f42996a.T0(tyVar);
+        this.f42995a.T0(tyVar);
     }
 
     @Override
@@ -148,7 +148,7 @@ public final class zv0 implements org.telegram.ui.ls {
 
     @Override
     public final boolean k(int i7) {
-        if (this.f42996a.W1 != null) {
+        if (this.f42995a.W1 != null) {
             return true;
         }
         return false;
@@ -156,7 +156,7 @@ public final class zv0 implements org.telegram.ui.ls {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i7, int i10) {
-        kw0 kw0Var = this.f42996a;
+        kw0 kw0Var = this.f42995a;
         hw0 hw0Var = kw0Var.W1;
         if (hw0Var == null) {
             return;
@@ -167,7 +167,7 @@ public final class zv0 implements org.telegram.ui.ls {
 
     @Override
     public final void n(TLRPC.Document document) {
-        kw0 kw0Var = this.f42996a;
+        kw0 kw0Var = this.f42995a;
         kw0.N0(kw0Var.G1, kw0Var.N1, document);
     }
 

@@ -29,7 +29,7 @@ public final class a implements r10 {
                 c51 c51Var = (c51) obj2;
                 arrayList.add(o41.l(0, gVar.h));
                 o41 c10 = o41.c(1, 2131232178, hd.N0(2131751927, null));
-                c10.f38097r = true;
+                c10.f38096r = true;
                 arrayList.add(c10);
                 arrayList.add(o41.E(2, org.telegram.messenger.g0.L(14.0f)));
                 ArrayList arrayList2 = gVar.f19964n;
@@ -57,7 +57,7 @@ public final class a implements r10 {
                         } else {
                             N0 = hd.N0(2131748586, null);
                         }
-                        w10.f38093n = N0;
+                        w10.f38092n = N0;
                         arrayList.add(w10);
                     }
                     return;

@@ -35,7 +35,7 @@ public final class dr0 extends g.p {
                 }
             case 1:
                 f51 f51Var = (f51) this.d;
-                c51 c51Var = ((h51) this.f34550e).f35790g3;
+                c51 c51Var = ((h51) this.f34550e).f35789g3;
                 if (c51Var == null) {
                     return f51Var.J;
                 }
@@ -46,7 +46,7 @@ public final class dr0 extends g.p {
                 return i10;
             default:
                 f51 f51Var2 = (f51) this.d;
-                c51 c51Var2 = ((h51) this.f34550e).f35790g3;
+                c51 c51Var2 = ((h51) this.f34550e).f35789g3;
                 if (c51Var2 == null) {
                     return f51Var2.J;
                 }

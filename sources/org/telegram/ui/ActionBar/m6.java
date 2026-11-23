@@ -1442,9 +1442,9 @@ public abstract class m6 {
             return;
         }
         if (z10) {
-            drawable2 = ((oq) drawable).f38331b;
+            drawable2 = ((oq) drawable).f38330b;
         } else {
-            drawable2 = ((oq) drawable).f38330a;
+            drawable2 = ((oq) drawable).f38329a;
         }
         if (drawable2 instanceof ColorDrawable) {
             ((ColorDrawable) drawable2).setColor(i10);
@@ -2024,13 +2024,13 @@ public abstract class m6 {
             f29657s3 = new u4(1, true, false, null);
             f29675t3 = new u4(1, true, true, null);
             ?? obj = new Object();
-            obj.f42039a = new Path();
-            obj.f42040b = -1.0f;
-            obj.f42044g = new ArrayList();
-            obj.f42041c = 0.293f;
+            obj.f42038a = new Path();
+            obj.f42039b = -1.0f;
+            obj.f42043g = new ArrayList();
+            obj.f42040c = 0.293f;
             obj.d = -26.0f;
-            obj.f42042e = -28.0f;
-            obj.f42043f = 1.0f;
+            obj.f42041e = -28.0f;
+            obj.f42042f = 1.0f;
             f29751x3 = obj;
             obj.a("M 34.141 16.042 C 37.384 17.921 40.886 20.001 44.211 21.965 C 46.139 23.104 49.285 24.729 49.586 25.917 C 50.289 28.687 48.484 30 46.274 30 L 6 30.021 C 3.79 30.021 2.075 30.023 2 26.021 L 2.009 3.417 C 2.009 0.417 5.326 -0.58 7.068 0.417 C 10.545 2.406 25.024 10.761 34.141 16.042 Z", 166.0f);
             f29751x3.a("M 37.843 17.769 C 41.143 19.508 44.131 21.164 47.429 23.117 C 48.542 23.775 49.623 24.561 49.761 25.993 C 50.074 28.708 48.557 30 46.347 30 L 6 30.012 C 3.79 30.012 2 28.222 2 26.012 L 2.009 4.609 C 2.009 1.626 5.276 0.664 7.074 1.541 C 10.608 3.309 28.488 12.842 37.843 17.769 Z", 200.0f);
@@ -2427,7 +2427,7 @@ public abstract class m6 {
         shapeDrawable.getPaint().setColor(-1);
         oq oqVar = new oq(shapeDrawable, drawable);
         oqVar.h = i10;
-        oqVar.f38335n = i10;
+        oqVar.f38334n = i10;
         return oqVar;
     }
 
@@ -4181,7 +4181,7 @@ public abstract class m6 {
                 i10++;
             } else {
                 oh0 oh0Var = f29692u1;
-                oh0Var.f38205a0 = true;
+                oh0Var.f38204a0 = true;
                 int i12 = M7;
                 oh0Var.Q(x0(null, i12, true), "Arrow1");
                 f29692u1.Q(x0(null, i12, true), "Arrow2");
@@ -4191,18 +4191,18 @@ public abstract class m6 {
                 C1 = false;
                 f29692u1.J(true);
                 oh0 oh0Var2 = f29749x1;
-                oh0Var2.f38205a0 = true;
+                oh0Var2.f38204a0 = true;
                 int i13 = f29403e9;
                 oh0Var2.Q(x0(null, i13, true), "Arrow");
                 f29749x1.Q(x0(null, i13, true), "Line");
                 f29749x1.o();
                 oh0 oh0Var3 = f29768y1;
-                oh0Var3.f38205a0 = true;
+                oh0Var3.f38204a0 = true;
                 oh0Var3.Q(x0(null, i13, true), "Arrow");
                 f29768y1.Q(x0(null, i13, true), "Line");
                 f29768y1.o();
                 oh0 oh0Var4 = f29787z1;
-                oh0Var4.f38205a0 = true;
+                oh0Var4.f38204a0 = true;
                 int i14 = f29366c9;
                 oh0Var4.Q(x0(null, i14, true), "Line 1");
                 f29787z1.Q(x0(null, i14, true), "Line 2");
@@ -4212,14 +4212,14 @@ public abstract class m6 {
                 f29787z1.o();
                 B1 = false;
                 oh0 oh0Var5 = f29711v1;
-                oh0Var5.f38205a0 = true;
+                oh0Var5.f38204a0 = true;
                 oh0Var5.Q(x0(null, i14, true), "Arrow");
                 f29711v1.Q(x0(null, i13, true), "Box2");
                 f29711v1.Q(x0(null, i13, true), "Box1");
                 f29711v1.o();
                 A1 = false;
                 oh0 oh0Var6 = f29730w1;
-                oh0Var6.f38205a0 = true;
+                oh0Var6.f38204a0 = true;
                 oh0Var6.Q(x0(null, i13, true), "Arrow1");
                 f29730w1.Q(x0(null, f29384d9, true), "Arrow2");
                 f29730w1.Q(x0(null, i13, true), "Box2");

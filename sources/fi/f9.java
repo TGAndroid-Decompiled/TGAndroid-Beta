@@ -1065,7 +1065,7 @@ public final class f9 implements gs, org.telegram.ui.ActionBar.c2 {
                 this.f12044v1.setInterpolator(nr.h);
             } else {
                 this.f12044v1.setDuration(350L);
-                this.f12044v1.setInterpolator(nr.f37961f);
+                this.f12044v1.setInterpolator(nr.f37960f);
             }
             this.f12044v1.start();
         }

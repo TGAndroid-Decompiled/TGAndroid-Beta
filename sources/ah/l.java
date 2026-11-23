@@ -402,16 +402,16 @@ public final class l extends AnimatorListenerAdapter {
             case 26:
                 ui uiVar = (ui) obj2;
                 AnimatorSet animatorSet3 = uiVar.A0;
-                if (animatorSet3 != null && animatorSet3.equals(animator) && (gVar = uiVar.f40408n4) != null && !gVar.f56362f) {
+                if (animatorSet3 != null && animatorSet3.equals(animator) && (gVar = uiVar.f40407n4) != null && !gVar.f56362f) {
                     ((org.telegram.ui.Components.g) obj).run();
                     return;
                 }
                 return;
             case 27:
                 fu fuVar = (fu) obj2;
-                if (fuVar.f35316a.f36314p1.getVisibility() == 0) {
-                    fuVar.f35316a.f36314p1.setAlpha(1.0f);
-                    fuVar.f35316a.f36314p1.setVisibility(4);
+                if (fuVar.f35316a.f36313p1.getVisibility() == 0) {
+                    fuVar.f35316a.f36313p1.setAlpha(1.0f);
+                    fuVar.f35316a.f36313p1.setVisibility(4);
                 }
                 ((Runnable) obj).run();
                 return;
@@ -421,11 +421,11 @@ public final class l extends AnimatorListenerAdapter {
                 if (animator.equals(tyVar.N0)) {
                     ek0Var.setTranslationY(0.0f);
                     if (ek0Var == tyVar.E0) {
-                        ek0Var.setPadding(0, 0, 0, tyVar.f40135r2);
+                        ek0Var.setPadding(0, 0, 0, tyVar.f40134r2);
                     } else if (ek0Var == tyVar.Q) {
-                        ek0Var.setPadding(g0.L(5.0f), 0, g0.L(5.0f), tyVar.f40135r2);
-                    } else if (ek0Var == tyVar.f40107i0) {
-                        ek0Var.setPadding(0, tyVar.f40089c1, 0, tyVar.f40135r2);
+                        ek0Var.setPadding(g0.L(5.0f), 0, g0.L(5.0f), tyVar.f40134r2);
+                    } else if (ek0Var == tyVar.f40106i0) {
+                        ek0Var.setPadding(0, tyVar.f40088c1, 0, tyVar.f40134r2);
                     }
                     tyVar.N0 = null;
                     return;
@@ -434,9 +434,9 @@ public final class l extends AnimatorListenerAdapter {
             default:
                 i10 i10Var = (i10) obj2;
                 i10Var.removeView((p20) obj);
-                i10Var.f36109e.clear();
-                i10Var.f36106a = null;
-                i10Var.f36107b = false;
+                i10Var.f36108e.clear();
+                i10Var.f36105a = null;
+                i10Var.f36106b = false;
                 return;
         }
     }

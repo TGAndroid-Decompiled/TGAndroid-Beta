@@ -221,15 +221,15 @@ public final class g0 implements w30, q1, l6, sj0, mr, f5.n, c3, org.telegram.me
         n6 n6Var = (n6) this.f3254c;
         ArrayList arrayList = (ArrayList) this.d;
         ArrayList arrayList2 = (ArrayList) this.f3255e;
-        StaticLayout j3 = n6Var.j(this.f3253b - ((int) Math.ceil(Math.min(n6Var.d, n6Var.f37804j))), charSequence);
+        StaticLayout j3 = n6Var.j(this.f3253b - ((int) Math.ceil(Math.min(n6Var.d, n6Var.f37803j))), charSequence);
         k6 k6Var = new k6(n6Var, j3, n6Var.d, arrayList.size());
-        k6 k6Var2 = new k6(n6Var, j3, n6Var.f37804j, arrayList2.size());
+        k6 k6Var2 = new k6(n6Var, j3, n6Var.f37803j, arrayList2.size());
         arrayList2.add(k6Var);
         arrayList.add(k6Var2);
         float f10 = n6Var.d;
-        float f11 = k6Var.f36813f;
+        float f11 = k6Var.f36812f;
         n6Var.d = f10 + f11;
-        n6Var.f37804j += f11;
+        n6Var.f37803j += f11;
         n6Var.f(k6Var);
         n6Var.g(k6Var2);
     }
@@ -329,7 +329,7 @@ public final class g0 implements w30, q1, l6, sj0, mr, f5.n, c3, org.telegram.me
                 tL_poll.closed = true;
                 tL_messages_editMessage.media = tL_inputMediaPoll;
                 int i13 = this.f3253b;
-                tL_messages_editMessage.peer = np.u1(i13).l1(jt0Var.f36648m1);
+                tL_messages_editMessage.peer = np.u1(i13).l1(jt0Var.f36647m1);
                 tL_messages_editMessage.f28518id = gjVar.e1();
                 tL_messages_editMessage.flags |= 16384;
                 org.telegram.messenger.g0.h3(new aq0(t1VarArr, i13, ConnectionsManager.getInstance(i13).sendRequest(tL_messages_editMessage, new y7(jt0Var, t1VarArr, i13, tL_messages_editMessage, 5)), 1), 500L);

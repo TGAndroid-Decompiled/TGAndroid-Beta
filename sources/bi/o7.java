@@ -40,8 +40,8 @@ public final class o7 extends TextView {
         nq nqVar = new nq(2131230873, 0);
         this.f3984a = nqVar;
         nqVar.H = 0.8f;
-        nqVar.f37951r = 0.0f;
-        nqVar.f37952s = org.telegram.messenger.g0.L(1.0f);
+        nqVar.f37950r = 0.0f;
+        nqVar.f37951s = org.telegram.messenger.g0.L(1.0f);
     }
 
     @Override

@@ -210,15 +210,15 @@ public final class j0 implements r10 {
                         n0Var.Y1 = false;
                         n0Var.Z1 = gj.h0(tL_composedMessageWithAI.result_text, false);
                     } else if (i10 == 2) {
-                        n0Var.f37683b2 = false;
+                        n0Var.f37682b2 = false;
                         TLRPC.TL_textWithEntities tL_textWithEntities = tL_composedMessageWithAI.diff_text;
                         if (tL_textWithEntities != null) {
-                            n0Var.f37684c2 = gj.h0(tL_textWithEntities, false);
-                            n0Var.f37685e2 = gj.h0(tL_composedMessageWithAI.result_text, false);
+                            n0Var.f37683c2 = gj.h0(tL_textWithEntities, false);
+                            n0Var.f37684e2 = gj.h0(tL_composedMessageWithAI.result_text, false);
                         } else {
                             CharSequence h02 = gj.h0(tL_composedMessageWithAI.result_text, false);
-                            n0Var.f37685e2 = h02;
-                            n0Var.f37684c2 = h02;
+                            n0Var.f37684e2 = h02;
+                            n0Var.f37683c2 = h02;
                         }
                     }
                     n0Var.P2.O(true);
@@ -261,9 +261,9 @@ public final class j0 implements r10 {
                         n0Var2.X1 = tL_composedRichMessageWithAI.result;
                     } else if (i10 == 1) {
                         n0Var2.Y1 = false;
-                        n0Var2.f37682a2 = tL_composedRichMessageWithAI.result;
+                        n0Var2.f37681a2 = tL_composedRichMessageWithAI.result;
                     } else if (i10 == 2) {
-                        n0Var2.f37683b2 = false;
+                        n0Var2.f37682b2 = false;
                         n0Var2.d2 = tL_composedRichMessageWithAI.result;
                     }
                     n0Var2.P2.O(true);

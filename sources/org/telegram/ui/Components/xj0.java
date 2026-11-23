@@ -13,22 +13,22 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 public final class xj0 implements v4.t0 {
-    public final int f42152a = 0;
-    public final Object f42153b;
+    public final int f42151a = 0;
+    public final Object f42152b;
 
     public xj0(v4.z zVar) {
-        this.f42153b = zVar;
+        this.f42152b = zVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
-        switch (this.f42152a) {
+        switch (this.f42151a) {
             case 0:
                 return;
             default:
-                v4.z zVar = (v4.z) this.f42153b;
+                v4.z zVar = (v4.z) this.f42152b;
                 s4.s0 s0Var = zVar.J;
-                ((GestureDetector) zVar.O.f36567b).onTouchEvent(motionEvent);
+                ((GestureDetector) zVar.O.f36566b).onTouchEvent(motionEvent);
                 VelocityTracker velocityTracker = zVar.K;
                 if (velocityTracker != null) {
                     velocityTracker.addMovement(motionEvent);
@@ -90,10 +90,10 @@ public final class xj0 implements v4.t0 {
         View E;
         tj0 tj0Var;
         int findPointerIndex;
-        switch (this.f42152a) {
+        switch (this.f42151a) {
             case 0:
                 int actionMasked = motionEvent.getActionMasked();
-                ek0 ek0Var = (ek0) this.f42153b;
+                ek0 ek0Var = (ek0) this.f42152b;
                 Rect rect = ek0Var.F1;
                 if (ek0Var.getScrollState() == 0) {
                     z10 = true;
@@ -194,8 +194,8 @@ public final class xj0 implements v4.t0 {
                 }
                 return false;
             default:
-                v4.z zVar = (v4.z) this.f42153b;
-                ((GestureDetector) zVar.O.f36567b).onTouchEvent(motionEvent);
+                v4.z zVar = (v4.z) this.f42152b;
+                ((GestureDetector) zVar.O.f36566b).onTouchEvent(motionEvent);
                 int actionMasked2 = motionEvent.getActionMasked();
                 v4.v vVar = null;
                 if (actionMasked2 == 0) {
@@ -257,13 +257,13 @@ public final class xj0 implements v4.t0 {
 
     @Override
     public final void c(boolean z10) {
-        switch (this.f42152a) {
+        switch (this.f42151a) {
             case 0:
-                ((ek0) this.f42153b).I0(true);
+                ((ek0) this.f42152b).I0(true);
                 return;
             default:
                 if (z10) {
-                    ((v4.z) this.f42153b).r(null, 0);
+                    ((v4.z) this.f42152b).r(null, 0);
                     return;
                 }
                 return;
@@ -271,10 +271,10 @@ public final class xj0 implements v4.t0 {
     }
 
     public xj0(Context context, ek0 ek0Var) {
-        this.f42153b = ek0Var;
+        this.f42152b = ek0Var;
         qf qfVar = new qf(context, new wj0(this));
         ek0Var.L1 = qfVar;
-        ((o10) qfVar.f38896b).f38055t = false;
+        ((o10) qfVar.f38895b).f38054t = false;
     }
 
     private final void d(RecyclerView recyclerView, MotionEvent motionEvent) {

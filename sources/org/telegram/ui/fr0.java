@@ -429,7 +429,7 @@ public class fr0 {
             ofFloat.addUpdateListener(new a3(this, 23));
             this.C.addListener(new ay(this, 20));
             this.C.setDuration(220L);
-            this.C.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+            this.C.setInterpolator(org.telegram.ui.Components.nr.f37960f);
             this.C.start();
         }
     }

@@ -52,7 +52,7 @@ public final class i8 extends sa {
         O();
         this.T1 = str;
         this.U1 = h8Var;
-        this.f39533p1.setTitle(P0());
+        this.f39532p1.setTitle(P0());
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setPadding(org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(6.0f));
         linearLayout.setOrientation(0);
@@ -175,7 +175,7 @@ public final class i8 extends sa {
                                                     int i14 = r7.f4056b;
                                                     o41 K = o41.K(r7.class);
                                                     K.H = stargiftattributemodel;
-                                                    K.f38092m = lowerCase;
+                                                    K.f38091m = lowerCase;
                                                     K.A = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
@@ -218,7 +218,7 @@ public final class i8 extends sa {
                                                     int i16 = j7.f3756b;
                                                     o41 K2 = o41.K(j7.class);
                                                     K2.H = stargiftattributebackdrop;
-                                                    K2.f38092m = lowerCase2;
+                                                    K2.f38091m = lowerCase2;
                                                     K2.A = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
@@ -262,7 +262,7 @@ public final class i8 extends sa {
                                                     int i18 = u7.f4164b;
                                                     o41 K3 = o41.K(u7.class);
                                                     K3.H = stargiftattributepattern;
-                                                    K3.f38092m = lowerCase3;
+                                                    K3.f38091m = lowerCase3;
                                                     K3.A = i11;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
@@ -377,7 +377,7 @@ public final class i8 extends sa {
                             org.telegram.ui.ActionBar.h6 h6Var = i8Var.J0;
                             Context context2 = context;
                             i7 i7Var = new i7(context2, i10, 0, false, r10Var, w10Var, null, h6Var, 4);
-                            i7Var.f35790g3.f34062r = false;
+                            i7Var.f35789g3.f34062r = false;
                             FrameLayout frameLayout = new FrameLayout(context2);
                             ImageView imageView = new ImageView(context2);
                             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -498,7 +498,7 @@ public final class i8 extends sa {
                                                     int i14 = r7.f4056b;
                                                     o41 K = o41.K(r7.class);
                                                     K.H = stargiftattributemodel;
-                                                    K.f38092m = lowerCase;
+                                                    K.f38091m = lowerCase;
                                                     K.A = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
@@ -541,7 +541,7 @@ public final class i8 extends sa {
                                                     int i16 = j7.f3756b;
                                                     o41 K2 = o41.K(j7.class);
                                                     K2.H = stargiftattributebackdrop;
-                                                    K2.f38092m = lowerCase2;
+                                                    K2.f38091m = lowerCase2;
                                                     K2.A = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
@@ -585,7 +585,7 @@ public final class i8 extends sa {
                                                     int i18 = u7.f4164b;
                                                     o41 K3 = o41.K(u7.class);
                                                     K3.H = stargiftattributepattern;
-                                                    K3.f38092m = lowerCase3;
+                                                    K3.f38091m = lowerCase3;
                                                     K3.A = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
@@ -700,7 +700,7 @@ public final class i8 extends sa {
                             org.telegram.ui.ActionBar.h6 h6Var2 = i8Var.J0;
                             Context context3 = context;
                             i7 i7Var2 = new i7(context3, i11, 0, false, r10Var2, w10Var2, null, h6Var2, 5);
-                            i7Var2.f35790g3.f34062r = false;
+                            i7Var2.f35789g3.f34062r = false;
                             FrameLayout frameLayout2 = new FrameLayout(context3);
                             ImageView imageView2 = new ImageView(context3);
                             imageView2.setScaleType(ImageView.ScaleType.CENTER);
@@ -821,7 +821,7 @@ public final class i8 extends sa {
                                                     int i14 = r7.f4056b;
                                                     o41 K = o41.K(r7.class);
                                                     K.H = stargiftattributemodel;
-                                                    K.f38092m = lowerCase;
+                                                    K.f38091m = lowerCase;
                                                     K.A = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
@@ -864,7 +864,7 @@ public final class i8 extends sa {
                                                     int i16 = j7.f3756b;
                                                     o41 K2 = o41.K(j7.class);
                                                     K2.H = stargiftattributebackdrop;
-                                                    K2.f38092m = lowerCase2;
+                                                    K2.f38091m = lowerCase2;
                                                     K2.A = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
@@ -908,7 +908,7 @@ public final class i8 extends sa {
                                                     int i18 = u7.f4164b;
                                                     o41 K3 = o41.K(u7.class);
                                                     K3.H = stargiftattributepattern;
-                                                    K3.f38092m = lowerCase3;
+                                                    K3.f38091m = lowerCase3;
                                                     K3.A = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
@@ -1023,7 +1023,7 @@ public final class i8 extends sa {
                             org.telegram.ui.ActionBar.h6 h6Var3 = i8Var.J0;
                             Context context4 = context;
                             i7 i7Var3 = new i7(context4, i12, 0, false, r10Var3, w10Var3, null, h6Var3, 6);
-                            i7Var3.f35790g3.f34062r = false;
+                            i7Var3.f35789g3.f34062r = false;
                             FrameLayout frameLayout3 = new FrameLayout(context4);
                             ImageView imageView3 = new ImageView(context4);
                             imageView3.setScaleType(ImageView.ScaleType.CENTER);
@@ -1164,7 +1164,7 @@ public final class i8 extends sa {
                                                     int i14 = r7.f4056b;
                                                     o41 K = o41.K(r7.class);
                                                     K.H = stargiftattributemodel;
-                                                    K.f38092m = lowerCase;
+                                                    K.f38091m = lowerCase;
                                                     K.A = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
@@ -1207,7 +1207,7 @@ public final class i8 extends sa {
                                                     int i16 = j7.f3756b;
                                                     o41 K2 = o41.K(j7.class);
                                                     K2.H = stargiftattributebackdrop;
-                                                    K2.f38092m = lowerCase2;
+                                                    K2.f38091m = lowerCase2;
                                                     K2.A = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
@@ -1251,7 +1251,7 @@ public final class i8 extends sa {
                                                     int i18 = u7.f4164b;
                                                     o41 K3 = o41.K(u7.class);
                                                     K3.H = stargiftattributepattern;
-                                                    K3.f38092m = lowerCase3;
+                                                    K3.f38091m = lowerCase3;
                                                     K3.A = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
@@ -1366,7 +1366,7 @@ public final class i8 extends sa {
                             org.telegram.ui.ActionBar.h6 h6Var = i8Var.J0;
                             Context context2 = context;
                             i7 i7Var = new i7(context2, i10, 0, false, r10Var, w10Var, null, h6Var, 4);
-                            i7Var.f35790g3.f34062r = false;
+                            i7Var.f35789g3.f34062r = false;
                             FrameLayout frameLayout = new FrameLayout(context2);
                             ImageView imageView = new ImageView(context2);
                             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -1487,7 +1487,7 @@ public final class i8 extends sa {
                                                     int i14 = r7.f4056b;
                                                     o41 K = o41.K(r7.class);
                                                     K.H = stargiftattributemodel;
-                                                    K.f38092m = lowerCase;
+                                                    K.f38091m = lowerCase;
                                                     K.A = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
@@ -1530,7 +1530,7 @@ public final class i8 extends sa {
                                                     int i16 = j7.f3756b;
                                                     o41 K2 = o41.K(j7.class);
                                                     K2.H = stargiftattributebackdrop;
-                                                    K2.f38092m = lowerCase2;
+                                                    K2.f38091m = lowerCase2;
                                                     K2.A = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
@@ -1574,7 +1574,7 @@ public final class i8 extends sa {
                                                     int i18 = u7.f4164b;
                                                     o41 K3 = o41.K(u7.class);
                                                     K3.H = stargiftattributepattern;
-                                                    K3.f38092m = lowerCase3;
+                                                    K3.f38091m = lowerCase3;
                                                     K3.A = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
@@ -1689,7 +1689,7 @@ public final class i8 extends sa {
                             org.telegram.ui.ActionBar.h6 h6Var2 = i8Var.J0;
                             Context context3 = context;
                             i7 i7Var2 = new i7(context3, i11, 0, false, r10Var2, w10Var2, null, h6Var2, 5);
-                            i7Var2.f35790g3.f34062r = false;
+                            i7Var2.f35789g3.f34062r = false;
                             FrameLayout frameLayout2 = new FrameLayout(context3);
                             ImageView imageView2 = new ImageView(context3);
                             imageView2.setScaleType(ImageView.ScaleType.CENTER);
@@ -1810,7 +1810,7 @@ public final class i8 extends sa {
                                                     int i14 = r7.f4056b;
                                                     o41 K = o41.K(r7.class);
                                                     K.H = stargiftattributemodel;
-                                                    K.f38092m = lowerCase;
+                                                    K.f38091m = lowerCase;
                                                     K.A = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
@@ -1853,7 +1853,7 @@ public final class i8 extends sa {
                                                     int i16 = j7.f3756b;
                                                     o41 K2 = o41.K(j7.class);
                                                     K2.H = stargiftattributebackdrop;
-                                                    K2.f38092m = lowerCase2;
+                                                    K2.f38091m = lowerCase2;
                                                     K2.A = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
@@ -1897,7 +1897,7 @@ public final class i8 extends sa {
                                                     int i18 = u7.f4164b;
                                                     o41 K3 = o41.K(u7.class);
                                                     K3.H = stargiftattributepattern;
-                                                    K3.f38092m = lowerCase3;
+                                                    K3.f38091m = lowerCase3;
                                                     K3.A = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
@@ -2012,7 +2012,7 @@ public final class i8 extends sa {
                             org.telegram.ui.ActionBar.h6 h6Var3 = i8Var.J0;
                             Context context4 = context;
                             i7 i7Var3 = new i7(context4, i12, 0, false, r10Var3, w10Var3, null, h6Var3, 6);
-                            i7Var3.f35790g3.f34062r = false;
+                            i7Var3.f35789g3.f34062r = false;
                             FrameLayout frameLayout3 = new FrameLayout(context4);
                             ImageView imageView3 = new ImageView(context4);
                             imageView3.setScaleType(ImageView.ScaleType.CENTER);
@@ -2153,7 +2153,7 @@ public final class i8 extends sa {
                                                     int i14 = r7.f4056b;
                                                     o41 K = o41.K(r7.class);
                                                     K.H = stargiftattributemodel;
-                                                    K.f38092m = lowerCase;
+                                                    K.f38091m = lowerCase;
                                                     K.A = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
@@ -2196,7 +2196,7 @@ public final class i8 extends sa {
                                                     int i16 = j7.f3756b;
                                                     o41 K2 = o41.K(j7.class);
                                                     K2.H = stargiftattributebackdrop;
-                                                    K2.f38092m = lowerCase2;
+                                                    K2.f38091m = lowerCase2;
                                                     K2.A = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
@@ -2240,7 +2240,7 @@ public final class i8 extends sa {
                                                     int i18 = u7.f4164b;
                                                     o41 K3 = o41.K(u7.class);
                                                     K3.H = stargiftattributepattern;
-                                                    K3.f38092m = lowerCase3;
+                                                    K3.f38091m = lowerCase3;
                                                     K3.A = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
@@ -2355,7 +2355,7 @@ public final class i8 extends sa {
                             org.telegram.ui.ActionBar.h6 h6Var = i8Var.J0;
                             Context context2 = context;
                             i7 i7Var = new i7(context2, i10, 0, false, r10Var, w10Var, null, h6Var, 4);
-                            i7Var.f35790g3.f34062r = false;
+                            i7Var.f35789g3.f34062r = false;
                             FrameLayout frameLayout = new FrameLayout(context2);
                             ImageView imageView = new ImageView(context2);
                             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -2476,7 +2476,7 @@ public final class i8 extends sa {
                                                     int i14 = r7.f4056b;
                                                     o41 K = o41.K(r7.class);
                                                     K.H = stargiftattributemodel;
-                                                    K.f38092m = lowerCase;
+                                                    K.f38091m = lowerCase;
                                                     K.A = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
@@ -2519,7 +2519,7 @@ public final class i8 extends sa {
                                                     int i16 = j7.f3756b;
                                                     o41 K2 = o41.K(j7.class);
                                                     K2.H = stargiftattributebackdrop;
-                                                    K2.f38092m = lowerCase2;
+                                                    K2.f38091m = lowerCase2;
                                                     K2.A = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
@@ -2563,7 +2563,7 @@ public final class i8 extends sa {
                                                     int i18 = u7.f4164b;
                                                     o41 K3 = o41.K(u7.class);
                                                     K3.H = stargiftattributepattern;
-                                                    K3.f38092m = lowerCase3;
+                                                    K3.f38091m = lowerCase3;
                                                     K3.A = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
@@ -2678,7 +2678,7 @@ public final class i8 extends sa {
                             org.telegram.ui.ActionBar.h6 h6Var2 = i8Var.J0;
                             Context context3 = context;
                             i7 i7Var2 = new i7(context3, i11, 0, false, r10Var2, w10Var2, null, h6Var2, 5);
-                            i7Var2.f35790g3.f34062r = false;
+                            i7Var2.f35789g3.f34062r = false;
                             FrameLayout frameLayout2 = new FrameLayout(context3);
                             ImageView imageView2 = new ImageView(context3);
                             imageView2.setScaleType(ImageView.ScaleType.CENTER);
@@ -2799,7 +2799,7 @@ public final class i8 extends sa {
                                                     int i14 = r7.f4056b;
                                                     o41 K = o41.K(r7.class);
                                                     K.H = stargiftattributemodel;
-                                                    K.f38092m = lowerCase;
+                                                    K.f38091m = lowerCase;
                                                     K.A = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
@@ -2842,7 +2842,7 @@ public final class i8 extends sa {
                                                     int i16 = j7.f3756b;
                                                     o41 K2 = o41.K(j7.class);
                                                     K2.H = stargiftattributebackdrop;
-                                                    K2.f38092m = lowerCase2;
+                                                    K2.f38091m = lowerCase2;
                                                     K2.A = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
@@ -2886,7 +2886,7 @@ public final class i8 extends sa {
                                                     int i18 = u7.f4164b;
                                                     o41 K3 = o41.K(u7.class);
                                                     K3.H = stargiftattributepattern;
-                                                    K3.f38092m = lowerCase3;
+                                                    K3.f38091m = lowerCase3;
                                                     K3.A = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
@@ -3001,7 +3001,7 @@ public final class i8 extends sa {
                             org.telegram.ui.ActionBar.h6 h6Var3 = i8Var.J0;
                             Context context4 = context;
                             i7 i7Var3 = new i7(context4, i12, 0, false, r10Var3, w10Var3, null, h6Var3, 6);
-                            i7Var3.f35790g3.f34062r = false;
+                            i7Var3.f35789g3.f34062r = false;
                             FrameLayout frameLayout3 = new FrameLayout(context4);
                             ImageView imageView3 = new ImageView(context4);
                             imageView3.setScaleType(ImageView.ScaleType.CENTER);
@@ -3039,17 +3039,17 @@ public final class i8 extends sa {
         getContext();
         v4.t tVar = new v4.t(3);
         tVar.O = new w2(this, 1);
-        this.f39532o1.setLayoutManager(tVar);
-        this.f39532o1.setOnItemClickListener(new ab.g(6, this, h8Var));
-        this.f39532o1.setPadding(org.telegram.messenger.g0.L(8.0f) + this.f30211u0, 0, org.telegram.messenger.g0.L(8.0f) + this.f30211u0, 0);
-        this.f39532o1.setOnScrollListener(new u1(this, 2));
+        this.f39531o1.setLayoutManager(tVar);
+        this.f39531o1.setOnItemClickListener(new ab.g(6, this, h8Var));
+        this.f39531o1.setPadding(org.telegram.messenger.g0.L(8.0f) + this.f30211u0, 0, org.telegram.messenger.g0.L(8.0f) + this.f30211u0, 0);
+        this.f39531o1.setOnScrollListener(new u1(this, 2));
         v4.k kVar = new v4.k();
         kVar.f59194m = false;
         kVar.C = false;
         kVar.o(nr.h);
         kVar.n(350L);
-        this.f39532o1.setItemAnimator(kVar);
-        this.f39532o1.setItemSelectorColorProvider(new a3.l(23));
+        this.f39531o1.setItemAnimator(kVar);
+        this.f39531o1.setItemSelectorColorProvider(new a3.l(23));
         di.k4 k4Var = new di.k4(context);
         this.f3734a2 = k4Var;
         int L = org.telegram.messenger.g0.L(20.0f);
@@ -3104,7 +3104,7 @@ public final class i8 extends sa {
         boolean z10 = false;
         boolean z11 = false;
         while (true) {
-            ek0 ek0Var = this.f39532o1;
+            ek0 ek0Var = this.f39531o1;
             if (i7 >= ek0Var.getChildCount()) {
                 break;
             }

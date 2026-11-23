@@ -47,7 +47,7 @@ public final class g {
         this.f10235b = false;
         n6Var.t(hd.N0(2131746243, null), false, true);
         String N0 = hd.N0(2131746242, null);
-        TextPaint textPaint = n6Var.f37794a;
+        TextPaint textPaint = n6Var.f37793a;
         this.f10234a = (int) Math.ceil(Math.max(textPaint.measureText(N0), textPaint.measureText(hd.N0(2131746243, null))));
     }
 

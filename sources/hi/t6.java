@@ -22,7 +22,7 @@ public final class t6 implements View.OnFocusChangeListener {
                     pi.l lVar = new pi.l(u6Var.getContext(), 2);
                     lVar.f59109a = 1;
                     lVar.f55744p = (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f24040m) - org.telegram.messenger.g0.L(1.0f);
-                    ((v4.c0) u6Var.f39532o1.getLayoutManager()).w0(lVar);
+                    ((v4.c0) u6Var.f39531o1.getLayoutManager()).w0(lVar);
                     return;
                 }
                 return;

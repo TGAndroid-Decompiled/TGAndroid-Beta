@@ -147,7 +147,7 @@ public final class u implements w10, r0.m, x10 {
                             ((r8) view4).getCheckBox().c(d0Var.f19936r1, true);
                             return;
                         } else {
-                            d0Var.f19940v1.d.f35790g3.O(false);
+                            d0Var.f19940v1.d.f35789g3.O(false);
                             return;
                         }
                     } else if (i13 == 100) {
@@ -171,7 +171,7 @@ public final class u implements w10, r0.m, x10 {
                         if (b10 != 1 && b10 != 2) {
                             if (b10 == 3) {
                                 r70 r70Var = new r70(d0Var.getContext(), chat, null, d0Var.f19939u1, d0Var.J0);
-                                r70Var.f39112t1 = new lc((FrameLayout) d0Var.f30176b, d0Var.J0);
+                                r70Var.f39111t1 = new lc((FrameLayout) d0Var.f30176b, d0Var.J0);
                                 r70Var.show();
                                 return;
                             } else if (b10 == 4) {

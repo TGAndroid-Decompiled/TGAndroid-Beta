@@ -51,7 +51,7 @@ public final class p4 extends org.telegram.ui.ActionBar.g2 implements org.telegr
         fade.setDuration(150L);
         transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(changeBounds).addTransition(fade);
         transitionSet.setOrdering(0);
-        transitionSet.setInterpolator((TimeInterpolator) org.telegram.ui.Components.nr.f37961f);
+        transitionSet.setInterpolator((TimeInterpolator) org.telegram.ui.Components.nr.f37960f);
         TransitionManager.beginDelayedTransition(this.f50723f, transitionSet);
         int i10 = 0;
         while (true) {

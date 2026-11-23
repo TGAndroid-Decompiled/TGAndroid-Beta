@@ -103,7 +103,7 @@ public final class d1 extends FrameLayout implements te.b {
                 return;
             case 10:
                 z11 z11Var = (z11) this.d;
-                org.telegram.ui.Components.n6 n6Var = z11Var.f42631f;
+                org.telegram.ui.Components.n6 n6Var = z11Var.f42630f;
                 float i12 = n6Var.i();
                 int i13 = (i12 > 0.0f ? 1 : (i12 == 0.0f ? 0 : -1));
                 if (i13 > 0) {
@@ -148,7 +148,7 @@ public final class d1 extends FrameLayout implements te.b {
                     float f15 = max / 2.0f;
                     rectF4.set(f11 - f15, f12 - f10, f11 + f15, f12 + f10);
                     org.telegram.ui.Components.h6 h6Var = (org.telegram.ui.Components.h6) this.f8673c;
-                    h6Var.setColor(org.telegram.ui.ActionBar.m6.r1(i12, h6Var.f35797b.a(org.telegram.ui.ActionBar.m6.w0(z11Var.G, h6Var.f35796a), false)));
+                    h6Var.setColor(org.telegram.ui.ActionBar.m6.r1(i12, h6Var.f35796b.a(org.telegram.ui.ActionBar.m6.w0(z11Var.G, h6Var.f35795a), false)));
                     canvas.drawRoundRect(rectF4, f10, f10, h6Var);
                     n6Var.p(rectF4);
                     n6Var.C = (int) (i12 * 255.0f);
@@ -313,7 +313,7 @@ public final class d1 extends FrameLayout implements te.b {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f8671a) {
             case 10:
-                if (((z11) this.d).f42631f != drawable && !super.verifyDrawable(drawable)) {
+                if (((z11) this.d).f42630f != drawable && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
@@ -473,7 +473,7 @@ public final class d1 extends FrameLayout implements te.b {
         this.f8672b = paint;
         this.f8673c = new org.telegram.ui.Components.h6(this, h6Var);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        z11Var.f42631f.setCallback(this);
+        z11Var.f42630f.setCallback(this);
     }
 
     public d1(kb kbVar, Context context, org.telegram.ui.ActionBar.h6 h6Var) {

@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.animation.AnimatorSet;
 import android.os.SystemClock;
 public final class te implements Runnable {
-    public final int f39877a;
-    public final ChatActivityEnterView f39878b;
+    public final int f39876a;
+    public final ChatActivityEnterView f39877b;
 
     public te(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f39877a = i7;
-        this.f39878b = chatActivityEnterView;
+        this.f39876a = i7;
+        this.f39877b = chatActivityEnterView;
     }
 
     @Override
@@ -16,9 +16,9 @@ public final class te implements Runnable {
         long j3;
         long j10;
         long j11;
-        switch (this.f39877a) {
+        switch (this.f39876a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f39878b;
+                ChatActivityEnterView chatActivityEnterView = this.f39877b;
                 te teVar = chatActivityEnterView.f32634h4;
                 if ((!chatActivityEnterView.H0() || !chatActivityEnterView.A()) && !org.telegram.ui.ActionBar.g2.hasSheets(chatActivityEnterView.F3) && !chatActivityEnterView.O2 && chatActivityEnterView.F0 != null && chatActivityEnterView.f32575a4 && !chatActivityEnterView.f32691p3 && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E) {
                     ng ngVar = chatActivityEnterView.P3;
@@ -33,7 +33,7 @@ public final class te implements Runnable {
                 }
                 return;
             case 1:
-                ChatActivityEnterView chatActivityEnterView2 = this.f39878b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f39877b;
                 ai.o1 o1Var = chatActivityEnterView2.f32686o6;
                 if (o1Var != null && o1Var.d) {
                     long j12 = o1Var.f1356e;
@@ -72,14 +72,14 @@ public final class te implements Runnable {
                     org.telegram.messenger.g0.h3(new td(chatActivityEnterView2, 17), 450L);
                 }
             case 2:
-                ng ngVar2 = this.f39878b.P3;
+                ng ngVar2 = this.f39877b.P3;
                 if (ngVar2 != null) {
                     ngVar2.o2(0, 0, 0, 0L, 0L, true);
                     return;
                 }
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView3 = this.f39878b;
+                ChatActivityEnterView chatActivityEnterView3 = this.f39877b;
                 AnimatorSet animatorSet = chatActivityEnterView3.W0;
                 if (animatorSet != null && !animatorSet.isRunning()) {
                     chatActivityEnterView3.W0.start();

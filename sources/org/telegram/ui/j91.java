@@ -74,7 +74,7 @@ public final class j91 extends org.telegram.ui.ActionBar.j {
                     long j10 = P0.f28435id;
                     i10 = ((org.telegram.ui.ActionBar.g2) y91Var).currentAccount;
                     h91 h91Var = new h91(this, this.f48944a, i10, hVar, P0.f28435id, y91Var, j10);
-                    h91Var.f37125g2 = new ai.d0(this, j10, 11);
+                    h91Var.f37124g2 = new ai.d0(this, j10, 11);
                     h91Var.show();
                     return;
                 }

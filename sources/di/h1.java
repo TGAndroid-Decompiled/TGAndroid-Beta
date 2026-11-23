@@ -97,9 +97,9 @@ public final class h1 extends org.telegram.ui.Components.sa {
         com.google.android.gms.common.api.internal.p pVar3 = new com.google.android.gms.common.api.internal.p(this.Y1);
         this.f8928c2 = pVar3;
         pVar3.f6374b = false;
-        ViewParent parent = this.f39533p1.getParent();
+        ViewParent parent = this.f39532p1.getParent();
         if (parent instanceof ViewGroup) {
-            ((ViewGroup) parent).removeView(this.f39533p1);
+            ((ViewGroup) parent).removeView(this.f39532p1);
         }
         this.G1 = false;
         this.F1 = org.telegram.messenger.g0.L(6.0f);
@@ -135,13 +135,13 @@ public final class h1 extends org.telegram.ui.Components.sa {
         wy wyVar = new wy(3, false);
         this.d2 = wyVar;
         wyVar.O = new bi.w2(this, 4);
-        this.f39532o1.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(74.0f));
-        this.f39532o1.setClipToPadding(false);
-        this.f39532o1.setLayoutManager(wyVar);
-        this.f39532o1.setSelectorType(9);
-        this.f39532o1.setSelectorDrawableColor(0);
-        this.f39532o1.j(new bi.u1(this, 8));
-        this.Y0.b(this.f39532o1);
+        this.f39531o1.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(74.0f));
+        this.f39531o1.setClipToPadding(false);
+        this.f39531o1.setLayoutManager(wyVar);
+        this.f39531o1.setSelectorType(9);
+        this.f39531o1.setSelectorDrawableColor(0);
+        this.f39531o1.j(new bi.u1(this, 8));
+        this.Y0.b(this.f39531o1);
         ?? kVar = new v4.k();
         this.f8929e2 = kVar;
         kVar.C = false;
@@ -149,7 +149,7 @@ public final class h1 extends org.telegram.ui.Components.sa {
         kVar.n(280L);
         kVar.o(nr.h);
         kVar.D = 30L;
-        this.f39532o1.setItemAnimator(kVar);
+        this.f39531o1.setItemAnimator(kVar);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f8932h2 = frameLayout;
         frameLayout.setClipChildren(false);
@@ -280,7 +280,7 @@ public final class h1 extends org.telegram.ui.Components.sa {
                 this.f8940p2 = new c1((TL_stars.starGiftAttributeBackdrop) cg.d.d(arrayList, TL_stars.starGiftAttributeBackdrop.class), (TL_stars.starGiftAttributePattern) cg.d.d(arrayList, TL_stars.starGiftAttributePattern.class), (TL_stars.starGiftAttributeModel) cg.d.d(arrayList, TL_stars.starGiftAttributeModel.class));
                 this.f8931g2.O(false);
                 i1(false);
-                ek0 ek0Var = this.f39532o1;
+                ek0 ek0Var = this.f39531o1;
                 ViewGroup viewGroup = this.f30176b;
                 Objects.requireNonNull(ek0Var);
                 this.f8943s2 = new dh.k(ek0Var, viewGroup, new q40(ek0Var, 0));
@@ -315,7 +315,7 @@ public final class h1 extends org.telegram.ui.Components.sa {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        a1 a1Var = new a1(this, this.f39532o1, getContext(), this.T1, new bi.b(this, 16), this.J0);
+        a1 a1Var = new a1(this, this.f39531o1, getContext(), this.T1, new bi.b(this, 16), this.J0);
         this.f8931g2 = a1Var;
         a1Var.f34062r = false;
         return a1Var;
@@ -405,7 +405,7 @@ public final class h1 extends org.telegram.ui.Components.sa {
     public final void j1() {
         f1 f1Var;
         c1 c1Var;
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int childCount = ek0Var.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
             View childAt = ek0Var.getChildAt(i7);
@@ -428,7 +428,7 @@ public final class h1 extends org.telegram.ui.Components.sa {
         }
         if (this.f8944t2 != i7) {
             this.f8944t2 = i7;
-            this.f39532o1.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(74.0f) + i7);
+            this.f39531o1.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(74.0f) + i7);
             g1 g1Var = this.f8930f2;
             ((ViewGroup.MarginLayoutParams) g1Var.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(5.0f) + this.f8944t2;
             g1Var.requestLayout();

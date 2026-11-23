@@ -381,9 +381,9 @@ public class y0 extends FrameLayout implements b6 {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(isEnabled());
         op opVar = this.f30290e;
-        if (opVar != null && opVar.f38321a.f32874q) {
+        if (opVar != null && opVar.f38320a.f32874q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(this.f30290e.f38321a.f32874q);
+            accessibilityNodeInfo.setChecked(this.f30290e.f38320a.f32874q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }

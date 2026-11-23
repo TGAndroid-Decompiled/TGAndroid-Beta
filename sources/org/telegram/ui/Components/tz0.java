@@ -9,16 +9,16 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class tz0 extends FrameLayout {
-    public boolean f40175a;
-    public final RectF f40176b;
-    public Boolean f40177c;
+    public boolean f40174a;
+    public final RectF f40175b;
+    public Boolean f40176c;
     public final ThemeEditorView.EditorAlert d;
 
     public tz0(ThemeEditorView.EditorAlert editorAlert, Context context) {
         super(context);
         this.d = editorAlert;
-        this.f40175a = false;
-        this.f40176b = new RectF();
+        this.f40174a = false;
+        this.f40175b = new RectF();
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class tz0 extends FrameLayout {
         drawable.setBounds(0, L2, getMeasuredWidth(), i11);
         drawable.draw(canvas);
         int i17 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-        RectF rectF = this.f40176b;
+        RectF rectF = this.f40175b;
         if (i17 != 0) {
             org.telegram.ui.ActionBar.m6.f29672t0.setColor(-1);
             rectF.set(editorAlert.f30211u0, editorAlert.f30210t0 + L2, getMeasuredWidth() - editorAlert.f30211u0, org.telegram.messenger.g0.L(24.0f) + editorAlert.f30210t0 + L2);
@@ -84,7 +84,7 @@ public final class tz0 extends FrameLayout {
         } else {
             z10 = false;
         }
-        Boolean bool = this.f40177c;
+        Boolean bool = this.f40176c;
         if (bool != null && bool.booleanValue() == z10) {
             return;
         }
@@ -98,7 +98,7 @@ public final class tz0 extends FrameLayout {
         if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.m6.w(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29661s8, editorAlert.J0), 855638016)) > 0.721f) {
             z12 = true;
         }
-        this.f40177c = Boolean.valueOf(z10);
+        this.f40176c = Boolean.valueOf(z10);
         if (!z10) {
             z11 = z12;
         }
@@ -131,21 +131,21 @@ public final class tz0 extends FrameLayout {
         uz0 uz0Var = editorAlert.n1;
         int i11 = ThemeEditorView.EditorAlert.H1;
         if (!editorAlert.W) {
-            this.f40175a = true;
+            this.f40174a = true;
             int i12 = editorAlert.f30211u0;
             setPadding(i12, org.telegram.messenger.g0.f24040m, i12, 0);
-            this.f40175a = false;
+            this.f40174a = false;
         }
         int L = (org.telegram.messenger.g0.L(8.0f) + (size2 - org.telegram.messenger.g0.f24040m)) - Math.min(size, size2 - org.telegram.messenger.g0.f24040m);
         if (uz0Var.getPaddingTop() != L) {
-            this.f40175a = true;
+            this.f40174a = true;
             uz0Var.getPaddingTop();
             uz0Var.setPadding(0, L, 0, org.telegram.messenger.g0.L(48.0f));
             if (editorAlert.f33194m1.getVisibility() == 0) {
                 editorAlert.setScrollOffsetY(uz0Var.getPaddingTop());
                 editorAlert.B1 = 0;
             }
-            this.f40175a = false;
+            this.f40174a = false;
         }
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
@@ -160,7 +160,7 @@ public final class tz0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f40175a) {
+        if (this.f40174a) {
             return;
         }
         super.requestLayout();

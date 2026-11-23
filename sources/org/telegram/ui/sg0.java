@@ -25,7 +25,7 @@ public final class sg0 extends ah.o {
                 if (z11 != z12) {
                     this.M = z12;
                     if (z12) {
-                        org.telegram.ui.Components.ek0 ek0Var = vg0Var.f39532o1;
+                        org.telegram.ui.Components.ek0 ek0Var = vg0Var.f39531o1;
                         pi.l lVar = new pi.l(vg0Var.getContext(), 2, 0.6f);
                         lVar.f59109a = 1;
                         lVar.f55744p = org.telegram.messenger.g0.L(36.0f);
@@ -45,7 +45,7 @@ public final class sg0 extends ah.o {
                 if (z13 != z14) {
                     this.M = z14;
                     if (z14) {
-                        org.telegram.ui.Components.ek0 ek0Var2 = e1Var.f39532o1;
+                        org.telegram.ui.Components.ek0 ek0Var2 = e1Var.f39531o1;
                         pi.l lVar2 = new pi.l(e1Var.getContext(), 2, 0.6f);
                         lVar2.f59109a = 1;
                         lVar2.f55744p = org.telegram.messenger.g0.L(36.0f);

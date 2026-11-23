@@ -82,7 +82,7 @@ public final class db implements org.telegram.ui.Cells.m1 {
             org.telegram.messenger.gj messageObject = r1Var.getMessageObject();
             if (characterStyle instanceof org.telegram.ui.Components.r41) {
                 org.telegram.ui.Components.r41 r41Var = (org.telegram.ui.Components.r41) characterStyle;
-                org.telegram.messenger.g0.g(r41Var.f39072a.subSequence(r41Var.f39073b, r41Var.f39074c).toString());
+                org.telegram.messenger.g0.g(r41Var.f39071a.subSequence(r41Var.f39072b, r41Var.f39073c).toString());
                 if (org.telegram.messenger.g0.G3()) {
                     Toast.makeText(lbVar.getParentActivity(), org.telegram.messenger.hd.N0(2131743951, null), 0).show();
                 }

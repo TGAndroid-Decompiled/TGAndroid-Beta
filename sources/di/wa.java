@@ -35,20 +35,20 @@ public final class wa extends n41 {
             z11 = false;
         }
         xaVar.f10054c = i13;
-        o6Var.c(o41Var.f38092m, z11, true);
-        if (o41Var.f38097r) {
+        o6Var.c(o41Var.f38091m, z11, true);
+        if (o41Var.f38096r) {
             i7 = org.telegram.ui.ActionBar.m6.f29581o6;
         } else {
             i7 = org.telegram.ui.ActionBar.m6.G6;
         }
         org.telegram.ui.ActionBar.m6.v0(i7);
-        if (o41Var.f38097r) {
+        if (o41Var.f38096r) {
             i10 = org.telegram.ui.ActionBar.m6.f29581o6;
         } else {
             i10 = org.telegram.ui.ActionBar.m6.G6;
         }
         org.telegram.ui.ActionBar.t6.Y(o6Var, i10, null);
-        if (o41Var.f38097r) {
+        if (o41Var.f38096r) {
             i11 = org.telegram.ui.ActionBar.m6.f29581o6;
         } else {
             i11 = org.telegram.ui.ActionBar.m6.G6;
@@ -57,12 +57,12 @@ public final class wa extends n41 {
         float f10 = 180.0f;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
-            if (o41Var.f38086f) {
+            if (o41Var.f38085f) {
                 f10 = 0.0f;
             }
             animate.rotation(f10).setDuration(340L).setInterpolator(nr.h);
         } else {
-            if (o41Var.f38086f) {
+            if (o41Var.f38085f) {
                 f10 = 0.0f;
             }
             imageView.setRotation(f10);

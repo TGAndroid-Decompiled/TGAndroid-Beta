@@ -221,7 +221,7 @@ public class PremiumPreviewFragment extends org.telegram.ui.ActionBar.g2 impleme
                             int min2 = (int) Math.min(org.telegram.messenger.g0.L(324.0f), point.x * 0.95f);
                             org.telegram.ui.Components.n5 n5Var2 = js0Var2.h;
                             if (n5Var2 != null) {
-                                Drawable[] drawableArr = n5Var2.f37778f;
+                                Drawable[] drawableArr = n5Var2.f37777f;
                                 Drawable drawable = drawableArr[1];
                                 if (drawable != null) {
                                     if (drawable instanceof org.telegram.ui.Components.p5) {

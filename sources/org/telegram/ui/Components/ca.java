@@ -67,12 +67,12 @@ public final class ca {
         if (haVar == null) {
             return this.f34137o;
         }
-        synchronized (haVar.f35851n) {
+        synchronized (haVar.f35850n) {
             try {
-                if (!haVar.f35854q) {
+                if (!haVar.f35853q) {
                     bitmap = null;
                 } else {
-                    bitmap = haVar.f35853p;
+                    bitmap = haVar.f35852p;
                 }
             } finally {
             }
@@ -112,8 +112,8 @@ public final class ca {
     public final void e() {
         ha haVar = this.f34135m;
         if (haVar != null) {
-            synchronized (haVar.f35851n) {
-                haVar.f35854q = false;
+            synchronized (haVar.f35850n) {
+                haVar.f35853q = false;
             }
         }
     }

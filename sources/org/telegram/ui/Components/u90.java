@@ -4,10 +4,10 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 public final class u90 extends ek0 {
-    public boolean f40301f3;
-    public boolean f40302g3;
-    public int f40303h3;
-    public int f40304i3;
+    public boolean f40300f3;
+    public boolean f40301g3;
+    public int f40302h3;
+    public int f40303i3;
     public final v90 j3;
 
     public u90(v90 v90Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
@@ -28,10 +28,10 @@ public final class u90 extends ek0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         v90 v90Var = this.j3;
-        jg.h1 h1Var = v90Var.f40747f;
-        jg.n1 n1Var = v90Var.f40746e;
-        if (!v90Var.f40745c.f59122t ? this.f40302g3 || n1Var == null || n1Var.f17626e == null || !n1Var.f17627f || motionEvent.getY() >= n1Var.f17626e.getBottom() : this.f40302g3 || n1Var == null || n1Var.f17626e == null || !n1Var.f17627f || motionEvent.getY() <= n1Var.f17626e.getTop()) {
-            if (!this.f40301f3 && org.telegram.ui.ns.p().q(motionEvent, v90Var.f40744b, null, this.f34873o2)) {
+        jg.h1 h1Var = v90Var.f40746f;
+        jg.n1 n1Var = v90Var.f40745e;
+        if (!v90Var.f40744c.f59122t ? this.f40301g3 || n1Var == null || n1Var.f17626e == null || !n1Var.f17627f || motionEvent.getY() >= n1Var.f17626e.getBottom() : this.f40301g3 || n1Var == null || n1Var.f17626e == null || !n1Var.f17627f || motionEvent.getY() <= n1Var.f17626e.getTop()) {
+            if (!this.f40300f3 && org.telegram.ui.ns.p().q(motionEvent, v90Var.f40743b, null, this.f34873o2)) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -72,7 +72,7 @@ public final class u90 extends ek0 {
             if (g10) {
                 i14 = 0;
             } else {
-                i14 = this.f40304i3 - i16;
+                i14 = this.f40303i3 - i16;
             }
             i13 = top - i14;
         } else {
@@ -85,21 +85,21 @@ public final class u90 extends ek0 {
             super.onLayout(false, i7, i10, i11, i12);
             v90Var.H = false;
             v90Var.I = false;
-        } else if (N0 != -1 && i15 == this.f40303h3 && i16 - this.f40304i3 != 0) {
+        } else if (N0 != -1 && i15 == this.f40302h3 && i16 - this.f40303i3 != 0) {
             v90Var.H = true;
             currentLayoutManager.i1(N0, i13, false);
             super.onLayout(false, i7, i10, i11, i12);
             v90Var.H = false;
         }
-        this.f40304i3 = i16;
-        this.f40303h3 = i15;
+        this.f40303i3 = i16;
+        this.f40302h3 = i15;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i10);
         v90 v90Var = this.j3;
-        jg.n1 n1Var = v90Var.f40746e;
+        jg.n1 n1Var = v90Var.f40745e;
         if (n1Var != null) {
             n1Var.d = Integer.valueOf(size);
             bi.m3 m3Var = n1Var.f17626e;
@@ -108,19 +108,19 @@ public final class u90 extends ek0 {
             }
         }
         float min = (int) Math.min(org.telegram.messenger.g0.L(126.0f), org.telegram.messenger.g0.f24046q.y * 0.22f);
-        v90Var.f40751w = min;
+        v90Var.f40750w = min;
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size + ((int) min), 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         v90 v90Var = this.j3;
-        jg.n1 n1Var = v90Var.f40746e;
-        if (v90Var.f40745c.f59122t) {
-            if (!this.f40302g3 && n1Var != null && n1Var.f17626e != null && n1Var.f17627f && motionEvent.getY() > n1Var.f17626e.getTop()) {
+        jg.n1 n1Var = v90Var.f40745e;
+        if (v90Var.f40744c.f59122t) {
+            if (!this.f40301g3 && n1Var != null && n1Var.f17626e != null && n1Var.f17627f && motionEvent.getY() > n1Var.f17626e.getTop()) {
                 return false;
             }
-        } else if (!this.f40302g3 && n1Var != null && n1Var.f17626e != null && n1Var.f17627f && motionEvent.getY() < n1Var.f17626e.getBottom()) {
+        } else if (!this.f40301g3 && n1Var != null && n1Var.f17626e != null && n1Var.f17627f && motionEvent.getY() < n1Var.f17626e.getBottom()) {
             return false;
         }
         return super.onTouchEvent(motionEvent);

@@ -7,17 +7,17 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 public final class oe extends FrameLayout {
-    public final Paint f38172a;
-    public final RectF f38173b;
-    public final org.telegram.ui.ActionBar.h6 f38174c;
+    public final Paint f38171a;
+    public final RectF f38172b;
+    public final org.telegram.ui.ActionBar.h6 f38173c;
     public final ChatActivityEnterView d;
 
     public oe(ChatActivityEnterView chatActivityEnterView, Activity activity, org.telegram.ui.ActionBar.h6 h6Var) {
         super(activity);
         this.d = chatActivityEnterView;
-        this.f38174c = h6Var;
-        this.f38172a = new Paint(1);
-        this.f38173b = new RectF();
+        this.f38173c = h6Var;
+        this.f38171a = new Paint(1);
+        this.f38172b = new RectF();
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class oe extends FrameLayout {
             }
             float N = org.telegram.messenger.g0.N(19.0f);
             int G0 = chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.Pe);
-            Paint paint = this.f38172a;
+            Paint paint = this.f38171a;
             paint.setColor(G0);
             float N2 = org.telegram.messenger.g0.N(3.0f);
             float N3 = org.telegram.messenger.g0.N(38.0f);
@@ -39,7 +39,7 @@ public final class oe extends FrameLayout {
             float measuredHeight = (getMeasuredHeight() - N3) - N2;
             float measuredWidth2 = getMeasuredWidth() - N2;
             float measuredHeight2 = getMeasuredHeight() - N2;
-            RectF rectF = this.f38173b;
+            RectF rectF = this.f38172b;
             rectF.set(measuredWidth, measuredHeight, measuredWidth2, measuredHeight2);
             canvas.save();
             canvas.scale(f10, f10, rectF.centerX(), rectF.centerY());

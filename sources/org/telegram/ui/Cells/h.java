@@ -109,7 +109,7 @@ public final class h extends ClickableSpan {
                 } else {
                     ob obVar = new ob(b02.X(), resourceProvider);
                     obVar.c(2131624346, 36, 36, "Wibe", "Circle");
-                    obVar.f38158b.setText(N0);
+                    obVar.f38157b.setText(N0);
                     b10 = b02.b(obVar, 1500);
                 }
                 b10.j();

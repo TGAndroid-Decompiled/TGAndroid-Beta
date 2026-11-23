@@ -90,7 +90,7 @@ public final class o50 extends org.telegram.ui.Components.e51 {
             aj.e.f1676k.b(b5Var);
             d0();
         }
-        this.f34681a.f35790g3.O(true);
+        this.f34681a.f35789g3.O(true);
     }
 
     @Override

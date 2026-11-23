@@ -100,7 +100,7 @@ public final class n5 extends org.telegram.ui.ActionBar.w2 {
         if (Y != null) {
             String N0 = hd.N0(2131744638, null);
             String N02 = hd.N0(2131744637, null);
-            cc ccVar = new cc(Y.X(), Y.f37163c);
+            cc ccVar = new cc(Y.X(), Y.f37162c);
             ccVar.f34170a.setImageResource(2131232395);
             ccVar.f34171b.setText(N0);
             TextView textView = ccVar.f34172c;

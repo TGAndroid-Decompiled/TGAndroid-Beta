@@ -261,7 +261,7 @@ public final class n2 implements org.telegram.ui.web.c0 {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) obj.f18918e);
-            spannableStringBuilder.setSpan(new y5(obj.f18919f, 1.4f, rVarArr[0].f18883l.f37794a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new y5(obj.f18919f, 1.4f, rVarArr[0].f18883l.f37793a.getFontMetricsInt()), 0, 1, 33);
             rVarArr[0].f18883l.t(spannableStringBuilder, true, true);
         } else {
             rVarArr[0].f18883l.t(obj.f18918e, true, true);

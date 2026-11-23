@@ -313,7 +313,7 @@ public final class d0 extends w2 implements gs, te.b, q2 {
         z zVar = this.f19940v1;
         if (i7 == i11) {
             if (((TLRPC.ChatFull) objArr[0]).f28435id == j3) {
-                zVar.d.f35790g3.O(true);
+                zVar.d.f35789g3.O(true);
             }
         } else if (i7 == ls.f25371r) {
             Integer num = (Integer) objArr[0];
@@ -339,7 +339,7 @@ public final class d0 extends w2 implements gs, te.b, q2 {
             if (this.f19933o1.getCurrentPosition() == 2) {
                 te.a aVar = this.n1;
                 if (aVar.f57701f) {
-                    this.f19942x1.d.f35789f3.h1(1, this.P1.f15918b);
+                    this.f19942x1.d.f35788f3.h1(1, this.P1.f15918b);
                     aVar.a(false, true);
                     this.f30207r0 = true;
                     e10 e10Var = this.f19944z1;
@@ -447,7 +447,7 @@ public final class d0 extends w2 implements gs, te.b, q2 {
         h51Var.setClipToPadding(false);
         h51Var.setVisibility(8);
         h51Var.r1();
-        h51Var.f35790g3.f34062r = false;
+        h51Var.f35789g3.f34062r = false;
         h51Var.setPadding(0, org.telegram.messenger.g0.L(52.0f) + org.telegram.messenger.g0.f24040m, 0, org.telegram.messenger.g0.f24041n);
         c00 c00Var = new c00(g2Var);
         this.A1 = c00Var;

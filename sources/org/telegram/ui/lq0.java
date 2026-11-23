@@ -118,7 +118,7 @@ public final class lq0 extends xh.l {
             if (this.f49693e0 == null) {
                 org.telegram.ui.Components.q80 q80Var = new org.telegram.ui.Components.q80();
                 this.f49693e0 = q80Var;
-                q80Var.f38834y = this.f49695g0;
+                q80Var.f38833y = this.f49695g0;
                 q80Var.k(4.0f);
                 this.f49693e0.g(org.telegram.ui.ActionBar.m6.r1(0.3f, -1), org.telegram.ui.ActionBar.m6.r1(0.1f, -1), org.telegram.ui.ActionBar.m6.r1(0.2f, -1), org.telegram.ui.ActionBar.m6.r1(0.7f, -1));
                 this.f49693e0.setCallback(this);

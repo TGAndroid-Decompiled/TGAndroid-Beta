@@ -171,7 +171,7 @@ public class k0 extends sa implements gs {
             if (uvVar != null) {
                 ((ViewGroup) uvVar.getParent()).removeView(this.H2);
             }
-            this.f39532o1.setPadding(0, 0, 0, 0);
+            this.f39531o1.setPadding(0, 0, 0, 0);
             TextView textView = new TextView(context);
             this.B2 = textView;
             textView.setGravity(17);
@@ -454,7 +454,7 @@ public class k0 extends sa implements gs {
                     if (uvVar != null && uvVar.getParent() != null) {
                         ((ViewGroup) this.H2.getParent()).removeView(this.H2);
                     }
-                    ek0 ek0Var = this.f39532o1;
+                    ek0 ek0Var = this.f39531o1;
                     if (ek0Var != null) {
                         ek0Var.setPadding(0, 0, 0, 0);
                     }
@@ -637,10 +637,10 @@ public class k0 extends sa implements gs {
                 tq tqVar2 = a0Var2.J;
                 int i11 = m6.Fi;
                 int i12 = m6.Ji;
-                sq sqVar = tqVar2.f40016a;
+                sq sqVar = tqVar2.f40015a;
                 sqVar.v = i11;
-                sqVar.f39671w = i12;
-                sqVar.f39653b = 0.8f;
+                sqVar.f39670w = i12;
+                sqVar.f39652b = 0.8f;
                 a0Var2.setClipChildren(false);
                 a0Var2.addView(a0Var2.J, ma.e(-1, 24, 16));
             }
@@ -651,7 +651,7 @@ public class k0 extends sa implements gs {
             } else {
                 this.A2.c(hd.N0(2131754554, null), true, true);
             }
-            this.A2.J.f40016a.c(hashSet.size(), true);
+            this.A2.J.f40015a.c(hashSet.size(), true);
             this.A2.invalidate();
             return;
         }
@@ -733,18 +733,18 @@ public class k0 extends sa implements gs {
                             }
                         }
                         a0 a0Var = this.A2;
-                        a0Var.E.f41196p = null;
+                        a0Var.E.f41195p = null;
                         a0Var.G.setVisibility(8);
                         return;
                     }
                     a0 a0Var2 = this.A2;
-                    a0Var2.E.f41196p = null;
+                    a0Var2.E.f41195p = null;
                     a0Var2.G.setVisibility(8);
                     return;
                 }
                 this.A2.f58904f.setText(hd.N0(2131747637, null));
                 a0 a0Var3 = this.A2;
-                a0Var3.E.f41196p = null;
+                a0Var3.E.f41195p = null;
                 a0Var3.G.setVisibility(8);
                 return;
             }
@@ -805,7 +805,7 @@ public class k0 extends sa implements gs {
                         this.f58773g2 = i10 + 2;
                         this.f58776j2 = i10 + 1;
                     } else {
-                        this.f39539v1 = 0.24f;
+                        this.f39538v1 = 0.24f;
                     }
                     if (this.E2) {
                         int i11 = this.f58773g2;
@@ -834,7 +834,7 @@ public class k0 extends sa implements gs {
                     }
                 }
             } else {
-                this.f39539v1 = 0.24f;
+                this.f39538v1 = 0.24f;
                 E1();
                 int i14 = this.f58773g2;
                 this.f58777k2 = i14;
@@ -847,7 +847,7 @@ public class k0 extends sa implements gs {
             }
         } else {
             if (i7 != 19 || v3.N(o1())) {
-                this.f39539v1 = 0.24f;
+                this.f39538v1 = 0.24f;
                 int i16 = this.f58773g2;
                 this.f58773g2 = i16 + 1;
                 this.V1 = i16;
@@ -864,7 +864,7 @@ public class k0 extends sa implements gs {
             this.f58782p2 = i18;
             this.f58773g2 = (this.f58783q2.size() - 1) + i19;
         }
-        this.f39532o1.getAdapter().f();
+        this.f39531o1.getAdapter().f();
     }
 
     @Override
@@ -925,7 +925,7 @@ public class k0 extends sa implements gs {
         a0 a0Var = new a0(this, context, this.J0);
         this.A2 = a0Var;
         ra.b(a0Var, 0.02f, 1.2f);
-        if (!this.f39537t1 && (i7 = this.d2) != 18 && i7 != 20 && i7 != 24 && i7 != 25 && i7 != 26 && i7 != 29 && i7 != 22 && i7 != 23 && i7 != 21 && i7 != 27 && i7 != 28 && i7 != 30 && i7 != 35) {
+        if (!this.f39536t1 && (i7 = this.d2) != 18 && i7 != 20 && i7 != 24 && i7 != 25 && i7 != 26 && i7 != 29 && i7 != 22 && i7 != 23 && i7 != 21 && i7 != 27 && i7 != 28 && i7 != 30 && i7 != 35) {
             uv uvVar = new uv(14, context, this);
             this.H2 = uvVar;
             t6.h(m6.f29454h5, uvVar, this.J0);
@@ -935,7 +935,7 @@ public class k0 extends sa implements gs {
         float f10 = (this.f30211u0 / org.telegram.messenger.g0.f24045p) + 16.0f;
         du0Var.addView(a0Var2, ma.d(-1, 48.0f, 80, f10, 0.0f, f10, 12.0f));
         int L = org.telegram.messenger.g0.L(72.0f);
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         ek0Var.setPadding(0, 0, 0, L);
         ek0Var.setClipToPadding(false);
         ek0Var.setClipChildren(false);
@@ -955,7 +955,7 @@ public class k0 extends sa implements gs {
         if (i7 == ls.X2) {
             TLRPC.Chat chat = (TLRPC.Chat) objArr[0];
             boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
-            g2 g2Var3 = this.f39536s1;
+            g2 g2Var3 = this.f39535s1;
             g2 lastFragment = g2Var3.getParentLayout().getLastFragment();
             g2 g2Var4 = null;
             if (lastFragment instanceof ch.p) {
@@ -1591,7 +1591,7 @@ public class k0 extends sa implements gs {
         } catch (Exception unused) {
         }
         this.Z1.f58754c.a(this.Y1.f24080i, true);
-        this.f39532o1.y0(0);
+        this.f39531o1.y0(0);
         if (i22 == 32) {
             this.Z1.f58754c.setVisibility(8);
         }

@@ -84,7 +84,7 @@ public abstract class s {
             jh0[] jh0VarArr = (jh0[]) spanned.getSpans(i15, nextSpanTransition, jh0.class);
             if (jh0VarArr != null) {
                 for (jh0 jh0Var : jh0VarArr) {
-                    if (jh0Var.f36505e) {
+                    if (jh0Var.f36504e) {
                         str3 = "<blockquote collapsed>";
                     } else {
                         str3 = "<blockquote>";
@@ -115,7 +115,7 @@ public abstract class s {
                     String str5 = "\">";
                     if (u41VarArr != null) {
                         for (u41 u41Var : u41VarArr) {
-                            a(u41Var.f40260a, sb2);
+                            a(u41Var.f40259a, sb2);
                             sb2.append("<a href=\"");
                             sb2.append(u41Var.getURL());
                             sb2.append("\">");
@@ -332,7 +332,7 @@ public abstract class s {
                     if (u41VarArr != null) {
                         for (u41 u41Var2 : u41VarArr) {
                             sb2.append("</a>");
-                            b(u41Var2.f40260a, sb2);
+                            b(u41Var2.f40259a, sb2);
                         }
                     }
                     length = i36;

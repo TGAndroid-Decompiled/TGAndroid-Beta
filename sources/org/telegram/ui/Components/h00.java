@@ -69,14 +69,14 @@ public final class h00 extends FrameLayout implements org.telegram.ui.ActionBar.
         n6Var.w(org.telegram.messenger.g0.L(11.66f));
         n6Var.u(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29381d6, false));
         n6Var.x(org.telegram.messenger.g0.o());
-        n6Var.f37796b = 1;
+        n6Var.f37795b = 1;
         int r12 = org.telegram.ui.ActionBar.m6.r1(0.8f, org.telegram.ui.ActionBar.m6.x0(null, i11, false));
         int x02 = org.telegram.ui.ActionBar.m6.x0(null, i12, false);
         if (N0 != null) {
             f10 = 15.33f;
             xy0 xy0Var = new xy0(g00.a(N0), 15.33f, org.telegram.messenger.g0.o());
             xy0Var.r(view);
-            xy0Var.f42245a.setColor(r12);
+            xy0Var.f42244a.setColor(r12);
             view.f35350f = xy0Var;
         } else {
             f10 = 15.33f;
@@ -84,7 +84,7 @@ public final class h00 extends FrameLayout implements org.telegram.ui.ActionBar.
         CharSequence a10 = g00.a(spannableStringBuilder);
         xy0 xy0Var2 = new xy0(a10, f10, org.telegram.messenger.g0.o());
         xy0Var2.r(view);
-        TextPaint textPaint3 = xy0Var2.f42245a;
+        TextPaint textPaint3 = xy0Var2.f42244a;
         textPaint3.setColor(x02);
         view.h = xy0Var2;
         xy0Var2.q(org.telegram.messenger.gj.B5(org.telegram.messenger.j6.m(a10, textPaint3.getFontMetricsInt(), false, null, 0), arrayList, textPaint3.getFontMetricsInt(), false));
@@ -97,7 +97,7 @@ public final class h00 extends FrameLayout implements org.telegram.ui.ActionBar.
         if (N02 != null) {
             xy0 xy0Var3 = new xy0(g00.a(N02), 15.33f, org.telegram.messenger.g0.o());
             xy0Var3.r(view);
-            xy0Var3.f42245a.setColor(r12);
+            xy0Var3.f42244a.setColor(r12);
             view.f35351n = xy0Var3;
         }
         float L = org.telegram.messenger.g0.L(3.0f);
@@ -158,7 +158,7 @@ public final class h00 extends FrameLayout implements org.telegram.ui.ActionBar.
         String str;
         int i10;
         i00 i00Var = this.f35738f;
-        ArrayList arrayList = i00Var.f36070c2;
+        ArrayList arrayList = i00Var.f36069c2;
         boolean z10 = i00Var.X1;
         CharSequence charSequence = this.f35735b;
         x5 x5Var = this.f35737e;

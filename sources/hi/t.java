@@ -81,7 +81,7 @@ public abstract class t extends o {
         this.f15469a1 = new s(iaVar, iaVar);
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true);
         this.f15470b1 = n6Var;
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
         n6Var.n(0.16f, 50L, nrVar);
         n6Var.w(org.telegram.messenger.g0.L(15.0f));
         n6Var.x(org.telegram.messenger.g0.o());
@@ -97,11 +97,11 @@ public abstract class t extends o {
         this.f15477i1 = w9Var2;
         paint.setColor(-1);
         paint2.setColor(-15033089);
-        w9Var.f41713a = org.telegram.messenger.g0.L(47.0f);
-        w9Var.f41714b = org.telegram.messenger.g0.L(55.0f);
+        w9Var.f41712a = org.telegram.messenger.g0.L(47.0f);
+        w9Var.f41713b = org.telegram.messenger.g0.L(55.0f);
         w9Var.b();
-        w9Var2.f41713a = org.telegram.messenger.g0.L(47.0f);
-        w9Var2.f41714b = org.telegram.messenger.g0.L(55.0f);
+        w9Var2.f41712a = org.telegram.messenger.g0.L(47.0f);
+        w9Var2.f41713b = org.telegram.messenger.g0.L(55.0f);
         w9Var2.b();
         this.f15478j1 = getContext().getResources().getDrawable(2131231516).mutate();
         this.l1 = new org.telegram.ui.Components.d6(new p(iaVar, 0), 200L, nrVar, 0);
@@ -322,7 +322,7 @@ public abstract class t extends o {
                     this.f15492z1.setStrokeJoin(Paint.Join.ROUND);
                 }
                 this.f15492z1.setStrokeWidth(org.telegram.messenger.g0.L(1.33f));
-                this.f15490x1.f42258p = (int) ((rectF.width() - org.telegram.messenger.g0.L(116.0f)) - n6Var.c());
+                this.f15490x1.f42257p = (int) ((rectF.width() - org.telegram.messenger.g0.L(116.0f)) - n6Var.c());
                 float t6 = com.google.android.gms.internal.vision.e2.t(1.0f, this.f15471c1, org.telegram.messenger.g0.L(6.0f) * sin, (rectF.centerX() - ((this.f15490x1.k() + org.telegram.messenger.g0.L(11.33f)) / 2.0f)) - (org.telegram.messenger.g0.T1(this.f15471c1, 1.0f, d2) * (rectF.width() / 6.0f)));
                 if (paint != null) {
                     i10 = -1;
@@ -346,7 +346,7 @@ public abstract class t extends o {
                 if (this.A1 == null) {
                     this.A1 = new xy0(hd.N0(2131752558, str2), f13, org.telegram.messenger.g0.o());
                 }
-                this.A1.f42258p = (int) ((rectF.width() - org.telegram.messenger.g0.L(116.0f)) - n6Var.c());
+                this.A1.f42257p = (int) ((rectF.width() - org.telegram.messenger.g0.L(116.0f)) - n6Var.c());
                 float width = ((rectF.width() / 4.0f) * f14) + (rectF.centerX() - (this.A1.k() / 2.0f));
                 if (paint != null) {
                     i7 = -1;
@@ -397,27 +397,27 @@ public abstract class t extends o {
         Paint paint = this.f15475g1;
         if (e11) {
             org.telegram.ui.Components.w9 w9Var = this.f15476h1;
-            w9Var.f41713a = org.telegram.messenger.g0.L(47.0f);
+            w9Var.f41712a = org.telegram.messenger.g0.L(47.0f);
             Paint paint2 = w9Var.d;
             f11 = 0.0f;
-            w9Var.f41714b = (org.telegram.messenger.g0.L(15.0f) * 0.6f) + org.telegram.messenger.g0.L(47.0f);
+            w9Var.f41713b = (org.telegram.messenger.g0.L(15.0f) * 0.6f) + org.telegram.messenger.g0.L(47.0f);
             f12 = d2;
             org.telegram.ui.Components.w9 w9Var2 = this.f15477i1;
-            w9Var2.f41713a = org.telegram.messenger.g0.L(50.0f);
+            w9Var2.f41712a = org.telegram.messenger.g0.L(50.0f);
             Paint paint3 = w9Var2.d;
             f13 = f19;
-            w9Var2.f41714b = (org.telegram.messenger.g0.L(12.0f) * 0.6f) + org.telegram.messenger.g0.L(50.0f);
+            w9Var2.f41713b = (org.telegram.messenger.g0.L(12.0f) * 0.6f) + org.telegram.messenger.g0.L(50.0f);
             w9Var2.e(e10, 1.01f);
             w9Var.e(e10, 1.02f);
             paint3.setColor(org.telegram.ui.ActionBar.m6.r1(0.15f * f10, paint.getColor()));
             canvas.save();
-            float f21 = f20 / w9Var2.f41713a;
+            float f21 = f20 / w9Var2.f41712a;
             canvas.scale(f21, f21, T1, L);
             w9Var2.a(T1, L, canvas, paint3);
             canvas.restore();
             paint2.setColor(org.telegram.ui.ActionBar.m6.r1(0.3f * f10, paint.getColor()));
             canvas.save();
-            float f22 = f20 / w9Var.f41713a;
+            float f22 = f20 / w9Var.f41712a;
             canvas.scale(f22, f22, T1, L);
             w9Var.a(T1, L, canvas, paint2);
             canvas.restore();

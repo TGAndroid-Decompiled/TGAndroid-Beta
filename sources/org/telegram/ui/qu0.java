@@ -63,9 +63,9 @@ public final class qu0 extends org.telegram.ui.Components.ek0 implements fi.w6 {
                     return false;
                 }
             }
-            org.telegram.ui.Components.gq0 gq0Var = profileActivity.O.f36614b0;
+            org.telegram.ui.Components.gq0 gq0Var = profileActivity.O.f36613b0;
             if (gq0Var == null || !gq0Var.g()) {
-                org.telegram.ui.Components.jq0 jq0Var = profileActivity.O.f36618c0;
+                org.telegram.ui.Components.jq0 jq0Var = profileActivity.O.f36617c0;
                 if (jq0Var != null && jq0Var.f50351f) {
                     return false;
                 }

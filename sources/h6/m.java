@@ -847,8 +847,8 @@ public final class m implements g61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             int i14 = v5Var.f15628f;
             int i15 = v5Var.h;
             y51Var2.d = i14;
-            y51Var2.f42325e = i15;
-            ez ezVar = y51Var2.f42323b;
+            y51Var2.f42324e = i15;
+            ez ezVar = y51Var2.f42322b;
             if (ezVar != null) {
                 ezVar.postRunnable(new az(ezVar, i14, i15, 0));
             }
@@ -965,7 +965,7 @@ public final class m implements g61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             mk mkVar = (mk) this.d;
             HashMap hashMap = (HashMap) this.f13968b;
             ArrayList arrayList = (ArrayList) this.f13969c;
-            ui uiVar = mkVar.f37520b;
+            ui uiVar = mkVar.f37519b;
             if (!hashMap.isEmpty() && mkVar.R != null && !mkVar.L) {
                 mkVar.L = true;
                 ArrayList arrayList2 = new ArrayList();

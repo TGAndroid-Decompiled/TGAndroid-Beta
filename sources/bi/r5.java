@@ -74,7 +74,7 @@ public final class r5 extends Drawable {
         int L = org.telegram.messenger.g0.L(16.0f);
         int L2 = org.telegram.messenger.g0.L(16.0f);
         int i7 = org.telegram.ui.ActionBar.m6.f29381d6;
-        org.telegram.ui.ActionBar.h6 h6Var = iq0Var.f36302c;
+        org.telegram.ui.ActionBar.h6 h6Var = iq0Var.f36301c;
         this.f4053b = org.telegram.ui.ActionBar.m6.e0(L, L2, org.telegram.ui.ActionBar.m6.w(org.telegram.ui.ActionBar.m6.w0(i7, h6Var), org.telegram.ui.ActionBar.m6.r1(0.04f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, h6Var))));
         this.f4054c = new Rect();
     }

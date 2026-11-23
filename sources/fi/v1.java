@@ -145,7 +145,7 @@ public final class v1 implements View.OnClickListener {
                 return;
             case 5:
                 ui uiVar = (ui) obj;
-                org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+                org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
                 if (uiVar.O2 != 0) {
                     uiVar.X3.v0();
                     uiVar.dismiss();

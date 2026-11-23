@@ -523,7 +523,7 @@ public class bn0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
         }
         float f24 = this.J;
         if (f24 < 1.0f) {
-            float interpolation = 1.0f - zs.f42977c.getInterpolation(Math.min(1.0f, f24 * 3.0f));
+            float interpolation = 1.0f - zs.f42976c.getInterpolation(Math.min(1.0f, f24 * 3.0f));
             float interpolation2 = zs.d.getInterpolation(this.J);
             if (interpolation > f10) {
                 canvas2.drawCircle(i17 + this.K, (i14 / 2) + i15, this.H * interpolation, paint2);
@@ -625,7 +625,7 @@ public class bn0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
                 invalidate();
                 SystemClock.elapsedRealtime();
             }
-            float interpolation3 = nr.f37961f.getInterpolation(this.f33871e0);
+            float interpolation3 = nr.f37960f.getInterpolation(this.f33871e0);
             canvas2.save();
             canvas2.translate(f25 + org.telegram.messenger.g0.L(25.0f), (getMeasuredHeight() / 2.0f) + org.telegram.messenger.g0.L(14.0f));
             this.f33869d0.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Jj, h6Var));
@@ -775,7 +775,7 @@ public class bn0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
 
     public bn0(Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
         super(context);
-        this.f33879n = new d6(this, 0L, 60L, nr.f37962g);
+        this.f33879n = new d6(this, 0L, 60L, nr.f37961g);
         this.f33881s = -100.0f;
         this.f33882w = -1.0f;
         this.I = new int[]{16842910, 16842919};

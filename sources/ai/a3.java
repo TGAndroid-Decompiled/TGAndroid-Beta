@@ -48,7 +48,7 @@ public final class a3 extends e51 {
             nqVar.a(i11);
             nqVar.c(org.telegram.messenger.g0.L(18.0f));
             nqVar.F = org.telegram.messenger.g0.L(11.0f);
-            nqVar.f37951r = -org.telegram.messenger.g0.L(5.0f);
+            nqVar.f37950r = -org.telegram.messenger.g0.L(5.0f);
             spannableString.setSpan(nqVar, 0, spannableString.length(), 33);
             SpannableStringBuilder K2 = org.telegram.messenger.g0.K2(R2, spannableString, ">");
             for (ClickableSpan clickableSpan : (ClickableSpan[]) K2.getSpans(0, K2.length(), ClickableSpan.class)) {
@@ -81,10 +81,10 @@ public final class a3 extends e51 {
                 arrayList.add(o41.C(hd.N0(2131745057, null)));
                 boolean z10 = org.telegram.messenger.s2.f26730a;
                 o41 e10 = o41.e(4, hd.N0(2131745067, null));
-                e10.f38098s = true;
+                e10.f38097s = true;
                 arrayList.add(e10);
                 o41 e11 = o41.e(5, hd.N0(2131745066, null));
-                e11.f38098s = true;
+                e11.f38097s = true;
                 arrayList.add(e11);
                 arrayList.add(o41.C(null));
                 e0();
@@ -132,7 +132,7 @@ public final class a3 extends e51 {
                     return;
                 }
             } else {
-                t[] tVarArr = DictationAsr.f43068a;
+                t[] tVarArr = DictationAsr.f43067a;
                 np.g1().edit().putBoolean("asr_google", !np.g1().getBoolean("asr_google", false)).apply();
             }
         } else {
@@ -151,7 +151,7 @@ public final class a3 extends e51 {
                 }
             }
         }
-        this.f34681a.f35790g3.O(true);
+        this.f34681a.f35789g3.O(true);
     }
 
     @Override
@@ -169,7 +169,7 @@ public final class a3 extends e51 {
         this.fragmentView = super.createView(context);
         this.f34681a.r1();
         this.f34681a.setSectionsDrawBackground(true);
-        DictationAsr.f43073g.add(this.f1121n);
+        DictationAsr.f43072g.add(this.f1121n);
         m1.j();
         return this.fragmentView;
     }

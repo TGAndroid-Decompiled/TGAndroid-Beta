@@ -262,9 +262,9 @@ public final class h {
             return null;
         }
         jn jnVar = this.f56404j;
-        byte[] bArr = (byte[]) ((org.telegram.utils.twidget.w) jnVar.f36567b).remove(uri);
+        byte[] bArr = (byte[]) ((org.telegram.utils.twidget.w) jnVar.f36566b).remove(uri);
         if (bArr != null) {
-            byte[] bArr2 = (byte[]) ((org.telegram.utils.twidget.w) jnVar.f36567b).put(uri, bArr);
+            byte[] bArr2 = (byte[]) ((org.telegram.utils.twidget.w) jnVar.f36566b).put(uri, bArr);
             return null;
         }
         j2.m mVar = new j2.m(uri, 1, null, Collections.EMPTY_MAP, 0L, -1L, null, 1);

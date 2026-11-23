@@ -24,7 +24,7 @@ public final class nb0 extends zm0 {
     @Override
     public final CharSequence d() {
         tb0 tb0Var = this.d;
-        org.telegram.messenger.z10 z10Var = tb0Var.f39843v0;
+        org.telegram.messenger.z10 z10Var = tb0Var.f39842v0;
         if (z10Var != null) {
             return (CharSequence) z10Var.a(Integer.valueOf(tb0Var.I));
         }

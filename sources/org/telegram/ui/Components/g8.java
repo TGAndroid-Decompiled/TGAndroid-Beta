@@ -28,8 +28,8 @@ public final class g8 {
             tp[] tpVarArr = this.f35451a;
             tp tpVar = new tp();
             tpVarArr[i7] = tpVar;
-            tpVar.f40009g = org.telegram.messenger.g0.L(24.0f);
-            tpVar.f40012k = 1.0f;
+            tpVar.f40008g = org.telegram.messenger.g0.L(24.0f);
+            tpVar.f40011k = 1.0f;
         }
         this.h = new Paint(1);
     }
@@ -104,8 +104,8 @@ public final class g8 {
             }
             tp[] tpVarArr = this.f35451a;
             tp tpVar = tpVarArr[0];
-            while (i7 < tpVar.f40008f) {
-                float[] fArr4 = tpVar.f40011j;
+            while (i7 < tpVar.f40007f) {
+                float[] fArr4 = tpVar.f40010j;
                 fArr4[i7] = iArr[i7 / 2];
                 fArr4[i7 + 1] = 0.0f;
                 i7 += 2;
@@ -116,8 +116,8 @@ public final class g8 {
                 iArr[i12] = (int) (fArr[i12 + 3] * f12);
             }
             tp tpVar2 = tpVarArr[c11];
-            for (int i13 = 0; i13 < tpVar2.f40008f; i13 += 2) {
-                float[] fArr5 = tpVar2.f40011j;
+            for (int i13 = 0; i13 < tpVar2.f40007f; i13 += 2) {
+                float[] fArr5 = tpVar2.f40010j;
                 fArr5[i13] = iArr[i13 / 2];
                 fArr5[i13 + 1] = 0.0f;
             }
@@ -126,8 +126,8 @@ public final class g8 {
                 L = org.telegram.messenger.g0.L(26.0f);
             }
             tp tpVar3 = tpVarArr[0];
-            tpVarArr[c11].f40009g = L;
-            tpVar3.f40009g = L;
+            tpVarArr[c11].f40008g = L;
+            tpVar3.f40008g = L;
             canvas.save();
             float f21 = (float) (this.f35466r + 0.6d);
             this.f35466r = f21;

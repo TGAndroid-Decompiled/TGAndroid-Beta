@@ -35,7 +35,7 @@ public final class c implements View.OnClickListener {
                 n0Var.dismiss();
                 return;
             case 1:
-                org.telegram.ui.Cells.l3 l3Var = n0Var.f37705y2;
+                org.telegram.ui.Cells.l3 l3Var = n0Var.f37704y2;
                 org.telegram.messenger.g0.v1(l3Var.d);
                 n0Var.G2 = l3Var.getText().toString();
                 n0Var.C1();
@@ -43,13 +43,13 @@ public final class c implements View.OnClickListener {
                 n0Var.t1();
                 return;
             case 2:
-                if (n0Var.f37687g2 != null) {
+                if (n0Var.f37686g2 != null) {
                     TL_iv.RichMessage o12 = n0Var.o1();
                     if (o12 != null) {
-                        n0Var.f37687g2.a(o12);
+                        n0Var.f37686g2.a(o12);
                     }
-                } else if (n0Var.f37686f2 != null && n0Var.p1() != null) {
-                    n0Var.f37686f2.a(n0Var.p1());
+                } else if (n0Var.f37685f2 != null && n0Var.p1() != null) {
+                    n0Var.f37685f2.a(n0Var.p1());
                 }
                 n0Var.dismiss();
                 return;
@@ -57,15 +57,15 @@ public final class c implements View.OnClickListener {
                 n0Var.dismiss();
                 return;
             case 4:
-                if (s0.b(n0Var.f30173a, n0Var.f37688h2) != null) {
-                    s0.e(n0Var.f30173a, n0Var.f37688h2, null);
+                if (s0.b(n0Var.f30173a, n0Var.f37687h2) != null) {
+                    s0.e(n0Var.f30173a, n0Var.f37687h2, null);
                 } else {
                     r0 k12 = n0Var.k1();
                     if (k12 == null) {
                         org.telegram.messenger.g0.E3(4.0f, n0Var.R2, null);
                         return;
                     }
-                    s0.e(n0Var.f30173a, n0Var.f37688h2, k12);
+                    s0.e(n0Var.f30173a, n0Var.f37687h2, k12);
                 }
                 n0Var.A1();
                 dd ddVar = n0Var.S2;
@@ -154,10 +154,10 @@ public final class c implements View.OnClickListener {
                 m0Var.setRoundRadius(12);
                 String N0 = org.telegram.messenger.hd.N0(2131754955, null);
                 k kVar = new k(n0Var2, m0Var, 0);
-                k0 k0Var = m0Var.f37360c;
+                k0 k0Var = m0Var.f37359c;
                 int childCount = k0Var.getChildCount();
-                l0 l0Var = new l0(m0Var.f37358a, m0Var.getContext(), m0Var.f37359b);
-                l0Var.f37050c = m0Var.f37361e;
+                l0 l0Var = new l0(m0Var.f37357a, m0Var.getContext(), m0Var.f37358b);
+                l0Var.f37049c = m0Var.f37360e;
                 l0Var.updateColors();
                 l0Var.a("❌", N0, null);
                 l0Var.setOnClickListener(new ci.q(kVar, childCount, 10));
@@ -172,7 +172,7 @@ public final class c implements View.OnClickListener {
                     i10 = -1;
                 }
                 k0Var.addView(l0Var, c8.ma.p(i7, i10, 1.0f, 119));
-                ArrayList arrayList = n0Var2.f37699s2.f23645b;
+                ArrayList arrayList = n0Var2.f37698s2.f23645b;
                 int size = arrayList.size();
                 int i12 = 0;
                 while (i12 < size) {
@@ -180,7 +180,7 @@ public final class c implements View.OnClickListener {
                     i12++;
                     m0Var.b((TL_aicompose.AiComposeTone) obj, new k(n0Var2, m0Var, 1));
                 }
-                TL_aicompose.AiComposeTone aiComposeTone = n0Var2.f37697q2;
+                TL_aicompose.AiComposeTone aiComposeTone = n0Var2.f37696q2;
                 if (aiComposeTone != null) {
                     m0Var.d(aiComposeTone, false);
                 } else {
@@ -206,9 +206,9 @@ public final class c implements View.OnClickListener {
                 ArrayList o4 = org.telegram.messenger.a10.o(null);
                 ArrayList n10 = org.telegram.messenger.a10.n();
                 int childCount2 = linearLayout2.getChildCount();
-                if (!TextUtils.isEmpty(n0Var2.f37695o2)) {
+                if (!TextUtils.isEmpty(n0Var2.f37694o2)) {
                     linearLayout = linearLayout2;
-                    n0Var2.h1(G, linearLayout, true, b31.L0(b31.P0(n0Var2.f37695o2, null, null)), null);
+                    n0Var2.h1(G, linearLayout, true, b31.L0(b31.P0(n0Var2.f37694o2, null, null)), null);
                 } else {
                     linearLayout = linearLayout2;
                 }
@@ -218,7 +218,7 @@ public final class c implements View.OnClickListener {
                     Object obj2 = o4.get(i13);
                     i13++;
                     final org.telegram.messenger.t00 t00Var = (org.telegram.messenger.t00) obj2;
-                    if (!TextUtils.equals(t00Var.f26941a, n0Var2.f37695o2)) {
+                    if (!TextUtils.equals(t00Var.f26941a, n0Var2.f37694o2)) {
                         n0Var2.h1(G, linearLayout, false, t00Var.f26942b, new Runnable() {
                             @Override
                             public final void run() {
@@ -226,13 +226,13 @@ public final class c implements View.OnClickListener {
                                     case 0:
                                         n0 n0Var3 = n0Var2;
                                         n0Var3.j1();
-                                        n0Var3.f37695o2 = t00Var.f26941a;
+                                        n0Var3.f37694o2 = t00Var.f26941a;
                                         n0Var3.t1();
                                         return;
                                     default:
                                         n0 n0Var4 = n0Var2;
                                         n0Var4.j1();
-                                        n0Var4.f37695o2 = t00Var.f26941a;
+                                        n0Var4.f37694o2 = t00Var.f26941a;
                                         n0Var4.t1();
                                         return;
                                 }
@@ -249,7 +249,7 @@ public final class c implements View.OnClickListener {
                 while (i14 < size3) {
                     int i15 = i14 + 1;
                     final org.telegram.messenger.t00 t00Var2 = (org.telegram.messenger.t00) n10.get(i14);
-                    boolean equals = TextUtils.equals(t00Var2.f26941a, n0Var2.f37695o2);
+                    boolean equals = TextUtils.equals(t00Var2.f26941a, n0Var2.f37694o2);
                     String str = t00Var2.f26942b;
                     Runnable runnable = new Runnable() {
                         @Override
@@ -258,13 +258,13 @@ public final class c implements View.OnClickListener {
                                 case 0:
                                     n0 n0Var3 = n0Var2;
                                     n0Var3.j1();
-                                    n0Var3.f37695o2 = t00Var2.f26941a;
+                                    n0Var3.f37694o2 = t00Var2.f26941a;
                                     n0Var3.t1();
                                     return;
                                 default:
                                     n0 n0Var4 = n0Var2;
                                     n0Var4.j1();
-                                    n0Var4.f37695o2 = t00Var2.f26941a;
+                                    n0Var4.f37694o2 = t00Var2.f26941a;
                                     n0Var4.t1();
                                     return;
                             }

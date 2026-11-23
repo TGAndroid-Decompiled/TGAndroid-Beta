@@ -60,7 +60,7 @@ public abstract class n0 {
                 md0 md0Var = recyclerView.f2815e;
                 va vaVar = (va) md0Var.f49858c;
                 qf qfVar = (qf) md0Var.f49857b;
-                int indexOfChild = ((RecyclerView) qfVar.f38896b).indexOfChild(view);
+                int indexOfChild = ((RecyclerView) qfVar.f38895b).indexOfChild(view);
                 if (indexOfChild == -1) {
                     md0Var.K(view);
                 } else if (vaVar.G(indexOfChild)) {

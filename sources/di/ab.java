@@ -33,20 +33,20 @@ public final class ab extends org.telegram.ui.Components.sa implements gs {
         super(context, null, false, false, h6Var);
         this.V1 = user;
         this.W1 = runnable;
-        this.f39539v1 = 0.2f;
+        this.f39538v1 = 0.2f;
         ls.f(this.f30173a).c(this, ls.f25422y3);
         ls.f(this.f30173a).c(this, ls.A3);
         O();
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i7 = this.f30211u0;
         ek0Var.setPadding(i7, 0, i7, 0);
-        this.f39532o1.setOnItemClickListener(new bi.k8(this, 3));
+        this.f39531o1.setOnItemClickListener(new bi.k8(this, 3));
         v4.k kVar = new v4.k();
         kVar.f59194m = false;
         kVar.C = false;
         kVar.o(nr.h);
         kVar.n(350L);
-        this.f39532o1.setItemAnimator(kVar);
+        this.f39531o1.setItemAnimator(kVar);
         w0(org.telegram.ui.ActionBar.m6.f29472i5);
         za zaVar = new za(0, context, h6Var);
         this.T1 = zaVar;
@@ -79,7 +79,7 @@ public final class ab extends org.telegram.ui.Components.sa implements gs {
             }
         }), true)));
         m80Var.setMaxWidth(hi.l3.a(m80Var.getText(), m80Var.getPaint()) + 1);
-        this.f39533p1.setTitle(P0());
+        this.f39532p1.setTitle(P0());
         org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
         b9Var.r(user);
         ((org.telegram.ui.Components.q9) zaVar.f10205b).f(user, b9Var);
@@ -161,7 +161,7 @@ public final class ab extends org.telegram.ui.Components.sa implements gs {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new bi.b(this, 19), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new bi.b(this, 19), this.J0);
         this.X1 = c51Var;
         return c51Var;
     }

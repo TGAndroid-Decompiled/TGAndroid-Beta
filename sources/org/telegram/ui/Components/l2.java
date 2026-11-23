@@ -7,15 +7,15 @@ import java.util.regex.Pattern;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram.ui.ActionBar.q6, org.telegram.ui.ActionBar.r6, a5, org.telegram.messenger.kc, org.telegram.messenger.db, org.telegram.messenger.j9, p.a, ih.b, vt0, wt0 {
-    public final int f37075a;
+    public final int f37074a;
 
     public l2(int i7) {
-        this.f37075a = i7;
+        this.f37074a = i7;
     }
 
     @Override
     public void O(int i7, int i10, boolean z10) {
-        switch (this.f37075a) {
+        switch (this.f37074a) {
             case 16:
                 MediaController.B().B0(1, i7, z10, false);
                 return;
@@ -41,17 +41,17 @@ public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram
     @Override
     public void c(Object obj, float f10) {
         yb0 yb0Var = (yb0) obj;
-        switch (this.f37075a) {
+        switch (this.f37074a) {
             case 26:
-                yb0Var.f42380f = f10;
+                yb0Var.f42379f = f10;
                 if (!yb0Var.E || yb0Var.G) {
-                    yb0Var.f42378c.setStrokeWidth(org.telegram.messenger.g0.T1(yb0Var.f42384w, yb0Var.f42385x, f10));
+                    yb0Var.f42377c.setStrokeWidth(org.telegram.messenger.g0.T1(yb0Var.f42383w, yb0Var.f42384x, f10));
                     yb0Var.f();
                 }
                 yb0Var.invalidate();
                 return;
             default:
-                yb0Var.f42381n = f10;
+                yb0Var.f42380n = f10;
                 if (!yb0Var.E || yb0Var.G) {
                     yb0Var.f();
                 }
@@ -77,20 +77,20 @@ public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram
     @Override
     public float get(Object obj) {
         yb0 yb0Var = (yb0) obj;
-        switch (this.f37075a) {
+        switch (this.f37074a) {
             case 25:
-                return yb0Var.f42380f;
+                return yb0Var.f42379f;
             case 26:
             default:
-                return yb0Var.f42383s;
+                return yb0Var.f42382s;
             case 27:
-                return yb0Var.f42381n;
+                return yb0Var.f42380n;
         }
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f37075a) {
+        switch (this.f37074a) {
             case 1:
                 t1Var.dismiss();
                 return;
@@ -106,7 +106,7 @@ public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram
     @Override
     public String i(int i7) {
         int i10;
-        switch (this.f37075a) {
+        switch (this.f37074a) {
             case 0:
                 return String.format("%02d", Integer.valueOf(i7));
             case 1:
@@ -224,7 +224,7 @@ public final class l2 implements pb0, org.telegram.ui.ActionBar.q1, org.telegram
 
     @Override
     public Object m(Object obj) {
-        switch (this.f37075a) {
+        switch (this.f37074a) {
             case 21:
                 Void r22 = (Void) obj;
                 return CheckBoxBase.I;

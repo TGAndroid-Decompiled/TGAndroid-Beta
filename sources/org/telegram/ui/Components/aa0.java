@@ -136,8 +136,8 @@ public final class aa0 extends FrameLayout implements org.telegram.messenger.gs,
             this.f33473s = split[1];
             q80 q80Var = new q80(h6Var);
             this.f33470f = q80Var;
-            q80Var.f38822l = org.telegram.ui.ActionBar.m6.G8;
-            q80Var.f38823m = org.telegram.ui.ActionBar.m6.f29473i6;
+            q80Var.f38821l = org.telegram.ui.ActionBar.m6.G8;
+            q80Var.f38822m = org.telegram.ui.ActionBar.m6.f29473i6;
             q80Var.k(4.0f);
         } else if (i10 == 4) {
             this.f33471n = org.telegram.messenger.g0.R2(org.telegram.messenger.hd.N0(2131744622, null), org.telegram.ui.ActionBar.m6.Xc, 2, null, h6Var);

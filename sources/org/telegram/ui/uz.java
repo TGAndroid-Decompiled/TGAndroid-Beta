@@ -15,7 +15,7 @@ public final class uz extends View implements org.telegram.ui.ActionBar.b6 {
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(true, false, false);
         this.f52654a = n6Var;
         n6Var.u(-1);
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
         n6Var.x(org.telegram.messenger.g0.o());
         n6Var.w(org.telegram.messenger.g0.L(14.0f));
         n6Var.setCallback(this);

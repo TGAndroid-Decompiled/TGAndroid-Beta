@@ -95,7 +95,7 @@ public final class tc0 implements Runnable {
                 return;
             case 6:
                 org.telegram.ui.Components.oh0 oh0Var3 = gd0Var.S;
-                oh0Var3.f38231u0 = new tc0(gd0Var, 8);
+                oh0Var3.f38230u0 = new tc0(gd0Var, 8);
                 org.telegram.ui.Components.rh0 rh0Var3 = gd0Var.f48080s;
                 rh0Var3.setAutoRepeat(false);
                 oh0Var3.N(0, false, false);

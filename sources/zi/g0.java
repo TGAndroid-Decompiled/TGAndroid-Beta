@@ -62,7 +62,7 @@ public final class g0 implements Runnable {
                     u0Var.m("completed");
                     qf qfVar = u0Var.d;
                     long j10 = q0Var.f62289a;
-                    b50 b50Var = (b50) qfVar.f38896b;
+                    b50 b50Var = (b50) qfVar.f38895b;
                     a50 a50Var = b50Var.V;
                     if (a50Var != null) {
                         b50Var.V = null;
@@ -74,9 +74,9 @@ public final class g0 implements Runnable {
                             synchronized (sy0Var) {
                                 try {
                                     try {
-                                        qy0 qy0Var = (qy0) sy0Var.f39726c.get(Long.valueOf(j10));
-                                        if (qy0Var != null && !qy0Var.f39016e) {
-                                            ry0Var = new ry0(Math.max(qy0Var.f39015c, file.length()), qy0Var.f39017f, qy0Var.f39018g, qy0Var.h, qy0Var.f39019i);
+                                        qy0 qy0Var = (qy0) sy0Var.f39725c.get(Long.valueOf(j10));
+                                        if (qy0Var != null && !qy0Var.f39015e) {
+                                            ry0Var = new ry0(Math.max(qy0Var.f39014c, file.length()), qy0Var.f39016f, qy0Var.f39017g, qy0Var.h, qy0Var.f39018i);
                                         } else {
                                             ry0Var = new ry0(file.length(), null, null, null, null);
                                         }

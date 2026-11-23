@@ -329,7 +329,7 @@ public final class i implements Runnable {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f17972c;
                 if (!s3Var.U) {
                     if (tL_error2 != null) {
-                        s3Var.f37520b.dismiss();
+                        s3Var.f37519b.dismiss();
                         return;
                     } else {
                         g0.h3(s3Var.V, 60000L);
@@ -339,7 +339,7 @@ public final class i implements Runnable {
                 return;
             case 15:
                 s3 s3Var2 = (s3) this.f17971b;
-                gc Q2 = new lc(s3Var2.f37520b.f30179c, s3Var2.f37519a).Q(2131623990, 36, g0.W2((String) this.f17972c));
+                gc Q2 = new lc(s3Var2.f37519b.f30179c, s3Var2.f37518a).Q(2131623990, 36, g0.W2((String) this.f17972c));
                 Q2.f35527j = 5000;
                 Q2.k(true);
                 return;

@@ -21,7 +21,7 @@ public final class k0 implements ViewTreeObserver.OnPreDrawListener {
             ah.i iVar = q0Var.f29907e;
             iVar.setTranslationX(f10 - iVar.getX());
         }
-        q0Var.f29907e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(nr.f37961f).start();
+        q0Var.f29907e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(nr.f37960f).start();
         return true;
     }
 }

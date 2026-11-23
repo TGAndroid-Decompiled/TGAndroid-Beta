@@ -28,8 +28,8 @@ public final class k20 extends org.telegram.ui.Components.yt {
         super.f();
         org.telegram.ui.Components.ty emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f40154x0 = false;
-            emojiView.f40160y2 = false;
+            emojiView.f40153x0 = false;
+            emojiView.f40159y2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(this.W.f30176b.getPaddingBottom());
         }
@@ -50,7 +50,7 @@ public final class k20 extends org.telegram.ui.Components.yt {
     public final void p() {
         int i7;
         rh.h hVar = this.W.B3;
-        if (this.f42538e) {
+        if (this.f42537e) {
             i7 = Math.max(0, getEmojiPadding());
         } else if (this.O) {
             i7 = Math.max(0, getKeyboardHeight());

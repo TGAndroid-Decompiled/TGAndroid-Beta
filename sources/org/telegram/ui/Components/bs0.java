@@ -68,12 +68,12 @@ public final class bs0 extends dk0 {
         f();
         int i7 = 0;
         while (true) {
-            ds0[] ds0VarArr = this.f33915s.f36651n0;
+            ds0[] ds0VarArr = this.f33915s.f36650n0;
             if (i7 >= ds0VarArr.length) {
                 break;
             }
             if (ds0VarArr[i7].F == 7 && !TextUtils.isEmpty(str)) {
-                this.f33915s.f36651n0[i7].f34564w.e(true, z10);
+                this.f33915s.f36650n0[i7].f34564w.e(true, z10);
             }
             i7++;
         }
@@ -102,7 +102,7 @@ public final class bs0 extends dk0 {
         if (size > 0) {
             jt0 jt0Var = this.f33915s;
             if (jt0Var.Y0) {
-                ds0 ds0Var = jt0Var.f36651n0[0];
+                ds0 ds0Var = jt0Var.f36650n0[0];
                 if (ds0Var.F == 7 && ds0Var.h.getAdapter() != this) {
                     jt0Var.B1(false);
                 }
@@ -116,7 +116,7 @@ public final class bs0 extends dk0 {
         TLRPC.User c22;
         SpannableStringBuilder spannableStringBuilder;
         jt0 jt0Var = this.f33915s;
-        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36684y1;
+        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36683y1;
         TLObject E = E(i7);
         if (E instanceof TLRPC.ChannelParticipant) {
             c22 = g2Var.getMessagesController().c2(Long.valueOf(org.telegram.messenger.gj.B1(((TLRPC.ChannelParticipant) E).peer)));

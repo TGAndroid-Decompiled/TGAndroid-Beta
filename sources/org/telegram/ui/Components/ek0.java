@@ -172,7 +172,7 @@ public class ek0 extends RecyclerView implements eh.a {
     public static boolean a1(View view) {
         if (view instanceof yj0) {
             jt0 jt0Var = (jt0) ((yj0) view);
-            if (jt0Var.f36620c2 && jt0Var.f36633g2 > 0) {
+            if (jt0Var.f36619c2 && jt0Var.f36632g2 > 0) {
                 return true;
             }
             return false;
@@ -476,7 +476,7 @@ public class ek0 extends RecyclerView implements eh.a {
                         if (view6 != null && (T = T(view6)) != null) {
                             int b11 = T.b();
                             int abs = Math.abs(c0Var.N0() - b11) + 1;
-                            if ((this.J1 || z10) && (jj0Var2 = this.f34854e1) != null && !jj0Var2.f36540n && (getAdapter() instanceof kj0)) {
+                            if ((this.J1 || z10) && (jj0Var2 = this.f34854e1) != null && !jj0Var2.f36539n && (getAdapter() instanceof kj0)) {
                                 this.f34854e1.setProgress(Math.min(1.0f, b11 / ((this.f34856f1.b() - abs) + 1)));
                             }
                             this.f34874p1.addAll(this.f34872o1);
@@ -551,7 +551,7 @@ public class ek0 extends RecyclerView implements eh.a {
                     int L0 = c0Var.L0();
                     Math.abs(c0Var.N0() - L0);
                     if (L0 != -1) {
-                        if ((this.J1 || z10) && (jj0Var = this.f34854e1) != null && !jj0Var.f36540n) {
+                        if ((this.J1 || z10) && (jj0Var = this.f34854e1) != null && !jj0Var.f36539n) {
                             v4.i0 adapter = getAdapter();
                             if (adapter instanceof kj0) {
                                 kj0 kj0Var = (kj0) adapter;
@@ -658,7 +658,7 @@ public class ek0 extends RecyclerView implements eh.a {
     public final void N0(Canvas canvas, View view) {
         boolean z10;
         boolean z11;
-        if (this.S2 == null && view != null && u1(view) && ((Boolean) this.H2.f38245a.a(view)).booleanValue() && i1(view)) {
+        if (this.S2 == null && view != null && u1(view) && ((Boolean) this.H2.f38244a.a(view)).booleanValue() && i1(view)) {
             int R = RecyclerView.R(view);
             boolean z12 = false;
             if (R == -1) {
@@ -1040,13 +1040,13 @@ public class ek0 extends RecyclerView implements eh.a {
         float f10;
         hj0 hj0Var = this.f34870m2;
         if (hj0Var != null) {
-            ek0 ek0Var = hj0Var.f35921a;
-            if (hj0Var.d || hj0Var.f35924e) {
+            ek0 ek0Var = hj0Var.f35920a;
+            if (hj0Var.d || hj0Var.f35923e) {
                 for (int i7 = 0; i7 < ek0Var.getChildCount(); i7++) {
                     View childAt = ek0Var.getChildAt(i7);
                     int R = RecyclerView.R(childAt);
-                    if (R >= 0 && !hj0Var.f35923c.contains(childAt)) {
-                        Float f11 = (Float) hj0Var.f35922b.get(R, null);
+                    if (R >= 0 && !hj0Var.f35922c.contains(childAt)) {
+                        Float f11 = (Float) hj0Var.f35921b.get(R, null);
                         if (f11 == null) {
                             childAt.setAlpha(1.0f);
                         } else {
@@ -1145,7 +1145,7 @@ public class ek0 extends RecyclerView implements eh.a {
             }
         }
         jj0 fastScroll = getFastScroll();
-        if ((fastScroll != null && fastScroll.f36526b0 && fastScroll.m0 && motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) || (this.f34856f1 != null && (view = this.f34876q1) != null && view.getAlpha() != 0.0f && this.f34876q1.dispatchTouchEvent(motionEvent))) {
+        if ((fastScroll != null && fastScroll.f36525b0 && fastScroll.m0 && motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) || (this.f34856f1 != null && (view = this.f34876q1) != null && view.getAlpha() != 0.0f && this.f34876q1.dispatchTouchEvent(motionEvent))) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -1354,7 +1354,7 @@ public class ek0 extends RecyclerView implements eh.a {
             return v9Var.u(view);
         }
         oj0 oj0Var = this.H2;
-        if (oj0Var != null && ((Boolean) oj0Var.f38245a.a(view)).booleanValue()) {
+        if (oj0Var != null && ((Boolean) oj0Var.f38244a.a(view)).booleanValue()) {
             return true;
         }
         return false;
@@ -1568,14 +1568,14 @@ public class ek0 extends RecyclerView implements eh.a {
         jj0 jj0Var = this.f34854e1;
         if (jj0Var != null) {
             this.I1 = true;
-            if (jj0Var.f36523a) {
+            if (jj0Var.f36522a) {
                 i13 = getPaddingTop();
             } else {
-                i13 = jj0Var.f36536i0;
+                i13 = jj0Var.f36535i0;
             }
             int i14 = i10 + i13;
             jj0 jj0Var2 = this.f34854e1;
-            if (jj0Var2.f36535h0) {
+            if (jj0Var2.f36534h0) {
                 jj0Var2.layout(0, i14, jj0Var2.getMeasuredWidth(), this.f34854e1.getMeasuredHeight() + i14);
             } else {
                 int measuredWidth = getMeasuredWidth() - this.f34854e1.getMeasuredWidth();
@@ -1598,10 +1598,10 @@ public class ek0 extends RecyclerView implements eh.a {
         jj0 jj0Var = this.f34854e1;
         if (jj0Var != null && jj0Var.getLayoutParams() != null) {
             jj0 jj0Var2 = this.f34854e1;
-            if (jj0Var2.f36523a) {
+            if (jj0Var2.f36522a) {
                 i11 = getPaddingTop();
             } else {
-                i11 = jj0Var2.f36536i0;
+                i11 = jj0Var2.f36535i0;
             }
             int measuredHeight = (getMeasuredHeight() - i11) - getPaddingBottom();
             this.f34854e1.getLayoutParams().height = measuredHeight;
@@ -1633,7 +1633,7 @@ public class ek0 extends RecyclerView implements eh.a {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         jj0 jj0Var = this.f34854e1;
-        if (jj0Var != null && jj0Var.f36540n) {
+        if (jj0Var != null && jj0Var.f36539n) {
             return false;
         }
         boolean z10 = this.f34852c2;
@@ -1696,9 +1696,9 @@ public class ek0 extends RecyclerView implements eh.a {
         } else {
             z10 = false;
         }
-        o10 o10Var = (o10) qfVar.f38896b;
-        o10Var.f38055t = z10;
-        o10Var.f38056u = j3;
+        o10 o10Var = (o10) qfVar.f38895b;
+        o10Var.f38054t = z10;
+        o10Var.f38055u = j3;
     }
 
     public final void q1(int i7, int i10, int i11, int i12) {
@@ -1843,7 +1843,7 @@ public class ek0 extends RecyclerView implements eh.a {
             i7 = 8;
         }
         jj0Var.setVisibility(i7);
-        this.f34854e1.f36526b0 = z10;
+        this.f34854e1.f36525b0 = z10;
     }
 
     public void setHideIfEmpty(boolean z10) {
@@ -1907,9 +1907,9 @@ public class ek0 extends RecyclerView implements eh.a {
         this.W0 = sj0Var;
         qf qfVar = this.L1;
         boolean z10 = sj0Var != null;
-        o10 o10Var = (o10) qfVar.f38896b;
-        o10Var.f38055t = z10;
-        o10Var.f38056u = longPressTimeout;
+        o10 o10Var = (o10) qfVar.f38895b;
+        o10Var.f38054t = z10;
+        o10Var.f38055u = longPressTimeout;
     }
 
     @Override
@@ -1946,7 +1946,7 @@ public class ek0 extends RecyclerView implements eh.a {
             }
             v9 v9Var = this.S2;
             if (v9Var != null) {
-                ek0 ek0Var = v9Var.f40726a;
+                ek0 ek0Var = v9Var.f40725a;
                 if (v9Var.L != z10) {
                     v9Var.L = z10;
                     ek0Var.a0();
@@ -1965,7 +1965,7 @@ public class ek0 extends RecyclerView implements eh.a {
             this.V2 = ck0Var;
             v9 v9Var = this.S2;
             if (v9Var != null) {
-                ek0 ek0Var = v9Var.f40726a;
+                ek0 ek0Var = v9Var.f40725a;
                 if (v9Var.M != ck0Var) {
                     v9Var.M = ck0Var;
                     ek0Var.a0();

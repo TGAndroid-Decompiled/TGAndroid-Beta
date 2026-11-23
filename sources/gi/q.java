@@ -101,7 +101,7 @@ public abstract class q extends FrameLayout implements b6, gs {
         addView(p5Var, ma.e(-1, -1, 119));
         i71 i7 = p5Var.i(9, true);
         this.f13702r = i7;
-        i7.f36216r = 12;
+        i7.f36215r = 12;
         i7.setPreTabClick(new v6(fq0Var, 14));
         addView(i7, ma.e(-1, 42, 48));
         i(false);
@@ -114,8 +114,8 @@ public abstract class q extends FrameLayout implements b6, gs {
             uiVar.z1(1, false);
             uiVar.R2 = true;
             uiVar.Q2 = false;
-            uiVar.f40389h3.setText(hd.N0(2131752109, null));
-            uiVar.f40379e2.i0();
+            uiVar.f40388h3.setText(hd.N0(2131752109, null));
+            uiVar.f40378e2.i0();
             uiVar.X3 = new a0(this, uiVar, str);
             uiVar.f1();
             uiVar.show();
@@ -414,7 +414,7 @@ public abstract class q extends FrameLayout implements b6, gs {
         spannableString.setSpan(nqVar, 0, 1, 33);
         i71 i71Var = this.f13702r;
         i71Var.a(-1, spannableString);
-        i71Var.f36222y.f();
+        i71Var.f36221y.f();
         if (arrayList3.size() + 1 > 1) {
             z11 = true;
         } else {

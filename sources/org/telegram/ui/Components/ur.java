@@ -8,12 +8,12 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ur implements Runnable {
-    public final int f40565a;
-    public final as f40566b;
+    public final int f40564a;
+    public final as f40565b;
 
     public ur(as asVar, int i7) {
-        this.f40565a = i7;
-        this.f40566b = asVar;
+        this.f40564a = i7;
+        this.f40565b = asVar;
     }
 
     @Override
@@ -21,8 +21,8 @@ public final class ur implements Runnable {
         Context context;
         boolean z10;
         CharSequence charSequence;
-        int i7 = this.f40565a;
-        as asVar = this.f40566b;
+        int i7 = this.f40564a;
+        as asVar = this.f40565b;
         boolean z11 = false;
         switch (i7) {
             case 0:

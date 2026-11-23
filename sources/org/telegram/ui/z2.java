@@ -68,13 +68,13 @@ public final class z2 implements org.telegram.ui.Cells.u9, wg0, org.telegram.ui.
                 if (-1 != p3Var.f50712a) {
                     org.telegram.ui.Components.h80 h80Var = new org.telegram.ui.Components.h80(0);
                     this.h = h80Var;
-                    h80Var.f35824n = false;
+                    h80Var.f35823n = false;
                     h80Var.d(this.d, p3Var.f50712a, 0.0f);
-                    this.h.f35825o = 0;
+                    this.h.f35824o = 0;
                     StaticLayout staticLayout = this.d;
                     int i7 = p3Var.f50712a;
                     staticLayout.getSelectionPath(i7, p50Var.G.length() + i7, this.h);
-                    this.h.f35824n = true;
+                    this.h.f35823n = true;
                 }
             } else {
                 this.h = null;

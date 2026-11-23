@@ -118,7 +118,7 @@ public final class f2 {
     public final String b() {
         String[] strArr = DictationLid.d;
         android.support.v4.media.session.a0 a0Var = this.f1207y;
-        t[] tVarArr = DictationAsr.f43068a;
+        t[] tVarArr = DictationAsr.f43067a;
         LinkedHashSet linkedHashSet = new LinkedHashSet();
         List list = (List) a0Var.d;
         if (list != null) {
@@ -955,7 +955,7 @@ public final class f2 {
             boolean x10 = DictationAsr.x();
             this.D = x10;
             if (x10) {
-                ExecutorService executorService = DictationLid.f43075a;
+                ExecutorService executorService = DictationLid.f43074a;
                 if (DictationAsr.x()) {
                     DictationLid.d(context);
                 }
@@ -977,7 +977,7 @@ public final class f2 {
             sb7.append(" (candidates ");
             sb7.append(this.f1200q);
             sb7.append(", last sure ");
-            ExecutorService executorService2 = DictationLid.f43075a;
+            ExecutorService executorService2 = DictationLid.f43074a;
             sb7.append(np.g1().getString("tinylid_lang", null));
             sb7.append(")");
             Log.d("Dictation", sb7.toString());

@@ -31,7 +31,7 @@ public final class h extends View {
         this.f17816e = m41Var;
         m41Var.setCallback(this);
         m41Var.b(-1);
-        m41Var.f37423i = true;
+        m41Var.f37422i = true;
     }
 
     @Override

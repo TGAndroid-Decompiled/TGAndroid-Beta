@@ -467,7 +467,7 @@ public final class q5 implements Runnable {
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
                 sg.i0 i0Var = ((sg.s0) obj3).E.f57403c;
                 yt0 yt0Var = i0Var.f57271g;
-                sg.h0 h = i0Var.h(new RectF(0.0f, 0.0f, yt0Var.f42546a, yt0Var.f42547b), false, z12, z11);
+                sg.h0 h = i0Var.h(new RectF(0.0f, 0.0f, yt0Var.f42545a, yt0Var.f42546b), false, z12, z11);
                 if (h != null) {
                     bitmapArr[0] = (Bitmap) h.f57261b;
                 }

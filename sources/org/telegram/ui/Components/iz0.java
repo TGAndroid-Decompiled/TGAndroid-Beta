@@ -5,12 +5,12 @@ import android.os.SystemClock;
 import android.view.Choreographer;
 import java.util.ArrayList;
 public final class iz0 implements Choreographer.FrameCallback {
-    public final int f36335a;
-    public final Object f36336b;
+    public final int f36334a;
+    public final Object f36335b;
 
     public iz0(Object obj, int i7) {
-        this.f36335a = i7;
-        this.f36336b = obj;
+        this.f36334a = i7;
+        this.f36335b = obj;
     }
 
     @Override
@@ -19,15 +19,15 @@ public final class iz0 implements Choreographer.FrameCallback {
         float min;
         int i7;
         boolean z11;
-        switch (this.f36335a) {
+        switch (this.f36334a) {
             case 0:
-                mz0 mz0Var = ((oz0) this.f36336b).f38423a;
+                mz0 mz0Var = ((oz0) this.f36335b).f38422a;
                 if (mz0Var != null) {
                     Handler handler = mz0Var.getHandler();
-                    if (handler != null && mz0Var.f37669b.get()) {
+                    if (handler != null && mz0Var.f37668b.get()) {
                         handler.sendMessage(handler.obtainMessage(0));
                     }
-                    if (((oz0) this.f36336b).f38423a.T) {
+                    if (((oz0) this.f36335b).f38422a.T) {
                         Choreographer.getInstance().postFrameCallback(this);
                         return;
                     }
@@ -35,7 +35,7 @@ public final class iz0 implements Choreographer.FrameCallback {
                 }
                 return;
             default:
-                r1.a aVar = (r1.a) ((qf) ((org.telegram.ui.md0) this.f36336b).f49857b).f38896b;
+                r1.a aVar = (r1.a) ((qf) ((org.telegram.ui.md0) this.f36335b).f49857b).f38895b;
                 long uptimeMillis = SystemClock.uptimeMillis();
                 ArrayList arrayList = aVar.f56346b;
                 long uptimeMillis2 = SystemClock.uptimeMillis();

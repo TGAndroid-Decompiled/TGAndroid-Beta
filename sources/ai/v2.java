@@ -236,14 +236,14 @@ public final class v2 extends View {
         }
         this.E = uptimeMillis2;
         w9 w9Var = this.f1585x;
-        int i14 = (w9Var.f41713a > 0.0f ? 1 : (w9Var.f41713a == 0.0f ? 0 : -1));
+        int i14 = (w9Var.f41712a > 0.0f ? 1 : (w9Var.f41712a == 0.0f ? 0 : -1));
         w9 w9Var2 = this.f1586y;
         if (i14 == 0) {
-            w9Var2.f41713a = org.telegram.messenger.g0.L(1.0f) + f16;
+            w9Var2.f41712a = org.telegram.messenger.g0.L(1.0f) + f16;
             f18 = 0.6f;
-            w9Var2.f41714b = (org.telegram.messenger.g0.L(12.0f) * 0.6f) + org.telegram.messenger.g0.L(1.0f) + f16;
-            w9Var.f41713a = org.telegram.messenger.g0.L(3.0f) + f16;
-            w9Var.f41714b = (org.telegram.messenger.g0.L(10.0f) * 0.6f) + org.telegram.messenger.g0.L(3.0f) + f16;
+            w9Var2.f41713b = (org.telegram.messenger.g0.L(12.0f) * 0.6f) + org.telegram.messenger.g0.L(1.0f) + f16;
+            w9Var.f41712a = org.telegram.messenger.g0.L(3.0f) + f16;
+            w9Var.f41713b = (org.telegram.messenger.g0.L(10.0f) * 0.6f) + org.telegram.messenger.g0.L(3.0f) + f16;
             w9Var2.b();
             w9Var.b();
             w9Var.d.setColor(i0.a.o(i13, 48));
@@ -256,16 +256,16 @@ public final class v2 extends View {
         w9Var2.d(false, a10);
         w9Var.f(min);
         w9Var2.f(min);
-        w9Var.e(w9Var.f41730t, 1.01f);
-        w9Var2.e(w9Var2.f41730t, 1.02f);
+        w9Var.e(w9Var.f41729t, 1.01f);
+        w9Var2.e(w9Var2.f41729t, 1.02f);
         canvas2.save();
-        float f63 = (w9Var.f41730t * 0.5f) + 0.878f;
+        float f63 = (w9Var.f41729t * 0.5f) + 0.878f;
         float f64 = f17;
         canvas2.scale(f63, f63, f64, f62);
         w9Var.a(f64, f62, canvas2, w9Var.d);
         canvas2.restore();
         canvas2.save();
-        float f65 = (w9Var2.f41730t * 0.5f) + 0.926f;
+        float f65 = (w9Var2.f41729t * 0.5f) + 0.926f;
         canvas2.scale(f65, f65, f64, f62);
         w9Var2.a(f64, f62, canvas2, w9Var2.d);
         canvas2.restore();

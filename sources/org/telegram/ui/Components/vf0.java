@@ -4,10 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.os.Build;
 public final class vf0 implements ui.a, si.a {
-    public final dh.c f40818a;
+    public final dh.c f40817a;
 
     public vf0(dh.c cVar) {
-        this.f40818a = cVar;
+        this.f40817a = cVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class vf0 implements ui.a, si.a {
     public final ui.a b() {
         ri.r f10 = ri.q.f();
         boolean z10 = f10.f56762a;
-        dh.c cVar = this.f40818a;
+        dh.c cVar = this.f40817a;
         if (!z10) {
             return cVar.f8405c;
         }

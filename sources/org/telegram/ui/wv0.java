@@ -142,11 +142,11 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
             f10 = 0.0f;
         }
         float A = org.telegram.messenger.f3.A(1.0f, this.W, this.f53541f0, (1.0f - this.f53538c0) * f10);
-        org.telegram.ui.Components.p5 p5Var = this.f38839e;
+        org.telegram.ui.Components.p5 p5Var = this.f38838e;
         if (p5Var != null) {
-            imageReceiver = p5Var.f38500k;
+            imageReceiver = p5Var.f38499k;
         } else {
-            imageReceiver = this.f38836a;
+            imageReceiver = this.f38835a;
         }
         int i10 = this.L;
         if (i10 > 0) {
@@ -243,7 +243,7 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
         if (z11) {
             float f31 = measuredHeight;
             canvas.translate(A, A + f31);
-            if (!this.H && !zf0Var.f42796a && this.f53539d0.getRealPosition() != 0) {
+            if (!this.H && !zf0Var.f42795a && this.f53539d0.getRealPosition() != 0) {
                 f14 = f11;
             } else {
                 f14 = f11 - this.I;

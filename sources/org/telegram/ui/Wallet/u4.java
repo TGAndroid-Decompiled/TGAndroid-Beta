@@ -126,7 +126,7 @@ public final class u4 implements Runnable {
                 return;
             case 11:
                 ((z0) obj).C();
-                ((d9) obj2).f34681a.f35790g3.O(true);
+                ((d9) obj2).f34681a.f35789g3.O(true);
                 return;
             case 12:
                 d9 d9Var = (d9) obj2;
@@ -245,7 +245,7 @@ public final class u4 implements Runnable {
                 x0Var.f53397n = false;
                 bi.f6 f6Var = x0Var.f34681a;
                 if (f6Var != null) {
-                    f6Var.f35790g3.O(true);
+                    f6Var.f35789g3.O(true);
                     return;
                 }
                 return;
@@ -272,7 +272,7 @@ public final class u4 implements Runnable {
                 togglewebbrowsersettingsexception.url = (String) obj;
                 togglewebbrowsersettingsexception.delete = true;
                 messagesController.getConnectionsManager().sendRequestTyped(togglewebbrowsersettingsexception, new bl(messagesController, 3));
-                n1Var.f34681a.f35790g3.O(true);
+                n1Var.f34681a.f35789g3.O(true);
                 return;
             case 26:
                 org.telegram.ui.web.t1 t1Var2 = (org.telegram.ui.web.t1) obj2;

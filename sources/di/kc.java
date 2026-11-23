@@ -140,7 +140,7 @@ public final class kc {
             f12 = 255.0f;
         }
         RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set((L - (this.f9257o.f42247c / f11)) - org.telegram.messenger.g0.L(5.66f), (org.telegram.messenger.g0.L(23.0f) + L2) - (org.telegram.messenger.g0.L(16.0f) / f11), (this.f9257o.f42247c / f11) + L + org.telegram.messenger.g0.L(5.66f), (org.telegram.messenger.g0.L(16.0f) / f11) + org.telegram.messenger.g0.L(23.0f) + L2);
+        rectF.set((L - (this.f9257o.f42246c / f11)) - org.telegram.messenger.g0.L(5.66f), (org.telegram.messenger.g0.L(23.0f) + L2) - (org.telegram.messenger.g0.L(16.0f) / f11), (this.f9257o.f42246c / f11) + L + org.telegram.messenger.g0.L(5.66f), (org.telegram.messenger.g0.L(16.0f) / f11) + org.telegram.messenger.g0.L(23.0f) + L2);
         canvas.drawRoundRect(rectF, rectF.height() / f11, rectF.height() / f11, lcVar.f9311f);
         int i12 = (int) (d * f12);
         Paint paint = this.h;
@@ -153,9 +153,9 @@ public final class kc {
         }
         canvas.drawRoundRect(rectF, rectF.height() / f11, rectF.height() / f11, paint);
         xy0 xy0Var = this.f9257o;
-        xy0Var.c(L - (xy0Var.f42247c / f11), org.telegram.messenger.g0.L(23.0f) + L2, d, -1, canvas);
+        xy0Var.c(L - (xy0Var.f42246c / f11), org.telegram.messenger.g0.L(23.0f) + L2, d, -1, canvas);
         xy0 xy0Var2 = this.f9256n;
-        xy0Var2.f42258p = width - org.telegram.messenger.g0.L(4.0f);
+        xy0Var2.f42257p = width - org.telegram.messenger.g0.L(4.0f);
         xy0Var2.c(L - (this.f9256n.k() / f11), org.telegram.messenger.g0.L(42.0f) + L2, d, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, lcVar.f9315w.f9368m1), canvas);
         if (this.v > 0) {
             int i13 = (int) L;
@@ -167,7 +167,7 @@ public final class kc {
             this.f9262t.draw(canvas);
             this.f9261s.draw(canvas);
             xy0 xy0Var3 = this.f9263u;
-            xy0Var3.c(L - (xy0Var3.f42247c / f11), L2 - org.telegram.messenger.g0.L(27.0f), d, -1, canvas);
+            xy0Var3.c(L - (xy0Var3.f42246c / f11), L2 - org.telegram.messenger.g0.L(27.0f), d, -1, canvas);
         }
         canvas.restore();
     }

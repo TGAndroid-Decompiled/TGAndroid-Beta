@@ -577,7 +577,7 @@ public class h7 extends FrameLayout implements org.telegram.messenger.y5, gs, or
         } else if (this.f30785s != null && this.I != null) {
             accessibilityNodeInfo.setText(((Object) this.f30785s.getText()) + ", " + ((Object) this.I.getText()));
         }
-        if (this.f30768b.f38321a.f32874q) {
+        if (this.f30768b.f38320a.f32874q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }

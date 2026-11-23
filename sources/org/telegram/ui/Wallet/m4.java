@@ -161,7 +161,7 @@ public final class m4 {
         paint.setShader(new LinearGradient(-org.telegram.messenger.g0.L(10.0f), 0.0f, org.telegram.messenger.g0.L(10.0f), 0.0f, new int[]{16777215, -2130706433, 16777215}, new float[]{0.0f, 0.5f, 1.0f}, tileMode));
         mc mcVar = new mc(v0Var);
         this.Y = mcVar;
-        mcVar.f37476f = new i4(this, 0);
+        mcVar.f37475f = new i4(this, 0);
         this.f44600w0 = new org.telegram.ui.Components.d6(1.0f, new m(v0Var, 5), 0L, 400L, nrVar);
     }
 
@@ -222,10 +222,10 @@ public final class m4 {
         k4 k4Var = new k4(this, this.f44561b);
         this.f44565d0 = k4Var;
         k4Var.g(4969977, org.telegram.ui.ActionBar.m6.r1(0.125f, -11807239), 4969977, org.telegram.ui.ActionBar.m6.r1(0.75f, -11807239));
-        this.f44565d0.f38833x.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
+        this.f44565d0.f38832x.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
         k4 k4Var2 = this.f44565d0;
-        k4Var2.f38830t = 2.0f;
-        k4Var2.f38834y = this.h;
+        k4Var2.f38829t = 2.0f;
+        k4Var2.f38833y = this.h;
         k4Var2.D = true;
     }
 
@@ -460,8 +460,8 @@ public final class m4 {
             k4Var.v = Math.max(0L, 0L);
             if (this.f44565d0.d() || this.f44565d0.c()) {
                 k4 k4Var2 = this.f44565d0;
-                k4Var2.f38814b = -1L;
-                k4Var2.f38815c = -1L;
+                k4Var2.f38813b = -1L;
+                k4Var2.f38814c = -1L;
             }
             v0Var.invalidate();
         } else {
@@ -543,7 +543,7 @@ public final class m4 {
         } else {
             xy0 xy0Var2 = new xy0("", 10.0f, Typeface.create(org.telegram.messenger.g0.o1("fonts/rmono.ttf"), 1));
             this.f44587p0 = xy0Var2;
-            xy0Var2.q(TextUtils.ellipsize(org.telegram.messenger.g0.N2(str.toUpperCase(locale)), this.f44587p0.f42245a, org.telegram.messenger.g0.L(206.0f) - org.telegram.messenger.g0.L(24.0f), TextUtils.TruncateAt.END));
+            xy0Var2.q(TextUtils.ellipsize(org.telegram.messenger.g0.N2(str.toUpperCase(locale)), this.f44587p0.f42244a, org.telegram.messenger.g0.L(206.0f) - org.telegram.messenger.g0.L(24.0f), TextUtils.TruncateAt.END));
         }
         Stack stack = this.d;
         ArrayList arrayList = this.f44563c;
@@ -569,11 +569,11 @@ public final class m4 {
             obj2.f35337a |= 256;
             spannableStringBuilder2.setSpan(new gz0(obj2, 0), 0, spannableStringBuilder2.length(), 33);
             this.f44589q0.q(spannableStringBuilder2);
-            xh.f.c(v0Var, this.f44589q0.f42246b, stack, arrayList);
+            xh.f.c(v0Var, this.f44589q0.f42245b, stack, arrayList);
             n(this.f44566e);
             return;
         }
-        xy0Var3.q(org.telegram.messenger.j6.m(tL_messageActionGramTransfer.comment, xy0Var3.f42245a.getFontMetricsInt(), false, null, 0));
+        xy0Var3.q(org.telegram.messenger.j6.m(tL_messageActionGramTransfer.comment, xy0Var3.f42244a.getFontMetricsInt(), false, null, 0));
     }
 
     public final void n(boolean z10) {

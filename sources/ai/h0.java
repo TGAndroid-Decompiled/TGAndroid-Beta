@@ -351,7 +351,7 @@ public final class h0 implements y10 {
                 if (view2 instanceof v3) {
                     f6Var.getClass();
                     int R = RecyclerView.R(view2);
-                    o41 G = f6Var.f35790g3.G(R);
+                    o41 G = f6Var.f35789g3.G(R);
                     if (G != null) {
                         v3 v3Var = (v3) view2;
                         v3Var.setPosition(w3Var.b(R));

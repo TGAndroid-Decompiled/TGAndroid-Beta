@@ -88,7 +88,7 @@ public final class k7 extends org.telegram.ui.Components.sa implements gs {
         eVar.setOnClickListener(new e7(this, 1));
         eVar.setEnabled(g1(l3Var.getText().toString()));
         frameLayout.addView(eVar, c8.ma.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
-        this.f39539v1 = 0.2f;
+        this.f39538v1 = 0.2f;
         this.J1 = true;
         this.Q0 = true;
         this.R0 = true;
@@ -97,11 +97,11 @@ public final class k7 extends org.telegram.ui.Components.sa implements gs {
         g7Var.C = false;
         g7Var.o(nr.h);
         g7Var.n(350L);
-        this.f39532o1.setItemAnimator(g7Var);
-        ek0 ek0Var = this.f39532o1;
+        this.f39531o1.setItemAnimator(g7Var);
+        ek0 ek0Var = this.f39531o1;
         int i10 = this.f30211u0;
         ek0Var.setPadding(i10, 0, i10, 0);
-        this.f39532o1.setOnItemClickListener(new bi.t1(this, context, v5Var, 3));
+        this.f39531o1.setOnItemClickListener(new bi.t1(this, context, v5Var, 3));
         di.f0 f0Var = this.T1;
         if (f0Var != null) {
             f0Var.O(false);
@@ -153,7 +153,7 @@ public final class k7 extends org.telegram.ui.Components.sa implements gs {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        di.f0 f0Var = new di.f0(this.f39532o1, getContext(), this.f30173a, 0, true, new d7(this, 0), this.J0, 1);
+        di.f0 f0Var = new di.f0(this.f39531o1, getContext(), this.f30173a, 0, true, new d7(this, 0), this.J0, 1);
         this.T1 = f0Var;
         return f0Var;
     }

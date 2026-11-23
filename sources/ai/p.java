@@ -36,12 +36,12 @@ public final class p implements Runnable {
                     }
                 }
                 final ArrayList a10 = m1.a();
-                Future submit = DictationAsr.f43072f.submit(new Callable() {
+                Future submit = DictationAsr.f43071f.submit(new Callable() {
                     @Override
                     public final Object call() {
                         ArrayList arrayList = a10;
                         boolean z12 = z11;
-                        t[] tVarArr = DictationAsr.f43068a;
+                        t[] tVarArr = DictationAsr.f43067a;
                         return Integer.valueOf(DictationAsr.v("silero_vad.onnx", m1.f(arrayList, "silero-vad"), null, z12));
                     }
                 });
@@ -78,7 +78,7 @@ public final class p implements Runnable {
             default:
                 boolean z14 = this.f1381b;
                 t tVar2 = this.f1382c;
-                t[] tVarArr = DictationAsr.f43068a;
+                t[] tVarArr = DictationAsr.f43067a;
                 if (tVar2.f1520f == 0) {
                     z10 = false;
                 }

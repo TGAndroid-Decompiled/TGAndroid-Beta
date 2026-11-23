@@ -17,7 +17,7 @@ public final class l implements Comparator {
         switch (this.f1278a) {
             case 0:
                 float[] fArr = this.f1279b;
-                t[] tVarArr = DictationAsr.f43068a;
+                t[] tVarArr = DictationAsr.f43067a;
                 return Float.compare(fArr[((Integer) obj2).intValue()], fArr[((Integer) obj).intValue()]);
             case 1:
                 float[] fArr2 = this.f1279b;

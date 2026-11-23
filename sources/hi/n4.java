@@ -100,12 +100,12 @@ public final class n4 implements View.OnLongClickListener {
             case 5:
                 oi.o oVar = ((oi.k) obj).f22201a;
                 oi.y3 y3Var = oVar.f22271s;
-                org.telegram.ui.ActionBar.h6 h6Var2 = oVar.f37519a;
-                ui uiVar = oVar.f37520b;
+                org.telegram.ui.ActionBar.h6 h6Var2 = oVar.f37518a;
+                ui uiVar = oVar.f37519b;
                 oi.t3 t3Var = oVar.f22270r;
                 int i13 = oVar.f22269n;
                 if (!k10.i(i13).q()) {
-                    new ug.y0(uiVar.f40368a2, oVar.getContext(), oVar.f22269n, 43, true).show();
+                    new ug.y0(uiVar.f40367a2, oVar.getContext(), oVar.f22269n, 43, true).show();
                 } else if (!t3Var.n3() || t3Var.p3()) {
                     return false;
                 } else {
@@ -120,7 +120,7 @@ public final class n4 implements View.OnLongClickListener {
                     if (c32.isEmpty()) {
                         return false;
                     }
-                    org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+                    org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
                     if (g2Var instanceof bn) {
                         bnVar = (bn) g2Var;
                     } else {

@@ -87,10 +87,10 @@ public final class s1 extends g2 implements gs {
         String N0 = hd.N0(2131752671, null);
         String N02 = hd.N0(2131752658, null);
         o41 o41Var = new o41(2);
-        o41Var.f38092m = N0;
-        o41Var.f38095p = N02;
-        o41Var.f38093n = "RestrictedEmoji";
-        o41Var.f38094o = "📝";
+        o41Var.f38091m = N0;
+        o41Var.f38094p = N02;
+        o41Var.f38092n = "RestrictedEmoji";
+        o41Var.f38093o = "📝";
         arrayList.add(o41Var);
         c51Var.V();
         v1 f10 = v1.f(s1Var.currentAccount);
@@ -115,7 +115,7 @@ public final class s1 extends g2 implements gs {
         }
         if (arrayList2.size() + (i10 ^ 1) + (i11 ^ 1) < np.u1(f10.f18544a).E5) {
             o41 c10 = o41.c(1, 2131232424, hd.N0(2131752670, null));
-            c10.f38097r = true;
+            c10.f38096r = true;
             arrayList.add(c10);
         }
         s1Var.d = c51Var.M();
@@ -338,7 +338,7 @@ public final class s1 extends g2 implements gs {
         h51Var.r1();
         this.f18509a.setSectionsDrawBackground(true);
         h51 h51Var2 = this.f18509a;
-        h51Var2.f35790g3.f34062r = false;
+        h51Var2.f35789g3.f34062r = false;
         h51Var2.E1(new r10(this) {
             public final s1 f18403b;
 
@@ -367,7 +367,7 @@ public final class s1 extends g2 implements gs {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         h51 h51Var;
         c51 c51Var;
-        if (i7 == ls.F1 && (h51Var = this.f18509a) != null && (c51Var = h51Var.f35790g3) != null) {
+        if (i7 == ls.F1 && (h51Var = this.f18509a) != null && (c51Var = h51Var.f35789g3) != null) {
             c51Var.O(true);
         }
     }
@@ -395,7 +395,7 @@ public final class s1 extends g2 implements gs {
         }
         this.f18509a.z1(!arrayList.isEmpty());
         boolean contains = arrayList.contains(Integer.valueOf(u1Var.f18533a));
-        o41Var.f38085e = contains;
+        o41Var.f38084e = contains;
         r1Var.d.a(contains, true);
         if (this.simpleActionBar.x() == arrayList.isEmpty()) {
             if (arrayList.isEmpty()) {

@@ -45,8 +45,8 @@ public final class cr0 extends FrameLayout {
             photoViewer.f43332o3.setScaleX(f12);
             photoViewer.f43332o3.setScaleY(f12);
             org.telegram.ui.Components.k61 k61Var = photoViewer.f43349q3;
-            if (k61Var.f36841y != f11) {
-                k61Var.f36841y = f11;
+            if (k61Var.f36840y != f11) {
+                k61Var.f36840y = f11;
                 k61Var.v.invalidate();
                 return;
             }
@@ -76,8 +76,8 @@ public final class cr0 extends FrameLayout {
                 photoViewer.f43332o3.setScaleX(1.0f);
                 photoViewer.f43332o3.setScaleY(1.0f);
                 org.telegram.ui.Components.k61 k61Var = photoViewer.f43349q3;
-                if (k61Var.f36841y != 0.0f) {
-                    k61Var.f36841y = 0.0f;
+                if (k61Var.f36840y != 0.0f) {
+                    k61Var.f36840y = 0.0f;
                     k61Var.v.invalidate();
                 }
             }
@@ -140,7 +140,7 @@ public final class cr0 extends FrameLayout {
             }
         } else {
             dq0 dq0Var = photoViewer.f43262g0;
-            if (dq0Var != null && dq0Var.f37178y) {
+            if (dq0Var != null && dq0Var.f37177y) {
                 j3 = dq0Var.getVideoDuration();
             }
         }
@@ -167,7 +167,7 @@ public final class cr0 extends FrameLayout {
         org.telegram.ui.Components.k61 k61Var = photoViewer.f43349q3;
         int measuredHeight = getMeasuredHeight();
         k61Var.h = ((getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f)) - ceil) - i11;
-        k61Var.f36826i = measuredHeight;
+        k61Var.f36825i = measuredHeight;
         View view = k61Var.v;
         if (view != null) {
             view.invalidate();

@@ -208,6 +208,6 @@ public final class j extends LinearLayout implements b6 {
         } else {
             q10 = m6.I.q();
         }
-        this.f21066b.f39138b = q10;
+        this.f21066b.f39137b = q10;
     }
 }

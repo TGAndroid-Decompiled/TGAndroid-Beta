@@ -87,14 +87,14 @@ public final class n extends e51 implements gs {
             nVar2.M = n2Var;
             n2Var.X3 = new h9.g1(nVar2, 6);
         }
-        nVar2.M.f40379e2.i0();
+        nVar2.M.f40378e2.i0();
         nVar2.M.z1(1, false);
         n2 n2Var2 = nVar2.M;
         n2Var2.S3 = true;
         n2Var2.X0(new d7(nVar2, 8));
         nVar2.M.f1();
         n2 n2Var3 = nVar2.M;
-        n2Var3.f40428t1 = null;
+        n2Var3.f40427t1 = null;
         if (nVar2.visibleDialog != null) {
             n2Var3.show();
         } else {
@@ -118,14 +118,14 @@ public final class n extends e51 implements gs {
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            iVar2.f36291n.getImageReceiver().f22670h1 = new go(iVar2, gVar);
+            iVar2.f36290n.getImageReceiver().f22670h1 = new go(iVar2, gVar);
             mz f10 = u5.f(document, m6.f29370cd, 1.0f, null);
             if (f10 != null) {
-                iVar2.f36291n.p(gc.b(document), io.b(document), f10, document);
+                iVar2.f36290n.p(gc.b(document), io.b(document), f10, document);
             } else {
-                iVar2.f36291n.l(gc.b(document), io.b(document), gc.c(w7.w(document.thumbs, 90, false, null, false), document), null, 0, document);
+                iVar2.f36290n.l(gc.b(document), io.b(document), gc.c(w7.w(document.thumbs, 90, false, null, false), document), null, 0, document);
             }
-            iVar2.f36291n.setOnClickListener(new fo(iVar2, document, 1));
+            iVar2.f36290n.setOnClickListener(new fo(iVar2, document, 1));
         }
     }
 
@@ -163,7 +163,7 @@ public final class n extends e51 implements gs {
             String str = this.E;
             o41 o41Var = new o41(3);
             o41Var.d = 1;
-            o41Var.f38092m = N0;
+            o41Var.f38091m = N0;
             o41Var.H = str;
             arrayList.add(o41Var);
         } else {
@@ -171,7 +171,7 @@ public final class n extends e51 implements gs {
             TLRPC.Document document = this.f18425y;
             o41 o41Var2 = new o41(3);
             o41Var2.d = 1;
-            o41Var2.f38092m = N02;
+            o41Var2.f38091m = N02;
             o41Var2.H = document;
             arrayList.add(o41Var2);
         }
@@ -181,11 +181,11 @@ public final class n extends e51 implements gs {
         if (!l02) {
             arrayList.add(o41.C(null));
             o41 e10 = o41.e(2, hd.N0(2131752709, null));
-            e10.f38098s = true;
+            e10.f38097s = true;
             arrayList.add(e10);
         }
         o41 o41Var3 = new o41(8);
-        o41Var3.f38092m = null;
+        o41Var3.f38091m = null;
         arrayList.add(o41Var3);
     }
 
@@ -287,14 +287,14 @@ public final class n extends e51 implements gs {
         this.f34682b.setBackground(null);
         this.f34681a.r1();
         this.f34681a.setSectionsDrawBackground(true);
-        this.f34681a.f35790g3.f34062r = false;
+        this.f34681a.f35789g3.f34062r = false;
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.v1(this, 7));
         this.f18419f = this.simpleActionBar.s(hd.N0(2131745750, null));
         j0(false);
         this.f34681a.addOnLayoutChangeListener(new m(this, 0));
         this.f34681a.j(new bi.u1(this, 18));
         f6 f6Var = this.f34681a;
-        f6Var.f35792i3 = true;
+        f6Var.f35791i3 = true;
         f6Var.setClipChildren(false);
         View view = this.fragmentView;
         if (view instanceof ViewGroup) {
@@ -326,7 +326,7 @@ public final class n extends e51 implements gs {
         if (this.f18419f != null) {
             this.f18419f.a(k0(), z10);
             f6 f6Var = this.f34681a;
-            if (f6Var != null && f6Var.f35790g3 != null && this.L != (!l0())) {
+            if (f6Var != null && f6Var.f35789g3 != null && this.L != (!l0())) {
                 f6 f6Var2 = this.f34681a;
                 if (f6Var2 != null && f6Var2.getChildCount() > 0) {
                     View view = null;
@@ -348,14 +348,14 @@ public final class n extends e51 implements gs {
                         if (this.f34683c == 0 && top > org.telegram.messenger.g0.L(88.0f)) {
                             this.d = org.telegram.messenger.g0.L(88.0f);
                         }
-                        this.f34681a.f35789f3.h1(i10, view.getTop() - this.f34681a.getPaddingTop());
+                        this.f34681a.f35788f3.h1(i10, view.getTop() - this.f34681a.getPaddingTop());
                     }
                 }
-                this.f34681a.f35790g3.O(true);
+                this.f34681a.f35789g3.O(true);
                 int i12 = this.f34683c;
                 if (i12 >= 0) {
                     f6 f6Var3 = this.f34681a;
-                    f6Var3.f35789f3.h1(i12, this.d - f6Var3.getPaddingTop());
+                    f6Var3.f35788f3.h1(i12, this.d - f6Var3.getPaddingTop());
                 }
             }
         }
@@ -531,7 +531,7 @@ public final class n extends e51 implements gs {
             org.telegram.messenger.g0.h3(gVar, 5000L);
         }
         f6 f6Var = this.f34681a;
-        if (f6Var != null && (c51Var = f6Var.f35790g3) != null) {
+        if (f6Var != null && (c51Var = f6Var.f35789g3) != null) {
             c51Var.O(true);
         }
         this.K = true;

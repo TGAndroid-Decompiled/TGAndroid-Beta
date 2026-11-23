@@ -196,8 +196,8 @@ public class qa0 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
                     rectF2.set(l0Var.getX(), l0Var.getY(), l0Var.getX() + l0Var.getWidth(), l0Var.getY() + l0Var.getHeight());
                     org.telegram.ui.Components.w80 w80Var = qa0Var.f51164e0;
                     float alpha = l0Var.getAlpha();
-                    Paint paint2 = w80Var.f41703c;
-                    Bitmap bitmap = w80Var.f41704e;
+                    Paint paint2 = w80Var.f41702c;
+                    Bitmap bitmap = w80Var.f41703e;
                     if (bitmap != null && !bitmap.isRecycled() && alpha > 0.0f) {
                         paint2.setAlpha((int) (Math.min(1.0f, alpha) * 255.0f));
                         canvas.drawBitmap(bitmap, (Rect) null, rectF2, paint2);
@@ -841,8 +841,8 @@ public class qa0 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
             } else {
                 z10 = false;
             }
-            if (w80Var.f41706g != z10) {
-                w80Var.f41706g = z10;
+            if (w80Var.f41705g != z10) {
+                w80Var.f41705g = z10;
                 if (z10) {
                     w80Var.a();
                 } else {
@@ -1558,12 +1558,12 @@ public class qa0 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
         super.onFragmentDestroy();
         org.telegram.ui.Components.w80 w80Var = this.f51164e0;
         if (w80Var != null) {
-            w80Var.f41707i = true;
-            w80Var.f41706g = false;
+            w80Var.f41706i = true;
+            w80Var.f41705g = false;
             w80Var.d();
             w80Var.d = null;
-            w80Var.f41704e = null;
-            w80Var.f41705f = null;
+            w80Var.f41703e = null;
+            w80Var.f41704f = null;
         }
         org.telegram.messenger.ls.e().n(this, org.telegram.messenger.ls.f25423y4);
         org.telegram.messenger.ls.e().n(this, org.telegram.messenger.ls.f25430z4);

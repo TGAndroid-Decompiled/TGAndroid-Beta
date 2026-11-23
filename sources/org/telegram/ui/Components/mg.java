@@ -18,17 +18,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PhotoViewer;
 public abstract class mg extends ot {
-    public tc f37508e2;
-    public final ChatActivityEnterView f37509f2;
+    public tc f37507e2;
+    public final ChatActivityEnterView f37508f2;
 
     public mg(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, h6Var);
-        this.f37509f2 = chatActivityEnterView;
+        this.f37508f2 = chatActivityEnterView;
     }
 
     @Override
     public final void E() {
-        ng ngVar = this.f37509f2.P3;
+        ng ngVar = this.f37508f2.P3;
         if (ngVar != null) {
             ngVar.i2();
         }
@@ -36,7 +36,7 @@ public abstract class mg extends ot {
 
     @Override
     public final void F() {
-        ng ngVar = this.f37509f2.P3;
+        ng ngVar = this.f37508f2.P3;
         if (ngVar != null) {
             ngVar.g();
         }
@@ -44,7 +44,7 @@ public abstract class mg extends ot {
 
     public final void J(Uri uri, String str) {
         boolean z10;
-        org.telegram.ui.bn bnVar = this.f37509f2.F3;
+        org.telegram.ui.bn bnVar = this.f37508f2.F3;
         if (bnVar != null && bnVar.z()) {
             z10 = true;
         } else {
@@ -54,7 +54,7 @@ public abstract class mg extends ot {
     }
 
     public final void K(File file, ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f37509f2;
+        ChatActivityEnterView chatActivityEnterView = this.f37508f2;
         org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
         if (bnVar != null && bnVar.getParentActivity() != null) {
             org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) arrayList.get(0);
@@ -71,7 +71,7 @@ public abstract class mg extends ot {
     public final void L(qf qfVar, boolean z10, int i7, int i10) {
         org.telegram.messenger.gj threadMessage;
         org.telegram.messenger.gj threadMessage2;
-        ChatActivityEnterView chatActivityEnterView = this.f37509f2;
+        ChatActivityEnterView chatActivityEnterView = this.f37508f2;
         org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
         org.telegram.ui.eg0 eg0Var = chatActivityEnterView.M0;
         org.telegram.messenger.cw cwVar = null;
@@ -84,7 +84,7 @@ public abstract class mg extends ot {
             bnVar.yc();
             return;
         }
-        t0.h hVar = (t0.h) qfVar.f38896b;
+        t0.h hVar = (t0.h) qfVar.f38895b;
         if (hVar.getDescription().hasMimeType("image/gif")) {
             org.telegram.messenger.c cVar = chatActivityEnterView.S;
             Uri c10 = hVar.c();
@@ -120,12 +120,12 @@ public abstract class mg extends ot {
 
     @Override
     public final org.telegram.ui.ActionBar.h6 getResourcesProvider() {
-        return this.f37509f2.M4;
+        return this.f37508f2.M4;
     }
 
     @Override
     public final void o(ActionMode actionMode, Menu menu) {
-        ChatActivityEnterView chatActivityEnterView = this.f37509f2;
+        ChatActivityEnterView chatActivityEnterView = this.f37508f2;
         org.telegram.ui.bn bnVar = chatActivityEnterView.F3;
         if (bnVar != null) {
             bnVar.extendActionMode(menu);
@@ -137,7 +137,7 @@ public abstract class mg extends ot {
     @Override
     public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
         boolean z10;
-        ChatActivityEnterView chatActivityEnterView = this.f37509f2;
+        ChatActivityEnterView chatActivityEnterView = this.f37508f2;
         InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
         if (onCreateInputConnection == null) {
             return null;
@@ -171,7 +171,7 @@ public abstract class mg extends ot {
         } else {
             z10 = false;
         }
-        ChatActivityEnterView chatActivityEnterView = this.f37509f2;
+        ChatActivityEnterView chatActivityEnterView = this.f37508f2;
         chatActivityEnterView.T = z10;
         super.onMeasure(i7, i10);
         if (chatActivityEnterView.T) {
@@ -193,7 +193,7 @@ public abstract class mg extends ot {
     @Override
     public final void onScrollChanged(int i7, int i10, int i11, int i12) {
         super.onScrollChanged(i7, i10, i11, i12);
-        ng ngVar = this.f37509f2.P3;
+        ng ngVar = this.f37508f2.P3;
         if (ngVar != null) {
             ngVar.b0();
         }
@@ -205,7 +205,7 @@ public abstract class mg extends ot {
         a70 a70Var;
         gf gfVar;
         super.onSelectionChanged(i7, i10);
-        ChatActivityEnterView chatActivityEnterView = this.f37509f2;
+        ChatActivityEnterView chatActivityEnterView = this.f37508f2;
         ng ngVar = chatActivityEnterView.P3;
         if (ngVar != null) {
             ngVar.G();
@@ -231,7 +231,7 @@ public abstract class mg extends ot {
     @Override
     public boolean onTextContextMenuItem(int i7) {
         if (i7 == 16908322) {
-            ChatActivityEnterView chatActivityEnterView = this.f37509f2;
+            ChatActivityEnterView chatActivityEnterView = this.f37508f2;
             chatActivityEnterView.N2 = true;
             ClipData primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip();
             if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("image/*") && chatActivityEnterView.R2 == null) {
@@ -244,31 +244,31 @@ public abstract class mg extends ot {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         int i7;
-        ChatActivityEnterView chatActivityEnterView = this.f37509f2;
+        ChatActivityEnterView chatActivityEnterView = this.f37508f2;
         if (!chatActivityEnterView.f32730u4 && chatActivityEnterView.f32709r4 == null) {
             if (!chatActivityEnterView.A0 && !chatActivityEnterView.Q0()) {
-                if (this.f37508e2 == null) {
+                if (this.f37507e2 == null) {
                     tc tcVar = new tc(this);
-                    this.f37508e2 = tcVar;
+                    this.f37507e2 = tcVar;
                     tcVar.h = new Runnable(this) {
-                        public final mg f36910b;
+                        public final mg f36909b;
 
                         {
-                            this.f36910b = this;
+                            this.f36909b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i10 = r2;
-                            mg mgVar = this.f36910b;
+                            mg mgVar = this.f36909b;
                             switch (i10) {
                                 case 0:
-                                    ChatActivityEnterView chatActivityEnterView2 = mgVar.f37509f2;
+                                    ChatActivityEnterView chatActivityEnterView2 = mgVar.f37508f2;
                                     int i11 = ChatActivityEnterView.f32569s7;
                                     chatActivityEnterView2.Y1();
                                     return;
                                 default:
-                                    ChatActivityEnterView chatActivityEnterView3 = mgVar.f37509f2;
+                                    ChatActivityEnterView chatActivityEnterView3 = mgVar.f37508f2;
                                     chatActivityEnterView3.f32584b4 = false;
                                     chatActivityEnterView3.j1();
                                     return;
@@ -276,17 +276,17 @@ public abstract class mg extends ot {
                         }
                     };
                 }
-                tc tcVar2 = this.f37508e2;
+                tc tcVar2 = this.f37507e2;
                 int measuredWidth = getMeasuredWidth();
                 int measuredHeight = getMeasuredHeight();
                 tcVar2.getClass();
                 RectF rectF = org.telegram.messenger.g0.P;
                 float f10 = 0;
                 rectF.set(f10, f10, measuredWidth, measuredHeight);
-                tcVar2.f39856i = false;
-                tcVar2.f39852c = 0;
+                tcVar2.f39855i = false;
+                tcVar2.f39851c = 0;
                 tcVar2.a(rectF);
-                return this.f37508e2.b(motionEvent);
+                return this.f37507e2.b(motionEvent);
             } else if (chatActivityEnterView.S0() && motionEvent.getAction() == 0) {
                 if (chatActivityEnterView.H2 != 0) {
                     chatActivityEnterView.P1(0, false);
@@ -303,24 +303,24 @@ public abstract class mg extends ot {
                     chatActivityEnterView.Q1(false, true, false, true);
                     chatActivityEnterView.f32584b4 = true;
                     org.telegram.messenger.g0.h3(new Runnable(this) {
-                        public final mg f36910b;
+                        public final mg f36909b;
 
                         {
-                            this.f36910b = this;
+                            this.f36909b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i10 = r2;
-                            mg mgVar = this.f36910b;
+                            mg mgVar = this.f36909b;
                             switch (i10) {
                                 case 0:
-                                    ChatActivityEnterView chatActivityEnterView2 = mgVar.f37509f2;
+                                    ChatActivityEnterView chatActivityEnterView2 = mgVar.f37508f2;
                                     int i11 = ChatActivityEnterView.f32569s7;
                                     chatActivityEnterView2.Y1();
                                     return;
                                 default:
-                                    ChatActivityEnterView chatActivityEnterView3 = mgVar.f37509f2;
+                                    ChatActivityEnterView chatActivityEnterView3 = mgVar.f37508f2;
                                     chatActivityEnterView3.f32584b4 = false;
                                     chatActivityEnterView3.j1();
                                     return;
@@ -344,7 +344,7 @@ public abstract class mg extends ot {
 
     @Override
     public final boolean requestFocus(int i7, Rect rect) {
-        ChatActivityEnterView chatActivityEnterView = this.f37509f2;
+        ChatActivityEnterView chatActivityEnterView = this.f37508f2;
         if (!chatActivityEnterView.A0 && !chatActivityEnterView.Q0()) {
             return false;
         }
@@ -361,7 +361,7 @@ public abstract class mg extends ot {
     @Override
     public void setOffsetY(float f10) {
         super.setOffsetY(f10);
-        ChatActivityEnterView chatActivityEnterView = this.f37509f2;
+        ChatActivityEnterView chatActivityEnterView = this.f37508f2;
         if (chatActivityEnterView.f32591c2.getForeground() != null) {
             du0 du0Var = chatActivityEnterView.f32591c2;
             du0Var.invalidateDrawable(du0Var.getForeground());

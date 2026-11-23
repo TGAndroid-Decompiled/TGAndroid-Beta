@@ -89,7 +89,7 @@ public abstract class q4 extends View implements org.telegram.ui.Components.dg0 
         paint3.setAlpha(66);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(org.telegram.ui.Components.nr.f37964j);
+        ofFloat.setInterpolator(org.telegram.ui.Components.nr.f37963j);
         ofFloat.addUpdateListener(new a3(this, 1));
         ofFloat.addListener(new ki.m3(this, 16));
         TextPaint textPaint = new TextPaint(1);

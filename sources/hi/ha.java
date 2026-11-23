@@ -48,11 +48,11 @@ public final class ha extends ClickableSpan {
                 ((org.telegram.ui.o1) this.f14765b).run();
                 return;
             case 5:
-                ((lc) this.f14765b).f37161a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                ((lc) this.f14765b).f37160a.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
             case 6:
                 zk zkVar = (zk) this.f14765b;
-                org.telegram.ui.Wallet.n6.N0(zkVar.f42915n, zkVar.getContext(), zkVar.f37519a);
+                org.telegram.ui.Wallet.n6.N0(zkVar.f42914n, zkVar.getContext(), zkVar.f37518a);
                 return;
             case 7:
                 ((ActionBarLayout) ((LaunchActivity) this.f14765b).M()).S(new PremiumPreviewFragment(0, "gift"));
@@ -66,7 +66,7 @@ public final class ha extends ClickableSpan {
                 return;
             case 10:
                 ug.k0 k0Var = ((ug.d0) this.f14765b).f58684c;
-                wg.l.J0(k0Var.f39536s1, k0Var.J0, k0Var.W1, null);
+                wg.l.J0(k0Var.f39535s1, k0Var.J0, k0Var.W1, null);
                 return;
             default:
                 return;
@@ -100,7 +100,7 @@ public final class ha extends ClickableSpan {
                 textPaint.setUnderlineText(false);
                 return;
             case 6:
-                textPaint.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, ((zk) obj).f37519a));
+                textPaint.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, ((zk) obj).f37518a));
                 textPaint.setUnderlineText(false);
                 return;
             case 7:

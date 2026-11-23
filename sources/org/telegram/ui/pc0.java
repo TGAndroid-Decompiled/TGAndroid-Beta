@@ -61,8 +61,8 @@ public final class pc0 extends org.telegram.ui.Components.iu0 implements org.tel
         x30Var.K = false;
         x30Var.H = false;
         x30Var.L = false;
-        x30Var.f41959a = de0Var;
-        x30Var.f41960b = this;
+        x30Var.f41958a = de0Var;
+        x30Var.f41959b = this;
         FrameLayout frameLayout = new FrameLayout(context);
         addView(frameLayout, c8.ma.r(78, 78, 1));
         org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);

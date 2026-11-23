@@ -118,8 +118,8 @@ public final class d implements OnFailureListener, p, q1, ww, org.telegram.ui.Ac
                 return;
             case 11:
                 tn tnVar = (tn) this.f40b;
-                tnVar.f39969k0.d((TLRPC.TL_messageMediaPoll) this.f41c, tnVar.P, tnVar.n1, (ArrayList) this.d, z10, i7, ((Long) this.f42e).longValue());
-                tnVar.f37520b.a(true);
+                tnVar.f39968k0.d((TLRPC.TL_messageMediaPoll) this.f41c, tnVar.P, tnVar.n1, (ArrayList) this.d, z10, i7, ((Long) this.f42e).longValue());
+                tnVar.f37519b.a(true);
                 return;
             case 12:
                 ls lsVar = (ls) this.f40b;
@@ -506,7 +506,7 @@ public final class d implements OnFailureListener, p, q1, ww, org.telegram.ui.Ac
                     k12.putLong("chat_id", -j13);
                 }
                 k12.putString("start_text", "@" + p10.o(user2) + " " + str2);
-                g2 g2Var = uiVar.f40368a2;
+                g2 g2Var = uiVar.f40367a2;
                 if (np.u1(uiVar.H3).E(k12, g2Var, null, null)) {
                     zb0Var2.dismiss();
                     uiVar.a(true);

@@ -309,8 +309,8 @@ public final class ss implements Runnable {
                 ArrayList arrayList7 = (ArrayList) obj;
                 ArrayList arrayList8 = ((f40) obj2).X3;
                 for (int i14 = 0; i14 < arrayList8.size(); i14++) {
-                    if (((org.telegram.ui.Components.voip.y) arrayList8.get(i14)).f41493x != null) {
-                        arrayList7.remove(((org.telegram.ui.Components.voip.y) arrayList8.get(i14)).f41493x);
+                    if (((org.telegram.ui.Components.voip.y) arrayList8.get(i14)).f41492x != null) {
+                        arrayList7.remove(((org.telegram.ui.Components.voip.y) arrayList8.get(i14)).f41492x);
                     }
                 }
                 while (i11 < arrayList7.size()) {
@@ -333,7 +333,7 @@ public final class ss implements Runnable {
             case 23:
                 m4 m4Var = (m4) obj2;
                 try {
-                    Bitmap bitmap = ((org.telegram.ui.Components.voip.n2) obj).f41218e.getBitmap(100, 100);
+                    Bitmap bitmap = ((org.telegram.ui.Components.voip.n2) obj).f41217e.getBitmap(100, 100);
                     if (bitmap != null) {
                         org.telegram.messenger.g0.g3(new ss(24, m4Var, c8.j0.b(bitmap, true)));
                         return;

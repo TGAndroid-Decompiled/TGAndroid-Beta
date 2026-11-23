@@ -339,7 +339,7 @@ public class qc extends org.telegram.ui.ActionBar.g2 implements org.telegram.mes
             if (z11) {
                 org.telegram.ui.Components.oh0 oh0Var = this.L;
                 if (z10) {
-                    i10 = oh0Var.f38211e[0];
+                    i10 = oh0Var.f38210e[0];
                 }
                 oh0Var.P(i10);
                 org.telegram.ui.Components.oh0 oh0Var2 = this.L;
@@ -350,7 +350,7 @@ public class qc extends org.telegram.ui.ActionBar.g2 implements org.telegram.mes
                 return;
             }
             if (z10) {
-                i7 = this.L.f38211e[0] - 1;
+                i7 = this.L.f38210e[0] - 1;
             } else {
                 i7 = 0;
             }
@@ -469,7 +469,7 @@ public class qc extends org.telegram.ui.ActionBar.g2 implements org.telegram.mes
             oh0Var.M(35);
             this.L.P(36);
         }
-        this.L.f38205a0 = true;
+        this.L.f38204a0 = true;
         int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.J9, this.resourceProvider);
         this.L.Q(w02, "Sunny");
         this.L.Q(w02, "Path 6");
@@ -582,7 +582,7 @@ public class qc extends org.telegram.ui.ActionBar.g2 implements org.telegram.mes
             if (this.J == null) {
                 this.J = new SpannableStringBuilder("l");
                 org.telegram.ui.Components.nq nqVar = new org.telegram.ui.Components.nq(2131231977, 0);
-                nqVar.f37950n = 1;
+                nqVar.f37949n = 1;
                 this.J.setSpan(nqVar, 0, 1, 33);
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();

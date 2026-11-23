@@ -161,7 +161,7 @@ public final class jw0 implements Runnable {
                 org.telegram.ui.Wallet.na naVar = (org.telegram.ui.Wallet.na) obj;
                 if (!naVar.f44715r && i12 == naVar.K) {
                     naVar.M = false;
-                    naVar.f34681a.f35790g3.O(true);
+                    naVar.f34681a.f35789g3.O(true);
                     return;
                 }
                 return;
@@ -186,7 +186,7 @@ public final class jw0 implements Runnable {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 jVar.Q = duration;
-                duration.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                duration.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                 jVar.Q.addUpdateListener(new tg.f(jVar, 5));
                 jVar.Q.addListener(new tg.g(jVar, 2));
                 jVar.Q.start();

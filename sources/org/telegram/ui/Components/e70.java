@@ -11,7 +11,7 @@ public final class e70 extends ek0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f34694f3.f36187u1) {
+        if (this.f34694f3.f36186u1) {
             return;
         }
         super.requestLayout();

@@ -16,11 +16,11 @@ public final class hb1 extends org.telegram.ui.Components.n41 {
     public final void b(View view, org.telegram.ui.Components.o41 o41Var, boolean z10, org.telegram.ui.Components.c51 c51Var, org.telegram.ui.Components.h51 h51Var) {
         float f10;
         ib1 ib1Var = (ib1) view;
-        int i7 = o41Var.f38090k;
-        CharSequence charSequence = o41Var.f38092m;
-        CharSequence charSequence2 = o41Var.f38093n;
-        boolean z11 = o41Var.f38097r;
-        boolean z12 = o41Var.f38098s;
+        int i7 = o41Var.f38089k;
+        CharSequence charSequence = o41Var.f38091m;
+        CharSequence charSequence2 = o41Var.f38092n;
+        boolean z11 = o41Var.f38096r;
+        boolean z12 = o41Var.f38097s;
         int i10 = o41Var.A;
         TextView textView = ib1Var.f48724e;
         ImageView imageView = ib1Var.f48725f;

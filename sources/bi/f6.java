@@ -23,9 +23,9 @@ public final class f6 extends h51 {
         int i7;
         switch (this.f3631n3) {
             case 2:
-                ui uiVar = ((ej) this.f3632o3).f37520b;
+                ui uiVar = ((ej) this.f3632o3).f37519b;
                 int L = org.telegram.messenger.g0.L(30.0f) + uiVar.Z3[0];
-                if (!uiVar.f40371b2) {
+                if (!uiVar.f40370b2) {
                     i7 = org.telegram.messenger.g0.f24040m;
                 } else {
                     i7 = 0;
@@ -44,7 +44,7 @@ public final class f6 extends h51 {
         switch (this.f3631n3) {
             case 2:
                 ej ejVar = (ej) this.f3632o3;
-                ejVar.f37520b.N1(ejVar, 0);
+                ejVar.f37519b.N1(ejVar, 0);
                 return;
             default:
                 return;
@@ -101,7 +101,7 @@ public final class f6 extends h51 {
             case 2:
                 super.onLayout(z10, i7, i10, i11, i12);
                 ej ejVar = (ej) this.f3632o3;
-                ejVar.f37520b.N1(ejVar, 0);
+                ejVar.f37519b.N1(ejVar, 0);
                 return;
             case 3:
                 super.onLayout(z10, i7, i10, i11, i12);

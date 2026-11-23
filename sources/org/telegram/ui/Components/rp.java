@@ -35,7 +35,7 @@ public final class rp extends hi.l3 {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.G.getAlpha(), l1Var.b().getAlpha()) * f10), 31);
                 Path path = this.F0;
                 canvas.drawPath(path, paint);
-                if (l1Var.f41158e) {
+                if (l1Var.f41157e) {
                     paint.setShader(((Paint) l1Var.d.f341a).getShader());
                     canvas.drawPath(path, paint);
                 }

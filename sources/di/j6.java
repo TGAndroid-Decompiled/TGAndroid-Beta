@@ -96,22 +96,22 @@ public final class j6 extends AnimatorListenerAdapter {
                 photoViewer.f43249e6 = p22;
                 photoViewer.f43211a6 = p22;
                 photoViewer.f43253f0.invalidate();
-                CropAreaView cropAreaView = photoViewer.D1.f39164b.f21921a;
+                CropAreaView cropAreaView = photoViewer.D1.f39163b.f21921a;
                 float p23 = photoViewer.p2(false);
                 cropAreaView.f32928o0 = 0.0f;
                 cropAreaView.f32929p0 = p23;
                 cropAreaView.f32930q0 = 0.0f;
                 cropAreaView.f32932r0 = 0.0f;
                 cropAreaView.invalidate();
-                photoViewer.D1.f39165c.setRotated(false);
+                photoViewer.D1.f39164c.setRotated(false);
                 if (Math.abs(f10) > 0.0f) {
                     rd0 rd0Var = photoViewer.D1;
-                    og.f fVar = rd0Var.f39165c;
+                    og.f fVar = rd0Var.f39164c;
                     if (fVar != null) {
                         fVar.b(0.0f);
                         fVar.setRotated(false);
                     }
-                    if (rd0Var.f39164b.m(f10)) {
+                    if (rd0Var.f39163b.m(f10)) {
                         org.telegram.ui.ActionBar.t6.s(photoViewer.f43226c1, org.telegram.ui.ActionBar.m6.f29630qg, photoViewer.f43403w2, PorterDuff.Mode.MULTIPLY);
                     } else {
                         photoViewer.f43226c1.setColorFilter((ColorFilter) null);

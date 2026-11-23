@@ -298,7 +298,7 @@ public class l3 extends View {
                 i11 = Math.max(max, spanEnd2);
                 if (i11 - max > 0) {
                     Typeface typeface = textPaint3.getTypeface();
-                    textPaint3.setTypeface(l41VarArr[i12].f37105a);
+                    textPaint3.setTypeface(l41VarArr[i12].f37104a);
                     textPaint3.setTypeface(typeface);
                     f10 = textPaint3.measureText(spanned, max, i11) + f10;
                 }
@@ -461,7 +461,7 @@ public class l3 extends View {
             if (this.J) {
                 f10 = this.Q;
             } else {
-                f10 = n6Var.f37800e;
+                f10 = n6Var.f37799e;
             }
             if (this.f14987r) {
                 if (this.f14982n == null) {
@@ -856,7 +856,7 @@ public class l3 extends View {
             return charSequence;
         }
         if (!this.J) {
-            return this.I.f37803i;
+            return this.I.f37802i;
         }
         StaticLayout staticLayout = this.M;
         if (staticLayout != null) {
@@ -869,7 +869,7 @@ public class l3 extends View {
         if (this.J) {
             return this.K;
         }
-        return this.I.f37794a;
+        return this.I.f37793a;
     }
 
     public final void i(float f10) {
@@ -1107,7 +1107,7 @@ public class l3 extends View {
             this.f15000z0 = ofFloat;
             ofFloat.addUpdateListener(new j3(this, 0));
             this.f15000z0.addListener(new ai.k0(this, 21));
-            this.f15000z0.setInterpolator(nr.f37965k);
+            this.f15000z0.setInterpolator(nr.f37964k);
             this.f15000z0.setDuration(300L);
             this.f15000z0.start();
         }

@@ -226,17 +226,17 @@ public final class f30 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             org.telegram.ui.ActionBar.t6.s(this.f35075n.getSearchOptionsItem(), org.telegram.ui.ActionBar.m6.G6, this.resourceProvider, PorterDuff.Mode.SRC_IN);
         }
         this.f35075n.setPinnedToTop(true);
-        this.f35075n.f36672u0.setTranslationY(0.0f);
+        this.f35075n.f36671u0.setTranslationY(0.0f);
         if (this.f35075n.getSearchOptionsItem() != null) {
             this.f35075n.getSearchOptionsItem().setTranslationY(0.0f);
         }
         c30 c30Var2 = this.f35075n;
         fi.b6 b6Var = this.d;
         c30Var2.X1 = b6Var;
-        sr0 sr0Var = c30Var2.f36628f0;
+        sr0 sr0Var = c30Var2.f36627f0;
         sr0Var.f35670s = b6Var;
         sr0Var.f();
-        gt0 gt0Var = c30Var2.f36631g0;
+        gt0 gt0Var = c30Var2.f36630g0;
         gt0Var.f35670s = b6Var;
         gt0Var.f();
         this.f35075n.n1(0, ri.a.c(org.telegram.messenger.g0.f24040m) + org.telegram.messenger.g0.L(48.0f) + Z(), org.telegram.messenger.g0.L(8.0f), 0);

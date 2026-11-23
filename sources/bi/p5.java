@@ -118,13 +118,13 @@ public final class p5 extends j71 {
     public void v(int i7, boolean z10) {
         switch (this.W) {
             case 2:
-                int i10 = ((jq0) this.f4006b0).f50348b.f36199c0.get(i7, -1);
+                int i10 = ((jq0) this.f4006b0).f50348b.f36198c0.get(i7, -1);
                 jt0 jt0Var = ((iq0) this.f4005a0).d;
                 if (i10 <= 0) {
                     jt0.t(jt0Var, 8, z10);
                     return;
                 } else {
-                    jt0.t(jt0Var, jt0Var.x1(i10).f36308a, z10);
+                    jt0.t(jt0Var, jt0Var.x1(i10).f36307a, z10);
                     return;
                 }
             default:
@@ -154,7 +154,7 @@ public final class p5 extends j71 {
                 }
                 return;
             default:
-                ((jq0) this.f4006b0).f50348b.f36199c0.get(i7, -1);
+                ((jq0) this.f4006b0).f50348b.f36198c0.get(i7, -1);
                 ((iq0) this.f4005a0).d.V0(1.0f);
                 return;
         }

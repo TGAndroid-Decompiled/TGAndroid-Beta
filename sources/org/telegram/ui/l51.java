@@ -325,7 +325,7 @@ public final class l51 implements if0 {
                 }
                 this.f49483c = z12;
                 if (z12) {
-                    org.telegram.ui.ActionBar.m5 m5Var = ((org.telegram.ui.Components.so[]) bnVar.f45979c0.f3595b)[0].f39638c;
+                    org.telegram.ui.ActionBar.m5 m5Var = ((org.telegram.ui.Components.so[]) bnVar.f45979c0.f3595b)[0].f39637c;
                     jh.k.b(m5Var, bnVar.f46111m1, this.P);
                     PointF pointF2 = this.P;
                     this.f49484e = pointF2.x;
@@ -359,7 +359,7 @@ public final class l51 implements if0 {
                 ofFloat.addUpdateListener(new ss0(this, rjVar, tiVar, 1));
                 ofFloat.setInterpolator(new LinearInterpolator());
                 ofFloat.setDuration(250L);
-                ((ArrayList) tiVar.f39920c).add(this);
+                ((ArrayList) tiVar.f39919c).add(this);
                 tiVar.a();
                 ((ViewGroup) tiVar.d).invalidate();
                 this.E.d();

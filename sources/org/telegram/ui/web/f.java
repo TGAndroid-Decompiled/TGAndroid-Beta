@@ -27,10 +27,10 @@ public final class f extends Drawable {
     public final void draw(Canvas canvas) {
         switch (this.f53129a) {
             case 0:
-                this.f53130b.c(getBounds().centerX() - (this.f53130b.f42247c / 2.0f), getBounds().centerY(), 1.0f, this.f53131c.f53149s, canvas);
+                this.f53130b.c(getBounds().centerX() - (this.f53130b.f42246c / 2.0f), getBounds().centerY(), 1.0f, this.f53131c.f53149s, canvas);
                 return;
             default:
-                this.f53130b.c(getBounds().centerX() - (this.f53130b.f42247c / 2.0f), getBounds().centerY(), 1.0f, this.f53131c.f53149s, canvas);
+                this.f53130b.c(getBounds().centerX() - (this.f53130b.f42246c / 2.0f), getBounds().centerY(), 1.0f, this.f53131c.f53149s, canvas);
                 return;
         }
     }

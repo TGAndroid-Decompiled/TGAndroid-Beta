@@ -131,7 +131,7 @@ public final class eu extends org.telegram.ui.ActionBar.g2 {
                 cxVar.Y3();
                 kw kwVar = cxVar.D0;
                 if (kwVar != null) {
-                    b1Var = kwVar.f40500b0;
+                    b1Var = kwVar.f40499b0;
                 } else {
                     b1Var = null;
                 }

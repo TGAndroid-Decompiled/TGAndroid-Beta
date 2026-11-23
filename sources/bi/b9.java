@@ -123,7 +123,7 @@ public final class b9 extends org.telegram.ui.ActionBar.g2 {
             case 5:
                 return ((hi.k5) this.f3450b).getContext();
             case 6:
-                return ((wt) this.f3450b).f41892a.getContext();
+                return ((wt) this.f3450b).f41891a.getContext();
         }
     }
 
@@ -148,7 +148,7 @@ public final class b9 extends org.telegram.ui.ActionBar.g2 {
             case 7:
                 return this.currentAccount;
             case 8:
-                return ((lx) this.f3450b).H.f40092d1;
+                return ((lx) this.f3450b).H.f40091d1;
             case 12:
                 return this.currentAccount;
         }
@@ -164,7 +164,7 @@ public final class b9 extends org.telegram.ui.ActionBar.g2 {
                 Pattern pattern = ev.Q1;
                 return evVar.f30176b;
             case 8:
-                return ((lx) obj).H.f40132r;
+                return ((lx) obj).H.f40131r;
             case 12:
                 return ((ug.h1) obj).f30176b;
             default:
@@ -182,7 +182,7 @@ public final class b9 extends org.telegram.ui.ActionBar.g2 {
                 Pattern pattern = ev.Q1;
                 return (FrameLayout) evVar.f30176b;
             case 8:
-                return ((lx) obj).H.f40132r;
+                return ((lx) obj).H.f40131r;
             case 12:
                 return ((ug.h1) obj).I2;
             default:
@@ -274,7 +274,7 @@ public final class b9 extends org.telegram.ui.ActionBar.g2 {
                 Pattern pattern = ev.Q1;
                 return evVar.J0;
             case 8:
-                return ((lx) obj).H.f40082a2;
+                return ((lx) obj).H.f40081a2;
             case 11:
                 return new fi.g2(9, ((org.telegram.ui.web.v0) obj).f53348e);
             case 13:
@@ -286,7 +286,7 @@ public final class b9 extends org.telegram.ui.ActionBar.g2 {
     public Dialog getVisibleDialog() {
         switch (this.f3449a) {
             case 6:
-                return new vt(this, ((wt) this.f3450b).f41892a.getContext());
+                return new vt(this, ((wt) this.f3450b).f41891a.getContext());
             default:
                 return super.getVisibleDialog();
         }

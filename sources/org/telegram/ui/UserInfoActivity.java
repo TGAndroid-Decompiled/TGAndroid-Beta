@@ -235,11 +235,11 @@ public class UserInfoActivity extends org.telegram.ui.Components.e51 implements 
             int i13 = hb1.f48313b;
             org.telegram.ui.Components.o41 K = org.telegram.ui.Components.o41.K(hb1.class);
             K.d = 10;
-            K.f38090k = 2131232477;
-            K.f38092m = N02;
-            K.f38093n = null;
+            K.f38089k = 2131232477;
+            K.f38091m = N02;
+            K.f38092n = null;
             K.A = 0;
-            K.f38097r = true;
+            K.f38096r = true;
             arrayList.add(K);
         }
         if (!arrayList2.isEmpty()) {
@@ -279,11 +279,11 @@ public class UserInfoActivity extends org.telegram.ui.Components.e51 implements 
         int i17 = hb1.f48313b;
         org.telegram.ui.Components.o41 K3 = org.telegram.ui.Components.o41.K(hb1.class);
         K3.d = 11;
-        K3.f38090k = 2131232197;
-        K3.f38092m = N03;
-        K3.f38093n = null;
+        K3.f38089k = 2131232197;
+        K3.f38091m = N03;
+        K3.f38092n = null;
         K3.A = 0;
-        K3.f38098s = true;
+        K3.f38097s = true;
         arrayList.add(K3);
         arrayList.add(org.telegram.ui.Components.o41.B(-4, null));
     }
@@ -329,7 +329,7 @@ public class UserInfoActivity extends org.telegram.ui.Components.e51 implements 
                     this.K = null;
                     bi.f6 f6Var = this.f43938y;
                     if (f6Var != null) {
-                        f6Var.f35790g3.O(true);
+                        f6Var.f35789g3.O(true);
                     }
                     g0(true);
                     return;
@@ -439,13 +439,13 @@ public class UserInfoActivity extends org.telegram.ui.Components.e51 implements 
         } else if (i7 == org.telegram.messenger.ls.f25371r) {
             bi.f6 f6Var = this.f43938y;
             if (f6Var != null) {
-                f6Var.f35790g3.O(true);
+                f6Var.f35789g3.O(true);
             }
         } else if (i7 == org.telegram.messenger.ls.f25333k0) {
             j0();
             bi.f6 f6Var2 = this.f43938y;
             if (f6Var2 != null) {
-                f6Var2.f35790g3.O(true);
+                f6Var2.f35789g3.O(true);
             }
         } else if (i7 == org.telegram.messenger.ls.f25291c4) {
             TL_account.connectedBots connectedbots = kg.f.a(this.currentAccount).f18343c;
@@ -455,7 +455,7 @@ public class UserInfoActivity extends org.telegram.ui.Components.e51 implements 
             this.f43936w = arrayList;
             bi.f6 f6Var3 = this.f43938y;
             if (f6Var3 != null) {
-                f6Var3.f35790g3.O(true);
+                f6Var3.f35789g3.O(true);
             }
         }
     }
@@ -657,7 +657,7 @@ public class UserInfoActivity extends org.telegram.ui.Components.e51 implements 
             this.N = z11;
             g0(true);
             bi.f6 f6Var = this.f43938y;
-            if (f6Var != null && (c51Var = f6Var.f35790g3) != null) {
+            if (f6Var != null && (c51Var = f6Var.f35789g3) != null) {
                 c51Var.O(true);
             }
             this.P = true;
@@ -711,7 +711,7 @@ public class UserInfoActivity extends org.telegram.ui.Components.e51 implements 
         this.f43935s = null;
         bi.f6 f6Var = this.f43938y;
         if (f6Var != null) {
-            f6Var.f35790g3.O(true);
+            f6Var.f35789g3.O(true);
         }
     }
 

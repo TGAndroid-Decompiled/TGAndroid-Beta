@@ -4,26 +4,26 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class s01 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39438a;
-    public final g11 f39439b;
+    public final int f39437a;
+    public final g11 f39438b;
 
     public s01(g11 g11Var, int i7) {
-        this.f39438a = i7;
-        this.f39439b = g11Var;
+        this.f39437a = i7;
+        this.f39438b = g11Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         int i7;
-        switch (this.f39438a) {
+        switch (this.f39437a) {
             case 0:
-                g11 g11Var = this.f39439b;
+                g11 g11Var = this.f39438b;
                 g11Var.getClass();
                 g11Var.c(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g11 g11Var2 = this.f39439b;
+                g11 g11Var2 = this.f39438b;
                 g11Var2.f35366a0 = floatValue;
                 org.telegram.ui.f61 f61Var = g11Var2.S;
                 if (floatValue > 0.0f) {
@@ -44,7 +44,7 @@ public final class s01 implements ValueAnimator.AnimatorUpdateListener {
                 g11Var2.h.requestLayout();
                 return;
             default:
-                g11 g11Var3 = this.f39439b;
+                g11 g11Var3 = this.f39438b;
                 g11Var3.getClass();
                 g11Var3.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;

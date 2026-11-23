@@ -5,19 +5,19 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class v10 extends dk0 {
-    public org.telegram.messenger.t3 f40627c;
+    public org.telegram.messenger.t3 f40626c;
     public final int d;
     public ArrayList h;
-    public org.telegram.ui.b20 f40630n;
-    public final org.telegram.ui.f40 f40631r;
-    public final ArrayList f40628e = new ArrayList();
-    public final ArrayList f40629f = new ArrayList();
-    public boolean f40632s = false;
+    public org.telegram.ui.b20 f40629n;
+    public final org.telegram.ui.f40 f40630r;
+    public final ArrayList f40627e = new ArrayList();
+    public final ArrayList f40628f = new ArrayList();
+    public boolean f40631s = false;
 
     public v10(org.telegram.messenger.t3 t3Var, int i7, org.telegram.ui.f40 f40Var) {
-        this.f40627c = t3Var;
+        this.f40626c = t3Var;
         this.d = i7;
-        this.f40631r = f40Var;
+        this.f40630r = f40Var;
     }
 
     @Override
@@ -27,11 +27,11 @@ public final class v10 extends dk0 {
 
     public final void E(ArrayList arrayList, org.telegram.ui.b20 b20Var) {
         this.h = arrayList;
-        this.f40630n = b20Var;
+        this.f40629n = b20Var;
     }
 
     public final void F(org.telegram.ui.x10 x10Var, boolean z10) {
-        this.f40632s = z10;
+        this.f40631s = z10;
         for (int i7 = 0; i7 < x10Var.getChildCount(); i7++) {
             View childAt = x10Var.getChildAt(i7);
             if (childAt instanceof u10) {
@@ -44,21 +44,21 @@ public final class v10 extends dk0 {
     }
 
     public final void G(ek0 ek0Var, boolean z10) {
-        if (this.f40627c == null) {
+        if (this.f40626c == null) {
             return;
         }
-        ArrayList arrayList = this.f40628e;
-        ArrayList arrayList2 = this.f40629f;
+        ArrayList arrayList = this.f40627e;
+        ArrayList arrayList2 = this.f40628f;
         if (z10) {
             ArrayList arrayList3 = new ArrayList(arrayList2);
             ArrayList arrayList4 = new ArrayList(arrayList);
             arrayList2.clear();
-            org.telegram.messenger.t3 t3Var = this.f40627c;
+            org.telegram.messenger.t3 t3Var = this.f40626c;
             if (!t3Var.f26950b.rtmp_stream) {
                 arrayList2.addAll(t3Var.f26954g);
             }
             arrayList.clear();
-            org.telegram.messenger.t3 t3Var2 = this.f40627c;
+            org.telegram.messenger.t3 t3Var2 = this.f40626c;
             if (!t3Var2.f26950b.rtmp_stream) {
                 arrayList.addAll(t3Var2.f26953f);
             }
@@ -67,12 +67,12 @@ public final class v10 extends dk0 {
             return;
         }
         arrayList2.clear();
-        org.telegram.messenger.t3 t3Var3 = this.f40627c;
+        org.telegram.messenger.t3 t3Var3 = this.f40626c;
         if (!t3Var3.f26950b.rtmp_stream) {
             arrayList2.addAll(t3Var3.f26954g);
         }
         arrayList.clear();
-        org.telegram.messenger.t3 t3Var4 = this.f40627c;
+        org.telegram.messenger.t3 t3Var4 = this.f40626c;
         if (!t3Var4.f26950b.rtmp_stream) {
             arrayList.addAll(t3Var4.f26953f);
         }
@@ -81,7 +81,7 @@ public final class v10 extends dk0 {
 
     @Override
     public final int b() {
-        return this.f40629f.size() + this.f40628e.size();
+        return this.f40628f.size() + this.f40627e.size();
     }
 
     @Override
@@ -89,14 +89,14 @@ public final class v10 extends dk0 {
         TLRPC.GroupCallParticipant groupCallParticipant;
         org.telegram.messenger.u3 u3Var;
         u10 u10Var = (u10) f1Var.f59165a;
-        org.telegram.messenger.u3 u3Var2 = u10Var.f40197f;
-        ArrayList arrayList = this.f40628e;
+        org.telegram.messenger.u3 u3Var2 = u10Var.f40196f;
+        ArrayList arrayList = this.f40627e;
         if (i7 < arrayList.size()) {
             u3Var = (org.telegram.messenger.u3) arrayList.get(i7);
             groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27155a;
         } else {
             int size = i7 - arrayList.size();
-            ArrayList arrayList2 = this.f40629f;
+            ArrayList arrayList2 = this.f40628f;
             if (size < arrayList2.size()) {
                 groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(i7 - arrayList.size());
                 u3Var = null;
@@ -111,7 +111,7 @@ public final class v10 extends dk0 {
                 u10Var.b(true);
             }
         } else if (u10Var.L) {
-            if (u10Var.getRenderer() == null && u3Var != null && this.f40632s) {
+            if (u10Var.getRenderer() == null && u3Var != null && this.f40631s) {
                 u10Var.b(true);
             } else if (u10Var.getRenderer() != null && u3Var == null) {
                 u10Var.b(false);

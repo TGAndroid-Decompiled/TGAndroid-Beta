@@ -110,8 +110,8 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
                 }
                 bi.f6 f6Var = mVar.f34681a;
                 if (f6Var != null) {
-                    f6Var.f35790g3.O(true);
-                    mVar.f34681a.f35789f3.h1(0, 0);
+                    f6Var.f35789g3.O(true);
+                    mVar.f34681a.f35788f3.h1(0, 0);
                     return;
                 }
                 return;
@@ -122,8 +122,8 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
                 org.telegram.messenger.g0.r((oi.c2) this.f15368b);
                 bi.f6 f6Var2 = x0Var.f34681a;
                 if (f6Var2 != null) {
-                    f6Var2.f35790g3.O(true);
-                    x0Var.f34681a.f35789f3.h1(0, 0);
+                    f6Var2.f35789g3.O(true);
+                    x0Var.f34681a.f35788f3.h1(0, 0);
                 }
                 xh.l lVar = x0Var.f53402y.d;
                 if (TextUtils.isEmpty(x0Var.f53398r)) {
@@ -268,9 +268,9 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
                 }
                 bi.f6 f6Var = mVar.f34681a;
                 if (f6Var != null) {
-                    f6Var.f35790g3.O(true);
+                    f6Var.f35789g3.O(true);
                     if (z10 != (!TextUtils.isEmpty(obj3))) {
-                        mVar.f34681a.f35789f3.h1(0, 0);
+                        mVar.f34681a.f35788f3.h1(0, 0);
                         return;
                     }
                     return;
@@ -296,9 +296,9 @@ public final class s2 extends org.telegram.ui.ActionBar.m0 {
                 }
                 bi.f6 f6Var2 = x0Var.f34681a;
                 if (f6Var2 != null) {
-                    f6Var2.f35790g3.O(true);
+                    f6Var2.f35789g3.O(true);
                     if (z11 != (!TextUtils.isEmpty(obj4))) {
-                        x0Var.f34681a.f35789f3.h1(0, 0);
+                        x0Var.f34681a.f35788f3.h1(0, 0);
                         return;
                     }
                     return;

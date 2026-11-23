@@ -181,7 +181,7 @@ public final class so0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.
                 PhotoViewer.f43202f9.z0(false, true);
             }
             dq0 dq0Var = photoViewer.f43262g0;
-            if (dq0Var != null && dq0Var.f37172f != null) {
+            if (dq0Var != null && dq0Var.f37171f != null) {
                 if (org.telegram.messenger.t0.f26939x) {
                     try {
                         dq0Var.getContext().startService(new Intent(org.telegram.messenger.t0.f26931b, BringAppForegroundService.class));
@@ -190,12 +190,12 @@ public final class so0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.
                     }
                 }
                 dq0Var.h.setVisibility(0);
-                ViewGroup viewGroup = (ViewGroup) dq0Var.f37172f.getParent();
+                ViewGroup viewGroup = (ViewGroup) dq0Var.f37171f.getParent();
                 if (viewGroup != null) {
-                    viewGroup.removeView(dq0Var.f37172f);
+                    viewGroup.removeView(dq0Var.f37171f);
                 }
-                dq0Var.addView(dq0Var.f37172f, 0, c8.ma.e(-1, -1, 51));
-                wi.n nVar = dq0Var.f37169b.P8;
+                dq0Var.addView(dq0Var.f37171f, 0, c8.ma.e(-1, -1, 51));
+                wi.n nVar = dq0Var.f37168b.P8;
                 if (nVar != null) {
                     nVar.a(new fi.e(22));
                 }
@@ -300,7 +300,7 @@ public final class so0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.
     public void a(float f10) {
         dq0 dq0Var;
         PhotoViewer photoViewer = this.f52091a;
-        if (photoViewer.G2 == null && ((dq0Var = photoViewer.f43262g0) == null || !dq0Var.f37178y)) {
+        if (photoViewer.G2 == null && ((dq0Var = photoViewer.f43262g0) == null || !dq0Var.f37177y)) {
             return;
         }
         if (!photoViewer.B8 && photoViewer.R7.getVisibility() == 0) {
@@ -397,29 +397,29 @@ public final class so0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.
         kp0 kp0Var2;
         PhotoViewer photoViewer = this.f52091a;
         dq0 dq0Var = photoViewer.f43262g0;
-        if (dq0Var != null && dq0Var.f37178y && (kp0Var2 = photoViewer.f43369s3) != null) {
+        if (dq0Var != null && dq0Var.f37177y && (kp0Var2 = photoViewer.f43369s3) != null) {
             int i7 = photoViewer.f43349q3.h - org.telegram.ui.Components.k61.S;
             kp0Var2.O = dq0Var;
-            if (kp0Var2.f38124a0 != 0) {
-                kp0Var2.f38124a0 = 0L;
-                kp0Var2.f38134g0 = null;
-                kp0Var2.f38133f0 = null;
-                kp0Var2.f38131e0 = null;
+            if (kp0Var2.f38123a0 != 0) {
+                kp0Var2.f38123a0 = 0L;
+                kp0Var2.f38133g0 = null;
+                kp0Var2.f38132f0 = null;
+                kp0Var2.f38130e0 = null;
                 kp0Var2.b(-1);
             }
             if (i7 != 0) {
-                kp0Var2.f38137r = i7;
+                kp0Var2.f38136r = i7;
                 int i10 = ((int) (i7 * f10)) / 5;
-                if (kp0Var2.f38136n != i10) {
-                    kp0Var2.f38136n = i10;
+                if (kp0Var2.f38135n != i10) {
+                    kp0Var2.f38135n = i10;
                 }
             }
             String g02 = org.telegram.messenger.g0.g0((int) ((dq0Var.getVideoDuration() * f10) / 1000), false, false);
             kp0Var2.E = g02;
             kp0Var2.F = (int) Math.ceil(kp0Var2.G.measureText(g02));
             kp0Var2.invalidate();
-            if (kp0Var2.f38132f != null) {
-                Utilities.f22810e.a(kp0Var2.f38132f);
+            if (kp0Var2.f38131f != null) {
+                Utilities.f22810e.a(kp0Var2.f38131f);
             }
             double videoDuration = (f10 * dq0Var.getVideoDuration()) / 1000.0d;
             kp0Var2.P = videoDuration;
@@ -553,7 +553,7 @@ public final class so0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.
             } else {
                 f10 = 0.0f;
             }
-            animate.alpha(f10).setInterpolator(org.telegram.ui.Components.nr.f37961f).setDuration(150L).withEndAction(new org.telegram.ui.Components.rp0(11, photoViewer, z11));
+            animate.alpha(f10).setInterpolator(org.telegram.ui.Components.nr.f37960f).setDuration(150L).withEndAction(new org.telegram.ui.Components.rp0(11, photoViewer, z11));
         }
     }
 
@@ -574,7 +574,7 @@ public final class so0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.
 
     @Override
     public boolean o0() {
-        if (m() && !this.f52091a.f43262g0.f37178y) {
+        if (m() && !this.f52091a.f43262g0.f37177y) {
             return false;
         }
         return true;
@@ -584,7 +584,7 @@ public final class so0 implements org.telegram.ui.ActionBar.n0, org.telegram.ui.
     public boolean p() {
         if (m()) {
             dq0 dq0Var = this.f52091a.f43262g0;
-            if (dq0Var.f37178y && "inapp".equals(org.telegram.messenger.np.u1(dq0Var.f37168a).D3)) {
+            if (dq0Var.f37177y && "inapp".equals(org.telegram.messenger.np.u1(dq0Var.f37167a).D3)) {
                 return false;
             }
             return true;

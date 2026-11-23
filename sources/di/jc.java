@@ -118,12 +118,12 @@ public abstract class jc extends View {
         n6Var.setCallback(this);
         Point point = org.telegram.messenger.g0.f24046q;
         n6Var.N = point.x;
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
         n6Var2.u(-570425345);
         n6Var2.w(org.telegram.messenger.g0.L(11.0f));
         n6Var2.setCallback(this);
         n6Var2.N = point.x;
-        n6Var2.f37796b = 17;
+        n6Var2.f37795b = 17;
         paint.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, h6Var));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
@@ -270,8 +270,8 @@ public abstract class jc extends View {
                 z13 = false;
             }
             float W1 = org.telegram.messenger.g0.W1(d6Var2.d(z13), L2, L3);
-            if (L + xy0Var.f42247c + (org.telegram.messenger.g0.L(16.0f) * 2) > rectF2.right) {
-                f15 = (L - W1) - xy0Var.f42247c;
+            if (L + xy0Var.f42246c + (org.telegram.messenger.g0.L(16.0f) * 2) > rectF2.right) {
+                f15 = (L - W1) - xy0Var.f42246c;
             } else {
                 f15 = L + W1;
             }
@@ -319,8 +319,8 @@ public abstract class jc extends View {
                 z11 = false;
             }
             float W12 = org.telegram.messenger.g0.W1(d6Var.d(z11), L5, L6);
-            if (xy0Var.f42247c + L4 + (org.telegram.messenger.g0.L(16.0f) * 2) > rectF2.right) {
-                f14 = (L4 - W12) - xy0Var.f42247c;
+            if (xy0Var.f42246c + L4 + (org.telegram.messenger.g0.L(16.0f) * 2) > rectF2.right) {
+                f14 = (L4 - W12) - xy0Var.f42246c;
             } else {
                 f14 = W12 + L4;
             }

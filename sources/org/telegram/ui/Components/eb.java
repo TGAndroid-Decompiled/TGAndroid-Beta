@@ -60,7 +60,7 @@ public abstract class eb extends lb {
     public void setTimer() {
         zb zbVar = new zb(getContext(), this.resourcesProvider);
         this.timerView = zbVar;
-        zbVar.f42766b = 5000L;
+        zbVar.f42765b = 5000L;
         addView(zbVar, c8.ma.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

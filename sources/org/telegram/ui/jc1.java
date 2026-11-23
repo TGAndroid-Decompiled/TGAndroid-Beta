@@ -21,7 +21,7 @@ public final class jc1 extends AnimatorListenerAdapter {
         this.f48969a.setEnterTransitionInProgress(false);
         org.telegram.ui.Components.ti tiVar = this.f48970b;
         kc1 kc1Var = this.f48971c;
-        ((ArrayList) tiVar.f39920c).remove(kc1Var);
+        ((ArrayList) tiVar.f39919c).remove(kc1Var);
         tiVar.a();
         ((ViewGroup) tiVar.d).invalidate();
         ChatActivityEnterView.RecordCircle recordCircle = kc1Var.f49286g;

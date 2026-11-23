@@ -403,7 +403,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
         int i17 = stickersActivity.f43838s;
         org.telegram.messenger.si d02 = org.telegram.messenger.si.d0(stickersActivity.currentAccount);
         org.telegram.ui.Components.h51 h51Var = stickersActivity.f43831a;
-        if (h51Var == null || (!h51Var.f35793k3 && !stickersActivity.f43837r && stickersActivity.f43836n <= 0)) {
+        if (h51Var == null || (!h51Var.f35792k3 && !stickersActivity.f43837r && stickersActivity.f43836n <= 0)) {
             if (i17 == 5) {
                 ArrayList arrayList3 = new ArrayList(org.telegram.messenger.np.u1(stickersActivity.currentAccount).y0(d02.u0(i17)));
                 stickersActivity.f43839w = arrayList3;
@@ -455,9 +455,9 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
             }
             org.telegram.ui.Components.o41 o41Var = new org.telegram.ui.Components.o41(43);
             o41Var.d = 3;
-            o41Var.f38090k = 2131232038;
-            o41Var.f38092m = N03;
-            o41Var.f38093n = str2;
+            o41Var.f38089k = 2131232038;
+            o41Var.f38091m = N03;
+            o41Var.f38092n = str2;
             arrayList.add(o41Var);
         } else if (i19 > 0) {
             stickersActivity.archivedRow = arrayList.size();
@@ -480,8 +480,8 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
             String N04 = org.telegram.messenger.hd.N0(2131751338, null);
             org.telegram.ui.Components.o41 o41Var2 = new org.telegram.ui.Components.o41(43);
             o41Var2.d = 4;
-            o41Var2.f38090k = 2131232036;
-            o41Var2.f38092m = N04;
+            o41Var2.f38089k = 2131232036;
+            o41Var2.f38091m = N04;
             o41Var2.G = new r3(stickersActivity, 24);
             arrayList.add(o41Var2);
             if (i17 == 5) {
@@ -505,8 +505,8 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
             }
             org.telegram.ui.Components.o41 o41Var3 = new org.telegram.ui.Components.o41(43);
             o41Var3.d = 5;
-            o41Var3.f38092m = N05;
-            o41Var3.f38093n = N0;
+            o41Var3.f38091m = N05;
+            o41Var3.f38092n = N0;
             arrayList.add(o41Var3);
             stickersActivity.largeEmojiRow = arrayList.size();
             org.telegram.ui.Components.o41 i22 = org.telegram.ui.Components.o41.i(6, org.telegram.messenger.hd.N0(2131748841, null));
@@ -1115,14 +1115,14 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
                         }
                     }
                 };
-                K2.f38100u = arrayList2.contains(Long.valueOf(stickerSetCovered.set.f28461id));
+                K2.f38099u = arrayList2.contains(Long.valueOf(stickerSetCovered.set.f28461id));
                 arrayList.add(K2);
                 arrayList5 = arrayList5;
                 i20 = 2;
             }
             if (z10) {
                 org.telegram.ui.Components.o41 c10 = org.telegram.ui.Components.o41.c(8, 2131232041, org.telegram.messenger.hd.N0(2131745142, null));
-                c10.f38097r = true;
+                c10.f38096r = true;
                 arrayList.add(c10);
             }
             i11 = 5;
@@ -1235,7 +1235,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
                                     } else {
                                         hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f28461id));
                                     }
-                                    stickersActivity2.f43831a.f35790g3.O(true);
+                                    stickersActivity2.f43831a.f35789g3.O(true);
                                     stickersActivity2.n0();
                                 }
                             }
@@ -1359,13 +1359,13 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
             if (((Integer) objArr[0]).intValue() == i12) {
                 this.f43835f.clear();
             }
-            this.f43831a.f35790g3.O(true);
+            this.f43831a.f35789g3.O(true);
         } else if (i7 != org.telegram.messenger.ls.f25426z0 && i7 != org.telegram.messenger.ls.A0) {
             if (i7 == org.telegram.messenger.ls.Z0 && ((Integer) objArr[0]).intValue() == i12) {
-                this.f43831a.f35790g3.O(true);
+                this.f43831a.f35789g3.O(true);
             }
         } else {
-            this.f43831a.f35790g3.O(true);
+            this.f43831a.f35789g3.O(true);
         }
     }
 
@@ -1459,7 +1459,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
 
     public final void o0() {
         this.f43840x.clear();
-        this.f43831a.f35790g3.O(true);
+        this.f43831a.f35789g3.O(true);
         n0();
     }
 
@@ -1513,7 +1513,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
         super.onResume();
         org.telegram.ui.Components.h51 h51Var = this.f43831a;
         if (h51Var != null) {
-            h51Var.f35790g3.O(true);
+            h51Var.f35789g3.O(true);
         }
     }
 
@@ -1582,7 +1582,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
             if (org.telegram.messenger.cz.X) {
                 org.telegram.messenger.cz.P();
                 org.telegram.ui.Components.lc.b0(this).I(2131624018, org.telegram.messenger.hd.N0(2131751325, null), org.telegram.messenger.hd.N0(2131751324, null)).j();
-                this.f43831a.f35790g3.O(true);
+                this.f43831a.f35789g3.O(true);
             }
         }
     }
@@ -1601,7 +1601,7 @@ public class StickersActivity extends org.telegram.ui.ActionBar.g2 implements or
             hashSet.add(Long.valueOf(stickersSet.set.f28461id));
             h8Var.b(true, true);
         }
-        this.f43831a.f35790g3.O(true);
+        this.f43831a.f35789g3.O(true);
         n0();
     }
 

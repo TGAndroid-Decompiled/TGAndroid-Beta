@@ -50,8 +50,8 @@ public final class s7 {
             nq nqVar = new nq(2131231188, 0);
             nqVar.c(org.telegram.messenger.g0.L(16.0f));
             nqVar.H = 1.0f;
-            nqVar.f37951r = -org.telegram.messenger.g0.L(1.0f);
-            nqVar.f37952s = org.telegram.messenger.g0.L(1.0f);
+            nqVar.f37950r = -org.telegram.messenger.g0.L(1.0f);
+            nqVar.f37951s = org.telegram.messenger.g0.L(1.0f);
             ((SpannableStringBuilder) f12574y[0]).setSpan(nqVar, 0, 1, 33);
         }
         return f12574y[0];
@@ -89,7 +89,7 @@ public final class s7 {
         float d = this.h.d(this.f12579f);
         Paint paint = this.f12592t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f10, Math.max(this.f12586n.f42247c, this.f12587o.f42247c) + org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(18.0f)));
+        int min = (int) Math.min(f10, Math.max(this.f12586n.f42246c, this.f12587o.f42246c) + org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(18.0f)));
         this.f12595x = min;
         int W1 = org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(42.0f), org.telegram.messenger.g0.L(22.0f));
         float f12 = min;
@@ -125,10 +125,10 @@ public final class s7 {
         }
         xy0 xy0Var = this.f12586n;
         float f14 = L;
-        xy0Var.f42258p = f14;
+        xy0Var.f42257p = f14;
         xy0Var.c(org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(7.0f)), org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(11.0f)), 1.0f, -1, canvas);
         xy0 xy0Var2 = this.f12587o;
-        xy0Var2.f42258p = f14;
+        xy0Var2.f42257p = f14;
         xy0Var2.c(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(30.0f), f13, -1, canvas);
         canvas.restore();
     }

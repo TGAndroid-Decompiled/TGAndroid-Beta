@@ -17,12 +17,12 @@ public final class w extends sa implements org.telegram.messenger.gs {
     public final TextView X1;
     public final TextView Y1;
     public final FrameLayout Z1;
-    public final FrameLayout f41604a2;
-    public final hi.e f41605b2;
-    public c51 f41606c2;
+    public final FrameLayout f41603a2;
+    public final hi.e f41604b2;
+    public c51 f41605c2;
     public int d2;
-    public final TL_aicompose.aiComposeToneExample[] f41607e2;
-    public int f41608f2;
+    public final TL_aicompose.aiComposeToneExample[] f41606e2;
+    public int f41607f2;
 
     public w(Context context, TL_aicompose.AiComposeTone aiComposeTone, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, null, false, false, 2, h6Var);
@@ -33,7 +33,7 @@ public final class w extends sa implements org.telegram.messenger.gs {
         T1.b();
         this.T1 = aiComposeTone;
         TL_aicompose.aiComposeToneExample[] aicomposetoneexampleArr = new TL_aicompose.aiComposeToneExample[((org.telegram.messenger.j0) org.telegram.messenger.np.u1(this.f30173a).A7.U.f15508b).f24812c];
-        this.f41607e2 = aicomposetoneexampleArr;
+        this.f41606e2 = aicomposetoneexampleArr;
         if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
             aicomposetoneexampleArr[0] = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).example_english;
         }
@@ -75,26 +75,26 @@ public final class w extends sa implements org.telegram.messenger.gs {
         org.telegram.ui.ActionBar.t6.U(textView2, i10, h6Var);
         textView2.setTextSize(1, 14.0f);
         org.telegram.messenger.f3.k(textView2, 17, null, 2131754966);
-        this.f39533p1.setTitle(aiComposeTone.title);
+        this.f39532p1.setTitle(aiComposeTone.title);
         int i12 = org.telegram.ui.ActionBar.m6.f29324a7;
         this.f30177b0 = i12;
         v0(org.telegram.ui.ActionBar.m6.w0(i12, this.J0));
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i13 = this.f30211u0;
         ek0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(66.0f));
-        this.f39532o1.setClipToPadding(false);
-        this.f39532o1.r1();
-        this.f39532o1.setOnItemClickListener(new o(this, 1));
+        this.f39531o1.setClipToPadding(false);
+        this.f39531o1.r1();
+        this.f39531o1.setOnItemClickListener(new o(this, 1));
         this.G1 = false;
         this.F1 = org.telegram.messenger.g0.L(36.0f);
-        this.f39539v1 = 0.35f;
+        this.f39538v1 = 0.35f;
         this.J1 = true;
         v vVar = new v(this);
         vVar.f59194m = false;
         vVar.C = false;
         vVar.o(nr.h);
         vVar.n(350L);
-        this.f39532o1.setItemAnimator(vVar);
+        this.f39531o1.setItemAnimator(vVar);
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.Z1 = frameLayout3;
         frameLayout3.setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f));
@@ -106,7 +106,7 @@ public final class w extends sa implements org.telegram.messenger.gs {
         e10.rightMargin += i15;
         this.f30176b.addView(frameLayout3, e10);
         FrameLayout frameLayout4 = new FrameLayout(context);
-        this.f41604a2 = frameLayout4;
+        this.f41603a2 = frameLayout4;
         FrameLayout.LayoutParams d = c8.ma.d(-1, -2.0f, 80, 6.0f, 0.0f, 6.0f, 60.0f);
         int i16 = d.leftMargin;
         int i17 = this.f30211u0;
@@ -114,7 +114,7 @@ public final class w extends sa implements org.telegram.messenger.gs {
         d.rightMargin += i17;
         this.f30176b.addView(frameLayout4, d);
         hi.e g10 = org.telegram.messenger.o10.g(24, context, h6Var, true);
-        this.f41605b2 = g10;
+        this.f41604b2 = g10;
         if (e1()) {
             i7 = 2131754980;
         } else {
@@ -123,7 +123,7 @@ public final class w extends sa implements org.telegram.messenger.gs {
         g10.setText(org.telegram.messenger.hd.N0(i7, null));
         g10.setOnClickListener(new ah.h(this, aiComposeTone, h6Var, 20));
         frameLayout3.addView(g10, c8.ma.e(-1, 48, 119));
-        this.f41606c2.O(false);
+        this.f41605c2.O(false);
     }
 
     public static SpannableStringBuilder f1() {
@@ -136,9 +136,9 @@ public final class w extends sa implements org.telegram.messenger.gs {
             int length = spannableStringBuilder.length();
             spannableStringBuilder.append((CharSequence) org.telegram.messenger.hd.N0(2131748586, null));
             r80 r80Var = new r80(null, L, 0, null);
-            r80Var.f39119f = org.telegram.messenger.g0.L(6.0f);
+            r80Var.f39118f = org.telegram.messenger.g0.L(6.0f);
             r80Var.h = 0.5f;
-            r80Var.f39120n = true;
+            r80Var.f39119n = true;
             spannableStringBuilder.setSpan(r80Var, length, spannableStringBuilder.length(), 33);
         }
         return spannableStringBuilder;
@@ -147,7 +147,7 @@ public final class w extends sa implements org.telegram.messenger.gs {
     @Override
     public final dk0 M0(ek0 ek0Var) {
         c51 c51Var = new c51(ek0Var, getContext(), this.f30173a, 0, true, new d(this, 1), this.J0);
-        this.f41606c2 = c51Var;
+        this.f41605c2 = c51Var;
         c51Var.f34062r = false;
         return c51Var;
     }
@@ -163,7 +163,7 @@ public final class w extends sa implements org.telegram.messenger.gs {
 
     @Override
     public final void R0(float f10) {
-        na naVar = this.f39533p1;
+        na naVar = this.f39532p1;
         org.telegram.ui.ActionBar.m5 titleTextView = naVar.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f10);
@@ -183,7 +183,7 @@ public final class w extends sa implements org.telegram.messenger.gs {
             } else {
                 i11 = 2131755005;
             }
-            this.f41605b2.setText(org.telegram.messenger.hd.N0(i11, null));
+            this.f41604b2.setText(org.telegram.messenger.hd.N0(i11, null));
         }
     }
 
@@ -218,8 +218,8 @@ public final class w extends sa implements org.telegram.messenger.gs {
         try {
             super.s0();
             int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, this.J0);
-            if (w02 != this.f41608f2) {
-                this.f41608f2 = w02;
+            if (w02 != this.f41607f2) {
+                this.f41607f2 = w02;
                 v0(w02);
                 this.Z1.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.m6.r1(0.0f, w02), w02, w02}));
             }

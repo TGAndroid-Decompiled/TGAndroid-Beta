@@ -1212,13 +1212,13 @@ public final class hk0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
                 size = this.l1.size();
             }
             uiVar.z1(i10, false);
-            this.S0.f40379e2.i0();
+            this.S0.f40378e2.i0();
             this.S0.f1();
             showDialog(this.S0);
         }
         i10 = 20 - size;
         uiVar.z1(i10, false);
-        this.S0.f40379e2.i0();
+        this.S0.f40378e2.i0();
         this.S0.f1();
         showDialog(this.S0);
     }
@@ -2142,9 +2142,9 @@ public final class hk0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
     public final void dismissCurrentDialog() {
         org.telegram.ui.Components.ui uiVar = this.S0;
         if (uiVar != null && this.visibleDialog == uiVar) {
-            uiVar.f40379e2.d0(false);
+            uiVar.f40378e2.d0(false);
             this.S0.L();
-            this.S0.f40379e2.g0(true);
+            this.S0.f40378e2.g0(true);
             return;
         }
         super.dismissCurrentDialog();
@@ -3462,7 +3462,7 @@ public final class hk0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             g1();
             org.telegram.ui.Components.ui uiVar = this.S0;
             if (uiVar != null) {
-                uiVar.f40379e2.j0(i7, intent, this.R0);
+                uiVar.f40378e2.j0(i7, intent, this.R0);
             }
             this.R0 = null;
         }
@@ -3565,7 +3565,7 @@ public final class hk0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
         int i10 = this.f48419b;
         if ((i10 == 1 || i10 == 2) && (uiVar = this.S0) != null) {
             if (i7 == 17) {
-                uiVar.f40379e2.X(false);
+                uiVar.f40378e2.X(false);
             } else if (i7 == 21) {
                 if (getParentActivity() != null && iArr != null && iArr.length != 0 && iArr[0] != 0) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());

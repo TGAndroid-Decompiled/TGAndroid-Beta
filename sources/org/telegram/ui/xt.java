@@ -78,7 +78,7 @@ public final class xt extends LinearLayout implements org.telegram.ui.ActionBar.
             org.telegram.ui.Components.oh0 oh0Var = new org.telegram.ui.Components.oh0(2131624241, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
             this.d = oh0Var;
             oh0Var.h = true;
-            oh0Var.f38205a0 = true;
+            oh0Var.f38204a0 = true;
             oh0Var.o();
             org.telegram.ui.Cells.n8 n8Var = new org.telegram.ui.Cells.n8(context);
             this.f53956e = n8Var;
@@ -96,7 +96,7 @@ public final class xt extends LinearLayout implements org.telegram.ui.ActionBar.
             oh0Var.h = true;
             n8Var2.setOnClickListener(new a(g2Var, 18));
             if (!org.telegram.ui.ActionBar.m6.k1()) {
-                oh0Var.M(oh0Var.f38211e[0] - 1);
+                oh0Var.M(oh0Var.f38210e[0] - 1);
                 n8Var.p(org.telegram.messenger.hd.N0(2131745271, null), oh0Var, true);
                 n8Var.f31174x += 2;
             } else {
@@ -170,7 +170,7 @@ public final class xt extends LinearLayout implements org.telegram.ui.ActionBar.
                 s3Var.f29987f.add(null);
                 s3Var.m(g2Var.getCurrentAccount());
                 org.telegram.ui.Components.mp mpVar = new org.telegram.ui.Components.mp(s3Var);
-                mpVar.f37595c = org.telegram.ui.ActionBar.m6.k1() ? 0 : 2;
+                mpVar.f37594c = org.telegram.ui.ActionBar.m6.k1() ? 0 : 2;
                 arrayList.add(mpVar);
             }
             lpVar.d = arrayList;
@@ -218,7 +218,7 @@ public final class xt extends LinearLayout implements org.telegram.ui.ActionBar.
         org.telegram.ui.Components.lp lpVar = this.f53955c;
         if (lpVar.d != null) {
             for (int i13 = 0; i13 < lpVar.d.size(); i13++) {
-                ((org.telegram.ui.Components.mp) lpVar.d.get(i13)).f37595c = this.f53959r;
+                ((org.telegram.ui.Components.mp) lpVar.d.get(i13)).f37594c = this.f53959r;
             }
             lpVar.k(0, lpVar.d.size());
         }
@@ -278,10 +278,10 @@ public final class xt extends LinearLayout implements org.telegram.ui.ActionBar.
             if (i7 >= lpVar.d.size()) {
                 break;
             }
-            TLRPC.TL_theme tL_theme = ((org.telegram.ui.ActionBar.r3) ((org.telegram.ui.Components.mp) lpVar.d.get(i7)).f37593a.f29987f.get(this.f53959r)).f29959b;
-            org.telegram.ui.ActionBar.l6 i10 = ((org.telegram.ui.Components.mp) lpVar.d.get(i7)).f37593a.i(this.f53959r);
+            TLRPC.TL_theme tL_theme = ((org.telegram.ui.ActionBar.r3) ((org.telegram.ui.Components.mp) lpVar.d.get(i7)).f37592a.f29987f.get(this.f53959r)).f29959b;
+            org.telegram.ui.ActionBar.l6 i10 = ((org.telegram.ui.Components.mp) lpVar.d.get(i7)).f37592a.i(this.f53959r);
             if (tL_theme != null) {
-                if (org.telegram.ui.ActionBar.m6.I.f29232a.equals(org.telegram.ui.ActionBar.m6.r0(tL_theme.settings.get(((org.telegram.ui.ActionBar.r3) ((org.telegram.ui.Components.mp) lpVar.d.get(i7)).f37593a.f29987f.get(this.f53959r)).d)))) {
+                if (org.telegram.ui.ActionBar.m6.I.f29232a.equals(org.telegram.ui.ActionBar.m6.r0(tL_theme.settings.get(((org.telegram.ui.ActionBar.r3) ((org.telegram.ui.Components.mp) lpVar.d.get(i7)).f37592a.f29987f.get(this.f53959r)).d)))) {
                     LongSparseArray longSparseArray = org.telegram.ui.ActionBar.m6.I.f29238d0;
                     if (longSparseArray == null) {
                         this.h = i7;
@@ -299,7 +299,7 @@ public final class xt extends LinearLayout implements org.telegram.ui.ActionBar.
             } else {
                 if (i10 != null) {
                     if (org.telegram.ui.ActionBar.m6.I.f29232a.equals(i10.m())) {
-                        if (((org.telegram.ui.ActionBar.r3) ((org.telegram.ui.Components.mp) lpVar.d.get(i7)).f37593a.f29987f.get(this.f53959r)).f29961e == org.telegram.ui.ActionBar.m6.I.Z) {
+                        if (((org.telegram.ui.ActionBar.r3) ((org.telegram.ui.Components.mp) lpVar.d.get(i7)).f37592a.f29987f.get(this.f53959r)).f29961e == org.telegram.ui.ActionBar.m6.I.Z) {
                             this.h = i7;
                             break;
                         }
@@ -348,12 +348,12 @@ public final class xt extends LinearLayout implements org.telegram.ui.ActionBar.
         if (this.f53955c != null && (l6Var = this.f53961w) != null && (l6Var != org.telegram.ui.ActionBar.m6.I || this.f53962x != org.telegram.ui.ActionBar.m6.k1())) {
             a();
             if (this.f53956e != null && (oh0Var = this.d) != null) {
-                if (!oh0Var.f38220l0) {
+                if (!oh0Var.f38219l0) {
                     org.telegram.ui.Components.oh0 oh0Var2 = this.d;
                     if (org.telegram.ui.ActionBar.m6.k1()) {
                         i10 = 0;
                     } else {
-                        i10 = this.d.f38211e[0] - 1;
+                        i10 = this.d.f38210e[0] - 1;
                     }
                     oh0Var2.M(i10);
                 }

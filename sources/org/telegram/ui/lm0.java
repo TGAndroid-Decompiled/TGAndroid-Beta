@@ -293,10 +293,10 @@ public final class lm0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
                 int f11 = i0.a.f(a10, -1, getThemedColor(org.telegram.ui.ActionBar.m6.f29324a7));
                 int f12 = i0.a.f(a10, -1, getThemedColor(org.telegram.ui.ActionBar.m6.f29792z6));
                 int f13 = i0.a.f(a10, tabsViewBackgroundColor, getThemedColor(org.telegram.ui.ActionBar.m6.G6));
-                zyVar.f43010a.setColor(f10);
-                zyVar.f43011b.setColor(f11);
+                zyVar.f43009a.setColor(f10);
+                zyVar.f43010b.setColor(f11);
                 zyVar.d = f12;
-                zyVar.f43013e = f13;
+                zyVar.f43012e = f13;
                 zyVar.invalidate();
             }
         }
@@ -379,7 +379,7 @@ public final class lm0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
                         ofFloat.addUpdateListener(new hi.ba(lm0Var2, 2));
                         lm0Var2.f49647a0.addListener(new ay(lm0Var2, 9));
                         lm0Var2.f49647a0.setDuration(400L);
-                        lm0Var2.f49647a0.setInterpolator(org.telegram.ui.Components.zs.f42978e);
+                        lm0Var2.f49647a0.setInterpolator(org.telegram.ui.Components.zs.f42977e);
                         lm0Var2.f49647a0.start();
                         frameLayout2.addView(lm0Var2.Y, new ViewGroup.LayoutParams(-1, -1));
                         org.telegram.messenger.g0.g3(new hf0(lm0Var2, 13));
@@ -434,7 +434,7 @@ public final class lm0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
                 i10 = 2131743502;
             }
             zyVar.setTabs(N0, org.telegram.messenger.hd.N0(i10, null));
-            this.N.f43016r = new nl0(this, 0);
+            this.N.f43015r = new nl0(this, 0);
             K0();
             this.M.addView(this.N, c8.ma.e(-1, 40, 17));
         } else {
@@ -512,7 +512,7 @@ public final class lm0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
                         ofFloat.addUpdateListener(new hi.ba(lm0Var2, 2));
                         lm0Var2.f49647a0.addListener(new ay(lm0Var2, 9));
                         lm0Var2.f49647a0.setDuration(400L);
-                        lm0Var2.f49647a0.setInterpolator(org.telegram.ui.Components.zs.f42978e);
+                        lm0Var2.f49647a0.setInterpolator(org.telegram.ui.Components.zs.f42977e);
                         lm0Var2.f49647a0.start();
                         frameLayout22.addView(lm0Var2.Y, new ViewGroup.LayoutParams(-1, -1));
                         org.telegram.messenger.g0.g3(new hf0(lm0Var2, 13));
@@ -535,7 +535,7 @@ public final class lm0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             oh0Var.M(35);
             this.U.P(36);
         }
-        this.U.f38205a0 = true;
+        this.U.f38204a0 = true;
         int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.J9, false);
         this.U.Q(x02, "Sunny");
         this.U.Q(x02, "Path 6");
@@ -594,7 +594,7 @@ public final class lm0 extends org.telegram.ui.ActionBar.g2 implements org.teleg
                         ofFloat.addUpdateListener(new hi.ba(lm0Var2, 2));
                         lm0Var2.f49647a0.addListener(new ay(lm0Var2, 9));
                         lm0Var2.f49647a0.setDuration(400L);
-                        lm0Var2.f49647a0.setInterpolator(org.telegram.ui.Components.zs.f42978e);
+                        lm0Var2.f49647a0.setInterpolator(org.telegram.ui.Components.zs.f42977e);
                         lm0Var2.f49647a0.start();
                         frameLayout22.addView(lm0Var2.Y, new ViewGroup.LayoutParams(-1, -1));
                         org.telegram.messenger.g0.g3(new hf0(lm0Var2, 13));

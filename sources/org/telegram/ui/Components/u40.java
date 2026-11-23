@@ -54,38 +54,38 @@ public final class u40 implements Runnable {
     public volatile boolean X;
     public volatile int Y;
     public volatile r40 Z;
-    public org.telegram.messenger.oe f40224a;
-    public long f40225a0;
-    public File f40226b;
-    public boolean f40227b0;
-    public boolean f40228c;
-    public long f40229c0;
+    public org.telegram.messenger.oe f40223a;
+    public long f40224a0;
+    public File f40225b;
+    public boolean f40226b0;
+    public boolean f40227c;
+    public long f40228c0;
     public int d;
-    public int f40231e;
-    public long f40232e0;
-    public int f40233f;
-    public long f40234f0;
-    public long f40235g0;
+    public int f40230e;
+    public long f40231e0;
+    public int f40232f;
+    public long f40233f0;
+    public long f40234g0;
     public boolean m0;
-    public boolean f40241n;
-    public int f40242n0;
-    public int f40243o0;
-    public int f40244p0;
-    public int f40245q0;
-    public Surface f40246r;
-    public int f40247r0;
-    public int f40249s0;
-    public int f40250t0;
-    public int f40251u0;
-    public int f40252v0;
-    public int f40254w0;
-    public EGLContext f40255x;
-    public EGLConfig f40257y;
-    public d40 f40258y0;
-    public AudioRecord f40259z0;
+    public boolean f40240n;
+    public int f40241n0;
+    public int f40242o0;
+    public int f40243p0;
+    public int f40244q0;
+    public Surface f40245r;
+    public int f40246r0;
+    public int f40248s0;
+    public int f40249t0;
+    public int f40250u0;
+    public int f40251v0;
+    public int f40253w0;
+    public EGLContext f40254x;
+    public EGLConfig f40256y;
+    public d40 f40257y0;
+    public AudioRecord f40258z0;
     public boolean h = true;
-    public EGLDisplay f40248s = EGL14.EGL_NO_DISPLAY;
-    public EGLContext f40253w = EGL14.EGL_NO_CONTEXT;
+    public EGLDisplay f40247s = EGL14.EGL_NO_DISPLAY;
+    public EGLContext f40252w = EGL14.EGL_NO_CONTEXT;
     public EGLSurface E = EGL14.EGL_NO_SURFACE;
     public final ArrayList M = new ArrayList();
     public int N = -5;
@@ -94,13 +94,13 @@ public final class u40 implements Runnable {
     public long S = 0;
     public long T = -1;
     public final Object V = new Object();
-    public long f40230d0 = -1;
-    public long f40236h0 = -1;
-    public long f40237i0 = -1;
-    public long f40238j0 = -1;
-    public long f40239k0 = 0;
-    public long f40240l0 = -1;
-    public Integer f40256x0 = 0;
+    public long f40229d0 = -1;
+    public long f40235h0 = -1;
+    public long f40236i0 = -1;
+    public long f40237j0 = -1;
+    public long f40238k0 = 0;
+    public long f40239l0 = -1;
+    public Integer f40255x0 = 0;
     public final ArrayBlockingQueue A0 = new ArrayBlockingQueue(10);
     public final ArrayList B0 = new ArrayList();
     public final t40 F0 = new t40(this, 0);
@@ -131,31 +131,31 @@ public final class u40 implements Runnable {
                 u40Var.A0.add(new l40());
             }
             if (z10) {
-                u40Var.f40236h0 = u40Var.f40232e0 + u40Var.f40234f0;
-                u40Var.f40240l0 = u40Var.f40238j0 + u40Var.f40239k0;
+                u40Var.f40235h0 = u40Var.f40231e0 + u40Var.f40233f0;
+                u40Var.f40239l0 = u40Var.f40237j0 + u40Var.f40238k0;
                 u40Var.R = true;
                 j3 = 0;
             } else {
-                u40Var.f40236h0 = -1L;
-                u40Var.f40240l0 = -1L;
+                u40Var.f40235h0 = -1L;
+                u40Var.f40239l0 = -1L;
                 j3 = 0;
                 u40Var.S = 0L;
             }
             u40Var.T = -1L;
             u40Var.P = j3;
             u40Var.Q = -1L;
-            u40Var.f40237i0 = -1L;
-            u40Var.f40230d0 = -1L;
-            u40Var.f40232e0 = -1L;
-            u40Var.f40235g0 = -1L;
-            u40Var.f40238j0 = -1L;
-            u40Var.f40227b0 = false;
-            u40Var.f40225a0 = 0L;
+            u40Var.f40236i0 = -1L;
+            u40Var.f40229d0 = -1L;
+            u40Var.f40231e0 = -1L;
+            u40Var.f40234g0 = -1L;
+            u40Var.f40237j0 = -1L;
+            u40Var.f40226b0 = false;
+            u40Var.f40224a0 = 0L;
             AudioRecord audioRecord = new AudioRecord(0, 48000, 16, 2, i11);
-            u40Var.f40259z0 = audioRecord;
+            u40Var.f40258z0 = audioRecord;
             audioRecord.startRecording();
             if (org.telegram.messenger.s2.f26730a) {
-                org.telegram.messenger.a8.b("InstantCamera initied audio record with channels " + u40Var.f40259z0.getChannelCount() + " sample rate = " + u40Var.f40259z0.getSampleRate() + " bufferSize = " + i11);
+                org.telegram.messenger.a8.b("InstantCamera initied audio record with channels " + u40Var.f40258z0.getChannelCount() + " sample rate = " + u40Var.f40258z0.getSampleRate() + " bufferSize = " + i11);
             }
             u40Var.E0 = false;
             Thread thread = new Thread(u40Var.F0);
@@ -175,35 +175,35 @@ public final class u40 implements Runnable {
             u40Var.G.start();
             u40Var.F = MediaCodec.createEncoderByType("video/avc");
             u40Var.I = true;
-            MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", u40Var.d, u40Var.f40231e);
+            MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", u40Var.d, u40Var.f40230e);
             createVideoFormat.setInteger("color-format", 2130708361);
-            createVideoFormat.setInteger("bitrate", u40Var.f40233f);
+            createVideoFormat.setInteger("bitrate", u40Var.f40232f);
             createVideoFormat.setInteger("frame-rate", 30);
             createVideoFormat.setInteger("i-frame-interval", 1);
             u40Var.F.configure(createVideoFormat, (Surface) null, (MediaCrypto) null, 1);
-            u40Var.f40246r = u40Var.F.createInputSurface();
+            u40Var.f40245r = u40Var.F.createInputSurface();
             u40Var.F.start();
             if (!z10) {
-                org.telegram.messenger.oe oeVar = u40Var.f40224a;
+                org.telegram.messenger.oe oeVar = u40Var.f40223a;
                 ThreadLocal threadLocal = org.telegram.messenger.fc.I;
                 if (!TextUtils.isEmpty(org.telegram.messenger.cz.f23410h0) && oeVar.getAbsolutePath().startsWith(org.telegram.messenger.cz.f23410h0)) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                u40Var.f40226b = u40Var.f40224a;
+                u40Var.f40225b = u40Var.f40223a;
                 if (z11) {
                     File file = new File(org.telegram.messenger.t0.h(), "camera_tmp.mp4");
-                    u40Var.f40226b = file;
+                    u40Var.f40225b = file;
                     if (file.exists()) {
-                        u40Var.f40226b.delete();
+                        u40Var.f40225b.delete();
                     }
-                    u40Var.f40228c = true;
+                    u40Var.f40227c = true;
                 }
                 Mp4Movie mp4Movie = new Mp4Movie();
-                mp4Movie.setCacheFile(u40Var.f40226b);
+                mp4Movie.setCacheFile(u40Var.f40225b);
                 mp4Movie.setRotation(0);
-                mp4Movie.setSize(u40Var.d, u40Var.f40231e);
+                mp4Movie.setSize(u40Var.d, u40Var.f40230e);
                 MP4Builder createMovie = new MP4Builder().createMovie(mp4Movie, u40Var.I0.R, false);
                 u40Var.L = createMovie;
                 c50 c50Var2 = u40Var.I0;
@@ -212,42 +212,42 @@ public final class u40 implements Runnable {
                 createMovie.setAllowSyncFiles(j10);
             }
             org.telegram.messenger.g0.g3(new ch.k(27, u40Var, z10));
-            if (u40Var.f40248s == EGL14.EGL_NO_DISPLAY) {
+            if (u40Var.f40247s == EGL14.EGL_NO_DISPLAY) {
                 EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-                u40Var.f40248s = eglGetDisplay;
+                u40Var.f40247s = eglGetDisplay;
                 if (eglGetDisplay != EGL14.EGL_NO_DISPLAY) {
                     int[] iArr = new int[2];
                     if (EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
-                        if (u40Var.f40253w == EGL14.EGL_NO_CONTEXT) {
+                        if (u40Var.f40252w == EGL14.EGL_NO_CONTEXT) {
                             EGLConfig[] eGLConfigArr = new EGLConfig[1];
-                            if (EGL14.eglChooseConfig(u40Var.f40248s, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
+                            if (EGL14.eglChooseConfig(u40Var.f40247s, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
                                 i7 = 0;
-                                u40Var.f40253w = EGL14.eglCreateContext(u40Var.f40248s, eGLConfigArr[0], u40Var.f40255x, new int[]{12440, 2, 12344}, 0);
-                                u40Var.f40257y = eGLConfigArr[0];
+                                u40Var.f40252w = EGL14.eglCreateContext(u40Var.f40247s, eGLConfigArr[0], u40Var.f40254x, new int[]{12440, 2, 12344}, 0);
+                                u40Var.f40256y = eGLConfigArr[0];
                             } else {
                                 throw new RuntimeException("Unable to find a suitable EGLConfig");
                             }
                         } else {
                             i7 = 0;
                         }
-                        EGL14.eglQueryContext(u40Var.f40248s, u40Var.f40253w, 12440, new int[1], i7);
+                        EGL14.eglQueryContext(u40Var.f40247s, u40Var.f40252w, 12440, new int[1], i7);
                         if (u40Var.E == EGL14.EGL_NO_SURFACE) {
-                            EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(u40Var.f40248s, u40Var.f40257y, u40Var.f40246r, new int[]{12344}, i7);
+                            EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(u40Var.f40247s, u40Var.f40256y, u40Var.f40245r, new int[]{12344}, i7);
                             u40Var.E = eglCreateWindowSurface;
                             if (eglCreateWindowSurface != null) {
-                                if (!EGL14.eglMakeCurrent(u40Var.f40248s, eglCreateWindowSurface, eglCreateWindowSurface, u40Var.f40253w)) {
+                                if (!EGL14.eglMakeCurrent(u40Var.f40247s, eglCreateWindowSurface, eglCreateWindowSurface, u40Var.f40252w)) {
                                     if (org.telegram.messenger.s2.f26730a) {
                                         org.telegram.messenger.a8.d("eglMakeCurrent failed " + GLUtils.getEGLErrorString(EGL14.eglGetError()));
                                     }
                                     throw new RuntimeException("eglMakeCurrent failed");
                                 }
                                 GLES20.glBlendFunc(770, 771);
-                                d40 d40Var = u40Var.f40258y0;
+                                d40 d40Var = u40Var.f40257y0;
                                 if (d40Var != null) {
                                     d40Var.b();
-                                    u40Var.f40258y0 = null;
+                                    u40Var.f40257y0 = null;
                                 }
-                                u40Var.f40258y0 = new d40(u40Var.d, u40Var.f40231e);
+                                u40Var.f40257y0 = new d40(u40Var.d, u40Var.f40230e);
                                 Size size = u40Var.I0.f34041n0[0];
                                 if (org.telegram.messenger.cz.o() != 0 && c50.m() && (size == null || Math.max(size.getHeight(), size.getWidth()) * 0.7f >= org.telegram.messenger.np.u1(c50Var.f34023e).f26012y3)) {
                                     str = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform vec2 resolution;\nuniform vec2 preview;\nuniform float alpha;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec2 c_textureSize = preview;\n   vec2 c_onePixel = (1.0 / c_textureSize);\n   vec2 uv = vTextureCoord;\n   vec2 pixel = uv * c_textureSize + 0.5;\n   vec2 frac = fract(pixel);\n   pixel = (floor(pixel) / c_textureSize) - vec2(c_onePixel);\n   vec4 tl = texture2D(sTexture, pixel + vec2(0.0         , 0.0));\n   vec4 tr = texture2D(sTexture, pixel + vec2(c_onePixel.x, 0.0));\n   vec4 bl = texture2D(sTexture, pixel + vec2(0.0         , c_onePixel.y));\n   vec4 br = texture2D(sTexture, pixel + vec2(c_onePixel.x, c_onePixel.y));\n   vec4 x1 = mix(tl, tr, frac.x);\n   vec4 x2 = mix(bl, br, frac.x);\n   gl_FragColor = mix(x1, x2, frac.y) * alpha;\n}\n";
@@ -258,25 +258,25 @@ public final class u40 implements Runnable {
                                 int l11 = c50.l(u40Var.I0, 35632, str);
                                 if (l10 != 0 && l11 != 0) {
                                     int glCreateProgram = GLES20.glCreateProgram();
-                                    u40Var.f40242n0 = glCreateProgram;
+                                    u40Var.f40241n0 = glCreateProgram;
                                     GLES20.glAttachShader(glCreateProgram, l10);
-                                    GLES20.glAttachShader(u40Var.f40242n0, l11);
-                                    GLES20.glLinkProgram(u40Var.f40242n0);
+                                    GLES20.glAttachShader(u40Var.f40241n0, l11);
+                                    GLES20.glLinkProgram(u40Var.f40241n0);
                                     int[] iArr2 = new int[1];
-                                    GLES20.glGetProgramiv(u40Var.f40242n0, 35714, iArr2, 0);
+                                    GLES20.glGetProgramiv(u40Var.f40241n0, 35714, iArr2, 0);
                                     if (iArr2[0] == 0) {
-                                        GLES20.glDeleteProgram(u40Var.f40242n0);
-                                        u40Var.f40242n0 = 0;
+                                        GLES20.glDeleteProgram(u40Var.f40241n0);
+                                        u40Var.f40241n0 = 0;
                                         return;
                                     }
-                                    u40Var.f40245q0 = GLES20.glGetAttribLocation(u40Var.f40242n0, "aPosition");
-                                    u40Var.f40247r0 = GLES20.glGetAttribLocation(u40Var.f40242n0, "aTextureCoord");
-                                    u40Var.f40250t0 = GLES20.glGetUniformLocation(u40Var.f40242n0, "preview");
-                                    u40Var.f40249s0 = GLES20.glGetUniformLocation(u40Var.f40242n0, "resolution");
-                                    u40Var.f40252v0 = GLES20.glGetUniformLocation(u40Var.f40242n0, "alpha");
-                                    u40Var.f40243o0 = GLES20.glGetUniformLocation(u40Var.f40242n0, "uMVPMatrix");
-                                    u40Var.f40244p0 = GLES20.glGetUniformLocation(u40Var.f40242n0, "uSTMatrix");
-                                    u40Var.f40251u0 = GLES20.glGetUniformLocation(u40Var.f40242n0, "texelSize");
+                                    u40Var.f40244q0 = GLES20.glGetAttribLocation(u40Var.f40241n0, "aPosition");
+                                    u40Var.f40246r0 = GLES20.glGetAttribLocation(u40Var.f40241n0, "aTextureCoord");
+                                    u40Var.f40249t0 = GLES20.glGetUniformLocation(u40Var.f40241n0, "preview");
+                                    u40Var.f40248s0 = GLES20.glGetUniformLocation(u40Var.f40241n0, "resolution");
+                                    u40Var.f40251v0 = GLES20.glGetUniformLocation(u40Var.f40241n0, "alpha");
+                                    u40Var.f40242o0 = GLES20.glGetUniformLocation(u40Var.f40241n0, "uMVPMatrix");
+                                    u40Var.f40243p0 = GLES20.glGetUniformLocation(u40Var.f40241n0, "uSTMatrix");
+                                    u40Var.f40250u0 = GLES20.glGetUniformLocation(u40Var.f40241n0, "texelSize");
                                     return;
                                 }
                                 return;
@@ -285,7 +285,7 @@ public final class u40 implements Runnable {
                         }
                         throw new IllegalStateException("surface already created");
                     }
-                    u40Var.f40248s = null;
+                    u40Var.f40247s = null;
                     throw new RuntimeException("unable to initialize EGL14");
                 }
                 throw new RuntimeException("unable to get EGL14 display");
@@ -356,20 +356,20 @@ public final class u40 implements Runnable {
                 org.telegram.messenger.a8.g(e13, true);
             }
             org.telegram.messenger.a8.b("InstantCamera handleStopRecording finish muxer");
-            if (u40Var.f40228c) {
-                if (u40Var.f40224a.exists()) {
+            if (u40Var.f40227c) {
+                if (u40Var.f40223a.exists()) {
                     try {
-                        u40Var.f40224a.delete();
+                        u40Var.f40223a.delete();
                     } catch (Exception e14) {
-                        org.telegram.messenger.a8.d("InstantCamera copying fileToWrite to videoFile, deleting videoFile error " + u40Var.f40224a);
+                        org.telegram.messenger.a8.d("InstantCamera copying fileToWrite to videoFile, deleting videoFile error " + u40Var.f40223a);
                         org.telegram.messenger.a8.g(e14, true);
                     }
                 }
-                if (!u40Var.f40226b.renameTo(u40Var.f40224a)) {
+                if (!u40Var.f40225b.renameTo(u40Var.f40223a)) {
                     org.telegram.messenger.a8.d("InstantCamera unable to rename file, try move file");
                     try {
-                        org.telegram.messenger.g0.E(u40Var.f40226b, u40Var.f40224a);
-                        u40Var.f40226b.delete();
+                        org.telegram.messenger.g0.E(u40Var.f40225b, u40Var.f40223a);
+                        u40Var.f40225b.delete();
                     } catch (IOException e15) {
                         org.telegram.messenger.a8.g(e15, true);
                         org.telegram.messenger.a8.d("InstantCamera unable to move file");
@@ -384,13 +384,13 @@ public final class u40 implements Runnable {
         }
         org.telegram.messenger.a8.b("InstantCamera handleStopRecording send " + i7);
         if (i7 == 0) {
-            org.telegram.messenger.w7.G(u40Var.I0.f34023e).b(u40Var.f40224a.getAbsolutePath(), false);
+            org.telegram.messenger.w7.G(u40Var.I0.f34023e).b(u40Var.f40223a.getAbsolutePath(), false);
             try {
-                u40Var.f40226b.delete();
+                u40Var.f40225b.delete();
             } catch (Throwable unused) {
             }
             try {
-                u40Var.f40224a.delete();
+                u40Var.f40223a.delete();
             } catch (Throwable unused2) {
             }
         } else {
@@ -400,30 +400,30 @@ public final class u40 implements Runnable {
             }
             org.telegram.messenger.g0.g3(new s40(u40Var, 2));
         }
-        EGL14.eglDestroySurface(u40Var.f40248s, u40Var.E);
+        EGL14.eglDestroySurface(u40Var.f40247s, u40Var.E);
         u40Var.E = EGL14.EGL_NO_SURFACE;
-        Surface surface = u40Var.f40246r;
+        Surface surface = u40Var.f40245r;
         if (surface != null) {
             surface.release();
-            u40Var.f40246r = null;
+            u40Var.f40245r = null;
         }
-        EGLDisplay eGLDisplay = u40Var.f40248s;
+        EGLDisplay eGLDisplay = u40Var.f40247s;
         if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
             EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
             EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-            EGL14.eglDestroyContext(u40Var.f40248s, u40Var.f40253w);
+            EGL14.eglDestroyContext(u40Var.f40247s, u40Var.f40252w);
             EGL14.eglReleaseThread();
-            EGL14.eglTerminate(u40Var.f40248s);
+            EGL14.eglTerminate(u40Var.f40247s);
         }
-        u40Var.f40248s = EGL14.EGL_NO_DISPLAY;
-        u40Var.f40253w = EGL14.EGL_NO_CONTEXT;
-        u40Var.f40257y = null;
+        u40Var.f40247s = EGL14.EGL_NO_DISPLAY;
+        u40Var.f40252w = EGL14.EGL_NO_CONTEXT;
+        u40Var.f40256y = null;
         u40Var.U.getClass();
         Looper.myLooper().quit();
-        d40 d40Var = u40Var.f40258y0;
+        d40 d40Var = u40Var.f40257y0;
         if (d40Var != null) {
             d40Var.b();
-            u40Var.f40258y0 = null;
+            u40Var.f40257y0 = null;
         }
         org.telegram.messenger.g0.g3(new s40(u40Var, 3));
     }
@@ -566,8 +566,8 @@ public final class u40 implements Runnable {
                                 this.I = false;
                             }
                             long writeSampleData = this.L.writeSampleData(this.N, outputBuffer, this.J, true);
-                            if (writeSampleData != 0 && !this.f40228c && this.I0.f34016a1) {
-                                c(this.f40224a, writeSampleData, false);
+                            if (writeSampleData != 0 && !this.f40227c && this.I0.f34016a1) {
+                                c(this.f40223a, writeSampleData, false);
                             }
                         } else if (this.N == -5) {
                             byte[] bArr2 = new byte[i7];
@@ -591,7 +591,7 @@ public final class u40 implements Runnable {
                             }
                             byteBuffer = null;
                             byteBuffer2 = null;
-                            MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", this.d, this.f40231e);
+                            MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", this.d, this.f40230e);
                             if (byteBuffer != null && byteBuffer2 != null) {
                                 createVideoFormat.setByteBuffer("csd-0", byteBuffer);
                                 createVideoFormat.setByteBuffer("csd-1", byteBuffer2);
@@ -635,8 +635,8 @@ public final class u40 implements Runnable {
                         }
                         if (bufferInfo3.size != 0) {
                             long writeSampleData2 = this.L.writeSampleData(this.O, outputBuffer2, bufferInfo3, false);
-                            if (writeSampleData2 != 0 && !this.f40228c && this.I0.f34016a1) {
-                                c(this.f40224a, writeSampleData2, false);
+                            if (writeSampleData2 != 0 && !this.f40227c && this.I0.f34016a1) {
+                                c(this.f40223a, writeSampleData2, false);
                             }
                             MediaCodec mediaCodec = this.G;
                             if (mediaCodec != null) {
@@ -667,8 +667,8 @@ public final class u40 implements Runnable {
                 }
                 long timestamp = surfaceTexture.getTimestamp();
                 if (timestamp == 0) {
-                    int i7 = this.f40254w0 + 1;
-                    this.f40254w0 = i7;
+                    int i7 = this.f40253w0 + 1;
+                    this.f40253w0 = i7;
                     if (i7 > 1) {
                         if (org.telegram.messenger.s2.f26730a) {
                             org.telegram.messenger.a8.b("InstantCamera fix timestamp enabled");
@@ -677,7 +677,7 @@ public final class u40 implements Runnable {
                         return;
                     }
                 } else {
-                    this.f40254w0 = 0;
+                    this.f40253w0 = 0;
                     j3 = timestamp;
                 }
                 this.U.sendMessage(this.U.obtainMessage(2, (int) (j3 >> 32), (int) j3, num));
@@ -688,22 +688,22 @@ public final class u40 implements Runnable {
     }
 
     public final void finalize() {
-        d40 d40Var = this.f40258y0;
+        d40 d40Var = this.f40257y0;
         if (d40Var != null) {
             d40Var.b();
-            this.f40258y0 = null;
+            this.f40257y0 = null;
         }
         try {
-            EGLDisplay eGLDisplay = this.f40248s;
+            EGLDisplay eGLDisplay = this.f40247s;
             if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
                 EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
                 EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-                EGL14.eglDestroyContext(this.f40248s, this.f40253w);
+                EGL14.eglDestroyContext(this.f40247s, this.f40252w);
                 EGL14.eglReleaseThread();
-                EGL14.eglTerminate(this.f40248s);
-                this.f40248s = EGL14.EGL_NO_DISPLAY;
-                this.f40253w = EGL14.EGL_NO_CONTEXT;
-                this.f40257y = null;
+                EGL14.eglTerminate(this.f40247s);
+                this.f40247s = EGL14.EGL_NO_DISPLAY;
+                this.f40252w = EGL14.EGL_NO_CONTEXT;
+                this.f40256y = null;
             }
         } finally {
             super.finalize();
@@ -723,28 +723,28 @@ public final class u40 implements Runnable {
         AnimatorSet animatorSet = new AnimatorSet();
         LinearLayout linearLayout = c50Var.f34018b1;
         Property property = View.ALPHA;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(linearLayout, property, 0.0f), ObjectAnimator.ofInt(c50Var.f34040n, r6.f39095b, 0), ObjectAnimator.ofFloat(c50Var.G, property, 1.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(linearLayout, property, 0.0f), ObjectAnimator.ofInt(c50Var.f34040n, r6.f39094b, 0), ObjectAnimator.ofFloat(c50Var.G, property, 1.0f));
         animatorSet.setDuration(180L);
         animatorSet.setInterpolator(new DecelerateInterpolator());
         animatorSet.start();
-        EGL14.eglDestroySurface(this.f40248s, this.E);
+        EGL14.eglDestroySurface(this.f40247s, this.E);
         this.E = EGL14.EGL_NO_SURFACE;
-        Surface surface = this.f40246r;
+        Surface surface = this.f40245r;
         if (surface != null) {
             surface.release();
-            this.f40246r = null;
+            this.f40245r = null;
         }
-        EGLDisplay eGLDisplay = this.f40248s;
+        EGLDisplay eGLDisplay = this.f40247s;
         if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
             EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
             EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-            EGL14.eglDestroyContext(this.f40248s, this.f40253w);
+            EGL14.eglDestroyContext(this.f40247s, this.f40252w);
             EGL14.eglReleaseThread();
-            EGL14.eglTerminate(this.f40248s);
+            EGL14.eglTerminate(this.f40247s);
         }
-        this.f40248s = EGL14.EGL_NO_DISPLAY;
-        this.f40253w = EGL14.EGL_NO_CONTEXT;
-        this.f40257y = null;
+        this.f40247s = EGL14.EGL_NO_DISPLAY;
+        this.f40252w = EGL14.EGL_NO_CONTEXT;
+        this.f40256y = null;
     }
 
     public final void i(int i7, r40 r40Var) {

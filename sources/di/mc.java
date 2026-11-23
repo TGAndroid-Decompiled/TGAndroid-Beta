@@ -280,8 +280,8 @@ public final class mc extends org.telegram.ui.ActionBar.w2 implements gs {
                     default:
                         mc mcVar = this.f9768b;
                         op opVar = mcVar.E1;
-                        opVar.a(!opVar.f38321a.f32874q, true);
-                        if (opVar.f38321a.f32874q) {
+                        opVar.a(!opVar.f38320a.f32874q, true);
+                        if (opVar.f38320a.f32874q) {
                             j14 = mcVar.A1;
                         } else {
                             j14 = 2666000;
@@ -464,8 +464,8 @@ public final class mc extends org.telegram.ui.ActionBar.w2 implements gs {
                     default:
                         mc mcVar = this.f9768b;
                         op opVar2 = mcVar.E1;
-                        opVar2.a(!opVar2.f38321a.f32874q, true);
-                        if (opVar2.f38321a.f32874q) {
+                        opVar2.a(!opVar2.f38320a.f32874q, true);
+                        if (opVar2.f38320a.f32874q) {
                             j14 = mcVar.A1;
                         } else {
                             j14 = 2666000;

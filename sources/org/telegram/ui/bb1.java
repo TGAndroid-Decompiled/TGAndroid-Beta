@@ -2441,7 +2441,7 @@ public class bb1 extends org.telegram.ui.ActionBar.g2 {
     public final boolean finishFragment(boolean z10) {
         for (org.telegram.ui.ActionBar.g2 g2Var : getParentLayout().getFragmentStack()) {
             if (g2Var != this && (g2Var instanceof bb1)) {
-                ((org.telegram.ui.Components.u51) ((bb1) g2Var).f45840c0.f13968b).f40267b = true;
+                ((org.telegram.ui.Components.u51) ((bb1) g2Var).f45840c0.f13968b).f40266b = true;
             }
         }
         return super.finishFragment(z10);

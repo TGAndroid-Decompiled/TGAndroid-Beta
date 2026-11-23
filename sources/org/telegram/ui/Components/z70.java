@@ -5,20 +5,20 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class z70 implements View.OnClickListener {
-    public final int f42695a;
-    public final g80 f42696b;
+    public final int f42694a;
+    public final g80 f42695b;
 
     public z70(g80 g80Var, int i7) {
-        this.f42695a = i7;
-        this.f42696b = g80Var;
+        this.f42694a = i7;
+        this.f42695b = g80Var;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         int i7;
-        int i10 = this.f42695a;
-        g80 g80Var = this.f42696b;
+        int i10 = this.f42694a;
+        g80 g80Var = this.f42695b;
         switch (i10) {
             case 0:
                 g80Var.f35473r.f();
@@ -31,7 +31,7 @@ public final class z70 implements View.OnClickListener {
                 g80Var.f35473r.d();
                 return;
             case 2:
-                g80 g80Var2 = this.f42696b;
+                g80 g80Var2 = this.f42695b;
                 String str = g80Var2.f35468b;
                 if (str != null && str.endsWith("?direct")) {
                     z10 = true;

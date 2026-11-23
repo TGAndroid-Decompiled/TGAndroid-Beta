@@ -27,7 +27,7 @@ public final class z extends b0 {
         this.d = h51Var;
         h51Var.r1();
         h51 h51Var2 = this.d;
-        h51Var2.f35790g3.f34062r = false;
+        h51Var2.f35789g3.f34062r = false;
         h51Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f24041n);
         org.telegram.messenger.g0.E2(this.f19922b);

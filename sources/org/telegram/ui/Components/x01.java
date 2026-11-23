@@ -15,27 +15,27 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.bc1;
 public final class x01 extends FrameLayout {
-    public final int f41940a;
-    public final Object f41941b;
+    public final int f41939a;
+    public final Object f41940b;
 
     public x01(int i7, Context context, Object obj) {
         super(context);
-        this.f41940a = i7;
-        this.f41941b = obj;
+        this.f41939a = i7;
+        this.f41940b = obj;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 4:
                 int save = canvas.save();
-                canvas.clipPath((Path) this.f41941b);
+                canvas.clipPath((Path) this.f41940b);
                 super.dispatchDraw(canvas);
                 canvas.restoreToCount(save);
                 return;
             case 9:
-                tg.l2 l2Var = (tg.l2) this.f41941b;
+                tg.l2 l2Var = (tg.l2) this.f41940b;
                 if (l2Var.E > 0.0f && l2Var.f58054s != null) {
                     l2Var.f58055w.reset();
                     float width = getWidth() / l2Var.f58052n.getWidth();
@@ -57,10 +57,10 @@ public final class x01 extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 9:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    ((tg.l2) this.f41941b).onBackPressed();
+                    ((tg.l2) this.f41940b).onBackPressed();
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -71,9 +71,9 @@ public final class x01 extends FrameLayout {
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 0:
-                float a10 = ((mc) this.f41941b).a(0.03f);
+                float a10 = ((mc) this.f41940b).a(0.03f);
                 canvas.save();
                 canvas.scale(a10, a10, getWidth() / 2.0f, getHeight() / 2.0f);
                 super.draw(canvas);
@@ -87,9 +87,9 @@ public final class x01 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 3:
-                if (((org.telegram.ui.Wallet.s6) this.f41941b).f45038a && view.getTag() != org.telegram.ui.Wallet.s6.f45037o0) {
+                if (((org.telegram.ui.Wallet.s6) this.f41940b).f45038a && view.getTag() != org.telegram.ui.Wallet.s6.f45037o0) {
                     return false;
                 }
                 return super.drawChild(canvas, view, j3);
@@ -102,15 +102,15 @@ public final class x01 extends FrameLayout {
     public void onDraw(Canvas canvas) {
         x01 x01Var;
         org.telegram.messenger.xe xeVar;
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 1:
-                n51 n51Var = (n51) this.f41941b;
-                n51Var.f37787m1.setBounds(0, (int) ((n51Var.f37791r1 - n51Var.f30210t0) - getTranslationY()), getMeasuredWidth(), getMeasuredHeight());
-                n51Var.f37787m1.draw(canvas);
+                n51 n51Var = (n51) this.f41940b;
+                n51Var.f37786m1.setBounds(0, (int) ((n51Var.f37790r1 - n51Var.f30210t0) - getTranslationY()), getMeasuredWidth(), getMeasuredHeight());
+                n51Var.f37786m1.draw(canvas);
                 return;
             case 6:
                 super.onDraw(canvas);
-                org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f41941b;
+                org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f41940b;
                 Paint paint = vp0Var.l1;
                 tg.f1 f1Var = vp0Var.f57912e1;
                 paint.setAlpha((int) ((1.0f - vp0Var.n1) * f1Var.getAlpha() * 102.0f));
@@ -131,7 +131,7 @@ public final class x01 extends FrameLayout {
                 canvas.drawRoundRect(rectF, L, L, paint);
                 return;
             case 7:
-                tg.p1 p1Var = (tg.p1) this.f41941b;
+                tg.p1 p1Var = (tg.p1) this.f41940b;
                 Rect rect = p1Var.F0;
                 Rect rect2 = p1Var.E0;
                 Paint paint3 = p1Var.G0;
@@ -140,7 +140,7 @@ public final class x01 extends FrameLayout {
                 if (p1Var.A0 != null) {
                     canvas.save();
                     float d = p1Var.f58129v0.d(p1Var.f58128u0);
-                    canvas.scale(1.0f - (d * 2.0f), 1.0f, yt0Var.f42546a / 2.0f, 0.0f);
+                    canvas.scale(1.0f - (d * 2.0f), 1.0f, yt0Var.f42545a / 2.0f, 0.0f);
                     canvas.skew(0.0f, org.telegram.messenger.f3.A(1.0f, d, 4.0f * d, 0.25f));
                     float d2 = p1Var.f58133z0.d(p1Var.f58132y0);
                     if (!p1Var.f58132y0) {
@@ -149,7 +149,7 @@ public final class x01 extends FrameLayout {
                         if (bitmap != null) {
                             canvas.translate(x01Var.getWidth() / 2.0f, x01Var.getHeight() / 2.0f);
                             canvas.rotate(p1Var.f58131x0);
-                            float max = Math.max(yt0Var.f42546a / bitmap.getWidth(), yt0Var.f42547b / bitmap.getHeight());
+                            float max = Math.max(yt0Var.f42545a / bitmap.getWidth(), yt0Var.f42546b / bitmap.getHeight());
                             canvas.scale(max, max);
                             if (p1Var.H0 != null) {
                                 canvas.rotate(-p1Var.getOrientation());
@@ -187,15 +187,15 @@ public final class x01 extends FrameLayout {
                 }
                 return;
             case 8:
-                tg.g2 g2Var = (tg.g2) this.f41941b;
+                tg.g2 g2Var = (tg.g2) this.f41940b;
                 ImageReceiver imageReceiver = g2Var.f57907y0;
                 yt0 yt0Var2 = g2Var.f57905w0;
                 if (g2Var.f57906x0 != null) {
                     canvas.save();
                     float d10 = g2Var.f57904v0.d(g2Var.f57903u0);
-                    canvas.scale(1.0f - (d10 * 2.0f), 1.0f, yt0Var2.f42546a / 2.0f, 0.0f);
+                    canvas.scale(1.0f - (d10 * 2.0f), 1.0f, yt0Var2.f42545a / 2.0f, 0.0f);
                     canvas.skew(0.0f, org.telegram.messenger.f3.A(1.0f, d10, 4.0f * d10, 0.25f));
-                    imageReceiver.y0(0.0f, 0.0f, (int) yt0Var2.f42546a, (int) yt0Var2.f42547b);
+                    imageReceiver.y0(0.0f, 0.0f, (int) yt0Var2.f42545a, (int) yt0Var2.f42546b);
                     imageReceiver.h(canvas, null);
                     canvas.restore();
                     return;
@@ -212,11 +212,11 @@ public final class x01 extends FrameLayout {
         CharSequence charSequence;
         ug.q0 q0Var;
         ug.q0 q0Var2;
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 10:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName("android.widget.Button");
-                ug.r0 r0Var = (ug.r0) this.f41941b;
+                ug.r0 r0Var = (ug.r0) this.f41940b;
                 if (r0Var.f58906r && (q0Var2 = r0Var.h) != null) {
                     charSequence = q0Var2.getText();
                 } else {
@@ -242,10 +242,10 @@ public final class x01 extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 1:
-                n51 n51Var = (n51) this.f41941b;
-                if (motionEvent.getAction() == 0 && n51Var.f37791r1 != 0 && motionEvent.getY() < n51Var.f37791r1) {
+                n51 n51Var = (n51) this.f41940b;
+                if (motionEvent.getAction() == 0 && n51Var.f37790r1 != 0 && motionEvent.getY() < n51Var.f37790r1) {
                     n51Var.dismiss();
                     return true;
                 }
@@ -254,7 +254,7 @@ public final class x01 extends FrameLayout {
             default:
                 return super.onInterceptTouchEvent(motionEvent);
             case 3:
-                if (!((org.telegram.ui.Wallet.s6) this.f41941b).f45038a && !super.onInterceptTouchEvent(motionEvent)) {
+                if (!((org.telegram.ui.Wallet.s6) this.f41940b).f45038a && !super.onInterceptTouchEvent(motionEvent)) {
                     return false;
                 }
                 return true;
@@ -267,9 +267,9 @@ public final class x01 extends FrameLayout {
         float top;
         int measuredHeight;
         ki.e eVar;
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 11:
-                ug.y0 y0Var = (ug.y0) this.f41941b;
+                ug.y0 y0Var = (ug.y0) this.f41940b;
                 if (y0Var.K0) {
                     y0Var.f59003u1 = View.MeasureSpec.getSize(i7);
                 } else {
@@ -279,7 +279,7 @@ public final class x01 extends FrameLayout {
                 return;
             case 12:
                 super.onMeasure(i7, i10);
-                ug.h1 h1Var = (ug.h1) ((di.l4) this.f41941b).d;
+                ug.h1 h1Var = (ug.h1) ((di.l4) this.f41940b).d;
                 di.bc bcVar = h1Var.f58728n2;
                 if (bcVar != null) {
                     top = bcVar.getTop();
@@ -306,10 +306,10 @@ public final class x01 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 4:
                 super.onSizeChanged(i7, i10, i11, i12);
-                Path path = (Path) this.f41941b;
+                Path path = (Path) this.f41940b;
                 float paddingLeft = (i7 - getPaddingLeft()) - getPaddingRight();
                 float paddingTop = (i10 - getPaddingTop()) - getPaddingBottom();
                 path.rewind();
@@ -324,18 +324,18 @@ public final class x01 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 1:
-                if (!((n51) this.f41941b).J && super.onTouchEvent(motionEvent)) {
+                if (!((n51) this.f41940b).J && super.onTouchEvent(motionEvent)) {
                     return true;
                 }
                 return false;
             case 2:
-                ((bc1) this.f41941b).U.onTouchEvent(motionEvent);
+                ((bc1) this.f41940b).U.onTouchEvent(motionEvent);
                 return super.onTouchEvent(motionEvent);
             case 6:
                 if (motionEvent.getActionMasked() == 0) {
-                    org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f41941b;
+                    org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f41940b;
                     if (vp0Var.f57924o1) {
                         vp0Var.z0(false);
                         return true;
@@ -349,11 +349,11 @@ public final class x01 extends FrameLayout {
 
     @Override
     public void onWindowFocusChanged(boolean z10) {
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 5:
                 super.onWindowFocusChanged(z10);
                 if (z10) {
-                    ((org.telegram.ui.Wallet.na) this.f41941b).k0(true);
+                    ((org.telegram.ui.Wallet.na) this.f41940b).k0(true);
                     return;
                 }
                 return;
@@ -365,10 +365,10 @@ public final class x01 extends FrameLayout {
 
     @Override
     public void setPressed(boolean z10) {
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 0:
                 super.setPressed(z10);
-                ((mc) this.f41941b).c(z10);
+                ((mc) this.f41940b).c(z10);
                 return;
             default:
                 super.setPressed(z10);
@@ -378,10 +378,10 @@ public final class x01 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f10) {
-        switch (this.f41940a) {
+        switch (this.f41939a) {
             case 1:
                 super.setTranslationY(f10);
-                n51.J0((n51) this.f41941b);
+                n51.J0((n51) this.f41940b);
                 return;
             default:
                 super.setTranslationY(f10);
@@ -391,38 +391,38 @@ public final class x01 extends FrameLayout {
 
     public x01(tg.g2 g2Var, Context context) {
         super(context);
-        this.f41940a = 8;
-        this.f41941b = g2Var;
+        this.f41939a = 8;
+        this.f41940b = g2Var;
         setWillNotDraw(false);
     }
 
     public x01(tg.p1 p1Var, Context context) {
         super(context);
-        this.f41940a = 7;
-        this.f41941b = p1Var;
+        this.f41939a = 7;
+        this.f41940b = p1Var;
         setWillNotDraw(false);
     }
 
     public x01(Context context, int i7) {
         super(context);
-        this.f41940a = i7;
+        this.f41939a = i7;
         switch (i7) {
             case 4:
                 super(context);
-                this.f41941b = new Path();
+                this.f41940b = new Path();
                 setClipChildren(false);
                 setClipToPadding(false);
                 return;
             default:
-                this.f41941b = new mc(this);
+                this.f41940b = new mc(this);
                 return;
         }
     }
 
     public x01(org.telegram.ui.vp0 vp0Var, Context context) {
         super(context);
-        this.f41940a = 6;
-        this.f41941b = vp0Var;
+        this.f41939a = 6;
+        this.f41940b = vp0Var;
         setWillNotDraw(false);
     }
 }

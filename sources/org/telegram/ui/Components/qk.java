@@ -8,12 +8,12 @@ import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import java.lang.ref.WeakReference;
 public final class qk implements View.OnTouchListener {
-    public final int f38938a;
-    public final Object f38939b;
+    public final int f38937a;
+    public final Object f38938b;
 
     public qk(Object obj, int i7) {
-        this.f38938a = i7;
-        this.f38939b = obj;
+        this.f38937a = i7;
+        this.f38938b = obj;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class qk implements View.OnTouchListener {
         l2.f0 f0Var;
         float f11;
         t60 t60Var;
-        switch (this.f38938a) {
+        switch (this.f38937a) {
             case 0:
-                zk zkVar = (zk) this.f38939b;
+                zk zkVar = (zk) this.f38938b;
                 zkVar.getClass();
                 if (motionEvent.getActionMasked() == 1 && !view.hasFocus()) {
                     zkVar.e0();
@@ -32,7 +32,7 @@ public final class qk implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                org.telegram.ui.ActionBar.g1 g1Var = (org.telegram.ui.ActionBar.g1) ((k.a) this.f38939b).f18090b;
+                org.telegram.ui.ActionBar.g1 g1Var = (org.telegram.ui.ActionBar.g1) ((k.a) this.f38938b).f18090b;
                 if (motionEvent.getActionMasked() == 1 && g1Var != null && g1Var.isShowing()) {
                     Rect rect = org.telegram.messenger.g0.Q;
                     view.getHitRect(rect);
@@ -44,7 +44,7 @@ public final class qk implements View.OnTouchListener {
                 }
                 return false;
             case 2:
-                b50 b50Var = (b50) this.f38939b;
+                b50 b50Var = (b50) this.f38938b;
                 boolean z10 = false;
                 if (b50Var.P == null || b50Var.R == null) {
                     return false;
@@ -132,7 +132,7 @@ public final class qk implements View.OnTouchListener {
                 }
                 return true;
             case 3:
-                a70 a70Var = (a70) ((WeakReference) this.f38939b).get();
+                a70 a70Var = (a70) ((WeakReference) this.f38938b).get();
                 if (a70Var != null && (t60Var = a70Var.f33386m) != null && t60Var.isShowing()) {
                     if (view.getParent() != null) {
                         view.getParent().requestDisallowInterceptTouchEvent(true);
@@ -164,22 +164,22 @@ public final class qk implements View.OnTouchListener {
                 view.setOnTouchListener(null);
                 return false;
             case 4:
-                v90 v90Var = (v90) this.f38939b;
+                v90 v90Var = (v90) this.f38938b;
                 v90Var.getClass();
-                return org.telegram.ui.ns.p().r(motionEvent, v90Var.getListView(), v90Var.f40752x, null, v90Var.f40743a);
+                return org.telegram.ui.ns.p().r(motionEvent, v90Var.getListView(), v90Var.f40751x, null, v90Var.f40742a);
             case 5:
-                qa0 qa0Var = (qa0) this.f38939b;
+                qa0 qa0Var = (qa0) this.f38938b;
                 qa0Var.getClass();
                 if (motionEvent.getAction() == 1) {
-                    qa0Var.f38858d0.a(true);
+                    qa0Var.f38857d0.a(true);
                 }
                 return true;
             default:
-                kw0 kw0Var = (kw0) this.f38939b;
+                kw0 kw0Var = (kw0) this.f38938b;
                 if (kw0Var.M1) {
                     return false;
                 }
-                return org.telegram.ui.ns.p().r(motionEvent, kw0Var.n1, kw0Var.C1, kw0Var.f37011h2, kw0Var.J0);
+                return org.telegram.ui.ns.p().r(motionEvent, kw0Var.n1, kw0Var.C1, kw0Var.f37010h2, kw0Var.J0);
         }
     }
 }

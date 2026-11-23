@@ -20,7 +20,7 @@ public final class c31 implements Runnable {
                 vf.c.t(o31Var.getParentActivity(), org.telegram.messenger.hd.N0(2131752142, null));
                 return;
             default:
-                o31Var.f50455c.f35790g3.O(true);
+                o31Var.f50455c.f35789g3.O(true);
                 return;
         }
     }

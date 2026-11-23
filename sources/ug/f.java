@@ -46,11 +46,11 @@ public final class f extends FrameLayout {
             i5.c.x(textView, 1, 20.0f);
             o10.r(textView, m6.G6, h6Var, null, 2131743560);
             addView(textView, ma.d(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
-            s10Var.f39456m = true;
-            s10Var.f39446a = true;
+            s10Var.f39455m = true;
+            s10Var.f39445a = true;
             s10Var.d(m6.x0(null, m6.Dk, false), m6.x0(null, m6.Ck, false), 0, 0);
             Paint.Style style = Paint.Style.STROKE;
-            Paint paint = s10Var.f39448c;
+            Paint paint = s10Var.f39447c;
             paint.setStyle(style);
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeWidth(org.telegram.messenger.g0.N(3.3f));
@@ -99,7 +99,7 @@ public final class f extends FrameLayout {
                 float f11 = (i7 * f10) - 90.0f;
                 float f12 = 5;
                 float f13 = f11 + f12;
-                canvas.drawArc(org.telegram.messenger.g0.P, f13, ((f11 + f10) - f12) - f13, false, s10Var.f39448c);
+                canvas.drawArc(org.telegram.messenger.g0.P, f13, ((f11 + f10) - f12) - f13, false, s10Var.f39447c);
             }
         }
         super.dispatchDraw(canvas);

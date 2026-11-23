@@ -55,7 +55,7 @@ public final class e extends FrameLayout {
         linearLayout.setOrientation(1);
         o6 o6Var = new o6(activity, false, false, false);
         this.f18322e = o6Var;
-        o6Var.f38119n = false;
+        o6Var.f38118n = false;
         o6Var.getDrawable().r(true, false);
         o6Var.setTypeface(org.telegram.messenger.g0.o());
         o6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
@@ -65,7 +65,7 @@ public final class e extends FrameLayout {
         linearLayout.addView(o6Var, ma.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         o6 o6Var2 = new o6(activity, false, false, false);
         this.f18323f = o6Var2;
-        o6Var2.f38119n = false;
+        o6Var2.f38118n = false;
         o6Var2.getDrawable().r(true, false);
         o6Var2.setTextSize(org.telegram.messenger.g0.L(13.0f));
         o6Var2.setText(hd.N0(2131753697, null));

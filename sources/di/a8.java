@@ -590,7 +590,7 @@ public final class a8 implements Runnable {
                 ((hi.c7) this.f8522c).O0 = (File) this.d;
                 hi.l9 l9Var = ((hi.sa) this.f8521b).f15400e1;
                 if (l9Var != null) {
-                    l9Var.f15697b.f35790g3.O(false);
+                    l9Var.f15697b.f35789g3.O(false);
                     return;
                 }
                 return;
@@ -748,7 +748,7 @@ public final class a8 implements Runnable {
                 y31 y31Var = c2Var.f17448e;
                 if (str5.equals(str6)) {
                     a2Var.a();
-                    y31Var.f42315b.h.getProgressDrawable().f35304e = false;
+                    y31Var.f42314b.h.getProgressDrawable().f35304e = false;
                     c2Var.O = 0;
                     y31Var.b(true);
                     c2Var.F.addAll(tL_messages_foundStickerSets.sets);

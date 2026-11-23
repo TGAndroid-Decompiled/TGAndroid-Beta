@@ -5,7 +5,7 @@ public final class u6 extends org.telegram.ui.Components.rc {
     public final v6 f52459f0;
 
     public u6(v6 v6Var, Context context) {
-        super(context, 11, org.telegram.ui.Components.rc.f39144a0, 0, org.telegram.ui.Components.rc.f39145b0);
+        super(context, 11, org.telegram.ui.Components.rc.f39143a0, 0, org.telegram.ui.Components.rc.f39144b0);
         this.f52459f0 = v6Var;
     }
 

@@ -685,7 +685,7 @@ public final class mm implements org.telegram.ui.Cells.m1 {
                 }
                 org.telegram.ui.Components.ob obVar = (org.telegram.ui.Components.ob) lbVar;
                 hVar3.X = obVar;
-                obVar.f38157a.setVisibility(4);
+                obVar.f38156a.setVisibility(4);
                 ViewTreeObserver viewTreeObserver = hVar3.X.getViewTreeObserver();
                 viewTreeObserver.addOnPreDrawListener(new pw(2, hVar3, viewTreeObserver));
             }
@@ -1062,7 +1062,7 @@ public final class mm implements org.telegram.ui.Cells.m1 {
                         uz0Var2.f52672x.h0();
                         org.telegram.ui.Components.ys ysVar = uz0Var2.F;
                         if (ysVar != null) {
-                            ysVar.f42510s = uz0Var2.f52672x;
+                            ysVar.f42509s = uz0Var2.f52672x;
                             ysVar.a();
                         }
                     }
@@ -1428,7 +1428,7 @@ public final class mm implements org.telegram.ui.Cells.m1 {
                 h1Var.f58731q2 = Integer.valueOf(bnVar.getThemedColor(org.telegram.ui.ActionBar.m6.f29642r8[f10]));
             }
             org.telegram.ui.Components.n5 n5Var = r1Var.f31575qa;
-            if (n5Var != null && (n5Var.f37778f[0] instanceof org.telegram.ui.Components.p5)) {
+            if (n5Var != null && (n5Var.f37777f[0] instanceof org.telegram.ui.Components.p5)) {
                 h1Var.f58736v2 *= 0.95f;
                 if (document != null) {
                     org.telegram.ui.Components.q9 q9Var = new org.telegram.ui.Components.q9(bnVar.getParentActivity());
@@ -1966,7 +1966,7 @@ public final class mm implements org.telegram.ui.Cells.m1 {
                 }
                 SpannableStringBuilder append2 = append.append(T2);
                 b02.getClass();
-                org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(b02.X(), b02.f37163c);
+                org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(b02.X(), b02.f37162c);
                 obVar.c(2131624300, 36, 36, new String[0]);
                 if (append2 != null) {
                     String charSequence = append2.toString();
@@ -1978,9 +1978,9 @@ public final class mm implements org.telegram.ui.Cells.m1 {
                         i12++;
                     }
                 }
-                obVar.f38158b.setText(append2);
-                obVar.f38158b.setSingleLine(false);
-                obVar.f38158b.setMaxLines(6);
+                obVar.f38157b.setText(append2);
+                obVar.f38157b.setSingleLine(false);
+                obVar.f38157b.setMaxLines(6);
                 b02.b(obVar, 7000).k(true);
                 org.telegram.messenger.q2.APP_ERROR.a();
             }
@@ -2624,19 +2624,19 @@ public final class mm implements org.telegram.ui.Cells.m1 {
                 org.telegram.ui.Components.wu wuVar = evVar.f34993q1;
                 wuVar.getClass();
                 ImageReceiver imageReceiver = new ImageReceiver(wuVar);
-                wuVar.f41901w = imageReceiver;
+                wuVar.f41900w = imageReceiver;
                 if (wuVar.d) {
                     imageReceiver.P();
                 }
-                wuVar.f41902x = true;
-                wuVar.f41903y.e(true, 1.0f);
-                wuVar.f41901w.r0(org.telegram.messenger.gc.b(document), "140_140", org.telegram.messenger.gc.c(org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false), document), "140_140", org.telegram.messenger.u5.d(document.thumbs, org.telegram.ui.ActionBar.m6.f29546m6, 0.2f, true), 0L, null, null, 0);
-                wuVar.f41901w.E0(7);
-                ImageReceiver imageReceiver2 = wuVar.f41901w;
+                wuVar.f41901x = true;
+                wuVar.f41902y.e(true, 1.0f);
+                wuVar.f41900w.r0(org.telegram.messenger.gc.b(document), "140_140", org.telegram.messenger.gc.c(org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false), document), "140_140", org.telegram.messenger.u5.d(document.thumbs, org.telegram.ui.ActionBar.m6.f29546m6, 0.2f, true), 0L, null, null, 0);
+                wuVar.f41900w.E0(7);
+                ImageReceiver imageReceiver2 = wuVar.f41900w;
                 imageReceiver2.f22697v0 = true;
                 imageReceiver2.f22695u0 = true;
                 imageReceiver2.W(1);
-                ImageReceiver imageReceiver3 = wuVar.f41901w;
+                ImageReceiver imageReceiver3 = wuVar.f41900w;
                 imageReceiver3.f22703x0 = true;
                 imageReceiver3.H0(wuVar);
                 boolean V9 = bnVar.V9();

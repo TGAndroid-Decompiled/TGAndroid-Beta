@@ -33,7 +33,7 @@ public final class jt implements org.telegram.ui.Components.nj0, org.telegram.ui
                 return;
             }
             lt ltVar = ltVarArr[i13];
-            if (ltVar.f38870c > 0) {
+            if (ltVar.f38869c > 0) {
                 arrayList.add(Integer.valueOf(ltVar.d));
             }
             i13++;

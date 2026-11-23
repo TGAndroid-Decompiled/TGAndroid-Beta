@@ -49,7 +49,7 @@ public final class b {
         Paint paint = (Paint) this.d;
         canvas.save();
         xy0 xy0Var = (xy0) this.f12963f;
-        xy0Var.f42258p = f10 - g0.L(132.0f);
+        xy0Var.f42257p = f10 - g0.L(132.0f);
         Paint paint2 = (Paint) this.f12961c;
         paint2.setColor(i0.a.f(f11, this.f12960b, m6.x0(null, m6.f29520kh, false)));
         float d = ((d6) this.f12966j).d(this.f12959a);
@@ -159,10 +159,10 @@ public final class b {
                 s30Var.f51909c = j6.g(str);
                 int l10 = k10.l();
                 ?? drawable = new Drawable();
-                drawable.f38501l = 1.0f;
-                drawable.f38503n = null;
-                drawable.f38504o = null;
-                drawable.f38497g = 21;
+                drawable.f38500l = 1.0f;
+                drawable.f38502n = null;
+                drawable.f38503o = null;
+                drawable.f38496g = 21;
                 drawable.h = l10;
                 drawable.x();
                 p5.w();

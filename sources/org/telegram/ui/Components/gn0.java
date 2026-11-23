@@ -10,7 +10,7 @@ public final class gn0 extends sb {
         super.updateColors();
         try {
             int themedColor = getThemedColor(org.telegram.ui.ActionBar.m6.yj);
-            q9 q9Var = this.f39544a;
+            q9 q9Var = this.f39543a;
             if (q9Var != null && themedColor != this.f35641c) {
                 this.f35641c = themedColor;
                 q9Var.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN));

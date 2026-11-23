@@ -99,14 +99,14 @@ public final class a0 extends sa implements gs {
         this.f59756t2 = true;
         this.f59757u2 = new t(this, 0);
         this.f59753q2 = prepaidGiveaway;
-        this.f39539v1 = 0.15f;
+        this.f39538v1 = 0.15f;
         this.f30212v0 = false;
         this.f30214w0 = false;
         this.U0 = false;
         this.f30211u0 = 0;
         c1();
-        ((ViewGroup.MarginLayoutParams) this.f39533p1.getLayoutParams()).leftMargin = 0;
-        ((ViewGroup.MarginLayoutParams) this.f39533p1.getLayoutParams()).rightMargin = 0;
+        ((ViewGroup.MarginLayoutParams) this.f39532p1.getLayoutParams()).leftMargin = 0;
+        ((ViewGroup.MarginLayoutParams) this.f39532p1.getLayoutParams()).rightMargin = 0;
         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
             int i12 = yg.d.f61274w;
             this.d2 = 3;
@@ -116,17 +116,17 @@ public final class a0 extends sa implements gs {
         kVar.o(nr.h);
         kVar.C = false;
         kVar.f59194m = false;
-        this.f39532o1.setItemAnimator(kVar);
-        ek0 ek0Var = this.f39532o1;
+        this.f39531o1.setItemAnimator(kVar);
+        ek0 ek0Var = this.f39531o1;
         int i13 = this.f30211u0;
         ek0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(68.0f));
-        this.f39532o1.setOnScrollListener(new Object());
-        this.f39532o1.setOnItemClickListener(new g4(23, this, g2Var));
+        this.f39531o1.setOnScrollListener(new Object());
+        this.f39531o1.setOnItemClickListener(new g4(23, this, g2Var));
         TLRPC.Chat O0 = np.u1(this.f30173a).O0(Long.valueOf(-j3));
         this.X1 = O0;
         xg.b bVar = this.f59740c2;
         ArrayList arrayList = this.T1;
-        ek0 ek0Var2 = this.f39532o1;
+        ek0 ek0Var2 = this.f39531o1;
         u uVar = new u(this);
         u uVar2 = new u(this);
         u uVar3 = new u(this);
@@ -171,7 +171,7 @@ public final class a0 extends sa implements gs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         ek0 ek0Var;
-        if (i7 == ls.f25429z3 && (ek0Var = this.f39532o1) != null && ek0Var.H) {
+        if (i7 == ls.f25429z3 && (ek0Var = this.f39531o1) != null && ek0Var.H) {
             l1(true, true);
         }
     }

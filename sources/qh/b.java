@@ -97,7 +97,7 @@ public final class b extends FrameLayout implements ne0, te.b, b6 {
         this.f56205f = n6Var;
         n6Var.x(g0.o());
         n6Var.setCallback(this);
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
         n6Var.u(-1);
         n6Var.w(g0.L(10.0f));
     }
@@ -234,10 +234,10 @@ public final class b extends FrameLayout implements ne0, te.b, b6 {
                     if (animatedDrawable != null) {
                         if (z12) {
                             animatedDrawable.P(this.E.d);
-                            if (animatedDrawable.f38207b0 >= this.E.f56200e - 2) {
+                            if (animatedDrawable.f38206b0 >= this.E.f56200e - 2) {
                                 animatedDrawable.N(0, false, false);
                             }
-                            int i14 = animatedDrawable.f38207b0;
+                            int i14 = animatedDrawable.f38206b0;
                             int i15 = this.E.d;
                             if (i14 <= i15) {
                                 animatedDrawable.start();
@@ -245,7 +245,7 @@ public final class b extends FrameLayout implements ne0, te.b, b6 {
                                 animatedDrawable.M(i15);
                             }
                         } else {
-                            int i16 = animatedDrawable.f38207b0;
+                            int i16 = animatedDrawable.f38206b0;
                             a aVar2 = this.E;
                             if (i16 >= aVar2.d - 1) {
                                 animatedDrawable.P(aVar2.f56200e - 1);
@@ -278,7 +278,7 @@ public final class b extends FrameLayout implements ne0, te.b, b6 {
                 }
                 oh0 animatedDrawable2 = rh0Var.getAnimatedDrawable();
                 if (animatedDrawable2 != null) {
-                    int[] iArr = animatedDrawable2.f38211e;
+                    int[] iArr = animatedDrawable2.f38210e;
                     if (this.O != z12) {
                         this.O = z12;
                         if (z12) {

@@ -1914,9 +1914,9 @@ public class ww0 extends org.telegram.ui.Components.dk0 {
                                 spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) N0.substring(indexOf + 1, lastIndexOf));
                                 spannableStringBuilder.setSpan(new hi.ha(b02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            obVar.f38158b.setText(spannableStringBuilder);
-                            obVar.f38158b.setSingleLine(false);
-                            obVar.f38158b.setMaxLines(2);
+                            obVar.f38157b.setText(spannableStringBuilder);
+                            obVar.f38157b.setSingleLine(false);
+                            obVar.f38157b.setMaxLines(2);
                             b02.b(obVar, 2750).j();
                             return;
                         }
@@ -3392,9 +3392,9 @@ public class ww0 extends org.telegram.ui.Components.dk0 {
                                 spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) N0.substring(indexOf + 1, lastIndexOf));
                                 spannableStringBuilder.setSpan(new hi.ha(b02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            obVar.f38158b.setText(spannableStringBuilder);
-                            obVar.f38158b.setSingleLine(false);
-                            obVar.f38158b.setMaxLines(2);
+                            obVar.f38157b.setText(spannableStringBuilder);
+                            obVar.f38157b.setSingleLine(false);
+                            obVar.f38157b.setMaxLines(2);
                             b02.b(obVar, 2750).j();
                             return;
                         }
@@ -13495,7 +13495,7 @@ public class ww0 extends org.telegram.ui.Components.dk0 {
             org.telegram.ui.ActionBar.g2 g2Var = this.f53544e;
             if (g2Var instanceof ProfileActivity) {
                 try {
-                    ((ProfileActivity) g2Var).P.f37994b.getImageReceiver().P0(false);
+                    ((ProfileActivity) g2Var).P.f37993b.getImageReceiver().P0(false);
                     ((ProfileActivity) this.f53544e).P.d.setText(org.telegram.messenger.hd.N0(2131745281, null));
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);

@@ -56,7 +56,7 @@ public final class b4 implements r1.c {
                     v90Var.setVisibility(i7);
                     if (v90Var.O && z11) {
                         v90Var.O = false;
-                        v90Var.f40744b.setLayoutManager(v90Var.getNeededLayoutManager());
+                        v90Var.f40743b.setLayoutManager(v90Var.getNeededLayoutManager());
                         v90Var.J = true;
                         v90Var.o(true);
                         return;

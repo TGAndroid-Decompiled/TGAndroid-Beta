@@ -130,8 +130,8 @@ public class PrivacyControlActivity extends org.telegram.ui.ActionBar.g2 impleme
         if (i7 == 4) {
             org.telegram.ui.Components.x30 x30Var = new org.telegram.ui.Components.x30(0, true, true);
             this.f43528u0 = x30Var;
-            x30Var.f41959a = this;
-            x30Var.f41960b = this;
+            x30Var.f41958a = this;
+            x30Var.f41959b = this;
             TLRPC.UserFull d2 = getMessagesController().d2(getUserConfig().f24987n);
             if (!org.telegram.messenger.p10.r(d2) || (w10 = org.telegram.messenger.w7.w(d2.fallback_photo.sizes, 1000, false, null, false)) == null) {
                 return;

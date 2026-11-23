@@ -815,7 +815,7 @@ public final class bj extends tl {
                         }
                     });
                     ofFloat.setDuration(200L);
-                    org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37961f;
+                    org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37960f;
                     ofFloat.setInterpolator(nrVar);
                     ofFloat.start();
                     final yo yoVar2 = bnVar.ma;
@@ -939,7 +939,7 @@ public final class bj extends tl {
                             }
                         });
                         ofFloat4.setDuration(400L);
-                        ofFloat4.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                        ofFloat4.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                         ValueAnimator ofFloat5 = ValueAnimator.ofFloat(org.telegram.messenger.g0.L(111.0f), 0.0f);
                         ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
                             public final bj f54568b;
@@ -1054,7 +1054,7 @@ public final class bj extends tl {
         super.requestDisallowInterceptTouchEvent(z10);
         View view = this.G3.f46232v9;
         if (view != null) {
-            if ((view instanceof org.telegram.ui.Cells.r1) && (d42 = ((org.telegram.ui.Cells.r1) view).d4()) != null && (d81Var = d42.f39262e0) != null && d42.f39263f0 && d81Var.f34420w && !d81Var.E) {
+            if ((view instanceof org.telegram.ui.Cells.r1) && (d42 = ((org.telegram.ui.Cells.r1) view).d4()) != null && (d81Var = d42.f39261e0) != null && d42.f39262f0 && d81Var.f34420w && !d81Var.E) {
                 if (d81Var.f34421x) {
                     if (!d81Var.f34422y && (d81Var.L & 3) != 1) {
                         return;
@@ -1178,7 +1178,7 @@ public final class bj extends tl {
                                 } else {
                                     org.telegram.messenger.yi currentPosition = r1Var.getCurrentPosition();
                                     org.telegram.ui.Components.x90 backgroundDrawable = r1Var.getBackgroundDrawable();
-                                    if ((!backgroundDrawable.f42019f && !r1Var.B2()) || (currentPosition != null && (2 & currentPosition.f28101l) == 0)) {
+                                    if ((!backgroundDrawable.f42018f && !r1Var.B2()) || (currentPosition != null && (2 & currentPosition.f28101l) == 0)) {
                                         i16 = i19;
                                         z12 = true;
                                     } else {
@@ -1239,11 +1239,11 @@ public final class bj extends tl {
                                                             i18 = i20;
                                                             y10 = Math.min(y10, (int) r1Var2.getY());
                                                             measuredHeight5 = Math.max(measuredHeight5, r1Var2.getMeasuredHeight() + ((int) r1Var2.getY()));
-                                                            long j10 = backgroundDrawable2.f42024l;
+                                                            long j10 = backgroundDrawable2.f42023l;
                                                             if (j10 > j3) {
                                                                 j3 = j10;
                                                                 f10 = r1Var2.getX() + backgroundDrawable2.h;
-                                                                f13 = r1Var2.getY() + backgroundDrawable2.f42021i;
+                                                                f13 = r1Var2.getY() + backgroundDrawable2.f42020i;
                                                             }
                                                             i20 = i18 + 1;
                                                             i19 = i21;
@@ -1254,8 +1254,8 @@ public final class bj extends tl {
                                                     i19 = i21;
                                                 }
                                                 i16 = i19;
-                                                backgroundDrawable.f42022j = f10;
-                                                backgroundDrawable.f42023k = f13 - y10;
+                                                backgroundDrawable.f42021j = f10;
+                                                backgroundDrawable.f42022k = f13 - y10;
                                                 i17 = measuredHeight5 - y10;
                                             }
                                             int i22 = i17 + y10;
@@ -1263,7 +1263,7 @@ public final class bj extends tl {
                                             Paint W02 = bjVar3.W0("paintChatMessageBackgroundSelected");
                                             zm zmVar3 = bnVar.Ba;
                                             if (zmVar3 != null && !zmVar3.f54599q && W02 != null) {
-                                                backgroundDrawable.f42016b = W02;
+                                                backgroundDrawable.f42015b = W02;
                                                 if (!bnVar.V9()) {
                                                     kVar2 = ((org.telegram.ui.ActionBar.g2) bnVar).actionBar;
                                                     measuredHeight2 = kVar2.getMeasuredHeight();
@@ -1279,8 +1279,8 @@ public final class bj extends tl {
                                                     org.telegram.ui.ActionBar.m6.r(r1Var.getX(), backgroundTranslationY2, bjVar3.getMeasuredWidth(), backgroundSizeY2);
                                                 }
                                             } else {
-                                                backgroundDrawable.f42016b = null;
-                                                backgroundDrawable.f42015a.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29779yd, h6Var));
+                                                backgroundDrawable.f42015b = null;
+                                                backgroundDrawable.f42014a.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29779yd, h6Var));
                                             }
                                             backgroundDrawable.setBounds(0, y10, bjVar3.getMeasuredWidth(), i22);
                                             backgroundDrawable.draw(canvas2);

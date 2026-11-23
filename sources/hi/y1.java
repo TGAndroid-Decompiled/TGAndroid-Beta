@@ -40,7 +40,7 @@ public final class y1 extends u1 {
         kVar.f59239e = 220L;
         kVar.f59240f = 160L;
         kVar.f59241g = 160L;
-        kVar.f59242i = nr.f37962g;
+        kVar.f59242i = nr.f37961g;
         o1Var.setItemAnimator(kVar);
         addView(o1Var, c8.ma.c(-1.0f, -1));
         int i7 = i2.C1;
@@ -89,7 +89,7 @@ public final class y1 extends u1 {
                 c2Var.H1(i2Var.n1);
                 d2Var.h.F1();
                 if (d2Var.h.getSelectedCategory() != null) {
-                    x1Var.I = d2Var.h.getSelectedCategory().f35978a;
+                    x1Var.I = d2Var.h.getSelectedCategory().f35977a;
                     l lVar = x1Var.N;
                     org.telegram.messenger.g0.r(lVar);
                     org.telegram.messenger.g0.g3(lVar);

@@ -9,30 +9,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class x50 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final ImageView f41980a;
-    public final TextView f41981b;
-    public final TextView f41982c;
+    public final ImageView f41979a;
+    public final TextView f41980b;
+    public final TextView f41981c;
     public int d;
-    public int f41983e;
-    public final a60 f41984f;
+    public int f41982e;
+    public final a60 f41983f;
 
     public x50(a60 a60Var, Context context) {
         super(context);
-        this.f41984f = a60Var;
+        this.f41983f = a60Var;
         ImageView imageView = new ImageView(context);
-        this.f41980a = imageView;
+        this.f41979a = imageView;
         imageView.setBackground(org.telegram.ui.ActionBar.m6.M(46, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.R7, false), org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Y7, false)));
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         imageView.setImageResource(2131231610);
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         addView(imageView, c8.ma.d(46, 46.0f, 19, 13.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f41981b = textView;
+        this.f41980b = textView;
         i5.c.x(textView, 1, 16.0f);
         org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.G6, null);
         addView(textView, c8.ma.d(-1, -2.0f, 51, 72.0f, 9.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f41982c = textView2;
+        this.f41981c = textView2;
         textView2.setTextSize(1, 14.0f);
         org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29773y6, null);
         addView(textView2, c8.ma.d(-1, -2.0f, 51, 72.0f, 32.0f, 0.0f, 0.0f));
@@ -47,11 +47,11 @@ public final class x50 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void updateColors() {
         int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.R7, false);
         int x03 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Y7, false);
-        ImageView imageView = this.f41980a;
+        ImageView imageView = this.f41979a;
         if (imageView != null) {
-            if (x02 != this.d || x03 != this.f41983e) {
+            if (x02 != this.d || x03 != this.f41982e) {
                 this.d = x02;
-                this.f41983e = x03;
+                this.f41982e = x03;
                 imageView.setBackground(org.telegram.ui.ActionBar.m6.M(46, x02, x03));
                 invalidate();
             }

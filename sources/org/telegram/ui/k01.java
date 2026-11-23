@@ -75,7 +75,7 @@ public final class k01 extends FrameLayout implements org.telegram.ui.ActionBar.
                     case 0:
                         k01 k01Var = this.f47107b;
                         bi.u uVar = k01Var.h;
-                        if (k01Var.f49164f.f40486k == 1) {
+                        if (k01Var.f49164f.f40485k == 1) {
                             uVar.setText("");
                             k01Var.G.v(null, true, false);
                             h11 h11Var = k01Var.f49165n;
@@ -164,7 +164,7 @@ public final class k01 extends FrameLayout implements org.telegram.ui.ActionBar.
                     case 0:
                         k01 k01Var = this.f47107b;
                         bi.u uVar2 = k01Var.h;
-                        if (k01Var.f49164f.f40486k == 1) {
+                        if (k01Var.f49164f.f40485k == 1) {
                             uVar2.setText("");
                             k01Var.G.v(null, true, false);
                             h11 h11Var = k01Var.f49165n;
@@ -229,7 +229,7 @@ public final class k01 extends FrameLayout implements org.telegram.ui.ActionBar.
                     case 0:
                         k01 k01Var = this.f47107b;
                         bi.u uVar2 = k01Var.h;
-                        if (k01Var.f49164f.f40486k == 1) {
+                        if (k01Var.f49164f.f40485k == 1) {
                             uVar2.setText("");
                             k01Var.G.v(null, true, false);
                             h11 h11Var = k01Var.f49165n;
@@ -333,13 +333,13 @@ public final class k01 extends FrameLayout implements org.telegram.ui.ActionBar.
         h11 h11Var;
         h11 h11Var2;
         org.telegram.ui.Components.ul0 ul0Var = this.f49164f;
-        int i7 = ul0Var.f40486k;
+        int i7 = ul0Var.f40485k;
         bi.u uVar = this.h;
         int i10 = 2;
         if (i7 == 2 && ((uVar.length() != 0 || ((h11Var2 = this.f49165n) != null && h11Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (uVar.length() <= 0 && ((h11Var = this.f49165n) == null || h11Var.f37308w3 <= 0.5f || (!h11Var.f37303r3 && h11Var.getSelectedCategory() == null))) {
+        if (uVar.length() <= 0 && ((h11Var = this.f49165n) == null || h11Var.f37307w3 <= 0.5f || (!h11Var.f37302r3 && h11Var.getSelectedCategory() == null))) {
             r62 = 0;
         } else {
             r62 = 1;

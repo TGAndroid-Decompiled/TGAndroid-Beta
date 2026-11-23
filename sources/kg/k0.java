@@ -54,7 +54,7 @@ public final class k0 extends sa {
         TLRPC.User c22 = np.u1(this.f30173a).c2(Long.valueOf(tL_connectedBot.bot_id));
         this.U1 = c22;
         this.F1 = org.telegram.messenger.g0.L(36.0f);
-        this.f39539v1 = 0.15f;
+        this.f39538v1 = 0.15f;
         b0 b0Var = new b0(activity, this.f30173a, new i0(this, 0), h6Var);
         this.V1 = b0Var;
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = tL_connectedBot.recipients;
@@ -76,7 +76,7 @@ public final class k0 extends sa {
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setText(p10.q(c22));
         linearLayout.addView(textView, ma.s(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.f39533p1.setTitle(p10.q(c22));
+        this.f39532p1.setTitle(p10.q(c22));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
         t6.U(textView2, m6.f29773y6, h6Var);
@@ -95,11 +95,11 @@ public final class k0 extends sa {
         v0(m6.w0(i7, this.J0));
         Q(i7);
         this.d2 = this.H0;
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i10 = this.f30211u0;
         ek0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(72.0f));
-        this.f39532o1.r1();
-        this.f39532o1.setOnItemClickListener(new k8(this, 16));
+        this.f39531o1.r1();
+        this.f39531o1.setOnItemClickListener(new k8(this, 16));
         FrameLayout frameLayout = new FrameLayout(activity);
         this.X1 = frameLayout;
         frameLayout.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
@@ -131,7 +131,7 @@ public final class k0 extends sa {
         kVar.C = false;
         kVar.o(nr.h);
         kVar.n(350L);
-        this.f39532o1.setItemAnimator(kVar);
+        this.f39531o1.setItemAnimator(kVar);
         c51 c51Var = this.f18397a2;
         if (c51Var != null) {
             c51Var.O(false);
@@ -171,7 +171,7 @@ public final class k0 extends sa {
 
     @Override
     public final void R0(float f10) {
-        m5 titleTextView = this.f39533p1.getTitleTextView();
+        m5 titleTextView = this.f39532p1.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f10);
         }

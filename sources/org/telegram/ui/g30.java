@@ -63,9 +63,9 @@ public final class g30 extends org.telegram.ui.Components.o20 {
         }
         textView2.setGravity(i11 | 48);
         this.f30176b.addView(textView2, c8.ma.d(-2, -2.0f, (org.telegram.messenger.hd.f24444a0 ? 5 : 3) | 48, 24.0f, 62.0f, 24.0f, 0.0f));
-        this.f38064p1 = new TextView[3];
+        this.f38063p1 = new TextView[3];
         c5.l lVar = new c5.l(context);
-        this.f38062m1 = lVar;
+        this.f38061m1 = lVar;
         lVar.setClipChildren(false);
         lVar.setOffscreenPageLimit(4);
         lVar.setClipToPadding(false);
@@ -98,34 +98,34 @@ public final class g30 extends org.telegram.ui.Components.o20 {
         l20Var.setOnClickListener(new org.telegram.ui.Components.o0(this, 24));
         this.f30176b.addView(l20Var, c8.ma.d(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f38063o1 = linearLayout;
+        this.f38062o1 = linearLayout;
         this.f30176b.addView(linearLayout, c8.ma.e(-2, 64, 80));
         int i15 = 0;
         while (true) {
-            TextView[] textViewArr = this.f38064p1;
+            TextView[] textViewArr = this.f38063p1;
             if (i15 >= textViewArr.length) {
                 break;
             }
             textViewArr[i15] = new TextView(context);
-            this.f38064p1[i15].setTextSize(1, 12.0f);
-            this.f38064p1[i15].setTextColor(-1);
-            this.f38064p1[i15].setTypeface(org.telegram.messenger.g0.o());
-            this.f38064p1[i15].setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), 0);
-            this.f38064p1[i15].setGravity(16);
-            this.f38064p1[i15].setSingleLine(true);
-            this.f38063o1.addView(this.f38064p1[i15], c8.ma.o(-2, -1));
+            this.f38063p1[i15].setTextSize(1, 12.0f);
+            this.f38063p1[i15].setTextColor(-1);
+            this.f38063p1[i15].setTypeface(org.telegram.messenger.g0.o());
+            this.f38063p1[i15].setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), 0);
+            this.f38063p1[i15].setGravity(16);
+            this.f38063p1[i15].setSingleLine(true);
+            this.f38062o1.addView(this.f38063p1[i15], c8.ma.o(-2, -1));
             if (i15 == 0) {
-                this.f38064p1[i15].setText(org.telegram.messenger.hd.N0(2131743007, null));
+                this.f38063p1[i15].setText(org.telegram.messenger.hd.N0(2131743007, null));
             } else if (i15 == 1) {
-                this.f38064p1[i15].setText(org.telegram.messenger.hd.N0(2131743005, null));
+                this.f38063p1[i15].setText(org.telegram.messenger.hd.N0(2131743005, null));
             } else {
-                this.f38064p1[i15].setText(org.telegram.messenger.hd.N0(2131743006, null));
+                this.f38063p1[i15].setText(org.telegram.messenger.hd.N0(2131743006, null));
             }
-            this.f38064p1[i15].setOnClickListener(new ci.q(this, i15, 14));
+            this.f38063p1[i15].setOnClickListener(new ci.q(this, i15, 14));
             i15++;
         }
         if (z10) {
-            this.f38062m1.setCurrentItem(1);
+            this.f38061m1.setCurrentItem(1);
         }
     }
 

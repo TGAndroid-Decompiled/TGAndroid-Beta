@@ -36,7 +36,7 @@ public final class q1 implements si {
     @Override
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
         ui uiVar = this.f22328a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40379e2;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40378e2;
         b2 b2Var = this.f22329b;
         if (i7 == 7 || i7 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();

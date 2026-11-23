@@ -62,9 +62,9 @@ public final class e1 extends g2 implements gs {
         String N0 = hd.N0(2131752752, null);
         String N02 = hd.N0(2131752737, null);
         o41 o41Var = new o41(2);
-        o41Var.f38092m = N0;
-        o41Var.f38095p = N02;
-        o41Var.f38090k = 2131623939;
+        o41Var.f38091m = N0;
+        o41Var.f38094p = N02;
+        o41Var.f38089k = 2131623939;
         arrayList.add(o41Var);
         o41 i7 = o41.i(-1, hd.N0(2131752717, null));
         i7.L(e1Var.d);
@@ -83,8 +83,8 @@ public final class e1 extends g2 implements gs {
                     String f02 = f0(e1Var.f18338f[i10]);
                     o41 o41Var2 = new o41(5);
                     o41Var2.d = i10;
-                    o41Var2.f38092m = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    o41Var2.f38093n = f02;
+                    o41Var2.f38091m = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+                    o41Var2.f38092n = f02;
                     o41Var2.L(!e1Var.f18338f[i10].isEmpty());
                     arrayList.add(o41Var2);
                     i10++;
@@ -267,7 +267,7 @@ public final class e1 extends g2 implements gs {
                 if (B1 instanceof j5) {
                     ((j5) B1).setValue(f0(this.f18338f[i10]));
                 } else {
-                    this.f18334a.f35790g3.O(true);
+                    this.f18334a.f35789g3.O(true);
                 }
             }
         }
@@ -286,7 +286,7 @@ public final class e1 extends g2 implements gs {
         this.f18334a = h51Var;
         h51Var.r1();
         h51 h51Var2 = this.f18334a;
-        h51Var2.f35790g3.f34062r = false;
+        h51Var2.f35789g3.f34062r = false;
         h51Var2.setSectionsDrawBackground(true);
         frameLayout.addView(this.f18334a, ma.c(-1.0f, -1));
         j0();
@@ -311,7 +311,7 @@ public final class e1 extends g2 implements gs {
                 this.f18339n = z1.b(this.currentAccount).c();
             }
             h51 h51Var = this.f18334a;
-            if (h51Var != null && (c51Var = h51Var.f35790g3) != null) {
+            if (h51Var != null && (c51Var = h51Var.f35789g3) != null) {
                 c51Var.O(true);
             }
         }
@@ -420,7 +420,7 @@ public final class e1 extends g2 implements gs {
             }
         }
         h51 h51Var = this.f18334a;
-        if (h51Var != null && (c51Var = h51Var.f35790g3) != null) {
+        if (h51Var != null && (c51Var = h51Var.f35789g3) != null) {
             c51Var.O(true);
         }
         d0(false);

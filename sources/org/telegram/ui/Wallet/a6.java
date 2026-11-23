@@ -44,7 +44,7 @@ public final class a6 implements ViewTreeObserver.OnPreDrawListener {
                         n6Var2.f44665a0.animate().cancel();
                         if (z10) {
                             n6Var2.f44665a0.setVisibility(0);
-                            n6Var2.f44665a0.animate().alpha(1.0f).setDuration(180L).setInterpolator(nr.f37962g).start();
+                            n6Var2.f44665a0.animate().alpha(1.0f).setDuration(180L).setInterpolator(nr.f37961g).start();
                         } else {
                             n6Var2.f44665a0.setAlpha(0.0f);
                             n6Var2.f44665a0.setVisibility(4);
@@ -52,7 +52,7 @@ public final class a6 implements ViewTreeObserver.OnPreDrawListener {
                     }
                 }
                 n6Var2.f1();
-                View m10 = n6Var2.f34681a.f35789f3.m(n6Var2.h);
+                View m10 = n6Var2.f34681a.f35788f3.m(n6Var2.h);
                 if (m10 != null) {
                     f10 = m10.getY();
                 }

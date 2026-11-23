@@ -23,8 +23,8 @@ public final class pi0 implements org.telegram.messenger.r10 {
                 passkeysActivity.addPasskeyRow = -1;
                 String N0 = org.telegram.messenger.hd.N0(2131747435, null);
                 org.telegram.ui.Components.o41 o41Var = new org.telegram.ui.Components.o41(2);
-                o41Var.f38092m = N0;
-                o41Var.f38090k = 2131624114;
+                o41Var.f38091m = N0;
+                o41Var.f38089k = 2131624114;
                 arrayList.add(o41Var);
                 for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                     j40 j40Var = new j40(passkeysActivity, 16);
@@ -37,7 +37,7 @@ public final class pi0 implements org.telegram.messenger.r10 {
                 if (arrayList2.size() + 1 <= ((org.telegram.messenger.j0) passkeysActivity.getMessagesController().A7.E.f15508b).f24812c) {
                     passkeysActivity.addPasskeyRow = arrayList.size();
                     org.telegram.ui.Components.o41 c10 = org.telegram.ui.Components.o41.c(-1, 2131231846, org.telegram.messenger.hd.N0(2131747456, null));
-                    c10.f38097r = true;
+                    c10.f38096r = true;
                     arrayList.add(c10);
                 }
                 arrayList.add(org.telegram.ui.Components.o41.C(org.telegram.messenger.g0.H2(org.telegram.messenger.g0.T2(org.telegram.messenger.hd.N0(2131747441, null), new hf0(passkeysActivity, 4)), true)));

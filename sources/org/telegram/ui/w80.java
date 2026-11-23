@@ -69,7 +69,7 @@ public final class w80 implements OnBackAnimationCallback {
             }
             float max = Math.max(0.0f, progress - 0.015f) / 0.985f;
             if (!org.telegram.messenger.g0.Q1() && (actionBarLayout = this.f53022f.f43139p0) != null && actionBarLayout.f28734j1) {
-                float interpolation = org.telegram.ui.Components.nr.f37966l.getInterpolation(max) * org.telegram.messenger.g0.L(56.0f);
+                float interpolation = org.telegram.ui.Components.nr.f37965l.getInterpolation(max) * org.telegram.messenger.g0.L(56.0f);
                 if (max > 0.0f) {
                     z10 = true;
                 }

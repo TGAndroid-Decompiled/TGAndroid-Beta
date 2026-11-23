@@ -356,13 +356,13 @@ public final class kj {
             kj kjVar = wa0Var.d;
             int i13 = 0;
             while (true) {
-                View[] viewArr = wa0Var.f41741f.f36435e;
+                View[] viewArr = wa0Var.f41740f.f36434e;
                 if (i13 < viewArr.length) {
                     View view = viewArr[i13];
                     if (view != null) {
                         qa0 qa0Var = (qa0) view;
                         FrameLayout frameLayout = qa0Var.G;
-                        if (qa0Var.f38852a == 2) {
+                        if (qa0Var.f38851a == 2) {
                             va0 va0Var = qa0Var.I;
                             va0 va0Var2 = qa0Var.H;
                             if (kjVar.f25090n && !kjVar.f25091o) {

@@ -59,7 +59,7 @@ public final class l1 extends Drawable {
         this.f3817i = org.telegram.messenger.g0.N(7.33f);
         this.f3818j = org.telegram.messenger.g0.L(8.0f);
         this.f3819k = (int) org.telegram.messenger.g0.N(22.66f);
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
         textPaint.setTextSize(org.telegram.messenger.g0.L(12.0f));
         textPaint.setColor(-1);
         imageReceiver.J0(L);

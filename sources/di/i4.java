@@ -229,34 +229,34 @@ public final class i4 extends b71 {
                 kw kwVar = (kw) this.f9038c;
                 cx cxVar = kwVar.M0;
                 if (i7 == 1) {
-                    return kwVar.f40498a0;
+                    return kwVar.f40497a0;
                 }
                 if (i7 == 3) {
-                    return kwVar.f40507i0;
+                    return kwVar.f40506i0;
                 }
                 if (i7 == 4) {
-                    return kwVar.f40511n0;
+                    return kwVar.f40510n0;
                 }
                 if (i7 == 5) {
-                    return kwVar.f40518u0;
+                    return kwVar.f40517u0;
                 }
                 if (i7 == 2) {
                     sl0 sl0Var = new sl0(kwVar.K0, cxVar);
                     kwVar.J0 = sl0Var;
                     sl0Var.b(kwVar.X0, kwVar.Y0, false);
-                    kwVar.J0.f39617b.setClipToPadding(false);
-                    kwVar.J0.f39617b.j(new sm0(this, 0));
-                    kwVar.J0.f39617b.D0(new hb0(kwVar, 22));
+                    kwVar.J0.f39616b.setClipToPadding(false);
+                    kwVar.J0.f39616b.j(new sm0(this, 0));
+                    kwVar.J0.f39616b.D0(new hb0(kwVar, 22));
                     kwVar.J0.setUiCallback(kwVar);
                     return kwVar.J0;
                 } else if (i7 == 6) {
-                    return kwVar.f40516s0;
+                    return kwVar.f40515s0;
                 } else {
                     c00 c00Var = new c00(cxVar);
                     c00Var.setChatPreviewDelegate(kwVar.S0);
                     c00Var.setUiCallback(kwVar);
                     c00Var.j(kwVar.X0, kwVar.Y0, false);
-                    dh.c cVar = kwVar.f40499a1;
+                    dh.c cVar = kwVar.f40498a1;
                     if (cVar != null) {
                         c00Var.setBlurredBackgroundDrawableFactory(cVar);
                     }
@@ -285,7 +285,7 @@ public final class i4 extends b71 {
                 if (i7 == 2) {
                     i10 = ((org.telegram.ui.ActionBar.g2) y91Var).currentAccount;
                     sl0 sl0Var2 = new sl0(i10, y91Var);
-                    sl0Var2.f39617b.j(new t91(0));
+                    sl0Var2.f39616b.j(new t91(0));
                     sl0Var2.setUiCallback(u91Var);
                     return sl0Var2;
                 }
@@ -327,7 +327,7 @@ public final class i4 extends b71 {
                         i7Var.setSelectorType(9);
                         i7Var.setSelectorDrawableColor(0);
                     }
-                    i7Var.f35790g3.f34062r = false;
+                    i7Var.f35789g3.f34062r = false;
                     i7Var.j(new t31(this, i7));
                     h51VarArr[i7] = i7Var;
                     return i7Var;
@@ -408,25 +408,25 @@ public final class i4 extends b71 {
                 return hd.N0(2131745542, null);
             case 3:
                 ArrayList arrayList = (ArrayList) obj;
-                if (((tm0) arrayList.get(i7)).f39946a == 0) {
+                if (((tm0) arrayList.get(i7)).f39945a == 0) {
                     return hd.N0(2131745627, null);
                 }
-                if (((tm0) arrayList.get(i7)).f39946a == 1) {
+                if (((tm0) arrayList.get(i7)).f39945a == 1) {
                     return hd.N0(2131752246, null);
                 }
-                if (((tm0) arrayList.get(i7)).f39946a == 4) {
+                if (((tm0) arrayList.get(i7)).f39945a == 4) {
                     return hd.N0(2131754175, null);
                 }
-                if (((tm0) arrayList.get(i7)).f39946a == 6) {
+                if (((tm0) arrayList.get(i7)).f39945a == 6) {
                     return hd.N0(2131745537, null);
                 }
-                if (((tm0) arrayList.get(i7)).f39946a == 2) {
+                if (((tm0) arrayList.get(i7)).f39945a == 2) {
                     return hd.N0(2131751331, null);
                 }
-                if (((tm0) arrayList.get(i7)).f39946a == 5) {
+                if (((tm0) arrayList.get(i7)).f39945a == 5) {
                     return hd.N0(2131746388, null);
                 }
-                jg.o0 o0Var = jg.q0.f17648k3[((tm0) arrayList.get(i7)).f39947b];
+                jg.o0 o0Var = jg.q0.f17648k3[((tm0) arrayList.get(i7)).f39946b];
                 String str = o0Var.f17632c;
                 if (str != null) {
                     return str;
@@ -477,25 +477,25 @@ public final class i4 extends b71 {
                 return i7;
             case 3:
                 ArrayList arrayList = (ArrayList) this.f9037b;
-                if (((tm0) arrayList.get(i7)).f39946a == 0) {
+                if (((tm0) arrayList.get(i7)).f39945a == 0) {
                     return 1;
                 }
-                if (((tm0) arrayList.get(i7)).f39946a == 1) {
+                if (((tm0) arrayList.get(i7)).f39945a == 1) {
                     return 3;
                 }
-                if (((tm0) arrayList.get(i7)).f39946a == 4) {
+                if (((tm0) arrayList.get(i7)).f39945a == 4) {
                     return 4;
                 }
-                if (((tm0) arrayList.get(i7)).f39946a == 2) {
+                if (((tm0) arrayList.get(i7)).f39945a == 2) {
                     return 2;
                 }
-                if (((tm0) arrayList.get(i7)).f39946a == 5) {
+                if (((tm0) arrayList.get(i7)).f39945a == 5) {
                     return 5;
                 }
-                if (((tm0) arrayList.get(i7)).f39946a == 6) {
+                if (((tm0) arrayList.get(i7)).f39945a == 6) {
                     return 6;
                 }
-                return ((tm0) arrayList.get(i7)).f39946a + i7;
+                return ((tm0) arrayList.get(i7)).f39945a + i7;
             case 5:
                 if (i7 == 0) {
                     return 0;
@@ -522,7 +522,7 @@ public final class i4 extends b71 {
         arrayList.add(new tm0(0));
         kw kwVar = (kw) this.f9038c;
         if (kwVar.W0 == 0) {
-            if (kwVar.f40517t0) {
+            if (kwVar.f40516t0) {
                 arrayList.add(new tm0(5));
             }
             arrayList.add(new tm0(1));
@@ -530,23 +530,23 @@ public final class i4 extends b71 {
             arrayList.add(new tm0(6));
             if (!kwVar.R0) {
                 tm0 tm0Var = new tm0(3);
-                tm0Var.f39947b = 0;
+                tm0Var.f39946b = 0;
                 arrayList.add(tm0Var);
                 xv xvVar = kwVar.f49396e1.H3;
                 if (xvVar == null || !xvVar.c()) {
                     arrayList.add(new tm0(2));
                 }
                 tm0 tm0Var2 = new tm0(3);
-                tm0Var2.f39947b = 1;
+                tm0Var2.f39946b = 1;
                 arrayList.add(tm0Var2);
                 tm0 tm0Var3 = new tm0(3);
-                tm0Var3.f39947b = 2;
+                tm0Var3.f39946b = 2;
                 arrayList.add(tm0Var3);
                 tm0 tm0Var4 = new tm0(3);
-                tm0Var4.f39947b = 3;
+                tm0Var4.f39946b = 3;
                 arrayList.add(tm0Var4);
                 tm0 tm0Var5 = new tm0(3);
-                tm0Var5.f39947b = 4;
+                tm0Var5.f39946b = 4;
                 arrayList.add(tm0Var5);
             }
         }

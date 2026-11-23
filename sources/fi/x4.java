@@ -312,7 +312,7 @@ public final class x4 extends dk0 {
                 yz yzVar = new yz(b5Var.getContext(), bVar);
                 yzVar.setIsSingleCell(true);
                 yzVar.setViewType(28);
-                yzVar.f42606x = false;
+                yzVar.f42605x = false;
                 m80Var = yzVar;
                 break;
             case 5:
@@ -343,7 +343,7 @@ public final class x4 extends dk0 {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.W2(hd.N0(2131750859, null)));
                     boolean K3 = np.u1(i11).K3();
-                    m80 m80Var2 = w4Var.f37996e;
+                    m80 m80Var2 = w4Var.f37995e;
                     if (!K3) {
                         spannableStringBuilder.append((CharSequence) "\n\n");
                         spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.T2(hd.N0(2131750858, null), new Runnable() {
@@ -377,7 +377,7 @@ public final class x4 extends dk0 {
                         TextView textView = new TextView(w4Var.getContext());
                         textView.setText(N0);
                         int i12 = org.telegram.ui.ActionBar.m6.Ji;
-                        org.telegram.ui.ActionBar.h6 h6Var = w4Var.f37998n;
+                        org.telegram.ui.ActionBar.h6 h6Var = w4Var.f37997n;
                         org.telegram.ui.ActionBar.t6.U(textView, i12, h6Var);
                         textView.setPadding(org.telegram.messenger.g0.L(45.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(45.0f), org.telegram.messenger.g0.L(12.0f));
                         textView.setGravity(17);
@@ -396,7 +396,7 @@ public final class x4 extends dk0 {
                         org.telegram.ui.ActionBar.t6.j(t2Var, k02, M, g10, h6Var);
                         ra.b(t2Var, 0.05f, 1.5f);
                         t2Var.addView(textView);
-                        d61 d61Var = w4Var.f37993a;
+                        d61 d61Var = w4Var.f37992a;
                         d61Var.setClipChildren(false);
                         d61Var.addView(t2Var, ma.t(-2, -2, 1, 0, 28, 0, 4));
                     }
@@ -420,7 +420,7 @@ public final class x4 extends dk0 {
                 yzVar2.setIgnoreHeightCheck(true);
                 yzVar2.setItemsCount(20);
                 yzVar2.setViewType(28);
-                yzVar2.f42606x = false;
+                yzVar2.f42605x = false;
                 m80Var = yzVar2;
                 break;
             case 11:

@@ -576,7 +576,7 @@ public final class i2 extends FrameLayout implements org.telegram.messenger.y5 {
         }
         ImageReceiver imageReceiver = this.f30809a;
         op opVar = this.f30814c0;
-        if (opVar != null && (opVar.f38321a.f32874q || !imageReceiver.I() || imageReceiver.f22672i1 != 1.0f || PhotoViewer.L1((gj) this.f30816e))) {
+        if (opVar != null && (opVar.f38320a.f32874q || !imageReceiver.I() || imageReceiver.f22672i1 != 1.0f || PhotoViewer.L1((gj) this.f30816e))) {
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.U);
         }
         if (this.H != null) {
@@ -633,7 +633,7 @@ public final class i2 extends FrameLayout implements org.telegram.messenger.y5 {
                     int L4 = (int) (imageReceiver.L0 + ((org.telegram.messenger.g0.L(52.0f) - intrinsicWidth) / 2));
                     int L5 = (int) (imageReceiver.M0 + ((org.telegram.messenger.g0.L(52.0f) - intrinsicHeight) / 2));
                     float f14 = imageReceiver.L0;
-                    canvas.drawRect(f14, imageReceiver.M0, org.telegram.messenger.g0.L(52.0f) + f14, imageReceiver.M0 + org.telegram.messenger.g0.L(52.0f), w70.f41679k);
+                    canvas.drawRect(f14, imageReceiver.M0, org.telegram.messenger.g0.L(52.0f) + f14, imageReceiver.M0 + org.telegram.messenger.g0.L(52.0f), w70.f41678k);
                     org.telegram.ui.ActionBar.m6.f29544m4.setBounds(L4, L5, intrinsicWidth + L4, intrinsicHeight + L5);
                     org.telegram.ui.ActionBar.m6.f29544m4.draw(canvas);
                 } else {
@@ -644,7 +644,7 @@ public final class i2 extends FrameLayout implements org.telegram.messenger.y5 {
                         int L6 = (int) (imageReceiver.L0 + ((org.telegram.messenger.g0.L(52.0f) - intrinsicWidth2) / 2));
                         int L7 = (int) (imageReceiver.M0 + ((org.telegram.messenger.g0.L(52.0f) - intrinsicHeight2) / 2));
                         float f15 = imageReceiver.L0;
-                        canvas.drawRect(f15, imageReceiver.M0, org.telegram.messenger.g0.L(52.0f) + f15, imageReceiver.M0 + org.telegram.messenger.g0.L(52.0f), w70.f41679k);
+                        canvas.drawRect(f15, imageReceiver.M0, org.telegram.messenger.g0.L(52.0f) + f15, imageReceiver.M0 + org.telegram.messenger.g0.L(52.0f), w70.f41678k);
                         org.telegram.ui.ActionBar.m6.f29561n4.setBounds(L6, L7, intrinsicWidth2 + L6, intrinsicHeight2 + L7);
                         org.telegram.ui.ActionBar.m6.f29561n4.draw(canvas);
                     } else {
@@ -655,7 +655,7 @@ public final class i2 extends FrameLayout implements org.telegram.messenger.y5 {
                             int L8 = (int) (imageReceiver.L0 + ((org.telegram.messenger.g0.L(52.0f) - intrinsicWidth3) / 2));
                             int L9 = (int) (imageReceiver.M0 + ((org.telegram.messenger.g0.L(52.0f) - intrinsicHeight3) / 2));
                             float f16 = imageReceiver.L0;
-                            canvas.drawRect(f16, imageReceiver.M0, org.telegram.messenger.g0.L(52.0f) + f16, imageReceiver.M0 + org.telegram.messenger.g0.L(52.0f), w70.f41679k);
+                            canvas.drawRect(f16, imageReceiver.M0, org.telegram.messenger.g0.L(52.0f) + f16, imageReceiver.M0 + org.telegram.messenger.g0.L(52.0f), w70.f41678k);
                             org.telegram.ui.ActionBar.m6.o4.setBounds(L8, L9, intrinsicWidth3 + L8, intrinsicHeight3 + L9);
                             org.telegram.ui.ActionBar.m6.o4.draw(canvas);
                         } else {
@@ -685,7 +685,7 @@ public final class i2 extends FrameLayout implements org.telegram.messenger.y5 {
                     float f19 = imageReceiver.M0;
                     float f20 = imageReceiver.O0;
                     int A2 = (int) com.google.android.gms.internal.vision.e2.A(f20, intrinsicHeight4, 2.0f, f19);
-                    canvas.drawRect(f17, f19, f18 + f17, f19 + f20, w70.f41679k);
+                    canvas.drawRect(f17, f19, f18 + f17, f19 + f20, w70.f41678k);
                     org.telegram.ui.ActionBar.m6.o4.setBounds(A, A2, intrinsicWidth4 + A, intrinsicHeight4 + A2);
                     org.telegram.ui.ActionBar.m6.o4.draw(canvas);
                 }
@@ -782,7 +782,7 @@ public final class i2 extends FrameLayout implements org.telegram.messenger.y5 {
         }
         accessibilityNodeInfo.setText(sb2);
         op opVar = this.f30814c0;
-        if (opVar != null && opVar.f38321a.f32874q) {
+        if (opVar != null && opVar.f38320a.f32874q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }
@@ -833,7 +833,7 @@ public final class i2 extends FrameLayout implements org.telegram.messenger.y5 {
                         if (motionEvent.getAction() == 1) {
                             this.f30825r = false;
                             playSoundEffect(0);
-                            ((jg.u0) this.f30815d0).f17708a.W.f38848b.k(getResult());
+                            ((jg.u0) this.f30815d0).f17708a.W.f38847b.k(getResult());
                         } else if (motionEvent.getAction() == 3) {
                             this.f30825r = false;
                         } else if (motionEvent.getAction() == 2 && !w70Var.getBounds().contains(x10, y10)) {

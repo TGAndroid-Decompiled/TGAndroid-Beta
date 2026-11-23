@@ -23,13 +23,13 @@ public final class a implements View.OnClickListener {
                 jn jnVar = gVar.f59612g2;
                 if (jnVar != null) {
                     ArrayList arrayList = new ArrayList(gVar.f59611f2.keySet());
-                    tn tnVar = (tn) jnVar.f36567b;
+                    tn tnVar = (tn) jnVar.f36566b;
                     ArrayList arrayList2 = tnVar.Q0;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
                     int i10 = tnVar.M0;
                     if (i10 >= 0) {
-                        tnVar.f39981r.g(i10);
+                        tnVar.f39980r.g(i10);
                     }
                 }
                 gVar.dismiss();
@@ -38,13 +38,13 @@ public final class a implements View.OnClickListener {
                 jn jnVar2 = gVar.f59612g2;
                 if (jnVar2 != null) {
                     ArrayList arrayList3 = new ArrayList(gVar.f59611f2.keySet());
-                    tn tnVar2 = (tn) jnVar2.f36567b;
+                    tn tnVar2 = (tn) jnVar2.f36566b;
                     ArrayList arrayList4 = tnVar2.Q0;
                     arrayList4.clear();
                     arrayList4.addAll(arrayList3);
                     int i11 = tnVar2.M0;
                     if (i11 >= 0) {
-                        tnVar2.f39981r.g(i11);
+                        tnVar2.f39980r.g(i11);
                     }
                 }
                 gVar.dismiss();

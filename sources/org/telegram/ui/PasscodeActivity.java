@@ -648,9 +648,9 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.g2 implements or
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f10, f11).setDuration(150L);
         if (z10) {
-            nrVar = org.telegram.ui.Components.nr.f37961f;
+            nrVar = org.telegram.ui.Components.nr.f37960f;
         } else {
-            nrVar = org.telegram.ui.Components.zs.f42978e;
+            nrVar = org.telegram.ui.Components.zs.f42977e;
         }
         duration.setInterpolator(nrVar);
         duration.addUpdateListener(new a3(this, 17));

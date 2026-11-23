@@ -11,25 +11,25 @@ public final class p0 extends sa {
     public final boolean X1;
     public final ah.a Y1;
     public boolean Z1;
-    public boolean f38428a2;
-    public boolean f38429b2;
-    public org.telegram.ui.ra f38430c2;
+    public boolean f38427a2;
+    public boolean f38428b2;
+    public org.telegram.ui.ra f38429c2;
     public int d2;
 
     public p0(org.telegram.ui.ActionBar.g2 g2Var, TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, a0.h hVar, boolean z10) {
         super(g2Var.getContext(), g2Var, false, true, 2, g2Var.getResourceProvider());
         this.U1 = new TLRPC.TL_channelAdminLogEventsFilter();
         this.Z1 = false;
-        this.f38428a2 = false;
-        this.f38429b2 = false;
-        this.f39539v1 = 0.35f;
+        this.f38427a2 = false;
+        this.f38428b2 = false;
+        this.f39538v1 = 0.35f;
         O();
         int i7 = org.telegram.ui.ActionBar.m6.f29472i5;
         int w02 = org.telegram.ui.ActionBar.m6.w0(i7, this.J0);
         this.d2 = w02;
         v0(w02);
         Z0();
-        this.f39542y1 = true;
+        this.f39541y1 = true;
         if (tL_channelAdminLogEventsFilter != null) {
             TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter2 = this.U1;
             tL_channelAdminLogEventsFilter2.join = tL_channelAdminLogEventsFilter.join;
@@ -79,8 +79,8 @@ public final class p0 extends sa {
         kVar.C = false;
         kVar.o(nr.h);
         kVar.n(350L);
-        this.f39532o1.setItemAnimator(kVar);
-        this.f39532o1.setOnItemClickListener(new c0(this, 1));
+        this.f39531o1.setItemAnimator(kVar);
+        this.f39531o1.setOnItemClickListener(new c0(this, 1));
         ah.a aVar = new ah.a(getContext(), this.J0, (ek0) null);
         this.Y1 = aVar;
         aVar.setClickable(true);
@@ -95,15 +95,15 @@ public final class p0 extends sa {
         ViewGroup viewGroup = this.f30176b;
         int i10 = this.f30211u0;
         viewGroup.addView(aVar, c8.ma.f(-2.0f, -1, 87, i10, 0, i10, 0));
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i11 = this.f30211u0;
         ek0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(68.0f));
-        this.f39532o1.r1();
+        this.f39531o1.r1();
     }
 
     @Override
     public final boolean G() {
-        return !this.f39532o1.canScrollVertically(-1);
+        return !this.f39531o1.canScrollVertically(-1);
     }
 
     @Override

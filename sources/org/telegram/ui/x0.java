@@ -123,7 +123,7 @@ public final class x0 extends View implements org.telegram.messenger.y5, org.tel
         int i7;
         if (this.M != null && (gjVar = this.N) != null) {
             org.telegram.ui.Components.ym0 ym0Var = this.f53571f;
-            if (!ym0Var.f42460e) {
+            if (!ym0Var.f42459e) {
                 ym0Var.h(gjVar.f24173b0);
             }
             if (MediaController.B().I(this.N)) {

@@ -97,7 +97,7 @@ public final class i9 implements TextWatcher {
                     org.telegram.messenger.g0.h3(runnable2, 300L);
                 } else {
                     arrayList.clear();
-                    naVar.f34681a.f35790g3.O(true);
+                    naVar.f34681a.f35789g3.O(true);
                     final String str3 = naVar.E;
                     if (str3 != null) {
                         Runnable runnable3 = new Runnable() {

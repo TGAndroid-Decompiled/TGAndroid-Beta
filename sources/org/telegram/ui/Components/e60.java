@@ -23,8 +23,8 @@ public final class e60 extends dk0 {
 
     public final TLObject E(int i7) {
         l60 l60Var = this.f34688c;
-        if (l60Var.f37126h2 != null) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) l60Var.f37127i2.get(i7 - l60Var.T1);
+        if (l60Var.f37125h2 != null) {
+            TLRPC.Dialog dialog = (TLRPC.Dialog) l60Var.f37126i2.get(i7 - l60Var.T1);
             if (org.telegram.messenger.n5.E(dialog.f28438id)) {
                 return org.telegram.messenger.np.u1(l60Var.f30173a).c2(Long.valueOf(dialog.f28438id));
             }
@@ -102,7 +102,7 @@ public final class e60 extends dk0 {
                         i4Var.setCheckBoxEnabled(false);
                         return;
                     }
-                    if (l60Var.f37120a2.h(j10) >= 0) {
+                    if (l60Var.f37119a2.h(j10) >= 0) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -139,8 +139,8 @@ public final class e60 extends dk0 {
                     } else {
                         d60 d60Var = new d60(context, null, 0, null, 0);
                         d60Var.setLayoutParams(new v4.q0(-1, -1));
-                        d60Var.f37996e.setVisibility(8);
-                        org.telegram.ui.zr zrVar = l60Var.f37126h2;
+                        d60Var.f37995e.setVisibility(8);
+                        org.telegram.ui.zr zrVar = l60Var.f37125h2;
                         xh.l lVar = d60Var.d;
                         if (zrVar != null) {
                             lVar.setText(org.telegram.messenger.hd.N0(2131750714, null));
@@ -154,7 +154,7 @@ public final class e60 extends dk0 {
                     y4Var = new View(context);
                 }
             } else {
-                if (l60Var.f37126h2 != null) {
+                if (l60Var.f37125h2 != null) {
                     z10 = true;
                 } else {
                     z10 = false;

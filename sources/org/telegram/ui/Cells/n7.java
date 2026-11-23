@@ -84,7 +84,7 @@ public final class n7 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (!this.f31161e.f38321a.f32874q) {
+        if (!this.f31161e.f38320a.f32874q) {
             org.telegram.ui.Components.q9 q9Var = this.f31158a;
             if (q9Var.getImageReceiver().I() && q9Var.getImageReceiver().f22672i1 == 1.0f && !PhotoViewer.L1(this.f31163n)) {
                 return;
@@ -106,7 +106,7 @@ public final class n7 extends FrameLayout {
         } else {
             accessibilityNodeInfo.setText(hd.N0(2131753945, null));
         }
-        if (this.f31161e.f38321a.f32874q) {
+        if (this.f31161e.f38320a.f32874q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }

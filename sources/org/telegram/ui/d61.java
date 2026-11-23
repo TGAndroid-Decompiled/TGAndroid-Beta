@@ -198,22 +198,22 @@ public final class d61 extends LinearLayout {
                         View view3 = scrollSlidingTextTabStrip.f33139d0;
                         if (view3 != null) {
                             view3.animate().translationX(0.0f).translationY(0.0f).setDuration(320L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                                public final org.telegram.ui.d61 f35937b;
+                                public final org.telegram.ui.d61 f35936b;
 
                                 {
-                                    this.f35937b = this;
+                                    this.f35936b = this;
                                 }
 
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                     switch (r2) {
                                         case 0:
-                                            org.telegram.ui.d61 d61Var = this.f35937b;
+                                            org.telegram.ui.d61 d61Var = this.f35936b;
                                             d61Var.invalidate();
                                             ((ScrollSlidingTextTabStrip) d61Var.f46888b).invalidate();
                                             return;
                                         default:
-                                            org.telegram.ui.d61 d61Var2 = this.f35937b;
+                                            org.telegram.ui.d61 d61Var2 = this.f35936b;
                                             d61Var2.invalidate();
                                             ((ScrollSlidingTextTabStrip) d61Var2.f46888b).invalidate();
                                             return;
@@ -226,22 +226,22 @@ public final class d61 extends LinearLayout {
                         View view4 = scrollSlidingTextTabStrip.f33139d0;
                         if (view4 != null) {
                             view4.animate().translationX(0.0f).translationY(0.0f).setDuration(320L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                                public final org.telegram.ui.d61 f35937b;
+                                public final org.telegram.ui.d61 f35936b;
 
                                 {
-                                    this.f35937b = this;
+                                    this.f35936b = this;
                                 }
 
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                     switch (r2) {
                                         case 0:
-                                            org.telegram.ui.d61 d61Var = this.f35937b;
+                                            org.telegram.ui.d61 d61Var = this.f35936b;
                                             d61Var.invalidate();
                                             ((ScrollSlidingTextTabStrip) d61Var.f46888b).invalidate();
                                             return;
                                         default:
-                                            org.telegram.ui.d61 d61Var2 = this.f35937b;
+                                            org.telegram.ui.d61 d61Var2 = this.f35936b;
                                             d61Var2.invalidate();
                                             ((ScrollSlidingTextTabStrip) d61Var2.f46888b).invalidate();
                                             return;
@@ -289,7 +289,7 @@ public final class d61 extends LinearLayout {
                 }
                 return super.drawChild(canvas, view, j3);
             case 10:
-                if (view == ((org.telegram.ui.Components.y8) this.f46888b).f42343a) {
+                if (view == ((org.telegram.ui.Components.y8) this.f46888b).f42342a) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
@@ -378,7 +378,7 @@ public final class d61 extends LinearLayout {
                 int i13 = (i12 - i10) / 2;
                 for (int i14 = 0; i14 < getChildCount(); i14++) {
                     View childAt = getChildAt(i14);
-                    if (childAt != ((org.telegram.ui.Components.mv) this.f46888b).f37648s.G && childAt != null) {
+                    if (childAt != ((org.telegram.ui.Components.mv) this.f46888b).f37647s.G && childAt != null) {
                         childAt.layout(paddingLeft, i13 - (childAt.getMeasuredHeight() / 2), childAt.getMeasuredWidth() + paddingLeft, (childAt.getMeasuredHeight() / 2) + i13);
                         paddingLeft = org.telegram.messenger.f3.C(2.0f, childAt.getMeasuredWidth(), paddingLeft);
                     }
@@ -525,12 +525,12 @@ public final class d61 extends LinearLayout {
                 super.onMeasure(i11, i14);
                 return;
             case 12:
-                super.onMeasure(Math.max(View.MeasureSpec.getSize(i7), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(((org.telegram.ui.Components.mv) this.f46888b).f36929b.getChildCount() * 32), 1073741824)), i14);
+                super.onMeasure(Math.max(View.MeasureSpec.getSize(i7), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(((org.telegram.ui.Components.mv) this.f46888b).f36928b.getChildCount() * 32), 1073741824)), i14);
                 return;
             case 17:
                 super.onMeasure(i7, i10);
                 if (org.telegram.messenger.hd.f24444a0) {
-                    ((org.telegram.ui.Components.z21) this.f46888b).f42657c.setPivotX(getMeasuredWidth());
+                    ((org.telegram.ui.Components.z21) this.f46888b).f42656c.setPivotX(getMeasuredWidth());
                     return;
                 }
                 return;
@@ -613,7 +613,7 @@ public final class d61 extends LinearLayout {
         switch (this.f46887a) {
             case 16:
                 org.telegram.ui.Components.nv0 nv0Var = (org.telegram.ui.Components.nv0) this.f46888b;
-                org.telegram.ui.Components.q9 q9Var = nv0Var.f37994b;
+                org.telegram.ui.Components.q9 q9Var = nv0Var.f37993b;
                 if (getVisibility() == 8 && i7 == 0) {
                     nv0Var.c();
                     if (org.telegram.messenger.qc.e(3)) {

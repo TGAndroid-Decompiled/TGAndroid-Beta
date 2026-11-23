@@ -644,15 +644,15 @@ public class nx implements org.telegram.messenger.gs {
                 ch.d dVar2 = mxVar.f50017j;
                 if (dVar2 != null) {
                     z11 = dVar2.c();
-                } else if (mxVar.f50019l && mxVar.f50025r.B() != null && mxVar.f50025r.B().f38207b0 >= mxVar.f50025r.B().f38211e[0] - 2) {
+                } else if (mxVar.f50019l && mxVar.f50025r.B() != null && mxVar.f50025r.B().f38206b0 >= mxVar.f50025r.B().f38210e[0] - 2) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 if (mxVar.f50022o != 1.0f && !z11 && !z10) {
-                    if (mxVar.f50025r.B() != null && mxVar.f50025r.B().f38220l0) {
+                    if (mxVar.f50025r.B() != null && mxVar.f50025r.B().f38219l0) {
                         mxVar.f50019l = true;
-                    } else if (mxVar.f50025r.B() != null && !mxVar.f50025r.B().f38220l0) {
+                    } else if (mxVar.f50025r.B() != null && !mxVar.f50025r.B().f38219l0) {
                         mxVar.f50025r.B().N(0, true, false);
                         mxVar.f50025r.B().start();
                     }

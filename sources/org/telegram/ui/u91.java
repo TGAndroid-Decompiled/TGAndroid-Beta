@@ -56,12 +56,12 @@ public final class u91 extends org.telegram.ui.Components.j71 implements b00 {
         ek0Var.setOnScrollListener(new d21(this, 5));
         org.telegram.ui.Components.yz yzVar = new org.telegram.ui.Components.yz(context, null);
         yzVar.setViewType(7);
-        yzVar.f42606x = false;
+        yzVar.f42605x = false;
         yzVar.setUseHeaderOffset(true);
         org.telegram.ui.Components.nv0 nv0Var = new org.telegram.ui.Components.nv0(context, yzVar, 1, null);
         this.f52501q0 = nv0Var;
         nv0Var.d.setText(org.telegram.messenger.hd.N0(2131747974, null));
-        nv0Var.f37996e.setVisibility(8);
+        nv0Var.f37995e.setVisibility(8);
         nv0Var.setVisibility(8);
         nv0Var.addView(yzVar, 0);
         nv0Var.setAnimateLayoutChange(true);
@@ -146,7 +146,7 @@ public final class u91 extends org.telegram.ui.Components.j71 implements b00 {
             c00Var.h(-y91Var.f54099a, 0L, 0L, 0L, jg.q0.f17648k3[((r91) ((ArrayList) this.f52504t0.f9037b).get(i7)).f51527b], false, str, z10);
         } else if (view instanceof org.telegram.ui.Components.sl0) {
             org.telegram.ui.Components.sl0 sl0Var = (org.telegram.ui.Components.sl0) view;
-            sl0Var.f39616a.b(0, false);
+            sl0Var.f39615a.b(0, false);
             sl0Var.L = str;
             sl0Var.d(false);
         }

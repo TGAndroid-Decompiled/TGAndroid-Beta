@@ -59,7 +59,7 @@ public final class vv0 extends org.telegram.ui.Components.jt0 {
         super.P1(z10);
         ProfileActivity profileActivity = this.f52898y2;
         boolean z11 = profileActivity.f43688t1;
-        org.telegram.ui.Components.gq0 gq0Var = this.f36614b0;
+        org.telegram.ui.Components.gq0 gq0Var = this.f36613b0;
         if (z11 && !profileActivity.f43709w1 && this.L0.d(14)) {
             if (!this.f52897x2 && (i10 = profileActivity.f43694u1) > 0 && gq0Var != null) {
                 this.f52897x2 = true;

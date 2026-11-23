@@ -118,7 +118,7 @@ public class x7 extends NestedScrollView implements z60 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new p7(this, getScrollY(), f10, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(nr.f37961f);
+        ofFloat.setInterpolator(nr.f37960f);
         ofFloat.start();
     }
 
@@ -131,7 +131,7 @@ public class x7 extends NestedScrollView implements z60 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new p7(this, getScrollY(), f10, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(nr.f37961f);
+        ofFloat.setInterpolator(nr.f37960f);
         ofFloat.start();
     }
 

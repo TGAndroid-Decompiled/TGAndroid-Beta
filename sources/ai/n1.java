@@ -120,7 +120,7 @@ public final class n1 extends FrameLayout {
         this.f1309a0 = new d6(this, 0L, 240L, nrVar);
         nr nrVar2 = I0;
         this.f1311b0 = new d6(this, 0L, 460L, nrVar2);
-        nr nrVar3 = nr.f37962g;
+        nr nrVar3 = nr.f37961g;
         this.f1313c0 = new d6(this, 0L, 260L, nrVar3);
         this.f1314d0 = new d6(this, 0L, 160L, nrVar);
         this.f1316e0 = new d6(this, 0L, 160L, nrVar);
@@ -366,7 +366,7 @@ public final class n1 extends FrameLayout {
             float d11 = this.f1336v0.d(this.V);
             n6 n6Var3 = this.f1332s;
             float f28 = n6Var3.d;
-            TextPaint textPaint2 = n6Var3.f37794a;
+            TextPaint textPaint2 = n6Var3.f37793a;
             float L6 = org.telegram.messenger.g0.L(16.0f);
             if (this.V) {
                 f13 = 1.0f;
@@ -809,7 +809,7 @@ public final class n1 extends FrameLayout {
                                             i16++;
                                             g gVar2 = (g) obj;
                                             Context context2 = p0Var.h;
-                                            int i17 = p0Var.f1392f.f39573a.R;
+                                            int i17 = p0Var.f1392f.f39572a.R;
                                             if (gVar2 == p0Var.K && p0Var.J != null) {
                                                 z11 = true;
                                             } else {
@@ -835,7 +835,7 @@ public final class n1 extends FrameLayout {
                                     }
                                     sf sfVar = p0Var.f1392f;
                                     a3 a3Var = new a3();
-                                    bn bnVar = sfVar.f39573a.F3;
+                                    bn bnVar = sfVar.f39572a.F3;
                                     if (bnVar != null) {
                                         bnVar.presentFragment(a3Var);
                                     }

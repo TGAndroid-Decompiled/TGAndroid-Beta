@@ -99,6 +99,6 @@ public final class l31 extends LinearLayout implements org.telegram.ui.ActionBar
         } else {
             z10 = false;
         }
-        this.f49467b.f39138b = z10;
+        this.f49467b.f39137b = z10;
     }
 }

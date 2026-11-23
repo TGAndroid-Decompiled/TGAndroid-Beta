@@ -59,7 +59,7 @@ public final class x extends dk0 {
         if (((Boolean) this.f19067e.get(i7)).booleanValue()) {
             nq nqVar = new nq(2131231943, 0);
             nqVar.a(m6.A6);
-            nqVar.f37950n = 1;
+            nqVar.f37949n = 1;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
             spannableStringBuilder.setSpan(nqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);

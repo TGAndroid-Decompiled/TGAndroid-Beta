@@ -1,13 +1,13 @@
 package org.telegram.ui.Components;
 public final class rp0 implements Runnable {
-    public final int f39310a;
-    public final boolean f39311b;
-    public final Object f39312c;
+    public final int f39309a;
+    public final boolean f39310b;
+    public final Object f39311c;
 
     public rp0(int i7, Object obj, boolean z10) {
-        this.f39310a = i7;
-        this.f39312c = obj;
-        this.f39311b = z10;
+        this.f39309a = i7;
+        this.f39311c = obj;
+        this.f39310b = z10;
     }
 
     @Override

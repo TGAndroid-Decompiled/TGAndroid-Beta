@@ -10,15 +10,15 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 public final class xb0 implements wt0, org.telegram.messenger.kc, gh.d, r0.m, org.telegram.ui.ActionBar.q1, org.telegram.ui.ActionBar.q6, org.telegram.ui.ActionBar.r6, vt0, org.telegram.messenger.j9, org.telegram.messenger.nc, pb0 {
-    public final int f42035a;
+    public final int f42034a;
 
     public xb0(int i7) {
-        this.f42035a = i7;
+        this.f42034a = i7;
     }
 
     @Override
     public void G0(int i7, Drawable drawable) {
-        int i10 = this.f42035a;
+        int i10 = this.f42034a;
     }
 
     @Override
@@ -28,20 +28,20 @@ public final class xb0 implements wt0, org.telegram.messenger.kc, gh.d, r0.m, or
 
     @Override
     public void V(ImageReceiver imageReceiver) {
-        int i7 = this.f42035a;
+        int i7 = this.f42034a;
     }
 
     @Override
     public void c(Object obj, float f10) {
-        switch (this.f42035a) {
+        switch (this.f42034a) {
             case 0:
                 yb0 yb0Var = (yb0) obj;
-                yb0Var.f42383s = f10;
+                yb0Var.f42382s = f10;
                 yb0Var.f();
                 return;
             default:
                 rn0 rn0Var = (rn0) obj;
-                rn0Var.f39293n = f10;
+                rn0Var.f39292n = f10;
                 rn0Var.invalidate();
                 return;
         }
@@ -54,17 +54,17 @@ public final class xb0 implements wt0, org.telegram.messenger.kc, gh.d, r0.m, or
 
     @Override
     public int f(View view) {
-        return ((rm0) view).f39286w;
+        return ((rm0) view).f39285w;
     }
 
     @Override
     public float get(Object obj) {
-        return ((rn0) obj).f39293n;
+        return ((rn0) obj).f39292n;
     }
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f42035a) {
+        switch (this.f42034a) {
             case 5:
                 t1Var.dismiss();
                 return;
@@ -93,7 +93,7 @@ public final class xb0 implements wt0, org.telegram.messenger.kc, gh.d, r0.m, or
                 t1Var.dismiss();
                 return;
             case 17:
-                int i10 = kw0.f37004r2;
+                int i10 = kw0.f37003r2;
                 return;
             case 18:
                 t1Var.dismiss();
@@ -114,7 +114,7 @@ public final class xb0 implements wt0, org.telegram.messenger.kc, gh.d, r0.m, or
 
     @Override
     public String i(int i7) {
-        switch (this.f42035a) {
+        switch (this.f42034a) {
             case 26:
                 return String.format("%02d", Integer.valueOf(i7));
             default:
@@ -130,7 +130,7 @@ public final class xb0 implements wt0, org.telegram.messenger.kc, gh.d, r0.m, or
 
     @Override
     public Object m(Object obj) {
-        switch (this.f42035a) {
+        switch (this.f42034a) {
             case 11:
                 Integer num = (Integer) obj;
                 int i7 = ap0.U2;
@@ -161,7 +161,7 @@ public final class xb0 implements wt0, org.telegram.messenger.kc, gh.d, r0.m, or
     public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         oh0 B;
         boolean z13;
-        switch (this.f42035a) {
+        switch (this.f42034a) {
             case 1:
                 if (z10 && !z11 && (B = imageReceiver.B()) != null) {
                     B.start();

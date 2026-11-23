@@ -163,7 +163,7 @@ public final class ya extends e51 implements gs {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         bi.f6 f6Var;
         if (i7 == ls.f25296d4 && (f6Var = this.f34681a) != null) {
-            f6Var.f35790g3.O(true);
+            f6Var.f35789g3.O(true);
         }
     }
 

@@ -178,7 +178,7 @@ public final class e9 implements a20, org.telegram.ui.ActionBar.q6, org.telegram
     public void d(int i7, View view) {
         Drawable background = view.getBackground();
         if (background instanceof oq) {
-            Drawable drawable = ((oq) background).f38330a;
+            Drawable drawable = ((oq) background).f38329a;
             if (drawable instanceof ColorDrawable) {
                 ((ColorDrawable) drawable).setColor(i7);
                 view.invalidate();
@@ -208,7 +208,7 @@ public final class e9 implements a20, org.telegram.ui.ActionBar.q6, org.telegram
     public int f(View view) {
         Drawable background = view.getBackground();
         if (background instanceof oq) {
-            Drawable drawable = ((oq) background).f38330a;
+            Drawable drawable = ((oq) background).f38329a;
             if (drawable instanceof ColorDrawable) {
                 return ((ColorDrawable) drawable).getColor();
             }

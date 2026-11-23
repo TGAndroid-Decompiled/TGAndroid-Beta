@@ -169,7 +169,7 @@ public final class s6 implements y10 {
                     b0Var.i(tL_businessBotRecipients);
                 }
                 h51 h51Var = s0Var.f18499c;
-                if (h51Var != null && (c51Var = h51Var.f35790g3) != null) {
+                if (h51Var != null && (c51Var = h51Var.f35789g3) != null) {
                     c51Var.O(true);
                 }
                 s0Var.d0(true);
@@ -201,7 +201,7 @@ public final class s6 implements y10 {
                 arrayList.clear();
                 arrayList.addAll((ArrayList) obj);
                 h51 h51Var2 = qVar.f18863a;
-                if (h51Var2 != null && (c51Var2 = h51Var2.f35790g3) != null) {
+                if (h51Var2 != null && (c51Var2 = h51Var2.f35789g3) != null) {
                     c51Var2.O(true);
                     return;
                 }
@@ -218,7 +218,7 @@ public final class s6 implements y10 {
                 gVar.f19964n = arrayList2;
                 h51 h51Var3 = gVar.f19963f;
                 if (h51Var3 != null) {
-                    h51Var3.f35790g3.O(z12);
+                    h51Var3.f35789g3.O(z12);
                     return;
                 }
                 return;
@@ -309,7 +309,7 @@ public final class s6 implements y10 {
                         }
                         arrayList5.addAll(i11, arrayList6);
                         t3Var.v4();
-                        t3Var.f35790g3.O(false);
+                        t3Var.f35789g3.O(false);
                         oi.g2 g2Var2 = t3Var.R3;
                         if (g2Var2 != null) {
                             g2Var2.h();
@@ -414,7 +414,7 @@ public final class s6 implements y10 {
                 x0Var.f53396f = (ArrayList) obj;
                 bi.f6 f6Var = x0Var.f34681a;
                 if (f6Var.H) {
-                    f6Var.f35790g3.O(true);
+                    f6Var.f35789g3.O(true);
                     return;
                 }
                 return;
@@ -422,7 +422,7 @@ public final class s6 implements y10 {
                 org.telegram.ui.web.n1 n1Var = (org.telegram.ui.web.n1) this.f15378b;
                 n1Var.f53258r = ((ArrayList) obj).size();
                 bi.f6 f6Var2 = n1Var.f34681a;
-                if (f6Var2 != null && (c51Var3 = f6Var2.f35790g3) != null && f6Var2.H) {
+                if (f6Var2 != null && (c51Var3 = f6Var2.f35789g3) != null && f6Var2.H) {
                     c51Var3.O(true);
                     return;
                 }

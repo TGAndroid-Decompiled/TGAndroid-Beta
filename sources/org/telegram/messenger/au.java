@@ -589,7 +589,7 @@ public abstract class au implements wg0 {
         }
         boolean z10 = false;
         for (org.telegram.ui.Cells.u9 u9Var : L) {
-            if ((u9Var instanceof ev) && (u5Var = (evVar = (ev) u9Var).F) != null && !u5Var.f40262a.isEmpty()) {
+            if ((u9Var instanceof ev) && (u5Var = (evVar = (ev) u9Var).F) != null && !u5Var.f40261a.isEmpty()) {
                 canvas.save();
                 canvas.translate(evVar.f23771c, evVar.d - this.N);
                 org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, evVar.f23770b, evVar.F, 0.0f, evVar.f23778x, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);

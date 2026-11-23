@@ -41,7 +41,7 @@ public final class l7 extends LinearLayout implements gs {
 
     public static org.telegram.ui.Components.o6 a(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, false, true, false);
-        o6Var.f38119n = true;
+        o6Var.f38118n = true;
         o6Var.setTypeface(org.telegram.messenger.g0.o());
         o6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
         o6Var.setGravity(5);

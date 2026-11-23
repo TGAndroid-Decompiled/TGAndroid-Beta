@@ -5,12 +5,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.messenger.pr {
-    public final int f41543a;
-    public final as f41544b;
+    public final int f41542a;
+    public final as f41543b;
 
     public vr(as asVar, int i7) {
-        this.f41543a = i7;
-        this.f41544b = asVar;
+        this.f41542a = i7;
+        this.f41543b = asVar;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
     public void f(float f10, float f11, int i7, View view) {
         boolean z10;
         boolean[] zArr;
-        as asVar = this.f41544b;
+        as asVar = this.f41543b;
         o41 G = asVar.T1.G(i7 - 1);
         if (G != null) {
             zr zrVar = asVar.f33610g2;
@@ -59,7 +59,7 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
                 }
             } else if (i11 != 36 && i11 != 35) {
                 if (i11 == 39) {
-                    if (G.f38100u) {
+                    if (G.f38099u) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(asVar.getContext());
                         String N0 = org.telegram.messenger.hd.N0(2131743474, null);
                         org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
@@ -108,8 +108,8 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
                     } else {
                         zArr = asVar.f33612i2;
                     }
-                    if (zrVar4.f42971g != 0) {
-                        zrVar4.f42969e = zArr;
+                    if (zrVar4.f42970g != 0) {
+                        zrVar4.f42968e = zArr;
                         zrVar4.h();
                         zrVar4.i();
                     }
@@ -127,7 +127,7 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
             } else if (i10 == 2) {
                 zrVar4.f();
             } else if (i11 == 35) {
-                if (G.f38100u) {
+                if (G.f38099u) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(asVar.getContext());
                     String N02 = org.telegram.messenger.hd.N0(2131743474, null);
                     org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder2.f28777a;
@@ -181,7 +181,7 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
                                     }
                                     o41 G2 = asVar.T1.G(i14);
                                     if (G2.f56634a == 39 && G2.d == 0) {
-                                        v4.f1 K = asVar.f39532o1.K(i14 + 1);
+                                        v4.f1 K = asVar.f39531o1.K(i14 + 1);
                                         if (K != null) {
                                             View view2 = K.f59165a;
                                             float f12 = -asVar.B2;
@@ -219,9 +219,9 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
 
     @Override
     public void run(long j3) {
-        switch (this.f41543a) {
+        switch (this.f41542a) {
             case 5:
-                as asVar = this.f41544b;
+                as asVar = this.f41543b;
                 asVar.getClass();
                 org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
                 if (Q != null) {
@@ -230,7 +230,7 @@ public final class vr implements org.telegram.messenger.b20, rj0, org.telegram.m
                 asVar.dismiss();
                 return;
             default:
-                as asVar2 = this.f41544b;
+                as asVar2 = this.f41543b;
                 asVar2.getClass();
                 org.telegram.ui.ActionBar.g2 Q2 = LaunchActivity.Q();
                 if (Q2 != null) {

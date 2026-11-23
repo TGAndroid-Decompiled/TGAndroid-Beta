@@ -10,29 +10,29 @@ public final class zt extends org.telegram.ui.Components.rw0 {
     public zt(Context context, long j3, k8.a aVar) {
         super(context);
         this.J = aVar;
-        this.f39357a = new RectF();
-        this.f39361f = 0.0f;
+        this.f39356a = new RectF();
+        this.f39360f = 0.0f;
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true);
-        this.f39363r = n6Var;
+        this.f39362r = n6Var;
         org.telegram.ui.Components.n6 n6Var2 = new org.telegram.ui.Components.n6(false, true, false);
-        this.f39364s = n6Var2;
+        this.f39363s = n6Var2;
         n6Var.setCallback(this);
         n6Var2.setCallback(this);
-        this.f39362n = Long.valueOf(j3);
+        this.f39361n = Long.valueOf(j3);
         org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
         b9Var.f33802p = 1.5f;
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.h = imageReceiver;
         imageReceiver.H0(this);
         if (j3 == Long.MAX_VALUE) {
-            this.f39365w = org.telegram.messenger.hd.N0(2131752635, null);
+            this.f39364w = org.telegram.messenger.hd.N0(2131752635, null);
             b9Var.g(14);
             imageReceiver.i0(null, b9Var, null);
             return;
         }
         String H = org.telegram.messenger.n5.H(imageReceiver, b9Var, org.telegram.messenger.np.u1(org.telegram.messenger.k10.f24968t0).g2(j3));
-        this.f39365w = H;
-        this.f39365w = org.telegram.messenger.j6.m(H, null, false, null, 0);
+        this.f39364w = H;
+        this.f39364w = org.telegram.messenger.j6.m(H, null, false, null, 0);
     }
 
     @Override

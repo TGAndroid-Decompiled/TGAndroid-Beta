@@ -59,11 +59,11 @@ public final class a extends View implements org.telegram.ui.ActionBar.b6 {
         Drawable mutate = context.getResources().getDrawable(2131232222).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
         oq oqVar = new oq(org.telegram.ui.ActionBar.m6.d0(org.telegram.messenger.g0.L(6.0f), -13750737), mutate);
-        oqVar.f38339x = false;
+        oqVar.f38338x = false;
         int L = org.telegram.messenger.g0.L(18.0f);
         int L2 = org.telegram.messenger.g0.L(18.0f);
-        oqVar.f38333e = L;
-        oqVar.f38334f = L2;
+        oqVar.f38332e = L;
+        oqVar.f38333f = L2;
         if (ffVar != null && (str2 = ffVar.f28060c) != null) {
             imageReceiver.s0(gc.g(str2), "30.0_30.0", null, null, oqVar, null, 0);
         } else {

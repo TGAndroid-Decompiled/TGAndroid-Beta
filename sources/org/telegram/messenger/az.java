@@ -1309,7 +1309,7 @@ public final class az extends c1 implements gs {
                     c cVar6 = cVar5;
                     int i33 = i10;
                     if (qfVar5 != null) {
-                        ((t0.h) qfVar5.f38896b).i();
+                        ((t0.h) qfVar5.f38895b).i();
                     }
                     if (i33 != 0) {
                         g0.g3(new x0(i33, cVar6, 13));
@@ -3360,7 +3360,7 @@ public final class az extends c1 implements gs {
                         }
                         di.x8 x8Var = t8Var2.f9844f;
                         if (x8Var != null) {
-                            x8Var.f42766b = 3000L;
+                            x8Var.f42765b = 3000L;
                             g0.r(s8Var);
                             g0.h3(s8Var, 3000L);
                         }

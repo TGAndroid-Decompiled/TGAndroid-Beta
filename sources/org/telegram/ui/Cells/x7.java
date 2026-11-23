@@ -148,14 +148,14 @@ public abstract class x7 extends FrameLayout {
         int intrinsicWidth = mutate2.getIntrinsicWidth();
         int intrinsicHeight = mutate2.getIntrinsicHeight();
         oqVar.h = intrinsicWidth;
-        oqVar.f38335n = intrinsicHeight;
+        oqVar.f38334n = intrinsicHeight;
         textView4.setCompoundDrawablesWithIntrinsicBounds(oqVar, (Drawable) null, (Drawable) null, (Drawable) null);
         textView4.setCompoundDrawablePadding(org.telegram.messenger.g0.L(2.0f));
         oq oqVar2 = new oq(null, mutate2, 0, org.telegram.messenger.g0.L(1.0f));
         int intrinsicWidth2 = mutate2.getIntrinsicWidth();
         int intrinsicHeight2 = mutate2.getIntrinsicHeight();
         oqVar2.h = intrinsicWidth2;
-        oqVar2.f38335n = intrinsicHeight2;
+        oqVar2.f38334n = intrinsicHeight2;
         textView3.setCompoundDrawablesWithIntrinsicBounds(oqVar2, (Drawable) null, (Drawable) null, (Drawable) null);
         textView3.setCompoundDrawablePadding(org.telegram.messenger.g0.L(2.0f));
         setWillNotDraw(false);

@@ -17,9 +17,9 @@ public class e3 extends org.telegram.ui.Components.sa implements org.telegram.ui
     public e3(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, null, true, false, h6Var);
         this.V1 = new Paint();
-        this.f39539v1 = 0.1f;
+        this.f39538v1 = 0.1f;
         this.U1 = viewGroup;
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i7 = this.f30211u0;
         ek0Var.setPadding(i7, 0, i7, 0);
         updateColors();

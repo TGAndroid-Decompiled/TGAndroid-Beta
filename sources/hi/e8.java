@@ -53,7 +53,7 @@ public final class e8 extends v4.u0 {
             case 1:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
                 zl zlVar = chatAttachAlertPhotoLayout.F;
-                ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+                ui uiVar = chatAttachAlertPhotoLayout.f37519b;
                 if (i7 == 0) {
                     int L = org.telegram.messenger.g0.L(13.0f);
                     org.telegram.ui.ActionBar.q0 q0Var = uiVar.Y2;
@@ -113,7 +113,7 @@ public final class e8 extends v4.u0 {
                 return;
             case 1:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+                ui uiVar = chatAttachAlertPhotoLayout.f37519b;
                 zl zlVar = chatAttachAlertPhotoLayout.F;
                 if (zlVar.getChildCount() > 0) {
                     uiVar.N1(chatAttachAlertPhotoLayout, i10);

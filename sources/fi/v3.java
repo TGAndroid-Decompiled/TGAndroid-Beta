@@ -77,7 +77,7 @@ public final class v3 extends FrameLayout {
             } else {
                 if (this.f12689n) {
                     this.f12689n = false;
-                    if (this.d.f39584f < 0.2f) {
+                    if (this.d.f39583f < 0.2f) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -97,7 +97,7 @@ public final class v3 extends FrameLayout {
                 this.d = sh0Var2;
                 sh0Var2.d(null, true, false);
             }
-            this.d.f39594q = 0;
+            this.d.f39593q = 0;
             ImageReceiver imageReceiver = t3Var.getImageReceiver();
             float t6 = com.google.android.gms.internal.vision.e2.t(1.0f, this.h, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(3.0f));
             this.d.f((int) (rectF.left - t6), (int) (rectF.top - t6), (int) (rectF.right + t6), (int) (rectF.bottom + t6));
@@ -108,7 +108,7 @@ public final class v3 extends FrameLayout {
                 i7 = Utilities.i(f11, 1.0f, 0.0f);
             }
             sh0Var3.e(true, i7);
-            if (this.f12690r && z11 && this.d.f39584f >= 0.9f) {
+            if (this.f12690r && z11 && this.d.f39583f >= 0.9f) {
                 this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f24047r) / 300.0f), 1.0f, 0.0f);
             }
             if (z10) {
@@ -116,7 +116,7 @@ public final class v3 extends FrameLayout {
                     Paint t10 = i7.t(imageReceiver, false);
                     t10.setAlpha((int) (this.h * 255.0f));
                     sh0 sh0Var4 = this.d;
-                    sh0Var4.f39597t = t10;
+                    sh0Var4.f39596t = t10;
                     sh0Var4.a(canvas);
                 }
                 if (this.f12688f == null) {
@@ -129,7 +129,7 @@ public final class v3 extends FrameLayout {
                 }
                 this.f12688f.setAlpha((int) (255.0f * f10 * this.h));
                 sh0 sh0Var5 = this.d;
-                sh0Var5.f39597t = this.f12688f;
+                sh0Var5.f39596t = this.f12688f;
                 sh0Var5.a(canvas);
             }
         }

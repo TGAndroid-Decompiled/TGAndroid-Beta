@@ -60,7 +60,7 @@ public final class e20 extends FrameLayout {
         path.addRoundRect(rectF, new float[]{org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
         canvas.save();
         canvas.clipPath(path);
-        if (d20Var.f35888j1) {
+        if (d20Var.f35887j1) {
             for (int i11 = 0; i11 < d20Var.getChildCount(); i11++) {
                 childAt = d20Var.getChildAt(i11);
                 if (childAt instanceof org.telegram.ui.Components.fg0) {
@@ -69,7 +69,7 @@ public final class e20 extends FrameLayout {
             }
         }
         childAt = null;
-        if (childAt != null && (yVar = f40Var.Y4) != null && yVar.f41491w && !f40Var.E4) {
+        if (childAt != null && (yVar = f40Var.Y4) != null && yVar.f41490w && !f40Var.E4) {
             canvas.save();
             Rect rect = this.f47116a;
             rect.setEmpty();

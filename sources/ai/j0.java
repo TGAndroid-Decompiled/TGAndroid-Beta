@@ -89,7 +89,7 @@ public final class j0 extends v4.o0 {
                 if (view instanceof k8) {
                     rect.left = org.telegram.messenger.g0.L(5.0f);
                     rect.right = org.telegram.messenger.g0.L(5.0f);
-                    if (RecyclerView.R(view) + 1 > tyVar.S.F && !k10.i(tyVar.f40092d1).q() && !tyVar.V0) {
+                    if (RecyclerView.R(view) + 1 > tyVar.S.F && !k10.i(tyVar.f40091d1).q() && !tyVar.V0) {
                         rect.top = org.telegram.messenger.g0.L(10.0f);
                         return;
                     }

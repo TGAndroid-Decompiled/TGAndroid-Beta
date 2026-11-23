@@ -43,7 +43,7 @@ public final class z implements DialogInterface.OnCancelListener {
                 ((ChatActivityEnterView) this.f10125c).F3.getConnectionsManager().cancelRequest(this.f10124b, true);
                 return;
             case 5:
-                ConnectionsManager.getInstance(((sx) ((px) this.f10125c).f38673c.f2801b).G.f40092d1).cancelRequest(this.f10124b, true);
+                ConnectionsManager.getInstance(((sx) ((px) this.f10125c).f38672c.f2801b).G.f40091d1).cancelRequest(this.f10124b, true);
                 return;
             case 6:
                 ConnectionsManager.getInstance(((f40) this.f10125c).f47526o1.f23202a).cancelRequest(this.f10124b, true);

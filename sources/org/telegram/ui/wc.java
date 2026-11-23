@@ -126,7 +126,7 @@ public final class wc extends org.telegram.ui.Components.du0 {
                 measureChildWithMargins(kVar3, i7, 0, i10, 0);
                 if (Q() > org.telegram.messenger.g0.L(20.0f)) {
                     org.telegram.ui.Components.yt ytVar3 = f50Var.f47595c;
-                    if (!ytVar3.f42538e) {
+                    if (!ytVar3.f42537e) {
                         this.f53070h0 = true;
                         ytVar3.j();
                         this.f53070h0 = false;

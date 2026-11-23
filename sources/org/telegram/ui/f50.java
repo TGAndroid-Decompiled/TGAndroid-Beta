@@ -183,7 +183,7 @@ public final class f50 extends org.telegram.ui.ActionBar.g2 implements org.teleg
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.O.f41961c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.O.f41960c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -271,7 +271,7 @@ public final class f50 extends org.telegram.ui.ActionBar.g2 implements org.teleg
     @Override
     public final boolean onBackPressed(boolean z10) {
         org.telegram.ui.Components.yt ytVar = this.f47595c;
-        if (ytVar != null && ytVar.f42538e) {
+        if (ytVar != null && ytVar.f42537e) {
             if (z10) {
                 ytVar.k(true);
                 return false;
@@ -289,8 +289,8 @@ public final class f50 extends org.telegram.ui.ActionBar.g2 implements org.teleg
         org.telegram.messenger.ls.f(this.currentAccount).c(this, org.telegram.messenger.ls.S);
         org.telegram.ui.Components.x30 x30Var = new org.telegram.ui.Components.x30(2, true, true);
         this.O = x30Var;
-        x30Var.f41959a = this;
-        x30Var.f41960b = this;
+        x30Var.f41958a = this;
+        x30Var.f41959b = this;
         long[] longArray = getArguments().getLongArray("result");
         if (longArray != null) {
             this.L = new ArrayList(longArray.length);
@@ -412,7 +412,7 @@ public final class f50 extends org.telegram.ui.ActionBar.g2 implements org.teleg
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
         if (z10) {
-            org.telegram.ui.Components.tt ttVar = this.f47595c.f42535a;
+            org.telegram.ui.Components.tt ttVar = this.f47595c.f42534a;
             ttVar.requestFocus();
             org.telegram.messenger.g0.I3(ttVar);
         }
@@ -422,7 +422,7 @@ public final class f50 extends org.telegram.ui.ActionBar.g2 implements org.teleg
     public final void restoreSelfArgs(Bundle bundle) {
         org.telegram.ui.Components.x30 x30Var = this.O;
         if (x30Var != null) {
-            x30Var.f41963f = bundle.getString("path");
+            x30Var.f41962f = bundle.getString("path");
         }
         String string = bundle.getString("nameTextView");
         if (string != null) {
@@ -439,7 +439,7 @@ public final class f50 extends org.telegram.ui.ActionBar.g2 implements org.teleg
     public final void saveSelfArgs(Bundle bundle) {
         String str;
         org.telegram.ui.Components.x30 x30Var = this.O;
-        if (x30Var != null && (str = x30Var.f41963f) != null) {
+        if (x30Var != null && (str = x30Var.f41962f) != null) {
             bundle.putString("path", str);
         }
         org.telegram.ui.Components.yt ytVar = this.f47595c;

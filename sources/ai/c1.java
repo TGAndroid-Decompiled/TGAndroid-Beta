@@ -78,7 +78,7 @@ public final class c1 implements Runnable {
         Object obj = this.f1142c;
         switch (i10) {
             case 0:
-                ExecutorService executorService = DictationLid.f43075a;
+                ExecutorService executorService = DictationLid.f43074a;
                 ((e1) obj).a(null, 0L, i12);
                 return;
             case 1:
@@ -186,7 +186,7 @@ public final class c1 implements Runnable {
                 saVar.L1 = (c7) saVar.I1.get(i12);
                 saVar.N(0, 1);
                 saVar.M(0, 1);
-                saVar.f15400e1.f15697b.f35790g3.O(false);
+                saVar.f15400e1.f15697b.f35789g3.O(false);
                 saVar.f15397d1.setText(saVar.L1.C0);
                 return;
             case 13:
@@ -212,7 +212,7 @@ public final class c1 implements Runnable {
                             Log.d("VoiceLive", "Edit: " + trim.length() + " chars → field");
                             rf rfVar = oVar.f17995b;
                             oVar.g("edit", true);
-                            ChatActivityEnterView chatActivityEnterView = rfVar.f39178a;
+                            ChatActivityEnterView chatActivityEnterView = rfVar.f39177a;
                             int i14 = ChatActivityEnterView.f32569s7;
                             chatActivityEnterView.A2(trim, null);
                             return;
@@ -224,7 +224,7 @@ public final class c1 implements Runnable {
                             Log.d("VoiceLive", "Send: " + trim2.length() + " chars as text");
                             rf rfVar2 = oVar.f17995b;
                             oVar.g("send", true);
-                            ChatActivityEnterView chatActivityEnterView2 = rfVar2.f39178a;
+                            ChatActivityEnterView chatActivityEnterView2 = rfVar2.f39177a;
                             int i15 = ChatActivityEnterView.f32569s7;
                             chatActivityEnterView2.A2(trim2, new dd(chatActivityEnterView2, 20));
                             return;
@@ -261,7 +261,7 @@ public final class c1 implements Runnable {
                             rf rfVar3 = oVar.f17995b;
                             ji.r rVar3 = oVar.h;
                             ArrayList v = ji.o.v(E, x10, fVar2);
-                            ChatActivityEnterView chatActivityEnterView3 = rfVar3.f39178a;
+                            ChatActivityEnterView chatActivityEnterView3 = rfVar3.f39177a;
                             if (chatActivityEnterView3.F3 != null) {
                                 RectF rectF = new RectF();
                                 rectF.set(rVar3.R);
@@ -285,7 +285,7 @@ public final class c1 implements Runnable {
                         rf rfVar4 = oVar.f17995b;
                         if (oVar.f17997c == 2) {
                             rfVar4.e();
-                            bn bnVar = rfVar4.f39178a.F3;
+                            bn bnVar = rfVar4.f39177a.F3;
                             if (bnVar != null) {
                                 bnVar.presentFragment(new a3());
                                 return;
@@ -302,7 +302,7 @@ public final class c1 implements Runnable {
                         if (!oVar.f18010n.trim().isEmpty() && (rVar = oVar.h) != null) {
                             rf rfVar5 = oVar.f17995b;
                             ji.g gVar2 = new ji.g(oVar, 1);
-                            ChatActivityEnterView chatActivityEnterView4 = rfVar5.f39178a;
+                            ChatActivityEnterView chatActivityEnterView4 = rfVar5.f39177a;
                             if (chatActivityEnterView4.F3 != null) {
                                 RectF rectF3 = new RectF();
                                 rVar.l(rectF3);

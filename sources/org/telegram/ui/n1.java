@@ -71,10 +71,10 @@ public final class n1 extends WebViewClient {
             case 1:
                 super.onPageFinished(webView, str);
                 org.telegram.ui.Components.iu iuVar = (org.telegram.ui.Components.iu) obj;
-                ImageView imageView = iuVar.f36322x1;
-                if (!iuVar.f36323y1) {
-                    iuVar.f36317s1.setVisibility(4);
-                    iuVar.f36316r1.setVisibility(4);
+                ImageView imageView = iuVar.f36321x1;
+                if (!iuVar.f36322y1) {
+                    iuVar.f36316s1.setVisibility(4);
+                    iuVar.f36315r1.setVisibility(4);
                     imageView.setEnabled(true);
                     imageView.setAlpha(1.0f);
                     return;
@@ -83,9 +83,9 @@ public final class n1 extends WebViewClient {
             case 2:
                 super.onPageFinished(webView, str);
                 dq0 dq0Var = (dq0) obj;
-                View view = dq0Var.f37174r;
-                if (!dq0Var.f37178y) {
-                    dq0Var.f37173n.setVisibility(4);
+                View view = dq0Var.f37173r;
+                if (!dq0Var.f37177y) {
+                    dq0Var.f37172n.setVisibility(4);
                     dq0Var.h.setVisibility(4);
                     view.setEnabled(true);
                     view.setAlpha(1.0f);
@@ -223,7 +223,7 @@ public final class n1 extends WebViewClient {
         switch (this.f50064a) {
             case 2:
                 String uri = webResourceRequest.getUrl().toString();
-                if (((dq0) this.f50065b).f37178y && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
+                if (((dq0) this.f50065b).f37177y && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
                     Utilities.f22814j.c(new org.telegram.ui.Components.g(this, uri, webResourceRequest, 21));
                     return null;
                 }
@@ -256,13 +256,13 @@ public final class n1 extends WebViewClient {
                 }
                 return false;
             case 1:
-                if (((org.telegram.ui.Components.iu) this.f50065b).f36323y1) {
+                if (((org.telegram.ui.Components.iu) this.f50065b).f36322y1) {
                     vf.c.t(webView.getContext(), str);
                     return true;
                 }
                 return super.shouldOverrideUrlLoading(webView, str);
             case 2:
-                if (((dq0) this.f50065b).f37178y) {
+                if (((dq0) this.f50065b).f37177y) {
                     vf.c.t(webView.getContext(), str);
                     return true;
                 }

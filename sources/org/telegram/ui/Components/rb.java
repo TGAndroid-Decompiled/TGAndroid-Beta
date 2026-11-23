@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.support.SparseLongArray;
 public final class rb extends ob implements org.telegram.messenger.gs {
     public final pb d;
-    public SparseLongArray f39141e;
-    public final org.telegram.ui.ActionBar.g2 f39142f;
+    public SparseLongArray f39140e;
+    public final org.telegram.ui.ActionBar.g2 f39141f;
     public final int h;
-    public gc f39143n;
+    public gc f39142n;
 
     public rb(int i7, org.telegram.ui.ActionBar.g2 g2Var) {
         super(g2Var.getContext(), g2Var.getResourceProvider());
-        this.f39142f = g2Var;
+        this.f39141f = g2Var;
         this.h = i7;
-        this.f38158b.setLayoutParams(c8.ma.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
-        this.f38157a.setLayoutParams(c8.ma.h(56.0f, 48.0f, 8388659));
+        this.f38157b.setLayoutParams(c8.ma.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
+        this.f38156a.setLayoutParams(c8.ma.h(56.0f, 48.0f, 8388659));
         pb pbVar = new pb(this, g2Var, getContext(), g2Var.getCurrentAccount(), g2Var.getResourceProvider());
         this.d = pbVar;
         pbVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(0.0f));
@@ -31,7 +31,7 @@ public final class rb extends ob implements org.telegram.messenger.gs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == org.telegram.messenger.ls.f25346m3) {
-            this.f39141e = (SparseLongArray) objArr[0];
+            this.f39140e = (SparseLongArray) objArr[0];
         }
     }
 
@@ -46,7 +46,7 @@ public final class rb extends ob implements org.telegram.messenger.gs {
 
     @Override
     public int getMeasuredBackgroundHeight() {
-        return org.telegram.messenger.g0.L(30.0f) + this.f38158b.getMeasuredHeight();
+        return org.telegram.messenger.g0.L(30.0f) + this.f38157b.getMeasuredHeight();
     }
 
     @Override
@@ -62,6 +62,6 @@ public final class rb extends ob implements org.telegram.messenger.gs {
     }
 
     public void setBulletin(gc gcVar) {
-        this.f39143n = gcVar;
+        this.f39142n = gcVar;
     }
 }

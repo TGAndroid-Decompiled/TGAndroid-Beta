@@ -16,8 +16,8 @@ public final class g30 implements org.telegram.messenger.w10, org.telegram.messe
         boolean z10 = false;
         if (i7 != 0) {
             h30 h30Var = this.f35414a;
-            String str = (String) h30Var.f35769c.get(i7 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, h30Var.getContext(), h30Var.f35768b);
+            String str = (String) h30Var.f35768c.get(i7 - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, h30Var.getContext(), h30Var.f35767b);
             String N0 = org.telegram.messenger.hd.N0(2131752042, null);
             org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
             t1Var.S = N0;
@@ -39,15 +39,15 @@ public final class g30 implements org.telegram.messenger.w10, org.telegram.messe
         int i7 = ((o41) obj).d;
         h30 h30Var = this.f35414a;
         if (i7 == 0) {
-            org.telegram.messenger.na a10 = org.telegram.messenger.na.a(h30Var.f35767a);
+            org.telegram.messenger.na a10 = org.telegram.messenger.na.a(h30Var.f35766a);
             a10.f25751f.clear();
             a10.d();
-            h30Var.f35771f.O(true);
+            h30Var.f35770f.O(true);
             return;
         }
         org.telegram.messenger.y10 y10Var = h30Var.h;
         if (y10Var != null) {
-            y10Var.a((String) h30Var.f35769c.get(i7 - 1));
+            y10Var.a((String) h30Var.f35768c.get(i7 - 1));
         }
     }
 }

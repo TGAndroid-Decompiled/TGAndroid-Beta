@@ -28,8 +28,8 @@ public final class as0 implements Runnable {
                 String str2 = this.f33632c;
                 ArrayList arrayList = null;
                 bs0Var2.f33912f = null;
-                if (!org.telegram.messenger.v3.T(bs0Var2.f33913n) && bs0Var2.f33915s.f36632g1 != null) {
-                    arrayList = new ArrayList(bs0Var2.f33915s.f36632g1.participants.participants);
+                if (!org.telegram.messenger.v3.T(bs0Var2.f33913n) && bs0Var2.f33915s.f36631g1 != null) {
+                    arrayList = new ArrayList(bs0Var2.f33915s.f36631g1.participants.participants);
                 }
                 bs0Var2.f33914r = 2;
                 if (arrayList != null) {

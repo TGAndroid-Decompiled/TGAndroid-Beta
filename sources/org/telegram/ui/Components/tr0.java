@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class tr0 extends v4.w {
     public cs0 d;
-    public final jt0 f40022e;
+    public final jt0 f40021e;
 
     public tr0(jt0 jt0Var) {
-        this.f40022e = jt0Var;
+        this.f40021e = jt0Var;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class tr0 extends v4.w {
             gt0Var = null;
         }
         if (k() && gt0Var != null && gt0Var.M(f1Var.b())) {
-            ds0 ds0Var = this.f40022e.f36651n0[0];
+            ds0 ds0Var = this.f40021e.f36650n0[0];
             if (ds0Var != null) {
                 nq0Var = ds0Var.h;
             }
@@ -43,9 +43,9 @@ public final class tr0 extends v4.w {
 
     @Override
     public final boolean k() {
-        jt0 jt0Var = this.f40022e;
+        jt0 jt0Var = this.f40021e;
         if (!jt0Var.F1) {
-            jq0 jq0Var = jt0Var.f36618c0;
+            jq0 jq0Var = jt0Var.f36617c0;
             if (jq0Var == null || !jq0Var.f50351f) {
                 return false;
             }

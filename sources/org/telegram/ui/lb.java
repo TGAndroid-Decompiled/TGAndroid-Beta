@@ -280,7 +280,7 @@ public final class lb extends org.telegram.ui.ActionBar.g2 implements org.telegr
         if (charSequence instanceof Spannable) {
             for (org.telegram.ui.Components.nq nqVar : (org.telegram.ui.Components.nq[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), org.telegram.ui.Components.nq.class)) {
                 if (nqVar != null) {
-                    Drawable drawable = nqVar.f37947c;
+                    Drawable drawable = nqVar.f37946c;
                     if (drawable instanceof xw0) {
                         return (xw0) drawable;
                     }
@@ -1479,7 +1479,7 @@ public final class lb extends org.telegram.ui.ActionBar.g2 implements org.telegr
                         if (lbVar.getParentActivity() != null) {
                             org.telegram.ui.Components.p0 p0Var = new org.telegram.ui.Components.p0(lbVar, lbVar.f49571v0, lbVar.f49575x0, lbVar.f49552f.megagroup);
                             p0Var.f1(lbVar.f49570u0);
-                            p0Var.f38430c2 = new ra(lbVar);
+                            p0Var.f38429c2 = new ra(lbVar);
                             lbVar.showDialog(p0Var);
                             return;
                         }
@@ -1531,7 +1531,7 @@ public final class lb extends org.telegram.ui.ActionBar.g2 implements org.telegr
                         if (lbVar.getParentActivity() != null) {
                             org.telegram.ui.Components.p0 p0Var = new org.telegram.ui.Components.p0(lbVar, lbVar.f49571v0, lbVar.f49575x0, lbVar.f49552f.megagroup);
                             p0Var.f1(lbVar.f49570u0);
-                            p0Var.f38430c2 = new ra(lbVar);
+                            p0Var.f38429c2 = new ra(lbVar);
                             lbVar.showDialog(p0Var);
                             return;
                         }
@@ -1590,7 +1590,7 @@ public final class lb extends org.telegram.ui.ActionBar.g2 implements org.telegr
                         if (lbVar.getParentActivity() != null) {
                             org.telegram.ui.Components.p0 p0Var = new org.telegram.ui.Components.p0(lbVar, lbVar.f49571v0, lbVar.f49575x0, lbVar.f49552f.megagroup);
                             p0Var.f1(lbVar.f49570u0);
-                            p0Var.f38430c2 = new ra(lbVar);
+                            p0Var.f38429c2 = new ra(lbVar);
                             lbVar.showDialog(p0Var);
                             return;
                         }

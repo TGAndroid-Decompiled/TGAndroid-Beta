@@ -38,25 +38,25 @@ public final class c2 implements View.OnTouchListener {
             case 1:
                 sx sxVar = (sx) this.f20057b;
                 if (motionEvent.getAction() == 0) {
-                    sxVar.G.f40097f = true;
+                    sxVar.G.f40096f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    sxVar.G.f40097f = false;
+                    sxVar.G.f40096f = false;
                 }
                 return false;
             case 2:
                 gy gyVar = (gy) this.f20057b;
                 if (motionEvent.getAction() == 0) {
-                    gyVar.H.f40097f = true;
+                    gyVar.H.f40096f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    gyVar.H.f40097f = false;
+                    gyVar.H.f40096f = false;
                 }
                 return false;
             default:
                 oy oyVar = (oy) this.f20057b;
                 if (motionEvent.getAction() == 0) {
-                    oyVar.R.f40097f = true;
+                    oyVar.R.f40096f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    oyVar.R.f40097f = false;
+                    oyVar.R.f40096f = false;
                 }
                 return false;
         }

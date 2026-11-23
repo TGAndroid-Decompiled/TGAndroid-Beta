@@ -583,7 +583,7 @@ public class gj {
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.replace(charSequence, new String[]{str}, new CharSequence[]{charSequence2}));
             t41 t41Var = new t41(p5.c.k("", str2));
-            t41Var.f39485c = tLObject2;
+            t41Var.f39484c = tLObject2;
             spannableStringBuilder.setSpan(t41Var, indexOf, charSequence2.length() + indexOf, 33);
             return spannableStringBuilder;
         }
@@ -1264,7 +1264,7 @@ public class gj {
                 break;
             }
             ih0 ih0Var = objArr[i14];
-            ih0Var.f36257a.f36503b = false;
+            ih0Var.f36256a.f36502b = false;
             int spanStart = spanned.getSpanStart(ih0Var);
             int spanEnd = spanned.getSpanEnd(objArr[i14]);
             treeSet.add(Integer.valueOf(spanStart));
@@ -1274,7 +1274,7 @@ public class gj {
             } else {
                 i12 = 0;
             }
-            if (objArr[i14].f36257a.f36505e) {
+            if (objArr[i14].f36256a.f36504e) {
                 i15 = 16;
             }
             hashMap.put(valueOf, Integer.valueOf(i12 | i15));
@@ -2583,8 +2583,8 @@ public class gj {
             charSequenceArr[0] = new SpannableStringBuilder("u");
             org.telegram.ui.Components.nq nqVar = new org.telegram.ui.Components.nq(2131231971, 0);
             nqVar.H = 0.9f;
-            nqVar.f37951r = 0.0f;
-            nqVar.f37952s = g0.L(1.0f);
+            nqVar.f37950r = 0.0f;
+            nqVar.f37951s = g0.L(1.0f);
             ((SpannableStringBuilder) f24164r3[0]).setSpan(nqVar, 0, 1, 33);
         }
         return f24164r3[0];
@@ -3456,7 +3456,7 @@ public class gj {
                     } else {
                         messageMedia2 = null;
                     }
-                    int i10 = i61.f36153k0;
+                    int i10 = i61.f36152k0;
                     if (!(messageMedia2 instanceof TLRPC.TL_messageMediaDocument)) {
                         X = new ArrayList();
                     } else {
@@ -3583,7 +3583,7 @@ public class gj {
             return document;
         }
         if (D2(true) && (h61Var = this.f24199g3) != null) {
-            return h61Var.f35805g;
+            return h61Var.f35804g;
         }
         return G0(this.f24213k);
     }
@@ -5324,15 +5324,15 @@ public class gj {
     public final long S1() {
         h61 h61Var = this.f24199g3;
         if (h61Var != null) {
-            return h61Var.f35805g.size;
+            return h61Var.f35804g.size;
         }
         h61 h61Var2 = this.f24203h3;
         if (h61Var2 != null) {
-            return h61Var2.f35805g.size;
+            return h61Var2.f35804g.size;
         }
         h61 h61Var3 = this.f24208i3;
         if (h61Var3 != null) {
-            return h61Var3.f35805g.size;
+            return h61Var3.f35804g.size;
         }
         return p1(n1(this.f24213k));
     }
@@ -6755,7 +6755,7 @@ public class gj {
                     b(spannableStringBuilder, this.f24213k.reply_to.quote_entities, P3(), false, false, false, 0);
                     SpannableString spannableString = new SpannableString("q ");
                     org.telegram.ui.Components.nq nqVar = new org.telegram.ui.Components.nq(2131231967, 0);
-                    nqVar.f37955y = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29621q6, false);
+                    nqVar.f37954y = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29621q6, false);
                     spannableString.setSpan(nqVar, 0, 1, 33);
                     M2 = new SpannableStringBuilder(spannableString).append((CharSequence) spannableStringBuilder).append('\n').append(M2);
                 }

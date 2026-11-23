@@ -156,7 +156,7 @@ public final class c30 extends AnimatorListenerAdapter {
                 }
                 o11Var.M = f11;
                 actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(f11);
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.nr.f37962g.getInterpolation(o11Var.M));
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.nr.f37961g.getInterpolation(o11Var.M));
                 int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
                 for (int i10 = 0; i10 < itemsCount; i10++) {
                     float s5 = org.telegram.messenger.g0.s(o11Var.M, i10, itemsCount, 4.0f);

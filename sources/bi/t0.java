@@ -53,7 +53,7 @@ public final class t0 extends sa implements u9 {
         long j10 = starGift.f28663id;
         this.T1 = j10;
         this.F1 = org.telegram.messenger.g0.L(6.0f);
-        this.f39539v1 = 0.2f;
+        this.f39538v1 = 0.2f;
         v0(i0.a.f(0.1f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29472i5, this.J0), org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, this.J0)));
         O();
         LinearLayout linearLayout = new LinearLayout(context);
@@ -73,7 +73,7 @@ public final class t0 extends sa implements u9 {
         d.leftMargin = i7 + i10;
         d.rightMargin += i10;
         this.f30176b.addView(eVar, d);
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i11 = this.f30211u0;
         ek0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(64.0f));
         this.f4108a2.O(false);
@@ -305,7 +305,7 @@ public final class t0 extends sa implements u9 {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new b(this, 4), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new b(this, 4), this.J0);
         this.f4108a2 = c51Var;
         c51Var.f34062r = false;
         return c51Var;

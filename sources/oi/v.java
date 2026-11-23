@@ -193,11 +193,11 @@ public final class v extends sa {
         kVar.C = false;
         kVar.o(nr.h);
         kVar.n(350L);
-        this.f39532o1.setItemAnimator(kVar);
-        ek0 ek0Var = this.f39532o1;
+        this.f39531o1.setItemAnimator(kVar);
+        ek0 ek0Var = this.f39531o1;
         int i13 = this.f30211u0;
         ek0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(72.0f));
-        this.f39532o1.setClipToPadding(false);
+        this.f39531o1.setClipToPadding(false);
         this.V1.O(false);
         e1();
     }

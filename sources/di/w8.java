@@ -52,7 +52,7 @@ public final class w8 {
         ecVar.f34725b = new u8(this, 1);
         ?? zbVar = new org.telegram.ui.Components.zb(t6, bnVar.Ba);
         this.f10000f = zbVar;
-        zbVar.f42766b = 5000L;
+        zbVar.f42765b = 5000L;
         int i7 = org.telegram.ui.ActionBar.m6.xj;
         zm zmVar = bnVar.Ba;
         ci.v vVar = new ci.v(4);

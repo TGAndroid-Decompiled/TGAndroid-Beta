@@ -21,7 +21,7 @@ public final class g extends n41 {
 
     @Override
     public final boolean c(o41 o41Var, o41 o41Var2) {
-        if (o41Var.I == o41Var2.I && TextUtils.equals(o41Var.f38093n, o41Var2.f38093n)) {
+        if (o41Var.I == o41Var2.I && TextUtils.equals(o41Var.f38092n, o41Var2.f38092n)) {
             return true;
         }
         return false;
@@ -34,7 +34,7 @@ public final class g extends n41 {
 
     @Override
     public final boolean e(o41 o41Var, o41 o41Var2) {
-        if (o41Var.I == o41Var2.I && TextUtils.isEmpty(o41Var.f38093n) == TextUtils.isEmpty(o41Var2.f38093n)) {
+        if (o41Var.I == o41Var2.I && TextUtils.isEmpty(o41Var.f38092n) == TextUtils.isEmpty(o41Var2.f38092n)) {
             return true;
         }
         return false;

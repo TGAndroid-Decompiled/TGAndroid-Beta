@@ -439,8 +439,8 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
                         b11 = 2;
                     }
                 }
-                p1Var.setX((d20Var.f23480c * this.B0.f42546a) - (((1.0f - d20Var.v) * d20Var.f23492q) / 2.0f));
-                p1Var.setY((d20Var.d * this.B0.f42547b) - (((1.0f - d20Var.v) * d20Var.f23493r) / 2.0f));
+                p1Var.setX((d20Var.f23480c * this.B0.f42545a) - (((1.0f - d20Var.v) * d20Var.f23492q) / 2.0f));
+                p1Var.setY((d20Var.d * this.B0.f42546b) - (((1.0f - d20Var.v) * d20Var.f23493r) / 2.0f));
                 p1Var.setPosition(new PointF((d20Var.f23492q / 2.0f) + p1Var.getX(), (d20Var.f23493r / 2.0f) + p1Var.getY()));
                 p1Var.setScale(d20Var.v);
                 p1Var.setRotation((float) (((-d20Var.f23481e) / 3.141592653589793d) * 180.0d));
@@ -823,7 +823,7 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
             } else if (jVar2 instanceof n2) {
                 n2 n2Var = new n2(h0Var.getContext(), (n2) h0Var.C0, A0);
                 n2Var.setDelegate(h0Var);
-                n2Var.setMaxWidth((int) (h0Var.getPaintingSize().f42546a - 20.0f));
+                n2Var.setMaxWidth((int) (h0Var.getPaintingSize().f42545a - 20.0f));
                 d0Var.addView(n2Var, ma.c(-2.0f, -2));
                 g2Var = n2Var;
             } else {
@@ -890,12 +890,12 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
         }
         yt0 yt0Var2 = new yt0(width, height);
         float f10 = i7;
-        yt0Var2.f42546a = f10;
+        yt0Var2.f42545a = f10;
         float floor = (float) Math.floor((f10 * height) / width);
-        yt0Var2.f42547b = floor;
+        yt0Var2.f42546b = floor;
         if (floor > f10) {
-            yt0Var2.f42547b = f10;
-            yt0Var2.f42546a = (float) Math.floor((f10 * width) / height);
+            yt0Var2.f42546b = f10;
+            yt0Var2.f42545a = (float) Math.floor((f10 * width) / height);
         }
         this.B0 = yt0Var2;
         return yt0Var2;
@@ -1088,7 +1088,7 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
             s0(h1Var, null);
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
             this.T0 = duration;
-            duration.setInterpolator(nr.f37961f);
+            duration.setInterpolator(nr.f37960f);
             this.T0.addUpdateListener(new z2(this, viewGroup, viewGroup2, 4));
             this.T0.addListener(new bi.z0(this, viewGroup, viewGroup2, i7, 4));
             this.T0.start();
@@ -1278,14 +1278,14 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
     public final PointF e0() {
         xe xeVar;
         yt0 paintingSize = getPaintingSize();
-        float f10 = paintingSize.f42546a / 2.0f;
-        float f11 = paintingSize.f42547b / 2.0f;
+        float f10 = paintingSize.f42545a / 2.0f;
+        float f11 = paintingSize.f42546b / 2.0f;
         if (this.f57929r0 != null) {
             double radians = (float) Math.toRadians(-(xeVar.f27881k + xeVar.d));
             float cos = (float) ((Math.cos(radians) * xeVar.f27874a) - (Math.sin(radians) * xeVar.f27875b));
             float c10 = (float) i5.c.c(radians, xeVar.f27875b, Math.sin(radians) * xeVar.f27874a);
-            f10 -= cos * paintingSize.f42546a;
-            f11 -= c10 * paintingSize.f42547b;
+            f10 -= cos * paintingSize.f42545a;
+            f11 -= c10 * paintingSize.f42546b;
         }
         return new PointF(f10, f11);
     }
@@ -1320,9 +1320,9 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
         yt0 yt0Var2 = yt0Var;
         Pair N0 = org.telegram.messenger.g0.N0(str);
         if ((((Integer) N0.first).intValue() / 90) % 2 == 1) {
-            float f11 = yt0Var2.f42546a;
-            yt0Var2.f42546a = yt0Var2.f42547b;
-            yt0Var2.f42547b = f11;
+            float f11 = yt0Var2.f42545a;
+            yt0Var2.f42545a = yt0Var2.f42546b;
+            yt0Var2.f42546b = f11;
         }
         Context context = getContext();
         PointF e02 = e0();
@@ -1461,8 +1461,8 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
         ((vp0) this).Y1.f43271h0.isFocusable();
         yt0 paintingSize = getPaintingSize();
         PointF A0 = A0(null);
-        n2 n2Var = new n2(getContext(), A0, (int) (paintingSize.f42546a / 9.0f), "", this.f57936u1, this.E0);
-        float f10 = paintingSize.f42546a / 9.0f;
+        n2 n2Var = new n2(getContext(), A0, (int) (paintingSize.f42545a / 9.0f), "", this.f57936u1, this.E0);
+        float f10 = paintingSize.f42545a / 9.0f;
         n nVar = new n(this, 2);
         n2Var.f58093x0 = (int) (0.5f * f10);
         n2Var.f58094y0 = (int) (f10 * 2.0f);
@@ -1476,7 +1476,7 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
             n2Var.setStickyY(2);
         }
         n2Var.setDelegate(this);
-        n2Var.setMaxWidth((int) (paintingSize.f42546a - 20.0f));
+        n2Var.setMaxWidth((int) (paintingSize.f42545a - 20.0f));
         int i7 = this.f57946z1;
         n2Var.setTypeface(sg.k0.e(i7).f57313j);
         n2Var.setType(sg.k0.e(i7).h);
@@ -1712,15 +1712,15 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
         int i12 = (int) floor;
         this.G0.measure(View.MeasureSpec.makeMeasureSpec(i11, 1073741824), View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
         this.H0.measure(View.MeasureSpec.makeMeasureSpec(i11, 1073741824), View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
-        float f13 = f11 / this.B0.f42546a;
+        float f13 = f11 / this.B0.f42545a;
         this.A0 = f13;
         d0 d0Var = this.J0;
         d0Var.setScaleX(f13);
         d0Var.setScaleY(this.A0);
-        d0Var.measure(View.MeasureSpec.makeMeasureSpec((int) this.B0.f42546a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) this.B0.f42547b, 1073741824));
+        d0Var.measure(View.MeasureSpec.makeMeasureSpec((int) this.B0.f42545a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) this.B0.f42546b, 1073741824));
         oz0 oz0Var = this.K0;
         if (oz0Var != null) {
-            oz0Var.measure(View.MeasureSpec.makeMeasureSpec((int) this.B0.f42546a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) this.B0.f42547b, 1073741824));
+            oz0Var.measure(View.MeasureSpec.makeMeasureSpec((int) this.B0.f42545a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) this.B0.f42546b, 1073741824));
             this.K0.setScaleX(this.A0);
             this.K0.setScaleY(this.A0);
         }
@@ -1883,7 +1883,7 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
                 n2Var3.A0 = false;
                 n2Var3.getSwatch().f57265c = h1Var.f57265c;
                 s0(n2Var3.getSwatch(), null);
-                n1Var.setValueOverride(new u4(n2Var3, (int) (h0Var.B0.f42546a / 9.0f), 1));
+                n1Var.setValueOverride(new u4(n2Var3, (int) (h0Var.B0.f42545a / 9.0f), 1));
                 n1Var.setShowPreview(false);
                 return true;
             }
@@ -2213,7 +2213,7 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
                 z10 = false;
             }
             ty tyVar2 = this.P1;
-            if (tyVar2 != null && tyVar2.f40092d1 != k10.f24968t0) {
+            if (tyVar2 != null && tyVar2.f40091d1 != k10.f24968t0) {
                 removeView(tyVar2);
                 this.P1 = null;
             }
@@ -2282,7 +2282,7 @@ public abstract class h0 extends eu0 implements h1, h, d1, cu0, gs {
         }
         ah emojiButton2 = f1Var.getEmojiButton();
         if (emojiButton2 != null) {
-            emojiButton2.j(yg.f42430e, true);
+            emojiButton2.j(yg.f42429e, true);
         }
         ty tyVar5 = this.P1;
         if (tyVar5 != null) {

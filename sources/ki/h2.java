@@ -37,15 +37,15 @@ public final class h2 extends AnimatorListenerAdapter {
                 u10Var.N = this.f18733c;
                 u10Var.G.setColorFilter(new PorterDuffColorFilter(u10Var.M, PorterDuff.Mode.MULTIPLY));
                 u10Var.F.setColor(u10Var.M);
-                u10Var.f40199r.setColor(u10Var.N);
+                u10Var.f40198r.setColor(u10Var.N);
                 u10Var.K.d(i0.a.o(u10Var.N, 38));
                 return;
             case 2:
                 jt0 jt0Var = (jt0) this.d;
-                ds0[] ds0VarArr = jt0Var.f36651n0;
+                ds0[] ds0VarArr = jt0Var.f36650n0;
                 jt0Var.M1.e();
-                jt0Var.f36664r1 = false;
-                int[] iArr = jt0Var.f36657p1;
+                jt0Var.f36663r1 = false;
+                int[] iArr = jt0Var.f36656p1;
                 int i10 = this.f18733c;
                 int i11 = this.f18732b;
                 iArr[i11] = i10;
@@ -54,7 +54,7 @@ public final class h2 extends AnimatorListenerAdapter {
                     if (ds0Var != null && ds0Var.h != null && (((i7 = ds0Var.F) == 0 || jt0.z0(i7)) && (adapter = ds0VarArr[i12].h.getAdapter()) != null)) {
                         int b10 = adapter.b();
                         if (i12 == 0) {
-                            jt0Var.f36678w1[0].g(false);
+                            jt0Var.f36677w1[0].g(false);
                         }
                         ds0VarArr[i12].f34565x.y1(iArr[i11]);
                         ds0VarArr[i12].h.a0();

@@ -61,7 +61,7 @@ public final class j extends v90 {
     public void i() {
         switch (this.W) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ui) this.f14816a0).f40379e2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ui) this.f14816a0).f40378e2;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.Y();
                     return;
@@ -76,7 +76,7 @@ public final class j extends v90 {
     public void n(boolean z10) {
         switch (this.W) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ui) this.f14816a0).f40379e2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ui) this.f14816a0).f40378e2;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.Y();
                     return;

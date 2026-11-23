@@ -168,16 +168,16 @@ public class ThemeEditorView {
             textView.setTypeface(org.telegram.messenger.g0.o());
             frameLayout2.addView(textView, c8.ma.e(-2, -1, 51));
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f39739b;
+                public final ThemeEditorView.EditorAlert f39738b;
 
                 {
-                    this.f39739b = this;
+                    this.f39738b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i13 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f39739b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f39738b;
                     switch (i13) {
                         case 0:
                             int i14 = ThemeEditorView.EditorAlert.H1;
@@ -229,16 +229,16 @@ public class ThemeEditorView {
             textView2.setTypeface(org.telegram.messenger.g0.o());
             frameLayout2.addView(textView2, c8.ma.e(-2, -1, 53));
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f39739b;
+                public final ThemeEditorView.EditorAlert f39738b;
 
                 {
-                    this.f39739b = this;
+                    this.f39738b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i13 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f39739b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f39738b;
                     switch (i13) {
                         case 0:
                             int i14 = ThemeEditorView.EditorAlert.H1;
@@ -295,16 +295,16 @@ public class ThemeEditorView {
             textView3.setTypeface(org.telegram.messenger.g0.o());
             frameLayout3.addView(textView3, c8.ma.e(-2, -1, 51));
             textView3.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f39739b;
+                public final ThemeEditorView.EditorAlert f39738b;
 
                 {
-                    this.f39739b = this;
+                    this.f39738b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i13 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f39739b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f39738b;
                     switch (i13) {
                         case 0:
                             int i14 = ThemeEditorView.EditorAlert.H1;
@@ -359,16 +359,16 @@ public class ThemeEditorView {
             textView4.setTypeface(org.telegram.messenger.g0.o());
             linearLayout.addView(textView4, c8.ma.e(-2, -1, 51));
             textView4.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f39739b;
+                public final ThemeEditorView.EditorAlert f39738b;
 
                 {
-                    this.f39739b = this;
+                    this.f39738b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i13 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f39739b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f39738b;
                     switch (i13) {
                         case 0:
                             int i14 = ThemeEditorView.EditorAlert.H1;
@@ -420,16 +420,16 @@ public class ThemeEditorView {
             textView5.setTypeface(org.telegram.messenger.g0.o());
             linearLayout.addView(textView5, c8.ma.e(-2, -1, 51));
             textView5.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f39739b;
+                public final ThemeEditorView.EditorAlert f39738b;
 
                 {
-                    this.f39739b = this;
+                    this.f39738b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i13 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f39739b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f39738b;
                     switch (i13) {
                         case 0:
                             int i14 = ThemeEditorView.EditorAlert.H1;

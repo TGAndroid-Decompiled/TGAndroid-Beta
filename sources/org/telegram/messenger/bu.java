@@ -234,10 +234,10 @@ public final class bu {
                     q80 q80Var2 = new q80();
                     this.f23181x = q80Var2;
                     q80Var2.D = true;
-                    q80Var2.f38833x.setStrokeWidth(g0.N(1.25f));
+                    q80Var2.f38832x.setStrokeWidth(g0.N(1.25f));
                 } else {
-                    q80Var.f38814b = -1L;
-                    q80Var.f38815c = -1L;
+                    q80Var.f38813b = -1L;
+                    q80Var.f38814c = -1L;
                 }
             } else {
                 q80 q80Var3 = this.f23181x;
@@ -250,7 +250,7 @@ public final class bu {
         q80 q80Var4 = this.f23181x;
         if (q80Var4 != null) {
             if (z10 || q80Var4.d()) {
-                float strokeWidth = this.f23181x.f38833x.getStrokeWidth();
+                float strokeWidth = this.f23181x.f38832x.getStrokeWidth();
                 RectF rectF = this.f23183z;
                 rectF.set(0.0f, 0.0f, this.f23164e, c());
                 float f10 = strokeWidth / 2.0f;

@@ -53,7 +53,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.f40;
 import org.telegram.ui.ru0;
 public abstract class b2 {
-    public static long f40917a;
+    public static long f40916a;
 
     public static boolean a(TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
         TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = tL_messageActionPhoneCall.reason;
@@ -81,7 +81,7 @@ public abstract class b2 {
             if (user == null && chat == null) {
                 return;
             }
-            if (SystemClock.elapsedRealtime() - f40917a < (chat != null ? 200 : 2000)) {
+            if (SystemClock.elapsedRealtime() - f40916a < (chat != null ? 200 : 2000)) {
                 return;
             }
             if (z14 && chat != null && !z13 && (P02 = np.u1(cVar.f23202a).P0(chat.f28434id)) != null && (peer = P02.groupcall_default_join_as) != null) {
@@ -149,7 +149,7 @@ public abstract class b2 {
                     f40.f1((LaunchActivity) activity, cVar, chat, inputPeer, z10, str);
                     return;
                 }
-                f40917a = SystemClock.elapsedRealtime();
+                f40916a = SystemClock.elapsedRealtime();
                 Intent intent = new Intent(activity, VoIPService.class);
                 if (user != null) {
                     intent.putExtra("user_id", user.f28583id);
@@ -353,7 +353,7 @@ public abstract class b2 {
             VoIPService.getSharedInstance().hangUp(new oi.q2(activity, i7, inputGroupCall, z10, groupCall, hashSet));
             return;
         }
-        f40917a = SystemClock.elapsedRealtime();
+        f40916a = SystemClock.elapsedRealtime();
         Intent intent = new Intent(activity, VoIPService.class);
         intent.putExtra("chat_id", 0L);
         int i10 = 0;
@@ -606,11 +606,11 @@ public abstract class b2 {
         org.telegram.messenger.f3.k(textView, 17, null, 2131743011);
         g10.addView(textView);
         final ?? view = new View(context);
-        view.f40298c = new Paint();
+        view.f40297c = new Paint();
         view.d = 5;
-        view.f40299e = 0;
-        view.f40296a = BitmapFactory.decodeResource(view.getResources(), 2131231458).extractAlpha();
-        view.f40297b = BitmapFactory.decodeResource(view.getResources(), 2131231457).extractAlpha();
+        view.f40298e = 0;
+        view.f40295a = BitmapFactory.decodeResource(view.getResources(), 2131231458).extractAlpha();
+        view.f40296b = BitmapFactory.decodeResource(view.getResources(), 2131231457).extractAlpha();
         g10.addView((View) view, ma.t(-2, -2, 1, 0, 16, 0, 0));
         final LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);

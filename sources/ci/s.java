@@ -101,7 +101,7 @@ public abstract class s extends FrameLayout implements gs {
     }
 
     public static boolean d(Drawable drawable) {
-        if ((drawable instanceof p5) && gj.C4(((p5) drawable).f38495e)) {
+        if ((drawable instanceof p5) && gj.C4(((p5) drawable).f38494e)) {
             return true;
         }
         return false;

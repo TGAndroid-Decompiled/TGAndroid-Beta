@@ -44,7 +44,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.g2 {
 
     public static void a0(PasskeysActivity passkeysActivity, TL_account.Passkey passkey, String str, int i7) {
         passkeysActivity.f43195b.remove(passkey);
-        passkeysActivity.f43194a.f35790g3.O(true);
+        passkeysActivity.f43194a.f35789g3.O(true);
         TL_account.deletePasskey deletepasskey = new TL_account.deletePasskey();
         deletepasskey.f28642id = str;
         ConnectionsManager.getInstance(passkeysActivity.currentAccount).sendRequestTyped(deletepasskey, new d3.b(1), new xf(passkeysActivity, i7, passkey, 2));
@@ -116,7 +116,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.g2 {
         h51Var.r1();
         this.f43194a.setSectionsDrawBackground(true);
         org.telegram.ui.Components.h51 h51Var2 = this.f43194a;
-        h51Var2.f35790g3.f34062r = false;
+        h51Var2.f35789g3.f34062r = false;
         frameLayout.addView(h51Var2, c8.ma.c(-1.0f, -1));
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -126,7 +126,7 @@ public class PasskeysActivity extends org.telegram.ui.ActionBar.g2 {
         org.telegram.ui.Components.c51 c51Var;
         this.f43195b.add(passkey);
         org.telegram.ui.Components.h51 h51Var = this.f43194a;
-        if (h51Var != null && (c51Var = h51Var.f35790g3) != null) {
+        if (h51Var != null && (c51Var = h51Var.f35789g3) != null) {
             c51Var.O(true);
         }
         org.telegram.ui.Components.gc I = org.telegram.ui.Components.lc.b0(this).I(2131624113, org.telegram.messenger.hd.N0(2131747454, null), org.telegram.messenger.hd.a0(null, null, 2131747455, passkey.name));

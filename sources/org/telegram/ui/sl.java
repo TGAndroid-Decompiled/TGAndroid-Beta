@@ -143,7 +143,7 @@ public final class sl extends oq0 {
                     wq0Var.f53500e = imageReceiver.p();
                     wq0Var.h = imageReceiver.E();
                     wq0Var.f53504j = (int) ((bnVar.P9 - bnVar.R9) - org.telegram.messenger.g0.L(4.0f));
-                    wq0Var.f53503i = (int) (bnVar.t9(org.telegram.ui.Components.w11.f41627c) + bnVar.f46236w.d() + org.telegram.messenger.g0.L(9.0f) + bnVar.Ya + bnVar.f45963ad);
+                    wq0Var.f53503i = (int) (bnVar.t9(org.telegram.ui.Components.w11.f41626c) + bnVar.f46236w.d() + org.telegram.messenger.g0.L(9.0f) + bnVar.Ya + bnVar.f45963ad);
                     return wq0Var;
                 }
             }

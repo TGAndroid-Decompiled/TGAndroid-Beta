@@ -747,7 +747,7 @@ public class LimitPreviewView extends LinearLayout implements b6 {
                     qVar2.f58878f = ofFloat;
                     ofFloat.addUpdateListener(new o(rVar, qVar2, 1));
                     qVar2.f58878f.addListener(new p(rVar, qVar2, 0));
-                    qVar2.f58878f.setInterpolator(nr.f37962g);
+                    qVar2.f58878f.setInterpolator(nr.f37961g);
                     qVar2.f58878f.setDuration(750L);
                     qVar2.f58878f.setStartDelay(((arrayList.size() - 1) - i23) * 60);
                     qVar2.f58878f.start();
@@ -833,7 +833,7 @@ public class LimitPreviewView extends LinearLayout implements b6 {
             ofFloat3.start();
             this.f33074j0.setDuration(600L);
         } else if (z17) {
-            this.f33074j0.setInterpolator(nr.f37963i);
+            this.f33074j0.setInterpolator(nr.f37962i);
             this.f33074j0.setDuration(320L);
         } else if (z16) {
             this.f33074j0.setInterpolator(nr.h);

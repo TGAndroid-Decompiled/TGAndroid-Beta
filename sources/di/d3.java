@@ -127,14 +127,14 @@ public final class d3 implements View.OnClickListener {
             case 4:
                 l60 l60Var = (l60) obj2;
                 Context context = (Context) obj;
-                a0.h hVar = l60Var.f37120a2;
-                if ((l60Var.f37126h2 != null || !hVar.i()) && (W = org.telegram.messenger.g0.W(context)) != null) {
-                    if (l60Var.f37126h2 != null) {
+                a0.h hVar = l60Var.f37119a2;
+                if ((l60Var.f37125h2 != null || !hVar.i()) && (W = org.telegram.messenger.g0.W(context)) != null) {
+                    if (l60Var.f37125h2 != null) {
                         ArrayList arrayList = new ArrayList();
                         for (int i10 = 0; i10 < hVar.m(); i10++) {
                             arrayList.add(Long.valueOf(hVar.j(i10)));
                         }
-                        kx kxVar = (kx) l60Var.f37126h2.f54630b;
+                        kx kxVar = (kx) l60Var.f37125h2.f54630b;
                         ArrayList arrayList2 = kxVar.f49400e;
                         arrayList2.clear();
                         arrayList2.addAll(arrayList);

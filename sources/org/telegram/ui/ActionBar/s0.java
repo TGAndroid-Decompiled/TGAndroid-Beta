@@ -62,7 +62,7 @@ public final class s0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 s9 s9Var = (s9) obj;
-                s9Var.f39529g = f10;
+                s9Var.f39528g = f10;
                 s9Var.invalidateSelf();
                 return;
             case 5:
@@ -83,7 +83,7 @@ public final class s0 extends AnimatorListenerAdapter {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     ofFloat.addUpdateListener(new rf(this, f10, 3));
                     ofFloat.setDuration(200L);
-                    ofFloat.setInterpolator(nr.f37962g);
+                    ofFloat.setInterpolator(nr.f37961g);
                     ofFloat.start();
                     return;
                 }
@@ -91,12 +91,12 @@ public final class s0 extends AnimatorListenerAdapter {
             case 6:
                 kf0 kf0Var = (kf0) obj;
                 kf0Var.I.e();
-                kf0Var.f36899b = f10;
+                kf0Var.f36898b = f10;
                 if (f10 <= 0.0f) {
                     kf0Var.H = -1;
                 }
                 kf0Var.c(true);
-                kf0Var.f36902f = false;
+                kf0Var.f36901f = false;
                 if (kf0Var.Q != null && Math.abs(f10 - 1.0f) < 0.01f) {
                     kf0Var.Q.run();
                     return;
@@ -118,7 +118,7 @@ public final class s0 extends AnimatorListenerAdapter {
                     ValueAnimator ofFloat2 = ValueAnimator.ofFloat(w3Var.R, 1.0f);
                     w3Var.Q = ofFloat2;
                     ofFloat2.setDuration(320L);
-                    w3Var.Q.setInterpolator(nr.f37962g);
+                    w3Var.Q.setInterpolator(nr.f37961g);
                     w3Var.Q.addUpdateListener(new org.telegram.ui.Wallet.p3(w3Var, 0));
                     w3Var.Q.start();
                     return;
@@ -142,8 +142,8 @@ public final class s0 extends AnimatorListenerAdapter {
         switch (this.f29974a) {
             case 6:
                 kf0 kf0Var = (kf0) this.f29976c;
-                kf0Var.f36902f = true;
-                kf0Var.f36900c = this.f29975b;
+                kf0Var.f36901f = true;
+                kf0Var.f36899c = this.f29975b;
                 return;
             default:
                 super.onAnimationStart(animator);

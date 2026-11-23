@@ -47,7 +47,7 @@ public final class kc1 implements if0 {
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         paint.setShader(new LinearGradient(0.0f, org.telegram.messenger.g0.L(12.0f), 0.0f, 0.0f, 0, -16777216, Shader.TileMode.CLAMP));
         this.h = r1Var.getMessageObject().f24223m1;
-        ((ArrayList) tiVar.f39920c).add(this);
+        ((ArrayList) tiVar.f39919c).add(this);
         tiVar.a();
         ((ViewGroup) tiVar.d).invalidate();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -105,7 +105,7 @@ public final class kc1 implements if0 {
         }
         this.f49289k = x11;
         this.f49290l = y10;
-        float interpolation = org.telegram.ui.Components.nr.f37961f.getInterpolation(f13);
+        float interpolation = org.telegram.ui.Components.nr.f37960f.getInterpolation(f13);
         float interpolation2 = org.telegram.ui.Components.nr.h.getInterpolation(f13);
         final float f16 = (x11 * interpolation2) + ((1.0f - interpolation2) * x10);
         float f17 = 1.0f - interpolation;
@@ -134,7 +134,7 @@ public final class kc1 implements if0 {
             org.telegram.ui.Components.w9 w9Var = recordCircle.h;
             org.telegram.ui.Components.w9 w9Var2 = recordCircle.f32781n;
             f11 = x10;
-            float interpolation3 = org.telegram.ui.Components.nr.f37962g.getInterpolation(recordCircle.I);
+            float interpolation3 = org.telegram.ui.Components.nr.f37961g.getInterpolation(recordCircle.I);
             ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
             float f23 = chatActivityEnterView.Z4;
             if (f23 > 0.7f) {
@@ -143,11 +143,11 @@ public final class kc1 implements if0 {
                 f12 = f23 / 0.7f;
             }
             canvas.save();
-            float f24 = ((w9Var2.f41730t * 1.4f) + 0.878f) * chatActivityEnterView.X4 * f12 * interpolation3 * f22;
+            float f24 = ((w9Var2.f41729t * 1.4f) + 0.878f) * chatActivityEnterView.X4 * f12 * interpolation3 * f22;
             canvas.scale(f24, f24, f16, f18);
             w9Var2.a(f16, f18, canvas, w9Var2.d);
             canvas.restore();
-            float f25 = ((w9Var.f41730t * 1.4f) + 0.926f) * chatActivityEnterView.X4 * f12 * interpolation3 * f22;
+            float f25 = ((w9Var.f41729t * 1.4f) + 0.926f) * chatActivityEnterView.X4 * f12 * interpolation3 * f22;
             canvas.save();
             canvas.scale(f25, f25, f16, f18);
             w9Var.a(f16, f18, canvas, w9Var.d);

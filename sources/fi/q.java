@@ -157,8 +157,8 @@ public abstract class q extends FrameLayout implements gs, te.b {
         iVar.setClipChildren(false);
         tcVar.h = new f2.a(tvVar, 2);
         ai.n nVar = new ai.n(tvVar, 13);
-        tcVar.f39859l = true;
-        tcVar.f39857j = nVar;
+        tcVar.f39858l = true;
+        tcVar.f39856j = nVar;
         iVar.j(new bi.u1(tvVar, 12));
         v4.k kVar = new v4.k();
         this.S = kVar;
@@ -199,7 +199,7 @@ public abstract class q extends FrameLayout implements gs, te.b {
         addView(imageView, ma.c(22.0f, 90));
         org.telegram.ui.Components.n5 n5Var = new org.telegram.ui.Components.n5(org.telegram.messenger.g0.L(26.0f), null);
         this.f12455b0 = n5Var;
-        n5Var.f37774a = true;
+        n5Var.f37773a = true;
         n5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
         this.f12453a0 = imageView2;
@@ -944,8 +944,8 @@ public abstract class q extends FrameLayout implements gs, te.b {
             tcVar.getClass();
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set((int) iVar.getX(), (int) iVar.getY(), x10, y10);
-            tcVar.f39856i = false;
-            tcVar.f39852c = 0;
+            tcVar.f39855i = false;
+            tcVar.f39851c = 0;
             tcVar.a(rectF);
             if (tcVar.b(motionEvent)) {
                 return true;

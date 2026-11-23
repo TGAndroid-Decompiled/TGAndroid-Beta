@@ -9,14 +9,14 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.PhotoViewer;
 public final class qs0 implements org.telegram.ui.Cells.m1 {
-    public final int f38989a;
-    public final org.telegram.ui.ActionBar.h6 f38990b;
-    public final ss0 f38991c;
+    public final int f38988a;
+    public final org.telegram.ui.ActionBar.h6 f38989b;
+    public final ss0 f38990c;
 
     public qs0(ss0 ss0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
-        this.f38991c = ss0Var;
-        this.f38989a = i7;
-        this.f38990b = h6Var;
+        this.f38990c = ss0Var;
+        this.f38988a = i7;
+        this.f38989b = h6Var;
     }
 
     public static TLRPC.TL_message a(TLRPC.Message message) {
@@ -224,7 +224,7 @@ public final class qs0 implements org.telegram.ui.Cells.m1 {
 
     @Override
     public final void l(org.telegram.ui.Cells.r1 r1Var, ArrayList arrayList, int i7, int i10, int i11) {
-        org.telegram.messenger.az.C(this.f38989a).w0(r1Var.getMessageObject(), arrayList, null);
+        org.telegram.messenger.az.C(this.f38988a).w0(r1Var.getMessageObject(), arrayList, null);
     }
 
     @Override
@@ -244,22 +244,22 @@ public final class qs0 implements org.telegram.ui.Cells.m1 {
         TLRPC.Document document2;
         TLRPC.Document document3;
         TLRPC.TL_textWithEntities tL_textWithEntities;
-        jt0 jt0Var = this.f38991c.f39686s;
+        jt0 jt0Var = this.f38990c.f39685s;
         org.telegram.messenger.gj messageObject = r1Var.getMessageObject();
         TLRPC.MessageMedia m12 = org.telegram.messenger.gj.m1(messageObject);
         if (messageMedia != null && messageObject != null && (m12 instanceof TLRPC.TL_messageMediaPoll)) {
             TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) m12;
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
-            org.telegram.ui.ActionBar.h6 h6Var = this.f38990b;
-            int i13 = this.f38989a;
+            org.telegram.ui.ActionBar.h6 h6Var = this.f38989b;
+            int i13 = this.f38988a;
             int i14 = 0;
             if (geoPoint != null) {
-                if (org.telegram.messenger.g0.J1(jt0Var.f36684y1)) {
+                if (org.telegram.messenger.g0.J1(jt0Var.f36683y1)) {
                     org.telegram.ui.qa0 qa0Var = new org.telegram.ui.qa0(3);
                     qa0Var.setResourceProvider(h6Var);
                     TLRPC.TL_message tL_message = new TLRPC.TL_message();
                     tL_message.local_id = -1;
-                    tL_message.peer_id = org.telegram.messenger.np.u1(i13).B1(jt0Var.f36648m1);
+                    tL_message.peer_id = org.telegram.messenger.np.u1(i13).B1(jt0Var.f36647m1);
                     TLRPC.TL_messageMediaGeo tL_messageMediaGeo = new TLRPC.TL_messageMediaGeo();
                     tL_messageMediaGeo.geo = messageMedia.geo;
                     String str = messageMedia.address;
@@ -274,17 +274,17 @@ public final class qs0 implements org.telegram.ui.Cells.m1 {
                     tL_message.media = tL_messageMediaGeo;
                     qa0Var.V0 = false;
                     qa0Var.G0(new org.telegram.messenger.gj(org.telegram.messenger.k10.f24968t0, tL_message, false, false));
-                    jt0Var.f36684y1.presentFragment(qa0Var);
+                    jt0Var.f36683y1.presentFragment(qa0Var);
                 }
             } else if (org.telegram.messenger.gj.N2(messageMedia.document)) {
-                org.telegram.ui.ns.p().v(jt0Var.f36684y1.getParentActivity());
+                org.telegram.ui.ns.p().v(jt0Var.f36683y1.getParentActivity());
                 org.telegram.ui.ns.p().u(new ls0(this, tL_messageMediaPoll, pollAnswer, r1Var));
                 org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
                 TLRPC.Document document4 = messageMedia.document;
                 if (org.telegram.messenger.gj.H2(document4)) {
                     i14 = 2;
                 }
-                p10.s(document4, null, "", null, null, i14, false, r1Var.getMessageObject(), this.f38990b, 200);
+                p10.s(document4, null, "", null, null, i14, false, r1Var.getMessageObject(), this.f38989b, 200);
             } else {
                 TLRPC.Message message2 = messageObject.f24213k;
                 ArrayList arrayList = new ArrayList();
@@ -354,8 +354,8 @@ public final class qs0 implements org.telegram.ui.Cells.m1 {
                 }
                 if (i10 > -1 && !arrayList2.isEmpty()) {
                     messageObject.f24245s0 = arrayList;
-                    PhotoViewer.p1().I2(null, jt0Var.f36684y1, h6Var);
-                    PhotoViewer.p1().a2(arrayList2, i10, jt0Var.f36648m1, 0L, 0L, new ps0(this));
+                    PhotoViewer.p1().I2(null, jt0Var.f36683y1, h6Var);
+                    PhotoViewer.p1().a2(arrayList2, i10, jt0Var.f36647m1, 0L, 0L, new ps0(this));
                 }
             }
         }
@@ -369,7 +369,7 @@ public final class qs0 implements org.telegram.ui.Cells.m1 {
     @Override
     public final void p1(org.telegram.ui.Cells.r1 r1Var, int i7) {
         if (i7 == 80) {
-            org.telegram.ui.ActionBar.g2 g2Var = this.f38991c.f39686s.f36684y1;
+            org.telegram.ui.ActionBar.g2 g2Var = this.f38990c.f39685s.f36683y1;
             org.telegram.messenger.gj messageObject = r1Var.getMessageObject();
             org.telegram.ui.Cells.p8 p8Var = ff0.M1;
             if (g2Var != null && g2Var.getParentActivity() != null) {

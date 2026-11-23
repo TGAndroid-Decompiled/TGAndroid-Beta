@@ -41,7 +41,7 @@ public final class s implements kb {
     public void j(lb lbVar, wa waVar, ua uaVar, xa xaVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(lbVar, lb.IN_OUT_OFFSET_Y2, lbVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(zs.f42977c);
+        ofFloat.setInterpolator(zs.f42976c);
         ofFloat.addListener(new ah.l(waVar, uaVar, 20));
         ofFloat.addUpdateListener(new ch.w(12, xaVar, lbVar));
         ofFloat.start();

@@ -93,7 +93,7 @@ public final class gx0 extends FrameLayout implements org.telegram.ui.ActionBar.
         oh0 a10 = a(this.h.getValue());
         if (a10 != null) {
             this.F[0].setImageDrawable(a10);
-            a10.M(a10.f38211e[0] - 1);
+            a10.M(a10.f38210e[0] - 1);
         }
         org.telegram.messenger.g0.X3(this.F[0], true, 0.5f, true, false);
         org.telegram.messenger.g0.X3(this.F[1], false, 0.5f, true, false);

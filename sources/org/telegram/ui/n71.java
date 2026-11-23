@@ -117,13 +117,13 @@ public final class n71 extends org.telegram.ui.Components.q9 {
                     x71Var.f53718a2 = measuredWidth3;
                     x71Var.Y1 = measuredWidth3 * 2.0f;
                     u(measuredHeight2, getMeasuredHeight());
-                    this.f38844w = true;
+                    this.f38843w = true;
                     x71Var.a1();
                 }
             }
             if (!x71Var.f53726c2) {
                 u(-1, -1);
-                this.f38844w = false;
+                this.f38843w = false;
             }
         }
         x71Var.d2 = measuredWidth2;

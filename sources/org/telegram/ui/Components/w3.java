@@ -5,37 +5,37 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.widget.LinearLayout;
 public final class w3 extends LinearLayout {
-    public final int f41637a;
-    public boolean f41638b;
-    public final Object f41639c;
+    public final int f41636a;
+    public boolean f41637b;
+    public final Object f41638c;
     public Object d;
-    public final tb0 f41640e;
+    public final tb0 f41639e;
 
     public w3(Context context, tb0 tb0Var, tb0 tb0Var2, tb0 tb0Var3, int i7) {
         super(context);
-        this.f41637a = i7;
-        this.f41639c = tb0Var;
+        this.f41636a = i7;
+        this.f41638c = tb0Var;
         this.d = tb0Var2;
-        this.f41640e = tb0Var3;
-        this.f41638b = false;
+        this.f41639e = tb0Var3;
+        this.f41637b = false;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         boolean z10;
         String str;
-        switch (this.f41637a) {
+        switch (this.f41636a) {
             case 0:
                 int i7 = org.telegram.ui.ActionBar.m6.G6;
-                ((xy0) this.f41639c).c((getWidth() - ((xy0) this.f41639c).f42247c) / 2.0f, getHeight() / 2.0f, 1.0f, org.telegram.ui.ActionBar.m6.x0(null, i7, false), canvas);
+                ((xy0) this.f41638c).c((getWidth() - ((xy0) this.f41638c).f42246c) / 2.0f, getHeight() / 2.0f, 1.0f, org.telegram.ui.ActionBar.m6.x0(null, i7, false), canvas);
                 if (!org.telegram.messenger.hd.f24446c0) {
-                    if (((v3) this.f41640e).getValue() % 24 < 12) {
+                    if (((v3) this.f41639e).getValue() % 24 < 12) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (this.f41638b != z10 || ((xy0) this.d) == null) {
-                        this.f41638b = z10;
+                    if (this.f41637b != z10 || ((xy0) this.d) == null) {
+                        this.f41637b = z10;
                         if (z10) {
                             str = "AM";
                         } else {
@@ -62,12 +62,12 @@ public final class w3 extends LinearLayout {
         int i15;
         int i16;
         int i17;
-        switch (this.f41637a) {
+        switch (this.f41636a) {
             case 1:
-                a4 a4Var = (a4) this.f41640e;
+                a4 a4Var = (a4) this.f41639e;
                 z3 z3Var = (z3) this.d;
-                tb0 tb0Var = (tb0) this.f41639c;
-                this.f41638b = true;
+                tb0 tb0Var = (tb0) this.f41638c;
+                this.f41637b = true;
                 Point point = org.telegram.messenger.g0.f24046q;
                 if (point.x > point.y) {
                     i11 = 3;
@@ -80,14 +80,14 @@ public final class w3 extends LinearLayout {
                 tb0Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i11;
                 z3Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i11;
                 a4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i11;
-                this.f41638b = false;
+                this.f41637b = false;
                 super.onMeasure(i7, i10);
                 return;
             case 2:
-                c4 c4Var = (c4) this.f41640e;
+                c4 c4Var = (c4) this.f41639e;
                 b4 b4Var = (b4) this.d;
-                tb0 tb0Var2 = (tb0) this.f41639c;
-                this.f41638b = true;
+                tb0 tb0Var2 = (tb0) this.f41638c;
+                this.f41637b = true;
                 Point point2 = org.telegram.messenger.g0.f24046q;
                 if (point2.x > point2.y) {
                     i12 = 3;
@@ -100,14 +100,14 @@ public final class w3 extends LinearLayout {
                 tb0Var2.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i12;
                 b4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i12;
                 c4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i12;
-                this.f41638b = false;
+                this.f41637b = false;
                 super.onMeasure(i7, i10);
                 return;
             case 3:
-                h4 h4Var = (h4) this.f41640e;
+                h4 h4Var = (h4) this.f41639e;
                 g4 g4Var = (g4) this.d;
-                tb0 tb0Var3 = (tb0) this.f41639c;
-                this.f41638b = true;
+                tb0 tb0Var3 = (tb0) this.f41638c;
+                this.f41637b = true;
                 Point point3 = org.telegram.messenger.g0.f24046q;
                 if (point3.x > point3.y) {
                     i13 = 3;
@@ -120,14 +120,14 @@ public final class w3 extends LinearLayout {
                 tb0Var3.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i13;
                 g4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i13;
                 h4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i13;
-                this.f41638b = false;
+                this.f41637b = false;
                 super.onMeasure(i7, i10);
                 return;
             case 4:
-                k4 k4Var = (k4) this.f41640e;
+                k4 k4Var = (k4) this.f41639e;
                 j4 j4Var = (j4) this.d;
-                tb0 tb0Var4 = (tb0) this.f41639c;
-                this.f41638b = true;
+                tb0 tb0Var4 = (tb0) this.f41638c;
+                this.f41637b = true;
                 Point point4 = org.telegram.messenger.g0.f24046q;
                 if (point4.x > point4.y) {
                     i14 = 3;
@@ -140,13 +140,13 @@ public final class w3 extends LinearLayout {
                 tb0Var4.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i14;
                 j4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i14;
                 k4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i14;
-                this.f41638b = false;
+                this.f41637b = false;
                 super.onMeasure(i7, i10);
                 return;
             case 5:
                 o4 o4Var = (o4) this.d;
-                n4 n4Var = (n4) this.f41639c;
-                this.f41638b = true;
+                n4 n4Var = (n4) this.f41638c;
+                this.f41637b = true;
                 Point point5 = org.telegram.messenger.g0.f24046q;
                 if (point5.x > point5.y) {
                     i15 = 3;
@@ -157,16 +157,16 @@ public final class w3 extends LinearLayout {
                 n4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i15;
                 o4Var.setItemCount(i15);
                 o4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i15;
-                tb0 tb0Var5 = this.f41640e;
+                tb0 tb0Var5 = this.f41639e;
                 tb0Var5.setItemCount(i15);
                 tb0Var5.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i15;
-                this.f41638b = false;
+                this.f41637b = false;
                 super.onMeasure(i7, i10);
                 return;
             case 6:
                 tb0 tb0Var6 = (tb0) this.d;
-                tb0 tb0Var7 = (tb0) this.f41639c;
-                this.f41638b = true;
+                tb0 tb0Var7 = (tb0) this.f41638c;
+                this.f41637b = true;
                 Point point6 = org.telegram.messenger.g0.f24046q;
                 if (point6.x > point6.y) {
                     i16 = 3;
@@ -175,19 +175,19 @@ public final class w3 extends LinearLayout {
                 }
                 tb0Var7.setItemCount(i16);
                 tb0Var6.setItemCount(i16);
-                tb0 tb0Var8 = this.f41640e;
+                tb0 tb0Var8 = this.f41639e;
                 tb0Var8.setItemCount(i16);
                 tb0Var7.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i16;
                 tb0Var6.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i16;
                 tb0Var8.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i16;
-                this.f41638b = false;
+                this.f41637b = false;
                 super.onMeasure(i7, i10);
                 return;
             case 7:
-                v4 v4Var = (v4) this.f41640e;
+                v4 v4Var = (v4) this.f41639e;
                 u4 u4Var = (u4) this.d;
-                tb0 tb0Var9 = (tb0) this.f41639c;
-                this.f41638b = true;
+                tb0 tb0Var9 = (tb0) this.f41638c;
+                this.f41637b = true;
                 Point point7 = org.telegram.messenger.g0.f24046q;
                 if (point7.x > point7.y) {
                     i17 = 3;
@@ -200,7 +200,7 @@ public final class w3 extends LinearLayout {
                 tb0Var9.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i17;
                 u4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i17;
                 v4Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i17;
-                this.f41638b = false;
+                this.f41637b = false;
                 super.onMeasure(i7, i10);
                 return;
             default:
@@ -211,45 +211,45 @@ public final class w3 extends LinearLayout {
 
     @Override
     public void requestLayout() {
-        switch (this.f41637a) {
+        switch (this.f41636a) {
             case 1:
-                if (!this.f41638b) {
+                if (!this.f41637b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 2:
-                if (!this.f41638b) {
+                if (!this.f41637b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 3:
-                if (!this.f41638b) {
+                if (!this.f41637b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 4:
-                if (!this.f41638b) {
+                if (!this.f41637b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 5:
-                if (!this.f41638b) {
+                if (!this.f41637b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 6:
-                if (!this.f41638b) {
+                if (!this.f41637b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             case 7:
-                if (!this.f41638b) {
+                if (!this.f41637b) {
                     super.requestLayout();
                     return;
                 }
@@ -262,8 +262,8 @@ public final class w3 extends LinearLayout {
 
     public w3(Context context, v3 v3Var) {
         super(context);
-        this.f41637a = 0;
-        this.f41640e = v3Var;
-        this.f41639c = new xy0(":", 18.0f, null);
+        this.f41636a = 0;
+        this.f41639e = v3Var;
+        this.f41638c = new xy0(":", 18.0f, null);
     }
 }

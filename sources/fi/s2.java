@@ -89,7 +89,7 @@ public final class s2 extends ImageReceiver {
                 return x02;
             case 1:
                 if (drawable != null && i7 != 1) {
-                    o10.o(((kg.c1) ((t3) obj).I).h.animate().alpha(1.0f).translationY(0.0f), nr.f37965k, 250L);
+                    o10.o(((kg.c1) ((t3) obj).I).h.animate().alpha(1.0f).translationY(0.0f), nr.f37964k, 250L);
                 }
                 return super.x0(drawable, str, i7, z10, i10);
             case 2:
@@ -101,8 +101,8 @@ public final class s2 extends ImageReceiver {
                 org.telegram.ui.Components.p5 p5Var = (org.telegram.ui.Components.p5) obj;
                 p5Var.j();
                 boolean x03 = super.x0(drawable, str, i7, z10, i10);
-                if (p5Var.f38502m && J()) {
-                    p5Var.f38502m = false;
+                if (p5Var.f38501m && J()) {
+                    p5Var.f38501m = false;
                     org.telegram.messenger.g0.g3(new og(p5Var, 4));
                 }
                 return x03;

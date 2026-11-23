@@ -80,7 +80,7 @@ public final class k0 implements mi.e {
     }
 
     public final void b(h51 h51Var) {
-        if (!this.f19989m && !this.f19990n && h51Var.f35789f3.N0() + 10 > h51Var.f35790g3.E.size()) {
+        if (!this.f19989m && !this.f19990n && h51Var.f35788f3.N0() + 10 > h51Var.f35789g3.E.size()) {
             d();
         }
     }
@@ -108,7 +108,7 @@ public final class k0 implements mi.e {
                         o41 K = o41.K(mi.g.class);
                         K.H = new mi.f(o4, c22, z11);
                         K.I = this;
-                        K.f38089j = !z10;
+                        K.f38088j = !z10;
                         arrayList.add(K);
                     }
                 }

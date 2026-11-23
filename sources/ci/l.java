@@ -75,7 +75,7 @@ public final class l extends View {
             float width2 = getWidth() / 2.0f;
             float height = getHeight() / 2.0f;
             p5 p5Var = this.f5735b;
-            if (p5Var == null || (s2Var = p5Var.f38500k) == null || !s2Var.I()) {
+            if (p5Var == null || (s2Var = p5Var.f38499k) == null || !s2Var.I()) {
                 canvas.drawCircle(width2, height, 0.42f * width, this.f5736c);
             }
             p5 p5Var2 = this.f5735b;

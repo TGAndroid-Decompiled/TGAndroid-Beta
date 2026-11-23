@@ -31,7 +31,7 @@ public final class gc1 extends View {
             return;
         }
         org.telegram.ui.Components.d9 d9Var = this.f48049b;
-        float c10 = d9Var.c() + org.telegram.messenger.g0.L(4.0f) + org.telegram.messenger.g0.L(7.0f) + this.f48050c.f42247c + org.telegram.messenger.g0.L(13.0f);
+        float c10 = d9Var.c() + org.telegram.messenger.g0.L(4.0f) + org.telegram.messenger.g0.L(7.0f) + this.f48050c.f42246c + org.telegram.messenger.g0.L(13.0f);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set((getWidth() - c10) / 2.0f, 0.0f, (getWidth() + c10) / 2.0f, getHeight());
         float L = org.telegram.messenger.g0.L(30.0f) / 2.0f;

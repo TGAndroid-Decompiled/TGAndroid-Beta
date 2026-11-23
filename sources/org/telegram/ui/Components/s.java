@@ -9,21 +9,21 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class s implements TextWatcher {
-    public final ImageView f39429a;
-    public final int f39430b;
-    public final int f39431c;
+    public final ImageView f39428a;
+    public final int f39429b;
+    public final int f39430c;
     public final LinearLayout d;
-    public final ArrayList f39432e;
-    public final TextView f39433f;
+    public final ArrayList f39431e;
+    public final TextView f39432f;
     public final ScrollView h;
 
     public s(ImageView imageView, int i7, int i10, LinearLayout linearLayout, ArrayList arrayList, TextView textView, ScrollView scrollView) {
-        this.f39429a = imageView;
-        this.f39430b = i7;
-        this.f39431c = i10;
+        this.f39428a = imageView;
+        this.f39429b = i7;
+        this.f39430c = i10;
         this.d = linearLayout;
-        this.f39432e = arrayList;
-        this.f39433f = textView;
+        this.f39431e = arrayList;
+        this.f39432f = textView;
         this.h = scrollView;
     }
 
@@ -44,11 +44,11 @@ public final class s implements TextWatcher {
         } else {
             i7 = 8;
         }
-        this.f39429a.setVisibility(i7);
-        int i14 = this.f39430b;
+        this.f39428a.setVisibility(i7);
+        int i14 = this.f39429b;
         while (true) {
             linearLayout = this.d;
-            i10 = this.f39431c;
+            i10 = this.f39430c;
             if (i14 >= i10) {
                 break;
             }
@@ -64,7 +64,7 @@ public final class s implements TextWatcher {
         int i15 = 0;
         int i16 = 0;
         while (true) {
-            ArrayList arrayList = this.f39432e;
+            ArrayList arrayList = this.f39431e;
             if (i15 >= arrayList.size() || i10 + i15 >= linearLayout.getChildCount()) {
                 break;
             }
@@ -93,7 +93,7 @@ public final class s implements TextWatcher {
         if (!isEmpty && i16 == 0) {
             i13 = 0;
         }
-        this.f39433f.setVisibility(i13);
+        this.f39432f.setVisibility(i13);
         this.h.scrollTo(0, 0);
     }
 

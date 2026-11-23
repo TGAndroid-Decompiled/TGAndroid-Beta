@@ -220,12 +220,12 @@ public final class w implements ValueAnimator.AnimatorUpdateListener {
                 xh xhVar = (xh) this.f5557b;
                 xhVar.getClass();
                 ((ot) this.f5558c).setOffsetY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                ui uiVar = xhVar.f42094d0;
+                ui uiVar = xhVar.f42093d0;
                 uiVar.K1();
-                mi miVar = uiVar.f40441w2;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40379e2;
+                mi miVar = uiVar.f40440w2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40378e2;
                 if (miVar == chatAttachAlertPhotoLayout) {
-                    chatAttachAlertPhotoLayout.m(uiVar.f40395j4);
+                    chatAttachAlertPhotoLayout.m(uiVar.f40394j4);
                     return;
                 }
                 return;
@@ -246,7 +246,7 @@ public final class w implements ValueAnimator.AnimatorUpdateListener {
                 rw0Var.getClass();
                 float floatValue8 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 while (i7 < qw0VarArr.length) {
-                    rw0Var.f39359c[i7] = (rw0Var.d[i7] * floatValue8) + ((1.0f - floatValue8) * rw0Var.f39360e[i7]);
+                    rw0Var.f39358c[i7] = (rw0Var.d[i7] * floatValue8) + ((1.0f - floatValue8) * rw0Var.f39359e[i7]);
                     i7++;
                 }
                 rw0Var.invalidate();
@@ -285,9 +285,9 @@ public final class w implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 20:
                 i3 i3Var = (i3) this.f5557b;
-                int i12 = i3Var.f41069e;
-                i3Var.f41071g = (int) ((((Float) valueAnimator.getAnimatedValue()).floatValue() * (i3Var.f41068c - i12)) + i12);
-                int i13 = i3Var.f41070f;
+                int i12 = i3Var.f41068e;
+                i3Var.f41070g = (int) ((((Float) valueAnimator.getAnimatedValue()).floatValue() * (i3Var.f41067c - i12)) + i12);
+                int i13 = i3Var.f41069f;
                 i3Var.h = (int) ((((Float) valueAnimator.getAnimatedValue()).floatValue() * (i3Var.d - i13)) + i13);
                 ((u2) this.f5558c).invalidate();
                 return;

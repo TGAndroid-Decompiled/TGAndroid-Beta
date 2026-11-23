@@ -12,15 +12,15 @@ public final class c41 extends g.p {
     @Override
     public final int i(int i7) {
         k41 k41Var = this.f34012c;
-        v4.i0 adapter = k41Var.f36773n.getAdapter();
-        j41 j41Var = k41Var.f36775s;
+        v4.i0 adapter = k41Var.f36772n.getAdapter();
+        j41 j41Var = k41Var.f36774s;
         if (adapter == j41Var) {
-            if ((j41Var.d.get(i7) instanceof Integer) || i7 >= j41Var.f36401x) {
-                return j41Var.f36400w;
+            if ((j41Var.d.get(i7) instanceof Integer) || i7 >= j41Var.f36400x) {
+                return j41Var.f36399w;
             }
             return 1;
         }
-        jg.c2 c2Var = k41Var.f36776w;
+        jg.c2 c2Var = k41Var.f36775w;
         SparseArray sparseArray = c2Var.f17452s;
         if (i7 != c2Var.E && (sparseArray.get(i7) == null || (sparseArray.get(i7) instanceof TLRPC.Document))) {
             return 1;

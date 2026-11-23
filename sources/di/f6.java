@@ -159,7 +159,7 @@ public class f6 extends org.telegram.ui.Components.sa implements gs {
         this.f8838w3 = true;
         this.f30173a = i7;
         this.T1 = j3;
-        this.f39539v1 = Math.max(0.05f, org.telegram.messenger.g0.L(82.0f) / (org.telegram.messenger.g0.f24046q.y + org.telegram.messenger.g0.f24040m));
+        this.f39538v1 = Math.max(0.05f, org.telegram.messenger.g0.L(82.0f) / (org.telegram.messenger.g0.f24046q.y + org.telegram.messenger.g0.f24040m));
         this.f30215x = true;
         this.f30176b = new bi.e3(2, context, this);
         n4 n4Var = new n4(this, context);
@@ -179,10 +179,10 @@ public class f6 extends org.telegram.ui.Components.sa implements gs {
         this.f30176b.addView(view2, e10);
         this.f30176b.addView(h4Var, c8.ma.e(-1, -1, 119));
         Q(i10);
-        org.telegram.messenger.g0.E2(this.f39532o1);
-        n4Var.addView(this.f39532o1, c8.ma.e(-1, -1, 119));
+        org.telegram.messenger.g0.E2(this.f39531o1);
+        n4Var.addView(this.f39531o1, c8.ma.e(-1, -1, 119));
         if (Build.VERSION.SDK_INT >= 26) {
-            this.f39532o1.setDefaultFocusHighlightEnabled(false);
+            this.f39531o1.setDefaultFocusHighlightEnabled(false);
         }
         j4 j4Var = new j4(this, context, 0);
         this.f8799c2 = j4Var;
@@ -390,7 +390,7 @@ public class f6 extends org.telegram.ui.Components.sa implements gs {
         frameLayout2.addView(m80Var3, c8.ma.d(-1, -2.0f, 17, 16.0f, 8.0f, 16.0f, 14.0f));
         n4Var.addView(frameLayout2, c8.ma.e(-1, -2, 87));
         frameLayout2.setVisibility(8);
-        this.f39532o1.setOnScrollListener(new bi.u1(this, 9));
+        this.f39531o1.setOnScrollListener(new bi.u1(this, 9));
         linearLayout3.setOnClickListener(new i1(this, 24));
         wz wzVar = new wz(context);
         this.W1 = wzVar;
@@ -399,8 +399,8 @@ public class f6 extends org.telegram.ui.Components.sa implements gs {
         this.f8815l2 = frameLayout3;
         frameLayout3.setPadding(org.telegram.messenger.g0.L(6.0f) + this.f30211u0, 0, org.telegram.messenger.g0.L(6.0f) + this.f30211u0, 0);
         n4Var.addView(frameLayout3, c8.ma.d(-1, 200.0f, 87, 0.0f, 0.0f, 0.0f, 60.0f));
-        org.telegram.messenger.g0.E2(this.f39533p1);
-        n4Var.addView(this.f39533p1, c8.ma.d(-1, -2.0f, 0, 6.0f, 0.0f, 6.0f, 0.0f));
+        org.telegram.messenger.g0.E2(this.f39532p1);
+        n4Var.addView(this.f39532p1, c8.ma.d(-1, -2.0f, 0, 6.0f, 0.0f, 6.0f, 0.0f));
         k4 k4Var = new k4(context);
         this.f8795a2 = k4Var;
         n4Var.addView(k4Var, c8.ma.e(-1, -2, 55));
@@ -2508,7 +2508,7 @@ public class f6 extends org.telegram.ui.Components.sa implements gs {
                     tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftPrepaidUpgrade;
                 } else {
                     TLRPC.TL_inputInvoiceStarGiftUpgrade tL_inputInvoiceStarGiftUpgrade = new TLRPC.TL_inputInvoiceStarGiftUpgrade();
-                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = opVar.f38321a.f32874q;
+                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = opVar.f38320a.f32874q;
                     tL_inputInvoiceStarGiftUpgrade.stargift = G1;
                     tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftUpgrade;
                 }
@@ -2832,7 +2832,7 @@ public class f6 extends org.telegram.ui.Components.sa implements gs {
             }
             nq nqVar = this.Z2;
             if (nqVar != null) {
-                Drawable drawable = nqVar.f37947c;
+                Drawable drawable = nqVar.f37946c;
                 if (drawable instanceof a6) {
                     ((a6) drawable).d.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.J0));
                     hi.e eVar = this.f8806g2;
@@ -3120,7 +3120,7 @@ public class f6 extends org.telegram.ui.Components.sa implements gs {
                 op opVar = this.f8829s2;
                 if (i7 > 0) {
                     TL_stars.upgradeStarGift upgradestargift = new TL_stars.upgradeStarGift();
-                    upgradestargift.keep_original_details = opVar.f38321a.f32874q;
+                    upgradestargift.keep_original_details = opVar.f38320a.f32874q;
                     upgradestargift.stargift = G1;
                     ConnectionsManager.getInstance(this.f30173a).sendRequest(upgradestargift, new bi.o1(7, this, G1));
                     return;
@@ -3140,7 +3140,7 @@ public class f6 extends org.telegram.ui.Components.sa implements gs {
                     tL_payments_sendStarsForm.invoice = tL_inputInvoiceStarGiftPrepaidUpgrade;
                 } else {
                     TLRPC.TL_inputInvoiceStarGiftUpgrade tL_inputInvoiceStarGiftUpgrade = new TLRPC.TL_inputInvoiceStarGiftUpgrade();
-                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = opVar.f38321a.f32874q;
+                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = opVar.f38320a.f32874q;
                     tL_inputInvoiceStarGiftUpgrade.stargift = G1;
                     tL_payments_sendStarsForm.invoice = tL_inputInvoiceStarGiftUpgrade;
                 }

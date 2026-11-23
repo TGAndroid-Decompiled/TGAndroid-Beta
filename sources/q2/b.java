@@ -131,7 +131,7 @@ public final class b implements g {
         } else if (jVar != null && k() && this.h.f(jVar) == 1) {
             jVar.c(this.f55774p);
         }
-        e eVar = (e) this.d.f36567b;
+        e eVar = (e) this.d.f36566b;
         if (eVar.f55795w != -9223372036854775807L) {
             eVar.E.remove(this);
             Handler handler = eVar.K;
@@ -180,7 +180,7 @@ public final class b implements g {
         }
         jn jnVar = this.d;
         int i11 = this.f55775q;
-        e eVar = (e) jnVar.f36567b;
+        e eVar = (e) jnVar.f36566b;
         if (i11 == 1 && eVar.F > 0 && eVar.f55795w != -9223372036854775807L) {
             eVar.E.add(this);
             Handler handler = eVar.K;

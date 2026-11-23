@@ -83,7 +83,7 @@ public final class z implements u9 {
                 return 0;
             default:
                 rk0 rk0Var = (rk0) this.f22583c;
-                return (rk0Var.T - rk0Var.f39268k0) + ((org.telegram.utils.twidget.t1) this.f22582b).f54988b;
+                return (rk0Var.T - rk0Var.f39267k0) + ((org.telegram.utils.twidget.t1) this.f22582b).f54988b;
         }
     }
 

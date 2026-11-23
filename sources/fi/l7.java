@@ -97,8 +97,8 @@ public final class l7 implements c5.h {
                 return;
             default:
                 ia iaVar = (ia) this.f12269b;
-                iaVar.f36228b = f10;
-                iaVar.f36229c = i7;
+                iaVar.f36227b = f10;
+                iaVar.f36228c = i7;
                 iaVar.invalidate();
                 ug.y0 y0Var = (ug.y0) this.f12270c;
                 y0Var.B1 = i7;

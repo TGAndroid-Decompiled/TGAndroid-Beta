@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import java.util.concurrent.atomic.AtomicReference;
 public final class vn implements Runnable {
-    public final int f40874a;
-    public final co f40875b;
+    public final int f40873a;
+    public final co f40874b;
 
     public vn(co coVar, int i7) {
-        this.f40874a = i7;
-        this.f40875b = coVar;
+        this.f40873a = i7;
+        this.f40874b = coVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f40874a) {
+        switch (this.f40873a) {
             case 0:
-                co coVar = this.f40875b;
+                co coVar = this.f40874b;
                 AtomicReference atomicReference = coVar.f34244n;
                 org.telegram.ui.ActionBar.m5 m5Var = (org.telegram.ui.ActionBar.m5) atomicReference.get();
                 if (m5Var != null) {
@@ -24,7 +24,7 @@ public final class vn implements Runnable {
                 }
                 return;
             case 1:
-                co coVar2 = this.f40875b;
+                co coVar2 = this.f40874b;
                 AtomicReference atomicReference2 = coVar2.f34256w;
                 org.telegram.ui.ActionBar.m5 m5Var2 = (org.telegram.ui.ActionBar.m5) atomicReference2.get();
                 if (m5Var2 != null) {
@@ -38,7 +38,7 @@ public final class vn implements Runnable {
                 }
                 return;
             default:
-                co coVar3 = this.f40875b;
+                co coVar3 = this.f40874b;
                 coVar3.f34242k0 = false;
                 coVar3.f34240i0.c(false);
                 if (coVar3.a()) {

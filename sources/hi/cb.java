@@ -506,7 +506,7 @@ public final class cb extends View {
     public final void computeScroll() {
         ll0 ll0Var = this.X0;
         if (ll0Var.b()) {
-            int i7 = ll0Var.f37226j;
+            int i7 = ll0Var.f37225j;
             long min = Math.min(getBaseDuration(), getMaxScrollDuration());
             if (this.f14436r1) {
                 this.f14411f = Math.max(0.0f, (((i7 - this.f14456z1) - this.f14454y1) / this.f14445v1) * ((float) min));

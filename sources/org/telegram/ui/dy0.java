@@ -41,7 +41,7 @@ public final class dy0 extends FrameLayout {
     public final void b() {
         int width = getWidth();
         org.telegram.ui.Components.n5 n5Var = this.f47079a;
-        n5Var.setBounds((width - n5Var.f37781s) - org.telegram.messenger.g0.L(21.0f), (getHeight() - n5Var.f37781s) / 2, getWidth() - org.telegram.messenger.g0.L(21.0f), (getHeight() + n5Var.f37781s) / 2);
+        n5Var.setBounds((width - n5Var.f37780s) - org.telegram.messenger.g0.L(21.0f), (getHeight() - n5Var.f37780s) / 2, getWidth() - org.telegram.messenger.g0.L(21.0f), (getHeight() + n5Var.f37780s) / 2);
     }
 
     @Override

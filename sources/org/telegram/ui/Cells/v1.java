@@ -41,7 +41,7 @@ public final class v1 {
         int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
         int intrinsicHeight = (int) (drawable.getIntrinsicHeight() * 0.8f);
         int A = (int) com.google.android.gms.internal.vision.e2.A(s2Var.N0, intrinsicWidth, 2.0f, s2Var.L0);
-        int interpolation = (int) ((((s2Var.O0 / 2.0f) - intrinsicHeight) + s2Var.M0) - ((1.0f - nr.f37965k.getInterpolation(s2Var.f22672i1)) * org.telegram.messenger.g0.L(16.0f)));
+        int interpolation = (int) ((((s2Var.O0 / 2.0f) - intrinsicHeight) + s2Var.M0) - ((1.0f - nr.f37964k.getInterpolation(s2Var.f22672i1)) * org.telegram.messenger.g0.L(16.0f)));
         drawable.setAlpha((int) (Math.min(1.0f, s2Var.f22672i1 * 5.0f) * 255.0f));
         drawable.setBounds(A, interpolation, intrinsicWidth + A, intrinsicHeight + interpolation);
         drawable.draw(canvas);
@@ -233,7 +233,7 @@ public final class v1 {
                 if (f17 > 0.0f) {
                     if (s2Var.L() || s2Var.N()) {
                         int L = (int) (((s2Var.N0 / f12) + s2Var.L0) - org.telegram.messenger.g0.L(31.0f));
-                        int L2 = (int) ((((s2Var.O0 / f12) + s2Var.M0) - org.telegram.messenger.g0.L(38.0f)) - ((f10 - nr.f37965k.getInterpolation(f17)) * org.telegram.messenger.g0.L(16.0f)));
+                        int L2 = (int) ((((s2Var.O0 / f12) + s2Var.M0) - org.telegram.messenger.g0.L(38.0f)) - ((f10 - nr.f37964k.getInterpolation(f17)) * org.telegram.messenger.g0.L(16.0f)));
                         h6.m mVar = r1Var.Sb;
                         if (((Drawable) mVar.f13969c) == null) {
                             mVar.f13969c = i5.c.g((Context) mVar.f13968b, 2131231635);

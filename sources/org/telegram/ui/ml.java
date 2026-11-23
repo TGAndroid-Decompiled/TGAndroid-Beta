@@ -681,7 +681,7 @@ public final class ml implements org.telegram.ui.Components.ng {
             } else {
                 f10 = 0.0f;
             }
-            animate.alpha(f10).setInterpolator(org.telegram.ui.Components.nr.f37961f).start();
+            animate.alpha(f10).setInterpolator(org.telegram.ui.Components.nr.f37960f).start();
         }
         org.telegram.ui.Components.ax0 ax0Var = bnVar.f46188s1;
         if (ax0Var != null) {
@@ -690,7 +690,7 @@ public final class ml implements org.telegram.ui.Components.ng {
             if (!z12 && !bnVar.isInPreviewMode()) {
                 f11 = 1.0f;
             }
-            animate2.alpha(f11).setInterpolator(org.telegram.ui.Components.nr.f37961f).withEndAction(new ch.k(20, this, z12)).start();
+            animate2.alpha(f11).setInterpolator(org.telegram.ui.Components.nr.f37960f).withEndAction(new ch.k(20, this, z12)).start();
         }
     }
 

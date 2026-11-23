@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class mo0 extends org.telegram.ui.ActionBar.i1 {
-    public final no0 f37592x;
+    public final no0 f37591x;
 
     public mo0(no0 no0Var, no0 no0Var2) {
         super(no0Var2);
-        this.f37592x = no0Var;
+        this.f37591x = no0Var;
     }
 
     @Override
     public final boolean b() {
-        ap0 ap0Var = this.f37592x.f37920q0;
+        ap0 ap0Var = this.f37591x.f37919q0;
         if (!ap0Var.J && ap0Var.U1) {
             return !ap0Var.f33576o1.m();
         }
@@ -20,8 +20,8 @@ public final class mo0 extends org.telegram.ui.ActionBar.i1 {
 
     @Override
     public final void e(float f10, float f11, boolean z10) {
-        no0 no0Var = this.f37592x;
-        ap0 ap0Var = no0Var.f37920q0;
+        no0 no0Var = this.f37591x;
+        ap0 ap0Var = no0Var.f37919q0;
         int i7 = ap0.U2;
         for (int i10 = 0; i10 < ap0Var.f30176b.getChildCount(); i10++) {
             View childAt = ap0Var.f30176b.getChildAt(i10);
@@ -31,7 +31,7 @@ public final class mo0 extends org.telegram.ui.ActionBar.i1 {
         }
         co0 co0Var = ap0Var.B1;
         ap0Var.f33579p2 = f10;
-        int i11 = no0Var.f37916l0;
+        int i11 = no0Var.f37915l0;
         if (i11 != -1) {
             if (!z10) {
                 f11 = 1.0f - f11;
@@ -47,10 +47,10 @@ public final class mo0 extends org.telegram.ui.ActionBar.i1 {
                 ap0Var.C1.setTranslationY(f13 + ap0Var.B1.getPaddingTop());
             }
         } else {
-            int i13 = no0Var.f37917n0;
+            int i13 = no0Var.f37916n0;
             if (i13 != -1) {
                 float f14 = 1.0f - f11;
-                int i14 = no0Var.f37918o0;
+                int i14 = no0Var.f37917o0;
                 ap0Var.f33572l2 = (int) ((i14 * f11) + (i13 * f14));
                 if (!z10) {
                     f14 = f11;
@@ -74,7 +74,7 @@ public final class mo0 extends org.telegram.ui.ActionBar.i1 {
 
     @Override
     public final void f() {
-        ap0 ap0Var = this.f37592x.f37920q0;
+        ap0 ap0Var = this.f37591x.f37919q0;
         go0 go0Var = ap0Var.f33576o1;
         if (go0Var == null || !go0Var.m()) {
             int i7 = ap0Var.J2;
@@ -94,37 +94,37 @@ public final class mo0 extends org.telegram.ui.ActionBar.i1 {
     @Override
     public final void g(int i7, boolean z10) {
         int i10;
-        no0 no0Var = this.f37592x;
-        ap0 ap0Var = no0Var.f37920q0;
+        no0 no0Var = this.f37591x;
+        ap0 ap0Var = no0Var.f37919q0;
         int i11 = ap0Var.f33574m2;
         int i12 = ap0Var.f33572l2;
         if (i11 != i12) {
-            no0Var.f37916l0 = i11;
+            no0Var.f37915l0 = i11;
             no0Var.m0 = i12;
             ap0Var.f33575n2 = true;
             ap0Var.f33572l2 = i11;
         } else {
-            no0Var.f37916l0 = -1;
+            no0Var.f37915l0 = -1;
         }
-        int i13 = no0Var.f37914j0;
-        int i14 = no0Var.f37915k0;
+        int i13 = no0Var.f37913j0;
+        int i14 = no0Var.f37914k0;
         if (i13 != i14) {
-            no0Var.f37917n0 = 0;
-            no0Var.f37918o0 = 0;
+            no0Var.f37916n0 = 0;
+            no0Var.f37917o0 = 0;
             ap0Var.f33575n2 = true;
             if (!z10) {
-                no0Var.f37918o0 = 0 - (i13 - i14);
+                no0Var.f37917o0 = 0 - (i13 - i14);
             } else {
-                no0Var.f37918o0 = i13 - i14;
+                no0Var.f37917o0 = i13 - i14;
             }
             if (z10) {
-                i10 = no0Var.f37916l0;
+                i10 = no0Var.f37915l0;
             } else {
                 i10 = no0Var.m0;
             }
             ap0Var.f33572l2 = i10;
         } else {
-            no0Var.f37917n0 = -1;
+            no0Var.f37916n0 = -1;
         }
         ap0Var.B1.setTopGlowOffset((int) (ap0Var.f33579p2 + ap0Var.f33572l2));
         ap0Var.f33573m1.setTranslationY(ap0Var.f33579p2 + ap0Var.f33572l2);

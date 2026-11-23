@@ -82,7 +82,7 @@ public final class e {
 
     public final String b(u uVar, String str) {
         String E;
-        String flattenToShortString = ((ComponentName) uVar.d.f36567b).flattenToShortString();
+        String flattenToShortString = ((ComponentName) uVar.d.f36566b).flattenToShortString();
         boolean z10 = uVar.f57085c;
         if (z10) {
             E = str;

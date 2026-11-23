@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.tgnet.TLRPC;
 public final class jo0 implements org.telegram.messenger.gs {
-    public final TLRPC.Dialog f36577a;
-    public final AtomicReference f36578b;
-    public final View f36579c;
+    public final TLRPC.Dialog f36576a;
+    public final AtomicReference f36577b;
+    public final View f36578c;
     public final ap0 d;
 
     public jo0(ap0 ap0Var, TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
         this.d = ap0Var;
-        this.f36577a = dialog;
-        this.f36578b = atomicReference;
-        this.f36579c = view;
+        this.f36576a = dialog;
+        this.f36577b = atomicReference;
+        this.f36578c = view;
     }
 
     @Override
@@ -26,22 +26,22 @@ public final class jo0 implements org.telegram.messenger.gs {
         yo0 yo0Var = ap0Var.H1;
         org.telegram.ui.ActionBar.k kVar = ap0Var.f33591v2;
         long longValue = ((Long) objArr[0]).longValue();
-        TLRPC.Dialog dialog = this.f36577a;
+        TLRPC.Dialog dialog = this.f36576a;
         if (longValue == (-dialog.f28438id)) {
-            ArrayList arrayList = yo0Var.f42486f;
-            AtomicReference atomicReference = this.f36578b;
+            ArrayList arrayList = yo0Var.f42485f;
+            AtomicReference atomicReference = this.f36577b;
             if ((arrayList == null && org.telegram.messenger.np.u1(ap0Var.f30173a).f25968t7.l(-dialog.f28438id) != null) || atomicReference.get() == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            yo0Var.f42486f = org.telegram.messenger.np.u1(ap0Var.f30173a).f25968t7.l(-dialog.f28438id);
+            yo0Var.f42485f = org.telegram.messenger.np.u1(ap0Var.f30173a).f25968t7.l(-dialog.f28438id);
             yo0Var.d = org.telegram.messenger.p10.v(org.telegram.messenger.np.u1(ap0Var.f30173a).c2(Long.valueOf(dialog.f28438id)));
-            yo0Var.f42485e = org.telegram.messenger.p10.w(org.telegram.messenger.np.u1(ap0Var.f30173a).c2(Long.valueOf(dialog.f28438id)));
+            yo0Var.f42484e = org.telegram.messenger.p10.w(org.telegram.messenger.np.u1(ap0Var.f30173a).c2(Long.valueOf(dialog.f28438id)));
             if (z10) {
                 yo0Var.f();
             }
-            if (yo0Var.f42486f != null) {
+            if (yo0Var.f42485f != null) {
                 org.telegram.messenger.ls.f(ap0Var.f30173a).n(this, org.telegram.messenger.ls.f25390t5);
             }
             if (z10) {
@@ -78,7 +78,7 @@ public final class jo0 implements org.telegram.messenger.gs {
                 hVar.a(1.0f);
                 gVar2.f56368m = hVar;
                 ap0Var.f33595x2 = gVar2;
-                gVar2.b(new un0(this, this.f36579c, iArr, 1));
+                gVar2.b(new un0(this, this.f36578c, iArr, 1));
                 ap0Var.f33595x2.a(new ya(this, 6));
                 ap0Var.f33595x2.h();
                 if (atomicReference.get() != null) {

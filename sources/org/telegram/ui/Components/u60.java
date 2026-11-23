@@ -4,20 +4,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 public final class u60 implements PopupWindow.OnDismissListener {
-    public final ViewGroup f40272a;
-    public final a70 f40273b;
+    public final ViewGroup f40271a;
+    public final a70 f40272b;
 
     public u60(a70 a70Var, ViewGroup viewGroup) {
-        this.f40273b = a70Var;
-        this.f40272a = viewGroup;
+        this.f40272b = a70Var;
+        this.f40271a = viewGroup;
     }
 
     @Override
     public final void onDismiss() {
         View view;
-        a70 a70Var = this.f40273b;
+        a70 a70Var = this.f40272b;
         a70Var.f33386m = null;
-        a70.a(a70Var, this.f40272a);
+        a70.a(a70Var, this.f40271a);
         View view2 = a70Var.f33398s0;
         if (view2 != null) {
             view2.setPressed(false);

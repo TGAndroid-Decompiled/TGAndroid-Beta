@@ -5,26 +5,26 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 public final class nr0 extends org.telegram.ui.ActionBar.m0 {
-    public final jt0 f37971a;
+    public final jt0 f37970a;
 
     public nr0(jt0 jt0Var) {
-        this.f37971a = jt0Var;
+        this.f37970a = jt0Var;
     }
 
     @Override
     public final void g() {
-        org.telegram.ui.ActionBar.q0 q0Var = this.f37971a.f36659q0;
+        org.telegram.ui.ActionBar.q0 q0Var = this.f37970a.f36658q0;
         q0Var.setTranslationX(((View) q0Var.getParent()).getMeasuredWidth() - q0Var.getRight());
     }
 
     @Override
     public final void h() {
-        jt0 jt0Var = this.f37971a;
+        jt0 jt0Var = this.f37970a;
         cr0 cr0Var = jt0Var.M0;
-        ImageView imageView = jt0Var.f36672u0;
+        ImageView imageView = jt0Var.f36671u0;
         jt0Var.Y0 = false;
         jt0Var.Z0 = null;
-        org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36656p0;
+        org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36655p0;
         if (q0Var != null) {
             q0Var.setVisibility(0);
         }
@@ -50,16 +50,16 @@ public final class nr0 extends org.telegram.ui.ActionBar.m0 {
         }
         jt0Var.X0 = false;
         jt0Var.setSearchItemVisibility(0);
-        jt0Var.f36640j0.G(null, true);
-        jt0Var.f36646l0.G(null, true);
-        jt0Var.f36643k0.G(null, true);
+        jt0Var.f36639j0.G(null, true);
+        jt0Var.f36645l0.G(null, true);
+        jt0Var.f36642k0.G(null, true);
         jt0Var.m0.F(null, true);
         vs0 vs0Var = jt0Var.V;
         if (vs0Var != null) {
             vs0Var.E(null, null);
         }
         jt0Var.X0(false);
-        rh0 rh0Var = jt0Var.f36674v0;
+        rh0 rh0Var = jt0Var.f36673v0;
         if (rh0Var != null) {
             rh0Var.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setDuration(320L).setInterpolator(nr.h).start();
         }
@@ -73,7 +73,7 @@ public final class nr0 extends org.telegram.ui.ActionBar.m0 {
     @Override
     public final void i() {
         boolean z10;
-        jt0 jt0Var = this.f37971a;
+        jt0 jt0Var = this.f37970a;
         jt0Var.Y0 = true;
         cr0 cr0Var = jt0Var.M0;
         if (cr0Var != null) {
@@ -84,17 +84,17 @@ public final class nr0 extends org.telegram.ui.ActionBar.m0 {
             }
             cr0Var.g(z10);
         }
-        ImageView imageView = jt0Var.f36672u0;
+        ImageView imageView = jt0Var.f36671u0;
         if (imageView != null) {
             imageView.setVisibility(8);
         }
-        org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36656p0;
+        org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36655p0;
         if (q0Var != null) {
             q0Var.setVisibility(8);
         }
         jt0Var.setSearchItemVisibility(8);
         jt0Var.X0(true);
-        rh0 rh0Var = jt0Var.f36674v0;
+        rh0 rh0Var = jt0Var.f36673v0;
         if (rh0Var != null) {
             rh0Var.animate().scaleX(0.6f).scaleY(0.6f).alpha(0.0f).setDuration(320L).setInterpolator(nr.h).start();
         }
@@ -102,7 +102,7 @@ public final class nr0 extends org.telegram.ui.ActionBar.m0 {
 
     @Override
     public final void k(EditTextBoldCursor editTextBoldCursor) {
-        qr0 qr0Var = this.f37971a.W;
+        qr0 qr0Var = this.f37970a.W;
         if (qr0Var != null) {
             qr0Var.f47013a.L9();
         }
@@ -113,7 +113,7 @@ public final class nr0 extends org.telegram.ui.ActionBar.m0 {
         boolean z10;
         vs0 vs0Var;
         String obj = editText.getText().toString();
-        jt0 jt0Var = this.f37971a;
+        jt0 jt0Var = this.f37970a;
         qr0 qr0Var = jt0Var.W;
         if (qr0Var != null) {
             org.telegram.ui.cn cnVar = qr0Var.f47013a;
@@ -142,19 +142,19 @@ public final class nr0 extends org.telegram.ui.ActionBar.m0 {
         }
         jt0Var.X0 = z10;
         jt0Var.post(new cp0(this, 2));
-        int i7 = jt0Var.f36651n0[0].F;
+        int i7 = jt0Var.f36650n0[0].F;
         if (i7 == 1) {
-            gs0 gs0Var = jt0Var.f36640j0;
+            gs0 gs0Var = jt0Var.f36639j0;
             if (gs0Var != null) {
                 gs0Var.G(obj, true);
             }
         } else if (i7 == 3) {
-            gs0 gs0Var2 = jt0Var.f36646l0;
+            gs0 gs0Var2 = jt0Var.f36645l0;
             if (gs0Var2 != null) {
                 gs0Var2.G(obj, true);
             }
         } else if (i7 == 4) {
-            gs0 gs0Var3 = jt0Var.f36643k0;
+            gs0 gs0Var3 = jt0Var.f36642k0;
             if (gs0Var3 != null) {
                 gs0Var3.G(obj, true);
             }

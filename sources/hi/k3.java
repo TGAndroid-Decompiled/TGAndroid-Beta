@@ -80,7 +80,7 @@ public final class k3 extends Drawable {
                 imageReceiver.h(canvas, null);
                 return;
             case 7:
-                ((xy0) this.f14868b).c(getBounds().centerX() - (((xy0) this.f14868b).f42247c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.G6, false), canvas);
+                ((xy0) this.f14868b).c(getBounds().centerX() - (((xy0) this.f14868b).f42246c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.G6, false), canvas);
                 return;
             case 8:
                 canvas.save();

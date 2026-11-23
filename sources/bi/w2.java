@@ -125,8 +125,8 @@ public final class w2 extends g.p {
                 return 1000;
             case 9:
                 hj hjVar = (hj) this.d;
-                int i20 = hjVar.f35916r;
-                int i21 = hjVar.f35919x;
+                int i20 = hjVar.f35915r;
+                int i21 = hjVar.f35918x;
                 if (i7 % i21 != i21 - 1) {
                     i15 = org.telegram.messenger.g0.L(5.0f);
                 } else {
@@ -135,7 +135,7 @@ public final class w2 extends g.p {
                 return i20 + i15;
             case 10:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.d;
-                if (i7 != chatAttachAlertPhotoLayout.H.f36558n - 1 && ((!chatAttachAlertPhotoLayout.Q0 && !chatAttachAlertPhotoLayout.P0) || i7 != 0)) {
+                if (i7 != chatAttachAlertPhotoLayout.H.f36557n - 1 && ((!chatAttachAlertPhotoLayout.Q0 && !chatAttachAlertPhotoLayout.P0) || i7 != 0)) {
                     if (chatAttachAlertPhotoLayout.P0) {
                         i7--;
                     }
@@ -153,26 +153,26 @@ public final class w2 extends g.p {
                 yx yxVar = (yx) this.d;
                 ty tyVar = yxVar.Y;
                 if (i7 == 0) {
-                    tyVar.f40123o0.getClass();
+                    tyVar.f40122o0.getClass();
                 }
-                v4.i0 adapter = tyVar.f40107i0.getAdapter();
-                xx xxVar = tyVar.f40113k0;
-                if (adapter == xxVar && xxVar.f42244y.isEmpty()) {
+                v4.i0 adapter = tyVar.f40106i0.getAdapter();
+                xx xxVar = tyVar.f40112k0;
+                if (adapter == xxVar && xxVar.f42243y.isEmpty()) {
                     return yxVar.J;
                 }
-                tyVar.f40123o0.getClass();
+                tyVar.f40122o0.getClass();
                 yxVar.B1();
                 return yxVar.R.get(i7);
             case 12:
                 qa0 qa0Var = (qa0) this.d;
-                if (i7 >= 0 && i7 < qa0Var.f38862r.f24737f.size() && (a10 = qa0.a(qa0Var, (gjVar2 = (gj) qa0Var.f38862r.f24737f.get(i7)))) != null) {
+                if (i7 >= 0 && i7 < qa0Var.f38861r.f24737f.size() && (a10 = qa0.a(qa0Var, (gjVar2 = (gj) qa0Var.f38861r.f24737f.get(i7)))) != null) {
                     return a10.d(gjVar2).f28098i;
                 }
                 return 1000;
             case 13:
                 kw0 kw0Var = (kw0) this.d;
-                if ((kw0Var.R1 != null && (kw0Var.f37019o1.f35689e.get(i7) instanceof Integer)) || i7 == kw0Var.f37019o1.h) {
-                    return kw0Var.f37019o1.d;
+                if ((kw0Var.R1 != null && (kw0Var.f37018o1.f35689e.get(i7) instanceof Integer)) || i7 == kw0Var.f37018o1.h) {
+                    return kw0Var.f37018o1.d;
                 }
                 return 1;
             case 14:

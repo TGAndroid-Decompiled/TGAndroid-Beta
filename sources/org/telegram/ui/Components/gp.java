@@ -21,7 +21,7 @@ public final class gp implements si {
         dp dpVar = new dp(obj, null, true, 3);
         np npVar = this.f35649a;
         dpVar.X1 = npVar.Z1;
-        dpVar.h1(npVar.f37935v1.a());
+        dpVar.h1(npVar.f37934v1.a());
         dpVar.K1 = new fp(this, 1);
         np.J0(npVar, dpVar);
     }
@@ -46,7 +46,7 @@ public final class gp implements si {
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
         np npVar = this.f35649a;
         try {
-            HashMap<Object, Object> selectedPhotos = npVar.S1.f40379e2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = npVar.S1.f40378e2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) selectedPhotos.values().iterator().next();
                 String str = ffVar.h;
@@ -64,7 +64,7 @@ public final class gp implements si {
                     dpVar.H1 = false;
                     dpVar.G1 = false;
                     dpVar.f53760p1 = 0.2f;
-                    dpVar.h1(npVar.f37935v1.a());
+                    dpVar.h1(npVar.f37934v1.a());
                     dpVar.K1 = new fp(this, 0);
                     np.J0(npVar, dpVar);
                 }

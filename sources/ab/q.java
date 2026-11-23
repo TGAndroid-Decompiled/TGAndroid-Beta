@@ -327,7 +327,7 @@ public final class q implements f3.q, bn0 {
 
     @Override
     public boolean e() {
-        return ((x30) this.d).f41960b.e();
+        return ((x30) this.d).f41959b.e();
     }
 
     public void f() {
@@ -373,7 +373,7 @@ public final class q implements f3.q, bn0 {
         ofInt.addUpdateListener(new ch.w(15, this, tVar));
         ofInt.setDuration(i12);
         ofInt.setStartDelay(i11);
-        ofInt.setInterpolator(nr.f37961f);
+        ofInt.setInterpolator(nr.f37960f);
         return ofInt;
     }
 
@@ -593,7 +593,7 @@ public final class q implements f3.q, bn0 {
         ArrayList arrayList = (ArrayList) this.f989c;
         x30 x30Var = (x30) this.d;
         HashMap hashMap = (HashMap) this.f988b;
-        if (!hashMap.isEmpty() && x30Var.f41960b != null && !this.f987a && !z10) {
+        if (!hashMap.isEmpty() && x30Var.f41959b != null && !this.f987a && !z10) {
             this.f987a = true;
             ArrayList arrayList2 = new ArrayList();
             for (int i10 = 0; i10 < arrayList.size(); i10++) {

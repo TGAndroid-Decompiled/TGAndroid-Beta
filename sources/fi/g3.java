@@ -107,7 +107,7 @@ public final class g3 extends x7 {
             M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof u41);
         } else if (characterStyle instanceof r41) {
             r41 r41Var = (r41) characterStyle;
-            org.telegram.messenger.g0.g(r41Var.f39072a.subSequence(r41Var.f39073b, r41Var.f39074c).toString());
+            org.telegram.messenger.g0.g(r41Var.f39071a.subSequence(r41Var.f39072b, r41Var.f39073c).toString());
             o10.t(null, 2131743951, new lc(z3Var.M0, this.f12054z0));
         } else if (characterStyle instanceof ClickableSpan) {
             ((ClickableSpan) characterStyle).onClick(view);
@@ -317,7 +317,7 @@ public final class g3 extends x7 {
             }
             return;
         }
-        if ((characterStyle instanceof u41) && (fz0Var = ((u41) characterStyle).f40260a) != null && (fz0Var.f35337a & 1024) != 0) {
+        if ((characterStyle instanceof u41) && (fz0Var = ((u41) characterStyle).f40259a) != null && (fz0Var.f35337a & 1024) != 0) {
             z11 = true;
         } else {
             z11 = false;

@@ -140,7 +140,7 @@ public final class gi0 extends FrameLayout {
             gi0Var.f35584f.f();
             if (!gi0Var.f35589x) {
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                duration.setInterpolator(nr.f37961f);
+                duration.setInterpolator(nr.f37960f);
                 duration.addUpdateListener(new h60(gi0Var, 6));
                 duration.addListener(new s60(gi0Var, 12));
                 duration.start();
@@ -209,14 +209,14 @@ public final class gi0 extends FrameLayout {
             Iterator it = list.iterator();
             while (it.hasNext()) {
                 vh0 vh0Var = (vh0) it.next();
-                TLObject tLObject = vh0Var.f40832a;
-                if (vh0Var.f40834c > 0) {
+                TLObject tLObject = vh0Var.f40831a;
+                if (vh0Var.f40833c > 0) {
                     int i7 = 0;
                     while (true) {
                         if (i7 < arrayList.size()) {
                             TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) arrayList.get(i7);
-                            if (messagePeerReaction != null && messagePeerReaction.date <= 0 && org.telegram.messenger.gj.B1(messagePeerReaction.peer_id) == vh0Var.f40833b) {
-                                messagePeerReaction.date = vh0Var.f40834c;
+                            if (messagePeerReaction != null && messagePeerReaction.date <= 0 && org.telegram.messenger.gj.B1(messagePeerReaction.peer_id) == vh0Var.f40832b) {
+                                messagePeerReaction.date = vh0Var.f40833c;
                                 messagePeerReaction.dateIsSeen = true;
                                 break;
                             }
@@ -232,8 +232,8 @@ public final class gi0 extends FrameLayout {
         Iterator it2 = list.iterator();
         while (it2.hasNext()) {
             vh0 vh0Var2 = (vh0) it2.next();
-            long j3 = vh0Var2.f40833b;
-            TLObject tLObject2 = vh0Var2.f40832a;
+            long j3 = vh0Var2.f40832b;
+            TLObject tLObject2 = vh0Var2.f40831a;
             LongSparseArray longSparseArray = this.f35586r;
             if (((ArrayList) longSparseArray.get(j3)) == null) {
                 TLRPC.TL_messagePeerReaction tL_messagePeerReaction = new TLRPC.TL_messagePeerReaction();
@@ -247,7 +247,7 @@ public final class gi0 extends FrameLayout {
                     tL_messagePeerReaction.peer_id = tL_peerChat;
                     tL_peerChat.chat_id = ((TLRPC.Chat) tLObject2).f28434id;
                 }
-                tL_messagePeerReaction.date = vh0Var2.f40834c;
+                tL_messagePeerReaction.date = vh0Var2.f40833c;
                 tL_messagePeerReaction.dateIsSeen = true;
                 ArrayList arrayList3 = new ArrayList();
                 arrayList3.add(tL_messagePeerReaction);

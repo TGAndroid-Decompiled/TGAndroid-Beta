@@ -39,7 +39,7 @@ public final class g7 extends n41 {
         if (obj2 instanceof z10) {
             h7Var.setNeedPlayMessageListener((z10) obj2);
         }
-        h7Var.e(o41Var.f38085e, false);
+        h7Var.e(o41Var.f38084e, false);
     }
 
     @Override

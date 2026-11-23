@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class y11 extends n41 {
-    public static final int f42305b = 0;
+    public static final int f42304b = 0;
 
     static {
         n41.h(new n41());
@@ -15,30 +15,30 @@ public final class y11 extends n41 {
         boolean z11;
         z11 z11Var = (z11) view;
         boolean z12 = false;
-        if (o41Var.f38098s) {
+        if (o41Var.f38097s) {
             z11Var.e();
         } else {
             Object obj = o41Var.H;
             if (obj == null) {
                 if (o41Var.C == -2) {
-                    z11Var.b(o41Var.f38097r, o41Var.f38085e);
+                    z11Var.b(o41Var.f38096r, o41Var.f38084e);
                 } else {
-                    if ((o41Var.f38104z & 1) != 0) {
+                    if ((o41Var.f38103z & 1) != 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    z11Var.c(z11, o41Var.f38097r, o41Var.f38085e);
+                    z11Var.c(z11, o41Var.f38096r, o41Var.f38084e);
                 }
             } else if (obj instanceof TLRPC.TL_forumTopic) {
                 if (!o41Var.J) {
-                    z11Var.f((TLRPC.TL_forumTopic) obj, o41Var.f38085e);
+                    z11Var.f((TLRPC.TL_forumTopic) obj, o41Var.f38084e);
                 } else {
-                    z11Var.a(o41Var.f38103y, (TLRPC.TL_forumTopic) obj, o41Var.f38085e);
+                    z11Var.a(o41Var.f38102y, (TLRPC.TL_forumTopic) obj, o41Var.f38084e);
                 }
             }
         }
-        if (h51Var != null && h51Var.f35793k3 && z11Var.F) {
+        if (h51Var != null && h51Var.f35792k3 && z11Var.F) {
             z12 = true;
         }
         z11Var.setReorder(z12);

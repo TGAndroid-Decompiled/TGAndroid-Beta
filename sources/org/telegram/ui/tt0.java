@@ -41,7 +41,7 @@ public final class tt0 implements u40, org.telegram.ui.Components.wu0, org.teleg
         }
         if (profileActivity.O != null) {
             profileActivity.H3();
-            org.telegram.ui.Components.gq0 gq0Var = profileActivity.O.f36614b0;
+            org.telegram.ui.Components.gq0 gq0Var = profileActivity.O.f36613b0;
             if (gq0Var != null) {
                 gq0Var.setButtonOffset(profileActivity.P6 + profileActivity.O6);
             }

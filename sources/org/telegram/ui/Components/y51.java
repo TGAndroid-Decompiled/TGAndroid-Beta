@@ -6,26 +6,26 @@ import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 public final class y51 extends TextureView implements TextureView.SurfaceTextureListener {
-    public i61 f42322a;
-    public ez f42323b;
-    public final aj0 f42324c;
+    public i61 f42321a;
+    public ez f42322b;
+    public final aj0 f42323c;
     public int d;
-    public int f42325e;
-    public hi.b7 f42326f;
+    public int f42324e;
+    public hi.b7 f42325f;
     public x51 h;
-    public int f42327n;
-    public int f42328r;
-    public ca f42329s;
+    public int f42326n;
+    public int f42327r;
+    public ca f42328s;
 
     public y51(Context context, i61 i61Var) {
         super(context);
-        this.f42324c = new Object();
-        this.f42322a = i61Var;
+        this.f42323c = new Object();
+        this.f42321a = i61Var;
         setSurfaceTextureListener(this);
     }
 
     public final void a(float f10, float f11, float f12, float f13) {
-        aj0 aj0Var = this.f42324c;
+        aj0 aj0Var = this.f42323c;
         aj0Var.f33535a = f10;
         aj0Var.f33536b = f11;
         aj0Var.f33537c = f12;
@@ -34,16 +34,16 @@ public final class y51 extends TextureView implements TextureView.SurfaceTexture
 
     public Bitmap getUiBlurBitmap() {
         ha haVar;
-        ez ezVar = this.f42323b;
+        ez ezVar = this.f42322b;
         if (ezVar == null || (haVar = ezVar.J) == null) {
             return null;
         }
-        synchronized (haVar.f35851n) {
+        synchronized (haVar.f35850n) {
             try {
-                if (!haVar.f35854q) {
+                if (!haVar.f35853q) {
                     return null;
                 }
-                return haVar.f35853p;
+                return haVar.f35852p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -51,7 +51,7 @@ public final class y51 extends TextureView implements TextureView.SurfaceTexture
     }
 
     public int getVideoHeight() {
-        return this.f42325e;
+        return this.f42324e;
     }
 
     public int getVideoWidth() {
@@ -61,44 +61,44 @@ public final class y51 extends TextureView implements TextureView.SurfaceTexture
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
         int i11;
-        if (this.f42323b == null && surfaceTexture != null && this.f42322a != null) {
-            ez ezVar = new ez(surfaceTexture, new ky(this, 25), this.f42326f, this.f42329s, i7, i10);
-            this.f42323b = ezVar;
-            ezVar.h(this.f42327n, this.f42328r);
-            ez ezVar2 = this.f42323b;
-            ca caVar = this.f42329s;
+        if (this.f42322b == null && surfaceTexture != null && this.f42321a != null) {
+            ez ezVar = new ez(surfaceTexture, new ky(this, 25), this.f42325f, this.f42328s, i7, i10);
+            this.f42322b = ezVar;
+            ezVar.h(this.f42326n, this.f42327r);
+            ez ezVar2 = this.f42322b;
+            ca caVar = this.f42328s;
             ha haVar = ezVar2.J;
             if (haVar != null) {
-                ca caVar2 = haVar.f35857t;
+                ca caVar2 = haVar.f35856t;
                 if (caVar2 != null && caVar2.f34135m != null) {
                     caVar2.f34135m = null;
                 }
-                haVar.f35857t = caVar;
+                haVar.f35856t = caVar;
                 if (caVar != null && caVar.f34135m != haVar) {
                     caVar.f34135m = haVar;
                     caVar.d();
                 }
             }
             int i12 = this.d;
-            if (i12 != 0 && (i11 = this.f42325e) != 0) {
-                ez ezVar3 = this.f42323b;
+            if (i12 != 0 && (i11 = this.f42324e) != 0) {
+                ez ezVar3 = this.f42322b;
                 ezVar3.getClass();
                 ezVar3.postRunnable(new az(ezVar3, i12, i11, 0));
             }
-            this.f42323b.c(true, true, false);
+            this.f42322b.c(true, true, false);
             x51 x51Var = this.h;
             if (x51Var != null) {
-                x51Var.a(this.f42323b);
+                x51Var.a(this.f42322b);
             }
         }
     }
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        ez ezVar = this.f42323b;
+        ez ezVar = this.f42322b;
         if (ezVar != null) {
             ezVar.postRunnable(new bz(ezVar, 0));
-            this.f42323b = null;
+            this.f42322b = null;
             return true;
         }
         return true;
@@ -106,17 +106,17 @@ public final class y51 extends TextureView implements TextureView.SurfaceTexture
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        ez ezVar = this.f42323b;
+        ez ezVar = this.f42322b;
         if (ezVar != null) {
             ezVar.postRunnable(new az(ezVar, i7, i10, 1));
-            this.f42323b.c(false, true, false);
-            this.f42323b.postRunnable(new w51(this, 0));
+            this.f42322b.c(false, true, false);
+            this.f42322b.postRunnable(new w51(this, 0));
         }
     }
 
     public void setDelegate(x51 x51Var) {
         this.h = x51Var;
-        ez ezVar = this.f42323b;
+        ez ezVar = this.f42322b;
         if (ezVar != null) {
             if (x51Var == null) {
                 ezVar.d(null);
@@ -127,8 +127,8 @@ public final class y51 extends TextureView implements TextureView.SurfaceTexture
     }
 
     public void setHDRInfo(hi.b7 b7Var) {
-        this.f42326f = b7Var;
-        ez ezVar = this.f42323b;
+        this.f42325f = b7Var;
+        ez ezVar = this.f42322b;
         if (ezVar != null) {
             ezVar.postRunnable(new ou(8, ezVar, b7Var));
         }
@@ -137,7 +137,7 @@ public final class y51 extends TextureView implements TextureView.SurfaceTexture
     @Override
     public void setTransform(Matrix matrix) {
         super.setTransform(matrix);
-        ez ezVar = this.f42323b;
+        ez ezVar = this.f42322b;
         if (ezVar != null) {
             int width = getWidth();
             int height = getHeight();

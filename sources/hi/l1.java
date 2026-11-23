@@ -22,7 +22,7 @@ public final class l1 extends pi.l {
                 ((o1) this.f14964r).j3 = true;
                 return;
             case 1:
-                ((ty) this.f14964r).f40101g0 = true;
+                ((ty) this.f14964r).f40100g0 = true;
                 return;
             case 2:
             case 3:
@@ -41,10 +41,10 @@ public final class l1 extends pi.l {
                 ((o1) this.f14964r).j3 = false;
                 return;
             case 1:
-                ((ty) this.f14964r).f40101g0 = false;
+                ((ty) this.f14964r).f40100g0 = false;
                 return;
             case 2:
-                ((uw) this.f14964r).Q.f40101g0 = false;
+                ((uw) this.f14964r).Q.f40100g0 = false;
                 return;
             case 3:
                 ((h01) this.f14964r).R.f51880y1 = false;

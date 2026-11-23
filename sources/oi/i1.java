@@ -184,7 +184,7 @@ public final class i1 implements View.OnClickListener {
                                 kVar.f53215n.setOnClickListener(yVar);
                                 kVar.f53211b = false;
                                 kVar.setInput(null);
-                                f6Var.f35790g3.O(true);
+                                f6Var.f35789g3.O(true);
                                 f6Var.v0(0);
                             }
                             org.telegram.ui.l0 l0Var = g4Var.f47961i0;
@@ -201,7 +201,7 @@ public final class i1 implements View.OnClickListener {
                     } else if (t3Var != null) {
                         mu0 mu0Var = new mu0(activity);
                         mu0Var.f59109a = 1;
-                        mu0Var.f37644s = -org.telegram.messenger.g0.L(32.0f);
+                        mu0Var.f37643s = -org.telegram.messenger.g0.L(32.0f);
                         k3Var.d.w0(mu0Var);
                         return;
                     } else {
@@ -380,7 +380,7 @@ public final class i1 implements View.OnClickListener {
                 org.telegram.ui.Cells.l3 l3Var = i0Var.X1;
                 org.telegram.ui.Cells.l3 l3Var2 = i0Var.W1;
                 op opVar = i0Var.Z1;
-                hi.e eVar2 = i0Var.f36060c2;
+                hi.e eVar2 = i0Var.f36059c2;
                 if (!eVar2.R) {
                     if (!eVar2.f14567e0) {
                         if (i0Var.d2 == null) {
@@ -390,11 +390,11 @@ public final class i1 implements View.OnClickListener {
                         return;
                     }
                     eVar2.setLoading(true);
-                    if (i0Var.f36062f2 != null) {
+                    if (i0Var.f36061f2 != null) {
                         TL_aicompose.updateTone updatetone = new TL_aicompose.updateTone();
                         updatetone.flags |= 1;
-                        updatetone.display_author = opVar.f38321a.f32874q;
-                        updatetone.tone = TL_aicompose.InputAiComposeTone.from(i0Var.f36062f2);
+                        updatetone.display_author = opVar.f38320a.f32874q;
+                        updatetone.tone = TL_aicompose.InputAiComposeTone.from(i0Var.f36061f2);
                         updatetone.flags |= 2;
                         updatetone.emoji_id = i0Var.d2.longValue();
                         updatetone.flags |= 4;
@@ -409,27 +409,27 @@ public final class i1 implements View.OnClickListener {
                                 switch (r3) {
                                     case 0:
                                         i0 i0Var2 = i0Var;
-                                        i0Var2.f36060c2.setLoading(false);
+                                        i0Var2.f36059c2.setLoading(false);
                                         if (aiComposeTone != null) {
-                                            f fVar = i0Var2.f36064h2;
+                                            f fVar = i0Var2.f36063h2;
                                             if (fVar != null) {
                                                 fVar.a(aiComposeTone);
                                             }
                                             i0Var2.dismiss();
                                             return;
                                         } else if (tL_error != null) {
-                                            org.telegram.ui.Cells.c0.t(i0Var2.f36059b2, h6Var, tL_error, false);
+                                            org.telegram.ui.Cells.c0.t(i0Var2.f36058b2, h6Var, tL_error, false);
                                             return;
                                         } else {
                                             return;
                                         }
                                     default:
                                         i0 i0Var3 = i0Var;
-                                        FrameLayout frameLayout = i0Var3.f36059b2;
-                                        i0Var3.f36060c2.setLoading(false);
+                                        FrameLayout frameLayout = i0Var3.f36058b2;
+                                        i0Var3.f36059c2.setLoading(false);
                                         if (aiComposeTone != null) {
                                             i0Var3.dismiss();
-                                            f fVar2 = i0Var3.f36063g2;
+                                            f fVar2 = i0Var3.f36062g2;
                                             if (fVar2 != null) {
                                                 fVar2.a(aiComposeTone);
                                                 return;
@@ -454,7 +454,7 @@ public final class i1 implements View.OnClickListener {
                         return;
                     }
                     TL_aicompose.createTone createtone = new TL_aicompose.createTone();
-                    createtone.display_author = opVar.f38321a.f32874q;
+                    createtone.display_author = opVar.f38320a.f32874q;
                     createtone.emoji_id = i0Var.d2.longValue();
                     createtone.title = l3Var2.getText().toString();
                     createtone.prompt = l3Var.getText().toString();
@@ -466,27 +466,27 @@ public final class i1 implements View.OnClickListener {
                             switch (r3) {
                                 case 0:
                                     i0 i0Var2 = i0Var;
-                                    i0Var2.f36060c2.setLoading(false);
+                                    i0Var2.f36059c2.setLoading(false);
                                     if (aiComposeTone != null) {
-                                        f fVar = i0Var2.f36064h2;
+                                        f fVar = i0Var2.f36063h2;
                                         if (fVar != null) {
                                             fVar.a(aiComposeTone);
                                         }
                                         i0Var2.dismiss();
                                         return;
                                     } else if (tL_error != null) {
-                                        org.telegram.ui.Cells.c0.t(i0Var2.f36059b2, h6Var, tL_error, false);
+                                        org.telegram.ui.Cells.c0.t(i0Var2.f36058b2, h6Var, tL_error, false);
                                         return;
                                     } else {
                                         return;
                                     }
                                 default:
                                     i0 i0Var3 = i0Var;
-                                    FrameLayout frameLayout = i0Var3.f36059b2;
-                                    i0Var3.f36060c2.setLoading(false);
+                                    FrameLayout frameLayout = i0Var3.f36058b2;
+                                    i0Var3.f36059c2.setLoading(false);
                                     if (aiComposeTone != null) {
                                         i0Var3.dismiss();
-                                        f fVar2 = i0Var3.f36063g2;
+                                        f fVar2 = i0Var3.f36062g2;
                                         if (fVar2 != null) {
                                             fVar2.a(aiComposeTone);
                                             return;
@@ -519,8 +519,8 @@ public final class i1 implements View.OnClickListener {
                 org.telegram.ui.Components.z4 z4Var = (org.telegram.ui.Components.z4) obj;
                 q0Var.V(null, null);
                 q0Var.P(z4Var.d, false);
-                q0Var.setupPopupRadialSelectors(z4Var.f42675f);
-                q0Var.I(z4Var.f42674e);
+                q0Var.setupPopupRadialSelectors(z4Var.f42674f);
+                q0Var.I(z4Var.f42673e);
                 return;
             case 23:
                 boolean[] zArr = (boolean[]) obj2;

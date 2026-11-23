@@ -81,22 +81,22 @@ public final class x7 implements Runnable {
                 }
                 return;
             case 4:
-                ((ke0) obj).f36897a.f37169b.x3(i11, z10);
+                ((ke0) obj).f36896a.f37168b.x3(i11, z10);
                 return;
             case 5:
                 ul0 ul0Var = (ul0) obj;
-                ul0Var.f40490o = null;
+                ul0Var.f40489o = null;
                 ul0Var.c(i11, z10, true);
                 return;
             case 6:
-                jt0 jt0Var = ((hr0) obj).f35958a;
-                org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36684y1;
+                jt0 jt0Var = ((hr0) obj).f35957a;
+                org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36683y1;
                 if (g2Var != null) {
                     if (z10) {
                         TLRPC.TL_channels_setMainProfileTab tL_channels_setMainProfileTab = new TLRPC.TL_channels_setMainProfileTab();
                         tL_channels_setMainProfileTab.tab = jt0.o0(i11, true);
-                        tL_channels_setMainProfileTab.channel = g2Var.getMessagesController().j1(jt0Var.f36632g1.f28435id);
-                        TLRPC.ChatFull chatFull = jt0Var.f36632g1;
+                        tL_channels_setMainProfileTab.channel = g2Var.getMessagesController().j1(jt0Var.f36631g1.f28435id);
+                        TLRPC.ChatFull chatFull = jt0Var.f36631g1;
                         chatFull.flags2 |= 4194304;
                         chatFull.main_tab = tL_channels_setMainProfileTab.tab;
                         tL_account_setMainProfileTab = tL_channels_setMainProfileTab;
@@ -104,12 +104,12 @@ public final class x7 implements Runnable {
                         TLRPC.TL_account_setMainProfileTab tL_account_setMainProfileTab2 = new TLRPC.TL_account_setMainProfileTab();
                         TLRPC.ProfileTab o02 = jt0.o0(i11, true);
                         tL_account_setMainProfileTab2.tab = o02;
-                        TLRPC.UserFull userFull = jt0Var.f36635h1;
+                        TLRPC.UserFull userFull = jt0Var.f36634h1;
                         tL_account_setMainProfileTab = tL_account_setMainProfileTab2;
                         if (userFull != null) {
                             userFull.flags2 |= 1048576;
                             userFull.main_tab = o02;
-                            g2Var.getMessagesStorage().j2(jt0Var.f36635h1, true);
+                            g2Var.getMessagesStorage().j2(jt0Var.f36634h1, true);
                             tL_account_setMainProfileTab = tL_account_setMainProfileTab2;
                         }
                     }

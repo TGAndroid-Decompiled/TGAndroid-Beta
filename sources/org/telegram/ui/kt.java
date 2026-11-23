@@ -17,7 +17,7 @@ public final class kt extends org.telegram.ui.Components.rc {
     @Override
     public final void d(int i7, boolean z10) {
         int i10;
-        mt mtVar = (mt) this.f49384f0.f37884e;
+        mt mtVar = (mt) this.f49384f0.f37883e;
         if (!z10) {
             mtVar.l1();
         } else if (i7 >= 0 && i7 < mtVar.f49980o3.length) {

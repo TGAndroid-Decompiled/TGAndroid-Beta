@@ -56,7 +56,7 @@ public final class y6 implements r10 {
                         int i12 = u7.f4164b;
                         o41 K = o41.K(u7.class);
                         K.H = stargiftattributepattern;
-                        K.f38092m = lowerCase;
+                        K.f38091m = lowerCase;
                         K.A = intValue;
                         if (!TextUtils.isEmpty(lowerCase)) {
                             if (!isEmpty && !contains) {
@@ -99,7 +99,7 @@ public final class y6 implements r10 {
                         int i14 = j7.f3756b;
                         o41 K2 = o41.K(j7.class);
                         K2.H = stargiftattributebackdrop;
-                        K2.f38092m = lowerCase2;
+                        K2.f38091m = lowerCase2;
                         K2.A = intValue2;
                         if (!TextUtils.isEmpty(lowerCase2)) {
                             if (!isEmpty2 && !contains2) {
@@ -143,7 +143,7 @@ public final class y6 implements r10 {
                         int i16 = r7.f4056b;
                         o41 K3 = o41.K(r7.class);
                         K3.H = stargiftattributemodel;
-                        K3.f38092m = lowerCase3;
+                        K3.f38091m = lowerCase3;
                         K3.A = i7;
                         if (!TextUtils.isEmpty(lowerCase3)) {
                             if (!isEmpty3 && !contains3) {

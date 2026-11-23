@@ -206,7 +206,7 @@ public class b6 extends FrameLayout implements yw0, te.b {
                             b6 b6Var = this.f30415b;
                             op opVar2 = b6Var.f30479r;
                             if (opVar2.getTag() != null) {
-                                b6Var.i(b6Var, !opVar2.f38321a.f32874q);
+                                b6Var.i(b6Var, !opVar2.f38320a.f32874q);
                                 return;
                             }
                             return;
@@ -241,7 +241,7 @@ public class b6 extends FrameLayout implements yw0, te.b {
             ah ahVar = new ah(context);
             this.E = ahVar;
             org.telegram.ui.ActionBar.t6.s(ahVar, org.telegram.ui.ActionBar.m6.f29546m6, h6Var, PorterDuff.Mode.SRC_IN);
-            ahVar.j(yg.f42430e, false);
+            ahVar.j(yg.f42429e, false);
             int L = org.telegram.messenger.g0.L(9.5f);
             ahVar.setPadding(L, L, L, L);
             ahVar.setVisibility(8);
@@ -281,7 +281,7 @@ public class b6 extends FrameLayout implements yw0, te.b {
                             b6 b6Var = this.f30415b;
                             op opVar2 = b6Var.f30479r;
                             if (opVar2.getTag() != null) {
-                                b6Var.i(b6Var, !opVar2.f38321a.f32874q);
+                                b6Var.i(b6Var, !opVar2.f38320a.f32874q);
                                 return;
                             }
                             return;

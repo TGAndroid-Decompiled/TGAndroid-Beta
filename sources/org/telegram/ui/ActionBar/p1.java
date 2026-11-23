@@ -30,7 +30,7 @@ public final class p1 extends LinearLayout implements b6 {
         ?? obj = new Object();
         obj.f34388f = 0L;
         obj.f34389g = 200L;
-        obj.h = nr.f37961f;
+        obj.h = nr.f37960f;
         obj.f34384a = this;
         obj.d = 0.0f;
         obj.f34386c = 0.0f;

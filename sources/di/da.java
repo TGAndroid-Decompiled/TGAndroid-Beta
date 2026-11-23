@@ -235,8 +235,8 @@ public final class da implements Runnable {
                 TLObject tLObject3 = (TLObject) this.f8703f;
                 ArrayList arrayList3 = ksVar.W;
                 int i14 = ksVar.Q;
-                if (this.f8701c == ksVar.f36971g0 && TextUtils.equals(tL_messages_searchGlobal.f28547q, ksVar.f36972h0)) {
-                    ksVar.f36967c0 = false;
+                if (this.f8701c == ksVar.f36970g0 && TextUtils.equals(tL_messages_searchGlobal.f28547q, ksVar.f36971h0)) {
+                    ksVar.f36966c0 = false;
                     if (!this.f8700b) {
                         arrayList3.clear();
                     }
@@ -252,12 +252,12 @@ public final class da implements Runnable {
                             TLRPC.Message message = arrayList4.get(i15);
                             i15++;
                             gj gjVar = new gj(i14, message, false, true);
-                            gjVar.K5(ksVar.f36972h0, true);
+                            gjVar.K5(ksVar.f36971h0, true);
                             arrayList3.add(gjVar);
                         }
-                        ksVar.f36969e0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
+                        ksVar.f36968e0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList3.size(), messages_messages.count);
-                        ksVar.f36970f0 = messages_messages.next_rate;
+                        ksVar.f36969f0 = messages_messages.next_rate;
                     }
                     ksVar.O(true);
                     return;
@@ -269,7 +269,7 @@ public final class da implements Runnable {
                 TLObject tLObject4 = (TLObject) this.f8703f;
                 ArrayList arrayList5 = msVar.S;
                 int i16 = msVar.Q;
-                if (this.f8701c == msVar.f37625d0 && TextUtils.equals(tL_messages_searchGlobal2.f28547q, msVar.f37626e0)) {
+                if (this.f8701c == msVar.f37624d0 && TextUtils.equals(tL_messages_searchGlobal2.f28547q, msVar.f37625e0)) {
                     msVar.Z = false;
                     if (!this.f8700b) {
                         arrayList5.clear();
@@ -286,12 +286,12 @@ public final class da implements Runnable {
                             TLRPC.Message message2 = arrayList6.get(i17);
                             i17++;
                             gj gjVar2 = new gj(i16, message2, false, true);
-                            gjVar2.K5(msVar.f37626e0, true);
+                            gjVar2.K5(msVar.f37625e0, true);
                             arrayList5.add(gjVar2);
                         }
-                        msVar.f37623b0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
+                        msVar.f37622b0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList5.size(), messages_messages2.count);
-                        msVar.f37624c0 = messages_messages2.next_rate;
+                        msVar.f37623c0 = messages_messages2.next_rate;
                     }
                     msVar.O(true);
                     return;

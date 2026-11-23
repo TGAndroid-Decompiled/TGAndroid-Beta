@@ -25,7 +25,7 @@ public final class a7 implements Runnable {
                     x7Var.m();
                     h51 h51Var = this.f3414c[0];
                     if (h51Var != null) {
-                        h51Var.f35790g3.O(true);
+                        h51Var.f35789g3.O(true);
                     }
                     this.d.f33394q0 = true;
                     return;
@@ -38,7 +38,7 @@ public final class a7 implements Runnable {
                     x7Var2.m();
                     h51 h51Var2 = this.f3414c[0];
                     if (h51Var2 != null) {
-                        h51Var2.f35790g3.O(true);
+                        h51Var2.f35789g3.O(true);
                     }
                     this.d.f33394q0 = true;
                     return;
@@ -51,7 +51,7 @@ public final class a7 implements Runnable {
                     x7Var3.m();
                     h51 h51Var3 = this.f3414c[0];
                     if (h51Var3 != null) {
-                        h51Var3.f35790g3.O(true);
+                        h51Var3.f35789g3.O(true);
                     }
                     this.d.f33394q0 = true;
                     return;

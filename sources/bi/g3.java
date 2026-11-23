@@ -302,7 +302,7 @@ public class g3 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
         q9Var2.getImageReceiver().y0((f10 - W1) / 2.0f, (f17 - W1) / 2.0f, W1, W1);
         q9Var2.getImageReceiver().h(canvas2, null);
         oh0 B = q9Var2.getImageReceiver().B();
-        if (B != null && B.f38220l0) {
+        if (B != null && B.f38219l0) {
             w60Var.invalidate();
         }
         if (b1Var.getVisibility() == 0 && b1Var.getAlpha() > 0.0f) {
@@ -358,11 +358,11 @@ public class g3 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
                 this.S = new xy0(hd.H(',', "Gift2CollectionNumber", tL_starGiftUnique.num), 13.0f, null);
             }
             xy0 xy0Var = this.R;
-            xy0Var.f42258p = f10 - org.telegram.messenger.g0.L(8.0f);
+            xy0Var.f42257p = f10 - org.telegram.messenger.g0.L(8.0f);
             float f18 = f16 - f12;
             xy0Var.c((f10 - this.R.k()) / 2.0f, ((f11 - org.telegram.messenger.g0.L(40.0f)) - (this.R.i() / 2.0f)) + (org.telegram.messenger.g0.L(50.0f) * f18), f12, -1, canvas);
             xy0 xy0Var2 = this.S;
-            xy0Var2.f42258p = f10 - org.telegram.messenger.g0.L(8.0f);
+            xy0Var2.f42257p = f10 - org.telegram.messenger.g0.L(8.0f);
             xy0Var2.c((f10 - this.S.k()) / 2.0f, ((f11 - org.telegram.messenger.g0.L(19.0f)) - (this.S.i() / 2.0f)) + (org.telegram.messenger.g0.L(50.0f) * f18), 0.6f * f12, -1, canvas);
             canvas2 = canvas;
         }

@@ -136,11 +136,11 @@ public final class s0 extends View {
         this.f1496s = new RectF();
         this.f1501w = new RectF();
         this.f1503x = new float[2];
-        nr nrVar = nr.f37962g;
+        nr nrVar = nr.f37961g;
         this.F = new d6(this, 0L, 220L, nrVar);
         nr nrVar2 = nr.h;
         this.G = new d6(this, 0L, 320L, nrVar2);
-        nr nrVar3 = nr.f37964j;
+        nr nrVar3 = nr.f37963j;
         this.H = new d6(this, 0L, 200L, nrVar3);
         this.I = new d6(this, 0L, 300L, nrVar2);
         this.J = new d6(this, 0L, 200L, nrVar3);
@@ -358,12 +358,12 @@ public final class s0 extends View {
                         sf sfVar = p0Var.f1392f;
                         int i10 = p0Var.f1405r;
                         if (i10 == 1) {
-                            Editable text = sfVar.f39573a.F0.getText();
+                            Editable text = sfVar.f39572a.F0.getText();
                             if (p0Var.f1407s.getRightMode() == 2 || (text != null && ((p0Var.w() > 0 || p0Var.N > 0) && text.toString().trim().length() > 0))) {
                                 p0Var.B();
                             }
                         } else if (i10 == 3) {
-                            sfVar.f39573a.v1();
+                            sfVar.f39572a.v1();
                         }
                     }
                 }

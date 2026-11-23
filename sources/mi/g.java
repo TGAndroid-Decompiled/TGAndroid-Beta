@@ -38,7 +38,7 @@ public final class g extends n41 {
         TLRPC.User user = fVar.f21050b;
         long j3 = fVar.f21049a;
         boolean z11 = fVar.f21051c;
-        boolean z12 = !o41Var.f38089j;
+        boolean z12 = !o41Var.f38088j;
         q9 q9Var = hVar.f21055c;
         TextView textView = hVar.f21058n;
         TextView textView2 = hVar.d;

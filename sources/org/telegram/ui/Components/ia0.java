@@ -22,7 +22,7 @@ public final class ia0 extends v4.u {
         switch (this.S) {
             case 0:
                 qa0 qa0Var = (qa0) this.T;
-                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) qa0Var.f38862r.f24737f.get(i7);
+                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) qa0Var.f38861r.f24737f.get(i7);
                 org.telegram.messenger.bj a10 = qa0.a(qa0Var, gjVar);
                 if (a10 == null) {
                     return false;

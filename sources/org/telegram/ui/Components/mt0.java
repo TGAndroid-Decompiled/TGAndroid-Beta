@@ -12,22 +12,22 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class mt0 extends org.telegram.ui.ActionBar.w2 implements org.telegram.messenger.gs {
-    public final di.b1 f37628m1;
+    public final di.b1 f37627m1;
     public final org.telegram.ui.l4 n1;
-    public final Drawable f37629o1;
-    public TextView f37630p1;
-    public int f37631q1;
-    public boolean f37632r1;
-    public final lt0 f37633s1;
-    public int f37634t1;
+    public final Drawable f37628o1;
+    public TextView f37629p1;
+    public int f37630q1;
+    public boolean f37631r1;
+    public final lt0 f37632s1;
+    public int f37633t1;
 
     public mt0(Context context, lt0 lt0Var, org.telegram.ui.ActionBar.h6 h6Var) {
         super(1, context, h6Var, false);
         org.telegram.messenger.ls.e().c(this, org.telegram.messenger.ls.G4);
-        this.f37633s1 = lt0Var;
+        this.f37632s1 = lt0Var;
         O();
         Drawable mutate = context.getResources().getDrawable(2131232730).mutate();
-        this.f37629o1 = mutate;
+        this.f37628o1 = mutate;
         int i7 = org.telegram.ui.ActionBar.m6.f29454h5;
         mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.m6.w0(i7, this.J0), PorterDuff.Mode.MULTIPLY));
         bi.e3 e3Var = new bi.e3(26, context, this);
@@ -37,7 +37,7 @@ public final class mt0 extends org.telegram.ui.ActionBar.w2 implements org.teleg
         int i10 = this.f30211u0;
         viewGroup.setPadding(i10, 0, i10, 0);
         di.b1 b1Var = new di.b1(26, context, this);
-        this.f37628m1 = b1Var;
+        this.f37627m1 = b1Var;
         getContext();
         b1Var.setLayoutManager(new v4.c0(1, false));
         org.telegram.ui.l4 l4Var = new org.telegram.ui.l4(5, this, context);
@@ -101,24 +101,24 @@ public final class mt0 extends org.telegram.ui.ActionBar.w2 implements org.teleg
         org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29622q7, h6Var);
         textView.setText(org.telegram.messenger.hd.N0(2131744597, null));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final mt0 f36980b;
+            public final mt0 f36979b;
 
             {
-                this.f36980b = this;
+                this.f36979b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        mt0 mt0Var = this.f36980b;
+                        mt0 mt0Var = this.f36979b;
                         for (int i13 = 0; i13 < 4; i13++) {
                             Utilities.d.c(new org.telegram.messenger.id(org.telegram.messenger.rd.f(i13), 6));
                         }
                         mt0Var.dismiss();
                         return;
                     default:
-                        this.f36980b.dismiss();
+                        this.f36979b.dismiss();
                         return;
                 }
             }
@@ -127,24 +127,24 @@ public final class mt0 extends org.telegram.ui.ActionBar.w2 implements org.teleg
         f10.setText(org.telegram.messenger.hd.N0(2131752029, null).toUpperCase());
         g11.setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
         g11.setOnClickListener(new View.OnClickListener(this) {
-            public final mt0 f36980b;
+            public final mt0 f36979b;
 
             {
-                this.f36980b = this;
+                this.f36979b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        mt0 mt0Var = this.f36980b;
+                        mt0 mt0Var = this.f36979b;
                         for (int i13 = 0; i13 < 4; i13++) {
                             Utilities.d.c(new org.telegram.messenger.id(org.telegram.messenger.rd.f(i13), 6));
                         }
                         mt0Var.dismiss();
                         return;
                     default:
-                        this.f36980b.dismiss();
+                        this.f36979b.dismiss();
                         return;
                 }
             }
@@ -154,10 +154,10 @@ public final class mt0 extends org.telegram.ui.ActionBar.w2 implements org.teleg
     }
 
     public static void J0(mt0 mt0Var) {
-        di.b1 b1Var = mt0Var.f37628m1;
+        di.b1 b1Var = mt0Var.f37627m1;
         if (b1Var.getChildCount() <= 0) {
             int paddingTop = b1Var.getPaddingTop();
-            mt0Var.f37631q1 = paddingTop;
+            mt0Var.f37630q1 = paddingTop;
             b1Var.setTopGlowOffset(paddingTop);
             mt0Var.f30176b.invalidate();
             return;
@@ -169,8 +169,8 @@ public final class mt0 extends org.telegram.ui.ActionBar.w2 implements org.teleg
         if (top > 0 && mj0Var != null && mj0Var.b() == 0) {
             i7 = top;
         }
-        if (mt0Var.f37631q1 != i7) {
-            mt0Var.f37631q1 = i7;
+        if (mt0Var.f37630q1 != i7) {
+            mt0Var.f37630q1 = i7;
             b1Var.setTopGlowOffset(i7);
             mt0Var.f30176b.invalidate();
         }
@@ -215,9 +215,9 @@ public final class mt0 extends org.telegram.ui.ActionBar.w2 implements org.teleg
         try {
             super.s0();
             int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, this.J0);
-            Drawable drawable = this.f37629o1;
-            if (drawable != null && w02 != this.f37634t1) {
-                this.f37634t1 = w02;
+            Drawable drawable = this.f37628o1;
+            if (drawable != null && w02 != this.f37633t1) {
+                this.f37633t1 = w02;
                 drawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
             }
         } catch (Exception e10) {

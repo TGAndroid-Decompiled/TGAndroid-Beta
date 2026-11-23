@@ -277,12 +277,12 @@ public final class xd extends org.telegram.ui.Components.tt0 implements org.tele
         org.telegram.ui.Components.h51 h51Var = new org.telegram.ui.Components.h51(c51Var, new a5(this, 2), new bd(this), new org.telegram.messenger.fd(this, 25));
         this.Y0 = h51Var;
         jg.i0 i0Var = new jg.i0(5, this, false);
-        h51Var.f35789f3 = i0Var;
+        h51Var.f35788f3 = i0Var;
         h51Var.setLayoutManager(i0Var);
         h51Var.setClipToPadding(false);
         h51Var.r1();
         h51Var.setCaptureSectionsDecoratorAllowed(true);
-        h51Var.f35790g3.f34062r = false;
+        h51Var.f35789g3.f34062r = false;
         u(h51Var, new bd(this));
         x(tdVar, tdVar.f52307b, new org.telegram.messenger.fd(24));
         View view = tdVar.d;
@@ -465,7 +465,7 @@ public final class xd extends org.telegram.ui.Components.tt0 implements org.tele
                 nqVar2.d = false;
                 nqVar2.I = f10;
                 nqVar2.J = f10;
-                nqVar2.f37952s = f11;
+                nqVar2.f37951s = f11;
                 nqVar2.H = 0.95f;
                 spannableString.setSpan(nqVar2, 0, spannableString.length(), 33);
             }
@@ -656,7 +656,7 @@ public final class xd extends org.telegram.ui.Components.tt0 implements org.tele
         }
         org.telegram.ui.Components.h51 h51Var = this.Y0;
         if (h51Var != null) {
-            h51Var.f35790g3.O(!z10);
+            h51Var.f35789g3.O(!z10);
             if (z10) {
                 h51Var.v0(0);
             }
@@ -925,7 +925,7 @@ public final class xd extends org.telegram.ui.Components.tt0 implements org.tele
             }
         }
         org.telegram.ui.Components.h51 h51Var = xdVar.Y0;
-        if (h51Var != null && (c51Var = h51Var.f35790g3) != null) {
+        if (h51Var != null && (c51Var = h51Var.f35789g3) != null) {
             c51Var.O(true);
         }
     }

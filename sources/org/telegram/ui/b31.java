@@ -22,8 +22,8 @@ public final class b31 extends FrameLayout implements org.telegram.ui.ActionBar.
         org.telegram.ui.Components.q9 q9Var = new org.telegram.ui.Components.q9(context);
         this.f45766a = q9Var;
         addView(q9Var, c8.ma.d(120, 120.0f, 1, 0.0f, 16.0f, 0.0f, 0.0f));
-        nVar.f41190j = false;
-        nVar.f41194n = 1.2f;
+        nVar.f41189j = false;
+        nVar.f41193n = 1.2f;
         q9Var.setOnClickListener(new a8(this, 2));
         int i7 = org.telegram.ui.ActionBar.m6.G6;
         org.telegram.ui.ActionBar.m6.x0(null, i7, false);

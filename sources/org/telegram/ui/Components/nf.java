@@ -4,28 +4,28 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 public final class nf implements bi.a1 {
-    public final int f37865a;
-    public final rf f37866b;
-    public final FrameLayout f37867c;
+    public final int f37864a;
+    public final rf f37865b;
+    public final FrameLayout f37866c;
 
     public nf(rf rfVar, FrameLayout frameLayout, int i7) {
-        this.f37865a = i7;
-        this.f37866b = rfVar;
-        this.f37867c = frameLayout;
+        this.f37864a = i7;
+        this.f37865b = rfVar;
+        this.f37866c = frameLayout;
     }
 
     @Override
     public final void a(Canvas canvas) {
         org.telegram.ui.bj bjVar;
         org.telegram.ui.bj bjVar2;
-        switch (this.f37865a) {
+        switch (this.f37864a) {
             case 0:
-                rf rfVar = this.f37866b;
+                rf rfVar = this.f37865b;
                 rfVar.getClass();
                 int[] iArr = new int[2];
                 int[] iArr2 = new int[2];
-                this.f37867c.getLocationInWindow(iArr);
-                ChatActivityEnterView chatActivityEnterView = rfVar.f39178a;
+                this.f37866c.getLocationInWindow(iArr);
+                ChatActivityEnterView chatActivityEnterView = rfVar.f39177a;
                 du0 du0Var = chatActivityEnterView.f32591c2;
                 du0Var.getLocationInWindow(iArr2);
                 canvas.save();
@@ -47,12 +47,12 @@ public final class nf implements bi.a1 {
                 canvas.restore();
                 return;
             default:
-                rf rfVar2 = this.f37866b;
+                rf rfVar2 = this.f37865b;
                 rfVar2.getClass();
                 int[] iArr3 = new int[2];
                 int[] iArr4 = new int[2];
-                this.f37867c.getLocationInWindow(iArr3);
-                ChatActivityEnterView chatActivityEnterView2 = rfVar2.f39178a;
+                this.f37866c.getLocationInWindow(iArr3);
+                ChatActivityEnterView chatActivityEnterView2 = rfVar2.f39177a;
                 du0 du0Var2 = chatActivityEnterView2.f32591c2;
                 du0Var2.getLocationInWindow(iArr4);
                 canvas.save();

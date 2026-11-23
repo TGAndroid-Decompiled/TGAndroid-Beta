@@ -45,7 +45,7 @@ public final class n extends FrameLayout {
         g0.h3(new z0(mVar, 18), 1000L);
         i iVar2 = new i(g2Var, new h(mVar, 0), i10);
         this.f57517c = iVar2;
-        iVar2.f35790g3.f34062r = false;
+        iVar2.f35789g3.f34062r = false;
         iVar2.j(new g6(10, this, mVar));
         return this.f57517c;
     }

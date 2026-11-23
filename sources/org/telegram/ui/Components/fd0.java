@@ -15,7 +15,7 @@ public final class fd0 extends NestedScrollView {
 
     @Override
     public final int c(Rect rect) {
-        if (this.f35208a0 != null && this.f35209b0.f37488o1.getTop() == getPaddingTop()) {
+        if (this.f35208a0 != null && this.f35209b0.f37487o1.getTop() == getPaddingTop()) {
             int c10 = super.c(rect);
             int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - (((this.f35208a0.getTop() - getScrollY()) + rect.top) + c10);
             if (currentActionBarHeight > 0) {

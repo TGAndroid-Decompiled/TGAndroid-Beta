@@ -120,7 +120,7 @@ public final class t4 implements Runnable {
                 }
                 if (e10 != null && Q != null) {
                     lc b02 = lc.b0(Q);
-                    int i14 = qbVar.f38867a.h;
+                    int i14 = qbVar.f38866a.h;
                     if (z10) {
                         qVar = new jg.q(i12, i11, Q, 10);
                     }

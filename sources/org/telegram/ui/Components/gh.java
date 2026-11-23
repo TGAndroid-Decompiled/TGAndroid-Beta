@@ -42,7 +42,7 @@ public final class gh implements Runnable {
                 return;
             case 2:
                 ui uiVar3 = this.f35573b;
-                df dfVar = uiVar3.f40374c2;
+                df dfVar = uiVar3.f40373c2;
                 if (dfVar != null) {
                     j3 = dfVar.k();
                 } else {
@@ -52,8 +52,8 @@ public final class gh implements Runnable {
                 ci ciVar = uiVar3.G2;
                 uiVar3.L2 = j10;
                 ciVar.setEffect(j10);
-                mi miVar2 = uiVar3.f40441w2;
-                if (miVar2 != uiVar3.f40379e2 && miVar2 != uiVar3.f40399l2) {
+                mi miVar2 = uiVar3.f40440w2;
+                if (miVar2 != uiVar3.f40378e2 && miVar2 != uiVar3.f40398l2) {
                     if (!miVar2.M(false, 0, 0, j10, uiVar3.g1())) {
                         uiVar3.dismiss();
                     }
@@ -61,17 +61,17 @@ public final class gh implements Runnable {
                 } else {
                     v12 = uiVar3.v1(false, 0, 0, j10, uiVar3.g1());
                 }
-                df dfVar2 = uiVar3.f40374c2;
+                df dfVar2 = uiVar3.f40373c2;
                 if (dfVar2 != null) {
                     dfVar2.h(!v12);
-                    uiVar3.f40374c2 = null;
+                    uiVar3.f40373c2 = null;
                     return;
                 }
                 return;
             case 3:
                 ui uiVar4 = this.f35573b;
                 uiVar4.a(true);
-                org.telegram.ui.ActionBar.g2 g2Var = uiVar4.f40368a2;
+                org.telegram.ui.ActionBar.g2 g2Var = uiVar4.f40367a2;
                 if (g2Var != null) {
                     g2Var.presentFragment(new PremiumPreviewFragment(0, "caption_limit"));
                     return;
@@ -82,16 +82,16 @@ public final class gh implements Runnable {
                 return;
             default:
                 ui uiVar5 = this.f35573b;
-                uiVar5.f40422r3 = null;
-                mi miVar3 = uiVar5.f40441w2;
-                if (miVar3 != uiVar5.f40379e2 && (miVar = uiVar5.f40445x2) != (rmVar = uiVar5.f40399l2) && miVar3 != miVar && miVar3 != rmVar) {
+                uiVar5.f40421r3 = null;
+                mi miVar3 = uiVar5.f40440w2;
+                if (miVar3 != uiVar5.f40378e2 && (miVar = uiVar5.f40444x2) != (rmVar = uiVar5.f40398l2) && miVar3 != miVar && miVar3 != rmVar) {
                     uiVar5.f30176b.removeView(miVar3);
                 }
-                uiVar5.f40441w2.setVisibility(8);
-                uiVar5.f40441w2.t();
-                uiVar5.f40445x2.J();
-                uiVar5.f40441w2 = uiVar5.f40445x2;
-                uiVar5.f40445x2 = null;
+                uiVar5.f40440w2.setVisibility(8);
+                uiVar5.f40440w2.t();
+                uiVar5.f40444x2.J();
+                uiVar5.f40440w2 = uiVar5.f40444x2;
+                uiVar5.f40444x2 = null;
                 int[] iArr = uiVar5.Z3;
                 iArr[0] = iArr[1];
                 uiVar5.w1(uiVar5.X1, false);

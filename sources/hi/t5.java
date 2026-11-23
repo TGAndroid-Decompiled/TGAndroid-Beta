@@ -186,8 +186,8 @@ public final class t5 implements wa, i6.a, com.google.android.gms.common.api.int
             ui uiVar = new ui(b2Var.getParentActivity(), b2Var, false, false, false, b2Var.getResourceProvider());
             uiVar.X3 = new sa.d(16);
             uiVar.K1 = true;
-            uiVar.f40438v3.setVisibility(8);
-            uiVar.f40435u4 = new a3.h(b2Var, aVar, uiVar, 16);
+            uiVar.f40437v3.setVisibility(8);
+            uiVar.f40434u4 = new a3.h(b2Var, aVar, uiVar, 16);
             uiVar.f1();
             uiVar.show();
         }

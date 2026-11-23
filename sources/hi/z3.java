@@ -34,7 +34,7 @@ public final class z3 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                ((kr0) this.f15853c).f36964e.S1.put(this.f15852b, (Float) valueAnimator.getAnimatedValue());
+                ((kr0) this.f15853c).f36963e.S1.put(this.f15852b, (Float) valueAnimator.getAnimatedValue());
                 ((ek0) this.d).invalidate();
                 return;
             case 2:

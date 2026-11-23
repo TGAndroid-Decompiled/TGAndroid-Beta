@@ -30,7 +30,7 @@ public final class ea implements View.OnAttachStateChangeListener {
                 return;
             case 1:
                 xy0 xy0Var = (xy0) obj2;
-                xy0Var.f42253k = y5.update(xy0Var.f42254l, (View) obj, xy0Var.f42253k, xy0Var.f42246b);
+                xy0Var.f42252k = y5.update(xy0Var.f42253l, (View) obj, xy0Var.f42252k, xy0Var.f42245b);
                 return;
             default:
                 org.telegram.ui.Wallet.m4 m4Var = (org.telegram.ui.Wallet.m4) obj2;
@@ -70,7 +70,7 @@ public final class ea implements View.OnAttachStateChangeListener {
                 paint.setShader(null);
                 return;
             case 1:
-                y5.release((View) this.f34712b, ((xy0) this.f34713c).f42253k);
+                y5.release((View) this.f34712b, ((xy0) this.f34713c).f42252k);
                 return;
             default:
                 org.telegram.ui.Wallet.m4 m4Var = (org.telegram.ui.Wallet.m4) this.f34713c;

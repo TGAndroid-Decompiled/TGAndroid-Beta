@@ -94,11 +94,11 @@ public final class yo implements org.telegram.messenger.gs {
         this.G = new ImageReceiver(view);
         paint.setStrokeWidth(org.telegram.messenger.g0.N(2.8f));
         paint.setStrokeCap(Paint.Cap.ROUND);
-        sqVar.f39674z = 3;
+        sqVar.f39673z = 3;
         sqVar.I = 1;
-        sqVar.f39657g = true;
+        sqVar.f39656g = true;
         sqVar.d = d("paintChatActionBackground");
-        sqVar.f39655e = textPaint;
+        sqVar.f39654e = textPaint;
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         textPaint2.setTextSize(org.telegram.messenger.g0.L(14.0f));
@@ -335,7 +335,7 @@ public final class yo implements org.telegram.messenger.gs {
                     }
                 }
             });
-            org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37964j;
+            org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37963j;
             ofFloat2.setInterpolator(nrVar);
             ofFloat2.setDuration(180L);
             ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, -0.5f);
@@ -489,7 +489,7 @@ public final class yo implements org.telegram.messenger.gs {
                 }
             }
         });
-        ofFloat5.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+        ofFloat5.setInterpolator(org.telegram.ui.Components.nr.f37960f);
         ofFloat5.setDuration(220L);
         AnimatorSet animatorSet4 = new AnimatorSet();
         this.K = animatorSet4;

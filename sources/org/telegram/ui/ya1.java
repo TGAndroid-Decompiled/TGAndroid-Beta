@@ -45,7 +45,7 @@ public final class ya1 implements TextWatcher {
                                     bb1Var.f45846g0[2].T(false, 0.0f);
                                     bb1Var.f45835a.d();
                                     return;
-                                } else if (oh0Var2.f38207b0 < 49) {
+                                } else if (oh0Var2.f38206b0 < 49) {
                                     oh0Var2.P(49);
                                     return;
                                 } else {

@@ -198,7 +198,7 @@ public abstract class c {
         }
         w70Var.a(str2);
         oq oqVar = new oq(aVar, w70Var, 0, 0);
-        oqVar.f38339x = true;
+        oqVar.f38338x = true;
         return oqVar;
     }
 
@@ -333,12 +333,12 @@ public abstract class c {
                 spannableStringBuilder.append((CharSequence) " ");
                 oq f10 = f(tL_forumTopic);
                 if (drawableArr != null) {
-                    drawableArr[0] = f10.f38330a;
+                    drawableArr[0] = f10.f38329a;
                 }
                 f10.setBounds(0, 0, (int) (f10.getIntrinsicWidth() * 0.65f), (int) (f10.getIntrinsicHeight() * 0.65f));
-                Drawable drawable = f10.f38331b;
+                Drawable drawable = f10.f38330b;
                 if (drawable instanceof w70) {
-                    ((w70) drawable).f41689i = 0.7f;
+                    ((w70) drawable).f41688i = 0.7f;
                 }
                 if (paint != null) {
                     nq nqVar = new nq(0, f10);
@@ -443,7 +443,7 @@ public abstract class c {
                 }
             } else if (tL_forumTopic.icon_emoji_id != 0) {
                 q9Var.setImageDrawable(null);
-                p5 p5Var = q9Var.f38839e;
+                p5 p5Var = q9Var.f38838e;
                 if (p5Var == null || tL_forumTopic.icon_emoji_id != p5Var.h()) {
                     if (z11) {
                         i7 = 11;

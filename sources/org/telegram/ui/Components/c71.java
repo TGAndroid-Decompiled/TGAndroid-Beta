@@ -15,7 +15,7 @@ public final class c71 implements rj0, sj0 {
 
     @Override
     public boolean c(int i7, View view) {
-        org.telegram.messenger.s10 s10Var = this.f34108a.f36196b;
+        org.telegram.messenger.s10 s10Var = this.f34108a.f36195b;
         if (s10Var == null) {
             return false;
         }

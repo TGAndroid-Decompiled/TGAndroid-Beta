@@ -192,15 +192,15 @@ public final class b0 implements t10 {
                 int L = org.telegram.messenger.g0.L(f10);
                 boolean z12 = false;
                 if (t3Var.getRoundRadius()[0] != L) {
-                    ValueAnimator valueAnimator = t3Var.f38846y;
+                    ValueAnimator valueAnimator = t3Var.f38845y;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
                     ValueAnimator ofInt = ValueAnimator.ofInt(t3Var.getRoundRadius()[0], L);
-                    t3Var.f38846y = ofInt;
+                    t3Var.f38845y = ofInt;
                     ofInt.addUpdateListener(new d4(t3Var, 8));
-                    t3Var.f38846y.setDuration(200L);
-                    t3Var.f38846y.start();
+                    t3Var.f38845y.setDuration(200L);
+                    t3Var.f38845y.start();
                 }
                 ((org.telegram.ui.Cells.n8) view).setChecked(rnVar.F0);
                 rnVar.u0(false, true);

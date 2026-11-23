@@ -82,7 +82,7 @@ public final class t1 implements qj0 {
                         if (obj5 instanceof TLRPC.User) {
                             if (a2Var != null) {
                                 TLRPC.User user2 = (TLRPC.User) obj5;
-                                ek0 ek0Var = e2Var.f39532o1;
+                                ek0 ek0Var = e2Var.f39531o1;
                                 if (linkedHashMap.remove(Long.valueOf(user2.f28583id)) == null) {
                                     int size = linkedHashMap.size();
                                     e2Var.V1.getClass();
@@ -100,8 +100,8 @@ public final class t1 implements qj0 {
                                 boolean containsKey = linkedHashMap.containsKey(Long.valueOf(user2.f28583id));
                                 for (int i12 = 0; i12 < e2Var.f3584j2.E.size(); i12++) {
                                     o41 G2 = e2Var.f3584j2.G(i12);
-                                    if (G2 != null && (G2.H instanceof TLRPC.User) && G2.f38103y == user2.f28583id) {
-                                        G2.f38085e = containsKey;
+                                    if (G2 != null && (G2.H instanceof TLRPC.User) && G2.f38102y == user2.f28583id) {
+                                        G2.f38084e = containsKey;
                                     }
                                 }
                                 for (int i13 = 0; i13 < ek0Var.getChildCount(); i13++) {

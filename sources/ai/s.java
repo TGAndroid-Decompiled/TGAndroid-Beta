@@ -15,7 +15,7 @@ public final class s implements Runnable {
         switch (this.f1458a) {
             case 0:
                 boolean[] zArr = this.f1459b;
-                t[] tVarArr = DictationAsr.f43068a;
+                t[] tVarArr = DictationAsr.f43067a;
                 zArr[0] = true;
                 return;
             default:

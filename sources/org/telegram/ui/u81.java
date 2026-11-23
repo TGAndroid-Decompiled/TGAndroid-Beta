@@ -55,7 +55,7 @@ public final class u81 extends FrameLayout {
                     }
                 }
                 TextView textView = (TextView) this.d;
-                float interpolation = org.telegram.ui.Components.nr.f37961f.getInterpolation(this.f52480b) * org.telegram.messenger.g0.L(8.0f);
+                float interpolation = org.telegram.ui.Components.nr.f37960f.getInterpolation(this.f52480b) * org.telegram.messenger.g0.L(8.0f);
                 if (org.telegram.messenger.hd.f24444a0) {
                     i7 = -1;
                 }

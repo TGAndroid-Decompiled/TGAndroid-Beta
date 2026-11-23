@@ -139,7 +139,7 @@ public final class ec extends FrameLayout implements org.telegram.ui.ActionBar.b
 
     public final void f() {
         org.telegram.ui.Components.n5 n5Var = this.f47229c;
-        n5Var.setBounds((getWidth() - n5Var.f37781s) - org.telegram.messenger.g0.L(21.0f), (getHeight() - n5Var.f37781s) / 2, getWidth() - org.telegram.messenger.g0.L(21.0f), (getHeight() + n5Var.f37781s) / 2);
+        n5Var.setBounds((getWidth() - n5Var.f37780s) - org.telegram.messenger.g0.L(21.0f), (getHeight() - n5Var.f37780s) / 2, getWidth() - org.telegram.messenger.g0.L(21.0f), (getHeight() + n5Var.f37780s) / 2);
     }
 
     @Override

@@ -29,7 +29,7 @@ public final class y2 implements Runnable {
                             articleViewer$WindowView.performHapticFeedback(0, 2);
                         } catch (Exception unused) {
                         }
-                        g4Var.X(((org.telegram.ui.Components.bz0) g4Var.f50752b.f37839i).f33947b);
+                        g4Var.X(((org.telegram.ui.Components.bz0) g4Var.f50752b.f37838i).f33947b);
                         g4Var.f50752b = null;
                         g4Var.d = null;
                         View view = g4Var.f50755f;

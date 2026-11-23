@@ -99,7 +99,7 @@ public final class cq extends org.telegram.ui.ActionBar.w2 {
         zpVar.addView(hu0Var, c8.ma.k(0.0f, 8.0f, 0.0f, 0.0f, -1, -2));
         FrameLayout frameLayout = new FrameLayout(activity);
         oq oqVar = new oq(new ColorDrawable(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, this.J0)), org.telegram.ui.ActionBar.m6.Y0(activity, 2131231230, org.telegram.ui.ActionBar.m6.f29345b7));
-        oqVar.f38339x = true;
+        oqVar.f38338x = true;
         frameLayout.setBackgroundDrawable(oqVar);
         arrayList.add(oqVar);
         zpVar.addView(frameLayout, c8.ma.o(-1, -2));
@@ -183,7 +183,7 @@ public final class cq extends org.telegram.ui.ActionBar.w2 {
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 oq oqVar = (oq) arrayList.get(i7);
                 org.telegram.ui.ActionBar.m6.B1(oqVar, w02, false);
-                if (oqVar.f38331b != null) {
+                if (oqVar.f38330b != null) {
                     org.telegram.ui.ActionBar.m6.B1(oqVar, w03, true);
                 }
                 oqVar.invalidateSelf();

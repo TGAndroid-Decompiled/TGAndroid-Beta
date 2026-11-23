@@ -236,10 +236,10 @@ public final class ra {
         bi.f6 f6Var = n6Var.f34681a;
         if (f6Var != null) {
             f6Var.C0();
-            n6Var.f34681a.f35789f3.h1(0, 0);
+            n6Var.f34681a.f35788f3.h1(0, 0);
             h51 h51Var = n6Var.f44689u0[0];
             if (h51Var != null) {
-                c51 c51Var = h51Var.f35790g3;
+                c51 c51Var = h51Var.f35789g3;
                 h51Var.C0();
                 c51Var.O(false);
                 for (int i7 = 0; i7 < c51Var.E.size(); i7++) {
@@ -250,7 +250,7 @@ public final class ra {
                             TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) obj;
                             int i10 = d4.f44077b;
                             if ((wallettransaction2 instanceof c4 ? ((c4) wallettransaction2).f44031a : wallettransaction2) == wallettransaction || u0.t0((TL_wallet.walletTransaction) obj, wallettransaction)) {
-                                h51Var.f35789f3.h1(i7, 0);
+                                h51Var.f35788f3.h1(i7, 0);
                                 break;
                             }
                         } else {
@@ -403,7 +403,7 @@ public final class ra {
             f(m7Var, this.f44991c, viewGroup, rectF);
         } else if (m7Var.isAttachedToWindow() && m7Var.getRootView() == viewGroup.getRootView()) {
             rectF.set(a(m7Var, viewGroup));
-            rectF.offset(0.0f, uiVar.f40395j4 - uiVar.f40429t2);
+            rectF.offset(0.0f, uiVar.f40394j4 - uiVar.f40428t2);
         }
     }
 }

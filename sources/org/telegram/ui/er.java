@@ -37,16 +37,16 @@ public abstract class er extends EditTextBoldCursor {
 
     static {
         org.telegram.ui.Components.xt0 xt0Var = new org.telegram.ui.Components.xt0(new cr(0), new cr(1));
-        xt0Var.f42218c = 100.0f;
+        xt0Var.f42217c = 100.0f;
         d2 = xt0Var;
         org.telegram.ui.Components.xt0 xt0Var2 = new org.telegram.ui.Components.xt0(new cr(2), new cr(3));
-        xt0Var2.f42218c = 100.0f;
+        xt0Var2.f42217c = 100.0f;
         f47370e2 = xt0Var2;
         org.telegram.ui.Components.xt0 xt0Var3 = new org.telegram.ui.Components.xt0(new cr(4), new cr(5));
-        xt0Var3.f42218c = 100.0f;
+        xt0Var3.f42217c = 100.0f;
         f47371f2 = xt0Var3;
         org.telegram.ui.Components.xt0 xt0Var4 = new org.telegram.ui.Components.xt0(new cr(6), new cr(7));
-        xt0Var4.f42218c = 100.0f;
+        xt0Var4.f42217c = 100.0f;
         f47372g2 = xt0Var4;
     }
 

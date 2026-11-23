@@ -4,16 +4,16 @@ import android.content.Context;
 import android.text.TextUtils;
 import org.telegram.tgnet.ConnectionsManager;
 public final class z31 extends tl0 {
-    public final k41 f42670f;
+    public final k41 f42669f;
 
     public z31(k41 k41Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context, 14.0f, h6Var);
-        this.f42670f = k41Var;
+        this.f42669f = k41Var;
     }
 
     @Override
     public final void a(String str) {
-        jg.c2 c2Var = this.f42670f.f36776w;
+        jg.c2 c2Var = this.f42669f.f36775w;
         jg.a2 a2Var = c2Var.T;
         int i7 = c2Var.f17447c;
         if (c2Var.O != 0) {

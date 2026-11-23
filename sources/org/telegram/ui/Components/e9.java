@@ -47,7 +47,7 @@ public class e9 extends View {
             this.f34701b.e(rectF);
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + org.telegram.messenger.g0.L(1.33f), this.d);
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f34701b.f58647f);
-            this.f34702c.c(rectF.centerX() - (this.f34702c.f42247c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
+            this.f34702c.c(rectF.centerX() - (this.f34702c.f42246c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
         }
     }
 

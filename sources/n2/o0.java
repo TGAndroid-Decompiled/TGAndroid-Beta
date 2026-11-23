@@ -47,7 +47,7 @@ public final class o0 {
             h80Var.d(layout, spanStart, f10);
             layout.getSelectionPath(spanStart, spanEnd, h80Var);
             q80 q80Var = new q80();
-            q80Var.f38834y = h80Var;
+            q80Var.f38833y = h80Var;
             q80Var.D = true;
             q80Var.k(4.0f);
             q80Var.l();
@@ -207,10 +207,10 @@ public final class o0 {
         if (i7 >= 0 && i7 < this.f21221a) {
             Pair pair = (Pair) arrayList.get(i7);
             n80 n80Var = (n80) pair.first;
-            if (n80Var.f37846p < 0) {
-                n80Var.f37846p = Math.max(n80Var.f37845o + n80Var.f37847q, SystemClock.elapsedRealtime());
+            if (n80Var.f37845p < 0) {
+                n80Var.f37845p = Math.max(n80Var.f37844o + n80Var.f37846q, SystemClock.elapsedRealtime());
                 j(pair.second, true);
-                org.telegram.messenger.g0.h3(new j80(this, n80Var, 1), Math.max(0L, (n80Var.f37846p - SystemClock.elapsedRealtime()) + 175));
+                org.telegram.messenger.g0.h3(new j80(this, n80Var, 1), Math.max(0L, (n80Var.f37845p - SystemClock.elapsedRealtime()) + 175));
             }
         }
     }
@@ -234,10 +234,10 @@ public final class o0 {
             }
             if (pair != null) {
                 if (z10) {
-                    if (n80Var.f37846p < 0) {
-                        n80Var.f37846p = Math.max(n80Var.f37845o + n80Var.f37847q, SystemClock.elapsedRealtime());
+                    if (n80Var.f37845p < 0) {
+                        n80Var.f37845p = Math.max(n80Var.f37844o + n80Var.f37846q, SystemClock.elapsedRealtime());
                         j(pair.second, true);
-                        org.telegram.messenger.g0.h3(new j80(this, n80Var, 0), Math.max(0L, (n80Var.f37846p - SystemClock.elapsedRealtime()) + 175));
+                        org.telegram.messenger.g0.h3(new j80(this, n80Var, 0), Math.max(0L, (n80Var.f37845p - SystemClock.elapsedRealtime()) + 175));
                         return;
                     }
                     return;
@@ -273,8 +273,8 @@ public final class o0 {
                     }
                     ou ouVar = new ou(20, this, q80Var);
                     long j3 = 0;
-                    if (q80Var.f38815c > 0) {
-                        j3 = 320 - (SystemClock.elapsedRealtime() - q80Var.f38815c);
+                    if (q80Var.f38814c > 0) {
+                        j3 = 320 - (SystemClock.elapsedRealtime() - q80Var.f38814c);
                     }
                     org.telegram.messenger.g0.h3(ouVar, j3);
                     return;
@@ -283,8 +283,8 @@ public final class o0 {
                 return;
             }
             arrayList.remove(pair);
-            q80Var.f38814b = -1L;
-            q80Var.f38815c = -1L;
+            q80Var.f38813b = -1L;
+            q80Var.f38814c = -1L;
             this.f21222b = arrayList.size();
             j(pair.second, true);
         }

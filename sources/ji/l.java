@@ -614,35 +614,35 @@ public final class l implements d2, c4.m, a0, Continuation, com.google.android.g
             if (d2Var != null) {
                 qw0 qw0Var = qw0VarArr[0];
                 boolean z11 = cVar.f11011m;
-                qw0Var.f39008c = z11;
+                qw0Var.f39007c = z11;
                 d2Var.c(z11, true);
             }
             org.telegram.ui.Cells.d2 d2Var2 = d2VarArr[1];
             if (d2Var2 != null) {
                 qw0 qw0Var2 = qw0VarArr[1];
                 boolean z12 = cVar.f11012n;
-                qw0Var2.f39008c = z12;
+                qw0Var2.f39007c = z12;
                 d2Var2.c(z12, true);
             }
             org.telegram.ui.Cells.d2 d2Var3 = d2VarArr[2];
             if (d2Var3 != null) {
                 qw0 qw0Var3 = qw0VarArr[2];
                 boolean z13 = cVar.f11013o;
-                qw0Var3.f39008c = z13;
+                qw0Var3.f39007c = z13;
                 d2Var3.c(z13, true);
             }
             org.telegram.ui.Cells.d2 d2Var4 = d2VarArr[3];
             if (d2Var4 != null) {
                 qw0 qw0Var4 = qw0VarArr[3];
                 boolean z14 = cVar.f11014p;
-                qw0Var4.f39008c = z14;
+                qw0Var4.f39007c = z14;
                 d2Var4.c(z14, true);
             }
             org.telegram.ui.Cells.d2 d2Var5 = d2VarArr[4];
             if (d2Var5 != null) {
                 qw0 qw0Var5 = qw0VarArr[4];
                 boolean z15 = cVar.f11015q;
-                qw0Var5.f39008c = z15;
+                qw0Var5.f39007c = z15;
                 d2Var5.c(z15, true);
             }
             auVar.W1.a(ztVar.d(), true);
@@ -836,9 +836,11 @@ public final class l implements d2, c4.m, a0, Continuation, com.google.android.g
 
     @Override
     public void w() {
+        int i7;
         ((a70) this.f17979b).v();
         bn bnVar = (bn) this.f17980c;
-        SharedPreferences sharedPreferences = np.u1(((g2) bnVar).currentAccount).f25857g7;
+        i7 = ((g2) bnVar).currentAccount;
+        SharedPreferences sharedPreferences = np.u1(i7).f25857g7;
         boolean z10 = sharedPreferences.getBoolean("sound_enabled_" + ys.v(bnVar.f46103l6, bnVar.d(), false), true);
         boolean z11 = !z10 ? 1 : 0;
         SharedPreferences.Editor edit = sharedPreferences.edit();

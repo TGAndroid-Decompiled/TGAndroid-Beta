@@ -6,12 +6,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.widget.Button;
 public final class pg0 extends Button {
-    public final RectF f38594a;
-    public final Paint f38595b;
-    public boolean f38596c;
+    public final RectF f38593a;
+    public final Paint f38594b;
+    public boolean f38595c;
     public float d;
-    public long f38597e;
-    public int f38598f;
+    public long f38596e;
+    public int f38597f;
 
     public pg0(Context context) {
         super(context);
@@ -23,9 +23,9 @@ public final class pg0 extends Button {
         int L = org.telegram.messenger.g0.L(60.0f);
         setMinWidth(L);
         setMinimumWidth(L);
-        this.f38594a = new RectF();
+        this.f38593a = new RectF();
         Paint paint = new Paint(1);
-        this.f38595b = paint;
+        this.f38594b = paint;
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
@@ -33,8 +33,8 @@ public final class pg0 extends Button {
 
     public final void a(boolean z10, boolean z11) {
         float f10;
-        if (this.f38596c != z10) {
-            this.f38596c = z10;
+        if (this.f38595c != z10) {
+            this.f38595c = z10;
             if (!z11) {
                 if (z10) {
                     f10 = 1.0f;
@@ -43,7 +43,7 @@ public final class pg0 extends Button {
                 }
                 this.d = f10;
             }
-            this.f38597e = System.currentTimeMillis();
+            this.f38596e = System.currentTimeMillis();
             invalidate();
         }
     }
@@ -51,22 +51,22 @@ public final class pg0 extends Button {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (!this.f38596c && this.d == 0.0f) {
+        if (!this.f38595c && this.d == 0.0f) {
             return;
         }
         int measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(11.0f);
-        RectF rectF = this.f38594a;
+        RectF rectF = this.f38593a;
         rectF.set(measuredWidth, org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(8.0f) + measuredWidth, org.telegram.messenger.g0.L(11.0f));
         int min = Math.min(255, (int) (this.d * 255.0f));
-        Paint paint = this.f38595b;
+        Paint paint = this.f38594b;
         paint.setAlpha(min);
-        canvas.drawArc(rectF, this.f38598f, 220.0f, false, paint);
+        canvas.drawArc(rectF, this.f38597f, 220.0f, false, paint);
         long currentTimeMillis = System.currentTimeMillis();
-        if (Math.abs(this.f38597e - System.currentTimeMillis()) < 1000) {
-            long j3 = currentTimeMillis - this.f38597e;
-            int i7 = (int) (this.f38598f + (((float) (360 * j3)) / 2000.0f));
-            this.f38598f = i7 - ((i7 / 360) * 360);
-            if (this.f38596c) {
+        if (Math.abs(this.f38596e - System.currentTimeMillis()) < 1000) {
+            long j3 = currentTimeMillis - this.f38596e;
+            int i7 = (int) (this.f38597f + (((float) (360 * j3)) / 2000.0f));
+            this.f38597f = i7 - ((i7 / 360) * 360);
+            if (this.f38595c) {
                 float f10 = this.d;
                 if (f10 < 1.0f) {
                     float f11 = (((float) j3) / 200.0f) + f10;
@@ -86,11 +86,11 @@ public final class pg0 extends Button {
                 }
             }
         }
-        this.f38597e = currentTimeMillis;
+        this.f38596e = currentTimeMillis;
         postInvalidateOnAnimation();
     }
 
     public void setProgressColor(int i7) {
-        this.f38595b.setColor(i7);
+        this.f38594b.setColor(i7);
     }
 }

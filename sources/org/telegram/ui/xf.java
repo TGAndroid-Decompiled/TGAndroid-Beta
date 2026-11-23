@@ -56,12 +56,12 @@ public final class xf implements org.telegram.messenger.r10 {
                 if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse) {
                     org.telegram.ui.Components.lc.b0(passkeysActivity).f0("FALSE", false);
                     arrayList.add(Utilities.j(i10, arrayList.size(), 0), passkey);
-                    passkeysActivity.f43194a.f35790g3.O(true);
+                    passkeysActivity.f43194a.f35789g3.O(true);
                     return;
                 } else if (tL_error2 != null) {
                     org.telegram.ui.Components.lc.b0(passkeysActivity).g0(tL_error2, false);
                     arrayList.add(Utilities.j(i10, arrayList.size(), 0), passkey);
-                    passkeysActivity.f43194a.f35790g3.O(true);
+                    passkeysActivity.f43194a.f35789g3.O(true);
                     return;
                 } else {
                     return;

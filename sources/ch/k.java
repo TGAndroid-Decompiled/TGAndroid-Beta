@@ -262,24 +262,24 @@ public final class k implements Runnable {
                 return;
             case 23:
                 org.telegram.ui.Components.np npVar = (org.telegram.ui.Components.np) obj;
-                lp lpVar = npVar.f37931r1;
+                lp lpVar = npVar.f37930r1;
                 if (lpVar != null && lpVar.d != null && !npVar.J) {
                     npVar.V0(z11, true);
                     if (npVar.G1 != null) {
                         npVar.J1 = true;
                         if (!npVar.Q0()) {
-                            wallPaper = npVar.f37932s1.f54590g;
+                            wallPaper = npVar.f37931s1.f54590g;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        s3 s3Var = npVar.G1.f37593a;
+                        s3 s3Var = npVar.G1.f37592a;
                         if (s3Var.f29983a) {
-                            npVar.f37932s1.r(null, wallPaper2, false, Boolean.valueOf(z11), false);
+                            npVar.f37931s1.r(null, wallPaper2, false, Boolean.valueOf(z11), false);
                         } else {
-                            npVar.f37932s1.r(s3Var, wallPaper2, false, Boolean.valueOf(z11), false);
+                            npVar.f37931s1.r(s3Var, wallPaper2, false, Boolean.valueOf(z11), false);
                         }
                     }
                     if (org.telegram.messenger.g0.Q1() && (K0 = org.telegram.ui.Components.np.K0(z11)) != null && K0 != m6.I) {
-                        if (z11 == npVar.f37934u1) {
+                        if (z11 == npVar.f37933u1) {
                             z10 = false;
                         }
                         npVar.d2 = z10;
@@ -287,7 +287,7 @@ public final class k implements Runnable {
                     }
                     if (lpVar.d != null) {
                         for (int i13 = 0; i13 < lpVar.d.size(); i13++) {
-                            ((mp) lpVar.d.get(i13)).f37595c = z11 ? 1 : 0;
+                            ((mp) lpVar.d.get(i13)).f37594c = z11 ? 1 : 0;
                         }
                         lpVar.f();
                         return;
@@ -304,7 +304,7 @@ public final class k implements Runnable {
                 return;
             case 25:
                 i00 i00Var = (i00) obj;
-                i00Var.f1(i00Var.f36087u2, z11);
+                i00Var.f1(i00Var.f36086u2, z11);
                 return;
             case 26:
                 f30 f30Var = (f30) obj;

@@ -6,16 +6,16 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.text.TextPaint;
 public final class i21 extends Drawable {
-    public final oh0 f36129a;
-    public int f36130b;
-    public final TextPaint f36131c;
+    public final oh0 f36128a;
+    public int f36129b;
+    public final TextPaint f36130c;
 
     public i21(TextPaint textPaint) {
         a5.b bVar = new a5.b(this, 8);
-        this.f36131c = textPaint;
+        this.f36130c = textPaint;
         float textSize = textPaint.getTextSize() * 0.89f;
         oh0 oh0Var = new oh0(2131624001, (int) textSize, (int) (textSize * 1.25f));
-        this.f36129a = oh0Var;
+        this.f36128a = oh0Var;
         oh0Var.setCallback(bVar);
         oh0Var.K(1);
         oh0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
@@ -25,16 +25,16 @@ public final class i21 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        int color = this.f36131c.getColor();
-        int i7 = this.f36130b;
-        oh0 oh0Var = this.f36129a;
+        int color = this.f36130c.getColor();
+        int i7 = this.f36129b;
+        oh0 oh0Var = this.f36128a;
         if (color != i7) {
-            oh0Var.f38205a0 = true;
+            oh0Var.f38204a0 = true;
             oh0Var.Q(color, "Comp 1");
             oh0Var.o();
             oh0Var.J(true);
             oh0Var.V(0L);
-            this.f36130b = color;
+            this.f36129b = color;
         }
         oh0Var.draw(canvas);
     }

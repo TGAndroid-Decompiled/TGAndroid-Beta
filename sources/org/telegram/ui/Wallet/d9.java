@@ -200,12 +200,12 @@ public final class d9 extends e51 implements gs {
         p01 p01Var = new p01(activity, h6Var);
         p01Var.setPadding(org.telegram.messenger.g0.L(0.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(0.0f), org.telegram.messenger.g0.L(4.0f));
         p01Var.setEmojiSize(100);
-        org.telegram.ui.Components.q9 q9Var = p01Var.f38434b;
+        org.telegram.ui.Components.q9 q9Var = p01Var.f38433b;
         q9Var.getImageReceiver().d = org.telegram.messenger.g0.t0();
         si.d0(org.telegram.messenger.g0.t0()).h2(q9Var, "RestrictedEmoji", "📝", "100_100");
         f11.addView(p01Var, c8.ma.r(-1, -2, 7));
         String N0 = hd.N0(2131742768, null);
-        m80 m80Var = p01Var.f38435c;
+        m80 m80Var = p01Var.f38434c;
         CharSequence m10 = org.telegram.messenger.j6.m(N0, m80Var.getPaint().getFontMetricsInt(), false, null, 0);
         String N02 = hd.N0(2131742769, null);
         m80 m80Var2 = p01Var.d;
@@ -278,7 +278,7 @@ public final class d9 extends e51 implements gs {
                 org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29622q7, f02.f30034j1);
             }
         } else if (o41Var.H(b9.class)) {
-            String charSequence = o41Var.f38092m.toString();
+            String charSequence = o41Var.f38091m.toString();
             l0(getParentActivity(), getResourceProvider(), new r(this, u0.D(this.currentAccount), charSequence, new z0(this.currentAccount, getParentActivity(), charSequence)));
         }
     }
@@ -301,7 +301,7 @@ public final class d9 extends e51 implements gs {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         bi.f6 f6Var;
         if (i7 == ls.f25296d4 && (f6Var = this.f34681a) != null) {
-            f6Var.f35790g3.O(true);
+            f6Var.f35789g3.O(true);
         }
     }
 

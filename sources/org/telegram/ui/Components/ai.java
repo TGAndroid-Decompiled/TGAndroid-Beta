@@ -79,7 +79,7 @@ public final class ai implements org.telegram.ui.web.c0 {
     public final void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject) {
         ui uiVar = this.f33532e;
         int i7 = uiVar.H3;
-        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
         boolean z10 = tLObject instanceof TLRPC.TL_payments_paymentFormStars;
         ki.s3 s3Var = this.f33530b;
         org.telegram.ui.ml0 ml0Var = null;
@@ -117,7 +117,7 @@ public final class ai implements org.telegram.ui.web.c0 {
         ui uiVar = this.f33532e;
         RadialProgressView radialProgressView = uiVar.A3;
         o6 o6Var = uiVar.C3;
-        mi miVar = uiVar.f40441w2;
+        mi miVar = uiVar.f40440w2;
         ki.s3 s3Var = this.f33530b;
         if (miVar == s3Var) {
             if (s3Var.Q || this.f33531c != null) {
@@ -165,7 +165,7 @@ public final class ai implements org.telegram.ui.web.c0 {
                     this.f33529a.start();
                 }
                 radialProgressView.setProgressColor(i10);
-                if (uiVar.f40454z3 != z12) {
+                if (uiVar.f40453z3 != z12) {
                     radialProgressView.animate().cancel();
                     if (z12) {
                         radialProgressView.setAlpha(0.0f);
@@ -193,7 +193,7 @@ public final class ai implements org.telegram.ui.web.c0 {
 
     @Override
     public final void s() {
-        mi miVar = this.f33532e.f40441w2;
+        mi miVar = this.f33532e.f40440w2;
         ki.s3 s3Var = this.f33530b;
         if (miVar == s3Var && !s3Var.K.f18906c) {
             s3Var.K();
@@ -233,7 +233,7 @@ public final class ai implements org.telegram.ui.web.c0 {
         }
         p1Var.c(p1Var.f18858b, i13, uiVar.J0);
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
-        duration.setInterpolator(nr.f37961f);
+        duration.setInterpolator(nr.f37960f);
         final ki.s3 s3Var = this.f33530b;
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -241,21 +241,21 @@ public final class ai implements org.telegram.ui.web.c0 {
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 int f10 = i0.a.f(floatValue, i12, i10);
                 ui uiVar2 = ai.this.f33532e;
-                uiVar2.f40401l4 = f10;
-                uiVar2.f40398k4 = true;
+                uiVar2.f40400l4 = f10;
+                uiVar2.f40397k4 = true;
                 v7 v7Var = uiVar2.V2;
                 if (v7Var != null) {
                     v7Var.updateColors();
                     v7Var.invalidate();
                 }
                 uiVar2.E4.a(f10);
-                lh.f fVar = uiVar2.f40430t3;
+                lh.f fVar = uiVar2.f40429t3;
                 if (fVar != null) {
                     fVar.invalidate();
                 }
                 s3Var.setCustomActionBarBackground(f10);
-                uiVar2.f40441w2.invalidate();
-                uiVar2.f40414p3.invalidate();
+                uiVar2.f40440w2.invalidate();
+                uiVar2.f40413p3.invalidate();
                 p1Var.b(v7Var, floatValue);
             }
         });
@@ -267,7 +267,7 @@ public final class ai implements org.telegram.ui.web.c0 {
         boolean isEmpty = arrayList.isEmpty();
         ui uiVar = this.f33532e;
         if (isEmpty) {
-            org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+            org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
             if (g2Var instanceof org.telegram.ui.bn) {
                 org.telegram.ui.rj rjVar = ((org.telegram.ui.bn) g2Var).f45950a0;
                 rjVar.setFieldText("@" + org.telegram.messenger.p10.o(user) + " " + str);
@@ -299,7 +299,7 @@ public final class ai implements org.telegram.ui.web.c0 {
     @Override
     public final void z() {
         ui uiVar = this.f33532e;
-        if (uiVar.f40441w2 != this.f33530b) {
+        if (uiVar.f40440w2 != this.f33530b) {
             return;
         }
         uiVar.A0(false);

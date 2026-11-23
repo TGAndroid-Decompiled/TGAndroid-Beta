@@ -466,8 +466,8 @@ public final class pb extends s00 implements gs {
         SpannableString spannableString = new SpannableString("💎 ");
         nq nqVar = new nq(2131231054, 0);
         nqVar.d = false;
-        nqVar.f37951r = 0.0f;
-        nqVar.f37952s = f11;
+        nqVar.f37950r = 0.0f;
+        nqVar.f37951s = f11;
         nqVar.H = f12;
         nqVar.I = f10;
         nqVar.J = f10;
@@ -530,8 +530,8 @@ public final class pb extends s00 implements gs {
                 nqVarArr[0] = nqVar;
             }
         }
-        nqVar.f37951r = 0.0f;
-        nqVar.f37952s = f11;
+        nqVar.f37950r = 0.0f;
+        nqVar.f37951s = f11;
         nqVar.H = f12;
         if (z10) {
             nqVar.d = false;
@@ -794,8 +794,8 @@ public final class pb extends s00 implements gs {
         sb2.append(hd.H(' ', "BoostingBoostsCount", i10));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sb2.toString());
         nq nqVar = new nq(2131231929, 2);
-        nqVar.f37951r = 0.0f;
-        nqVar.f37952s = org.telegram.messenger.g0.L(0.66f);
+        nqVar.f37950r = 0.0f;
+        nqVar.f37951s = org.telegram.messenger.g0.L(0.66f);
         spannableStringBuilder.setSpan(nqVar, 0, 1, 33);
         f10.setText(spannableStringBuilder);
         g10.addView(f10, c8.ma.t(-2, 20, 17, 20, 4, 20, 4));
@@ -1041,10 +1041,10 @@ public final class pb extends s00 implements gs {
         a5.q c10;
         if (z10 && (charSequence instanceof Spanned)) {
             for (nq nqVar : (nq[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), nq.class)) {
-                Drawable drawable = nqVar.f37947c;
+                Drawable drawable = nqVar.f37946c;
                 if (drawable != null && !(drawable instanceof a5.q) && (c10 = a5.q.c(org.telegram.messenger.t0.f26931b.getResources(), 2131231959, null)) != null) {
-                    c10.setBounds(nqVar.f37947c.getBounds());
-                    nqVar.f37947c = c10;
+                    c10.setBounds(nqVar.f37946c.getBounds());
+                    nqVar.f37946c = c10;
                     nqVar.d = false;
                 }
             }
@@ -1072,7 +1072,7 @@ public final class pb extends s00 implements gs {
         int i7;
         o1("FILL_BEFORE");
         tt0 tt0Var = this.V;
-        if (tt0Var != null && tt0Var.f40048f0) {
+        if (tt0Var != null && tt0Var.f40047f0) {
             z10 = true;
         } else {
             z10 = false;
@@ -1084,7 +1084,7 @@ public final class pb extends s00 implements gs {
         y8 y10 = y8.y(this.currentAccount, false);
         ArrayList arrayList2 = y10.v;
         o41 o41Var = new o41(-2);
-        o41Var.f38084c = (uv) super.o0(getParentActivity());
+        o41Var.f38083c = (uv) super.o0(getParentActivity());
         arrayList.add(o41Var);
         arrayList.add(o41.k(this.f9575j0));
         hi.e eVar = this.f9583s0;
@@ -1113,7 +1113,7 @@ public final class pb extends s00 implements gs {
                 arrayList.add(o41.q(arrayList.size(), 33));
             } else if (!y10.f10106y) {
                 o41 c10 = o41.c(-3, 2131230871, hd.N0(2131744959, null));
-                c10.f38097r = true;
+                c10.f38096r = true;
                 arrayList.add(c10);
             }
             arrayList.add(o41.C(null));
@@ -1192,7 +1192,7 @@ public final class pb extends s00 implements gs {
             z10 = true;
         }
         aVar.a(z10, false);
-        this.Z.a(this.V.f40048f0, false);
+        this.Z.a(this.V.f40047f0, false);
         this.f51803c.j(new bi.u1(this, 10));
         r1();
         fh.g c10 = getBaseSimpleGlass().f56661c.c(frameLayout, null, false);
@@ -1450,7 +1450,7 @@ public final class pb extends s00 implements gs {
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         tt0 tt0Var = this.V;
-        if (tt0Var == null || motionEvent == null || tt0Var.j(motionEvent.getX(), motionEvent.getY()) || !this.V.c() || this.U.f9499b.f36433b == 0) {
+        if (tt0Var == null || motionEvent == null || tt0Var.j(motionEvent.getX(), motionEvent.getY()) || !this.V.c() || this.U.f9499b.f36432b == 0) {
             return true;
         }
         return false;
@@ -1522,10 +1522,10 @@ public final class pb extends s00 implements gs {
             u10.append(height);
             Log.d("SiblingScroll", u10.toString());
             tt0 tt0Var = this.V;
-            if (!tt0Var.f40038a) {
+            if (!tt0Var.f40037a) {
                 return;
             }
-            tt0Var.f40040b = Math.max(tt0Var.f40040b, Math.min(60, Math.max(0, 30)));
+            tt0Var.f40039b = Math.max(tt0Var.f40039b, Math.min(60, Math.max(0, 30)));
             tt0Var.f(str, null, 0, 0, true);
         }
     }
@@ -1769,7 +1769,7 @@ public final class pb extends s00 implements gs {
         o1("SAVE_BEFORE");
         super.u0();
         tt0 tt0Var = this.V;
-        if (tt0Var != null && tt0Var.f40048f0) {
+        if (tt0Var != null && tt0Var.f40047f0) {
             z10 = true;
         } else {
             z10 = false;

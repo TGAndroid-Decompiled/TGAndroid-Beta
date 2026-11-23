@@ -76,7 +76,7 @@ public final class oc extends FrameLayout implements org.telegram.ui.ActionBar.b
                 break;
             }
             org.telegram.ui.Components.mp mpVar = (org.telegram.ui.Components.mp) arrayList.get(i10);
-            if (!TextUtils.equals(this.f50551s, mpVar.a()) && (!TextUtils.isEmpty(str) || !mpVar.f37593a.f29983a)) {
+            if (!TextUtils.equals(this.f50551s, mpVar.a()) && (!TextUtils.isEmpty(str) || !mpVar.f37592a.f29983a)) {
                 z11 = false;
             }
             mpVar.d = z11;
@@ -107,7 +107,7 @@ public final class oc extends FrameLayout implements org.telegram.ui.ActionBar.b
         org.telegram.messenger.g0.d0(this.d, new kc(this, 1));
         if (this.f50552w != null) {
             ArrayList arrayList = this.f50546c;
-            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.mp) arrayList.get(0)).f37593a.f29983a) && this.f50548f) {
+            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.mp) arrayList.get(0)).f37592a.f29983a) && this.f50548f) {
                 arrayList.add(0, new org.telegram.ui.Components.mp(org.telegram.ui.ActionBar.s3.a(this.f50544a)));
                 this.h.f();
             }
@@ -140,8 +140,8 @@ public final class oc extends FrameLayout implements org.telegram.ui.ActionBar.b
                 break;
             }
             org.telegram.ui.Components.mp mpVar = (org.telegram.ui.Components.mp) arrayList.get(i7);
-            if (mpVar.f37595c != r02) {
-                mpVar.f37595c = r02;
+            if (mpVar.f37594c != r02) {
+                mpVar.f37594c = r02;
                 z10 = true;
             }
             i7++;

@@ -18,8 +18,8 @@ public final class f3 extends n41 {
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         g3 g3Var = (g3) view;
-        CharSequence charSequence = o41Var.f38092m;
-        CharSequence charSequence2 = o41Var.f38093n;
+        CharSequence charSequence = o41Var.f38091m;
+        CharSequence charSequence2 = o41Var.f38092n;
         g3Var.setText(charSequence);
         g3Var.f18728r.setText(charSequence2);
     }

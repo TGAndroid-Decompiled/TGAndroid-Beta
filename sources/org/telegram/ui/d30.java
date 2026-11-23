@@ -18,7 +18,7 @@ public final class d30 extends org.telegram.ui.ActionBar.k {
             canvas.save();
             canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - org.telegram.messenger.g0.L(1.0f));
             org.telegram.ui.Components.sp spVar = this.G1;
-            spVar.f39646f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            spVar.f39645f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
             spVar.draw(canvas);
             canvas.restore();
             invalidate();

@@ -24,8 +24,8 @@ public final class fu implements w71 {
     @Override
     public final TextureView a(View view, boolean z10, float f10, int i7, boolean z11) {
         iu iuVar = this.f35316a;
-        FrameLayout frameLayout = iuVar.f36314p1;
-        Activity activity = iuVar.f36318t1;
+        FrameLayout frameLayout = iuVar.f36313p1;
+        Activity activity = iuVar.f36317t1;
         if (z10) {
             frameLayout.setVisibility(0);
             frameLayout.setAlpha(1.0f);
@@ -77,10 +77,10 @@ public final class fu implements w71 {
     @Override
     public final void d() {
         iu iuVar = this.f35316a;
-        eu euVar = iuVar.f36312m1;
+        eu euVar = iuVar.f36311m1;
         euVar.setVisibility(0);
-        iuVar.f36319u1.setVisibility(0);
-        iuVar.f36320v1.setVisibility(4);
+        iuVar.f36318u1.setVisibility(0);
+        iuVar.f36319v1.setVisibility(4);
         euVar.setKeepScreenOn(true);
         z71 z71Var = iuVar.n1;
         z71Var.setVisibility(4);
@@ -101,7 +101,7 @@ public final class fu implements w71 {
 
     @Override
     public final void e(z71 z71Var, boolean z10) {
-        Activity activity = this.f35316a.f36318t1;
+        Activity activity = this.f35316a.f36317t1;
         if (z10) {
             try {
                 activity.getWindow().addFlags(128);
@@ -122,10 +122,10 @@ public final class fu implements w71 {
     public final TextureView f(View view, boolean z10, int i7, int i10, boolean z11) {
         iu iuVar = this.f35316a;
         z71 z71Var = iuVar.n1;
-        int[] iArr = iuVar.f36324z1;
+        int[] iArr = iuVar.f36323z1;
         if (z10) {
             view.setTranslationY(0.0f);
-            TextureView textureView = new TextureView(iuVar.f36318t1);
+            TextureView textureView = new TextureView(iuVar.f36317t1);
             iuVar.P0(textureView, i7, i10);
             return textureView;
         } else if (z11) {
@@ -169,19 +169,19 @@ public final class fu implements w71 {
     public final void i(boolean z10, r71 r71Var, float f10, boolean z11) {
         if (z10) {
             iu iuVar = this.f35316a;
-            if (iuVar.f36318t1 != null) {
+            if (iuVar.f36317t1 != null) {
                 try {
                     iuVar.f30176b.setSystemUiVisibility(0);
                     iu iuVar2 = this.f35316a;
                     int i7 = iuVar2.G1;
                     if (i7 != -2) {
-                        iuVar2.f36318t1.setRequestedOrientation(i7);
+                        iuVar2.f36317t1.setRequestedOrientation(i7);
                     }
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
             }
-            if (this.f35316a.f36314p1.getVisibility() == 0) {
+            if (this.f35316a.f36313p1.getVisibility() == 0) {
                 ViewGroup viewGroup = this.f35316a.f30176b;
                 viewGroup.setTranslationY(org.telegram.messenger.g0.L(10.0f) + viewGroup.getMeasuredHeight());
                 this.f35316a.Z.setAlpha(0);
@@ -209,7 +209,7 @@ public final class fu implements w71 {
                 ViewGroup viewGroup2 = this.f35316a.f30176b;
                 ObjectAnimator ofFloat9 = ObjectAnimator.ofFloat(viewGroup2, property4, org.telegram.messenger.g0.L(10.0f) + viewGroup2.getMeasuredHeight());
                 ObjectAnimator ofInt = ObjectAnimator.ofInt(this.f35316a.Z, r6.d, 0);
-                FrameLayout frameLayout = this.f35316a.f36314p1;
+                FrameLayout frameLayout = this.f35316a.f36313p1;
                 Property property5 = View.ALPHA;
                 animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ofFloat5, ofFloat6, ofFloat7, ofFloat8, ofFloat9, ofInt, ObjectAnimator.ofFloat(frameLayout, property5, 0.0f), ObjectAnimator.ofFloat(controlsView, property5, 0.0f));
                 animatorSet.setInterpolator(new DecelerateInterpolator());
@@ -218,9 +218,9 @@ public final class fu implements w71 {
                 animatorSet.start();
                 return;
             }
-            if (this.f35316a.f36314p1.getVisibility() == 0) {
-                this.f35316a.f36314p1.setAlpha(1.0f);
-                this.f35316a.f36314p1.setVisibility(4);
+            if (this.f35316a.f36313p1.getVisibility() == 0) {
+                this.f35316a.f36313p1.setAlpha(1.0f);
+                this.f35316a.f36313p1.setVisibility(4);
             }
             r71Var.run();
             this.f35316a.L();
@@ -228,7 +228,7 @@ public final class fu implements w71 {
         }
         if (org.telegram.messenger.t0.f26939x) {
             try {
-                this.f35316a.f36318t1.startService(new Intent(org.telegram.messenger.t0.f26931b, BringAppForegroundService.class));
+                this.f35316a.f36317t1.startService(new Intent(org.telegram.messenger.t0.f26931b, BringAppForegroundService.class));
             } catch (Throwable th2) {
                 org.telegram.messenger.a8.g(th2, true);
             }

@@ -81,7 +81,7 @@ public final class e00 extends FrameLayout implements org.telegram.ui.ActionBar.
         this.f34627f.draw(canvas);
         if (this.f34628n > 0.0f) {
             if (this.H == null) {
-                this.H = new up(n6Var2.f37794a.getColor());
+                this.H = new up(n6Var2.f37793a.getColor());
             }
             int L = (int) ((1.0f - this.f34628n) * org.telegram.messenger.g0.L(24.0f));
             this.H.setBounds(0, L, getWidth(), getHeight() + L);
@@ -103,7 +103,7 @@ public final class e00 extends FrameLayout implements org.telegram.ui.ActionBar.
             float e10 = this.f34626e.e(false, this.d);
             float c11 = ((n6Var.c() + org.telegram.messenger.g0.L(15.66f)) * e10) + c10;
             Rect rect = org.telegram.messenger.g0.Q;
-            rect.set((int) (((getMeasuredWidth() - c11) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - n6Var2.f37800e) / 2.0f) - org.telegram.messenger.g0.L(1.0f)), (int) org.telegram.messenger.f3.a(getMeasuredWidth() - c11, getWidth(), 2.0f, c10), (int) (((getMeasuredHeight() + n6Var2.f37800e) / 2.0f) - org.telegram.messenger.g0.L(1.0f)));
+            rect.set((int) (((getMeasuredWidth() - c11) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - n6Var2.f37799e) / 2.0f) - org.telegram.messenger.g0.L(1.0f)), (int) org.telegram.messenger.f3.a(getMeasuredWidth() - c11, getWidth(), 2.0f, c10), (int) (((getMeasuredHeight() + n6Var2.f37799e) / 2.0f) - org.telegram.messenger.g0.L(1.0f)));
             n6Var2.C = (int) (org.telegram.messenger.g0.T1(0.5f, 1.0f, this.E) * (1.0f - this.f34628n) * 255.0f);
             n6Var2.setBounds(rect);
             n6Var2.draw(canvas);
@@ -136,7 +136,7 @@ public final class e00 extends FrameLayout implements org.telegram.ui.ActionBar.
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Button");
         StringBuilder sb2 = new StringBuilder();
-        sb2.append((Object) this.f34624b.f37803i);
+        sb2.append((Object) this.f34624b.f37802i);
         if (this.f34633y > 0) {
             str = ", " + org.telegram.messenger.hd.G(this.f34633y, "Chats", new Object[0]);
         } else {

@@ -458,7 +458,7 @@ public final class h implements View.OnClickListener {
                 w wVar = (w) obj3;
                 TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj2;
                 h6 h6Var4 = (h6) obj;
-                hi.e eVar5 = wVar.f41605b2;
+                hi.e eVar5 = wVar.f41604b2;
                 if (eVar5.f14567e0 && !eVar5.R) {
                     if (wVar.e1()) {
                         wVar.dismiss();
@@ -501,10 +501,10 @@ public final class h implements View.OnClickListener {
                 ui uiVar2 = (ui) obj3;
                 g2 g2Var = (g2) obj2;
                 h6 h6Var5 = (h6) obj;
-                g2 g2Var2 = uiVar2.f40368a2;
+                g2 g2Var2 = uiVar2.f40367a2;
                 int i15 = uiVar2.H3;
                 ci ciVar = uiVar2.G2;
-                df dfVar = uiVar2.f40374c2;
+                df dfVar = uiVar2.f40373c2;
                 if (dfVar != null) {
                     j3 = dfVar.k();
                 } else {
@@ -514,8 +514,8 @@ public final class h implements View.OnClickListener {
                 ciVar.setEffect(j3);
                 uiVar2.f30191g1 = true;
                 if (uiVar2.F1 - uiVar2.G1 < 0) {
-                    g0.D3(uiVar2.f40432u1);
-                    g0.D3(uiVar2.f40436v1);
+                    g0.D3(uiVar2.f40431u1);
+                    g0.D3(uiVar2.f40435v1);
                     try {
                         ciVar.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
@@ -523,10 +523,10 @@ public final class h implements View.OnClickListener {
                     if (!np.u1(i15).K3() && np.u1(i15).X4 > uiVar2.G1) {
                         uiVar2.E1(g2Var);
                     }
-                    df dfVar2 = uiVar2.f40374c2;
+                    df dfVar2 = uiVar2.f40373c2;
                     if (dfVar2 != null) {
                         dfVar2.h(false);
-                        uiVar2.f40374c2 = null;
+                        uiVar2.f40373c2 = null;
                         return;
                     }
                     return;
@@ -540,8 +540,8 @@ public final class h implements View.OnClickListener {
                         return;
                     }
                 }
-                mi miVar = uiVar2.f40441w2;
-                if (miVar != uiVar2.f40379e2 && miVar != uiVar2.f40399l2) {
+                mi miVar = uiVar2.f40440w2;
+                if (miVar != uiVar2.f40378e2 && miVar != uiVar2.f40398l2) {
                     if (!miVar.M(true, 0, 0, j3, uiVar2.g1())) {
                         uiVar2.B4 = true;
                         uiVar2.dismiss();
@@ -552,10 +552,10 @@ public final class h implements View.OnClickListener {
                     uiVar = uiVar2;
                     v12 = uiVar.v1(true, 0, 0, j3, uiVar2.g1());
                 }
-                df dfVar3 = uiVar.f40374c2;
+                df dfVar3 = uiVar.f40373c2;
                 if (dfVar3 != null) {
                     dfVar3.h(!v12);
-                    uiVar.f40374c2 = null;
+                    uiVar.f40373c2 = null;
                 }
                 uiVar.w1(false, false);
                 return;
@@ -567,12 +567,12 @@ public final class h implements View.OnClickListener {
                 boolean z12 = uiVar3.X1;
                 message.invert_media = z12;
                 ((va0) obj).a(!z12, true);
-                uiVar3.f40374c2.f(gjVar);
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar3.f40379e2;
+                uiVar3.f40373c2.f(gjVar);
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar3.f40378e2;
                 if (chatAttachAlertPhotoLayout != null && (va0Var = chatAttachAlertPhotoLayout.f32812e1) != null) {
                     va0Var.a(!uiVar3.X1, true);
                 }
-                uiVar3.f40374c2.n(!uiVar3.X1);
+                uiVar3.f40373c2.n(!uiVar3.X1);
                 return;
             case 27:
                 hi.e eVar6 = (hi.e) obj;

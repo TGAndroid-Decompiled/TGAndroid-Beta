@@ -220,7 +220,7 @@ public class co extends FrameLayout implements te.b, org.telegram.messenger.gs, 
                     b9Var.f33802p = 1.0f;
                     if (ynVar != null) {
                         ynVar.setAnimatedEmojiDrawable(null);
-                        ynVar.f38836a.j0(user, b9Var, null, true, 3, false);
+                        ynVar.f38835a.j0(user, b9Var, null, true, 3, false);
                     }
                 }
             } else if (org.telegram.messenger.v3.p0(chat)) {
@@ -479,8 +479,8 @@ public class co extends FrameLayout implements te.b, org.telegram.messenger.gs, 
             this.h.i(null);
             this.f34248q0 = null;
         } else {
-            if ((this.h.getRightDrawable() instanceof o5) && (((o5) this.h.getRightDrawable()).f38105a instanceof p5)) {
-                ((p5) ((o5) this.h.getRightDrawable()).f38105a).n(this.h);
+            if ((this.h.getRightDrawable() instanceof o5) && (((o5) this.h.getRightDrawable()).f38104a instanceof p5)) {
+                ((p5) ((o5) this.h.getRightDrawable()).f38104a).n(this.h);
             }
             if (org.telegram.messenger.n5.f(emojiStatus) != 0) {
                 this.f34238g0.j(org.telegram.messenger.n5.f(emojiStatus), z14);

@@ -315,7 +315,7 @@ public class v0 extends z implements org.telegram.messenger.y5, gs, q4 {
         if (spannableStringBuilder != null) {
             xy0 xy0Var = new xy0(spannableStringBuilder, 10.0f, null);
             this.f32130m1 = xy0Var;
-            xy0Var.f42245a.linkColor = -1;
+            xy0Var.f42244a.linkColor = -1;
         } else {
             this.f32130m1 = null;
         }
@@ -403,7 +403,7 @@ public class v0 extends z implements org.telegram.messenger.y5, gs, q4 {
             }
             xy0 xy0Var2 = new xy0(str, i7, org.telegram.messenger.g0.o());
             this.T1 = xy0Var2;
-            xy0Var2.f42258p = org.telegram.messenger.g0.L(62.0f);
+            xy0Var2.f42257p = org.telegram.messenger.g0.L(62.0f);
             return;
         }
         this.S1 = null;
@@ -969,8 +969,8 @@ public class v0 extends z implements org.telegram.messenger.y5, gs, q4 {
                 float L11 = org.telegram.messenger.g0.L(174.0f);
                 vw0 vw0Var = v0Var.P0;
                 vw0Var.getClass();
-                int L12 = org.telegram.messenger.g0.L(f15) + ((int) vw0Var.f41571f.i());
-                if (vw0Var.f41573i) {
+                int L12 = org.telegram.messenger.g0.L(f15) + ((int) vw0Var.f41570f.i());
+                if (vw0Var.f41572i) {
                     i12 = org.telegram.messenger.g0.L(40.0f);
                 } else {
                     i12 = 0;
@@ -1182,7 +1182,7 @@ public class v0 extends z implements org.telegram.messenger.y5, gs, q4 {
                 } else {
                     f11 = f13;
                 }
-                d0Var.h.f42258p = Math.max(1, (((int) L3) - org.telegram.messenger.g0.L(15.0f)) - i7);
+                d0Var.h.f42257p = Math.max(1, (((int) L3) - org.telegram.messenger.g0.L(15.0f)) - i7);
                 xy0 xy0Var = d0Var.h;
                 float L7 = (org.telegram.messenger.g0.L(40.0f) / f11) + L2;
                 if (d0Var.f30539m) {
@@ -1504,7 +1504,7 @@ public class v0 extends z implements org.telegram.messenger.y5, gs, q4 {
             if (url.startsWith("topic")) {
                 URLSpan uRLSpan = this.f32169y;
                 if (uRLSpan instanceof s41) {
-                    TLObject tLObject = ((s41) uRLSpan).f39485c;
+                    TLObject tLObject = ((s41) uRLSpan).f39484c;
                     if (tLObject instanceof TLRPC.TL_forumTopic) {
                         qg.c.n(this.f32114g1.G(), -this.f32114g1.a(), (TLRPC.TL_forumTopic) tLObject, 0);
                         return;
@@ -1515,7 +1515,7 @@ public class v0 extends z implements org.telegram.messenger.y5, gs, q4 {
             if (url.startsWith("invite")) {
                 URLSpan uRLSpan2 = this.f32169y;
                 if (uRLSpan2 instanceof s41) {
-                    TLObject tLObject2 = ((s41) uRLSpan2).f39485c;
+                    TLObject tLObject2 = ((s41) uRLSpan2).f39484c;
                     if (tLObject2 instanceof TLRPC.TL_chatInviteExported) {
                         this.f32114g1.M((TLRPC.TL_chatInviteExported) tLObject2);
                         return;
@@ -2092,7 +2092,7 @@ public class v0 extends z implements org.telegram.messenger.y5, gs, q4 {
         }
         vw0 vw0Var = this.P0;
         if (vw0Var != null) {
-            vw0Var.d.R(vw0Var.f41568b);
+            vw0Var.d.R(vw0Var.f41567b);
         }
     }
 

@@ -47,7 +47,7 @@ public final class y1 extends g2 implements gs {
                 }
             }
             ((s8) view).setChecked(y1Var.h);
-            y1Var.f18570a.f35790g3.O(true);
+            y1Var.f18570a.f35789g3.O(true);
         } else if (view.isEnabled()) {
             z1 b10 = z1.b(y1Var.currentAccount);
             ArrayList arrayList = b10.d;
@@ -66,7 +66,7 @@ public final class y1 extends g2 implements gs {
                     if (y1Var.d) {
                         y1Var.simpleActionBar.o(true);
                     }
-                    y1Var.f18570a.f35790g3.O(true);
+                    y1Var.f18570a.f35789g3.O(true);
                 }
             }
         }
@@ -87,7 +87,7 @@ public final class y1 extends g2 implements gs {
             String N0 = hd.N0(2131743877, null);
             o41 o41Var = new o41(9);
             o41Var.d = -1;
-            o41Var.f38092m = N0;
+            o41Var.f38091m = N0;
             o41Var.L(y1Var.h);
             arrayList.add(o41Var);
             c51Var.U();
@@ -119,15 +119,15 @@ public final class y1 extends g2 implements gs {
             String f10 = z1.f(tL_timezone);
             o41 o41Var2 = new o41(10);
             o41Var2.d = i7;
-            o41Var2.f38092m = e10;
-            o41Var2.f38094o = f10;
+            o41Var2.f38091m = e10;
+            o41Var2.f38093o = f10;
             o41Var2.L(TextUtils.equals(tL_timezone.f28574id, y1Var.f18575n));
             if (y1Var.h && !z10) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            o41Var2.f38087g = z11;
+            o41Var2.f38086g = z11;
             arrayList.add(o41Var2);
             z12 = false;
             i7++;
@@ -178,7 +178,7 @@ public final class y1 extends g2 implements gs {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         h51 h51Var;
         c51 c51Var;
-        if (i7 == ls.f25388t3 && (h51Var = this.f18570a) != null && (c51Var = h51Var.f35790g3) != null) {
+        if (i7 == ls.f25388t3 && (h51Var = this.f18570a) != null && (c51Var = h51Var.f35789g3) != null) {
             c51Var.O(true);
         }
     }

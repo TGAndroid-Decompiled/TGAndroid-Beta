@@ -685,7 +685,7 @@ public class r0 extends c {
                             break;
                         case 10:
                             View z6Var = new z6(context, (org.telegram.ui.Cells.c0) null);
-                            new oq(new ColorDrawable(m6.w0(m6.f29324a7, h6Var)), m6.Y0(context, 2131231230, m6.f29345b7)).f38339x = true;
+                            new oq(new ColorDrawable(m6.w0(m6.f29324a7, h6Var)), m6.Y0(context, 2131231230, m6.f29345b7)).f38338x = true;
                             view2 = z6Var;
                             break;
                         case 11:

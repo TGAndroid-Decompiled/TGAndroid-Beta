@@ -34,7 +34,7 @@ public final class b0 extends xg.e {
     public final void F(TLObject tLObject) {
         c0 c0Var = this.f59765r;
         TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = c0Var.T1;
-        g2 g2Var = c0Var.f39536s1;
+        g2 g2Var = c0Var.f39535s1;
         c0Var.dismiss();
         if (tLObject instanceof TLRPC.Chat) {
             g2Var.presentFragment(bn.ua(-((TLRPC.Chat) tLObject).f28434id));

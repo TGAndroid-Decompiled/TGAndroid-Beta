@@ -170,14 +170,14 @@ public final class h6 {
             r12 = stargiftattributebackdrop3.text_color | (-16777216);
         }
         int i11 = r12;
-        this.f8988r.f42258p = cVar.f57706f - org.telegram.messenger.g0.L(12.0f);
+        this.f8988r.f42257p = cVar.f57706f - org.telegram.messenger.g0.L(12.0f);
         xy0 xy0Var = this.f8988r;
-        xy0Var.c(f11 - (xy0Var.f42247c / 2.0f), this.f8987q, 1.0f, -1, canvas);
-        this.f8990t.f42258p = cVar.f57706f - org.telegram.messenger.g0.L(12.0f);
+        xy0Var.c(f11 - (xy0Var.f42246c / 2.0f), this.f8987q, 1.0f, -1, canvas);
+        this.f8990t.f42257p = cVar.f57706f - org.telegram.messenger.g0.L(12.0f);
         xy0 xy0Var2 = this.f8990t;
         Canvas canvas2 = canvas;
         int i12 = i11;
-        xy0Var2.c(f11 - (xy0Var2.f42247c / 2.0f), this.f8989s, 1.0f, i12, canvas2);
+        xy0Var2.c(f11 - (xy0Var2.f42246c / 2.0f), this.f8989s, 1.0f, i12, canvas2);
         if (this.f8995z) {
             bi.l1 l1Var = this.f8994y;
             int i13 = l1Var.f3828t;
@@ -206,7 +206,7 @@ public final class h6 {
                 xy0 xy0Var3 = g6Var.f8895b;
                 float f14 = f11 - (L / 2.0f);
                 float f15 = f13;
-                xy0Var3.c((f14 + this.f8991u) - xy0Var3.f42247c, g6Var.f8894a, 1.0f, i12, canvas2);
+                xy0Var3.c((f14 + this.f8991u) - xy0Var3.f42246c, g6Var.f8894a, 1.0f, i12, canvas2);
                 canvas2 = canvas;
                 g6Var.f8896c.c(f14 + this.f8991u + org.telegram.messenger.g0.L(f15), g6Var.f8894a, 1.0f, -1, canvas2);
                 i12 = i12;
@@ -217,10 +217,10 @@ public final class h6 {
         int i20 = i12;
         if (!this.f8986p) {
             float f16 = this.A;
-            float a12 = org.telegram.messenger.f3.a(this.C.f42247c, org.telegram.messenger.g0.L(30.0f), 2.0f, f11);
+            float a12 = org.telegram.messenger.f3.a(this.C.f42246c, org.telegram.messenger.g0.L(30.0f), 2.0f, f11);
             float f17 = this.A + this.B;
             RectF rectF3 = this.D;
-            rectF3.set(f11 - ((this.C.f42247c + org.telegram.messenger.g0.L(30.0f)) / 2.0f), f16, a12, f17);
+            rectF3.set(f11 - ((this.C.f42246c + org.telegram.messenger.g0.L(30.0f)) / 2.0f), f16, a12, f17);
             Path path2 = this.E;
             path2.rewind();
             float f18 = this.B / 2.0f;
@@ -397,11 +397,11 @@ public final class h6 {
                 arrayList.add(g6Var);
                 float f13 = f12 * 0.5f;
                 xy0 xy0Var = g6Var.f8895b;
-                xy0Var.f42258p = f13;
-                this.f8991u = Math.max(this.f8991u, xy0Var.f42247c);
+                xy0Var.f42257p = f13;
+                this.f8991u = Math.max(this.f8991u, xy0Var.f42246c);
                 xy0 xy0Var2 = g6Var.f8896c;
-                xy0Var2.f42258p = f13;
-                this.v = Math.max(this.v, xy0Var2.f42247c);
+                xy0Var2.f42257p = f13;
+                this.v = Math.max(this.v, xy0Var2.f42246c);
                 L3 += g6Var.a();
             }
             if (this.f8981k != null) {
@@ -412,11 +412,11 @@ public final class h6 {
                 arrayList.add(g6Var2);
                 float f14 = f12 * 0.5f;
                 xy0 xy0Var3 = g6Var2.f8895b;
-                xy0Var3.f42258p = f14;
-                this.f8991u = Math.max(this.f8991u, xy0Var3.f42247c);
+                xy0Var3.f42257p = f14;
+                this.f8991u = Math.max(this.f8991u, xy0Var3.f42246c);
                 xy0 xy0Var4 = g6Var2.f8896c;
-                xy0Var4.f42258p = f14;
-                this.v = Math.max(this.v, xy0Var4.f42247c);
+                xy0Var4.f42257p = f14;
+                this.v = Math.max(this.v, xy0Var4.f42246c);
                 L3 = g6Var2.a() + L3;
             }
             if (this.f8982l != null) {
@@ -427,11 +427,11 @@ public final class h6 {
                 arrayList.add(g6Var3);
                 float f15 = f12 * 0.5f;
                 xy0 xy0Var5 = g6Var3.f8895b;
-                xy0Var5.f42258p = f15;
-                this.f8991u = Math.max(this.f8991u, xy0Var5.f42247c);
+                xy0Var5.f42257p = f15;
+                this.f8991u = Math.max(this.f8991u, xy0Var5.f42246c);
                 xy0 xy0Var6 = g6Var3.f8896c;
-                xy0Var6.f42258p = f15;
-                this.v = Math.max(this.v, xy0Var6.f42247c);
+                xy0Var6.f42257p = f15;
+                this.v = Math.max(this.v, xy0Var6.f42246c);
                 L3 += g6Var3.a();
             }
         }

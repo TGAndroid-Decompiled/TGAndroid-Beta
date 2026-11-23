@@ -4,18 +4,18 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.tgnet.TLRPC;
 public final class hr0 implements jl0 {
-    public final jt0 f35958a;
+    public final jt0 f35957a;
 
     public hr0(jt0 jt0Var) {
-        this.f35958a = jt0Var;
+        this.f35957a = jt0Var;
     }
 
     @Override
     public final void D() {
         int a10;
         int L0;
-        jt0 jt0Var = this.f35958a;
-        ds0[] ds0VarArr = jt0Var.f36651n0;
+        jt0 jt0Var = this.f35957a;
+        ds0[] ds0VarArr = jt0Var.f36650n0;
         int i7 = ds0VarArr[0].F;
         if (i7 != 0) {
             if (i7 != 1 && i7 != 2) {
@@ -37,7 +37,7 @@ public final class hr0 implements jl0 {
         }
         ds0 ds0Var = ds0VarArr[0];
         if (ds0Var.F == 0) {
-            L0 = (ds0Var.f34565x.L0() / jt0Var.f36657p1[0]) * a10;
+            L0 = (ds0Var.f34565x.L0() / jt0Var.f36656p1[0]) * a10;
         } else {
             L0 = ds0Var.f34565x.L0() * a10;
         }
@@ -52,12 +52,12 @@ public final class hr0 implements jl0 {
 
     @Override
     public final void a(int i7, boolean z10) {
-        jt0 jt0Var = this.f35958a;
-        ds0[] ds0VarArr = jt0Var.f36651n0;
+        jt0 jt0Var = this.f35957a;
+        ds0[] ds0VarArr = jt0Var.f36650n0;
         if (ds0VarArr[0].F == i7) {
             return;
         }
-        jq0 jq0Var = jt0Var.f36618c0;
+        jq0 jq0Var = jt0Var.f36617c0;
         if (jq0Var != null && i7 == 8) {
             jq0Var.f50348b.g(1.0f, 0);
         }
@@ -66,7 +66,7 @@ public final class hr0 implements jl0 {
         ds0Var.setVisibility(0);
         jt0Var.w0();
         jt0Var.B1(true);
-        jt0Var.f36644k1 = z10;
+        jt0Var.f36643k1 = z10;
         jt0Var.Y0();
         jt0Var.E(!jt0Var.F0(i7));
         jt0Var.I1(true);
@@ -78,12 +78,12 @@ public final class hr0 implements jl0 {
         int i7;
         int i10;
         ds0 ds0Var2;
-        jt0 jt0Var = this.f35958a;
-        org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36659q0;
-        ds0[] ds0VarArr = jt0Var.f36651n0;
+        jt0 jt0Var = this.f35957a;
+        org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36658q0;
+        ds0[] ds0VarArr = jt0Var.f36650n0;
         int i11 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
         if (i11 != 0 || ds0VarArr[1].getVisibility() == 0) {
-            if (jt0Var.f36644k1) {
+            if (jt0Var.f36643k1) {
                 ds0VarArr[0].setTranslationX((-f10) * ds0Var2.getMeasuredWidth());
                 ds0VarArr[1].setTranslationX(ds0VarArr[0].getMeasuredWidth() - (ds0VarArr[0].getMeasuredWidth() * f10));
             } else {
@@ -92,8 +92,8 @@ public final class hr0 implements jl0 {
             }
             jt0Var.Z0(jt0Var.getTabProgress());
             float k02 = jt0Var.k0(f10);
-            jt0Var.f36667s0 = k02;
-            ImageView imageView = jt0Var.f36672u0;
+            jt0Var.f36666s0 = k02;
+            ImageView imageView = jt0Var.f36671u0;
             int i12 = 4;
             if (k02 != 0.0f && jt0Var.I() && !jt0Var.A0()) {
                 i7 = 0;
@@ -108,9 +108,9 @@ public final class hr0 implements jl0 {
                     i10 = 4;
                 }
                 jt0Var.setSearchItemVisibility(i10);
-                jt0Var.f36663r0 = 0.0f;
+                jt0Var.f36662r0 = 0.0f;
             } else {
-                jt0Var.f36663r0 = jt0Var.l0(f10);
+                jt0Var.f36662r0 = jt0Var.l0(f10);
                 jt0Var.N1();
             }
             jt0Var.I1(false);
@@ -135,14 +135,14 @@ public final class hr0 implements jl0 {
     public final boolean h1(int i7, View view) {
         TLRPC.UserFull userFull;
         TLRPC.ProfileTab profileTab;
-        jt0 jt0Var = this.f35958a;
-        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36684y1;
+        jt0 jt0Var = this.f35957a;
+        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36683y1;
         if (g2Var != null) {
             boolean C0 = jt0Var.C0();
             if (jt0.o0(i7, C0) != null) {
                 if (C0) {
-                    if (org.telegram.messenger.v3.w(5, g2Var.getMessagesController().O0(Long.valueOf(jt0Var.f36632g1.f28435id)))) {
-                        profileTab = jt0Var.f36632g1.main_tab;
+                    if (org.telegram.messenger.v3.w(5, g2Var.getMessagesController().O0(Long.valueOf(jt0Var.f36631g1.f28435id)))) {
+                        profileTab = jt0Var.f36631g1.main_tab;
                         if (profileTab != null || (i7 != jt0.p0(profileTab) && jt0Var.V1 != i7)) {
                             a70 I = a70.I(g2Var, view);
                             I.X(org.telegram.ui.ActionBar.m6.d0(org.telegram.messenger.g0.L(24.0f), org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29381d6, false)));
@@ -151,7 +151,7 @@ public final class hr0 implements jl0 {
                             return true;
                         }
                     }
-                } else if (jt0Var.f36648m1 == g2Var.getUserConfig().e() && (userFull = jt0Var.f36635h1) != null) {
+                } else if (jt0Var.f36647m1 == g2Var.getUserConfig().e() && (userFull = jt0Var.f36634h1) != null) {
                     profileTab = userFull.main_tab;
                     if (profileTab != null) {
                     }

@@ -1452,8 +1452,8 @@ public final class si extends c1 {
                 alertDialog$Builder.d = 0;
                 t1Var.S = hd.N0(2131754123, null);
             }
-            alertDialog$Builder.f37653c = new ArrayList(arrayList);
-            alertDialog$Builder.f37654e = g2Var2;
+            alertDialog$Builder.f37652c = new ArrayList(arrayList);
+            alertDialog$Builder.f37653e = g2Var2;
             LinearLayout linearLayout = new LinearLayout(parentActivity);
             linearLayout.setOrientation(1);
             alertDialog$Builder.o(linearLayout);
@@ -3363,7 +3363,7 @@ public final class si extends c1 {
                     tL_messageEntityTextUrl.length = Math.min(spanned.getSpanEnd(u41VarArr[i33]), charSequenceArr[0].length()) - tL_messageEntityTextUrl.offset;
                     tL_messageEntityTextUrl.url = u41VarArr[i33].getURL();
                     arrayList.add(tL_messageEntityTextUrl);
-                    fz0 fz0Var = u41VarArr[i33].f40260a;
+                    fz0 fz0Var = u41VarArr[i33].f40259a;
                     if (fz0Var != null) {
                         int i34 = fz0Var.f35337a;
                         int i35 = tL_messageEntityTextUrl.offset;
@@ -3421,7 +3421,7 @@ public final class si extends c1 {
                             TLRPC.TL_messageEntityBlockquote tL_messageEntityBlockquote = new TLRPC.TL_messageEntityBlockquote();
                             tL_messageEntityBlockquote.offset = spanned.getSpanStart(jh0Var);
                             tL_messageEntityBlockquote.length = Math.min(spanned.getSpanEnd(jh0Var), charSequenceArr[0].length()) - tL_messageEntityBlockquote.offset;
-                            tL_messageEntityBlockquote.collapsed = jh0Var.f36505e;
+                            tL_messageEntityBlockquote.collapsed = jh0Var.f36504e;
                             arrayList.add(tL_messageEntityBlockquote);
                         } catch (Exception e12) {
                             a8.g(e12, true);
@@ -3440,7 +3440,7 @@ public final class si extends c1 {
                             TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
                             tL_messageEntityFormattedDate.offset = spanned.getSpanStart(m00Var);
                             tL_messageEntityFormattedDate.length = Math.min(spanned.getSpanEnd(m00Var), charSequenceArr[0].length()) - tL_messageEntityFormattedDate.offset;
-                            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate2 = m00Var.f37369b;
+                            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate2 = m00Var.f37368b;
                             tL_messageEntityFormattedDate.relative = tL_messageEntityFormattedDate2.relative;
                             tL_messageEntityFormattedDate.short_time = tL_messageEntityFormattedDate2.short_time;
                             tL_messageEntityFormattedDate.long_time = tL_messageEntityFormattedDate2.long_time;

@@ -17,7 +17,7 @@ public final class ei implements ck {
             ckVar.A();
             return;
         }
-        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
         if (g2Var instanceof ck) {
             ((ck) g2Var).A();
         } else if (g2Var instanceof org.telegram.ui.hk0) {
@@ -46,7 +46,7 @@ public final class ei implements ck {
             ckVar.n(arrayList, str, arrayList2, arrayList3, z10, i7, j3, z11, j10);
             return;
         }
-        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
         if (g2Var instanceof ck) {
             ((ck) g2Var).n(arrayList, str, arrayList2, arrayList3, z10, i7, j3, z11, j10);
         } else if (g2Var instanceof org.telegram.ui.hk0) {
@@ -70,7 +70,7 @@ public final class ei implements ck {
             ckVar.p(arrayList, z10, i7, j3);
             return;
         }
-        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
         if (g2Var instanceof org.telegram.ui.bn) {
             ((org.telegram.ui.bn) g2Var).p(arrayList, z10, i7, j3);
         } else if (g2Var instanceof org.telegram.ui.hk0) {

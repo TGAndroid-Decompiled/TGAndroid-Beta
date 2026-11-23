@@ -49,7 +49,7 @@ public final class m40 extends qc {
         }
         FrameLayout frameLayout = this.P;
         if (frameLayout != null && (frameLayout.getBackground() instanceof org.telegram.ui.Components.oq)) {
-            Drawable drawable = ((org.telegram.ui.Components.oq) this.P.getBackground()).f38330a;
+            Drawable drawable = ((org.telegram.ui.Components.oq) this.P.getBackground()).f38329a;
             if (drawable instanceof ColorDrawable) {
                 ((ColorDrawable) drawable).setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29381d6, this.resourceProvider));
                 this.P.invalidate();
@@ -194,7 +194,7 @@ public final class m40 extends qc {
         super.g1(z10);
         this.actionBar.setBackgroundColor(0);
         org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(new ColorDrawable(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29381d6, this.resourceProvider)), org.telegram.ui.ActionBar.m6.Y0(getParentActivity(), 2131231230, org.telegram.ui.ActionBar.m6.f29345b7), 0, 0);
-        oqVar.f38339x = true;
+        oqVar.f38338x = true;
         this.P.setBackground(oqVar);
         this.N.setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.m6.f29324a7));
         jc jcVar = this.A0;

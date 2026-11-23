@@ -4,15 +4,15 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 public final class o21 extends v4.u0 {
-    public final b31 f38067a;
+    public final b31 f38066a;
 
     public o21(b31 b31Var) {
-        this.f38067a = b31Var;
+        this.f38066a = b31Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
-        b31 b31Var = this.f38067a;
+        b31 b31Var = this.f38066a;
         n21 n21Var = b31Var.H1;
         if (i7 == 0) {
             b31Var.G1 = false;
@@ -26,7 +26,7 @@ public final class o21 extends v4.u0 {
     @Override
     public final void b(RecyclerView recyclerView, int i7, int i10) {
         float f10;
-        b31 b31Var = this.f38067a;
+        b31 b31Var = this.f38066a;
         b31Var.f30176b.invalidate();
         boolean canScrollVertically = b31Var.H1.canScrollVertically(1);
         View view = b31Var.L1;

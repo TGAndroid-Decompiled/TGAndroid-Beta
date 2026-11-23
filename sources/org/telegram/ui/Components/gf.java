@@ -376,7 +376,7 @@ public final class gf extends mg {
                                     ih0[] ih0VarArr2 = (ih0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), ih0.class);
                                     for (int i10 = 0; i10 < ih0VarArr2.length; i10++) {
                                         spannableStringBuilder.removeSpan(ih0VarArr2[i10]);
-                                        spannableStringBuilder.removeSpan(ih0VarArr2[i10].f36257a);
+                                        spannableStringBuilder.removeSpan(ih0VarArr2[i10].f36256a);
                                     }
                                 } else {
                                     jh0.a(spannableStringBuilder);

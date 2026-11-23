@@ -411,8 +411,8 @@ public abstract class em0 extends FrameLayout implements org.telegram.messenger.
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
                 mutate.setColorFilter(new PorterDuffColorFilter(i15, mode));
                 nq nqVar = new nq(0, mutate);
-                nqVar.f37952s = 0.0f;
-                nqVar.f37951r = 0.0f;
+                nqVar.f37951s = 0.0f;
+                nqVar.f37950r = 0.0f;
                 nqVar.I = 0.94f;
                 nqVar.J = 0.94f;
                 SpannableString spannableString = new SpannableString("l");
@@ -432,8 +432,8 @@ public abstract class em0 extends FrameLayout implements org.telegram.messenger.
                 nq nqVar2 = new nq(0, mutate2);
                 nqVar2.I = 0.76f;
                 nqVar2.J = 0.76f;
-                nqVar2.f37951r = -org.telegram.messenger.g0.L(1.0f);
-                nqVar2.f37952s = org.telegram.messenger.g0.L(1.0f);
+                nqVar2.f37950r = -org.telegram.messenger.g0.L(1.0f);
+                nqVar2.f37951s = org.telegram.messenger.g0.L(1.0f);
                 spannableString2.setSpan(nqVar2, 0, spannableString2.length(), 17);
                 spannableStringBuilder2.append((CharSequence) spannableString2);
                 textView.setText(spannableStringBuilder2);

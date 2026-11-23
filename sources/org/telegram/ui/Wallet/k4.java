@@ -28,7 +28,7 @@ public final class k4 extends q80 {
         if (m4Var.f44585o0 != null) {
             canvas.saveLayer(rectF, null);
             m4Var.f44585o0.c((org.telegram.messenger.g0.L(206.0f) - m4Var.f44585o0.k()) / 2.0f, (rectF.bottom - org.telegram.messenger.g0.L(7.0f)) - m4Var.f44585o0.i(), 1.0f, -1, canvas);
-            Shader shader = this.f38833x.getShader();
+            Shader shader = this.f38832x.getShader();
             Paint paint = this.M;
             paint.setShader(shader);
             canvas.drawRect(rectF, paint);

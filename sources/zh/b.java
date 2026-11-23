@@ -47,13 +47,13 @@ public final class b extends r51 {
         this.P1 = l90Var;
         l90Var.B = false;
         this.f30205q0 = 75;
-        this.f39090w1.K.setHint(hd.N0(2131745562, null));
+        this.f39089w1.K.setHint(hd.N0(2131745562, null));
         g gVar = l90Var.f62058f;
-        this.f39084q1 = gVar;
-        this.f39083p1 = gVar;
-        this.f39082o1.setAdapter(gVar);
-        this.f39082o1.r1();
-        b1 b1Var = this.f39082o1;
+        this.f39083q1 = gVar;
+        this.f39082p1 = gVar;
+        this.f39081o1.setAdapter(gVar);
+        this.f39081o1.r1();
+        b1 b1Var = this.f39081o1;
         l90Var.f62067p = b1Var;
         b1Var.setOnItemClickListener(new k8(l90Var, 24));
         u0 onScrollListener = b1Var.getOnScrollListener();
@@ -62,7 +62,7 @@ public final class b extends r51 {
         } else {
             b1Var.setOnScrollListener(new g6(11, l90Var, onScrollListener));
         }
-        int indexOfChild = ((ViewGroup) this.f39082o1.getParent()).indexOfChild(this.f39082o1);
+        int indexOfChild = ((ViewGroup) this.f39081o1.getParent()).indexOfChild(this.f39081o1);
         yz b10 = l90Var.b();
         this.Q1 = b10;
         this.f30176b.addView(b10, indexOfChild, ma.c(-1.0f, -1));
@@ -82,9 +82,9 @@ public final class b extends r51 {
         int action = motionEvent.getAction();
         l90 l90Var = this.P1;
         if (action == 0) {
-            this.T1 = this.f39092y1;
+            this.T1 = this.f39091y1;
             l90Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f39092y1 - this.T1) < this.O1 && !this.U1) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f39091y1 - this.T1) < this.O1 && !this.U1) {
             Activity W = g0.W(getContext());
             if (W instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) W;
@@ -132,15 +132,15 @@ public final class b extends r51 {
     @Override
     public final void R0() {
         int i7;
-        b1 b1Var = this.f39082o1;
+        b1 b1Var = this.f39081o1;
         if (b1Var.getChildCount() <= 0) {
             if (b1Var.getVisibility() == 0) {
                 i7 = b1Var.getPaddingTop() - g0.L(8.0f);
             } else {
                 i7 = 0;
             }
-            if (this.f39092y1 != i7) {
-                this.f39092y1 = i7;
+            if (this.f39091y1 != i7) {
+                this.f39091y1 = i7;
                 O0(i7);
                 return;
             }
@@ -182,8 +182,8 @@ public final class b extends r51 {
     @Override
     public final void show() {
         l90 l90Var = this.P1;
-        if (l90Var.f62055b && this.f39092y1 == 0) {
-            this.f39092y1 = g0.L(8.0f);
+        if (l90Var.f62055b && this.f39091y1 == 0) {
+            this.f39091y1 = g0.L(8.0f);
         }
         super.show();
         l90Var.f62055b = false;

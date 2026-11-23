@@ -104,7 +104,7 @@ public class js0 extends FrameLayout {
     }
 
     public final void c() {
-        this.h.setBounds((getWidth() - this.h.f37781s) - org.telegram.messenger.g0.L(21.0f), (getHeight() - this.h.f37781s) / 2, getWidth() - org.telegram.messenger.g0.L(21.0f), (getHeight() + this.h.f37781s) / 2);
+        this.h.setBounds((getWidth() - this.h.f37780s) - org.telegram.messenger.g0.L(21.0f), (getHeight() - this.h.f37780s) / 2, getWidth() - org.telegram.messenger.g0.L(21.0f), (getHeight() + this.h.f37780s) / 2);
     }
 
     @Override

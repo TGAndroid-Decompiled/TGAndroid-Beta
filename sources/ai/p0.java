@@ -133,7 +133,7 @@ public final class p0 implements d2 {
         this.H0 = new j0(this, 0);
         this.h = context;
         this.f1392f = sfVar;
-        this.f1400n = sfVar.f39573a.M4;
+        this.f1400n = sfVar.f39572a.M4;
     }
 
     public static void G(TLRPC.TL_error tL_error) {
@@ -279,7 +279,7 @@ public final class p0 implements d2 {
         this.F.a();
         this.f1407s.setStopIsland(false);
         sf sfVar = this.f1392f;
-        sfVar.f39573a.M1(null, true);
+        sfVar.f39572a.M1(null, true);
         D(false);
         this.P = 0.0f;
         this.f1412w.setIsland(false);
@@ -296,11 +296,11 @@ public final class p0 implements d2 {
         sfVar.d(0.0f);
         this.f1407s.e();
         sfVar.b();
-        sfVar.f39573a.v1();
+        sfVar.f39572a.v1();
     }
 
     public final void C(boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f1392f.f39573a;
+        ChatActivityEnterView chatActivityEnterView = this.f1392f.f39572a;
         gf gfVar = chatActivityEnterView.F0;
         if (gfVar != null && z10) {
             chatActivityEnterView.F1 = false;
@@ -324,7 +324,7 @@ public final class p0 implements d2 {
     public final void E() {
         bj bjVar;
         tl tlVar;
-        bn bnVar = this.f1392f.f39573a.F3;
+        bn bnVar = this.f1392f.f39572a.F3;
         if (bnVar != null) {
             bjVar = bnVar.A0;
         } else {
@@ -393,10 +393,10 @@ public final class p0 implements d2 {
             String str2 = null;
             this.A0 = null;
             sf sfVar = this.f1392f;
-            ChatActivityEnterView chatActivityEnterView = sfVar.f39573a;
+            ChatActivityEnterView chatActivityEnterView = sfVar.f39572a;
             chatActivityEnterView.A1 = 0.0f;
             chatActivityEnterView.m2();
-            Editable text = sfVar.f39573a.F0.getText();
+            Editable text = sfVar.f39572a.F0.getText();
             int i10 = this.f1405r;
             if (i10 == 3 || i10 == 4) {
                 this.f1412w.a();
@@ -432,7 +432,7 @@ public final class p0 implements d2 {
             org.telegram.messenger.g0.r(this.f1398k0);
             b0 b0Var = this.m0;
             DictationAsr.R(b0Var);
-            DictationAsr.f43073g.add(b0Var);
+            DictationAsr.f43072g.add(b0Var);
             M(true);
             if (!z10) {
                 b(1.0f, 220L, nr.h);
@@ -514,9 +514,9 @@ public final class p0 implements d2 {
             } else {
                 z13 = false;
             }
-            ChatActivityEnterView chatActivityEnterView2 = sfVar.f39573a;
+            ChatActivityEnterView chatActivityEnterView2 = sfVar.f39572a;
             this.G = new f2(this.h, chatActivityEnterView2.R, chatActivityEnterView2.G3, z13, this);
-            gf gfVar = sfVar.f39573a.F0;
+            gf gfVar = sfVar.f39572a.F0;
             if (gfVar != null) {
                 gfVar.n1 = true;
             }
@@ -542,7 +542,7 @@ public final class p0 implements d2 {
     }
 
     public final void K() {
-        Editable text = this.f1392f.f39573a.F0.getText();
+        Editable text = this.f1392f.f39572a.F0.getText();
         if (text != null && text.length() > 0 && text.length() == this.I && Character.isWhitespace(text.charAt(text.length() - 1))) {
             this.L = true;
             text.delete(text.length() - 1, text.length());
@@ -567,7 +567,7 @@ public final class p0 implements d2 {
             }
         }
         try {
-            du0 du0Var = this.f1392f.f39573a.f32591c2;
+            du0 du0Var = this.f1392f.f39572a.f32591c2;
             if (du0Var != null) {
                 z10 = true;
             } else {
@@ -716,11 +716,11 @@ public final class p0 implements d2 {
         this.f1399l0 = str;
         sf sfVar = this.f1392f;
         if (str == null) {
-            sfVar.f39573a.M1(hd.N0(2131745054, null), true);
+            sfVar.f39572a.M1(hd.N0(2131745054, null), true);
             return;
         }
         String N0 = hd.N0(2131745062, null);
-        ChatActivityEnterView chatActivityEnterView = sfVar.f39573a;
+        ChatActivityEnterView chatActivityEnterView = sfVar.f39572a;
         CharSequence charSequence = chatActivityEnterView.f32604e;
         if (charSequence != null && charSequence.toString().startsWith(N0.toString())) {
             z11 = true;
@@ -749,7 +749,7 @@ public final class p0 implements d2 {
             k2Var.d(editableText, editableText.length());
         }
         sf sfVar = this.f1392f;
-        gf gfVar = sfVar.f39573a.F0;
+        gf gfVar = sfVar.f39572a.F0;
         InputMethodManager inputMethodManager = (InputMethodManager) this.h.getSystemService("input_method");
         if (inputMethodManager != null && gfVar != null) {
             inputMethodManager.restartInput(gfVar);
@@ -758,7 +758,7 @@ public final class p0 implements d2 {
         if (str2 != null) {
             Log.d("Dictation", "stopped with error: ".concat(str2));
         }
-        if (w() <= 0 && (this.N <= 0 || sfVar.f39573a.F0.getText().toString().trim().length() <= 0)) {
+        if (w() <= 0 && (this.N <= 0 || sfVar.f39572a.F0.getText().toString().trim().length() <= 0)) {
             g();
             K();
             this.f1412w.setIsland(false);
@@ -778,13 +778,13 @@ public final class p0 implements d2 {
         }
         this.f1407s.setHandOff(true);
         this.f1407s.setRightMode(2);
-        sfVar.f39573a.M1(null, true);
+        sfVar.f39572a.M1(null, true);
         D(false);
         this.P = 0.0f;
         org.telegram.messenger.g0.h3(this.f1409t0, 460L);
         this.f1412w.setStopMode(false);
         this.f1412w.d(hd.N0(2131745060, null), false);
-        gf gfVar2 = sfVar.f39573a.F0;
+        gf gfVar2 = sfVar.f39572a.F0;
         gfVar2.setSelection(gfVar2.length());
         if (!this.f1402o0) {
             gfVar2.requestFocus();
@@ -810,7 +810,7 @@ public final class p0 implements d2 {
         boolean z10;
         String a02;
         if (this.f1405r == 3) {
-            if (this.I > this.f1392f.f39573a.F0.length()) {
+            if (this.I > this.f1392f.f39572a.F0.length()) {
                 this.I = 0;
             }
             String str = this.J;
@@ -884,7 +884,7 @@ public final class p0 implements d2 {
         this.A0 = ofFloat;
         ofFloat.addUpdateListener(new c0(this, 0));
         this.A0.setDuration(220L);
-        this.A0.setInterpolator(nr.f37962g);
+        this.A0.setInterpolator(nr.f37961g);
         this.A0.start();
     }
 
@@ -952,7 +952,7 @@ public final class p0 implements d2 {
         if (s0Var != null) {
             s0Var.setLevel(f10);
         }
-        if (this.f1402o0 && (recordCircle = (chatActivityEnterView = this.f1392f.f39573a).D2) != null && chatActivityEnterView.f32736v3) {
+        if (this.f1402o0 && (recordCircle = (chatActivityEnterView = this.f1392f.f39572a).D2) != null && chatActivityEnterView.f32736v3) {
             recordCircle.setAmplitude(f10 * 1800.0f);
         }
     }
@@ -967,7 +967,7 @@ public final class p0 implements d2 {
         gh.a aVar;
         d6 d6Var;
         sf sfVar = this.f1392f;
-        du0 du0Var = sfVar.f39573a.f32591c2;
+        du0 du0Var = sfVar.f39572a.f32591c2;
         s0 s0Var = this.f1407s;
         Context context = this.h;
         if (s0Var == null) {
@@ -983,7 +983,7 @@ public final class p0 implements d2 {
             this.f1407s.bringToFront();
         }
         s0 s0Var3 = this.f1407s;
-        ChatActivityEnterView chatActivityEnterView = sfVar.f39573a;
+        ChatActivityEnterView chatActivityEnterView = sfVar.f39572a;
         fe feVar = chatActivityEnterView.R0;
         oe oeVar = chatActivityEnterView.f32572a1;
         s0Var3.f1463b = feVar;
@@ -998,7 +998,7 @@ public final class p0 implements d2 {
         } else {
             this.f1412w.bringToFront();
         }
-        ChatActivityEnterView chatActivityEnterView2 = sfVar.f39573a;
+        ChatActivityEnterView chatActivityEnterView2 = sfVar.f39572a;
         int i7 = ChatActivityEnterView.f32569s7;
         jh.f D0 = chatActivityEnterView2.D0();
         jh.f fVar = this.f1384a0;
@@ -1015,14 +1015,14 @@ public final class p0 implements d2 {
             }
             this.Y = d6Var;
             if (D0 != null) {
-                d6Var2 = new d6(D0, 1L, 300L, nr.f37962g);
+                d6Var2 = new d6(D0, 1L, 300L, nr.f37961g);
             }
             this.f1390e = d6Var2;
         }
         jh.f fVar2 = this.f1384a0;
         if (fVar2 != null) {
             fVar2.f17805f = new a0(this, 2);
-            dh.c cVar = sfVar.f39573a.L1;
+            dh.c cVar = sfVar.f39572a.L1;
             if (cVar != null && (gVar = fVar2.f17806n) != null && (aVar = gVar.f11703w) != null) {
                 fh.g c10 = cVar.c(this.f1412w, aVar, false);
                 fh.g c11 = cVar.c(this.f1412w, this.f1384a0.f17806n.f11703w, false);
@@ -1042,7 +1042,7 @@ public final class p0 implements d2 {
                 }
             }
         }
-        gf gfVar = sfVar.f39573a.F0;
+        gf gfVar = sfVar.f39572a.F0;
         if (this.F == null) {
             k2 k2Var = new k2(gfVar);
             this.F = k2Var;
@@ -1051,14 +1051,14 @@ public final class p0 implements d2 {
             gfVar.addTextChangedListener(this.f1394g0);
         }
         if (this.H == null) {
-            this.H = new h(sfVar.f39573a.R);
+            this.H = new h(sfVar.f39572a.R);
         }
         L();
     }
 
     public final void k() {
         sf sfVar = this.f1392f;
-        gf gfVar = sfVar.f39573a.F0;
+        gf gfVar = sfVar.f39572a.F0;
         if (gfVar != null) {
             gfVar.n1 = false;
         }
@@ -1088,7 +1088,7 @@ public final class p0 implements d2 {
         if (o1Var != null) {
             o1Var.c();
         }
-        ChatActivityEnterView chatActivityEnterView = sfVar.f39573a;
+        ChatActivityEnterView chatActivityEnterView = sfVar.f39572a;
         chatActivityEnterView.G1 = 0L;
         chatActivityEnterView.H1 = null;
         s0 s0Var = this.f1407s;
@@ -1166,7 +1166,7 @@ public final class p0 implements d2 {
     }
 
     public final boolean r(float[] fArr) {
-        gf gfVar = this.f1392f.f39573a.F0;
+        gf gfVar = this.f1392f.f39572a.F0;
         if (this.f1384a0 == null || gfVar == null || gfVar.getLayout() == null) {
             return false;
         }
@@ -1190,7 +1190,7 @@ public final class p0 implements d2 {
         }
         this.G = null;
         sf sfVar = this.f1392f;
-        Editable text = sfVar.f39573a.F0.getText();
+        Editable text = sfVar.f39572a.F0.getText();
         if (text != null && this.I <= text.length()) {
             this.L = true;
             this.F.a();
@@ -1227,7 +1227,7 @@ public final class p0 implements d2 {
     }
 
     public final int w() {
-        Editable text = this.f1392f.f39573a.F0.getText();
+        Editable text = this.f1392f.f39572a.F0.getText();
         if (text == null) {
             return 0;
         }
@@ -1277,7 +1277,7 @@ public final class p0 implements d2 {
     }
 
     public final String z() {
-        Editable text = this.f1392f.f39573a.F0.getText();
+        Editable text = this.f1392f.f39572a.F0.getText();
         if (text == null) {
             return "";
         }

@@ -25,11 +25,11 @@ public final class da0 extends b71 {
 
     @Override
     public final int e() {
-        return this.f34462b.f41740e.f40307a.size();
+        return this.f34462b.f41739e.f40306a.size();
     }
 
     @Override
     public final int h(int i7) {
-        return ((ta0) this.f34462b.f41740e.f40307a.get(i7)).f39809a;
+        return ((ta0) this.f34462b.f41739e.f40306a.get(i7)).f39808a;
     }
 }

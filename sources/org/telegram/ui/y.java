@@ -154,22 +154,22 @@ public final class y implements View.OnClickListener {
                             i10++;
                             org.telegram.ui.Components.h61 h61Var = (org.telegram.ui.Components.h61) obj4;
                             if (h61Var.b()) {
-                                document = h61Var.f35805g;
+                                document = h61Var.f35804g;
                             }
                         } else {
                             long j10 = Long.MAX_VALUE;
                             org.telegram.ui.Components.h61 h61Var2 = null;
                             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                                 org.telegram.ui.Components.h61 h61Var3 = (org.telegram.ui.Components.h61) arrayList.get(i11);
-                                if (h61Var3.f35808k < j10 && org.telegram.ui.Components.i61.D0(h61Var3.f35810m)) {
-                                    j10 = h61Var3.f35808k;
+                                if (h61Var3.f35807k < j10 && org.telegram.ui.Components.i61.D0(h61Var3.f35809m)) {
+                                    j10 = h61Var3.f35807k;
                                     h61Var2 = h61Var3;
                                 }
                             }
                             if (h61Var2 != null) {
-                                document = h61Var2.f35805g;
+                                document = h61Var2.f35804g;
                             } else {
-                                document = ((org.telegram.ui.Components.h61) arrayList.get(0)).f35805g;
+                                document = ((org.telegram.ui.Components.h61) arrayList.get(0)).f35804g;
                             }
                         }
                     }

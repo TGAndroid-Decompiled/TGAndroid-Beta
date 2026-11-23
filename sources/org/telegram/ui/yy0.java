@@ -101,7 +101,7 @@ public abstract class yy0 extends FrameLayout {
         ofFloat.addUpdateListener(new vy0(this, 0));
         this.h.addListener(new xy0(this, 0));
         this.h.setDuration(250L);
-        this.h.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+        this.h.setInterpolator(org.telegram.ui.Components.nr.f37960f);
         this.h.start();
     }
 
@@ -297,7 +297,7 @@ public abstract class yy0 extends FrameLayout {
                     ofFloat.addUpdateListener(new vy0(this, 2));
                     this.h.addListener(new xy0(this, 1));
                     this.h.setDuration(250L);
-                    this.h.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                    this.h.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                     this.h.start();
                 } else {
                     b();

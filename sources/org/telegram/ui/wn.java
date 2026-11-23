@@ -173,7 +173,7 @@ public final class wn implements Runnable {
                 ji.p pVar = (ji.p) obj3;
                 ji.g gVar = (ji.g) obj4;
                 ji.r rVar = (ji.r) obj2;
-                ChatActivityEnterView chatActivityEnterView = rfVar.f39178a;
+                ChatActivityEnterView chatActivityEnterView = rfVar.f39177a;
                 org.telegram.ui.Components.pe0 a82 = chatActivityEnterView.F3.a8(pVar, (org.telegram.ui.Components.qf) obj);
                 if (a82 == null) {
                     org.telegram.messenger.g0.E2(pVar);
@@ -220,18 +220,18 @@ public final class wn implements Runnable {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
                 TLObject tLObject2 = (TLObject) obj4;
                 TextView textView = (TextView) obj2;
-                kw0Var.f37014k2 = 0;
-                String str6 = kw0Var.f37013j2;
+                kw0Var.f37013k2 = 0;
+                String str6 = kw0Var.f37012j2;
                 if (str6 != null && str6.equals(str5)) {
                     if (tL_error2 == null && (tLObject2 instanceof TLRPC.TL_boolTrue)) {
                         textView.setText(org.telegram.messenger.hd.N0(2131749042, null));
                         org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29735w6, kw0Var.J0);
-                        kw0Var.f37015l2 = true;
+                        kw0Var.f37014l2 = true;
                         return;
                     }
                     textView.setText(org.telegram.messenger.hd.N0(2131749037, null));
                     org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29602p7, kw0Var.J0);
-                    kw0Var.f37015l2 = false;
+                    kw0Var.f37014l2 = false;
                     return;
                 }
                 return;
@@ -256,10 +256,10 @@ public final class wn implements Runnable {
                             userFull.flags2 |= 32;
                         }
                         userFull.birthday = tL_birthday;
-                        org.telegram.messenger.ur.a0(vw0Var.f41567a).j2(userFull, false);
+                        org.telegram.messenger.ur.a0(vw0Var.f41566a).j2(userFull, false);
                     }
                     if (tL_error3 != null && (str = tL_error3.text) != null && str.startsWith("FLOOD_WAIT_")) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vw0Var.f41568b.getContext());
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vw0Var.f41567b.getContext());
                         alertDialog$Builder.f28777a.S = org.telegram.messenger.hd.N0(2131746658, null);
                         alertDialog$Builder.f28777a.U = org.telegram.messenger.hd.N0(2131746659, null);
                         org.telegram.messenger.f3.m(null, 2131747637, alertDialog$Builder, null);

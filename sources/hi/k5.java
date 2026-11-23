@@ -1230,7 +1230,7 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
                 n2Var3.getSwatch().f57265c = h1Var.f57265c;
                 n2Var3.A0 = false;
                 C0(n2Var3.getSwatch());
-                n1Var.setValueOverride(new u4(n2Var3, (int) (this.f14900r0.f42546a / 9.0f), 0));
+                n1Var.setValueOverride(new u4(n2Var3, (int) (this.f14900r0.f42545a / 9.0f), 0));
                 n1Var.setShowPreview(false);
             } else {
                 n1Var.setValueOverride(w4Var);
@@ -1640,14 +1640,14 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
             }
             ty tyVar2 = this.Z1;
             ra raVar = this.f14911w1;
-            if (tyVar2 != null && tyVar2.f40092d1 != k10.f24968t0) {
+            if (tyVar2 != null && tyVar2.f40091d1 != k10.f24968t0) {
                 raVar.removeView(tyVar2);
                 this.Z1 = null;
             }
             if (this.Z1 == null) {
                 ty tyVar3 = new ty(null, true, false, false, getContext(), false, null, null, true, this.f14899q1, false, false);
                 this.Z1 = tyVar3;
-                tyVar3.f40160y2 = false;
+                tyVar3.f40159y2 = false;
                 tyVar3.V0 = true;
                 tyVar3.setVisibility(8);
                 if (org.telegram.messenger.g0.Q1()) {
@@ -1711,7 +1711,7 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
         } else {
             ah emojiButton2 = f1Var.getEmojiButton();
             if (emojiButton2 != null) {
-                emojiButton2.j(yg.f42430e, true);
+                emojiButton2.j(yg.f42429e, true);
             }
             ty tyVar5 = this.Z1;
             if (tyVar5 != null) {
@@ -1770,14 +1770,14 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
         TLRPC.GeoPoint geoPoint;
         ui uiVar = new ui(getContext(), new z4(this, r10Var), false, true, false, this.f14899q1);
         uiVar.X3 = new w7.s(10);
-        uh uhVar = uiVar.f40438v3;
+        uh uhVar = uiVar.f40437v3;
         if (o0Var != null && (messageMedia = o0Var.f58102v0) != null && (geoPoint = messageMedia.geo) != null) {
-            uiVar.f40451y4 = new double[]{geoPoint.lat, geoPoint._long};
+            uiVar.f40450y4 = new double[]{geoPoint.lat, geoPoint._long};
             uiVar.J1 = true;
             uhVar.setVisibility(8);
         } else if (this.E1) {
-            uiVar.f40443w4 = this.G1;
-            uiVar.f40447x4 = this.F1;
+            uiVar.f40442w4 = this.G1;
+            uiVar.f40446x4 = this.F1;
             uiVar.J1 = true;
             uhVar.setVisibility(8);
         } else {
@@ -1951,7 +1951,7 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
                     ofFloat.addUpdateListener(new c4(this, 2));
                     ofFloat.addListener(new bi.g7(12, this, z10));
                     ofFloat.setDuration(200L);
-                    ofFloat.setInterpolator(nr.f37962g);
+                    ofFloat.setInterpolator(nr.f37961g);
                     ofFloat.start();
                     return;
                 }
@@ -2104,7 +2104,7 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
             B0(h1Var, null, false);
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
             this.L0 = duration;
-            duration.setInterpolator(nr.f37961f);
+            duration.setInterpolator(nr.f37960f);
             this.L0.addUpdateListener(new fi.z2(this, viewGroup, viewGroup2, 1));
             this.L0.addListener(new bi.z0(this, viewGroup, viewGroup2, i7, 1));
             this.L0.start();
@@ -2580,9 +2580,9 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
         yt0 yt0Var2 = yt0Var;
         Pair N0 = org.telegram.messenger.g0.N0(str);
         if ((((Integer) N0.first).intValue() / 90) % 2 == 1) {
-            float f11 = yt0Var2.f42546a;
-            yt0Var2.f42546a = yt0Var2.f42547b;
-            yt0Var2.f42547b = f11;
+            float f11 = yt0Var2.f42545a;
+            yt0Var2.f42545a = yt0Var2.f42546b;
+            yt0Var2.f42546b = f11;
         }
         Context context = getContext();
         PointF c02 = c0();
@@ -2686,7 +2686,7 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
         }
         float floor = (float) Math.floor(0.43f * f10);
         yt0 yt0Var = new yt0(floor, floor);
-        tg.t1 t1Var = new tg.t1(getContext(), new PointF((measuredWidth - (floor / 2.0f)) - org.telegram.messenger.g0.L(16.0f), (yt0Var.f42547b / 2.0f) + org.telegram.messenger.g0.L(72.0f)), yt0Var, str);
+        tg.t1 t1Var = new tg.t1(getContext(), new PointF((measuredWidth - (floor / 2.0f)) - org.telegram.messenger.g0.L(16.0f), (yt0Var.f42546b / 2.0f) + org.telegram.messenger.g0.L(72.0f)), yt0Var, str);
         t1Var.setDelegate(this);
         f5Var.addView(t1Var);
         d0();
@@ -2712,7 +2712,7 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
         }
         j5 j5Var = new j5(c0(), f11, f10);
         Context context = getContext();
-        float floor = (float) Math.floor(getPaintingSize().f42546a * 0.5d);
+        float floor = (float) Math.floor(getPaintingSize().f42545a * 0.5d);
         b5 b5Var = new b5(this, context, j5Var.f14828a, j5Var.f14830c, j5Var.f14829b, new yt0(floor, floor), document, obj);
         boolean C4 = gj.C4(document);
         ImageReceiver imageReceiver = b5Var.f57907y0;
@@ -2729,8 +2729,8 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
     public final tg.n2 l0(boolean z10) {
         yt0 paintingSize = getPaintingSize();
         PointF N0 = N0(null);
-        tg.n2 n2Var = new tg.n2(getContext(), N0, (int) (paintingSize.f42546a / 9.0f), "", this.f14890k1, this.f14908v0);
-        float f10 = paintingSize.f42546a / 9.0f;
+        tg.n2 n2Var = new tg.n2(getContext(), N0, (int) (paintingSize.f42545a / 9.0f), "", this.f14890k1, this.f14908v0);
+        float f10 = paintingSize.f42545a / 9.0f;
         h4 h4Var = new h4(this, 0);
         n2Var.f58093x0 = (int) (0.5f * f10);
         n2Var.f58094y0 = (int) (f10 * 2.0f);
@@ -2872,7 +2872,7 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
         if (((float) Math.floor((size * currentActionBarHeight) / f10)) > currentActionBarHeight2) {
             Math.floor((f11 * f10) / currentActionBarHeight);
         }
-        float f12 = this.f14900r0.f42546a;
+        float f12 = this.f14900r0.f42545a;
         tg.j jVar = this.f14904t0;
         if (jVar != null) {
             jVar.m();
@@ -2986,7 +2986,7 @@ public abstract class k5 extends eu0 implements tg.h1, tg.h, tg.d1, cu0, oa {
                     oh0 B = imageReceiver.B();
                     imageReceiver.m();
                     if (B != null) {
-                        B.N(Math.round(((((float) j3) % ((float) B.r())) / ((float) B.r())) * B.f38211e[0]), true, false);
+                        B.N(Math.round(((((float) j3) % ((float) B.r())) / ((float) B.r())) * B.f38210e[0]), true, false);
                     }
                 }
                 i7++;

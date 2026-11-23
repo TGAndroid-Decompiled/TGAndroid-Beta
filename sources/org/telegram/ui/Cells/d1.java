@@ -129,7 +129,7 @@ public final class d1 {
         int W1 = org.telegram.messenger.g0.W1(1.0f - r1Var.getVideoTranscriptionProgress(), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(32.0f));
         int W12 = org.telegram.messenger.g0.W1(1.0f - r1Var.getVideoTranscriptionProgress(), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(32.0f));
         int W13 = org.telegram.messenger.g0.W1(1.0f - r1Var.getVideoTranscriptionProgress(), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(16.0f));
-        Rect rect = c1Var2.f36379u;
+        Rect rect = c1Var2.f36378u;
         if (W1 == rect.width() && W12 == rect.height()) {
             f13 = 40.0f;
             f14 = 0.0f;
@@ -174,18 +174,18 @@ public final class d1 {
         } else {
             videoTranscriptionProgress2 = 1.0f - r1Var.getVideoTranscriptionProgress();
         }
-        oh0 oh0Var = c1Var3.f36374p;
-        oh0 oh0Var2 = c1Var3.f36372n;
-        if (c1Var3.f36362b != f23) {
+        oh0 oh0Var = c1Var3.f36373p;
+        oh0 oh0Var2 = c1Var3.f36371n;
+        if (c1Var3.f36361b != f23) {
             z10 = true;
         } else {
             z10 = false;
         }
-        c1Var3.f36362b = f23;
-        c1Var3.f36363c = f23;
+        c1Var3.f36361b = f23;
+        c1Var3.f36362c = f23;
         int o4 = i0.a.o(f23, (int) (Color.alpha(f23) * 0.156f));
-        c1Var3.f36361a = o4;
-        c1Var3.f36364e = videoTranscriptionProgress2;
+        c1Var3.f36360a = o4;
+        c1Var3.f36363e = videoTranscriptionProgress2;
         float alpha = Color.alpha(f23);
         if (org.telegram.ui.ActionBar.m6.I.q()) {
             f15 = 0.3f;
@@ -193,48 +193,48 @@ public final class d1 {
             f15 = 0.2f;
         }
         c1Var3.d = org.telegram.ui.ActionBar.m6.w(o4, i0.a.o(f23, (int) (alpha * f15)));
-        if (c1Var3.f36365f == null) {
-            c1Var3.f36365f = new Paint();
+        if (c1Var3.f36364f == null) {
+            c1Var3.f36364f = new Paint();
         }
-        c1Var3.f36365f.setColor(c1Var3.f36361a);
-        c1Var3.f36365f.setAlpha((int) ((1.0f - videoTranscriptionProgress2) * paint.getAlpha()));
-        if (z10 || c1Var3.f36375q == null) {
+        c1Var3.f36364f.setColor(c1Var3.f36360a);
+        c1Var3.f36364f.setAlpha((int) ((1.0f - videoTranscriptionProgress2) * paint.getAlpha()));
+        if (z10 || c1Var3.f36374q == null) {
             int L8 = org.telegram.messenger.g0.L(8.0f);
             int i18 = c1Var3.d;
             y k02 = org.telegram.ui.ActionBar.m6.k0(L8, L8, L8, L8, 0, i18, i18);
-            c1Var3.f36375q = k02;
-            k02.setCallback(c1Var3.f36376r);
+            c1Var3.f36374q = k02;
+            k02.setCallback(c1Var3.f36375r);
         }
         if (z10) {
-            oh0Var2.f38205a0 = true;
-            oh0Var2.Q(c1Var3.f36363c, "Artboard Outlines");
+            oh0Var2.f38204a0 = true;
+            oh0Var2.Q(c1Var3.f36362c, "Artboard Outlines");
             oh0Var2.o();
             oh0Var2.J(true);
             oh0Var2.V(0L);
             int alpha2 = Color.alpha(f23);
-            c1Var3.f36371m = alpha2;
+            c1Var3.f36370m = alpha2;
             oh0Var2.setAlpha(alpha2);
-            oh0Var.f38205a0 = true;
-            oh0Var.Q(c1Var3.f36363c, "Artboard Outlines");
+            oh0Var.f38204a0 = true;
+            oh0Var.Q(c1Var3.f36362c, "Artboard Outlines");
             oh0Var.o();
             oh0Var.J(true);
             oh0Var.V(0L);
             int alpha3 = Color.alpha(f23);
-            c1Var3.f36373o = alpha3;
+            c1Var3.f36372o = alpha3;
             oh0Var.setAlpha(alpha3);
         }
-        if (c1Var3.f36366g == null) {
+        if (c1Var3.f36365g == null) {
             Paint paint2 = new Paint(1);
-            c1Var3.f36366g = paint2;
+            c1Var3.f36365g = paint2;
             paint2.setStyle(Paint.Style.STROKE);
-            c1Var3.f36366g.setStrokeCap(Paint.Cap.ROUND);
+            c1Var3.f36365g.setStrokeCap(Paint.Cap.ROUND);
         }
-        c1Var3.f36366g.setColor(f23);
+        c1Var3.f36365g.setColor(f23);
         c1 c1Var4 = r1Var.J4;
-        oh0 oh0Var3 = c1Var4.f36374p;
-        oh0 oh0Var4 = c1Var4.f36372n;
+        oh0 oh0Var3 = c1Var4.f36373p;
+        oh0 oh0Var4 = c1Var4.f36371n;
         Rect rect2 = c1Var4.v;
-        Rect rect3 = c1Var4.f36379u;
+        Rect rect3 = c1Var4.f36378u;
         rect2.set(rect3.left - org.telegram.messenger.g0.L(8.0f), rect3.top - org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f) + rect3.right, org.telegram.messenger.g0.L(8.0f) + rect3.bottom);
         Path path = c1Var4.C;
         if (path == null) {
@@ -249,9 +249,9 @@ public final class d1 {
         path2.addRoundRect(rectF, f24, f24, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(c1Var4.C);
-        float f25 = c1Var4.f36364e * f10;
+        float f25 = c1Var4.f36363e * f10;
         if (f25 > f14) {
-            r1 r1Var2 = c1Var4.U.f30550a;
+            r1 r1Var2 = c1Var4.T.f30550a;
             if (r1Var2.Q5.P5()) {
                 a22 = r1Var2.a2("paintChatActionBackground");
             } else {
@@ -269,28 +269,28 @@ public final class d1 {
             }
             a22.setAlpha(alpha4);
         }
-        Paint paint3 = c1Var4.f36365f;
+        Paint paint3 = c1Var4.f36364f;
         if (paint3 != null) {
             int alpha6 = paint3.getAlpha();
-            c1Var4.f36365f.setAlpha((int) (alpha6 * f10));
-            canvas.drawRect(rect3, c1Var4.f36365f);
-            c1Var4.f36365f.setAlpha(alpha6);
+            c1Var4.f36364f.setAlpha((int) (alpha6 * f10));
+            canvas.drawRect(rect3, c1Var4.f36364f);
+            c1Var4.f36364f.setAlpha(alpha6);
         }
-        y yVar = c1Var4.f36375q;
+        y yVar = c1Var4.f36374q;
         if (yVar != null) {
             yVar.setBounds(rect3);
-            c1Var4.f36375q.draw(canvas);
+            c1Var4.f36374q.draw(canvas);
         }
         canvas.restore();
-        org.telegram.ui.Components.d6 d6Var = c1Var4.f36370l;
-        if (c1Var4.f36369k) {
+        org.telegram.ui.Components.d6 d6Var = c1Var4.f36369l;
+        if (c1Var4.f36368k) {
             f16 = 1.0f;
         } else {
             f16 = f14;
         }
         float e10 = d6Var.e(false, f16);
         if (e10 > f14) {
-            long elapsedRealtime = ((float) (SystemClock.elapsedRealtime() - c1Var4.f36378t)) * 0.75f;
+            long elapsedRealtime = ((float) (SystemClock.elapsedRealtime() - c1Var4.f36377t)) * 0.75f;
             x1.a aVar = c1Var4.B;
             if (c1Var4.M == null) {
                 c1Var4.M = new float[i12];
@@ -321,7 +321,7 @@ public final class d1 {
             float max = Math.max(e10 * f13, fArr4[1] - fArr4[0]);
             float f27 = fArr4[0];
             float f28 = (1.0f - e10) * max;
-            if (c1Var4.f36369k) {
+            if (c1Var4.f36368k) {
                 f18 = f14;
             } else {
                 f18 = 1.0f;
@@ -371,27 +371,27 @@ public final class d1 {
             j21.d(path7, i31, i34, i31, i35, f33, f34, f37 + 180.0f, 360.0f - f37);
             j21.b(c1Var4.h, rect3.left, rect3.top, c1Var4.E, 4, f33, f34, 360.0f - c1Var4.G, 360.0f - c1Var4.F);
             j21.d(c1Var4.h, rect3.left + c1Var4.D, rect3.top, rect3.centerX(), rect3.top, f33, f34, 360.0f - c1Var4.F, 360.0f);
-            c1Var4.f36366g.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
-            int alpha7 = c1Var4.f36366g.getAlpha();
-            c1Var4.f36366g.setAlpha((int) (alpha7 * f10));
-            canvas.drawPath(c1Var4.h, c1Var4.f36366g);
-            c1Var4.f36366g.setAlpha(alpha7);
-            c1Var4.f36376r.invalidate();
+            c1Var4.f36365g.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
+            int alpha7 = c1Var4.f36365g.getAlpha();
+            c1Var4.f36365g.setAlpha((int) (alpha7 * f10));
+            canvas.drawPath(c1Var4.h, c1Var4.f36365g);
+            c1Var4.f36365g.setAlpha(alpha7);
+            c1Var4.f36375r.invalidate();
         } else {
             f17 = 180.0f;
         }
         canvas.save();
         canvas.translate(org.telegram.messenger.g0.L(-13.0f) + rect3.centerX(), org.telegram.messenger.g0.L(-13.0f) + rect3.centerY());
         canvas.saveLayerAlpha(0.0f, 0.0f, org.telegram.messenger.g0.L(26.0f), org.telegram.messenger.g0.L(26.0f), 255, 31);
-        if (c1Var4.f36382y) {
-            oh0Var4.setAlpha((int) (c1Var4.f36371m * f10));
+        if (c1Var4.f36381y) {
+            oh0Var4.setAlpha((int) (c1Var4.f36370m * f10));
             oh0Var4.draw(canvas);
         } else {
-            oh0Var3.setAlpha((int) (c1Var4.f36373o * f10));
+            oh0Var3.setAlpha((int) (c1Var4.f36372o * f10));
             oh0Var3.draw(canvas);
         }
-        org.telegram.ui.Components.d6 d6Var2 = c1Var4.f36368j;
-        if (c1Var4.f36367i && !c1Var4.f36382y && !c1Var4.f36369k) {
+        org.telegram.ui.Components.d6 d6Var2 = c1Var4.f36367j;
+        if (c1Var4.f36366i && !c1Var4.f36381y && !c1Var4.f36368k) {
             z11 = true;
         } else {
             z11 = false;
@@ -412,7 +412,7 @@ public final class d1 {
             if (c1Var4.I == null) {
                 c1Var4.I = new Paint(1);
             }
-            c1Var4.I.setColor(c1Var4.f36363c);
+            c1Var4.I.setColor(c1Var4.f36362c);
             int i36 = (int) (d * 255.0f);
             c1Var4.I.setAlpha(i36);
             rectF2.set(0.0f, org.telegram.messenger.g0.L(3.33f), org.telegram.messenger.g0.L(6.666f), org.telegram.messenger.g0.L(8.33f));
@@ -433,7 +433,7 @@ public final class d1 {
                 paint5.setStyle(Paint.Style.STROKE);
             }
             c1Var4.J.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
-            c1Var4.J.setColor(c1Var4.f36363c);
+            c1Var4.J.setColor(c1Var4.f36362c);
             c1Var4.J.setAlpha(i36);
             canvas.drawPath(c1Var4.L, c1Var4.J);
             canvas.restore();

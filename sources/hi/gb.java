@@ -27,10 +27,10 @@ public final class gb extends View {
         n6Var.u(-1);
         n6Var.x(org.telegram.messenger.g0.o());
         n6Var.setCallback(this);
-        n6Var.f37796b = 1;
+        n6Var.f37795b = 1;
         StringBuilder sb2 = new StringBuilder(8);
         sb2.append("00:00:00");
-        if (!TextUtils.equals(sb2, n6Var.f37803i)) {
+        if (!TextUtils.equals(sb2, n6Var.f37802i)) {
             n6Var.a();
             n6Var.t(sb2, false, true);
         }

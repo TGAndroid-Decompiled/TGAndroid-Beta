@@ -83,7 +83,7 @@ public final class l0 {
         } else {
             height = bitmap.getHeight();
         }
-        return new PointF((yt0Var.f42546a * pointF.x) / f10, (yt0Var.f42547b * pointF.y) / height);
+        return new PointF((yt0Var.f42545a * pointF.x) / f10, (yt0Var.f42546b * pointF.y) / height);
     }
 
     public final PointF a(int i7) {

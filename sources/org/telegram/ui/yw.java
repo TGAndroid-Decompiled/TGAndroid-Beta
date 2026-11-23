@@ -67,7 +67,7 @@ public final class yw extends org.telegram.ui.Components.ba implements fi.w6 {
                     cxVar.S = true;
                     top += org.telegram.messenger.g0.L(81.0f);
                 }
-                w0(0, top, org.telegram.ui.Components.nr.f37962g);
+                w0(0, top, org.telegram.ui.Components.nr.f37961g);
                 if (z10) {
                     cxVar.f46723f1 = true;
                 } else {

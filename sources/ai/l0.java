@@ -89,20 +89,20 @@ public final class l0 extends FrameLayout {
 
     public void d(Canvas canvas) {
         qc0 qc0Var = (qc0) this.f1282c;
-        Drawable drawable = qc0Var.f38872a;
+        Drawable drawable = qc0Var.f38871a;
         if (drawable != null) {
             if (!(drawable instanceof cb0) && !(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable)) {
                 int max = Math.max(0, qc0Var.H);
-                float max2 = Math.max(getMeasuredWidth() / qc0Var.f38872a.getIntrinsicWidth(), (getMeasuredHeight() + max) / qc0Var.f38872a.getIntrinsicHeight());
-                int ceil = (int) Math.ceil(qc0Var.f38872a.getIntrinsicWidth() * max2);
-                int ceil2 = (int) Math.ceil(qc0Var.f38872a.getIntrinsicHeight() * max2);
+                float max2 = Math.max(getMeasuredWidth() / qc0Var.f38871a.getIntrinsicWidth(), (getMeasuredHeight() + max) / qc0Var.f38871a.getIntrinsicHeight());
+                int ceil = (int) Math.ceil(qc0Var.f38871a.getIntrinsicWidth() * max2);
+                int ceil2 = (int) Math.ceil(qc0Var.f38871a.getIntrinsicHeight() * max2);
                 int measuredWidth = (getMeasuredWidth() - ceil) / 2;
                 int measuredHeight = ((getMeasuredHeight() - ceil2) + max) / 2;
-                qc0Var.f38872a.setBounds(measuredWidth, measuredHeight, ceil + measuredWidth, ceil2 + measuredHeight);
-                qc0Var.f38872a.draw(canvas);
+                qc0Var.f38871a.setBounds(measuredWidth, measuredHeight, ceil + measuredWidth, ceil2 + measuredHeight);
+                qc0Var.f38871a.draw(canvas);
             } else {
                 drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                qc0Var.f38872a.draw(canvas);
+                qc0Var.f38871a.draw(canvas);
             }
         } else {
             super.onDraw(canvas);
@@ -219,7 +219,7 @@ public final class l0 extends FrameLayout {
                 return;
             case 17:
                 gy gyVar = (gy) this.f1282c;
-                if (!gyVar.H.f40146v0 && gyVar.f35721x > 0.0f) {
+                if (!gyVar.H.f40145v0 && gyVar.f35721x > 0.0f) {
                     if (((Paint) this.f1281b) == null) {
                         Paint paint6 = new Paint();
                         this.f1281b = paint6;
@@ -240,7 +240,7 @@ public final class l0 extends FrameLayout {
                 xi0 xi0Var = (xi0) this.f1282c;
                 int i12 = xi0Var.N0;
                 if (i12 != 1 && i12 != 2 && i12 != 4) {
-                    o4 = i0.a.f(0.7f, m6.w0(m6.F8, xi0Var.f42129l0), m6.w0(m6.f29454h5, xi0Var.f42129l0));
+                    o4 = i0.a.f(0.7f, m6.w0(m6.F8, xi0Var.f42128l0), m6.w0(m6.f29454h5, xi0Var.f42128l0));
                 } else {
                     o4 = i0.a.o(-1, 30);
                 }
@@ -272,7 +272,7 @@ public final class l0 extends FrameLayout {
                     e9Var.setTranslationX(0.0f);
                     textView.setTranslationX(0.0f);
                 } else {
-                    float interpolation = 1.0f - nr.f37961f.getInterpolation(f15);
+                    float interpolation = 1.0f - nr.f37960f.getInterpolation(f15);
                     float left = (b20Var.Q - getLeft()) * interpolation;
                     shapeDrawable.setBounds((int) left, 0, getMeasuredWidth() + ((int) ((b20Var.S - getRight()) * interpolation)), getMeasuredHeight());
                     e9Var.setTranslationX(left);
@@ -339,20 +339,20 @@ public final class l0 extends FrameLayout {
                         RectF rectF5 = org.telegram.messenger.g0.P;
                         rectF5.set(x11 - org.telegram.messenger.g0.L(4.0f), measuredHeight2 - org.telegram.messenger.g0.L(14.0f), x11 + Math.max(textWidth, f13) + L8 + org.telegram.messenger.g0.L(4.0f), measuredHeight2 + org.telegram.messenger.g0.L(14.0f));
                         tc tcVar2 = (tc) this.f1281b;
-                        tcVar2.f39856i = r12;
-                        tcVar2.f39852c = r12;
+                        tcVar2.f39855i = r12;
+                        tcVar2.f39851c = r12;
                         tcVar2.a(rectF5);
                         tc tcVar3 = (tc) this.f1281b;
-                        tcVar3.f39861n = r13;
+                        tcVar3.f39860n = r13;
                         int o10 = i0.a.o(-1, 50);
-                        tcVar3.f39855g.setColor((int) r12);
-                        org.telegram.ui.Cells.y yVar2 = tcVar3.f39853e;
+                        tcVar3.f39854g.setColor((int) r12);
+                        org.telegram.ui.Cells.y yVar2 = tcVar3.f39852e;
                         if (yVar2 != null) {
                             m6.H1(yVar2, o10, r13);
                         }
                         tc tcVar4 = (tc) this.f1281b;
-                        tcVar4.c(canvas, tcVar4.f39855g);
-                        org.telegram.ui.Cells.y yVar3 = tcVar4.f39853e;
+                        tcVar4.c(canvas, tcVar4.f39854g);
+                        org.telegram.ui.Cells.y yVar3 = tcVar4.f39852e;
                         if (yVar3 != null) {
                             yVar3.draw(canvas);
                             return;
@@ -360,7 +360,7 @@ public final class l0 extends FrameLayout {
                         return;
                     }
                     tc tcVar5 = (tc) this.f1281b;
-                    if (tcVar5 != null && (yVar = tcVar5.f39853e) != null) {
+                    if (tcVar5 != null && (yVar = tcVar5.f39852e) != null) {
                         yVar.setState(StateSet.NOTHING);
                         yVar.jumpToCurrentState();
                         return;
@@ -590,7 +590,7 @@ public final class l0 extends FrameLayout {
                         if (f12 < 0.0f) {
                             f12 = 0.0f;
                         }
-                        a0Var.animate().translationY(f12).setDuration(250L).setUpdateListener(new ch.u(b0Var, 1)).setInterpolator(nr.f37961f).start();
+                        a0Var.animate().translationY(f12).setDuration(250L).setUpdateListener(new ch.u(b0Var, 1)).setInterpolator(nr.f37960f).start();
                     }
                 }
                 return super.fitSystemWindows(rect);

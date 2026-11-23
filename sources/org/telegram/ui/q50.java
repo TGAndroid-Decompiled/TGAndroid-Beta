@@ -95,11 +95,11 @@ public final class q50 extends org.telegram.ui.ActionBar.g2 implements org.teleg
             org.telegram.ui.Components.r30 r30Var = new org.telegram.ui.Components.r30();
             imageView.setImageDrawable(r30Var);
             byte[] bArr = c12.key_hash;
-            r30Var.f39061a = bArr;
+            r30Var.f39060a = bArr;
             if (bArr == null) {
                 byte[] bArr2 = new byte[16];
                 System.arraycopy(Utilities.n(c12.auth_key), 0, bArr2, 0, 16);
-                r30Var.f39061a = bArr2;
+                r30Var.f39060a = bArr2;
                 c12.key_hash = bArr2;
             }
             r30Var.invalidateSelf();

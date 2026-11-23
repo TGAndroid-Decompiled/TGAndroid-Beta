@@ -19,7 +19,7 @@ public final class v61 implements View.OnClickListener {
                 x71 x71Var = this.f52744c;
                 x71Var.H0.setRotation(this.f52743b);
                 this.f52743b -= 45;
-                x71Var.H0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.nr.f37962g).start();
+                x71Var.H0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.nr.f37961g).start();
                 n71[] n71VarArr = x71Var.f53782y0;
                 n71 n71Var = n71VarArr[0];
                 if (n71Var != null) {
@@ -66,7 +66,7 @@ public final class v61 implements View.OnClickListener {
                 org.telegram.ui.ActionBar.r5 r5Var = x71Var2.T;
                 x71Var2.I0.setRotation(this.f52743b);
                 this.f52743b -= 45;
-                x71Var2.I0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.nr.f37962g).start();
+                x71Var2.I0.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(org.telegram.ui.Components.nr.f37961g).start();
                 org.telegram.ui.ActionBar.j6 j6Var2 = x71Var2.f53775w;
                 if (j6Var2.f29102i) {
                     if (r5Var.j() != null) {

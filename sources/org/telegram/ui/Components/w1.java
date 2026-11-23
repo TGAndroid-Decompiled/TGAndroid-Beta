@@ -10,20 +10,20 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class w1 implements View.OnClickListener {
-    public final int f41615a;
-    public final KeyEvent.Callback f41616b;
-    public final Object f41617c;
+    public final int f41614a;
+    public final KeyEvent.Callback f41615b;
+    public final Object f41616c;
     public final Object d;
-    public final Object f41618e;
-    public final Object f41619f;
+    public final Object f41617e;
+    public final Object f41618f;
     public final Object h;
 
     public w1(KeyEvent.Callback callback, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
-        this.f41615a = i7;
-        this.f41616b = callback;
-        this.f41618e = obj;
-        this.f41619f = obj2;
-        this.f41617c = obj3;
+        this.f41614a = i7;
+        this.f41615b = callback;
+        this.f41617e = obj;
+        this.f41618f = obj2;
+        this.f41616c = obj3;
         this.h = obj4;
         this.d = obj5;
     }
@@ -31,12 +31,12 @@ public final class w1 implements View.OnClickListener {
     @Override
     public final void onClick(View view) {
         boolean z10;
-        switch (this.f41615a) {
+        switch (this.f41614a) {
             case 0:
-                tb0 tb0Var = (tb0) this.f41616b;
-                j4 j4Var = (j4) this.f41618e;
-                k4 k4Var = (k4) this.f41619f;
-                Calendar calendar = (Calendar) this.f41617c;
+                tb0 tb0Var = (tb0) this.f41615b;
+                j4 j4Var = (j4) this.f41617e;
+                k4 k4Var = (k4) this.f41618f;
+                Calendar calendar = (Calendar) this.f41616c;
                 org.telegram.ui.aj0 aj0Var = (org.telegram.ui.aj0) this.h;
                 hi.w4 w4Var = (hi.w4) this.d;
                 boolean g10 = c5.g(null, null, 0L, 0L, 0, tb0Var, j4Var, k4Var);
@@ -54,10 +54,10 @@ public final class w1 implements View.OnClickListener {
                 ((org.telegram.ui.ActionBar.w2) w4Var.f15708b).f30218y0.run();
                 return;
             case 1:
-                tb0 tb0Var2 = (tb0) this.f41616b;
-                b4 b4Var = (b4) this.f41618e;
-                c4 c4Var = (c4) this.f41619f;
-                Calendar calendar2 = (Calendar) this.f41617c;
+                tb0 tb0Var2 = (tb0) this.f41615b;
+                b4 b4Var = (b4) this.f41617e;
+                c4 c4Var = (c4) this.f41618f;
+                Calendar calendar2 = (Calendar) this.f41616c;
                 a5 a5Var = (a5) this.h;
                 hi.w4 w4Var2 = (hi.w4) this.d;
                 boolean g11 = c5.g(null, null, 0L, 0L, 0, tb0Var2, b4Var, c4Var);
@@ -73,10 +73,10 @@ public final class w1 implements View.OnClickListener {
                 ((org.telegram.ui.ActionBar.w2) w4Var2.f15708b).f30218y0.run();
                 return;
             case 2:
-                tb0 tb0Var3 = (tb0) this.f41616b;
-                tb0 tb0Var4 = (tb0) this.f41618e;
-                tb0 tb0Var5 = (tb0) this.f41619f;
-                Calendar calendar3 = (Calendar) this.f41617c;
+                tb0 tb0Var3 = (tb0) this.f41615b;
+                tb0 tb0Var4 = (tb0) this.f41617e;
+                tb0 tb0Var5 = (tb0) this.f41618f;
+                Calendar calendar3 = (Calendar) this.f41616c;
                 c5.b(tb0Var3, tb0Var4, tb0Var5);
                 calendar3.set(1, tb0Var5.getValue());
                 calendar3.set(2, tb0Var4.getValue());
@@ -88,10 +88,10 @@ public final class w1 implements View.OnClickListener {
                 ((org.telegram.ui.ActionBar.w2) ((hi.w4) this.d).f15708b).f30218y0.run();
                 return;
             case 3:
-                kw0 kw0Var = (kw0) this.f41616b;
-                int[] iArr = (int[]) this.f41618e;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f41619f;
-                TextView textView = (TextView) this.f41617c;
+                kw0 kw0Var = (kw0) this.f41615b;
+                int[] iArr = (int[]) this.f41617e;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f41618f;
+                TextView textView = (TextView) this.f41616c;
                 TextView textView2 = (TextView) this.h;
                 AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.d;
                 int i7 = iArr[0];
@@ -100,13 +100,13 @@ public final class w1 implements View.OnClickListener {
                         iArr[0] = 1;
                         TLRPC.TL_stickers_suggestShortName tL_stickers_suggestShortName = new TLRPC.TL_stickers_suggestShortName();
                         String obj = editTextBoldCursor.getText().toString();
-                        kw0Var.f37017m2 = obj;
+                        kw0Var.f37016m2 = obj;
                         tL_stickers_suggestShortName.title = obj;
                         ConnectionsManager.getInstance(kw0Var.f30173a).sendRequest(tL_stickers_suggestShortName, new di.m7(kw0Var, editTextBoldCursor, textView, textView2, iArr, 7));
                         return;
                     } else if (i7 == 2) {
                         iArr[0] = 3;
-                        if (!kw0Var.f37015l2) {
+                        if (!kw0Var.f37014l2) {
                             org.telegram.messenger.g0.D3(editTextBoldCursor);
                             try {
                                 editTextBoldCursor.performHapticFeedback(3, 2);
@@ -115,8 +115,8 @@ public final class w1 implements View.OnClickListener {
                         }
                         org.telegram.messenger.g0.v1(editTextBoldCursor);
                         org.telegram.messenger.az C = org.telegram.messenger.az.C(kw0Var.f30173a);
-                        String str = kw0Var.f37017m2;
-                        String str2 = kw0Var.f37013j2;
+                        String str = kw0Var.f37016m2;
+                        String str2 = kw0Var.f37012j2;
                         String str3 = kw0Var.V1;
                         ArrayList arrayList = kw0Var.T1;
                         uv0 uv0Var = new uv0(kw0Var);
@@ -134,12 +134,12 @@ public final class w1 implements View.OnClickListener {
                 }
                 return;
             case 4:
-                org.telegram.ui.ActionBar.w2 w2Var = (org.telegram.ui.ActionBar.w2) this.f41616b;
-                ArrayList arrayList2 = (ArrayList) this.f41619f;
-                int[] iArr2 = (int[]) this.f41617c;
+                org.telegram.ui.ActionBar.w2 w2Var = (org.telegram.ui.ActionBar.w2) this.f41615b;
+                ArrayList arrayList2 = (ArrayList) this.f41618f;
+                int[] iArr2 = (int[]) this.f41616c;
                 b9 b9Var = (b9) this.h;
                 q9 q9Var = (q9) this.d;
-                a70 G = a70.G(w2Var.f30179c, w2Var.J0, (FrameLayout) this.f41618e);
+                a70 G = a70.G(w2Var.f30179c, w2Var.J0, (FrameLayout) this.f41617e);
                 int size = arrayList2.size();
                 int i10 = 0;
                 while (i10 < size) {
@@ -164,10 +164,10 @@ public final class w1 implements View.OnClickListener {
                 G.a0();
                 return;
             default:
-                Calendar calendar4 = (Calendar) this.f41617c;
-                calendar4.setTimeInMillis((((tb0) this.f41616b).getValue() * 86400000) + System.currentTimeMillis());
-                calendar4.set(11, ((wg.f) this.f41618e).getValue());
-                calendar4.set(12, ((wg.g) this.f41619f).getValue() * 5);
+                Calendar calendar4 = (Calendar) this.f41616c;
+                calendar4.setTimeInMillis((((tb0) this.f41615b).getValue() * 86400000) + System.currentTimeMillis());
+                calendar4.set(11, ((wg.f) this.f41617e).getValue());
+                calendar4.set(12, ((wg.g) this.f41618f).getValue() * 5);
                 ((wg.u) this.h).O((int) (calendar4.getTimeInMillis() / 1000), 0, true);
                 ((org.telegram.ui.ActionBar.w2) ((hi.w4) this.d).f15708b).f30218y0.run();
                 return;
@@ -175,11 +175,11 @@ public final class w1 implements View.OnClickListener {
     }
 
     public w1(Calendar calendar, tb0 tb0Var, wg.f fVar, wg.g gVar, wg.u uVar, hi.w4 w4Var) {
-        this.f41615a = 5;
-        this.f41617c = calendar;
-        this.f41616b = tb0Var;
-        this.f41618e = fVar;
-        this.f41619f = gVar;
+        this.f41614a = 5;
+        this.f41616c = calendar;
+        this.f41615b = tb0Var;
+        this.f41617e = fVar;
+        this.f41618f = gVar;
         this.h = uVar;
         this.d = w4Var;
     }

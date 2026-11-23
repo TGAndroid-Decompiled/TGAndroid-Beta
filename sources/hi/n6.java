@@ -96,8 +96,8 @@ public final class n6 extends View {
         float d = this.d.d(this.E);
         xy0 xy0Var = this.f15112r;
         if (xy0Var != null && this.f15113s != null && d > 0.0f) {
-            xy0Var.f42258p = getWidth() * 0.7f;
-            this.f15113s.f42258p = getWidth() * 0.7f;
+            xy0Var.f42257p = getWidth() * 0.7f;
+            this.f15113s.f42257p = getWidth() * 0.7f;
             float L = org.telegram.messenger.g0.L(5.0f);
             float L2 = org.telegram.messenger.g0.L(10.0f);
             float L3 = org.telegram.messenger.g0.L(32.0f);
@@ -109,7 +109,7 @@ public final class n6 extends View {
             } else {
                 f10 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f15112r.f42247c, this.f15113s.f42247c) + f10 + L + org.telegram.messenger.g0.L(15.0f) + L);
+            float max = Math.max(min, Math.max(this.f15112r.f42246c, this.f15113s.f42246c) + f10 + L + org.telegram.messenger.g0.L(15.0f) + L);
             if (this.f15111n) {
                 f11 = L3;
             } else {
@@ -195,11 +195,11 @@ public final class n6 extends View {
                     mcVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (mcVar.f37478i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (mcVar.f37477i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     mcVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (mcVar.f37478i && (s8Var = this.f15108c) != null && this.F != null) {
+                if (mcVar.f37477i && (s8Var = this.f15108c) != null && this.F != null) {
                     s8Var.a(new j6(this, 1));
                 }
                 mcVar.c(false);
@@ -208,7 +208,7 @@ public final class n6 extends View {
                 mcVar.c(false);
                 this.M = false;
             }
-            if (!this.M && !mcVar.f37478i) {
+            if (!this.M && !mcVar.f37477i) {
                 return false;
             }
             return true;

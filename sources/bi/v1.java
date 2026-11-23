@@ -243,14 +243,14 @@ public final class v1 extends org.telegram.ui.ActionBar.j {
                         d0Var.dismiss();
                         return;
                     }
-                    d0Var.f19940v1.d.f35790g3.O(false);
+                    d0Var.f19940v1.d.f35789g3.O(false);
                     d0Var.f19933o1.A(0);
                     return;
                 } else if (i7 == 3) {
                     d0Var.n1.a(true, true);
                     d0Var.u0(false);
                     d0Var.N1 = null;
-                    d0Var.B1.f35790g3.O(true);
+                    d0Var.B1.f35789g3.O(true);
                     d0Var.f19944z1.f34642r.getText().clear();
                     d0Var.f19944z1.f34642r.requestFocus();
                     org.telegram.messenger.g0.I3(d0Var.f19944z1.f34642r);
@@ -282,7 +282,7 @@ public final class v1 extends org.telegram.ui.ActionBar.j {
             case 22:
                 li.d0 d0Var3 = ((li.y) obj).f20042n;
                 if (i7 == -1) {
-                    d0Var3.f19940v1.d.f35790g3.O(false);
+                    d0Var3.f19940v1.d.f35789g3.O(false);
                     d0Var3.f19933o1.A(0);
                     return;
                 }

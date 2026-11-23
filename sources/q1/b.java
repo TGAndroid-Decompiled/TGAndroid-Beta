@@ -45,7 +45,7 @@ public final class b {
     }
 
     public final void b() {
-        if (!((AtomicBoolean) this.f55749b.f38896b).get()) {
+        if (!((AtomicBoolean) this.f55749b.f38895b).get()) {
             return;
         }
         throw new IllegalStateException("Do mutate preferences once returned to DataStore.");

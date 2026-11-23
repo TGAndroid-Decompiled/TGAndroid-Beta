@@ -19,7 +19,7 @@ public final class cm extends fm {
 
     @Override
     public final boolean A() {
-        ui uiVar = this.f34217b.f37520b;
+        ui uiVar = this.f34217b.f37519b;
         if (uiVar != null && uiVar.X1) {
             return true;
         }
@@ -40,7 +40,7 @@ public final class cm extends fm {
         ft ftVar;
         org.telegram.ui.wq0 closeIntoObject;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34217b;
-        ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+        ui uiVar = chatAttachAlertPhotoLayout.f37519b;
         if (z11 && (ftVar = uiVar.P2) != null && (closeIntoObject = ((w30) ftVar.f35315b).getCloseIntoObject()) != null) {
             return closeIntoObject;
         }
@@ -69,10 +69,10 @@ public final class cm extends fm {
     @Override
     public final void F(boolean z10) {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34217b;
-        ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+        ui uiVar = chatAttachAlertPhotoLayout.f37519b;
         if (uiVar != null && uiVar.X1 != z10) {
             uiVar.w1(z10, true);
-            chatAttachAlertPhotoLayout.f32812e1.a(!chatAttachAlertPhotoLayout.f37520b.X1, true);
+            chatAttachAlertPhotoLayout.f32812e1.a(!chatAttachAlertPhotoLayout.f37519b.X1, true);
         }
     }
 
@@ -120,7 +120,7 @@ public final class cm extends fm {
 
     @Override
     public final long a() {
-        org.telegram.ui.ActionBar.g2 g2Var = this.f34217b.f37520b.f40368a2;
+        org.telegram.ui.ActionBar.g2 g2Var = this.f34217b.f37519b.f40367a2;
         if (g2Var instanceof org.telegram.ui.bn) {
             return ((org.telegram.ui.bn) g2Var).a();
         }
@@ -176,7 +176,7 @@ public final class cm extends fm {
                     org.telegram.messenger.gj.b(spannableStringBuilder, arrayList3, false, false, false, false, 0);
                     charSequence2 = spannableStringBuilder;
                 }
-                this.f34217b.f37520b.b1().setText(y5.cloneSpans(charSequence2, 3));
+                this.f34217b.f37519b.b1().setText(y5.cloneSpans(charSequence2, 3));
             }
         }
     }
@@ -197,8 +197,8 @@ public final class cm extends fm {
 
     @Override
     public final boolean l() {
-        ui uiVar = this.f34217b.f37520b;
-        if (uiVar != null && (uiVar.f40368a2 instanceof org.telegram.ui.bn)) {
+        ui uiVar = this.f34217b.f37519b;
+        if (uiVar != null && (uiVar.f40367a2 instanceof org.telegram.ui.bn)) {
             return true;
         }
         return false;
@@ -207,8 +207,8 @@ public final class cm extends fm {
     @Override
     public final void o(int i7, org.telegram.messenger.f20 f20Var, boolean z10, int i10, int i11, boolean z11) {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34217b;
-        ui uiVar = chatAttachAlertPhotoLayout.f37520b;
-        uiVar.f40431t4 = true;
+        ui uiVar = chatAttachAlertPhotoLayout.f37519b;
+        uiVar.f40430t4 = true;
         boolean z12 = ChatAttachAlertPhotoLayout.f32798r1;
         org.telegram.messenger.ff e02 = chatAttachAlertPhotoLayout.e0(i7);
         if (e02 != null) {
@@ -254,7 +254,7 @@ public final class cm extends fm {
 
     @Override
     public final boolean q() {
-        ui uiVar = this.f34217b.f37520b;
+        ui uiVar = this.f34217b.f37519b;
         if (uiVar != null && uiVar.F3 != null) {
             return true;
         }
@@ -270,7 +270,7 @@ public final class cm extends fm {
     @Override
     public final boolean w() {
         org.telegram.messenger.gj gjVar;
-        ui uiVar = this.f34217b.f37520b;
+        ui uiVar = this.f34217b.f37519b;
         if (uiVar != null && (gjVar = uiVar.F3) != null && gjVar.p5()) {
             return true;
         }
@@ -279,7 +279,7 @@ public final class cm extends fm {
 
     @Override
     public final boolean z() {
-        ui uiVar = this.f34217b.f37520b;
+        ui uiVar = this.f34217b.f37519b;
         if (!uiVar.A1 && !uiVar.C1) {
             return true;
         }

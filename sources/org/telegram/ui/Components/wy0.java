@@ -7,14 +7,14 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class wy0 extends FrameLayout {
-    public static final int f41915e = 0;
-    public TextView f41916a;
-    public vy0 f41917b;
-    public TLRPC.TL_help_termsOfService f41918c;
+    public static final int f41914e = 0;
+    public TextView f41915a;
+    public vy0 f41916b;
+    public TLRPC.TL_help_termsOfService f41917c;
     public int d;
 
     public final void a() {
-        vy0 vy0Var = this.f41917b;
+        vy0 vy0Var = this.f41916b;
         int i7 = this.d;
         org.telegram.ui.n80 n80Var = (org.telegram.ui.n80) vy0Var;
         n80Var.getClass();
@@ -27,11 +27,11 @@ public final class wy0 extends FrameLayout {
         }
         launchActivity.B0.animate().alpha(0.0f).setDuration(150L).setInterpolator(org.telegram.messenger.g0.G).withEndAction(new org.telegram.ui.lz(n80Var, 17)).start();
         TLRPC.TL_help_acceptTermsOfService tL_help_acceptTermsOfService = new TLRPC.TL_help_acceptTermsOfService();
-        tL_help_acceptTermsOfService.f28489id = this.f41918c.f28491id;
+        tL_help_acceptTermsOfService.f28489id = this.f41917c.f28491id;
         ConnectionsManager.getInstance(this.d).sendRequest(tL_help_acceptTermsOfService, new fi.l5(22));
     }
 
     public void setDelegate(vy0 vy0Var) {
-        this.f41917b = vy0Var;
+        this.f41916b = vy0Var;
     }
 }

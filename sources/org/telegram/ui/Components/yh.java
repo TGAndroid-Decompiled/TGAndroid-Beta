@@ -6,13 +6,13 @@ import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import android.view.KeyEvent;
 public final class yh implements TextWatcher {
-    public final int f42434a;
-    public boolean f42435b;
-    public boolean f42436c;
+    public final int f42433a;
+    public boolean f42434b;
+    public boolean f42435c;
     public final KeyEvent.Callback d;
 
     public yh(KeyEvent.Callback callback, int i7) {
-        this.f42434a = i7;
+        this.f42433a = i7;
         this.d = callback;
     }
 
@@ -22,30 +22,30 @@ public final class yh implements TextWatcher {
         boolean z11;
         int i7;
         boolean z12;
-        switch (this.f42434a) {
+        switch (this.f42433a) {
             case 0:
                 ui uiVar = (ui) this.d;
-                o6 o6Var = uiVar.f40436v1;
+                o6 o6Var = uiVar.f40435v1;
                 xh xhVar = uiVar.C2;
-                o6 o6Var2 = uiVar.f40432u1;
-                if (this.f42436c != TextUtils.isEmpty(editable)) {
-                    mi miVar = uiVar.f40441w2;
+                o6 o6Var2 = uiVar.f40431u1;
+                if (this.f42435c != TextUtils.isEmpty(editable)) {
+                    mi miVar = uiVar.f40440w2;
                     if (miVar != null) {
                         miVar.E(miVar.getSelectedItemsCount());
                     }
-                    this.f42436c = !this.f42436c;
+                    this.f42435c = !this.f42435c;
                 }
                 boolean z13 = false;
-                if (this.f42435b) {
+                if (this.f42434b) {
                     for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                         editable.removeSpan(imageSpan);
                     }
                     org.telegram.messenger.j6.l(editable, xhVar.getEditText().getPaint().getFontMetricsInt(), false);
-                    this.f42435b = false;
+                    this.f42434b = false;
                 }
                 int codePointCount = Character.codePointCount(editable, 0, editable.length());
                 uiVar.G1 = codePointCount;
-                te.a aVar = uiVar.f40412p1;
+                te.a aVar = uiVar.f40411p1;
                 if (codePointCount > 0) {
                     z10 = true;
                 } else {
@@ -101,16 +101,16 @@ public final class yh implements TextWatcher {
                 return;
             default:
                 org.telegram.ui.Wallet.ca caVar = (org.telegram.ui.Wallet.ca) this.d;
-                if (this.f42435b) {
-                    this.f42435b = false;
-                    this.f42436c = true;
+                if (this.f42434b) {
+                    this.f42434b = false;
+                    this.f42435c = true;
                     try {
                         editable.append('.');
-                        this.f42436c = false;
+                        this.f42435c = false;
                         caVar.f44051c.setSelection(editable.length());
                         return;
                     } catch (Throwable th2) {
-                        this.f42436c = false;
+                        this.f42435c = false;
                         throw th2;
                     }
                 }
@@ -121,7 +121,7 @@ public final class yh implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f42434a) {
+        switch (this.f42433a) {
             case 0:
                 return;
             default:
@@ -139,11 +139,11 @@ public final class yh implements TextWatcher {
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         boolean z10;
         float f10;
-        switch (this.f42434a) {
+        switch (this.f42433a) {
             case 0:
                 ui uiVar = (ui) this.d;
                 if (i11 - i10 >= 1) {
-                    this.f42435b = true;
+                    this.f42434b = true;
                 }
                 if (uiVar.C4 == null) {
                     ui.L0(uiVar);
@@ -162,9 +162,9 @@ public final class yh implements TextWatcher {
                 } else {
                     z10 = false;
                 }
-                this.f42435b = z10;
+                this.f42434b = z10;
                 org.telegram.ui.Wallet.ca caVar = (org.telegram.ui.Wallet.ca) this.d;
-                if (!caVar.S && !this.f42436c) {
+                if (!caVar.S && !this.f42435c) {
                     if (i10 != 0 || i11 != 0) {
                         org.telegram.ui.Wallet.m7 m7Var = caVar.d;
                         if (i11 > 0 && i11 >= i10) {

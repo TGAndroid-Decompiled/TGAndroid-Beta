@@ -250,7 +250,7 @@ public class h1 extends sa implements gs {
             valueAnimator.cancel();
         }
         wz wzVar = this.f58725k2;
-        if (wzVar.f41925c) {
+        if (wzVar.f41924c) {
             wzVar.animate().alpha(0.0f).setDuration(150L).start();
         }
     }
@@ -359,7 +359,7 @@ public class h1 extends sa implements gs {
                                     this.K2[1].setAlpha(0.0f);
                                     this.K2[1].setVisibility(0);
                                     ViewPropertyAnimator alpha = this.K2[1].animate().alpha(1.0f);
-                                    nr nrVar = nr.f37961f;
+                                    nr nrVar = nr.f37960f;
                                     o10.o(alpha, nrVar, 200L);
                                     this.K2[0].animate().alpha(0.0f).setInterpolator(nrVar).setDuration(200L).withEndAction(new c1(this, 2)).start();
                                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -535,7 +535,7 @@ public class h1 extends sa implements gs {
         this.C2 = 0.0f;
         O();
         this.f58730p2 = g2Var;
-        this.f39539v1 = 0.26f;
+        this.f39538v1 = 0.26f;
         this.V1 = user;
         this.U1 = i7;
         this.W1 = jVar;
@@ -554,8 +554,8 @@ public class h1 extends sa implements gs {
         a1Var.f58644b = 0.0f;
         a1Var.f58645c = 0.0f;
         l1();
-        this.f39532o1.setPadding(org.telegram.messenger.g0.L(6.0f), 0, org.telegram.messenger.g0.L(6.0f), 0);
-        this.f39532o1.setOnItemClickListener(new wl0(this, i7, g2Var, 1));
+        this.f39531o1.setPadding(org.telegram.messenger.g0.L(6.0f), 0, org.telegram.messenger.g0.L(6.0f), 0);
+        this.f39531o1.setOnItemClickListener(new wl0(this, i7, g2Var, 1));
         si.d0(i7).r1();
         PremiumPreviewFragment.w0("profile");
         wz wzVar = new wz(getContext());

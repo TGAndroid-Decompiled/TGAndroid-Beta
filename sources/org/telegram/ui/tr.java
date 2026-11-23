@@ -17,8 +17,8 @@ public final class tr implements org.telegram.ui.Components.sj0, r0.m, org.teleg
         i0.b I0 = org.telegram.messenger.g0.I0(l1Var, false);
         int i7 = I0.d;
         ContactsActivity contactsActivity = this.f52386a;
-        contactsActivity.f43037l0 = i7;
-        ri.a.e(contactsActivity.d, I0.f15918b, i7, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), contactsActivity.f43034i0);
+        contactsActivity.f43036l0 = i7;
+        ri.a.e(contactsActivity.d, I0.f15918b, i7, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), contactsActivity.f43033i0);
         contactsActivity.j0();
         contactsActivity.i0();
         return r0.l1.f56302b;
@@ -28,10 +28,10 @@ public final class tr implements org.telegram.ui.Components.sj0, r0.m, org.teleg
     public boolean c(int i7, View view) {
         ContactsActivity contactsActivity = this.f52386a;
         v4.i0 adapter = contactsActivity.d.getAdapter();
-        vr vrVar = contactsActivity.f43023b;
+        vr vrVar = contactsActivity.f43022b;
         if (adapter == vrVar) {
             int S = vrVar.S(i7);
-            int Q = contactsActivity.f43023b.Q(i7);
+            int Q = contactsActivity.f43022b.Q(i7);
             org.telegram.ui.Components.gc gcVar = org.telegram.ui.Components.gc.f35519w;
             if (gcVar != null) {
                 gcVar.b();
@@ -58,7 +58,7 @@ public final class tr implements org.telegram.ui.Components.sj0, r0.m, org.teleg
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
         ContactsActivity contactsActivity = this.f52386a;
-        a0.h hVar = contactsActivity.f43022a0;
+        a0.h hVar = contactsActivity.f43021a0;
         ArrayList arrayList = new ArrayList(hVar.m());
         for (int i10 = 0; i10 < hVar.m(); i10++) {
             arrayList.add((TLRPC.User) hVar.f(hVar.j(i10)));
@@ -84,7 +84,7 @@ public final class tr implements org.telegram.ui.Components.sj0, r0.m, org.teleg
             contactsController.getNotificationCenter().k(org.telegram.messenger.ls.O, new Object[0]);
             org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(parentActivity, contactsActivity.getResourceProvider());
             ybVar.setTimer();
-            ybVar.f42375b.setText(org.telegram.messenger.hd.G(hashMap.size(), "ContactsDeletedUndo", new Object[0]));
+            ybVar.f42374b.setText(org.telegram.messenger.hd.G(hashMap.size(), "ContactsDeletedUndo", new Object[0]));
             org.telegram.ui.Components.ec ecVar = new org.telegram.ui.Components.ec(parentActivity, contactsActivity.getResourceProvider(), true, true);
             ecVar.f34725b = new org.telegram.messenger.w3(27, contactsController, hashMap);
             ecVar.f34726c = new org.telegram.messenger.y4(contactsController, arrayList, 1);

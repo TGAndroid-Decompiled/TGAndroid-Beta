@@ -65,26 +65,26 @@ public final class tw implements org.telegram.ui.Components.nz {
         int i10;
         cx cxVar = this.f52405b;
         int i11 = cxVar.f46722f0[0].h;
-        int i12 = ozVar.f38416a;
+        int i12 = ozVar.f38415a;
         if (i11 != i12) {
-            if (ozVar.f38420f) {
+            if (ozVar.f38419f) {
                 cxVar.A0.l(i12);
                 i10 = ((org.telegram.ui.ActionBar.g2) cxVar).currentAccount;
                 cxVar.showDialog(new ug.k0(3, i10, this.f52404a, cxVar, null));
                 return;
             }
             ArrayList V0 = cxVar.getMessagesController().V0();
-            if (!ozVar.f38419e && ((i7 = ozVar.f38416a) < 0 || i7 >= V0.size())) {
+            if (!ozVar.f38418e && ((i7 = ozVar.f38415a) < 0 || i7 >= V0.size())) {
                 return;
             }
             bx bxVar = cxVar.f46722f0[1];
-            bxVar.h = ozVar.f38416a;
+            bxVar.h = ozVar.f38415a;
             bxVar.setVisibility(0);
             bx[] bxVarArr = cxVar.f46722f0;
             bxVarArr[1].setTranslationX(bxVarArr[0].getMeasuredWidth());
             cx.i1(cxVar, false);
             cxVar.l5(true);
-            cxVar.C5(ozVar.f38416a, true);
+            cxVar.C5(ozVar.f38415a, true);
             cxVar.f46749k3 = z10;
         }
     }

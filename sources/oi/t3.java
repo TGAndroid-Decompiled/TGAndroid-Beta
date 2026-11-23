@@ -156,7 +156,7 @@ public final class t3 extends h51 {
         this.f22425n3 = i7;
         this.f22427o3 = h6Var;
         this.f22428p3 = r3Var;
-        this.f35790g3.f34062r = false;
+        this.f35789g3.f34062r = false;
         setClipToPadding(false);
         setClipChildren(false);
         E1(new d7(this, 29), false);
@@ -165,7 +165,7 @@ public final class t3 extends h51 {
         h3 h3Var = new h3(this, r3Var);
         this.f22440v3 = h3Var;
         h3Var.S(this);
-        h3Var.f30933z0 = this.f35789f3;
+        h3Var.f30933z0 = this.f35788f3;
         v9 n10 = h3Var.n(context);
         this.f22442w3 = n10;
         org.telegram.messenger.g0.E2(n10);
@@ -406,7 +406,7 @@ public final class t3 extends h51 {
     public static void O1(t3 t3Var, int i7, int i10, int i11) {
         f1 editText;
         if (i7 >= 0) {
-            View m10 = t3Var.f35789f3.m(i7);
+            View m10 = t3Var.f35788f3.m(i7);
             if (m10 instanceof a6) {
                 a6 a6Var = (a6) m10;
                 if (i10 == 1 && a6Var.n()) {
@@ -471,7 +471,7 @@ public final class t3 extends h51 {
             t3Var.getClass();
             return;
         }
-        f1Var.f38348c2 = t3Var.f22432r3;
+        f1Var.f38347c2 = t3Var.f22432r3;
         f1Var.setInlineButtonContext(t3Var.f22425n3);
         f1Var.setInlineButtonClickListener(new s2(t3Var));
     }
@@ -550,7 +550,7 @@ public final class t3 extends h51 {
                     g2Var.d();
                 }
                 arrayList.remove(indexOf);
-                t3Var.f35790g3.O(true);
+                t3Var.f35789g3.O(true);
                 g2 g2Var2 = t3Var.R3;
                 if (g2Var2 != null) {
                     g2Var2.h();
@@ -687,7 +687,7 @@ public final class t3 extends h51 {
         aVar2.f21942k.addAll(aVar.f21942k);
         arrayList.add(indexOf + 1, aVar2);
         t3Var.v4();
-        t3Var.f35790g3.O(false);
+        t3Var.f35789g3.O(false);
         g2 g2Var2 = t3Var.R3;
         if (g2Var2 != null) {
             g2Var2.h();
@@ -1124,7 +1124,7 @@ public final class t3 extends h51 {
         arrayList.clear();
         arrayList.add(new a(new TL_iv.pageBlockHeading1(), 0, 0));
         arrayList.add(new a(new TL_iv.pageBlockParagraph(), 0, 0));
-        this.f35790g3.O(false);
+        this.f35789g3.O(false);
     }
 
     @Override
@@ -1155,7 +1155,7 @@ public final class t3 extends h51 {
         if (i7 < 0) {
             return null;
         }
-        return this.f35789f3.m(i7);
+        return this.f35788f3.m(i7);
     }
 
     public final ArrayList E2() {
@@ -1223,7 +1223,7 @@ public final class t3 extends h51 {
         hashMap.clear();
         this.f22434s3 = null;
         Z2(arrayList, a5.b(g10), hashMap);
-        this.f35790g3.O(false);
+        this.f35789g3.O(false);
         g2 g2Var2 = this.R3;
         if (g2Var2 != null) {
             g2Var2.h();
@@ -1446,7 +1446,7 @@ public final class t3 extends h51 {
                 Y3();
                 v4();
                 h3Var.f(false);
-                this.f35790g3.O(false);
+                this.f35789g3.O(false);
                 g2 g2Var2 = this.R3;
                 if (g2Var2 != null) {
                     g2Var2.h();
@@ -1457,7 +1457,7 @@ public final class t3 extends h51 {
     }
 
     public final void H4(f1 f1Var) {
-        f1Var.f38348c2 = this.f22432r3;
+        f1Var.f38347c2 = this.f22432r3;
         f1Var.D(new b(this, 4));
     }
 
@@ -1509,7 +1509,7 @@ public final class t3 extends h51 {
         int b10;
         o41 G;
         a aVar = null;
-        if (f1Var != null && (b10 = f1Var.b()) >= 0 && (G = this.f35790g3.G(b10)) != null) {
+        if (f1Var != null && (b10 = f1Var.b()) >= 0 && (G = this.f35789g3.G(b10)) != null) {
             Object obj = G.H;
             if (obj instanceof a) {
                 aVar = (a) obj;
@@ -1725,7 +1725,7 @@ public final class t3 extends h51 {
     public final void M4(View view) {
         v4.f1 T;
         int b10;
-        if (view != null && this.f35791h3 != null && this.f35793k3 && (T = T(view)) != null && (b10 = T.b()) >= 0 && this.f35790g3.H(b10) >= 0) {
+        if (view != null && this.f35790h3 != null && this.f35792k3 && (T = T(view)) != null && (b10 = T.b()) >= 0 && this.f35789g3.H(b10) >= 0) {
             this.I3 = true;
             h3 h3Var = this.f22440v3;
             if (h3Var.x()) {
@@ -1735,7 +1735,7 @@ public final class t3 extends h51 {
                 view.performHapticFeedback(0);
             } catch (Exception unused) {
             }
-            this.f35791h3.t(T);
+            this.f35790h3.t(T);
         }
     }
 
@@ -2124,7 +2124,7 @@ public final class t3 extends h51 {
                     }
                     a aVar3 = (a) arrayList.get(Math.max(0, Math.min(i7, arrayList.size() - 1)));
                     a aVar4 = (a) arrayList.get(Math.max(0, Math.min(i10, arrayList.size() - 1)));
-                    this.f35790g3.O(false);
+                    this.f35789g3.O(false);
                     g2 g2Var2 = this.R3;
                     if (g2Var2 != null) {
                         g2Var2.h();
@@ -2286,7 +2286,7 @@ public final class t3 extends h51 {
                         aVar.f21939g = W3;
                     }
                 }
-                this.f35790g3.O(false);
+                this.f35789g3.O(false);
                 q4(aVar);
                 if (c10) {
                     N4(aVar, W3, ffVar);
@@ -2399,7 +2399,7 @@ public final class t3 extends h51 {
                 arrayList5.addAll(size, arrayList4);
                 Y3();
                 v4();
-                this.f35790g3.O(false);
+                this.f35789g3.O(false);
                 g2 g2Var2 = this.R3;
                 if (g2Var2 != null) {
                     g2Var2.h();
@@ -2675,7 +2675,7 @@ public final class t3 extends h51 {
         a6 a6Var;
         a aVar;
         x5 x5Var;
-        this.f35790g3.T();
+        this.f35789g3.T();
         for (int i7 = 0; i7 < getChildCount(); i7++) {
             View childAt = getChildAt(i7);
             if ((childAt instanceof a6) && (aVar = (a6Var = (a6) childAt).f21978y) != null && (x5Var = a6Var.E) != null) {
@@ -3188,7 +3188,7 @@ public final class t3 extends h51 {
         x5 x5Var;
         v4.n0 itemAnimator = getItemAnimator();
         setItemAnimator(null);
-        this.f35790g3.O(true);
+        this.f35789g3.O(true);
         for (int i7 = 0; i7 < getChildCount(); i7++) {
             View childAt = getChildAt(i7);
             if ((childAt instanceof a6) && (aVar = (a6Var = (a6) childAt).f21978y) != null && (x5Var = a6Var.E) != null) {
@@ -3365,7 +3365,7 @@ public final class t3 extends h51 {
         }
         a aVar2 = new a(new TL_iv.pageBlockParagraph(), 0, 0);
         arrayList.add(aVar2);
-        this.f35790g3.O(false);
+        this.f35789g3.O(false);
         g2 g2Var2 = this.R3;
         if (g2Var2 != null) {
             g2Var2.h();
@@ -4432,7 +4432,7 @@ public final class t3 extends h51 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         getViewTreeObserver().removeOnGlobalFocusChangeListener(this.U3);
-        this.f35792i3 = false;
+        this.f35791i3 = false;
     }
 
     @Override
@@ -4528,7 +4528,7 @@ public final class t3 extends h51 {
                     if (findFocus() instanceof f1) {
                         b2();
                     } else {
-                        this.f35790g3.O(false);
+                        this.f35789g3.O(false);
                     }
                     g2 g2Var2 = this.R3;
                     if (g2Var2 != null) {
@@ -4692,7 +4692,7 @@ public final class t3 extends h51 {
         for (int size = arrayList.size(); size < arrayList.size(); size++) {
             this.V3.add((a) arrayList.get(size));
         }
-        this.f35790g3.O(false);
+        this.f35789g3.O(false);
     }
 
     public final boolean t2(a aVar) {
@@ -4783,7 +4783,7 @@ public final class t3 extends h51 {
                 return;
             }
             int size = aVar.h.size();
-            c51 c51Var = this.f35790g3;
+            c51 c51Var = this.f35789g3;
             if (size == 1) {
                 TL_iv.PageCaption pageCaption = aVar.f21935b.caption;
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) j3.get(0);
@@ -4837,7 +4837,7 @@ public final class t3 extends h51 {
         int indexOf = arrayList.indexOf(aVar);
         if (indexOf >= 0) {
             arrayList.remove(indexOf);
-            this.f35790g3.O(true);
+            this.f35789g3.O(true);
         }
     }
 
@@ -4945,7 +4945,7 @@ public final class t3 extends h51 {
         if (i7 < 0) {
             return null;
         }
-        View m10 = this.f35789f3.m(i7);
+        View m10 = this.f35788f3.m(i7);
         if (!(m10 instanceof a6)) {
             return null;
         }

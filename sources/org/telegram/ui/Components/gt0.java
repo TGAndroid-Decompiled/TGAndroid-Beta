@@ -56,7 +56,7 @@ public class gt0 extends dt0 {
         if (!this.h && (h6Var = this.f35670s) != null) {
             if (h6Var instanceof fi.a6) {
                 jt0 jt0Var = this.G;
-                TLRPC.User c22 = org.telegram.messenger.np.u1(jt0Var.f36684y1.getCurrentAccount()).c2(Long.valueOf(jt0Var.f36648m1));
+                TLRPC.User c22 = org.telegram.messenger.np.u1(jt0Var.f36683y1.getCurrentAccount()).c2(Long.valueOf(jt0Var.f36647m1));
                 if (c22 != null && c22.bot && c22.bot_has_main_app && c22.bot_can_edit) {
                     return true;
                 }
@@ -83,9 +83,9 @@ public class gt0 extends dt0 {
         fi.h6 h6Var = this.f35670s;
         if (h6Var != null && !this.h) {
             jt0 jt0Var = this.G;
-            boolean z10 = jt0Var.f36654o1;
-            ds0[] ds0VarArr = jt0Var.f36651n0;
-            int[] iArr = jt0Var.f36657p1;
+            boolean z10 = jt0Var.f36653o1;
+            ds0[] ds0VarArr = jt0Var.f36650n0;
+            int[] iArr = jt0Var.f36656p1;
             if ((!z10 || (jt0Var.n1 && h6Var.g() > 1)) && this.f35670s.g() > 0 && !jt0Var.I0()) {
                 boolean z11 = false;
                 if (this.f35670s.g() < 5) {
@@ -104,7 +104,7 @@ public class gt0 extends dt0 {
                         jt0Var.B1(false);
                     }
                 }
-                jt0Var.f36654o1 = true;
+                jt0Var.f36653o1 = true;
             }
         }
     }
@@ -112,14 +112,14 @@ public class gt0 extends dt0 {
     public final int O() {
         jt0 jt0Var = this.G;
         pr0 pr0Var = jt0Var.K;
-        int[] iArr = jt0Var.f36657p1;
+        int[] iArr = jt0Var.f36656p1;
         if (this == pr0Var) {
             return iArr[0];
         }
         if (jt0.x(jt0Var, this) != -1) {
             return iArr[1];
         }
-        return jt0Var.f36671t1;
+        return jt0Var.f36670t1;
     }
 
     public final void P() {
@@ -160,7 +160,7 @@ public class gt0 extends dt0 {
             if (jt0Var.B0()) {
                 ArrayList arrayList = this.f35669r;
                 arrayList.clear();
-                ArrayList F = org.telegram.messenger.np.u1(this.f35670s.f12085c).R1().F(jt0Var.f36648m1);
+                ArrayList F = org.telegram.messenger.np.u1(this.f35670s.f12085c).R1().F(jt0Var.f36647m1);
                 if (F != null) {
                     arrayList.addAll(F);
                 }
@@ -221,8 +221,8 @@ public class gt0 extends dt0 {
                     p7Var.h = jt0Var.G0();
                     p7Var.k(gjVar2, O(), false);
                     if (jt0Var.F1 && gjVar2 != null) {
-                        SparseArray[] sparseArrayArr = jt0Var.f36619c1;
-                        if (org.telegram.messenger.gj.B0(gjVar2.f24213k) == jt0Var.f36648m1) {
+                        SparseArray[] sparseArrayArr = jt0Var.f36618c1;
+                        if (org.telegram.messenger.gj.B0(gjVar2.f24213k) == jt0Var.f36647m1) {
                             c10 = 0;
                         } else {
                             c10 = 1;
@@ -265,8 +265,8 @@ public class gt0 extends dt0 {
         this.E = new ArrayList();
         this.h = z10;
         this.f35668n = i7;
-        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36684y1;
-        long j3 = jt0Var.f36648m1;
+        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36683y1;
+        long j3 = jt0Var.f36647m1;
         int currentAccount = g2Var.getCurrentAccount();
         if (!TextUtils.isEmpty(jt0Var.getStoriesHashtag())) {
             if (jt0Var.X1 == null) {
@@ -284,10 +284,10 @@ public class gt0 extends dt0 {
             int i11 = 1;
             boolean z11 = j3 > 0 && (c22 = org.telegram.messenger.np.u1(currentAccount).c2(Long.valueOf(j3))) != null && c22.bot;
             if (i7 > 0) {
-                this.f35670s = g2Var.getMessagesController().R1().A(0, i7, jt0Var.f36648m1, true);
+                this.f35670s = g2Var.getMessagesController().R1().A(0, i7, jt0Var.f36647m1, true);
             } else {
                 fi.p6 R1 = g2Var.getMessagesController().R1();
-                long j10 = jt0Var.f36648m1;
+                long j10 = jt0Var.f36647m1;
                 if (z11) {
                     i11 = 4;
                 } else if (!z10) {
@@ -301,7 +301,7 @@ public class gt0 extends dt0 {
         fi.h6 h6Var = this.f35670s;
         if (h6Var != null) {
             this.f35671w = h6Var.o();
-            this.f35672x = new et0(this, g2Var.getMessagesController().R1(), jt0Var.f36648m1, this.f35670s.f12085c);
+            this.f35672x = new et0(this, g2Var.getMessagesController().R1(), jt0Var.f36647m1, this.f35670s.f12085c);
         }
         N();
     }

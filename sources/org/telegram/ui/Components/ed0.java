@@ -27,8 +27,8 @@ public final class ed0 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         float f10;
         md0 md0Var = this.d;
-        Paint paint = md0Var.f37495v1;
-        int i7 = md0Var.f37496w1 - md0Var.f30210t0;
+        Paint paint = md0Var.f37494v1;
+        int i7 = md0Var.f37495w1 - md0Var.f30210t0;
         int L = org.telegram.messenger.g0.L(30.0f) + getMeasuredHeight() + md0Var.f30210t0;
         float L2 = org.telegram.messenger.g0.L(12.0f);
         int i10 = md0Var.f30210t0;
@@ -50,7 +50,7 @@ public final class ed0 extends FrameLayout {
             canvas.drawRoundRect(rectF, f11, f11, paint);
         }
         int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, md0Var.J0);
-        paint.setColor(Color.argb((int) (md0Var.f37489p1.getAlpha() * 255.0f), (int) (Color.red(w02) * 0.8f), (int) (Color.green(w02) * 0.8f), (int) (Color.blue(w02) * 0.8f)));
+        paint.setColor(Color.argb((int) (md0Var.f37488p1.getAlpha() * 255.0f), (int) (Color.red(w02) * 0.8f), (int) (Color.green(w02) * 0.8f), (int) (Color.blue(w02) * 0.8f)));
         canvas.drawRect(md0Var.f30211u0, 0.0f, getMeasuredWidth() - md0Var.f30211u0, org.telegram.messenger.g0.f24040m, paint);
     }
 
@@ -58,7 +58,7 @@ public final class ed0 extends FrameLayout {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             md0 md0Var = this.d;
-            if (md0Var.f37496w1 != 0 && motionEvent.getY() < md0Var.f37496w1 && md0Var.f37489p1.getAlpha() == 0.0f) {
+            if (md0Var.f37495w1 != 0 && motionEvent.getY() < md0Var.f37495w1 && md0Var.f37488p1.getAlpha() == 0.0f) {
                 md0Var.dismiss();
                 return true;
             }
@@ -69,9 +69,9 @@ public final class ed0 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         md0 md0Var = this.d;
-        md0Var.f37494u1 = true;
+        md0Var.f37493u1 = true;
         super.onLayout(z10, i7, i10, i11, i12);
-        md0Var.f37494u1 = false;
+        md0Var.f37493u1 = false;
         md0Var.K0(false);
     }
 
@@ -87,11 +87,11 @@ public final class ed0 extends FrameLayout {
         this.f34738b = false;
         int paddingTop = size - getPaddingTop();
         View.MeasureSpec.getSize(i7);
-        ((FrameLayout.LayoutParams) md0Var.f37490q1.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+        ((FrameLayout.LayoutParams) md0Var.f37489q1.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
         this.f34738b = true;
         int L = org.telegram.messenger.g0.L(80.0f);
-        org.telegram.ui.Cells.c5 c5Var = md0Var.f37487m1;
-        int i13 = ((md0) c5Var.f30508a).f37499z1;
+        org.telegram.ui.Cells.c5 c5Var = md0Var.f37486m1;
+        int i13 = ((md0) c5Var.f30508a).f37498z1;
         for (int i14 = 0; i14 < i13; i14++) {
             ViewGroup u10 = c5Var.u(this.f34739c, i14);
             u10.measure(i7, View.MeasureSpec.makeMeasureSpec(0, 0));

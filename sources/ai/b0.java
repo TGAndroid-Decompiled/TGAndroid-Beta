@@ -34,14 +34,14 @@ public final class b0 implements Runnable {
                 }
                 return;
             case 2:
-                gf gfVar = this.f1128b.f1392f.f39573a.F0;
+                gf gfVar = this.f1128b.f1392f.f39572a.F0;
                 if (gfVar != null) {
                     gfVar.requestFocus();
                     return;
                 }
                 return;
             case 3:
-                ChatActivityEnterView chatActivityEnterView = this.f1128b.f1392f.f39573a;
+                ChatActivityEnterView chatActivityEnterView = this.f1128b.f1392f.f39572a;
                 chatActivityEnterView.G1 = 0L;
                 chatActivityEnterView.H1 = null;
                 return;
@@ -51,14 +51,14 @@ public final class b0 implements Runnable {
                 String z10 = p0Var3.z();
                 h0 h0Var = new h0(p0Var3, 0);
                 sfVar.getClass();
-                ChatActivityEnterView chatActivityEnterView2 = sfVar.f39573a;
+                ChatActivityEnterView chatActivityEnterView2 = sfVar.f39572a;
                 org.telegram.ui.Components.n0 n0Var = new org.telegram.ui.Components.n0(chatActivityEnterView2.getContext(), chatActivityEnterView2.M4);
                 n0Var.x1(z10);
-                n0Var.f37686f2 = h0Var;
+                n0Var.f37685f2 = h0Var;
                 n0Var.show();
                 return;
             case 5:
-                gf gfVar2 = this.f1128b.f1392f.f39573a.F0;
+                gf gfVar2 = this.f1128b.f1392f.f39572a.F0;
                 if (gfVar2 != null) {
                     gfVar2.requestFocus();
                     return;
@@ -102,8 +102,8 @@ public final class b0 implements Runnable {
             default:
                 p0 p0Var9 = this.f1128b;
                 if (!p0Var9.p()) {
-                    p0Var9.f1392f.f39573a.M1(null, true);
-                    p0Var9.b(0.0f, 240L, nr.f37962g);
+                    p0Var9.f1392f.f39572a.M1(null, true);
+                    p0Var9.b(0.0f, 240L, nr.f37961g);
                     return;
                 }
                 return;

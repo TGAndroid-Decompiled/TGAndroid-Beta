@@ -27,7 +27,7 @@ public final class zf0 extends org.telegram.ui.Components.du0 {
         this.f54545i0 = 0;
         this.f54546j0 = new int[2];
         this.f54547k0 = new h6.m(29);
-        org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37961f;
+        org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37960f;
         this.f54548l0 = new Paint(1);
     }
 
@@ -434,7 +434,7 @@ public final class zf0 extends org.telegram.ui.Components.du0 {
             canvas2.drawRoundRect(rectF3, height2, height2, paint2);
             eg0Var.J.setBounds(rect2);
             org.telegram.ui.Components.n5 n5Var = eg0Var.J;
-            n5Var.f37782w = (int) (eg0Var.E * 255.0f);
+            n5Var.f37781w = (int) (eg0Var.E * 255.0f);
             n5Var.draw(canvas2);
         }
     }

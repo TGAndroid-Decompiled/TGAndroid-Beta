@@ -15,12 +15,12 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.LaunchActivity;
 import org.webrtc.VideoFrame;
 public final class ik implements Runnable {
-    public final int f36266a;
-    public final Object f36267b;
+    public final int f36265a;
+    public final Object f36266b;
 
     public ik(Object obj, int i7) {
-        this.f36266a = i7;
-        this.f36267b = obj;
+        this.f36265a = i7;
+        this.f36266b = obj;
     }
 
     @Override
@@ -31,9 +31,9 @@ public final class ik implements Runnable {
         boolean z11;
         boolean z12;
         float f11;
-        int i7 = this.f36266a;
+        int i7 = this.f36265a;
         float f12 = 0.0f;
-        Object obj = this.f36267b;
+        Object obj = this.f36266b;
         switch (i7) {
             case 0:
                 lk lkVar = (lk) obj;
@@ -49,14 +49,14 @@ public final class ik implements Runnable {
                 qm qmVar = (qm) obj;
                 rm rmVar = qmVar.Q;
                 if (rmVar.K != null && !rmVar.L) {
-                    int computeVerticalScrollOffset = rmVar.f39281r.computeVerticalScrollOffset();
-                    if (rmVar.f39281r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (qmVar.e() - qmVar.f38950r) + qmVar.f38949n) {
+                    int computeVerticalScrollOffset = rmVar.f39280r.computeVerticalScrollOffset();
+                    if (rmVar.f39280r.computeVerticalScrollExtent() + computeVerticalScrollOffset >= (qmVar.e() - qmVar.f38949r) + qmVar.f38948n) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     float max = Math.max(0.0f, (rmVar.F - Math.max(0, computeVerticalScrollOffset - rmVar.getListTopPadding())) - org.telegram.messenger.g0.L(52.0f));
-                    float max2 = Math.max(0.0f, ((rmVar.f39281r.getMeasuredHeight() - (rmVar.F - computeVerticalScrollOffset)) - rmVar.getListTopPadding()) - org.telegram.messenger.g0.L(84.0f));
+                    float max2 = Math.max(0.0f, ((rmVar.f39280r.getMeasuredHeight() - (rmVar.F - computeVerticalScrollOffset)) - rmVar.getListTopPadding()) - org.telegram.messenger.g0.L(84.0f));
                     float L2 = org.telegram.messenger.g0.L(32.0f);
                     if (max < L2 && computeVerticalScrollOffset > rmVar.getListTopPadding()) {
                         f10 = (-(1.0f - (max / L2))) * org.telegram.messenger.g0.L(6.0f);
@@ -66,9 +66,9 @@ public final class ik implements Runnable {
                         f10 = 0.0f;
                     }
                     int i10 = (int) f10;
-                    if (Math.abs(i10) > 0 && rmVar.f39281r.canScrollVertically(i10) && (f10 <= 0.0f || !z10)) {
+                    if (Math.abs(i10) > 0 && rmVar.f39280r.canScrollVertically(i10) && (f10 <= 0.0f || !z10)) {
                         rmVar.F += f10;
-                        rmVar.f39281r.scrollBy(0, i10);
+                        rmVar.f39280r.scrollBy(0, i10);
                         qmVar.invalidate();
                     }
                     qmVar.M = true;
@@ -79,10 +79,10 @@ public final class ik implements Runnable {
             case 2:
                 tn tnVar = (tn) obj;
                 ik ikVar = tnVar.V0;
-                org.telegram.ui.Cells.b6 b6Var = tnVar.f39964h1;
+                org.telegram.ui.Cells.b6 b6Var = tnVar.f39963h1;
                 if (b6Var != null) {
                     EditTextBoldCursor editField = b6Var.getEditField();
-                    if (!tnVar.I && editField != null && tnVar.H && !tnVar.f39960f1 && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E && org.telegram.messenger.g0.Q1()) {
+                    if (!tnVar.I && editField != null && tnVar.H && !tnVar.f39959f1 && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E && org.telegram.messenger.g0.Q1()) {
                         editField.requestFocus();
                         org.telegram.messenger.g0.I3(editField);
                         org.telegram.messenger.g0.r(ikVar);
@@ -95,8 +95,8 @@ public final class ik implements Runnable {
             case 3:
                 yt ytVar = (yt) obj;
                 ik ikVar2 = ytVar.Q;
-                tt ttVar = ytVar.f42535a;
-                if (!ytVar.E && ttVar != null && ytVar.O && !ytVar.f42543w && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E && org.telegram.messenger.g0.Q1()) {
+                tt ttVar = ytVar.f42534a;
+                if (!ytVar.E && ttVar != null && ytVar.O && !ytVar.f42542w && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E && org.telegram.messenger.g0.Q1()) {
                     ttVar.requestFocus();
                     org.telegram.messenger.g0.I3(ttVar);
                     org.telegram.messenger.g0.r(ikVar2);
@@ -130,14 +130,14 @@ public final class ik implements Runnable {
                     if (elapsedRealtime > 17) {
                         elapsedRealtime = 17;
                     }
-                    float f13 = rzVar.f39412q0 + (((float) elapsedRealtime) / 320.0f);
-                    rzVar.f39412q0 = f13;
-                    rzVar.setAnimationIdicatorProgress(rzVar.f39405j0.getInterpolation(f13));
-                    if (rzVar.f39412q0 > 1.0f) {
-                        rzVar.f39412q0 = 1.0f;
+                    float f13 = rzVar.f39411q0 + (((float) elapsedRealtime) / 320.0f);
+                    rzVar.f39411q0 = f13;
+                    rzVar.setAnimationIdicatorProgress(rzVar.f39404j0.getInterpolation(f13));
+                    if (rzVar.f39411q0 > 1.0f) {
+                        rzVar.f39411q0 = 1.0f;
                     }
-                    if (rzVar.f39412q0 < 1.0f) {
-                        org.telegram.messenger.g0.g3(rzVar.f39421w0);
+                    if (rzVar.f39411q0 < 1.0f) {
+                        org.telegram.messenger.g0.g3(rzVar.f39420w0);
                         return;
                     }
                     rzVar.P = false;
@@ -194,18 +194,18 @@ public final class ik implements Runnable {
                 return;
             case 12:
                 zg0 zg0Var = (zg0) obj;
-                zg0Var.f42838y = true;
-                ValueAnimator valueAnimator2 = zg0Var.f42839z;
+                zg0Var.f42837y = true;
+                ValueAnimator valueAnimator2 = zg0Var.f42838z;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                zg0Var.f42837x = 0.0f;
+                zg0Var.f42836x = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                zg0Var.f42839z = ofFloat;
-                ofFloat.addUpdateListener(zg0Var.f42815b0);
-                zg0Var.f42839z.setInterpolator(new LinearInterpolator());
-                zg0Var.f42839z.setDuration(150L);
-                zg0Var.f42839z.start();
+                zg0Var.f42838z = ofFloat;
+                ofFloat.addUpdateListener(zg0Var.f42814b0);
+                zg0Var.f42838z.setInterpolator(new LinearInterpolator());
+                zg0Var.f42838z.setDuration(150L);
+                zg0Var.f42838z.start();
                 return;
             case 13:
                 ek0 ek0Var = (ek0) obj;
@@ -229,8 +229,8 @@ public final class ik implements Runnable {
                 return;
             case 14:
                 jj0 jj0Var = (jj0) obj;
-                ik ikVar3 = jj0Var.f36537j0;
-                if (jj0Var.f36540n) {
+                ik ikVar3 = jj0Var.f36536j0;
+                if (jj0Var.f36539n) {
                     org.telegram.messenger.g0.r(ikVar3);
                     org.telegram.messenger.g0.h3(ikVar3, 4000L);
                     return;
@@ -240,14 +240,14 @@ public final class ik implements Runnable {
                 return;
             case 15:
                 ik0 ik0Var = (ik0) obj;
-                RecyclerView recyclerView = ik0Var.f36268a;
+                RecyclerView recyclerView = ik0Var.f36267a;
                 if (recyclerView != null) {
-                    if (ik0Var.f36273g) {
-                        recyclerView.scrollBy(0, -ik0Var.f36274i);
+                    if (ik0Var.f36272g) {
+                        recyclerView.scrollBy(0, -ik0Var.f36273i);
                         org.telegram.messenger.g0.g3(this);
                         return;
                     } else if (ik0Var.h) {
-                        recyclerView.scrollBy(0, ik0Var.f36274i);
+                        recyclerView.scrollBy(0, ik0Var.f36273i);
                         org.telegram.messenger.g0.g3(this);
                         return;
                     } else {
@@ -287,36 +287,36 @@ public final class ik implements Runnable {
                 nt0 nt0Var = shutterButton.f33161e;
                 if (nt0Var != null) {
                     final xl xlVar = (xl) nt0Var;
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xlVar.f42166e;
-                    ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xlVar.f42165e;
+                    ui uiVar = chatAttachAlertPhotoLayout.f37519b;
                     em emVar = chatAttachAlertPhotoLayout.S;
                     int i11 = uiVar.O2;
-                    org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+                    org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
                     if ((i11 == 2 || (g2Var instanceof org.telegram.ui.bn)) && !chatAttachAlertPhotoLayout.f32839t0 && !uiVar.Q1 && chatAttachAlertPhotoLayout.Q != null && !uiVar.B1) {
                         if (g2Var == null) {
                             g2Var = LaunchActivity.Q();
                         }
                         if (g2Var != null && g2Var.getParentActivity() != null) {
                             if (!chatAttachAlertPhotoLayout.f32845x0) {
-                                org.telegram.messenger.f3.o(null, 2131749362, new lc(chatAttachAlertPhotoLayout.Q, xlVar.f42165c), null);
+                                org.telegram.messenger.f3.o(null, 2131749362, new lc(chatAttachAlertPhotoLayout.Q, xlVar.f42164c), null);
                             } else if (chatAttachAlertPhotoLayout.getContext().checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
                                 chatAttachAlertPhotoLayout.R0 = true;
                                 g2Var.getParentActivity().requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 21);
                             } else {
                                 for (int i12 = 0; i12 < 2; i12++) {
-                                    chatAttachAlertPhotoLayout.T[i12].animate().alpha(0.0f).translationX(org.telegram.messenger.g0.L(30.0f)).setDuration(150L).setInterpolator(nr.f37961f).start();
+                                    chatAttachAlertPhotoLayout.T[i12].animate().alpha(0.0f).translationX(org.telegram.messenger.g0.L(30.0f)).setDuration(150L).setInterpolator(nr.f37960f).start();
                                 }
                                 ViewPropertyAnimator duration = chatAttachAlertPhotoLayout.f32838s0.animate().alpha(0.0f).translationX(-org.telegram.messenger.g0.L(30.0f)).setDuration(150L);
-                                nr nrVar = nr.f37961f;
+                                nr nrVar = nr.f37960f;
                                 duration.setInterpolator(nrVar).start();
                                 chatAttachAlertPhotoLayout.f32836r0.animate().alpha(0.0f).setDuration(150L).setInterpolator(nrVar).start();
-                                org.telegram.ui.ActionBar.g2 g2Var2 = uiVar.f40368a2;
+                                org.telegram.ui.ActionBar.g2 g2Var2 = uiVar.f40367a2;
                                 if ((g2Var2 instanceof org.telegram.ui.bn) && ((org.telegram.ui.bn) g2Var2).z()) {
                                     z11 = true;
                                 } else {
                                     z11 = false;
                                 }
-                                xlVar.f42163a = org.telegram.messenger.g0.s0(z11);
+                                xlVar.f42162a = org.telegram.messenger.g0.s0(z11);
                                 org.telegram.messenger.g0.V3(emVar, true);
                                 emVar.setText(org.telegram.messenger.g0.g0(0, true, false));
                                 chatAttachAlertPhotoLayout.f32817h0 = 0;
@@ -325,7 +325,7 @@ public final class ik implements Runnable {
                                     public final void run() {
                                         switch (r2) {
                                             case 0:
-                                                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = xlVar.f42166e;
+                                                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = xlVar.f42165e;
                                                 if (chatAttachAlertPhotoLayout2.f32819i0 != null) {
                                                     int i13 = chatAttachAlertPhotoLayout2.f32817h0 + 1;
                                                     chatAttachAlertPhotoLayout2.f32817h0 = i13;
@@ -335,7 +335,7 @@ public final class ik implements Runnable {
                                                 }
                                                 return;
                                             default:
-                                                org.telegram.messenger.g0.h3(xlVar.f42166e.f32819i0, 1000L);
+                                                org.telegram.messenger.g0.h3(xlVar.f42165e.f32819i0, 1000L);
                                                 return;
                                         }
                                     }
@@ -343,7 +343,7 @@ public final class ik implements Runnable {
                                 org.telegram.messenger.g0.f2(g2Var.getParentActivity());
                                 CameraController cameraController = CameraController.getInstance();
                                 Object cameraSessionObject = chatAttachAlertPhotoLayout.Q.getCameraSessionObject();
-                                File file = xlVar.f42163a;
+                                File file = xlVar.f42162a;
                                 if (uiVar.O2 != 0) {
                                     z12 = true;
                                 } else {
@@ -354,7 +354,7 @@ public final class ik implements Runnable {
                                     public final void run() {
                                         switch (r2) {
                                             case 0:
-                                                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = xlVar.f42166e;
+                                                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = xlVar.f42165e;
                                                 if (chatAttachAlertPhotoLayout2.f32819i0 != null) {
                                                     int i13 = chatAttachAlertPhotoLayout2.f32817h0 + 1;
                                                     chatAttachAlertPhotoLayout2.f32817h0 = i13;
@@ -364,12 +364,12 @@ public final class ik implements Runnable {
                                                 }
                                                 return;
                                             default:
-                                                org.telegram.messenger.g0.h3(xlVar.f42166e.f32819i0, 1000L);
+                                                org.telegram.messenger.g0.h3(xlVar.f42165e.f32819i0, 1000L);
                                                 return;
                                         }
                                     }
                                 }, chatAttachAlertPhotoLayout.Q);
-                                chatAttachAlertPhotoLayout.f32825l0.a(ot0.f38350b);
+                                chatAttachAlertPhotoLayout.f32825l0.a(ot0.f38349b);
                                 chatAttachAlertPhotoLayout.Q.runHaptic();
                                 return;
                             }
@@ -381,17 +381,17 @@ public final class ik implements Runnable {
                 return;
             case 18:
                 nv0 nv0Var = (nv0) obj;
-                View view = nv0Var.f38000s;
+                View view = nv0Var.f37999s;
                 if (view != null) {
                     if (view.getVisibility() != 0) {
-                        nv0Var.f38000s.setVisibility(0);
-                        nv0Var.f38000s.setAlpha(0.0f);
+                        nv0Var.f37999s.setVisibility(0);
+                        nv0Var.f37999s.setAlpha(0.0f);
                     }
-                    nv0Var.f38000s.animate().setListener(null).cancel();
-                    nv0Var.f38000s.animate().alpha(1.0f).setDuration(150L).start();
+                    nv0Var.f37999s.animate().setListener(null).cancel();
+                    nv0Var.f37999s.animate().alpha(1.0f).setDuration(150L).start();
                     return;
                 }
-                nv0Var.f37995c.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
+                nv0Var.f37994c.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
                 return;
             case 19:
                 ((ThemeEditorView) obj).f33181a = false;
@@ -418,14 +418,14 @@ public final class ik implements Runnable {
                     if (elapsedRealtime3 > 17) {
                         elapsedRealtime3 = 17;
                     }
-                    float f15 = i71Var.f36205g0 + (((float) elapsedRealtime3) / 200.0f);
-                    i71Var.f36205g0 = f15;
-                    i71Var.setAnimationIdicatorProgress(i71Var.f36197b0.getInterpolation(f15));
-                    if (i71Var.f36205g0 > 1.0f) {
-                        i71Var.f36205g0 = 1.0f;
+                    float f15 = i71Var.f36204g0 + (((float) elapsedRealtime3) / 200.0f);
+                    i71Var.f36204g0 = f15;
+                    i71Var.setAnimationIdicatorProgress(i71Var.f36196b0.getInterpolation(f15));
+                    if (i71Var.f36204g0 > 1.0f) {
+                        i71Var.f36204g0 = 1.0f;
                     }
-                    if (i71Var.f36205g0 < 1.0f) {
-                        org.telegram.messenger.g0.g3(i71Var.f36208j0);
+                    if (i71Var.f36204g0 < 1.0f) {
+                        org.telegram.messenger.g0.g3(i71Var.f36207j0);
                         return;
                     }
                     i71Var.K = false;
@@ -440,7 +440,7 @@ public final class ik implements Runnable {
                 return;
             case 21:
                 org.telegram.ui.Components.voip.a0 a0Var = (org.telegram.ui.Components.voip.a0) obj;
-                if (a0Var.f40895w) {
+                if (a0Var.f40894w) {
                     a0Var.j(false);
                     org.telegram.messenger.g0.h3(this, 250L);
                     return;
@@ -448,22 +448,22 @@ public final class ik implements Runnable {
                 return;
             case 22:
                 org.telegram.ui.b20 b20Var = (org.telegram.ui.b20) obj;
-                if (b20Var.f41110b && b20Var.R0.f47555u2 == null) {
-                    b20Var.f41120h0 = false;
+                if (b20Var.f41109b && b20Var.R0.f47555u2 == null) {
+                    b20Var.f41119h0 = false;
                     org.telegram.ui.Components.voip.k0.a(b20Var);
                     return;
                 }
-                org.telegram.messenger.g0.h3(b20Var.f41121i0, 3000L);
+                org.telegram.messenger.g0.h3(b20Var.f41120i0, 3000L);
                 return;
             case 23:
                 org.telegram.ui.Components.voip.j1 j1Var = (org.telegram.ui.Components.voip.j1) obj;
-                org.telegram.ui.Components.voip.t0 t0Var = j1Var.f41090e;
+                org.telegram.ui.Components.voip.t0 t0Var = j1Var.f41089e;
                 if (t0Var != null) {
-                    if (!j1Var.f41088b.a(j1Var.f41094s)) {
+                    if (!j1Var.f41087b.a(j1Var.f41093s)) {
                         if (j1Var.h == null) {
                             j1Var.h = new org.telegram.ui.Components.voip.h1();
                         }
-                        VideoFrame videoFrame = j1Var.h.f41038b;
+                        VideoFrame videoFrame = j1Var.h.f41037b;
                         if (videoFrame != null) {
                             t0Var.onFrame(videoFrame);
                         }
@@ -475,23 +475,23 @@ public final class ik implements Runnable {
             case 24:
                 org.telegram.ui.Components.voip.i1 i1Var = (org.telegram.ui.Components.voip.i1) obj;
                 i1Var.a();
-                if (i1Var.f41057b) {
+                if (i1Var.f41056b) {
                     org.telegram.messenger.g0.h3(this, 500L);
                     return;
                 }
                 return;
             case 25:
                 org.telegram.ui.Components.voip.i2 i2Var = (org.telegram.ui.Components.voip.i2) obj;
-                org.telegram.ui.Components.voip.m mVar = i2Var.f41062b;
+                org.telegram.ui.Components.voip.m mVar = i2Var.f41061b;
                 if (mVar != null) {
                     mVar.b();
                 }
                 long c10 = org.telegram.ui.Components.voip.g.c();
                 boolean a10 = org.telegram.ui.Components.voip.m.a(VoIPService.getSharedInstance());
-                if (c10 != i2Var.f41063c || a10 != i2Var.d) {
-                    i2Var.f41063c = c10;
+                if (c10 != i2Var.f41062c || a10 != i2Var.d) {
+                    i2Var.f41062c = c10;
                     i2Var.d = a10;
-                    wi.n nVar = i2Var.f41061a;
+                    wi.n nVar = i2Var.f41060a;
                     if (nVar != null) {
                         nVar.c();
                     }

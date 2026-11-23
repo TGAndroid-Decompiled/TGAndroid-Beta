@@ -31,7 +31,7 @@ public final class ja implements jg.f0, org.telegram.ui.ActionBar.q1 {
             }
             bi.f6 f6Var = naVar.f34681a;
             if (f6Var != null) {
-                f6Var.f35790g3.O(true);
+                f6Var.f35789g3.O(true);
             }
         }
     }

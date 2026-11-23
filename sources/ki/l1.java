@@ -184,7 +184,7 @@ public final class l1 implements ww, org.telegram.ui.ActionBar.q1, ResultCallbac
         mp mpVar = (mp) this.f18798e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f18797c) {
-            Drawable drawable = mpVar.f37594b;
+            Drawable drawable = mpVar.f37593b;
             if (drawable instanceof cb0) {
                 cb0 cb0Var = (cb0) drawable;
                 if (this.f18796b >= 0) {

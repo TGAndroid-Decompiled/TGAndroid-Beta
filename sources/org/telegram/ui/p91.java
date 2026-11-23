@@ -64,7 +64,7 @@ public final class p91 extends rg.b {
             org.telegram.ui.Components.yz yzVar = new org.telegram.ui.Components.yz(viewGroup.getContext(), null);
             yzVar.setViewType(24);
             yzVar.setIsSingleCell(true);
-            yzVar.f42606x = true;
+            yzVar.f42605x = true;
             return new v4.f1(yzVar);
         }
         v91 v91Var = new v91(y91Var, viewGroup.getContext(), false);

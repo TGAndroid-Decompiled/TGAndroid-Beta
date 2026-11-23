@@ -120,7 +120,7 @@ public class e extends FrameLayout implements te.b, b6 {
                                                     hi.l3 l3Var4 = bnVar2.f45951a1;
                                                     l3Var4.f14988r0 = new vf(bnVar2, 14);
                                                     l3Var4.x();
-                                                    org.telegram.ui.Components.n30.f37757f.b();
+                                                    org.telegram.ui.Components.n30.f37756f.b();
                                                     return;
                                                 }
                                                 return;
@@ -150,7 +150,7 @@ public class e extends FrameLayout implements te.b, b6 {
                             }
                             break;
                         default:
-                            if (bnVar.f45951a1 == null && !z10 && n30.f37757f.c()) {
+                            if (bnVar.f45951a1 == null && !z10 && n30.f37756f.c()) {
                                 g0.h3(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -179,7 +179,7 @@ public class e extends FrameLayout implements te.b, b6 {
                                                     hi.l3 l3Var4 = bnVar2.f45951a1;
                                                     l3Var4.f14988r0 = new vf(bnVar2, 14);
                                                     l3Var4.x();
-                                                    org.telegram.ui.Components.n30.f37757f.b();
+                                                    org.telegram.ui.Components.n30.f37756f.b();
                                                     return;
                                                 }
                                                 return;

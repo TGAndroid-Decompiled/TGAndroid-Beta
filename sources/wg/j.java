@@ -53,7 +53,7 @@ public final class j extends j71 {
             int i11 = -org.telegram.messenger.g0.L(16.0f);
             a0 a0Var = this.f59825g0;
             int i12 = a0Var.f59751o2;
-            if (a0Var.f39533p1.getVisibility() == 0) {
+            if (a0Var.f39532p1.getVisibility() == 0) {
                 i7 = org.telegram.messenger.g0.L(16.0f) + org.telegram.messenger.g0.f24040m;
             } else {
                 i7 = 0;

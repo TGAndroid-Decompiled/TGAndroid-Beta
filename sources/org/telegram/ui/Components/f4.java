@@ -24,7 +24,7 @@ public final class f4 extends LinearLayout {
         setWillNotDraw(false);
         textPaint.setTextSize(org.telegram.messenger.g0.L(20.0f));
         textPaint.setTypeface(org.telegram.messenger.g0.o());
-        textPaint.setColor(z4Var.f42671a);
+        textPaint.setColor(z4Var.f42670a);
     }
 
     @Override

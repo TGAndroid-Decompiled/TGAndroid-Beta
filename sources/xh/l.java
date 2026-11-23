@@ -167,8 +167,8 @@ public class l extends TextView implements s9 {
                 this.I = n80Var;
                 o0Var.b(n80Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.I.f37839i);
-                int spanEnd = spannableString.getSpanEnd(this.I.f37839i);
+                int spanStart = spannableString.getSpanStart(this.I.f37838i);
+                int spanEnd = spannableString.getSpanEnd(this.I.f37838i);
                 h80 b10 = this.I.b();
                 if (this.K) {
                     paddingTop = 0.0f;
@@ -183,7 +183,7 @@ public class l extends TextView implements s9 {
             if (motionEvent.getAction() == 1) {
                 o0Var.f(true);
                 n80 n80Var2 = this.I;
-                if (n80Var2 != null && (characterStyle = n80Var2.f37839i) == a10) {
+                if (n80Var2 != null && (characterStyle = n80Var2.f37838i) == a10) {
                     l80 l80Var = this.G;
                     if (l80Var != null) {
                         l80Var.a((ClickableSpan) characterStyle);
@@ -200,7 +200,7 @@ public class l extends TextView implements s9 {
                 this.I = null;
             }
         }
-        if (this.I != null || (this.f60645r && ((GestureDetector) ((jn) this.f60639a.d).f36567b).onTouchEvent(motionEvent))) {
+        if (this.I != null || (this.f60645r && ((GestureDetector) ((jn) this.f60639a.d).f36566b).onTouchEvent(motionEvent))) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -399,7 +399,7 @@ public class l extends TextView implements s9 {
             if (k10 != null) {
                 int w02 = m6.w0(m6.Ce, this.E);
                 k10.g(m6.r1(0.8f, w02), m6.r1(1.3f, w02), m6.r1(1.0f, w02), m6.r1(4.0f, w02));
-                k10.f38833x.setStrokeWidth(g0.N(1.25f));
+                k10.f38832x.setStrokeWidth(g0.N(1.25f));
                 o0Var.c(k10, null);
             }
         }

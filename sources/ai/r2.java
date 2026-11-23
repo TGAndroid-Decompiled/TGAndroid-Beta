@@ -42,7 +42,7 @@ public final class r2 {
                 this.f1454t = size;
                 this.f1455u = true;
                 int i7 = this.f1452r;
-                DictationLid.j(DictationLid.f43082j[this.f1453s], new v1(this, i7, 2), null, byteArrayOutputStream.toByteArray());
+                DictationLid.j(DictationLid.f43082k[this.f1453s], new v1(this, i7, 2), null, byteArrayOutputStream.toByteArray());
             }
         }
     }

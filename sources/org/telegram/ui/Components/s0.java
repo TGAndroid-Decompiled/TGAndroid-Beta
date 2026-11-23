@@ -8,8 +8,8 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 public abstract class s0 {
-    public static final LongSparseArray f39434a = new LongSparseArray();
-    public static final LongSparseArray f39435b = new LongSparseArray();
+    public static final LongSparseArray f39433a = new LongSparseArray();
+    public static final LongSparseArray f39434b = new LongSparseArray();
 
     public static TL_aicompose.AiComposeTone a(int i7, TL_aicompose.InputAiComposeTone inputAiComposeTone) {
         if (inputAiComposeTone == null) {
@@ -56,42 +56,42 @@ public abstract class s0 {
                 } else {
                     str2 = inputaicomposestyle.to_lang;
                 }
-                obj.f39025c = str2;
+                obj.f39024c = str2;
                 TL_aicompose.InputAiComposeTone d = d(inputaicomposestyle.tone);
                 obj.d = d;
-                obj.f39024b = inputaicomposestyle.emojify;
-                if (obj.f39025c == null) {
+                obj.f39023b = inputaicomposestyle.emojify;
+                if (obj.f39024c == null) {
                     i10 = 1;
                 }
-                obj.f39027f = i10;
+                obj.f39026f = i10;
                 TL_aicompose.AiComposeTone a10 = a(i7, d);
                 if (a10 != null && !TextUtils.isEmpty(a10.title)) {
                     str3 = a10.title;
                 } else {
                     str3 = null;
                 }
-                String str4 = obj.f39025c;
+                String str4 = obj.f39024c;
                 if (str4 != null) {
                     String L0 = b31.L0(b31.P0(str4, null, null));
                     if (str3 != null) {
                         L0 = a8.p0.E(str3, " ", L0);
                     }
-                    obj.f39026e = L0;
+                    obj.f39025e = L0;
                 } else {
                     if (str3 == null) {
                         str3 = org.telegram.messenger.hd.N0(2131754963, null);
                     }
-                    obj.f39026e = str3;
+                    obj.f39025e = str3;
                 }
-                if (obj.f39024b) {
-                    obj.f39026e = a8.p0.s(new StringBuilder(), obj.f39026e, " + Emoji");
+                if (obj.f39023b) {
+                    obj.f39025e = a8.p0.s(new StringBuilder(), obj.f39025e, " + Emoji");
                 }
                 return obj;
             }
         }
-        LongSparseArray longSparseArray = f39434a;
+        LongSparseArray longSparseArray = f39433a;
         long j10 = (8 * j3) + i7;
-        LongSparseArray longSparseArray2 = f39435b;
+        LongSparseArray longSparseArray2 = f39434b;
         if (longSparseArray2.get(j10) != null) {
             r0Var2 = (r0) longSparseArray.get(j10);
         } else {
@@ -101,16 +101,16 @@ public abstract class s0 {
                     SerializedData serializedData = new SerializedData(Base64.decode(string, 2));
                     ?? obj2 = new Object();
                     serializedData.readInt32(false);
-                    obj2.f39027f = serializedData.readInt32(false);
-                    obj2.f39023a = serializedData.readBool(false);
-                    obj2.f39024b = serializedData.readBool(false);
+                    obj2.f39026f = serializedData.readInt32(false);
+                    obj2.f39022a = serializedData.readBool(false);
+                    obj2.f39023b = serializedData.readBool(false);
                     if (serializedData.readBool(false)) {
                         str = serializedData.readString(false);
                     } else {
                         str = null;
                     }
-                    obj2.f39025c = str;
-                    obj2.f39026e = serializedData.readString(false);
+                    obj2.f39024c = str;
+                    obj2.f39025e = serializedData.readString(false);
                     if (serializedData.readBool(false)) {
                         obj2.d = TL_aicompose.InputAiComposeTone.TLdeserialize(serializedData, serializedData.readInt32(false), false);
                     }
@@ -130,7 +130,7 @@ public abstract class s0 {
         if (r0Var2 == null) {
             return null;
         }
-        if (!r0Var2.f39023a && !org.telegram.messenger.n5.C(j3)) {
+        if (!r0Var2.f39022a && !org.telegram.messenger.n5.C(j3)) {
             return null;
         }
         return r0Var2;
@@ -156,7 +156,7 @@ public abstract class s0 {
         String str;
         if (j3 != 0) {
             boolean z12 = true;
-            if (r0Var != null && (r0Var.f39023a || org.telegram.messenger.n5.C(j3))) {
+            if (r0Var != null && (r0Var.f39022a || org.telegram.messenger.n5.C(j3))) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -166,8 +166,8 @@ public abstract class s0 {
             } else {
                 r0Var2 = null;
             }
-            LongSparseArray longSparseArray = f39434a;
-            LongSparseArray longSparseArray2 = f39435b;
+            LongSparseArray longSparseArray = f39433a;
+            LongSparseArray longSparseArray2 = f39434b;
             long j10 = (8 * j3) + i7;
             if (r0Var2 != null || longSparseArray2.get(j10) == null || longSparseArray.get(j10) != null) {
                 longSparseArray.put(j10, r0Var2);
@@ -177,20 +177,20 @@ public abstract class s0 {
                 } else {
                     SerializedData serializedData = new SerializedData();
                     serializedData.writeInt32(1);
-                    serializedData.writeInt32(r0Var2.f39027f);
-                    serializedData.writeBool(r0Var2.f39023a);
-                    serializedData.writeBool(r0Var2.f39024b);
-                    if (r0Var2.f39025c != null) {
+                    serializedData.writeInt32(r0Var2.f39026f);
+                    serializedData.writeBool(r0Var2.f39022a);
+                    serializedData.writeBool(r0Var2.f39023b);
+                    if (r0Var2.f39024c != null) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     serializedData.writeBool(z11);
-                    String str2 = r0Var2.f39025c;
+                    String str2 = r0Var2.f39024c;
                     if (str2 != null) {
                         serializedData.writeString(str2);
                     }
-                    String str3 = r0Var2.f39026e;
+                    String str3 = r0Var2.f39025e;
                     if (str3 == null) {
                         str3 = "";
                     }
@@ -212,13 +212,13 @@ public abstract class s0 {
                 if (r0Var != null && !z10) {
                     inputaicomposestyle = new TL_aicompose.inputAiComposeStyle();
                     inputaicomposestyle.tone = d(r0Var.d);
-                    if (TextUtils.isEmpty(r0Var.f39025c)) {
+                    if (TextUtils.isEmpty(r0Var.f39024c)) {
                         str = null;
                     } else {
-                        str = r0Var.f39025c;
+                        str = r0Var.f39024c;
                     }
                     inputaicomposestyle.to_lang = str;
-                    inputaicomposestyle.emojify = r0Var.f39024b;
+                    inputaicomposestyle.emojify = r0Var.f39023b;
                 } else {
                     inputaicomposestyle = null;
                 }

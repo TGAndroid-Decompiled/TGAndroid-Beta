@@ -47,7 +47,7 @@ public final class p9 implements r10 {
                 }
                 bi.f6 f6Var = daVar2.f34681a;
                 if (f6Var != null) {
-                    f6Var.f35790g3.O(true);
+                    f6Var.f35789g3.O(true);
                 }
                 daVar2.C0();
                 daVar2.t0();

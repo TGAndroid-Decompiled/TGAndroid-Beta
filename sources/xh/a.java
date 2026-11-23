@@ -73,7 +73,7 @@ public final class a extends Path {
         }
         fVar.setBounds(max, i10, (int) Math.min(f12, f14), (int) f13);
         fVar.h(this.f60556b.getPaint().getColor());
-        fVar.f60609t = zs.f42977c;
+        fVar.f60609t = zs.f42976c;
         int width = fVar.getBounds().width() / g0.L(6.0f);
         int i12 = f.B;
         int b10 = l9.b(width * i12, i12, f.A);

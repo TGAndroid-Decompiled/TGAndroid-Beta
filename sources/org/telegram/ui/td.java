@@ -430,7 +430,7 @@ public final class td extends LinearLayout {
                 if (view instanceof rd) {
                     rd rdVar = (rd) view;
                     org.telegram.ui.Components.h51 h51Var = rdVar.f51557a;
-                    h51Var.f35790g3.O(true);
+                    h51Var.f35789g3.O(true);
                     if (h51Var.canScrollVertically(1)) {
                         for (int i10 = 0; i10 < h51Var.getChildCount(); i10++) {
                             if (!(h51Var.getChildAt(i10) instanceof org.telegram.ui.Components.yz)) {

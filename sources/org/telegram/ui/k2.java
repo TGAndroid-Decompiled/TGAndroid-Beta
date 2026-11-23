@@ -42,8 +42,8 @@ public final class k2 implements c5.h {
             case 1:
                 v50 v50Var = (v50) this.f49177b;
                 org.telegram.ui.Components.ia iaVar = v50Var.f52725e;
-                iaVar.f36228b = f10;
-                iaVar.f36229c = i7;
+                iaVar.f36227b = f10;
+                iaVar.f36228c = i7;
                 iaVar.invalidate();
                 float measuredWidth2 = v50Var.d.getMeasuredWidth();
                 if (measuredWidth2 != 0.0f) {

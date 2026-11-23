@@ -24,7 +24,7 @@ public final class cu extends OrientationEventListener {
             case 0:
                 iu iuVar = (iu) this.f34302b;
                 z71 z71Var = iuVar.n1;
-                if (iuVar.A1 != null && z71Var.getVisibility() == 0 && (activity = iuVar.f36318t1) != null && z71Var.U && iuVar.H1) {
+                if (iuVar.A1 != null && z71Var.getVisibility() == 0 && (activity = iuVar.f36317t1) != null && z71Var.U && iuVar.H1) {
                     if (i7 >= 240 && i7 <= 300) {
                         iuVar.I1 = true;
                         return;

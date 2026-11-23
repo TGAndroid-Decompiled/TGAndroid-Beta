@@ -20,23 +20,23 @@ public abstract class qn0 extends org.telegram.ui.ActionBar.g1 {
     public int E;
     public int F;
     public ArrayList G;
-    public kn0 f38955o;
-    public TextView f38956p;
-    public boolean f38957q;
-    public TLRPC.Peer f38958r;
-    public TLRPC.TL_channels_sendAsPeers f38959s;
-    public bi.e3 f38960t;
-    public View f38961u;
+    public kn0 f38954o;
+    public TextView f38955p;
+    public boolean f38956q;
+    public TLRPC.Peer f38957r;
+    public TLRPC.TL_channels_sendAsPeers f38958s;
+    public bi.e3 f38959t;
+    public View f38960u;
     public ek0 v;
-    public v4.c0 f38962w;
-    public Boolean f38963x;
-    public boolean f38964y;
-    public ArrayList f38965z;
+    public v4.c0 f38961w;
+    public Boolean f38962x;
+    public boolean f38963y;
+    public ArrayList f38964z;
 
     public static void k(xe xeVar, List list, Context context, org.telegram.ui.bn bnVar, a3.h hVar, View view, int i7) {
         TLRPC.User c22;
         TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) list.get(i7);
-        if (!xeVar.f38964y) {
+        if (!xeVar.f38963y) {
             if (tL_sendAsPeer.premium_required && !org.telegram.messenger.k10.i(org.telegram.messenger.k10.f24968t0).q()) {
                 try {
                     view.performHapticFeedback(3, 2);
@@ -70,12 +70,12 @@ public abstract class qn0 extends org.telegram.ui.ActionBar.g1 {
                     fm0 fm0Var2 = new fm0(2, xeVar, bnVar);
                     ?? sbVar = new sb(context, zmVar);
                     Drawable drawable = context.getDrawable(2131232312);
-                    q9 q9Var = sbVar.f39544a;
+                    q9 q9Var = sbVar.f39543a;
                     q9Var.setImageDrawable(drawable);
                     int themedColor = sbVar.getThemedColor(org.telegram.ui.ActionBar.m6.yj);
                     sbVar.f35641c = themedColor;
                     q9Var.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN));
-                    sbVar.f39545b.setText(org.telegram.messenger.g0.W2(org.telegram.messenger.hd.N0(2131745459, null)));
+                    sbVar.f39544b.setText(org.telegram.messenger.g0.W2(org.telegram.messenger.hd.N0(2131745459, null)));
                     ec ecVar = new ec(context, zmVar, true);
                     ecVar.e(org.telegram.messenger.hd.N0(2131745458, null));
                     ecVar.f34725b = fm0Var2;
@@ -89,7 +89,7 @@ public abstract class qn0 extends org.telegram.ui.ActionBar.g1 {
                 org.telegram.messenger.g0.h3(fm0Var3, 2500L);
                 return;
             }
-            xeVar.f38964y = true;
+            xeVar.f38963y = true;
             ek0 ek0Var = xeVar.v;
             pn0 pn0Var = (pn0) view;
             TLRPC.Peer peer = tL_sendAsPeer.peer;
@@ -119,7 +119,7 @@ public abstract class qn0 extends org.telegram.ui.ActionBar.g1 {
                 npVar.getConnectionsManager().sendRequest(tL_messages_saveDefaultSendAs, new org.telegram.messenger.mj(npVar, j3, 17), 64);
             }
             int[] iArr = new int[2];
-            ut0 ut0Var = pn0Var.f38643a;
+            ut0 ut0Var = pn0Var.f38642a;
             boolean isSelected = ut0Var.isSelected();
             ut0Var.getLocationInWindow(iArr);
             ut0Var.a(true, true);
@@ -140,7 +140,7 @@ public abstract class qn0 extends org.telegram.ui.ActionBar.g1 {
             for (int i11 = 0; i11 < ek0Var.getChildCount(); i11++) {
                 View childAt = ek0Var.getChildAt(i11);
                 if ((childAt instanceof pn0) && childAt != pn0Var) {
-                    ((pn0) childAt).f38643a.a(false, true);
+                    ((pn0) childAt).f38642a.a(false, true);
                 }
             }
             org.telegram.messenger.camera.i iVar = new org.telegram.messenger.camera.i(chatActivityEnterView, ut0Var2, iArr, pn0Var, 23);
@@ -165,9 +165,9 @@ public abstract class qn0 extends org.telegram.ui.ActionBar.g1 {
     }
 
     public final void l(r1.g... gVarArr) {
-        kn0 kn0Var = this.f38955o;
-        bi.e3 e3Var = this.f38960t;
-        ArrayList arrayList = this.f38965z;
+        kn0 kn0Var = this.f38954o;
+        bi.e3 e3Var = this.f38959t;
+        ArrayList arrayList = this.f38964z;
         ArrayList arrayList2 = new ArrayList(arrayList);
         int size = arrayList2.size();
         int i7 = 0;
@@ -206,7 +206,7 @@ public abstract class qn0 extends org.telegram.ui.ActionBar.g1 {
         if (gVarArr.length <= 0) {
             z10 = false;
         }
-        this.f38957q = z10;
+        this.f38956q = z10;
         ((r1.g) arrayList3.get(0)).a(new ya(this, 3));
         int size2 = arrayList3.size();
         int i10 = 0;

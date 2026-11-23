@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 public final class rx implements hy {
-    public final sx f39368a;
+    public final sx f39367a;
 
     public rx(sx sxVar) {
-        this.f39368a = sxVar;
+        this.f39367a = sxVar;
     }
 
     @Override
     public final void e() {
-        sx sxVar = this.f39368a;
+        sx sxVar = this.f39367a;
         if (sxVar.G.W.G) {
             return;
         }
@@ -23,7 +23,7 @@ public final class rx implements hy {
     @Override
     public final void run() {
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        String str = this.f39368a.f39716w;
+        String str = this.f39367a.f39715w;
         ou ouVar = new ou(4, this, str);
         if (org.telegram.messenger.j6.d(str)) {
             lv0.G3.c(org.telegram.messenger.k10.f24968t0, str, new rh(3, linkedHashSet, ouVar));

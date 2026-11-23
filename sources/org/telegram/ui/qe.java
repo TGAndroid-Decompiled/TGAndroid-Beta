@@ -20,7 +20,7 @@ public final class qe implements org.telegram.messenger.q10 {
                 bn bnVar = (bn) this.f51271b;
                 if (org.telegram.messenger.qc.e(65536) && org.telegram.ui.Components.oz0.c()) {
                     org.telegram.ui.Components.oz0 oz0Var = bnVar.f46263y0;
-                    if (oz0Var == null || oz0Var.f38426e) {
+                    if (oz0Var == null || oz0Var.f38425e) {
                         if (bnVar.getParentActivity() != null && org.telegram.ui.Components.oz0.c() && bnVar.A0 != null && bnVar.f46111m1 != null) {
                             org.telegram.ui.Components.oz0 oz0Var2 = bnVar.f46263y0;
                             if (oz0Var2 != null) {

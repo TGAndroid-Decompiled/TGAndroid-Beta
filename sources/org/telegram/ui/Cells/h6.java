@@ -105,7 +105,7 @@ public final class h6 extends z implements gs, org.telegram.ui.ActionBar.b6 {
         this.O = k10.f24968t0;
         this.f30741g0 = org.telegram.messenger.g0.L(19.0f);
         this.f30748n0 = new org.telegram.ui.Components.d6(this, 0L, 350L, nr.h);
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
         this.f30758v0 = new fi.e7(null, false);
         this.f30760w0 = new RectF();
         this.f30765z0 = new mc(this);
@@ -249,9 +249,9 @@ public final class h6 extends z implements gs, org.telegram.ui.ActionBar.b6 {
         }
         accessibilityNodeInfo.setText(sb2.toString());
         op opVar = this.B0;
-        if (opVar.f38321a.f32874q) {
+        if (opVar.f38320a.f32874q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(opVar.f38321a.f32874q);
+            accessibilityNodeInfo.setChecked(opVar.f38320a.f32874q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }
@@ -324,7 +324,7 @@ public final class h6 extends z implements gs, org.telegram.ui.ActionBar.b6 {
             this.M0 = new xy0(hd.N0(2131753008, null), 14.0f, org.telegram.messenger.g0.o());
         }
         if (z10) {
-            i7 = org.telegram.messenger.g0.L(30.0f) + ((int) this.M0.f42247c);
+            i7 = org.telegram.messenger.g0.L(30.0f) + ((int) this.M0.f42246c);
         } else {
             i7 = 0;
         }
@@ -452,7 +452,7 @@ public final class h6 extends z implements gs, org.telegram.ui.ActionBar.b6 {
         long j3;
         boolean z12 = hd.f24444a0;
         org.telegram.ui.Components.n5 n5Var = this.f30757u0;
-        n5Var.f37774a = z12;
+        n5Var.f37773a = z12;
         boolean z13 = this.I0;
         org.telegram.ui.ActionBar.h6 h6Var = this.f30761x;
         if (z13 && z10) {

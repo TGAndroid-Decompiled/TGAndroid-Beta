@@ -25,11 +25,11 @@ public final class bs {
         xy0 xy0Var = new xy0(spannableStringBuilder, 10.0f, org.telegram.messenger.g0.o());
         xy0Var.r(u2Var);
         obj.f33906c = xy0Var;
-        obj.f33906c.q(org.telegram.messenger.gj.B5(org.telegram.messenger.j6.m(spannableStringBuilder, xy0Var.f42245a.getFontMetricsInt(), false, null, 0), soVar.f26888c, obj.f33906c.f42245a.getFontMetricsInt(), false));
+        obj.f33906c.q(org.telegram.messenger.gj.B5(org.telegram.messenger.j6.m(spannableStringBuilder, xy0Var.f42244a.getFontMetricsInt(), false, null, 0), soVar.f26888c, obj.f33906c.f42244a.getFontMetricsInt(), false));
         obj.f33906c.o(26);
         int L = org.telegram.messenger.g0.L(9.32f);
         xy0 xy0Var2 = obj.f33906c;
-        obj.f33909g = L + ((int) xy0Var2.f42247c);
+        obj.f33909g = L + ((int) xy0Var2.f42246c);
         xy0Var2.i();
         int[] iArr = org.telegram.ui.ActionBar.m6.f29642r8;
         int i7 = iArr[soVar.f26896m % iArr.length];

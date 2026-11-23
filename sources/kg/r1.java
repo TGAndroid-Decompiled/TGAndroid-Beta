@@ -148,7 +148,7 @@ public final class r1 extends FrameLayout {
             int i10 = q1.d;
             SpannableString spannableString = new SpannableString("+");
             q1 q1Var = new q1(u1Var.a() - 1);
-            this.f18480n[0] = (int) (((xy0) q1Var.f18469c).f42247c + org.telegram.messenger.g0.L(10.0f));
+            this.f18480n[0] = (int) (((xy0) q1Var.f18469c).f42246c + org.telegram.messenger.g0.L(10.0f));
             spannableString.setSpan(q1Var, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, lVar.getPaint(), (L * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {

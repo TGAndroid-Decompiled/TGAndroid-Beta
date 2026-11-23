@@ -36,14 +36,14 @@ public final class hh0 extends View implements org.telegram.ui.ActionBar.b6 {
         n6Var.setCallback(this);
         n6Var.n(0.35f, 200L, nrVar);
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = n6Var.f37794a;
+        TextPaint textPaint = n6Var.f37793a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(org.telegram.messenger.g0.L(0.24f));
         textPaint.setStrokeJoin(Paint.Join.ROUND);
         n6Var.w(org.telegram.messenger.g0.L(13.3f));
         n6Var.u(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Ji, false));
         n6Var.N = org.telegram.messenger.g0.L(64.0f);
-        n6Var.f37796b = 1;
+        n6Var.f37795b = 1;
     }
 
     public final boolean a(int i7) {

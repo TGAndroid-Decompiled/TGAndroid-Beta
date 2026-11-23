@@ -12,7 +12,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.f40;
 import org.telegram.ui.pe;
 public abstract class g {
-    public static boolean f41008a;
+    public static boolean f41007a;
 
     public static void a(int i7, List list, boolean z10) {
         boolean z11;
@@ -51,7 +51,7 @@ public abstract class g {
             int videoState = sharedInstance.getVideoState(false);
             if (videoState == 2) {
                 arrayList.add(new f(new wi.k(2, 2131232543, hd.N0(2131742992, null), true), 90, 1));
-            } else if (f41008a || videoState == 1) {
+            } else if (f41007a || videoState == 1) {
                 String N0 = hd.N0(2131742993, null);
                 if (org.telegram.messenger.t0.f26931b.checkSelfPermission("android.permission.CAMERA") != 0 || (z10 && ((t3Var = sharedInstance.groupCall) == null || !t3Var.c()))) {
                     z11 = false;
@@ -75,7 +75,7 @@ public abstract class g {
             while (i12 < size) {
                 Object obj = arrayList.get(i12);
                 i12++;
-                list.add(((f) obj).f40998a);
+                list.add(((f) obj).f40997a);
             }
         }
     }

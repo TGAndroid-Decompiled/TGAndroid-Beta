@@ -615,7 +615,7 @@ public final class gd0 extends org.telegram.ui.Components.iu0 implements org.tel
             this.f48080s.setAutoRepeat(false);
             org.telegram.ui.Components.oh0 oh0Var = this.R;
             oh0Var.K(0);
-            oh0Var.S(oh0Var.f38211e[0] - 1, new tc0(this, 1));
+            oh0Var.S(oh0Var.f38210e[0] - 1, new tc0(this, 1));
             return;
         }
         this.f48084v0.C1(z10, true);
@@ -629,11 +629,11 @@ public final class gd0 extends org.telegram.ui.Components.iu0 implements org.tel
             }
             this.T = true;
             org.telegram.ui.Components.oh0 oh0Var2 = this.f48056a;
-            if (oh0Var2.f38207b0 != oh0Var2.f38211e[0] - 1) {
-                oh0Var2.f38231u0 = new yc0(this, i7, 0);
+            if (oh0Var2.f38206b0 != oh0Var2.f38210e[0] - 1) {
+                oh0Var2.f38230u0 = new yc0(this, i7, 0);
                 return;
             }
-            oh0Var.f38231u0 = new tc0(this, 3);
+            oh0Var.f38230u0 = new tc0(this, 3);
             org.telegram.ui.Components.rh0 rh0Var = this.f48080s;
             rh0Var.setAutoRepeat(false);
             oh0Var.N(0, false, false);

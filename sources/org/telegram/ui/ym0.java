@@ -67,7 +67,7 @@ public final class ym0 extends org.telegram.ui.Components.du0 {
             this.f54233h0 = false;
         }
         org.telegram.ui.Components.yt ytVar2 = cn0Var.f46604e0;
-        if (ytVar2 != null && ytVar2.f42538e) {
+        if (ytVar2 != null && ytVar2.f42537e) {
             cn0Var.fragmentView.setTranslationY(0.0f);
             cn0Var.L.setTranslationY(0.0f);
             cn0Var.O.setTranslationY(0.0f);

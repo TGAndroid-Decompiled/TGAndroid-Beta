@@ -30,7 +30,7 @@ public final class uy0 extends org.telegram.ui.Components.sa {
         int i14;
         int i15;
         O();
-        this.f39539v1 = 0.2f;
+        this.f39538v1 = 0.2f;
         Paint paint = new Paint(1);
         paint.setStyle(Paint.Style.FILL);
         int i16 = org.telegram.ui.ActionBar.m6.Fi;
@@ -195,11 +195,11 @@ public final class uy0 extends org.telegram.ui.Components.sa {
         SpannableString spannableString = new SpannableString(">");
         org.telegram.ui.Components.nq nqVar = new org.telegram.ui.Components.nq(2131230875, 0);
         this.U1 = nqVar;
-        nqVar.f37955y = org.telegram.ui.ActionBar.m6.x0(null, i19, false);
+        nqVar.f37954y = org.telegram.ui.ActionBar.m6.x0(null, i19, false);
         nqVar.I = 0.7f;
         nqVar.J = 0.7f;
         nqVar.F = org.telegram.messenger.g0.L(12.0f);
-        nqVar.f37952s = 1.0f;
+        nqVar.f37951s = 1.0f;
         spannableString.setSpan(nqVar, 0, spannableString.length(), 33);
         SpannableStringBuilder K2 = org.telegram.messenger.g0.K2(org.telegram.messenger.g0.K2(W2, R2, "%1$s"), spannableString, ">");
         org.telegram.ui.Components.m80 m80Var = new org.telegram.ui.Components.m80(context, null);
@@ -263,7 +263,7 @@ public final class uy0 extends org.telegram.ui.Components.sa {
         try {
             org.telegram.ui.Components.nq nqVar = this.U1;
             if (nqVar != null) {
-                nqVar.f37955y = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Xc, false);
+                nqVar.f37954y = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Xc, false);
                 org.telegram.ui.Components.m80 m80Var = this.V1;
                 if (m80Var != null) {
                     m80Var.invalidate();

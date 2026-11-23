@@ -121,7 +121,7 @@ public abstract class v5 extends FrameLayout {
         this.f15620a0 = new Matrix();
         this.f15622b0 = new float[2];
         this.f15629f0 = true;
-        this.f15630g0 = new org.telegram.ui.Components.d6(this, 0L, 320L, nr.f37962g);
+        this.f15630g0 = new org.telegram.ui.Components.d6(this, 0L, 320L, nr.f37961g);
         this.f15631h0 = false;
         this.f15632i0 = new Matrix();
         this.f15633j0 = new Matrix();
@@ -959,10 +959,10 @@ public abstract class v5 extends FrameLayout {
             if (y51Var != null) {
                 int i13 = this.V;
                 int i14 = this.W;
-                ez ezVar = y51Var.f42323b;
+                ez ezVar = y51Var.f42322b;
                 if (ezVar == null) {
-                    y51Var.f42327n = i13;
-                    y51Var.f42328r = i14;
+                    y51Var.f42326n = i13;
+                    y51Var.f42327r = i14;
                 } else {
                     ezVar.h(i13, i14);
                 }
@@ -1089,11 +1089,11 @@ public abstract class v5 extends FrameLayout {
             if (y51Var != null) {
                 y51Var.clearAnimation();
                 y51 y51Var2 = this.f15636n;
-                ez ezVar = y51Var2.f42323b;
+                ez ezVar = y51Var2.f42322b;
                 if (ezVar != null) {
                     ezVar.postRunnable(new bz(ezVar, 0));
                 }
-                y51Var2.f42322a = null;
+                y51Var2.f42321a = null;
                 removeView(this.f15636n);
                 this.f15636n = null;
             }
@@ -1105,14 +1105,14 @@ public abstract class v5 extends FrameLayout {
             } else {
                 caVar = this.H;
             }
-            y51Var3.f42329s = caVar;
-            ez ezVar2 = y51Var3.f42323b;
+            y51Var3.f42328s = caVar;
+            ez ezVar2 = y51Var3.f42322b;
             if (ezVar2 != null && (haVar = ezVar2.J) != null) {
-                org.telegram.ui.Components.ca caVar2 = haVar.f35857t;
+                org.telegram.ui.Components.ca caVar2 = haVar.f35856t;
                 if (caVar2 != null && caVar2.f34135m != null) {
                     caVar2.f34135m = null;
                 }
-                haVar.f35857t = caVar;
+                haVar.f35856t = caVar;
                 if (caVar != null && caVar.f34135m != haVar) {
                     caVar.f34135m = haVar;
                     caVar.d();

@@ -362,7 +362,7 @@ public final class d0 extends dk0 {
                         switch (r2) {
                             case 0:
                                 k0 k0Var2 = this.f58659b.f58684c;
-                                wg.l.J0(k0Var2.f39536s1, k0Var2.J0, k0Var2.W1, null);
+                                wg.l.J0(k0Var2.f39535s1, k0Var2.J0, k0Var2.W1, null);
                                 return;
                             case 1:
                                 k0 k0Var3 = this.f58659b.f58684c;
@@ -405,7 +405,7 @@ public final class d0 extends dk0 {
                             switch (r2) {
                                 case 0:
                                     k0 k0Var2 = this.f58659b.f58684c;
-                                    wg.l.J0(k0Var2.f39536s1, k0Var2.J0, k0Var2.W1, null);
+                                    wg.l.J0(k0Var2.f39535s1, k0Var2.J0, k0Var2.W1, null);
                                     return;
                                 case 1:
                                     k0 k0Var3 = this.f58659b.f58684c;
@@ -450,7 +450,7 @@ public final class d0 extends dk0 {
                 nqVar.a(i16);
                 nqVar.c(org.telegram.messenger.g0.L(18.0f));
                 nqVar.F = org.telegram.messenger.g0.L(11.0f);
-                nqVar.f37951r = -org.telegram.messenger.g0.L(5.0f);
+                nqVar.f37950r = -org.telegram.messenger.g0.L(5.0f);
                 spannableString.setSpan(nqVar, 0, spannableString.length(), 33);
                 m80Var.setText(TextUtils.concat(W2, " ", org.telegram.messenger.g0.K2(spannableStringBuilder, spannableString, ">")));
                 m80Var.setTextSize(1, 14.0f);
@@ -474,7 +474,7 @@ public final class d0 extends dk0 {
                         switch (r2) {
                             case 0:
                                 k0 k0Var2 = this.f58659b.f58684c;
-                                wg.l.J0(k0Var2.f39536s1, k0Var2.J0, k0Var2.W1, null);
+                                wg.l.J0(k0Var2.f39535s1, k0Var2.J0, k0Var2.W1, null);
                                 return;
                             case 1:
                                 k0 k0Var3 = this.f58659b.f58684c;
@@ -508,7 +508,7 @@ public final class d0 extends dk0 {
                             switch (r2) {
                                 case 0:
                                     k0 k0Var2 = this.f58659b.f58684c;
-                                    wg.l.J0(k0Var2.f39536s1, k0Var2.J0, k0Var2.W1, null);
+                                    wg.l.J0(k0Var2.f39535s1, k0Var2.J0, k0Var2.W1, null);
                                     return;
                                 case 1:
                                     k0 k0Var3 = this.f58659b.f58684c;

@@ -22,12 +22,12 @@ public final class bi implements TextWatcher {
         int i7;
         boolean z12;
         ui uiVar = this.d;
-        o6 o6Var = uiVar.f40432u1;
+        o6 o6Var = uiVar.f40431u1;
         zh zhVar = uiVar.N2;
         int i10 = uiVar.H3;
-        o6 o6Var2 = uiVar.f40436v1;
+        o6 o6Var2 = uiVar.f40435v1;
         if (this.f33848b != TextUtils.isEmpty(editable)) {
-            mi miVar = uiVar.f40441w2;
+            mi miVar = uiVar.f40440w2;
             if (miVar != null) {
                 miVar.E(miVar.getSelectedItemsCount());
             }
@@ -43,7 +43,7 @@ public final class bi implements TextWatcher {
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         uiVar.G1 = codePointCount;
-        te.a aVar = uiVar.f40412p1;
+        te.a aVar = uiVar.f40411p1;
         if (codePointCount > 0) {
             z10 = true;
         } else {
@@ -89,8 +89,8 @@ public final class bi implements TextWatcher {
             uiVar.S2 = z11;
             uiVar.G2.invalidate();
         }
-        if (!uiVar.f40387g4 && !org.telegram.messenger.np.u1(i10).K3() && !org.telegram.messenger.k10.i(i10).q() && uiVar.G1 > org.telegram.messenger.np.u1(i10).W4 && uiVar.G1 < org.telegram.messenger.np.u1(i10).X4) {
-            uiVar.f40387g4 = true;
+        if (!uiVar.f40386g4 && !org.telegram.messenger.np.u1(i10).K3() && !org.telegram.messenger.k10.i(i10).q() && uiVar.G1 > org.telegram.messenger.np.u1(i10).W4 && uiVar.G1 < org.telegram.messenger.np.u1(i10).X4) {
+            uiVar.f40386g4 = true;
             uiVar.E1(this.f33849c);
         }
         if (uiVar.X1) {

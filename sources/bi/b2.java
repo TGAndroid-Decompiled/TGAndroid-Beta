@@ -21,9 +21,9 @@ public final class b2 extends n41 {
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         int i7;
         ah.r rVar = (ah.r) view;
-        Drawable drawable = o41Var.f38091l;
-        CharSequence charSequence = o41Var.f38092m;
-        CharSequence charSequence2 = o41Var.f38093n;
+        Drawable drawable = o41Var.f38090l;
+        CharSequence charSequence = o41Var.f38091m;
+        CharSequence charSequence2 = o41Var.f38092n;
         rVar.f1109x.setVisibility(8);
         rVar.I = null;
         rVar.J = null;

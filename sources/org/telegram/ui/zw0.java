@@ -190,9 +190,9 @@ public final class zw0 extends FrameLayout {
             if (xf0Var != null) {
                 int i14 = this.I;
                 boolean z14 = this.f54652c;
-                if (xf0Var.f42078i != i14 || xf0Var.f42079j != z14) {
-                    xf0Var.f42078i = i14;
-                    xf0Var.f42079j = z14;
+                if (xf0Var.f42077i != i14 || xf0Var.f42078j != z14) {
+                    xf0Var.f42077i = i14;
+                    xf0Var.f42078j = z14;
                     xf0Var.a();
                 }
             }
@@ -249,8 +249,8 @@ public final class zw0 extends FrameLayout {
                 org.telegram.ui.Components.n5 n5Var = this.J;
                 if (!z15) {
                     if (n5Var != null) {
-                        Drawable drawable = n5Var.f37778f[0];
-                        if ((drawable instanceof org.telegram.ui.Components.p5) && (s2Var = ((org.telegram.ui.Components.p5) drawable).f38500k) != null && s2Var.J()) {
+                        Drawable drawable = n5Var.f37777f[0];
+                        if ((drawable instanceof org.telegram.ui.Components.p5) && (s2Var = ((org.telegram.ui.Components.p5) drawable).f38499k) != null && s2Var.J()) {
                             this.M = true;
                         }
                     }

@@ -66,7 +66,7 @@ public final class he0 implements Runnable {
                     l3Var2.f14988r0 = new he0(me0Var, 8);
                     l3Var2.d = 8000L;
                     l3Var2.x();
-                    org.telegram.ui.Components.n30.f37759r.b();
+                    org.telegram.ui.Components.n30.f37758r.b();
                     return;
                 }
                 return;

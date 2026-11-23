@@ -119,7 +119,7 @@ public abstract class l implements f5 {
                 i7 = 2131748002;
             }
             nv0Var.d.setText(hd.N0(i7, null));
-            m80 m80Var = this.f62065n.f37996e;
+            m80 m80Var = this.f62065n.f37995e;
             if (z10) {
                 i10 = 2131747952;
             } else {
@@ -157,7 +157,7 @@ public abstract class l implements f5 {
                 t6.h(m6.f29381d6, nv0Var, g2Var.getResourceProvider());
             }
             this.f62066o.d.setText(hd.N0(2131747974, null));
-            this.f62066o.f37996e.setText(hd.N0(2131745611, null));
+            this.f62066o.f37995e.setText(hd.N0(2131745611, null));
             this.f62066o.setAnimateLayoutChange(true);
             this.f62066o.setVisibility(8);
         }

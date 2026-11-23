@@ -75,8 +75,8 @@ public abstract class u1 extends hi.e {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         nq nqVar = new nq(2131231749, 0);
         nqVar.c(org.telegram.messenger.g0.L(22.0f));
-        nqVar.f37951r = org.telegram.messenger.g0.L(1.0f);
-        nqVar.f37952s = org.telegram.messenger.g0.L(2.0f);
+        nqVar.f37950r = org.telegram.messenger.g0.L(1.0f);
+        nqVar.f37951s = org.telegram.messenger.g0.L(2.0f);
         nqVar.H = 1.2f;
         spannableStringBuilder.setSpan(nqVar, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.N0(2131745484, null));
@@ -88,7 +88,7 @@ public abstract class u1 extends hi.e {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         nq nqVar = new nq(2131231728, 0);
         nqVar.c(org.telegram.messenger.g0.L(20.0f));
-        nqVar.f37951r = org.telegram.messenger.g0.L(-3.0f);
+        nqVar.f37950r = org.telegram.messenger.g0.L(-3.0f);
         spannableStringBuilder.setSpan(nqVar, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.N0(2131745482, null));
         i(spannableStringBuilder, z10, true);
@@ -99,7 +99,7 @@ public abstract class u1 extends hi.e {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         nq nqVar = new nq(2131231759, 0);
         nqVar.c(org.telegram.messenger.g0.L(20.0f));
-        nqVar.f37951r = org.telegram.messenger.g0.L(-3.0f);
+        nqVar.f37950r = org.telegram.messenger.g0.L(-3.0f);
         spannableStringBuilder.setSpan(nqVar, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.N0(2131745481, null));
         i(spannableStringBuilder, z10, true);
@@ -115,7 +115,7 @@ public abstract class u1 extends hi.e {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         nq nqVar = new nq(2131231729, 0);
         nqVar.c(org.telegram.messenger.g0.L(20.0f));
-        nqVar.f37951r = org.telegram.messenger.g0.L(-3.0f);
+        nqVar.f37950r = org.telegram.messenger.g0.L(-3.0f);
         spannableStringBuilder.setSpan(nqVar, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.N0(2131745480, null));
         i(spannableStringBuilder, z10, true);
@@ -130,7 +130,7 @@ public abstract class u1 extends hi.e {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         nq nqVar = new nq(2131232533, 0);
         nqVar.c(org.telegram.messenger.g0.L(20.0f));
-        nqVar.f37951r = org.telegram.messenger.g0.L(-3.0f);
+        nqVar.f37950r = org.telegram.messenger.g0.L(-3.0f);
         spannableStringBuilder.setSpan(nqVar, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.N0(2131745478, null));
         i(spannableStringBuilder, z10, true);

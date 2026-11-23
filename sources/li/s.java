@@ -112,7 +112,7 @@ public final class s extends g2 implements te.b {
         this.d = h51Var;
         h51Var.setClipToPadding(false);
         h51 h51Var2 = this.d;
-        h51Var2.f35790g3.f34062r = false;
+        h51Var2.f35789g3.f34062r = false;
         h51Var2.r1();
         this.d.j(new u1(this, 23));
         this.actionBar.setAdaptiveBackground(this.d);
@@ -185,7 +185,7 @@ public final class s extends g2 implements te.b {
         nv0 nv0Var = new nv0(getParentActivity(), null, 16, this.resourceProvider);
         this.f20028r = nv0Var;
         nv0Var.d.setText(hd.N0(2131748032, null));
-        this.f20028r.f37996e.setText(hd.N0(2131748031, null));
+        this.f20028r.f37995e.setText(hd.N0(2131748031, null));
         this.f20028r.setAnimateLayoutChange(true);
         this.f20028r.setVisibility(8);
         this.f20024c.addView(this.f20028r, ma.e(-2, -2, 17));

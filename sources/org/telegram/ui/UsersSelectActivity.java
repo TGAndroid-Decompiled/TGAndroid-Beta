@@ -140,7 +140,7 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.g2 implements
             frameLayout.addView(o6Var2);
             o6Var.getDrawable().K = true;
             o6Var2.getDrawable().K = true;
-            org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37961f;
+            org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37960f;
             o6Var.b(1.0f, 150L, nrVar);
             o6Var2.b(1.0f, 150L, nrVar);
             frameLayout.setClipChildren(false);
@@ -238,7 +238,7 @@ public class UsersSelectActivity extends org.telegram.ui.ActionBar.g2 implements
         this.f43942e = yzVar;
         yzVar.setViewType(10);
         org.telegram.ui.Components.yz yzVar2 = this.f43942e;
-        yzVar2.f42606x = false;
+        yzVar2.f42605x = false;
         yzVar2.setItemsCount(3);
         org.telegram.ui.Components.yz yzVar3 = this.f43942e;
         int i15 = org.telegram.ui.ActionBar.m6.G8;

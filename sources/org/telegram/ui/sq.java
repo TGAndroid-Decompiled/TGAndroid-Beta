@@ -14,14 +14,14 @@ public final class sq implements Runnable {
             case 0:
                 bi.f6 f6Var = this.f52100b.f34681a;
                 if (f6Var != null) {
-                    f6Var.f35790g3.O(true);
+                    f6Var.f35789g3.O(true);
                     return;
                 }
                 return;
             default:
                 bi.f6 f6Var2 = this.f52100b.f34681a;
                 if (f6Var2 != null) {
-                    f6Var2.f35790g3.O(true);
+                    f6Var2.f35789g3.O(true);
                     return;
                 }
                 return;

@@ -162,7 +162,7 @@ public final class r6 extends FrameLayout implements org.telegram.ui.ActionBar.b
             if (h != null) {
                 n6Var.t(hd.C(Math.abs(h.f26436c - currentTime)), true, true);
             }
-            int length = n6Var.f37803i.length();
+            int length = n6Var.f37802i.length();
             if (length > 4) {
                 f10 = 0.75f;
             } else if (length > 3) {

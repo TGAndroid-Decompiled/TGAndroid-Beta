@@ -837,20 +837,20 @@ public abstract class j1 extends FrameLayout {
 
     public final void f(int i7, String str) {
         lg.f[] fVarArr = this.f53176b;
-        CharSequence charSequence = ((n6) fVarArr[i7].f19797e).f37803i;
+        CharSequence charSequence = ((n6) fVarArr[i7].f19797e).f37802i;
         if (charSequence != null && TextUtils.equals(charSequence.toString(), str)) {
             return;
         }
-        ((n6) fVarArr[i7].f19797e).t(j6.m(str, ((n6) fVarArr[i7].f19797e).f37794a.getFontMetricsInt(), false, null, 0), false, true);
+        ((n6) fVarArr[i7].f19797e).t(j6.m(str, ((n6) fVarArr[i7].f19797e).f37793a.getFontMetricsInt(), false, null, 0), false, true);
     }
 
     public final void g(int i7, String str, boolean z10) {
         lg.f[] fVarArr = this.f53176b;
-        CharSequence charSequence = ((n6) fVarArr[i7].d).f37803i;
+        CharSequence charSequence = ((n6) fVarArr[i7].d).f37802i;
         if (charSequence != null && TextUtils.equals(charSequence.toString(), str)) {
             return;
         }
-        ((n6) fVarArr[i7].d).t(j6.m(str, ((n6) fVarArr[i7].d).f37794a.getFontMetricsInt(), false, null, 0), z10, true);
+        ((n6) fVarArr[i7].d).t(j6.m(str, ((n6) fVarArr[i7].d).f37793a.getFontMetricsInt(), false, null, 0), z10, true);
     }
 
     public int getBackgroundColor() {
@@ -866,7 +866,7 @@ public abstract class j1 extends FrameLayout {
     }
 
     public String getTitle() {
-        CharSequence charSequence = ((n6) this.f53176b[0].d).f37803i;
+        CharSequence charSequence = ((n6) this.f53176b[0].d).f37802i;
         if (charSequence == null) {
             return "";
         }

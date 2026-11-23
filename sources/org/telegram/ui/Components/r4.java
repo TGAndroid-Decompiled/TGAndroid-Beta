@@ -8,12 +8,12 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 public final class r4 extends qk0 {
-    public final bi.z f39067o1;
+    public final bi.z f39066o1;
 
     public r4(Context context, int i7, fi.b bVar, bi.z zVar) {
         super(1, context, bVar, true);
         int i10;
-        this.f39067o1 = zVar;
+        this.f39066o1 = zVar;
         this.f30214w0 = false;
         this.f30212v0 = false;
         ScrollView scrollView = new ScrollView(context);
@@ -74,11 +74,11 @@ public final class r4 extends qk0 {
         frameLayout.addView(editTextBoldCursor, c8.ma.d(-1, 36.0f, 51, 17.0f, 305.0f, 17.0f, 0.0f));
         ?? frameLayout2 = new FrameLayout(context);
         View view = new View(context);
-        frameLayout2.f38610a = view;
+        frameLayout2.f38609a = view;
         view.setBackground(org.telegram.ui.ActionBar.a6.f(org.telegram.ui.ActionBar.m6.Fi, 8.0f));
         frameLayout2.addView(view, c8.ma.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView2 = new TextView(context);
-        frameLayout2.f38611b = textView2;
+        frameLayout2.f38610b = textView2;
         textView2.setLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(1);
@@ -88,7 +88,7 @@ public final class r4 extends qk0 {
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(org.telegram.messenger.g0.o());
         frameLayout2.addView(textView2, c8.ma.e(-2, -2, 17));
-        this.f38940m1 = frameLayout2;
+        this.f38939m1 = frameLayout2;
         frameLayout2.setBackground(null);
         frameLayout2.setText(org.telegram.messenger.hd.N0(2131746012, null));
         c8.ra.a(frameLayout2);

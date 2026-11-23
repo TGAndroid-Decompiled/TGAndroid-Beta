@@ -41,7 +41,7 @@ public final class d9 {
     public long v = 220;
 
     public d9(View view, boolean z10) {
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
         this.f34446z = new Random();
         this.f34439r = view;
         for (int i7 = 0; i7 < 3; i7++) {
@@ -146,7 +146,7 @@ public final class d9 {
                 ofFloat.addUpdateListener(new x(this, 5));
                 this.f34428f.addListener(new y(this, 6));
                 this.f34428f.setDuration(this.v);
-                this.f34428f.setInterpolator(nr.f37961f);
+                this.f34428f.setInterpolator(nr.f37960f);
                 this.f34428f.start();
             } else {
                 this.f34443w = true;

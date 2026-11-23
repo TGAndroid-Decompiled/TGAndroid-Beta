@@ -4,15 +4,15 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class xi implements org.telegram.messenger.r10 {
-    public final int f42098a;
-    public final ej f42099b;
-    public final org.telegram.messenger.np f42100c;
+    public final int f42097a;
+    public final ej f42098b;
+    public final org.telegram.messenger.np f42099c;
     public final int d;
 
     public xi(ej ejVar, org.telegram.messenger.np npVar, int i7, int i10) {
-        this.f42098a = i10;
-        this.f42099b = ejVar;
-        this.f42100c = npVar;
+        this.f42097a = i10;
+        this.f42098b = ejVar;
+        this.f42099c = npVar;
         this.d = i7;
     }
 
@@ -21,15 +21,15 @@ public final class xi implements org.telegram.messenger.r10 {
         String str;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio2;
-        switch (this.f42098a) {
+        switch (this.f42097a) {
             case 0:
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                ej ejVar = this.f42099b;
+                ej ejVar = this.f42098b;
                 ejVar.f34819e0 = -1;
                 ejVar.f34828n0 = false;
                 if (messages_botresults != null) {
-                    this.f42100c.f4(messages_botresults.users, false);
+                    this.f42099c.f4(messages_botresults.users, false);
                     ArrayList<TLRPC.BotInlineResult> arrayList = messages_botresults.results;
                     int size = arrayList.size();
                     int i7 = 0;
@@ -96,14 +96,14 @@ public final class xi implements org.telegram.messenger.r10 {
             default:
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ej ejVar2 = this.f42099b;
+                ej ejVar2 = this.f42098b;
                 ArrayList arrayList2 = ejVar2.M;
                 ejVar2.V = -1;
                 boolean z10 = false;
                 ejVar2.f34815a0 = false;
                 if (messages_messages != null) {
                     ArrayList<TLRPC.User> arrayList3 = messages_messages.users;
-                    org.telegram.messenger.np npVar = this.f42100c;
+                    org.telegram.messenger.np npVar = this.f42099c;
                     npVar.f4(arrayList3, false);
                     npVar.Z3(messages_messages.chats, false);
                     ArrayList<TLRPC.Message> arrayList4 = messages_messages.messages;

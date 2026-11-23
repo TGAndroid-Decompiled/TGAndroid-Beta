@@ -7,10 +7,10 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class id0 implements DialogInterface.OnClickListener {
-    public final md0 f36241a;
+    public final md0 f36240a;
 
     public id0(md0 md0Var) {
-        this.f36241a = md0Var;
+        this.f36240a = md0Var;
     }
 
     public static void a(String str, ContentValues contentValues) {
@@ -75,7 +75,7 @@ public final class id0 implements DialogInterface.OnClickListener {
         Integer num10 = 5;
         Integer num11 = 4;
         Integer num12 = 6;
-        md0 md0Var2 = this.f36241a;
+        md0 md0Var2 = this.f36240a;
         ArrayList arrayList3 = md0Var2.H1;
         ArrayList arrayList4 = md0Var2.G1;
         Integer num13 = 0;
@@ -404,7 +404,7 @@ public final class id0 implements DialogInterface.OnClickListener {
         intent3.putExtra("finishActivityOnSaveCompleted", true);
         intent3.putParcelableArrayListExtra("data", arrayList5);
         try {
-            md0Var.f37493t1.getParentActivity().startActivity(intent3);
+            md0Var.f37492t1.getParentActivity().startActivity(intent3);
             md0Var.dismiss();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

@@ -391,7 +391,7 @@ public class TextureRenderer {
             }
             z5 z5Var = d20Var.J.f34096w;
             if (z5Var != null) {
-                bitmap = z5Var.f42683b;
+                bitmap = z5Var.f42682b;
             } else {
                 bitmap = null;
             }
@@ -1228,7 +1228,7 @@ public class TextureRenderer {
                 GLES20.glVertexAttribPointer(this.blurPositionHandle, 2, 5126, false, 8, (Buffer) this.blurVerticesBuffer);
                 GLES20.glUniform1i(this.blurBlurImageHandle, 0);
                 GLES20.glActiveTexture(i15);
-                GLES20.glBindTexture(3553, this.blur.f35856s[2]);
+                GLES20.glBindTexture(3553, this.blur.f35855s[2]);
                 GLES20.glUniform1i(this.blurMaskImageHandle, 1);
                 GLES20.glActiveTexture(i7);
                 GLES20.glBindTexture(3553, this.blurTexture[0]);

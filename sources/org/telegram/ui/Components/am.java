@@ -42,7 +42,7 @@ public final class am extends fm {
     @Override
     public final boolean K() {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f33550c;
-        if (!chatAttachAlertPhotoLayout.f37520b.Q1) {
+        if (!chatAttachAlertPhotoLayout.f37519b.Q1) {
             int i7 = Settings.System.getInt(chatAttachAlertPhotoLayout.getContext().getContentResolver(), "accelerometer_rotation", 0);
             if (this.f33549b || i7 == 1) {
                 return true;
@@ -64,7 +64,7 @@ public final class am extends fm {
 
     @Override
     public final boolean g() {
-        if (this.f33550c.f37520b.Q3 != 1) {
+        if (this.f33550c.f37519b.Q3 != 1) {
             return true;
         }
         return false;
@@ -86,7 +86,7 @@ public final class am extends fm {
         TextView textView = chatAttachAlertPhotoLayout.f32833q0;
         chatAttachAlertPhotoLayout.f32840u0 = false;
         if (ChatAttachAlertPhotoLayout.f32798r1) {
-            ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+            ui uiVar = chatAttachAlertPhotoLayout.f37519b;
             uiVar.X3.y1(0, true, true, 0, 0, 0L, uiVar.g1(), false, 0L);
             return;
         }
@@ -101,13 +101,13 @@ public final class am extends fm {
 
     @Override
     public final void o(int i7, org.telegram.messenger.f20 f20Var, boolean z10, int i10, int i11, boolean z11) {
-        ui uiVar = this.f33550c.f37520b;
+        ui uiVar = this.f33550c.f37519b;
         ArrayList arrayList = ChatAttachAlertPhotoLayout.f32799s1;
         if (!arrayList.isEmpty() && !uiVar.Q1) {
             if (f20Var != null && i7 >= 0 && i7 < arrayList.size()) {
                 ((org.telegram.messenger.ff) arrayList.get(i7)).f28074s = f20Var;
             }
-            org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+            org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
             if (!(g2Var instanceof org.telegram.ui.bn) || !((org.telegram.ui.bn) g2Var).z()) {
                 int size = arrayList.size();
                 for (int i12 = 0; i12 < size; i12++) {
@@ -156,7 +156,7 @@ public final class am extends fm {
                 chatAttachAlertPhotoLayout.f32835r.setVisibility(8);
                 chatAttachAlertPhotoLayout.H.f();
                 chatAttachAlertPhotoLayout.f32842w.f();
-                chatAttachAlertPhotoLayout.f37520b.L1(0);
+                chatAttachAlertPhotoLayout.f37519b.L1(0);
             }
         }
         return true;
@@ -164,7 +164,7 @@ public final class am extends fm {
 
     @Override
     public final boolean z() {
-        ui uiVar = this.f33550c.f37520b;
+        ui uiVar = this.f33550c.f37519b;
         if (!uiVar.A1 && !uiVar.C1) {
             return true;
         }

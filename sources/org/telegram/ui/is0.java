@@ -208,7 +208,7 @@ public final class is0 extends org.telegram.ui.ActionBar.g2 {
         org.telegram.ui.Components.c51 c51Var;
         super.onFragmentCreate();
         org.telegram.ui.Components.h51 h51Var = this.d;
-        if (h51Var != null && (c51Var = h51Var.f35790g3) != null) {
+        if (h51Var != null && (c51Var = h51Var.f35789g3) != null) {
             c51Var.O(false);
             return true;
         }

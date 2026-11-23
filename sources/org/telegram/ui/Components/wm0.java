@@ -29,38 +29,38 @@ public class wm0 extends ScrollView implements eh.a {
     public final hb0 L;
     public final ArrayList M;
     public final ArrayList N;
-    public final org.telegram.ui.ActionBar.h6 f41846a;
-    public final LinearLayout f41847b;
-    public final float f41848c;
+    public final org.telegram.ui.ActionBar.h6 f41845a;
+    public final LinearLayout f41846b;
+    public final float f41847c;
     public final Paint d;
-    public final Paint f41849e;
-    public final Paint f41850f;
+    public final Paint f41848e;
+    public final Paint f41849f;
     public final Rect h;
-    public final RectF f41851n;
-    public final RectF f41852r;
-    public final Matrix f41853s;
-    public Bitmap f41854w;
-    public int f41855x;
-    public int f41856y;
+    public final RectF f41850n;
+    public final RectF f41851r;
+    public final Matrix f41852s;
+    public Bitmap f41853w;
+    public int f41854x;
+    public int f41855y;
 
     public wm0(Context context, LinearLayout linearLayout, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
         super(context);
         float f10;
-        this.f41848c = org.telegram.messenger.g0.L(16.0f);
+        this.f41847c = org.telegram.messenger.g0.L(16.0f);
         this.d = new Paint();
-        this.f41849e = new Paint();
-        this.f41850f = new Paint(3);
+        this.f41848e = new Paint();
+        this.f41849f = new Paint(3);
         this.h = new Rect();
-        this.f41851n = new RectF();
-        this.f41852r = new RectF();
-        this.f41853s = new Matrix();
+        this.f41850n = new RectF();
+        this.f41851r = new RectF();
+        this.f41852s = new Matrix();
         this.F = new float[80];
         this.H = new float[32];
         this.L = new hb0(this, 24);
         this.M = new ArrayList();
         this.N = new ArrayList();
-        this.f41846a = h6Var;
-        this.f41847b = linearLayout;
+        this.f41845a = h6Var;
+        this.f41846b = linearLayout;
         setWillNotDraw(false);
         int L = org.telegram.messenger.g0.L(12.0f);
         if (z10) {
@@ -104,7 +104,7 @@ public class wm0 extends ScrollView implements eh.a {
             ViewGroup.LayoutParams layoutParams2 = view2.getLayoutParams();
             ViewParent parent = view.getParent();
             float f12 = 0.0f;
-            LinearLayout linearLayout = this.f41847b;
+            LinearLayout linearLayout = this.f41846b;
             if (parent != linearLayout && (layoutParams instanceof ViewGroup.MarginLayoutParams)) {
                 f10 = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
             } else {
@@ -173,10 +173,10 @@ public class wm0 extends ScrollView implements eh.a {
 
     @Override
     public final void d(Canvas canvas, RectF rectF) {
-        RectF rectF2 = this.f41851n;
-        Paint paint = this.f41849e;
-        Matrix matrix = this.f41853s;
-        LinearLayout linearLayout = this.f41847b;
+        RectF rectF2 = this.f41850n;
+        Paint paint = this.f41848e;
+        Matrix matrix = this.f41852s;
+        LinearLayout linearLayout = this.f41846b;
         long uptimeMillis = SystemClock.uptimeMillis();
         if (this.J && getOverScrollMode() != 2) {
             canvas.save();
@@ -194,16 +194,16 @@ public class wm0 extends ScrollView implements eh.a {
             }
         }
         int i7 = org.telegram.ui.ActionBar.m6.f29324a7;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f41846a;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f41845a;
         int o4 = i0.a.o(org.telegram.ui.ActionBar.m6.w0(i7, h6Var), 255);
         this.d.setColor(o4);
-        if (this.f41856y != o4) {
-            this.f41856y = o4;
-            this.f41854w = null;
+        if (this.f41855y != o4) {
+            this.f41855y = o4;
+            this.f41853w = null;
         }
         float scrollX = getScrollX();
         float scrollY = getScrollY();
-        RectF rectF3 = this.f41852r;
+        RectF rectF3 = this.f41851r;
         rectF3.set(rectF);
         rectF3.offset(scrollX, scrollY);
         e();
@@ -221,7 +221,7 @@ public class wm0 extends ScrollView implements eh.a {
                     paint.setColor(i0.a.o(w02, Math.round(Color.alpha(w02) * Math.max(0.0f, Math.min(1.0f, this.F[i10 + 4])))));
                     float[] fArr2 = this.F;
                     rectF2.set(fArr2[i10], fArr2[i11], fArr2[i12], fArr2[i13]);
-                    float f10 = this.f41848c;
+                    float f10 = this.f41847c;
                     canvas.drawRoundRect(rectF2, f10, f10, paint);
                 }
             }
@@ -270,12 +270,12 @@ public class wm0 extends ScrollView implements eh.a {
         float f11;
         float f12;
         char c10;
-        int o4 = i0.a.o(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, this.f41846a), 255);
+        int o4 = i0.a.o(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, this.f41845a), 255);
         Paint paint = this.d;
         paint.setColor(o4);
-        if (this.f41856y != o4) {
-            this.f41856y = o4;
-            this.f41854w = null;
+        if (this.f41855y != o4) {
+            this.f41855y = o4;
+            this.f41853w = null;
         }
         e();
         if (this.E) {
@@ -283,7 +283,7 @@ public class wm0 extends ScrollView implements eh.a {
             float scrollY = getScrollY();
             float width = scrollX + getWidth();
             float height = getHeight() + scrollY;
-            LinearLayout linearLayout = this.f41847b;
+            LinearLayout linearLayout = this.f41846b;
             float A = org.telegram.messenger.o10.A(linearLayout.getX(), linearLayout.getPaddingLeft(), width, scrollX);
             float max = Math.max(A, Math.min(width, (linearLayout.getX() + linearLayout.getWidth()) - linearLayout.getPaddingRight()));
             char c11 = 0;
@@ -400,7 +400,7 @@ public class wm0 extends ScrollView implements eh.a {
         super.dispatchDraw(canvas);
         float width2 = getWidth() + getScrollX();
         float height2 = getHeight() + getScrollY();
-        RectF rectF = this.f41852r;
+        RectF rectF = this.f41851r;
         rectF.set(getScrollX(), getScrollY(), width2, height2);
         g(canvas, rectF);
     }
@@ -410,7 +410,7 @@ public class wm0 extends ScrollView implements eh.a {
         this.G = 0;
         ArrayList arrayList = this.N;
         arrayList.clear();
-        i(this.f41847b, 0.0f, 0.0f);
+        i(this.f41846b, 0.0f, 0.0f);
         int size = arrayList.size();
         while (true) {
             View view = null;
@@ -446,29 +446,29 @@ public class wm0 extends ScrollView implements eh.a {
         if ((i7 & 1) == 0) {
             i10 = 0;
         } else {
-            i10 = this.f41855x;
+            i10 = this.f41854x;
         }
         if (i7 >= 2) {
-            i11 = this.f41855x;
+            i11 = this.f41854x;
         }
-        int i12 = this.f41855x;
+        int i12 = this.f41854x;
         Rect rect = this.h;
         rect.set(i10, i11, i10 + i12, i12 + i11);
-        RectF rectF2 = this.f41851n;
+        RectF rectF2 = this.f41850n;
         rectF2.set(f10, f11, f12, f13);
-        canvas.drawBitmap(this.f41854w, rect, rectF2, this.f41850f);
+        canvas.drawBitmap(this.f41853w, rect, rectF2, this.f41849f);
     }
 
     public final void g(Canvas canvas, RectF rectF) {
         if (this.G != 0) {
-            float f10 = this.f41848c;
+            float f10 = this.f41847c;
             if (f10 > 0.0f) {
                 int max = Math.max(1, (int) Math.ceil(f10));
-                if (this.f41854w == null || this.f41855x != max) {
-                    this.f41855x = max;
+                if (this.f41853w == null || this.f41854x != max) {
+                    this.f41854x = max;
                     int i7 = max * 2;
-                    this.f41854w = Bitmap.createBitmap(i7, i7, Bitmap.Config.ARGB_8888);
-                    Canvas canvas2 = new Canvas(this.f41854w);
+                    this.f41853w = Bitmap.createBitmap(i7, i7, Bitmap.Config.ARGB_8888);
+                    Canvas canvas2 = new Canvas(this.f41853w);
                     canvas2.drawColor(this.d.getColor());
                     Paint paint = new Paint(1);
                     paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
@@ -481,13 +481,13 @@ public class wm0 extends ScrollView implements eh.a {
                     float f13 = fArr[i10 + 1];
                     float f14 = fArr[i10 + 2];
                     float f15 = fArr[i10 + 3];
-                    float f16 = this.f41855x;
+                    float f16 = this.f41854x;
                     f(canvas, 0, f12, f13, f12 + f16, f13 + f16, rectF);
-                    float f17 = this.f41855x;
+                    float f17 = this.f41854x;
                     f(canvas, 1, f14 - f17, f13, f14, f13 + f17, rectF);
-                    float f18 = this.f41855x;
+                    float f18 = this.f41854x;
                     f(canvas, 2, f12, f15 - f18, f12 + f18, f15, rectF);
-                    float f19 = this.f41855x;
+                    float f19 = this.f41854x;
                     f(canvas, 3, f14 - f19, f15 - f19, f14, f15, rectF);
                 }
             }
@@ -498,7 +498,7 @@ public class wm0 extends ScrollView implements eh.a {
         int k10;
         float width = getWidth() + getScrollX();
         float height = getHeight() + getScrollY();
-        RectF rectF = this.f41852r;
+        RectF rectF = this.f41851r;
         rectF.set(getScrollX(), getScrollY(), width, height);
         for (int i7 = 0; i7 < this.G; i7 += 5) {
             float[] fArr = this.F;
@@ -507,14 +507,14 @@ public class wm0 extends ScrollView implements eh.a {
             int i12 = i7 + 3;
             if (rectF.intersects(fArr[i7], fArr[i10], fArr[i11], fArr[i12])) {
                 float f10 = this.F[i7 + 4];
-                int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29381d6, this.f41846a);
+                int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29381d6, this.f41845a);
                 int round = Math.round(Math.max(0.0f, Math.min(1.0f, f10)) * Color.alpha(w02));
                 if (!this.E) {
                     k10 = i0.a.o(w02, round);
                 } else {
                     k10 = i0.a.k(i0.a.o(w02, round), this.d.getColor());
                 }
-                Paint paint = this.f41849e;
+                Paint paint = this.f41848e;
                 paint.setColor(k10);
                 float[] fArr2 = this.F;
                 canvas.drawRect(fArr2[i7], fArr2[i10], fArr2[i11], fArr2[i12], paint);
@@ -529,7 +529,7 @@ public class wm0 extends ScrollView implements eh.a {
                 if (childAt instanceof LinearLayout) {
                     LinearLayout linearLayout = (LinearLayout) childAt;
                     if (linearLayout.getOrientation() == 1) {
-                        LinearLayout linearLayout2 = this.f41847b;
+                        LinearLayout linearLayout2 = this.f41846b;
                         if (childAt.getX() + f10 <= linearLayout2.getPaddingLeft() && childAt.getX() + f10 + childAt.getWidth() >= linearLayout2.getWidth() - linearLayout2.getPaddingRight()) {
                             i(linearLayout, childAt.getX() + f10, childAt.getY() + f11);
                         }
@@ -541,7 +541,7 @@ public class wm0 extends ScrollView implements eh.a {
     }
 
     public final float j(View view) {
-        if (view == this.f41847b) {
+        if (view == this.f41846b) {
             return 0.0f;
         }
         if (!(view.getParent() instanceof View)) {
@@ -551,7 +551,7 @@ public class wm0 extends ScrollView implements eh.a {
     }
 
     public final float k(View view) {
-        if (view == this.f41847b) {
+        if (view == this.f41846b) {
             return 0.0f;
         }
         if (!(view.getParent() instanceof View)) {
@@ -579,7 +579,7 @@ public class wm0 extends ScrollView implements eh.a {
             ((Runnable) obj).run();
         }
         invalidate();
-        this.f41847b.invalidate();
+        this.f41846b.invalidate();
     }
 
     @Override

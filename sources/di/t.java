@@ -809,7 +809,7 @@ public final class t extends org.telegram.ui.ActionBar.g2 implements gs {
         this.f9776e = h51Var;
         h51Var.r1();
         h51 h51Var2 = this.f9776e;
-        h51Var2.f35790g3.f34062r = false;
+        h51Var2.f35789g3.f34062r = false;
         h51Var2.setCaptureSectionsDecoratorAllowed(true);
         this.f9776e.setClipToPadding(false);
         this.f9776e.setOverScrollMode(0);
@@ -818,7 +818,7 @@ public final class t extends org.telegram.ui.ActionBar.g2 implements gs {
             h51 h51Var3 = this.f9776e;
             getParentActivity();
             jg.i0 i0Var = new jg.i0(5, tt0Var3, false);
-            h51Var3.f35789f3 = i0Var;
+            h51Var3.f35788f3 = i0Var;
             h51Var3.setLayoutManager(i0Var);
             this.f9778f.u(this.f9776e, new d(this));
             z10 = true;
@@ -849,7 +849,7 @@ public final class t extends org.telegram.ui.ActionBar.g2 implements gs {
         te.a aVar = new te.a(0, new d(this), nr.h, 380L, false);
         this.f9793s = aVar;
         tt0 tt0Var4 = this.f9778f;
-        aVar.a((tt0Var4 == null || !tt0Var4.f40048f0) ? false : false, false);
+        aVar.a((tt0Var4 == null || !tt0Var4.f40047f0) ? false : false, false);
         if (this.f9778f != null) {
             getBaseSimpleGlass().f56670n = this.f9778f;
             ob obVar2 = this.L;
@@ -1004,12 +1004,12 @@ public final class t extends org.telegram.ui.ActionBar.g2 implements gs {
             h51 h51Var = this.f9776e;
             if (h51Var != null) {
                 tt0 tt0Var = this.f9778f;
-                if (tt0Var != null && tt0Var.f40048f0) {
+                if (tt0Var != null && tt0Var.f40047f0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Components.c51 c51Var = h51Var.f35790g3;
+                org.telegram.ui.Components.c51 c51Var = h51Var.f35789g3;
                 if (tt0Var == null) {
                     z11 = true;
                 }

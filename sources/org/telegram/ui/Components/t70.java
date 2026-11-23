@@ -1,23 +1,23 @@
 package org.telegram.ui.Components;
 public final class t70 implements Runnable {
-    public final int f39793a;
-    public final v70 f39794b;
-    public final boolean f39795c;
+    public final int f39792a;
+    public final v70 f39793b;
+    public final boolean f39794c;
 
     public t70(v70 v70Var, boolean z10, int i7) {
-        this.f39793a = i7;
-        this.f39794b = v70Var;
-        this.f39795c = z10;
+        this.f39792a = i7;
+        this.f39793b = v70Var;
+        this.f39794c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f39793a) {
+        switch (this.f39792a) {
             case 0:
-                org.telegram.messenger.g0.g3(new t70(this.f39794b, this.f39795c, 1));
+                org.telegram.messenger.g0.g3(new t70(this.f39793b, this.f39794c, 1));
                 return;
             default:
-                this.f39794b.setJoinRequest(this.f39795c);
+                this.f39793b.setJoinRequest(this.f39794c);
                 return;
         }
     }

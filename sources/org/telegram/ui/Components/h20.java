@@ -80,7 +80,7 @@ public final class h20 {
         if (f14 > f15) {
             this.f35753f = f15;
         }
-        float interpolation = nr.f37962g.getInterpolation(this.f35753f / f15);
+        float interpolation = nr.f37961g.getInterpolation(this.f35753f / f15);
         float f16 = L;
         float f17 = this.f35751c;
         float f18 = ((((this.f35749a - f17) * interpolation) + f17) * f16) - 200.0f;

@@ -27,8 +27,8 @@ public final class l1 extends n41 {
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         m1 m1Var = (m1) view;
-        CharSequence charSequence = o41Var.f38094o;
-        String str = (String) o41Var.f38092m;
+        CharSequence charSequence = o41Var.f38093o;
+        String str = (String) o41Var.f38091m;
         long j3 = o41Var.C;
         ImageView imageView = m1Var.f53243a;
         m1Var.f53244b.setText(charSequence);
@@ -70,7 +70,7 @@ public final class l1 extends n41 {
             int L = org.telegram.messenger.g0.L(28.0f);
             int L2 = org.telegram.messenger.g0.L(28.0f);
             oqVar.h = L;
-            oqVar.f38335n = L2;
+            oqVar.f38334n = L2;
             imageView.setImageDrawable(oqVar);
         }
         m1Var.f53247f = z10;

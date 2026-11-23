@@ -20,7 +20,7 @@ public final class l0 extends CountDownTimer {
     @Override
     public final void onTick(long j3) {
         q0 q0Var = this.f59833a;
-        ek0 ek0Var = q0Var.f39532o1;
+        ek0 ek0Var = q0Var.f39531o1;
         ArrayList arrayList = q0Var.U1;
         ArrayList arrayList2 = new ArrayList(arrayList.size());
         int size = arrayList.size();

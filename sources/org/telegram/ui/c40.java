@@ -85,7 +85,7 @@ public final class c40 extends FrameLayout {
             i10 = 34;
         }
         oh0Var.P(i10);
-        oh0Var.N(oh0Var.f38213f - 1, false, true);
+        oh0Var.N(oh0Var.f38212f - 1, false, true);
         TextView textView = new TextView(context);
         this.f46410b = textView;
         textView.setLines(1);

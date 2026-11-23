@@ -212,7 +212,7 @@ public final class w0 implements org.telegram.ui.Components.xm0, ki.q3, kb1, r0.
                 imageView.d();
                 org.telegram.ui.Components.o6 o6Var2 = new org.telegram.ui.Components.o6(context, false, true, true);
                 l0Var.f1281b = o6Var2;
-                org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37962g;
+                org.telegram.ui.Components.nr nrVar = org.telegram.ui.Components.nr.f37961g;
                 o6Var2.b(0.35f, 120L, nrVar);
                 o6Var2.setGravity(1);
                 int i11 = org.telegram.ui.ActionBar.m6.f29489j5;

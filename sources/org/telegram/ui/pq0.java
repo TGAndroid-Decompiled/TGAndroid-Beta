@@ -20,7 +20,7 @@ public final class pq0 extends ImageView {
         this.f50928b = false;
         this.f50929c = false;
         this.d = false;
-        this.f50931f = org.telegram.ui.Components.nr.f37963i;
+        this.f50931f = org.telegram.ui.Components.nr.f37962i;
         setAlpha(0.0f);
     }
 

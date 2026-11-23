@@ -433,7 +433,7 @@ public final class v6 implements ll0, w10, OnSuccessListener, sj0, s10, rj0, fi.
                     boolean z10 = !e1Var.d;
                     e1Var.d = z10;
                     ((org.telegram.ui.Cells.s8) view3).setChecked(z10);
-                    e1Var.f18334a.f35790g3.O(true);
+                    e1Var.f18334a.f35789g3.O(true);
                     e1Var.d0(true);
                     return;
                 } else if (i12 == -2) {
@@ -472,7 +472,7 @@ public final class v6 implements ll0, w10, OnSuccessListener, sj0, s10, rj0, fi.
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = o41Var3.f38092m;
+                    CharSequence charSequence = o41Var3.f38091m;
                     ArrayList arrayList = e1Var.f18338f[o41Var3.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
@@ -508,7 +508,7 @@ public final class v6 implements ll0, w10, OnSuccessListener, sj0, s10, rj0, fi.
                     }
                     org.telegram.ui.Cells.s8 s8Var = (org.telegram.ui.Cells.s8) view4;
                     boolean z11 = g1Var2.f18360r;
-                    o41Var4.f38085e = z11;
+                    o41Var4.f38084e = z11;
                     s8Var.setChecked(z11);
                     boolean z12 = g1Var2.f18360r;
                     if (z12) {
@@ -517,7 +517,7 @@ public final class v6 implements ll0, w10, OnSuccessListener, sj0, s10, rj0, fi.
                         i10 = org.telegram.ui.ActionBar.m6.f29400e6;
                     }
                     s8Var.b(org.telegram.ui.ActionBar.m6.x0(null, i10, false), z12);
-                    g1Var2.f18359n.f35790g3.O(true);
+                    g1Var2.f18359n.f35789g3.O(true);
                     kg.i0 i0Var = g1Var2.f18358f;
                     if (i0Var != null) {
                         i0Var.run();
@@ -540,7 +540,7 @@ public final class v6 implements ll0, w10, OnSuccessListener, sj0, s10, rj0, fi.
                     if (i0Var2 != null) {
                         i0Var2.run();
                     }
-                    g1Var2.f18359n.f35790g3.O(true);
+                    g1Var2.f18359n.f35789g3.O(true);
                     return;
                 } else if (o41Var4.f56634a == 3 && (i7 = i24 / 3) >= 0 && i7 < arrayList3.size()) {
                     int i26 = i7 - 1;
@@ -576,7 +576,7 @@ public final class v6 implements ll0, w10, OnSuccessListener, sj0, s10, rj0, fi.
                                         d1Var3.f18317a = intValue;
                                         ((n8) view4).w(d1.a(intValue), true);
                                         if (a02 != g1Var3.a0()) {
-                                            g1Var3.f18359n.f35790g3.O(true);
+                                            g1Var3.f18359n.f35789g3.O(true);
                                         }
                                         i0 i0Var3 = g1Var3.f18358f;
                                         if (i0Var3 != null) {
@@ -591,7 +591,7 @@ public final class v6 implements ll0, w10, OnSuccessListener, sj0, s10, rj0, fi.
                                         d1Var3.f18318b = intValue2;
                                         ((n8) view4).w(d1.a(intValue2), true);
                                         if (a03 != g1Var4.a0()) {
-                                            g1Var4.f18359n.f35790g3.O(true);
+                                            g1Var4.f18359n.f35789g3.O(true);
                                         }
                                         i0 i0Var4 = g1Var4.f18358f;
                                         if (i0Var4 != null) {
@@ -623,7 +623,7 @@ public final class v6 implements ll0, w10, OnSuccessListener, sj0, s10, rj0, fi.
                                         d1Var3.f18317a = intValue;
                                         ((n8) view4).w(d1.a(intValue), true);
                                         if (a02 != g1Var3.a0()) {
-                                            g1Var3.f18359n.f35790g3.O(true);
+                                            g1Var3.f18359n.f35789g3.O(true);
                                         }
                                         i0 i0Var3 = g1Var3.f18358f;
                                         if (i0Var3 != null) {
@@ -638,7 +638,7 @@ public final class v6 implements ll0, w10, OnSuccessListener, sj0, s10, rj0, fi.
                                         d1Var3.f18318b = intValue2;
                                         ((n8) view4).w(d1.a(intValue2), true);
                                         if (a03 != g1Var4.a0()) {
-                                            g1Var4.f18359n.f35790g3.O(true);
+                                            g1Var4.f18359n.f35789g3.O(true);
                                         }
                                         i0 i0Var4 = g1Var4.f18358f;
                                         if (i0Var4 != null) {
@@ -655,7 +655,7 @@ public final class v6 implements ll0, w10, OnSuccessListener, sj0, s10, rj0, fi.
                         if (arrayList3.isEmpty()) {
                             arrayList3.add(new kg.d1(0, 1439));
                         }
-                        g1Var2.f18359n.f35790g3.O(true);
+                        g1Var2.f18359n.f35789g3.O(true);
                         kg.i0 i0Var3 = g1Var2.f18358f;
                         if (i0Var3 != null) {
                             i0Var3.run();

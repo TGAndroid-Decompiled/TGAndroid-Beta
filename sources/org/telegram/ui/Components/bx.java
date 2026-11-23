@@ -19,7 +19,7 @@ public class bx extends gl0 {
     public float f33937z0;
 
     public bx(ty tyVar, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
-        super(context, h6Var, tyVar.f40112j2);
+        super(context, h6Var, tyVar.f40111j2);
         this.E0 = tyVar;
         this.f33936y0 = true;
         this.f33933v0 = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -59,7 +59,7 @@ public class bx extends gl0 {
         boolean z10;
         int i7;
         ty tyVar = this.E0;
-        ik ikVar = tyVar.f40103g2;
+        ik ikVar = tyVar.f40102g2;
         jw jwVar = tyVar.h;
         if (this.f35629s != null) {
             return super.onTouchEvent(motionEvent);

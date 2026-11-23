@@ -21,7 +21,7 @@ public final class i7 extends h51 {
             case 0:
                 return 0;
             case 7:
-                o41 G = this.f35790g3.G(i7);
+                o41 G = this.f35789g3.G(i7);
                 if (G != null && G.d == 2) {
                     return 0;
                 }

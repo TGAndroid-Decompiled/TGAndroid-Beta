@@ -63,7 +63,7 @@ public final class g extends v4.o {
             case 1:
                 return ((Integer) this.f17487c.get(i7)).equals(((dx) this.d).f34599n.get(i10));
             case 2:
-                return Objects.equals(this.f17487c.get(i7), ((zj0) this.d).f42902n.get(i10));
+                return Objects.equals(this.f17487c.get(i7), ((zj0) this.d).f42901n.get(i10));
             case 3:
                 if (((c11) this.f17487c.get(i7)).a() == ((c11) ((b11) this.d).f33705c.get(i10)).a()) {
                     return true;
@@ -89,7 +89,7 @@ public final class g extends v4.o {
             case 1:
                 return ((dx) this.d).f34599n.size();
             case 2:
-                return ((zj0) this.d).f42902n.size();
+                return ((zj0) this.d).f42901n.size();
             case 3:
                 return ((b11) this.d).f33705c.size();
             case 4:

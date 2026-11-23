@@ -76,7 +76,7 @@ public final class o2 implements si {
         String str2;
         z3 z3Var = this.f12366a;
         if (z3Var.f12916t0.f12026n0 && (storyItem = z3Var.f12937y1.f12765a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || z3Var.f12914s2.f40379e2.getSelectedPhotos().isEmpty())) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || z3Var.f12914s2.f40378e2.getSelectedPhotos().isEmpty())) {
                 n2 n2Var = z3Var.f12914s2;
                 if (n2Var != null) {
                     n2Var.M(i7);
@@ -88,8 +88,8 @@ public final class o2 implements si {
             if (i7 != 8) {
                 z3Var.f12914s2.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = z3Var.f12914s2.f40379e2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = z3Var.f12914s2.f40379e2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = z3Var.f12914s2.f40378e2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = z3Var.f12914s2.f40378e2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i12 = 0;
                 int i13 = 0;

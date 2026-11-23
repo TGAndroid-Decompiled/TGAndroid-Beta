@@ -44,8 +44,8 @@ public final class pw implements ViewTreeObserver.OnPreDrawListener {
                         f10 = -obVar2.getBottomOffset();
                     }
                     hVar.f59960a.getLocationInWindow(iArr);
-                    hVar.Y = (hVar.X.f38157a.getMeasuredWidth() / 2.0f) + (f11 - iArr[0]) + hVar.X.f38157a.getLeft();
-                    hVar.Z = (hVar.X.f38157a.getMeasuredHeight() / 2.0f) + ((translationY + f10) - iArr[1]) + hVar.X.f38157a.getTop();
+                    hVar.Y = (hVar.X.f38156a.getMeasuredWidth() / 2.0f) + (f11 - iArr[0]) + hVar.X.f38156a.getLeft();
+                    hVar.Z = (hVar.X.f38156a.getMeasuredHeight() / 2.0f) + ((translationY + f10) - iArr[1]) + hVar.X.f38156a.getTop();
                 }
                 hVar.c();
                 return true;

@@ -227,7 +227,7 @@ public final class m0 extends FrameLayout implements z60 {
                 spannableStringBuilder.append((CharSequence) ("#" + r0Var.h));
                 z10 = z14;
                 nq nqVar = new nq(0, new i0(getContext(), r0Var.h));
-                nqVar.f37952s = org.telegram.messenger.g0.L(1.0f);
+                nqVar.f37951s = org.telegram.messenger.g0.L(1.0f);
                 spannableStringBuilder.setSpan(nqVar, 0, spannableStringBuilder.length(), 33);
                 spannableStringBuilder.append((CharSequence) "\u2009");
             } else {
@@ -401,7 +401,7 @@ public final class m0 extends FrameLayout implements z60 {
                 textView2.setText(pb.Y0(false, i5.c.l(r0Var.f12522g, ',', new StringBuilder("⭐️ ")), 0.75f, this.H, org.telegram.messenger.g0.L(0.66f), 1.0f));
                 nq nqVar2 = this.H[0];
                 if (nqVar2 != null) {
-                    nqVar2.f37945a = this.f12288b;
+                    nqVar2.f37944a = this.f12288b;
                 }
             }
         } else if (r0Var.f12518b) {
@@ -439,8 +439,8 @@ public final class m0 extends FrameLayout implements z60 {
     public void setDrawStar(boolean z10) {
         this.f12288b = z10;
         nq nqVar = this.H[0];
-        if (nqVar != null && nqVar.f37945a != z10) {
-            nqVar.f37945a = z10;
+        if (nqVar != null && nqVar.f37944a != z10) {
+            nqVar.f37944a = z10;
             this.F.invalidate();
         }
     }

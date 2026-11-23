@@ -157,7 +157,7 @@ public final class d implements y10 {
                 t3 t3Var = ((oi.o) obj3).f22270r;
                 if (pageblockmath != null) {
                     pageblockmath.source = str7;
-                    t3Var.f35790g3.O(false);
+                    t3Var.f35789g3.O(false);
                     return;
                 }
                 TL_iv.pageBlockMath pageblockmath2 = new TL_iv.pageBlockMath();
@@ -199,7 +199,7 @@ public final class d implements y10 {
                 b2Var.getClass();
                 if (pageblockmath3 != null) {
                     pageblockmath3.source = str9;
-                    b2Var.Q.f35790g3.O(false);
+                    b2Var.Q.f35789g3.O(false);
                     return;
                 }
                 TL_iv.pageBlockMath pageblockmath4 = new TL_iv.pageBlockMath();
@@ -217,7 +217,7 @@ public final class d implements y10 {
                         g2Var.d();
                     }
                     pageblockmath5.source = str10;
-                    t3Var2.f35790g3.O(false);
+                    t3Var2.f35789g3.O(false);
                     g2 g2Var2 = t3Var2.R3;
                     if (g2Var2 != null) {
                         g2Var2.h();
@@ -788,7 +788,7 @@ public final class d implements y10 {
                 Boolean bool2 = (Boolean) obj;
                 TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
                 int i28 = uiVar.H3;
-                tL_messages_toggleBotInAttachMenu.bot = np.u1(i28).q1(niVar.f37883c.bot_id);
+                tL_messages_toggleBotInAttachMenu.bot = np.u1(i28).q1(niVar.f37882c.bot_id);
                 tL_messages_toggleBotInAttachMenu.enabled = true;
                 tL_messages_toggleBotInAttachMenu.write_allowed = true;
                 ConnectionsManager.getInstance(i28).sendRequest(tL_messages_toggleBotInAttachMenu, new u7(14, uiVar, niVar), 66);
@@ -797,10 +797,10 @@ public final class d implements y10 {
                 ui uiVar2 = (ui) obj3;
                 ((bn) obj2).f46268y5 = (lj) obj;
                 boolean v12 = uiVar2.v1(true, 0, 0, uiVar2.L2, uiVar2.g1());
-                df dfVar = uiVar2.f40374c2;
+                df dfVar = uiVar2.f40373c2;
                 if (dfVar != null) {
                     dfVar.h(!v12);
-                    uiVar2.f40374c2 = null;
+                    uiVar2.f40373c2 = null;
                     return;
                 }
                 return;

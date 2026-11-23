@@ -202,7 +202,7 @@ public final class aq0 implements ViewTreeObserver.OnPreDrawListener {
                 
                 fArr6[0] = 0.0f;
                 fArr6[1] = 1.0f;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(clippingImageViewArr[i25], org.telegram.ui.Components.r6.f39098f, fArr6);
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(clippingImageViewArr[i25], org.telegram.ui.Components.r6.f39097f, fArr6);
                 if (i25 == 0) {
                     ofFloat.addUpdateListener(new a3(this, 21));
                 }

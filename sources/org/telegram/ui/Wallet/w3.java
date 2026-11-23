@@ -106,7 +106,7 @@ public final class w3 extends Dialog {
         }
         this.d = z12;
         uf0Var.getLocationOnScreen(new int[2]);
-        rectF.set(uf0Var.f38198w);
+        rectF.set(uf0Var.f38197w);
         rectF.offset(iArr[0], iArr[1]);
         org.telegram.messenger.g0.S(getWindow());
         u3 u3Var = new u3(this, getContext());
@@ -233,7 +233,7 @@ public final class w3 extends Dialog {
             SpannableStringBuilder append = new SpannableStringBuilder("G  ").append(N0);
             nq nqVar = new nq(2131231957, 0);
             nqVar.c(org.telegram.messenger.g0.L(20.0f));
-            nqVar.f37955y = -1;
+            nqVar.f37954y = -1;
             append.setSpan(nqVar, 0, 1, 33);
             eVar.i(append, false, true);
         }
@@ -433,7 +433,7 @@ public final class w3 extends Dialog {
     public final void e() {
         float f10;
         float f11;
-        float interpolation = nr.f37962g.getInterpolation(Math.max(0.0f, Math.min(1.0f, this.J / 0.4f)));
+        float interpolation = nr.f37961g.getInterpolation(Math.max(0.0f, Math.min(1.0f, this.J / 0.4f)));
         float max = Math.max(0.0f, Math.min(1.0f, (this.J - 0.3f) / 0.7f));
         float interpolation2 = nr.h.getInterpolation(max);
         if (this.L) {

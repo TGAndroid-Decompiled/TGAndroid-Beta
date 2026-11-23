@@ -29,7 +29,7 @@ public final class ak extends ek0 {
     public final void dispatchDraw(Canvas canvas) {
         switch (this.f33538f3) {
             case 0:
-                if (this.f33540h3.f37534n == 2 && getChildCount() > 0) {
+                if (this.f33540h3.f37533n == 2 && getChildCount() > 0) {
                     float f10 = 2.1474836E9f;
                     for (int i7 = 0; i7 < getChildCount(); i7++) {
                         if (getChildAt(i7).getY() < f10) {
@@ -41,7 +41,7 @@ public final class ak extends ek0 {
                 super.dispatchDraw(canvas);
                 return;
             default:
-                if (this.f33540h3.f37534n == 1 && getChildCount() > 0) {
+                if (this.f33540h3.f37533n == 1 && getChildCount() > 0) {
                     float f11 = 2.1474836E9f;
                     for (int i10 = 0; i10 < getChildCount(); i10++) {
                         if (getChildAt(i10).getY() < f11) {
@@ -59,7 +59,7 @@ public final class ak extends ek0 {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (this.f33538f3) {
             case 0:
-                if (this.f33540h3.f37534n != 0) {
+                if (this.f33540h3.f37533n != 0) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);

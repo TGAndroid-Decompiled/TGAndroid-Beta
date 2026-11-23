@@ -68,8 +68,8 @@ public final class y0 implements r1.c {
                 return;
             case 4:
                 ui uiVar = (ui) ((di.a4) this.f4300b).d;
-                uiVar.f40445x2.setTranslationY(0.0f);
-                uiVar.f40445x2.m(uiVar.f40395j4);
+                uiVar.f40444x2.setTranslationY(0.0f);
+                uiVar.f40444x2.m(uiVar.f40394j4);
                 uiVar.Y0.g();
                 uiVar.f30176b.invalidate();
                 ((gh) this.f4301c).run();

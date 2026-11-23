@@ -44,16 +44,16 @@ public final class av extends FrameLayout {
                 ug.r0 r0Var = new ug.r0(org.telegram.messenger.g0.L(4.0f), context, evVar.J0, false);
                 this.f33642e = r0Var;
                 r0Var.b(org.telegram.messenger.hd.N0(2131743631, null), new View.OnClickListener(this) {
-                    public final av f42550b;
+                    public final av f42549b;
 
                     {
-                        this.f42550b = this;
+                        this.f42549b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         int i7 = r2;
-                        av avVar = this.f42550b;
+                        av avVar = this.f42549b;
                         switch (i7) {
                             case 0:
                                 ev evVar2 = avVar.f33649y;
@@ -112,16 +112,16 @@ public final class av extends FrameLayout {
             textView.setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
             textView.setGravity(17);
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final av f42550b;
+                public final av f42549b;
 
                 {
-                    this.f42550b = this;
+                    this.f42549b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i72 = r2;
-                    av avVar = this.f42550b;
+                    av avVar = this.f42549b;
                     switch (i72) {
                         case 0:
                             ev evVar2 = avVar.f33649y;
@@ -164,16 +164,16 @@ public final class av extends FrameLayout {
             textView2.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
             textView2.setGravity(17);
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final av f42550b;
+                public final av f42549b;
 
                 {
-                    this.f42550b = this;
+                    this.f42549b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i72 = r2;
-                    av avVar = this.f42550b;
+                    av avVar = this.f42549b;
                     switch (i72) {
                         case 0:
                             ev evVar2 = avVar.f33649y;
@@ -255,16 +255,16 @@ public final class av extends FrameLayout {
             q0Var.e(1, 2131232365, org.telegram.messenger.hd.N0(2131744603, null));
             q0Var.e(2, 2131232205, org.telegram.messenger.hd.N0(2131751750, null));
             q0Var.setOnClickListener(new View.OnClickListener(this) {
-                public final av f42550b;
+                public final av f42549b;
 
                 {
-                    this.f42550b = this;
+                    this.f42549b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i72 = r2;
-                    av avVar = this.f42550b;
+                    av avVar = this.f42549b;
                     switch (i72) {
                         case 0:
                             ev evVar2 = avVar.f33649y;

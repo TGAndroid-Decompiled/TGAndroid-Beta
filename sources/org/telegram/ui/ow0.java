@@ -37,7 +37,7 @@ public final class ow0 extends View {
         paint.setColor(637534208);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.d = ofFloat;
-        ofFloat.setInterpolator(org.telegram.ui.Components.nr.f37964j);
+        ofFloat.setInterpolator(org.telegram.ui.Components.nr.f37963j);
         ofFloat.addUpdateListener(new a3(this, 27));
         ofFloat.addListener(new c30(6, this, profileActivity.n1));
         profileActivity.f43652o0.b(new nw0(this));

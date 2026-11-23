@@ -444,7 +444,7 @@ public class t1 extends Dialog implements Drawable.Callback, gs {
                         for (Map.Entry entry : this.f30011a0.entrySet()) {
                             Integer num = (Integer) entry.getValue();
                             num.getClass();
-                            animatedDrawable.f38228s.put((String) entry.getKey(), num);
+                            animatedDrawable.f38227s.put((String) entry.getKey(), num);
                             animatedDrawable.G();
                         }
                         this.f30020d1 = this.f30019d0;

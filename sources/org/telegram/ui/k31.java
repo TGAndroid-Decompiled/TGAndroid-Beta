@@ -13,10 +13,10 @@ public final class k31 extends org.telegram.ui.Components.n41 {
     public static org.telegram.ui.Components.o41 i(int i7, int i10, int i11, int i12, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
         org.telegram.ui.Components.o41 K = org.telegram.ui.Components.o41.K(k31.class);
         K.d = i7;
-        K.f38090k = i12;
-        K.f38092m = charSequence;
-        K.f38093n = charSequence2;
-        K.f38094o = charSequence3;
+        K.f38089k = i12;
+        K.f38091m = charSequence;
+        K.f38092n = charSequence2;
+        K.f38093o = charSequence3;
         K.C = (i10 & 4294967295L) | (i11 << 32);
         return K;
     }
@@ -30,10 +30,10 @@ public final class k31 extends org.telegram.ui.Components.n41 {
         int i10 = (int) j3;
         int i11 = (int) (j3 >>> 32);
         l31 l31Var = (l31) view;
-        int i12 = o41Var.f38090k;
-        CharSequence charSequence = o41Var.f38092m;
-        CharSequence charSequence2 = o41Var.f38093n;
-        CharSequence charSequence3 = o41Var.f38094o;
+        int i12 = o41Var.f38089k;
+        CharSequence charSequence = o41Var.f38091m;
+        CharSequence charSequence2 = o41Var.f38092n;
+        CharSequence charSequence3 = o41Var.f38093o;
         TextView textView = l31Var.f49469e;
         TextView textView2 = l31Var.f49470f;
         int i13 = 0;

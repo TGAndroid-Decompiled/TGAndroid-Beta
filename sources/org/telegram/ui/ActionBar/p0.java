@@ -119,8 +119,8 @@ public class p0 extends FrameLayout implements te.b, b6 {
                     oq N2 = m6.N(org.telegram.messenger.g0.L(32.0f), 2131231000);
                     int L = org.telegram.messenger.g0.L(16.0f);
                     int L2 = org.telegram.messenger.g0.L(16.0f);
-                    N2.f38333e = L;
-                    N2.f38334f = L2;
+                    N2.f38332e = L;
+                    N2.f38333f = L2;
                     m6.B1(N2, m6.w0(i7, h6Var), false);
                     m6.B1(N2, m6.w0(i10, h6Var), true);
                     q9Var.setImageDrawable(N2);
@@ -144,8 +144,8 @@ public class p0 extends FrameLayout implements te.b, b6 {
             oq N3 = m6.N(org.telegram.messenger.g0.L(32.0f), 2131230993);
             int L4 = org.telegram.messenger.g0.L(16.0f);
             int L5 = org.telegram.messenger.g0.L(16.0f);
-            N3.f38333e = L4;
-            N3.f38334f = L5;
+            N3.f38332e = L4;
+            N3.f38333f = L5;
             m6.B1(N3, m6.w0(i7, h6Var), false);
             m6.B1(N3, m6.w0(i10, h6Var), true);
             q9Var.setImageDrawable(N3);

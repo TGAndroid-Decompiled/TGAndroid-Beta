@@ -25,7 +25,7 @@ public final class u30 extends View {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         f40 f40Var = this.f52438e;
-        if (f40Var.f47577y4 && f40Var.Z3.f41112c < 0.1d) {
+        if (f40Var.f47577y4 && f40Var.Z3.f41111c < 0.1d) {
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f52437c);
         }
     }

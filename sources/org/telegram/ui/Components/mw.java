@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class mw implements c5.h {
-    public final boolean f37651a;
-    public final ty f37652b;
+    public final boolean f37650a;
+    public final ty f37651b;
 
     public mw(ty tyVar, boolean z10) {
-        this.f37652b = tyVar;
-        this.f37651a = z10;
+        this.f37651b = tyVar;
+        this.f37650a = z10;
     }
 
     @Override
     public final void a(int i7) {
         boolean z10;
         int i10;
-        ty tyVar = this.f37652b;
+        ty tyVar = this.f37651b;
         jw jwVar = tyVar.h;
         boolean z11 = false;
         if (jwVar != null) {
@@ -35,18 +35,18 @@ public final class mw implements c5.h {
             z10 = false;
         }
         tyVar.M(z10, true);
-        if (i7 == 2 && (this.f37651a || tyVar.f40150w0)) {
+        if (i7 == 2 && (this.f37650a || tyVar.f40149w0)) {
             z11 = true;
         }
         tyVar.R(z11, true);
-        if (tyVar.f40144u1.z()) {
+        if (tyVar.f40143u1.z()) {
             if (i7 == 0) {
                 vv vvVar = tyVar.W;
                 if (vvVar != null) {
                     vvVar.d.requestFocus();
                 }
             } else if (i7 == 1) {
-                aw awVar = tyVar.f40126p0;
+                aw awVar = tyVar.f40125p0;
                 if (awVar != null) {
                     awVar.d.requestFocus();
                 }
@@ -67,18 +67,18 @@ public final class mw implements c5.h {
         int i11;
         int i12;
         int i13;
-        ty tyVar = this.f37652b;
+        ty tyVar = this.f37651b;
         gy gyVar3 = tyVar.H0;
-        gy gyVar4 = tyVar.f40126p0;
+        gy gyVar4 = tyVar.f40125p0;
         gy gyVar5 = tyVar.W;
         iw iwVar = tyVar.D0;
         dw dwVar = tyVar.E0;
-        bx bxVar = tyVar.f40129q0;
-        yv yvVar = tyVar.f40107i0;
+        bx bxVar = tyVar.f40128q0;
+        yv yvVar = tyVar.f40106i0;
         gx gxVar = tyVar.Q;
         int i14 = 2;
         boolean z10 = true;
-        if (tyVar.f40158y0 == null || tyVar.f40104h0 == null) {
+        if (tyVar.f40157y0 == null || tyVar.f40103h0 == null) {
             f11 = 0.0f;
         } else {
             int i15 = 8;
@@ -135,7 +135,7 @@ public final class mw implements c5.h {
         tyVar.getMeasuredWidth();
         tyVar.getPaddingLeft();
         tyVar.getPaddingRight();
-        tx txVar = tyVar.f40144u1;
+        tx txVar = tyVar.f40143u1;
         if (txVar != null) {
             if (i7 == 1) {
                 if (i10 == 0) {

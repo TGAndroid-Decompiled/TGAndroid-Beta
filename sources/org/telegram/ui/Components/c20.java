@@ -355,7 +355,7 @@ public final class c20 implements org.telegram.messenger.gs {
         Typeface typeface = org.telegram.messenger.g0.f24018a;
         boolean canDrawOverlays = Settings.canDrawOverlays(context2);
         Activity W = org.telegram.messenger.g0.W(context);
-        if (org.telegram.ui.Components.voip.j1.j() || (!canDrawOverlays ? !z10 || f33982g0 || W == null || org.telegram.messenger.t0.f26940y || org.telegram.ui.f40.D5 || org.telegram.messenger.g0.H1(W) || ((e0Var = org.telegram.ui.Components.voip.e0.f40987e) != null && e0Var.f40989b != null) : !z10 || f33982g0 || (!org.telegram.messenger.t0.f26940y && org.telegram.ui.f40.D5))) {
+        if (org.telegram.ui.Components.voip.j1.j() || (!canDrawOverlays ? !z10 || f33982g0 || W == null || org.telegram.messenger.t0.f26940y || org.telegram.ui.f40.D5 || org.telegram.messenger.g0.H1(W) || ((e0Var = org.telegram.ui.Components.voip.e0.f40986e) != null && e0Var.f40988b != null) : !z10 || f33982g0 || (!org.telegram.messenger.t0.f26940y && org.telegram.ui.f40.D5))) {
             z11 = false;
         } else {
             z11 = true;

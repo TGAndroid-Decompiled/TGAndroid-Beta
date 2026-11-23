@@ -477,7 +477,7 @@ public class z5 extends FrameLayout {
         ofFloat.addUpdateListener(new v5(this, 1));
         this.B0.addListener(new x5(this, 4));
         this.B0.setDuration(320L);
-        this.B0.setInterpolator(nr.f37962g);
+        this.B0.setInterpolator(nr.f37961g);
         this.B0.start();
     }
 

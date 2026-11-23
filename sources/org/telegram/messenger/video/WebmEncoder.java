@@ -146,7 +146,7 @@ public class WebmEncoder {
                 }
                 z5 z5Var = d20Var.J.f34096w;
                 if (z5Var != null) {
-                    bitmap = z5Var.f42683b;
+                    bitmap = z5Var.f42682b;
                 } else {
                     bitmap = null;
                 }
@@ -406,7 +406,7 @@ public class WebmEncoder {
             Bitmap bitmap = d20Var.G;
             if (bitmap == null && (c6Var = d20Var.J) != null) {
                 z5 z5Var = c6Var.f34096w;
-                bitmap = z5Var != null ? z5Var.f42683b : null;
+                bitmap = z5Var != null ? z5Var.f42682b : null;
             }
             if (bitmap != null) {
                 matrix.postScale(1.0f / bitmap.getWidth(), 1.0f / bitmap.getHeight());

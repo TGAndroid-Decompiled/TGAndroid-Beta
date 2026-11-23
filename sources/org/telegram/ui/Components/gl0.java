@@ -172,7 +172,7 @@ public abstract class gl0 extends HorizontalScrollView {
             g(i10, sv0Var, i11);
         } else {
             sv0Var = new sv0(getContext(), 1);
-            sv0Var.f39701f.setImageDrawable(drawable);
+            sv0Var.f39700f.setImageDrawable(drawable);
             sv0Var.setFocusable(true);
             sv0Var.setOnClickListener(new zk0(this, 4));
             sv0Var.setExpanded(this.f35616g0);
@@ -235,23 +235,23 @@ public abstract class gl0 extends HorizontalScrollView {
                 sv0 sv0Var = (sv0) d61Var.getChildAt(i7);
                 float f17 = sv0Var.E;
                 if (sv0Var.getLeft() != f17 && sv0Var.F) {
-                    sv0Var.f39698b = f17 - sv0Var.getLeft();
-                    ValueAnimator valueAnimator = sv0Var.f39707y;
+                    sv0Var.f39697b = f17 - sv0Var.getLeft();
+                    ValueAnimator valueAnimator = sv0Var.f39706y;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        sv0Var.f39707y.cancel();
+                        sv0Var.f39706y.cancel();
                     }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(sv0Var.f39698b, 0.0f);
-                    sv0Var.f39707y = ofFloat;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(sv0Var.f39697b, 0.0f);
+                    sv0Var.f39706y = ofFloat;
                     ofFloat.addUpdateListener(new rv0(sv0Var, this, 0));
-                    sv0Var.f39707y.addListener(new h10(6, sv0Var, this));
-                    sv0Var.f39707y.start();
+                    sv0Var.f39706y.addListener(new h10(6, sv0Var, this));
+                    sv0Var.f39706y.start();
                 }
                 sv0Var.F = false;
                 if (this.f35617h0) {
-                    sv0Var.setTranslationX(com.google.android.gms.internal.vision.e2.z(1.0f, this.f35619j0, i7 * f15, f16) + sv0Var.f39698b);
+                    sv0Var.setTranslationX(com.google.android.gms.internal.vision.e2.z(1.0f, this.f35619j0, i7 * f15, f16) + sv0Var.f39697b);
                 } else {
-                    sv0Var.setTranslationX(sv0Var.f39698b);
+                    sv0Var.setTranslationX(sv0Var.f39697b);
                 }
             }
             i7++;
@@ -332,7 +332,7 @@ public abstract class gl0 extends HorizontalScrollView {
                 b11 = d6Var.b();
             }
             float abs2 = ((Math.abs(0.5f - b11) * 0.1f * f11) + 0.9f) * L;
-            float interpolation = nr.f37963i.getInterpolation(this.f35619j0);
+            float interpolation = nr.f37962i.getInterpolation(this.f35619j0);
             float W1 = f19 + org.telegram.messenger.g0.W1(interpolation, 0, org.telegram.messenger.g0.L(26.0f));
             float T1 = org.telegram.messenger.g0.T1(abs, textWidth + org.telegram.messenger.g0.L(10.0f), interpolation) / f11;
             float T12 = (org.telegram.messenger.g0.T1(1.0f, 0.55f, interpolation) * abs2) / f11;
@@ -369,7 +369,7 @@ public abstract class gl0 extends HorizontalScrollView {
                 View childAt = d61Var.getChildAt(i7);
                 if (childAt instanceof sv0) {
                     sv0 sv0Var = (sv0) childAt;
-                    if (sv0Var.f39697a == 0 && !sv0Var.d) {
+                    if (sv0Var.f39696a == 0 && !sv0Var.d) {
                         return true;
                     }
                     return false;

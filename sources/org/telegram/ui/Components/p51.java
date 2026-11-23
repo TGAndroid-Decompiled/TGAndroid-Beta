@@ -9,16 +9,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public class p51 extends FrameLayout {
-    public ValueAnimator f38509a;
-    public float f38510b;
-    public boolean f38511c;
+    public ValueAnimator f38508a;
+    public float f38509b;
+    public boolean f38510c;
     public Boolean d;
-    public final r51 f38512e;
+    public final r51 f38511e;
 
     public p51(r51 r51Var, Context context) {
         super(context);
-        this.f38512e = r51Var;
-        this.f38511c = false;
+        this.f38511e = r51Var;
+        this.f38510c = false;
     }
 
     @Override
@@ -38,11 +38,11 @@ public class p51 extends FrameLayout {
         boolean z10;
         boolean z11;
         canvas.save();
-        r51 r51Var = this.f38512e;
-        Drawable drawable = r51Var.f39085r1;
-        RectF rectF = r51Var.f39091x1;
-        int L = org.telegram.messenger.g0.L(6.0f) + (r51Var.f39092y1 - r51Var.f30210t0);
-        int L2 = (r51Var.f39092y1 - r51Var.f30210t0) - org.telegram.messenger.g0.L(13.0f);
+        r51 r51Var = this.f38511e;
+        Drawable drawable = r51Var.f39084r1;
+        RectF rectF = r51Var.f39090x1;
+        int L = org.telegram.messenger.g0.L(6.0f) + (r51Var.f39091y1 - r51Var.f30210t0);
+        int L2 = (r51Var.f39091y1 - r51Var.f30210t0) - org.telegram.messenger.g0.L(13.0f);
         int L3 = org.telegram.messenger.g0.L(50.0f) + getMeasuredHeight();
         int i12 = r51Var.f30210t0;
         int i13 = org.telegram.messenger.g0.f24040m;
@@ -111,8 +111,8 @@ public class p51 extends FrameLayout {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             float y10 = motionEvent.getY();
-            r51 r51Var = this.f38512e;
-            if (y10 < r51Var.f39092y1) {
+            r51 r51Var = this.f38511e;
+            if (y10 < r51Var.f39091y1) {
                 r51Var.dismiss();
                 return true;
             }
@@ -123,58 +123,58 @@ public class p51 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        this.f38512e.R0();
+        this.f38511e.R0();
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int L;
         int size = View.MeasureSpec.getSize(i10);
-        this.f38511c = true;
-        r51 r51Var = this.f38512e;
-        di.b1 b1Var = r51Var.f39082o1;
+        this.f38510c = true;
+        r51 r51Var = this.f38511e;
+        di.b1 b1Var = r51Var.f39081o1;
         int i11 = r51Var.f30211u0;
         setPadding(i11, org.telegram.messenger.g0.f24040m, i11, 0);
-        this.f38511c = false;
+        this.f38510c = false;
         int paddingTop = size - getPaddingTop();
         if (r51Var.d) {
             L = org.telegram.messenger.g0.L(8.0f);
             r51Var.u0(false);
-            int i12 = r51Var.f39092y1;
+            int i12 = r51Var.f39091y1;
             if (i12 != 0) {
                 float f10 = i12;
-                this.f38510b = f10;
+                this.f38509b = f10;
                 setTranslationY(f10);
-                ValueAnimator valueAnimator = this.f38509a;
+                ValueAnimator valueAnimator = this.f38508a;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
-                    this.f38509a.cancel();
+                    this.f38508a.cancel();
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f38510b, 0.0f);
-                this.f38509a = ofFloat;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f38509b, 0.0f);
+                this.f38508a = ofFloat;
                 ofFloat.addUpdateListener(new i51(1, this));
-                this.f38509a.setDuration(250L);
-                this.f38509a.setInterpolator(org.telegram.ui.ActionBar.i1.f29005w);
-                this.f38509a.addListener(new t11(this, 5));
-                this.f38509a.start();
-            } else if (this.f38509a != null) {
-                setTranslationY(this.f38510b);
+                this.f38508a.setDuration(250L);
+                this.f38508a.setInterpolator(org.telegram.ui.ActionBar.i1.f29005w);
+                this.f38508a.addListener(new t11(this, 5));
+                this.f38508a.start();
+            } else if (this.f38508a != null) {
+                setTranslationY(this.f38509b);
             }
         } else {
             L = (paddingTop - ((paddingTop / 5) * 3)) + org.telegram.messenger.g0.L(8.0f);
             r51Var.f30207r0 = true;
         }
         if (b1Var.getPaddingTop() != L) {
-            this.f38511c = true;
+            this.f38510c = true;
             b1Var.setPadding(0, L, 0, 0);
-            this.f38511c = false;
+            this.f38510c = false;
         }
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f38512e.J && super.onTouchEvent(motionEvent)) {
+        if (!this.f38511e.J && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -182,7 +182,7 @@ public class p51 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f38511c) {
+        if (this.f38510c) {
             return;
         }
         super.requestLayout();

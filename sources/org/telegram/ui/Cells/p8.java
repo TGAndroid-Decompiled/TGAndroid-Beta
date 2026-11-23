@@ -207,7 +207,7 @@ public final class p8 extends org.telegram.ui.Components.q6 {
             case 9:
                 return Float.valueOf(((PollVotesAlert$UserCell) obj).getPlaceholderAlpha());
             case 10:
-                return Float.valueOf(((r51) obj).f39093z1);
+                return Float.valueOf(((r51) obj).f39092z1);
             case 11:
                 return Float.valueOf(((wh.h) obj).H);
             default:

@@ -34,7 +34,7 @@ public abstract class sb {
                 frameLayout.f55664e = launchActivity.getSharedPreferences("floating_debug", 0);
                 frameLayout.G = ViewConfiguration.get(launchActivity).getScaledTouchSlop();
                 jn jnVar = new jn(launchActivity, gVar);
-                ((GestureDetector) jnVar.f36567b).setIsLongpressEnabled(false);
+                ((GestureDetector) jnVar.f36566b).setIsLongpressEnabled(false);
                 y61 y61Var = new y61(frameLayout, launchActivity, jnVar, 3);
                 frameLayout.f55661a = y61Var;
                 ImageView imageView = new ImageView(launchActivity);

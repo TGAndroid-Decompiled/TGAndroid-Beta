@@ -34,7 +34,7 @@ public final class n1 implements Runnable {
                 this.f3918b.f3584j2.O(false);
                 return;
             default:
-                org.telegram.ui.ActionBar.g2 g2Var = this.f3918b.f39536s1;
+                org.telegram.ui.ActionBar.g2 g2Var = this.f3918b.f39535s1;
                 if (g2Var != 0) {
                     ?? obj = new Object();
                     obj.f28905a = true;

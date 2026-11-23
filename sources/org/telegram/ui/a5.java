@@ -252,8 +252,8 @@ public final class a5 implements org.telegram.messenger.r10 {
                 j3 = -1;
             }
             K.C = j3;
-            K.f38086f = true;
-            K.f38101w = i10;
+            K.f38085f = true;
+            K.f38100w = i10;
             K.L(e21Var.W1.containsKey(Integer.valueOf(gjVar.e1())));
             K.v = 1;
             arrayList.add(K);
@@ -339,11 +339,11 @@ public final class a5 implements org.telegram.messenger.r10 {
                 boolean isEmpty2 = arrayList3.isEmpty();
                 if (!isEmpty || !isEmpty2) {
                     org.telegram.ui.Components.o41 c10 = org.telegram.ui.Components.o41.c(1, 2131231771, org.telegram.messenger.hd.N0(2131749297, null));
-                    c10.f38097r = true;
+                    c10.f38096r = true;
                     arrayList2.add(c10);
                     if (!j9Var.getUserConfig().X) {
                         org.telegram.ui.Components.o41 c11 = org.telegram.ui.Components.o41.c(2, 2131231765, org.telegram.messenger.hd.N0(2131749268, null));
-                        c11.f38097r = true;
+                        c11.f38096r = true;
                         arrayList2.add(c11);
                     }
                     arrayList2.add(org.telegram.ui.Components.o41.C(null));
@@ -444,7 +444,7 @@ public final class a5 implements org.telegram.messenger.r10 {
                             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(N0);
                             spannableStringBuilder.append((CharSequence) "  L");
                             org.telegram.ui.Components.nq nqVar = new org.telegram.ui.Components.nq(0, new org.telegram.ui.ActionBar.v2(i10, context, null, false));
-                            nqVar.f37952s = org.telegram.messenger.g0.L(1.0f);
+                            nqVar.f37951s = org.telegram.messenger.g0.L(1.0f);
                             spannableStringBuilder.setSpan(nqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
                             N0 = spannableStringBuilder;
                         }
@@ -494,7 +494,7 @@ public final class a5 implements org.telegram.messenger.r10 {
                     int i23 = di.jb.f9130b;
                     org.telegram.ui.Components.o41 K3 = org.telegram.ui.Components.o41.K(di.jb.class);
                     K3.H = (TL_stars.StarsTransaction) obj5;
-                    K3.f38097r = true;
+                    K3.f38096r = true;
                     arrayList6.add(K3);
                 }
                 if (i21 == 0) {
@@ -564,7 +564,7 @@ public final class a5 implements org.telegram.messenger.r10 {
                     }
                     arrayList7.add(org.telegram.ui.Components.o41.C(null));
                     org.telegram.ui.Components.o41 e10 = org.telegram.ui.Components.o41.e(1, org.telegram.messenger.hd.N0(2131751540, null));
-                    e10.f38098s = true;
+                    e10.f38097s = true;
                     arrayList7.add(e10);
                 }
                 arrayList7.add(org.telegram.ui.Components.o41.C(null));
@@ -641,8 +641,8 @@ public final class a5 implements org.telegram.messenger.r10 {
                 org.telegram.ui.Components.c51 c51Var6 = (org.telegram.ui.Components.c51) obj2;
                 String N02 = org.telegram.messenger.hd.N0(2131743744, null);
                 org.telegram.ui.Components.o41 o41Var4 = new org.telegram.ui.Components.o41(2);
-                o41Var4.f38092m = N02;
-                o41Var4.f38090k = 2131624299;
+                o41Var4.f38091m = N02;
+                o41Var4.f38089k = 2131624299;
                 arrayList10.add(o41Var4);
                 org.telegram.ui.Components.o41 i26 = org.telegram.ui.Components.o41.i(1, org.telegram.messenger.hd.N0(2131743747, null));
                 i26.L(rxVar.f51781c);
@@ -766,8 +766,8 @@ public final class a5 implements org.telegram.messenger.r10 {
                 org.telegram.ui.Components.c51 c51Var7 = (org.telegram.ui.Components.c51) obj2;
                 String N03 = org.telegram.messenger.hd.N0(2131754273, null);
                 org.telegram.ui.Components.o41 o41Var5 = new org.telegram.ui.Components.o41(2);
-                o41Var5.f38092m = N03;
-                o41Var5.f38090k = 2131623947;
+                o41Var5.f38091m = N03;
+                o41Var5.f38089k = 2131623947;
                 arrayList11.add(o41Var5);
                 org.telegram.ui.Components.o41 i28 = org.telegram.ui.Components.o41.i(1, org.telegram.messenger.hd.N0(2131754274, null));
                 i28.L(is0Var.f48821n);
@@ -831,7 +831,7 @@ public final class a5 implements org.telegram.messenger.r10 {
                 }
                 org.telegram.ui.Components.o41 D = org.telegram.ui.Components.o41.D(n4Var.getMeasuredHeight());
                 D.d = -1;
-                D.f38099t = true;
+                D.f38098t = true;
                 arrayList12.add(D);
                 int measuredHeight = (int) ((n4Var.getMeasuredHeight() / org.telegram.messenger.g0.f24045p) + 0);
                 TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption = py0Var.f51007b;
@@ -859,8 +859,8 @@ public final class a5 implements org.telegram.messenger.r10 {
                     if (py0Var.f51007b != null) {
                         for (int i31 = 0; i31 < py0Var.f51007b.options.size(); i31++) {
                             org.telegram.ui.Components.o41 o41Var6 = new org.telegram.ui.Components.o41(30);
-                            o41Var6.f38092m = py0Var.f51007b.options.get(i31).text;
-                            o41Var6.f38090k = 2131232061;
+                            o41Var6.f38091m = py0Var.f51007b.options.get(i31).text;
+                            o41Var6.f38089k = 2131232061;
                             o41Var6.d = i31;
                             arrayList12.add(o41Var6);
                             measuredHeight += 50;
@@ -868,8 +868,8 @@ public final class a5 implements org.telegram.messenger.r10 {
                     } else if (py0Var.f51008c != null) {
                         for (int i32 = 0; i32 < py0Var.f51008c.options.size(); i32++) {
                             org.telegram.ui.Components.o41 o41Var7 = new org.telegram.ui.Components.o41(30);
-                            o41Var7.f38092m = py0Var.f51008c.options.get(i32).text;
-                            o41Var7.f38090k = 2131232061;
+                            o41Var7.f38091m = py0Var.f51008c.options.get(i32).text;
+                            o41Var7.f38089k = 2131232061;
                             o41Var7.d = i32;
                             arrayList12.add(o41Var7);
                             measuredHeight += 50;
@@ -932,7 +932,7 @@ public final class a5 implements org.telegram.messenger.r10 {
                         arrayList12.add(k12);
                         measuredHeight += 112;
                     }
-                    ((org.telegram.ui.Components.o41) i5.c.h(1, arrayList12)).f38089j = true;
+                    ((org.telegram.ui.Components.o41) i5.c.h(1, arrayList12)).f38088j = true;
                     if (qy0Var.f51397p1 && py0Var.f51006a == 0) {
                         FrameLayout frameLayout2 = new FrameLayout(py0Var.getContext());
                         Drawable mutate = py0Var.getContext().getResources().getDrawable(2131231229).mutate();
@@ -940,7 +940,7 @@ public final class a5 implements org.telegram.messenger.r10 {
                         ColorDrawable colorDrawable = new ColorDrawable(-1);
                         org.telegram.ui.ActionBar.t6.x(frameLayout2, colorDrawable, org.telegram.ui.ActionBar.m6.f29324a7, qy0Var.J0, PorterDuff.Mode.SRC_IN);
                         org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(colorDrawable, mutate, 0, 0);
-                        oqVar.f38339x = true;
+                        oqVar.f38338x = true;
                         frameLayout2.setBackground(oqVar);
                         org.telegram.ui.Components.m80 m80Var = new org.telegram.ui.Components.m80(py0Var.getContext(), null);
                         m80Var.setTextSize(1, 14.0f);
@@ -957,11 +957,11 @@ public final class a5 implements org.telegram.messenger.r10 {
                 if (h51Var != null) {
                     int i34 = qy0.f51394w1;
                     if (qy0Var.f30176b.getMeasuredHeight() - org.telegram.messenger.g0.f24040m < org.telegram.messenger.g0.L(measuredHeight)) {
-                        h51Var.f35789f3.k1(false);
+                        h51Var.f35788f3.k1(false);
                         return;
                     }
                     Collections.reverse(arrayList12);
-                    h51Var.f35789f3.k1(true);
+                    h51Var.f35788f3.k1(true);
                     return;
                 }
                 return;

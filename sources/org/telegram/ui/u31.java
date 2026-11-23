@@ -32,7 +32,7 @@ public final class u31 extends org.telegram.ui.Components.sa {
         int i10;
         int i11;
         this.f30173a = i7;
-        this.f39539v1 = 0.2f;
+        this.f39538v1 = 0.2f;
         this.Q0 = true;
         this.R0 = true;
         di.b bVar = new di.b(context, i7, cg.b.f5306b, h6Var);
@@ -207,7 +207,7 @@ public final class u31 extends org.telegram.ui.Components.sa {
                 hi.e eVar = new hi.e(context, h6Var, true);
                 SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder("🎲");
                 org.telegram.ui.Components.nq nqVar2 = new org.telegram.ui.Components.nq(2131231973, 0);
-                nqVar2.f37952s = org.telegram.messenger.g0.L(1.0f);
+                nqVar2.f37951s = org.telegram.messenger.g0.L(1.0f);
                 spannableStringBuilder3.setSpan(nqVar2, 0, spannableStringBuilder3.length(), 33);
                 spannableStringBuilder3.append((CharSequence) "  ").append((CharSequence) org.telegram.messenger.hd.N0(2131745000, null));
                 eVar.i(spannableStringBuilder3, false, true);
@@ -254,7 +254,7 @@ public final class u31 extends org.telegram.ui.Components.sa {
                 ViewGroup viewGroup = this.f30176b;
                 int i17 = this.f30211u0;
                 viewGroup.addView(frameLayout, c8.ma.f(-2.0f, -1, 87, i17, 0, i17, 0));
-                org.telegram.ui.Components.ek0 ek0Var = this.f39532o1;
+                org.telegram.ui.Components.ek0 ek0Var = this.f39531o1;
                 int i18 = this.f30211u0;
                 ek0Var.setPadding(i18, 0, i18, org.telegram.messenger.g0.L(68.0f));
                 this.Y1.O(false);

@@ -148,7 +148,7 @@ public final class g8 extends rg.b {
                     w7Var2.f15723b.setText((CharSequence) null);
                 } else if (i13 == 5) {
                     try {
-                        ((nv0) view).f37994b.getImageReceiver().P0(false);
+                        ((nv0) view).f37993b.getImageReceiver().P0(false);
                     } catch (Exception unused) {
                     }
                 } else if (i13 == 6) {
@@ -223,8 +223,8 @@ public final class g8 extends rg.b {
                 } else if (i7 == 5) {
                     nv0 nv0Var2 = new nv0(context, null, 1, h6Var);
                     nv0Var2.d.setText(hd.N0(2131747974, null));
-                    nv0Var2.f37996e.setText(hd.N0(2131745611, null));
-                    nv0Var2.f37993a.setTranslationY(org.telegram.messenger.g0.L(24.0f));
+                    nv0Var2.f37995e.setText(hd.N0(2131745611, null));
+                    nv0Var2.f37992a.setTranslationY(org.telegram.messenger.g0.L(24.0f));
                     nv0Var = nv0Var2;
                 } else if (i7 == 6) {
                     u7Var = new org.telegram.ui.Cells.a9(context, h6Var);

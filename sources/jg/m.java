@@ -546,7 +546,7 @@ public class m extends dk0 implements q2 {
                 r22 = new z6(context, (org.telegram.ui.Cells.c0) null);
                 Drawable Y0 = m6.Y0(context, 2131231229, m6.f29345b7);
                 oq oqVar = new oq(new ColorDrawable(m6.x0(null, m6.f29324a7, false)), Y0);
-                oqVar.f38339x = true;
+                oqVar.f38338x = true;
                 r22.setBackgroundDrawable(oqVar);
                 E(r22, Y0);
                 break;
@@ -566,7 +566,7 @@ public class m extends dk0 implements q2 {
                 r22 = new i(this, context);
                 Drawable Y02 = m6.Y0(context, 2131231229, m6.f29345b7);
                 oq oqVar2 = new oq(new ColorDrawable(m6.x0(null, m6.f29324a7, false)), Y02);
-                oqVar2.f38339x = true;
+                oqVar2.f38338x = true;
                 r22.setBackgroundDrawable(oqVar2);
                 E(r22, Y02);
                 break;

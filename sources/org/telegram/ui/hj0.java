@@ -102,8 +102,8 @@ public final class hj0 implements s9, org.telegram.ui.Components.si {
             if (i7 != 8) {
                 uiVar.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = hk0Var.S0.f40379e2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = hk0Var.S0.f40379e2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = hk0Var.S0.f40378e2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = hk0Var.S0.f40378e2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
                 for (int i12 = 0; i12 < selectedPhotosOrder.size(); i12++) {

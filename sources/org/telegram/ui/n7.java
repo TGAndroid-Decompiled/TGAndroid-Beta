@@ -47,7 +47,7 @@ public final class n7 extends f7 {
         if (this.f50117s == null) {
             org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(new ColorDrawable(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.X9, false)), org.telegram.ui.ActionBar.m6.R4);
             this.f50117s = oqVar;
-            oqVar.f38339x = true;
+            oqVar.f38338x = true;
         }
         org.telegram.ui.Cells.p7 p7Var = (org.telegram.ui.Cells.p7) f1Var.f59165a;
         ei.b bVar = ((l7) this.f47154e.get(i7)).d;

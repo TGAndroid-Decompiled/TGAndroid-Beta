@@ -34,8 +34,8 @@ public abstract class cv implements org.telegram.messenger.gs {
                             long j3 = document.f28440id;
                             for (int i12 = 0; i12 < tL_messages_stickerSet.packs.size() && ((arrayList = tL_messages_stickerSet.packs.get(i12).documents) == null || !arrayList.contains(Long.valueOf(j3))); i12++) {
                             }
-                            obj.f42997a = tL_messages_stickerSet;
-                            obj.f42998b = document.f28440id;
+                            obj.f42996a = tL_messages_stickerSet;
+                            obj.f42997b = document.f28440id;
                             this.f34305c[i7].add(obj);
                             if (this.f34307f.C1) {
                                 TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;

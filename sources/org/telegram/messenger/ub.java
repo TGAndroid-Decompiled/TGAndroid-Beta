@@ -91,9 +91,9 @@ public final class ub implements Runnable {
             canvas = new Canvas(createBitmap);
         }
         oh0Var.b();
-        Bitmap createBitmap2 = Bitmap.createBitmap(oh0Var.f38206b, oh0Var.f38208c, Bitmap.Config.ARGB_8888);
+        Bitmap createBitmap2 = Bitmap.createBitmap(oh0Var.f38205b, oh0Var.f38207c, Bitmap.Config.ARGB_8888);
         if (z10) {
-            i11 = oh0Var.f38211e[0] - 1;
+            i11 = oh0Var.f38210e[0] - 1;
         } else {
             i11 = 0;
         }

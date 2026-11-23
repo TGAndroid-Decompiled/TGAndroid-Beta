@@ -133,7 +133,7 @@ public final class bt0 implements org.telegram.messenger.gs {
                 }
             }
         } else if (g2Var instanceof k90) {
-            this.f33922r = ((k90) g2Var).f36866e;
+            this.f33922r = ((k90) g2Var).f36865e;
         } else if (g2Var instanceof org.telegram.ui.cx) {
             this.f33922r = g2Var.getUserConfig().e();
         }
@@ -157,8 +157,8 @@ public final class bt0 implements org.telegram.messenger.gs {
             } else {
                 i7 = Integer.MAX_VALUE;
             }
-            ys0Var.f42521j[0] = i7;
-            this.f33921n[i10].f42521j[1] = Integer.MAX_VALUE;
+            ys0Var.f42520j[0] = i7;
+            this.f33921n[i10].f42520j[1] = Integer.MAX_VALUE;
             i10++;
         }
         a();

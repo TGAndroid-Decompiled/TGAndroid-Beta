@@ -111,7 +111,7 @@ public final class a00 extends org.telegram.ui.Components.dk0 {
             u2Var.c0(false, z12);
         } else if (i10 == 1) {
             int i14 = c00Var.f46370s;
-            ((org.telegram.ui.Components.yz) view).f42605w = i14 - ((((int) Math.ceil(arrayList.size() / c00Var.f46370s)) * i14) - arrayList.size());
+            ((org.telegram.ui.Components.yz) view).f42604w = i14 - ((((int) Math.ceil(arrayList.size() / c00Var.f46370s)) * i14) - arrayList.size());
         }
     }
 

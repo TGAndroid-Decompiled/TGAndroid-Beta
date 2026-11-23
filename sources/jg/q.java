@@ -222,7 +222,7 @@ public final class q implements Runnable {
             case 14:
                 qa0 qa0Var = (qa0) ((di.b1) this.d).f8545g3;
                 View d = qa0Var.d();
-                di.b1 b1Var = qa0Var.f38860f;
+                di.b1 b1Var = qa0Var.f38859f;
                 if (d != null) {
                     int top = d.getTop() + this.f17646b;
                     int top2 = d.getTop() + this.f17647c;

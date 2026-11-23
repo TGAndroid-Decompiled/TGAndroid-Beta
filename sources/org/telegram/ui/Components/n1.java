@@ -4,33 +4,33 @@ import android.app.Activity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class n1 implements Runnable {
-    public final int f37714a;
-    public final int f37715b;
-    public final long f37716c;
+    public final int f37713a;
+    public final int f37714b;
+    public final long f37715c;
     public final long d;
-    public final org.telegram.messenger.y10 f37717e;
-    public final long f37718f;
+    public final org.telegram.messenger.y10 f37716e;
+    public final long f37717f;
 
     public n1(int i7, long j3, long j10, org.telegram.messenger.y10 y10Var, long j11, int i10) {
-        this.f37714a = i10;
-        this.f37715b = i7;
-        this.f37716c = j3;
+        this.f37713a = i10;
+        this.f37714b = i7;
+        this.f37715c = j3;
         this.d = j10;
-        this.f37717e = y10Var;
-        this.f37718f = j11;
+        this.f37716e = y10Var;
+        this.f37717f = j11;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.h6 bVar;
-        switch (this.f37714a) {
+        switch (this.f37713a) {
             case 0:
-                int i7 = this.f37715b;
+                int i7 = this.f37714b;
                 long j3 = di.y8.y(i7, false).p().amount;
-                long j10 = this.f37716c;
+                long j10 = this.f37715c;
                 int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
-                org.telegram.messenger.y10 y10Var = this.f37717e;
-                long j11 = this.f37718f;
+                org.telegram.messenger.y10 y10Var = this.f37716e;
+                long j11 = this.f37717f;
                 if (i10 < 0) {
                     Activity u02 = org.telegram.messenger.g0.u0();
                     org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
@@ -54,8 +54,8 @@ public final class n1 implements Runnable {
                 y10Var.a(Long.valueOf(j11));
                 return;
             default:
-                int i11 = this.f37715b;
-                n1 n1Var = new n1(i11, this.f37716c, this.d, this.f37717e, this.f37718f, 0);
+                int i11 = this.f37714b;
+                n1 n1Var = new n1(i11, this.f37715c, this.d, this.f37716e, this.f37717f, 0);
                 if (!di.y8.y(i11, false).f10088e) {
                     di.y8 y10 = di.y8.y(i11, false);
                     y10.f10088e = false;

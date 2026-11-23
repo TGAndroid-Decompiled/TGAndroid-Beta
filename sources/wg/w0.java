@@ -90,7 +90,7 @@ public final class w0 extends sa {
         this.f59895r2 = new s4.s0(this, 8);
         this.f30211u0 = 0;
         this.f59890m2 = np.u1(this.f30173a).O0(Long.valueOf(-j3));
-        ((ViewGroup) this.f39533p1.getParent()).removeView(this.f39533p1);
+        ((ViewGroup) this.f39532p1.getParent()).removeView(this.f39532p1);
         ViewGroup viewGroup = this.f30176b;
         nr nrVar = nr.h;
         this.f59886i2 = new d6(viewGroup, 0L, 350L, nrVar);
@@ -126,20 +126,20 @@ public final class w0 extends sa {
         int i12 = this.f30211u0;
         viewGroup4.addView(aVar, ma.f(-2.0f, -1, 87, i12, 0, i12, 0));
         xg.h hVar = this.f59888k2;
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         hVar.f60549n = arrayList;
         hVar.f60548f = ek0Var;
         int i13 = this.f30211u0;
         ek0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(60.0f));
-        this.f39532o1.j(new i1(this, 2));
-        this.f39532o1.setOnItemClickListener(new o1(this, 14));
+        this.f39531o1.j(new i1(this, 2));
+        this.f39531o1.setOnItemClickListener(new o1(this, 14));
         v4.k kVar = new v4.k();
         kVar.n(350L);
         kVar.o(nrVar);
         kVar.C = false;
         kVar.f59194m = false;
-        this.f39532o1.setItemAnimator(kVar);
-        this.f39532o1.i(new ai.j0(this, 9));
+        this.f39531o1.setItemAnimator(kVar);
+        this.f39531o1.i(new ai.j0(this, 9));
         o1(false, true);
         g1(1, null, true);
         g1(3, null, true);
@@ -213,7 +213,7 @@ public final class w0 extends sa {
         eVar.setTranslationY(Math.max(i7, (((eVar.getMeasuredHeight() - org.telegram.messenger.g0.f24040m) - org.telegram.messenger.g0.L(40.0f)) / 2.0f) + org.telegram.messenger.g0.f24040m));
         float translationY = eVar.getTranslationY() + eVar.getMeasuredHeight();
         this.U1.setTranslationY(translationY);
-        this.f39532o1.setTranslationY((v0Var.getMeasuredHeight() + eVar.getMeasuredHeight()) - org.telegram.messenger.g0.L(16.0f));
+        this.f39531o1.setTranslationY((v0Var.getMeasuredHeight() + eVar.getMeasuredHeight()) - org.telegram.messenger.g0.L(16.0f));
         int w02 = m6.w0(m6.f29454h5, this.J0);
         Paint paint = this.X1;
         paint.setColor(w02);
@@ -453,7 +453,7 @@ public final class w0 extends sa {
     }
 
     public final void k1(boolean z10) {
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         if (z10) {
             pi.l lVar = new pi.l(getContext(), 2, 0.6f);
             lVar.f59109a = 1;
@@ -613,7 +613,7 @@ public final class w0 extends sa {
         n1(z10, z11);
         int i7 = 0;
         while (true) {
-            ek0 ek0Var = this.f39532o1;
+            ek0 ek0Var = this.f39531o1;
             if (i7 < ek0Var.getChildCount()) {
                 View childAt = ek0Var.getChildAt(i7);
                 if (childAt instanceof ah.r) {

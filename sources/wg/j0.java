@@ -36,7 +36,7 @@ public final class j0 extends h1 {
         aVar.setOnClickListener(new tg.u(this, 5));
         aVar.setCloseStyle(true);
         this.f30176b.addView(aVar, ma.d(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i10 = this.f30211u0;
         ek0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(64.0f));
         Context context = getContext();

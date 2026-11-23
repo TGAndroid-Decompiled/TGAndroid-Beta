@@ -11,7 +11,7 @@ public final class di implements mj {
 
     @Override
     public final void a(TLRPC.User user, boolean z10, int i7, long j3) {
-        org.telegram.ui.bn bnVar = (org.telegram.ui.bn) this.f34508a.f40368a2;
+        org.telegram.ui.bn bnVar = (org.telegram.ui.bn) this.f34508a.f40367a2;
         if (bnVar.u7()) {
             org.telegram.messenger.yy g10 = org.telegram.messenger.yy.g(user, bnVar.f46103l6, bnVar.F5, bnVar.f46114m4, null, null, z10, i7, 0);
             g10.K = bnVar.Y8();
@@ -27,6 +27,6 @@ public final class di implements mj {
 
     @Override
     public final void b(ArrayList arrayList, String str, boolean z10, int i7, long j3, boolean z11) {
-        ((org.telegram.ui.bn) this.f34508a.f40368a2).Jb(arrayList, str, z10, i7, j3, z11);
+        ((org.telegram.ui.bn) this.f34508a.f40367a2).Jb(arrayList, str, z10, i7, j3, z11);
     }
 }

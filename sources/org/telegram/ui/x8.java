@@ -23,7 +23,7 @@ public final class x8 extends v4.u0 {
             abs = Math.abs(j9Var.f48934b.N0() - L0) + 1;
         }
         if (abs > 0) {
-            int size = j9Var.f48935c.f35790g3.E.size();
+            int size = j9Var.f48935c.f35789g3.E.size();
             if (!j9Var.F && !j9Var.f48943y && !arrayList.isEmpty() && L0 + abs >= size - 5) {
                 org.telegram.messenger.g0.g3(new u8(1, this, (g9) i5.c.h(1, arrayList)));
             }

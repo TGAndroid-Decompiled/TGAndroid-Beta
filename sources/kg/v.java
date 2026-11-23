@@ -159,15 +159,15 @@ public final class v extends e51 implements gs {
         String N0 = hd.N0(2131752698, null);
         String N02 = hd.N0(2131752691, null);
         o41 o41Var = new o41(2);
-        o41Var.f38092m = N0;
-        o41Var.f38095p = N02;
-        o41Var.f38090k = 2131623940;
+        o41Var.f38091m = N0;
+        o41Var.f38094p = N02;
+        o41Var.f38089k = 2131623940;
         arrayList.add(o41Var);
         c51Var.V();
         z d = z.d(this.currentAccount);
         if (d.f18579b.size() < np.u1(d.f18578a).K5) {
             o41 c10 = o41.c(1, 2131231841, hd.N0(2131752697, null));
-            c10.f38097r = true;
+            c10.f38096r = true;
             arrayList.add(c10);
         }
         ArrayList arrayList2 = z.d(this.currentAccount).f18579b;
@@ -213,7 +213,7 @@ public final class v extends e51 implements gs {
                 int indexOf = a02.indexOf(str);
                 if (indexOf > -1) {
                     p4 p4Var = new p4(p5.c.k("https://", str), (fz0) null);
-                    p4Var.f38483f = this;
+                    p4Var.f38482f = this;
                     spannableString.setSpan(p4Var, indexOf, str.length() + indexOf, 33);
                 }
             }
@@ -395,7 +395,7 @@ public final class v extends e51 implements gs {
         this.f34682b.setBackground(null);
         this.f34681a.r1();
         this.f34681a.setSectionsDrawBackground(true);
-        this.f34681a.f35790g3.f34062r = false;
+        this.f34681a.f35789g3.f34062r = false;
         return this.fragmentView;
     }
 
@@ -416,7 +416,7 @@ public final class v extends e51 implements gs {
             }
         }
         f6 f6Var = this.f34681a;
-        if (f6Var != null && (c51Var = f6Var.f35790g3) != null) {
+        if (f6Var != null && (c51Var = f6Var.f35789g3) != null) {
             c51Var.O(true);
         }
     }

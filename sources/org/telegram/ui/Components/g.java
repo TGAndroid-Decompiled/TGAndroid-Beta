@@ -41,12 +41,12 @@ public final class g implements Runnable {
         wr0 wr0Var = (wr0) this.f35342b;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f35343c;
         TLObject tLObject = (TLObject) this.d;
-        jt0 jt0Var = wr0Var.f41886r;
-        wr0Var.f41885n = 0;
+        jt0 jt0Var = wr0Var.f41885r;
+        wr0Var.f41884n = 0;
         int b10 = wr0Var.b();
         if (tL_error == null) {
             TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject;
-            jt0Var.f36684y1.getMessagesController().Z3(messages_chats.chats, false);
+            jt0Var.f36683y1.getMessagesController().Z3(messages_chats.chats, false);
             if (!messages_chats.chats.isEmpty() && messages_chats.chats.size() == 100) {
                 z10 = false;
             } else {
@@ -59,16 +59,16 @@ public final class g implements Runnable {
         }
         int i7 = 0;
         while (true) {
-            ds0[] ds0VarArr = jt0Var.f36651n0;
+            ds0[] ds0VarArr = jt0Var.f36650n0;
             if (i7 < ds0VarArr.length) {
                 ds0 ds0Var = ds0VarArr[i7];
-                if (ds0Var.F == 6 && (nq0Var = ds0Var.h) != null && (wr0Var.f41884f || b10 == 0)) {
+                if (ds0Var.F == 6 && (nq0Var = ds0Var.h) != null && (wr0Var.f41883f || b10 == 0)) {
                     jt0Var.D(nq0Var, 0, null);
                 }
                 i7++;
             } else {
-                wr0Var.f41883e = false;
-                wr0Var.f41884f = true;
+                wr0Var.f41882e = false;
+                wr0Var.f41883f = true;
                 wr0Var.f();
                 return;
             }
@@ -84,7 +84,7 @@ public final class g implements Runnable {
         Object obj;
         bs0 bs0Var = (bs0) this.f35342b;
         ArrayList arrayList2 = (ArrayList) this.d;
-        org.telegram.ui.ActionBar.g2 g2Var = bs0Var.f33915s.f36684y1;
+        org.telegram.ui.ActionBar.g2 g2Var = bs0Var.f33915s.f36683y1;
         String lowerCase = ((String) this.f35343c).trim().toLowerCase();
         if (lowerCase.length() == 0) {
             org.telegram.messenger.g0.g3(new g(bs0Var, new ArrayList(), new ArrayList(), 29));

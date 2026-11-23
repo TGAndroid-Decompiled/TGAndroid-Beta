@@ -31,14 +31,14 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 public final class rh implements org.telegram.messenger.y10 {
-    public final int f39228a;
-    public final Object f39229b;
-    public final Object f39230c;
+    public final int f39227a;
+    public final Object f39228b;
+    public final Object f39229c;
 
     public rh(int i7, Object obj, Object obj2) {
-        this.f39228a = i7;
-        this.f39229b = obj;
-        this.f39230c = obj2;
+        this.f39227a = i7;
+        this.f39228b = obj;
+        this.f39229c = obj2;
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class rh implements org.telegram.messenger.y10 {
         int[] iArr;
         int i7;
         TLRPC.Document document;
-        int i10 = this.f39228a;
+        int i10 = this.f39227a;
         float f11 = -0.02f;
         float f12 = 0.05f;
         float f13 = -0.04f;
@@ -58,8 +58,8 @@ public final class rh implements org.telegram.messenger.y10 {
         TLRPC.User user = null;
         boolean z11 = true;
         int i11 = 0;
-        Object obj2 = this.f39230c;
-        Object obj3 = this.f39229b;
+        Object obj2 = this.f39229c;
+        Object obj3 = this.f39228b;
         switch (i10) {
             case 0:
                 ((ki.s3) obj3).getWebViewContainer().G((String) obj2, (String) obj, false);
@@ -102,13 +102,13 @@ public final class rh implements org.telegram.messenger.y10 {
                 return;
             case 4:
                 rx rxVar = (rx) obj3;
-                sx sxVar = rxVar.f39368a;
+                sx sxVar = rxVar.f39367a;
                 ty tyVar = sxVar.G;
-                org.telegram.messenger.si d02 = org.telegram.messenger.si.d0(tyVar.f40092d1);
+                org.telegram.messenger.si d02 = org.telegram.messenger.si.d0(tyVar.f40091d1);
                 String[] strArr = tyVar.X0;
-                String str = sxVar.f39716w;
+                String str = sxVar.f39715w;
                 tm tmVar = new tm(rxVar, (String) obj2, (Runnable) obj, 2);
-                if (!org.telegram.messenger.cz.F && !org.telegram.messenger.k10.i(tyVar.f40092d1).q()) {
+                if (!org.telegram.messenger.cz.F && !org.telegram.messenger.k10.i(tyVar.f40091d1).q()) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -118,8 +118,8 @@ public final class rh implements org.telegram.messenger.y10 {
             case 5:
                 ArrayList arrayList2 = (ArrayList) obj2;
                 Runnable runnable = (Runnable) obj;
-                sx sxVar2 = ((rx) obj3).f39368a;
-                if (ConnectionsManager.getInstance(sxVar2.G.f40092d1).getConnectionState() != 3) {
+                sx sxVar2 = ((rx) obj3).f39367a;
+                if (ConnectionsManager.getInstance(sxVar2.G.f40091d1).getConnectionState() != 3) {
                     runnable.run();
                     return;
                 } else {
@@ -138,7 +138,7 @@ public final class rh implements org.telegram.messenger.y10 {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet n02 = org.telegram.messenger.si.d0(nyVar.f38016x.R.f40092d1).n0(org.telegram.messenger.si.b0(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
+                        TLRPC.TL_messages_stickerSet n02 = org.telegram.messenger.si.d0(nyVar.f38015x.R.f40091d1).n0(org.telegram.messenger.si.b0(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
                         if (n02 != null) {
                             arrayList = n02.documents;
                         } else {
@@ -148,7 +148,7 @@ public final class rh implements org.telegram.messenger.y10 {
                         arrayList = stickerSetCovered.covers;
                     }
                     if (arrayList != null && !arrayList.isEmpty()) {
-                        nyVar.f38012n.add(new mx(stickerSetCovered, arrayList));
+                        nyVar.f38011n.add(new mx(stickerSetCovered, arrayList));
                     }
                 }
                 runnable2.run();
@@ -158,13 +158,13 @@ public final class rh implements org.telegram.messenger.y10 {
                 ArrayList arrayList4 = (ArrayList) obj2;
                 org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) obj;
                 if (i00Var.W1 == null && !(i00Var.V1 instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready)) {
-                    gc I = lc.b0(g2Var).I(2131623990, org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0(null, null, 2131750661, i00Var.f36069b2)), org.telegram.messenger.hd.G(arrayList4.size(), "FolderLinkAddedSubtitle", new Object[0]));
+                    gc I = lc.b0(g2Var).I(2131623990, org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0(null, null, 2131750661, i00Var.f36068b2)), org.telegram.messenger.hd.G(arrayList4.size(), "FolderLinkAddedSubtitle", new Object[0]));
                     I.f35527j = 5000;
                     I.j();
                     return;
                 }
                 lc b02 = lc.b0(g2Var);
-                SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0(null, null, 2131750609, i00Var.f36069b2));
+                SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0(null, null, 2131750609, i00Var.f36068b2));
                 if (arrayList4.size() <= 0) {
                     G = org.telegram.messenger.hd.G(i00Var.d2.size(), "FolderLinkUpdatedSubtitle", new Object[0]);
                 } else {

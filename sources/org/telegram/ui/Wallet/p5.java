@@ -46,7 +46,7 @@ public final class p5 extends e3 {
             }
             this.f30176b.setBackground(null);
             this.f30176b.setPadding(0, 0, 0, 0);
-            this.f39532o1.setPadding(0, 0, 0, 0);
+            this.f39531o1.setPadding(0, 0, 0, 0);
         }
     }
 }

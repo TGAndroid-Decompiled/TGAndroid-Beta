@@ -54,12 +54,12 @@ public final class i0 extends v4.c0 {
     public int W0(v4.c1 c1Var) {
         switch (this.I) {
             case 6:
-                if (((h51) this.J).f35792i3) {
+                if (((h51) this.J).f35791i3) {
                     return org.telegram.messenger.g0.f24046q.y;
                 }
                 return super.W0(c1Var);
             case 7:
-                if (((n11) this.J).f35792i3) {
+                if (((n11) this.J).f35791i3) {
                     return org.telegram.messenger.g0.f24046q.y;
                 }
                 return super.W0(c1Var);
@@ -74,7 +74,7 @@ public final class i0 extends v4.c0 {
         switch (this.I) {
             case 3:
                 super.k1(z10);
-                u90 u90Var = ((v90) this.J).f40744b;
+                u90 u90Var = ((v90) this.J).f40743b;
                 if (z10) {
                     i7 = -1;
                 } else {
@@ -106,7 +106,7 @@ public final class i0 extends v4.c0 {
                 return super.m0(i7, x0Var, c1Var);
             case 4:
                 xi0 xi0Var = (xi0) this.J;
-                di.b1 b1Var = xi0Var.f42105b;
+                di.b1 b1Var = xi0Var.f42104b;
                 boolean z13 = false;
                 if (i7 < 0 && xi0Var.C0 != 0.0f) {
                     float pullingLeftProgress = xi0Var.getPullingLeftProgress();
@@ -143,10 +143,10 @@ public final class i0 extends v4.c0 {
                 }
                 int m0 = super.m0(i7, x0Var, c1Var);
                 if (i7 > 0 && m0 == 0 && b1Var.getScrollState() == 1 && xi0Var.q()) {
-                    ValueAnimator valueAnimator = xi0Var.f42148z0;
+                    ValueAnimator valueAnimator = xi0Var.f42147z0;
                     if (valueAnimator != null) {
                         valueAnimator.removeAllListeners();
-                        xi0Var.f42148z0.cancel();
+                        xi0Var.f42147z0.cancel();
                     }
                     int i10 = (xi0Var.getPullingLeftProgress() > 1.0f ? 1 : (xi0Var.getPullingLeftProgress() == 1.0f ? 0 : -1));
                     if (i10 > 0) {

@@ -99,7 +99,7 @@ public abstract class w3 extends FrameLayout {
                                 z10 = false;
                             }
                             K.L(z10);
-                            K.f38086f = l9Var2.f15699e.contains(num);
+                            K.f38085f = l9Var2.f15699e.contains(num);
                             K.E = new ci.q(l9Var2, intValue, 3);
                             arrayList.add(K);
                             if (l9Var2.f15699e.contains(num)) {
@@ -124,7 +124,7 @@ public abstract class w3 extends FrameLayout {
             }
         }, new di.v6(l9Var, 20), bVar);
         this.f15697b = f6Var;
-        f6Var.f35790g3.f34062r = false;
+        f6Var.f35789g3.f34062r = false;
         f6Var.setClipToPadding(false);
         f6Var.setClipChildren(false);
         f6Var.setPadding(org.telegram.messenger.g0.L(2.0f), 0, org.telegram.messenger.g0.L(2.0f), 0);
@@ -157,7 +157,7 @@ public abstract class w3 extends FrameLayout {
                                 z10 = false;
                             }
                             K.L(z10);
-                            K.f38086f = l9Var2.f15699e.contains(num);
+                            K.f38085f = l9Var2.f15699e.contains(num);
                             K.E = new ci.q(l9Var2, intValue, 3);
                             arrayList.add(K);
                             if (l9Var2.f15699e.contains(num)) {
@@ -322,7 +322,7 @@ public abstract class w3 extends FrameLayout {
         xy0 xy0Var = this.f15705x;
         bi.f6 f6Var = this.f15697b;
         if (xy0Var != null) {
-            xy0Var.c(rectF.centerX() - (this.f15705x.f42247c / 2.0f), rectF.centerY() - org.telegram.messenger.g0.L(0.6f), 1.0f - f6Var.getAlpha(), -1, canvas);
+            xy0Var.c(rectF.centerX() - (this.f15705x.f42246c / 2.0f), rectF.centerY() - org.telegram.messenger.g0.L(0.6f), 1.0f - f6Var.getAlpha(), -1, canvas);
         }
         if (f6Var.getAlpha() > 0.0f) {
             canvas.save();
@@ -437,14 +437,14 @@ public abstract class w3 extends FrameLayout {
                 mcVar.c(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            if (mcVar.f37478i) {
+            if (mcVar.f37477i) {
                 c(!this.N, true);
             }
             mcVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             mcVar.c(false);
         }
-        if (!mcVar.f37478i && !super.onTouchEvent(motionEvent)) {
+        if (!mcVar.f37477i && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

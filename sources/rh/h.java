@@ -34,16 +34,16 @@ public class h implements f, e, c {
     public h(Runnable runnable) {
         s6 s6Var = new s6(this, 25);
         ?? obj = new Object();
-        obj.f40611c = b.f56638a;
+        obj.f40610c = b.f56638a;
         obj.d = new z0(obj, 7);
-        obj.f40610b = s6Var;
+        obj.f40609b = s6Var;
         Typeface typeface = g0.f24018a;
         float f10 = 1.0f;
         try {
             f10 = Settings.Global.getFloat(t0.f26931b.getContentResolver(), "animator_duration_scale", 1.0f);
         } catch (Exception unused) {
         }
-        obj.f40609a = f10 * 250.0f * 1.1f;
+        obj.f40608a = f10 * 250.0f * 1.1f;
         this.f56652f = obj;
         this.f56655s = 1;
         this.f56658y = new g(this, 0);
@@ -179,7 +179,7 @@ public class h implements f, e, c {
             bVar3 = b10.f56303a.f(8);
         }
         uz uzVar = this.f56652f;
-        b bVar4 = (b) uzVar.f40611c;
+        b bVar4 = (b) uzVar.f40610c;
         if (bVar3.d > 0) {
             z11 = true;
         } else {

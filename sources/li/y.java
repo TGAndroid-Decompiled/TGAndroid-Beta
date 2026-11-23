@@ -33,7 +33,7 @@ public final class y extends b0 {
                 this.d = h51Var;
                 h51Var.r1();
                 h51 h51Var2 = this.d;
-                h51Var2.f35790g3.f34062r = false;
+                h51Var2.f35789g3.f34062r = false;
                 h51Var2.setClipToPadding(false);
                 this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f24041n);
                 this.d.j(new u1(this, 26));
@@ -127,7 +127,7 @@ public final class y extends b0 {
                 this.d = h51Var3;
                 h51Var3.r1();
                 h51 h51Var4 = this.d;
-                h51Var4.f35790g3.f34062r = false;
+                h51Var4.f35789g3.f34062r = false;
                 h51Var4.setClipToPadding(false);
                 this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f24041n);
                 this.f19923c.addView(d0Var.B1, ma.g());

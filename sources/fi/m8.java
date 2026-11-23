@@ -53,7 +53,7 @@ public final class m8 extends h8 {
             this.M.q0(gc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.n6 n6Var = this.O;
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
         n6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
         this.O.w(org.telegram.messenger.g0.L(18.0f));
         this.O.N = org.telegram.messenger.g0.f24046q.x;

@@ -24,10 +24,10 @@ public final class z1 extends View implements org.telegram.ui.ActionBar.b6 {
         k51 k51Var = new k51();
         this.f32529a = k51Var;
         k51Var.setCallback(this);
-        k51Var.f36798n = hd.N0(2131743582, null);
-        k51Var.f36799o = hd.N0(2131743583, null);
-        k51Var.f36800p = hd.N0(2131743581, null);
-        k51Var.f36794j = new f(this, 2);
+        k51Var.f36797n = hd.N0(2131743582, null);
+        k51Var.f36798o = hd.N0(2131743583, null);
+        k51Var.f36799p = hd.N0(2131743581, null);
+        k51Var.f36793j = new f(this, 2);
     }
 
     public final void a(Canvas canvas) {
@@ -92,7 +92,7 @@ public final class z1 extends View implements org.telegram.ui.ActionBar.b6 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f32529a.f36793i.a(this, motionEvent);
+        return this.f32529a.f36792i.a(this, motionEvent);
     }
 
     public void setDelegate(m1 m1Var) {

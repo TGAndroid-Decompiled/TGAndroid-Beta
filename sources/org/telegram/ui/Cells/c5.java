@@ -237,7 +237,7 @@ public class c5 implements an0, org.telegram.ui.Components.a5, oe0, hk0, gz, pm0
         j71Var.d = i7;
         j71Var.G(1);
         j71Var.v(i7, z10);
-        View[] viewArr = j71Var.f36435e;
+        View[] viewArr = j71Var.f36434e;
         int i10 = 0;
         View view = viewArr[0];
         if (view != null) {
@@ -269,7 +269,7 @@ public class c5 implements an0, org.telegram.ui.Components.a5, oe0, hk0, gz, pm0
     @Override
     public boolean b() {
         j71 j71Var = (j71) this.f30508a;
-        if (!j71Var.f36442y && !j71Var.I) {
+        if (!j71Var.f36441y && !j71Var.I) {
             return true;
         }
         return false;
@@ -313,16 +313,16 @@ public class c5 implements an0, org.telegram.ui.Components.a5, oe0, hk0, gz, pm0
     @Override
     public void g(float f10) {
         j71 j71Var = (j71) this.f30508a;
-        View[] viewArr = j71Var.f36435e;
+        View[] viewArr = j71Var.f36434e;
         if (f10 == 1.0f) {
             if (viewArr[1] != null) {
                 j71Var.C();
-                j71Var.h.put(j71Var.f36436f[1], viewArr[1]);
+                j71Var.h.put(j71Var.f36435f[1], viewArr[1]);
                 j71Var.removeView(viewArr[1]);
                 j71Var.B(viewArr[0], 0.0f);
                 viewArr[1] = null;
             }
-            j71Var.w(j71Var.f36433b);
+            j71Var.w(j71Var.f36432b);
             return;
         }
         View view = viewArr[1];
@@ -596,7 +596,7 @@ public class c5 implements an0, org.telegram.ui.Components.a5, oe0, hk0, gz, pm0
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("image/*");
-            ((x30) this.f30508a).f41959a.startActivityForResult(intent, 14);
+            ((x30) this.f30508a).f41958a.startActivityForResult(intent, 14);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
@@ -611,12 +611,12 @@ public class c5 implements an0, org.telegram.ui.Components.a5, oe0, hk0, gz, pm0
     public void r(int i7) {
         xo0 xo0Var = (xo0) this.f30508a;
         ap0 ap0Var = xo0Var.L;
-        xo0Var.f42182s = i7;
-        if (xo0Var.f42183w != i7) {
+        xo0Var.f42181s = i7;
+        if (xo0Var.f42182w != i7) {
             xo0Var.d.clear();
         }
         int i10 = xo0Var.K;
-        if (xo0Var.b() == 0 && !xo0Var.f42178e.e() && !xo0Var.J) {
+        if (xo0Var.b() == 0 && !xo0Var.f42177e.e() && !xo0Var.J) {
             ap0Var.M1.e(false, true);
         } else {
             ap0Var.f33587t2.b(i10);
@@ -659,7 +659,7 @@ public class c5 implements an0, org.telegram.ui.Components.a5, oe0, hk0, gz, pm0
 
     @Override
     public boolean v1(int i7) {
-        if (i7 == ((xo0) this.f30508a).f42181r) {
+        if (i7 == ((xo0) this.f30508a).f42180r) {
             return true;
         }
         return false;

@@ -169,7 +169,7 @@ public final class i1 extends LinearLayout {
                         this.f57966n = 0.0f;
                         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(250L);
                         this.f57967r = duration;
-                        duration.setInterpolator(nr.f37961f);
+                        duration.setInterpolator(nr.f37960f);
                         this.f57967r.addUpdateListener(new j3(this, 27));
                         this.f57967r.addListener(new k71(this, 18));
                         this.f57967r.start();

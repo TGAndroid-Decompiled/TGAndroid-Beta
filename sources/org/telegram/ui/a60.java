@@ -141,7 +141,7 @@ public final class a60 extends org.telegram.ui.ActionBar.g2 implements org.teleg
         a60Var.f45517r.e(false, true);
         a60Var.f45517r.setStickerType(0);
         a60Var.f45517r.d.setText(org.telegram.messenger.hd.N0(2131748030, null));
-        a60Var.f45517r.f37996e.setText("");
+        a60Var.f45517r.f37995e.setText("");
     }
 
     @Override
@@ -212,13 +212,13 @@ public final class a60 extends org.telegram.ui.ActionBar.g2 implements org.teleg
         this.d = new y50(this, context);
         org.telegram.ui.Components.yz yzVar = new org.telegram.ui.Components.yz(context, null);
         yzVar.setViewType(6);
-        yzVar.f42606x = false;
+        yzVar.f42605x = false;
         org.telegram.ui.Components.nv0 nv0Var = new org.telegram.ui.Components.nv0(context, yzVar, 0, null);
         this.f45517r = nv0Var;
         nv0Var.addView(yzVar, 0);
         this.f45517r.setAnimateLayoutChange(true);
         this.f45517r.d.setText(org.telegram.messenger.hd.N0(2131748030, null));
-        this.f45517r.f37996e.setText("");
+        this.f45517r.f37995e.setText("");
         this.f45517r.e(org.telegram.messenger.i5.r(this.currentAccount).y(), true);
         this.f45516n = new v4.c0(1, false);
         this.f45518s = new x50(this, context);

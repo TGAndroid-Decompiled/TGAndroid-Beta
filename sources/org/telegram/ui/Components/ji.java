@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class ji implements org.telegram.ui.bn0 {
-    public boolean f36513a;
-    public final HashMap f36514b;
-    public final ArrayList f36515c;
+    public boolean f36512a;
+    public final HashMap f36513b;
+    public final ArrayList f36514c;
     public final ui d;
 
     public ji(ui uiVar, HashMap hashMap, ArrayList arrayList) {
         this.d = uiVar;
-        this.f36514b = hashMap;
-        this.f36515c = arrayList;
+        this.f36513b = hashMap;
+        this.f36514c = arrayList;
     }
 
     @Override
@@ -25,13 +25,13 @@ public final class ji implements org.telegram.ui.bn0 {
     public final void v0(int i7, boolean z10, boolean z11) {
         String str;
         if (!z10) {
-            HashMap hashMap = this.f36514b;
-            if (!hashMap.isEmpty() && !this.f36513a) {
-                this.f36513a = true;
+            HashMap hashMap = this.f36513b;
+            if (!hashMap.isEmpty() && !this.f36512a) {
+                this.f36512a = true;
                 ArrayList arrayList = new ArrayList();
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f36515c;
+                    ArrayList arrayList2 = this.f36514c;
                     if (i10 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i10));
                         ?? obj2 = new Object();
@@ -63,7 +63,7 @@ public final class ji implements org.telegram.ui.bn0 {
                         System.currentTimeMillis();
                         i10++;
                     } else {
-                        ((org.telegram.ui.bn) this.d.f40368a2).u8(i7, arrayList, z11);
+                        ((org.telegram.ui.bn) this.d.f40367a2).u8(i7, arrayList, z11);
                         return;
                     }
                 }

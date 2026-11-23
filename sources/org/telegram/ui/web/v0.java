@@ -194,7 +194,7 @@ public abstract class v0 extends FrameLayout implements gs, b6 {
         if (context instanceof Activity) {
             this.f53342a0 = (Activity) context;
         }
-        nVar.f41191k = false;
+        nVar.f41190k = false;
         nVar.b(i7, 153);
         t3 t3Var = new t3(this, context);
         this.f53365s = t3Var;
@@ -1315,7 +1315,7 @@ public abstract class v0 extends FrameLayout implements gs, b6 {
             i10 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
         }
         super.onMeasure(i7, i10);
-        this.f53358n.f41187f = getMeasuredWidth();
+        this.f53358n.f41186f = getMeasuredWidth();
     }
 
     @Override

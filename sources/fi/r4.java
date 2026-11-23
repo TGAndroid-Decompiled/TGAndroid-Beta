@@ -71,7 +71,7 @@ public final class r4 extends FrameLayout {
         linearLayout2.setOrientation(0);
         mk0 mk0Var = new mk0(getContext());
         this.f12541w = mk0Var;
-        mk0Var.f37546r = true;
+        mk0Var.f37545r = true;
         mk0Var.a(2131231919, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);

@@ -922,7 +922,7 @@ public final class qr extends org.telegram.ui.ActionBar.g2 implements org.telegr
         if (this.J && this.L) {
             this.Y = true;
         }
-        this.X.f35790g3.O(false);
+        this.X.f35789g3.O(false);
         this.fragmentView = frameLayout;
         return frameLayout;
     }
@@ -1127,8 +1127,8 @@ public final class qr extends org.telegram.ui.ActionBar.g2 implements org.telegr
         }
         org.telegram.ui.Components.x30 x30Var = this.Q;
         if (x30Var != null) {
-            x30Var.f41959a = this;
-            x30Var.f41960b = this;
+            x30Var.f41958a = this;
+            x30Var.f41959b = this;
         }
         this.H = org.telegram.messenger.np.u1(this.currentAccount).W0(this.I);
         if (user == null || !super.onFragmentCreate()) {

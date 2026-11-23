@@ -221,7 +221,7 @@ public class e10 extends FrameLayout implements te.b, org.telegram.ui.ActionBar.
         changeBounds.setDuration(150L);
         transitionSet.addTransition(new org.telegram.ui.ActionBar.i0(1).setDuration(150L)).addTransition(changeBounds);
         transitionSet.setOrdering(0);
-        transitionSet.setInterpolator((TimeInterpolator) nr.f37962g);
+        transitionSet.setInterpolator((TimeInterpolator) nr.f37961g);
         transitionSet.addListener((Transition.TransitionListener) new org.telegram.ui.ActionBar.j0(1, this));
         org.telegram.ui.d61 d61Var = this.H;
         TransitionManager.beginDelayedTransition(d61Var, transitionSet);

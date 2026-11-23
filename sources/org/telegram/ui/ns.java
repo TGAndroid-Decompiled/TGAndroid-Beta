@@ -300,11 +300,11 @@ public final class ns {
             org.telegram.messenger.g0.h3(new as(this, 0), 200L);
             k0 k0Var = this.O;
             if (k0Var != null) {
-                k0Var.animate().alpha(0.0f).translationY(org.telegram.messenger.g0.L(56.0f)).setDuration(150L).setInterpolator(org.telegram.ui.Components.nr.f37961f).start();
+                k0Var.animate().alpha(0.0f).translationY(org.telegram.messenger.g0.L(56.0f)).setDuration(150L).setInterpolator(org.telegram.ui.Components.nr.f37960f).start();
             }
             FrameLayout frameLayout = this.Q;
             if (frameLayout != null) {
-                frameLayout.animate().alpha(0.0f).setDuration(150L).scaleX(0.6f).scaleY(0.6f).setInterpolator(org.telegram.ui.Components.nr.f37961f).start();
+                frameLayout.animate().alpha(0.0f).setDuration(150L).scaleX(0.6f).scaleY(0.6f).setInterpolator(org.telegram.ui.Components.nr.f37960f).start();
             }
             org.telegram.messenger.ls.e().k(org.telegram.messenger.ls.f25334k1, 8);
         }
@@ -400,7 +400,7 @@ public final class ns {
                         } else if ((childAt instanceof org.telegram.ui.Components.cy) && ((org.telegram.ui.Components.cy) childAt).getSpan() != null) {
                             imageReceiver.J0(0);
                         } else {
-                            if ((childAt instanceof org.telegram.ui.Components.zw0) && (((org.telegram.ui.Components.zw0) childAt).f43000b instanceof org.telegram.ui.Components.p5)) {
+                            if ((childAt instanceof org.telegram.ui.Components.zw0) && (((org.telegram.ui.Components.zw0) childAt).f42999b instanceof org.telegram.ui.Components.p5)) {
                                 imageReceiver.J0(0);
                             }
                             i7 = -1;

@@ -10,22 +10,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.Utilities;
 public final class k0 extends LinearLayout {
-    public final int f36721a = 0;
-    public final RectF f36722b;
-    public final RectF f36723c;
+    public final int f36720a = 0;
+    public final RectF f36721b;
+    public final RectF f36722c;
     public final RectF d;
-    public final Paint f36724e;
-    public final org.telegram.ui.ActionBar.h6 f36725f;
+    public final Paint f36723e;
+    public final org.telegram.ui.ActionBar.h6 f36724f;
     public final FrameLayout h;
 
     public k0(m0 m0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         this.h = m0Var;
-        this.f36725f = h6Var;
-        this.f36722b = new RectF();
-        this.f36723c = new RectF();
+        this.f36724f = h6Var;
+        this.f36721b = new RectF();
+        this.f36722c = new RectF();
         this.d = new RectF();
-        this.f36724e = new Paint(1);
+        this.f36723e = new Paint(1);
     }
 
     @Override
@@ -33,10 +33,10 @@ public final class k0 extends LinearLayout {
         float f10;
         float e10;
         float e11;
-        switch (this.f36721a) {
+        switch (this.f36720a) {
             case 0:
                 m0 m0Var = (m0) this.h;
-                d6 d6Var = m0Var.f37365s;
+                d6 d6Var = m0Var.f37364s;
                 if (d6Var == null) {
                     e10 = 1.0f;
                 } else {
@@ -47,13 +47,13 @@ public final class k0 extends LinearLayout {
                     }
                     e10 = d6Var.e(false, f10);
                 }
-                d6 d6Var2 = m0Var.f37363n;
+                d6 d6Var2 = m0Var.f37362n;
                 if (d6Var2 == null) {
                     e11 = 0.0f;
                 } else {
                     int i7 = m0Var.h;
                     if (i7 < 0) {
-                        i7 = m0Var.f37364r;
+                        i7 = m0Var.f37363r;
                     }
                     e11 = d6Var2.e(false, i7);
                 }
@@ -61,23 +61,23 @@ public final class k0 extends LinearLayout {
                 int floor = (int) Math.floor(d);
                 int ceil = (int) Math.ceil(d);
                 float f11 = e11 - floor;
-                RectF rectF = this.f36722b;
+                RectF rectF = this.f36721b;
                 if (floor >= 0 && floor < getChildCount()) {
                     View childAt = getChildAt(floor);
                     rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
                 }
-                RectF rectF2 = this.f36723c;
+                RectF rectF2 = this.f36722c;
                 if (ceil >= 0 && ceil < getChildCount()) {
                     View childAt2 = getChildAt(ceil);
                     rectF2.set(childAt2.getLeft(), childAt2.getTop(), childAt2.getRight(), childAt2.getBottom());
                 }
                 RectF rectF3 = this.d;
                 org.telegram.messenger.g0.Z1(rectF, rectF2, f11, rectF3);
-                int r12 = org.telegram.ui.ActionBar.m6.r1(0.1f * e10, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.f36725f));
-                Paint paint = this.f36724e;
+                int r12 = org.telegram.ui.ActionBar.m6.r1(0.1f * e10, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.f36724f));
+                Paint paint = this.f36723e;
                 paint.setColor(r12);
                 if (e10 > 0.0f) {
-                    canvas.drawRoundRect(rectF3, org.telegram.messenger.g0.L(m0Var.f37361e), org.telegram.messenger.g0.L(m0Var.f37361e), paint);
+                    canvas.drawRoundRect(rectF3, org.telegram.messenger.g0.L(m0Var.f37360e), org.telegram.messenger.g0.L(m0Var.f37360e), paint);
                 }
                 for (int i10 = 0; i10 < getChildCount(); i10++) {
                     View childAt3 = getChildAt(i10);
@@ -94,20 +94,20 @@ public final class k0 extends LinearLayout {
                 TextView[] textViewArr = i6Var.f44404c;
                 int j3 = Utilities.j((int) Math.floor(d2), textViewArr.length, 0);
                 int j10 = Utilities.j((int) Math.ceil(d2), textViewArr.length, 0);
-                RectF rectF4 = this.f36722b;
+                RectF rectF4 = this.f36721b;
                 if (j3 >= 0 && j3 < textViewArr.length) {
                     TextView textView = textViewArr[j3];
                     rectF4.set(textView.getX(), textView.getY(), textView.getX() + textView.getWidth(), textView.getY() + textView.getHeight());
                 }
-                RectF rectF5 = this.f36723c;
+                RectF rectF5 = this.f36722c;
                 if (j10 >= 0 && j10 < textViewArr.length) {
                     TextView textView2 = textViewArr[j10];
                     rectF5.set(textView2.getX(), textView2.getY(), textView2.getX() + textView2.getWidth(), textView2.getY() + textView2.getHeight());
                 }
                 RectF rectF6 = this.d;
                 org.telegram.messenger.g0.Z1(rectF4, rectF5, e12 - j3, rectF6);
-                int r13 = org.telegram.ui.ActionBar.m6.r1(0.1f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.f36725f));
-                Paint paint2 = this.f36724e;
+                int r13 = org.telegram.ui.ActionBar.m6.r1(0.1f, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.f36724f));
+                Paint paint2 = this.f36723e;
                 paint2.setColor(r13);
                 canvas.drawRoundRect(rectF6, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), paint2);
                 super.dispatchDraw(canvas);
@@ -122,7 +122,7 @@ public final class k0 extends LinearLayout {
         int i11;
         int i12;
         int measuredHeight;
-        switch (this.f36721a) {
+        switch (this.f36720a) {
             case 0:
                 boolean z11 = true;
                 if (getOrientation() == 0) {
@@ -191,10 +191,10 @@ public final class k0 extends LinearLayout {
     public k0(org.telegram.ui.Wallet.i6 i6Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         this.h = i6Var;
-        this.f36725f = h6Var;
-        this.f36722b = new RectF();
-        this.f36723c = new RectF();
+        this.f36724f = h6Var;
+        this.f36721b = new RectF();
+        this.f36722c = new RectF();
         this.d = new RectF();
-        this.f36724e = new Paint(1);
+        this.f36723e = new Paint(1);
     }
 }

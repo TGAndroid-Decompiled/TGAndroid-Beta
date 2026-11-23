@@ -156,14 +156,14 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
             } else {
                 q9Var.setImageResource(2131232452);
             }
-            opVar.f38321a.f(-1, true, false);
+            opVar.f38320a.f(-1, true, false);
             opVar.setVisibility(0);
         } else if (obj instanceof org.telegram.messenger.jf) {
             org.telegram.messenger.jf jfVar = (org.telegram.messenger.jf) obj;
             y5Var.setTag(jfVar);
             y5Var.setImage(jfVar);
             n4Var.setVisibility(4);
-            opVar.f38321a.f(-1, true, false);
+            opVar.f38320a.f(-1, true, false);
             opVar.setVisibility(0);
         }
     }
@@ -335,7 +335,7 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
             case 1:
                 int b11 = f1Var.b();
                 org.telegram.ui.Components.tn tnVar = (org.telegram.ui.Components.tn) this.f49474e;
-                if (b11 != tnVar.f39988v0 && b11 != tnVar.H0 && b11 != tnVar.C0 && b11 != tnVar.G0 && b11 != tnVar.D0 && b11 != tnVar.I0 && b11 != tnVar.E0 && b11 != tnVar.F0 && b11 != tnVar.J0 && b11 != tnVar.K0 && b11 != tnVar.O0.f3374b && b11 != tnVar.N0.f3374b && b11 != tnVar.M0) {
+                if (b11 != tnVar.f39987v0 && b11 != tnVar.H0 && b11 != tnVar.C0 && b11 != tnVar.G0 && b11 != tnVar.D0 && b11 != tnVar.I0 && b11 != tnVar.E0 && b11 != tnVar.F0 && b11 != tnVar.J0 && b11 != tnVar.K0 && b11 != tnVar.O0.f3374b && b11 != tnVar.N0.f3374b && b11 != tnVar.M0) {
                     return false;
                 }
                 return true;
@@ -364,7 +364,7 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
             case 9:
                 int b13 = f1Var.b();
                 DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f49474e;
-                if (b13 != dataSettingsActivity.f43060e && b13 != dataSettingsActivity.f43061f && b13 != dataSettingsActivity.h && b13 != dataSettingsActivity.f43064s && b13 != DataSettingsActivity.c0(dataSettingsActivity) && b13 != dataSettingsActivity.f43065w && b13 != DataSettingsActivity.d0(dataSettingsActivity) && b13 != DataSettingsActivity.e0(dataSettingsActivity) && b13 != dataSettingsActivity.F && b13 != dataSettingsActivity.E && b13 != dataSettingsActivity.G && b13 != dataSettingsActivity.H && b13 != dataSettingsActivity.L && b13 != dataSettingsActivity.K && b13 != dataSettingsActivity.f43062n && b13 != DataSettingsActivity.h0(dataSettingsActivity) && b13 != DataSettingsActivity.f0(dataSettingsActivity) && b13 != DataSettingsActivity.j0(dataSettingsActivity) && b13 != DataSettingsActivity.b0(dataSettingsActivity)) {
+                if (b13 != dataSettingsActivity.f43059e && b13 != dataSettingsActivity.f43060f && b13 != dataSettingsActivity.h && b13 != dataSettingsActivity.f43063s && b13 != DataSettingsActivity.c0(dataSettingsActivity) && b13 != dataSettingsActivity.f43064w && b13 != DataSettingsActivity.d0(dataSettingsActivity) && b13 != DataSettingsActivity.e0(dataSettingsActivity) && b13 != dataSettingsActivity.F && b13 != dataSettingsActivity.E && b13 != dataSettingsActivity.G && b13 != dataSettingsActivity.H && b13 != dataSettingsActivity.L && b13 != dataSettingsActivity.K && b13 != dataSettingsActivity.f43061n && b13 != DataSettingsActivity.h0(dataSettingsActivity) && b13 != DataSettingsActivity.f0(dataSettingsActivity) && b13 != DataSettingsActivity.j0(dataSettingsActivity) && b13 != DataSettingsActivity.b0(dataSettingsActivity)) {
                     return false;
                 }
                 return true;
@@ -480,7 +480,7 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
             case 2:
                 return ((org.telegram.ui.Components.rz) this.f49474e).h.size();
             case 3:
-                int size = ((org.telegram.ui.Components.sz) this.f49474e).f39736v1.size();
+                int size = ((org.telegram.ui.Components.sz) this.f49474e).f39735v1.size();
                 if (size < 10) {
                     return size + 1;
                 }
@@ -498,7 +498,7 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
             case 7:
                 return ((org.telegram.ui.Components.i71) this.f49474e).h.size();
             case 8:
-                return ((DataAutoDownloadActivity) this.f49474e).f43056y;
+                return ((DataAutoDownloadActivity) this.f49474e).f43055y;
             case 9:
                 return ((DataSettingsActivity) this.f49474e).U;
             case 10:
@@ -550,7 +550,7 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
         int i10;
         switch (this.f49473c) {
             case 2:
-                i10 = ((org.telegram.ui.Components.rz) this.f49474e).f39407l0.get(i7);
+                i10 = ((org.telegram.ui.Components.rz) this.f49474e).f39406l0.get(i7);
                 break;
             case 4:
                 return i7;
@@ -640,22 +640,22 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
             case 1:
                 org.telegram.ui.Components.tn tnVar = (org.telegram.ui.Components.tn) this.f49474e;
                 if (i7 != tnVar.C0 && i7 != tnVar.G0 && i7 != tnVar.H0 && i7 != tnVar.D0 && i7 != tnVar.E0 && i7 != tnVar.F0 && i7 != tnVar.I0 && i7 != tnVar.N0.f3374b && i7 != tnVar.O0.f3374b) {
-                    if (i7 != tnVar.m0 && i7 != tnVar.f39986t0 && i7 != tnVar.f39992x0 && i7 != tnVar.f39977p0) {
-                        if (i7 == tnVar.f39985s0) {
+                    if (i7 != tnVar.m0 && i7 != tnVar.f39985t0 && i7 != tnVar.f39991x0 && i7 != tnVar.f39976p0) {
+                        if (i7 == tnVar.f39984s0) {
                             return 1;
                         }
-                        if (i7 != tnVar.f39990w0 && i7 != tnVar.f39994y0 && i7 != tnVar.f39982r0 && i7 != tnVar.L0) {
-                            if (i7 != tnVar.f39988v0 && i7 != tnVar.J0 && i7 != tnVar.M0) {
-                                if (i7 == tnVar.f39974n0) {
+                        if (i7 != tnVar.f39989w0 && i7 != tnVar.f39993y0 && i7 != tnVar.f39981r0 && i7 != tnVar.L0) {
+                            if (i7 != tnVar.f39987v0 && i7 != tnVar.J0 && i7 != tnVar.M0) {
+                                if (i7 == tnVar.f39973n0) {
                                     return 4;
                                 }
-                                if (i7 == tnVar.f39975o0) {
+                                if (i7 == tnVar.f39974o0) {
                                     return 11;
                                 }
-                                if (i7 == tnVar.f39979q0) {
+                                if (i7 == tnVar.f39978q0) {
                                     return 7;
                                 }
-                                if (i7 != tnVar.f39995z0 && i7 != tnVar.A0 && i7 != tnVar.K0) {
+                                if (i7 != tnVar.f39994z0 && i7 != tnVar.A0 && i7 != tnVar.K0) {
                                     if (i7 == tnVar.B0) {
                                         return 8;
                                     }
@@ -698,10 +698,10 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
                 if (i7 == DataAutoDownloadActivity.c0(dataAutoDownloadActivity)) {
                     return 0;
                 }
-                if (i7 == dataAutoDownloadActivity.f43053s) {
+                if (i7 == dataAutoDownloadActivity.f43052s) {
                     return 1;
                 }
-                if (i7 != dataAutoDownloadActivity.f43052r && i7 != dataAutoDownloadActivity.f43054w) {
+                if (i7 != dataAutoDownloadActivity.f43051r && i7 != dataAutoDownloadActivity.f43053w) {
                     if (i7 == DataAutoDownloadActivity.h0(dataAutoDownloadActivity)) {
                         return 3;
                     }
@@ -713,14 +713,14 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
                 return 2;
             case 9:
                 DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f49474e;
-                if (i7 != dataSettingsActivity.f43063r && i7 != dataSettingsActivity.f43066x && i7 != dataSettingsActivity.O && i7 != dataSettingsActivity.Q && i7 != dataSettingsActivity.M && i7 != dataSettingsActivity.R && i7 != dataSettingsActivity.T) {
-                    if (i7 != dataSettingsActivity.d && i7 != dataSettingsActivity.f43067y && i7 != dataSettingsActivity.N && i7 != 0 && i7 != dataSettingsActivity.P && i7 != dataSettingsActivity.J && i7 != dataSettingsActivity.S) {
+                if (i7 != dataSettingsActivity.f43062r && i7 != dataSettingsActivity.f43065x && i7 != dataSettingsActivity.O && i7 != dataSettingsActivity.Q && i7 != dataSettingsActivity.M && i7 != dataSettingsActivity.R && i7 != dataSettingsActivity.T) {
+                    if (i7 != dataSettingsActivity.d && i7 != dataSettingsActivity.f43066y && i7 != dataSettingsActivity.N && i7 != 0 && i7 != dataSettingsActivity.P && i7 != dataSettingsActivity.J && i7 != dataSettingsActivity.S) {
                         if (i7 != dataSettingsActivity.F && i7 != dataSettingsActivity.E && i7 != dataSettingsActivity.G && i7 != dataSettingsActivity.H && i7 != dataSettingsActivity.K && i7 != dataSettingsActivity.L) {
                             if (i7 == dataSettingsActivity.I) {
                                 return 4;
                             }
-                            if (i7 != dataSettingsActivity.f43060e && i7 != dataSettingsActivity.h && i7 != dataSettingsActivity.f43061f && i7 != DataSettingsActivity.h0(dataSettingsActivity) && i7 != DataSettingsActivity.f0(dataSettingsActivity) && i7 != DataSettingsActivity.j0(dataSettingsActivity)) {
-                                if (i7 != dataSettingsActivity.f43064s && i7 != dataSettingsActivity.f43065w && i7 != dataSettingsActivity.f43062n) {
+                            if (i7 != dataSettingsActivity.f43059e && i7 != dataSettingsActivity.h && i7 != dataSettingsActivity.f43060f && i7 != DataSettingsActivity.h0(dataSettingsActivity) && i7 != DataSettingsActivity.f0(dataSettingsActivity) && i7 != DataSettingsActivity.j0(dataSettingsActivity)) {
+                                if (i7 != dataSettingsActivity.f43063s && i7 != dataSettingsActivity.f43064w && i7 != dataSettingsActivity.f43061n) {
                                     return 1;
                                 }
                                 return 6;
@@ -988,15 +988,15 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
             case 1:
                 Context context2 = (Context) obj2;
                 org.telegram.ui.Components.tn tnVar = (org.telegram.ui.Components.tn) obj;
-                boolean z10 = tnVar.f39973n;
-                org.telegram.ui.ActionBar.h6 h6Var6 = tnVar.f37519a;
+                boolean z10 = tnVar.f39972n;
+                org.telegram.ui.ActionBar.h6 h6Var6 = tnVar.f37518a;
                 switch (i7) {
                     case 0:
-                        o4Var = new org.telegram.ui.Cells.o4((Context) obj2, org.telegram.ui.ActionBar.m6.L6, 21, 15, false, tnVar.f37519a);
+                        o4Var = new org.telegram.ui.Cells.o4((Context) obj2, org.telegram.ui.ActionBar.m6.L6, 21, 15, false, tnVar.f37518a);
                         break;
                     case 1:
                         View z6Var3 = new org.telegram.ui.Cells.z6(context2, (org.telegram.ui.Cells.c0) null);
-                        new org.telegram.ui.Components.oq(new ColorDrawable(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, h6Var6)), org.telegram.ui.ActionBar.m6.Y0(context2, 2131231229, org.telegram.ui.ActionBar.m6.f29345b7)).f38339x = true;
+                        new org.telegram.ui.Components.oq(new ColorDrawable(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, h6Var6)), org.telegram.ui.ActionBar.m6.Y0(context2, 2131231229, org.telegram.ui.ActionBar.m6.f29345b7)).f38338x = true;
                         o4Var = z6Var3;
                         break;
                     case 2:
@@ -1007,27 +1007,27 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
                         break;
                     case 4:
                     case 11:
-                        org.telegram.ui.Components.on onVar = new org.telegram.ui.Components.on(this, (Context) obj2, tnVar.J ? 1 : 0, tnVar.f37519a, i7);
+                        org.telegram.ui.Components.on onVar = new org.telegram.ui.Components.on(this, (Context) obj2, tnVar.J ? 1 : 0, tnVar.f37518a, i7);
                         if (i7 == 11 && !z10) {
                             onVar.setTextRight(98);
                             onVar.b().setOnClickListener(new View.OnClickListener(this) {
-                                public final org.telegram.ui.l4 f37587b;
+                                public final org.telegram.ui.l4 f37586b;
 
                                 {
-                                    this.f37587b = this;
+                                    this.f37586b = this;
                                 }
 
                                 @Override
                                 public final void onClick(View view3) {
                                     switch (r2) {
                                         case 0:
-                                            tn.T((tn) this.f37587b.f49474e, -2);
+                                            tn.T((tn) this.f37586b.f49474e, -2);
                                             return;
                                         case 1:
-                                            tn.T((tn) this.f37587b.f49474e, -3);
+                                            tn.T((tn) this.f37586b.f49474e, -3);
                                             return;
                                         default:
-                                            ((tn) this.f37587b.f49474e).c0(view3, (org.telegram.ui.Cells.b6) view3.getParent(), true);
+                                            ((tn) this.f37586b.f49474e).c0(view3, (org.telegram.ui.Cells.b6) view3.getParent(), true);
                                             return;
                                     }
                                 }
@@ -1041,27 +1041,27 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
                     case 5:
                     default:
                         org.telegram.ui.Components.rn rnVar = new org.telegram.ui.Components.rn(this, (Context) obj2, tnVar.J ? 1 : 0, new View.OnClickListener(this) {
-                            public final org.telegram.ui.l4 f37587b;
+                            public final org.telegram.ui.l4 f37586b;
 
                             {
-                                this.f37587b = this;
+                                this.f37586b = this;
                             }
 
                             @Override
                             public final void onClick(View view3) {
                                 switch (r2) {
                                     case 0:
-                                        tn.T((tn) this.f37587b.f49474e, -2);
+                                        tn.T((tn) this.f37586b.f49474e, -2);
                                         return;
                                     case 1:
-                                        tn.T((tn) this.f37587b.f49474e, -3);
+                                        tn.T((tn) this.f37586b.f49474e, -3);
                                         return;
                                     default:
-                                        ((tn) this.f37587b.f49474e).c0(view3, (org.telegram.ui.Cells.b6) view3.getParent(), true);
+                                        ((tn) this.f37586b.f49474e).c0(view3, (org.telegram.ui.Cells.b6) view3.getParent(), true);
                                         return;
                                 }
                             }
-                        }, tnVar.f37519a);
+                        }, tnVar.f37518a);
                         if (!z10) {
                             rnVar.setTextRight(140);
                             rnVar.b().setOnClickListener(new org.telegram.ui.Components.m8(3, this, rnVar));
@@ -1096,23 +1096,23 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
                         if (!z10) {
                             qnVar.setTextRight(98);
                             qnVar.b().setOnClickListener(new View.OnClickListener(this) {
-                                public final org.telegram.ui.l4 f37587b;
+                                public final org.telegram.ui.l4 f37586b;
 
                                 {
-                                    this.f37587b = this;
+                                    this.f37586b = this;
                                 }
 
                                 @Override
                                 public final void onClick(View view3) {
                                     switch (r2) {
                                         case 0:
-                                            tn.T((tn) this.f37587b.f49474e, -2);
+                                            tn.T((tn) this.f37586b.f49474e, -2);
                                             return;
                                         case 1:
-                                            tn.T((tn) this.f37587b.f49474e, -3);
+                                            tn.T((tn) this.f37586b.f49474e, -3);
                                             return;
                                         default:
-                                            ((tn) this.f37587b.f49474e).c0(view3, (org.telegram.ui.Cells.b6) view3.getParent(), true);
+                                            ((tn) this.f37586b.f49474e).c0(view3, (org.telegram.ui.Cells.b6) view3.getParent(), true);
                                             return;
                                     }
                                 }
@@ -1172,13 +1172,13 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
                     frameLayout3.addView(textView3, c8.ma.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
                     ?? view3 = new View(context3);
                     Paint paint = new Paint();
-                    view3.f39870a = paint;
+                    view3.f39869a = paint;
                     Paint paint2 = new Paint(1);
-                    view3.f39871b = paint2;
-                    view3.f39872c = org.telegram.messenger.g0.L(16.0f);
+                    view3.f39870b = paint2;
+                    view3.f39871c = org.telegram.messenger.g0.L(16.0f);
                     view3.d = 0;
-                    view3.f39873e = 0.0f;
-                    view3.f39874f = false;
+                    view3.f39872e = 0.0f;
+                    view3.f39873f = false;
                     paint.setColor(-11711155);
                     paint2.setColor(-1);
                     frameLayout3.f32057c = view3;
@@ -1197,12 +1197,12 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
                 if (i7 != 0) {
                     FrameLayout t2Var = new bi.t2(context4, 21);
                     t2Var.setWillNotDraw(false);
-                    mt0Var.f37630p1 = new TextView(context4);
-                    org.telegram.ui.ActionBar.t6.U(mt0Var.f37630p1, org.telegram.ui.ActionBar.m6.J5, mt0Var.J0);
-                    mt0Var.f37630p1.setTextSize(1, 14.0f);
-                    mt0Var.f37630p1.setGravity(17);
-                    mt0Var.f37630p1.setPadding(0, 0, 0, org.telegram.messenger.g0.L(8.0f));
-                    t2Var.addView(mt0Var.f37630p1, c8.ma.c(40.0f, -1));
+                    mt0Var.f37629p1 = new TextView(context4);
+                    org.telegram.ui.ActionBar.t6.U(mt0Var.f37629p1, org.telegram.ui.ActionBar.m6.J5, mt0Var.J0);
+                    mt0Var.f37629p1.setTextSize(1, 14.0f);
+                    mt0Var.f37629p1.setGravity(17);
+                    mt0Var.f37629p1.setPadding(0, 0, 0, org.telegram.messenger.g0.L(8.0f));
+                    t2Var.addView(mt0Var.f37629p1, c8.ma.c(40.0f, -1));
                     frameLayout = t2Var;
                 } else {
                     frameLayout = new org.telegram.ui.Cells.s7(54, context4, mt0Var.J0, false);
@@ -1543,7 +1543,7 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
             case 1:
                 org.telegram.ui.Components.tn tnVar = (org.telegram.ui.Components.tn) obj;
                 sh.d dVar = tnVar.n1;
-                boolean z10 = tnVar.f39973n;
+                boolean z10 = tnVar.f39972n;
                 int i12 = f1Var.f59169f;
                 View view = f1Var.f59165a;
                 CharSequence charSequence = "";
@@ -1579,8 +1579,8 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
                     int b10 = f1Var.b();
                     org.telegram.ui.Cells.b6 b6Var3 = (org.telegram.ui.Cells.b6) view;
                     b6Var3.setTag(1);
-                    b6Var3.f30473a.a(tnVar.f39953c0, false);
-                    int i13 = b10 - tnVar.f39987u0;
+                    b6Var3.f30473a.a(tnVar.f39952c0, false);
+                    int i13 = b10 - tnVar.f39986u0;
                     CharSequence charSequence4 = tnVar.L[i13];
                     if (z10) {
                         i7 = 2131743812;
@@ -1589,11 +1589,11 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
                     }
                     b6Var3.o(charSequence4, org.telegram.messenger.hd.N0(i7, null), true);
                     b6Var3.setTag(null);
-                    if (tnVar.f39971l0 == b10) {
+                    if (tnVar.f39970l0 == b10) {
                         EditTextBoldCursor textView = b6Var3.getTextView();
                         textView.requestFocus();
                         org.telegram.messenger.g0.I3(textView);
-                        tnVar.f39971l0 = -1;
+                        tnVar.f39970l0 = -1;
                     }
                     if (!z10) {
                         b6Var3.f30476e.b(dVar.b(i13), false);
@@ -1678,13 +1678,13 @@ public final class l4 extends org.telegram.ui.Components.dk0 {
                     EditTextBoldCursor textView = ((org.telegram.ui.Cells.b6) f1Var.f59165a).getTextView();
                     if (textView.isFocused()) {
                         if (tnVar.J) {
-                            org.telegram.ui.Components.kn knVar = tnVar.f39993y;
+                            org.telegram.ui.Components.kn knVar = tnVar.f39992y;
                             if (knVar != null) {
                                 knVar.f();
                             }
                             tnVar.e0(true);
                         }
-                        tnVar.f39964h1 = null;
+                        tnVar.f39963h1 = null;
                         textView.clearFocus();
                         org.telegram.messenger.g0.v1(textView);
                         return;

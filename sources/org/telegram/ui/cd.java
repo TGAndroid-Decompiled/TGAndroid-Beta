@@ -27,13 +27,13 @@ public final class cd implements Runnable {
             case 2:
                 org.telegram.ui.Components.h51 h51Var = xdVar.Y0;
                 if (h51Var != null) {
-                    boolean z12 = xdVar.f40048f0;
+                    boolean z12 = xdVar.f40047f0;
                     if (xdVar.S0 != -1) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    org.telegram.ui.Components.c51 c51Var = h51Var.f35790g3;
+                    org.telegram.ui.Components.c51 c51Var = h51Var.f35789g3;
                     if (z10 == xdVar.f53834b1.a()) {
                         z11 = true;
                     }

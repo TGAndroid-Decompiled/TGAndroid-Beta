@@ -124,10 +124,10 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.b
         linearLayout.addView(y9Var, c8.ma.r(-2, 60, 16));
         org.telegram.ui.Cells.x3 x3Var = new org.telegram.ui.Cells.x3(context, false, true, false, true, true);
         this.h = x3Var;
-        x3Var.f38116c.m(0.35f, 420L, 3.5f, nr.h);
+        x3Var.f38115c.m(0.35f, 420L, 3.5f, nr.h);
         x3Var.setScaleProperty(0.2f);
         x3Var.setAllowCancel(true);
-        x3Var.getDrawable().f37799c0 = new m(x3Var, 13);
+        x3Var.getDrawable().f37798c0 = new m(x3Var, 13);
         x3Var.setTextColor(org.telegram.ui.ActionBar.m6.w0(this.f44049a, h6Var));
         x3Var.setTextSize(org.telegram.messenger.g0.L(28.0f));
         x3Var.setTypeface(org.telegram.messenger.g0.o1("fonts/gram.ttf"));
@@ -358,7 +358,7 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.b
                 i12 = org.telegram.ui.ActionBar.m6.Fi;
             }
             org.telegram.ui.ActionBar.t6.U(textView, i12, h6Var);
-            x3Var.f38116c.v(w02, z11);
+            x3Var.f38115c.v(w02, z11);
             x3Var.invalidate();
             org.telegram.ui.ActionBar.t6.v(y9Var, this.f44049a, h6Var);
             org.telegram.ui.ActionBar.t6.l(y9Var, 36, this.f44049a, h6Var);
@@ -572,7 +572,7 @@ public final class ca extends FrameLayout implements org.telegram.ui.ActionBar.b
                 y9Var.setCursorColor(w02);
                 y9Var.setHandlesColor(w02);
                 if (this.G && (x3Var = this.h) != null) {
-                    x3Var.f38116c.v(w02, false);
+                    x3Var.f38115c.v(w02, false);
                     x3Var.invalidate();
                 }
             } catch (Exception e10) {

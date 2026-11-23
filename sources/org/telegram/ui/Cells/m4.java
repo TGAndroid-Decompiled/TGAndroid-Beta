@@ -484,7 +484,7 @@ public final class m4 {
             if (tL_messageMediaPaidMedia != null) {
                 xy0 xy0Var = new xy0(pb.b1(z17, hd.H(',', "UnlockPaidContent", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, org.telegram.messenger.g0.o());
                 this.f31098q = xy0Var;
-                if (xy0Var.f42247c > this.f31089g - org.telegram.messenger.g0.L(30.0f)) {
+                if (xy0Var.f42246c > this.f31089g - org.telegram.messenger.g0.L(30.0f)) {
                     this.f31098q = new xy0(pb.b1(false, hd.H(',', "UnlockPaidContentShort", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, org.telegram.messenger.g0.o());
                 }
             }

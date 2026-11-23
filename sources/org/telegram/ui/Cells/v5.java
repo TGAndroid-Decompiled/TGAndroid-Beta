@@ -81,7 +81,7 @@ public final class v5 extends FrameLayout {
                         }
                     }
                 }
-                float interpolation = nr.f37961f.getInterpolation(fr0Var.P) * fr0Var.A;
+                float interpolation = nr.f37960f.getInterpolation(fr0Var.P) * fr0Var.A;
                 float measuredHeight = getMeasuredHeight();
                 float f13 = 0.0f;
                 if (interpolation != 1.0f && (er0Var = fr0Var.F) != null) {

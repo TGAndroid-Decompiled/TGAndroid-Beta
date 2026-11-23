@@ -92,7 +92,7 @@ public final class n {
                 if (z10 && hVar.f59996g) {
                     AnimatorSet animatorSet = new AnimatorSet();
                     animatorSet.setDuration(250L);
-                    animatorSet.setInterpolator(nr.f37961f);
+                    animatorSet.setInterpolator(nr.f37960f);
                     animatorSet.playTogether(ObjectAnimator.ofFloat(hVar.h, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_Y, 0.1f));
                     animatorSet.addListener(new h10(24, hVar, pVar));
                     animatorSet.start();
@@ -166,7 +166,7 @@ public final class n {
             RectF rectF = new RectF();
             l lVar = hVar.f59992b;
             h.j(rectF, lVar.J(), lVar.a0());
-            hVar.f60013z = ((SharedPreferences) jn.m().f36567b).getFloat("scale_factor", 1.0f);
+            hVar.f60013z = ((SharedPreferences) jn.m().f36566b).getFloat("scale_factor", 1.0f);
             Point point = g0.f24046q;
             hVar.A = (Math.min(point.x, point.y) - (h.m() * 2.0f)) / hVar.h();
             hVar.f60011x = (int) rectF.width();
@@ -449,7 +449,7 @@ public final class n {
                 hVar.h.setScaleY(0.1f);
                 AnimatorSet animatorSet = new AnimatorSet();
                 animatorSet.setDuration(250L);
-                animatorSet.setInterpolator(nr.f37961f);
+                animatorSet.setInterpolator(nr.f37960f);
                 i11 = 1;
                 animatorSet.playTogether(ObjectAnimator.ofFloat(hVar.h, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_Y, 1.0f));
                 animatorSet.start();

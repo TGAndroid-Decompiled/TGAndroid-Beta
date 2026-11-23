@@ -56,7 +56,7 @@ public final class t3 extends q9 {
         Canvas canvas2;
         switch (this.H) {
             case 0:
-                if (this.f38836a.R0) {
+                if (this.f38835a.R0) {
                     RectF rectF = org.telegram.messenger.g0.P;
                     rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     ((v3) this.I).b(1.0f, canvas, rectF, true);
@@ -79,7 +79,7 @@ public final class t3 extends q9 {
                 org.telegram.ui.Cells.l6 l6Var = raVar.U;
                 if (raVar.G) {
                     l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    i7.h(raVar.V, canvas, this.f38836a, l6Var);
+                    i7.h(raVar.V, canvas, this.f38835a, l6Var);
                     return;
                 }
                 super.onDraw(canvas);
@@ -113,10 +113,10 @@ public final class t3 extends q9 {
                     super.onDraw(canvas);
                     return;
                 }
-                Drawable t6 = this.f38836a.t();
+                Drawable t6 = this.f38835a.t();
                 if (t6 != null) {
-                    this.f38836a.y0(0.0f, 0.0f, getWidth(), (getWidth() / t6.getIntrinsicWidth()) * t6.getIntrinsicHeight());
-                    this.f38836a.h(canvas, null);
+                    this.f38835a.y0(0.0f, 0.0f, getWidth(), (getWidth() / t6.getIntrinsicWidth()) * t6.getIntrinsicHeight());
+                    this.f38835a.h(canvas, null);
                     return;
                 }
                 return;
@@ -168,7 +168,7 @@ public final class t3 extends q9 {
         super(context);
         this.H = 11;
         this.I = v0Var;
-        this.f38836a = new s2(this, this, 7);
+        this.f38835a = new s2(this, this, 7);
     }
 
     @Override

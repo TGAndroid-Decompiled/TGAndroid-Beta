@@ -36,7 +36,7 @@ public final class fr implements RequestDelegate {
                                     jrVar2.X1 = groupcallstreamrtmpurl.url;
                                     jrVar2.Y1 = groupcallstreamrtmpurl.key;
                                     jrVar2.Z1 = new SpannableStringBuilder(jrVar2.Y1);
-                                    jrVar2.f36587a2.O(true);
+                                    jrVar2.f36586a2.O(true);
                                     return;
                                 }
                                 return;
@@ -50,7 +50,7 @@ public final class fr implements RequestDelegate {
                                     jrVar3.X1 = groupcallstreamrtmpurl2.url;
                                     jrVar3.Y1 = groupcallstreamrtmpurl2.key;
                                     jrVar3.Z1 = new SpannableStringBuilder(jrVar3.Y1);
-                                    jrVar3.f36587a2.O(true);
+                                    jrVar3.f36586a2.O(true);
                                     return;
                                 }
                                 return;
@@ -75,7 +75,7 @@ public final class fr implements RequestDelegate {
                                     jrVar22.X1 = groupcallstreamrtmpurl.url;
                                     jrVar22.Y1 = groupcallstreamrtmpurl.key;
                                     jrVar22.Z1 = new SpannableStringBuilder(jrVar22.Y1);
-                                    jrVar22.f36587a2.O(true);
+                                    jrVar22.f36586a2.O(true);
                                     return;
                                 }
                                 return;
@@ -89,7 +89,7 @@ public final class fr implements RequestDelegate {
                                     jrVar3.X1 = groupcallstreamrtmpurl2.url;
                                     jrVar3.Y1 = groupcallstreamrtmpurl2.key;
                                     jrVar3.Z1 = new SpannableStringBuilder(jrVar3.Y1);
-                                    jrVar3.f36587a2.O(true);
+                                    jrVar3.f36586a2.O(true);
                                     return;
                                 }
                                 return;

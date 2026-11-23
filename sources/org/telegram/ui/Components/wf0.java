@@ -6,17 +6,17 @@ import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
 public final class wf0 implements ui.a, dh.b, si.a {
-    public final ui.a f41792a;
-    public final Paint f41793b = new Paint(1);
-    public final Paint f41794c = new Paint();
+    public final ui.a f41791a;
+    public final Paint f41792b = new Paint(1);
+    public final Paint f41793c = new Paint();
     public RadialGradient d;
-    public int f41795e;
-    public float f41796f;
+    public int f41794e;
+    public float f41795f;
     public final xf0 h;
 
     public wf0(xf0 xf0Var, vf0 vf0Var) {
         this.h = xf0Var;
-        this.f41792a = vf0Var;
+        this.f41791a = vf0Var;
     }
 
     @Override
@@ -37,16 +37,16 @@ public final class wf0 implements ui.a, dh.b, si.a {
         Canvas canvas2;
         RectF rectF2;
         xf0 xf0Var = this.h;
-        ui.a aVar = this.f41792a;
+        ui.a aVar = this.f41791a;
         if (aVar != null) {
-            f12 = xf0Var.f42081l;
+            f12 = xf0Var.f42080l;
         } else {
             f12 = 0.0f;
         }
         int i11 = (f12 > 1.0f ? 1 : (f12 == 1.0f ? 0 : -1));
         si.a aVar2 = null;
         if (i11 < 0) {
-            ri.c cVar = xf0Var.f42073b;
+            ri.c cVar = xf0Var.f42072b;
             if (cVar == null) {
                 cVar = null;
             }
@@ -54,7 +54,7 @@ public final class wf0 implements ui.a, dh.b, si.a {
             i10 = i7;
             canvas2 = canvas;
             rectF2 = rectF;
-            float f14 = 1.0f - xf0Var.f42080k;
+            float f14 = 1.0f - xf0Var.f42079k;
             if (f14 > 0.0f) {
                 canvas2.save();
                 float f15 = 1.0f / i10;
@@ -98,12 +98,12 @@ public final class wf0 implements ui.a, dh.b, si.a {
 
     @Override
     public final boolean g() {
-        ri.c cVar = this.h.f42073b;
+        ri.c cVar = this.h.f42072b;
         si.a aVar = null;
         if (cVar == null) {
             cVar = null;
         }
-        ui.a aVar2 = this.f41792a;
+        ui.a aVar2 = this.f41791a;
         if (aVar2 instanceof si.a) {
             aVar = (si.a) aVar2;
         }
@@ -118,15 +118,15 @@ public final class wf0 implements ui.a, dh.b, si.a {
 
     public final void h(Canvas canvas, float f10, float f11, float f12, float f13, float f14, float f15) {
         xf0 xf0Var = this.h;
-        boolean z10 = xf0Var.f42079j;
-        Paint paint = this.f41793b;
+        boolean z10 = xf0Var.f42078j;
+        Paint paint = this.f41792b;
         if (z10) {
             float f16 = f12 - f10;
             float max = Math.max(1.0f, 0.65f * f16);
-            if (this.d == null || this.f41795e != xf0Var.f42078i || this.f41796f != max) {
-                this.f41795e = xf0Var.f42078i;
-                this.f41796f = max;
-                this.d = new RadialGradient(0.0f, 0.0f, max, org.telegram.ui.ActionBar.m6.r1(0.8f, xf0Var.f42078i), xf0Var.f42078i, Shader.TileMode.CLAMP);
+            if (this.d == null || this.f41794e != xf0Var.f42077i || this.f41795f != max) {
+                this.f41794e = xf0Var.f42077i;
+                this.f41795f = max;
+                this.d = new RadialGradient(0.0f, 0.0f, max, org.telegram.ui.ActionBar.m6.r1(0.8f, xf0Var.f42077i), xf0Var.f42077i, Shader.TileMode.CLAMP);
             }
             canvas.save();
             canvas.translate((f10 + f12) / 2.0f, (f11 + f13) / 2.0f);
@@ -138,17 +138,17 @@ public final class wf0 implements ui.a, dh.b, si.a {
             return;
         }
         paint.setShader(null);
-        paint.setColor(org.telegram.ui.ActionBar.m6.r1(f14, xf0Var.f42078i));
+        paint.setColor(org.telegram.ui.ActionBar.m6.r1(f14, xf0Var.f42077i));
         canvas.drawRect(f10 - f15, f11 - f15, f12 + f15, f13 + f15, paint);
     }
 
     public final si.a i() {
-        ri.c cVar = this.h.f42073b;
+        ri.c cVar = this.h.f42072b;
         si.a aVar = null;
         if (cVar == null) {
             cVar = null;
         }
-        ui.a aVar2 = this.f41792a;
+        ui.a aVar2 = this.f41791a;
         if (aVar2 instanceof si.a) {
             aVar = (si.a) aVar2;
         }
@@ -161,27 +161,27 @@ public final class wf0 implements ui.a, dh.b, si.a {
     @Override
     public final void o(float f10, float f11, float f12, float f13, Canvas canvas) {
         float f14;
-        ui.a aVar = this.f41792a;
+        ui.a aVar = this.f41791a;
         xf0 xf0Var = this.h;
         if (aVar != null) {
-            f14 = xf0Var.f42081l;
+            f14 = xf0Var.f42080l;
         } else {
             f14 = 0.0f;
         }
         int i7 = (f14 > 1.0f ? 1 : (f14 == 1.0f ? 0 : -1));
         if (i7 < 0) {
-            if (xf0Var.f42073b != null && canvas.isHardwareAccelerated()) {
-                xf0Var.f42073b.o(f10, f11, f12, f13, canvas);
+            if (xf0Var.f42072b != null && canvas.isHardwareAccelerated()) {
+                xf0Var.f42072b.o(f10, f11, f12, f13, canvas);
             } else {
-                float f15 = xf0Var.f42080k;
+                float f15 = xf0Var.f42079k;
                 if (f15 > 0.0f) {
                     int r12 = org.telegram.ui.ActionBar.m6.r1(f15 * 0.5f, -16777216);
-                    Paint paint = this.f41794c;
+                    Paint paint = this.f41793c;
                     paint.setColor(r12);
                     canvas.drawRect(f10, f11, f12, f13, paint);
                 }
             }
-            float f16 = 1.0f - xf0Var.f42080k;
+            float f16 = 1.0f - xf0Var.f42079k;
             if (f16 > 0.0f) {
                 h(canvas, f10, f11, f12, f13, f16, 0.0f);
             }
@@ -190,7 +190,7 @@ public final class wf0 implements ui.a, dh.b, si.a {
             if (i7 < 0) {
                 canvas.saveLayerAlpha(f10, f11, f12, f13, (int) (f14 * 255.0f));
             }
-            this.f41792a.o(f10, f11, f12, f13, canvas);
+            this.f41791a.o(f10, f11, f12, f13, canvas);
             if (i7 < 0) {
                 canvas.restore();
             }

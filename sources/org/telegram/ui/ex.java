@@ -214,7 +214,7 @@ public final class ex extends View implements org.telegram.messenger.gs, org.tel
             } else {
                 imageReceiver2.h(canvas, null);
             }
-            if (this.f47401e == 1.0f && !this.f47407x && this.f47405s.f38207b0 == 0) {
+            if (this.f47401e == 1.0f && !this.f47407x && this.f47405s.f38206b0 == 0) {
                 org.telegram.ui.Components.oh0 oh0Var = this.f47406w;
                 oh0Var.N(0, false, false);
                 oh0Var.start();

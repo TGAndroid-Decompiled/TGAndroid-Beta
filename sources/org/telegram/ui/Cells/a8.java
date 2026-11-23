@@ -86,7 +86,7 @@ public class a8 extends FrameLayout implements gs, rg.c {
     public final void a(boolean z10) {
         ImageView imageView = this.K;
         if (z10) {
-            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(nr.f37961f).start();
+            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(nr.f37960f).start();
         } else {
             imageView.setAlpha(0.0f);
         }
@@ -157,7 +157,7 @@ public class a8 extends FrameLayout implements gs, rg.c {
             imageView.setAlpha(0.0f);
             imageView.setScaleX(0.4f);
             imageView.setScaleY(0.4f);
-            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(nr.f37961f).start();
+            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(nr.f37960f).start();
             return;
         }
         imageView.setAlpha(1.0f);

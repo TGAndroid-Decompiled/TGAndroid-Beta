@@ -303,7 +303,7 @@ public final class g4 extends p50 implements org.telegram.messenger.gs {
                                 textPaint = C(p50Var, richText, richText2, pageBlock);
                             }
                             ?? metricAffectingSpan3 = new MetricAffectingSpan();
-                            metricAffectingSpan3.f43018a = textPaint;
+                            metricAffectingSpan3.f43017a = textPaint;
                             spannableStringBuilder5.setSpan(metricAffectingSpan3, 0, spannableStringBuilder5.length(), 33);
                         }
                         return spannableStringBuilder5;
@@ -346,11 +346,11 @@ public final class g4 extends p50 implements org.telegram.messenger.gs {
                                     ?? replacementSpan = new ReplacementSpan();
                                     Locale locale = Locale.US;
                                     String str2 = L + "_" + L2 + "_i";
-                                    replacementSpan.f42594b = L;
-                                    replacementSpan.f42595c = L2;
+                                    replacementSpan.f42593b = L;
+                                    replacementSpan.f42594c = L2;
                                     boolean z12 = z11;
                                     ImageReceiver imageReceiver = new ImageReceiver(view);
-                                    replacementSpan.f42593a = imageReceiver;
+                                    replacementSpan.f42592a = imageReceiver;
                                     imageReceiver.K0 = true;
                                     if (z12) {
                                         imageReceiver.f22670h1 = new org.telegram.ui.Components.xb0(19);
@@ -371,10 +371,10 @@ public final class g4 extends p50 implements org.telegram.messenger.gs {
                                 }
                                 if (view != null) {
                                     ?? replacementSpan2 = new ReplacementSpan();
-                                    replacementSpan2.f42594b = L3;
-                                    replacementSpan2.f42595c = L4;
+                                    replacementSpan2.f42593b = L3;
+                                    replacementSpan2.f42594c = L4;
                                     ImageReceiver imageReceiver2 = new ImageReceiver(view);
-                                    replacementSpan2.f42593a = imageReceiver2;
+                                    replacementSpan2.f42592a = imageReceiver2;
                                     imageReceiver2.K0 = true;
                                     org.telegram.ui.web.v1.g(u1Var, imageReceiver2, new org.telegram.ui.Components.me(12));
                                     spannableStringBuilder9.setSpan(replacementSpan2, 0, spannableStringBuilder9.length(), 33);
@@ -1733,7 +1733,7 @@ public final class g4 extends p50 implements org.telegram.messenger.gs {
                     if (z10) {
                         org.telegram.ui.Components.mu0 mu0Var = new org.telegram.ui.Components.mu0(this.f47973v0[0].getContext());
                         mu0Var.f59109a = num2.intValue();
-                        mu0Var.f37644s = (-org.telegram.messenger.g0.L(56.0f)) - num.intValue();
+                        mu0Var.f37643s = (-org.telegram.messenger.g0.L(56.0f)) - num.intValue();
                         this.f47973v0[0].d.w0(mu0Var);
                         return true;
                     }

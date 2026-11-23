@@ -104,11 +104,11 @@ public final class v2 implements View.OnAttachStateChangeListener {
                 return;
             case 14:
                 ok0 ok0Var = (ok0) this.f4174b;
-                org.telegram.ui.Components.n5 n5Var = ok0Var.f38270t;
+                org.telegram.ui.Components.n5 n5Var = ok0Var.f38269t;
                 if (n5Var != null) {
                     n5Var.a();
                 }
-                org.telegram.ui.Components.n5 n5Var2 = ok0Var.f38271u;
+                org.telegram.ui.Components.n5 n5Var2 = ok0Var.f38270u;
                 if (n5Var2 != null) {
                     n5Var2.a();
                     return;
@@ -208,18 +208,18 @@ public final class v2 implements View.OnAttachStateChangeListener {
                 return;
             case 14:
                 ok0 ok0Var = (ok0) this.f4174b;
-                org.telegram.ui.Components.n5 n5Var = ok0Var.f38270t;
+                org.telegram.ui.Components.n5 n5Var = ok0Var.f38269t;
                 if (n5Var != null) {
                     n5Var.b();
                 }
-                org.telegram.ui.Components.n5 n5Var2 = ok0Var.f38271u;
+                org.telegram.ui.Components.n5 n5Var2 = ok0Var.f38270u;
                 if (n5Var2 != null) {
                     n5Var2.a();
                     return;
                 }
                 return;
             default:
-                view.removeCallbacks((Runnable) ((zm0) this.f4174b).f42945a.remove(view));
+                view.removeCallbacks((Runnable) ((zm0) this.f4174b).f42944a.remove(view));
                 view.removeOnAttachStateChangeListener(this);
                 return;
         }

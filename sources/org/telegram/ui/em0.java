@@ -121,15 +121,15 @@ public final class em0 extends FrameLayout implements org.telegram.ui.ActionBar.
         if (z10) {
             width = org.telegram.messenger.g0.L(21.0f);
         } else {
-            width = (getWidth() - n5Var.f37781s) - org.telegram.messenger.g0.L(21.0f);
+            width = (getWidth() - n5Var.f37780s) - org.telegram.messenger.g0.L(21.0f);
         }
-        int height = (getHeight() - n5Var.f37781s) / 2;
+        int height = (getHeight() - n5Var.f37780s) / 2;
         if (org.telegram.messenger.hd.f24444a0) {
-            width2 = org.telegram.messenger.g0.L(21.0f) + n5Var.f37781s;
+            width2 = org.telegram.messenger.g0.L(21.0f) + n5Var.f37780s;
         } else {
             width2 = getWidth() - org.telegram.messenger.g0.L(21.0f);
         }
-        n5Var.setBounds(width, height, width2, (getHeight() + n5Var.f37781s) / 2);
+        n5Var.setBounds(width, height, width2, (getHeight() + n5Var.f37780s) / 2);
     }
 
     @Override

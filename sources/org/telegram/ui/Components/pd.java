@@ -3,31 +3,31 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class pd implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38571a;
-    public final ChatActivityEnterView f38572b;
+    public final int f38570a;
+    public final ChatActivityEnterView f38571b;
 
     public pd(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f38571a = i7;
-        this.f38572b = chatActivityEnterView;
+        this.f38570a = i7;
+        this.f38571b = chatActivityEnterView;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f38571a;
+        int i7 = this.f38570a;
         float f10 = 1.0f;
-        ChatActivityEnterView chatActivityEnterView = this.f38572b;
+        ChatActivityEnterView chatActivityEnterView = this.f38571b;
         switch (i7) {
             case 0:
                 se seVar = chatActivityEnterView.f32766z2;
                 if (seVar != null) {
-                    seVar.setTranslationX(seVar.f39560a);
+                    seVar.setTranslationX(seVar.f39559a);
                     return;
                 }
                 return;
             case 1:
                 se seVar2 = chatActivityEnterView.f32766z2;
                 if (seVar2 != null) {
-                    seVar2.setTranslationX(seVar2.f39560a);
+                    seVar2.setTranslationX(seVar2.f39559a);
                     return;
                 }
                 return;

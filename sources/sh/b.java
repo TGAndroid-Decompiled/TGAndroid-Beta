@@ -205,7 +205,7 @@ public final class b extends FrameLayout implements ViewTreeObserver.OnPreDrawLi
             u2 u2Var = this.f57466b;
             ((Drawable) u2Var.f12654c).setColorFilter(porterDuffColorFilter);
             ((Drawable) u2Var.d).setColorFilter(porterDuffColorFilter);
-            ((Drawable) this.f57467c.f39920c).setColorFilter(porterDuffColorFilter);
+            ((Drawable) this.f57467c.f39919c).setColorFilter(porterDuffColorFilter);
             u uVar = this.f57465a;
             uVar.setCursorColor(i7);
             uVar.setHandlesColor(i7);

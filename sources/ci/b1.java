@@ -205,8 +205,8 @@ public final class b1 {
                 q80Var2.D = true;
             } else if (q80Var.c() || ((q80) this.h).d()) {
                 q80 q80Var3 = (q80) this.h;
-                q80Var3.f38814b = -1L;
-                q80Var3.f38815c = -1L;
+                q80Var3.f38813b = -1L;
+                q80Var3.f38814c = -1L;
             }
         } else {
             q80 q80Var4 = (q80) this.h;
@@ -218,7 +218,7 @@ public final class b1 {
         q80 q80Var5 = (q80) this.h;
         if (q80Var5 != null && !q80Var5.c()) {
             q80 q80Var6 = (q80) this.h;
-            q80Var6.f38834y = path;
+            q80Var6.f38833y = path;
             q80Var6.g(m6.r1(0.7f, this.f5617a), m6.r1(1.3f, this.f5617a), m6.r1(1.5f, this.f5617a), m6.r1(2.0f, this.f5617a));
             ((q80) this.h).setBounds(rect);
             canvas.save();

@@ -50,7 +50,7 @@ public final class fb extends View {
         n6Var.u(-1);
         n6Var.s(org.telegram.messenger.g0.N(1.33f), org.telegram.messenger.g0.L(1.0f), 1073741824);
         n6Var.t(hd.N0(2131743700, null), true, true);
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
     }
 
     public final void a(boolean z10, boolean z11) {
@@ -70,7 +70,7 @@ public final class fb extends View {
         this.f14662f = z12;
         oh0 oh0Var = this.f14658a;
         if (z12) {
-            if (oh0Var.f38207b0 > 34) {
+            if (oh0Var.f38206b0 > 34) {
                 oh0Var.N(0, false, false);
             }
             oh0Var.P(33);

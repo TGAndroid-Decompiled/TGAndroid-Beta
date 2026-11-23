@@ -15,7 +15,7 @@ public final class b00 extends dk0 {
         if (f1Var.f59169f == 2) {
             int b10 = f1Var.b();
             i00 i00Var = this.f33685c;
-            if (b10 >= i00Var.f36080n2 && f1Var.b() <= i00Var.f36081o2) {
+            if (b10 >= i00Var.f36079n2 && f1Var.b() <= i00Var.f36080o2) {
                 return true;
             }
             return false;
@@ -25,7 +25,7 @@ public final class b00 extends dk0 {
 
     @Override
     public final int b() {
-        return this.f33685c.f36077k2;
+        return this.f33685c.f36076k2;
     }
 
     @Override
@@ -35,8 +35,8 @@ public final class b00 extends dk0 {
         if (i7 == 0) {
             return 0;
         }
-        if (i7 != i00Var.f36078l2 && i7 != i00Var.f36082p2 && i7 != i00Var.f36086t2) {
-            if (i7 != i00Var.f36079m2 && i7 != i00Var.f36083q2) {
+        if (i7 != i00Var.f36077l2 && i7 != i00Var.f36081p2 && i7 != i00Var.f36085t2) {
+            if (i7 != i00Var.f36078m2 && i7 != i00Var.f36082q2) {
                 return 2;
             }
             return 3;
@@ -62,8 +62,8 @@ public final class b00 extends dk0 {
             } else {
                 z10 = true;
             }
-            h00Var = new h00(i00Var, context, z10, i00Var.f36069b2, i00Var.Z1, i00Var.f36068a2);
-            i00Var.f36076j2 = h00Var;
+            h00Var = new h00(i00Var, context, z10, i00Var.f36068b2, i00Var.Z1, i00Var.f36067a2);
+            i00Var.f36075j2 = h00Var;
         } else {
             h00Var = null;
             if (i7 == 1) {

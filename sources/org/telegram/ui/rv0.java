@@ -296,7 +296,7 @@ public final class rv0 extends org.telegram.ui.ActionBar.j {
                         f11.putLong("dialog_id", -this.f51776b.f43593f1);
                         org.telegram.ui.Components.k90 k90Var = new org.telegram.ui.Components.k90(f11, null);
                         ProfileActivity profileActivity14 = this.f51776b;
-                        k90Var.f36865c = profileActivity14.f43702v2;
+                        k90Var.f36864c = profileActivity14.f43702v2;
                         profileActivity14.presentFragment(k90Var);
                     } else if (i7 == 20) {
                         AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(0, this.f51776b.getParentActivity(), this.f51776b.A0);
@@ -400,9 +400,9 @@ public final class rv0 extends org.telegram.ui.ActionBar.j {
                         TLRPC.Photo F = this.f51776b.f43652o0.F(realPosition);
                         if (F != null) {
                             av0 av0Var2 = this.f51776b.f43652o0;
-                            ArrayList arrayList2 = av0Var2.f35881c1;
-                            ArrayList arrayList3 = av0Var2.f35880b1;
-                            ArrayList arrayList4 = av0Var2.f35879a1;
+                            ArrayList arrayList2 = av0Var2.f35880c1;
+                            ArrayList arrayList3 = av0Var2.f35879b1;
+                            ArrayList arrayList4 = av0Var2.f35878a1;
                             ArrayList arrayList5 = av0Var2.Z0;
                             ArrayList arrayList6 = av0Var2.X0;
                             ArrayList arrayList7 = av0Var2.V0;
@@ -412,7 +412,7 @@ public final class rv0 extends org.telegram.ui.ActionBar.j {
                             if (voVar != null) {
                                 voVar.c(realPosition);
                             } else if (realPosition > 0 && realPosition < arrayList9.size()) {
-                                av0Var2.f35882d1++;
+                                av0Var2.f35881d1++;
                                 arrayList9.remove(realPosition);
                                 arrayList9.add(0, (TLRPC.Photo) arrayList9.get(realPosition));
                                 arrayList7.remove(realPosition);

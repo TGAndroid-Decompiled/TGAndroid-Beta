@@ -157,7 +157,7 @@ public final class tv0 extends org.telegram.ui.Components.du0 implements r0.l {
             return ev0Var.g(motionEvent);
         }
         vv0 vv0Var = profileActivity.O;
-        if (vv0Var != null && (ds0Var = (ds0VarArr = vv0Var.f36651n0)[0]) != null && ds0Var.h.getFastScroll() != null && ds0VarArr[0].h.getFastScroll().f36540n) {
+        if (vv0Var != null && (ds0Var = (ds0VarArr = vv0Var.f36650n0)[0]) != null && ds0Var.h.getFastScroll() != null && ds0VarArr[0].h.getFastScroll().f36539n) {
             vv0 vv0Var2 = profileActivity.O;
             if (vv0Var2.d) {
                 return vv0Var2.Z(motionEvent);

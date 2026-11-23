@@ -48,7 +48,7 @@ public final class ma implements View.OnClickListener {
                 SpannableStringBuilder R2 = org.telegram.messenger.g0.R2(N0, i13, 0, new f(cxVar, 12), null);
                 SpannableString spannableString = new SpannableString(">");
                 nq nqVar = new nq(2131230875, 0);
-                nqVar.f37955y = org.telegram.ui.ActionBar.m6.x0(null, i13, false);
+                nqVar.f37954y = org.telegram.ui.ActionBar.m6.x0(null, i13, false);
                 nqVar.I = 0.7f;
                 nqVar.J = 0.7f;
                 nqVar.F = org.telegram.messenger.g0.L(12.0f);

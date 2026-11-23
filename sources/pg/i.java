@@ -181,8 +181,8 @@ public final class i extends FrameLayout implements gs {
         oq oqVar = new oq(mutate, j02, 0, 0);
         int L = g0.L(56.0f);
         int L2 = g0.L(56.0f);
-        oqVar.f38333e = L;
-        oqVar.f38334f = L2;
+        oqVar.f38332e = L;
+        oqVar.f38333f = L2;
         this.f55662b = oqVar;
         Drawable drawable = getResources().getDrawable(2131232568);
         t6.x(this, drawable, m6.f29454h5, null, mode);

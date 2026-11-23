@@ -50,7 +50,7 @@ public class i2 extends org.telegram.ui.ActionBar.w2 implements gs {
         } else {
             i7 = C1;
         }
-        i1Var.f36433b = i7;
+        i1Var.f36432b = i7;
         i1Var.setAdapter(new j1(this, z10, context));
         this.f30176b.addView(i1Var, c8.ma.e(-1, -1, 87));
         new o3(this.f30176b, false, new e1(this, 0));
@@ -58,7 +58,7 @@ public class i2 extends org.telegram.ui.ActionBar.w2 implements gs {
             h2 h2Var = new h2(context);
             this.f14778r1 = h2Var;
             h2Var.H = new e1(this, 1);
-            h2Var.G = i1Var.f36433b;
+            h2Var.G = i1Var.f36432b;
             h2Var.invalidate();
             this.f30176b.addView(h2Var, c8.ma.e(-1, -2, 87));
         }

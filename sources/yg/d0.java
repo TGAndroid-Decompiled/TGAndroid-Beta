@@ -37,7 +37,7 @@ public final class d0 extends a9 {
         this.f61277y = colorDrawable;
         this.E = X0;
         oq oqVar = new oq(colorDrawable, X0, 0, 0);
-        oqVar.f38339x = true;
+        oqVar.f38338x = true;
         setBackground(oqVar);
     }
 

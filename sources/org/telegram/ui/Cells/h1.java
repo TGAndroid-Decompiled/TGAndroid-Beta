@@ -21,7 +21,7 @@ public final class h1 extends Property {
             case 1:
                 return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
             case 2:
-                return Float.valueOf(((xi0) obj).f42142w);
+                return Float.valueOf(((xi0) obj).f42141w);
             case 3:
                 return Float.valueOf(((i01) obj).h);
             default:

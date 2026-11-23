@@ -363,7 +363,7 @@ public class ra extends FrameLayout implements gs, org.telegram.ui.ActionBar.b6 
     public final void g(int i7, o41 o41Var, boolean z10) {
         CharSequence N0;
         CharSequence N02;
-        long j3 = o41Var.f38103y;
+        long j3 = o41Var.f38102y;
         if (j3 > 0) {
             TLRPC.User c22 = np.u1(i7).c2(Long.valueOf(j3));
             String o4 = p10.o(c22);
@@ -519,7 +519,7 @@ public class ra extends FrameLayout implements gs, org.telegram.ui.ActionBar.b6 
             op opVar = this.f31758e;
             if (opVar != null && opVar.getVisibility() == 0) {
                 accessibilityNodeInfo.setCheckable(true);
-                accessibilityNodeInfo.setChecked(opVar.f38321a.f32874q);
+                accessibilityNodeInfo.setChecked(opVar.f38320a.f32874q);
                 accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             }
         }

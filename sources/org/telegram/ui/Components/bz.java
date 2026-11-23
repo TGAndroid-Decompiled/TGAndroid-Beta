@@ -30,9 +30,9 @@ public final class bz implements Runnable {
                 ez ezVar = this.f33945b;
                 ky kyVar = ezVar.f35023c0;
                 SurfaceTexture surfaceTexture = ezVar.f35032x;
-                y51 y51Var = (y51) kyVar.f37038b;
-                if (y51Var.f42322a != null) {
-                    y51Var.f42322a.y0(new Surface(surfaceTexture));
+                y51 y51Var = (y51) kyVar.f37037b;
+                if (y51Var.f42321a != null) {
+                    y51Var.f42321a.y0(new Surface(surfaceTexture));
                     return;
                 }
                 return;

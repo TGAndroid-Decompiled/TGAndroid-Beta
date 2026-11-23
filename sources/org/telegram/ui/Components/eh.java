@@ -36,8 +36,8 @@ public final class eh implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 4:
                 ui uiVar3 = this.f34794b;
-                mi miVar = uiVar3.f40441w2;
-                zk zkVar = uiVar3.f40421r2;
+                mi miVar = uiVar3.f40440w2;
+                zk zkVar = uiVar3.f40420r2;
                 if (miVar == zkVar && zkVar != null) {
                     zkVar.invalidate();
                     return;

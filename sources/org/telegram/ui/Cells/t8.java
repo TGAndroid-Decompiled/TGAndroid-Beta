@@ -173,7 +173,7 @@ public final class t8 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.checkbox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f31882c.f38321a.f32874q);
+        accessibilityNodeInfo.setChecked(this.f31882c.f38320a.f32874q);
         StringBuilder sb2 = new StringBuilder();
         sb2.append(this.f31880a.getText());
         TextView textView = this.f31881b;

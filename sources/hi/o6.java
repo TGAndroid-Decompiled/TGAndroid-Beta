@@ -44,7 +44,7 @@ public final class o6 implements r10 {
                     if (TextUtils.isEmpty(u6Var.f15559n2) && !u6Var.d2) {
                         c51Var.V();
                         o41 c10 = o41.c(1, 2131232028, hd.N0(2131744366, null));
-                        c10.f38097r = true;
+                        c10.f38096r = true;
                         arrayList.add(c10);
                         c51Var.U();
                         L += org.telegram.messenger.g0.L(50.0f);

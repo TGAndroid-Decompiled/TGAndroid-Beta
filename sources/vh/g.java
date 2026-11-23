@@ -85,15 +85,15 @@ public final class g extends sa implements te.b {
         this.f30215x = true;
         this.f30201n = false;
         this.G1 = false;
-        this.f39540w1 = false;
+        this.f39539w1 = false;
         this.f59614i2 = ((j0) np.u1(this.f30173a).A7.M.f15508b).f24812c;
         g0.S(getWindow());
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i7 = this.f30211u0;
         ek0Var.setPadding(i7, 0, i7, g0.L(68.0f) + g0.f24041n);
-        this.f39532o1.setClipToPadding(false);
-        this.f39532o1.j(new i1(this, 1));
-        this.f39532o1.setOnItemClickListener(new d(context, h6Var, this));
+        this.f39531o1.setClipToPadding(false);
+        this.f39531o1.j(new i1(this, 1));
+        this.f39531o1.setOnItemClickListener(new d(context, h6Var, this));
         hi.e eVar = new hi.e(context, h6Var, true);
         this.f59607a2 = eVar;
         eVar.f();
@@ -110,7 +110,7 @@ public final class g extends sa implements te.b {
         jVar.setPadding(g0.L(16.0f), 0, g0.L(16.0f), 0);
         jVar.setVisibility(8);
         ra.a(jVar);
-        this.f39533p1.s().addView(jVar, ma.t(-2, 48, 16, 12, 0, 12, 0));
+        this.f39532p1.s().addView(jVar, ma.t(-2, 48, 16, 12, 0, 12, 0));
         jVar.setOnClickListener(new a(this, 1));
         e10 e10Var = new e10(context, h6Var);
         String N0 = hd.N0(2131746933, null);
@@ -145,8 +145,8 @@ public final class g extends sa implements te.b {
         kVar.o(nrVar);
         kVar.C = false;
         kVar.f59194m = false;
-        this.f39532o1.setItemAnimator(kVar);
-        this.f39532o1.i(new e(this, h6Var));
+        this.f39531o1.setItemAnimator(kVar);
+        this.f39531o1.i(new e(this, h6Var));
         z zVar = new z(this, 2);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(k10.f24968t0);
         TLRPC.TL_help_getCountriesList tL_help_getCountriesList = new TLRPC.TL_help_getCountriesList();
@@ -241,7 +241,7 @@ public final class g extends sa implements te.b {
             z10 = true;
         }
         rect.set(0, L, this.f30176b.getMeasuredWidth(), measuredHeight);
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         ek0Var.setClipBounds(rect);
         if (z10) {
             ek0Var.invalidate();
@@ -253,7 +253,7 @@ public final class g extends sa implements te.b {
         float f10 = g0.f24046q.y;
         int i7 = 0;
         while (true) {
-            ek0Var = this.f39532o1;
+            ek0Var = this.f39531o1;
             if (i7 >= ek0Var.getChildCount()) {
                 break;
             }

@@ -84,7 +84,7 @@ public final class z8 implements org.telegram.ui.Components.fb {
                 return;
             case 3:
                 ContactsActivity contactsActivity = (ContactsActivity) this.f54492b;
-                contactsActivity.f43036k0 = Math.max(0.0f, (f10 - contactsActivity.f43037l0) - contactsActivity.f43035j0);
+                contactsActivity.f43035k0 = Math.max(0.0f, (f10 - contactsActivity.f43036l0) - contactsActivity.f43034j0);
                 contactsActivity.j0();
                 return;
             case 4:
@@ -161,11 +161,11 @@ public final class z8 implements org.telegram.ui.Components.fb {
                 if (i7 == 1) {
                     return 0;
                 }
-                return Math.round(bnVar.U.getInputBubbleHeight() + org.telegram.messenger.g0.L(16.0f) + bnVar.t9(org.telegram.ui.Components.w11.f41627c) + bnVar.f46236w.d());
+                return Math.round(bnVar.U.getInputBubbleHeight() + org.telegram.messenger.g0.L(16.0f) + bnVar.t9(org.telegram.ui.Components.w11.f41626c) + bnVar.f46236w.d());
             case 3:
                 ContactsActivity contactsActivity = (ContactsActivity) this.f54492b;
-                i10 = contactsActivity.f43037l0;
-                i11 = contactsActivity.f43035j0;
+                i10 = contactsActivity.f43036l0;
+                i11 = contactsActivity.f43034j0;
                 break;
             case 4:
                 cx cxVar = (cx) this.f54492b;
@@ -221,13 +221,13 @@ public final class z8 implements org.telegram.ui.Components.fb {
                     L = ((int) (((org.telegram.messenger.g0.L(52.0f) - profileActivity.f43729y5.getTranslationY()) - (((1.0f - profileActivity.f43736z5[1].getAlpha()) * org.telegram.messenger.g0.L(72.0f)) * profileActivity.O.r0(9, false))) - (((1.0f - profileActivity.f43736z5[0].getAlpha()) * org.telegram.messenger.g0.L(72.0f)) * profileActivity.O.r0(8, true)))) + profileActivity.P6 + profileActivity.O6;
                 }
                 vv0 vv0Var = profileActivity.O;
-                if (vv0Var != null && vv0Var.f36614b0 != null) {
+                if (vv0Var != null && vv0Var.f36613b0 != null) {
                     f10 = vv0Var.r0(14, false);
                 } else {
                     f10 = 0.0f;
                 }
                 if (f10 > 0.0f) {
-                    org.telegram.ui.Components.gq0 gq0Var = profileActivity.O.f36614b0;
+                    org.telegram.ui.Components.gq0 gq0Var = profileActivity.O.f36613b0;
                     View view = profileActivity.fragmentView;
                     FrameLayout frameLayout = gq0Var.f4097r;
                     if (view != null && frameLayout != null && frameLayout.getVisibility() == 0 && frameLayout.getAlpha() > 0.0f) {

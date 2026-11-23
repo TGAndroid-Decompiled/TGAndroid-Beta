@@ -492,7 +492,7 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
         int i10 = -1;
         View view = this.f51853n0;
         if (view != null) {
-            float interpolation = org.telegram.ui.Components.nr.f37962g.getInterpolation(c8.l9.a((((f10 * 800.0f) - 0.0f) / 120.0f) / 1.0f, 0.0f, 1.0f));
+            float interpolation = org.telegram.ui.Components.nr.f37961g.getInterpolation(c8.l9.a((((f10 * 800.0f) - 0.0f) / 120.0f) / 1.0f, 0.0f, 1.0f));
             view.setAlpha(interpolation);
             view.setScaleX(interpolation);
             if (n()) {
@@ -524,8 +524,8 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
         this.f51830c0.setAlpha(a14);
         this.f51840g0.setAlpha(a14);
         int i11 = 0;
-        for (int i12 = 0; i12 < this.f51835e0.f36929b.getChildCount(); i12++) {
-            this.f51835e0.f36929b.getChildAt(i12).setAlpha(a14);
+        for (int i12 = 0; i12 < this.f51835e0.f36928b.getChildCount(); i12++) {
+            this.f51835e0.f36928b.getChildAt(i12).setAlpha(a14);
         }
         if (this.f51857p1 != null) {
             invalidate();
@@ -547,8 +547,8 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
         l01Var.setScaleX(Math.min(this.f51828b1, 1.0f));
         float pivotX = l01Var.getPivotX();
         float sqrt = (float) Math.sqrt(Math.max(Math.pow(n01Var.getHeight(), 2.0d) + (pivotX * pivotX), Math.pow(n01Var.getHeight(), 2.0d) + Math.pow(n01Var.getWidth() - pivotX, 2.0d)));
-        for (int i13 = 0; i13 < this.f51835e0.f36929b.getChildCount(); i13++) {
-            View childAt = this.f51835e0.f36929b.getChildAt(i13);
+        for (int i13 = 0; i13 < this.f51835e0.f36928b.getChildCount(); i13++) {
+            View childAt = this.f51835e0.f36928b.getChildAt(i13);
             if (f10 == 0.0f) {
                 childAt.setLayerType(2, null);
             } else if (f10 == 1.0f) {
@@ -652,7 +652,7 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
             }
             canvas.save();
             canvas.translate(0.0f, -getTranslationY());
-            this.f51857p1.f37782w = (int) (Math.pow(this.f51827b0.getAlpha(), 0.25d) * alpha * this.n1);
+            this.f51857p1.f37781w = (int) (Math.pow(this.f51827b0.getAlpha(), 0.25d) * alpha * this.n1);
             if (this.f51859q1 == null) {
                 this.f51859q1 = new Rect();
             }
@@ -689,7 +689,7 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
             canvas.scale(scaleY, scaleY, rect3.left, rect3.top);
             this.f51857p1.draw(canvas);
             org.telegram.ui.Components.n5 n5Var3 = this.f51857p1;
-            n5Var3.f37782w = alpha;
+            n5Var3.f37781w = alpha;
             n5Var3.setBounds(bounds);
             canvas.restore();
         }
@@ -800,7 +800,7 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
         }
         org.telegram.ui.Components.n5 n5Var = this.f51857p1;
         if (n5Var != null) {
-            n5Var.f37779n = this;
+            n5Var.f37778n = this;
         }
     }
 
@@ -821,7 +821,7 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
         }
         org.telegram.ui.Components.n5 n5Var = this.f51857p1;
         if (n5Var != null) {
-            n5Var.f37779n = null;
+            n5Var.f37778n = null;
         }
     }
 
@@ -937,12 +937,12 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
             this.U = z10;
             if (!z10) {
                 org.telegram.messenger.g0.d0(this.f51844i0, new fi.e(25));
-                for (int i7 = 0; i7 < this.f51835e0.f36929b.getChildCount(); i7++) {
-                    View childAt = this.f51835e0.f36929b.getChildAt(i7);
+                for (int i7 = 0; i7 < this.f51835e0.f36928b.getChildCount(); i7++) {
+                    View childAt = this.f51835e0.f36928b.getChildAt(i7);
                     childAt.setScaleX(1.0f);
                     childAt.setScaleY(1.0f);
                 }
-                this.f51835e0.f36929b.invalidate();
+                this.f51835e0.f36928b.invalidate();
             }
         }
     }
@@ -1161,7 +1161,7 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
         this.f51847j1 = ofFloat;
         ofFloat.addUpdateListener(new vz0(this, 2));
         this.f51847j1.setDuration(200L);
-        this.f51847j1.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+        this.f51847j1.setInterpolator(org.telegram.ui.Components.nr.f37960f);
         this.f51847j1.start();
     }
 
@@ -1207,7 +1207,7 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
         this.f51857p1 = n5Var;
         this.f51862r1 = view;
         if (this.J && n5Var != null) {
-            n5Var.f37779n = this;
+            n5Var.f37778n = this;
         }
         invalidate();
     }
@@ -1244,7 +1244,7 @@ public abstract class s11 extends FrameLayout implements org.telegram.messenger.
         } else {
             f10 = 0.0f;
         }
-        org.telegram.messenger.o10.o(animate.translationY(f10).setUpdateListener(new vz0(this, 1)), org.telegram.ui.Components.nr.f37961f, 160L);
+        org.telegram.messenger.o10.o(animate.translationY(f10).setUpdateListener(new vz0(this, 1)), org.telegram.ui.Components.nr.f37960f, 160L);
         if (this.H1 && z11) {
             g01Var.setPadding(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(54.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(38.0f));
         } else {

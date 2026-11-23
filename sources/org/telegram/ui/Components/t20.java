@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class t20 implements jg.y1 {
-    public final u20 f39755a;
+    public final u20 f39754a;
 
     public t20(u20 u20Var) {
-        this.f39755a = u20Var;
+        this.f39754a = u20Var;
     }
 
     @Override
     public final a0.h K0() {
-        return this.f39755a.f40217x.Z1;
+        return this.f39754a.f40216x.Z1;
     }
 
     @Override
@@ -20,20 +20,20 @@ public final class t20 implements jg.y1 {
 
     @Override
     public final void r(int i7) {
-        u20 u20Var = this.f39755a;
-        v20 v20Var = u20Var.f40217x;
-        if (i7 >= 0 && i7 == u20Var.f40213n && !u20Var.h) {
+        u20 u20Var = this.f39754a;
+        v20 v20Var = u20Var.f40216x;
+        if (i7 >= 0 && i7 == u20Var.f40212n && !u20Var.h) {
             boolean z10 = true;
-            int i10 = u20Var.f40212f - 1;
-            if (v20Var.f39088u1.getVisibility() != 0) {
+            int i10 = u20Var.f40211f - 1;
+            if (v20Var.f39087u1.getVisibility() != 0) {
                 z10 = false;
             }
             u20Var.f();
-            if (u20Var.f40212f > i10) {
+            if (u20Var.f40211f > i10) {
                 v20Var.P0(i10);
             }
-            if (!u20Var.d.e() && v20Var.f39082o1.R0()) {
-                v20Var.f39088u1.e(false, z10);
+            if (!u20Var.d.e() && v20Var.f39081o1.R0()) {
+                v20Var.f39087u1.e(false, z10);
             }
         }
     }

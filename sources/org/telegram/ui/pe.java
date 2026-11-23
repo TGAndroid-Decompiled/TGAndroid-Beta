@@ -60,15 +60,15 @@ public final class pe implements Comparator {
                 }
                 return 0;
             case 5:
-                e12 = ((org.telegram.ui.Components.h9) obj2).f35833b;
-                e13 = ((org.telegram.ui.Components.h9) obj).f35833b;
+                e12 = ((org.telegram.ui.Components.h9) obj2).f35832b;
+                e13 = ((org.telegram.ui.Components.h9) obj).f35832b;
                 break;
             case 6:
-                e12 = ((org.telegram.ui.Components.h9) obj2).f35833b;
-                e13 = ((org.telegram.ui.Components.h9) obj).f35833b;
+                e12 = ((org.telegram.ui.Components.h9) obj2).f35832b;
+                e13 = ((org.telegram.ui.Components.h9) obj).f35832b;
                 break;
             case 7:
-                return Long.compare(((org.telegram.ui.Components.qc) obj).f38870c, ((org.telegram.ui.Components.qc) obj2).f38870c);
+                return Long.compare(((org.telegram.ui.Components.qc) obj).f38869c, ((org.telegram.ui.Components.qc) obj2).f38869c);
             case 8:
                 Size size = (Size) obj;
                 Size size2 = (Size) obj2;
@@ -126,8 +126,8 @@ public final class pe implements Comparator {
                 }
                 return 0;
             case 15:
-                int i7 = ((org.telegram.ui.Components.po0) obj).f38648c;
-                int i10 = ((org.telegram.ui.Components.po0) obj2).f38648c;
+                int i7 = ((org.telegram.ui.Components.po0) obj).f38647c;
+                int i10 = ((org.telegram.ui.Components.po0) obj2).f38647c;
                 if (i7 < i10) {
                     return 1;
                 }
@@ -136,8 +136,8 @@ public final class pe implements Comparator {
                 }
                 return 0;
             case 16:
-                e12 = ((org.telegram.ui.Components.js0) obj2).f36601c;
-                e13 = ((org.telegram.ui.Components.js0) obj).f36601c;
+                e12 = ((org.telegram.ui.Components.js0) obj2).f36600c;
+                e13 = ((org.telegram.ui.Components.js0) obj).f36600c;
                 break;
             case 17:
                 return String.valueOf(org.telegram.ui.ActionBar.v4.c(((Integer) obj).intValue())).compareTo(String.valueOf(org.telegram.ui.ActionBar.v4.c(((Integer) obj2).intValue())));
@@ -152,9 +152,9 @@ public final class pe implements Comparator {
                 }
                 return 0;
             case 19:
-                return Integer.compare(((org.telegram.ui.Components.voip.f) obj2).f40999b, ((org.telegram.ui.Components.voip.f) obj).f40999b);
+                return Integer.compare(((org.telegram.ui.Components.voip.f) obj2).f40998b, ((org.telegram.ui.Components.voip.f) obj).f40998b);
             case 20:
-                return Integer.compare(((org.telegram.ui.Components.voip.f) obj).f41000c, ((org.telegram.ui.Components.voip.f) obj2).f41000c);
+                return Integer.compare(((org.telegram.ui.Components.voip.f) obj).f40999c, ((org.telegram.ui.Components.voip.f) obj2).f40999c);
             case 21:
                 org.telegram.messenger.z5 z5Var = (org.telegram.messenger.z5) obj;
                 org.telegram.messenger.z5 z5Var2 = (org.telegram.messenger.z5) obj2;
@@ -226,7 +226,7 @@ public final class pe implements Comparator {
                 }
                 return 0;
             case 22:
-                return Long.compare(((lt) obj2).f38870c, ((lt) obj).f38870c);
+                return Long.compare(((lt) obj2).f38869c, ((lt) obj).f38869c);
             case 23:
                 int i16 = (org.telegram.messenger.k10.i(((Integer) obj).intValue()).Z > org.telegram.messenger.k10.i(((Integer) obj2).intValue()).Z ? 1 : (org.telegram.messenger.k10.i(((Integer) obj).intValue()).Z == org.telegram.messenger.k10.i(((Integer) obj2).intValue()).Z ? 0 : -1));
                 if (i16 > 0) {

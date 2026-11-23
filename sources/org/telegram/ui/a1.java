@@ -313,7 +313,7 @@ public final class a1 extends FrameLayout implements org.telegram.ui.Cells.i9, o
             String str = pageblockchannel.channel.title;
             int L = (size - org.telegram.messenger.g0.L(52.0f)) - this.f45462r;
             TL_iv.pageBlockChannel pageblockchannel2 = this.G;
-            Layout.Alignment[] alignmentArr = org.telegram.ui.Components.zu0.f42994a;
+            Layout.Alignment[] alignmentArr = org.telegram.ui.Components.zu0.f42993a;
             if (alignmentArr.length >= 5) {
                 alignment = alignmentArr[3];
             } else {

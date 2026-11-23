@@ -246,7 +246,7 @@ public final class g implements OnCompleteListener, Continuation, q1, m4, w10, r
                     Object obj3 = G.H;
                     if (obj3 instanceof TL_stars.StarGift) {
                         TL_stars.StarGift starGift = (TL_stars.StarGift) obj3;
-                        boolean z10 = G.f38098s;
+                        boolean z10 = G.f38097s;
                         if (!TextUtils.isEmpty(starGift.gift_address) && i8Var.d2 && !((org.telegram.messenger.h0) np.u1(i8Var.f30173a).A7.f26252x.f14030b).f24341c) {
                             alertDialog$Builder = new AlertDialog$Builder(0, i8Var.getContext(), i8Var.J0);
                             r42 = 0;

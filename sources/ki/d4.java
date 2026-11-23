@@ -33,7 +33,7 @@ public final class d4 extends org.telegram.ui.ActionBar.g2 implements gs {
             int i10 = d3.f18655b;
             o41 K = o41.K(d3.class);
             K.H = obj;
-            K.f38098s = false;
+            K.f38097s = false;
             arrayList.add(K);
         }
         if (e10.h) {

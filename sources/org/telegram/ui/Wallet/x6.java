@@ -804,7 +804,7 @@ public class x6 extends FrameLayout implements gs {
         v6 v6Var = new v6(this, context, 0);
         this.O = v6Var;
         v6Var.getDrawable().N = org.telegram.messenger.g0.L(4096.0f);
-        v6Var.f38116c.m(0.35f, 320L, 3.5f, nrVar);
+        v6Var.f38115c.m(0.35f, 320L, 3.5f, nrVar);
         v6Var.setScaleProperty(0.6f);
         v6Var.setTypeface(org.telegram.messenger.g0.o1("fonts/gram.ttf"));
         v6Var.setTextSize(org.telegram.messenger.g0.L(23.0f));
@@ -813,7 +813,7 @@ public class x6 extends FrameLayout implements gs {
         linearLayout.addView(v6Var, c8.ma.o(-1, 28));
         v6 v6Var2 = new v6(this, context, 1);
         this.P = v6Var2;
-        v6Var2.f38116c.m(0.35f, 320L, 3.5f, nrVar);
+        v6Var2.f38115c.m(0.35f, 320L, 3.5f, nrVar);
         v6Var2.setScaleProperty(0.6f);
         v6Var2.setTypeface(org.telegram.messenger.g0.o1("fonts/gram.ttf"));
         v6Var2.setTextSize(org.telegram.messenger.g0.L(14.0f));

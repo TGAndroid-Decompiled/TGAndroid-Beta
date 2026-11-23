@@ -86,7 +86,7 @@ public final class w7 extends View implements s9 {
             if (hd.f24444a0) {
                 alignment = zu0.a();
             } else {
-                Layout.Alignment[] alignmentArr = zu0.f42994a;
+                Layout.Alignment[] alignmentArr = zu0.f42993a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -151,7 +151,7 @@ public final class w7 extends View implements s9 {
             ofFloat.addUpdateListener(new ah.g(this, 24));
             this.J.addListener(new ai.k0(this, 17));
             this.J.setDuration(180L);
-            this.J.setInterpolator(nr.f37962g);
+            this.J.setInterpolator(nr.f37961g);
             this.J.start();
             return;
         }

@@ -31,7 +31,7 @@ public final class a extends ReplacementSpan {
         n6Var.w(org.telegram.messenger.g0.L(11.5f));
         n6Var.x(org.telegram.messenger.g0.o());
         n6Var.t("", true, true);
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
         Drawable mutate = r1Var.getContext().getDrawable(2131231931).mutate();
         this.f59733a = mutate;
         Drawable mutate2 = r1Var.getContext().getDrawable(2131231932).mutate();
@@ -65,15 +65,15 @@ public final class a extends ReplacementSpan {
         TextPaint textPaint = this.f59737f;
         int color = textPaint.getColor();
         n6 n6Var = this.f59736e;
-        int color2 = n6Var.f37794a.getColor();
+        int color2 = n6Var.f37793a.getColor();
         Drawable drawable = this.f59734b;
         Drawable drawable2 = this.f59733a;
         if (color != color2) {
             n6Var.u(textPaint.getColor());
-            int color3 = n6Var.f37794a.getColor();
+            int color3 = n6Var.f37793a.getColor();
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
             drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
-            drawable.setColorFilter(new PorterDuffColorFilter(n6Var.f37794a.getColor(), mode));
+            drawable.setColorFilter(new PorterDuffColorFilter(n6Var.f37793a.getColor(), mode));
         }
         canvas.save();
         if (this.d && !this.f59735c) {
@@ -90,7 +90,7 @@ public final class a extends ReplacementSpan {
         }
         canvas.translate(org.telegram.messenger.g0.L(16.0f), 0.0f);
         Rect rect = org.telegram.messenger.g0.Q;
-        rect.set(0, 0, (int) n6Var.c(), (int) n6Var.f37800e);
+        rect.set(0, 0, (int) n6Var.c(), (int) n6Var.f37799e);
         n6Var.setBounds(rect);
         n6Var.draw(canvas);
         canvas.restore();

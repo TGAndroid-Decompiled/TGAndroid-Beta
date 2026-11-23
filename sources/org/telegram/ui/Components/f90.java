@@ -210,7 +210,7 @@ public final class f90 extends Drawable {
         super.invalidateSelf();
         ky kyVar = this.A;
         if (kyVar != null) {
-            ((View) kyVar.f37038b).invalidate();
+            ((View) kyVar.f37037b).invalidate();
         }
     }
 

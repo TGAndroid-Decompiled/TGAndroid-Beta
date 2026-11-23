@@ -43,7 +43,7 @@ public final class fp implements Runnable {
                         String str = user.first_name;
                         org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(bnVar.getParentActivity(), bnVar.Ba);
                         obVar.d(2131624049, "Shield");
-                        org.telegram.messenger.f3.q("UserAddedAsAdminHint", null, 2131743523, new Object[]{str}, obVar.f38158b);
+                        org.telegram.messenger.f3.q("UserAddedAsAdminHint", null, 2131743523, new Object[]{str}, obVar.f38157b);
                         org.telegram.ui.Components.gc.g(bnVar, obVar, 1500).j();
                         return;
                     } else if (!z10 && !npVar.M && npVar.L) {

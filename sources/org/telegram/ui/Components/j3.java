@@ -7,38 +7,38 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class j3 implements View.OnClickListener {
-    public final int f36384a = 1;
-    public final int[] f36385b;
-    public final Object f36386c;
+    public final int f36383a = 1;
+    public final int[] f36384b;
+    public final Object f36385c;
     public final Object d;
-    public final KeyEvent.Callback f36387e;
-    public final ViewGroup f36388f;
+    public final KeyEvent.Callback f36386e;
+    public final ViewGroup f36387f;
     public final Object h;
-    public final Object f36389n;
-    public final Object f36390r;
+    public final Object f36388n;
+    public final Object f36389r;
 
     public j3(FrameLayout frameLayout, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.ui.ActionBar.w2 w2Var, FrameLayout frameLayout2, int[] iArr, String[] strArr, int[] iArr2, org.telegram.messenger.camera.i iVar) {
-        this.f36386c = frameLayout;
+        this.f36385c = frameLayout;
         this.d = h6Var;
-        this.f36387e = w2Var;
-        this.f36388f = frameLayout2;
-        this.f36385b = iArr;
+        this.f36386e = w2Var;
+        this.f36387f = frameLayout2;
+        this.f36384b = iArr;
         this.h = strArr;
-        this.f36389n = iArr2;
-        this.f36390r = iVar;
+        this.f36388n = iArr2;
+        this.f36389r = iVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f36384a;
-        Object obj = this.f36390r;
-        Object obj2 = this.f36389n;
+        int i7 = this.f36383a;
+        Object obj = this.f36389r;
+        Object obj2 = this.f36388n;
         Object obj3 = this.h;
-        int[] iArr = this.f36385b;
-        ViewGroup viewGroup = this.f36388f;
-        KeyEvent.Callback callback = this.f36387e;
+        int[] iArr = this.f36384b;
+        ViewGroup viewGroup = this.f36387f;
+        KeyEvent.Callback callback = this.f36386e;
         Object obj4 = this.d;
-        Object obj5 = this.f36386c;
+        Object obj5 = this.f36385c;
         switch (i7) {
             case 0:
                 di.i0 i0Var = (di.i0) obj2;
@@ -91,13 +91,13 @@ public final class j3 implements View.OnClickListener {
     }
 
     public j3(boolean[] zArr, tb0 tb0Var, tb0 tb0Var2, tb0 tb0Var3, tb0 tb0Var4, di.i0 i0Var, int[] iArr, hi.w4 w4Var) {
-        this.f36386c = zArr;
+        this.f36385c = zArr;
         this.d = tb0Var;
-        this.f36387e = tb0Var2;
-        this.f36388f = tb0Var3;
+        this.f36386e = tb0Var2;
+        this.f36387f = tb0Var3;
         this.h = tb0Var4;
-        this.f36389n = i0Var;
-        this.f36385b = iArr;
-        this.f36390r = w4Var;
+        this.f36388n = i0Var;
+        this.f36384b = iArr;
+        this.f36389r = w4Var;
     }
 }

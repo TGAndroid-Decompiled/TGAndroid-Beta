@@ -232,21 +232,21 @@ public final class w81 extends org.telegram.ui.ActionBar.g2 {
             this.f53027f.setClipChildren(false);
             frameLayout2.addView(this.f53027f, c8.ma.d(-1, -1.0f, 0, 12.0f, 12.0f, 12.0f, 12.0f));
             org.telegram.ui.Components.oq e11 = qg.c.e(this.F, "");
-            this.f53033y = (qg.a) e11.f38330a;
+            this.f53033y = (qg.a) e11.f38329a;
             this.f53031w = new org.telegram.ui.Components.mk0(context);
             org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(e11, this.f53031w, 0, 0);
-            oqVar.f38339x = true;
+            oqVar.f38338x = true;
             this.f53027f.setForumIconDrawable(oqVar);
             this.f53030s = oqVar;
             org.telegram.ui.Components.mk0 mk0Var = this.f53031w;
             org.telegram.ui.Components.q9 q9Var2 = q9VarArr[0];
-            ArrayList arrayList = mk0Var.f37545n;
+            ArrayList arrayList = mk0Var.f37544n;
             if (!arrayList.contains(q9Var2)) {
                 arrayList.add(q9Var2);
             }
             org.telegram.ui.Components.mk0 mk0Var2 = this.f53031w;
             org.telegram.ui.Components.q9 q9Var3 = q9VarArr[1];
-            ArrayList arrayList2 = mk0Var2.f37545n;
+            ArrayList arrayList2 = mk0Var2.f37544n;
             if (!arrayList2.contains(q9Var3)) {
                 arrayList2.add(q9Var3);
             }

@@ -41,7 +41,7 @@ public final class vw extends org.telegram.ui.Components.du0 {
         cx cxVar = this.f52906o0;
         if (cxVar.f46788s3 && (kwVar = cxVar.D0) != null && kwVar.getVisibility() == 0) {
             kw kwVar2 = cxVar.D0;
-            View[] viewArr = kwVar2.f36435e;
+            View[] viewArr = kwVar2.f36434e;
             for (int i7 = 0; i7 < viewArr.length; i7++) {
                 View view = viewArr[i7];
                 if (view != null && view.getVisibility() == 0 && (k10 = org.telegram.ui.Components.j71.k(viewArr[i7])) != null) {
@@ -114,7 +114,7 @@ public final class vw extends org.telegram.ui.Components.du0 {
         bx[] bxVarArr2;
         cx cxVar = this.f52906o0;
         rw rwVar = cxVar.A0;
-        SparseIntArray sparseIntArray = rwVar.f39406k0;
+        SparseIntArray sparseIntArray = rwVar.f39405k0;
         int i10 = rwVar.L;
         if (z10) {
             i7 = 1;
@@ -335,7 +335,7 @@ public final class vw extends org.telegram.ui.Components.du0 {
                         kw kwVar = cxVar.D0;
                         if (childAt == kwVar) {
                             kwVar.setTranslationY(cxVar.J0);
-                            cxVar.D0.f40516s0.setKeyboardHeight(Q);
+                            cxVar.D0.f40515s0.setKeyboardHeight(Q);
                             int makeMeasureSpec3 = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
                             int makeMeasureSpec4 = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(i14) + View.MeasureSpec.getSize(i10), 1073741824);
                             cxVar.S3(true);

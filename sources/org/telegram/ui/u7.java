@@ -87,7 +87,7 @@ public final class u7 implements RequestDelegate {
                 return;
             case 11:
                 org.telegram.ui.Components.l5 l5Var = (org.telegram.ui.Components.l5) this.f52470b;
-                org.telegram.messenger.ls.f(l5Var.f37111e).d(new org.telegram.ui.Components.k5(l5Var, (ArrayList) this.f52471c, tLObject, 0));
+                org.telegram.messenger.ls.f(l5Var.f37110e).d(new org.telegram.ui.Components.k5(l5Var, (ArrayList) this.f52471c, tLObject, 0));
                 return;
             case 12:
                 org.telegram.messenger.g0.g3(new org.telegram.ui.Components.g((org.telegram.ui.Components.f8) this.f52470b, (org.telegram.ui.ActionBar.t1) this.f52471c, tLObject, 1));

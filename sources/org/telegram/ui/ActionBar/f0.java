@@ -41,7 +41,7 @@ public final class f0 extends ImageView {
             case 2:
                 super.invalidate();
                 b20 b20Var = (b20) this.f28945b;
-                b20Var.f41119g0.invalidate();
+                b20Var.f41118g0.invalidate();
                 b20Var.invalidate();
                 return;
             default:
@@ -111,7 +111,7 @@ public final class f0 extends ImageView {
         switch (this.f28944a) {
             case 1:
                 super.setAlpha(f10);
-                ((mq) this.f28945b).f37616y.invalidate();
+                ((mq) this.f28945b).f37615y.invalidate();
                 return;
             default:
                 super.setAlpha(f10);

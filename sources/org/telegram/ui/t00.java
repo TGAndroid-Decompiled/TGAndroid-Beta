@@ -86,7 +86,7 @@ public final class t00 implements View.OnClickListener {
                 if (S0 > 0 && S0 != Integer.MAX_VALUE) {
                     f40Var.L1.w0(0, S0, null);
                 }
-                org.telegram.ui.Components.tt ttVar = f40Var.C1.f42535a;
+                org.telegram.ui.Components.tt ttVar = f40Var.C1.f42534a;
                 ttVar.requestFocus();
                 org.telegram.messenger.g0.I3(ttVar);
                 return;
@@ -134,37 +134,37 @@ public final class t00 implements View.OnClickListener {
                     }
                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
                         org.telegram.ui.Components.voip.y yVar = (org.telegram.ui.Components.voip.y) arrayList.get(i11);
-                        org.telegram.messenger.u3 u3Var = yVar.f41493x;
+                        org.telegram.messenger.u3 u3Var = yVar.f41492x;
                         if (u3Var.f27155a.self && !u3Var.f27156b) {
-                            org.telegram.ui.Components.voip.u uVar = yVar.f41462a;
+                            org.telegram.ui.Components.voip.u uVar = yVar.f41461a;
                             if (yVar.K0 == null) {
                                 yVar.L0 = false;
-                                ImageView imageView = yVar.f41496y0;
+                                ImageView imageView = yVar.f41495y0;
                                 if (imageView == null) {
-                                    yVar.f41496y0 = new ImageView(yVar.getContext());
+                                    yVar.f41495y0 = new ImageView(yVar.getContext());
                                 } else {
                                     imageView.animate().cancel();
                                 }
                                 if (uVar.d.isFirstFrameRendered()) {
-                                    Bitmap bitmap = uVar.f41218e.getBitmap(100, 100);
+                                    Bitmap bitmap = uVar.f41217e.getBitmap(100, 100);
                                     if (bitmap != null) {
                                         Utilities.blurBitmap(bitmap, 3);
-                                        yVar.f41496y0.setBackground(new BitmapDrawable(bitmap));
+                                        yVar.f41495y0.setBackground(new BitmapDrawable(bitmap));
                                     }
-                                    yVar.f41496y0.setAlpha(0.0f);
+                                    yVar.f41495y0.setAlpha(0.0f);
                                 } else {
-                                    yVar.f41496y0.setAlpha(1.0f);
+                                    yVar.f41495y0.setAlpha(1.0f);
                                 }
-                                if (yVar.f41496y0.getParent() == null) {
-                                    uVar.addView(yVar.f41496y0);
+                                if (yVar.f41495y0.getParent() == null) {
+                                    uVar.addView(yVar.f41495y0);
                                 }
-                                ((FrameLayout.LayoutParams) yVar.f41496y0.getLayoutParams()).gravity = 17;
+                                ((FrameLayout.LayoutParams) yVar.f41495y0.getLayoutParams()).gravity = 17;
                                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                                 yVar.K0 = ofFloat;
                                 ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.t(yVar, 1));
                                 yVar.K0.addListener(new org.telegram.ui.Components.voip.w(yVar, 2));
                                 yVar.K0.setDuration(400L);
-                                yVar.K0.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                                yVar.K0.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                                 yVar.K0.start();
                             }
                         }
@@ -192,7 +192,7 @@ public final class t00 implements View.OnClickListener {
                 org.telegram.ui.ActionBar.y0 y0Var2 = f40Var.f47551t3;
                 org.telegram.ui.ActionBar.y0 y0Var3 = f40Var.f47510k3;
                 org.telegram.messenger.t3 t3Var5 = f40Var.V2;
-                if (t3Var5 != null && !f40Var.Z3.f41110b) {
+                if (t3Var5 != null && !f40Var.Z3.f41109b) {
                     if (t3Var5.f26950b.join_muted) {
                         int i12 = org.telegram.ui.ActionBar.m6.Yg;
                         y0Var2.d(org.telegram.ui.ActionBar.m6.x0(null, i12, false), org.telegram.ui.ActionBar.m6.x0(null, i12, false));

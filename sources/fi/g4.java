@@ -183,7 +183,7 @@ public final class g4 implements qj0 {
                 }
             } else {
                 yg.c cVar = (yg.c) view;
-                ek0 ek0Var = a0Var.f39532o1;
+                ek0 ek0Var = a0Var.f39531o1;
                 if (cVar.b()) {
                     for (int i15 = 0; i15 < ek0Var.getChildCount(); i15++) {
                         View childAt = ek0Var.getChildAt(i15);
@@ -221,7 +221,7 @@ public final class g4 implements qj0 {
             hi.w4 w4Var = new hi.w4(context, h6Var);
             ((org.telegram.ui.ActionBar.w2) w4Var.f15708b).f30214w0 = false;
             tb0 tb0Var = new tb0(context, h6Var);
-            int i16 = z4Var.f42671a;
+            int i16 = z4Var.f42670a;
             tb0Var.setTextColor(i16);
             tb0Var.setTextOffset(org.telegram.messenger.g0.L(10.0f));
             tb0Var.setItemCount(5);
@@ -304,7 +304,7 @@ public final class g4 implements qj0 {
             }
             nb0Var.setPadding(org.telegram.messenger.g0.L(34.0f), 0, org.telegram.messenger.g0.L(34.0f), 0);
             nb0Var.setGravity(17);
-            nb0Var.setTextColor(z4Var.f42676g);
+            nb0Var.setTextColor(z4Var.f42675g);
             nb0Var.setTextSize(1, 14.0f);
             nb0Var.setTypeface(org.telegram.messenger.g0.o());
             nb0Var.setBackground(org.telegram.ui.ActionBar.a6.e(z4Var.h, 8.0f));
@@ -314,7 +314,7 @@ public final class g4 implements qj0 {
             org.telegram.ui.ActionBar.w2 w2Var = (org.telegram.ui.ActionBar.w2) w4Var.f15708b;
             w2Var.O = f4Var;
             w2Var.show();
-            int i21 = z4Var.f42672b;
+            int i21 = z4Var.f42671b;
             w2Var.v0(i21);
             w2Var.P(i21);
             if (i0.a.h(i21) > 0.699999988079071d) {

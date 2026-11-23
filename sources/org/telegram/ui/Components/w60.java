@@ -19,54 +19,54 @@ public final class w60 extends View {
     public final int[] E;
     public final int[] F;
     public final a70 G;
-    public final Bitmap f41653a;
-    public final Paint f41654b;
-    public Bitmap f41655c;
+    public final Bitmap f41652a;
+    public final Paint f41653b;
+    public Bitmap f41654c;
     public final Paint d;
-    public final float f41656e;
-    public final float f41657f;
+    public final float f41655e;
+    public final float f41656f;
     public final int h;
-    public final Path f41658n;
-    public final RectF f41659r;
-    public float f41660s;
-    public float f41661w;
-    public float f41662x;
-    public final Path f41663y;
+    public final Path f41657n;
+    public final RectF f41658r;
+    public float f41659s;
+    public float f41660w;
+    public float f41661x;
+    public final Path f41662y;
 
     public w60(a70 a70Var, Context context) {
         super(context);
         float f10;
         this.G = a70Var;
-        this.f41658n = new Path();
-        this.f41659r = new RectF();
-        this.f41663y = new Path();
+        this.f41657n = new Path();
+        this.f41658r = new RectF();
+        this.f41662y = new Path();
         this.E = new int[2];
         this.F = new int[2];
         View view = a70Var.f33373f;
         Rect rect = a70Var.f33405z;
         if (view != null && (view.getParent() instanceof View)) {
-            this.f41656e = view.getY() + ((View) view.getParent()).getY();
+            this.f41655e = view.getY() + ((View) view.getParent()).getY();
             if (a70Var.L) {
                 f10 = Math.min(org.telegram.messenger.g0.L(68.0f), Math.max(0.0f, view.getY() + ((View) view.getParent()).getY() + view.getHeight()));
             } else {
                 f10 = 0.0f;
             }
-            this.f41657f = f10;
+            this.f41656f = f10;
         } else {
-            this.f41656e = 0.0f;
-            this.f41657f = 0.0f;
+            this.f41655e = 0.0f;
+            this.f41656f = 0.0f;
         }
         this.h = i0.a.o(0, a70Var.f33397s);
         if (a70Var.f33399t && (view instanceof org.telegram.ui.Cells.ra) && (a70Var.f33368c instanceof ProfileActivity)) {
-            this.f41654b = new Paint(3);
+            this.f41653b = new Paint(3);
             Bitmap createBitmap = Bitmap.createBitmap(rect.width() + view.getWidth(), rect.height() + view.getHeight(), Bitmap.Config.ARGB_8888);
-            this.f41653a = createBitmap;
+            this.f41652a = createBitmap;
             Canvas canvas = new Canvas(createBitmap);
             canvas.translate(rect.left, rect.top);
             view.draw(canvas);
         } else {
-            this.f41654b = null;
-            this.f41653a = null;
+            this.f41653b = null;
+            this.f41652a = null;
         }
         if (!a70Var.f33401u && !a70Var.v) {
             return;
@@ -111,21 +111,21 @@ public final class w60 extends View {
         Rect rect = a70Var.f33405z;
         super.onDraw(canvas);
         float f20 = 0.0f;
-        if (this.f41655c != null) {
+        if (this.f41654c != null) {
             canvas2.save();
-            float max = Math.max(getWidth() / this.f41655c.getWidth(), getHeight() / this.f41655c.getHeight());
+            float max = Math.max(getWidth() / this.f41654c.getWidth(), getHeight() / this.f41654c.getHeight());
             canvas2.scale(max, max);
             Paint paint = this.d;
-            paint.setAlpha((int) (this.f41662x * 255.0f));
-            canvas2.drawBitmap(this.f41655c, 0.0f, 0.0f, paint);
+            paint.setAlpha((int) (this.f41661x * 255.0f));
+            canvas2.drawBitmap(this.f41654c, 0.0f, 0.0f, paint);
             canvas2.restore();
         } else {
-            canvas2.drawColor(org.telegram.ui.ActionBar.m6.r1(this.f41662x, this.h));
+            canvas2.drawColor(org.telegram.ui.ActionBar.m6.r1(this.f41661x, this.h));
         }
         if (a70Var.f33399t) {
-            float f21 = this.f41656e;
-            Bitmap bitmap = this.f41653a;
-            Path path = this.f41658n;
+            float f21 = this.f41655e;
+            Bitmap bitmap = this.f41652a;
+            Path path = this.f41657n;
             int i10 = 0;
             char c11 = 0;
             if (bitmap != null && (view.getParent() instanceof View)) {
@@ -134,7 +134,7 @@ public final class w60 extends View {
                     float f22 = -rect.left;
                     float f23 = (-rect.top) + fArr[1];
                     if (a70Var.f33401u) {
-                        f19 = 1.0f - this.f41662x;
+                        f19 = 1.0f - this.f41661x;
                     } else {
                         f19 = 1.0f;
                     }
@@ -142,7 +142,7 @@ public final class w60 extends View {
                 }
                 if (a70Var.L) {
                     a70.B(view, a70Var.f33366b, fArr);
-                    canvas2.translate(org.telegram.messenger.g0.T1(fArr[0], this.f41660s, this.f41662x), org.telegram.messenger.g0.T1(fArr[1], this.f41661w, this.f41662x));
+                    canvas2.translate(org.telegram.messenger.g0.T1(fArr[0], this.f41659s, this.f41661x), org.telegram.messenger.g0.T1(fArr[1], this.f41660w, this.f41661x));
                 } else {
                     canvas2.translate(fArr[0], fArr[1]);
                 }
@@ -159,12 +159,12 @@ public final class w60 extends View {
                     path.rewind();
                     RectF rectF = org.telegram.messenger.g0.P;
                     float f24 = a70Var.f33382k;
-                    rectF.set((this.f41662x * f24) + (-rect.left), (getAlpha() * f24) + (-rect.top), (bitmap.getWidth() + (-rect.left)) - (getAlpha() * a70Var.f33382k), (bitmap.getHeight() + (-rect.top)) - (getAlpha() * a70Var.f33382k));
-                    float f25 = a70Var.f33384l * this.f41662x;
+                    rectF.set((this.f41661x * f24) + (-rect.left), (getAlpha() * f24) + (-rect.top), (bitmap.getWidth() + (-rect.left)) - (getAlpha() * a70Var.f33382k), (bitmap.getHeight() + (-rect.top)) - (getAlpha() * a70Var.f33382k));
+                    float f25 = a70Var.f33384l * this.f41661x;
                     path.addRoundRect(rectF, f25, f25, Path.Direction.CW);
                     canvas2.clipPath(path);
                 }
-                Paint paint2 = this.f41654b;
+                Paint paint2 = this.f41653b;
                 paint2.setAlpha(255);
                 canvas2.drawBitmap(bitmap, -rect.left, -rect.top, paint2);
                 canvas2.restore();
@@ -174,7 +174,7 @@ public final class w60 extends View {
                 int[] iArr5 = this.F;
                 int[] iArr6 = this.E;
                 if (arrayList != null) {
-                    Path path2 = this.f41663y;
+                    Path path2 = this.f41662y;
                     path2.rewind();
                     getLocationInWindow(iArr5);
                     ArrayList arrayList2 = a70Var.P;
@@ -214,23 +214,23 @@ public final class w60 extends View {
                     i7 = 0;
                     c10 = 1;
                     int i13 = (f21 > 1.0f ? 1 : (f21 == 1.0f ? 0 : -1));
-                    float f26 = this.f41657f;
+                    float f26 = this.f41656f;
                     if (i13 < 0 || f26 != 0.0f) {
                         if (a70Var.L) {
                             float f27 = -rect.left;
                             float f28 = (-rect.top) + fArr[1];
                             if (a70Var.f33401u) {
-                                f13 = 1.0f - this.f41662x;
+                                f13 = 1.0f - this.f41661x;
                             } else {
                                 f13 = 1.0f;
                             }
-                            canvas2.clipRect(f27, org.telegram.messenger.g0.T1((f28 - (f21 * f13)) + 1.0f, 0.0f, this.f41662x), getMeasuredWidth() + rect.right, com.google.android.gms.internal.vision.e2.t(1.0f, this.f41662x, f26, getMeasuredHeight() + rect.bottom));
+                            canvas2.clipRect(f27, org.telegram.messenger.g0.T1((f28 - (f21 * f13)) + 1.0f, 0.0f, this.f41661x), getMeasuredWidth() + rect.right, com.google.android.gms.internal.vision.e2.t(1.0f, this.f41661x, f26, getMeasuredHeight() + rect.bottom));
                         } else {
                             float f29 = -rect.left;
                             float f30 = (-rect.top) + fArr[1];
                             if (a70Var.f33401u) {
                                 f11 = 1.0f;
-                                f12 = 1.0f - this.f41662x;
+                                f12 = 1.0f - this.f41661x;
                             } else {
                                 f11 = 1.0f;
                                 f12 = 1.0f;
@@ -239,11 +239,11 @@ public final class w60 extends View {
                         }
                     }
                 }
-                float f31 = this.f41662x;
+                float f31 = this.f41661x;
                 if (a70Var.L) {
                     a70.B(view, a70Var.f33366b, fArr);
-                    f14 = org.telegram.messenger.g0.T1(fArr[i7], this.f41660s, f31);
-                    f15 = org.telegram.messenger.g0.T1(fArr[c10], this.f41661w, f31);
+                    f14 = org.telegram.messenger.g0.T1(fArr[i7], this.f41659s, f31);
+                    f15 = org.telegram.messenger.g0.T1(fArr[c10], this.f41660w, f31);
                     float T1 = org.telegram.messenger.g0.T1(1.0f, a70Var.R, f31);
                     canvas2.translate(f14, f15);
                     if (T1 != 1.0f) {
@@ -280,12 +280,12 @@ public final class w60 extends View {
                         f18 = f16;
                         a70Var.f33375g.setBounds(-rect.left, -rect.top, view.getWidth() + rect.right, view.getHeight() + rect.bottom);
                     }
-                    a70Var.f33375g.setAlpha((int) (this.f41662x * f10));
+                    a70Var.f33375g.setAlpha((int) (this.f41661x * f10));
                     if (Build.VERSION.SDK_INT >= 29) {
                         Drawable drawable3 = a70Var.f33375g;
                         if (drawable3 instanceof ShapeDrawable) {
                             Paint paint3 = ((ShapeDrawable) drawable3).getPaint();
-                            paint3.setShadowLayer(paint3.getShadowLayerRadius(), paint3.getShadowLayerDx(), paint3.getShadowLayerDy(), org.telegram.ui.ActionBar.m6.r1(this.f41662x, a70Var.h));
+                            paint3.setShadowLayer(paint3.getShadowLayerRadius(), paint3.getShadowLayerDx(), paint3.getShadowLayerDy(), org.telegram.ui.ActionBar.m6.r1(this.f41661x, a70Var.h));
                         }
                     }
                     a70Var.f33375g.draw(canvas2);
@@ -297,7 +297,7 @@ public final class w60 extends View {
                 if (a70Var.f33382k > 0 || a70Var.f33384l > 0) {
                     path.rewind();
                     boolean z10 = view instanceof z60;
-                    RectF rectF2 = this.f41659r;
+                    RectF rectF2 = this.f41658r;
                     if (z10) {
                         ((z60) view).f(rectF2);
                     } else {
@@ -305,26 +305,26 @@ public final class w60 extends View {
                     }
                     RectF rectF3 = org.telegram.messenger.g0.P;
                     float f36 = -rect.left;
-                    float f37 = a70Var.f33382k * this.f41662x;
+                    float f37 = a70Var.f33382k * this.f41661x;
                     float f38 = -rect.top;
                     rectF3.set(rectF2.left + f36 + f37, rectF2.top + f38 + f37, (f36 + rectF2.right) - f37, (f38 + rectF2.bottom) - f37);
-                    float f39 = a70Var.f33384l * this.f41662x;
+                    float f39 = a70Var.f33384l * this.f41661x;
                     path.addRoundRect(rectF3, f39, f39, Path.Direction.CW);
                     canvas2.clipPath(path);
                 }
                 if (view instanceof org.telegram.ui.Cells.p7) {
                     if (view.getAlpha() >= 1.0f) {
-                        ((org.telegram.ui.Cells.p7) view).a(canvas2, f35, f34, this.f41662x);
+                        ((org.telegram.ui.Cells.p7) view).a(canvas2, f35, f34, this.f41661x);
                         w60Var = this;
                         iArr3 = iArr;
                         iArr4 = iArr2;
                     } else {
                         iArr3 = iArr;
                         iArr4 = iArr2;
-                        canvas2.saveLayerAlpha(0.0f, 0.0f, f35, f34, (int) (this.f41662x * f10), 31);
-                        float T12 = org.telegram.messenger.g0.T1(1.0f, 0.9f, this.f41662x);
+                        canvas2.saveLayerAlpha(0.0f, 0.0f, f35, f34, (int) (this.f41661x * f10), 31);
+                        float T12 = org.telegram.messenger.g0.T1(1.0f, 0.9f, this.f41661x);
                         canvas2.scale(T12, T12, f35 / f17, f34 / f17);
-                        ((org.telegram.ui.Cells.p7) view).a(canvas2, f35, f34, this.f41662x);
+                        ((org.telegram.ui.Cells.p7) view).a(canvas2, f35, f34, this.f41661x);
                         canvas2.restore();
                         w60Var = this;
                     }
@@ -333,15 +333,15 @@ public final class w60 extends View {
                     iArr4 = iArr2;
                     if ((view instanceof bi.g3) && a70Var.N != 0 && a70Var.O != 0) {
                         if (view.getAlpha() >= 1.0f) {
-                            ((bi.g3) view).b(this, canvas, f35, f34, this.f41662x);
+                            ((bi.g3) view).b(this, canvas, f35, f34, this.f41661x);
                             canvas2 = canvas;
                             w60Var = this;
                         } else {
                             w60Var = this;
-                            canvas.saveLayerAlpha(0.0f, 0.0f, f35, f34, (int) (w60Var.f41662x * f10), 31);
-                            float T13 = org.telegram.messenger.g0.T1(1.0f, 0.9f, w60Var.f41662x);
+                            canvas.saveLayerAlpha(0.0f, 0.0f, f35, f34, (int) (w60Var.f41661x * f10), 31);
+                            float T13 = org.telegram.messenger.g0.T1(1.0f, 0.9f, w60Var.f41661x);
                             canvas.scale(T13, T13, f35 / f17, f34 / f17);
-                            ((bi.g3) view).b(w60Var, canvas, f35, f34, w60Var.f41662x);
+                            ((bi.g3) view).b(w60Var, canvas, f35, f34, w60Var.f41661x);
                             canvas.restore();
                             canvas2 = canvas;
                         }
@@ -349,13 +349,13 @@ public final class w60 extends View {
                         w60Var = this;
                         if (a70Var.L) {
                             canvas2 = canvas;
-                            canvas2.saveLayerAlpha(0.0f, 0.0f, view.getWidth(), view.getHeight(), (int) (w60Var.f41662x * f10), 31);
+                            canvas2.saveLayerAlpha(0.0f, 0.0f, view.getWidth(), view.getHeight(), (int) (w60Var.f41661x * f10), 31);
                         } else {
                             canvas2 = canvas;
                             canvas2.save();
                         }
                         if (view instanceof z60) {
-                            ((z60) view).h(canvas2, w60Var.f41662x);
+                            ((z60) view).h(canvas2, w60Var.f41661x);
                         } else {
                             canvas2.translate(-view.getScrollX(), -view.getScrollY());
                             view.draw(canvas2);
@@ -363,7 +363,7 @@ public final class w60 extends View {
                         canvas2.restore();
                     }
                 }
-                float f40 = 1.0f - w60Var.f41662x;
+                float f40 = 1.0f - w60Var.f41661x;
                 ArrayList arrayList3 = a70Var.Q;
                 if (arrayList3 != null && !arrayList3.isEmpty() && f40 > 0.0f) {
                     w60Var.getLocationInWindow(iArr3);
@@ -409,10 +409,10 @@ public final class w60 extends View {
     }
 
     public void setProgress(float f10) {
-        if (this.f41662x == f10) {
+        if (this.f41661x == f10) {
             return;
         }
-        this.f41662x = f10;
+        this.f41661x = f10;
         invalidate();
     }
 }

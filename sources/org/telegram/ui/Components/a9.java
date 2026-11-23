@@ -44,7 +44,7 @@ public abstract class a9 extends FrameLayout {
             this.f33432c.setAnimatedEmojiDrawable(p5Var);
             b();
         }
-        int[] iArr = y8.f42341d0[this.f33437s];
+        int[] iArr = y8.f42340d0[this.f33437s];
         int i10 = iArr[0];
         int i11 = iArr[1];
         int i12 = iArr[2];
@@ -106,7 +106,7 @@ public abstract class a9 extends FrameLayout {
         }
         p5 p5Var = new p5(4, this.f33436r, tL_emojiList.document_id.get(i7).longValue());
         this.f33431b = p5Var;
-        p5Var.f38502m = true;
+        p5Var.f38501m = true;
         p5Var.u();
     }
 
@@ -123,18 +123,18 @@ public abstract class a9 extends FrameLayout {
         }
         float f10 = this.f33439x;
         if (f10 == 1.0f) {
-            this.f33433e.f39448c.setAlpha(255);
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f33433e.f39448c);
+            this.f33433e.f39447c.setAlpha(255);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f33433e.f39447c);
             this.f33432c.setAlpha(1.0f);
             this.f33432c.setScaleX(1.0f);
             this.f33432c.setScaleY(1.0f);
             this.d.setAlpha(0.0f);
         } else {
-            float interpolation = nr.f37961f.getInterpolation(f10);
-            this.f33433e.f39448c.setAlpha(255);
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f33433e.f39448c);
-            this.f33434f.f39448c.setAlpha((int) (255.0f * interpolation));
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f33434f.f39448c);
+            float interpolation = nr.f37960f.getInterpolation(f10);
+            this.f33433e.f39447c.setAlpha(255);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f33433e.f39447c);
+            this.f33434f.f39447c.setAlpha((int) (255.0f * interpolation));
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f33434f.f39447c);
             this.f33439x += 0.064f;
             float f11 = 1.0f - interpolation;
             this.f33432c.setAlpha(f11);
@@ -163,11 +163,11 @@ public abstract class a9 extends FrameLayout {
 
     public u8 getBackgroundGradient() {
         ?? obj = new Object();
-        int[] iArr = y8.f42341d0[this.f33437s];
-        obj.f40292c = iArr[0];
+        int[] iArr = y8.f42340d0[this.f33437s];
+        obj.f40291c = iArr[0];
         obj.d = iArr[1];
-        obj.f40293e = iArr[2];
-        obj.f40294f = iArr[3];
+        obj.f40292e = iArr[2];
+        obj.f40293f = iArr[3];
         return obj;
     }
 

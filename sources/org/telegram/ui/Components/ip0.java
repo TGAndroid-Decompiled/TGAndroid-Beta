@@ -3,21 +3,21 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class ip0 implements View.OnClickListener {
-    public final int f36298a;
-    public final jt0 f36299b;
+    public final int f36297a;
+    public final jt0 f36298b;
 
     public ip0(jt0 jt0Var, int i7) {
-        this.f36298a = i7;
-        this.f36299b = jt0Var;
+        this.f36297a = i7;
+        this.f36298b = jt0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f36298a) {
+        switch (this.f36297a) {
             case 0:
-                jt0 jt0Var = this.f36299b;
+                jt0 jt0Var = this.f36298b;
                 int closestTab = jt0Var.getClosestTab();
-                a70 I = a70.I(jt0Var.f36684y1, view);
+                a70 I = a70.I(jt0Var.f36683y1, view);
                 I.J = false;
                 if (jt0Var.b0(closestTab, new org.telegram.ui.Cells.c5(I))) {
                     if (closestTab != 13 && closestTab != 11) {
@@ -31,7 +31,7 @@ public final class ip0 implements View.OnClickListener {
                 }
                 return;
             case 1:
-                jt0 jt0Var2 = this.f36299b;
+                jt0 jt0Var2 = this.f36298b;
                 org.telegram.ui.ActionBar.g5 g5Var = jt0Var2.J;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = g5Var.f29902b;
                 if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
@@ -43,19 +43,19 @@ public final class ip0 implements View.OnClickListener {
                 }
                 return;
             case 2:
-                this.f36299b.V(true);
+                this.f36298b.V(true);
                 return;
             case 3:
-                jt0 jt0Var3 = this.f36299b;
-                jq0 jq0Var = jt0Var3.f36618c0;
-                gq0 gq0Var = jt0Var3.f36614b0;
-                if (jt0Var3.f36670t0.getAlpha() >= 0.1f) {
+                jt0 jt0Var3 = this.f36298b;
+                jq0 jq0Var = jt0Var3.f36617c0;
+                gq0 gq0Var = jt0Var3.f36613b0;
+                if (jt0Var3.f36669t0.getAlpha() >= 0.1f) {
                     if (gq0Var != null && gq0Var.g()) {
                         gq0Var.i();
                     }
                     if (jq0Var != null && jq0Var.f50351f) {
                         it0 x12 = jt0Var3.x1(jt0Var3.w1(jt0Var3.getClosestTab()));
-                        ds0 g02 = jt0Var3.g0(x12.f36308a);
+                        ds0 g02 = jt0Var3.g0(x12.f36307a);
                         if (g02 != null) {
                             jq0Var.setReorderingAlbums(false);
                             nq0 nq0Var = g02.h;
@@ -65,7 +65,7 @@ public final class ip0 implements View.OnClickListener {
                                     ((org.telegram.ui.Cells.p7) childAt).l(false, true);
                                 }
                             }
-                            ht0 ht0Var = x12.f36310c;
+                            ht0 ht0Var = x12.f36309c;
                             if (ht0Var != null && ht0Var.f35673y) {
                                 ht0Var.f35673y = false;
                                 return;
@@ -78,7 +78,7 @@ public final class ip0 implements View.OnClickListener {
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.g2 g2Var = this.f36299b.f36684y1;
+                org.telegram.ui.ActionBar.g2 g2Var = this.f36298b.f36683y1;
                 g2Var.getMessagesController().h7.edit().putBoolean("story_keep", true).apply();
                 hi.sa.D(g2Var.getParentActivity(), g2Var.getCurrentAccount()).Q(null);
                 return;

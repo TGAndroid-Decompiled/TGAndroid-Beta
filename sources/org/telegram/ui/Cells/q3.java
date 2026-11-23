@@ -18,8 +18,8 @@ public final class q3 extends n41 {
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         r3 r3Var = (r3) view;
-        r3Var.a((TLRPC.StickerSetCovered) o41Var.H, z10, o41Var.f38100u, false);
-        r3Var.f31719f.a(o41Var.f38100u, false);
+        r3Var.a((TLRPC.StickerSetCovered) o41Var.H, z10, o41Var.f38099u, false);
+        r3Var.f31719f.a(o41Var.f38099u, false);
         r3Var.setAddOnClickListener(o41Var.E);
     }
 

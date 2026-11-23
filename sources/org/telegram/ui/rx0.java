@@ -176,7 +176,7 @@ public final class rx0 extends FrameLayout implements org.telegram.ui.ActionBar.
             f12 = 1.0f;
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f10, f12).setDuration(200L);
-        duration.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+        duration.setInterpolator(org.telegram.ui.Components.nr.f37960f);
         duration.addUpdateListener(new rf(this, f11, 6));
         duration.addListener(new c30(7, this, z10));
         duration.start();

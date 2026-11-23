@@ -155,7 +155,7 @@ public final class b0 extends View {
                                 richButtonStyle.link = false;
                                 pageButton.style = richButtonStyle;
                             }
-                            t3Var.f35790g3.O(false);
+                            t3Var.f35789g3.O(false);
                             g2 g2Var2 = t3Var.R3;
                             if (g2Var2 != null) {
                                 g2Var2.h();

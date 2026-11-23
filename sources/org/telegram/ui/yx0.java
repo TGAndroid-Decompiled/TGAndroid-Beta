@@ -123,7 +123,7 @@ public final class yx0 extends org.telegram.ui.ActionBar.g2 {
             TransitionManager.endTransitions(this.f54325c);
             boolean z13 = true;
             if (z10) {
-                TransitionSet duration = new TransitionSet().addTransition(new Fade(2)).addTransition(new ChangeBounds()).addTransition(new Fade(1)).setInterpolator((TimeInterpolator) org.telegram.ui.Components.nr.f37961f).setDuration(250L);
+                TransitionSet duration = new TransitionSet().addTransition(new Fade(2)).addTransition(new ChangeBounds()).addTransition(new Fade(1)).setInterpolator((TimeInterpolator) org.telegram.ui.Components.nr.f37960f).setDuration(250L);
                 if (jw0Var != null) {
                     duration.addListener((Transition.TransitionListener) new xx0(jw0Var));
                 }

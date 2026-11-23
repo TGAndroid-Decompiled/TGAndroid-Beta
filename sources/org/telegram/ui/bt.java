@@ -18,7 +18,7 @@ public final class bt implements Runnable {
             case 1:
                 DataSettingsActivity dataSettingsActivity = this.f46310b;
                 dataSettingsActivity.X = true;
-                if (dataSettingsActivity.f43057a != null && (i7 = dataSettingsActivity.f43064s) >= 0) {
+                if (dataSettingsActivity.f43056a != null && (i7 = dataSettingsActivity.f43063s) >= 0) {
                     dataSettingsActivity.s0(i7);
                     return;
                 }

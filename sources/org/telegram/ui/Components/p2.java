@@ -2,29 +2,29 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class p2 implements DialogInterface.OnShowListener {
-    public final int f38450a;
-    public final EditTextBoldCursor f38451b;
+    public final int f38449a;
+    public final EditTextBoldCursor f38450b;
 
     public p2(EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f38450a = i7;
-        this.f38451b = editTextBoldCursor;
+        this.f38449a = i7;
+        this.f38450b = editTextBoldCursor;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f38450a) {
+        switch (this.f38449a) {
             case 0:
-                i4 i4Var = (i4) this.f38451b;
+                i4 i4Var = (i4) this.f38450b;
                 i4Var.requestFocus();
                 org.telegram.messenger.g0.I3(i4Var);
                 return;
             case 1:
-                kg.z0 z0Var = (kg.z0) this.f38451b;
+                kg.z0 z0Var = (kg.z0) this.f38450b;
                 z0Var.requestFocus();
                 org.telegram.messenger.g0.I3(z0Var);
                 return;
             default:
-                org.telegram.messenger.g0.g3(new j(this.f38451b, 8));
+                org.telegram.messenger.g0.g3(new j(this.f38450b, 8));
                 return;
         }
     }

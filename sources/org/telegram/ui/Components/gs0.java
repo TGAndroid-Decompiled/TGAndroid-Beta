@@ -40,7 +40,7 @@ public final class gs0 extends dk0 {
     }
 
     public final void F(int i7, long j3, long j10, String str) {
-        org.telegram.ui.ActionBar.g2 g2Var = this.f35665w.f36684y1;
+        org.telegram.ui.ActionBar.g2 g2Var = this.f35665w.f36683y1;
         if (!org.telegram.messenger.n5.C(j3)) {
             if (this.h != 0) {
                 g2Var.getConnectionsManager().cancelRequest(this.h, true);
@@ -105,7 +105,7 @@ public final class gs0 extends dk0 {
                 this.d.clear();
                 this.f35661f.clear();
                 if (this.h != 0) {
-                    jt0Var.f36684y1.getConnectionsManager().cancelRequest(this.h, true);
+                    jt0Var.f36683y1.getConnectionsManager().cancelRequest(this.h, true);
                     this.h = 0;
                     this.f35664s--;
                     return;
@@ -115,7 +115,7 @@ public final class gs0 extends dk0 {
             return;
         }
         while (true) {
-            ds0[] ds0VarArr = jt0Var.f36651n0;
+            ds0[] ds0VarArr = jt0Var.f36650n0;
             if (i7 < ds0VarArr.length) {
                 ds0 ds0Var = ds0VarArr[i7];
                 if (ds0Var.F == this.f35663r) {
@@ -156,8 +156,8 @@ public final class gs0 extends dk0 {
         char c12;
         View view = f1Var.f59165a;
         jt0 jt0Var = this.f35665w;
-        long j3 = jt0Var.f36648m1;
-        SparseArray[] sparseArrayArr = jt0Var.f36619c1;
+        long j3 = jt0Var.f36647m1;
+        SparseArray[] sparseArrayArr = jt0Var.f36618c1;
         boolean z13 = false;
         int i10 = this.f35663r;
         if (i10 == 1) {
@@ -179,10 +179,10 @@ public final class gs0 extends dk0 {
                     if (sparseArrayArr[c12].indexOfKey(E.e1()) >= 0) {
                         z13 = true;
                     }
-                    i7Var.b(z13, !jt0Var.f36625e1);
+                    i7Var.b(z13, !jt0Var.f36624e1);
                     return;
                 }
-                i7Var.b(false, !jt0Var.f36625e1);
+                i7Var.b(false, !jt0Var.f36624e1);
             }
         } else if (i10 == 3) {
             if (view instanceof org.telegram.ui.Cells.l7) {
@@ -206,10 +206,10 @@ public final class gs0 extends dk0 {
                     if (sparseArrayArr[c11].indexOfKey(E2.e1()) >= 0) {
                         z13 = true;
                     }
-                    l7Var.f(z13, !jt0Var.f36625e1);
+                    l7Var.f(z13, !jt0Var.f36624e1);
                     return;
                 }
-                l7Var.f(false, !jt0Var.f36625e1);
+                l7Var.f(false, !jt0Var.f36624e1);
             }
         } else if (i10 == 4 && (view instanceof org.telegram.ui.Cells.h7)) {
             org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) view;
@@ -229,10 +229,10 @@ public final class gs0 extends dk0 {
                 if (sparseArrayArr[c10].indexOfKey(E3.e1()) >= 0) {
                     z13 = true;
                 }
-                h7Var.e(z13, !jt0Var.f36625e1);
+                h7Var.e(z13, !jt0Var.f36624e1);
                 return;
             }
-            h7Var.e(false, !jt0Var.f36625e1);
+            h7Var.e(false, !jt0Var.f36624e1);
         }
     }
 

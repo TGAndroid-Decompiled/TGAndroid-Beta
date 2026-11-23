@@ -38,10 +38,10 @@ public final class cp0 implements Runnable {
                 }
                 return;
             case 2:
-                ((nr0) obj).f37971a.B1(false);
+                ((nr0) obj).f37970a.B1(false);
                 return;
             case 3:
-                org.telegram.ui.ActionBar.g2 g2Var = ((ur0) obj).f40569f.f36684y1;
+                org.telegram.ui.ActionBar.g2 g2Var = ((ur0) obj).f40568f.f36683y1;
                 if (g2Var != null) {
                     g2Var.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
                     return;
@@ -52,7 +52,7 @@ public final class cp0 implements Runnable {
                 return;
             case 5:
                 us0 us0Var = (us0) obj;
-                ArrayList arrayList3 = us0Var.f40575f;
+                ArrayList arrayList3 = us0Var.f40574f;
                 if (us0Var.h) {
                     us0Var.h = false;
                     ArrayList arrayList4 = new ArrayList();
@@ -61,7 +61,7 @@ public final class cp0 implements Runnable {
                             arrayList4.add(Long.valueOf(((org.telegram.messenger.pv) arrayList3.get(i11)).f26350a));
                         }
                     }
-                    org.telegram.messenger.qv I1 = us0Var.f40581y.f36684y1.getMessagesController().I1();
+                    org.telegram.messenger.qv I1 = us0Var.f40580y.f36683y1.getMessagesController().I1();
                     ArrayList d = org.telegram.messenger.qv.d(I1.f26509j);
                     int i12 = I1.f26502a;
                     if (org.telegram.messenger.k10.i(i12).q()) {
@@ -275,7 +275,7 @@ public final class cp0 implements Runnable {
                 ((ez0) obj).a();
                 return;
             case 16:
-                ArrayList arrayList7 = ((lz0) obj).f37332a;
+                ArrayList arrayList7 = ((lz0) obj).f37331a;
                 for (int i16 = 0; i16 < arrayList7.size(); i16++) {
                     ((View) arrayList7.get(i16)).setVisibility(8);
                     if (arrayList7.get(i16) instanceof org.telegram.ui.Cells.r1) {
@@ -287,19 +287,19 @@ public final class cp0 implements Runnable {
             case 17:
                 k01 k01Var = (k01) obj;
                 k01Var.K = null;
-                k01Var.I.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).setInterpolator(nr.f37961f).start();
+                k01Var.I.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150L).setInterpolator(nr.f37960f).start();
                 return;
             case 18:
                 o01 o01Var = (o01) obj;
                 ViewPropertyAnimator duration = o01Var.animate().alpha(0.0f).setListener(new s60(o01Var, 29)).setDuration(300L);
-                o01Var.f38033b = duration;
+                o01Var.f38032b = duration;
                 duration.start();
                 return;
             case 19:
                 q01 q01Var = (q01) obj;
-                org.telegram.messenger.y10 y10Var = q01Var.f38744b;
+                org.telegram.messenger.y10 y10Var = q01Var.f38743b;
                 if (y10Var != null) {
-                    y10Var.a(Long.valueOf(q01Var.f38743a.f39047t));
+                    y10Var.a(Long.valueOf(q01Var.f38742a.f39046t));
                     return;
                 }
                 return;
@@ -321,10 +321,10 @@ public final class cp0 implements Runnable {
                 ((org.telegram.ui.ActionBar.g1) obj).dismiss();
                 return;
             case 24:
-                ((l31) obj).f37093c.setVisibility(8);
+                ((l31) obj).f37092c.setVisibility(8);
                 return;
             case 25:
-                ((org.telegram.ui.ck) obj).f39472c.presentFragment(new org.telegram.ui.sy0());
+                ((org.telegram.ui.ck) obj).f39471c.presentFragment(new org.telegram.ui.sy0());
                 return;
             case 26:
                 ((v31) obj).requestLayout();

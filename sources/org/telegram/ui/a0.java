@@ -20,26 +20,26 @@ public final class a0 implements Runnable {
                 return;
             case 1:
                 org.telegram.ui.Components.za zaVar = (org.telegram.ui.Components.za) this.f45445c;
-                if (zaVar.f42743a.getTranslationX() == this.f45444b) {
+                if (zaVar.f42742a.getTranslationX() == this.f45444b) {
                     zaVar.E.b();
                     return;
                 }
                 return;
             case 2:
                 org.telegram.ui.Components.voip.z0 z0Var = (org.telegram.ui.Components.voip.z0) this.f45445c;
-                bc1 bc1Var = z0Var.f41509c;
+                bc1 bc1Var = z0Var.f41508c;
                 if (this.f45444b > 0.0f) {
-                    int i7 = bc1Var.f40934x;
+                    int i7 = bc1Var.f40933x;
                     if (i7 < 2) {
                         bc1Var.c(i7 + 1, true);
                     }
                 } else {
-                    int i10 = bc1Var.f40934x;
+                    int i10 = bc1Var.f40933x;
                     if (i10 > 0) {
                         bc1Var.c(i10 - 1, true);
                     }
                 }
-                z0Var.f41508b = false;
+                z0Var.f41507b = false;
                 return;
             default:
                 HttpGetFileTask.b((HttpGetFileTask) this.f45445c, this.f45444b);

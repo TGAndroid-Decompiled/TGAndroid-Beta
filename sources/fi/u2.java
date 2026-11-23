@@ -50,7 +50,7 @@ public final class u2 extends View {
         switch (this.f12652a) {
             case 1:
                 v11 v11Var = (v11) this.d;
-                org.telegram.ui.Components.n6 n6Var = v11Var.f40636e;
+                org.telegram.ui.Components.n6 n6Var = v11Var.f40635e;
                 float i7 = n6Var.i();
                 if (i7 > 0.0f) {
                     float T1 = org.telegram.messenger.g0.T1(0.6f, 1.0f, i7);
@@ -60,7 +60,7 @@ public final class u2 extends View {
                     canvas.save();
                     canvas.scale(T1, T1, rectF.centerX(), rectF.centerY());
                     org.telegram.ui.Components.h6 h6Var = (org.telegram.ui.Components.h6) this.f12653b;
-                    h6Var.setColor(h6Var.f35797b.a(org.telegram.ui.ActionBar.m6.w0(v11Var.J, h6Var.f35796a), false));
+                    h6Var.setColor(h6Var.f35796b.a(org.telegram.ui.ActionBar.m6.w0(v11Var.J, h6Var.f35795a), false));
                     h6Var.setColor(i0.a.f(v11Var.G, h6Var.getColor(), v11.a(v11Var)));
                     h6Var.setAlpha((int) (h6Var.getAlpha() * i7));
                     canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.33f), org.telegram.messenger.g0.L(8.33f), h6Var);
@@ -278,7 +278,7 @@ public final class u2 extends View {
     public void onMeasure(int i7, int i10) {
         switch (this.f12652a) {
             case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.max(org.telegram.messenger.g0.L(16.66f), ((v11) this.d).f40636e.d + org.telegram.messenger.g0.L(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(16.66f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.max(org.telegram.messenger.g0.L(16.66f), ((v11) this.d).f40635e.d + org.telegram.messenger.g0.L(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(16.66f), 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -319,7 +319,7 @@ public final class u2 extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f12652a) {
             case 1:
-                if (((v11) this.d).f40636e != drawable && !super.verifyDrawable(drawable)) {
+                if (((v11) this.d).f40635e != drawable && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
@@ -363,7 +363,7 @@ public final class u2 extends View {
         this.d = v11Var;
         this.f12654c = h6Var;
         this.f12653b = new org.telegram.ui.Components.h6(this, h6Var);
-        v11Var.f40636e.setCallback(this);
+        v11Var.f40635e.setCallback(this);
     }
 
     public u2(Context context, ci.e eVar) {
@@ -384,7 +384,7 @@ public final class u2 extends View {
         this.f12652a = 0;
         this.d = z3Var;
         this.f12653b = new q80();
-        this.f12654c = new org.telegram.ui.Components.d6(250L, nr.f37961f);
+        this.f12654c = new org.telegram.ui.Components.d6(250L, nr.f37960f);
     }
 
     public u2(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper) {

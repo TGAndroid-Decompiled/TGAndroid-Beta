@@ -16,14 +16,14 @@ public final class g0 extends n41 {
         o41 K = o41.K(g0.class);
         K.f56635b = false;
         K.A = i7;
-        K.f38092m = str;
-        K.f38093n = charSequence;
+        K.f38091m = str;
+        K.f38092n = charSequence;
         return K;
     }
 
     @Override
     public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
-        ((h0) view).a(o41Var.A, o41Var.f38092m, o41Var.f38093n);
+        ((h0) view).a(o41Var.A, o41Var.f38091m, o41Var.f38092n);
     }
 
     @Override

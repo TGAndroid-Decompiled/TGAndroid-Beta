@@ -65,7 +65,7 @@ public final class w5 implements View.OnClickListener {
                 Context context = (Context) obj3;
                 va0 va0Var = (va0) obj2;
                 va0 va0Var2 = (va0) obj;
-                wa0 wa0Var = qa0Var.f38858d0;
+                wa0 wa0Var = qa0Var.f38857d0;
                 kj kjVar = wa0Var.d;
                 if (!z10) {
                     new lc(wa0Var, wa0Var.G).Q(2131624217, 36, org.telegram.messenger.g0.T2(hd.N0(2131750566, null), new ga0(qa0Var, context, 0))).j();
@@ -73,7 +73,7 @@ public final class w5 implements View.OnClickListener {
                 }
                 boolean z11 = kjVar.f25087k;
                 kjVar.f25087k = !z11;
-                wa0Var.f41747y = false;
+                wa0Var.f41746y = false;
                 if (z11) {
                     kjVar.f25088l = false;
                     if (va0Var != null) {

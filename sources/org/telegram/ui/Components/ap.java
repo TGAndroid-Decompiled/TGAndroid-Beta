@@ -15,7 +15,7 @@ public final class ap implements org.telegram.ui.ActionBar.u6 {
     public final void a(float f10) {
         ArrayList arrayList;
         np npVar = this.f33561b;
-        lp lpVar = npVar.f37931r1;
+        lp lpVar = npVar.f37930r1;
         if (f10 == 0.0f && !this.f33560a) {
             if (lpVar != null && (arrayList = lpVar.d) != null) {
                 int size = arrayList.size();
@@ -23,7 +23,7 @@ public final class ap implements org.telegram.ui.ActionBar.u6 {
                 while (i7 < size) {
                     Object obj = arrayList.get(i7);
                     i7++;
-                    ((mp) obj).f37595c = npVar.H1 ? 1 : 0;
+                    ((mp) obj).f37594c = npVar.H1 ? 1 : 0;
                 }
             }
             if (!npVar.J1) {
@@ -33,10 +33,10 @@ public final class ap implements org.telegram.ui.ActionBar.u6 {
             }
             this.f33560a = true;
         }
-        oh0 oh0Var = npVar.f37939z1;
+        oh0 oh0Var = npVar.f37938z1;
         int i11 = org.telegram.ui.ActionBar.m6.Fi;
         int w02 = org.telegram.ui.ActionBar.m6.w0(i11, npVar.J0);
-        npVar.f37925e2 = w02;
+        npVar.f37924e2 = w02;
         oh0Var.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
         npVar.E0(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, npVar.J0));
         if (npVar.J1) {
@@ -61,7 +61,7 @@ public final class ap implements org.telegram.ui.ActionBar.u6 {
             o6Var.setTextColor(org.telegram.ui.ActionBar.m6.w0(i11, npVar.J0));
         }
         int w04 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, npVar.J0);
-        npVar.f37926f2 = w04;
+        npVar.f37925f2 = w04;
         npVar.v0(w04);
     }
 

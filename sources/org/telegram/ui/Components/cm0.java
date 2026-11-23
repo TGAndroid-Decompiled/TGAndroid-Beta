@@ -12,7 +12,7 @@ public final class cm0 extends ch.n0 {
 
     @Override
     public final boolean e() {
-        if (this.v <= 0 && !this.f5482t && this.E.f39661l == 1.0f) {
+        if (this.v <= 0 && !this.f5482t && this.E.f39660l == 1.0f) {
             return false;
         }
         return true;

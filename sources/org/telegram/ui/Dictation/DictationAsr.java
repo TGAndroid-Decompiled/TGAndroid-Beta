@@ -41,14 +41,14 @@ import org.telegram.messenger.t0;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.h21;
 public abstract class DictationAsr {
-    public static boolean f43070c;
-    public static int f43074i;
-    public static volatile t[] f43068a = new t[0];
-    public static volatile String[] f43069b = new String[0];
+    public static boolean f43069c;
+    public static int f43073i;
+    public static volatile t[] f43067a = new t[0];
+    public static volatile String[] f43068b = new String[0];
     public static final ExecutorService d = Executors.newSingleThreadExecutor();
-    public static final ExecutorService f43071e = Executors.newSingleThreadExecutor();
-    public static final ExecutorService f43072f = Executors.newSingleThreadExecutor();
-    public static final ArrayList f43073g = new ArrayList();
+    public static final ExecutorService f43070e = Executors.newSingleThreadExecutor();
+    public static final ExecutorService f43071f = Executors.newSingleThreadExecutor();
+    public static final ArrayList f43072g = new ArrayList();
     public static final ConcurrentHashMap h = new ConcurrentHashMap();
 
     public static boolean A(String str) {
@@ -98,10 +98,10 @@ public abstract class DictationAsr {
     }
 
     public static String[] E() {
-        if (!f43070c) {
+        if (!f43069c) {
             P();
         }
-        return f43069b;
+        return f43068b;
     }
 
     public static void F(t tVar) {
@@ -206,10 +206,10 @@ public abstract class DictationAsr {
     }
 
     public static t[] K() {
-        if (!f43070c) {
+        if (!f43069c) {
             P();
         }
-        return f43068a;
+        return f43067a;
     }
 
     public static String L(String[] strArr) {
@@ -260,8 +260,8 @@ public abstract class DictationAsr {
         String[] strArr;
         synchronized (DictationAsr.class) {
             try {
-                f43070c = true;
-                t[] tVarArr = f43068a;
+                f43069c = true;
+                t[] tVarArr = f43067a;
                 ArrayList arrayList = new ArrayList();
                 ArrayList arrayList2 = new ArrayList();
                 File[] listFiles = s().listFiles();
@@ -419,8 +419,8 @@ public abstract class DictationAsr {
                     i26++;
                     Collections.addAll(linkedHashSet, ((t) obj6).f1517b);
                 }
-                f43068a = (t[]) arrayList.toArray(new t[0]);
-                f43069b = (String[]) linkedHashSet.toArray(new String[0]);
+                f43067a = (t[]) arrayList.toArray(new t[0]);
+                f43068b = (String[]) linkedHashSet.toArray(new String[0]);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -451,7 +451,7 @@ public abstract class DictationAsr {
     }
 
     public static void R(Runnable runnable) {
-        f43073g.remove(runnable);
+        f43072g.remove(runnable);
     }
 
     public static a0 S(String str, ArrayList arrayList, ArrayList arrayList2) {
@@ -792,14 +792,14 @@ public abstract class DictationAsr {
     }
 
     public static int e0() {
-        if (f43074i == 0) {
+        if (f43073i == 0) {
             try {
-                f43074i = nativeVersion();
+                f43073i = nativeVersion();
             } catch (Throwable unused) {
-                f43074i = 1;
+                f43073i = 1;
             }
         }
-        return f43074i;
+        return f43073i;
     }
 
     public static void f0(t tVar, u uVar) {
@@ -997,13 +997,13 @@ public abstract class DictationAsr {
             }
         }
         Context context = t0.f26931b;
-        ExecutorService executorService = DictationLid.f43075a;
+        ExecutorService executorService = DictationLid.f43074a;
         File file2 = new File(context.getApplicationContext().getFilesDir(), "tinylid.bin");
         file2.delete();
         m1.g(file2);
         np.g1().edit().remove("tinylid_etag").remove("tinylid_checked").apply();
-        DictationLid.f43078e = false;
-        DictationLid.f43075a.execute(new n(2));
+        DictationLid.f43077e = false;
+        DictationLid.f43074a.execute(new n(2));
         SharedPreferences.Editor edit = np.g1().edit();
         for (String str : np.g1().getAll().keySet()) {
             if (str.startsWith("tinyasr_etag_") || str.startsWith("tinyasr_checked_")) {
@@ -1066,7 +1066,7 @@ public abstract class DictationAsr {
             p();
         }
         p();
-        f43071e.execute(new p(z10, tVar, 0));
+        f43070e.execute(new p(z10, tVar, 0));
     }
 
     public static int v(String str, TLRPC.TL_transcriptionModel tL_transcriptionModel, t tVar, boolean z10) {

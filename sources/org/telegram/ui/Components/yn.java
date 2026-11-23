@@ -25,7 +25,7 @@ public final class yn extends q9 {
     public final void onDraw(Canvas canvas) {
         long j3;
         co coVar = this.L;
-        if (coVar.f34229b && this.f38839e == null) {
+        if (coVar.f34229b && this.f38838e == null) {
             org.telegram.ui.Cells.l6 l6Var = this.H;
             l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             l6Var.f11934a = true;
@@ -46,7 +46,7 @@ public final class yn extends q9 {
                     j3 = 0;
                 }
             }
-            fi.i7.h(j3, canvas, this.f38836a, l6Var);
+            fi.i7.h(j3, canvas, this.f38835a, l6Var);
             return;
         }
         super.onDraw(canvas);

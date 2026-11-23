@@ -110,7 +110,7 @@ public final class j61 implements Runnable {
                 boolean d = x71Var.f53715a.d();
                 org.telegram.ui.Components.oh0 oh0Var = x71Var.P1;
                 if (d) {
-                    i7 = oh0Var.f38211e[0];
+                    i7 = oh0Var.f38210e[0];
                 } else {
                     i7 = 0;
                 }
@@ -149,7 +149,7 @@ public final class j61 implements Runnable {
                     ofFloat.addUpdateListener(new iz0(x71Var, 9));
                     x71Var.R1.addListener(new b71(x71Var, 5));
                     x71Var.R1.setDuration(250L);
-                    x71Var.R1.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                    x71Var.R1.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                     x71Var.R1.start();
                     return;
                 }

@@ -110,8 +110,8 @@ public final class v6 {
             Drawable background = view2.getBackground();
             if (background instanceof x90) {
                 x90 x90Var = (x90) background;
-                x90Var.f42015a.setColor(i7);
-                x90Var.f42016b = null;
+                x90Var.f42014a.setColor(i7);
+                x90Var.f42015b = null;
                 return;
             }
             view2.setBackgroundColor(i7);
@@ -154,7 +154,7 @@ public final class v6 {
                         l41[] l41VarArr = (l41[]) spannedString.getSpans(0, spannedString.length(), l41.class);
                         if (l41VarArr != null && l41VarArr.length > 0) {
                             for (l41 l41Var : l41VarArr) {
-                                l41Var.f37106b = i7;
+                                l41Var.f37105b = i7;
                             }
                         }
                     }
@@ -166,9 +166,9 @@ public final class v6 {
                 Drawable drawable6 = imageView.getDrawable();
                 if (drawable6 instanceof oq) {
                     if ((i10 & 32) != 0) {
-                        drawable3 = ((oq) drawable6).f38330a;
+                        drawable3 = ((oq) drawable6).f38329a;
                     } else {
-                        drawable3 = ((oq) drawable6).f38331b;
+                        drawable3 = ((oq) drawable6).f38330b;
                     }
                     if (drawable3 != null) {
                         drawable3.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
@@ -184,9 +184,9 @@ public final class v6 {
                 }
                 if (drawable4 instanceof oq) {
                     if ((i10 & 32) != 0) {
-                        drawable2 = ((oq) drawable4).f38330a;
+                        drawable2 = ((oq) drawable4).f38329a;
                     } else {
-                        drawable2 = ((oq) drawable4).f38331b;
+                        drawable2 = ((oq) drawable4).f38330b;
                     }
                     if (drawable2 != null) {
                         drawable2.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
@@ -197,15 +197,15 @@ public final class v6 {
             } else if (obj instanceof Drawable) {
                 if (obj instanceof w70) {
                     if ((i10 & 32) != 0) {
-                        w70.f41679k.setColor(i7);
+                        w70.f41678k.setColor(i7);
                     } else {
                         ((w70) obj).h.setColor(i7);
                     }
                 } else if (obj instanceof oq) {
                     if ((i10 & 32) != 0) {
-                        drawable = ((oq) obj).f38330a;
+                        drawable = ((oq) obj).f38329a;
                     } else {
-                        drawable = ((oq) obj).f38331b;
+                        drawable = ((oq) obj).f38330b;
                     }
                     if (drawable != null) {
                         drawable.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
@@ -279,7 +279,7 @@ public final class v6 {
                                     l41[] l41VarArr2 = (l41[]) spannedString2.getSpans(0, spannedString2.length(), l41.class);
                                     if (l41VarArr2 != null && l41VarArr2.length > 0) {
                                         for (l41 l41Var2 : l41VarArr2) {
-                                            l41Var2.f37106b = i7;
+                                            l41Var2.f37105b = i7;
                                         }
                                     }
                                 }
@@ -302,7 +302,7 @@ public final class v6 {
                                         l41[] l41VarArr3 = (l41[]) spannedString3.getSpans(0, spannedString3.length(), l41.class);
                                         if (l41VarArr3 != null && l41VarArr3.length > 0) {
                                             for (l41 l41Var3 : l41VarArr3) {
-                                                l41Var3.f37106b = i7;
+                                                l41Var3.f37105b = i7;
                                             }
                                         }
                                     }
@@ -359,14 +359,14 @@ public final class v6 {
                             if (background != null) {
                                 if ((i11 & 16) != 0) {
                                     if (background instanceof oq) {
-                                        Drawable drawable = ((oq) background).f38330a;
+                                        Drawable drawable = ((oq) background).f38329a;
                                         if (drawable instanceof ColorDrawable) {
                                             ((ColorDrawable) drawable).setColor(i7);
                                         }
                                     }
                                 } else {
                                     if (background instanceof oq) {
-                                        background = ((oq) background).f38331b;
+                                        background = ((oq) background).f38330b;
                                     } else if ((background instanceof StateListDrawable) || (background instanceof RippleDrawable)) {
                                         if ((i11 & 65536) != 0) {
                                             z11 = true;
@@ -485,9 +485,9 @@ public final class v6 {
                         }
                     } else if (drawable instanceof oq) {
                         if ((i11 & 32) != 0) {
-                            ((oq) drawable).f38330a.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
+                            ((oq) drawable).f38329a.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
                         } else {
-                            ((oq) drawable).f38331b.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
+                            ((oq) drawable).f38330b.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
                         }
                     } else if (drawable instanceof b9) {
                         ((b9) drawable).h(i7);
@@ -508,8 +508,8 @@ public final class v6 {
                 Drawable background = view.getBackground();
                 if (background instanceof x90) {
                     x90 x90Var = (x90) background;
-                    x90Var.f42015a.setColor(i7);
-                    x90Var.f42016b = null;
+                    x90Var.f42014a.setColor(i7);
+                    x90Var.f42015b = null;
                 } else {
                     view.setBackgroundColor(i7);
                 }
@@ -523,9 +523,9 @@ public final class v6 {
                     Drawable background2 = view.getBackground();
                     if (background2 instanceof oq) {
                         if ((i11 & 65536) != 0) {
-                            background2 = ((oq) background2).f38330a;
+                            background2 = ((oq) background2).f38329a;
                         } else {
-                            background2 = ((oq) background2).f38331b;
+                            background2 = ((oq) background2).f38330b;
                         }
                     }
                     if (background2 != null) {

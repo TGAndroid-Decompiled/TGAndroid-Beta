@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class rs0 extends org.telegram.ui.Cells.r1 {
-    public final int f39336zd = 1;
+    public final int f39335zd = 1;
 
     public rs0(Context context, int i7) {
         super(context, i7);
@@ -12,7 +12,7 @@ public final class rs0 extends org.telegram.ui.Cells.r1 {
     public int getParentWidth() {
         int i7;
         int L;
-        switch (this.f39336zd) {
+        switch (this.f39335zd) {
             case 1:
                 if (getMeasuredWidth() != 0) {
                     i7 = getMeasuredWidth();
@@ -29,7 +29,7 @@ public final class rs0 extends org.telegram.ui.Cells.r1 {
 
     @Override
     public final boolean isPressed() {
-        switch (this.f39336zd) {
+        switch (this.f39335zd) {
             case 0:
                 return false;
             default:

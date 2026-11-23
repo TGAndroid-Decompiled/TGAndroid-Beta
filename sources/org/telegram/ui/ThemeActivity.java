@@ -1646,7 +1646,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.g2 implements org.t
             org.telegram.ui.Components.oh0 oh0Var = new org.telegram.ui.Components.oh0(2131624240, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
             this.U0 = oh0Var;
             if (this.W0) {
-                oh0Var.M(oh0Var.f38211e[0] - 1);
+                oh0Var.M(oh0Var.f38210e[0] - 1);
             } else {
                 oh0Var.M(0);
             }
@@ -1772,7 +1772,7 @@ public class ThemeActivity extends org.telegram.ui.ActionBar.g2 implements org.t
                             this.W0 = z10;
                             org.telegram.ui.Components.oh0 oh0Var = this.U0;
                             if (!k12) {
-                                i12 = oh0Var.f38211e[0] - 1;
+                                i12 = oh0Var.f38210e[0] - 1;
                             } else {
                                 i12 = 0;
                             }

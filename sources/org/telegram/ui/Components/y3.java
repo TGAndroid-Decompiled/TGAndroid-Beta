@@ -8,26 +8,26 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class y3 extends LinearLayout {
-    public final int f42308a = 1;
-    public boolean f42309b;
-    public final View f42310c;
+    public final int f42307a = 1;
+    public boolean f42308b;
+    public final View f42309c;
     public final View d;
 
     public y3(Context context, v3 v3Var, x3 x3Var) {
         super(context);
-        this.f42310c = v3Var;
+        this.f42309c = v3Var;
         this.d = x3Var;
-        this.f42309b = false;
+        this.f42308b = false;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int i11;
-        switch (this.f42308a) {
+        switch (this.f42307a) {
             case 0:
                 x3 x3Var = (x3) this.d;
-                v3 v3Var = (v3) this.f42310c;
-                this.f42309b = true;
+                v3 v3Var = (v3) this.f42309c;
+                this.f42308b = true;
                 Point point = org.telegram.messenger.g0.f24046q;
                 if (point.x > point.y) {
                     i11 = 3;
@@ -38,20 +38,20 @@ public final class y3 extends LinearLayout {
                 x3Var.setItemCount(i11);
                 v3Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i11;
                 x3Var.getLayoutParams().height = org.telegram.messenger.g0.L(42.0f) * i11;
-                this.f42309b = false;
+                this.f42308b = false;
                 super.onMeasure(i7, i10);
                 return;
             default:
                 int rotation = ((WindowManager) org.telegram.messenger.t0.f26931b.getSystemService("window")).getDefaultDisplay().getRotation();
-                this.f42309b = true;
+                this.f42308b = true;
                 if (org.telegram.messenger.g0.Q1()) {
-                    ((TextView) this.f42310c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(128.0f));
+                    ((TextView) this.f42309c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(128.0f));
                 } else if (rotation != 3 && rotation != 1) {
-                    ((TextView) this.f42310c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(128.0f));
+                    ((TextView) this.f42309c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(128.0f));
                 } else {
-                    ((TextView) this.f42310c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), 0);
+                    ((TextView) this.f42309c).setPadding(org.telegram.messenger.g0.L(40.0f), 0, org.telegram.messenger.g0.L(40.0f), 0);
                 }
-                this.f42309b = false;
+                this.f42308b = false;
                 super.onMeasure(i7, i10);
                 return;
         }
@@ -59,15 +59,15 @@ public final class y3 extends LinearLayout {
 
     @Override
     public final void requestLayout() {
-        switch (this.f42308a) {
+        switch (this.f42307a) {
             case 0:
-                if (!this.f42309b) {
+                if (!this.f42308b) {
                     super.requestLayout();
                     return;
                 }
                 return;
             default:
-                if (!this.f42309b) {
+                if (!this.f42308b) {
                     super.requestLayout();
                     return;
                 }
@@ -78,7 +78,7 @@ public final class y3 extends LinearLayout {
     public y3(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         TextView textView = new TextView(context);
-        this.f42310c = textView;
+        this.f42309c = textView;
         View imageView = new ImageView(context);
         this.d = imageView;
         setOrientation(1);

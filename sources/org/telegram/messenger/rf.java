@@ -51,7 +51,7 @@ public final class rf implements RequestDelegate {
                         TLRPC.Message message = messages_messages.messages.get(i7);
                         int i10 = this.f26603b;
                         if (i10 == 0 || message.f28455id <= i10) {
-                            arrayList.add(new gj(gs0Var.f35665w.f36684y1.getCurrentAccount(), message, false, true));
+                            arrayList.add(new gj(gs0Var.f35665w.f36683y1.getCurrentAccount(), message, false, true));
                         }
                     }
                 }

@@ -33,6 +33,6 @@ public final class u {
     }
 
     public final String toString() {
-        return "MediaRouter.RouteProviderInfo{ packageName=" + ((ComponentName) this.d.f36567b).getPackageName() + " }";
+        return "MediaRouter.RouteProviderInfo{ packageName=" + ((ComponentName) this.d.f36566b).getPackageName() + " }";
     }
 }

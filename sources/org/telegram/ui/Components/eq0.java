@@ -16,7 +16,7 @@ public final class eq0 extends gt0 {
         jt0 jt0Var = this.H;
         ds0 g02 = jt0Var.g0(9);
         if (g02 != null && g02.f34561n.getVisibility() == 0) {
-            jt0Var.f36637i0.f();
+            jt0Var.f36636i0.f();
         }
         if (g02 != null) {
             zq0 zq0Var = g02.f34564w;

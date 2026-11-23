@@ -27,7 +27,7 @@ public final class m1 extends View {
     public m1(Context context, int i7) {
         super(context);
         this.f12299b = new RectF();
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
         org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, false, false);
         this.f12300c = n6Var;
         this.f12301e = new ArrayList();
@@ -42,7 +42,7 @@ public final class m1 extends View {
         n6Var.s(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(3.5f), 0);
         n6Var.N = org.telegram.messenger.g0.f24046q.x;
         n6Var.u(-1);
-        n6Var.f37796b = 17;
+        n6Var.f37795b = 17;
         this.d = new k1(this, 0);
     }
 
@@ -97,7 +97,7 @@ public final class m1 extends View {
                 break;
             }
             oh0 oh0Var = (oh0) arrayList.get(i10);
-            if (oh0Var.f38207b0 >= oh0Var.f38211e[0]) {
+            if (oh0Var.f38206b0 >= oh0Var.f38210e[0]) {
                 arrayList.remove(i10);
                 i10--;
             } else {
@@ -121,7 +121,7 @@ public final class m1 extends View {
                 float e10 = l1Var.f12254i.e(z10, f12);
                 float d = l1Var.f12255j.d(l1Var.h);
                 float f17 = f13;
-                float L2 = org.telegram.messenger.g0.L(23.0f) + l1Var.f12253g.f42247c;
+                float L2 = org.telegram.messenger.g0.L(23.0f) + l1Var.f12253g.f42246c;
                 float L3 = org.telegram.messenger.g0.L(18.0f);
                 float f18 = f10;
                 float f19 = f11;

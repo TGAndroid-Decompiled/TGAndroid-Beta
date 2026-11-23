@@ -43,10 +43,10 @@ public final class c extends g2 implements gs {
         String N0 = hd.N0(2131752826, null);
         String N02 = hd.N0(2131752823, null);
         o41 o41Var = new o41(2);
-        o41Var.f38092m = N0;
-        o41Var.f38095p = N02;
-        o41Var.f38093n = "RestrictedEmoji";
-        o41Var.f38094o = "💤";
+        o41Var.f38091m = N0;
+        o41Var.f38094p = N02;
+        o41Var.f38092n = "RestrictedEmoji";
+        o41Var.f38093o = "💤";
         arrayList.add(o41Var);
         o41 i7 = o41.i(1, hd.N0(2131752809, null));
         i7.L(cVar.f18298r);
@@ -60,7 +60,7 @@ public final class c extends g2 implements gs {
                 arrayList.add(o41Var2);
             } else {
                 o41 c10 = o41.c(2, 2131232023, hd.N0(2131752825, null));
-                c10.f38097r = true;
+                c10.f38096r = true;
                 arrayList.add(c10);
             }
             arrayList.add(o41.C(null));
@@ -230,7 +230,7 @@ public final class c extends g2 implements gs {
         h51Var.r1();
         this.f18293b.setSectionsDrawBackground(true);
         h51 h51Var2 = this.f18293b;
-        h51Var2.f35790g3.f34062r = false;
+        h51Var2.f35789g3.f34062r = false;
         frameLayout.addView(h51Var2, ma.c(-1.0f, -1));
         d0();
         this.fragmentView = frameLayout;
@@ -302,7 +302,7 @@ public final class c extends g2 implements gs {
                 this.E = i10;
                 this.G = i10;
                 h51Var = this.f18293b;
-                if (h51Var != null && (c51Var = h51Var.f35790g3) != null) {
+                if (h51Var != null && (c51Var = h51Var.f35789g3) != null) {
                     c51Var.O(true);
                 }
                 a0(true);
@@ -335,7 +335,7 @@ public final class c extends g2 implements gs {
         c51 c51Var;
         if (i7 == ls.F1) {
             h51 h51Var = this.f18293b;
-            if (h51Var != null && (c51Var = h51Var.f35790g3) != null) {
+            if (h51Var != null && (c51Var = h51Var.f35789g3) != null) {
                 c51Var.O(true);
             }
             a0(true);

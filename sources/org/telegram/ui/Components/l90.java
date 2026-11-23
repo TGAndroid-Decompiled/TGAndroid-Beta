@@ -23,7 +23,7 @@ public final class l90 extends zh.l {
                     }
                     return;
                 } else if (z11) {
-                    bVar.f39090w1.K.setText("");
+                    bVar.f39089w1.K.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

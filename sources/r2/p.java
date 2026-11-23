@@ -860,7 +860,7 @@ public final class p implements b3.k, b3.n, f1, f3.q, b1 {
             byte[] bArr2 = dVar.f56391x;
             bArr2.getClass();
             uri.getClass();
-            byte[] bArr3 = (byte[]) ((w) jnVar.f36567b).put(uri, bArr2);
+            byte[] bArr3 = (byte[]) ((w) jnVar.f36566b).put(uri, bArr2);
         }
         long j11 = fVar.f60726a;
         j2.m mVar2 = fVar.f60727b;

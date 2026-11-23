@@ -96,7 +96,7 @@ public final class b0 {
                 str = hd.N0(2131752765, null);
             }
             o41 f10 = o41.f(hd.N0(2131752766, null), str, 101);
-            f10.f38087g = z10;
+            f10.f38086g = z10;
             arrayList.add(f10);
         }
         boolean z11 = this.f18284i;
@@ -143,7 +143,7 @@ public final class b0 {
                 str3 = hd.N0(2131752767, null);
             }
             o41 f11 = o41.f(hd.N0(2131752768, null), str3, 103);
-            f11.f38087g = z10;
+            f11.f38086g = z10;
             arrayList.add(f11);
         }
         c51Var.U();
@@ -434,8 +434,8 @@ public final class b0 {
             } else if (o41Var.f56634a != 11) {
                 return false;
             } else {
-                boolean z13 = o41Var.f38102x;
-                String D1 = np.u1(this.f18279b).D1(o41Var.f38103y, false);
+                boolean z13 = o41Var.f38101x;
+                String D1 = np.u1(this.f18279b).D1(o41Var.f38102y, false);
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, this.f18278a, this.f18280c);
                 if (!z13) {
                     i7 = 2131752674;

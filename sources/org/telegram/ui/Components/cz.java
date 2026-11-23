@@ -26,8 +26,8 @@ public final class cz implements Runnable {
                 boolean z12 = this.d;
                 if (z10) {
                     hz hzVar = ezVar.K;
-                    hzVar.f35999a = true;
-                    hzVar.f36002b = true;
+                    hzVar.f35998a = true;
+                    hzVar.f36001b = true;
                 }
                 if (z11) {
                     ezVar.f35033y = true;

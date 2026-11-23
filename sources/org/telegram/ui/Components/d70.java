@@ -17,15 +17,15 @@ public final class d70 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         i70 i70Var = this.f34395a;
-        i70Var.f36180m1.setBounds(0, i70Var.f36188v1 - i70Var.f30210t0, getMeasuredWidth(), getMeasuredHeight());
-        i70Var.f36180m1.draw(canvas);
+        i70Var.f36179m1.setBounds(0, i70Var.f36187v1 - i70Var.f30210t0, getMeasuredWidth(), getMeasuredHeight());
+        i70Var.f36179m1.draw(canvas);
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             i70 i70Var = this.f34395a;
-            if (i70Var.f36188v1 != 0 && motionEvent.getY() < i70Var.f36188v1) {
+            if (i70Var.f36187v1 != 0 && motionEvent.getY() < i70Var.f36187v1) {
                 i70Var.dismiss();
                 return true;
             }
@@ -44,13 +44,13 @@ public final class d70 extends FrameLayout {
         int i11;
         int size = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.f24040m;
         i70 i70Var = this.f34395a;
-        TextView textView = i70Var.f36185s1;
+        TextView textView = i70Var.f36184s1;
         measureChildWithMargins(textView, i7, 0, i10, 0);
         int measuredHeight = textView.getMeasuredHeight();
-        e70 e70Var = i70Var.f36183q1;
+        e70 e70Var = i70Var.f36182q1;
         ((FrameLayout.LayoutParams) e70Var.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(65.0f) + measuredHeight;
         getMeasuredWidth();
-        int C = org.telegram.messenger.f3.C(55.0f, org.telegram.messenger.f3.D(58.0f, i70Var.f36186t1.size(), org.telegram.messenger.g0.L(80.0f)) + i70Var.f30210t0, measuredHeight);
+        int C = org.telegram.messenger.f3.C(55.0f, org.telegram.messenger.f3.D(58.0f, i70Var.f36185t1.size(), org.telegram.messenger.g0.L(80.0f)) + i70Var.f30210t0, measuredHeight);
         int i12 = size / 5;
         if (C < i12 * 3) {
             i11 = size - C;
@@ -58,9 +58,9 @@ public final class d70 extends FrameLayout {
             i11 = i12 * 2;
         }
         if (e70Var.getPaddingTop() != i11) {
-            i70Var.f36187u1 = true;
+            i70Var.f36186u1 = true;
             e70Var.setPadding(0, i11, 0, 0);
-            i70Var.f36187u1 = false;
+            i70Var.f36186u1 = false;
         }
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
@@ -75,7 +75,7 @@ public final class d70 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f34395a.f36187u1) {
+        if (this.f34395a.f36186u1) {
             return;
         }
         super.requestLayout();

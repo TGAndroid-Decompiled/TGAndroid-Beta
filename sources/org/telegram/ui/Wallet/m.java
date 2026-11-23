@@ -77,8 +77,8 @@ public final class m implements Runnable {
                 bi.f6 f6Var = j6Var.f44448c;
                 if (f6Var != null && f6Var.getScrollState() == 0) {
                     h51 B0 = j6Var.f44453j.B0();
-                    if ((B0 == null || B0.getScrollState() == 0) && (d = j6Var.d(j6Var.f44448c.f35789f3)) != null) {
-                        v4.c0 c0Var = j6Var.f44448c.f35789f3;
+                    if ((B0 == null || B0.getScrollState() == 0) && (d = j6Var.d(j6Var.f44448c.f35788f3)) != null) {
+                        v4.c0 c0Var = j6Var.f44448c.f35788f3;
                         c0Var.getClass();
                         int i7 = new int[]{0, v4.p0.z(d) - c0Var.F()}[1];
                         if (i7 != 0) {

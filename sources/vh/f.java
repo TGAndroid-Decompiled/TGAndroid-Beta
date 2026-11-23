@@ -22,7 +22,7 @@ public final class f extends n41 {
         cVar.f1059w = (TLRPC.TL_help_country) o41Var.H;
         cVar.f();
         cVar.setDivider(z10);
-        cVar.c(o41Var.f38085e, false);
+        cVar.c(o41Var.f38084e, false);
     }
 
     @Override

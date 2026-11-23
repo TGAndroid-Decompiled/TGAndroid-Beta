@@ -1235,7 +1235,7 @@ public final class kz extends org.telegram.ui.ActionBar.g2 {
     public final boolean onBackPressed(boolean z10) {
         org.telegram.ui.Cells.g3 g3Var;
         fz fzVar = this.L;
-        if (fzVar != null && (g3Var = fzVar.f30831b) != null && g3Var.f42538e) {
+        if (fzVar != null && (g3Var = fzVar.f30831b) != null && g3Var.f42537e) {
             if (z10) {
                 g3Var.k(true);
                 return false;
@@ -1263,7 +1263,7 @@ public final class kz extends org.telegram.ui.ActionBar.g2 {
     public final void onInsets(int i7, int i10, int i11, int i12) {
         fz fzVar;
         View view = this.fragmentView;
-        if (view != null && (fzVar = this.L) != null && fzVar.f30831b.f42538e) {
+        if (view != null && (fzVar = this.L) != null && fzVar.f30831b.f42537e) {
             view.requestLayout();
         }
     }

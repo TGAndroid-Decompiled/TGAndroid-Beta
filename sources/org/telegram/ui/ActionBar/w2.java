@@ -246,7 +246,7 @@ public class w2 extends Dialog implements c2 {
             f10 = 0.0f;
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f11, f10).setDuration(180L);
-        duration.setInterpolator(nr.f37961f);
+        duration.setInterpolator(nr.f37960f);
         duration.addUpdateListener(new i2(this, 4));
         duration.start();
     }
@@ -416,7 +416,7 @@ public class w2 extends Dialog implements c2 {
                 j3 = 180;
             }
             animatorSet.setDuration(j3);
-            this.A0.setInterpolator(nr.f37962g);
+            this.A0.setInterpolator(nr.f37961g);
             this.A0.addListener(new ki.e2(this, i7, 5));
             ls.e().k(ls.f25329j1, 512);
             this.A0.start();
@@ -428,7 +428,7 @@ public class w2 extends Dialog implements c2 {
                 ValueAnimator ofArgb = ValueAnimator.ofArgb(currentTextColor, currentTextColor2);
                 ofArgb.addUpdateListener(new i2(this, 3));
                 ofArgb.setDuration(130L);
-                nr nrVar = nr.f37961f;
+                nr nrVar = nr.f37960f;
                 ofArgb.setInterpolator(nrVar);
                 ofArgb.start();
                 ValueAnimator ofArgb2 = ValueAnimator.ofArgb(currentTextColor2, currentTextColor);

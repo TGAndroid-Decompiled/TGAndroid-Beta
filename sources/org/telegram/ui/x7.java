@@ -145,7 +145,7 @@ public final class x7 extends org.telegram.ui.ActionBar.j {
                     ofFloat.addUpdateListener(new hi.ba(qcVar, 1));
                     qcVar.f51229p0.addListener(new org.telegram.ui.Cells.y9(qcVar, 4));
                     qcVar.f51229p0.setDuration(400L);
-                    qcVar.f51229p0.setInterpolator(org.telegram.ui.Components.zs.f42978e);
+                    qcVar.f51229p0.setInterpolator(org.telegram.ui.Components.zs.f42977e);
                     qcVar.f51229p0.start();
                     frameLayout.addView(qcVar.f51227n0, new ViewGroup.LayoutParams(-1, -1));
                     org.telegram.messenger.g0.g3(new wb(qcVar, 0));
@@ -172,7 +172,7 @@ public final class x7 extends org.telegram.ui.ActionBar.j {
                             if (adVar.f45601t0) {
                                 ad.d0(adVar);
                                 return;
-                            } else if (adVar.d.f42535a.length() == 0) {
+                            } else if (adVar.d.f42534a.length() == 0) {
                                 Vibrator vibrator = (Vibrator) adVar.getParentActivity().getSystemService("vibrator");
                                 if (vibrator != null) {
                                     vibrator.vibrate(200L);
@@ -376,13 +376,13 @@ public final class x7 extends org.telegram.ui.ActionBar.j {
             case 15:
                 org.telegram.ui.Components.ui uiVar = (org.telegram.ui.Components.ui) obj;
                 if (i7 == -1) {
-                    if (!uiVar.f40441w2.k()) {
+                    if (!uiVar.f40440w2.k()) {
                         uiVar.dismiss();
                         return;
                     }
                     return;
                 }
-                uiVar.f40441w2.w(i7);
+                uiVar.f40440w2.w(i7);
                 return;
             case 16:
                 if (i7 == -1) {
@@ -451,7 +451,7 @@ public final class x7 extends org.telegram.ui.ActionBar.j {
                     }
                 } else if (i7 == 100) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, contactsActivity.getParentActivity(), contactsActivity.getResourceProvider());
-                    a0.h hVar = contactsActivity.f43022a0;
+                    a0.h hVar = contactsActivity.f43021a0;
                     int m10 = hVar.m();
                     org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder2.f28777a;
                     if (m10 == 1) {
@@ -471,24 +471,24 @@ public final class x7 extends org.telegram.ui.ActionBar.j {
                     SharedPreferences.Editor edit = org.telegram.messenger.np.g1().edit();
                     edit.putBoolean("sortContactsByName", org.telegram.messenger.cz.L0);
                     edit.apply();
-                    contactsActivity.f43041r = org.telegram.messenger.cz.L0;
-                    org.telegram.ui.ActionBar.g5 g5Var = contactsActivity.f43038n;
+                    contactsActivity.f43040r = org.telegram.messenger.cz.L0;
+                    org.telegram.ui.ActionBar.g5 g5Var = contactsActivity.f43037n;
                     if (g5Var != null) {
                         org.telegram.ui.Components.rh0 iconView = g5Var.getIconView();
-                        if (contactsActivity.f43041r) {
+                        if (contactsActivity.f43040r) {
                             i12 = 2131232104;
                         } else {
                             i12 = 2131232103;
                         }
                         org.telegram.messenger.g0.P3(iconView, i12);
                     }
-                    ViewPropertyAnimator viewPropertyAnimator = contactsActivity.f43031f0;
+                    ViewPropertyAnimator viewPropertyAnimator = contactsActivity.f43030f0;
                     if (viewPropertyAnimator != null) {
                         viewPropertyAnimator.cancel();
                     }
-                    contactsActivity.f43021a.b();
-                    ViewPropertyAnimator withEndAction = contactsActivity.d.animate().alpha(0.0f).setDuration(120L).setInterpolator(org.telegram.ui.Components.nr.f37962g).withEndAction(new sr(contactsActivity, 0));
-                    contactsActivity.f43031f0 = withEndAction;
+                    contactsActivity.f43020a.b();
+                    ViewPropertyAnimator withEndAction = contactsActivity.d.animate().alpha(0.0f).setDuration(120L).setInterpolator(org.telegram.ui.Components.nr.f37961g).withEndAction(new sr(contactsActivity, 0));
+                    contactsActivity.f43030f0 = withEndAction;
                     withEndAction.start();
                     return;
                 } else {

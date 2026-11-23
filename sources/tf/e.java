@@ -78,7 +78,7 @@ public final class e {
             while (true) {
                 jn jnVar = this.d;
                 if (i10 < i7) {
-                    int read = ((ab.d) jnVar.f36567b).read(bArr2, i10, i7 - i10);
+                    int read = ((ab.d) jnVar.f36566b).read(bArr2, i10, i7 - i10);
                     if (read > 0) {
                         i10 += read;
                     } else {

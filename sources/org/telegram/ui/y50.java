@@ -87,10 +87,10 @@ public final class y50 extends FrameLayout {
                         int i11 = 0;
                         while (true) {
                             int childCount = h51Var.getChildCount();
-                            org.telegram.ui.Components.c51 c51Var = h51Var.f35790g3;
+                            org.telegram.ui.Components.c51 c51Var = h51Var.f35789g3;
                             if (i11 < childCount) {
                                 View childAt = h51Var.getChildAt(i11);
-                                h51Var.f35789f3.getClass();
+                                h51Var.f35788f3.getClass();
                                 int H = v4.p0.H(childAt);
                                 View[] viewArr2 = viewPages;
                                 if (H >= 0 && H < c51Var.E.size() && (G = c51Var.G(H)) != null && G.f56634a == 28) {
@@ -108,7 +108,7 @@ public final class y50 extends FrameLayout {
                                     while (true) {
                                         if (i12 < h51Var.getChildCount()) {
                                             View childAt2 = h51Var.getChildAt(i12);
-                                            h51Var.f35789f3.getClass();
+                                            h51Var.f35788f3.getClass();
                                             if (c51Var.G(v4.p0.H(childAt2)).f56634a == 28) {
                                                 f14 = childAt2.getY() + frameLayout.getPaddingTop();
                                             } else {

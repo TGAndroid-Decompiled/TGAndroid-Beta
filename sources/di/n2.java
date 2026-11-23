@@ -250,11 +250,11 @@ public final class n2 implements y10 {
                 ArrayList arrayList3 = (ArrayList) obj2;
                 ArrayList arrayList4 = (ArrayList) obj3;
                 Runnable runnable = (Runnable) obj;
-                sx sxVar = ((rx) obj6).f39368a;
-                String str4 = sxVar.f39716w;
-                ArrayList arrayList5 = sxVar.f39714r;
+                sx sxVar = ((rx) obj6).f39367a;
+                String str4 = sxVar.f39715w;
+                ArrayList arrayList5 = sxVar.f39713r;
                 ArrayList arrayList6 = sxVar.h;
-                ArrayList arrayList7 = sxVar.f39715s;
+                ArrayList arrayList7 = sxVar.f39714s;
                 ty tyVar = sxVar.G;
                 if (((String) obj5).equals(str4)) {
                     vv vvVar = tyVar.W;
@@ -267,7 +267,7 @@ public final class n2 implements y10 {
                         gxVar.setAdapter(sxVar2);
                     }
                     arrayList6.clear();
-                    arrayList6.addAll(sxVar.f39713n);
+                    arrayList6.addAll(sxVar.f39712n);
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     arrayList7.clear();
@@ -278,8 +278,8 @@ public final class n2 implements y10 {
                         Object obj8 = arrayList3.get(i12);
                         i12++;
                         mx mxVar = (mx) obj8;
-                        if (longSparseIntArray.indexOfKey(mxVar.f37657c.f28461id) < 0) {
-                            longSparseIntArray.append(mxVar.f37657c.f28461id, 1);
+                        if (longSparseIntArray.indexOfKey(mxVar.f37656c.f28461id) < 0) {
+                            longSparseIntArray.append(mxVar.f37656c.f28461id, 1);
                             arrayList7.add(mxVar);
                         }
                     }
@@ -288,8 +288,8 @@ public final class n2 implements y10 {
                         Object obj9 = arrayList4.get(i10);
                         i10++;
                         mx mxVar2 = (mx) obj9;
-                        if (longSparseIntArray.indexOfKey(mxVar2.f37657c.f28461id) < 0) {
-                            longSparseIntArray.append(mxVar2.f37657c.f28461id, 1);
+                        if (longSparseIntArray.indexOfKey(mxVar2.f37656c.f28461id) < 0) {
+                            longSparseIntArray.append(mxVar2.f37656c.f28461id, 1);
                             arrayList7.add(mxVar2);
                         }
                     }

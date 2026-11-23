@@ -5,26 +5,26 @@ import android.view.View;
 import android.widget.LinearLayout;
 import java.util.HashSet;
 public final class p01 extends LinearLayout implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.ActionBar.h6 f38433a;
-    public final q9 f38434b;
-    public final m80 f38435c;
+    public final org.telegram.ui.ActionBar.h6 f38432a;
+    public final q9 f38433b;
+    public final m80 f38434c;
     public final m80 d;
-    public int f38436e;
-    public int f38437f;
+    public int f38435e;
+    public int f38436f;
 
     public p01(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.f38436e = 90;
-        this.f38433a = h6Var;
+        this.f38435e = 90;
+        this.f38432a = h6Var;
         setOrientation(1);
         q9 q9Var = new q9(context);
-        this.f38434b = q9Var;
+        this.f38433b = q9Var;
         q9Var.getImageReceiver().X(1);
         q9Var.getImageReceiver().W(1);
         q9Var.setOnClickListener(new j70(this, 20));
         addView(q9Var, c8.ma.t(90, 90, 17, 0, 9, 0, 9));
         m80 m80Var = new m80(context, null);
-        this.f38435c = m80Var;
+        this.f38434c = m80Var;
         m80Var.setTextSize(1, 20.0f);
         m80Var.setGravity(17);
         m80Var.setTypeface(org.telegram.messenger.g0.o());
@@ -40,7 +40,7 @@ public final class p01 extends LinearLayout implements org.telegram.ui.ActionBar
     }
 
     public final void a(CharSequence charSequence, CharSequence charSequence2) {
-        m80 m80Var = this.f38435c;
+        m80 m80Var = this.f38434c;
         m80Var.setText(charSequence);
         m80Var.setVisibility(0);
         m80 m80Var2 = this.d;
@@ -63,33 +63,33 @@ public final class p01 extends LinearLayout implements org.telegram.ui.ActionBar
     }
 
     public void setEmoji(int i7) {
-        if (this.f38437f != i7) {
-            this.f38437f = i7;
+        if (this.f38436f != i7) {
+            this.f38436f = i7;
             oh0 oh0Var = new oh0(i7, org.telegram.messenger.g0.L(90.0f), org.telegram.messenger.g0.L(90.0f));
-            q9 q9Var = this.f38434b;
+            q9 q9Var = this.f38433b;
             q9Var.setImageDrawable(oh0Var);
             q9Var.getImageReceiver().W(2);
         }
     }
 
     public void setEmojiSize(int i7) {
-        if (this.f38436e != i7) {
-            this.f38436e = i7;
+        if (this.f38435e != i7) {
+            this.f38435e = i7;
             updateColors();
         }
     }
 
     public void setEmojiStatic(int i7) {
-        if (this.f38437f != i7) {
-            q9 q9Var = this.f38434b;
+        if (this.f38436f != i7) {
+            q9 q9Var = this.f38433b;
             q9Var.b();
-            this.f38437f = i7;
+            this.f38436f = i7;
             q9Var.setImageResource(i7);
         }
     }
 
     public void setText(CharSequence charSequence) {
-        this.f38435c.setVisibility(8);
+        this.f38434c.setVisibility(8);
         m80 m80Var = this.d;
         m80Var.setText(charSequence);
         m80Var.setMaxWidth(hi.l3.a(charSequence, m80Var.getPaint()));
@@ -101,9 +101,9 @@ public final class p01 extends LinearLayout implements org.telegram.ui.ActionBar
     public final void updateColors() {
         int i7;
         int i10 = org.telegram.ui.ActionBar.m6.G6;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f38433a;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f38432a;
         int w02 = org.telegram.ui.ActionBar.m6.w0(i10, h6Var);
-        m80 m80Var = this.f38435c;
+        m80 m80Var = this.f38434c;
         m80Var.setTextColor(w02);
         int i11 = org.telegram.ui.ActionBar.m6.Xc;
         m80Var.setLinkTextColor(org.telegram.ui.ActionBar.m6.w0(i11, h6Var));
@@ -114,12 +114,12 @@ public final class p01 extends LinearLayout implements org.telegram.ui.ActionBar
         m80 m80Var2 = this.d;
         m80Var2.setTextColor(w03);
         m80Var2.setLinkTextColor(org.telegram.ui.ActionBar.m6.w0(i11, h6Var));
-        int i12 = this.f38436e;
+        int i12 = this.f38435e;
         if (m80Var.getVisibility() == 0) {
             i7 = 0;
         } else {
             i7 = 9;
         }
-        this.f38434b.setLayoutParams(c8.ma.t(i12, i12, 17, 0, i7, 0, 9));
+        this.f38433b.setLayoutParams(c8.ma.t(i12, i12, 17, 0, i7, 0, 9));
     }
 }

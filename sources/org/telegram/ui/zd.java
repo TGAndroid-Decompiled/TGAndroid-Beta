@@ -251,7 +251,7 @@ public final class zd implements Runnable {
             default:
                 org.telegram.ui.Components.so soVar = ((org.telegram.ui.Components.so[]) bnVar.f45979c0.f3595b)[0];
                 org.telegram.ui.ActionBar.m5 m5Var = soVar.d;
-                org.telegram.ui.ActionBar.m5 m5Var2 = soVar.f39639e;
+                org.telegram.ui.ActionBar.m5 m5Var2 = soVar.f39638e;
                 bnVar.U1 = !bnVar.U1;
                 m5Var.setPivotX(0.0f);
                 m5Var2.setPivotX(0.0f);

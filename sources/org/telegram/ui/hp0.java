@@ -27,7 +27,7 @@ public final class hp0 extends AnimatorListenerAdapter {
                 photoViewer.f43343p6 = null;
                 org.telegram.ui.Components.rd0 rd0Var = photoViewer.D1;
                 if (rd0Var != null) {
-                    if (rd0Var.f39164b.j()) {
+                    if (rd0Var.f39163b.j()) {
                         org.telegram.ui.ActionBar.t6.s(photoViewer.f43216b1, org.telegram.ui.ActionBar.m6.f29630qg, photoViewer.f43403w2, PorterDuff.Mode.MULTIPLY);
                     } else {
                         photoViewer.f43216b1.setColorFilter((ColorFilter) null);
@@ -106,7 +106,7 @@ public final class hp0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     bn bnVar = photoViewer.f43307l4;
                     if (bnVar == null && (uiVar = photoViewer.f43217b2) != null) {
-                        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+                        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
                         if (g2Var instanceof bn) {
                             bnVar = (bn) g2Var;
                         }

@@ -607,7 +607,7 @@ public abstract class g extends View implements i {
                     this.f19853w = f12;
                 } else {
                     float f14 = this.U0;
-                    this.f19853w = (nr.f37962g.getInterpolation(f13) * (f12 - f14)) + f14;
+                    this.f19853w = (nr.f37961g.getInterpolation(f13) * (f12 - f14)) + f14;
                 }
                 invalidate();
             }
@@ -622,7 +622,7 @@ public abstract class g extends View implements i {
                         this.f19855x = f16;
                     } else {
                         float f18 = this.V0;
-                        this.f19855x = (nr.f37962g.getInterpolation(f17) * (f16 - f18)) + f18;
+                        this.f19855x = (nr.f37961g.getInterpolation(f17) * (f16 - f18)) + f18;
                     }
                     invalidate();
                 }

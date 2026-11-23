@@ -63,7 +63,7 @@ public final class q01 extends v01 {
                         }
                         if (hxVar != null) {
                             boolean z11 = hxVar.h;
-                            int size = hxVar.f35983c.size();
+                            int size = hxVar.f35982c.size();
                             if (!z11) {
                                 size = Math.min(24, size);
                             }
@@ -74,7 +74,7 @@ public final class q01 extends v01 {
                                 } else {
                                     i11 = 0;
                                 }
-                                if (ovVar.F != null && ovVar.f38371c0) {
+                                if (ovVar.F != null && ovVar.f38370c0) {
                                     i12 = 1;
                                 } else {
                                     i12 = 0;

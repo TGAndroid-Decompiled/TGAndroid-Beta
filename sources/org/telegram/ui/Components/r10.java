@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public abstract class r10 extends org.telegram.ui.ActionBar.w2 {
-    public static final int f39050m1 = 0;
+    public static final int f39049m1 = 0;
 
     public r10(Context context, org.telegram.ui.ActionBar.g2 g2Var) {
         super(context, true);
@@ -71,11 +71,11 @@ public abstract class r10 extends org.telegram.ui.ActionBar.w2 {
             } else {
                 ?? frameLayout = new FrameLayout(context);
                 View view = new View(context);
-                frameLayout.f38753a = view;
+                frameLayout.f38752a = view;
                 view.setBackground(org.telegram.ui.ActionBar.a6.f(org.telegram.ui.ActionBar.m6.Fi, 4.0f));
                 frameLayout.addView(view, c8.ma.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
                 TextView textView3 = new TextView(context);
-                frameLayout.f38754b = textView3;
+                frameLayout.f38753b = textView3;
                 textView3.setLines(1);
                 textView3.setSingleLine(true);
                 textView3.setGravity(1);

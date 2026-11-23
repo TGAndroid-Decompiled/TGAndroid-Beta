@@ -17,18 +17,18 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.wc1;
 public final class hr implements View.OnClickListener {
-    public final int f35954a;
-    public final long f35955b;
-    public final Object f35956c;
+    public final int f35953a;
+    public final long f35954b;
+    public final Object f35955c;
     public final Object d;
-    public final Object f35957e;
+    public final Object f35956e;
 
     public hr(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f35954a = i7;
-        this.f35956c = obj;
+        this.f35953a = i7;
+        this.f35955c = obj;
         this.d = obj2;
-        this.f35957e = obj3;
-        this.f35955b = j3;
+        this.f35956e = obj3;
+        this.f35954b = j3;
     }
 
     @Override
@@ -42,10 +42,10 @@ public final class hr implements View.OnClickListener {
         String str;
         TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway;
         long j3;
-        int i13 = this.f35954a;
-        Object obj = this.f35957e;
+        int i13 = this.f35953a;
+        Object obj = this.f35956e;
         Object obj2 = this.d;
-        Object obj3 = this.f35956c;
+        Object obj3 = this.f35955c;
         switch (i13) {
             case 0:
                 jr jrVar = (jr) obj3;
@@ -54,7 +54,7 @@ public final class hr implements View.OnClickListener {
                 org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28777a;
                 t1Var.S = N0;
                 t1Var.U = org.telegram.messenger.hd.N0(2131748606, null);
-                alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131745828, null), new di.h(jrVar, (hi.e) obj, this.f35955b, 6));
+                alertDialog$Builder.k(org.telegram.messenger.hd.N0(2131745828, null), new di.h(jrVar, (hi.e) obj, this.f35954b, 6));
                 alertDialog$Builder.h(org.telegram.messenger.hd.N0(2131752577, null), null);
                 alertDialog$Builder.d(-1);
                 alertDialog$Builder.p();
@@ -62,7 +62,7 @@ public final class hr implements View.OnClickListener {
             case 1:
                 org.telegram.ui.cx cxVar = (org.telegram.ui.cx) obj3;
                 cxVar.finishPreviewFragment();
-                org.telegram.messenger.g0.h3(new di.j2(cxVar, (org.telegram.messenger.so) obj2, (TLRPC.Dialog) obj, this.f35955b, 18), 100L);
+                org.telegram.messenger.g0.h3(new di.j2(cxVar, (org.telegram.messenger.so) obj2, (TLRPC.Dialog) obj, this.f35954b, 18), 100L);
                 return;
             default:
                 wg.a0 a0Var = (wg.a0) obj3;
@@ -86,7 +86,7 @@ public final class hr implements View.OnClickListener {
                         } else {
                             j3 = 0;
                         }
-                        ko koVar = new ko(this.f35955b, j3, prepaidGiveaway, tL_prepaidStarsGiveaway, a0Var);
+                        ko koVar = new ko(this.f35954b, j3, prepaidGiveaway, tL_prepaidStarsGiveaway, a0Var);
                         org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
                         if (Q != null) {
                             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, Q.getContext(), Q.getResourceProvider());
@@ -418,10 +418,10 @@ public final class hr implements View.OnClickListener {
     }
 
     public hr(wg.a0 a0Var, TL_stories.PrepaidGiveaway prepaidGiveaway, long j3, org.telegram.ui.ActionBar.g2 g2Var) {
-        this.f35954a = 2;
-        this.f35956c = a0Var;
+        this.f35953a = 2;
+        this.f35955c = a0Var;
         this.d = prepaidGiveaway;
-        this.f35955b = j3;
-        this.f35957e = g2Var;
+        this.f35954b = j3;
+        this.f35956e = g2Var;
     }
 }

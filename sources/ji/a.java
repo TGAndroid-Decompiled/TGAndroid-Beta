@@ -59,7 +59,7 @@ public final class a implements Runnable {
                         rf rfVar = oVar.f17995b;
                         h hVar = new h(oVar, 3);
                         e eVar3 = oVar.K;
-                        ChatActivityEnterView chatActivityEnterView = rfVar.f39178a;
+                        ChatActivityEnterView chatActivityEnterView = rfVar.f39177a;
                         h6 h6Var = chatActivityEnterView.M4;
                         bn bnVar = chatActivityEnterView.F3;
                         re reVar = chatActivityEnterView.K0;

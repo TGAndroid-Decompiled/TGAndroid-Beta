@@ -23,7 +23,7 @@ public final class mt0 implements Runnable {
             default:
                 org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(privacySettingsActivity.getParentActivity(), null);
                 obVar.d(2131624009, new String[0]);
-                obVar.f38158b.setText(org.telegram.messenger.hd.N0(2131742545, null));
+                obVar.f38157b.setText(org.telegram.messenger.hd.N0(2131742545, null));
                 org.telegram.ui.Components.gc.g(privacySettingsActivity, obVar, 1500).j();
                 try {
                     privacySettingsActivity.fragmentView.performHapticFeedback(3, 2);

@@ -566,7 +566,7 @@ public abstract class n0 {
             Object obj = arrayList.get(i7);
             i7++;
             rk0 rk0Var2 = (rk0) obj;
-            if (rk0Var == null || rk0Var2.f39261d0 > rk0Var.f39261d0) {
+            if (rk0Var == null || rk0Var2.f39260d0 > rk0Var.f39260d0) {
                 rk0Var = rk0Var2;
             }
         }

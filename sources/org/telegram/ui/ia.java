@@ -40,7 +40,7 @@ public abstract class ia extends FrameLayout implements org.telegram.ui.ActionBa
     public ia(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         this.f48699a = false;
-        this.E = new org.telegram.ui.Components.d6(this, 300L, org.telegram.ui.Components.nr.f37961f);
+        this.E = new org.telegram.ui.Components.d6(this, 300L, org.telegram.ui.Components.nr.f37960f);
         this.J = new org.telegram.ui.Components.d6(this, 400L, org.telegram.ui.Components.nr.h);
         this.f48700b = h6Var;
         org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29381d6, this, h6Var);
@@ -63,7 +63,7 @@ public abstract class ia extends FrameLayout implements org.telegram.ui.ActionBa
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(getContext(), false, true, true);
         this.f48703f = o6Var;
         o6Var.setTextColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29792z6, h6Var));
-        o6Var.b(0.4f, 120L, org.telegram.ui.Components.nr.f37962g);
+        o6Var.b(0.4f, 120L, org.telegram.ui.Components.nr.f37961g);
         o6Var.setTextSize(org.telegram.messenger.g0.L(13.0f));
         addView(o6Var, c8.ma.d(-1, -2.0f, 48, 70.0f, 23.0f, 0.0f, 0.0f));
         Drawable[] drawableArr = {context.getDrawable(2131232207).mutate(), context.getDrawable(2131232208).mutate()};
@@ -139,7 +139,7 @@ public abstract class ia extends FrameLayout implements org.telegram.ui.ActionBa
             this.G = ofFloat;
             ofFloat.addUpdateListener(new ha(this, 1));
             this.G.setDuration(120L);
-            this.G.setInterpolator(org.telegram.ui.Components.nr.f37962g);
+            this.G.setInterpolator(org.telegram.ui.Components.nr.f37961g);
             this.G.start();
             return;
         }
@@ -264,7 +264,7 @@ public abstract class ia extends FrameLayout implements org.telegram.ui.ActionBa
             this.f48706s = ofFloat;
             ofFloat.addUpdateListener(new ha(this, 0));
             this.f48706s.addListener(new bi.g7(27, this, z10));
-            this.f48706s.setInterpolator(org.telegram.ui.Components.nr.f37962g);
+            this.f48706s.setInterpolator(org.telegram.ui.Components.nr.f37961g);
             this.f48706s.setDuration(200L);
             this.f48706s.start();
         }

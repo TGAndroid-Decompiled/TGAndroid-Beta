@@ -72,7 +72,7 @@ public final class a30 extends sa {
         eVar2.i(org.telegram.messenger.hd.a0(null, null, 2131749178, u10), false, true);
         eVar2.setOnClickListener(new o0(this, 25));
         linearLayout.addView(eVar2, c8.ma.k(14.0f, 0.0f, 14.0f, 14.0f, -1, 48));
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i10 = this.f30211u0;
         ek0Var.setPadding(i10, 0, i10, 0);
         this.V1.O(false);
@@ -92,7 +92,7 @@ public final class a30 extends sa {
     public final dk0 M0(ek0 ek0Var) {
         switch (this.T1) {
             case 0:
-                c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, true, new d(this, 15), this.J0);
+                c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, true, new d(this, 15), this.J0);
                 this.V1 = c51Var;
                 c51Var.f34062r = false;
                 return c51Var;
@@ -121,9 +121,9 @@ public final class a30 extends sa {
 
     public a30(Context context) {
         super(context, null, false, false, null);
-        this.f39539v1 = 0.1f;
+        this.f39538v1 = 0.1f;
         O();
-        ek0 ek0Var = this.f39532o1;
+        ek0 ek0Var = this.f39531o1;
         int i7 = this.f30211u0;
         ek0Var.setPadding(i7, 0, i7, 0);
         LinearLayout linearLayout = new LinearLayout(context);
@@ -168,7 +168,7 @@ public final class a30 extends sa {
     public a30(Context context, org.telegram.ui.ActionBar.h6 h6Var, fm0 fm0Var) {
         super(context, null, false, false, h6Var);
         O();
-        this.f39539v1 = 0.2f;
+        this.f39538v1 = 0.2f;
         Paint paint = new Paint(1);
         paint.setStyle(Paint.Style.FILL);
         int i7 = org.telegram.ui.ActionBar.m6.Fi;

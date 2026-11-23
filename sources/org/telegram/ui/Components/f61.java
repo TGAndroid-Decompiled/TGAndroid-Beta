@@ -10,9 +10,9 @@ public final class f61 {
     public f61(h61 h61Var) {
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
-        this.f35101a = h61Var.f35801b;
-        this.f35102b = h61Var.f35806i;
-        this.f35103c = h61Var.f35807j;
+        this.f35101a = h61Var.f35800b;
+        this.f35102b = h61Var.f35805i;
+        this.f35103c = h61Var.f35806j;
         arrayList.add(h61Var);
     }
 
@@ -35,8 +35,8 @@ public final class f61 {
         long j3 = Long.MAX_VALUE;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             h61 h61Var3 = (h61) arrayList.get(i10);
-            if (h61Var3.f35808k < j3 && i61.D0(h61Var3.f35810m)) {
-                j3 = h61Var3.f35808k;
+            if (h61Var3.f35807k < j3 && i61.D0(h61Var3.f35809m)) {
+                j3 = h61Var3.f35807k;
                 h61Var = h61Var3;
             }
         }
@@ -93,10 +93,10 @@ public final class f61 {
             sb2.append(str);
             sb2.append("\n");
             ArrayList arrayList = this.d;
-            sb2.append(org.telegram.messenger.g0.i0((long) ((h61) arrayList.get(0)).f35809l, false, false).replace(" ", ""));
+            sb2.append(org.telegram.messenger.g0.i0((long) ((h61) arrayList.get(0)).f35808l, false, false).replace(" ", ""));
             sb2.append("/s");
-            if (((h61) arrayList.get(0)).f35810m != null) {
-                str2 = ", " + ((h61) arrayList.get(0)).f35810m;
+            if (((h61) arrayList.get(0)).f35809m != null) {
+                str2 = ", " + ((h61) arrayList.get(0)).f35809m;
             }
             sb2.append(str2);
             return sb2.toString();

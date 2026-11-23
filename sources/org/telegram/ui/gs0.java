@@ -35,7 +35,7 @@ public final class gs0 implements org.telegram.ui.ActionBar.q1, org.telegram.mes
             is0 is0Var = this.f48170b;
             is0Var.f48821n = z10;
             s8Var.setChecked(z10);
-            is0Var.d.f35790g3.O(true);
+            is0Var.d.f35789g3.O(true);
             is0Var.a0(true);
         }
     }

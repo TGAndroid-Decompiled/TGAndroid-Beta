@@ -28,7 +28,7 @@ public final class a extends sa {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.f30173a, 0, false, new d7(this, 24), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.f30173a, 0, false, new d7(this, 24), this.J0);
         this.T1 = c51Var;
         c51Var.f34062r = false;
         return c51Var;
@@ -67,7 +67,7 @@ public final class a extends sa {
         boolean z11;
         if (this.U1 != z10) {
             this.U1 = z10;
-            ek0 ek0Var = this.f39532o1;
+            ek0 ek0Var = this.f39531o1;
             View T0 = ek0Var.T0(this.Y1 + 1);
             if (T0 instanceof i6) {
                 ((i6) T0).a(!z10);

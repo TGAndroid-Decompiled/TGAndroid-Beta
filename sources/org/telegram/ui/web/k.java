@@ -68,7 +68,7 @@ public final class k extends FrameLayout {
         this.f53210a = c5Var;
         f6 f6Var = new f6(this, activity, i10, bVar, aVar, c5Var);
         this.f53219x = f6Var;
-        f6Var.f35790g3.f34062r = false;
+        f6Var.f35789g3.f34062r = false;
         f6Var.setOverScrollMode(2);
         f6Var.setPadding(0, 0, 0, 0);
         addView(f6Var, ma.e(-1, -1, 119));
@@ -231,9 +231,9 @@ public final class k extends FrameLayout {
         if (TextUtils.isEmpty(str)) {
             arrayList.clear();
             f6 f6Var = this.f53219x;
-            f6Var.f35790g3.O(true);
+            f6Var.f35789g3.O(true);
             if (z10 != (!arrayList.isEmpty())) {
-                f6Var.f35789f3.h1(0, 0);
+                f6Var.f35788f3.h1(0, 0);
                 return;
             }
             return;

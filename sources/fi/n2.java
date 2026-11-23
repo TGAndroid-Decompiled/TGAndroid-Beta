@@ -34,7 +34,7 @@ public final class n2 extends ui {
             case 2:
                 bn bnVar = (bn) obj;
                 n2 n2Var2 = bnVar.Y1;
-                if (n2Var2 != null && (n2Var2.isShowing() || this.f40425s2)) {
+                if (n2Var2 != null && (n2Var2.isShowing() || this.f40424s2)) {
                     Activity parentActivity = bnVar.getParentActivity();
                     i7 = ((org.telegram.ui.ActionBar.g2) bnVar).classGuid;
                     org.telegram.messenger.g0.Z2(parentActivity, i7);
@@ -95,8 +95,8 @@ public final class n2 extends ui {
                 return;
             case 2:
                 bn bnVar = (bn) obj;
-                boolean z10 = this.f40425s2;
-                boolean O = this.f40441w2.O();
+                boolean z10 = this.f40424s2;
+                boolean O = this.f40440w2.O();
                 if (!O) {
                     bnVar.S3 = false;
                     rj rjVar2 = bnVar.f45950a0;

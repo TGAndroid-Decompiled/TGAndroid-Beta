@@ -39,17 +39,17 @@ public final class i0 implements Runnable {
                 return;
             case 1:
                 s0 s0Var = (s0) ((w4) obj2).f15708b;
-                s0Var.f18499c.f35790g3.O(true);
+                s0Var.f18499c.f35789g3.O(true);
                 s0Var.g0();
                 return;
             case 2:
                 u0 u0Var = (u0) obj2;
-                u0Var.f18525b.f35790g3.O(true);
+                u0Var.f18525b.f35789g3.O(true);
                 u0Var.a0(true);
                 return;
             case 3:
                 e1 e1Var = (e1) obj2;
-                e1Var.f18334a.f35790g3.O(true);
+                e1Var.f18334a.f35789g3.O(true);
                 e1Var.d0(true);
                 return;
             case 4:

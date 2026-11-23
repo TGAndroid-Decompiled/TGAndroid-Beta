@@ -68,7 +68,7 @@ public final class tk implements org.telegram.ui.Components.si {
             if (gjVar != null && (message = gjVar.f24213k) != null) {
                 message.invert_media = z12;
             }
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || n2Var.f40379e2.getSelectedPhotos().isEmpty())) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || n2Var.f40378e2.getSelectedPhotos().isEmpty())) {
                 fi.n2 n2Var2 = bnVar.Y1;
                 if (n2Var2 != null) {
                     n2Var2.M(i7);
@@ -80,8 +80,8 @@ public final class tk implements org.telegram.ui.Components.si {
             if (n2Var3 != null && i7 != 8) {
                 n2Var3.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = bnVar.Y1.f40379e2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = bnVar.Y1.f40379e2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = bnVar.Y1.f40378e2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = bnVar.Y1.f40378e2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int ceil = (int) Math.ceil(selectedPhotos.size() / 10.0f);
                 int i14 = 0;

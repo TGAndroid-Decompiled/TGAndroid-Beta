@@ -20,8 +20,8 @@ public final class dh implements ll, org.telegram.ui.ActionBar.q1, te.i, sj0, ri
         switch (this.f34496a) {
             case 14:
                 ui uiVar = this.f34497b;
-                mi miVar = uiVar.f40441w2;
-                if (miVar != uiVar.f40379e2 && miVar != uiVar.f40399l2) {
+                mi miVar = uiVar.f40440w2;
+                if (miVar != uiVar.f40378e2 && miVar != uiVar.f40398l2) {
                     if (!miVar.M(z10, i7, i10, 0L, uiVar.g1())) {
                         uiVar.B4 = true;
                         uiVar.dismiss();
@@ -33,7 +33,7 @@ public final class dh implements ll, org.telegram.ui.ActionBar.q1, te.i, sj0, ri
                 return;
             default:
                 ui uiVar2 = this.f34497b;
-                df dfVar = uiVar2.f40374c2;
+                df dfVar = uiVar2.f40373c2;
                 if (dfVar != null) {
                     j3 = dfVar.k();
                 } else {
@@ -43,8 +43,8 @@ public final class dh implements ll, org.telegram.ui.ActionBar.q1, te.i, sj0, ri
                 ci ciVar = uiVar2.G2;
                 uiVar2.L2 = j10;
                 ciVar.setEffect(j10);
-                mi miVar2 = uiVar2.f40441w2;
-                if (miVar2 != uiVar2.f40379e2 && miVar2 != uiVar2.f40399l2) {
+                mi miVar2 = uiVar2.f40440w2;
+                if (miVar2 != uiVar2.f40378e2 && miVar2 != uiVar2.f40398l2) {
                     if (!miVar2.M(z10, i7, i10, j10, uiVar2.g1())) {
                         uiVar2.dismiss();
                     }
@@ -52,10 +52,10 @@ public final class dh implements ll, org.telegram.ui.ActionBar.q1, te.i, sj0, ri
                 } else {
                     v12 = uiVar2.v1(z10, i7, i10, j10, uiVar2.g1());
                 }
-                df dfVar2 = uiVar2.f40374c2;
+                df dfVar2 = uiVar2.f40373c2;
                 if (dfVar2 != null) {
                     dfVar2.h(!v12);
-                    uiVar2.f40374c2 = null;
+                    uiVar2.f40373c2 = null;
                     return;
                 }
                 return;
@@ -66,13 +66,13 @@ public final class dh implements ll, org.telegram.ui.ActionBar.q1, te.i, sj0, ri
     public void b(TLRPC.MessageMedia messageMedia, int i7, boolean z10, int i10, long j3) {
         switch (this.f34496a) {
             case 0:
-                ((org.telegram.ui.bn) this.f34497b.f40368a2).b(messageMedia, i7, z10, i10, 0L);
+                ((org.telegram.ui.bn) this.f34497b.f40367a2).b(messageMedia, i7, z10, i10, 0L);
                 return;
             case 12:
-                ((org.telegram.ui.bn) this.f34497b.f40368a2).b(messageMedia, i7, z10, i10, j3);
+                ((org.telegram.ui.bn) this.f34497b.f40367a2).b(messageMedia, i7, z10, i10, j3);
                 return;
             default:
-                ((org.telegram.ui.bn) this.f34497b.f40368a2).b(messageMedia, i7, z10, i10, j3);
+                ((org.telegram.ui.bn) this.f34497b.f40367a2).b(messageMedia, i7, z10, i10, j3);
                 return;
         }
     }
@@ -83,8 +83,8 @@ public final class dh implements ll, org.telegram.ui.ActionBar.q1, te.i, sj0, ri
         if (view instanceof ni) {
             ni niVar = (ni) view;
             ui uiVar = this.f34497b;
-            if (!uiVar.Q1 && (user = niVar.f37882b) != null) {
-                uiVar.l1(niVar.f37883c, user);
+            if (!uiVar.Q1 && (user = niVar.f37881b) != null) {
+                uiVar.l1(niVar.f37882c, user);
                 return true;
             }
             return false;
@@ -130,7 +130,7 @@ public final class dh implements ll, org.telegram.ui.ActionBar.q1, te.i, sj0, ri
             bjVar.i(arrayList, charSequence, z10, i7, i10, j3, z11, j10);
             return;
         }
-        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40368a2;
+        org.telegram.ui.ActionBar.g2 g2Var = uiVar.f40367a2;
         if (g2Var != null && (g2Var instanceof org.telegram.ui.bn)) {
             org.telegram.ui.bn bnVar = (org.telegram.ui.bn) g2Var;
             if (bnVar.u7()) {
@@ -178,12 +178,12 @@ public final class dh implements ll, org.telegram.ui.ActionBar.q1, te.i, sj0, ri
                 int w02 = org.telegram.ui.ActionBar.m6.w0(i7, h6Var);
                 int w03 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29381d6, h6Var);
                 ui uiVar = this.f34497b;
-                if (uiVar.f40398k4) {
-                    return i0.a.f(0.75f, w03, uiVar.f40401l4);
+                if (uiVar.f40397k4) {
+                    return i0.a.f(0.75f, w03, uiVar.f40400l4);
                 }
                 return c8.i0.n(f10, w02, w03);
             case 6:
-                if (this.f34497b.f40398k4) {
+                if (this.f34497b.f40397k4) {
                     return 0;
                 }
                 if (z10) {
@@ -191,7 +191,7 @@ public final class dh implements ll, org.telegram.ui.ActionBar.q1, te.i, sj0, ri
                 }
                 return -1;
             case 7:
-                if (this.f34497b.f40398k4) {
+                if (this.f34497b.f40397k4) {
                     return 0;
                 }
                 if (z10) {
@@ -200,8 +200,8 @@ public final class dh implements ll, org.telegram.ui.ActionBar.q1, te.i, sj0, ri
                 return -1;
             default:
                 ui uiVar2 = this.f34497b;
-                if (uiVar2.f40398k4) {
-                    if (org.telegram.messenger.g0.B(uiVar2.f40401l4) <= 0.72f) {
+                if (uiVar2.f40397k4) {
+                    if (org.telegram.messenger.g0.B(uiVar2.f40400l4) <= 0.72f) {
                         return 1090519039;
                     }
                 } else if (z10) {

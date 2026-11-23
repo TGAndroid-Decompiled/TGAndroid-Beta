@@ -14,7 +14,7 @@ public final class bg0 implements c5.h {
     public final void a(int i7) {
         boolean z10;
         org.telegram.ui.av0 av0Var = this.f33843a;
-        int i10 = av0Var.f35892p1;
+        int i10 = av0Var.f35891p1;
         int i11 = 0;
         if (i7 >= i10) {
             z10 = true;
@@ -22,7 +22,7 @@ public final class bg0 implements c5.h {
             z10 = false;
         }
         if (i7 != i10) {
-            av0Var.f35892p1 = i7;
+            av0Var.f35891p1 = i7;
         }
         org.telegram.messenger.vo voVar = av0Var.T0;
         if (voVar != null) {

@@ -87,13 +87,13 @@ public final class a implements View.OnTouchListener {
                 int i16 = ui.I4;
                 return true;
             case 15:
-                int i17 = mk.f37526h0;
+                int i17 = mk.f37525h0;
                 return true;
             case 16:
                 int i18 = ml.G0;
                 return true;
             case 17:
-                int i19 = np.f37921g2;
+                int i19 = np.f37920g2;
                 return true;
             case 18:
                 iu iuVar = iu.S1;
@@ -102,22 +102,22 @@ public final class a implements View.OnTouchListener {
                 int i20 = vy.h;
                 return true;
             case 20:
-                int[] iArr = qc0.f38871j0;
+                int[] iArr = qc0.f38870j0;
                 return true;
             case 21:
                 int i21 = wg0.S;
                 return true;
             case 22:
-                int i22 = um0.f40497b1;
+                int i22 = um0.f40496b1;
                 return true;
             case 23:
                 int i23 = ap0.U2;
                 return true;
             case 24:
-                int[] iArr2 = jt0.f36605t2;
+                int[] iArr2 = jt0.f36604t2;
                 return true;
             case 25:
-                int i24 = kw0.f37004r2;
+                int i24 = kw0.f37003r2;
                 return true;
             case 26:
                 int i25 = g11.f35364r0;

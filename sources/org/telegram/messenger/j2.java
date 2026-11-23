@@ -188,14 +188,14 @@ public final class j2 implements Runnable {
                 Pattern pattern = org.telegram.ui.Components.c5.f34013a;
                 return;
             case 25:
-                g0.r(org.telegram.ui.Components.p5.f38490w);
+                g0.r(org.telegram.ui.Components.p5.f38489w);
                 try {
-                    if (org.telegram.ui.Components.p5.f38486r != null) {
-                        for (int i14 = 0; i14 < org.telegram.ui.Components.p5.f38486r.size(); i14++) {
-                            LongSparseArray longSparseArray = (LongSparseArray) org.telegram.ui.Components.p5.f38486r.valueAt(i14);
+                    if (org.telegram.ui.Components.p5.f38485r != null) {
+                        for (int i14 = 0; i14 < org.telegram.ui.Components.p5.f38485r.size(); i14++) {
+                            LongSparseArray longSparseArray = (LongSparseArray) org.telegram.ui.Components.p5.f38485r.valueAt(i14);
                             int i15 = 0;
                             while (i15 < longSparseArray.size()) {
-                                if (!((org.telegram.ui.Components.p5) longSparseArray.valueAt(i15)).f38492a) {
+                                if (!((org.telegram.ui.Components.p5) longSparseArray.valueAt(i15)).f38491a) {
                                     longSparseArray.removeAt(i15);
                                     i15--;
                                 }

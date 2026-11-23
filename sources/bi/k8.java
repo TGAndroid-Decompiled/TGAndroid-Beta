@@ -94,11 +94,11 @@ public final class k8 implements qj0 {
                         if (hashSet.contains(Long.valueOf(j3))) {
                             hashSet.remove(Long.valueOf(j3));
                             ((g3) view).c(false, true);
-                            G.f38085e = false;
+                            G.f38084e = false;
                         } else {
                             hashSet.add(Long.valueOf(j3));
                             ((g3) view).c(true, true);
-                            G.f38085e = true;
+                            G.f38084e = true;
                         }
                         if (hashSet.size() > 0) {
                             z10 = true;
@@ -185,7 +185,7 @@ public final class k8 implements qj0 {
                     if (G2.d == -1) {
                         abVar.Y1 = !abVar.Y1;
                         c51Var3.O(true);
-                        abVar.f39532o1.w0(0, org.telegram.messenger.g0.L(200.0f), nr.f37962g);
+                        abVar.f39531o1.w0(0, org.telegram.messenger.g0.L(200.0f), nr.f37961g);
                         return;
                     } else if (G2.H(bb.class) && (G2.H instanceof TL_stars.TL_starsGiftOption)) {
                         Context W = org.telegram.messenger.g0.W(abVar.getContext());
@@ -277,7 +277,7 @@ public final class k8 implements qj0 {
                     if (G4.d == -1) {
                         gbVar.V1 = !gbVar.V1;
                         c51Var7.O(true);
-                        gbVar.f39532o1.w0(0, org.telegram.messenger.g0.L(300.0f), null);
+                        gbVar.f39531o1.w0(0, org.telegram.messenger.g0.L(300.0f), null);
                         return;
                     } else if (G4.H(bb.class) && (G4.H instanceof TL_stars.TL_starsTopupOption)) {
                         Activity W3 = org.telegram.messenger.g0.W(gbVar.getContext());
@@ -376,7 +376,7 @@ public final class k8 implements qj0 {
                             longValue = ((Long) arrayList3.get(i7)).longValue();
                         }
                         if (document3 == null && (view instanceof hi.n1) && (p5Var = ((hi.n1) view).d) != null) {
-                            document3 = p5Var.f38495e;
+                            document3 = p5Var.f38494e;
                         }
                         if (document3 == null && longValue != 0) {
                             document3 = org.telegram.ui.Components.p5.e(i2Var2.f30173a, longValue);
@@ -489,7 +489,7 @@ public final class k8 implements qj0 {
             case 15:
                 kg.h0 h0Var4 = (kg.h0) obj;
                 kg.e0 e0Var = h0Var4.f18368y;
-                ui uiVar = h0Var4.f37520b;
+                ui uiVar = h0Var4.f37519b;
                 v4.i0 adapter = h0Var4.f18365s.getAdapter();
                 kg.f0 f0Var = h0Var4.E;
                 if (adapter == f0Var) {
@@ -509,8 +509,8 @@ public final class k8 implements qj0 {
                 }
                 if (O instanceof kg.u1) {
                     if (!k10.i(uiVar.H3).q()) {
-                        if (uiVar.f40368a2 != null) {
-                            new ug.y0(uiVar.f40368a2, h0Var4.getContext(), uiVar.H3, true, 31, false, null).show();
+                        if (uiVar.f40367a2 != null) {
+                            new ug.y0(uiVar.f40367a2, h0Var4.getContext(), uiVar.H3, true, 31, false, null).show();
                             return;
                         }
                         return;

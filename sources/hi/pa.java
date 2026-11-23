@@ -17,7 +17,7 @@ public final class pa extends p10 {
         sa saVar = this.f15283a.f15353o0;
         if (saVar.f15406g0 == 0 && (v9Var = saVar.C0) != null && !saVar.T1 && v9Var.isInited() && !saVar.Q1 && !saVar.P0.f14546y0) {
             n6 n6Var = saVar.E0;
-            if ((n6Var == null || (!n6Var.f15116y.f37478i && !n6Var.M)) && !saVar.I() && saVar.f15436q2 == null) {
+            if ((n6Var == null || (!n6Var.f15116y.f37477i && !n6Var.M)) && !saVar.I() && saVar.f15436q2 == null) {
                 return true;
             }
             return false;
@@ -73,7 +73,7 @@ public final class pa extends p10 {
         ra raVar = this.f15283a;
         sa saVar = raVar.f15353o0;
         ValueAnimator valueAnimator = saVar.F;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((n6Var = saVar.E0) != null && (n6Var.f15116y.f37478i || n6Var.M)) || saVar.P0.f14546y0 || (((v9Var = saVar.C0) != null && v9Var.f14472s) || raVar.f15350k0 || (((f81Var = saVar.W0) != null && (f81Var.G || f81Var.H)) || saVar.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((n6Var = saVar.E0) != null && (n6Var.f15116y.f37477i || n6Var.M)) || saVar.P0.f14546y0 || (((v9Var = saVar.C0) != null && v9Var.f14472s) || raVar.f15350k0 || (((f81Var = saVar.W0) != null && (f81Var.G || f81Var.H)) || saVar.H())))) {
             return false;
         }
         boolean z12 = true;

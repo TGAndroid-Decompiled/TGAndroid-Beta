@@ -62,7 +62,7 @@ public final class iz0 implements ValueAnimator.AnimatorUpdateListener {
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = o11Var.f50406w;
                 actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(floatValue2);
                 d61 d61Var = actionBarPopupWindow$ActionBarPopupWindowLayout.M;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.nr.f37962g.getInterpolation(o11Var.M));
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.nr.f37961g.getInterpolation(o11Var.M));
                 int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
                 for (int i7 = 0; i7 < itemsCount; i7++) {
                     float s5 = org.telegram.messenger.g0.s(o11Var.M, i7, itemsCount, 4.0f);

@@ -74,11 +74,11 @@ public final class l00 extends FrameLayout implements org.telegram.ui.ActionBar.
                     this.f49443c = oqVar;
                     this.d = x02;
                     this.f49444e = x03;
-                    Drawable drawable = oqVar.f38330a;
+                    Drawable drawable = oqVar.f38329a;
                     if (drawable != null) {
                         drawable.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
                     }
-                    Drawable drawable2 = oqVar.f38331b;
+                    Drawable drawable2 = oqVar.f38330b;
                     if (drawable2 != null) {
                         drawable2.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.MULTIPLY));
                     }

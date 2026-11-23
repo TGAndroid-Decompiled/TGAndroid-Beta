@@ -22,7 +22,7 @@ public final class aa extends r1 {
         this.Dd = baVar;
         this.Cd = i10;
         this.f30437zd = new GestureDetector(context2, new z9(0, this));
-        nr nrVar = nr.f37962g;
+        nr nrVar = nr.f37961g;
         this.Ad = new org.telegram.ui.Components.g5(this, 180L, nrVar, 0);
         this.Bd = new org.telegram.ui.Components.g5(this, 180L, nrVar, 0);
     }

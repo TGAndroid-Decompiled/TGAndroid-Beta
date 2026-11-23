@@ -86,7 +86,7 @@ public final class n1 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = ((GestureDetector) this.d.f36567b).onTouchEvent(motionEvent);
+        boolean onTouchEvent = ((GestureDetector) this.d.f36566b).onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }

@@ -248,24 +248,24 @@ public final class ev implements org.telegram.ui.Cells.u9, qx0 {
                 q80Var.D = true;
                 h80 h80Var2 = new h80(0);
                 this.H = h80Var2;
-                h80Var2.f39316c = true;
+                h80Var2.f39315c = true;
                 q80 q80Var2 = this.I;
-                q80Var2.f38834y = h80Var2;
+                q80Var2.f38833y = h80Var2;
                 q80Var2.k(5.0f);
-                this.I.f38814b = -1L;
+                this.I.f38813b = -1L;
                 this.H.reset();
                 this.H.d(staticLayout2, 0, 0.0f);
-                this.H.f35824n = false;
+                this.H.f35823n = false;
                 staticLayout2.getSelectionPath(0, staticLayout2.getText().length(), this.H);
                 h80 h80Var3 = this.H;
-                h80Var3.f35824n = true;
+                h80Var3.f35823n = true;
                 h80Var3.a();
                 this.I.l();
             }
             if (z10 && (this.I.d() || this.I.c())) {
                 q80 q80Var3 = this.I;
-                q80Var3.f38814b = -1L;
-                q80Var3.f38815c = -1L;
+                q80Var3.f38813b = -1L;
+                q80Var3.f38814c = -1L;
             } else if (!z10 && !this.I.d() && !this.I.c()) {
                 this.I.a();
             }
@@ -969,7 +969,7 @@ public final class ev implements org.telegram.ui.Cells.u9, qx0 {
                         if (h80Var == null) {
                             i10 = 0;
                             h80Var = new h80(0);
-                            h80Var.f35824n = false;
+                            h80Var.f35823n = false;
                         } else {
                             i10 = 0;
                         }
@@ -984,13 +984,13 @@ public final class ev implements org.telegram.ui.Cells.u9, qx0 {
                         } else {
                             i11 = i10;
                         }
-                        h80Var.f35825o = i11;
+                        h80Var.f35824o = i11;
                         this.f23770b.getSelectionPath(spanStart5, spanEnd2, h80Var);
                     }
                 }
             }
             if (h80Var != null) {
-                h80Var.f35824n = true;
+                h80Var.f35823n = true;
                 this.G = h80Var;
             }
         }

@@ -18,7 +18,7 @@ public final class ew extends v4.t {
             tyVar.Z();
         }
         if (tyVar.U0 == null) {
-            jg.d1 d1Var = new jg.d1(tyVar, tyVar.f40092d1, tyVar.f40144u1.a(), tyVar.f40144u1.f(), 1);
+            jg.d1 d1Var = new jg.d1(tyVar, tyVar.f40091d1, tyVar.f40143u1.a(), tyVar.f40143u1.f(), 1);
             tyVar.U0 = d1Var;
             d1Var.a();
         }

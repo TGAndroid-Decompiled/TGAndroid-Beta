@@ -90,7 +90,7 @@ public final class f1 extends ot implements org.telegram.ui.ActionBar.b6 {
         this.G2 = new c1(this, 1);
         this.N2 = new y0(this, 0);
         this.f22102g2 = h6Var;
-        this.f38348c2 = true;
+        this.f38347c2 = true;
         setBackground(null);
         setCursorWidth(1.5f);
         setGravity(8388659);
@@ -355,7 +355,7 @@ public final class f1 extends ot implements org.telegram.ui.ActionBar.b6 {
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (h80Var == null) {
                                     h80Var = new h80(0);
-                                    h80Var.f35824n = false;
+                                    h80Var.f35823n = false;
                                 }
                                 h80Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i11) != 0) {
@@ -375,13 +375,13 @@ public final class f1 extends ot implements org.telegram.ui.ActionBar.b6 {
                                 } else {
                                     i10 = 0;
                                 }
-                                h80Var.f35825o = i10;
+                                h80Var.f35824o = i10;
                                 layout.getSelectionPath(spanStart, spanEnd, h80Var);
                             }
                         }
                     }
                     if (h80Var != null) {
-                        h80Var.f35824n = true;
+                        h80Var.f35823n = true;
                     }
                     this.f22113r2 = h80Var;
                 }

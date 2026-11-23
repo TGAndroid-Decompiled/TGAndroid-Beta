@@ -125,7 +125,7 @@ public final class t8 extends du0 {
                 ofFloat.addUpdateListener(new q8(this, 0));
                 f9Var.H.addListener(new r8(this, 0));
                 f9Var.H.setDuration(250L);
-                f9Var.H.setInterpolator(nr.f37961f);
+                f9Var.H.setInterpolator(nr.f37960f);
                 f9Var.H.start();
             }
             if (f9Var.W >= 0.3f) {
@@ -284,7 +284,7 @@ public final class t8 extends du0 {
                 ofFloat.addUpdateListener(new q8(this, 1));
                 f9Var.H.addListener(new r8(this, 1));
                 f9Var.H.setDuration(150L);
-                f9Var.H.setInterpolator(nr.f37961f);
+                f9Var.H.setInterpolator(nr.f37960f);
                 f9Var.H.start();
             }
             z3 z10 = f9Var.z();

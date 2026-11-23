@@ -23,7 +23,7 @@ public final class rd extends FrameLayout {
         setClipToPadding(false);
         h51Var.setClipToPadding(false);
         h51Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
-        h51Var.f35790g3.f34062r = false;
+        h51Var.f35789g3.f34062r = false;
         h51Var.setCaptureSectionsDecoratorAllowed(true);
         h51Var.setOverScrollMode(0);
         addView(h51Var, c8.ma.c(-1.0f, -1));
@@ -37,6 +37,6 @@ public final class rd extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f51557a.f35790g3.O(false);
+        this.f51557a.f35789g3.O(false);
     }
 }

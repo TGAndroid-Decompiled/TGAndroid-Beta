@@ -111,8 +111,8 @@ public final class v implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 y8Var.n0(false, floatValue4);
                 if (this.f5554b) {
-                    r8 r8Var = y8Var.f42343a;
-                    r8Var.f42009x = floatValue4;
+                    r8 r8Var = y8Var.f42342a;
+                    r8Var.f42008x = floatValue4;
                     r8Var.invalidate();
                     return;
                 }
@@ -140,15 +140,15 @@ public final class v implements ValueAnimator.AnimatorUpdateListener {
             case 9:
                 q2 q2Var = (q2) this.f5555c;
                 TextView[] textViewArr = q2Var.h;
-                q2Var.f41306s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q2Var.f41305s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 q2Var.invalidate();
                 if (this.f5554b) {
-                    textViewArr[0].setAlpha(1.0f - q2Var.f41306s);
-                    textViewArr[0].setScaleX(1.0f - q2Var.f41306s);
-                    textViewArr[0].setScaleY(1.0f - q2Var.f41306s);
-                    textViewArr[1].setAlpha(q2Var.f41306s);
-                    textViewArr[1].setScaleX(q2Var.f41306s);
-                    textViewArr[1].setScaleY(q2Var.f41306s);
+                    textViewArr[0].setAlpha(1.0f - q2Var.f41305s);
+                    textViewArr[0].setScaleX(1.0f - q2Var.f41305s);
+                    textViewArr[0].setScaleY(1.0f - q2Var.f41305s);
+                    textViewArr[1].setAlpha(q2Var.f41305s);
+                    textViewArr[1].setScaleX(q2Var.f41305s);
+                    textViewArr[1].setScaleY(q2Var.f41305s);
                     return;
                 }
                 return;
@@ -180,9 +180,9 @@ public final class v implements ValueAnimator.AnimatorUpdateListener {
                 if (!uz0Var.T && (sz0Var = uz0Var.O) != null && sz0Var.getSeekBarWaveform() != null) {
                     en0 seekBarWaveform = uz0Var.O.getSeekBarWaveform();
                     if (this.f5554b) {
-                        nrVar = nr.f37962g;
+                        nrVar = nr.f37961g;
                     } else {
-                        nrVar = nr.f37963i;
+                        nrVar = nr.f37962i;
                     }
                     seekBarWaveform.L = nrVar.getInterpolation(Utilities.i(uz0Var.f52670s * 1.25f, 1.0f, 0.0f));
                     r1 r1Var2 = seekBarWaveform.f34927n;

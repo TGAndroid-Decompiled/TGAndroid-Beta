@@ -89,7 +89,7 @@ public final class za extends LinearLayout {
                 RectF rectF = (RectF) this.f10205b;
                 Paint paint = (Paint) this.f10206c;
                 mq mqVar = (mq) this.d;
-                paint.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29472i5, mqVar.f37608e0));
+                paint.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29472i5, mqVar.f37607e0));
                 int left = mqVar.F[0].getLeft() - org.telegram.messenger.g0.L(13.0f);
                 float L = org.telegram.messenger.g0.L(91.0f);
                 org.telegram.ui.ActionBar.f0 f0Var = mqVar.G;

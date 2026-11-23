@@ -56,7 +56,7 @@ public final class gv extends v4.c0 {
             ofFloat.addUpdateListener(new ch.w(21, this, bxVar));
             this.K.addListener(new org.telegram.ui.Cells.y9(this, 25));
             this.K.setDuration(200L);
-            this.K.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+            this.K.setInterpolator(org.telegram.ui.Components.nr.f37960f);
             this.K.start();
         }
     }

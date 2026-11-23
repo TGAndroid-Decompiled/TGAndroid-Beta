@@ -67,7 +67,7 @@ public final class s3 extends ka {
         this.W1 = org.telegram.ui.Wallet.u0.D(i7);
         O();
         this.T1.setLayoutParams(new v4.q0(-1, -2));
-        this.f39539v1 = 0.1f;
+        this.f39538v1 = 0.1f;
         float f10 = this.f30211u0 / org.telegram.messenger.g0.f24045p;
         FrameLayout frameLayout = new FrameLayout(context);
         this.T1.addView(frameLayout, ma.o(-1, -2));
@@ -265,8 +265,8 @@ public final class s3 extends ka {
         this.f4086w2 = frameLayout3;
         frameLayout3.setPadding(org.telegram.messenger.g0.L(6.0f) + this.f30211u0, 0, org.telegram.messenger.g0.L(6.0f) + this.f30211u0, 0);
         this.f30176b.addView(frameLayout3, ma.d(-1, 200.0f, 87, 0.0f, 0.0f, 0.0f, 72.0f));
-        ek0 ek0Var = this.f39532o1;
-        ek0Var.setPadding(ek0Var.getPaddingLeft(), this.f39532o1.getPaddingTop(), this.f39532o1.getPaddingRight(), org.telegram.messenger.g0.L(72.0f) + this.f39532o1.getPaddingBottom());
+        ek0 ek0Var = this.f39531o1;
+        ek0Var.setPadding(ek0Var.getPaddingLeft(), this.f39531o1.getPaddingTop(), this.f39531o1.getPaddingRight(), org.telegram.messenger.g0.L(72.0f) + this.f39531o1.getPaddingBottom());
     }
 
     public static boolean e1(Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var, long j3, int i10) {

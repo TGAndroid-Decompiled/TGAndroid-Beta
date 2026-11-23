@@ -16,21 +16,21 @@ public final class m31 extends sa {
     public boolean X1;
     public CharSequence Y1;
     public jt Z1;
-    public String f37403a2;
-    public String f37404b2;
-    public int f37405c2;
+    public String f37402a2;
+    public String f37403b2;
+    public int f37404c2;
     public String[] d2;
-    public String[] f37406e2;
-    public c51 f37407f2;
-    public boolean f37408g2;
-    public int f37409h2;
-    public int f37410i2;
-    public int f37411j2;
+    public String[] f37405e2;
+    public c51 f37406f2;
+    public boolean f37407g2;
+    public int f37408h2;
+    public int f37409i2;
+    public int f37410j2;
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
         c51 c51Var = new c51(ek0Var, getContext(), this.f30173a, 0, true, new e31(this, 0), this.J0);
-        this.f37407f2 = c51Var;
+        this.f37406f2 = c51Var;
         c51Var.f34062r = false;
         return c51Var;
     }
@@ -63,9 +63,9 @@ public final class m31 extends sa {
     }
 
     public final void f1() {
-        if (this.f37409h2 >= 0) {
-            ConnectionsManager.getInstance(this.f30173a).cancelRequest(this.f37409h2, true);
-            this.f37409h2 = -1;
+        if (this.f37408h2 >= 0) {
+            ConnectionsManager.getInstance(this.f30173a).cancelRequest(this.f37408h2, true);
+            this.f37408h2 = -1;
         }
     }
 
@@ -90,16 +90,16 @@ public final class m31 extends sa {
         this.Y1 = spannableStringBuilder;
         this.X1 = true;
         TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
-        tL_messages_translateText.to_lang = this.f37404b2;
+        tL_messages_translateText.to_lang = this.f37403b2;
         tL_messages_translateText.flags |= 2;
         tL_messages_translateText.text.add(tL_textWithEntities);
-        int i7 = this.f37405c2;
+        int i7 = this.f37404c2;
         if (i7 != 1) {
             tL_messages_translateText.flags |= 4;
             tL_messages_translateText.tone = this.d2[i7];
         }
-        this.f37409h2 = ConnectionsManager.getInstance(this.f30173a).sendRequestTyped(tL_messages_translateText, new d3.b(1), new e31(this, 1));
-        this.f37407f2.O(true);
+        this.f37408h2 = ConnectionsManager.getInstance(this.f30173a).sendRequestTyped(tL_messages_translateText, new d3.b(1), new e31(this, 1));
+        this.f37406f2.O(true);
     }
 
     @Override
@@ -120,12 +120,12 @@ public final class m31 extends sa {
         try {
             super.s0();
             int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, this.J0);
-            if (w02 != this.f37411j2) {
-                this.f37411j2 = w02;
+            if (w02 != this.f37410j2) {
+                this.f37410j2 = w02;
                 v0(w02);
             }
-            if (frameLayout != null && (frameLayout.getBackground() instanceof GradientDrawable) && w02 != this.f37410i2) {
-                this.f37410i2 = w02;
+            if (frameLayout != null && (frameLayout.getBackground() instanceof GradientDrawable) && w02 != this.f37409i2) {
+                this.f37409i2 = w02;
                 ((GradientDrawable) frameLayout.getBackground()).setColors(new int[]{org.telegram.ui.ActionBar.m6.r1(0.0f, w02), w02, w02});
             }
         } catch (Exception e10) {
@@ -137,11 +137,11 @@ public final class m31 extends sa {
     public final void show() {
         hi.e eVar = this.V1;
         super.show();
-        na naVar = this.f39533p1;
+        na naVar = this.f39532p1;
         if (naVar != null) {
             naVar.setTitle("Translate");
         }
-        this.f37407f2.O(false);
+        this.f37406f2.O(false);
         g1();
         if (this.Z1 != null) {
             eVar.setText("Use This Translation");

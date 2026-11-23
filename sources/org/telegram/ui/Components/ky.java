@@ -11,12 +11,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.StickersActivity;
 import org.telegram.ui.y91;
 public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.messenger.w10, jg.y1, te.b, org.telegram.messenger.j9, f80, sd0, sj0, org.telegram.ui.ww, fi.x6, org.telegram.messenger.sr, l71, org.telegram.messenger.oc, gu0, org.telegram.messenger.kc {
-    public final int f37037a;
-    public final Object f37038b;
+    public final int f37036a;
+    public final Object f37037b;
 
     public ky(Object obj, int i7) {
-        this.f37037a = i7;
-        this.f37038b = obj;
+        this.f37036a = i7;
+        this.f37037b = obj;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void H(int i7, float f10, float f11, te.c cVar) {
-        ((k90) this.f37038b).c0();
+        ((k90) this.f37037b).c0();
     }
 
     @Override
@@ -41,22 +41,22 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void a(String str) {
-        switch (this.f37037a) {
+        switch (this.f37036a) {
             case 19:
-                jt0 jt0Var = ((iq0) this.f37038b).d;
-                jt0.v(jt0Var).r(jt0Var.f36648m1, str, new gp0(jt0Var, 1));
+                jt0 jt0Var = ((iq0) this.f37037b).d;
+                jt0.v(jt0Var).r(jt0Var.f36647m1, str, new gp0(jt0Var, 1));
                 return;
             default:
-                m31 m31Var = (m31) this.f37038b;
-                m31Var.f37403a2 = str;
-                m31Var.f37407f2.O(true);
+                m31 m31Var = (m31) this.f37037b;
+                m31Var.f37402a2 = str;
+                m31Var.f37406f2.O(true);
                 return;
         }
     }
 
     @Override
     public void b(boolean z10) {
-        fi.h6 h6Var = (fi.h6) this.f37038b;
+        fi.h6 h6Var = (fi.h6) this.f37037b;
         if (z10) {
             h6Var.p(30, false);
         }
@@ -65,9 +65,9 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
     @Override
     public boolean c(int i7, View view) {
         fi0 fi0Var;
-        switch (this.f37037a) {
+        switch (this.f37036a) {
             case 14:
-                gi0 gi0Var = (gi0) this.f37038b;
+                gi0 gi0Var = (gi0) this.f37037b;
                 ArrayList arrayList = gi0Var.f35585n;
                 if (gi0Var.f35584f.d(i7) == 0 && (fi0Var = gi0Var.G) != null) {
                     fi0Var.a(org.telegram.messenger.gj.B1(((TLRPC.MessagePeerReaction) arrayList.get(i7)).peer_id), (TLRPC.MessagePeerReaction) arrayList.get(i7));
@@ -75,8 +75,8 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
                 }
                 return true;
             default:
-                sl0 sl0Var = (sl0) this.f37038b;
-                di.l4 l4Var = sl0Var.f39618c;
+                sl0 sl0Var = (sl0) this.f37037b;
+                di.l4 l4Var = sl0Var.f39617c;
                 org.telegram.messenger.gj E = l4Var.E(i7);
                 sl0 sl0Var2 = (sl0) l4Var.d;
                 if (E == null) {
@@ -84,12 +84,12 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
                 }
                 if (!sl0Var.J.V1()) {
                     sl0Var.J.n();
-                    l4Var.k(0, sl0Var2.f39622r);
+                    l4Var.k(0, sl0Var2.f39621r);
                 }
                 if (sl0Var.J.V1()) {
                     sl0Var.J.Z0(E, view, 0);
                     if (!sl0Var.J.V1()) {
-                        l4Var.k(0, sl0Var2.f39622r);
+                        l4Var.k(0, sl0Var2.f39621r);
                     }
                     org.telegram.ui.vz vzVar = sl0Var.K;
                     int e12 = E.e1();
@@ -107,12 +107,12 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void e() {
-        ((yc0) this.f37038b).L0(true);
+        ((yc0) this.f37037b).L0(true);
     }
 
     @Override
     public void g(int i7, int i10) {
-        du0 du0Var = (du0) this.f37038b;
+        du0 du0Var = (du0) this.f37037b;
         du0Var.f34588x = i7;
         du0Var.f34589y = i10;
         bi.m3 m3Var = du0Var.M;
@@ -123,37 +123,37 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f37037a) {
+        switch (this.f37036a) {
             case 0:
-                org.telegram.messenger.si d02 = org.telegram.messenger.si.d0(((ly) this.f37038b).f37330w.f40092d1);
+                org.telegram.messenger.si d02 = org.telegram.messenger.si.d0(((ly) this.f37037b).f37329w.f40091d1);
                 d02.getConnectionsManager().sendRequest(new TLRPC.TL_messages_clearRecentStickers(), new org.telegram.messenger.jh(d02, 1));
                 return;
             case 2:
-                ((org.telegram.ui.f0) this.f37038b).run();
+                ((org.telegram.ui.f0) this.f37037b).run();
                 return;
             case 3:
-                ((r10) this.f37038b).K0();
+                ((r10) this.f37037b).K0();
                 return;
             case 5:
-                l60 l60Var = (l60) this.f37038b;
-                a0.h hVar = l60Var.f37120a2;
+                l60 l60Var = (l60) this.f37037b;
+                a0.h hVar = l60Var.f37119a2;
                 ArrayList arrayList = new ArrayList();
                 for (int i10 = 0; i10 < hVar.m(); i10++) {
                     arrayList.add(org.telegram.messenger.np.u1(l60Var.f30173a).c2(Long.valueOf(hVar.j(i10))));
                 }
-                org.telegram.ui.u40 u40Var = l60Var.f37125g2;
+                org.telegram.ui.u40 u40Var = l60Var.f37124g2;
                 if (u40Var != null) {
                     u40Var.i(0, arrayList);
                 }
                 l60Var.dismiss();
                 return;
             case 21:
-                mw0 mw0Var = (mw0) this.f37038b;
-                mw0Var.f37654e.presentFragment(new StickersActivity(mw0Var.d, null));
+                mw0 mw0Var = (mw0) this.f37037b;
+                mw0Var.f37653e.presentFragment(new StickersActivity(mw0Var.d, null));
                 t1Var.dismiss();
                 return;
             default:
-                org.telegram.messenger.g0.v1((nw0) this.f37038b);
+                org.telegram.messenger.g0.v1((nw0) this.f37037b);
                 t1Var.dismiss();
                 return;
         }
@@ -161,7 +161,7 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void j(int i7, int i10) {
-        ee0 ee0Var = (ee0) ((org.telegram.ui.l4) this.f37038b).f49474e;
+        ee0 ee0Var = (ee0) ((org.telegram.ui.l4) this.f37037b).f49474e;
         if (i7 == ee0Var.f34745b) {
             ee0Var.H = i10;
         } else if (i7 == ee0Var.f34765r) {
@@ -196,7 +196,7 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void k(int i7) {
-        org.telegram.messenger.y10 y10Var = ((o41) this.f37038b).D;
+        org.telegram.messenger.y10 y10Var = ((o41) this.f37037b).D;
         if (y10Var != null) {
             y10Var.a(Integer.valueOf(i7));
         }
@@ -210,7 +210,7 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
     @Override
     public Object m(Object obj) {
         cb0 cb0Var = (cb0) obj;
-        return Float.valueOf(((r1.f) this.f37038b).f56350a / 100.0f);
+        return Float.valueOf(((r1.f) this.f37037b).f56350a / 100.0f);
     }
 
     @Override
@@ -223,14 +223,14 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
         int i10;
         int ceil;
         double ceil2;
-        o61 o61Var = (o61) this.f37038b;
+        o61 o61Var = (o61) this.f37037b;
         ImageReceiver imageReceiver2 = o61Var.R;
         if (z10) {
-            if (o61Var.O != null || o61Var.f38131e0 != null) {
+            if (o61Var.O != null || o61Var.f38130e0 != null) {
                 int L = org.telegram.messenger.g0.L(150.0f);
                 org.telegram.ui.dq0 dq0Var = o61Var.O;
                 if (dq0Var != null) {
-                    ArrayList arrayList = dq0Var.f37176w;
+                    ArrayList arrayList = dq0Var.f37175w;
                     int indexOf = arrayList.indexOf(dq0Var.c((int) o61Var.P));
                     if (indexOf != -1) {
                         if (indexOf == arrayList.size() - 1) {
@@ -284,17 +284,17 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
                     z13 = true;
                     int i12 = 0;
                     while (true) {
-                        if (i12 < o61Var.f38131e0.size()) {
-                            n61Var = (n61) o61Var.f38131e0.get(i12);
+                        if (i12 < o61Var.f38130e0.size()) {
+                            n61Var = (n61) o61Var.f38130e0.get(i12);
                             if (i12 == 0) {
                                 d = 0.0d;
                             } else {
-                                d = n61Var.f37821a;
+                                d = n61Var.f37820a;
                             }
-                            if (i12 == o61Var.f38131e0.size() - 1) {
+                            if (i12 == o61Var.f38130e0.size() - 1) {
                                 d2 = 9.9999999E7d;
                             } else {
-                                d2 = ((n61) o61Var.f38131e0.get(i12 + 1)).f37821a;
+                                d2 = ((n61) o61Var.f38130e0.get(i12 + 1)).f37820a;
                             }
                             double d10 = o61Var.P;
                             if (d10 >= d && d10 <= d2) {
@@ -307,10 +307,10 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
                         }
                     }
                     if (n61Var != null) {
-                        o61Var.S = n61Var.f37822b;
-                        o61Var.T = n61Var.f37823c;
-                        o61Var.U = o61Var.f38128c0;
-                        o61Var.V = o61Var.f38129d0;
+                        o61Var.S = n61Var.f37821b;
+                        o61Var.T = n61Var.f37822c;
+                        o61Var.U = o61Var.f38127c0;
+                        o61Var.V = o61Var.f38128d0;
                     } else {
                         return;
                     }
@@ -336,11 +336,11 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public void r(int i7) {
-        g60 g60Var = (g60) this.f37038b;
+        g60 g60Var = (g60) this.f37037b;
         l60 l60Var = g60Var.f35437n;
         l60Var.P0(g60Var.f35436f - 1);
         if (g60Var.h == null && !g60Var.f35435e.e() && g60Var.b() <= 2) {
-            l60Var.f39088u1.e(false, true);
+            l60Var.f39087u1.e(false, true);
         }
         g60Var.f();
     }
@@ -352,7 +352,7 @@ public final class ky implements org.telegram.ui.ActionBar.q1, org.telegram.mess
 
     @Override
     public boolean y(org.telegram.ui.cx cxVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, y91 y91Var) {
-        um0 um0Var = (um0) this.f37038b;
+        um0 um0Var = (um0) this.f37037b;
         int i11 = um0Var.K0;
         ArrayList arrayList2 = new ArrayList();
         HashMap hashMap = um0Var.C0;

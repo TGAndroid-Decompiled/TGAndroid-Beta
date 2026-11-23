@@ -85,7 +85,7 @@ public final class p0 extends LinearLayout {
         }
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
-        nr nrVar = nr.f37961f;
+        nr nrVar = nr.f37960f;
         int size2 = arrayList3.size();
         int i13 = 0;
         while (true) {

@@ -12,7 +12,7 @@ public final class bl implements org.telegram.ui.ActionBar.l0, org.telegram.mess
     @Override
     public void a() {
         ml mlVar = this.f33852a;
-        mlVar.f37552f0 = false;
+        mlVar.f37551f0 = false;
         mlVar.j0();
     }
 
@@ -49,7 +49,7 @@ public final class bl implements org.telegram.ui.ActionBar.l0, org.telegram.mess
                 T = b1Var.T(F);
             }
             if (T != null && T.b() == 0) {
-                if (mlVar.f37562p0 == 0) {
+                if (mlVar.f37561p0 == 0) {
                     L = 0;
                 } else {
                     L = org.telegram.messenger.g0.L(66.0f);

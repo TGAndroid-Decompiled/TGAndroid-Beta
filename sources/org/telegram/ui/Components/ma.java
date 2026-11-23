@@ -5,20 +5,20 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 public final class ma extends du0 {
-    public final boolean f37468g0;
-    public final boolean f37469h0;
-    public final sa f37470i0;
+    public final boolean f37467g0;
+    public final boolean f37468h0;
+    public final sa f37469i0;
 
     public ma(sa saVar, Context context, boolean z10, boolean z11) {
         super(context, null);
-        this.f37470i0 = saVar;
-        this.f37468g0 = z10;
-        this.f37469h0 = z11;
+        this.f37469i0 = saVar;
+        this.f37467g0 = z10;
+        this.f37468h0 = z11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        sa saVar = this.f37470i0;
+        sa saVar = this.f37469i0;
         saVar.X0(canvas, this);
         super.dispatchDraw(canvas);
         saVar.W0(canvas, this);
@@ -28,7 +28,7 @@ public final class ma extends du0 {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             float y10 = motionEvent.getY();
-            sa saVar = this.f37470i0;
+            sa saVar = this.f37469i0;
             if (y10 < saVar.f30209s0.getBounds().top) {
                 saVar.dismiss();
             }
@@ -38,8 +38,8 @@ public final class ma extends du0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f37469h0) {
-            this.f37470i0.getClass();
+        if (!this.f37468h0) {
+            this.f37469i0.getClass();
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -56,11 +56,11 @@ public final class ma extends du0 {
         int i12;
         yt ytVar;
         int size = View.MeasureSpec.getSize(i10);
-        sa saVar = this.f37470i0;
-        saVar.f39535r1 = size;
+        sa saVar = this.f37469i0;
+        saVar.f39534r1 = size;
         saVar.T0(i7, i10);
-        if (this.f37468g0) {
-            i10 = View.MeasureSpec.makeMeasureSpec(saVar.f39535r1, 1073741824);
+        if (this.f37467g0) {
+            i10 = View.MeasureSpec.makeMeasureSpec(saVar.f39534r1, 1073741824);
         }
         if (saVar.L1 != null) {
             int size2 = View.MeasureSpec.getSize(i7);
@@ -69,7 +69,7 @@ public final class ma extends du0 {
             yt ytVar2 = saVar.L1;
             if (ytVar2 != null && !ytVar2.O && org.telegram.messenger.g0.L(20.0f) >= 0) {
                 yt ytVar3 = saVar.L1;
-                if (!ytVar3.f42538e && !ytVar3.P) {
+                if (!ytVar3.f42537e && !ytVar3.P) {
                     ytVar3.j();
                 }
             }

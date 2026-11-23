@@ -651,12 +651,12 @@ public final class o implements d2 {
     public final void p() {
         int i7;
         rf rfVar = this.f17995b;
-        du0 du0Var = rfVar.f39178a.f32591c2;
+        du0 du0Var = rfVar.f39177a.f32591c2;
         if (du0Var == null) {
             return;
         }
         if (this.K == null) {
-            h6 h6Var = rfVar.f39178a.M4;
+            h6 h6Var = rfVar.f39177a.M4;
             ?? obj = new Object();
             obj.d = this;
             obj.f60668c = du0Var;
@@ -689,15 +689,15 @@ public final class o implements d2 {
     public final String q() {
         StringBuilder sb2 = new StringBuilder();
         rf rfVar = this.f17995b;
-        sb2.append(rfVar.f39178a.R);
+        sb2.append(rfVar.f39177a.R);
         sb2.append(":");
-        sb2.append(rfVar.f39178a.G3);
+        sb2.append(rfVar.f39177a.G3);
         return sb2.toString();
     }
 
     public final void r() {
         l lVar = new l(this);
-        ChatActivityEnterView chatActivityEnterView = this.f17995b.f39178a;
+        ChatActivityEnterView chatActivityEnterView = this.f17995b.f39177a;
         f2 f2Var = new f2(this.f17993a, chatActivityEnterView.R, chatActivityEnterView.G3, false, lVar);
         lVar.f17979b = f2Var;
         this.f18002f = f2Var;
@@ -915,7 +915,7 @@ public final class o implements d2 {
                     }
                     d();
                     DictationAsr.R(this.m0);
-                    DictationAsr.f43073g.add(this.m0);
+                    DictationAsr.f43072g.add(this.m0);
                     t();
                     o();
                     g0.r(this.f18008k0);
@@ -923,7 +923,7 @@ public final class o implements d2 {
                 } else if (!this.f17995b.c()) {
                     g("draft gone", true);
                 }
-            } else if (!b1.a(this.f17995b.f39178a.G3)) {
+            } else if (!b1.a(this.f17995b.f39177a.G3)) {
                 if (this.f17997c != 0) {
                     g("unavailable", true);
                 }
@@ -931,7 +931,7 @@ public final class o implements d2 {
                 if (this.J && this.f17997c == 2) {
                     rf rfVar = this.f17995b;
                     rfVar.getClass();
-                    if ((MediaController.B().K() || rfVar.f39178a.R3 != null) && this.f17995b.c()) {
+                    if ((MediaController.B().K() || rfVar.f39177a.R3 != null) && this.f17995b.c()) {
                         j jVar3 = this.W;
                         this.f17997c = 4;
                         g0.r(this.f18007j0);
@@ -1045,7 +1045,7 @@ public final class o implements d2 {
                     g0.h3(this.f18008k0, 250L);
                     Log.d("VoiceLive", "buffering: recorder tap on");
                 }
-                if (this.f17997c == i17 && this.f17995b.f39178a.U0()) {
+                if (this.f17997c == i17 && this.f17995b.f39177a.U0()) {
                     this.f17997c = 2;
                     this.f18009l0 = null;
                     this.f18012s = SystemClock.elapsedRealtime();
@@ -1074,10 +1074,10 @@ public final class o implements d2 {
                         p();
                     } else {
                         rf rfVar2 = this.f17995b;
-                        du0 du0Var = rfVar2.f39178a.f32591c2;
+                        du0 du0Var = rfVar2.f39177a.f32591c2;
                         if (du0Var != null) {
                             if (this.h == null) {
-                                this.h = new r(this.f17993a, rfVar2.f39178a.M4, this);
+                                this.h = new r(this.f17993a, rfVar2.f39177a.M4, this);
                             }
                             View a10 = rfVar2.a();
                             if (a10 != null && a10.getParent() == du0Var) {
@@ -1100,7 +1100,7 @@ public final class o implements d2 {
                                 }
                             }
                             r rVar = this.h;
-                            ChatActivityEnterView chatActivityEnterView = rfVar2.f39178a;
+                            ChatActivityEnterView chatActivityEnterView = rfVar2.f39177a;
                             int i26 = m6.Pe;
                             int i27 = ChatActivityEnterView.f32569s7;
                             rVar.setAccent(chatActivityEnterView.G0(i26) | (-16777216));
@@ -1201,7 +1201,7 @@ public final class o implements d2 {
                     }
                     d();
                     DictationAsr.R(this.m0);
-                    DictationAsr.f43073g.add(this.m0);
+                    DictationAsr.f43072g.add(this.m0);
                     t();
                     g0.h3(this.f18007j0, 1500L);
                 }

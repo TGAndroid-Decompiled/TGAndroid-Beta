@@ -16,7 +16,7 @@ public final class i3 extends View implements m2 {
         n6Var.u(-1);
         n6Var.w(org.telegram.messenger.g0.L(14.0f));
         n6Var.s(org.telegram.messenger.g0.L(1.4f), org.telegram.messenger.g0.L(0.4f), 1275068416);
-        n6Var.f37796b = 1;
+        n6Var.f37795b = 1;
         n6Var.setCallback(this);
         n6Var.N = org.telegram.messenger.g0.f24046q.x;
     }

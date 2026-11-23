@@ -24,10 +24,10 @@ public final class fe extends ah {
                 oh0 oh0Var = new oh0(2131623977, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), false, null);
                 chatActivityEnterView.F6 = oh0Var;
                 oh0Var.J(true);
-                chatActivityEnterView.F6.f38224p0 = false;
+                chatActivityEnterView.F6.f38223p0 = false;
                 int G0 = chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.Vf);
                 oh0 oh0Var2 = chatActivityEnterView.F6;
-                oh0Var2.f38205a0 = true;
+                oh0Var2.f38204a0 = true;
                 oh0Var2.Q(G0, "Cup Grey");
                 chatActivityEnterView.F6.Q(G0, "Box_Grey 2");
                 chatActivityEnterView.F6.Q(G0, "Box Grey");

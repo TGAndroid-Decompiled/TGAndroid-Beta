@@ -562,7 +562,7 @@ public final class in0 implements View.OnClickListener {
                 if (photoViewer27.f43343p6 == null) {
                     zn0 zn0Var = new zn0(photoViewer27, 2);
                     if (!photoViewer27.J2) {
-                        float stateOrientation = photoViewer27.R2 - photoViewer27.D1.f39164b.getStateOrientation();
+                        float stateOrientation = photoViewer27.R2 - photoViewer27.D1.f39163b.getStateOrientation();
                         if (Math.abs(stateOrientation) > 180.0f) {
                             if (stateOrientation < 0.0f) {
                                 stateOrientation += 360.0f;
@@ -570,7 +570,7 @@ public final class in0 implements View.OnClickListener {
                                 stateOrientation = -(360.0f - stateOrientation);
                             }
                         }
-                        photoViewer27.I0(stateOrientation, photoViewer27.D1.f39164b.getStateMirror(), zn0Var);
+                        photoViewer27.I0(stateOrientation, photoViewer27.D1.f39163b.getStateMirror(), zn0Var);
                         return;
                     }
                     zn0Var.run();
@@ -580,7 +580,7 @@ public final class in0 implements View.OnClickListener {
             case 28:
                 PhotoViewer photoViewer28 = this.f48794b;
                 if (photoViewer28.f43386u4 == 1) {
-                    og.o oVar = photoViewer28.D1.f39164b;
+                    og.o oVar = photoViewer28.D1.f39163b;
                     og.c cVar = oVar.H;
                     if (cVar.f21857a.isInProgress() || cVar.h || oVar.f21921a.f32919f0) {
                         return;
@@ -591,7 +591,7 @@ public final class in0 implements View.OnClickListener {
                 return;
             default:
                 PhotoViewer photoViewer29 = this.f48794b;
-                float f12 = -photoViewer29.D1.f39164b.getStateOrientation();
+                float f12 = -photoViewer29.D1.f39163b.getStateOrientation();
                 if (Math.abs(f12) > 180.0f) {
                     if (f12 < 0.0f) {
                         f12 += 360.0f;
@@ -599,7 +599,7 @@ public final class in0 implements View.OnClickListener {
                         f12 = -(360.0f - f12);
                     }
                 }
-                photoViewer29.I0(f12, photoViewer29.D1.f39164b.getStateMirror(), new hn0(photoViewer29, 8));
+                photoViewer29.I0(f12, photoViewer29.D1.f39163b.getStateMirror(), new hn0(photoViewer29, 8));
                 return;
         }
     }

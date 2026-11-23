@@ -184,7 +184,7 @@ public final class s30 {
                 }
                 if (document != null) {
                     org.telegram.ui.Components.p5 p5Var = this.d;
-                    p5Var.f38495e = document;
+                    p5Var.f38494e = document;
                     p5Var.i(false);
                     return;
                 }

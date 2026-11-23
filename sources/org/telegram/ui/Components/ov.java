@@ -8,8 +8,8 @@ import android.view.ViewPropertyAnimator;
 import android.widget.LinearLayout;
 import java.util.HashMap;
 public abstract class ov extends kl0 {
-    public static final int[] f38367f0 = {2131232128, 2131232120, 2131232122, 2131232119, 2131232130, 2131232124, 2131232125, 2131232121};
-    public static final int[] f38368g0 = {2131624099, 2131624094, 2131624096, 2131624093, 2131624100, 2131624097, 2131624098, 2131624095};
+    public static final int[] f38366f0 = {2131232128, 2131232120, 2131232122, 2131232119, 2131232130, 2131232124, 2131232125, 2131232121};
+    public static final int[] f38367g0 = {2131624099, 2131624094, 2131624096, 2131624093, 2131624100, 2131624097, 2131624098, 2131624095};
     public final kv E;
     public final kv F;
     public final kv G;
@@ -29,25 +29,25 @@ public abstract class ov extends kl0 {
     public final int U;
     public boolean V;
     public boolean W;
-    public boolean f38369a0;
-    public boolean f38370b0;
-    public boolean f38371c0;
-    public boolean f38372d0;
-    public float f38373e0;
+    public boolean f38368a0;
+    public boolean f38369b0;
+    public boolean f38370c0;
+    public boolean f38371d0;
+    public float f38372e0;
     public final int h;
-    public final boolean f38374n;
-    public boolean f38375r;
-    public d6 f38376s;
-    public final org.telegram.ui.ActionBar.h6 f38377w;
-    public final boolean f38378x;
-    public final kv f38379y;
+    public final boolean f38373n;
+    public boolean f38374r;
+    public d6 f38375s;
+    public final org.telegram.ui.ActionBar.h6 f38376w;
+    public final boolean f38377x;
+    public final kv f38378y;
 
     public ov(Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10, boolean z11, boolean z12, boolean z13, int i7, Runnable runnable, int i10, boolean z14) {
         super(context);
         boolean z15;
         this.h = 2131232127;
-        this.f38374n = !org.telegram.messenger.k10.i(org.telegram.messenger.k10.f24968t0).q();
-        this.f38375r = true;
+        this.f38373n = !org.telegram.messenger.k10.i(org.telegram.messenger.k10.f24968t0).q();
+        this.f38374r = true;
         this.I = new HashMap();
         this.L = 0.0f;
         this.M = 0.0f;
@@ -57,28 +57,28 @@ public abstract class ov extends kl0 {
         this.T = 6;
         this.V = true;
         this.W = true;
-        this.f38369a0 = true;
-        this.f38370b0 = true;
-        this.f38371c0 = false;
-        this.f38372d0 = true;
-        this.f38373e0 = 11.0f;
-        this.f38378x = z13;
-        this.f38377w = h6Var;
+        this.f38368a0 = true;
+        this.f38369b0 = true;
+        this.f38370c0 = false;
+        this.f38371d0 = true;
+        this.f38372e0 = 11.0f;
+        this.f38377x = z13;
+        this.f38376w = h6Var;
         this.S = runnable;
         this.U = i7;
         this.R = i10;
         this.Q = z14;
         gv gvVar = new gv(this, context, z13, z14);
-        this.f36929b = gvVar;
+        this.f36928b = gvVar;
         gvVar.setClipToPadding(false);
-        this.f36929b.setOrientation(0);
+        this.f36928b.setOrientation(0);
         setVerticalScrollBarEnabled(false);
         setHorizontalScrollBarEnabled(false);
-        addView(this.f36929b);
+        addView(this.f36928b);
         if (i7 == 4) {
-            LinearLayout linearLayout = this.f36929b;
+            LinearLayout linearLayout = this.f36928b;
             kv kvVar = new kv(this, context, 2131232129, false);
-            this.f38379y = kvVar;
+            this.f38378y = kvVar;
             linearLayout.addView(kvVar);
             kvVar.setContentDescription(org.telegram.messenger.hd.N0(2131754755, null));
         }
@@ -89,25 +89,25 @@ public abstract class ov extends kl0 {
             this.h = 2131231063;
         }
         if (z10) {
-            LinearLayout linearLayout2 = this.f36929b;
+            LinearLayout linearLayout2 = this.f36928b;
             kv kvVar2 = new kv(this, context, this.h, false);
             this.E = kvVar2;
             linearLayout2.addView(kvVar2);
             kvVar2.setContentDescription(org.telegram.messenger.hd.N0(2131746165, null));
-            kvVar2.f36992a = Long.valueOf(-934918565);
+            kvVar2.f36991a = Long.valueOf(-934918565);
         }
         if (z11) {
-            LinearLayout linearLayout3 = this.f36929b;
+            LinearLayout linearLayout3 = this.f36928b;
             kv kvVar3 = new kv(this, context, 2131232123, false);
             this.F = kvVar3;
             linearLayout3.addView(kvVar3);
             kvVar3.setContentDescription(org.telegram.messenger.hd.N0(2131751163, null));
             kvVar3.setAlpha(0.0f);
-            kvVar3.f36992a = Long.valueOf(98352451);
+            kvVar3.f36991a = Long.valueOf(98352451);
         }
         if (!z13) {
             for (int i11 = 0; i11 < 8; i11++) {
-                int i12 = f38367f0[i11];
+                int i12 = f38366f0[i11];
                 if (i11 == 0) {
                     z15 = true;
                 } else {
@@ -115,26 +115,26 @@ public abstract class ov extends kl0 {
                 }
                 kv kvVar4 = new kv(this, context, i12, z15);
                 kvVar4.setContentDescription(f(i11));
-                this.f36929b.addView(kvVar4);
+                this.f36928b.addView(kvVar4);
             }
             o();
             return;
         }
         if (z12) {
-            LinearLayout linearLayout4 = this.f36929b;
+            LinearLayout linearLayout4 = this.f36928b;
             mv mvVar = new mv(this, context);
             this.H = mvVar;
             linearLayout4.addView(mvVar);
             mvVar.h = 3552126;
         }
-        this.J = this.f36929b.getChildCount();
+        this.J = this.f36928b.getChildCount();
         if (runnable != null) {
-            LinearLayout linearLayout5 = this.f36929b;
+            LinearLayout linearLayout5 = this.f36928b;
             kv kvVar5 = new kv(this, context, 2131232744, true);
             this.G = kvVar5;
             linearLayout5.addView(kvVar5);
             kvVar5.setContentDescription(org.telegram.messenger.hd.N0(2131745299, null));
-            kvVar5.f36992a = Long.valueOf(1434631203);
+            kvVar5.f36991a = Long.valueOf(1434631203);
             kvVar5.setAlpha(0.0f);
         }
         o();
@@ -168,11 +168,11 @@ public abstract class ov extends kl0 {
     }
 
     public boolean g(hx hxVar) {
-        return hxVar.f35985f;
+        return hxVar.f35984f;
     }
 
     public ColorFilter getEmojiColorFilter() {
-        return org.telegram.ui.ActionBar.m6.o0(this.f38377w);
+        return org.telegram.ui.ActionBar.m6.o0(this.f38376w);
     }
 
     public abstract boolean h(int i7);
@@ -183,29 +183,29 @@ public abstract class ov extends kl0 {
         int i10;
         boolean z13;
         boolean z14;
-        if (z10 && !this.f38372d0) {
+        if (z10 && !this.f38371d0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        kv kvVar = this.f38379y;
+        kv kvVar = this.f38378y;
         if (kvVar != null) {
             i7++;
         }
-        if (!this.f38369a0 || kvVar != null) {
+        if (!this.f38368a0 || kvVar != null) {
             i7 = Math.max(1, i7);
         }
         int i11 = this.N;
         int i12 = 0;
         int i13 = 0;
-        while (i12 < this.f36929b.getChildCount()) {
-            View childAt = this.f36929b.getChildAt(i12);
+        while (i12 < this.f36928b.getChildCount()) {
+            View childAt = this.f36928b.getChildAt(i12);
             if (childAt instanceof mv) {
                 mv mvVar = (mv) childAt;
                 int i14 = 0;
                 int i15 = i13;
-                while (i14 < mvVar.f36929b.getChildCount()) {
-                    View childAt2 = mvVar.f36929b.getChildAt(i14);
+                while (i14 < mvVar.f36928b.getChildCount()) {
+                    View childAt2 = mvVar.f36928b.getChildAt(i14);
                     if (childAt2 instanceof kv) {
                         kv kvVar2 = (kv) childAt2;
                         if (i7 == i15) {
@@ -257,47 +257,47 @@ public abstract class ov extends kl0 {
             } else {
                 this.M = 1.0f;
                 this.L = org.telegram.messenger.g0.T1(f10, f11, 1.0f);
-                this.f36929b.invalidate();
+                this.f36928b.invalidate();
             }
             if (mvVar2 != null) {
-                if (this.N != 1 && !this.f38374n) {
+                if (this.N != 1 && !this.f38373n) {
                     z12 = false;
                 } else {
                     z12 = true;
                 }
-                if (z12 != mvVar2.f37646n) {
-                    mvVar2.f37646n = z12;
+                if (z12 != mvVar2.f37645n) {
+                    mvVar2.f37645n = z12;
                     if (!z12) {
                         mvVar2.a(0);
                     }
-                    ValueAnimator valueAnimator2 = mvVar2.f36930c;
+                    ValueAnimator valueAnimator2 = mvVar2.f36929c;
                     if (valueAnimator2 != null) {
                         valueAnimator2.cancel();
                     }
                     if (z11) {
-                        float f13 = mvVar2.f37647r;
+                        float f13 = mvVar2.f37646r;
                         if (!z12) {
                             f12 = 0.0f;
                         }
                         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f13, f12);
-                        mvVar2.f36930c = ofFloat2;
+                        mvVar2.f36929c = ofFloat2;
                         ofFloat2.addUpdateListener(new x(mvVar2, 21));
-                        mvVar2.f36930c.setDuration(475L);
-                        mvVar2.f36930c.setInterpolator(nr.h);
-                        mvVar2.f36930c.start();
+                        mvVar2.f36929c.setDuration(475L);
+                        mvVar2.f36929c.setInterpolator(nr.h);
+                        mvVar2.f36929c.start();
                     } else {
                         if (!z12) {
                             f12 = 0.0f;
                         }
-                        mvVar2.f37647r = f12;
+                        mvVar2.f37646r = f12;
                         mvVar2.invalidate();
                         mvVar2.requestLayout();
                         mvVar2.c();
-                        mvVar2.f37648s.f36929b.invalidate();
+                        mvVar2.f37647s.f36928b.invalidate();
                     }
                 }
             }
-            View childAt3 = this.f36929b.getChildAt(this.N);
+            View childAt3 = this.f36928b.getChildAt(this.N);
             if (this.N >= 2) {
                 b(childAt3.getLeft(), childAt3.getRight());
             } else {
@@ -305,7 +305,7 @@ public abstract class ov extends kl0 {
             }
         }
         if (this.O != i7) {
-            if (mvVar2 != null && this.N == 1 && i7 >= 1 && i7 <= mvVar2.f36929b.getChildCount() + 1) {
+            if (mvVar2 != null && this.N == 1 && i7 >= 1 && i7 <= mvVar2.f36928b.getChildCount() + 1) {
                 int i17 = (i7 - 1) * 36;
                 mvVar2.b(org.telegram.messenger.g0.L(i17 - 6), org.telegram.messenger.g0.L(i17 + 24));
             }
@@ -315,7 +315,7 @@ public abstract class ov extends kl0 {
 
     public final int k() {
         boolean z10 = this.Q;
-        org.telegram.ui.ActionBar.h6 h6Var = this.f38377w;
+        org.telegram.ui.ActionBar.h6 h6Var = this.f38376w;
         if (z10) {
             return i0.a.o(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Nl, h6Var), (int) 12.75f);
         }
@@ -330,9 +330,9 @@ public abstract class ov extends kl0 {
         int i7;
         kv kvVar = this.F;
         if (kvVar != null) {
-            boolean z11 = this.f38370b0;
-            if (z11 || this.f38371c0 != z10) {
-                this.f38371c0 = z10;
+            boolean z11 = this.f38369b0;
+            if (z11 || this.f38370c0 != z10) {
+                this.f38370c0 = z10;
                 float f10 = 0.0f;
                 if (z11) {
                     if (z10) {
@@ -353,8 +353,8 @@ public abstract class ov extends kl0 {
                     }
                     animate.alpha(f10).setDuration(200L).setInterpolator(nr.h).withEndAction(new ch.k(24, this, z10)).start();
                 }
-                this.f36929b.requestLayout();
-                this.f38370b0 = false;
+                this.f36928b.requestLayout();
+                this.f38369b0 = false;
             }
         }
     }
@@ -372,20 +372,20 @@ public abstract class ov extends kl0 {
     }
 
     public final void n(boolean z10) {
-        this.f38375r = z10;
-        this.f36929b.invalidate();
+        this.f38374r = z10;
+        this.f36928b.invalidate();
     }
 
     public final void o() {
         int i7 = 0;
         final int i10 = 0;
-        while (i7 < this.f36929b.getChildCount()) {
-            View childAt = this.f36929b.getChildAt(i7);
+        while (i7 < this.f36928b.getChildCount()) {
+            View childAt = this.f36928b.getChildAt(i7);
             if (childAt instanceof mv) {
                 mv mvVar = (mv) childAt;
                 int i11 = 0;
-                while (i11 < mvVar.f36929b.getChildCount()) {
-                    mvVar.f36929b.getChildAt(i11).setOnClickListener(new View.OnClickListener(this) {
+                while (i11 < mvVar.f36928b.getChildCount()) {
+                    mvVar.f36928b.getChildAt(i11).setOnClickListener(new View.OnClickListener(this) {
                         public final ov f35319b;
 
                         {
@@ -440,7 +440,7 @@ public abstract class ov extends kl0 {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        this.f36929b.setPadding(org.telegram.messenger.g0.L(this.f38373e0), 0, org.telegram.messenger.g0.L(11.0f), 0);
+        this.f36928b.setPadding(org.telegram.messenger.g0.L(this.f38372e0), 0, org.telegram.messenger.g0.L(11.0f), 0);
         super.onMeasure(i7, i10);
     }
 
@@ -453,7 +453,7 @@ public abstract class ov extends kl0 {
     }
 
     public void setPaddingLeft(float f10) {
-        this.f38373e0 = f10;
+        this.f38372e0 = f10;
     }
 
     public void i(kv kvVar) {

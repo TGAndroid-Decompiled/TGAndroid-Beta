@@ -35,7 +35,7 @@ public class gk0 extends j71 {
         if (tt0Var.P == null) {
             return;
         }
-        if (tt0Var.f40046e0) {
+        if (tt0Var.f40045e0) {
             tt0Var.i("page_bound");
         }
         RecyclerView n10 = tt0Var.P.n(view);

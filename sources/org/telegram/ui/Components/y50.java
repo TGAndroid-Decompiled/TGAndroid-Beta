@@ -4,18 +4,18 @@ import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class y50 extends org.telegram.ui.Cells.ra {
-    public final TextView f42320c0;
-    public final TextView f42321d0;
+    public final TextView f42319c0;
+    public final TextView f42320d0;
 
     public y50(Context context) {
         super(context, 6, 0, true);
         LinearLayout g10 = org.telegram.messenger.f3.g(context, 1);
         TextView textView = new TextView(context);
-        this.f42320c0 = textView;
+        this.f42319c0 = textView;
         org.telegram.messenger.f3.l(textView, org.telegram.ui.ActionBar.m6.G6, null, 1, 16.0f);
         g10.addView(textView, c8.ma.r(-2, -2, 5));
         TextView textView2 = new TextView(context);
-        this.f42321d0 = textView2;
+        this.f42320d0 = textView2;
         org.telegram.ui.ActionBar.t6.U(textView2, org.telegram.ui.ActionBar.m6.f29792z6, null);
         textView2.setTextSize(1, 13.0f);
         g10.addView(textView2, c8.ma.t(-2, -2, 5, 0, 1, 0, 0));

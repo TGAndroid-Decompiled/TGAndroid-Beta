@@ -40,12 +40,12 @@ public final class w1 extends ug {
     public final boolean d() {
         switch (this.f22496y0) {
             case 0:
-                if (!((b2) this.f22497z0).M0 && this.f40356w <= 0) {
+                if (!((b2) this.f22497z0).M0 && this.f40355w <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((y3) this.f22497z0).f22545a0 && this.f40356w <= 0) {
+                if (!((y3) this.f22497z0).f22545a0 && this.f40355w <= 0) {
                     return false;
                 }
                 return true;

@@ -193,14 +193,14 @@ public final class c2 implements Runnable {
             case 18:
                 org.telegram.ui.Components.voip.s0 s0Var = (org.telegram.ui.Components.voip.s0) this.f22044b;
                 long uptimeMillis = SystemClock.uptimeMillis();
-                ArrayList arrayList = s0Var.f41336a;
+                ArrayList arrayList = s0Var.f41335a;
                 ArrayList arrayList2 = new ArrayList(arrayList);
                 int size = arrayList2.size();
                 while (i7 < size) {
                     Object obj = arrayList2.get(i7);
                     i7++;
                     org.telegram.ui.Components.voip.r0 r0Var = (org.telegram.ui.Components.voip.r0) obj;
-                    if (r0Var.f41316b && uptimeMillis - r0Var.f41317c > 5000) {
+                    if (r0Var.f41315b && uptimeMillis - r0Var.f41316c > 5000) {
                         arrayList.remove(r0Var);
                         s0Var.removeView(r0Var);
                     }
@@ -214,11 +214,11 @@ public final class c2 implements Runnable {
                 return;
             case 19:
                 org.telegram.ui.Components.voip.j1 j1Var = ((org.telegram.ui.Components.voip.g1) this.f22044b).h;
-                wi.n nVar = j1Var.f41087a;
+                wi.n nVar = j1Var.f41086a;
                 if (nVar != null) {
                     nVar.c();
                 }
-                org.telegram.ui.Components.voip.i1 i1Var = j1Var.f41091f;
+                org.telegram.ui.Components.voip.i1 i1Var = j1Var.f41090f;
                 if (i1Var != null) {
                     i1Var.a();
                     return;
@@ -226,10 +226,10 @@ public final class c2 implements Runnable {
                 return;
             case 20:
                 org.telegram.ui.Components.voip.d2 d2Var = (org.telegram.ui.Components.voip.d2) this.f22044b;
-                d2Var.f40958e = false;
-                HashMap hashMap = d2Var.f40955a;
-                ArrayList arrayList3 = d2Var.f40957c;
-                ArrayList arrayList4 = d2Var.f40956b;
+                d2Var.f40957e = false;
+                HashMap hashMap = d2Var.f40954a;
+                ArrayList arrayList3 = d2Var.f40956c;
+                ArrayList arrayList4 = d2Var.f40955b;
                 if (!arrayList4.isEmpty() || !arrayList3.isEmpty()) {
                     if (d2Var.getParent() != null) {
                         TransitionManager.beginDelayedTransition(d2Var, d2Var.d);
@@ -241,7 +241,7 @@ public final class c2 implements Runnable {
                         while (true) {
                             if (i14 >= arrayList3.size()) {
                                 break;
-                            } else if (c2Var2.f40936a.equals(((org.telegram.ui.Components.voip.c2) arrayList3.get(i14)).f40936a)) {
+                            } else if (c2Var2.f40935a.equals(((org.telegram.ui.Components.voip.c2) arrayList3.get(i14)).f40935a)) {
                                 arrayList4.remove(i13);
                                 arrayList3.remove(i14);
                                 i13--;
@@ -260,12 +260,12 @@ public final class c2 implements Runnable {
                     hashMap.clear();
                     while (i7 < d2Var.getChildCount()) {
                         org.telegram.ui.Components.voip.c2 c2Var3 = (org.telegram.ui.Components.voip.c2) d2Var.getChildAt(i7);
-                        hashMap.put(c2Var3.f40936a, c2Var3);
+                        hashMap.put(c2Var3.f40935a, c2Var3);
                         i7++;
                     }
                     arrayList4.clear();
                     arrayList3.clear();
-                    d2Var.f40958e = true;
+                    d2Var.f40957e = true;
                     org.telegram.messenger.g0.h3(new c2(d2Var, 20), 700L);
                     Runnable runnable = d2Var.h;
                     if (runnable != null) {
@@ -276,13 +276,13 @@ public final class c2 implements Runnable {
                 }
                 return;
             case 21:
-                TextView[] textViewArr = ((org.telegram.ui.Components.voip.k2) this.f22044b).f41146a;
+                TextView[] textViewArr = ((org.telegram.ui.Components.voip.k2) this.f22044b).f41145a;
                 TextView textView = textViewArr[0];
                 textViewArr[0] = textViewArr[1];
                 textViewArr[1] = textView;
                 return;
             case 22:
-                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.k2) ((jg.j0) this.f22044b).f17572e).f41146a;
+                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.k2) ((jg.j0) this.f22044b).f17572e).f41145a;
                 TextView textView2 = textViewArr2[0];
                 textViewArr2[0] = textViewArr2[1];
                 textViewArr2[1] = textView2;
@@ -296,12 +296,12 @@ public final class c2 implements Runnable {
                 return;
             case 24:
                 org.telegram.ui.Components.voip.s2 s2Var = (org.telegram.ui.Components.voip.s2) this.f22044b;
-                s2Var.f41355e = Bitmap.createBitmap(s2Var.getMeasuredWidth(), s2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                new Canvas(s2Var.f41355e).drawText(s2Var.d, s2Var.getMeasuredWidth() / 2, (int) ((s2Var.getMeasuredHeight() / 2) - ((s2Var.f41352a.ascent() + s2Var.f41352a.descent()) / 2.0f)), s2Var.f41352a);
+                s2Var.f41354e = Bitmap.createBitmap(s2Var.getMeasuredWidth(), s2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                new Canvas(s2Var.f41354e).drawText(s2Var.d, s2Var.getMeasuredWidth() / 2, (int) ((s2Var.getMeasuredHeight() / 2) - ((s2Var.f41351a.ascent() + s2Var.f41351a.descent()) / 2.0f)), s2Var.f41351a);
                 s2Var.postInvalidate();
                 return;
             case 25:
-                ((org.telegram.ui.web.k) this.f22044b).f53219x.f35790g3.O(true);
+                ((org.telegram.ui.web.k) this.f22044b).f53219x.f35789g3.O(true);
                 return;
             case 26:
                 org.telegram.ui.web.i iVar = ((org.telegram.ui.web.m) ((hi.s2) this.f22044b).f15369c).f53233f;

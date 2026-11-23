@@ -14,7 +14,7 @@ public final class cg implements org.telegram.messenger.or {
             case 0:
                 bn bnVar = this.f46563b;
                 if (bnVar.getParentActivity() != null && bnVar.fragmentView != null && i7 > 0) {
-                    org.telegram.ui.Components.lc.b0(bnVar).m(org.telegram.ui.Components.kc.f36878r, i7, 0, 0, bnVar.Ba).j();
+                    org.telegram.ui.Components.lc.b0(bnVar).m(org.telegram.ui.Components.kc.f36877r, i7, 0, 0, bnVar.Ba).j();
                     return;
                 }
                 return;

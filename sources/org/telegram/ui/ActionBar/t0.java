@@ -87,16 +87,16 @@ public final class t0 extends zz {
                 org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.f30008f;
                 org.telegram.ui.Cells.j1 j1Var = r1Var.D4;
                 if (r1Var.Q5.I3()) {
-                    f10 = j1Var.f42458b;
-                    i7 = j1Var.f42461f;
+                    f10 = j1Var.f42457b;
+                    i7 = j1Var.f42460f;
                     i10 = ym0.E;
                 } else if (gj.R4(r1Var.Q5.f24213k)) {
                     if (r1Var.C4) {
                         en0 en0Var = r1Var.E4;
                         return en0Var.f34916a / en0Var.f34921g;
                     }
-                    f10 = j1Var.f42458b;
-                    i7 = j1Var.f42461f;
+                    f10 = j1Var.f42457b;
+                    i7 = j1Var.f42460f;
                     i10 = ym0.E;
                 } else if (r1Var.Q5.h4()) {
                     return r1Var.Q5.f24173b0;

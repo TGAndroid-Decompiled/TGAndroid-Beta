@@ -155,12 +155,12 @@ public final class f00 extends FrameLayout implements org.telegram.ui.ActionBar.
         org.telegram.ui.Components.q80 q80Var = new org.telegram.ui.Components.q80();
         this.f47444s = q80Var;
         q80Var.D = true;
-        q80Var.f38830t = 2.0f;
+        q80Var.f38829t = 2.0f;
         int i21 = org.telegram.ui.ActionBar.m6.f29473i6;
         int x02 = org.telegram.ui.ActionBar.m6.x0(null, i21, false);
         q80Var.g(org.telegram.ui.ActionBar.m6.r1(0.4f, x02), org.telegram.ui.ActionBar.m6.r1(1.0f, x02), org.telegram.ui.ActionBar.m6.r1(0.9f, x02), org.telegram.ui.ActionBar.m6.r1(1.7f, x02));
         int L = org.telegram.messenger.g0.L(1.0f);
-        q80Var.f38833x.setStrokeWidth(L);
+        q80Var.f38832x.setStrokeWidth(L);
         q80Var.k(40.0f);
         org.telegram.ui.Components.m20 m20Var = new org.telegram.ui.Components.m20(this, context, L, 1);
         this.f47442n = m20Var;

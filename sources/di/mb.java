@@ -37,7 +37,7 @@ public final class mb extends FrameLayout implements gs {
         int i11 = ls.B3;
         h51 h51Var = this.f9361a;
         if (i7 == i11) {
-            h51Var.f35790g3.O(true);
+            h51Var.f35789g3.O(true);
             if (h51Var.canScrollVertically(1)) {
                 for (int i12 = 0; i12 < h51Var.getChildCount(); i12++) {
                     if (!(h51Var.getChildAt(i12) instanceof yz)) {
@@ -48,10 +48,10 @@ public final class mb extends FrameLayout implements gs {
             this.h.run();
         } else if (i7 == ls.F3) {
             if (((Long) objArr[0]).longValue() == this.f9365f) {
-                h51Var.f35790g3.O(true);
+                h51Var.f35789g3.O(true);
             }
         } else if (i7 == ls.f25296d4 && this.f9366n != null && !TextUtils.equals(this.f9367r, org.telegram.ui.Wallet.u0.D(this.f9363c).y())) {
-            h51Var.f35790g3.O(true);
+            h51Var.f35789g3.O(true);
         }
     }
 
@@ -68,7 +68,7 @@ public final class mb extends FrameLayout implements gs {
                 ls.f(i10).c(this, ls.f25296d4);
             }
         }
-        this.f9361a.f35790g3.O(false);
+        this.f9361a.f35789g3.O(false);
     }
 
     @Override

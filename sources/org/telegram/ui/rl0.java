@@ -133,7 +133,7 @@ public final class rl0 extends View implements org.telegram.ui.ActionBar.b6 {
             i7 = 0;
         }
         org.telegram.ui.Components.xy0 xy0Var = this.f51612f;
-        xy0Var.f42258p = measuredWidth4 - i7;
+        xy0Var.f42257p = measuredWidth4 - i7;
         if (org.telegram.messenger.hd.f24444a0) {
             L = (getMeasuredWidth() - xy0Var.k()) - org.telegram.messenger.g0.L(71.0f);
         } else {
@@ -198,7 +198,7 @@ public final class rl0 extends View implements org.telegram.ui.ActionBar.b6 {
             rectF.set(f10, measuredHeight, measuredWidth, (org.telegram.messenger.g0.L(22.0f) + getMeasuredHeight()) / 2.0f);
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), this.f51613n);
             org.telegram.ui.Components.xy0 xy0Var2 = this.f51614r;
-            xy0Var2.f42258p = min;
+            xy0Var2.f42257p = min;
             if (org.telegram.messenger.hd.f24444a0) {
                 z11 = org.telegram.messenger.g0.L(24.0f);
             } else {

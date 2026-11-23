@@ -96,14 +96,14 @@ public final class o71 extends View {
         float d = this.d.d(this.f50513c);
         org.telegram.ui.Components.xy0 xy0Var = this.f50511a;
         if (xy0Var != null) {
-            xy0Var.f42258p = getWidth() - org.telegram.messenger.g0.L(14.0f);
+            xy0Var.f42257p = getWidth() - org.telegram.messenger.g0.L(14.0f);
             xy0Var.c((getWidth() - this.f50511a.k()) / 2.0f, ((org.telegram.messenger.g0.L(24.0f) * 0.0f) + (getHeight() / 2.0f)) - (org.telegram.messenger.g0.L(7.0f) * d), 1.0f, -1, canvas);
         }
         if (this.f50512b != null) {
             canvas.save();
             canvas.scale(d, d, getWidth() / 2.0f, (getHeight() / 2.0f) + org.telegram.messenger.g0.L(11.0f));
             org.telegram.ui.Components.xy0 xy0Var2 = this.f50512b;
-            xy0Var2.f42258p = getWidth() - org.telegram.messenger.g0.L(14.0f);
+            xy0Var2.f42257p = getWidth() - org.telegram.messenger.g0.L(14.0f);
             float L = 0.0f * org.telegram.messenger.g0.L(24.0f);
             xy0Var2.c((getWidth() - this.f50512b.k()) / 2.0f, org.telegram.messenger.g0.L(11.0f) + L + (getHeight() / 2.0f), 1.0f, org.telegram.ui.ActionBar.m6.r1(0.75f, -1), canvas);
             canvas.restore();

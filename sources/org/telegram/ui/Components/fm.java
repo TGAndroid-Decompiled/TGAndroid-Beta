@@ -17,7 +17,7 @@ public abstract class fm extends org.telegram.ui.oq0 {
 
     @Override
     public final boolean O() {
-        ui uiVar = this.f35261a.f37520b;
+        ui uiVar = this.f35261a.f37519b;
         if (uiVar != null && uiVar.d2) {
             return true;
         }
@@ -45,7 +45,7 @@ public abstract class fm extends org.telegram.ui.oq0 {
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f35261a;
         zl zlVar = chatAttachAlertPhotoLayout.f32835r;
         zl zlVar2 = chatAttachAlertPhotoLayout.F;
-        ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+        ui uiVar = chatAttachAlertPhotoLayout.f37519b;
         if (uiVar.Q3 < 0 || ChatAttachAlertPhotoLayout.f32800t1.size() < uiVar.Q3 || x(i7)) {
             boolean z11 = ChatAttachAlertPhotoLayout.f32798r1;
             org.telegram.messenger.ff e02 = chatAttachAlertPhotoLayout.e0(i7);
@@ -69,7 +69,7 @@ public abstract class fm extends org.telegram.ui.oq0 {
                         }
                         View childAt = zlVar2.getChildAt(i11);
                         if ((childAt instanceof org.telegram.ui.Cells.s5) && ((Integer) childAt.getTag()).intValue() == i7) {
-                            if ((uiVar.f40368a2 instanceof org.telegram.ui.bn) && uiVar.R3) {
+                            if ((uiVar.f40367a2 instanceof org.telegram.ui.bn) && uiVar.R3) {
                                 ((org.telegram.ui.Cells.s5) childAt).b(T, z10, false);
                             } else {
                                 ((org.telegram.ui.Cells.s5) childAt).b(-1, z10, false);
@@ -86,7 +86,7 @@ public abstract class fm extends org.telegram.ui.oq0 {
                         }
                         View childAt2 = zlVar.getChildAt(i12);
                         if ((childAt2 instanceof org.telegram.ui.Cells.s5) && ((Integer) childAt2.getTag()).intValue() == i7) {
-                            if ((uiVar.f40368a2 instanceof org.telegram.ui.bn) && uiVar.R3) {
+                            if ((uiVar.f40367a2 instanceof org.telegram.ui.bn) && uiVar.R3) {
                                 ((org.telegram.ui.Cells.s5) childAt2).b(T, z10, false);
                             } else {
                                 ((org.telegram.ui.Cells.s5) childAt2).b(-1, z10, false);

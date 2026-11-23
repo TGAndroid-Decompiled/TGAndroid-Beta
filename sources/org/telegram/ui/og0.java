@@ -570,12 +570,12 @@ public class og0 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
             org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.m6.f29381d6, view, getResourceProvider());
         } else {
             boolean z10 = view instanceof org.telegram.ui.Cells.z6;
-            if (z10 && (view.getBackground() instanceof org.telegram.ui.Components.oq) && (((org.telegram.ui.Components.oq) view.getBackground()).f38330a instanceof ColorDrawable)) {
-                ((ColorDrawable) ((org.telegram.ui.Components.oq) view.getBackground()).f38330a).setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, getResourceProvider()));
+            if (z10 && (view.getBackground() instanceof org.telegram.ui.Components.oq) && (((org.telegram.ui.Components.oq) view.getBackground()).f38329a instanceof ColorDrawable)) {
+                ((ColorDrawable) ((org.telegram.ui.Components.oq) view.getBackground()).f38329a).setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, getResourceProvider()));
                 view.invalidate();
             } else if (z10) {
                 org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(new ColorDrawable(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29324a7, getResourceProvider())), org.telegram.ui.ActionBar.m6.Y0(org.telegram.messenger.t0.f26931b, 2131231229, org.telegram.ui.ActionBar.m6.f29345b7), 0, 0);
-                oqVar.f38339x = true;
+                oqVar.f38338x = true;
                 view.setBackground(oqVar);
             } else if (view instanceof ng.c) {
                 ((ng.c) view).a();

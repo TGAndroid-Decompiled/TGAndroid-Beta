@@ -528,7 +528,7 @@ public final class l7 extends FrameLayout implements org.telegram.ui.ActionBar.b
             sb2.append(this.V.getText());
         }
         accessibilityNodeInfo.setText(sb2.toString());
-        if (this.f31047x.f38321a.f32874q) {
+        if (this.f31047x.f38320a.f32874q) {
             accessibilityNodeInfo.setChecked(true);
             accessibilityNodeInfo.setCheckable(true);
         }

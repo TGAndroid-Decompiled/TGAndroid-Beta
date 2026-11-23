@@ -216,11 +216,11 @@ public class j0 extends View {
                 this.f58003c0 = (7.33f * f20) + this.f58003c0;
                 this.G = this.f57999a0.f57959f;
                 xy0 xy0Var = new xy0(str2, 16.0f, null);
-                xy0Var.f42245a.setTextSize(16.0f * f20);
+                xy0Var.f42244a.setTextSize(16.0f * f20);
                 float f23 = 20.0f * f20;
                 xy0Var.p(f21 - f23);
                 this.H = xy0Var;
-                this.f58001b0 = Math.max(this.f58001b0, Math.min(f23 + xy0Var.f42247c, f21));
+                this.f58001b0 = Math.max(this.f58001b0, Math.min(f23 + xy0Var.f42246c, f21));
                 float f24 = 7.0f * f20;
                 this.f58003c0 = this.H.i() + this.f58003c0 + f24;
                 if (webPage.photo == null && !gj.K4(webPage.document)) {
@@ -301,7 +301,7 @@ public class j0 extends View {
                 this.L = !isEmpty;
                 if (!isEmpty) {
                     xy0 xy0Var2 = new xy0(webPage.site_name, 14.0f, org.telegram.messenger.g0.o());
-                    xy0Var2.f42245a.setTextSize(f20 * 14.0f);
+                    xy0Var2.f42244a.setTextSize(f20 * 14.0f);
                     float f25 = f20 * 40.0f;
                     float f26 = f21 - f25;
                     if (this.S && this.T) {
@@ -312,7 +312,7 @@ public class j0 extends View {
                     xy0Var2.p((int) Math.ceil(f26 - f18));
                     this.M = xy0Var2;
                     float f27 = this.f58001b0;
-                    float f28 = f25 + xy0Var2.f42247c;
+                    float f28 = f25 + xy0Var2.f42246c;
                     if (this.S && this.T) {
                         f19 = f20 * 60.0f;
                     } else {
@@ -320,7 +320,7 @@ public class j0 extends View {
                     }
                     this.f58001b0 = Math.max(f27, Math.min(f28 + f19, f21));
                     this.f58004d0 = (f20 * 2.66f) + this.M.i() + this.f58004d0;
-                    i12 = this.M.f42246b.getLineCount();
+                    i12 = this.M.f42245b.getLineCount();
                 } else {
                     i12 = 0;
                 }
@@ -328,7 +328,7 @@ public class j0 extends View {
                 this.J = !isEmpty2;
                 if (!isEmpty2) {
                     xy0 xy0Var3 = new xy0(webPage.title, 14.0f, org.telegram.messenger.g0.o());
-                    xy0Var3.f42245a.setTextSize(f20 * 14.0f);
+                    xy0Var3.f42244a.setTextSize(f20 * 14.0f);
                     float f29 = f20 * 40.0f;
                     float f30 = f21 - f29;
                     f13 = 2.66f;
@@ -341,7 +341,7 @@ public class j0 extends View {
                     xy0Var3.p((int) Math.ceil(f30 - f16));
                     this.K = xy0Var3;
                     float f31 = this.f58001b0;
-                    float f32 = f29 + xy0Var3.f42247c;
+                    float f32 = f29 + xy0Var3.f42246c;
                     if (this.S && this.T) {
                         f17 = 60.0f * f14;
                     } else {
@@ -349,7 +349,7 @@ public class j0 extends View {
                     }
                     this.f58001b0 = Math.max(f31, Math.min(f32 + f17, f21));
                     this.f58004d0 = (f14 * 2.66f) + this.K.i() + this.f58004d0;
-                    i12 += this.K.f42246b.getLineCount();
+                    i12 += this.K.f42245b.getLineCount();
                 } else {
                     f13 = 2.66f;
                     f14 = f20;

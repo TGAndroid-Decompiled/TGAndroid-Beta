@@ -78,7 +78,7 @@ public abstract class t2 extends FrameLayout implements b6 {
             ofFloat.addUpdateListener(new r2(this, 1));
             this.h.playTogether(ObjectAnimator.ofFloat(w2Var.f30176b, "translationY", 0.0f), ofFloat);
             this.h.setDuration((int) ((Math.max(0.0f, translationY) / org.telegram.messenger.g0.a1(false, 0.8f)) * 250.0f));
-            this.h.setInterpolator(nr.f37961f);
+            this.h.setInterpolator(nr.f37960f);
             this.h.addListener(new s2(this, 0));
             ls.e().k(ls.f25329j1, 512);
             this.h.start();
@@ -257,7 +257,7 @@ public abstract class t2 extends FrameLayout implements b6 {
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(max2, 0.0f);
                         ofFloat.addUpdateListener(new r2(this, 2));
                         ofFloat.addListener(new s2(this, 1));
-                        ofFloat.setInterpolator(nr.f37961f);
+                        ofFloat.setInterpolator(nr.f37960f);
                         ofFloat.setDuration(220L);
                         ofFloat.start();
                     } else {

@@ -65,7 +65,7 @@ public final class k9 implements Runnable {
                 t9 t9Var5 = this.f49249b;
                 if (t9Var5.h.getTag() != null) {
                     t9Var5.h.setTag(null);
-                    t9Var5.h.animate().setDuration(200L).alpha(0.0f).setInterpolator(org.telegram.ui.Components.nr.f37961f).start();
+                    t9Var5.h.animate().setDuration(200L).alpha(0.0f).setInterpolator(org.telegram.ui.Components.nr.f37960f).start();
                     return;
                 }
                 return;
@@ -93,7 +93,7 @@ public final class k9 implements Runnable {
                     t9Var7.Y = ofFloat;
                     ofFloat.addUpdateListener(new n9(t9Var7, 0));
                     t9Var7.Y.setDuration(Math.abs(t9Var7.Z - t9Var7.f52267a0) * 300.0f);
-                    t9Var7.Y.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                    t9Var7.Y.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                     t9Var7.Y.start();
                     r1.g gVar = t9Var7.f52269b0;
                     if (gVar != null) {

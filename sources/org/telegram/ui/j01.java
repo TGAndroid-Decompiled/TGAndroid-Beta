@@ -85,7 +85,7 @@ public final class j01 implements org.telegram.ui.Components.tj0 {
             ofFloat.addUpdateListener(new iz0(this, 4));
             ofFloat.addListener(new ay(this, 27));
             ofFloat.setDuration(150L);
-            ofFloat.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+            ofFloat.setInterpolator(org.telegram.ui.Components.nr.f37960f);
             ofFloat.start();
         }
     }

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class ps0 extends org.telegram.ui.oq0 {
-    public final qs0 f38662a;
+    public final qs0 f38661a;
 
     public ps0(qs0 qs0Var) {
-        this.f38662a = qs0Var;
+        this.f38661a = qs0Var;
     }
 
     @Override
@@ -16,12 +16,12 @@ public final class ps0 extends org.telegram.ui.oq0 {
         ImageReceiver imageReceiver;
         org.telegram.ui.Cells.r1 r1Var;
         org.telegram.messenger.gj messageObject;
-        ss0 ss0Var = this.f38662a.f38991c;
-        cs0 cs0Var = ss0Var.f39685r;
+        ss0 ss0Var = this.f38661a.f38990c;
+        cs0 cs0Var = ss0Var.f39684r;
         if (cs0Var != null) {
             int childCount = cs0Var.getChildCount();
             for (int i10 = 0; i10 < childCount; i10++) {
-                View childAt = ss0Var.f39685r.getChildAt(i10);
+                View childAt = ss0Var.f39684r.getChildAt(i10);
                 if ((childAt instanceof org.telegram.ui.Cells.r1) && gjVar != null && (messageObject = (r1Var = (org.telegram.ui.Cells.r1) childAt).getMessageObject()) != null && messageObject.e1() == gjVar.e1()) {
                     ArrayList arrayList = messageObject.f24245s0;
                     if (arrayList != null && i7 >= 0 && i7 < arrayList.size()) {
@@ -38,7 +38,7 @@ public final class ps0 extends org.telegram.ui.oq0 {
                     org.telegram.ui.wq0 wq0Var = new org.telegram.ui.wq0();
                     wq0Var.f53498b = iArr[0];
                     wq0Var.f53499c = childAt.getPaddingTop() + iArr[1];
-                    wq0Var.d = ss0Var.f39685r;
+                    wq0Var.d = ss0Var.f39684r;
                     wq0Var.f53507m = null;
                     wq0Var.f53497a = imageReceiver;
                     if (z10) {

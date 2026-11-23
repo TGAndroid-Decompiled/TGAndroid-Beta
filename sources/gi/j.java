@@ -138,7 +138,7 @@ public final class j extends TextView {
         switch (this.f13670a) {
             case 7:
                 super.onDetachedFromWindow();
-                ((q80) this.f13672c).f38814b = -1L;
+                ((q80) this.f13672c).f38813b = -1L;
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -210,14 +210,14 @@ public final class j extends TextView {
                 rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 Paint[] paintArr = (Paint[]) this.f13671b;
                 w0 w0Var = (w0) this.f13672c;
-                paintArr[w0Var.f41426y].setAlpha(255);
-                canvas.drawRoundRect(rectF3, g0.L(6.0f), g0.L(6.0f), paintArr[w0Var.f41426y]);
-                float f10 = w0Var.f41425x;
+                paintArr[w0Var.f41425y].setAlpha(255);
+                canvas.drawRoundRect(rectF3, g0.L(6.0f), g0.L(6.0f), paintArr[w0Var.f41425y]);
+                float f10 = w0Var.f41424x;
                 if (f10 > 0.0f) {
-                    int i7 = w0Var.f41426y;
+                    int i7 = w0Var.f41425y;
                     if (i7 + 1 < paintArr.length) {
                         paintArr[i7 + 1].setAlpha((int) (f10 * 255.0f));
-                        canvas.drawRoundRect(rectF3, g0.L(6.0f), g0.L(6.0f), paintArr[w0Var.f41426y + 1]);
+                        canvas.drawRoundRect(rectF3, g0.L(6.0f), g0.L(6.0f), paintArr[w0Var.f41425y + 1]);
                     }
                 }
                 super.onDraw(canvas);
@@ -331,7 +331,7 @@ public final class j extends TextView {
         super(context);
         this.f13670a = 9;
         this.f13672c = w0Var;
-        this.f13671b = new Paint[w0Var.f41420f.length];
+        this.f13671b = new Paint[w0Var.f41419f.length];
         int i7 = 0;
         while (true) {
             Paint[] paintArr = (Paint[]) this.f13671b;
@@ -360,8 +360,8 @@ public final class j extends TextView {
                 this.f13671b = h80Var;
                 q80 q80Var = new q80();
                 this.f13672c = q80Var;
-                q80Var.f38834y = h80Var;
-                q80Var.f38831u = 0.65f;
+                q80Var.f38833y = h80Var;
+                q80Var.f38830u = 0.65f;
                 q80Var.k(4.0f);
                 setBackground(q80Var);
                 return;
@@ -391,8 +391,8 @@ public final class j extends TextView {
         this.f13672c = v50Var;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
         this.f13671b = nVar;
-        nVar.f41191k = false;
-        nVar.f41193m = 2.0f;
+        nVar.f41190k = false;
+        nVar.f41192m = 2.0f;
     }
 
     public j(org.telegram.ui.g gVar, Context context) {
@@ -401,8 +401,8 @@ public final class j extends TextView {
         this.f13672c = gVar;
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
         this.f13671b = nVar;
-        nVar.f41191k = false;
-        nVar.f41193m = 2.0f;
+        nVar.f41190k = false;
+        nVar.f41192m = 2.0f;
     }
 
     public j(m mVar, Context context) {

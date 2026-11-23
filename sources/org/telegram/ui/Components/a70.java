@@ -197,7 +197,7 @@ public final class a70 {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(w60Var.f41662x, 0.0f);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(w60Var.f41661x, 0.0f);
         a70Var.f33392p0 = ofFloat;
         ofFloat.addUpdateListener(new h60(w60Var, 2));
         a70Var.f33392p0.addListener(new fi.a3(a70Var, w60Var, viewGroup, 8));

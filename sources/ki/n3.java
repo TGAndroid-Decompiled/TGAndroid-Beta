@@ -21,7 +21,7 @@ public class n3 extends View implements b6 {
     public n3(Context context, h6 h6Var) {
         super(context);
         xt0 xt0Var = new xt0(new e9(18), new e9(19));
-        xt0Var.f42218c = 100.0f;
+        xt0Var.f42217c = 100.0f;
         this.f18830a = xt0Var;
         Paint paint = new Paint(1);
         this.f18831b = paint;

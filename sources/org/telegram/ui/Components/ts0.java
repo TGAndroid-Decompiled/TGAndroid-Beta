@@ -4,11 +4,11 @@ import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 public final class ts0 extends org.telegram.ui.Cells.u2 {
-    public final us0 f40034b5;
+    public final us0 f40033b5;
 
     public ts0(us0 us0Var, Context context) {
         super(context, true);
-        this.f40034b5 = us0Var;
+        this.f40033b5 = us0Var;
     }
 
     @Override
@@ -18,11 +18,11 @@ public final class ts0 extends org.telegram.ui.Cells.u2 {
 
     @Override
     public final boolean getIsPinned() {
-        us0 us0Var = this.f40034b5;
-        ArrayList arrayList = us0Var.f40575f;
-        cs0 cs0Var = us0Var.f40578s;
+        us0 us0Var = this.f40033b5;
+        ArrayList arrayList = us0Var.f40574f;
+        cs0 cs0Var = us0Var.f40577s;
         if (cs0Var != null && cs0Var.getAdapter() == us0Var) {
-            us0Var.f40578s.getClass();
+            us0Var.f40577s.getClass();
             int R = RecyclerView.R(this);
             if (R >= 0 && R < arrayList.size()) {
                 return ((org.telegram.messenger.pv) arrayList.get(R)).f26351b;

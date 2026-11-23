@@ -244,15 +244,15 @@ public final class s0 extends r5 {
                                             }
                                             i0Var.f57281r = DesugarCollections.unmodifiableMap(hashMap);
                                             yt0 yt0Var = i0Var.f57271g;
-                                            if (u0Var.h.getWidth() != yt0Var.f42546a || u0Var.h.getHeight() != yt0Var.f42547b) {
-                                                Bitmap createBitmap = Bitmap.createBitmap((int) yt0Var.f42546a, (int) yt0Var.f42547b, Bitmap.Config.ARGB_8888);
-                                                new Canvas(createBitmap).drawBitmap(u0Var.h, (Rect) null, new RectF(0.0f, 0.0f, yt0Var.f42546a, yt0Var.f42547b), (Paint) null);
+                                            if (u0Var.h.getWidth() != yt0Var.f42545a || u0Var.h.getHeight() != yt0Var.f42546b) {
+                                                Bitmap createBitmap = Bitmap.createBitmap((int) yt0Var.f42545a, (int) yt0Var.f42546b, Bitmap.Config.ARGB_8888);
+                                                new Canvas(createBitmap).drawBitmap(u0Var.h, (Rect) null, new RectF(0.0f, 0.0f, yt0Var.f42545a, yt0Var.f42546b), (Paint) null);
                                                 u0Var.h = createBitmap;
                                                 u0Var.f57407r = true;
                                             }
-                                            if (u0Var.f57406n != null && (bitmap.getWidth() != yt0Var.f42546a || u0Var.f57406n.getHeight() != yt0Var.f42547b)) {
-                                                Bitmap createBitmap2 = Bitmap.createBitmap((int) yt0Var.f42546a, (int) yt0Var.f42547b, Bitmap.Config.ARGB_8888);
-                                                new Canvas(createBitmap2).drawBitmap(u0Var.f57406n, (Rect) null, new RectF(0.0f, 0.0f, yt0Var.f42546a, yt0Var.f42547b), (Paint) null);
+                                            if (u0Var.f57406n != null && (bitmap.getWidth() != yt0Var.f42545a || u0Var.f57406n.getHeight() != yt0Var.f42546b)) {
+                                                Bitmap createBitmap2 = Bitmap.createBitmap((int) yt0Var.f42545a, (int) yt0Var.f42546b, Bitmap.Config.ARGB_8888);
+                                                new Canvas(createBitmap2).drawBitmap(u0Var.f57406n, (Rect) null, new RectF(0.0f, 0.0f, yt0Var.f42545a, yt0Var.f42546b), (Paint) null);
                                                 u0Var.f57406n = createBitmap2;
                                                 u0Var.f57407r = true;
                                             }

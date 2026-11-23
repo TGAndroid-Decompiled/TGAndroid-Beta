@@ -29,7 +29,7 @@ public final class y70 implements org.telegram.messenger.y10 {
                     t60 t60Var = new t60(launchActivity, 11);
                     b02.getClass();
                     Context X = b02.X();
-                    org.telegram.ui.ActionBar.h6 h6Var = b02.f37163c;
+                    org.telegram.ui.ActionBar.h6 h6Var = b02.f37162c;
                     org.telegram.ui.Components.dc dcVar = new org.telegram.ui.Components.dc(X, h6Var);
                     dcVar.f34466a.setImageDrawable(s9Var);
                     dcVar.f34467b.setText(N0);

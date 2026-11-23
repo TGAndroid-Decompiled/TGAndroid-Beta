@@ -8,17 +8,17 @@ public final class o7 extends rh0 {
     public long G;
     public final float H;
     public final f8 I;
-    public float f38142r;
-    public float f38143s;
-    public int f38144w;
-    public long f38145x;
-    public long f38146y;
+    public float f38141r;
+    public float f38142s;
+    public int f38143w;
+    public long f38144x;
+    public long f38145y;
 
     public o7(f8 f8Var, Context context, float f10) {
         super(context);
         this.I = f8Var;
         this.H = f10;
-        this.f38144w = 0;
+        this.f38143w = 0;
         this.E = new n7(this, 0);
         this.F = new n7(this, 1);
     }

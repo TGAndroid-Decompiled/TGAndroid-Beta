@@ -16,7 +16,7 @@ public final class qn extends org.telegram.ui.Cells.b6 {
         if (uVar.isFocused() && uVar.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) ((tn) this.G.f49474e).f37520b.f40368a2).h, false, true, true, true);
+                org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) ((tn) this.G.f49474e).f37519b.f40367a2).h, false, true, true, true);
             }
         }
     }
@@ -33,6 +33,6 @@ public final class qn extends org.telegram.ui.Cells.b6 {
 
     @Override
     public final void l(bi.u uVar) {
-        ((tn) this.G.f49474e).f37520b.i1(uVar, true);
+        ((tn) this.G.f49474e).f37519b.i1(uVar, true);
     }
 }

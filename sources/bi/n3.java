@@ -80,7 +80,7 @@ public final class n3 extends sa implements gs {
 
     @Override
     public final dk0 M0(ek0 ek0Var) {
-        c51 c51Var = new c51(this.f39532o1, getContext(), this.T1, 0, true, new b(this, 6), this.J0);
+        c51 c51Var = new c51(this.f39531o1, getContext(), this.T1, 0, true, new b(this, 6), this.J0);
         this.U1 = c51Var;
         c51Var.f34062r = false;
         return c51Var;
@@ -318,7 +318,7 @@ public final class n3 extends sa implements gs {
                     for (int i16 = 0; i16 < arrayList5.size(); i16++) {
                         i71Var.a(i16, (CharSequence) arrayList5.get(i16));
                     }
-                    i71Var.f36222y.f();
+                    i71Var.f36221y.f();
                     this.f3946z2.requestLayout();
                 }
                 int currentTabId = i71Var.getCurrentTabId();
@@ -465,7 +465,7 @@ public final class n3 extends sa implements gs {
         int i7 = 0;
         float f10 = Float.MAX_VALUE;
         while (true) {
-            ek0 ek0Var = this.f39532o1;
+            ek0 ek0Var = this.f39531o1;
             if (i7 < ek0Var.getChildCount()) {
                 View childAt = ek0Var.getChildAt(i7);
                 int R = RecyclerView.R(childAt);

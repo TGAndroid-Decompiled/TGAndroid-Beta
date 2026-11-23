@@ -62,13 +62,13 @@ public final class j0 extends q9 {
             this.H = true;
             return;
         }
-        if (getImageReceiver().B() != null && getImageReceiver().B().f38220l0) {
+        if (getImageReceiver().B() != null && getImageReceiver().B().f38219l0) {
             this.H = true;
         }
-        if (!this.H && getImageReceiver().B() != null && !getImageReceiver().B().f38220l0) {
+        if (!this.H && getImageReceiver().B() != null && !getImageReceiver().B().f38219l0) {
             l0 l0Var = this.L;
             if (l0Var.f5432a == 2 && !l0Var.f5454z) {
-                getImageReceiver().B().N(getImageReceiver().B().f38211e[0] - 1, false, false);
+                getImageReceiver().B().N(getImageReceiver().B().f38210e[0] - 1, false, false);
             } else {
                 getImageReceiver().B().N(0, false, false);
                 getImageReceiver().B().start();

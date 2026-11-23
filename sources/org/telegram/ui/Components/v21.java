@@ -12,17 +12,17 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 public final class v21 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final Path f40667a;
-    public final Paint f40668b;
-    public Boolean f40669c;
+    public final Path f40666a;
+    public final Paint f40667b;
+    public Boolean f40668c;
     public final b31 d;
 
     public v21(b31 b31Var, Context context) {
         super(context);
         this.d = b31Var;
-        this.f40667a = new Path();
+        this.f40666a = new Path();
         Paint paint = new Paint(1);
-        this.f40668b = paint;
+        this.f40667b = paint;
         paint.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, b31Var.J0));
         org.telegram.ui.ActionBar.m6.n(paint);
     }
@@ -41,9 +41,9 @@ public final class v21 extends FrameLayout implements org.telegram.ui.ActionBar.
         } else {
             z10 = false;
         }
-        Boolean bool = this.f40669c;
+        Boolean bool = this.f40668c;
         if (bool == null || bool.booleanValue() != z10) {
-            this.f40669c = Boolean.valueOf(z10);
+            this.f40668c = Boolean.valueOf(z10);
             Window window = b31Var.getWindow();
             if (z10) {
                 w10 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, b31Var.J0);
@@ -59,12 +59,12 @@ public final class v21 extends FrameLayout implements org.telegram.ui.ActionBar.
         float translationY = getTranslationY() + ((-frameLayout.getTop()) - b31Var.F.getHeight());
         int i7 = org.telegram.messenger.g0.f24040m;
         frameLayout.setTranslationY(Math.max(b31Var.F.getHeight() + org.telegram.messenger.g0.L(56.0f) + i7, M0) + translationY);
-        Path path = this.f40667a;
+        Path path = this.f40666a;
         path.rewind();
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(0.0f, M0, getWidth(), getHeight() + W1);
         path.addRoundRect(rectF, W1, W1, Path.Direction.CW);
-        canvas.drawPath(path, this.f40668b);
+        canvas.drawPath(path, this.f40667b);
         super.dispatchDraw(canvas);
     }
 
@@ -118,7 +118,7 @@ public final class v21 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void updateColors() {
         try {
-            this.f40668b.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, this.d.J0));
+            this.f40667b.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29454h5, this.d.J0));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

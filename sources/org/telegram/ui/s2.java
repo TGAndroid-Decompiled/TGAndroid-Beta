@@ -54,12 +54,12 @@ public final class s2 extends FrameLayout implements org.telegram.ui.Components.
         int childCount = yx0Var.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
             org.telegram.ui.Components.rx0 d = yx0Var.d(i10);
-            org.telegram.ui.Components.qx0 qx0Var = d.f39370b;
+            org.telegram.ui.Components.qx0 qx0Var = d.f39369b;
             if (qx0Var != null) {
                 qx0Var.j((org.telegram.messenger.g0.L(18.0f) + (d.b() + this.f51887f)) - this.f51885c.getScrollX());
-                d.f39370b.h(d.c() + this.h);
-                d.f39370b.g(d.f39376j + 10);
-                d.f39384r = i7;
+                d.f39369b.h(d.c() + this.h);
+                d.f39369b.g(d.f39375j + 10);
+                d.f39383r = i7;
                 i7++;
             }
         }
@@ -152,7 +152,7 @@ public final class s2 extends FrameLayout implements org.telegram.ui.Components.
         org.telegram.ui.Components.yx0 yx0Var = this.f51886e;
         int childCount = yx0Var.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
-            org.telegram.ui.Components.qx0 qx0Var = yx0Var.d(i7).f39370b;
+            org.telegram.ui.Components.qx0 qx0Var = yx0Var.d(i7).f39369b;
             if (qx0Var != null) {
                 arrayList.add(qx0Var);
             }
@@ -169,7 +169,7 @@ public final class s2 extends FrameLayout implements org.telegram.ui.Components.
         org.telegram.ui.Components.yx0 yx0Var = this.f51886e;
         int childCount = yx0Var.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
-            org.telegram.ui.Components.qx0 qx0Var = yx0Var.d(i7).f39370b;
+            org.telegram.ui.Components.qx0 qx0Var = yx0Var.d(i7).f39369b;
             if (qx0Var != null) {
                 qx0Var.i(this);
             }
@@ -186,7 +186,7 @@ public final class s2 extends FrameLayout implements org.telegram.ui.Components.
         org.telegram.ui.Components.yx0 yx0Var = this.f51886e;
         int childCount = yx0Var.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
-            org.telegram.ui.Components.qx0 qx0Var = yx0Var.d(i7).f39370b;
+            org.telegram.ui.Components.qx0 qx0Var = yx0Var.d(i7).f39369b;
             if (qx0Var != null) {
                 qx0Var.f(this);
             }
@@ -300,7 +300,7 @@ public final class s2 extends FrameLayout implements org.telegram.ui.Components.
         int i7 = 0;
         while (i7 < childCount) {
             org.telegram.ui.Components.rx0 d = yx0Var.d(i7);
-            org.telegram.ui.Components.qx0 qx0Var = d.f39370b;
+            org.telegram.ui.Components.qx0 qx0Var = d.f39369b;
             if (qx0Var instanceof z2) {
                 z2 z2Var = (z2) qx0Var;
                 r2 r2Var = this.f51885c;

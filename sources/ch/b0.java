@@ -112,8 +112,8 @@ public final class b0 {
         this.f5336m = xVar;
         xVar.setOutlineProvider(new y(this));
         xVar.setClipToOutline(true);
-        boolean z14 = xi0Var.f42122h1;
-        boolean z15 = xi0Var.f42124i1;
+        boolean z14 = xi0Var.f42121h1;
+        boolean z15 = xi0Var.f42123i1;
         if (xVar.M1 != z14) {
             xVar.M1 = z14;
             xVar.N1 = z15;
@@ -167,7 +167,7 @@ public final class b0 {
         }
         this.f5337n = xi0Var;
         xi0Var.setOnSwitchedToLoopView(new t(this, 0));
-        xi0Var.f42112d1 = true;
+        xi0Var.f42111d1 = true;
         xi0Var.invalidate();
         org.telegram.messenger.g0.h3(new c1.a(6, this, xi0Var), 50L);
         if (i7 != 5) {
@@ -213,7 +213,7 @@ public final class b0 {
                 }
                 if (xi0Var.getPullingLeftProgress() > 0.0f) {
                     xi0Var.P0 = false;
-                    ValueAnimator valueAnimator = xi0Var.f42148z0;
+                    ValueAnimator valueAnimator = xi0Var.f42147z0;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
@@ -225,7 +225,7 @@ public final class b0 {
                     xi0Var.invalidate();
                 } else {
                     xi0Var.P0 = true;
-                    ValueAnimator valueAnimator2 = xi0Var.f42148z0;
+                    ValueAnimator valueAnimator2 = xi0Var.f42147z0;
                     if (valueAnimator2 != null) {
                         valueAnimator2.cancel();
                     }
@@ -311,7 +311,7 @@ public final class b0 {
         a0 a0Var = this.f5326a;
         RectF rectF = this.f5330f;
         xi0 xi0Var = this.f5337n;
-        rectF.set(xi0Var.f42144x);
+        rectF.set(xi0Var.f42143x);
         this.f5329e = xi0Var.E;
         int[] iArr2 = new int[2];
         if (z10) {
@@ -406,8 +406,8 @@ public final class b0 {
                 f10 = 1.0f;
             }
             ?? timeAnimator = new TimeAnimator();
-            timeAnimator.f39691a = 0;
-            timeAnimator.f39692b = 0;
+            timeAnimator.f39690a = 0;
+            timeAnimator.f39691b = 0;
             timeAnimator.setFloatValues(new float[]{f11, f10});
             valueAnimator = timeAnimator;
         }
@@ -425,7 +425,7 @@ public final class b0 {
             org.telegram.ui.Cells.c0.q(0.5f, this.f5346x);
         } else {
             this.f5346x.setDuration(350L);
-            this.f5346x.setInterpolator(nr.f37961f);
+            this.f5346x.setInterpolator(nr.f37960f);
         }
         a0Var.invalidate();
         h(true);
@@ -464,7 +464,7 @@ public final class b0 {
         if (!this.f5340q) {
             xi0 xi0Var = this.f5337n;
             if (xi0Var != null) {
-                ValueAnimator valueAnimator = xi0Var.f42148z0;
+                ValueAnimator valueAnimator = xi0Var.f42147z0;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
@@ -522,8 +522,8 @@ public final class b0 {
         xVar.f51844i0.setLayerType(i7, null);
         xVar.f51840g0.setLayerType(i7, null);
         if (this.f5345w) {
-            for (int i10 = 0; i10 < Math.min(xVar.f51835e0.f36929b.getChildCount(), 16); i10++) {
-                xVar.f51835e0.f36929b.getChildAt(i10).setLayerType(i7, null);
+            for (int i10 = 0; i10 < Math.min(xVar.f51835e0.f36928b.getChildCount(), 16); i10++) {
+                xVar.f51835e0.f36928b.getChildAt(i10).setLayerType(i7, null);
             }
             return;
         }
@@ -588,8 +588,8 @@ public final class b0 {
             i7++;
         }
         int y13 = (int) (xVar.f51835e0.getY() + n01Var.getY() + xVar.getY());
-        for (int i10 = 0; i10 < xVar.f51835e0.f36929b.getChildCount(); i10++) {
-            View childAt2 = xVar.f51835e0.f36929b.getChildAt(i10);
+        for (int i10 = 0; i10 < xVar.f51835e0.f36928b.getChildCount(); i10++) {
+            View childAt2 = xVar.f51835e0.f36928b.getChildAt(i10);
             if (!hashSet.contains(childAt2)) {
                 float measuredHeight2 = (childAt2.getMeasuredHeight() / 2.0f) + childAt2.getTop() + y13;
                 if (measuredHeight2 < rectF.bottom && measuredHeight2 > rectF.top && f10 != 0.0f) {

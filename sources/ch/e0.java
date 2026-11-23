@@ -92,7 +92,7 @@ public abstract class e0 extends ot implements b6 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.f5375f2.f36567b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.f5375f2.f36566b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);

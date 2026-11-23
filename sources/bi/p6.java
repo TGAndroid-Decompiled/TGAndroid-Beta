@@ -234,7 +234,7 @@ public final class p6 implements View.OnClickListener {
                 Context context = (Context) obj3;
                 org.telegram.ui.ActionBar.y0 y0Var = (org.telegram.ui.ActionBar.y0) obj2;
                 org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40379e2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40378e2;
                 if (chatAttachAlertPhotoLayout != null) {
                     pb.k1(context, chatAttachAlertPhotoLayout.getStarsPrice(), true, new o6(17, uiVar, y0Var), h6Var);
                     return;

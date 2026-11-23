@@ -28,7 +28,7 @@ public final class z4 extends org.telegram.ui.Components.q9 {
             e7Var.J = this.H;
             TL_stories.StoryItem storyItem = b5Var.f30468r;
             e7Var.d = storyItem;
-            fi.i7.h(storyItem.dialogId, canvas, this.f38836a, e7Var);
+            fi.i7.h(storyItem.dialogId, canvas, this.f38835a, e7Var);
             return;
         }
         super.onDraw(canvas);

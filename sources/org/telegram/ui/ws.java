@@ -95,8 +95,8 @@ public final class ws extends org.telegram.ui.Components.sa {
         kVar.C = false;
         kVar.o(org.telegram.ui.Components.nr.h);
         kVar.n(350L);
-        this.f39532o1.setItemAnimator(kVar);
-        this.f39532o1.setOnItemClickListener(new zr(this, 1));
+        this.f39531o1.setItemAnimator(kVar);
+        this.f39531o1.setOnItemClickListener(new zr(this, 1));
         FrameLayout frameLayout3 = new FrameLayout(activity);
         LinearLayout f11 = org.telegram.messenger.f3.f(activity, 0);
         f11.setPadding(org.telegram.messenger.g0.L(14.0f) + this.f30211u0, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f) + this.f30211u0, org.telegram.messenger.g0.L(14.0f));
@@ -162,7 +162,7 @@ public final class ws extends org.telegram.ui.Components.sa {
             }
         });
         this.f30176b.addView(frameLayout3, c8.ma.e(-1, -2, 87));
-        org.telegram.ui.Components.ek0 ek0Var = this.f39532o1;
+        org.telegram.ui.Components.ek0 ek0Var = this.f39531o1;
         int i11 = this.f30211u0;
         ek0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(76.0f));
     }

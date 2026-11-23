@@ -753,7 +753,7 @@ public class TwoStepVerificationActivity extends org.telegram.ui.ActionBar.g2 im
         if (!this.K) {
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.playTogether(ObjectAnimator.ofFloat(this.Z, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.Z, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.Z, View.SCALE_Y, 0.1f));
-            animatorSet.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+            animatorSet.setInterpolator(org.telegram.ui.Components.nr.f37960f);
             animatorSet.start();
             return;
         }
@@ -774,7 +774,7 @@ public class TwoStepVerificationActivity extends org.telegram.ui.ActionBar.g2 im
             if (!this.K) {
                 AnimatorSet animatorSet = new AnimatorSet();
                 animatorSet.playTogether(ObjectAnimator.ofFloat(this.Z, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.Z, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.Z, View.SCALE_Y, 1.0f));
-                animatorSet.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+                animatorSet.setInterpolator(org.telegram.ui.Components.nr.f37960f);
                 animatorSet.start();
                 return;
             }

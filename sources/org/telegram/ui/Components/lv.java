@@ -6,7 +6,7 @@ public final class lv extends kv {
     public final mv P;
 
     public lv(mv mvVar, Context context, int i7) {
-        super(mvVar.f37648s, context, i7);
+        super(mvVar.f37647s, context, i7);
         this.P = mvVar;
     }
 

@@ -23,7 +23,7 @@ public final class dw0 extends v4.y {
             int b10 = f1Var.b();
             int b11 = f1Var2.b();
             kw0Var.N1.documents.add(b11, kw0Var.N1.documents.remove(b10));
-            kw0Var.f37019o1.j(b10, b11);
+            kw0Var.f37018o1.j(b10, b11);
             this.f34594e = b11;
             return true;
         }
@@ -33,14 +33,14 @@ public final class dw0 extends v4.y {
     @Override
     public final void p(v4.f1 f1Var, int i7) {
         kw0 kw0Var = this.f34595f;
-        if (i7 == 0 && kw0Var.f37023q1 != null && this.f34594e > 0) {
+        if (i7 == 0 && kw0Var.f37022q1 != null && this.f34594e > 0) {
             TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
             tL_stickers_changeStickerPosition.position = this.f34594e;
-            tL_stickers_changeStickerPosition.sticker = org.telegram.messenger.si.c0(kw0Var.f37023q1, "").document;
+            tL_stickers_changeStickerPosition.sticker = org.telegram.messenger.si.c0(kw0Var.f37022q1, "").document;
             this.f34594e = -1;
-            kw0Var.f37023q1 = null;
+            kw0Var.f37022q1 = null;
         } else if (i7 == 2) {
-            kw0Var.f37023q1 = ((org.telegram.ui.Cells.a8) f1Var.f59165a).getSticker();
+            kw0Var.f37022q1 = ((org.telegram.ui.Cells.a8) f1Var.f59165a).getSticker();
         }
     }
 

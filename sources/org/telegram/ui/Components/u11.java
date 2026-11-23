@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class u11 extends n41 {
-    public static final int f40204b = 0;
+    public static final int f40203b = 0;
 
     static {
         n41.h(new n41());
@@ -16,7 +16,7 @@ public final class u11 extends n41 {
         int i7;
         v11 v11Var = (v11) view;
         boolean z12 = false;
-        if (o41Var.f38098s) {
+        if (o41Var.f38097s) {
             v11Var.f();
         } else {
             Object obj = o41Var.H;
@@ -24,28 +24,28 @@ public final class u11 extends n41 {
                 if (o41Var.d == -2) {
                     v11Var.c();
                 } else {
-                    if ((o41Var.f38104z & 1) != 0) {
+                    if ((o41Var.f38103z & 1) != 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    v11Var.d(z11, o41Var.f38097r, o41Var.f38085e);
+                    v11Var.d(z11, o41Var.f38096r, o41Var.f38084e);
                 }
             } else if (obj instanceof TLRPC.TL_forumTopic) {
                 if (!o41Var.J) {
-                    v11Var.g(o41Var.f38103y, (TLRPC.TL_forumTopic) obj, o41Var.f38085e);
+                    v11Var.g(o41Var.f38102y, (TLRPC.TL_forumTopic) obj, o41Var.f38084e);
                 } else {
-                    v11Var.b(o41Var.f38103y, (TLRPC.TL_forumTopic) obj, o41Var.f38085e);
+                    v11Var.b(o41Var.f38102y, (TLRPC.TL_forumTopic) obj, o41Var.f38084e);
                 }
             }
         }
-        if (c8.dd.a(o41Var.f38104z, 8)) {
+        if (c8.dd.a(o41Var.f38103z, 8)) {
             i7 = org.telegram.messenger.g0.L(10.0f);
         } else {
             i7 = 0;
         }
         v11Var.M = i7;
-        if (h51Var != null && h51Var.f35793k3 && v11Var.f40640s) {
+        if (h51Var != null && h51Var.f35792k3 && v11Var.f40639s) {
             z12 = true;
         }
         v11Var.setReorder(z12);

@@ -79,7 +79,7 @@ public final class o4 implements View.OnClickListener {
                 if (stickerSet != null && c2Var.h.indexOfKey(stickerSet.set.f28461id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f28461id) < 0) {
                     if (v3Var.f32193r) {
                         longSparseArray.put(stickerSet.set.f28461id, stickerSet);
-                        c2Var.f17448e.f42314a.h(v3Var.getStickerSet());
+                        c2Var.f17448e.f42313a.h(v3Var.getStickerSet());
                         return;
                     }
                     c2Var.F(stickerSet, v3Var);
@@ -132,7 +132,7 @@ public final class o4 implements View.OnClickListener {
                 ((af) obj).run();
                 return;
             case 11:
-                ChatActivityEnterView.g(((qd) ((ki.l0) obj).d).f38892a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.g(((qd) ((ki.l0) obj).d).f38891a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 12:
                 ((ai.r) obj).run();
@@ -199,7 +199,7 @@ public final class o4 implements View.OnClickListener {
                             g2Var.d();
                         }
                         pageblockdetails.open = !pageblockdetails.open;
-                        t3Var.f35790g3.O(true);
+                        t3Var.f35789g3.O(true);
                         oi.g2 g2Var2 = t3Var.R3;
                         if (g2Var2 != null) {
                             g2Var2.h();
@@ -272,8 +272,8 @@ public final class o4 implements View.OnClickListener {
                 return;
             case 25:
                 org.telegram.ui.Components.voip.w0 w0Var = (org.telegram.ui.Components.voip.w0) obj;
-                if (!w0Var.f41416a) {
-                    if (w0Var.f41426y == 0 && w0Var.E) {
+                if (!w0Var.f41415a) {
+                    if (w0Var.f41425y == 0 && w0Var.E) {
                         ((Activity) w0Var.getContext()).startActivityForResult(((MediaProjectionManager) w0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -284,8 +284,8 @@ public final class o4 implements View.OnClickListener {
                 return;
             case 26:
                 bc1 bc1Var = (bc1) obj;
-                if (!bc1Var.f40925a) {
-                    if (bc1Var.f40934x == 0) {
+                if (!bc1Var.f40924a) {
+                    if (bc1Var.f40933x == 0) {
                         ((Activity) bc1Var.getContext()).startActivityForResult(((MediaProjectionManager) bc1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {

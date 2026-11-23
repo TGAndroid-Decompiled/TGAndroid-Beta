@@ -29,7 +29,7 @@ public final class tl0 extends org.telegram.ui.Components.n41 {
             h3Var.f3700b = l10;
             h3Var.f3699a.g(9, l10, false);
         }
-        ul0Var.b(o41Var.f38085e, false);
+        ul0Var.b(o41Var.f38084e, false);
     }
 
     @Override

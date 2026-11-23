@@ -12,9 +12,9 @@ import android.widget.TextView;
 public final class zt extends xh.l {
     public final n2.o0 V;
     public n80 W;
-    public boolean f42990a0;
-    public boolean f42991b0;
-    public boolean f42992c0;
+    public boolean f42989a0;
+    public boolean f42990b0;
+    public boolean f42991c0;
 
     public zt(Context context) {
         super(context, null, true);
@@ -46,14 +46,14 @@ public final class zt extends xh.l {
     public final void onDraw(Canvas canvas) {
         float paddingLeft;
         canvas.save();
-        if (!this.f42990a0) {
+        if (!this.f42989a0) {
             float f10 = 0.0f;
-            if (this.f42991b0) {
+            if (this.f42990b0) {
                 paddingLeft = 0.0f;
             } else {
                 paddingLeft = getPaddingLeft();
             }
-            if (!this.f42992c0) {
+            if (!this.f42991c0) {
                 f10 = getPaddingTop();
             }
             canvas.translate(paddingLeft, f10);
@@ -77,8 +77,8 @@ public final class zt extends xh.l {
                 this.W = n80Var;
                 o0Var.b(n80Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.W.f37839i);
-                int spanEnd = spannableString.getSpanEnd(this.W.f37839i);
+                int spanStart = spannableString.getSpanStart(this.W.f37838i);
+                int spanEnd = spannableString.getSpanEnd(this.W.f37838i);
                 h80 b10 = this.W.b();
                 b10.d(layout, spanStart, getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, b10);
@@ -88,7 +88,7 @@ public final class zt extends xh.l {
             if (motionEvent.getAction() == 1) {
                 o0Var.f(true);
                 n80 n80Var2 = this.W;
-                if (n80Var2 != null && (characterStyle = n80Var2.f37839i) == a10) {
+                if (n80Var2 != null && (characterStyle = n80Var2.f37838i) == a10) {
                     if (characterStyle != null) {
                         ((ClickableSpan) characterStyle).onClick(this);
                     }
@@ -110,17 +110,17 @@ public final class zt extends xh.l {
 
     @Override
     public void setDisablePaddingsOffset(boolean z10) {
-        this.f42990a0 = z10;
+        this.f42989a0 = z10;
     }
 
     @Override
     public void setDisablePaddingsOffsetX(boolean z10) {
-        this.f42991b0 = z10;
+        this.f42990b0 = z10;
     }
 
     @Override
     public void setDisablePaddingsOffsetY(boolean z10) {
-        this.f42992c0 = z10;
+        this.f42991c0 = z10;
     }
 
     @Override

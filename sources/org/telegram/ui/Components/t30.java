@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class t30 implements si {
-    public final x30 f39758a;
+    public final x30 f39757a;
 
     public t30(x30 x30Var) {
-        this.f39758a = x30Var;
+        this.f39757a = x30Var;
     }
 
     @Override
     public final void K0() {
-        org.telegram.messenger.g0.v1(this.f39758a.f41959a.getFragmentView().findFocus());
+        org.telegram.messenger.g0.v1(this.f39757a.f41958a.getFragmentView().findFocus());
     }
 
     @Override
@@ -32,15 +32,15 @@ public final class t30 implements si {
 
     @Override
     public final void v0() {
-        this.f39758a.q();
+        this.f39757a.q();
     }
 
     @Override
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
         ui uiVar;
-        x30 x30Var = this.f39758a;
-        org.telegram.ui.ActionBar.g2 g2Var = x30Var.f41959a;
-        if (g2Var != null && g2Var.getParentActivity() != null && (uiVar = x30Var.f41961c) != null) {
+        x30 x30Var = this.f39757a;
+        org.telegram.ui.ActionBar.g2 g2Var = x30Var.f41958a;
+        if (g2Var != null && g2Var.getParentActivity() != null && (uiVar = x30Var.f41960c) != null) {
             if (i7 != 8 && i7 != 7) {
                 uiVar.M(i7);
                 if (i7 == 0) {
@@ -49,8 +49,8 @@ public final class t30 implements si {
                 }
                 return;
             }
-            HashMap<Object, Object> selectedPhotos = uiVar.f40379e2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = x30Var.f41961c.f40379e2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = uiVar.f40378e2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = x30Var.f41960c.f40378e2.getSelectedPhotosOrder();
             ArrayList arrayList = new ArrayList();
             boolean z14 = false;
             for (int i12 = 0; i12 < selectedPhotosOrder.size(); i12++) {
@@ -113,7 +113,7 @@ public final class t30 implements si {
             }
             x30.a(x30Var, z14, arrayList);
             if (i7 != 8) {
-                x30Var.f41961c.a(true);
+                x30Var.f41960c.a(true);
             }
         }
     }

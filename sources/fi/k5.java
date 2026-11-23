@@ -145,7 +145,7 @@ public final class k5 implements View.OnClickListener {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
                 for (final int i11 = 0; i11 < arrayList.size(); i11++) {
-                    Context context = rfVar.f39178a.getContext();
+                    Context context = rfVar.f39177a.getContext();
                     CharSequence charSequence = (CharSequence) arrayList.get(i11);
                     if (i11 == kVar.f17977c) {
                         z10 = true;
@@ -179,7 +179,7 @@ public final class k5 implements View.OnClickListener {
                 ArrayList arrayList5 = new ArrayList();
                 ArrayList arrayList6 = new ArrayList();
                 for (final int i12 = 0; i12 < arrayList4.size(); i12++) {
-                    Context context2 = rfVar2.f39178a.getContext();
+                    Context context2 = rfVar2.f39177a.getContext();
                     CharSequence charSequence2 = (CharSequence) arrayList4.get(i12);
                     if (i12 == kVar2.f17977c) {
                         z11 = true;
@@ -202,11 +202,11 @@ public final class k5 implements View.OnClickListener {
                         }
                     });
                 }
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = pe0Var.f38582s;
-                Context context3 = pe0Var.f38575a;
-                org.telegram.ui.ActionBar.h6 h6Var2 = pe0Var.f38581r;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = pe0Var.f38581s;
+                Context context3 = pe0Var.f38574a;
+                org.telegram.ui.ActionBar.h6 h6Var2 = pe0Var.f38580r;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232567, 0, context3, h6Var2);
-                org.telegram.ui.ActionBar.q0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232059, hd.N0(2131753753, null), false, pe0Var.f38581r).setOnClickListener(new j70(pe0Var, 7));
+                org.telegram.ui.ActionBar.q0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, 2131232059, hd.N0(2131753753, null), false, pe0Var.f38580r).setOnClickListener(new j70(pe0Var, 7));
                 actionBarPopupWindow$ActionBarPopupWindowLayout2.a(new org.telegram.ui.ActionBar.d1(context3, h6Var2), ma.o(-1, 8));
                 for (int i13 = 0; i13 < arrayList5.size(); i13++) {
                     View view2 = (View) arrayList5.get(i13);

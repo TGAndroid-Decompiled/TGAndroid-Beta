@@ -236,7 +236,7 @@ public class y91 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
         edit.putLong("dialog_join_requested_time_" + (-y91Var.f54099a), System.currentTimeMillis()).commit();
         Activity parentActivity = y91Var.getParentActivity();
         boolean V = org.telegram.messenger.v3.V(y91Var.g());
-        int i7 = org.telegram.ui.Components.r70.f39105u1;
+        int i7 = org.telegram.ui.Components.r70.f39104u1;
         org.telegram.ui.Components.r70.K0(parentActivity, y91Var, org.telegram.ui.Components.lc.b0(y91Var), V);
         y91Var.S0(true);
         return false;
@@ -366,7 +366,7 @@ public class y91 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
         }
         y91Var.Z0.addListener(new i91(y91Var, z10, 0));
         y91Var.Z0.setDuration(200L);
-        y91Var.Z0.setInterpolator(org.telegram.ui.Components.nr.f37961f);
+        y91Var.Z0.setInterpolator(org.telegram.ui.Components.nr.f37960f);
         y91Var.Z0.start();
         org.telegram.messenger.ls.e().k(org.telegram.messenger.ls.f25396u4, Boolean.TRUE);
     }
@@ -664,8 +664,8 @@ public class y91 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
         ?? r32 = {new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232566, 1, getParentActivity(), getResourceProvider())};
         final TLRPC.TL_forumTopic tL_forumTopic = u2Var.O;
         org.telegram.ui.Components.ro roVar = new org.telegram.ui.Components.ro(getParentActivity(), this.currentAccount, r32[0].getSwipeBack(), false, new f91(this, tL_forumTopic), getResourceProvider());
-        int b10 = r32[0].b(roVar.f39301f);
-        roVar.f39309o = 1;
+        int b10 = r32[0].b(roVar.f39300f);
+        roVar.f39308o = 1;
         long j10 = this.f54099a;
         long j11 = -j10;
         roVar.e(j11, tL_forumTopic.f28486id, null);
@@ -957,13 +957,13 @@ public class y91 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
 
     public final void Y0() {
         fi.w4 w4Var = this.E0;
-        if (w4Var != null && w4Var.f37996e != null) {
+        if (w4Var != null && w4Var.f37995e != null) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
             org.telegram.ui.Components.nq nqVar = new org.telegram.ui.Components.nq(2131231244, 0);
             nqVar.c(org.telegram.messenger.g0.L(16.0f));
             spannableStringBuilder.setSpan(nqVar, 0, 1, 0);
             if (org.telegram.messenger.v3.y(15, g())) {
-                this.E0.f37996e.setText(org.telegram.messenger.g0.K2(org.telegram.messenger.g0.W2(org.telegram.messenger.hd.N0(2131747943, null)), spannableStringBuilder, "%s"));
+                this.E0.f37995e.setText(org.telegram.messenger.g0.K2(org.telegram.messenger.g0.W2(org.telegram.messenger.hd.N0(2131747943, null)), spannableStringBuilder, "%s"));
                 return;
             }
             String N0 = org.telegram.messenger.hd.N0(2131750457, null);
@@ -971,7 +971,7 @@ public class y91 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
             if (f10 != null) {
                 N0 = f10.title;
             }
-            this.E0.f37996e.setText(org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0("NoTopicsDescriptionUser", null, 2131747942, N0)));
+            this.E0.f37995e.setText(org.telegram.messenger.g0.W2(org.telegram.messenger.hd.a0("NoTopicsDescriptionUser", null, 2131747942, N0)));
         }
     }
 
@@ -1359,7 +1359,7 @@ public class y91 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
         org.telegram.ui.Components.yz yzVar = new org.telegram.ui.Components.yz(context, null);
         yzVar.setViewType(24);
         yzVar.setVisibility(8);
-        yzVar.f42606x = true;
+        yzVar.f42605x = true;
         u81 u81Var = new u81(context, 1);
         TextView textView = new TextView(context);
         u81Var.d = textView;
@@ -1393,7 +1393,7 @@ public class y91 extends org.telegram.ui.ActionBar.g2 implements org.telegram.me
         fi.w4 w4Var = new fi.w4(this, context, yzVar);
         this.E0 = w4Var;
         try {
-            w4Var.f37994b.getImageReceiver().W(2);
+            w4Var.f37993b.getImageReceiver().W(2);
         } catch (Exception unused) {
         }
         this.E0.e(this.K0, this.fragmentBeginToShow);

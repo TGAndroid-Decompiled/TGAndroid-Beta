@@ -147,7 +147,7 @@ public final class t extends s00 implements gs {
         boolean z10;
         ek0 ek0Var;
         tt0 tt0Var = this.V;
-        if (tt0Var != null && tt0Var.f40048f0) {
+        if (tt0Var != null && tt0Var.f40047f0) {
             z10 = true;
         } else {
             z10 = false;
@@ -156,7 +156,7 @@ public final class t extends s00 implements gs {
         if (getParentActivity() != null) {
             y8 y10 = y8.y(this.currentAccount, true);
             o41 o41Var = new o41(-2);
-            o41Var.f38084c = (uv) super.o0(getParentActivity());
+            o41Var.f38083c = (uv) super.o0(getParentActivity());
             arrayList.add(o41Var);
             arrayList.add(o41.k(this.f16371j0));
             boolean z11 = this.f16370i0;
@@ -370,7 +370,7 @@ public final class t extends s00 implements gs {
             z10 = true;
         }
         aVar.a(z10, false);
-        this.Z.a(this.V.f40048f0, false);
+        this.Z.a(this.V.f40047f0, false);
         this.f51803c.j(new u1(this, 17));
         G0();
         fh.g c10 = getBaseSimpleGlass().f56661c.c(tabsContainer, null, false);
@@ -421,8 +421,8 @@ public final class t extends s00 implements gs {
         nqVar.d = false;
         nqVar.I = 0.5f;
         nqVar.J = 0.5f;
-        nqVar.f37951r = -g0.L(3.0f);
-        nqVar.f37952s = 0.0f;
+        nqVar.f37950r = -g0.L(3.0f);
+        nqVar.f37951s = 0.0f;
         this.f16372k0.setSpan(nqVar, 0, 1, 33);
         this.f16371j0.addView(this.f16373l0, ma.d(-1, 40.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
         o6 o6Var2 = new o6(getParentActivity(), false, false, false);
@@ -732,7 +732,7 @@ public final class t extends s00 implements gs {
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         tt0 tt0Var = this.V;
-        if (tt0Var == null || motionEvent == null || tt0Var.j(motionEvent.getX(), motionEvent.getY()) || !this.V.c() || this.U.getViewPager().f36433b == 0) {
+        if (tt0Var == null || motionEvent == null || tt0Var.j(motionEvent.getX(), motionEvent.getY()) || !this.V.c() || this.U.getViewPager().f36432b == 0) {
             return true;
         }
         return false;
@@ -857,7 +857,7 @@ public final class t extends s00 implements gs {
         boolean z10;
         super.u0();
         tt0 tt0Var = this.V;
-        if (tt0Var != null && tt0Var.f40048f0) {
+        if (tt0Var != null && tt0Var.f40047f0) {
             z10 = true;
         } else {
             z10 = false;

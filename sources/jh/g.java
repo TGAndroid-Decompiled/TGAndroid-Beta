@@ -74,7 +74,7 @@ public final class g {
         x0 x0Var = recyclerView.f2810b;
         md0 md0Var = p0Var.f59249a;
         qf qfVar = (qf) md0Var.f49857b;
-        int indexOfChild = ((RecyclerView) qfVar.f38896b).indexOfChild(view);
+        int indexOfChild = ((RecyclerView) qfVar.f38895b).indexOfChild(view);
         if (indexOfChild >= 0) {
             if (((va) md0Var.f49858c).I(indexOfChild)) {
                 md0Var.K(view);

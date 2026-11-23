@@ -356,8 +356,8 @@ public class i implements l, e0, g61, a0 {
                 ((y51) photoViewer.C2).setHDRInfo(photoViewer.G2.V(null));
                 y51 y51Var = (y51) photoViewer.C2;
                 y51Var.d = i12;
-                y51Var.f42325e = i10;
-                ez ezVar = y51Var.f42323b;
+                y51Var.f42324e = i10;
+                ez ezVar = y51Var.f42322b;
                 if (ezVar != null) {
                     ezVar.postRunnable(new az(ezVar, i12, i10, 0));
                 }

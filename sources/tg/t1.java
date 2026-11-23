@@ -159,8 +159,8 @@ public final class t1 extends j {
     @Override
     public final void k() {
         yt0 yt0Var = this.f58180u0;
-        setX(getPositionX() - (yt0Var.f42546a / 2.0f));
-        setY(getPositionY() - (yt0Var.f42547b / 2.0f));
+        setX(getPositionX() - (yt0Var.f42545a / 2.0f));
+        setY(getPositionY() - (yt0Var.f42546b / 2.0f));
         m();
     }
 
@@ -179,8 +179,8 @@ public final class t1 extends j {
         int i11;
         int i12;
         yt0 yt0Var = this.f58180u0;
-        int i13 = (int) yt0Var.f42546a;
-        int i14 = (int) yt0Var.f42547b;
+        int i13 = (int) yt0Var.f42545a;
+        int i14 = (int) yt0Var.f42546b;
         TextureView textureView = this.f58181v0;
         if (textureView != null) {
             float f10 = this.f58185z0;

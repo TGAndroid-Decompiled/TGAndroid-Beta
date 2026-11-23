@@ -25,8 +25,8 @@ public final class u7 extends n41 {
         v7 v7Var = (v7) view;
         TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) o41Var.H;
         int i7 = o41Var.A;
-        String str = (String) o41Var.f38092m;
-        boolean z11 = o41Var.f38085e;
+        String str = (String) o41Var.f38091m;
+        boolean z11 = o41Var.f38084e;
         org.telegram.ui.ActionBar.h6 h6Var = v7Var.P;
         rh0 rh0Var = v7Var.f30289c;
         t7 t7Var = v7Var.f4195b0;

@@ -78,7 +78,7 @@ public final class g5 implements y10 {
                 i00 i00Var = (i00) this.f3685c;
                 int i10 = this.f3684b;
                 i00Var.getClass();
-                i00Var.f36089w2 = ((Boolean) obj).booleanValue();
+                i00Var.f36088w2 = ((Boolean) obj).booleanValue();
                 i00Var.dismiss();
                 ((y10) this.d).a(Integer.valueOf(i10));
                 return;

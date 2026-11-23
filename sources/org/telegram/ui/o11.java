@@ -194,7 +194,7 @@ public abstract class o11 extends Dialog {
         if (document == null) {
             Drawable drawable = c11Var.F;
             if (drawable instanceof org.telegram.ui.Components.p5) {
-                document = ((org.telegram.ui.Components.p5) drawable).f38495e;
+                document = ((org.telegram.ui.Components.p5) drawable).f38494e;
             }
         }
         if (document != null) {
@@ -220,7 +220,7 @@ public abstract class o11 extends Dialog {
             if ((c11Var.F instanceof org.telegram.ui.Components.p5) && (org.telegram.messenger.gj.C4(document2) || ((org.telegram.ui.Components.p5) c11Var.F).c())) {
                 if (!org.telegram.messenger.gj.C4(document2)) {
                     org.telegram.ui.Components.p5 p5Var = (org.telegram.ui.Components.p5) c11Var.F;
-                    SparseArray sparseArray = org.telegram.ui.Components.p5.f38486r;
+                    SparseArray sparseArray = org.telegram.ui.Components.p5.f38485r;
                     if (p5Var == null || !p5Var.k()) {
                         colorFilter = org.telegram.ui.ActionBar.m6.o0(h6Var);
                         imageReceiver.f22684p1 = colorFilter;
@@ -288,7 +288,7 @@ public abstract class o11 extends Dialog {
             this.O.setInterpolator(org.telegram.ui.Components.nr.h);
         } else {
             this.O.setDuration(240L);
-            this.O.setInterpolator(org.telegram.ui.Components.nr.f37962g);
+            this.O.setInterpolator(org.telegram.ui.Components.nr.f37961g);
         }
         this.O.start();
     }

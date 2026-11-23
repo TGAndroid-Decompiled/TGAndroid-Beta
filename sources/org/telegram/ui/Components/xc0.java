@@ -5,22 +5,22 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.ArrayList;
 public final class xc0 {
-    public Path f42039a;
-    public float f42040b;
-    public float f42041c;
+    public Path f42038a;
+    public float f42039b;
+    public float f42040c;
     public float d;
-    public float f42042e;
-    public float f42043f;
-    public ArrayList f42044g;
+    public float f42041e;
+    public float f42042f;
+    public ArrayList f42043g;
 
     public final void a(String str, float f10) {
-        float f11 = this.f42042e;
+        float f11 = this.f42041e;
         float f12 = this.d;
-        float f13 = this.f42041c;
+        float f13 = this.f42040c;
         try {
             ?? obj = new Object();
-            obj.f40317a = new ArrayList();
-            obj.f40318b = f10 * this.f42043f;
+            obj.f40316a = new ArrayList();
+            obj.f40317b = f10 * this.f42042f;
             String[] split = str.split(" ");
             int i7 = 0;
             while (i7 < split.length) {
@@ -29,32 +29,32 @@ public final class xc0 {
                     if (charAt != 'L') {
                         if (charAt == 'M') {
                             ?? obj2 = new Object();
-                            obj2.f41776a = (Float.parseFloat(split[i7 + 1]) + f12) * f13;
+                            obj2.f41775a = (Float.parseFloat(split[i7 + 1]) + f12) * f13;
                             i7 += 2;
-                            obj2.f41777b = (Float.parseFloat(split[i7]) + f11) * f13;
-                            obj.f40317a.add(obj2);
+                            obj2.f41776b = (Float.parseFloat(split[i7]) + f11) * f13;
+                            obj.f40316a.add(obj2);
                         }
                     } else {
                         ?? obj3 = new Object();
-                        obj3.f40797a = (Float.parseFloat(split[i7 + 1]) + f12) * f13;
+                        obj3.f40796a = (Float.parseFloat(split[i7 + 1]) + f12) * f13;
                         i7 += 2;
-                        obj3.f40798b = (Float.parseFloat(split[i7]) + f11) * f13;
-                        obj.f40317a.add(obj3);
+                        obj3.f40797b = (Float.parseFloat(split[i7]) + f11) * f13;
+                        obj.f40316a.add(obj3);
                     }
                 } else {
                     ?? obj4 = new Object();
-                    obj4.f39865c = (Float.parseFloat(split[i7 + 1]) + f12) * f13;
+                    obj4.f39864c = (Float.parseFloat(split[i7 + 1]) + f12) * f13;
                     obj4.d = (Float.parseFloat(split[i7 + 2]) + f11) * f13;
-                    obj4.f39866e = (Float.parseFloat(split[i7 + 3]) + f12) * f13;
-                    obj4.f39867f = (Float.parseFloat(split[i7 + 4]) + f11) * f13;
-                    obj4.f39863a = (Float.parseFloat(split[i7 + 5]) + f12) * f13;
+                    obj4.f39865e = (Float.parseFloat(split[i7 + 3]) + f12) * f13;
+                    obj4.f39866f = (Float.parseFloat(split[i7 + 4]) + f11) * f13;
+                    obj4.f39862a = (Float.parseFloat(split[i7 + 5]) + f12) * f13;
                     i7 += 6;
-                    obj4.f39864b = (Float.parseFloat(split[i7]) + f11) * f13;
-                    obj.f40317a.add(obj4);
+                    obj4.f39863b = (Float.parseFloat(split[i7]) + f11) * f13;
+                    obj.f40316a.add(obj4);
                 }
                 i7++;
             }
-            this.f42044g.add(obj);
+            this.f42043g.add(obj);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
@@ -65,19 +65,19 @@ public final class xc0 {
         uc0 uc0Var2;
         Object obj;
         float f11;
-        ArrayList arrayList = this.f42044g;
-        Path path = this.f42039a;
-        if (this.f42040b != f10) {
-            this.f42040b = f10;
+        ArrayList arrayList = this.f42043g;
+        Path path = this.f42038a;
+        if (this.f42039b != f10) {
+            this.f42039b = f10;
             int size = arrayList.size();
             uc0 uc0Var3 = null;
             uc0 uc0Var4 = null;
             for (int i7 = 0; i7 < size; i7++) {
                 uc0 uc0Var5 = (uc0) arrayList.get(i7);
-                if ((uc0Var4 == null || uc0Var4.f40318b < uc0Var5.f40318b) && uc0Var5.f40318b <= f10) {
+                if ((uc0Var4 == null || uc0Var4.f40317b < uc0Var5.f40317b) && uc0Var5.f40317b <= f10) {
                     uc0Var4 = uc0Var5;
                 }
-                if ((uc0Var3 == null || uc0Var3.f40318b > uc0Var5.f40318b) && uc0Var5.f40318b >= f10) {
+                if ((uc0Var3 == null || uc0Var3.f40317b > uc0Var5.f40317b) && uc0Var5.f40317b >= f10) {
                     uc0Var3 = uc0Var5;
                 }
             }
@@ -92,21 +92,21 @@ public final class xc0 {
                 uc0Var2 = uc0Var4;
             }
             if (uc0Var != null) {
-                ArrayList arrayList2 = uc0Var.f40317a;
-                if (uc0Var2 == null || uc0Var2.f40317a.size() == arrayList2.size()) {
+                ArrayList arrayList2 = uc0Var.f40316a;
+                if (uc0Var2 == null || uc0Var2.f40316a.size() == arrayList2.size()) {
                     path.reset();
                     int size2 = arrayList2.size();
                     for (int i10 = 0; i10 < size2; i10++) {
                         if (uc0Var2 != null) {
-                            obj = uc0Var2.f40317a.get(i10);
+                            obj = uc0Var2.f40316a.get(i10);
                         } else {
                             obj = null;
                         }
                         Object obj2 = arrayList2.get(i10);
                         if (obj == null || obj.getClass() == obj2.getClass()) {
                             if (uc0Var2 != null) {
-                                float f12 = uc0Var2.f40318b;
-                                f11 = (f10 - f12) / (uc0Var.f40318b - f12);
+                                float f12 = uc0Var2.f40317b;
+                                f11 = (f10 - f12) / (uc0Var.f40317b - f12);
                             } else {
                                 f11 = 1.0f;
                             }
@@ -114,42 +114,42 @@ public final class xc0 {
                                 wc0 wc0Var = (wc0) obj2;
                                 wc0 wc0Var2 = (wc0) obj;
                                 if (wc0Var2 != null) {
-                                    float f13 = wc0Var2.f41776a;
-                                    float N = org.telegram.messenger.g0.N(((wc0Var.f41776a - f13) * f11) + f13);
-                                    float f14 = wc0Var2.f41777b;
-                                    path.moveTo(N, org.telegram.messenger.g0.N(((wc0Var.f41777b - f14) * f11) + f14));
+                                    float f13 = wc0Var2.f41775a;
+                                    float N = org.telegram.messenger.g0.N(((wc0Var.f41775a - f13) * f11) + f13);
+                                    float f14 = wc0Var2.f41776b;
+                                    path.moveTo(N, org.telegram.messenger.g0.N(((wc0Var.f41776b - f14) * f11) + f14));
                                 } else {
-                                    path.moveTo(org.telegram.messenger.g0.N(wc0Var.f41776a), org.telegram.messenger.g0.N(wc0Var.f41777b));
+                                    path.moveTo(org.telegram.messenger.g0.N(wc0Var.f41775a), org.telegram.messenger.g0.N(wc0Var.f41776b));
                                 }
                             } else if (obj2 instanceof vc0) {
                                 vc0 vc0Var = (vc0) obj2;
                                 vc0 vc0Var2 = (vc0) obj;
                                 if (vc0Var2 != null) {
-                                    float f15 = vc0Var2.f40797a;
-                                    float N2 = org.telegram.messenger.g0.N(((vc0Var.f40797a - f15) * f11) + f15);
-                                    float f16 = vc0Var2.f40798b;
-                                    path.lineTo(N2, org.telegram.messenger.g0.N(((vc0Var.f40798b - f16) * f11) + f16));
+                                    float f15 = vc0Var2.f40796a;
+                                    float N2 = org.telegram.messenger.g0.N(((vc0Var.f40796a - f15) * f11) + f15);
+                                    float f16 = vc0Var2.f40797b;
+                                    path.lineTo(N2, org.telegram.messenger.g0.N(((vc0Var.f40797b - f16) * f11) + f16));
                                 } else {
-                                    path.lineTo(org.telegram.messenger.g0.N(vc0Var.f40797a), org.telegram.messenger.g0.N(vc0Var.f40798b));
+                                    path.lineTo(org.telegram.messenger.g0.N(vc0Var.f40796a), org.telegram.messenger.g0.N(vc0Var.f40797b));
                                 }
                             } else if (obj2 instanceof tc0) {
                                 tc0 tc0Var = (tc0) obj2;
                                 tc0 tc0Var2 = (tc0) obj;
                                 if (tc0Var2 != null) {
-                                    float f17 = tc0Var2.f39865c;
-                                    float N3 = org.telegram.messenger.g0.N(((tc0Var.f39865c - f17) * f11) + f17);
+                                    float f17 = tc0Var2.f39864c;
+                                    float N3 = org.telegram.messenger.g0.N(((tc0Var.f39864c - f17) * f11) + f17);
                                     float f18 = tc0Var2.d;
                                     float N4 = org.telegram.messenger.g0.N(((tc0Var.d - f18) * f11) + f18);
-                                    float f19 = tc0Var2.f39866e;
-                                    float N5 = org.telegram.messenger.g0.N(((tc0Var.f39866e - f19) * f11) + f19);
-                                    float f20 = tc0Var2.f39867f;
-                                    float N6 = org.telegram.messenger.g0.N(((tc0Var.f39867f - f20) * f11) + f20);
-                                    float f21 = tc0Var2.f39863a;
-                                    float N7 = org.telegram.messenger.g0.N(((tc0Var.f39863a - f21) * f11) + f21);
-                                    float f22 = tc0Var2.f39864b;
-                                    path.cubicTo(N3, N4, N5, N6, N7, org.telegram.messenger.g0.N(((tc0Var.f39864b - f22) * f11) + f22));
+                                    float f19 = tc0Var2.f39865e;
+                                    float N5 = org.telegram.messenger.g0.N(((tc0Var.f39865e - f19) * f11) + f19);
+                                    float f20 = tc0Var2.f39866f;
+                                    float N6 = org.telegram.messenger.g0.N(((tc0Var.f39866f - f20) * f11) + f20);
+                                    float f21 = tc0Var2.f39862a;
+                                    float N7 = org.telegram.messenger.g0.N(((tc0Var.f39862a - f21) * f11) + f21);
+                                    float f22 = tc0Var2.f39863b;
+                                    path.cubicTo(N3, N4, N5, N6, N7, org.telegram.messenger.g0.N(((tc0Var.f39863b - f22) * f11) + f22));
                                 } else {
-                                    path.cubicTo(org.telegram.messenger.g0.N(tc0Var.f39865c), org.telegram.messenger.g0.N(tc0Var.d), org.telegram.messenger.g0.N(tc0Var.f39866e), org.telegram.messenger.g0.N(tc0Var.f39867f), org.telegram.messenger.g0.N(tc0Var.f39863a), org.telegram.messenger.g0.N(tc0Var.f39864b));
+                                    path.cubicTo(org.telegram.messenger.g0.N(tc0Var.f39864c), org.telegram.messenger.g0.N(tc0Var.d), org.telegram.messenger.g0.N(tc0Var.f39865e), org.telegram.messenger.g0.N(tc0Var.f39866f), org.telegram.messenger.g0.N(tc0Var.f39862a), org.telegram.messenger.g0.N(tc0Var.f39863b));
                                 }
                             }
                         } else {

@@ -17,13 +17,13 @@ public final class dq0 extends org.telegram.ui.Components.le0 {
     public dq0(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, org.telegram.ui.ActionBar.y0 y0Var) {
         super(context);
         this.O = photoViewer;
-        this.f37168a = org.telegram.messenger.k10.f24968t0;
-        this.f37176w = new ArrayList();
+        this.f37167a = org.telegram.messenger.k10.f24968t0;
+        this.f37175w = new ArrayList();
         this.M = new org.telegram.ui.Components.hb0(this, 9);
-        this.f37169b = photoViewer2;
-        this.f37174r = y0Var;
+        this.f37168b = photoViewer2;
+        this.f37173r = y0Var;
         org.telegram.ui.Components.eu euVar = new org.telegram.ui.Components.eu(this, context, context, 1);
-        this.f37172f = euVar;
+        this.f37171f = euVar;
         euVar.getSettings().setJavaScriptEnabled(true);
         euVar.getSettings().setDomStorageEnabled(true);
         euVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
@@ -32,7 +32,7 @@ public final class dq0 extends org.telegram.ui.Components.le0 {
         euVar.setWebViewClient(new n1(this, 2));
         addView(euVar, c8.ma.e(-1, -1, 51));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f37170c = linearLayout;
+        this.f37169c = linearLayout;
         linearLayout.setOrientation(1);
         linearLayout.setGravity(17);
         linearLayout.setVisibility(8);
@@ -44,7 +44,7 @@ public final class dq0 extends org.telegram.ui.Components.le0 {
         textView.setGravity(17);
         linearLayout.addView(textView, c8.ma.r(-2, -2, 1));
         TextView textView2 = new TextView(context);
-        this.f37171e = textView2;
+        this.f37170e = textView2;
         textView2.setTextSize(1, 16.0f);
         int i7 = org.telegram.ui.ActionBar.m6.f29563n6;
         org.telegram.ui.ActionBar.t6.U(textView2, i7, null);
@@ -59,7 +59,7 @@ public final class dq0 extends org.telegram.ui.Components.le0 {
         m3Var.setVisibility(4);
         addView(m3Var, c8.ma.c(-1.0f, -1));
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
-        this.f37173n = radialProgressView;
+        this.f37172n = radialProgressView;
         radialProgressView.setVisibility(4);
         addView(radialProgressView, c8.ma.e(-2, -2, 17));
         this.N = new Rect();

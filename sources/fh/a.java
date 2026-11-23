@@ -51,7 +51,7 @@ public final class a extends ViewOutlineProvider {
                 return;
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                ui uiVar = chatAttachAlertPhotoLayout.f37520b;
+                ui uiVar = chatAttachAlertPhotoLayout.f37519b;
                 float f12 = uiVar.E2[1];
                 hi.j jVar = uiVar.C4;
                 if (jVar != null) {
@@ -88,7 +88,7 @@ public final class a extends ViewOutlineProvider {
                 if (s5Var.getTag() != null) {
                     int intValue = ((Integer) s5Var.getTag()).intValue();
                     jm jmVar = (jm) obj;
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = jmVar.f36561w;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = jmVar.f36560w;
                     if (jmVar.d && chatAttachAlertPhotoLayout2.U0 == chatAttachAlertPhotoLayout2.V0 && !chatAttachAlertPhotoLayout2.P0) {
                         intValue++;
                     }
@@ -144,11 +144,11 @@ public final class a extends ViewOutlineProvider {
                 }
             case 8:
                 n2 n2Var = (n2) obj;
-                if (n2Var.f41213b < 1.0f) {
+                if (n2Var.f41212b < 1.0f) {
                     outline.setRect((int) n2Var.P, (int) n2Var.O, (int) (view.getMeasuredWidth() - n2Var.P), (int) (view.getMeasuredHeight() - n2Var.O));
                     return;
                 } else {
-                    outline.setRoundRect((int) n2Var.P, (int) n2Var.O, (int) (view.getMeasuredWidth() - n2Var.P), (int) (view.getMeasuredHeight() - n2Var.O), n2Var.f41213b);
+                    outline.setRoundRect((int) n2Var.P, (int) n2Var.O, (int) (view.getMeasuredWidth() - n2Var.P), (int) (view.getMeasuredHeight() - n2Var.O), n2Var.f41212b);
                     return;
                 }
             default:

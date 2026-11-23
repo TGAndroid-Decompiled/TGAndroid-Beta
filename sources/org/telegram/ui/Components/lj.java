@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import j$.util.Objects;
 import org.telegram.tgnet.TLRPC;
 public final class lj {
-    public final int f37198a;
-    public final long f37199b;
+    public final int f37197a;
+    public final long f37198b;
 
     public lj(int i7, long j3) {
-        this.f37198a = i7;
-        this.f37199b = j3;
+        this.f37197a = i7;
+        this.f37198b = j3;
     }
 
     public static lj a(Object obj) {
@@ -25,7 +25,7 @@ public final class lj {
         if (this != obj) {
             if (obj != null && lj.class == obj.getClass()) {
                 lj ljVar = (lj) obj;
-                if (this.f37199b == ljVar.f37199b && this.f37198a == ljVar.f37198a) {
+                if (this.f37198b == ljVar.f37198b && this.f37197a == ljVar.f37197a) {
                     return true;
                 }
                 return false;
@@ -36,6 +36,6 @@ public final class lj {
     }
 
     public final int hashCode() {
-        return Objects.hash(p1.g.a(this.f37198a), Long.valueOf(this.f37199b));
+        return Objects.hash(p1.g.a(this.f37197a), Long.valueOf(this.f37198b));
     }
 }

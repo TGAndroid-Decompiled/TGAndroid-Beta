@@ -97,10 +97,10 @@ public final class o implements View.OnClickListener {
                 }
                 return;
             case 15:
-                int i18 = mq.f37599g0;
+                int i18 = mq.f37598g0;
                 return;
             case 16:
-                int i19 = rr.f39321x;
+                int i19 = rr.f39320x;
                 return;
             case 17:
                 float[] fArr = FragmentContextView.X0;

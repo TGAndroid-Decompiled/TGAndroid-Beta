@@ -903,7 +903,7 @@ public final class i7 extends FrameLayout implements org.telegram.ui.ActionBar.b
             changeBounds.setDuration(150L);
             transitionSet.addTransition(new Fade().setDuration(150L)).addTransition(changeBounds);
             transitionSet.setOrdering(0);
-            transitionSet.setInterpolator((TimeInterpolator) nr.f37961f);
+            transitionSet.setInterpolator((TimeInterpolator) nr.f37960f);
             TransitionManager.beginDelayedTransition(this, transitionSet);
         }
         gj gjVar = this.F;
@@ -1049,9 +1049,9 @@ public final class i7 extends FrameLayout implements org.telegram.ui.ActionBar.b
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         op opVar = this.f30861n;
-        if (opVar.f38321a.f32874q) {
+        if (opVar.f38320a.f32874q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(opVar.f38321a.f32874q);
+            accessibilityNodeInfo.setChecked(opVar.f38320a.f32874q);
         }
     }
 

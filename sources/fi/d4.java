@@ -100,7 +100,7 @@ public final class d4 implements ValueAnimator.AnimatorUpdateListener {
                 ((q9) this.f11890b).setRoundRadius(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
             case 9:
-                di.b1 b1Var = ((k60) this.f11890b).f36819e.f39082o1;
+                di.b1 b1Var = ((k60) this.f11890b).f36818e.f39081o1;
                 int i10 = b1Var.D1;
                 if (i10 != -1 && (view = b1Var.E1) != null) {
                     b1Var.k1(i10, view);
@@ -110,13 +110,13 @@ public final class d4 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 10:
                 j71 j71Var = (j71) this.f11890b;
-                View[] viewArr = j71Var.f36435e;
-                if (j71Var.f36442y) {
+                View[] viewArr = j71Var.f36434e;
+                if (j71Var.f36441y) {
                     float abs = 1.0f - (Math.abs(viewArr[0].getTranslationX()) / viewArr[0].getMeasuredWidth());
-                    j71Var.f36434c = abs;
+                    j71Var.f36433c = abs;
                     z61 z61Var = j71Var.N;
                     if (z61Var != null) {
-                        z61Var.f(abs, j71Var.d, j71Var.f36433b);
+                        z61Var.f(abs, j71Var.d, j71Var.f36432b);
                     }
                 }
                 j71Var.t(false);
@@ -125,7 +125,7 @@ public final class d4 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Components.voip.q1 q1Var = (org.telegram.ui.Components.voip.q1) this.f11890b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 q1Var.K = floatValue;
-                org.telegram.ui.Components.voip.p1 p1Var = q1Var.f41290j0;
+                org.telegram.ui.Components.voip.p1 p1Var = q1Var.f41289j0;
                 if (p1Var != null) {
                     ((sb1) p1Var).f52006b.f48342e0.d(q1Var.Q, floatValue);
                 }

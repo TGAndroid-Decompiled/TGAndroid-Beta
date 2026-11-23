@@ -17,24 +17,24 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class j70 implements View.OnClickListener {
-    public final int f36430a;
-    public final Object f36431b;
+    public final int f36429a;
+    public final Object f36430b;
 
     public j70(Object obj, int i7) {
-        this.f36430a = i7;
-        this.f36431b = obj;
+        this.f36429a = i7;
+        this.f36430b = obj;
     }
 
     @Override
     public final void onClick(View view) {
         TLRPC.Chat chat;
         int i7;
-        int i10 = this.f36430a;
-        Object obj = this.f36431b;
+        int i10 = this.f36429a;
+        Object obj = this.f36430b;
         switch (i10) {
             case 0:
                 l70 l70Var = (l70) obj;
-                l70Var.f37145m1 = true;
+                l70Var.f37144m1 = true;
                 l70Var.dismiss();
                 return;
             case 1:
@@ -42,7 +42,7 @@ public final class j70 implements View.OnClickListener {
                 return;
             case 2:
                 za0 za0Var = (za0) obj;
-                za0.b(za0Var.getContext(), za0Var.f42754a, za0Var.f42759n, false, za0Var.f42764y, new oo(za0Var, 29), za0Var.f42756c);
+                za0.b(za0Var.getContext(), za0Var.f42753a, za0Var.f42758n, false, za0Var.f42763y, new oo(za0Var, 29), za0Var.f42755c);
                 return;
             case 3:
                 ((zb0) obj).onBackPressed();
@@ -68,10 +68,10 @@ public final class j70 implements View.OnClickListener {
                 ee0Var.d();
                 return;
             case 6:
-                view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(((ke0) obj).f36897a.E.url)));
+                view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(((ke0) obj).f36896a.E.url)));
                 return;
             case 7:
-                ((pe0) obj).f38582s.getSwipeBack().b(true);
+                ((pe0) obj).f38581s.getSwipeBack().b(true);
                 return;
             case 8:
                 df0 df0Var = (df0) obj;
@@ -245,10 +245,10 @@ public final class j70 implements View.OnClickListener {
                 }
                 return;
             case 15:
-                jt0 jt0Var = ((ur0) obj).f40569f;
-                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var.f36684y1;
+                jt0 jt0Var = ((ur0) obj).f40568f;
+                org.telegram.ui.ActionBar.g2 g2Var2 = jt0Var.f36683y1;
                 if (g2Var2 != null && g2Var2.getParentLayout() != null) {
-                    ((ActionBarLayout) jt0Var.f36684y1.getParentLayout()).r();
+                    ((ActionBarLayout) jt0Var.f36683y1.getParentLayout()).r();
                     return;
                 }
                 return;
@@ -256,7 +256,7 @@ public final class j70 implements View.OnClickListener {
                 ((cp0) obj).run();
                 return;
             case 17:
-                ((nv0) obj).f37994b.getImageReceiver().P0(false);
+                ((nv0) obj).f37993b.getImageReceiver().P0(false);
                 return;
             case 18:
                 org.telegram.messenger.g0.h3((fi.t4) obj, 100L);
@@ -267,7 +267,7 @@ public final class j70 implements View.OnClickListener {
                 org.telegram.messenger.g0.I3(e01Var);
                 return;
             case 20:
-                ((p01) obj).f38434b.getImageReceiver().P0(false);
+                ((p01) obj).f38433b.getImageReceiver().P0(false);
                 return;
             case 21:
                 ((b31) obj).dismiss();
